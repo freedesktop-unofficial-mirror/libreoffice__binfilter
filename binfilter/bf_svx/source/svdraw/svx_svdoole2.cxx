@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-27 12:20:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:42:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,60 +37,21 @@
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
 #endif
 
-// auto strip #include <comphelper/processfactory.hxx>
 
-// auto strip #ifndef _IPOBJ_HXX //autogen
-// auto strip #include <so3/ipobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _PERSIST_HXX
-// auto strip #include <so3/persist.hxx>
-// auto strip #endif
 #ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
 #endif
-// auto strip #ifndef _SVDPAGV_HXX
-// auto strip #include <svdpagv.hxx>
-// auto strip #endif
-// auto strip #ifndef _GLOBNAME_HXX
-// auto strip #include <tools/globname.hxx>
-// auto strip #endif
-// auto strip #ifndef _IPCLIENT_HXX //autogen
-// auto strip #include <so3/ipclient.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_JOBSET_HXX
-// auto strip #include <vcl/jobset.hxx>
-// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
 
-// auto strip #include <sot/formats.hxx>
 
-// auto strip #ifndef _IPENV_HXX //autogen
-// auto strip #include <so3/ipenv.hxx>
-// auto strip #endif
-// auto strip #ifndef _PSEUDO_HXX
-// auto strip #include <so3/pseudo.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVXLINKMGR_HXX //autogen
-// auto strip #include <linkmgr.hxx>
-// auto strip #endif
-// auto strip #ifndef SVTOOLS_TRANSFER_HXX
-// auto strip #include <svtools/transfer.hxx>
-// auto strip #endif
 
 
 #include "svdoole2.hxx"
 #include <svtools/solar.hrc>
-// auto strip #include "svdxout.hxx"
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
 
-// auto strip #include "svdpagv.hxx"
-// auto strip #include "svdmodel.hxx"
 #include "svdio.hxx"
-// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 #include "svdetc.hxx"
 #include "svdview.hxx"
@@ -166,50 +127,11 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, FASTBOOL bFrame_)
-//STRIP001 {
-//STRIP001  bInDestruction = FALSE;
-//STRIP001  Init();
-//STRIP001  ppObjRef=new SvInPlaceObjectRef(rNewObjRef);
-//STRIP001
-//STRIP001  bFrame=bFrame_;
-//STRIP001
-//STRIP001  SvInPlaceObjectRef& rIPRef = *ppObjRef;
-//STRIP001
-//STRIP001  if (rIPRef.Is() &&
-//STRIP001      (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_NOTRESIZEABLE) )
-//STRIP001  {
-//STRIP001      SetResizeProtect(TRUE);
-//STRIP001  }
-//STRIP001
-//STRIP001     // #108759# For math objects, set closed state to transparent
-//STRIP001     if( ImplIsMathObj( *ppObjRef ) )
-//STRIP001         SetClosedObj( false );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
 /*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, FASTBOOL bFrame_)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  bInDestruction = FALSE;
-//STRIP001  Init();
-//STRIP001
-//STRIP001  ppObjRef=new SvInPlaceObjectRef(rNewObjRef);
-//STRIP001
-//STRIP001  mpImpl->aPersistName = rNewObjName;
-//STRIP001  bFrame=bFrame_;
-//STRIP001
-//STRIP001  SvInPlaceObjectRef& rIPRef = *ppObjRef;
-//STRIP001
-//STRIP001  if (rIPRef.Is() &&
-//STRIP001      (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_NOTRESIZEABLE) )
-//STRIP001  {
-//STRIP001      SetResizeProtect(TRUE);
-//STRIP001  }
-//STRIP001
-//STRIP001     // #108759# For math objects, set closed state to transparent
-//STRIP001     if( ImplIsMathObj( *ppObjRef ) )
-//STRIP001         SetClosedObj( false );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -217,25 +139,6 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_):
 /*N*/   SdrRectObj(rNewRect)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  bInDestruction = FALSE;
-//STRIP001  Init();
-//STRIP001
-//STRIP001  ppObjRef=new SvInPlaceObjectRef(rNewObjRef);
-//STRIP001
-//STRIP001  mpImpl->aPersistName = rNewObjName;
-//STRIP001  bFrame=bFrame_;
-//STRIP001
-//STRIP001  SvInPlaceObjectRef& rIPRef = *ppObjRef;
-//STRIP001
-//STRIP001  if (rIPRef.Is() &&
-//STRIP001      (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_NOTRESIZEABLE) )
-//STRIP001  {
-//STRIP001      SetResizeProtect(TRUE);
-//STRIP001  }
-//STRIP001
-//STRIP001     // #108759# For math objects, set closed state to transparent
-//STRIP001     if( ImplIsMathObj( *ppObjRef ) )
-//STRIP001         SetClosedObj( false );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -525,18 +428,9 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrOle2Obj::HasSetName() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::SetName(const XubString& rStr)
-//STRIP001 {
-//STRIP001  aName = rStr;
-//STRIP001  SetChanged();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -562,24 +456,6 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  rInfo.bRotateFreeAllowed=FALSE;
-//STRIP001  rInfo.bRotate90Allowed  =FALSE;
-//STRIP001  rInfo.bMirrorFreeAllowed=FALSE;
-//STRIP001  rInfo.bMirror45Allowed  =FALSE;
-//STRIP001  rInfo.bMirror90Allowed  =FALSE;
-//STRIP001  rInfo.bTransparenceAllowed = FALSE;
-//STRIP001  rInfo.bGradientAllowed = FALSE;
-//STRIP001  rInfo.bShearAllowed     =FALSE;
-//STRIP001  rInfo.bEdgeRadiusAllowed=FALSE;
-//STRIP001  rInfo.bNoOrthoDesired   =FALSE;
-//STRIP001  rInfo.bCanConvToPath    =FALSE;
-//STRIP001  rInfo.bCanConvToPoly    =FALSE;
-//STRIP001  rInfo.bCanConvToPathLineToArea=FALSE;
-//STRIP001  rInfo.bCanConvToPolyLineToArea=FALSE;
-//STRIP001  rInfo.bCanConvToContour = FALSE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -590,132 +466,6 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrOle2Obj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const
-//STRIP001 {
-//STRIP001  FASTBOOL bOk=TRUE;
-//STRIP001
-//STRIP001  if( !pGraphic )
-//STRIP001      GetObjRef();    // try to load inplace object
-//STRIP001
-//STRIP001  if (ppObjRef->Is())
-//STRIP001  {
-//STRIP001      if( !bSizProt && (*ppObjRef)->GetMiscStatus() & SVOBJ_MISCSTATUS_NOTRESIZEABLE )
-//STRIP001          ( (SdrOle2Obj*) this)->bSizProt = TRUE;
-//STRIP001
-//STRIP001      const SvEditObjectProtocol& rProt=(*ppObjRef)->GetProtocol();
-//STRIP001
-//STRIP001      OutputDevice* pOut=rOut.GetOutDev();
-//STRIP001
-//STRIP001      if (!rProt.IsInPlaceActive() || (*ppObjRef)->GetIPClient()->GetEnv()->GetEditWin()!=pOut)
-//STRIP001      {
-//STRIP001          if ((rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTGRAF) ==0)
-//STRIP001          {
-//STRIP001              if (((*ppObjRef)->GetMiscStatus() & SVOBJ_MISCSTATUS_ACTIVATEWHENVISIBLE))
-//STRIP001              {
-//STRIP001                  // PlugIn-Objekt connecten
-//STRIP001                  if (rInfoRec.pPV!=NULL)
-//STRIP001                  {
-//STRIP001                      SdrOle2Obj* pOle2Obj = (SdrOle2Obj*) this;
-//STRIP001                      SdrView* pSdrView = (SdrView*) &rInfoRec.pPV->GetView();
-//STRIP001                      pSdrView->DoConnect(pOle2Obj);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001
-//STRIP001              // don't call DoDraw if this ís a special object and SDRPAINTMODE_HIDEDRAFTGRAF is set
-//STRIP001                 if( ( ( (*ppObjRef)->GetMiscStatus() & SVOBJ_MISCSTATUS_SPECIALOBJECT ) == 0 ) ||
-//STRIP001                     ( ( rInfoRec.nPaintMode & SDRPAINTMODE_HIDEDRAFTGRAF ) == 0 ) )
-//STRIP001                 {
-//STRIP001                     // #108759# Temporarily set the current background
-//STRIP001                     // color, since OLEs rely on that during
-//STRIP001                     // auto-colored text rendering
-//STRIP001                     Wallpaper aOldBg( pOut->GetBackground() );
-//STRIP001
-//STRIP001                     if( rInfoRec.pPV && GetPage() )
-//STRIP001                         pOut->SetBackground( rInfoRec.pPV->GetView().CalcBackgroundColor( GetSnapRect(),
-//STRIP001                                                                                           rInfoRec.pPV->GetVisibleLayers(),
-//STRIP001                                                                                           *GetPage() ) );
-//STRIP001
-//STRIP001                     pOut->Push( PUSH_CLIPREGION );
-//STRIP001                  pOut->IntersectClipRegion( aRect );
-//STRIP001                  (*ppObjRef)->DoDraw(pOut,aRect.TopLeft(),aRect.GetSize(),JobSetup());
-//STRIP001                     pOut->Pop();
-//STRIP001
-//STRIP001                     // #108759# Restore old background
-//STRIP001                     pOut->SetBackground( aOldBg );
-//STRIP001                 }
-//STRIP001          }
-//STRIP001          else if( ( rInfoRec.nPaintMode & SDRPAINTMODE_HIDEDRAFTGRAF ) == 0 )
-//STRIP001          { // sonst SDRPAINTMODE_DRAFTGRAF
-//STRIP001              Polygon aPoly(Rect2Poly(aRect,aGeo));
-//STRIP001              pOut->SetLineColor(Color(COL_BLACK));
-//STRIP001              pOut->DrawPolyLine(aPoly);
-//STRIP001              pOut->DrawLine(aPoly[0],aPoly[2]);
-//STRIP001              pOut->DrawLine(aPoly[1],aPoly[3]);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if ( pGraphic )
-//STRIP001  {
-//STRIP001      OutputDevice* pOutDev=rOut.GetOutDev();
-//STRIP001      if( IsEmptyPresObj() )
-//STRIP001      {
-//STRIP001          const MapMode   aDstMapMode( pOutDev->GetMapMode().GetMapUnit() );
-//STRIP001          Point           aPos(aRect.Center());
-//STRIP001          Size            aDstSize;
-//STRIP001
-//STRIP001          if( pGraphic->GetPrefMapMode().GetMapUnit() == MAP_PIXEL )
-//STRIP001              aDstSize = pOutDev->PixelToLogic( pGraphic->GetPrefSize(), aDstMapMode );
-//STRIP001          else
-//STRIP001              aDstSize = pOutDev->LogicToLogic( pGraphic->GetPrefSize(), pGraphic->GetPrefMapMode(), aDstMapMode );
-//STRIP001
-//STRIP001          aPos.X()-=aDstSize.Width() /2;
-//STRIP001          aPos.Y()-=aDstSize.Height()/2;
-//STRIP001          if (aPos.X() >= aRect.Left() && aPos.Y() >= aRect.Top())
-//STRIP001              pGraphic->Draw(pOutDev,aPos, aDstSize);
-//STRIP001
-//STRIP001             svtools::ColorConfig aColorConfig;
-//STRIP001             svtools::ColorConfigValue aColor( aColorConfig.GetColorValue( svtools::OBJECTBOUNDARIES ) );
-//STRIP001
-//STRIP001          if( aColor.bIsVisible )
-//STRIP001          {
-//STRIP001              pOutDev->SetFillColor();
-//STRIP001              pOutDev->SetLineColor( aColor.nColor );
-//STRIP001              pOutDev->DrawRect(aRect);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pGraphic->Draw( pOutDev, aRect.TopLeft(), aRect.GetSize() );
-//STRIP001  }
-//STRIP001  // #100499# OLE without context and without bitmap, do the same as
-//STRIP001  // for empty groups, additionally draw empty OLE bitmap
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if(!rInfoRec.bPrinter && rInfoRec.aPaintLayer.IsSet(nLayerId))
-//STRIP001      {
-//STRIP001          OutputDevice* pOutDev = rOut.GetOutDev();
-//STRIP001
-//STRIP001          pOutDev->SetFillInBrush(Brush(BRUSH_NULL));
-//STRIP001          pOutDev->SetPen(Color(COL_LIGHTGRAY));
-//STRIP001          pOutDev->DrawRect(aOutRect);
-//STRIP001
-//STRIP001          Bitmap aBitmap(ResId(BMP_OLEOBJ, ImpGetResMgr()));
-//STRIP001          Rectangle aSnapRect(GetSnapRect());
-//STRIP001          Size aBitmapSize(pOutDev->PixelToLogic(aBitmap.GetSizePixel()));
-//STRIP001
-//STRIP001          pOutDev->DrawBitmap(
-//STRIP001              aSnapRect.Center() - Point(aBitmapSize.Width() / 2, aBitmapSize.Height() / 2),
-//STRIP001              aBitmapSize,
-//STRIP001              aBitmap);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (HasText())
-//STRIP001  {
-//STRIP001      bOk=SdrTextObj::Paint(rOut,rInfoRec);
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -726,147 +476,24 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName = ImpGetResStr(bFrame ? STR_ObjNameSingulFrame : STR_ObjNameSingulOLE2);
-//STRIP001
-//STRIP001  if( aName.Len() )
-//STRIP001  {
-//STRIP001      rName.AppendAscii(" '");
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(bFrame ? STR_ObjNamePluralFrame : STR_ObjNamePluralOLE2);
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::ImpAssign( const SdrObject& rObj, SdrPage* pNewPage, SdrModel* pNewModel )
-//STRIP001 {
-//STRIP001     const SdrOle2Obj& rOle2Obj = static_cast< const SdrOle2Obj& >( rObj );
-//STRIP001
-//STRIP001  if( pModel )
-//STRIP001         Disconnect();
-//STRIP001
-//STRIP001     SdrRectObj::operator=( rObj );
-//STRIP001
-//STRIP001     // #108867# Manually copying bClosedObj attribute
-//STRIP001     SetClosedObj( rObj.IsClosedObj() );
-//STRIP001
-//STRIP001     if( pNewPage )
-//STRIP001         pPage = pNewPage;
-//STRIP001
-//STRIP001     if( pNewModel )
-//STRIP001         pModel = pNewModel;
-//STRIP001
-//STRIP001     aName = rOle2Obj.aName;
-//STRIP001  mpImpl->aPersistName = rOle2Obj.mpImpl->aPersistName;
-//STRIP001  aProgName = rOle2Obj.aProgName;
-//STRIP001  bFrame = rOle2Obj.bFrame;
-//STRIP001
-//STRIP001  if( rOle2Obj.pGraphic )
-//STRIP001  {
-//STRIP001      if( pGraphic )
-//STRIP001      {
-//STRIP001          delete pGraphic;
-//STRIP001          delete mpImpl->pGraphicObject;
-//STRIP001      }
-//STRIP001
-//STRIP001         pGraphic = new Graphic( *rOle2Obj.pGraphic );
-//STRIP001      mpImpl->pGraphicObject = new GraphicObject( *pGraphic );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pModel && rObj.GetModel() )
-//STRIP001     {
-//STRIP001      SvPersist* pDestPers = pModel->GetPersist();
-//STRIP001      SvPersist* pSrcPers = rObj.GetModel()->GetPersist();
-//STRIP001
-//STRIP001         if( pDestPers && pSrcPers )
-//STRIP001         {
-//STRIP001             ImpCopyObject( *pSrcPers, *pDestPers, mpImpl->aPersistName );
-//STRIP001
-//STRIP001             if( rOle2Obj.ppObjRef->Is() && ppObjRef->Is() &&
-//STRIP001                 ( (*rOle2Obj.ppObjRef)->GetMapUnit() == (*ppObjRef)->GetMapUnit() ) )
-//STRIP001             {
-//STRIP001                     (*ppObjRef)->SetVisArea( (*rOle2Obj.ppObjRef)->GetVisArea() );
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         Connect();
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::ImpCopyObject( SvPersist& rSrcPersist, SvPersist& rDstPersist, String& rPersistName )
-//STRIP001 {
-//STRIP001     SvInfoObject* pInfo = rSrcPersist.Find( rPersistName );
-//STRIP001
-//STRIP001     if( pInfo != NULL )
-//STRIP001     {
-//STRIP001         SvPersistRef    xNewRef;
-//STRIP001         const String    aOldPersistName( rPersistName );
-//STRIP001
-//STRIP001      // loop because of storage bug 46033
-//STRIP001      for( USHORT i = 1, n = 0; n < 100; i++, n++ )
-//STRIP001      {
-//STRIP001          String aStr( rPersistName = OUString::createFromAscii( "Object " ) );
-//STRIP001
-//STRIP001             aStr += String::CreateFromInt32( i );
-//STRIP001
-//STRIP001             while( rDstPersist.Find( aStr ) )
-//STRIP001             {
-//STRIP001              aStr = rPersistName;
-//STRIP001              aStr += String::CreateFromInt32( ++i );
-//STRIP001          }
-//STRIP001
-//STRIP001             xNewRef = rDstPersist.CopyObject( aOldPersistName, rPersistName = aStr, &rSrcPersist );
-//STRIP001
-//STRIP001             if( xNewRef.Is() )
-//STRIP001              break;
-//STRIP001      }
-//STRIP001
-//STRIP001      *ppObjRef = &rDstPersist.GetObject( rPersistName );
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001     if( &rObj != this )
-//STRIP001         ImpAssign( rObj );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 SdrObject* SdrOle2Obj::Clone( SdrPage* pNewPage, SdrModel* pNewModel ) const
-//STRIP001 {
-//STRIP001  SdrOle2Obj* pObj = static_cast< SdrOle2Obj* >( SdrObjFactory::MakeNewObject( GetObjInventor(), GetObjIdentifier(),NULL ) );
-//STRIP001
-//STRIP001     if( pObj )
-//STRIP001     {
-//STRIP001         pObj->ImpAssign( *this, pNewPage, pNewModel );
-//STRIP001
-//STRIP001         if( pNewModel )
-//STRIP001          pObj->SetModel( pNewModel );
-//STRIP001     }
-//STRIP001
-//STRIP001  return pObj;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrOle2Obj::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -949,12 +576,6 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::SetGeoData(const SdrObjGeoData& rGeo)
-//STRIP001 {
-//STRIP001  SdrRectObj::SetGeoData(rGeo);
-//STRIP001  if( (NULL == pModel) || !pModel->isLocked() )
-//STRIP001      ImpSetVisAreaSize();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -978,44 +599,12 @@ SO2_DECL_REF(SvInPlaceObject)
 
 /*N*/ FASTBOOL SdrOle2Obj::HasGDIMetaFile() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  GetObjRef();    // try to load inplace object
-//STRIP001  SvInPlaceObjectRef& rIPRef=*ppObjRef;
-//STRIP001  BOOL bOK = FALSE;
-//STRIP001  if ( rIPRef.Is() )
-//STRIP001      bOK = TRUE;
-//STRIP001
-//STRIP001  return bOK;
 /*N*/ }
 
 // -----------------------------------------------------------------------------
 
 /*N*/ const GDIMetaFile* SdrOle2Obj::GetGDIMetaFile() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
-//STRIP001  if( mpImpl->pMetaFile )
-//STRIP001  {
-//STRIP001      delete ((SdrOle2Obj*)this)->mpImpl->pMetaFile;
-//STRIP001      ((SdrOle2Obj*)this)->mpImpl->pMetaFile = NULL;
-//STRIP001  }
-//STRIP001
-//STRIP001  GetObjRef();    // try to load inplace object
-//STRIP001  SvInPlaceObjectRef& rIPRef=*ppObjRef;
-//STRIP001
-//STRIP001  if (rIPRef.Is())
-//STRIP001  {
-//STRIP001      GDIMetaFile*            pMtf=NULL;
-//STRIP001         TransferableDataHelper  aData(rIPRef->CreateTransferableSnapshot() );
-//STRIP001
-//STRIP001         if( aData.HasFormat( FORMAT_GDIMETAFILE ) )
-//STRIP001         {
-//STRIP001             GDIMetaFile* pNewMtf = new GDIMetaFile;
-//STRIP001
-//STRIP001             if( aData.GetGDIMetaFile( FORMAT_GDIMETAFILE, *pNewMtf ) )
-//STRIP001                 ((SdrOle2Obj*)this)->mpImpl->pMetaFile = pNewMtf;
-//STRIP001             else
-//STRIP001                 delete pNewMtf;
-//STRIP001         }
-//STRIP001  }
-//STRIP001  return mpImpl->pMetaFile;
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -1043,13 +632,6 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/
 /*N*/   if( bPreview )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        // set preview graphic (not for empty presentation objects)
-//STRIP001 /*?*/        GetGDIMetaFile();
-//STRIP001 /*?*/        if( mpImpl->pMetaFile )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            Graphic aNewGraphic( *mpImpl->pMetaFile );
-//STRIP001 /*?*/            ( (SdrOle2Obj*) this )->SetGraphic( &aNewGraphic );
-//STRIP001 /*?*/        }
 /*N*/   }
 
 /*N*/   BOOL bHasGraphic=pGraphic!=NULL;
@@ -1195,19 +777,6 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::CreatePersistName( SvPersist* pPers )
-//STRIP001 {
-//STRIP001  mpImpl->aPersistName = OUString::createFromAscii( "Object " );
-//STRIP001  String aStr( mpImpl->aPersistName );
-//STRIP001  USHORT i = 1;
-//STRIP001  aStr+=String::CreateFromInt32( i );
-//STRIP001  while( pPers->Find( aStr ) )
-//STRIP001  {
-//STRIP001      aStr = mpImpl->aPersistName;
-//STRIP001      aStr += String::CreateFromInt32(++i);
-//STRIP001  }
-//STRIP001  mpImpl->aPersistName = aStr;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
