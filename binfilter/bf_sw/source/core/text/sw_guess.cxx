@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_guess.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:26:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:09:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,40 +38,19 @@
 
 #include <ctype.h>
 
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>    // needed for SW_MOD() macro
 #endif
 
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>   // ASSERTs
-// auto strip #endif
-// auto strip #ifndef _DLELSTNR_HXX_
-// auto strip #include <dlelstnr.hxx>
-// auto strip #endif
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
 #endif
-// auto strip #ifndef _TXTCFG_HXX
-// auto strip #include <txtcfg.hxx>
-// auto strip #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>
 #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtSizeInfo, SwTxtFormatInfo
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
-// auto strip #ifndef _BREAKIT_HXX
-// auto strip #include <breakit.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
