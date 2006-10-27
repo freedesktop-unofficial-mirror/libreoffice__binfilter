@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_writingmodeitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:22:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:19:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #include "writingmodeitem.hxx"
 #endif
 
-// auto strip #ifndef _SVX_DIALMGR_HXX
-// auto strip #include "dialmgr.hxx"
-// auto strip #endif
 
 #ifndef _SVXITEMS_HRC
 #include "svxitems.hrc"
@@ -81,77 +78,14 @@ using namespace ::com::sun::star::text;
 /*N*/   return new SvxWritingModeItem( *this );
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SvxWritingModeItem::Create( SvStream & rStrm, USHORT nVer ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR("SvxWritingModeItem should not be streamed!");
-//STRIP001  return NULL;
-//STRIP001 }
 
-//STRIP001 SvStream& SvxWritingModeItem::Store( SvStream & rStrm, USHORT nIVer ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR("SvxWritingModeItem should not be streamed!");
-//STRIP001  return rStrm;
-//STRIP001 }
 
 /*N*/ USHORT SvxWritingModeItem::GetVersion( USHORT nFVer ) const
 /*N*/ {
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxWritingModeItem::GetPresentation( SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, String &rText, const IntlWrapper *  ) const
-//STRIP001 {
-//STRIP001  SfxItemPresentation eRet = ePres;
-//STRIP001     switch( ePres )
-//STRIP001     {
-//STRIP001     case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001         rText.Erase();
-//STRIP001      break;
-//STRIP001
-//STRIP001     case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001     case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      rText = SVX_RESSTR( RID_SVXITEMS_FRMDIR_BEGIN + GetValue() );
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      eRet = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001     }
-//STRIP001     return eRet;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxWritingModeItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE )
-//STRIP001 {
-//STRIP001     sal_Int32 nVal;
-//STRIP001     sal_Bool bRet = ( rVal >>= nVal );
-//STRIP001
-//STRIP001  if( !bRet )
-//STRIP001  {
-//STRIP001      WritingMode eMode;
-//STRIP001      bRet = rVal >>= eMode;
-//STRIP001
-//STRIP001      if( bRet )
-//STRIP001      {
-//STRIP001          nVal = (sal_Int32)eMode;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     if( bRet )
-//STRIP001     {
-//STRIP001         switch( nVal )
-//STRIP001         {
-//STRIP001          case WritingMode_LR_TB:
-//STRIP001          case WritingMode_RL_TB:
-//STRIP001          case WritingMode_TB_RL:
-//STRIP001              SetValue( (sal_uInt16)nVal );
-//STRIP001              bRet = true;
-//STRIP001                 break;
-//STRIP001             default:
-//STRIP001                 bRet = false;
-//STRIP001                 break;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ sal_Bool SvxWritingModeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE ) const

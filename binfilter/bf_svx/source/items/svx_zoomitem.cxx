@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_zoomitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:22:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:19:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,15 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _ARGS_HXX //autogen
-// auto strip #include <svtools/args.hxx>
-// auto strip #endif
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef __SBX_SBXVARIABLE_HXX
-// auto strip #include <svtools/sbxvar.hxx>
-// auto strip #endif
 #pragma hdrstop
 
 #include "zoomitem.hxx"
@@ -89,26 +80,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxZoomItem::Create( SvStream& rStrm, sal_uInt16 nVersion ) const
-//STRIP001 {
-//STRIP001  sal_uInt16 nValue;
-//STRIP001  sal_uInt16 nValSet;
-//STRIP001  sal_Int8 nType;
-//STRIP001  rStrm >> nValue >> nValSet >> nType;
-//STRIP001  SvxZoomItem* pNew = new SvxZoomItem( (SvxZoomType)nType, nValue, Which() );
-//STRIP001  pNew->SetValueSet( nValSet );
-//STRIP001  return pNew;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxZoomItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << (sal_uInt16)GetValue()
-//STRIP001        << nValueSet
-//STRIP001        << (sal_Int8)eType;
-//STRIP001  return rStrm;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -123,38 +97,5 @@ namespace binfilter {
 /*N*/            eType      == rItem.GetType()          );
 /*N*/ }
 
-//STRIP001 sal_Bool SvxZoomItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case 0 :
-//STRIP001         case MID_VALUE: rVal <<= (sal_Int32) GetValue(); break;
-//STRIP001         case MID_VALUESET: rVal <<= (sal_Int16) nValueSet; break;
-//STRIP001         case MID_TYPE: rVal <<= (sal_Int16) eType; break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxZoomItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Int32 nVal;
-//STRIP001     if ( rVal >>= nVal )
-//STRIP001     {
-//STRIP001         switch ( nMemberId )
-//STRIP001         {
-//STRIP001             case MID_VALUE: SetValue( nVal ); break;
-//STRIP001             case MID_VALUESET: nValueSet = (sal_Int16) nVal; break;
-//STRIP001             case MID_TYPE: eType = SvxZoomType( (sal_Int16) nVal ); break;
-//STRIP001             default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_True;
-//STRIP001 }
 }
