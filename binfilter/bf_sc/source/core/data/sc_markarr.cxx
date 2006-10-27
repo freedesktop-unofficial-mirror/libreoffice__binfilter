@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_markarr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:49:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:22:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -139,10 +138,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScMarkArray::SetMark( USHORT nRow, BOOL bMarked )
-//STRIP001 {
-//STRIP001  SetMarkArea( nRow, nRow, bMarked );
-//STRIP001 }
 
 /*N*/ void ScMarkArray::SetMarkArea( USHORT nStartRow, USHORT nEndRow, BOOL bMarked )
 /*N*/ {
@@ -266,10 +261,6 @@ namespace binfilter {
 /*N*/ //    InfoBox(0, String(nCount) + String(" Eintraege") ).Execute();
 /*N*/ }
 
-//STRIP001 void ScMarkArray::DeleteArea(USHORT nStartRow, USHORT nEndRow)
-//STRIP001 {
-//STRIP001  SetMarkArea(nStartRow, nEndRow, FALSE);
-//STRIP001 }
 
 /*N*/ BOOL ScMarkArray::IsAllMarked( USHORT nStartRow, USHORT nEndRow ) const
 /*N*/ {
@@ -328,34 +319,7 @@ namespace binfilter {
 /*N*/   return ( nCount > 1 || pData[0].bMarked );
 /*N*/ }
 
-//STRIP001 void ScMarkArray::SwapCol(ScMarkArray& rMarkArray)
-//STRIP001 {
-//STRIP001  USHORT nTemp = rMarkArray.nCount;
-//STRIP001  rMarkArray.nCount = nCount;
-//STRIP001  nCount = nTemp;
-//STRIP001
-//STRIP001     nTemp = rMarkArray.nLimit;
-//STRIP001     rMarkArray.nLimit = nLimit;
-//STRIP001     nLimit = nTemp;
-//STRIP001
-//STRIP001  ScMarkEntry* pTemp = rMarkArray.pData;
-//STRIP001  rMarkArray.pData = pData;
-//STRIP001  pData = pTemp;
-//STRIP001 }
 
-//STRIP001 void ScMarkArray::MoveTo(USHORT nStartRow, USHORT nEndRow, ScMarkArray& rMarkArray)
-//STRIP001 {
-//STRIP001  USHORT nStart = nStartRow;
-//STRIP001  for (USHORT i = 0; i < nCount; i++)
-//STRIP001  {
-//STRIP001      if ((pData[i].nRow >= nStartRow) && ((i==0) ? TRUE : pData[i-1].nRow < nEndRow))
-//STRIP001      {
-//STRIP001          rMarkArray.SetMarkArea(nStart, Min(pData[i].nRow,nEndRow), pData[i].bMarked);
-//STRIP001      }
-//STRIP001      nStart = Max((USHORT)nStart, (USHORT)(pData[i].nRow + 1) );
-//STRIP001  }
-//STRIP001  DeleteArea(nStartRow, nEndRow);
-//STRIP001 }
 
 /*N*/ void ScMarkArray::CopyMarksTo( ScMarkArray& rDestMarkArray ) const
 /*N*/ {

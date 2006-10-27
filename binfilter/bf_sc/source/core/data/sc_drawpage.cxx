@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_drawpage.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:48:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:20:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,18 +34,15 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include <bf_sfx2/objsh.hxx>
 
 #include "drawpage.hxx"
 #include "drwlayer.hxx"
-// auto strip #include "document.hxx"
 #include "pageuno.hxx"
 namespace binfilter {
 
@@ -67,14 +64,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScDrawPage::RequestBasic()
-//STRIP001 {
-//STRIP001  ScDrawLayer* pLayer = (ScDrawLayer*)GetModel();
-//STRIP001  ScDocument* pDoc = pLayer->GetDocument();
-//STRIP001  SfxObjectShell* pDocSh = pDoc ? pDoc->GetDocumentShell() : NULL;
-//STRIP001  if (pDocSh)
-//STRIP001      SetBasic(pDocSh->GetBasic());
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
