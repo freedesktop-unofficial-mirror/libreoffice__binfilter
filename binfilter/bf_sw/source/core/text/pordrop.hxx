@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pordrop.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:41:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:05:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,6 @@ class SwDropPortion : public SwTxtPortion
     short nY;               // Y-Offset
 
     sal_Bool FormatTxt( SwTxtFormatInfo &rInf );
-//STRIP001     void PaintTxt( const SwTxtPaintInfo &rInf ) const;
 
     inline void Fix( const KSHORT nNew ) { nFix = nNew; }
 public:
@@ -100,11 +99,6 @@ public:
                    const KSHORT nDistance );
     virtual ~SwDropPortion();
 
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001          void PaintDrop( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const MSHORT nOfst ) const;
 
     inline MSHORT GetLines() const { return nLines; }
     inline KSHORT GetDistance() const { return nDistance; }

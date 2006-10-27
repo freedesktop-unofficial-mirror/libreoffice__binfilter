@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itrform2.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:16:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:04:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,6 @@ class SwTxtFormatter : public SwTxtPainter
 
     // Das Herzstueck der Formatierung
     void BuildPortions( SwTxtFormatInfo &rInf );
-//STRIP001  BOOL BuildMultiPortion( SwTxtFormatInfo &rInf, SwMultiPortion& rMulti );
 
     // Berechnung des emulierten rechten Rands
     void CalcFlyWidth( SwTxtFormatInfo &rInf );
@@ -156,7 +155,6 @@ public:
     void RecalcRealHeight();
 
     // Wir formatieren eine Zeile fuer die interaktive Trennung
-//STRIP001  sal_Bool Hyphenate( SwInterHyphInfo &rInf );
 
     // Spezialmethode fuer QuoVadis-Texte
     // nErgo ist die Seitennummer der ErgoSum-Ftn
@@ -173,16 +171,13 @@ public:
     inline sal_Bool IsQuick() const { return GetInfo().IsQuick(); }
 
     // erzeugt ggfs. ein SwLineLayout, dass Ftn/Fly--Oszillation unterbindet.
-//STRIP001  void MakeDummyLine();
 
     // SwTxtIter-Funktionalitaet
     void Insert( SwLineLayout *pLine );
 
     // die noch verbleibende Hoehe bis zum Seitenrand
-//STRIP001  KSHORT GetFrmRstHeight() const;
 
     // Wie breit waerest Du ohne rechte Begrenzungen (Flys etc.)?
-//STRIP001  KSHORT _CalcFitToContent( );
 
     SwLinePortion* MakeRestPortion(const SwLineLayout* pLine, xub_StrLen nPos);
 
