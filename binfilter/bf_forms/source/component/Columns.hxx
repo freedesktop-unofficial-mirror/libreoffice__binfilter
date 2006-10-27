@@ -4,9 +4,9 @@
  *
  *  $RCSfile: Columns.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:30:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:55:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,15 +36,9 @@
 #ifndef _FRM_COLUMNS_HXX
 #define _FRM_COLUMNS_HXX
 
-// auto strip #ifndef _CPPUHELPER_COMPONENT_HXX_
-// auto strip #include <cppuhelper/component.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
-// auto strip #include <comphelper/propagg.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
@@ -53,15 +47,9 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
 #include <com/sun/star/io/XObjectInputStream.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
-// auto strip #endif
 #ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
 #endif
