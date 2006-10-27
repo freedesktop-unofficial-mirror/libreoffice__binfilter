@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_grdocsh.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 00:06:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:19:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,13 +40,7 @@
 #ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
 #endif
-// auto strip #ifndef _SVX_SRCHITEM_HXX
-// auto strip #include <bf_svx/srchitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _GLOBNAME_HXX //autogen
-// auto strip #include <tools/globname.hxx>
-// auto strip #endif
 
 #ifndef _SO_CLSIDS_HXX //autogen
 #include <so3/clsids.hxx>
@@ -59,8 +53,6 @@
 #include "glob.hrc"
 
 #include "grdocsh.hxx"
-// auto strip #include "docshell.hxx"
-// auto strip #include "drawdoc.hxx"
 #include "sdresid.hxx"
 
 
