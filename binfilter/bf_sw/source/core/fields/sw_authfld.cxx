@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_authfld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:06:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:36:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,23 +45,10 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #include <svtools/svstdarr.hxx>
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
-// auto strip #ifndef _SVX_LANGITEM_HXX
-// auto strip #include <bf_svx/langitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValues.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
 #endif
