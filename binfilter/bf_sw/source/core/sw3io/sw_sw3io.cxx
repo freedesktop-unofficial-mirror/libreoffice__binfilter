@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:01:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:58:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,13 +35,8 @@
 
 
 #pragma hdrstop
-// auto strip #include <sot/object.hxx>
 #include <stdio.h>
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
 #endif
@@ -340,41 +335,6 @@ void Sw3Io::SetSw31Export( BOOL b31 )
 }
 
 
-//STRIP001 ULONG Sw3Io::LoadStyles( SvStorage* pStor )
-//STRIP001 {
-//STRIP001  SvStorageRef aRoot = pImp->pRoot;
-//STRIP001  pImp->pRoot = pStor;
-//STRIP001  pImp->OpenStreams( FALSE );
-//STRIP001  BOOL bGood = BOOL( pImp->pRoot.Is()
-//STRIP001                  && pImp->pPageStyles.Is()
-//STRIP001                  && pImp->pStyles.Is() );
-//STRIP001  if( bGood && pImp->pRoot->GetVersion() > SOFFICE_FILEFORMAT_40 )
-//STRIP001      bGood = pImp->pNumRules.Is();
-//STRIP001  ASSERT( bGood, "Es fehlen leider ein paar Streams!" );
-//STRIP001
-//STRIP001  pImp->bOrganizer = TRUE;
-//STRIP001  if( bGood )
-//STRIP001  {
-//STRIP001      pImp->LoadStyleSheets( BOOL( !pImp->bAdditive ) );
-//STRIP001      pImp->LoadNumRules();
-//STRIP001      pImp->LoadPageStyles();
-//STRIP001  }
-//STRIP001  pImp->CloseStreams();
-//STRIP001  pImp->pRoot = aRoot;
-//STRIP001
-//STRIP001  SvNumberFormatter* pN;
-//STRIP001  if( pImp->bInsert &&
-//STRIP001      0 != ( pN = pImp->pDoc->GetNumberFormatter( FALSE ) ))
-//STRIP001      pN->ClearMergeTable();
-//STRIP001
-//STRIP001  pImp->bOrganizer = FALSE;
-//STRIP001
-//STRIP001  if( pImp->nRes )
-//STRIP001      pImp->nRes |= ERRCODE_CLASS_READ;
-//STRIP001  else if( pImp->nWarn )
-//STRIP001      pImp->nRes = pImp->nWarn | ERRCODE_CLASS_READ;
-//STRIP001  return pImp->nRes;
-//STRIP001 }
 
 
 /*N*/  ULONG Sw3Io::SaveStyles()
@@ -443,69 +403,6 @@ void Sw3Io::SetSw31Export( BOOL b31 )
 /*N*/ }
 
 
-//STRIP001 ULONG Sw3Io::GetSectionList( SvStorage *pStor, SvStrings& rSectionList )
-//STRIP001 {
-//STRIP001     ULONG nRes = pImp->OpenStreamsForScan( pStor, TRUE );
-//STRIP001     if( nRes )
-//STRIP001         return nRes;
-//STRIP001
-//STRIP001     SvStringsDtor aBookmarks;
-//STRIP001
-//STRIP001     // zuerst die Page-Styles durchsuchen
-//STRIP001     pImp->pPageStyles->Seek( 0L );
-//STRIP001     pImp->pPageStyles->SetBufferSize( SW3_BSR_PAGESTYLES );
-//STRIP001     pImp->pStrm = pImp->pPageStyles;
-//STRIP001     pImp->GetSectionList( rSectionList, aBookmarks );
-//STRIP001     pImp->pStrm = NULL;
-//STRIP001     pImp->CheckIoError( pImp->pPageStyles );
-//STRIP001     pImp->pPageStyles->SetBufferSize( 0 );
-//STRIP001
-//STRIP001     if( !pImp->nRes )
-//STRIP001     {
-//STRIP001         // und jetzt den Contents-Stream
-//STRIP001         pImp->pContents->Seek( 0L );
-//STRIP001         pImp->pContents->SetBufferSize( SW3_BSR_CONTENTS );
-//STRIP001         pImp->pStrm = pImp->pContents;
-//STRIP001         pImp->GetSectionList( rSectionList, aBookmarks );
-//STRIP001         pImp->pStrm = NULL;
-//STRIP001         pImp->CheckIoError( pImp->pContents );
-//STRIP001         pImp->pContents->SetBufferSize( 0 );
-//STRIP001     }
-//STRIP001
-//STRIP001     nRes = pImp->nRes;
-//STRIP001     if( nRes )
-//STRIP001         nRes |= ERRCODE_CLASS_READ;
-//STRIP001 //  else if( pImp->nWarn )
-//STRIP001 //      nRes = pImp->nWarn | ERRCODE_CLASS_READ;
-//STRIP001
-//STRIP001     pImp->CloseStreamsForScan();
-//STRIP001
-//STRIP001     return nRes;
-//STRIP001 }
 
-//STRIP001 ULONG Sw3Io::GetMacroTable( SvStorage *pStor, SvxMacroTableDtor& rMacroTbl )
-//STRIP001 {
-//STRIP001     ULONG nRes = pImp->OpenStreamsForScan( pStor, FALSE );
-//STRIP001     if( nRes )
-//STRIP001         return nRes;
-//STRIP001
-//STRIP001     pImp->pContents->Seek( 0L );
-//STRIP001     pImp->pContents->SetBufferSize( SW3_BSR_CONTENTS );
-//STRIP001     pImp->pStrm = pImp->pContents;
-//STRIP001     pImp->GetMacroTable( rMacroTbl );
-//STRIP001     pImp->pStrm = NULL;
-//STRIP001     pImp->CheckIoError( pImp->pContents );
-//STRIP001     pImp->pContents->SetBufferSize( 0 );
-//STRIP001
-//STRIP001     nRes = pImp->nRes;
-//STRIP001     if( nRes )
-//STRIP001         nRes |= ERRCODE_CLASS_READ;
-//STRIP001 //  else if( pImp->nWarn )
-//STRIP001 //      nRes = pImp->nWarn | ERRCODE_CLASS_READ;
-//STRIP001
-//STRIP001     pImp->CloseStreamsForScan();
-//STRIP001
-//STRIP001     return nRes;
-//STRIP001 }
 
 }
