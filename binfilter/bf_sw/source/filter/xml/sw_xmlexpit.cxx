@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmlexpit.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:40:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:56:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,29 +37,11 @@
 
 #include <bf_xmloff/xmluconv.hxx>
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include <bf_xmloff/attrlist.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
@@ -92,9 +74,6 @@
 #include "unomid.h"
 #endif
 
-// auto strip #ifndef _SVX_UNOMID_HXX
-// auto strip #include <bf_svx/unomid.hxx>
-// auto strip #endif
 
 #ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
@@ -120,9 +99,6 @@
 #include <bf_svx/keepitem.hxx>
 #endif
 
-// auto strip #ifndef _SVX_BRSHITEM_HXX
-// auto strip #include <bf_svx/brshitem.hxx>
-// auto strip #endif
 
 #ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
@@ -144,17 +120,8 @@
 #include "fmtlsplt.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
-// auto strip #include <bf_xmloff/prhdlfac.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
-// auto strip #include <bf_xmloff/xmltypes.hxx>
-// auto strip #endif
 
 #ifndef _SW_XMLITHLP_HXX
 #include "xmlithlp.hxx"
