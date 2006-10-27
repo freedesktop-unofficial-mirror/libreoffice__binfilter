@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pgbrksh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:06:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:21:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,11 +51,9 @@ class ScTabViewShell;
 class ScPageBreakShell : public SfxShell
 {
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_PAGEBREAK_SHELL);
 
     ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakShell( ScTabViewShell* pView );
-//STRIP001                  ~ScPageBreakShell();
 
 };
 

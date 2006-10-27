@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pivotsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:07:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:21:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,19 +52,11 @@ class ScDPObject;
 class ScPivotShell : public SfxShell
 {
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_PIVOT_SHELL);
 
     ScPivotShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_ASSERT(0, "STRIP")}; //STRIP001 ScPivotShell( ScTabViewShell* pView );
-//STRIP001                  ~ScPivotShell();
-//STRIP001
     void    Execute ( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void    Execute ( SfxRequest& rReq );
     void    GetState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void    GetState( SfxItemSet& rSet );
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTabViewShell* pViewShell;
-//STRIP001
-//STRIP001     ScDPObject*     GetCurrDPObject();
 };
 
 
