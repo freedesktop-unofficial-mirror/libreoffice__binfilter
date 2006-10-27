@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undoolk.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:27:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:32:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,7 @@ class SdrUndoAction;
 class ScDocument;
 
 SdrUndoAction*  GetSdrUndoAction    ( ScDocument* pDoc );
-//STRIP001 void         DoSdrUndoAction     ( SdrUndoAction* pUndoAction );
-//STRIP001 void         RedoSdrUndoAction   ( SdrUndoAction* pUndoAction );
 void            DeleteSdrUndoAction ( SdrUndoAction* pUndoAction );
-//STRIP001 void         EnableDrawAdjust    ( ScDocument* pDoc, BOOL bEnable );
 
 
 
