@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbdocfun.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:41:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:05:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,7 +99,6 @@ public:
                                 const ::com::sun::star::uno::Sequence<
                                     ::com::sun::star::beans::PropertyValue>& aArgs );
 
-//STRIP001  static void     ShowInBeamer( const ScImportParam& rParam, SfxViewFrame* pFrame );
 
     BOOL            Sort( USHORT nTab, const ScSortParam& rSortParam,
                             BOOL bRecord, BOOL bPaint, BOOL bApi );

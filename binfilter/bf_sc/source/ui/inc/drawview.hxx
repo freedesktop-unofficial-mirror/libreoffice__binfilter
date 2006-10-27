@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawview.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:44:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:07:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,14 +65,12 @@ class ScDrawView: public FmFormView
 
 protected:
     virtual void    ModelHasChanged();
-//STRIP001  virtual void    MakeVisible( const Rectangle& rRect, Window& rWin );
 
     // add custom handles (used by other apps, e.g. AnchorPos)
     virtual void AddCustomHdl();
 
 public:
                     ScDrawView( OutputDevice* pOut, ScViewData* pData );
-//STRIP001                  ScDrawView( OutputDevice* pOut, ScDocument* pDocument, USHORT nTable );
     virtual         ~ScDrawView();
 
     virtual void    MarkListHasChanged();
@@ -81,46 +79,32 @@ public:
 
     void            DrawMarks( OutputDevice* pOut ) const;
 
-//STRIP001  void            MarkDropObj( SdrObject* pObj );
 
     BOOL            IsDisableHdl() const    { return bDisableHdl; }
 
-//STRIP001  void            SetMarkedToLayer( BYTE nLayerNo );
 
     void            InvalidateAttribs();
     void            InvalidateDrawTextAttrs();
 
-//STRIP001  BOOL            BeginDrag( Window* pWindow, const Point& rStartPos );
-//STRIP001  void            DoCut();
-//STRIP001  void            DoCopy();
 
     void            GetScale( Fraction& rFractX, Fraction& rFractY ) const;
     void            RecalcScale();
     void            UpdateWorkArea();
     USHORT          GetTab() const      { return nTab; }
 
-//STRIP001  void            CalcNormScale( Fraction& rFractX, Fraction& rFractY ) const;
 
-//STRIP001  void            PaintObject( SdrObject* pObject, OutputDevice* pDev ) const;
 
-//STRIP001  void            SetAnchor( ScAnchorType );
-//STRIP001  ScAnchorType    GetAnchor() const;
 
     void            VCAddWin( Window* pWin );
     void            VCRemoveWin( Window* pWin );
 
-//STRIP001  void            UpdateIMap( SdrObject* pObj );
 
     USHORT          GetPopupMenuId();
     void            UpdateUserViewOptions();
 
-//STRIP001  void            SetMarkedOriginalSize();
 
-//STRIP001  BOOL            SelectObject( const String& rName );
     String          GetSelectedChartName() const;
-//STRIP001  BOOL            HasMarkedControl() const;
 
-//STRIP001  FASTBOOL        InsertObjectSafe(SdrObject* pObj, SdrPageView& rPV, ULONG nOptions=0);
 
     SdrEndTextEditKind  ScEndTextEdit();    // ruft SetDrawTextUndo(0)
 };

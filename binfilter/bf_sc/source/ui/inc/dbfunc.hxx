@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbfunc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:41:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:05:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,54 +57,22 @@ public:
 
                     //  nur UISort wiederholt bei Bedarf die Teilergebnisse
 
-//STRIP001  void            UISort( const ScSortParam& rSortParam,
-//STRIP001                        BOOL bRecord = TRUE );
 
-//STRIP001  void            Sort( const ScSortParam& rSortParam,
-//STRIP001                        BOOL bRecord = TRUE, BOOL bPaint = TRUE );
-//STRIP001  void            Query( const ScQueryParam& rQueryParam,
-//STRIP001                         const ScRange* pAdvSource, BOOL bRecord );
-//STRIP001  void            DoSubTotals( const ScSubTotalParam& rParam, BOOL bRecord = TRUE,
-//STRIP001                          const ScSortParam* pForceNewSort = NULL );
 
-//STRIP001  void            ToggleAutoFilter();
-//STRIP001  void            HideAutoFilter();
 
-//STRIP001  void            RepeatDB( BOOL bRecord = TRUE );
 
-//STRIP001  BOOL            ImportData( const ScImportParam& rParam, BOOL bRecord = TRUE );
 
-//STRIP001  void            GotoDBArea( const String& rDBName );
 
                     // DB-Bereich vom Cursor
     ScDBData*       GetDBData( BOOL bMarkArea = TRUE, ScGetDBMode eMode = SC_DB_MAKE );
 
-//STRIP001  void            NotifyCloseDbNameDlg( const ScDBCollection& rNewColl, const List& rDelAreaList );
 
-//STRIP001  void            Consolidate( const ScConsolidateParam& rParam, BOOL bRecord = TRUE );
 
-//STRIP001  void            MakePivotTable( const ScDPSaveData& rData, const ScRange& rDest, BOOL bNewTable,
-//STRIP001                                  const ScDPObject& rSource, BOOL bApi = FALSE );
-//STRIP001  void            DeletePivotTable();
-//STRIP001  void            RecalcPivotTable();
 
-//STRIP001  void            MakeOutline( BOOL bColumns, BOOL bRecord = TRUE );
-//STRIP001  void            RemoveOutline( BOOL bColumns, BOOL bRecord = TRUE );
-//STRIP001  void            RemoveAllOutlines( BOOL bRecord = TRUE );
     void            TestRemoveOutline( BOOL& rCol, BOOL& rRow );
 
-//STRIP001  void            AutoOutline( BOOL bRecord = TRUE );
 
-//STRIP001  void            SelectLevel( BOOL bColumns, USHORT nLevel,
-//STRIP001                                  BOOL bRecord = TRUE, BOOL bPaint = TRUE );
-//STRIP001  void            ShowOutline( BOOL bColumns, USHORT nLevel, USHORT nEntry,
-//STRIP001                                  BOOL bRecord = TRUE, BOOL bPaint = TRUE );
-//STRIP001  void            HideOutline( BOOL bColumns, USHORT nLevel, USHORT nEntry,
-//STRIP001                                  BOOL bRecord = TRUE, BOOL bPaint = TRUE );
 
-//STRIP001  void            ShowMarkedOutlines( BOOL bRecord = TRUE );
-//STRIP001  void            HideMarkedOutlines( BOOL bRecord = TRUE );
-//STRIP001  BOOL            OutlinePossible(BOOL bHide);
 
     void            UpdateCharts(BOOL bAllCharts = FALSE);      // Default: am Cursor
 };

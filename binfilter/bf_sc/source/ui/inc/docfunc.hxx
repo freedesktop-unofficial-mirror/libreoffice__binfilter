@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfunc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:43:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:06:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -89,8 +89,6 @@ public:
     BOOL            DeleteContents( const ScMarkData& rMark, USHORT nFlags,
                                     BOOL bRecord, BOOL bApi );
 
-//STRIP001  BOOL            TransliterateText( const ScMarkData& rMark, sal_Int32 nType,
-//STRIP001                                  BOOL bRecord, BOOL bApi );
 
      BOOL           SetNormalString( const ScAddress& rPos, const String& rText, BOOL bApi );
     BOOL            PutCell( const ScAddress& rPos, ScBaseCell* pNewCell, BOOL bApi );
@@ -145,8 +143,6 @@ public:
     BOOL            TabOp( const ScRange& rRange, const ScMarkData* pTabMark,
                             const ScTabOpParam& rParam, BOOL bRecord, BOOL bApi );
 
-//STRIP001  BOOL            FillSimple( const ScRange& rRange, const ScMarkData* pTabMark,
-//STRIP001                              FillDir eDir, BOOL bRecord, BOOL bApi );
     BOOL            FillSeries( const ScRange& rRange, const ScMarkData* pTabMark,
                                 FillDir eDir, FillCmd eCmd, FillDateCmd eDateCmd,
                                 double fStart, double fStep, double fMax,
@@ -155,13 +151,11 @@ public:
     BOOL            FillAuto( ScRange& rRange, const ScMarkData* pTabMark,
                                 FillDir eDir, USHORT nCount, BOOL bRecord, BOOL bApi );
 
-//STRIP001  BOOL            ResizeMatrix( const ScRange& rOldRange, const ScAddress& rNewEnd, BOOL bApi );
 
     BOOL            MergeCells( const ScRange& rRange, BOOL bContents,
                                 BOOL bRecord, BOOL bApi );
     BOOL            UnmergeCells( const ScRange& rRange, BOOL bRecord, BOOL bApi );
 
-//STRIP001  BOOL            SetNote( const ScAddress& rPos, const ScPostIt& rNote, BOOL bApi );
 
     BOOL            ModifyRangeNames( const ScRangeName& rNewRanges, BOOL bApi );
 

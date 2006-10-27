@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvtablebox.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:40:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:05:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,48 +96,15 @@ public:
     explicit                    ScCsvTableBox( Window* pParent, const ResId& rResId );
 
     // common table box handling ----------------------------------------------
-//STRIP001 public:
-//STRIP001     /** Sets the control to separators mode. */
-//STRIP001     void                        SetSeparatorsMode();
-//STRIP001     /** Sets the control to fixed width mode. */
-//STRIP001     void                        SetFixedWidthMode();
 
-//STRIP001 private:
-//STRIP001     /** Initialisation on construction. */
-//STRIP001     void                        Init();
-//STRIP001     /** Initializes the children controls (pos/size, scroll bars, ...). */
-//STRIP001     void                        InitControls();
-//STRIP001     /** Initializes size and position data of horizontal scrollbar. */
-//STRIP001     void                        InitHScrollBar();
-//STRIP001     /** Initializes size and position data of vertical scrollbar. */
-//STRIP001     void                        InitVScrollBar();
 
-//STRIP001     /** Calculates and sets valid position offset nearest to nPos. */
-//STRIP001     inline void                 ImplSetPosOffset( sal_Int32 nPos )
-//STRIP001                                     { maData.mnPosOffset = Max( Min( nPos, GetMaxPosOffset() ), 0L ); }
-//STRIP001     /** Calculates and sets valid line offset nearest to nLine. */
-//STRIP001     inline void                 ImplSetLineOffset( sal_Int32 nLine )
-//STRIP001                                     { maData.mnLineOffset = Max( Min( nLine, GetMaxLineOffset() ), 0L ); }
-//STRIP001     /** Moves controls (not cursors!) so that nPos becomes visible. */
-//STRIP001     void                        MakePosVisible( sal_Int32 nPos );
 
     // cell contents ----------------------------------------------------------
-//STRIP001 public:
-//STRIP001     /** Fills all cells of all lines with the passed texts (Unicode strings). */
-//STRIP001     void                        SetUniStrings(
-//STRIP001                                     const String* pTextLines, const String& rSepChars,
-//STRIP001                                     sal_Unicode cTextSep, bool bMergeSep );
-//STRIP001     /** Fills all cells of all lines with the passed texts (ByteStrings). */
-//STRIP001     void                        SetByteStrings(
-//STRIP001                                     const ByteString* pLineTexts, CharSet eCharSet,
-//STRIP001                                     const String& rSepChars, sal_Unicode cTextSep, bool bMergeSep );
 
     // column settings --------------------------------------------------------
 public:
     /** Reads UI strings for data types from the list box. */
     void                        InitTypes( const ListBox& rListBox );
-//STRIP001     /** Returns the data type of the selected columns. */
-//STRIP001     inline sal_Int32            GetSelColumnType() const { return maGrid.GetSelColumnType(); }
 
     /** Fills the options object with current column data. */
     void                        FillColumnData( ScAsciiOptions& rOptions ) const;
@@ -147,29 +114,14 @@ public:
     /** Sets a new handler for "update cell texts" requests. */
     inline void                 SetUpdateTextHdl( const Link& rHdl ) { maUpdateTextHdl = rHdl; }
     /** Returns the handler for "update cell texts" requests. */
-//STRIP001     inline const Link&          GetUpdateTextHdl() const { return maUpdateTextHdl; }
     /** Sets a new handler for "column selection changed" events. */
     inline void                 SetColTypeHdl( const Link& rHdl ) { maColTypeHdl = rHdl; }
     /** Returns the handler for "column selection changed" events. */
     inline const Link&          GetColTypeHdl() const { return maColTypeHdl; }
 
-//STRIP001 protected:
-//STRIP001     virtual void                Resize();
-//STRIP001     virtual void                DataChanged( const DataChangedEvent& rDCEvt );
 
-//STRIP001 private:
-//STRIP001                                 DECL_LINK( CsvCmdHdl, ScCsvControl* );
-//STRIP001                                 DECL_LINK( ScrollHdl, ScrollBar* );
-//STRIP001                                 DECL_LINK( ScrollEndHdl, ScrollBar* );
 
     // accessibility ----------------------------------------------------------
-//STRIP001 public:
-//STRIP001     /** Creates and returns the accessible object of this control. */
-//STRIP001     virtual XAccessibleRef      CreateAccessible();
-//STRIP001
-//STRIP001 protected:
-//STRIP001     /** Creates a new accessible object. */
-//STRIP001     virtual ScAccessibleCsvControl* ImplCreateAccessible();
 };
 
 
