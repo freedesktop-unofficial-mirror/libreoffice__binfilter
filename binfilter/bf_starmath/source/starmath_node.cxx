@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_node.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:03:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:56:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,50 +36,17 @@
 #pragma hdrstop
 #define APPEND(str,ascii) str.AppendAscii(RTL_CONSTASCII_STRINGPARAM(ascii))
 
-// auto strip #ifndef _SV_GEN_HXX //autogen
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRACT_HXX //autogen
-// auto strip #include <tools/fract.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_RTL_MATH_HXX
-// auto strip #include <rtl/math.hxx>
-// auto strip #endif
-// auto strip #ifndef _COLOR_HXX //autogen
-// auto strip #include <tools/color.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_METRIC_HXX //autogen
-// auto strip #include <vcl/metric.hxx>
-// auto strip #endif
 #ifndef _SV_LINEINFO_HXX
 #include <vcl/lineinfo.hxx>
 #endif
-// auto strip #ifndef _SV_OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXMODULE_HXX //autogen
-// auto strip #include <bf_sfx2/module.hxx>
-// auto strip #endif
 
 
-// auto strip #ifndef NODE_HXX
-// auto strip #include "node.hxx"
-// auto strip #endif
-// auto strip #ifndef RECT_HXX
-// auto strip #include <rect.hxx>
-// auto strip #endif
 #ifndef SYMBOL_HXX
 #include "symbol.hxx"
 #endif
-// auto strip #ifndef _SMMOD_HXX
-// auto strip #include "smmod.hxx"
-// auto strip #endif
 #ifndef DOCUMENT_HXX
 #include <document.hxx>
 #endif
-// auto strip #ifndef VIEW_HXX
-// auto strip #include <view.hxx>
-// auto strip #endif
 #ifndef _MATHTYPE_HXX
 #include "mathtype.hxx"
 #endif
@@ -406,21 +373,6 @@ void SmNode::SetColor(const Color& rColor)
 /*N*/ }
 
 
-//STRIP001 void  SmNode::ToggleDebug() const
-//STRIP001  // toggle 'bIsDebug' in current subtree
-//STRIP001 {
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001  SmNode *pThis = (SmNode *) this;
-//STRIP001
-//STRIP001  pThis->bIsDebug = bIsDebug ? FALSE : TRUE;
-//STRIP001
-//STRIP001  SmNode *pNode;
-//STRIP001  USHORT      nSize = GetNumSubNodes();
-//STRIP001  for (USHORT i = 0; i < nSize; i++)
-//STRIP001      if (pNode = pThis->GetSubNode(i))
-//STRIP001          pNode->ToggleDebug();
-//STRIP001 #endif
-//STRIP001 }
 
 
 #ifdef MAC
@@ -457,18 +409,6 @@ void SmNode::SetColor(const Color& rColor)
 
 /*N*/ void SmNode::CreateTextFromNode(String &rText)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SmNode *pNode;
-//STRIP001  USHORT  nSize = GetNumSubNodes();
-//STRIP001  if (nSize > 1)
-//STRIP001      rText.Append('{');
-//STRIP001  for (USHORT i = 0;  i < nSize;  i++)
-//STRIP001      if (pNode = GetSubNode(i))
-//STRIP001          pNode->CreateTextFromNode(rText);
-//STRIP001  if (nSize > 1)
-//STRIP001  {
-//STRIP001      rText.EraseTrailingChars();
-//STRIP001      APPEND(rText,"} ");
-//STRIP001  }
 /*N*/ }
 
 
@@ -532,77 +472,8 @@ void SmNode::SetColor(const Color& rColor)
 /*N*/ }
 
 
-//STRIP001 const SmNode * SmNode::FindRectClosestTo(const Point &rPoint) const
-//STRIP001 {
-//STRIP001  long          nDist   = LONG_MAX;
-//STRIP001  const SmNode *pResult = 0;
-//STRIP001
-//STRIP001  if (IsVisible())
-//STRIP001      pResult = this;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      USHORT  nNumSubNodes = GetNumSubNodes();
-//STRIP001      for (USHORT  i = 0;  i < nNumSubNodes;  i++)
-//STRIP001      {   const SmNode *pNode = GetSubNode(i);
-//STRIP001
-//STRIP001          if (!pNode)
-//STRIP001              continue;
-//STRIP001
-//STRIP001          long  nTmp;
-//STRIP001          const SmNode *pFound = pNode->FindRectClosestTo(rPoint);
-//STRIP001          if (pFound  &&  (nTmp = pFound->OrientedDist(rPoint)) < nDist)
-//STRIP001          {   nDist   = nTmp;
-//STRIP001              pResult = pFound;
-//STRIP001
-//STRIP001              // quit immediately if 'rPoint' is inside the *should not
-//STRIP001              // overlap with other rectangles* part.
-//STRIP001              // This (partly) serves for getting the attributes in eg
-//STRIP001              // "bar overstrike a".
-//STRIP001              // ('nDist < 0' is used as *quick shot* to avoid evaluation of
-//STRIP001              // the following expression, where the result is already determined)
-//STRIP001              if (nDist < 0  &&  pFound->IsInsideRect(rPoint))
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pResult;
-//STRIP001 }
 
-//STRIP001 void SmNode::GetAccessibleText( String &rText ) const
-//STRIP001 {
-//STRIP001     DBG_ERROR( "SmNode: GetAccessibleText not overloaded" );
-//STRIP001 }
 
-//STRIP001 const SmNode * SmNode::FindNodeWithAccessibleIndex(xub_StrLen nAccIndex) const
-//STRIP001 {
-//STRIP001  const SmNode *pResult = 0;
-//STRIP001
-//STRIP001     sal_Int32 nIdx = GetAccessibleIndex();
-//STRIP001     String aTxt;
-//STRIP001     if (nIdx >= 0)
-//STRIP001         GetAccessibleText( aTxt );  // get text if used in following 'if' statement
-//STRIP001
-//STRIP001     if (nIdx >= 0
-//STRIP001         &&  nIdx <= nAccIndex  &&  nAccIndex < nIdx + aTxt.Len())
-//STRIP001      pResult = this;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      USHORT  nNumSubNodes = GetNumSubNodes();
-//STRIP001      for (USHORT  i = 0;  i < nNumSubNodes;  i++)
-//STRIP001         {
-//STRIP001             const SmNode *pNode = GetSubNode(i);
-//STRIP001          if (!pNode)
-//STRIP001              continue;
-//STRIP001
-//STRIP001             pResult = pNode->FindNodeWithAccessibleIndex(nAccIndex);
-//STRIP001             if (pResult)
-//STRIP001                 return pResult;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pResult;
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -690,22 +561,6 @@ SmStructureNode & SmStructureNode::operator = ( const SmStructureNode &rNode )
 /*N*/ }
 
 
-//STRIP001 void SmStructureNode::GetAccessibleText( String &rText ) const
-//STRIP001 {
-//STRIP001     USHORT nNodes = GetNumSubNodes();
-//STRIP001     for (USHORT i = 0;  i < nNodes;  ++i)
-//STRIP001     {
-//STRIP001         const SmNode *pNode = ((SmStructureNode *) this)->GetSubNode(i);
-//STRIP001         if (pNode)
-//STRIP001         {
-//STRIP001             if (pNode->IsVisible())
-//STRIP001                 ((SmStructureNode *) pNode)->nAccIndex = rText.Len();
-//STRIP001             pNode->GetAccessibleText( rText );
-//STRIP001 //            if (rText.Len()  &&  ' ' != rText.GetChar( rText.Len() - 1 ))
-//STRIP001 //                rText += String::CreateFromAscii( " " );
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -730,37 +585,10 @@ SmNode * SmVisibleNode::GetSubNode(USHORT nIndex)
 
 ///////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SmGraphicNode::GetAccessibleText( String &rText ) const
-//STRIP001 {
-//STRIP001     rText += GetToken().aText;
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
 
-//STRIP001 void SmExpressionNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  SmNode *pNode;
-//STRIP001  USHORT  nSize = GetNumSubNodes();
-//STRIP001  if (nSize > 1)
-//STRIP001      rText.Append('{');
-//STRIP001  for (USHORT i = 0;  i < nSize;  i++)
-//STRIP001      if (pNode = GetSubNode(i))
-//STRIP001      {
-//STRIP001          pNode->CreateTextFromNode(rText);
-//STRIP001          //Just a bit of foo to make unary +asd -asd +-asd -+asd look nice
-//STRIP001          if (pNode->GetType() == NMATH)
-//STRIP001              if ((nSize != 2) || ((rText.GetChar(rText.Len()-1) != '+') &&
-//STRIP001                  (rText.GetChar(rText.Len()-1) != '-')))
-//STRIP001                  rText.Append(' ');
-//STRIP001      }
-//STRIP001
-//STRIP001  if (nSize > 1)
-//STRIP001  {
-//STRIP001      rText.EraseTrailingChars();
-//STRIP001      APPEND(rText,"} ");
-//STRIP001  }
-//STRIP001 }
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1024,18 +852,6 @@ SmNode * SmTableNode::GetLeftMost()
 /*N*/ }
 
 
-//STRIP001 void SmRootNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  SmNode *pExtra = GetSubNode(0);
-//STRIP001  if (pExtra)
-//STRIP001  {
-//STRIP001      APPEND(rText,"nroot ");
-//STRIP001      pExtra->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      APPEND(rText,"sqrt ");
-//STRIP001  GetSubNode(2)->CreateTextFromNode(rText);
-//STRIP001 }
 
 
 /**************************************************************************/
@@ -1137,15 +953,6 @@ SmNode * SmTableNode::GetLeftMost()
 /*N*/   ExtendBy(*pDenom, RCP_NONE).ExtendBy(*pLine, RCP_NONE, pLine->GetCenterY());
 /*N*/ }
 
-//STRIP001 void SmBinVerNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  SmNode *pNum   = GetSubNode(0),
-//STRIP001         *pLine  = GetSubNode(1),
-//STRIP001         *pDenom = GetSubNode(2);
-//STRIP001  pNum->CreateTextFromNode(rText);
-//STRIP001  APPEND(rText,"over ");
-//STRIP001  pDenom->CreateTextFromNode(rText);
-//STRIP001 }
 
 
 /*N*/ SmNode * SmBinVerNode::GetLeftMost()
@@ -1537,98 +1344,10 @@ void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rForma
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SmSubSupNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  SmNode *pNode;
-//STRIP001  GetSubNode(0)->CreateTextFromNode(rText);
-//STRIP001
-//STRIP001  if (pNode = GetSubNode(LSUB+1))
-//STRIP001  {
-//STRIP001      APPEND(rText,"lsub ");
-//STRIP001      pNode->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001  if (pNode = GetSubNode(LSUP+1))
-//STRIP001  {
-//STRIP001      APPEND(rText,"lsup ");
-//STRIP001      pNode->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001  if (pNode = GetSubNode(CSUB+1))
-//STRIP001  {
-//STRIP001      APPEND(rText,"csub ");
-//STRIP001      pNode->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001  if (pNode = GetSubNode(CSUP+1))
-//STRIP001  {
-//STRIP001      APPEND(rText,"csup ");
-//STRIP001      pNode->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001  if (pNode = GetSubNode(RSUB+1))
-//STRIP001  {
-//STRIP001      rText.EraseTrailingChars();
-//STRIP001      rText.Append('_');
-//STRIP001      pNode->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001  if (pNode = GetSubNode(RSUP+1))
-//STRIP001  {
-//STRIP001      rText.EraseTrailingChars();
-//STRIP001      rText.Append('^');
-//STRIP001      pNode->CreateTextFromNode(rText);
-//STRIP001  }
-//STRIP001 }
 
 
 /**************************************************************************/
 
-//STRIP001 void SmBraceNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  if (GetScaleMode() == SCALE_HEIGHT)
-//STRIP001      APPEND(rText,"left ");
-//STRIP001     {
-//STRIP001         String aStr;
-//STRIP001      GetSubNode(0)->CreateTextFromNode(aStr);
-//STRIP001         aStr.EraseLeadingAndTrailingChars();
-//STRIP001         aStr.EraseLeadingChars('\\');
-//STRIP001         if (aStr.Len())
-//STRIP001         {
-//STRIP001             if (aStr.EqualsAscii("divides"))
-//STRIP001                 APPEND(rText,"lline");
-//STRIP001             else if (aStr.EqualsAscii("parallel"))
-//STRIP001                 APPEND(rText,"ldline");
-//STRIP001             else if (aStr.EqualsAscii("<"))
-//STRIP001                 APPEND(rText,"langle");
-//STRIP001             else
-//STRIP001                 rText.Append(aStr);
-//STRIP001          rText.Append(' ');
-//STRIP001         }
-//STRIP001         else
-//STRIP001             APPEND(rText,"none ");
-//STRIP001     }
-//STRIP001  GetSubNode(1)->CreateTextFromNode(rText);
-//STRIP001  if (GetScaleMode() == SCALE_HEIGHT)
-//STRIP001      APPEND(rText,"right ");
-//STRIP001     {
-//STRIP001         String aStr;
-//STRIP001      GetSubNode(2)->CreateTextFromNode(aStr);
-//STRIP001         aStr.EraseLeadingAndTrailingChars();
-//STRIP001         aStr.EraseLeadingChars('\\');
-//STRIP001         if (aStr.Len())
-//STRIP001         {
-//STRIP001             if (aStr.EqualsAscii("divides"))
-//STRIP001                 APPEND(rText,"rline");
-//STRIP001             else if (aStr.EqualsAscii("parallel"))
-//STRIP001                 APPEND(rText,"rdline");
-//STRIP001             else if (aStr.EqualsAscii(">"))
-//STRIP001                 APPEND(rText,"rangle");
-//STRIP001             else
-//STRIP001                 rText.Append(aStr);
-//STRIP001          rText.Append(' ');
-//STRIP001         }
-//STRIP001         else
-//STRIP001             APPEND(rText,"none ");
-//STRIP001     }
-//STRIP001  rText.Append(' ');
-//STRIP001
-//STRIP001 }
 
 /*N*/ void SmBraceNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
 /*N*/ {
@@ -1991,91 +1710,6 @@ void SmAlignNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
 
 
 
-//STRIP001 void SmFontNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  switch (GetToken().eType)
-//STRIP001  {
-//STRIP001      case TBOLD:
-//STRIP001          APPEND(rText,"bold ");
-//STRIP001          break;
-//STRIP001      case TNBOLD:
-//STRIP001          APPEND(rText,"nbold ");
-//STRIP001          break;
-//STRIP001      case TITALIC:
-//STRIP001          APPEND(rText,"italic ");
-//STRIP001          break;
-//STRIP001      case TNITALIC:
-//STRIP001          APPEND(rText,"nitalic ");
-//STRIP001          break;
-//STRIP001      case TPHANTOM:
-//STRIP001          APPEND(rText,"phantom ");
-//STRIP001          break;
-//STRIP001      case TSIZE:
-//STRIP001          {
-//STRIP001              APPEND(rText,"size ");
-//STRIP001              switch (nSizeType)
-//STRIP001              {
-//STRIP001                  case FNTSIZ_PLUS:
-//STRIP001                      rText.Append('+');
-//STRIP001                      break;
-//STRIP001                  case FNTSIZ_MINUS:
-//STRIP001                      rText.Append('-');
-//STRIP001                      break;
-//STRIP001                  case FNTSIZ_MULTIPLY:
-//STRIP001                      rText.Append('*');
-//STRIP001                      break;
-//STRIP001                  case FNTSIZ_DIVIDE:
-//STRIP001                      rText.Append('/');
-//STRIP001                      break;
-//STRIP001                  case FNTSIZ_ABSOLUT:
-//STRIP001                  default:
-//STRIP001                      break;
-//STRIP001              }
-//STRIP001                 rText += String( ::rtl::math::doubleToUString(
-//STRIP001                             static_cast<double>(aFontSize),
-//STRIP001                             rtl_math_StringFormat_Automatic,
-//STRIP001                             rtl_math_DecimalPlaces_Max, '.', sal_True));
-//STRIP001              rText.Append(' ');
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      case TBLACK:
-//STRIP001          APPEND(rText,"color black ");
-//STRIP001          break;
-//STRIP001      case TWHITE:
-//STRIP001          APPEND(rText,"color white ");
-//STRIP001          break;
-//STRIP001      case TRED:
-//STRIP001          APPEND(rText,"color red ");
-//STRIP001          break;
-//STRIP001      case TGREEN:
-//STRIP001          APPEND(rText,"color green ");
-//STRIP001          break;
-//STRIP001      case TBLUE:
-//STRIP001          APPEND(rText,"color blue ");
-//STRIP001          break;
-//STRIP001      case TCYAN:
-//STRIP001          APPEND(rText,"color cyan ");
-//STRIP001          break;
-//STRIP001      case TMAGENTA:
-//STRIP001          APPEND(rText,"color magenta ");
-//STRIP001          break;
-//STRIP001      case TYELLOW:
-//STRIP001          APPEND(rText,"color yellow ");
-//STRIP001          break;
-//STRIP001      case TSANS:
-//STRIP001          APPEND(rText,"font sans ");
-//STRIP001          break;
-//STRIP001      case TSERIF:
-//STRIP001          APPEND(rText,"font serif ");
-//STRIP001          break;
-//STRIP001      case TFIXED:
-//STRIP001          APPEND(rText,"font fixed ");
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  GetSubNode(1)->CreateTextFromNode(rText);
-//STRIP001 }
 
 
 /*N*/ void SmFontNode::Prepare(const SmFormat &rFormat, const SmDocShell &rDocShell)
@@ -2423,56 +2057,6 @@ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/   SmRect::operator = (SmRect(aTmpDev, &rFormat, aText, GetFont().GetBorderWidth()));
 /*N*/ }
 
-//STRIP001 void SmTextNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001     BOOL bQuoted=FALSE;
-//STRIP001  if (GetToken().eType == TTEXT)
-//STRIP001     {
-//STRIP001      rText.Append('\"');
-//STRIP001         bQuoted=TRUE;
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         SmParser aParseTest;
-//STRIP001         SmNode *pTable = aParseTest.Parse(GetToken().aText);
-//STRIP001         bQuoted=TRUE;
-//STRIP001         if ( (pTable->GetType() == NTABLE) && (pTable->GetNumSubNodes() == 1) )
-//STRIP001         {
-//STRIP001             SmNode *pResult = pTable->GetSubNode(0);
-//STRIP001             if ( (pResult->GetType() == NLINE) &&
-//STRIP001                 (pResult->GetNumSubNodes() == 1) )
-//STRIP001             {
-//STRIP001                 pResult = pResult->GetSubNode(0);
-//STRIP001                 if ( (pResult->GetType() == NEXPRESSION) &&
-//STRIP001                     (pResult->GetNumSubNodes() == 1) )
-//STRIP001                 {
-//STRIP001                     pResult = pResult->GetSubNode(0);
-//STRIP001                     if (pResult->GetType() == NTEXT)
-//STRIP001                         bQuoted=FALSE;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001         delete pTable;
-//STRIP001
-//STRIP001         if ((GetToken().eType == TIDENT) && (GetFontDesc() == FNT_FUNCTION))
-//STRIP001         {
-//STRIP001             //Search for existing functions and remove extraenous keyword
-//STRIP001             APPEND(rText,"func ");
-//STRIP001         }
-//STRIP001         else if (bQuoted)
-//STRIP001             APPEND(rText,"italic ");
-//STRIP001
-//STRIP001         if (bQuoted)
-//STRIP001             rText.Append('\"');
-//STRIP001
-//STRIP001     }
-//STRIP001
-//STRIP001  rText.Append(GetToken().aText);
-//STRIP001
-//STRIP001  if (bQuoted)
-//STRIP001      rText.Append('\"');
-//STRIP001  rText.Append(' ');
-//STRIP001 }
 
 /*N*/ void SmTextNode::Draw(OutputDevice &rDev, const Point& rPosition) const
 /*N*/ {
@@ -2498,31 +2082,9 @@ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/ #endif
 /*N*/ }
 
-//STRIP001 void SmTextNode::GetAccessibleText( String &rText ) const
-//STRIP001 {
-//STRIP001     rText += aText;
-//STRIP001 }
 
 /**************************************************************************/
 
-//STRIP001 void SmMatrixNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  APPEND(rText,"matrix {");
-//STRIP001  for (int i = 0;  i < nNumRows;  i++)
-//STRIP001  {
-//STRIP001      for (int j = 0;  j < nNumCols;  j++)
-//STRIP001      {
-//STRIP001          SmNode *pNode = GetSubNode(i * nNumCols + j);
-//STRIP001          pNode->CreateTextFromNode(rText);
-//STRIP001          if (j != nNumCols-1)
-//STRIP001              APPEND(rText,"# ");
-//STRIP001      }
-//STRIP001      if (i != nNumRows-1)
-//STRIP001          APPEND(rText,"## ");
-//STRIP001  }
-//STRIP001  rText.EraseTrailingChars();
-//STRIP001  APPEND(rText,"} ");
-//STRIP001 }
 
 
 /*N*/ void SmMatrixNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
@@ -2739,84 +2301,8 @@ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/   SmRect::operator = (SmRect(aTmpDev, &rFormat, rText, GetFont().GetBorderWidth()));
 /*N*/ }
 
-//STRIP001 void SmMathSymbolNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  String sStr;
-//STRIP001  MathType::LookupChar(GetToken().cMathChar, sStr);
-//STRIP001  rText.Append(sStr);
-//STRIP001 }
 
-//STRIP001 void SmRectangleNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001     switch (GetToken().eType)
-//STRIP001     {
-//STRIP001     case TUNDERLINE:
-//STRIP001         APPEND(rText,"underline ");
-//STRIP001         break;
-//STRIP001     case TOVERLINE:
-//STRIP001         APPEND(rText,"overline ");
-//STRIP001         break;
-//STRIP001     case TOVERSTRIKE:
-//STRIP001         APPEND(rText,"overstrike ");
-//STRIP001         break;
-//STRIP001     default:
-//STRIP001         break;
-//STRIP001     }
-//STRIP001 }
 
-//STRIP001 void SmAttributNode::CreateTextFromNode(String &rText)
-//STRIP001 {
-//STRIP001  SmNode *pNode;
-//STRIP001  USHORT  nSize = GetNumSubNodes();
-//STRIP001     DBG_ASSERT(nSize == 2, "Node missing members");
-//STRIP001     rText.Append('{');
-//STRIP001     sal_Unicode nLast=0;
-//STRIP001     if (pNode = GetSubNode(0))
-//STRIP001     {
-//STRIP001         String aStr;
-//STRIP001         pNode->CreateTextFromNode(aStr);
-//STRIP001         if (aStr.Len() > 1)
-//STRIP001             rText.Append(aStr);
-//STRIP001         else
-//STRIP001         {
-//STRIP001             nLast = aStr.GetChar(0);
-//STRIP001             switch (nLast)
-//STRIP001             {
-//STRIP001             case 0xAF:
-//STRIP001                 APPEND(rText,"overline ");
-//STRIP001                 break;
-//STRIP001             case 0x2d9:
-//STRIP001                 APPEND(rText,"dot ");
-//STRIP001                 break;
-//STRIP001             case 0x2dc:
-//STRIP001                 APPEND(rText,"widetilde ");
-//STRIP001                 break;
-//STRIP001             case 0xA8:
-//STRIP001                 APPEND(rText,"ddot ");
-//STRIP001                 break;
-//STRIP001             case 0xE082:
-//STRIP001                 break;
-//STRIP001             case 0xE09B:
-//STRIP001                 APPEND(rText,"dddot ");
-//STRIP001                 break;
-//STRIP001             default:
-//STRIP001                 rText.Append(nLast);
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001  if (nSize == 2)
-//STRIP001      if (pNode = GetSubNode(1))
-//STRIP001          pNode->CreateTextFromNode(rText);
-//STRIP001
-//STRIP001  rText.EraseTrailingChars();
-//STRIP001
-//STRIP001     if (nLast == 0xE082)
-//STRIP001         APPEND(rText," overbrace {}");
-//STRIP001
-//STRIP001  APPEND(rText,"} ");
-//STRIP001 }
 
 /**************************************************************************/
 
