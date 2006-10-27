@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_subtotal.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:18:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:39:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,6 @@
 #endif
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 
@@ -91,10 +90,6 @@ jmp_buf SubTotal::aGlobalJumpBuf;
 /*N*/ }
 
 
-//STRIP001 void SubTotal::UpdateNoVal()
-//STRIP001 {
-//STRIP001  nCount++;
-//STRIP001 }
 
 
 /*N*/ void SubTotal::Update( double nVal )
@@ -119,135 +114,10 @@ jmp_buf SubTotal::aGlobalJumpBuf;
 /*N*/ }
 
 
-//STRIP001 void SubTotal::Update( const SubTotal& rVal )
-//STRIP001 {
-//STRIP001  SAL_MATH_FPEXCEPTIONS_OFF();
-//STRIP001     nCount   += rVal.nCount;
-//STRIP001     nCount2  += rVal.nCount2;
-//STRIP001     if (rVal.nMax > nMax) nMax = rVal.nMax;
-//STRIP001     if (rVal.nMin < nMin) nMin = rVal.nMin;
-//STRIP001     nProgress = 0;
-//STRIP001     if (rVal.bSumOk && bSumOk)
-//STRIP001         nSum += rVal.nSum;
-//STRIP001     else
-//STRIP001         bSumOk = FALSE;
-//STRIP001     nProgress = 1;
-//STRIP001     if (rVal.bProductOk && bProductOk)
-//STRIP001         nProduct *= rVal.nProduct;
-//STRIP001     else
-//STRIP001         bProductOk = FALSE;
-//STRIP001     nProgress = 2;
-//STRIP001     if (rVal.bSumSqrOk && bSumSqrOk)
-//STRIP001         nSumSqr  += rVal.nSumSqr;
-//STRIP001     else
-//STRIP001         bSumSqrOk = FALSE;
-//STRIP001  if (!::rtl::math::isFinite(nSum))
-//STRIP001      bSumOk = FALSE;
-//STRIP001  if (!::rtl::math::isFinite(nProduct))
-//STRIP001      bProductOk = FALSE;
-//STRIP001  if (!::rtl::math::isFinite(nSumSqr))
-//STRIP001      bSumSqrOk = FALSE;
-//STRIP001 }
 
 
-//STRIP001 short SubTotal::Valid( USHORT nFunction ) const
-//STRIP001                          // return 0 => Fehler, -1 => kein Wert, 1 => ok
-//STRIP001 {
-//STRIP001  short nRet;
-//STRIP001  switch (nFunction)
-//STRIP001  {
-//STRIP001      case PIVOT_FUNC_AVERAGE:
-//STRIP001          if (nCount2 == 0)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = bSumOk;
-//STRIP001          break;
-//STRIP001      case PIVOT_FUNC_STD_DEVP:
-//STRIP001      case PIVOT_FUNC_STD_VARP:
-//STRIP001          if (nCount2 == 0)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = bSumSqrOk;
-//STRIP001          break;
-//STRIP001      case PIVOT_FUNC_STD_DEV:
-//STRIP001      case PIVOT_FUNC_STD_VAR:
-//STRIP001          if (nCount2 < 2)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = bSumSqrOk;
-//STRIP001          break;
-//STRIP001      case PIVOT_FUNC_MAX:
-//STRIP001          if (nCount2 == 0)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = 1;
-//STRIP001          break;
-//STRIP001      case PIVOT_FUNC_MIN:
-//STRIP001          if (nCount2 == 0)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = 1;
-//STRIP001          break;
-//STRIP001      case PIVOT_FUNC_SUM:
-//STRIP001          if (nCount2 == 0)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = bSumOk;
-//STRIP001          break;
-//STRIP001      case PIVOT_FUNC_PRODUCT:
-//STRIP001          if (nCount2 == 0)
-//STRIP001              nRet = -1;
-//STRIP001          else
-//STRIP001              nRet = bProductOk;
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          nRet = 1;
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 
-//STRIP001 double SubTotal::Result( USHORT nFunction ) const
-//STRIP001 {
-//STRIP001  double nRet = 0.0;
-//STRIP001  switch (nFunction)
-//STRIP001  {
-//STRIP001      case PIVOT_FUNC_COUNT:      nRet = (double) nCount;     break;
-//STRIP001      case PIVOT_FUNC_COUNT_NUM:  nRet = (double) nCount2;    break;
-//STRIP001      case PIVOT_FUNC_SUM:        nRet = nSum;                break;
-//STRIP001      case PIVOT_FUNC_MAX:        nRet = nMax;                break;
-//STRIP001      case PIVOT_FUNC_MIN:        nRet = nMin;                break;
-//STRIP001      case PIVOT_FUNC_PRODUCT:    nRet = nProduct;            break;
-//STRIP001      case PIVOT_FUNC_AVERAGE:
-//STRIP001              if (nCount2 > 0)
-//STRIP001                  nRet = nSum / (double) nCount2;
-//STRIP001              break;
-//STRIP001      case PIVOT_FUNC_STD_DEV:
-//STRIP001              if (nCount2 > 1)
-//STRIP001                  nRet = sqrt((nSumSqr - nSum*nSum/(double)(nCount2))
-//STRIP001                          / (double)(nCount2-1));
-//STRIP001              break;
-//STRIP001      case PIVOT_FUNC_STD_DEVP:
-//STRIP001              if (nCount2 > 0)
-//STRIP001                  nRet = sqrt((nSumSqr - nSum*nSum/(double)(nCount2))
-//STRIP001                          / (double)nCount2);
-//STRIP001              break;
-//STRIP001      case PIVOT_FUNC_STD_VAR:
-//STRIP001              if (nCount2 > 1)
-//STRIP001                  nRet = (nSumSqr - nSum*nSum/(double)(nCount2))
-//STRIP001                          / (double)(nCount2-1);
-//STRIP001              break;
-//STRIP001      case PIVOT_FUNC_STD_VARP:
-//STRIP001              if (nCount2 > 0)
-//STRIP001                  nRet = (nSumSqr - nSum*nSum/(double)(nCount2))
-//STRIP001                          / (double)(nCount2);
-//STRIP001              break;
-//STRIP001      default:
-//STRIP001              DBG_ERROR("unbekannte Funktion bei SubTotal::Result");
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 
 /*N*/ BOOL SubTotal::SafePlus(double& fVal1, double fVal2)
@@ -281,16 +151,4 @@ jmp_buf SubTotal::aGlobalJumpBuf;
 /*N*/ }
 
 
-//STRIP001 BOOL SubTotal::SafeDiv(double& fVal1, double fVal2)
-//STRIP001 {
-//STRIP001  BOOL bOk = TRUE;
-//STRIP001  SAL_MATH_FPEXCEPTIONS_OFF();
-//STRIP001     fVal1 /= fVal2;
-//STRIP001  if (!::rtl::math::isFinite(fVal1))
-//STRIP001  {
-//STRIP001      bOk = FALSE;
-//STRIP001      fVal1 = DBL_MAX;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 }

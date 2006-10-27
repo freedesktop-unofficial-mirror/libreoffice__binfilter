@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmatrix.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:17:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:38:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -45,11 +44,7 @@
 #include <math.h>
 
 #include "scmatrix.hxx"
-// auto strip #include "global.hxx"
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
@@ -226,23 +221,7 @@ namespace binfilter {
 /*N*/       DBG_ERRORFILE("ScMatrix::PutDouble: dimension error");
 /*N*/ }
 
-//STRIP001 void ScMatrix::PutDoubleAndResetString( double fVal, USHORT nC, USHORT nR )
-//STRIP001 {
-//STRIP001  if (nC < nAnzCol && nR < nAnzRow)
-//STRIP001      PutDoubleAndResetString( fVal, (ULONG) nC * nAnzRow + nR );
-//STRIP001  else
-//STRIP001      DBG_ERRORFILE("ScMatrix::PutDoubleAndResetString: dimension error");
-//STRIP001 }
 
-//STRIP001 void ScMatrix::PutDoubleAndResetString( double fVal, ULONG nIndex )
-//STRIP001 {
-//STRIP001  if ( IsString( nIndex ) )
-//STRIP001  {
-//STRIP001      delete pMat[nIndex].pS;
-//STRIP001      bIsString[nIndex] = 0;
-//STRIP001  }
-//STRIP001  PutDouble( fVal, nIndex );
-//STRIP001 }
 
 /*N*/ void ScMatrix::PutString(const String& rStr, USHORT nC, USHORT nR)
 /*N*/ {
@@ -414,44 +393,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/  }
 
-//STRIP001 void ScMatrix::MatCopyUpperLeft(ScMatrix& mRes) const
-//STRIP001 {
-//STRIP001  if (nAnzCol < mRes.nAnzCol || nAnzRow < mRes.nAnzRow)
-//STRIP001  {
-//STRIP001      DBG_ERRORFILE("ScMatrix::MatCopyUpperLeft: dimension error");
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (bIsString)
-//STRIP001      {
-//STRIP001          mRes.ResetIsString();
-//STRIP001          for ( ULONG i = 0; i < mRes.nAnzCol; i++ )
-//STRIP001          {
-//STRIP001              ULONG nStart = i * nAnzRow;
-//STRIP001              for ( ULONG j = 0; j < mRes.nAnzRow; j++ )
-//STRIP001              {
-//STRIP001                  if ( bIsString[nStart+j] )
-//STRIP001                      mRes.PutStringEntry( pMat[nStart+j].pS, bIsString[nStart+j],
-//STRIP001                          i*mRes.nAnzRow+j );
-//STRIP001                  else
-//STRIP001                      mRes.pMat[i*mRes.nAnzRow+j].fVal = pMat[nStart+j].fVal;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          mRes.DeleteIsString();
-//STRIP001          for ( ULONG i = 0; i < mRes.nAnzCol; i++ )
-//STRIP001          {
-//STRIP001              ULONG nStart = i * nAnzRow;
-//STRIP001              for ( ULONG j = 0; j < mRes.nAnzRow; j++ )
-//STRIP001              {
-//STRIP001                  mRes.pMat[i*mRes.nAnzRow+j].fVal = pMat[nStart+j].fVal;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/  void ScMatrix::FillDouble( double fVal, USHORT nC1, USHORT nR1,
 /*N*/                           USHORT nC2, USHORT nR2 )
