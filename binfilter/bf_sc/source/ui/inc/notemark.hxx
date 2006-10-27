@@ -4,9 +4,9 @@
  *
  *  $RCSfile: notemark.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:01:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:18:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,44 +48,14 @@
 #endif
 namespace binfilter {
 
-//STRIP001 class SdrModel;
-//STRIP001 class SdrObject;
-//STRIP001
 class ScNoteMarker
 {
-//STRIP001 private:
-//STRIP001  Window*     pWindow;
-//STRIP001  Window*     pRightWin;
-//STRIP001  Window*     pBottomWin;
-//STRIP001  Window*     pDiagWin;
-//STRIP001  ScDocument* pDoc;
-//STRIP001  ScAddress   aDocPos;
-//STRIP001  String      aUserText;
-//STRIP001  Timer       aTimer;
-//STRIP001  MapMode     aMapMode;
-//STRIP001  BOOL        bLeft;
-//STRIP001  BOOL        bByKeyboard;
-//STRIP001
-//STRIP001  Rectangle       aRect;
-//STRIP001  SdrModel*       pModel;
-//STRIP001  SdrObject*      pObject;
-//STRIP001  BOOL            bVisible;
-//STRIP001
-//STRIP001  DECL_LINK( TimeHdl, Timer* );
-//STRIP001
 public:
     ScNoteMarker( Window* pWin,                         //STRIP001              ScNoteMarker( Window* pWin,
         Window* pRight, Window* pBottom, Window* pDiagonal,//STRIP001                               Window* pRight, Window* pBottom, Window* pDiagonal,
         ScDocument* pD, ScAddress aPos,                     //STRIP001                              ScDocument* pD, ScAddress aPos,
         const String& rUser, const MapMode& rMap,           //STRIP001                              const String& rUser, const MapMode& rMap,
         BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                                BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard );
-//STRIP001              ~ScNoteMarker();
-//STRIP001
-//STRIP001  void        Draw();
-//STRIP001  void        InvalidateWin();
-//STRIP001
-//STRIP001  ScAddress   GetDocPos() const       { return aDocPos; }
-//STRIP001  BOOL        IsByKeyboard() const    { return bByKeyboard; }
 };
 
 
