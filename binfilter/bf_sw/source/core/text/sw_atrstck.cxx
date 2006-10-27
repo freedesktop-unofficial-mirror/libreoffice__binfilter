@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrstck.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:25:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:08:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>   // ASSERT
-// auto strip #endif
 #ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
 #endif
@@ -108,9 +105,6 @@
 #ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
 #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>
-// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
@@ -120,9 +114,6 @@
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
 #endif
-// auto strip #ifndef _FMTINFMT_HXX
-// auto strip #include <fmtinfmt.hxx>
-// auto strip #endif
 #ifndef _TXTINET_HXX
 #include <txtinet.hxx>
 #endif
@@ -140,9 +131,6 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #define STACK_INCREMENT 4
@@ -215,31 +203,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  * extracts pool item of type nWhich from rAttr
  *************************************************************************/
 
-//STRIP001 const SfxPoolItem* lcl_GetItem( const SwTxtAttr& rAttr, USHORT nWhich )
-//STRIP001 {
-//STRIP001     if ( RES_TXTATR_INETFMT == rAttr.Which() ||
-//STRIP001          RES_TXTATR_CHARFMT == rAttr.Which() )
-//STRIP001     {
-//STRIP001        SwCharFmt* pFmt;
-//STRIP001        if( RES_TXTATR_INETFMT == rAttr.Which() )
-//STRIP001           pFmt = ((SwTxtINetFmt&)rAttr).GetCharFmt();
-//STRIP001        else
-//STRIP001           pFmt = rAttr.GetCharFmt().GetCharFmt();
-//STRIP001
-//STRIP001        if ( !pFmt )
-//STRIP001            return 0;;
-//STRIP001
-//STRIP001        const SfxPoolItem* pItem;
-//STRIP001        BOOL bRet = SFX_ITEM_SET ==
-//STRIP001              pFmt->GetItemState( RES_CHRATR_TWO_LINES, TRUE, &pItem );
-//STRIP001
-//STRIP001        if ( bRet )
-//STRIP001              return pItem;
-//STRIP001        else return 0;
-//STRIP001     }
-//STRIP001
-//STRIP001     return ( nWhich == rAttr.Which() ) ? &rAttr.GetAttr() : 0;
-//STRIP001 }
 
 /*************************************************************************
  *                      lcl_ChgHyperLinkColor
@@ -376,15 +339,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *                      SwAttrHandler::Init()
  *************************************************************************/
 
-//STRIP001 void SwAttrHandler::Init( const SwAttrSet& rAttrSet, const SwDoc& rDoc,
-//STRIP001                           const ViewShell* pSh )
-//STRIP001 {
-//STRIP001     pDoc = &rDoc;
-//STRIP001     pShell = pSh;
-//STRIP001
-//STRIP001     for ( USHORT i = RES_CHRATR_BEGIN; i < RES_CHRATR_END; i++ )
-//STRIP001         pDefaultArray[ StackPos[ i ] ] = &rAttrSet.Get( i, TRUE );
-//STRIP001 }
 
 /*M*/ void SwAttrHandler::Init( const SfxPoolItem** pPoolItem, const SwAttrSet* pAS,
 /*M*/                           const SwDoc& rDoc, const ViewShell* pSh,
@@ -468,14 +422,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*M*/                         // for hyperlinks we still have to evaluate
 /*M*/                         // the appearence settings
-//STRIP001 /*?*/                         Color aColor;
-//STRIP001 /*?*/                         if ( ((SwTxtINetFmt&)rAttr).IsVisited() )
-//STRIP001 /*?*/                             aColor = SwViewOption::GetVisitedLinksColor();
-//STRIP001 /*?*/                         else
-//STRIP001 /*?*/                             aColor = SwViewOption::GetLinksColor();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         SvxColorItem aItemNext( aColor );
-//STRIP001 /*?*/                         FontChg( aItemNext, rFnt, sal_True );
 /*M*/                     }
 /*M*/                     else
 /*M*/                         FontChg( *pItem, rFnt, sal_True );
@@ -580,16 +526,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  * only used during redlining
  *************************************************************************/
 
-//STRIP001 void SwAttrHandler::Pop( const SwTxtAttr& rAttr )
-//STRIP001 {
-//STRIP001     ASSERT( rAttr.Which() < RES_TXTATR_WITHEND_END ||
-//STRIP001             RES_UNKNOWNATR_CONTAINER == rAttr.Which() ,
-//STRIP001             "I do not have this attribute, nWhich >= RES_TXTATR_WITHEND_END" );
-//STRIP001
-//STRIP001     if ( RES_UNKNOWNATR_CONTAINER != rAttr.Which() &&
-//STRIP001          rAttr.Which() < RES_TXTATR_WITHEND_END )
-//STRIP001         aAttrStack[ StackPos[ rAttr.Which() ] ].Remove( rAttr );
-//STRIP001 }
 
 /*************************************************************************
  *                      SwAttrHandler::ActivateTop()
@@ -621,13 +557,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 // for hyperlinks we still have to evaluate
 /*M*/                 // the appearence settings
 /*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Color aColor;
-//STRIP001 /*?*/                 if ( ((SwTxtINetFmt*)pTopAt)->IsVisited() )
-//STRIP001 /*?*/                     aColor = SwViewOption::GetVisitedLinksColor();
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                     aColor = SwViewOption::GetLinksColor();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 SvxColorItem aItemNext( aColor );
-//STRIP001 /*?*/                 FontChg( aItemNext, rFnt, sal_False );
 /*M*/             }
 /*M*/             else
 /*M*/                 FontChg( *pItemNext, rFnt, sal_False );
@@ -649,38 +578,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/         // ruby stack has no more attributes
 /*M*/         // check, if an rotation attribute has to be applied
 /*?*/        DBG_BF_ASSERT(0, "STRIP"); //STRIP001  USHORT nTwoLineStack = StackPos[ RES_CHRATR_TWO_LINES ];
-//STRIP001 /*?*/         sal_Bool bTwoLineAct = sal_False;
-//STRIP001 /*?*/         const SfxPoolItem* pTwoLineItem = 0;
-//STRIP001 /*?*/         const SwTxtAttr* pTwoLineAttr = aAttrStack[ nTwoLineStack ].Top();
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( pTwoLineAttr )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/              pTwoLineItem = lcl_GetItem( *pTwoLineAttr, RES_CHRATR_TWO_LINES );
-//STRIP001 /*?*/              bTwoLineAct = ((SvxTwoLinesItem*)pTwoLineItem)->GetValue();
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/         else
-//STRIP001 /*?*/             bTwoLineAct =
-//STRIP001 /*?*/                 ((SvxTwoLinesItem*)pDefaultArray[ nTwoLineStack ])->GetValue();
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( bTwoLineAct )
-//STRIP001 /*?*/             return;
-//STRIP001 /*?*/
-//STRIP001 /*?*/         // eventually, an rotate attribute has to be activated
-//STRIP001 /*?*/         USHORT nRotateStack = StackPos[ RES_CHRATR_ROTATE ];
-//STRIP001 /*?*/         const SfxPoolItem* pRotateItem = 0;
-//STRIP001 /*?*/         const SwTxtAttr* pRotateAttr = aAttrStack[ nRotateStack ].Top();
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( pRotateAttr )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             pRotateItem = lcl_GetItem( *pRotateAttr, RES_CHRATR_ROTATE );
-//STRIP001 /*?*/             rFnt.SetVertical( ((SvxCharRotateItem*)pRotateItem)->GetValue(),
-//STRIP001 /*?*/                                bVertLayout );
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/         else
-//STRIP001 /*?*/             rFnt.SetVertical(
-//STRIP001 /*?*/                 ((SvxCharRotateItem*)pDefaultArray[ nRotateStack ])->GetValue(),
-//STRIP001 /*?*/                  bVertLayout
-//STRIP001 /*?*/             );
 /*M*/     }
 /*M*/ }
 
@@ -868,8 +765,6 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             if ( pRotateAttr )
 /*M*/             {
 /*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pRotateItem = lcl_GetItem( *pRotateAttr, RES_CHRATR_ROTATE );
-//STRIP001 /*?*/                 rFnt.SetVertical( ((SvxCharRotateItem*)pRotateItem)->GetValue(),
-//STRIP001 /*M*/                                    bVertLayout );
 /*M*/             }
 /*M*/             else
 /*M*/                 rFnt.SetVertical(
