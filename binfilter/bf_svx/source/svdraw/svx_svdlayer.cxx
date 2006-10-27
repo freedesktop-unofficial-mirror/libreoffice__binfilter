@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdlayer.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:57:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:40:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,14 +33,10 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
 #include "svdlayer.hxx"
 #include "svdio.hxx"
 #include "svdmodel.hxx" // fuer Broadcasting
-// auto strip #include "svdglob.hxx"  // StringCache
 #include "svdstr.hrc"   // Namen aus der Resource
 namespace binfilter {
 
@@ -56,64 +52,10 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 FASTBOOL SetOfByte::IsFull() const
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<32; i++) {
-//STRIP001      if (aData[i]!=0xFF) return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 USHORT SetOfByte::GetSetCount() const
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  USHORT nRet=0;
-//STRIP001  for (i=0; i<32; i++) {
-//STRIP001      BYTE a=aData[i];
-//STRIP001      if (a!=0) {
-//STRIP001          if (a & 0x80) nRet++;
-//STRIP001          if (a & 0x40) nRet++;
-//STRIP001          if (a & 0x20) nRet++;
-//STRIP001          if (a & 0x10) nRet++;
-//STRIP001          if (a & 0x08) nRet++;
-//STRIP001          if (a & 0x04) nRet++;
-//STRIP001          if (a & 0x02) nRet++;
-//STRIP001          if (a & 0x01) nRet++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 BYTE SetOfByte::GetSetBit(USHORT nNum) const
-//STRIP001 {
-//STRIP001  nNum++;
-//STRIP001  USHORT i=0,j=0;
-//STRIP001  USHORT nRet=0;
-//STRIP001  while (j<nNum && i<256) {
-//STRIP001      if (IsSet(BYTE(i))) j++;
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  if (j==nNum) nRet=i-1;
-//STRIP001  return BYTE(nRet);
-//STRIP001 }
 
-//STRIP001 USHORT SetOfByte::GetClearCount() const
-//STRIP001 {
-//STRIP001  return USHORT(256-GetSetCount());
-//STRIP001 }
 
-//STRIP001 BYTE SetOfByte::GetClearBit(USHORT nNum) const
-//STRIP001 {
-//STRIP001  nNum++;
-//STRIP001  USHORT i=0,j=0;
-//STRIP001  USHORT nRet=0;
-//STRIP001  while (j<nNum && i<256) {
-//STRIP001      if (!IsSet(BYTE(i))) j++;
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  if (j==nNum) nRet=i-1;
-//STRIP001  return BYTE(nRet);
-//STRIP001 }
 
 /*N*/ void SetOfByte::operator&=(const SetOfByte& r2ndSet)
 /*N*/ {
@@ -122,12 +64,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SetOfByte::operator|=(const SetOfByte& r2ndSet)
-//STRIP001 {
-//STRIP001  for (unsigned i=0; i<32; i++) {
-//STRIP001      aData[i]|=r2ndSet.aData[i];
-//STRIP001  }
-//STRIP001 }
 
 /** initialize this set with a uno sequence of sal_Int8
 */
@@ -182,18 +118,6 @@ namespace binfilter {
 // SdrLayer
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SdrLayer::SetStandardLayer(FASTBOOL bStd)
-//STRIP001 {
-//STRIP001  nType=(UINT16)bStd;
-//STRIP001  if (bStd) {
-//STRIP001      aName=ImpGetResStr(STR_StandardLayerName);
-//STRIP001  }
-//STRIP001  if (pModel!=NULL) {
-//STRIP001      SdrHint aHint(HINT_LAYERCHG);
-//STRIP001      pModel->Broadcast(aHint);
-//STRIP001      pModel->SetChanged();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrLayer::SetName(const XubString& rNewName)
 /*N*/ {
@@ -212,12 +136,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrLayer::operator==(const SdrLayer& rCmpLayer) const
-//STRIP001 {
-//STRIP001  return (nID == rCmpLayer.nID
-//STRIP001      && nType == rCmpLayer.nType
-//STRIP001      && aName.Equals(rCmpLayer.aName));
-//STRIP001 }
 
 /*N*/ SvStream& operator>>(SvStream& rIn, SdrLayer& rLayer)
 /*N*/ {
@@ -238,7 +156,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if(rLayer.nType == 1)
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            rLayer.aName = ImpGetResStr(STR_StandardLayerName);
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -270,21 +187,7 @@ namespace binfilter {
 // SdrLayerSet
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 FASTBOOL SdrLayerSet::operator==(const SdrLayerSet& rCmpLayerSet) const
-//STRIP001 {
-//STRIP001  return(aName.Equals(rCmpLayerSet.aName)
-//STRIP001      && aMember == rCmpLayerSet.aMember
-//STRIP001      && aExclude == rCmpLayerSet.aExclude);
-//STRIP001 }
 
-//STRIP001 void SdrLayerSet::Broadcast() const
-//STRIP001 {
-//STRIP001  if (pModel!=NULL) {
-//STRIP001      SdrHint aHint(HINT_LAYERSETCHG);
-//STRIP001      pModel->Broadcast(aHint);
-//STRIP001      pModel->SetChanged();
-//STRIP001  }
-//STRIP001 }
 
 /*?*/ SvStream& operator>>(SvStream& rIn, SdrLayerSet& rSet)
 /*?*/ {
@@ -368,43 +271,7 @@ namespace binfilter {
 /*N*/   aLSets.Clear();
 /*N*/ }
 
-//STRIP001 const SdrLayerAdmin& SdrLayerAdmin::operator=(const SdrLayerAdmin& rSrcLayerAdmin)
-//STRIP001 {
-//STRIP001  ClearLayer();
-//STRIP001  ClearLayerSets();
-//STRIP001  pParent=rSrcLayerAdmin.pParent;
-//STRIP001  USHORT i;
-//STRIP001  USHORT nAnz=rSrcLayerAdmin.GetLayerCount();
-//STRIP001  for (i=0; i<nAnz; i++) {
-//STRIP001      aLayer.Insert(new SdrLayer(*rSrcLayerAdmin.GetLayer(i)),CONTAINER_APPEND);
-//STRIP001  }
-//STRIP001  nAnz=rSrcLayerAdmin.GetLayerSetCount();
-//STRIP001  for (i=0; i<nAnz; i++) {
-//STRIP001      aLSets.Insert(new SdrLayerSet(*rSrcLayerAdmin.GetLayerSet(i)),CONTAINER_APPEND);
-//STRIP001  }
-//STRIP001  return *this;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrLayerAdmin::operator==(const SdrLayerAdmin& rCmpLayerAdmin) const
-//STRIP001 {
-//STRIP001  if (pParent!=rCmpLayerAdmin.pParent ||
-//STRIP001      aLayer.Count()!=rCmpLayerAdmin.aLayer.Count() ||
-//STRIP001      aLSets.Count()!=rCmpLayerAdmin.aLSets.Count()) return FALSE;
-//STRIP001  FASTBOOL bOk=TRUE;
-//STRIP001  USHORT nAnz=GetLayerCount();
-//STRIP001  USHORT i=0;
-//STRIP001  while (bOk && i<nAnz) {
-//STRIP001      bOk=*GetLayer(i)==*rCmpLayerAdmin.GetLayer(i);
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  nAnz=GetLayerSetCount();
-//STRIP001  i=0;
-//STRIP001  while (bOk && i<nAnz) {
-//STRIP001      bOk=*GetLayerSet(i)==*rCmpLayerAdmin.GetLayerSet(i);
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
 /*N*/ void SdrLayerAdmin::SetModel(SdrModel* pNewModel)
 /*N*/ {
@@ -448,48 +315,9 @@ namespace binfilter {
 /*N*/   return pLay;
 /*N*/ }
 
-//STRIP001 SdrLayer* SdrLayerAdmin::NewStandardLayer(USHORT nPos)
-//STRIP001 {
-//STRIP001  SdrLayerID nID=GetUniqueLayerID();
-//STRIP001  SdrLayer* pLay=new SdrLayer(nID,String());
-//STRIP001  pLay->SetStandardLayer();
-//STRIP001  pLay->SetModel(pModel);
-//STRIP001  aLayer.Insert(pLay,nPos);
-//STRIP001  Broadcast(FALSE);
-//STRIP001  return pLay;
-//STRIP001 }
 
-//STRIP001 SdrLayer* SdrLayerAdmin::MoveLayer(USHORT nPos, USHORT nNewPos)
-//STRIP001 {
-//STRIP001  SdrLayer* pLayer=(SdrLayer*)(aLayer.Remove(nPos));
-//STRIP001  if (pLayer!=NULL) {
-//STRIP001      aLayer.Insert(pLayer,nNewPos);
-//STRIP001  }
-//STRIP001  Broadcast(FALSE);
-//STRIP001  return pLayer;
-//STRIP001 }
 
-//STRIP001 void SdrLayerAdmin::MoveLayer(SdrLayer* pLayer, USHORT nNewPos)
-//STRIP001 {
-//STRIP001  ULONG nPos=aLayer.GetPos(pLayer);
-//STRIP001  if (nPos!=CONTAINER_ENTRY_NOTFOUND) {
-//STRIP001      aLayer.Remove(nPos);
-//STRIP001      aLayer.Insert(pLayer,nNewPos);
-//STRIP001      Broadcast(FALSE);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 USHORT SdrLayerAdmin::GetLayerPos(SdrLayer* pLayer) const
-//STRIP001 {
-//STRIP001  ULONG nRet=SDRLAYER_NOTFOUND;
-//STRIP001  if (pLayer!=NULL) {
-//STRIP001      nRet=aLayer.GetPos(pLayer);
-//STRIP001      if (nRet==CONTAINER_ENTRY_NOTFOUND) {
-//STRIP001          nRet=SDRLAYER_NOTFOUND;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return USHORT(nRet);
-//STRIP001 }
 
 /*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, FASTBOOL bInherited) const
 /*N*/ {
@@ -564,51 +392,8 @@ namespace binfilter {
 /*N*/   return i;
 /*N*/ }
 
-//STRIP001 SdrLayerSet* SdrLayerAdmin::NewLayerSet(const XubString& rName, USHORT nPos)
-//STRIP001 {
-//STRIP001  SdrLayerSet* pSet=new SdrLayerSet(/**this,*/rName);
-//STRIP001  pSet->SetModel(pModel);
-//STRIP001  aLSets.Insert(pSet,nPos);
-//STRIP001  Broadcast(TRUE);
-//STRIP001  return pSet;
-//STRIP001 }
 
-//STRIP001 SdrLayerSet* SdrLayerAdmin::RemoveLayerSet(SdrLayerSet* pSet)
-//STRIP001 {
-//STRIP001  SdrLayerSet* pRetSet=(SdrLayerSet*)aLSets.Remove(pSet);
-//STRIP001  Broadcast(TRUE);
-//STRIP001  return pRetSet;
-//STRIP001 }
 
-//STRIP001 void SdrLayerAdmin::MoveLayerSet(SdrLayerSet* pSet, USHORT nNewPos)
-//STRIP001 {
-//STRIP001  ULONG nPos=aLSets.GetPos(pSet);
-//STRIP001  if (nPos!=CONTAINER_ENTRY_NOTFOUND) {
-//STRIP001      aLSets.Remove(nPos);
-//STRIP001      aLSets.Insert(pSet,nNewPos);
-//STRIP001      Broadcast(TRUE);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 const SdrLayerSet* SdrLayerAdmin::GetLayerSet(const XubString& rName, FASTBOOL bInherited) const
-//STRIP001 {
-//STRIP001  UINT16 i(0);
-//STRIP001  const SdrLayerSet* pSet = NULL;
-//STRIP001
-//STRIP001  while(i <= GetLayerSetCount() && !pSet)
-//STRIP001  {
-//STRIP001      if(rName.Equals(GetLayerSet(i)->GetName()))
-//STRIP001          pSet = GetLayerSet(i);
-//STRIP001      else
-//STRIP001          i++;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(!pSet && pParent)
-//STRIP001  {
-//STRIP001      pSet = pParent->GetLayerSet(rName, TRUE);
-//STRIP001  }
-//STRIP001
-//STRIP001  return pSet;
-//STRIP001 }
 
 }
