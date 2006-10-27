@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_sc.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:58:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:54:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
  // StarCalc Applikations Resource
  //
  // (C) 1994 StarDivision GmbH, Hamburg, Germany
- // $Author: rt $ $Date: 2005-09-07 20:58:10 $ $Revision: 1.4 $
+ // $Author: rt $ $Date: 2006-10-27 16:54:07 $ $Revision: 1.5 $
  // $Logfile:   T:/sc/source/ui/src/sc.srv  $ $Workfile:   sc.src  $
  //==================================================================
 
@@ -87,47 +87,14 @@ String RID_APPTITLE
 
  // Icons & Bitmaps: ----------------------------------------------------------
 
-//STRIP001 Image RID_BMP_REFBTN1
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001      File = "refinp1.bmp";
-//STRIP001  };
-//STRIP001     MaskColor = STD_MASKCOLOR;
-//STRIP001 };
 
-//STRIP001 Image RID_BMP_REFBTN1_H
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001         File = "refinp1_h.bmp";
-//STRIP001  };
-//STRIP001     MaskColor = SC_HC_MASKCOLOR;
-//STRIP001 };
 
-//STRIP001 Image RID_BMP_REFBTN2
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001      File = "refinp2.bmp";
-//STRIP001  };
-//STRIP001     MaskColor = STD_MASKCOLOR;
-//STRIP001 };
 
-//STRIP001 Image RID_BMP_REFBTN2_H
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001         File = "refinp2_h.bmp";
-//STRIP001  };
-//STRIP001     MaskColor = SC_HC_MASKCOLOR;
-//STRIP001 };
 
 
  // ???
 String 30001 { Text = "Dummy1" ; };
 String 30002 { Text = "Dummy2" ; };
-//STRIP001 String 30006 { Text = "Dummy3" ; };
 
 
 
