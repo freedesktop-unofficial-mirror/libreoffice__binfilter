@@ -4,9 +4,9 @@
  *
  *  $RCSfile: Filter.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:33:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:56:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,24 +36,12 @@
 #ifndef FORMS_COMPONENT_FILTER_HXX
 #define FORMS_COMPONENT_FILTER_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_XDATABASEMETADATA_HPP_
-// auto strip #include <com/sun/star/sdbc/XDatabaseMetaData.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
 #endif
 #ifndef _COM_SUN_STAR_FORM_XBOUNDCOMPONENT_HPP_
 #include <com/sun/star/form/XBoundComponent.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
-// auto strip #include <com/sun/star/util/XNumberFormatter.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
 #endif
@@ -65,9 +53,6 @@
 #include <toolkit/controls/unocontrol.hxx>
 #endif
 
-// auto strip #ifndef _TOOLKIT_AWT_LISTENERMULTIPLEXER_HXX_
-// auto strip #include <toolkit/helper/listenermultiplexer.hxx>
-// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
@@ -76,9 +61,6 @@
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE4_HXX_
-// auto strip #include <cppuhelper/implbase4.hxx>
-// auto strip #endif
 #ifndef _CONNECTIVITY_SQLPARSE_HXX
 #include <connectivity/sqlparse.hxx>
 #endif

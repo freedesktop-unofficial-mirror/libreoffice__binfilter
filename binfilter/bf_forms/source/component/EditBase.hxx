@@ -4,9 +4,9 @@
  *
  *  $RCSfile: EditBase.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:32:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:56:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,34 +39,7 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
 #endif
-// auto strip #ifndef _DATE_HXX
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
-// auto strip #ifndef _LINK_HXX
-// auto strip #include <tools/link.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
-// auto strip #include <com/sun/star/util/XNumberFormatter.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
-// auto strip #include <com/sun/star/awt/XFocusListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
-// auto strip #include <com/sun/star/awt/XKeyListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
-// auto strip #include <com/sun/star/form/XChangeBroadcaster.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/lang/XEventListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-// auto strip #include <com/sun/star/lang/XComponent.hpp>
-// auto strip #endif
 namespace binfilter {
 
 // persistence flags for use with the version id

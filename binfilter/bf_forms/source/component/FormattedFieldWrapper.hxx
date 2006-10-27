@@ -4,9 +4,9 @@
  *
  *  $RCSfile: FormattedFieldWrapper.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:34:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:57:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,15 +39,6 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
 #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE3_HXX_
-// auto strip #include <cppuhelper/implbase3.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
-// auto strip #include <com/sun/star/util/XCloneable.hpp>
-// auto strip #endif
 namespace binfilter {
 
 //.........................................................................
