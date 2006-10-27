@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndole.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:55:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:57:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
@@ -46,12 +43,6 @@
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVXLINKMGR_HXX
-// auto strip #include <bf_svx/linkmgr.hxx>
-// auto strip #endif
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
@@ -62,9 +53,6 @@
 #ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX //autogen
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -85,9 +73,6 @@
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
@@ -114,12 +99,8 @@ class SwOLELRUCache : private SvPtrarr, private ::utl::ConfigItem
 public:
     SwOLELRUCache();
 
-//STRIP001  virtual void Notify( const ::com::sun::star::uno::Sequence<
-//STRIP001                              ::rtl::OUString>& aPropertyNames );
-//STRIP001  virtual void Commit();
     void Load();
 
-//STRIP001  void SetInUnload( BOOL bFlag )  { bInUnload = bFlag; }
     SvPtrarr::Count;
 
     void Insert( SwOLEObj& rObj );
@@ -170,54 +151,9 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
 // Laden eines in den Undo-Bereich verschobenen OLE-Objekts
 
-//STRIP001 BOOL SwOLENode::RestorePersistentData()
-//STRIP001 {
-//STRIP001  aOLEObj.GetOleRef();
-//STRIP001  if( aOLEObj.pOLERef && aOLEObj.pOLERef->Is() )
-//STRIP001  {
-//STRIP001      SvPersist* p = GetDoc()->GetPersist();
-//STRIP001      if( p )     // muss da sein
-//STRIP001      {
-//STRIP001          SvInfoObjectRef aRef( p->Find( aOLEObj.aName ) );
-//STRIP001          if( aRef.Is() )
-//STRIP001              aRef->SetDeleted( FALSE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001 // muss das sein????
-//STRIP001 //   if( pOLELRU_Cache )
-//STRIP001 //       pOLELRU_Cache->RemovePtr( &aOLEObj );
-//STRIP001  return TRUE;
-//STRIP001 }
 
 // Sichern eines in den Undo-Bereich zu verschiebenden OLE-Objekts
 
-//STRIP001 BOOL SwOLENode::SavePersistentData()
-//STRIP001 {
-//STRIP001  if( aOLEObj.pOLERef && aOLEObj.pOLERef->Is() )
-//STRIP001  {
-//STRIP001      SvPersist* p = GetDoc()->GetPersist();
-//STRIP001      if( p )     // muss da sein
-//STRIP001      {
-//STRIP001          SvInfoObjectRef aRef( p->Find( aOLEObj.aName ) );
-//STRIP001          if( aRef.Is() )
-//STRIP001          {
-//STRIP001              aRef->SetDeleted( TRUE );
-//STRIP001              aRef->SetObj(0);
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      (*aOLEObj.pOLERef)->DoClose();
-//STRIP001  }
-//STRIP001
-//STRIP001  if( SwOLEObj::pOLELRU_Cache )
-//STRIP001      SwOLEObj::pOLELRU_Cache->RemovePtr( &aOLEObj );
-//STRIP001
-//STRIP001  if( aOLEObj.pOLERef && aOLEObj.pOLERef->Is() )
-//STRIP001      (*aOLEObj.pOLERef).Clear();
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ SwOLENode * SwNodes::MakeOLENode( const SwNodeIndex & rWhere,
@@ -529,41 +465,6 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ BOOL SwOLEObj::RemovedFromLRU()
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
-//STRIP001  //Nicht notwendig im Doc DTor (MM)
-//STRIP001  ASSERT( pOLERef && pOLERef->Is() && 1 < (*pOLERef)->GetRefCount(),
-//STRIP001          "Falscher RefCount fuers Unload" );
-//STRIP001  const SwDoc* pDoc;
-//STRIP001  if( pOLERef && pOLERef->Is() && pOLENd &&
-//STRIP001      !( pDoc = pOLENd->GetDoc())->IsInDtor() &&
-//STRIP001      SVOBJ_MISCSTATUS_ALWAYSACTIVATE != (*pOLERef)->GetMiscStatus() &&
-//STRIP001      1 < (*pOLERef)->GetRefCount() &&
-//STRIP001      !(*pOLERef)->GetProtocol().IsConnect() &&
-//STRIP001      !(*pOLERef)->GetProtocol().IsInPlaceActive() )
-//STRIP001  {
-//STRIP001      SvPersist* p = pDoc->GetPersist();
-//STRIP001      if( p )
-//STRIP001      {
-//STRIP001          if( pDoc->IsPurgeOLE() )
-//STRIP001          {
-//STRIP001              pOLELRU_Cache->SetInUnload( TRUE );
-//STRIP001              SvPersist* pO = *pOLERef;
-//STRIP001
-//STRIP001              if( pO->IsModified() && !pO->IsHandsOff() )
-//STRIP001              {
-//STRIP001                  pO->DoSave();
-//STRIP001                  pO->DoSaveCompleted();
-//STRIP001              }
-//STRIP001
-//STRIP001              pOLERef->Clear();
-//STRIP001              if( !p->Unload( pO ) )
-//STRIP001                  *pOLERef = pO;
-//STRIP001
-//STRIP001              pOLELRU_Cache->SetInUnload( FALSE );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              bRet = FALSE;
-//STRIP001      }
-//STRIP001  }
 /*N*/   return bRet;
 /*N*/ }
 
@@ -585,15 +486,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   return aNames;
 /*N*/ }
 
-//STRIP001 void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence<
-//STRIP001                              ::rtl::OUString>& rPropertyNames )
-//STRIP001 {
-//STRIP001  Load();
-//STRIP001 }
 
-//STRIP001 void SwOLELRUCache::Commit()
-//STRIP001 {
-//STRIP001 }
 
 /*N*/ void SwOLELRUCache::Load()
 /*N*/ {

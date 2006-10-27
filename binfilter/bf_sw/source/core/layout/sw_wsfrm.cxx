@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wsfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:54:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:56:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 #ifndef _OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
@@ -52,12 +49,6 @@
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
 #endif
-// auto strip #ifndef _SVX_KEEPITEM_HXX
-// auto strip #include <bf_svx/keepitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BRKITEM_HXX
-// auto strip #include <bf_svx/brkitem.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -72,18 +63,9 @@
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
 #endif
@@ -96,15 +78,9 @@
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-// auto strip #ifndef _FLYFRM_HXX
-// auto strip #include <flyfrm.hxx>
-// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
 #endif
@@ -114,24 +90,15 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
 #endif
-// auto strip #ifndef _FMTFORDR_HXX
-// auto strip #include <fmtfordr.hxx>
-// auto strip #endif
 #ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
 #endif
 #ifndef _FMTPDSC_HXX
 #include <fmtpdsc.hxx>
 #endif
-// auto strip #ifndef _SVX_KEEPITEM_HXX //autogen
-// auto strip #include <bf_svx/keepitem.hxx>
-// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
@@ -147,12 +114,6 @@
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _HTMLTBL_HXX
-// auto strip #include <htmltbl.hxx>
-// auto strip #endif
 #ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
 #endif
@@ -182,25 +143,7 @@
 #endif
 namespace binfilter {
 
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
 
-//STRIP001 static void CheckRootSize( SwFrm *pRoot )
-//STRIP001 {
-//STRIP001  SwTwips nHeight = 0;
-//STRIP001  const SwFrm *pPage = pRoot->GetLower();
-//STRIP001  while ( pPage )
-//STRIP001  {
-//STRIP001      if ( pPage->GetPrev() && pPage->GetPrev()->GetLower() )
-//STRIP001          nHeight += DOCUMENTBORDER/2;
-//STRIP001      nHeight += pPage->Frm().Height();
-//STRIP001      pPage = pPage->GetNext();
-//STRIP001  }
-//STRIP001  ASSERT( nHeight == pRoot->Frm().Height(), ":-) Roothoehe verschaetzt.");
-//STRIP001 }
-//STRIP001 #define CHECKROOTSIZE( pRoot ) ::CheckRootSize( pRoot );
-//STRIP001 #else
-//STRIP001 #define CHECKROOTSIZE( pRoot )
-//STRIP001 #endif
 
 
 /*************************************************************************
@@ -296,15 +239,6 @@ namespace binfilter {
 /*?*/         SwFrm::CheckDirection( bVert );
 /*N*/ }
 
-//STRIP001 void SwFlyFrm::CheckDirection( BOOL bVert )
-//STRIP001 {
-//STRIP001     const SwFrmFmt* pFmt = GetFmt();
-//STRIP001     if( pFmt )
-//STRIP001         CheckDir(((SvxFrameDirectionItem&)pFmt->GetAttr(RES_FRAMEDIR)).GetValue(),
-//STRIP001                     bVert, sal_False, pFmt->GetDoc()->IsBrowseMode() );
-//STRIP001     else
-//STRIP001         SwFrm::CheckDirection( bVert );
-//STRIP001 }
 
 /*N*/ void SwTabFrm::CheckDirection( BOOL bVert )
 /*N*/ {
@@ -711,103 +645,6 @@ namespace binfilter {
 |*  eingebaut.
 |*
 |*************************************************************************/
-//STRIP001 void SwFrm::InsertGroupBefore( SwFrm* pParent, SwFrm* pBehind, SwFrm* pSct )
-//STRIP001 {
-//STRIP001  ASSERT( pParent, "Kein Parent fuer Insert." );
-//STRIP001  ASSERT( (!pBehind || (pBehind && ( pParent == pBehind->GetUpper())
-//STRIP001          || ( pParent->IsSctFrm() && pBehind->GetUpper()->IsColBodyFrm() ) ) ),
-//STRIP001          "Framebaum inkonsistent." );
-//STRIP001  if( pSct )
-//STRIP001  {
-//STRIP001      pUpper = pParent->GetUpper();
-//STRIP001      SwFrm *pLast = this;
-//STRIP001      while( pLast->GetNext() )
-//STRIP001      {
-//STRIP001          pLast = pLast->GetNext();
-//STRIP001          pLast->pUpper = GetUpper();
-//STRIP001      }
-//STRIP001      if( pBehind )
-//STRIP001      {
-//STRIP001          pLast->pNext = pSct;
-//STRIP001          pSct->pPrev = pLast;
-//STRIP001          pSct->pNext = pParent->GetNext();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pLast->pNext = pParent->GetNext();
-//STRIP001          if( pLast->GetNext() )
-//STRIP001              pLast->GetNext()->pPrev = pLast;
-//STRIP001      }
-//STRIP001      pParent->pNext = this;
-//STRIP001      pPrev = pParent;
-//STRIP001      if( pSct->GetNext() )
-//STRIP001          pSct->GetNext()->pPrev = pSct;
-//STRIP001      while( pLast->GetNext() )
-//STRIP001      {
-//STRIP001          pLast = pLast->GetNext();
-//STRIP001          pLast->pUpper = GetUpper();
-//STRIP001      }
-//STRIP001      if( pBehind )
-//STRIP001      {   //Einfuegen vor pBehind.
-//STRIP001          if( pBehind->GetPrev() )
-//STRIP001              pBehind->GetPrev()->pNext = NULL;
-//STRIP001          else
-//STRIP001              pBehind->GetUpper()->pLower = NULL;
-//STRIP001          pBehind->pPrev = NULL;
-//STRIP001          SwLayoutFrm* pTmp = (SwLayoutFrm*)pSct;
-//STRIP001          if( pTmp->Lower() )
-//STRIP001          {
-//STRIP001              ASSERT( pTmp->Lower()->IsColumnFrm(), "InsertGrp: Used SectionFrm" );
-//STRIP001              pTmp = (SwLayoutFrm*)((SwLayoutFrm*)pTmp->Lower())->Lower();
-//STRIP001              ASSERT( pTmp, "InsertGrp: Missing ColBody" );
-//STRIP001          }
-//STRIP001          pBehind->pUpper = pTmp;
-//STRIP001          pBehind->GetUpper()->pLower = pBehind;
-//STRIP001          pLast = pBehind->GetNext();
-//STRIP001          while ( pLast )
-//STRIP001          {
-//STRIP001              pLast->pUpper = pBehind->GetUpper();
-//STRIP001              pLast = pLast->GetNext();
-//STRIP001          };
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          ASSERT( pSct->IsSctFrm(), "InsertGroup: For SectionFrms only" );
-//STRIP001          delete ((SwSectionFrm*)pSct);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pUpper = (SwLayoutFrm*)pParent;
-//STRIP001      SwFrm *pLast = this;
-//STRIP001      while( pLast->GetNext() )
-//STRIP001      {
-//STRIP001          pLast = pLast->GetNext();
-//STRIP001          pLast->pUpper = GetUpper();
-//STRIP001      }
-//STRIP001      pLast->pNext = pBehind;
-//STRIP001      if( pBehind )
-//STRIP001      {   //Einfuegen vor pBehind.
-//STRIP001          if( 0 != (pPrev = pBehind->pPrev) )
-//STRIP001              pPrev->pNext = this;
-//STRIP001          else
-//STRIP001              pUpper->pLower = this;
-//STRIP001          pBehind->pPrev = pLast;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {   //Einfuegen am Ende, oder des ersten Nodes im Unterbaum
-//STRIP001          pPrev = pUpper->Lower();
-//STRIP001          if ( pPrev )
-//STRIP001          {
-//STRIP001              while( pPrev->pNext )
-//STRIP001                  pPrev = pPrev->pNext;
-//STRIP001              pPrev->pNext = this;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pUpper->pLower = this;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -3552,41 +3389,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 SwCntntFrm* lcl_InvalidateSection( SwFrm *pCnt, BYTE nInv )
-//STRIP001 {
-//STRIP001  SwSectionFrm* pSect = pCnt->FindSctFrm();
-//STRIP001  // Wenn unser CntntFrm in einer Tabelle oder Fussnote steht, sind nur
-//STRIP001  // Bereiche gemeint, die ebenfalls innerhalb liegen.
-//STRIP001  // Ausnahme: Wenn direkt eine Tabelle uebergeben wird.
-//STRIP001  if( ( ( pCnt->IsInTab() && !pSect->IsInTab() ) ||
-//STRIP001      ( pCnt->IsInFtn() && !pSect->IsInFtn() ) ) && !pCnt->IsTabFrm() )
-//STRIP001      return NULL;
-//STRIP001  if( nInv & INV_SIZE )
-//STRIP001      pSect->_InvalidateSize();
-//STRIP001  if( nInv & INV_POS )
-//STRIP001      pSect->_InvalidatePos();
-//STRIP001  if( nInv & INV_PRTAREA )
-//STRIP001      pSect->_InvalidatePrt();
-//STRIP001  SwFlowFrm *pFoll = pSect->GetFollow();
-//STRIP001  // Temporary separation from follow
-//STRIP001  pSect->SetFollow( NULL );
-//STRIP001  SwCntntFrm* pRet = pSect->FindLastCntnt();
-//STRIP001  pSect->SetFollow( pFoll );
-//STRIP001  return pRet;
-//STRIP001 }
 
-//STRIP001 SwCntntFrm* lcl_InvalidateTable( SwTabFrm *pTable, BYTE nInv )
-//STRIP001 {
-//STRIP001  if( ( nInv & INV_SECTION ) && pTable->IsInSct() )
-//STRIP001      lcl_InvalidateSection( pTable, nInv );
-//STRIP001  if( nInv & INV_SIZE )
-//STRIP001      pTable->_InvalidateSize();
-//STRIP001  if( nInv & INV_POS )
-//STRIP001      pTable->_InvalidatePos();
-//STRIP001  if( nInv & INV_PRTAREA )
-//STRIP001      pTable->_InvalidatePrt();
-//STRIP001  return pTable->FindLastCntnt();
-//STRIP001 }
 
 /*N*/ void lcl_InvalidateAllCntnt( SwCntntFrm *pCnt, BYTE nInv );
 
@@ -3626,7 +3429,6 @@ namespace binfilter {
 /*?*/               if( !pLastTabCnt )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLastTabCnt = lcl_InvalidateTable( pCnt->FindTabFrm(), nInv );
-//STRIP001 /*?*/                    pLastSctCnt = NULL;
 /*?*/               }
 /*?*/               if( pLastTabCnt == pCnt )
 /*?*/               {

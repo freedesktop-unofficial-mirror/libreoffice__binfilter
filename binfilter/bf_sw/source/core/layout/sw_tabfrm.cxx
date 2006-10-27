@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tabfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:53:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:55:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,8 +37,6 @@
 #pragma hdrstop
 
 #include "pagefrm.hxx"
-// auto strip #include "rootfrm.hxx"
-// auto strip #include "cntfrm.hxx"
 #include "viewsh.hxx"
 
 #ifndef _HORIORNT_HXX
@@ -46,15 +44,12 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #include "docsh.hxx"
 #include "viewimp.hxx"
 #include "swtable.hxx"
 #include "dflyobj.hxx"
-// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
-// auto strip #include "viewopt.hxx"
 #include "hints.hxx"
 #include "dbg_lay.hxx"
 
@@ -70,12 +65,6 @@
 #ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
 #endif
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
-// auto strip #include <bf_svx/lrspitem.hxx>
-// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
@@ -172,15 +161,6 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 30. May. 96
 |*
 |*************************************************************************/
-//STRIP001 void SwTabFrm::JoinAndDelFollows()
-//STRIP001 {
-//STRIP001  SwTabFrm *pFoll = GetFollow();
-//STRIP001  if ( pFoll->HasFollow() )
-//STRIP001      pFoll->JoinAndDelFollows();
-//STRIP001  pFoll->Cut();
-//STRIP001  SetFollow( pFoll->GetFollow() );
-//STRIP001  delete pFoll;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -574,11 +554,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bResizeHTMLTable ) //Optimiertes Zusammenspiel mit Grow/Shrink des Inhaltes
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        bResizeHTMLTable = FALSE;
-//STRIP001 /*?*/        SwHTMLTableLayout *pLayout = GetTable()->GetHTMLTableLayout();
-//STRIP001 /*?*/        if ( pLayout )
-//STRIP001 /*?*/            bCalcLowers = pLayout->Resize(
-//STRIP001 /*?*/                            pLayout->GetBrowseWidthByTabFrm( *this ), FALSE );
 /*N*/   }
 /*N*/
 /*N*/
@@ -636,11 +611,6 @@ namespace binfilter {
 /*N*/               SwHTMLTableLayout *pLayout = GetTable()->GetHTMLTableLayout();
 /*N*/               if( pLayout )
 /*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                    delete pAccess;
-//STRIP001 /*?*/                    bCalcLowers |= pLayout->Resize(
-//STRIP001 /*?*/                        pLayout->GetBrowseWidthByTabFrm( *this ), FALSE );
-//STRIP001 /*?*/                     pAccess = new SwBorderAttrAccess( SwFrm::GetCache(), this );
-//STRIP001 /*?*/                    pAttrs = pAccess->Get();
 /*N*/               }
 /*N*/
 /*N*/               bValidPrtArea = FALSE;
@@ -681,12 +651,6 @@ namespace binfilter {
 /*N*/                  ((Prt().*fnRect->fnGetWidth)() != nOldPrtWidth ||
 /*N*/                   (Frm().*fnRect->fnGetWidth)() != nOldFrmWidth) )
 /*N*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                delete pAccess;
-//STRIP001 /*?*/                bCalcLowers |= pLayout->Resize(
-//STRIP001 /*?*/                        pLayout->GetBrowseWidthByTabFrm( *this ), FALSE );
-//STRIP001 /*?*/ //                 GetFmt()->GetDoc()->GetDocShell()->IsReadOnly() ? FALSE : TRUE );
-//STRIP001 /*?*/                pAccess= new SwBorderAttrAccess( SwFrm::GetCache(), this );
-//STRIP001 /*?*/                pAttrs = pAccess->Get();
 /*N*/           }
 /*N*/             if ( !bOptLower && aOldPrtPos != (Prt().*fnRect->fnGetPos)() )
 /*N*/               aNotify.SetLowersComplete( FALSE );
@@ -730,13 +694,6 @@ namespace binfilter {
 /*N*/                                       GetTable()->GetHTMLTableLayout();
 /*N*/                                   if( pLayout )
 /*N*/                                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                                        delete pAccess;
-//STRIP001 /*?*/                                        bCalcLowers |= pLayout->Resize(
-//STRIP001 /*?*/                                            pLayout->GetBrowseWidthByTabFrm(
-//STRIP001 /*?*/                                                            *this ), FALSE );
-//STRIP001 /*?*/                                        pAccess= new SwBorderAttrAccess(
-//STRIP001 /*?*/                                                    SwFrm::GetCache(), this );
-//STRIP001 /*?*/                                        pAttrs = pAccess->Get();
 /*N*/                                   }
 /*N*/                               }
 /*N*/
@@ -813,13 +770,6 @@ namespace binfilter {
 /*N*/                           GetTable()->GetHTMLTableLayout();
 /*N*/                       if( pLayout )
 /*N*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                            delete pAccess;
-//STRIP001 /*?*/                            bCalcLowers |= pLayout->Resize(
-//STRIP001 /*?*/                                pLayout->GetBrowseWidthByTabFrm( *this ),
-//STRIP001 /*?*/                                FALSE );
-//STRIP001 /*?*/                            pAccess= new SwBorderAttrAccess(
-//STRIP001 /*?*/                                        SwFrm::GetCache(), this );
-//STRIP001 /*?*/                            pAttrs = pAccess->Get();
 /*N*/                       }
 /*N*/
 /*N*/                       bValidPrtArea = FALSE;
@@ -1503,18 +1453,6 @@ namespace binfilter {
 /*N*/         }
 /*N*/       else
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            ASSERT( !this, "Table without Upper" );
-//STRIP001 /*?*/            SwRect aOldFrm( Frm() );
-//STRIP001 /*?*/             nHeight = (Frm().*fnRect->fnGetHeight)();
-//STRIP001 /*?*/             (Frm().*fnRect->fnSetHeight)( nHeight + nDist );
-//STRIP001 /*?*/             if( IsVertical() && !IsReverse() )
-//STRIP001 /*?*/                 Frm().Pos().X() -= nDist;
-//STRIP001 /*?*/            SwRootFrm *pRootFrm = FindRootFrm();
-//STRIP001 /*?*/            if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
-//STRIP001 /*?*/                pRootFrm->GetCurrShell() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/
 /*N*/       SwPageFrm *pPage = FindPageFrm();
@@ -2406,17 +2344,6 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 12. Nov. 97
 |*
 |*************************************************************************/
-//STRIP001 void SwRowFrm::Cut()
-//STRIP001 {
-//STRIP001  SwTabFrm *pTab = FindTabFrm();
-//STRIP001  if ( pTab && pTab->IsFollow() &&
-//STRIP001       (!GetPrev() ||
-//STRIP001        (pTab->GetTable()->IsHeadlineRepeat() && !GetPrev()->GetPrev())))
-//STRIP001  {
-//STRIP001      pTab->FindMaster()->InvalidatePos();
-//STRIP001  }
-//STRIP001  SwLayoutFrm::Cut();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2903,9 +2830,6 @@ namespace binfilter {
 /*M*/        SFX_ITEM_SET == ((SwAttrSetChg*)pNew)->GetChgSet()->GetItemState( RES_PROTECT, FALSE )) ||
 /*M*/       RES_PROTECT == pNew->Which() )
 /*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        ViewShell *pSh = GetShell();
-//STRIP001 /*?*/        if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-//STRIP001 /*?*/            pSh->Imp()->InvalidateAccessibleEditableState( sal_True, this );
 /*M*/   }
 /*M*/
 /*N*/   SwLayoutFrm::Modify( pOld, pNew );
