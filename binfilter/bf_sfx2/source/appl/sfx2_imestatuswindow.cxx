@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_imestatuswindow.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:26:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:58:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,28 +38,15 @@
 #include "app.hxx"
 #include "sfxsids.hrc"
 
-// auto strip #include "com/sun/star/beans/PropertyState.hpp"
 #include "com/sun/star/beans/PropertyValue.hpp"
 #include "com/sun/star/beans/XPropertySet.hpp"
 #include "com/sun/star/lang/DisposedException.hpp"
-// auto strip #include "com/sun/star/lang/XMultiServiceFactory.hpp"
-// auto strip #include "com/sun/star/uno/Any.hxx"
-// auto strip #include "com/sun/star/uno/Exception.hpp"
-// auto strip #include "com/sun/star/uno/Reference.hxx"
-// auto strip #include "com/sun/star/uno/RuntimeException.hpp"
-// auto strip #include "com/sun/star/uno/Sequence.hxx"
 #include "com/sun/star/util/XChangesBatch.hpp"
 #include "osl/diagnose.h"
-// auto strip #include "osl/mutex.hxx"
 #include "rtl/ustring.h"
-// auto strip #include "rtl/ustring.hxx"
 #include "sal/types.h"
-// auto strip #include "vcl/svapp.hxx"
 #include "vos/mutex.hxx"
 
-// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
-// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
-// auto strip #endif
 namespace binfilter {
 
 namespace css = ::com::sun::star;
