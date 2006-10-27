@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_axisid.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:49:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:21:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,19 +48,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchAxisId* GetAxisId (const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  for (long i = 0;
-//STRIP001            i < rObj.GetUserDataCount();
-//STRIP001            i ++)
-//STRIP001  {
-//STRIP001      SdrObjUserData *pData = rObj.GetUserData(i);
-//STRIP001
-//STRIP001      if (pData && (pData->GetId() == SCH_AXIS_ID)) return (SchAxisId*) pData;
-//STRIP001  }
-//STRIP001
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -69,30 +56,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject *GetObjWithAxisId (long             nAxisId,
-//STRIP001                           const SdrObjList &rObjList,
-//STRIP001                           long             *pIndex,
-//STRIP001                           SdrIterMode      eMode)
-//STRIP001 {
-//STRIP001  long           nIndex = 0;
-//STRIP001  SdrObjListIter aIterator (rObjList, eMode);
-//STRIP001
-//STRIP001  while (aIterator.IsMore ())
-//STRIP001  {
-//STRIP001      SdrObject *pObj    = aIterator.Next ();
-//STRIP001      SchAxisId *pAxisId = GetAxisId (*pObj);
-//STRIP001
-//STRIP001      if (pAxisId && (pAxisId->AxisId () == nAxisId))
-//STRIP001      {
-//STRIP001          if (pIndex) *pIndex = nIndex;
-//STRIP001          return pObj;
-//STRIP001      }
-//STRIP001
-//STRIP001      nIndex++;
-//STRIP001  }
-//STRIP001
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -124,11 +87,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchAxisId::SchAxisId (const SchAxisId &rAxisId) :
-//STRIP001  SdrObjUserData (rAxisId),
-//STRIP001  nAxisId (rAxisId.nAxisId)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*

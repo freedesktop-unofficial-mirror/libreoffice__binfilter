@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chartbar.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:50:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:22:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,22 +34,9 @@
  ************************************************************************/
 
 #include "chtmodel.hxx"
-// auto strip #include "chartbar.hxx"
 #include "chaxis.hxx"
 namespace binfilter {
 
-//STRIP001 void ChartBarDescriptor::ChangeModel( ChartModel* pNewModel )
-//STRIP001 {
-//STRIP001     // use new model ...
-//STRIP001     mpModel = pNewModel;
-//STRIP001
-//STRIP001     // ... and the new corresponding axis
-//STRIP001     if( mpAxis &&
-//STRIP001         mpModel )
-//STRIP001     {
-//STRIP001         mpAxis = mpModel->GetAxisByUID( mpAxis->GetUniqueId());
-//STRIP001     }
-//STRIP001 }
 
 /*N*/ void ChartBarDescriptor::SetGap(long nPercent)
 /*N*/ {
