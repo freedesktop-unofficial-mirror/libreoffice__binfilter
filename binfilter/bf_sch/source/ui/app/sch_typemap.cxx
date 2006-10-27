@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_typemap.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:14:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:39:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,9 +71,7 @@
 
 #define ITEMID_FMTSPLIT     0
 #define ITEMID_PAGEMODEL    0
-// auto strip #include <bf_svx/editdata.hxx>
 #include "eetext.hxx"
-// auto strip #include "schattr.hxx"
 
 #define ITEMID_LINE         0
 #define ITEMID_BRUSH        0
@@ -83,9 +81,7 @@
 #include <bf_svx/sizeitem.hxx>
 
 #define ITEMID_PAGE         0
-// auto strip #include <bf_svx/pageitem.hxx>
 
-// auto strip #include <bf_svx/rulritem.hxx>
 
 #ifndef _SFXSTRITEM_HXX
 #include <svtools/stritem.hxx>
@@ -94,15 +90,12 @@
 #define ITEMID_AUTHOR       0
 #define ITEMID_DATE         0
 #define ITEMID_TEXT         0
-// auto strip #include <bf_svx/postattr.hxx>
 
 #define ITEMID_SEARCH       0
-// auto strip #include <bf_svx/srchitem.hxx>
 
 #define ITEMID_HORJUSTIFY   0
 #define ITEMID_VERJUSTIFY   0
 #define ITEMID_ORIENTATION  0
-// auto strip #include <bf_svx/algitem.hxx>
 
 #include <bf_svx/zoomitem.hxx>
 
