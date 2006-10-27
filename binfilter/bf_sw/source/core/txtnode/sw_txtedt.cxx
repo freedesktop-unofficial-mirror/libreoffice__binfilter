@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:36:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:19:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,8 +43,6 @@
     #include <stdio.h>          // in SwLinguStatistik::DTOR
     #include <stdlib.h>         // getenv()
     #include <time.h>           // clock()
-// auto strip   #include "viewsh.hxx"       // ViewShell::GetHyphenator
-// auto strip     #include <tools/stream.hxx>
 #endif
 
 #ifndef _HINTIDS_HXX
@@ -54,52 +52,19 @@
 #ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _SVX_SPLWRAP_HXX
-// auto strip #include <bf_svx/splwrap.hxx>
-// auto strip #endif
 #ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
 #endif
 #ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
 #endif
-// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
-// auto strip #include <bf_linguistic/lngprops.hxx>
-// auto strip #endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _DLELSTNR_HXX_
-// auto strip #include <dlelstnr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWMODULE_HXX
-// auto strip #include <swmodule.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>    // needed for SW_MOD() macro
-// auto strip #endif
-// auto strip #ifndef _SPLARGS_HXX
-// auto strip #include <splargs.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx> // ViewShell
-// auto strip #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>
-// auto strip #endif
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
@@ -111,24 +76,9 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>      // GetDoc()
 #endif
-// auto strip #ifndef _FRMSH_HXX
-// auto strip #include <frmsh.hxx>
-// auto strip #endif
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif
-// auto strip #ifndef _CHARATR_HXX
-// auto strip #include <charatr.hxx>
-// auto strip #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _SPLARGS_HXX
-// auto strip #include <splargs.hxx>
-// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
@@ -141,27 +91,9 @@
 #ifndef _WRONG_HXX
 #include <wrong.hxx>
 #endif
-// auto strip #ifndef _TXTTYPES_HXX
-// auto strip #include <txttypes.hxx>
-// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-// auto strip #ifndef _CRSTATE_HXX
-// auto strip #include <crstate.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNDOBJ_HXX
-// auto strip #include <undobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXATRITR_HXX
-// auto strip #include <txatritr.hxx>
-// auto strip #endif
-// auto strip #ifndef _REDLINE_HXX
-// auto strip #include <redline.hxx>        // SwRedline
-// auto strip #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>     // SwRedlineTbl
-// auto strip #endif
 #ifndef _DRAWFONT_HXX
 #include <drawfont.hxx> // SwDrawTextInfo
 #endif
@@ -238,9 +170,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/   return *this;
 /*N*/ }
 
-//STRIP001 inline BOOL InRange(xub_StrLen nIdx, xub_StrLen nStart, xub_StrLen nEnd) {
-//STRIP001  return ((nIdx >=nStart) && (nIdx <= nEnd));
-//STRIP001 }
 
 /*
  * void SwTxtNode::RstAttr(const SwIndex &rIdx, USHORT nLen)
@@ -323,89 +252,10 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/
 /*M*/       if( nStart <= nAttrStart )          // Faelle: 1,3,5
 /*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            if( nEnd > nAttrStart
-//STRIP001 /*?*/                || ( nEnd == *pAttrEnd && nEnd==nAttrStart ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                // Faelle: 1,3
-//STRIP001 /*?*/                if ( nMin > nAttrStart )
-//STRIP001 /*?*/                    nMin = nAttrStart;
-//STRIP001 /*?*/                if ( nMax < *pAttrEnd )
-//STRIP001 /*?*/                    nMax = *pAttrEnd;
-//STRIP001 /*?*/                // Falls wir nur ein nichtaufgespanntes Attribut entfernen,
-//STRIP001 /*?*/                // tun wir mal so, als ob sich nichts geaendert hat.
-//STRIP001 /*?*/                bChanged = bChanged || nEnd > nAttrStart || bNoLen;
-//STRIP001 /*?*/                if( *pAttrEnd <= nEnd )     // Fall: 1
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pSwpHints->DeleteAtPos(i);
-//STRIP001 /*?*/                    DestroyAttr( pHt );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // falls das letzte Attribut ein Field ist, loescht
-//STRIP001 /*?*/                    // dieses das HintsArray !!!
-//STRIP001 /*?*/                    if( !pSwpHints )
-//STRIP001 /*?*/                        break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    //JP 26.11.96:
-//STRIP001 /*?*/                    // beim DeleteAtPos wird ein Resort ausgefuehrt!!
-//STRIP001 /*?*/                    // darum muessen wir wieder bei 0 anfangen!!!
-//STRIP001 /*?*/                    // ueber den Fall 3 koennen Attribute nach hinten
-//STRIP001 /*?*/                    // verschoben worden sein; damit stimmt jetzt das i
-//STRIP001 /*?*/                    // nicht mehr!!!
-//STRIP001 /*?*/                    i = 0;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    continue;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else                        // Fall: 3
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pSwpHints->NoteInHistory( pHt );
-//STRIP001 /*?*/                    *pHt->GetStart() = nEnd;
-//STRIP001 /*?*/                    pSwpHints->NoteInHistory( pHt, TRUE );
-//STRIP001 /*?*/                    bChanged = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
 /*M*/       }
 /*M*/       else                                // Faelle: 2,4,5
 /*M*/           if( *pAttrEnd > nStart )        // Faelle: 2,4
 /*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                if( *pAttrEnd < nEnd )      // Fall: 2
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if ( nMin > nAttrStart )
-//STRIP001 /*?*/                        nMin = nAttrStart;
-//STRIP001 /*?*/                    if ( nMax < *pAttrEnd )
-//STRIP001 /*?*/                        nMax = *pAttrEnd;
-//STRIP001 /*?*/                    bChanged = TRUE;
-//STRIP001 /*?*/                    pSwpHints->NoteInHistory( pHt );
-//STRIP001 /*?*/                    *pAttrEnd = nStart;
-//STRIP001 /*?*/                    pSwpHints->NoteInHistory( pHt, TRUE );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else if( nLen )             // Fall: 4
-//STRIP001 /*?*/                {       // bei Lange 0 werden beide Hints vom Insert(Ht)
-//STRIP001 /*?*/                        // wieder zu einem zusammengezogen !!!!
-//STRIP001 /*?*/                    if ( nMin > nAttrStart )
-//STRIP001 /*?*/                        nMin = nAttrStart;
-//STRIP001 /*?*/                    if ( nMax < *pAttrEnd )
-//STRIP001 /*?*/                        nMax = *pAttrEnd;
-//STRIP001 /*?*/                    bChanged = TRUE;
-//STRIP001 /*?*/                    xub_StrLen nTmpEnd = *pAttrEnd;
-//STRIP001 /*?*/                    pSwpHints->NoteInHistory( pHt );
-//STRIP001 /*?*/                    *pAttrEnd = nStart;
-//STRIP001 /*?*/                    pSwpHints->NoteInHistory( pHt, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     if( nEnd < nTmpEnd &&
-//STRIP001 /*?*/                         ! pSwpHints->Forget( &aNewAttributes, i, pHt->Which(),
-//STRIP001 /*?*/                                              nEnd, nTmpEnd ) )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                         const SwTxtAttr* pNewAttr =
-//STRIP001 /*?*/                                 Insert( pHt->GetAttr(), nEnd, nTmpEnd,
-//STRIP001 /*?*/                                         SETATTR_NOHINTADJUST );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         aNewAttributes.push_back( pHt );
-//STRIP001 /*?*/                         aNewAttributes.push_back( pNewAttr );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        // jetzt kein i+1, weil das eingefuegte Attribut
-//STRIP001 /*?*/                        // ein anderes auf die Position geschoben hat !
-//STRIP001 /*?*/                        continue;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
 /*M*/       }
 /*M*/       ++i;
 /*M*/   }
@@ -443,37 +293,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 
 
 
-//STRIP001 XubString SwTxtNode::GetCurWord( xub_StrLen nPos )
-//STRIP001 {
-//STRIP001  ASSERT( nPos<=aText.Len() , "SwTxtNode::GetCurWord: Pos hinter String?");
-//STRIP001     if (!aText.Len())
-//STRIP001      return aText;
-//STRIP001
-//STRIP001  Boundary aBndry;
-//STRIP001     const Reference< XBreakIterator > &rxBreak = pBreakIt->xBreak;
-//STRIP001     if (rxBreak.is())
-//STRIP001     {
-//STRIP001         sal_Int16 nWordType = WordType::DICTIONARY_WORD;
-//STRIP001         lang::Locale aLocale( pBreakIt->GetLocale( GetLang( nPos ) ) );
-//STRIP001 #ifdef DEBUG
-//STRIP001         BOOL bBegin = rxBreak->isBeginWord( aText, nPos, aLocale, nWordType );
-//STRIP001         BOOL bEnd   = rxBreak->isEndWord  ( aText, nPos, aLocale, nWordType );
-//STRIP001 #endif
-//STRIP001         aBndry = rxBreak->getWordBoundary( aText, nPos, aLocale, nWordType, TRUE );
-//STRIP001
-//STRIP001         // if no word was found use previous word (if any)
-//STRIP001         if (aBndry.startPos == aBndry.endPos)
-//STRIP001             aBndry = rxBreak->previousWord( aText, nPos, aLocale, nWordType );
-//STRIP001     }
-//STRIP001
-//STRIP001     // check if word was found and if it uses a symbol font, if so
-//STRIP001     // enforce returning an empty string
-//STRIP001     if (aBndry.endPos != aBndry.startPos && IsSymbol( (xub_StrLen)aBndry.startPos ))
-//STRIP001      aBndry.endPos = aBndry.startPos;
-//STRIP001
-//STRIP001     return aText.Copy( (xub_StrLen) aBndry.startPos,
-//STRIP001                        (xub_StrLen) (aBndry.endPos - aBndry.startPos) );
-//STRIP001 }
 
 
 /*M*/ void SwTxtNode::SetWrong( SwWrongList *pNew )
@@ -632,23 +451,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/
 /*M*/     if( pWrong )
 /*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/         xub_StrLen nOldBegin = nBegin;
-//STRIP001 /*?*/        nBegin = bReverse ? pWrong->LastWrong( nBegin )
-//STRIP001 /*?*/                          : pWrong->NextWrong( nBegin );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( STRING_LEN == nBegin )
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/         // We make sure that we do not step backwards in order to avoid
-//STRIP001 /*?*/         // endless loops.
-//STRIP001 /*?*/         if ( ( bReverse && nBegin > nOldBegin ) ||
-//STRIP001 /*?*/              ( ! bReverse && nBegin < nOldBegin ) )
-//STRIP001 /*?*/              nBegin = nOldBegin;
-//STRIP001 /*?*/
-//STRIP001 /*?*/         // if we jumped over a range marked as valid, we have to adjust
-//STRIP001 /*?*/         // the word boundaries
-//STRIP001 /*?*/         if ( nBegin != nOldBegin )
-//STRIP001 /*?*/             bStart = TRUE;
 /*M*/   }
 /*M*/
 /*M*/   Boundary aBound;
@@ -693,569 +495,9 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/     return TRUE;
 /*M*/ }
 
-//STRIP001 USHORT SwTxtNode::Spell(SwSpellArgs* pArgs)
-//STRIP001 {
-//STRIP001  // Die Aehnlichkeiten zu SwTxtFrm::_AutoSpell sind beabsichtigt ...
-//STRIP001  // ACHTUNG: Ev. Bugs in beiden Routinen fixen!
-//STRIP001
-//STRIP001     //!! please check SwTxtNode::Convert when modifying this one !!
-//STRIP001
-//STRIP001  Reference<beans::XPropertySet> xProp( GetLinguPropertySet() );
-//STRIP001  BOOL bReverse = xProp.is() ?
-//STRIP001      *(sal_Bool*)xProp->getPropertyValue( C2U(UPN_IS_WRAP_REVERSE) ).getValue() : FALSE;
-//STRIP001
-//STRIP001  xub_StrLen nBegin, nEnd;
-//STRIP001
-//STRIP001     // modify string according to redline information
-//STRIP001     const SwDoc* pDoc = GetDoc();
-//STRIP001     const XubString aOldTxt( aText );
-//STRIP001     const sal_Bool bShowChg = ::IsShowChanges( pDoc->GetRedlineMode() );
-//STRIP001     if ( bShowChg )
-//STRIP001     {
-//STRIP001         USHORT nAct = pDoc->GetRedlinePos( *this );
-//STRIP001
-//STRIP001         for ( ; nAct < pDoc->GetRedlineTbl().Count(); nAct++ )
-//STRIP001         {
-//STRIP001             const SwRedline* pRed = pDoc->GetRedlineTbl()[ nAct ];
-//STRIP001
-//STRIP001             if ( pRed->Start()->nNode > GetIndex() )
-//STRIP001                 break;
-//STRIP001
-//STRIP001             if( REDLINE_DELETE == pRed->GetType() )
-//STRIP001             {
-//STRIP001                 USHORT nStart, nEnd;
-//STRIP001                 pRed->CalcStartEnd( GetIndex(), nStart, nEnd );
-//STRIP001
-//STRIP001                 while ( nStart < nEnd && nStart < aText.Len() )
-//STRIP001                     aText.SetChar( nStart++, CH_TXTATR_INWORD );
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     if ( pArgs->pStartNode != this )
-//STRIP001      nBegin = 0;
-//STRIP001  else
-//STRIP001      nBegin = pArgs->rStartIdx.GetIndex();
-//STRIP001
-//STRIP001  if ( pArgs->pEndNode != this )
-//STRIP001      nEnd = aText.Len();
-//STRIP001  else
-//STRIP001      nEnd = pArgs->rEndIdx.GetIndex();
-//STRIP001
-//STRIP001  pArgs->xSpellAlt = NULL;
-//STRIP001
-//STRIP001     // 4 cases:
-//STRIP001     //
-//STRIP001     // 1. IsWrongDirty = 0 and GetWrong = 0
-//STRIP001     //      Everything is checked and correct
-//STRIP001     // 2. IsWrongDirty = 0 and GetWrong = 1
-//STRIP001     //      Everything is checked and errors are identified in the wrong list
-//STRIP001     // 3. IsWrongDirty = 1 and GetWrong = 0
-//STRIP001     //      Nothing has been checked
-//STRIP001     // 4. IsWrongDirty = 1 and GetWrong = 1
-//STRIP001     //      Text has been checked but there is an invalid range in the wrong list
-//STRIP001     //
-//STRIP001     // Nothing has to be done for case 1.
-//STRIP001  if( ( IsWrongDirty() || GetWrong() ) && aText.Len() )
-//STRIP001  {
-//STRIP001      if( nBegin > aText.Len() )
-//STRIP001          nBegin = aText.Len();
-//STRIP001      if( nEnd > aText.Len() )
-//STRIP001          nEnd = aText.Len();
-//STRIP001
-//STRIP001         LanguageType eActLang = GetLang( nBegin );
-//STRIP001
-//STRIP001         // In case 2. we pass the wrong list to the scanned, because only
-//STRIP001         // the words in the wrong list have to be checked
-//STRIP001         SwScanner aScanner( *this, IsWrongDirty() ? NULL : GetWrong(),
-//STRIP001                             WordType::DICTIONARY_WORD,
-//STRIP001                             nBegin, nEnd, bReverse, FALSE );
-//STRIP001      while( !pArgs->xSpellAlt.is() && aScanner.NextWord( eActLang ) )
-//STRIP001      {
-//STRIP001          const XubString& rWord = aScanner.GetWord();
-//STRIP001
-//STRIP001             // get next language for next word, consider language attributes
-//STRIP001             // within the word
-//STRIP001             eActLang = GetLang( aScanner.GetBegin(), rWord.Len() );
-//STRIP001
-//STRIP001             if( rWord.Len() > 1 && LANGUAGE_NONE != eActLang )
-//STRIP001          {
-//STRIP001              if (pArgs->xSpeller.is())
-//STRIP001              {
-//STRIP001                  SvxSpellWrapper::CheckSpellLang( pArgs->xSpeller, eActLang );
-//STRIP001                  pArgs->xSpellAlt = pArgs->xSpeller->spell( rWord, eActLang,
-//STRIP001                                          Sequence< PropertyValue >() );
-//STRIP001              }
-//STRIP001              if( (pArgs->xSpellAlt).is() )
-//STRIP001              {
-//STRIP001                  if( IsSymbol( aScanner.GetBegin() ) )
-//STRIP001                  {
-//STRIP001                      pArgs->xSpellAlt = NULL;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      pArgs->pStartNode = this;
-//STRIP001                      pArgs->pEndNode = this;
-//STRIP001                      pArgs->rStartIdx.Assign(this, aScanner.GetEnd() );
-//STRIP001                      pArgs->rEndIdx.Assign(this, aScanner.GetBegin() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001             // get next language in order to find next or previous word
-//STRIP001             xub_StrLen nNextBegin;
-//STRIP001             short nInc;
-//STRIP001
-//STRIP001             if ( bReverse )
-//STRIP001             {
-//STRIP001                 nNextBegin = aScanner.GetBegin() ? aScanner.GetBegin() - 1 : 0;
-//STRIP001                 nInc = -1;
-//STRIP001             }
-//STRIP001             else
-//STRIP001             {
-//STRIP001                 nNextBegin = aScanner.GetBegin() + rWord.Len();
-//STRIP001                 nInc = 1;
-//STRIP001             }
-//STRIP001
-//STRIP001             // first we have to skip some whitespace characters
-//STRIP001             while ( ( bReverse ? nNextBegin : ( nNextBegin < aText.Len() ) ) &&
-//STRIP001                     lcl_IsSkippableWhiteSpace( aText.GetChar( nNextBegin ) ) )
-//STRIP001             {
-//STRIP001                 nNextBegin += nInc;
-//STRIP001             }
-//STRIP001
-//STRIP001             if ( nNextBegin < aText.Len() )
-//STRIP001                 eActLang = GetLang( nNextBegin );
-//STRIP001             else
-//STRIP001                 break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     // reset original text
-//STRIP001     if ( bShowChg )
-//STRIP001         aText = aOldTxt;
-//STRIP001
-//STRIP001     return pArgs->xSpellAlt.is() ? 1 : 0;
-//STRIP001 }
-
-//STRIP001 USHORT SwTxtNode::Convert( SwConversionArgs &rArgs )
-//STRIP001 {
-//STRIP001     //!! mofified version of SwTxtNode::Spell.          !!
-//STRIP001     //!! please check the above when modifying this one !!
-//STRIP001
-//STRIP001     xub_StrLen nBegin, nEnd;
-//STRIP001
-//STRIP001     // modify string according to redline information
-//STRIP001     const SwDoc* pDoc = GetDoc();
-//STRIP001     const XubString aOldTxt( aText );
-//STRIP001     const sal_Bool bShowChg = ::IsShowChanges( pDoc->GetRedlineMode() );
-//STRIP001     if ( bShowChg )
-//STRIP001     {
-//STRIP001         USHORT nAct = pDoc->GetRedlinePos( *this );
-//STRIP001
-//STRIP001         for ( ; nAct < pDoc->GetRedlineTbl().Count(); nAct++ )
-//STRIP001         {
-//STRIP001             const SwRedline* pRed = pDoc->GetRedlineTbl()[ nAct ];
-//STRIP001
-//STRIP001             if ( pRed->Start()->nNode > GetIndex() )
-//STRIP001                 break;
-//STRIP001
-//STRIP001             if( REDLINE_DELETE == pRed->GetType() )
-//STRIP001             {
-//STRIP001                 USHORT nStart, nEnd;
-//STRIP001                 pRed->CalcStartEnd( GetIndex(), nStart, nEnd );
-//STRIP001
-//STRIP001                 while ( nStart < nEnd && nStart < aText.Len() )
-//STRIP001                     aText.SetChar( nStart++, CH_TXTATR_INWORD );
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     if ( rArgs.pStartNode != this )
-//STRIP001         nBegin = 0;
-//STRIP001     else
-//STRIP001         nBegin = rArgs.rStartIdx.GetIndex();
-//STRIP001
-//STRIP001     if ( rArgs.pEndNode != this )
-//STRIP001         nEnd = aText.Len();
-//STRIP001     else
-//STRIP001         nEnd = rArgs.rEndIdx.GetIndex();
-//STRIP001
-//STRIP001     rArgs.bConvTextFound = sal_False;
-//STRIP001
-//STRIP001     if(aText.Len() )
-//STRIP001     {
-//STRIP001         if( nBegin > aText.Len() )
-//STRIP001             nBegin = aText.Len();
-//STRIP001         if( nEnd > aText.Len() )
-//STRIP001             nEnd = aText.Len();
-//STRIP001
-//STRIP001         LanguageType eActLang = GetLang( nBegin );
-//STRIP001
-//STRIP001         // In case 2. we pass the wrong list to the scanned, because only
-//STRIP001         // the words in the wrong list have to be checked
-//STRIP001         SwScanner aScanner( *this, NULL,
-//STRIP001                             WordType::DICTIONARY_WORD,
-//STRIP001                             nBegin, nEnd, FALSE, TRUE );
-//STRIP001         while( !rArgs.bConvTextFound && aScanner.NextWord() )
-//STRIP001         {
-//STRIP001             const XubString& rWord = aScanner.GetWord();
-//STRIP001
-//STRIP001             // get next language for next word, consider language attributes
-//STRIP001             // within the word
-//STRIP001             eActLang = GetLang( aScanner.GetBegin(), rWord.Len() );
-//STRIP001
-//STRIP001             if( rWord.Len() > 0 && LANGUAGE_KOREAN == eActLang )
-//STRIP001             {
-//STRIP001                 // clip result to provided begin and end (that may be
-//STRIP001                 // obtained from a selection) in order to restrict the
-//STRIP001                 // results to that selection
-//STRIP001                 xub_StrLen nRealBegin = aScanner.GetBegin();
-//STRIP001                 xub_StrLen nRealEnd   = aScanner.GetEnd();
-//STRIP001                 if (nRealBegin < nBegin)
-//STRIP001                     nRealBegin = nBegin;
-//STRIP001                 if (nRealEnd > nEnd)
-//STRIP001                     nRealEnd = nEnd;
-//STRIP001
-//STRIP001                 rArgs.bConvTextFound = sal_True;
-//STRIP001                 xub_StrLen nCpStart, nCpLen;
-//STRIP001                 nCpStart = nRealBegin - aScanner.GetBegin();
-//STRIP001                 nCpLen = nRealEnd - nRealBegin;
-//STRIP001                 rArgs.aConvText = rWord.Copy( nCpStart, nCpLen );
-//STRIP001                 rArgs.pStartNode = this;
-//STRIP001                 rArgs.pEndNode = this;
-//STRIP001                 rArgs.rStartIdx.Assign(this, nRealEnd );
-//STRIP001                 rArgs.rEndIdx.Assign(this, nRealBegin );
-//STRIP001             }
-//STRIP001
-//STRIP001             // get next language in order to find next or previous word
-//STRIP001             xub_StrLen nNextBegin = aScanner.GetBegin() + rWord.Len();
-//STRIP001
-//STRIP001             // first we have to skip some whitespace characters
-//STRIP001             short nInc = 1;
-//STRIP001             while ( nNextBegin < aText.Len() &&
-//STRIP001                     lcl_IsSkippableWhiteSpace( aText.GetChar( nNextBegin ) ) )
-//STRIP001             {
-//STRIP001                 nNextBegin += nInc;
-//STRIP001             }
-//STRIP001
-//STRIP001             if ( nNextBegin < aText.Len() )
-//STRIP001                 eActLang = GetLang( nNextBegin );
-//STRIP001             else
-//STRIP001                 break;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     // reset original text
-//STRIP001     if ( bShowChg )
-//STRIP001         aText = aOldTxt;
-//STRIP001
-//STRIP001     return rArgs.bConvTextFound ? 1 : 0;
-//STRIP001 }
 
 
-//STRIP001 SwRect SwTxtFrm::_AutoSpell( SwCntntNode* pActNode, xub_StrLen nActPos )
-//STRIP001 {
-//STRIP001  SwRect aRect;
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001  static BOOL bStop = FALSE;
-//STRIP001  if ( bStop )
-//STRIP001      return aRect;
-//STRIP001 #endif
-//STRIP001  // Die Aehnlichkeiten zu SwTxtNode::Spell sind beabsichtigt ...
-//STRIP001  // ACHTUNG: Ev. Bugs in beiden Routinen fixen!
-//STRIP001  SwTxtNode *pNode = GetTxtNode();
-//STRIP001  if( pNode != pActNode || !nActPos )
-//STRIP001      nActPos = STRING_LEN;
-//STRIP001
-//STRIP001     SwDoc* pDoc = pNode->GetDoc();
-//STRIP001     SwAutoCompleteWord& rACW = SwDoc::GetAutoCompleteWords();
-//STRIP001
-//STRIP001     // modify string according to redline information
-//STRIP001     USHORT nAct = pDoc->GetRedlinePos( *pNode );
-//STRIP001     const XubString aOldTxt( pNode->aText );
-//STRIP001
-//STRIP001     const sal_Bool bShowChg = ::IsShowChanges( pDoc->GetRedlineMode() );
-//STRIP001     if ( bShowChg )
-//STRIP001     {
-//STRIP001         for ( ; nAct < pDoc->GetRedlineTbl().Count(); nAct++ )
-//STRIP001         {
-//STRIP001             const SwRedline* pRed = pDoc->GetRedlineTbl()[ nAct ];
-//STRIP001
-//STRIP001             if ( pRed->Start()->nNode > pNode->GetIndex() )
-//STRIP001                 break;
-//STRIP001
-//STRIP001             if( REDLINE_DELETE == pRed->GetType() )
-//STRIP001             {
-//STRIP001                 USHORT nStart, nEnd;
-//STRIP001                 pRed->CalcStartEnd( pNode->GetIndex(), nStart, nEnd );
-//STRIP001
-//STRIP001                 while ( nStart < nEnd && nStart < pNode->aText.Len() )
-//STRIP001                     pNode->aText.SetChar( nStart++, CH_TXTATR_INWORD );
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     // a change of data indicates that at least one word has been modified
-//STRIP001     sal_Bool bRedlineChg = ( pNode->aText.GetBuffer() != aOldTxt.GetBuffer() );
-//STRIP001
-//STRIP001     xub_StrLen nBegin;
-//STRIP001  xub_StrLen nEnd;
-//STRIP001  xub_StrLen nLen;
-//STRIP001  xub_StrLen nInsertPos = pNode->aText.Len();
-//STRIP001  xub_StrLen nChgStart = STRING_LEN;
-//STRIP001  xub_StrLen nChgEnd = 0;
-//STRIP001  xub_StrLen nInvStart = STRING_LEN;
-//STRIP001  xub_StrLen nInvEnd = 0;
-//STRIP001
-//STRIP001  BOOL bAddAutoCmpl = pNode->IsAutoCompleteWordDirty() &&
-//STRIP001                      GetShell()->GetViewOptions()->IsAutoCompleteWords();
-//STRIP001
-//STRIP001  if( pNode->GetWrong() )
-//STRIP001  {
-//STRIP001      if( STRING_LEN != ( nBegin = pNode->GetWrong()->GetBeginInv() ) )
-//STRIP001      {
-//STRIP001          nBegin = pNode->GetWrong()->GetBeginInv();
-//STRIP001          nEnd = pNode->GetWrong()->GetEndInv();
-//STRIP001          if ( nEnd > nInsertPos )
-//STRIP001              nEnd = nInsertPos;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          nEnd = nInsertPos;
-//STRIP001
-//STRIP001         // get word around nBegin, we start at nBegin - 1
-//STRIP001         if ( STRING_LEN != nBegin )
-//STRIP001         {
-//STRIP001             if ( nBegin )
-//STRIP001                 --nBegin;
-//STRIP001
-//STRIP001             LanguageType eActLang = pNode->GetLang( nBegin );
-//STRIP001             Boundary aBound = pBreakIt->xBreak->getWordBoundary( pNode->aText, nBegin,
-//STRIP001                             pBreakIt->GetLocale( eActLang ), WordType::DICTIONARY_WORD, TRUE );
-//STRIP001             nBegin = xub_StrLen(aBound.startPos);
-//STRIP001         }
-//STRIP001
-//STRIP001         // get the position in the wrong list
-//STRIP001         nInsertPos = pNode->GetWrong()->GetPos( nBegin );
-//STRIP001
-//STRIP001         // sometimes we have to skip one entry
-//STRIP001      if( nInsertPos < pNode->GetWrong()->Count() &&
-//STRIP001             nBegin == pNode->GetWrong()->Pos( nInsertPos ) +
-//STRIP001                    pNode->GetWrong()->Len( nInsertPos ) )
-//STRIP001                 nInsertPos++;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nBegin = 0;
-//STRIP001      nEnd = nInsertPos;
-//STRIP001      nInsertPos = 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bFresh = nBegin < nEnd;
-//STRIP001  BOOL bACWDirty = FALSE;
-//STRIP001
-//STRIP001  if( nBegin < nEnd )
-//STRIP001  {
-//STRIP001         //! register listener to LinguServiceEvents now in order to get
-//STRIP001         //! notified about relevant changes in the future
-//STRIP001         SwModule *pModule = SW_MOD();
-//STRIP001         if (!pModule->GetLngSvcEvtListener().is())
-//STRIP001             pModule->CreateLngSvcEvtListener();
-//STRIP001
-//STRIP001         Reference< XSpellChecker1 > xSpell( ::GetSpellChecker() );
-//STRIP001
-//STRIP001         LanguageType eActLang = pNode->GetLang( nBegin );
-//STRIP001
-//STRIP001         SwScanner aScanner( *pNode, NULL, WordType::DICTIONARY_WORD,
-//STRIP001                             nBegin, nEnd, FALSE, TRUE );
-//STRIP001      while( aScanner.NextWord( eActLang ) )
-//STRIP001      {
-//STRIP001             const XubString& rWord = aScanner.GetWord();
-//STRIP001          nBegin = aScanner.GetBegin();
-//STRIP001          nLen = aScanner.GetLen();
-//STRIP001
-//STRIP001             // get next language for next word, consider language attributes
-//STRIP001             // within the word
-//STRIP001             eActLang = pNode->GetLang( aScanner.GetBegin(), rWord.Len() );
-//STRIP001
-//STRIP001          BOOL bSpell = TRUE;
-//STRIP001          BOOL bSoft = FALSE;
-//STRIP001          bSpell = xSpell.is() ? xSpell->hasLanguage( eActLang ) : FALSE;
-//STRIP001          if( bSpell && rWord.Len() > 1 )
-//STRIP001          {
-//STRIP001              // check for: bAlter => xHyphWord.is()
-//STRIP001              DBG_ASSERT(!bSpell || xSpell.is(), "NULL pointer");
-//STRIP001
-//STRIP001              if( !xSpell->isValid( rWord, eActLang, Sequence< PropertyValue >() ) )
-//STRIP001              {
-//STRIP001                  bACWDirty = TRUE;
-//STRIP001                  if( !pNode->GetWrong() )
-//STRIP001                  {
-//STRIP001                      pNode->SetWrong( new SwWrongList() );
-//STRIP001                      pNode->GetWrong()->SetInvalid( 0, nEnd );
-//STRIP001                  }
-//STRIP001                  if( pNode->GetWrong()->Fresh( nChgStart, nChgEnd,
-//STRIP001                      nBegin, nLen, nInsertPos, nActPos ) )
-//STRIP001                      pNode->GetWrong()->Insert( nBegin, nLen, nInsertPos++ );
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      nInvStart = nBegin;
-//STRIP001                      nInvEnd = nBegin + nLen;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else if( bAddAutoCmpl && rACW.GetMinWordLen() <= rWord.Len() )
-//STRIP001                 {
-//STRIP001                     if ( bRedlineChg )
-//STRIP001                     {
-//STRIP001                         XubString rNewWord( rWord );
-//STRIP001                         rNewWord.EraseAllChars( CH_TXTATR_INWORD );
-//STRIP001                         rACW.InsertWord( rNewWord, *pDoc );
-//STRIP001                     }
-//STRIP001                     else
-//STRIP001                         rACW.InsertWord( rWord, *pDoc );
-//STRIP001                 }
-//STRIP001          }
-//STRIP001
-//STRIP001             // get next language in order to find next word
-//STRIP001             xub_StrLen nNextBegin = aScanner.GetBegin() + rWord.Len();
-//STRIP001             // first we have to skip some whitespace characters
-//STRIP001             while ( nNextBegin < pNode->aText.Len() &&
-//STRIP001                     lcl_IsSkippableWhiteSpace( pNode->aText.GetChar( nNextBegin ) ) )
-//STRIP001                 nNextBegin++;
-//STRIP001
-//STRIP001             if ( nNextBegin < pNode->aText.Len() )
-//STRIP001                 eActLang = pNode->GetLang( nNextBegin );
-//STRIP001             else
-//STRIP001                 break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( pNode->GetWrong() )
-//STRIP001  {
-//STRIP001      if( bFresh )
-//STRIP001          pNode->GetWrong()->Fresh( nChgStart, nChgEnd,
-//STRIP001                                    nEnd, 0, nInsertPos, nActPos );
-//STRIP001      ViewShell *pSh = GetShell();
-//STRIP001      if( nChgStart < nChgEnd &&
-//STRIP001          (pSh && !GetShell()->GetViewOptions()->IsHideSpell()) )
-//STRIP001      {
-//STRIP001             SwNodeIndex aNdIdx( *pNode );
-//STRIP001          SwPosition aPos( aNdIdx, SwIndex( pNode, nChgEnd ) );
-//STRIP001          SwCrsrMoveState aTmpState( MV_NONE );
-//STRIP001             aTmpState.b2Lines = sal_True;
-//STRIP001             GetCharRect( aRect, aPos, &aTmpState );
-//STRIP001             // information about end of repaint area
-//STRIP001             Sw2LinesPos* pEnd2Pos = aTmpState.p2Lines;
-//STRIP001
-//STRIP001          SwTxtFrm* pStartFrm = this;
-//STRIP001
-//STRIP001             while( pStartFrm->HasFollow() &&
-//STRIP001                    nChgStart >= pStartFrm->GetFollow()->GetOfst() )
-//STRIP001                 pStartFrm = pStartFrm->GetFollow();
-//STRIP001
-//STRIP001             SwTxtFrm *pEndFrm = pStartFrm;
-//STRIP001
-//STRIP001             while( pEndFrm->HasFollow() &&
-//STRIP001                    nChgEnd >= pEndFrm->GetFollow()->GetOfst() )
-//STRIP001                 pEndFrm = pEndFrm->GetFollow();
-//STRIP001
-//STRIP001             if ( pEnd2Pos )
-//STRIP001             {
-//STRIP001                 // we are inside a special portion, take left border
-//STRIP001                 SWRECTFN( pEndFrm )
-//STRIP001                 (aRect.*fnRect->fnSetTop)( (pEnd2Pos->aLine.*fnRect->fnGetTop)() );
-//STRIP001                 if ( pEndFrm->IsRightToLeft() )
-//STRIP001                     (aRect.*fnRect->fnSetLeft)( (pEnd2Pos->aPortion.*fnRect->fnGetLeft)() );
-//STRIP001                 else
-//STRIP001                     (aRect.*fnRect->fnSetLeft)( (pEnd2Pos->aPortion.*fnRect->fnGetRight)() );
-//STRIP001                 (aRect.*fnRect->fnSetWidth)( 1 );
-//STRIP001                 (aRect.*fnRect->fnSetHeight)( (pEnd2Pos->aLine.*fnRect->fnGetHeight)() );
-//STRIP001                 delete pEnd2Pos;
-//STRIP001             }
-//STRIP001
-//STRIP001             aTmpState.p2Lines = NULL;
-//STRIP001             SwRect aTmp;
-//STRIP001          aPos = SwPosition( aNdIdx, SwIndex( pNode, nChgStart ) );
-//STRIP001          GetCharRect( aTmp, aPos, &aTmpState );
-//STRIP001             // information about start of repaint area
-//STRIP001             Sw2LinesPos* pSt2Pos = aTmpState.p2Lines;
-//STRIP001             if ( pSt2Pos )
-//STRIP001             {
-//STRIP001                 // we are inside a special portion, take right border
-//STRIP001                 SWRECTFN( pStartFrm )
-//STRIP001                 (aTmp.*fnRect->fnSetTop)( (pSt2Pos->aLine.*fnRect->fnGetTop)() );
-//STRIP001                 if ( pStartFrm->IsRightToLeft() )
-//STRIP001                     (aTmp.*fnRect->fnSetLeft)( (pSt2Pos->aPortion.*fnRect->fnGetRight)() );
-//STRIP001                 else
-//STRIP001                     (aTmp.*fnRect->fnSetLeft)( (pSt2Pos->aPortion.*fnRect->fnGetLeft)() );
-//STRIP001                 (aTmp.*fnRect->fnSetWidth)( 1 );
-//STRIP001                 (aTmp.*fnRect->fnSetHeight)( (pSt2Pos->aLine.*fnRect->fnGetHeight)() );
-//STRIP001                 delete pSt2Pos;
-//STRIP001             }
-//STRIP001
-//STRIP001          BOOL bSameFrame = TRUE;
-//STRIP001
-//STRIP001          if( HasFollow() )
-//STRIP001          {
-//STRIP001              if( pEndFrm != pStartFrm )
-//STRIP001              {
-//STRIP001                  bSameFrame = FALSE;
-//STRIP001                  SwRect aStFrm( pStartFrm->PaintArea() );
-//STRIP001                     {
-//STRIP001                         SWRECTFN( pStartFrm )
-//STRIP001                         (aTmp.*fnRect->fnSetLeft)( (aStFrm.*fnRect->fnGetLeft)() );
-//STRIP001                         (aTmp.*fnRect->fnSetRight)( (aStFrm.*fnRect->fnGetRight)() );
-//STRIP001                         (aTmp.*fnRect->fnSetBottom)( (aStFrm.*fnRect->fnGetBottom)() );
-//STRIP001                     }
-//STRIP001                     aStFrm = pEndFrm->PaintArea();
-//STRIP001                     {
-//STRIP001                         SWRECTFN( pEndFrm )
-//STRIP001                         (aRect.*fnRect->fnSetTop)( (aStFrm.*fnRect->fnGetTop)() );
-//STRIP001                         (aRect.*fnRect->fnSetLeft)( (aStFrm.*fnRect->fnGetLeft)() );
-//STRIP001                         (aRect.*fnRect->fnSetRight)( (aStFrm.*fnRect->fnGetRight)() );
-//STRIP001                     }
-//STRIP001                  aRect.Union( aTmp );
-//STRIP001                  while( TRUE )
-//STRIP001                  {
-//STRIP001                      pStartFrm = pStartFrm->GetFollow();
-//STRIP001                      if( pStartFrm == pEndFrm )
-//STRIP001                          break;
-//STRIP001                      aRect.Union( pStartFrm->PaintArea() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          if( bSameFrame )
-//STRIP001          {
-//STRIP001                 SWRECTFN( pStartFrm )
-//STRIP001                 if( (aTmp.*fnRect->fnGetTop)() == (aRect.*fnRect->fnGetTop)() )
-//STRIP001                     (aRect.*fnRect->fnSetLeft)( (aTmp.*fnRect->fnGetLeft)() );
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  SwRect aStFrm( pStartFrm->PaintArea() );
-//STRIP001                     (aRect.*fnRect->fnSetLeft)( (aStFrm.*fnRect->fnGetLeft)() );
-//STRIP001                     (aRect.*fnRect->fnSetRight)( (aStFrm.*fnRect->fnGetRight)() );
-//STRIP001                     (aRect.*fnRect->fnSetTop)( (aTmp.*fnRect->fnGetTop)() );
-//STRIP001              }
-//STRIP001
-//STRIP001              if( aTmp.Height() > aRect.Height() )
-//STRIP001                  aRect.Height( aTmp.Height() );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pNode->GetWrong()->SetInvalid( nInvStart, nInvEnd );
-//STRIP001      pNode->SetWrongDirty( STRING_LEN != pNode->GetWrong()->GetBeginInv() );
-//STRIP001         if( !pNode->GetWrong()->Count() && ! pNode->IsWrongDirty() )
-//STRIP001             pNode->SetWrong( NULL );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pNode->SetWrongDirty( FALSE );
-//STRIP001
-//STRIP001     // reset original text
-//STRIP001     if ( bShowChg )
-//STRIP001         pNode->aText = aOldTxt;
-//STRIP001
-//STRIP001  if( bAddAutoCmpl )
-//STRIP001      pNode->SetAutoCompleteWordDirty( FALSE );
-//STRIP001  return aRect;
-//STRIP001 }
+
 
 // Wird vom CollectAutoCmplWords gerufen
 /*M*/ void SwTxtFrm::CollectAutoCmplWrds( SwCntntNode* pActNode, xub_StrLen nActPos,
@@ -1320,55 +562,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 
 
 
-//STRIP001 BOOL SwTxtNode::Hyphenate( SwInterHyphInfo &rHyphInf )
-//STRIP001 {
-//STRIP001  // Abkuerzung: am Absatz ist keine Sprache eingestellt:
-//STRIP001  if( LANGUAGE_NONE == USHORT( GetSwAttrSet().GetLanguage().GetLanguage() ) &&
-//STRIP001      USHRT_MAX == GetLang( 0, aText.Len() ) )
-//STRIP001  {
-//STRIP001      if( !rHyphInf.IsCheck() )
-//STRIP001          rHyphInf.SetNoLang( TRUE );
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pLinguNode != this )
-//STRIP001  {
-//STRIP001      pLinguNode = this;
-//STRIP001      pLinguFrm = (SwTxtFrm*)GetFrm( (Point*)(rHyphInf.GetCrsrPos()) );
-//STRIP001  }
-//STRIP001  SwTxtFrm *pFrm = pLinguFrm;
-//STRIP001  if( pFrm )
-//STRIP001      pFrm = pFrm->GetFrmAtOfst( rHyphInf.nStart );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // 4935: Seit der Trennung ueber Sonderbereiche sind Faelle
-//STRIP001      // moeglich, in denen kein Frame zum Node vorliegt.
-//STRIP001      // Also kein ASSERT!
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001      ASSERT( pFrm, "!SwTxtNode::Hyphenate: can't find any frame" );
-//STRIP001 #endif
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  while( pFrm )
-//STRIP001  {
-//STRIP001      if( pFrm->Hyphenate( rHyphInf ) )
-//STRIP001      {
-//STRIP001          // Das Layout ist nicht robust gegen "Direktformatierung"
-//STRIP001          // (7821, 7662, 7408); vgl. layact.cxx,
-//STRIP001          // SwLayAction::_TurboAction(), if( !pCnt->IsValid() ...
-//STRIP001          pFrm->SetCompletePaint();
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001      pFrm = (SwTxtFrm*)(pFrm->GetFollow());
-//STRIP001      if( pFrm )
-//STRIP001      {
-//STRIP001          rHyphInf.nLen = rHyphInf.nLen - (pFrm->GetOfst() - rHyphInf.nStart);
-//STRIP001          rHyphInf.nStart = pFrm->GetOfst();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 #ifdef LINGU_STATISTIK
 
@@ -1376,160 +569,9 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 SwLinguStatistik aSwLinguStat;
 
 
-//STRIP001 void SwLinguStatistik::Flush()
-//STRIP001 {
-//STRIP001  if ( !nWords )
-//STRIP001      return ;
-//STRIP001
-//STRIP001 #ifndef MAC
-//STRIP001  static char *pLogName = 0;
-//STRIP001  const BOOL bFirstOpen = pLogName ? FALSE : TRUE;
-//STRIP001  if( bFirstOpen )
-//STRIP001  {
-//STRIP001      char *pPath = getenv( "TEMP" );
-//STRIP001      char *pName = "swlingu.stk";
-//STRIP001      if( !pPath )
-//STRIP001          pLogName = pName;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          const int nLen = strlen(pPath);
-//STRIP001          // fuer dieses new wird es kein delete geben.
-//STRIP001          pLogName = new char[nLen + strlen(pName) + 3];
-//STRIP001          if(nLen && (pPath[nLen-1] == '\\') || (pPath[nLen-1] == '/'))
-//STRIP001              snprintf( pLogName, sizeof(pLogName), "%s%s", pPath, pName );
-//STRIP001          else
-//STRIP001              snprintf( pLogName, sizeof(pLogName), "%s/%s", pPath, pName );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  SvFileStream aStream( String::CreateFromAscii(pLogName), (bFirstOpen
-//STRIP001                                      ? STREAM_WRITE | STREAM_TRUNC
-//STRIP001                                      : STREAM_WRITE ));
-//STRIP001
-//STRIP001  if( !aStream.GetError() )
-//STRIP001  {
-//STRIP001      if ( bFirstOpen )
-//STRIP001          aStream << "\nLinguistik-Statistik\n";
-//STRIP001      aStream << endl << ++nFlushCnt << ". Messung\n";
-//STRIP001      aStream << "Rechtschreibung\n";
-//STRIP001      aStream << "gepruefte Worte: \t" << nWords << endl;
-//STRIP001      aStream << "als fehlerhaft erkannt:\t" << nWrong << endl;
-//STRIP001      aStream << "Alternativvorschlaege:\t" << nAlter << endl;
-//STRIP001      if ( nWrong )
-//STRIP001          aStream << "Durchschnitt:\t\t" << nAlter*1.0 / nWrong << endl;
-//STRIP001      aStream << "Dauer (msec):\t\t" << nSpellTime << endl;
-//STRIP001      aStream << "\nThesaurus\n";
-//STRIP001      aStream << "Synonyme gesamt:\t" << nSynonym << endl;
-//STRIP001      if ( nSynonym )
-//STRIP001          aStream << "Synonym-Durchschnitt:\t" <<
-//STRIP001                          nSynonym*1.0 / ( nWords - nNoSynonym ) << endl;
-//STRIP001      aStream << "ohne Synonyme:\t\t" << nNoSynonym << endl;
-//STRIP001      aStream << "Bedeutungen gesamt:\t" << nSynonym << endl;
-//STRIP001      aStream << "keine Bedeutungen:\t"<< nNoSynonym << endl;
-//STRIP001      aStream << "Dauer (msec):\t\t" << nTheTime << endl;
-//STRIP001      aStream << "\nHyphenator\n";
-//STRIP001      aStream << "Trennstellen gesamt:\t" << nHyphens << endl;
-//STRIP001      if ( nHyphens )
-//STRIP001          aStream << "Hyphen-Durchschnitt:\t" <<
-//STRIP001                  nHyphens*1.0 / ( nWords - nNoHyph - nHyphErr ) << endl;
-//STRIP001      aStream << "keine Trennstellen:\t" << nNoHyph << endl;
-//STRIP001      aStream << "Trennung verweigert:\t" << nHyphErr << endl;
-//STRIP001      aStream << "Dauer (msec):\t\t" << nHyphTime << endl;
-//STRIP001      aStream << "---------------------------------------------\n";
-//STRIP001  }
-//STRIP001  nWords = nWrong = nAlter = nSynonym = nNoSynonym =
-//STRIP001  nHyphens = nNoHyph = nHyphErr = nSpellTime = nTheTime =
-//STRIP001  nHyphTime = 0;
-//STRIP001  //pThes = NULL;
-//STRIP001 #endif
-//STRIP001 }
 
 #endif
 
 // change text to Upper/Lower/Hiragana/Katagana/...
-//STRIP001 void SwTxtNode::TransliterateText( utl::TransliterationWrapper& rTrans,
-//STRIP001      xub_StrLen nStart, xub_StrLen nEnd, SwUndoTransliterate* pUndo )
-//STRIP001 {
-//STRIP001  if( nStart < nEnd )
-//STRIP001  {
-//STRIP001      SwLanguageIterator* pIter;
-//STRIP001      if( rTrans.needLanguageForTheMode() )
-//STRIP001          pIter = new SwLanguageIterator( *this, nStart );
-//STRIP001      else
-//STRIP001          pIter = 0;
-//STRIP001
-//STRIP001      xub_StrLen nEndPos;
-//STRIP001      sal_uInt16 nLang;
-//STRIP001      do {
-//STRIP001          if( pIter )
-//STRIP001          {
-//STRIP001              nLang = pIter->GetLanguage();
-//STRIP001              nEndPos = pIter->GetChgPos();
-//STRIP001              if( nEndPos > nEnd )
-//STRIP001                  nEndPos = nEnd;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nLang = LANGUAGE_SYSTEM;
-//STRIP001              nEndPos = nEnd;
-//STRIP001          }
-//STRIP001          xub_StrLen nLen = nEndPos - nStart;
-//STRIP001
-//STRIP001          Sequence <long> aOffsets;
-//STRIP001          String sChgd( rTrans.transliterate( aText, nLang, nStart, nLen,
-//STRIP001                                                  &aOffsets ));
-//STRIP001          if( !aText.Equals( sChgd, nStart, nLen ) )
-//STRIP001          {
-//STRIP001              if( pUndo )
-//STRIP001                  pUndo->AddChanges( *this, nStart, nLen, aOffsets );
-//STRIP001              ReplaceTextOnly( nStart, nLen, sChgd, aOffsets );
-//STRIP001          }
-//STRIP001          nStart = nEndPos;
-//STRIP001      } while( nEndPos < nEnd && pIter && pIter->Next() );
-//STRIP001      delete pIter;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SwTxtNode::ReplaceTextOnly( xub_StrLen nPos, xub_StrLen nLen,
-//STRIP001                              const XubString& rText,
-//STRIP001                              const Sequence<long>& rOffsets )
-//STRIP001 {
-//STRIP001  aText.Replace( nPos, nLen, rText );
-//STRIP001
-//STRIP001  xub_StrLen nTLen = rText.Len();
-//STRIP001  const long* pOffsets = rOffsets.getConstArray();
-//STRIP001  // now look for no 1-1 mapping -> move the indizies!
-//STRIP001  xub_StrLen nI, nMyOff;
-//STRIP001  for( nI = 0, nMyOff = nPos; nI < nTLen; ++nI, ++nMyOff )
-//STRIP001  {
-//STRIP001      xub_StrLen nOff = (xub_StrLen)pOffsets[ nI ];
-//STRIP001      if( nOff < nMyOff )
-//STRIP001      {
-//STRIP001          // something is inserted
-//STRIP001          xub_StrLen nCnt = 1;
-//STRIP001          while( nI + nCnt < nTLen && nOff == pOffsets[ nI + nCnt ] )
-//STRIP001              ++nCnt;
-//STRIP001
-//STRIP001          Update( SwIndex( this, nMyOff ), nCnt, FALSE );
-//STRIP001          nMyOff = nOff;
-//STRIP001          //nMyOff -= nCnt;
-//STRIP001          nI += nCnt - 1;
-//STRIP001      }
-//STRIP001      else if( nOff > nMyOff )
-//STRIP001      {
-//STRIP001          // something is deleted
-//STRIP001          Update( SwIndex( this, nMyOff+1 ), nOff - nMyOff, TRUE );
-//STRIP001          nMyOff = nOff;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( nMyOff < nLen )
-//STRIP001      // something is deleted at the end
-//STRIP001      Update( SwIndex( this, nMyOff ), nLen - nMyOff, TRUE );
-//STRIP001
-//STRIP001  // notify the layout!
-//STRIP001  SwDelTxt aDelHint( nPos, nTLen );
-//STRIP001  SwModify::Modify( 0, &aDelHint );
-//STRIP001
-//STRIP001  SwInsTxt aHint( nPos, nTLen );
-//STRIP001  SwModify::Modify( 0, &aHint );
-//STRIP001 }
 }
