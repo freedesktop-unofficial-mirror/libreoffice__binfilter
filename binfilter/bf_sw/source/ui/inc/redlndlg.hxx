@@ -4,9 +4,9 @@
  *
  *  $RCSfile: redlndlg.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:48:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:51:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,45 +43,16 @@
 namespace binfilter {
 
 class SwChildWinWrapper;
-//STRIP001 class SwRedlineAcceptDlg;
 
 /*------------------------------------------------------------------------
     Beschreibung:
 ------------------------------------------------------------------------*/
 
-//STRIP001 class SwModelessRedlineAcceptDlg : public SfxModelessDialog
-//STRIP001 {
-//STRIP001  SwRedlineAcceptDlg*     pImplDlg;
-//STRIP001  SwChildWinWrapper*      pChildWin;
-//STRIP001
-//STRIP001  virtual void    Resize();
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwModelessRedlineAcceptDlg(SfxBindings*, SwChildWinWrapper*, Window *pParent);
-//STRIP001  ~SwModelessRedlineAcceptDlg();
-//STRIP001
-//STRIP001  virtual void    Activate();
-//STRIP001  virtual void    FillInfo(SfxChildWinInfo&) const;
-//STRIP001  void            Initialize (SfxChildWinInfo* pInfo);
-//STRIP001 };
 
 /*------------------------------------------------------------------------
     Beschreibung:
 ------------------------------------------------------------------------*/
 
-//STRIP001 class SwModalRedlineAcceptDlg : public SfxModalDialog
-//STRIP001 {
-//STRIP001  SwRedlineAcceptDlg*     pImplDlg;
-//STRIP001
-//STRIP001  virtual void    Resize();
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwModalRedlineAcceptDlg(Window *pParent);
-//STRIP001  ~SwModalRedlineAcceptDlg();
-//STRIP001
-//STRIP001  void            AcceptAll( BOOL bAccept );
-//STRIP001  virtual void    Activate();
-//STRIP001 };
 
 /*------------------------------------------------------------------------
     Beschreibung:
@@ -91,13 +62,9 @@ class SwRedlineAcceptChild : public SwChildWinWrapper
 {
 public:
     SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  SwRedlineAcceptChild(   Window* ,
-//STRIP001                          USHORT nId,
-//STRIP001                          SfxBindings*,
-//STRIP001                          SfxChildWinInfo*  );
 
     SFX_DECL_CHILDWINDOW( SwRedlineAcceptChild );
 
-//STRIP001  virtual BOOL    ReInitDlg(SwDocShell *pDocSh);
 };
 
 
