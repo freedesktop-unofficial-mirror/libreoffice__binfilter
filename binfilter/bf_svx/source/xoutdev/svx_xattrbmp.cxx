@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattrbmp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:39:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:02:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,10 +34,7 @@
  ************************************************************************/
 
 #include <com/sun/star/awt/XBitmap.hpp>
-// auto strip #include <tools/stream.hxx>
-// auto strip #include <vcl/window.hxx>
 #include <vcl/virdev.hxx>
-// auto strip #include <vcl/bitmapex.hxx>
 #include <toolkit/unohlp.hxx>
 
 #ifndef _SFXSTYLE_HXX
@@ -52,9 +49,6 @@
 
 #include "xattr.hxx"
 #include "xtable.hxx"
-// auto strip #include "xoutx.hxx"
-// auto strip #include "xdef.hxx"
-// auto strip #include "unomid.hxx"
 #include "unoprnms.hxx"
 
 #include "unoapi.hxx"
@@ -508,8 +502,6 @@ namespace binfilter {
 /*?*/           if( aBmp.GetSizePixel().Width() == 8 &&
 /*?*/               aBmp.GetSizePixel().Height() == 8 )
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                aXOBitmap.SetBitmapType( XBITMAP_8X8 );
-//STRIP001 /*?*/                aXOBitmap.Bitmap2Array();
 /*?*/           }
 /*?*/           else
 /*?*/               aXOBitmap.SetBitmapType( XBITMAP_IMPORT );
@@ -703,26 +695,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillBitmapItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&           rText, const IntlWrapper *
-//STRIP001 )   const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText += GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -800,9 +772,6 @@ namespace binfilter {
 /*?*/               && aInput.GetSizePixel().Height() == 8
 /*?*/               && aInput.GetColorCount() == 2)
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                aXOBitmap.Bitmap2Array();
-//STRIP001 /*?*/                aXOBitmap.SetBitmapType(XBITMAP_8X8);
-//STRIP001 /*?*/                aXOBitmap.SetPixelSize(aInput.GetSizePixel());
 /*?*/           }
 /*?*/           return sal_True;
 /*?*/       }
