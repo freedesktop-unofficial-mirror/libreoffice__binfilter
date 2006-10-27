@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlversion.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:17:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:31:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #include <so3/svstor.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
-// auto strip #include <bf_xmloff/xmlictxt.hxx>
-// auto strip #endif
 
 //#ifndef _XMLOFF_XMLITMAP_HXX
 //#include <bf_xmloff/xmlitmap.hxx>
@@ -55,17 +52,8 @@
 #include <bf_xmloff/xmlimp.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include <bf_xmloff/nmspmap.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include <bf_xmloff/xmlnmspe.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 class DateTime;
 namespace binfilter {
 
