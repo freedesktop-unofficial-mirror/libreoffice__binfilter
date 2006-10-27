@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dview.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:27:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:44:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,6 @@ class SwDrawView : public FmFormView
     Point           aAnchorPoint;       //Ankerposition
     SwViewImp      &rImp;               //Die View gehoert immer zu einer Shell
 
-//STRIP001  const SwFrm *CalcAnchor();
 
 protected:
     // add custom handles (used by other apps, e.g. AnchorPos)
@@ -61,30 +60,20 @@ public:
     SwDrawView( SwViewImp &rI, SdrModel *pMd, OutputDevice* pOutDev=NULL );
 
     //aus der Basisklasse
-//STRIP001     virtual SdrObject*   GetMaxToTopObj(SdrObject* pObj) const;
-//STRIP001     virtual SdrObject*   GetMaxToBtmObj(SdrObject* pObj) const;
     virtual void         MarkListHasChanged();
 
     // #i7672#
     // Overload to resue edit background color in active text edit view (OutlinerView)
     virtual void ModelHasChanged();
 
-//STRIP001  virtual void         ObjOrderChanged( SdrObject* pObj, ULONG nOldPos,
-//STRIP001                                          ULONG nNewPos );
-//STRIP001     virtual BOOL TakeDragLimit(SdrDragMode eMode, Rectangle& rRect) const;
-//STRIP001  virtual void MakeVisible( const Rectangle&, Window &rWin );
-//STRIP001  virtual void CheckPossibilities();
 
     const SwViewImp &Imp() const { return rImp; }
           SwViewImp &Imp()       { return rImp; }
 
     // Innerhalb eines des sichtbaren Ankers?
-//STRIP001  Rectangle *IsAnchorAtPos( const Point &rPt ) const;
 
     //Anker und Xor fuer das Draggen.
-//STRIP001  void ShowDragAnchor();
 
-//STRIP001  virtual void DeleteMarked();
 
     // temp. Fix fuer Bug 57153 - nach Undo kann in der MarkListe nicht
     //  immer ein Writer-Draw-Object stehen ( SdrObject ohne User-Call)
@@ -96,7 +85,6 @@ public:
 
     // OD 18.06.2003 #108784# - method to replace marked/selected <SwDrawVirtObj>
     // by its reference object for delete of selection and group selection
-//STRIP001     static void ReplaceMarkedDrawVirtObjs( SdrMarkView& _rMarkView );
 
 };
 

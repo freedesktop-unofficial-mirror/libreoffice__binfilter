@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ftnboss.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:31:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:45:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,8 +94,6 @@ public:
            const SwFtnFrm     *FindFirstFtn( SwCntntFrm* ) const;
                  SwFtnContFrm *FindNearestFtnCont( BOOL bDontLeave = FALSE );
 
-//STRIP001  void ChangeFtnRef( const SwCntntFrm *pOld, const SwTxtFtn *,
-//STRIP001                     SwCntntFrm *pNew );
     void RearrangeFtns( const SwTwips nDeadLine, const BOOL bLock = FALSE,
                         const SwTxtFtn *pAttr = 0 );
 
@@ -114,21 +112,9 @@ public:
     /// before the given reference footnote boss frame have to be collected.
     /// Note: if parameter <_bCollectOnlyPreviousFtns> is true, then parameter
     /// <_pRefFtnBossFrm> have to be referenced to an object.
-//STRIP001     static void _CollectFtns( const SwCntntFrm*   _pRef,
-//STRIP001                               SwFtnFrm*           _pFtn,
-//STRIP001                               SvPtrarr&           _rFtnArr,
-//STRIP001                               const sal_Bool      _bCollectOnlyPreviousFtns = sal_False,
-//STRIP001                               const SwFtnBossFrm* _pRefFtnBossFrm = NULL);
     /// OD 03.04.2003 #108446# - add parameter <_bCollectOnlyPreviousFtns> in
     /// order to control, if only footnotes, which are positioned before the
     /// footnote boss frame <this> have to be collected.
-//STRIP001     void    CollectFtns( const SwCntntFrm* _pRef,
-//STRIP001                          SwFtnBossFrm*     _pOld,
-//STRIP001                          SvPtrarr&         _rFtnArr,
-//STRIP001                          const sal_Bool    _bCollectOnlyPreviousFtns = sal_False );
-//STRIP001  void    _MoveFtns( SvPtrarr &rFtnArr, BOOL bCalc = FALSE );
-//STRIP001  void    MoveFtns( const SwCntntFrm *pSrc, SwCntntFrm *pDest,
-//STRIP001                    SwTxtFtn *pAttr );
     // Sollte AdjustNeighbourhood gerufen werden (oder Grow/Shrink)?
     BYTE NeighbourhoodAdjustment( const SwFrm* pFrm ) const
         { return IsPageFrm() ? NA_ONLY_ADJUST : _NeighbourhoodAdjustment( pFrm ); }
