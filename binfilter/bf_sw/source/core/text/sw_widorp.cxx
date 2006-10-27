@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_widorp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:34:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:15:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,16 +36,10 @@
 
 #pragma hdrstop
 
-// auto strip #include "hintids.hxx"
 
-// auto strip #include "frmsh.hxx"
-// auto strip #include "layfrm.hxx"
 #include "ftnboss.hxx"
-// auto strip #include "ndtxt.hxx"
 #include "paratr.hxx"
 #ifndef PRODUCT
-// auto strip #include "viewsh.hxx" // ViewShell
-// auto strip #include "viewopt.hxx"    // SwViewOption
 #endif
 
 #ifndef _SVX_ORPHITEM_HXX //autogen
@@ -72,8 +66,6 @@
 
 #include "txtcfg.hxx"
 #include "widorp.hxx"
-// auto strip #include "txtfrm.hxx"
-// auto strip #include "itrtxt.hxx"
 #include "sectfrm.hxx"  //SwSectionFrm
 #include "ftnfrm.hxx"
 namespace binfilter {
@@ -415,7 +407,6 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/     if ( bVert )
 /*N*/     {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( nTmpY );
-//STRIP001 /*?*/         nOldHeight = -(pFrm->Prt().*fnRect->fnGetHeight)();
 /*N*/     }
 /*N*/     else
 /*N*/         nOldHeight = (pFrm->Prt().*fnRect->fnGetHeight)();
