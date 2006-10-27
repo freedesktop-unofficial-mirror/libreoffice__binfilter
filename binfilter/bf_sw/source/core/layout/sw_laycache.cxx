@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_laycache.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:34:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:54:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
 #endif
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -87,24 +84,12 @@
 #ifndef _ROWFRM_HXX
 #include <rowfrm.hxx>
 #endif
-// auto strip #ifndef _COLFRM_HXX
-// auto strip #include <colfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _BODYFRM_HXX
-// auto strip #include <bodyfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX //autogen
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
@@ -400,120 +385,6 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-//STRIP001 #ifndef PRODUCT
-//STRIP001 sal_Bool SwLayoutCache::CompareLayout( const SwDoc& rDoc ) const
-//STRIP001 {
-//STRIP001     sal_Bool bRet = sal_True;
-//STRIP001     if( pImpl && rDoc.GetRootFrm() )
-//STRIP001     {
-//STRIP001         USHORT nIndex = 0;
-//STRIP001         ULONG nStartOfContent = rDoc.GetNodes().GetEndOfContent().
-//STRIP001                                 FindStartNode()->GetIndex();
-//STRIP001         SwPageFrm* pPage = (SwPageFrm*)rDoc.GetRootFrm()->Lower();
-//STRIP001         if( pPage )
-//STRIP001             pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001         while( pPage )
-//STRIP001         {
-//STRIP001             if( nIndex >= pImpl->Count() )
-//STRIP001             {
-//STRIP001                 if( bRet )
-//STRIP001                     bRet = sal_False;
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001             SwLayoutFrm* pLay = pPage->FindBodyCont();
-//STRIP001             SwFrm* pTmp = pLay ? pLay->ContainsAny() : NULL;
-//STRIP001             if( pTmp && pTmp->IsSctFrm() )
-//STRIP001                 pTmp = ((SwSectionFrm*)pTmp)->ContainsAny();
-//STRIP001             if( pTmp )
-//STRIP001             {
-//STRIP001                 if( pTmp->IsTxtFrm() )
-//STRIP001                 {
-//STRIP001                     ULONG nNdIdx = ((SwTxtFrm*)pTmp)->GetNode()->GetIndex();
-//STRIP001                     if( nNdIdx > nStartOfContent )
-//STRIP001                     {
-//STRIP001                      BOOL bFollow = ((SwTxtFrm*)pTmp)->IsFollow();
-//STRIP001                         nNdIdx -= nStartOfContent;
-//STRIP001                         if( pImpl->GetBreakIndex( nIndex ) != nNdIdx ||
-//STRIP001                             SW_LAYCACHE_IO_REC_PARA !=
-//STRIP001                             pImpl->GetBreakType( nIndex ) ||
-//STRIP001                             ( bFollow ? ((SwTxtFrm*)pTmp)->GetOfst()
-//STRIP001                               : STRING_LEN ) != pImpl->GetBreakOfst( nIndex ) )
-//STRIP001                         {
-//STRIP001                             if( bRet )
-//STRIP001                                 bRet = sal_False;
-//STRIP001                         }
-//STRIP001                         ++nIndex;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001                 else if( pTmp->IsTabFrm() )
-//STRIP001                 {
-//STRIP001                     SwTabFrm* pTab = (SwTabFrm*)pTmp;
-//STRIP001                     ULONG nOfst = STRING_LEN;
-//STRIP001                     if( pTab->IsFollow() )
-//STRIP001                     {
-//STRIP001                         nOfst = 0;
-//STRIP001                         while( pTab->IsFollow() )
-//STRIP001                             pTab = pTab->FindMaster();
-//STRIP001                         while( pTab != pTmp )
-//STRIP001                         {
-//STRIP001                             SwFrm* pSub = pTab->Lower();
-//STRIP001                             while( pSub )
-//STRIP001                             {
-//STRIP001                                 ++nOfst;
-//STRIP001                                 pSub = pSub->GetNext();
-//STRIP001                             }
-//STRIP001                             pTab = pTab->GetFollow();
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001                     do
-//STRIP001                     {
-//STRIP001                         ULONG nNdIdx =
-//STRIP001                                 pTab->GetTable()->GetTableNode()->GetIndex();
-//STRIP001                         if( nNdIdx > nStartOfContent )
-//STRIP001                         {
-//STRIP001                             nNdIdx -= nStartOfContent;
-//STRIP001                             if( pImpl->GetBreakIndex( nIndex ) != nNdIdx ||
-//STRIP001                                 SW_LAYCACHE_IO_REC_TABLE !=
-//STRIP001                                 pImpl->GetBreakType( nIndex ) ||
-//STRIP001                                nOfst != pImpl->GetBreakOfst( nIndex ) )
-//STRIP001                             {
-//STRIP001                                 if( bRet )
-//STRIP001                                     bRet = sal_False;
-//STRIP001                             }
-//STRIP001                             ++nIndex;
-//STRIP001                         }
-//STRIP001                         if( pTab->GetFollow() )
-//STRIP001                         {
-//STRIP001                             if( nOfst == STRING_LEN )
-//STRIP001                                 nOfst = 0;
-//STRIP001                             do
-//STRIP001                             {
-//STRIP001                                 SwFrm* pSub = pTab->Lower();
-//STRIP001                                 while( pSub )
-//STRIP001                                 {
-//STRIP001                                     ++nOfst;
-//STRIP001                                     pSub = pSub->GetNext();
-//STRIP001                                 }
-//STRIP001                                 pTab = pTab->GetFollow();
-//STRIP001                                 SwPageFrm *pTabPage = pTab->FindPageFrm();
-//STRIP001                                 if( pTabPage != pPage )
-//STRIP001                                 {
-//STRIP001                                     pPage = pTabPage;
-//STRIP001                                     break;
-//STRIP001                                 }
-//STRIP001                             } while ( pTab->GetFollow() );
-//STRIP001                         }
-//STRIP001                         else
-//STRIP001                             break;
-//STRIP001                     } while( pTab );
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001         }
-//STRIP001     }
-//STRIP001     return bRet;
-//STRIP001 }
-//STRIP001 #endif
 
 /*N*/ void SwLayoutCache::ClearImpl()
 /*N*/ {
@@ -1308,13 +1179,6 @@ namespace binfilter {
 /*N*/   return c;
 /*N*/ }
 
-//STRIP001 void SwLayCacheIoImpl::SkipRec()
-//STRIP001 {
-//STRIP001  BYTE c = Peek();
-//STRIP001  OpenRec( c );
-//STRIP001  pStream->Seek( aRecSizes[aRecSizes.Count()-1] );
-//STRIP001  CloseRec( c );
-//STRIP001 }
 
 /*N*/ BYTE SwLayCacheIoImpl::OpenFlagRec()
 /*N*/ {
