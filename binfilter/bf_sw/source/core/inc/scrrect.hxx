@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scrrect.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:37:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:48:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,13 +73,9 @@ public:
 #ifdef VERTICAL_LAYOUT
     SwStripes( SwTwips nPos, SwTwips nSize, SwTwips nMn, SwTwips nMx )
         : SwStripe( nPos, nSize ), nMin( nMn ), nMax( nMx ) {}
-//STRIP001     SwStripes& Plus( const SwStripes& rOther, BOOL bVert );
-//STRIP001     BOOL Recalc( BOOL bVert );
 #else
     SwStripes( const SwRect& rRect ) : SwStripe( rRect.Top(), rRect.Height() ),
         nMin(rRect.Left()), nMax(rRect.Left() + rRect.Width()) {}
-//STRIP001     SwStripes& operator+=( const SwStripes& rOther );
-//STRIP001  BOOL Recalc();
 #endif
     inline SwTwips GetMin() const { return nMin; }
     inline SwTwips GetMax() const { return nMax; }
@@ -137,12 +133,9 @@ SV_DECL_PTRARR_SORT(SwScrollStripes, SwStripesPtr, 1, 4)
 class SwScrollArea : public SwScrollColumn, public SwScrollStripes
 {
 public:
-//STRIP001  void SmartInsert( SwStripes* pStripes );
-//STRIP001  void Add( SwScrollArea *pScroll );
     inline SwScrollArea( const SwScrollColumn &rCol, SwStripes* pStripes )
         : SwScrollColumn( rCol )
         { Insert( pStripes ); }
-//STRIP001  BOOL Compress();
 };
 
 typedef SwScrollArea* SwScrollAreaPtr;
@@ -151,7 +144,6 @@ SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2)//STRIP008 ;
 class SwScrollAreas : public SScrAreas
 {
 public:
-//STRIP001  void InsertCol( const SwScrollColumn &rCol, SwStripes *pStripes );
 };
 
 

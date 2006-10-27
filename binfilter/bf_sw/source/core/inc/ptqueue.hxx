@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ptqueue.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:35:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:47:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,9 +63,7 @@ class SwPaintQueue
 public:
     static SwQueuedPaint *pQueue;
 
-//STRIP001  static void Add( ViewShell *pSh, const SwRect &rNew );
     static void Remove( ViewShell *pSh );
-//STRIP001  static void Repaint();
 };
 
 } //namespace binfilter
