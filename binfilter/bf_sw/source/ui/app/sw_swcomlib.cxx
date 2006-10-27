@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swcomlib.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:53:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:00:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,37 +37,19 @@
 
 #define _SWLIB_CXX
 
-// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
-// auto strip #include <bf_sfx2/docfac.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SFXECODE_HXX
 #include <svtools/sfxecode.hxx>
 #endif
-// auto strip #ifndef _MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _PARHTML_HXX //autogen
-// auto strip #include <svtools/parhtml.hxx>
-// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
 
-// auto strip #ifndef _SWMODULE_HXX //autogen
-// auto strip #include <swmodule.hxx>
-// auto strip #endif
 #ifndef _SWWDOCSH_HXX //autogen
 #include <wdocsh.hxx>
 #endif
@@ -77,8 +59,6 @@
 #ifndef _SHELLIO_HXX //autogen
 #include <shellio.hxx>
 #endif
-// auto strip #include <swdll.hxx>
-// auto strip #include "iodetect.hxx"
 
 #include <app.hrc>
 #include <web.hrc>

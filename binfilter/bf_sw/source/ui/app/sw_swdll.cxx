@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swdll.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:54:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:00:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,6 @@
 #include "globdoc.hrc"
 #endif
 
-// auto strip #ifndef _SWDLL_HXX
-// auto strip #include <swdll.hxx>
-// auto strip #endif
 #ifndef _SWWDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
