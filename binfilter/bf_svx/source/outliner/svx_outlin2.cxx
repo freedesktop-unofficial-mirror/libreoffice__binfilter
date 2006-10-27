@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:43:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:31:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,31 +33,17 @@
  *
  ************************************************************************/
 
-// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
-// auto strip #include <tools/list.hxx>
 
-// auto strip #ifndef _SFXSTYLE_HXX //autogen
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_MAPMOD_HXX
-// auto strip #include <vcl/mapmod.hxx>
-// auto strip #endif
 
 #include <forbiddencharacterstable.hxx>
 
 #define _OUTLINER_CXX
 
-// auto strip #include <outliner.hxx>
-// auto strip #include <paralist.hxx>
-// auto strip #include <outlobj.hxx>
 #include <outleeng.hxx>
-// auto strip #include <outlundo.hxx>
-// auto strip #include <eeitem.hxx>
-// auto strip #include <editstat.hxx>
 namespace binfilter {
 
 DBG_NAMEEX(Outliner)//STRIP008
@@ -118,24 +104,9 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetBackgroundColor( rColor );
 /*N*/ }
 
-//STRIP001 Color Outliner::GetBackgroundColor() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetBackgroundColor();
-//STRIP001 }
 
 
-//STRIP001 void Outliner::ClearModifyFlag()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->ClearModifyFlag();
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::IsModified() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->IsModified();
-//STRIP001 }
 
 /*N*/ ULONG Outliner::GetTextHeight() const
 /*N*/ {
@@ -143,17 +114,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetTextHeight();
 /*N*/ }
 
-//STRIP001 void Outliner::SetModifyHdl( const Link& rLink )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001     pEditEngine->SetModifyHdl( rLink );
-//STRIP001 }
 
-//STRIP001 Link Outliner::GetModifyHdl() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetModifyHdl();
-//STRIP001 }
 
 /*N*/ void Outliner::SetNotifyHdl( const Link& rLink )
 /*N*/ {
@@ -167,23 +128,8 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/ }
 
-//STRIP001 Link Outliner::GetNotifyHdl() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->aOutlinerNotifyHdl;
-//STRIP001 }
 
-//STRIP001 void Outliner::SetStatusEventHdl( const Link& rLink )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->SetStatusEventHdl( rLink );
-//STRIP001 }
 
-//STRIP001 Link Outliner::GetStatusEventHdl() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetStatusEventHdl();
-//STRIP001 }
 
 /*N*/ void Outliner::SetDefTab( USHORT nTab )
 /*N*/ {
@@ -191,17 +137,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetDefTab( nTab );
 /*N*/ }
 
-//STRIP001 USHORT Outliner::GetDefTab() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetDefTab();
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::IsFlatMode() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->IsFlatMode();
-//STRIP001 }
 
 /*N*/ BOOL Outliner::UpdateFields()
 /*N*/ {
@@ -209,48 +145,13 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->UpdateFields();
 /*N*/ }
 
-//STRIP001 void Outliner::RemoveFields( BOOL bKeepFieldText, TypeId aType )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->RemoveFields( bKeepFieldText, aType );
-//STRIP001 }
-
-//STRIP001 void Outliner::SetWordDelimiters( const String& rDelimiters )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->SetWordDelimiters( rDelimiters );
-//STRIP001 }
-
-//STRIP001 String Outliner::GetWordDelimiters() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetWordDelimiters();
-//STRIP001 }
-
-//STRIP001 String Outliner::GetWord( USHORT nPara, USHORT nIndex )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetWord( nPara, nIndex );
-//STRIP001 }
-
-//STRIP001 void Outliner::Draw( OutputDevice* pOutDev, const Rectangle& rOutRect )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->Draw( pOutDev, rOutRect );
-//STRIP001 }
-
-//STRIP001 void Outliner::Draw( OutputDevice* pOutDev, const Rectangle& rOutRect, const Point& rStartDocPos )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->Draw( pOutDev, rOutRect, rStartDocPos );
-//STRIP001 }
 
 
-//STRIP001 void Outliner::Draw( OutputDevice* pOutDev, const Point& rStartPos, short nOrientation )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->Draw( pOutDev, rStartPos, nOrientation );
-//STRIP001 }
+
+
+
+
+
 
 /*N*/ void Outliner::SetPaperSize( const Size& rSize )
 /*N*/ {
@@ -264,17 +165,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetPaperSize();
 /*N*/ }
 
-//STRIP001 void Outliner::SetPolygon( const XPolyPolygon& rPoly )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS( Outliner, 0 );
-//STRIP001  pEditEngine->SetPolygon( rPoly );
-//STRIP001 }
 
-//STRIP001 void Outliner::SetPolygon( const XPolyPolygon& rPoly, const XPolyPolygon* pXorPoly )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS( Outliner, 0 );
-//STRIP001  pEditEngine->SetPolygon( rPoly, pXorPoly );
-//STRIP001 }
 
 /*N*/ void Outliner::ClearPolygon()
 /*N*/ {
@@ -282,17 +173,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->ClearPolygon();
 /*N*/ }
 
-//STRIP001 const PolyPolygon* Outliner::GetPolygon()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS( Outliner, 0 );
-//STRIP001  return pEditEngine->GetPolygon();
-//STRIP001 }
 
-//STRIP001 const Size& Outliner::GetMinAutoPaperSize() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetMinAutoPaperSize();
-//STRIP001 }
 
 /*N*/ void Outliner::SetMinAutoPaperSize( const Size& rSz )
 /*N*/ {
@@ -300,11 +181,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetMinAutoPaperSize( rSz );
 /*N*/ }
 
-//STRIP001 const Size& Outliner::GetMaxAutoPaperSize() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetMaxAutoPaperSize();
-//STRIP001 }
 
 /*N*/ void Outliner::SetMaxAutoPaperSize( const Size& rSz )
 /*N*/ {
@@ -312,24 +188,8 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetMaxAutoPaperSize( rSz );
 /*N*/ }
 
-//STRIP001 BOOL Outliner::IsExpanded( Paragraph* pPara ) const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pParaList->HasVisibleChilds( pPara );
-//STRIP001 }
 
-//STRIP001 Paragraph* Outliner::GetParent( Paragraph* pParagraph ) const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  USHORT nRelPos;
-//STRIP001  return pParaList->GetParent( pParagraph, nRelPos );
-//STRIP001 }
 
-//STRIP001 ULONG Outliner::GetChildCount( Paragraph* pParent ) const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pParaList->GetChildCount( pParent );
-//STRIP001 }
 
 /*N*/ Size Outliner::CalcTextSize()
 /*N*/ {
@@ -337,11 +197,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return Size(pEditEngine->CalcTextWidth(),pEditEngine->GetTextHeight());
 /*N*/ }
 
-//STRIP001 Point Outliner::GetDocPos( Paragraph* pPara )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetDocPosTopLeft( (USHORT)pParaList->GetAbsPos( pPara ) );
-//STRIP001 }
 
 /*N*/ void Outliner::SetStyleSheetPool( SfxStyleSheetPool* pSPool )
 /*N*/ {
@@ -363,8 +218,6 @@ using namespace ::com::sun::star::linguistic2;
 
 /*N*/ BOOL Outliner::IsInSelectionMode() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->IsInSelectionMode();
 /*N*/ }
 
 /*N*/ void Outliner::SetControlWord( ULONG nWord )
@@ -385,11 +238,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetAsianCompressionMode( n );
 /*N*/ }
 
-//STRIP001 USHORT Outliner::GetAsianCompressionMode() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetAsianCompressionMode();
-//STRIP001 }
 
 /*N*/ void Outliner::SetKernAsianPunctuation( BOOL b )
 /*N*/ {
@@ -397,11 +245,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetKernAsianPunctuation( b );
 /*N*/ }
 
-//STRIP001 BOOL Outliner::IsKernAsianPunctuation() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->IsKernAsianPunctuation();
-//STRIP001 }
 
 /*N*/ void Outliner::UndoActionStart( USHORT nId )
 /*N*/ {
@@ -415,13 +258,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->UndoActionEnd( nId );
 /*N*/ }
 
-//STRIP001 void Outliner::InsertUndo( EditUndo* pUndo )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->GetUndoManager().AddUndoAction( pUndo, FALSE );
-//STRIP001 #endif
-//STRIP001 }
 
 /*N*/ BOOL Outliner::IsInUndo()
 /*N*/ {
@@ -453,17 +289,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->QuickRemoveCharAttribs( nPara, nWhich );
 /*N*/ }
 
-//STRIP001 EESpellState Outliner::HasSpellErrors( LanguageType eLang )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->HasSpellErrors( eLang );
-//STRIP001 }
 
-//STRIP001 EESpellState Outliner::HasSpellErrors()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->HasSpellErrors();
-//STRIP001 }
 
 /*N*/ void Outliner::SetDefaultLanguage( LanguageType eLang )
 /*N*/ {
@@ -471,29 +297,9 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetDefaultLanguage( eLang );
 /*N*/ }
 
-//STRIP001 LanguageType Outliner::GetDefaultLanguage() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetDefaultLanguage();
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::HasOnlineSpellErrors() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->HasOnlineSpellErrors();
-//STRIP001 }
 
-//STRIP001 void Outliner::CompleteOnlineSpelling()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->CompleteOnlineSpelling();
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::HasText( const SvxSearchItem& rSearchItem )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->HasText( rSearchItem );
-//STRIP001 }
 
 /*N*/ void Outliner::SetEditTextObjectPool( SfxItemPool* pPool )
 /*N*/ {
@@ -507,11 +313,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetEditTextObjectPool();
 /*N*/ }
 
-//STRIP001 BOOL Outliner::SpellNextDocument()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 /*N*/ void Outliner::SetSpeller( Reference< XSpellChecker1 > &xSpeller )
@@ -519,11 +320,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   pEditEngine->SetSpeller( xSpeller );
 /*N*/ }
-//STRIP001 Reference< XSpellChecker1 > Outliner::GetSpeller()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetSpeller();
-//STRIP001 }
 
 /*N*/ void Outliner::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
@@ -531,18 +327,8 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetForbiddenCharsTable( xForbiddenChars );
 /*N*/ }
 
-//STRIP001 vos::ORef<SvxForbiddenCharactersTable> Outliner::GetForbiddenCharsTable() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetForbiddenCharsTable();
-//STRIP001 }
 
 
-//STRIP001 Reference< XHyphenator > Outliner::GetHyphenator() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetHyphenator();
-//STRIP001 }
 
 /*N*/ void Outliner::SetHyphenator( Reference< XHyphenator >& xHyph )
 /*N*/ {
@@ -556,11 +342,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetRefDevice();
 /*N*/ }
 
-//STRIP001 USHORT Outliner::GetFirstLineOffset( ULONG nParagraph )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetFirstLineOffset( (USHORT)nParagraph );
-//STRIP001 }
 
 /*N*/ ULONG Outliner::GetTextHeight( ULONG nParagraph ) const
 /*N*/ {
@@ -654,11 +435,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetGlobalCharStretching( nX, nY );
 /*N*/ }
 
-//STRIP001 void Outliner::GetGlobalCharStretching( USHORT& rX, USHORT& rY )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->GetGlobalCharStretching( rX, rY );
-//STRIP001 }
 
 
 /*N*/ void Outliner::DoStretchChars( USHORT nX, USHORT nY )
@@ -673,17 +449,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->EraseVirtualDevice();
 /*N*/ }
 
-//STRIP001 void Outliner::SetBigTextObjectStart( USHORT nStartAtPortionCount )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->SetBigTextObjectStart( nStartAtPortionCount );
-//STRIP001 }
 
-//STRIP001 USHORT Outliner::GetBigTextObjectStart() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->GetBigTextObjectStart();
-//STRIP001 }
 
 /*N*/ BOOL Outliner::ShouldCreateBigTextObject() const
 /*N*/ {
@@ -703,16 +469,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->IsVertical();
 /*N*/ }
 
-//STRIP001 void Outliner::SetDefaultHorizontalTextDirection( EEHorizontalTextDirection eHTextDir )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->SetDefaultHorizontalTextDirection( eHTextDir );
-//STRIP001 }
 
-//STRIP001 EEHorizontalTextDirection Outliner::GetDefaultHorizontalTextDirection() const
-//STRIP001 {
-//STRIP001  return pEditEngine->GetDefaultHorizontalTextDirection();
-//STRIP001 }
 
 /*N*/ USHORT Outliner::GetScriptType( const ESelection& rSelection ) const
 /*N*/ {
@@ -726,29 +483,9 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetLanguage( nPara, nPos );
 /*N*/ }
 
-//STRIP001 void Outliner::RemoveAttribs( const ESelection& rSelection, sal_Bool bRemoveParaAttribs, sal_uInt16 nWhich )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->RemoveAttribs( rSelection, bRemoveParaAttribs, nWhich );
-//STRIP001 }
 
-//STRIP001 void Outliner::EnableAutoColor( BOOL b )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->EnableAutoColor( b );
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::IsAutoColorEnabled() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pEditEngine->IsAutoColorEnabled();
-//STRIP001 }
 
-//STRIP001 void Outliner::ForceAutoColor( BOOL b )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  pEditEngine->ForceAutoColor( b );
-//STRIP001 }
 
 /*N*/ BOOL Outliner::IsForceAutoColor() const
 /*N*/ {
