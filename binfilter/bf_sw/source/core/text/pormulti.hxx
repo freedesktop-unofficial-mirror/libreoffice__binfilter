@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pormulti.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:23:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:07:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -131,137 +131,22 @@ SwMultiPortion( xub_StrLen nEnd ) : pFldRest( 0 ), bTab1( sal_False ),
          bFlyInCntnt( sal_False )
  #endif
          { SetWhichPor( POR_MULTI ); SetLen( nEnd ); }
-//STRIP001  inline void SetDouble() { bDouble = sal_True; }
-//STRIP001  inline void SetRuby() { bRuby = sal_True; }
-//STRIP001 #ifdef BIDI
-//STRIP001     inline void SetBidi() { bBidi = sal_True; }
-//STRIP001 #endif
-//STRIP001  inline void SetTop( sal_Bool bNew ) { bTop = bNew; }
-//STRIP001  inline void SetTab1( sal_Bool bNew ) { bTab1 = bNew; }
-//STRIP001  inline void SetTab2( sal_Bool bNew ) { bTab2 = bNew; }
-//STRIP001  inline void SetDirection( sal_uInt8 nNew ) { nDirection = nNew; }
-//STRIP001  inline sal_Bool GetTab1() const { return bTab1; }
-//STRIP001  inline sal_Bool GetTab2() const { return bTab2; }
 public:
-//STRIP001      ~SwMultiPortion();
      const SwLineLayout& GetRoot() const { return aRoot; }
      SwLineLayout& GetRoot() { return aRoot; }
-//STRIP001  SwFldPortion* GetFldRest() { return pFldRest; }
-//STRIP001  void SetFldRest( SwFldPortion* pNew ) { pFldRest = pNew; }
-//STRIP001
     inline sal_Bool HasTabulator() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool HasTabulator() const { return bTab1 || bTab2; }
-//STRIP001  inline sal_Bool IsFormatted() const { return bFormatted; }
-//STRIP001  inline void SetFormatted() { bFormatted = sal_True; }
     inline sal_Bool IsFollowFld() const { return bFollowFld; }
-//STRIP001  inline void SetFollowFld() { bFollowFld = sal_True; }
     inline sal_Bool HasFlyInCntnt() const { return bFlyInCntnt; }
-//STRIP001  inline void SetFlyInCntnt( sal_Bool bNew ) { bFlyInCntnt = bNew; }
     inline sal_Bool IsDouble() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool IsDouble() const { return bDouble; }
-//STRIP001  inline sal_Bool IsRuby() const { return bRuby; }
 #ifdef BIDI
     inline sal_Bool IsBidi() const { return bBidi; }
 #endif
-//STRIP001  inline sal_Bool OnTop() const { return bTop; }
-//STRIP001  void ActualizeTabulator();
-//STRIP001
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual long CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const;
-//STRIP001 #ifdef BIDI
-//STRIP001     virtual sal_Bool ChgSpaceAdd( SwLineLayout* pCurr, short nSpaceAdd ) const;
-//STRIP001 #endif
-//STRIP001
-//STRIP001  // Summarize the internal lines to calculate the (external) size
-//STRIP001  void CalcSize( SwTxtFormatter& rLine, SwTxtFormatInfo &rInf );
-//STRIP001
-//STRIP001 #ifndef BIDI
-//STRIP001  inline sal_Bool ChgSpaceAdd( SwLineLayout* pCurr, short nSpaceAdd );
-//STRIP001 #endif
-//STRIP001  inline sal_Bool HasBrackets() const;
     inline sal_Bool HasRotation() const { return 0 != (1 & nDirection); }
-//STRIP001  inline sal_Bool IsRevers() const { return 0 != (2 & nDirection); }
-//STRIP001  inline sal_uInt8 GetDirection() const { return nDirection; }
-//STRIP001  inline USHORT GetFontRotation() const
-//STRIP001      { return ( HasRotation() ? ( IsRevers() ? 2700 : 900 ) : 0 ); }
-//STRIP001
-//STRIP001     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
-//STRIP001
     OUTPUT_OPERATOR
 };
 
-//STRIP001 class SwDoubleLinePortion : public SwMultiPortion
-//STRIP001 {
-//STRIP001  SwBracket* pBracket;    // Surrounding brackets
-//STRIP001  SwTwips nLineDiff;      // Difference of the width of the both lines
-//STRIP001  xub_StrLen nBlank1;     // Number of blanks in the first line
-//STRIP001  xub_StrLen nBlank2;     // Number of blanks in the second line
-//STRIP001 public:
-//STRIP001     SwDoubleLinePortion( SwDoubleLinePortion& rDouble, xub_StrLen nEnd );
-//STRIP001  SwDoubleLinePortion( const SwMultiCreator& rCreate, xub_StrLen nEnd );
-//STRIP001  ~SwDoubleLinePortion();
-//STRIP001
-//STRIP001  inline SwBracket* GetBrackets() const { return pBracket; }
-//STRIP001  void SetBrackets( const SwDoubleLinePortion& rDouble );
-//STRIP001  void PaintBracket( SwTxtPaintInfo& rInf, short nSpc, sal_Bool bOpen ) const;
-//STRIP001  void FormatBrackets( SwTxtFormatInfo &rInf, SwTwips& nMaxWidth );
-//STRIP001  inline KSHORT PreWidth() const { return pBracket->nPreWidth; };
-//STRIP001  inline KSHORT PostWidth() const { return pBracket->nPostWidth; }
-//STRIP001  inline void ClearBrackets()
-//STRIP001      { pBracket->nPreWidth = pBracket->nPostWidth=0; Width( 0 ); }
-//STRIP001  inline KSHORT BracketWidth(){ return PreWidth() + PostWidth(); }
-//STRIP001
-//STRIP001  void CalcBlanks( SwTxtFormatInfo &rInf );
-//STRIP001 #ifndef BIDI
-//STRIP001  sal_Bool ChangeSpaceAdd( SwLineLayout* pCurr, short nSpaceAdd );
-//STRIP001 #endif
-//STRIP001  static void ResetSpaceAdd( SwLineLayout* pCurr );
-//STRIP001  inline SwTwips GetLineDiff() const { return nLineDiff; }
-//STRIP001  inline xub_StrLen GetSpaceCnt() const
-//STRIP001      { return ( nLineDiff < 0 ) ? nBlank2 : nBlank1; }
-//STRIP001  inline xub_StrLen GetSmallerSpaceCnt() const
-//STRIP001      { return ( nLineDiff < 0 ) ? nBlank1 : nBlank2; }
-//STRIP001  inline xub_StrLen GetBlank1() const { return nBlank1; }
-//STRIP001  inline xub_StrLen GetBlank2() const { return nBlank2; }
-//STRIP001
-//STRIP001  virtual long CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const;
-//STRIP001 #ifdef BIDI
-//STRIP001     virtual sal_Bool ChgSpaceAdd( SwLineLayout* pCurr, short nSpaceAdd ) const;
-//STRIP001 #endif
-//STRIP001 };
 
-//STRIP001 class SwRubyPortion : public SwMultiPortion
-//STRIP001 {
-//STRIP001  xub_StrLen nRubyOffset;
-//STRIP001  USHORT nAdjustment;
-//STRIP001  void _Adjust( SwTxtFormatInfo &rInf);
-//STRIP001 public:
-//STRIP001 #ifdef BIDI
-//STRIP001     SwRubyPortion( const SwRubyPortion& rRuby, xub_StrLen nEnd );
-//STRIP001 #else
-//STRIP001  SwRubyPortion( xub_StrLen nEnd, USHORT nAdj, USHORT nPos, xub_StrLen nOfst )
-//STRIP001      : SwMultiPortion( nEnd ), nRubyOffset( nOfst ), nAdjustment( nAdj )
-//STRIP001      { SetRuby(); SetTop(!nPos); }
-//STRIP001 #endif
-//STRIP001
-//STRIP001     SwRubyPortion( const SwMultiCreator& rCreate, const SwFont& rFnt,
-//STRIP001                    const SwDoc& rDoc, xub_StrLen nEnd, xub_StrLen nOffs,
-//STRIP001                    const sal_Bool* pForceRubyPos );
-//STRIP001
-//STRIP001     void CalcRubyOffset();
-//STRIP001  inline void Adjust( SwTxtFormatInfo &rInf )
-//STRIP001      { if(nAdjustment && GetRoot().GetNext()) _Adjust(rInf); }
-//STRIP001  inline USHORT GetAdjustment() const { return nAdjustment; }
-//STRIP001  inline xub_StrLen GetRubyOffset() const { return nRubyOffset; }
-//STRIP001 };
 
-//STRIP001 class SwRotatedPortion : public SwMultiPortion
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SwRotatedPortion( xub_StrLen nEnd, sal_uInt8 nDir = 1 )
-//STRIP001      : SwMultiPortion( nEnd ) { SetDirection( nDir ); }
-//STRIP001     SwRotatedPortion( const SwMultiCreator& rCreate, xub_StrLen nEnd,
-//STRIP001                       sal_Bool bRTL );
-//STRIP001 };
 
 #ifdef BIDI
 class SwBidiPortion : public SwMultiPortion
@@ -277,32 +162,12 @@ public:
    inline void SetSpaceCnt( xub_StrLen nNew ) { nBlanks = nNew; }
    inline xub_StrLen GetSpaceCnt() const { return nBlanks; }
    // Calculates extra spacing based on number of blanks
-//STRIP001  virtual long CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const;
  // Manipulate the spacing array at pCurr
-//STRIP001    virtual sal_Bool ChgSpaceAdd( SwLineLayout* pCurr, short nSpaceAdd ) const;
 };
 #endif
 
 // For cursor travelling in multiportions
 
-//STRIP001 class SwTxtCursorSave
-//STRIP001 {
-//STRIP001  SwTxtCursor* pTxtCrsr;
-//STRIP001  SwLineLayout* pCurr;
-//STRIP001  SwTwips nWidth;
-//STRIP001  xub_StrLen nStart;
-//STRIP001  BYTE nOldProp;
-//STRIP001  sal_Bool bSpaceChg;
-//STRIP001 public:
-//STRIP001 #ifdef BIDI
-//STRIP001  SwTxtCursorSave( SwTxtCursor* pTxtCursor, SwMultiPortion* pMulti,
-//STRIP001         SwTwips nY, USHORT& nX, xub_StrLen nCurrStart, short nSpaceAdd );
-//STRIP001 #else
-//STRIP001  SwTxtCursorSave( SwTxtCursor* pTxtCursor, SwMultiPortion* pMulti,
-//STRIP001      SwTwips nY, xub_StrLen nCurrStart, short nSpaceAdd );
-//STRIP001 #endif
-//STRIP001  ~SwTxtCursorSave();
-//STRIP001 };
 
 /*************************************************************************
  *                  inline - Implementations
@@ -314,9 +179,6 @@ inline sal_Bool SwMultiPortion::ChgSpaceAdd(SwLineLayout* pCurr,short nSpaceAdd)
                             nSpaceAdd ) : sal_False; }
 #endif
 
-//STRIP001 inline sal_Bool SwMultiPortion::HasBrackets() const
-//STRIP001  { return IsDouble() ? 0 != ((SwDoubleLinePortion*)this)->GetBrackets()
-//STRIP001    : sal_False; }
 
 CLASSIO( SwMultiPortion )
 

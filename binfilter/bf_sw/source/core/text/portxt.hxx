@@ -4,9 +4,9 @@
  *
  *  $RCSfile: portxt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:24:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:08:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,19 +65,15 @@ public:
     virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
     virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
-//STRIP001  virtual long CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const;
 
     // zaehlt die Spaces fuer Blocksatz
     xub_StrLen GetSpaceCnt( const SwTxtSizeInfo &rInf, xub_StrLen& rCnt ) const;
-//STRIP001  xub_StrLen GetCrsrOfst( const KSHORT nOfst, SwTxtSizeInfo &rSizeInf ) const;
 
     sal_Bool CreateHyphen( SwTxtFormatInfo &rInf, SwTxtGuess &rGuess );
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
      OUTPUT_OPERATOR
     DECL_FIXEDMEMPOOL_NEWDEL(SwTxtPortion)
@@ -95,11 +91,9 @@ public:
     inline const KSHORT GetBlankWidth( ) const { return nBlankWidth; }
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
     virtual SwLinePortion *Compress();
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
     DECL_FIXEDMEMPOOL_NEWDEL(SwHolePortion)

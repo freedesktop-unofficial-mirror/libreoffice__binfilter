@@ -4,9 +4,9 @@
  *
  *  $RCSfile: redlnitr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:25:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:08:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,52 +77,15 @@ public:
 
 class SwRedlineItr
 {
-//STRIP001  SwpHtStart_SAR aHints;
-//STRIP001  const SwDoc& rDoc;
-//STRIP001  const SwTxtNode& rNd;
-//STRIP001     SwAttrHandler& rAttrHandler;
-//STRIP001     SfxItemSet *pSet;
     SwExtend *pExt;
-//STRIP001     ULONG nNdIdx;
-//STRIP001  xub_StrLen nFirst;
-//STRIP001  xub_StrLen nAct;
-//STRIP001  xub_StrLen nStart;
-//STRIP001  xub_StrLen nEnd;
     sal_Bool bOn;
-//STRIP001  sal_Bool bShow;
-//STRIP001
-//STRIP001  void _Clear( SwFont* pFnt );
-//STRIP001  sal_Bool _ChkSpecialUnderline() const;
-//STRIP001  void FillHints( MSHORT nAuthor, SwRedlineType eType );
-//STRIP001  short _Seek( SwFont& rFnt, xub_StrLen nNew, xub_StrLen nOld );
-//STRIP001  xub_StrLen _GetNextRedln( xub_StrLen nNext );
-//STRIP001  inline short EnterExtend( SwFont& rFnt, xub_StrLen nNew )
-//STRIP001      { if( pExt ) return pExt->Enter( rFnt, nNew ); return 0; }
-//STRIP001  inline xub_StrLen NextExtend( xub_StrLen nNext )
-//STRIP001      { if( pExt ) return pExt->Next( nNext ); return nNext; }
 public:
 SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,//STRIP001 SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,
 xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,//STRIP001         xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,
 xub_StrLen nStart = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        xub_StrLen nStart = STRING_LEN );
-//STRIP001  ~SwRedlineItr();
     inline sal_Bool IsOn() const { return bOn || ( pExt && pExt->IsOn() ); }
-//STRIP001  inline void Clear( SwFont* pFnt ) { if( bOn ) _Clear( pFnt ); }
-//STRIP001     void ChangeTxtAttr( SwFont* pFnt, SwTxtAttr &rHt, sal_Bool bChg );
-//STRIP001     inline short Seek( SwFont& rFnt, xub_StrLen nNew, xub_StrLen nOld )
-//STRIP001      { if( bShow || pExt ) return _Seek( rFnt, nNew, nOld ); return 0; }
-//STRIP001  inline void Reset() { if( nAct != nFirst ) nAct = STRING_LEN;
-//STRIP001                        if( pExt ) pExt->Reset(); }
-//STRIP001  inline xub_StrLen GetNextRedln( xub_StrLen nNext )
-//STRIP001      { if( bShow || pExt ) return _GetNextRedln( nNext ); return nNext; }
-//STRIP001  inline sal_Bool ChkSpecialUnderline() const
-//STRIP001      { if ( IsOn() ) return _ChkSpecialUnderline(); return sal_False; }
             sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001     sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd );
-//STRIP001     inline sal_Bool LeaveExtend( SwFont& rFnt, xub_StrLen nNew )
-//STRIP001      { return pExt->Leave(rFnt, nNew ); }
     inline sal_Bool ExtOn() { if( pExt ) return pExt->IsOn(); return sal_False; }
-//STRIP001     inline void UpdateExtFont( SwFont &rFnt ) {
-//STRIP001         ASSERT( ExtOn(), "UpdateExtFont without ExtOn" )
-//STRIP001         pExt->UpdateFont( rFnt ); }
 };
 
 
