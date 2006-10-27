@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_bookmrk.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:23:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:17:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,17 +36,11 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -69,7 +63,6 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
-//STRIP001 TYPEINIT1( SwBookmark, SwModify );  //rtti
 
 
 /*N*/ SwBookmark::SwBookmark(const SwPosition& aPos)
@@ -107,12 +100,6 @@ namespace binfilter {
 /*N*/   // ausgeloest.
 /*N*/   if( refObj.Is() )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        if( DDE_BOOKMARK == eMarkType && refObj->HasDataLinks() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            ::so3::SvLinkSource* p = &refObj;
-//STRIP001 /*?*/            p->SendDataChanged();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        refObj->SetNoServer();
 /*N*/   }
 /*N*/
 /*N*/   delete pPos1;
@@ -136,14 +123,6 @@ namespace binfilter {
 /*N*/   return (this == &rBM);
 /*N*/ }
 
-//STRIP001 BOOL SwBookmark::IsEqualPos( const SwBookmark &rBM ) const
-//STRIP001 {
-//STRIP001  const SwPosition* pThisPos = ( !pPos2 || *pPos1 <= *pPos2 ) ? pPos1 : pPos2;
-//STRIP001  const SwPosition* pBMPos = ( !rBM.pPos2 || *rBM.pPos1 <= *rBM.pPos2 )
-//STRIP001                                      ? rBM.pPos1 : rBM.pPos2;
-//STRIP001
-//STRIP001  return *pThisPos == *pBMPos;
-//STRIP001 }
 
 /*N*/ void SwBookmark::SetRefObject( SwServerObject* pObj )
 /*N*/ {
@@ -151,14 +130,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SwMark::SwMark( const SwPosition& aPos,
-//STRIP001              const KeyCode& rCode,
-//STRIP001              const String& rName,
-//STRIP001              const String& rShortName )
-//STRIP001  : SwBookmark( aPos, rCode, rName, rShortName )
-//STRIP001 {
-//STRIP001  eMarkType = MARK;
-//STRIP001 }
 
 /*N*/ SwUNOMark::SwUNOMark( const SwPosition& aPos,
 /*N*/               const KeyCode& rCode,
