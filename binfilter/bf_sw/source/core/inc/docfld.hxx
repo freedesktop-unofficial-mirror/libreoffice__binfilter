@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfld.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:25:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:43:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -104,28 +104,12 @@ public:
 
      const SwTxtFld* GetFld() const
         { return TEXTFIELD == eSetGetExpFldType ? CNTNT.pTxtFld : 0; }
-//STRIP001  const SwTxtTOXMark* GetTOX() const
-//STRIP001      { return TEXTTOXMARK == eSetGetExpFldType ? CNTNT.pTxtTOX : 0; }
      const SwSection* GetSection() const
          { return SECTIONNODE == eSetGetExpFldType ? CNTNT.pSection : 0; }
-//STRIP001  const SwTableBox* GetTableBox() const
-//STRIP001      { return TABLEBOX == eSetGetExpFldType ? CNTNT.pTBox : 0; }
-//STRIP001  const SwTxtINetFmt* GetINetFmt() const
-//STRIP001      { return TEXTINET == eSetGetExpFldType ? CNTNT.pTxtINet : 0; }
-//STRIP001  const SwFlyFrmFmt* GetFlyFmt() const
-//STRIP001      { return FLYFRAME == eSetGetExpFldType ? CNTNT.pFlyFmt : 0; }
-//STRIP001
      ULONG GetNode() const { return nNode; }
-//STRIP001  xub_StrLen GetCntnt() const { return nCntnt; }
     const void* GetPointer() const { return CNTNT.pTxtFld; }
-//STRIP001
-//STRIP001  void GetPos( SwPosition& rPos ) const;
-//STRIP001  void GetPosOfContent( SwPosition& rPos ) const;
-//STRIP001
     const SwNode* GetNodeFromCntnt() const;
     xub_StrLen GetCntPosFromCntnt() const;
-//STRIP001
-//STRIP001  void SetBodyPos( const SwCntntFrm& rFrm );
 };
 
 typedef _SetGetExpFld* _SetGetExpFldPtr;
@@ -194,7 +178,6 @@ public:
     void InsDelFldInFldLst( BOOL bIns, const SwTxtFld& rFld );
 
     void InsertFldType( const SwFieldType& rType );
-//STRIP001  void RemoveFldType( const SwFieldType& rType );
 
     BOOL IsInUpdateFlds() const         { return bInUpdateFlds; }
     void SetInUpdateFlds( BOOL b )      { bInUpdateFlds = b; }
