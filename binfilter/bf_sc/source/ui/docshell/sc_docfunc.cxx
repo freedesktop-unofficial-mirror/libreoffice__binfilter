@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docfunc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:16:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:46:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,25 +34,19 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/svdundo.hxx>
 #include <bf_sfx2/bindings.hxx>
-// auto strip #include <bf_sfx2/printer.hxx>
 #include <vcl/msgbox.hxx>
-// auto strip #include <vcl/sound.hxx>
-// auto strip #include <vcl/virdev.hxx>
 #include <vcl/waitobj.hxx>
 #include <svtools/zforlist.hxx>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
@@ -66,7 +60,6 @@
 #include "bf_sc.hrc"
 
 #include "arealink.hxx"
-// auto strip #include "attrib.hxx"
 #include "autoform.hxx"
 #include "cell.hxx"
 #include "detdata.hxx"
@@ -80,11 +73,8 @@
 #include "olinetab.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
-// auto strip #include "rangeutl.hxx"
-// auto strip #include "refundo.hxx"
 #include "scresid.hxx"
 #include "stlpool.hxx"
-// auto strip #include "stlsheet.hxx"
 #include "tablink.hxx"
 #include "tabvwsh.hxx"
 #include "uiitems.hxx"
@@ -92,11 +82,9 @@
 #include "undocell.hxx"
 #include "undodraw.hxx"
 #include "undotab.hxx"
-// auto strip #include "waitoff.hxx"
 #include "sizedev.hxx"
 #include "scmod.hxx"
 #include "inputhdl.hxx"
-// auto strip #include "inputwin.hxx"
 #include "editable.hxx"
 namespace binfilter {
 
@@ -109,7 +97,6 @@ using namespace ::com::sun::star;
 /*N*/ IMPL_LINK( ScDocFunc, NotifyDrawUndo, SfxUndoAction*, pUndoAction )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction( new ScUndoDraw( pUndoAction, &rDocShell ) );
-//STRIP001  rDocShell.SetDrawModified();
 /*N*/   return 0;
 /*N*/ }
 
@@ -184,7 +171,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoDetective( &rDocShell, pUndo, &aOperation ) );
 /*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
@@ -225,7 +211,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoDetective( &rDocShell, pUndo, &aOperation ) );
 /*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
@@ -241,40 +226,6 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocFunc::DetectiveAddSucc(const ScAddress& rPos)
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001
-//STRIP001  rDocShell.MakeDrawLayer();
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001
-//STRIP001  BOOL bUndo(pDoc->IsUndoEnabled());
-//STRIP001  ScDrawLayer* pModel = pDoc->GetDrawLayer();
-//STRIP001  USHORT nCol = rPos.Col();
-//STRIP001  USHORT nRow = rPos.Row();
-//STRIP001  USHORT nTab = rPos.Tab();
-//STRIP001
-//STRIP001  if (bUndo)
-//STRIP001      pModel->BeginCalcUndo();
-//STRIP001  BOOL bDone = ScDetectiveFunc( pDoc,nTab ).ShowSucc( nCol, nRow );
-//STRIP001  SdrUndoGroup* pUndo = NULL;
-//STRIP001  if (bUndo)
-//STRIP001      pUndo = pModel->GetCalcUndo();
-//STRIP001  if (bDone)
-//STRIP001  {
-//STRIP001      ScDetOpData aOperation( ScAddress(nCol,nRow,nTab), SCDETOP_ADDSUCC );
-//STRIP001      pDoc->AddDetectiveOperation( aOperation );
-//STRIP001      if (bUndo)
-//STRIP001      {
-//STRIP001          rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001                      new ScUndoDetective( &rDocShell, pUndo, &aOperation ) );
-//STRIP001      }
-//STRIP001      aModificator.SetDocumentModified();
-//STRIP001      SfxBindings* pBindings = rDocShell.GetViewBindings();
-//STRIP001      if (pBindings)
-//STRIP001          pBindings->Invalidate( SID_DETECTIVE_REFRESH );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      delete pUndo;
-//STRIP001
-//STRIP001  return bDone;
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::DetectiveDelSucc(const ScAddress& rPos)
@@ -305,7 +256,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoDetective( &rDocShell, pUndo, &aOperation ) );
 /*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
@@ -344,7 +294,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoDetective( &rDocShell, pUndo, &aOperation ) );
 /*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
@@ -384,7 +333,6 @@ using namespace ::com::sun::star;
 /*N*/       if (pUndo && bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndo->SetComment( ScGlobal::GetRscString( STR_UNDO_DETINVALID ) );
-//STRIP001 /*N*/            rDocShell.GetUndoManager()->AddUndoAction( pUndo );
 /*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       if ( bOverflow )
@@ -428,7 +376,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoDetective( &rDocShell, pUndo, NULL, pUndoList ) );
 /*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
@@ -585,34 +532,11 @@ using namespace ::com::sun::star;
 /*N*/   if (bObjects)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (bRecord)
-//STRIP001 /*?*/            pDoc->BeginDrawUndo();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (bMulti)
-//STRIP001 /*?*/            pDoc->DeleteObjectsInSelection( aMultiMark );
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            pDoc->DeleteObjectsInArea( aMarkRange.aStart.Col(), aMarkRange.aStart.Row(),
-//STRIP001 /*?*/                                       aMarkRange.aEnd.Col(),   aMarkRange.aEnd.Row(),
-//STRIP001 /*?*/                                       aMultiMark );
 /*N*/   }
 /*N*/
 /*N*/   if ( bRecord )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, aMarkRange.aStart.Tab(), aMarkRange.aEnd.Tab() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //  bei "Format/Standard" alle Attribute kopieren, weil CopyToDocument
-//STRIP001 /*?*/        //  nur mit IDF_HARDATTR zu langsam ist:
-//STRIP001 /*?*/        USHORT nUndoDocFlags = nFlags;
-//STRIP001 /*?*/        if (nFlags & IDF_ATTRIB)
-//STRIP001 /*?*/            nUndoDocFlags |= IDF_ATTRIB;
-//STRIP001 /*?*/        if (nFlags & IDF_EDITATTR)          // Edit-Engine-Attribute
-//STRIP001 /*?*/            nUndoDocFlags |= IDF_STRING;    // -> Zellen werden geaendert
-//STRIP001 /*?*/        if (nFlags & IDF_NOTE)
-//STRIP001 /*?*/            nUndoDocFlags |= IDF_CONTENTS;  // #68795# copy all cells with their notes
-//STRIP001 /*?*/        pDoc->CopyToDocument( aExtendedRange, nUndoDocFlags, bMulti, pUndoDoc, &aMultiMark );
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoDeleteContents( &rDocShell, aMultiMark, aExtendedRange,
-//STRIP001 /*?*/                                      pUndoDoc, bMulti, nFlags, bObjects ) );
 /*N*/   }
 /*N*/
 /*N*/ //!   HideAllCursors();   // falls Zusammenfassung aufgehoben wird
@@ -623,7 +547,6 @@ using namespace ::com::sun::star;
 /*N*/   else
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->DeleteSelection( nFlags, aMultiMark );
-//STRIP001 /*?*/        aMultiMark.MarkToSimple();
 /*N*/   }
 /*N*/
 /*N*/   if (!AdjustRowHeight( aExtendedRange ))
@@ -652,58 +575,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScDocFunc::TransliterateText( const ScMarkData& rMark, sal_Int32 nType,
-//STRIP001                                  BOOL bRecord, BOOL bApi )
-//STRIP001 {
-//STRIP001  ScDocShellModificator aModificator( rDocShell );
-//STRIP001
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001  if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001      bRecord = FALSE;
-//STRIP001
-//STRIP001  ScEditableTester aTester( pDoc, rMark );
-//STRIP001  if (!aTester.IsEditable())
-//STRIP001  {
-//STRIP001      if (!bApi)
-//STRIP001          rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  ScRange aMarkRange;
-//STRIP001  ScMarkData aMultiMark = rMark;
-//STRIP001  aMultiMark.SetMarking(FALSE);       // for MarkToMulti
-//STRIP001  aMultiMark.MarkToMulti();
-//STRIP001  aMultiMark.GetMultiMarkArea( aMarkRange );
-//STRIP001
-//STRIP001  if (bRecord)
-//STRIP001  {
-//STRIP001      USHORT nStartTab = aMarkRange.aStart.Tab();
-//STRIP001      USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001
-//STRIP001      ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001      pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab );
-//STRIP001      for (USHORT i=0; i<nTabCount; i++)
-//STRIP001          if (i != nStartTab && rMark.GetTableSelect(i))
-//STRIP001              pUndoDoc->AddUndoTab( i, i );
-//STRIP001
-//STRIP001      ScRange aCopyRange = aMarkRange;
-//STRIP001      aCopyRange.aStart.SetTab(0);
-//STRIP001      aCopyRange.aEnd.SetTab(nTabCount-1);
-//STRIP001      pDoc->CopyToDocument( aCopyRange, IDF_CONTENTS, TRUE, pUndoDoc, &aMultiMark );
-//STRIP001
-//STRIP001      rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001          new ScUndoTransliterate( &rDocShell, aMultiMark, pUndoDoc, nType ) );
-//STRIP001  }
-//STRIP001
-//STRIP001  pDoc->TransliterateText( aMultiMark, nType );
-//STRIP001
-//STRIP001  if (!AdjustRowHeight( aMarkRange ))
-//STRIP001      rDocShell.PostPaint( aMarkRange, PAINT_GRID );
-//STRIP001
-//STRIP001  aModificator.SetDocumentModified();
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -753,8 +624,6 @@ using namespace ::com::sun::star;
 /*N*/   if (bUndo)
 /*N*/   {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   //  wegen ChangeTracking darf UndoAction erst nach SetString angelegt werden
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(new ScUndoEnterData( &rDocShell, rPos.Col(),rPos.Row(),rPos.Tab(), 1,pTabs,
-//STRIP001 /*?*/                                     ppOldCells, pHasFormat, pOldFormats, rText, NULL ) );
 /*N*/   }
 /*N*/
 /*N*/   if ( bEditDeleted || pDoc->HasAttrib( ScRange(rPos), HASATTR_NEEDHEIGHT ) )
@@ -1208,463 +1077,11 @@ using namespace ::com::sun::star;
 /*N*/                               BOOL bRecord, BOOL bApi, BOOL bPartOfPaste )
 /*M*/ {
 /*M*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001
-//STRIP001  USHORT nStartCol = rRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rRange.aStart.Row();
-//STRIP001  USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001  USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001
-//STRIP001  if ( nStartRow > MAXROW || nEndRow > MAXROW )
-//STRIP001  {
-//STRIP001      DBG_ERROR("invalid row in InsertCells");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT nTab = nStartTab;
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001  USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001  USHORT nPaintStartX = nStartCol;
-//STRIP001  USHORT nPaintStartY = nStartRow;
-//STRIP001  USHORT nPaintEndX = nEndCol;
-//STRIP001  USHORT nPaintEndY = nEndRow;
-//STRIP001  USHORT nPaintFlags = PAINT_GRID;
-//STRIP001  BOOL bSuccess;
-//STRIP001
-//STRIP001  if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001      bRecord = FALSE;
-//STRIP001
-//STRIP001  //  zugehoerige Szenarien auch anpassen
-//STRIP001  if ( !pDoc->IsScenario(nEndTab) )
-//STRIP001      while ( nEndTab+1 < nTabCount && pDoc->IsScenario(nEndTab+1) )
-//STRIP001          ++nEndTab;
-//STRIP001
-//STRIP001                  // Test zusammengefasste
-//STRIP001
-//STRIP001  USHORT nMergeTestStartX = nStartCol;
-//STRIP001  USHORT nMergeTestStartY = nStartRow;
-//STRIP001  USHORT nMergeTestEndX = nEndCol;
-//STRIP001  USHORT nMergeTestEndY = nEndRow;
-//STRIP001
-//STRIP001  if (eCmd==INS_INSROWS)
-//STRIP001  {
-//STRIP001      nMergeTestStartX = 0;
-//STRIP001      nMergeTestEndX = MAXCOL;
-//STRIP001  }
-//STRIP001  if (eCmd==INS_INSCOLS)
-//STRIP001  {
-//STRIP001      nMergeTestStartY = 0;
-//STRIP001      nMergeTestEndY = MAXROW;
-//STRIP001  }
-//STRIP001  if (eCmd==INS_CELLSDOWN)
-//STRIP001      nMergeTestEndY = MAXROW;
-//STRIP001  if (eCmd==INS_CELLSRIGHT)
-//STRIP001      nMergeTestEndX = MAXCOL;
-//STRIP001
-//STRIP001  BOOL bCanDo = TRUE;
-//STRIP001  BOOL bNeedRefresh = FALSE;
-//STRIP001
-//STRIP001  USHORT nEditTestEndX = (eCmd==INS_INSCOLS) ? MAXCOL : nMergeTestEndX;
-//STRIP001  USHORT nEditTestEndY = (eCmd==INS_INSROWS) ? MAXROW : nMergeTestEndY;
-//STRIP001  ScEditableTester aTester( pDoc, nTab, nMergeTestStartX,nMergeTestStartY, nEditTestEndX,nEditTestEndY );
-//STRIP001  if (!aTester.IsEditable())
-//STRIP001  {
-//STRIP001      if (!bApi)
-//STRIP001          rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pDoc->HasAttrib( nMergeTestStartX,nMergeTestStartY,nTab,
-//STRIP001                          nMergeTestEndX,nMergeTestEndY,nTab,
-//STRIP001                          HASATTR_MERGED | HASATTR_OVERLAPPED ))
-//STRIP001  {
-//STRIP001      if (eCmd==INS_CELLSRIGHT)
-//STRIP001          bNeedRefresh = TRUE;
-//STRIP001
-//STRIP001      USHORT nMergeStartX = nMergeTestStartX;
-//STRIP001      USHORT nMergeStartY = nMergeTestStartY;
-//STRIP001      USHORT nMergeEndX   = nMergeTestEndX;
-//STRIP001      USHORT nMergeEndY   = nMergeTestEndY;
-//STRIP001
-//STRIP001      pDoc->ExtendMerge( nMergeStartX, nMergeStartY, nMergeEndX, nMergeEndY, nTab );
-//STRIP001      pDoc->ExtendOverlapped( nMergeStartX, nMergeStartY, nMergeEndX, nMergeEndY, nTab );
-//STRIP001      if ( nMergeStartX != nMergeTestStartX || nMergeStartY != nMergeTestStartY ||
-//STRIP001           nMergeEndX   != nMergeTestEndX   || nMergeEndY   != nMergeTestEndY )
-//STRIP001          bCanDo = FALSE;
-//STRIP001
-//STRIP001      //!     ? nur Start testen ?
-//STRIP001
-//STRIP001      if (!bCanDo)
-//STRIP001          if ( eCmd==INS_INSCOLS || eCmd==INS_INSROWS )
-//STRIP001              if ( nMergeStartX == nMergeTestStartX && nMergeStartY == nMergeTestStartY )
-//STRIP001              {
-//STRIP001                  bCanDo = TRUE;
-//STRIP001 //                   bNeedRefresh = TRUE;
-//STRIP001              }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (!bCanDo)
-//STRIP001  {
-//STRIP001      //!         auf Verschieben (Drag&Drop) zurueckfuehren !!!
-//STRIP001      //  "Kann nicht in zusammengefasste Bereiche einfuegen"
-//STRIP001      if (!bApi)
-//STRIP001          rDocShell.ErrorMessage(STR_MSSG_INSERTCELLS_0);
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  //
-//STRIP001  //      ausfuehren
-//STRIP001  //
-//STRIP001
-//STRIP001  WaitObject aWait( rDocShell.GetDialogParent() );        // wichtig wegen TrackFormulas bei UpdateReference
-//STRIP001
-//STRIP001  ScDocument* pRefUndoDoc = NULL;
-//STRIP001  ScRefUndoData* pUndoData = NULL;
-//STRIP001  if ( bRecord )
-//STRIP001  {
-//STRIP001      pRefUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001      pRefUndoDoc->InitUndo( pDoc, 0, nTabCount-1, FALSE, FALSE );
-//STRIP001
-//STRIP001      // pRefUndoDoc is filled in InsertCol / InsertRow
-//STRIP001
-//STRIP001      pUndoData = new ScRefUndoData( pDoc );
-//STRIP001
-//STRIP001      pDoc->BeginDrawUndo();
-//STRIP001  }
-//STRIP001
-//STRIP001  switch (eCmd)
-//STRIP001  {
-//STRIP001      case INS_CELLSDOWN:
-//STRIP001          bSuccess = pDoc->InsertRow( nStartCol,nStartTab, nEndCol,nEndTab,
-//STRIP001                                      nStartRow, nEndRow-nStartRow+1, pRefUndoDoc );
-//STRIP001          nPaintEndY = MAXROW;
-//STRIP001          break;
-//STRIP001      case INS_INSROWS:
-//STRIP001          bSuccess = pDoc->InsertRow( 0,nStartTab, MAXCOL,nEndTab,
-//STRIP001                                      nStartRow, nEndRow-nStartRow+1, pRefUndoDoc );
-//STRIP001          nPaintStartX = 0;
-//STRIP001          nPaintEndX = MAXCOL;
-//STRIP001          nPaintEndY = MAXROW;
-//STRIP001          nPaintFlags |= PAINT_LEFT;
-//STRIP001          break;
-//STRIP001      case INS_CELLSRIGHT:
-//STRIP001          bSuccess = pDoc->InsertCol( nStartRow,nStartTab, nEndRow,nEndTab,
-//STRIP001                                      nStartCol, nEndCol-nStartCol+1, pRefUndoDoc );
-//STRIP001          nPaintEndX = MAXCOL;
-//STRIP001          break;
-//STRIP001      case INS_INSCOLS:
-//STRIP001          bSuccess = pDoc->InsertCol( 0,nStartTab, MAXROW,nEndTab,
-//STRIP001                                      nStartCol, nEndCol-nStartCol+1, pRefUndoDoc );
-//STRIP001          nPaintStartY = 0;
-//STRIP001          nPaintEndY = MAXROW;
-//STRIP001          nPaintEndX = MAXCOL;
-//STRIP001          nPaintFlags |= PAINT_TOP;
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          DBG_ERROR("Falscher Code beim Einfuegen");
-//STRIP001          bSuccess = FALSE;
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( bSuccess )
-//STRIP001  {
-//STRIP001      if ( bRecord )
-//STRIP001      {
-//STRIP001          rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001              new ScUndoInsertCells( &rDocShell, ScRange(
-//STRIP001                                              nStartCol,nStartRow,nStartTab,
-//STRIP001                                              nEndCol,nEndRow,nEndTab ),
-//STRIP001                                      eCmd, pRefUndoDoc, pUndoData, bPartOfPaste ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bNeedRefresh)
-//STRIP001          pDoc->ExtendMerge( nMergeTestStartX,nMergeTestStartY,
-//STRIP001                              nMergeTestEndX,nMergeTestEndY, nTab, TRUE );
-//STRIP001      else
-//STRIP001          pDoc->RefreshAutoFilter( nMergeTestStartX,nMergeTestStartY,
-//STRIP001                                      nMergeTestEndX,nMergeTestEndY, nTab);
-//STRIP001
-//STRIP001      if ( eCmd == INS_INSROWS || eCmd == INS_INSCOLS )
-//STRIP001          pDoc->UpdatePageBreaks( nTab );
-//STRIP001
-//STRIP001      USHORT nExtFlags = 0;
-//STRIP001      if (pDoc->HasAttrib( nPaintStartX,nPaintStartY,nTab,
-//STRIP001                              nPaintEndX,nPaintEndY,nTab, HASATTR_PAINTEXT ))
-//STRIP001          nExtFlags |= SC_PF_LINES;
-//STRIP001
-//STRIP001      //  ganze Zeilen einfuegen: nur neue Zeilen anpassen
-//STRIP001      BOOL bAdjusted = ( eCmd == INS_INSROWS ) ?
-//STRIP001              AdjustRowHeight(ScRange(0,nStartRow,nStartTab, MAXCOL,nEndRow,nEndTab)) :
-//STRIP001              AdjustRowHeight(ScRange(0,nPaintStartY,nStartTab, MAXCOL,nPaintEndY,nEndTab));
-//STRIP001      if (bAdjusted)
-//STRIP001      {
-//STRIP001          //  paint only what is not done by AdjustRowHeight
-//STRIP001          if (nPaintFlags & PAINT_TOP)
-//STRIP001              rDocShell.PostPaint( nPaintStartX, nPaintStartY, nStartTab,
-//STRIP001                                   nPaintEndX,   nPaintEndY,   nEndTab,   PAINT_TOP );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rDocShell.PostPaint( nPaintStartX, nPaintStartY, nStartTab,
-//STRIP001                               nPaintEndX,   nPaintEndY,   nEndTab,
-//STRIP001                               nPaintFlags,  nExtFlags);
-//STRIP001      aModificator.SetDocumentModified();
-//STRIP001
-//STRIP001 //!      pDocSh->UpdateOle(GetViewData());   // muss an der View bleiben
-//STRIP001 //!      CellContentChanged();               // muss an der View bleiben
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      delete pRefUndoDoc;
-//STRIP001      delete pUndoData;
-//STRIP001      if (!bApi)
-//STRIP001          rDocShell.ErrorMessage(STR_INSERT_FULL);        // Spalte/Zeile voll
-//STRIP001  }
-//STRIP001  return bSuccess;
 /*M*/ }
 
 /*N*/ BOOL ScDocFunc::DeleteCells( const ScRange& rRange, DelCellCmd eCmd, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
-//STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
-//STRIP001 /*?*/    USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001 /*?*/    USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001 /*?*/    USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001 /*?*/    USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( nStartRow > MAXROW || nEndRow > MAXROW )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        DBG_ERROR("invalid row in DeleteCells");
-//STRIP001 /*?*/        return FALSE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nTab = nStartTab;
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001 /*?*/    USHORT nPaintStartX = nStartCol;
-//STRIP001 /*?*/    USHORT nPaintStartY = nStartRow;
-//STRIP001 /*?*/    USHORT nPaintEndX = nEndCol;
-//STRIP001 /*?*/    USHORT nPaintEndY = nEndRow;
-//STRIP001 /*?*/    USHORT nPaintFlags = PAINT_GRID;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  zugehoerige Szenarien auch anpassen
-//STRIP001 /*?*/    if ( !pDoc->IsScenario(nEndTab) )
-//STRIP001 /*?*/        while ( nEndTab+1 < nTabCount && pDoc->IsScenario(nEndTab+1) )
-//STRIP001 /*?*/            ++nEndTab;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nUndoStartX = nStartCol;
-//STRIP001 /*?*/    USHORT nUndoStartY = nStartRow;
-//STRIP001 /*?*/    USHORT nUndoEndX = nEndCol;
-//STRIP001 /*?*/    USHORT nUndoEndY = nEndRow;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (eCmd==DEL_DELROWS)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        nUndoStartX = 0;
-//STRIP001 /*?*/        nUndoEndX = MAXCOL;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    if (eCmd==DEL_DELCOLS)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        nUndoStartY = 0;
-//STRIP001 /*?*/        nUndoEndY = MAXROW;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nDelEndX = nUndoEndX;
-//STRIP001 /*?*/    if (eCmd==DEL_CELLSLEFT||eCmd==DEL_DELCOLS) nDelEndX = MAXCOL;
-//STRIP001 /*?*/    USHORT nDelEndY = nUndoEndY;
-//STRIP001 /*?*/    if (eCmd==DEL_CELLSUP||eCmd==DEL_DELROWS) nDelEndY = MAXROW;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // Test Zellschutz
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nEditTestEndX = nUndoEndX;
-//STRIP001 /*?*/    if ( eCmd==DEL_DELCOLS || eCmd==DEL_CELLSLEFT ) nEditTestEndX = MAXCOL;
-//STRIP001 /*?*/    USHORT nEditTestEndY = nUndoEndY;
-//STRIP001 /*?*/    if ( eCmd==DEL_DELROWS || eCmd==DEL_CELLSUP ) nEditTestEndY = MAXROW;
-//STRIP001 /*?*/    ScEditableTester aTester( pDoc, nTab, nUndoStartX,nUndoStartY,nEditTestEndX,nEditTestEndY );
-//STRIP001 /*?*/    if (!aTester.IsEditable())
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (!bApi)
-//STRIP001 /*?*/            rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001 /*?*/        return FALSE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // Test zusammengefasste
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nMergeTestEndX = (eCmd==DEL_CELLSLEFT) ? MAXCOL : nUndoEndX;
-//STRIP001 /*?*/    USHORT nMergeTestEndY = (eCmd==DEL_CELLSUP)   ? MAXROW : nUndoEndY;
-//STRIP001 /*?*/    BOOL bCanDo = TRUE;
-//STRIP001 /*?*/    BOOL bNeedRefresh = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (pDoc->HasAttrib( nUndoStartX,nUndoStartY,nTab, nMergeTestEndX,nMergeTestEndY,nTab,
-//STRIP001 /*?*/                            HASATTR_MERGED | HASATTR_OVERLAPPED ))
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (eCmd==DEL_CELLSLEFT)
-//STRIP001 /*?*/            bNeedRefresh = TRUE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        USHORT nMergeStartX = nUndoStartX;
-//STRIP001 /*?*/        USHORT nMergeStartY = nUndoStartY;
-//STRIP001 /*?*/        USHORT nMergeEndX   = nMergeTestEndX;
-//STRIP001 /*?*/        USHORT nMergeEndY   = nMergeTestEndY;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDoc->ExtendMerge( nMergeStartX, nMergeStartY, nMergeEndX, nMergeEndY, nTab );
-//STRIP001 /*?*/        pDoc->ExtendOverlapped( nMergeStartX, nMergeStartY, nMergeEndX, nMergeEndY, nTab );
-//STRIP001 /*?*/        if ( nMergeStartX != nUndoStartX  || nMergeStartY != nUndoStartY ||
-//STRIP001 /*?*/             nMergeEndX != nMergeTestEndX || nMergeEndY != nMergeTestEndY )
-//STRIP001 /*?*/            bCanDo = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //      ganze Zeilen/Spalten: Testen, ob Merge komplett geloescht werden kann
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (!bCanDo)
-//STRIP001 /*?*/            if ( eCmd==DEL_DELCOLS || eCmd==DEL_DELROWS )
-//STRIP001 /*?*/                if ( nMergeStartX == nUndoStartX && nMergeStartY == nUndoStartY )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    bCanDo = TRUE;
-//STRIP001 /*?*/                    bNeedRefresh = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (!bCanDo)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        //!         auf Verschieben (Drag&Drop) zurueckfuehren !!!
-//STRIP001 /*?*/        //  "Kann nicht aus zusammengefassten Bereichen loeschen"
-//STRIP001 /*?*/        if (!bApi)
-//STRIP001 /*?*/            rDocShell.ErrorMessage(STR_MSSG_DELETECELLS_0);
-//STRIP001 /*?*/        return FALSE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //
-//STRIP001 /*?*/    //      ausfuehren
-//STRIP001 /*?*/    //
-//STRIP001 /*?*/
-//STRIP001 /*?*/    WaitObject aWait( rDocShell.GetDialogParent() );        // wichtig wegen TrackFormulas bei UpdateReference
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocument* pUndoDoc = NULL;
-//STRIP001 /*?*/    ScDocument* pRefUndoDoc = NULL;
-//STRIP001 /*?*/    ScRefUndoData* pUndoData = NULL;
-//STRIP001 /*?*/    if ( bRecord )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, nStartTab, nEndTab,
-//STRIP001 /*?*/                                (eCmd==DEL_DELCOLS), (eCmd==DEL_DELROWS) );
-//STRIP001 /*?*/        pDoc->CopyToDocument( nUndoStartX, nUndoStartY, nStartTab, nDelEndX, nDelEndY, nEndTab,
-//STRIP001 /*?*/                                IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/        pRefUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        pRefUndoDoc->InitUndo( pDoc, 0, nTabCount-1, FALSE, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pUndoData = new ScRefUndoData( pDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDoc->BeginDrawUndo();
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nExtFlags = 0;
-//STRIP001 /*?*/    if (pDoc->HasAttrib( nStartCol,nStartRow,nTab, nEndCol,nEndRow,nTab, HASATTR_PAINTEXT ))
-//STRIP001 /*?*/        nExtFlags |= SC_PF_LINES;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bUndoOutline = FALSE;
-//STRIP001 /*?*/    switch (eCmd)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        case DEL_CELLSUP:
-//STRIP001 /*?*/            pDoc->DeleteRow( nStartCol, nStartTab, nEndCol, nEndTab,
-//STRIP001 /*?*/                                nStartRow, nEndRow-nStartRow+1, pRefUndoDoc );
-//STRIP001 /*?*/            nPaintEndY = MAXROW;
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/        case DEL_DELROWS:
-//STRIP001 /*?*/            pDoc->DeleteRow( 0, nStartTab, MAXCOL, nEndTab,
-//STRIP001 /*?*/                                nStartRow, nEndRow-nStartRow+1, pRefUndoDoc, &bUndoOutline );
-//STRIP001 /*?*/            nPaintStartX = 0;
-//STRIP001 /*?*/            nPaintEndX = MAXCOL;
-//STRIP001 /*?*/            nPaintEndY = MAXROW;
-//STRIP001 /*?*/            nPaintFlags |= PAINT_LEFT;
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/        case DEL_CELLSLEFT:
-//STRIP001 /*?*/            pDoc->DeleteCol( nStartRow, nStartTab, nEndRow, nEndTab,
-//STRIP001 /*?*/                                nStartCol, nEndCol-nStartCol+1, pRefUndoDoc );
-//STRIP001 /*?*/            nPaintEndX = MAXCOL;
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/        case DEL_DELCOLS:
-//STRIP001 /*?*/            pDoc->DeleteCol( 0, nStartTab, MAXROW, nEndTab,
-//STRIP001 /*?*/                                nStartCol, nEndCol-nStartCol+1, pRefUndoDoc, &bUndoOutline );
-//STRIP001 /*?*/            nPaintStartY = 0;
-//STRIP001 /*?*/            nPaintEndY = MAXROW;
-//STRIP001 /*?*/            nPaintEndX = MAXCOL;
-//STRIP001 /*?*/            nPaintFlags |= PAINT_TOP;
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/        default:
-//STRIP001 /*?*/            DBG_ERROR("Falscher Code beim Loeschen");
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //! Test, ob Outline in Groesse geaendert
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( bRecord )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        for (USHORT i=nStartTab; i<=nEndTab; i++)
-//STRIP001 /*?*/            pRefUndoDoc->DeleteAreaTab(nUndoStartX,nUndoStartY,nDelEndX,nDelEndY,i,
-//STRIP001 /*?*/                                        IDF_ALL);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            //  alle Tabellen anlegen, damit Formeln kopiert werden koennen:
-//STRIP001 /*?*/        pUndoDoc->AddUndoTab( 0, nTabCount-1, FALSE, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            //  kopieren mit bColRowFlags=FALSE (#54194#)
-//STRIP001 /*?*/        pRefUndoDoc->CopyToDocument(0,0,0,MAXCOL,MAXROW,MAXTAB,IDF_FORMULA,FALSE,pUndoDoc,NULL,FALSE);
-//STRIP001 /*?*/        delete pRefUndoDoc;
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoDeleteCells( &rDocShell, ScRange(
-//STRIP001 /*?*/                                            nStartCol,nStartRow,nStartTab,
-//STRIP001 /*?*/                                            nEndCol,nEndRow,nEndTab ),
-//STRIP001 /*?*/                                    eCmd, pUndoDoc, pUndoData ) );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bNeedRefresh)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if ( eCmd==DEL_DELCOLS || eCmd==DEL_DELROWS )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if (eCmd==DEL_DELCOLS) nMergeTestEndX = MAXCOL;
-//STRIP001 /*?*/            if (eCmd==DEL_DELROWS) nMergeTestEndY = MAXROW;
-//STRIP001 /*?*/            ScPatternAttr aPattern( pDoc->GetPool() );
-//STRIP001 /*?*/            aPattern.GetItemSet().Put( ScMergeFlagAttr() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ScMarkData aMark;                           // nur fuer Tabellen
-//STRIP001 /*?*/            for (USHORT i=nStartTab; i<=nEndTab; i++)
-//STRIP001 /*?*/                aMark.SelectTable( i, TRUE );
-//STRIP001 /*?*/            pDoc->ApplyPatternArea( nUndoStartX, nUndoStartY, nMergeTestEndX, nMergeTestEndY,
-//STRIP001 /*?*/                                        aMark, aPattern );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        pDoc->ExtendMerge( nUndoStartX, nUndoStartY, nMergeTestEndX, nMergeTestEndY, nTab, TRUE );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( eCmd == DEL_DELCOLS || eCmd == DEL_DELROWS )
-//STRIP001 /*?*/        pDoc->UpdatePageBreaks( nTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (pDoc->HasAttrib( nPaintStartX,nPaintStartY,nTab,
-//STRIP001 /*?*/                            nPaintEndX,nPaintEndY,nTab, HASATTR_PAINTEXT ))
-//STRIP001 /*?*/        nExtFlags |= SC_PF_LINES;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  ganze Zeilen loeschen: nichts anpassen
-//STRIP001 /*?*/    if ( eCmd == DEL_DELROWS ||
-//STRIP001 /*?*/            !AdjustRowHeight(ScRange(0,nPaintStartY,nStartTab, MAXCOL,nPaintEndY,nEndTab)) )
-//STRIP001 /*?*/        rDocShell.PostPaint( nPaintStartX, nPaintStartY, nStartTab,
-//STRIP001 /*?*/                             nPaintEndX,   nPaintEndY,   nEndTab,
-//STRIP001 /*?*/                             nPaintFlags,  nExtFlags );
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        //  paint only what is not done by AdjustRowHeight
-//STRIP001 /*?*/        if (nExtFlags & SC_PF_LINES)
-//STRIP001 /*?*/            lcl_PaintAbove( rDocShell, ScRange( nPaintStartX, nPaintStartY, nStartTab,
-//STRIP001 /*?*/                                                nPaintEndX,   nPaintEndY,   nEndTab) );
-//STRIP001 /*?*/        if (nPaintFlags & PAINT_TOP)
-//STRIP001 /*?*/            rDocShell.PostPaint( nPaintStartX, nPaintStartY, nStartTab,
-//STRIP001 /*?*/                                 nPaintEndX,   nPaintEndY,   nEndTab,   PAINT_TOP );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    aModificator.SetDocumentModified();
-//STRIP001 /*?*/
-//STRIP001 /*?*/ //!    pDocSh->UpdateOle(GetViewData());   // muss an der View bleiben
-//STRIP001 /*?*/ //!    CellContentChanged();               // muss an der View bleiben
-//STRIP001 /*?*/
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -1672,343 +1089,6 @@ using namespace ::com::sun::star;
 /*N*/                               BOOL bCut, BOOL bRecord, BOOL bPaint, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nStartCol = rSource.aStart.Col();
-//STRIP001 /*?*/    USHORT nStartRow = rSource.aStart.Row();
-//STRIP001 /*?*/    USHORT nStartTab = rSource.aStart.Tab();
-//STRIP001 /*?*/    USHORT nEndCol = rSource.aEnd.Col();
-//STRIP001 /*?*/    USHORT nEndRow = rSource.aEnd.Row();
-//STRIP001 /*?*/    USHORT nEndTab = rSource.aEnd.Tab();
-//STRIP001 /*?*/    USHORT nDestCol = rDestPos.Col();
-//STRIP001 /*?*/    USHORT nDestRow = rDestPos.Row();
-//STRIP001 /*?*/    USHORT nDestTab = rDestPos.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( nStartRow > MAXROW || nEndRow > MAXROW || nDestRow > MAXROW )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        DBG_ERROR("invalid row in MoveBlock");
-//STRIP001 /*?*/        return FALSE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  zugehoerige Szenarien auch anpassen - nur wenn innerhalb einer Tabelle verschoben wird!
-//STRIP001 /*?*/    BOOL bScenariosAdded = FALSE;
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001 /*?*/    if ( nDestTab == nStartTab && !pDoc->IsScenario(nEndTab) )
-//STRIP001 /*?*/        while ( nEndTab+1 < nTabCount && pDoc->IsScenario(nEndTab+1) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            ++nEndTab;
-//STRIP001 /*?*/            bScenariosAdded = TRUE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nSrcTabCount = nEndTab-nStartTab+1;
-//STRIP001 /*?*/    USHORT nDestEndTab = nDestTab+nSrcTabCount-1;
-//STRIP001 /*?*/    USHORT nTab;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocument* pClipDoc = new ScDocument( SCDOCMODE_CLIP );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScMarkData aSourceMark;
-//STRIP001 /*?*/    for (nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/        aSourceMark.SelectTable( nTab, TRUE );      // Source selektieren
-//STRIP001 /*?*/    aSourceMark.SetMarkArea( rSource );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocShellRef aDragShellRef;
-//STRIP001 /*?*/    if ( pDoc->HasOLEObjectsInArea( rSource ) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        aDragShellRef = new ScDocShell;     // DocShell needs a Ref immediately
-//STRIP001 /*?*/        aDragShellRef->DoInitNew(NULL);
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    ScDrawLayer::SetGlobalDrawPersist(aDragShellRef);
-//STRIP001 /*?*/
-//STRIP001 /*?*/    pDoc->CopyToClip( nStartCol, nStartRow, nEndCol, nEndRow, bCut, pClipDoc,
-//STRIP001 /*?*/                        FALSE, &aSourceMark, bScenariosAdded, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDrawLayer::SetGlobalDrawPersist(NULL);
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nOldEndCol = nEndCol;
-//STRIP001 /*?*/    USHORT nOldEndRow = nEndRow;
-//STRIP001 /*?*/    BOOL bClipOver = FALSE;
-//STRIP001 /*?*/    for (nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        USHORT nTmpEndCol = nOldEndCol;
-//STRIP001 /*?*/        USHORT nTmpEndRow = nOldEndRow;
-//STRIP001 /*?*/        if (pDoc->ExtendMerge( nStartCol, nStartRow, nTmpEndCol, nTmpEndRow, nTab ))
-//STRIP001 /*?*/            bClipOver = TRUE;
-//STRIP001 /*?*/        if ( nTmpEndCol > nEndCol ) nEndCol = nTmpEndCol;
-//STRIP001 /*?*/        if ( nTmpEndRow > nEndRow ) nEndRow = nTmpEndRow;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nDestEndCol = nDestCol + ( nOldEndCol-nStartCol );
-//STRIP001 /*?*/    USHORT nDestEndRow = nDestRow + ( nOldEndRow-nStartRow );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nUndoEndCol = nDestCol + ( nEndCol-nStartCol );      // erweitert im Zielblock
-//STRIP001 /*?*/    USHORT nUndoEndRow = nDestRow + ( nEndRow-nStartRow );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bIncludeFiltered = bCut;
-//STRIP001 /*?*/    if ( !bIncludeFiltered )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        //  adjust sizes to include only non-filtered rows
-//STRIP001 /*?*/
-//STRIP001 /*?*/        USHORT nClipX, nClipY;
-//STRIP001 /*?*/        pClipDoc->GetClipArea( nClipX, nClipY, FALSE );
-//STRIP001 /*?*/        USHORT nUndoAdd = nUndoEndRow - nDestEndRow;
-//STRIP001 /*?*/        nDestEndRow = nDestRow + nClipY;
-//STRIP001 /*?*/        nUndoEndRow = nDestEndRow + nUndoAdd;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (nUndoEndCol>MAXCOL || nUndoEndRow>MAXROW)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (!bApi)
-//STRIP001 /*?*/            rDocShell.ErrorMessage(STR_PASTE_FULL);
-//STRIP001 /*?*/        delete pClipDoc;
-//STRIP001 /*?*/        return FALSE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  Test auf Zellschutz
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScEditableTester aTester;
-//STRIP001 /*?*/    for (nTab=nDestTab; nTab<=nDestEndTab; nTab++)
-//STRIP001 /*?*/        aTester.TestBlock( pDoc, nTab, nDestCol,nDestRow, nUndoEndCol,nUndoEndRow );
-//STRIP001 /*?*/    if (bCut)
-//STRIP001 /*?*/        for (nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/            aTester.TestBlock( pDoc, nTab, nStartCol,nStartRow, nEndCol,nEndRow );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (!aTester.IsEditable())
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (!bApi)
-//STRIP001 /*?*/            rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001 /*?*/        delete pClipDoc;
-//STRIP001 /*?*/        return FALSE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  Test auf zusammengefasste - beim Verschieben erst nach dem Loeschen
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bClipOver && !bCut)
-//STRIP001 /*?*/        if (pDoc->HasAttrib( nDestCol,nDestRow,nDestTab, nUndoEndCol,nUndoEndRow,nDestEndTab,
-//STRIP001 /*?*/                                HASATTR_MERGED | HASATTR_OVERLAPPED ))
-//STRIP001 /*?*/        {       // "Zusammenfassen nicht verschachteln !"
-//STRIP001 /*?*/            if (!bApi)
-//STRIP001 /*?*/                rDocShell.ErrorMessage(STR_MSSG_MOVEBLOCKTO_0);
-//STRIP001 /*?*/            delete pClipDoc;
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  Linien drin? (fuer Paint)
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bSourceLines = pDoc->HasAttrib( nStartCol,nStartRow,nStartTab,
-//STRIP001 /*?*/                                nEndCol,nEndRow,nEndTab, HASATTR_PAINTEXT );
-//STRIP001 /*?*/    BOOL bDestLines = pDoc->HasAttrib( nDestCol,nDestRow,nDestTab,
-//STRIP001 /*?*/                                nDestEndCol,nDestEndRow,nDestEndTab, HASATTR_PAINTEXT );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //
-//STRIP001 /*?*/    //  ausfuehren
-//STRIP001 /*?*/    //
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocument* pUndoDoc = NULL;
-//STRIP001 /*?*/    ScDocument* pRefUndoDoc = NULL;
-//STRIP001 /*?*/    ScRefUndoData* pUndoData = NULL;
-//STRIP001 /*?*/    if (bRecord)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        BOOL bWholeCols = ( nStartRow == 0 && nEndRow == MAXROW );
-//STRIP001 /*?*/        BOOL bWholeRows = ( nStartCol == 0 && nEndCol == MAXCOL );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, nStartTab, nEndTab, bWholeCols, bWholeRows );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (bCut)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pDoc->CopyToDocument( nStartCol, nStartRow, nStartTab, nEndCol, nEndRow, nEndTab,
-//STRIP001 /*?*/                                    IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/            pRefUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pRefUndoDoc->InitUndo( pDoc, 0, nTabCount-1, FALSE, FALSE );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( nDestTab != nStartTab )
-//STRIP001 /*?*/            pUndoDoc->AddUndoTab( nDestTab, nDestEndTab, bWholeCols, bWholeRows );
-//STRIP001 /*?*/        pDoc->CopyToDocument( nDestCol, nDestRow, nDestTab,
-//STRIP001 /*?*/                                    nDestEndCol, nDestEndRow, nDestEndTab,
-//STRIP001 /*?*/                                    IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pUndoData = new ScRefUndoData( pDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDoc->BeginDrawUndo();
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bSourceHeight = FALSE;     // Hoehen angepasst?
-//STRIP001 /*?*/    if (bCut)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        ScMarkData aDelMark;    // only for tables
-//STRIP001 /*?*/        for (nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pDoc->DeleteAreaTab( nStartCol,nStartRow, nOldEndCol,nOldEndRow, nTab, IDF_ALL );
-//STRIP001 /*?*/            aDelMark.SelectTable( nTab, TRUE );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        pDoc->DeleteObjectsInArea( nStartCol,nStartRow, nOldEndCol,nOldEndRow, aDelMark );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //  Test auf zusammengefasste
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (bClipOver)
-//STRIP001 /*?*/            if (pDoc->HasAttrib( nDestCol,nDestRow,nDestTab,
-//STRIP001 /*?*/                                    nUndoEndCol,nUndoEndRow,nDestEndTab,
-//STRIP001 /*?*/                                    HASATTR_MERGED | HASATTR_OVERLAPPED ))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pDoc->CopyFromClip( rSource, aSourceMark, IDF_ALL, pRefUndoDoc, pClipDoc );
-//STRIP001 /*?*/                for (nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    USHORT nTmpEndCol = nEndCol;
-//STRIP001 /*?*/                    USHORT nTmpEndRow = nEndRow;
-//STRIP001 /*?*/                    pDoc->ExtendMerge( nStartCol, nStartRow, nTmpEndCol, nTmpEndRow, nTab, TRUE );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  Fehlermeldung erst nach dem Wiederherstellen des Inhalts
-//STRIP001 /*?*/                if (!bApi)      // "Zusammenfassen nicht verschachteln !"
-//STRIP001 /*?*/                    rDocShell.ErrorMessage(STR_MSSG_MOVEBLOCKTO_0);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                delete pUndoDoc;
-//STRIP001 /*?*/                delete pRefUndoDoc;
-//STRIP001 /*?*/                delete pUndoData;
-//STRIP001 /*?*/                delete pClipDoc;
-//STRIP001 /*?*/                return FALSE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        bSourceHeight = AdjustRowHeight( rSource, FALSE );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScRange aPasteDest( nDestCol, nDestRow, nDestTab, nDestEndCol, nDestEndRow, nDestEndTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScMarkData aDestMark;
-//STRIP001 /*?*/    for (nTab=nDestTab; nTab<=nDestEndTab; nTab++)
-//STRIP001 /*?*/        aDestMark.SelectTable( nTab, TRUE );        // Destination selektieren
-//STRIP001 /*?*/    aDestMark.SetMarkArea( aPasteDest );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    pDoc->CopyFromClip( aPasteDest, aDestMark, IDF_ALL & ~IDF_OBJECTS,
-//STRIP001 /*?*/                        pRefUndoDoc, pClipDoc, TRUE, FALSE, bIncludeFiltered );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    // skipped rows and merged cells don't mix
-//STRIP001 /*?*/    if ( !bIncludeFiltered && pClipDoc->HasClipFilteredRows() )
-//STRIP001 /*?*/        UnmergeCells( aPasteDest, FALSE, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    VirtualDevice aVirtDev;
-//STRIP001 /*?*/    BOOL bDestHeight = AdjustRowHeight(
-//STRIP001 /*?*/                            ScRange( 0,nDestRow,nDestTab, MAXCOL,nDestEndRow,nDestEndTab ),
-//STRIP001 /*?*/                            FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  paste drawing objects after adjusting row heights
-//STRIP001 /*?*/    if ( pClipDoc->GetDrawLayer() )
-//STRIP001 /*?*/        pDoc->CopyFromClip( aPasteDest, aDestMark, IDF_OBJECTS,
-//STRIP001 /*?*/                            pRefUndoDoc, pClipDoc, TRUE, FALSE, bIncludeFiltered );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bRecord)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (pRefUndoDoc)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/                //  alle Tabellen anlegen, damit Formeln kopiert werden koennen:
-//STRIP001 /*?*/            pUndoDoc->AddUndoTab( 0, nTabCount-1, FALSE, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pRefUndoDoc->DeleteArea( nDestCol, nDestRow, nDestEndCol, nDestEndRow, aSourceMark, IDF_ALL );
-//STRIP001 /*?*/            //  kopieren mit bColRowFlags=FALSE (#54194#)
-//STRIP001 /*?*/            pRefUndoDoc->CopyToDocument( 0, 0, 0, MAXCOL, MAXROW, MAXTAB,
-//STRIP001 /*?*/                                            IDF_FORMULA, FALSE, pUndoDoc, NULL, FALSE );
-//STRIP001 /*?*/            delete pRefUndoDoc;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoDragDrop( &rDocShell, ScRange(
-//STRIP001 /*?*/                                    nStartCol, nStartRow, nStartTab,
-//STRIP001 /*?*/                                    nOldEndCol, nOldEndRow, nEndTab ),
-//STRIP001 /*?*/                                ScAddress( nDestCol, nDestRow, nDestTab ),
-//STRIP001 /*?*/                                bCut, pUndoDoc, pUndoData, bScenariosAdded ) );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nDestPaintEndCol = nDestEndCol;
-//STRIP001 /*?*/    USHORT nDestPaintEndRow = nDestEndRow;
-//STRIP001 /*?*/    for (nTab=nDestTab; nTab<=nDestEndTab; nTab++)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        USHORT nTmpEndCol = nDestEndCol;
-//STRIP001 /*?*/        USHORT nTmpEndRow = nDestEndRow;
-//STRIP001 /*?*/        pDoc->ExtendMerge( nDestCol, nDestRow, nTmpEndCol, nTmpEndRow, nTab, TRUE );
-//STRIP001 /*?*/        if (nTmpEndCol > nDestPaintEndCol) nDestPaintEndCol = nTmpEndCol;
-//STRIP001 /*?*/        if (nTmpEndRow > nDestPaintEndRow) nDestPaintEndRow = nTmpEndRow;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bCut)
-//STRIP001 /*?*/        for (nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/            pDoc->RefreshAutoFilter( nStartCol, nStartRow, nEndCol, nEndRow, nTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bPaint)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/            //  Zielbereich:
-//STRIP001 /*?*/
-//STRIP001 /*?*/        USHORT nPaintStartX = nDestCol;
-//STRIP001 /*?*/        USHORT nPaintStartY = nDestRow;
-//STRIP001 /*?*/        USHORT nPaintEndX = nDestPaintEndCol;
-//STRIP001 /*?*/        USHORT nPaintEndY = nDestPaintEndRow;
-//STRIP001 /*?*/        USHORT nFlags = PAINT_GRID;
-//STRIP001 /*?*/        USHORT nExt = 0;
-//STRIP001 /*?*/        if ( bSourceLines || bDestLines )
-//STRIP001 /*?*/            nExt |= SC_PF_LINES;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( nStartRow==0 && nEndRow==MAXROW )      // Breiten mitkopiert?
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            nPaintEndX = MAXCOL;
-//STRIP001 /*?*/            nPaintStartY = 0;
-//STRIP001 /*?*/            nPaintEndY = MAXROW;
-//STRIP001 /*?*/            nFlags |= PAINT_TOP;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        if ( bDestHeight || ( nStartCol == 0 && nEndCol == MAXCOL ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            nPaintEndY = MAXROW;
-//STRIP001 /*?*/            nPaintStartX = 0;
-//STRIP001 /*?*/            nPaintEndX = MAXCOL;
-//STRIP001 /*?*/            nFlags |= PAINT_LEFT;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        if ( bScenariosAdded )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            nPaintStartX = nPaintStartY = 0;
-//STRIP001 /*?*/            nPaintEndX = MAXCOL;
-//STRIP001 /*?*/            nPaintEndY = MAXROW;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.PostPaint( nPaintStartX,nPaintStartY,nDestTab,
-//STRIP001 /*?*/                            nPaintEndX,nPaintEndY,nDestEndTab, nFlags, nExt );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( bCut )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/                //  Quellbereich:
-//STRIP001 /*?*/
-//STRIP001 /*?*/            nPaintStartX = nStartCol;
-//STRIP001 /*?*/            nPaintStartY = nStartRow;
-//STRIP001 /*?*/            nPaintEndX = nEndCol;
-//STRIP001 /*?*/            nPaintEndY = nEndRow;
-//STRIP001 /*?*/            nFlags = PAINT_GRID;
-//STRIP001 /*?*/            nExt = 0;
-//STRIP001 /*?*/            if ( bSourceLines )
-//STRIP001 /*?*/                nExt |= SC_PF_LINES;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( bSourceHeight )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                nPaintEndY = MAXROW;
-//STRIP001 /*?*/                nPaintStartX = 0;
-//STRIP001 /*?*/                nPaintEndX = MAXCOL;
-//STRIP001 /*?*/                nFlags |= PAINT_LEFT;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            if ( bScenariosAdded )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                nPaintStartX = nPaintStartY = 0;
-//STRIP001 /*?*/                nPaintEndX = MAXCOL;
-//STRIP001 /*?*/                nPaintEndY = MAXROW;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            rDocShell.PostPaint( nPaintStartX,nPaintStartY,nStartTab,
-//STRIP001 /*?*/                                nPaintEndX,nPaintEndY,nEndTab, nFlags, nExt );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    aModificator.SetDocumentModified();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    delete pClipDoc;
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -2054,84 +1134,6 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocFunc::DeleteTable( USHORT nTab, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 WaitObject aWait( rDocShell.GetDialogParent() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bSuccess = FALSE;
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/    BOOL bWasLinked = pDoc->IsLinked(nTab);
-//STRIP001 /*?*/    ScDocument* pUndoDoc = NULL;
-//STRIP001 /*?*/    ScRefUndoData* pUndoData = NULL;
-//STRIP001 /*?*/    if (bRecord)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        USHORT nCount = pDoc->GetTableCount();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, nTab, nTab, TRUE, TRUE );     // nur nTab mit Flags
-//STRIP001 /*?*/        pUndoDoc->AddUndoTab( 0, nCount-1 );                    // alle Tabs fuer Referenzen
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDoc->CopyToDocument(0,0,nTab, MAXCOL,MAXROW,nTab, IDF_ALL,FALSE, pUndoDoc );
-//STRIP001 /*?*/        String aOldName;
-//STRIP001 /*?*/        pDoc->GetName( nTab, aOldName );
-//STRIP001 /*?*/        pUndoDoc->RenameTab( nTab, aOldName, FALSE );
-//STRIP001 /*?*/        if (bWasLinked)
-//STRIP001 /*?*/            pUndoDoc->SetLink( nTab, pDoc->GetLinkMode(nTab), pDoc->GetLinkDoc(nTab),
-//STRIP001 /*?*/                                pDoc->GetLinkFlt(nTab), pDoc->GetLinkOpt(nTab),
-//STRIP001 /*?*/                                pDoc->GetLinkTab(nTab),
-//STRIP001 /*?*/                                pDoc->GetLinkRefreshDelay(nTab) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( pDoc->IsScenario(nTab) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pUndoDoc->SetScenario( nTab, TRUE );
-//STRIP001 /*?*/            String aComment;
-//STRIP001 /*?*/            Color  aColor;
-//STRIP001 /*?*/            USHORT nScenFlags;
-//STRIP001 /*?*/            pDoc->GetScenarioData( nTab, aComment, aColor, nScenFlags );
-//STRIP001 /*?*/            pUndoDoc->SetScenarioData( nTab, aComment, aColor, nScenFlags );
-//STRIP001 /*?*/            BOOL bActive = pDoc->IsActiveScenario( nTab );
-//STRIP001 /*?*/            pUndoDoc->SetActiveScenario( nTab, bActive );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        pUndoDoc->SetVisible( nTab, pDoc->IsVisible( nTab ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //  Drawing-Layer muss sein Undo selbst in der Hand behalten !!!
-//STRIP001 /*?*/        pDoc->BeginDrawUndo();                          //  DeleteTab erzeugt ein SdrUndoDelPage
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pUndoData = new ScRefUndoData( pDoc );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (pDoc->DeleteTab( nTab, pUndoDoc ))
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (bRecord)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SvUShorts theTabs;
-//STRIP001 /*?*/            theTabs.Insert(nTab,theTabs.Count());
-//STRIP001 /*?*/            rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoDeleteTab( &rDocShell, theTabs, pUndoDoc, pUndoData ));
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        //  Views updaten:
-//STRIP001 /*?*/        rDocShell.Broadcast( ScTablesHint( SC_TAB_DELETED, nTab ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (bWasLinked)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            rDocShell.UpdateLinks();                // Link-Manager updaten
-//STRIP001 /*?*/            SfxBindings* pBindings = rDocShell.GetViewBindings();
-//STRIP001 /*?*/            if (pBindings)
-//STRIP001 /*?*/                pBindings->Invalidate(SID_LINKS);
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.PostPaintExtras();
-//STRIP001 /*?*/        aModificator.SetDocumentModified();
-//STRIP001 /*?*/        SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_TABLES_CHANGED ) );
-//STRIP001 /*?*/        bSuccess = TRUE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        delete pUndoDoc;
-//STRIP001 /*?*/        delete pUndoData;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    return bSuccess;
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::SetTableVisible( USHORT nTab, BOOL bVisible, BOOL bApi )
@@ -2407,56 +1409,6 @@ using namespace ::com::sun::star;
 /*N*/                               BOOL bRecord, BOOL bSetModified, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/    USHORT nTab = rPos.Tab();
-//STRIP001 /*?*/    SfxBindings* pBindings = rDocShell.GetViewBindings();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nPos = bColumn ? rPos.Col() : rPos.Row();
-//STRIP001 /*?*/    if (nPos == 0)
-//STRIP001 /*?*/        return FALSE;                   // erste Spalte / Zeile
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BYTE nFlags = bColumn ? pDoc->GetColFlags( nPos, nTab ) : pDoc->GetRowFlags( nPos, nTab );
-//STRIP001 /*?*/    if (nFlags & CR_MANUALBREAK)
-//STRIP001 /*?*/        return TRUE;                    // Umbruch schon gesetzt
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bRecord)
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoPageBreak( &rDocShell, rPos.Col(), rPos.Row(), nTab, bColumn, TRUE ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    nFlags |= CR_MANUALBREAK;
-//STRIP001 /*?*/    if (bColumn)
-//STRIP001 /*?*/        pDoc->SetColFlags( nPos, nTab, nFlags );
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/        pDoc->SetRowFlags( nPos, nTab, nFlags );
-//STRIP001 /*?*/    pDoc->UpdatePageBreaks( nTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bColumn)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        rDocShell.PostPaint( nPos-1, 0, nTab, MAXCOL, MAXROW, nTab, PAINT_GRID );
-//STRIP001 /*?*/        if (pBindings)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pBindings->Invalidate( FID_INS_COLBRK );
-//STRIP001 /*?*/            pBindings->Invalidate( FID_DEL_COLBRK );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        rDocShell.PostPaint( 0, nPos-1, nTab, MAXCOL, MAXROW, nTab, PAINT_GRID );
-//STRIP001 /*?*/        if (pBindings)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pBindings->Invalidate( FID_INS_ROWBRK );
-//STRIP001 /*?*/            pBindings->Invalidate( FID_DEL_ROWBRK );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    if (pBindings)
-//STRIP001 /*?*/        pBindings->Invalidate( FID_DEL_MANUALBREAKS );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bSetModified)
-//STRIP001 /*?*/        aModificator.SetDocumentModified();
-//STRIP001 /*?*/
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -2478,7 +1430,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*?*/   if (bRecord)
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoPageBreak( &rDocShell, rPos.Col(), rPos.Row(), nTab, bColumn, FALSE ) );
 /*?*/
 /*?*/   nFlags &= ~CR_MANUALBREAK;
 /*?*/   if (bColumn)
@@ -2554,7 +1505,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoProtect( &rDocShell, nTab, TRUE, aPass ) );
 /*N*/       }
 /*N*/
 /*N*/       if ( nTab == TABLEID_DOC )
@@ -2598,7 +1548,6 @@ using namespace ::com::sun::star;
 /*N*/       if (bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoProtect( &rDocShell, nTab, FALSE, aOldPassword ) );
 /*N*/       }
 /*N*/
 /*N*/       rDocShell.PostPaintGridAll();
@@ -2645,14 +1594,6 @@ using namespace ::com::sun::star;
 /*N*/   if (bUndo)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartTab = aMarkRange.aStart.Tab();
-//STRIP001 /*?*/        USHORT nEndTab = aMarkRange.aEnd.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, nStartTab, nEndTab );
-//STRIP001 /*?*/        pDoc->CopyToDocument( aMarkRange, IDF_ATTRIB, TRUE, pUndoDoc, (ScMarkData*)&aMultiMark );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoClearItems( &rDocShell, aMultiMark, pUndoDoc, pWhich ) );
 /*N*/   }
 /*N*/
 /*N*/   pDoc->ClearSelectionItems( pWhich, aMultiMark );
@@ -2686,21 +1627,6 @@ using namespace ::com::sun::star;
 /*N*/   if (bUndo)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartTab = aMarkRange.aStart.Tab();
-//STRIP001 /*?*/        USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab );
-//STRIP001 /*?*/        for (USHORT i=0; i<nTabCount; i++)
-//STRIP001 /*?*/            if (i != nStartTab && rMark.GetTableSelect(i))
-//STRIP001 /*?*/                pUndoDoc->AddUndoTab( i, i );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScRange aCopyRange = aMarkRange;
-//STRIP001 /*?*/        aCopyRange.aStart.SetTab(0);
-//STRIP001 /*?*/        aCopyRange.aEnd.SetTab(nTabCount-1);
-//STRIP001 /*?*/        pDoc->CopyToDocument( aCopyRange, IDF_ATTRIB, TRUE, pUndoDoc, (ScMarkData*)&rMark );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoIndent( &rDocShell, rMark, pUndoDoc, bIncrement ) );
 /*N*/   }
 /*N*/
 /*N*/   pDoc->ChangeSelectionIndent( bIncrement, rMark );
@@ -2819,7 +1745,6 @@ using namespace ::com::sun::star;
 /*N*/       if ( bRecord )      // Draw-Undo erst jetzt verfuegbar
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                new ScUndoAutoFormat( &rDocShell, rRange, pUndoDoc, aMark, bSize, nFormatNo ) );
 /*N*/       }
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
@@ -2916,59 +1841,6 @@ using namespace ::com::sun::star;
 /*N*/                           const ScTabOpParam& rParam, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bSuccess = FALSE;
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
-//STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
-//STRIP001 /*?*/    USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001 /*?*/    USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001 /*?*/    USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001 /*?*/    USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScMarkData aMark;
-//STRIP001 /*?*/    if (pTabMark)
-//STRIP001 /*?*/        aMark = *pTabMark;
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        for (USHORT nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/            aMark.SelectTable( nTab, TRUE );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScEditableTester aTester( pDoc, nStartCol,nStartRow, nEndCol,nEndRow, aMark );
-//STRIP001 /*?*/    if ( aTester.IsEditable() )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        WaitObject aWait( rDocShell.GetDialogParent() );
-//STRIP001 /*?*/        pDoc->SetDirty( rRange );
-//STRIP001 /*?*/        if ( bRecord )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            //! auch bei Undo selektierte Tabellen beruecksichtigen
-//STRIP001 /*?*/            ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pUndoDoc->InitUndo( pDoc, nStartTab, nEndTab );
-//STRIP001 /*?*/            pDoc->CopyToDocument( rRange, IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoTabOp( &rDocShell,
-//STRIP001 /*?*/                                     nStartCol, nStartRow, nStartTab,
-//STRIP001 /*?*/                                     nEndCol, nEndRow, nEndTab, pUndoDoc,
-//STRIP001 /*?*/                                     rParam.aRefFormulaCell,
-//STRIP001 /*?*/                                     rParam.aRefFormulaEnd,
-//STRIP001 /*?*/                                     rParam.aRefRowCell,
-//STRIP001 /*?*/                                     rParam.aRefColCell,
-//STRIP001 /*?*/                                     rParam.nMode) );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        pDoc->InsertTableOp(rParam, nStartCol, nStartRow, nEndCol, nEndRow, aMark);
-//STRIP001 /*?*/        rDocShell.PostPaintGridAll();
-//STRIP001 /*?*/        aModificator.SetDocumentModified();
-//STRIP001 /*?*/        bSuccess = TRUE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else if (!bApi)
-//STRIP001 /*?*/        rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001 /*?*/
-//STRIP001 /*?*/    return bSuccess;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -2985,104 +1857,6 @@ using namespace ::com::sun::star;
 /*N*/       return DIR_LEFT;
 /*N*/ }
 
-//STRIP001 BOOL ScDocFunc::FillSimple( const ScRange& rRange, const ScMarkData* pTabMark,
-//STRIP001                          FillDir eDir, BOOL bRecord, BOOL bApi )
-//STRIP001 {
-//STRIP001  ScDocShellModificator aModificator( rDocShell );
-//STRIP001
-//STRIP001  BOOL bSuccess = FALSE;
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001  USHORT nStartCol = rRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rRange.aStart.Row();
-//STRIP001  USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001  USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001
-//STRIP001  if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001      bRecord = FALSE;
-//STRIP001
-//STRIP001  ScMarkData aMark;
-//STRIP001  if (pTabMark)
-//STRIP001      aMark = *pTabMark;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      for (USHORT nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001          aMark.SelectTable( nTab, TRUE );
-//STRIP001  }
-//STRIP001
-//STRIP001  ScEditableTester aTester( pDoc, nStartCol,nStartRow, nEndCol,nEndRow, aMark );
-//STRIP001  if ( aTester.IsEditable() )
-//STRIP001  {
-//STRIP001      WaitObject aWait( rDocShell.GetDialogParent() );
-//STRIP001
-//STRIP001      ScRange aSourceArea = rRange;
-//STRIP001      ScRange aDestArea   = rRange;
-//STRIP001
-//STRIP001      USHORT nCount;
-//STRIP001      switch (eDir)
-//STRIP001      {
-//STRIP001          case FILL_TO_BOTTOM:
-//STRIP001              nCount = aSourceArea.aEnd.Row()-aSourceArea.aStart.Row();
-//STRIP001              aSourceArea.aEnd.SetRow( aSourceArea.aStart.Row() );
-//STRIP001              break;
-//STRIP001          case FILL_TO_RIGHT:
-//STRIP001              nCount = aSourceArea.aEnd.Col()-aSourceArea.aStart.Col();
-//STRIP001              aSourceArea.aEnd.SetCol( aSourceArea.aStart.Col() );
-//STRIP001              break;
-//STRIP001          case FILL_TO_TOP:
-//STRIP001              nCount = aSourceArea.aEnd.Row()-aSourceArea.aStart.Row();
-//STRIP001              aSourceArea.aStart.SetRow( aSourceArea.aEnd.Row() );
-//STRIP001              break;
-//STRIP001          case FILL_TO_LEFT:
-//STRIP001              nCount = aSourceArea.aEnd.Col()-aSourceArea.aStart.Col();
-//STRIP001              aSourceArea.aStart.SetCol( aSourceArea.aEnd.Col() );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001
-//STRIP001      ScDocument* pUndoDoc = NULL;
-//STRIP001      if ( bRecord )
-//STRIP001      {
-//STRIP001          USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001          USHORT nStartTab = aDestArea.aStart.Tab();
-//STRIP001
-//STRIP001          pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001          pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab );
-//STRIP001          for (USHORT i=0; i<nTabCount; i++)
-//STRIP001              if (i != nStartTab && aMark.GetTableSelect(i))
-//STRIP001                  pUndoDoc->AddUndoTab( i, i );
-//STRIP001
-//STRIP001          ScRange aCopyRange = aDestArea;
-//STRIP001          aCopyRange.aStart.SetTab(0);
-//STRIP001          aCopyRange.aEnd.SetTab(nTabCount-1);
-//STRIP001          pDoc->CopyToDocument( aCopyRange, IDF_ALL, FALSE, pUndoDoc, &aMark );
-//STRIP001          pDoc->BeginDrawUndo();
-//STRIP001      }
-//STRIP001
-//STRIP001      pDoc->Fill( aSourceArea.aStart.Col(), aSourceArea.aStart.Row(),
-//STRIP001                  aSourceArea.aEnd.Col(), aSourceArea.aEnd.Row(), aMark,
-//STRIP001                  nCount, eDir, FILL_SIMPLE );
-//STRIP001      AdjustRowHeight(rRange);
-//STRIP001
-//STRIP001      if ( bRecord )      // Draw-Undo erst jetzt verfuegbar
-//STRIP001      {
-//STRIP001          rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001              new ScUndoAutoFill( &rDocShell, aDestArea, aSourceArea, pUndoDoc, aMark,
-//STRIP001                                  eDir, FILL_SIMPLE, FILL_DAY, MAXDOUBLE, 1.0, 1e307,
-//STRIP001                                  pDoc->GetRangeName()->GetSharedMaxIndex()+1 ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      rDocShell.PostPaintGridAll();
-//STRIP001 //       rDocShell.PostPaintDataChanged();
-//STRIP001      aModificator.SetDocumentModified();
-//STRIP001
-//STRIP001      bSuccess = TRUE;
-//STRIP001  }
-//STRIP001  else if (!bApi)
-//STRIP001      rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001
-//STRIP001  return bSuccess;
-//STRIP001 }
 
 /*N*/ BOOL ScDocFunc::FillSeries( const ScRange& rRange, const ScMarkData* pTabMark,
 /*N*/                           FillDir eDir, FillCmd eCmd, FillDateCmd eDateCmd,
@@ -3090,241 +1864,12 @@ using namespace ::com::sun::star;
 /*N*/                           BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    BOOL bSuccess = FALSE;
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
-//STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
-//STRIP001 /*?*/    USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001 /*?*/    USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001 /*?*/    USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001 /*?*/    USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScMarkData aMark;
-//STRIP001 /*?*/    if (pTabMark)
-//STRIP001 /*?*/        aMark = *pTabMark;
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        for (USHORT nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001 /*?*/            aMark.SelectTable( nTab, TRUE );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScEditableTester aTester( pDoc, nStartCol,nStartRow, nEndCol,nEndRow, aMark );
-//STRIP001 /*?*/    if ( aTester.IsEditable() )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        WaitObject aWait( rDocShell.GetDialogParent() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScRange aSourceArea = rRange;
-//STRIP001 /*?*/        ScRange aDestArea   = rRange;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        USHORT nCount = pDoc->GetEmptyLinesInBlock(
-//STRIP001 /*?*/                aSourceArea.aStart.Col(), aSourceArea.aStart.Row(), aSourceArea.aStart.Tab(),
-//STRIP001 /*?*/                aSourceArea.aEnd.Col(), aSourceArea.aEnd.Row(), aSourceArea.aEnd.Tab(),
-//STRIP001 /*?*/                DirFromFillDir(eDir) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //  #27665# mindestens eine Zeile/Spalte als Quellbereich behalten:
-//STRIP001 /*?*/        USHORT nTotLines = ( eDir == FILL_TO_BOTTOM || eDir == FILL_TO_TOP ) ?
-//STRIP001 /*?*/                            ( aSourceArea.aEnd.Row() - aSourceArea.aStart.Row() + 1 ) :
-//STRIP001 /*?*/                            ( aSourceArea.aEnd.Col() - aSourceArea.aStart.Col() + 1 );
-//STRIP001 /*?*/        if ( nCount >= nTotLines )
-//STRIP001 /*?*/            nCount = nTotLines - 1;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        switch (eDir)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            case FILL_TO_BOTTOM:
-//STRIP001 /*?*/                aSourceArea.aEnd.SetRow( aSourceArea.aEnd.Row() - nCount );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/            case FILL_TO_RIGHT:
-//STRIP001 /*?*/                aSourceArea.aEnd.SetCol( aSourceArea.aEnd.Col() - nCount );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/            case FILL_TO_TOP:
-//STRIP001 /*?*/                aSourceArea.aStart.SetRow( aSourceArea.aStart.Row() + nCount );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/            case FILL_TO_LEFT:
-//STRIP001 /*?*/                aSourceArea.aStart.SetCol( aSourceArea.aStart.Col() + nCount );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScDocument* pUndoDoc = NULL;
-//STRIP001 /*?*/        if ( bRecord )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001 /*?*/            USHORT nStartTab = aDestArea.aStart.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab );
-//STRIP001 /*?*/            for (USHORT i=0; i<nTabCount; i++)
-//STRIP001 /*?*/                if (i != nStartTab && aMark.GetTableSelect(i))
-//STRIP001 /*?*/                    pUndoDoc->AddUndoTab( i, i );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pDoc->CopyToDocument(
-//STRIP001 /*?*/                aDestArea.aStart.Col(), aDestArea.aStart.Row(), 0,
-//STRIP001 /*?*/                aDestArea.aEnd.Col(), aDestArea.aEnd.Row(), nTabCount-1,
-//STRIP001 /*?*/                IDF_ALL, FALSE, pUndoDoc, &aMark );
-//STRIP001 /*?*/            pDoc->BeginDrawUndo();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (aDestArea.aStart.Col() <= aDestArea.aEnd.Col() &&
-//STRIP001 /*?*/            aDestArea.aStart.Row() <= aDestArea.aEnd.Row())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if ( fStart != MAXDOUBLE )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                USHORT nValX = (eDir == FILL_TO_LEFT) ? aDestArea.aEnd.Col() : aDestArea.aStart.Col();
-//STRIP001 /*?*/                USHORT nValY = (eDir == FILL_TO_TOP ) ? aDestArea.aEnd.Row() : aDestArea.aStart.Row();
-//STRIP001 /*?*/                USHORT nTab = aDestArea.aStart.Tab();
-//STRIP001 /*?*/                pDoc->SetValue( nValX, nValY, nTab, fStart );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            pDoc->Fill( aSourceArea.aStart.Col(), aSourceArea.aStart.Row(),
-//STRIP001 /*?*/                        aSourceArea.aEnd.Col(), aSourceArea.aEnd.Row(), aMark,
-//STRIP001 /*?*/                        nCount, eDir, eCmd, eDateCmd, fStep, fMax );
-//STRIP001 /*?*/            AdjustRowHeight(rRange);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            rDocShell.PostPaintGridAll();
-//STRIP001 /*?*/ //         rDocShell.PostPaintDataChanged();
-//STRIP001 /*?*/            aModificator.SetDocumentModified();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( bRecord )      // Draw-Undo erst jetzt verfuegbar
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                new ScUndoAutoFill( &rDocShell, aDestArea, aSourceArea, pUndoDoc, aMark,
-//STRIP001 /*?*/                                    eDir, eCmd, eDateCmd, fStart, fStep, fMax,
-//STRIP001 /*?*/                                    pDoc->GetRangeName()->GetSharedMaxIndex()+1 ) );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        bSuccess = TRUE;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else if (!bApi)
-//STRIP001 /*?*/        rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001 /*?*/
-//STRIP001 /*?*/    return bSuccess;
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::FillAuto( ScRange& rRange, const ScMarkData* pTabMark,
 /*N*/                           FillDir eDir, USHORT nCount, BOOL bRecord, BOOL bApi )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001  USHORT nStartCol = rRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rRange.aStart.Row();
-//STRIP001  USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001  USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001
-//STRIP001  if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001      bRecord = FALSE;
-//STRIP001
-//STRIP001  ScMarkData aMark;
-//STRIP001  if (pTabMark)
-//STRIP001      aMark = *pTabMark;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      for (USHORT nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001          aMark.SelectTable( nTab, TRUE );
-//STRIP001  }
-//STRIP001
-//STRIP001  ScRange aSourceArea = rRange;
-//STRIP001  ScRange aDestArea   = rRange;
-//STRIP001
-//STRIP001  FillCmd     eCmd = FILL_AUTO;
-//STRIP001  FillDateCmd eDateCmd = FILL_DAY;
-//STRIP001  double      fStep = 1.0;
-//STRIP001  double      fMax = MAXDOUBLE;
-//STRIP001
-//STRIP001  switch (eDir)
-//STRIP001  {
-//STRIP001      case FILL_TO_BOTTOM:
-//STRIP001          aDestArea.aEnd.SetRow( aSourceArea.aEnd.Row() + nCount );
-//STRIP001          break;
-//STRIP001      case FILL_TO_TOP:
-//STRIP001          if (nCount > aSourceArea.aStart.Row())
-//STRIP001          {
-//STRIP001              DBG_ERROR("FillAuto: Row < 0");
-//STRIP001              nCount = aSourceArea.aStart.Row();
-//STRIP001          }
-//STRIP001          aDestArea.aStart.SetRow( aSourceArea.aStart.Row() - nCount );
-//STRIP001          break;
-//STRIP001      case FILL_TO_RIGHT:
-//STRIP001          aDestArea.aEnd.SetCol( aSourceArea.aEnd.Col() + nCount );
-//STRIP001          break;
-//STRIP001      case FILL_TO_LEFT:
-//STRIP001          if (nCount > aSourceArea.aStart.Col())
-//STRIP001          {
-//STRIP001              DBG_ERROR("FillAuto: Col < 0");
-//STRIP001              nCount = aSourceArea.aStart.Col();
-//STRIP001          }
-//STRIP001          aDestArea.aStart.SetCol( aSourceArea.aStart.Col() - nCount );
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          DBG_ERROR("Falsche Richtung bei FillAuto");
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  //      Zellschutz testen
-//STRIP001  //!     Quellbereich darf geschuetzt sein !!!
-//STRIP001  //!     aber kein Matrixfragment enthalten !!!
-//STRIP001
-//STRIP001  ScEditableTester aTester( pDoc, aDestArea );
-//STRIP001  if ( !aTester.IsEditable() )
-//STRIP001  {
-//STRIP001      if (!bApi)
-//STRIP001          rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( pDoc->HasSelectedBlockMatrixFragment( nStartCol, nStartRow,
-//STRIP001          nEndCol, nEndRow, aMark ) )
-//STRIP001  {
-//STRIP001      if (!bApi)
-//STRIP001          rDocShell.ErrorMessage(STR_MATRIXFRAGMENTERR);
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  WaitObject aWait( rDocShell.GetDialogParent() );
-//STRIP001
-//STRIP001  ScDocument* pUndoDoc = NULL;
-//STRIP001  if ( bRecord )
-//STRIP001  {
-//STRIP001      USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001      USHORT nStartTab = aDestArea.aStart.Tab();
-//STRIP001
-//STRIP001      pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001      pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab );
-//STRIP001      for (USHORT i=0; i<nTabCount; i++)
-//STRIP001          if (i != nStartTab && aMark.GetTableSelect(i))
-//STRIP001              pUndoDoc->AddUndoTab( i, i );
-//STRIP001
-//STRIP001      pDoc->CopyToDocument(
-//STRIP001          aDestArea.aStart.Col(), aDestArea.aStart.Row(), 0,
-//STRIP001          aDestArea.aEnd.Col(), aDestArea.aEnd.Row(), nTabCount-1,
-//STRIP001          IDF_ALL, FALSE, pUndoDoc, &aMark );
-//STRIP001      pDoc->BeginDrawUndo();
-//STRIP001  }
-//STRIP001
-//STRIP001  pDoc->Fill( aSourceArea.aStart.Col(), aSourceArea.aStart.Row(),
-//STRIP001              aSourceArea.aEnd.Col(), aSourceArea.aEnd.Row(), aMark,
-//STRIP001              nCount, eDir, eCmd, eDateCmd, fStep, fMax );
-//STRIP001
-//STRIP001  AdjustRowHeight(aDestArea);
-//STRIP001
-//STRIP001  if ( bRecord )      // Draw-Undo erst jetzt verfuegbar
-//STRIP001  {
-//STRIP001      rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001          new ScUndoAutoFill( &rDocShell, aDestArea, aSourceArea, pUndoDoc, aMark,
-//STRIP001                              eDir, eCmd, eDateCmd, MAXDOUBLE, fStep, fMax,
-//STRIP001                              pDoc->GetRangeName()->GetSharedMaxIndex()+1 ) );
-//STRIP001  }
-//STRIP001
-//STRIP001  rDocShell.PostPaintGridAll();
-//STRIP001 //   rDocShell.PostPaintDataChanged();
-//STRIP001  aModificator.SetDocumentModified();
-//STRIP001
-//STRIP001  rRange = aDestArea;         // Zielbereich zurueckgeben (zum Markieren)
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -3411,87 +1956,11 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocFunc::UnmergeCells( const ScRange& rRange, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001 /*?*/    USHORT nTab = rRange.aStart.Tab();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
-//STRIP001 /*?*/        bRecord = FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( pDoc->HasAttrib( rRange, HASATTR_MERGED ) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        ScRange aExtended = rRange;
-//STRIP001 /*?*/        pDoc->ExtendMerge( aExtended );
-//STRIP001 /*?*/        ScRange aRefresh = aExtended;
-//STRIP001 /*?*/        pDoc->ExtendOverlapped( aRefresh );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (bRecord)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pUndoDoc->InitUndo( pDoc, nTab, nTab );
-//STRIP001 /*?*/            pDoc->CopyToDocument( aExtended, IDF_ATTRIB, FALSE, pUndoDoc );
-//STRIP001 /*?*/            rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                new ScUndoRemoveMerge( &rDocShell, rRange, pUndoDoc ) );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        const SfxPoolItem& rDefAttr = pDoc->GetPool()->GetDefaultItem( ATTR_MERGE );
-//STRIP001 /*?*/        ScPatternAttr aPattern( pDoc->GetPool() );
-//STRIP001 /*?*/        aPattern.GetItemSet().Put( rDefAttr );
-//STRIP001 /*?*/        pDoc->ApplyPatternAreaTab( rRange.aStart.Col(), rRange.aStart.Row(),
-//STRIP001 /*?*/                                    rRange.aEnd.Col(), rRange.aEnd.Row(), nTab,
-//STRIP001 /*?*/                                    aPattern );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDoc->RemoveFlagsTab( aExtended.aStart.Col(), aExtended.aStart.Row(),
-//STRIP001 /*?*/                                aExtended.aEnd.Col(), aExtended.aEnd.Row(), nTab,
-//STRIP001 /*?*/                                SC_MF_HOR | SC_MF_VER );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDoc->ExtendMerge( aRefresh, TRUE, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( !AdjustRowHeight( aExtended ) )
-//STRIP001 /*?*/            rDocShell.PostPaint( aExtended, PAINT_GRID );
-//STRIP001 /*?*/        aModificator.SetDocumentModified();
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else if (!bApi)
-//STRIP001 /*?*/        Sound::Beep();      //! FALSE zurueck???
-//STRIP001 /*?*/
 /*N*/   return TRUE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScDocFunc::SetNote( const ScAddress& rPos, const ScPostIt& rNote, BOOL bApi )
-//STRIP001 {
-//STRIP001  ScDocShellModificator aModificator( rDocShell );
-//STRIP001
-//STRIP001  BOOL bDone = FALSE;
-//STRIP001  USHORT nCol = rPos.Col();
-//STRIP001  USHORT nRow = rPos.Row();
-//STRIP001  USHORT nTab = rPos.Tab();
-//STRIP001
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001  BOOL bUndo (pDoc->IsUndoEnabled());
-//STRIP001  ScEditableTester aTester( pDoc, nTab, nCol,nRow, nCol,nRow );
-//STRIP001  if (aTester.IsEditable())
-//STRIP001  {
-//STRIP001      pDoc->SetNote( nCol, nRow, nTab, rNote );
-//STRIP001
-//STRIP001      if (bUndo)
-//STRIP001      {
-//STRIP001          ScPostIt aOld;
-//STRIP001          pDoc->GetNote( nCol, nRow, nTab, aOld );
-//STRIP001          rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001              new ScUndoEditNote( &rDocShell, rPos, aOld, rNote ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      rDocShell.PostPaintCell( nCol, nRow, nTab );
-//STRIP001      aModificator.SetDocumentModified();
-//STRIP001      bDone = TRUE;
-//STRIP001  }
-//STRIP001  else if (!bApi)
-//STRIP001      rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001
-//STRIP001  return bDone;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -3757,14 +2226,6 @@ using namespace ::com::sun::star;
 /*N*/           if (bRecord)
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/                pRedoDoc->InitUndo( pDoc, nTab, nTab );
-//STRIP001 /*?*/                pDoc->CopyToDocument( nStartCol,nStartRow,nTab, nEndCol,nEndRow,nTab,
-//STRIP001 /*?*/                                        IDF_ALL, FALSE, pRedoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoListNames( &rDocShell,
-//STRIP001 /*?*/                                ScRange( nStartCol,nStartRow,nTab, nEndCol,nEndRow,nTab ),
-//STRIP001 /*?*/                                pUndoDoc, pRedoDoc ) );
 /*N*/           }
 /*N*/
 /*N*/           if (!AdjustRowHeight(ScRange(0,nStartRow,nTab,MAXCOL,nEndRow,nTab)))
@@ -3781,51 +2242,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScDocFunc::ResizeMatrix( const ScRange& rOldRange, const ScAddress& rNewEnd, BOOL bApi )
-//STRIP001 {
-//STRIP001  ScDocument* pDoc = rDocShell.GetDocument();
-//STRIP001  USHORT nStartCol = rOldRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rOldRange.aStart.Row();
-//STRIP001  USHORT nNewEndCol = rNewEnd.Col();
-//STRIP001  USHORT nNewEndRow = rNewEnd.Row();
-//STRIP001  USHORT nTab = rOldRange.aStart.Tab();
-//STRIP001
-//STRIP001  BOOL bUndo(pDoc->IsUndoEnabled());
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001  String aFormula;
-//STRIP001  pDoc->GetFormula( nStartCol, nStartRow, nTab, aFormula );
-//STRIP001  if ( aFormula.GetChar(0) == '{' && aFormula.GetChar(aFormula.Len()-1) == '}' )
-//STRIP001  {
-//STRIP001      String aUndo = ScGlobal::GetRscString( STR_UNDO_RESIZEMATRIX );
-//STRIP001      if (bUndo)
-//STRIP001          rDocShell.GetUndoManager()->EnterListAction( aUndo, aUndo );
-//STRIP001
-//STRIP001      aFormula.Erase(0,1);
-//STRIP001      aFormula.Erase(aFormula.Len()-1,1);
-//STRIP001
-//STRIP001      ScMarkData aMark;
-//STRIP001      aMark.SetMarkArea( rOldRange );
-//STRIP001      aMark.SelectTable( nTab, TRUE );
-//STRIP001      ScRange aNewRange( rOldRange.aStart, rNewEnd );
-//STRIP001
-//STRIP001      if ( DeleteContents( aMark, IDF_CONTENTS, TRUE, bApi ) )
-//STRIP001      {
-//STRIP001          bRet = EnterMatrix( aNewRange, &aMark, aFormula, bApi, FALSE );
-//STRIP001          if (!bRet)
-//STRIP001          {
-//STRIP001              //  versuchen, alten Zustand wiederherzustellen
-//STRIP001              EnterMatrix( rOldRange, &aMark, aFormula, bApi, FALSE );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bUndo)
-//STRIP001          rDocShell.GetUndoManager()->LeaveListAction();
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -3858,8 +2274,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if (bUndo)
 /*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 rDocShell.GetUndoManager()->AddUndoAction( new ScUndoInsertAreaLink( &rDocShell,
-//STRIP001 /*?*/                                                    rFile, aFilterName, aNewOptions,
-//STRIP001 /*?*/                                                    rSource, rDestRange, nRefresh ) );
 /*N*/
 /*N*/   //  Update hat sein eigenes Undo
 /*N*/
