@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmlcnitm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:22:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:19:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -84,22 +84,7 @@ using namespace ::com::sun::star::xml;
 /*N*/   return *pImpl == *((const SvXMLAttrContainerItem&)rItem).pImpl;
 /*N*/ }
 
-//STRIP001 int  SvXMLAttrContainerItem::Compare( const SfxPoolItem &rWith ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( !this, "not yet implemented" );
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation SvXMLAttrContainerItem::GetPresentation(
-//STRIP001                  SfxItemPresentation ePresentation,
-//STRIP001                  SfxMapUnit eCoreMetric,
-//STRIP001                  SfxMapUnit ePresentationMetric,
-//STRIP001                  XubString &rText,
-//STRIP001                     const IntlWrapper *pIntlWrapper ) const
-//STRIP001 {
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetVersion( USHORT nFileFormatVersion ) const
 /*N*/ {
@@ -244,17 +229,14 @@ using namespace ::com::sun::star::xml;
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetFirstNamespaceIndex() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return pImpl->GetFirstNamespaceIndex();
 /*N*/ }
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetNextNamespaceIndex( USHORT nIdx ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return pImpl->GetNextNamespaceIndex( nIdx );
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT i ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return  OUString::createFromAscii (""); //STRIP001
-//STRIP001  return pImpl->GetNamespace( i );
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT i ) const
