@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ListBox.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2006-10-12 10:28:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:03:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,21 +40,12 @@
 #ifndef _FORMS_LISTBOX_HXX_
 #include "ListBox.hxx"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
 #endif
@@ -67,15 +58,9 @@
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
-// auto strip #include <comphelper/datetime.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
-// auto strip #ifndef _CONNECTIVITY_DBTOOLS_HXX_
-// auto strip #include <connectivity/dbtools.hxx>
-// auto strip #endif
 #ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
 #endif
@@ -83,15 +68,6 @@
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
-// auto strip #include <com/sun/star/sdb/SQLErrorEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
-// auto strip #include <com/sun/star/sdbc/XRowSet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
@@ -113,9 +89,6 @@
 #ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
-// auto strip #include <com/sun/star/sdb/SQLContext.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
 #endif
@@ -125,9 +98,6 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _ISOLANG_HXX
-// auto strip #include <tools/isolang.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
