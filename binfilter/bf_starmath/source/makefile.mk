@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: kz $ $Date: 2006-10-05 10:25:57 $
+#   last change: $Author: rt $ $Date: 2006-10-27 19:54:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,6 @@ SLOFILES =  \
         $(SLO)$/starmath_accessibility.obj \
         $(SLO)$/starmath_cfgitem.obj \
         $(SLO)$/starmath_config.obj \
-        $(SLO)$/starmath_dialog.obj \
         $(SLO)$/starmath_document.obj \
         $(SLO)$/starmath_mathtype.obj \
         $(SLO)$/starmath_mathml.obj \
