@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:12:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:14:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -58,20 +57,11 @@
 #include <svtools/zforlist.hxx>
 #include <float.h>          // _finite
 
-// auto strip #include "scitems.hxx"
-// auto strip #include "attrib.hxx"
-// auto strip #include "cell.hxx"
-// auto strip #include "compiler.hxx"
 #include "interpre.hxx"
-// auto strip #include "document.hxx"
 #include "scmatrix.hxx"
-// auto strip #include "dociter.hxx"
 #include "docoptio.hxx"
 #include "rechead.hxx"
 #include "rangenam.hxx"
-// auto strip #include "brdcst.hxx"
-// auto strip #include "ddelink.hxx"
-// auto strip #include "validat.hxx"
 #include "progress.hxx"
 #include "bclist.hxx"
 namespace binfilter {
@@ -250,12 +240,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*M*/                 else
 /*M*/                 {
 /*M*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDo = pArr->IsReplacedSharedFormula();
-//STRIP001 /*M*/                     if ( nOnlyNames & SC_LISTENING_NAMES_REL )
-//STRIP001 /*M*/                         bDo |= (rRef1.IsRelName() || rRef2.IsRelName());
-//STRIP001 /*M*/                     if ( nOnlyNames & SC_LISTENING_NAMES_ABS )
-//STRIP001 /*M*/                         bDo |= t->IsRPNReferenceAbsName();
-//STRIP001 /*M*/                     if ( nOnlyNames & SC_LISTENING_EXCEPT )
-//STRIP001 /*M*/                         bDo = !bDo;
 /*M*/                 }
 /*M*/                 if ( bDo )
 /*M*/               {
@@ -731,7 +715,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/         if ( !bCompileLater && bClipMode )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pCode->Reset();
-//STRIP001 /*?*/            bCompileLater = (pCode->GetNextColRowName() != NULL);
 /*N*/       }
 /*N*/         if ( !bCompileLater )
 /*N*/         {
@@ -1024,9 +1007,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       if ( !pCode->GetLen() && aErgString.Len() && rFormula == aErgString )
 /*N*/       {   // #65994# nicht rekursiv CompileTokenArray/Compile/CompileTokenArray
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( rFormula.GetChar(0) == '=' )
-//STRIP001 /*?*/                pCode->AddBad( rFormula.GetBuffer() + 1 );
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                pCode->AddBad( rFormula.GetBuffer() );
 /*N*/       }
 /*N*/       bCompile = TRUE;
 /*N*/       CompileTokenArray( bNoListening );
@@ -1106,9 +1086,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       if ( !pCode->GetLen() )
 /*N*/       {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( aFormula.GetChar(0) == '=' )
-//STRIP001 /*?*/                pCode->AddBad( aFormula.GetBuffer() + 1 );
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                pCode->AddBad( aFormula.GetBuffer() );
 /*N*/       }
 /*N*/       bSubTotal = aComp.CompileTokenArray();
 /*N*/       if( !pCode->GetError() )
@@ -1461,13 +1438,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       if ( pCode->IsRecalcModeForced() )
 /*N*/       {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((const SfxUInt32Item*) pDocument->GetAttr(
-//STRIP001 /*?*/                    aPos.Col(), aPos.Row(), aPos.Tab(), ATTR_VALIDDATA ))->GetValue();
-//STRIP001 /*?*/            if ( nValidation )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                const ScValidationData* pData = pDocument->GetValidationEntry( nValidation );
-//STRIP001 /*?*/                if ( pData && !pData->IsDataValid( this, aPos ) )
-//STRIP001 /*?*/                    pData->DoCalcError( this );
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/
 /*N*/       // Reschedule verlangsamt das ganze erheblich, nur bei Prozentaenderung ausfuehren
@@ -1510,7 +1480,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((co
 /*?*/                 if ( !bTableOpDirty )
 /*?*/                 {
 /*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDocument->AddTableOpFormulaCell( this );
-//STRIP001 /*?*/                     bTableOpDirty = TRUE;
 /*?*/                 }
 /*N*/             }
 /*N*/           else
