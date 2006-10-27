@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doctxm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:26:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:43:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,46 +73,20 @@ class SwTOXBaseSection : public SwTOXBase, public SwSection
 {
     SwTOXSortTabBases aSortArr;
 
-//STRIP001  void    UpdateMarks( const SwTOXInternational& rIntl,
-//STRIP001                          const SwTxtNode* pOwnChapterNode );
-//STRIP001  void    UpdateOutline( const SwTxtNode* pOwnChapterNode );
-//STRIP001  void    UpdateTemplate( const SwTxtNode* pOwnChapterNode );
-//STRIP001  void    UpdateCntnt( SwTOXElement eType,
-//STRIP001                          const SwTxtNode* pOwnChapterNode );
-//STRIP001  void    UpdateTable( const SwTxtNode* pOwnChapterNode );
-//STRIP001  void    UpdateSequence( const SwTxtNode* pOwnChapterNode );
-//STRIP001  void    UpdateAuthorities( const SwTxtNode* pOwnChapterNode,
-//STRIP001                                      const SwTOXInternational& rIntl );
     void    UpdateAll();
 
     // Sortiert einfuegen ins Array fuer die Generierung
-//STRIP001  void    InsertSorted(SwTOXSortTabBase* pBase);
 
     // Alpha-Trennzeichen bei der Generierung einfuegen
-//STRIP001  void    InsertAlphaDelimitter( const SwTOXInternational& rIntl );
 
     // Textrumpf generieren
     // OD 18.03.2003 #106329# - add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
-//STRIP001     void GenerateText( USHORT nArrayIdx,
-//STRIP001                        USHORT nCount,
-//STRIP001                        SvStringsDtor&,
-//STRIP001                        const sal_uInt32   _nTOXSectNdIdx,
-//STRIP001                        const SwPageDesc*  _pDefaultPageDesc );
 
     // Seitennummerplatzhalter gegen aktuelle Nummern austauschen
-//STRIP001  void    _UpdatePageNum( SwTxtNode* pNd,
-//STRIP001                          const SvUShorts& rNums,
-//STRIP001                          const SvPtrarr &rDescs,
-//STRIP001                          const SvUShorts* pMainEntryNums,
-//STRIP001                          const SwTOXInternational& rIntl );
 
     // Bereich fuer Stichwort einfuegen suchen
-//STRIP001     Range GetKeyRange( const String& rStr, const String& rStrReading,
-//STRIP001                        const SwTOXSortTabBase& rNew, USHORT nLevel,
-//STRIP001                        const Range& rRange );
 
     // returne die TextCollection ueber den Namen / aus Format-Pool
-//STRIP001  SwTxtFmtColl* GetTxtFmtColl( USHORT nLevel );
 
 public:
     SwTOXBaseSection( const SwTOXBase& rBase );
@@ -126,7 +100,6 @@ public:
     void UpdatePageNum();               // Seitennummern einfuegen
     TYPEINFO();                         // fuers rtti
 
-//STRIP001  BOOL SetPosAtStartEnd( SwPosition& rPos, BOOL bAtStart = TRUE ) const;
 };
 /* -----------------02.09.99 07:52-------------------
 

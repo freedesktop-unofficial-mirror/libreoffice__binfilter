@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dflyobj.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:25:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:43:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,17 +67,13 @@ public:
     SwFlyDrawObj();
     ~SwFlyDrawObj();
 
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
 
     // ItemSet access
-//STRIP001  virtual const SfxItemSet& GetItemSet() const;
-//STRIP001  virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
 
     //Damit eine Instanz dieser Klasse beim laden erzeugt werden kann
     //(per Factory).
     virtual UINT32 GetObjInventor()     const;
     virtual UINT16 GetObjIdentifier()   const;
-//STRIP001  virtual UINT16 GetObjVersion()      const;
 };
 
 //---------------------------------------
@@ -96,29 +92,11 @@ public:
     ~SwVirtFlyDrawObj();
 
     //Ueberladene Methoden der Basisklasse SdrVirtObj
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual void     TakeObjInfo( SdrObjTransformInfoRec& rInfo ) const;
 
     //Wir nehemen die Groessenbehandlung vollstaendig selbst in die Hand.
     virtual const Rectangle& GetBoundRect() const;
-//STRIP001  virtual       void       RecalcBoundRect();
-//STRIP001  virtual       void       RecalcSnapRect();
     virtual const Rectangle& GetSnapRect()  const;
-//STRIP001  virtual       void       SetSnapRect(const Rectangle& rRect);
-//STRIP001  virtual       void       NbcSetSnapRect(const Rectangle& rRect);
-//STRIP001  virtual const Rectangle& GetLogicRect() const;
-//STRIP001  virtual       void       SetLogicRect(const Rectangle& rRect);
-//STRIP001  virtual       void       NbcSetLogicRect(const Rectangle& rRect);
-//STRIP001  virtual       void       TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL) const;
-//STRIP001  virtual       void       NbcMove  (const Size& rSiz);
-//STRIP001  virtual       void       NbcResize(const Point& rRef, const Fraction& xFact,
-//STRIP001                                     const Fraction& yFact);
-//STRIP001  virtual       void       Move  (const Size& rSiz);
-//STRIP001  virtual       void       Resize(const Point& rRef, const Fraction& xFact,
-//STRIP001                                  const Fraction& yFact);
 
-//STRIP001  const SwFrmFmt *GetFmt() const;
           SwFrmFmt *GetFmt();
 
     // Get Methoden fuer die Fly Verpointerung
@@ -129,9 +107,6 @@ public:
     void _SetRectsDirty()               { SetRectsDirty(); }
 
     // ist eine URL an einer Grafik gesetzt, dann ist das ein Makro-Object
-//STRIP001  virtual FASTBOOL HasMacro() const;
-//STRIP001  virtual SdrObject* CheckMacroHit       (const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual Pointer    GetMacroPointer     (const SdrObjMacroHitRec& rRec) const;
 };
 
 

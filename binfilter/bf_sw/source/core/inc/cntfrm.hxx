@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cntfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:24:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:43:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -89,12 +89,6 @@ public:
     inline       SwCntntFrm *GetFollow();
 
         //Layoutabhaengiges Cursortravelling
-//STRIP001  virtual BOOL    LeftMargin( SwPaM * ) const;
-//STRIP001  virtual BOOL    RightMargin( SwPaM *, BOOL bAPI = FALSE ) const;
-//STRIP001  virtual BOOL    UnitUp( SwPaM *, const SwTwips nOffset = 0,
-//STRIP001                          BOOL bSetInReadOnly = FALSE ) const;
-//STRIP001  virtual BOOL    UnitDown( SwPaM *, const SwTwips nOffset = 0,
-//STRIP001                          BOOL bSetInReadOnly = FALSE ) const;
     inline  BOOL    StartNextPage( SwPaM * ) const;
     inline  BOOL    StartPrevPage( SwPaM * ) const;
     inline  BOOL    StartCurrPage( SwPaM * ) const;
@@ -106,7 +100,6 @@ public:
     //bSplit sagt, obj der Absatz gesplittet werden muss.
     virtual BOOL WouldFit( SwTwips &nMaxHeight, BOOL &bSplit );
 
-//STRIP001  BOOL MoveFtnCntFwd( BOOL, SwFtnBossFrm* );//von MoveFwd gerufen bei Ftn-Inhalt
 };
 
 inline SwCntntNode *SwCntntFrm::GetNode()
