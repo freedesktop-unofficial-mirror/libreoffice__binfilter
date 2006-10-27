@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fileobj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:12:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:49:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,31 +36,12 @@
 #pragma hdrstop
 
 #ifdef OS2
-// auto strip #include <vcl/sysdep.hxx>
 #endif
 
 
-// auto strip #ifndef _SV_WRKWIN_HXX
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MSGBOX_HXX
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 #ifndef _SOT_FORMATS_HXX
 #include <sot/formats.hxx>
 #endif
-// auto strip #ifndef _FILTER_HXX
-// auto strip #include <svtools/filter.hxx>
-// auto strip #endif
-// auto strip #ifndef _SOERR_HXX
-// auto strip #include <so3/soerr.hxx>
-// auto strip #endif
 #ifndef _LNKBASE_HXX
 #include <so3/lnkbase.hxx>
 #endif
@@ -73,19 +54,11 @@
 #ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
 #endif
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
-// auto strip #include <sot/exchange.hxx>
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
 #include "fileobj.hxx"
 #include "linkmgr.hxx"
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
-// auto strip #include "xoutbmp.hxx"
-// auto strip #include "opengrf.hxx"
 #include "impgrf.hxx"
 namespace binfilter {
 
@@ -506,74 +479,6 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/ }
 
 
-//STRIP001 String SvFileObject::Edit( Window* pParent, ::so3::SvBaseLink* pLink )
-//STRIP001 {
-//STRIP001  String sFile, sRange, sTmpFilter;
-//STRIP001  if( !pLink || !pLink->GetLinkManager() )
-//STRIP001      return sFile;
-//STRIP001
-//STRIP001  pLink->GetLinkManager()->GetDisplayNames( pLink, 0, &sFile, &sRange,
-//STRIP001                                                      &sTmpFilter );
-//STRIP001
-//STRIP001  switch( pLink->GetObjType() )
-//STRIP001  {
-//STRIP001  case OBJECT_CLIENT_GRF:
-//STRIP001      {
-//STRIP001          nType = FILETYPE_GRF;       // falls noch nicht gesetzt
-//STRIP001
-//STRIP001          SvxOpenGraphicDialog aDlg(ResId(RID_SVXSTR_EDITGRFLINK, DIALOG_MGR()));
-//STRIP001          aDlg.EnableLink(sal_False);
-//STRIP001          aDlg.SetPath( sFile, sal_True );
-//STRIP001          aDlg.SetCurrentFilter( sTmpFilter );
-//STRIP001
-//STRIP001          if( !aDlg.Execute() )
-//STRIP001          {
-//STRIP001              sFile = aDlg.GetPath();
-//STRIP001              sFile += ::so3::cTokenSeperator;
-//STRIP001              sFile += ::so3::cTokenSeperator;
-//STRIP001              sFile += aDlg.GetCurrentFilter();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              sFile.Erase();
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case OBJECT_CLIENT_FILE:
-//STRIP001      {
-//STRIP001          nType = FILETYPE_TEXT;      // falls noch nicht gesetzt
-//STRIP001          Window* pOld = Application::GetDefModalDialogParent();
-//STRIP001          Application::SetDefModalDialogParent( pParent );
-//STRIP001
-//STRIP001          const SfxObjectFactory* pFactory;
-//STRIP001          SvInPlaceObjectRef aRef( pLink->GetLinkManager()->GetPersist() );
-//STRIP001          if( aRef.Is() )
-//STRIP001          {
-//STRIP001              SfxObjectShell* pShell = ((SfxInPlaceObject*)&aRef)->GetObjectShell();
-//STRIP001              pFactory = &pShell->GetFactory();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pFactory = &SFX_APP()->GetDefaultFactory();
-//STRIP001          SfxMediumRef xMed = SFX_APP()->InsertDocumentDialog( 0, *pFactory );
-//STRIP001
-//STRIP001          if( xMed.Is() )
-//STRIP001          {
-//STRIP001              sFile = xMed->GetName();
-//STRIP001              sFile += ::so3::cTokenSeperator;
-//STRIP001 // Bereich!      sFile += xMed->GetFilter()->GetName();
-//STRIP001              sFile += ::so3::cTokenSeperator;
-//STRIP001              sFile += xMed->GetFilter()->GetFilterName();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              sFile.Erase();
-//STRIP001          Application::SetDefModalDialogParent( pOld );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      sFile.Erase();
-//STRIP001  }
-//STRIP001
-//STRIP001  return sFile;
-//STRIP001 }
 
 
 /*?*/ IMPL_STATIC_LINK( SvxFileObjProgress_Impl, UpdatePercentHdl,
@@ -692,32 +597,6 @@ JP 28.02.96: noch eine Baustelle:
         ERRCODE_SO_PENDING      wenn sie noch nicht komplett gelesen wurde
         ERRCODE_SO_FALSE        sonst
 */
-//STRIP001 BOOL SvFileObject::IsPending() const
-//STRIP001 {
-//STRIP001  return FILETYPE_GRF == nType && !bLoadError &&
-//STRIP001          ( pDownLoadData || bWaitForData );
-//STRIP001 }
-//STRIP001 BOOL SvFileObject::IsDataComplete() const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( FILETYPE_GRF != nType )
-//STRIP001      bRet = TRUE;
-//STRIP001  else if( !bLoadError && ( !bWaitForData && !pDownLoadData ))
-//STRIP001  {
-//STRIP001      SvFileObject* pThis = (SvFileObject*)this;
-//STRIP001      if( bDataReady ||
-//STRIP001          ( bSynchron && pThis->LoadFile_Impl() && xMed.Is() ) )
-//STRIP001          bRet = TRUE;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          INetURLObject aUrl( sFileNm );
-//STRIP001          if( aUrl.HasError() ||
-//STRIP001              INET_PROT_NOT_VALID == aUrl.GetProtocol() )
-//STRIP001              bRet = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 
@@ -737,11 +616,6 @@ JP 28.02.96: noch eine Baustelle:
 /*N*/ }
 
 
-//STRIP001 void SvFileObject::SetTransferPriority( USHORT nPrio )
-//STRIP001 {
-//STRIP001  if( xMed.Is() )
-//STRIP001      xMed->SetTransferPriority( nPrio );
-//STRIP001 }
 
 
 /*N*/ void SvFileObject::SendStateChg_Impl( USHORT nState )
