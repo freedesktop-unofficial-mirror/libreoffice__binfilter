@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_dialdll.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:50:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:35:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,28 +36,17 @@
 // include ---------------------------------------------------------------
 
 #include <svtools/solar.hrc>
-// auto strip #include <tools/stream.hxx>
 #include "dialdll.hxx"
 #include "dialmgr.hxx"
 #define ITEMID_BRUSH 1
 #include "brshitem.hxx"
-// auto strip #include "chardlg.hxx"
 
-// auto strip #ifndef _SHL_HXX //autogen
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_RESMGR_HXX //autogen
-// auto strip #include <tools/resmgr.hxx>
-// auto strip #endif
 
 #ifndef _FILTER_HXX //autogen
 #include <svtools/filter.hxx>
@@ -111,16 +100,6 @@ namespace binfilter {
 /*N*/ }
 
 // -----------------------------------------------------------------------
-//STRIP001 void SvxDialogDll::ResetResMgr()
-//STRIP001 {
-//STRIP001  DialogsResMgr* pResMgr = (*(DialogsResMgr**)GetAppData(BF_SHL_SVX));
-//STRIP001  DBG_ASSERT( pResMgr, "SvxDialogDll::ResetResMgr - no ResMgr" );
-//STRIP001  if ( pResMgr )
-//STRIP001  {
-//STRIP001      delete pResMgr;
-//STRIP001      (*(DialogsResMgr**)GetAppData(BF_SHL_SVX)) = new DialogsResMgr;
-//STRIP001  }
-//STRIP001 }
 
 
 }
