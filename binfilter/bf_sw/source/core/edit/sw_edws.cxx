@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edws.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:03:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:35:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,21 +54,6 @@
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
-// auto strip #ifndef _ACORRECT_HXX
-// auto strip #include <acorrect.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWUNDO_HXX
-// auto strip #include <swundo.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /********************************************************
@@ -102,19 +87,11 @@ namespace binfilter {
  ******************************************************************************/
 
 
-//STRIP001 sal_Bool SwEditShell::IsModified() const
-//STRIP001 {
-//STRIP001  return GetDoc()->IsModified();
-//STRIP001 }
 /******************************************************************************
  *                    void SwEditShell::SetModified()
  ******************************************************************************/
 
 
-//STRIP001 void SwEditShell::SetModified()
-//STRIP001 {
-//STRIP001  GetDoc()->SetModified();
-//STRIP001 }
 /******************************************************************************
  *                   void SwEditShell::ResetModified()
  ******************************************************************************/
@@ -125,32 +102,17 @@ namespace binfilter {
 /*N*/   GetDoc()->ResetModified();
 /*N*/ }
 
-//STRIP001 void SwEditShell::SetUndoNoResetModified()
-//STRIP001 {
-//STRIP001  GetDoc()->SetModified();
-//STRIP001  GetDoc()->SetUndoNoResetModified();
-//STRIP001 }
 
-//STRIP001 #ifdef USED
 /******************************************************************************
  *                    void SwEditShell::StartAction()
  ******************************************************************************/
 
 
-//STRIP001 void SwEditShell::StartAction()  // OPT: ganz wech
-//STRIP001 {
-//STRIP001  SwCrsrShell::StartAction();
-//STRIP001 }
 /******************************************************************************
  *                    void SwEditShell::EndAction()
  ******************************************************************************/
 
 
-//STRIP001 void SwEditShell::EndAction()
-//STRIP001 {
-//STRIP001  SwCrsrShell::EndAction();
-//STRIP001 }
-//STRIP001 #endif
 /******************************************************************************
  *                 void SwEditShell::StartAllAction()
  ******************************************************************************/
@@ -233,33 +195,14 @@ namespace binfilter {
 //------------------------------------------------------------------------------
 
 
-//STRIP001 sal_Bool SwEditShell::HasOtherCnt() const
-//STRIP001 {
-//STRIP001  const SwNodes &rNds = GetDoc()->GetNodes();
-//STRIP001  const SwNode *pNd;
-//STRIP001  return GetDoc()->GetSpzFrmFmts()->Count() ||
-//STRIP001          1 != (( pNd = &rNds.GetEndOfInserts() )->GetIndex() -
-//STRIP001              pNd->StartOfSectionIndex() ) ||
-//STRIP001          1 != (( pNd = &rNds.GetEndOfAutotext() )->GetIndex() -
-//STRIP001              pNd->StartOfSectionIndex() );
-//STRIP001 }
 
 /******************************************************************************
  *              Zugriffsfunktionen fuer Filename-Behandlung
  ******************************************************************************/
 
 
-//STRIP001 SwActKontext::SwActKontext(SwEditShell *pShell)
-//STRIP001  : pSh(pShell)
-//STRIP001 {
-//STRIP001  pSh->StartAction();
-//STRIP001 }
 
 
-//STRIP001 SwActKontext::~SwActKontext()
-//STRIP001 {
-//STRIP001  pSh->EndAction();
-//STRIP001 }
 
 /******************************************************************************
  *          Klasse fuer den automatisierten Aufruf von Start- und
@@ -267,16 +210,8 @@ namespace binfilter {
  ******************************************************************************/
 
 
-//STRIP001 SwMvKontext::SwMvKontext(SwEditShell *pShell ) : pSh(pShell)
-//STRIP001 {
-//STRIP001  pSh->SttCrsrMove();
-//STRIP001 }
 
 
-//STRIP001 SwMvKontext::~SwMvKontext()
-//STRIP001 {
-//STRIP001  pSh->EndCrsrMove();
-//STRIP001 }
 
 
 /*N*/ SwFrmFmt *SwEditShell::GetTableFmt()  // OPT: schnellster Test auf Tabelle?
@@ -288,16 +223,8 @@ namespace binfilter {
 // OPT: wieso 3x beim neuen Dokument
 
 
-//STRIP001 sal_uInt16 SwEditShell::GetTOXTypeCount(TOXTypes eTyp) const
-//STRIP001 {
-//STRIP001  return pDoc->GetTOXTypeCount(eTyp);
-//STRIP001 }
 
 
-//STRIP001 void SwEditShell::InsertTOXType(const SwTOXType& rTyp)
-//STRIP001 {
-//STRIP001  pDoc->InsertTOXType(rTyp);
-//STRIP001 }
 
 
 
@@ -305,22 +232,12 @@ namespace binfilter {
 /*N*/ { GetDoc()->DoUndo( bOn ); }
 
 
-//STRIP001 sal_Bool SwEditShell::DoesUndo() const
-//STRIP001 { return GetDoc()->DoesUndo(); }
 
 
-//STRIP001 void SwEditShell::DoGroupUndo( sal_Bool bOn )
-//STRIP001 { GetDoc()->DoGroupUndo( bOn ); }
 
 
-//STRIP001 sal_Bool SwEditShell::DoesGroupUndo() const
-//STRIP001 { return GetDoc()->DoesGroupUndo(); }
 
 
-//STRIP001 void SwEditShell::DelAllUndoObj()
-//STRIP001 {
-//STRIP001  GetDoc()->DelAllUndoObj();
-//STRIP001 }
 
 // Zusammenfassen von Kontinuierlichen Insert/Delete/Overwrite von
 // Charaktern. Default ist sdbcx::Group-Undo.
@@ -355,61 +272,15 @@ namespace binfilter {
 // fuellt ggf. VARARR mit RedoIds
 
 
-//STRIP001 sal_uInt16 SwEditShell::GetRepeatIds(String* pStr, SwUndoIds *pRedoIds) const
-//STRIP001 { return GetDoc()->GetRepeatIds(pStr,pRedoIds); }
 
 
 
 // AutoKorrektur - JP 27.01.94
-//STRIP001 void SwEditShell::AutoCorrect( SvxAutoCorrect& rACorr, sal_Bool bInsert,
-//STRIP001                              sal_Unicode cChar )
-//STRIP001 {
-//STRIP001  SET_CURR_SHELL( this );
-//STRIP001
-//STRIP001  StartAllAction();
-//STRIP001
-//STRIP001  SwPaM* pCrsr = GetCrsr();
-//STRIP001  SwTxtNode* pTNd = pCrsr->GetNode()->GetTxtNode();
-//STRIP001
-//STRIP001  SwAutoCorrDoc aSwAutoCorrDoc( *this, *pCrsr, cChar );
-//STRIP001  rACorr.AutoCorrect( aSwAutoCorrDoc,
-//STRIP001                  pTNd->GetTxt(), pCrsr->GetPoint()->nContent.GetIndex(),
-//STRIP001                  cChar, bInsert );
-//STRIP001  if( cChar )
-//STRIP001      SaveTblBoxCntnt( pCrsr->GetPoint() );
-//STRIP001  EndAllAction();
-//STRIP001 }
 
 
-//STRIP001 void SwEditShell::SetNewDoc(sal_Bool bNew)
-//STRIP001 {
-//STRIP001  GetDoc()->SetNewDoc(bNew);
-//STRIP001 }
 
 
-//STRIP001 sal_Bool SwEditShell::GetPrevAutoCorrWord( SvxAutoCorrect& rACorr, String& rWord )
-//STRIP001 {
-//STRIP001  SET_CURR_SHELL( this );
-//STRIP001
-//STRIP001  sal_Bool bRet;
-//STRIP001  SwPaM* pCrsr = GetCrsr();
-//STRIP001  xub_StrLen nPos = pCrsr->GetPoint()->nContent.GetIndex();
-//STRIP001  SwTxtNode* pTNd = pCrsr->GetNode()->GetTxtNode();
-//STRIP001  if( pTNd && nPos )
-//STRIP001  {
-//STRIP001      SwAutoCorrDoc aSwAutoCorrDoc( *this, *pCrsr, 0 );
-//STRIP001      bRet = rACorr.GetPrevAutoCorrWord( aSwAutoCorrDoc,
-//STRIP001                                          pTNd->GetTxt(), nPos, rWord );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bRet = sal_False;
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 SwAutoCompleteWord& SwEditShell::GetAutoCompleteWords()
-//STRIP001 {
-//STRIP001  return SwDoc::GetAutoCompleteWords();
-//STRIP001 }
 
 
 

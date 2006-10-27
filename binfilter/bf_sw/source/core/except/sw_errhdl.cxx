@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_errhdl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:05:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:36:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,9 +53,6 @@
 #include <vcl/sound.hxx>
 #endif
 
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _SWERROR_H
 #include <error.h>              // fuer die defines von ERR_SW6MSG_ ...
 #endif
