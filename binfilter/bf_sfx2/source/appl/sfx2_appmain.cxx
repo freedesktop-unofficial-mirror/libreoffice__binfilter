@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:22:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:55:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,7 +78,6 @@
 #include "interno.hxx"
 #include "fcontnr.hxx"
 #include "viewsh.hxx"
-#include "intro.hxx"
 #include "msgpool.hxx"
 #include "cfgmgr.hxx"
 #include "accmgr.hxx"
@@ -118,11 +117,6 @@ DBG_NAME(SfxAppMainRegisterIF)
 DBG_NAME(SfxAppMainInit)
 DBG_NAME(SfxAppMainLoadBasMgr)
 DBG_NAME(SfxAppMainSbxInit)*/
-//STRIP001 DBG_NAME(SfxAppMainNewMenu)
-//STRIP001 DBG_NAME(SfxAppMainBmkMenu)
-//STRIP001 DBG_NAME(SfxAppMainWizMenu)
-//STRIP001 DBG_NAME(SfxAppMainOLEReg)
-//STRIP001 DBG_NAME(SfxAppMainCHAOSReg)
 /*DBG_NAME(SfxAppMainInitDispatcher)
 DBG_NAME(SfxAppMainLoadConfig)
 DBG_NAME(SfxAppMainInitAppWin)
@@ -161,20 +155,6 @@ SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
 
 //--------------------------------------------------------------------
 
-//STRIP001 BOOL SfxApplication::HasFeature( ULONG nFeature ) const
-//STRIP001
-//STRIP001 /**  [Description]
-//STRIP001
-//STRIP001  Determines if 'nFeature' is supported by this running application.
-//STRIP001  If more than one feature is given (by arithmetic 'or') and at least
-//STRIP001  one of them is supported, it will return TRUE.
-//STRIP001
-//STRIP001  The supported features are set in the ctor of SfxApplication.
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  return 0 != ( nFeature & _nFeatures );
-//STRIP001 }
 
 //--------------------------------------------------------------------
 /*N*/ void SfxApplication::Init
@@ -436,33 +416,4 @@ void SfxApplication::Main( )
 
 //-------------------------------------------------------------------------
 
-//STRIP001 BOOL SfxApplication::IsStandalone() const
-//STRIP001 {
-//STRIP001 #if SUPD<613//MUSTINI
-//STRIP001  // Wenn ohne UI gestartet, nat"urlich niemals integrierter Desktop
-//STRIP001  if ( pAppData_Impl->bBean )
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  String aExt = SFX_INIMANAGER()->Get( String::CreateFromAscii( "Common"), 0, 0, String::CreateFromAscii("FullScreenDesktop") );
-//STRIP001  if ( aExt.Len() )
-//STRIP001  {
-//STRIP001      // INI-Eintrag auswerten
-//STRIP001      return !( (BOOL) (USHORT) aExt.ToInt32() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Defaults: bei AppServer kein integrierter Desktop, bei FatOffice
-//STRIP001      // unter WNT integriert, ansonsten nicht
-//STRIP001      if ( Application::IsRemoteServer() )
-//STRIP001          return TRUE;
-//STRIP001 #ifdef WNT
-//STRIP001      return FALSE;
-//STRIP001 #else
-//STRIP001      return TRUE;
-//STRIP001 #endif
-//STRIP001  }
-//STRIP001 #else//MUSTINI
-//STRIP001  return FALSE;
-//STRIP001 #endif
-//STRIP001 }
 }
