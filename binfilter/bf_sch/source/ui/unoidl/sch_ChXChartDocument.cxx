@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:30:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:57:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,13 +42,7 @@
 #include "ChartLegend.hxx"
 #include "ChartTitle.hxx"
 #include "ChartArea.hxx"
-// auto strip #ifndef _CHXCHART_OBJECT_HXX
-// auto strip #include "ChXChartObject.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 
 #ifndef _SVX_UNONAMESPACEMAP_HXX_
 #include <bf_svx/UnoNamespaceMap.hxx>
@@ -69,7 +63,6 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
@@ -91,16 +84,10 @@
 #endif
 
 // header for class OGuard
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _SVX_UNOSHAPE_HXX
-// auto strip #include <bf_svx/unoshape.hxx>
-// auto strip #endif
 #ifndef _SVX_UNOFILL_HXX_
 #include <bf_svx/unofill.hxx>
 #endif
@@ -108,9 +95,6 @@
 #include <bf_svx/unoshcol.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
-// auto strip #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
 #endif
