@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porglue.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:29:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:11:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,18 +36,10 @@
 
 #pragma hdrstop
 
-// auto strip #include "swrect.hxx"
 #include "paratr.hxx"   // pTabStop, ADJ*
-// auto strip #include "viewopt.hxx"    // SwViewOptions
-// auto strip #include "errhdl.hxx"     // ASSERT
 
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 
 #include "txtcfg.hxx"
-// auto strip #include "porglue.hxx"
-// auto strip #include "inftxt.hxx"
 #include "porlay.hxx"   // SwParaPortion, SetFull
 #include "porfly.hxx"   // SwParaPortion, SetFull
 namespace binfilter {
@@ -67,86 +59,21 @@ namespace binfilter {
  *                virtual SwGluePortion::GetCrsrOfst()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwGluePortion::GetCrsrOfst( const KSHORT nOfst ) const
-//STRIP001 {
-//STRIP001  if( !GetLen() || nOfst > GetLen() || !Width() )
-//STRIP001      return SwLinePortion::GetCrsrOfst( nOfst );
-//STRIP001  else
-//STRIP001      return nOfst / (Width() / GetLen());
-//STRIP001 }
 
 /*************************************************************************
  *                virtual SwGluePortion::GetTxtSize()
  *************************************************************************/
 
-//STRIP001 SwPosSize SwGluePortion::GetTxtSize( const SwTxtSizeInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( 1 >= GetLen() || rInf.GetLen() > GetLen() || !Width() || !GetLen() )
-//STRIP001      return SwPosSize(*this);
-//STRIP001  else
-//STRIP001      return SwPosSize( (Width() / GetLen()) * rInf.GetLen(), Height() );
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwGluePortion::GetExpTxt()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwGluePortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
-//STRIP001 {
-//STRIP001  if( GetLen() && rInf.OnWin() &&
-//STRIP001      rInf.GetOpt().IsBlank() && rInf.IsNoSymbol() )
-//STRIP001  {
-//STRIP001      rTxt.Fill( GetLen(), CH_BULLET );
-//STRIP001      return sal_True;
-//STRIP001  }
-//STRIP001  return sal_False;
-//STRIP001 }
 
 /*************************************************************************
  *                virtual SwGluePortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwGluePortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( !GetLen() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  if( rInf.GetFont()->IsPaintBlank() )
-//STRIP001  {
-//STRIP001      XubString aTxt;
-//STRIP001      aTxt.Fill( GetFixWidth() / GetLen(), ' ' );
-//STRIP001      SwTxtPaintInfo aInf( rInf, aTxt );
-//STRIP001      aInf.DrawText( *this, aTxt.Len(), sal_True );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( rInf.OnWin() && rInf.GetOpt().IsBlank() && rInf.IsNoSymbol() )
-//STRIP001  {
-//STRIP001 #ifndef PRODUCT
-//STRIP001      const xub_Unicode cChar = rInf.GetChar( rInf.GetIdx() );
-//STRIP001      ASSERT( CH_BLANK  == cChar || CH_BULLET == cChar,
-//STRIP001              "SwGluePortion::Paint: blank expected" );
-//STRIP001 #endif
-//STRIP001      if( 1 == GetLen() )
-//STRIP001      {
-//STRIP001          String aBullet( CH_BULLET, RTL_TEXTENCODING_MS_1252 );
-//STRIP001          SwPosSize aBulletSize( rInf.GetTxtSize( aBullet ) );
-//STRIP001          Point aPos( rInf.GetPos() );
-//STRIP001          aPos.X() += (Width()/2) - (aBulletSize.Width()/2);
-//STRIP001          SwTxtPaintInfo aInf( rInf, aBullet );
-//STRIP001          aInf.SetPos( aPos );
-//STRIP001          SwTxtPortion aBulletPor;
-//STRIP001          aBulletPor.Width( aBulletSize.Width() );
-//STRIP001          aBulletPor.Height( aBulletSize.Height() );
-//STRIP001          aBulletPor.SetAscent( GetAscent() );
-//STRIP001          aInf.DrawText( aBulletPor, aBullet.Len(), sal_True );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SwTxtSlotLen aSlot( &rInf, this );
-//STRIP001          rInf.DrawText( *this, rInf.GetLen(), sal_True );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                      SwGluePortion::MoveGlue()

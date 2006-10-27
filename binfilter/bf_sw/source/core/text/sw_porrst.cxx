@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porrst.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:30:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:12:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #ifndef _SFX_PRINTER_HXX //autogen
-// auto strip #include <bf_sfx2/printer.hxx>
-// auto strip #endif
 #ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
 #endif
@@ -75,39 +72,18 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>  // SwTxtNode
-// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>  // SwPageFrm
 #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>   // ASSERT
-// auto strip #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTCFG_HXX
-// auto strip #include <txtcfg.hxx>
-// auto strip #endif
 #ifndef _PORRST_HXX
 #include <porrst.hxx>
 #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
-// auto strip #ifndef _TXTPAINT_HXX
-// auto strip #include <txtpaint.hxx>   // ClipVout
-// auto strip #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx> // SwTxtFrm
-// auto strip #endif
-// auto strip #ifndef _SWFNTCCH_HXX
-// auto strip #include <swfntcch.hxx>   // SwFontAccess
-// auto strip #endif
 #ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
 #endif
@@ -120,12 +96,6 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-// auto strip #ifndef _REDLNITR_HXX
-// auto strip #include <redlnitr.hxx>   // SwRedlineItr
-// auto strip #endif
-// auto strip #ifndef _PORFLY_HXX
-// auto strip #include <porfly.hxx>     // SwFlyPortion
-// auto strip #endif
 #ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
 #endif
@@ -137,23 +107,12 @@ namespace binfilter {
 SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Height( rPortion.Height() );
-//STRIP001  SetAscent( rPortion.GetAscent() );
-//STRIP001  SetWhichPor( POR_TMPEND );
 }
 
 /*************************************************************************
  *                 virtual SwTmpEndPortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwTmpEndPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( rInf.OnWin() && rInf.GetOpt().IsParagraph() )
-//STRIP001  {
-//STRIP001      SwDefFontSave aSave( rInf );
-//STRIP001      const XubString aTmp( CH_PAR );
-//STRIP001      rInf.DrawText( aTmp, *this );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                      class SwBreakPortion
@@ -165,54 +124,15 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/   SetWhichPor( POR_BRK );
 /*N*/ }
 
-//STRIP001 xub_StrLen SwBreakPortion::GetCrsrOfst( const KSHORT ) const
-//STRIP001 { return 0; }
-//STRIP001
-//STRIP001 KSHORT SwBreakPortion::GetViewWidth( const SwTxtSizeInfo &rInf ) const
-//STRIP001 { return 0; }
 
 /*N*/ SwLinePortion *SwBreakPortion::Compress()
 /*N*/ { return (GetPortion() && GetPortion()->InTxtGrp() ? 0 : this); }
 
-//STRIP001 void SwBreakPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001     if( rInf.OnWin() && rInf.GetOpt().IsLineBreak() )
-//STRIP001  {
-//STRIP001         USHORT nViewWidth = ((SwBreakPortion*)this)->CalcViewWidth( rInf );
-//STRIP001
-//STRIP001      if( nViewWidth && nViewWidth <= nRestWidth )
-//STRIP001          rInf.DrawLineBreak( *this );
-//STRIP001     }
-//STRIP001 }
 
 /*************************************************************************
  *                  SwBreakPortion::CalcViewWidth()
  *************************************************************************/
 
-//STRIP001 USHORT SwBreakPortion::CalcViewWidth( const SwTxtSizeInfo &rInf )
-//STRIP001 {
-//STRIP001  ASSERT( rInf.GetOpt().IsLineBreak(), "SwBreakPortion::CalcViewWidth: zombie" );
-//STRIP001  // Im Mormalfall folgt auf ein Break keine weitere Portion, nur wenn im Blocksatz
-//STRIP001  // auch die letzte Zeile im Blocksatz ist, folgt eine Marginportion der Breite 0,
-//STRIP001  // ist die Zeile zentriert, so folgt eine Marginportion mit Breite > 0.
-//STRIP001  if( GetPortion() )
-//STRIP001  {
-//STRIP001      if( GetPortion()->IsFlyPortion() )
-//STRIP001      {
-//STRIP001          short nTmp = ((SwFlyPortion*)GetPortion())->GetPrtGlue();
-//STRIP001          nRestWidth = nTmp > 0 ? nTmp : 0;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          nRestWidth = GetPortion()->Width();
-//STRIP001  }
-//STRIP001     USHORT nViewWidth = 0;
-//STRIP001
-//STRIP001     // The view width is not depending on the zoom factor anymore.
-//STRIP001     if( rInf.OnWin() && nRestWidth )
-//STRIP001         nViewWidth = LINE_BREAK_WIDTH;
-//STRIP001
-//STRIP001     return nViewWidth;
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwBreakPortion::Format()
@@ -234,10 +154,6 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
  *              virtual SwBreakPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwBreakPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     rPH.Text( GetLen(), GetWhichPor() );
-//STRIP001 }
 
 
 /*N*/ SwKernPortion::SwKernPortion( SwLinePortion &rPortion, short nKrn,
@@ -253,42 +169,10 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/   rPortion.Insert( this );
 /*N*/ }
 
-//STRIP001 SwKernPortion::SwKernPortion( const SwLinePortion& rPortion ) :
-//STRIP001     nKern( 0 ), bBackground( sal_False ), bGridKern( sal_True )
-//STRIP001 {
-//STRIP001  Height( rPortion.Height() );
-//STRIP001  SetAscent( rPortion.GetAscent() );
-//STRIP001
-//STRIP001  nLineLength = 0;
-//STRIP001  SetWhichPor( POR_KERN );
-//STRIP001 }
 
 /*N*/ void SwKernPortion::Paint( const SwTxtPaintInfo &rInf ) const
 /*N*/ {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( Width() )
-//STRIP001  {
-//STRIP001         // bBackground is set for Kerning Portions between two fields
-//STRIP001         if ( bBackground )
-//STRIP001             rInf.DrawViewOpt( *this, POR_FLD );
-//STRIP001
-//STRIP001      rInf.DrawBackBrush( *this );
-//STRIP001
-//STRIP001         // do we have to repaint a post it portion?
-//STRIP001         if( rInf.OnWin() && pPortion && !pPortion->Width() )
-//STRIP001             pPortion->PrePaint( rInf, this );
-//STRIP001
-//STRIP001      if( rInf.GetFont()->IsPaintBlank() )
-//STRIP001      {
-//STRIP001 static sal_Char __READONLY_DATA sDoubleSpace[] = "  ";
-//STRIP001          // Tabs mit Fuellung
-//STRIP001          if( rInf.OnWin() ) // Keine Luecken am Bildschirm
-//STRIP001              ((SwKernPortion*)this)->Width( Width() + 12 );
-//STRIP001          XubString aTxt( sDoubleSpace, RTL_TEXTENCODING_MS_1252 );
-//STRIP001          rInf.DrawText( aTxt, *this, 0, 2, sal_True );
-//STRIP001          if( rInf.OnWin() )
-//STRIP001              ((SwKernPortion*)this)->Width( Width() - 12 );
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
 /*N*/ void SwKernPortion::FormatEOL( SwTxtFormatInfo &rInf )
@@ -309,19 +193,12 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/   bLeft( sal_True )
 /*N*/ {
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     Height( rPortion.Height() );
-//STRIP001  SetAscent( rPortion.GetAscent() );
-//STRIP001  nLineLength = 0;
-//STRIP001  SetWhichPor( POR_ARROW );
 /*N*/ }
 
 /*N*/ SwArrowPortion::SwArrowPortion( const SwTxtPaintInfo &rInf )
 /*N*/   : bLeft( sal_False )
 /*N*/ {
   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Height( (USHORT)(rInf.GetTxtFrm()->Prt().Height()) );
-//STRIP001  aPos.X() = rInf.GetTxtFrm()->Frm().Left() +
-//STRIP001             rInf.GetTxtFrm()->Prt().Right();
-//STRIP001  aPos.Y() = rInf.GetTxtFrm()->Frm().Top() +
-//STRIP001             rInf.GetTxtFrm()->Prt().Bottom();
 /*N*/ }
 
 /*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo &rInf ) const
@@ -367,10 +244,6 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/         if( MSHRT_MAX != nRedlPos )
 /*N*/         {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwAttrHandler aAttrHandler;
-//STRIP001 /*?*/             aAttrHandler.Init( GetTxtNode()->GetSwAttrSet(),
-//STRIP001 /*?*/                               *GetTxtNode()->GetDoc(), NULL );
-//STRIP001 /*?*/             SwRedlineItr aRedln( rTxtNode, *pFnt, aAttrHandler,
-//STRIP001 /*?*/                                  nRedlPos, sal_True );
 /*N*/         }
 /*N*/     }
 /*N*/
