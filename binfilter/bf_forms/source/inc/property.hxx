@@ -4,9 +4,9 @@
  *
  *  $RCSfile: property.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:53:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:05:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,26 +36,8 @@
 #ifndef _FRM_PROPERTY_HXX_
 #define _FRM_PROPERTY_HXX_
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
-// auto strip #include  <com/sun/star/uno/XAggregation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyState.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _CPPUHELPER_PROPSHLP_HXX
-// auto strip #include <cppuhelper/propshlp.hxx>
-// auto strip #endif
-// auto strip #ifndef _CPPUHELPER_PROPTYPEHLP_HXX
-// auto strip #include <cppuhelper/proptypehlp.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
-// auto strip #include <comphelper/property.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
 #include <comphelper/propagg.hxx>
 #endif
