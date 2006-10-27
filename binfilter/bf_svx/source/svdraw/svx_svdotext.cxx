@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:01:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:43:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,30 +33,17 @@
  *
  ************************************************************************/
 
-// auto strip #include "svdotext.hxx"
 #include "svditext.hxx"
-// auto strip #include "svdpagv.hxx"  // fuer Abfrage im Paint, ob das
 #include "svdview.hxx"  // Objekt gerade editiert wird
-// auto strip #include "svdpage.hxx"  // und fuer AnimationHandler (Laufschrift)
-// auto strip #include "svdxout.hxx"
 #include "svdtouch.hxx"
 #include "svdio.hxx"
 #include "svdetc.hxx"
 #include "svdoutl.hxx"
-// auto strip #include "svdscrol.hxx"  // fuer Laufschrift
-// auto strip #include "svdmodel.hxx"  // OutlinerDefaults
-// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 #include "svdtxhdl.hxx"  // DrawTextToPath
 #include "writingmodeitem.hxx"
 
-// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-// auto strip #include <svtools/colorcfg.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _EEITEM_HXX //autogen
-// auto strip #include <eeitem.hxx>
-// auto strip #endif
 
 #ifndef _EDITSTAT_HXX //autogen
 #include <editstat.hxx>
@@ -70,9 +57,6 @@
 #include <editobj.hxx>
 #endif
 
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include "outliner.hxx"
-// auto strip #endif
 
 #ifndef _SVX_FHGTITEM_HXX //autogen
 #include "fhgtitem.hxx"
@@ -86,9 +70,6 @@
 #include "adjitem.hxx"
 #endif
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
@@ -96,9 +77,6 @@
 
 #include "flditem.hxx"
 
-// auto strip #ifndef _SVX_XFTOUIT_HXX
-// auto strip #include "xftouit.hxx"
-// auto strip #endif
 
 #ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
@@ -263,29 +241,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   ImpLinkAbmeldung();
 /*N*/ }
 
-//STRIP001 void SdrTextObj::FitFrameToTextSize()
-//STRIP001 {
-//STRIP001  DBG_ASSERT(pModel!=NULL,"SdrTextObj::FitFrameToTextSize(): pModel=NULL!")
-//STRIP001  ImpJustifyRect(aRect);
-//STRIP001  if (pOutlinerParaObject!=NULL && pModel!=NULL) {
-//STRIP001      SdrOutliner& rOutliner=ImpGetDrawOutliner();
-//STRIP001      rOutliner.SetPaperSize(Size(aRect.Right()-aRect.Left(),aRect.Bottom()-aRect.Top()));
-//STRIP001      rOutliner.SetUpdateMode(TRUE);
-//STRIP001      rOutliner.SetText(*pOutlinerParaObject);
-//STRIP001      Rectangle aTextRect;
-//STRIP001      Size aNewSize(rOutliner.CalcTextSize());
-//STRIP001      rOutliner.Clear();
-//STRIP001      aNewSize.Width()++; // wegen evtl. Rundungsfehler
-//STRIP001      aNewSize.Width()+=GetTextLeftDistance()+GetTextRightDistance();
-//STRIP001      aNewSize.Height()+=GetTextUpperDistance()+GetTextLowerDistance();
-//STRIP001      Rectangle aNewRect(aRect);
-//STRIP001      aNewRect.SetSize(aNewSize);
-//STRIP001      ImpJustifyRect(aNewRect);
-//STRIP001      if (aNewRect!=aRect) {
-//STRIP001          SetLogicRect(aNewRect);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*?*/ void SdrTextObj::NbcSetText(const XubString& rStr)
 /*?*/ {
@@ -303,17 +258,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/   bTextSizeDirty=FALSE;
 /*?*/ }
 
-//STRIP001 void SdrTextObj::SetText(const XubString& rStr)
-//STRIP001 {
-//STRIP001  Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcSetText(rStr);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (GetBoundRect()!=aBoundRect0) {
-//STRIP001      SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
-//STRIP001  }
-//STRIP001 }
 
 /*?*/ void SdrTextObj::NbcSetText(SvStream& rInput, USHORT eFormat)
 /*?*/ {
@@ -329,17 +273,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/   bTextSizeDirty=FALSE;
 /*?*/ }
 
-//STRIP001 void SdrTextObj::SetText(SvStream& rInput, USHORT eFormat)
-//STRIP001 {
-//STRIP001  Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcSetText(rInput,eFormat);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (GetBoundRect()!=aBoundRect0) {
-//STRIP001      SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ const Size& SdrTextObj::GetTextSize() const
 /*N*/ {
@@ -487,37 +420,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrTextObj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  FASTBOOL bNoTextFrame=!IsTextFrame();
-//STRIP001  rInfo.bResizeFreeAllowed=bNoTextFrame || aGeo.nDrehWink%9000==0;
-//STRIP001  rInfo.bResizePropAllowed=TRUE;
-//STRIP001  rInfo.bRotateFreeAllowed=TRUE;
-//STRIP001  rInfo.bRotate90Allowed  =TRUE;
-//STRIP001  rInfo.bMirrorFreeAllowed=bNoTextFrame;
-//STRIP001  rInfo.bMirror45Allowed  =bNoTextFrame;
-//STRIP001  rInfo.bMirror90Allowed  =bNoTextFrame;
-//STRIP001
-//STRIP001  // allow transparence
-//STRIP001  rInfo.bTransparenceAllowed = TRUE;
-//STRIP001
-//STRIP001  // gradient depends on fillstyle
-//STRIP001  XFillStyle eFillStyle = ((XFillStyleItem&)(GetItem(XATTR_FILLSTYLE))).GetValue();
-//STRIP001  rInfo.bGradientAllowed = (eFillStyle == XFILL_GRADIENT);
-//STRIP001  rInfo.bShearAllowed     =bNoTextFrame;
-//STRIP001  rInfo.bEdgeRadiusAllowed=TRUE;
-//STRIP001  FASTBOOL bCanConv=ImpCanConvTextToCurve();
-//STRIP001  rInfo.bCanConvToPath    =bCanConv;
-//STRIP001  rInfo.bCanConvToPoly    =bCanConv;
-//STRIP001  rInfo.bCanConvToPathLineToArea=bCanConv;
-//STRIP001  rInfo.bCanConvToPolyLineToArea=bCanConv;
-//STRIP001  rInfo.bCanConvToContour = (rInfo.bCanConvToPoly || LineGeometryUsageIsNecessary());
-//STRIP001 }
 
-//STRIP001 UINT16 SdrTextObj::GetObjIdentifier() const
-//STRIP001 {
-//STRIP001  return USHORT(eTextKind);
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrTextObj::HasEditText() const
 /*N*/ {
@@ -593,19 +496,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/       delete pOutlinerParaObject;
 /*?*/       pOutlinerParaObject=NULL;
 /*?*/       if (bScaleUnitChanged) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            Fraction aMetricFactor=GetMapFactor(aOldUnit,aNewUnit).X();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // Funktioniert nicht richtig:
-//STRIP001 /*?*/            // Geht am Outliner leider nur in %
-//STRIP001 /*?*/            // double nPercFloat=double(aMetricFactor)*100+0.5;
-//STRIP001 /*?*/            // USHORT nPerc=(USHORT)nPercFloat;
-//STRIP001 /*?*/            // rOutliner.DoStretchChars(100,nPerc);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (bSetHgtItem) {
-//STRIP001 /*?*/                // Und nun noch das Rahmenattribut korregieren
-//STRIP001 /*?*/                nOldFontHgt=BigMulDiv(nOldFontHgt,aMetricFactor.GetNumerator(),aMetricFactor.GetDenominator());
-//STRIP001 /*?*/                SetItem(SvxFontHeightItem(nOldFontHgt));
-//STRIP001 /*?*/            }
 /*?*/       }
 /*?*/       SetOutlinerParaObject(rOutliner.CreateParaObject()); // #34494#
 /*?*/       pOutlinerParaObject->ClearPortionInfo();
@@ -654,25 +544,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/   return FALSE;
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrTextObj::NbcSetMaxTextFrameHeight(long nHgt)
-//STRIP001 {
-//STRIP001  if(bTextFrame)
-//STRIP001  {
-//STRIP001      SetItem(SdrTextMaxFrameHeightItem(nHgt));
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrTextObj::NbcSetAutoGrowWidth(FASTBOOL bAuto)
-//STRIP001 {
-//STRIP001  if(bTextFrame)
-//STRIP001  {
-//STRIP001      SetItem(SdrTextAutoGrowWidthItem(bAuto));
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrTextObj::NbcSetMinTextFrameWidth(long nWdt)
 /*N*/ {
@@ -693,69 +565,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrTextObj::NbcSetMaxTextFrameWidth(long nWdt)
-//STRIP001 {
-//STRIP001  if(bTextFrame)
-//STRIP001  {
-//STRIP001      SetItem(SdrTextMaxFrameWidthItem(nWdt));
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrTextObj::NbcSetFitToSize(SdrFitToSizeType eFit)
-//STRIP001 {
-//STRIP001  if(bTextFrame)
-//STRIP001  {
-//STRIP001      SetItem(SdrTextFitToSizeTypeItem(eFit));
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void SdrTextObj::ImpSetContourPolygon( SdrOutliner& rOutliner, Rectangle& rAnchorRect, BOOL bLineWidth ) const
-//STRIP001 {
-//STRIP001
-//STRIP001  XPolyPolygon aXorXPP;
-//STRIP001  TakeXorPoly(aXorXPP, FALSE);
-//STRIP001  if (aGeo.nDrehWink!=0) { // Unrotate!
-//STRIP001      RotateXPoly(aXorXPP,rAnchorRect.TopLeft(),-aGeo.nSin,aGeo.nCos);
-//STRIP001  }
-//STRIP001  Point aRef(rAnchorRect.TopLeft());
-//STRIP001  aXorXPP.Move(-aRef.X(),-aRef.Y());
-//STRIP001
-//STRIP001  XPolyPolygon* pContourXPP = NULL;
-//STRIP001
-//STRIP001  if( bLineWidth )
-//STRIP001  {
-//STRIP001      // Strichstaerke beruecksichtigen
-//STRIP001      // Beim Hittest muss das unterbleiben (Performance!)
-//STRIP001      pContourXPP = new XPolyPolygon();
-//STRIP001
-//STRIP001      // #86258# test if shadow needs to be avoided for TakeContour()
-//STRIP001      const SfxItemSet& rSet = GetItemSet();
-//STRIP001      sal_Bool bShadowOn = ((SdrShadowItem&)(rSet.Get(SDRATTR_SHADOW))).GetValue();
-//STRIP001
-//STRIP001      if(bShadowOn)
-//STRIP001      {
-//STRIP001          // #86258# force shadow off
-//STRIP001          SdrObject* pCopy = Clone();
-//STRIP001          pCopy->SetItem(SdrShadowItem(FALSE));
-//STRIP001          pCopy->TakeContour(*pContourXPP);
-//STRIP001          delete pCopy;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          TakeContour(*pContourXPP);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (aGeo.nDrehWink!=0)  // Unrotate!
-//STRIP001          RotateXPoly(*pContourXPP,rAnchorRect.TopLeft(),-aGeo.nSin,aGeo.nCos);
-//STRIP001      pContourXPP->Move(-aRef.X(),-aRef.Y());
-//STRIP001  }
-//STRIP001
-//STRIP001  rOutliner.SetPolygon(aXorXPP, pContourXPP);
-//STRIP001 }
 
 /*N*/ void SdrTextObj::TakeUnrotatedSnapRect(Rectangle& rRect) const
 /*N*/ {
@@ -1008,553 +819,13 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return pPara;
 /*N*/ }
 
-//STRIP001 void SdrTextObj::ImpSetCharStretching(SdrOutliner& rOutliner, const Rectangle& rTextRect, const Rectangle& rAnchorRect, Fraction& rFitXKorreg) const
-//STRIP001 {
-//STRIP001  OutputDevice* pOut = rOutliner.GetRefDevice();
-//STRIP001  BOOL bNoStretching(FALSE);
-//STRIP001
-//STRIP001  if(pOut && pOut->GetOutDevType() == OUTDEV_PRINTER)
-//STRIP001  {
-//STRIP001      // #35762#: Checken ob CharStretching ueberhaupt moeglich
-//STRIP001      GDIMetaFile* pMtf = pOut->GetConnectMetaFile();
-//STRIP001      UniString aTestString(sal_Unicode('J'));
-//STRIP001
-//STRIP001      if(pMtf && (!pMtf->IsRecord() || pMtf->IsPause()))
-//STRIP001          pMtf = NULL;
-//STRIP001
-//STRIP001      if(pMtf)
-//STRIP001          pMtf->Pause(TRUE);
-//STRIP001
-//STRIP001      Font aFontMerk(pOut->GetFont());
-//STRIP001      Font aTmpFont( OutputDevice::GetDefaultFont( DEFAULTFONT_SERIF, LANGUAGE_SYSTEM, DEFAULTFONT_FLAGS_ONLYONE ) );
-//STRIP001
-//STRIP001      aTmpFont.SetSize(Size(0,100));
-//STRIP001      pOut->SetFont(aTmpFont);
-//STRIP001      Size aSize1(pOut->GetTextWidth(aTestString), pOut->GetTextHeight());
-//STRIP001      aTmpFont.SetSize(Size(800,100));
-//STRIP001      pOut->SetFont(aTmpFont);
-//STRIP001      Size aSize2(pOut->GetTextWidth(aTestString), pOut->GetTextHeight());
-//STRIP001      pOut->SetFont(aFontMerk);
-//STRIP001
-//STRIP001      if(pMtf)
-//STRIP001          pMtf->Pause(FALSE);
-//STRIP001
-//STRIP001      bNoStretching = (aSize1 == aSize2);
-//STRIP001
-//STRIP001 #ifdef WNT
-//STRIP001      // #35762# Windows vergroessert bei Size(100,500) den Font proportional
-//STRIP001      // Und das finden wir nicht so schoen.
-//STRIP001      if(aSize2.Height() >= aSize1.Height() * 2)
-//STRIP001      {
-//STRIP001          bNoStretching = TRUE;
-//STRIP001      }
-//STRIP001 #endif
-//STRIP001  }
-//STRIP001  unsigned nLoopCount=0;
-//STRIP001  FASTBOOL bNoMoreLoop=FALSE;
-//STRIP001  long nXDiff0=0x7FFFFFFF;
-//STRIP001  long nWantWdt=rAnchorRect.Right()-rAnchorRect.Left();
-//STRIP001  long nIsWdt=rTextRect.Right()-rTextRect.Left();
-//STRIP001  if (nIsWdt==0) nIsWdt=1;
-//STRIP001
-//STRIP001  long nWantHgt=rAnchorRect.Bottom()-rAnchorRect.Top();
-//STRIP001  long nIsHgt=rTextRect.Bottom()-rTextRect.Top();
-//STRIP001  if (nIsHgt==0) nIsHgt=1;
-//STRIP001
-//STRIP001  long nXTolPl=nWantWdt/100; // Toleranz +1%
-//STRIP001  long nXTolMi=nWantWdt/25;  // Toleranz -4%
-//STRIP001  long nXKorr =nWantWdt/20;  // Korrekturmasstab 5%
-//STRIP001
-//STRIP001  long nX=(nWantWdt*100) /nIsWdt; // X-Stretching berechnen
-//STRIP001  long nY=(nWantHgt*100) /nIsHgt; // Y-Stretching berechnen
-//STRIP001  FASTBOOL bChkX=TRUE;
-//STRIP001  FASTBOOL bChkY=TRUE;
-//STRIP001  if (bNoStretching) { // #35762# evtl. nur proportional moeglich
-//STRIP001      if (nX>nY) { nX=nY; bChkX=FALSE; }
-//STRIP001      else { nY=nX; bChkY=FALSE; }
-//STRIP001  }
-//STRIP001
-//STRIP001  while (nLoopCount<5 && !bNoMoreLoop) {
-//STRIP001      if (nX<0) nX=-nX;
-//STRIP001      if (nX<1) { nX=1; bNoMoreLoop=TRUE; }
-//STRIP001      if (nX>65535) { nX=65535; bNoMoreLoop=TRUE; }
-//STRIP001
-//STRIP001      if (nY<0) nY=-nY;
-//STRIP001      if (nY<1) { nY=1; bNoMoreLoop=TRUE; }
-//STRIP001      if (nY>65535) { nY=65535; bNoMoreLoop=TRUE; }
-//STRIP001
-//STRIP001      // exception, there is no text yet (horizontal case)
-//STRIP001      if(nIsWdt <= 1)
-//STRIP001      {
-//STRIP001          nX = nY;
-//STRIP001          bNoMoreLoop = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      // #87877# exception, there is no text yet (vertical case)
-//STRIP001      if(nIsHgt <= 1)
-//STRIP001      {
-//STRIP001          nY = nX;
-//STRIP001          bNoMoreLoop = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      rOutliner.SetGlobalCharStretching((USHORT)nX,(USHORT)nY);
-//STRIP001      nLoopCount++;
-//STRIP001      Size aSiz(rOutliner.CalcTextSize());
-//STRIP001      long nXDiff=aSiz.Width()-nWantWdt;
-//STRIP001      rFitXKorreg=Fraction(nWantWdt,aSiz.Width());
-//STRIP001      if (((nXDiff>=nXTolMi || !bChkX) && nXDiff<=nXTolPl) || nXDiff==nXDiff0/*&& Abs(nYDiff)<=nYTol*/) {
-//STRIP001          bNoMoreLoop=TRUE;
-//STRIP001      } else {
-//STRIP001          // Stretchingfaktoren korregieren
-//STRIP001          long nMul=nWantWdt;
-//STRIP001          long nDiv=aSiz.Width();
-//STRIP001          if (Abs(nXDiff)<=2*nXKorr) {
-//STRIP001              if (nMul>nDiv) nDiv+=(nMul-nDiv)/2; // und zwar nur um die haelfte des berechneten
-//STRIP001              else nMul+=(nDiv-nMul)/2;           // weil die EE ja eh wieder falsch rechnet
-//STRIP001          }
-//STRIP001          nX=nX*nMul/nDiv;
-//STRIP001          if (bNoStretching) nY=nX;
-//STRIP001      }
-//STRIP001      nXDiff0=nXDiff;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrTextObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
-//STRIP001 {
-//STRIP001  // Hidden objects on masterpages, draw nothing
-//STRIP001  if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  FASTBOOL bOk=TRUE;
-//STRIP001  FASTBOOL bPrinter=rXOut.GetOutDev()->GetOutDevType()==OUTDEV_PRINTER;
-//STRIP001     FASTBOOL bPrintPreView=rXOut.GetOutDev()->GetOutDevViewType()==OUTDEV_VIEWTYPE_PRINTPREVIEW;
-//STRIP001
-//STRIP001  if (bPrinter && bEmptyPresObj)
-//STRIP001      return bOk; // Leere Praesentationsobjekte nicht drucken!
-//STRIP001
-//STRIP001  if (!bPrinter && pEdtOutl!=NULL && rInfoRec.pPV!=NULL &&
-//STRIP001      rInfoRec.pPV->GetView().GetTextEditObject()==(SdrObject*)this)
-//STRIP001      return bOk; // Textobjekt wird gerade editiert in der auffordernen View
-//STRIP001
-//STRIP001  if ((rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTTEXT) ==0)
-//STRIP001  {
-//STRIP001      if (pOutlinerParaObject!=NULL || (pEdtOutl!=NULL && HasEditText()))
-//STRIP001      {
-//STRIP001          SdrOutliner& rOutliner=ImpGetDrawOutliner();
-//STRIP001
-//STRIP001          {
-//STRIP001              SvtAccessibilityOptions aOptions;
-//STRIP001                 FASTBOOL bForceAutoColor = aOptions.GetIsAutomaticFontColor();
-//STRIP001                 //#106611# don't use automatic colors in WYSIWYG Print Previews
-//STRIP001                 if(bPrintPreView&& !aOptions.GetIsForPagePreviews())
-//STRIP001                     bForceAutoColor = FALSE;
-//STRIP001              rOutliner.ForceAutoColor( bForceAutoColor );
-//STRIP001          }
-//STRIP001
-//STRIP001          FASTBOOL bContourFrame=IsContourTextFrame();
-//STRIP001          if (IsFontwork() && !bContourFrame)
-//STRIP001          { // FontWork
-//STRIP001              if (pModel!=NULL)
-//STRIP001              {
-//STRIP001                  rOutliner.SetUpdateMode(TRUE); // hier kann ggf. noch optimiert werden !!!
-//STRIP001                  ImpTextPortionHandler aTPHandler(rOutliner,*this);
-//STRIP001
-//STRIP001                  // #78478# to have the outline color in XOutputDevice::ImpDrawFormText(...)
-//STRIP001                  // SetLineAttr(...) needs to be called if the outline item is set
-//STRIP001                  const SfxItemSet& rSet = GetItemSet();
-//STRIP001                  BOOL bFormTextOutline = ((XFormTextOutlineItem&)(rSet.Get(XATTR_FORMTXTOUTLINE))).GetValue();
-//STRIP001
-//STRIP001                  if(bFormTextOutline)
-//STRIP001                      rXOut.SetLineAttr(rSet);
-//STRIP001
-//STRIP001                  rXOut.SetTextAttr(rSet);
-//STRIP001
-//STRIP001                  aTPHandler.DrawTextToPath(rXOut); // drucken bei aktivem Textedit fehlt hier
-//STRIP001                  rOutliner.Clear();
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              // sonst kein Fontwork
-//STRIP001              // hier findet das richtige Painten des Textes statt
-//STRIP001
-//STRIP001              Rectangle aTextRect;
-//STRIP001              Rectangle aAnchorRect;
-//STRIP001              Rectangle aPaintRect;
-//STRIP001              Fraction aFitXKorreg(1,1);
-//STRIP001
-//STRIP001                 // #101029#: Extracted Outliner setup to ImpSetupDrawOutlinerForPaint
-//STRIP001                 ImpSetupDrawOutlinerForPaint( bContourFrame, rOutliner, aTextRect, aAnchorRect, aPaintRect, aFitXKorreg );
-//STRIP001
-//STRIP001              FASTBOOL bAnimated=GetTextAniKind()!=SDRTEXTANI_NONE;
-//STRIP001              OutputDevice* pOutDev=rXOut.GetOutDev();
-//STRIP001
-//STRIP001              // #98825# Text animation is initialized and strted from this Paint()
-//STRIP001              // no one seems to use StartTextAnimation(...) or StopTextAnimation(...)
-//STRIP001              // at all. Thus, I need to stop text animation here when necessary.
-//STRIP001              sal_Bool bDoNotPaintAnimatedText =
-//STRIP001                  bPrinter || (rInfoRec.nPaintMode & SDRPAINTMODE_ANILIKEPRN) !=0 || !bAnimated;
-//STRIP001
-//STRIP001              if(!bDoNotPaintAnimatedText)
-//STRIP001              {
-//STRIP001                  // if animated text is disabled, do not start it here...
-//STRIP001                  if(0L != rInfoRec.pPV)
-//STRIP001                  {
-//STRIP001                      const SdrView& rTargetView = rInfoRec.pPV->GetView();
-//STRIP001                      const SvtAccessibilityOptions& rOpt = ((SdrView&)rTargetView).getAccessibilityOptions();
-//STRIP001                      sal_Bool bIsAllowedAnimatedText = rOpt.GetIsAllowAnimatedText();
-//STRIP001
-//STRIP001                      if(!bIsAllowedAnimatedText)
-//STRIP001                      {
-//STRIP001                          bDoNotPaintAnimatedText = sal_True;
-//STRIP001
-//STRIP001                          if(pPlusData && pPlusData->pAnimator)
-//STRIP001                          {
-//STRIP001                              pPlusData->pAnimator->Stop();
-//STRIP001                              delete pPlusData->pAnimator;
-//STRIP001                              pPlusData->pAnimator = 0L;
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              if(bDoNotPaintAnimatedText)
-//STRIP001              {
-//STRIP001                  if (!bAnimated && pPlusData!=NULL && pPlusData->pAnimator!=NULL)
-//STRIP001                  {
-//STRIP001                      delete pPlusData->pAnimator;
-//STRIP001                      pPlusData->pAnimator=NULL;
-//STRIP001                  }
-//STRIP001                  if (aGeo.nDrehWink!=0)
-//STRIP001                  {
-//STRIP001                      // #49328# bei AutoGrowHeight()=TRUE nicht mehr clippen
-//STRIP001                      FASTBOOL bNeedClip=(bTextFrame && !IsAutoGrowHeight()) || bContourFrame;
-//STRIP001                      // ClipRegion setzen. Das macht Malte bei gedrehter Ausgabe naemlich nicht!
-//STRIP001                      FASTBOOL bMtf=pOutDev->GetConnectMetaFile()!=NULL;
-//STRIP001                      // Clipping merken
-//STRIP001                      FASTBOOL bClip0=pOutDev->IsClipRegion();
-//STRIP001                      Region   aClip0(pOutDev->GetClipRegion());
-//STRIP001                      if (bNeedClip)
-//STRIP001                      {
-//STRIP001                          if (bMtf) pOutDev->Push();
-//STRIP001                          // Neues Clipping setzen
-//STRIP001                          Rectangle aClipRect(aPaintRect);
-//STRIP001                          if (bPrinter)
-//STRIP001                          { // #42520#: Bei HP-Druckern fehlt sonst oefter der letzte Buchstabe einer Zeile
-//STRIP001                              Size a1Pix(pOutDev->PixelToLogic(Size(1,1)));
-//STRIP001                              aClipRect.Top()-=a1Pix.Width();
-//STRIP001                              aClipRect.Left()-=a1Pix.Height();
-//STRIP001                              aClipRect.Right()+=a1Pix.Width();
-//STRIP001                              aClipRect.Bottom()+=a1Pix.Height();
-//STRIP001                          }
-//STRIP001                          Polygon aClipPoly(aClipRect);
-//STRIP001                          RotatePoly(aClipPoly,aPaintRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001                          // Intersect geht leider nicht, weil Poly statt Rect
-//STRIP001                          pOutDev->SetClipRegion(aClipPoly);
-//STRIP001                          if (bClip0)
-//STRIP001                          {
-//STRIP001                              // Aber wenn's vorher nur ein Rechteck war, dann
-//STRIP001                              // intersecte ich mein Poly nun mit diesem
-//STRIP001                              pOutDev->IntersectClipRegion(aClip0.GetBoundRect());
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                      // Textausgabe
-//STRIP001                      rOutliner.Draw(pOutDev,aPaintRect.TopLeft(),(short)(aGeo.nDrehWink/10));
-//STRIP001                      if (bNeedClip)
-//STRIP001                      {
-//STRIP001                          // Clipping restaurieren
-//STRIP001                          if (bMtf)
-//STRIP001                              pOutDev->Pop();
-//STRIP001                          else
-//STRIP001                          {
-//STRIP001                              if (bClip0)
-//STRIP001                                  pOutDev->SetClipRegion(aClip0);
-//STRIP001                              else
-//STRIP001                                  pOutDev->SetClipRegion();
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                         if(IsVerticalWriting())
-//STRIP001                         {
-//STRIP001                             // new try for #82826#
-//STRIP001                             if(aAnchorRect.GetWidth() > aPaintRect.GetWidth())
-//STRIP001                             {
-//STRIP001                                 aPaintRect = Rectangle(
-//STRIP001                                     aPaintRect.Right() - aAnchorRect.GetWidth(), aPaintRect.Top(),
-//STRIP001                                     aPaintRect.Right(), aPaintRect.Bottom());
-//STRIP001                             }
-//STRIP001
-//STRIP001                             // #91744# for vertical writing the original fix #82826#
-//STRIP001                             // needs to be taken out.
-//STRIP001                             rOutliner.Draw(pOutDev, aPaintRect);
-//STRIP001                         }
-//STRIP001                         else
-//STRIP001                         {
-//STRIP001                             // new try for #82826#
-//STRIP001                             if(aAnchorRect.GetHeight() > aPaintRect.GetHeight())
-//STRIP001                             {
-//STRIP001                                 aPaintRect = Rectangle(
-//STRIP001                                     aPaintRect.Left(), aPaintRect.Top(),
-//STRIP001                                     aPaintRect.Right(), aPaintRect.Top() + aAnchorRect.GetHeight());
-//STRIP001                             }
-//STRIP001
-//STRIP001                             // #91809# for horizontal writing the original fix #82826#
-//STRIP001                             // needs to be taken out, too.
-//STRIP001                             rOutliner.Draw(pOutDev, aPaintRect);
-//STRIP001
-//STRIP001                             // #82826# for correct preview of outliner views
-//STRIP001                             //// rOutliner.Draw(pOutDev,aPaintRect);
-//STRIP001                             //if(aPaintRect.Top() > aAnchorRect.Top())
-//STRIP001                             //   rOutliner.Draw(pOutDev, aPaintRect);
-//STRIP001                             //else
-//STRIP001                             //   rOutliner.Draw(pOutDev, aAnchorRect);
-//STRIP001                         }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  ImpPaintAnimatedText(*rXOut.GetOutDev(),rXOut.GetOffset(),rOutliner,aAnchorRect,aPaintRect,rInfoRec);
-//STRIP001              }
-//STRIP001
-//STRIP001              rOutliner.Clear();
-//STRIP001          }
-//STRIP001      } // if (pPara!=NULL)
-//STRIP001      if (bEmptyPresObj)
-//STRIP001      {
-//STRIP001          // leere Praesentationsobjekte bekommen einen grauen Rahmen
-//STRIP001             svtools::ColorConfig aColorConfig;
-//STRIP001             svtools::ColorConfigValue aColor( aColorConfig.GetColorValue( svtools::OBJECTBOUNDARIES ) );
-//STRIP001
-//STRIP001          if( aColor.bIsVisible )
-//STRIP001          {
-//STRIP001              rXOut.GetOutDev()->SetFillColor();
-//STRIP001              rXOut.GetOutDev()->SetLineColor( aColor.nColor );
-//STRIP001
-//STRIP001              if (aGeo.nDrehWink!=0 || aGeo.nShearWink!=0)
-//STRIP001              {
-//STRIP001                  Polygon aPoly(aRect);
-//STRIP001                  if (aGeo.nShearWink!=0)
-//STRIP001                      ShearPoly(aPoly,aRect.TopLeft(),aGeo.nTan);
-//STRIP001
-//STRIP001                  if (aGeo.nDrehWink!=0)
-//STRIP001                      RotatePoly(aPoly,aRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001
-//STRIP001                  rXOut.GetOutDev()->DrawPolyLine(aPoly);
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  rXOut.GetOutDev()->DrawRect(aRect);
-//STRIP001              }
-//STRIP001          }
-//STRIP001      } // if pOutlParaObj!=NULL
-//STRIP001  }
-//STRIP001  else
-//STRIP001  { // sonst SDRPAINTMODE_DRAFTTEXT
-//STRIP001      FASTBOOL bFill=HasFill();
-//STRIP001      FASTBOOL bLine=HasLine();
-//STRIP001      FASTBOOL bHide=IsFontwork() && IsHideContour() && pFormTextBoundRect!=NULL;
-//STRIP001
-//STRIP001      if (bHide)
-//STRIP001      {
-//STRIP001          bFill=FALSE;
-//STRIP001          bLine=FALSE;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ((bTextFrame && !bLine && !bFill) || bHide)
-//STRIP001      {
-//STRIP001          OutputDevice* pOut=rXOut.GetOutDev();
-//STRIP001          Polygon aPoly;
-//STRIP001
-//STRIP001          if (bHide)
-//STRIP001              aPoly=Polygon(*pFormTextBoundRect);
-//STRIP001          else
-//STRIP001              aPoly=Rect2Poly(aRect,aGeo);
-//STRIP001
-//STRIP001          if (aPoly.GetSize()>=4)
-//STRIP001          {
-//STRIP001              pOut->SetLineColor(Color(COL_BLACK));
-//STRIP001              pOut->DrawPolyLine(aPoly);
-//STRIP001              pOut->DrawLine(aPoly[0],aPoly[2]);
-//STRIP001              pOut->DrawLine(aPoly[1],aPoly[3]);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
 // Geht z.Zt. nur wenn das Obj schon wenigstens einmal gepaintet wurde
 // Denn dann ist der MtfAnimator initiallisiert
-//STRIP001 void SdrTextObj::StartTextAnimation(OutputDevice* pOutDev, const Point& rOffset, long nExtraData)
-//STRIP001 {
-//STRIP001  if (GetTextAniKind()!=SDRTEXTANI_NONE && ImpGetMtfAnimator()!=NULL) {
-//STRIP001      ImpSdrMtfAnimator* pAnimator=ImpForceMtfAnimator();
-//STRIP001      pAnimator->Start(*pOutDev,rOffset,nExtraData);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrTextObj::StopTextAnimation(OutputDevice* pOutDev, long nExtraData)
-//STRIP001 {
-//STRIP001  if (pPlusData!=NULL && pPlusData->pAnimator!=NULL) {
-//STRIP001      ImpSdrMtfAnimator* pAnimator=pPlusData->pAnimator;
-//STRIP001      for (ULONG nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {
-//STRIP001          nInfoNum--;
-//STRIP001          ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
-//STRIP001          if (pInfo->nExtraData==nExtraData &&
-//STRIP001              (pOutDev==NULL || pInfo->pOutDev==pOutDev)) pAnimator->RemoveInfo(nInfoNum);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrTextObj::ImpPaintAnimatedText(OutputDevice& rOut, const Point& rOffset,
-//STRIP001  SdrOutliner& rOutliner, const Rectangle& rAnchorRect, const Rectangle& rPaintRect,
-//STRIP001  const SdrPaintInfoRec& rInfoRec) const
-//STRIP001 {
-//STRIP001  SdrTextAniKind eAniKind = GetTextAniKind();
-//STRIP001  FASTBOOL bBlink = eAniKind == SDRTEXTANI_BLINK;
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001  SdrTextAniDirection eDirection = ((SdrTextAniDirectionItem&)(rSet.Get(SDRATTR_TEXT_ANIDIRECTION))).GetValue();
-//STRIP001  ImpSdrMtfAnimator* pAnimator = ((SdrTextObj*)this)->ImpForceMtfAnimator();
-//STRIP001  pAnimator->SetAnimationNotifyHdl(LINK(this,SdrTextObj,ImpAnimationHdl));
-//STRIP001
-//STRIP001  // erstmal checken, ob nicht schon laeuft
-//STRIP001  ImpMtfAnimationInfo* pRunningInfo = NULL;
-//STRIP001
-//STRIP001  for(ULONG nInfoNum = pAnimator->GetInfoCount(); nInfoNum>0 && pRunningInfo==NULL;) {
-//STRIP001      nInfoNum--;
-//STRIP001      ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
-//STRIP001      if (pInfo->pPageView==rInfoRec.pPV && pInfo->pOutDev==&rOut) {
-//STRIP001          if (!pInfo->bBackSaved) pRunningInfo=pInfo;
-//STRIP001          else {
-//STRIP001              MapMode aMap1(pInfo->aBackground.GetMapMode());
-//STRIP001              MapMode aMap2(rOut.GetMapMode());
-//STRIP001              if (aMap1.GetMapUnit()==aMap2.GetMapUnit() &&
-//STRIP001                  aMap1.GetScaleX()==aMap2.GetScaleX() &&
-//STRIP001                  aMap1.GetScaleY()==aMap2.GetScaleY()) pRunningInfo=pInfo;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (pRunningInfo!=NULL) {
-//STRIP001      if (pRunningInfo->bBackSaved) {
-//STRIP001          // Teilinvalidierung des Hintergrunds
-//STRIP001          Rectangle aClipRect(rInfoRec.aDirtyRect);
-//STRIP001          if (rOut.GetMapMode().GetMapUnit()==MAP_TWIP) {
-//STRIP001              HACK(Bei Teilinvalidierung von Laufschrift im Writer 1 Pixel korregieren);
-//STRIP001              Size a1Pix(rOut.PixelToLogic(Size(1,1)));
-//STRIP001              aClipRect.Top()+=a1Pix.Width();
-//STRIP001              aClipRect.Left()+=a1Pix.Height();
-//STRIP001              aClipRect.Right()-=a1Pix.Width();
-//STRIP001              aClipRect.Bottom()-=a1Pix.Height();
-//STRIP001          }
-//STRIP001          Region aRegion(aClipRect);
-//STRIP001          pRunningInfo->SaveBackground(*pAnimator,&aRegion);
-//STRIP001          pRunningInfo->Paint(*pAnimator,rOut);
-//STRIP001      }
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  pAnimator->SetAttributes(rSet);
-//STRIP001
-//STRIP001  Point aRotateRef(rAnchorRect.TopLeft());
-//STRIP001  // Die Drehreferenz ist bei allen Rechtecken jeweils das eigene TopLeft()
-//STRIP001  // (rPaintRect,rAnchorRect). Ich verschiebe nun aPaintRect so, dass fuer
-//STRIP001  // beide die Drehreferenz rAnchorRect.TopLeft() gilt.
-//STRIP001  Rectangle aPaintRect(rPaintRect);
-//STRIP001
-//STRIP001  // #103516# Do this calculatin for vertical text, too.
-//STRIP001  if((SDRTEXTHORZADJUST_BLOCK == GetTextHorizontalAdjust() || SDRTEXTVERTADJUST_BLOCK == GetTextVerticalAdjust())
-//STRIP001      && SDRTEXTFIT_NONE != GetFitToSize())
-//STRIP001  {
-//STRIP001      // Bei den Default-Textrahmen muss ich erstmal die laengste Zeile berechnen
-//STRIP001      // Das gibt allerdings Probleme bei Absatzformatierungen Center, Rechts
-//STRIP001      // und evtl. auch bei Blocksatz.
-//STRIP001      Size aSiz(rOutliner.CalcTextSize());
-//STRIP001      aPaintRect.Right()=aPaintRect.Left()+aSiz.Width();
-//STRIP001      aPaintRect.Bottom()=aPaintRect.Top()+aSiz.Height();
-//STRIP001  }
-//STRIP001
-//STRIP001  // PaintRect auf's AnchorRect ausrichten (den selben Drehpunkt fuer alle)
-//STRIP001  if (aGeo.nDrehWink!=0) {
-//STRIP001      if (aPaintRect.TopLeft()!=aRotateRef) {
-//STRIP001          Point aTmpPt(aPaintRect.TopLeft());
-//STRIP001          RotatePoint(aTmpPt,aRotateRef,-aGeo.nSin,aGeo.nCos); // -sin=zurueckdrehen
-//STRIP001          aTmpPt-=aPaintRect.TopLeft();
-//STRIP001          aPaintRect.Move(aTmpPt.X(),aTmpPt.Y());
-//STRIP001      }
-//STRIP001  }
-//STRIP001  Rectangle aScrollFrameRect(aPaintRect);
-//STRIP001  if (!bBlink) {
-//STRIP001      if (eDirection==SDRTEXTANI_LEFT || eDirection==SDRTEXTANI_RIGHT) {
-//STRIP001          aScrollFrameRect.Left()=rAnchorRect.Left();
-//STRIP001          aScrollFrameRect.Right()=rAnchorRect.Right();
-//STRIP001      }
-//STRIP001      if (eDirection==SDRTEXTANI_UP || eDirection==SDRTEXTANI_DOWN) {
-//STRIP001          aScrollFrameRect.Top()=rAnchorRect.Top();
-//STRIP001          aScrollFrameRect.Bottom()=rAnchorRect.Bottom();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  Rectangle aAnimationBoundRect(aScrollFrameRect);
-//STRIP001  if (aGeo.nDrehWink!=0) {
-//STRIP001      // Das aAnimationBoundRect ist das BoundRect des gedrehten aScrollFrameRect.
-//STRIP001      // Fuer diesen Bereich muss spaeter der Hintergrund gesichert werden, ...
-//STRIP001      Polygon aPoly(aAnimationBoundRect);
-//STRIP001      RotatePoly(aPoly,aRotateRef,aGeo.nSin,aGeo.nCos);
-//STRIP001      aAnimationBoundRect=aPoly.GetBoundRect();
-//STRIP001  }
-//STRIP001  // ClipRegion am pAnimator setzen, falls erforderlich
-//STRIP001  if (bBlink) pAnimator->SetClipRegion(); // kein Clipping erforderlich
-//STRIP001  else {
-//STRIP001      if (aGeo.nDrehWink==0) pAnimator->SetClipRegion(aScrollFrameRect); // RectClipping
-//STRIP001      else {
-//STRIP001          Polygon aPoly(aScrollFrameRect);
-//STRIP001          RotatePoly(aPoly,aRotateRef,aGeo.nSin,aGeo.nCos);
-//STRIP001          pAnimator->SetClipRegion(aPoly); // PolyClipping
-//STRIP001      }
-//STRIP001  }
-//STRIP001  Rectangle aAnimationBoundRectPlus(aAnimationBoundRect); // Das ist das AnimationBoundRect +PvOfs
-//STRIP001  aAnimationBoundRectPlus.Move(rOffset.X(),rOffset.Y());
-//STRIP001
-//STRIP001  { // Nun das Metafile erzeugen
-//STRIP001      GDIMetaFile* pMtf=new GDIMetaFile;
-//STRIP001      VirtualDevice aBlackHole;
-//STRIP001      aBlackHole.EnableOutput(FALSE);
-//STRIP001      pMtf->Record(&aBlackHole);
-//STRIP001
-//STRIP001      //AW vertical writing
-//STRIP001      // For the outliner::Draw method which takes a start position
-//STRIP001      // the upper right position must be offered for vertical writing.
-//STRIP001      // Update: MT changed the method to take the same position as normal,
-//STRIP001      // so I changed this back.
-//STRIP001      Point aPaintPos = rPaintRect.TopLeft();
-//STRIP001
-//STRIP001      //aPaintPos-=aAnimationBoundRect.TopLeft();
-//STRIP001      // Die RedLines der Online-Rechtschreibpruefung werden via DrawPixel
-//STRIP001      // gemalt. Das ist bei Laufschrift, besonders unter OS/2, viel zu langsam.
-//STRIP001      // Deshalb schalte ich diese hier bei der Metafileaufzeichnung temporaer ab.
-//STRIP001      ULONG nStat0=rOutliner.GetControlWord();
-//STRIP001      rOutliner.SetControlWord(nStat0|EE_CNTRL_NOREDLINES);
-//STRIP001      rOutliner.Draw(&aBlackHole,aPaintPos,(short)(aGeo.nDrehWink/10));
-//STRIP001      rOutliner.SetControlWord(nStat0);
-//STRIP001      pMtf->Stop();
-//STRIP001      pMtf->WindStart();
-//STRIP001      pAnimator->SetGDIMetaFile(pMtf);
-//STRIP001  }
-//STRIP001  pAnimator->SetOutputRect(aAnimationBoundRect);
-//STRIP001  pAnimator->SetScrollFrameRect(aScrollFrameRect);
-//STRIP001  pAnimator->SetMtfFrameRect(aPaintRect);
-//STRIP001  pAnimator->SetRotateRef(aRotateRef);
-//STRIP001  pAnimator->SetRotateAngle(aGeo.nDrehWink);
-//STRIP001
-//STRIP001  ImpMtfAnimationInfo* pInfo=pAnimator->Start(rOut,rOffset);
-//STRIP001  // Nun noch die PageView setzen (fuer Xor)
-//STRIP001  pInfo->pPageView=rInfoRec.pPV;
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 void SdrTextObj::RecalcBoundRect()
-//STRIP001 {
-//STRIP001  aOutRect=GetSnapRect();
-//STRIP001 }
 
 /*N*/ void SdrTextObj::ImpAddTextToBoundRect()
 /*N*/ {
@@ -1696,87 +967,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return bRet ? (SdrObject*)this : NULL;
 /*N*/ }
 
-//STRIP001 void SdrTextObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  XubString aStr;
-//STRIP001
-//STRIP001  switch(eTextKind)
-//STRIP001  {
-//STRIP001      case OBJ_OUTLINETEXT:
-//STRIP001      {
-//STRIP001          aStr = ImpGetResStr(STR_ObjNameSingulOUTLINETEXT);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case OBJ_TITLETEXT  :
-//STRIP001      {
-//STRIP001          aStr = ImpGetResStr(STR_ObjNameSingulTITLETEXT);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      default:
-//STRIP001      {
-//STRIP001          if(IsLinkedText())
-//STRIP001              aStr = ImpGetResStr(STR_ObjNameSingulTEXTLNK);
-//STRIP001          else
-//STRIP001              aStr = ImpGetResStr(STR_ObjNameSingulTEXT);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if(pOutlinerParaObject && eTextKind != OBJ_OUTLINETEXT)
-//STRIP001  {
-//STRIP001      // Macht bei OUTLINETEXT wohl derzeit noch etwas Probleme
-//STRIP001      XubString aStr2(pOutlinerParaObject->GetTextObject().GetText(0));
-//STRIP001      aStr2.EraseLeadingChars();
-//STRIP001
-//STRIP001      // #69446# avoid non expanded text portions in object name
-//STRIP001      // (second condition is new)
-//STRIP001      if(aStr2.Len() && aStr2.Search(sal_Unicode(255)) == STRING_NOTFOUND)
-//STRIP001      {
-//STRIP001          // #76681# space between ResStr and content text
-//STRIP001          aStr += sal_Unicode(' ');
-//STRIP001
-//STRIP001          aStr += sal_Unicode('\'');
-//STRIP001
-//STRIP001          if(aStr2.Len() > 10)
-//STRIP001          {
-//STRIP001              aStr2.Erase(8);
-//STRIP001              aStr2.AppendAscii("...", 3);
-//STRIP001          }
-//STRIP001
-//STRIP001          aStr += aStr2;
-//STRIP001          aStr += sal_Unicode('\'');
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  rName = aStr;
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001
-//STRIP001 }
 
-//STRIP001 void SdrTextObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  switch (eTextKind) {
-//STRIP001      case OBJ_OUTLINETEXT: rName=ImpGetResStr(STR_ObjNamePluralOUTLINETEXT); break;
-//STRIP001      case OBJ_TITLETEXT  : rName=ImpGetResStr(STR_ObjNamePluralTITLETEXT);   break;
-//STRIP001      default: {
-//STRIP001          if (IsLinkedText()) {
-//STRIP001              rName=ImpGetResStr(STR_ObjNamePluralTEXTLNK);
-//STRIP001          } else {
-//STRIP001              rName=ImpGetResStr(STR_ObjNamePluralTEXT);
-//STRIP001          }
-//STRIP001      } break;
-//STRIP001  } // switch
-//STRIP001 }
 
 /*N*/ void SdrTextObj::operator=(const SdrObject& rObj)
 /*N*/ {
@@ -1811,13 +1002,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrTextObj::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
-//STRIP001 {
-//STRIP001  Polygon aPol(aRect);
-//STRIP001  if (aGeo.nShearWink!=0) ShearPoly(aPol,aRect.TopLeft(),aGeo.nTan);
-//STRIP001  if (aGeo.nDrehWink!=0) RotatePoly(aPol,aRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001  rPoly=XPolyPolygon(XPolygon(aPol));
-//STRIP001 }
 
 /*N*/ void SdrTextObj::TakeContour(XPolyPolygon& rPoly) const
 /*N*/ {
@@ -1843,9 +1027,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrTextObj::TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const
-//STRIP001 {
-//STRIP001 }
 
 /*N*/ void SdrTextObj::RecalcSnapRect()
 /*N*/ {
@@ -1859,25 +1040,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 USHORT SdrTextObj::GetSnapPointCount() const
-//STRIP001 {
-//STRIP001  return 4;
-//STRIP001 }
 
-//STRIP001 Point SdrTextObj::GetSnapPoint(USHORT i) const
-//STRIP001 {
-//STRIP001  Point aP;
-//STRIP001  switch (i) {
-//STRIP001      case 0: aP=aRect.TopLeft(); break;
-//STRIP001      case 1: aP=aRect.TopRight(); break;
-//STRIP001      case 2: aP=aRect.BottomLeft(); break;
-//STRIP001      case 3: aP=aRect.BottomRight(); break;
-//STRIP001      default: aP=aRect.Center(); break;
-//STRIP001  }
-//STRIP001  if (aGeo.nShearWink!=0) ShearPoint(aP,aRect.TopLeft(),aGeo.nTan);
-//STRIP001  if (aGeo.nDrehWink!=0) RotatePoint(aP,aRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001  return aP;
-//STRIP001 }
 
 /*N*/ void SdrTextObj::ImpCheckMasterCachable()
 /*N*/ {
@@ -1920,63 +1083,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ }
 
 // #101029#: Extracted from Paint()
-//STRIP001 void SdrTextObj::ImpSetupDrawOutlinerForPaint( FASTBOOL      bContourFrame,
-//STRIP001                                                SdrOutliner&  rOutliner,
-//STRIP001                                                Rectangle&        rTextRect,
-//STRIP001                                                Rectangle&        rAnchorRect,
-//STRIP001                                                Rectangle&        rPaintRect,
-//STRIP001                                                Fraction&         rFitXKorreg ) const
-//STRIP001 {
-//STRIP001     if (!bContourFrame)
-//STRIP001     {
-//STRIP001         // FitToSize erstmal nicht mit ContourFrame
-//STRIP001         SdrFitToSizeType eFit=GetFitToSize();
-//STRIP001         if (eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES)
-//STRIP001         {
-//STRIP001             ULONG nStat=rOutliner.GetControlWord();
-//STRIP001             nStat|=EE_CNTRL_STRETCHING|EE_CNTRL_AUTOPAGESIZE;
-//STRIP001             rOutliner.SetControlWord(nStat);
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     TakeTextRect(rOutliner, rTextRect, FALSE, &rAnchorRect);
-//STRIP001     rPaintRect = rTextRect;
-//STRIP001
-//STRIP001     if (!bContourFrame)
-//STRIP001     {
-//STRIP001         // FitToSize erstmal nicht mit ContourFrame
-//STRIP001         SdrFitToSizeType eFit=GetFitToSize();
-//STRIP001         if (eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES)
-//STRIP001         {
-//STRIP001             ImpSetCharStretching(rOutliner,rTextRect,rAnchorRect,rFitXKorreg);
-//STRIP001             rPaintRect=rAnchorRect;
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
 
 /*N*/ void SdrTextObj::SetupOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     ImpInitDrawOutliner( rOutl );
-//STRIP001     UpdateOutlinerFormatting( rOutl, rPaintRect );
-//STRIP001 }
-//STRIP001
-//STRIP001 void SdrTextObj::UpdateOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ) const
-//STRIP001 {
-//STRIP001     Rectangle aTextRect;
-//STRIP001     Rectangle aAnchorRect;
-//STRIP001     Fraction aFitXKorreg(1,1);
-//STRIP001
-//STRIP001     FASTBOOL bContourFrame=IsContourTextFrame();
-//STRIP001
-//STRIP001     ImpSetupDrawOutlinerForPaint( bContourFrame, rOutl, aTextRect, aAnchorRect, rPaintRect, aFitXKorreg );
-//STRIP001
-//STRIP001     if( GetModel() )
-//STRIP001     {
-//STRIP001      MapMode aMapMode(GetModel()->GetScaleUnit(), Point(0,0),
-//STRIP001                          GetModel()->GetScaleFraction(),
-//STRIP001                          GetModel()->GetScaleFraction());
-//STRIP001      rOutl.SetRefMapMode(aMapMode);
-//STRIP001  }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2087,10 +1196,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 ///*N*/     }
 /*N*/ }
 
-//STRIP001 SdrObjGeoData* SdrTextObj::NewGeoData() const
-//STRIP001 {
-//STRIP001  return new SdrTextObjGeoData;
-//STRIP001 }
 
 /*N*/ void SdrTextObj::SaveGeoData(SdrObjGeoData& rGeo) const
 /*N*/ {
@@ -2280,127 +1385,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   ImpCheckMasterCachable();
 /*N*/ }
 
-//STRIP001 IMPL_LINK(SdrTextObj,ImpAnimationHdl,ImpSdrMtfAnimator*,pAnimator)
-//STRIP001 {
-//STRIP001  // Aehnliche Implementation am Grafikobjekt: svdograf.cxx, SdrGrafObj
-//STRIP001
-//STRIP001  // Wenn wir nicht mehr da sind, stoppen wir natuerlich alles
-//STRIP001  // und kehren gleich zurueck
-//STRIP001  if (!bInserted || pPage==NULL || pModel==NULL) {
-//STRIP001      pAnimator->Stop();
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Alle Extra-Data auf 0 setzen, wenn keine andere ExtraData
-//STRIP001  // ausser der eigenen (1) gesetzt;
-//STRIP001  // groesser als 1 bedeutet zum. beim GrafObj, dass die Animation
-//STRIP001  // von aussen gestartet wurde, z.B. von der DiaShow.
-//STRIP001  ULONG nInfoNum;
-//STRIP001  for (nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {
-//STRIP001      nInfoNum--;
-//STRIP001      ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
-//STRIP001      if (pInfo->nExtraData==1L) pInfo->nExtraData=0L;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT   nPageNum=pPage->GetPageNum();
-//STRIP001  FASTBOOL bMaster=pPage->IsMasterPage() && !bNotVisibleAsMaster;
-//STRIP001  USHORT   nLsAnz=pModel->GetListenerCount();
-//STRIP001
-//STRIP001  for (USHORT nLsNum=0; nLsNum<nLsAnz; nLsNum++) {
-//STRIP001      SfxListener* pLs=pModel->GetListener(nLsNum);
-//STRIP001      SdrObjEditView* pView=PTR_CAST(SdrObjEditView,pLs);
-//STRIP001      if (pView!=NULL) {
-//STRIP001          FASTBOOL bDis=!pView->IsAnimationEnabled();
-//STRIP001          FASTBOOL bMrk=pView->IsObjMarked(this);
-//STRIP001          FASTBOOL bEdt=pView->GetTextEditObject()==this;
-//STRIP001          USHORT nPvAnz=pView->GetPageViewCount();
-//STRIP001          for (USHORT nPvNum=0; nPvNum<nPvAnz; nPvNum++) {
-//STRIP001              SdrPageView* pPV=pView->GetPageViewPvNum(nPvNum);
-//STRIP001              SdrPage* pPg=pPV->GetPage();
-//STRIP001              if (pPV->GetVisibleLayers().IsSet(nLayerID)) {
-//STRIP001                  FASTBOOL bJa=pPg==pPage;
-//STRIP001                  if (!bJa && bMaster && !pPg->IsMasterPage()) {
-//STRIP001                      USHORT nMasterAnz=pPg->GetMasterPageCount();
-//STRIP001                      for  (USHORT nMasterNum=0; nMasterNum<nMasterAnz && !bJa; nMasterNum++) {
-//STRIP001                          const SdrMasterPageDescriptor& rMPD=pPg->GetMasterPageDescriptor(nMasterNum);
-//STRIP001                          bJa=nPageNum==rMPD.GetPageNum() && rMPD.GetVisibleLayers().IsSet(nLayerID);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  if (bJa) {
-//STRIP001                      USHORT nOutAnz=pView->GetWinCount();
-//STRIP001                      for (USHORT nOutNum=0; nOutNum<nOutAnz; nOutNum++) {
-//STRIP001                          OutputDevice* pOut=pView->GetWin(nOutNum);
-//STRIP001                          if (pOut->GetOutDevType()==OUTDEV_WINDOW)
-//STRIP001                          {
-//STRIP001                              Point                   aPvOfs( pPV->GetOffset() );
-//STRIP001                              ULONG                   nPos = pAnimator->FindInfo(*pOut,aPvOfs,0);
-//STRIP001                              ImpMtfAnimationInfo*    pInfo = NULL;
-//STRIP001                              const BOOL              bPause = ( bMrk || bEdt || bDis );
-//STRIP001
-//STRIP001                              if( nPos != CONTAINER_ENTRY_NOTFOUND )
-//STRIP001                              {
-//STRIP001                                  pInfo = pAnimator->GetInfo(nPos);
-//STRIP001
-//STRIP001                                  if( ( pInfo->pPageView && pInfo->pPageView != pPV ) && pInfo->nExtraData == 0L )
-//STRIP001                                      pInfo = NULL;
-//STRIP001                              }
-//STRIP001                              else if( !bPause )
-//STRIP001                              {
-//STRIP001                                  // Falls kein Record gefunden, wird ein neuer erzeugt
-//STRIP001                                  // Das passiert z.B., wenn das Obj auf einer MasterPage liegt
-//STRIP001                                  // und diese mittels MasterPagePaintCache angezeigt wurde.
-//STRIP001                                  pInfo=pAnimator->Start(*pOut,aPvOfs);
-//STRIP001                              }
-//STRIP001
-//STRIP001                              if( pInfo )
-//STRIP001                              {
-//STRIP001                                  // Flag am gefundenen bzw. neuen Objekt setzen
-//STRIP001                                  // ( Info soll _nicht_ geloescht werden )
-//STRIP001                                  if( pInfo->nExtraData == 0L )
-//STRIP001                                      pInfo->nExtraData = 1L;
-//STRIP001
-//STRIP001                                  pInfo->bPause = bPause;
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // Alle Objekte mit nicht gesetztem Flag loeschen
-//STRIP001  for (nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {
-//STRIP001      nInfoNum--;
-//STRIP001      ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
-//STRIP001      if (pInfo->nExtraData==0L) {
-//STRIP001          pAnimator->RemoveInfo(nInfoNum);
-//STRIP001      }
-//STRIP001      if (pInfo->nExtraData==1L) pInfo->nExtraData=0L;
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 void SdrTextObj::SetTextAnimationSupervisor( OutputDevice* pDisplayDev, BOOL bObjSupervises )
-//STRIP001 {
-//STRIP001  ImpSdrMtfAnimator* pAnimator = ImpGetMtfAnimator();
-//STRIP001
-//STRIP001  if( GetTextAniKind() != SDRTEXTANI_NONE && pAnimator )
-//STRIP001  {
-//STRIP001      for( ULONG nInfoNum = pAnimator->GetInfoCount(); nInfoNum > 0; )
-//STRIP001      {
-//STRIP001          ImpMtfAnimationInfo* pInfo = pAnimator->GetInfo( --nInfoNum );
-//STRIP001
-//STRIP001          if( pInfo->pOutDev == pDisplayDev )
-//STRIP001          {
-//STRIP001              pInfo->nExtraData = ( bObjSupervises ? 1L : (long) this );
-//STRIP001
-//STRIP001              if( !bObjSupervises )
-//STRIP001                  pInfo->bPause = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ SdrFitToSizeType SdrTextObj::GetFitToSize() const
 /*N*/ {
@@ -2659,10 +1644,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 bool SdrTextObj::IsRealyEdited() const
-//STRIP001 {
-//STRIP001  return pEdtOutl && pEdtOutl->IsModified();
-//STRIP001 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //
