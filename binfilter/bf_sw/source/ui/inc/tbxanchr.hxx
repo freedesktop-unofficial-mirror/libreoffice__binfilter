@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tbxanchr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:57:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:57:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,11 +46,7 @@ class SwTbxAnchor : public SfxToolBoxControl
 
 public:
 
-//STRIP001  virtual void StateChanged( USHORT nSID, SfxItemState eState, const SfxPoolItem* pState );
-//STRIP001  virtual void Click();
-//STRIP001
     SFX_DECL_TOOLBOX_CONTROL();
-//STRIP001
     SwTbxAnchor( USHORT nId, ToolBox& rTbx, SfxBindings& rBind );
      ~SwTbxAnchor();
 };
