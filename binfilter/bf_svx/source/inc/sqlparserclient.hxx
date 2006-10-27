@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sqlparserclient.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:09:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:12:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,6 @@
 #ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #include "ParseContext.hxx"
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 namespace binfilter {
 
 //........................................................................
@@ -69,23 +66,8 @@ namespace svxform
         OSQLParserClient(
             const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB);
         //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
-//STRIP001      void create() const;
 
     protected:
-//STRIP001          inline ::rtl::Reference< ::connectivity::simple::ISQLParseNode > predicateTree(
-//STRIP001                  ::rtl::OUString& _rErrorMessage,
-//STRIP001                  const ::rtl::OUString& _rStatement,
-//STRIP001                  const ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatter >& _rxFormatter,
-//STRIP001                  const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxField
-//STRIP001              ) const
-//STRIP001          {
-//STRIP001              ::rtl::Reference< ::connectivity::simple::ISQLParseNode > xReturn;
-//STRIP001              if (!m_xParser.is())
-//STRIP001                  create();
-//STRIP001              if (m_xParser.is())
-//STRIP001                  xReturn = m_xParser->predicateTree(_rErrorMessage, _rStatement, _rxFormatter, _rxField);
-//STRIP001              return xReturn;
-//STRIP001          }
     };
 
 //........................................................................

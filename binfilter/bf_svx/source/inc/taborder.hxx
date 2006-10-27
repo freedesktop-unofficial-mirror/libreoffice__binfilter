@@ -4,9 +4,9 @@
  *
  *  $RCSfile: taborder.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:11:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:12:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,17 +54,11 @@
 #include <vcl/button.hxx>
 #endif
 
-// auto strip #ifndef _SV_LSTBOX_HXX //autogen
-// auto strip #include <vcl/lstbox.hxx>
-// auto strip #endif
 
 #ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
 #endif
 
-// auto strip #ifndef _TOOLS_LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 
 #ifndef _SVX_FMEXCH_HXX
 #include "fmexch.hxx"
@@ -91,7 +85,6 @@ public:
     FmOrderTreeListBox( Window* pParent, const ResId& rResId  );
     virtual ~FmOrderTreeListBox();
 
-//STRIP001  void            MoveSelection( long nRelPos );
 
 protected:
     virtual sal_Int8    AcceptDrop( const AcceptDropEvent& rEvt );
@@ -129,15 +122,12 @@ class FmTabOrderDlg : public ModalDialog
     DECL_LINK( AutoOrderClickHdl, Button* );
     DECL_LINK( OKClickHdl, Button* );
 
-//STRIP001  void FillList();
-//STRIP001  Image GetImage(const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > & xSet) const;
 
 public:
     FmTabOrderDlg(  const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _xORB,
                     Window* pParent, FmFormShell* pShell );
     virtual ~FmTabOrderDlg();
 
-//STRIP001  void SetModified();
 };
 
 }//end of namespace binfilter
