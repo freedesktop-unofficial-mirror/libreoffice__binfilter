@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_asiancfg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:32:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:24:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #ifndef _SVARRAY_HXX //autogen
 #include <svtools/svarray.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
 #endif
@@ -168,49 +165,9 @@ using namespace ::com::sun::star::lang;
 /* -----------------------------17.01.01 09:57--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void     SvxAsianConfig::Notify( const Sequence<OUString>& rPropertyNames)
-//STRIP001 {
-//STRIP001  Load();
-//STRIP001 }
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SvxAsianConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<Any> aValues(2);
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001  pValues[0].setValue(&pImpl->bKerningWesternTextOnly, ::getBooleanCppuType());
-//STRIP001  pValues[1] <<= pImpl->nCharDistanceCompression;
-//STRIP001  PutProperties(lcl_GetPropertyNames(), aValues);
-//STRIP001
-//STRIP001
-//STRIP001  OUString sNode(C2U(sStartEndCharacters));
-//STRIP001  if(!pImpl->aForbiddenArr.Count())
-//STRIP001      ClearNodeSet(sNode);
-//STRIP001  else
-//STRIP001  {
-//STRIP001      Sequence<PropertyValue> aSetValues(2 * pImpl->aForbiddenArr.Count());
-//STRIP001      PropertyValue* pSetValues = aSetValues.getArray();
-//STRIP001      sal_Int32 nSetValue = 0;
-//STRIP001      const OUString sStartChars(C2U(sStartCharacters));
-//STRIP001      const OUString sEndChars(C2U(sEndCharacters));
-//STRIP001      for(sal_uInt16 i = 0; i < pImpl->aForbiddenArr.Count(); i++)
-//STRIP001      {
-//STRIP001          OUString sPrefix(sNode);
-//STRIP001          sPrefix += C2U("/");
-//STRIP001          sPrefix += pImpl->aForbiddenArr[i]->aLocale.Language;
-//STRIP001          DBG_ASSERT(pImpl->aForbiddenArr[i]->aLocale.Language.getLength(), "illegal language");
-//STRIP001          sPrefix += C2U("-");
-//STRIP001          sPrefix += pImpl->aForbiddenArr[i]->aLocale.Country;
-//STRIP001          sPrefix += C2U("/");
-//STRIP001          pSetValues[nSetValue].Name = sPrefix; pSetValues[nSetValue].Name += sStartChars;
-//STRIP001          pSetValues[nSetValue++].Value <<= pImpl->aForbiddenArr[i]->sStartChars;
-//STRIP001          pSetValues[nSetValue].Name = sPrefix; pSetValues[nSetValue].Name += sEndChars;
-//STRIP001          pSetValues[nSetValue++].Value <<= pImpl->aForbiddenArr[i]->sEndChars;
-//STRIP001      }
-//STRIP001      ReplaceSetProperties(sNode, aSetValues);
-//STRIP001  }
-//STRIP001 }
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -221,11 +178,6 @@ using namespace ::com::sun::star::lang;
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void         SvxAsianConfig::SetKerningWesternTextOnly(sal_Bool bSet)
-//STRIP001 {
-//STRIP001  pImpl->bKerningWesternTextOnly = bSet;
-//STRIP001  SetModified();
-//STRIP001 }
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -236,12 +188,6 @@ using namespace ::com::sun::star::lang;
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void         SvxAsianConfig::SetCharDistanceCompression(sal_Int16 nSet)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(nSet >= 0 && nSet < 3, "compression value illegal");
-//STRIP001  SetModified();
-//STRIP001  pImpl->nCharDistanceCompression = nSet;
-//STRIP001 }
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -258,57 +204,7 @@ using namespace ::com::sun::star::lang;
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 sal_Bool SvxAsianConfig::GetStartEndChars( const Locale& rLocale,
-//STRIP001                                  OUString& rStartChars,
-//STRIP001                                  OUString& rEndChars )
-//STRIP001 {
-//STRIP001  for(sal_uInt16 i = 0; i < pImpl->aForbiddenArr.Count(); i++)
-//STRIP001  {
-//STRIP001      if(rLocale.Language == pImpl->aForbiddenArr[i]->aLocale.Language &&
-//STRIP001          rLocale.Country == pImpl->aForbiddenArr[i]->aLocale.Country)
-//STRIP001      {
-//STRIP001          rStartChars = pImpl->aForbiddenArr[i]->sStartChars;
-//STRIP001          rEndChars = pImpl->aForbiddenArr[i]->sEndChars;
-//STRIP001          return sal_True;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return sal_False;
-//STRIP001 }
 /* -----------------------------16.01.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SvxAsianConfig::SetStartEndChars( const Locale& rLocale,
-//STRIP001                                  const OUString* pStartChars,
-//STRIP001                                  const OUString* pEndChars )
-//STRIP001 {
-//STRIP001  sal_Bool bFound = sal_False;
-//STRIP001  for(sal_uInt16 i = 0; i < pImpl->aForbiddenArr.Count(); i++)
-//STRIP001  {
-//STRIP001      if(rLocale.Language == pImpl->aForbiddenArr[i]->aLocale.Language &&
-//STRIP001          rLocale.Country == pImpl->aForbiddenArr[i]->aLocale.Country)
-//STRIP001      {
-//STRIP001          if(pStartChars && pEndChars)
-//STRIP001          {
-//STRIP001              pImpl->aForbiddenArr[i]->sStartChars = *pStartChars;
-//STRIP001              pImpl->aForbiddenArr[i]->sEndChars = *pEndChars;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pImpl->aForbiddenArr.DeleteAndDestroy(i, 1);
-//STRIP001          bFound = sal_True;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if(!bFound && pStartChars && pEndChars)
-//STRIP001  {
-//STRIP001      SvxForbiddenStruct_ImplPtr pInsert = new SvxForbiddenStruct_Impl;
-//STRIP001      pInsert->aLocale = rLocale;
-//STRIP001      pInsert->sStartChars = *pStartChars;
-//STRIP001      pInsert->sEndChars = *pEndChars;
-//STRIP001      pImpl->aForbiddenArr.Insert(pInsert, pImpl->aForbiddenArr.Count());
-//STRIP001  }
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  else if(!bFound)
-//STRIP001      DBG_ERROR("attempt to clear unavailable data");
-//STRIP001 #endif
-//STRIP001  SetModified();
-//STRIP001 }
 }
