@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Columns.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:40:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:58:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,15 +46,6 @@
 #include "ids.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-// auto strip #include <com/sun/star/io/XPersistObject.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
 #endif
@@ -64,9 +55,6 @@
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
-// auto strip #include <comphelper/sequence.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
 #endif
@@ -80,9 +68,6 @@
 #ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
 #endif
