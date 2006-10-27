@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:22:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:25:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -742,39 +742,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if(m_pUndoActionFromDraw) delete m_pUndoActionFromDraw;
 /*N*/ }
-//STRIP001 SdrObjList *ChartModel::GetSdrObjList()
-//STRIP001 {
-//STRIP001  if(pSdrObjList)
-//STRIP001  {
-//STRIP001      SdrObject *pObj;
-//STRIP001      while(pSdrObjList->GetObjCount())
-//STRIP001          if(pObj=pSdrObjList->RemoveObject(0))
-//STRIP001              delete  pObj;
-//STRIP001  }
-//STRIP001
-//STRIP001  ULONG nLegendHeight = ((SvxFontHeightItem &) pLegendAttr->Get (EE_CHAR_FONTHEIGHT)).GetHeight();
-//STRIP001
-//STRIP001  SfxItemSet aSet(*pDummyAttr);
-//STRIP001  aSet.ClearItem(SCHATTR_SYMBOL_BRUSH);
-//STRIP001  aSet.ClearItem(SCHATTR_SYMBOL_SIZE);
-//STRIP001  for(long n=0;n<CHART_NUM_SYMBOLS;n++)
-//STRIP001  {
-//STRIP001      aSet.Put(SfxInt32Item(SCHATTR_STYLE_SYMBOL,n));
-//STRIP001      pSdrObjList->NbcInsertObject(CreateSymbol(Point(0,0),n,0,aSet,nLegendHeight,FALSE));
-//STRIP001  }
-//STRIP001
-//STRIP001  return pSdrObjList;
-//STRIP001 }
-//STRIP001 SdrObject *ChartModel::CreateDefaultSymbol(long nRow)
-//STRIP001 {
-//STRIP001  ULONG nLegendHeight = ((SvxFontHeightItem &) pLegendAttr->Get (EE_CHAR_FONTHEIGHT)).GetHeight();
-//STRIP001  SfxItemSet aSet(GetDataRowAttr(nRow));
-//STRIP001  aSet.ClearItem(SCHATTR_STYLE_SYMBOL);
-//STRIP001  aSet.ClearItem(SCHATTR_SYMBOL_BRUSH);
-//STRIP001  aSet.ClearItem(SCHATTR_SYMBOL_SIZE);
-//STRIP001
-//STRIP001  return CreateSymbol(Point(0,0),nRow,0,aSet,nLegendHeight,FALSE);
-//STRIP001 }
 /*************************************************************************
 |*
 |* Das Logbuch dient zur ReAttributierung, nachdem die DataBrowseBox
@@ -782,12 +749,6 @@ using namespace ::com::sun::star;
 |* eine
 |*
 \************************************************************************/
-//STRIP001 void ChartModel::SetDataLogBook(SchDataLogBook* pLog)
-//STRIP001 {
-//STRIP001  if(pLogBook)
-//STRIP001      delete pLogBook;
-//STRIP001  pLogBook=pLog;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1357,10 +1318,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 FASTBOOL ChartModel::IsReadOnly () const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 /*************************************************************************
