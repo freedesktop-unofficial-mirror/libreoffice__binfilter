@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtinit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:33:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:14:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,32 +36,18 @@
 
 #pragma hdrstop
 
-// auto strip #include "errhdl.hxx"
-// auto strip #include "txtcfg.hxx"
-// auto strip #include "swcache.hxx"
 #include "fntcache.hxx"     // pFntCache  ( SwFont/ScrFont-PrtFont Cache )
 #include "swfntcch.hxx"     // pSwFontCache  ( SwAttrSet/SwFont Cache )
 #include "txtfrm.hxx"
 #include "txtcache.hxx"
-// auto strip #include "porlay.hxx"
-// auto strip #include "porglue.hxx"
-// auto strip #include "porexp.hxx"
 #include "porrst.hxx"
-// auto strip #include "portab.hxx"
-// auto strip #include "porfly.hxx"
-// auto strip #include "portox.hxx"
-// auto strip #include "porref.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "porftn.hxx"
-// auto strip #include "porhyph.hxx"
 #include "pordrop.hxx"
-// auto strip #include "tempauto.hxx" // Temporaere Autokorrekturliste
 #include "blink.hxx"    // Blink-Manager
-// auto strip #include "init.hxx"   // Deklarationen fuer _TextInit() und _TextFinit()
 #include "txtfly.hxx"   // SwContourCache
 #include "dbg_lay.hxx"  // Layout Debug Fileausgabe
 namespace binfilter {
@@ -115,7 +101,6 @@ namespace binfilter {
 /*N*/   delete SwTxtFrm::GetTxtCache();
 /*N*/   delete pSwFontCache;
 /*N*/   delete pFntCache;
-//STRIP001  delete pTempAuto;
 /*N*/   delete pBlink;
 /*N*/   delete pWaveCol;
 /*N*/   delete pContourCache;
