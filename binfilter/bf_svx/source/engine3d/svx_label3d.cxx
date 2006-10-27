@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_label3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:31:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:49:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
@@ -138,11 +137,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 USHORT E3dLabelObj::GetHdlCount() const
-//STRIP001 {
-//STRIP001  if ( p2DLabelObj )  return p2DLabelObj->GetHdlCount();
-//STRIP001  else                return E3dPointObj::GetHdlCount();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -150,11 +144,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLabelObj::AddToHdlList(SdrHdlList& rHdlList) const
-//STRIP001 {
-//STRIP001  if ( p2DLabelObj )  p2DLabelObj->AddToHdlList(rHdlList);
-//STRIP001  else                E3dPointObj::AddToHdlList(rHdlList);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -223,16 +212,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLabelObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dPointObj::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dLabelObj& r3DObj = (const E3dLabelObj&)rObj;
-//STRIP001  if ( p2DLabelObj != NULL )
-//STRIP001      delete p2DLabelObj;
-//STRIP001
-//STRIP001  p2DLabelObj = r3DObj.p2DLabelObj->Clone();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -240,19 +219,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLabelObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulLabel3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -260,10 +226,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLabelObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralLabel3d);
-//STRIP001 }
 
 
 }
