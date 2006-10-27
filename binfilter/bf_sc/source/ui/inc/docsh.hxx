@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:43:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:06:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -136,28 +136,18 @@ class ScDocShell: public SfxObjectShell, public SfxInPlaceObject, public SfxList
     String              aUserData;      // #116578# loaded manually, as no view is created
 
     void            InitItems();
-//STRIP001  void            DoEnterHandler();
     void            InitOptions();
     void            ResetDrawObjectShell();
 
-//STRIP001  BOOL            GetTabParam( const SfxItemSet* pArgs, USHORT nId, USHORT& rTab );
     BOOL            LoadCalc( SvStorage* pStor );
     BOOL            SaveCalc( SvStorage* pStor );
     BOOL            LoadXML( SfxMedium* pMedium, SvStorage* pStor );
     BOOL            SaveXML( SfxMedium* pMedium, SvStorage* pStor );
-//STRIP001  USHORT          GetSaveTab();
     void            UpdateAllRowHeights();
 
     void            RemoveUnknownObjects();
 
-//STRIP001  ULONG           DBaseImport( const String& rFullFileName, CharSet eCharSet,
-//STRIP001                               BOOL bSimpleColWidth[MAXCOL+1] );
-//STRIP001  ULONG           DBaseExport( const String& rFullFileName, CharSet eCharSet,
-//STRIP001                               BOOL& bHasMemo );
 
-//STRIP001  static BOOL     MoveFile( const INetURLObject& rSource, const INetURLObject& rDest );
-//STRIP001  static BOOL     KillFile( const INetURLObject& rURL );
-//STRIP001  static BOOL     IsDocument( const INetURLObject& rURL );
 
     void            LockPaint_Impl(BOOL bDoc);
     void            UnlockPaint_Impl(BOOL bDoc);
@@ -179,8 +169,6 @@ public:
                     ScDocShell( SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED );
                     ~ScDocShell();
 
-//STRIP001  virtual void    Activate();
-//STRIP001  virtual void    Deactivate();
 
     virtual SfxUndoManager*     GetUndoManager();
 
@@ -193,25 +181,14 @@ public:
 
     virtual BOOL    InitNew( SvStorage * );
     virtual BOOL    Load( SvStorage * );
-//STRIP001  virtual BOOL    LoadFrom( SvStorage * );
     virtual BOOL    ConvertFrom( SfxMedium &rMedium );
     virtual void    HandsOff();
     virtual BOOL    Save();
     virtual BOOL    SaveAs( SvStorage * pNewStor );
-//STRIP001  virtual BOOL    ConvertTo( SfxMedium &rMedium );
-//STRIP001  virtual USHORT  PrepareClose( BOOL bUI = TRUE, BOOL bForBrowsing = FALSE );
-//STRIP001  virtual void    PrepareReload();
-//STRIP001  virtual BOOL    IsInformationLost();
-//STRIP001  virtual void    LoadStyles( SfxObjectShell &rSource );
-//STRIP001  virtual BOOL    Insert( SfxObjectShell &rSource,
-//STRIP001                              USHORT nSourceIdx1, USHORT nSourceIdx2, USHORT nSourceIdx3,
-//STRIP001                              USHORT &nIdx1, USHORT &nIdx2, USHORT &nIdx3, USHORT &rIdxDeleted );
 
     virtual BOOL    SaveCompleted( SvStorage * pNewStor );      // SfxInPlaceObject
     virtual BOOL    DoSaveCompleted( SfxMedium * pNewStor);     // SfxObjectShell
 
-//STRIP001  virtual void    Draw( OutputDevice *, const JobSetup & rSetup,
-//STRIP001                              USHORT nAspect = ASPECT_CONTENT );
 
     virtual void    SetVisArea( const Rectangle & rVisArea );
     virtual Rectangle GetVisArea( USHORT nAspect ) const;
@@ -222,10 +199,7 @@ public:
 
     void            SetVisAreaOrSize( const Rectangle& rVisArea, BOOL bModifyStart );
 
-//STRIP001  virtual SfxDocumentInfoDialog*  CreateDocumentInfoDialog( Window *pParent,
-//STRIP001                                                            const SfxItemSet &rSet );
 
-//STRIP001  void    GetDocStat( ScDocStat& rDocStat );
 
     ScDocument*     GetDocument()   { return &aDocument; }
     ScDocFunc&      GetDocFunc()    { return *pDocFunc; }
@@ -233,44 +207,31 @@ public:
     SfxPrinter*     GetPrinter();
     USHORT          SetPrinter( SfxPrinter* pNewPrinter, USHORT nDiffFlags = SFX_PRINTER_ALL );
 
-//STRIP001  void            UpdateFontList();
 
-//STRIP001  String          CreateObjectName( const String& rPrefix );
 
     ScDrawLayer*    MakeDrawLayer();
 
-//STRIP001  void            AsciiSave( SvStream& rStream, const ScImportOptions& rOpt );
 
     void            GetSbxState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void         GetSbxState( SfxItemSet &rSet );
     void            GetDrawObjState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void         GetDrawObjState( SfxItemSet &rSet );
 
     void            Execute( SfxRequest& rReq );
     void            GetState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void            GetState( SfxItemSet &rSet );
-//STRIP001  void            ExecutePageStyle ( SfxViewShell& rCaller, SfxRequest& rReq, USHORT nCurTab );
     void            GetStatePageStyle( SfxViewShell& rCaller, SfxItemSet& rSet, USHORT nCurTab );
 
-//STRIP001  void            CompareDocument( ScDocument& rOtherDoc );
-//STRIP001  void            MergeDocument( ScDocument& rOtherDoc );
 
-//STRIP001  ScChangeAction* GetChangeAction( const ScAddress& rPos );
-//STRIP001  void            SetChangeComment( ScChangeAction* pAction, const String& rComment );
-//STRIP001  void            ExecuteChangeCommentDialog( ScChangeAction* pAction, Window* pParent,BOOL bPrevNext=TRUE );
                     /// Protect/unprotect ChangeTrack and return <TRUE/> if
                     /// protection was successfully changed.
                     /// If bJustQueryIfProtected==TRUE protection is not
                     /// changed and <TRUE/> is returned if not protected or
                     /// password was entered correctly.
-//STRIP001     BOOL            ExecuteChangeProtectionDialog( BOOL bJustQueryIfProtected = FALSE );
 
-//STRIP001  void            SetPrintZoom( USHORT nTab, USHORT nScale, USHORT nPages );
-//STRIP001  BOOL            AdjustPrintZoom( const ScRange& rRange );
 
     void            LoadStylesArgs( ScDocShell& rSource, BOOL bReplace, BOOL bCellStyles, BOOL bPageStyles );
 
     void            PageStyleModified( const String& rStyleName, BOOL bApi );
 
     void            NotifyStyle( const SfxStyleSheetHint& rHint );
-//STRIP001  void            DoAutoStyle( const ScRange& rRange, const String& rStyle );
 
     Window*         GetDialogParent();
     void            ErrorMessage( USHORT nGlobStrId );
@@ -278,9 +239,6 @@ public:
 
     BOOL            AdjustRowHeight( USHORT nStartRow, USHORT nEndRow, USHORT nTab );
 
-//STRIP001  void            PivotUpdate( ScPivot* pOldPivot, ScPivot* pNewPivot,
-//STRIP001                                  BOOL bRecord = TRUE, BOOL bApi = FALSE );
-//STRIP001  void            RefreshPivotTables( const ScRange& rSource );
     void            DoConsolidate( const ScConsolidateParam& rParam, BOOL bRecord = TRUE );
     void            UseScenario( USHORT nTab, const String& rName, BOOL bRecord = TRUE );
     USHORT          MakeScenario( USHORT nTab, const String& rName, const String& rComment,
@@ -293,12 +251,7 @@ public:
     void            DoRecalc( BOOL bApi );
     void            DoHardRecalc( BOOL bApi );
 
-//STRIP001  void            PreparePrint( PrintDialog* pPrintDialog, ScMarkData* pMarkData );
-//STRIP001  void            Print( SfxProgress& rProgress, PrintDialog* pPrintDialog,
-//STRIP001                          ScMarkData* pMarkData, Window* pDialogParent,
-//STRIP001                          BOOL bForceSelected );
 
-//STRIP001  void            UpdateOle( const ScViewData* pViewData, BOOL bSnapSize = FALSE );
     BOOL            IsOle();
 
     void            DBAreaDeleted( USHORT nTab, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 );
@@ -307,7 +260,6 @@ public:
     void            UpdateLinks();          // Link-Eintraege aktuallisieren
     BOOL            ReloadTabLinks();       // Links ausfuehren (Inhalt aktualisieren)
 
-//STRIP001  void            PostEditView( ScEditEngineDefaulter* pEditEngine, const ScAddress& rCursorPos );
 
     void            PostPaint( USHORT nStartCol, USHORT nStartRow, USHORT nStartTab,
                             USHORT nEndCol, USHORT nEndRow, USHORT nEndTab, USHORT nPart,
@@ -331,29 +283,17 @@ public:
     void            LockDocument();
     void            UnlockDocument();
 
-//STRIP001  DECL_LINK( ChartSelectionHdl, ChartSelectionInfo* );
 
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
 
-//STRIP001  void            SetInplace( BOOL bInplace );
     BOOL            IsEmpty() const;
     void            ResetEmpty();
 
     BOOL            IsInUndo() const                { return bIsInUndo; }
-//STRIP001  void            SetInUndo(BOOL bSet);
 
     void            CalcOutputFactor();
     double          GetOutputFactor() const;
-//STRIP001  void            GetPageOnFromPageStyleSet( const SfxItemSet* pStyleSet,
-//STRIP001                                             USHORT            nCurTab,
-//STRIP001                                             BOOL&             rbHeader,
-//STRIP001                                             BOOL&             rbFooter );
 
-//STRIP001  virtual long DdeGetData( const String& rItem, const String& rMimeType,
-//STRIP001                              ::com::sun::star::uno::Any & rValue );
-//STRIP001  virtual long DdeSetData( const String& rItem, const String& rMimeType,
-//STRIP001                              const ::com::sun::star::uno::Any & rValue );
-//STRIP001  virtual ::so3::SvLinkSource* DdeCreateLinkSource( const String& rItem );
 
     const String& GetDdeTextFmt() const { return aDdeTextFmt; }
 
@@ -377,7 +317,6 @@ public:
     static ScViewData* GetViewData();
     static USHORT      GetCurTab();
 
-//STRIP001  static ScDocShell* GetShellByNum( USHORT nDocNo );
     static String   GetOwnFilterName();
     static String   GetWebQueryFilterName();
     static String   GetAsciiFilterName();
