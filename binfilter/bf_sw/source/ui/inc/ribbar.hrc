@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ribbar.hrc,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:49:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:52:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,8 +37,6 @@
 
 #include "rcid.hrc"
 
-//STRIP001 #define MN_FORM1        1            // Defines fuer NumNames-Popup
-//STRIP001 #define MN_FORMBASE     MN_FORM1
 #define MN_FORM2        2
 #define MN_FORM3        3
 #define MN_FORM4        4
@@ -56,7 +54,6 @@
 #define RID_TBX_FORMULA     (RC_RIBBAR_BEGIN +6)
 #define FT_POS              (RC_RIBBAR_BEGIN +7)
 #define BT_FORMULA          (RC_RIBBAR_BEGIN +8)
-//STRIP001 #define  STR_FORMULA         (RC_RIBBAR_BEGIN +9)
 
 #define STR_BACKGROUND_PATTERN      (RC_RIBBAR_BEGIN + 10)
 #define STR_BACKGROUND_COLOR        (RC_RIBBAR_BEGIN + 11)
@@ -73,71 +70,14 @@
 #define RID_ALIGNMENT_WIN           (RC_RIBBAR_BEGIN + 20)
 
 //Resourcen fuer Inputwin (Rechenleiste)
-//STRIP001 #define RID_WIN_FORMULA              (RC_RIBBAR_BEGIN + 21)
-//STRIP001 #define  MN_CALC_POPUP               (RC_RIBBAR_BEGIN + 22)
 
 #define MN_NUMNAMES_POPUP           (RC_RIBBAR_BEGIN + 23)
-//STRIP001 #define RID_INSERT_CTRL             (RC_RIBBAR_BEGIN + 24)
-//STRIP001 #define RID_INSERT_OBJ_CTRL         (RC_RIBBAR_BEGIN + 25)
-//STRIP001 #define RID_INSERT_FIELD_CTRL       (RC_RIBBAR_BEGIN + 26)
-//STRIP001 #define RID_TBL_OPT_CTRL            (RC_RIBBAR_BEGIN + 27)
-//STRIP001 #define RID_BEZIER_WIN               (RC_RIBBAR_BEGIN + 28)
-//STRIP001 #define RID_SCROLL_NAVI_TBX         (RC_RIBBAR_BEGIN + 29)
-//STRIP001 #define RID_SCROLL_NAVIGATION_WIN   (RC_RIBBAR_BEGIN + 30)
-//STRIP001 #define RID_PVIEW_ZOOM_LB           (RC_RIBBAR_BEGIN + 31)
 
-//STRIP001 #define STR_IMGBTN_START         (RC_RIBBAR_BEGIN + 31)
 
-//STRIP001 #define STR_IMGBTN_NEXT_DOWN        (STR_IMGBTN_START + 0)
-//STRIP001 #define STR_IMGBTN_PREV_DOWN     (STR_IMGBTN_START + 1)
-//STRIP001 #define STR_IMGBTN_TBL_DOWN         (STR_IMGBTN_START + 2)
-//STRIP001 #define STR_IMGBTN_FRM_DOWN         (STR_IMGBTN_START + 3)
-//STRIP001 #define STR_IMGBTN_PGE_DOWN         (STR_IMGBTN_START + 4)
-//STRIP001 #define STR_IMGBTN_DRW_DOWN         (STR_IMGBTN_START + 5)
-//STRIP001 #define STR_IMGBTN_CTRL_DOWN        (STR_IMGBTN_START + 6)
-//STRIP001 #define STR_IMGBTN_REG_DOWN         (STR_IMGBTN_START + 7)
-//STRIP001 #define STR_IMGBTN_BKM_DOWN         (STR_IMGBTN_START + 8)
-//STRIP001 #define STR_IMGBTN_GRF_DOWN         (STR_IMGBTN_START + 9)
-//STRIP001 #define STR_IMGBTN_OLE_DOWN         (STR_IMGBTN_START +10)
-//STRIP001 #define STR_IMGBTN_OUTL_DOWN        (STR_IMGBTN_START +11)
-//STRIP001 #define STR_IMGBTN_SEL_DOWN         (STR_IMGBTN_START +12)
-//STRIP001 #define STR_IMGBTN_FTN_DOWN         (STR_IMGBTN_START +13)
-//STRIP001 #define STR_IMGBTN_MARK_DOWN        (STR_IMGBTN_START +14)
-//STRIP001 #define STR_IMGBTN_POSTIT_DOWN      (STR_IMGBTN_START +15)
-//STRIP001 #define STR_IMGBTN_SRCH_REP_DOWN    (STR_IMGBTN_START +16)
-//STRIP001 #define STR_IMGBTN_INDEX_ENTRY_DOWN (STR_IMGBTN_START +17)
-//STRIP001 #define STR_IMGBTN_TBLFML_DOWN       (STR_IMGBTN_START +18)
-//STRIP001 #define STR_IMGBTN_TBLFML_ERR_DOWN  (STR_IMGBTN_START +19)
 
-//STRIP001 #define STR_IMGBTN_NEXT_UP          (STR_IMGBTN_START +20)
-//STRIP001 #define STR_IMGBTN_PREV_UP       (STR_IMGBTN_START +21)
-//STRIP001 #define STR_IMGBTN_TBL_UP           (STR_IMGBTN_START +22)
-//STRIP001 #define STR_IMGBTN_FRM_UP           (STR_IMGBTN_START +23)
-//STRIP001 #define STR_IMGBTN_PGE_UP           (STR_IMGBTN_START +24)
-//STRIP001 #define STR_IMGBTN_DRW_UP           (STR_IMGBTN_START +25)
-//STRIP001 #define STR_IMGBTN_CTRL_UP          (STR_IMGBTN_START +26)
-//STRIP001 #define STR_IMGBTN_REG_UP           (STR_IMGBTN_START +27)
-//STRIP001 #define STR_IMGBTN_BKM_UP           (STR_IMGBTN_START +28)
-//STRIP001 #define STR_IMGBTN_GRF_UP           (STR_IMGBTN_START +29)
-//STRIP001 #define STR_IMGBTN_OLE_UP           (STR_IMGBTN_START +30)
-//STRIP001 #define STR_IMGBTN_OUTL_UP          (STR_IMGBTN_START +31)
-//STRIP001 #define STR_IMGBTN_SEL_UP           (STR_IMGBTN_START +32)
-//STRIP001 #define STR_IMGBTN_FTN_UP           (STR_IMGBTN_START +33)
-//STRIP001 #define STR_IMGBTN_MARK_UP          (STR_IMGBTN_START +34)
-//STRIP001 #define STR_IMGBTN_POSTIT_UP        (STR_IMGBTN_START +35)
-//STRIP001 #define STR_IMGBTN_SRCH_REP_UP      (STR_IMGBTN_START +36)
-//STRIP001 #define STR_IMGBTN_INDEX_ENTRY_UP   (STR_IMGBTN_START +37)
-//STRIP001 #define STR_IMGBTN_TBLFML_UP     (STR_IMGBTN_START +38)
-//STRIP001 #define STR_IMGBTN_TBLFML_ERR_UP    (STR_IMGBTN_START +39)
 
-//STRIP001 #define BTN_NAVI                    (STR_IMGBTN_START +40)
 
-//STRIP001 #define MN_ANCHOR_POPUP             (STR_IMGBTN_START +41)
 
-//STRIP001 #define RC_RIBBAR_ACT_END            MN_ANCHOR_POPUP
 
-//STRIP001 #if  RC_RIBBAR_ACT_END    >  RC_RIBBAR_END
-//STRIP001 #error Resource-Id Ueberlauf in #file, #line
-//STRIP001 #endif
 
 #endif
