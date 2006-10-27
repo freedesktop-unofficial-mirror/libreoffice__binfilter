@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_pagepar.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:50:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:22:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,6 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 
@@ -84,19 +83,9 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScPageTableParam& __EXPORT ScPageTableParam::operator=( const ScPageTableParam& r )
-//STRIP001 {
-//STRIP001  memcpy( this, &r, sizeof(ScPageTableParam) );
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScPageTableParam::operator==( const ScPageTableParam& r ) const
-//STRIP001 {
-//STRIP001  return ( memcmp( this, &r, sizeof(ScPageTableParam) ) == 0 );
-//STRIP001 }
 
 //========================================================================
 // struct ScPageAreaParam:
@@ -132,38 +121,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScPageAreaParam& __EXPORT ScPageAreaParam::operator=( const ScPageAreaParam& r )
-//STRIP001 {
-//STRIP001  bPrintArea = r.bPrintArea;
-//STRIP001  bRepeatRow = r.bRepeatRow;
-//STRIP001  bRepeatCol = r.bRepeatCol;
-//STRIP001
-//STRIP001  memcpy( &aPrintArea, &r.aPrintArea, sizeof(ScRange) );
-//STRIP001  memcpy( &aRepeatRow, &r.aRepeatRow, sizeof(ScRange) );
-//STRIP001  memcpy( &aRepeatCol, &r.aRepeatCol, sizeof(ScRange) );
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScPageAreaParam::operator==( const ScPageAreaParam& r ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual =
-//STRIP001          bPrintArea  == r.bPrintArea
-//STRIP001      &&  bRepeatRow  == r.bRepeatRow
-//STRIP001      &&  bRepeatCol  == r.bRepeatCol;
-//STRIP001
-//STRIP001  if ( bEqual )
-//STRIP001      if ( bPrintArea )
-//STRIP001          bEqual = bEqual && ( aPrintArea == r.aPrintArea );
-//STRIP001  if ( bEqual )
-//STRIP001      if ( bRepeatRow )
-//STRIP001          bEqual = bEqual && ( aRepeatRow == r.aRepeatRow );
-//STRIP001  if ( bEqual )
-//STRIP001      if ( bRepeatCol )
-//STRIP001          bEqual = bEqual && ( aRepeatCol == r.aRepeatCol );
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 }
