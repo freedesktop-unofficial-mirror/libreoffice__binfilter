@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmod2a.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:52:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:23:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 #include <bf_svx/eeitem.hxx>
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
@@ -49,28 +46,15 @@
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-// auto strip #ifndef _SCH_MEMCHRT_HXX
-// auto strip #include "memchrt.hxx"
-// auto strip #endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
@@ -80,24 +64,7 @@
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
-// auto strip #include "globfunc.hxx"
 #endif
-// auto strip #ifndef _SCH_SCHGROUP_HXX
-// auto strip #include "schgroup.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAROW_HXX
-// auto strip #include "datarow.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_OBJID_HXX
-// auto strip #include "objid.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_SCHRESID_HXX
-// auto strip #include "schresid.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAPOIN_HXX
-// auto strip #include "datapoin.hxx"
-// auto strip #endif
 
 #include "strings.hrc"
 #include "glob.hrc"
@@ -106,22 +73,13 @@
 
 
 #include "pairs.hxx"
-// auto strip #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
-// auto strip #endif
 #include "globfunc.hxx"
 
-// auto strip #ifndef _SVX_FILLITEM_HXX //autogen
-// auto strip #include <bf_svx/xfillit.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XLINIIT_HXX //autogen
 #include <bf_svx/xlineit.hxx>
 #endif
 // header for Line
-// auto strip #ifndef _SV_LINE_HXX
-// auto strip #include <tools/line.hxx>
-// auto strip #endif
 
 #include "chaxis.hxx"
 #include "chdescr.hxx"
@@ -136,17 +94,6 @@ namespace binfilter {
 |* DataDescription Array initialisieren (loeschen)
 |*
 \************************************************************************/
-//STRIP001 void ChartModel::ClearDataDescription(DataDescription *pDescription,long nElements)
-//STRIP001 {
-//STRIP001  while(nElements)
-//STRIP001  {
-//STRIP001      nElements--;
-//STRIP001      pDescription[nElements].bSymbol     = FALSE;
-//STRIP001      pDescription[nElements].pLabelObj   = NULL;
-//STRIP001      pDescription[nElements].fValue      = DBL_MIN;
-//STRIP001      pDescription[nElements].aTextPos2D  = Point(0,0);
-//STRIP001  }
-//STRIP001 }
 /*************************************************************************
 |*
 |* Kreisdiagramm erzeugen
@@ -202,51 +149,6 @@ namespace binfilter {
 /*N*/       if( (eDescr != CHDESCR_NONE) && bShowDataDescr )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             // data description required
-//STRIP001 /*?*/            if (!pDescription)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pDescription = new DataDescription[ nColCnt ];
-//STRIP001 /*?*/                ClearDataDescription( pDescription, nColCnt );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pDescription[ nIndex ].eDescr  = eDescr;
-//STRIP001 /*?*/            pDescription[ nIndex ].eAdjust = CHADJUST_CENTER_CENTER;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ((pDescription [nIndex].eDescr == CHDESCR_PERCENT) ||
-//STRIP001 /*?*/                (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (fTotal != 0.0)
-//STRIP001 /*?*/                    pDescription[ nIndex ].fValue = (fabs (fData) / fTotal ) * 100.0;
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    pDescription[ nIndex ].fValue = 0.0;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pDescription [nIndex].fValue = fData;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if( !bInserted )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pDescrGroup = (SchObjGroup*) CreateSimpleGroup( CHOBJID_DIAGRAM_DESCRGROUP, TRUE, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDescrGroup->InsertUserData( new SchDataRow( nRow ) );
-//STRIP001 /*?*/                pDescrList = pDescrGroup->GetSubList();
-//STRIP001 /*?*/                bInserted = TRUE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pDescription[ nIndex ].bSymbol = ((const SfxBoolItem&)aDataPointAttr.
-//STRIP001 /*?*/                                              Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // create the text
-//STRIP001 /*?*/            CreateDataDescr( pDescription[nIndex], nCol, nRow, pChartYAxis, FALSE, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pDescription[ nIndex ].pLabelObj->RecalcBoundRect();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            Size aObjSize = pDescription[ nIndex ].pLabelObj->GetBoundRect().GetSize();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // determine the space required
-//STRIP001 /*?*/            aObjSize.Width ()  = (aObjSize.Width() * 6) / 5;
-//STRIP001 /*?*/            aDescrOfs.Width()  = Max( aObjSize.Width(), aDescrOfs.Width() );
-//STRIP001 /*?*/            aDescrOfs.Height() = Max( aObjSize.Height(), aDescrOfs.Height() );
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -489,56 +391,6 @@ namespace binfilter {
                 /**************************************************************
                 * DataDescription erforderlich
                 **************************************************************/
-//STRIP001 /*?*/                if (!pDescription)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // DataDescription noch nicht vorhanden -> erzeugen
-//STRIP001 /*?*/                    pDescription = new DataDescription [nRowCnt * nColCnt];
-//STRIP001 /*?*/                    ClearDataDescription(pDescription,(nRowCnt * nColCnt));
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDescription [nIndex].eDescr = eDescr;
-//STRIP001 /*?*/                pDescription [nIndex].eAdjust  = CHADJUST_CENTER_CENTER;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // Prozente sollten immer gesondert behandelt werden (Prost !)
-//STRIP001 /*?*/                if ((pDescription [nIndex].eDescr == CHDESCR_PERCENT) ||
-//STRIP001 /*?*/                    (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if (pTotal[nCol] != 0.0)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pDescription [nIndex].fValue =
-//STRIP001 /*?*/                        ((fabs (fData) / pTotal [nCol]) * 10000.0) / 100.0;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pDescription [nIndex].fValue = 0.0;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pDescription [nIndex].fValue = fData;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (! bInserted)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pDescrGroups[nRow] = (SchObjGroup*) CreateSimpleGroup (CHOBJID_DIAGRAM_DESCRGROUP, TRUE, TRUE);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    pDescrGroups[nRow]->InsertUserData(new SchDataRow((short)nRow));
-//STRIP001 /*?*/                    pDescrLists[nRow] = pDescrGroups[nRow]->GetSubList();
-//STRIP001 /*?*/                    bInserted         = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDescription [nIndex].bSymbol = ((const SfxBoolItem&)aDataPointAttr.
-//STRIP001 /*?*/                                                Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
-//STRIP001 /*?*/                CreateDataDescr(pDescription[nIndex],nCol,nRow,pChartYAxis,FALSE,TRUE);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDescription [nIndex].pLabelObj->RecalcBoundRect();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                Size aObjSize = pDescription [nIndex].pLabelObj->GetBoundRect ().GetSize ();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // wie gross ist der max. Platzbedarf ?
-//STRIP001 /*?*/                aObjSize.Width () = (aObjSize.Width () * 6) / 5;
-//STRIP001 /*?*/                aDescrOfs.Width() = Max (aObjSize.Width(), aDescrOfs.Width());
-//STRIP001 /*?*/                aDescrOfs.Height() = Max (aObjSize.Height(), aDescrOfs.Height());
 /*N*/           }
 /*N*/       } //*************************** END DESCRIPTIONS ***********************************
 /*N*/   }//End for nRow
@@ -755,44 +607,6 @@ namespace binfilter {
 
 /*N*/   if( IsXYChart() && ! ISFLAGSET( nChartStatus, CHS_USER_NOQUERY ) )  // in this case ask for sorting
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        double  fTemp      = GetData( 0, 0, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // is data unsorted?
-//STRIP001 /*?*/        for( nCol = 1; nCol < nColCnt; nCol ++ )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if( GetData( nCol, 0, FALSE ) < fTemp )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                bSortTable = TRUE;
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            fTemp = GetData( nCol, 0, FALSE );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // show querybox
-//STRIP001 /*?*/        if( bSortTable )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            // if we are not inside the auto-pilot we don't get the Window (View)
-//STRIP001 /*?*/            // so NULL is used to create a system window
-//STRIP001 /*?*/            // ToDo: the core modules should never create any dialogs
-//STRIP001 /*?*/            Window* pDefParent = NULL;
-//STRIP001 /*?*/            if( pAutoPilot )
-//STRIP001 /*?*/                pDefParent = pAutoPilot;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            QueryBox aQueryBox( pDefParent, WB_YES_NO, String(SchResId( STR_QUERY_SORT ))); // #46895#
-//STRIP001 /*?*/            bSortTable = (aQueryBox.Execute() == RET_YES);
-//STRIP001 /*?*/            bRepaint = TRUE;                                    // repaint necessary after dialog box
-//STRIP001 /*?*/
-//STRIP001 /*?*/            SETFLAG( nChartStatus, CHS_USER_NOQUERY );  // don't ask again
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // user confirmed: now do sorting
-//STRIP001 /*?*/        if( bSortTable )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if( bSwitchData )
-//STRIP001 /*?*/                pChartData->SortTableRows(0);
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                pChartData->SortTableCols(0);
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/   SchObjGroup *pGroup;
@@ -868,7 +682,6 @@ namespace binfilter {
         if( ((const SfxBoolItem &) rDataRowAttr.Get( SCHATTR_STAT_AVERAGE )).GetValue() )
 //          pStatLists[ nRow ]->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
            {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  pList->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
-//STRIP001                                                              pAxis->CalcFact( GetAverageValueY( nRow ))));
 
 /*N*/         aSplinePoints.clear();
 /*N*/
@@ -954,30 +767,6 @@ namespace binfilter {
 /*N*/               {
 /*?*/                   if ((eChartStyle == CHSTYLE_2D_CUBIC_SPLINE_XY) || (eChartStyle == CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY))
 /*?*/                     {DBG_BF_ASSERT(0, "STRIP");
-//STRIP001 /*?*/                         long nDPIX = 0;
-//STRIP001 /*?*/                         long nDPIY = 0;
-//STRIP001 /*?*/                         OutputDevice * pRefDev = GetRefDevice();
-//STRIP001 /*?*/                         if( pRefDev )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             OSL_TRACE( "Scale: %lf x %lf",
-//STRIP001 /*?*/                                        (double)(pRefDev->GetMapMode().GetScaleX()),
-//STRIP001 /*?*/                                        (double)(pRefDev->GetMapMode().GetScaleY()) );
-//STRIP001 /*?*/                             // unit is always 100th mm
-//STRIP001 /*?*/                             // 2540 100th mm == 1 in
-//STRIP001 /*?*/                             Size aDPI = pRefDev->LogicToPixel( Size( 2540, 2540 ) );
-//STRIP001 /*?*/                             nDPIX = static_cast< long >(
-//STRIP001 /*?*/                                 static_cast< double >( aDPI.getWidth()) /
-//STRIP001 /*?*/                                 static_cast< double >( pRefDev->GetMapMode().GetScaleX()));
-//STRIP001 /*?*/                             nDPIY = static_cast< long >(
-//STRIP001 /*?*/                                 static_cast< double >( aDPI.getHeight()) /
-//STRIP001 /*?*/                                 static_cast< double >( pRefDev->GetMapMode().GetScaleY()));
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                         XPolyPolygon aSplinePoly;
-//STRIP001 /*?*/                         SchCalculationHelper::CalculateCubicSplines(
-//STRIP001 /*?*/                             aSplinePoints, nGranularity, aSplinePoly,
-//STRIP001 /*?*/                             nDPIX, nDPIY );
-//STRIP001 /*?*/                         SchCalculationHelper::IntersectPolyPolygonWithRectangle(
-//STRIP001 /*?*/                             aSplinePoly, aClipRect, aSeriesPoly );
 /*?*/                     }
 /*?*/                     else
 /*?*/                     {
@@ -1022,111 +811,6 @@ namespace binfilter {
 /*N*/       if (((const SfxInt32Item &) rDataRowAttr.Get (SCHATTR_STAT_REGRESSTYPE)).GetValue () != CHREGRESS_NONE)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 double fConst;
-//STRIP001 /*?*/            double fReg;
-//STRIP001 /*?*/            double fCorr;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            RegressionYX(nRow,fConst,fReg,fCorr,(SvxChartRegress)((const SfxInt32Item &)
-//STRIP001 /*?*/                rDataRowAttr.Get(SCHATTR_STAT_REGRESSTYPE)).GetValue ());
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pObj = NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( !bLogarithmY && !bLogarithmX &&
-//STRIP001 /*?*/               ((const SfxInt32Item &) rDataRowAttr.Get (SCHATTR_STAT_REGRESSTYPE)).GetValue () == CHREGRESS_LINEAR)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                Point aStart, aEnd;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                double fLeft  = GetData( 0, 0, FALSE );
-//STRIP001 /*?*/                double fRight = GetData( nColCnt - 1, 0, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                for( nCol = 0; nCol < nColCnt; nCol++ )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    double fTemp = GetData (nCol, 0, FALSE);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if( fLeft > fTemp )
-//STRIP001 /*?*/                        fLeft = fTemp;
-//STRIP001 /*?*/                    if( fRight < fTemp )
-//STRIP001 /*?*/                        fRight = fTemp;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                aStart.X() = pChartXAxis->GetPos( fLeft );
-//STRIP001 /*?*/                aStart.Y() = pAxis->GetPos( fConst + fReg * fLeft );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                aEnd.X()   = pChartXAxis->GetPos( fRight );
-//STRIP001 /*?*/                aEnd.Y()   = pAxis->GetPos( fConst + fReg * fRight );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                Line aRegLine( aStart, aEnd );
-//STRIP001 /*?*/                if( SchCalculationHelper::ClipLineAtRectangle( aRegLine, aClipRect ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pObj = new SdrPathObj( aRegLine.GetStart(), aRegLine.GetEnd() );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                XPolygon aRegression (nColCnt * 10 + 1);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                for (nCol = 0;nCol < nColCnt - 1;nCol ++)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    double fValXAct1 = GetData(nCol + 1, 0, FALSE);
-//STRIP001 /*?*/                    double fValXAct  = GetData(nCol, 0, FALSE);
-//STRIP001 /*?*/                    long   nEnd  = (nCol < nColCnt - 2) ? 10: 11;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // Step width (for ten steps) depends on the bLogartihmX
-//STRIP001 /*?*/                     // flag.  If set then IncValue increases the current value
-//STRIP001 /*?*/                     // by multiplying it with fStep, else addition is used.
-//STRIP001 /*?*/                     // The step width is calculated accordingly.
-//STRIP001 /*?*/                    double fStep;
-//STRIP001 /*?*/                     if (bLogarithmX)
-//STRIP001 /*?*/                        //  10-th root of ratio.
-//STRIP001 /*?*/                        fStep = pow(fValXAct1 / fValXAct, 1.0 / 10);
-//STRIP001 /*?*/                     else
-//STRIP001 /*?*/                        //  10-th part of difference.
-//STRIP001 /*?*/                        fStep = (fValXAct1 - fValXAct) / 10;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    for (long nStep = 0;nStep < nEnd;nStep ++)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        aRegression [nCol*10+(USHORT)nStep].X()=pChartXAxis->GetPos(fValXAct);//= aRect.Left() + (long)(pChartXAxis->CalcFact(fValXAct) * aRect.GetWidth());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        double fValY1 = 0.0;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        switch (((const SfxInt32Item &) rDataRowAttr.Get(SCHATTR_STAT_REGRESSTYPE)).GetValue ())
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            case CHREGRESS_LINEAR :
-//STRIP001 /*?*/                                fValY1 = fConst + fReg * fValXAct;
-//STRIP001 /*?*/                                break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            case CHREGRESS_LOG :
-//STRIP001 /*?*/                                fValY1 = fConst + fReg * log (fValXAct);
-//STRIP001 /*?*/                                break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            case CHREGRESS_EXP :
-//STRIP001 /*?*/                                fValY1 = fConst * exp (fReg * fValXAct);
-//STRIP001 /*?*/                                break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            case CHREGRESS_POWER :
-//STRIP001 /*?*/                                fValY1 = fConst * exp (fReg * log (fValXAct));
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        aRegression [nCol*10+(USHORT)nStep].Y() = pAxis->GetPos(fValY1);
-//STRIP001 /*?*/                        IncValue(fValXAct, fStep, bLogarithmX);
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                XPolyPolygon aPolyPoly;
-//STRIP001 /*?*/                SchCalculationHelper::IntersectPolygonWithRectangle( aRegression, aClipRect, aPolyPoly );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pObj = new SdrPathObj( OBJ_PLIN, aPolyPoly );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if( pObj )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_REGRESSION ) );
-//STRIP001 /*?*/                pObj->InsertUserData( new SchDataRow( (short)nRow ) );
-//STRIP001 /*?*/                pList->NbcInsertObject( pObj );
-//STRIP001 /*?*/
-//STRIP001 /*?*/ //-/               pObj->NbcSetAttributes( GetRegressAttr( nRow ), FALSE );
-//STRIP001 /*?*/                pObj->SetItemSet(GetRegressAttr(nRow));
-//STRIP001 /*?*/
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 
@@ -1443,7 +1127,6 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   // DataDescription noch nicht vorhanden -> erzeugen
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription = new DataDescription [nRowCnt * nColCnt];
-//STRIP001 /*?*/                    ClearDataDescription(pDescription,(nRowCnt * nColCnt));
 /*?*/               }
 /*?*/
 /*?*/               pDescription [nIndex].eDescr = eDescr;
@@ -1518,10 +1201,6 @@ namespace binfilter {
 /*N*/               if (pDescription)
 /*N*/               {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription [nIndex].fValue = GetData(nCol,nRow,FALSE);//#55586# fData;
-//STRIP001 /*?*/                    pDescription [nIndex].aTextPos2D.X () = aDataLine [nPoints - 1].X ();
-//STRIP001 /*?*/                    pDescription [nIndex].aTextPos2D.Y () = aDataLine [nPoints - 1].Y ();
-//STRIP001 /*?*/                    pDescription [nIndex].eAdjust         = eAdjust;
-//STRIP001 /*?*/                    CreateDataDescr(pDescription[nIndex],nCol,nRow,pChartYAxis,FALSE);
 /*N*/               }
 /*N*/           }
 /*N*/           else
@@ -1658,11 +1337,6 @@ namespace binfilter {
 /*?*/                           if (fTotal > 100.0000001)
 /*?*/                           {
 /*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ERROR2( "Dirty2D: ROW value is being changed total=%lf, Vman=%lf",
-//STRIP001 /*?*/                                            fTotal, pDescription[nDirty].fValue );
-//STRIP001 /*?*/                                pDescription [nDirty].fValue -= fTotal - 100.0;
-//STRIP001 /*?*/                                bIsDirty                      = TRUE;
-//STRIP001 /*?*/                                delete pDescription [nIndex].pLabelObj;
-//STRIP001 /*?*/                                CreateDataDescr(pDescription[nIndex],nCols,nRows,NULL,bRowDescr,TRUE);
 /*?*/                           }
 /*?*/
 /*?*/                   if (pDescription [nIndex].fValue != DBL_MIN)
@@ -1717,11 +1391,6 @@ namespace binfilter {
 /*?*/                       if (fTotal > 100.0000001)
 /*?*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ERROR2( "Dirty2D: COL value is being changed total=%lf, Vman=%lf",
-//STRIP001 /*?*/                                        fTotal, pDescription[nDirty].fValue );
-//STRIP001 /*?*/                            pDescription [nDirty].fValue -= fTotal - 100.0;
-//STRIP001 /*?*/                            bIsDirty                      = TRUE;
-//STRIP001 /*?*/                            delete pDescription[nIndex].pLabelObj;
-//STRIP001 /*?*/                            CreateDataDescr(pDescription[nIndex],nCols,nRows,NULL,bRowDescr,TRUE);
 /*?*/                       }
 /*?*/
 /*?*/               if (pDescription[ nIndex ].fValue != DBL_MIN)
@@ -1737,99 +1406,6 @@ namespace binfilter {
 |* Trage ggf. Mittelwert und Fehlerbalken ein
 |*
 \************************************************************************/
-//STRIP001 void ChartModel::AverageErrorY(long       nRow,
-//STRIP001                             double     fData,
-//STRIP001                             const Point& rPos,
-//STRIP001                             BOOL       bVertical,
-//STRIP001                             SfxItemSet &rAttr,
-//STRIP001                             SdrObjList *pList,
-//STRIP001                             ChartAxis  *pAxis)
-//STRIP001 {
-//STRIP001  Rectangle rRect(pAxis->GetArea());//sollte mal nach aRect umbenannt werden...oder besser raus!
-//STRIP001  SfxItemSet &pBlackSet =(SfxItemSet &)GetErrorAttr (nRow);
-//STRIP001
-//STRIP001  long nLow,nLen;
-//STRIP001
-//STRIP001  if(bVertical)
-//STRIP001  {
-//STRIP001      nLow=rRect.Left();
-//STRIP001      nLen= - rRect.GetWidth();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nLow=rRect.Bottom();
-//STRIP001      nLen=rRect.GetHeight();
-//STRIP001  }
-//STRIP001  switch ((SvxChartKindError) ((const SfxInt32Item &) rAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue ())
-//STRIP001  {
-//STRIP001      case CHERROR_VARIANT :
-//STRIP001      {
-//STRIP001          double fVariant     = GetVariantY (nRow);
-//STRIP001          double fVariantUp   = nLow - pAxis->CalcFact(fData + fVariant) * nLen;
-//STRIP001          double fVariantDown = nLow - pAxis->CalcFact(fData - fVariant) * nLen;
-//STRIP001
-//STRIP001          ShowErrorLineY (bVertical, fVariantUp, fVariantDown, pBlackSet,rPos,
-//STRIP001                          (SvxChartIndicate) ((const SfxInt32Item &) rAttr.Get (SCHATTR_STAT_INDICATE)).GetValue (),
-//STRIP001                          pList, this);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case CHERROR_SIGMA :
-//STRIP001      {
-//STRIP001          double fSigma     = GetSigmaY (nRow);
-//STRIP001          double fSigmaUp   = nLow - pAxis->CalcFact(fData + fSigma) * nLen;
-//STRIP001          double fSigmaDown = nLow - pAxis->CalcFact(fData - fSigma) * nLen;
-//STRIP001
-//STRIP001          ShowErrorLineY (bVertical, fSigmaUp, fSigmaDown, pBlackSet,rPos,
-//STRIP001                          (SvxChartIndicate) ((const SfxInt32Item &) rAttr.Get (SCHATTR_STAT_INDICATE)).GetValue (),
-//STRIP001                          pList, this);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case CHERROR_PERCENT :
-//STRIP001      {
-//STRIP001          double fPercent     = fData * ((const SvxDoubleItem &) rAttr.Get (SCHATTR_STAT_PERCENT)).GetValue () / 100.0;
-//STRIP001          double fPercentUp   = nLow - pAxis->CalcFact(fData + fPercent) * nLen;
-//STRIP001          double fPercentDown = nLow - pAxis->CalcFact(fData - fPercent) * nLen;
-//STRIP001
-//STRIP001          ShowErrorLineY (bVertical, fPercentUp, fPercentDown, pBlackSet,rPos,
-//STRIP001                          (SvxChartIndicate) ((const SfxInt32Item &) rAttr.Get (SCHATTR_STAT_INDICATE)).GetValue (),
-//STRIP001                          pList, this );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case CHERROR_BIGERROR :
-//STRIP001      {
-//STRIP001          double fError     = GetBigErrorY (nRow, ((const SvxDoubleItem &) rAttr.Get (SCHATTR_STAT_BIGERROR)).
-//STRIP001                                            GetValue ());
-//STRIP001          double fErrorUp   = nLow - pAxis->CalcFact(fData + fError) * nLen;
-//STRIP001          double fErrorDown = nLow - pAxis->CalcFact(fData - fError) * nLen;
-//STRIP001
-//STRIP001          ShowErrorLineY (bVertical, fErrorUp, fErrorDown, pBlackSet,rPos,
-//STRIP001                          (SvxChartIndicate) ((const SfxInt32Item &) rAttr.Get (SCHATTR_STAT_INDICATE)).GetValue (),
-//STRIP001                          pList, this );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case CHERROR_CONST :
-//STRIP001      {
-//STRIP001          double fErrorUp   = nLow - pAxis->CalcFact(fData +
-//STRIP001                                                       ((const SvxDoubleItem &) rAttr.Get (SCHATTR_STAT_CONSTPLUS)).
-//STRIP001                                                        GetValue ()) * nLen;
-//STRIP001          double fErrorDown = nLow - pAxis->CalcFact(fData -
-//STRIP001                                                        ((const SvxDoubleItem &) rAttr.Get (SCHATTR_STAT_CONSTMINUS)).
-//STRIP001                                                        GetValue ()) * nLen;
-//STRIP001
-//STRIP001          ShowErrorLineY (bVertical, fErrorUp, fErrorDown, pBlackSet,rPos,
-//STRIP001                          (SvxChartIndicate) ((const SfxInt32Item &) rAttr.Get (SCHATTR_STAT_INDICATE)).GetValue (),
-//STRIP001                          pList, this );
-//STRIP001      }
-//STRIP001
-//STRIP001      case CHERROR_NONE :
-//STRIP001      default :
-//STRIP001          ;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
