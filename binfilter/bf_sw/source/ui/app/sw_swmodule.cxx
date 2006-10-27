@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodule.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:55:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:01:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -270,9 +270,6 @@
 #ifndef _WORKCTRL_HXX
 #include <workctrl.hxx>
 #endif
-#ifndef _NUMCTRL_HXX
-#include <numctrl.hxx>
-#endif
 #ifndef _TBXANCHR_HXX
 #include <tbxanchr.hxx>
 #endif
@@ -363,7 +360,6 @@ using namespace ::rtl;
 /*N*/   pView(0),
 /*N*/   pChapterNumRules(0),
 /*N*/   pStdFontConfig(0),
-//STRIP001 /*N*/    pNavigationConfig(0),
 /*N*/   pPrtOpt(0),
 /*N*/   pWebPrtOpt(0),
 /*N*/   pWebUsrPref(0),
@@ -546,8 +542,6 @@ using namespace ::rtl;
 /*N*/   SvxTableToolBoxControl::RegisterControl(FN_INSERT_TABLE, pMod );
 /*N*/   SvxTableToolBoxControl::RegisterControl(FN_SHOW_MULTIPLE_PAGES, pMod );
 /*N*/
-//STRIP001 /*N*/    SvxFontMenuControl::RegisterControl(SID_ATTR_CHAR_FONT, pMod );
-//STRIP001 /*N*/    SvxFontSizeMenuControl::RegisterControl(SID_ATTR_CHAR_FONTHEIGHT, pMod );
 /*N*/
 /*N*/   SwZoomControl::RegisterControl(SID_ATTR_ZOOM, pMod );
 /*N*/     SwPreviewZoomControl::RegisterControl(FN_PREVIEW_ZOOM, pMod);
@@ -571,7 +565,6 @@ using namespace ::rtl;
 /*N*/   SvxHyperlinkDlgWrapper::RegisterChildWindow( sal_False, pMod );
 /*N*/   SvxFontWorkChildWindow::RegisterChildWindow( sal_False, pMod );
 /*N*/   SwFldDlgWrapper::RegisterChildWindow( sal_False, pMod );
-//STRIP001 /*N*/     SwFldDataOnlyDlgWrapper::RegisterChildWindow( sal_False, pMod );
 /*N*/   SvxContourDlgChildWindow::RegisterChildWindow( sal_False, pMod );
 /*N*/   SwInsertChartChild::RegisterChildWindow( sal_False, pMod );
 /*N*/   SwNavigationChild::RegisterChildWindowContext( pMod );
