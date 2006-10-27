@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:29:32 $
+#   last change: $Author: rt $ $Date: 2006-10-27 23:16:28 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -61,35 +61,12 @@ LIBFLAGS=/NOI /NOE /PAGE:512
 
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_atrfld.cxx \
-        sw_atrflyin.cxx \
-        sw_atrftn.cxx \
-        sw_atrref.cxx \
-        sw_atrtox.cxx \
-        sw_chrfmt.cxx \
-        sw_fmtatr1.cxx \
-        sw_fmtatr2.cxx \
-        sw_fntcap.cxx \
-        sw_fntcache.cxx \
-        sw_swfntcch.cxx \
-        sw_ndhints.cxx \
-        sw_ndtxt.cxx \
-        sw_swfont.cxx \
-        sw_thints.cxx \
-        sw_txatbase.cxx \
-        sw_txtatr2.cxx \
-        sw_txtedt.cxx
-
-
-
 SLOFILES =  \
         $(SLO)$/sw_atrfld.obj \
         $(SLO)$/sw_atrflyin.obj \
         $(SLO)$/sw_atrftn.obj \
         $(SLO)$/sw_atrref.obj \
         $(SLO)$/sw_atrtox.obj \
-        $(SLO)$/sw_chrfmt.obj \
         $(SLO)$/sw_fmtatr1.obj \
         $(SLO)$/sw_fmtatr2.obj \
         $(SLO)$/sw_fntcap.obj \
