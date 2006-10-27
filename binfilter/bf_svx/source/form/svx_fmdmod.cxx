@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmdmod.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:41:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:54:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,6 @@
 #ifndef _SVX_UNOSHAPE_HXX
 #include <unoshape.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 #include "fmglob.hxx"
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -77,47 +74,8 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/ }
 
 //-----------------------------------------------------------------------------
-//STRIP001 ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL  SvxFmMSFactory::createInstanceWithArguments(const ::rtl::OUString& ServiceSpecifier, const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& Arguments) throw( ::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException )
-//STRIP001 {
-//STRIP001  return SvxUnoDrawMSFactory::createInstanceWithArguments(ServiceSpecifier, Arguments );
-//STRIP001 }
 
 //-----------------------------------------------------------------------------
-//STRIP001 ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL SvxFmMSFactory::getAvailableServiceNames(void) throw( ::com::sun::star::uno::RuntimeException )
-//STRIP001 {
-//STRIP001  static const ::rtl::OUString aSvxComponentServiceNameList[] =
-//STRIP001  {
-//STRIP001      FM_SUN_COMPONENT_TEXTFIELD,
-//STRIP001      FM_SUN_COMPONENT_FORM,
-//STRIP001      FM_SUN_COMPONENT_LISTBOX,
-//STRIP001      FM_SUN_COMPONENT_COMBOBOX,
-//STRIP001      FM_SUN_COMPONENT_RADIOBUTTON,
-//STRIP001      FM_SUN_COMPONENT_GROUPBOX,
-//STRIP001      FM_SUN_COMPONENT_FIXEDTEXT,
-//STRIP001      FM_SUN_COMPONENT_COMMANDBUTTON,
-//STRIP001      FM_SUN_COMPONENT_CHECKBOX,
-//STRIP001      FM_SUN_COMPONENT_GRIDCONTROL,
-//STRIP001      FM_SUN_COMPONENT_IMAGEBUTTON,
-//STRIP001      FM_SUN_COMPONENT_FILECONTROL,
-//STRIP001      FM_SUN_COMPONENT_TIMEFIELD,
-//STRIP001      FM_SUN_COMPONENT_DATEFIELD,
-//STRIP001      FM_SUN_COMPONENT_NUMERICFIELD,
-//STRIP001      FM_SUN_COMPONENT_CURRENCYFIELD,
-//STRIP001      FM_SUN_COMPONENT_PATTERNFIELD,
-//STRIP001      FM_SUN_COMPONENT_HIDDENCONTROL,
-//STRIP001      FM_SUN_COMPONENT_IMAGECONTROL
-//STRIP001  };
-//STRIP001
-//STRIP001  static const sal_uInt16 nSvxComponentServiceNameListCount = sizeof(aSvxComponentServiceNameList) / sizeof ( aSvxComponentServiceNameList[0] );
-//STRIP001
-//STRIP001  ::com::sun::star::uno::Sequence< ::rtl::OUString > aSeq( nSvxComponentServiceNameListCount );
-//STRIP001  ::rtl::OUString* pStrings = aSeq.getArray();
-//STRIP001  for( sal_uInt16 nIdx = 0; nIdx < nSvxComponentServiceNameListCount; nIdx++ )
-//STRIP001      pStrings[nIdx] = aSvxComponentServiceNameList[nIdx];
-//STRIP001
-//STRIP001  ::com::sun::star::uno::Sequence< ::rtl::OUString > aParentSeq( SvxUnoDrawMSFactory::getAvailableServiceNames() );
-//STRIP001  return concatServiceNames( aParentSeq, aSeq );
-//STRIP001 }
 
 /*
 // XServiceManager
