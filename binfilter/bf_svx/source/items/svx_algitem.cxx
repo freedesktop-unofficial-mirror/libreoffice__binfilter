@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_algitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:14:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:14:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,53 +47,20 @@
 
 #include <tools/stream.hxx>
 
-// auto strip #ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
-// auto strip #include <com/sun/star/table/BorderLine.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
-// auto strip #include <com/sun/star/table/ShadowLocation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
-// auto strip #include <com/sun/star/table/TableBorder.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
-// auto strip #include <com/sun/star/table/ShadowFormat.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
-// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
-// auto strip #include <com/sun/star/table/CellContentType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
-// auto strip #include <com/sun/star/table/TableOrientation.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
 #include <com/sun/star/table/CellHoriJustify.hpp>
 #endif
 #ifndef _COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HPP_
 #include <com/sun/star/style/ParagraphAdjust.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
-// auto strip #include <com/sun/star/util/SortField.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
-// auto strip #include <com/sun/star/util/SortFieldType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
 #include <com/sun/star/table/CellOrientation.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
-// auto strip #include <com/sun/star/table/CellAddress.hpp>
-// auto strip #endif
 
 #include "algitem.hxx"
-// auto strip #include "dialmgr.hxx"
-// auto strip #include "itemtype.hxx"
-// auto strip #include "unomid.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -120,26 +87,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxHorJustifyItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&              rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueText( GetValue() );
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ //------------------------------------------------------------------------
 
@@ -241,11 +188,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 XubString SvxHorJustifyItem::GetValueText( USHORT nVal ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nVal <= SVX_HOR_JUSTIFY_REPEAT, "enum overflow!" );
-//STRIP001  return SVX_RESSTR(RID_SVXITEMS_HORJUST_STANDARD + nVal);
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -279,26 +221,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxVerJustifyItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&              rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueText( GetValue() );
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -342,11 +264,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 XubString SvxVerJustifyItem::GetValueText( USHORT nVal ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nVal <= SVX_VER_JUSTIFY_BOTTOM, "enum overflow!" );
-//STRIP001  return SVX_RESSTR(RID_SVXITEMS_VERJUST_STANDARD + nVal);
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -381,26 +298,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxOrientationItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&              rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueText( GetValue() );
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -442,11 +339,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 XubString SvxOrientationItem::GetValueText( USHORT nVal ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nVal <= SVX_ORIENTATION_STACKED, "enum overflow!" );
-//STRIP001  return SVX_RESSTR(RID_SVXITEMS_ORI_STANDARD + nVal);
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -515,54 +407,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxMarginItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001             rText = GetMetricText( (long)nLeftMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001             rText += GetMetricText( (long)nTopMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001             rText += GetMetricText( (long)nRightMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001             rText += GetMetricText( (long)nBottomMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR(RID_SVXITEMS_MARGIN_LEFT);
-//STRIP001             rText += GetMetricText( (long)nLeftMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_MARGIN_TOP);
-//STRIP001             rText += GetMetricText( (long)nTopMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_MARGIN_RIGHT);
-//STRIP001             rText += GetMetricText( (long)nRightMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_MARGIN_BOTTOM);
-//STRIP001             rText += GetMetricText( (long)nBottomMargin, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -671,35 +515,15 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxMarginItem::SetLeftMargin( sal_Int16 nLeft )
-//STRIP001 {
-//STRIP001  nLeftMargin = nLeft;
-//STRIP001  return sal_True;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxMarginItem::SetTopMargin( sal_Int16 nTop )
-//STRIP001 {
-//STRIP001  nTopMargin = nTop;
-//STRIP001  return sal_True;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxMarginItem::SetRightMargin( sal_Int16 nRight )
-//STRIP001 {
-//STRIP001  nRightMargin = nRight;
-//STRIP001  return sal_True;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxMarginItem::SetBottomMargin( sal_Int16 nBottom )
-//STRIP001 {
-//STRIP001  nBottomMargin = nBottom;
-//STRIP001  return sal_True;
-//STRIP001 }
 
 
 }
