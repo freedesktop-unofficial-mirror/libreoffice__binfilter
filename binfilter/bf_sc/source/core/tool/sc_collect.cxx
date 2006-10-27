@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_collect.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-27 12:33:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:30:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,19 +34,12 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include <string.h>
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 
 #include "rechead.hxx"
 #include "collect.hxx"
@@ -225,14 +218,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 USHORT SortedCollection::IndexOf(DataObject* pDataObject) const
-//STRIP001 {
-//STRIP001  USHORT nIndex;
-//STRIP001  if (Search(pDataObject, nIndex))
-//STRIP001      return nIndex;
-//STRIP001  else
-//STRIP001      return 0xffff;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -283,40 +268,14 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL SortedCollection::InsertPos(DataObject* pDataObject, USHORT& nIndex)
-//STRIP001 {
-//STRIP001  BOOL bFound = Search(pDataObject, nIndex);
-//STRIP001  if (bFound)
-//STRIP001  {
-//STRIP001      if (bDuplicates)
-//STRIP001          return AtInsert(nIndex, pDataObject);
-//STRIP001      else
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return AtInsert(nIndex, pDataObject);
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL SortedCollection::operator==(const SortedCollection& rCmp) const
-//STRIP001 {
-//STRIP001  if ( nCount != rCmp.nCount )
-//STRIP001      return FALSE;
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      if ( !IsEqual(pItems[i],rCmp.pItems[i]) )
-//STRIP001          return FALSE;
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
 //  IsEqual - komplette Inhalte vergleichen
 
-//STRIP001 BOOL SortedCollection::IsEqual(DataObject* pKey1, DataObject* pKey2) const
-//STRIP001 {
-//STRIP001  return ( Compare(pKey1, pKey2) == 0 );      // Default: nur Index vergleichen
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -404,147 +363,17 @@ namespace binfilter {
 /*N*/   return new TypedStrData(*this);
 /*N*/ }
 
-//STRIP001 DataObject* TypedStrCollection::Clone() const
-//STRIP001 {
-//STRIP001  return new TypedStrCollection(*this);
-//STRIP001 }
 
 /*N*/ short TypedStrCollection::Compare( DataObject* pKey1, DataObject* pKey2 ) const
 /*N*/ {
 /*N*/   short nResult = 0;
-//STRIP001
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( pKey1 && pKey2 )
-//STRIP001  {
-//STRIP001      TypedStrData& rData1 = (TypedStrData&)*pKey1;
-//STRIP001      TypedStrData& rData2 = (TypedStrData&)*pKey2;
-//STRIP001
-//STRIP001      if ( rData1.nStrType > rData2.nStrType )
-//STRIP001          nResult = 1;
-//STRIP001      else if ( rData1.nStrType < rData2.nStrType )
-//STRIP001          nResult = -1;
-//STRIP001      else if ( !rData1.nStrType /* && !rData2.nStrType */ )
-//STRIP001      {
-//STRIP001          //--------------------
-//STRIP001          // Zahlen vergleichen:
-//STRIP001          //--------------------
-//STRIP001          if ( rData1.nValue == rData2.nValue )
-//STRIP001              nResult = 0;
-//STRIP001          else if ( rData1.nValue < rData2.nValue )
-//STRIP001              nResult = -1;
-//STRIP001          else
-//STRIP001              nResult = 1;
-//STRIP001      }
-//STRIP001      else /* if ( rData1.nStrType && rData2.nStrType ) */
-//STRIP001      {
-//STRIP001          //---------------------
-//STRIP001          // Strings vergleichen:
-//STRIP001          //---------------------
-//STRIP001          if ( bCaseSensitive )
-//STRIP001                 nResult = (short) ScGlobal::pCaseTransliteration->compareString(
-//STRIP001                  rData1.aStrValue, rData2.aStrValue );
-//STRIP001          else
-//STRIP001                 nResult = (short) ScGlobal::pTransliteration->compareString(
-//STRIP001                  rData1.aStrValue, rData2.aStrValue );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
 /*N*/ return nResult;
 /*N*/ }
 
-//STRIP001 BOOL TypedStrCollection::FindText( const String& rStart, String& rResult,
-//STRIP001                                  USHORT& rPos, BOOL bBack ) const
-//STRIP001 {
-//STRIP001  //  Die Collection ist nach String-Vergleichen sortiert, darum muss hier
-//STRIP001  //  alles durchsucht werden
-//STRIP001
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001
-//STRIP001  String aOldResult;
-//STRIP001  if ( rPos != SCPOS_INVALID && rPos < nCount )
-//STRIP001  {
-//STRIP001      TypedStrData* pData = (TypedStrData*) pItems[rPos];
-//STRIP001      if (pData->nStrType)
-//STRIP001          aOldResult = pData->aStrValue;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( bBack )                                    // rueckwaerts
-//STRIP001  {
-//STRIP001      USHORT nStartPos = nCount;
-//STRIP001      if ( rPos != SCPOS_INVALID )
-//STRIP001          nStartPos = rPos;                       // weitersuchen...
-//STRIP001
-//STRIP001      for ( USHORT i=nStartPos; i>0; )
-//STRIP001      {
-//STRIP001          --i;
-//STRIP001          TypedStrData* pData = (TypedStrData*) pItems[i];
-//STRIP001          if (pData->nStrType)
-//STRIP001          {
-//STRIP001                 if ( ScGlobal::pTransliteration->isMatch( rStart, pData->aStrValue ) )
-//STRIP001              {
-//STRIP001                  //  If the collection is case sensitive, it may contain several entries
-//STRIP001                  //  that are equal when compared case-insensitive. They are skipped here.
-//STRIP001                  if ( !bCaseSensitive || !aOldResult.Len() ||
-//STRIP001                             !ScGlobal::pTransliteration->isEqual(
-//STRIP001                             pData->aStrValue, aOldResult ) )
-//STRIP001                  {
-//STRIP001                      rResult = pData->aStrValue;
-//STRIP001                      rPos = i;
-//STRIP001                      bFound = TRUE;
-//STRIP001                      break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else                                            // vorwaerts
-//STRIP001  {
-//STRIP001      USHORT nStartPos = 0;
-//STRIP001      if ( rPos != SCPOS_INVALID )
-//STRIP001          nStartPos = rPos + 1;                   // weitersuchen...
-//STRIP001
-//STRIP001      for ( USHORT i=nStartPos; i<nCount; i++ )
-//STRIP001      {
-//STRIP001          TypedStrData* pData = (TypedStrData*) pItems[i];
-//STRIP001          if (pData->nStrType)
-//STRIP001          {
-//STRIP001                 if ( ScGlobal::pTransliteration->isMatch( rStart, pData->aStrValue ) )
-//STRIP001              {
-//STRIP001                  //  If the collection is case sensitive, it may contain several entries
-//STRIP001                  //  that are equal when compared case-insensitive. They are skipped here.
-//STRIP001                  if ( !bCaseSensitive || !aOldResult.Len() ||
-//STRIP001                             !ScGlobal::pTransliteration->isEqual(
-//STRIP001                             pData->aStrValue, aOldResult ) )
-//STRIP001                  {
-//STRIP001                      rResult = pData->aStrValue;
-//STRIP001                      rPos = i;
-//STRIP001                      bFound = TRUE;
-//STRIP001                      break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
         // Gross-/Kleinschreibung anpassen
 
-//STRIP001 BOOL TypedStrCollection::GetExactMatch( String& rString ) const
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001  {
-//STRIP001      TypedStrData* pData = (TypedStrData*) pItems[i];
-//STRIP001         if ( pData->nStrType && ScGlobal::pTransliteration->isEqual(
-//STRIP001                 pData->aStrValue, rString ) )
-//STRIP001      {
-//STRIP001          rString = pData->aStrValue;                         // String anpassen
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 
