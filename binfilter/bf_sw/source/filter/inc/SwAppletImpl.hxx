@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwAppletImpl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:16:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:38:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,14 +48,8 @@
 #ifndef _HTMLKYWD_HXX
 #include <svtools/htmlkywd.hxx>
 #endif
-#ifndef _FRMHTML_HXX //autogen
-#include <bf_sfx2/frmhtml.hxx>
-#endif
 #ifndef _FRAMEOBJ_HXX //autogen
 #include <bf_sfx2/frameobj.hxx>
-#endif
-#ifndef _FRMHTMLW_HXX //autogen
-#include <bf_sfx2/frmhtmlw.hxx>
 #endif
 #ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
@@ -75,8 +69,6 @@
 class SfxItemSet;
 namespace binfilter {
 
-
-
 extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_hidden, "HIDDEN" );
 extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_HIDDEN_false, "FALSE" );
 extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_archive, "ARCHIVE" );
@@ -86,26 +78,18 @@ extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_object, "OBJECT" );
 class SwApplet_Impl
 {
     SvAppletObjectRef xApplet;      // das aktuelle Applet
-//STRIP001  SvCommandList     aCommandList; // und die szugehorige Command-List
     SfxItemSet        aItemSet;
-//STRIP001  String            sAlt;
 
 public:
     static USHORT GetOptionType( const String& rName, BOOL bApplet ){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 static USHORT GetOptionType( const String& rName, BOOL bApplet );
-//STRIP001  SwApplet_Impl( SfxItemPool& rPool, USHORT nWhich1, USHORT nWhich2 );
     SwApplet_Impl( SfxItemSet& rSet ): aItemSet ( rSet) {}
     ~SwApplet_Impl(){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 ~SwApplet_Impl();
 
     void CreateApplet( const String& rCode, const String& rName,//STRIP001  void CreateApplet( const String& rCode, const String& rName,
         BOOL bMayScript, const String& rCodeBase ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001                      BOOL bMayScript, const String& rCodeBase );
         sal_Bool CreateApplet();
-//STRIP001                     //const String& rAlt );
-//STRIP001  void FinishApplet();
-//STRIP001  void AppendParam( const String& rName, const String& rValue );
     SvAppletObject* GetApplet() { return &xApplet; }
     SfxItemSet& GetItemSet() { return aItemSet; }
-//STRIP001  const String& GetAltText() { return sAlt; }
-//STRIP001  void          SetAltText( const String& rAlt ) {sAlt = rAlt;}
 };
 } //namespace binfilter
 #endif
