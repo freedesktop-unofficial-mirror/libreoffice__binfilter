@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwbassh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:30:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:38:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,26 +47,14 @@ class SvxNameDialog;
 
 class SwDrawBaseShell: public SwBaseShell
 {
-//STRIP001  SwDrawBase* pDrawActual;
-//STRIP001
-//STRIP001  UINT16      eDrawMode;
-//STRIP001  BOOL        bRotate : 1;
-//STRIP001  BOOL        bSelMove: 1;
 
-//STRIP001     DECL_LINK( CheckGroupShapeNameHdl, SvxNameDialog* );
 public:
     SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwDrawBaseShell(SwView &rShell);
-//STRIP001  virtual     ~SwDrawBaseShell();
 
     SFX_DECL_INTERFACE(SW_DRAWBASESHELL);
-//STRIP001  TYPEINFO();
 
-//STRIP001  void        Execute(SfxRequest &);
-//STRIP001  void        GetState(SfxItemSet &);
     void        DisableState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     DisableState(SfxItemSet &rSet)               { Disable(rSet);}
-//STRIP001  BOOL        Disable(SfxItemSet& rSet, USHORT nWhich = 0);
 
-//STRIP001  void        StateStatusline(SfxItemSet &rSet);
 
 };
 

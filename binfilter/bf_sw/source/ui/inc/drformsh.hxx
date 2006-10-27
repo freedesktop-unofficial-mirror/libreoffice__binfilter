@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drformsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:29:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:38:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,13 +46,9 @@ class SwDrawFormShell: public SwDrawBaseShell
 {
 public:
     SFX_DECL_INTERFACE(SW_DRAWFORMSHELL);
-//STRIP001  TYPEINFO();
 
     SwDrawFormShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001               SwDrawFormShell(SwView &rView);
-//STRIP001  virtual     ~SwDrawFormShell();
 
-//STRIP001  void        Execute(SfxRequest &);
-//STRIP001  void        GetState(SfxItemSet &);
 };
 
 } //namespace binfilter

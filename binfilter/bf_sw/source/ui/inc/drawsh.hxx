@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:29:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:38:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,12 +46,10 @@ class SwDrawShell: public SwDrawBaseShell
 {
 public:
     SFX_DECL_INTERFACE(SW_DRAWSHELL);
-//STRIP001  TYPEINFO();
 
     SwDrawShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001 SwDrawShell(SwView &rView);
 
     void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      Execute(SfxRequest &);
-//STRIP001  void        GetState(SfxItemSet &);
     void        ExecDrawDlg(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      ExecDrawDlg(SfxRequest& rReq);
     void        ExecDrawAttrArgs(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecDrawAttrArgs(SfxRequest& rReq);
     void        GetDrawAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     GetDrawAttrState(SfxItemSet &rSet);
