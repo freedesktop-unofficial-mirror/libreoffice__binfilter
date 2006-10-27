@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fmtatr1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:39:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:17:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,16 +65,7 @@ namespace binfilter {
 /*N*/           "must be a normal unicode character" );
 /*N*/ }
 
-//STRIP001 int SwFmtHardBlank::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return cChar == ((SwFmtHardBlank&)rAttr).GetChar();
-//STRIP001 }
 
-//STRIP001 SfxPoolItem* SwFmtHardBlank::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SwFmtHardBlank( *this );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -91,16 +82,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 int SwFmtSoftHyph::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 SfxPoolItem* SwFmtSoftHyph::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SwFmtSoftHyph( *this );
-//STRIP001 }
 
 
 }
