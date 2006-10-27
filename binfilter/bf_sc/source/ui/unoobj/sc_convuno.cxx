@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_convuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:21:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:01:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,16 +34,13 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <tools/debug.hxx>
 #include <i18npool/mslangid.hxx>
 
 #include "convuno.hxx"
-// auto strip #include "global.hxx"
 
 #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
