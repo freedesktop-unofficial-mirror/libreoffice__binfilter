@@ -4,9 +4,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:09:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:08:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -387,7 +387,6 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/
 /*N*/   OfficeApplication::RegisterInterface();
 /*N*/
-//STRIP001 /*?*/    SvxHyperlinkDlgWrapper::RegisterChildWindow();
 /*N*/   SvxSearchDialogWrapper::RegisterChildWindow();
 /*N*/   SvxHlinkDlgWrapper::RegisterChildWindow ();
 /*N*/
@@ -472,13 +471,6 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/
 /*N*/   for (sal_Int32  i = 0; i < nCount; i++)
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        sal_uInt16 nFlags = 0;
-//STRIP001 /*?*/        const SubstitutionStruct* pSubs = aFontConfig.GetSubstitution(i);
-//STRIP001 /*?*/        if(pSubs->bReplaceAlways)
-//STRIP001 /*?*/            nFlags |= FONT_SUBSTITUTE_ALWAYS;
-//STRIP001 /*?*/        if(pSubs->bReplaceOnScreenOnly)
-//STRIP001 /*?*/            nFlags |= FONT_SUBSTITUTE_SCREENONLY;
-//STRIP001 /*?*/        OutputDevice::AddFontSubstitute( String(pSubs->sFont), String(pSubs->sReplaceBy), nFlags );
 /*N*/     }
 /*N*/   OutputDevice::EndFontSubstitution();
 /*N*/ }
@@ -494,105 +486,20 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 
 // ------------------------------------------------------------------------
 
-//STRIP001 SimpleResMgr* OfficeApplication::GetOffSimpleResManager()
-//STRIP001 {
-//STRIP001  if ( !pImpl->m_pThreadSafeRessources )
-//STRIP001  {
-//STRIP001         LanguageType nType = Application::GetSettings().GetUILanguage();
-//STRIP001      ByteString sMgrName("ofs");
-//STRIP001      sMgrName += ByteString::CreateFromInt32( SOLARUPD );
-//STRIP001      pImpl->m_pThreadSafeRessources = SimpleResMgr::Create( sMgrName.GetBuffer(), nType );
-//STRIP001  }
-//STRIP001  return pImpl->m_pThreadSafeRessources;
-//STRIP001 }
 
 // ------------------------------------------------------------------------
 
-//STRIP001 void OfficeApplication::SetSbxCreatedLink( const Link &rLink )
-//STRIP001 // nur bis GetSbxObject virtual ist
-//STRIP001 {
-//STRIP001  aSbaCreatedLink = rLink;
-//STRIP001 }
 
 // ------------------------------------------------------------------------
 
 /*N*/void OfficeApplication::DrawExec_Impl( SfxRequest &rReq )
 /*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*
-//STRIP001 Slots with the following id's are executed in this function
-//STRIP001 SID_AUTOPILOT
-//STRIP001 SID_OUTLINE_TO_IMPRESS
-//STRIP001 */
-//STRIP001  SvtModuleOptions aModuleOpt;
-//STRIP001
-//STRIP001  // The special slots SID_AUTOPILOT/SID_OUTLINE_TO_IMPRESS are only used for impress.
-//STRIP001  // Because impress uses the drawing library we have to ask for these special slots.
-//STRIP001  if ( !aModuleOpt.IsImpress() &&
-//STRIP001       (( rReq.GetSlot() == SID_AUTOPILOT          ) ||
-//STRIP001        ( rReq.GetSlot() == SID_OUTLINE_TO_IMPRESS ))   )
-//STRIP001  {
-//STRIP001      vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001      ErrorBox( 0, ResId( RID_ERRBOX_MODULENOTINSTALLED, GetOffResManager() )).Execute();
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  // We have to be sure that the drawing module is installed before trying to load draw library.
-//STRIP001  if ( aModuleOpt.IsDraw() || aModuleOpt.IsImpress() )
-//STRIP001  {
-//STRIP001      SfxModule *pMod = (*(SfxModule**) GetAppData(BF_SHL_DRAW))->Load();
-//STRIP001      if(pMod)
-//STRIP001      {
-//STRIP001          pMod->ExecuteSlot( rReq );
-//STRIP001          pMod->Free();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001      ErrorBox( 0, ResId( RID_ERRBOX_MODULENOTINSTALLED, GetOffResManager() )).Execute();
-//STRIP001  }
 /*N*/ }
 
 // ------------------------------------------------------------------------
 
 /*N*/void OfficeApplication::ModuleState_Impl( SfxItemSet &rSet )
 /*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // f"ur die Statusabfrage darf das Modul NICHT geladen werden
-//STRIP001
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001 // lass mal alle Features aus .ini sehen
-//STRIP001  sal_Bool bf;
-//STRIP001  for ( sal_uInt32 j=1; j; j <<= 1 )
-//STRIP001  {
-//STRIP001      if ( HasFeature( j ) )
-//STRIP001          bf = sal_True;
-//STRIP001      else
-//STRIP001          bf = sal_False;
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  SvtModuleOptions aModuleOpt;
-//STRIP001
-//STRIP001  if ( !aModuleOpt.IsCalc() )
-//STRIP001      rSet.DisableItem( SID_SC_EDITOPTIONS );
-//STRIP001
-//STRIP001  if ( !aModuleOpt.IsMath() )
-//STRIP001      rSet.DisableItem( SID_SM_EDITOPTIONS );
-//STRIP001
-//STRIP001  if ( !aModuleOpt.IsImpress() )
-//STRIP001      rSet.DisableItem( SID_SD_EDITOPTIONS );
-//STRIP001
-//STRIP001  if ( !aModuleOpt.IsDraw() )
-//STRIP001      rSet.DisableItem( SID_SD_GRAPHIC_OPTIONS );
-//STRIP001
-//STRIP001     if( !aModuleOpt.IsWriter())
-//STRIP001     {
-//STRIP001         rSet.DisableItem( SID_SW_AGENDA_WIZZARD );
-//STRIP001         rSet.DisableItem( SID_SW_FAX_WIZZARD );
-//STRIP001         rSet.DisableItem( SID_SW_LETTER_WIZZARD );
-//STRIP001         rSet.DisableItem( SID_SW_MEMO_WIZZARD );
-//STRIP001         rSet.DisableItem( SID_SW_DOCMAN_PATH );
-//STRIP001     }
 /*N*/ }
 
 
@@ -600,58 +507,10 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 
 /*N*/void OfficeApplication::WriterExec_Impl( SfxRequest &rReq )
 /*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*
-//STRIP001 Hier werden Executes fuer folgende Slots weitergeleitet
-//STRIP001 SID_SW_AGENDA_WIZZARD
-//STRIP001 SID_SW_FAX_WIZZARD
-//STRIP001 SID_SW_LETTER_WIZZARD
-//STRIP001 SID_SW_MEMO_WIZZARD
-//STRIP001 SID_SW_EDITOPTIONS
-//STRIP001 SID_SW_DOCMAN_PATH
-//STRIP001 */
-//STRIP001  SvtModuleOptions aModuleOpt;
-//STRIP001
-//STRIP001  if ( aModuleOpt.IsWriter() )
-//STRIP001  {
-//STRIP001      SfxModule *pMod = (*(SfxModule**) GetAppData(BF_SHL_WRITER))->Load();
-//STRIP001      if(pMod)
-//STRIP001      {
-//STRIP001          pMod->ExecuteSlot( rReq );
-//STRIP001          pMod->Free();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001      ErrorBox( 0, ResId( RID_ERRBOX_MODULENOTINSTALLED, GetOffResManager() )).Execute();
-//STRIP001  }
 /*N*/ }
 
 // ------------------------------------------------------------------------
 
-//STRIP001 void OfficeApplication::CalcExec_Impl( SfxRequest &rReq )
-//STRIP001 {
-//STRIP001 /*
-//STRIP001 Hier werden Executes fuer folgende Slots weitergeleitet
-//STRIP001 */
-//STRIP001
-//STRIP001  SvtModuleOptions aModuleOpt;
-//STRIP001
-//STRIP001  if ( aModuleOpt.IsCalc() )
-//STRIP001  {
-//STRIP001      SfxModule *pMod = (*(SfxModule**) GetAppData(BF_SHL_CALC))->Load();
-//STRIP001      if(pMod)
-//STRIP001      {
-//STRIP001          pMod->ExecuteSlot( rReq );
-//STRIP001          pMod->Free();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001      ErrorBox( 0, ResId( RID_ERRBOX_MODULENOTINSTALLED, GetOffResManager() )).Execute();
-//STRIP001  }
-//STRIP001 }
 
 
 // ------------------------------------------------------------------------
@@ -663,49 +522,11 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 
 // ------------------------------------------------------------------------
 
-//STRIP001 ::rtl::OUString OfficeApplication::ChooseMacro( BOOL bExecute, BOOL bChooseOnly, const ::rtl::OUString& rMacroDesc )
-//STRIP001 {
-//STRIP001     // get basctl dllname
-//STRIP001     String sLibName = String::CreateFromAscii( STRING( DLL_NAME ) );
-//STRIP001  sLibName.SearchAndReplace( String( RTL_CONSTASCII_USTRINGPARAM( "ofa" ) ), String( RTL_CONSTASCII_USTRINGPARAM( "basctl" ) ) );
-//STRIP001  ::rtl::OUString aLibName( sLibName );
-//STRIP001
-//STRIP001     // load module
-//STRIP001  oslModule handleMod = osl_loadModule( aLibName.pData, 0 );
-//STRIP001
-//STRIP001     // get symbol
-//STRIP001     ::rtl::OUString aSymbol( RTL_CONSTASCII_USTRINGPARAM( "basicide_choose_macro" ) );
-//STRIP001     basicide_choose_macro pSymbol = (basicide_choose_macro) osl_getSymbol( handleMod, aSymbol.pData );
-//STRIP001
-//STRIP001     // call basicide_choose_macro in basctl
-//STRIP001     rtl_uString* pScriptURL = pSymbol( bExecute, bChooseOnly, rMacroDesc.pData );
-//STRIP001
-//STRIP001     ::rtl::OUString aScriptURL( pScriptURL );
-//STRIP001     rtl_uString_release( pScriptURL );
-//STRIP001
-//STRIP001  return aScriptURL;
-//STRIP001 }
 
 // ------------------------------------------------------------------------
 
 /*N*/ IMPL_LINK( OfficeApplication, GlobalBasicErrorHdl, StarBASIC*, pBasic )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     // get basctl dllname
-//STRIP001     String sLibName = String::CreateFromAscii( STRING( DLL_NAME ) );
-//STRIP001  sLibName.SearchAndReplace( String( RTL_CONSTASCII_USTRINGPARAM( "ofa" ) ), String( RTL_CONSTASCII_USTRINGPARAM( "basctl" ) ) );
-//STRIP001  ::rtl::OUString aLibName( sLibName );
-//STRIP001
-//STRIP001     // load module
-//STRIP001  oslModule handleMod = osl_loadModule( aLibName.pData, 0 );
-//STRIP001
-//STRIP001     // get symbol
-//STRIP001     ::rtl::OUString aSymbol( RTL_CONSTASCII_USTRINGPARAM( "basicide_handle_basic_error" ) );
-//STRIP001     basicide_handle_basic_error pSymbol = (basicide_handle_basic_error) osl_getSymbol( handleMod, aSymbol.pData );
-//STRIP001
-//STRIP001     // call basicide_handle_basic_error in basctl
-//STRIP001     long nRet = pSymbol( pBasic );
-//STRIP001
-//STRIP001  return nRet;
 /*N*/ }
 
 // ------------------------------------------------------------------------
