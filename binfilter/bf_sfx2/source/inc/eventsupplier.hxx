@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eventsupplier.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:26:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:35:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,7 +127,6 @@ class SfxEvents_Impl : public ::cppu::WeakImplHelper2< ::com::sun::star::contain
     ::osl::Mutex                    maMutex;
     SfxObjectShell                 *mpObjShell;
 
-//STRIP001     sal_Bool                    Warn_Impl( const String& );
 
 public:
                                 SfxEvents_Impl( SfxObjectShell* pShell,
