@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_clipfmtitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:15:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:14:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -139,16 +139,7 @@ String SvxClipboardFmtItem_Impl::sEmptyStr;
 /*N*/   return pImpl->aFmtIds.Count();
 /*N*/ }
 
-//STRIP001 ULONG SvxClipboardFmtItem::GetClipbrdFormatId( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  return pImpl->aFmtIds[ nPos ];
-//STRIP001 }
 
-//STRIP001 const String& SvxClipboardFmtItem::GetClipbrdFormatName( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  const String* pS = pImpl->aFmtNms[ nPos ];
-//STRIP001  return pS ? *pS : SvxClipboardFmtItem_Impl::sEmptyStr;
-//STRIP001 }
 
 
 }
