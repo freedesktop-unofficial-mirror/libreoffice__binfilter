@@ -4,9 +4,9 @@
  *
  *  $RCSfile: prcntfld.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:48:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:51:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,33 +50,16 @@ class PercentField : public MetricField
     sal_Bool    bLockAutoCalculation; //prevent recalcution of percent values when the
                                         //reference value is changed
 
-//STRIP001  long        ImpPower10(USHORT n);
 
-//STRIP001    virtual void  SetValue(long nNewValue, FieldUnit eInUnit = FUNIT_NONE);
 public:
      PercentField( Window* pWin, const ResId& rResId );
 
-//STRIP001     void        SetPrcntValue(long nNewValue, FieldUnit eInUnit = FUNIT_NONE);
-//STRIP001     void        SetUserValue(long nNewValue, FieldUnit eInUnit = FUNIT_NONE);
-//STRIP001  void        SetBaseValue(long nNewValue, FieldUnit eInUnit = FUNIT_NONE);
-//STRIP001  long        GetValue(FieldUnit eOutUnit = FUNIT_NONE);
-//STRIP001  BOOL        IsValueModified();
 
-//STRIP001  void        SetMax(long nNewMax, FieldUnit eInUnit = FUNIT_NONE);
-//STRIP001  void        SetMin(long nNewMin, FieldUnit eInUnit = FUNIT_NONE);
 
-//STRIP001  long        Normalize(long nValue);
-//STRIP001  long        Denormalize(long nValue);
 
-//STRIP001  void        SetRefValue(long nValue);
-//STRIP001  inline long GetRefValue() const { return nRefValue; }
-//STRIP001  long        GetRealValue(FieldUnit eOutUnit = FUNIT_NONE);
 
-//STRIP001  long        Convert(long nValue, FieldUnit eInUnit, FieldUnit eOutUnit);
 
-//STRIP001  void        ShowPercent(BOOL bPercent);
 
-//STRIP001  USHORT      GetOldDigits() const {return nOldDigits;}
 
     void        LockAutoCalculation(sal_Bool bLock) {bLockAutoCalculation = bLock;}
     sal_Bool    IsAutoCalculationLocked()const {return bLockAutoCalculation;}
