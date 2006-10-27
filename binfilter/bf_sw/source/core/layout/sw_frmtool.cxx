@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_frmtool.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:33:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:53:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,12 +86,6 @@
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-// auto strip #ifndef _FMTHDFT_HXX //autogen
-// auto strip #include <fmthdft.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTCNTNT_HXX //autogen
-// auto strip #include <fmtcntnt.hxx>
-// auto strip #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
@@ -128,7 +122,6 @@
 #include "node2lay.hxx"
 #include "ndole.hxx"
 #include "ndtxt.hxx"
-// auto strip #include "swtable.hxx"
 #include "hints.hxx"
 #ifndef _LAYHELP_HXX
 #include <layhelp.hxx>
@@ -1673,13 +1666,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 // muss dieser aufgebrochen werden
                 if( pSct && rSttIdx.GetNode().IsSectionNode() )
                 {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001                  bSplit = pSct->SplitSect( pFrm, bApres );
-//STRIP001                  // Wenn pSct nicht aufgespalten werden konnte
-//STRIP001                  if( !bSplit && !bApres )
-//STRIP001                  {
-//STRIP001                      pUpper = pSct->GetUpper();
-//STRIP001                      pPrv = pSct->GetPrev();
-//STRIP001                  }
                 }
                 else
                     bSplit = FALSE;
@@ -1898,12 +1884,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 |*
 |*************************************************************************/
 
-//STRIP001 void SwBorderAttrs::_IsLine()
-//STRIP001 {
-//STRIP001  bIsLine = rBox.GetTop() || rBox.GetBottom() ||
-//STRIP001            rBox.GetLeft()|| rBox.GetRight();
-//STRIP001  bLine = FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2157,32 +2137,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*************************************************************************/
 
-//STRIP001 const SdrObject *SwOrderIter::Top()
-//STRIP001 {
-//STRIP001  pCurrent = 0;
-//STRIP001  if ( pPage->GetSortedObjs() )
-//STRIP001  {
-//STRIP001      UINT32 nTopOrd = 0;
-//STRIP001      const SwSortDrawObjs *pObjs = pPage->GetSortedObjs();
-//STRIP001      if ( pObjs->Count() )
-//STRIP001      {
-//STRIP001          (*pObjs)[0]->GetOrdNum();   //Aktualisieren erzwingen!
-//STRIP001          for ( USHORT i = 0; i < pObjs->Count(); ++i )
-//STRIP001          {
-//STRIP001              const SdrObject *pObj = (*pObjs)[i];
-//STRIP001              if ( bFlysOnly && !pObj->IsWriterFlyFrame() )
-//STRIP001                  continue;
-//STRIP001              UINT32 nTmp = pObj->GetOrdNumDirect();
-//STRIP001              if ( nTmp >= nTopOrd )
-//STRIP001              {
-//STRIP001                  nTopOrd = nTmp;
-//STRIP001                  pCurrent = pObj;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pCurrent;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2266,33 +2220,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*************************************************************************/
 
-//STRIP001 const SdrObject *SwOrderIter::Prev()
-//STRIP001 {
-//STRIP001  const UINT32 nCurOrd = pCurrent ? pCurrent->GetOrdNumDirect() : 0;
-//STRIP001  pCurrent = 0;
-//STRIP001  if ( pPage->GetSortedObjs() )
-//STRIP001  {
-//STRIP001      UINT32 nOrd = 0;
-//STRIP001      const SwSortDrawObjs *pObjs = pPage->GetSortedObjs();
-//STRIP001      if ( pObjs->Count() )
-//STRIP001      {
-//STRIP001          (*pObjs)[0]->GetOrdNum();   //Aktualisieren erzwingen!
-//STRIP001          for ( USHORT i = 0; i < pObjs->Count(); ++i )
-//STRIP001          {
-//STRIP001              SdrObject *pObj = (*pObjs)[i];
-//STRIP001              if ( bFlysOnly && !pObj->IsWriterFlyFrame() )
-//STRIP001                  continue;
-//STRIP001              UINT32 nTmp = pObj->GetOrdNumDirect();
-//STRIP001              if ( nTmp < nCurOrd && nTmp >= nOrd )
-//STRIP001              {
-//STRIP001                  nOrd = nTmp;
-//STRIP001                  pCurrent = pObj;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pCurrent;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -3132,98 +3059,9 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 
 //---------------------------------
 
-//STRIP001 SwTwips MA_FASTCALL lcl_CalcCellRstHeight( SwLayoutFrm *pCell )
-//STRIP001 {
-//STRIP001  if ( pCell->Lower()->IsCntntFrm() || pCell->Lower()->IsSctFrm() )
-//STRIP001  {
-//STRIP001      SwFrm *pLow = pCell->Lower();
-//STRIP001      long nHeight = 0, nFlyAdd = 0;
-//STRIP001      do
-//STRIP001      {
-//STRIP001          long nLow = pLow->Frm().Height();
-//STRIP001          if( pLow->IsTxtFrm() && ((SwTxtFrm*)pLow)->IsUndersized() )
-//STRIP001              nLow += ((SwTxtFrm*)pLow)->GetParHeight()-pLow->Prt().Height();
-//STRIP001          else if( pLow->IsSctFrm() && ((SwSectionFrm*)pLow)->IsUndersized() )
-//STRIP001              nLow += ((SwSectionFrm*)pLow)->Undersize();
-//STRIP001          nFlyAdd = Max( 0L, nFlyAdd - nLow );
-//STRIP001          nFlyAdd = Max( nFlyAdd, ::CalcHeightWidthFlys( pLow ) );
-//STRIP001          nHeight += nLow;
-//STRIP001          pLow = pLow->GetNext();
-//STRIP001      } while ( pLow );
-//STRIP001      if ( nFlyAdd )
-//STRIP001          nHeight += nFlyAdd;
-//STRIP001
-//STRIP001      //Der Border will natuerlich auch mitspielen, er kann leider nicht
-//STRIP001      //aus PrtArea und Frm errechnet werden, da diese in beliebiger
-//STRIP001      //Kombination ungueltig sein koennen.
-//STRIP001      SwBorderAttrAccess aAccess( SwFrm::GetCache(), pCell );
-//STRIP001      const SwBorderAttrs &rAttrs = *aAccess.Get();
-//STRIP001      nHeight += rAttrs.CalcTop() + rAttrs.CalcBottom();
-//STRIP001
-//STRIP001      return pCell->Frm().Height() - nHeight;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      long nRstHeight = 0;
-//STRIP001      SwFrm *pLow = pCell->Lower();
-//STRIP001      do
-//STRIP001      {   nRstHeight += ::CalcRowRstHeight( (SwLayoutFrm*)pLow );
-//STRIP001          pLow = pLow->GetNext();
-//STRIP001
-//STRIP001      } while ( pLow );
-//STRIP001
-//STRIP001      return nRstHeight;
-//STRIP001  }
-//STRIP001 }
-
-//STRIP001 SwTwips MA_FASTCALL CalcRowRstHeight( SwLayoutFrm *pRow )
-//STRIP001 {
-//STRIP001  SwTwips nRstHeight = LONG_MAX;
-//STRIP001  SwLayoutFrm *pLow = (SwLayoutFrm*)pRow->Lower();
-//STRIP001  while ( pLow )
-//STRIP001  {
-//STRIP001      nRstHeight = Min( nRstHeight, ::lcl_CalcCellRstHeight( pLow ) );
-//STRIP001      pLow = (SwLayoutFrm*)pLow->GetNext();
-//STRIP001  }
-//STRIP001  return nRstHeight;
-//STRIP001 }
 
 
-//STRIP001 void MA_ParkCrsr( SwPageDesc *pDesc, SwCrsrShell &rSh )
-//STRIP001 {
-//STRIP001  //Footer
-//STRIP001  const SwFrmFmt  *pFmt = pDesc->GetMaster().GetFooter().GetFooterFmt();
-//STRIP001  const SwFmtCntnt  *pCnt;
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      pCnt = &pFmt->GetCntnt();
-//STRIP001      if ( pCnt->GetCntntIdx() )
-//STRIP001          rSh.ParkCrsr( *pCnt->GetCntntIdx() );
-//STRIP001  }
-//STRIP001  pFmt = pDesc->GetLeft().GetFooter().GetFooterFmt();
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      pCnt = &pFmt->GetCntnt();
-//STRIP001      if ( pCnt->GetCntntIdx() )
-//STRIP001          rSh.ParkCrsr( *pCnt->GetCntntIdx() );
-//STRIP001  }
-//STRIP001
-//STRIP001  //Header
-//STRIP001  pFmt = pDesc->GetMaster().GetHeader().GetHeaderFmt();
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      pCnt = &pFmt->GetCntnt();
-//STRIP001      if ( pCnt->GetCntntIdx() )
-//STRIP001          rSh.ParkCrsr( *pCnt->GetCntntIdx() );
-//STRIP001  }
-//STRIP001  pFmt = pDesc->GetLeft().GetHeader().GetHeaderFmt();
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      pCnt = &pFmt->GetCntnt();
-//STRIP001      if ( pCnt->GetCntntIdx() )
-//STRIP001          rSh.ParkCrsr( *pCnt->GetCntntIdx() );
-//STRIP001  }
-//STRIP001 }
+
 
 /*N*/ const SwFrm* MA_FASTCALL FindPage( const SwRect &rRect, const SwFrm *pPage )
 /*N*/ {

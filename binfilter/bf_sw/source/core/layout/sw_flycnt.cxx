@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flycnt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:33:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:52:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,25 +42,19 @@
 #endif
 #include "pagefrm.hxx"
 #include "rootfrm.hxx"
-// auto strip #include "cntfrm.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "flyfrm.hxx"
 #include "txtfrm.hxx"
 #include "doc.hxx"
-// auto strip #include "viewsh.hxx"
-// auto strip #include "viewimp.hxx"
 #include "pam.hxx"
 #include "frmfmt.hxx"
 #include "frmtool.hxx"
 #include "dflyobj.hxx"
 #include "hints.hxx"
 #include "ndtxt.hxx"
-// auto strip #include "swundo.hxx"
-// auto strip #include "errhdl.hxx"
 
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
@@ -81,12 +75,8 @@
 #ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #include "tabfrm.hxx"
 #include "flyfrms.hxx"
-// auto strip #include "crstate.hxx"
 #include "sectfrm.hxx"
 namespace binfilter {
 
@@ -112,30 +102,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void SwFlyAtCntFrm::CheckCharRect()
-//STRIP001 {
-//STRIP001  SwFlyFrmFmt *pFmt = (SwFlyFrmFmt*)GetFmt();
-//STRIP001  if( FLY_AUTO_CNTNT == pFmt->GetAnchor().GetAnchorId() && GetAnchor() )
-//STRIP001  {
-//STRIP001      SwRect aAutoPos;
-//STRIP001      const SwFmtAnchor& rAnch = pFmt->GetAnchor();
-//STRIP001      if( !rAnch.GetCntntAnchor() )
-//STRIP001          return;
-//STRIP001      if( ((SwTxtFrm*)GetAnchor())->GetAutoPos( aAutoPos,
-//STRIP001            *rAnch.GetCntntAnchor() ) && aAutoPos != aLastCharRect )
-//STRIP001      {
-//STRIP001          SwFmtVertOrient aVert( pFmt->GetVertOrient() );
-//STRIP001          SwFmtHoriOrient aHori( pFmt->GetHoriOrient() );
-//STRIP001          if( ( REL_CHAR == aHori.GetRelationOrient() &&
-//STRIP001                aAutoPos.Left() != aLastCharRect.Left() ) ||
-//STRIP001                ( REL_CHAR == aVert.GetRelationOrient() &&
-//STRIP001                  ( aAutoPos.Top() != aLastCharRect.Top() ||
-//STRIP001                    aAutoPos.Height() != aLastCharRect.Height() ) ) )
-//STRIP001              InvalidatePos();
-//STRIP001          aLastCharRect = aAutoPos;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -742,7 +708,6 @@ namespace binfilter {
 /*N*/ }
 
 //Bug 3985, optimierungsproblem, vergleiche auch trvlfrm.cxx lcl_FindCntnt()
-//STRIP001 #pragma optimize("e",off)
 
 /*N*/ ULONG MA_FASTCALL lcl_FindCntDiff( const Point &rPt, const SwLayoutFrm *pLay,
 /*N*/                         const SwCntntFrm *& rpCnt,
@@ -1071,184 +1036,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void SwFlyAtCntFrm::SetAbsPos( const Point &rNew )
-//STRIP001 {
-//STRIP001  SwPageFrm *pOldPage = FindPageFrm();
-//STRIP001  const SwRect aOld( AddSpacesToFrm() );
-//STRIP001  Point aNew( rNew );
-//STRIP001
-//STRIP001     if( GetAnchor()->IsVertical() || GetAnchor()->IsRightToLeft() )
-//STRIP001
-//STRIP001         aNew.X() += Frm().Width();
-//STRIP001     SwCntntFrm *pCnt = (SwCntntFrm*)::FindAnchor( GetAnchor(), aNew );
-//STRIP001  if( pCnt->IsProtected() )
-//STRIP001      pCnt = (SwCntntFrm*)GetAnchor();
-//STRIP001
-//STRIP001  SwPageFrm *pPage = 0;
-//STRIP001     SWRECTFN( pCnt )
-//STRIP001  const sal_Bool bRTL = pCnt->IsRightToLeft();
-//STRIP001
-//STRIP001     if( ( bVert != GetAnchor()->IsVertical() ) ||
-//STRIP001      ( bRTL != GetAnchor()->IsRightToLeft() ) )
-//STRIP001     {
-//STRIP001         if( bVert || bRTL )
-//STRIP001             aNew.X() += Frm().Width();
-//STRIP001         else
-//STRIP001             aNew.X() -= Frm().Width();
-//STRIP001     }
-//STRIP001
-//STRIP001  if ( pCnt->IsInDocBody() )
-//STRIP001  {
-//STRIP001      //#38848 Vom Seitenrand in den Body ziehen.
-//STRIP001      pPage = pCnt->FindPageFrm();
-//STRIP001      ::lcl_PointToPrt( aNew, pPage->GetUpper() );
-//STRIP001      SwRect aTmp( aNew, Size( 0, 0 ) );
-//STRIP001      pPage = (SwPageFrm*)::FindPage( aTmp, pPage );
-//STRIP001      ::lcl_PointToPrt( aNew, pPage );
-//STRIP001  }
-//STRIP001
-//STRIP001  //RelPos einstellen, nur auf Wunsch invalidieren.
-//STRIP001  //rNew ist eine Absolute Position. Um die RelPos korrekt einzustellen
-//STRIP001  //muessen wir uns die Entfernung von rNew zum Anker im Textfluss besorgen.
-//STRIP001 //!!!!!Hier kann Optimiert werden: FindAnchor koennte die RelPos mitliefern!
-//STRIP001  const SwFrm *pFrm = 0;
-//STRIP001  SwTwips nY;
-//STRIP001  if ( pCnt->Frm().IsInside( aNew ) )
-//STRIP001     {
-//STRIP001         if( bVert )
-//STRIP001             nY = pCnt->Frm().Left()+pCnt->Frm().Width()-rNew.X()-Frm().Width();
-//STRIP001         else
-//STRIP001             nY = rNew.Y() - pCnt->Frm().Top();
-//STRIP001     }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SwDistance aDist;
-//STRIP001      pFrm = ::lcl_CalcDownDist( aDist, aNew, pCnt );
-//STRIP001      nY = aDist.nMain + aDist.nSub;
-//STRIP001  }
-//STRIP001
-//STRIP001  SwTwips nX = 0;
-//STRIP001
-//STRIP001  if ( pCnt->IsFollow() )
-//STRIP001  {
-//STRIP001      //Flys haengen niemals an einem Follow sondern immer am
-//STRIP001      //Master, den suchen wir uns jetzt.
-//STRIP001      const SwCntntFrm *pOriginal = pCnt;
-//STRIP001      const SwCntntFrm *pFollow = pCnt;
-//STRIP001      while ( pCnt->IsFollow() )
-//STRIP001      {
-//STRIP001          do
-//STRIP001          {   pCnt = pCnt->GetPrevCntntFrm();
-//STRIP001          } while ( pCnt->GetFollow() != pFollow );
-//STRIP001          pFollow = pCnt;
-//STRIP001      }
-//STRIP001      SwTwips nDiff = 0;
-//STRIP001      do
-//STRIP001      {   const SwFrm *pUp = pFollow->GetUpper();
-//STRIP001             if( pUp->IsVertical() )
-//STRIP001                 nDiff += pFollow->Frm().Left() + pFollow->Frm().Width()
-//STRIP001                          - pUp->Frm().Left() - pUp->Prt().Left();
-//STRIP001             else
-//STRIP001                 nDiff += pUp->Prt().Height() - pFollow->GetRelPos().Y();
-//STRIP001          pFollow = pFollow->GetFollow();
-//STRIP001      } while ( pFollow != pOriginal );
-//STRIP001      nY += nDiff;
-//STRIP001         if( bVert )
-//STRIP001             nX = pCnt->Frm().Top() - pOriginal->Frm().Top();
-//STRIP001         else
-//STRIP001             nX = pCnt->Frm().Left() - pOriginal->Frm().Left();
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nY == LONG_MAX )
-//STRIP001     {
-//STRIP001         if( bVert )
-//STRIP001             nY = pCnt->Frm().Left() + pCnt->Frm().Width() - rNew.X();
-//STRIP001         else
-//STRIP001             nY = rNew.Y() - pCnt->Frm().Top();
-//STRIP001     }
-//STRIP001
-//STRIP001     SwFlyFrmFmt *pFmt = (SwFlyFrmFmt*)GetFmt();
-//STRIP001     const SwFmtSurround& rSurround = pFmt->GetSurround();
-//STRIP001     const FASTBOOL bWrapThrough =
-//STRIP001         rSurround.GetSurround() == SURROUND_THROUGHT;
-//STRIP001     SwTwips nBaseOfstForFly = 0;
-//STRIP001     const SwFrm* pTmpFrm = pFrm ? pFrm : pCnt;
-//STRIP001     if ( pTmpFrm->IsTxtFrm() )
-//STRIP001         nBaseOfstForFly =
-//STRIP001             ((SwTxtFrm*)pTmpFrm)->GetBaseOfstForFly( !bWrapThrough );
-//STRIP001
-//STRIP001     if( bVert )
-//STRIP001     {
-//STRIP001         if( !pFrm )
-//STRIP001             nX += rNew.Y() - pCnt->Frm().Top() - nBaseOfstForFly;
-//STRIP001         else
-//STRIP001             nX = rNew.Y() - pFrm->Frm().Top() - nBaseOfstForFly;
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         if( !pFrm )
-//STRIP001         {
-//STRIP001             if ( pCnt->IsRightToLeft() )
-//STRIP001                 nX += pCnt->Frm().Right() - rNew.X() - Frm().Width() +
-//STRIP001                       nBaseOfstForFly;
-//STRIP001             else
-//STRIP001                 nX += rNew.X() - pCnt->Frm().Left() - nBaseOfstForFly;
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             if ( pFrm->IsRightToLeft() )
-//STRIP001                 nX += pFrm->Frm().Right() - rNew.X() - Frm().Width() +
-//STRIP001                       nBaseOfstForFly;
-//STRIP001             else
-//STRIP001                 nX = rNew.X() - pFrm->Frm().Left() - nBaseOfstForFly;
-//STRIP001         }
-//STRIP001     }
-//STRIP001  GetFmt()->GetDoc()->StartUndo( UNDO_START );
-//STRIP001
-//STRIP001  if( pCnt != GetAnchor() || ( IsAutoPos() && pCnt->IsTxtFrm() &&
-//STRIP001                                GetFmt()->GetDoc()->IsHTMLMode() ) )
-//STRIP001  {
-//STRIP001      //Das Ankerattribut auf den neuen Cnt setzen.
-//STRIP001      SwFmtAnchor aAnch( pFmt->GetAnchor() );
-//STRIP001      SwPosition *pPos = (SwPosition*)aAnch.GetCntntAnchor();
-//STRIP001      if( IsAutoPos() && pCnt->IsTxtFrm() )
-//STRIP001      {
-//STRIP001          SwCrsrMoveState eTmpState( MV_SETONLYTEXT );
-//STRIP001          Point aPt( rNew );
-//STRIP001          if( pCnt->GetCrsrOfst( pPos, aPt, &eTmpState )
-//STRIP001              && pPos->nNode == *pCnt->GetNode() )
-//STRIP001          {
-//STRIP001              aLastCharRect.Height( 0 );
-//STRIP001              if( REL_CHAR == pFmt->GetVertOrient().GetRelationOrient() )
-//STRIP001                  nY = LONG_MAX;
-//STRIP001              if( REL_CHAR == pFmt->GetHoriOrient().GetRelationOrient() )
-//STRIP001                  nX = LONG_MAX;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              pPos->nNode = *pCnt->GetNode();
-//STRIP001              pPos->nContent.Assign( pCnt->GetNode(), 0 );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pPos->nNode = *pCnt->GetNode();
-//STRIP001          pPos->nContent.Assign( pCnt->GetNode(), 0 );
-//STRIP001      }
-//STRIP001      pFmt->GetDoc()->SetAttr( aAnch, *pFmt );
-//STRIP001  }
-//STRIP001  else if ( pPage && pPage != GetPage() )
-//STRIP001      GetPage()->MoveFly( this, pPage );
-//STRIP001
-//STRIP001     const Point aRelPos = bVert ? Point( -nY, nX ) : Point( nX, nY );
-//STRIP001  ChgRelPos( aRelPos );
-//STRIP001
-//STRIP001  GetFmt()->GetDoc()->EndUndo( UNDO_END );
-//STRIP001
-//STRIP001  if ( pOldPage != FindPageFrm() )
-//STRIP001      ::Notify_Background( GetVirtDrawObj(), pOldPage, aOld, PREP_FLY_LEAVE,
-//STRIP001                           FALSE );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1542,17 +1329,6 @@ namespace binfilter {
 /*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient eRelO, SwRelationOrient eRelO2,
 /*N*/   BOOL bLeft )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  // Die Ausweichreihenfolge der SwRelationOrient-Enums bei linker Ausrichtung
-//STRIP001  static USHORT __READONLY_DATA aLeft[ LAST_ENUM_DUMMY ] =
-//STRIP001      { 5, 6, 0, 1, 8, 4, 7, 2, 3 };
-//STRIP001  // Die Ausweichreihenfolge der SwRelationOrient-Enums Ausrichtung rechts
-//STRIP001  static USHORT __READONLY_DATA aRight[ LAST_ENUM_DUMMY ] =
-//STRIP001      { 5, 6, 0, 8, 1, 7, 4, 2, 3 };
-//STRIP001  // Hier wird z.B. entschieden, dass ein Rahmen im Absatzbereich
-//STRIP001  // einem Rahmen im Seitentextbereich ausweicht usw.
-//STRIP001  if( bLeft )
-//STRIP001      return aLeft[ eRelO ] >= aLeft[ eRelO2 ];
-//STRIP001  return aRight[ eRelO ] >= aRight[ eRelO2 ];
 /*N*/ }
 
 /*N*/ void SwFlyAtCntFrm::MakeFlyPos()
