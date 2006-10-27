@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uiitems.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:25:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:30:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,51 +57,6 @@ class ScDPSaveData;
 
 //  Items
 
-//STRIP001 class ScInputStatusItem : public SfxPoolItem
-//STRIP001 {
-//STRIP001  ScAddress           aCursorPos;
-//STRIP001  ScAddress           aStartPos;
-//STRIP001  ScAddress           aEndPos;
-//STRIP001  String              aString;
-//STRIP001  EditTextObject*     pEditData;
-//STRIP001
-//STRIP001 public:
-//STRIP001                          TYPEINFO();
-//STRIP001                          ScInputStatusItem( USHORT nWhich,
-//STRIP001                                             USHORT nTab,
-//STRIP001                                             USHORT nCol, USHORT nRow,
-//STRIP001                                             USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                             USHORT nEndCol,   USHORT nSEndRow,
-//STRIP001                                             const String& rString,
-//STRIP001                                             const EditTextObject* pData );
-//STRIP001                          ScInputStatusItem( USHORT nWhich,
-//STRIP001                                             const ScAddress& rCurPos,
-//STRIP001                                             const ScAddress& rStartPos,
-//STRIP001                                             const ScAddress& rEndPos,
-//STRIP001                                             const String& rString,
-//STRIP001                                             const EditTextObject* pData );
-//STRIP001                          ScInputStatusItem( const ScInputStatusItem& rItem );
-//STRIP001                          ~ScInputStatusItem();
-//STRIP001
-//STRIP001  virtual String          GetValueText() const;
-//STRIP001
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  const ScAddress&        GetPos() const      { return aCursorPos; }
-//STRIP001  const ScAddress&        GetStartPos() const { return aStartPos; }
-//STRIP001  const ScAddress&        GetEndPos() const   { return aEndPos; }
-//STRIP001  USHORT                  GetTab() const      { return aCursorPos.Tab(); }
-//STRIP001  USHORT                  GetCol() const      { return aCursorPos.Col(); }
-//STRIP001  USHORT                  GetRow() const      { return aCursorPos.Row(); }
-//STRIP001  USHORT                  GetStartCol() const { return aStartPos.Col(); }
-//STRIP001  USHORT                  GetStartRow() const { return aStartPos.Row(); }
-//STRIP001  USHORT                  GetEndCol() const   { return aEndPos.Col(); }
-//STRIP001  USHORT                  GetEndRow() const   { return aEndPos.Row(); }
-//STRIP001
-//STRIP001  const String&           GetString() const   { return aString; }
-//STRIP001  const EditTextObject*   GetEditData() const { return pEditData; }
-//STRIP001 };
 
 
 #define SC_TAB_INSERTED     1
@@ -172,12 +127,10 @@ public:
                             ScSortItem( const ScSortItem& rItem );
                             ~ScSortItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     ScViewData*         GetViewData () const { return pViewData; }
-//STRIP001  const ScSortParam&  GetSortData () const { return theSortData; }
 
 private:
     ScViewData*     pViewData;
@@ -199,15 +152,11 @@ public:
                             ScQueryItem( const ScQueryItem& rItem );
                             ~ScQueryItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
      ScViewData*            GetViewData () const { return pViewData; }
-//STRIP001  const ScQueryParam& GetQueryData() const { return theQueryData; }
 
-//STRIP001  BOOL        GetAdvancedQuerySource(ScRange& rSource) const;
-//STRIP001  void        SetAdvancedQuerySource(const ScRange* pSource);
 
 private:
     ScViewData*     pViewData;
@@ -231,7 +180,6 @@ public:
                 ScSubTotalItem( const ScSubTotalItem&   rItem );
                 ~ScSubTotalItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
@@ -254,12 +202,9 @@ public:
                 ScUserListItem( const ScUserListItem& rItem );
                 ~ScUserListItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
-//STRIP001  void        SetUserList ( const ScUserList& rUserList );
-//STRIP001  ScUserList* GetUserList () const { return pUserList; }
 
 private:
     ScUserList* pUserList;
@@ -277,11 +222,9 @@ public:
                 ScConsolidateItem( const ScConsolidateItem& rItem );
                 ~ScConsolidateItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
-//STRIP001  const ScConsolidateParam& GetData() const { return theConsData; }
 
 private:
     ScConsolidateParam  theConsData;
@@ -299,13 +242,9 @@ public:
                 ScPivotItem( const ScPivotItem& rItem );
                 ~ScPivotItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
-//STRIP001  const ScDPSaveData& GetData() const         { return *pSaveData; }
-//STRIP001  const ScRange&      GetDestRange() const    { return aDestRange; }
-//STRIP001  BOOL                IsNewSheet() const      { return bNewSheet; }
 
 private:
     ScDPSaveData*   pSaveData;
@@ -325,11 +264,9 @@ public:
                 ScSolveItem( const ScSolveItem& rItem );
                 ~ScSolveItem();
 
-//STRIP001  virtual String          GetValueText() const;
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
-//STRIP001  const ScSolveParam& GetData() const { return theSolveData; }
 
 private:
     ScSolveParam    theSolveData;
@@ -338,24 +275,6 @@ private:
 //----------------------------------------------------------------------------
 // Parameter-Item fuer den Mehrfachoperationen-Dialog
 
-//STRIP001 class ScTabOpItem : public SfxPoolItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001              TYPEINFO();
-//STRIP001              ScTabOpItem( USHORT              nWhich,
-//STRIP001                           const ScTabOpParam* pParam );
-//STRIP001              ScTabOpItem( const ScTabOpItem& rItem );
-//STRIP001              ~ScTabOpItem();
-//STRIP001
-//STRIP001  virtual String          GetValueText() const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  const ScTabOpParam& GetData() const { return theTabOpData; }
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTabOpParam    theTabOpData;
-//STRIP001 };
 
 //----------------------------------------------------------------------------
 // Parameter-Item fuer den Dialog bedingte Formatierung
