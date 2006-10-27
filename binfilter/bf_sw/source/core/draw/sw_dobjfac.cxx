@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dobjfac.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:53:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:31:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-// auto strip #ifndef _DPAGE_HXX
-// auto strip #include <dpage.hxx>
-// auto strip #endif
 #ifndef _DOBJFAC_HXX
 #include <dobjfac.hxx>
 #endif
