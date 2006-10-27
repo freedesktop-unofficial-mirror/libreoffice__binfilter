@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chgviset.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-27 12:33:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:30:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,8 +42,6 @@
 
 #include "chgviset.hxx"
 #include "rechead.hxx"
-// auto strip #include "chgtrack.hxx"
-// auto strip #include <tools/debug.hxx>//STRIP001
 namespace binfilter {
 // -----------------------------------------------------------------------
 /*N*/ ScChangeViewSettings::~ScChangeViewSettings()
@@ -53,25 +50,6 @@ namespace binfilter {
 /*?*/       delete pCommentSearcher;
 /*N*/ }
 
-//STRIP001 ScChangeViewSettings::ScChangeViewSettings( const ScChangeViewSettings& r )
-//STRIP001 {
-//STRIP001  SetTheComment(r.aComment);
-//STRIP001
-//STRIP001  aFirstDateTime  =r.aFirstDateTime;
-//STRIP001  aLastDateTime   =r.aLastDateTime;
-//STRIP001  aAuthorToShow   =r.aAuthorToShow;
-//STRIP001  aRangeList      =r.aRangeList;
-//STRIP001  eDateMode       =r.eDateMode;
-//STRIP001  bShowIt         =r.bShowIt;
-//STRIP001  bIsDate         =r.bIsDate;
-//STRIP001  bIsAuthor       =r.bIsAuthor;
-//STRIP001  bIsComment      =r.bIsComment;
-//STRIP001  bIsRange        =r.bIsRange;
-//STRIP001  bEveryoneButMe  =r.bEveryoneButMe;
-//STRIP001  bShowAccepted   =r.bShowAccepted;
-//STRIP001  bShowRejected   =r.bShowRejected;
-//STRIP001
-//STRIP001 }
 
 // #i49161# this is needed to save documents with change tracking
 ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSettings& r )
@@ -95,19 +73,6 @@ ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSetting
     return *this;
 }
 
-//STRIP001 BOOL ScChangeViewSettings::IsValidComment(const String* pCommentStr) const
-//STRIP001 {
-//STRIP001  BOOL nTheFlag=TRUE;
-//STRIP001
-//STRIP001  if(pCommentSearcher!=NULL)
-//STRIP001  {
-//STRIP001      xub_StrLen nStartPos = 0;
-//STRIP001      xub_StrLen nEndPos = pCommentStr->Len();
-//STRIP001
-//STRIP001      nTheFlag=pCommentSearcher->SearchFrwrd( *pCommentStr, &nStartPos, &nEndPos);
-//STRIP001  }
-//STRIP001  return nTheFlag;
-//STRIP001 }
 
 /*N*/ void ScChangeViewSettings::SetTheComment(const String& rString)
 /*N*/ {
@@ -198,54 +163,5 @@ ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSetting
 /*N*/ }
 
 
-//STRIP001 void ScChangeViewSettings::AdjustDateMode( const ScDocument& rDoc )
-//STRIP001 {
-//STRIP001     switch ( eDateMode )
-//STRIP001     {    // corresponds with ScViewUtil::IsActionShown
-//STRIP001         case SCDM_DATE_EQUAL :
-//STRIP001         case SCDM_DATE_NOTEQUAL :
-//STRIP001             aFirstDateTime.SetTime( 0 );
-//STRIP001             aLastDateTime = aFirstDateTime;
-//STRIP001             aLastDateTime.SetTime( 23595999 );
-//STRIP001             break;
-//STRIP001         case SCDM_DATE_SAVE:
-//STRIP001         {
-//STRIP001             const ScChangeAction* pLast = 0;
-//STRIP001             ScChangeTrack* pTrack = rDoc.GetChangeTrack();
-//STRIP001             if ( pTrack )
-//STRIP001             {
-//STRIP001                 pLast = pTrack->GetLastSaved();
-//STRIP001                 if ( pLast )
-//STRIP001                 {
-//STRIP001                     aFirstDateTime = pLast->GetDateTime();
-//STRIP001 #if 0
-//STRIP001 // This would be the proper handling. But since the SvxTPFilter dialog uses
-//STRIP001 // DateField/TimeField, and the filter dialog is used in ScAcceptChgDlg as the
-//STRIP001 // controlling instance, and the TimeFields are used there without seconds or
-//STRIP001 // 100ths, we'd display some extra entries between the floor of the minute and
-//STRIP001 // the start of the next minute.
-//STRIP001                     // add one 100th second to point past last saved
-//STRIP001                     aFirstDateTime += Time( 0, 0, 0, 1 );
-//STRIP001 #else
-//STRIP001                     // Set the next minute as the start time and assume that
-//STRIP001                     // the document isn't saved, reloaded, edited and filter set
-//STRIP001                     // all together during the gap between those two times.
-//STRIP001                     aFirstDateTime += Time( 0, 1 );
-//STRIP001                     aFirstDateTime.SetSec(0);
-//STRIP001                     aFirstDateTime.Set100Sec(0);
-//STRIP001 #endif
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             if ( !pLast )
-//STRIP001             {
-//STRIP001                 aFirstDateTime.SetDate( 18990101 );
-//STRIP001                 aFirstDateTime.SetTime( 0 );
-//STRIP001             }
-//STRIP001             aLastDateTime = Date();
-//STRIP001             aLastDateTime.SetYear( aLastDateTime.GetYear() + 100 );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001     }
-//STRIP001 }
 
 }
