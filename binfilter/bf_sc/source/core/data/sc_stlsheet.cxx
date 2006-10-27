@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_stlsheet.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:53:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:24:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -50,13 +49,11 @@
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/pageitem.hxx>
 #include <bf_svx/paperinf.hxx>
-// auto strip #include <bf_svx/pbinitem.hxx>
 #include <bf_svx/sizeitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <svtools/itempool.hxx>
 #include <svtools/itemset.hxx>
-// auto strip #include <svtools/smplhint.hxx>
 
 #include "globstr.hrc"
 namespace binfilter {
@@ -96,25 +93,9 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScStyleSheet::HasFollowSupport() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScStyleSheet::HasParentSupport () const
-//STRIP001 {
-//STRIP001  BOOL bHasParentSupport = FALSE;
-//STRIP001
-//STRIP001  switch ( GetFamily() )
-//STRIP001  {
-//STRIP001      case SFX_STYLE_FAMILY_PARA: bHasParentSupport = TRUE;   break;
-//STRIP001      case SFX_STYLE_FAMILY_PAGE: bHasParentSupport = FALSE;  break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bHasParentSupport;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
