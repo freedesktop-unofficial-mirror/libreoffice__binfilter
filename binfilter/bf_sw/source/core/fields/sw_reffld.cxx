@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_reffld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:13:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:38:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,6 @@
 
 #define _SVSTDARR_USHORTSSORT
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 
 #ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HPP_
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
@@ -49,12 +48,6 @@
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
@@ -71,12 +64,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -128,18 +115,12 @@
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
-// auto strip #ifndef _SHELLRES_HXX
-// auto strip #include <shellres.hxx>
-// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
@@ -156,7 +137,6 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::lang;
 using namespace ::rtl;
 
-//STRIP001 extern void InsertSort( SvUShorts& rArr, USHORT nIdx, USHORT* pInsPos = 0 );
 
 /*N*/ void lcl_GetLayTree( const SwFrm* pFrm, SvPtrarr& rArr )
 /*N*/ {
@@ -676,9 +656,6 @@ String SwGetRefField::GetPar2() const
 /*N*/   case FIELD_PROP_PAR1:
 /*?*/     {
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 OUString sTmp;
-//STRIP001 /*?*/         rAny >>= sTmp;
-//STRIP001 /*?*/         SetPar1(sTmp);
-//STRIP001 /*?*/         ConvertProgrammaticToUIName();
 /*?*/     }
 /*?*/     break;
 /*?*/   case FIELD_PROP_PAR3:
@@ -880,123 +857,8 @@ DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGet
 /*N*/ }
 
 
-//STRIP001 struct _RefIdsMap
-//STRIP001 {
-//STRIP001  String aName;
-//STRIP001  SvUShortsSort aIds, aDstIds, aIdsMap;
-//STRIP001  SvUShorts aMap;
-//STRIP001  BOOL bInit;
-//STRIP001
-//STRIP001  _RefIdsMap( const String& rName )
-//STRIP001      : aName( rName ), aIds( 16, 16 ), aIdsMap( 16, 16 ), aMap( 16, 16 ),
-//STRIP001      bInit( FALSE )
-//STRIP001  {}
-//STRIP001
-//STRIP001  void Check( SwDoc& rDoc, SwDoc& rDestDoc, SwGetRefField& rFld,
-//STRIP001                  BOOL bField = TRUE );
-//STRIP001
-//STRIP001  BOOL IsInit() const { return bInit; }
-//STRIP001 };
 
-//STRIP001 SV_DECL_PTRARR_DEL( _RefIdsMaps, _RefIdsMap*, 5, 5 )
-//STRIP001 SV_IMPL_PTRARR( _RefIdsMaps, _RefIdsMap* )
 
-//STRIP001 void _RefIdsMap::Check( SwDoc& rDoc, SwDoc& rDestDoc, SwGetRefField& rFld,
-//STRIP001                      BOOL bField )
-//STRIP001 {
-//STRIP001
-//STRIP001  if( !bInit )
-//STRIP001  {
-//STRIP001      if( bField )
-//STRIP001      {
-//STRIP001          const SwTxtNode* pNd;
-//STRIP001          SwModify* pMod;
-//STRIP001          if( 0 != ( pMod = rDestDoc.GetFldType( RES_SETEXPFLD, aName ) ))
-//STRIP001          {
-//STRIP001              SwClientIter aIter( *pMod );
-//STRIP001              for( SwFmtFld* pF = (SwFmtFld*)aIter.First( TYPE( SwFmtFld )); pF;
-//STRIP001                  pF = (SwFmtFld*)aIter.Next() )
-//STRIP001                  if( pF->GetTxtFld() &&
-//STRIP001                      0 != ( pNd = pF->GetTxtFld()->GetpTxtNode() ) &&
-//STRIP001                      pNd->GetNodes().IsDocNodes() )
-//STRIP001                      aIds.Insert( ((SwSetExpField*)pF->GetFld())->GetSeqNumber() );
-//STRIP001          }
-//STRIP001          if( 0 != ( pMod = rDoc.GetFldType( RES_SETEXPFLD, aName ) ))
-//STRIP001          {
-//STRIP001              SwClientIter aIter( *pMod );
-//STRIP001              for( SwFmtFld* pF = (SwFmtFld*)aIter.First( TYPE( SwFmtFld )); pF;
-//STRIP001                      pF = (SwFmtFld*)aIter.Next() )
-//STRIP001                  if( pF->GetTxtFld() &&
-//STRIP001                      0 != ( pNd = pF->GetTxtFld()->GetpTxtNode() ) &&
-//STRIP001                      pNd->GetNodes().IsDocNodes() )
-//STRIP001                      aDstIds.Insert( ((SwSetExpField*)pF->GetFld())->GetSeqNumber() );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          for( USHORT n = rDestDoc.GetFtnIdxs().Count(); n; )
-//STRIP001              aIds.Insert( rDestDoc.GetFtnIdxs()[ --n ]->GetSeqRefNo() );
-//STRIP001          for( n = rDoc.GetFtnIdxs().Count(); n; )
-//STRIP001              aDstIds.Insert( rDoc.GetFtnIdxs()[ --n ]->GetSeqRefNo() );
-//STRIP001      }
-//STRIP001      bInit = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  // dann teste mal, ob die Nummer schon vergeben ist
-//STRIP001  // oder ob eine neue bestimmt werden muss.
-//STRIP001  USHORT nPos, nSeqNo = rFld.GetSeqNo();
-//STRIP001  if( aIds.Seek_Entry( nSeqNo ) && aDstIds.Seek_Entry( nSeqNo ))
-//STRIP001  {
-//STRIP001      // ist schon vergeben, also muss eine neue
-//STRIP001      // erzeugt werden.
-//STRIP001      if( aIdsMap.Seek_Entry( nSeqNo, &nPos ))
-//STRIP001          rFld.SetSeqNo( aMap[ nPos ] );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          for( USHORT n = 0; n < aIds.Count(); ++n )
-//STRIP001              if( n != aIds[ n ] )
-//STRIP001                  break;
-//STRIP001
-//STRIP001          // die neue SeqNo eintragen, damit die "belegt" ist
-//STRIP001          aIds.Insert( n );
-//STRIP001          aIdsMap.Insert( nSeqNo, nPos );
-//STRIP001          aMap.Insert( n, nPos );
-//STRIP001          rFld.SetSeqNo( n );
-//STRIP001
-//STRIP001          // und noch die Felder oder Fuss-/EndNote auf die neue
-//STRIP001          // Id umsetzen
-//STRIP001          if( bField )
-//STRIP001          {
-//STRIP001              SwModify* pMod = rDoc.GetFldType( RES_SETEXPFLD, aName );
-//STRIP001              if( pMod )
-//STRIP001              {
-//STRIP001                  SwClientIter aIter( *pMod );
-//STRIP001                  for( SwFmtFld* pF = (SwFmtFld*)aIter.First( TYPE( SwFmtFld )); pF;
-//STRIP001                          pF = (SwFmtFld*)aIter.Next() )
-//STRIP001                      if( pF->GetTxtFld() && nSeqNo ==
-//STRIP001                          ((SwSetExpField*)pF->GetFld())->GetSeqNumber() )
-//STRIP001                          ((SwSetExpField*)pF->GetFld())->SetSeqNumber( n );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              SwTxtFtn* pFtnIdx;
-//STRIP001              for( USHORT i = 0, nCnt = rDoc.GetFtnIdxs().Count(); i < nCnt; ++i )
-//STRIP001                  if( nSeqNo == (pFtnIdx = rDoc.GetFtnIdxs()[ i ])->GetSeqRefNo() )
-//STRIP001                  {
-//STRIP001                      pFtnIdx->SetSeqNo( n );
-//STRIP001                      break;
-//STRIP001                  }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aIds.Insert( nSeqNo );
-//STRIP001      aIdsMap.Insert( nSeqNo, nPos );
-//STRIP001      aMap.Insert( nSeqNo, nPos );
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void SwGetRefFieldType::MergeWithOtherDoc( SwDoc& rDestDoc )
@@ -1008,40 +870,6 @@ DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGet
 /*?*/       // alle RefFelder auf einduetige Ids in beiden Docs umgestellt
 /*?*/       // werden.
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _RefIdsMap aFntMap( aEmptyStr );
-//STRIP001 /*?*/        _RefIdsMaps aFldMap;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        SwClientIter aIter( *this );
-//STRIP001 /*?*/        for( SwClient* pFld = aIter.First( TYPE( SwFmtFld ));
-//STRIP001 /*?*/                pFld; pFld = aIter.Next() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwGetRefField& rRefFld = *(SwGetRefField*)((SwFmtFld*)pFld)->GetFld();
-//STRIP001 /*?*/            switch( rRefFld.GetSubType() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/            case REF_SEQUENCEFLD:
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    _RefIdsMap* pMap = 0;
-//STRIP001 /*?*/                    for( USHORT n = aFldMap.Count(); n; )
-//STRIP001 /*?*/                        if( aFldMap[ --n ]->aName == rRefFld.GetSetRefName() )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            pMap = aFldMap[ n ];
-//STRIP001 /*?*/                            break;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    if( !pMap )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pMap = new _RefIdsMap( rRefFld.GetSetRefName() );
-//STRIP001 /*?*/                        aFldMap.C40_INSERT( _RefIdsMap, pMap, aFldMap.Count() );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    pMap->Check( *pDoc, rDestDoc, rRefFld, TRUE );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            case REF_FOOTNOTE:
-//STRIP001 /*?*/            case REF_ENDNOTE:
-//STRIP001 /*?*/                aFntMap.Check( *pDoc, rDestDoc, rRefFld, FALSE );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/ }
 
