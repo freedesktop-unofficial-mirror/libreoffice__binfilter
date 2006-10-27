@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:00:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:26:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #include <hintids.hxx>
 
-// auto strip #ifndef _DATE_HXX
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
-// auto strip #ifndef _TIME_HXX
-// auto strip #include <tools/time.hxx>
-// auto strip #endif
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
@@ -55,15 +49,6 @@
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
-// auto strip #include <bf_svx/lrspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
-// auto strip #include <bf_svx/boxitem.hxx>
-// auto strip #endif
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
@@ -75,9 +60,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -87,15 +69,6 @@
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHELLIO_HXX
-// auto strip #include <shellio.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -104,12 +77,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
@@ -119,27 +86,15 @@
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>           // fuer Undo Insert-Dokument
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _TBLSEL_HXX
-// auto strip #include <tblsel.hxx>
-// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-// auto strip #ifndef _POOLFMT_HXX
-// auto strip #include <poolfmt.hxx>
-// auto strip #endif
 #ifndef _FLTINI_HXX
 #include <fltini.hxx>
 #endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-// auto strip #ifndef _SW3IO_HXX
-// auto strip #include <sw3io.hxx>
-// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
@@ -172,10 +127,6 @@ using namespace ::com::sun::star;
 /*?*/       1 ) //STRIP001 !po->SetStrmStgPtr() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 po->SetReadUTF8( FALSE );
-//STRIP001 /*?*/        po->SetBlockMode( FALSE );
-//STRIP001 /*?*/        po->SetOrganizerMode( FALSE );
-//STRIP001 /*?*/         po->SetIgnoreHTMLComments( FALSE );
-//STRIP001 /*?*/        return ERR_SWG_FILE_FORMAT_ERROR;
 /*N*/   }
 /*N*/
 /*N*/   ULONG nError = 0L;
@@ -255,7 +206,6 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*?*/           // Pam auf den Node davor setzen damit er nicht mit verschoben wird
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwNodeIndex& rTmp = pPam->GetPoint()->nNode;
-//STRIP001 /*?*/            pUndoPam = new SwPaM( rTmp, rTmp, 0, -1 );
 /*N*/       }
 /*N*/
 /*N*/       // Speicher mal alle Fly's
@@ -372,9 +322,6 @@ using namespace ::com::sun::star;
 /*N*/       if( bSaveUndo )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->SetRedlineMode_intern( eOld );
-//STRIP001 /*?*/            pUndo->SetInsertRange( *pUndoPam, FALSE );
-//STRIP001 /*?*/            pDoc->AppendUndo( pUndo );
-//STRIP001 /*?*/            pDoc->SetRedlineMode_intern( REDLINE_IGNORE );
 /*N*/       }
 /*N*/
 /*N*/       delete pUndoPam;
@@ -447,15 +394,6 @@ using namespace ::com::sun::star;
 // Initiales Einlesben
 
 
-//STRIP001 SwReader::SwReader( SvStream& rStrm, const String& rFileName, SwDoc *pDoc )
-//STRIP001  : SwDocFac( pDoc ),
-//STRIP001  pStrm( &rStrm ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( 0 ),
-//STRIP001  aFileName( rFileName ),
-//STRIP001  pCrsr( 0 )
-//STRIP001 {
-//STRIP001 }
 
 
 /*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pDoc )
@@ -469,48 +407,12 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwDoc *pDoc )
-//STRIP001  : SwDocFac( pDoc ),
-//STRIP001  pStrm( 0 ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( &rMedium ),
-//STRIP001  aFileName( rFileName ),
-//STRIP001  pCrsr( 0 )
-//STRIP001 {
-//STRIP001 }
 
 // In ein existierendes Dokument einlesen
 
-//STRIP001 SwReader::SwReader( SvStream& rStrm, const String& rFileName, SwPaM& rPam )
-//STRIP001  : SwDocFac( rPam.GetDoc() ),
-//STRIP001  aFileName( rFileName ),
-//STRIP001  pStrm( &rStrm ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( 0 ),
-//STRIP001  pCrsr( &rPam  )
-//STRIP001 {
-//STRIP001 }
-
-//STRIP001 SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwPaM& rPam )
-//STRIP001  : SwDocFac( rPam.GetDoc() ),
-//STRIP001  aFileName( rFileName ),
-//STRIP001  pStg( &rStg ),
-//STRIP001  pStrm( 0 ),
-//STRIP001  pMedium( 0 ),
-//STRIP001  pCrsr( &rPam )
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwPaM& rPam )
-//STRIP001  : SwDocFac( rPam.GetDoc() ),
-//STRIP001  aFileName( rFileName ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pStrm( 0 ),
-//STRIP001  pMedium( &rMedium ),
-//STRIP001  pCrsr( &rPam )
-//STRIP001 {
-//STRIP001 }
+
 
 
 /*N*/ Reader::Reader()
@@ -626,16 +528,6 @@ using namespace ::com::sun::star;
 /*?*/           else
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTemplate = new SwDoc;
-//STRIP001 /*?*/                pTemplate->AddLink();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // sicher ist sicher
-//STRIP001 /*?*/                pTemplate->SetBrowseMode( bTmplBrowseMode );
-//STRIP001 /*?*/                pTemplate->RemoveAllFmtLanguageDependencies();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                xStor->SetVersion( nVersion );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                Sw3Io aIO( *pTemplate );
-//STRIP001 /*?*/                aIO.LoadStyles( xStor );
 /*?*/           }
 /*?*/       }
 /*?*/
@@ -657,8 +549,6 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*?*/       rDoc.RemoveAllFmtLanguageDependencies();
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDoc.ReplaceStyles( *pTemplate );
-//STRIP001 /*?*/        rDoc.SetFixFields();
-//STRIP001 /*?*/        bRet = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -683,162 +573,30 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Reader::MakeHTMLDummyTemplateDoc()
-//STRIP001 {
-//STRIP001  ClearTemplate();
-//STRIP001  pTemplate = new SwDoc;
-//STRIP001  pTemplate->AddLink();
-//STRIP001  pTemplate->SetBrowseMode( bTmplBrowseMode );
-//STRIP001  pTemplate->GetPrt( TRUE );
-//STRIP001  pTemplate->RemoveAllFmtLanguageDependencies();
-//STRIP001  aChkDateTime = Date( 1, 1, 2300 );  // 2300. Jahrtausend sollte reichen
-//STRIP001  aTemplateNm.AssignAscii( "$$Dummy$$" );
-//STRIP001 }
 
 // alle die die Streams / Storages nicht geoeffnet brauchen,
 // muessen die Methode ueberladen
-//STRIP001 int Reader::SetStrmStgPtr()
-//STRIP001 {
-//STRIP001  ASSERT( pMedium, "Wo ist das Medium??" );
-//STRIP001
-//STRIP001  if( pMedium->IsStorage() )
-//STRIP001  {
-//STRIP001      if( SW_STORAGE_READER & GetReaderType() )
-//STRIP001      {
-//STRIP001          pStg = pMedium->GetStorage();
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if( SW_STREAM_READER & GetReaderType() )
-//STRIP001  {
-//STRIP001      pStrm = pMedium->GetInStream();
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 int Reader::GetReaderType()
-//STRIP001 {
-//STRIP001  return SW_STREAM_READER;
-//STRIP001 }
 
 
-//STRIP001 void Reader::SetFltName( const String& )
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 void Reader::SetNoOutlineNum( SwDoc& rDoc )
-//STRIP001 {
-//STRIP001  // JP 10.03.96: jetzt wieder keine Nummerierung in den Vorlagen
-//STRIP001
-//STRIP001 #if 0
-//STRIP001  //JP 18.01.96: Alle Ueberschriften sind normalerweise ohne
-//STRIP001  //              Kapitelnummer. Darum hier explizit abschalten
-//STRIP001  //              weil das Default jetzt wieder auf AN ist.
-//STRIP001  SwNumRules aRules( OUTLINE_RULES );
-//STRIP001  if( rDoc.GetOutlineNumRules() )
-//STRIP001      aRules = *rDoc.GetOutlineNumRules();
-//STRIP001  for( BYTE n = 0; n < MAXLEVEL; ++n )
-//STRIP001  {
-//STRIP001      SwNumFmt aFmt( aRules.Get( n ) );
-//STRIP001      aFmt.eType = NUMBER_NONE;
-//STRIP001      aRules.Set( n, aFmt );
-//STRIP001  }
-//STRIP001  rDoc.SetOutlineNumRules( aRules );
-//STRIP001
-//STRIP001  // und UeberschirftBasis ohne Einrueckung!
-//STRIP001  SwTxtFmtColl* pCol = rDoc.GetTxtCollFromPoolSimple
-//STRIP001         ( RES_POOLCOLL_HEADLINE_BASE, FALSE );
-//STRIP001  pCol->ResetAttr( RES_LR_SPACE );
-//STRIP001 #endif
-//STRIP001 }
 
 
-//STRIP001 void Reader::ResetFrmFmtAttrs( SfxItemSet &rFrmSet )
-//STRIP001 {
-//STRIP001  rFrmSet.Put( SvxLRSpaceItem() );
-//STRIP001  rFrmSet.Put( SvxULSpaceItem() );
-//STRIP001  rFrmSet.Put( SvxBoxItem() );
-//STRIP001 }
 
 
-//STRIP001 void Reader::ResetFrmFmts( SwDoc& rDoc )
-//STRIP001 {
-//STRIP001  for( USHORT i=0; i<3; i++ )
-//STRIP001  {
-//STRIP001      USHORT nPoolId;
-//STRIP001      switch( i )
-//STRIP001      {
-//STRIP001      case 0: nPoolId = RES_POOLFRM_FRAME;    break;
-//STRIP001      case 1: nPoolId = RES_POOLFRM_GRAPHIC;  break;
-//STRIP001      case 2: nPoolId = RES_POOLFRM_OLE;      break;
-//STRIP001      }
-//STRIP001
-//STRIP001      SwFrmFmt *pFrmFmt = rDoc.GetFrmFmtFromPool( nPoolId );
-//STRIP001
-//STRIP001      pFrmFmt->ResetAttr( RES_LR_SPACE );
-//STRIP001      pFrmFmt->ResetAttr( RES_UL_SPACE );
-//STRIP001      pFrmFmt->ResetAttr( RES_BOX );
-//STRIP001  }
-//STRIP001 }
 
     // read the sections of the document, which is equal to the medium.
     // returns the count of it
-//STRIP001 USHORT Reader::GetSectionList( SfxMedium&, SvStrings& ) const
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
-
-// ------------------------------------------------
-//STRIP001 BOOL SwReader::HasGlossaries( const Reader& rOptions )
-//STRIP001 {
-//STRIP001  // Variable uebertragen
-//STRIP001  Reader* po = (Reader*) &rOptions;
-//STRIP001  po->pStrm = pStrm;
-//STRIP001  po->pStg  = pStg;
-//STRIP001  po->bInsertMode = FALSE;
-//STRIP001
-//STRIP001  // ist ein Medium angegeben, dann aus diesem die Streams besorgen
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( !( 0 != (po->pMedium = pMedium ) && !po->SetStrmStgPtr() ))
-//STRIP001      bRet = po->HasGlossaries();
-//STRIP001  return bRet;
-//STRIP001 }
-
-//STRIP001 BOOL SwReader::ReadGlossaries( const Reader& rOptions,
-//STRIP001                              SwTextBlocks& rBlocks, BOOL bSaveRelFiles )
-//STRIP001 {
-//STRIP001  // Variable uebertragen
-//STRIP001  Reader* po = (Reader*) &rOptions;
-//STRIP001  po->pStrm = pStrm;
-//STRIP001  po->pStg  = pStg;
-//STRIP001  po->bInsertMode = FALSE;
-//STRIP001
-//STRIP001  // ist ein Medium angegeben, dann aus diesem die Streams besorgen
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( !( 0 != (po->pMedium = pMedium ) && !po->SetStrmStgPtr() ))
-//STRIP001      bRet = po->ReadGlossaries( rBlocks, bSaveRelFiles );
-//STRIP001  return bRet;
-//STRIP001 }
-
-//STRIP001 BOOL Reader::HasGlossaries() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
-
-//STRIP001 BOOL Reader::ReadGlossaries( SwTextBlocks&, BOOL ) const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 // ------------------------------------------------
 
-//STRIP001 int StgReader::GetReaderType()
-//STRIP001 {
-//STRIP001  return SW_STORAGE_READER;
-//STRIP001 }
+
+
+
+// ------------------------------------------------
+
 
 
 
@@ -852,28 +610,8 @@ using namespace ::com::sun::star;
  */
 
 
-//STRIP001 SwWriter::SwWriter( SvStream& rStrm, SwCrsrShell &rShell, BOOL bWriteAll )
-//STRIP001  : pStrm( &rStrm ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( 0 ),
-//STRIP001  pShell( &rShell ),
-//STRIP001  pOutPam( 0 ),
-//STRIP001  rDoc( *rShell.GetDoc() ),
-//STRIP001  bWriteAll( bWriteAll )
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 SwWriter::SwWriter(SvStream& rStrm,SwDoc &rDoc)
-//STRIP001  :pStrm( &rStrm ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( 0 ),
-//STRIP001  pShell( 0 ),
-//STRIP001  pOutPam( 0 ),
-//STRIP001  rDoc( rDoc ),
-//STRIP001  bWriteAll( TRUE )
-//STRIP001 {
-//STRIP001 }
 
 
 /*N*/ SwWriter::SwWriter( SvStream& rStrm, SwPaM& rPam, BOOL bWriteAll )
@@ -926,28 +664,8 @@ SwWriter::SwWriter( SvStorage& rStg, SwPaM& rPam, BOOL bWriteAll )
 }
 */
 
-//STRIP001 SwWriter::SwWriter( SfxMedium& rMedium, SwCrsrShell &rShell, BOOL bWriteAll )
-//STRIP001  : pStrm( 0 ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( &rMedium ),
-//STRIP001  pShell( &rShell ),
-//STRIP001  pOutPam( 0 ),
-//STRIP001  rDoc( *rShell.GetDoc() ),
-//STRIP001  bWriteAll( bWriteAll )
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 SwWriter::SwWriter( SfxMedium& rMedium, SwDoc &rDoc)
-//STRIP001  :pStrm( 0 ),
-//STRIP001  pStg( 0 ),
-//STRIP001  pMedium( &rMedium ),
-//STRIP001  pShell( 0 ),
-//STRIP001  pOutPam( 0 ),
-//STRIP001  rDoc( rDoc ),
-//STRIP001  bWriteAll( TRUE )
-//STRIP001 {
-//STRIP001 }
 
 /*
 
@@ -975,24 +693,6 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*N*/   if ( pShell && !bWriteAll && pShell->IsTableMode() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bWriteAll = TRUE;
-//STRIP001 /*?*/        pDoc = new SwDoc;
-//STRIP001 /*?*/        pDoc->AddLink();
-//STRIP001 /*?*/         pRefForDocSh = new SvEmbeddedObjectRef();
-//STRIP001 /*?*/         pDoc->SetRefForDocShell( pRefForDocSh );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // kopiere Teile aus einer Tabelle: lege eine Tabelle mit der Breite
-//STRIP001 /*?*/        // von der Originalen an und kopiere die selectierten Boxen.
-//STRIP001 /*?*/        // Die Groessen werden prozentual korrigiert.
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // lasse ueber das Layout die Boxen suchen
-//STRIP001 /*?*/        SwSelBoxes aBoxes;
-//STRIP001 /*?*/        GetTblSel( *pShell, aBoxes );
-//STRIP001 /*?*/        SwTableNode* pTblNd = (SwTableNode*)aBoxes[0]->GetSttNd()->FindStartNode();
-//STRIP001 /*?*/        SwNodeIndex aIdx( pDoc->GetNodes().GetEndOfExtras(), 2 );
-//STRIP001 /*?*/        SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
-//STRIP001 /*?*/        ASSERT( pNd, "Node not found" );
-//STRIP001 /*?*/        SwPosition aPos( aIdx, SwIndex( pNd ) );
-//STRIP001 /*?*/        pTblNd->GetTable().MakeCopy( pDoc, aPos, aBoxes );
 /*N*/   }
 /*N*/
 /*N*/   if( !bWriteAll && ( pShell || pOutPam ))
@@ -1019,9 +719,6 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*?*/           if( pShell )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pShell->Push();
-//STRIP001 /*?*/                pShell->SttDoc();
-//STRIP001 /*?*/                pShell->SetMark();
-//STRIP001 /*?*/                pShell->EndDoc();
 /*?*/           }
 /*?*/           else
 /*?*/           {
@@ -1125,24 +822,6 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*N*/ BOOL SetHTMLTemplate( SwDoc & rDoc )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   // Vorlagennamen von den Sfx-HTML-Filter besorgen!!!
-//STRIP001  if( !ReadHTML->GetTemplateDoc() )
-//STRIP001      ReadHTML->MakeHTMLDummyTemplateDoc();
-//STRIP001
-//STRIP001  BOOL bRet = ReadHTML->SetTemplate( rDoc );
-//STRIP001
-//STRIP001  SwNodes& rNds = rDoc.GetNodes();
-//STRIP001  SwNodeIndex aIdx( rNds.GetEndOfExtras(), 1 );
-//STRIP001  SwCntntNode* pCNd = rNds.GoNext( &aIdx );
-//STRIP001  if( pCNd )
-//STRIP001  {
-//STRIP001      pCNd->SetAttr
-//STRIP001             ( SwFmtPageDesc(rDoc.GetPageDescFromPoolSimple(RES_POOLPAGE_HTML,
-//STRIP001                                                            FALSE) ) );
-//STRIP001      pCNd->ChgFmtColl( rDoc.GetTxtCollFromPoolSimple( RES_POOLCOLL_TEXT,
-//STRIP001                                                          FALSE ));
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
 /*N*/ }
 
 
