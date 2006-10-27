@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swrect.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:21:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:16:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #pragma hdrstop
 
 #ifndef PRODUCT
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 #endif
 #include <stdlib.h>
 #include "swrect.hxx"
@@ -203,14 +200,6 @@ namespace binfilter {
 /* -----------------------------11.04.00 15:46--------------------------------
     mouse moving of table borders
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwRect::IsNear( const Point& rPoint, long nTolerance ) const
-//STRIP001 {
-//STRIP001  return    IsInside(rPoint) ||
-//STRIP001      (((Left() - nTolerance)  <= rPoint.X())
-//STRIP001         && ((Top()  - nTolerance)  <= rPoint.Y())
-//STRIP001         && ((Right() + nTolerance) >= rPoint.X())
-//STRIP001         && ((Bottom()  + nTolerance)>= rPoint.Y()));
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -283,9 +272,7 @@ namespace binfilter {
 /*N*/ void SwRect::AddBottom( const long nAdd ){ nHeight += nAdd; }
 /*N*/ void SwRect::SetPosX( const long nNew ){ nX = nNew; }
 /*N*/ void SwRect::SetPosY( const long nNew ){ nY = nNew; }
-//STRIP001 const Point SwRect::_Pos()  const { return Pos(); }
 /*N*/ const Size  SwRect::_Size() const { return SSize(); }
-//STRIP001 const Point SwRect::SwappedPos()  const { return Point( nY, nX ); }
 /*N*/ const Size  SwRect::SwappedSize() const { return Size( nHeight, nWidth ); }
 /*N*/ const Point SwRect::TopLeft() const { return Pos(); }
 /*N*/ const Point SwRect::TopRight() const { return Point( nX + nWidth, nY ); }
@@ -318,8 +305,6 @@ namespace binfilter {
 /*N*/     { nX = rNew.nA - nWidth; nY = rNew.nB; }
 /*N*/ void SwRect::SetLowerLeftCorner(  const Point& rNew )
 /*N*/     { nX = rNew.nA; nY = rNew.nB - nHeight; }
-//STRIP001 void SwRect::SetLowerRightCorner(  const Point& rNew )
-//STRIP001     { nX = rNew.nA - nWidth; nY = rNew.nB - nHeight; }
 #endif
 
 #ifndef PRODUCT
@@ -332,7 +317,6 @@ namespace binfilter {
 /*N*/ SvStream &operator<<( SvStream &rStream, const SwRect &rRect )
 /*N*/ {
 /*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    rStream << '[' << rRect.Top()   << '/' << rRect.Left()
-//STRIP001          << ',' << rRect.Width() << 'x' << rRect.Height() << "] ";
 /*N*/   return rStream;
 /*N*/ }
 #endif

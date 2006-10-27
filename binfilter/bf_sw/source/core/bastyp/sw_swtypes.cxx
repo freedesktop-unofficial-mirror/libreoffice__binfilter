@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swtypes.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:22:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:17:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,50 +45,17 @@
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
-// auto strip #ifndef _OFA_OSPLCFG_HXX //autogen
-// auto strip #include <bf_offmgr/osplcfg.hxx>
-// auto strip #endif
-// auto strip #ifndef _LANG_HXX
-// auto strip #include <tools/lang.hxx>
-// auto strip #endif
-// auto strip #ifndef _ISOLANG_HXX
-// auto strip #include <tools/isolang.hxx>
-// auto strip #endif
 
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
-// auto strip #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-// auto strip #include <com/sun/star/linguistic2/XHyphenator.hpp>
-// auto strip #endif
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
-// auto strip #include <com/sun/star/linguistic2/XThesaurus.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-// auto strip #ifndef _SWATRSET_HXX
-// auto strip #include <swatrset.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
@@ -98,9 +65,6 @@
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
@@ -212,10 +176,6 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 /*N*/ Locale CreateLocale( LanguageType eLanguage )
 /*N*/ {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); Locale temp; return temp;//STRIP001  String aLangStr, aCtryStr;
-//STRIP001  if (LANGUAGE_NONE != eLanguage)
-//STRIP001      ConvertLanguageToIsoNames( eLanguage, aLangStr, aCtryStr );
-//STRIP001
-//STRIP001 /*?*/    return Locale( aLangStr, aCtryStr, ::rtl::OUString() );
 /*N*/ }
 
 
@@ -243,10 +203,6 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 /*N*/ }
 
 
-//STRIP001 Reference< beans::XPropertySet >     GetLinguPropertySet()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetLinguPropertySet();
-//STRIP001 }
 
 
 }
