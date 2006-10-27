@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_unodoc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:19:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:06:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,12 +35,7 @@
 
 // System - Includes -----------------------------------------------------
 
-// auto strip #include <tools/string.hxx>
-// auto strip #include <bf_sfx2/docfac.hxx>
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
 #include "scmod.hxx"
 
