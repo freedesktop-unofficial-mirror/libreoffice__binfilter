@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smlib.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:04:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:57:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,22 +35,12 @@
 
 #pragma hdrstop
 
-// auto strip #include <sot/formats.hxx>
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-// auto strip #ifndef _GLOBNAME_HXX //autogen
-// auto strip #include <tools/globname.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
-// auto strip #include <bf_sfx2/docfac.hxx>
-// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
@@ -65,9 +55,6 @@
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
-// auto strip #ifndef _SMMOD_HXX
-// auto strip #include "smmod.hxx"
-// auto strip #endif
 
 #include "dllname.hxx"
 namespace binfilter {
