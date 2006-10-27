@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docshdrw.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:51:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:59:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
@@ -52,9 +49,6 @@
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
 
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
