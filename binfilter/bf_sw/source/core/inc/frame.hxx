@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frame.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:29:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:45:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -359,8 +359,6 @@ class SwFrm: public SwClient
     SwFrm       *pPrev;
 
         //Schatten und Umrandung painten
-//STRIP001  void PaintShadow( const SwRect&, SwRect&, const SwPageFrm *,
-//STRIP001                    const SwBorderAttrs& ) const;
     SwFrm *_FindNext();
     SwFrm *_FindPrev();
     SwCntntFrm *_FindNextCnt();
@@ -468,7 +466,6 @@ public:
     void InsertBehind( SwLayoutFrm *pParent, SwFrm *pBefore );
     //Einfuegen vor pBehind oder am Ende der Kette, unter Beruecksichtigung
     //der Geschwister von pSct
-//STRIP001  void InsertGroupBefore( SwFrm* pParent, SwFrm* pWhere, SwFrm* pSct );
     void Remove();
 
     //For internal use only; wer es anders macht wird
@@ -476,10 +473,8 @@ public:
     //Fuert Spezialbehandlung fuer _Get[Next|Prev]Leaf() durch (Tabellen).
     SwLayoutFrm *GetLeaf( MakePageType eMakePage, BOOL bFwd );
     SwLayoutFrm *GetNextLeaf   ( MakePageType eMakePage );
-//STRIP001  SwLayoutFrm *GetNextFtnLeaf( MakePageType eMakePage );
     SwLayoutFrm *GetNextSctLeaf( MakePageType eMakePage );
     SwLayoutFrm *GetPrevLeaf   ( MakePageType eMakeFtn = MAKEPAGE_FTN );
-//STRIP001  SwLayoutFrm *GetPrevFtnLeaf( MakePageType eMakeFtn = MAKEPAGE_FTN );
     SwLayoutFrm *GetPrevSctLeaf( MakePageType eMakeFtn = MAKEPAGE_FTN );
     const SwLayoutFrm *GetLeaf ( MakePageType eMakePage, BOOL bFwd,
                                  const SwFrm *pAnch ) const;
@@ -500,24 +495,9 @@ public:
           SwDrawObjs *GetDrawObjs()       { return pDrawObjs; }
     void  CalcFlys( BOOL bInvaPosOnly );
 
-//STRIP001  virtual void PaintBorder( const SwRect&, const SwPageFrm *pPage,
-//STRIP001                            const SwBorderAttrs & ) const;
-//STRIP001  void PaintBaBo( const SwRect&, const SwPageFrm *pPage = 0,
-//STRIP001                  const BOOL bLowerBorder = FALSE ) const;
-//STRIP001  void PaintBackground( const SwRect&, const SwPageFrm *pPage,
-//STRIP001                        const SwBorderAttrs &,
-//STRIP001                        const BOOL bLowerMode = FALSE,
-//STRIP001                        const BOOL bLowerBorder = FALSE ) const;
-//STRIP001  void PaintBorderLine( const SwRect&, const SwRect&, const SwPageFrm*,
-//STRIP001                        const Color *pColor ) const;
 
     //Retouche, nicht im Bereich des uebergebenen Rect!
-//STRIP001  void Retouche( const SwPageFrm *pPage, const SwRect &rRect ) const;
 
-//STRIP001  BOOL GetBackgroundBrush( const SvxBrushItem*& rpBrush,
-//STRIP001                           const Color*& rpColor,
-//STRIP001                           SwRect &rOrigRect,
-//STRIP001                           BOOL bLowerMode ) const;
 
     inline void SetCompletePaint() const;
     inline void ResetCompletePaint() const;
@@ -588,7 +568,6 @@ public:
     SwFtnFrm            *ImplFindFtnFrm();
     SwFlyFrm            *ImplFindFlyFrm();
     SwSectionFrm        *ImplFindSctFrm();
-//STRIP001  SwSectionFrm        *ImplFindTopSctFrm();
     SwFrm               *FindFooterOrHeader();
     SwFrm               *GetLower();
     const SwFrm         *GetNext()  const { return pNext; }
@@ -598,7 +577,6 @@ public:
     inline SwFtnFrm     *FindFtnFrm();
     inline SwFlyFrm     *FindFlyFrm();
     inline SwSectionFrm *FindSctFrm();
-//STRIP001  inline SwSectionFrm *FindTopSctFrm();
     inline SwFrm        *FindNext();
     inline SwCntntFrm   *FindNextCnt();
     inline SwFrm        *FindPrev();
@@ -611,7 +589,6 @@ public:
     inline const SwFtnFrm  *FindFtnFrm() const;
     inline const SwFlyFrm  *FindFlyFrm() const;
     inline const SwSectionFrm *FindSctFrm() const;
-//STRIP001  inline const SwSectionFrm *FindTopSctFrm() const;
     inline const SwFrm     *FindNext() const;
     inline const SwCntntFrm *FindNextCnt() const;
     inline const SwFrm     *FindPrev() const;
@@ -695,7 +672,6 @@ public:
                                  const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const SwCrsrMoveState* = 0 ) const;
     virtual BOOL    GetCharRect( SwRect &, const SwPosition&,
                                  SwCrsrMoveState* = 0 ) const;
-//STRIP001  virtual void    Paint( const SwRect& ) const;
 
     // der "kurze Dienstweg" zwischen den Frames und der Formatierung.
     // Wer den void* falsch Casted ist selbst schuld!
@@ -733,7 +709,6 @@ public:
     inline BOOL IsAccessibleFrm() const;
 #endif
 
-//STRIP001  void PrepareCrsr();                 //Die CrsrShell darf.
 
     //Ist der Frm (bzw. die Section in der er steht) geschuetzt?
     //Auch Fly in Fly in ... und Fussnoten
@@ -957,10 +932,6 @@ inline SwSectionFrm *SwFrm::FindSctFrm()
     return IsInSct() ? ImplFindSctFrm() : 0;
 }
 
-//STRIP001 inline SwSectionFrm *SwFrm::FindTopSctFrm()
-//STRIP001 {
-//STRIP001  return IsInSct() ? ImplFindTopSctFrm() : 0;
-//STRIP001 }
 
 inline const SwTabFrm *SwFrm::FindTabFrm() const
 {
@@ -978,10 +949,6 @@ inline const SwSectionFrm *SwFrm::FindSctFrm() const
 {
     return IsInSct() ? ((SwFrm*)this)->ImplFindSctFrm() : 0;
 }
-//STRIP001 inline const SwSectionFrm *SwFrm::FindTopSctFrm() const
-//STRIP001 {
-//STRIP001  return IsInSct() ? ((SwFrm*)this)->ImplFindTopSctFrm() : 0;
-//STRIP001 }
 inline SwFrm *SwFrm::FindNext()
 {
     if ( pNext )
