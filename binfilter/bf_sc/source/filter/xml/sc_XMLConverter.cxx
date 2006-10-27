@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLConverter.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:22:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:23:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -46,9 +45,6 @@
 #include "XMLConverter.hxx"
 #endif
 
-// auto strip #ifndef SC_RANGELST_HXX
-// auto strip #include "rangelst.hxx"
-// auto strip #endif
 #ifndef SC_RANGEUTL_HXX
 #include "rangeutl.hxx"
 #endif
@@ -66,16 +62,10 @@
 #include <tools/datetime.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-// auto strip #include <com/sun/star/util/DateTime.hpp>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;

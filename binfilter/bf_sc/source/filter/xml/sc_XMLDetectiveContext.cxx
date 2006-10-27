@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLDetectiveContext.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:23:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:24:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,23 +34,16 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 //___________________________________________________________________
 
-// auto strip #ifndef _SC_XMLDETECTIVECONTEXT_HXX
-// auto strip #include "XMLDetectiveContext.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
