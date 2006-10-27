@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:55:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:43:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,44 +34,28 @@
  ************************************************************************/
 
 
-// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
 //#define ENABLE_STRING_STREAM_OPERATORS
-// auto strip #include <tools/stream.hxx>
 
 #ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
 
 #include <editobj2.hxx>
-// auto strip #include <editdata.hxx>
-// auto strip #include <editattr.hxx>
 #include <editeng.hxx>
 #include <fontitem.hxx>
 #include <cscoitem.hxx>
 //#include <vcl/system.hxx>
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
 #endif
 
-// auto strip #ifndef _DATE_HXX //autogen
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TIME_HXX //autogen
-// auto strip #include <tools/time.hxx>
-// auto strip #endif
 
 #include <flditem.hxx>
 #include <lrspitem.hxx>
@@ -79,9 +63,7 @@
 #include <bulitem.hxx>
 #include <numitem.hxx>
 #include <brshitem.hxx>
-// auto strip #include <vcl/graph.hxx>
 #include <svtools/intitem.hxx>
-// auto strip #include <vcl/fontcvt.hxx>
 
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
@@ -114,9 +96,6 @@ namespace binfilter {
 /*N*/       if ( pFmt->GetBrush() && pFmt->GetBrush()->GetGraphic() )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Bitmap aBmp( pFmt->GetBrush()->GetGraphic()->GetBitmap() );
-//STRIP001 /*?*/            aBmp.SetPrefSize( pFmt->GetGraphicSize() );
-//STRIP001 /*?*/            aBmp.SetPrefMapMode( MAP_100TH_MM );
-//STRIP001 /*?*/            rBullet.SetBitmap( aBmp );
 /*N*/       }
 /*N*/
 /*N*/       switch ( pFmt->GetNumberingType() )
@@ -184,13 +163,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 XEditAttribute::XEditAttribute( const SfxPoolItem& rAttr )
-//STRIP001 {
-//STRIP001  DBG_CTOR( XEditAttribute, 0 );
-//STRIP001  pItem = &rAttr;
-//STRIP001  nStart = 0;
-//STRIP001  nEnd = 0;
-//STRIP001 }
 
 /*N*/ XEditAttribute::XEditAttribute( const SfxPoolItem& rAttr, USHORT nS, USHORT nE )
 /*N*/ {
@@ -308,8 +280,6 @@ namespace binfilter {
 
 /*N*/ XubString EditTextObject::GetText( USHORT nParagraph ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return XubString();//STRIP001
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return XubString();
 /*N*/ }
 
 /*N*/ void EditTextObject::Insert( const EditTextObject& rObj, USHORT nPara )
@@ -317,61 +287,23 @@ namespace binfilter {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-//STRIP001 EditTextObject* EditTextObject::CreateTextObject( USHORT nPara, USHORT nParas ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 void EditTextObject::RemoveParagraph( USHORT nPara )
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001 }
 
-//STRIP001 BOOL EditTextObject::HasPortionInfo() const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void EditTextObject::ClearPortionInfo()
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-//STRIP001 BOOL EditTextObject::HasOnlineSpellErrors() const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL EditTextObject::HasCharAttribs( USHORT nWhich ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void EditTextObject::GetCharAttribs( USHORT nPara, EECharAttribArray& rLst ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001 }
 
 /*N*/ void EditTextObject::MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart, USHORT nEnd )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-//STRIP001 BOOL EditTextObject::IsFieldObject() const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 const SvxFieldItem* EditTextObject::GetField() const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return 0;
-//STRIP001 }
 
 /*N*/ BOOL EditTextObject::HasField( TypeId aType ) const
 /*N*/ {
@@ -385,28 +317,9 @@ namespace binfilter {
 /*N*/   return SfxItemSet( *(SfxItemPool*)NULL );
 /*N*/ }
 
-//STRIP001 void EditTextObject::SetParaAttribs( USHORT nPara, const SfxItemSet& rAttribs )
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001 }
 
-//STRIP001 BOOL EditTextObject::RemoveCharAttribs( USHORT nWhich )
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL EditTextObject::RemoveParaAttribs( USHORT nWhich )
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL EditTextObject::HasStyleSheet( const XubString& rName, SfxStyleFamily eFamily ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void EditTextObject::GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& eFamily ) const
 /*N*/ {
@@ -442,16 +355,7 @@ namespace binfilter {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-//STRIP001 ULONG EditTextObject::GetObjectSettings() const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 void EditTextObject::SetObjectSettings( ULONG n )
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001 }
 
 /*N*/ BOOL EditTextObject::IsVertical() const
 /*N*/ {
@@ -461,15 +365,8 @@ namespace binfilter {
 
 /*N*/ void EditTextObject::SetVertical( BOOL bVertical )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  ((BinTextObject*)this)->SetVertical( bVertical );
 /*N*/ }
 
-//STRIP001 USHORT EditTextObject::GetScriptType() const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001  return ((const BinTextObject*)this)->GetScriptType();
-//STRIP001 }
 
 
 /*N*/ BOOL EditTextObject::Store( SvStream& rOStream ) const
@@ -537,19 +434,6 @@ namespace binfilter {
 /*N*/   return pTxtObj;
 /*N*/ }
 
-//STRIP001 void EditTextObject::Skip( SvStream& rIStream )
-//STRIP001 {
-//STRIP001  ULONG nStartPos = rIStream.Tell();
-//STRIP001
-//STRIP001  USHORT nWhich;
-//STRIP001  rIStream >> nWhich;
-//STRIP001
-//STRIP001  ULONG nStructSz;
-//STRIP001  rIStream >> nStructSz;
-//STRIP001
-//STRIP001  ULONG nFullSz = sizeof( nWhich ) + sizeof( nStructSz ) + nStructSz;
-//STRIP001  rIStream.Seek( nStartPos + nFullSz );
-//STRIP001 }
 
 /*N*/ void __EXPORT EditTextObject::StoreData( SvStream& rOStream ) const
 /*N*/ {
@@ -567,10 +451,6 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void EditTextObject::SetLRSpaceItemFlags( BOOL bOutlineMode )
-//STRIP001 {
-//STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
-//STRIP001 }
 
 /*N*/ void EditTextObject::AdjustImportedLRSpaceItems( BOOL bTurnOfBullets )
 /*N*/ {
@@ -674,15 +554,7 @@ namespace binfilter {
 /*N*/   nUserType = n;
 /*N*/ }
 
-//STRIP001 ULONG BinTextObject::GetObjectSettings() const
-//STRIP001 {
-//STRIP001  return nObjSettings;
-//STRIP001 }
 
-//STRIP001 void BinTextObject::SetObjectSettings( ULONG n )
-//STRIP001 {
-//STRIP001  nObjSettings = n;
-//STRIP001 }
 
 /*N*/ BOOL BinTextObject::IsVertical() const
 /*N*/ {
@@ -698,10 +570,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 USHORT BinTextObject::GetScriptType() const
-//STRIP001 {
-//STRIP001  return nScriptType;
-//STRIP001 }
 
 /*N*/ void BinTextObject::SetScriptType( USHORT nType )
 /*N*/ {
@@ -778,46 +646,8 @@ namespace binfilter {
 /*N*/   ClearPortionInfo();
 /*N*/ }
 
-//STRIP001 EditTextObject* BinTextObject::CreateTextObject( USHORT nPara, USHORT nParas ) const
-//STRIP001 {
-//STRIP001  if ( ( nPara >= aContents.Count() ) || !nParas )
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  // Pool nur teilen, wenn von aussen eingestellter Pool.
-//STRIP001  BinTextObject* pObj = new BinTextObject( bOwnerOfPool ? 0 : pPool );
-//STRIP001  if ( bOwnerOfPool && pPool )
-//STRIP001      pObj->GetPool()->SetDefaultMetric( pPool->GetMetric( DEF_METRIC ) );
-//STRIP001
-//STRIP001  // If complete text is only one ScriptType, this is valid.
-//STRIP001  // If text contains different ScriptTypes, this shouldn't be a problem...
-//STRIP001  pObj->nScriptType = nScriptType;
-//STRIP001
-//STRIP001  const USHORT nEndPara = nPara+nParas-1;
-//STRIP001  for ( USHORT nP = nPara; nP <= nEndPara; nP++ )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = aContents[ nP ];
-//STRIP001      ContentInfo* pNew = new ContentInfo( *pC, *pObj->GetPool() );
-//STRIP001      pObj->GetContents().Insert( pNew, pObj->GetContents().Count() );
-//STRIP001  }
-//STRIP001  return pObj;
-//STRIP001 }
 
-//STRIP001 void BinTextObject::RemoveParagraph( USHORT nPara )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPara < aContents.Count(), "BinTextObject::GetText: Absatz existiert nicht!" );
-//STRIP001  if ( nPara < aContents.Count() )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = aContents[ nPara ];
-//STRIP001      aContents.Remove( nPara );
-//STRIP001      delete pC;
-//STRIP001      ClearPortionInfo();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 BOOL BinTextObject::HasPortionInfo() const
-//STRIP001 {
-//STRIP001  return pPortionInfo ? TRUE : FALSE;
-//STRIP001 }
 
 /*N*/ void BinTextObject::ClearPortionInfo()
 /*N*/ {
@@ -830,58 +660,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL BinTextObject::HasOnlineSpellErrors() const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  for ( USHORT n = 0; n < aContents.Count(); n++ )
-//STRIP001  {
-//STRIP001      ContentInfo* p = aContents.GetObject( n );
-//STRIP001      if ( p->GetWrongList() && p->GetWrongList()->Count() )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return FALSE;
-//STRIP001
-//STRIP001 }
 
-//STRIP001 BOOL BinTextObject::HasCharAttribs( USHORT nWhich ) const
-//STRIP001 {
-//STRIP001  for ( USHORT nPara = GetContents().Count(); nPara; )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = GetContents().GetObject( --nPara );
-//STRIP001
-//STRIP001      USHORT nAttribs = pC->GetAttribs().Count();
-//STRIP001      if ( nAttribs && !nWhich )
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001      for ( USHORT nAttr = nAttribs; nAttr; )
-//STRIP001      {
-//STRIP001          XEditAttribute* pX = pC->GetAttribs().GetObject( --nAttr );
-//STRIP001          if ( pX->GetItem()->Which() == nWhich )
-//STRIP001              return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void BinTextObject::GetCharAttribs( USHORT nPara, EECharAttribArray& rLst ) const
-//STRIP001 {
-//STRIP001  rLst.Remove( 0, rLst.Count() );
-//STRIP001  ContentInfo* pC = GetContents().GetObject( nPara );
-//STRIP001  if ( pC )
-//STRIP001  {
-//STRIP001      for ( USHORT nAttr = 0; nAttr < pC->GetAttribs().Count(); nAttr++ )
-//STRIP001      {
-//STRIP001          XEditAttribute* pAttr = pC->GetAttribs().GetObject( nAttr );
-//STRIP001          EECharAttrib aEEAttr;
-//STRIP001          aEEAttr.pAttr = pAttr->GetItem();
-//STRIP001          aEEAttr.nPara = nPara;
-//STRIP001          aEEAttr.nStart = pAttr->GetStart();
-//STRIP001          aEEAttr.nEnd = pAttr->GetEnd();
-//STRIP001          rLst.Insert( aEEAttr, rLst.Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void BinTextObject::MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart, USHORT nEnd )
 /*N*/ {
@@ -906,29 +686,7 @@ namespace binfilter {
 /*N*/       ClearPortionInfo();
 /*N*/ }
 
-//STRIP001 BOOL BinTextObject::IsFieldObject() const
-//STRIP001 {
-//STRIP001  return BinTextObject::GetField() ? TRUE : FALSE;
-//STRIP001 }
 
-//STRIP001 const SvxFieldItem* BinTextObject::GetField() const
-//STRIP001 {
-//STRIP001  if ( GetContents().Count() == 1 )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = GetContents()[0];
-//STRIP001      if ( pC->GetText().Len() == 1 )
-//STRIP001      {
-//STRIP001          USHORT nAttribs = pC->GetAttribs().Count();
-//STRIP001          for ( USHORT nAttr = nAttribs; nAttr; )
-//STRIP001          {
-//STRIP001              XEditAttribute* pX = pC->GetAttribs().GetObject( --nAttr );
-//STRIP001              if ( pX->GetItem()->Which() == EE_FEATURE_FIELD )
-//STRIP001                  return (const SvxFieldItem*)pX->GetItem();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
 
 /*N*/ BOOL BinTextObject::HasField( TypeId aType ) const
 /*N*/ {
@@ -960,80 +718,9 @@ namespace binfilter {
 /*N*/   return pC->GetParaAttribs();
 /*N*/ }
 
-//STRIP001 void BinTextObject::SetParaAttribs( USHORT nPara, const SfxItemSet& rAttribs )
-//STRIP001 {
-//STRIP001  ContentInfo* pC = GetContents().GetObject( nPara );
-//STRIP001  pC->GetParaAttribs().Set( rAttribs );
-//STRIP001  ClearPortionInfo();
-//STRIP001 }
 
-//STRIP001 BOOL BinTextObject::RemoveCharAttribs( USHORT nWhich )
-//STRIP001 {
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001
-//STRIP001  for ( USHORT nPara = GetContents().Count(); nPara; )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = GetContents().GetObject( --nPara );
-//STRIP001
-//STRIP001      for ( USHORT nAttr = pC->GetAttribs().Count(); nAttr; )
-//STRIP001      {
-//STRIP001          XEditAttribute* pAttr = pC->GetAttribs().GetObject( --nAttr );
-//STRIP001          if ( !nWhich || ( pAttr->GetItem()->Which() == nWhich ) )
-//STRIP001          {
-//STRIP001              pC->GetAttribs().Remove( nAttr );
-//STRIP001              DestroyAttrib( pAttr );
-//STRIP001              bChanged = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( bChanged )
-//STRIP001      ClearPortionInfo();
-//STRIP001
-//STRIP001  return bChanged;
-//STRIP001 }
 
-//STRIP001 BOOL BinTextObject::RemoveParaAttribs( USHORT nWhich )
-//STRIP001 {
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001
-//STRIP001  for ( USHORT nPara = GetContents().Count(); nPara; )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = GetContents().GetObject( --nPara );
-//STRIP001
-//STRIP001      if ( !nWhich )
-//STRIP001      {
-//STRIP001          if( pC->GetParaAttribs().Count() )
-//STRIP001              bChanged = TRUE;
-//STRIP001          pC->GetParaAttribs().ClearItem();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if ( pC->GetParaAttribs().GetItemState( nWhich ) == SFX_ITEM_ON )
-//STRIP001          {
-//STRIP001              pC->GetParaAttribs().ClearItem( nWhich );
-//STRIP001              bChanged = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( bChanged )
-//STRIP001      ClearPortionInfo();
-//STRIP001
-//STRIP001  return bChanged;
-//STRIP001 }
 
-//STRIP001 BOOL BinTextObject::HasStyleSheet( const XubString& rName, SfxStyleFamily eFamily ) const
-//STRIP001 {
-//STRIP001  USHORT nParagraphs = GetContents().Count();
-//STRIP001  for ( USHORT nPara = 0; nPara < nParagraphs; nPara++ )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = GetContents().GetObject( nPara );
-//STRIP001      if ( ( pC->GetFamily() == eFamily ) && ( pC->GetStyle() == rName ) )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void BinTextObject::GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& rFamily ) const
 /*N*/ {
@@ -1047,12 +734,6 @@ namespace binfilter {
 
 /*N*/ void BinTextObject::SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& rFamily )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( nPara < aContents.Count() )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = aContents[ nPara ];
-//STRIP001      pC->GetStyle() = rName;
-//STRIP001      pC->GetFamily() = rFamily;
-//STRIP001  }
 /*N*/ }
 
 /*N*/ BOOL BinTextObject::ImpChangeStyleSheets(
@@ -1558,27 +1239,6 @@ namespace binfilter {
 /*N*/   return nVersion;
 /*N*/ }
 
-//STRIP001 void BinTextObject::SetLRSpaceItemFlags( BOOL bOutlineMode )
-//STRIP001 {
-//STRIP001  for ( USHORT nPara = GetContents().Count(); nPara; )
-//STRIP001  {
-//STRIP001      ContentInfo* pC = GetContents().GetObject( --nPara );
-//STRIP001      for ( USHORT n = 0; n <=1; n++ )
-//STRIP001      {
-//STRIP001          USHORT nItemId = n ? EE_PARA_LRSPACE : EE_PARA_OUTLLRSPACE;
-//STRIP001          if ( pC->GetParaAttribs().GetItemState( nItemId ) == SFX_ITEM_ON )
-//STRIP001          {
-//STRIP001              const SvxLRSpaceItem& rItem = (const SvxLRSpaceItem&) pC->GetParaAttribs().Get( nItemId );
-//STRIP001              if ( rItem.IsBulletFI() != bOutlineMode )
-//STRIP001              {
-//STRIP001                  SvxLRSpaceItem aNewItem( rItem );
-//STRIP001                  aNewItem.SetBulletFI( bOutlineMode );
-//STRIP001                  pC->GetParaAttribs().Put( aNewItem );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void BinTextObject::PrepareStore( SfxStyleSheetPool* pStyleSheetPool )
 /*N*/ {
