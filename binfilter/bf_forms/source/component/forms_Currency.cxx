@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Currency.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:41:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:59:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,15 +41,6 @@
 #include "Currency.hxx"
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-// auto strip #include <unotools/localedatawrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_CheckBox.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:40:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:58:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,18 +40,12 @@
 #ifndef _FORMS_CHECKBOX_HXX_
 #include "CheckBox.hxx"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
