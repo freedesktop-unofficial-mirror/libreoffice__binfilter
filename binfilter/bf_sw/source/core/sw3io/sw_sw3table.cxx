@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3table.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:04:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:00:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -55,13 +52,8 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #define _SVSTDARR_STRINGSDTOR
-// auto strip #include <svtools/svstdarr.hxx>
 #include "sw3imp.hxx"
-// auto strip #include "swtable.hxx"
 #include "ddefld.hxx"
 #include "swddetbl.hxx"
 #include "swtblfmt.hxx"
