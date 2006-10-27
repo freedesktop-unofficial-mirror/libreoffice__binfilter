@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocimp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:06:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:46:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,40 +92,6 @@ using namespace ::com::sun::star;
 // -----------------------------------------------------------------
 
 // static
-//STRIP001 void ScDBDocFunc::ShowInBeamer( const ScImportParam& rParam, SfxViewFrame* pFrame )
-//STRIP001 {
-//STRIP001  //  called after opening the database beamer
-//STRIP001
-//STRIP001  if ( !pFrame || !rParam.bImport )
-//STRIP001      return;
-//STRIP001
-//STRIP001  uno::Reference<frame::XFrame> xFrame = pFrame->GetFrame()->GetFrameInterface();
-//STRIP001  uno::Reference<frame::XDispatchProvider> xDP(xFrame, uno::UNO_QUERY);
-//STRIP001
-//STRIP001  uno::Reference<frame::XFrame> xBeamerFrame = xFrame->findFrame(
-//STRIP001                                      ::rtl::OUString::createFromAscii("_beamer"),
-//STRIP001                                      frame::FrameSearchFlag::CHILDREN);
-//STRIP001  if (xBeamerFrame.is())
-//STRIP001  {
-//STRIP001      uno::Reference<frame::XController> xController = xBeamerFrame->getController();
-//STRIP001      uno::Reference<view::XSelectionSupplier> xControllerSelection(xController, uno::UNO_QUERY);
-//STRIP001      if (xControllerSelection.is())
-//STRIP001      {
-//STRIP001          sal_Int32 nType = rParam.bSql ? sdb::CommandType::COMMAND :
-//STRIP001                      ( (rParam.nType == ScDbQuery) ? sdb::CommandType::QUERY :
-//STRIP001                                                      sdb::CommandType::TABLE );
-//STRIP001
-//STRIP001             ::svx::ODataAccessDescriptor aSelection;
-//STRIP001             aSelection[svx::daDataSource]   <<= ::rtl::OUString( rParam.aDBName );
-//STRIP001             aSelection[svx::daCommand]      <<= ::rtl::OUString( rParam.aStatement );
-//STRIP001             aSelection[svx::daCommandType]  <<= nType;
-//STRIP001
-//STRIP001          xControllerSelection->select(uno::makeAny(aSelection.createPropertyValueSequence()));
-//STRIP001      }
-//STRIP001      else
-//STRIP001          DBG_ERROR("no selection supplier in the beamer!");
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------
 
@@ -430,17 +396,6 @@ using namespace ::com::sun::star;
 /*M*/                           ++nInserted;
 /*M*/                           if (!(nInserted & 15))
 /*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*M*/                                String aPict = ScGlobal::GetRscString( STR_PROGRESS_IMPORT );
-//STRIP001 /*M*/                                String aText = aPict.GetToken(0,'#');
-//STRIP001 /*M*/                                aText += String::CreateFromInt32( nInserted );
-//STRIP001 /*M*/                                aText += aPict.GetToken(1,'#');
-//STRIP001 /*M*/
-//STRIP001 /*M*/                                if (!aProgress.SetStateText( 0, aText ))    // stopped by user?
-//STRIP001 /*M*/                                {
-//STRIP001 /*M*/                                    bEnd = TRUE;
-//STRIP001 /*M*/                                    bSuccess = FALSE;
-//STRIP001 /*M*/                                    nErrStringId = STR_DATABASE_ABORTED;
-//STRIP001 /*M*/                                }
 /*M*/                           }
 /*M*/                       }
 /*M*/                       else        // past the end of the spreadsheet
@@ -665,30 +620,11 @@ using namespace ::com::sun::star;
 /*M*/       if( !bAddrInsert )      // update database range
 /*M*/       {
 /*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDBData->SetImportParam( rParam );
-//STRIP001 /*M*/            pDBData->SetHeader( TRUE );
-//STRIP001 /*M*/            pDBData->SetByRow( TRUE );
-//STRIP001 /*M*/            pDBData->SetArea( nTab, rParam.nCol1,rParam.nRow1, nEndCol,nEndRow );
-//STRIP001 /*M*/            pDBData->SetImportSelection( bRealSelection );
-//STRIP001 /*M*/            pDoc->CompileDBFormula();
 /*M*/       }
 /*M*/
 /*M*/       if (bRecord)
 /*M*/       {
 /*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = pImportDoc;
-//STRIP001 /*M*/            pImportDoc = NULL;
-//STRIP001 /*M*/
-//STRIP001 /*M*/            if (nFormulaCols)                       // include filled formulas for redo
-//STRIP001 /*M*/                pDoc->CopyToDocument( rParam.nCol1, rParam.nRow1, nTab,
-//STRIP001 /*M*/                                        nEndCol+nFormulaCols, nEndRow, nTab,
-//STRIP001 /*M*/                                        IDF_ALL, FALSE, pRedoDoc );
-//STRIP001 /*M*/
-//STRIP001 /*M*/            ScDBData* pRedoDBData = pDBData ? new ScDBData( *pDBData ) : NULL;
-//STRIP001 /*M*/
-//STRIP001 /*M*/            rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*M*/                new ScUndoImportData( &rDocShell, nTab,
-//STRIP001 /*M*/                                        rParam, nUndoEndCol, nUndoEndRow,
-//STRIP001 /*M*/                                        nFormulaCols,
-//STRIP001 /*M*/                                        pUndoDoc, pRedoDoc, pUndoDBData, pRedoDBData ) );
 /*M*/       }
 /*M*/
 /*M*/       pDoc->SetDirty();
