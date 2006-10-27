@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_shapeuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:17:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:05:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,20 +34,16 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <tools/debug.hxx>
 #include <comphelper/uno3.hxx>
 #include <svtools/unoevent.hxx>
 #include <svtools/unoimap.hxx>
-// auto strip #include <bf_svx/svdobj.hxx>
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/unofield.hxx>
 
-// auto strip #include <com/sun/star/drawing/XShape.hpp>
 
 #include "shapeuno.hxx"
 #include "miscuno.hxx"
