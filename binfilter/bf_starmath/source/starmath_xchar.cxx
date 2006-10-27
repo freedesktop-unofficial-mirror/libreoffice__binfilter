@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_xchar.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:08:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:58:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,128 +51,18 @@ namespace binfilter {
 
 
 
-//STRIP001 PolyPolygon  SmGetPolyPolygon(const XPolyPolygon &rPoly, OutputDevice *pDev)
-//STRIP001  // convert XPolyPolygon in PolyPolygon
-//STRIP001 {
-//STRIP001  PolyPolygon aResult(rPoly.Count());
-//STRIP001
-//STRIP001  USHORT  n = rPoly.Count();
-//STRIP001  for (USHORT i = 0;  i < n;  i++)
-//STRIP001  {   // nRough = 1 is maximal resolution
-//STRIP001      Polygon  aTmp (XOutCreatePolygon(rPoly[i], pDev, 1));
-//STRIP001      aResult.Insert(aTmp, i);
-//STRIP001  }
-//STRIP001
-//STRIP001  return aResult;
-//STRIP001 }
 
 
-//STRIP001 XPolyPolygon & SmLogicToPixel(XPolyPolygon &rXPPoly, const OutputDevice &rDev)
-//STRIP001  // convert points of 'rXPPoly' from logic coordinates to pixel coordinates
-//STRIP001  // according to 'rDev'.
-//STRIP001 {
-//STRIP001  USHORT  n = rXPPoly.Count();
-//STRIP001  for (USHORT i = 0;  i < n;  i++)
-//STRIP001  {   XPolygon  &rXPoly = rXPPoly[i];
-//STRIP001
-//STRIP001      USHORT  m = rXPoly.GetPointCount();
-//STRIP001      for (USHORT j = 0;  j < m;  j++)
-//STRIP001      {   Point &rPoint = rXPoly[j];
-//STRIP001
-//STRIP001          rPoint = rDev.LogicToPixel(rPoint);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return rXPPoly;
-//STRIP001 }
 
 
-//STRIP001 XPolyPolygon & SmPixelToLogic(XPolyPolygon &rXPPoly, const OutputDevice &rDev)
-//STRIP001  // convert points of 'rXPPoly' from pixel coordinates to logic coordinates
-//STRIP001  // according to 'rDev'.
-//STRIP001 {
-//STRIP001  for (USHORT i = rXPPoly.Count() - 1;  i >= 0;  i--)
-//STRIP001  {   XPolygon  &rXPoly = rXPPoly[i];
-//STRIP001
-//STRIP001      for (USHORT j = rXPoly.GetPointCount() - 1;  j >= 0;  j--)
-//STRIP001      {   Point &rPoint = rXPoly[j];
-//STRIP001
-//STRIP001          rPoint = rDev.PixelToLogic(rPoint);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return rXPPoly;
-//STRIP001 }
 
 
 ////////////////////////////////////////
 
 
-//STRIP001 static BOOL SmWillBeVisible(const Point &rStart, const Point &rEnd)
-//STRIP001  // returns TRUE iff 'SmDrawPolygon' has to draw a line
-//STRIP001 {
-//STRIP001  return      rStart.Y() >  rEnd.Y()
-//STRIP001          ||  rStart.Y() == rEnd.Y()  &&  rStart.X() < rEnd.X();
-//STRIP001 }
 
 
 
-//STRIP001 void SmDrawPolyPolygon(OutputDevice &rDev, const PolyPolygon &rPPoly)
-//STRIP001  // workaround for the "polygon vanishes partly or in whole bug" that
-//STRIP001  // occurs when the linecolor is not set.
-//STRIP001  // It should become superfluous in the near future when the bug is fixed.
-//STRIP001 {
-//STRIP001  Point  aFrom,
-//STRIP001         aPF, aPT;
-//STRIP001  int    nIdx;
-//STRIP001
-//STRIP001  USHORT  nPolys = rPPoly.Count();
-//STRIP001  for (USHORT i = 0;  i < nPolys;  i++)
-//STRIP001  {   const Polygon &rPoly = rPPoly[i];
-//STRIP001
-//STRIP001      USHORT  nPoints = rPoly.GetSize();
-//STRIP001      if (nPoints >= 2)
-//STRIP001          aFrom = rPoly[0];
-//STRIP001      for (USHORT j = 1;  j < nPoints;  j++)
-//STRIP001      {   const Point &rTo = rPoly[j];
-//STRIP001
-//STRIP001          aPF = aFrom;
-//STRIP001          aPT = rTo;
-//STRIP001
-//STRIP001          BOOL bDraw = TRUE;
-//STRIP001
-//STRIP001          if (aFrom.Y() > rTo.Y())
-//STRIP001          {   if (aFrom.X() == rTo.X())
-//STRIP001              {   // draw startpoint only if previous line is to be drawn
-//STRIP001                  nIdx = j - 2;
-//STRIP001                  if (nIdx < 0)
-//STRIP001                      nIdx += nPoints;
-//STRIP001
-//STRIP001                  if (   !SmWillBeVisible(rPoly[nIdx], aFrom)
-//STRIP001                      &&  aPF.Y() > aPT.Y())
-//STRIP001                          aPF.Y()--;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (aFrom.Y() == rTo.Y()  &&  aFrom.X() < rTo.X())
-//STRIP001          {   // draw endpoint only if next line is to be drawn
-//STRIP001                  nIdx = j + 1;
-//STRIP001                  if (nIdx == nPoints)
-//STRIP001                      nIdx = 0;
-//STRIP001
-//STRIP001                  if (   !SmWillBeVisible(rTo, rPoly[nIdx])
-//STRIP001                      &&  aPT.X() > aPF.X())
-//STRIP001                          aPT.X()--;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              bDraw = FALSE;
-//STRIP001
-//STRIP001          if (bDraw)
-//STRIP001              rDev.DrawLine(aPF, aPT);
-//STRIP001
-//STRIP001          aFrom = rTo;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 ////////////////////////////////////////
@@ -360,12 +250,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 const XPolyPolygon & SmPolygon::GetXPolyPolygon() const
-//STRIP001 {
-//STRIP001  if (bDelayedScale)
-//STRIP001      ((SmPolygon *) this)->Scale();
-//STRIP001  return aPoly;
-//STRIP001 }
 
 
 /*N*/ const Rectangle & SmPolygon::GetBoundRect(const OutputDevice &rDev) const
@@ -383,29 +267,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SmPolygon::Draw(OutputDevice &rDev, const Point &rPoint) const
-//STRIP001 {
-//STRIP001  if (bDelayedScale)
-//STRIP001      ((SmPolygon *) this)->Scale();
-//STRIP001
-//STRIP001  // align output position with pixel position
-//STRIP001  Point aPos (rDev.PixelToLogic(rDev.LogicToPixel(rPoint)));
-//STRIP001
-//STRIP001  PolyPolygon  aDrawPoly (SmGetPolyPolygon(aPoly, &rDev));
-//STRIP001
-//STRIP001  Point  aDelta (aPos - aDrawPoly.GetBoundRect().TopLeft());
-//STRIP001  aDrawPoly.Move(aDelta.X(), aDelta.Y());
-//STRIP001
-//STRIP001  rDev.DrawPolyPolygon(aDrawPoly);
-//STRIP001
-//STRIP001  if (rDev.GetOutDevType() != OUTDEV_PRINTER)
-//STRIP001  {   // workaround to avoid vanishing of the polygon
-//STRIP001      Color aOldCol = rDev.GetLineColor();
-//STRIP001      rDev.SetLineColor(rDev.GetFont().GetColor());
-//STRIP001      SmDrawPolyPolygon(rDev, aDrawPoly);
-//STRIP001      rDev.SetLineColor(aOldCol);
-//STRIP001  }
-//STRIP001 }
 
 
 }
