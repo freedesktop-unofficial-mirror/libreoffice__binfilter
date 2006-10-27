@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_findfrm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:46:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:52:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,6 @@
 #pragma hdrstop
 
 #include "pagefrm.hxx"
-// auto strip #include "rootfrm.hxx"
 #include "cntfrm.hxx"
 #include "node.hxx"
 
@@ -47,7 +46,6 @@
 
 #include "doc.hxx"
 #include "frmtool.hxx"
-// auto strip #include "flyfrm.hxx"
 
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
@@ -289,48 +287,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 */
 /*N*/ bool SwLayoutFrm::IsBefore( const SwLayoutFrm* _pCheckRefLayFrm ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     ASSERT( !IsRootFrm() , "<IsBefore> called at a <SwRootFrm>.");
-//STRIP001     ASSERT( !_pCheckRefLayFrm->IsRootFrm() , "<IsBefore> called with a <SwRootFrm>.");
-//STRIP001
-//STRIP001     bool bReturn;
-//STRIP001
-//STRIP001     // check, if on different pages
-//STRIP001     const SwPageFrm *pMyPage = FindPageFrm();
-//STRIP001     const SwPageFrm *pCheckRefPage = _pCheckRefLayFrm->FindPageFrm();
-//STRIP001     if( pMyPage != pCheckRefPage )
-//STRIP001     {
-//STRIP001         // being on different page as check reference
-//STRIP001         bReturn = pMyPage->GetPhyPageNum() < pCheckRefPage->GetPhyPageNum();
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         // being on same page as check reference
-//STRIP001         // --> search my supreme parent <pUp>, which doesn't contain check reference.
-//STRIP001         const SwLayoutFrm* pUp = this;
-//STRIP001         while ( pUp->GetUpper() &&
-//STRIP001                 !pUp->GetUpper()->IsAnLower( _pCheckRefLayFrm )
-//STRIP001               )
-//STRIP001             pUp = pUp->GetUpper();
-//STRIP001         if( !pUp->GetUpper() )
-//STRIP001         {
-//STRIP001             // can occur, if <this> is a fly frm
-//STRIP001             bReturn = false;
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             // travel through the next's of <pUp> and check if one of these
-//STRIP001             // contain the check reference.
-//STRIP001             SwLayoutFrm* pUpNext = (SwLayoutFrm*)pUp->GetNext();
-//STRIP001             while ( pUpNext &&
-//STRIP001                     !pUpNext->IsAnLower( _pCheckRefLayFrm ) )
-//STRIP001             {
-//STRIP001                 pUpNext = (SwLayoutFrm*)pUpNext->GetNext();
-//STRIP001             }
-//STRIP001             bReturn = pUpNext != 0;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return bReturn;
 /*N*/ }
 
 /*************************************************************************
@@ -522,17 +478,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   return (SwSectionFrm*)pRet;
 /*N*/ }
 
-//STRIP001 SwSectionFrm* SwFrm::ImplFindTopSctFrm()
-//STRIP001 {
-//STRIP001  SwFrm *pRet = 0;
-//STRIP001  SwFrm *pTmp = this;
-//STRIP001  do
-//STRIP001  {   if( pTmp->IsSctFrm() )
-//STRIP001          pRet = pTmp;
-//STRIP001     pTmp = pTmp->GetUpper();
-//STRIP001  } while ( pTmp && pTmp->IsInSct() );
-//STRIP001  return (SwSectionFrm*)pRet;
-//STRIP001 }
 
 /*N*/ SwFtnFrm *SwFrm::ImplFindFtnFrm()
 /*N*/ {
@@ -584,31 +529,8 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*?*/   return pRet;
 /*N*/ }
 
-//STRIP001 const SwFtnFrm* SwFtnContFrm::FindFootNote() const
-//STRIP001 {
-//STRIP001  const SwFtnFrm* pRet = (SwFtnFrm*)Lower();
-//STRIP001  if( pRet && !pRet->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001      return pRet;
-//STRIP001  return NULL;
-//STRIP001 }
 
-//STRIP001 const SwFtnFrm* SwFtnContFrm::FindEndNote() const
-//STRIP001 {
-//STRIP001  const SwFtnFrm* pRet = (SwFtnFrm*)Lower();
-//STRIP001  while( pRet && !pRet->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001      pRet = (SwFtnFrm*)pRet->GetNext();
-//STRIP001  return pRet;
-//STRIP001 }
 
-//STRIP001 BOOL SwRootFrm::IsPageAtPos( const Point &rPt ) const
-//STRIP001 {
-//STRIP001     if( !Frm().IsInside( rPt ) )
-//STRIP001         return FALSE;
-//STRIP001     const SwFrm* pPage = Lower();
-//STRIP001     while( pPage && rPt.Y() > pPage->Frm().Bottom() )
-//STRIP001         pPage = pPage->GetNext();
-//STRIP001     return pPage && pPage->Frm().IsInside( rPt );
-//STRIP001 }
 
 /*************************************************************************
 |*
