@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:32:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:21:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #include <tools/pstm.hxx>
-// auto strip #ifndef _SVXLINKMGR_HXX
-// auto strip #include <bf_svx/linkmgr.hxx>
-// auto strip #endif
 
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
@@ -52,9 +48,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -78,15 +71,9 @@
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
-// auto strip #ifndef _SWSERV_HXX
-// auto strip #include <swserv.hxx>
-// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
@@ -171,7 +158,6 @@ namespace binfilter {
 /*N*/   if( DoesUndo() && !pBM->IsUNOMark())
 /*N*/   {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-//STRIP001 /*?*/        AppendUndo( new SwUndoDelBookmark( *pBM ));
 /*N*/   }
 /*N*/
 /*N*/     // #108964# UNO bookmark don't contribute to the document state,
@@ -245,19 +231,6 @@ namespace binfilter {
 /*N*/ void SwDoc::MakeUniqueBookmarkName( String& rNm )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( rNm.Len(), "es sollte ein Name vorgegeben werden!" );
-//STRIP001
-//STRIP001  // wir erzeugen uns eine temp. Bookmark
-//STRIP001  String sTmp;
-//STRIP001  USHORT nCnt = 0, n;
-//STRIP001  USHORT nBookCnt = pBookmarkTbl->Count();
-//STRIP001  do {
-//STRIP001      sTmp = rNm;
-//STRIP001      sTmp += String::CreateFromInt32( ++nCnt );
-//STRIP001      for( n = 0; n < nBookCnt; ++n )
-//STRIP001          if( (*pBookmarkTbl)[ n ]->GetName().Equals( sTmp ))
-//STRIP001              break;
-//STRIP001  } while( n < nBookCnt );
-//STRIP001  rNm = sTmp;
 /*N*/ }
 
 /*  */
@@ -270,78 +243,8 @@ namespace binfilter {
 /*N*/   eOrigBkmType(rBkmk.GetType())
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nNode1 = rBkmk.GetPos().nNode.GetIndex();
-//STRIP001  nCntnt1 = rBkmk.GetPos().nContent.GetIndex();
-//STRIP001
-//STRIP001  if( BKMK_POS & eBkmkType )
-//STRIP001  {
-//STRIP001      nNode1 -= rMvPos.GetIndex();
-//STRIP001      if( pIdx && !nNode1 )
-//STRIP001          nCntnt1 -= pIdx->GetIndex();
-//STRIP001  }
-//STRIP001
-//STRIP001  if( rBkmk.GetOtherPos() )
-//STRIP001  {
-//STRIP001      nNode2 = rBkmk.GetOtherPos()->nNode.GetIndex();
-//STRIP001      nCntnt2 = rBkmk.GetOtherPos()->nContent.GetIndex();
-//STRIP001
-//STRIP001      if( BKMK_POS_OTHER & eBkmkType )
-//STRIP001      {
-//STRIP001          nNode2 -= rMvPos.GetIndex();
-//STRIP001          if( pIdx && !nNode2 )
-//STRIP001              nCntnt2 -= pIdx->GetIndex();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      nNode2 = ULONG_MAX, nCntnt2 = STRING_NOTFOUND;
 /*N*/ }
 
-//STRIP001 void SaveBookmark::SetInDoc( SwDoc* pDoc, const SwNodeIndex& rNewPos,
-//STRIP001                          const SwIndex* pIdx )
-//STRIP001 {
-//STRIP001  SwPaM aPam( rNewPos.GetNode() );
-//STRIP001  if( pIdx )
-//STRIP001      aPam.GetPoint()->nContent = *pIdx;
-//STRIP001
-//STRIP001  if( ULONG_MAX != nNode2 )
-//STRIP001  {
-//STRIP001      aPam.SetMark();
-//STRIP001
-//STRIP001      if( BKMK_POS_OTHER & eBkmkType )
-//STRIP001      {
-//STRIP001          aPam.GetMark()->nNode += nNode2;
-//STRIP001          if( pIdx && !nNode2 )
-//STRIP001              aPam.GetMark()->nContent += nCntnt2;
-//STRIP001          else
-//STRIP001              aPam.GetMark()->nContent.Assign( aPam.GetCntntNode( FALSE ),
-//STRIP001                                                      nCntnt2 );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          aPam.GetMark()->nNode = nNode2;
-//STRIP001          aPam.GetMark()->nContent.Assign( aPam.GetCntntNode( FALSE ),
-//STRIP001                                                  nCntnt2 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( BKMK_POS & eBkmkType )
-//STRIP001  {
-//STRIP001      aPam.GetPoint()->nNode += nNode1;
-//STRIP001
-//STRIP001      if( pIdx && !nNode1 )
-//STRIP001          aPam.GetPoint()->nContent += nCntnt1;
-//STRIP001      else
-//STRIP001          aPam.GetPoint()->nContent.Assign( aPam.GetCntntNode(), nCntnt1 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aPam.GetPoint()->nNode = nNode1;
-//STRIP001      aPam.GetPoint()->nContent.Assign( aPam.GetCntntNode(), nCntnt1 );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !aPam.HasMark() ||
-//STRIP001      CheckNodesRange( aPam.GetPoint()->nNode, aPam.GetMark()->nNode, TRUE ))
-//STRIP001      pDoc->MakeBookmark( aPam, aCode, aName, aShortName, eOrigBkmType );
-//STRIP001 }
 
 
 /*N*/ inline int GreaterThan( const SwPosition& rPos, const SwNodeIndex& rNdIdx,
@@ -961,145 +864,6 @@ namespace binfilter {
 /*N*/                       xub_StrLen nLen, xub_StrLen nChkLen )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    const SwDoc* pDoc = rNd.GetDoc();
-//STRIP001  const SwBookmarks& rBkmks = pDoc->GetBookmarks();
-//STRIP001  const SwRedlineTbl& rRedlTbl = pDoc->GetRedlineTbl();
-//STRIP001  const SwSpzFrmFmts* pSpz = pDoc->GetSpzFrmFmts();
-//STRIP001  SwCntntNode* pCNd = (SwCntntNode*)rNd.GetCntntNode();
-//STRIP001
-//STRIP001  USHORT n = 0;
-//STRIP001  while( n < rSaveArr.Count() )
-//STRIP001  {
-//STRIP001      _SwSaveTypeCountContent aSave( rSaveArr, n );
-//STRIP001      if( aSave.GetContent() >= nChkLen )
-//STRIP001          rSaveArr[ n + 1 ] -= nChkLen;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SwPosition* pPos = 0;
-//STRIP001          switch( aSave.GetType() )
-//STRIP001          {
-//STRIP001          case 0x8000:
-//STRIP001              pPos = (SwPosition*)&rBkmks[ aSave.GetCount() ]->GetPos();
-//STRIP001              break;
-//STRIP001          case 0x8001:
-//STRIP001              pPos = (SwPosition*)rBkmks[ aSave.GetCount() ]->GetOtherPos();
-//STRIP001              break;
-//STRIP001          case 0x1001:
-//STRIP001              pPos = (SwPosition*)rRedlTbl[ aSave.GetCount() ]->GetPoint();
-//STRIP001              break;
-//STRIP001          case 0x1000:
-//STRIP001              pPos = (SwPosition*)rRedlTbl[ aSave.GetCount() ]->GetMark();
-//STRIP001              break;
-//STRIP001          case 0x2000:
-//STRIP001          case 0x2001:
-//STRIP001              {
-//STRIP001                  SwFrmFmt *pFrmFmt = (*pSpz)[ aSave.GetCount() ];
-//STRIP001                  const SwFmtAnchor& rFlyAnchor = pFrmFmt->GetAnchor();
-//STRIP001                  if( rFlyAnchor.GetCntntAnchor() )
-//STRIP001                  {
-//STRIP001                      SwFmtAnchor aNew( rFlyAnchor );
-//STRIP001                      SwPosition aNewPos( *rFlyAnchor.GetCntntAnchor() );
-//STRIP001                      aNewPos.nNode = rNd;
-//STRIP001                      if( FLY_AUTO_CNTNT == rFlyAnchor.GetAnchorId() )
-//STRIP001                          aNewPos.nContent.Assign( pCNd, Min(
-//STRIP001                                                   aSave.GetContent(), nLen ) );
-//STRIP001                      else
-//STRIP001                          aNewPos.nContent.Assign( 0, 0 );
-//STRIP001                      aNew.SetAnchor( &aNewPos );
-//STRIP001                      pFrmFmt->SetAttr( aNew );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001          case 0x0800:
-//STRIP001          case 0x0801:
-//STRIP001              {
-//STRIP001                  USHORT nCnt = 0;
-//STRIP001                  SwCrsrShell* pShell = pDoc->GetEditShell();
-//STRIP001                  if( pShell )
-//STRIP001                  {
-//STRIP001                      FOREACHSHELL_START( pShell )
-//STRIP001                          register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
-//STRIP001                          if( _pStkCrsr )
-//STRIP001                          do {
-//STRIP001                              if( aSave.GetCount() == nCnt )
-//STRIP001                              {
-//STRIP001                                  pPos = &_pStkCrsr->GetBound( 0x0800 ==
-//STRIP001                                              aSave.GetType() );
-//STRIP001                                  break;
-//STRIP001                              }
-//STRIP001                              ++nCnt;
-//STRIP001                          } while ( (_pStkCrsr != 0 ) &&
-//STRIP001                              ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
-//STRIP001
-//STRIP001                          if( pPos )
-//STRIP001                              break;
-//STRIP001
-//STRIP001                          FOREACHPAM_START( PCURSH->_GetCrsr() )
-//STRIP001                              if( aSave.GetCount() == nCnt )
-//STRIP001                              {
-//STRIP001                                  pPos = &PCURCRSR->GetBound( 0x0800 ==
-//STRIP001                                              aSave.GetType() );
-//STRIP001                                  break;
-//STRIP001                              }
-//STRIP001                              ++nCnt;
-//STRIP001                          FOREACHPAM_END()
-//STRIP001                          if( pPos )
-//STRIP001                              break;
-//STRIP001
-//STRIP001                      FOREACHSHELL_END( pShell )
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001          case 0x0400:
-//STRIP001          case 0x0401:
-//STRIP001              {
-//STRIP001                  USHORT nCnt = 0;
-//STRIP001                  register const SwUnoCrsrTbl& rTbl = pDoc->GetUnoCrsrTbl();
-//STRIP001                  for( USHORT i = 0; i < rTbl.Count(); ++i )
-//STRIP001                  {
-//STRIP001                      FOREACHPAM_START( rTbl[ i ] )
-//STRIP001                          if( aSave.GetCount() == nCnt )
-//STRIP001                          {
-//STRIP001                              pPos = &PCURCRSR->GetBound( 0x0400 ==
-//STRIP001                                                  aSave.GetType() );
-//STRIP001                              break;
-//STRIP001                          }
-//STRIP001                          ++nCnt;
-//STRIP001                      FOREACHPAM_END()
-//STRIP001                      if( pPos )
-//STRIP001                          break;
-//STRIP001
-//STRIP001                      SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ i ];
-//STRIP001                      if( pUnoTblCrsr )
-//STRIP001                      {
-//STRIP001                          FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
-//STRIP001                              if( aSave.GetCount() == nCnt )
-//STRIP001                              {
-//STRIP001                                  pPos = &PCURCRSR->GetBound( 0x0400 ==
-//STRIP001                                                  aSave.GetType() );
-//STRIP001                                  break;
-//STRIP001                              }
-//STRIP001                              ++nCnt;
-//STRIP001                          FOREACHPAM_END()
-//STRIP001                      }
-//STRIP001                      if( pPos )
-//STRIP001                          break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( pPos )
-//STRIP001          {
-//STRIP001              pPos->nNode = rNd;
-//STRIP001              pPos->nContent.Assign( pCNd, Min( aSave.GetContent(), nLen ) );
-//STRIP001          }
-//STRIP001
-//STRIP001          rSaveArr.Remove( n, 2 );
-//STRIP001          n -= 2;
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
 
