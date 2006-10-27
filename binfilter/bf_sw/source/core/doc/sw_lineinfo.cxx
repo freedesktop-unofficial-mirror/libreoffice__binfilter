@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_lineinfo.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:42:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:26:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #include "doc.hxx"
 #include "lineinfo.hxx"
@@ -114,20 +111,6 @@ namespace binfilter {
 /*N*/   return *this;
 /*N*/ }
 
-//STRIP001 BOOL SwLineNumberInfo::operator==( const SwLineNumberInfo& rInf ) const
-//STRIP001 {
-//STRIP001  return  GetRegisteredIn() == rInf.GetRegisteredIn() &&
-//STRIP001          aType.GetNumberingType() == rInf.GetNumType().GetNumberingType() &&
-//STRIP001          aDivider == rInf.GetDivider() &&
-//STRIP001          nPosFromLeft == rInf.GetPosFromLeft() &&
-//STRIP001          nCountBy == rInf.GetCountBy() &&
-//STRIP001          nDividerCountBy == rInf.GetDividerCountBy() &&
-//STRIP001          ePos == rInf.GetPos() &&
-//STRIP001          bPaintLineNumbers == rInf.IsPaintLineNumbers() &&
-//STRIP001          bCountBlankLines == rInf.IsCountBlankLines() &&
-//STRIP001          bCountInFlys == rInf.IsCountInFlys() &&
-//STRIP001          bRestartEachPage == rInf.IsRestartEachPage();
-//STRIP001 }
 
 
 /*N*/ SwCharFmt* SwLineNumberInfo::GetCharFmt(SwDoc &rDoc) const
