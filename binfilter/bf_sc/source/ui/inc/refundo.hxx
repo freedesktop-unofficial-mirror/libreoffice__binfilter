@@ -4,9 +4,9 @@
  *
  *  $RCSfile: refundo.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:10:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:23:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,36 +42,14 @@
 #include <tools/debug.hxx>
 namespace binfilter {
 class ScDocument;
-//STRIP001 class ScDBCollection;
-//STRIP001 class ScRangeName;
-//STRIP001 class ScPrintRangeSaver;
-//STRIP001 class ScPivotCollection;
-//STRIP001 class ScDPCollection;
-//STRIP001 class ScChartCollection;
-//STRIP001 class ScConditionalFormatList;
-//STRIP001 class ScDetOpList;
-//STRIP001 class ScChartListenerCollection;
-//STRIP001 class ScAreaLinkSaveCollection;
 
 class ScRefUndoData
 {
 private:
-//STRIP001  ScDBCollection*             pDBCollection;
-//STRIP001  ScRangeName*                pRangeName;
-//STRIP001  ScPrintRangeSaver*          pPrintRanges;
-//STRIP001  ScPivotCollection*          pPivotCollection;
-//STRIP001  ScDPCollection*             pDPCollection;
-//STRIP001  ScConditionalFormatList*    pCondFormList;
-//STRIP001  ScDetOpList*                pDetOpList;
-//STRIP001  ScChartListenerCollection*  pChartListenerCollection;
-//STRIP001  ScAreaLinkSaveCollection*   pAreaLinks;
 
 public:
                 ScRefUndoData( const ScDocument* pDoc ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScRefUndoData( const ScDocument* pDoc );
-//STRIP001              ~ScRefUndoData();
 
-//STRIP001  void        DeleteUnchanged( const ScDocument* pDoc );
-//STRIP001  void        DoUndo( ScDocument* pDoc, BOOL bUndoRefFirst );
 };
 
 

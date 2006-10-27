@@ -4,9 +4,9 @@
  *
  *  $RCSfile: printfun.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:09:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:22:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,12 +100,6 @@ class ScJobSetup
 {
 public:
     ScJobSetup( SfxPrinter* pPrinter );
-//STRIP001
-//STRIP001  Size        aUserSize;
-//STRIP001  MapMode     aUserMapMode;
-//STRIP001  Paper       ePaper;
-//STRIP001  Orientation eOrientation;
-//STRIP001  USHORT      nPaperBin;
 };
 
 struct ScPrintState                         //  Variablen aus ScPrintFunc retten
@@ -137,8 +131,6 @@ public:
             ScPageRowEntry()    { nStartRow = nEndRow = nPagesX = 0; pHidden = NULL; }
             ~ScPageRowEntry()   { delete[] pHidden; }
 
-//STRIP001          ScPageRowEntry(const ScPageRowEntry& r);
-//STRIP001  const ScPageRowEntry& operator=(const ScPageRowEntry& r);
 
     USHORT  GetStartRow() const     { return nStartRow; }
     USHORT  GetEndRow() const       { return nEndRow; }
@@ -147,10 +139,7 @@ public:
     void    SetEndRow(USHORT n)     { nEndRow = n; }
 
     void    SetPagesX(USHORT nNew);
-//STRIP001  void    SetHidden(USHORT nX);
-//STRIP001  BOOL    IsHidden(USHORT nX) const;
 
-//STRIP001  USHORT  CountVisible() const;
 };
 
 class ScPrintFunc
@@ -259,28 +248,18 @@ public:
                                  const ScRange* pArea = NULL,
                                  const ScPrintOptions* pOptions = NULL );
 
-//STRIP001                  ScPrintFunc( OutputDevice* pOutDev, ScDocShell* pShell,
-//STRIP001                               const ScPrintState& rState,
-//STRIP001                               const ScPrintOptions* pOptions );
 
                     ~ScPrintFunc();
 
-//STRIP001  static void     DrawToDev( ScDocument* pDoc, OutputDevice* pDev, double nPrintFactor,
-//STRIP001                              const Rectangle& rBound, ScViewData* pViewData, BOOL bMetaFile );
 
     void            SetDrawView( FmFormView* pNew );
 
-//STRIP001  void            SetOffset( const Point& rOfs );
-//STRIP001  void            SetManualZoom( USHORT nNewZoom );
     void            SetDateTime( const Date& rDate, const Time& rTime );
 
-//STRIP001  void            SetClearFlag( BOOL bFlag );
-//STRIP001  void            SetUseStyleColor( BOOL bFlag );
     void            SetRenderFlag( BOOL bFlag );
 
     BOOL            UpdatePages();
 
-//STRIP001  void            ApplyPrintSettings();       // aus DoPrint() schon gerufen
     long            DoPrint( const MultiSelection& rPageRanges,
                                 long nStartPage, long nDisplayStart, BOOL bDoPrint,
                                 SfxProgress* pProgress, ScPreviewLocationData* pLocationData );
@@ -288,8 +267,6 @@ public:
                     //  Werte abfragen - sofort
 
     Size            GetPageSize() const { return aPageSize; }
-//STRIP001  Size            GetDataSize() const;
-//STRIP001  void            GetScaleData( Size& rPhysSize, long& rDocHdr, long& rDocFtr );
     long            GetFirstPageNo() const  { return aTableParam.nFirstPageNo; }
 
                     //  letzte Werte abfragen - nach DoPrint !!!
@@ -301,7 +278,6 @@ public:
 
     void            ResetBreaks( USHORT nTab );
 
-//STRIP001  void            GetPrintState( ScPrintState& rState );
     BOOL            GetLastSourceRange( ScRange& rRange ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 BOOL           GetLastSourceRange( ScRange& rRange ) const;
 
 #ifdef _PRINTFUN_CXX
@@ -323,38 +299,12 @@ private:
 
     void            InitModes();
 
-//STRIP001  BOOL            IsLeft( long nPageNo );
     BOOL            IsMirror( long nPageNo );
     void            ReplaceFields( long nPageNo );      // aendert Text in pEditEngine
-//STRIP001  void            MakeTableString();                  // setzt aTableStr
 
-//STRIP001  void            PrintPage( long nPageNo,
-//STRIP001                                  USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
-//STRIP001                                  BOOL bDoPrint, ScPreviewLocationData* pLocationData );
-//STRIP001  void            PrintArea( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
-//STRIP001                                  long nScrX, long nScrY,
-//STRIP001                                  BOOL bShLeft, BOOL bShTop, BOOL bShRight, BOOL bShBottom );
-//STRIP001  void            LocateArea( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
-//STRIP001                                  long nScrX, long nScrY, BOOL bRepCol, BOOL bRepRow,
-//STRIP001                                  ScPreviewLocationData& rLocationData );
-//STRIP001  void            PrintColHdr( USHORT nX1, USHORT nX2, long nScrX, long nScrY );
-//STRIP001  void            PrintRowHdr( USHORT nY1, USHORT nY2, long nScrX, long nScrY );
-//STRIP001  void            LocateColHdr( USHORT nX1, USHORT nX2, long nScrX, long nScrY,
-//STRIP001                              BOOL bRepCol, ScPreviewLocationData& rLocationData );
-//STRIP001  void            LocateRowHdr( USHORT nY1, USHORT nY2, long nScrX, long nScrY,
-//STRIP001                              BOOL bRepRow, ScPreviewLocationData& rLocationData );
-//STRIP001  void            PrintHF( long nPageNo, BOOL bHeader, long nStartY,
-//STRIP001                                  BOOL bDoPrint, ScPreviewLocationData* pLocationData );
 
-//STRIP001  long            PrintNotes( long nPageNo, long nNoteStart, BOOL bDoPrint, ScPreviewLocationData* pLocationData );
-//STRIP001  long            DoNotes( long nNoteStart, BOOL bDoPrint, ScPreviewLocationData* pLocationData );
 
-//STRIP001  void            DrawBorder( long nScrX, long nScrY, long nScrW, long nScrH,
-//STRIP001                                  const SvxBoxItem* pBorderData,
-//STRIP001                                  const SvxBrushItem* pBackground,
-//STRIP001                                  const SvxShadowItem* pShadow );
 
-//STRIP001  void            FillPageData();
 #endif
 };
 
