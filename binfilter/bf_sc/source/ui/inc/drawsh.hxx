@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:43:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:07:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,19 +59,14 @@ class ScViewData;
 
 class ScDrawShell : public SfxShell
 {
-//STRIP001  ScViewData* pViewData;
 
-//STRIP001     DECL_LINK( NameObjectHdl, SvxNameDialog* );
 
-//STRIP001 protected:
-//STRIP001  ScViewData* GetViewData()   { return pViewData; }
 
 public:
     TYPEINFO();
     SFX_DECL_INTERFACE(SCID_DRAW_SHELL);
 
     ScDrawShell(ScViewData* pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDrawShell(ScViewData* pData);
-//STRIP001                  ~ScDrawShell();
 
     void    StateDisableItems( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    StateDisableItems( SfxItemSet &rSet );
 
@@ -89,11 +84,7 @@ public:
     void    ExecuteHLink(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecuteHLink(SfxRequest& rReq);     // Hyperlink
     void    GetHLinkState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetHLinkState(SfxItemSet& rSet);
 
-//STRIP001  void    ExecuteLineDlg( SfxRequest& rReq, USHORT nTabPage = 0xffff );
-//STRIP001  void    ExecuteAreaDlg( SfxRequest& rReq, USHORT nTabPage = 0xffff );
-//STRIP001  void    ExecuteTextAttrDlg( SfxRequest& rReq, USHORT nTabPage = 0xffff );
 
-//STRIP001  BOOL    AreAllObjectsOnLayer(USHORT nLayerNo,const SdrMarkList& rMark);
 };
 
 
