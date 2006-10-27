@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_calc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:19:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:15:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,12 +63,6 @@
 #ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
@@ -86,24 +80,15 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
 #ifndef _DOCSTAT_HXX //autogen
 #include <docstat.hxx>
 #endif
-// auto strip #ifndef _CALC_HXX
-// auto strip #include <calc.hxx>
-// auto strip #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-// auto strip #ifndef _DBFLD_HXX
-// auto strip #include <dbfld.hxx>
-// auto strip #endif
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>
 #endif
@@ -119,9 +104,6 @@
 #ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
 #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
@@ -515,13 +497,6 @@ static int
 |*
 |******************************************************************************/
 
-//STRIP001 String SwCalc::GetStrResult( const SwSbxValue& rVal, BOOL bRound )
-//STRIP001 {
-//STRIP001  if( !rVal.IsDouble() )
-//STRIP001         return rVal.GetString();
-//STRIP001
-//STRIP001  return GetStrResult( rVal.GetDouble(), bRound );
-//STRIP001 }
 
 
 /*N*/ String SwCalc::GetStrResult( double nValue, BOOL bRound )
@@ -650,41 +625,6 @@ static int
 /*N*/       if( pMgr && sSourceName.Len() && sTableName.Len() &&
 /*N*/           pMgr->OpenDataSource(sSourceName, sTableName))
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            String sColumnName( GetColumnName( sTmpName ));
-//STRIP001 /*?*/            ASSERT (sColumnName.Len(), "DB-Spaltenname fehlt!");
-//STRIP001 /*?*/
-//STRIP001 /*?*/            String sDBNum( SwFieldType::GetTypeStr(TYP_DBSETNUMBERFLD) );
-//STRIP001 /*?*/            sDBNum.ToLowerAscii();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // Hier nochmal initialisieren, da das nicht mehr in docfld
-//STRIP001 /*?*/            // fuer Felder != RES_DBFLD geschieht. Z.B. wenn ein Expressionfield
-//STRIP001 /*?*/            // vor einem DB_Field in einem Dok vorkommt.
-//STRIP001 /*?*/            VarChange( sDBNum, pMgr->GetSelectedRecordId(sSourceName, sTableName));
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if( sDBNum.EqualsIgnoreCaseAscii(sColumnName) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                aErrExpr.nValue.PutLong(long(pMgr->GetSelectedRecordId(sSourceName, sTableName)));
-//STRIP001 /*?*/                return &aErrExpr;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ULONG nTmpRec = 0;
-//STRIP001 /*?*/            if( 0 != ( pFnd = Find( sDBNum, VarTable, TBLSZ ) ) )
-//STRIP001 /*?*/                nTmpRec = ((SwCalcExp*)pFnd)->nValue.GetULong();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            String sResult;
-//STRIP001 /*?*/            double nNumber = DBL_MAX;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            long nLang = SvxLocaleToLanguage( pLclData->getLocale() );
-//STRIP001 /*?*/            if(pMgr->GetColumnCnt( sSourceName, sTableName, sColumnName,
-//STRIP001 /*?*/                                    nTmpRec, nLang, sResult, &nNumber ))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (nNumber != DBL_MAX)
-//STRIP001 /*?*/                    aErrExpr.nValue.PutDouble( nNumber );
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    aErrExpr.nValue.PutString( sResult );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                return &aErrExpr;
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/       // auf keinen fall eintragen!!
 /*N*/       return &aErrExpr;
@@ -1067,19 +1007,6 @@ static int
 /*M*/       case '5':   case '6':   case '7':   case '8':   case '9':
 /*M*/       case ',':
 /*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                        double nVal;
-//STRIP001 /*?*/                        --nCommandPos;      //  auf das 1. Zeichen zurueck
-//STRIP001 /*?*/                        if( Str2Double( sCommand, nCommandPos, nVal, pLclData ))
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            nNumberValue.PutDouble( nVal );
-//STRIP001 /*?*/                            eCurrOper = CALC_NUMBER;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            // fehlerhafte Zahl
-//STRIP001 /*?*/                            eError = CALC_SYNTAX;
-//STRIP001 /*?*/                            eCurrOper = CALC_PRINT;
-//STRIP001 /*?*/                        }
 /*M*/                   }
 /*M*/                   break;
 /*M*/
@@ -1664,31 +1591,6 @@ static int
 
 //------------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SwCalc::IsValidVarName( const String& rStr,
-//STRIP001                                  String* pValidName )
-//STRIP001 {
-//STRIP001  FASTBOOL bRet = FALSE;
-//STRIP001  using namespace ::com::sun::star::i18n;
-//STRIP001  {
-//STRIP001      // Parse any token.
-//STRIP001      ParseResult aRes = GetAppCharClass().parseAnyToken( rStr, 0,
-//STRIP001                                                  coStartFlags, aEmptyStr,
-//STRIP001                                                  coContFlags, aEmptyStr );
-//STRIP001
-//STRIP001      if( aRes.TokenType & KParseType::IDENTNAME )
-//STRIP001      {
-//STRIP001          bRet = aRes.EndPos == rStr.Len();
-//STRIP001          if( pValidName )
-//STRIP001          {
-//STRIP001              xub_StrLen nRealStt = (xub_StrLen)aRes.LeadingWhiteSpace;
-//STRIP001              *pValidName = rStr.Copy( nRealStt, aRes.EndPos - nRealStt );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if( pValidName )
-//STRIP001          pValidName->Erase();
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 //------------------------------------------------------------------------------
 
@@ -1732,11 +1634,6 @@ static int
 /*N*/ {
 /*N*/ }
 
-//STRIP001 BOOL SwSbxValue::GetBool() const
-//STRIP001 {
-//STRIP001  return SbxSTRING == GetType() ? 0 != GetString().Len()
-//STRIP001                                : SbxValue::GetBool();
-//STRIP001 }
 
 /*N*/ double SwSbxValue::GetDouble() const
 /*N*/ {
