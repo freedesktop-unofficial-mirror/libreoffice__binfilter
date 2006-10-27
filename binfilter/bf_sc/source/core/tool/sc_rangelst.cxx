@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rangelst.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:14:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:36:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,11 +42,8 @@
 
 #define SC_RANGELST_CXX         //fuer ICC
 
-// auto strip #include <tools/debug.hxx>
 #include <stdlib.h>             // qsort
-// auto strip #include <unotools/collatorwrapper.hxx>
 
-// auto strip #include "rangelst.hxx"
 #include "document.hxx"
 #include "refupdat.hxx"
 #include "rechead.hxx"
@@ -213,20 +209,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScRangeList::operator==( const ScRangeList& r ) const
-//STRIP001 {
-//STRIP001  if ( this == &r )
-//STRIP001      return TRUE;                // identische Referenz
-//STRIP001  if ( Count() != r.Count() )
-//STRIP001      return FALSE;
-//STRIP001  ULONG nCnt = Count();
-//STRIP001  for ( ULONG nIdx = 0; nIdx < nCnt; nIdx++ )
-//STRIP001  {
-//STRIP001      if ( *GetObject( nIdx ) != *r.GetObject( nIdx ) )
-//STRIP001          return FALSE;           // auch andere Reihenfolge ist ungleich
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ BOOL ScRangeList::Store( SvStream& rStream ) const
@@ -294,30 +276,8 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 ScRange* ScRangeList::Find( const ScAddress& rAdr ) const
-//STRIP001 {
-//STRIP001  ULONG nCount = Count();
-//STRIP001  for ( ULONG j = 0; j < nCount; j++ )
-//STRIP001  {
-//STRIP001      ScRange* pR = GetObject( j );
-//STRIP001      if ( pR->In( rAdr ) )
-//STRIP001          return pR;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 
-//STRIP001 ScRange* ScRangeList::Find( const ScRange& rRange ) const
-//STRIP001 {
-//STRIP001  ULONG nCount = Count();
-//STRIP001  for ( ULONG j = 0; j < nCount; j++ )
-//STRIP001  {
-//STRIP001      ScRange* pR = GetObject( j );
-//STRIP001      if ( *pR == rRange )
-//STRIP001          return pR;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 
 /*N*/ ScRangeList::ScRangeList( const ScRangeList& rList )
@@ -328,10 +288,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 ScRangeList* ScRangeList::Clone() const
-//STRIP001 {
-//STRIP001  return new ScRangeList( *this );
-//STRIP001 }
 
 
 /*N*/ ScRangeList& ScRangeList::operator=(const ScRangeList& rList)
@@ -346,41 +302,10 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScRangeList::Intersects( const ScRange& rRange ) const
-//STRIP001 {
-//STRIP001  ULONG nCount = Count();
-//STRIP001  for ( ULONG j = 0; j < nCount; j++ )
-//STRIP001      if ( GetObject(j)->Intersects( rRange ) )
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 BOOL ScRangeList::In( const ScRange& rRange ) const
-//STRIP001 {
-//STRIP001  ULONG nCount = Count();
-//STRIP001  for ( ULONG j = 0; j < nCount; j++ )
-//STRIP001      if ( GetObject(j)->In( rRange ) )
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 ULONG ScRangeList::GetCellCount() const
-//STRIP001 {
-//STRIP001  ULONG nCellCount = 0;
-//STRIP001  ULONG nCount = Count();
-//STRIP001  for ( ULONG j = 0; j < nCount; j++ )
-//STRIP001  {
-//STRIP001      ScRange* pR = GetObject( j );
-//STRIP001      nCellCount += ULONG(pR->aEnd.Col() - pR->aStart.Col() + 1)
-//STRIP001          * ULONG(pR->aEnd.Row() - pR->aStart.Row() + 1)
-//STRIP001          * ULONG(pR->aEnd.Tab() - pR->aStart.Tab() + 1);
-//STRIP001  }
-//STRIP001  return nCellCount;
-//STRIP001 }
 
 
 // === ScRangePairList ====================================================
@@ -503,20 +428,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScRangePairList::operator==( const ScRangePairList& r ) const
-//STRIP001 {
-//STRIP001  if ( this == &r )
-//STRIP001      return TRUE;                // identische Referenz
-//STRIP001  if ( Count() != r.Count() )
-//STRIP001      return FALSE;
-//STRIP001  ULONG nCnt = Count();
-//STRIP001  for ( ULONG nIdx = 0; nIdx < nCnt; nIdx++ )
-//STRIP001  {
-//STRIP001      if ( *GetObject( nIdx ) != *r.GetObject( nIdx ) )
-//STRIP001          return FALSE;           // auch andere Reihenfolge ist ungleich
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ BOOL ScRangePairList::Store( SvStream& rStream ) const
@@ -654,111 +565,8 @@ struct ScRangePairNameSort
 };
 
 
-//STRIP001 int
-//STRIP001 #ifdef WNT
-//STRIP001 __cdecl
-//STRIP001 #endif
-//STRIP001 ScRangePairList::QsortNameCompare( const void* p1, const void* p2 )
-//STRIP001 {
-//STRIP001  const ScRangePairNameSort* ps1 = (const ScRangePairNameSort*)p1;
-//STRIP001  const ScRangePairNameSort* ps2 = (const ScRangePairNameSort*)p2;
-//STRIP001  const ScAddress& rPos1 = ps1->pPair->GetRange(0).aStart;
-//STRIP001  const ScAddress& rPos2 = ps2->pPair->GetRange(0).aStart;
-//STRIP001  String aStr1, aStr2;
-//STRIP001  sal_Int32 nComp;
-//STRIP001  if ( rPos1.Tab() == rPos2.Tab() )
-//STRIP001      nComp = COMPARE_EQUAL;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ps1->pDoc->GetName( rPos1.Tab(), aStr1 );
-//STRIP001      ps2->pDoc->GetName( rPos2.Tab(), aStr2 );
-//STRIP001      nComp = ScGlobal::pCollator->compareString( aStr1, aStr2 );
-//STRIP001  }
-//STRIP001  switch ( nComp )
-//STRIP001  {
-//STRIP001      case COMPARE_LESS:
-//STRIP001          return -1;
-//STRIP001      break;
-//STRIP001      case COMPARE_GREATER:
-//STRIP001          return 1;
-//STRIP001      break;
-//STRIP001      default:
-//STRIP001          // gleiche Tabs
-//STRIP001          if ( rPos1.Col() < rPos2.Col() )
-//STRIP001              return -1;
-//STRIP001          if ( rPos1.Col() > rPos2.Col() )
-//STRIP001              return 1;
-//STRIP001          // gleiche Cols
-//STRIP001          if ( rPos1.Row() < rPos2.Row() )
-//STRIP001              return -1;
-//STRIP001          if ( rPos1.Row() > rPos2.Row() )
-//STRIP001              return 1;
-//STRIP001          // erste Ecke gleich, zweite Ecke
-//STRIP001          {
-//STRIP001              const ScAddress& rPos1 = ps1->pPair->GetRange(0).aEnd;
-//STRIP001              const ScAddress& rPos2 = ps2->pPair->GetRange(0).aEnd;
-//STRIP001              if ( rPos1.Tab() == rPos2.Tab() )
-//STRIP001                  nComp = COMPARE_EQUAL;
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  ps1->pDoc->GetName( rPos1.Tab(), aStr1 );
-//STRIP001                  ps2->pDoc->GetName( rPos2.Tab(), aStr2 );
-//STRIP001                  nComp = ScGlobal::pCollator->compareString( aStr1, aStr2 );
-//STRIP001              }
-//STRIP001              switch ( nComp )
-//STRIP001              {
-//STRIP001                  case COMPARE_LESS:
-//STRIP001                      return -1;
-//STRIP001                  break;
-//STRIP001                  case COMPARE_GREATER:
-//STRIP001                      return 1;
-//STRIP001                  break;
-//STRIP001                  default:
-//STRIP001                      // gleiche Tabs
-//STRIP001                      if ( rPos1.Col() < rPos2.Col() )
-//STRIP001                          return -1;
-//STRIP001                      if ( rPos1.Col() > rPos2.Col() )
-//STRIP001                          return 1;
-//STRIP001                      // gleiche Cols
-//STRIP001                      if ( rPos1.Row() < rPos2.Row() )
-//STRIP001                          return -1;
-//STRIP001                      if ( rPos1.Row() > rPos2.Row() )
-//STRIP001                          return 1;
-//STRIP001                      return 0;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          return 0;
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 ScRangePair** ScRangePairList::CreateNameSortedArray( ULONG& nCount,
-//STRIP001      ScDocument* pDoc ) const
-//STRIP001 {
-//STRIP001  nCount = Count();
-//STRIP001  DBG_ASSERT( nCount * sizeof(ScRangePairNameSort) <= (size_t)~0x1F,
-//STRIP001      "ScRangePairList::CreateNameSortedArray nCount * sizeof(ScRangePairNameSort) > (size_t)~0x1F" );
-//STRIP001  ScRangePairNameSort* pSortArray = (ScRangePairNameSort*)
-//STRIP001      new BYTE [ nCount * sizeof(ScRangePairNameSort) ];
-//STRIP001  ULONG j;
-//STRIP001  for ( j=0; j < nCount; j++ )
-//STRIP001  {
-//STRIP001      pSortArray[j].pPair = GetObject( j );
-//STRIP001      pSortArray[j].pDoc = pDoc;
-//STRIP001  }
-//STRIP001 #if !(defined(ICC ) && defined(OS2))
-//STRIP001  qsort( (void*)pSortArray, nCount, sizeof(ScRangePairNameSort), &ScRangePairList::QsortNameCompare );
-//STRIP001 #else
-//STRIP001  qsort( (void*)pSortArray, nCount, sizeof(ScRangePairNameSort), ICCQsortRPairCompare );
-//STRIP001 #endif
-//STRIP001  // ScRangePair Pointer aufruecken
-//STRIP001  ScRangePair** ppSortArray = (ScRangePair**)pSortArray;
-//STRIP001  for ( j=0; j < nCount; j++ )
-//STRIP001  {
-//STRIP001      ppSortArray[j] = pSortArray[j].pPair;
-//STRIP001  }
-//STRIP001  return ppSortArray;
-//STRIP001 }
 
 
 
