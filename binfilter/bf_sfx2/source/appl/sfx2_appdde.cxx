@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:02:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:53:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,49 +33,20 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SV_WRKWIN_HXX //autogen
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXRECTITEM_HXX //autogen
-// auto strip #include <svtools/rectitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXENUMITEM_HXX //autogen
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXINTITEM_HXX //autogen
-// auto strip #include <svtools/intitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SB_SBSTAR_HXX //autogen
-// auto strip #include <basic/sbstar.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
 #ifndef _SVDDE_HXX //autogen
 #include <svtools/svdde.hxx>
 #endif
-// auto strip #ifndef _LNKBASE_HXX //autogen
-// auto strip #include <so3/lnkbase.hxx>
-// auto strip #endif
-// auto strip #ifndef _LINKMGR_HXX //autogen
-// auto strip #include <so3/linkmgr.hxx>
-// auto strip #endif
 #include <tools/urlobj.hxx>
 #include <svtools/pathoptions.hxx>
 #pragma hdrstop
 
-// auto strip #include "app.hxx"
 #include "appdata.hxx"
 #include "objsh.hxx"
-// auto strip #include "viewfrm.hxx"
 #include "topfrm.hxx"
 #include "dispatch.hxx"
-// auto strip #include "sfxtypes.hxx"
 #include "sfxsids.hrc"
 #if SUPD<613//MUSTINI
-// auto strip #include "inimgr.hxx"
 #endif
-// auto strip #include "helper.hxx"
 
 #ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
@@ -154,155 +125,18 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 //========================================================================
 
-//STRIP001 BOOL SfxAppEvent_Impl( ApplicationEvent &rAppEvent,
-//STRIP001                     const String &rCmd, const String &rEvent )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Pr"uft, ob 'rCmd' das Event 'rEvent' ist (ohne '(') und baut
-//STRIP001  aus diesem dann ein <ApplicationEvent> zusammen, das per
-//STRIP001  <Application::AppEvent()> ausgef"uhrt werden kann. Ist 'rCmd' das
-//STRIP001  angegegeben Event 'rEvent', dann wird TRUE zur"uckgegeben, sonst FALSE.
-//STRIP001
-//STRIP001
-//STRIP001  [Beispiel]
-//STRIP001
-//STRIP001  rCmd = "Open(\"d:\doc\doc.sdw\")"
-//STRIP001  rEvent = "Open"
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  String aEvent( rEvent );
-//STRIP001  aEvent += 0x0028 ;// "(" = 28h
-//STRIP001     if ( rCmd.CompareIgnoreCaseToAscii( aEvent, aEvent.Len() ) == COMPARE_EQUAL )
-//STRIP001  {
-//STRIP001      String aData( rCmd );
-//STRIP001      aData.Erase( 0, aEvent.Len() );
-//STRIP001      if ( aData.Len() > 2 )
-//STRIP001      {
-//STRIP001          // in das ApplicationEvent-Format wandeln
-//STRIP001          aData.Erase( aData.Len()-1, 1 );
-//STRIP001          for ( USHORT n = 0; n < aData.Len(); ++n )
-//STRIP001          {
-//STRIP001              if ( aData.GetChar(n) == 0x0022 ) // " = 22h
-//STRIP001                  for ( ; aData.GetChar(++n) != 0x0022 ; )
-//STRIP001                      /* empty loop */ ;
-//STRIP001              else if ( aData.GetChar(n) == 0x0020 ) // SPACE = 20h
-//STRIP001                  aData.SetChar(n, '\n');
-//STRIP001          }
-//STRIP001          aData.EraseAllChars( 0x0022 );
-//STRIP001          ApplicationAddress aAddr;
-//STRIP001          rAppEvent = ApplicationEvent( String(), aAddr, U2S(rEvent), aData );
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 
-//STRIP001 long SfxApplication::DdeExecute
-//STRIP001 (
-//STRIP001  const String&   rCmd        // in unserer BASIC-Syntax formuliert
-//STRIP001 )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxApplication-Subklasse gerichtete DDE-Kommandos
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung versteht die API-Funktionalit"at der
-//STRIP001  betreffenden SfxApplication-Subklasse in BASIC-Syntax. R"uckgabewerte
-//STRIP001  k"onnen dabei leider nicht "ubertragen werden.
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  // Print oder Open-Event?
-//STRIP001  ApplicationEvent aAppEvent;
-//STRIP001  if ( SfxAppEvent_Impl( aAppEvent, rCmd, DEFINE_CONST_UNICODE("Print") ) ||
-//STRIP001       SfxAppEvent_Impl( aAppEvent, rCmd, DEFINE_CONST_UNICODE("Open") ) )
-//STRIP001      GetpApp()->AppEvent( aAppEvent );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // alle anderen per BASIC
-//STRIP001      EnterBasicCall();
-//STRIP001      StarBASIC* pBasic = GetBasic();
-//STRIP001      DBG_ASSERT( pBasic, "Wo ist mein Basic???" );
-//STRIP001      SbxVariable* pRet = pBasic->Execute( rCmd );
-//STRIP001      LeaveBasicCall();
-//STRIP001      if( !pRet )
-//STRIP001      {
-//STRIP001          SbxBase::ResetError();
-//STRIP001          return 0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return 1;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 long SfxApplication::DdeGetData
-//STRIP001 (
-//STRIP001  const String&   rItem,                  // das anzusprechende Item
-//STRIP001  const String& rMimeType,                // in: Format
-//STRIP001  ::com::sun::star::uno::Any & rValue     // out: angeforderte Daten
-//STRIP001 )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxApplication-Subklasse gerichtete DDE-Daten-Anforderungen
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung liefert keine Daten und gibt 0 zur"uck.
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 long SfxApplication::DdeSetData
-//STRIP001 (
-//STRIP001  const String&   rItem,      // das anzusprechende Item
-//STRIP001  const String& rMimeType,                // in: Format
-//STRIP001  const ::com::sun::star::uno::Any & rValue   // out: angeforderte Daten
-//STRIP001 )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxApplication-Subklasse gerichtete DDE-Daten
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung nimmt keine Daten entgegen und liefert 0 zur"uck.
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 ::so3::SvLinkSource* SfxApplication::DdeCreateLinkSource
-//STRIP001 (
-//STRIP001  const String&   rItem      // das zu erzeugende Item
-//STRIP001 )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seiner SfxApplication-Subklasse einen DDE-Hotlink einzurichten
-//STRIP001
-//STRIP001  Die Basisimplementierung erzeugt keinen und liefert 0 zur"uck.
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 //========================================================================
 
@@ -311,26 +145,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/   const String&   rCmd        // in unserer BASIC-Syntax formuliert
 /*?*/ )
 
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxObjectShell-Subklasse gerichtete DDE-Kommandos
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung f"uhrt nichts aus und liefert 0 zur"uck.
-//STRIP001 */
-//STRIP001
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  StarBASIC* pBasic = GetBasic();
-//STRIP001  DBG_ASSERT( pBasic, "Wo ist mein Basic???" ) ;
-//STRIP001  SbxVariable* pRet = pBasic->Execute( rCmd );
-//STRIP001  if( !pRet )
-//STRIP001  {
-//STRIP001      SbxBase::ResetError();
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  return 1;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -341,18 +156,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/   const String& rMimeType,                    // in: Format
 /*?*/   ::com::sun::star::uno::Any & rValue     // out: angeforderte Daten
 /*?*/ )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxObjectShell-Subklasse gerichtete DDE-Daten-Anforderungen
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung liefert keine Daten und gibt 0 zur"uck.
-//STRIP001 */
-//STRIP001
 {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -374,7 +178,6 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 */
 /*?*/
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -384,16 +187,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/   const String&   rItem      // das zu erzeugende Item
 /*?*/ )
 
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seiner SfxObjectShell-Subklasse einen DDE-Hotlink einzurichten
-//STRIP001
-//STRIP001  Die Basisimplementierung erzeugt keinen und liefert 0 zur"uck.
-//STRIP001 */
-//STRIP001
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 //========================================================================
@@ -402,24 +196,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ (
 /*?*/   const String&   rCmd        // in unserer BASIC-Syntax formuliert
 /*?*/ )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxViewFrame-Subklasse gerichtete DDE-Kommandos
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung versteht die API-Funktionalit"at des
-//STRIP001  betreffenden SfxViewFrame, der darin dargestellten SfxViewShell und
-//STRIP001  der betreffenden SfxObjectShell-Subklasse in BASIC-Syntax.
-//STRIP001  R"uckgabewerte k"onnen dabei leider nicht "ubertragen werden.
-//STRIP001 */
-//STRIP001
 {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  if ( GetObjectShell() )
-//STRIP001      return GetObjectShell()->DdeExecute( rCmd );
-//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -430,18 +207,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/   const String& rMimeType,                // in: Format
 /*?*/   ::com::sun::star::uno::Any & rValue     // out: angeforderte Daten
 /*?*/ )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxViewFrame-Subklasse gerichtete DDE-Daten-Anforderungen
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung liefert keine Daten und gibt 0 zur"uck.
-//STRIP001 */
-//STRIP001
 {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -452,18 +218,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/   const String& rMimeType,                    // in: Format
 /*?*/   const ::com::sun::star::uno::Any & rValue   // out: angeforderte Daten
 /*?*/ )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seine SfxViewFrame-Subklasse gerichtete DDE-Daten
-//STRIP001  zu empfangen.
-//STRIP001
-//STRIP001  Die Basisimplementierung nimmt keine Daten entgegen und liefert 0 zur"uck.
-//STRIP001 */
-//STRIP001
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -472,17 +227,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ (
 /*?*/   const String&   rItem      // das zu erzeugende Item
 /*?*/ )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode kann vom Applikationsentwickler "uberladen werden,
-//STRIP001  um an seiner SfxViewFrame-Subklasse einen DDE-Hotlink einzurichten
-//STRIP001
-//STRIP001  Die Basisimplementierung erzeugt keinen und liefert 0 zur"uck.
-//STRIP001 */
-//STRIP001
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return 0;
 /*?*/ }
 
 
@@ -525,37 +270,6 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxApplication::AddDdeTopic( SfxObjectShell* pSh )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( pAppData_Impl->pDocTopics, "es gibt gar keinen Dde-Service" )
-//STRIP001  //OV: Im Serverbetrieb ist DDE abgeklemmt!
-//STRIP001  if( !pAppData_Impl->pDocTopics )
-//STRIP001      return;
-//STRIP001
-//STRIP001  // doppeltes Eintragen verhindern
-//STRIP001  String sShellNm;
-//STRIP001  BOOL bFnd = FALSE;
-//STRIP001  for( USHORT n = pAppData_Impl->pDocTopics->Count(); n; )
-//STRIP001      if( (*pAppData_Impl->pDocTopics)[ --n ]->pSh == pSh )
-//STRIP001      {
-//STRIP001          // JP 18.03.96 - Bug 26470
-//STRIP001          //  falls das Document unbenannt wurde, ist trotzdem ein
-//STRIP001          //  neues Topics anzulegen!
-//STRIP001          if( !bFnd )
-//STRIP001          {
-//STRIP001              bFnd = TRUE;
-//STRIP001              (sShellNm = pSh->GetTitle(SFX_TITLE_FULLNAME)).ToLowerAscii();
-//STRIP001          }
-//STRIP001          String sNm( (*pAppData_Impl->pDocTopics)[ n ]->GetName() );
-//STRIP001          if( sShellNm == sNm.ToLowerAscii() )
-//STRIP001              return ;
-//STRIP001      }
-//STRIP001
-//STRIP001  const SfxDdeDocTopic_Impl* pTopic = new SfxDdeDocTopic_Impl( pSh );
-//STRIP001  pAppData_Impl->pDocTopics->Insert( pTopic,
-//STRIP001                                     pAppData_Impl->pDocTopics->Count() );
-//STRIP001  pAppData_Impl->pDdeService->AddTopic( *pTopic );
-//STRIP001 }
 
 /*N*/ void SfxApplication::RemoveDdeTopic( SfxObjectShell* pSh )
 /*N*/ {
@@ -573,10 +287,6 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 ///*?*/         }
 /*N*/ }
 
-//STRIP001 const DdeService* SfxApplication::GetDdeService() const
-//STRIP001 {
-//STRIP001  return pAppData_Impl->pDdeService;
-//STRIP001 }
 
 /*N*/ DdeService* SfxApplication::GetDdeService()
 /*N*/ {
@@ -587,163 +297,41 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 /*?*/ BOOL ImplDdeService::MakeTopic( const String& rNm )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  // Workaround gegen Event nach unserem Main() unter OS/2
-//STRIP001  // passierte wenn man beim Beenden aus dem OffMgr die App neu startet
-//STRIP001  if ( !Application::IsInExecute() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // das Topic rNm wird gesucht, haben wir es ?
-//STRIP001  // erstmal nur ueber die ObjectShells laufen und die mit dem
-//STRIP001  // Namen heraussuchen:
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  String sNm( rNm );
-//STRIP001  sNm.ToLowerAscii();
-//STRIP001  TypeId aType( TYPE(SfxObjectShell) );
-//STRIP001  SfxObjectShell* pShell = SfxObjectShell::GetFirst( &aType );
-//STRIP001  while( pShell )
-//STRIP001  {
-//STRIP001      String sTmp( pShell->GetTitle(SFX_TITLE_FULLNAME) );
-//STRIP001      sTmp.ToLowerAscii();
-//STRIP001      if( sTmp == sNm )       // die wollen wir haben
-//STRIP001      {
-//STRIP001          SFX_APP()->AddDdeTopic( pShell );
-//STRIP001          bRet = TRUE;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      pShell = SfxObjectShell::GetNext( *pShell, &aType );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !bRet )
-//STRIP001  {
-//STRIP001         INetURLObject aWorkPath( SvtPathOptions().GetWorkPath() );
-//STRIP001      INetURLObject aFile;
-//STRIP001      if ( aWorkPath.GetNewAbsURL( rNm, &aFile ) &&
-//STRIP001           SfxContentHelper::IsDocument( aFile.GetMainURL( INetURLObject::NO_DECODE ) ) )
-//STRIP001      {
-//STRIP001          // File vorhanden
-//STRIP001
-//STRIP001          // dann versuche die Datei zu laden:
-//STRIP001          SfxStringItem aName( SID_FILE_NAME, aFile.GetMainURL( INetURLObject::NO_DECODE ) );
-//STRIP001          SfxBoolItem aNewView(SID_OPEN_NEW_VIEW, TRUE);
-//STRIP001 //           SfxBoolItem aHidden(SID_HIDDEN, TRUE);
-//STRIP001          // minimiert!
-//STRIP001          SfxUInt16Item aViewStat( SID_VIEW_ZOOM_MODE, 0 );
-//STRIP001          SfxRectangleItem aRectItem( SID_VIEW_POS_SIZE, Rectangle() );
-//STRIP001
-//STRIP001          SfxBoolItem aSilent(SID_SILENT, TRUE);
-//STRIP001             SfxDispatcher* pDispatcher = SFX_APP()->GetDispatcher_Impl();
-//STRIP001             const SfxPoolItem* pRet = pDispatcher->Execute( SID_OPENDOC,
-//STRIP001                  SFX_CALLMODE_SYNCHRON,
-//STRIP001                  &aName, &aNewView,
-//STRIP001                  &aViewStat,&aRectItem/*aHidden*/,
-//STRIP001                  &aSilent, 0L );
-//STRIP001
-//STRIP001          if( pRet && pRet->ISA( SfxViewFrameItem ) &&
-//STRIP001              ((SfxViewFrameItem*)pRet)->GetFrame() &&
-//STRIP001              0 != ( pShell = ((SfxViewFrameItem*)pRet)
-//STRIP001                  ->GetFrame()->GetObjectShell() ) )
-//STRIP001          {
-//STRIP001              SFX_APP()->AddDdeTopic( pShell );
-//STRIP001              bRet = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
 /*?*/ }
 
 /*?*/ String ImplDdeService::Topics()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); String aRet; return aRet;//STRIP001
-//STRIP001  String sRet;
-//STRIP001  if( GetSysTopic() )
-//STRIP001      sRet += GetSysTopic()->GetName();
-//STRIP001
-//STRIP001  TypeId aType( TYPE(SfxObjectShell) );
-//STRIP001  SfxObjectShell* pShell = SfxObjectShell::GetFirst( &aType );
-//STRIP001  while( pShell )
-//STRIP001  {
-//STRIP001      if( SfxViewFrame::GetFirst( pShell, TYPE(SfxTopViewFrame) ))
-//STRIP001      {
-//STRIP001          if( sRet.Len() )
-//STRIP001              sRet += '\t';
-//STRIP001          sRet += pShell->GetTitle(SFX_TITLE_FULLNAME);
-//STRIP001      }
-//STRIP001      pShell = SfxObjectShell::GetNext( *pShell, &aType );
-//STRIP001  }
-//STRIP001  if( sRet.Len() )
-//STRIP001      sRet += DEFINE_CONST_UNICODE("\r\n");
-//STRIP001  return sRet;
 /*?*/ }
 
 /*?*/ BOOL ImplDdeService::SysTopicExecute( const String* pStr )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  return (BOOL)SFX_APP()->DdeExecute( *pStr );
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*?*/ BOOL SfxDdeTriggerTopic_Impl::Execute( const String* pStr )
 {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001 //    Application::GetAppWindow()->ToTop(TOTOP_RESTOREWHENMIN);
-//STRIP001  return TRUE;
 /*?*/ }
 
 //--------------------------------------------------------------------
 /*?*/ DdeData* SfxDdeDocTopic_Impl::Get( ULONG nFormat )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  String sMimeType( SotExchange::GetFormatMimeType( nFormat ));
-//STRIP001  ::com::sun::star::uno::Any aValue;
-//STRIP001  long nRet = pSh->DdeGetData( GetCurItem(), sMimeType, aValue );
-//STRIP001  if( nRet && aValue.hasValue() && ( aValue >>= aSeq ) )
-//STRIP001  {
-//STRIP001      aData = DdeData( aSeq.getConstArray(), aSeq.getLength(), nFormat );
-//STRIP001      return &aData;
-//STRIP001  }
-//STRIP001  aSeq.realloc( 0 );
-//STRIP001  return 0;
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::Put( const DdeData* pData )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  aSeq = ::com::sun::star::uno::Sequence< sal_Int8 >(
-//STRIP001                          (sal_Int8*)(const void*)*pData, (long)*pData );
-//STRIP001  BOOL bRet;
-//STRIP001  if( aSeq.getLength() )
-//STRIP001  {
-//STRIP001      ::com::sun::star::uno::Any aValue;
-//STRIP001      aValue <<= aSeq;
-//STRIP001      String sMimeType( SotExchange::GetFormatMimeType( pData->GetFormat() ));
-//STRIP001      bRet = 0 != pSh->DdeSetData( GetCurItem(), sMimeType, aValue );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bRet = FALSE;
-//STRIP001  return bRet;
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::Execute( const String* pStr )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  long nRet = pStr ? pSh->DdeExecute( *pStr ) : 0;
-//STRIP001  return 0 != nRet;
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::MakeItem( const String& rItem )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  AddItem( DdeItem( rItem ) );
-//STRIP001  return TRUE;
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::StartAdviseLoop()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  ::so3::SvLinkSource* pNewObj = pSh->DdeCreateLinkSource( GetCurItem() );
-//STRIP001  if( pNewObj )
-//STRIP001  {
-//STRIP001      // dann richten wir auch einen entsprechenden SvBaseLink ein
-//STRIP001      String sNm, sTmp( Application::GetAppName() );
-//STRIP001      ::so3::MakeLnkName( sNm, &sTmp, pSh->GetTitle(SFX_TITLE_FULLNAME), GetCurItem() );
-//STRIP001      new ::so3::SvBaseLink( sNm, OBJECT_DDE_EXTERN, pNewObj );
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001  return bRet;
 /*?*/ }
 
 
