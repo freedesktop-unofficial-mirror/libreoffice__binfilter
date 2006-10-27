@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2006-10-12 10:27:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:59:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,24 +55,12 @@
 #ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XCANCELLABLE_HPP_
-// auto strip #include <com/sun/star/util/XCancellable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_RESULTSETTYPE_HPP_
 #include <com/sun/star/sdbc/ResultSetType.hpp>
 #endif
 #ifndef _COM_SUN_STAR_SDBC_RESULTSETCONCURRENCY_HPP_
 #include <com/sun/star/sdbc/ResultSetConcurrency.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_DATASELECTIONTYPE_HPP_
 #include <com/sun/star/form/DataSelectionType.hpp>
 #endif
@@ -88,9 +76,6 @@
 #ifndef _COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HPP_
 #include <com/sun/star/frame/FrameSearchFlag.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
-// auto strip #include <com/sun/star/frame/XDispatch.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
@@ -109,9 +94,6 @@
 #ifndef _COM_SUN_STAR_SDBCX_PRIVILEGE_HPP_
 #include <com/sun/star/sdbcx/Privilege.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
-// auto strip #include <com/sun/star/sdbc/XRowSet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_TABULATORCYCLE_HPP_
 #include <com/sun/star/form/TabulatorCycle.hpp>
 #endif
@@ -125,13 +107,7 @@
 #include <com/sun/star/util/XURLTransformer.hpp>
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_TIMER_HXX
-// auto strip #include <vcl/timer.hxx>
-// auto strip #endif
 
 #ifndef _FRM_GROUPMANAGER_HXX_
 #include "GroupManager.hxx"
@@ -140,15 +116,9 @@
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-// auto strip #ifndef _FRM_IDS_HXX_
-// auto strip #include "ids.hxx"
-// auto strip #endif
 
 #ifndef _FSYS_HXX
 #include <tools/fsys.hxx>
@@ -159,21 +129,6 @@
 #ifndef _INETSTRM_HXX //autogen
 #include <svtools/inetstrm.hxx>
 #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE2_HXX_
-// auto strip #include <cppuhelper/implbase2.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
-// auto strip #include <comphelper/sequence.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_UNO3_HXX_
-// auto strip #include <comphelper/uno3.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_SEQSTREAM_HXX
 #include <comphelper/seqstream.hxx>
 #endif
@@ -186,9 +141,6 @@
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -198,12 +150,6 @@
 #ifndef _INETTYPE_HXX
 #include <svtools/inettype.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
-// auto strip #include <comphelper/extract.hxx>
-// auto strip #endif
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 #ifndef _SV_SVAPP_HXX   // because of the solar mutex
 #include <vcl/svapp.hxx>
 #endif
