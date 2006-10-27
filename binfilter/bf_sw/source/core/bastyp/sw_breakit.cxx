@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_breakit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:18:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:15:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,15 +36,9 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
@@ -58,9 +52,6 @@
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
@@ -129,34 +120,5 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return nScript;
 /*N*/ }
 
-//STRIP001 USHORT SwBreakIt::GetAllScriptsOfText( const String& rTxt ) const
-//STRIP001 {
-//STRIP001  const USHORT coAllScripts = ( SCRIPTTYPE_LATIN |
-//STRIP001                                SCRIPTTYPE_ASIAN |
-//STRIP001                                SCRIPTTYPE_COMPLEX );
-//STRIP001  USHORT nRet = 0, nScript;
-//STRIP001  if( !xBreak.is() )
-//STRIP001      nRet = coAllScripts;
-//STRIP001  else if( rTxt.Len() )
-//STRIP001  {
-//STRIP001      for( xub_StrLen n = 0, nEnd = rTxt.Len(); n < nEnd;
-//STRIP001              n = xBreak->endOfScript( rTxt, n, nScript ) )
-//STRIP001      {
-//STRIP001          switch( nScript = xBreak->getScriptType( rTxt, n ) )
-//STRIP001          {
-//STRIP001          case ScriptType::LATIN:     nRet |= SCRIPTTYPE_LATIN;   break;
-//STRIP001          case ScriptType::ASIAN:     nRet |= SCRIPTTYPE_ASIAN;   break;
-//STRIP001          case ScriptType::COMPLEX:   nRet |= SCRIPTTYPE_COMPLEX; break;
-//STRIP001          case ScriptType::WEAK:
-//STRIP001                  if( !nRet )
-//STRIP001                      nRet |= coAllScripts;
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001          if( coAllScripts == nRet )
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 }
