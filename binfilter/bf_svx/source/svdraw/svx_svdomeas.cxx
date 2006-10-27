@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdomeas.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:00:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:42:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,33 +35,19 @@
 
 #include "svdomeas.hxx"
 #include <math.h>
-// auto strip #include "svditext.hxx" // enthaelt u.a. define ITEMID_FIELD fuer include flditem
-// auto strip #include "xpoly.hxx"
 #include "xoutx.hxx"
-// auto strip #include "svdtrans.hxx"
-// auto strip #include "svdtouch.hxx"
-// auto strip #include "svdhdl.hxx"
 #include "svdoutl.hxx"
-// auto strip #include "svddrag.hxx"
 #include "svdpool.hxx"
 #include "svdattrx.hxx"
-// auto strip #include "svdmodel.hxx"
 #include "svdio.hxx"
 #include "svdview.hxx"
-// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
 
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _EEITEM_HXX //autogen
-// auto strip #include <eeitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XLNSTIT_HXX //autogen
 #include "xlnstit.hxx"
@@ -91,46 +77,28 @@
 #include "xlnedcit.hxx"
 #endif
 
-// auto strip #ifndef _OUTLOBJ_HXX //autogen
-// auto strip #include <outlobj.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include "outliner.hxx"
-// auto strip #endif
 
 #ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
 #endif
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
 #endif
 
 #include "svdfield.hxx"
-// auto strip #include "flditem.hxx"
 
-// auto strip #include "svdogrp.hxx"
-// auto strip #include "svdopath.hxx"
-// auto strip #include "svdpage.hxx"
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
 
-// auto strip #ifndef _SVX_SVDOIMP_HXX
-// auto strip #include "svdoimp.hxx"
-// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SdrMeasureObjGeoData::SdrMeasureObjGeoData() {}
-//STRIP001 SdrMeasureObjGeoData::~SdrMeasureObjGeoData() {}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -330,29 +298,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 void SdrMeasureObj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  rInfo.bSelectAllowed    =TRUE;
-//STRIP001  rInfo.bMoveAllowed      =TRUE;
-//STRIP001  rInfo.bResizeFreeAllowed=TRUE;
-//STRIP001  rInfo.bResizePropAllowed=TRUE;
-//STRIP001  rInfo.bRotateFreeAllowed=TRUE;
-//STRIP001  rInfo.bRotate90Allowed  =TRUE;
-//STRIP001  rInfo.bMirrorFreeAllowed=TRUE;
-//STRIP001  rInfo.bMirror45Allowed  =TRUE;
-//STRIP001  rInfo.bMirror90Allowed  =TRUE;
-//STRIP001  rInfo.bTransparenceAllowed = FALSE;
-//STRIP001  rInfo.bGradientAllowed = FALSE;
-//STRIP001  rInfo.bShearAllowed     =TRUE;
-//STRIP001  rInfo.bEdgeRadiusAllowed=FALSE;
-//STRIP001  rInfo.bNoOrthoDesired   =TRUE;
-//STRIP001  rInfo.bNoContortion     =FALSE;
-//STRIP001  rInfo.bCanConvToPath    =FALSE;
-//STRIP001  rInfo.bCanConvToPoly    =TRUE;
-//STRIP001  rInfo.bCanConvToPathLineToArea=FALSE;
-//STRIP001  rInfo.bCanConvToPolyLineToArea=FALSE;
-//STRIP001  rInfo.bCanConvToContour = (rInfo.bCanConvToPoly || LineGeometryUsageIsNecessary());
-//STRIP001 }
 
 /*N*/ UINT16 SdrMeasureObj::GetObjIdentifier() const
 /*N*/ {
@@ -503,8 +448,6 @@ namespace binfilter {
 /*N*/   FASTBOOL bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURETEXT_VERTICALCENTERED) {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pOutlinerParaObject!=NULL && pOutlinerParaObject->GetTextObject().GetParagraphCount()==1) {
-//STRIP001 /*?*/            bBrkLine=TRUE; // Unterbrochene Linie, wenn nur 1 Absatz.
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/   rPol.bBreakedLine=bBrkLine;
 /*N*/   if (rPol.eUsedTextHPos==SDRMEASURE_TEXTHAUTO) { // bei zu breitem Text diesen eventuell nach aussen schieben
@@ -647,77 +590,6 @@ namespace binfilter {
 /*N*/   rXPP.Insert(aXP);
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrMeasureObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
-//STRIP001 {
-//STRIP001  // Hidden objects on masterpages, draw nothing
-//STRIP001  if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  // prepare ItemSet of this object
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001
-//STRIP001  // perepare ItemSet to avoid old XOut line drawing
-//STRIP001  SfxItemSet aEmptySet(*rSet.GetPool());
-//STRIP001  aEmptySet.Put(XLineStyleItem(XLINE_NONE));
-//STRIP001
-//STRIP001  // prepare line geometry
-//STRIP001  BOOL bIsLineDraft(0 != (rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTLINE));
-//STRIP001  ::std::auto_ptr< SdrLineGeometry > pLineGeometry( ImpPrepareLineGeometry(rXOut, rSet, bIsLineDraft) );
-//STRIP001
-//STRIP001  // Shadows
-//STRIP001  BOOL bShadOn = ((SdrShadowItem&)(rSet.Get(SDRATTR_SHADOW))).GetValue();
-//STRIP001  if( bShadOn && pLineGeometry.get() )
-//STRIP001  {
-//STRIP001      // draw the line geometry
-//STRIP001      ImpDrawShadowLineGeometry(rXOut, rSet, *pLineGeometry);
-//STRIP001  }
-//STRIP001
-//STRIP001  // Before here the LineAttr were set: if(pLineAttr) rXOut.SetLineAttr(*pLineAttr);
-//STRIP001  rXOut.SetLineAttr(aEmptySet);
-//STRIP001
-//STRIP001  // !!! aGeo muss noch fuer Textausgabe gesetzt werden !!!
-//STRIP001  // aRect ebenso
-//STRIP001  ImpMeasureRec aRec;
-//STRIP001  ImpMeasurePoly aMPol;
-//STRIP001  ImpTakeAttr(aRec);
-//STRIP001  ImpCalcGeometrics(aRec,aMPol);
-//STRIP001  FASTBOOL bMerk1=rXOut.IsLineStart();
-//STRIP001  FASTBOOL bMerk2=rXOut.IsLineEnd();
-//STRIP001  if (aMPol.nMainlineAnz>1) {
-//STRIP001      // Je 1 Linienende temporaer abschalten
-//STRIP001      rXOut.OverrideLineEnd(FALSE);
-//STRIP001      rXOut.DrawLine(aMPol.aMainline1.aP1,aMPol.aMainline1.aP2);
-//STRIP001      rXOut.OverrideLineEnd(bMerk2);
-//STRIP001      rXOut.OverrideLineStart(FALSE);
-//STRIP001      rXOut.DrawLine(aMPol.aMainline2.aP1,aMPol.aMainline2.aP2);
-//STRIP001      rXOut.OverrideLineStart(bMerk1);
-//STRIP001  } else {
-//STRIP001      rXOut.DrawLine(aMPol.aMainline1.aP1,aMPol.aMainline1.aP2);
-//STRIP001  }
-//STRIP001  rXOut.OverrideLineStart(FALSE);
-//STRIP001  rXOut.OverrideLineEnd(FALSE);
-//STRIP001  if (aMPol.nMainlineAnz>2) {
-//STRIP001      rXOut.DrawLine(aMPol.aMainline3.aP1,aMPol.aMainline3.aP2);
-//STRIP001  }
-//STRIP001  rXOut.DrawLine(aMPol.aHelpline1.aP1,aMPol.aHelpline1.aP2);
-//STRIP001  rXOut.DrawLine(aMPol.aHelpline2.aP1,aMPol.aHelpline2.aP2);
-//STRIP001
-//STRIP001  // Own line drawing
-//STRIP001  if( pLineGeometry.get() )
-//STRIP001  {
-//STRIP001      // draw the line geometry
-//STRIP001      ImpDrawColorLineGeometry(rXOut, rSet, *pLineGeometry);
-//STRIP001  }
-//STRIP001
-//STRIP001  FASTBOOL bOk=TRUE;
-//STRIP001  if (bTextDirty) UndirtyText();
-//STRIP001  bOk=SdrTextObj::Paint(rXOut,rInfoRec);
-//STRIP001  if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-//STRIP001      bOk=PaintGluePoints(rXOut,rInfoRec);
-//STRIP001  }
-//STRIP001
-//STRIP001  return bOk;
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrMeasureObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
 /*N*/   FASTBOOL bEdit,
@@ -865,340 +737,29 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 SdrObject* SdrMeasureObj::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-//STRIP001 {
-//STRIP001  FASTBOOL bHit=FALSE;
-//STRIP001  if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
-//STRIP001  INT32 nMyTol=nTol;
-//STRIP001  INT32 nWdt=ImpGetLineWdt()/2; // Halbe Strichstaerke
-//STRIP001  if (nWdt>nMyTol) nMyTol=nWdt; // Bei dicker Linie keine Toleranz noetig
-//STRIP001  Rectangle aR(rPnt,rPnt);
-//STRIP001  aR.Left()  -=nMyTol;
-//STRIP001  aR.Right() +=nMyTol;
-//STRIP001  aR.Top()   -=nMyTol;
-//STRIP001  aR.Bottom()+=nMyTol;
-//STRIP001
-//STRIP001  if (bTextDirty) UndirtyText();
-//STRIP001  ImpMeasureRec aRec;
-//STRIP001  ImpMeasurePoly aMPol;
-//STRIP001  ImpTakeAttr(aRec);
-//STRIP001  ImpCalcGeometrics(aRec,aMPol);
-//STRIP001  bHit=IsRectTouchesLine(aMPol.aMainline1.aP1,aMPol.aMainline1.aP2,aR) ||
-//STRIP001       IsRectTouchesLine(aMPol.aMainline2.aP1,aMPol.aMainline2.aP2,aR) ||
-//STRIP001       IsRectTouchesLine(aMPol.aHelpline1.aP1,aMPol.aHelpline1.aP2,aR) ||
-//STRIP001       IsRectTouchesLine(aMPol.aHelpline2.aP1,aMPol.aHelpline2.aP2,aR);
-//STRIP001  // und nun noch ggf. den Textbereich checken
-//STRIP001  bHit=bHit || SdrTextObj::CheckHit(rPnt,nTol,pVisiLayer)!=NULL;
-//STRIP001  return bHit ? (SdrObject*)this : NULL;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  SdrTextObj::operator=(rObj);
-//STRIP001  aPt1=((SdrMeasureObj&)rObj).aPt1;
-//STRIP001  aPt2=((SdrMeasureObj&)rObj).aPt2;
-//STRIP001  bTextDirty=((SdrMeasureObj&)rObj).bTextDirty;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulMEASURE);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralMEASURE);
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::TakeXorPoly(XPolyPolygon& rXPP, FASTBOOL bDetail) const
-//STRIP001 {
-//STRIP001  ImpMeasureRec aRec;
-//STRIP001  ImpMeasurePoly aMPol;
-//STRIP001  ImpTakeAttr(aRec);
-//STRIP001  ImpCalcGeometrics(aRec,aMPol);
-//STRIP001  ImpCalcXPoly(aMPol,rXPP);
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 USHORT SdrMeasureObj::GetHdlCount() const
-//STRIP001 {
-//STRIP001  return 6;
-//STRIP001 }
 
-//STRIP001 SdrHdl* SdrMeasureObj::GetHdl(USHORT nHdlNum) const
-//STRIP001 {
-//STRIP001  ImpMeasureRec aRec;
-//STRIP001  ImpMeasurePoly aMPol;
-//STRIP001  ImpTakeAttr(aRec);
-//STRIP001  aRec.nHelplineDist=0;
-//STRIP001  ImpCalcGeometrics(aRec,aMPol);
-//STRIP001  Point aPt;
-//STRIP001  SdrHdlKind eHdl=HDL_POLY;
-//STRIP001  switch (nHdlNum) {
-//STRIP001      case 0: aPt=aMPol.aHelpline1.aP1; break;
-//STRIP001      case 1: aPt=aMPol.aHelpline2.aP1; break;
-//STRIP001      case 2: aPt=aPt1;       break;
-//STRIP001      case 3: aPt=aPt2;       break;
-//STRIP001      case 4: aPt=aMPol.aHelpline1.aP2; break;
-//STRIP001      case 5: aPt=aMPol.aHelpline2.aP2; break;
-//STRIP001  } // switch
-//STRIP001  SdrHdl* pHdl=new ImpMeasureHdl(aPt,HDL_USER);
-//STRIP001  pHdl->SetObjHdlNum(nHdlNum);
-//STRIP001  pHdl->SetDrehWink(aMPol.nLineWink);
-//STRIP001  return pHdl;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::AddToHdlList(SdrHdlList& rHdlList) const
-//STRIP001 {
-//STRIP001  SdrTextObj::AddToHdlList(rHdlList);
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::BegDrag(SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  const SdrHdl* pHdl=rDrag.GetHdl();
-//STRIP001  if (pHdl!=NULL) {
-//STRIP001      USHORT nHdlNum=pHdl->GetObjHdlNum();
-//STRIP001      if (nHdlNum!=2 && nHdlNum!=3) {
-//STRIP001          rDrag.SetEndDragChangesAttributes(TRUE);
-//STRIP001      }
-//STRIP001      ImpMeasureRec* pMR=new ImpMeasureRec; // #48544#
-//STRIP001      ImpTakeAttr(*pMR);
-//STRIP001      rDrag.SetUser(pMR);
-//STRIP001  }
-//STRIP001  return pHdl!=NULL;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::MovDrag(SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  ImpMeasureRec* pMR=(ImpMeasureRec*)rDrag.GetUser();
-//STRIP001  if (pMR!=NULL) { // #48544#
-//STRIP001      ImpTakeAttr(*pMR);
-//STRIP001      ImpEvalDrag(*pMR,rDrag);
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::EndDrag(SdrDragStat& rDrag)
-//STRIP001 {
-//STRIP001  Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  ImpMeasureRec* pMR=(ImpMeasureRec*)rDrag.GetUser(); // #48544#
-//STRIP001  ImpMeasureRec aRec0;
-//STRIP001  ImpTakeAttr(aRec0);
-//STRIP001  const SdrHdl* pHdl=rDrag.GetHdl();
-//STRIP001  USHORT nHdlNum=pHdl->GetObjHdlNum();
-//STRIP001  switch (nHdlNum) {
-//STRIP001      case 2: aPt1=pMR->aPt1; SetTextDirty(); break;
-//STRIP001      case 3: aPt2=pMR->aPt2; SetTextDirty(); break;
-//STRIP001      default:
-//STRIP001      {
-//STRIP001          switch(nHdlNum)
-//STRIP001          {
-//STRIP001              case 0:
-//STRIP001              case 1:
-//STRIP001              {
-//STRIP001                  if(pMR->nHelpline1Len!=aRec0.nHelpline1Len)
-//STRIP001                  {
-//STRIP001                      SetItem(SdrMeasureHelpline1LenItem(pMR->nHelpline1Len));
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if(pMR->nHelpline2Len!=aRec0.nHelpline2Len)
-//STRIP001                  {
-//STRIP001                      SetItem(SdrMeasureHelpline2LenItem(pMR->nHelpline2Len));
-//STRIP001                  }
-//STRIP001
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001
-//STRIP001              case 4:
-//STRIP001              case 5:
-//STRIP001              {
-//STRIP001                  if (pMR->nLineDist!=aRec0.nLineDist)
-//STRIP001                  {
-//STRIP001                      SetItem(SdrMeasureLineDistItem(pMR->nLineDist));
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if(pMR->bBelowRefEdge!=aRec0.bBelowRefEdge)
-//STRIP001                  {
-//STRIP001                      SetItem(SdrMeasureBelowRefEdgeItem(pMR->bBelowRefEdge));
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  } // switch
-//STRIP001  SetRectsDirty();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pMR!=NULL) {
-//STRIP001      delete pMR; // #48544#
-//STRIP001      rDrag.SetUser(NULL);
-//STRIP001  }
-//STRIP001  SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::BrkDrag(SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  ImpMeasureRec* pMR=(ImpMeasureRec*)rDrag.GetUser();
-//STRIP001  if (pMR!=NULL) {
-//STRIP001      delete pMR; // #48544#
-//STRIP001      rDrag.SetUser(NULL);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 XubString SdrMeasureObj::GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const
-//STRIP001 {
-//STRIP001  XubString aStr;
-//STRIP001  return aStr;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::ImpEvalDrag(ImpMeasureRec& rRec, const SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  long nLineWink=GetAngle(rRec.aPt2-rRec.aPt1);
-//STRIP001  double a=nLineWink*nPi180;
-//STRIP001  double nSin=sin(a);
-//STRIP001  double nCos=cos(a);
-//STRIP001
-//STRIP001  const SdrHdl* pHdl=rDrag.GetHdl();
-//STRIP001  USHORT nHdlNum=pHdl->GetObjHdlNum();
-//STRIP001  FASTBOOL bOrtho=rDrag.GetView()!=NULL && rDrag.GetView()->IsOrtho();
-//STRIP001  FASTBOOL bBigOrtho=bOrtho && rDrag.GetView()->IsBigOrtho();
-//STRIP001  FASTBOOL bBelow=rRec.bBelowRefEdge;
-//STRIP001  Point aPt(rDrag.GetNow());
-//STRIP001
-//STRIP001  switch (nHdlNum) {
-//STRIP001      case 0: {
-//STRIP001          RotatePoint(aPt,aPt1,nSin,-nCos);
-//STRIP001          rRec.nHelpline1Len=aPt1.Y()-aPt.Y();
-//STRIP001          if (bBelow) rRec.nHelpline1Len=-rRec.nHelpline1Len;
-//STRIP001          if (bOrtho) rRec.nHelpline2Len=rRec.nHelpline1Len;
-//STRIP001      } break;
-//STRIP001      case 1: {
-//STRIP001          RotatePoint(aPt,aPt2,nSin,-nCos);
-//STRIP001          rRec.nHelpline2Len=aPt2.Y()-aPt.Y();
-//STRIP001          if (bBelow) rRec.nHelpline2Len=-rRec.nHelpline2Len;
-//STRIP001          if (bOrtho) rRec.nHelpline1Len=rRec.nHelpline2Len;
-//STRIP001      } break;
-//STRIP001      case 2: case 3: {
-//STRIP001          FASTBOOL bAnf=nHdlNum==2;
-//STRIP001          Point& rMov=bAnf ? rRec.aPt1 : rRec.aPt2;
-//STRIP001          Point aMov(rMov);
-//STRIP001          Point aFix(bAnf ? rRec.aPt2 : rRec.aPt1);
-//STRIP001          if (bOrtho) {
-//STRIP001              long ndx0=aMov.X()-aFix.X();
-//STRIP001              long ndy0=aMov.Y()-aFix.Y();
-//STRIP001              FASTBOOL bHLin=ndy0==0;
-//STRIP001              FASTBOOL bVLin=ndx0==0;
-//STRIP001              if (!bHLin || !bVLin) { // sonst ist aPt1==aPt2
-//STRIP001                  long ndx=aPt.X()-aFix.X();
-//STRIP001                  long ndy=aPt.Y()-aFix.Y();
-//STRIP001                  double nXFact=0; if (!bVLin) nXFact=(double)ndx/(double)ndx0;
-//STRIP001                  double nYFact=0; if (!bHLin) nYFact=(double)ndy/(double)ndy0;
-//STRIP001                  FASTBOOL bHor=bHLin || (!bVLin && (nXFact>nYFact) ==bBigOrtho);
-//STRIP001                  FASTBOOL bVer=bVLin || (!bHLin && (nXFact<=nYFact)==bBigOrtho);
-//STRIP001                  if (bHor) ndy=long(ndy0*nXFact);
-//STRIP001                  if (bVer) ndx=long(ndx0*nYFact);
-//STRIP001                  aPt=aFix;
-//STRIP001                  aPt.X()+=ndx;
-//STRIP001                  aPt.Y()+=ndy;
-//STRIP001              } // else Ortho8
-//STRIP001          }
-//STRIP001          rMov=aPt;
-//STRIP001      } break;
-//STRIP001      case 4: case 5: {
-//STRIP001          long nVal0=rRec.nLineDist;
-//STRIP001          RotatePoint(aPt,(nHdlNum==4 ? aPt1 : aPt2),nSin,-nCos);
-//STRIP001          rRec.nLineDist=aPt.Y()- (nHdlNum==4 ? aPt1.Y() : aPt2.Y());
-//STRIP001          if (bBelow) rRec.nLineDist=-rRec.nLineDist;
-//STRIP001          if (rRec.nLineDist<0) {
-//STRIP001              rRec.nLineDist=-rRec.nLineDist;
-//STRIP001              rRec.bBelowRefEdge=!bBelow;
-//STRIP001          }
-//STRIP001          rRec.nLineDist-=rRec.nHelplineOverhang;
-//STRIP001          if (bOrtho) rRec.nLineDist=nVal0;
-//STRIP001      } break;
-//STRIP001  } // switch
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const
-//STRIP001 {
-//STRIP001  ImpMeasureRec* pMR=(ImpMeasureRec*)rDrag.GetUser(); // #48544#
-//STRIP001  if (pMR!=NULL) {
-//STRIP001      ImpMeasurePoly aMPol;
-//STRIP001      ImpCalcGeometrics(*pMR,aMPol);
-//STRIP001      ImpCalcXPoly(aMPol,rXPP);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::BegCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  rStat.SetOrtho8Possible();
-//STRIP001  aPt1=rStat.GetStart();
-//STRIP001  aPt2=rStat.GetNow();
-//STRIP001  SetTextDirty();
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::MovCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  SdrView* pView=rStat.GetView();
-//STRIP001  aPt1=rStat.GetStart();
-//STRIP001  aPt2=rStat.GetNow();
-//STRIP001  if (pView!=NULL && pView->IsCreate1stPointAsCenter()) {
-//STRIP001      aPt1+=aPt1;
-//STRIP001      aPt1-=rStat.Now();
-//STRIP001  }
-//STRIP001  SetTextDirty();
-//STRIP001  bBoundRectDirty=TRUE;
-//STRIP001  bSnapRectDirty=TRUE;
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd)
-//STRIP001 {
-//STRIP001  SetTextDirty();
-//STRIP001  SetRectsDirty();
-//STRIP001  return (eCmd==SDRCREATE_FORCEEND || rStat.GetPointAnz()>=2);
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::BckCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::BrkCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const
-//STRIP001 {
-//STRIP001  ImpMeasureRec aRec;
-//STRIP001  ImpMeasurePoly aMPol;
-//STRIP001  ImpTakeAttr(aRec);
-//STRIP001  ImpCalcGeometrics(aRec,aMPol);
-//STRIP001  ImpCalcXPoly(aMPol,rXPP);
-//STRIP001 }
 
-//STRIP001 Pointer SdrMeasureObj::GetCreatePointer() const
-//STRIP001 {
-//STRIP001  return Pointer(POINTER_CROSS);
-//STRIP001 }
 
 /*N*/ void SdrMeasureObj::NbcMove(const Size& rSiz)
 /*N*/ {
@@ -1215,55 +776,10 @@ namespace binfilter {
 /*N*/   SetTextDirty();
 /*N*/ }
 
-//STRIP001 void SdrMeasureObj::NbcRotate(const Point& rRef, long nWink, double sn, double cs)
-//STRIP001 {
-//STRIP001  SdrTextObj::NbcRotate(rRef,nWink,sn,cs);
-//STRIP001  long nLen0=GetLen(aPt2-aPt1);
-//STRIP001  RotatePoint(aPt1,rRef,sn,cs);
-//STRIP001  RotatePoint(aPt2,rRef,sn,cs);
-//STRIP001  long nLen1=GetLen(aPt2-aPt1);
-//STRIP001  if (nLen1!=nLen0) { // Aha, Rundungsfehler
-//STRIP001      long dx=aPt2.X()-aPt1.X();
-//STRIP001      long dy=aPt2.Y()-aPt1.Y();
-//STRIP001      dx=BigMulDiv(dx,nLen0,nLen1);
-//STRIP001      dy=BigMulDiv(dy,nLen0,nLen1);
-//STRIP001      if (rRef==aPt2) {
-//STRIP001          aPt1.X()=aPt2.X()-dx;
-//STRIP001          aPt1.Y()=aPt2.Y()-dy;
-//STRIP001      } else {
-//STRIP001          aPt2.X()=aPt1.X()+dx;
-//STRIP001          aPt2.Y()=aPt1.Y()+dy;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  SetRectsDirty();
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::NbcMirror(const Point& rRef1, const Point& rRef2)
-//STRIP001 {
-//STRIP001  SdrTextObj::NbcMirror(rRef1,rRef2);
-//STRIP001  MirrorPoint(aPt1,rRef1,rRef2);
-//STRIP001  MirrorPoint(aPt2,rRef1,rRef2);
-//STRIP001  SetRectsDirty();
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
-//STRIP001 {
-//STRIP001  SdrTextObj::NbcShear(rRef,nWink,tn,bVShear);
-//STRIP001  ShearPoint(aPt1,rRef,tn,bVShear);
-//STRIP001  ShearPoint(aPt2,rRef,tn,bVShear);
-//STRIP001  SetRectsDirty();
-//STRIP001  SetTextDirty();
-//STRIP001 }
 
-//STRIP001 const Rectangle& SdrMeasureObj::GetLogicRect() const
-//STRIP001 {
-//STRIP001  return SdrTextObj::GetLogicRect();
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::NbcSetLogicRect(const Rectangle& rRect)
-//STRIP001 {
-//STRIP001  SdrTextObj::NbcSetLogicRect(rRect);
-//STRIP001 }
 
 /*N*/ long SdrMeasureObj::GetRotateAngle() const
 /*N*/ {
@@ -1316,26 +832,9 @@ namespace binfilter {
 /*N*/   maSnapRect = aXPP.GetBoundRect();
 /*N*/ }
 
-//STRIP001 USHORT SdrMeasureObj::GetSnapPointCount() const
-//STRIP001 {
-//STRIP001  return 2;
-//STRIP001 }
 
-//STRIP001 Point SdrMeasureObj::GetSnapPoint(USHORT i) const
-//STRIP001 {
-//STRIP001  if (i==0) return aPt1;
-//STRIP001  else return aPt2;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrMeasureObj::IsPolyObj() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 USHORT SdrMeasureObj::GetPointCount() const
-//STRIP001 {
-//STRIP001  return 2;
-//STRIP001 }
 
 /*N*/ const Point& SdrMeasureObj::GetPoint(USHORT i) const
 /*N*/ {
@@ -1350,226 +849,13 @@ namespace binfilter {
 /*N*/   SetTextDirty();
 /*N*/ }
 
-//STRIP001 SdrObjGeoData* SdrMeasureObj::NewGeoData() const
-//STRIP001 {
-//STRIP001  return new SdrMeasureObjGeoData;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::SaveGeoData(SdrObjGeoData& rGeo) const
-//STRIP001 {
-//STRIP001  SdrTextObj::SaveGeoData(rGeo);
-//STRIP001  SdrMeasureObjGeoData& rMGeo=(SdrMeasureObjGeoData&)rGeo;
-//STRIP001  rMGeo.aPt1=aPt1;
-//STRIP001  rMGeo.aPt2=aPt2;
-//STRIP001 }
 
-//STRIP001 void SdrMeasureObj::RestGeoData(const SdrObjGeoData& rGeo)
-//STRIP001 {
-//STRIP001  SdrTextObj::RestGeoData(rGeo);
-//STRIP001  SdrMeasureObjGeoData& rMGeo=(SdrMeasureObjGeoData&)rGeo;
-//STRIP001  aPt1=rMGeo.aPt1;
-//STRIP001  aPt2=rMGeo.aPt2;
-//STRIP001  SetTextDirty();
-//STRIP001 }
 
-//STRIP001 ::std::auto_ptr< SdrLineGeometry > SdrMeasureObj::CreateLinePoly( OutputDevice& rOut,
-//STRIP001                                                                   BOOL           bForceOnePixel,
-//STRIP001                                                                   BOOL           bForceTwoPixel,
-//STRIP001                                                                   BOOL           bIsLineDraft    ) const
-//STRIP001 {
-//STRIP001     PolyPolygon3D aPolyPoly3D;
-//STRIP001     PolyPolygon3D aLinePoly3D;
-//STRIP001
-//STRIP001  // get XOR Poly as base
-//STRIP001  XPolyPolygon aTmpPolyPolygon;
-//STRIP001  TakeXorPoly(aTmpPolyPolygon, TRUE);
-//STRIP001
-//STRIP001  // get ImpLineStyleParameterPack
-//STRIP001  ImpLineStyleParameterPack aLineAttr(GetItemSet(), bForceOnePixel || bForceTwoPixel || bIsLineDraft, &rOut);
-//STRIP001  ImpLineGeometryCreator aLineCreator(aLineAttr, aPolyPoly3D, aLinePoly3D, bIsLineDraft);
-//STRIP001  UINT16 nCount(aTmpPolyPolygon.Count());
-//STRIP001  Polygon3D aPoly3D;
-//STRIP001  UINT16 nLoopStart(0);
-//STRIP001
-//STRIP001  if(nCount == 3)
-//STRIP001  {
-//STRIP001      // three lines, first one is the middle one
-//STRIP001      aPoly3D = Polygon3D(aTmpPolyPolygon[0]);
-//STRIP001      aLineCreator.AddPolygon3D(aPoly3D);
-//STRIP001
-//STRIP001      aLineAttr.ForceNoArrowsLeft(TRUE);
-//STRIP001      aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001      nLoopStart = 1;
-//STRIP001  }
-//STRIP001  else if(nCount == 4)
-//STRIP001  {
-//STRIP001      // four lines, middle line with gap, so there are two lines used
-//STRIP001      // which have one arrow each
-//STRIP001      aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001
-//STRIP001      aPoly3D = Polygon3D(aTmpPolyPolygon[0]);
-//STRIP001      aLineCreator.AddPolygon3D(aPoly3D);
-//STRIP001
-//STRIP001      aLineAttr.ForceNoArrowsRight(FALSE);
-//STRIP001      aLineAttr.ForceNoArrowsLeft(TRUE);
-//STRIP001
-//STRIP001      aPoly3D = Polygon3D(aTmpPolyPolygon[1]);
-//STRIP001      aLineCreator.AddPolygon3D(aPoly3D);
-//STRIP001
-//STRIP001      aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001      nLoopStart = 2;
-//STRIP001  }
-//STRIP001  else if(nCount == 5)
-//STRIP001  {
-//STRIP001      // five lines, first two are the outer ones
-//STRIP001      aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001
-//STRIP001      aPoly3D = Polygon3D(aTmpPolyPolygon[0]);
-//STRIP001      aLineCreator.AddPolygon3D(aPoly3D);
-//STRIP001
-//STRIP001      aLineAttr.ForceNoArrowsRight(FALSE);
-//STRIP001      aLineAttr.ForceNoArrowsLeft(TRUE);
-//STRIP001
-//STRIP001      aPoly3D = Polygon3D(aTmpPolyPolygon[1]);
-//STRIP001      aLineCreator.AddPolygon3D(aPoly3D);
-//STRIP001
-//STRIP001      aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001      nLoopStart = 2;
-//STRIP001  }
-//STRIP001
-//STRIP001  for(;nLoopStart<nCount;nLoopStart++)
-//STRIP001  {
-//STRIP001      aPoly3D = Polygon3D(aTmpPolyPolygon[nLoopStart]);
-//STRIP001      aLineCreator.AddPolygon3D(aPoly3D);
-//STRIP001  }
-//STRIP001
-//STRIP001     if(aPolyPoly3D.Count() || aLinePoly3D.Count())
-//STRIP001         return ::std::auto_ptr< SdrLineGeometry > (new SdrLineGeometry(aPolyPoly3D, aLinePoly3D,
-//STRIP001                                                                        aLineAttr, bForceOnePixel, bForceTwoPixel));
-//STRIP001     else
-//STRIP001         return ::std::auto_ptr< SdrLineGeometry > (NULL);
-//STRIP001 }
 
-//STRIP001 SdrObject* SdrMeasureObj::DoConvertToPolyObj(BOOL bBezier) const
-//STRIP001 {
-//STRIP001  // get XOR Poly as base
-//STRIP001  XPolyPolygon aTmpPolyPolygon;
-//STRIP001  TakeXorPoly(aTmpPolyPolygon, TRUE);
-//STRIP001
-//STRIP001  // get local ItemSet
-//STRIP001  SfxItemSet aSet(GetItemSet());
-//STRIP001
-//STRIP001  // prepare group
-//STRIP001  SdrObjGroup* pGroup = new SdrObjGroup;
-//STRIP001  pGroup->SetModel(GetModel());
-//STRIP001
-//STRIP001  // prepare parameters
-//STRIP001  XPolyPolygon aNewPoly;
-//STRIP001  SdrPathObj* pPath;
-//STRIP001  UINT16 nCount(aTmpPolyPolygon.Count());
-//STRIP001  UINT16 nLoopStart(0);
-//STRIP001
-//STRIP001  if(nCount == 3)
-//STRIP001  {
-//STRIP001      // three lines, first one is the middle one
-//STRIP001      aNewPoly.Clear();
-//STRIP001      aNewPoly.Insert(aTmpPolyPolygon[0]);
-//STRIP001      pPath = new SdrPathObj(OBJ_PATHLINE, aNewPoly);
-//STRIP001      pPath->SetModel(GetModel());
-//STRIP001
-//STRIP001      pPath->SetItemSet(aSet);
-//STRIP001
-//STRIP001      pGroup->GetSubList()->NbcInsertObject(pPath);
-//STRIP001
-//STRIP001      aSet.Put(XLineStartWidthItem(0L));
-//STRIP001      aSet.Put(XLineEndWidthItem(0L));
-//STRIP001      nLoopStart = 1;
-//STRIP001  }
-//STRIP001  else if(nCount == 4)
-//STRIP001  {
-//STRIP001      // four lines, middle line with gap, so there are two lines used
-//STRIP001      // which have one arrow each
-//STRIP001      INT32 nStartWidth = ((const XLineStartWidthItem&)(aSet.Get(XATTR_LINESTARTWIDTH))).GetValue();
-//STRIP001      INT32 nEndWidth = ((const XLineEndWidthItem&)(aSet.Get(XATTR_LINEENDWIDTH))).GetValue();
-//STRIP001
-//STRIP001      aSet.Put(XLineEndWidthItem(0L));
-//STRIP001
-//STRIP001      aNewPoly.Clear();
-//STRIP001      aNewPoly.Insert(aTmpPolyPolygon[0]);
-//STRIP001      pPath = new SdrPathObj(OBJ_PATHLINE, aNewPoly);
-//STRIP001      pPath->SetModel(GetModel());
-//STRIP001
-//STRIP001      pPath->SetItemSet(aSet);
-//STRIP001
-//STRIP001      pGroup->GetSubList()->NbcInsertObject(pPath);
-//STRIP001
-//STRIP001      aSet.Put(XLineEndWidthItem(nEndWidth));
-//STRIP001      aSet.Put(XLineStartWidthItem(0L));
-//STRIP001
-//STRIP001      aNewPoly.Clear();
-//STRIP001      aNewPoly.Insert(aTmpPolyPolygon[1]);
-//STRIP001      pPath = new SdrPathObj(OBJ_PATHLINE, aNewPoly);
-//STRIP001      pPath->SetModel(GetModel());
-//STRIP001
-//STRIP001      pPath->SetItemSet(aSet);
-//STRIP001
-//STRIP001      pGroup->GetSubList()->NbcInsertObject(pPath);
-//STRIP001
-//STRIP001      aSet.Put(XLineEndWidthItem(0L));
-//STRIP001      nLoopStart = 2;
-//STRIP001  }
-//STRIP001  else if(nCount == 5)
-//STRIP001  {
-//STRIP001      // five lines, first two are the outer ones
-//STRIP001      INT32 nStartWidth = ((const XLineStartWidthItem&)(aSet.Get(XATTR_LINESTARTWIDTH))).GetValue();
-//STRIP001      INT32 nEndWidth = ((const XLineEndWidthItem&)(aSet.Get(XATTR_LINEENDWIDTH))).GetValue();
-//STRIP001
-//STRIP001      aSet.Put(XLineEndWidthItem(0L));
-//STRIP001
-//STRIP001      aNewPoly.Clear();
-//STRIP001      aNewPoly.Insert(aTmpPolyPolygon[0]);
-//STRIP001      pPath = new SdrPathObj(OBJ_PATHLINE, aNewPoly);
-//STRIP001      pPath->SetModel(GetModel());
-//STRIP001
-//STRIP001      pPath->SetItemSet(aSet);
-//STRIP001
-//STRIP001      pGroup->GetSubList()->NbcInsertObject(pPath);
-//STRIP001
-//STRIP001      aSet.Put(XLineEndWidthItem(nEndWidth));
-//STRIP001      aSet.Put(XLineStartWidthItem(0L));
-//STRIP001
-//STRIP001      aNewPoly.Clear();
-//STRIP001      aNewPoly.Insert(aTmpPolyPolygon[1]);
-//STRIP001      pPath = new SdrPathObj(OBJ_PATHLINE, aNewPoly);
-//STRIP001      pPath->SetModel(GetModel());
-//STRIP001
-//STRIP001      pPath->SetItemSet(aSet);
-//STRIP001
-//STRIP001      pGroup->GetSubList()->NbcInsertObject(pPath);
-//STRIP001
-//STRIP001      aSet.Put(XLineEndWidthItem(0L));
-//STRIP001      nLoopStart = 2;
-//STRIP001  }
-//STRIP001
-//STRIP001  for(;nLoopStart<nCount;nLoopStart++)
-//STRIP001  {
-//STRIP001      aNewPoly.Clear();
-//STRIP001      aNewPoly.Insert(aTmpPolyPolygon[nLoopStart]);
-//STRIP001      pPath = new SdrPathObj(OBJ_PATHLINE, aNewPoly);
-//STRIP001      pPath->SetModel(GetModel());
-//STRIP001
-//STRIP001      pPath->SetItemSet(aSet);
-//STRIP001
-//STRIP001      pGroup->GetSubList()->NbcInsertObject(pPath);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ImpConvertAddText(pGroup, bBezier);
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrMeasureObj::BegTextEdit(SdrOutliner& rOutl)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
-//STRIP001  UndirtyText();
-//STRIP001  return SdrTextObj::BegTextEdit(rOutl);
 /*N*/ }
 
 /*N*/ void SdrMeasureObj::EndTextEdit(SdrOutliner& rOutl)
@@ -1608,72 +894,8 @@ namespace binfilter {
 /*N*/   SdrTextObj::TakeTextAnchorRect(rAnchorRect);
 /*N*/ }
 
-//STRIP001 void SdrMeasureObj::TakeTextEditArea(Size* pPaperMin, Size* pPaperMax, Rectangle* pViewInit, Rectangle* pViewMin) const
-//STRIP001 {
-//STRIP001  if (bTextDirty) UndirtyText();
-//STRIP001  SdrTextObj::TakeTextEditArea(pPaperMin,pPaperMax,pViewInit,pViewMin);
-//STRIP001 }
 
-//STRIP001 SdrObject* SdrMeasureObj::CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-//STRIP001 {
-//STRIP001  if (bTextDirty) UndirtyText();
-//STRIP001  return SdrTextObj::CheckTextEditHit(rPnt,nTol,pVisiLayer);
-//STRIP001 }
 
-//STRIP001 USHORT SdrMeasureObj::GetOutlinerViewAnchorMode() const
-//STRIP001 {
-//STRIP001  if (bTextDirty) UndirtyText();
-//STRIP001  ImpMeasureRec aRec;
-//STRIP001  ImpMeasurePoly aMPol;
-//STRIP001  ImpTakeAttr(aRec);
-//STRIP001  ImpCalcGeometrics(aRec,aMPol);
-//STRIP001
-//STRIP001  SdrTextHorzAdjust eTH=GetTextHorizontalAdjust();
-//STRIP001  SdrTextVertAdjust eTV=GetTextVerticalAdjust();
-//STRIP001  SdrMeasureTextHPos eMH=aMPol.eUsedTextHPos;
-//STRIP001  SdrMeasureTextVPos eMV=aMPol.eUsedTextVPos;
-//STRIP001  FASTBOOL bTextRota90=aRec.bTextRota90;
-//STRIP001  FASTBOOL bTextUpsideDown=aRec.bTextUpsideDown;
-//STRIP001  FASTBOOL bBelowRefEdge=aRec.bBelowRefEdge;
-//STRIP001
-//STRIP001  // bTextUpsideDown muss hier noch ausgewertet werden!!!!
-//STRIP001  if (!bTextRota90) {
-//STRIP001      if (eMH==SDRMEASURE_TEXTLEFTOUTSIDE) eTH=SDRTEXTHORZADJUST_RIGHT;
-//STRIP001      if (eMH==SDRMEASURE_TEXTRIGHTOUTSIDE) eTH=SDRTEXTHORZADJUST_LEFT;
-//STRIP001      // bei eMH==SDRMEASURE_TEXTINSIDE kann horizontal geankert werden.
-//STRIP001      if (eMV==SDRMEASURE_ABOVE) eTV=SDRTEXTVERTADJUST_BOTTOM;
-//STRIP001      if (eMV==SDRMEASURE_BELOW) eTV=SDRTEXTVERTADJUST_TOP;
-//STRIP001      if (eMV==SDRMEASURETEXT_BREAKEDLINE || eMV==SDRMEASURETEXT_VERTICALCENTERED) eTV=SDRTEXTVERTADJUST_CENTER;
-//STRIP001  } else {
-//STRIP001      if (eMH==SDRMEASURE_TEXTLEFTOUTSIDE) eTV=SDRTEXTVERTADJUST_BOTTOM;
-//STRIP001      if (eMH==SDRMEASURE_TEXTRIGHTOUTSIDE) eTV=SDRTEXTVERTADJUST_TOP;
-//STRIP001      // bei eMH==SDRMEASURE_TEXTINSIDE kann vertikal geankert werden.
-//STRIP001      if (!bBelowRefEdge) {
-//STRIP001          if (eMV==SDRMEASURE_ABOVE) eTH=SDRTEXTHORZADJUST_LEFT;
-//STRIP001          if (eMV==SDRMEASURE_BELOW) eTH=SDRTEXTHORZADJUST_RIGHT;
-//STRIP001      } else {
-//STRIP001          if (eMV==SDRMEASURE_ABOVE) eTH=SDRTEXTHORZADJUST_RIGHT;
-//STRIP001          if (eMV==SDRMEASURE_BELOW) eTH=SDRTEXTHORZADJUST_LEFT;
-//STRIP001      }
-//STRIP001      if (eMV==SDRMEASURETEXT_BREAKEDLINE || eMV==SDRMEASURETEXT_VERTICALCENTERED) eTH=SDRTEXTHORZADJUST_CENTER;
-//STRIP001  }
-//STRIP001
-//STRIP001  EVAnchorMode eRet=ANCHOR_BOTTOM_HCENTER;
-//STRIP001  if (eTH==SDRTEXTHORZADJUST_LEFT) {
-//STRIP001      if (eTV==SDRTEXTVERTADJUST_TOP) eRet=ANCHOR_TOP_LEFT;
-//STRIP001      else if (eTV==SDRTEXTVERTADJUST_BOTTOM) eRet=ANCHOR_BOTTOM_LEFT;
-//STRIP001      else eRet=ANCHOR_VCENTER_LEFT;
-//STRIP001  } else if (eTH==SDRTEXTHORZADJUST_RIGHT) {
-//STRIP001      if (eTV==SDRTEXTVERTADJUST_TOP) eRet=ANCHOR_TOP_RIGHT;
-//STRIP001      else if (eTV==SDRTEXTVERTADJUST_BOTTOM) eRet=ANCHOR_BOTTOM_RIGHT;
-//STRIP001      else eRet=ANCHOR_VCENTER_RIGHT;
-//STRIP001  } else {
-//STRIP001      if (eTV==SDRTEXTVERTADJUST_TOP) eRet=ANCHOR_TOP_HCENTER;
-//STRIP001      else if (eTV==SDRTEXTVERTADJUST_BOTTOM) eRet=ANCHOR_BOTTOM_HCENTER;
-//STRIP001      else eRet=ANCHOR_VCENTER_HCENTER;
-//STRIP001  }
-//STRIP001  return (USHORT)eRet;
-//STRIP001 }
 
 /*N*/ void __EXPORT SdrMeasureObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
