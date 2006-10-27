@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:43:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:27:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,6 @@
 #include <unotools/localedatawrapper.hxx>
 #endif
 
-// auto strip #ifndef _SVX_PAPERINF_HXX //autogen
-// auto strip #include <bf_svx/paperinf.hxx>
-// auto strip #endif
 #ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
 #endif
@@ -115,16 +112,10 @@
 #ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
 #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
@@ -153,21 +144,12 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _FRMTOOL_HXX
-// auto strip #include <frmtool.hxx>
-// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -297,34 +279,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void lcl_SetDfltFont( USHORT nLatinFntType, USHORT nCJKFntType,
-//STRIP001                      USHORT nCTLFntType, SfxItemSet& rSet )
-//STRIP001 {
-//STRIP001  static struct {
-//STRIP001      USHORT nResLngId;
-//STRIP001      USHORT nResFntId;
-//STRIP001      USHORT nFntType;
-//STRIP001  } aArr[ 3 ] = {
-//STRIP001      { RES_CHRATR_LANGUAGE, RES_CHRATR_FONT, 0 },
-//STRIP001      { RES_CHRATR_CJK_LANGUAGE, RES_CHRATR_CJK_FONT, 0 },
-//STRIP001      { RES_CHRATR_CTL_LANGUAGE, RES_CHRATR_CTL_FONT, 0 }
-//STRIP001  };
-//STRIP001  aArr[0].nFntType = nLatinFntType;
-//STRIP001  aArr[1].nFntType = nCJKFntType;
-//STRIP001  aArr[2].nFntType = nCTLFntType;
-//STRIP001
-//STRIP001  for( USHORT n = 0; n < 3; ++n )
-//STRIP001  {
-//STRIP001      USHORT nLng = ((SvxLanguageItem&)rSet.GetPool()->GetDefaultItem(
-//STRIP001                          aArr[n].nResLngId )).GetLanguage();
-//STRIP001      Font aFnt( OutputDevice::GetDefaultFont( aArr[n].nFntType,
-//STRIP001                              nLng, DEFAULTFONT_FLAGS_ONLYONE ) );
-//STRIP001
-//STRIP001      rSet.Put( SvxFontItem( aFnt.GetFamily(), aFnt.GetName(),
-//STRIP001                          aEmptyStr, aFnt.GetPitch(),
-//STRIP001                          aFnt.GetCharSet(), aArr[n].nResFntId ));
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void lcl_SetHeadline( SwDoc* pDoc, SwTxtFmtColl* pColl,
 /*N*/                       SfxItemSet& rSet,
@@ -344,7 +298,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   if( pDoc->IsHTMLMode() )
 /*N*/   {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ::lcl_SetDfltFont( DEFAULTFONT_LATIN_TEXT, DEFAULTFONT_CJK_TEXT,
-//STRIP001 /*?*/                            DEFAULTFONT_CTL_TEXT, rSet );
 /*N*/   }
 /*N*/
 /*N*/   if( pColl )
@@ -1221,49 +1174,9 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 
     // pruefe, ob diese "Auto-Collection" in Dokument schon/noch
     // benutzt wird
-//STRIP001 BOOL SwDoc::IsPoolTxtCollUsed( USHORT nId ) const
-//STRIP001 {
-//STRIP001  ASSERT(
-//STRIP001      (RES_POOLCOLL_TEXT_BEGIN <= nId && nId < RES_POOLCOLL_TEXT_END) ||
-//STRIP001      (RES_POOLCOLL_LISTS_BEGIN <= nId && nId < RES_POOLCOLL_LISTS_END) ||
-//STRIP001      (RES_POOLCOLL_EXTRA_BEGIN <= nId && nId < RES_POOLCOLL_EXTRA_END) ||
-//STRIP001      (RES_POOLCOLL_REGISTER_BEGIN <= nId && nId < RES_POOLCOLL_REGISTER_END) ||
-//STRIP001      (RES_POOLCOLL_DOC_BEGIN <= nId && nId < RES_POOLCOLL_DOC_END) ||
-//STRIP001      (RES_POOLCOLL_HTML_BEGIN <= nId && nId < RES_POOLCOLL_HTML_END),
-//STRIP001          "Falsche AutoFormat-Id" );
-//STRIP001
-//STRIP001  SwTxtFmtColl* pNewColl;
-//STRIP001  BOOL bFnd = FALSE;
-//STRIP001  for( USHORT n = 0; !bFnd && n < pTxtFmtCollTbl->Count(); ++n )
-//STRIP001      if( nId == ( pNewColl = (*pTxtFmtCollTbl)[ n ] )->GetPoolFmtId() )
-//STRIP001          bFnd = TRUE;
-//STRIP001
-//STRIP001  if( !bFnd || !pNewColl->GetDepends() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  SwAutoFmtGetDocNode aGetHt( &aNodes );
-//STRIP001  return !pNewColl->GetInfo( aGetHt );
-//STRIP001 }
 
 
 
-//STRIP001 USHORT lcl_CheckAutoFmtId( USHORT nId )
-//STRIP001 {
-//STRIP001  if( RES_POOLCHR_BEGIN <= nId && nId < RES_POOLCHR_END )
-//STRIP001      return RES_POOL_CHRFMT;
-//STRIP001  if( RES_POOLFRM_BEGIN <= nId && nId < RES_POOLFRM_END )
-//STRIP001      return RES_POOL_FRMFMT;
-//STRIP001  if( (RES_POOLCOLL_TEXT_BEGIN <= nId && nId < RES_POOLCOLL_TEXT_END) ||
-//STRIP001      (RES_POOLCOLL_LISTS_BEGIN <= nId && nId < RES_POOLCOLL_LISTS_END) ||
-//STRIP001      (RES_POOLCOLL_EXTRA_BEGIN <= nId && nId < RES_POOLCOLL_EXTRA_END) ||
-//STRIP001      (RES_POOLCOLL_REGISTER_BEGIN <= nId && nId < RES_POOLCOLL_REGISTER_END) ||
-//STRIP001      (RES_POOLCOLL_DOC_BEGIN <= nId && nId < RES_POOLCOLL_DOC_END) ||
-//STRIP001      (RES_POOLCOLL_HTML_BEGIN <= nId && nId < RES_POOLCOLL_HTML_END) )
-//STRIP001      return RES_POOL_TXTCOLL;
-//STRIP001
-//STRIP001  ASSERT( FALSE, "ungueltige Id" );
-//STRIP001  return 0;
-//STRIP001 }
 
 
     // Gebe das "Auto[matische]-Format" mit der Id zurueck. Existiert
@@ -1562,52 +1475,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 
     // pruefe, ob diese "Auto-Collection" in Dokument schon/noch
     // benutzt wird
-//STRIP001 BOOL SwDoc::IsPoolFmtUsed( USHORT nId ) const
-//STRIP001 {
-//STRIP001  SwFmt *pNewFmt;
-//STRIP001  const SvPtrarr* pArray[ 2 ];
-//STRIP001  USHORT nArrCnt = 1;
-//STRIP001  BOOL bFnd = TRUE;
-//STRIP001
-//STRIP001  if( RES_POOLCHR_BEGIN <= nId && nId < RES_POOLCHR_END )
-//STRIP001  {
-//STRIP001      pArray[0] = pCharFmtTbl;
-//STRIP001  }
-//STRIP001  if( RES_POOLFRM_BEGIN <= nId && nId < RES_POOLFRM_END )
-//STRIP001  {
-//STRIP001      pArray[0] = pFrmFmtTbl;
-//STRIP001      pArray[1] = pSpzFrmFmtTbl;
-//STRIP001      nArrCnt = 2;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ASSERT( FALSE, "ungueltige Id" );
-//STRIP001      bFnd = FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bFnd )
-//STRIP001  {
-//STRIP001      bFnd = FALSE;
-//STRIP001      while( nArrCnt-- && !bFnd )
-//STRIP001          for( USHORT n = 0; !bFnd && n < (*pArray[nArrCnt]).Count(); ++n )
-//STRIP001              if( nId == ( pNewFmt = (SwFmt*)(*pArray[ nArrCnt ] )[ n ] )->
-//STRIP001                      GetPoolFmtId() )
-//STRIP001                  bFnd = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  // nicht gefunden oder keine Abhaengigen ?
-//STRIP001  if( bFnd && pNewFmt->GetDepends() )
-//STRIP001  {
-//STRIP001      // dann teste mal, ob es abhaengige ContentNodes im Nodes Array gibt
-//STRIP001      // (auch indirekte fuer Format-Ableitung! )
-//STRIP001      SwAutoFmtGetDocNode aGetHt( &aNodes );
-//STRIP001      bFnd = !pNewFmt->GetInfo( aGetHt );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bFnd = FALSE;
-//STRIP001
-//STRIP001  return bFnd;
-//STRIP001 }
 
 
 
@@ -2233,42 +2100,9 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 
     // pruefe, ob diese "Auto-Collection" in Dokument schon/noch
     // benutzt wird
-//STRIP001 BOOL SwDoc::IsPoolPageDescUsed( USHORT nId ) const
-//STRIP001 {
-//STRIP001  ASSERT( RES_POOLPAGE_BEGIN <= nId && nId < RES_POOLPAGE_END,
-//STRIP001          "Falsche AutoFormat-Id" );
-//STRIP001  SwPageDesc *pNewPgDsc;
-//STRIP001  BOOL bFnd = FALSE;
-//STRIP001  for( USHORT n = 0; !bFnd && n < aPageDescs.Count(); ++n )
-//STRIP001      if( nId == ( pNewPgDsc = aPageDescs[ n ] )->GetPoolFmtId() )
-//STRIP001          bFnd = TRUE;
-//STRIP001
-//STRIP001  // nicht gefunden oder keine Abhaengigen ?
-//STRIP001  if( !bFnd || !pNewPgDsc->GetDepends() )     // ??????
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // dann teste mal, ob es abhaengige ContentNodes im Nodes Array gibt
-//STRIP001  // (auch indirekte fuer Format-Ableitung! )
-//STRIP001  SwAutoFmtGetDocNode aGetHt( &aNodes );
-//STRIP001  return !pNewPgDsc->GetInfo( aGetHt );
-//STRIP001 }
 
     // pruefe, ob diese "Auto-Collection" in Dokument schon/noch
     // benutzt wird
-//STRIP001 BOOL SwDoc::IsPoolNumRuleUsed( USHORT nId ) const
-//STRIP001 {
-//STRIP001  ASSERT( RES_POOLNUMRULE_BEGIN <= nId && nId < RES_POOLNUMRULE_END,
-//STRIP001          "Falsche AutoFormat-Id" );
-//STRIP001  SwNumRule *pNewRule;
-//STRIP001  BOOL bUsed = FALSE;
-//STRIP001  for( USHORT n = 0; n < GetNumRuleTbl().Count(); ++n )
-//STRIP001      if( nId == ( pNewRule = GetNumRuleTbl()[ n ] )->GetPoolFmtId() )
-//STRIP001      {
-//STRIP001          bUsed = IsUsed( *pNewRule );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  return bUsed;
-//STRIP001 }
 
 
 
@@ -2316,75 +2150,9 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
     // loeche die nicht mehr benutzten Pattern-Namen aus dem Array.
     // alle nicht mehr referenzierten Namen werden durch 0-Pointer
     // ersetzt. Diese Positionen koennen wieder vergeben werden.
-//STRIP001 void SwDoc::ReOrgPatternHelpIds()
-//STRIP001 {
-//STRIP001 #if defined( MAC ) || defined( UNX )
-//STRIP001  const SvPtrarr* pFmtArray[ 3 ];
-//STRIP001  pFmtArray[ 0 ] = pCharFmtTbl;       pFmtArray[ 1 ] = pFrmFmtTbl;
-//STRIP001  pFmtArray[ 2 ] = pSpzFrmFmtTbl;
-//STRIP001 #else
-//STRIP001  const SvPtrarr* pFmtArray[ 3 ] = {
-//STRIP001      pCharFmtTbl,        pFrmFmtTbl,     pSpzFrmFmtTbl
-//STRIP001      };
-//STRIP001 #endif
-//STRIP001
-//STRIP001
-//STRIP001  USHORT i, n, nFmt;
-//STRIP001  for( n = 0; n < aPatternNms.Count(); ++n )
-//STRIP001  {
-//STRIP001      BOOL bFnd = FALSE;
-//STRIP001      // suche im Absatz-Vorlagen Array
-//STRIP001      for( nFmt = 0; !bFnd && nFmt < pTxtFmtCollTbl->Count(); ++nFmt )
-//STRIP001          if( n == (*pTxtFmtCollTbl)[ nFmt ]->GetPoolHlpFileId() )
-//STRIP001              bFnd = TRUE;
-//STRIP001
-//STRIP001      // suche im Format-Vorlagen Array
-//STRIP001      for( i = 0; !bFnd && i < 3; ++i )
-//STRIP001      {
-//STRIP001          const SvPtrarr* pArr = *(pFmtArray + i);
-//STRIP001          for( nFmt = 0; !bFnd && nFmt < pArr->Count(); ++nFmt )
-//STRIP001              if( n == ((SwFmt*)(*pArr)[ nFmt ])->GetPoolHlpFileId() )
-//STRIP001                  bFnd = TRUE;
-//STRIP001      }
-//STRIP001      // suche im Format-Vorlagen Array
-//STRIP001      for( nFmt = 0; !bFnd && nFmt < aPageDescs.Count(); ++nFmt )
-//STRIP001          if( n == aPageDescs[ nFmt ]->GetPoolHlpFileId() )
-//STRIP001              bFnd = TRUE;
-//STRIP001
-//STRIP001      if( !bFnd )
-//STRIP001      {
-//STRIP001          // losche den alten String, setze die Position auf 0
-//STRIP001          aPatternNms.DeleteAndDestroy( n+1 );
-//STRIP001          String* pNull = 0;
-//STRIP001          aPatternNms.Insert( pNull, n );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
     // Suche die Position vom Vorlagen-Namen. Ist nicht vorhanden
     // dann fuege neu ein
-//STRIP001 USHORT SwDoc::SetDocPattern( const String& rPatternName )
-//STRIP001 {
-//STRIP001  ASSERT( rPatternName.Len(), "kein Dokument-Vorlagenname" );
-//STRIP001
-//STRIP001  USHORT nNewPos = aPatternNms.Count();
-//STRIP001  for( USHORT n = 0; n < aPatternNms.Count(); ++n )
-//STRIP001      if( !aPatternNms[n] )
-//STRIP001      {
-//STRIP001          if( nNewPos == aPatternNms.Count() )
-//STRIP001              nNewPos = n;
-//STRIP001      }
-//STRIP001      else if( rPatternName == *aPatternNms[n] )
-//STRIP001          return n;
-//STRIP001
-//STRIP001  if( nNewPos < aPatternNms.Count() )
-//STRIP001      aPatternNms.Remove( nNewPos );      // Platz wieder frei machen
-//STRIP001
-//STRIP001  String* pNewNm = new String( rPatternName );
-//STRIP001  aPatternNms.Insert( pNewNm, nNewPos );
-//STRIP001  SetModified();
-//STRIP001  return nNewPos;
-//STRIP001 }
 
 /*N*/ USHORT GetPoolParent( USHORT nId )
 /*N*/ {
