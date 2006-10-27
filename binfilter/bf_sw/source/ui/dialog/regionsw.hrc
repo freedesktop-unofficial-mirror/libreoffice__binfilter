@@ -4,9 +4,9 @@
  *
  *  $RCSfile: regionsw.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:34:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:07:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,9 +34,6 @@
  ************************************************************************/
 #ifndef _REGIONSW_HRC
 #define _REGIONSW_HRC
-
-#include "dialog.hrc"
-
 
 #define CB_DDE                  1
 #define CB_DISMISS              2
@@ -94,14 +91,8 @@
 #define ILH_BITMAPS             55
 
 /* Globale Resourcen */
-//STRIP001 #define STR_REG_DUPLICATE        (RC_REGIONSW_BEGIN+6)
-//STRIP001 #define STR_INFO_DUPLICATE       (RC_REGIONSW_BEGIN+7)
 
 #define MD_INS_REGION           (RC_REGIONSW_BEGIN+8)
-//STRIP001 #define MD_EDIT_REGION           (RC_REGIONSW_BEGIN+9)
-//STRIP001 #define QB_CONNECT               (RC_REGIONSW_BEGIN+10)
-//STRIP001 #define REG_WRONG_PASSWORD   (RC_REGIONSW_BEGIN+11)
-//STRIP001 #define REG_WRONG_PASSWD_REPEAT  (RC_REGIONSW_BEGIN+12)
 
 //ImageList elements
 #define BMP_HIDE            1
