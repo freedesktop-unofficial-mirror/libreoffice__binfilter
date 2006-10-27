@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_anminfo.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:21:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:01:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,12 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 #include "bf_svx/xtable.hxx"
 #ifndef _SVDSURO_HXX //autogen
 #include <bf_svx/svdsuro.hxx>
@@ -169,10 +163,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 SdrObjUserData* SdAnimationInfo::Clone(SdrObject* pObj) const
-//STRIP001 {
-//STRIP001  return new SdAnimationInfo(*this);
-//STRIP001 }
 
 
 /*************************************************************************
@@ -398,28 +388,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SdAnimationInfo::SetPath(SdrPathObj* pPath)
-//STRIP001 {
-//STRIP001  // alte Verbindung loesen, wenn eine besteht und die neue eine andere ist
-//STRIP001  if (pPathObj != NULL && pPathObj != pPath)
-//STRIP001  {
-//STRIP001      // alte Verbindung loesen
-//STRIP001      if (pDoc)
-//STRIP001          EndListening(*pDoc);
-//STRIP001      pPathObj->RemoveListener(*this);
-//STRIP001      pPathObj = NULL;
-//STRIP001  }
-//STRIP001
-//STRIP001  // ggfs. neue Verbindung herstellen, wenn es nicht die alte ist
-//STRIP001  if (pPathObj != pPath && pPath != NULL)
-//STRIP001  {
-//STRIP001      if (pDoc == NULL)               // durch copy ctor entstanden
-//STRIP001          pDoc = (SdDrawDocument*)pPath->GetModel();
-//STRIP001      pPathObj = pPath;
-//STRIP001      pPathObj->AddListener(*this);   // DYING
-//STRIP001      StartListening(*pDoc);          // OBJ_INSERTED, OBJ_REMOVED
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -427,28 +395,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SdAnimationInfo::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
-//STRIP001 {
-//STRIP001  SdrHint* pSdrHint = PTR_CAST(SdrHint,&rHint);
-//STRIP001  if (pSdrHint)
-//STRIP001  {
-//STRIP001      SdrHintKind eKind = pSdrHint->GetKind();
-//STRIP001      if (eKind == HINT_OBJREMOVED && pSdrHint->GetObject() == pPathObj)
-//STRIP001          eEffect = presentation::AnimationEffect_NONE;
-//STRIP001      else if (eKind == HINT_OBJINSERTED && pSdrHint->GetObject() == pPathObj)
-//STRIP001          eEffect = presentation::AnimationEffect_PATH;
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxSimpleHint* pSimpleHint = PTR_CAST(SfxSimpleHint, &rHint);
-//STRIP001  if (pSimpleHint)
-//STRIP001  {
-//STRIP001      ULONG nId = pSimpleHint->GetId();
-//STRIP001      if (nId == SFX_HINT_DYING)
-//STRIP001      {
-//STRIP001          eEffect = presentation::AnimationEffect_NONE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
