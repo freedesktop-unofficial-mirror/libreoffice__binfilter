@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:25:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:23:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,11 +38,7 @@
 //#ifndef ENABLE_STRING_STREAM_OPERATORS
 //#define ENABLE_STRING_STREAM_OPERATORS
 //#endif
-// auto strip #include <tools/stream.hxx>
 #endif
-// auto strip #ifndef _SV_WRKWIN_HXX
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
@@ -61,58 +57,28 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
-// auto strip #ifndef _CHTSCENE_HXX
-// auto strip #include "chtscene.hxx"
-// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/svdmark.hxx>
 
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
-// auto strip #ifndef _SVDORECT_HXX //autogen
-// auto strip #include <bf_svx/svdorect.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
 #endif
-// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
 #ifndef _SVX_XLNWTIT_HXX //autogen
 #include <bf_svx/xlnwtit.hxx>
 #endif
-// auto strip #ifndef _SFXSTYLE_HXX //autogen
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
-// auto strip #include <svtools/zforlist.hxx>
 #endif
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
@@ -121,9 +87,6 @@
 #include <svtools/zformat.hxx>
 #endif
 // header for getProcessServiceFactory
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #include "chmod3d.hxx" //SchRectObj
 
@@ -131,35 +94,14 @@
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #if SUPD > 364
-// auto strip #include <bf_svx/fhgtitem.hxx>
-// auto strip #include <bf_svx/fwdtitem.hxx>
-// auto strip #include <bf_svx/fontitem.hxx>
 #endif
-// auto strip #ifndef _SCH_OBJADJ_HXX
-// auto strip #include  "objadj.hxx"
-// auto strip #endif
-// auto strip #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
-// auto strip #endif
 #include "globfunc.hxx"
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SCH_SCHGROUP_HXX
-// auto strip #include "schgroup.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_OBJID_HXX
-// auto strip #include "objid.hxx"
-// auto strip #endif
 #ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
 #endif
-// auto strip #ifndef _SCH_DATAROW_HXX
-// auto strip #include "datarow.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAPOIN_HXX
-// auto strip #include "datapoin.hxx"
-// auto strip #endif
 #ifndef _SCH_SCHIOCMP_HXX
 #include "schiocmp.hxx"
 #endif
@@ -173,7 +115,6 @@
 #endif
 #include <bf_svx/fontitem.hxx>
 #else
-// auto strip #include <textitem.hxx>
 #endif
 
 #ifndef _TOOLS_TENCCVT_HXX
@@ -183,8 +124,6 @@
 #include "pairs.hxx"
 #include "chaxis.hxx"
 
-// auto strip #include "chdescr.hxx"
-// auto strip #include "calculat.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -237,118 +176,6 @@ enum ChartStyleV0
 \************************************************************************/
 
 //SdrObject*
-//STRIP001 void ChartModel::CreateDataDescr(DataDescription& rDescr,long nCol,long nRow,ChartAxis *pAxis,BOOL bRowDescr,BOOL bIsPercent)
-//STRIP001 {
-//STRIP001
-//STRIP001  UINT32 nDescrFormat=       pAxis ? pAxis->GetNumFormat(FALSE) : GetNumFmt(CHOBJID_DIAGRAM_Y_AXIS,FALSE);
-//STRIP001  UINT32 nPercentDescrFormat=pAxis ? pAxis->GetNumFormat(TRUE)  : GetNumFmt(CHOBJID_DIAGRAM_Y_AXIS,TRUE);
-//STRIP001  String aText;
-//STRIP001  Color* pDummy = NULL;
-//STRIP001
-//STRIP001
-//STRIP001  if (pAxis && !bIsPercent && ((rDescr.eDescr == CHDESCR_PERCENT)
-//STRIP001                   || (rDescr.eDescr == CHDESCR_TEXTANDPERCENT)))
-//STRIP001      rDescr.fValue=pAxis->Data2Percent(rDescr.fValue,nCol,nRow);
-//STRIP001
-//STRIP001  switch (rDescr.eDescr)
-//STRIP001  {
-//STRIP001      case CHDESCR_VALUE:
-//STRIP001          pNumFormatter->GetOutputString(rDescr.fValue, nDescrFormat, aText, &pDummy);
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHDESCR_PERCENT:
-//STRIP001          pNumFormatter->GetOutputString(rDescr.fValue / 100.0, nPercentDescrFormat, aText, &pDummy);
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHDESCR_TEXT:
-//STRIP001          aText = bRowDescr ? RowText(nRow) : ColText(nCol);
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHDESCR_TEXTANDPERCENT:
-//STRIP001          pNumFormatter->GetOutputString(rDescr.fValue / 100.0, nPercentDescrFormat, aText, &pDummy);
-//STRIP001          aText.Insert( (sal_Unicode)(' '), 0 );
-//STRIP001          aText.Insert( bRowDescr ? RowText( nRow ) : ColText( nCol ), 0 );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHDESCR_TEXTANDVALUE:
-//STRIP001          pNumFormatter->GetOutputString(rDescr.fValue, nDescrFormat, aText, &pDummy);
-//STRIP001          aText.Insert( sal_Unicode(' '), 0 );
-//STRIP001          aText.Insert( bRowDescr ? RowText( nRow ) : ColText( nCol ), 0 );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHDESCR_NUMFORMAT_PERCENT: //SP3: #49905#
-//STRIP001          if(IsAxisChart())
-//STRIP001              pNumFormatter->GetOutputString(rDescr.fValue / 100.0, nPercentDescrFormat, aText, &pDummy);
-//STRIP001          else //PieChart, hier wird getrickst, um fileformatkompatible den Formatter der X-Achse zu
-//STRIP001              // missbrauchen, der NICHT auf Percent gesetzt werden kann, da Pie kein IsPercent()
-//STRIP001              // liefert, dieses wird jedoch im Basic bei ...AxisX.Text ausgewertet
-//STRIP001              pNumFormatter->GetOutputString(rDescr.fValue / 100.0, nDescrFormat, aText, &pDummy);
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHDESCR_NUMFORMAT_VALUE: //SP3: #49905#
-//STRIP001          pNumFormatter->GetOutputString(rDescr.fValue / 100.0, nDescrFormat, aText, &pDummy);
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxItemSet aDataPointAttr(GetFullDataPointAttr(nCol, nRow ));
-//STRIP001  SfxItemSet aTextAttr(*pItemPool, nTextWhichPairs);
-//STRIP001  aTextAttr.Put(aDataPointAttr);
-//STRIP001
-//STRIP001  SdrObject* pObj;
-//STRIP001
-//STRIP001  // Objekte zuerst mit Position 0,0 anlegen, um dann die relative
-//STRIP001  // Position zu setzen; rDescr.aTextPos2D wird dann als AnchorPos verwendet
-//STRIP001  if( rDescr.bSymbol )
-//STRIP001  {
-//STRIP001      pObj = new SchObjGroup;
-//STRIP001      pObj->InsertUserData(new SchObjectId( bRowDescr
-//STRIP001                                            ? CHOBJID_DIAGRAM_DESCR_ROW
-//STRIP001                                            : CHOBJID_DIAGRAM_DESCR_COL));
-//STRIP001      SdrObjList* pObjList = pObj->GetSubList();
-//STRIP001      SdrTextObj* pTextObj = CreateTextObj( CHOBJID_TEXT, Point(), aText,
-//STRIP001                                            aTextAttr, FALSE,
-//STRIP001                                            CHADJUST_TOP_LEFT,
-//STRIP001                                            -1);
-//STRIP001
-//STRIP001      long nH = pTextObj->GetLogicRect().GetHeight();
-//STRIP001
-//STRIP001      SfxItemSet aSymbolAttr(aDataPointAttr);
-//STRIP001      GenerateSymbolAttr( aSymbolAttr, nRow, SYMBOLMODE_DESCRIPTION );
-//STRIP001
-//STRIP001      SdrRectObj* pRect = new SdrRectObj( Rectangle(Point(), Size(nH, nH)) );
-//STRIP001      pRect->SetModel( this );
-//STRIP001      pObjList->NbcInsertObject( SetObjectAttr( pRect,
-//STRIP001                                                CHOBJID_DIAGRAM_DESCR_SYMBOL,
-//STRIP001                                                TRUE, TRUE, &aSymbolAttr));
-//STRIP001      pTextObj->NbcMove(Size(nH + nH/2, 0));
-//STRIP001      pObjList->NbcInsertObject(pTextObj);
-//STRIP001
-//STRIP001      Rectangle aRect = pObj->GetLogicRect();
-//STRIP001      AdjustRect(aRect, rDescr.eAdjust);
-//STRIP001      pObj->NbcSetRelativePos(aRect.TopLeft());
-//STRIP001      pObj->NbcSetAnchorPos(rDescr.aTextPos2D);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pObj = CreateTextObj( bRowDescr
-//STRIP001                            ? CHOBJID_DIAGRAM_DESCR_ROW
-//STRIP001                            : CHOBJID_DIAGRAM_DESCR_COL,
-//STRIP001                            Point(), aText,
-//STRIP001                            aTextAttr, FALSE, rDescr.eAdjust, -1);
-//STRIP001
-//STRIP001      pObj->NbcSetRelativePos(pObj->GetLogicRect().TopLeft());
-//STRIP001      pObj->NbcSetAnchorPos(rDescr.aTextPos2D);
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bRowDescr )
-//STRIP001      pObj->InsertUserData(new SchDataRow(nRow));
-//STRIP001  else
-//STRIP001      pObj->InsertUserData(new SchDataPoint(nCol, nRow));
-//STRIP001  // #54870# nRow oben immer 0 (?)
-//STRIP001
-//STRIP001  // return
-//STRIP001  rDescr.pLabelObj = pObj;
-//STRIP001 }
 
 /*N*/ USHORT ChartModel::GetRegressStrId( long nRow )
 /*N*/ {
@@ -668,33 +495,6 @@ enum ChartStyleV0
 /*N*/               else //i >= nCnt
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pRegressNr [i - nCnt])
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        XPolygon aLine(2);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        aLine [0] =
-//STRIP001 /*?*/                        aLine [1] = aTextPos;
-//STRIP001 /*?*/                        aLine [1].X () += nLegendHeight;
-//STRIP001 /*?*/                        aLine [1].Y () += nLegendHeight;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        pObj = new SdrPathObj(OBJ_PLIN, aLine);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        //  Set the object's user data so that the
-//STRIP001 /*?*/                        //  object can't be deleted via the GUI.
-//STRIP001 /*?*/                        pObj->InsertUserData(new SchObjectId (CHOBJID_LINE));
-//STRIP001 /*?*/
-//STRIP001 /*?*/ //-/                       pObj->NbcSetAttributes(GetRegressAttr(pRegressNr[i-nCnt]), FALSE);
-//STRIP001 /*?*/                        pObj->SetItemSet(GetRegressAttr(pRegressNr[i-nCnt]));
-//STRIP001 /*?*/
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        pObj->SetMoveProtect(TRUE);
-//STRIP001 /*?*/                        pObj->SetResizeProtect(TRUE);
-//STRIP001 /*?*/                        pObjList->NbcInsertObject(pObj);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        SdrObject* pText = (SdrObject*)aTextList.GetObject(nIndex);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        pText->Move(Size(aTextPos.X() + nLittleSpace + nLegendHeight, aTextPos.Y()));
-//STRIP001 /*?*/                        pObjList->NbcInsertObject(pText);
-//STRIP001 /*?*/                    }
 /*N*/               }
 /*N*/
 /*N*/               // FG: Jetzt wird aTextPos fuer den naechsten Legendeneintrag gesetzt
@@ -2490,93 +2290,12 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 BOOL ChartModel::ChangeTitle(BOOL bShowMain, const String& rMainTitle,
-//STRIP001                           BOOL bShowSub, const String& rSubTitle,
-//STRIP001                           BOOL bShowX, const String& rXAxisTitle,
-//STRIP001                           BOOL bShowY, const String& rYAxisTitle,
-//STRIP001                           BOOL bShowZ, const String& rZAxisTitle)
-//STRIP001 {
-//STRIP001  BOOL bMainTitleChanged  = (bShowMain != bShowMainTitle || ! rMainTitle.Equals( aMainTitle ));
-//STRIP001  BOOL bSubTitleChanged   = (bShowSub != bShowSubTitle || ! rSubTitle.Equals( aSubTitle ));
-//STRIP001  BOOL bXAxisTitleChanged = (bShowX != bShowXAxisTitle || ! rXAxisTitle.Equals( aXAxisTitle ));
-//STRIP001  BOOL bYAxisTitleChanged = (bShowY != bShowYAxisTitle || ! rYAxisTitle.Equals( aYAxisTitle ));
-//STRIP001  BOOL bZAxisTitleChanged = (bShowZ != bShowZAxisTitle || ! rZAxisTitle.Equals( aZAxisTitle ));
-//STRIP001
-//STRIP001  if (!bMainTitleChanged && !bSubTitleChanged &&
-//STRIP001      !bXAxisTitleChanged && !bYAxisTitleChanged &&
-//STRIP001      !bZAxisTitleChanged) return FALSE;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (bMainTitleChanged)
-//STRIP001      {
-//STRIP001          bShowMainTitle  = (bMainTitleChanged && (!rMainTitle.Len ()))
-//STRIP001                                ? FALSE
-//STRIP001                                : bShowMain;
-//STRIP001          aMainTitle      = rMainTitle;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bSubTitleChanged)
-//STRIP001      {
-//STRIP001          bShowSubTitle   = (bSubTitleChanged && (!rSubTitle.Len ()))
-//STRIP001                                ? FALSE
-//STRIP001                                : bShowSub;
-//STRIP001          aSubTitle       = rSubTitle;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bXAxisTitleChanged)
-//STRIP001      {
-//STRIP001          bShowXAxisTitle = (bXAxisTitleChanged && (!rXAxisTitle.Len ()))
-//STRIP001                                ? FALSE
-//STRIP001                                : bShowX;
-//STRIP001          aXAxisTitle     = rXAxisTitle;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bYAxisTitleChanged)
-//STRIP001      {
-//STRIP001          bShowYAxisTitle = (bYAxisTitleChanged && (!rYAxisTitle.Len ()))
-//STRIP001                                ? FALSE
-//STRIP001                                : bShowY;
-//STRIP001          aYAxisTitle     = rYAxisTitle;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bZAxisTitleChanged)
-//STRIP001      {
-//STRIP001          bShowZAxisTitle = (bZAxisTitleChanged && (!rZAxisTitle.Len ()))
-//STRIP001                                ? FALSE
-//STRIP001                                : bShowZ;
-//STRIP001          aZAxisTitle     = rZAxisTitle;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bMainTitleChanged || bSubTitleChanged || bXAxisTitleChanged ||
-//STRIP001          bYAxisTitleChanged || bZAxisTitleChanged) BuildChart(FALSE);
-//STRIP001
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001 }
 /*************************************************************************
 |*
 |* Titel-Attribute setzen
 |*
 \************************************************************************/
 
-//STRIP001 void ChartModel::PutTitleAttr(const SfxItemSet& rAttr,BOOL bMerge)
-//STRIP001 {
-//STRIP001  if(!bMerge)
-//STRIP001  {
-//STRIP001      pTitleAttr->ClearItem();
-//STRIP001      pMainTitleAttr->ClearItem();
-//STRIP001      pSubTitleAttr->ClearItem();
-//STRIP001      pXAxisTitleAttr->ClearItem();
-//STRIP001      pYAxisTitleAttr->ClearItem();
-//STRIP001      pZAxisTitleAttr->ClearItem();
-//STRIP001  }
-//STRIP001  pTitleAttr->Put(rAttr);
-//STRIP001  pMainTitleAttr->Put(rAttr);
-//STRIP001  pSubTitleAttr->Put(rAttr);
-//STRIP001  pXAxisTitleAttr->Put(rAttr);
-//STRIP001  pYAxisTitleAttr->Put(rAttr);
-//STRIP001  pZAxisTitleAttr->Put(rAttr);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2584,38 +2303,7 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 const SfxItemSet & ChartModel::GetTitleAttr( UINT16 nChobjID ) const
-//STRIP001 {
-//STRIP001     switch( nChobjID )
-//STRIP001     {
-//STRIP001         case CHOBJID_TITLE_MAIN:
-//STRIP001             return *pMainTitleAttr;
-//STRIP001
-//STRIP001         case CHOBJID_TITLE_SUB:
-//STRIP001             return *pSubTitleAttr;
-//STRIP001
-//STRIP001         case CHOBJID_DIAGRAM_TITLE_X_AXIS:
-//STRIP001             return *pXAxisTitleAttr;
-//STRIP001
-//STRIP001         case CHOBJID_DIAGRAM_TITLE_Y_AXIS:
-//STRIP001             return *pYAxisTitleAttr;
-//STRIP001
-//STRIP001         case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
-//STRIP001             return *pYAxisTitleAttr;
-//STRIP001     }
-//STRIP001     return *pTitleAttr;
-//STRIP001 }
 
-//STRIP001 const SfxItemSet & ChartModel::GetTitleAttr( const SdrTextObj* pTextObj ) const
-//STRIP001 {
-//STRIP001  if( pTextObj )
-//STRIP001  {
-//STRIP001      SchObjectId* pObjId = GetObjectId( * pTextObj );
-//STRIP001         if( pObjId )
-//STRIP001             return GetTitleAttr( pObjId->GetObjId() );
-//STRIP001     }
-//STRIP001     return *pTitleAttr;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2623,62 +2311,6 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 SfxItemSet ChartModel::GetFullTitleAttr(const SdrTextObj* pTextObj) const
-//STRIP001 {
-//STRIP001  if (pTextObj)
-//STRIP001  {
-//STRIP001      SfxItemSet aAttr(*pItemPool, nTitleWhichPairs);
-//STRIP001
-//STRIP001      aAttr.ClearItem ();
-//STRIP001
-//STRIP001      SchObjectId* pObjId = GetObjectId(*pTextObj);
-//STRIP001
-//STRIP001      if (pObjId) switch (pObjId->GetObjId())
-//STRIP001                  {
-//STRIP001                      case CHOBJID_TITLE_MAIN:
-//STRIP001                      {
-//STRIP001                          aAttr.Put(*pMainTitleAttr);
-//STRIP001                          break;
-//STRIP001                      }
-//STRIP001
-//STRIP001                      case CHOBJID_TITLE_SUB:
-//STRIP001                      {
-//STRIP001                          aAttr.Put(*pSubTitleAttr);
-//STRIP001                          break;
-//STRIP001                      }
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_TITLE_X_AXIS:
-//STRIP001                      {
-//STRIP001                          aAttr.Put(*pXAxisTitleAttr);
-//STRIP001                          break;
-//STRIP001                      }
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_TITLE_Y_AXIS:
-//STRIP001                      {
-//STRIP001                          aAttr.Put(*pYAxisTitleAttr);
-//STRIP001                          break;
-//STRIP001                      }
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
-//STRIP001                      {
-//STRIP001                          aAttr.Put(*pZAxisTitleAttr);
-//STRIP001                          break;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001      return aAttr;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pTitleAttr->ClearItem ();
-//STRIP001      pTitleAttr->Put (*pMainTitleAttr);
-//STRIP001      CompareSets (*pSubTitleAttr, *pTitleAttr);
-//STRIP001      CompareSets (*pXAxisTitleAttr, *pTitleAttr);
-//STRIP001      CompareSets (*pYAxisTitleAttr, *pTitleAttr);
-//STRIP001      CompareSets (*pZAxisTitleAttr, *pTitleAttr);
-//STRIP001
-//STRIP001      return *pTitleAttr;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2687,89 +2319,6 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 BOOL ChartModel::ChangeTitleAttr(const SfxItemSet &rAttr,
-//STRIP001                               SdrTextObj       *pTitleObj,
-//STRIP001                               BOOL             bMerge)
-//STRIP001 {
-//STRIP001  if (pTitleObj)
-//STRIP001  {
-//STRIP001      SchObjectId* pObjId = GetObjectId(*pTitleObj);
-//STRIP001
-//STRIP001      if (!pObjId) return FALSE;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SchObjectAdjust* pObjAdjust = GetObjectAdjust(*pTitleObj);
-//STRIP001          DBG_ASSERT( pObjAdjust, "ChartModel::ChangeTitleAttr: no adjustment info in text obj") ;
-//STRIP001
-//STRIP001          const SfxPoolItem  *pPoolItem = NULL;
-//STRIP001          SvxChartTextOrient eOldOrient = pObjAdjust->GetOrient();
-//STRIP001          SvxChartTextOrient eNewOrient = (rAttr.GetItemState(SCHATTR_TEXT_ORIENT, TRUE, &pPoolItem) == SFX_ITEM_SET)
-//STRIP001                                              ? ((const SvxChartTextOrientItem*)pPoolItem)->GetValue()
-//STRIP001                                              : eOldOrient;
-//STRIP001
-//STRIP001          switch (pObjId->GetObjId())
-//STRIP001          {
-//STRIP001              case CHOBJID_TITLE_MAIN:
-//STRIP001                  PutMainTitleAttr(rAttr,bMerge);
-//STRIP001                  TitleOrientChanged (pTitleObj, pMainTitleAttr,eOldOrient, eNewOrient);
-//STRIP001
-//STRIP001                  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001                      BuildChart(FALSE, CHOBJID_TITLE_MAIN);
-//STRIP001                  else
-//STRIP001 //-/                     GetObjWithId(CHOBJID_TITLE_MAIN,*GetPage(0))->SetAttributes(rAttr,FALSE);
-//STRIP001                      GetObjWithId(CHOBJID_TITLE_MAIN,*GetPage(0))->SetItemSet(rAttr);
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHOBJID_TITLE_SUB:
-//STRIP001                  PutSubTitleAttr(rAttr,bMerge);
-//STRIP001                  TitleOrientChanged (pTitleObj, pSubTitleAttr,eOldOrient, eNewOrient);
-//STRIP001                  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001                      BuildChart(FALSE, CHOBJID_TITLE_SUB);
-//STRIP001                  else
-//STRIP001 //-/                     GetObjWithId(CHOBJID_TITLE_SUB,*GetPage(0))->SetAttributes(rAttr,FALSE);
-//STRIP001                      GetObjWithId(CHOBJID_TITLE_SUB,*GetPage(0))->SetItemSet(rAttr);
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHOBJID_DIAGRAM_TITLE_X_AXIS:
-//STRIP001                  PutXAxisTitleAttr(rAttr,bMerge);
-//STRIP001                  TitleOrientChanged (pTitleObj, pXAxisTitleAttr,eOldOrient, eNewOrient);
-//STRIP001                   if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001                      BuildChart(FALSE, CHOBJID_DIAGRAM_TITLE_X_AXIS);
-//STRIP001                  else
-//STRIP001 //-/                     GetObjWithId(CHOBJID_DIAGRAM_TITLE_X_AXIS,*GetPage(0))->SetAttributes(rAttr,FALSE);
-//STRIP001                      GetObjWithId(CHOBJID_DIAGRAM_TITLE_X_AXIS,*GetPage(0))->SetItemSet(rAttr);
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHOBJID_DIAGRAM_TITLE_Y_AXIS:
-//STRIP001                  PutYAxisTitleAttr(rAttr,bMerge);
-//STRIP001                  TitleOrientChanged (pTitleObj, pYAxisTitleAttr,eOldOrient, eNewOrient);
-//STRIP001                  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001                      BuildChart(FALSE, CHOBJID_DIAGRAM_TITLE_Y_AXIS);
-//STRIP001                  else
-//STRIP001 //-/                     GetObjWithId(CHOBJID_DIAGRAM_TITLE_Y_AXIS,*GetPage(0))->SetAttributes(rAttr,FALSE);
-//STRIP001                      GetObjWithId(CHOBJID_DIAGRAM_TITLE_Y_AXIS,*GetPage(0))->SetItemSet(rAttr);
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
-//STRIP001                  PutZAxisTitleAttr(rAttr,bMerge);
-//STRIP001                  TitleOrientChanged (pTitleObj, pZAxisTitleAttr,eOldOrient, eNewOrient);
-//STRIP001                  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001                      BuildChart(FALSE, CHOBJID_DIAGRAM_TITLE_Z_AXIS);
-//STRIP001                  else
-//STRIP001 //-/                     GetObjWithId(CHOBJID_DIAGRAM_TITLE_Z_AXIS,*GetPage(0))->SetAttributes(rAttr,FALSE);
-//STRIP001                      GetObjWithId(CHOBJID_DIAGRAM_TITLE_Z_AXIS,*GetPage(0))->SetItemSet(rAttr);
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      PutTitleAttr(rAttr,bMerge);
-//STRIP001      return SetAllTitleAttributes (rAttr);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2778,21 +2327,6 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 BOOL ChartModel::ChangeTitleAttr(const SfxItemSet &rMainTitleAttr,
-//STRIP001                               const SfxItemSet &rSubTitleAttr,
-//STRIP001                               const SfxItemSet &rXAxisTitleAttr,
-//STRIP001                               const SfxItemSet &rYAxisTitleAttr,
-//STRIP001                               const SfxItemSet &rZAxisTitleAttr,
-//STRIP001                               BOOL             bMerge)
-//STRIP001 {
-//STRIP001  PutMainTitleAttr( rMainTitleAttr ,bMerge);
-//STRIP001  PutSubTitleAttr(  rSubTitleAttr  ,bMerge);
-//STRIP001  PutXAxisTitleAttr(rXAxisTitleAttr,bMerge);
-//STRIP001  PutYAxisTitleAttr(rYAxisTitleAttr,bMerge);
-//STRIP001  PutZAxisTitleAttr(rZAxisTitleAttr,bMerge);
-//STRIP001
-//STRIP001  return SetAllTitleAttributes (*pMainTitleAttr);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2849,76 +2383,12 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 void ChartModel::ChangeLegendAttr(const SfxItemSet& rAttr,
-//STRIP001                                BOOL              bMerge)
-//STRIP001 {
-//STRIP001  long nWEidth = ((XLineWidthItem &)rAttr.Get (XATTR_LINEWIDTH)).GetValue ();
-//STRIP001
-//STRIP001  SdrPage* pPage = GetPage(0);
-//STRIP001  DBG_ASSERT( pPage, "ChangeLegendAttr: page object is NULL" );
-//STRIP001
-//STRIP001  const SfxPoolItem* pPoolItem = NULL;
-//STRIP001
-//STRIP001  SvxChartLegendPos eOldPos = ((const SvxChartLegendPosItem&) pLegendAttr->Get(SCHATTR_LEGEND_POS)).GetValue();
-//STRIP001
-//STRIP001  SvxChartLegendPos eNewPos;
-//STRIP001  if (rAttr.GetItemState(SCHATTR_LEGEND_POS, TRUE, &pPoolItem) == SFX_ITEM_SET)
-//STRIP001      eNewPos = ((const SvxChartLegendPosItem*)pPoolItem)->GetValue();
-//STRIP001  else eNewPos = eOldPos;
-//STRIP001
-//STRIP001
-//STRIP001  //#50913#: Legende hat neue Position? Wenn ja, dann relative Pos loeschen:
-//STRIP001  if(eOldPos!=eNewPos)
-//STRIP001      SetLegendHasBeenMoved(FALSE);
-//STRIP001
-//STRIP001  PutLegendAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001  if ((eOldPos != CHLEGEND_NONE) && bLegendVisible)
-//STRIP001  {
-//STRIP001      SdrObjGroup *pLegendObj = (SdrObjGroup*)GetObjWithId(CHOBJID_LEGEND, *pPage);
-//STRIP001
-//STRIP001      if ((eNewPos != CHLEGEND_NONE) && pLegendObj)
-//STRIP001      {
-//STRIP001          SdrObjList* pObjList = pLegendObj->GetSubList();
-//STRIP001          SdrObject* pObj = GetObjWithId(CHOBJID_LEGEND_BACK, *pObjList);
-//STRIP001          DBG_ASSERT(pObj, "ChartModel::ChangeLegendAttr: legend back obj not found");
-//STRIP001
-//STRIP001 //-/         pObj->SetAttributes(*pLegendAttr, FALSE);
-//STRIP001          pObj->SetItemSetAndBroadcast(*pLegendAttr);
-//STRIP001
-//STRIP001          SfxItemSet aTextAttr(*pItemPool, nTextWhichPairs);
-//STRIP001          aTextAttr.Put(rAttr);
-//STRIP001
-//STRIP001          SdrObjListIter aIterator(*pLegendObj->GetSubList(), IM_FLAT);
-//STRIP001          while (aIterator.IsMore())
-//STRIP001          {
-//STRIP001              SdrObject* pObj = aIterator.Next();
-//STRIP001              if (pObj->GetObjIdentifier() == OBJ_TEXT)
-//STRIP001              {
-//STRIP001                  SetTextAttr(*(SdrTextObj*)pObj,aTextAttr);
-//STRIP001
-//STRIP001 //-/                 pObj->SetAttributes(rAttr,0);
-//STRIP001                  pObj->SetItemSetAndBroadcast(rAttr);
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001      BuildChart(FALSE, CHOBJID_LEGEND);
-//STRIP001 }
 /*************************************************************************
 |*
 |* Chart-Attribute aendern;
 |* Liefert bei geaenderten Attributen TRUE.
 |*
 \************************************************************************/
-//STRIP001 void ChartModel::ChangeChartAttr(const SfxItemSet& rAttr,BOOL bMerge)
-//STRIP001 {
-//STRIP001  PutChartAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001  //Todo: Attr->eChartStyle
-//STRIP001  BuildChart(FALSE);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2926,35 +2396,6 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 BOOL ChartModel::TitleOrientChanged (const SdrTextObj   *pTitleObj,
-//STRIP001                                   const SfxItemSet   *pAttr,
-//STRIP001                                   SvxChartTextOrient eOldOrient,
-//STRIP001                                   SvxChartTextOrient eNewOrient)
-//STRIP001 {
-//STRIP001  if (eOldOrient == eNewOrient) return TRUE;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if( eNewOrient == CHTXTORIENT_STACKED && pTitleObj )
-//STRIP001      {
-//STRIP001          pOutliner->SetText( *(pTitleObj->GetOutlinerParaObject()) );
-//STRIP001          String aTitle = pOutliner->GetText( pOutliner->GetParagraph( 0 ), pOutliner->GetParagraphCount() );
-//STRIP001          pOutliner->Clear();
-//STRIP001          SAL_CONST_CAST( SdrTextObj*, pTitleObj )->SetText( StackString( aTitle ) );
-//STRIP001      }
-//STRIP001      else if( eOldOrient == CHTXTORIENT_STACKED && pTitleObj )
-//STRIP001      {
-//STRIP001          pOutliner->SetText( *(pTitleObj->GetOutlinerParaObject()) );
-//STRIP001          String aTitle = pOutliner->GetText( pOutliner->GetParagraph( 0 ), pOutliner->GetParagraphCount() );
-//STRIP001          pOutliner->Clear();
-//STRIP001          SAL_CONST_CAST( SdrTextObj*, pTitleObj )->SetText( UnstackString( aTitle ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      long nOldHeight = GetOutputSize(*((SdrTextObj *)pTitleObj)).Height();
-//STRIP001
-//STRIP001      SetTextAttr(*((SdrTextObj *) pTitleObj),*pAttr);
-//STRIP001      return nOldHeight != GetOutputSize(*((SdrTextObj *)pTitleObj)).Height();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2962,60 +2403,5 @@ enum ChartStyleV0
 |*
 \************************************************************************/
 
-//STRIP001 BOOL ChartModel::SetAllTitleAttributes(const SfxItemSet &rAttr)
-//STRIP001 {
-//STRIP001  SdrPage          *pPage=GetPage(0);
-//STRIP001  if (!pPage) return FALSE;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      BOOL               bBuildChart = FALSE;
-//STRIP001      const SfxPoolItem  *pPoolItem  = NULL;
-//STRIP001      SvxChartTextOrient eOldOrient  = (rAttr.GetItemState(SCHATTR_TEXT_ORIENT, TRUE, &pPoolItem) == SFX_ITEM_SET)
-//STRIP001                                           ? ((const SvxChartTextOrientItem*)pPoolItem)->GetValue()
-//STRIP001                                           : CHTXTORIENT_AUTOMATIC;
-//STRIP001
-//STRIP001      if (bShowMainTitle)
-//STRIP001          if (TitleOrientChanged ((SdrTextObj*)GetObjWithId(CHOBJID_TITLE_MAIN, *pPage), pMainTitleAttr,
-//STRIP001                                   eOldOrient,
-//STRIP001                                  ((const SvxChartTextOrientItem&)pMainTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue()))
-//STRIP001              bBuildChart = TRUE;
-//STRIP001
-//STRIP001      if (!bBuildChart && bShowSubTitle)
-//STRIP001          if (TitleOrientChanged ((SdrTextObj*)GetObjWithId(CHOBJID_TITLE_SUB, *pPage), pSubTitleAttr,
-//STRIP001                                   eOldOrient,
-//STRIP001                                  ((const SvxChartTextOrientItem&)pSubTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue()))
-//STRIP001              bBuildChart = TRUE;
-//STRIP001
-//STRIP001      if (!bBuildChart)
-//STRIP001      {
-//STRIP001          SdrObjGroup *pGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001          SdrObjList  *pList  = pGroup->GetSubList();
-//STRIP001
-//STRIP001          if (bShowXAxisTitle)
-//STRIP001              if (Is3DChart() ||                                                                     //TVMNEW: DEEP unoetig
-//STRIP001                  TitleOrientChanged ((SdrTextObj*)GetObjWithId(CHOBJID_DIAGRAM_TITLE_X_AXIS, *pPage) // 0,IM_DEEPWITHGROUPS)
-//STRIP001                                                                , pXAxisTitleAttr, eOldOrient,
-//STRIP001                                      ((const SvxChartTextOrientItem&)pXAxisTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue()))
-//STRIP001                  bBuildChart = TRUE;
-//STRIP001
-//STRIP001          if (!bBuildChart && bShowYAxisTitle)
-//STRIP001              if (Is3DChart() ||
-//STRIP001                  TitleOrientChanged ((SdrTextObj*)GetObjWithId(CHOBJID_DIAGRAM_TITLE_Y_AXIS, *pPage)//0,IM_DEEPWITHGROUPS)
-//STRIP001                                                                , pYAxisTitleAttr, eOldOrient,
-//STRIP001                                      ((const SvxChartTextOrientItem&)pYAxisTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue()))
-//STRIP001                  bBuildChart = TRUE;
-//STRIP001
-//STRIP001          if (!bBuildChart && Is3DChart() && bShowZAxisTitle)
-//STRIP001              if (Is3DChart() ||
-//STRIP001                  TitleOrientChanged ((SdrTextObj*)GetObjWithId(CHOBJID_DIAGRAM_TITLE_Z_AXIS, *pPage) // 0,IM_DEEPWITHGROUPS)
-//STRIP001                                                                , pZAxisTitleAttr,eOldOrient,
-//STRIP001                                      ((const SvxChartTextOrientItem&)pZAxisTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue()))
-//STRIP001                  bBuildChart = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bBuildChart) BuildChart(FALSE);
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001 }
 
 }
