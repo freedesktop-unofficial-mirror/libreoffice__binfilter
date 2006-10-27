@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:50:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:58:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,47 +36,22 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 
 #define _SVSTDARR_STRINGSDTOR
-// auto strip #include <svtools/svstdarr.hxx>
 
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_UNDOOPT_HXX
-// auto strip #include <svtools/undoopt.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-// auto strip #include <svtools/pathoptions.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
 #include <svtools/accessibilityoptions.hxx>
 #endif
-// auto strip #ifndef _SFXDISPATCH_HXX //autogen
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
 #ifndef _SFXEVENT_HXX //autogen
 #include <bf_sfx2/event.hxx>
 #endif
-// auto strip #ifndef _SVX_SRCHITEM_HXX
-// auto strip #include <bf_svx/srchitem.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <svtools/colorcfg.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
-// auto strip #ifndef _OFF_APP_HXX //autogen
-// auto strip #include <bf_offmgr/app.hxx>
-// auto strip #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
@@ -89,49 +64,16 @@
 #ifndef _SVX_DLG_HYPERLINK_HXX //autogen
 #include <bf_offmgr/hyprlink.hxx>
 #endif
-// auto strip #ifndef _SFXREQUEST_HXX //autogen
-// auto strip #include <bf_sfx2/request.hxx>
-// auto strip #endif
-// auto strip #ifndef _OFA_OSPLCFG_HXX //autogen
-// auto strip #include <bf_offmgr/osplcfg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVTOOLS_LINGUCFG_HXX_
-// auto strip #include <svtools/lingucfg.hxx>
-// auto strip #endif
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <svtools/ctloptions.hxx>
 #endif
-// auto strip #ifndef _SVX_ADRITEM_HXX //autogen
-// auto strip #include <bf_svx/adritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _VCL_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _VCL_WRKWIN_HXX //autogen
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
 #ifndef _SVX_INSCTRL_HXX //autogen
 #include <bf_svx/insctrl.hxx>
 #endif
 #ifndef _SVX_SELCTRL_HXX //autogen
 #include <bf_svx/selctrl.hxx>
 #endif
-// auto strip #ifndef _NAVICFG_HXX
-// auto strip #include <navicfg.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _VIEW_HXX
-// auto strip #include <view.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWPVIEW_HXX
-// auto strip #include <pview.hxx>
-// auto strip #endif
-// auto strip #ifndef _SRCVIEW_HXX
-// auto strip #include <srcview.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -140,18 +82,9 @@
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
 #ifndef _CMDID_H
 #include <cmdid.h>          // Funktion-Ids
 #endif
-// auto strip #ifndef _INITUI_HXX
-// auto strip #include <initui.hxx>
-// auto strip #endif
-// auto strip #ifndef _UITOOL_HXX
-// auto strip #include <uitool.hxx>
-// auto strip #endif
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
 #endif
@@ -161,30 +94,9 @@
 #ifndef _WVIEW_HXX
 #include <wview.hxx>
 #endif
-// auto strip #ifndef _WIZZARD_HXX
-// auto strip #include <wizzard.hxx>        // Wizzards
-// auto strip #endif
-// auto strip #ifndef _USRPREF_HXX
-// auto strip #include <usrpref.hxx>
-// auto strip #endif
-// auto strip #ifndef _GLOSLST_HXX
-// auto strip #include <gloslst.hxx>      // SwGlossaryList
-// auto strip #endif
-// auto strip #ifndef _GLOSDOC_HXX
-// auto strip #include <glosdoc.hxx>      // SwGlossaryList
-// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _CFGITEMS_HXX
-// auto strip #include <cfgitems.hxx>
-// auto strip #endif
-// auto strip #ifndef _PRTOPT_HXX
-// auto strip #include <prtopt.hxx>
-// auto strip #endif
-// auto strip #ifndef _MODCFG_HXX
-// auto strip #include <modcfg.hxx>
-// auto strip #endif
 #ifndef _GLOBALS_H
 #include <globals.h>        // globale Konstanten z.B.
 #endif
@@ -212,71 +124,8 @@
 #ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
 #endif
-// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
-// auto strip #include <bf_linguistic/lngprops.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_SFXUNO_HXX
-// auto strip #include <bf_sfx2/sfxuno.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValues.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyState.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XFastPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XVETOABLECHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XVetoableChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyState.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATECHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyStateChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertiesChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYACCESS_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyAccess.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCONTAINER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATECHANGEEVENT_HPP_
-// auto strip #include <com/sun/star/beans/PropertyStateChangeEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-// auto strip #endif
 
 // #107253#
-// auto strip #ifndef _SWLINGUCONFIG_HXX
-// auto strip #include <swlinguconfig.hxx>
-// auto strip #endif
 
 using namespace ::com::sun::star;
 
@@ -304,7 +153,6 @@ using namespace ::com::sun::star;
 #include <shells.hrc>
 #include "so3/staticbaseurl.hxx"
 namespace binfilter {
-// auto strip #include <bf_svx/svxslots.hxx>
 #include "swslots.hxx"
 /*N*/ SFX_IMPL_INTERFACE( SwModule, SfxModule, SW_RES(RID_SW_NAME) )
 /*N*/ {
@@ -319,20 +167,6 @@ namespace binfilter {
  Beschreibung:  Funktionen Ansicht
 ------------------------------------------------------------------------*/
 
-//STRIP001 void lcl_SetViewMetaChars( SwViewOption& rVOpt, sal_Bool bOn)
-//STRIP001 {
-//STRIP001  rVOpt.SetViewMetaChars( bOn );
-//STRIP001  if(bOn && !(rVOpt.IsParagraph()     ||
-//STRIP001          rVOpt.IsTab()       ||
-//STRIP001          rVOpt.IsLineBreak() ||
-//STRIP001          rVOpt.IsBlank()))
-//STRIP001  {
-//STRIP001      rVOpt.SetParagraph(bOn);
-//STRIP001      rVOpt.SetTab(bOn);
-//STRIP001      rVOpt.SetLineBreak(bOn);
-//STRIP001      rVOpt.SetBlank(bOn);
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/sal_Bool lcl_IsViewMarks( const SwViewOption& rVOpt )
@@ -341,13 +175,6 @@ namespace binfilter {
 /*N*/           rVOpt.IsSoftHyph() &&
 /*N*/            SwViewOption::IsFieldShadings();
 /*N*/}
-//STRIP001 void lcl_SetViewMarks(SwViewOption& rVOpt, sal_Bool bOn )
-//STRIP001 {
-//STRIP001  rVOpt.SetHardBlank(bOn);
-//STRIP001  rVOpt.SetSoftHyph(bOn);
-//STRIP001     SwViewOption::SetAppearanceFlag(
-//STRIP001             VIEWOPT_FIELD_SHADINGS, bOn, TRUE);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   State mit CheckMark fuer ViewOptions
@@ -372,79 +199,6 @@ namespace binfilter {
 /*M*/   {
 /*M*/       if(pActView)
 /*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            sal_Bool bReadonly = pActView->GetDocShell()->IsReadOnly();
-//STRIP001 /*?*/            sal_Bool bBrowse = pDoc ? pDoc->IsBrowseMode() : sal_False;
-//STRIP001 /*?*/            if ( bReadonly && nWhich != FN_VIEW_GRAPHIC )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                rSet.DisableItem(nWhich);
-//STRIP001 /*?*/                nWhich = 0;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            switch(nWhich)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                case FN_RULER:
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     if(!pOpt->IsViewHRuler(TRUE) && !pOpt->IsViewVRuler(TRUE))
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         rSet.DisableItem(nWhich);
-//STRIP001 /*?*/                         nWhich = 0;
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                     else
-//STRIP001 /*?*/                         aBool.SetValue( pOpt->IsViewAnyRuler());
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 break;
-//STRIP001 /*?*/                case FN_VIEW_BOUNDS:
-//STRIP001 /*?*/                     aBool.SetValue( SwViewOption::IsDocBoundaries()); break;
-//STRIP001 /*?*/                case FN_VIEW_GRAPHIC:
-//STRIP001 /*?*/                    aBool.SetValue( !pOpt->IsGraphic() ); break;
-//STRIP001 /*?*/                case FN_VIEW_FIELDS:
-//STRIP001 /*?*/                     aBool.SetValue( SwViewOption::IsFieldShadings() ); break;
-//STRIP001 /*?*/                case FN_VIEW_FIELDNAME:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsFldName() ); break;
-//STRIP001 /*?*/                case FN_VIEW_MARKS:
-//STRIP001 /*?*/                    aBool.SetValue( lcl_IsViewMarks(*pOpt) ); break;
-//STRIP001 /*?*/                case FN_VIEW_META_CHARS:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsViewMetaChars() ); break;
-//STRIP001 /*?*/                case FN_VIEW_TABLEGRID:
-//STRIP001 /*?*/                     aBool.SetValue( SwViewOption::IsTableBoundaries() ); break;
-//STRIP001 /*?*/                case FN_VIEW_HIDDEN_PARA:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsShowHiddenPara()); break;
-//STRIP001 /*?*/                case SID_GRID_VISIBLE:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsGridVisible() ); break;
-//STRIP001 /*?*/                case SID_GRID_USE:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsSnap() ); break;
-//STRIP001 /*?*/                case SID_HELPLINES_MOVE:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsCrossHair() ); break;
-//STRIP001 /*?*/                case FN_VIEW_SMOOTH_SCROLL:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsSmoothScroll()); break;
-//STRIP001 /*?*/                case FN_VLINEAL:
-//STRIP001 /*?*/                    aBool.SetValue( pActView->StatVLineal() ); break;
-//STRIP001 /*?*/                case FN_HSCROLLBAR:
-//STRIP001 /*?*/                    if(bBrowse)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        rSet.DisableItem(nWhich);
-//STRIP001 /*?*/                        nWhich = 0;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                         aBool.SetValue( pActView->IsHScrollbarVisible() ); break;
-//STRIP001 /*?*/                case FN_VSCROLLBAR:
-//STRIP001 /*?*/                     aBool.SetValue( pActView->IsVScrollbarVisible() ); break;
-//STRIP001 /*?*/                case SID_AUTOSPELL_CHECK:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsOnlineSpell() );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/                case SID_AUTOSPELL_MARKOFF:
-//STRIP001 /*?*/                    aBool.SetValue( pOpt->IsHideSpell() );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/                case FN_SHADOWCURSOR:
-//STRIP001 /*?*/                    if (pDoc == 0 || pDoc->IsBrowseMode())
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        rSet.DisableItem( nWhich );
-//STRIP001 /*?*/                        nWhich = 0;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        aBool.SetValue( pOpt->IsShadowCursor() );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            }
 /*M*/       }
 /*M*/       else
 /*M*/       {
@@ -469,67 +223,6 @@ namespace binfilter {
 /*N*/void SwModule::StateOther(SfxItemSet &rSet)
 /*N*/{
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
-//STRIP001  sal_uInt16 nWhich = aIter.FirstWhich();
-//STRIP001
-//STRIP001  SwView* pActView = ::GetActiveView();
-//STRIP001  sal_Bool bWebView = 0 != PTR_CAST(SwWebView, pActView);
-//STRIP001
-//STRIP001  while(nWhich)
-//STRIP001  {
-//STRIP001      switch(nWhich)
-//STRIP001      {
-//STRIP001          case FN_BUSINESS_CARD:
-//STRIP001          case FN_LABEL:
-//STRIP001          case FN_ENVELOP:
-//STRIP001          {
-//STRIP001              sal_Bool bDisable = sal_False;
-//STRIP001              SfxViewShell* pView = SfxViewShell::Current();
-//STRIP001              if( !pView || (pView && !pView->ISA(SwView)) )
-//STRIP001                  bDisable = sal_True;
-//STRIP001              SwDocShell *pDocSh = (SwDocShell*) SfxObjectShell::Current();
-//STRIP001              if ( bDisable ||
-//STRIP001                  (pDocSh &&    (pDocSh->IsReadOnly() ||
-//STRIP001                                pDocSh->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED)) )
-//STRIP001                  rSet.DisableItem( nWhich );
-//STRIP001
-//STRIP001          }
-//STRIP001          break;
-//STRIP001          case FN_EDIT_FORMULA:
-//STRIP001              {
-//STRIP001                  SwWrtShell* pSh = 0;
-//STRIP001                  int nSelection = 0;
-//STRIP001                  if( pActView )
-//STRIP001                      pSh = &pActView->GetWrtShell();
-//STRIP001                  if( pSh )
-//STRIP001                      nSelection = pSh->GetSelectionType();
-//STRIP001
-//STRIP001                  if( (pSh && pSh->HasSelection()) ||
-//STRIP001                      !(nSelection & (SwWrtShell::SEL_TXT | SwWrtShell::SEL_TBL)))
-//STRIP001                      rSet.DisableItem(nWhich);
-//STRIP001              }
-//STRIP001          break;
-//STRIP001          case SID_ATTR_ADDRESS:
-//STRIP001          {
-//STRIP001              SvxAddressItem aAddress;
-//STRIP001              aAddress.SetWhich( nWhich );
-//STRIP001              rSet.Put( aAddress );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001          case SID_ATTR_UNDO_COUNT:
-//STRIP001              rSet.Put(SfxUInt16Item( SID_ATTR_UNDO_COUNT, SwEditShell::GetUndoActionCount()));
-//STRIP001          break;
-//STRIP001          case SID_ATTR_METRIC:
-//STRIP001              rSet.Put( SfxUInt16Item( SID_ATTR_METRIC, ::GetDfltMetric(bWebView)));
-//STRIP001          break;
-//STRIP001          case FN_SET_MODOPT_TBLNUMFMT:
-//STRIP001              rSet.Put( SfxBoolItem( nWhich, pModuleConfig->
-//STRIP001                                          IsInsTblFormatNum( bWebView )));
-//STRIP001          break;
-//STRIP001             default:
-//STRIP001              DBG_ERROR("::StateOther: default");
-//STRIP001      }
-//STRIP001      nWhich = aIter.NextWhich();
-//STRIP001  }
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -549,261 +242,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
 
 /*N*/ void SwModule::ExecViewOptions(SfxRequest &rReq)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwViewOption* pOpt = 0;
-//STRIP001  OfficeApplication* pOffApp = OFF_APP();
-//STRIP001  sal_Bool bModified = sal_True;
-//STRIP001  if ( GetView() )
-//STRIP001  {
-//STRIP001      pOpt = new SwViewOption( *GetView()->GetWrtShell().GetViewOptions() );
-//STRIP001      bModified = GetView()->GetWrtShell().IsModified();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pOpt = new SwViewOption();
-//STRIP001      DBG_ERROR("ExecViewOptions: ohne View - falsche UsrPref?")
-//STRIP001      MakeUsrPref(*pOpt, sal_False);
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  int eState = STATE_TOGGLE;
-//STRIP001  sal_Bool bSet = sal_False;
-//STRIP001
-//STRIP001  const SfxItemSet *pArgs = rReq.GetArgs();
-//STRIP001  sal_uInt16 nSlot = rReq.GetSlot();
-//STRIP001     const SfxPoolItem* pAttr=NULL;
-//STRIP001
-//STRIP001  if( pArgs && SFX_ITEM_SET == pArgs->GetItemState( nSlot , sal_False, &pAttr ))
-//STRIP001  {
-//STRIP001      bSet = ((SfxBoolItem*)pAttr)->GetValue();
-//STRIP001         eState = bSet ? STATE_ON : STATE_OFF;
-//STRIP001  }
-//STRIP001
-//STRIP001  int bFlag = STATE_ON == eState;
-//STRIP001  // fuer die (WebViewSettings
-//STRIP001  enum WebDepend
-//STRIP001  {
-//STRIP001      DEPEND_NONE,
-//STRIP001      DEPEND_NOWEB,
-//STRIP001      DEPEND_WEB
-//STRIP001  }eWebDepend = DEPEND_NONE;
-//STRIP001
-//STRIP001  uno::Reference< beans::XPropertySet >  xLngProp( ::GetLinguPropertySet() );
-//STRIP001
-//STRIP001  switch ( nSlot )
-//STRIP001  {
-//STRIP001      case FN_VIEW_GRAPHIC:
-//STRIP001
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsGraphic();
-//STRIP001              pOpt->SetGraphic( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VIEW_FIELDS:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                     bFlag = !SwViewOption::IsFieldShadings() ;
-//STRIP001                 SwViewOption::SetAppearanceFlag(VIEWOPT_FIELD_SHADINGS, bFlag, TRUE );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VIEW_BOUNDS:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                     bFlag = !SwViewOption::IsDocBoundaries();
-//STRIP001                 SwViewOption::SetAppearanceFlag(VIEWOPT_DOC_BOUNDARIES, bFlag, TRUE );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case SID_GRID_VISIBLE:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsGridVisible();
-//STRIP001
-//STRIP001              pOpt->SetGridVisible( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case SID_GRID_USE:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsSnap();
-//STRIP001
-//STRIP001              pOpt->SetSnap( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case SID_HELPLINES_MOVE:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsCrossHair();
-//STRIP001
-//STRIP001              pOpt->SetCrossHair( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VIEW_HIDDEN_PARA:
-//STRIP001              if ( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsShowHiddenPara();
-//STRIP001
-//STRIP001              pOpt->SetShowHiddenPara( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VIEW_SMOOTH_SCROLL:
-//STRIP001
-//STRIP001              if ( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsSmoothScroll();
-//STRIP001
-//STRIP001              pOpt->SetSmoothScroll( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001
-//STRIP001      case FN_VLINEAL:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                     bFlag = !pOpt->IsViewVRuler();
-//STRIP001
-//STRIP001                 pOpt->SetViewVRuler( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VSCROLLBAR:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsViewVScrollBar();
-//STRIP001
-//STRIP001              pOpt->SetViewVScrollBar( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_HSCROLLBAR:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsViewHScrollBar();
-//STRIP001
-//STRIP001              pOpt->SetViewHScrollBar( bFlag );
-//STRIP001              break;
-//STRIP001      case FN_RULER:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                     bFlag = !pOpt->IsViewAnyRuler();
-//STRIP001
-//STRIP001                 pOpt->SetViewAnyRuler( bFlag );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VIEW_TABLEGRID:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                     bFlag = !SwViewOption::IsTableBoundaries();
-//STRIP001                 SwViewOption::SetAppearanceFlag(VIEWOPT_TABLE_BOUNDARIES, bFlag, TRUE );
-//STRIP001              break;
-//STRIP001
-//STRIP001      case FN_VIEW_FIELDNAME:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsFldName() ;
-//STRIP001
-//STRIP001              pOpt->SetFldName( bFlag );
-//STRIP001              break;
-//STRIP001      case FN_VIEW_MARKS:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !lcl_IsViewMarks(*pOpt) ;
-//STRIP001
-//STRIP001              lcl_SetViewMarks( *pOpt, bFlag );
-//STRIP001              break;
-//STRIP001      case FN_VIEW_META_CHARS:
-//STRIP001              if( STATE_TOGGLE == eState )
-//STRIP001                  bFlag = !pOpt->IsViewMetaChars();
-//STRIP001
-//STRIP001              lcl_SetViewMetaChars( *pOpt, bFlag );
-//STRIP001      break;
-//STRIP001      case SID_AUTOSPELL_CHECK:
-//STRIP001          if( STATE_TOGGLE == eState )
-//STRIP001              bFlag = bSet = !pOpt->IsOnlineSpell();
-//STRIP001
-//STRIP001          pOpt->SetOnlineSpell(bSet);
-//STRIP001             {
-//STRIP001                 uno::Any aVal( &bSet, ::getCppuBooleanType() );
-//STRIP001                 String aPropName( C2S(UPN_IS_SPELL_AUTO) );
-//STRIP001
-//STRIP001              // #107253# Replaced SvtLinguConfig with SwLinguConfig wrapper with UsageCount
-//STRIP001                 SwLinguConfig().SetProperty( aPropName, aVal );
-//STRIP001
-//STRIP001                 if (xLngProp.is())
-//STRIP001                     xLngProp->setPropertyValue( aPropName, aVal );
-//STRIP001             }
-//STRIP001
-//STRIP001          if (!(STATE_TOGGLE == eState && bSet && ( pOpt->IsHideSpell() )))
-//STRIP001              break;
-//STRIP001      case SID_AUTOSPELL_MARKOFF:
-//STRIP001          if( STATE_TOGGLE == eState )
-//STRIP001              bFlag = bSet = !pOpt->IsHideSpell();
-//STRIP001
-//STRIP001          pOpt->SetHideSpell(bSet);
-//STRIP001             {
-//STRIP001                 uno::Any aVal( &bSet, ::getCppuBooleanType() );
-//STRIP001                 String aPropName( C2S(UPN_IS_SPELL_HIDE) );
-//STRIP001
-//STRIP001              // #107253# Replaced SvtLinguConfig with SwLinguConfig wrapper with UsageCount
-//STRIP001                 SwLinguConfig().SetProperty( aPropName, aVal );
-//STRIP001
-//STRIP001                 if (xLngProp.is())
-//STRIP001                     xLngProp->setPropertyValue( aPropName, aVal );
-//STRIP001             }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case FN_SHADOWCURSOR:
-//STRIP001          if( STATE_TOGGLE == eState )
-//STRIP001              bFlag = bSet = !pOpt->IsShadowCursor();
-//STRIP001
-//STRIP001          pOpt->SetShadowCursor(bSet);
-//STRIP001      break;
-//STRIP001
-//STRIP001      default:
-//STRIP001          ASSERT(sal_False, Falsche Request-Methode);
-//STRIP001          return;
-//STRIP001  }
-//STRIP001
-//STRIP001  // UserPrefs setzen Request als bearbeitet kennzeichnen
-//STRIP001  SwView* pApplyView = GetView();
-//STRIP001  sal_Bool bWebView =  0 != PTR_CAST(SwWebView, pApplyView);
-//STRIP001  // die ViewSettings duerfen nur der View zugewiesen werden,
-//STRIP001  // wenn es auch die richtigen sind
-//STRIP001  if(pApplyView && DEPEND_NONE != eWebDepend)
-//STRIP001  {
-//STRIP001      if(bWebView && DEPEND_NOWEB == eWebDepend ||
-//STRIP001          !bWebView && DEPEND_WEB == eWebDepend )
-//STRIP001              pApplyView = 0;
-//STRIP001  }
-//STRIP001  if( pApplyView )
-//STRIP001  {
-//STRIP001      SwWrtShell &rSh = GetView()->GetWrtShell();
-//STRIP001      rSh.StartAction();
-//STRIP001      if( !(*rSh.GetViewOptions() == *pOpt ))
-//STRIP001      {
-//STRIP001          rSh.ApplyViewOptions( *pOpt );
-//STRIP001
-//STRIP001          //Die UsrPref muessen als Modified gekennzeichnet werden.
-//STRIP001          if(bWebView)
-//STRIP001          {
-//STRIP001              // fuer die Initialisierung
-//STRIP001              if(!pWebUsrPref)
-//STRIP001                  GetUsrPref(sal_True);
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              if(!pUsrPref)
-//STRIP001                  GetUsrPref(sal_False);
-//STRIP001          }
-//STRIP001          SW_MOD()->CheckSpellChanges( pOpt->IsOnlineSpell(), sal_False, sal_False );
-//STRIP001
-//STRIP001      }
-//STRIP001      //OS:   Modified wieder zuruecksetzen, weil Ansicht/Felder
-//STRIP001      //      das Doc modified setzt.
-//STRIP001      if( !bModified )
-//STRIP001          rSh.ResetModified();
-//STRIP001  }
-//STRIP001  sal_uInt16 nDest = VIEWOPT_DEST_VIEW;
-//STRIP001  if(DEPEND_WEB == eWebDepend )
-//STRIP001      nDest = VIEWOPT_DEST_WEB;
-//STRIP001  else if(DEPEND_NOWEB == eWebDepend)
-//STRIP001      nDest = VIEWOPT_DEST_TEXT;
-//STRIP001  ApplyUsrPref( *pOpt, pApplyView, nDest );
-//STRIP001  if ( pApplyView )
-//STRIP001     {
-//STRIP001         SwWrtShell &rSh = pApplyView->GetWrtShell();
-//STRIP001         const BOOL bLockedView = rSh.IsViewLocked();
-//STRIP001         rSh.LockView( TRUE );    //lock visible section
-//STRIP001      pApplyView->GetWrtShell().EndAction();
-//STRIP001         rSh.LockView( bLockedView );
-//STRIP001     }
-//STRIP001
-//STRIP001  delete pOpt;
-//STRIP001  Invalidate(rReq.GetSlot());
-//STRIP001  if(!pArgs)
-//STRIP001         rReq.AppendItem(SfxBoolItem(nSlot, (BOOL)bFlag));
-//STRIP001     rReq.Done();
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -814,131 +252,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
 /*N*/void SwModule::ExecOther(SfxRequest& rReq)
 /*N*/{
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SfxItemSet *pArgs = rReq.GetArgs();
-//STRIP001  const SfxPoolItem* pItem = 0;
-//STRIP001
-//STRIP001  sal_uInt16 nWhich = rReq.GetSlot();
-//STRIP001  switch (nWhich)
-//STRIP001  {
-//STRIP001      case FN_ENVELOP:
-//STRIP001             InsertEnv( rReq );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case FN_BUSINESS_CARD:
-//STRIP001      case FN_LABEL:
-//STRIP001          InsertLab(rReq, nWhich == FN_LABEL);
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SID_SW_DOCMAN_PATH:
-//STRIP001          {
-//STRIP001              ASSERT(pArgs && pArgs->Count(), "fehlende Parameter GetDocManPath");
-//STRIP001              if(!pArgs)
-//STRIP001                  return;
-//STRIP001
-//STRIP001              String aParam(((const SfxStringItem &)pArgs->Get(rReq.GetSlot())).GetValue());
-//STRIP001              String aPath;
-//STRIP001
-//STRIP001              if(aParam == C2S("~~~GetMacroPath"))
-//STRIP001              {
-//STRIP001                  SvtPathOptions aPathOpt;
-//STRIP001                  aPath = so3::StaticBaseUrl::SmartRelToAbs( aPathOpt.GetConfigPath() );
-//STRIP001                  if(aPath.Len())
-//STRIP001                      aPath += INET_PATH_TOKEN;
-//STRIP001              }
-//STRIP001              else if(aParam == C2S("~~~GetDefDocExt"))
-//STRIP001                  aPath =
-//STRIP001 #if defined(PM2) || defined(MAC_WITHOUT_EXT)
-//STRIP001                  aEmptyStr;
-//STRIP001 #else
-//STRIP001                  C2S(".sdw");
-//STRIP001 #endif
-//STRIP001              else if(aParam == C2S("~~~SetNoFrameBeep"))
-//STRIP001              {
-//STRIP001                  SwView* pActView = ::GetActiveView();
-//STRIP001                  if( pActView && pActView->GetDocShell() )
-//STRIP001                      pActView->GetDocShell()->GetDoc()->SetFrmBeepEnabled( sal_False );
-//STRIP001              }
-//STRIP001              else if(aParam == C2S("~~~SetFrameBeep"))
-//STRIP001              {
-//STRIP001                  SwView* pActView = ::GetActiveView();
-//STRIP001                  if( pActView && pActView->GetDocShell() )
-//STRIP001                      pActView->GetDocShell()->GetDoc()->SetFrmBeepEnabled( sal_True );
-//STRIP001              }
-//STRIP001              rReq.SetReturnValue(SfxStringItem( SID_SW_DOCMAN_PATH, aPath ));
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SID_ATTR_ADDRESS:
-//STRIP001      {
-//STRIP001          if(pArgs && SFX_ITEM_SET == pArgs->GetItemState(nWhich, sal_False, &pItem))
-//STRIP001          {
-//STRIP001              ((SvxAddressItem*)pItem)->Store();
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SID_ATTR_UNDO_COUNT:
-//STRIP001      if(pArgs && SFX_ITEM_SET == pArgs->GetItemState(nWhich, sal_False, &pItem))
-//STRIP001      {
-//STRIP001          const int nNew = ((SfxUInt16Item*)pItem)->GetValue();
-//STRIP001          const int nOld = SwEditShell::GetUndoActionCount();
-//STRIP001          if(!nNew || !nOld)
-//STRIP001          {
-//STRIP001              sal_Bool bUndo = nNew != 0;
-//STRIP001              //ueber DocShells iterieren und Undo umschalten
-//STRIP001
-//STRIP001              TypeId aType(TYPE(SwDocShell));
-//STRIP001              SwDocShell* pDocShell = (SwDocShell*)SfxObjectShell::GetFirst(&aType);
-//STRIP001              while( pDocShell )
-//STRIP001              {
-//STRIP001                  pDocShell->GetDoc()->DoUndo( bUndo );
-//STRIP001                  pDocShell = (SwDocShell*)SfxObjectShell::GetNext(*pDocShell, &aType);
-//STRIP001              }
-//STRIP001          }
-//STRIP001          SwEditShell::SetUndoActionCount( nNew );
-//STRIP001          // intern kommt der Request aus dem Dialog, dort werden die Options gesetzt
-//STRIP001          if( rReq.IsAPI() )
-//STRIP001          {
-//STRIP001              SvtUndoOptions aOpt;
-//STRIP001              aOpt.SetUndoCount(  nNew );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SID_ATTR_METRIC:
-//STRIP001      if(pArgs && SFX_ITEM_SET == pArgs->GetItemState(nWhich, sal_False, &pItem))
-//STRIP001      {
-//STRIP001          FieldUnit eUnit = (FieldUnit)((const SfxUInt16Item*)pItem)->GetValue();
-//STRIP001          switch( eUnit )
-//STRIP001          {
-//STRIP001              case FUNIT_MM:
-//STRIP001              case FUNIT_CM:
-//STRIP001              case FUNIT_INCH:
-//STRIP001              case FUNIT_PICA:
-//STRIP001              case FUNIT_POINT:
-//STRIP001              {
-//STRIP001                  SwView* pActView = ::GetActiveView();
-//STRIP001                  sal_Bool bWebView = 0 != PTR_CAST(SwWebView, pActView);
-//STRIP001                  ::SetDfltMetric(eUnit, bWebView);
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case FN_SET_MODOPT_TBLNUMFMT:
-//STRIP001          {
-//STRIP001              sal_Bool bWebView = 0 != PTR_CAST(SwWebView, ::GetActiveView() ),
-//STRIP001                   bSet;
-//STRIP001
-//STRIP001              if( pArgs && SFX_ITEM_SET == pArgs->GetItemState(
-//STRIP001                      nWhich, sal_False, &pItem ))
-//STRIP001                  bSet = ((SfxBoolItem*)pItem)->GetValue();
-//STRIP001              else
-//STRIP001                  bSet = !pModuleConfig->IsInsTblFormatNum( bWebView );
-//STRIP001
-//STRIP001              pModuleConfig->SetInsTblFormatNum( bWebView, bSet );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001  }
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -981,18 +294,6 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/               if( pWrtSh )
 /*M*/               {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pWrtSh->SetFixFields();
-//STRIP001 /*?*/                    pWrtSh->UpdateInputFlds();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // Sind Datenbankfelder enthalten?
-//STRIP001 /*?*/                    // Erstmal alle verwendeten Datenbanken holen
-//STRIP001 /*?*/                    SwDoc *pDoc = pDocSh->GetDoc();
-//STRIP001 /*?*/                    SvStringsDtor aDBNameList;
-//STRIP001 /*?*/                    pDoc->GetAllUsedDB( aDBNameList );
-//STRIP001 /*?*/                    sal_uInt16 nCount = aDBNameList.Count();
-//STRIP001 /*?*/                    if (nCount)
-//STRIP001 /*?*/                    {   // Datenbankbeamer oeffnen
-//STRIP001 /*?*/                         ShowDBObj(pWrtSh->GetView(), pDoc->GetDBData());
-//STRIP001 /*?*/                    }
 /*M*/               }
 /*M*/               break;
 /*M*/           }
@@ -1003,9 +304,6 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().GetItemState(SID_ATTR_PATHNAME))
 /*M*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::GetGlossaries()->UpdateGlosPath( sal_False );
-//STRIP001 /*?*/            SwGlossaryList* pList = ::GetGlossaryList();
-//STRIP001 /*?*/            if(pList->IsActive())
-//STRIP001 /*?*/                pList->Update();
 /*M*/       }
 /*M*/
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().
@@ -1018,37 +316,6 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/         if(SFX_HINT_COLORS_CHANGED == nHintId ||
 /*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )
 /*M*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/             sal_Bool bAccessibility = sal_False;
-//STRIP001 /*?*/             if(SFX_HINT_COLORS_CHANGED == nHintId)
-//STRIP001 /*?*/                 SwViewOption::ApplyColorConfigValues(*pColorConfig);
-//STRIP001 /*?*/             else
-//STRIP001 /*?*/                 bAccessibility = sal_True;
-//STRIP001 /*?*/
-//STRIP001 /*?*/             //invalidate all edit windows
-//STRIP001 /*?*/             const TypeId aSwViewTypeId = TYPE(SwView);
-//STRIP001 /*?*/             const TypeId aSwPreViewTypeId = TYPE(SwPagePreView);
-//STRIP001 /*?*/             const TypeId aSwSrcViewTypeId = TYPE(SwSrcView);
-//STRIP001 /*?*/             SfxViewShell* pViewShell = SfxViewShell::GetFirst();
-//STRIP001 /*?*/             while(pViewShell)
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 if(pViewShell->GetWindow())
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     if((pViewShell->IsA(aSwViewTypeId) ||
-//STRIP001 /*?*/                         pViewShell->IsA(aSwPreViewTypeId) ||
-//STRIP001 /*?*/                         pViewShell->IsA(aSwSrcViewTypeId)))
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         if(bAccessibility)
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             if(pViewShell->IsA(aSwViewTypeId))
-//STRIP001 /*?*/                                 ((SwView*)pViewShell)->ApplyAccessiblityOptions(*pAccessibilityOptions);
-//STRIP001 /*?*/                             else if(pViewShell->IsA(aSwPreViewTypeId))
-//STRIP001 /*?*/                                 ((SwPagePreView*)pViewShell)->ApplyAccessiblityOptions(*pAccessibilityOptions);
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                         pViewShell->GetWindow()->Invalidate();
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 pViewShell = SfxViewShell::GetNext( *pViewShell );
-//STRIP001 /*?*/             }
 /*N*/         }
 /*N*/         else if( SFX_HINT_CTL_SETTINGS_CHANGED == nHintId )
 /*N*/         {
@@ -1075,7 +342,6 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/             DELETEZ(pWebPrtOpt)   ;
 /*M*/             DELETEZ(pChapterNumRules);
 /*M*/             DELETEZ(pStdFontConfig)     ;
-//STRIP001 /*?*/             DELETEZ(pNavigationConfig)  ;
 /*M*/             DELETEZ(pToolbarConfig)     ;
 /*M*/             DELETEZ(pWebToolbarConfig)  ;
 /*M*/             DELETEZ(pAuthorNames)       ;
