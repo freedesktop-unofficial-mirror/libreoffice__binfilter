@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:32:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:14:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,21 +43,12 @@
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-// auto strip #ifndef _SFX_SFXUNO_HXX
-// auto strip #include <bf_sfx2/sfxuno.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_LANGITEM_HXX //autogen
-// auto strip #include <bf_svx/langitem.hxx>
-// auto strip #endif
 #ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
 #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
@@ -78,15 +69,6 @@
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>        // SwPosition
-// auto strip #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>      // SwTxtNode
-// auto strip #endif
-// auto strip #ifndef _TXTATR_HXX
-// auto strip #include <txtatr.hxx>
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -129,27 +111,15 @@
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
-// auto strip #ifndef _CHARATR_HXX
-// auto strip #include <charatr.hxx>
-// auto strip #endif
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
 #endif
 #ifndef _FMTLINE_HXX
 #include <fmtline.hxx>
 #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>     // SwTxtFrm
-// auto strip #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectFrm
 #endif
-// auto strip #ifndef _TXTCFG_HXX
-// auto strip #include <txtcfg.hxx>     // DBG_LOOP
-// auto strip #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>       // Iteratoren
 #endif
@@ -159,9 +129,6 @@
 #ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>       // GetLineSpace benutzt SwFonts
-// auto strip #endif
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>     // GetLineSpace benutzt pLastFont
 #endif
@@ -174,14 +141,8 @@
 #ifndef _LINEINFO_HXX
 #include <lineinfo.hxx>
 #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 
 #if OSL_DEBUG_LEVEL > 1
-// auto strip #ifndef _TXTPAINT_HXX
-// auto strip #include <txtpaint.hxx>   // DbgRect
-// auto strip #endif
 namespace binfilter {
 extern const sal_Char *GetPrepName( const enum PrepareHint ePrep );
 } //STRIP008
@@ -217,50 +178,12 @@ namespace binfilter {
 
 // Calculates the coordinates of a rectangle when switching from
 // horizontal to vertical layout.
-//STRIP001 void SwTxtFrm::SwitchHorizontalToVertical( SwRect& rRect ) const
-//STRIP001 {
-//STRIP001     // calc offset inside frame
-//STRIP001     const long nOfstX = rRect.Left() - Frm().Left();
-//STRIP001     const long nOfstY = rRect.Top() + rRect.Height() - Frm().Top();
-//STRIP001     const long nWidth = rRect.Width();
-//STRIP001     const long nHeight = rRect.Height();
-//STRIP001
-//STRIP001     if ( bIsSwapped )
-//STRIP001         rRect.Left( Frm().Left() + Frm().Height() - nOfstY );
-//STRIP001     else
-//STRIP001         // frame is rotated
-//STRIP001         rRect.Left( Frm().Left() + Frm().Width() - nOfstY );
-//STRIP001
-//STRIP001     rRect.Top( Frm().Top() + nOfstX );
-//STRIP001     rRect.Width( nHeight );
-//STRIP001     rRect.Height( nWidth );
-//STRIP001 }
 
 // Calculates the coordinates of a point when switching from
 // horizontal to vertical layout.
-//STRIP001 void SwTxtFrm::SwitchHorizontalToVertical( Point& rPoint ) const
-//STRIP001 {
-//STRIP001     // calc offset inside frame
-//STRIP001     const long nOfstX = rPoint.X() - Frm().Left();
-//STRIP001     const long nOfstY = rPoint.Y() - Frm().Top();
-//STRIP001
-//STRIP001     if ( bIsSwapped )
-//STRIP001         rPoint.X() = Frm().Left() + Frm().Height() - nOfstY;
-//STRIP001     else
-//STRIP001         // calc rotated coords
-//STRIP001         rPoint.X() = Frm().Left() + Frm().Width() - nOfstY;
-//STRIP001
-//STRIP001     rPoint.Y() = Frm().Top() + nOfstX;
-//STRIP001 }
 
 // Calculates the a limit value when switching from
 // horizontal to vertical layout.
-//STRIP001 long SwTxtFrm::SwitchHorizontalToVertical( long nLimit ) const
-//STRIP001 {
-//STRIP001     Point aTmp( 0, nLimit );
-//STRIP001     SwitchHorizontalToVertical( aTmp );
-//STRIP001     return aTmp.X();
-//STRIP001 }
 
 // Calculates the coordinates of a rectangle when switching from
 // vertical to horizontal layout.
@@ -365,12 +288,6 @@ namespace binfilter {
 /*N*/     ((OutputDevice&)rOut).SetLayoutMode( nOldLayoutMode );
 /*N*/ }
 
-//STRIP001 void SwLayoutModeModifier::Modify( sal_Bool bChgToRTL )
-//STRIP001 {
-//STRIP001     ((OutputDevice&)rOut).SetLayoutMode( bChgToRTL ?
-//STRIP001                                          TEXT_LAYOUT_BIDI_STRONG | TEXT_LAYOUT_BIDI_RTL :
-//STRIP001                                          TEXT_LAYOUT_BIDI_STRONG );
-//STRIP001 }
 
 /*N*/ void SwLayoutModeModifier::SetAuto()
 /*N*/ {
@@ -480,49 +397,6 @@ namespace binfilter {
 
 /*N*/ void SwTxtFrm::HideHidden()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  ASSERT( IsHiddenNow(), "HideHidden on visible frame" );
-//STRIP001
-//STRIP001  //Erst die Fussnoten
-//STRIP001  const SwpHints *pHints = GetTxtNode()->GetpSwpHints();
-//STRIP001  if( pHints )
-//STRIP001  {
-//STRIP001      const MSHORT nSize = pHints->Count();
-//STRIP001      const xub_StrLen nEnd = GetFollow() ? GetFollow()->GetOfst():STRING_LEN;
-//STRIP001      SwPageFrm *pPage = 0;
-//STRIP001      for( MSHORT i = 0; i < nSize; ++i )
-//STRIP001      {
-//STRIP001          const SwTxtAttr *pHt = (*pHints)[i];
-//STRIP001          if ( pHt->Which() == RES_TXTATR_FTN )
-//STRIP001          {
-//STRIP001              const xub_StrLen nIdx = *pHt->GetStart();
-//STRIP001              if ( nEnd < nIdx )
-//STRIP001                  break;
-//STRIP001              if( GetOfst() <= nIdx )
-//STRIP001              {
-//STRIP001                  if( !pPage )
-//STRIP001                      pPage = FindPageFrm();
-//STRIP001                  pPage->RemoveFtn( this, (SwTxtFtn*)pHt );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  //Dann die zeichengebundenen Rahmen
-//STRIP001  if ( GetDrawObjs() )
-//STRIP001  {
-//STRIP001      for ( int i = GetDrawObjs()->Count()-1; i >= 0; --i )
-//STRIP001      {
-//STRIP001          SdrObject *pObj = (*GetDrawObjs())[i];
-//STRIP001          SwFlyFrm *pFly;
-//STRIP001          if ( pObj->IsWriterFlyFrame() &&
-//STRIP001               (pFly = ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm())->IsFlyInCntFrm())
-//STRIP001          {
-//STRIP001              pFly->GetAnchor()->RemoveFly( pFly );
-//STRIP001              delete pFly;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  //Die Formatinfos sind jetzt obsolete
-//STRIP001  ClearPara();
 /*N*/ }
 
 
@@ -1972,35 +1846,6 @@ public:
  *                      SwTxtFrm::CalcFitToContent()
  *************************************************************************/
 
-//STRIP001 KSHORT SwTxtFrm::CalcFitToContent( )
-//STRIP001 {
-//STRIP001  sal_Bool bNoPara = !HasPara();
-//STRIP001  if ( bNoPara )
-//STRIP001  {
-//STRIP001      SwParaPortion *pDummy = new SwParaPortion();
-//STRIP001      SetPara( pDummy );
-//STRIP001  }
-//STRIP001
-//STRIP001  SwTxtFormatInfo aInf( this );
-//STRIP001  aInf.Right( KSHRT_MAX );
-//STRIP001  aInf.Width( KSHRT_MAX );
-//STRIP001  aInf.RealWidth( KSHRT_MAX );
-//STRIP001  aInf.SetIgnoreFly( sal_True );
-//STRIP001
-//STRIP001  SwTxtFormatter  aLine( this, &aInf );
-//STRIP001
-//STRIP001     SwHookOut aHook( aInf );
-//STRIP001  KSHORT nMax = aLine._CalcFitToContent( );
-//STRIP001  if ( nMax )
-//STRIP001      nMax -= KSHORT( GetLeftMargin() );
-//STRIP001
-//STRIP001  if ( bNoPara )
-//STRIP001      ClearPara( );  // Dummy-Paraportion wieder loeschen
-//STRIP001  else
-//STRIP001      SetPara( NULL ); // Die Einzeilen-Formatinformation wegwerfen!
-//STRIP001
-//STRIP001  return nMax;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFrm::GetLineSpace()
@@ -2087,26 +1932,6 @@ public:
 /*N*/   return pPara->Height();
 /*N*/ }
 
-//STRIP001 MSHORT SwTxtFrm::GetLineCount( xub_StrLen nPos )
-//STRIP001 {
-//STRIP001  MSHORT nRet = 0;
-//STRIP001     SwTxtFrm *pFrm = this;
-//STRIP001     do
-//STRIP001     {
-//STRIP001         pFrm->GetFormatted();
-//STRIP001         if( !pFrm->HasPara() )
-//STRIP001             break;
-//STRIP001         SwTxtSizeInfo aInf( pFrm );
-//STRIP001         SwTxtMargin aLine( pFrm, &aInf );
-//STRIP001         if( STRING_LEN == nPos )
-//STRIP001             aLine.Bottom();
-//STRIP001         else
-//STRIP001             aLine.CharToLine( nPos );
-//STRIP001         nRet += aLine.GetLineNr();
-//STRIP001         pFrm = pFrm->GetFollow();
-//STRIP001     } while ( pFrm && pFrm->GetOfst() <= nPos );
-//STRIP001  return nRet;
-//STRIP001 }
 
 /*N*/ void SwTxtFrm::ChgThisLines()
 /*N*/ {
@@ -2216,32 +2041,6 @@ public:
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SwTxtFrm::VisitPortions( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     const SwParaPortion* pPara = GetPara();
-//STRIP001
-//STRIP001     if( pPara )
-//STRIP001     {
-//STRIP001         if ( IsFollow() )
-//STRIP001             rPH.Skip( GetOfst() );
-//STRIP001
-//STRIP001         const SwLineLayout* pLine = pPara;
-//STRIP001         while ( pLine )
-//STRIP001         {
-//STRIP001             const SwLinePortion* pPor = pLine->GetFirstPortion();
-//STRIP001             while ( pPor )
-//STRIP001             {
-//STRIP001                 pPor->HandlePortion( rPH );
-//STRIP001                 pPor = pPor->GetPortion();
-//STRIP001             }
-//STRIP001
-//STRIP001             rPH.LineBreak();
-//STRIP001             pLine = pLine->GetNext();
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     rPH.Finish();
-//STRIP001 }
 
 
 /*************************************************************************
