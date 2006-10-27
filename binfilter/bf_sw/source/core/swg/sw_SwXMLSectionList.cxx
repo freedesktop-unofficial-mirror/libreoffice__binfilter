@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwXMLSectionList.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:07:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:02:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,102 +69,11 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 /*N*/   rSectionList ( rNewSectionList )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetNamespaceMap().Add( OUString ( RTL_CONSTASCII_USTRINGPARAM ( sXML_np__block_list ) ),
-//STRIP001                         GetXMLToken ( XML_N_BLOCK_LIST),
-//STRIP001                         XML_NAMESPACE_BLOCKLIST );
 /*N*/ }
 
-//STRIP001 SwXMLSectionList::~SwXMLSectionList ( void )
-//STRIP001  throw()
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 SvXMLImportContext *SwXMLSectionList::CreateContext(
-//STRIP001      sal_uInt16 nPrefix,
-//STRIP001      const OUString& rLocalName,
-//STRIP001      const Reference< xml::sax::XAttributeList > & xAttrList )
-//STRIP001 {
-//STRIP001  SvXMLImportContext *pContext = 0;
-//STRIP001
-//STRIP001  if  (nPrefix == XML_NAMESPACE_OFFICE && IsXMLToken ( rLocalName, XML_BODY ) ||
-//STRIP001       nPrefix == XML_NAMESPACE_TEXT &&
-//STRIP001      (IsXMLToken ( rLocalName, XML_P ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_H ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_A ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_SPAN ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_SECTION ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_INDEX_BODY ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_INDEX_TITLE )||
-//STRIP001       IsXMLToken ( rLocalName, XML_INSERTION ) ||
-//STRIP001       IsXMLToken ( rLocalName, XML_DELETION ) ) )
-//STRIP001      pContext = new SvXMLSectionListContext (*this, nPrefix, rLocalName, xAttrList);
-//STRIP001  else
-//STRIP001      pContext = SvXMLImport::CreateContext( nPrefix, rLocalName, xAttrList );
-//STRIP001  return pContext;
-//STRIP001 }
 
-//STRIP001 SvXMLSectionListContext::SvXMLSectionListContext(
-//STRIP001    SwXMLSectionList& rImport,
-//STRIP001    sal_uInt16 nPrefix,
-//STRIP001    const OUString& rLocalName,
-//STRIP001    const ::com::sun::star::uno::Reference<
-//STRIP001    ::com::sun::star::xml::sax::XAttributeList > & xAttrList ) :
-//STRIP001    rLocalRef(rImport),
-//STRIP001    SvXMLImportContext ( rImport, nPrefix, rLocalName )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 SvXMLImportContext *SvXMLSectionListContext::CreateChildContext(
-//STRIP001  sal_uInt16 nPrefix,
-//STRIP001  const OUString& rLocalName,
-//STRIP001  const Reference< xml::sax::XAttributeList > & xAttrList )
-//STRIP001 {
-//STRIP001  SvXMLImportContext *pContext = 0;
-//STRIP001  String sName;
-//STRIP001
-//STRIP001  if (nPrefix == XML_NAMESPACE_TEXT && ( IsXMLToken ( rLocalName, XML_SECTION ) ||
-//STRIP001                                         IsXMLToken ( rLocalName, XML_BOOKMARK) ) )
-//STRIP001  {
-//STRIP001      sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
-//STRIP001
-//STRIP001      for (sal_Int16 i=0; i < nAttrCount; i++)
-//STRIP001      {
-//STRIP001          const OUString& rAttrName = xAttrList->getNameByIndex( i );
-//STRIP001          OUString aLocalName;
-//STRIP001          sal_uInt16 nPrefix = rLocalRef.GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName);
-//STRIP001          const OUString& rAttrValue = xAttrList->getValueByIndex( i );
-//STRIP001          if (XML_NAMESPACE_TEXT == nPrefix && IsXMLToken ( aLocalName, XML_NAME ) )
-//STRIP001              sName = rAttrValue;
-//STRIP001      }
-//STRIP001      if ( sName.Len() )
-//STRIP001          rLocalRef.rSectionList.Insert ( new String(sName), rLocalRef.rSectionList.Count() );
-//STRIP001  }
-//STRIP001
-//STRIP001  pContext = new SvXMLSectionListContext (rLocalRef, nPrefix, rLocalName, xAttrList);
-//STRIP001  return pContext;
-//STRIP001 }
-//STRIP001 SvXMLSectionListContext::~SvXMLSectionListContext ( void )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 SvXMLIgnoreSectionListContext::SvXMLIgnoreSectionListContext(
-//STRIP001    SwXMLSectionList& rImport,
-//STRIP001    sal_uInt16 nPrefix,
-//STRIP001    const OUString& rLocalName,
-//STRIP001    const ::com::sun::star::uno::Reference<
-//STRIP001    ::com::sun::star::xml::sax::XAttributeList > & xAttrList ) :
-//STRIP001    rLocalRef(rImport),
-//STRIP001    SvXMLImportContext ( rImport, nPrefix, rLocalName )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 SvXMLIgnoreSectionListContext::~SvXMLIgnoreSectionListContext ( void )
-//STRIP001 {
-//STRIP001 }
-//STRIP001 SvXMLImportContext *SvXMLIgnoreSectionListContext::CreateChildContext(
-//STRIP001  sal_uInt16 nPrefix,
-//STRIP001  const OUString& rLocalName,
-//STRIP001  const Reference< xml::sax::XAttributeList > & xAttrList )
-//STRIP001 {
-//STRIP001  return  new SvXMLIgnoreSectionListContext (rLocalRef, nPrefix, rLocalName, xAttrList);
-//STRIP001 }
 }
