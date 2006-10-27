@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:54:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:41:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,33 +145,6 @@ namespace svtools {
     class ColorConfig;
 }
 namespace binfilter {
-//STRIP001 struct DragAndDropInfo
-//STRIP001 {
-//STRIP001  Rectangle           aCurCursor;
-//STRIP001  Rectangle           aCurSavedCursor;
-//STRIP001  sal_uInt16          nSensibleRange;
-//STRIP001  sal_uInt16          nCursorWidth;
-//STRIP001     ESelection          aBeginDragSel;
-//STRIP001  EditPaM             aDropDest;
-//STRIP001     USHORT              nOutlinerDropDest;
-//STRIP001  ESelection          aDropSel;
-//STRIP001  VirtualDevice*      pBackground;
-//STRIP001  const SvxFieldItem* pField;
-//STRIP001  sal_Bool            bVisCursor              : 1;
-//STRIP001  sal_Bool            bDroppedInMe            : 1;
-//STRIP001  sal_Bool            bStarterOfDD            : 1;
-//STRIP001     sal_Bool            bHasValidData           : 1;
-//STRIP001     sal_Bool            bUndoAction             : 1;
-//STRIP001     sal_Bool            bOutlinerMode           : 1;
-//STRIP001     sal_Bool            bDragAccepted           : 1;
-//STRIP001
-//STRIP001  DragAndDropInfo()
-//STRIP001  {
-//STRIP001          pBackground = NULL; bVisCursor = sal_False; bDroppedInMe = sal_False; bStarterOfDD = sal_False;
-//STRIP001             bHasValidData = sal_False; bUndoAction = sal_False; bOutlinerMode = sal_False;
-//STRIP001          nSensibleRange = 0; nCursorWidth = 0; pField = 0; nOutlinerDropDest = 0; bDragAccepted = sal_False;
-//STRIP001  }
-//STRIP001 };
 
 struct ImplIMEInfos
 {
@@ -185,21 +158,8 @@ struct ImplIMEInfos
             ImplIMEInfos( const EditPaM& rPos, const String& rOldTextAfterStartPos );
             ~ImplIMEInfos();
 
-//STRIP001  void    CopyAttribs( const sal_uInt16* pA, sal_uInt16 nL );
-//STRIP001  void    DestroyAttribs();
 };
 
-//STRIP001 struct SpellInfo
-//STRIP001 {
-//STRIP001  EESpellState    eState;
-//STRIP001  EPaM            aSpellStart;
-//STRIP001  EPaM            aSpellTo;
-//STRIP001  sal_Bool        bSpellToEnd;
-//STRIP001  sal_Bool        bMultipleDoc;
-//STRIP001
-//STRIP001  SpellInfo()
-//STRIP001      { bSpellToEnd = sal_True; eState = EE_SPELL_OK; bMultipleDoc = sal_False; }
-//STRIP001 };
 
 struct FormatterFontMetric
 {
@@ -242,7 +202,6 @@ private:
     EditEngine*         pEditEngine;
     Window*             pOutWin;
     Pointer*            pPointer;
-//STRIP001  DragAndDropInfo*    pDragAndDropInfo;
 
     ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::dnd::XDragSourceListener > mxDnDListener;
 
@@ -267,17 +226,8 @@ private:
 protected:
 
     // DragAndDropClient
-//STRIP001     void dragGestureRecognized( const ::com::sun::star::datatransfer::dnd::DragGestureEvent& dge ) throw (::com::sun::star::uno::RuntimeException);
-//STRIP001     void dragDropEnd( const ::com::sun::star::datatransfer::dnd::DragSourceDropEvent& dsde ) throw (::com::sun::star::uno::RuntimeException);
-//STRIP001     void drop( const ::com::sun::star::datatransfer::dnd::DropTargetDropEvent& dtde ) throw (::com::sun::star::uno::RuntimeException);
-//STRIP001     void dragEnter( const ::com::sun::star::datatransfer::dnd::DropTargetDragEnterEvent& dtdee ) throw (::com::sun::star::uno::RuntimeException);
-//STRIP001     void dragExit( const ::com::sun::star::datatransfer::dnd::DropTargetEvent& dte ) throw (::com::sun::star::uno::RuntimeException);
-//STRIP001     void dragOver( const ::com::sun::star::datatransfer::dnd::DropTargetDragEvent& dtde ) throw (::com::sun::star::uno::RuntimeException);
 
-//STRIP001  void ShowDDCursor( const Rectangle& rRect );
-//STRIP001  void HideDDCursor();
 
-//STRIP001     void ImplDrawHighlightRect( Window* pOutWin, const Point& rDocPosTopLeft, const Point& rDocPosBottomRight, PolyPolygon* pPolyPoly );
 
 public:
                     ImpEditView( EditView* pView, EditEngine* pEng, Window* pWindow );
@@ -296,20 +246,13 @@ public:
     Rectangle       GetWindowPos( const Rectangle& rDocPos ) const;
 
     void                SetOutputArea( const Rectangle& rRec );
-//STRIP001  void                ResetOutputArea( const Rectangle& rRec );
     const Rectangle&    GetOutputArea() const   { return aOutArea; }
 
     BOOL            IsVertical() const;
 
     BOOL            PostKeyEvent( const KeyEvent& rKeyEvent );
 
-//STRIP001  BOOL            MouseButtonUp( const MouseEvent& rMouseEvent );
-//STRIP001  BOOL            MouseButtonDown( const MouseEvent& rMouseEvent );
-//STRIP001  BOOL            MouseMove( const MouseEvent& rMouseEvent );
-//STRIP001  void            Command( const CommandEvent& rCEvt );
 
-//STRIP001  void            CutCopy( ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::clipboard::XClipboard >& rxClipboard, sal_Bool bCut );
-//STRIP001  void            Paste( ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::clipboard::XClipboard >& rxClipboard, sal_Bool bUseSpecial = sal_False );
 
     void            SetVisDocStartPos( const Point& rPos ) { aVisDocStartPos = rPos; }
     const Point&    GetVisDocStartPos() const { return aVisDocStartPos; }
@@ -326,7 +269,6 @@ public:
 
     void            DrawSelection() { DrawSelection( aEditSelection ); }
     void            DrawSelection( EditSelection, Region* pRegion = NULL );
-//STRIP001  Region*         CalcSelectedRegion();
 
     Window*         GetWindow() const           { return pOutWin; }
 
@@ -342,26 +284,16 @@ public:
     void            AddDragAndDropListeners();
     void            RemoveDragAndDropListeners();
 
-//STRIP001     BOOL            IsBulletArea( const Point& rPos, sal_uInt16* pPara );
 
 //  Fuer die SelectionEngine...
-//STRIP001  void            CreateAnchor();
-//STRIP001  void            DeselectAll();
-//STRIP001  sal_Bool        SetCursorAtPoint( const Point& rPointPixel );
-//STRIP001  sal_Bool        IsSelectionAtPoint( const Point& rPosPixel );
-//STRIP001  sal_Bool        IsInSelection( const EditPaM& rPaM );
 
 
-//STRIP001  void            SetAnchorMode( EVAnchorMode eMode );
     EVAnchorMode    GetAnchorMode() const           { return eAnchorMode; }
     void            CalcAnchorPoint();
-//STRIP001  void            RecalcOutputArea();
 
     void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, BOOL test );
     void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, USHORT nShowCursorFlags = 0 );
-//STRIP001  Pair            Scroll( long ndX, long ndY, BYTE nRangeCheck = RGCHK_NEG );
 
-//STRIP001  void            SetInsertMode( sal_Bool bInsert );
     sal_Bool            IsInsertMode() const            { return ( ( nControl & EV_CNTRL_OVERWRITE ) == 0 ); }
 
     void                EnablePaste( sal_Bool bEnable )     { SetFlags( nControl, EV_CNTRL_ENABLEPASTE, bEnable ); }
@@ -375,15 +307,11 @@ public:
     sal_Bool            DoAutoHeight() const            { return ( ( nControl & EV_CNTRL_AUTOSIZEY) != 0 ); }
     sal_Bool            DoInvalidateMore() const        { return ( ( nControl & EV_CNTRL_INVONEMORE ) != 0 ); }
 
-//STRIP001  void            SetBackgroundColor( const Color& rColor );
     const Color&    GetBackgroundColor() const {
                         return ( pBackgroundColor ? *pBackgroundColor : pOutWin->GetBackground().GetColor() ); }
 
-//STRIP001  sal_Bool            IsWrongSpelledWord( const EditPaM& rPaM, sal_Bool bMarkIfWrong );
-//STRIP001  String          SpellIgnoreOrAddWord( sal_Bool bAdd );
 
     const SvxFieldItem* GetField( const Point& rPos, sal_uInt16* pPara, sal_uInt16* pPos ) const;
-//STRIP001     void                DeleteSelected();
 
     // Ggf. mehr als OutputArea invalidieren, fuer den DrawingEngine-Textrahmen...
     void            SetInvalidateMore( sal_uInt16 nPixel ) { nInvMore = nPixel; }
@@ -475,7 +403,6 @@ private:
         ::com::sun::star::linguistic2::XSpellChecker1 > xSpeller;
     ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XHyphenator >    xHyphenator;
-//STRIP001  SpellInfo*          pSpellInfo;
     ::com::sun::star::uno::Reference < ::com::sun::star::i18n::XBreakIterator > xBI;
 
     XubString           aAutoCompleteText;
@@ -535,11 +462,9 @@ private:
     void                ResetUndoManager();
     sal_Bool            HasUndoManager() const  { return pUndoManager ? sal_True : sal_False; }
 
-//STRIP001  EditUndoSetAttribs* CreateAttribUndo( EditSelection aSel, const SfxItemSet& rSet );
 
     EditPaM             GetPaM( Point aDocPos, sal_Bool bSmart = sal_True );
     EditPaM             GetPaM( ParaPortion* pPortion, Point aPos, sal_Bool bSmart = sal_True );
-//STRIP001  long                GetXPos( ParaPortion* pParaPortion, EditLine* pLine, USHORT nIndex, BOOL bPreferPortionStart = FALSE );
     long                GetPortionXOffset( ParaPortion* pParaPortion, EditLine* pLine, USHORT nTextPortion );
     USHORT              GetChar( ParaPortion* pParaPortion, EditLine* pLine, long nX, BOOL bSmart = TRUE );
     Range               GetInvalidYOffsets( ParaPortion* pPortion );
@@ -548,13 +473,10 @@ private:
     void                SetParaAttrib( BYTE nFunc, EditSelection aSel, sal_uInt16 nValue );
     sal_uInt16          GetParaAttrib( BYTE nFunc, EditSelection aSel );
     void                SetCharAttrib( EditSelection aSel, const SfxPoolItem& rItem );
-//STRIP001  void                ParaAttribsToCharAttribs( ContentNode* pNode );
-//STRIP001  void                GetCharAttribs( sal_uInt16 nPara, EECharAttribArray& rLst ) const;
 
     EditTextObject*     CreateBinTextObject( EditSelection aSelection, SfxItemPool*, sal_Bool bAllowBigObjects = sal_False, sal_uInt16 nBigObjStart = 0 ) const;
     void                StoreBinTextObject( SvStream& rOStream, BinTextObject& rTextObject );
     EditSelection       InsertBinTextObject( BinTextObject&, EditPaM aPaM );
-//STRIP001     EditSelection       InsertText( ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::XTransferable >& rxDataObj, const EditPaM& rPaM, BOOL bUseSpecial );
 
     EditPaM             Clear();
     EditPaM             RemoveText();
@@ -579,8 +501,6 @@ private:
     EditPaM             ImpInsertText( EditSelection aCurEditSelection, const String& rStr );
     EditPaM             ImpInsertFeature( EditSelection aEditSelection, const SfxPoolItem& rItem );
     void                ImpRemoveChars( const EditPaM& rPaM, sal_uInt16 nChars, EditUndoRemoveChars* pCurUndo = 0 );
-//STRIP001  void                ImpRemoveParagraph( sal_uInt16 nPara );
-//STRIP001  EditSelection       ImpMoveParagraphs( Range aParagraphs, sal_uInt16 nNewPos );
 
     EditPaM             ImpFastInsertText( EditPaM aPaM, const String& rStr );
     EditPaM             ImpFastInsertParagraph( sal_uInt16 nPara );
@@ -591,29 +511,9 @@ private:
 
     void                ImpFindKashidas( ContentNode* pNode, USHORT nStart, USHORT nEnd, SvUShorts& rArray );
 
-//STRIP001  void                InsertContent( ContentNode* pNode, sal_uInt16 nPos );
-//STRIP001  EditPaM             SplitContent( sal_uInt16 nNode, sal_uInt16 nSepPos );
-//STRIP001  EditPaM             ConnectContents( sal_uInt16 nLeftNode, sal_Bool bBackward );
 
-//STRIP001  void                ShowParagraph( sal_uInt16 nParagraph, sal_Bool bShow );
-//STRIP001  sal_Bool            IsParagraphVisible( sal_uInt16 nParagraph );
 
-//STRIP001  EditPaM             PageUp( const EditPaM& rPaM, EditView* pView);
-//STRIP001  EditPaM             PageDown( const EditPaM& rPaM, EditView* pView);
-//STRIP001  EditPaM             CursorUp( const EditPaM& rPaM, EditView* pEditView );
-//STRIP001  EditPaM             CursorDown( const EditPaM& rPaM, EditView* pEditView );
-//STRIP001     EditPaM              CursorLeft( const EditPaM& rPaM, USHORT nCharacterIteratorMode = ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL );
-//STRIP001  EditPaM             CursorRight( const EditPaM& rPaM, USHORT nCharacterIteratorMode = ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL );
-//STRIP001  EditPaM             CursorStartOfLine( const EditPaM& rPaM );
-//STRIP001  EditPaM             CursorEndOfLine( const EditPaM& rPaM );
-//STRIP001  EditPaM             CursorStartOfParagraph( const EditPaM& rPaM );
-//STRIP001  EditPaM             CursorEndOfParagraph( const EditPaM& rPaM );
-//STRIP001  EditPaM             CursorStartOfDoc();
-//STRIP001  EditPaM             CursorEndOfDoc();
-//STRIP001  EditPaM             WordLeft( const EditPaM& rPaM, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES );
     EditPaM             WordRight( const EditPaM& rPaM, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES );
-//STRIP001  EditPaM             StartOfWord( const EditPaM& rPaM, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES );
-//STRIP001  EditPaM             EndOfWord( const EditPaM& rPaM, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES );
     EditSelection       SelectWord( const EditSelection& rCurSelection, sal_Int16 nWordType = ::com::sun::star::i18n::WordType::ANYWORD_IGNOREWHITESPACES, BOOL bAcceptStartOfWord = TRUE );
     EditPaM             CursorVisualLeftRight( EditView* pEditView, const EditPaM& rPaM, USHORT nCharacterIteratorMode, BOOL bToLeft );
     EditPaM             CursorVisualStartEnd( EditView* pEditView, const EditPaM& rPaM, BOOL bStart );
@@ -625,27 +525,10 @@ private:
     BOOL                IsScriptChange( const EditPaM& rPaM ) const;
     BOOL                HasScriptType( USHORT nPara, USHORT nType ) const;
 
-//STRIP001     BOOL                ImplCalcAsianCompression( ContentNode* pNode, TextPortion* pTextPortion, USHORT nStartPos, long* pDXArray, USHORT n100thPercentFromMax, BOOL bManipulateDXArray );
-//STRIP001     void                ImplExpandCompressedPortions( EditLine* pLine, ParaPortion* pParaPortion, long nRemainingWidth );
 
     void                ImplInitLayoutMode( OutputDevice* pOutDev, USHORT nPara, USHORT nIndex );
 
-//STRIP001  EditPaM             ReadText( SvStream& rInput, EditSelection aSel );
-//STRIP001  EditPaM             ReadRTF( SvStream& rInput, EditSelection aSel );
-//STRIP001  EditPaM             ReadXML( SvStream& rInput, EditSelection aSel );
-//STRIP001  EditPaM             ReadHTML( SvStream& rInput, EditSelection aSel, SvKeyValueIterator* pHTTPHeaderAttrs );
-//STRIP001  EditPaM             ReadBin( SvStream& rInput, EditSelection aSel );
-//STRIP001  sal_uInt32          WriteText( SvStream& rOutput, EditSelection aSel );
-//STRIP001  sal_uInt32          WriteRTF( SvStream& rOutput, EditSelection aSel );
-//STRIP001  sal_uInt32          WriteXML( SvStream& rOutput, EditSelection aSel );
-//STRIP001  sal_uInt32          WriteHTML( SvStream& rOutput, EditSelection aSel );
-//STRIP001  sal_uInt32          WriteBin( SvStream& rOutput, EditSelection aSel, BOOL bStoreUnicode = FALSE ) const;
 
-//STRIP001  void                WriteItemAsRTF( const SfxPoolItem& rItem, SvStream& rOutput, sal_uInt16 nPara, sal_uInt16 nPos,
-//STRIP001                      SvxFontTable& rFontTable, SvxColorList& rColorList );
-//STRIP001  sal_Bool            WriteItemListAsRTF( ItemList& rLst, SvStream& rOutput, sal_uInt16 nPara, sal_uInt16 nPos,
-//STRIP001                      SvxFontTable& rFontTable, SvxColorList& rColorList );
-//STRIP001  long                LogicToTwips( long n );
 
     inline short        GetXValue( short nXValue ) const;
     inline sal_uInt16   GetXValue( sal_uInt16 nXValue ) const;
@@ -654,11 +537,7 @@ private:
     inline short        GetYValue( short nYValue ) const;
     inline sal_uInt16   GetYValue( sal_uInt16 nYValue ) const;
 
-//STRIP001  ContentNode*        GetPrevVisNode( ContentNode* pCurNode );
-//STRIP001  ContentNode*        GetNextVisNode( ContentNode* pCurNode );
 
-//STRIP001  ParaPortion*        GetPrevVisPortion( ParaPortion* pCurPortion );
-//STRIP001  ParaPortion*        GetNextVisPortion( ParaPortion* pCurPortion );
 
     void                SetBackgroundColor( const Color& rColor ) { maBackgroundColor = rColor; }
     Color               GetBackgroundColor() const { return maBackgroundColor; }
@@ -681,7 +560,6 @@ private:
 
     inline ParaPortion* FindParaPortion( ContentNode* pNode ) const;
 
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::XTransferable > CreateTransferable( const EditSelection& rSelection ) const;
 
     void                SetValidPaperSize( const Size& rSz );
 
@@ -690,7 +568,6 @@ private:
 
 
 protected:
-//STRIP001  virtual void            Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 
 public:
                             ImpEditEngine( EditEngine* pEditEngine, SfxItemPool* pPool );
@@ -739,10 +616,6 @@ public:
     void                    Paint( ImpEditView* pView, const Rectangle& rRect, sal_Bool bUseVirtDev = sal_False );
     void                    Paint( OutputDevice* pOutDev, Rectangle aClipRec, Point aStartPos, sal_Bool bStripOnly = sal_False, short nOrientation = 0 );
 
-//STRIP001  sal_Bool                MouseButtonUp( const MouseEvent& rMouseEvent, EditView* pView );
-//STRIP001  sal_Bool                MouseButtonDown( const MouseEvent& rMouseEvent, EditView* pView );
-//STRIP001  sal_Bool                MouseMove( const MouseEvent& rMouseEvent, EditView* pView );
-//STRIP001  void                    Command( const CommandEvent& rCEvt, EditView* pView );
 
     EditSelectionEngine&    GetSelEngine() { return aSelEngine; }
     XubString               GetSelected( const EditSelection& rSel, const LineEnd eParaSep = LINEEND_LF ) const;
@@ -763,44 +636,31 @@ public:
     sal_Bool                IsFormatting() const { return bIsFormatting; }
 
     void            SetText( const String& rText );
-//STRIP001  EditPaM         DeleteSelected( EditSelection aEditSelection);
     EditPaM         InsertText( const EditSelection& rCurEditSelection, sal_Unicode c, sal_Bool bOverwrite );
-//STRIP001  EditPaM         InsertText( EditSelection aCurEditSelection, const String& rStr );
-//STRIP001  EditPaM         AutoCorrect( const EditSelection& rCurEditSelection, sal_Unicode c, sal_Bool bOverwrite );
-//STRIP001  EditPaM         DeleteLeftOrRight( const EditSelection& rEditSelection, BYTE nMode, BYTE nDelMode = DELMODE_SIMPLE );
     EditPaM         InsertParaBreak( EditSelection aEditSelection );
     EditPaM         InsertLineBreak( EditSelection aEditSelection );
     EditPaM         InsertTab( EditSelection aEditSelection );
     EditPaM         InsertField( EditSelection aEditSelection, const SvxFieldItem& rFld );
     sal_Bool        UpdateFields();
 
-//STRIP001  EditPaM         Read( SvStream& rInput, EETextFormat eFormat, EditSelection aSel, SvKeyValueIterator* pHTTPHeaderAttrs = NULL );
-//STRIP001  void            Write( SvStream& rOutput, EETextFormat eFormat, EditSelection aSel );
 
     EditTextObject* CreateTextObject();
     EditTextObject* CreateTextObject( EditSelection aSel );
     void            SetText( const EditTextObject& rTextObject );
     EditSelection   InsertText( const EditTextObject& rTextObject, EditSelection aSel );
 
-//STRIP001  EditSelection   MoveCursor( const KeyEvent& rKeyEvent, EditView* pEditView );
 
-//STRIP001  EditSelection   MoveParagraphs( Range aParagraphs, sal_uInt16 nNewPos, EditView* pCurView );
 
     sal_uInt32      CalcTextHeight();
     sal_uInt32      GetTextHeight() const;
     sal_uInt32      CalcTextWidth( BOOL bIgnoreExtraSpace );
     sal_uInt32      CalcLineWidth( ParaPortion* pPortion, EditLine* pLine, BOOL bIgnoreExtraSpace );
     sal_uInt16      GetLineCount( sal_uInt16 nParagraph ) const;
-//STRIP001  sal_uInt16      GetLineLen( sal_uInt16 nParagraph, sal_uInt16 nLine ) const;
-//STRIP001  sal_uInt16      GetLineHeight( sal_uInt16 nParagraph, sal_uInt16 nLine );
-//STRIP001  sal_uInt32      GetParaHeight( sal_uInt16 nParagraph );
 
     SfxItemSet      GetAttribs( USHORT nPara, USHORT nStart, USHORT nEnd, sal_uInt8 nFlags = 0xFF ) const;
     SfxItemSet      GetAttribs( EditSelection aSel, BOOL bOnlyHardAttrib = FALSE  );
     void            SetAttribs( EditSelection aSel, const SfxItemSet& rSet, BYTE nSpecial = 0 );
-//STRIP001  void            RemoveCharAttribs( EditSelection aSel, sal_Bool bRemoveParaAttribs, sal_uInt16 nWhich = 0 );
     void            RemoveCharAttribs( sal_uInt16 nPara, sal_uInt16 nWhich = 0, sal_Bool bRemoveFeatures = sal_False );
-//STRIP001  void            SetFlatMode( sal_Bool bFlat );
 
     void                SetParaAttribs( sal_uInt16 nPara, const SfxItemSet& rSet );
     const SfxItemSet&   GetParaAttribs( sal_uInt16 nPara ) const;
@@ -808,8 +668,6 @@ public:
     sal_Bool            HasParaAttrib( sal_uInt16 nPara, sal_uInt16 nWhich ) const;
     const SfxPoolItem&  GetParaAttrib( sal_uInt16 nPara, sal_uInt16 nWhich ) const;
 
-//STRIP001  Rectangle       PaMtoEditCursor( EditPaM aPaM, sal_uInt16 nFlags = 0 );
-//STRIP001  Rectangle       GetEditCursor( ParaPortion* pPortion, sal_uInt16 nIndex, sal_uInt16 nFlags = 0 );
 
     sal_Bool        IsModified() const      { return aEditDoc.IsModified(); }
     void            SetModifyFlag( sal_Bool b ) { aEditDoc.SetModified( b ); }
@@ -818,17 +676,11 @@ public:
 
 
     sal_Bool        IsInSelectionMode() { return bInSelection; }
-//STRIP001  void            StopSelectionMode();
 
-//STRIP001  void            IndentBlock( EditView* pView, sal_Bool bRight );
 
 //  Fuer Undo/Redo
-//STRIP001  sal_Bool        Undo( EditView* pView );
-//STRIP001  sal_Bool        Redo( EditView* pView );
-//STRIP001  sal_Bool        Repeat( EditView* pView );
 
 //  OV-Special
-//STRIP001  void            InvalidateFromParagraph( sal_uInt16 nFirstInvPara );
     EditPaM         InsertParagraph( sal_uInt16 nPara );
     EditSelection*  SelectParagraph( sal_uInt16 nPara );
 
@@ -859,8 +711,6 @@ public:
     void                SetStyleSheet( sal_uInt16 nPara, SfxStyleSheet* pStyle );
     SfxStyleSheet*      GetStyleSheet( sal_uInt16 nPara ) const;
 
-//STRIP001  void                UpdateParagraphsWithStyleSheet( SfxStyleSheet* pStyle );
-//STRIP001  void                RemoveStyleFromParagraphs( SfxStyleSheet* pStyle );
 
     OutputDevice*       GetRefDevice() const { return pRefDev; }
     void                SetRefDevice( OutputDevice* pRefDef );
@@ -872,15 +722,12 @@ public:
     void                CallStatusHdl();
     void                DelayedCallStatusHdl()  { aStatusTimer.Start(); }
 
-//STRIP001     void                CallNotify( EENotify& rNotify );
     void                EnterBlockNotifications();
     void                LeaveBlockNotifications();
 
 
-//STRIP001  EditSelection       MatchGroup( const EditSelection& rSel );
 
     void                UndoActionStart( sal_uInt16 nId );
-//STRIP001  void                UndoActionStart( sal_uInt16 nId, const ESelection& rSel );
     void                UndoActionEnd( sal_uInt16 nId );
 
     EditView*           GetActiveView() const   { return pActiveView; }
@@ -898,7 +745,6 @@ public:
     void                SetHyphenator( ::com::sun::star::uno::Reference<
                             ::com::sun::star::linguistic2::XHyphenator >  &xHyph )
                             { xHyphenator = xHyph; }
-//STRIP001  SpellInfo*          GetSpellInfo() const { return pSpellInfo; }
 
     void                SetDefaultLanguage( LanguageType eLang ) { eDefLanguage = eLang; }
     LanguageType        GetDefaultLanguage() const { return eDefLanguage; }
@@ -908,18 +754,7 @@ public:
     LanguageType        GetLanguage( const EditPaM& rPaM, USHORT* pEndPos = NULL ) const;
     ::com::sun::star::lang::Locale GetLocale( const EditPaM& rPaM ) const;
 
-//STRIP001  void                DoOnlineSpelling( ContentNode* pThisNodeOnly = 0, sal_Bool bSpellAtCursorPos = sal_False, sal_Bool bInteruptable = sal_True );
-//STRIP001  EESpellState        Spell( EditView* pEditView, sal_Bool bMultipleDoc );
-//STRIP001  EESpellState        HasSpellErrors();
-//STRIP001  EESpellState        StartThesaurus( EditView* pEditView );
-//STRIP001  ::com::sun::star::uno::Reference<
-//STRIP001      ::com::sun::star::linguistic2::XSpellAlternatives >
-//STRIP001                      ImpSpell( EditView* pEditView );
 
-//STRIP001  sal_Bool            Search( const SvxSearchItem& rSearchItem, EditView* pView );
-//STRIP001  sal_Bool            ImpSearch( const SvxSearchItem& rSearchItem, const EditSelection& rSearchSelection, const EditPaM& rStartPos, EditSelection& rFoundSel );
-//STRIP001  sal_uInt16          StartSearchAndReplace( EditView* pEditView, const SvxSearchItem& rSearchItem );
-//STRIP001  sal_Bool            HasText( const SvxSearchItem& rSearchItem );
 
     void                SetEditTextObjectPool( SfxItemPool* pP )    { pTextObjectPool = pP; }
     SfxItemPool*        GetEditTextObjectPool() const               { return pTextObjectPool; }
@@ -940,9 +775,7 @@ public:
     void                StopOnlineSpellTimer()      { aOnlineSpellTimer.Stop(); }
 
     const XubString&    GetAutoCompleteText() const { return aAutoCompleteText; }
-//STRIP001  void                SetAutoCompleteText( const String& rStr, sal_Bool bUpdateTipWindow );
 
-//STRIP001  EditSelection       TransliterateText( const EditSelection& rSelection, sal_Int32 nTransliterationMode );
 
     void                SetAsianCompressionMode( USHORT n );
     USHORT              GetAsianCompressionMode() const { return nAsianCompressionMode; }
@@ -1124,7 +957,6 @@ inline Cursor* ImpEditView::GetCursor()
 }
 
 void ConvertItem( SfxPoolItem& rPoolItem, MapUnit eSourceUnit, MapUnit eDestUnit );
-//STRIP001 void ConvertAndPutItems( SfxItemSet& rDest, const SfxItemSet& rSource, const MapUnit* pSourceUnit = NULL, const MapUnit* pDestUnit = NULL );
 BYTE GetCharTypeForCompression( xub_Unicode cChar );
 Point Rotate( const Point& rPoint, short nOrientation, const Point& rOrigin );
 
