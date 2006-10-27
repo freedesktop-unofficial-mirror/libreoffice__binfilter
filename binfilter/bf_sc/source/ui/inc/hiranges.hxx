@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hiranges.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:54:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:13:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,34 +40,16 @@
 #include <tools/color.hxx>
 #endif
 
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 #include <tools/debug.hxx> //STRIP001
 namespace binfilter {
 //==================================================================
 
-//STRIP001 struct ScHighlightEntry
-//STRIP001 {
-//STRIP001  ScRange     aRef;
-//STRIP001  Color       aColor;
-//STRIP001
-//STRIP001  ScHighlightEntry( const ScRange& rR, const Color& rC ) :
-//STRIP001      aRef(rR), aColor(rC) {}
-//STRIP001 };
 
 class ScHighlightRanges
 {
-//STRIP001  List        aEntries;
 
 public:
             ScHighlightRanges(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScHighlightRanges();
-//STRIP001          ~ScHighlightRanges();
-//STRIP001
-//STRIP001  ULONG   Count() const                       { return aEntries.Count(); }
-//STRIP001  void    Insert( ScHighlightEntry* pNew )    { aEntries.Insert(pNew, LIST_APPEND); }
-//STRIP001  ScHighlightEntry* GetObject( ULONG nIndex ) const
-//STRIP001                      { return (ScHighlightEntry*)aEntries.GetObject(nIndex); }
 };
 
 
