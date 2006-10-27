@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:05:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:45:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,53 +41,30 @@
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _PERSIST_HXX
-// auto strip #include <so3/persist.hxx>
-// auto strip #endif
 #ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
 #endif
-// auto strip #include "svdpage.hxx"
 #include <string.h>
 #ifndef _STRING_H
 #define _STRING_H
 #endif
-// auto strip #ifndef _APP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef _IPOBJ_HXX //autogen
 #include <so3/ipobj.hxx>
 #endif
 
 #include "svdetc.hxx"
-// auto strip #include "svdxout.hxx"
 #include "svdio.hxx"
-// auto strip #include "svdobj.hxx"
-// auto strip #include "svdogrp.hxx"
 #include "svdograf.hxx" // fuer SwapInAll()
-// auto strip #include "svdoedge.hxx" // Zum kopieren der Konnektoren
 #include "svdoole2.hxx" // Sonderbehandlung OLE beim SdrExchangeFormat
 #include "svditer.hxx"
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "svdlayer.hxx"
-// auto strip #include "svdotext.hxx"
 #include "svdpagv.hxx"
-// auto strip #include "svdundo.hxx"
-// auto strip #include "fmglob.hxx"
 #include "polysc3d.hxx"
 
 #ifndef SVX_LIGHT
 #include "fmdpage.hxx"
 #else
-// auto strip #include "unopage.hxx"
 #endif
 
-// auto strip #ifndef _SV_SALBTYPE_HXX
-// auto strip #include <vcl/salbtype.hxx>       // FRound
-// auto strip #endif
 
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
@@ -136,9 +113,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrObjList::operator=(const SdrObjList& rSrcList)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  Clear();
-//STRIP001  eListKind=rSrcList.eListKind;
-//STRIP001  CopyObjects(rSrcList);
 /*N*/ }
 
 /*N*/ void SdrObjList::CopyObjects(const SdrObjList& rSrcList)
@@ -391,22 +365,6 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG nObjNum)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
-//STRIP001  ULONG nAnz=GetObjCount();
-//STRIP001  SdrObject* pObj=(SdrObject*)aList.Remove(nObjNum);
-//STRIP001  DBG_ASSERT(pObj!=NULL,"Object zum Removen nicht gefunden");
-//STRIP001  if (pObj!=NULL) {
-//STRIP001      DBG_ASSERT(pObj->IsInserted(),"ZObjekt hat keinen Inserted-Status");
-//STRIP001      pObj->SetInserted(FALSE); // Ruft u.a. den UserCall
-//STRIP001      pObj->SetObjList(NULL);
-//STRIP001      pObj->SetPage(NULL);
-//STRIP001      if (!bObjOrdNumsDirty) { // Optimierung fuer den Fall, dass das letzte Obj rausgenommen wird
-//STRIP001          if (nObjNum!=ULONG(nAnz-1)) {
-//STRIP001              bObjOrdNumsDirty=TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      SetRectsDirty();
-//STRIP001  }
-//STRIP001  return pObj;
 /*N*/ }
 
 /*N*/ SdrObject* SdrObjList::RemoveObject(ULONG nObjNum)
@@ -442,24 +400,6 @@ using namespace ::com::sun::star;
 /*N*/   return pObj;
 /*N*/ }
 
-//STRIP001 SdrObject* SdrObjList::NbcReplaceObject(SdrObject* pNewObj, ULONG nObjNum)
-//STRIP001 {
-//STRIP001  SdrObject* pObj=(SdrObject*)aList.GetObject(nObjNum);
-//STRIP001  DBG_ASSERT(pObj!=NULL,"SdrObjList::ReplaceObject: Object zum Removen nicht gefunden");
-//STRIP001  if (pObj!=NULL) {
-//STRIP001      DBG_ASSERT(pObj->IsInserted(),"SdrObjList::ReplaceObject: ZObjekt hat keinen Inserted-Status");
-//STRIP001      pObj->SetInserted(FALSE);
-//STRIP001      pObj->SetObjList(NULL);
-//STRIP001      pObj->SetPage(NULL);
-//STRIP001      aList.Replace(pNewObj,nObjNum);
-//STRIP001      pNewObj->SetOrdNum(nObjNum);
-//STRIP001      pNewObj->SetObjList(this);
-//STRIP001      pNewObj->SetPage(pPage);
-//STRIP001      pNewObj->SetInserted(TRUE);
-//STRIP001      SetRectsDirty();
-//STRIP001  }
-//STRIP001  return pObj;
-//STRIP001 }
 
 /*N*/ SdrObject* SdrObjList::ReplaceObject(SdrObject* pNewObj, ULONG nObjNum)
 /*N*/ {
@@ -763,10 +703,6 @@ using namespace ::com::sun::star;
 /*N*/                       {
 /*N*/                           if( pObj->IsNeedColorRestore() )
 /*?*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                                if (bColorsDirty && bRestoreColors)
-//STRIP001 /*?*/                                    aHDCMerk.Restore(*pOut);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                bColorsDirty=FALSE;
 /*N*/                           }
 /*N*/                           else
 /*N*/                               bColorsDirty=TRUE; // andere aendern die Farben
@@ -855,71 +791,7 @@ using namespace ::com::sun::star;
 /*N*/   return bOk;
 /*N*/ }
 
-//STRIP001 SdrObject* SdrObjList::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer, FASTBOOL bBackward) const
-//STRIP001 {
-//STRIP001  SdrObject* pHit=NULL;
-//STRIP001  Rectangle R(rPnt.X()-nTol,rPnt.Y()-nTol,rPnt.X()+nTol,rPnt.Y()+nTol);
-//STRIP001  if (R.IsOver(GetAllObjBoundRect())) {
-//STRIP001      ULONG nObjAnz=GetObjCount();
-//STRIP001      ULONG nObjNum=bBackward ? 0 : nObjAnz;
-//STRIP001      while (pHit==NULL && (bBackward ? nObjNum<nObjAnz : nObjNum>0)) {
-//STRIP001          if (!bBackward) nObjNum--;
-//STRIP001          SdrObject* pObj=GetObj(nObjNum);
-//STRIP001          if (R.IsOver(pObj->GetBoundRect())) {
-//STRIP001              SdrObjList* pSubList=pObj->GetSubList();
-//STRIP001              if (pSubList!=NULL || pVisiLayer==NULL) { // Gruppenobjekte beruecksichtigen sichtbare Layer selbst
-//STRIP001                  pHit=pObj->CheckHit(rPnt,nTol,pVisiLayer/*,bBackward*/);
-//STRIP001              } else {             // Ansonsten nur wenn Layer sichtbar
-//STRIP001                  SdrLayerID nLayer=pObj->GetLayer();
-//STRIP001                  if (pVisiLayer->IsSet(nLayer)) {
-//STRIP001                      pHit=pObj->CheckHit(rPnt,nTol,pVisiLayer/*,bBackward*/);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          if (bBackward) nObjNum++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pHit;
-//STRIP001 }
 
-//STRIP001 void SdrObjList::NbcReformatAllTextObjects()
-//STRIP001 {
-//STRIP001  ULONG nAnz=GetObjCount();
-//STRIP001  ULONG nNum=0;
-//STRIP001
-//STRIP001  Printer* pPrinter = NULL;
-//STRIP001
-//STRIP001  if (pModel)
-//STRIP001  {
-//STRIP001      if (pModel->GetRefDevice() && pModel->GetRefDevice()->GetOutDevType() == OUTDEV_PRINTER)
-//STRIP001      {
-//STRIP001          // Kein RefDevice oder RefDevice kein Printer
-//STRIP001          pPrinter = (Printer*) pModel->GetRefDevice();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  while (nNum<nAnz)
-//STRIP001  {
-//STRIP001      SdrObject* pObj = GetObj(nNum);
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001      if (pPrinter &&
-//STRIP001          pObj->GetObjInventor() == SdrInventor &&
-//STRIP001          pObj->GetObjIdentifier() == OBJ_OLE2  &&
-//STRIP001          !( (SdrOle2Obj*) pObj )->IsEmpty() )
-//STRIP001      {
-//STRIP001          const SvInPlaceObjectRef& xObjRef = ((SdrOle2Obj*) pObj)->GetObjRef();
-//STRIP001
-//STRIP001          if( xObjRef.Is() && ( xObjRef->GetMiscStatus() & SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE ) )
-//STRIP001              xObjRef->OnDocumentPrinterChanged(pPrinter);
-//STRIP001      }
-//STRIP001 #endif
-//STRIP001
-//STRIP001      pObj->NbcReformatText();
-//STRIP001      nAnz=GetObjCount();             // ReformatText may delete an object
-//STRIP001      nNum++;
-//STRIP001  }
-//STRIP001
-//STRIP001 }
 
 /*N*/ void SdrObjList::ReformatAllTextObjects()
 /*N*/ {
@@ -978,44 +850,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrObjList::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-//STRIP001 {
-//STRIP001  ULONG nAnz=GetObjCount();
-//STRIP001  ULONG nNum=0;
-//STRIP001  while (nNum<nAnz)
-//STRIP001  {
-//STRIP001      SdrObject* pObj = GetObj(nNum);
-//STRIP001      if( pObj->ISA( SdrAttrObj ) && !pObj->ISA( E3dPolyScene ) )
-//STRIP001          ( (SdrAttrObj*) pObj )->BurnInStyleSheetAttributes( bPseudoSheetsOnly );
-//STRIP001      else if( pObj->ISA( SdrObjGroup ) )
-//STRIP001          ( (SdrObjGroup*) pObj )->BurnInStyleSheetAttributes( bPseudoSheetsOnly );
-//STRIP001
-//STRIP001      nNum++;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrObjList::RemoveNotPersistentObjects(FASTBOOL bNoBroadcast)
-//STRIP001 {
-//STRIP001  FASTBOOL bNoOLE=pModel!=NULL && pModel->IsStreamingSdrModel();
-//STRIP001  ULONG nObjAnz=GetObjCount();
-//STRIP001  for (ULONG nObjNum=nObjAnz; nObjNum>0;) {
-//STRIP001      nObjNum--;
-//STRIP001      SdrObject* pObj=GetObj(nObjNum);
-//STRIP001      FASTBOOL bThisObjNot=pObj->IsNotPersistent();
-//STRIP001      if (!bThisObjNot && bNoOLE && pObj->ISA(SdrOle2Obj)) {
-//STRIP001          bThisObjNot=TRUE;
-//STRIP001      }
-//STRIP001      if (bThisObjNot) {
-//STRIP001          if (bNoBroadcast) NbcRemoveObject(nObjNum);
-//STRIP001          else RemoveObject(nObjNum);
-//STRIP001      } else {
-//STRIP001          SdrObjList* pOL=pObj->GetSubList();
-//STRIP001          if (pOL!=NULL) {
-//STRIP001              pOL->RemoveNotPersistentObjects(bNoBroadcast);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrObjList::RestartAllAnimations(SdrPageView* pPageView) const
 /*N*/ {
@@ -1032,43 +867,8 @@ using namespace ::com::sun::star;
 /*?*/   return GetDraftFillColor(pObj->GetItemSet(),rCol);
 /*?*/ }
 
-//STRIP001 FASTBOOL SdrObjList::GetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
-//STRIP001                                FASTBOOL bLayerSorted, Color& rCol) const
-//STRIP001 {
-//STRIP001  if (pModel==NULL) return FALSE;
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  FASTBOOL bMaster=pPage!=NULL ? pPage->IsMasterPage() : FALSE;
-//STRIP001  for (ULONG no=GetObjCount(); !bRet && no>0; ) {
-//STRIP001      no--;
-//STRIP001      SdrObject* pObj=GetObj(no);
-//STRIP001      SdrObjList* pOL=pObj->GetSubList();
-//STRIP001      if (pOL!=NULL) { // Aha, Gruppenobjekt
-//STRIP001          bRet=pOL->GetFillColor(rPnt,rVisLayers,bLayerSorted,rCol);
-//STRIP001      } else {
-//STRIP001          SdrTextObj* pTextObj=PTR_CAST(SdrTextObj,pObj);
-//STRIP001             // #108867# Exclude zero master page object (i.e. background
-//STRIP001             // shape) from color query
-//STRIP001          if (pTextObj!=NULL &&
-//STRIP001              pObj->IsClosedObj() && rVisLayers.IsSet(pObj->GetLayer()) &&
-//STRIP001              (!bMaster || (!pObj->IsNotVisibleAsMaster() && no!=0)) &&
-//STRIP001              pObj->GetBoundRect().IsInside(rPnt) &&
-//STRIP001              !pTextObj->IsHideContour() && pObj->IsHit(rPnt,0,NULL))
-//STRIP001          {   // Nachfolgend extra Funktion um Stack zu sparen,
-//STRIP001              // da diese Methode hier rekursiv ist.
-//STRIP001              bRet=ImpGetFillColor(pObj,rCol);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SdrObjList::IsReadOnly() const
-//STRIP001 {
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  if (pPage!=NULL && pPage!=this) bRet=pPage->IsReadOnly();
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ ULONG SdrObjList::CountAllObjects() const
 /*N*/ {
@@ -1083,37 +883,7 @@ using namespace ::com::sun::star;
 /*N*/   return nCnt;
 /*N*/ }
 
-//STRIP001 void SdrObjList::ForceSwapInObjects() const
-//STRIP001 {
-//STRIP001  ULONG nObjAnz=GetObjCount();
-//STRIP001  for (ULONG nObjNum=nObjAnz; nObjNum>0;) {
-//STRIP001      SdrObject* pObj=GetObj(--nObjNum);
-//STRIP001      SdrGrafObj* pGrafObj=PTR_CAST(SdrGrafObj,pObj);
-//STRIP001      if (pGrafObj!=NULL) {
-//STRIP001          pGrafObj->ForceSwapIn();
-//STRIP001      }
-//STRIP001      SdrObjList* pOL=pObj->GetSubList();
-//STRIP001      if (pOL!=NULL) {
-//STRIP001          pOL->ForceSwapInObjects();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrObjList::ForceSwapOutObjects() const
-//STRIP001 {
-//STRIP001  ULONG nObjAnz=GetObjCount();
-//STRIP001  for (ULONG nObjNum=nObjAnz; nObjNum>0;) {
-//STRIP001      SdrObject* pObj=GetObj(--nObjNum);
-//STRIP001      SdrGrafObj* pGrafObj=PTR_CAST(SdrGrafObj,pObj);
-//STRIP001      if (pGrafObj!=NULL) {
-//STRIP001          pGrafObj->ForceSwapOut();
-//STRIP001      }
-//STRIP001      SdrObjList* pOL=pObj->GetSubList();
-//STRIP001      if (pOL!=NULL) {
-//STRIP001          pOL->ForceSwapOutObjects();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrObjList::Save(SvStream& rOut) const
 /*N*/ {
@@ -1287,49 +1057,10 @@ using namespace ::com::sun::star;
 
 /*?*/ void SdrObjList::FlattenGroups()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001     sal_Int32 nObj = GetObjCount();
-//STRIP001     sal_Int32 i;
-//STRIP001     for( i=nObj-1; i>=0; --i)
-//STRIP001         UnGroupObj(i);
 /*?*/ }
 
 /*?*/ void SdrObjList::UnGroupObj( ULONG nObjNum )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001     // if the given object is no group, this method is a noop
-//STRIP001     SdrObject* pUngroupObj = GetObj( nObjNum );
-//STRIP001     if( pUngroupObj )
-//STRIP001     {
-//STRIP001         SdrObjList* pSrcLst = pUngroupObj->GetSubList();
-//STRIP001         sal_Int32 nCount( 0 );
-//STRIP001         if( pUngroupObj->ISA( SdrObjGroup ) && pSrcLst )
-//STRIP001         {
-//STRIP001             SdrObjGroup* pUngroupGroup = static_cast< SdrObjGroup* > (pUngroupObj);
-//STRIP001
-//STRIP001             // ungroup recursively (has to be head recursion,
-//STRIP001             // otherwise our indices will get trashed when doing it in
-//STRIP001             // the loop)
-//STRIP001             pSrcLst->FlattenGroups();
-//STRIP001
-//STRIP001             // the position at which we insert the members of rUngroupGroup
-//STRIP001             sal_Int32 nInsertPos( pUngroupGroup->GetOrdNum() );
-//STRIP001
-//STRIP001             SdrObject* pObj;
-//STRIP001             sal_Int32 i, nAnz = pSrcLst->GetObjCount();
-//STRIP001             for( i=0; i<nAnz; ++i )
-//STRIP001             {
-//STRIP001                 pObj = pSrcLst->RemoveObject(0);
-//STRIP001                 SdrInsertReason aReason(SDRREASON_VIEWCALL, pUngroupGroup);
-//STRIP001                 InsertObject(pObj, nInsertPos, &aReason);
-//STRIP001                 ++nInsertPos;
-//STRIP001             }
-//STRIP001
-//STRIP001             RemoveObject(nInsertPos);
-//STRIP001         }
-//STRIP001     }
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001     else
-//STRIP001         DBG_ERROR("SdrObjList::UnGroupObj: object index invalid");
-//STRIP001 #endif
 /*?*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1362,14 +1093,6 @@ using namespace ::com::sun::star;
 /*N*/   aList.Clear();
 /*N*/ }
 
-//STRIP001 void SdrMasterPageDescriptorList::operator=(const SdrMasterPageDescriptorList& rSrcList)
-//STRIP001 {
-//STRIP001  Clear();
-//STRIP001  USHORT nAnz=rSrcList.GetCount();
-//STRIP001  for (USHORT i=0; i<nAnz; i++) {
-//STRIP001      Insert(rSrcList[i]);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ SvStream& operator<<(SvStream& rOut, const SdrMasterPageDescriptorList& rMPDL)
 /*N*/ {
@@ -1401,11 +1124,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPageGridFrameList::Clear()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  USHORT nAnz=GetCount();
-//STRIP001  for (USHORT i=0; i<nAnz; i++) {
-//STRIP001      delete GetObject(i);
-//STRIP001  }
-//STRIP001  aList.Clear();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1447,48 +1165,9 @@ using namespace ::com::sun::star;
 /*N*/   delete pLayerAdmin;
 /*N*/ }
 
-//STRIP001 void SdrPage::operator=(const SdrPage& rSrcPage)
-//STRIP001 {
-//STRIP001  SdrObjList::operator=(rSrcPage);
-//STRIP001  pPage=this;
-//STRIP001  bMaster        =rSrcPage.bMaster        ;
-//STRIP001  bSwappingLocked=rSrcPage.bSwappingLocked;
-//STRIP001  aPrefVisiLayers=rSrcPage.aPrefVisiLayers;
-//STRIP001  nWdt           =rSrcPage.nWdt           ;
-//STRIP001  nHgt           =rSrcPage.nHgt           ;
-//STRIP001  nBordLft       =rSrcPage.nBordLft       ;
-//STRIP001  nBordUpp       =rSrcPage.nBordUpp       ;
-//STRIP001  nBordRgt       =rSrcPage.nBordRgt       ;
-//STRIP001  nBordLwr       =rSrcPage.nBordLwr       ;
-//STRIP001  nPageNum       =rSrcPage.nPageNum       ;
-//STRIP001  aMasters       =rSrcPage.aMasters       ;
-//STRIP001  bObjectsNotPersistent=rSrcPage.bObjectsNotPersistent;
-//STRIP001
-//STRIP001  if( rSrcPage.pBackgroundObj )
-//STRIP001  {
-//STRIP001      pBackgroundObj = rSrcPage.pBackgroundObj->Clone();
-//STRIP001      pBackgroundObj->SetPage( this );
-//STRIP001      pBackgroundObj->SetModel( pModel );
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 SdrPage* SdrPage::Clone() const
-//STRIP001 {
-//STRIP001  return Clone(NULL);
-//STRIP001 }
 
-//STRIP001 SdrPage* SdrPage::Clone(SdrModel* pNewModel) const
-//STRIP001 {
-//STRIP001  if (pNewModel==NULL) pNewModel=pModel;
-//STRIP001  SdrPage* pPage=new SdrPage(*pNewModel);
-//STRIP001  *pPage=*this;
-//STRIP001  return pPage;
-//STRIP001 }
 
-//STRIP001 SfxItemPool& SdrPage::GetItemPool() const
-//STRIP001 {
-//STRIP001  return pModel->GetItemPool();
-//STRIP001 }
 
 /*N*/ void SdrPage::SetSize(const Size& aSiz)
 /*N*/ {
@@ -1510,23 +1189,8 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPage::SetOrientation(Orientation eOri)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // Quadratisch ist und bleibt immer Portrait
-//STRIP001  Size aSiz(GetSize());
-//STRIP001  if (aSiz.Width()!=aSiz.Height()) {
-//STRIP001      if ((eOri==ORIENTATION_PORTRAIT) == (aSiz.Width()>aSiz.Height())) {
-//STRIP001          SetSize(Size(aSiz.Height(),aSiz.Width()));
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
-//STRIP001 Orientation SdrPage::GetOrientation() const
-//STRIP001 {
-//STRIP001  // Quadratisch ist Portrait
-//STRIP001  Orientation eRet=ORIENTATION_PORTRAIT;
-//STRIP001  Size aSiz(GetSize());
-//STRIP001  if (aSiz.Width()>aSiz.Height()) eRet=ORIENTATION_LANDSCAPE;
-//STRIP001  return eRet;
-//STRIP001 }
 
 /*N*/ INT32 SdrPage::GetHgt() const
 /*N*/ {
@@ -1644,15 +1308,6 @@ using namespace ::com::sun::star;
 /*N*/   if (bInserted && pModel!=NULL) pModel->Broadcast(SdrHint(*this));
 /*N*/ }
 
-//STRIP001 USHORT SdrPage::GetMasterPagePos(USHORT nPgNum) const
-//STRIP001 {
-//STRIP001  USHORT nAnz=aMasters.GetCount();
-//STRIP001  for (USHORT i=0; i<nAnz; i++) {
-//STRIP001      USHORT nMaPgNum=aMasters[i].GetPageNum();
-//STRIP001      if (nMaPgNum==nPgNum) return i;
-//STRIP001  }
-//STRIP001  return SDRPAGE_NOTFOUND;
-//STRIP001 }
 
 /*N*/ void SdrPage::InsertMasterPage(USHORT nPgNum, USHORT nPos)
 /*N*/ {
@@ -1694,11 +1349,6 @@ using namespace ::com::sun::star;
 /*?*/   return pPg;
 /*?*/ }
 
-//STRIP001 void SdrPage::SetMasterPageNum(USHORT nPgNum, USHORT nPos)
-//STRIP001 {
-//STRIP001  aMasters[nPos].SetPageNum(nPgNum);
-//STRIP001  SendRepaintBroadcast();
-//STRIP001 }
 
 /*N*/ void SdrPage::SetMasterPageVisibleLayers(const SetOfByte& rVL, USHORT nPos)
 /*N*/ {
@@ -1706,17 +1356,7 @@ using namespace ::com::sun::star;
 /*N*/   SendRepaintBroadcast();
 /*N*/ }
 
-//STRIP001 void SdrPage::SetMasterPageDescriptor(const SdrMasterPageDescriptor& rMPD, USHORT nPos)
-//STRIP001 {
-//STRIP001  aMasters[nPos]=rMPD;
-//STRIP001  SendRepaintBroadcast();
-//STRIP001 }
 
-//STRIP001 void SdrPage::SetMasterPageDescriptorList(const SdrMasterPageDescriptorList& rMPDL)
-//STRIP001 {
-//STRIP001  aMasters=rMPDL;
-//STRIP001  SendRepaintBroadcast();
-//STRIP001 }
 
 /*N*/ void SdrPage::ImpMasterPageRemoved(USHORT nMasterPageNum)
 /*N*/ {
@@ -1732,18 +1372,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrPage::ImpMasterPageInserted(USHORT nMasterPageNum)
-//STRIP001 {
-//STRIP001  USHORT nMasterAnz=GetMasterPageCount();
-//STRIP001  for (USHORT nm=nMasterAnz; nm>0;) {
-//STRIP001      nm--;
-//STRIP001      USHORT nNum=aMasters[nm].GetPageNum();
-//STRIP001      if (nNum>=nMasterPageNum) {
-//STRIP001          // Hintere anpassen wegen Verschiebung durch einfuegen
-//STRIP001          aMasters[nm].SetPageNum(nNum+1);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrPage::ImpMasterPageMoved(USHORT nMasterPageNum, USHORT nNewMasterPageNum)
 /*N*/ {
@@ -1765,59 +1393,12 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 FASTBOOL SdrPage::ImplGetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
-//STRIP001                                    FASTBOOL bLayerSorted, Color& rCol, FASTBOOL bSkipBackgroundShape) const
-//STRIP001 {
-//STRIP001  if (pModel==NULL) return FALSE;
-//STRIP001  FASTBOOL bRet=SdrObjList::GetFillColor(rPnt,rVisLayers,bLayerSorted,rCol);
-//STRIP001  if (!bRet && !bMaster) {
-//STRIP001      // nun zu den Masterpages
-//STRIP001      USHORT nMasterAnz=GetMasterPageCount();
-//STRIP001      for (USHORT nMaster=nMasterAnz; nMaster>0 && !bRet;) {
-//STRIP001          nMaster--;
-//STRIP001          const SdrMasterPageDescriptor& rMaster=GetMasterPageDescriptor(nMaster);
-//STRIP001          SetOfByte aSet(rVisLayers);
-//STRIP001          aSet&=rMaster.GetVisibleLayers();
-//STRIP001          SdrPage* pMaster=pModel->GetMasterPage(rMaster.GetPageNum());
-//STRIP001          if (pMaster!=NULL)
-//STRIP001             {
-//STRIP001                 // #108867# Don't fall back to background shape on
-//STRIP001                 // master pages. This is later handled by
-//STRIP001                 // GetBackgroundColor, and is necessary to cater for
-//STRIP001                 // the silly ordering: 1. shapes, 2. master page
-//STRIP001                 // shapes, 3. page background, 4. master page
-//STRIP001                 // background.
-//STRIP001              bRet=pMaster->ImplGetFillColor(rPnt,aSet,bLayerSorted,rCol,TRUE);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001     // #108867# Only now determine background color from background shapes
-//STRIP001     if( !bRet && !bSkipBackgroundShape )
-//STRIP001     {
-//STRIP001         rCol = GetBackgroundColor();
-//STRIP001         return TRUE;
-//STRIP001     }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 FASTBOOL SdrPage::GetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
-//STRIP001                             FASTBOOL bLayerSorted, Color& rCol) const
-//STRIP001 {
-//STRIP001     // #108867# Wrapper for ImplGetFillColor. Used to properly set the
-//STRIP001     // bSkipBackgroundShape parameter. Never skip background shape on
-//STRIP001     // first level of recursion
-//STRIP001     return ImplGetFillColor(rPnt,rVisLayers,bLayerSorted,rCol,FALSE);
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 const SdrPageGridFrameList* SdrPage::GetGridFrameList(const SdrPageView* pPV, const Rectangle* pRect) const
-//STRIP001 {
-//STRIP001  return NULL;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2061,64 +1642,10 @@ using namespace ::com::sun::star;
 /*N*/   return pObj->GetStyleSheet();
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrPage::HasTransparentObjects( BOOL bCheckForAlphaChannel ) const
-//STRIP001 {
-//STRIP001  FASTBOOL bRet = FALSE;
-//STRIP001
-//STRIP001  for( ULONG n = 0, nCount = GetObjCount(); ( n < nCount ) && !bRet; n++ )
-//STRIP001      if( GetObj( n )->IsTransparent( bCheckForAlphaChannel ) )
-//STRIP001          bRet = TRUE;
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /** returns an averaged background color of this page */
 /*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* pView ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); Color aColor; return aColor;
-//STRIP001  Color aColor;
-//STRIP001
-//STRIP001  if( (NULL == pView) || (pView->GetApplicationDocumentColor() == COL_AUTO) )
-//STRIP001  {
-//STRIP001         svtools::ColorConfig aColorConfig;
-//STRIP001         aColor = aColorConfig.GetColorValue( svtools::DOCCOLOR ).nColor;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aColor = pView->GetApplicationDocumentColor();
-//STRIP001  }
-//STRIP001
-//STRIP001  // first, see if we have a background object
-//STRIP001  SdrObject* pBackgroundObj = NULL;
-//STRIP001
-//STRIP001
-//STRIP001  if( IsMasterPage() )
-//STRIP001  {
-//STRIP001      if( GetObjCount() )
-//STRIP001          pBackgroundObj = GetObj( 0 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pBackgroundObj = GetBackgroundObj();
-//STRIP001      if( NULL == pBackgroundObj )
-//STRIP001      {
-//STRIP001          // if not, see if we have a masterpage and get that background object
-//STRIP001          if( GetMasterPageCount() )
-//STRIP001          {
-//STRIP001              SdrPage* pMaster = GetMasterPage(0);
-//STRIP001
-//STRIP001              if( pMaster && pMaster->GetObjCount() )
-//STRIP001                  pBackgroundObj = pMaster->GetObj( 0 );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pBackgroundObj )
-//STRIP001  {
-//STRIP001      const SfxItemSet& rSet = pBackgroundObj->GetItemSet();
-//STRIP001      GetDraftFillColor( rSet, aColor );
-//STRIP001  }
-//STRIP001
-//STRIP001  return aColor;
 /*N*/ }
 
 /** *deprecated, use GetBackgroundColor with SdrPageView */
