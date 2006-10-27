@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_paratr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:56:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:57:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,59 +36,15 @@
 
 #pragma hdrstop
 
-// auto strip #include "hintids.hxx"
-// auto strip #include <swtypes.hxx>
 #include "unomid.h"
-// auto strip #ifndef _COM_SUN_STAR_STYLE_LINESPACINGMODE_HPP_
-// auto strip #include <com/sun/star/style/LineSpacingMode.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HPP_
-// auto strip #include <com/sun/star/style/ParagraphAdjust.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_DROPCAPFORMAT_HPP_
 #include <com/sun/star/style/DropCapFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
-// auto strip #include <com/sun/star/style/LineSpacing.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_RELORIENTATION_HPP_
-// auto strip #include <com/sun/star/text/RelOrientation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
-// auto strip #include <com/sun/star/text/VertOrientation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
-// auto strip #include <com/sun/star/text/HorizontalAdjust.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
-// auto strip #include <com/sun/star/text/DocumentStatistic.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
-// auto strip #include <com/sun/star/text/HoriOrientation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
-// auto strip #include <com/sun/star/text/HoriOrientationFormat.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
-// auto strip #include <com/sun/star/text/NotePrintMode.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
-// auto strip #include <com/sun/star/text/SizeType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
-// auto strip #include <com/sun/star/text/VertOrientationFormat.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
-// auto strip #include <com/sun/star/text/WrapTextMode.hpp>
-// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
 #endif
 
-// auto strip #ifndef _UNOSTYLE_HXX
-// auto strip #include <unostyle.hxx>
-// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
@@ -326,12 +282,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return new SwNumRuleItem( *this );
 /*N*/ }
-//STRIP001 int SwNumRuleItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return GetValue() == ((SwNumRuleItem&)rAttr).GetValue() &&
-//STRIP001          GetDefinedIn() == ((SwNumRuleItem&)rAttr).GetDefinedIn();
-//STRIP001 }
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
