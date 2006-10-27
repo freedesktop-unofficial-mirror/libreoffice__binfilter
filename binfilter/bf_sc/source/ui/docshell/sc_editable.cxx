@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editable.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:09:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:48:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -53,10 +52,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 void ScEditableTester::Reset()
-//STRIP001 {
-//STRIP001  bIsEditable = bOnlyMatrix = TRUE;
-//STRIP001 }
 
 /*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, USHORT nTab,
 /*N*/                       USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow ) :
@@ -89,12 +84,6 @@ namespace binfilter {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 TestSelection( pDoc, rMark );
 /*N*/ }
 
-//STRIP001 ScEditableTester::ScEditableTester( ScViewFunc* pView ) :
-//STRIP001  bIsEditable( TRUE ),
-//STRIP001  bOnlyMatrix( TRUE )
-//STRIP001 {
-//STRIP001  TestView( pView );
-//STRIP001 }
 
 //------------------------------------------------------------------
 
@@ -123,45 +112,8 @@ namespace binfilter {
 /*N*/           TestBlock( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/ }
 
-//STRIP001 void ScEditableTester::TestRange( ScDocument* pDoc, const ScRange& rRange )
-//STRIP001 {
-//STRIP001  USHORT nStartCol = rRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rRange.aStart.Row();
-//STRIP001  USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001  USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001  for (USHORT nTab=nStartTab; nTab<=nEndTab; nTab++)
-//STRIP001      TestBlock( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
-//STRIP001 }
 
-//STRIP001 void ScEditableTester::TestSelection( ScDocument* pDoc, const ScMarkData& rMark )
-//STRIP001 {
-//STRIP001  if ( bIsEditable || bOnlyMatrix )
-//STRIP001  {
-//STRIP001      BOOL bThisMatrix;
-//STRIP001      if ( !pDoc->IsSelectionEditable( rMark, &bThisMatrix ) )
-//STRIP001      {
-//STRIP001          bIsEditable = FALSE;
-//STRIP001          if ( !bThisMatrix )
-//STRIP001              bOnlyMatrix = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScEditableTester::TestView( ScViewFunc* pView )
-//STRIP001 {
-//STRIP001  if ( bIsEditable || bOnlyMatrix )
-//STRIP001  {
-//STRIP001      BOOL bThisMatrix;
-//STRIP001      if ( !pView->SelectionEditable( &bThisMatrix ) )
-//STRIP001      {
-//STRIP001          bIsEditable = FALSE;
-//STRIP001          if ( !bThisMatrix )
-//STRIP001              bOnlyMatrix = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //------------------------------------------------------------------
 
