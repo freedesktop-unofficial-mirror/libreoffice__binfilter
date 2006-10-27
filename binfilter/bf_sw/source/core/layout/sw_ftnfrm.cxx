@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ftnfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:49:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:53:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,9 +54,6 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -71,9 +68,6 @@
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
@@ -92,9 +86,6 @@
 #ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
 #endif
-// auto strip #ifndef _NDINDEX_HXX
-// auto strip #include <ndindex.hxx>
-// auto strip #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
@@ -155,13 +146,6 @@ namespace binfilter {
 /*?*/   return 0;
 /*N*/ }
 
-//STRIP001 BOOL SwFtnFrm::operator<( const SwTxtFtn* pTxtFtn ) const
-//STRIP001 {
-//STRIP001  const SwDoc* pDoc = GetFmt()->GetDoc();
-//STRIP001  ASSERT( pDoc, "SwFtnFrm: Missing doc!" );
-//STRIP001  return lcl_FindFtnPos( pDoc, GetAttr() ) <
-//STRIP001         lcl_FindFtnPos( pDoc, pTxtFtn );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -780,88 +764,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 SwLayoutFrm *SwFrm::GetNextFtnLeaf( MakePageType eMakePage )
-//STRIP001 {
-//STRIP001  SwFtnBossFrm *pOldBoss = FindFtnBossFrm();
-//STRIP001  SwPageFrm* pOldPage = pOldBoss->FindPageFrm();
-//STRIP001  SwPageFrm* pPage;
-//STRIP001  SwFtnBossFrm *pBoss = pOldBoss->IsColumnFrm() ?
-//STRIP001      (SwFtnBossFrm*)pOldBoss->GetNext() : 0; // naechste Spalte, wenn vorhanden
-//STRIP001  if( pBoss )
-//STRIP001      pPage = NULL;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if( pOldBoss->GetUpper()->IsSctFrm() )
-//STRIP001      {   // Das kann nur in einem spaltigen Bereich sein
-//STRIP001          SwLayoutFrm* pNxt = pOldBoss->GetNextSctLeaf( eMakePage );
-//STRIP001          if( pNxt )
-//STRIP001          {
-//STRIP001              ASSERT( pNxt->IsColBodyFrm(), "GetNextFtnLeaf: Funny Leaf" );
-//STRIP001              pBoss = (SwFtnBossFrm*)pNxt->GetUpper();
-//STRIP001              pPage = pBoss->FindPageFrm();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              return 0;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // naechste Seite
-//STRIP001          pPage = (SwPageFrm*)pOldPage->GetNext();
-//STRIP001          // Leerseiten ueberspringen
-//STRIP001          if( pPage && pPage->IsEmptyPage() )
-//STRIP001              pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001          pBoss = pPage;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // Was haben wir jetzt?
-//STRIP001  // pBoss != NULL, pPage==NULL => pBoss ist die auf der gleichen Seite folgende Spalte
-//STRIP001  // pBoss != NULL, pPage!=NULL => pBoss und pPage sind die folgende Seite (Empty uebersprungen)
-//STRIP001  // pBoss == NULL => pPage == NULL, es gibt keine folgende Seite
-//STRIP001
-//STRIP001  //Wenn die Fussnote bereits einen Follow hat brauchen wir nicht zu suchen.
-//STRIP001  //Wenn allerdings zwischen Ftn und Follow unerwuenschte Leerseiten/spalten
-//STRIP001  //herumlungern, so legen wir auf der naechstbesten Seite/Spalte einen weiteren
-//STRIP001  //Follow an, der Rest wird sich schon finden.
-//STRIP001  SwFtnFrm *pFtn = FindFtnFrm();
-//STRIP001  if ( pFtn && pFtn->GetFollow() )
-//STRIP001  {
-//STRIP001      SwFtnBossFrm* pTmpBoss = pFtn->GetFollow()->FindFtnBossFrm();
-//STRIP001      // Folgende Faelle werden hier erkannt und akzeptiert
-//STRIP001      // 1. Die FtnBosse sind benachbarte Seiten oder benachbarte Spalten
-//STRIP001      // 2. Der neue ist die erste Spalte der benachbarten Seite
-//STRIP001      // 3. Der neue ist die erste Spalte in einem Bereich in der naechsten Spalte/Seite
-//STRIP001      while( pTmpBoss != pBoss && pTmpBoss && !pTmpBoss->GetPrev() )
-//STRIP001          pTmpBoss = pTmpBoss->GetUpper()->FindFtnBossFrm();
-//STRIP001      if( pTmpBoss == pBoss )
-//STRIP001          return pFtn->GetFollow();
-//STRIP001  }
-//STRIP001
-//STRIP001  // Wenn wir keinen pBoss gefunden haben oder es sich um eine "falsche" Seite handelt,
-//STRIP001  // muss eine neue Seite her
-//STRIP001  if ( !pBoss || ( pPage && pPage->IsEndNotePage() && !pOldPage->IsEndNotePage() ) )
-//STRIP001  {
-//STRIP001      if ( eMakePage == MAKEPAGE_APPEND || eMakePage == MAKEPAGE_INSERT )
-//STRIP001      {
-//STRIP001          pBoss = InsertPage( pOldPage, pOldPage->IsFtnPage() );
-//STRIP001          ((SwPageFrm*)pBoss)->SetEndNotePage( pOldPage->IsEndNotePage() );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          return 0;
-//STRIP001  }
-//STRIP001  if( pBoss->IsPageFrm() )
-//STRIP001  {   // Wenn wir auf einer spaltigen Seite gelandet sind,
-//STRIP001      // gehen wir in die erste Spalte
-//STRIP001      SwLayoutFrm* pLay = pBoss->FindBodyCont();
-//STRIP001      if( pLay && pLay->Lower() && pLay->Lower()->IsColumnFrm() )
-//STRIP001          pBoss = (SwFtnBossFrm*)pLay->Lower();
-//STRIP001  }
-//STRIP001  //Seite/Spalte gefunden, da schummeln wir uns doch gleich mal 'rein
-//STRIP001  SwFtnContFrm *pCont = pBoss->FindFtnCont();
-//STRIP001  if ( !pCont && pBoss->GetMaxFtnHeight() &&
-//STRIP001       ( eMakePage == MAKEPAGE_APPEND || eMakePage == MAKEPAGE_INSERT ) )
-//STRIP001      pCont = pBoss->MakeFtnCont();
-//STRIP001  return pCont;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -875,130 +777,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 SwLayoutFrm *SwFrm::GetPrevFtnLeaf( MakePageType eMakeFtn )
-//STRIP001 {
-//STRIP001  //Der Vorgaenger fuer eine Fussnote ist falls moeglich der Master
-//STRIP001  //in der Fussnoteneigenen Verkettung.
-//STRIP001  SwLayoutFrm *pRet = 0;
-//STRIP001  SwFtnFrm *pFtn = FindFtnFrm();
-//STRIP001  pRet = pFtn->GetMaster();
-//STRIP001
-//STRIP001  SwFtnBossFrm* pOldBoss = FindFtnBossFrm();
-//STRIP001  SwPageFrm *pOldPage = pOldBoss->FindPageFrm();
-//STRIP001
-//STRIP001  if ( !pOldBoss->GetPrev() && !pOldPage->GetPrev() )
-//STRIP001      return pRet; // es gibt weder eine Spalte noch eine Seite vor uns
-//STRIP001
-//STRIP001  if ( !pRet )
-//STRIP001  {
-//STRIP001      BOOL bEndn = pFtn->GetAttr()->GetFtn().IsEndNote();
-//STRIP001      SwFrm* pTmpRef = NULL;
-//STRIP001      if( bEndn && pFtn->IsInSct() )
-//STRIP001      {
-//STRIP001          SwSectionFrm* pSect = pFtn->FindSctFrm();
-//STRIP001          if( pSect->IsEndnAtEnd() )
-//STRIP001              pTmpRef = pSect->FindLastCntnt( FINDMODE_LASTCNT );
-//STRIP001      }
-//STRIP001      if( !pTmpRef )
-//STRIP001          pTmpRef = pFtn->GetRef();
-//STRIP001      SwFtnBossFrm* pStop = pTmpRef->FindFtnBossFrm( !bEndn );
-//STRIP001
-//STRIP001      const USHORT nNum = pStop->GetPhyPageNum();
-//STRIP001
-//STRIP001      //Wenn die Fussnoten am Dokumentende angezeigt werden, so verlassen wir
-//STRIP001      //die Entsprechenden Seiten nicht.
-//STRIP001      //Selbiges gilt analog fuer die Endnotenseiten.
-//STRIP001      const FASTBOOL bEndNote = pOldPage->IsEndNotePage();
-//STRIP001      const FASTBOOL bFtnEndDoc = pOldPage->IsFtnPage();
-//STRIP001      SwFtnBossFrm* pNxtBoss = pOldBoss;
-//STRIP001      SwSectionFrm *pSect = pNxtBoss->GetUpper()->IsSctFrm() ?
-//STRIP001                            (SwSectionFrm*)pNxtBoss->GetUpper() : 0;
-//STRIP001
-//STRIP001      do
-//STRIP001      {
-//STRIP001          if( pNxtBoss->IsColumnFrm() && pNxtBoss->GetPrev() )
-//STRIP001              pNxtBoss = (SwFtnBossFrm*)pNxtBoss->GetPrev();  // eine Spalte zurueck
-//STRIP001          else                                // oder eine Seite zurueck
-//STRIP001          {
-//STRIP001              SwLayoutFrm* pBody;
-//STRIP001              if( pSect )
-//STRIP001              {
-//STRIP001                  if( pSect->IsFtnLock() )
-//STRIP001                  {
-//STRIP001                      if( pNxtBoss == pOldBoss )
-//STRIP001                          return 0;
-//STRIP001                      pStop = pNxtBoss;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      pSect = pSect->FindMaster();
-//STRIP001                      if( !pSect || !pSect->Lower() )
-//STRIP001                          return 0;
-//STRIP001                      ASSERT( pSect->Lower()->IsColumnFrm(),
-//STRIP001                              "GetPrevFtnLeaf: Where's the column?" );
-//STRIP001                      pNxtBoss = (SwFtnBossFrm*)pSect->Lower();
-//STRIP001                      pBody = pSect;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  SwPageFrm* pPage = (SwPageFrm*)pNxtBoss->FindPageFrm()->GetPrev();
-//STRIP001                  if( !pPage || pPage->GetPhyPageNum() < nNum ||
-//STRIP001                      bEndNote != pPage->IsEndNotePage() || bFtnEndDoc != pPage->IsFtnPage() )
-//STRIP001                      return NULL; // Keine in Frage kommende Seite mehr gefunden
-//STRIP001                  pNxtBoss = pPage;
-//STRIP001                  pBody = pPage->FindBodyCont();
-//STRIP001              }
-//STRIP001              // Die vorherige Seite haben wir nun, ggf. sollten wir in die letzte Spalte
-//STRIP001              // der Seite wechseln
-//STRIP001              if( pBody )
-//STRIP001              {
-//STRIP001                  if ( pBody->Lower() && pBody->Lower()->IsColumnFrm() )
-//STRIP001                  {
-//STRIP001                      pNxtBoss = (SwFtnBossFrm*)pBody->Lower();
-//STRIP001                      while( pNxtBoss->GetNext() ) // letzte Spalte suchen
-//STRIP001                          pNxtBoss = (SwFtnBossFrm*)pNxtBoss->GetNext();
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          SwFtnContFrm *pCont = pNxtBoss->FindFtnCont();
-//STRIP001          if ( pCont )
-//STRIP001          {
-//STRIP001              pRet = pCont;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          if ( pStop == pNxtBoss )
-//STRIP001          {   //Die Seite/Spalte auf der sich auch die Referenz tummelt, ist erreicht.
-//STRIP001              //Wir koennen jetzt probehalber mal einen Container erzeugen und
-//STRIP001              //uns hineinpasten.
-//STRIP001              if ( eMakeFtn == MAKEPAGE_FTN && pNxtBoss->GetMaxFtnHeight() )
-//STRIP001                  pRet = pNxtBoss->MakeFtnCont();
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      } while( !pRet );
-//STRIP001  }
-//STRIP001  if ( pRet )
-//STRIP001  {
-//STRIP001      const SwFtnBossFrm* pNewBoss = pRet->FindFtnBossFrm();
-//STRIP001      BOOL bJump = FALSE;
-//STRIP001      if( pOldBoss->IsColumnFrm() && pOldBoss->GetPrev() ) // es gibt eine vorherige Spalte
-//STRIP001          bJump = pOldBoss->GetPrev() != (SwFrm*)pNewBoss;         // sind wir darin gelandet?
-//STRIP001      else if( pNewBoss->IsColumnFrm() && pNewBoss->GetNext() )
-//STRIP001          bJump = TRUE; // es gibt hinter dem neuen Boss noch eine Spalte, die aber nicht
-//STRIP001                        // der alte Boss sein kann, das haben wir ja bereits geprueft.
-//STRIP001      else // hier landen wir nur, wenn neuer und alter Boss entweder Seiten oder letzte (neu)
-//STRIP001      {   // bzw. erste (alt) Spalten einer Seite sind. In diesem Fall muss noch geprueft
-//STRIP001          // werden, ob Seiten ueberspringen wurden.
-//STRIP001          USHORT nDiff = pOldPage->GetPhyPageNum() - pRet->FindPageFrm()->GetPhyPageNum();
-//STRIP001          if ( nDiff > 2 ||
-//STRIP001               (nDiff > 1 && !((SwPageFrm*)pOldPage->GetPrev())->IsEmptyPage()) )
-//STRIP001              bJump = TRUE;
-//STRIP001      }
-//STRIP001      if( bJump )
-//STRIP001          SwFlowFrm::SetMoveBwdJump( TRUE );
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1035,19 +813,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 void SwRootFrm::UpdateFtnNums()
-//STRIP001 {
-//STRIP001  //Seitenweise Numerierung nur wenn es am Dokument so eingestellt ist.
-//STRIP001  if ( GetFmt()->GetDoc()->GetFtnInfo().eNum == FTNNUM_PAGE )
-//STRIP001  {
-//STRIP001      SwPageFrm *pPage = (SwPageFrm*)Lower();
-//STRIP001      while ( pPage && !pPage->IsFtnPage() )
-//STRIP001      {
-//STRIP001          pPage->UpdateFtnNum();
-//STRIP001          pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1155,16 +920,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
-//STRIP001 {
-//STRIP001  SwPageFrm *pPage = (SwPageFrm*)Lower();
-//STRIP001  while ( pPage && !pPage->IsFtnPage() )
-//STRIP001      pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001  while ( pPage && pPage->IsEndNotePage() != bEndNote )
-//STRIP001      pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001  if ( pPage )
-//STRIP001      SwFrm::CheckPageDescs( pPage, FALSE );
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1486,18 +1241,6 @@ namespace binfilter {
 /*?*/       if( bEndnt )
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt* pEndFmt = pMySect->GetEndSectFmt();
-//STRIP001 /*?*/            bDontLeave = 0 != pEndFmt;
-//STRIP001 /*?*/            if( pSibling )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if( pEndFmt )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if( !pSibling->IsInSct() ||
-//STRIP001 /*?*/                        !pSibling->ImplFindSctFrm()->IsDescendantFrom( pEndFmt ) )
-//STRIP001 /*?*/                        pSibling = NULL;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else if( pSibling->IsInSct() )
-//STRIP001 /*?*/                    pSibling = NULL;
-//STRIP001 /*?*/            }
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -1863,11 +1606,6 @@ namespace binfilter {
 /*?*/           if( pFtnCont )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm* pTmp = (SwFtnFrm*)pFtnCont->Lower();
-//STRIP001 /*?*/                if( bEnd )
-//STRIP001 /*?*/                    while( pTmp && !pTmp->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001 /*?*/                        pTmp = (SwFtnFrm*)pTmp->GetNext();
-//STRIP001 /*?*/                if( pTmp && *pTmp < pAttr )
-//STRIP001 /*?*/                    return;
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -2004,16 +1742,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 void SwFtnBossFrm::ChangeFtnRef( const SwCntntFrm *pOld, const SwTxtFtn *pAttr,
-//STRIP001                               SwCntntFrm *pNew )
-//STRIP001 {
-//STRIP001  SwFtnFrm *pFtn = FindFtn( pOld, pAttr );
-//STRIP001  while ( pFtn )
-//STRIP001  {
-//STRIP001      pFtn->SetRef( pNew );
-//STRIP001      pFtn = pFtn->GetFollow();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2028,60 +1756,6 @@ namespace binfilter {
 /// OD 03.04.2003 #108446# - add parameter <_bCollectOnlyPreviousFtns> in
 /// order to control, if only footnotes, which are positioned before the
 /// footnote boss frame <this> have to be collected.
-//STRIP001 void SwFtnBossFrm::CollectFtns( const SwCntntFrm* _pRef,
-//STRIP001                                 SwFtnBossFrm*     _pOld,
-//STRIP001                                 SvPtrarr&         _rFtnArr,
-//STRIP001                                 const sal_Bool    _bCollectOnlyPreviousFtns )
-//STRIP001 {
-//STRIP001     SwFtnFrm *pFtn = _pOld->FindFirstFtn();
-//STRIP001  while( !pFtn )
-//STRIP001  {
-//STRIP001         if( _pOld->IsColumnFrm() )
-//STRIP001      {   // Spalten abklappern
-//STRIP001             while ( !pFtn && _pOld->GetPrev() )
-//STRIP001          {
-//STRIP001              //Wenn wir keine Fussnote gefunden haben, ist noch nicht alles zu
-//STRIP001              //spaet. Die Schleife wird beim Aufnehmen von Follow-Zeilen durch
-//STRIP001              //Tabellen benoetigt. Fuer alle anderen Faelle ist sie in der Lage
-//STRIP001              //'krumme' Verhaeltnisse zu korrigieren.
-//STRIP001                 _pOld = (SwFtnBossFrm*)_pOld->GetPrev();
-//STRIP001                 pFtn = _pOld->FindFirstFtn();
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if( !pFtn )
-//STRIP001      {
-//STRIP001          //  vorherige Seite
-//STRIP001          SwPageFrm* pPg;
-//STRIP001             for ( SwFrm* pTmp = _pOld;
-//STRIP001                   0 != ( pPg = (SwPageFrm*)pTmp->FindPageFrm()->GetPrev())
-//STRIP001                     && pPg->IsEmptyPage() ;
-//STRIP001                 )
-//STRIP001             {
-//STRIP001              pTmp = pPg;
-//STRIP001             }
-//STRIP001          if( !pPg )
-//STRIP001              return;
-//STRIP001
-//STRIP001          SwLayoutFrm* pBody = pPg->FindBodyCont();
-//STRIP001          if( pBody->Lower() && pBody->Lower()->IsColumnFrm() )
-//STRIP001          {   // mehrspaltige Seite => letzte Spalte suchen
-//STRIP001                 _pOld = (SwFtnBossFrm*)pBody->Lower();
-//STRIP001                 while ( _pOld->GetNext() )
-//STRIP001                     _pOld = (SwFtnBossFrm*)_pOld->GetNext();
-//STRIP001          }
-//STRIP001          else
-//STRIP001                 _pOld = pPg; // einspaltige Seite
-//STRIP001             pFtn = _pOld->FindFirstFtn();
-//STRIP001      }
-//STRIP001  }
-//STRIP001     // OD 03.04.2003 #108446# - consider new parameter <_bCollectOnlyPreviousFtns>
-//STRIP001     SwFtnBossFrm* pRefBossFrm = NULL;
-//STRIP001     if ( _bCollectOnlyPreviousFtns )
-//STRIP001     {
-//STRIP001         pRefBossFrm = this;
-//STRIP001     }
-//STRIP001     _CollectFtns( _pRef, pFtn, _rFtnArr, _bCollectOnlyPreviousFtns, pRefBossFrm );
-//STRIP001 }
 
 
 /*************************************************************************
@@ -2092,11 +1766,6 @@ namespace binfilter {
 |*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
-//STRIP001 inline void FtnInArr( SvPtrarr& rFtnArr, SwFtnFrm* pFtn )
-//STRIP001 {
-//STRIP001  if ( USHRT_MAX == rFtnArr.GetPos( (VoidPtr)pFtn ) )
-//STRIP001      rFtnArr.Insert( (VoidPtr)pFtn, rFtnArr.Count() );
-//STRIP001 }
 
 /// OD 03.04.2003 #108446# - add parameters <_bCollectOnlyPreviousFtns> and
 /// <_pRefFtnBossFrm> in order to control, if only footnotes, which are positioned
@@ -2104,147 +1773,6 @@ namespace binfilter {
 /// Note: if parameter <_bCollectOnlyPreviousFtns> is true, then parameter
 /// <_pRefFtnBossFrm> have to be referenced to an object.
 /// Adjust parameter names.
-//STRIP001 void SwFtnBossFrm::_CollectFtns( const SwCntntFrm*   _pRef,
-//STRIP001                                  SwFtnFrm*           _pFtn,
-//STRIP001                                  SvPtrarr&           _rFtnArr,
-//STRIP001                                  sal_Bool            _bCollectOnlyPreviousFtns,
-//STRIP001                                  const SwFtnBossFrm* _pRefFtnBossFrm)
-//STRIP001 {
-//STRIP001     // OD 03.04.2003 #108446# - assert, that no reference footnote boss frame
-//STRIP001     // is set, in spite of the order, that only previous footnotes has to be
-//STRIP001     // collected.
-//STRIP001     ASSERT( !_bCollectOnlyPreviousFtns || _pRefFtnBossFrm,
-//STRIP001             "<SwFtnBossFrm::_CollectFtns(..)> - No reference footnote boss frame for collecting only previous footnotes set.\nCrash will be caused!" );
-//STRIP001
-//STRIP001     //Alle Fussnoten die von pRef referenziert werden nacheinander
-//STRIP001  //einsammeln (Attribut fuer Attribut), zusammengefuegen
-//STRIP001  //(der Inhalt zu einem Attribut kann ueber mehrere Seiten verteilt sein)
-//STRIP001  //und ausschneiden.
-//STRIP001
-//STRIP001  SvPtrarr aNotFtnArr( 20, 20 );  //Zur Robustheit werden hier die nicht
-//STRIP001                                  //dazugehoerigen Fussnoten eingetragen.
-//STRIP001                                  //Wenn eine Fussnote zweimal angefasst wird
-//STRIP001                                  //ists vorbei! So kommt die Funktion auch
-//STRIP001                                  //noch mit einem kaputten Layout
-//STRIP001                                  //einigermassen (ohne Schleife und Absturz)
-//STRIP001                                  //"klar".
-//STRIP001
-//STRIP001  //Hier sollte keiner mit einer Follow-Ftn ankommen, es sei denn er hat
-//STRIP001  //ernste Absichten (:-)); spricht er kommt mit einer Ftn an die vor der
-//STRIP001  //ersten der Referenz liegt.
-//STRIP001     ASSERT( !_pFtn->GetMaster() || _pFtn->GetRef() != _pRef, "FollowFtn moven?" );
-//STRIP001     while ( _pFtn->GetMaster() )
-//STRIP001         _pFtn = _pFtn->GetMaster();
-//STRIP001
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001
-//STRIP001     while ( _pFtn )
-//STRIP001  {
-//STRIP001      //Erstmal die naechste Fussnote der Spalte/Seite suchen, damit wir nicht
-//STRIP001      //nach dem Cut jeder Fussnote von vorn anfangen muessen.
-//STRIP001         SwFtnFrm *pNxtFtn = _pFtn;
-//STRIP001      while ( pNxtFtn->GetFollow() )
-//STRIP001          pNxtFtn = pNxtFtn->GetFollow();
-//STRIP001      pNxtFtn = (SwFtnFrm*)pNxtFtn->GetNext();
-//STRIP001
-//STRIP001      if ( !pNxtFtn )
-//STRIP001      {
-//STRIP001             SwFtnBossFrm* pBoss = _pFtn->FindFtnBossFrm();
-//STRIP001          SwPageFrm* pPage = pBoss->FindPageFrm();
-//STRIP001          do
-//STRIP001          {
-//STRIP001              lcl_NextFtnBoss( pBoss, pPage, FALSE );
-//STRIP001              if( pBoss )
-//STRIP001              {
-//STRIP001                  SwLayoutFrm* pCont = pBoss->FindFtnCont();
-//STRIP001                  if( pCont )
-//STRIP001                  {
-//STRIP001                      pNxtFtn = (SwFtnFrm*)pCont->Lower();
-//STRIP001                      if( pNxtFtn )
-//STRIP001                      {
-//STRIP001                          while( pNxtFtn->GetMaster() )
-//STRIP001                              pNxtFtn = pNxtFtn->GetMaster();
-//STRIP001                             if( pNxtFtn == _pFtn )
-//STRIP001                              pNxtFtn = NULL;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          } while( !pNxtFtn && pBoss );
-//STRIP001      }
-//STRIP001      else if( !pNxtFtn->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001      {   ASSERT( !pNxtFtn->GetMaster(), "_CollectFtn: Master exspected" );
-//STRIP001          while ( pNxtFtn->GetMaster() )
-//STRIP001              pNxtFtn = pNxtFtn->GetMaster();
-//STRIP001      }
-//STRIP001         if ( pNxtFtn == _pFtn )
-//STRIP001      {
-//STRIP001          ASSERT( FALSE, "_CollectFtn: Devil's circle" );
-//STRIP001          pNxtFtn = 0;
-//STRIP001      }
-//STRIP001
-//STRIP001         // OD 03.04.2003 #108446# - determine, if found footnote has to be collected.
-//STRIP001         sal_Bool bCollectFoundFtn = sal_False;
-//STRIP001         if ( _pFtn->GetRef() == _pRef && !_pFtn->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001      {
-//STRIP001             if ( _bCollectOnlyPreviousFtns )
-//STRIP001             {
-//STRIP001                 SwFtnBossFrm* pBossOfFoundFtn = _pFtn->FindFtnBossFrm( sal_True );
-//STRIP001                 ASSERT( pBossOfFoundFtn,
-//STRIP001                         "<SwFtnBossFrm::_CollectFtns(..)> - footnote boss frame of found footnote frame missing.\nWrong layout!" );
-//STRIP001                 if ( !pBossOfFoundFtn ||    // don't crash, if no footnote boss is found.
-//STRIP001                      pBossOfFoundFtn->IsBefore( _pRefFtnBossFrm )
-//STRIP001                    )
-//STRIP001                 {
-//STRIP001                     bCollectFoundFtn = sal_True;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             else
-//STRIP001             {
-//STRIP001                 bCollectFoundFtn = sal_True;
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( bCollectFoundFtn )
-//STRIP001         {
-//STRIP001             ASSERT( !_pFtn->GetMaster(), "FollowFtn moven?" );
-//STRIP001             SwFtnFrm *pNxt = _pFtn->GetFollow();
-//STRIP001          while ( pNxt )
-//STRIP001          {
-//STRIP001              SwFrm *pCnt = pNxt->ContainsAny();
-//STRIP001              if ( pCnt )
-//STRIP001              {   //Unterwegs wird der Follow zerstoert weil er leer wird!
-//STRIP001                  do
-//STRIP001                  {   SwFrm *pNxtCnt = pCnt->GetNext();
-//STRIP001                      pCnt->Cut();
-//STRIP001                         pCnt->Paste( _pFtn );
-//STRIP001                      pCnt = pNxtCnt;
-//STRIP001                  } while ( pCnt );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {   ASSERT( !pNxt, "Fussnote ohne Inhalt?" );
-//STRIP001                  pNxt->Cut();
-//STRIP001                  delete pNxt;
-//STRIP001              }
-//STRIP001                 pNxt = _pFtn->GetFollow();
-//STRIP001          }
-//STRIP001             _pFtn->Cut();
-//STRIP001             FtnInArr( _rFtnArr, _pFtn );
-//STRIP001          bFound = TRUE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001             FtnInArr( aNotFtnArr, _pFtn );
-//STRIP001          if( bFound )
-//STRIP001              break;
-//STRIP001      }
-//STRIP001      if ( pNxtFtn &&
-//STRIP001              USHRT_MAX == _rFtnArr.GetPos( (VoidPtr)pNxtFtn ) &&
-//STRIP001           USHRT_MAX == aNotFtnArr.GetPos( (VoidPtr)pNxtFtn ) )
-//STRIP001             _pFtn = pNxtFtn;
-//STRIP001      else
-//STRIP001          break;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2256,101 +1784,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 void SwFtnBossFrm::_MoveFtns( SvPtrarr &rFtnArr, BOOL bCalc )
-//STRIP001 {
-//STRIP001  //Alle Fussnoten die von pRef referenziert werden muessen von der
-//STRIP001  //aktuellen Position, die sich durch die alte Spalte/Seite ergab, auf eine
-//STRIP001  //neue Position, bestimmt durch die neue Spalte/Seite, gemoved werden.
-//STRIP001  const USHORT nMyNum = FindPageFrm()->GetPhyPageNum();
-//STRIP001  const USHORT nMyCol = lcl_ColumnNum( this );
-//STRIP001     SWRECTFN( this )
-//STRIP001
-//STRIP001  for ( USHORT i = 0; i < rFtnArr.Count(); ++i )
-//STRIP001  {
-//STRIP001      SwFtnFrm *pFtn = (SwFtnFrm*)rFtnArr[i];
-//STRIP001
-//STRIP001      SwFtnBossFrm* pRefBoss = pFtn->GetRef()->FindFtnBossFrm( TRUE );
-//STRIP001      if( pRefBoss != this )
-//STRIP001      {
-//STRIP001          const USHORT nRefNum = pRefBoss->FindPageFrm()->GetPhyPageNum();
-//STRIP001          const USHORT nRefCol = lcl_ColumnNum( this );
-//STRIP001          if( nRefNum < nMyNum || ( nRefNum == nMyNum && nRefCol <= nMyCol ) )
-//STRIP001              pRefBoss = this;
-//STRIP001      }
-//STRIP001      pRefBoss->InsertFtn( pFtn );
-//STRIP001
-//STRIP001      if ( pFtn->GetUpper() ) //Robust, z.B. bei doppelten
-//STRIP001      {
-//STRIP001          // Damit FtnFrms, die nicht auf die Seite passen, nicht fuer zuviel
-//STRIP001          // Unruhe sorgen (Loop 66312), wird ihr Inhalt zunaechst zusammengestaucht.
-//STRIP001          // Damit wird der FtnCont erst gegrowt, wenn der Inhalt formatiert wird
-//STRIP001          // und feststellt, dass er auf die Seite passt.
-//STRIP001          SwFrm *pCnt = pFtn->ContainsAny();
-//STRIP001          while( pCnt )
-//STRIP001          {
-//STRIP001              if( pCnt->IsLayoutFrm() )
-//STRIP001              {
-//STRIP001                  SwFrm* pTmp = ((SwLayoutFrm*)pCnt)->ContainsAny();
-//STRIP001                  while( pTmp && ((SwLayoutFrm*)pCnt)->IsAnLower( pTmp ) )
-//STRIP001                  {
-//STRIP001                      pTmp->Prepare( PREP_MOVEFTN );
-//STRIP001                         (pTmp->Frm().*fnRect->fnSetHeight)(0);
-//STRIP001                         (pTmp->Prt().*fnRect->fnSetHeight)(0);
-//STRIP001                      pTmp = pTmp->FindNext();
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  pCnt->Prepare( PREP_MOVEFTN );
-//STRIP001                 (pCnt->Frm().*fnRect->fnSetHeight)(0);
-//STRIP001                 (pCnt->Prt().*fnRect->fnSetHeight)(0);
-//STRIP001              pCnt = pCnt->GetNext();
-//STRIP001          }
-//STRIP001             (pFtn->Frm().*fnRect->fnSetHeight)(0);
-//STRIP001             (pFtn->Prt().*fnRect->fnSetHeight)(0);
-//STRIP001          pFtn->Calc();
-//STRIP001          pFtn->GetUpper()->Calc();
-//STRIP001
-//STRIP001          if( bCalc )
-//STRIP001          {
-//STRIP001              SwTxtFtn *pAttr = pFtn->GetAttr();
-//STRIP001              pCnt = pFtn->ContainsAny();
-//STRIP001                 BOOL bUnlock = !pFtn->IsBackMoveLocked();
-//STRIP001              pFtn->LockBackMove();
-//STRIP001
-//STRIP001              while ( pCnt && pCnt->FindFtnFrm()->GetAttr() == pAttr )
-//STRIP001              {
-//STRIP001                  pCnt->_InvalidatePos();
-//STRIP001                  pCnt->Calc();
-//STRIP001                  if( pCnt->IsSctFrm() )
-//STRIP001                  {   // Wenn es sich um einen nichtleeren Bereich handelt,
-//STRIP001                      // iterieren wir auch ueber seinen Inhalt
-//STRIP001                      SwFrm* pTmp = ((SwSectionFrm*)pCnt)->ContainsAny();
-//STRIP001                      if( pTmp )
-//STRIP001                          pCnt = pTmp;
-//STRIP001                      else
-//STRIP001                          pCnt = pCnt->FindNext();
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                      pCnt = pCnt->FindNext();
-//STRIP001              }
-//STRIP001                 if( bUnlock )
-//STRIP001                 {
-//STRIP001                     pFtn->UnlockBackMove();
-//STRIP001                     if( !pFtn->ContainsAny() && !pFtn->IsColLocked() )
-//STRIP001                     {
-//STRIP001                         pFtn->Cut();
-//STRIP001                         delete pFtn;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {   ASSERT( !pFtn->GetMaster() && !pFtn->GetFollow(),
-//STRIP001                  "DelFtn und Master/Follow?" );
-//STRIP001          delete pFtn;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2362,43 +1795,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 void SwFtnBossFrm::MoveFtns( const SwCntntFrm *pSrc, SwCntntFrm *pDest,
-//STRIP001                           SwTxtFtn *pAttr )
-//STRIP001 {
-//STRIP001  if( ( GetFmt()->GetDoc()->GetFtnInfo().ePos == FTNPOS_CHAPTER &&
-//STRIP001      (!GetUpper()->IsSctFrm() || !((SwSectionFrm*)GetUpper())->IsFtnAtEnd()))
-//STRIP001      || pAttr->GetFtn().IsEndNote() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  ASSERT( this == pSrc->FindFtnBossFrm( TRUE ),
-//STRIP001          "SwPageFrm::MoveFtns: source frame isn't on that FtnBoss" );
-//STRIP001
-//STRIP001  SwFtnFrm *pFtn = FindFirstFtn();
-//STRIP001  if( pFtn )
-//STRIP001  {
-//STRIP001      ChangeFtnRef( pSrc, pAttr, pDest );
-//STRIP001      SwFtnBossFrm *pDestBoss = pDest->FindFtnBossFrm( TRUE );
-//STRIP001      ASSERT( pDestBoss, "+SwPageFrm::MoveFtns: no destination boss" );
-//STRIP001      if( pDestBoss )     // robust
-//STRIP001      {
-//STRIP001          SvPtrarr aFtnArr( 5, 5 );
-//STRIP001          pDestBoss->_CollectFtns( pDest, pFtn, aFtnArr );
-//STRIP001          if ( aFtnArr.Count() )
-//STRIP001          {
-//STRIP001              pDestBoss->_MoveFtns( aFtnArr, TRUE );
-//STRIP001              SwPageFrm* pSrcPage = FindPageFrm();
-//STRIP001              SwPageFrm* pDestPage = pDestBoss->FindPageFrm();
-//STRIP001              // Nur beim Seitenwechsel FtnNum Updaten
-//STRIP001              if( pSrcPage != pDestPage )
-//STRIP001              {
-//STRIP001                  if( pSrcPage->GetPhyPageNum() > pDestPage->GetPhyPageNum() )
-//STRIP001                      pSrcPage->UpdateFtnNum();
-//STRIP001                  pDestPage->UpdateFtnNum();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2761,19 +2157,6 @@ namespace binfilter {
 |*  Letzte Aenderung    AMA 29. Oct 98
 |*
 |*************************************************************************/
-//STRIP001 void SwPageFrm::SetColMaxFtnHeight()
-//STRIP001 {
-//STRIP001  SwLayoutFrm *pBody = FindBodyCont();
-//STRIP001  if( pBody && pBody->Lower() && pBody->Lower()->IsColumnFrm() )
-//STRIP001  {
-//STRIP001      SwColumnFrm* pCol = (SwColumnFrm*)pBody->Lower();
-//STRIP001      do
-//STRIP001      {
-//STRIP001          pCol->SetMaxFtnHeight( GetMaxFtnHeight() );
-//STRIP001          pCol = (SwColumnFrm*)pCol->GetNext();
-//STRIP001      } while ( pCol );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2801,75 +2184,6 @@ namespace binfilter {
 /*?*/       return FALSE;
 /*?*/
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bMoved = FALSE;
-//STRIP001 /*?*/    if( !pStart )
-//STRIP001 /*?*/        pStart = ContainsCntnt();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SvPtrarr aFtnArr( 5, 5 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    while ( IsAnLower( pStart ) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if ( ((SwTxtFrm*)pStart)->HasFtn() )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             // OD 03.04.2003 #108446# - To avoid unnecessary moves of footnotes
-//STRIP001 /*?*/             // use new parameter <_bCollectOnlyPreviousFtn> (4th parameter of
-//STRIP001 /*?*/             // method <SwFtnBossFrm::CollectFtn(..)>) to control, that only
-//STRIP001 /*?*/             // footnotes have to be collected, that are positioned before the
-//STRIP001 /*?*/             // new dedicated footnote boss frame.
-//STRIP001 /*?*/             pNewBoss->CollectFtns( pStart, pOldBoss, aFtnArr, sal_True );
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/        pStart = pStart->GetNextCntntFrm();
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    ASSERT( pOldBoss->IsInSct() == pNewBoss->IsInSct(),
-//STRIP001 /*?*/            "MoveLowerFtns: Section confusion" );
-//STRIP001 /*?*/    SvPtrarr *pFtnArr;
-//STRIP001 /*?*/    SwLayoutFrm *pNewChief, *pOldChief;
-//STRIP001 /*?*/    if( pStart && pOldBoss->IsInSct() && ( pOldChief = pOldBoss->FindSctFrm() )
-//STRIP001 /*?*/        != ( pNewChief = pNewBoss->FindSctFrm() ) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        pFtnArr = new SvPtrarr( 5, 5 );
-//STRIP001 /*?*/        pOldChief = pOldBoss->FindFtnBossFrm( TRUE );
-//STRIP001 /*?*/        pNewChief = pNewBoss->FindFtnBossFrm( TRUE );
-//STRIP001 /*?*/        while( pOldChief->IsAnLower( pStart ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if ( ((SwTxtFrm*)pStart)->HasFtn() )
-//STRIP001 /*?*/                ((SwFtnBossFrm*)pNewChief)->CollectFtns( pStart,
-//STRIP001 /*?*/                                        (SwFtnBossFrm*)pOldBoss, *pFtnArr );
-//STRIP001 /*?*/            pStart = pStart->GetNextCntntFrm();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        if( !pFtnArr->Count() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            delete pFtnArr;
-//STRIP001 /*?*/            pFtnArr = NULL;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/        pFtnArr = NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( aFtnArr.Count() || pFtnArr )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if( aFtnArr.Count() )
-//STRIP001 /*?*/            pNewBoss->_MoveFtns( aFtnArr, TRUE );
-//STRIP001 /*?*/        if( pFtnArr )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            ((SwFtnBossFrm*)pNewChief)->_MoveFtns( *pFtnArr, TRUE );
-//STRIP001 /*?*/            delete pFtnArr;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        bMoved = TRUE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Nur bei einem Seitenwechsel muss die FtnNum neu berechnet werden
-//STRIP001 /*?*/        if ( bFtnNums )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwPageFrm* pOldPage = pOldBoss->FindPageFrm();
-//STRIP001 /*?*/            SwPageFrm* pNewPage =pNewBoss->FindPageFrm();
-//STRIP001 /*?*/            if( pOldPage != pNewPage )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pOldPage->UpdateFtnNum();
-//STRIP001 /*?*/                pNewPage->UpdateFtnNum();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    return bMoved;
 /*N*/ }
 
 /*************************************************************************
@@ -2882,137 +2196,6 @@ namespace binfilter {
 |*************************************************************************/
 
 
-//STRIP001 BOOL SwCntntFrm::MoveFtnCntFwd( BOOL bMakePage, SwFtnBossFrm *pOldBoss )
-//STRIP001 {
-//STRIP001  ASSERT( IsInFtn(), "Keine Ftn." );
-//STRIP001  SwLayoutFrm *pFtn = FindFtnFrm();
-//STRIP001
-//STRIP001  // The first paragraph in the first footnote in the first column in the
-//STRIP001  // sectionfrm at the top of the page has not to move forward, if the
-//STRIP001  // columnbody is empty.
-//STRIP001  if( pOldBoss->IsInSct() && !pOldBoss->GetIndPrev() && !GetIndPrev() &&
-//STRIP001      !pFtn->GetPrev() )
-//STRIP001  {
-//STRIP001      SwLayoutFrm* pBody = pOldBoss->FindBodyCont();
-//STRIP001      if( !pBody || !pBody->Lower() )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  //fix(9538): Wenn die Ftn noch Nachbarn hinter sich hat, so muessen
-//STRIP001  //diese ersteinmal verschwinden.
-//STRIP001  SwLayoutFrm *pNxt = (SwLayoutFrm*)pFtn->GetNext();
-//STRIP001  SwLayoutFrm *pLst = 0;
-//STRIP001  while ( pNxt )
-//STRIP001  {
-//STRIP001      while ( pNxt->GetNext() )
-//STRIP001          pNxt = (SwLayoutFrm*)pNxt->GetNext();
-//STRIP001      if ( pNxt == pLst )
-//STRIP001          pNxt = 0;
-//STRIP001      else
-//STRIP001      {   pLst = pNxt;
-//STRIP001          SwCntntFrm *pCnt = pNxt->ContainsCntnt();
-//STRIP001          if( pCnt )
-//STRIP001              pCnt->MoveFtnCntFwd( TRUE, pOldBoss );
-//STRIP001          pNxt = (SwLayoutFrm*)pFtn->GetNext();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bSamePage = TRUE;
-//STRIP001  SwLayoutFrm *pNewUpper =
-//STRIP001              GetLeaf( bMakePage ? MAKEPAGE_INSERT : MAKEPAGE_NONE, TRUE );
-//STRIP001
-//STRIP001  if ( pNewUpper )
-//STRIP001  {
-//STRIP001      BOOL bSameBoss = TRUE;
-//STRIP001      SwFtnBossFrm * const pNewBoss = pNewUpper->FindFtnBossFrm();
-//STRIP001      //Wechseln wir die Spalte/Seite?
-//STRIP001      if ( FALSE == ( bSameBoss = pNewBoss == pOldBoss ) )
-//STRIP001         {
-//STRIP001             bSamePage = pOldBoss->FindPageFrm() == pNewBoss->FindPageFrm(); // Seitenwechsel?
-//STRIP001          pNewUpper->Calc();
-//STRIP001      }
-//STRIP001
-//STRIP001      //Das Layoutblatt, dass wir fuer Fussnoten bekommen ist entweder
-//STRIP001      //ein Fussnotencontainer oder eine Fussnote
-//STRIP001      //Wenn es eine Fussnote ist, und sie die gleiche Fussnotenreferez
-//STRIP001      //wie der alte Upper hat, so moven wir uns direkt hinein.
-//STRIP001      //Ist die Referenz einen andere oder ist es ein Container, so wird
-//STRIP001      //eine neue Fussnote erzeugt und in den Container gestellt.
-//STRIP001      // Wenn wir in einem Bereich innerhalb der Fussnote sind, muss
-//STRIP001      // SectionFrame noch angelegt werden.
-//STRIP001      SwFtnFrm* pTmpFtn = pNewUpper->IsFtnFrm() ? ((SwFtnFrm*)pNewUpper) : 0;
-//STRIP001      if( !pTmpFtn )
-//STRIP001      {
-//STRIP001          ASSERT( pNewUpper->IsFtnContFrm(), "Neuer Upper kein FtnCont.");
-//STRIP001          SwFtnContFrm *pCont = (SwFtnContFrm*)pNewUpper;
-//STRIP001
-//STRIP001          //Fussnote erzeugen.
-//STRIP001          SwFtnFrm *pOld = FindFtnFrm();
-//STRIP001          pTmpFtn = new SwFtnFrm( pOld->GetFmt()->GetDoc()->GetDfltFrmFmt(),
-//STRIP001                                  pOld->GetRef(), pOld->GetAttr() );
-//STRIP001          //Verkettung der Fussnoten.
-//STRIP001          if ( pOld->GetFollow() )
-//STRIP001          {
-//STRIP001              pTmpFtn->SetFollow( pOld->GetFollow() );
-//STRIP001              pOld->GetFollow()->SetMaster( pTmpFtn );
-//STRIP001          }
-//STRIP001          pOld->SetFollow( pTmpFtn );
-//STRIP001          pTmpFtn->SetMaster( pOld );
-//STRIP001          SwFrm* pNx = pCont->Lower();
-//STRIP001          if( pNx && pTmpFtn->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001              while(pNx && !((SwFtnFrm*)pNx)->GetAttr()->GetFtn().IsEndNote())
-//STRIP001                  pNx = pNx->GetNext();
-//STRIP001          pTmpFtn->Paste( pCont, pNx );
-//STRIP001          pTmpFtn->Calc();
-//STRIP001      }
-//STRIP001      ASSERT( pTmpFtn->GetAttr() == FindFtnFrm()->GetAttr(), "Wrong Footnote!" );
-//STRIP001      // Bereiche in Fussnoten beduerfen besonderer Behandlung
-//STRIP001      SwLayoutFrm *pNewUp = pTmpFtn;
-//STRIP001      if( IsInSct() )
-//STRIP001      {
-//STRIP001          SwSectionFrm* pSect = FindSctFrm();
-//STRIP001          // Bereich in Fussnote (oder nur Fussnote in Bereich)?
-//STRIP001          if( pSect->IsInFtn() )
-//STRIP001          {
-//STRIP001              if( pTmpFtn->Lower() && pTmpFtn->Lower()->IsSctFrm() &&
-//STRIP001                  pSect->GetFollow() == (SwSectionFrm*)pTmpFtn->Lower() )
-//STRIP001                  pNewUp = (SwSectionFrm*)pTmpFtn->Lower();
-//STRIP001              else
-//STRIP001              {
-//STRIP001                     pNewUp = new SwSectionFrm( *pSect, FALSE );
-//STRIP001                  pNewUp->InsertBefore( pTmpFtn, pTmpFtn->Lower() );
-//STRIP001                     static_cast<SwSectionFrm*>(pNewUp)->Init();
-//STRIP001                  pNewUp->Frm().Pos() = pTmpFtn->Frm().Pos();
-//STRIP001                  pNewUp->Frm().Pos().Y() += 1; //wg. Benachrichtigungen.
-//STRIP001
-//STRIP001                  // Wenn unser Bereichsframe einen Nachfolger hat, so muss dieser
-//STRIP001                  // umgehaengt werden hinter den neuen Follow der Bereichsframes.
-//STRIP001                  SwFrm* pTmp = pSect->GetNext();
-//STRIP001                  if( pTmp )
-//STRIP001                  {
-//STRIP001                      SwFlowFrm* pNxt;
-//STRIP001                      if( pTmp->IsCntntFrm() )
-//STRIP001                          pNxt = (SwCntntFrm*)pTmp;
-//STRIP001                      else if( pTmp->IsSctFrm() )
-//STRIP001                          pNxt = (SwSectionFrm*)pTmp;
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          ASSERT( pTmp->IsTabFrm(), "GetNextSctLeaf: Wrong Type" );
-//STRIP001                          pNxt = (SwTabFrm*)pTmp;
-//STRIP001                      }
-//STRIP001                      pNxt->MoveSubTree( pTmpFtn, pNewUp->GetNext() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      MoveSubTree( pNewUp, pNewUp->Lower() );
-//STRIP001
-//STRIP001      if( !bSameBoss )
-//STRIP001          Prepare( PREP_BOSS_CHGD );
-//STRIP001  }
-//STRIP001  return bSamePage;
-//STRIP001 }
 
 /*************************************************************************
 |*
