@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_stlsheet.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:00:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:28:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #include <bf_svx/xdef.hxx>
 #endif
 
-// auto strip #ifndef _SFXSTYLE_HXX //autogen
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
@@ -157,10 +154,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL SchStyleSheet::IsUsed() const
-//STRIP001 {
-//STRIP001  return HasListeners();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -168,10 +161,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL SchStyleSheet::HasFollowSupport() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -179,10 +168,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL SchStyleSheet::HasParentSupport() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 
