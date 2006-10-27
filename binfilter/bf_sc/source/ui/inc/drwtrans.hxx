@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwtrans.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:44:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:08:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,35 +80,14 @@ private:
     sal_uInt32                      nSourceDocID;
 
 
-//STRIP001  void                InitDocShell();
-//STRIP001  SvInPlaceObjectRef  GetSingleObject();
 
 public:
             ScDrawTransferObj( SdrModel* pClipModel, ScDocShell* pContainerShell,   const TransferableObjectDescriptor& rDesc ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 ScDrawTransferObj( SdrModel* pClipModel, ScDocShell* pContainerShell,
-//STRIP001                              const TransferableObjectDescriptor& rDesc );
     virtual ~ScDrawTransferObj(){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 virtual ~ScDrawTransferObj();
 
-//STRIP001  virtual void        AddSupportedFormats();
-//STRIP001  virtual sal_Bool    GetData( const ::com::sun::star::datatransfer::DataFlavor& rFlavor );
-//STRIP001  virtual sal_Bool    WriteObject( SotStorageStreamRef& rxOStm, void* pUserObject, sal_uInt32 nUserObjectId,
-//STRIP001                                      const ::com::sun::star::datatransfer::DataFlavor& rFlavor );
-//STRIP001  virtual void        ObjectReleased();
-//STRIP001  virtual void        DragFinished( sal_Int8 nDropAction );
 
-//STRIP001  SdrModel*           GetModel()  { return pModel; }
 
-//STRIP001  void                SetDrawPersist( const SvEmbeddedObjectRef& rRef );
-//STRIP001  void                SetDragSource( ScDrawView* pView );
-//STRIP001  void                SetDragSourceObj( SdrObject* pObj, USHORT nTab );
-//STRIP001  void                SetDragSourceFlags( USHORT nFlags );
-//STRIP001  void                SetDragWasInternal();
 
-//STRIP001  SdrView*            GetDragSourceView()             { return pDragSourceView; }
-//STRIP001  USHORT              GetDragSourceFlags() const      { return nDragSourceFlags; }
-//STRIP001
-//STRIP001     void                SetSourceDocID( sal_uInt32 nVal )
-//STRIP001                             { nSourceDocID = nVal; }
-//STRIP001     sal_uInt32          GetSourceDocID() const      { return nSourceDocID; }
 
     static ScDrawTransferObj* GetOwnClipboard( Window* pUIWin );
 };

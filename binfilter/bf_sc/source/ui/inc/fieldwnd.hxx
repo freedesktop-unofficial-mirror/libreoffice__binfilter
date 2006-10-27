@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fieldwnd.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:46:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:09:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #define SC_FIELDWND_HXX
 
 
-// auto strip #ifndef _SV_CTRL_HXX
-// auto strip #include <vcl/ctrl.hxx>
-// auto strip #endif
 #ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
 #endif
