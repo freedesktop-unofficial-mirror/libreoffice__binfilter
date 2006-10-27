@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:34:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:57:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -806,15 +806,11 @@ public:
     void GetSectionList( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
     void ScanContents( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
     void ScanTableLine( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
-//STRIP001     void ScanFormat( BYTE cKind, SvStrings& rSectionList, SvStringsDtor& rBookmarks );
-//STRIP001     void ScanAttr( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
 
     void GetMacroTable( SvxMacroTableDtor& rMacroTbl );
     void ScanMacroTbl( SvxMacroTableDtor& rMacroTbl );
 
 #ifdef TEST_HUGE_DOCS
-//STRIP001  void InHugeRecord();
-//STRIP001  void OutHugeRecord( UINT32 nBufferSize, UINT32 nBuffers );
 #endif
 };
 
