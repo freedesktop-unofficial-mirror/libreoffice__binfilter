@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:10:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:37:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-// auto strip #include <unotools/collatorwrapper.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
 #endif
@@ -82,29 +79,17 @@
 #ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
-// auto strip #ifndef _LAYFRM_HXX
-// auto strip #include <layfrm.hxx>
-// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>
-// auto strip #endif
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
@@ -123,12 +108,6 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _CALC_HXX
-// auto strip #include <calc.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>
 #endif
@@ -154,7 +133,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::rtl;
 
-//STRIP001 SV_IMPL_PTRARR( _SwSeqFldList, _SeqFldLstElem* )
 
 //-----------------------------------------------------------------------------
 /*N*/ sal_Int16 lcl_SubTypeToAPI(USHORT nSubType)
@@ -412,51 +390,6 @@ using namespace ::rtl;
 /*N*/   return pTmp;
 /*N*/ }
 
-//STRIP001 void SwGetExpField::ChangeExpansion( const SwFrm& rFrm, const SwTxtFld& rFld )
-//STRIP001 {
-//STRIP001  if( bIsInBodyTxt )      // nur Felder in Footer, Header, FootNote, Flys
-//STRIP001      return;
-//STRIP001
-//STRIP001  ASSERT( !rFrm.IsInDocBody(), "Flag ist nicht richtig, Frame steht im DocBody" );
-//STRIP001
-//STRIP001  // bestimme mal das Dokument (oder geht es noch einfacher?)
-//STRIP001  const SwTxtNode* pTxtNode = &rFld.GetTxtNode();
-//STRIP001  SwDoc& rDoc = *(SwDoc*)pTxtNode->GetDoc();
-//STRIP001
-//STRIP001  // einen Index fuers bestimmen vom TextNode anlegen
-//STRIP001  SwPosition aPos( SwNodeIndex( rDoc.GetNodes() ) );
-//STRIP001  pTxtNode = GetBodyTxtNode( rDoc, aPos, rFrm );
-//STRIP001
-//STRIP001  // Wenn kein Layout vorhanden, kommt es in Kopf und Fusszeilen dazu
-//STRIP001  // das ChnageExpansion uebers Layout-Formatieren aufgerufen wird
-//STRIP001  // aber kein TxtNode vorhanden ist
-//STRIP001  //
-//STRIP001  if(!pTxtNode)
-//STRIP001      return;
-//STRIP001
-//STRIP001  _SetGetExpFld aEndFld( aPos.nNode, &rFld, &aPos.nContent );
-//STRIP001  if(GetSubType() & GSE_STRING)
-//STRIP001  {
-//STRIP001      SwHash** ppHashTbl;
-//STRIP001      USHORT nSize;
-//STRIP001      rDoc.FldsToExpand( ppHashTbl, nSize, aEndFld );
-//STRIP001      LookString( ppHashTbl, nSize, GetFormula(), sExpand );
-//STRIP001      ::DeleteHashTable( ppHashTbl, nSize );      // HashTabelle loeschen
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // fuelle den Calculator mit den Werten
-//STRIP001      SwCalc aCalc( rDoc );
-//STRIP001      rDoc.FldsToCalc( aCalc, aEndFld );
-//STRIP001
-//STRIP001      // Wert berechnen
-//STRIP001      SetValue(aCalc.Calculate(GetFormula()).GetDouble());
-//STRIP001
-//STRIP001      // Auswertung nach Format
-//STRIP001      sExpand = ((SwValueFieldType*)GetTyp())->ExpandValue(
-//STRIP001                              GetValue(), GetFormat(), GetLanguage());
-//STRIP001  }
-//STRIP001 }
 
 String SwGetExpField::GetPar2() const
 {
@@ -606,22 +539,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
     return;     // nicht weiter expandieren
 }
 
-//STRIP001 void SwSetExpFieldType::SetSeqFormat(ULONG nFmt)
-//STRIP001 {
-//STRIP001  SwClientIter aIter(*this);
-//STRIP001  for( SwFmtFld* pFld = (SwFmtFld*)aIter.First( TYPE(SwFmtFld) );
-//STRIP001          pFld; pFld = (SwFmtFld*)aIter.Next() )
-//STRIP001      pFld->GetFld()->ChangeFormat( nFmt );
-//STRIP001 }
 
-//STRIP001 ULONG SwSetExpFieldType::GetSeqFormat()
-//STRIP001 {
-//STRIP001  if( !GetDepends() )
-//STRIP001      return SVX_NUM_ARABIC;
-//STRIP001
-//STRIP001  SwField *pFld = ((SwFmtFld*)GetDepends())->GetFld();
-//STRIP001  return pFld->GetFormat();
-//STRIP001 }
 
 /*N*/ USHORT SwSetExpFieldType::SetSeqRefNo( SwSetExpField& rFld )
 /*N*/ {
@@ -668,48 +586,8 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/   return n;
 /*N*/ }
 
-//STRIP001 USHORT SwSetExpFieldType::GetSeqFldList( SwSeqFldList& rList )
-//STRIP001 {
-//STRIP001  if( rList.Count() )
-//STRIP001      rList.Remove( 0, rList.Count() );
-//STRIP001
-//STRIP001  SwClientIter aIter( *this );
-//STRIP001  const SwTxtNode* pNd;
-//STRIP001  for( SwFmtFld* pF = (SwFmtFld*)aIter.First( TYPE( SwFmtFld )); pF;
-//STRIP001          pF = (SwFmtFld*)aIter.Next() )
-//STRIP001      if( pF->GetTxtFld() &&
-//STRIP001          0 != ( pNd = pF->GetTxtFld()->GetpTxtNode() ) &&
-//STRIP001          pNd->GetNodes().IsDocNodes() )
-//STRIP001      {
-//STRIP001          _SeqFldLstElem* pNew = new _SeqFldLstElem( pNd->GetExpandTxt( 0,
-//STRIP001                              (*pF->GetTxtFld()->GetStart()) + 1, FALSE ),
-//STRIP001                          ((SwSetExpField*)pF->GetFld())->GetSeqNumber() );
-//STRIP001          rList.InsertSort( pNew );
-//STRIP001      }
-//STRIP001
-//STRIP001  return rList.Count();
-//STRIP001 }
 
 
-//STRIP001 void SwSetExpFieldType::SetChapter( SwSetExpField& rFld, const SwNode& rNd )
-//STRIP001 {
-//STRIP001  const SwTxtNode* pTxtNd = rNd.FindOutlineNodeOfLevel( nLevel );
-//STRIP001  if( pTxtNd )
-//STRIP001  {
-//STRIP001      ASSERT( pTxtNd && pTxtNd->GetOutlineNum(),
-//STRIP001              "kein Outline TextNode" );
-//STRIP001
-//STRIP001      SwNodeNum aNum( *pTxtNd->GetOutlineNum() );
-//STRIP001      if( nLevel < aNum.GetLevel() )
-//STRIP001          aNum.SetLevel( nLevel );
-//STRIP001
-//STRIP001      // nur die Nummer besorgen, ohne Pre-/Post-fixstrings
-//STRIP001      String sNumber( GetDoc()->GetOutlineNumRule()->MakeNumString(
-//STRIP001                                              aNum, FALSE ));
-//STRIP001      if( sNumber.Len() )
-//STRIP001          rFld.ChgExpStr(  ( sNumber += cDelim ) += rFld.GetExpStr() );
-//STRIP001  }
-//STRIP001 }
 
 /* -----------------24.03.99 09:44-------------------
  *
@@ -777,79 +655,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 BOOL SwSeqFldList::InsertSort( _SeqFldLstElem* pNew )
-//STRIP001 {
-//STRIP001  sal_Unicode* p = pNew->sDlgEntry.GetBufferAccess();
-//STRIP001  while( *p )
-//STRIP001  {
-//STRIP001      if( *p < 0x20 )
-//STRIP001          *p = 0x20;
-//STRIP001      ++p;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT nPos;
-//STRIP001  BOOL bRet = SeekEntry( *pNew, &nPos );
-//STRIP001  if( !bRet )
-//STRIP001      C40_INSERT( _SeqFldLstElem, pNew, nPos );
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 BOOL SwSeqFldList::SeekEntry( const _SeqFldLstElem& rNew, USHORT* pP )
-//STRIP001 {
-//STRIP001  register USHORT nO = Count(), nM, nU = 0;
-//STRIP001  if( nO > 0 )
-//STRIP001  {
-//STRIP001      CollatorWrapper & rCaseColl = ::GetAppCaseCollator(),
-//STRIP001                      & rColl = ::GetAppCollator();
-//STRIP001      const CharClass& rCC = GetAppCharClass();
-//STRIP001
-//STRIP001      //#59900# Die Sortierung soll die Nummer korrekt einordnen
-//STRIP001      //also "10" nach "9" und nicht "10" nach "1"
-//STRIP001      const String& rTmp2 = rNew.sDlgEntry;
-//STRIP001      xub_StrLen nFndPos2 = 0;
-//STRIP001      String sNum2( rTmp2.GetToken( 0, ' ', nFndPos2 ));
-//STRIP001      BOOL bIsNum2IsNumeric = rCC.isAsciiNumeric( sNum2 );
-//STRIP001      sal_Int32 nNum2 = bIsNum2IsNumeric ? sNum2.ToInt32() : 0;
-//STRIP001
-//STRIP001      nO--;
-//STRIP001      while( nU <= nO )
-//STRIP001      {
-//STRIP001          nM = nU + ( nO - nU ) / 2;
-//STRIP001
-//STRIP001          //#59900# Die Sortierung soll die Nummer korrekt einordnen
-//STRIP001          //also "10" nach "9" und nicht "10" nach "1"
-//STRIP001          const String& rTmp1 = (*((_SeqFldLstElem**)pData + nM))->sDlgEntry;
-//STRIP001          xub_StrLen nFndPos1 = 0;
-//STRIP001          String sNum1( rTmp1.GetToken( 0, ' ', nFndPos1 ));
-//STRIP001          sal_Int32 nCmp;
-//STRIP001
-//STRIP001          if( bIsNum2IsNumeric && rCC.isNumeric( sNum1 ) )
-//STRIP001          {
-//STRIP001              sal_Int32 nNum1 = sNum1.ToInt32();
-//STRIP001              nCmp = nNum2 - nNum1;
-//STRIP001              if( 0 == nCmp )
-//STRIP001                  nCmp = rCaseColl.compareString( rTmp2.Copy( nFndPos2 ),
-//STRIP001                                                    rTmp1.Copy( nFndPos1 ));
-//STRIP001          }
-//STRIP001          else
-//STRIP001              nCmp = rColl.compareString( rTmp2, rTmp1 );
-//STRIP001
-//STRIP001          if( 0 == nCmp )
-//STRIP001          {
-//STRIP001              if( pP ) *pP = nM;
-//STRIP001              return TRUE;
-//STRIP001          }
-//STRIP001          else if( 0 < nCmp )
-//STRIP001              nU = nM + 1;
-//STRIP001          else if( nM == 0 )
-//STRIP001              break;
-//STRIP001          else
-//STRIP001              nO = nM - 1;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( pP ) *pP = nU;
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: SwSetExpField by JP
