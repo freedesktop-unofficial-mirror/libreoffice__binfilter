@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_lathe3d.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:31:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:49:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,19 +34,9 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XOUTX_HXX
-// auto strip #include "xoutx.hxx"
-// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
@@ -64,29 +54,14 @@
 #include "lathe3d.hxx"
 #endif
 
-// auto strip #ifndef _POLY3D_HXX
-// auto strip #include "poly3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XPOLY_HXX
-// auto strip #include "xpoly.hxx"
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
 #endif
 
-// auto strip #ifndef _SVDOPATH_HXX
-// auto strip #include "svdopath.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDMODEL_HXX
-// auto strip #include "svdmodel.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include "svx3ditems.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dLatheObj, E3dCompoundObject);
@@ -233,14 +208,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLatheObj::GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const
-//STRIP001 {
-//STRIP001  // #78972# add extrude line polys
-//STRIP001  rLinePolyPolygon.Insert(maLinePolyPolygon);
-//STRIP001
-//STRIP001  // don't call parent
-//STRIP001  //E3dCompoundObject::GetLineGeometry(rLinePolyPolygon);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -504,28 +471,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLatheObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  E3dCompoundObject::operator=(rObj);
-//STRIP001
-//STRIP001  // weitere Parameter kopieren
-//STRIP001  const E3dLatheObj& r3DObj = (const E3dLatheObj&)rObj;
-//STRIP001
-//STRIP001  aPolyPoly3D  = r3DObj.aPolyPoly3D;
-//STRIP001  fLatheScale  = r3DObj.fLatheScale;
-//STRIP001
-//STRIP001  // #95519# copy LinePolygon info, too
-//STRIP001  maLinePolyPolygon = r3DObj.maLinePolyPolygon;
-//STRIP001
-//STRIP001  // #107245# These properties are now items and are copied with the ItemSet
-//STRIP001  // // Ab Version 374 (15.12.97)
-//STRIP001  // bLatheSmoothed = r3DObj.bLatheSmoothed;
-//STRIP001  // bLatheSmoothFrontBack = r3DObj.bLatheSmoothFrontBack;
-//STRIP001  // bLatheCharacterMode = r3DObj.bLatheCharacterMode;
-//STRIP001  // bLatheCloseFront = r3DObj.bLatheCloseFront;
-//STRIP001  // bLatheCloseBack = r3DObj.bLatheCloseBack;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -957,10 +902,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject *E3dLatheObj::DoConvertToPolyObj(BOOL bBezier) const
-//STRIP001 {
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -968,18 +909,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLatheObj::ReSegment(long nHSegs, long nVSegs)
-//STRIP001 {
-//STRIP001  if ((nHSegs != GetHorizontalSegments() || nVSegs != GetVerticalSegments()) &&
-//STRIP001      (nHSegs != 0 || nVSegs != 0))
-//STRIP001  {
-//STRIP001      mpObjectItemSet->Put(Svx3DHorizontalSegmentsItem(nHSegs));
-//STRIP001
-//STRIP001      mpObjectItemSet->Put(Svx3DVerticalSegmentsItem(nVSegs));
-//STRIP001
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1004,14 +933,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void E3dLatheObj::SetLatheScale(double fNew)
-//STRIP001 {
-//STRIP001  if(fLatheScale != fNew)
-//STRIP001  {
-//STRIP001      fLatheScale = fNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
-//STRIP001 }
 
 // #107245#
 // void E3dLatheObj::SetLatheSmoothed(BOOL bNew)
@@ -1107,19 +1028,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLatheObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulLathe3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1127,10 +1035,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLatheObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralLathe3d);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1138,43 +1042,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL E3dLatheObj::IsBreakObjPossible()
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 SdrAttrObj* E3dLatheObj::GetBreakObj()
-//STRIP001 {
-//STRIP001  // create PathObj
-//STRIP001  PolyPolygon3D aTransPoly = TransformToScreenCoor(GetPolyPolygon());
-//STRIP001  XPolyPolygon aPoly(aTransPoly.GetXPolyPolygon());
-//STRIP001  SdrPathObj* pPathObj = new SdrPathObj(OBJ_PLIN, aPoly);
-//STRIP001
-//STRIP001  if(pPathObj)
-//STRIP001  {
-//STRIP001      // set position ans size
-//STRIP001      Rectangle aNewPosSize(aPoly.GetBoundRect());
-//STRIP001      pPathObj->SetSnapRect(aNewPosSize);
-//STRIP001
-//STRIP001      // Objekt ggf. schliessen
-//STRIP001      BOOL bDistSmallerTen = FALSE;
-//STRIP001      for(UINT16 nCnt=0;nCnt<pPathObj->GetPathPoly().Count();nCnt++)
-//STRIP001      if(((XPolygon)(pPathObj->GetPathPoly()[0])).CalcDistance(0, pPathObj->GetPathPoly()[0].GetPointCount()-1) < 10)
-//STRIP001      bDistSmallerTen = TRUE;
-//STRIP001      if (!pPathObj->IsClosed() && bDistSmallerTen)
-//STRIP001          pPathObj->ToggleClosed(0);
-//STRIP001
-//STRIP001      // Attribute setzen
-//STRIP001      SfxItemSet aSet(GetItemSet());
-//STRIP001
-//STRIP001      // Linien aktivieren, um Objekt garantiert sichtbar zu machen
-//STRIP001      aSet.Put(XLineStyleItem (XLINE_SOLID));
-//STRIP001
-//STRIP001      pPathObj->SetItemSet(aSet);
-//STRIP001  }
-//STRIP001
-//STRIP001  return pPathObj;
-//STRIP001 }
 
 // EOF
 }
