@@ -4,9 +4,9 @@
  *
  *  $RCSfile: edtwin.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:30:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:39:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ class   SwView;
 class   SwRect;
 class   SwDrawBase;
 class   ViewShell;
-//STRIP001 class    SwAnchorMarker;
 class   SdrViewUserMarker;
 class   SdrObject;
 class   SwShadowCursor;
@@ -120,11 +119,9 @@ friend void     PageNumNotify(  ViewShell* pVwSh,
     SwCallMouseEvent aSaveCallEvent;
 
     SwApplyTemplate     *pApplyTempl;
-//STRIP001  SwAnchorMarker      *pAnchorMarker; // zum Verschieben eines Ankers
 
     SdrViewUserMarker   *pUserMarker;
     SdrObject           *pUserMarkerObj;
-//STRIP001  SwShadowCursor      *pShadCrsr;
 
     SwView         &rView;
 
@@ -152,23 +149,11 @@ friend void     PageNumNotify(  ViewShell* pVwSh,
                     bWasShdwCrsr    : 1, //ShadowCrsr war im MouseButtonDown an
                     bLockInput      : 1; //Lock waehrend die Rechenleiste aktiv ist
 
-//STRIP001  void            LeaveArea(const Point &);
-//STRIP001  void            JustifyAreaTimer();
-//STRIP001  inline void     EnterArea();
 
-//STRIP001  void            RstMBDownFlags();
 
-//STRIP001  void            ChangeFly( BYTE nDir, BOOL bWeb = FALSE );
-//STRIP001     void            ChangeDrawing( BYTE nDir );
 
-//STRIP001  BOOL            EnterDrawMode(const MouseEvent& rMEvt, const Point& aDocPos);
-//STRIP001     BOOL            RulerColumnDrag( SwView& , const MouseEvent& rMEvt, BOOL bVerticalMode);
 
     //Hilfsfunktionen fuer D&D
-//STRIP001  void            DropCleanup();
-//STRIP001  void            CleanupDropUserMarker();
-//STRIP001  USHORT          GetDropDestination( const Point& rPixPnt,
-//STRIP001                                      SdrObject ** ppObj = 0 );
 
     /*
      * Handler fuer das Weiterscrollen, wenn der Mauspointer innerhalb eines
@@ -177,9 +162,6 @@ friend void     PageNumNotify(  ViewShell* pVwSh,
      * vergroessert.
      */
     DECL_LINK( TimerHandler, Timer * );
-//STRIP001  void            StartDDTimer();
-//STRIP001  void            StopDDTimer(SwWrtShell *, const Point &);
-//STRIP001  DECL_LINK( DDHandler, Timer * );
 
     // timer for ANY-KeyInut question without a following KeyInputEvent
     DECL_LINK( KeyInputFlushHandler, Timer * );
@@ -192,59 +174,36 @@ friend void     PageNumNotify(  ViewShell* pVwSh,
 
 protected:
 
-//STRIP001  virtual void    DataChanged( const DataChangedEvent& );
-//STRIP001  virtual void    Paint( const Rectangle& rRect );
-//STRIP001  virtual void    KeyInput(const KeyEvent &rKEvt);
-
-//STRIP001  virtual void    GetFocus();
-//STRIP001  virtual void    LoseFocus();
 
 
-//STRIP001  virtual void    MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual void    MouseButtonDown(const MouseEvent& rMEvt);
-//STRIP001  virtual void    MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual void    RequestHelp(const HelpEvent& rEvt);
 
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
+
 
                                 // Drag & Drop Interface
-//STRIP001  virtual sal_Int8    AcceptDrop( const AcceptDropEvent& rEvt );
-//STRIP001  virtual sal_Int8    ExecuteDrop( const ExecuteDropEvent& rEvt );
-//STRIP001  virtual void        StartDrag( sal_Int8 nAction, const Point& rPosPixel );
 
     void    ShowAutoTextCorrectQuickHelp( const String& rWord, OfaAutoCorrCfg* pACfg, SvxAutoCorrect* pACorr );
 public:
 
     void            UpdatePointer(const Point &, USHORT nButtons = 0);
 
-//STRIP001  BOOL            IsDrawSelMode();
     BOOL            IsDrawAction()                  { return (bInsDraw); }
     void            SetDrawAction(BOOL bFlag)       { bInsDraw = bFlag; }
     inline UINT16   GetDrawMode(BOOL bBuf = FALSE) const { return eDrawMode; }
     inline void     SetDrawMode(UINT16 eDrwMode)    { eDrawMode = eDrwMode; }
-//STRIP001  void            StdDrawMode(USHORT nSlotId);
     BOOL            IsFrmAction()                   { return (bInsFrm); }
     inline UINT16   GetBezierMode()                 { return eBezierMode; }
     void            SetBezierMode(UINT16 eBezMode)  { eBezierMode = eBezMode; }
-//STRIP001  void            EnterDrawTextMode(const Point& aDocPos); // DrawTextEditMode einschalten
-//STRIP001  void            InsFrm(USHORT nCols);
-//STRIP001  void            StopInsFrm();
     UINT16          GetFrmColCount() const {return nInsFrmColCount;} //Spaltenzahl fuer interaktiven Rahmen
 
 
-//STRIP001  void            SetChainMode( BOOL bOn );
     BOOL            IsChainMode() const             { return bChainMode; }
 
-//STRIP001  void            FlushInBuffer( SwWrtShell *pSh );
 
     static  void    SetReplaceQuote(BOOL bOn = TRUE) { bReplaceQuote = bOn; }
     static  BOOL    IsReplaceQuote() { return bReplaceQuote; }
 
-//STRIP001  void             SetApplyTemplate(const SwApplyTemplate &);
     SwApplyTemplate* GetApplyTemplate() const { return pApplyTempl; }
 
-//STRIP001  void            StartExecuteDrag();
-//STRIP001  void            DragFinished();
     USHORT          GetDropAction() const { return nDropAction; }
     ULONG           GetDropFormat() const { return nDropFormat; }
 
@@ -265,11 +224,9 @@ public:
           SwView &GetView()       { return rView; }
 
 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001     virtual ::com::sun::star::uno::Reference< ::com::sun::star::accessibility::XAccessible > CreateAccessible();
 #endif
 
     // Tipfenster loeschen
-//STRIP001  static void ClearTip();
 
     static inline long GetDDStartPosX() { return nDDStartPosX; }
     static inline long GetDDStartPosY() { return nDDStartPosY; }
