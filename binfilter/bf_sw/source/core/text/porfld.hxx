@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porfld.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:21:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:05:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,12 +83,10 @@ public:
     inline const XubString &GetExp() const { return aExpand; }
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 
     // leere Felder sind auch erlaubt
     virtual SwLinePortion *Compress();
 
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
 
     inline sal_Bool IsFollow() const { return bFollow; }
     inline void SetFollow( sal_Bool bNew ) { bFollow = bNew; }
@@ -115,7 +113,6 @@ public:
     virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
@@ -131,11 +128,9 @@ public:
     inline SwHiddenPortion( const XubString &rExpand, SwFont *pFnt = 0 )
          : SwFldPortion( rExpand, pFnt )
         { SetLen(1); SetWhichPor( POR_HIDDEN ); }
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
 
     // Felder-Cloner fuer SplitGlue
-//STRIP001  virtual SwFldPortion *Clone( const XubString &rExpand ) const;
     OUTPUT_OPERATOR
 };
 
@@ -151,13 +146,9 @@ protected:
 public:
     SwNumberPortion( const XubString &rExpand, SwFont *pFnt,
         const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const MSHORT nOfst ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 
     // Felder-Cloner fuer SplitGlue
-//STRIP001  virtual SwFldPortion *Clone( const XubString &rExpand ) const;
-//STRIP001  virtual void FormatEOL( SwTxtFormatInfo &rInf );
 
     OUTPUT_OPERATOR
 };
@@ -180,36 +171,12 @@ public:
 
 class SwGrfNumPortion : public SwNumberPortion
 {
-//STRIP001  SvxBrushItem* pBrush;
-//STRIP001  long            nId;    //fuer StopAnimation
-//STRIP001  SwTwips         nYPos;  //Enthaelt _immer_ die aktuelle RelPos.
-//STRIP001  SwTwips         nGrfHeight;
-//STRIP001  SwVertOrient    eOrient;
 public:
 SwGrfNumPortion( SwFrm *pFrm, const SvxBrushItem* pGrfBrush,//STRIP001  SwGrfNumPortion( SwFrm *pFrm, const SvxBrushItem* pGrfBrush,
 const SwFmtVertOrient* pGrfOrient, const Size& rGrfSize,//STRIP001      const SwFmtVertOrient* pGrfOrient, const Size& rGrfSize,
 const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst ):SwNumberPortion( aEmptyStr, NULL, bLeft, bCenter, nMinDst ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst );
-//STRIP001  ~SwGrfNumPortion();
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001
 void SetBase( long nLnAscent, long nLnDescent,//STRIP001    void SetBase( long nLnAscent, long nLnDescent,
 long nFlyAscent, long nFlyDescent ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         long nFlyAscent, long nFlyDescent );
-//STRIP001
-//STRIP001  void StopAnimation( OutputDevice *pOut );
-//STRIP001
-//STRIP001  inline sal_Bool IsAnimated() const { return bAnimated; }
-//STRIP001  inline void SetAnimated( sal_Bool bNew ) { bAnimated = bNew; }
-//STRIP001  inline sal_Bool DontPaint() const { return bNoPaint; }
-//STRIP001  inline void SetNoPaint( sal_Bool bNew ) { bNoPaint = bNew; }
-//STRIP001  inline void SetRelPos( SwTwips nNew ) { nYPos = nNew; }
-//STRIP001  inline void SetId( long nNew ) const
-//STRIP001      { ((SwGrfNumPortion*)this)->nId = nNew; }
-//STRIP001  inline SwTwips GetRelPos() const { return nYPos; }
-//STRIP001  inline SwTwips GetGrfHeight() const { return nGrfHeight; }
-//STRIP001  inline SwTwips GetId() const { return nId; }
-//STRIP001  inline SwVertOrient GetOrient() const { return eOrient; }
-//STRIP001
     OUTPUT_OPERATOR
 };
 
@@ -233,9 +200,6 @@ class SwCombinedPortion : public SwFldPortion
     BYTE nProportion;   // relative font height
 public:
     SwCombinedPortion( const XubString &rExpand );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
     OUTPUT_OPERATOR
 };
 
@@ -244,7 +208,6 @@ CLASSIO( SwHiddenPortion )
 CLASSIO( SwNumberPortion )
 CLASSIO( SwBulletPortion )
 CLASSIO( SwGrfNumPortion )
-//STRIP001 CLASSIO( SwCombinedPortion )
 
 
 } //namespace binfilter

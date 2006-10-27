@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porexp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:21:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:05:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,13 +48,9 @@ class SwExpandPortion : public SwTxtPortion
 public:
     inline  SwExpandPortion() { SetWhichPor( POR_EXP ); }
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const MSHORT nOfst ) const;
-//STRIP001  virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
     virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
@@ -78,14 +74,11 @@ public:
 
     virtual SwLinePortion *Compress();
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
-//STRIP001  virtual void FormatEOL( SwTxtFormatInfo &rInf );
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     MSHORT MayUnderFlow( const SwTxtFormatInfo &rInf, xub_StrLen nIdx,
         sal_Bool bUnderFlow ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
@@ -96,22 +89,14 @@ public:
 
 class SwPostItsPortion : public SwExpandPortion
 {
-//STRIP001  KSHORT  nViewWidth;
-//STRIP001  sal_Bool    bScript;
 public:
     SwPostItsPortion( sal_Bool bScrpt ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001          SwPostItsPortion( sal_Bool bScrpt );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
-//STRIP001  virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
-//STRIP001  sal_Bool IsScript() const { return bScript; }
     OUTPUT_OPERATOR
 };
 
 
 CLASSIO( SwExpandPortion )
 CLASSIO( SwBlankPortion )
-//STRIP001 CLASSIO( SwPostItsPortion )
 
 
 } //namespace binfilter

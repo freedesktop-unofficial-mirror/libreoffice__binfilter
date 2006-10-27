@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porfly.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:21:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:06:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ class SwFlyCntPortion : public SwLinePortion
     sal_Bool bDraw : 1;  // DrawContact?
     sal_Bool bMax : 1;   // Zeilenausrichtung und Hoehe == Zeilenhoehe
     sal_uInt8 nAlign : 3; // Zeilenausrichtung? Nein, oben, mitte, unten
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
 
 public:
     SwFlyCntPortion( const SwTxtFrm& rFrm, SwFlyInCntFrm *pFly,
@@ -107,8 +106,6 @@ public:
                   long nLnAscent, long nLnDescent, long nFlyAscent,
                   long nFlyDescent, sal_uInt8 nFlags );
     const SwFrmFmt *GetFrmFmt() const;
-//STRIP001  xub_StrLen GetFlyCrsrOfst( const KSHORT nOfst, const Point &rPoint,
-//STRIP001                      SwPosition *pPos, const SwCrsrMoveState* pCMS ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     OUTPUT_OPERATOR

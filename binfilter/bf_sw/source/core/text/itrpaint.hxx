@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itrpaint.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:31:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:05:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,26 +49,14 @@ class SwTxtPainter : public SwTxtCursor
 {
     sal_Bool bPaintDrop;
 
-//STRIP001  SwLinePortion *CalcPaintOfst( const SwRect &rPaint );
-//STRIP001     void CheckSpecialUnderline( const SwLinePortion* pPor,
-//STRIP001                                 long nAdjustBaseLine = 0 );
 protected:
     void CtorInit( SwTxtFrm *pFrm, SwTxtPaintInfo *pInf );
     inline SwTxtPainter() { }
 public:
     inline SwTxtPainter( SwTxtFrm *pFrm, SwTxtPaintInfo *pInf )
            { CtorInit( pFrm, pInf ); }
-//STRIP001  void DrawTextLine( const SwRect &rPaint, SwSaveClip &rClip,
-//STRIP001                     const sal_Bool bUnderSz );
-//STRIP001  void PaintDropPortion();
-//STRIP001 #ifdef BIDI
     // if PaintMultiPortion is called recursively, we have to pass the
     // surrounding SwBidiPortion
-//STRIP001     void PaintMultiPortion( const SwRect &rPaint, SwMultiPortion& rMulti,
-//STRIP001                             const SwMultiPortion* pEnvPor = 0 );
-//STRIP001 #else
-//STRIP001  void PaintMultiPortion( const SwRect &rPaint, SwMultiPortion& rMulti );
-//STRIP001 #endif
     inline void SetPaintDrop( const sal_Bool bNew ) { bPaintDrop = bNew; }
     inline int IsPaintDrop() const { return bPaintDrop; }
     inline SwTxtPaintInfo &GetInfo()

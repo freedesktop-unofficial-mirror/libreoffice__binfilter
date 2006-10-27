@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itrtxt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:34:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:05:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -207,8 +207,6 @@ public:
 
     // liefert TxtPos fuer Start und Ende der aktuellen Zeile ohne whitespaces
     // In frminf.cxx implementiert.
-//STRIP001  xub_StrLen GetTxtStart() const;
-//STRIP001  xub_StrLen GetTxtEnd() const;
 
     inline SwTxtSizeInfo &GetInfo()
         { return (SwTxtSizeInfo&)SwTxtIter::GetInfo(); }
@@ -242,7 +240,6 @@ protected:
     // spannt beim Blocksatz die Glues auf.
     void CalcNewBlock( SwLineLayout *pCurr, const SwLinePortion *pStopAt,
         SwTwips nReal = 0 );
-//STRIP001     USHORT CalcKanaAdj( SwLineLayout *pCurr );
 public:
     inline SwTxtAdjuster( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf )
            { SwTxtMargin::CtorInit( pFrm, pInf ); }
@@ -258,7 +255,6 @@ public:
     }
 
     // DropCaps-Extrawurst
-//STRIP001  void CalcDropAdjust();
     void CalcDropRepaint();
 };
 
@@ -270,7 +266,6 @@ class SwTxtCursor : public SwTxtAdjuster
 {
     // A small helper-class to save SwTxtCursor member, manipulate them
     // and to restore them
-//STRIP001  friend class SwTxtCursorSave;
 
     // 1170: Mehrdeutigkeiten
     static sal_Bool bRightMargin;
