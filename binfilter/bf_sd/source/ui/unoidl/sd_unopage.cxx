@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopage.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:27:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:37:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,18 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
-// auto strip #include <com/sun/star/presentation/ClickAction.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
-// auto strip #include <com/sun/star/presentation/FadeEffect.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
-// auto strip #include <com/sun/star/presentation/AnimationEffect.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HPP_
-// auto strip #include <com/sun/star/presentation/PresentationRange.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
 #endif
@@ -55,21 +43,9 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-// auto strip #ifndef _SV_BITMAPEX_HXX
-// auto strip #include <vcl/bitmapex.hxx>
-// auto strip #endif
 #ifndef _SV_METAACT_HXX
 #include <vcl/metaact.hxx>
 #endif
-// auto strip #ifndef _TOOLKIT_UNOIFACE_HXX
-// auto strip #include <toolkit/unohlp.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SETTINGS_HXX
-// auto strip #include <vcl/settings.hxx>
-// auto strip #endif
 #ifndef _UNOMODEL_HXX
 #include <unomodel.hxx>
 #endif
@@ -79,12 +55,6 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDMODEL_HXX //autogen
-// auto strip #include <bf_svx/svdmodel.hxx>
-// auto strip #endif
 #ifndef _SDRESID_HXX
 #include <sdresid.hxx>
 #endif
@@ -95,9 +65,6 @@
 #ifndef _SD_UNOPRNMS_HXX
 #include <unoprnms.hxx>
 #endif
-// auto strip #ifndef _SDATTR_HXX
-// auto strip #include <sdattr.hxx>
-// auto strip #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
@@ -107,12 +74,6 @@
 #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
 #endif
-// auto strip #ifndef _SVDORECT_HXX
-// auto strip #include <bf_svx/svdorect.hxx>
-// auto strip #endif
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
@@ -131,13 +92,10 @@
 #include <bf_svx/svdoole2.hxx>
 #endif
 
-// auto strip #include <bf_svx/svdview.hxx>
-// auto strip #include "misc.hxx"
 #include "sdview.hxx"
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
 #endif
-// auto strip #include "viewshel.hxx"
 #include "drviewsh.hxx"
 #include "unoobj.hxx"
 #include "res_bmp.hrc"
@@ -687,9 +645,6 @@ uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyN
     case WID_PAGE_LDBITMAP:
         {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHC = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
-//STRIP001             uno::Reference< awt::XBitmap > xBitmap(
-//STRIP001                 VCLUnoHelper::CreateBitmap( BitmapEx( SdResId( bHC ? BMP_PAGE_H : BMP_PAGE ) ) ) );
-//STRIP001          aAny <<= xBitmap;
         }
         break;
     case WID_PAGE_BACK:
