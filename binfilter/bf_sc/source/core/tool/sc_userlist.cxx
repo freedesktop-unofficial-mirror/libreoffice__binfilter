@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_userlist.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:19:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:39:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -50,12 +49,6 @@
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
-// auto strip #ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
-// auto strip #include <unotools/calendarwrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
@@ -111,19 +104,7 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 void ScUserListData::SetString( const String& rStr )
-//STRIP001 {
-//STRIP001  delete[] pSubStrings;
-//STRIP001  delete[] pUpperSub;
-//STRIP001
-//STRIP001  aStr = rStr;
-//STRIP001  InitTokens();
-//STRIP001 }
 
-//STRIP001 USHORT ScUserListData::GetSubCount() const
-//STRIP001 {
-//STRIP001  return nTokenCount;
-//STRIP001 }
 
 /*N*/ BOOL ScUserListData::GetSubIndex(const String& rSubStr, USHORT& rIndex) const
 /*N*/ {
@@ -147,65 +128,8 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 String ScUserListData::GetSubStr(USHORT nIndex) const
-//STRIP001 {
-//STRIP001  if (nIndex < nTokenCount)
-//STRIP001      return pSubStrings[nIndex];
-//STRIP001  else
-//STRIP001      return EMPTY_STRING;
-//STRIP001 }
 
-//STRIP001 StringCompare ScUserListData::Compare(const String& rSubStr1, const String& rSubStr2) const
-//STRIP001 {
-//STRIP001  USHORT nIndex1;
-//STRIP001  USHORT nIndex2;
-//STRIP001  BOOL bFound1 = GetSubIndex(rSubStr1, nIndex1);
-//STRIP001  BOOL bFound2 = GetSubIndex(rSubStr2, nIndex2);
-//STRIP001  if (bFound1)
-//STRIP001  {
-//STRIP001      if (bFound2)
-//STRIP001      {
-//STRIP001          if (nIndex1 < nIndex2)
-//STRIP001              return COMPARE_LESS;
-//STRIP001          else if (nIndex1 > nIndex2)
-//STRIP001              return COMPARE_GREATER;
-//STRIP001          else
-//STRIP001              return COMPARE_EQUAL;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          return COMPARE_LESS;
-//STRIP001  }
-//STRIP001  else if (bFound2)
-//STRIP001      return COMPARE_GREATER;
-//STRIP001  else
-//STRIP001         return (StringCompare) ScGlobal::pCaseTransliteration->compareString( rSubStr1, rSubStr2 );
-//STRIP001 }
 
-//STRIP001 StringCompare ScUserListData::ICompare(const String& rSubStr1, const String& rSubStr2) const
-//STRIP001 {
-//STRIP001  USHORT nIndex1;
-//STRIP001  USHORT nIndex2;
-//STRIP001  BOOL bFound1 = GetSubIndex(rSubStr1, nIndex1);
-//STRIP001  BOOL bFound2 = GetSubIndex(rSubStr2, nIndex2);
-//STRIP001  if (bFound1)
-//STRIP001  {
-//STRIP001      if (bFound2)
-//STRIP001      {
-//STRIP001          if (nIndex1 < nIndex2)
-//STRIP001              return COMPARE_LESS;
-//STRIP001          else if (nIndex1 > nIndex2)
-//STRIP001              return COMPARE_GREATER;
-//STRIP001          else
-//STRIP001              return COMPARE_EQUAL;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          return COMPARE_LESS;
-//STRIP001  }
-//STRIP001  else if (bFound2)
-//STRIP001      return COMPARE_GREATER;
-//STRIP001  else
-//STRIP001         return (StringCompare) ScGlobal::pTransliteration->compareString( rSubStr1, rSubStr2 );
-//STRIP001 }
 
 /*N*/ ScUserList::ScUserList(USHORT nLim, USHORT nDel) :
 /*N*/   Collection  ( nLim, nDel )
@@ -309,27 +233,6 @@ namespace binfilter {
 /*N*/   return NULL;
 /*N*/ }
 
-//STRIP001 BOOL ScUserList::operator==( const ScUserList& r ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual = (nCount == r.nCount);
-//STRIP001
-//STRIP001  if ( bEqual )
-//STRIP001  {
-//STRIP001      ScUserListData* pMyData    = NULL;
-//STRIP001      ScUserListData* pOtherData = NULL;
-//STRIP001
-//STRIP001      for ( USHORT i=0; i<nCount && bEqual; i++)
-//STRIP001      {
-//STRIP001          pMyData    = (ScUserListData*)At(i);
-//STRIP001          pOtherData = (ScUserListData*)r.At(i);
-//STRIP001
-//STRIP001          bEqual =(   (pMyData->nTokenCount == pOtherData->nTokenCount)
-//STRIP001                   && (pMyData->aStr        == pOtherData->aStr) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 
 /*N*/ BOOL ScUserList::HasEntry( const String& rStr ) const
