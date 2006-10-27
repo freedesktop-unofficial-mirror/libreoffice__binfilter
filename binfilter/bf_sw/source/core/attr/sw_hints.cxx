@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_hints.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:17:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:14:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,12 +43,6 @@
 #include <bf_svx/scripttypeitem.hxx>
 #endif
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -119,12 +113,6 @@ namespace binfilter {
 // der akt. Frame befragt werden. Dafuer wird das akt. OutputDevice benoetigt.
 
 
-//STRIP001 SwRefMarkFldUpdate::SwRefMarkFldUpdate( const OutputDevice* pOutput )
-//STRIP001  : SwMsgPoolItem( RES_REFMARKFLD_UPDATE ),
-//STRIP001  pOut( pOutput )
-//STRIP001 {
-//STRIP001  ASSERT( pOut, "es muss ein OutputDevice-Pointer gesetzt werden!" );
-//STRIP001 }
 
 
 /*N*/ SwDocPosUpdate::SwDocPosUpdate( const SwTwips nDocPos )
@@ -253,29 +241,9 @@ namespace binfilter {
 /*N*/   aList.Insert( rNd.GetIndex(), &rNd );
 /*N*/ }
 
-//STRIP001 SwNRuleLowerLevel::SwNRuleLowerLevel( const String& rRuleName, BYTE nSrchLvl )
-//STRIP001  : SwMsgPoolItem( RES_GETLOWERNUMLEVEL ), rName( rRuleName ),
-//STRIP001  nLvl(nSrchLvl)
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 SwFindNearestNode::SwFindNearestNode( const SwNode& rNd )
-//STRIP001  : SwMsgPoolItem( RES_FINDNEARESTNODE ), pNd( &rNd ), pFnd( 0 )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 void SwFindNearestNode::CheckNode( const SwNode& rNd )
-//STRIP001 {
-//STRIP001  if( &pNd->GetNodes() == &rNd.GetNodes() )
-//STRIP001  {
-//STRIP001      ULONG nIdx = rNd.GetIndex();
-//STRIP001      if( nIdx < pNd->GetIndex() &&
-//STRIP001          ( !pFnd || nIdx > pFnd->GetIndex() ) &&
-//STRIP001          nIdx > rNd.GetNodes().GetEndOfExtras().GetIndex() )
-//STRIP001          pFnd = &rNd;
-//STRIP001  }
-//STRIP001 }
 
 
 
