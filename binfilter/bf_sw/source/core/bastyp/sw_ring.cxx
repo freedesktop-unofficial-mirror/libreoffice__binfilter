@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ring.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:20:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:16:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,17 +105,6 @@ namespace binfilter {
 /*N*/
 /*N*/ }
 
-//STRIP001 void Ring::MoveRingTo(Ring *pDestRing)
-//STRIP001 {
-//STRIP001  // den gesamten Ring in den DestRing einfuegen
-//STRIP001  Ring* pMyPrev = pPrev;
-//STRIP001  Ring* pDestPrev = pDestRing->pPrev;
-//STRIP001
-//STRIP001  pMyPrev->pNext = pDestRing;
-//STRIP001  pDestPrev->pNext = this;
-//STRIP001  pDestRing->pPrev = pMyPrev;
-//STRIP001  pPrev = pDestPrev;
-//STRIP001 }
 
 
 }
