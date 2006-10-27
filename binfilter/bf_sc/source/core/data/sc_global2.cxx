@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:49:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:21:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,7 +46,6 @@
 #include <svtools/pathoptions.hxx>
 #include <svtools/useroptions.hxx>
 #include <tools/urlobj.hxx>
-// auto strip #include <unotools/charclass.hxx>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -55,7 +53,6 @@
 #include <svtools/syslocale.hxx>
 #endif
 
-// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "rangeutl.hxx"
 #include "pivot.hxx"
@@ -106,16 +103,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 void ScImportParam::Clear()
-//STRIP001 {
-//STRIP001  nCol1=nRow1=nCol2=nRow2 = 0;
-//STRIP001  bImport = FALSE;
-//STRIP001  bNative = FALSE;
-//STRIP001  bSql = TRUE;
-//STRIP001  nType = ScDbTable;
-//STRIP001  aDBName.Erase();
-//STRIP001  aStatement.Erase();
-//STRIP001 }
 
 /*N*/ ScImportParam& ScImportParam::operator=( const ScImportParam& r )
 /*N*/ {
@@ -133,21 +120,6 @@ namespace binfilter {
 /*N*/   return *this;
 /*N*/ }
 
-//STRIP001 BOOL ScImportParam::operator==( const ScImportParam& rOther ) const
-//STRIP001 {
-//STRIP001  return( nCol1       == rOther.nCol1 &&
-//STRIP001          nRow1       == rOther.nRow1 &&
-//STRIP001          nCol2       == rOther.nCol2 &&
-//STRIP001          nRow2       == rOther.nRow2 &&
-//STRIP001          bImport     == rOther.bImport &&
-//STRIP001          aDBName     == rOther.aDBName &&
-//STRIP001          aStatement  == rOther.aStatement &&
-//STRIP001          bNative     == rOther.bNative &&
-//STRIP001          bSql        == rOther.bSql &&
-//STRIP001          nType       == rOther.nType );
-//STRIP001
-//STRIP001  //! nQuerySh und pConnection sind gleich ?
-//STRIP001 }
 
 
 //------------------------------------------------------------------------
@@ -356,49 +328,11 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
     // Anzahl der Queries gleich?
      DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nUsed       = 0;
-//STRIP001  USHORT nOtherUsed = 0;
-//STRIP001  while ( nUsed<nEntryCount && pEntries[nUsed].bDoQuery ) ++nUsed;
-//STRIP001  while ( nOtherUsed<rOther.nEntryCount && rOther.pEntries[nOtherUsed].bDoQuery )
-//STRIP001      ++nOtherUsed;
-//STRIP001
-//STRIP001  if (   (nUsed       == nOtherUsed)
-//STRIP001      && (nCol1       == rOther.nCol1)
-//STRIP001      && (nRow1       == rOther.nRow1)
-//STRIP001      && (nCol2       == rOther.nCol2)
-//STRIP001      && (nRow2       == rOther.nRow2)
-//STRIP001      && (nTab        == rOther.nTab)
-//STRIP001      && (bHasHeader  == rOther.bHasHeader)
-//STRIP001      && (bByRow      == rOther.bByRow)
-//STRIP001      && (bInplace    == rOther.bInplace)
-//STRIP001      && (bCaseSens   == rOther.bCaseSens)
-//STRIP001      && (bRegExp     == rOther.bRegExp)
-//STRIP001      && (bDuplicate  == rOther.bDuplicate)
-//STRIP001      && (bDestPers   == rOther.bDestPers)
-//STRIP001      && (nDestTab    == rOther.nDestTab)
-//STRIP001      && (nDestCol    == rOther.nDestCol)
-//STRIP001      && (nDestRow    == rOther.nDestRow) )
-//STRIP001  {
-//STRIP001      bEqual = TRUE;
-//STRIP001      for ( USHORT i=0; i<nUsed && bEqual; i++ )
-//STRIP001          bEqual = pEntries[i] == rOther.pEntries[i];
-//STRIP001  }
     return bEqual;
 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScQueryParam::DeleteQuery( USHORT nPos )
-//STRIP001 {
-//STRIP001  if (nPos<nEntryCount)
-//STRIP001  {
-//STRIP001      for (USHORT i=nPos; i+1<nEntryCount; i++)
-//STRIP001          pEntries[i] = pEntries[i+1];
-//STRIP001
-//STRIP001      pEntries[nEntryCount-1].Clear();
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR("Falscher Parameter bei ScQueryParam::DeleteQuery");
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -423,27 +357,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScQueryParam::MoveToDest()
-//STRIP001 {
-//STRIP001  if (!bInplace)
-//STRIP001  {
-//STRIP001      short nDifX = ((short) nDestCol) - ((short) nCol1);
-//STRIP001      short nDifY = ((short) nDestRow) - ((short) nRow1);
-//STRIP001      short nDifZ = ((short) nDestTab) - ((short) nTab);
-//STRIP001
-//STRIP001      nCol1 += nDifX;
-//STRIP001      nRow1 += nDifY;
-//STRIP001      nCol2 += nDifX;
-//STRIP001      nRow2 += nDifY;
-//STRIP001      nTab  += nDifZ;
-//STRIP001      for (USHORT i=0; i<nEntryCount; i++)
-//STRIP001          pEntries[i].nField += nDifX;
-//STRIP001
-//STRIP001      bInplace = TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR("MoveToDest, bInplace == TRUE");
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -688,84 +601,9 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScSubTotalParam::operator==( const ScSubTotalParam& rOther ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual =   (nCol1          == rOther.nCol1)
-//STRIP001               && (nRow1          == rOther.nRow1)
-//STRIP001               && (nCol2          == rOther.nCol2)
-//STRIP001               && (nRow2          == rOther.nRow2)
-//STRIP001               && (bRemoveOnly    == rOther.bRemoveOnly)
-//STRIP001               && (bReplace       == rOther.bReplace)
-//STRIP001               && (bPagebreak     == rOther.bPagebreak)
-//STRIP001               && (bDoSort        == rOther.bDoSort)
-//STRIP001               && (bCaseSens      == rOther.bCaseSens)
-//STRIP001               && (bAscending     == rOther.bAscending)
-//STRIP001               && (bUserDef       == rOther.bUserDef)
-//STRIP001               && (nUserIndex     == rOther.nUserIndex)
-//STRIP001               && (bIncludePattern== rOther.bIncludePattern);
-//STRIP001
-//STRIP001  if ( bEqual )
-//STRIP001  {
-//STRIP001      bEqual = TRUE;
-//STRIP001      for ( USHORT i=0; i<MAXSUBTOTAL && bEqual; i++ )
-//STRIP001      {
-//STRIP001          bEqual =   (bGroupActive[i] == rOther.bGroupActive[i])
-//STRIP001                  && (nField[i]       == rOther.nField[i])
-//STRIP001                  && (nSubTotals[i]   == rOther.nSubTotals[i]);
-//STRIP001
-//STRIP001          if ( bEqual && (nSubTotals[i] > 0) )
-//STRIP001          {
-//STRIP001              bEqual = (pSubTotals != NULL) && (pFunctions != NULL);
-//STRIP001
-//STRIP001              for (USHORT j=0; (j<nSubTotals[i]) && bEqual; j++)
-//STRIP001              {
-//STRIP001                  bEqual =   bEqual
-//STRIP001                          && (pSubTotals[i][j] == rOther.pSubTotals[i][j])
-//STRIP001                          && (pFunctions[i][j] == rOther.pFunctions[i][j]);
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScSubTotalParam::SetSubTotals( USHORT                   nGroup,
-//STRIP001                                  const USHORT*           ptrSubTotals,
-//STRIP001                                  const ScSubTotalFunc*   ptrFunctions,
-//STRIP001                                  USHORT                  nCount )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( (nGroup <= MAXSUBTOTAL),
-//STRIP001              "ScSubTotalParam::SetSubTotals(): nGroup > MAXSUBTOTAL!" );
-//STRIP001  DBG_ASSERT( ptrSubTotals,
-//STRIP001              "ScSubTotalParam::SetSubTotals(): ptrSubTotals == NULL!" );
-//STRIP001  DBG_ASSERT( ptrFunctions,
-//STRIP001              "ScSubTotalParam::SetSubTotals(): ptrFunctions == NULL!" );
-//STRIP001  DBG_ASSERT( (nCount > 0),
-//STRIP001              "ScSubTotalParam::SetSubTotals(): nCount <= 0!" );
-//STRIP001
-//STRIP001  if ( ptrSubTotals && ptrFunctions && (nCount > 0) && (nGroup <= MAXSUBTOTAL) )
-//STRIP001  {
-//STRIP001      // 0 wird als 1 aufgefasst, sonst zum Array-Index dekrementieren
-//STRIP001      if (nGroup != 0)
-//STRIP001          nGroup--;
-//STRIP001
-//STRIP001      delete [] pSubTotals[nGroup];
-//STRIP001      delete [] pFunctions[nGroup];
-//STRIP001
-//STRIP001      pSubTotals[nGroup] = new USHORT         [nCount];
-//STRIP001      pFunctions[nGroup] = new ScSubTotalFunc [nCount];
-//STRIP001      nSubTotals[nGroup] = nCount;
-//STRIP001
-//STRIP001      for ( USHORT i=0; i<nCount; i++ )
-//STRIP001      {
-//STRIP001          pSubTotals[nGroup][i] = ptrSubTotals[i];
-//STRIP001          pFunctions[nGroup][i] = ptrFunctions[i];
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 // struct ScConsolidateParam:
@@ -843,28 +681,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScConsolidateParam::operator==( const ScConsolidateParam& r ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual =   (nCol           == r.nCol)
-//STRIP001               && (nRow           == r.nRow)
-//STRIP001               && (nTab           == r.nTab)
-//STRIP001               && (bByCol         == r.bByCol)
-//STRIP001               && (bByRow         == r.bByRow)
-//STRIP001               && (bReferenceData == r.bReferenceData)
-//STRIP001               && (nDataAreaCount == r.nDataAreaCount)
-//STRIP001               && (eFunction      == r.eFunction);
-//STRIP001
-//STRIP001  if ( nDataAreaCount == 0 )
-//STRIP001      bEqual = bEqual && (ppDataAreas == NULL) && (r.ppDataAreas == NULL);
-//STRIP001  else
-//STRIP001      bEqual = bEqual && (ppDataAreas != NULL) && (r.ppDataAreas != NULL);
-//STRIP001
-//STRIP001  if ( bEqual && (nDataAreaCount > 0) )
-//STRIP001      for ( USHORT i=0; i<nDataAreaCount && bEqual; i++ )
-//STRIP001          bEqual = *(ppDataAreas[i]) == *(r.ppDataAreas[i]);
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -952,14 +768,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScPivotParam::Clear()
-//STRIP001 {
-//STRIP001  nCol = nRow = nTab = 0;
-//STRIP001  bIgnoreEmptyRows = bDetectCategories = FALSE;
-//STRIP001  bMakeTotalCol = bMakeTotalRow = TRUE;
-//STRIP001  ClearLabelData();
-//STRIP001  ClearPivotArrays();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -977,13 +785,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScPivotParam::ClearPivotArrays()
-//STRIP001 {
-//STRIP001  memset( aColArr, 0, PIVOT_MAXFIELD * sizeof(PivotField) );
-//STRIP001  memset( aRowArr, 0, PIVOT_MAXFIELD * sizeof(PivotField) );
-//STRIP001  memset( aDataArr, 0, PIVOT_MAXFIELD * sizeof(PivotField) );
-//STRIP001  nColCount = nRowCount = nDataCount = 0;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -1011,17 +812,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 /*N*/                                             USHORT            nDataCnt )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
-//STRIP001
-//STRIP001  if ( pColArr && pRowArr && pDataArr )
-//STRIP001  {
-//STRIP001      nColCount   = (nColCnt>PIVOT_MAXFIELD) ? PIVOT_MAXFIELD : nColCnt;
-//STRIP001      nRowCount   = (nRowCnt>PIVOT_MAXFIELD) ? PIVOT_MAXFIELD : nRowCnt;
-//STRIP001      nDataCount  = (nDataCnt>PIVOT_MAXFIELD) ? PIVOT_MAXFIELD : nDataCnt;
-//STRIP001
-//STRIP001      memcpy( aColArr,  pColArr,  nColCount  * sizeof(PivotField) );
-//STRIP001      memcpy( aRowArr,  pRowArr,  nRowCount  * sizeof(PivotField) );
-//STRIP001      memcpy( aDataArr, pDataArr, nDataCount * sizeof(PivotField) );
-//STRIP001  }
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -1045,36 +835,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScPivotParam::operator==( const ScPivotParam& r ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual =   (nCol       == r.nCol)
-//STRIP001               && (nRow       == r.nRow)
-//STRIP001               && (nTab       == r.nTab)
-//STRIP001               && (bIgnoreEmptyRows  == r.bIgnoreEmptyRows)
-//STRIP001               && (bDetectCategories == r.bDetectCategories)
-//STRIP001               && (bMakeTotalCol == r.bMakeTotalCol)
-//STRIP001               && (bMakeTotalRow == r.bMakeTotalRow)
-//STRIP001               && (nLabels    == r.nLabels)
-//STRIP001               && (nColCount  == r.nColCount)
-//STRIP001               && (nRowCount  == r.nRowCount)
-//STRIP001               && (nDataCount == r.nDataCount);
-//STRIP001
-//STRIP001  if ( bEqual )
-//STRIP001  {
-//STRIP001      USHORT i;
-//STRIP001
-//STRIP001      for ( i=0; i<nColCount && bEqual; i++ )
-//STRIP001          bEqual = ( aColArr[i] == r.aColArr[i] );
-//STRIP001
-//STRIP001      for ( i=0; i<nRowCount && bEqual; i++ )
-//STRIP001          bEqual = ( aRowArr[i] == r.aRowArr[i] );
-//STRIP001
-//STRIP001      for ( i=0; i<nDataCount && bEqual; i++ )
-//STRIP001          bEqual = ( aDataArr[i] == r.aDataArr[i] );
-//STRIP001  }
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 // struct ScSolveParam
@@ -1115,37 +875,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScSolveParam& __EXPORT ScSolveParam::operator=( const ScSolveParam& r )
-//STRIP001 {
-//STRIP001  delete pStrTargetVal;
-//STRIP001
-//STRIP001  aRefFormulaCell  = r.aRefFormulaCell;
-//STRIP001  aRefVariableCell = r.aRefVariableCell;
-//STRIP001  pStrTargetVal    = r.pStrTargetVal
-//STRIP001                          ? new String(*r.pStrTargetVal)
-//STRIP001                          : NULL;
-//STRIP001  return *this;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScSolveParam::operator==( const ScSolveParam& r ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual =   (aRefFormulaCell  == r.aRefFormulaCell)
-//STRIP001               && (aRefVariableCell == r.aRefVariableCell);
-//STRIP001
-//STRIP001  if ( bEqual )
-//STRIP001  {
-//STRIP001      if ( !pStrTargetVal && !r.pStrTargetVal )
-//STRIP001          bEqual = TRUE;
-//STRIP001      else if ( !pStrTargetVal || !r.pStrTargetVal )
-//STRIP001          bEqual = FALSE;
-//STRIP001      else if ( pStrTargetVal && r.pStrTargetVal )
-//STRIP001          bEqual = ( *pStrTargetVal == *(r.pStrTargetVal) );
-//STRIP001  }
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 
 //------------------------------------------------------------------------
@@ -1177,26 +909,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScTabOpParam& ScTabOpParam::operator=( const ScTabOpParam& r )
-//STRIP001 {
-//STRIP001  aRefFormulaCell  = r.aRefFormulaCell;
-//STRIP001  aRefFormulaEnd   = r.aRefFormulaEnd;
-//STRIP001  aRefRowCell      = r.aRefRowCell;
-//STRIP001  aRefColCell      = r.aRefColCell;
-//STRIP001  nMode            = r.nMode;
-//STRIP001  return *this;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL __EXPORT ScTabOpParam::operator==( const ScTabOpParam& r ) const
-//STRIP001 {
-//STRIP001  return (        (aRefFormulaCell == r.aRefFormulaCell)
-//STRIP001               && (aRefFormulaEnd  == r.aRefFormulaEnd)
-//STRIP001               && (aRefRowCell     == r.aRefRowCell)
-//STRIP001               && (aRefColCell     == r.aRefColCell)
-//STRIP001               && (nMode           == r.nMode) );
-//STRIP001 }
 
 
 //========================================================================
@@ -1546,22 +1261,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScRange::ExtendOne()
-//STRIP001 {
-//STRIP001  //  Range fuer Rahmen etc. in X und Y Richtung um 1 erweitern
-//STRIP001
-//STRIP001  USHORT nVal;
-//STRIP001
-//STRIP001  if ((nVal = aStart.Col()) > 0)
-//STRIP001      aStart.SetCol(nVal-1);
-//STRIP001  if ((nVal = aStart.Row()) > 0)
-//STRIP001      aStart.SetRow(nVal-1);
-//STRIP001
-//STRIP001  if ((nVal = aEnd.Col()) < MAXCOL)
-//STRIP001      aEnd.SetCol(nVal+1);
-//STRIP001  if ((nVal = aEnd.Row()) < MAXROW)
-//STRIP001      aEnd.SetRow(nVal+1);
-//STRIP001 }
 
 /*N*/ USHORT ScRange::Parse( const String& r, ScDocument* pDoc )
 /*N*/ {
@@ -1733,34 +1432,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL ScAddress::Move( short dx, short dy, short dz, ScDocument* pDoc )
-//STRIP001 {
-//STRIP001  short nMaxTab = pDoc ? pDoc->GetTableCount() : MAXTAB+1;
-//STRIP001  dx = Col() + dx;
-//STRIP001  dy = Row() + dy;
-//STRIP001  dz = Tab() + dz;
-//STRIP001  BOOL bValid = TRUE;
-//STRIP001  if( dx < 0 )
-//STRIP001      dx = 0, bValid = FALSE;
-//STRIP001  else if( dx > MAXCOL )
-//STRIP001      dx = MAXCOL, bValid =FALSE;
-//STRIP001  if( dy < 0 )
-//STRIP001      dy = 0, bValid = FALSE;
-//STRIP001  else if( dy > MAXROW )
-//STRIP001      dy = MAXROW, bValid =FALSE;
-//STRIP001  if( dz < 0 )
-//STRIP001      dz = 0, bValid = FALSE;
-//STRIP001  else if( dz >= nMaxTab )
-//STRIP001      dz = nMaxTab-1, bValid =FALSE;
-//STRIP001  Set( dx, dy, dz );
-//STRIP001  return bValid;
-//STRIP001 }
 
-//STRIP001 BOOL ScRange::Move( short dx, short dy, short dz, ScDocument* pDoc )
-//STRIP001 {
-//STRIP001  // Einfahces &, damit beides ausgefuehrt wird!!
-//STRIP001  return aStart.Move( dx, dy, dz, pDoc ) & aEnd.Move( dx, dy, dz, pDoc );
-//STRIP001 }
 
 
 }
