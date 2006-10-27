@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode1.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:53:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:23:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #ifndef _SVX_XLNTRIT_HXX //autogen
 #include <bf_svx/xlntrit.hxx>
 #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 #ifndef _SVDVITER_HXX
 #include <bf_svx/svdviter.hxx>
 #endif
@@ -55,16 +52,10 @@
 #endif
 #include <svtools/zforlist.hxx>
 #endif
-// auto strip #ifndef _SVDORECT_HXX //autogen
-// auto strip #include <bf_svx/svdorect.hxx>
-// auto strip #endif
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-// auto strip #ifndef _SCH_MEMCHRT_HXX
-// auto strip #include "memchrt.hxx"
-// auto strip #endif
 #define ITEMID_ADJUST EE_PARA_JUST
 #include <bf_svx/adjitem.hxx>
 
@@ -73,30 +64,13 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-// auto strip #include <bf_svx/fontitem.hxx>
-// auto strip #include <bf_svx/fhgtitem.hxx>
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #ifndef _XTABLE_HXX
-// auto strip #include <bf_svx/xtable.hxx> //STRIP002
-// auto strip #endif
-// auto strip #ifndef _SCH_OBJADJ_HXX
-// auto strip #include  "objadj.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_OBJID_HXX
-// auto strip #include "objid.hxx"
-// auto strip #endif
 #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 #endif
 #ifndef _SVX_SVXIDS_HRC
@@ -105,17 +79,11 @@
 #ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
 #endif
-// auto strip #ifndef _DEFINES_HXX
-// auto strip #include "defines.hxx"
-// auto strip #endif
 
 #include "glob.hrc"
 #include <bf_svx/dialogs.hrc>
 #include "math.h"
 
-// auto strip #ifndef _SVX_ITEMTYPE_HXX //autogen
-// auto strip #include <bf_svx/itemtype.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XLNEDCIT_HXX //autogen
 #include <bf_svx/xlnedcit.hxx>
@@ -145,9 +113,6 @@
 #include <bf_svx/xlndsit.hxx>
 #endif
 
-// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
@@ -164,7 +129,6 @@
 
 #include "chmod3d.hxx"
 #include "schmod.hxx"
-// auto strip #include "schopt.hxx"
 namespace binfilter {
 
 /************************************************************************/
@@ -343,38 +307,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void ChartModel::SetTextString(SdrTextObj& rTextObj, const String& rText,
-//STRIP001                             SvxChartTextOrient eOrient, const long nMaximumWidth)
-//STRIP001 {
-//STRIP001  if (eOrient == CHTXTORIENT_AUTOMATIC)
-//STRIP001  {
-//STRIP001      SchObjectAdjust* pObjAdjust = GetObjectAdjust(rTextObj);
-//STRIP001      DBG_ASSERT( pObjAdjust, "ChartModel::SetTextString: no adjustment info in text obj") ;
-//STRIP001      eOrient = pObjAdjust->GetOrient();
-//STRIP001  }
-//STRIP001
-//STRIP001  pOutliner->SetText(*rTextObj.GetOutlinerParaObject());
-//STRIP001  SfxItemSet aTextAttr(pOutliner->GetParaAttribs(0));
-//STRIP001  aTextAttr.Put(SvxAdjustItem((eOrient == CHTXTORIENT_BOTTOMTOP)
-//STRIP001                                  ? SVX_ADJUST_RIGHT
-//STRIP001                                  : SVX_ADJUST_LEFT));
-//STRIP001  pOutliner->Clear();
-//STRIP001
-//STRIP001  if (eOrient == CHTXTORIENT_STACKED)
-//STRIP001      pOutliner->SetText(StackString(rText), pOutliner->GetParagraph( 0 ));
-//STRIP001  else
-//STRIP001      pOutliner->SetText(rText, pOutliner->GetParagraph( 0 ));
-//STRIP001
-//STRIP001      // FG: Diese Routine berechnet nun wirklich ob der Text umgebrochen werden soll oder nicht.
-//STRIP001  Size aSize = CalcTextSizeOfOneText (eOrient, aTextAttr, pOutliner, nMaximumWidth,FALSE);
-//STRIP001
-//STRIP001  OutlinerParaObject* pPara = pOutliner->CreateParaObject();
-//STRIP001
-//STRIP001  pOutliner->Clear();
-//STRIP001
-//STRIP001  rTextObj.SetOutlinerParaObject(pPara);
-//STRIP001  AdjustTextSize(rTextObj, aSize);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -588,20 +520,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 long ChartModel::GetLineHeight(const SfxItemSet& rAttr)
-//STRIP001 {
-//STRIP001  SfxItemSet aTextAttr(*pItemPool, nTextWhichPairs);
-//STRIP001  aTextAttr.Put(rAttr);
-//STRIP001
-//STRIP001  pOutliner->SetText( String( RTL_CONSTASCII_USTRINGPARAM( "JQXYZ09" )), pOutliner->GetParagraph( 0 ) );
-//STRIP001  SetTextAttributes (aTextAttr);
-//STRIP001
-//STRIP001  long nHeight = pOutliner->CalcTextSize().Height() + TEXTHEIGHT_OFS;
-//STRIP001
-//STRIP001  pOutliner->Clear();
-//STRIP001
-//STRIP001  return nHeight;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -862,101 +780,8 @@ namespace binfilter {
 /*N*/   if(pLogBook)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(pLogBook->IsValid())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pLogBook->SetColMode(bSwitchData);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if(pLogBook->IsChanged())
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                //Alle bestehenden Attribute werden abgearbeitet, auch
-//STRIP001 /*?*/                //wenn sie spaeter noch geloescht werden sollten.
-//STRIP001 /*?*/                long nMax=aDataRowAttrList.Count();
-//STRIP001 /*?*/                if(nMax) //Nur, wenn noch Daten da sind #47933#
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    long nCnt;
-//STRIP001 /*?*/                    long nEnd=pLogBook->GetInitial();
-//STRIP001 /*?*/                    long nNewId;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    //aDataRowAttrList kopieren;
-//STRIP001 /*?*/                    ItemSetList aTmpList(aDataRowAttrList);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    for(nCnt=0;nCnt<nMax;nCnt++)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        nNewId=pLogBook->GetId(nCnt);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        //Wenn egal, dann neues Attribut erzeugen
-//STRIP001 /*?*/                        if(nNewId==SCH_DATALOG_ANY)
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            // #67541# BM what the heck is that? why skip 2 attributes?
-//STRIP001 /*?*/                            //nEnd+=2;  //erstes neues default-attribut
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            SfxItemSet* pReplaced;
-//STRIP001 /*?*/                            SfxItemSet* pDataRowAttr = new SfxItemSet(*pItemPool, nRowWhichPairs);
-//STRIP001 /*?*/                            pReplaced = aDataRowAttrList.Replace(pDataRowAttr,nCnt);
-//STRIP001 /*?*/                            SwapDataPointAttr(nCnt);
-//STRIP001 /*?*/                            SetDefAttrRow(pDataRowAttr,nEnd);
-//STRIP001 /*?*/                            nEnd++; // #67541# increase (by 1) after setting attributes
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            aDataRowAttrList.Replace(aTmpList.GetObject(nNewId),nCnt);
-//STRIP001 /*?*/                            SwapDataPointAttr(nCnt,nNewId);
-//STRIP001 /*?*/                            //wird gebraucht, also nachher nicht loeschen:
-//STRIP001 /*?*/                            aTmpList.Replace(NULL,nNewId);
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                  //In TmpListe die verbleibenden Element loeschen
-//STRIP001 /*?*/                  aTmpList.Seek((ULONG)0);
-//STRIP001 /*?*/                  for(nCnt=0;nCnt<nMax;nCnt++)
-//STRIP001 /*?*/                    delete aTmpList.Remove();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //Wichtig: verhindert nochmalige ReOrg bzw. ReOrg mit falschen Daten!!!
-//STRIP001 /*?*/        pLogBook->Reset();
 /*N*/   }
 /*N*/ }
-//STRIP001 void ChartModel::SwapDataPointAttr(long n1,long n2)
-//STRIP001 {
-//STRIP001  CHART_TRACE2( "ChartModel::SwapDataPointAttr %ld <=> %ld", n1, n2 );
-//STRIP001
-//STRIP001  long nMax=GetColCount();
-//STRIP001  long nMaxRow=GetRowCount();
-//STRIP001  if(n1 > 0 && n1 < nMaxRow && n2 < nMaxRow)
-//STRIP001  {
-//STRIP001      SfxItemSet *pSet;
-//STRIP001      if(n2 <0 )
-//STRIP001      {
-//STRIP001          for(long nCol=0;nCol<nMax;nCol++)
-//STRIP001          {
-//STRIP001              pSet=(SfxItemSet *)&GetDataPointAttr(nCol,n1);
-//STRIP001              pSet->ClearItem();
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SfxItemSet aTmp(*pItemPool,nRowWhichPairs),*pSet2=NULL;
-//STRIP001          for(long nCol=0;nCol<nMax;nCol++)
-//STRIP001          {
-//STRIP001              pSet=(SfxItemSet *)&GetDataPointAttr(nCol,n1);
-//STRIP001              aTmp.ClearItem();
-//STRIP001              aTmp.Put(*pSet);
-//STRIP001              pSet2=(SfxItemSet *)&GetDataPointAttr(nCol,n1);
-//STRIP001              pSet->ClearItem();
-//STRIP001              pSet->Put(*pSet2);
-//STRIP001              pSet2->ClearItem();
-//STRIP001              pSet2->Put(aTmp);
-//STRIP001          }
-//STRIP001
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      DBG_TRACE("ChartModel::SwapDataPointAttr range error ?");
-//STRIP001  }
-//STRIP001 }
 /*************************************************************************
 |*
 |* RowAttr neu setzen:
@@ -1087,17 +912,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void ChartModel::CopyDefaultColors (List* pOtherColors)
-//STRIP001 {
-//STRIP001  DestroyDefaultColors ();
-//STRIP001
-//STRIP001  pDefaultColors = new List;
-//STRIP001
-//STRIP001  for (long nColors = 0;
-//STRIP001            nColors < (long) (pOtherColors->Count());
-//STRIP001            nColors ++)
-//STRIP001      pDefaultColors->Insert (new XColorEntry(*((XColorEntry*) pOtherColors->GetObject (nColors))), LIST_APPEND);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1268,15 +1082,6 @@ namespace binfilter {
 /*?*/           if ( nLines > MAXLEGENDLINES )
 /*?*/           {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   long nHeightOfRows = GetHeightOfnRows (rTextAttr, MAXLEGENDLINES);//war mal 2 statt MAX...#50395#
-//STRIP001 /*?*/                aSize.Height() = nHeightOfRows;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if(nDegrees)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    aRot.Height()  =(long)( (double)MaximumWidth *fSin
-//STRIP001 /*?*/                                           + (double)nHeightOfRows*fCos );
-//STRIP001 /*?*/                    aRot.Width()   =(long)( (double)MaximumWidth *fCos
-//STRIP001 /*?*/                                           + (double)nHeightOfRows*fSin );
-//STRIP001 /*?*/                }
 /*?*/           }
 /*?*/
 /*?*/           ULONG nParaCnt = pOutliner->GetParagraphCount();
@@ -1299,16 +1104,6 @@ namespace binfilter {
 /*?*/           if(nActLines>nLines)
 /*?*/           {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   nActLines=Min((ULONG)MAXLEGENDLINES,nActLines);
-//STRIP001 /*?*/                long nHeightOfRows = GetHeightOfnRows (rTextAttr,nActLines);
-//STRIP001 /*?*/                aSize.Height() = nHeightOfRows;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if(nDegrees)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    aRot.Height()  =(long)( (double)MaximumWidth *fSin
-//STRIP001 /*?*/                                           + (double)nHeightOfRows*fCos );
-//STRIP001 /*?*/                    aRot.Width()   =(long)( (double)MaximumWidth *fCos
-//STRIP001 /*?*/                                           + (double)nHeightOfRows*fSin );
-//STRIP001 /*N*/                }
 /*N*/           }
 /*N*/
 /*N*/       }
@@ -1327,137 +1122,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 long ChartModel::GetHeightOfnRows (const SfxItemSet &rAttr, int n)
-//STRIP001 {
-//STRIP001  SdrTextObj* pObj = pTestTextObj;  // definiert am Modell
-//STRIP001  pObj->SetModel(this);
-//STRIP001
-//STRIP001  if( !pObj->GetOutlinerParaObject() )
-//STRIP001  {
-//STRIP001      // set test text
-//STRIP001      String aTestStr( RTL_CONSTASCII_USTRINGPARAM( "1234567890JQ" ));
-//STRIP001      pObj->NbcSetText( aTestStr );
-//STRIP001  }
-//STRIP001
-//STRIP001 //-/ pObj->NbcSetAttributes (rAttr, FALSE);
-//STRIP001  pObj->SetItemSet(rAttr);
-//STRIP001
-//STRIP001  pObj->FitFrameToTextSize();
-//STRIP001  ULONG nHeight = pObj->GetTextSize().Height();
-//STRIP001
-//STRIP001  return (n*nHeight);
-//STRIP001 }
-//STRIP001 void ChartModel::SetDefaultColorSet(long nSet) //#50037#
-//STRIP001 {
-//STRIP001  static long aIndices[ROW_COLOR_COUNT];
-//STRIP001
-//STRIP001  m_nDefaultColorSet=nSet;
-//STRIP001
-//STRIP001
-//STRIP001  // Achtung! wg. #49990# wird bit 1 als Flag missbraucht!
-//STRIP001  // das ist leider etwas unschoen.
-//STRIP001  // Bit=ON bedeutet im Verbunddiagramm eine schwarze Linie!
-//STRIP001
-//STRIP001  long nWhichColors=nSet & (1);//Bit 0 gibt Farbset an #50114#
-//STRIP001  switch(nWhichColors)
-//STRIP001  {
-//STRIP001          case 0:
-//STRIP001          case 2:
-//STRIP001              aIndices[0]  = 45;          // Blau 6
-//STRIP001              aIndices[1]  = 24;          // Rot 1
-//STRIP001              aIndices[2]  = 18;          // Grau 60 %
-//STRIP001              aIndices[3]  = 61;          // Gruen 6
-//STRIP001              aIndices[4]  = 35;          // Violett 4
-//STRIP001              aIndices[5]  = 78;          // Orange 3
-//STRIP001              aIndices[6]  = 79;          // Orange 4
-//STRIP001              aIndices[7]  = 47;          // Blau 8
-//STRIP001              aIndices[8]  = 49;          // Tuerkis 2
-//STRIP001              aIndices[9]  = 34;          // Violett 3
-//STRIP001              aIndices[10] = 27;          // Rot 4
-//STRIP001              aIndices[11] = 13;          // Hellmagenta
-//STRIP001              break;
-//STRIP001
-//STRIP001          case 1:
-//STRIP001          case 3:
-//STRIP001              aIndices[7]  = 45;          // Blau 6
-//STRIP001              aIndices[0]  = 24;          // Rot 1
-//STRIP001              aIndices[3]  = 18;          // Grau 60 %
-//STRIP001              aIndices[2]  = 61;          // Gruen 6
-//STRIP001              aIndices[4]  = 35;          // Violett 4
-//STRIP001              aIndices[6]  = 78;          // Orange 3
-//STRIP001              aIndices[9]  = 79;          // Orange 4
-//STRIP001              aIndices[1]  = 47;          // Blau 8
-//STRIP001              aIndices[11]  = 49;          // Tuerkis 2
-//STRIP001              aIndices[10]  = 34;          // Violett 3
-//STRIP001              aIndices[5] = 27;          // Rot 4
-//STRIP001              aIndices[8] = 13;          // Hellmagenta
-//STRIP001              break;
-//STRIP001  }
-//STRIP001
-//STRIP001  XColorTable* pTable = GetColorTable();
-//STRIP001  DBG_ASSERT( pTable, "Color table not found");
-//STRIP001
-//STRIP001  if(IsAxisChart())
-//STRIP001  {
-//STRIP001      long nRows=GetRowCount();
-//STRIP001      for(long nRow=0;nRow<nRows;nRow++)
-//STRIP001      {
-//STRIP001          long nColor=aIndices[nRow%12];
-//STRIP001          XColorEntry* pEntry = pTable->Get(nColor);
-//STRIP001          DBG_ASSERT( pEntry, "No entry in color table" );
-//STRIP001          if(pEntry)
-//STRIP001          {
-//STRIP001              SfxItemSet aAttr(*pItemPool, nRowWhichPairs);
-//STRIP001              aAttr.Put(XFillColorItem(String(), pEntry->GetColor()) );
-//STRIP001              PutDataRowAttr(nRow,aAttr);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      long nCols=GetColCount();
-//STRIP001      for(long nCol=0;nCol<nCols;nCol++)
-//STRIP001      {
-//STRIP001          long nColor=aIndices[nCol%12];
-//STRIP001          XColorEntry* pEntry = pTable->Get(nColor);
-//STRIP001          DBG_ASSERT( pEntry, "No entry in color table" );
-//STRIP001          if(pEntry)
-//STRIP001          {
-//STRIP001              SfxItemSet aAttr(*pItemPool, nRowWhichPairs);
-//STRIP001              aAttr.Put(XFillColorItem(String(), pEntry->GetColor()) );
-//STRIP001              PutDataPointAttr(nCol,0,aAttr);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if(m_nDefaultColorSet&(2+4))//#49990#
-//STRIP001  {
-//STRIP001      SfxItemSet aBlackAttr(*pItemPool,nRowWhichPairs);//, XATTR_START, XATTR_END, 0);
-//STRIP001      if(m_nDefaultColorSet&2)//#49990#
-//STRIP001      {
-//STRIP001          //alles schwarz:
-//STRIP001          aBlackAttr.Put(XLineColorItem(String(),0));
-//STRIP001          aBlackAttr.Put(XFillColorItem (String (),0));
-//STRIP001          //Flag loeschen, damit per Gui noch anders
-//STRIP001          //attributiert werden kann
-//STRIP001           m_nDefaultColorSet-=2;
-//STRIP001      }
-//STRIP001
-//STRIP001      if(m_nDefaultColorSet&4)//#50114#
-//STRIP001      {
-//STRIP001          aBlackAttr.Put(XLineStyleItem (XLINE_SOLID));
-//STRIP001          aBlackAttr.Put(XLineWidthItem(50));
-//STRIP001          //Flag loeschen, damit per Gui noch anders
-//STRIP001          //attributiert werden kann
-//STRIP001           m_nDefaultColorSet-=4;   //jetzt wohl eher fürs laden wichtig
-//STRIP001      }
-//STRIP001      for(long nRow=0;nRow<GetRowCount();nRow++)
-//STRIP001          if(IsLine(nRow))
-//STRIP001              PutDataRowAttr(nRow,aBlackAttr);
-//STRIP001  }
-//STRIP001
-//STRIP001  BuildChart(FALSE);
-//STRIP001 }
 
 
 }
