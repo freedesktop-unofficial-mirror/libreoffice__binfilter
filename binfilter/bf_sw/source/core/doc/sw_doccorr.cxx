@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doccorr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:33:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:22:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,9 +46,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
@@ -58,15 +55,9 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
 #endif
-// auto strip #ifndef _REDLINE_HXX
-// auto strip #include <redline.hxx>
-// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
@@ -77,17 +68,8 @@
 #include <unocrsr.hxx>
 #endif
 
-// auto strip #ifndef _TEMPAUTO_HXX
-// auto strip #include <tempauto.hxx>     // temporaere Autokorrektur
-// auto strip #endif
 
-// auto strip #ifndef _SWUNDOTEMPAUTOCORR_HXX
-// auto strip #include <SwUndoTempAutoCorr.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SWUNDO_HXX
-// auto strip #include <swundo.hxx>
-// auto strip #endif
 
 #ifndef _HINTS_HXX
 #include <hints.hxx>
@@ -185,14 +167,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SwCrsrShell::PaMCorrAbs( const SwNodeIndex &rOldNode,
-//STRIP001                            const SwPosition &rNewPos,
-//STRIP001                            const xub_StrLen nOffset )
-//STRIP001 {
-//STRIP001  // alle Verzeichnisse/Bookmarks/.. verschieben.
-//STRIP001  GetDoc()->CorrAbs( rOldNode, rNewPos, nOffset );
-//STRIP001  ::PaMCorrAbs( rOldNode, rNewPos, nOffset );
-//STRIP001 }
 
 /*N*/ void SwDoc::CorrAbs( const SwNodeIndex& rOldNode,
 /*N*/                    const SwPosition& rNewPos,
@@ -208,33 +182,6 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rBkmks.Count(); ++n )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt auf der Position ??
-//STRIP001 /*?*/            int bChgd = 0;
-//STRIP001 /*?*/            if( &( pBkmk = (SwBookmark*)rBkmks[ n ])->pPos1->nNode.GetNode() == pOldNode )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                *pBkmk->pPos1 = aNewPos;
-//STRIP001 /*?*/                pBkmk->pPos1->nContent += nOffset;
-//STRIP001 /*?*/                bChgd = 1;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            if( pBkmk->pPos2 && &pBkmk->pPos2->nNode.GetNode() == pOldNode )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                *pBkmk->pPos2 = aNewPos;
-//STRIP001 /*?*/                pBkmk->pPos2->nContent += nOffset;
-//STRIP001 /*?*/                bChgd = 2;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            // ungueltige Selektion? Dann die Klammerung aufheben
-//STRIP001 /*?*/            if( bChgd && pBkmk->pPos2 &&
-//STRIP001 /*?*/                pBkmk->pPos2->nNode.GetNode().FindTableBoxStartNode() !=
-//STRIP001 /*?*/                pBkmk->pPos1->nNode.GetNode().FindTableBoxStartNode() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if( 1 == bChgd )
-//STRIP001 /*?*/                    *pBkmk->pPos1 = *pBkmk->pPos2;
-//STRIP001 /*?*/                delete pBkmk->pPos2, pBkmk->pPos2 = 0;
-//STRIP001 /*?*/                if( pBkmk->IsServer() )
-//STRIP001 /*?*/                    pBkmk->SetRefObject( 0 );
-//STRIP001 /*?*/                // die Sortierung muss aufrecht erhalten bleiben!
-//STRIP001 /*?*/                rBkmks.Remove( n-- );
-//STRIP001 /*?*/                rBkmks.Insert( pBkmk );
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 /*N*/   { // dann die Redlines korrigieren
@@ -356,14 +303,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SwCrsrShell::PaMCorrAbs( const SwNodeIndex &rStartNode,
-//STRIP001                            const SwNodeIndex &rEndNode,
-//STRIP001                            const SwPosition &rNewPos )
-//STRIP001 {
-//STRIP001  // alle Verzeichnisse/Bookmarks/.. verschieben.
-//STRIP001  GetDoc()->CorrAbs( rStartNode, rEndNode, rNewPos );
-//STRIP001  ::PaMCorrAbs( rStartNode, rEndNode, rNewPos );
-//STRIP001 }
 
 /*N*/ void SwDoc::CorrAbs( const SwNodeIndex& rStartNode,
 /*N*/                    const SwNodeIndex& rEndNode,
@@ -433,29 +372,12 @@ namespace binfilter {
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
-//STRIP001 /*?*/                    _PaMCorrAbs3( PCURCRSR )
-//STRIP001 /*?*/                FOREACHPAM_END()
 /*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
 
-//STRIP001 void SwDoc::CorrAbs( const SwPaM& rRange,
-//STRIP001                  const SwPosition& rNewPos,
-//STRIP001                  BOOL bMoveCrsr )
-//STRIP001 {
-//STRIP001  SwPosition aStart( *rRange.Start() );
-//STRIP001  SwPosition aEnd( *rRange.End() );
-//STRIP001  SwPosition aNewPos( rNewPos );
-//STRIP001
-//STRIP001 //   if( !DoesUndo() )
-//STRIP001      // erstmal die Bookmarks/Redlines korrigieren
-//STRIP001      _DelBookmarks( aStart.nNode, aEnd.nNode, 0,
-//STRIP001                      &aStart.nContent, &aEnd.nContent );
-//STRIP001  if( bMoveCrsr )
-//STRIP001      ::PaMCorrAbs( rRange, rNewPos );
-//STRIP001 }
 
 
 /*  */
@@ -517,8 +439,6 @@ namespace binfilter {
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
-//STRIP001 /*?*/                    _PaMCorrRel1( PCURCRSR )
-//STRIP001 /*?*/                FOREACHPAM_END()
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -563,14 +483,6 @@ namespace binfilter {
 /*N*/               pBkmk->pPos1->nNode.GetNode().FindTableBoxStartNode() )
 /*N*/           {
 /*N*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( 1 == bChgd )
-//STRIP001 /*?*/                    *pBkmk->pPos1 = *pBkmk->pPos2;
-//STRIP001 /*?*/                delete pBkmk->pPos2, pBkmk->pPos2 = 0;
-//STRIP001 /*?*/                if( pBkmk->IsServer() )
-//STRIP001 /*?*/                    pBkmk->SetRefObject( 0 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // die Sortierung muss aufrecht erhalten bleiben!
-//STRIP001 /*?*/                rBkmks.Remove( n-- );
-//STRIP001 /*?*/                rBkmks.Insert( pBkmk );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -613,36 +525,6 @@ namespace binfilter {
 /*N*/ }
 
 // #102505# ->
-//STRIP001 void SwDoc::AppendTmpCorr(const String & aWrong, const String & aCorrect)
-//STRIP001 {
-//STRIP001     if( !pTempAuto )
-//STRIP001         pTempAuto = new SwTempAuto();
-//STRIP001
-//STRIP001     if (DoesUndo())
-//STRIP001     {
-//STRIP001         SwUndoTempAutoCorr * pUndo =
-//STRIP001             new SwUndoTempAutoCorr(UNDO_TMPAUTOCORR, *pTempAuto, aWrong,
-//STRIP001                                    aCorrect);
-//STRIP001         ASSERT(pUndo != NULL,
-//STRIP001                "Creating SwUndoTempAutoCorr failed!");
-//STRIP001         AppendUndo(pUndo);
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         SwCorrection* pCorr =
-//STRIP001             new SwCorrection( aWrong );
-//STRIP001
-//STRIP001         pCorr->Correct() = aCorrect;
-//STRIP001
-//STRIP001         pTempAuto->Insert( pCorr );
-//STRIP001     }
-//STRIP001
-//STRIP001 }
 
-//STRIP001 void SwDoc::RemoveTmpCorr(const String & aWrong)
-//STRIP001 {
-//STRIP001     if (pTempAuto)
-//STRIP001         pTempAuto->Delete(aWrong);
-//STRIP001 }
 // <- #102505#
 }

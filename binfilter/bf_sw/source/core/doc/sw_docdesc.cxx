@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:34:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:22:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,9 +66,6 @@
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _GLOBNAME_HXX //autogen
-// auto strip #include <tools/globname.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
@@ -82,12 +79,6 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
-// auto strip #ifndef _FTNINFO_HXX //autogen
-// auto strip #include <ftninfo.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -107,30 +98,18 @@
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _PAGEFRM_HXX
-// auto strip #include <pagefrm.hxx>    //Fuer DelPageDesc
-// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Fuer DelPageDesc
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMTOOL_HXX
-// auto strip #include <frmtool.hxx>
-// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
@@ -155,9 +134,6 @@
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
 #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
@@ -566,102 +542,8 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void lcl_RemoveFrms( SwFrmFmt& rFmt, FASTBOOL& rbFtnsRemoved )
-//STRIP001 {
-//STRIP001  SwClientIter aIter( rFmt );
-//STRIP001  SwFrm *pFrm;
-//STRIP001  for( pFrm = (SwFrm*)aIter.First(TYPE(SwFrm)); pFrm;
-//STRIP001          pFrm = (SwFrm*)aIter.Next() )
-//STRIP001      if ( !rbFtnsRemoved && pFrm->IsPageFrm() &&
-//STRIP001              ((SwPageFrm*)pFrm)->IsFtnPage() )
-//STRIP001      {
-//STRIP001          rFmt.GetDoc()->GetRootFrm()->RemoveFtns( 0, FALSE, TRUE );
-//STRIP001          rbFtnsRemoved = TRUE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pFrm->Cut();
-//STRIP001          delete pFrm;
-//STRIP001      }
-//STRIP001 }
 
 
-//STRIP001 void SwDoc::DelPageDesc( USHORT i )
-//STRIP001 {
-//STRIP001  ASSERT( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
-//STRIP001  ASSERT( i != 0, "Default Pagedesc loeschen is nicht." );
-//STRIP001  if ( i == 0 )
-//STRIP001      return;
-//STRIP001
-//STRIP001  SwPageDesc *pDel = aPageDescs[i];
-//STRIP001
-//STRIP001  SwFmtPageDesc aDfltDesc( aPageDescs[0] );
-//STRIP001  SwClientIter aIter( *pDel );
-//STRIP001  SwClient* pLast;
-//STRIP001  while( 0 != ( pLast = aIter.GoRoot() ))
-//STRIP001  {
-//STRIP001      if( pLast->ISA( SwFmtPageDesc ) )
-//STRIP001      {
-//STRIP001          const SwModify* pMod = ((SwFmtPageDesc*)pLast)->GetDefinedIn();
-//STRIP001          if ( pMod )
-//STRIP001          {
-//STRIP001              if( pMod->ISA( SwCntntNode ) )
-//STRIP001                  ((SwCntntNode*)pMod)->SetAttr( aDfltDesc );
-//STRIP001              else if( pMod->ISA( SwFmt ))
-//STRIP001                  ((SwFmt*)pMod)->SetAttr( aDfltDesc );
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  ASSERT( !this, "was ist das fuer ein Mofify-Obj?" );
-//STRIP001                  aPageDescs[0]->Add( pLast );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else    //Es kann noch eine Undo-Kopie existieren
-//STRIP001              aPageDescs[0]->Add( pLast );
-//STRIP001      }
-//STRIP001
-//STRIP001      BOOL bFtnInf = FALSE;
-//STRIP001      if ( TRUE == (bFtnInf = pLast == pFtnInfo->GetPageDescDep()) ||
-//STRIP001           pLast == pEndNoteInfo->GetPageDescDep() )
-//STRIP001      {
-//STRIP001          aPageDescs[0]->Add( pLast );
-//STRIP001          if ( GetRootFrm() )
-//STRIP001              GetRootFrm()->CheckFtnPageDescs( !bFtnInf );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  for ( USHORT j = 0; j < aPageDescs.Count(); ++j )
-//STRIP001  {
-//STRIP001      if ( aPageDescs[j]->GetFollow() == pDel )
-//STRIP001      {
-//STRIP001          aPageDescs[j]->SetFollow( 0 );
-//STRIP001          //Clients des PageDesc sind die Attribute, denen sagen wir bescheid.
-//STRIP001          //die Attribute wiederum reichen die Meldung an die Absaetze weiter.
-//STRIP001
-//STRIP001          //Layot benachrichtigen!
-//STRIP001          if( GetRootFrm() )  // ist nicht immer vorhanden!! (Orginizer)
-//STRIP001              GetRootFrm()->CheckPageDescs( (SwPageFrm*)GetRootFrm()->Lower() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( GetRootFrm() )        // ist nicht immer vorhanden!! (Orginizer)
-//STRIP001  {
-//STRIP001      //Wenn jetzt noch irgendwelche Seiten auf die FrmFmt'e (Master und Left)
-//STRIP001      //Zeigen (z.B. irgendwelche Fussnotenseiten), so muessen die Seiten
-//STRIP001      //vernichtet werden.
-//STRIP001
-//STRIP001      // Wenn wir auf Endnotenseiten stossen, schmeissen wir alle Fussnoten weg,
-//STRIP001      // anders kann die Reihenfolge der Seiten (FollowsPageDescs usw.)
-//STRIP001      // nicht garantiert werden.
-//STRIP001      FASTBOOL bFtnsRemoved = FALSE;
-//STRIP001
-//STRIP001      ::lcl_RemoveFrms( pDel->GetMaster(), bFtnsRemoved );
-//STRIP001      ::lcl_RemoveFrms( pDel->GetLeft(), bFtnsRemoved );
-//STRIP001  }
-//STRIP001
-//STRIP001  aPageDescs.Remove( i );
-//STRIP001  delete pDel;
-//STRIP001  SetModified();
-//STRIP001 }
 
 
 
