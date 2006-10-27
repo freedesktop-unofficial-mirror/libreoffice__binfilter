@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_mapprov.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:14:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:59:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,11 +35,6 @@
 
 #include "mapprov.hxx"
 #include "schattr.hxx"
-// auto strip #include "defines.hxx"
-// auto strip #include "chtmodel.hxx"
-// auto strip #include "datapoin.hxx"
-// auto strip #include "datarow.hxx"
-// auto strip #include "chtscene.hxx"
 
 #ifndef _SCH_APP_HRC
 #include "app.hrc"          // for SID_TEXTBREAK
@@ -49,31 +44,10 @@
 #endif
 
 // for SdrObject
-// auto strip #ifndef _SVDOBJ_HXX
-// auto strip #include <bf_svx/svdobj.hxx>
-// auto strip #endif
 // for SdrObjList
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 // for SdrObjListIter
-// auto strip #ifndef _SVDITER_HXX
-// auto strip #include <bf_svx/svditer.hxx>
-// auto strip #endif
 // header for E3dExtrudeObj
-// auto strip #ifndef _E3D_EXTRUD3D_HXX
-// auto strip #include <bf_svx/extrud3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _E3D_LATHE3D_HXX
-// auto strip #include <bf_svx/lathe3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _POLY3D_HXX
-// auto strip #include <bf_svx/poly3d.hxx>
-// auto strip #endif
 // for SVX_UNOEDIT_CHAR_PROPERTIES, SVX_UNOEDIT_FONT_PROPERTIES
-// auto strip #ifndef _SVX_UNOTEXT_HXX
-// auto strip #include <bf_svx/unotext.hxx>
-// auto strip #endif
 #ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
 #endif
