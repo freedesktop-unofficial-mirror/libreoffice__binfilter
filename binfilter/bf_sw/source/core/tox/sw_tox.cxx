@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tox.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:36:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:15:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,24 +39,12 @@
 #ifndef _TOOLS_RESID_HXX
 #include <tools/resid.hxx>
 #endif
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _TXTATR_HXX
 #include <txtatr.hxx>
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _TXTTXMRK_HXX //autogen
-// auto strip #include <txttxmrk.hxx>
-// auto strip #endif
 #ifndef _TOX_HXX
 #include <tox.hxx>
 #endif
@@ -67,9 +55,6 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
@@ -110,7 +95,6 @@ namespace binfilter {
 /*N*/ BYTE SwForm::nFormAuthLen         = 5;
 
 
-//STRIP001 SV_IMPL_PTRARR(SwTOXMarks, SwTOXMark*)
 
 /*N*/ TYPEINIT2( SwTOXMark, SfxPoolItem, SwClient );    // fuers rtti
 
@@ -280,23 +264,6 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/ }
 
 
-//STRIP001 String SwTOXMark::GetText() const
-//STRIP001 {
-//STRIP001  String aStr;
-//STRIP001  if( aAltText.Len() )
-//STRIP001      aStr = aAltText;
-//STRIP001  else if( pTxtAttr && pTxtAttr->GetpTxtNd() )
-//STRIP001  {
-//STRIP001      xub_StrLen* pEndIdx = pTxtAttr->GetEnd();
-//STRIP001      ASSERT( pEndIdx, "TOXMark ohne Mark!!");
-//STRIP001      if( pEndIdx )
-//STRIP001      {
-//STRIP001          const xub_StrLen nStt = *pTxtAttr->GetStart();
-//STRIP001          aStr = pTxtAttr->GetpTxtNd()->GetExpandTxt( nStt, *pEndIdx-nStt );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return aStr;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
      Beschreibung: Typen von Verzeichnissen verwalten
@@ -681,11 +648,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   //rturn true if the first level contains two ore more tabstops
 /*N*/   return 2 <= lcl_GetPatternCount(aPattern[ 1 ], SwForm::aFormTab);
 /*N*/ }
-//STRIP001 void SwForm::SetFirstTabPosFlag( BOOL b )    //{ bHasFirstTabPos = b; }
-//STRIP001 {
-//STRIP001  //only used in the old index dialog and in Sw3IoImp::InTOXs()
-//STRIP001  DBG_WARNING("obsolete, isn't it?")
-//STRIP001 }
 /* -----------------29.07.99 14:37-------------------
 
  --------------------------------------------------*/
@@ -764,9 +726,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   if(nOpenPos != STRING_NOTFOUND && nOpenPos > 0)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern( sRet, 0, nOpenPos);
-//STRIP001 /*?*/        nCloseStart += nOffset;
-//STRIP001 /*?*/        nClosePos += nOffset;
-//STRIP001 /*?*/        nOpenStart = nClosePos;
 /*N*/   }
 /*N*/   else
 /*N*/       nOpenStart = nClosePos;
@@ -776,8 +735,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/       if(nClosePos < nOpenPos - 1)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, nOpenPos);
-//STRIP001 /*?*/            nOpenStart += nOffset;
-//STRIP001 /*?*/            nCloseStart = nOpenStart;
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -893,13 +850,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /* -----------------30.06.99 14:46-------------------
     Check if any style names are set in the array
  --------------------------------------------------*/
-//STRIP001 BOOL SwTOXBase::HasAnyStyleNames() const
-//STRIP001 {
-//STRIP001  for(USHORT i = 0; i < MAXLEVEL; i++)
-//STRIP001      if(aStyleNames[i].Len())
-//STRIP001          return TRUE;
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
      Beschreibung: Verzeichnisspezifische Funktionen
@@ -952,13 +902,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   return BuildToken( eTokenType, nTokenLen );
 /*N*/ }
 
-//STRIP001 SwFormToken SwFormTokenEnumerator::GetCurToken() const
-//STRIP001 {
-//STRIP001  xub_StrLen nTokenLen, nEnd;
-//STRIP001  FormTokenType eTokenType = _SearchNextToken( nCurPatternPos, nEnd,
-//STRIP001                                                  &nTokenLen );
-//STRIP001  return BuildToken( eTokenType, nTokenLen );
-//STRIP001 }
 
 /*N*/ SwFormToken SwFormTokenEnumerator::BuildToken( FormTokenType eTokenType,
 /*N*/                                               xub_StrLen nTokenLen ) const
@@ -1082,75 +1025,10 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   return eTokenType;
 /*N*/ }
 
-//STRIP001 FormTokenType SwFormTokenEnumerator::GetCurTokenType()
-//STRIP001 {
-//STRIP001  xub_StrLen nEnd;
-//STRIP001  return _SearchNextToken( nCurPatternPos, nEnd );
-//STRIP001 }
 
-//STRIP001 FormTokenType SwFormTokenEnumerator::GetNextTokenType()
-//STRIP001 {
-//STRIP001  xub_StrLen nEnd;
-//STRIP001  nCurPatternPos += nCurPatternLen;
-//STRIP001  FormTokenType eTokenType;
-//STRIP001  if( nCurPatternPos < sPattern.Len() )
-//STRIP001  {
-//STRIP001      eTokenType = _SearchNextToken( nCurPatternPos, nEnd );
-//STRIP001      nCurPatternLen = nEnd - nCurPatternPos;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      eTokenType = TOKEN_END;
-//STRIP001      nCurPatternLen = 0;
-//STRIP001  }
-//STRIP001  return eTokenType;
-//STRIP001 }
 
-//STRIP001 FormTokenType SwFormTokenEnumerator::GetPrevTokenType()
-//STRIP001 {
-//STRIP001  FormTokenType eTokenType = TOKEN_END;
-//STRIP001  if( nCurPatternPos )
-//STRIP001  {
-//STRIP001      xub_StrLen nStt = 0, nEnd;
-//STRIP001      do {
-//STRIP001          eTokenType = _SearchNextToken( nStt, nEnd );
-//STRIP001          if( nEnd == nCurPatternPos )
-//STRIP001          {
-//STRIP001              nCurPatternPos = nStt;
-//STRIP001              nCurPatternLen = nEnd - nStt;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          nStt = nEnd;
-//STRIP001          if( nStt >= sPattern.Len() )
-//STRIP001          {
-//STRIP001              eTokenType = TOKEN_END;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      } while( TRUE );
-//STRIP001  }
-//STRIP001  return eTokenType;
-//STRIP001 }
 
-//STRIP001 void SwFormTokenEnumerator::RemoveCurToken()
-//STRIP001 {
-//STRIP001  if( nCurPatternLen )
-//STRIP001  {
-//STRIP001      sPattern.Erase( nCurPatternPos, nCurPatternLen );
-//STRIP001      nCurPatternLen = 0;
-//STRIP001      GetNextTokenType();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SwFormTokenEnumerator::InsertToken( const SwFormToken& rToken )
-//STRIP001 {
-//STRIP001  String sIns( rToken.GetString() );
-//STRIP001  if( sIns.Len() )
-//STRIP001  {
-//STRIP001      sPattern.Insert( sIns, nCurPatternPos );
-//STRIP001      nCurPatternLen = sIns.Len();
-//STRIP001      GetNextTokenType();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ String SwFormToken::GetString() const
 /*N*/ {
