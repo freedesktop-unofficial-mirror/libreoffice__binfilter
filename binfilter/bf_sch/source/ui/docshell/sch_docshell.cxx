@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-20 11:38:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:47:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,37 +42,19 @@
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
-// auto strip #ifndef _SV_WRKWIN_HXX
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
 #include <bf_svx/svxids.hrc>
-// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 #ifndef _SO_CLSIDS_HXX //autogen
 #include <so3/clsids.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-// auto strip #ifndef _UNDO_HXX
-// auto strip #include <svtools/undo.hxx>
-// auto strip #endif
 #ifndef _CTRLTOOL_HXX
 #include <svtools/ctrltool.hxx>
 #endif
-// auto strip #ifndef _IPMENU_HXX
-// auto strip #include <so3/ipmenu.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXMNUMGR_HXX
-// auto strip #include <bf_sfx2/mnumgr.hxx>
-// auto strip #endif
 #ifndef _SFX_PROGRESS_HXX
 #include <bf_sfx2/progress.hxx>
 #endif
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
 #ifndef _SFXSTBMGR_HXX //autogen
 #include <bf_sfx2/stbmgr.hxx>
 #endif
@@ -85,24 +67,13 @@
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
-// auto strip #ifndef _SCH_DLL_HXX //autogen
-// auto strip #include <schdll.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXVIEWFRM_HXX //autogen
-// auto strip #include <bf_sfx2/viewfrm.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <svtools/pathoptions.hxx>
 #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 
-// auto strip #include <sot/formats.hxx>
-// auto strip #include <bf_svx/flstitem.hxx>
 #include <bf_svx/svxids.hrc>
 
 #include "app.hrc"
@@ -110,17 +81,12 @@
 #include "res_bmp.hrc"
 #include "schresid.hxx"
 #include "schview.hxx"
-// auto strip #include "docshell.hxx"
 #include "schmod.hxx"
 
 #include "ChXChartDocument.hxx"
 #include "ChXChartData.hxx"
-// auto strip #include "SchTransferable.hxx"
 
 // header for class SfxFilter
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
 
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
@@ -294,22 +260,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 SchChartDocShell::SchChartDocShell(ChartModel* pDoc,
-//STRIP001                                 SfxObjectCreateMode eMode) throw() :
-//STRIP001  SfxObjectShell(eMode),
-//STRIP001  pUndoManager(NULL),
-//STRIP001  pPrinter(NULL),
-//STRIP001  pFontList(NULL),
-//STRIP001  pChDoc(pDoc),
-//STRIP001  bInitNewNoNewDoc(TRUE),
-//STRIP001  bOwnPrinter(FALSE),
-//STRIP001  mbClipboardExport( FALSE )
-//STRIP001 {
-//STRIP001  CHART_TRACE1( "SchChartDocShell::SchChartDocShell(pDoc,eMode) pDoc=%lx", (long)pDoc );
-//STRIP001  SetShell(this);
-//STRIP001  SetModel( new ChXChartDocument( this ));
-//STRIP001  Construct();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -346,16 +296,6 @@ using namespace ::com::sun::star;
 /*?*/ void SchChartDocShell::Execute(SfxRequest& rReq) throw()
 /*?*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   switch (rReq.GetSlot())
-//STRIP001  {
-//STRIP001      case SID_CLOSEDOC:
-//STRIP001          SfxObjectShell::DoClose();
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SID_UPDATE:
-//STRIP001          pChDoc->InitDataAttrs();
-//STRIP001          pChDoc->BuildChart(FALSE);
-//STRIP001          break;
-//STRIP001  }
 /*?*/ }
 
 /*************************************************************************
@@ -367,28 +307,12 @@ using namespace ::com::sun::star;
 /*?*/ void SchChartDocShell::GetState(SfxItemSet &rSet) throw()
 /*?*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
-//STRIP001  USHORT nWhich = aIter.FirstWhich();
-//STRIP001
-//STRIP001  while (nWhich)
-//STRIP001  {
-//STRIP001      USHORT nSlotId = SfxItemPool::IsWhich(nWhich) ?
-//STRIP001                       GetPool().GetSlotId(nWhich) : nWhich;
-//STRIP001
-//STRIP001      switch (nSlotId)
-//STRIP001      {
 /*            case SID_DOC_MODIFIED:
                 rSet.Put( SfxStringItem( SID_DOC_MODIFIED,
                                          IsModified() ? '*' : ' ' ) );
                 //rSet.Put(SfxBoolItem(SID_DOC_MODIFIED, IsModified()));
                 break;
 */
-//STRIP001          case SID_DOCTEMPLATE :
-//STRIP001              rSet.DisableItem (SID_DOCTEMPLATE);
-//STRIP001              break;
-//STRIP001      }
-//STRIP001
-//STRIP001      nWhich = aIter.NextWhich();
-//STRIP001  }
 /*?*/ }
 
 /*************************************************************************
@@ -397,9 +321,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SchChartDocShell::Activate() throw()
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -407,9 +328,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SchChartDocShell::Deactivate() throw()
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -520,10 +438,6 @@ using namespace ::com::sun::star;
 |*
 |*
 \************************************************************************/
-//STRIP001 Printer* SchChartDocShell::GetDocumentPrinter() throw()
-//STRIP001 {
-//STRIP001  return GetPrinter();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -610,69 +524,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if( bIsXML )
 /*N*/   {
-//STRIP001      RTL_LOGFILE_CONTEXT_TRACE (context, "XML format");
-//STRIP001      bRet = SfxInPlaceObject::Load( pStor );
-//STRIP001
-//STRIP001      // create a new draw page etc.
-//STRIP001      Construct();
-//STRIP001      // The XML Filter expects a completely
-//STRIP001      // initialized document. This is achieved by the
-//STRIP001      // following statement
-//STRIP001      pChDoc->NewOrLoadCompleted( NEW_DOC );
-//STRIP001
-//STRIP001      if( bRet )
-//STRIP001      {
-//STRIP001          SetWaitCursor( TRUE );
-//STRIP001
-//STRIP001          if( pStor )
-//STRIP001          {
-//STRIP001                 Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001              SchXMLWrapper aFilter( xModel, *pStor, TRUE );
-//STRIP001                 sal_Int32 nWarning = aFilter.Import();
-//STRIP001                 if( nWarning )
-//STRIP001                     SetError( nWarning );
-//STRIP001
-//STRIP001                 // ok if there was no waring
-//STRIP001              bRet = (nWarning == 0);
-//STRIP001
-//STRIP001                 // reset number format ids last set by calc
-//STRIP001                 pChDoc->ResetLastAxisNumFmt( -2 );
-//STRIP001
-//STRIP001              if( bRet )
-//STRIP001              {
-//STRIP001                  // during import the page size is set
-//STRIP001                  // the vis area has to be set to the whole page size
-//STRIP001                     Size aPageSize = pChDoc->GetPage( 0 )->GetSize();
-//STRIP001                     if( aPageSize.Width() <= 0 ||
-//STRIP001                         aPageSize.Height() <= 0 )
-//STRIP001                     {
-//STRIP001                         // invalid page size
-//STRIP001                         // assume that page size is uninitialized
-//STRIP001                         DBG_ASSERT( aPageSize.Height() == 0 &&
-//STRIP001                                     aPageSize.Width() == 0,
-//STRIP001                                     "Invalid Page Size" );
-//STRIP001                         aPageSize.setWidth( SCH_DEFAULT_CHART_SIZE_WIDTH );
-//STRIP001                         aPageSize.setHeight( SCH_DEFAULT_CHART_SIZE_HEIGHT );
-//STRIP001                     }
-//STRIP001
-//STRIP001                  Rectangle aVisRect( Point( 0, 0 ), aPageSize );
-//STRIP001                  SetVisArea( aVisRect );
-//STRIP001
-//STRIP001                  pChDoc->SetChanged( FALSE );
-//STRIP001                  pChDoc->NewOrLoadCompleted( DOC_LOADED );
-//STRIP001                  SetModified( FALSE );
-//STRIP001
-//STRIP001                  FinishedLoading(SFX_LOADED_ALL);
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              DBG_ERROR( "Load (XML): got no Storage in Medium!" );
-//STRIP001          }
-//STRIP001          SetWaitCursor( FALSE );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          DBG_ERROR( "Load (XML): SfxInPlaceObject::Load failed!" );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -856,81 +707,16 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 sal_Bool SchChartDocShell::ConvertTo( SfxMedium &rMedium )
-//STRIP001 {
-//STRIP001  BOOL            bRet = FALSE;
-//STRIP001
-//STRIP001  String aFilterName( rMedium.GetFilter()->GetFilterName() );
-//STRIP001  if( aFilterName.EqualsAscii( "StarOffice XML (Chart)" ))
-//STRIP001  {
         /**********************************************************************
          * StarOffice XML-Filter Export
          **********************************************************************/
-//STRIP001      SvStorage* pStorage = rMedium.GetOutputStorage( sal_True );
-//STRIP001      if( pStorage )
-//STRIP001      {
-//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001          SchXMLWrapper aFilter( xModel, *pStorage, TRUE );
-//STRIP001
-//STRIP001          // update user info before writing
-//STRIP001          UpdateDocInfoForSave();
-//STRIP001
-//STRIP001          bRet = aFilter.Export();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          DBG_ERROR( "ConvertTo: got no Storage in Medium!" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  FinishedLoading( SFX_LOADED_ALL );
-//STRIP001
-//STRIP001  return  bRet;
-//STRIP001 }
 
-//STRIP001 sal_Bool SchChartDocShell::ConvertFrom( SfxMedium &rMedium )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001  const String aFilterName(rMedium.GetFilter()->GetFilterName());
-//STRIP001
-//STRIP001  if( aFilterName.EqualsAscii( "StarOffice XML (Chart)" ))
-//STRIP001  {
         /**********************************************************************
         * StarOffice XML-Filter Import
         **********************************************************************/
-//STRIP001      SvStorage* pStorage = rMedium.GetStorage();
-//STRIP001      if( pStorage )
-//STRIP001      {
-//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001          SchXMLWrapper aFilter( xModel, *pStorage, TRUE );
-//STRIP001             sal_Int32 nWarning = aFilter.Import();
-//STRIP001             if( nWarning )
-//STRIP001                 SetError( nWarning );
-//STRIP001
-//STRIP001             // ok if there was no waring
-//STRIP001             bRet = (nWarning == 0);
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          DBG_ERROR( "ConvertFrom: got no Storage in Medium!" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  FinishedLoading( SFX_LOADED_ALL );
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 // ------------------------------------------------------------
 
-//STRIP001 void SchChartDocShell::HandsOff() throw()
-//STRIP001 {
-//STRIP001  SfxInPlaceObject::HandsOff();
-//STRIP001
-//STRIP001     if( pChDoc )
-//STRIP001         pChDoc->HandsOff();
-//STRIP001 }
 
 // ------------------------------------------------------------
 
@@ -1409,12 +1195,4 @@ SvGlobalName aGlobalName;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SchChartDocShell::InPlaceActivate( BOOL b ) throw()
-//STRIP001 {
-//STRIP001  if( pChDoc )
-//STRIP001  {
-//STRIP001      pChDoc->CatchUpBufferedData();
-//STRIP001  }
-//STRIP001  SfxInPlaceObject::InPlaceActivate( b );
-//STRIP001 }
 }
