@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unoobj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:41:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:37:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,27 +33,9 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
-// auto strip #include <com/sun/star/presentation/AnimationEffect.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
-// auto strip #include <com/sun/star/presentation/ClickAction.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
-// auto strip #include <com/sun/star/presentation/AnimationSpeed.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyState.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValues.hpp>
-// auto strip #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
@@ -62,12 +44,6 @@
 #include <comphelper/stl_types.hxx>
 #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_ITEMPROP_HXX
-// auto strip #include <svtools/itemprop.hxx>
-// auto strip #endif
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
@@ -86,12 +62,8 @@
 #include <bf_sfx2/sfxsids.hrc>
 #endif
 #include <comphelper/extract.hxx>
-// auto strip #include <bf_svx/unoprov.hxx>
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/svditer.hxx>
-// auto strip #ifndef _SVDOTEXT_HXX
-// auto strip #include <bf_svx/svdotext.hxx>
-// auto strip #endif
 #include <bf_svx/unoapi.hxx>
 
 #ifndef _SVDOPATH_HXX
@@ -120,12 +92,9 @@
 #include "unohelp.hxx"
 #include "unoobj.hxx"
 #include "unoprnms.hxx"
-// auto strip #include "unomodel.hxx"
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
-// auto strip #include "viewshel.hxx"
 #include "unokywds.hxx"
-// auto strip #include "unostyls.hxx"
 #include "unopsfm.hxx"
 #include "unogsfm.hxx"
 #include "unopstyl.hxx"
@@ -136,7 +105,6 @@
 #include "docshell.hxx"
 #endif
 #include "helpids.h"
-// auto strip #include "glob.hxx"
 #include "glob.hrc"
 #include "unolayer.hxx"
 #include "imapinfo.hxx"
