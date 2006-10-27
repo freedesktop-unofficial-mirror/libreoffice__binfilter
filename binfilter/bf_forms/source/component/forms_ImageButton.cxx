@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ImageButton.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:47:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:03:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #include "ImageButton.hxx"
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -60,9 +57,6 @@
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
 
-// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
-// auto strip #include <comphelper/property.hxx>
-// auto strip #endif
 
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
