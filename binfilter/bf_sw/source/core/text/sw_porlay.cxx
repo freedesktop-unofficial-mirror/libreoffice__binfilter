@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:35:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:11:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,13 +36,9 @@
 
 #pragma hdrstop
 
-// auto strip #include "errhdl.hxx" // ASSERT
 
 #include "txtcfg.hxx"
-// auto strip #include "porlay.hxx"
 #include "itrform2.hxx"
-// auto strip #include "porglue.hxx"
-// auto strip #include "porexp.hxx" // SwQuoVadisPortion
 #include "blink.hxx"    // pBlink
 #include "redlnitr.hxx" // SwRedlineItr
 #include "porfly.hxx"   // SwFlyCntPortion
@@ -61,9 +57,6 @@
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
-// auto strip #ifndef   _DRAWFONT_HXX
-// auto strip #include <drawfont.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -83,9 +76,6 @@
 #ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
 #endif
-// auto strip #ifndef _SV_OUTDEV_HXX
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::i18n::ScriptType;
@@ -100,13 +90,6 @@ namespace binfilter {
  * Checks if cCh + cNectCh builds a ligature (used for Kashidas)
  *************************************************************************/
 
-//STRIP001 sal_Bool lcl_IsLigature( xub_Unicode cCh, xub_Unicode cNextCh )
-//STRIP001 {
-//STRIP001             // Lam + Alef
-//STRIP001     return ( 0x644 == cCh && 0x627 == cNextCh ) ||
-//STRIP001             // Beh + Reh
-//STRIP001            ( 0x628 == cCh && 0x631 == cNextCh );
-//STRIP001 }
 
 /*************************************************************************
  *                 lcl_ConnectToPrev
@@ -114,28 +97,6 @@ namespace binfilter {
  * Checks if cCh is connectable to cPrevCh (used for Kashidas)
  *************************************************************************/
 
-//STRIP001 sal_Bool lcl_ConnectToPrev( xub_Unicode cCh, xub_Unicode cPrevCh )
-//STRIP001 {
-//STRIP001     // Alef, Dal, Thal, Reh, Zain, and Waw do not connect to the left
-//STRIP001     // Uh, there seem to be some more characters that are not connectable
-//STRIP001     // to the left. So we look for the characters that are actually connectable
-//STRIP001     // to the left. Here is the complete list of WH:
-//STRIP001     sal_Bool bRet = 0x628 == cPrevCh ||
-//STRIP001                     ( 0x62A <= cPrevCh && cPrevCh <= 0x62E ) ||
-//STRIP001                     ( 0x633 <= cPrevCh && cPrevCh <= 0x643 ) ||
-//STRIP001                     ( 0x645 <= cPrevCh && cPrevCh <= 0x647 ) ||
-//STRIP001                     0x64A == cPrevCh ||
-//STRIP001                     ( 0x678 <= cPrevCh && cPrevCh <= 0x687 ) ||
-//STRIP001                     ( 0x69A <= cPrevCh && cPrevCh <= 0x6B4 ) ||
-//STRIP001                     ( 0x6B9 <= cPrevCh && cPrevCh <= 0x6C0 ) ||
-//STRIP001                     ( 0x6C3 <= cPrevCh && cPrevCh <= 0x6D3 );
-//STRIP001
-//STRIP001     // check for ligatures cPrevChar + cChar
-//STRIP001     if ( bRet )
-//STRIP001         bRet = ! lcl_IsLigature( cPrevCh, cCh );
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
 
 #endif
 
@@ -180,7 +141,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/           if( IsBlinking() && pBlink )
 /*N*/           {
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SetBlinking( sal_False );
-//STRIP001 /*?*/                pBlink->Replace( this, pPortion );
 /*N*/           }
 /*N*/       }
 /*N*/       else
@@ -197,15 +157,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
  *                virtual SwLineLayout::Append()
  *************************************************************************/
 
-//STRIP001 SwLinePortion *SwLineLayout::Append( SwLinePortion *pIns )
-//STRIP001 {
-//STRIP001  // Erster Attributwechsel, Masse und Laengen
-//STRIP001  // aus *pCurr in die erste Textportion kopieren.
-//STRIP001  if( !pPortion )
-//STRIP001      pPortion = new SwTxtPortion( *(SwLinePortion*)this );
-//STRIP001  // mit Skope aufrufen, sonst Rekursion !
-//STRIP001  return pPortion->SwLinePortion::Append( pIns );
-//STRIP001 }
 
 /*************************************************************************
  *                virtual SwLineLayout::Format()
@@ -909,107 +860,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/         // we search for connecting opportunities (kashida)
 /*N*/         else if ( bAdjustBlock && i18n::ScriptType::COMPLEX == nScript )
 /*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/             SwScanner aScanner( rNode, NULL,
-//STRIP001 /*?*/                                 ::com::sun::star::i18n::WordType::DICTIONARY_WORD,
-//STRIP001 /*?*/                                 nLastKashida, nChg, sal_False, sal_False );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             // the search has to be performed on a per word base
-//STRIP001 /*?*/             while ( aScanner.NextWord() )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 const XubString& rWord = aScanner.GetWord();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 xub_StrLen nIdx = 0;
-//STRIP001 /*?*/                 xub_StrLen nKashidaPos = STRING_LEN;
-//STRIP001 /*?*/                 xub_Unicode cCh;
-//STRIP001 /*?*/                 xub_Unicode cPrevCh = 0;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 while ( nIdx < rWord.Len() )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     cCh = rWord.GetChar( nIdx );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // 1. Priority:
-//STRIP001 /*?*/                     // after user inserted kashida
-//STRIP001 /*?*/                     if ( 0x640 == cCh )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         nKashidaPos = aScanner.GetBegin() + nIdx;
-//STRIP001 /*?*/                         break;
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // 2. Priority:
-//STRIP001 /*?*/                     // after a Seen or Sad
-//STRIP001 /*?*/                     if ( nIdx + 1 < rWord.Len() &&
-//STRIP001 /*?*/                          ( 0x633 == cCh || 0x635 == cCh ) )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         nKashidaPos = aScanner.GetBegin() + nIdx;
-//STRIP001 /*?*/                         break;
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // 3. Priority:
-//STRIP001 /*?*/                     // before final form of Teh Marbuta, Hah, Dal
-//STRIP001 /*?*/                     // 4. Priority:
-//STRIP001 /*?*/                     // before final form of Alef, Lam or Kaf
-//STRIP001 /*?*/                     if ( nIdx && nIdx + 1 == rWord.Len() &&
-//STRIP001 /*?*/                          ( 0x629 == cCh || 0x62D == cCh || 0x62F == cCh ||
-//STRIP001 /*?*/                            0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         ASSERT( 0 != cPrevCh, "No previous character" )
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         // check if character is connectable to previous character,
-//STRIP001 /*?*/                         if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             nKashidaPos = aScanner.GetBegin() + nIdx - 1;
-//STRIP001 /*?*/                             break;
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // 5. Priority:
-//STRIP001 /*?*/                     // before media Bah
-//STRIP001 /*?*/                     if ( nIdx && nIdx + 1 < rWord.Len() && 0x628 == cCh )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         ASSERT( 0 != cPrevCh, "No previous character" )
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         // check if next character is Reh, Yeh or Alef Maksura
-//STRIP001 /*?*/                         xub_Unicode cNextCh = rWord.GetChar( nIdx + 1 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         if ( 0x631 == cNextCh || 0x64A == cNextCh ||
-//STRIP001 /*?*/                              0x649 == cNextCh )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             // check if character is connectable to previous character,
-//STRIP001 /*?*/                             if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
-//STRIP001 /*?*/                                 nKashidaPos = aScanner.GetBegin() + nIdx - 1;
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // 6. Priority:
-//STRIP001 /*?*/                     // other connecting possibilities
-//STRIP001 /*?*/                     if ( nIdx && nIdx + 1 == rWord.Len() &&
-//STRIP001 /*?*/                          0x60C <= cCh && 0x6FE >= cCh )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         ASSERT( 0 != cPrevCh, "No previous character" )
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         // check if character is connectable to previous character,
-//STRIP001 /*?*/                         if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             // only choose this position if we did not find
-//STRIP001 /*?*/                             // a better one:
-//STRIP001 /*?*/                             if ( STRING_LEN == nKashidaPos )
-//STRIP001 /*?*/                                 nKashidaPos = aScanner.GetBegin() + nIdx - 1;
-//STRIP001 /*?*/                             break;
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // Do not consider Fathatan, Dammatan, Kasratan, Fatha,
-//STRIP001 /*?*/                     // Damma, Kasra, Shadda and Sukun when checking if
-//STRIP001 /*?*/                     // a character can be connected to previous character.
-//STRIP001 /*?*/                     if ( cCh < 0x64B || cCh > 0x652 )
-//STRIP001 /*?*/                         cPrevCh = cCh;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     ++nIdx;
-//STRIP001 /*?*/                 } // end of current word
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 if ( STRING_LEN != nKashidaPos )
-//STRIP001 /*?*/                     aKashida.Insert( nKashidaPos, nCntKash++ );
-//STRIP001 /*?*/             } // end of kashida search
 /*N*/         }
 /*N*/ #endif
 /*N*/
@@ -1189,21 +1039,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
  * returns the type of the compressed character
  *************************************************************************/
 
-//STRIP001 BYTE SwScriptInfo::CompType( const xub_StrLen nPos ) const
-//STRIP001 {
-//STRIP001     USHORT nEnd = CountCompChg();
-//STRIP001     for( USHORT nX = 0; nX < nEnd; ++nX )
-//STRIP001     {
-//STRIP001         xub_StrLen nChg = GetCompStart( nX );
-//STRIP001
-//STRIP001         if ( nPos < nChg )
-//STRIP001             return NONE;
-//STRIP001
-//STRIP001         if( nPos < nChg + GetCompLen( nX ) )
-//STRIP001             return GetCompType( nX );
-//STRIP001     }
-//STRIP001     return NONE;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwScriptInfo::HasKana()
@@ -1351,88 +1186,11 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
  *                      SwScriptInfo::KashidaJustify()
  *************************************************************************/
 
-//STRIP001 USHORT SwScriptInfo::KashidaJustify( long* pKernArray, long* pScrArray,
-//STRIP001                                      xub_StrLen nStt, xub_StrLen nLen,
-//STRIP001                                      USHORT nSpace ) const
-//STRIP001 {
-//STRIP001     ASSERT( nLen, "Kashida justification without text?!" )
-//STRIP001
-//STRIP001     // evaluate kashida informatin in collected in SwScriptInfo
-//STRIP001
-//STRIP001     USHORT nCntKash = 0;
-//STRIP001     while( nCntKash < CountKashida() )
-//STRIP001     {
-//STRIP001         if ( nStt <= GetKashida( nCntKash ) )
-//STRIP001             break;
-//STRIP001         else
-//STRIP001             nCntKash++;
-//STRIP001     }
-//STRIP001
-//STRIP001     const xub_StrLen nEnd = nStt + nLen;
-//STRIP001
-//STRIP001     if ( ! pKernArray )
-//STRIP001     {
-//STRIP001         USHORT nCntKashEnd = nCntKash;
-//STRIP001         while ( nCntKashEnd < CountKashida() )
-//STRIP001         {
-//STRIP001             if ( nEnd <= GetKashida( nCntKashEnd ) )
-//STRIP001                 break;
-//STRIP001             else
-//STRIP001                 nCntKashEnd++;
-//STRIP001         }
-//STRIP001
-//STRIP001         return nCntKashEnd - nCntKash;
-//STRIP001     }
-//STRIP001
-//STRIP001     // do nothing if there is no more kashida
-//STRIP001     if ( nCntKash < CountKashida() )
-//STRIP001     {
-//STRIP001         xub_StrLen nKashidaPos = GetKashida( nCntKash );
-//STRIP001         xub_StrLen nIdx = nKashidaPos;
-//STRIP001         USHORT nSpaceAdd = nSpace;
-//STRIP001
-//STRIP001         while ( nIdx < nEnd )
-//STRIP001         {
-//STRIP001             USHORT nArrayPos = nIdx - nStt;
-//STRIP001
-//STRIP001             // next kashida position
-//STRIP001             nIdx = ++nCntKash  < CountKashida() ? GetKashida( nCntKash ) : nEnd;
-//STRIP001             if ( nIdx > nEnd )
-//STRIP001                 nIdx = nEnd;
-//STRIP001
-//STRIP001             const USHORT nArrayEnd = nIdx - nStt;
-//STRIP001
-//STRIP001             while ( nArrayPos < nArrayEnd )
-//STRIP001             {
-//STRIP001                 pKernArray[ nArrayPos ] += nSpaceAdd;
-//STRIP001                 if ( pScrArray )
-//STRIP001                    pScrArray[ nArrayPos ] += nSpaceAdd;
-//STRIP001                 ++nArrayPos;
-//STRIP001             }
-//STRIP001
-//STRIP001             nSpaceAdd += nSpace;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return 0;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwScriptInfo::IsArabicLanguage()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwScriptInfo::IsArabicLanguage( LanguageType aLang )
-//STRIP001 {
-//STRIP001     return LANGUAGE_ARABIC == aLang || LANGUAGE_ARABIC_SAUDI_ARABIA == aLang ||
-//STRIP001            LANGUAGE_ARABIC_IRAQ == aLang || LANGUAGE_ARABIC_EGYPT == aLang ||
-//STRIP001            LANGUAGE_ARABIC_LIBYA == aLang || LANGUAGE_ARABIC_ALGERIA == aLang ||
-//STRIP001            LANGUAGE_ARABIC_MOROCCO == aLang || LANGUAGE_ARABIC_TUNISIA == aLang ||
-//STRIP001            LANGUAGE_ARABIC_OMAN == aLang || LANGUAGE_ARABIC_YEMEN == aLang ||
-//STRIP001            LANGUAGE_ARABIC_SYRIA == aLang || LANGUAGE_ARABIC_JORDAN == aLang ||
-//STRIP001            LANGUAGE_ARABIC_LEBANON == aLang || LANGUAGE_ARABIC_KUWAIT == aLang ||
-//STRIP001            LANGUAGE_ARABIC_UAE == aLang || LANGUAGE_ARABIC_BAHRAIN == aLang ||
-//STRIP001            LANGUAGE_ARABIC_QATAR == aLang;
-//STRIP001 }
 
 #endif
 
@@ -1440,33 +1198,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
  *                      SwScriptInfo::ThaiJustify()
  *************************************************************************/
 
-//STRIP001 USHORT SwScriptInfo::ThaiJustify( const XubString& rTxt, long* pKernArray,
-//STRIP001                                   long* pScrArray, xub_StrLen nStt,
-//STRIP001                                   xub_StrLen nLen, USHORT nSpace )
-//STRIP001 {
-//STRIP001     ASSERT( nStt + nLen <= rTxt.Len(), "String in ThaiJustify too small" )
-//STRIP001
-//STRIP001     long nSpaceSum = 0;
-//STRIP001     USHORT nCnt = 0;
-//STRIP001
-//STRIP001     for ( USHORT nI = 0; nI < nLen; ++nI )
-//STRIP001     {
-//STRIP001         const xub_Unicode cCh = rTxt.GetChar( nStt + nI );
-//STRIP001
-//STRIP001         // check if character is not above or below base
-//STRIP001         if ( ( 0xE34 > cCh || cCh > 0xE3A ) &&
-//STRIP001              ( 0xE47 > cCh || cCh > 0xE4E ) && cCh != 0xE31 )
-//STRIP001         {
-//STRIP001             nSpaceSum += nSpace;
-//STRIP001             ++nCnt;
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( pKernArray ) pKernArray[ nI ] += nSpaceSum;
-//STRIP001         if ( pScrArray ) pScrArray[ nI ] += nSpaceSum;
-//STRIP001     }
-//STRIP001
-//STRIP001     return nCnt;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwScriptInfo::GetScriptInfo()
