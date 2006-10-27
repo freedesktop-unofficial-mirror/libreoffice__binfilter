@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_detfunc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:08:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:32:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,24 +42,18 @@
 
 #include "scitems.hxx"
 #include <svtools/colorcfg.hxx>
-// auto strip #include <bf_svx/eeitem.hxx>
 #include <bf_svx/outlobj.hxx>
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
 #endif
 
-// auto strip #include <bf_svx/sdshitm.hxx>
-// auto strip #include <bf_svx/sdsxyitm.hxx>
-// auto strip #include <bf_svx/sdtditm.hxx>
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/svdocapt.hxx>
 #include <bf_svx/svdocirc.hxx>
 #include <bf_svx/svdopath.hxx>
-// auto strip #include <bf_svx/svdorect.hxx>
 #include <bf_svx/svdpage.hxx>
 #include <bf_svx/svdundo.hxx>
-// auto strip #include <bf_svx/xfillit0.hxx>
 #include <bf_svx/xflclit.hxx>
 #include <bf_svx/xlnclit.hxx>
 #include <bf_svx/xlnedcit.hxx>
@@ -70,7 +63,6 @@
 #include <bf_svx/xlnstit.hxx>
 #include <bf_svx/xlnstwit.hxx>
 #include <bf_svx/xlnwtit.hxx>
-// auto strip #include <bf_svx/xtable.hxx>
 
 #include "detfunc.hxx"
 #include "document.hxx"
@@ -81,7 +73,6 @@
 #include "cell.hxx"
 #include "docpool.hxx"
 #include "patattr.hxx"
-// auto strip #include "attrib.hxx"
 #include "scmod.hxx"
 namespace binfilter {
 
@@ -427,33 +418,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   return bFound;
 /*N*/ }
 
-//STRIP001 BOOL ScDetectiveFunc::IsNonAlienArrow( SdrObject* pObject )          // static
-//STRIP001 {
-//STRIP001  if ( pObject->GetLayer()==SC_LAYER_INTERN &&
-//STRIP001          pObject->IsPolyObj() && pObject->GetPointCount()==2 )
-//STRIP001  {
-//STRIP001      BOOL bObjStartAlien =
-//STRIP001          lcl_IsOtherTab( ((const XLineStartItem&)pObject->GetItem(XATTR_LINESTART)).GetValue() );
-//STRIP001      BOOL bObjEndAlien =
-//STRIP001          lcl_IsOtherTab( ((const XLineEndItem&)pObject->GetItem(XATTR_LINEEND)).GetValue() );
-//STRIP001
-//STRIP001 //-/     BOOL bObjStartAlien = FALSE;
-//STRIP001 //-/     BOOL bObjEndAlien = FALSE;
-//STRIP001 //-/     const XLineAttrSetItem* pLineAttrs =
-//STRIP001 //-/             ((ScPublicAttrObj*)(SdrAttrObj*)pObject)->GetLineAttr();
-//STRIP001 //-/     if (pLineAttrs)
-//STRIP001 //-/     {
-//STRIP001 //-/         const SfxItemSet& rSet = pLineAttrs->GetItemSet();
-//STRIP001 //-/         bObjStartAlien = (((const XLineStartItem&)rSet.Get(XATTR_LINESTART)).
-//STRIP001 //-/                                 GetValue().GetPointCount() == 4 );
-//STRIP001 //-/         bObjEndAlien   = (((const XLineEndItem&)rSet.Get(XATTR_LINEEND)).
-//STRIP001 //-/                                 GetValue().GetPointCount() == 4 );
-//STRIP001 //-/     }
-//STRIP001      return !bObjStartAlien && !bObjEndAlien;
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -471,30 +435,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   BOOL bArea = ( nRefStartCol != nRefEndCol || nRefStartRow != nRefEndRow );
 /*N*/   if (bArea && !bFromOtherTab)
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*N*/        // insert the rectangle before the arrow - this is relied on in FindFrameForObject
-//STRIP001 /*N*/
-//STRIP001 /*N*/        Point aStartCorner = GetDrawPos( nRefStartCol, nRefStartRow, FALSE );
-//STRIP001 /*N*/        Point aEndCorner = GetDrawPos( nRefEndCol+1, nRefEndRow+1, FALSE );
-//STRIP001 /*N*/
-//STRIP001 /*N*/        SdrRectObj* pBox = new SdrRectObj(Rectangle(aStartCorner,aEndCorner));
-//STRIP001 /*N*/
-//STRIP001 /*N*/ //-/       pBox->SetAttributes( rData.GetBoxSet(), FALSE );
-//STRIP001 /*N*/        pBox->SetItemSetAndBroadcast(rData.GetBoxSet());
-//STRIP001 /*N*/
-//STRIP001 /*N*/        ScDrawLayer::SetAnchor( pBox, SCA_CELL );
-//STRIP001 /*N*/        pBox->SetLayer( SC_LAYER_INTERN );
-//STRIP001 /*N*/        pPage->InsertObject( pBox );
-//STRIP001 /*N*/        pModel->AddCalcUndo( new SdrUndoInsertObj( *pBox ) );
-//STRIP001 /*N*/
-//STRIP001 /*N*/        ScDrawObjData* pData = ScDrawLayer::GetObjData( pBox, TRUE );
-//STRIP001 /*N*/        pData->aStt.nCol = nRefStartCol;
-//STRIP001 /*N*/        pData->aStt.nRow = nRefStartRow;
-//STRIP001 /*N*/        pData->aStt.nTab = nTab;
-//STRIP001 /*N*/        pData->aEnd.nCol = nRefEndCol;
-//STRIP001 /*N*/        pData->aEnd.nRow = nRefEndRow;
-//STRIP001 /*N*/        pData->aEnd.nTab = nTab;
-//STRIP001 /*N*/        pData->bValidStart = TRUE;
-//STRIP001 /*N*/        pData->bValidEnd = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   Point aStartPos = GetDrawPos( nRefStartCol, nRefStartRow, TRUE );
@@ -697,125 +637,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   pData->bValidEnd = FALSE;
 /*N*/ }
 
-//STRIP001 SdrObject* ScDetectiveFunc::DrawCaption( USHORT nCol, USHORT nRow, const String& rText,
-//STRIP001                                          ScCommentData& rData, SdrPage* pDestPage,
-//STRIP001                                          BOOL bHasUserText, BOOL bLeft,
-//STRIP001                                          const Rectangle& rVisible )
-//STRIP001 {
-//STRIP001  ScDrawLayer* pModel = NULL;     // muss ScDrawLayer* sein wegen AddCalcUndo !!!
-//STRIP001  SdrPage* pPage = pDestPage;
-//STRIP001  if (!pPage)                     // keine angegeben?
-//STRIP001  {
-//STRIP001      pModel = pDoc->GetDrawLayer();
-//STRIP001      pPage = pModel->GetPage(nTab);
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT nNextCol = nCol+1;
-//STRIP001  const ScMergeAttr* pMerge = (const ScMergeAttr*) pDoc->GetAttr( nCol,nRow,nTab, ATTR_MERGE );
-//STRIP001  if ( pMerge->GetColMerge() > 1 )
-//STRIP001      nNextCol = nCol + pMerge->GetColMerge();
-//STRIP001
-//STRIP001  Point aTailPos = GetDrawPos( nNextCol, nRow, FALSE );
-//STRIP001  Point aRectPos = aTailPos;
-//STRIP001  if ( bLeft )
-//STRIP001  {
-//STRIP001      aTailPos = GetDrawPos( nCol, nRow, FALSE );
-//STRIP001      aTailPos.X() += 10;             // links knapp innerhalb der Zelle
-//STRIP001  }
-//STRIP001  else
-//STRIP001      aTailPos.X() -= 10;             // knapp vor die naechste Zelle zeigen
-//STRIP001
-//STRIP001  //  arrow head should be visible (if visible rectangle is set)
-//STRIP001  if ( aTailPos.X() > rVisible.Right() && rVisible.Right() )
-//STRIP001      aTailPos.X() = rVisible.Right();
-//STRIP001
-//STRIP001  aRectPos.X() += 600;
-//STRIP001  aRectPos.Y() -= 1500;
-//STRIP001  if ( aRectPos.Y() < rVisible.Top() ) aRectPos.Y() = rVisible.Top();
-//STRIP001
-//STRIP001  //  links wird spaeter getestet
-//STRIP001
-//STRIP001  //  bei Textlaenge > SC_NOTE_SMALLTEXT wird die Breite verdoppelt...
-//STRIP001  long nDefWidth = ( rText.Len() > SC_NOTE_SMALLTEXT ) ? 5800 : 2900;
-//STRIP001  Size aRectSize( nDefWidth, 1800 );      // Hoehe wird hinterher angepasst
-//STRIP001
-//STRIP001  long nMaxWidth = 10000;             //! oder wie?
-//STRIP001  if ( !bHasUserText )
-//STRIP001      nMaxWidth = aRectSize.Width();  // Notiz nicht zu gross
-//STRIP001
-//STRIP001  if ( rVisible.Right() )
-//STRIP001  {
-//STRIP001      nMaxWidth = rVisible.Right() - aRectPos.X() - 100;
-//STRIP001      if (nMaxWidth < nDefWidth)
-//STRIP001      {
-//STRIP001          aRectPos.X() -= nDefWidth - nMaxWidth;
-//STRIP001          nMaxWidth = nDefWidth;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if ( aRectPos.X() < rVisible.Left() )
-//STRIP001      aRectPos.X() = rVisible.Left();
-//STRIP001
-//STRIP001  SdrCaptionObj* pCaption = new SdrCaptionObj( Rectangle( aRectPos,aRectSize ), aTailPos );
-//STRIP001  SfxItemSet& rAttrSet = rData.GetCaptionSet();
-//STRIP001  if (bHasUserText)
-//STRIP001  {
-//STRIP001      rAttrSet.Put(SdrTextAutoGrowWidthItem(TRUE));
-//STRIP001      rAttrSet.Put(SdrTextHorzAdjustItem(SDRTEXTHORZADJUST_LEFT));
-//STRIP001      rAttrSet.Put(SdrTextMaxFrameWidthItem(nMaxWidth));
-//STRIP001  }
-//STRIP001
-//STRIP001  ScDrawLayer::SetAnchor( pCaption, SCA_CELL );
-//STRIP001  pCaption->SetLayer( SC_LAYER_INTERN );
-//STRIP001  pPage->InsertObject( pCaption );
-//STRIP001
-//STRIP001  // #78611# for SetText, the object must already be inserted
-//STRIP001  pCaption->SetText( rText );
-//STRIP001
-//STRIP001  OutlinerParaObject* pOPO = pCaption->GetOutlinerParaObject();
-//STRIP001  if ( pOPO )
-//STRIP001      pOPO->SetVertical( FALSE );         // notes are always horizontal
-//STRIP001
-//STRIP001  //  SetAttributes must be after SetText, because the font attributes
-//STRIP001  //  are applied to the text.
-//STRIP001 //-/ pCaption->SetAttributes( rAttrSet, FALSE );
-//STRIP001  pCaption->SetItemSetAndBroadcast(rAttrSet);
-//STRIP001
-//STRIP001  pCaption->SetSpecialTextBoxShadow();
-//STRIP001
-//STRIP001  Rectangle aLogic = pCaption->GetLogicRect();
-//STRIP001  Rectangle aOld = aLogic;
-//STRIP001  if (bHasUserText)
-//STRIP001      pCaption->AdjustTextFrameWidthAndHeight( aLogic, TRUE, TRUE );
-//STRIP001  else
-//STRIP001      pCaption->AdjustTextFrameWidthAndHeight( aLogic, TRUE, FALSE );
-//STRIP001  if (rVisible.Bottom())
-//STRIP001  {
-//STRIP001      //  unterer Rand kann erst nach dem AdjustTextFrameWidthAndHeight getestet werden
-//STRIP001      if ( aLogic.Bottom() > rVisible.Bottom() )
-//STRIP001      {
-//STRIP001          long nDif = aLogic.Bottom() - rVisible.Bottom();
-//STRIP001          aLogic.Bottom() = rVisible.Bottom();
-//STRIP001          aLogic.Top() = Max( rVisible.Top(), (long)(aLogic.Top() - nDif) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (aLogic != aOld)
-//STRIP001      pCaption->SetLogicRect(aLogic);
-//STRIP001
-//STRIP001  //  Undo und UserData nur, wenn's im Dokument ist, also keine Page angegeben war
-//STRIP001  if ( !pDestPage )
-//STRIP001  {
-//STRIP001      pModel->AddCalcUndo( new SdrUndoInsertObj( *pCaption ) );
-//STRIP001
-//STRIP001      ScDrawObjData* pData = ScDrawLayer::GetObjData( pCaption, TRUE );
-//STRIP001      pData->aStt.nCol = nCol;
-//STRIP001      pData->aStt.nRow = nRow;
-//STRIP001      pData->aStt.nTab = nTab;
-//STRIP001      pData->bValidStart = TRUE;
-//STRIP001      pData->bValidEnd = FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return pCaption;
-//STRIP001 }
 
 /*N*/ void ScDetectiveFunc::DeleteArrowsAt( USHORT nCol, USHORT nRow, BOOL bDestPnt )
 /*N*/ {
@@ -1582,23 +1403,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   if ( bFound || bForce || rUserText.Len() )
 /*N*/   {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrModel* pDestModel = pModel;
-//STRIP001      if ( pDestPage )
-//STRIP001          pDestModel = pDestPage->GetModel();
-//STRIP001      ScCommentData aData( pDoc, pDestModel );    // richtigen Pool benutzen
-//STRIP001
-//STRIP001      String aNoteText = aNote.GetText();     //! Autor etc. von der Notiz?
-//STRIP001
-//STRIP001      String aDisplay;
-//STRIP001      BOOL bHasUser = ( rUserText.Len() != 0 );
-//STRIP001      if ( bHasUser )
-//STRIP001      {
-//STRIP001          aDisplay += rUserText;
-//STRIP001          if ( aNoteText.Len() )
-//STRIP001              aDisplay.AppendAscii( RTL_CONSTASCII_STRINGPARAM("\n--------\n") );
-//STRIP001      }
-//STRIP001      aDisplay += aNoteText;
-//STRIP001
-//STRIP001      pObject = DrawCaption( nCol, nRow, aDisplay, aData, pDestPage, bHasUser, bLeft, rVisible );
 /*N*/   }
 /*N*/
 /*N*/   return pObject;
@@ -1855,27 +1659,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/                           BOOL bRedLine )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer();
-//STRIP001  if (!pModel) return;
-//STRIP001  ScDetectiveData aData( pModel );
-//STRIP001
-//STRIP001  switch (eType)
-//STRIP001  {
-//STRIP001      case SC_DETOBJ_ARROW:
-//STRIP001      case SC_DETOBJ_FROMOTHERTAB:
-//STRIP001          InsertArrow( rPosition.Col(), rPosition.Row(),
-//STRIP001                       rSource.aStart.Col(), rSource.aStart.Row(),
-//STRIP001                       rSource.aEnd.Col(), rSource.aEnd.Row(),
-//STRIP001                       (eType == SC_DETOBJ_FROMOTHERTAB), bRedLine, aData );
-//STRIP001          break;
-//STRIP001      case SC_DETOBJ_TOOTHERTAB:
-//STRIP001          InsertToOtherTab( rSource.aStart.Col(), rSource.aStart.Row(),
-//STRIP001                            rSource.aEnd.Col(), rSource.aEnd.Row(),
-//STRIP001                            bRedLine, aData );
-//STRIP001          break;
-//STRIP001      case SC_DETOBJ_CIRCLE:
-//STRIP001          DrawCircle( rPosition.Col(), rPosition.Row(), aData );
-//STRIP001          break;
-//STRIP001  }
 /*N*/ }
 
 // static
@@ -1916,9 +1699,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer
 /*N*/ }
 
 // static
-//STRIP001 BOOL ScDetectiveFunc::IsColorsInitialized()
-//STRIP001 {
-//STRIP001  return bColorsInitialized;
-//STRIP001 }
 
 }

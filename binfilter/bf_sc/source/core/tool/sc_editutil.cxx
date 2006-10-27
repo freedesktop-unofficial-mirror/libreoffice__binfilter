@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editutil.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:09:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:32:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,15 +46,9 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <bf_svx/algitem.hxx>
 #include <svtools/colorcfg.hxx>
-// auto strip #include <bf_svx/editview.hxx>
 #include <bf_svx/editstat.hxx>
-// auto strip #include <bf_svx/escpitem.hxx>
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
@@ -75,25 +68,18 @@
 
 #include <bf_svx/flditem.hxx>
 //#include <vcl/system.hxx>
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #include <vcl/outdev.hxx>
 #include <svtools/inethist.hxx>
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #include "editutil.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "attrib.hxx"
-// auto strip #include "document.hxx"
 #include "docpool.hxx"
 #include "patattr.hxx"
 #include "scmod.hxx"
-// auto strip #include "inputopt.hxx"
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
@@ -128,94 +114,6 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 
 //------------------------------------------------------------------------
 
-//STRIP001 Rectangle ScEditUtil::GetEditArea( const ScPatternAttr* pPattern, BOOL bForceToTop )
-//STRIP001 {
-//STRIP001  // bForceToTop = always align to top, for editing
-//STRIP001  // (FALSE for querying URLs etc.)
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001
-//STRIP001  if (!pPattern)
-//STRIP001      pPattern = pDoc->GetPattern( nCol, nRow, nTab );
-//STRIP001
-//STRIP001  Point aStartPos = aScrPos;
-//STRIP001
-//STRIP001  const ScMergeAttr* pMerge = (const ScMergeAttr*)&pPattern->GetItem(ATTR_MERGE);
-//STRIP001  long nCellX = (long) ( pDoc->GetColWidth(nCol,nTab) * nPPTX );
-//STRIP001  if ( pMerge->GetColMerge() > 1 )
-//STRIP001  {
-//STRIP001      USHORT nCountX = pMerge->GetColMerge();
-//STRIP001      for (i=1; i<nCountX; i++)
-//STRIP001          nCellX += (long) ( pDoc->GetColWidth(nCol+i,nTab) * nPPTX );
-//STRIP001  }
-//STRIP001  long nCellY = (long) ( pDoc->GetRowHeight(nRow,nTab) * nPPTY );
-//STRIP001  if ( pMerge->GetRowMerge() > 1 )
-//STRIP001  {
-//STRIP001      USHORT nCountY = pMerge->GetRowMerge();
-//STRIP001      for (i=1; i<nCountY; i++)
-//STRIP001          nCellY += (long) ( pDoc->GetRowHeight(nRow+i,nTab) * nPPTY );
-//STRIP001  }
-//STRIP001
-//STRIP001  const SvxMarginItem* pMargin = (const SvxMarginItem*)&pPattern->GetItem(ATTR_MARGIN);
-//STRIP001  USHORT nIndent = 0;
-//STRIP001  if ( ((const SvxHorJustifyItem&)pPattern->GetItem(ATTR_HOR_JUSTIFY)).GetValue() ==
-//STRIP001              SVX_HOR_JUSTIFY_LEFT )
-//STRIP001      nIndent = ((const SfxUInt16Item&)pPattern->GetItem(ATTR_INDENT)).GetValue();
-//STRIP001  long nPixDifX   = (long) ( ( pMargin->GetLeftMargin() + nIndent ) * nPPTX );
-//STRIP001  aStartPos.X()   += nPixDifX;
-//STRIP001  nCellX          -= nPixDifX + (long) ( pMargin->GetRightMargin() * nPPTX );     // wegen Umbruch etc.
-//STRIP001
-//STRIP001  //  vertikale Position auf die in der Tabelle anpassen
-//STRIP001
-//STRIP001  long nPixDifY;
-//STRIP001  long nTopMargin = (long) ( pMargin->GetTopMargin() * nPPTY );
-//STRIP001  SvxCellVerJustify eJust = (SvxCellVerJustify) ((const SvxVerJustifyItem&)pPattern->
-//STRIP001                                              GetItem(ATTR_VER_JUSTIFY)).GetValue();
-//STRIP001
-//STRIP001  //  asian vertical is always edited top-aligned
-//STRIP001  BOOL bAsianVertical = (SvxCellOrientation)((const SvxOrientationItem&)
-//STRIP001          pPattern->GetItem(ATTR_ORIENTATION)).GetValue() == SVX_ORIENTATION_STACKED &&
-//STRIP001      ((const SfxBoolItem&)pPattern->GetItem( ATTR_VERTICAL_ASIAN )).GetValue();
-//STRIP001
-//STRIP001  if ( eJust == SVX_VER_JUSTIFY_TOP ||
-//STRIP001          ( bForceToTop && ( SC_MOD()->GetInputOptions().GetTextWysiwyg() || bAsianVertical ) ) )
-//STRIP001      nPixDifY = nTopMargin;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      MapMode aMode = pDev->GetMapMode();
-//STRIP001      pDev->SetMapMode( MAP_PIXEL );
-//STRIP001
-//STRIP001      long nTextHeight = pDoc->GetNeededSize( nCol, nRow, nTab,
-//STRIP001                                              pDev, nPPTX, nPPTY, aZoomX, aZoomY, FALSE );
-//STRIP001      if (!nTextHeight)
-//STRIP001      {                                   // leere Zelle
-//STRIP001          Font aFont;
-//STRIP001          // font color doesn't matter here
-//STRIP001          pPattern->GetFont( aFont, SC_AUTOCOL_BLACK, pDev, &aZoomY );
-//STRIP001          pDev->SetFont(aFont);
-//STRIP001          nTextHeight = pDev->GetTextHeight() + nTopMargin +
-//STRIP001                          (long) ( pMargin->GetBottomMargin() * nPPTY );
-//STRIP001      }
-//STRIP001
-//STRIP001      pDev->SetMapMode(aMode);
-//STRIP001
-//STRIP001      if ( nTextHeight > nCellY + nTopMargin || bForceToTop )
-//STRIP001          nPixDifY = 0;                           // zu gross -> oben anfangen
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if ( eJust == SVX_VER_JUSTIFY_CENTER )
-//STRIP001              nPixDifY = nTopMargin + ( nCellY - nTextHeight ) / 2;
-//STRIP001          else
-//STRIP001              nPixDifY = nCellY - nTextHeight + nTopMargin;       // JUSTIFY_BOTTOM
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  aStartPos.Y() += nPixDifY;
-//STRIP001  nCellY      -= nPixDifY;
-//STRIP001
-//STRIP001                                                      //  -1 -> Gitter nicht ueberschreiben
-//STRIP001  return Rectangle( aStartPos, Size(nCellX-1,nCellY-1) );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -381,16 +279,6 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ }
 
 
-//STRIP001 void ScEditEngineDefaulter::SetDefaultItem( const SfxPoolItem& rItem )
-//STRIP001 {
-//STRIP001  if ( !pDefaults )
-//STRIP001  {
-//STRIP001      pDefaults = new SfxItemSet( GetEmptyItemSet() );
-//STRIP001      bDeleteDefaults = TRUE;
-//STRIP001  }
-//STRIP001  pDefaults->Put( rItem );
-//STRIP001  SetDefaults( *pDefaults, FALSE );
-//STRIP001 }
 
 
 /*N*/ void ScEditEngineDefaulter::SetText( const EditTextObject& rTextObject )
@@ -466,117 +354,12 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*?*/       SetUpdateMode( TRUE );
 /*N*/ }
 
-//STRIP001 void ScEditEngineDefaulter::RepeatDefaults()
-//STRIP001 {
-//STRIP001     if ( pDefaults )
-//STRIP001     {
-//STRIP001         USHORT nPara = GetParagraphCount();
-//STRIP001         for ( USHORT j=0; j<nPara; j++ )
-//STRIP001             SetParaAttribs( j, *pDefaults );
-//STRIP001     }
-//STRIP001 }
 
-//STRIP001 void ScEditEngineDefaulter::RemoveParaAttribs()
-//STRIP001 {
-//STRIP001  SfxItemSet* pCharItems = NULL;
-//STRIP001  BOOL bUpdateMode = GetUpdateMode();
-//STRIP001  if ( bUpdateMode )
-//STRIP001      SetUpdateMode( FALSE );
-//STRIP001  USHORT nParCount = GetParagraphCount();
-//STRIP001  for (USHORT nPar=0; nPar<nParCount; nPar++)
-//STRIP001  {
-//STRIP001      const SfxItemSet& rParaAttribs = GetParaAttribs( nPar );
-//STRIP001      USHORT nWhich;
-//STRIP001      for (nWhich = EE_CHAR_START; nWhich <= EE_CHAR_END; nWhich ++)
-//STRIP001      {
-//STRIP001          const SfxPoolItem* pParaItem;
-//STRIP001          if ( rParaAttribs.GetItemState( nWhich, FALSE, &pParaItem ) == SFX_ITEM_SET )
-//STRIP001          {
-//STRIP001              //  if defaults are set, use only items that are different from default
-//STRIP001              if ( !pDefaults || *pParaItem != pDefaults->Get(nWhich) )
-//STRIP001              {
-//STRIP001                  if (!pCharItems)
-//STRIP001                      pCharItems = new SfxItemSet( GetEmptyItemSet() );
-//STRIP001                  pCharItems->Put( *pParaItem );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( pCharItems )
-//STRIP001      {
-//STRIP001          SvUShorts aPortions;
-//STRIP001          GetPortions( nPar, aPortions );
-//STRIP001
-//STRIP001          //  loop through the portions of the paragraph, and set only those items
-//STRIP001          //  that are not overridden by existing character attributes
-//STRIP001
-//STRIP001          USHORT nPCount = aPortions.Count();
-//STRIP001          USHORT nStart = 0;
-//STRIP001          for ( USHORT nPos=0; nPos<nPCount; nPos++ )
-//STRIP001          {
-//STRIP001              USHORT nEnd = aPortions.GetObject( nPos );
-//STRIP001              ESelection aSel( nPar, nStart, nPar, nEnd );
-//STRIP001              SfxItemSet aOldCharAttrs = GetAttribs( aSel );
-//STRIP001              SfxItemSet aNewCharAttrs = *pCharItems;
-//STRIP001              for (nWhich = EE_CHAR_START; nWhich <= EE_CHAR_END; nWhich ++)
-//STRIP001              {
-//STRIP001                  //  Clear those items that are different from existing character attributes.
-//STRIP001                  //  Where no character attributes are set, GetAttribs returns the paragraph attributes.
-//STRIP001                  const SfxPoolItem* pItem;
-//STRIP001                  if ( aNewCharAttrs.GetItemState( nWhich, FALSE, &pItem ) == SFX_ITEM_SET &&
-//STRIP001                       *pItem != aOldCharAttrs.Get(nWhich) )
-//STRIP001                  {
-//STRIP001                      aNewCharAttrs.ClearItem(nWhich);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if ( aNewCharAttrs.Count() )
-//STRIP001                  QuickSetAttribs( aNewCharAttrs, aSel );
-//STRIP001
-//STRIP001              nStart = nEnd;
-//STRIP001          }
-//STRIP001
-//STRIP001          DELETEZ( pCharItems );
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( rParaAttribs.Count() )
-//STRIP001      {
-//STRIP001          //  clear all paragraph attributes (including defaults),
-//STRIP001          //  so they are not contained in resulting EditTextObjects
-//STRIP001
-//STRIP001          SetParaAttribs( nPar, SfxItemSet( *rParaAttribs.GetPool(), rParaAttribs.GetRanges() ) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if ( bUpdateMode )
-//STRIP001      SetUpdateMode( TRUE );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScTabEditEngine::ScTabEditEngine( ScDocument* pDoc )
-//STRIP001      : ScEditEngineDefaulter( pDoc->GetEnginePool() )
-//STRIP001 {
-//STRIP001  SetEditTextObjectPool( pDoc->GetEditPool() );
-//STRIP001  Init((const ScPatternAttr&)pDoc->GetPool()->GetDefaultItem(ATTR_PATTERN));
-//STRIP001 }
 
-//STRIP001 ScTabEditEngine::ScTabEditEngine( const ScPatternAttr& rPattern,
-//STRIP001          SfxItemPool* pEnginePool, SfxItemPool* pTextObjectPool )
-//STRIP001      : ScEditEngineDefaulter( pEnginePool )
-//STRIP001 {
-//STRIP001  if ( pTextObjectPool )
-//STRIP001      SetEditTextObjectPool( pTextObjectPool );
-//STRIP001  Init( rPattern );
-//STRIP001 }
 
-//STRIP001 void ScTabEditEngine::Init( const ScPatternAttr& rPattern )
-//STRIP001 {
-//STRIP001  SetRefMapMode(MAP_100TH_MM);
-//STRIP001  SfxItemSet* pEditDefaults = new SfxItemSet( GetEmptyItemSet() );
-//STRIP001  rPattern.FillEditItemSet( pEditDefaults );
-//STRIP001  SetDefaults( pEditDefaults );
-//STRIP001  // wir haben keine StyleSheets fuer Text
-//STRIP001  SetControlWord( GetControlWord() & ~EE_CNTRL_RTFSTYLESHEETS );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 //      Feldbefehle fuer Kopf- und Fusszeilen
@@ -586,70 +369,7 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 //      Zahlen aus \sw\source\core\doc\numbers.cxx
 //
 
-//STRIP001 String lcl_GetRomanStr( USHORT nNo )
-//STRIP001 {
-//STRIP001  String aStr;
-//STRIP001  if( nNo < 4000 )        // mehr kann nicht dargestellt werden
-//STRIP001  {
-//STRIP001 //       i, ii, iii, iv, v, vi, vii, vii, viii, ix
-//STRIP001 //                           (Dummy),1000,500,100,50,10,5,1
-//STRIP001      sal_Char *cRomanArr = "mdclxvi--";  // +2 Dummy-Eintraege !!
-//STRIP001      USHORT nMask = 1000;
-//STRIP001      while( nMask )
-//STRIP001      {
-//STRIP001          BYTE nZahl = BYTE(nNo / nMask);
-//STRIP001          BYTE nDiff = 1;
-//STRIP001          nNo %= nMask;
-//STRIP001
-//STRIP001          if( 5 < nZahl )
-//STRIP001          {
-//STRIP001              if( nZahl < 9 )
-//STRIP001                  aStr += *(cRomanArr-1);
-//STRIP001              ++nDiff;
-//STRIP001              nZahl -= 5;
-//STRIP001          }
-//STRIP001          switch( nZahl )
-//STRIP001          {
-//STRIP001          case 3:     { aStr += *cRomanArr; }
-//STRIP001          case 2:     { aStr += *cRomanArr; }
-//STRIP001          case 1:     { aStr += *cRomanArr; }
-//STRIP001                      break;
-//STRIP001
-//STRIP001          case 4:     {
-//STRIP001                        aStr += *cRomanArr;
-//STRIP001                        aStr += *(cRomanArr-nDiff);
-//STRIP001                      }
-//STRIP001                      break;
-//STRIP001          case 5:     { aStr += *(cRomanArr-nDiff); }
-//STRIP001                      break;
-//STRIP001          }
-//STRIP001
-//STRIP001          nMask /= 10;            // zur naechsten Dekade
-//STRIP001          cRomanArr += 2;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return aStr;
-//STRIP001 }
 
-//STRIP001 String lcl_GetCharStr( USHORT nNo )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nNo, "0 ist eine ungueltige Nummer !!" );
-//STRIP001  String aStr;
-//STRIP001
-//STRIP001  const USHORT coDiff = 'Z' - 'A' +1;
-//STRIP001  USHORT nCalc;
-//STRIP001
-//STRIP001  do {
-//STRIP001      nCalc = nNo % coDiff;
-//STRIP001      if( !nCalc )
-//STRIP001          nCalc = coDiff;
-//STRIP001      aStr.Insert( (sal_Unicode)('a' - 1 + nCalc ), 0 );
-//STRIP001      nNo -= nCalc;
-//STRIP001      if( nNo )
-//STRIP001          nNo /= coDiff;
-//STRIP001  } while( nNo );
-//STRIP001  return aStr;
-//STRIP001 }
 
 /*N*/ String lcl_GetNumStr( USHORT nNo, SvxNumType eType )
 /*N*/ {
@@ -808,15 +528,5 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/   return aRet;
 /*N*/ }
 
-//STRIP001 void __EXPORT ScFieldEditEngine::FieldClicked( const SvxFieldItem& rField, USHORT, USHORT )
-//STRIP001 {
-//STRIP001  const SvxFieldData* pFld = rField.GetField();
-//STRIP001
-//STRIP001  if ( pFld && pFld->ISA( SvxURLField ) && bExecuteURL )
-//STRIP001  {
-//STRIP001      const SvxURLField* pURLField = (const SvxURLField*) pFld;
-//STRIP001      ScGlobal::OpenURL( pURLField->GetURL(), pURLField->GetTargetFrame() );
-//STRIP001  }
-//STRIP001 }
 
 }
