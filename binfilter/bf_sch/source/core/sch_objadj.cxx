@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_objadj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:58:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:27:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,12 +98,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchObjectAdjust::SchObjectAdjust(const SchObjectAdjust& rObjectAdjust) :
-//STRIP001  SdrObjUserData(rObjectAdjust),
-//STRIP001  eAdjust(rObjectAdjust.eAdjust),
-//STRIP001  eOrient(rObjectAdjust.eOrient)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*

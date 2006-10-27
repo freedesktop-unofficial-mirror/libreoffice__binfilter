@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_objfac.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:59:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:27:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,6 @@
 #include "objadj.hxx"
 #include "datarow.hxx"
 #include "datapoin.hxx"
-// auto strip #include "lightfac.hxx"
 #include "glob.hxx"
 namespace binfilter {
 
