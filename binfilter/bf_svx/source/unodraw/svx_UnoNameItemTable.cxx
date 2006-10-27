@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_UnoNameItemTable.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:21:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:53:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #include <svtools/itemset.hxx>
 #endif
 
-// auto strip #ifndef _SFXSTYLE_HXX
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
 
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>

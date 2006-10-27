@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unobtabl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:22:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:54:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,20 +33,11 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
 #ifndef _SV_CVTGRF_HXX
 #include <vcl/cvtgrf.hxx>
 #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_XIT_HXX
-// auto strip #include <xit.hxx>
-// auto strip #endif
 #ifndef SVX_LIGHT
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
@@ -62,10 +53,6 @@
 #endif
 
 #include "xbtmpit.hxx"
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "xflhtit.hxx"
-// auto strip #include "unoapi.hxx"
-// auto strip #include "impgrf.hxx"
 #include "unomid.hxx"
 #include "unoprnms.hxx"
 namespace binfilter {
@@ -132,12 +119,6 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
     return *new SvxUnoBitmapTable(pModel);
 }
 } //STRIP009 namespace bifilter
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-// auto strip #include <unotools/localfilehelper.hxx>
-// auto strip #endif
 
 namespace binfilter {//STRIP009
 /** returns a GraphicObject for this URL */
