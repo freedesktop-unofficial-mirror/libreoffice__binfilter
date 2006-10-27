@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_cellatr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:17:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:14:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,27 +37,15 @@
 #pragma hdrstop
 
 #include <float.h>
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>            // fuer RES_..
-// auto strip #endif
 
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
-// auto strip #ifndef _CALC_HXX
-// auto strip #include <calc.hxx>
-// auto strip #endif
-// auto strip #ifndef _FORMAT_HXX
-// auto strip #include <format.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
@@ -69,12 +57,6 @@
 #ifndef _NODE_HXX
 #include <node.hxx>
 #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>
-// auto strip #endif
-// auto strip #ifndef _ROLBCK_HXX
-// auto strip #include <rolbck.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -165,106 +147,8 @@ SwTableBox* SwTblBoxFormula::GetTableBox()
 }
 
 
-//STRIP001 void SwTblBoxFormula::ChangeState( const SfxPoolItem* pItem )
-//STRIP001 {
-//STRIP001  if( !pDefinedIn )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  SwTableFmlUpdate* pUpdtFld;
-//STRIP001  if( !pItem || RES_TABLEFML_UPDATE != pItem->Which() )
-//STRIP001  {
-//STRIP001      // setze bei allen das Value-Flag zurueck
-//STRIP001      ChgValid( FALSE );
-//STRIP001      return ;
-//STRIP001  }
-//STRIP001
-//STRIP001  pUpdtFld = (SwTableFmlUpdate*)pItem;
-//STRIP001
-//STRIP001  // bestimme die Tabelle, in der das Attribut steht
-//STRIP001  const SwTableNode* pTblNd;
-//STRIP001  const SwNode* pNd = GetNodeOfFormula();
-//STRIP001  if( pNd && &pNd->GetNodes() == &pNd->GetDoc()->GetNodes() &&
-//STRIP001      0 != ( pTblNd = pNd->FindTableNode() ))
-//STRIP001  {
-//STRIP001      switch( pUpdtFld->eFlags )
-//STRIP001      {
-//STRIP001      case TBL_CALC:
-//STRIP001          // setze das Value-Flag zurueck
-//STRIP001          // JP 17.06.96: interne Darstellung auf alle Formeln
-//STRIP001          //              (Referenzen auf andere Tabellen!!!)
-//STRIP001 //           if( VF_CMD & pFld->GetFormat() )
-//STRIP001 //               pFld->PtrToBoxNm( pUpdtFld->pTbl );
-//STRIP001 //           else
-//STRIP001              ChgValid( FALSE );
-//STRIP001          break;
-//STRIP001      case TBL_BOXNAME:
-//STRIP001          // ist es die gesuchte Tabelle ??
-//STRIP001          if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-//STRIP001              // zur externen Darstellung
-//STRIP001              PtrToBoxNm( pUpdtFld->pTbl );
-//STRIP001          break;
-//STRIP001      case TBL_BOXPTR:
-//STRIP001          // zur internen Darstellung
-//STRIP001          // JP 17.06.96: interne Darstellung auf alle Formeln
-//STRIP001          //              (Referenzen auf andere Tabellen!!!)
-//STRIP001          BoxNmToPtr( &pTblNd->GetTable() );
-//STRIP001          break;
-//STRIP001      case TBL_RELBOXNAME:
-//STRIP001          // ist es die gesuchte Tabelle ??
-//STRIP001          if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-//STRIP001              // zur relativen Darstellung
-//STRIP001              ToRelBoxNm( pUpdtFld->pTbl );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case TBL_SPLITTBL:
-//STRIP001          if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-//STRIP001          {
-//STRIP001              USHORT nLnPos = SwTableFormula::GetLnPosInTbl(
-//STRIP001                                      pTblNd->GetTable(), GetTableBox() );
-//STRIP001              pUpdtFld->bBehindSplitLine = USHRT_MAX != nLnPos &&
-//STRIP001                                          pUpdtFld->nSplitLine <= nLnPos;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pUpdtFld->bBehindSplitLine = FALSE;
-//STRIP001          // kein break
-//STRIP001      case TBL_MERGETBL:
-//STRIP001          if( pUpdtFld->pHistory )
-//STRIP001          {
-//STRIP001              // fuer die History brauche ich aber die unveraenderte Formel
-//STRIP001              SwTblBoxFormula aCopy( *this );
-//STRIP001              pUpdtFld->bModified = FALSE;
-//STRIP001              ToSplitMergeBoxNm( *pUpdtFld );
-//STRIP001
-//STRIP001              if( pUpdtFld->bModified )
-//STRIP001              {
-//STRIP001                  // und dann in der externen Darstellung
-//STRIP001                  aCopy.PtrToBoxNm( &pTblNd->GetTable() );
-//STRIP001                  pUpdtFld->pHistory->Add( &aCopy, &aCopy,
-//STRIP001                              pNd->FindTableBoxStartNode()->GetIndex() );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              ToSplitMergeBoxNm( *pUpdtFld );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void SwTblBoxFormula::Calc( SwTblCalcPara& rCalcPara, double& rValue )
-//STRIP001 {
-//STRIP001  if( !rCalcPara.rCalc.IsCalcError() )        // ist schon Fehler gesetzt ?
-//STRIP001  {
-//STRIP001      // erzeuge aus den BoxNamen die Pointer
-//STRIP001      BoxNmToPtr( rCalcPara.pTbl );
-//STRIP001      String sFml( MakeFormel( rCalcPara ));
-//STRIP001      if( !rCalcPara.rCalc.IsCalcError() )
-//STRIP001          rValue = rCalcPara.rCalc.Calculate( sFml ).GetDouble();
-//STRIP001      else
-//STRIP001          rValue = DBL_MAX;
-//STRIP001      ChgValid( !rCalcPara.IsStackOverFlow() );       // der Wert ist wieder gueltig
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
