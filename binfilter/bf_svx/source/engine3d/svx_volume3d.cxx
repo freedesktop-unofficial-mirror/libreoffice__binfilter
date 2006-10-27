@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_volume3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:36:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:52:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,17 +33,11 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _VOLUME3D_HXX
-// auto strip #include "volume3d.hxx"
-// auto strip #endif
 
 #ifndef _POLY3D_HXX
 #include "poly3d.hxx"
 #endif
 
-// auto strip #ifndef _SVX_MATRIX3D_HXX
-// auto strip #include "matrix3d.hxx"
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -101,98 +95,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void Volume3D::CreateWireframe(Polygon3D& rPoly3D, const Matrix4D* pTf) const
-//STRIP001 {
-//STRIP001  if(!IsValid())
-//STRIP001      return;
-//STRIP001
-//STRIP001  Vector3D aDiff = aMaxVec - aMinVec;
-//STRIP001  Polygon3D aVolPnts(8);
-//STRIP001  UINT16 nZeroCnt(0);
-//STRIP001  UINT16 nIdx = rPoly3D.GetPointCount();
-//STRIP001
-//STRIP001  // Alle Punkte holen
-//STRIP001  Vol3DPointIterator aIter(*this, pTf);
-//STRIP001  Vector3D aTfVec;
-//STRIP001  UINT16 i(0);
-//STRIP001
-//STRIP001  while(aIter.Next(aTfVec))
-//STRIP001      aVolPnts[i++] = aTfVec;
-//STRIP001
-//STRIP001  // 0-Ausmasse des BoundVolumes zaehlen
-//STRIP001  for(i = 0; i < 3; i++)
-//STRIP001      if(aDiff[i] == 0)
-//STRIP001          nZeroCnt++;
-//STRIP001
-//STRIP001  // Die drei Ecksegemente des Volumens mit je drei Linien ausgeben;
-//STRIP001  // falls Koordinatenanteile 0 sind, nicht alle Segmente verwenden,
-//STRIP001  // um das gegenseitige Ausloeschen bei XOR-Ausgabe zu verhindern
-//STRIP001  //   4
-//STRIP001  //   |     Dieses Segment immer
-//STRIP001  //   |
-//STRIP001  //   0---1
-//STRIP001  //  /
-//STRIP001  // 3
-//STRIP001  // Die Liniensegmente eines Segments werden immer in der Reihenfolge
-//STRIP001  // X-, Y- und dann Z-Richtung ausgegeben (gilt natuerlich nur fuer
-//STRIP001  // untransformierte Koordinaten)
-//STRIP001
-//STRIP001  rPoly3D[nIdx++] = aVolPnts[0];
-//STRIP001
-//STRIP001  if(nZeroCnt < 3)
-//STRIP001  {
-//STRIP001      // wenn keine Ausdehnung, dann nur den ersten Punkt einfuegen
-//STRIP001      rPoly3D[nIdx++] = aVolPnts[1];
-//STRIP001      rPoly3D[nIdx++] = aVolPnts[0];
-//STRIP001      rPoly3D[nIdx++] = aVolPnts[4];
-//STRIP001      rPoly3D[nIdx++] = aVolPnts[0];
-//STRIP001      rPoly3D[nIdx++] = aVolPnts[3];
-//STRIP001  }
-//STRIP001  if(nZeroCnt < 2)
-//STRIP001  {
-//STRIP001      if(nZeroCnt == 0 || aDiff.X() == 0)
-//STRIP001      {
-//STRIP001          //   4
-//STRIP001          //  /
-//STRIP001          // 7---6
-//STRIP001          // |
-//STRIP001          // |
-//STRIP001          // 3
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[7];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[6];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[7];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[3];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[7];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[4];
-//STRIP001      }
-//STRIP001      if(nZeroCnt == 0 || (aDiff.Y() == 0))
-//STRIP001      {
-//STRIP001          //     6
-//STRIP001          //     | 1
-//STRIP001          //     |/
-//STRIP001          // 3---2
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[2];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[3];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[2];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[6];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[2];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[1];
-//STRIP001      }
-//STRIP001      if(nZeroCnt == 0 || (aDiff.Z() == 0))
-//STRIP001      {
-//STRIP001          //   4---5
-//STRIP001          //      /|
-//STRIP001          //     6 |
-//STRIP001          //       1
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[5];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[4];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[5];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[1];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[5];
-//STRIP001          rPoly3D[nIdx++] = aVolPnts[6];
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
