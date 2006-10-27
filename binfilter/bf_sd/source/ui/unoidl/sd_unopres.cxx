@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopres.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:28:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:38:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,54 +33,18 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
-// auto strip #include <com/sun/star/presentation/XPresentationPage.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONSUPPLIER_HPP_
-// auto strip #include <com/sun/star/presentation/XPresentationSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATION_HPP_
-// auto strip #include <com/sun/star/presentation/XPresentation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XCUSTOMPRESENTATIONSUPPLIER_HPP_
-// auto strip #include <com/sun/star/presentation/XCustomPresentationSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
-// auto strip #include <com/sun/star/presentation/ClickAction.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
-// auto strip #include <com/sun/star/presentation/FadeEffect.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
-// auto strip #include <com/sun/star/presentation/AnimationEffect.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HPP_
-// auto strip #include <com/sun/star/presentation/PresentationRange.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
-// auto strip #include <com/sun/star/presentation/AnimationSpeed.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFX_ITEMPROP_HXX
-// auto strip #include <svtools/itemprop.hxx>
-// auto strip #endif
 
 #include <bf_sfx2/dispatch.hxx>
 
 #include <bf_svx/dialogs.hrc>              // fuer SID_REHEARSE_TIMINGS
 #include <bf_svx/unoprov.hxx>
 
-// auto strip #include "drawdoc.hxx"
-// auto strip #include "unomodel.hxx"
 #include "unopres.hxx"
 #include "unocpres.hxx"
 #include "app.hrc"                      // SID_LIVE_PRESENTATION
 #include "viewshel.hxx"
-// auto strip #include "drawview.hxx"
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
 #endif
