@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_objid.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:59:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:27:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,14 +61,6 @@ namespace binfilter {
 /*N*/   return NULL;
 /*N*/ }
 
-//STRIP001 UINT16 GetObjectIdNum( const SdrObject& rObj )
-//STRIP001 {
-//STRIP001     UINT16 nId = CHOBJID_ANY;
-//STRIP001     SchObjectId *  pId = GetObjectId( rObj );
-//STRIP001     if( pId != NULL )
-//STRIP001         nId = pId->GetObjId();
-//STRIP001     return nId;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -105,26 +97,6 @@ namespace binfilter {
 |* Alle Objekt mit Id=nObjId Attributieren,
 |*
 \************************************************************************/
-//STRIP001 void SetAttrWithId(UINT16 nObjId, const SdrObjList& rObjList,
-//STRIP001                      const SfxItemSet& rAttr, SdrIterMode eMode)
-//STRIP001 {
-//STRIP001  ULONG nIndex = 0;
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(rObjList, eMode);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pObjId = GetObjectId(*pObj);
-//STRIP001      if (pObjId && pObjId->GetObjId() == nObjId)
-//STRIP001      {
-//STRIP001
-//STRIP001 //-/         pObj->NbcSetAttributes(rAttr,FALSE);
-//STRIP001          pObj->SetItemSet(rAttr);
-//STRIP001
-//STRIP001      }
-//STRIP001      nIndex++;
-//STRIP001  }
-//STRIP001 }
 /*************************************************************************
 |*
 |* Konstruktor
@@ -155,11 +127,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchObjectId::SchObjectId(const SchObjectId& rObjectId) :
-//STRIP001  SdrObjUserData(rObjectId),
-//STRIP001  nObjId(rObjectId.nObjId)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
