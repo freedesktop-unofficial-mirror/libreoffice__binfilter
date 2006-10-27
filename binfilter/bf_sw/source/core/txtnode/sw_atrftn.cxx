@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrftn.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:38:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:17:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,6 @@
 
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
-// auto strip #include <svtools/svstdarr.hxx>
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -65,9 +64,6 @@
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -111,9 +107,6 @@ namespace binfilter {
 int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 {
     {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return nNumber  == ((SwFmtFtn&)rAttr).nNumber &&
-//STRIP001         aNumber  == ((SwFmtFtn&)rAttr).aNumber &&
-//STRIP001         bEndNote == ((SwFmtFtn&)rAttr).bEndNote;
 }
 
 
@@ -126,34 +119,12 @@ int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   return pNew;
 /*N*/ }
 
-//STRIP001 void SwFmtFtn::SetEndNote( BOOL b )
-//STRIP001 {
-//STRIP001  if ( b != bEndNote )
-//STRIP001  {
-//STRIP001      if ( GetTxtFtn() )
-//STRIP001          GetTxtFtn()->DelFrms();
-//STRIP001      bEndNote = b;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ SwFmtFtn::~SwFmtFtn()
 /*N*/ {
 /*N*/ }
 
 
-//STRIP001 void SwFmtFtn::GetFtnText( XubString& rStr ) const
-//STRIP001 {
-//STRIP001  if( pTxtAttr->GetStartNode() )
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *pTxtAttr->GetStartNode(), 1 );
-//STRIP001      SwCntntNode* pCNd = aIdx.GetNode().GetTxtNode();
-//STRIP001      if( !pCNd )
-//STRIP001          pCNd = aIdx.GetNodes().GoNext( &aIdx );
-//STRIP001
-//STRIP001      if( pCNd->IsTxtNode() )
-//STRIP001          rStr = ((SwTxtNode*)pCNd)->GetExpandTxt();
-//STRIP001  }
-//STRIP001 }
 
     // returnt den anzuzeigenden String der Fuss-/Endnote
 /*N*/ XubString SwFmtFtn::GetViewNumStr( const SwDoc& rDoc, BOOL bInclStrings ) const
@@ -319,41 +290,6 @@ int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ }
 
 // Die Fussnoten duplizieren
-//STRIP001 void SwTxtFtn::CopyFtn( SwTxtFtn *pDest )
-//STRIP001 {
-//STRIP001  if( pStartNode && pDest->GetStartNode() )
-//STRIP001  {
-//STRIP001      // die Fussnoten koennen in unterschiedlichen Dokumenten stehen !!
-//STRIP001      SwNodes &rSrcNodes = pMyTxtNd->GetDoc()->GetNodes();
-//STRIP001      SwDoc* pDstDoc = pDest->pMyTxtNd->GetDoc();
-//STRIP001      SwNodes &rDstNodes = pDstDoc->GetNodes();
-//STRIP001
-//STRIP001      // Wir kopieren nur den Inhalt der Sektion
-//STRIP001      SwNodeRange aRg( *pStartNode, 1,
-//STRIP001                  *pStartNode->GetNode().EndOfSectionNode() );
-//STRIP001
-//STRIP001      // Wir fuegen auf dem Ende von pDest ein, d.h. die Nodes
-//STRIP001      // werden angehaengt. nDestLen haelt die Anzahl der CntNodes
-//STRIP001      // in pDest _vor_ dem Kopieren.
-//STRIP001      SwNodeIndex aStart( *(pDest->GetStartNode()) );
-//STRIP001      SwNodeIndex aEnd( *aStart.GetNode().EndOfSectionNode() );
-//STRIP001      ULONG  nDestLen = aEnd.GetIndex() - aStart.GetIndex() - 1;
-//STRIP001
-//STRIP001      pMyTxtNd->GetDoc()->CopyWithFlyInFly( aRg, aEnd, TRUE );
-//STRIP001
-//STRIP001      // Wenn die Dest-Sektion nicht leer war, so muessen die alten
-//STRIP001      // Nodes geloescht werden:
-//STRIP001      // Vorher:   Src: SxxxE,  Dst: SnE
-//STRIP001      // Nachher:  Src: SxxxE,  Dst: SnxxxE
-//STRIP001      // und       Src: SxxxE,  Dst: SxxxE
-//STRIP001      aStart++;
-//STRIP001      rDstNodes.Delete( aStart, nDestLen );
-//STRIP001  }
-//STRIP001
-//STRIP001  // Der benutzerdefinierte String muss auch uebertragen werden.
-//STRIP001  if( GetFtn().aNumber.Len() )
-//STRIP001      ((SwFmtFtn&)pDest->GetFtn()).aNumber = GetFtn().aNumber;
-//STRIP001 }
 
 
     // lege eine neue leere TextSection fuer diese Fussnote an
@@ -522,13 +458,6 @@ int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 /*N*/           pTxtFtn->nSeqNo = nStt++;
 /*N*/ }
 
-//STRIP001 void SwTxtFtn::CheckCondColl()
-//STRIP001 {
-//STRIP001 //FEATURE::CONDCOLL
-//STRIP001  if( GetStartNode() )
-//STRIP001      ((SwStartNode&)GetStartNode()->GetNode()).CheckSectionCondColl();
-//STRIP001 //FEATURE::CONDCOLL
-//STRIP001 }
 
 
 
