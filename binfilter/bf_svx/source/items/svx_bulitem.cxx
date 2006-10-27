@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_bulitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:15:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:14:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 //#ifndef _SV_SYSTEM_HXX
 //#include <vcl/system.hxx>
 //#endif
@@ -48,7 +45,6 @@
 #define _SVX_BULITEM_CXX
 
 #include "bulitem.hxx"
-// auto strip #include "svxerr.hxx"
 
 // #90477#
 #ifndef _TOOLS_TENCCVT_HXX
@@ -143,54 +139,15 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxBulletItem::SvxBulletItem( BYTE nNewStyle, const Font& rFont, USHORT nStart,  USHORT nWhich ) : SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001  SetDefaults_Impl();
-//STRIP001  nStyle = nNewStyle;
-//STRIP001  aFont  = rFont;
-//STRIP001  nValidMask = 0xFFFF;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxBulletItem::SvxBulletItem( const Font& rFont, xub_Unicode cSymb, USHORT nWhich ) : SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001  SetDefaults_Impl();
-//STRIP001  aFont   = rFont;
-//STRIP001  cSymbol = cSymb;
-//STRIP001  nStyle  = BS_BULLET;
-//STRIP001  nValidMask = 0xFFFF;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxBulletItem::SvxBulletItem( const Bitmap& rBmp, USHORT nWhich ) : SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001  SetDefaults_Impl();
-//STRIP001
-//STRIP001     if( !rBmp.IsEmpty() )
-//STRIP001     {
-//STRIP001         pGraphicObject = new GraphicObject( rBmp );
-//STRIP001      nStyle = BS_BMP;
-//STRIP001     }
-//STRIP001
-//STRIP001  nValidMask = 0xFFFF;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxBulletItem::SvxBulletItem( const GraphicObject& rGraphicObject, USHORT nWhich ) : SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001  SetDefaults_Impl();
-//STRIP001
-//STRIP001     if( ( GRAPHIC_NONE != pGraphicObject->GetType() ) && ( GRAPHIC_DEFAULT != pGraphicObject->GetType() ) )
-//STRIP001     {
-//STRIP001         pGraphicObject = new GraphicObject( rGraphicObject );
-//STRIP001         nStyle = BS_BMP;
-//STRIP001     }
-//STRIP001
-//STRIP001     nValidMask = 0xFFFF;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -316,35 +273,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxBulletItem::CopyValidProperties( const SvxBulletItem& rCopyFrom )
-//STRIP001 {
-//STRIP001  Font aFont = GetFont();
-//STRIP001  Font aNewFont = rCopyFrom.GetFont();
-//STRIP001  if ( rCopyFrom.IsValid( VALID_FONTNAME ) )
-//STRIP001  {
-//STRIP001      aFont.SetName( aNewFont.GetName() );
-//STRIP001      aFont.SetFamily( aNewFont.GetFamily() );
-//STRIP001      aFont.SetStyleName( aNewFont.GetStyleName() );
-//STRIP001  }
-//STRIP001  if ( rCopyFrom.IsValid( VALID_FONTCOLOR ) )
-//STRIP001      aFont.SetColor( aNewFont.GetColor() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_SYMBOL ) )
-//STRIP001      SetSymbol( rCopyFrom.GetSymbol() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_BITMAP ) )
-//STRIP001      SetGraphicObject( rCopyFrom.GetGraphicObject() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_SCALE ) )
-//STRIP001      SetScale( rCopyFrom.GetScale() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_START ) )
-//STRIP001      SetStart( rCopyFrom.GetStart() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_STYLE ) )
-//STRIP001      SetStyle( rCopyFrom.GetStyle() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_PREVTEXT ) )
-//STRIP001      SetPrevText( rCopyFrom.GetPrevText() );
-//STRIP001  if ( rCopyFrom.IsValid( VALID_FOLLOWTEXT ) )
-//STRIP001      SetFollowText( rCopyFrom.GetFollowText() );
-//STRIP001
-//STRIP001  SetFont( aFont );
-//STRIP001 }
 
 
 // -----------------------------------------------------------------------
@@ -448,103 +376,19 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 XubString SvxBulletItem::GetFullText() const
-//STRIP001 {
-//STRIP001  XubString aStr( aPrevText );
-//STRIP001  aStr += cSymbol;
-//STRIP001  aStr += aFollowText;
-//STRIP001  return aStr;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxBulletItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  SfxItemPresentation eRet = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          eRet = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetFullText();
-//STRIP001          eRet = SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  return eRet;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 Bitmap SvxBulletItem::GetBitmap() const
-//STRIP001 {
-//STRIP001     if( pGraphicObject )
-//STRIP001         return pGraphicObject->GetGraphic().GetBitmap();
-//STRIP001     else
-//STRIP001     {
-//STRIP001         const Bitmap aDefaultBitmap;
-//STRIP001         return aDefaultBitmap;
-//STRIP001     }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void SvxBulletItem::SetBitmap( const Bitmap& rBmp )
-//STRIP001 {
-//STRIP001     if( rBmp.IsEmpty() )
-//STRIP001     {
-//STRIP001         if( pGraphicObject )
-//STRIP001         {
-//STRIP001             delete pGraphicObject;
-//STRIP001             pGraphicObject = NULL;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         delete pGraphicObject;
-//STRIP001         pGraphicObject = new GraphicObject( rBmp );
-//STRIP001
-//STRIP001     }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 const GraphicObject& SvxBulletItem::GetGraphicObject() const
-//STRIP001 {
-//STRIP001     if( pGraphicObject )
-//STRIP001         return *pGraphicObject;
-//STRIP001     else
-//STRIP001     {
-//STRIP001         static const GraphicObject aDefaultObject;
-//STRIP001         return aDefaultObject;
-//STRIP001     }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void SvxBulletItem::SetGraphicObject( const GraphicObject& rGraphicObject )
-//STRIP001 {
-//STRIP001     if( ( GRAPHIC_NONE == rGraphicObject.GetType() ) || ( GRAPHIC_DEFAULT == rGraphicObject.GetType() ) )
-//STRIP001     {
-//STRIP001         if( pGraphicObject )
-//STRIP001         {
-//STRIP001             delete pGraphicObject;
-//STRIP001             pGraphicObject = NULL;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         delete pGraphicObject;
-//STRIP001         pGraphicObject = new GraphicObject( rGraphicObject );
-//STRIP001     }
-//STRIP001 }
 }
