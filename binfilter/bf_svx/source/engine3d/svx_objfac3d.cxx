@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_objfac3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:32:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:49:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
@@ -81,9 +78,6 @@
 #include "objfac3d.hxx"
 #endif
 
-// auto strip #ifndef _SVDOBJ_HXX
-// auto strip #include "svdobj.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
