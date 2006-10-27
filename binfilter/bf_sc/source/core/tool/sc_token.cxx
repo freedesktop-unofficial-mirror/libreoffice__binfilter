@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_token.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:18:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:39:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -48,9 +47,6 @@
 #endif
 #include <string.h>
 
-// auto strip #ifndef _SVMEMPOOL_HXX //autogen
-// auto strip #include <tools/mempool.hxx>
-// auto strip #endif
 #ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif

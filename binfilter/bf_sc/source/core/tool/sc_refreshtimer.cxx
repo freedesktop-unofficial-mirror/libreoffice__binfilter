@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_refreshtimer.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:17:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:38:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -67,26 +66,8 @@ namespace binfilter {
 /*N*/ void ScRefreshTimer::SetRefreshDelay( ULONG nSeconds )
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bActive = IsActive();
-//STRIP001  if ( bActive && !nSeconds )
-//STRIP001      Stop();
-//STRIP001  SetTimeout( nSeconds * 1000 );
-//STRIP001  if ( !bActive && nSeconds )
-//STRIP001      Start();
 /*N*/ }
 
 
-//STRIP001 void ScRefreshTimer::Timeout()
-//STRIP001 {
-//STRIP001  if ( ppControl && *ppControl && (*ppControl)->IsRefreshAllowed() )
-//STRIP001  {
-//STRIP001      // now we COULD make the call in another thread ...
-//STRIP001      ::vos::OGuard aGuard( (*ppControl)->GetMutex() );
-//STRIP001      maTimeoutHdl.Call( this );
-//STRIP001      // restart from now on, don't execute immediately again if timed out
-//STRIP001      // a second time during refresh
-//STRIP001      if ( IsActive() )
-//STRIP001          Start();
-//STRIP001  }
-//STRIP001 }
 
 }

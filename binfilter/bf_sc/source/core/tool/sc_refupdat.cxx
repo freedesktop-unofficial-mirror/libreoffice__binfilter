@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_refupdat.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:17:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:38:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,19 +34,15 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include <tools/debug.hxx>
 
 #include "refupdat.hxx"
-// auto strip #include "document.hxx"
 #include "compiler.hxx"
-// auto strip #include "bigrange.hxx"
 #include "chgtrack.hxx"
 namespace binfilter {
 
@@ -92,39 +88,6 @@ namespace binfilter {
 /*N*/   return bCut;
 /*N*/ }
 
-//STRIP001 BOOL lcl_MoveReorder( short& rRef, short nStart, short nEnd, short nDelta )
-//STRIP001 {
-//STRIP001  if ( rRef >= nStart && rRef <= nEnd )
-//STRIP001  {
-//STRIP001      rRef += nDelta;
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nDelta > 0 )                   // nach hinten schieben
-//STRIP001  {
-//STRIP001      if ( rRef >= nStart && rRef <= nEnd + nDelta )
-//STRIP001      {
-//STRIP001          if ( rRef <= nEnd )
-//STRIP001              rRef += nDelta;                 // verschobener Teil
-//STRIP001          else
-//STRIP001              rRef -= nEnd - nStart + 1;      // nachruecken
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else                                // nach vorne schieben
-//STRIP001  {
-//STRIP001      if ( rRef >= nStart + nDelta && rRef <= nEnd )
-//STRIP001      {
-//STRIP001          if ( rRef >= nStart )
-//STRIP001              rRef += nDelta;                 // verschobener Teil
-//STRIP001          else
-//STRIP001              rRef += nEnd - nStart + 1;      // nachruecken
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/  BOOL lcl_MoveItCut( short& rRef, short nDelta, short nMask )
 /*N*/  {
@@ -347,45 +310,11 @@ namespace binfilter {
 /*N*/   else if (eUpdateRefMode == URM_MOVE)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ((theCol1 >= nCol1-nDx) && (theRow1 >= nRow1-nDy) && (theTab1 >= nTab1-nDz) &&
-//STRIP001 /*?*/            (theCol2 <= nCol2-nDx) && (theRow2 <= nRow2-nDy) && (theTab2 <= nTab2-nDz))
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if ( nDx )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                bCut1 = lcl_MoveItCut( (short&) theCol1, nDx, MAXCOL );
-//STRIP001 /*?*/                bCut2 = lcl_MoveItCut( (short&) theCol2, nDx, MAXCOL );
-//STRIP001 /*?*/                if ( bCut1 || bCut2 )
-//STRIP001 /*?*/                    eRet = UR_UPDATED;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            if ( nDy )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                bCut1 = lcl_MoveItCut( (short&) theRow1, nDy, MAXROW );
-//STRIP001 /*?*/                bCut2 = lcl_MoveItCut( (short&) theRow2, nDy, MAXROW );
-//STRIP001 /*?*/                if ( bCut1 || bCut2 )
-//STRIP001 /*?*/                    eRet = UR_UPDATED;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            if ( nDz )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                short nMaxTab = (short) pDoc->GetTableCount() - 1;
-//STRIP001 /*?*/                bCut1 = lcl_MoveItCut( (short&) theTab1, nDz, nMaxTab );
-//STRIP001 /*?*/                bCut2 = lcl_MoveItCut( (short&) theTab2, nDz, nMaxTab );
-//STRIP001 /*?*/                if ( bCut1 || bCut2 )
-//STRIP001 /*?*/                    eRet = UR_UPDATED;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/   else if (eUpdateRefMode == URM_REORDER)
 /*N*/   {
 /*?*/       //  bisher nur fuer nDz (MoveTab)
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT ( !nDx && !nDy, "URM_REORDER fuer x und y noch nicht implementiert" );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( nDz && (theCol1 >= nCol1) && (theCol2 <= nCol2) &&
-//STRIP001 /*?*/                    (theRow1 >= nRow1) && (theRow2 <= nRow2) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            bCut1 = lcl_MoveReorder( (short&) theTab1, nTab1, nTab2, nDz );
-//STRIP001 /*?*/            bCut2 = lcl_MoveReorder( (short&) theTab2, nTab1, nTab2, nDz );
-//STRIP001 /*?*/            if ( bCut1 || bCut2 )
-//STRIP001 /*?*/                eRet = UR_UPDATED;
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/   if ( eRet == UR_NOTHING )
