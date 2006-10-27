@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode5.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:34:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:24:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
@@ -56,42 +53,20 @@
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #ifndef _CHTMODEL_HXX
-// auto strip #include <chtmodel.hxx>
-// auto strip #include <globfunc.hxx>
 #endif
-// auto strip #ifndef _SCH_OBJID_HXX
-// auto strip #include "objid.hxx"
-// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SCH_DATAROW_HXX
-// auto strip #include "datarow.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAPOIN_HXX
-// auto strip #include "datapoin.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_SCHIOCMP_HXX
-// auto strip #include "schiocmp.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_SCHRESID_HXX
-// auto strip #include "schresid.hxx"
-// auto strip #endif
 #include <math.h>
 #include <float.h>
 #include "glob.hrc"
 
 #include "globfunc.hxx"
 #include "pairs.hxx"
-// auto strip #include "chaxis.hxx"
 
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -110,24 +85,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject* ChartModel::GetChartObj(UINT16 nId)
-//STRIP001 {
-//STRIP001  SdrPage* pPage = GetPage(0);
-//STRIP001  DBG_ASSERT(pPage, "ChartModel::GetChartObj:Keine Seite vorhanden!");
-//STRIP001
-//STRIP001  SdrObject* pObj = GetObjWithId(nId, *pPage);
-//STRIP001
-//STRIP001  if (!pObj)
-//STRIP001  {
-//STRIP001      SdrObjGroup* pDiagram =
-//STRIP001          (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001      DBG_ASSERT(pDiagram, "ChartModel::GetChartObj:Kein Diagramm-Objekt vorhanden!");
-//STRIP001
-//STRIP001      pObj = GetObjWithId(nId, *pDiagram->GetSubList());
-//STRIP001  }
-//STRIP001
-//STRIP001  return pObj;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -159,13 +116,6 @@ namespace binfilter {
 /*N*/ SdrObject* ChartModel::GetDataRowObj(long nRow)
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 SdrPage* pPage = GetPage(0);
-//STRIP001 /*?*/    DBG_ASSERT(pPage, "ChartModel::GetDataRowObj:Keine Seite vorhanden!");
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SdrObjGroup* pDiagram =
-//STRIP001 /*?*/        (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001 /*?*/    DBG_ASSERT(pDiagram, "ChartModel::GetDataRowObj:Kein Diagramm-Objekt vorhanden!");
-//STRIP001 /*?*/
-//STRIP001 /*?*/    return GetObjWithRow(nRow, *pDiagram->GetSubList());
 /*N*/ }
 /*************************************************************************
 |*
@@ -173,75 +123,12 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject* ChartModel::GetPieDataRowObj(const long nRow)
-//STRIP001 {
-//STRIP001  SdrPage* pPage = GetPage(0);
-//STRIP001  DBG_ASSERT(pPage, "ChartModel::GetPieDataRowObj:Keine Seite vorhanden!");
-//STRIP001
-//STRIP001  SdrObjGroup* pDiagram =
-//STRIP001      (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001  DBG_ASSERT(pDiagram, "ChartModel::GetPieDataRowObj:Kein Diagramm-Objekt vorhanden!");
-//STRIP001
-//STRIP001  //return GetObjWithRow(nRow, *);
-//STRIP001  SdrObjList* pObjList= pDiagram->GetSubList();
-//STRIP001
-//STRIP001  ULONG nIndex = 0;
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*pObjList, IM_FLAT);
-//STRIP001
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchDataRow* pDataRow = GetDataRow(*pObj);
-//STRIP001      if(pDataRow)
-//STRIP001      {
-//STRIP001          long nT=pDataRow->GetRow();
-//STRIP001          if( nT == nRow)
-//STRIP001          {
-//STRIP001              return (SdrObject*)pDataRow;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      nIndex++;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 /*************************************************************************
 |*
 |* Datenreihengruppe (Liste der Datenreihen)
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject* ChartModel::GetDataRowGroup(const long nRow)
-//STRIP001 {
-//STRIP001  SdrPage* pPage = GetPage(0);
-//STRIP001  DBG_ASSERT(pPage, "ChartModel::GetPieDataRowObj:Keine Seite vorhanden!");
-//STRIP001
-//STRIP001  SdrObjGroup* pDiagram =
-//STRIP001      (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001  DBG_ASSERT(pDiagram, "ChartModel::GetPieDataRowObj:Kein Diagramm-Objekt vorhanden!");
-//STRIP001
-//STRIP001  SdrObjList* pObjList= pDiagram->GetSubList();
-//STRIP001
-//STRIP001  ULONG nIndex = 0;
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*pObjList, IM_FLAT);
-//STRIP001
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchDataRow* pDataRow = GetDataRow(*pObj);
-//STRIP001      if(pDataRow)
-//STRIP001      {
-//STRIP001          long nT=pDataRow->GetRow();
-//STRIP001          if( nT == nRow)
-//STRIP001          {
-//STRIP001              return (SdrObject*)pObj;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      nIndex++;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -298,15 +185,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ChartModel::CatchUpBufferedData()
-//STRIP001 {
-//STRIP001  if( pChartDataBuffered )
-//STRIP001  {
-//STRIP001      SetChartData( *pChartDataBuffered, FALSE );     // don't update titles. Titles may only be updated via UI
-//STRIP001      pChartDataBuffered = NULL;
-//STRIP001      BuildChart (TRUE);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
