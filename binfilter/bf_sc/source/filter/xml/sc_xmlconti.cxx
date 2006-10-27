@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlconti.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:29:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:29:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,17 +42,11 @@
 
 #include "xmlconti.hxx"
 #include "xmlimprt.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "document.hxx"
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace xmloff::token;

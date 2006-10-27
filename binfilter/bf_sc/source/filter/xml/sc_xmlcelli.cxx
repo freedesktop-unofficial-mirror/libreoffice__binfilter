@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlcelli.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:29:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:28:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,14 +41,11 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "xmlcelli.hxx"
-// auto strip #include "xmlimprt.hxx"
 #include "xmltabi.hxx"
 #include "xmlstyli.hxx"
 #include "xmlannoi.hxx"
-// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "cellsuno.hxx"
-// auto strip #include "docuno.hxx"
 #ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #include "XMLTableShapeImportHelper.hxx"
 #endif
@@ -81,66 +77,23 @@
 #include "scerrors.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmluconv.hxx>
-// auto strip #include <bf_xmloff/families.hxx>
-// auto strip #ifndef XMLOFF_NUMEHELP_HXX
-// auto strip #include <bf_xmloff/numehelp.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #include <svtools/zforlist.hxx>
 
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #include <com/sun/star/sheet/XSpreadsheets.hpp>
-// auto strip #include <com/sun/star/sheet/XSpreadsheet.hpp>
-// auto strip #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
-// auto strip #include <com/sun/star/util/XMergeable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSHEETCONDITION_HPP_
 #include <com/sun/star/sheet/XSheetCondition.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
-// auto strip #include <com/sun/star/table/XCellRange.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
-// auto strip #include <com/sun/star/table/CellAddress.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
-// auto strip #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
-// auto strip #include <com/sun/star/util/XNumberFormatTypes.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
-// auto strip #include <com/sun/star/util/Date.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_text_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
 #endif
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATE_HXX
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
-// auto strip #ifndef _ISOLANG_HXX
-// auto strip #include <tools/isolang.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif

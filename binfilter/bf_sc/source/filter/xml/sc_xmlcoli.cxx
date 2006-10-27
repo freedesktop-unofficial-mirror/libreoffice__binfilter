@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlcoli.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:29:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:28:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,33 +41,17 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "xmlcoli.hxx"
-// auto strip #include "xmlimprt.hxx"
-// auto strip #include "global.hxx"
 #include "xmlstyli.hxx"
 #include "document.hxx"
-// auto strip #include "docuno.hxx"
 #include "olinetab.hxx"
 
 #ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include <bf_xmloff/families.hxx>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
-// auto strip #include <com/sun/star/sheet/XSpreadsheet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
 #endif
