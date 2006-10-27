@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdbinfilter.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:27:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:05:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,14 +37,12 @@
 #include <rtl/logfile.hxx>
 #endif
 
-// auto strip #include <tools/urlobj.hxx>
 #include <sot/formats.hxx>
 #include <svtools/itempool.hxx>
 #include <svtools/style.hxx>
 #include <svtools/sfxecode.hxx>
 #include <svtools/saveopt.hxx>
 #include <bf_sfx2/docfile.hxx>
-// auto strip #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/progress.hxx>
 
 #ifndef MAC
@@ -52,14 +50,8 @@
 #include "../../ui/inc/docshell.hxx"
 #endif //!SVX_LIGHT
 #else  //MAC
-// auto strip #ifndef SVX_LIGHT
-// auto strip #include "docshell.hxx"
-// auto strip #endif //!SVX_LIGHT
 #endif //!MAC
 
-// auto strip #ifndef _SFXITEMSET_HXX
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
