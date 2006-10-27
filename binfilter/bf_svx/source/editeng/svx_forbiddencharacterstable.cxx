@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_forbiddencharacterstable.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-06 16:14:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:45:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #include <unotools/localedatawrapper.hxx>
 #include <unolingu.hxx>
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 /*STRIP001*/#include <tools/debug.hxx>
 namespace binfilter {
 /*N*/ SvxForbiddenCharactersTable::SvxForbiddenCharactersTable( ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xMSF, USHORT nISize, USHORT nGrow )
@@ -92,11 +89,5 @@ const ::com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::
 
 /*N*/ void SvxForbiddenCharactersTable::ClearForbiddenCharacters( USHORT nLanguage )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  ForbiddenCharactersInfo* pInf = Get( nLanguage );
-//STRIP001  if ( pInf )
-//STRIP001  {
-//STRIP001      Remove( nLanguage );
-//STRIP001      delete pInf;
-//STRIP001  }
 /*N*/ }
 }
