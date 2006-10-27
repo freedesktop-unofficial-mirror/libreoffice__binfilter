@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svddrag.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:52:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:36:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,7 +32,6 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-// auto strip #include "svdview.hxx"
 
 #ifndef _SVDDRAG_HXX //autogen
 #include "svddrag.hxx"
@@ -75,89 +74,13 @@ namespace binfilter {
 /*N*/   aActionRect=Rectangle();
 /*N*/ }
 
-//STRIP001 void SdrDragStat::Reset(const Point& rPnt)
-//STRIP001 {
-//STRIP001  Reset();
-//STRIP001  Start()=rPnt;
-//STRIP001  aPos0=rPnt;
-//STRIP001  aRealPos0=rPnt;
-//STRIP001  RealNow()=rPnt;
-//STRIP001 }
 
-//STRIP001 void SdrDragStat::NextMove(const Point& rPnt)
-//STRIP001 {
-//STRIP001  aRealPos0=GetRealNow();
-//STRIP001  aPos0=GetNow();
-//STRIP001  RealNow()=rPnt;
-//STRIP001  Point aBla=KorregPos(GetRealNow(),GetPrev());
-//STRIP001  Now()=aBla;
-//STRIP001 }
 
-//STRIP001 void SdrDragStat::NextPoint(FASTBOOL bSaveReal)
-//STRIP001 {
-//STRIP001  Point aPnt(GetNow());
-//STRIP001  if (bSaveReal) aPnt=aRealNow;
-//STRIP001  aPnts.Insert(new Point(KorregPos(GetRealNow(),aPnt)),CONTAINER_APPEND);
-//STRIP001  Prev()=aPnt;
-//STRIP001 }
 
-//STRIP001 void SdrDragStat::PrevPoint()
-//STRIP001 {
-//STRIP001  if (aPnts.Count()>=2) { // einer muss immer da bleiben
-//STRIP001      Point* pPnt=(Point*)(aPnts.GetObject(aPnts.Count()-2));
-//STRIP001      aPnts.Remove(aPnts.Count()-2);
-//STRIP001      delete pPnt;
-//STRIP001      Now()=KorregPos(GetRealNow(),GetPrev());
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 Point SdrDragStat::KorregPos(const Point& rNow, const Point& rPrev) const
-//STRIP001 {
-//STRIP001  Point aRet(rNow);
-//STRIP001  return aRet;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrDragStat::CheckMinMoved(const Point& rPnt)
-//STRIP001 {
-//STRIP001  if (!bMinMoved) {
-//STRIP001      long dx=rPnt.X()-GetPrev().X(); if (dx<0) dx=-dx;
-//STRIP001      long dy=rPnt.Y()-GetPrev().Y(); if (dy<0) dy=-dy;
-//STRIP001      if (dx>=long(nMinMov) || dy>=long(nMinMov))
-//STRIP001          bMinMoved=TRUE;
-//STRIP001  }
-//STRIP001  return bMinMoved;
-//STRIP001 }
 
-//STRIP001 Fraction SdrDragStat::GetXFact() const
-//STRIP001 {
-//STRIP001  long nMul=GetNow().X()-aRef1.X();
-//STRIP001  long nDiv=GetPrev().X()-aRef1.X();
-//STRIP001  if (nDiv==0) nDiv=1;
-//STRIP001  if (bHorFixed) { nMul=1; nDiv=1; }
-//STRIP001  return Fraction(nMul,nDiv);
-//STRIP001 }
 
-//STRIP001 Fraction SdrDragStat::GetYFact() const
-//STRIP001 {
-//STRIP001  long nMul=GetNow().Y()-aRef1.Y();
-//STRIP001  long nDiv=GetPrev().Y()-aRef1.Y();
-//STRIP001  if (nDiv==0) nDiv=1;
-//STRIP001  if (bVerFixed) { nMul=1; nDiv=1; }
-//STRIP001  return Fraction(nMul,nDiv);
-//STRIP001 }
 
-//STRIP001 void SdrDragStat::TakeCreateRect(Rectangle& rRect) const
-//STRIP001 {
-//STRIP001  rRect=Rectangle(GetStart(),GetNow());
-//STRIP001  if (GetPointAnz()>=2) {
-//STRIP001      Point aBtmRgt(GetPoint(1));
-//STRIP001      rRect.Right()=aBtmRgt.X();
-//STRIP001      rRect.Bottom()=aBtmRgt.Y();
-//STRIP001  }
-//STRIP001  if (pView!=NULL && pView->IsCreate1stPointAsCenter()) {
-//STRIP001      rRect.Top()+=rRect.Top()-rRect.Bottom();
-//STRIP001      rRect.Left()+=rRect.Left()-rRect.Right();
-//STRIP001  }
-//STRIP001 }
 
 }
