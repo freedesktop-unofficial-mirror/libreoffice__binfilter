@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLTableHeaderFooterContext.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:26:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:26:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
 #endif
@@ -45,9 +42,6 @@
 #ifndef _SC_XMLTABLEHEADERFOOTERCONTEXT_HXX_
 #include "XMLTableHeaderFooterContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 
 #include "unonames.hxx"
 namespace binfilter {
