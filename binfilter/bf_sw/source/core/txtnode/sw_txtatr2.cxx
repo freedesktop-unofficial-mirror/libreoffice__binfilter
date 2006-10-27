@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtatr2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:41:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:19:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,15 +39,6 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
-// auto strip #ifndef _SFX_OBJSH_HXX //autogen
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_XMLCNITM_HXX
-// auto strip #include <bf_svx/xmlcnitm.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_TWOLINESITEM_HXX
-// auto strip #include <bf_svx/twolinesitem.hxx>
-// auto strip #endif
 #ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
 #endif
@@ -80,29 +71,13 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>          // SwDoc
 #endif
-// auto strip #ifndef _FMTRUBY_HXX
-// auto strip #include <fmtruby.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTHBSH_HXX //autogen
-// auto strip #include <fmthbsh.hxx>
-// auto strip #endif
 namespace binfilter {
 
-//STRIP001 TYPEINIT1(SwTxtINetFmt,SwClient);
-//STRIP001 TYPEINIT1(SwTxtRuby,SwClient);
 
 /*************************************************************************
  *                      class SwTxtHardBlank
  *************************************************************************/
 
-//STRIP001 SwTxtHardBlank::SwTxtHardBlank( const SwFmtHardBlank& rAttr, xub_StrLen nStart )
-//STRIP001  : SwTxtAttr( rAttr, nStart ),
-//STRIP001  cChar( rAttr.GetChar() )
-//STRIP001 {
-//STRIP001  ASSERT( ' ' != cChar && '-' != cChar,
-//STRIP001          "Invalid character for the HardBlank attribute - "
-//STRIP001          "must be a normal unicode character" );
-//STRIP001 }
 
 
 /*************************************************************************
@@ -249,114 +224,20 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL SwTxtINetFmt::IsProtect( ) const
-//STRIP001 {
-//STRIP001  return pMyTxtNd && pMyTxtNd->IsProtect();
-//STRIP001 }
 
 // ATT_XNLCONTAINERITEM ******************************
 
-//STRIP001 SwTxtXMLAttrContainer::SwTxtXMLAttrContainer(
-//STRIP001                          const SvXMLAttrContainerItem& rAttr,
-//STRIP001                          xub_StrLen nStart, xub_StrLen nEnd )
-//STRIP001  : SwTxtAttrEnd( rAttr, nStart, nEnd )
-//STRIP001 {}
 
 
 
 // ******************************
 
-//STRIP001 SwTxtRuby::SwTxtRuby( const SwFmtRuby& rAttr,
-//STRIP001                      xub_StrLen nStart, xub_StrLen nEnd )
-//STRIP001  : SwTxtAttrEnd( rAttr, nStart, nEnd ),
-//STRIP001  SwClient( 0 ),
-//STRIP001  pMyTxtNd( 0 )
-//STRIP001 {
-//STRIP001  ((SwFmtRuby&)rAttr).pTxtAttr  = this;
-//STRIP001  SetDontExpand( TRUE );              // never expand this attribut
-//STRIP001  SetLockExpandFlag( TRUE );
-//STRIP001  SetDontMergeAttr( TRUE );
-//STRIP001  SetDontExpandStartAttr( TRUE );
-//STRIP001 }
 
-//STRIP001 SwTxtRuby::~SwTxtRuby()
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 void SwTxtRuby::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
-//STRIP001 {
-//STRIP001  USHORT nWhich = pOld ? pOld->Which() : pNew ? pNew->Which() : 0;
-//STRIP001 #ifndef PRODUCT
-//STRIP001  if ( (nWhich<RES_CHRATR_BEGIN || nWhich>RES_CHRATR_END)
-//STRIP001          && (nWhich!=RES_OBJECTDYING)
-//STRIP001          && (nWhich!=RES_ATTRSET_CHG)
-//STRIP001          && (nWhich!=RES_FMT_CHG) )
-//STRIP001      ASSERT(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
-//STRIP001 #endif
-//STRIP001
-//STRIP001  if( pMyTxtNd )
-//STRIP001  {
-//STRIP001      SwUpdateAttr aUpdateAttr( *GetStart(), *GetEnd(), nWhich );
-//STRIP001      pMyTxtNd->SwCntntNode::Modify( &aUpdateAttr, &aUpdateAttr );
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 BOOL SwTxtRuby::GetInfo( SfxPoolItem& rInfo ) const
-//STRIP001 {
-//STRIP001  if( RES_AUTOFMT_DOCNODE != rInfo.Which() || !pMyTxtNd ||
-//STRIP001      &pMyTxtNd->GetNodes() != ((SwAutoFmtGetDocNode&)rInfo).pNodes )
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  ((SwAutoFmtGetDocNode&)rInfo).pCntntNode = pMyTxtNd;
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 SwCharFmt* SwTxtRuby::GetCharFmt()
-//STRIP001 {
-//STRIP001  const SwFmtRuby& rFmt = SwTxtAttrEnd::GetRuby();
-//STRIP001  SwCharFmt* pRet = 0;
-//STRIP001
-//STRIP001  if( rFmt.GetText().Len() )
-//STRIP001  {
-//STRIP001      const SwDoc* pDoc = GetTxtNode().GetDoc();
-//STRIP001      const String& rStr = rFmt.GetCharFmtName();
-//STRIP001      USHORT nId = rStr.Len() ? rFmt.GetCharFmtId() : RES_POOLCHR_RUBYTEXT;
-//STRIP001
-//STRIP001      // JP 10.02.2000, Bug 72806: dont modify the doc for getting the
-//STRIP001      //              correct charstyle.
-//STRIP001      BOOL bResetMod = !pDoc->IsModified();
-//STRIP001      Link aOle2Lnk;
-//STRIP001      if( bResetMod )
-//STRIP001      {
-//STRIP001          aOle2Lnk = pDoc->GetOle2Link();
-//STRIP001          ((SwDoc*)pDoc)->SetOle2Link( Link() );
-//STRIP001      }
-//STRIP001
-//STRIP001      pRet = IsPoolUserFmt( nId )
-//STRIP001              ? ((SwDoc*)pDoc)->FindCharFmtByName( rStr )
-//STRIP001              : ((SwDoc*)pDoc)->GetCharFmtFromPool( nId );
-//STRIP001
-//STRIP001      if( bResetMod )
-//STRIP001      {
-//STRIP001          ((SwDoc*)pDoc)->ResetModified();
-//STRIP001          ((SwDoc*)pDoc)->SetOle2Link( aOle2Lnk );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pRet )
-//STRIP001      pRet->Add( this );
-//STRIP001  else if( GetRegisteredIn() )
-//STRIP001      pRegisteredIn->Remove( this );
-//STRIP001
-//STRIP001  return pRet;
-//STRIP001 }
 
 // ******************************
 
-//STRIP001 SwTxt2Lines::SwTxt2Lines( const SvxTwoLinesItem& rAttr,
-//STRIP001                      xub_StrLen nStart, xub_StrLen nEnd )
-//STRIP001  : SwTxtAttrEnd( rAttr, nStart, nEnd )
-//STRIP001 {
-//STRIP001 }
 
 }
