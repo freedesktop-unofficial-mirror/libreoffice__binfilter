@@ -4,9 +4,9 @@
  *
  *  $RCSfile: graphsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:51:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:11:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,12 +57,9 @@ class ScGraphicShell: public ScDrawShell
 {
 public:
 
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_GRAPHIC_SHELL);
 
     ScGraphicShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScGraphicShell(ScViewData* pData);
-//STRIP001  virtual     ~ScGraphicShell();
-//STRIP001
     void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    Execute(SfxRequest& rReq);
     void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetAttrState(SfxItemSet &rSet);
 

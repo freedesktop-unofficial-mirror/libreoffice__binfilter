@@ -4,9 +4,9 @@
  *
  *  $RCSfile: formatsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:47:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:09:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -84,8 +84,6 @@ public:
     void        ExecuteStyle( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteStyle( SfxRequest& rReq );
     void        GetStyleState( SfxItemSet& rSet );
 
-//STRIP001  void        ExecBckCol( SfxRequest& rReq );
-//STRIP001  void        GetBckColState( SfxItemSet& rSet );
 
     void        ExecuteTextDirection( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteTextDirection( SfxRequest& rReq );
     void        GetTextDirectionState( SfxItemSet& rSet );
