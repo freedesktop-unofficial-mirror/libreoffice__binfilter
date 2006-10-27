@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_extrud3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:31:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:48:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,11 +34,7 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
@@ -56,33 +52,15 @@
 #include "e3dcmpt.hxx"
 #endif
 
-// auto strip #ifndef _POLY3D_HXX
-// auto strip #include "poly3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_SCENE3D_HXX
-// auto strip #include "scene3d.hxx"
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
 #endif
 
-// auto strip #ifndef _XPOLY_HXX
-// auto strip #include "xpoly.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDOPATH_HXX
-// auto strip #include "svdopath.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDMODEL_HXX
-// auto strip #include "svdmodel.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include "svx3ditems.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dExtrudeObj, E3dCompoundObject);
@@ -215,14 +193,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dExtrudeObj::GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const
-//STRIP001 {
-//STRIP001  // #78972# add extrude line polys
-//STRIP001  rLinePolyPolygon.Insert(maLinePolyPolygon);
-//STRIP001
-//STRIP001  // don't call parent
-//STRIP001  // E3dCompoundObject::GetLineGeometry(rLinePolyPolygon);
-//STRIP001 }
 
 /*N*/ void E3dExtrudeObj::CreateGeometry()
 /*N*/ {
@@ -624,27 +594,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dExtrudeObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  E3dCompoundObject::operator=(rObj);
-//STRIP001
-//STRIP001  // weitere Parameter kopieren
-//STRIP001  const E3dExtrudeObj& r3DObj = (const E3dExtrudeObj&)rObj;
-//STRIP001
-//STRIP001  aExtrudePolygon = r3DObj.aExtrudePolygon;
-//STRIP001  fExtrudeScale = r3DObj.fExtrudeScale;
-//STRIP001
-//STRIP001  // #95519# copy LinePolygon info, too
-//STRIP001  maLinePolyPolygon = r3DObj.maLinePolyPolygon;
-//STRIP001
-//STRIP001  // #107245# These properties are now items and are copied with the ItemSet
-//STRIP001  // bExtrudeSmoothed = r3DObj.bExtrudeSmoothed;
-//STRIP001  // bExtrudeSmoothFrontBack = r3DObj.bExtrudeSmoothFrontBack;
-//STRIP001  // bExtrudeCharacterMode = r3DObj.bExtrudeCharacterMode;
-//STRIP001  // bExtrudeCloseFront = r3DObj.bExtrudeCloseFront;
-//STRIP001  // bExtrudeCloseBack = r3DObj.bExtrudeCloseBack;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -661,14 +610,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void E3dExtrudeObj::SetExtrudeScale(double fNew)
-//STRIP001 {
-//STRIP001  if(fExtrudeScale != fNew)
-//STRIP001  {
-//STRIP001      fExtrudeScale = fNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
-//STRIP001 }
 
 // #107245#
 // void E3dExtrudeObj::SetExtrudeSmoothed(BOOL bNew)
@@ -754,19 +695,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dExtrudeObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulExtrude3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -774,10 +702,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dExtrudeObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralExtrude3d);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -785,42 +709,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL E3dExtrudeObj::IsBreakObjPossible()
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 SdrAttrObj* E3dExtrudeObj::GetBreakObj()
-//STRIP001 {
-//STRIP001  // create PathObj
-//STRIP001  XPolyPolygon aPoly = TransformToScreenCoor(GetBackSide(GetFrontSide()));
-//STRIP001  SdrPathObj* pPathObj = new SdrPathObj(OBJ_PLIN, aPoly);
-//STRIP001
-//STRIP001  if(pPathObj)
-//STRIP001  {
-//STRIP001      // set position ans size
-//STRIP001      Rectangle aNewPosSize(aPoly.GetBoundRect());
-//STRIP001      pPathObj->SetSnapRect(aNewPosSize);
-//STRIP001
-//STRIP001      // Objekt ggf. schliessen
-//STRIP001      BOOL bDistSmallerTen = FALSE;
-//STRIP001      for(UINT16 nCnt=0;nCnt<pPathObj->GetPathPoly().Count();nCnt++)
-//STRIP001      if(((XPolygon)(pPathObj->GetPathPoly()[0])).CalcDistance(0, pPathObj->GetPathPoly()[0].GetPointCount()-1) < 10)
-//STRIP001      bDistSmallerTen = TRUE;
-//STRIP001      if (!pPathObj->IsClosed() && bDistSmallerTen)
-//STRIP001          pPathObj->ToggleClosed(0);
-//STRIP001
-//STRIP001      // Attribute setzen
-//STRIP001      SfxItemSet aSet(GetItemSet());
-//STRIP001
-//STRIP001      // Linien aktivieren, um Objekt garantiert sichtbar zu machen
-//STRIP001      aSet.Put(XLineStyleItem (XLINE_SOLID));
-//STRIP001
-//STRIP001      pPathObj->SetItemSet(aSet);
-//STRIP001  }
-//STRIP001
-//STRIP001  return pPathObj;
-//STRIP001 }
 
 // EOF
 }
