@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_hffrm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:49:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:53:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,6 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #include "errhdl.hxx"
 
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
