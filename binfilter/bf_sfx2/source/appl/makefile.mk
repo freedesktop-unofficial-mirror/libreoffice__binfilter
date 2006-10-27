@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:31:18 $
+#   last change: $Author: rt $ $Date: 2006-10-27 18:52:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,7 +74,6 @@ SRC2FILES =  \
 SLOFILES =  \
     $(SLO)$/sfx2_imagemgr.obj\
     $(SLO)$/sfx2_appuno.obj \
-    $(SLO)$/sfx2_appmail.obj \
     $(SLO)$/sfx2_appmain.obj \
     $(SLO)$/sfx2_appopen.obj \
     $(SLO)$/sfx2_appinit.obj \
@@ -84,7 +83,6 @@ SLOFILES =  \
     $(SLO)$/sfx2_appcfg.obj \
     $(SLO)$/sfx2_appquit.obj \
     $(SLO)$/sfx2_appchild.obj \
-    $(SLO)$/sfx2_appserv.obj \
     $(SLO)$/sfx2_appdata.obj \
     $(SLO)$/sfx2_app.obj \
     $(SLO)$/sfx2_appbas.obj \
@@ -94,7 +92,6 @@ SLOFILES =  \
     $(SLO)$/sfx2_childwin.obj \
     $(SLO)$/sfx2_sfxdll.obj \
     $(SLO)$/sfx2_module.obj \
-    $(SLO)$/sfx2_appsys.obj \
     $(SLO)$/sfx2_loadenv.obj \
     $(SLO)$/sfx2_dlgcont.obj \
     $(SLO)$/sfx2_namecont.obj \
