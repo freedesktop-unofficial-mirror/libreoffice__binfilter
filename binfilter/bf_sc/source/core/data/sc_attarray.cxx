@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_attarray.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:38:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:13:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -51,18 +50,13 @@
 #ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
 #endif
-// auto strip #ifndef _SV_FONTCVT_HXX
-// auto strip #include <vcl/fontcvt.hxx>
-// auto strip #endif
 
 #include "attarray.hxx"
-// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "docpool.hxx"
 #include "patattr.hxx"
 #include "stlsheet.hxx"
 #include "stlpool.hxx"
-// auto strip #include "markarr.hxx"
 #include "rechead.hxx"
 #include "globstr.hrc"
 namespace binfilter {
@@ -289,21 +283,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 const ScPatternAttr* ScAttrArray::GetPatternRange( USHORT& rStartRow,
-//STRIP001      USHORT& rEndRow, USHORT nRow ) const
-//STRIP001 {
-//STRIP001  short nIndex;
-//STRIP001  if ( Search( nRow, nIndex ) )
-//STRIP001  {
-//STRIP001      if ( nIndex > 0 )
-//STRIP001          rStartRow = pData[nIndex-1].nRow + 1;
-//STRIP001      else
-//STRIP001          rStartRow = 0;
-//STRIP001      rEndRow = pData[nIndex].nRow;
-//STRIP001      return pData[nIndex].pPattern;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -573,114 +552,8 @@ namespace binfilter {
 
     // const wird weggecastet, weil es sonst
     // zu ineffizient/kompliziert wird!
-//STRIP001 #define SET_LINECOLOR(dest,c)                        \
-//STRIP001  if ((dest))                                     \
-//STRIP001  {                                               \
-//STRIP001      ((SvxBorderLine*)(dest))->SetColor((c));    \
-//STRIP001  }
-//STRIP001
-//STRIP001 #define SET_LINE(dest,src)                               \
-//STRIP001  if ((dest))                                         \
-//STRIP001  {                                                   \
-//STRIP001      SvxBorderLine* pCast = (SvxBorderLine*)(dest);  \
-//STRIP001      pCast->SetOutWidth((src)->GetOutWidth());       \
-//STRIP001      pCast->SetInWidth ((src)->GetInWidth());        \
-//STRIP001      pCast->SetDistance((src)->GetDistance());       \
-//STRIP001  }
 
-//STRIP001 void ScAttrArray::ApplyLineStyleArea( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                                    const SvxBorderLine* pLine, BOOL bColorOnly )
-//STRIP001 {
-//STRIP001  if ( bColorOnly && !pLine )
-//STRIP001      return;
-//STRIP001
-//STRIP001  if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
-//STRIP001  {
-//STRIP001      short nPos;
-//STRIP001      USHORT nStart=0;
-//STRIP001      if (!Search( nStartRow, nPos ))
-//STRIP001      {
-//STRIP001          DBG_ERROR("Search-Fehler");
-//STRIP001          return;
-//STRIP001      }
-//STRIP001
-//STRIP001      do
-//STRIP001      {
-//STRIP001          const ScPatternAttr*    pOldPattern = pData[nPos].pPattern;
-//STRIP001          const SfxPoolItem*      pItem = NULL;
-//STRIP001
-//STRIP001          if ( SFX_ITEM_SET == pOldPattern->GetItemSet().
-//STRIP001                                  GetItemState( ATTR_BORDER, TRUE, &pItem ) )
-//STRIP001          {
-//STRIP001              ScPatternAttr*  pNewPattern = new ScPatternAttr(*pOldPattern);
-//STRIP001              SvxBoxItem      aBoxItem( *(const SvxBoxItem*)pItem );
-//STRIP001              USHORT          nY1 = nStart;
-//STRIP001              USHORT          nY2 = pData[nPos].nRow;
-//STRIP001
-//STRIP001              // Linienattribute holen und mit Parametern aktualisieren
-//STRIP001
-//STRIP001              if ( !pLine )
-//STRIP001              {
-//STRIP001                  if ( aBoxItem.GetTop() )    aBoxItem.SetLine( NULL, BOX_LINE_TOP );
-//STRIP001                  if ( aBoxItem.GetBottom() ) aBoxItem.SetLine( NULL, BOX_LINE_BOTTOM );
-//STRIP001                  if ( aBoxItem.GetLeft() )   aBoxItem.SetLine( NULL, BOX_LINE_LEFT );
-//STRIP001                  if ( aBoxItem.GetRight() )  aBoxItem.SetLine( NULL, BOX_LINE_RIGHT );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  if ( bColorOnly )
-//STRIP001                  {
-//STRIP001                      Color aColor( pLine->GetColor() );
-//STRIP001                      SET_LINECOLOR( aBoxItem.GetTop(),    aColor );
-//STRIP001                      SET_LINECOLOR( aBoxItem.GetBottom(), aColor );
-//STRIP001                      SET_LINECOLOR( aBoxItem.GetLeft(),   aColor );
-//STRIP001                      SET_LINECOLOR( aBoxItem.GetRight(),  aColor );
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      SET_LINE( aBoxItem.GetTop(),    pLine );
-//STRIP001                      SET_LINE( aBoxItem.GetBottom(), pLine );
-//STRIP001                      SET_LINE( aBoxItem.GetLeft(),   pLine );
-//STRIP001                      SET_LINE( aBoxItem.GetRight(),  pLine );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              pNewPattern->GetItemSet().Put( aBoxItem );
-//STRIP001
-//STRIP001              nStart = pData[nPos].nRow + 1;
-//STRIP001
-//STRIP001              if ( nY1 < nStartRow || nY2 > nEndRow )
-//STRIP001              {
-//STRIP001                  if (nY1 < nStartRow) nY1=nStartRow;
-//STRIP001                  if (nY2 > nEndRow) nY2=nEndRow;
-//STRIP001                  SetPatternArea( nY1, nY2, pNewPattern, TRUE );
-//STRIP001                  Search( nStart, nPos );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                      //! aus Pool loeschen?
-//STRIP001                  pDocument->GetPool()->Remove(*pData[nPos].pPattern);
-//STRIP001                  pData[nPos].pPattern = (const ScPatternAttr*)
-//STRIP001                              &pDocument->GetPool()->Put(*pNewPattern);
-//STRIP001
-//STRIP001                  if (Concat(nPos))
-//STRIP001                      Search(nStart, nPos);
-//STRIP001                  else
-//STRIP001                      nPos++;
-//STRIP001              }
-//STRIP001              delete pNewPattern;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nStart = pData[nPos].nRow + 1;
-//STRIP001              nPos++;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      while ((nStart <= nEndRow) && (nPos < (short)nCount));
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 #undef SET_LINECOLOR
-//STRIP001 #undef SET_LINE
 
 
 /*N*/ void ScAttrArray::ApplyCacheArea( USHORT nStartRow, USHORT nEndRow, SfxItemPoolCache* pCache )
@@ -868,135 +741,10 @@ namespace binfilter {
 
 //          Umrandung zusammenbauen
 
-//STRIP001 BOOL lcl_TestAttr( const SvxBorderLine* pOldLine, const SvxBorderLine* pNewLine,
-//STRIP001                          BYTE& rModified, const SvxBorderLine*& rpNew )
-//STRIP001 {
-//STRIP001  if (rModified == SC_LINE_DONTCARE)
-//STRIP001      return FALSE;                       // weiter geht's nicht
-//STRIP001
-//STRIP001  if (rModified == SC_LINE_EMPTY)
-//STRIP001  {
-//STRIP001      rModified = SC_LINE_SET;
-//STRIP001      rpNew = pNewLine;
-//STRIP001      return TRUE;                        // zum ersten mal gesetzt
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pOldLine == pNewLine)
-//STRIP001  {
-//STRIP001      rpNew = pOldLine;
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pOldLine && pNewLine)
-//STRIP001      if (*pOldLine == *pNewLine)
-//STRIP001      {
-//STRIP001          rpNew = pOldLine;
-//STRIP001          return FALSE;
-//STRIP001      }
-//STRIP001
-//STRIP001  rModified = SC_LINE_DONTCARE;
-//STRIP001  rpNew = NULL;
-//STRIP001  return TRUE;                            // andere Linie -> dontcare
-//STRIP001 }
 
 
-//STRIP001 void lcl_MergeToFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner,
-//STRIP001                              ScLineFlags& rFlags, const ScPatternAttr* pPattern,
-//STRIP001                              BOOL bLeft, USHORT nDistRight, BOOL bTop, USHORT nDistBottom )
-//STRIP001 {
-//STRIP001  //  rechten/unteren Rahmen setzen, wenn Zelle bis zum Ende zusammengefasst:
-//STRIP001  const ScMergeAttr& rMerge = (const ScMergeAttr&)pPattern->GetItem(ATTR_MERGE);
-//STRIP001  if ( rMerge.GetColMerge() == nDistRight + 1 )
-//STRIP001      nDistRight = 0;
-//STRIP001  if ( rMerge.GetRowMerge() == nDistBottom + 1 )
-//STRIP001      nDistBottom = 0;
-//STRIP001
-//STRIP001  const SvxBoxItem* pCellFrame = (SvxBoxItem*) &pPattern->GetItemSet().Get( ATTR_BORDER );
-//STRIP001  const SvxBorderLine* pLeftAttr   = pCellFrame->GetLeft();
-//STRIP001  const SvxBorderLine* pRightAttr  = pCellFrame->GetRight();
-//STRIP001  const SvxBorderLine* pTopAttr    = pCellFrame->GetTop();
-//STRIP001  const SvxBorderLine* pBottomAttr = pCellFrame->GetBottom();
-//STRIP001  const SvxBorderLine* pNew;
-//STRIP001
-//STRIP001  if (bTop)
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineOuter->GetTop(), pTopAttr, rFlags.nTop, pNew ))
-//STRIP001          pLineOuter->SetLine( pNew, BOX_LINE_TOP );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineInner->GetHori(), pTopAttr, rFlags.nHori, pNew ))
-//STRIP001          pLineInner->SetLine( pNew, BOXINFO_LINE_HORI );
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nDistBottom == 0)
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineOuter->GetBottom(), pBottomAttr, rFlags.nBottom, pNew ))
-//STRIP001          pLineOuter->SetLine( pNew, BOX_LINE_BOTTOM );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineInner->GetHori(), pBottomAttr, rFlags.nHori, pNew ))
-//STRIP001          pLineInner->SetLine( pNew, BOXINFO_LINE_HORI );
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bLeft)
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineOuter->GetLeft(), pLeftAttr, rFlags.nLeft, pNew ))
-//STRIP001          pLineOuter->SetLine( pNew, BOX_LINE_LEFT );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineInner->GetVert(), pLeftAttr, rFlags.nVert, pNew ))
-//STRIP001          pLineInner->SetLine( pNew, BOXINFO_LINE_VERT );
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nDistRight == 0)
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineOuter->GetRight(), pRightAttr, rFlags.nRight, pNew ))
-//STRIP001          pLineOuter->SetLine( pNew, BOX_LINE_RIGHT );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (lcl_TestAttr( pLineInner->GetVert(), pRightAttr, rFlags.nVert, pNew ))
-//STRIP001          pLineInner->SetLine( pNew, BOXINFO_LINE_VERT );
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScAttrArray::MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner,
-//STRIP001                  ScLineFlags& rFlags,
-//STRIP001                  USHORT nStartRow, USHORT nEndRow, BOOL bLeft, USHORT nDistRight ) const
-//STRIP001 {
-//STRIP001  const ScPatternAttr* pPattern;
-//STRIP001
-//STRIP001  if (nStartRow == nEndRow)
-//STRIP001  {
-//STRIP001      pPattern = GetPattern( nStartRow );
-//STRIP001      lcl_MergeToFrame( pLineOuter, pLineInner, rFlags, pPattern, bLeft, nDistRight, TRUE, 0 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pPattern = GetPattern( nStartRow );
-//STRIP001      lcl_MergeToFrame( pLineOuter, pLineInner, rFlags, pPattern, bLeft, nDistRight, TRUE,
-//STRIP001                          nEndRow-nStartRow );
-//STRIP001
-//STRIP001      short nStartIndex;
-//STRIP001      short nEndIndex;
-//STRIP001      Search( nStartRow+1, nStartIndex );
-//STRIP001      Search( nEndRow-1, nEndIndex );
-//STRIP001      for (short i=nStartIndex; i<=nEndIndex; i++)
-//STRIP001      {
-//STRIP001          pPattern = (ScPatternAttr*) pData[i].pPattern;
-//STRIP001          lcl_MergeToFrame( pLineOuter, pLineInner, rFlags, pPattern, bLeft, nDistRight, FALSE,
-//STRIP001                          nEndRow - Min( pData[i].nRow, (USHORT)(nEndRow-1) ) );
-//STRIP001          // nDistBottom hier immer > 0
-//STRIP001      }
-//STRIP001
-//STRIP001      pPattern = GetPattern( nEndRow );
-//STRIP001      lcl_MergeToFrame( pLineOuter, pLineInner, rFlags, pPattern, bLeft, nDistRight, FALSE, 0 );
-//STRIP001  }
-//STRIP001 }
 
 //
 //  Rahmen anwenden
@@ -1005,198 +753,12 @@ namespace binfilter {
 //  ApplyFrame - auf einen Eintrag im Array
 
 
-//STRIP001 BOOL ScAttrArray::ApplyFrame( const SvxBoxItem*      pBoxItem,
-//STRIP001                            const SvxBoxInfoItem* pBoxInfoItem,
-//STRIP001                            USHORT nStartRow, USHORT nEndRow,
-//STRIP001                            BOOL bLeft, USHORT nDistRight, BOOL bTop, USHORT nDistBottom )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( pBoxItem && pBoxInfoItem, "Linienattribute fehlen!" );
-//STRIP001
-//STRIP001  const ScPatternAttr* pPattern = GetPattern( nStartRow );
-//STRIP001  const SvxBoxItem* pOldFrame = (const SvxBoxItem*)
-//STRIP001                                &pPattern->GetItemSet().Get( ATTR_BORDER );
-//STRIP001
-//STRIP001  //  rechten/unteren Rahmen setzen, wenn Zelle bis zum Ende zusammengefasst:
-//STRIP001  const ScMergeAttr& rMerge = (const ScMergeAttr&)pPattern->GetItem(ATTR_MERGE);
-//STRIP001  if ( rMerge.GetColMerge() == nDistRight + 1 )
-//STRIP001      nDistRight = 0;
-//STRIP001  if ( rMerge.GetRowMerge() == nDistBottom + 1 )
-//STRIP001      nDistBottom = 0;
-//STRIP001
-//STRIP001  SvxBoxItem aNewFrame( *pOldFrame );
-//STRIP001
-//STRIP001  if ( bLeft ? pBoxInfoItem->IsValid(VALID_LEFT) : pBoxInfoItem->IsValid(VALID_VERT) )
-//STRIP001      aNewFrame.SetLine( bLeft ? pBoxItem->GetLeft() : pBoxInfoItem->GetVert(),
-//STRIP001          BOX_LINE_LEFT );
-//STRIP001  if ( (nDistRight==0) ? pBoxInfoItem->IsValid(VALID_RIGHT) : pBoxInfoItem->IsValid(VALID_VERT) )
-//STRIP001      aNewFrame.SetLine( (nDistRight==0) ? pBoxItem->GetRight() : pBoxInfoItem->GetVert(),
-//STRIP001          BOX_LINE_RIGHT );
-//STRIP001  if ( bTop ? pBoxInfoItem->IsValid(VALID_TOP) : pBoxInfoItem->IsValid(VALID_HORI) )
-//STRIP001      aNewFrame.SetLine( bTop ? pBoxItem->GetTop() : pBoxInfoItem->GetHori(),
-//STRIP001          BOX_LINE_TOP );
-//STRIP001  if ( (nDistBottom==0) ? pBoxInfoItem->IsValid(VALID_BOTTOM) : pBoxInfoItem->IsValid(VALID_HORI) )
-//STRIP001      aNewFrame.SetLine( (nDistBottom==0) ? pBoxItem->GetBottom() : pBoxInfoItem->GetHori(),
-//STRIP001          BOX_LINE_BOTTOM );
-//STRIP001
-//STRIP001  if (aNewFrame == *pOldFrame)
-//STRIP001  {
-//STRIP001      // nothing to do
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SfxItemPoolCache aCache( pDocument->GetPool(), &aNewFrame );
-//STRIP001      ApplyCacheArea( nStartRow, nEndRow, &aCache );
-//STRIP001
-//STRIP001 /*       ScPatternAttr* pNewPattern = (ScPatternAttr*) pPattern->Clone();
-//STRIP001      pNewPattern->GetItemSet().Put( aNewFrame );
-//STRIP001      SetPatternArea( nStartRow, nEndRow, pNewPattern, TRUE );
-//STRIP001 */
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScAttrArray::ApplyBlockFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
-//STRIP001                          USHORT nStartRow, USHORT nEndRow, BOOL bLeft, USHORT nDistRight )
-//STRIP001 {
-//STRIP001  if (nStartRow == nEndRow)
-//STRIP001      ApplyFrame( pLineOuter, pLineInner, nStartRow, nEndRow, bLeft, nDistRight, TRUE, 0 );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ApplyFrame( pLineOuter, pLineInner, nStartRow, nStartRow, bLeft, nDistRight,
-//STRIP001                      TRUE, nEndRow-nStartRow );
-//STRIP001
-//STRIP001      if ( nEndRow > nStartRow+1 )                // innerer Teil vorhanden?
-//STRIP001      {
-//STRIP001          short nStartIndex;
-//STRIP001          short nEndIndex;
-//STRIP001          Search( nStartRow+1, nStartIndex );
-//STRIP001          Search( nEndRow-1, nEndIndex );
-//STRIP001          USHORT nTmpStart = nStartRow+1;
-//STRIP001          USHORT nTmpEnd;
-//STRIP001          for (short i=nStartIndex; i<=nEndIndex;)
-//STRIP001          {
-//STRIP001              nTmpEnd = Min( (USHORT)(nEndRow-1), (USHORT)(pData[i].nRow) );
-//STRIP001              BOOL bChanged = ApplyFrame( pLineOuter, pLineInner, nTmpStart, nTmpEnd,
-//STRIP001                                          bLeft, nDistRight, FALSE, nEndRow-nTmpEnd );
-//STRIP001              nTmpStart = nTmpEnd+1;
-//STRIP001              if (bChanged)
-//STRIP001              {
-//STRIP001                  Search(nTmpStart, i);
-//STRIP001                  Search(nEndRow-1, nEndIndex);
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  i++;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      ApplyFrame( pLineOuter, pLineInner, nEndRow, nEndRow, bLeft, nDistRight, FALSE, 0 );
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 long lcl_LineSize( const SvxBorderLine& rLine )
-//STRIP001 {
-//STRIP001  //  nur eine Linie -> halbe Breite, min. 20
-//STRIP001  //  doppelte Linie -> halber Abstand + eine Linie (je min. 20)
-//STRIP001
-//STRIP001  long nTotal = 0;
-//STRIP001  USHORT nWidth = Max( rLine.GetOutWidth(), rLine.GetInWidth() );
-//STRIP001  USHORT nDist = rLine.GetDistance();
-//STRIP001  if (nDist)
-//STRIP001  {
-//STRIP001      DBG_ASSERT( rLine.GetOutWidth() && rLine.GetInWidth(),
-//STRIP001                      "Linie hat Abstand, aber nur eine Breite ???" );
-//STRIP001
-//STRIP001 //       nTotal += ( nDist > 40 ) ? ( nDist / 2 ) : 20;
-//STRIP001      nTotal += ( nDist > 20 ) ? nDist : 20;
-//STRIP001      nTotal += ( nWidth > 20 ) ? nWidth : 20;
-//STRIP001  }
-//STRIP001  else if (nWidth)
-//STRIP001 //       nTotal += ( nWidth > 40 ) ? ( nWidth / 2 ) : 20;
-//STRIP001      nTotal += ( nWidth > 20 ) ? nWidth  : 20;
-//STRIP001
-//STRIP001      //! auch halbieren ???
-//STRIP001
-//STRIP001  return nTotal;
-//STRIP001 }
 
 
-//STRIP001 BOOL ScAttrArray::HasLines( USHORT nRow1, USHORT nRow2, Rectangle& rSizes,
-//STRIP001                              BOOL bLeft, BOOL bRight ) const
-//STRIP001 {
-//STRIP001  short nStartIndex;
-//STRIP001  short nEndIndex;
-//STRIP001  Search( nRow1, nStartIndex );
-//STRIP001  Search( nRow2, nEndIndex );
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001
-//STRIP001  const SvxBoxItem* pItem = 0;
-//STRIP001  const SvxBorderLine* pLine = 0;
-//STRIP001  long nCmp;
-//STRIP001
-//STRIP001  //  oben
-//STRIP001
-//STRIP001  pItem = (const SvxBoxItem*) &pData[nStartIndex].pPattern->GetItem(ATTR_BORDER);
-//STRIP001  pLine = pItem->GetTop();
-//STRIP001  if (pLine)
-//STRIP001  {
-//STRIP001      nCmp = lcl_LineSize(*pLine);
-//STRIP001      if ( nCmp > rSizes.Top() )
-//STRIP001          rSizes.Top() = nCmp;
-//STRIP001      bFound = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  //  unten
-//STRIP001
-//STRIP001  if ( nEndIndex != nStartIndex )
-//STRIP001      pItem = (const SvxBoxItem*) &pData[nEndIndex].pPattern->GetItem(ATTR_BORDER);
-//STRIP001  pLine = pItem->GetBottom();
-//STRIP001  if (pLine)
-//STRIP001  {
-//STRIP001      nCmp = lcl_LineSize(*pLine);
-//STRIP001      if ( nCmp > rSizes.Bottom() )
-//STRIP001          rSizes.Bottom() = nCmp;
-//STRIP001      bFound = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( bLeft || bRight )
-//STRIP001      for ( USHORT i=nStartIndex; i<=nEndIndex; i++)
-//STRIP001      {
-//STRIP001          pItem = (const SvxBoxItem*) &pData[i].pPattern->GetItem(ATTR_BORDER);
-//STRIP001
-//STRIP001          //  links
-//STRIP001
-//STRIP001          if (bLeft)
-//STRIP001          {
-//STRIP001              pLine = pItem->GetLeft();
-//STRIP001              if (pLine)
-//STRIP001              {
-//STRIP001                  nCmp = lcl_LineSize(*pLine);
-//STRIP001                  if ( nCmp > rSizes.Left() )
-//STRIP001                      rSizes.Left() = nCmp;
-//STRIP001                  bFound = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          //  rechts
-//STRIP001
-//STRIP001          if (bRight)
-//STRIP001          {
-//STRIP001              pLine = pItem->GetRight();
-//STRIP001              if (pLine)
-//STRIP001              {
-//STRIP001                  nCmp = lcl_LineSize(*pLine);
-//STRIP001                  if ( nCmp > rSizes.Right() )
-//STRIP001                      rSizes.Right() = nCmp;
-//STRIP001                  bFound = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
 //  Testen, ob Bereich bestimmtes Attribut enthaelt
 
@@ -1440,60 +1002,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScAttrArray::SetPatternAreaSafe( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                      const ScPatternAttr* pWantedPattern, BOOL bDefault )
-//STRIP001 {
-//STRIP001  const ScPatternAttr*    pOldPattern;
-//STRIP001  const ScMergeFlagAttr*  pItem;
-//STRIP001
-//STRIP001  short   nIndex;
-//STRIP001  USHORT  nRow;
-//STRIP001  USHORT  nThisRow;
-//STRIP001  BOOL    bFirstUse = TRUE;
-//STRIP001
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  nThisRow = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
-//STRIP001  while ( nThisRow <= nEndRow )
-//STRIP001  {
-//STRIP001      pOldPattern = pData[nIndex].pPattern;
-//STRIP001      if (pOldPattern != pWantedPattern)                          //! else-Zweig ?
-//STRIP001      {
-//STRIP001          if (nThisRow < nStartRow) nThisRow = nStartRow;
-//STRIP001          nRow = pData[nIndex].nRow;
-//STRIP001          USHORT nAttrRow = Min( (USHORT)nRow, (USHORT)nEndRow );
-//STRIP001          pItem = (const ScMergeFlagAttr*) &pOldPattern->GetItem( ATTR_MERGE_FLAG );
-//STRIP001
-//STRIP001          if (pItem->IsOverlapped() || pItem->HasAutoFilter())
-//STRIP001          {
-//STRIP001              //  #108045# default-constructing a ScPatternAttr for DeleteArea doesn't work
-//STRIP001              //  because it would have no cell style information.
-//STRIP001              //  Instead, the document's GetDefPattern is copied. Since it is passed as
-//STRIP001              //  pWantedPattern, no special treatment of default is needed here anymore.
-//STRIP001              ScPatternAttr*  pNewPattern = new ScPatternAttr( *pWantedPattern );
-//STRIP001              SfxItemSet*     pSet = &pNewPattern->GetItemSet();
-//STRIP001              pSet->Put( *pItem );
-//STRIP001              SetPatternArea( nThisRow, nAttrRow, pNewPattern, TRUE );
-//STRIP001              delete pNewPattern;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              if ( !bDefault )
-//STRIP001              {
-//STRIP001                  if (bFirstUse)
-//STRIP001                      bFirstUse = FALSE;
-//STRIP001                  else
-//STRIP001                      pDocument->GetPool()->Put( *pWantedPattern );       // im Pool ist es schon!
-//STRIP001              }
-//STRIP001              SetPatternArea( nThisRow, nAttrRow, pWantedPattern );
-//STRIP001          }
-//STRIP001
-//STRIP001          Search( nThisRow, nIndex );                 // Daten wurden veraendert !!!
-//STRIP001      }
-//STRIP001
-//STRIP001      ++nIndex;
-//STRIP001      nThisRow = pData[nIndex-1].nRow+1;
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ BOOL ScAttrArray::ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
@@ -1602,93 +1110,8 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScAttrArray::ChangeIndent( USHORT nStartRow, USHORT nEndRow, BOOL bIncrement )
-//STRIP001 {
-//STRIP001  short nIndex;
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  USHORT nThisStart = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
-//STRIP001  if (nThisStart < nStartRow) nThisStart = nStartRow;
-//STRIP001
-//STRIP001  while ( nThisStart <= nEndRow )
-//STRIP001  {
-//STRIP001      const ScPatternAttr* pOldPattern = pData[nIndex].pPattern;
-//STRIP001      const SfxItemSet& rOldSet = pOldPattern->GetItemSet();
-//STRIP001      const SfxPoolItem* pItem;
-//STRIP001
-//STRIP001      BOOL bNeedJust = ( rOldSet.GetItemState( ATTR_HOR_JUSTIFY, FALSE, &pItem ) != SFX_ITEM_SET
-//STRIP001                      || ((const SvxHorJustifyItem*)pItem)->GetValue() != SVX_HOR_JUSTIFY_LEFT );
-//STRIP001      USHORT nOldValue = ((const SfxUInt16Item&)rOldSet.Get( ATTR_INDENT )).GetValue();
-//STRIP001      USHORT nNewValue = nOldValue;
-//STRIP001      if ( bIncrement )
-//STRIP001      {
-//STRIP001          if ( nNewValue < SC_MAX_INDENT )
-//STRIP001          {
-//STRIP001              nNewValue += SC_INDENT_STEP;
-//STRIP001              if ( nNewValue > SC_MAX_INDENT ) nNewValue = SC_MAX_INDENT;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if ( nNewValue > 0 )
-//STRIP001          {
-//STRIP001              if ( nNewValue > SC_INDENT_STEP )
-//STRIP001                  nNewValue -= SC_INDENT_STEP;
-//STRIP001              else
-//STRIP001                  nNewValue = 0;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( bNeedJust || nNewValue != nOldValue )
-//STRIP001      {
-//STRIP001          USHORT nThisEnd = pData[nIndex].nRow;
-//STRIP001          USHORT nAttrRow = Min( nThisEnd, nEndRow );
-//STRIP001          ScPatternAttr aNewPattern(*pOldPattern);
-//STRIP001          aNewPattern.GetItemSet().Put( SfxUInt16Item( ATTR_INDENT, nNewValue ) );
-//STRIP001          if ( bNeedJust )
-//STRIP001              aNewPattern.GetItemSet().Put(
-//STRIP001                              SvxHorJustifyItem( SVX_HOR_JUSTIFY_LEFT, ATTR_HOR_JUSTIFY ) );
-//STRIP001          SetPatternArea( nThisStart, nAttrRow, &aNewPattern, TRUE );
-//STRIP001
-//STRIP001          nThisStart = nThisEnd + 1;
-//STRIP001          Search( nThisStart, nIndex );               // Daten wurden veraendert !!!
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nThisStart = pData[nIndex].nRow + 1;        // weiterzaehlen...
-//STRIP001          ++nIndex;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 short ScAttrArray::GetNextUnprotected( short nRow, BOOL bUp ) const
-//STRIP001 {
-//STRIP001  short nRet = nRow;
-//STRIP001  if (VALIDROW(nRow))
-//STRIP001  {
-//STRIP001      short nIndex;
-//STRIP001      Search(nRow, nIndex);
-//STRIP001      while (((const ScProtectionAttr&)pData[nIndex].pPattern->
-//STRIP001              GetItem(ATTR_PROTECTION)).GetProtection())
-//STRIP001      {
-//STRIP001          if (bUp)
-//STRIP001          {
-//STRIP001              --nIndex;
-//STRIP001              if (nIndex<0)
-//STRIP001                  return -1;                  // nichts gefunden
-//STRIP001              nRet = pData[nIndex].nRow;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nRet = pData[nIndex].nRow+1;
-//STRIP001              ++nIndex;
-//STRIP001              if (nIndex>=nCount)
-//STRIP001                  return MAXROW+1;            // nichts gefunden
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 
 /*N*/ void ScAttrArray::FindStyleSheet( const SfxStyleSheetBase* pStyleSheet, BOOL* pUsed, BOOL bReset )
@@ -1771,39 +1194,8 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 USHORT ScAttrArray::GetFirstEntryPos() const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nCount, "nCount = 0" );
-//STRIP001
-//STRIP001  if ( pData[0].pPattern != pDocument->GetDefPattern() )
-//STRIP001      return 0;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (nCount==1)
-//STRIP001          return 0;                               // leer
-//STRIP001      else
-//STRIP001          return pData[0].nRow + 1;
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 USHORT ScAttrArray::GetLastEntryPos( BOOL bIncludeBottom ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nCount, "nCount == 0" );
-//STRIP001
-//STRIP001  if (bIncludeBottom)
-//STRIP001      bIncludeBottom = ( pData[nCount-1].pPattern != pDocument->GetDefPattern() );
-//STRIP001
-//STRIP001  if (bIncludeBottom)
-//STRIP001      return MAXROW;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (nCount<=1)
-//STRIP001          return 0;                               // leer
-//STRIP001      else
-//STRIP001          return pData[nCount-2].nRow;
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ BOOL ScAttrArray::HasVisibleAttr( USHORT& rFirstRow, USHORT& rLastRow, BOOL bSkipFirst ) const
@@ -1859,23 +1251,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScAttrArray::HasVisibleAttrIn( USHORT nStartRow, USHORT nEndRow ) const
-//STRIP001 {
-//STRIP001  short nIndex;
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  USHORT nThisStart = nStartRow;
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  while ( nIndex < nCount && nThisStart <= nEndRow && !bFound )
-//STRIP001  {
-//STRIP001      if ( pData[nIndex].pPattern->IsVisible() )
-//STRIP001          bFound = TRUE;
-//STRIP001
-//STRIP001      nThisStart = pData[nIndex].nRow + 1;
-//STRIP001      ++nIndex;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
 
 /*N*/ BOOL ScAttrArray::IsVisibleEqual( const ScAttrArray& rOther,
@@ -2128,42 +1503,6 @@ namespace binfilter {
 /*N*/ void ScAttrArray::DeleteHardAttr(USHORT nStartRow, USHORT nEndRow)
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocument->GetDefPattern();
-//STRIP001  const ScPatternAttr* pOldPattern;
-//STRIP001
-//STRIP001  short   nIndex;
-//STRIP001  USHORT  nRow;
-//STRIP001  USHORT  nThisRow;
-//STRIP001
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  nThisRow = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
-//STRIP001  if (nThisRow < nStartRow) nThisRow = nStartRow;
-//STRIP001
-//STRIP001  while ( nThisRow <= nEndRow )
-//STRIP001  {
-//STRIP001      pOldPattern = pData[nIndex].pPattern;
-//STRIP001
-//STRIP001      if ( pOldPattern->GetItemSet().Count() )        // harte Attribute ?
-//STRIP001      {
-//STRIP001          nRow = pData[nIndex].nRow;
-//STRIP001          USHORT nAttrRow = Min( (USHORT)nRow, (USHORT)nEndRow );
-//STRIP001
-//STRIP001          ScPatternAttr aNewPattern(*pOldPattern);
-//STRIP001          SfxItemSet& rSet = aNewPattern.GetItemSet();
-//STRIP001          for (USHORT nId = ATTR_PATTERN_START; nId <= ATTR_PATTERN_END; nId++)
-//STRIP001              if (nId != ATTR_MERGE && nId != ATTR_MERGE_FLAG)
-//STRIP001                  rSet.ClearItem(nId);
-//STRIP001
-//STRIP001          if ( aNewPattern == *pDefPattern )
-//STRIP001              SetPatternArea( nThisRow, nAttrRow, pDefPattern, FALSE );
-//STRIP001          else
-//STRIP001              SetPatternArea( nThisRow, nAttrRow, &aNewPattern, TRUE );
-//STRIP001
-//STRIP001          Search( nThisRow, nIndex );                                 // Daten wurden veraendert !!!
-//STRIP001      }
-//STRIP001
-//STRIP001      ++nIndex;
-//STRIP001      nThisRow = pData[nIndex-1].nRow+1;
-//STRIP001  }
 /*N*/ }
 
         // Verschieben innerhalb eines Dokuments
@@ -2254,146 +1593,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocu
         // Flags stehenlassen
         //! mit CopyArea zusammenfassen !!!
 
-//STRIP001 void ScAttrArray::CopyAreaSafe( USHORT nStartRow, USHORT nEndRow, short nDy, ScAttrArray& rAttrArray )
-//STRIP001 {
-//STRIP001  nStartRow -= nDy;       // Source
-//STRIP001  nEndRow -= nDy;
-//STRIP001
-//STRIP001  USHORT nDestStart = Max((short)((short)nStartRow + nDy), (short) 0);
-//STRIP001  USHORT nDestEnd = Min((short)((short)nEndRow + nDy), (short) MAXROW);
-//STRIP001
-//STRIP001  if ( !rAttrArray.HasAttrib( nDestStart, nDestEnd, HASATTR_OVERLAPPED ) )
-//STRIP001  {
-//STRIP001      CopyArea( nStartRow+nDy, nEndRow+nDy, nDy, rAttrArray );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  ScDocumentPool* pSourceDocPool = pDocument->GetPool();
-//STRIP001  ScDocumentPool* pDestDocPool = rAttrArray.pDocument->GetPool();
-//STRIP001  BOOL bSamePool = (pSourceDocPool==pDestDocPool);
-//STRIP001
-//STRIP001  for (USHORT i = 0; (i < nCount) && (nDestStart <= nDestEnd); i++)
-//STRIP001  {
-//STRIP001      if (pData[i].nRow >= nStartRow)
-//STRIP001      {
-//STRIP001          const ScPatternAttr* pOldPattern = pData[i].pPattern;
-//STRIP001          const ScPatternAttr* pNewPattern;
-//STRIP001
-//STRIP001          if (bSamePool)
-//STRIP001              pNewPattern = (ScPatternAttr*) &pDestDocPool->Put(*pOldPattern);
-//STRIP001          else
-//STRIP001              pNewPattern = pOldPattern->PutInPool( rAttrArray.pDocument, pDocument );
-//STRIP001
-//STRIP001          rAttrArray.SetPatternAreaSafe(nDestStart,
-//STRIP001                          Min((USHORT)(pData[i].nRow + nDy), nDestEnd), pNewPattern, FALSE);
-//STRIP001      }
-//STRIP001
-//STRIP001      // when pasting from clipboard and skipping filtered rows, the adjusted end position
-//STRIP001      // can be negative
-//STRIP001      nDestStart = Max((short)nDestStart, (short)(pData[i].nRow + nDy + 1));
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 short ScAttrArray::SearchStyle( short nRow, const ScStyleSheet* pSearchStyle,
-//STRIP001                                  BOOL bUp, ScMarkArray* pMarkArray )
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001
-//STRIP001  if (pMarkArray)
-//STRIP001  {
-//STRIP001      nRow = pMarkArray->GetNextMarked( nRow, bUp );
-//STRIP001      if (nRow<0 || nRow>MAXROW)
-//STRIP001          return nRow;
-//STRIP001  }
-//STRIP001
-//STRIP001  short nIndex;
-//STRIP001  Search(nRow, nIndex);
-//STRIP001  const ScPatternAttr* pPattern = pData[nIndex].pPattern;
-//STRIP001
-//STRIP001  while (nIndex>=0 && nIndex<(short)nCount && !bFound)
-//STRIP001  {
-//STRIP001      if (pPattern->GetStyleSheet() == pSearchStyle)
-//STRIP001      {
-//STRIP001          if (pMarkArray)
-//STRIP001          {
-//STRIP001              nRow = pMarkArray->GetNextMarked( nRow, bUp );
-//STRIP001              short nStart = nIndex ? pData[nIndex-1].nRow+1 : 0;
-//STRIP001              if (nRow >= nStart && nRow <= (short) pData[nIndex].nRow)
-//STRIP001                  bFound = TRUE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              bFound = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (!bFound)
-//STRIP001      {
-//STRIP001          if (bUp)
-//STRIP001          {
-//STRIP001              --nIndex;
-//STRIP001              if (nIndex>=0)
-//STRIP001              {
-//STRIP001                  nRow = pData[nIndex].nRow;
-//STRIP001                  pPattern = pData[nIndex].pPattern;
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  nRow = -1;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nRow = pData[nIndex].nRow+1;
-//STRIP001              ++nIndex;
-//STRIP001              if (nIndex<(short)nCount)
-//STRIP001                  pPattern = pData[nIndex].pPattern;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  DBG_ASSERT( bFound || nRow<0 || nRow>MAXROW, "interner Fehler in ScAttrArray::SearchStyle" );
-//STRIP001
-//STRIP001  return nRow;
-//STRIP001 }
 
 
-//STRIP001 BOOL ScAttrArray::SearchStyleRange( short& rRow, short& rEndRow,
-//STRIP001                      const ScStyleSheet* pSearchStyle, BOOL bUp, ScMarkArray* pMarkArray )
-//STRIP001 {
-//STRIP001  short nStartRow = SearchStyle( rRow, pSearchStyle, bUp, pMarkArray );
-//STRIP001  if (VALIDROW(nStartRow))
-//STRIP001  {
-//STRIP001      short nIndex;
-//STRIP001      Search(nStartRow,nIndex);
-//STRIP001
-//STRIP001      rRow = nStartRow;
-//STRIP001      if (bUp)
-//STRIP001      {
-//STRIP001          if (nIndex>0)
-//STRIP001              rEndRow = pData[nIndex-1].nRow + 1;
-//STRIP001          else
-//STRIP001              rEndRow = 0;
-//STRIP001          if (pMarkArray)
-//STRIP001          {
-//STRIP001              short nMarkEnd = pMarkArray->GetMarkEnd( nStartRow, TRUE );
-//STRIP001              if (nMarkEnd>rEndRow)
-//STRIP001                  rEndRow = nMarkEnd;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          rEndRow = pData[nIndex].nRow;
-//STRIP001          if (pMarkArray)
-//STRIP001          {
-//STRIP001              short nMarkEnd = pMarkArray->GetMarkEnd( nStartRow, FALSE );
-//STRIP001              if (nMarkEnd<rEndRow)
-//STRIP001                  rEndRow = nMarkEnd;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return FALSE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 //
