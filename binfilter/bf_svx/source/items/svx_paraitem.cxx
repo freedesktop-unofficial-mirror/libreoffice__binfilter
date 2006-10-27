@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_paraitem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:09:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:17:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -302,21 +302,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLineSpacingItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef PRODUCT
-//STRIP001  rText.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "SvxLineSpacingItem" ));
-//STRIP001 #else
-//STRIP001  rText.Erase();
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -365,14 +350,6 @@ using namespace ::com::sun::star;
 /*?*/ XubString SvxLineSpacingItem::GetValueTextByPos( sal_uInt16 nPos ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); XubString aText;//STRIP001 //STRIP001  //! Strings demnaechst aus Resource laden
-//STRIP001  XubString aText;
-//STRIP001  switch ( nPos )
-//STRIP001  {
-//STRIP001      case SVX_LINESPACE_USER                 : aText.AppendAscii( "Benutzer" );  break;
-//STRIP001      case SVX_LINESPACE_ONE_LINE             : aText.AppendAscii( "Einzeilig" ); break;
-//STRIP001      case SVX_LINESPACE_ONE_POINT_FIVE_LINES : aText.AppendAscii( "1,5zeilig" ); break;
-//STRIP001      case SVX_LINESPACE_TWO_LINES            : aText.AppendAscii( "Zweizeilig" );    break;
-//STRIP001  }
 /*?*/   return aText;
 /*?*/ }
 
@@ -381,14 +358,6 @@ using namespace ::com::sun::star;
 /*?*/ sal_uInt16 SvxLineSpacingItem::GetEnumValue() const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     sal_uInt16 nVal;
-//STRIP001  switch ( nPropLineSpace )
-//STRIP001  {
-//STRIP001      case 100:   nVal = SVX_LINESPACE_ONE_LINE;              break;
-//STRIP001      case 150:   nVal = SVX_LINESPACE_ONE_POINT_FIVE_LINES;  break;
-//STRIP001      case 200:   nVal = SVX_LINESPACE_TWO_LINES;             break;
-//STRIP001      default:    nVal = SVX_LINESPACE_USER;                  break;
-//STRIP001  }
-//STRIP001  return nVal;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -396,11 +365,6 @@ using namespace ::com::sun::star;
 /*?*/ void SvxLineSpacingItem::SetEnumValue( sal_uInt16 nVal )
 /*?*/ {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    switch ( nVal )
-//STRIP001  {
-//STRIP001      case SVX_LINESPACE_ONE_LINE:             nPropLineSpace = 100; break;
-//STRIP001      case SVX_LINESPACE_ONE_POINT_FIVE_LINES: nPropLineSpace = 150; break;
-//STRIP001      case SVX_LINESPACE_TWO_LINES:            nPropLineSpace = 200; break;
-//STRIP001  }
 /*?*/ }
 
 // class SvxAdjustItem ---------------------------------------------------
@@ -494,26 +458,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxAdjustItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( (sal_uInt16)GetAdjust() );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -524,11 +468,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxAdjustItem::GetValueTextByPos( sal_uInt16 nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos <= (sal_uInt16)SVX_ADJUST_BLOCKLINE, "enum overflow!" );
-//STRIP001  return SVX_RESSTR(RID_SVXITEMS_ADJUST_BEGIN + nPos);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -541,7 +480,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void SvxAdjustItem::SetEnumValue( sal_uInt16 nVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SetAdjust( (const SvxAdjust)nVal );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -614,41 +552,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxWidowsItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << (sal_Int8)GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxWidowsItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText = String::CreateFromInt32( GetValue() );
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_LINES);
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_WIDOWS_COMPLETE);
-//STRIP001          rText += String::CreateFromInt32( GetValue() );
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_LINES);
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxOrphansItem --------------------------------------------------
 
@@ -675,41 +581,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxOrphansItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << (sal_Int8) GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxOrphansItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText = String::CreateFromInt32( GetValue() );
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_LINES);
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_ORPHANS_COMPLETE);
-//STRIP001          rText += String::CreateFromInt32( GetValue() );
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_LINES);
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxHyphenZoneItem -----------------------------------------------
 
@@ -795,67 +669,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxHyphenZoneItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_HYPHEN_FALSE;
-//STRIP001
-//STRIP001          if ( bHyphen )
-//STRIP001              nId = RID_SVXITEMS_HYPHEN_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001          nId = RID_SVXITEMS_PAGE_END_FALSE;
-//STRIP001
-//STRIP001          if ( bPageEnd )
-//STRIP001              nId = RID_SVXITEMS_PAGE_END_TRUE;
-//STRIP001          rText += SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += String::CreateFromInt32( nMinLead );
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += String::CreateFromInt32( nMinTrail );
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += String::CreateFromInt32( nMaxHyphens );
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_HYPHEN_FALSE;
-//STRIP001
-//STRIP001          if ( bHyphen )
-//STRIP001              nId = RID_SVXITEMS_HYPHEN_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001          nId = RID_SVXITEMS_PAGE_END_FALSE;
-//STRIP001
-//STRIP001          if ( bPageEnd )
-//STRIP001              nId = RID_SVXITEMS_PAGE_END_TRUE;
-//STRIP001          rText += SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += String::CreateFromInt32(nMinLead);
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_HYPHEN_MINLEAD);
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += String::CreateFromInt32(nMinTrail);
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_HYPHEN_MINTRAIL);
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += String::CreateFromInt32(nMaxHyphens);
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_HYPHEN_MAX);
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -908,30 +721,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxTabStop::GetValueString() const
-//STRIP001 {
-//STRIP001  XubString aStr;
-//STRIP001
-//STRIP001  aStr += sal_Unicode( '(' );
-//STRIP001  aStr += UniString::CreateFromInt32(nTabPos);
-//STRIP001  aStr += cpDelim;
-//STRIP001  aStr += XubString( ResId( RID_SVXITEMS_TAB_ADJUST_BEGIN + (sal_uInt16)eAdjustment, DIALOG_MGR() ) );
-//STRIP001
-//STRIP001  aStr += cpDelim;
-//STRIP001  aStr += sal_Unicode('[');
-//STRIP001  aStr += XubString( ResId( RID_SVXITEMS_TAB_DECIMAL_CHAR, DIALOG_MGR() ) );
-//STRIP001  aStr += cDecimal;
-//STRIP001  aStr += sal_Unicode(']');
-//STRIP001  aStr += cpDelim;
-//STRIP001  aStr += cpDelim;
-//STRIP001  aStr += sal_Unicode('[');
-//STRIP001  aStr += XubString( ResId( RID_SVXITEMS_TAB_FILL_CHAR, DIALOG_MGR() ) );
-//STRIP001  aStr += cFill;
-//STRIP001  aStr += sal_Unicode(']');
-//STRIP001  aStr += sal_Unicode(')');
-//STRIP001
-//STRIP001  return aStr;
-//STRIP001 }
 
 // class SvxTabStopItem --------------------------------------------------
 
@@ -984,20 +773,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_uInt16 SvxTabStopItem::GetPos( const long nPos ) const
-//STRIP001 {
-//STRIP001  sal_uInt16 nFound;
-//STRIP001  return Seek_Entry( SvxTabStop( nPos ), &nFound ) ? nFound : SVX_TAB_NOTFOUND;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxTabStopItem& SvxTabStopItem::operator=( const SvxTabStopItem& rTSI )
-//STRIP001 {
-//STRIP001  Remove( 0, Count() );
-//STRIP001  SvxTabStopArr::Insert( &rTSI );
-//STRIP001  return *this;
-//STRIP001 }
 
 
 /*
@@ -1183,38 +961,6 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxTabStopItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  if ( ePres > SFX_ITEM_PRESENTATION_NONE )
-//STRIP001  {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001      sal_Bool bComma = sal_False;
-//STRIP001
-//STRIP001      for ( sal_uInt16 i = 0; i < Count(); ++i )
-//STRIP001      {
-//STRIP001          if ( SVX_TAB_ADJUST_DEFAULT != ((*this)[i]).GetAdjustment() )
-//STRIP001          {
-//STRIP001              if ( bComma )
-//STRIP001                  rText += sal_Unicode(',');
-//STRIP001              rText += GetMetricText(
-//STRIP001                     (long)((*this)[i]).GetTabPos(), eCoreUnit, ePresUnit, pIntl );
-//STRIP001              if ( SFX_ITEM_PRESENTATION_COMPLETE == ePres )
-//STRIP001                  rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001              bComma = sal_True;
-//STRIP001          }
-//STRIP001      }
-//STRIP001 #endif
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1305,18 +1051,6 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   return SvxTabStopArr::Insert( rTab );
 /*N*/ }
 // -----------------------------------------------------------------------
-//STRIP001 void SvxTabStopItem::Insert( const SvxTabStopItem* pTabs, sal_uInt16 nStart,
-//STRIP001                          sal_uInt16 nEnd )
-//STRIP001 {
-//STRIP001  for( sal_uInt16 i = nStart; i < nEnd && i < pTabs->Count(); i++ )
-//STRIP001  {
-//STRIP001      const SvxTabStop& rTab = (*pTabs)[i];
-//STRIP001      sal_uInt16 nTabPos = GetPos(rTab);
-//STRIP001      if(SVX_TAB_NOTFOUND != nTabPos)
-//STRIP001          Remove(nTabPos);
-//STRIP001  }
-//STRIP001  SvxTabStopArr::Insert( pTabs, nStart, nEnd );
-//STRIP001 }
 
 
 
@@ -1349,104 +1083,14 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFmtSplitItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_FMTSPLIT_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_FMTSPLIT_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // --------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxPageModelItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SvxPageModelItem( *this );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxPageModelItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_AUTO: rVal <<= (sal_Bool) bAuto; break;
-//STRIP001         case MID_NAME: rVal <<= ::rtl::OUString( GetValue() ); break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxPageModelItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Bool bRet;
-//STRIP001     ::rtl::OUString aStr;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_AUTO: bRet = ( rVal >>= bAuto ); break;
-//STRIP001         case MID_NAME: bRet = ( rVal >>= aStr ); if ( bRet ) SetValue(aStr); break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation SvxPageModelItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  FASTBOOL bSet = ( GetValue().Len() > 0 );
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          if ( bSet )
-//STRIP001              rText = GetValue();
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          if ( bSet )
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR(RID_SVXITEMS_PAGEMODEL_COMPLETE);
-//STRIP001              rText += GetValue();
-//STRIP001          }
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -1477,28 +1121,6 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxScriptSpaceItem::GetPresentation(
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001         String &rText, const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR( !GetValue()
-//STRIP001                                  ? RID_SVXITEMS_SCRPTSPC_OFF
-//STRIP001                                  : RID_SVXITEMS_SCRPTSPC_ON );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -1530,28 +1152,6 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxHangingPunctuationItem::GetPresentation(
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001         String &rText, const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR( !GetValue()
-//STRIP001                                  ? RID_SVXITEMS_HNGPNCT_OFF
-//STRIP001                                  : RID_SVXITEMS_HNGPNCT_ON );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 //------------------------------------------------------------------------
 
 /*N*/ SvxForbiddenRuleItem::SvxForbiddenRuleItem(
@@ -1590,28 +1190,6 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /* -----------------------------29.11.00 11:23--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 SfxItemPresentation SvxForbiddenRuleItem::GetPresentation(
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001         String &rText, const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR( !GetValue()
-//STRIP001                                  ? RID_SVXITEMS_FORBIDDEN_RULE_OFF
-//STRIP001                                  : RID_SVXITEMS_FORBIDDEN_RULE_ON );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*************************************************************************
 |*    class SvxParaVertAlignItem
@@ -1623,84 +1201,17 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ {
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SvxParaVertAlignItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SvxParaVertAlignItem( GetValue(), Which() );
-//STRIP001 }
 
-//STRIP001 SfxPoolItem* SvxParaVertAlignItem::Create( SvStream& rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  sal_uInt16 nVal;
-//STRIP001  rStrm >> nVal;
-//STRIP001  return new SvxParaVertAlignItem( nVal, Which() );
-//STRIP001 }
 
-//STRIP001 SvStream& SvxParaVertAlignItem::Store( SvStream & rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  rStrm << GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 /*N*/ USHORT SvxParaVertAlignItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxParaVertAlignItem::GetPresentation(
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001         String &rText, const IntlWrapper*  ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nTmp;
-//STRIP001          switch( GetValue() )
-//STRIP001          {
-//STRIP001              case AUTOMATIC: nTmp = RID_SVXITEMS_PARAVERTALIGN_AUTO; break;
-//STRIP001              case TOP:       nTmp = RID_SVXITEMS_PARAVERTALIGN_TOP; break;
-//STRIP001              case CENTER:    nTmp = RID_SVXITEMS_PARAVERTALIGN_CENTER; break;
-//STRIP001              case BOTTOM:    nTmp = RID_SVXITEMS_PARAVERTALIGN_BOTTOM; break;
-//STRIP001              default:    nTmp = RID_SVXITEMS_PARAVERTALIGN_BASELINE; break;
-//STRIP001          }
-//STRIP001          rText = SVX_RESSTR( nTmp );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxParaVertAlignItem::QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                                         BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int16)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxParaVertAlignItem::PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                       BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int16 nVal;
-//STRIP001     if((rVal >>= nVal) && nVal >=0 && nVal <= BOTTOM )
-//STRIP001     {
-//STRIP001         SetValue( (USHORT)nVal );
-//STRIP001         return sal_True;
-//STRIP001     }
-//STRIP001     else
-//STRIP001         return sal_False;
-//STRIP001 }
 
-//STRIP001 int SvxParaVertAlignItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return SfxUInt16Item::operator==( rItem );
-//STRIP001 }
 
 
 /*N*/ SvxParaGridItem::SvxParaGridItem( sal_Bool bOn, const sal_uInt16 nId )
@@ -1710,14 +1221,10 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 /*N*/ SfxPoolItem* SvxParaGridItem::Clone( SfxItemPool *pPool ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001     return new SvxParaGridItem( GetValue(), Which() );
 /*N*/ }
 
 /*N*/ SfxPoolItem* SvxParaGridItem::Create(SvStream & rStrm, USHORT) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  sal_Bool bFlag;
-//STRIP001  rStrm >> bFlag;
-//STRIP001     return new SvxParaGridItem( bFlag, Which() );
 /*N*/ }
 
 /*N*/ USHORT  SvxParaGridItem::GetVersion( USHORT nFFVer ) const
