@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndindex.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:48:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:28:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -142,18 +142,6 @@ int SwNodeIndex::nSerial = 0;
 /*N*/   return *this;
 /*N*/ }
 
-//STRIP001 SwNodeIndex& SwNodeIndex::Assign( SwNodes& rNds, ULONG nIdx )
-//STRIP001 {
-//STRIP001  if( &pNd->GetNodes() != &rNds )
-//STRIP001  {
-//STRIP001      pNd->GetNodes().DeRegisterIndex( *this );
-//STRIP001      pNd = rNds[ nIdx ];
-//STRIP001      pNd->GetNodes().RegisterIndex( *this );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pNd = rNds[ nIdx ];
-//STRIP001  return *this;
-//STRIP001 }
 
 /*N*/ SwNodeIndex& SwNodeIndex::Assign( const SwNode& rNd, long nOffset )
 /*N*/ {
