@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_linkmgr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:12:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:49:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,77 +39,23 @@
 #include <com/sun/star/uno/Sequence.h>
 #endif
 #include <sot/formats.hxx>
-// auto strip #ifndef _SOT_EXCHANGE_HXX //autogen
-// auto strip #include <sot/exchange.hxx>
-// auto strip #endif
 #ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif
 #ifndef _LNKBASE_HXX //autogen
 #include <so3/lnkbase.hxx>
 #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _IPOBJ_HXX //autogen
-// auto strip #include <so3/ipobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXENUMITEM_HXX //autogen
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXINTITEM_HXX //autogen
-// auto strip #include <svtools/intitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXRECTITEM_HXX //autogen
-// auto strip #include <svtools/rectitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXREQUEST_HXX
-// auto strip #include <bf_sfx2/request.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_OBJSH_HXX //autogen
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_INTERNO_HXX //autogen
-// auto strip #include <bf_sfx2/interno.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXDISPATCH_HXX //autogen
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-// auto strip #include <unotools/localfilehelper.hxx>
-// auto strip #endif
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
 #endif
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
-// auto strip #include <com/sun/star/datatransfer/DataFlavor.hpp>
 
 #include "linkmgr.hxx"
 #include "fileobj.hxx"
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
-// auto strip #include "unolingu.hxx"
 #include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
-//STRIP001 class SvxInternalLink : public ::so3::SvLinkSource
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SvxInternalLink() {}
-//STRIP001
-//STRIP001  virtual BOOL Connect( ::so3::SvBaseLink* );
-//STRIP001 };
 
 
 /*N*/ SvxLinkManager::SvxLinkManager( SvPersist * pPersist )
@@ -152,13 +98,6 @@ namespace binfilter {
 /*N*/                                   ::so3::LINKUPDATE_ONCALL, &sCmd );
 /*N*/ }
 
-//STRIP001 BOOL SvxLinkManager::InsertFileLink( ::so3::SvBaseLink& rLink )
-//STRIP001 {
-//STRIP001  if( OBJECT_CLIENT_FILE == ( OBJECT_CLIENT_FILE & rLink.GetObjType() ))
-//STRIP001      return SvLinkManager::InsertLink( &rLink, rLink.GetObjType(),
-//STRIP001                                          ::so3::LINKUPDATE_ONCALL );
-//STRIP001  return FALSE;
-//STRIP001 }
 
         // erfrage die Strings fuer den Dialog
 /*N*/ BOOL SvxLinkManager::GetDisplayNames( const ::so3::SvBaseLink* pBaseLink,
@@ -221,17 +160,6 @@ namespace binfilter {
 /*N*/           pFileObj->CancelTransfers();
 /*N*/ }
 
-//STRIP001 void SvxLinkManager::SetTransferPriority( ::so3::SvBaseLink& rLink, USHORT nPrio )
-//STRIP001 {
-//STRIP001  SvFileObject* pFileObj =
-//STRIP001 //       (SvFileObject*)SvFileObject::ClassFactory()->
-//STRIP001 //                                   CastAndAddRef( rLink.GetObj() );
-//STRIP001          OBJECT_CLIENT_FILE == (OBJECT_CLIENT_FILE & rLink.GetObjType()) ?
-//STRIP001              (SvFileObject*)rLink.GetObj() : 0;
-//STRIP001
-//STRIP001  if( pFileObj )
-//STRIP001      pFileObj->SetTransferPriority( nPrio );
-//STRIP001 }
 
 
     // um Status Informationen aus dem FileObject an den BaseLink zu
@@ -299,138 +227,7 @@ namespace binfilter {
 
 
 // ----------------------------------------------------------------------
-//STRIP001 String lcl_DDE_RelToAbs( const String& rTopic )
-//STRIP001 {
-//STRIP001  String sRet;
-//STRIP001  INetURLObject aURL( rTopic );
-//STRIP001  if( INET_PROT_NOT_VALID == aURL.GetProtocol() )
-//STRIP001      utl::LocalFileHelper::ConvertSystemPathToURL( rTopic,
-//STRIP001                                      so3::StaticBaseUrl::GetBaseURL(), sRet );
-//STRIP001  if( !sRet.Len() )
-//STRIP001      sRet = so3::StaticBaseUrl::SmartRelToAbs( rTopic );
-//STRIP001  return sRet;
-//STRIP001 }
 
-//STRIP001 BOOL SvxInternalLink::Connect( ::so3::SvBaseLink* pLink )
-//STRIP001 {
-//STRIP001  SfxObjectShell* pFndShell = 0;
-//STRIP001  String sTopic, sItem, sReferer;
-//STRIP001  if( pLink->GetLinkManager() &&
-//STRIP001      pLink->GetLinkManager()->GetDisplayNames( pLink, 0, &sTopic, &sItem )
-//STRIP001      && sTopic.Len() )
-//STRIP001  {
-//STRIP001      // erstmal nur ueber die DocumentShells laufen und die mit dem
-//STRIP001      // Namen heraussuchen:
-//STRIP001
-//STRIP001      CharClass aCC( SvxCreateLocale( LANGUAGE_SYSTEM ));
-//STRIP001      String sNm( sTopic ), sNmURL( lcl_DDE_RelToAbs( sTopic ) ),
-//STRIP001             sTmp;
-//STRIP001      aCC.toLower( sNm );
-//STRIP001      aCC.toLower( sNmURL );
-//STRIP001
-//STRIP001      TypeId aType( TYPE(SfxObjectShell) );
-//STRIP001
-//STRIP001      BOOL bFirst = TRUE;
-//STRIP001      SfxObjectShell* pShell = 0;
-//STRIP001      SvInPlaceObjectRef aRef( pLink->GetLinkManager()->GetPersist());
-//STRIP001      if( aRef.Is() )
-//STRIP001      {
-//STRIP001          // sch... SFX: das gerade gelesen Doc hat noch keinen Namen und
-//STRIP001          // steht noch nicht in der Doc. Liste
-//STRIP001          pShell = ((SfxInPlaceObject*)&aRef)->GetObjectShell();
-//STRIP001
-//STRIP001          if( pShell && pShell->GetMedium() )
-//STRIP001          {
-//STRIP001              sReferer = pShell->GetMedium()->GetName();
-//STRIP001              if( !pShell->HasName()  )
-//STRIP001                  sTmp = sReferer;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( !pShell )
-//STRIP001      {
-//STRIP001          bFirst = FALSE;
-//STRIP001          pShell = SfxObjectShell::GetFirst( &aType );
-//STRIP001      }
-//STRIP001
-//STRIP001      while( pShell )
-//STRIP001      {
-//STRIP001          if( !sTmp.Len() )
-//STRIP001              sTmp = pShell->GetTitle( SFX_TITLE_FULLNAME );
-//STRIP001
-//STRIP001          aCC.toLower( sTmp );
-//STRIP001          if( sTmp == sNm || sTmp == sNmURL )     // die wollen wir haben
-//STRIP001          {
-//STRIP001              pFndShell = pShell;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( bFirst )
-//STRIP001          {
-//STRIP001              bFirst = FALSE;
-//STRIP001              pShell = SfxObjectShell::GetFirst( &aType );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pShell = SfxObjectShell::GetNext( *pShell, &aType );
-//STRIP001
-//STRIP001          sTmp.Erase();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // empty topics are not allowed - which document is it
-//STRIP001  if( !sTopic.Len() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if( !pFndShell )
-//STRIP001  {
-//STRIP001      // dann versuche die Datei zu laden:
-//STRIP001      INetURLObject aURL( sTopic );
-//STRIP001      INetProtocol eOld = aURL.GetProtocol();
-//STRIP001      aURL.SetURL( sTopic = lcl_DDE_RelToAbs( sTopic ) );
-//STRIP001      if( INET_PROT_NOT_VALID != eOld ||
-//STRIP001          INET_PROT_HTTP != aURL.GetProtocol() )
-//STRIP001      {
-//STRIP001          SfxStringItem aName( SID_FILE_NAME, sTopic );
-//STRIP001             SfxBoolItem aMinimized(SID_MINIMIZEWINS, TRUE);
-//STRIP001             SfxStringItem aTarget( SID_TARGETNAME, String::CreateFromAscii("_blank") );
-//STRIP001          SfxStringItem aReferer( SID_REFERER, sReferer );
-//STRIP001
-//STRIP001             // #i14200# (DDE-link crashes wordprocessor)
-//STRIP001             SfxAllItemSet aArgs( SFX_APP()->GetPool() );
-//STRIP001             aArgs.Put(aReferer);
-//STRIP001             aArgs.Put(aTarget);
-//STRIP001             aArgs.Put(aMinimized);
-//STRIP001             aArgs.Put(aName);
-//STRIP001             SfxRequest aRequest( SID_OPENDOC, SFX_CALLMODE_SYNCHRON, aArgs );
-//STRIP001             SFX_APP()->ExecuteSlot( aRequest );
-//STRIP001             const SfxPoolItem*  pRet = aRequest.GetReturnValue();
-//STRIP001
-//STRIP001          if( pRet && pRet->ISA( SfxViewFrameItem ) &&
-//STRIP001              ((SfxViewFrameItem*)pRet)->GetFrame() )
-//STRIP001                 pFndShell = ((SfxViewFrameItem*)pRet)->GetFrame()->GetObjectShell();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( pFndShell )
-//STRIP001  {
-//STRIP001      ::so3::SvLinkSource* pNewSrc = pFndShell->DdeCreateLinkSource( sItem );
-//STRIP001      if( pNewSrc )
-//STRIP001      {
-//STRIP001          bRet = TRUE;
-//STRIP001
-//STRIP001          ::com::sun::star::datatransfer::DataFlavor aFl;
-//STRIP001          SotExchange::GetFormatDataFlavor( pLink->GetContentType(), aFl );
-//STRIP001
-//STRIP001          pLink->SetObj( pNewSrc );
-//STRIP001          pNewSrc->AddDataAdvise( pLink, aFl.MimeType,
-//STRIP001                              ::so3::LINKUPDATE_ONCALL == pLink->GetUpdateMode()
-//STRIP001                                  ? ADVISEMODE_ONLYONCE
-//STRIP001                                  : 0 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 }
