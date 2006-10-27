@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_olinetab.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:50:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:22:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -153,17 +152,6 @@ namespace binfilter {
 /*N*/                       ((ScOutlineEntry*)pKey2)->GetStart() );
 /*N*/ }
 /*N*/
-//STRIP001 USHORT ScOutlineCollection::FindStart( USHORT nMinStart )
-//STRIP001 {
-//STRIP001  //!                 binaer suchen ?
-//STRIP001
-//STRIP001  USHORT nPos = 0;
-//STRIP001  USHORT nCount = GetCount();
-//STRIP001  while ( (nPos<nCount) ? (((ScOutlineEntry*)At(nPos))->GetStart() < nMinStart) : FALSE )
-//STRIP001      ++nPos;
-//STRIP001
-//STRIP001  return nPos;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -335,87 +323,8 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 BOOL ScOutlineArray::FindTouchedLevel( USHORT nBlockStart, USHORT nBlockEnd, USHORT& rFindLevel ) const
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  rFindLevel = 0;
-//STRIP001
-//STRIP001  for (USHORT nLevel=0; nLevel<nDepth; nLevel++)
-//STRIP001  {
-//STRIP001         const ScOutlineCollection* pCollect = &aCollections[nLevel];
-//STRIP001      USHORT nCount = pCollect->GetCount();
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ScOutlineEntry* pEntry = (ScOutlineEntry*) pCollect->At(i);
-//STRIP001          USHORT nStart = pEntry->GetStart();
-//STRIP001          USHORT nEnd   = pEntry->GetEnd();
-//STRIP001
-//STRIP001          if ( ( nBlockStart>=nStart && nBlockStart<=nEnd ) ||
-//STRIP001               ( nBlockEnd  >=nStart && nBlockEnd  <=nEnd ) )
-//STRIP001          {
-//STRIP001              rFindLevel = nLevel;            // wirklicher Level
-//STRIP001              bFound = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
-//STRIP001 void ScOutlineArray::RemoveSub( USHORT nStartPos, USHORT nEndPos, USHORT nLevel )
-//STRIP001 {
-//STRIP001     if ( nLevel >= nDepth )
-//STRIP001         return;
-//STRIP001     ScOutlineCollection* pCollect = &aCollections[nLevel];
-//STRIP001  USHORT nCount = pCollect->GetCount();
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  for ( USHORT i=0; i<nCount; i += ( bFound ? 0 : 1 ) )
-//STRIP001  {
-//STRIP001      bFound = FALSE;
-//STRIP001      ScOutlineEntry* pEntry = (ScOutlineEntry*) pCollect->At(i);
-//STRIP001      USHORT nStart = pEntry->GetStart();
-//STRIP001      USHORT nEnd   = pEntry->GetEnd();
-//STRIP001
-//STRIP001      if ( nStart>=nStartPos && nEnd<=nEndPos )
-//STRIP001      {
-//STRIP001          RemoveSub( nStart, nEnd, nLevel+1 );
-//STRIP001          pCollect->AtFree(i);
-//STRIP001          nCount = pCollect->GetCount();
-//STRIP001          bFound = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScOutlineArray::PromoteSub( USHORT nStartPos, USHORT nEndPos, USHORT nStartLevel )
-//STRIP001 {
-//STRIP001  if (nStartLevel==0)
-//STRIP001  {
-//STRIP001      DBG_ERROR("PromoteSub mit Level 0");
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  for (USHORT nLevel = nStartLevel; nLevel < nDepth; nLevel++)
-//STRIP001  {
-//STRIP001      ScOutlineCollection* pCollect = &aCollections[nLevel];
-//STRIP001      USHORT nCount = pCollect->GetCount();
-//STRIP001      BOOL bFound = FALSE;
-//STRIP001      for ( USHORT i=0; i<nCount; i += ( bFound ? 0 : 1 ) )
-//STRIP001      {
-//STRIP001          bFound = FALSE;
-//STRIP001          ScOutlineEntry* pEntry = (ScOutlineEntry*) pCollect->At(i);
-//STRIP001          USHORT nStart = pEntry->GetStart();
-//STRIP001          USHORT nEnd   = pEntry->GetEnd();
-//STRIP001
-//STRIP001          if ( nStart>=nStartPos && nEnd<=nEndPos )
-//STRIP001          {
-//STRIP001              aCollections[nLevel-1].Insert( new ScOutlineEntry( *pEntry ) );
-//STRIP001              pCollect->AtFree(i);
-//STRIP001              nCount = pCollect->GetCount();
-//STRIP001              bFound = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ BOOL ScOutlineArray::DecDepth()                           // nDepth auf leere Levels anpassen
 /*N*/ {
@@ -436,40 +345,6 @@ namespace binfilter {
 /*N*/   return bChanged;
 /*N*/ }
 
-//STRIP001 BOOL ScOutlineArray::Remove( USHORT nBlockStart, USHORT nBlockEnd, BOOL& rSizeChanged )
-//STRIP001 {
-//STRIP001  USHORT nLevel;
-//STRIP001  FindTouchedLevel( nBlockStart, nBlockEnd, nLevel );
-//STRIP001
-//STRIP001  ScOutlineCollection* pCollect = &aCollections[nLevel];
-//STRIP001  USHORT nCount = pCollect->GetCount();
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  BOOL bAny = FALSE;
-//STRIP001  for ( USHORT i=0; i<nCount; i += ( bFound ? 0 : 1 ) )
-//STRIP001  {
-//STRIP001      bFound = FALSE;
-//STRIP001      ScOutlineEntry* pEntry = (ScOutlineEntry*) pCollect->At(i);
-//STRIP001      USHORT nStart = pEntry->GetStart();
-//STRIP001      USHORT nEnd   = pEntry->GetEnd();
-//STRIP001
-//STRIP001      if ( nBlockStart<=nEnd && nBlockEnd>=nStart )
-//STRIP001      {
-//STRIP001 //           RemoveSub( nStart, nEnd, nLevel+1 );
-//STRIP001          pCollect->AtFree(i);
-//STRIP001          PromoteSub( nStart, nEnd, nLevel+1 );
-//STRIP001          nCount = pCollect->GetCount();
-//STRIP001          i = pCollect->FindStart( nEnd+1 );
-//STRIP001          bFound = TRUE;
-//STRIP001          bAny = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bAny)                                   // Depth anpassen
-//STRIP001      if (DecDepth())
-//STRIP001          rSizeChanged = TRUE;
-//STRIP001
-//STRIP001  return bAny;
-//STRIP001 }
 
 /*M*/ ScOutlineEntry* ScOutlineArray::GetEntry( USHORT nLevel, USHORT nIndex ) const
 /*M*/ {
@@ -481,19 +356,6 @@ namespace binfilter {
 /*M*/     return (nLevel < nDepth) ? aCollections[nLevel].GetCount() : 0;
 /*M*/ }
 
-//STRIP001 ScOutlineEntry* ScOutlineArray::GetEntryByPos( USHORT nLevel, USHORT nPos ) const
-//STRIP001 {
-//STRIP001  USHORT          nCount  = GetCount( nLevel );
-//STRIP001  ScOutlineEntry* pEntry;
-//STRIP001
-//STRIP001  for (USHORT nIndex = 0; nIndex < nCount; nIndex++)
-//STRIP001  {
-//STRIP001      pEntry = GetEntry( nLevel, nIndex );
-//STRIP001      if ((pEntry->GetStart() <= nPos) && (nPos <= pEntry->GetEnd()))
-//STRIP001          return pEntry;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*M*/ BOOL ScOutlineArray::GetEntryIndex( USHORT nLevel, USHORT nPos, USHORT& rnIndex ) const
 /*M*/ {
@@ -555,40 +417,7 @@ namespace binfilter {
 /*M*/     }
 /*M*/ }
 
-//STRIP001 void ScOutlineArray::GetRange( USHORT& rStart, USHORT& rEnd ) const
-//STRIP001 {
-//STRIP001  USHORT nCount = aCollections[0].GetCount();
-//STRIP001  if (nCount)
-//STRIP001  {
-//STRIP001      rStart = ((ScOutlineEntry*) aCollections[0].At(0))->GetStart();
-//STRIP001      rEnd   = ((ScOutlineEntry*) aCollections[0].At(nCount-1))->GetEnd();
-//STRIP001  }
-//STRIP001  else
-//STRIP001      rStart = rEnd = 0;
-//STRIP001 }
 
-//STRIP001 void ScOutlineArray::ExtendBlock( USHORT nLevel, USHORT& rBlkStart, USHORT& rBlkEnd )
-//STRIP001 {
-//STRIP001  USHORT  nCount;
-//STRIP001  USHORT  nStart;
-//STRIP001  USHORT  nEnd;
-//STRIP001  USHORT  i;
-//STRIP001  ScOutlineEntry* pEntry;
-//STRIP001
-//STRIP001  nCount = GetCount(nLevel);
-//STRIP001  for ( i=0; i<nCount; i++ )
-//STRIP001  {
-//STRIP001      pEntry = (ScOutlineEntry*) aCollections[nLevel].At(i);
-//STRIP001      nStart = pEntry->GetStart();
-//STRIP001      nEnd   = pEntry->GetEnd();
-//STRIP001
-//STRIP001      if ( rBlkStart<=nEnd && rBlkEnd>=nStart )
-//STRIP001      {
-//STRIP001          if (nStart<rBlkStart) rBlkStart = nStart;
-//STRIP001          if (nEnd>rBlkEnd) rBlkEnd = nEnd;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ BOOL ScOutlineArray::TestInsertSpace( USHORT nSize, USHORT nMaxVal ) const
 /*N*/ {
@@ -693,8 +522,6 @@ namespace binfilter {
 /*?*/               if ( bToggle )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pEntry->SetHidden( !bShow );
-//STRIP001 /*?*/                    SetVisibleBelow( aIter.LastLevel(), aIter.LastEntry(), bShow, bShow );
-//STRIP001 /*?*/                    bModified = TRUE;
 /*?*/               }
 /*?*/           }
 /*N*/       }
@@ -702,13 +529,6 @@ namespace binfilter {
 /*N*/   return bModified;
 /*N*/ }
 
-//STRIP001 void ScOutlineArray::RemoveAll()
-//STRIP001 {
-//STRIP001  for (USHORT nLevel=0; nLevel<nDepth; nLevel++)
-//STRIP001      aCollections[nLevel].FreeAll();
-//STRIP001
-//STRIP001  nDepth = 0;
-//STRIP001 }
 
 /*N*/ void ScOutlineArray::Load( SvStream& rStream )
 /*N*/ {
@@ -809,17 +629,6 @@ namespace binfilter {
 /*N*/   nDepth = pArray->nDepth;
 /*N*/ }
 
-//STRIP001 ScSubOutlineIterator::ScSubOutlineIterator( ScOutlineArray* pOutlineArray,
-//STRIP001                                          USHORT nLevel, USHORT nEntry ) :
-//STRIP001      pArray( pOutlineArray )
-//STRIP001 {
-//STRIP001  ScOutlineEntry* pEntry = (ScOutlineEntry*) pArray->aCollections[nLevel].At(nEntry);
-//STRIP001  nStart = pEntry->GetStart();
-//STRIP001  nEnd   = pEntry->GetEnd();
-//STRIP001  nSubLevel = nLevel + 1;
-//STRIP001  nSubEntry = 0;
-//STRIP001  nDepth = pArray->nDepth;
-//STRIP001 }
 /*N*/
 /*N*/ ScOutlineEntry* ScSubOutlineIterator::GetNext()
 /*N*/ {
@@ -847,21 +656,6 @@ namespace binfilter {
 /*N*/   return pEntry;                  // nSubLevel gueltig, wenn pEntry != 0
 /*N*/ }
 /*N*/
-//STRIP001 USHORT ScSubOutlineIterator::LastLevel() const
-//STRIP001 {
-//STRIP001  return nSubLevel;
-//STRIP001 }
-//STRIP001
-//STRIP001 USHORT ScSubOutlineIterator::LastEntry() const
-//STRIP001 {
-//STRIP001  if (nSubEntry == 0)
-//STRIP001  {
-//STRIP001      DBG_ERROR("ScSubOutlineIterator::LastEntry vor GetNext");
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001  return nSubEntry-1;
-//STRIP001 }
-//STRIP001
 /*N*/ void ScSubOutlineIterator::DeleteLast()
 /*N*/ {
 /*N*/   if (nSubLevel >= nDepth)
