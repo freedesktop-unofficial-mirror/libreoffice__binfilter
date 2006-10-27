@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xout.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:41:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:03:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,23 +35,15 @@
 
 #include <math.h>
 #include <stdlib.h>
-// auto strip #include <vcl/wrkwin.hxx>
 #include <vcl/svapp.hxx>
-// auto strip #include <tools/poly.hxx>
-// auto strip #include <vcl/window.hxx>
-// auto strip #include <vcl/gradient.hxx>
 #include <svtools/itemset.hxx>
-// auto strip #include <goodies/grfmgr.hxx>
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
 #endif
 
 #include "xattr.hxx"
-// auto strip #include "xpool.hxx"
-// auto strip #include "xpoly.hxx"
 #include "xoutx.hxx"
-// auto strip #include "xoutbmp.hxx"
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
