@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:55:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:15:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,15 +33,9 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SV_METAACT_HXX
-// auto strip #include <vcl/metaact.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
-// auto strip #ifndef _INTN_HXX
-// auto strip #include <tools/intn.hxx>
-// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -62,9 +56,6 @@
 #include <svtools/poolitem.hxx>
 #endif
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
@@ -367,10 +358,6 @@ namespace binfilter {
 /*N*/     return aStr;
 /*N*/ }
 
-//STRIP001 MetaAction* SvxDateField::createBeginComment() const
-//STRIP001 {
-//STRIP001  return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
-//STRIP001 }
 
 /*N*/ SV_IMPL_PERSIST1( SvxURLField, SvxFieldData );
 
@@ -487,10 +474,6 @@ namespace binfilter {
 /*N*/   rStm << (USHORT)GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rStm.GetVersion());
 /*N*/ }
 
-//STRIP001 MetaAction* SvxURLField::createBeginComment() const
-//STRIP001 {
-//STRIP001  return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
-//STRIP001 }
 
 // =================================================================
 // Die Felder, die aus Calc ausgebaut wurden:
@@ -516,10 +499,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 MetaAction* SvxPageField::createBeginComment() const
-//STRIP001 {
-//STRIP001     return new MetaCommentAction( "FIELD_SEQ_BEGIN;PageField" );
-//STRIP001 }
 
 
 /*N*/ SV_IMPL_PERSIST1( SvxPagesField, SvxFieldData );
@@ -562,10 +541,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 MetaAction* SvxTimeField::createBeginComment() const
-//STRIP001 {
-//STRIP001  return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
-//STRIP001 }
 
 /*N*/ SV_IMPL_PERSIST1( SvxFileField, SvxFieldData );
 
@@ -740,10 +715,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 MetaAction* SvxExtTimeField::createBeginComment() const
-//STRIP001 {
-//STRIP001  return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
-//STRIP001 }
 
 //----------------------------------------------------------------------------
 //      SvxExtFileField
