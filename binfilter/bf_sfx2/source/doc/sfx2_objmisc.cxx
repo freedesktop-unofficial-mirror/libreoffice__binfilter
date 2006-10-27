@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:15:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:30:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,9 +45,6 @@
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
 #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #include <so3/inetbnd.hxx>
 #include <vos/mutex.hxx>
 
@@ -237,11 +234,6 @@ namespace binfilter {
 
 /*N*/ void SfxObjectShell::SetTemplate(sal_Bool bIs)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  pImp->bIsTemplate=bIs;
-//STRIP001  SfxFilterMatcher aMatcher( GetFactory().GetFilterContainer() );
-//STRIP001  SfxFilterMatcherIter aIter( &aMatcher, SFX_FILTER_TEMPLATEPATH );
-//STRIP001  SfxMedium* pMed = GetMedium();
-//STRIP001  if( pMed ) pMed->SetFilter( aIter.First() );
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -331,7 +323,6 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-//STRIP001 void SfxObjectShell::SetReadOnlyUI( sal_Bool bReadOnly )
 
 /*  [Beschreibung]
 
@@ -339,16 +330,6 @@ namespace binfilter {
     zu laden und ohne die Open-Modi des Mediums zu aendern.
 */
 
-//STRIP001 {
-//STRIP001  sal_Bool bWasRO = IsReadOnly();
-//STRIP001  pImp->bReadOnlyUI = bReadOnly;
-//STRIP001  if ( bWasRO != IsReadOnly() )
-//STRIP001  {
-//STRIP001      Broadcast( SfxSimpleHint(SFX_HINT_MODECHANGED) );
-//STRIP001      if ( pImp->pDocInfo )
-//STRIP001          pImp->pDocInfo->SetReadOnly( IsReadOnly() );
-//STRIP001  }
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 
@@ -366,11 +347,6 @@ namespace binfilter {
 
 /*N*/ void SfxObjectShell::SetMacroMode_Impl( sal_Bool bModal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if ( !pImp->bRunningMacro != !bModal )
-//STRIP001  {
-//STRIP001         pImp->bRunningMacro = bModal;
-//STRIP001      Broadcast( SfxSimpleHint( SFX_HINT_MODECHANGED ) );
-//STRIP001  }
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -759,8 +735,6 @@ namespace binfilter {
    Please replace ith by a better solution! */
 /*?*/ void SfxObjectShell::Stamp_SetActivateEvent(sal_uInt16 nId )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-//STRIP001     if ( GetFactory().GetFlags() & SFXOBJECTSHELL_HASOPENDOC )
-//STRIP001         pImp->nEventId = nId;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -1292,8 +1266,6 @@ namespace binfilter {//STRIP009
 /*?*/       DateTime aDateTime;
 /*?*/       if( INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime ) )
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            aDateTime.ConvertToLocalTime();
-//STRIP001 /*?*/            pDoc->GetMedium()->SetExpired_Impl( aDateTime );
 /*?*/       }
 /*?*/       else
 /*?*/       {
