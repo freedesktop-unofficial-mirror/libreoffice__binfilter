@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfxtypes.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:35:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:40:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,31 +35,13 @@
 #ifndef _SFX_SFXTYPES_HXX
 #define _SFX_SFXTYPES_HXX
 
-// auto strip #ifndef _DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _RC_HXX //autogen
-// auto strip #include <tools/rc.hxx>
-// auto strip #endif
 #ifndef _RCID_H //autogen
 #include <tools/rcid.h>
 #endif
-// auto strip #ifndef _RESID_HXX //autogen
-// auto strip #include <tools/resid.hxx>
-// auto strip #endif
-// auto strip #ifndef _LINK_HXX //autogen
-// auto strip #include <tools/link.hxx>
-// auto strip #endif
-// auto strip #ifndef _APP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef _SV_WRKWIN_HXX
 #include <vcl/wrkwin.hxx>
 #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 class Timer;
 namespace binfilter {
 
