@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ccoll.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:21:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:33:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,10 +41,6 @@
 
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-
-#ifndef _SFXTABDLG_HXX //autogen
-#include <bf_sfx2/tabdlg.hxx>
 #endif
 
 #ifndef _FIXED_HXX //autogen
@@ -119,56 +115,6 @@ public:
 };
 
 //***********************************************************
-
-//STRIP001 class SwCondCollPage : public SfxTabPage
-//STRIP001 {
-//STRIP001     FixedLine           aConditionFL;
-//STRIP001  CheckBox            aConditionCB;
-//STRIP001
-//STRIP001  FixedText           aContextFT;
-//STRIP001  FixedText           aUsedFT;
-//STRIP001  SvTabListBox        aTbLinks;
-//STRIP001
-//STRIP001  FixedText           aStyleFT;
-//STRIP001  ListBox             aStyleLB;
-//STRIP001  ListBox             aFilterLB;
-//STRIP001
-//STRIP001  PushButton          aRemovePB;
-//STRIP001  PushButton          aAssignPB;
-//STRIP001
-//STRIP001  String              sNoTmpl;
-//STRIP001  ResStringArray      aStrArr;
-//STRIP001
-//STRIP001  SwWrtShell          &rSh;
-//STRIP001  const CommandStruct*pCmds;
-//STRIP001  SwFmt*              pFmt;
-//STRIP001
-//STRIP001  CollName*           pNms;
-//STRIP001
-//STRIP001  BOOL                bNewTemplate;
-//STRIP001
-//STRIP001
-//STRIP001          SwCondCollPage(Window *pParent, const SfxItemSet &rSet);
-//STRIP001  virtual ~SwCondCollPage();
-//STRIP001
-//STRIP001  virtual int     DeactivatePage(SfxItemSet *pSet);
-//STRIP001
-//STRIP001  DECL_LINK( OnOffHdl, CheckBox* );
-//STRIP001  DECL_LINK( AssignRemoveHdl, PushButton*);
-//STRIP001  DECL_LINK( SelectHdl, ListBox* );
-//STRIP001
-//STRIP001 public:
-//STRIP001
-//STRIP001  static SfxTabPage *Create(Window *pParent, const SfxItemSet &rSet);
-//STRIP001  static USHORT* GetRanges();
-//STRIP001
-//STRIP001  virtual BOOL FillItemSet(      SfxItemSet &rSet);
-//STRIP001  virtual void Reset      (const SfxItemSet &rSet);
-//STRIP001
-//STRIP001  void SetCollection( SwFmt* pFormat, BOOL bNew );
-//STRIP001 };
-
-
 
 } //namespace binfilter
 #endif
