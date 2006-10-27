@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flddropdown.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:11:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:38:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
-// auto strip #ifndef _UNOPRNMS_HXX
-// auto strip #include <unoprnms.hxx>
-// auto strip #endif
 #include <flddropdown.hxx>
 namespace binfilter {
 extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
