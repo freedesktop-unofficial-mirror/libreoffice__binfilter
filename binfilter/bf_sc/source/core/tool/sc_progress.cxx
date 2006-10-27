@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_progress.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:14:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:36:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,16 +42,10 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/objsh.hxx>
-// auto strip #include <bf_sfx2/progress.hxx>
-// auto strip #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/sfxsids.hrc>
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #include <svtools/itemset.hxx>
 
 #define SC_PROGRESS_CXX
 #include "progress.hxx"
-// auto strip #include "document.hxx"
-// auto strip #include "global.hxx"
 #include "globstr.hrc"
 namespace binfilter {
 
@@ -71,22 +64,6 @@ ScDocument*     ScProgress::pInterpretDoc;
 BOOL            ScProgress::bIdleWasDisabled = FALSE;
 
 
-//STRIP001 BOOL lcl_IsHiddenDocument( SfxObjectShell* pObjSh )
-//STRIP001 {
-//STRIP001  if (pObjSh)
-//STRIP001  {
-//STRIP001      SfxMedium* pMed = pObjSh->GetMedium();
-//STRIP001      if (pMed)
-//STRIP001      {
-//STRIP001          SfxItemSet* pSet = pMed->GetItemSet();
-//STRIP001          const SfxPoolItem* pItem;
-//STRIP001          if ( pSet && SFX_ITEM_SET == pSet->GetItemState( SID_HIDDEN, TRUE, &pItem ) &&
-//STRIP001                      ((const SfxBoolItem*)pItem)->GetValue() )
-//STRIP001              return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ ScProgress::ScProgress( SfxObjectShell* pObjSh, const String& rText,
 /*N*/                       ULONG nRange, BOOL bAllDocs, BOOL bWait )
@@ -95,15 +72,6 @@ BOOL            ScProgress::bIdleWasDisabled = FALSE;
 /*N*/   if ( pGlobalProgress || SfxProgress::GetActiveProgress( NULL ) )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( lcl_IsHiddenDocument(pObjSh) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            // loading a hidden document while a progress is active is possible - no error
-//STRIP001 /*?*/            pProgress = NULL;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            DBG_ERROR( "ScProgress: there can be only one!" );
-//STRIP001 /*?*/            pProgress = NULL;
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/   else if ( SFX_APP()->IsDowning() )
 /*N*/   {
@@ -153,67 +121,14 @@ BOOL            ScProgress::bIdleWasDisabled = FALSE;
 
 // static
 
-//STRIP001 void ScProgress::SetAllowInterpret( BOOL bAllow )
-//STRIP001 {    // Grundzustand: Allow, Dummy gesetzt, pOld==NULL
-//STRIP001  if ( !bAllow && bAllowInterpretProgress )
-//STRIP001  {   // vorherigen/Dummy merken und Dummy setzen
-//STRIP001      pOldInterpretProgress = pInterpretProgress;
-//STRIP001      pInterpretProgress = &theDummyInterpretProgress;
-//STRIP001      bAllowInterpretProgress = FALSE;
-//STRIP001  }
-//STRIP001  else if ( bAllow && !bAllowInterpretProgress )
-//STRIP001  {   // Dummy weg und vorherigen/Dummy setzen
-//STRIP001      pInterpretProgress = pOldInterpretProgress;
-//STRIP001      pOldInterpretProgress = NULL;
-//STRIP001      bAllowInterpretProgress = TRUE;
-//STRIP001  }
-//STRIP001 }
 
 
 // static
 
-//STRIP001 void ScProgress::CreateInterpretProgress( ScDocument* pDoc, BOOL bWait )
-//STRIP001 {
-//STRIP001  if ( bAllowInterpretProgress )
-//STRIP001  {
-//STRIP001      if ( nInterpretProgress )
-//STRIP001          nInterpretProgress++;
-//STRIP001      else if ( pDoc->GetAutoCalc() )
-//STRIP001      {
-//STRIP001          nInterpretProgress = 1;
-//STRIP001          bIdleWasDisabled = pDoc->IsIdleDisabled();
-//STRIP001          pDoc->DisableIdle( TRUE );
-//STRIP001             // Interpreter may be called in many circumstances, also if another
-//STRIP001             // progress bar is active, for example while adapting row heights.
-//STRIP001             // Keep the dummy interpret progress.
-//STRIP001             if ( !pGlobalProgress )
-//STRIP001                 pInterpretProgress = new ScProgress( pDoc->GetDocumentShell(),
-//STRIP001                     ScGlobal::GetRscString( STR_PROGRESS_CALCULATING ),
-//STRIP001                     pDoc->GetFormulaCodeInTree(), FALSE, bWait );
-//STRIP001          pInterpretDoc = pDoc;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 // static
 
-//STRIP001 void ScProgress::DeleteInterpretProgress()
-//STRIP001 {
-//STRIP001  if ( bAllowInterpretProgress && nInterpretProgress )
-//STRIP001  {
-//STRIP001      if ( --nInterpretProgress == 0 )
-//STRIP001      {
-//STRIP001          if ( pInterpretProgress != &theDummyInterpretProgress )
-//STRIP001          {
-//STRIP001              delete pInterpretProgress;
-//STRIP001              pInterpretProgress = &theDummyInterpretProgress;
-//STRIP001          }
-//STRIP001             if ( pInterpretDoc )
-//STRIP001                 pInterpretDoc->DisableIdle( bIdleWasDisabled );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 
