@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_charttyp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:51:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:22:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -499,24 +499,6 @@ namespace binfilter {
 |* Chart-Typ mit Splines
 |*
 \************************************************************************/
-//STRIP001 BOOL ChartType::HasSplines(const SvxChartStyle eChartStyle) const
-//STRIP001 {
-//STRIP001  switch (eChartStyle)
-//STRIP001  {
-//STRIP001      case CHSTYLE_2D_CUBIC_SPLINE :
-//STRIP001      case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL :
-//STRIP001      case CHSTYLE_2D_B_SPLINE :
-//STRIP001      case CHSTYLE_2D_B_SPLINE_SYMBOL :
-//STRIP001      case CHSTYLE_2D_CUBIC_SPLINE_XY :
-//STRIP001      case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY :
-//STRIP001      case CHSTYLE_2D_B_SPLINE_XY :
-//STRIP001      case CHSTYLE_2D_B_SPLINE_SYMBOL_XY :
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001      default :
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001 }
 /*N*/ long ChartType::GetSplineType(const SvxChartStyle eChartStyle) const
 /*N*/ {
 /*N*/   switch (eChartStyle)
@@ -826,56 +808,5 @@ namespace binfilter {
 |*                                              Type = Column,Percent,Stacked
 \************************************************************************/
 
-//STRIP001 BOOL ChartType::CleanUp()
-//STRIP001 {
-//STRIP001    SvxChartStyle eOldStyle = GetChartStyle();
-//STRIP001    SetType(eOldStyle);
-//STRIP001    SvxChartStyle eNewStyle = GetChartStyle();
-//STRIP001
-//STRIP001    return eNewStyle == eOldStyle;
-//STRIP001 }
 //Wie SetBaseType, jedoch werden alle Properties auf defaults gesetz
-//STRIP001 BOOL ChartType::SetDefaultBaseType(long nDefault)
-//STRIP001 {
-//STRIP001  if(nDefault==-1)
-//STRIP001      nDefault=GetBaseType();
-//STRIP001
-//STRIP001  SvxChartStyle eOldStyle = GetChartStyle();
-//STRIP001
-//STRIP001  SvxChartStyle eNewStyle=CHSTYLE_2D_COLUMN;
-//STRIP001
-//STRIP001  switch(nDefault)
-//STRIP001  {
-//STRIP001      case CHTYPE_LINE:
-//STRIP001          eNewStyle = (Is3D()) ? CHSTYLE_3D_STRIPE : CHSTYLE_2D_LINE;
-//STRIP001          break;
-//STRIP001      case CHTYPE_AREA:
-//STRIP001          eNewStyle = (Is3D()) ?  CHSTYLE_3D_AREA: CHSTYLE_2D_AREA;
-//STRIP001          break;
-//STRIP001      case CHTYPE_DONUT:
-//STRIP001          eNewStyle = CHSTYLE_2D_DONUT1;
-//STRIP001          break;
-//STRIP001      case CHTYPE_CIRCLE:
-//STRIP001          eNewStyle = (Is3D()) ?  CHSTYLE_3D_PIE: CHSTYLE_2D_PIE;
-//STRIP001          break;
-//STRIP001      case CHTYPE_XY:
-//STRIP001          eNewStyle = (Is3D()) ?  CHSTYLE_2D_XY: CHSTYLE_2D_XY;
-//STRIP001          break;
-//STRIP001      case CHTYPE_NET:
-//STRIP001          eNewStyle = (Is3D()) ?  CHSTYLE_2D_NET: CHSTYLE_2D_NET ;
-//STRIP001          break;
-//STRIP001      case CHTYPE_COLUMN:
-//STRIP001      case CHTYPE_BAR:
-//STRIP001          eNewStyle = (Is3D()) ?  CHSTYLE_3D_COLUMN: CHSTYLE_2D_COLUMN;
-//STRIP001          break;
-//STRIP001      case CHTYPE_STOCK:
-//STRIP001          eNewStyle = CHSTYLE_2D_STOCK_1;
-//STRIP001
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  SetType(eNewStyle);
-//STRIP001
-//STRIP001  return eNewStyle == eOldStyle;
-//STRIP001 }
 }
