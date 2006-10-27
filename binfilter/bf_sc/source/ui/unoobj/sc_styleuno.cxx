@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_styleuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:18:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:05:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -45,18 +44,14 @@
 #include <bf_svx/numitem.hxx>
 #include <bf_svx/pageitem.hxx>
 #include <bf_svx/pbinitem.hxx>
-// auto strip #include <bf_svx/unomid.hxx>
 #include <bf_svx/unonrule.hxx>
 #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <vcl/virdev.hxx>
 #include <svtools/itempool.hxx>
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #include <svtools/intitem.hxx>
 #include <svtools/zformat.hxx>
 #include <rtl/uuid.h>
 
-// auto strip #include <com/sun/star/table/BorderLine.hpp>
 #include <com/sun/star/table/CellVertJustify.hpp>
 #include <com/sun/star/table/TableBorder.hpp>
 #include <com/sun/star/table/ShadowFormat.hpp>
@@ -68,7 +63,6 @@
 #include <com/sun/star/util/CellProtection.hpp>
 #include <com/sun/star/awt/FontSlant.hpp>
 #include <com/sun/star/awt/Size.hpp>
-// auto strip #include <com/sun/star/lang/Locale.hpp>
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include "styleuno.hxx"
@@ -77,7 +71,6 @@
 #include "stlpool.hxx"
 #include "unoguard.hxx"
 #include "miscuno.hxx"
-// auto strip #include "convuno.hxx"
 #include "tablink.hxx"
 #include "unonames.hxx"
 #include "unowids.hxx"

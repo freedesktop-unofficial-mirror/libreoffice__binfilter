@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_targuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:18:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:05:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,21 +34,12 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <vcl/image.hxx>
-// auto strip #include <vcl/virdev.hxx>
 //#include <toolkit/unoiface.hxx>
-// auto strip #include <toolkit/unohlp.hxx>
-// auto strip #include <svtools/itemprop.hxx>
-// auto strip #include <svtools/smplhint.hxx>
 
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef _SV_SETTINGS_HXX
 #include <vcl/settings.hxx>
 #endif
@@ -268,11 +259,6 @@ void ScLinkTargetTypeObj::SetLinkTargetBitmap( uno::Any& rRet, sal_uInt16 nType 
     if (nImgId)
     {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHighContrast = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
-//STRIP001         ImageList aEntryImages( ScResId( bHighContrast ? RID_IMAGELIST_H_NAVCONT : RID_IMAGELIST_NAVCONT ) );
-//STRIP001      const Image& rImage = aEntryImages.GetImage( nImgId );
-//STRIP001         BitmapEx aBitmapEx( rImage.GetBitmap() );
-//STRIP001      uno::Reference< awt::XBitmap > xBmp = VCLUnoHelper::CreateBitmap( aBitmapEx );
-//STRIP001      rRet <<= xBmp;
     }
 }
 
