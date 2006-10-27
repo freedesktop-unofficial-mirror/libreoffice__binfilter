@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_eventsupplier.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:42:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:43:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -191,19 +191,6 @@ namespace binfilter {
 //--------------------------------------------------------------------------------------------------------
 /*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& aName ) throw ( RUNTIMEEXCEPTION )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  ::osl::MutexGuard aGuard( maMutex );
-//STRIP001
-//STRIP001  // find the event in the list and return the data
-//STRIP001
-//STRIP001  long nCount = maEventNames.getLength();
-//STRIP001
-//STRIP001  for ( long i=0; i<nCount; i++ )
-//STRIP001  {
-//STRIP001      if ( maEventNames[i] == aName )
-//STRIP001          return sal_True;
-//STRIP001  }
-//STRIP001
-//STRIP001  return sal_False;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
@@ -211,19 +198,11 @@ namespace binfilter {
 //--------------------------------------------------------------------------------------------------------
 /*?*/ UNOTYPE SAL_CALL SfxEvents_Impl::getElementType() throw ( RUNTIMEEXCEPTION )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE; //STRIP001
-//STRIP001  UNOTYPE aElementType = ::getCppuType( (const SEQUENCE < PROPERTYVALUE > *)0 );
-//STRIP001  return aElementType;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
 /*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasElements() throw ( RUNTIMEEXCEPTION )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;//STRIP001
-//STRIP001  ::osl::MutexGuard aGuard( maMutex );
-//STRIP001
-//STRIP001  if ( maEventNames.getLength() )
-//STRIP001      return sal_True;
-//STRIP001  else
-//STRIP001      return sal_False;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
@@ -575,10 +554,6 @@ namespace binfilter {
 /*N*/   m_aInterfaceContainer.addInterface( xListener );
 /*N*/ }
 
-//STRIP001 void SAL_CALL SfxGlobalEvents_Impl::removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION )
-//STRIP001 {
-//STRIP001  m_aInterfaceContainer.removeInterface( xListener );
-//STRIP001 }
 
 /*N*/ void SfxGlobalEvents_Impl::Notify( SfxBroadcaster& aBC, const SfxHint& aHint )
 /*N*/ {
