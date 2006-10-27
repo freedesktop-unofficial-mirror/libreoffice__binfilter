@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_misccfg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:42:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:08:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,9 +78,6 @@ using namespace ::com::sun::star::uno;
 
 /*?*/ void SfxMiscCfg::SetNotFoundWarning( BOOL bSet)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(bNotFound != bSet)
-//STRIP001      SetModified();
-//STRIP001  bNotFound = bSet;
 /*?*/ }
 
 /*--------------------------------------------------------------------
@@ -89,9 +86,6 @@ using namespace ::com::sun::star::uno;
 
 /*?*/ void SfxMiscCfg::SetPaperSizeWarning( BOOL bSet)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(bPaperSize != bSet)
-//STRIP001      SetModified();
-//STRIP001  bPaperSize = bSet;
 /*?*/ }
 
 /*--------------------------------------------------------------------
@@ -99,9 +93,6 @@ using namespace ::com::sun::star::uno;
  --------------------------------------------------------------------*/
 /*?*/ void SfxMiscCfg::SetPaperOrientationWarning( BOOL bSet)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(bPaperOrientation != bSet)
-//STRIP001      SetModified();
-//STRIP001  bPaperOrientation = bSet;
 /*?*/ }
 /*--------------------------------------------------------------------
      Beschreibung:
@@ -109,9 +100,6 @@ using namespace ::com::sun::star::uno;
 
 /*?*/ void SfxMiscCfg::SetYear2000( sal_Int32 nSet )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(nYear2000 != nSet)
-//STRIP001      SetModified();
-//STRIP001  nYear2000 = nSet;
 /*?*/ }
 /* -----------------------------02.03.01 15:31--------------------------------
 
@@ -175,23 +163,6 @@ using namespace ::com::sun::star::uno;
  ---------------------------------------------------------------------------*/
 /*?*/ void SfxMiscCfg::Commit()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
-//STRIP001     const OUString* pNames = aNames.getConstArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0: pValues[nProp].setValue(&bPaperSize, rType);break;  //"Print/Warning/PaperSize",
-//STRIP001          case  1: pValues[nProp].setValue(&bPaperOrientation, rType);break;     //"Print/Warning/PaperOrientation",
-//STRIP001          case  2: pValues[nProp].setValue(&bNotFound, rType);break;   //"Print/Warning/NotFound",
-//STRIP001          case  3: pValues[nProp] <<= nYear2000;break;                 //"DateFormat/TwoDigitYear",
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
 /*?*/ }
 
 }
