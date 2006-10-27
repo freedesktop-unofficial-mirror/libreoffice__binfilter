@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_EditBase.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:42:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:00:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,24 +36,9 @@
 #ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-// auto strip #ifndef _FRM_SERVICES_HXX_
-// auto strip #include "services.hxx"
-// auto strip #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRM_RESOURCE_HXX_
-// auto strip #include "frm_resource.hxx"
-// auto strip #endif
 #ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
 #endif
