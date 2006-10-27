@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChartLegend.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:13:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:58:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,6 @@
 #ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
 #endif
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChartTitle.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:13:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:59:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,12 +35,8 @@
 #include "ChartTitle.hxx"
 
 #include "mapprov.hxx"
-// auto strip #include "defines.hxx"
 
 // header for class OGuard
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -48,9 +44,6 @@
 #ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
 #endif
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 
 #include "schattr.hxx"
 #ifndef _SVX_CHRTITEM_HXX //autogen
@@ -60,9 +53,7 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
-// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 namespace binfilter {
 
