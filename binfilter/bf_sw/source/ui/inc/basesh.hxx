@@ -4,9 +4,9 @@
  *
  *  $RCSfile: basesh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:19:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:32:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,6 @@ class SwBaseShell: public SfxShell
 protected:
 
     SwWrtShell& GetShell   ();
-//STRIP001  SwWrtShell* GetShellPtr();
 
     SwView&     GetView() { return rView; }
 
@@ -102,7 +101,6 @@ protected:
     BOOL AddGrfUpdateSlot( USHORT nSlot )
                                 { return aGrfUpdateSlots.Insert( nSlot ); }
 
-//STRIP001     void InsertURLButton(const String& rURL, const String& rTarget, const String& rTxt);
 public:
     SwBaseShell(SwView &rShell);
     virtual     ~SwBaseShell();
@@ -143,15 +141,10 @@ public:
 
     void        ExecField(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecField(SfxRequest& rReq);
 
-//STRIP001  static void    SetFrmMode( USHORT nMode, SwWrtShell *pShell );  //Mit Update!
     static void   _SetFrmMode( USHORT nMode )   { nFrameMode = nMode; }
     static USHORT  GetFrmMode()                 { return nFrameMode;  }
 
     //public fuer D&D
-//STRIP001  int     InsertGraphic( const String &rPath, const String &rFilter,
-//STRIP001                          BOOL bLink = TRUE, GraphicFilter *pFlt = 0,
-//STRIP001                          Graphic* pPreviewGrf = 0,
-//STRIP001                          BOOL bRule = FALSE );
 
 };
 
