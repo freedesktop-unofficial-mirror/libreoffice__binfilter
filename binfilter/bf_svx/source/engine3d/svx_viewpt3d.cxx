@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_viewpt3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:35:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:52:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,14 +137,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void Viewport3D::GetViewWindow(double& rX, double& rY,
-//STRIP001                             double& rW, double& rH) const
-//STRIP001 {
-//STRIP001  rX = aViewWin.X;
-//STRIP001  rY = aViewWin.Y;
-//STRIP001  rW = aViewWin.W;
-//STRIP001  rH = aViewWin.H;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -255,14 +247,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 Vector3D& Viewport3D::Transform(Vector3D& rVec)
-//STRIP001 {
-//STRIP001  MakeTransform();
-//STRIP001
-//STRIP001  rVec *= aViewTf;
-//STRIP001
-//STRIP001  return rVec;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -270,13 +254,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 Vector3D Viewport3D::Transformed(const Vector3D& rVec)
-//STRIP001 {
-//STRIP001  Vector3D aNewVec = rVec;
-//STRIP001  Transform(aNewVec);
-//STRIP001
-//STRIP001  return aNewVec;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -334,11 +311,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 Vector3D Viewport3D::ProjectAndMap(Vector3D aVec) const
-//STRIP001 {
-//STRIP001  DoProjection(aVec);
-//STRIP001  return MapToDevice(aVec);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -347,27 +319,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 Vector3D Viewport3D::MapSizeToView(const Vector3D& rVec)
-//STRIP001 {
-//STRIP001  Vector3D aVec(rVec);
-//STRIP001  // zuerst von Device in View umrechnen
-//STRIP001  aVec.X() /= fWRatio;
-//STRIP001  aVec.Y() /= fHRatio;
-//STRIP001
-//STRIP001  // dann die Perspektivtransformation umkehren
-//STRIP001 /*   if ( eProjection == PR_PERSPECTIVE )
-//STRIP001  {
-//STRIP001      double fPrDist = fVPD - aPRP.Z();
-//STRIP001
-//STRIP001      if ( aPRP.Z() != aVec.Z() )
-//STRIP001      {
-//STRIP001          fPrDist /= aVec.Z() - aPRP.Z();
-//STRIP001          aVec.X() /= fPrDist;
-//STRIP001          aVec.Y() /= fPrDist;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 */   return aVec;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -438,11 +389,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void Viewport3D::SetNearClipDist(double fNewNCD)
-//STRIP001 {
-//STRIP001  fNearClipDist = fNewNCD;
-//STRIP001  bTfValid = FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -450,11 +396,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void Viewport3D::SetFarClipDist(double fNewFCD)
-//STRIP001 {
-//STRIP001  fFarClipDist = fNewFCD;
-//STRIP001  bTfValid = FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
