@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editundo.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:19:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:40:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,54 +53,10 @@ class EditView;
 // -----------------------------------------------------------------------
 // EditUndoDelContent
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoDelContent : public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  BOOL            bDelObject;
-//STRIP001  USHORT          nNode;
-//STRIP001  ContentNode*    pContentNode;   // Zeigt auf das gueltige,
-//STRIP001                                  // nicht zerstoerte Objekt!
-//STRIP001
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  EditUndoDelContent( ImpEditEngine* pImpEE, ContentNode* pNode, USHORT nPortio );
-//STRIP001                  ~EditUndoDelContent();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat();
-//STRIP001 };
 
 // -----------------------------------------------------------------------
 // EditUndoConnectParas
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoConnectParas : public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  USHORT          nNode;
-//STRIP001  USHORT          nSepPos;
-//STRIP001  SfxItemSet      aLeftParaAttribs;
-//STRIP001  SfxItemSet      aRightParaAttribs;
-//STRIP001
-//STRIP001  // 2 Pointer waeren schoener, aber dann muesste es ein SfxListener sein.
-//STRIP001  String          aLeftStyleName;
-//STRIP001  String          aRightStyleName;
-//STRIP001  SfxStyleFamily  eLeftStyleFamily;
-//STRIP001  SfxStyleFamily  eRightStyleFamily;
-//STRIP001
-//STRIP001  BOOL            bBackward;
-//STRIP001
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  EditUndoConnectParas( ImpEditEngine* pImpEE, USHORT nNode, USHORT nSepPos,
-//STRIP001                                          const SfxItemSet& rLeftParaAttribs, const SfxItemSet& rRightParaAttribs,
-//STRIP001                                          const SfxStyleSheet* pLeftStyle, const SfxStyleSheet* pRightStyle, BOOL bBackward );
-//STRIP001                  ~EditUndoConnectParas();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat();
-//STRIP001 };
 
 // -----------------------------------------------------------------------
 // EditUndoSplitPara
@@ -112,7 +68,6 @@ private:
     USHORT          nSepPos;
 
 public:
-//STRIP001                  TYPEINFO();
                     EditUndoSplitPara( ImpEditEngine* pImpEE, USHORT nNode, USHORT nSepPos );
                     ~EditUndoSplitPara();
 
@@ -147,30 +102,6 @@ public:
 // -----------------------------------------------------------------------
 // EditUndoRemoveChars
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoRemoveChars : public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  EPaM            aEPaM;
-//STRIP001  String          aText;
-//STRIP001
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  EditUndoRemoveChars( ImpEditEngine* pImpEE, const EPaM& rEPaM, const String& rStr );
-//STRIP001
-//STRIP001 #if defined(MACOSX) && ( __GNUC__ < 3 )
-//STRIP001         // implementations moved to impedit2.cxx
-//STRIP001         // fixme revisit after gcc3
-//STRIP001  const EPaM&     GetEPaM();
-//STRIP001  String&         GetStr();
-//STRIP001 #else
-//STRIP001  const EPaM&     GetEPaM() { return aEPaM; }
-//STRIP001  String&         GetStr() { return aText; }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat();
-//STRIP001 };
 
 // -----------------------------------------------------------------------
 // EditUndoInsertFeature
@@ -182,7 +113,6 @@ private:
     SfxPoolItem*    pFeature;
 
 public:
-//STRIP001                  TYPEINFO();
                     EditUndoInsertFeature( ImpEditEngine* pImpEE, const EPaM& rEPaM,
                                             const SfxPoolItem& rFeature);
                     ~EditUndoInsertFeature();
@@ -195,21 +125,6 @@ public:
 // -----------------------------------------------------------------------
 // EditUndoMoveParagraphs
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoMoveParagraphs: public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  Range           nParagraphs;
-//STRIP001  USHORT          nDest;
-//STRIP001
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  EditUndoMoveParagraphs( ImpEditEngine* pImpEE, const Range& rParas, USHORT nDest );
-//STRIP001                  ~EditUndoMoveParagraphs();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat();
-//STRIP001 };
 
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
@@ -225,7 +140,6 @@ private:
     SfxItemSet      aPrevParaAttribs;
 
 public:
-//STRIP001                  TYPEINFO();
 
                     EditUndoSetStyleSheet( ImpEditEngine* pImpEE, USHORT nPara,
                         const XubString& rPrevName, SfxStyleFamily ePrevFamily,
@@ -249,7 +163,6 @@ private:
     SfxItemSet      aNewItems;
 
 public:
-//STRIP001                  TYPEINFO();
                     EditUndoSetParaAttribs( ImpEditEngine* pImpEE, USHORT nPara, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems );
                     ~EditUndoSetParaAttribs();
 
@@ -261,83 +174,14 @@ public:
 // -----------------------------------------------------------------------
 // EditUndoSetAttribs
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoSetAttribs: public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ESelection          aESel;
-//STRIP001  SfxItemSet          aNewAttribs;
-//STRIP001  ContentInfoArray    aPrevAttribs;
-//STRIP001
-//STRIP001  BYTE                nSpecial;
-//STRIP001  BOOL                bSetIsRemove;
-//STRIP001  BOOL                bRemoveParaAttribs;
-//STRIP001  USHORT              nRemoveWhich;
-//STRIP001
-//STRIP001  void                ImpSetSelection( EditView* pView );
-//STRIP001
-//STRIP001
-//STRIP001 public:
-//STRIP001                      TYPEINFO();
-//STRIP001                      EditUndoSetAttribs( ImpEditEngine* pImpEE, const ESelection& rESel, const SfxItemSet& rNewItems );
-//STRIP001                      ~EditUndoSetAttribs();
-//STRIP001
-//STRIP001  ContentInfoArray&   GetContentInfos()   { return aPrevAttribs; }
-//STRIP001  SfxItemSet&         GetNewAttribs()     { return aNewAttribs; }
-//STRIP001
-//STRIP001  void                SetSpecial( BYTE n )            { nSpecial = n; }
-//STRIP001  void                SetRemoveAttribs( BOOL b )      { bSetIsRemove = b; }
-//STRIP001  void                SetRemoveParaAttribs( BOOL b )  { bRemoveParaAttribs = b; }
-//STRIP001  void                SetRemoveWhich( USHORT n )      { nRemoveWhich = n; }
-//STRIP001
-//STRIP001  virtual void        Undo();
-//STRIP001  virtual void        Redo();
-//STRIP001  virtual void        Repeat();
-//STRIP001 };
 
 // -----------------------------------------------------------------------
 // EditUndoTransliteration
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoTransliteration: public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ESelection          aOldESel;
-//STRIP001  ESelection          aNewESel;
-//STRIP001
-//STRIP001  sal_Int32           nMode;
-//STRIP001  EditTextObject*     pTxtObj;
-//STRIP001  String              aText;
-//STRIP001
-//STRIP001 public:
-//STRIP001                      TYPEINFO();
-//STRIP001                      EditUndoTransliteration( ImpEditEngine* pImpEE, const ESelection& rESel, sal_Int32 nMode );
-//STRIP001                      ~EditUndoTransliteration();
-//STRIP001
-//STRIP001  void                SetText( const String& rText ) { aText = rText; }
-//STRIP001  void                SetText( EditTextObject* pObj ) { pTxtObj = pObj; }
-//STRIP001  void                SetNewSelection( const ESelection& rSel ) { aNewESel = rSel; }
-//STRIP001
-//STRIP001  virtual void        Undo();
-//STRIP001  virtual void        Redo();
-//STRIP001  virtual void        Repeat();
-//STRIP001 };
 
 // -----------------------------------------------------------------------
 // EditUndoMarkSelection
 // ------------------------------------------------------------------------
-//STRIP001 class EditUndoMarkSelection: public EditUndo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ESelection      aSelection;
-//STRIP001
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  EditUndoMarkSelection( ImpEditEngine* pImpEE, const ESelection& rSel );
-//STRIP001                  ~EditUndoMarkSelection();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat();
-//STRIP001 };
 
 
 }//end of namespace binfilter
