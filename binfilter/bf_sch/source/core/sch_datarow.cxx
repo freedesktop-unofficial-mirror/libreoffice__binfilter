@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_datarow.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:57:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:26:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -121,11 +121,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchDataRow::SchDataRow(const SchDataRow& rDataRow) :
-//STRIP001  SdrObjUserData(rDataRow),
-//STRIP001  nRow(rDataRow.nRow)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_itempool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:57:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:27:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,11 +53,7 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
-// auto strip #ifndef _SFXINTITEM_HXX //autogen
-// auto strip #include <svtools/intitem.hxx>
-// auto strip #endif
 
 // header for class SvXMLAttrContainerItem
 #ifndef _SVX_XMLCNITM_HXX
@@ -72,7 +68,6 @@
 #define ITEMID_SIZE 0
 #include <bf_svx/sizeitem.hxx>
 #endif
-// auto strip #include "defines.hxx"
 
 #include "itempool.hxx"
 #include "chaxis.hxx"
@@ -244,10 +239,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchItemPool::SchItemPool(const SchItemPool& rPool):
-//STRIP001  SfxItemPool(rPool)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -489,10 +480,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SfxItemPool* SchItemPool::Clone() const
-//STRIP001 {
-//STRIP001  return new SchItemPool(*this);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -500,10 +487,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SfxMapUnit SchItemPool::GetMetric(USHORT nWhich) const
-//STRIP001 {
-//STRIP001  return SFX_MAPUNIT_100TH_MM;
-//STRIP001 }
 
 
 
