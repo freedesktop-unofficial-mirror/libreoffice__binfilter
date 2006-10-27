@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editobj2.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:54:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:40:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ private:
                         ~XEditAttribute();
 
 public:
-//STRIP001                      XEditAttribute( const SfxPoolItem& rAttr );
                         XEditAttribute( const SfxPoolItem& rAttr, USHORT nStart, USHORT nEnd );
 
     const SfxPoolItem*  GetItem() const             { return pItem; }
@@ -219,17 +218,13 @@ public:
     USHORT                  GetUserType() const;
     void                    SetUserType( USHORT n );
 
-//STRIP001  ULONG                   GetObjectSettings() const;
-//STRIP001  void                    SetObjectSettings( ULONG n );
 
     BOOL                    IsVertical() const;
     void                    SetVertical( BOOL b );
 
-//STRIP001  USHORT                  GetScriptType() const;
     void                    SetScriptType( USHORT nType );
 
     USHORT                  GetVersion() const; // Solange der Outliner keine Recordlaenge speichert
-//STRIP001  void                    SetLRSpaceItemFlags( BOOL bOutlineMode );
     void                    AdjustImportedLRSpaceItems( BOOL bTurnOfBullets );
 
     ContentInfo*            CreateAndInsertContent();
@@ -246,30 +241,18 @@ public:
     virtual USHORT          GetParagraphCount() const;
     virtual String          GetText( USHORT nParagraph ) const;
     virtual void            Insert( const EditTextObject& rObj, USHORT nPara );
-//STRIP001  virtual EditTextObject* CreateTextObject( USHORT nPara, USHORT nParas = 1 ) const;
-//STRIP001  virtual void            RemoveParagraph( USHORT nPara );
 
-//STRIP001  virtual BOOL            HasPortionInfo() const;
     virtual void            ClearPortionInfo();
 
-//STRIP001  virtual BOOL            HasOnlineSpellErrors() const;
 
-//STRIP001  virtual BOOL            HasCharAttribs( USHORT nWhich = 0 ) const;
-//STRIP001  virtual void            GetCharAttribs( USHORT nPara, EECharAttribArray& rLst ) const;
 
-//STRIP001  virtual BOOL            RemoveCharAttribs( USHORT nWhich = 0 );
-//STRIP001  virtual BOOL            RemoveParaAttribs( USHORT nWhich = 0 );
 
     virtual void            MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart, USHORT nEnd );
 
-//STRIP001  virtual BOOL            IsFieldObject() const;
-//STRIP001  virtual const SvxFieldItem* GetField() const;
     virtual BOOL            HasField( TypeId Type = NULL ) const;
 
     SfxItemSet              GetParaAttribs( USHORT nPara ) const;
-//STRIP001  void                    SetParaAttribs( USHORT nPara, const SfxItemSet& rAttribs );
 
-//STRIP001  virtual BOOL            HasStyleSheet( const XubString& rName, SfxStyleFamily eFamily ) const;
     virtual void            GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& eFamily ) const;
     virtual void            SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& eFamily );
     virtual BOOL            ChangeStyleSheets(  const XubString& rOldName, SfxStyleFamily eOldFamily,
