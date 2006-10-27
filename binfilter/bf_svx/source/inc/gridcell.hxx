@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gridcell.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:06:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:10:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,13 +44,7 @@
 #include "fmtools.hxx"
 #endif
 
-// auto strip #ifndef _CPPUHELPER_COMPONENT_HXX_
-// auto strip #include <cppuhelper/component.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
-// auto strip #include <com/sun/star/sdb/XColumn.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XBOUNDCONTROL_HPP_
 #include <com/sun/star/form/XBoundControl.hpp>
 #endif
@@ -63,33 +57,15 @@
 #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
-// auto strip #include <com/sun/star/awt/XControlModel.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XCHECKBOX_HPP_
 #include <com/sun/star/awt/XCheckBox.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XFastPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
-// auto strip #include <comphelper/propmultiplex.hxx>
-// auto strip #endif
 #ifndef SVX_SQLPARSERCLIENT_HXX
 #include "sqlparserclient.hxx"
 #endif
-// auto strip #ifndef SVX_TYPECONVERSION_CLIENT_HXX
-// auto strip #include "typeconversionclient.hxx"
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
-// auto strip #include <comphelper/propmultiplex.hxx>
-// auto strip #endif
 class Edit;
 namespace binfilter {
 
@@ -241,7 +217,6 @@ public:
 // benoetigt
 //==================================================================
 class DbCellControl
-//STRIP001      :public ::svxform::OTypeConversionClient
 :public ::binfilter::svxform::OStaticDataAccessTools//STRIP001      ,public ::svxform::OStaticDataAccessTools
         ,public FmMutexHelper           // _before_ the listener, so the listener is to be destroyed first!
         ,public ::comphelper::OPropertyChangeListener
