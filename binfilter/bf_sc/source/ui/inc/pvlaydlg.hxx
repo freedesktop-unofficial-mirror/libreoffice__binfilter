@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pvlaydlg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:09:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:22:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,132 +96,6 @@ class ScDPObject;
 
 #define FUNC_COUNT 11
 
-//STRIP001 class ScDPLayoutDlg : public ScAnyRefDlg
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                             ScDPLayoutDlg(
-//STRIP001                                 SfxBindings* pB,
-//STRIP001                                 SfxChildWindow* pCW,
-//STRIP001                                 Window* pParent,
-//STRIP001                                 const ScDPObject* pDPObject );
-//STRIP001     virtual                 ~ScDPLayoutDlg();
-//STRIP001
-//STRIP001     virtual void            SetReference( const ScRange& rRef, ScDocument* pDoc );
-//STRIP001     virtual BOOL            IsRefInputMode() const { return bRefInputMode; }
-//STRIP001     virtual void            SetActive();
-//STRIP001     virtual BOOL            Close();
-//STRIP001
-//STRIP001     void                    NotifyDoubleClick    ( ScDPFieldType eType, long nFieldIndex );
-//STRIP001     PointerStyle            NotifyMouseButtonDown( ScDPFieldType eType, long nFieldIndex );
-//STRIP001     void                    NotifyMouseButtonUp  ( const Point& rAt );
-//STRIP001     PointerStyle            NotifyMouseMove      ( const Point& rAt );
-//STRIP001     void                    NotifyFieldFocus     ( ScDPFieldType eType, BOOL bGotFocus );
-//STRIP001     void                    NotifyMoveField      ( ScDPFieldType eToType );
-//STRIP001     void                    NotifyRemoveField    ( ScDPFieldType eType, long nFieldIndex );
-//STRIP001     BOOL                    NotifyMoveSlider     ( USHORT nKeyCode );   // return TRUE, if position changed
-//STRIP001
-//STRIP001 protected:
-//STRIP001     virtual void            Deactivate();
-//STRIP001
-//STRIP001 private:
-//STRIP001     FixedLine               aFlLayout;
-//STRIP001     FixedText               aFtCol;
-//STRIP001     ScDPFieldWindow         aWndCol;
-//STRIP001     FixedText               aFtRow;
-//STRIP001     ScDPFieldWindow         aWndRow;
-//STRIP001     FixedText               aFtData;
-//STRIP001     ScDPFieldWindow         aWndData;
-//STRIP001     ScDPFieldWindow         aWndSelect;
-//STRIP001     ScrollBar               aSlider;
-//STRIP001     FixedInfo               aFtInfo;
-//STRIP001
-//STRIP001     FixedLine               aFlAreas;
-//STRIP001     ListBox                 aLbOutPos;
-//STRIP001     FixedText               aFtOutArea;
-//STRIP001     ScRefEdit               aEdOutPos;
-//STRIP001     ScRefButton             aRbOutPos;
-//STRIP001     CheckBox                aBtnIgnEmptyRows;
-//STRIP001     CheckBox                aBtnDetectCat;
-//STRIP001     CheckBox                aBtnTotalCol;
-//STRIP001     CheckBox                aBtnTotalRow;
-//STRIP001
-//STRIP001     OKButton                aBtnOk;
-//STRIP001     CancelButton            aBtnCancel;
-//STRIP001     HelpButton              aBtnHelp;
-//STRIP001     PushButton              aBtnRemove;
-//STRIP001     PushButton              aBtnOptions;
-//STRIP001     MoreButton              aBtnMore;
-//STRIP001
-//STRIP001     const String            aStrUndefined;
-//STRIP001     const String            aStrNewTable;
-//STRIP001     String*                 aFuncNameArr[FUNC_COUNT];
-//STRIP001
-//STRIP001     ScDPFieldType           eDnDFromType;
-//STRIP001     long                    nDnDFromIndex;
-//STRIP001     BOOL                    bIsDrag;
-//STRIP001
-//STRIP001     Rectangle               aRectRow;
-//STRIP001     Rectangle               aRectCol;
-//STRIP001     Rectangle               aRectData;
-//STRIP001     Rectangle               aRectSelect;
-//STRIP001
-//STRIP001     LabelData**             aLabelDataArr; // (nCol, Feldname, Zahl/Text)
-//STRIP001     long                    nLabelCount;
-//STRIP001
-//STRIP001     ScDPFieldType           eLastActiveType;        /// Type of last active area.
-//STRIP001     long                    nOffset;                /// Offset of first field in TYPE_SELECT area.
-//STRIP001
-//STRIP001     FuncData*               aSelectArr[MAX_LABELS]; // (nCol, nFuncMask)
-//STRIP001     FuncData*               aColArr   [MAX_FIELDS]; // (nCol, nFuncMask)
-//STRIP001     FuncData*               aRowArr   [MAX_FIELDS]; // (nCol, nFuncMask)
-//STRIP001     FuncData*               aDataArr  [MAX_FIELDS]; // (nCol, nFuncMask)
-//STRIP001
-//STRIP001     BOOL                    bShowAll[MAX_LABELS];
-//STRIP001
-//STRIP001     ScDPObject*             pDlgDPObject;
-//STRIP001     ScPivotParam            thePivotData;
-//STRIP001     ScViewData*             pViewData;
-//STRIP001     ScDocument*             pDoc;
-//STRIP001     BOOL                    bRefInputMode;
-//STRIP001
-//STRIP001 #ifdef _PVLAYDLG_CXX
-//STRIP001 private:
-//STRIP001     ScDPFieldWindow&        GetFieldWindow  ( ScDPFieldType eType );
-//STRIP001     void                    Init            ();
-//STRIP001     void                    InitWndSelect   ( LabelData** ppLabelArr, long nLabels );
-//STRIP001     void                    InitWnd         ( PivotField* pArr, long nCount, ScDPFieldType eType );
-//STRIP001     void                    InitFocus       ();
-//STRIP001     void                    CalcWndSizes    ();
-//STRIP001     Point                   DlgPos2WndPos   ( const Point& rPt, Window& rWnd );
-//STRIP001     LabelData*              GetLabelData    ( short nCol, long* pPos = NULL );
-//STRIP001     String                  GetLabelString  ( short nCol );
-//STRIP001     String                  GetFuncString   ( USHORT& rFuncMask, BOOL bIsValue = TRUE );
-//STRIP001     BOOL                    Contains        ( FuncData** pArr, short nCol, long& nAt );
-//STRIP001     void                    Remove          ( FuncData** pArr, long nAt );
-//STRIP001     void                    Insert          ( FuncData** pArr, const FuncData& rFData, long nAt );
-//STRIP001
-//STRIP001     void                    AddField        ( long nFromIndex,
-//STRIP001                                               ScDPFieldType eToType, const Point& rAtPos );
-//STRIP001     void                    MoveField       ( ScDPFieldType eFromType, long nFromIndex,
-//STRIP001                                               ScDPFieldType eToType, const Point&  rAtPos );
-//STRIP001     void                    RemoveField     ( ScDPFieldType eRemType, long nRemIndex );
-//STRIP001
-//STRIP001     BOOL                    GetPivotArrays  ( PivotField*   pColArr,
-//STRIP001                                               PivotField*   pRowArr,
-//STRIP001                                               PivotField*   pDataArr,
-//STRIP001                                               USHORT&       rColCount,
-//STRIP001                                               USHORT&       rRowCount,
-//STRIP001                                               USHORT&       rDataCount );
-//STRIP001  // Handler
-//STRIP001     DECL_LINK( ClickHdl, PushButton * );
-//STRIP001  DECL_LINK( ScrollHdl, ScrollBar * );
-//STRIP001  DECL_LINK( SelAreaHdl, ListBox * );
-//STRIP001  DECL_LINK( MoreClickHdl, MoreButton * );
-//STRIP001  DECL_LINK( EdModifyHdl, Edit * );
-//STRIP001  DECL_LINK( OkHdl, OKButton * );
-//STRIP001  DECL_LINK( CancelHdl, CancelButton * );
-//STRIP001 #endif
-//STRIP001 };
 
 
 
