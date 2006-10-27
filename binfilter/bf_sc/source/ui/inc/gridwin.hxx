@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gridwin.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:52:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:12:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,16 +105,6 @@ class ScTransferObj;
 #define SC_PD_BREAK_V       32
 
 
-//STRIP001 class ScHideTextCursor
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ScViewData* pViewData;
-//STRIP001  ScSplitPos  eWhich;
-//STRIP001
-//STRIP001 public:
-//STRIP001          ScHideTextCursor( ScViewData* pData, ScSplitPos eW );
-//STRIP001          ~ScHideTextCursor();
-//STRIP001 };
 
 
 class ScGridWindow : public Window, public DropTargetHelper, public DragSourceHelper
@@ -198,132 +188,56 @@ private:
 
     Rectangle               aInvertRect;
 
-//STRIP001  DECL_LINK( PopupModeEndHdl, FloatingWindow* );
 
-//STRIP001  BOOL            TestMouse( const MouseEvent& rMEvt, BOOL bAction );
 
-//STRIP001  void            DoPushButton( USHORT nCol, USHORT nRow, const MouseEvent& rMEvt );
-//STRIP001  void            PivotMouseMove( const MouseEvent& rMEvt );
-//STRIP001  void            PivotMouseButtonUp( const MouseEvent& rMEvt );
-//STRIP001  BOOL            PivotTestMouse( const MouseEvent& rMEvt, BOOL bMove );
-//STRIP001  void            DoPivotDrop( BOOL bDelete, BOOL bToCols, short nDestPos );
 
-//STRIP001  void            DPMouseMove( const MouseEvent& rMEvt );
-//STRIP001  void            DPMouseButtonUp( const MouseEvent& rMEvt );
-//STRIP001  void            DPTestMouse( const MouseEvent& rMEvt, BOOL bMove );
 
-//STRIP001  void            RFMouseMove( const MouseEvent& rMEvt, BOOL bUp );
 
-//STRIP001  void            PagebreakMove( const MouseEvent& rMEvt, BOOL bUp );
 
-//STRIP001  void            UpdateDragRect( BOOL bShowRange, const Rectangle& rPosRect );
 
-//STRIP001  BOOL            IsAutoFilterActive( USHORT nCol, USHORT nRow, USHORT nTab );
-//STRIP001  void            ExecFilter( ULONG nSel, USHORT nCol, USHORT nRow,
-//STRIP001                              const String& aValue );
-//STRIP001  void            FilterSelect( ULONG nSel );
 
-//STRIP001  void            ExecDataSelect( USHORT nCol, USHORT nRow, const String& rStr );
 
-//STRIP001  BOOL            HasScenarioButton( const Point& rPosPixel, ScRange& rScenRange );
 
-//STRIP001  BOOL            DropScroll( const Point& rMousePos );
 
-//STRIP001  sal_Int8        AcceptPrivateDrop( const AcceptDropEvent& rEvt );
-//STRIP001  sal_Int8        ExecutePrivateDrop( const ExecuteDropEvent& rEvt );
-//STRIP001  sal_Int8        DropTransferObj( ScTransferObj* pTransObj, USHORT nDestPosX, USHORT nDestPosY,
-//STRIP001                                  const Point& rLogicPos, sal_Int8 nDndAction );
 
-//STRIP001  BOOL            DrawMouseButtonDown(const MouseEvent& rMEvt);
-//STRIP001  BOOL            DrawMouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  BOOL            DrawMouseMove(const MouseEvent& rMEvt);
-//STRIP001  BOOL            DrawKeyInput(const KeyEvent& rKEvt);
-//STRIP001  BOOL            DrawCommand(const CommandEvent& rCEvt);
-//STRIP001  BOOL            DrawHasMarkedObj();
     void            DrawEndAction();
-//STRIP001  void            DrawMarkDropObj( SdrObject* pObj );
     SdrObject*      GetEditObject();
-//STRIP001  BOOL            IsMyModel(SdrEditView* pSdrView);
     void            DrawStartTimer();
 
     void            DrawRedraw( ScOutputData& rOutputData, const Rectangle& rDrawingRect,
                                         ScUpdateMode eMode, ULONG nLayer );
     void            DrawSdrGrid( const Rectangle& rDrawingRect );
-//STRIP001  BOOL            DrawBeforeScroll();
-//STRIP001  void            DrawAfterScroll(BOOL bVal);
-//STRIP001  void            OutlinerViewPaint( const Rectangle& rRect );
     void            DrawMarks();
     BOOL            NeedDrawMarks();
-//STRIP001  void            DrawComboButton( const Point&   rCellPos,
-//STRIP001                                   long           nCellSizeX,
-//STRIP001                                   long           nCellSizeY,
-//STRIP001                                      BOOL           bArrowState,
-//STRIP001                                   BOOL           bBtnIn  = FALSE );
 
-//STRIP001  void            DrawPagePreview( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 );
 
-//STRIP001  BOOL            GetEditUrl( const Point& rPos,
-//STRIP001                              String* pName=0, String* pUrl=0, String* pTarget=0 );
-//STRIP001  BOOL            GetEditUrlOrError( BOOL bSpellErr, const Point& rPos,
-//STRIP001                              String* pName=0, String* pUrl=0, String* pTarget=0 );
 
-//STRIP001  BOOL            HitRangeFinder( const Point& rMouse, BOOL& rCorner, USHORT* pIndex = NULL,
-//STRIP001                                      short* pAddX = NULL, short* pAddY = NULL );
 
-//STRIP001  USHORT          HitPageBreak( const Point& rMouse, ScRange* pSource = NULL,
-//STRIP001                                  USHORT* pBreak = NULL, USHORT* pPrev = NULL );
 
 #ifdef AUTOFILTER_POPUP
-//STRIP001  void            DoAutoFilterPopup( USHORT nCol, USHORT nRow, BOOL bDataSelect );
 #endif
 
-//STRIP001  void            PasteSelection( const Point& rPosPixel );
 
 protected:
-//STRIP001  virtual void    Resize( const Size& rSize );
-//STRIP001  virtual void    Paint( const Rectangle& rRect );
-//STRIP001  virtual void    KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual void    GetFocus();
-//STRIP001  virtual void    LoseFocus();
 
-//STRIP001  virtual void    RequestHelp( const HelpEvent& rEvt );
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
 
-//STRIP001  virtual sal_Int8 AcceptDrop( const AcceptDropEvent& rEvt );
-//STRIP001  virtual sal_Int8 ExecuteDrop( const ExecuteDropEvent& rEvt );
-//STRIP001  virtual void    StartDrag( sal_Int8 nAction, const Point& rPosPixel );
 
 public:
     ScGridWindow( Window* pParent, ScViewData* pData, ScSplitPos eWhichPos );
     ~ScGridWindow();
 
-//STRIP001  virtual void    DataChanged( const DataChangedEvent& rDCEvt );
 
-//STRIP001  virtual void    MouseButtonDown( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseButtonUp( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseMove( const MouseEvent& rMEvt );
-//STRIP001  virtual void    Tracking( const TrackingEvent& rTEvt );
 
-//STRIP001  virtual ::com::sun::star::uno::Reference< ::com::sun::star::accessibility::XAccessible > CreateAccessible();
 
-//STRIP001  void            FakeButtonUp();
 
-//STRIP001  Point           GetMousePosPixel() const;
-//STRIP001  void            UpdateStatusPosSize();
 
     void            ClickExtern();
 
-//STRIP001  void            SetPointer( const Pointer& rPointer );
 
-//STRIP001  void            MoveMouseStatus( ScGridWindow &rDestWin );
 
-//STRIP001  void            ScrollPixel( long nDifX, long nDifY );
-//STRIP001  void            UpdateEditViewPos();
 
     void            UpdateFormulas();
 
-//STRIP001  void            DoAutoFilterMenue( USHORT nCol, USHORT nRow, BOOL bDataSelect );
-//STRIP001  void            DoScenarioMenue( const ScRange& rScenRange );
 
     void            DrawButtons( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
                                     RowInfo* pRowInfo, USHORT nArrCount );
@@ -331,17 +245,9 @@ public:
     void            Draw( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
                         ScUpdateMode eMode = SC_UPDATE_ALL );
 
-//STRIP001  void            InvertSimple( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
-//STRIP001                                  BOOL bTestMerge = FALSE, BOOL bRepeat = FALSE );
 
-//STRIP001  void            DrawDragRect( USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
-//STRIP001                                  BOOL bMarkDrop = TRUE );
 
-//STRIP001  void            DrawRefMark( USHORT nRefStartX, USHORT nRefStartY,
-//STRIP001                                  USHORT nRefEndX, USHORT nRefEndY,
-//STRIP001                                  const Color& rColor, BOOL bHandle );
 
-//STRIP001  void            CreateAnchorHandle(SdrHdlList& rHdl, const ScAddress& rAddress);
 
     void            HideCursor();
     void            ShowCursor();
@@ -349,7 +255,6 @@ public:
     void            DrawAutoFillMark();
      void           UpdateAutoFillMark(BOOL bMarked, const ScRange& rMarkRange);
 
-//STRIP001  BOOL            ShowNoteMarker( short nPosX, short nPosY, BOOL bKeyboard );
     void            HideNoteMarker();
 
     MapMode         GetDrawMapMode( BOOL bForce = FALSE );
@@ -357,11 +262,9 @@ public:
     void            ContinueDrag();
 
     void            StopMarking();
-//STRIP001  void            UpdateInputContext();
 
     void            CheckInverted()     { if (nPaintCount) bNeedsRepaint = TRUE; }
 
-//STRIP001  void            DoInvertRect( const Rectangle& rPixel );
 
     void            CheckNeedsRepaint();
 };
