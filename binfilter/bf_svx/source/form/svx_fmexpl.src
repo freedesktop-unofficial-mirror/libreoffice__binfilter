@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmexpl.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-23 11:48:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:55:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -923,148 +923,8 @@ Menu RID_FMSHELL_CONVERSIONMENU
     }; \
     IdCount = 28
 
-//STRIP001 ImageList RID_SVXIMGLIST_FMEXPL
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap { File = "sx_form.bmp" ; };
-//STRIP001  MaskColor = Color { Red = 0xff00 ; Green = 0x0000 ; Blue = 0xff00 ; };
-//STRIP001  NAVIGATOR_IMAGEIDS;
-//STRIP001 };
 
-//STRIP001 ImageList RID_SVXIMGLIST_FMEXPL_HC
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap { File = "sxh_form.bmp" ; };
-//STRIP001  MaskColor = Color { Red = 0xff00 ; Green = 0x0000 ; Blue = 0xff00 ; };
-//STRIP001  NAVIGATOR_IMAGEIDS;
-//STRIP001 };
 
-//STRIP001 ModalDialog RID_SVXDLG_SETFORM
-//STRIP001 {
-//STRIP001  OutputSize = TRUE ;
-//STRIP001  SVLook = TRUE ;
-//STRIP001  Size = MAP_APPFONT ( 200 , 200 ) ;
-//STRIP001  Text = "Formularauswahl" ;
-//STRIP001  Text [ English ] = "Set form" ;
-//STRIP001  Moveable = TRUE ;
-//STRIP001  Closeable = TRUE ;
-//STRIP001  GroupBox GB_PATH
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 6 , 149 ) ;
-//STRIP001      Size = MAP_APPFONT ( 188 , 25 ) ;
-//STRIP001      Text = "Pfad" ;
-//STRIP001      Text [ English ] = "Path" ;
-//STRIP001      Text [ portuguese ] = "Atalho" ;
-//STRIP001      Text [ english_us ] = "Path" ;
-//STRIP001      Text [ portuguese_brazilian ] = "Caminho" ;
-//STRIP001      Text [ swedish ] = "Sˆkv‰g" ;
-//STRIP001      Text [ danish ] = "Sti" ;
-//STRIP001      Text [ italian ] = "Percorso" ;
-//STRIP001      Text [ spanish ] = "Ruta" ;
-//STRIP001      Text [ french ] = "Chemin" ;
-//STRIP001      Text [ dutch ] = "Pad" ;
-//STRIP001      Text[ chinese_simplified ] = "Ë∑ØÂæÑ";
-//STRIP001      Text[ russian ] = "œÛÚ¸";
-//STRIP001      Text[ polish ] = "åcieøka";
-//STRIP001      Text[ japanese ] = "„Éë„Çπ";
-//STRIP001      Text[ chinese_traditional ] = "Ë∑ØÂæë";
-//STRIP001      Text[ arabic ] = "«·„”«—";
-//STRIP001      Text[ greek ] = "ƒÈ·‰ÒÔÏﬁ";
-//STRIP001      Text[ korean ] = "Í≤ΩÎ°ú";
-//STRIP001      Text[ turkish ] = "Veri yolu";
-//STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Cam?";
-//STRIP001      Text[ finnish ] = "Polku";
-//STRIP001      Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ó‡∏≤‡∏á";
-//STRIP001      Text[ czech ] = "Cesta";
-//STRIP001      Text[ hebrew ] = "‚ÄÆ◊û◊°◊ú◊ï◊ú‚Ä?";
-//STRIP001      Text[ hindi ] = "‡§Æ‡§æ‡§∞‡•ç‡§?";
-//STRIP001      Text[ slovak ] = "Cesta";
-//STRIP001  };
-//STRIP001  FixedText FT_PATH
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 12 , 155 ) ;
-//STRIP001      Size = MAP_APPFONT ( 156 , 15 ) ;
-//STRIP001  };
-//STRIP001  OKButton PB_OK
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 6 , 180 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001  };
-//STRIP001  CancelButton PB_CANCEL
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 59 , 180 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001  };
-//STRIP001  HelpButton PB_HELP
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 123 , 180 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001  };
-//STRIP001  Text [ portuguese ] = "Seleccionar formul·rio" ;
-//STRIP001  Text [ english_us ] = "Select form" ;
-//STRIP001  Text [ portuguese_brazilian ] = "Selecionar formul·rio" ;
-//STRIP001  Text [ swedish ] = "Formul‰rurval" ;
-//STRIP001  Text [ danish ] = "Formularudvalg" ;
-//STRIP001  Text [ italian ] = "Scelta formulario" ;
-//STRIP001  Text [ spanish ] = "SelecciÛn de formulario" ;
-//STRIP001  Text [ french ] = "SÈlection de formulaire" ;
-//STRIP001  Text [ dutch ] = "Formulier selecteren" ;
-//STRIP001  Text[ chinese_simplified ] = "ÈÄâÊã©Ë°®Âçï";
-//STRIP001  Text[ russian ] = "¬˚·Ó?ÙÓÏ?";
-//STRIP001  Text[ polish ] = "Wybierz formularz";
-//STRIP001  Text[ japanese ] = "„Éï„Ç©„Éº„É†„ÅÆÈÅ∏Êä?";
-//STRIP001  Text[ chinese_traditional ] = "ÈÅ∏ÊìáË°®ÂñÆ";
-//STRIP001  Text[ arabic ] = " ÕœÌ?«·«” „«—?";
-//STRIP001  Text[ greek ] = "≈ÈÎÔ„?ˆ¸ÒÏ·Ú";
-//STRIP001  Text[ korean ] = "Ïö©ÏßÄ ÏÑ†ÌÉù";
-//STRIP001  Text[ turkish ] = "Form seÁimi";
-//STRIP001  Text[ language_user1 ] = " ";
-//STRIP001  Text[ catalan ] = "Seleccioneu el formulari";
-//STRIP001  Text[ finnish ] = "Valitse lomake";
-//STRIP001  Text[ thai ] = "‡πÄ‡∏•‡∏∑‡∏≠‡∏Å‡πÅ‡∏ö‡∏?";
-//STRIP001  Text[ czech ] = "Vybrat formul√°≈ô";
-//STRIP001  Text[ hebrew ] = "‚ÄÆ◊ë◊ó◊ô◊®◊?◊ò◊ï◊§◊°‚Ä?";
-//STRIP001  Text[ hindi ] = "‡§´‡§º‡•â‡§∞‡•ç‡§Æ ‡§ö‡•Å‡§®‡•ã";
-//STRIP001  Text[ slovak ] = "Vybra≈• formu";
-//STRIP001 };
-//STRIP001 DockingWindow RID_SVX_FMEXPLORER
-//STRIP001 {
-//STRIP001  OutputSize = TRUE ;
-//STRIP001  SVLook = TRUE ;
-//STRIP001  Size = MAP_APPFONT ( 200 , 200 ) ;
-//STRIP001  Text = "Formular Navigator" ;
-//STRIP001  Text [ English ] = "Form Navigator" ;
-//STRIP001  Moveable = TRUE ;
-//STRIP001  Closeable = TRUE ;
-//STRIP001  Text [ english_us ] = "Form Navigator" ;
-//STRIP001  Text [ portuguese_brazilian ] = "Navegador de Formul·rio" ;
-//STRIP001  Text [ swedish ] = "Formul‰r-Navigator" ;
-//STRIP001  Text [ danish ] = "Formular Navigator" ;
-//STRIP001  Text [ italian ] = "Navigatore formulario" ;
-//STRIP001  Text [ spanish ] = "Navegador de formulario" ;
-//STRIP001  Text [ french ] = "Navigateur de formulaires" ;
-//STRIP001  Text [ dutch ] = "Formulier-navigator" ;
-//STRIP001  Text [ portuguese ] = "Formul·rio Navegador" ;
-//STRIP001  Text[ chinese_simplified ] = "Ë°®ÂçïÂä©Êâã";
-//STRIP001  Text[ russian ] = "Õ‡‚Ë„‡ÚÓ?ÙÓÏ";
-//STRIP001  Text[ polish ] = "Nawigator formularza";
-//STRIP001  Text[ japanese ] = "„Éï„Ç©„Éº„É†„Éä„Éì„Ç≤„Éº„Ç?";
-//STRIP001  Text[ chinese_traditional ] = "Ë°®ÂñÆÂä©Êâã";
-//STRIP001  Text[ arabic ] = "‰«›ÌÃÌ Ê?«·«” „«—?";
-//STRIP001  Text[ greek ] = "–ÂÒÈﬁ„ÁÛ?ˆ¸ÒÏ·Ú";
-//STRIP001  Text[ korean ] = "Ïö©ÏßÄ ÎÑ§ÎπÑÍ≤åÏù¥ÌÑ?";
-//STRIP001  Text[ turkish ] = "Form navigatˆr?";
-//STRIP001  Text[ language_user1 ] = " ";
-//STRIP001  Text[ catalan ] = "Navegador de formularis";
-//STRIP001  Text[ finnish ] = "Lomakkeen etsin";
-//STRIP001  Text[ thai ] = "‡∏ï‡∏±‡∏ß‡∏ô‡∏≥‡πÅ‡∏ö‡∏ö";
-//STRIP001  Text[ czech ] = "Navig√°tor formul√°≈ôem";
-//STRIP001  Text[ hebrew ] = "‚ÄÆ◊†◊ï◊ï◊?◊ò◊§◊°◊ô◊ù‚Ä?";
-//STRIP001  Text[ hindi ] = "‡§´‡§º‡•â‡§∞‡•ç‡§Æ ‡§®‡•â‡§µ‡§ø‡§ó‡•á‡§ü‡§∞";
-//STRIP001  Text[ slovak ] = "Navig√°tor formul√°rom";
-//STRIP001 };
 
 
 
