@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_FormComponent.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:44:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:01:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,13 +37,7 @@
 #include "FormComponent.hxx"
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
@@ -60,19 +54,10 @@
 #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_COLUMNVALUE_HPP_
 #include <com/sun/star/sdbc/ColumnValue.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
-// auto strip #include <com/sun/star/util/XCloneable.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
-// auto strip #include <comphelper/property.hxx>
-// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
@@ -86,9 +71,6 @@
 #include <rtl/logfile.hxx>
 #endif
 
-// auto strip #ifndef _COMPHELPER_BASIC_IO_HXX_
-// auto strip #include <comphelper/basicio.hxx>
-// auto strip #endif
 
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
@@ -101,9 +83,6 @@
 #include <comphelper/property.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
