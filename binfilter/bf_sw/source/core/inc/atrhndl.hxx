@@ -4,9 +4,9 @@
  *
  *  $RCSfile: atrhndl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:22:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:42:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,8 +134,6 @@ public:
     ~SwAttrHandler();
 
     // set default attributes to values in rAttrSet or from cache
-//STRIP001     void Init( const SwAttrSet& rAttrSet, const SwDoc& rDoc,
-//STRIP001                const ViewShell* pShell );
     void Init( const SfxPoolItem** pPoolItem, const SwAttrSet* pAttrSet,
                const SwDoc& rDoc, const ViewShell* pShell, SwFont& rFnt,
                sal_Bool bVertLayout );
@@ -148,7 +146,6 @@ public:
 
     // remove specified attribute and reset font
     void PopAndChg( const SwTxtAttr& rAttr, SwFont& rFnt );
-//STRIP001     void Pop( const SwTxtAttr& rAttr );
 
     // apply script dependent attributes
 //    void ChangeScript( SwFont& rFnt, const BYTE nScr );

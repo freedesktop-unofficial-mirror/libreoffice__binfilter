@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cellfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:23:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:42:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,8 +57,6 @@ public:
     SwCellFrm( const SwTableBox & );
     ~SwCellFrm();
 
-//STRIP001  virtual BOOL   GetCrsrOfst( SwPosition *, Point&,
-//STRIP001                              const SwCrsrMoveState* = 0 ) const;
     virtual void   Modify( SfxPoolItem*, SfxPoolItem* );
 
     const SwTableBox *GetTabBox() const { return pTabBox; }
