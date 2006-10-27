@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_srchitem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:45:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:10:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,27 +42,8 @@
 #include <svtools/searchopt.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XREPLACEABLE_HPP_
-// auto strip #include <com/sun/star/util/XReplaceable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XSEARCHABLE_HPP_
-// auto strip #include <com/sun/star/util/XSearchable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XSEARCHDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/util/XSearchDescriptor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XPROPERTYREPLACE_HPP_
-// auto strip #include <com/sun/star/util/XPropertyReplace.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XREPLACEDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/util/XReplaceDescriptor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 
 #include <svtools/memberid.hrc>
-// auto strip #include <tools/isolang.hxx>
 
 #pragma hdrstop
 
@@ -72,7 +53,6 @@
 #define ITEMID_SEARCH   SID_SEARCH_ITEM
 #include "srchitem.hxx"
 
-// auto strip #include <sfxuno.hxx>
 namespace binfilter {
 
 //using namespace uno;
@@ -291,142 +271,50 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ void SvxSearchItem::GetFromDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor >& rDescr )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SetSearchString( rDescr->getSearchString() );
-//STRIP001  ::com::sun::star::uno::Any aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchWords") );
-//STRIP001  sal_Bool bTemp ;
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetWordOnly( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchCaseSensitive") );
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetExact( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchBackwards") );
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetBackward( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchInSelection") );
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetSelection( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchRegularExpression") );
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetRegExp( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarity") );
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetLevenshtein( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityRelax") );
-//STRIP001  aAny >>= bTemp ;
-//STRIP001  SetLEVRelaxed( bTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityExchange") );
-//STRIP001  sal_Int16 nTemp ;
-//STRIP001  aAny >>= nTemp ;
-//STRIP001  SetLEVOther( nTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityRemove") );
-//STRIP001  aAny >>= nTemp ;
-//STRIP001  SetLEVShorter( nTemp );
-//STRIP001  aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityAdd") );
-//STRIP001  aAny >>= nTemp ;
-//STRIP001  SetLEVLonger( nTemp );
 /*N*/ }
 
 /*N*/ void SvxSearchItem::SetToDescriptor( ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  rDescr->setSearchString( GetSearchString() );
-//STRIP001  ::com::sun::star::uno::Any aAny;
-//STRIP001  aAny <<= GetWordOnly() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchWords"), aAny );
-//STRIP001  aAny <<= GetExact() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchCaseSensitive"), aAny );
-//STRIP001  aAny <<= GetBackward() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchBackwards"), aAny );
-//STRIP001  aAny <<= GetSelection() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchInSelection"), aAny );
-//STRIP001  aAny <<= GetRegExp() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchRegularExpression"), aAny );
-//STRIP001  aAny <<= IsLevenshtein() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarity"), aAny );
-//STRIP001  aAny <<= IsLEVRelaxed() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityRelax"), aAny );
-//STRIP001  aAny <<= GetLEVOther() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityExchange"), aAny );
-//STRIP001  aAny <<= GetLEVShorter() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityRemove"), aAny );
-//STRIP001  aAny <<= GetLEVLonger() ;
-//STRIP001  rDescr->setPropertyValue( DEFINE_CONST_UNICODE("SearchSimilarityAdd"), aAny );
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::Notify( const Sequence< OUString > &rPropertyNames )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // applies transliteration changes in the configuration database
-//STRIP001  // to the current SvxSearchItem
-//STRIP001  SetTransliterationFlags( SvtSearchOptions().GetTransliterationFlags() );
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetMatchFullHalfWidthForms( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if (bVal)
-//STRIP001      aSearchOpt.transliterateFlags |=  TransliterationModules_IGNORE_WIDTH;
-//STRIP001  else
-//STRIP001      aSearchOpt.transliterateFlags &= ~TransliterationModules_IGNORE_WIDTH;
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetWordOnly( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (bVal)
-//STRIP001      aSearchOpt.searchFlag |=  SearchFlags::NORM_WORD_ONLY;
-//STRIP001  else
-//STRIP001      aSearchOpt.searchFlag &= ~SearchFlags::NORM_WORD_ONLY;
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetExact( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (!bVal)
-//STRIP001      aSearchOpt.transliterateFlags |=  TransliterationModules_IGNORE_CASE;
-//STRIP001  else
-//STRIP001      aSearchOpt.transliterateFlags &= ~TransliterationModules_IGNORE_CASE;
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetSelection( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (bVal)
-//STRIP001  {
-//STRIP001      aSearchOpt.searchFlag |=  (SearchFlags::REG_NOT_BEGINOFLINE |
-//STRIP001                                 SearchFlags::REG_NOT_ENDOFLINE);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aSearchOpt.searchFlag &= ~(SearchFlags::REG_NOT_BEGINOFLINE |
-//STRIP001                                 SearchFlags::REG_NOT_ENDOFLINE);
-//STRIP001  }
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetRegExp( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (bVal)
-//STRIP001      aSearchOpt.algorithmType = SearchAlgorithms_REGEXP;
-//STRIP001  else
-//STRIP001      aSearchOpt.algorithmType = SearchAlgorithms_ABSOLUTE;
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetLEVRelaxed( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (bVal)
-//STRIP001      aSearchOpt.searchFlag |=  SearchFlags::LEV_RELAXED;
-//STRIP001  else
-//STRIP001      aSearchOpt.searchFlag &= ~SearchFlags::LEV_RELAXED;
 /*N*/ }
 
 
 /*N*/ void SvxSearchItem::SetLevenshtein( sal_Bool bVal )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (bVal)
-//STRIP001      aSearchOpt.algorithmType = SearchAlgorithms_APPROXIMATE;
-//STRIP001  else
-//STRIP001      aSearchOpt.algorithmType = SearchAlgorithms_ABSOLUTE;
 /*N*/ }
 
 
@@ -437,130 +325,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   aSearchOpt.transliterateFlags = nFlags;
 
 /*N*/ sal_Bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     switch ( nMemberId )
-//STRIP001  {
-//STRIP001         case MID_SEARCH_COMMAND:
-//STRIP001             rVal <<= (sal_Int16) nCommand; break;
-//STRIP001         case MID_SEARCH_STYLEFAMILY:
-//STRIP001             rVal <<= (sal_Int16) eFamily; break;
-//STRIP001         case MID_SEARCH_CELLTYPE:
-//STRIP001             rVal <<= (sal_Int32) nCellType; break;
-//STRIP001         case MID_SEARCH_ROWDIRECTION:
-//STRIP001             rVal <<= (sal_Bool) bRowDirection; break;
-//STRIP001         case MID_SEARCH_ALLTABLES:
-//STRIP001             rVal <<= (sal_Bool) bAllTables; break;
-//STRIP001         case MID_SEARCH_BACKWARD:
-//STRIP001             rVal <<= (sal_Bool) bBackward; break;
-//STRIP001         case MID_SEARCH_PATTERN:
-//STRIP001             rVal <<= (sal_Bool) bPattern; break;
-//STRIP001         case MID_SEARCH_CONTENT:
-//STRIP001             rVal <<= (sal_Bool) bContent; break;
-//STRIP001         case MID_SEARCH_ASIANOPTIONS:
-//STRIP001             rVal <<= (sal_Bool) bAsianOptions; break;
-//STRIP001         case MID_SEARCH_ALGORITHMTYPE:
-//STRIP001             rVal <<= (sal_Int16) aSearchOpt.algorithmType; break;
-//STRIP001         case MID_SEARCH_FLAGS:
-//STRIP001             rVal <<= aSearchOpt.searchFlag; break;
-//STRIP001         case MID_SEARCH_SEARCHSTRING:
-//STRIP001             rVal <<= aSearchOpt.searchString; break;
-//STRIP001         case MID_SEARCH_REPLACESTRING:
-//STRIP001             rVal <<= aSearchOpt.replaceString; break;
-//STRIP001         case MID_SEARCH_CHANGEDCHARS:
-//STRIP001             rVal <<= aSearchOpt.changedChars; break;
-//STRIP001         case MID_SEARCH_DELETEDCHARS:
-//STRIP001             rVal <<= aSearchOpt.deletedChars; break;
-//STRIP001         case MID_SEARCH_INSERTEDCHARS:
-//STRIP001             rVal <<= aSearchOpt.insertedChars; break;
-//STRIP001         case MID_SEARCH_TRANSLITERATEFLAGS:
-//STRIP001             rVal <<= aSearchOpt.transliterateFlags; break;
-//STRIP001         case MID_SEARCH_LOCALE:
-//STRIP001         {
-//STRIP001             sal_Int16 nLocale;
-//STRIP001             if (aSearchOpt.Locale.Language.getLength() || aSearchOpt.Locale.Country.getLength() )
-//STRIP001                 nLocale = ConvertIsoNamesToLanguage( aSearchOpt.Locale.Language, aSearchOpt.Locale.Country );
-//STRIP001          else
-//STRIP001                 nLocale = LANGUAGE_NONE;
-//STRIP001             rVal <<= nLocale;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001      default:
-//STRIP001             DBG_ERROR( "Unknown MemberId" );
-//STRIP001             return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001     return sal_True;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
 /*N*/ sal_Bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Bool bRet = sal_False;
-//STRIP001     sal_Int32 nInt;
-//STRIP001     switch ( nMemberId )
-//STRIP001  {
-//STRIP001         case MID_SEARCH_COMMAND:
-//STRIP001             bRet = (rVal >>= nInt); nCommand = (sal_uInt16) nInt; break;
-//STRIP001         case MID_SEARCH_STYLEFAMILY:
-//STRIP001             bRet = (rVal >>= nInt); eFamily =  (SfxStyleFamily) (sal_Int16) nInt; break;
-//STRIP001         case MID_SEARCH_CELLTYPE:
-//STRIP001             bRet = (rVal >>= nInt); nCellType = (sal_uInt16) nInt; break;
-//STRIP001         case MID_SEARCH_ROWDIRECTION:
-//STRIP001             bRet = (rVal >>= bRowDirection); break;
-//STRIP001         case MID_SEARCH_ALLTABLES:
-//STRIP001             bRet = (rVal >>= bAllTables); break;
-//STRIP001         case MID_SEARCH_BACKWARD:
-//STRIP001             bRet = (rVal >>= bBackward); break;
-//STRIP001         case MID_SEARCH_PATTERN:
-//STRIP001             bRet = (rVal >>= bPattern); break;
-//STRIP001         case MID_SEARCH_CONTENT:
-//STRIP001             bRet = (rVal >>= bContent); break;
-//STRIP001         case MID_SEARCH_ASIANOPTIONS:
-//STRIP001             bRet = (rVal >>= bAsianOptions); break;
-//STRIP001         case MID_SEARCH_ALGORITHMTYPE:
-//STRIP001             bRet = (rVal >>= nInt); aSearchOpt.algorithmType = (::com::sun::star::util::SearchAlgorithms) (sal_Int16) nInt; break;
-//STRIP001         case MID_SEARCH_FLAGS:
-//STRIP001             bRet = (rVal >>= aSearchOpt.searchFlag); break;
-//STRIP001         case MID_SEARCH_SEARCHSTRING:
-//STRIP001             bRet = (rVal >>= aSearchOpt.searchString); break;
-//STRIP001         case MID_SEARCH_REPLACESTRING:
-//STRIP001             bRet = (rVal >>= aSearchOpt.replaceString); break;
-//STRIP001         case MID_SEARCH_CHANGEDCHARS:
-//STRIP001             bRet = (rVal >>= aSearchOpt.changedChars); break;
-//STRIP001         case MID_SEARCH_DELETEDCHARS:
-//STRIP001             bRet = (rVal >>= aSearchOpt.deletedChars); break;
-//STRIP001         case MID_SEARCH_INSERTEDCHARS:
-//STRIP001             bRet = (rVal >>= aSearchOpt.insertedChars); break;
-//STRIP001         case MID_SEARCH_TRANSLITERATEFLAGS:
-//STRIP001             bRet = (rVal >>= aSearchOpt.transliterateFlags); break;
-//STRIP001         case MID_SEARCH_LOCALE:
-//STRIP001         {
-//STRIP001             bRet = (rVal >>= nInt);
-//STRIP001             if ( bRet )
-//STRIP001             {
-//STRIP001                 if ( nInt == LANGUAGE_NONE )
-//STRIP001                 {
-//STRIP001                     aSearchOpt.Locale = ::com::sun::star::lang::Locale();
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     String sLanguage, sCountry;
-//STRIP001                     ConvertLanguageToIsoNames( (sal_Int16) nInt, sLanguage, sCountry );
-//STRIP001                     aSearchOpt.Locale.Language = sLanguage;
-//STRIP001                     aSearchOpt.Locale.Country = sCountry;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             break;
-//STRIP001         }
-//STRIP001      default:
-//STRIP001             DBG_ERROR( "Unknown MemberId" );
-//STRIP001  }
-//STRIP001
-//STRIP001     return bRet;
 /*N*/ }
 
 
