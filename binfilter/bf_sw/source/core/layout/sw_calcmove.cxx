@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_calcmove.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:44:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:51:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,7 @@
 
 #pragma hdrstop
 
-// auto strip #include "rootfrm.hxx"
 #include "pagefrm.hxx"
-// auto strip #include "cntfrm.hxx"
 #include "viewsh.hxx"
 
 #ifndef _HORIORNT_HXX
@@ -46,8 +44,6 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #include "viewimp.hxx"
-// auto strip #include "swtypes.hxx"
 #include "dflyobj.hxx"
 #include "dcontact.hxx"
 #include "flyfrm.hxx"
@@ -55,9 +51,6 @@
 #include "txtftn.hxx"
 #include "fmtftn.hxx"
 
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
 #ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
 #endif
@@ -81,7 +74,6 @@
 #include "txtfrm.hxx"
 #include "frmsh.hxx"
 #include "pagedesc.hxx"
-// auto strip #include "ftninfo.hxx"
 #include "sectfrm.hxx"
 #include "dbg_lay.hxx"
 namespace binfilter {
@@ -364,84 +356,6 @@ namespace binfilter {
 
 
 
-//STRIP001 void SwFrm::PrepareCrsr()
-//STRIP001 {
-//STRIP001  StackHack aHack;
-//STRIP001  if( GetUpper() && !GetUpper()->IsSctFrm() )
-//STRIP001  {
-//STRIP001      GetUpper()->PrepareCrsr();
-//STRIP001      GetUpper()->Calc();
-//STRIP001
-//STRIP001      ASSERT( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
-//STRIP001      if ( !GetUpper() )
-//STRIP001          return;
-//STRIP001
-//STRIP001      const BOOL bCnt = IsCntntFrm();
-//STRIP001      const BOOL bTab = IsTabFrm();
-//STRIP001      BOOL bNoSect = IsInSct();
-//STRIP001
-//STRIP001      BOOL bOldTabLock = FALSE, bFoll;
-//STRIP001      SwFlowFrm* pThis = bCnt ? (SwCntntFrm*)this : NULL;
-//STRIP001
-//STRIP001      if ( bTab )
-//STRIP001      {
-//STRIP001          bOldTabLock = ((SwTabFrm*)this)->IsJoinLocked();
-//STRIP001          ::PrepareLock( (SwTabFrm*)this );
-//STRIP001          pThis = (SwTabFrm*)this;
-//STRIP001      }
-//STRIP001      else if( IsSctFrm() )
-//STRIP001      {
-//STRIP001          pThis = (SwSectionFrm*)this;
-//STRIP001          bNoSect = FALSE;
-//STRIP001      }
-//STRIP001      bFoll = pThis && pThis->IsFollow();
-//STRIP001
-//STRIP001      SwFrm *pFrm = GetUpper()->Lower();
-//STRIP001      while ( pFrm != this )
-//STRIP001      {
-//STRIP001          ASSERT( pFrm, ":-( Layoutgeruest wackelig (this not found)." );
-//STRIP001          if ( !pFrm )
-//STRIP001              return; //Oioioioi ...
-//STRIP001
-//STRIP001          if ( !pFrm->IsValid() )
-//STRIP001          {
-//STRIP001              //Ein kleiner Eingriff der hoffentlich etwas zur Verbesserung
-//STRIP001              //der Stabilitaet beitraegt:
-//STRIP001              //Wenn ich Follow _und_ Nachbar eines Frms vor mir bin,
-//STRIP001              //so wuerde dieser mich beim Formatieren deleten; wie jeder
-//STRIP001              //leicht sehen kann waere dies eine etwas unuebersichtliche
-//STRIP001              //Situation die es zu vermeiden gilt.
-//STRIP001              if ( bFoll && pFrm->IsFlowFrm() &&
-//STRIP001                   (SwFlowFrm::CastFlowFrm(pFrm))->IsAnFollow( pThis ) )
-//STRIP001                  break;
-//STRIP001
-//STRIP001              pFrm->MakeAll();
-//STRIP001          }
-//STRIP001          //Die Kette kann bei CntntFrms waehrend des durchlaufens
-//STRIP001          //aufgebrochen werden, deshalb muss der Nachfolger etwas
-//STRIP001          //umstaendlich ermittelt werden. However, irgendwann _muss_
-//STRIP001          //ich wieder bei mir selbst ankommen.
-//STRIP001          pFrm = pFrm->FindNext();
-//STRIP001          if( bNoSect && pFrm && pFrm->IsSctFrm() )
-//STRIP001          {
-//STRIP001              SwFrm* pCnt = ((SwSectionFrm*)pFrm)->ContainsAny();
-//STRIP001              if( pCnt )
-//STRIP001                  pFrm = pCnt;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech II)." );
-//STRIP001      if ( !GetUpper() )
-//STRIP001          return;
-//STRIP001
-//STRIP001      GetUpper()->Calc();
-//STRIP001
-//STRIP001      ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech III)." );
-//STRIP001
-//STRIP001      if ( bTab && !bOldTabLock )
-//STRIP001          ::PrepareUnlock( (SwTabFrm*)this );
-//STRIP001  }
-//STRIP001  Calc();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1122,16 +1036,6 @@ namespace binfilter {
 /*N*/         SwCntntFrm* pRefCnt = pFtn ? pFtn->GetRef() : 0;
 /*N*/         if ( pRefCnt && !pRefCnt->IsValid() )
 /*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/             SwFtnBossFrm* pFtnBossOfFtn = pFtn->FindFtnBossFrm();
-//STRIP001 /*?*/             SwFtnBossFrm* pFtnBossOfRef = pRefCnt->FindFtnBossFrm();
-//STRIP001 /*?*/             //<loop of movefwd until condition held or no move>
-//STRIP001 /*?*/             if ( pFtnBossOfFtn && pFtnBossOfRef &&
-//STRIP001 /*?*/                  pFtnBossOfFtn != pFtnBossOfRef &&
-//STRIP001 /*?*/                  pFtnBossOfFtn->IsBefore( pFtnBossOfRef ) )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 bMovedFwd = TRUE;
-//STRIP001 /*?*/                 MoveFwd( bMakePage, FALSE );
-//STRIP001 /*?*/             }
 /*N*/         }
 /*N*/     }
 /*N*/
@@ -1594,20 +1498,6 @@ namespace binfilter {
 // Diese Routine ueberprueft, ob zwischen dem FtnBoss von pFrm und dem
 // von pNxt keine anderen FtnBosse liegen
 
-//STRIP001 BOOL lcl_IsNextFtnBoss( const SwFrm *pFrm, const SwFrm* pNxt )
-//STRIP001 {
-//STRIP001  ASSERT( pFrm && pNxt, "lcl_IsNextFtnBoss: No Frames?" );
-//STRIP001  pFrm = pFrm->FindFtnBossFrm();
-//STRIP001  pNxt = pNxt->FindFtnBossFrm();
-//STRIP001  // Falls pFrm eine letzte Spalte ist, wird stattdessen die Seite genommen
-//STRIP001  while( pFrm && pFrm->IsColumnFrm() && !pFrm->GetNext() )
-//STRIP001      pFrm = pFrm->GetUpper()->FindFtnBossFrm();
-//STRIP001  // Falls pNxt eine erste Spalte ist, wird stattdessen die Seite genommen
-//STRIP001  while( pNxt && pNxt->IsColumnFrm() && !pNxt->GetPrev() )
-//STRIP001      pNxt = pNxt->GetUpper()->FindFtnBossFrm();
-//STRIP001  // So, jetzt muessen pFrm und pNxt entweder zwei benachbarte Seiten oder Spalten sein.
-//STRIP001  return ( pFrm && pNxt && pFrm->GetNext() == pNxt );
-//STRIP001 }
 
 /*N*/ BOOL SwCntntFrm::_WouldFit( SwTwips nSpace, SwLayoutFrm *pNewUpper, BOOL bTstMove )
 /*N*/ {
@@ -1618,9 +1508,6 @@ namespace binfilter {
 /*N*/   SwFtnFrm* pFtnFrm = 0;
 /*N*/   if ( IsInFtn() )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        if( !lcl_IsNextFtnBoss( pNewUpper, this ) )
-//STRIP001 /*?*/            return TRUE;
-//STRIP001 /*?*/        pFtnFrm = FindFtnFrm();
 /*N*/   }
 /*N*/
 /*N*/   BOOL bRet;

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flowfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:46:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:52:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,14 +42,12 @@
 
 #include "pam.hxx"
 #include "swtable.hxx"
-// auto strip #include "frame.hxx"
 #include "pagefrm.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "flyfrm.hxx"
 #include "viewsh.hxx"
 #include "doc.hxx"
 #include "viewimp.hxx"
@@ -79,9 +77,6 @@
 #ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
@@ -1233,42 +1228,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL SwFlowFrm::HasParaSpaceAtPages( BOOL bSct ) const
-//STRIP001 {
-//STRIP001  if( rThis.IsInSct() )
-//STRIP001  {
-//STRIP001      const SwFrm* pTmp = rThis.GetUpper();
-//STRIP001      while( pTmp )
-//STRIP001      {
-//STRIP001          if( pTmp->IsCellFrm() || pTmp->IsFlyFrm() ||
-//STRIP001              pTmp->IsFooterFrm() || pTmp->IsHeaderFrm() ||
-//STRIP001              ( pTmp->IsFtnFrm() && !((SwFtnFrm*)pTmp)->GetMaster() ) )
-//STRIP001              return TRUE;
-//STRIP001          if( pTmp->IsPageFrm() )
-//STRIP001              return ( pTmp->GetPrev() && !IsPageBreak(TRUE) ) ? FALSE : TRUE;
-//STRIP001          if( pTmp->IsColumnFrm() && pTmp->GetPrev() )
-//STRIP001              return IsColBreak( TRUE );
-//STRIP001          if( pTmp->IsSctFrm() && ( !bSct || pTmp->GetPrev() ) )
-//STRIP001              return FALSE;
-//STRIP001          pTmp = pTmp->GetUpper();
-//STRIP001      }
-//STRIP001      ASSERT( FALSE, "HasParaSpaceAtPages: Where's my page?" );
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  if( !rThis.IsInDocBody() || ( rThis.IsInTab() && !rThis.IsTabFrm()) ||
-//STRIP001      IsPageBreak( TRUE ) || ( rThis.FindColFrm() && IsColBreak( TRUE ) ) )
-//STRIP001      return TRUE;
-//STRIP001  const SwFrm* pTmp = rThis.FindColFrm();
-//STRIP001  if( pTmp )
-//STRIP001  {
-//STRIP001      if( pTmp->GetPrev() )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pTmp = &rThis;
-//STRIP001  pTmp = pTmp->FindPageFrm();
-//STRIP001  return pTmp && !pTmp->GetPrev();
-//STRIP001 }
 
 /*N*/ SwTwips SwFlowFrm::CalcUpperSpace( const SwBorderAttrs *pAttrs,
 /*N*/   const SwFrm* pPr ) const
@@ -1878,10 +1837,6 @@ namespace binfilter {
 /*?*/               else
 /*?*/               {
 /*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSct = new SwSectionFrm( *pSct, TRUE );
-//STRIP001 /*?*/                    pSct->Paste( pNewUpper );
-//STRIP001 /*?*/                     pSct->Init();
-//STRIP001 /*?*/                    pNewUpper = pSct;
-//STRIP001 /*?*/                    pSct->SimpleFormat();
 /*?*/               }
 /*?*/           }
 /*N*/       }
