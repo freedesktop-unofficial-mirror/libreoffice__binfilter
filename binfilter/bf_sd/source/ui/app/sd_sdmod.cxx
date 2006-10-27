@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:42:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:14:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,57 +33,15 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-// auto strip #include <svtools/pathoptions.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
-// auto strip #include <svtools/languageoptions.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_UCBSTREAMHELPER_HXX
-// auto strip #include <unotools/ucbstreamhelper.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_VIRDEV_HXX
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
 #endif
 #ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
 #endif
-// auto strip #ifndef _SFXINTITEM_HXX //autogen
-// auto strip #include <svtools/intitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXMSG_HXX //autogen
-// auto strip #include <bf_sfx2/msg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXOBJFACE_HXX //autogen
-// auto strip #include <bf_sfx2/objface.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_PRINTER_HXX
-// auto strip #include <bf_sfx2/printer.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PSZCTRL_HXX //autogen
-// auto strip #include <bf_svx/pszctrl.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_ZOOMCTRL_HXX //autogen
-// auto strip #include <bf_svx/zoomctrl.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_MODCTRL_HXX //autogen
-// auto strip #include <bf_svx/modctrl.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #ifndef _EHDL_HXX
 #include <svtools/ehdl.hxx>
@@ -92,14 +50,10 @@
 #define ITEMID_SEARCH           SID_SEARCH_ITEM
 #include <bf_svx/svxids.hrc>
 #include <bf_offmgr/ofaids.hrc>
-// auto strip #include <bf_svx/srchitem.hxx>
 
 #pragma hdrstop
 
 #define _SD_DLL                 // fuer SD_MOD()
-// auto strip #include "sderror.hxx"
-// auto strip #include "sdmod.hxx"
-// auto strip #include "sddll.hxx"
 #include "sdresid.hxx"
 #include "optsitem.hxx"
 #include "docshell.hxx"
@@ -108,7 +62,6 @@
 #include "glob.hrc"
 #include "strings.hrc"
 #include "res_bmp.hrc"
-// auto strip #include "cfgids.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -195,40 +148,6 @@ namespace binfilter {
 #define AUTOSIZE_WIDTH  180
 #define TEXT_WIDTH(s)   rStatusBar.GetTextWidth((s))
 
-//STRIP001 void SdModule::FillStatusBar(StatusBar& rStatusBar)
-//STRIP001 {
-//STRIP001  // Hinweis
-//STRIP001  rStatusBar.InsertItem( SID_CONTEXT, TEXT_WIDTH( String().Fill( 30, 'x' ) ), // vorher 52
-//STRIP001                          SIB_IN | SIB_LEFT | SIB_AUTOSIZE );
-//STRIP001
-//STRIP001  // Groesse und Position
-//STRIP001  rStatusBar.InsertItem( SID_ATTR_SIZE, SvxPosSizeStatusBarControl::GetDefItemWidth(rStatusBar), // vorher 42
-//STRIP001                          SIB_IN | SIB_USERDRAW );
-//STRIP001                          // SIB_AUTOSIZE | SIB_LEFT | SIB_OWNERDRAW );
-//STRIP001
-//STRIP001  // Massstab
-//STRIP001  rStatusBar.InsertItem( SID_ATTR_ZOOM, SvxZoomStatusBarControl::GetDefItemWidth(rStatusBar), SIB_IN | SIB_CENTER );
-//STRIP001 /*
-//STRIP001  // Einfuege- / Uberschreibmodus
-//STRIP001  rStatusBar.InsertItem( SID_ATTR_INSERT, TEXT_WIDTH( "EINFG" ),
-//STRIP001                          SIB_IN | SIB_CENTER );
-//STRIP001
-//STRIP001  // Selektionsmodus
-//STRIP001  rStatusBar.InsertItem( SID_STATUS_SELMODE, TEXT_WIDTH( "ERG" ),
-//STRIP001                          SIB_IN | SIB_CENTER );
-//STRIP001 */
-//STRIP001  // Dokument geaendert
-//STRIP001  rStatusBar.InsertItem( SID_DOC_MODIFIED, SvxModifyControl::GetDefItemWidth(rStatusBar) );
-//STRIP001
-//STRIP001
-//STRIP001  // Seite
-//STRIP001  rStatusBar.InsertItem( SID_STATUS_PAGE, TEXT_WIDTH( String().Fill( 24, 'X' ) ),
-//STRIP001                          SIB_IN | SIB_LEFT );
-//STRIP001
-//STRIP001  // Praesentationslayout
-//STRIP001  rStatusBar.InsertItem( SID_STATUS_LAYOUT, TEXT_WIDTH( String().Fill( 10, 'X' ) ),
-//STRIP001                          SIB_IN | SIB_LEFT | SIB_AUTOSIZE );
-//STRIP001 }
 
 
 
@@ -328,42 +247,6 @@ void SdModule::Free()
 |*
 \************************************************************************/
 
-//STRIP001 SvStorageStreamRef SdModule::GetOptionStream( const String& rOptionName,
-//STRIP001                                            SdOptionStreamMode eMode )
-//STRIP001 {
-//STRIP001  SdDrawDocShell*     pDocSh = PTR_CAST( SdDrawDocShell, SfxObjectShell::Current() );
-//STRIP001  SvStorageStreamRef  xStm;
-//STRIP001
-//STRIP001  if( pDocSh )
-//STRIP001  {
-//STRIP001      DocumentType    eType = pDocSh->GetDoc()->GetDocumentType();
-//STRIP001      String          aStmName;
-//STRIP001
-//STRIP001      if( !xOptionStorage.Is() )
-//STRIP001      {
-//STRIP001          INetURLObject aURL( SvtPathOptions().GetUserConfigPath() );
-//STRIP001
-//STRIP001          aURL.Append( UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "drawing.cfg" ) ) );
-//STRIP001
-//STRIP001          SvStream* pStm = ::utl::UcbStreamHelper::CreateStream( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_READWRITE );
-//STRIP001
-//STRIP001          if( pStm )
-//STRIP001              xOptionStorage = new SvStorage( pStm, TRUE );
-//STRIP001      }
-//STRIP001
-//STRIP001      if( DOCUMENT_TYPE_DRAW == eType )
-//STRIP001          aStmName.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Draw_" ) );
-//STRIP001      else
-//STRIP001          aStmName.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Impress_" ) );
-//STRIP001
-//STRIP001      aStmName += rOptionName;
-//STRIP001
-//STRIP001      if( SD_OPTION_STORE == eMode || xOptionStorage->IsContained( aStmName ) )
-//STRIP001          xStm = xOptionStorage->OpenStream( aStmName );
-//STRIP001  }
-//STRIP001
-//STRIP001  return xStm;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -399,15 +282,4 @@ void SdModule::Free()
 |*
 \************************************************************************/
 
-//STRIP001 ::com::sun::star::text::WritingMode SdModule::GetDefaultWritingMode() const
-//STRIP001 {
-//STRIP001 /*
-//STRIP001  const SvtLanguageOptions aLanguageOptions;
-//STRIP001
-//STRIP001     return( aLanguageOptions.IsCTLFontEnabled() ?
-//STRIP001             ::com::sun::star::text::WritingMode_RL_TB :
-//STRIP001             ::com::sun::star::text::WritingMode_LR_TB );
-//STRIP001 */
-//STRIP001  return ::com::sun::star::text::WritingMode_LR_TB;
-//STRIP001 }
 } //namespace binfilter
