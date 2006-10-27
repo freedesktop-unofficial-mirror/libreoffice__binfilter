@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlnexpi.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:32:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:31:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,28 +34,21 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
-// auto strip #include <rtl/ustrbuf.hxx>
 
 #include "xmlnexpi.hxx"
 #include "xmlimprt.hxx"
-// auto strip #include "xmlcelli.hxx"
 #include "docuno.hxx"
-// auto strip #include "global.hxx"
 //#include "document.hxx"
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/sheet/XNamedRanges.hpp>
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #ifndef _COM_SUN_STAR_SHEET_XNAMEDRANGE_HPP_

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlrowi.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:32:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:31:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,30 +41,15 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "xmlrowi.hxx"
-// auto strip #include "xmlimprt.hxx"
 #include "xmlcelli.hxx"
-// auto strip #include "global.hxx"
 #include "xmlstyli.hxx"
 #include "document.hxx"
 #include "docuno.hxx"
 #include "olinetab.hxx"
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include <bf_xmloff/families.hxx>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
-// auto strip #include <com/sun/star/sheet/XSpreadsheet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
 #endif
@@ -73,7 +57,6 @@
 #include <com/sun/star/sheet/XPrintAreas.hpp>
 #endif
 
-// auto strip #include <com/sun/star/table/CellAddress.hpp>
 namespace binfilter {
 
 #define SC_ISVISIBLE "IsVisible"
