@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_SchXMLWrapper.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:01:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:28:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,45 +67,21 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROPERTSETINFO_HXX_
-// auto strip #include <comphelper/propertysetinfo.hxx>
-// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XERRORHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XErrorHandler.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XENTITYRESOLVER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XEntityResolver.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDTDHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XDTDHandler.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
 #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
-// auto strip #include <com/sun/star/io/XActiveDataControl.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXParseException.hpp>
 #endif
@@ -289,79 +265,6 @@ using namespace comphelper;
 /*?*/   return 0;
 /*?*/ }
 
-//STRIP001 sal_Int32 SchXMLWrapper::Import()
-//STRIP001 {
-//STRIP001  sal_Int32 nWarning = 0;
-//STRIP001
-//STRIP001  if( !mxModel.is() )
-//STRIP001  {
-//STRIP001      DBG_ERROR("Got NO Model in XMLImport");
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  uno::Reference<lang::XServiceInfo> xServiceInfo( mxModel, uno::UNO_QUERY );
-//STRIP001
-//STRIP001  if( !xServiceInfo.is() || !xServiceInfo->supportsService( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartDocument" ) ) ) )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "Model is no ChartDocument in XMLImport" );
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  uno::Reference< lang::XMultiServiceFactory> xServiceFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-//STRIP001
-//STRIP001  if( !xServiceFactory.is() )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "XMLReader::Read: got no service manager" );
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  // get the sax parser component
-//STRIP001  uno::Reference< xml::sax::XParser > xXMLParser(
-//STRIP001      xServiceFactory->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.xml.sax.Parser" )),
-//STRIP001      uno::UNO_QUERY );
-//STRIP001
-//STRIP001  if( ! xXMLParser.is() )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "com.sun.star.xml.sax.Parser service missing" );
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  // create graphics resolver component
-//STRIP001  SvXMLGraphicHelper* pGraphicHelper = SvXMLGraphicHelper::Create( mrStorage, GRAPHICHELPER_MODE_READ );
-//STRIP001  uno::Reference< document::XGraphicObjectResolver > xGraphObjResolver = pGraphicHelper;
-//STRIP001
-//STRIP001  // import meta information
-//STRIP001  ImportStream(
-//STRIP001      ::rtl::OUString::createFromAscii( sXML_metaStreamName ),
-//STRIP001      ::rtl::OUString::createFromAscii( sXML_import_chart_meta_service ),
-//STRIP001      xXMLParser, xServiceFactory, xGraphObjResolver );
-//STRIP001
-//STRIP001  // import styles
-//STRIP001     ImportStream(
-//STRIP001      ::rtl::OUString::createFromAscii( sXML_styleStreamName ),
-//STRIP001      ::rtl::OUString::createFromAscii( sXML_import_chart_styles_service ),
-//STRIP001      xXMLParser, xServiceFactory, xGraphObjResolver );
-//STRIP001
-//STRIP001  // import content
-//STRIP001     nWarning = ImportStream(
-//STRIP001         ::rtl::OUString::createFromAscii( sXML_contentStreamName ),
-//STRIP001         ::rtl::OUString::createFromAscii( sXML_import_chart_content_service ),
-//STRIP001         xXMLParser, xServiceFactory, xGraphObjResolver );
-//STRIP001
-//STRIP001  // import of "content.xml" didn't work - try old "Content.xml" stream
-//STRIP001  if( nWarning != 0 )
-//STRIP001  {
-//STRIP001      nWarning = ImportStream(
-//STRIP001          ::rtl::OUString::createFromAscii( sXML_oldContentStreamName ),
-//STRIP001          ::rtl::OUString::createFromAscii( sXML_import_chart_old_content_service ),
-//STRIP001          xXMLParser, xServiceFactory, xGraphObjResolver );
-//STRIP001  }
-//STRIP001
-//STRIP001  // graphics resolver has to be destroyed this way!
-//STRIP001  SvXMLGraphicHelper::Destroy( pGraphicHelper );
-//STRIP001
-//STRIP001  return nWarning;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
