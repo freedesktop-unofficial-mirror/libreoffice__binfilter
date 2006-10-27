@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtfrm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:41:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:50:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,6 @@ class SwTxtFrm: public SwCntntFrm
     friend class SwTestFormat;
     friend class WidowsAndOrphans;
     friend class SwTxtFrmLocker;        // duerfen Lock()/Unlock()
-//STRIP001  friend sal_Bool lcl_ChangeOffset( SwTxtFrm* pFrm, USHORT nNew );
 
     static SwCache *pTxtCache;  //Pointer auf den Line-Cache
     static long nMinPrtLine;    //Diese Linie darf beim Drucken nicht
@@ -160,7 +159,6 @@ class SwTxtFrm: public SwCntntFrm
     // Wechselt den Frame oder auch nicht (vgl. FlyCnt)
     sal_Bool _GetCrsrOfst(SwPosition *pPos, const Point &rPoint,
                       const sal_Bool bChgFrm, const SwCrsrMoveState* = 0 ) const;
-//STRIP001  void FillCrsrPos( SwFillData &rFill ) const;
 
     // formatiert genau eine Zeile ...
     sal_Bool FormatLine( SwTxtFormatter &rLine, const sal_Bool bPrev );
@@ -189,7 +187,6 @@ class SwTxtFrm: public SwCntntFrm
     void ValidateFrm();
     void ValidateBodyFrm();
 
-//STRIP001  sal_Bool _GetDropRect( SwRect &rRect ) const;
 
     void SetPara( SwParaPortion *pNew, sal_Bool bDelete = sal_True );
 
@@ -202,7 +199,6 @@ class SwTxtFrm: public SwCntntFrm
     sal_Bool FormatEmpty();
     SwTwips EmptyHeight() const;
     // Opt: Leere Absaetze painten
-//STRIP001  sal_Bool PaintEmpty( const SwRect &, sal_Bool bCheck ) const;
 
     void ChgThisLines();//Muss immer gerufen werden, wenn sich die Zeilenazahl
                         //veraendert haben kann.
@@ -243,25 +239,13 @@ public:
     inline  sal_Bool GetKeyCrsrOfst(SwPosition *pPos, const Point &rPoint ) const
             { return _GetCrsrOfst( pPos, rPoint, sal_False ); }
 
-//STRIP001  void   PaintExtraData( const SwRect & rRect ) const; //Seitennummer usw.
     SwRect Paint();
-//STRIP001  virtual void Paint( const SwRect & ) const;
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
     virtual sal_Bool GetInfo( SfxPoolItem & ) const;
 
     //Layoutorientiertes Cursortravelling: Linker, rechter Rand,
     //vorhergehende/naechste Zeile, gleiche horizontale Position.
-//STRIP001  virtual sal_Bool LeftMargin(SwPaM *) const;
-//STRIP001  virtual sal_Bool RightMargin(SwPaM *, sal_Bool bAPI = sal_False) const;
 
-//STRIP001  virtual sal_Bool UnitUp(SwPaM *, const SwTwips nOffset = 0,
-//STRIP001                          sal_Bool bSetInReadOnly = sal_False  ) const;
-//STRIP001  virtual sal_Bool UnitDown(SwPaM *, const SwTwips nOffset = 0,
-//STRIP001                          sal_Bool bSetInReadOnly = sal_False ) const;
-//STRIP001  sal_Bool _UnitUp(SwPaM *, const SwTwips nOffset = 0,
-//STRIP001                          sal_Bool bSetInReadOnly = sal_False ) const;
-//STRIP001  sal_Bool _UnitDown(SwPaM *, const SwTwips nOffset = 0,
-//STRIP001                          sal_Bool bSetInReadOnly = sal_False ) const;
 
     // Prepares the cursor position for a visual cursor move (BiDi).
     // The behaviour is different for insert and overwrite cursors
@@ -311,7 +295,6 @@ public:
 
     // Wir formatieren eine Zeile fuer die interaktive Trennung
     // Return: found
-//STRIP001  sal_Bool Hyphenate( SwInterHyphInfo &rInf );
 
     // Probegrow
     inline SwTwips GrowTst( const SwTwips nGrow );
@@ -396,8 +379,6 @@ public:
 
     // Suche die Seitennummer von ErgoSum und QuoVadis
     SwTxtFrm *FindQuoVadisFrm();
-//STRIP001  SwTxtFrm *FindErgoSumFrm();
-//STRIP001  void SetErgoSumNum( const USHORT nErgo );
 
     // holt die Formatierug nach, wenn der Idle-Handler zugeschlagen hat.
     SwTxtFrm *GetFormatted();
@@ -411,8 +392,6 @@ public:
     const SwBodyFrm   *FindBodyFrm()   const;
 
     // DropCaps und Selektionen
-//STRIP001  inline sal_Bool GetDropRect( SwRect &rRect ) const
-//STRIP001  { return HasPara() ? _GetDropRect( rRect ) : sal_False; }
 
     static SwCache *GetTxtCache() { return pTxtCache; }
     static void     SetTxtCache( SwCache *pNew ) { pTxtCache = pNew; }
@@ -432,7 +411,6 @@ public:
 
     // simuliert eine Formatierung, als wenn es keinen rechten Rand und
     // keine Flys oder andere Hindernisse gaebe und liefert die Breite.
-//STRIP001  USHORT CalcFitToContent();
 
     // liefert den zusaetzlichen Zeilenabstand fuer den naechsten Absatz
     USHORT GetLineSpace() const;
@@ -452,7 +430,6 @@ public:
     sal_Bool FillRegister( SwTwips& rRegStart, USHORT& rRegDiff );
 
 
-//STRIP001  USHORT GetLineCount( USHORT nPos );     //Ermittelt die Zeilenanzahl
 
     //Fuer die Anzeige der Zeilennummern.
     ULONG GetAllLines()  const { return nAllLines; }
@@ -460,12 +437,9 @@ public:
     void RecalcAllLines();
 
     // Stoppt Animationen innerhalb von Numerierungen
-//STRIP001  void StopAnimation( OutputDevice *pOut );
 
-//STRIP001  void CriticalLines(const OutputDevice& rOut,SwStripes &rStripes,long nOffs);
 
     // visit all portions for Accessibility
-//STRIP001     void VisitPortions( SwPortionHandler& rPH ) const;
 
     // returns the script info stored at the paraportion
     const SwScriptInfo* GetScriptInfo() const;
@@ -742,7 +716,6 @@ class SwLayoutModeModifier
 public:
     SwLayoutModeModifier( const OutputDevice& rOutp );
     ~SwLayoutModeModifier();
-//STRIP001     void Modify( sal_Bool bChgToRTL );
     void SetAuto();
 };
 
