@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdobjfac.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:24:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:02:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,15 +35,11 @@
 
 #pragma hdrstop
 
-// auto strip #include <svtools/sbx.hxx>
 
-// auto strip #include <app.hxx>
 #include "sdpage.hxx"
 #include "sdobjfac.hxx"
-// auto strip #include "glob.hxx"
 #include "anminfo.hxx"
 #include "imapinfo.hxx"
-// auto strip #include "drawdoc.hxx"
 namespace binfilter {
 
 
