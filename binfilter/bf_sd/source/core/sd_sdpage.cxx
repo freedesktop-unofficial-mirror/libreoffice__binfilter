@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdpage.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:24:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:03:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,27 +33,12 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
 #include "eetext.hxx"       // definiert ITEMID_... fuer frmitems und textitem
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
-// auto strip #ifndef _SVDSURO_HXX //autogen
-// auto strip #include <bf_svx/svdsuro.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDOUTL_HXX //autogen
-// auto strip #include <bf_svx/svdoutl.hxx>
-// auto strip #endif
-// auto strip #include <bf_svx/editdata.hxx>
-// auto strip #include <bf_svx/pageitem.hxx>
 #include <bf_svx/lrspitem.hxx>
-// auto strip #include <bf_svx/bulitem.hxx>
-// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
-// auto strip #include <bf_svx/fhgtitem.hxx>
-// auto strip #endif
 #ifndef _OUTLOBJ_HXX //autogen
 #include <bf_svx/outlobj.hxx>
 #endif
@@ -63,53 +48,28 @@
 #ifndef _SVDOGRAF_HXX //autogen
 #include <bf_svx/svdograf.hxx>
 #endif
-// auto strip #ifndef _SVDOPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdopage.hxx>
-// auto strip #endif
 #ifndef _SVDOPAGE_HXX //autogen
 #include <bf_svx/svdopage.hxx>
 #endif
-// auto strip #ifndef _SFX_PRINTER_HXX //autogen
-// auto strip #include <bf_sfx2/printer.hxx>
-// auto strip #endif
-// auto strip #ifndef _BASMGR_HXX //autogen
-// auto strip #include <basic/basmgr.hxx>
-// auto strip #endif
 #ifndef _SVX_PBINITEM_HXX //autogen
 #include <bf_svx/pbinitem.hxx>
 #endif
-// auto strip #ifndef _SVDUNDO_HXX //autogen
-// auto strip #include <bf_svx/svdundo.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 #ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
 #endif
-// auto strip #ifndef _EDITOBJ_HXX
-// auto strip #include <bf_svx/editobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_SRIPTTYPEITEM_HXX
-// auto strip #include <bf_svx/scripttypeitem.hxx>
-// auto strip #endif
 
 #ifdef MAC
-// auto strip #include "::ui:inc:docshell.hxx"
 #else
 #ifdef UNX
 #include "../ui/inc/docshell.hxx"
 #else
-// auto strip #include "..\ui\inc\docshell.hxx"
 #endif
 #endif
 #include "sdoutl.hxx"
 
-// auto strip #include "misc.hxx"
 #include "eetext.hxx"
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
-// auto strip #include "pglink.hxx"
 #include "sdresid.hxx"
 #include "stlsheet.hxx"
 #include "glob.hrc"
@@ -369,9 +329,6 @@ using namespace ::com::sun::star;
 /*?*/   else if (eObjKind == PRESOBJ_IMAGE)
 /*?*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
-//STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarImage" )));
-//STRIP001 /*?*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_IMAGE) );
-//STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*?*/ #endif
 /*N*/   else if (eObjKind == PRESOBJ_BACKGROUND)
@@ -640,20 +597,6 @@ using namespace ::com::sun::star;
 /*N*/               if (!bMaster &&
 /*N*/                   aPresObjList.GetPos((void*) &rObj) != LIST_ENTRY_NOTFOUND)
 /*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001                  // #107844#
-//STRIP001                  // Handling of non-empty and empty PresObjs was moved to UndoActionHdl
-//STRIP001                  // to allow adding the correct SdrUndoUserCallObj. This may be done here, too,
-//STRIP001                  // but it makes more sense to handle all changes to PresObjs in a central
-//STRIP001                  // place where the Undo is needed to be fetched anyways.
-//STRIP001
-//STRIP001                  // In die Liste fuers Undo eintragen, da dieses Objekt
-//STRIP001                  // durch das Default-Praesentationsobjekt ersetzt werden
-//STRIP001                  // soll.
-//STRIP001                  // Im UndoActionHdl des DrawDocs wird der UserCall
-//STRIP001                  // auf NULL gesetzt und das Obj aus der Liste ausgetragen
-//STRIP001                  ((SdrObject&) rObj).SetUserCall(this);
-//STRIP001                  List* pList = ((SdDrawDocument*) pModel)->GetDeletedPresObjList();
-//STRIP001                  pList->Insert((void*) &rObj, LIST_APPEND);
 /*N*/               }
 /*N*/           }
 /*N*/           break;
@@ -1860,22 +1803,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject* SdPage::NbcRemoveObject(ULONG nObjNum)
-//STRIP001 {
-//STRIP001  SdrObject* pObj = FmFormPage::NbcRemoveObject(nObjNum);
-//STRIP001
-//STRIP001  if (pObj && pObj->GetUserCall()!=this &&
-//STRIP001      aPresObjList.GetPos(pObj) != LIST_ENTRY_NOTFOUND)
-//STRIP001  {
-//STRIP001      // Objekt hat keinen UserCall auf diese Seite, es ist jedoch noch in
-//STRIP001      // der PresObjList eingetragen -> austragen
-//STRIP001      Changed(*pObj, SDRUSERCALL_REMOVED, pObj->GetBoundRect());
-//STRIP001  }
-//STRIP001
-//STRIP001  ((SdDrawDocument*) pModel)->RemoveObject(pObj, this);
-//STRIP001
-//STRIP001  return(pObj);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1885,23 +1812,9 @@ using namespace ::com::sun::star;
 
 // #95876# Also overload ReplaceObject methods to realize when
 // objects are removed with this mechanism instead of RemoveObject
-//STRIP001 SdrObject* SdPage::NbcReplaceObject(SdrObject* pNewObj, ULONG nObjNum)
-//STRIP001 {
-//STRIP001  SdrObject* pOldObj = FmFormPage::NbcReplaceObject(pNewObj, nObjNum);
-//STRIP001  if(pOldObj && pOldObj->GetUserCall()!=this && aPresObjList.GetPos(pOldObj) != LIST_ENTRY_NOTFOUND)
-//STRIP001      Changed(*pOldObj, SDRUSERCALL_REMOVED, pOldObj->GetBoundRect());
-//STRIP001  return pOldObj;
-//STRIP001 }
 
 // #95876# Also overload ReplaceObject methods to realize when
 // objects are removed with this mechanism instead of RemoveObject
-//STRIP001 SdrObject* SdPage::ReplaceObject(SdrObject* pNewObj, ULONG nObjNum)
-//STRIP001 {
-//STRIP001  SdrObject* pOldObj = FmFormPage::ReplaceObject(pNewObj, nObjNum);
-//STRIP001  if(pOldObj && pOldObj->GetUserCall()!=this && aPresObjList.GetPos(pOldObj) != LIST_ENTRY_NOTFOUND)
-//STRIP001      Changed(*pOldObj, SDRUSERCALL_REMOVED, pOldObj->GetBoundRect());
-//STRIP001  return pOldObj;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2041,329 +1954,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SdPage::ScaleObjects(const Size& rNewPageSize, const Rectangle& rNewBorderRect, BOOL bScaleAllObj)
-//STRIP001 {
-//STRIP001  bOwnArrangement = TRUE;
-//STRIP001  bScaleObjects = bScaleAllObj;
-//STRIP001  SdrObject* pObj = NULL;
-//STRIP001  Point aRefPnt(0, 0);
-//STRIP001  Size aNewPageSize(rNewPageSize);
-//STRIP001  INT32 nLeft  = rNewBorderRect.Left();
-//STRIP001  INT32 nRight = rNewBorderRect.Right();
-//STRIP001  INT32 nUpper = rNewBorderRect.Top();
-//STRIP001  INT32 nLower = rNewBorderRect.Bottom();
-//STRIP001
-//STRIP001  // Negative Werte stehen fuer nicht zu aendernde Werte
-//STRIP001  // -> aktuelle Werte verwenden
-//STRIP001  if (aNewPageSize.Width() < 0)
-//STRIP001  {
-//STRIP001      aNewPageSize.Width() = GetWdt();
-//STRIP001  }
-//STRIP001  if (aNewPageSize.Height() < 0)
-//STRIP001  {
-//STRIP001      aNewPageSize.Height() = GetHgt();
-//STRIP001  }
-//STRIP001  if (nLeft < 0)
-//STRIP001  {
-//STRIP001      nLeft = GetLftBorder();
-//STRIP001  }
-//STRIP001  if (nRight < 0)
-//STRIP001  {
-//STRIP001      nRight = GetRgtBorder();
-//STRIP001  }
-//STRIP001  if (nUpper < 0)
-//STRIP001  {
-//STRIP001      nUpper = GetUppBorder();
-//STRIP001  }
-//STRIP001  if (nLower < 0)
-//STRIP001  {
-//STRIP001      nLower = GetLwrBorder();
-//STRIP001  }
-//STRIP001
-//STRIP001  Point aBackgroundPos(nLeft, nUpper);
-//STRIP001  Size aBackgroundSize(aNewPageSize);
-//STRIP001  Rectangle aBorderRect (aBackgroundPos, aBackgroundSize);
-//STRIP001
-//STRIP001  if (bScaleObjects)
-//STRIP001  {
-//STRIP001      aBackgroundSize.Width()  -= nLeft  + nRight;
-//STRIP001      aBackgroundSize.Height() -= nUpper + nLower;
-//STRIP001      aBorderRect.SetSize(aBackgroundSize);
-//STRIP001      aNewPageSize = aBackgroundSize;
-//STRIP001  }
-//STRIP001
-//STRIP001  long nOldWidth  = GetWdt() - GetLftBorder() - GetRgtBorder();
-//STRIP001  long nOldHeight = GetHgt() - GetUppBorder() - GetLwrBorder();
-//STRIP001
-//STRIP001  Fraction aFractX = Fraction(aNewPageSize.Width(), nOldWidth);
-//STRIP001  Fraction aFractY = Fraction(aNewPageSize.Height(), nOldHeight);
-//STRIP001
-//STRIP001  ULONG nObjCnt = (bScaleObjects ? GetObjCount() : 0);
-//STRIP001
-//STRIP001  for (ULONG nObj = 0; nObj < nObjCnt; nObj++)
-//STRIP001  {
-//STRIP001      BOOL bIsPresObjOnMaster = FALSE;
-//STRIP001      SfxStyleSheet* pSheet = NULL;
-//STRIP001
-//STRIP001      if (bScaleObjects)
-//STRIP001      {
-//STRIP001          // Alle Objekte
-//STRIP001          pObj = GetObj(nObj);
-//STRIP001
-//STRIP001          if (bMaster && aPresObjList.GetPos(pObj) != LIST_ENTRY_NOTFOUND)
-//STRIP001          {
-//STRIP001              // Es ist ein Praesentationsobjekt auf der MasterPage
-//STRIP001              bIsPresObjOnMaster = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // Nur Praesentationsobjekte
-//STRIP001          pObj = (SdrObject*) aPresObjList.GetObject(nObj);
-//STRIP001
-//STRIP001          if (bMaster)
-//STRIP001          {
-//STRIP001              bIsPresObjOnMaster = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if (pObj)
-//STRIP001      {
-//STRIP001          USHORT nIndexBackground = 0;
-//STRIP001          // #88084# remember aTopLeft as original TopLeft
-//STRIP001          Point aTopLeft(pObj->GetBoundRect().TopLeft());
-//STRIP001
-//STRIP001          if (bIsPresObjOnMaster &&
-//STRIP001              (ePageKind == PK_HANDOUT ||
-//STRIP001               pObj == GetPresObj(PRESOBJ_BACKGROUND, nIndexBackground)))
-//STRIP001          {
-//STRIP001              /**************************************************************
-//STRIP001              * 1. Praesentationsobjekte auf Handzettelseite sollen nur positioniert werden
-//STRIP001              * 2. Hintergrundobjekt wird nicht skaliert
-//STRIP001              **************************************************************/
-//STRIP001          }
-//STRIP001          else if (!pObj->IsEdgeObj())
-//STRIP001          {
-//STRIP001              /**************************************************************
-//STRIP001              * Objekt skalieren
-//STRIP001              **************************************************************/
-//STRIP001              if (bScaleObjects)
-//STRIP001              {
-//STRIP001                  // #88084# use aTopLeft as original TopLeft
-//STRIP001                  aRefPnt = aTopLeft;
-//STRIP001              }
-//STRIP001
-//STRIP001              pObj->Resize(aRefPnt, aFractX, aFractY);
-//STRIP001
-//STRIP001              if (bScaleObjects)
-//STRIP001              {
-//STRIP001                  SdrObjKind eObjKind = (SdrObjKind) pObj->GetObjIdentifier();
-//STRIP001
-//STRIP001                  if (bIsPresObjOnMaster)
-//STRIP001                  {
-//STRIP001                      /**********************************************************
-//STRIP001                      * Praesentationsvorlage: Texthoehe anpassen
-//STRIP001                      **********************************************************/
-//STRIP001                      USHORT nIndexTitle = 0;
-//STRIP001                      USHORT nIndexOutline = 0;
-//STRIP001                      USHORT nIndexNotes = 0;
-//STRIP001
-//STRIP001                      if (pObj == GetPresObj(PRESOBJ_TITLE, nIndexTitle))
-//STRIP001                      {
-//STRIP001                          SfxStyleSheet* pSheet = GetStyleSheetForPresObj(PRESOBJ_TITLE);
-//STRIP001
-//STRIP001                          if (pSheet)
-//STRIP001                          {
-//STRIP001                              SfxItemSet& rSet = pSheet->GetItemSet();
-//STRIP001
-//STRIP001                              SvxFontHeightItem& rOldHgt = (SvxFontHeightItem&) rSet.Get(EE_CHAR_FONTHEIGHT);
-//STRIP001                              ULONG nFontHeight = rOldHgt.GetHeight();
-//STRIP001                              nFontHeight = long(nFontHeight * (double) aFractY);
-//STRIP001                              rSet.Put(SvxFontHeightItem(nFontHeight, 100, EE_CHAR_FONTHEIGHT));
-//STRIP001
-//STRIP001                              if( SFX_ITEM_AVAILABLE == rSet.GetItemState( EE_CHAR_FONTHEIGHT_CJK ) )
-//STRIP001                              {
-//STRIP001                                  rOldHgt = (SvxFontHeightItem&) rSet.Get(EE_CHAR_FONTHEIGHT_CJK);
-//STRIP001                                  nFontHeight = rOldHgt.GetHeight();
-//STRIP001                                  nFontHeight = long(nFontHeight * (double) aFractY);
-//STRIP001                                  rSet.Put(SvxFontHeightItem(nFontHeight, 100, EE_CHAR_FONTHEIGHT_CJK));
-//STRIP001                              }
-//STRIP001
-//STRIP001                              if( SFX_ITEM_AVAILABLE == rSet.GetItemState( EE_CHAR_FONTHEIGHT_CTL ) )
-//STRIP001                              {
-//STRIP001                                  rOldHgt = (SvxFontHeightItem&) rSet.Get(EE_CHAR_FONTHEIGHT_CTL);
-//STRIP001                                  nFontHeight = rOldHgt.GetHeight();
-//STRIP001                                  nFontHeight = long(nFontHeight * (double) aFractY);
-//STRIP001                                  rSet.Put(SvxFontHeightItem(nFontHeight, 100, EE_CHAR_FONTHEIGHT_CTL));
-//STRIP001                              }
-//STRIP001
-//STRIP001                              pSheet->Broadcast(SfxSimpleHint(SFX_HINT_DATACHANGED));
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                      else if (pObj == GetPresObj(PRESOBJ_OUTLINE, nIndexOutline))
-//STRIP001                      {
-//STRIP001                          ULONG nHeight = pObj->GetLogicRect().GetSize().Height() / 9;
-//STRIP001                          String aName(GetLayoutName());
-//STRIP001                          aName += sal_Unicode( ' ' );
-//STRIP001
-//STRIP001                          for (USHORT i=1; i<=9; i++)
-//STRIP001                          {
-//STRIP001                              String aLayoutName(aName);
-//STRIP001                              aLayoutName += String::CreateFromInt32( (sal_Int32)i );
-//STRIP001                              SfxStyleSheet* pSheet = (SfxStyleSheet*)
-//STRIP001                              ((SdDrawDocument*) pModel)->GetStyleSheetPool()->
-//STRIP001                              Find(aLayoutName, SD_LT_FAMILY);
-//STRIP001
-//STRIP001                              if (pSheet)
-//STRIP001                              {
-//STRIP001                                  // Neue Fonthoehe berechnen
-//STRIP001                                  SfxItemSet aTempSet(pSheet->GetItemSet());
-//STRIP001
-//STRIP001                                  SvxFontHeightItem& rOldHgt = (SvxFontHeightItem&) aTempSet.Get(EE_CHAR_FONTHEIGHT);
-//STRIP001                                  ULONG nFontHeight = rOldHgt.GetHeight();
-//STRIP001                                  nFontHeight = long(nFontHeight * (double) aFractY);
-//STRIP001                                  aTempSet.Put(SvxFontHeightItem(nFontHeight, 100, EE_CHAR_FONTHEIGHT));
-//STRIP001
-//STRIP001                                  if( SFX_ITEM_AVAILABLE == aTempSet.GetItemState( EE_CHAR_FONTHEIGHT_CJK ) )
-//STRIP001                                  {
-//STRIP001                                      rOldHgt = (SvxFontHeightItem&) aTempSet.Get(EE_CHAR_FONTHEIGHT_CJK);
-//STRIP001                                      nFontHeight = rOldHgt.GetHeight();
-//STRIP001                                      nFontHeight = long(nFontHeight * (double) aFractY);
-//STRIP001                                      aTempSet.Put(SvxFontHeightItem(nFontHeight, 100, EE_CHAR_FONTHEIGHT_CJK));
-//STRIP001                                  }
-//STRIP001
-//STRIP001                                  if( SFX_ITEM_AVAILABLE == aTempSet.GetItemState( EE_CHAR_FONTHEIGHT_CTL ) )
-//STRIP001                                  {
-//STRIP001                                      rOldHgt = (SvxFontHeightItem&) aTempSet.Get(EE_CHAR_FONTHEIGHT_CTL);
-//STRIP001                                      nFontHeight = rOldHgt.GetHeight();
-//STRIP001                                      nFontHeight = long(nFontHeight * (double) aFractY);
-//STRIP001                                      aTempSet.Put(SvxFontHeightItem(nFontHeight, 100, EE_CHAR_FONTHEIGHT_CTL));
-//STRIP001                                  }
-//STRIP001
-//STRIP001                                  // Bullet anpassen
-//STRIP001                                  ((SdStyleSheet*) pSheet)->AdjustToFontHeight(aTempSet, FALSE);
-//STRIP001
-//STRIP001                                  // Sonderbehandlung: die INVALIDS auf NULL-Pointer
-//STRIP001                                  // zurueckgesetzen (sonst landen INVALIDs oder
-//STRIP001                                  // Pointer auf die DefaultItems in der Vorlage;
-//STRIP001                                  // beides wuerde die Attribut-Vererbung unterbinden)
-//STRIP001                                  aTempSet.ClearInvalidItems();
-//STRIP001
-//STRIP001                                  // Sonderbehandlung: nur die gueltigen Anteile des
-//STRIP001                                  // BulletItems
-//STRIP001                                  if (aTempSet.GetItemState(EE_PARA_BULLET) == SFX_ITEM_AVAILABLE)
-//STRIP001                                  {
-//STRIP001                                      SvxBulletItem aOldBulItem((SvxBulletItem&) pSheet->GetItemSet().Get(EE_PARA_BULLET));
-//STRIP001                                      SvxBulletItem& rNewBulItem = (SvxBulletItem&) aTempSet.Get(EE_PARA_BULLET);
-//STRIP001                                      aOldBulItem.CopyValidProperties(rNewBulItem);
-//STRIP001                                      aTempSet.Put(aOldBulItem);
-//STRIP001                                  }
-//STRIP001
-//STRIP001                                  pSheet->GetItemSet().Put(aTempSet);
-//STRIP001
-//STRIP001                                  pSheet->Broadcast(SfxSimpleHint(SFX_HINT_DATACHANGED));
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                      else if (pObj == GetPresObj(PRESOBJ_NOTES, nIndexNotes))
-//STRIP001                      {
-//STRIP001                          SfxStyleSheet* pSheet = GetStyleSheetForPresObj(PRESOBJ_NOTES);
-//STRIP001
-//STRIP001                          if (pSheet)
-//STRIP001                          {
-//STRIP001                              ULONG nHeight = pObj->GetLogicRect().GetSize().Height();
-//STRIP001                              ULONG nFontHeight = (ULONG) (nHeight * 0.0741);
-//STRIP001                              SfxItemSet& rSet = pSheet->GetItemSet();
-//STRIP001                              rSet.Put( SvxFontHeightItem(nFontHeight, EE_CHAR_FONTHEIGHT ));
-//STRIP001                              rSet.Put( SvxFontHeightItem(nFontHeight, EE_CHAR_FONTHEIGHT_CJK ));
-//STRIP001                              rSet.Put( SvxFontHeightItem(nFontHeight, EE_CHAR_FONTHEIGHT_CTL ));
-//STRIP001                              pSheet->Broadcast(SfxSimpleHint(SFX_HINT_DATACHANGED));
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  else if ( eObjKind != OBJ_TITLETEXT   &&
-//STRIP001                            eObjKind != OBJ_OUTLINETEXT &&
-//STRIP001                            pObj->ISA(SdrTextObj)       &&
-//STRIP001                            pObj->GetOutlinerParaObject() )
-//STRIP001                  {
-//STRIP001                      /******************************************************
-//STRIP001                      * Normales Textobjekt: Texthoehe anpassen
-//STRIP001                      ******************************************************/
-//STRIP001                      ULONG nScriptType = pObj->GetOutlinerParaObject()->GetTextObject().GetScriptType();
-//STRIP001                      USHORT nWhich = EE_CHAR_FONTHEIGHT;
-//STRIP001                      if ( nScriptType == SCRIPTTYPE_ASIAN )
-//STRIP001                          nWhich = EE_CHAR_FONTHEIGHT_CJK;
-//STRIP001                      else if ( nScriptType == SCRIPTTYPE_COMPLEX )
-//STRIP001                          nWhich = EE_CHAR_FONTHEIGHT_CTL;
-//STRIP001
-//STRIP001                      // #88084# use more modern method to scale the text height
-//STRIP001                      sal_uInt32 nFontHeight = ((SvxFontHeightItem&)pObj->GetItem(nWhich)).GetHeight();
-//STRIP001                      sal_uInt32 nNewFontHeight = sal_uInt32((double)nFontHeight * (double)aFractY);
-//STRIP001                      pObj->SetItem(SvxFontHeightItem(nNewFontHeight, 100, nWhich));
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (bScaleObjects && !pObj->IsEdgeObj())
-//STRIP001          {
-//STRIP001              /**************************************************************
-//STRIP001              * Objektposition skalieren
-//STRIP001              **************************************************************/
-//STRIP001              Point aNewPos;
-//STRIP001
-//STRIP001              // #76447# corrected scaling; only distances may be scaled
-//STRIP001              // #88084# use aTopLeft as original TopLeft
-//STRIP001              aNewPos.X() = long((aTopLeft.X() - GetLftBorder()) * (double)aFractX) + nLeft;
-//STRIP001              aNewPos.Y() = long((aTopLeft.Y() - GetUppBorder()) * (double)aFractY) + nUpper;
-//STRIP001
-//STRIP001              Size aVec(aNewPos.X() - aTopLeft.X(), aNewPos.Y() - aTopLeft.Y());
-//STRIP001
-//STRIP001              if (aVec.Height() != 0 || aVec.Width() != 0)
-//STRIP001              {
-//STRIP001                  pObj->NbcMove(aVec);
-//STRIP001              }
-//STRIP001
-//STRIP001              Rectangle aBoundRect = pObj->GetBoundRect();
-//STRIP001
-//STRIP001              if (!aBorderRect.IsInside(aBoundRect))
-//STRIP001              {
-//STRIP001                  /**********************************************************
-//STRIP001                  * Objekt liegt nicht vollstaendig innerhalb der Raender
-//STRIP001                  * -> Position korrigieren
-//STRIP001                  **********************************************************/
-//STRIP001                  Point aOldPos(aBoundRect.TopLeft());
-//STRIP001                  Point aNewPos(aOldPos);
-//STRIP001
-//STRIP001                  // Position links oben ggf. korrigieren
-//STRIP001                  aNewPos.X() = Max(aNewPos.X(), aBorderRect.Left());
-//STRIP001                  aNewPos.Y() = Max(aNewPos.Y(), aBorderRect.Top());
-//STRIP001                  Size aVec(aNewPos.X() - aOldPos.X(), aNewPos.Y() - aOldPos.Y());
-//STRIP001
-//STRIP001                  if (aVec.Height() != 0 || aVec.Width() != 0)
-//STRIP001                  {
-//STRIP001                      pObj->NbcMove(aVec);
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // Position rechts unten ggf. korrigieren
-//STRIP001                  aOldPos = aBoundRect.BottomRight();
-//STRIP001                  aNewPos = aOldPos;
-//STRIP001                  aNewPos.X() = Min(aNewPos.X(), aBorderRect.Right());
-//STRIP001                  aNewPos.Y() = Min(aNewPos.Y(), aBorderRect.Bottom());
-//STRIP001                  aVec = Size(aNewPos.X() - aOldPos.X(), aNewPos.Y() - aOldPos.Y());
-//STRIP001
-//STRIP001                  if (aVec.Height() != 0 || aVec.Width() != 0)
-//STRIP001                  {
-//STRIP001                      pObj->NbcMove(aVec);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              pObj->SendRepaintBroadcast();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  bOwnArrangement = FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2664,15 +2254,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SdPage::RequestBasic()
-//STRIP001 {
-//STRIP001  SdDrawDocShell* pDocShell = ( (SdDrawDocument*) GetModel() )->GetDocSh();
-//STRIP001
-//STRIP001  if (pDocShell)
-//STRIP001  {
-//STRIP001      SetBasic( pDocShell->GetBasicManager()->GetLib(0) );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2798,9 +2379,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SdPage::SetLinkData(const String& rLinkName, const String& rLinkData)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
