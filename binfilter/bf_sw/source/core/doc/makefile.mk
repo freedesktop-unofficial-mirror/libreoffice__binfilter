@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:24:35 $
+#   last change: $Author: rt $ $Date: 2006-10-27 22:20:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -59,10 +59,8 @@ SLOFILES =	\
         $(SLO)$/sw_SwStyleNameMapper.obj \
         $(SLO)$/sw_acmplwrd.obj \
         $(SLO)$/sw_doc.obj \
-        $(SLO)$/sw_docbasic.obj \
         $(SLO)$/sw_docbm.obj \
         $(SLO)$/sw_docchart.obj \
-        $(SLO)$/sw_doccomp.obj \
         $(SLO)$/sw_doccorr.obj \
         $(SLO)$/sw_docdde.obj \
         $(SLO)$/sw_docdesc.obj \
@@ -73,7 +71,6 @@ SLOFILES =	\
         $(SLO)$/sw_docfmt.obj \
         $(SLO)$/sw_docftn.obj \
         $(SLO)$/sw_doclay.obj \
-        $(SLO)$/sw_docglbl.obj \
         $(SLO)$/sw_docglos.obj \
         $(SLO)$/sw_docnew.obj \
         $(SLO)$/sw_docnum.obj \
@@ -94,7 +91,6 @@ SLOFILES =	\
         $(SLO)$/sw_swserv.obj \
         $(SLO)$/sw_swtable.obj \
         $(SLO)$/sw_tblafmt.obj \
-        $(SLO)$/sw_tblcpy.obj \
         $(SLO)$/sw_tblrwcl.obj \
         $(SLO)$/sw_visiturl.obj \
         $(SLO)$/sw_htmltbl.obj
