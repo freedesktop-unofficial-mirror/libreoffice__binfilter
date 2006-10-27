@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3attr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:34:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:57:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,9 +81,6 @@
 #ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
 #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
@@ -102,9 +99,6 @@
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
-// auto strip #ifndef _TOX_HXX
-// auto strip #include <tox.hxx>
-// auto strip #endif
 #ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
 #endif
