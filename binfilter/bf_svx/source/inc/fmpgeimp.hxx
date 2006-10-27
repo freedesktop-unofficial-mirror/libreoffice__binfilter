@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmpgeimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:02:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:08:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -114,17 +114,10 @@ protected:
 
 public:
     //  nur wichtig fuer den DesignMode
-//STRIP001  void setCurForm(::com::sun::star::uno::Reference< ::com::sun::star::form::XForm> xForm);
     const ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm>& getCurForm() {return xCurrentForm;}
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm> getDefaultForm();
 
     // Defaults fuer ein Object setzen
     // Eindeutigen Namen, Zuordnen zu einer Form falls noch nicht erfolgt
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm> SetDefaults(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XFormComponent>& rContent,
-//STRIP001                       const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource>& rDatabase = ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource>(),
-//STRIP001                       const ::rtl::OUString& rDBTitle = ::rtl::OUString(),
-//STRIP001                       const ::rtl::OUString& rCursorSource = ::rtl::OUString(),
-//STRIP001                       sal_Int32 nCommandType = 0);
 
     UniString GetPageId() const { return m_sPageId; }
 
@@ -144,26 +137,11 @@ protected:
 
     void fillList(FmObjectList& rList, const SdrObjList& rObjList, sal_Bool bConnected) const;
 
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm> FindForm(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm>& rForm,
-//STRIP001                    const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource>& rDatabase,
-//STRIP001                    const ::rtl::OUString& rCursorSource,
-//STRIP001                    sal_Int32 nCommandType);
 
-//STRIP001  ::rtl::OUString getDefaultName(
-//STRIP001                      sal_Int16 _nClassId,
-//STRIP001                      const ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm>& _rxControls,
-//STRIP001                      const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XServiceInfo >& _rxObject
-//STRIP001                  ) const;
 
 public:
 
-//STRIP001  static UniString getDefaultName(
-//STRIP001                      sal_Int16 nClassId,
-//STRIP001                      const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XServiceInfo >& _rxObject
-//STRIP001                  );
 
-//STRIP001  ::rtl::OUString setUniqueName(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XFormComponent>& xFormComponent, const ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm>& xControls);
-//STRIP001  ::rtl::OUString getUniqueName(const ::rtl::OUString& rName, const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess>& xNamedSet) const;
 };
 
 
