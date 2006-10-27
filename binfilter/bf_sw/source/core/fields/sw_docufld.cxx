@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:32:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:37:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,74 +36,27 @@
 
 #pragma hdrstop
 
-// auto strip #include <tools/pstm.hxx>
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
-// auto strip #include <com/sun/star/text/SetVariableType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
-// auto strip #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_USERDATAPART_HPP_
-// auto strip #include <com/sun/star/text/UserDataPart.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_CHAPTERFORMAT_HPP_
-// auto strip #include <com/sun/star/text/ChapterFormat.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
-// auto strip #include <com/sun/star/text/XTextField.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HPP_
 #include <com/sun/star/text/PlaceholderType.hpp>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_TEMPLATEDISPLAYFORMAT_HPP_
 #include <com/sun/star/text/TemplateDisplayFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_USERFIELDFORMAT_HPP_
-// auto strip #include <com/sun/star/text/UserFieldFormat.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
 #include <com/sun/star/text/PageNumberType.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HPP_
-// auto strip #include <com/sun/star/text/ReferenceFieldPart.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_FilenameDisplayFormat_HPP_
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
-// auto strip #include <com/sun/star/text/XDependentTextField.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
-// auto strip #include <com/sun/star/text/DocumentStatistic.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
-// auto strip #include <com/sun/star/util/Date.hpp>
-// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
-// auto strip #include <comphelper/types.hxx>
 
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _INTN_HXX //autogen
-// auto strip #include <tools/intn.hxx>
-// auto strip #endif
-// auto strip #ifndef _APP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
@@ -111,15 +64,9 @@
 #include <svtools/useroptions.hxx>
 #endif
 
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFXDOCINF_HXX //autogen
-// auto strip #include <bf_sfx2/docinf.hxx>
-// auto strip #endif
 #ifndef _SFXDOCTEMPL_HXX //autogen
 #include <bf_sfx2/doctempl.hxx>
 #endif
@@ -128,12 +75,6 @@
 #endif
 
 
-// auto strip #ifndef _FMTFLD_HXX //autogen
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTFLD_HXX //autogen
-// auto strip #include <txtfld.hxx>
-// auto strip #endif
 #ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
 #endif
@@ -151,30 +92,15 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>      // AuthorField
 #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      //
 #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>     //
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
 #endif
-// auto strip #ifndef _SHELLRES_HXX
-// auto strip #include <shellres.hxx>
-// auto strip #endif
 #ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
 #endif
@@ -184,15 +110,9 @@
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>
 #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _EXPFLD_HXX
-// auto strip #include <expfld.hxx>
-// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
@@ -1176,29 +1096,6 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   if ( bName )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aStr(SwFieldType::GetTypeStr(GetTypeId()));
-//STRIP001 /*?*/        aStr += ':';
-//STRIP001 /*?*/
-//STRIP001 /*?*/        sal_uInt16 nSub = nSubType & 0xff;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        switch(nSub)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            case DI_INFO1:
-//STRIP001 /*?*/            case DI_INFO2:
-//STRIP001 /*?*/            case DI_INFO3:
-//STRIP001 /*?*/            case DI_INFO4:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                const SfxDocumentInfo*  pInf = GetDoc()->GetInfo();
-//STRIP001 /*?*/                aStr += pInf->GetUserKey(nSub - DI_INFO1).GetTitle();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            default:
-//STRIP001 /*?*/                aStr += *ViewShell::GetShellRes()->aDocInfoLst[ nSub - DI_SUBTYPE_BEGIN ];
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        if( IsFixed() )
-//STRIP001 /*?*/            ( aStr += ' ' ) += ViewShell::GetShellRes()->aFixedStr;
-//STRIP001 /*?*/        return aStr;
 /*N*/   }
 /*N*/   return Expand();
 /*N*/ }
@@ -1461,32 +1358,6 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/       else if(sTmpName.Search('\"') == STRING_NOTFOUND &&
 /*N*/           sTmpName.GetTokenCount('.') > 2)
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            ::ReplacePoint(sTmpName);
-//STRIP001 /*?*/            if(sTmpName.GetChar(0) == '[' && sTmpName.GetChar(sTmpName.Len()-1) == ']')
-//STRIP001 /*?*/            {   // Eckige Klammern entfernen
-//STRIP001 /*?*/                sTmpName.Erase(0, 1);
-//STRIP001 /*?*/                sTmpName.Erase(sTmpName.Len()-1, 1);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if( pMgr)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                String sDBName( GetDBName( sTmpName, pDoc ));
-//STRIP001 /*?*/                String sDataSource(sDBName.GetToken(0, DB_DELIM));
-//STRIP001 /*?*/                String sDataTableOrQuery(sDBName.GetToken(1, DB_DELIM));
-//STRIP001 /*?*/                if( pMgr->IsInMerge() && sDBName.Len() &&
-//STRIP001 /*?*/                    pMgr->IsDataSourceOpen( sDataSource,
-//STRIP001 /*?*/                                                sDataTableOrQuery, sal_False))
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    double fNumber;
-//STRIP001 /*?*/                    sal_uInt32 nFormat;
-//STRIP001 /*?*/                    pMgr->GetMergeColumnCnt(GetColumnName( sTmpName ),
-//STRIP001 /*?*/                                    GetLanguage(), aContent, &fNumber, &nFormat );
-//STRIP001 /*?*/                    bValid = sal_True;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else if( sDBName.Len() && sDataSource.Len() &&
-//STRIP001 /*?*/                         sDataTableOrQuery.Len() )
-//STRIP001 /*?*/                    bValid = sal_True;
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1646,37 +1517,9 @@ BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
 
 //------------------------------------------------------------------------------
 
-//STRIP001 String SwHiddenTxtField::GetColumnName(const String& rName)
-//STRIP001 {
-//STRIP001  sal_uInt16 nPos = rName.Search(DB_DELIM);
-//STRIP001  if( STRING_NOTFOUND != nPos )
-//STRIP001  {
-//STRIP001      nPos = rName.Search(DB_DELIM, nPos + 1);
-//STRIP001
-//STRIP001      if( STRING_NOTFOUND != nPos )
-//STRIP001          return rName.Copy(nPos + 1);
-//STRIP001  }
-//STRIP001  return rName;
-//STRIP001 }
 
 //------------------------------------------------------------------------------
 
-//STRIP001 String SwHiddenTxtField::GetDBName(const String& rName, SwDoc *pDoc)
-//STRIP001 {
-//STRIP001  sal_uInt16 nPos = rName.Search(DB_DELIM);
-//STRIP001  if( STRING_NOTFOUND != nPos )
-//STRIP001  {
-//STRIP001      nPos = rName.Search(DB_DELIM, nPos + 1);
-//STRIP001
-//STRIP001      if( STRING_NOTFOUND != nPos )
-//STRIP001          return rName.Copy( 0, nPos );
-//STRIP001  }
-//STRIP001  SwDBData aData = pDoc->GetDBData();
-//STRIP001  String sRet = aData.sDataSource;
-//STRIP001  sRet += DB_DELIM;
-//STRIP001  sRet += String(aData.sCommand);
-//STRIP001  return sRet;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Der Feldtyp fuer Zeilenhoehe 0
@@ -2075,9 +1918,6 @@ BOOL SwExtUserField::PutValue( const uno::Any& rAny, BYTE nMId )
 
  ---------------------------------------------------------------------------*/
 // ueberlagert, weil es nichts zum Updaten gibt!
-//STRIP001 void SwRefPageSetFieldType::Modify( SfxPoolItem *, SfxPoolItem * )
-//STRIP001 {
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Relative Seitennummerierung
@@ -2182,17 +2022,6 @@ BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   {
 /*?*/       // sammel erstmal alle SetPageRefFelder ein.
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _SetGetExpFlds aTmpLst( 10, 5 );
-//STRIP001 /*?*/        if( MakeSetList( aTmpLst ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwClientIter aIter( *this );
-//STRIP001 /*?*/            if( aIter.GoStart() )
-//STRIP001 /*?*/                do {
-//STRIP001 /*?*/                    // nur die GetRef-Felder Updaten
-//STRIP001 /*?*/                    SwFmtFld* pFmtFld = (SwFmtFld*)aIter();
-//STRIP001 /*?*/                    if( pFmtFld->GetTxtFld() )
-//STRIP001 /*?*/                        UpdateField( pFmtFld->GetTxtFld(), aTmpLst );
-//STRIP001 /*?*/                } while( aIter++ );
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/   // weiter an die Text-Felder, diese "Expandieren" den Text
@@ -2201,101 +2030,9 @@ BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 sal_uInt16 SwRefPageGetFieldType::MakeSetList( _SetGetExpFlds& rTmpLst )
-//STRIP001 {
-//STRIP001  SwClientIter aIter( *pDoc->GetSysFldType( RES_REFPAGESETFLD));
-//STRIP001  if( aIter.GoStart() )
-//STRIP001      do {
-//STRIP001          // nur die GetRef-Felder Updaten
-//STRIP001          SwFmtFld* pFmtFld = (SwFmtFld*)aIter();
-//STRIP001          const SwTxtFld* pTFld = pFmtFld->GetTxtFld();
-//STRIP001          if( pTFld )
-//STRIP001          {
-//STRIP001              const SwTxtNode& rTxtNd = pTFld->GetTxtNode();
-//STRIP001
-//STRIP001              // immer den ersten !! (in Tab-Headline, Kopf-/Fuss )
-//STRIP001              Point aPt;
-//STRIP001              const SwCntntFrm* pFrm = rTxtNd.GetFrm( &aPt, 0, sal_False );
-//STRIP001
-//STRIP001              _SetGetExpFld* pNew;
-//STRIP001
-//STRIP001              if( !pFrm || pFrm->IsInDocBody() )
-//STRIP001              {
-//STRIP001                  // einen sdbcx::Index fuers bestimmen vom TextNode anlegen
-//STRIP001                  SwNodeIndex aIdx( rTxtNd );
-//STRIP001                  pNew = new _SetGetExpFld( aIdx, pTFld );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  // einen sdbcx::Index fuers bestimmen vom TextNode anlegen
-//STRIP001                  SwPosition aPos( pDoc->GetNodes().GetEndOfPostIts() );
-//STRIP001 #ifndef PRODUCT
-//STRIP001                  ASSERT( GetBodyTxtNode( *pDoc, aPos, *pFrm ),
-//STRIP001                          "wo steht das Feld" );
-//STRIP001 #else
-//STRIP001                  GetBodyTxtNode( *pDoc, aPos, *pFrm );
-//STRIP001 #endif
-//STRIP001                  pNew = new _SetGetExpFld( aPos.nNode, pTFld,
-//STRIP001                                              &aPos.nContent );
-//STRIP001              }
-//STRIP001
-//STRIP001              if( !rTmpLst.Insert( pNew ))
-//STRIP001                  delete pNew;
-//STRIP001          }
-//STRIP001      } while( aIter++ );
-//STRIP001
-//STRIP001  return rTmpLst.Count();
-//STRIP001 }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwRefPageGetFieldType::UpdateField( SwTxtFld* pTxtFld,
-//STRIP001                                      _SetGetExpFlds& rSetList )
-//STRIP001 {
-//STRIP001  SwRefPageGetField* pGetFld = (SwRefPageGetField*)pTxtFld->GetFld().GetFld();
-//STRIP001  pGetFld->SetText( aEmptyStr );
-//STRIP001
-//STRIP001  // dann suche mal das richtige RefPageSet-Field
-//STRIP001  SwTxtNode* pTxtNode = (SwTxtNode*)&pTxtFld->GetTxtNode();
-//STRIP001  if( pTxtNode->StartOfSectionIndex() >
-//STRIP001      pDoc->GetNodes().GetEndOfExtras().GetIndex() )
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *pTxtNode );
-//STRIP001      _SetGetExpFld aEndFld( aIdx, pTxtFld );
-//STRIP001
-//STRIP001      sal_uInt16 nLast;
-//STRIP001      rSetList.Seek_Entry( &aEndFld, &nLast );
-//STRIP001
-//STRIP001      if( nLast-- )
-//STRIP001      {
-//STRIP001          const SwTxtFld* pRefTxtFld = rSetList[ nLast ]->GetFld();
-//STRIP001          const SwRefPageSetField* pSetFld =
-//STRIP001                      (SwRefPageSetField*)pRefTxtFld->GetFld().GetFld();
-//STRIP001          if( pSetFld->IsOn() )
-//STRIP001          {
-//STRIP001              // dann bestimme mal den entsp. Offset
-//STRIP001              Point aPt;
-//STRIP001              const SwCntntFrm* pFrm = pTxtNode->GetFrm( &aPt, 0, sal_False );
-//STRIP001              const SwCntntFrm* pRefFrm = pRefTxtFld->GetTxtNode().GetFrm( &aPt, 0, sal_False );
-//STRIP001              const SwPageFrm* pPgFrm = 0;
-//STRIP001              sal_uInt16 nDiff = ( pFrm && pRefFrm )
-//STRIP001                      ?   (pPgFrm = pFrm->FindPageFrm())->GetPhyPageNum() -
-//STRIP001                          pRefFrm->FindPageFrm()->GetPhyPageNum() + 1
-//STRIP001                      : 1;
-//STRIP001
-//STRIP001              sal_uInt32 nTmpFmt = SVX_NUM_PAGEDESC == pGetFld->GetFormat()
-//STRIP001                      ? ( !pPgFrm
-//STRIP001                              ? SVX_NUM_ARABIC
-//STRIP001                              : pPgFrm->GetPageDesc()->GetNumType().GetNumberingType() )
-//STRIP001                      : pGetFld->GetFormat();
-//STRIP001              short nPageNum = Max(0, pSetFld->GetOffset() + (short)nDiff);
-//STRIP001              pGetFld->SetText( FormatNumber( nPageNum, nTmpFmt ) );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // dann die Formatierung anstossen
-//STRIP001  ((SwFmtFld&)pTxtFld->GetFld()).Modify( 0, 0 );
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Relative Seitennummerierung Abfragen
@@ -2326,65 +2063,6 @@ SwField* SwRefPageGetField::Copy() const
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwRefPageGetField::ChangeExpansion( const SwFrm* pFrm,
-//STRIP001                                      const SwTxtFld* pFld )
-//STRIP001 {
-//STRIP001  // nur Felder in Footer, Header, FootNote, Flys
-//STRIP001  SwTxtNode* pTxtNode = (SwTxtNode*)&pFld->GetTxtNode();
-//STRIP001  SwRefPageGetFieldType* pGetType = (SwRefPageGetFieldType*)GetTyp();
-//STRIP001  SwDoc* pDoc = pGetType->GetDoc();
-//STRIP001  if( pFld->GetTxtNode().StartOfSectionIndex() >
-//STRIP001      pDoc->GetNodes().GetEndOfExtras().GetIndex() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  sTxt.Erase();
-//STRIP001
-//STRIP001  ASSERT( !pFrm->IsInDocBody(), "Flag ist nicht richtig, Frame steht im DocBody" );
-//STRIP001
-//STRIP001  // sammel erstmal alle SetPageRefFelder ein.
-//STRIP001  _SetGetExpFlds aTmpLst( 10, 5 );
-//STRIP001  if( !pGetType->MakeSetList( aTmpLst ) )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  // einen sdbcx::Index fuers bestimmen vom TextNode anlegen
-//STRIP001  SwPosition aPos( SwNodeIndex( pDoc->GetNodes() ) );
-//STRIP001  pTxtNode = (SwTxtNode*) GetBodyTxtNode( *pDoc, aPos, *pFrm );
-//STRIP001
-//STRIP001  // Wenn kein Layout vorhanden, kommt es in Kopf und Fusszeilen dazu
-//STRIP001  // das ChangeExpansion uebers Layout-Formatieren aufgerufen wird
-//STRIP001  // aber kein TxtNode vorhanden ist
-//STRIP001  //
-//STRIP001  if(!pTxtNode)
-//STRIP001      return;
-//STRIP001
-//STRIP001  _SetGetExpFld aEndFld( aPos.nNode, pFld, &aPos.nContent );
-//STRIP001
-//STRIP001  sal_uInt16 nLast;
-//STRIP001  aTmpLst.Seek_Entry( &aEndFld, &nLast );
-//STRIP001
-//STRIP001  if( !nLast-- )
-//STRIP001      return ;        // es gibt kein entsprechendes Set - Feld vor mir
-//STRIP001
-//STRIP001  const SwTxtFld* pRefTxtFld = aTmpLst[ nLast ]->GetFld();
-//STRIP001  const SwRefPageSetField* pSetFld =
-//STRIP001                      (SwRefPageSetField*)pRefTxtFld->GetFld().GetFld();
-//STRIP001     Point aPt;
-//STRIP001     const SwCntntFrm* pRefFrm = pRefTxtFld ? pRefTxtFld->GetTxtNode().GetFrm( &aPt, 0, sal_False ) : 0;
-//STRIP001     if( pSetFld->IsOn() && pRefFrm )
-//STRIP001  {
-//STRIP001      // dann bestimme mal den entsp. Offset
-//STRIP001      const SwPageFrm* pPgFrm = pFrm->FindPageFrm();
-//STRIP001      sal_uInt16 nDiff = pPgFrm->GetPhyPageNum() -
-//STRIP001                          pRefFrm->FindPageFrm()->GetPhyPageNum() + 1;
-//STRIP001
-//STRIP001      SwRefPageGetField* pGetFld = (SwRefPageGetField*)pFld->GetFld().GetFld();
-//STRIP001      sal_uInt32 nTmpFmt = SVX_NUM_PAGEDESC == pGetFld->GetFormat()
-//STRIP001                          ? pPgFrm->GetPageDesc()->GetNumType().GetNumberingType()
-//STRIP001                          : pGetFld->GetFormat();
-//STRIP001      short nPageNum = Max(0, pSetFld->GetOffset() + (short)nDiff );
-//STRIP001      pGetFld->SetText( FormatNumber( nPageNum, nTmpFmt ) );
-//STRIP001  }
-//STRIP001 }
 /*-----------------05.03.98 14:52-------------------
 
 --------------------------------------------------*/
