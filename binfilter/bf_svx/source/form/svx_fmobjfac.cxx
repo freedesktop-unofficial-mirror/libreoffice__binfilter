@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmobjfac.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:44:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:55:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,21 +34,9 @@
  ************************************************************************/
 #pragma hdrstop
 
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVDOBJ_HXX
-// auto strip #include "svdobj.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FMTOOLS_HXX
-// auto strip #include "fmtools.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FMSERVS_HXX
-// auto strip #include "fmservs.hxx"
-// auto strip #endif
 
 #ifndef _FM_FMOBJFAC_HXX
 #include "fmobjfac.hxx"
@@ -90,21 +78,12 @@
 #include "tbxform.hxx"
 #endif
 
-// auto strip #ifndef _TOOLS_RESID_HXX //autogen
-// auto strip #include <tools/resid.hxx>
-// auto strip #endif
 
 #ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
 #endif
 
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_DIALMGR_HXX
-// auto strip #include "dialmgr.hxx"
-// auto strip #endif
 
 #ifndef _SVX_FMSERVS_HXX
 #include "fmservs.hxx"
@@ -184,22 +163,6 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 |* ::com::sun::star::form::Form-Objekte erzeugen
 |*
 \************************************************************************/
-//STRIP001 namespace
-//STRIP001 {
-//STRIP001  void    lcl_initProperty( FmFormObj* _pObject, const ::rtl::OUString& _rPropName, const Any& _rValue )
-//STRIP001  {
-//STRIP001      try
-//STRIP001      {
-//STRIP001          Reference< XPropertySet >  xModelSet( _pObject->GetUnoControlModel(), UNO_QUERY );
-//STRIP001          if ( xModelSet.is() )
-//STRIP001              xModelSet->setPropertyValue( _rPropName, _rValue );
-//STRIP001      }
-//STRIP001      catch( const Exception& )
-//STRIP001      {
-//STRIP001          DBG_ERROR( "lcl_initProperty: caught an exception!" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ IMPL_LINK(FmFormObjFactory, MakeObject, SdrObjFactory*, pObjFactory)
 /*N*/ {
@@ -211,85 +174,6 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/           {
 /*N*/               pObjFactory->pNewObj = new FmFormObj(pObjFactory->nIdentifier);
 /*N*/           }   break;
-//STRIP001 /*?*/            case OBJ_FM_EDIT:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_EDIT,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_BUTTON:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_COMMANDBUTTON,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_FIXEDTEXT:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_FIXEDTEXT,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_LISTBOX:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_LISTBOX,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_CHECKBOX:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_CHECKBOX,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_RADIOBUTTON:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_RADIOBUTTON,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_GROUPBOX:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_GROUPBOX,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_COMBOBOX:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_COMBOBOX,pObjFactory->nIdentifier);
-//STRIP001 /*?*/                lcl_initProperty( static_cast< FmFormObj* >( pObjFactory->pNewObj ), FM_PROP_DROPDOWN, makeAny( sal_True ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_GRID:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_GRID,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_IMAGEBUTTON:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_IMAGEBUTTON,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_FILECONTROL:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_FILECONTROL,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_DATEFIELD:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_DATEFIELD,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_TIMEFIELD:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_TIMEFIELD,pObjFactory->nIdentifier);
-//STRIP001 /*?*/                lcl_initProperty( static_cast< FmFormObj* >( pObjFactory->pNewObj ), FM_PROP_TIMEMAX, makeAny( (sal_Int32)( Time( 23, 59, 59, 99 ).GetTime() ) ) );
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_NUMERICFIELD:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_NUMERICFIELD,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_CURRENCYFIELD:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_CURRENCYFIELD,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_PATTERNFIELD:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_PATTERNFIELD,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_HIDDEN:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_HIDDEN,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_IMAGECONTROL:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_IMAGECONTROL,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
-//STRIP001 /*?*/            case OBJ_FM_FORMATTEDFIELD:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_FORMATTEDFIELD,pObjFactory->nIdentifier);
-//STRIP001 /*?*/            }   break;
 /*?*/           default:
 /*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 return 0;
 /*?*/       }
