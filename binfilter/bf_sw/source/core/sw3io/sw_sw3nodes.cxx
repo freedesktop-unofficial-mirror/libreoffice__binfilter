@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:02:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:59:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,24 +48,14 @@
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_XUB_STRLEN
 #define _SVSTDARR_BOOLS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
-// auto strip #ifndef _IPOBJ_HXX //autogen
-// auto strip #include <so3/ipobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
-// auto strip #ifndef _SVXLINKMGR_HXX
-// auto strip #include <bf_svx/linkmgr.hxx>
-// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -86,9 +76,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -154,12 +141,6 @@
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-// auto strip #ifndef _FLYPOS_HXX
-// auto strip #include <flypos.hxx>
-// auto strip #endif
-// auto strip #ifndef _BOOKMRK_HXX
-// auto strip #include <bookmrk.hxx>
-// auto strip #endif
 #ifndef _CRYPTER_HXX
 #include <crypter.hxx>
 #endif
@@ -173,9 +154,6 @@
 #include <fmthbsh.hxx>
 #endif
 // OD 27.06.2003 #108784#
-// auto strip #ifndef _DCONTACT_HXX
-// auto strip #include <dcontact.hxx>
-// auto strip #endif
 
 // Export
 #ifndef _FLDBAS_HXX
