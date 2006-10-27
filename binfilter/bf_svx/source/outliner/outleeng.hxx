@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outleeng.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:56:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:30:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,6 @@ public:
                         OutlinerEditEng( Outliner* pOwner, SfxItemPool* pPool );
                         ~OutlinerEditEng();
 
-//STRIP001  virtual void        PaintingFirstLine( USHORT nPara, const Point& rStartPos, long nBaseLineY, const Point& rOrigin, short nOrientation, OutputDevice* pOutDev );
 
     virtual void        ParagraphInserted( USHORT nNewParagraph );
     virtual void        ParagraphDeleted( USHORT nDeletedParagraph );
@@ -63,14 +62,10 @@ public:
     // #101498#
     virtual void        DrawingText(const Point& rStartPos, const XubString& rText, USHORT nTextStart, USHORT nTextLen, const sal_Int32* pDXArray, const SvxFont& rFont, USHORT nPara, USHORT nIndex, BYTE nRightToLeft);
 
-//STRIP001  virtual void        StyleSheetChanged( SfxStyleSheet* pStyle );
     virtual void        ParaAttribsChanged( USHORT nPara );
     virtual void        ParagraphHeightChanged( USHORT nPara );
-//STRIP001  virtual BOOL        SpellNextDocument();
     virtual XubString   GetUndoComment( USHORT nUndoId ) const;
 
-//STRIP001  virtual void        FieldClicked( const SvxFieldItem& rField, USHORT nPara, USHORT nPos );
-//STRIP001  virtual void        FieldSelected( const SvxFieldItem& rField, USHORT nPara, USHORT nPos );
     virtual XubString   CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rTxtColor, Color*& rFldColor );
 
     virtual Rectangle   GetBulletArea( USHORT nPara );
