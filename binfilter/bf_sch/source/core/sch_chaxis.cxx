@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chaxis.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:34:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:22:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,30 +38,17 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-// auto strip #ifndef _SCHATTR_HXX
-// auto strip #include "schattr.hxx"
-// auto strip #endif
 
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
 
-// auto strip #ifndef _XPOLY_HXX //autogen
-// auto strip #include <bf_svx/xpoly.hxx>
-// auto strip #endif
 
-// auto strip #include "itempool.hxx"
 
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
@@ -71,12 +58,6 @@
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
-// auto strip #ifndef _SVDORECT_HXX //autogen
-// auto strip #include <bf_svx/svdorect.hxx>
-// auto strip #endif
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include <bf_svx/svdoutl.hxx>
-// auto strip #endif
 #ifndef _XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
 #endif
@@ -84,20 +65,13 @@
 #ifndef _XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
 #endif
-// auto strip #ifndef _XFLCLIT_HXX
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
@@ -106,7 +80,6 @@
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
-// auto strip #include <bf_svx/colritem.hxx>
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
@@ -114,9 +87,7 @@
 #include "float.h"
 #include "chaxis.hxx"
 #include "pairs.hxx"
-// auto strip #include "chtmodel.hxx"
 #include "glob.hrc"
-// auto strip #include "schresid.hxx"
 #include "axisobj.hxx"
 #include "globfunc.hxx"
 #include    <algorithm>
@@ -395,24 +366,6 @@ namespace binfilter {
 /*N*/   mbTotalActual=TRUE; //einmal und nie wieder (während eines BuildChart zumindest)
 /*N*/ };
 
-//STRIP001 void ChartAxis::AdjustOrigin()
-//STRIP001 {
-//STRIP001  if (mfMax > 0.0)
-//STRIP001  {
-//STRIP001      if (mfMin > 0.0)
-//STRIP001      {
-//STRIP001          mfOrigin = mfMin;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          mfOrigin = 0.0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      mfOrigin = mfMax;
-//STRIP001  }
-//STRIP001 }
 /*N*/ BOOL ChartAxis::IsOriginInRange() const
 /*N*/ {
 /*N*/   return  ((mfMin <= mfOrigin) && (mfOrigin <= mfMax));
@@ -484,14 +437,6 @@ namespace binfilter {
 /*N*/ }
 
 //ToDo: dies Fkt. ueberfluessig machen
-//STRIP001 void ChartAxis::ReadMembers(const ChartAxis& other)
-//STRIP001 {
-//STRIP001  mfMin=other.mfMin;
-//STRIP001  mfMax=other.mfMax;
-//STRIP001  mfStep=other.mfStep;
-//STRIP001  mfStepHelp=other.mfStepHelp;
-//STRIP001  mfOrigin=other.mfOrigin;
-//STRIP001 }
 
 /* ************************************************************************
 |*
@@ -1462,27 +1407,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-//STRIP001 long ChartAxis::GetPosConstrained(double fData)
-//STRIP001 {
-//STRIP001  long nPos=GetPos(fData);
-//STRIP001
-//STRIP001  if(IsVertical())
-//STRIP001  {
-//STRIP001      if(nPos < maRefArea.Top())
-//STRIP001          return maRefArea.Top();
-//STRIP001      if(nPos > maRefArea.Bottom())
-//STRIP001          return maRefArea.Bottom();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if(nPos < maRefArea.Left())
-//STRIP001          return maRefArea.Left();
-//STRIP001      if(nPos > maRefArea.Right())
-//STRIP001          return maRefArea.Right();
-//STRIP001  }
-//STRIP001
-//STRIP001  return nPos;
-//STRIP001 }
 
 /*N*/ long ChartAxis::GetPos(double fData)
 /*N*/ {
@@ -1521,86 +1445,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 void ChartAxis::UpdateRowMinMax(
-//STRIP001     const long nRow,
-//STRIP001     const long nColCnt,
-//STRIP001     const BOOL mbPercent,
-//STRIP001     double & inout_fMin,
-//STRIP001     double & inout_fMax )
-//STRIP001 {
-//STRIP001  double fDiffUp   = 0.0;
-//STRIP001  double fDiffDown = 0.0;
-//STRIP001  long nCol;
-//STRIP001
-//STRIP001  fDiffUp=fDiffDown=GetRowError(nRow); //rm2
-//STRIP001
-//STRIP001  for (nCol = 0; nCol < nColCnt; nCol++)
-//STRIP001  {
-//STRIP001      double fData    = GetData(nCol, nRow);//mpModel->GetData(nCol, nRow, mbPercent);
-//STRIP001
-//STRIP001      if (fData != DBL_MIN)
-//STRIP001      {
-//STRIP001          double fDataMin = fData;
-//STRIP001          double fDataMax = fData;
-//STRIP001          SfxItemSet aDataPointAttr(mpModel->GetFullDataPointAttr(nCol, nRow));//#63904#71%
-//STRIP001
-//STRIP001          switch ((SvxChartKindError) ((const SfxInt32Item &) aDataPointAttr.
-//STRIP001                                       Get (SCHATTR_STAT_KIND_ERROR)).GetValue ())
-//STRIP001          {
-//STRIP001              case CHERROR_PERCENT :
-//STRIP001                  fDiffUp   =
-//STRIP001                  fDiffDown = fData * ((const SvxDoubleItem &) aDataPointAttr.
-//STRIP001                                       Get (SCHATTR_STAT_PERCENT)).GetValue () / 100.0;
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHERROR_CONST :
-//STRIP001                  fDiffUp   = fData + ((const SvxDoubleItem &) aDataPointAttr.
-//STRIP001                                       Get (SCHATTR_STAT_CONSTPLUS)).GetValue ();
-//STRIP001                  fDiffDown = fData + ((const SvxDoubleItem &) aDataPointAttr.
-//STRIP001                                      Get (SCHATTR_STAT_CONSTMINUS)).GetValue ();
-//STRIP001                  break;
-//STRIP001
-//STRIP001              default :
-//STRIP001                  ;
-//STRIP001          }
-//STRIP001
-//STRIP001          switch ((SvxChartIndicate) ((const SfxInt32Item &) aDataPointAttr.
-//STRIP001                                      Get (SCHATTR_STAT_INDICATE)).GetValue ())
-//STRIP001          {
-//STRIP001              case CHINDICATE_BOTH :
-//STRIP001                  fDataMin -= fDiffDown;
-//STRIP001                  fDataMax += fDiffUp;
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHINDICATE_UP :
-//STRIP001                  fDataMax += fDiffUp;
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHINDICATE_DOWN :
-//STRIP001                  fDataMin -= fDiffDown;
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CHINDICATE_NONE :
-//STRIP001              default :
-//STRIP001                 ;
-//STRIP001          }
-//STRIP001
-//STRIP001          if ((nCol == 0) && (nRow == 0))
-//STRIP001          {
-//STRIP001              inout_fMin = fDataMin;
-//STRIP001              inout_fMax = fDataMax;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              if ((inout_fMin > fDataMin) && !mbLogarithm ||(fDataMin > 0.0) && mbLogarithm)
-//STRIP001                  inout_fMin = fDataMin;
-//STRIP001              if (inout_fMax < fDataMax)
-//STRIP001                  inout_fMax = fDataMax;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001 }
 
 
 /* ************************************************************************
@@ -2748,18 +2592,7 @@ namespace binfilter {
 /*N*/       ? SCHATTR_AXIS_NUMFMTPERCENT : SCHATTR_AXIS_NUMFMT)).GetValue();
 /*N*/ }
 
-//STRIP001 void ChartAxis::SetNumFormat( BOOL bPercent, long nId )
-//STRIP001 {
-//STRIP001  mpAxisAttr->Put( SfxUInt32Item( bPercent
-//STRIP001                                     ? SCHATTR_AXIS_NUMFMTPERCENT
-//STRIP001                                     : SCHATTR_AXIS_NUMFMT,
-//STRIP001                                     USHORT( nId )));
-//STRIP001 }
 
-//STRIP001 BOOL ChartAxis::IsValueInRange( double fValue ) const
-//STRIP001 {
-//STRIP001  return  ((mfMin <= fValue) && (fValue <= mfMax));
-//STRIP001 }
 
 /*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* pTransTable )
 /*N*/ {
@@ -2771,7 +2604,6 @@ namespace binfilter {
 /*N*/   if( nFmt != nMrgFmt )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetNumFormat( mbPercent, nMrgFmt );
-//STRIP001 /*?*/        bRet = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   nFmt = GetNumFormat( ! mbPercent );
