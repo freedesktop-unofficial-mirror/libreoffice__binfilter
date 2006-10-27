@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwtxtsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:30:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:38:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,7 +71,6 @@ public:
     SwWrtShell &GetShell();
 
                  SwDrawTextShell(SwView &rView);
-//STRIP001  virtual     ~SwDrawTextShell();
 
     void        StateDisableItems(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        StateDisableItems(SfxItemSet &);
 
@@ -92,8 +91,6 @@ public:
     void        StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        StateInsert(SfxItemSet &rSet);
     void        ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        ExecTransliteration(SfxRequest &);
 
-//STRIP001  void        Init();
-//STRIP001  void        StateStatusline(SfxItemSet &rSet);
 };
 
 } //namespace binfilter
