@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-20 11:38:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:24:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,115 +33,57 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _XOUTX_HXX //autogen
-// auto strip #include <bf_svx/xoutx.hxx>
-// auto strip #endif
 #ifndef _SVX_TAB_LINE_HXX
 #include <bf_svx/tabline.hxx>
 #endif
 #ifndef _SVDOGRAF_HXX //autogen
 #include <bf_svx/svdograf.hxx>
 #endif
-// auto strip #ifndef _E3D_POLYGON3D_HXX //autogen
-// auto strip #include <bf_svx/polygn3d.hxx>
-// auto strip #endif
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_XLNWTIT_HXX //autogen
-// auto strip #include <bf_svx/xlnwtit.hxx>
-// auto strip #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 #ifndef _SVX_XBTMPIT_HXX //autogen
 #include <bf_svx/xbtmpit.hxx>
 #endif
-// auto strip #ifndef _SVDORECT_HXX //autogen
-// auto strip #include <bf_svx/svdorect.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
 #ifndef _SVX_COLRITEM_HXX //autogen
 #define ITEMID_COLOR       EE_CHAR_COLOR
-// auto strip #include <bf_svx/colritem.hxx>
 #endif
-// auto strip #ifndef _SVX_XFLGRIT_HXX
-// auto strip #include <bf_svx/xflgrit.hxx>
-// auto strip #endif
 #ifndef _SVX_XFLFTRIT_HXX
 #include <bf_svx/xflftrit.hxx>
 #endif
 #ifndef _SVX_XFLHTIT_HXX
 #include <bf_svx/xflhtit.hxx>
 #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 #ifndef _XTABLE_HXX
 #include <bf_svx/xtable.hxx>
 #endif
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-// auto strip #ifndef _SCH_MEMCHRT_HXX
-// auto strip #include "memchrt.hxx"
-// auto strip #endif
 
 // header for SvxChartTextOrientItem
 #ifndef _SVX_CHRTITEM_HXX
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
-// auto strip #ifndef _SFXITEMITER_HXX //autogen
-// auto strip #include <svtools/itemiter.hxx>
-// auto strip #endif
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-// auto strip #include <bf_svx/fhgtitem.hxx>
 #ifndef _CHTMODEL_HXX
-// auto strip #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
-// auto strip #ifndef _SCH_OBJID_HXX
-// auto strip #include "objid.hxx"
-// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SCH_SCHRESID_HXX
-// auto strip #include "schresid.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAROW_HXX
-// auto strip #include "datarow.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAPOIN_HXX
-// auto strip #include "datapoin.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNCLIT_HXX //autogen
-// auto strip #include <bf_svx/xlnclit.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
 
 #include "schattr.hxx"
 #ifndef _SVX_BRSHITEM_HXX //autogen
@@ -156,9 +98,27 @@
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
-// auto strip #ifndef   _OUTLOBJ_HXX
-// auto strip #include "bf_svx/outlobj.hxx"
-// auto strip #endif
+
+#ifndef _SVX_XLNEDIT_HXX
+#include <bf_svx/xlnedit.hxx>
+#endif
+
+#ifndef _SVX_XLNSTIT_HXX
+#include <bf_svx/xlnstit.hxx>
+#endif
+
+#ifndef _SVX_XLNDSIT_HXX
+#include <bf_svx/xlndsit.hxx>
+#endif
+
+#ifndef _SVX_XLNCLIT_HXX
+#include <bf_svx/xlnclit.hxx>
+#endif
+
+#ifndef _SVX_XLNWTIT_HXX
+#include <bf_svx/xlnwtit.hxx>
+#endif
+
 
 #include "glob.hrc"
 
@@ -167,9 +127,6 @@
 
 #include "chaxis.hxx"
 
-// auto strip #ifndef _SCH_PROPERTYCHANGEHINT_HXX
-// auto strip #include "PropertyChangeHint.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
@@ -214,82 +171,6 @@ namespace binfilter {
     return bNeedBuild;
 */
 /*N*/ }
-
-/*
-    Set axis attributes.
-    The attributes given by rAttr are set unconditionally to all axis,
-    regardless of wether they are visible or not.
-*/
-//STRIP001 void ChartModel::PutAxisAttr(const SfxItemSet& rAttr,BOOL bMerge)
-//STRIP001 {
-//STRIP001 //   if( pChartXAxis->IsVisible() )
-//STRIP001  {
-//STRIP001      if( !bMerge )
-//STRIP001          pChartXAxis->GetItemSet()->ClearItem();
-//STRIP001      pChartXAxis->SetAttributes( rAttr );
-//STRIP001  }
-//STRIP001 //   if( CanAxis( CHART_AXIS_SECONDARY_X ) && pChartAAxis->IsVisible() )
-//STRIP001  {
-//STRIP001      if( !bMerge )
-//STRIP001          pChartAAxis->GetItemSet()->ClearItem();
-//STRIP001      pChartAAxis->SetAttributes( rAttr );
-//STRIP001  }
-//STRIP001
-//STRIP001 //   if( pChartYAxis->IsVisible() )
-//STRIP001  {
-//STRIP001      if( !bMerge )
-//STRIP001          pChartYAxis->GetItemSet()->ClearItem();
-//STRIP001      pChartYAxis->SetAttributes( rAttr );
-//STRIP001  }
-//STRIP001 //   if( CanAxis( CHART_AXIS_SECONDARY_Y ) && pChartBAxis->IsVisible() )
-//STRIP001  {
-//STRIP001      if( !bMerge )
-//STRIP001          pChartBAxis->GetItemSet()->ClearItem();
-//STRIP001      pChartBAxis->SetAttributes( rAttr );
-//STRIP001  }
-//STRIP001
-//STRIP001 //   if( Is3DChart() && pChartZAxis->IsVisible() )
-//STRIP001  {
-//STRIP001      if( !bMerge )
-//STRIP001          pChartZAxis->GetItemSet()->ClearItem();
-//STRIP001      pChartZAxis->SetAttributes( rAttr );
-//STRIP001  }
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* Achsen-Attribute ermitteln
-|*
-\************************************************************************/
-
-//STRIP001 const SfxItemSet& ChartModel::GetAxisAttr(const SdrObjGroup* pAxisObj) const
-//STRIP001 {
-//STRIP001  if (pAxisObj)
-//STRIP001  {
-//STRIP001      SchObjectId* pObjId = GetObjectId(*pAxisObj);
-//STRIP001
-//STRIP001      if (pObjId)
-//STRIP001      {
-//STRIP001          long nId=GetObjectId(*pAxisObj)->GetObjId();
-//STRIP001          switch (nId)
-//STRIP001          {
-//STRIP001              case CHOBJID_DIAGRAM_X_AXIS:
-//STRIP001              case CHOBJID_DIAGRAM_Y_AXIS:
-//STRIP001              case CHOBJID_DIAGRAM_Z_AXIS:
-//STRIP001              case CHOBJID_DIAGRAM_A_AXIS:
-//STRIP001              case CHOBJID_DIAGRAM_B_AXIS:
-//STRIP001              case CHOBJID_DIAGRAM_C_AXIS:
-//STRIP001                  return GetAttr(nId);
-//STRIP001 /*                   return *pXAxisAttr;
-//STRIP001                  return *pYAxisAttr;
-//STRIP001                  return *pZAxisAttr;
-//STRIP001 */
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return *pAxisAttr;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -446,395 +327,9 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutAxisAttr(rAttr,bMerge);
-//STRIP001 /*?*/        return SetAllAxisAttributes ();
         return FALSE;
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Achsen-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-//STRIP001 BOOL ChartModel::ChangeAxisAttr(const SfxItemSet& rXAxisAttr,
-//STRIP001                              const SfxItemSet& rYAxisAttr,
-//STRIP001                              const SfxItemSet& rZAxisAttr,
-//STRIP001                              BOOL              bMerge)
-//STRIP001 {
-//STRIP001  SetAttributes(CHOBJID_DIAGRAM_X_AXIS,rXAxisAttr,bMerge);
-//STRIP001  SetAttributes(CHOBJID_DIAGRAM_Y_AXIS,rYAxisAttr,bMerge);
-//STRIP001  SetAttributes(CHOBJID_DIAGRAM_Z_AXIS,rZAxisAttr,bMerge);
-//STRIP001  return SetAllAxisAttributes ();
-//STRIP001 }
-/*************************************************************************
-|*
-|* Gitter-Attribute setzen
-|*
-\************************************************************************/
-
-//STRIP001 void ChartModel::PutGridAttr(const SfxItemSet& rAttr,BOOL bMerge)
-//STRIP001 {
-//STRIP001  if(!bMerge)
-//STRIP001  {
-//STRIP001      pGridAttr->ClearItem();
-//STRIP001      pXGridMainAttr->ClearItem();
-//STRIP001      pYGridMainAttr->ClearItem();
-//STRIP001      pZGridMainAttr->ClearItem();
-//STRIP001      pXGridHelpAttr->ClearItem();
-//STRIP001      pYGridHelpAttr->ClearItem();
-//STRIP001      pZGridHelpAttr->ClearItem();
-//STRIP001  }
-//STRIP001  pGridAttr->Put(rAttr);
-//STRIP001  pXGridMainAttr->Put(rAttr);
-//STRIP001  pYGridMainAttr->Put(rAttr);
-//STRIP001  pZGridMainAttr->Put(rAttr);
-//STRIP001  pXGridHelpAttr->Put(rAttr);
-//STRIP001  pYGridHelpAttr->Put(rAttr);
-//STRIP001  pZGridHelpAttr->Put(rAttr);
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* Gitter-Attribute ermitteln
-|*
-\************************************************************************/
-
-//STRIP001 const SfxItemSet& ChartModel::GetGridAttr(const SdrObject* pGridObj) const
-//STRIP001 {
-//STRIP001     UINT16 nObjId = CHOBJID_ANY;
-//STRIP001
-//STRIP001     if( pGridObj )
-//STRIP001  {
-//STRIP001      SchObjectId* pObjId = GetObjectId( *pGridObj );
-//STRIP001         if( pObjId )
-//STRIP001             nObjId = pObjId->GetObjId();
-//STRIP001     }
-//STRIP001
-//STRIP001     return GetGridAttr( nObjId );
-//STRIP001 }
-
-
-//STRIP001 const SfxItemSet& ChartModel::GetGridAttr( UINT16 nObjId ) const
-//STRIP001 {
-//STRIP001     switch( nObjId )
-//STRIP001     {
-//STRIP001         case CHOBJID_DIAGRAM_X_GRID_MAIN_GROUP:
-//STRIP001             return *pXGridMainAttr;
-//STRIP001         case CHOBJID_DIAGRAM_Y_GRID_MAIN_GROUP:
-//STRIP001             return *pYGridMainAttr;
-//STRIP001         case CHOBJID_DIAGRAM_Z_GRID_MAIN_GROUP:
-//STRIP001             return *pZGridMainAttr;
-//STRIP001         case CHOBJID_DIAGRAM_X_GRID_HELP_GROUP:
-//STRIP001             return *pXGridHelpAttr;
-//STRIP001         case CHOBJID_DIAGRAM_Y_GRID_HELP_GROUP:
-//STRIP001             return *pYGridHelpAttr;
-//STRIP001         case CHOBJID_DIAGRAM_Z_GRID_HELP_GROUP:
-//STRIP001             return *pZGridHelpAttr;
-//STRIP001         default:
-//STRIP001             pGridAttr->ClearItem();
-//STRIP001             pGridAttr->Put(*pXGridMainAttr);
-//STRIP001
-//STRIP001             CompareSets( *pYGridMainAttr, *pGridAttr );
-//STRIP001             CompareSets( *pZGridMainAttr, *pGridAttr );
-//STRIP001             CompareSets( *pXGridHelpAttr, *pGridAttr );
-//STRIP001             CompareSets( *pYGridHelpAttr, *pGridAttr );
-//STRIP001             CompareSets( *pZGridHelpAttr, *pGridAttr );
-//STRIP001
-//STRIP001             return *pGridAttr;
-//STRIP001     }
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* Diagramm-Gitter-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-//STRIP001 BOOL ChartModel::ChangeGridAttr(const SfxItemSet& rAttr,
-//STRIP001                              SdrObject* pGridObj, BOOL bMerge)
-//STRIP001 {
-//STRIP001  if (pGridObj)
-//STRIP001  {
-//STRIP001      SchObjectId* pObjId = GetObjectId(*pGridObj);
-//STRIP001
-//STRIP001      if (pObjId) switch (pObjId->GetObjId())
-//STRIP001                  {
-//STRIP001                      case CHOBJID_DIAGRAM_X_GRID_MAIN_GROUP:
-//STRIP001                          PutXGridMainAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/                         pGridObj->SetAttributes(*pXGridMainAttr, FALSE);
-//STRIP001                          pGridObj->SetItemSetAndBroadcast(*pXGridMainAttr);
-//STRIP001                          break;
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_Y_GRID_MAIN_GROUP:
-//STRIP001                          PutYGridMainAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/                         pGridObj->SetAttributes(*pYGridMainAttr, FALSE);
-//STRIP001                          pGridObj->SetItemSetAndBroadcast(*pYGridMainAttr);
-//STRIP001                          break;
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_Z_GRID_MAIN_GROUP:
-//STRIP001                          PutZGridMainAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/                         pGridObj->SetAttributes(*pZGridMainAttr, FALSE);
-//STRIP001                          pGridObj->SetItemSetAndBroadcast(*pZGridMainAttr);
-//STRIP001                          break;
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_X_GRID_HELP_GROUP:
-//STRIP001                          PutXGridHelpAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/                         pGridObj->SetAttributes(*pXGridHelpAttr, FALSE);
-//STRIP001                          pGridObj->SetItemSetAndBroadcast(*pXGridHelpAttr);
-//STRIP001                          break;
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_Y_GRID_HELP_GROUP:
-//STRIP001                          PutYGridHelpAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/                         pGridObj->SetAttributes(*pYGridHelpAttr, FALSE);
-//STRIP001                          pGridObj->SetItemSetAndBroadcast(*pYGridHelpAttr);
-//STRIP001                          break;
-//STRIP001
-//STRIP001                      case CHOBJID_DIAGRAM_Z_GRID_HELP_GROUP:
-//STRIP001                          PutZGridHelpAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/                         pGridObj->SetAttributes(*pZGridHelpAttr, FALSE);
-//STRIP001                          pGridObj->SetItemSetAndBroadcast(*pZGridHelpAttr);
-//STRIP001                          break;
-//STRIP001                  }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      PutGridAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001      SdrPage* pPage = GetPage(0);
-//STRIP001
-//STRIP001      if (pPage)
-//STRIP001      {
-//STRIP001          SdrObjGroup* pGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001          DBG_ASSERT(pGroup, "ChartModel::ChangeGridAttr: diagram group not found");
-//STRIP001
-//STRIP001          SdrObjGroup* pGridGroup;
-//STRIP001
-//STRIP001          if (bShowXGridMain)
-//STRIP001          {
-//STRIP001              pGridGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_X_GRID_MAIN_GROUP,
-//STRIP001                                                      *pGroup->GetSubList());
-//STRIP001
-//STRIP001              if (pGridGroup)
-//STRIP001              {
-//STRIP001                  SdrObjListIter aIterator(*pGridGroup->GetSubList(), IM_FLAT);
-//STRIP001                  while (aIterator.IsMore())
-//STRIP001 //-/                     aIterator.Next()->SetAttributes(*pXGridMainAttr, FALSE);
-//STRIP001                      aIterator.Next()->SetItemSetAndBroadcast(*pXGridMainAttr);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (bShowYGridMain)
-//STRIP001          {
-//STRIP001              pGridGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_Y_GRID_MAIN_GROUP,
-//STRIP001                                                      *pGroup->GetSubList());
-//STRIP001
-//STRIP001              if (pGridGroup)
-//STRIP001              {
-//STRIP001                  SdrObjListIter aIterator(*pGridGroup->GetSubList(), IM_FLAT);
-//STRIP001                  while (aIterator.IsMore())
-//STRIP001 //-/                     aIterator.Next()->SetAttributes(*pYGridMainAttr, FALSE);
-//STRIP001                      aIterator.Next()->SetItemSetAndBroadcast(*pYGridMainAttr);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (bShowXGridHelp)
-//STRIP001          {
-//STRIP001              pGridGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_X_GRID_HELP_GROUP,
-//STRIP001                                                      *pGroup->GetSubList());
-//STRIP001
-//STRIP001              if (pGridGroup)
-//STRIP001              {
-//STRIP001                  SdrObjListIter aIterator(*pGridGroup->GetSubList(), IM_FLAT);
-//STRIP001                  while (aIterator.IsMore())
-//STRIP001 //-/                     aIterator.Next()->SetAttributes(*pXGridHelpAttr, FALSE);
-//STRIP001                      aIterator.Next()->SetItemSetAndBroadcast(*pXGridHelpAttr);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (bShowYGridHelp)
-//STRIP001          {
-//STRIP001              pGridGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_Y_GRID_HELP_GROUP,
-//STRIP001                                                      *pGroup->GetSubList());
-//STRIP001              if (pGridGroup)
-//STRIP001              {
-//STRIP001                  SdrObjListIter aIterator(*pGridGroup->GetSubList(), IM_FLAT);
-//STRIP001                  while (aIterator.IsMore())
-//STRIP001 //-/                     aIterator.Next()->SetAttributes(*pYGridHelpAttr, FALSE);
-//STRIP001                      aIterator.Next()->SetItemSetAndBroadcast(*pYGridHelpAttr);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (Is3DChart())
-//STRIP001          {
-//STRIP001              if (bShowZGridMain)
-//STRIP001              {
-//STRIP001                  pGridGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_Z_GRID_MAIN_GROUP,
-//STRIP001                                                          *pGroup->GetSubList());
-//STRIP001
-//STRIP001                  if (pGridGroup)
-//STRIP001                  {
-//STRIP001                      SdrObjListIter aIterator(*pGridGroup->GetSubList(), IM_FLAT);
-//STRIP001                      while (aIterator.IsMore())
-//STRIP001 //-/                         aIterator.Next()->SetAttributes(*pZGridMainAttr, FALSE);
-//STRIP001                          aIterator.Next()->SetItemSetAndBroadcast(*pZGridMainAttr);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              if (bShowZGridHelp)
-//STRIP001              {
-//STRIP001                  pGridGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_Z_GRID_HELP_GROUP,
-//STRIP001                                                          *pGroup->GetSubList());
-//STRIP001                  if (pGridGroup)
-//STRIP001                  {
-//STRIP001                      SdrObjListIter aIterator(*pGridGroup->GetSubList(), IM_FLAT);
-//STRIP001                      while (aIterator.IsMore())
-//STRIP001 //-/                         aIterator.Next()->SetAttributes(*pZGridHelpAttr, FALSE);
-//STRIP001                          aIterator.Next()->SetItemSetAndBroadcast(*pZGridHelpAttr);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001      BuildChart (FALSE);
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* Diagrammflaechen-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-//STRIP001 void ChartModel::ChangeDiagramAreaAttr(const SfxItemSet& rAttr,
-//STRIP001                                     SdrRectObj* pDiagramAreaObj,
-//STRIP001                                     BOOL bMerge)
-//STRIP001 {
-//STRIP001  if (!pDiagramAreaObj)
-//STRIP001  {
-//STRIP001      SdrPage* pPage = GetPage(0);
-//STRIP001      DBG_ASSERT( pPage, "ChartModel::ChangeDiagramAreaAttr: page obj is NULL" );
-//STRIP001
-//STRIP001      pDiagramAreaObj = (SdrRectObj*)GetObjWithId(CHOBJID_DIAGRAM_AREA, *pPage);
-//STRIP001      DBG_ASSERT( pDiagramAreaObj, "ChartModel::ChangeDiagramAreaAttr: empty diagram obj");
-//STRIP001  }
-//STRIP001
-//STRIP001  PutDiagramAreaAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/ pDiagramAreaObj->SetAttributes(rAttr, FALSE);
-//STRIP001  pDiagramAreaObj->SetItemSetAndBroadcast(rAttr);
-//STRIP001
-//STRIP001  if(IsDonutChart())
-//STRIP001     {
-//STRIP001         if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001          BuildChart (FALSE);
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         Broadcast( SchPropertyChangeHint( pDiagramAreaObj, rAttr ) );
-//STRIP001     }
-//STRIP001
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* Diagrammwaende-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-//STRIP001 void ChartModel::ChangeDiagramWallAttr(const SfxItemSet& rAttr,
-//STRIP001                                     SdrObject* pDiagramWallObj,
-//STRIP001                                     BOOL bMerge)
-//STRIP001 {
-//STRIP001  if (!pDiagramWallObj)
-//STRIP001  {
-//STRIP001      SdrPage* pPage = GetPage(0);
-//STRIP001      DBG_ASSERT( pPage, "ChartModel::ChangeDiagramWallAttr: page obj is NULL" );
-//STRIP001
-//STRIP001      SdrObjGroup* pGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001      DBG_ASSERT( pGroup, "ChartModel::ChangeDiagramAreaAttr: empty diagram group obj");
-//STRIP001
-//STRIP001      pDiagramWallObj = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_WALL,
-//STRIP001                                                   *pGroup->GetSubList());
-//STRIP001      DBG_ASSERT( pDiagramWallObj, "ChartModel::ChangeDiagramWallAttr: diagram wall obj is NULL" );
-//STRIP001  }
-//STRIP001
-//STRIP001  PutDiagramWallAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001  if (pDiagramWallObj->ISA(SdrObjGroup))
-//STRIP001  {
-//STRIP001      if (((SdrObjGroup*)pDiagramWallObj)->GetSubList())
-//STRIP001      {
-//STRIP001          SdrObjListIter aIterator(*((SdrObjGroup*)pDiagramWallObj)->GetSubList(), IM_FLAT);
-//STRIP001          while (aIterator.IsMore())
-//STRIP001 //-/             aIterator.Next()->SetAttributes(*pDiagramWallAttr, FALSE);
-//STRIP001              aIterator.Next()->SetItemSetAndBroadcast(*pDiagramWallAttr);
-//STRIP001      }
-//STRIP001 //-/     else pDiagramWallObj->SetAttributes(*pDiagramWallAttr, FALSE);
-//STRIP001      else pDiagramWallObj->SetItemSetAndBroadcast(*pDiagramWallAttr);
-//STRIP001  }
-//STRIP001 //-/ else pDiagramWallObj->SetAttributes(*pDiagramWallAttr, FALSE);
-//STRIP001  else pDiagramWallObj->SetItemSetAndBroadcast(*pDiagramWallAttr);
-//STRIP001
-//STRIP001  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001      BuildChart (FALSE);
-//STRIP001  else if(Is3DChart())
-//STRIP001  {
-//STRIP001      SdrPage* pPage = GetPage(0);
-//STRIP001      DBG_ASSERT(pPage, "ChartModel::ChangeDiagramWallAttr: No page available");
-//STRIP001      SdrObjGroup* pGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001      DBG_ASSERT(pGroup, "ChartModel::ChangeDiagramWallAttr: diagram group not found");
-//STRIP001      SetAttrWithId(CHOBJID_DIAGRAM_WALL,*pGroup->GetSubList(),rAttr);
-//STRIP001  }
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* Diagrammboden-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-//STRIP001 void ChartModel::ChangeDiagramFloorAttr(const SfxItemSet& rAttr,
-//STRIP001                                      E3dExtrudeObj* pDiagramFloorObj,
-//STRIP001                                      BOOL bMerge)
-//STRIP001 {
-//STRIP001  if (!pDiagramFloorObj)
-//STRIP001  {
-//STRIP001      SdrPage* pPage = GetPage(0);
-//STRIP001      DBG_ASSERT(pPage, "ChartModel::ChangeDiagramFloorAttr: No page available");
-//STRIP001
-//STRIP001      SdrObjGroup* pGroup = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *pPage);
-//STRIP001      DBG_ASSERT(pGroup, "ChartModel::ChangeDiagramFloorAttr: diagram group not found");
-//STRIP001
-//STRIP001      pDiagramFloorObj = SAL_STATIC_CAST( E3dExtrudeObj*, GetObjWithId( CHOBJID_DIAGRAM_FLOOR,
-//STRIP001                                                                       *pGroup->GetSubList()) );
-//STRIP001      DBG_ASSERT(pDiagramFloorObj, "ChartModel::ChangeDiagramFloorAttr: floor not found");
-//STRIP001      if(!pDiagramFloorObj)
-//STRIP001          return;
-//STRIP001  }
-//STRIP001
-//STRIP001  PutDiagramFloorAttr(rAttr,bMerge);
-//STRIP001
-//STRIP001 //-/ pDiagramFloorObj->SetAttributes(*pDiagramFloorAttr, FALSE);
-//STRIP001  pDiagramFloorObj->SetItemSetAndBroadcast(*pDiagramFloorAttr);
-//STRIP001
-//STRIP001  if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001      BuildChart (FALSE);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -898,277 +393,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|* SubRoutinen ChangeDataPointAttr, Legendenattributierung
-|*
-\************************************************************************/
-//STRIP001 void ChartModel::ChangeLegendPointAttr(const long nDataCol,const SfxItemSet& rDataPointAttr)
-//STRIP001 {
-//STRIP001  CHART_TRACE( "ChartModel::ChangeLegendPointAttr" );
-//STRIP001
-//STRIP001  SfxItemSet aSymbolAttr(rDataPointAttr); //#54870#
-//STRIP001  GenerateSymbolAttr(aSymbolAttr,0,SYMBOLMODE_LEGEND); //Achtung! 0 ist die Datenreihe (immer=0 bei Datenpunkt-Legende=Pie), das kann sich aber mal ändern!
-//STRIP001
-//STRIP001  const SdrPage* pPage=GetPage(0);
-//STRIP001  SdrObjGroup* pLegendObj = (SdrObjGroup*)GetObjWithId(CHOBJID_LEGEND, *pPage);
-//STRIP001  DBG_ASSERT(pLegendObj, "ChartModel::ChangeLegendPointAttr:Legenden-Objekt nicht gefunden!");
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*pLegendObj->GetSubList(), IM_FLAT);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001      if (pId && (pId->GetObjId() == CHOBJID_LEGEND_SYMBOL_COL))
-//STRIP001      {
-//STRIP001          SchDataPoint* pSymPoint = GetDataPoint(*pObj);
-//STRIP001          DBG_ASSERT(pSymPoint, "ChartModel::ChangeLegendPointAttr:Legenden-Symbol hat keine Datenpunkt-Information!")
-//STRIP001          if (pSymPoint->GetCol() == nDataCol && pSymPoint->GetRow() == 0)
-//STRIP001          {
-//STRIP001 //-/             pObj->SetAttributes(aSymbolAttr, FALSE);
-//STRIP001              pObj->SetItemSetAndBroadcast(aSymbolAttr);
-//STRIP001
-//STRIP001              DBG_ITEMS(aSymbolAttr,this);
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
-/*************************************************************************
-|*
-|* SubRoutine ChangeDataRowAttr, Legendenattributierung
-|*
-\************************************************************************/
-//STRIP001 void ChartModel::ChangeLegendRowAttr(const long nDataRow,const SfxItemSet& rDataRowAttr)
-//STRIP001 {
-//STRIP001  CHART_TRACE( "ChartModel::ChangeLegendRowAttr" );
-//STRIP001
-//STRIP001  //Attributsets für die Symbole füllen:
-//STRIP001  SfxItemSet aSymbolAttr(rDataRowAttr); //#54870#
-//STRIP001  GenerateSymbolAttr(aSymbolAttr,nDataRow,SYMBOLMODE_LEGEND);
-//STRIP001
-//STRIP001  SdrPage* pPage=GetPage(0);
-//STRIP001  SdrObjGroup* pLegendObj =(SdrObjGroup*)GetObjWithId(CHOBJID_LEGEND, *pPage);
-//STRIP001  DBG_ASSERT(pLegendObj, "ChartModel::ChangeLegendRowAttr:Legenden-Objekt nicht gefunden!");
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*pLegendObj->GetSubList(), IM_FLAT);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001      if (pId && (pId->GetObjId() == CHOBJID_LEGEND_SYMBOL_ROW))
-//STRIP001      {
-//STRIP001          SchDataRow* pSymRow = GetDataRow(*pObj);
-//STRIP001          if (pSymRow && pSymRow->GetRow() == nDataRow)
-//STRIP001          {
-//STRIP001 //-/             pObj->SetAttributes(aSymbolAttr, FALSE);
-//STRIP001              pObj->SetItemSetAndBroadcast(aSymbolAttr);
-//STRIP001
-//STRIP001              DBG_ITEMS(aSymbolAttr,this);
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* ChangeDataRow-Submethode: Attributiere CHOBJID_DIAGRAM_DESCR_SYMBOL
-|*
-\************************************************************************/
-
-//STRIP001 void ChartModel::ChangeRowDescrSymbolAttr(const long nDataRow,const SfxItemSet& rDataRowAttr)
-//STRIP001 {
-//STRIP001  CHART_TRACE( "ChartModel::ChangeRowDescrSymbolAttr" );
-//STRIP001
-//STRIP001  //Attributsets für die Symbole füllen:
-//STRIP001  SfxItemSet aSymbolAttr(rDataRowAttr); //#54870#
-//STRIP001  GenerateSymbolAttr(aSymbolAttr,nDataRow,SYMBOLMODE_DESCRIPTION);
-//STRIP001
-//STRIP001  SdrObjGroup* pDiagramObj
-//STRIP001                  = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *GetPage(0));
-//STRIP001  DBG_ASSERT(pDiagramObj, "ChartModel::ChangeRowDescrSymbolAttr:Diagramm-Objekt nicht gefunden!");
-//STRIP001
-//STRIP001  BOOL bBreak = FALSE;
-//STRIP001
-//STRIP001  SdrObjListIter aIter1(*pDiagramObj->GetSubList(), IM_FLAT);
-//STRIP001  while (!bBreak && aIter1.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj1 = aIter1.Next();
-//STRIP001
-//STRIP001      if (pObj1)
-//STRIP001      {
-//STRIP001          SchObjectId* pId1 = GetObjectId(*pObj1);
-//STRIP001
-//STRIP001          if (pId1)
-//STRIP001              if (pId1->GetObjId() == CHOBJID_DIAGRAM_DESCRGROUP)
-//STRIP001              {
-//STRIP001                  SdrObjListIter aIter2(*((SdrObjGroup*)pObj1)->GetSubList(),
-//STRIP001                                        IM_FLAT);
-//STRIP001                  while (aIter2.IsMore())
-//STRIP001                  {
-//STRIP001                      SdrObject* pObj2 = aIter2.Next();
-//STRIP001                      SchObjectId* pId2 = GetObjectId(*pObj2);
-//STRIP001
-//STRIP001                      //#54870# auch _COL attributiert werden, BuildChart tut es schliesslich auch!
-//STRIP001                      if (pId2
-//STRIP001                          && ((pId2->GetObjId() == CHOBJID_DIAGRAM_DESCR_ROW)
-//STRIP001                           || (pId2->GetObjId() == CHOBJID_DIAGRAM_DESCR_COL) )
-//STRIP001                          && pObj2->ISA(SdrObjGroup))
-//STRIP001                      {
-//STRIP001                          SchDataRow*   pSymRow  = GetDataRow(*pObj2);
-//STRIP001                          SchDataPoint* pSymPoint= GetDataPoint(*pObj2);
-//STRIP001                          if( pSymRow || pSymPoint )
-//STRIP001                          {
-//STRIP001                              long nRow;
-//STRIP001                              if(pSymRow)
-//STRIP001                                  nRow=pSymRow->GetRow();
-//STRIP001                              else
-//STRIP001                                  nRow=pSymPoint->GetRow();
-//STRIP001
-//STRIP001                              if (nRow == nDataRow)
-//STRIP001                              {
-//STRIP001                                  SdrObjListIter aIter3
-//STRIP001                                      (*((SdrObjGroup*)pObj2)->GetSubList(),
-//STRIP001                                       IM_FLAT);
-//STRIP001                                  while (aIter3.IsMore())
-//STRIP001                                  {
-//STRIP001                                      SdrObject* pObj3 = aIter3.Next();
-//STRIP001                                      SchObjectId* pId3 = GetObjectId(*pObj3);
-//STRIP001
-//STRIP001                                      if (pId3 &&
-//STRIP001                                          (pId3->GetObjId() == CHOBJID_DIAGRAM_DESCR_SYMBOL))
-//STRIP001                                      {
-//STRIP001 //-/                                         pObj3->SetAttributes(aSymbolAttr,FALSE);
-//STRIP001                                          pObj3->SetItemSetAndBroadcast(aSymbolAttr);
-//STRIP001                                          break;
-//STRIP001                                      }
-//STRIP001                                  }
-//STRIP001                                  bBreak = TRUE;
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* ChangeDataRow-Submethode: GetDataRowObj
-|*
-\************************************************************************/
-//STRIP001 SdrObject* ChartModel::CDRAGetDataRowObj(const long nDataRow)
-//STRIP001 {
-//STRIP001  SdrObject* pRetObj = NULL;
-//STRIP001  SdrObjGroup* pDiagramObj = (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *GetPage(0));
-//STRIP001  DBG_ASSERT(pDiagramObj, "ChartModel::CDRAGetDataRowObj:Diagramm-Objekt nicht gefunden!");
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*pDiagramObj->GetSubList(), IM_FLAT);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001      if (pId)
-//STRIP001      {
-//STRIP001          UINT16 nId = pId->GetObjId();
-//STRIP001          if (nId == CHOBJID_DIAGRAM_ROWGROUP || nId == CHOBJID_DIAGRAM_ROWS)
-//STRIP001          {
-//STRIP001              if (GetDataRow(*pObj)->GetRow() == nDataRow)
-//STRIP001              {
-//STRIP001                  pRetObj = pObj;
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if(nId==CHOBJID_DIAGRAM_STACKEDGROUP)
-//STRIP001          {
-//STRIP001              SdrObjListIter aIterator(*pObj->GetSubList(), IM_FLAT);
-//STRIP001              while (aIterator.IsMore())
-//STRIP001              {
-//STRIP001                  SdrObject* pObj = aIterator.Next();
-//STRIP001                  SchObjectId* pId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001                  if (pId)
-//STRIP001                  {
-//STRIP001                      UINT16 nId = pId->GetObjId();
-//STRIP001                      if (nId == CHOBJID_DIAGRAM_SPECIAL_GROUP)
-//STRIP001                          if (GetDataRow(*pObj)->GetRow() == nDataRow)
-//STRIP001                          {
-//STRIP001                              pRetObj = pObj;
-//STRIP001                              break;
-//STRIP001                          }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pRetObj;
-//STRIP001 }
-
-/*************************************************************************
-|*
-|* SubRoutine ChangeDataRowAttr, Attributiere Elemente
-|*
-\************************************************************************/
-//STRIP001 void ChartModel::CDRAAttrGroup(SdrObject* pDataRowObj,const long nDataRow
-//STRIP001                             ,const SfxItemSet& rDataRowAttr)
-//STRIP001 {
-//STRIP001
-//STRIP001  BOOL bRepaint=FALSE;
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*((SdrObjGroup*)pDataRowObj)->
-//STRIP001                              GetSubList(), IM_FLAT);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001      if (pId)
-//STRIP001      {
-//STRIP001
-//STRIP001          switch (pId->GetObjId())
-//STRIP001          {
-//STRIP001          case CHOBJID_DIAGRAM_DATA:
-//STRIP001              {
-//STRIP001                  bRepaint=TRUE;
-//STRIP001                  if( HasSymbols(nDataRow) )
-//STRIP001                  {
-//STRIP001                      SfxItemSet aSymbolAttr(rDataRowAttr);
-//STRIP001                      GenerateSymbolAttr(aSymbolAttr,nDataRow,SYMBOLMODE_ROW);
-//STRIP001 //-/                     pObj->SetAttributes(aSymbolAttr, FALSE);
-//STRIP001                      pObj->SetItemSetAndBroadcast(aSymbolAttr);
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001 //-/                     pObj->SetAttributes(rDataRowAttr, FALSE);
-//STRIP001                      pObj->SetItemSetAndBroadcast(rDataRowAttr);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001
-//STRIP001          case CHOBJID_LINE:
-//STRIP001          case CHOBJID_AREA:
-//STRIP001          case CHOBJID_DIAGRAM_ROWSLINE:
-//STRIP001          case CHOBJID_DIAGRAM_ROWS:
-//STRIP001              bRepaint=TRUE;
-//STRIP001 //-/             pObj->SetAttributes(rDataRowAttr,FALSE);
-//STRIP001              pObj->SetItemSetAndBroadcast(rDataRowAttr);
-//STRIP001              break;
-//STRIP001
-//STRIP001
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 //   if(bRepaint)
-//STRIP001 //       pScene->SendRepaintBroadcast();
-//STRIP001
-//STRIP001 }
 /*************************************************************************
 |*
 |* Erstelle Symbole fuer Diagrammtypen mit Symbolen
@@ -1545,97 +769,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Datenreihen-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-//#54870# gravierende Änderung, notfalls mit BuildChart abschliessen!
-//STRIP001 BOOL ChartModel::ChangeDataRowAttr(const SfxItemSet& rAttr, long nRow,BOOL bMerge)
-//STRIP001 {
-//STRIP001  if(nRow>=GetRowCount()) //Vermutlich unnötig, nur falls Undo schiefläuft
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  PutDataRowAttr(nRow, rAttr,bMerge);
-//STRIP001
-//STRIP001  const SfxPoolItem* pPoolItem=NULL;
-//STRIP001  if(rAttr.GetItemState(SCHATTR_AXIS,TRUE, &pPoolItem) == SFX_ITEM_SET)
-//STRIP001  {
-//STRIP001      if(((const SfxInt32Item*)pPoolItem)->GetValue()==CHART_AXIS_SECONDARY_Y)
-//STRIP001      {
-//STRIP001          pChartBAxis->ShowDescr(TRUE);
-//STRIP001          pChartBAxis->ShowAxis(TRUE);
-//STRIP001
-//STRIP001      }
-//STRIP001      CheckForNewAxisNumFormat();     // #71678#
-//STRIP001  }
-//STRIP001
-//STRIP001  if( (eChartStyle==CHSTYLE_3D_PIE) || IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001  {
-//STRIP001      BuildChart(FALSE);
-//STRIP001      return TRUE;             //Dann kann man sich den ganzen Rest sparen!
-//STRIP001  }
-//STRIP001
-//STRIP001  const SfxItemSet& rDataRowAttr = GetDataRowAttr(nRow);
-//STRIP001
-//STRIP001  //Legende attributieren
-//STRIP001  if (GetShowLegend())
-//STRIP001     ChangeLegendRowAttr(nRow,rDataRowAttr);//#54870# Legendensymbole attr.
-//STRIP001
-//STRIP001  //Beschriftungen attributieren
-//STRIP001  if( (eDataDescr != CHDESCR_NONE) && bShowDataDescr) //alle anderen Symbole attr.
-//STRIP001      ChangeRowDescrSymbolAttr(nRow,rDataRowAttr);
-//STRIP001
-//STRIP001  //Datenreihenobjekt(gruppe) holen
-//STRIP001  SchObjectId* pObjId=NULL;
-//STRIP001  SdrObject*   pDataRowObj = CDRAGetDataRowObj(nRow);
-//STRIP001  if (pDataRowObj)
-//STRIP001      pObjId = GetObjectId(*pDataRowObj);
-//STRIP001  else
-//STRIP001  {
-//STRIP001      DBG_ERROR("ChartModel::ChangeDataRowAttr: no DataRowGroup! - calling BuildChart()");
-//STRIP001      BuildChart(FALSE); //die BruteForce-Methode wirkt immer
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  //ToDo: ab hier kann noch viel optimiert werden!!! z.B. Pies dürften nie betroffen sein
-//STRIP001  if(pObjId)
-//STRIP001  {
-//STRIP001      BOOL bAuto=SetAttrAutoStorage(FALSE);
-//STRIP001
-//STRIP001      switch (pObjId->GetObjId())
-//STRIP001      {
-//STRIP001          case CHOBJID_DIAGRAM_ROWGROUP:
-//STRIP001          case CHOBJID_DIAGRAM_SPECIAL_GROUP:
-//STRIP001              CDRAAttrGroup(pDataRowObj,nRow,rDataRowAttr);
-//STRIP001              break;
-//STRIP001          case CHOBJID_DIAGRAM_ROWS:
-//STRIP001          case CHOBJID_DIAGRAM_ROWSLINE:
-//STRIP001 //-/             pDataRowObj->SetAttributes(rDataRowAttr, FALSE);
-//STRIP001              pDataRowObj->SetItemSetAndBroadcast(rDataRowAttr);
-//STRIP001              break;
-//STRIP001      }
-//STRIP001
-//STRIP001 /*       if(   eChartStyle==CHSTYLE_3D_STRIPE
-//STRIP001         || eChartStyle==CHSTYLE_2D_AREA
-//STRIP001         || eChartStyle==CHSTYLE_2D_PERCENTAREA
-//STRIP001         || eChartStyle==CHSTYLE_2D_STACKEDAREA
-//STRIP001         )
-//STRIP001          pDataRowObj->SetAttributes(rDataRowAttr, FALSE);      */
-//STRIP001
-//STRIP001      if(!IsLine(nRow) && !IsArea(nRow))
-//STRIP001          if(Is3DChart())
-//STRIP001              CopySpecialPointAttrToPage(nRow);
-//STRIP001          else
-//STRIP001              CopyPointAttrToPage(nRow);
-//STRIP001
-//STRIP001      SetAttrAutoStorage(bAuto);
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  else return FALSE;
-//STRIP001 }
-
-/*************************************************************************
-|*
 |* Datenpunkt-Attribute loeschen, die im Itemset (Argument) vorhanden sind
 |*
 \************************************************************************/
@@ -1681,22 +814,6 @@ namespace binfilter {
 
 // this method exists in analogy to GetFullDataPointAttr
 // it is necessary for API (=>XML) and pie charts
-//STRIP001 void ChartModel::PutFullDataPointAttr(
-//STRIP001  long nCol, long nRow,
-//STRIP001  const SfxItemSet& rAttr )
-//STRIP001 {
-//STRIP001  PutDataPointAttr( nCol, nRow, rAttr );
-//STRIP001
-//STRIP001  if( IsPieChart())
-//STRIP001  {
-//STRIP001      // get only fill attribute
-//STRIP001      SfxItemSet aColSet( *pItemPool, XATTR_FILLCOLOR, XATTR_FILLCOLOR );
-//STRIP001      aColSet.Put( rAttr );
-//STRIP001
-//STRIP001      // set at series (only for pie charts)
-//STRIP001      PutDataRowAttr( nCol % GetColCount(), rAttr, TRUE, FALSE );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1839,198 +956,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* ChangeDataPoint-Submethode: GetDataPointObj
-|*
-\************************************************************************/
-//STRIP001 SdrObject* ChartModel::CDPAGetDataPointObj(const long nDataCol,const long nDataRow)
-//STRIP001 {
-//STRIP001
-//STRIP001  SdrObject* pRetObj=NULL;
-//STRIP001
-//STRIP001  SdrObjGroup* pDiagramObj =
-//STRIP001      (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *GetPage(0));
-//STRIP001  DBG_ASSERT(pDiagramObj, "ChartModel::CDPAGetDataPointObj:Diagramm-Objekt nicht gefunden!");
-//STRIP001
-//STRIP001  SdrObjListIter aIterator(*pDiagramObj->GetSubList(), IM_FLAT);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001      if (pId)
-//STRIP001      {
-//STRIP001          UINT16 nId = pId->GetObjId();
-//STRIP001
-//STRIP001          if (nId == CHOBJID_DIAGRAM_ROWGROUP)
-//STRIP001          {
-//STRIP001              SchDataRow* pRow = GetDataRow(*pObj);
-//STRIP001              DBG_ASSERT(pRow, "ChartModel::CDPAGetDataPointObj:Objekt hat keine Datenreihen-Information!");
-//STRIP001              if (pRow->GetRow() == nDataRow)
-//STRIP001              {
-//STRIP001                  SdrObjListIter aSubIter(*pObj->GetSubList(), IM_FLAT);
-//STRIP001                  while (aSubIter.IsMore())
-//STRIP001                  {
-//STRIP001                      SdrObject* pSubObj = aSubIter.Next();
-//STRIP001                      SchObjectId* pSubId = GetObjectId(*pSubObj);
-//STRIP001
-//STRIP001                      if (pSubId && (pSubId->GetObjId() == CHOBJID_DIAGRAM_DATA))
-//STRIP001                      {
-//STRIP001                          SchDataPoint* pPoint = GetDataPoint(*pSubObj);
-//STRIP001                          DBG_ASSERT(pPoint, "ChartModel::CDPAGetDataPointObj:Objekt hat keine Datenpunkt-"
-//STRIP001                                             "Information!");
-//STRIP001                          if (pPoint->GetCol() == nDataCol &&
-//STRIP001                              pPoint->GetRow() == 0)
-//STRIP001                          {
-//STRIP001                              pRetObj = pSubObj;
-//STRIP001                              break;
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (nId == CHOBJID_DIAGRAM_DATA)
-//STRIP001          {
-//STRIP001              SchDataPoint* pPoint = GetDataPoint(*pObj);
-//STRIP001              DBG_ASSERT(pPoint, "ChartModel::CDPAGetDataPointObj:Objekt hat keine Datenpunkt-"
-//STRIP001                                 "Information!");
-//STRIP001              if (pPoint->GetCol() == nDataCol &&
-//STRIP001                  pPoint->GetRow() == 0)
-//STRIP001              {
-//STRIP001                  pRetObj = pObj;
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pRetObj;
-//STRIP001 }
-
-
-/*************************************************************************
-|*
-|* ChangeDataPoint-Submethode: Attributiere CHOBJID_DIAGRAM_DESCR_SYMBOL
-|*
-\************************************************************************/
-
-//STRIP001 void ChartModel::ChangePointDescrSymbolAttr(const long nCol,const long nRow,const SfxItemSet& rDataPointAttr)
-//STRIP001 {
-//STRIP001  CHART_TRACE( "ChartModel::ChangePointDescrSymbolAttr" );
-//STRIP001
-//STRIP001  //Attributsets für die Symbole füllen:
-//STRIP001  SfxItemSet aSymbolAttr(rDataPointAttr); //#54870#
-//STRIP001  GenerateSymbolAttr(aSymbolAttr,nRow,SYMBOLMODE_DESCRIPTION);
-//STRIP001
-//STRIP001  SdrObjGroup* pDiagramObj =
-//STRIP001      (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM, *GetPage(0));
-//STRIP001  DBG_ASSERT(pDiagramObj, "ChartModel::ChangePointDescrSymbolAttr:Diagramm-Objekt nicht gefunden!");
-//STRIP001
-//STRIP001  SdrObjListIter aIter1(*pDiagramObj->GetSubList(), IM_FLAT);
-//STRIP001  while (aIter1.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj1 = aIter1.Next();
-//STRIP001      SchObjectId* pId1 = GetObjectId(*pObj1);
-//STRIP001
-//STRIP001      if (pId1 && (pId1->GetObjId() == CHOBJID_DIAGRAM_DESCR_COL) && pObj1->ISA(SdrObjGroup))
-//STRIP001      {
-//STRIP001          SchDataPoint* pSymPoint = GetDataPoint(*pObj1);
-//STRIP001          if (pSymPoint &&
-//STRIP001              pSymPoint->GetCol() == nCol &&
-//STRIP001              pSymPoint->GetRow() == nRow)
-//STRIP001              //#54870# Aus absolut unverständlichen Gründen stand oben statt nRow immer 0
-//STRIP001          {
-//STRIP001              SdrObjListIter aIter2
-//STRIP001                  (*((SdrObjGroup*)pObj1)->GetSubList(), IM_FLAT);
-//STRIP001              while (aIter2.IsMore())
-//STRIP001              {
-//STRIP001                  SdrObject* pObj2 = aIter2.Next();
-//STRIP001                  SchObjectId* pId2 = GetObjectId(*pObj2);
-//STRIP001
-//STRIP001                  if (pId2 && (pId2->GetObjId() == CHOBJID_DIAGRAM_DESCR_SYMBOL))
-//STRIP001                  {
-//STRIP001 //-/                     pObj2->SetAttributes(aSymbolAttr, FALSE);
-//STRIP001                      pObj2->SetItemSetAndBroadcast(aSymbolAttr);
-//STRIP001                      break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
-/*************************************************************************
-|*
-|* Datenpunkt-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-//ToDo: der ganzen Quatsch da unten aufräumen
-//STRIP001 BOOL ChartModel::ChangeDataPointAttr(const SfxItemSet& rAttr,
-//STRIP001                                   SdrObject& rObj, BOOL bMerge,
-//STRIP001                                   BOOL bBuildChart)
-//STRIP001 {
-//STRIP001  SchObjectId* pObjId = GetObjectId(rObj);
-//STRIP001
-//STRIP001
-//STRIP001  if (pObjId)
-//STRIP001  {
-//STRIP001      SchDataPoint* pDataPoint = GetDataPoint(rObj);
-//STRIP001      DBG_ASSERT(pDataPoint, "ChartModel::ChangeDataPointAttr:Objekt hat keine Datenpunkt-Information!");
-//STRIP001
-//STRIP001      short nDataCol = pDataPoint->GetCol();
-//STRIP001      short nDataRow = pDataPoint->GetRow();
-//STRIP001
-//STRIP001      PutDataPointAttr(nDataCol, nDataRow, rAttr,bMerge);
-//STRIP001
-//STRIP001      SfxItemSet aDataPointAttr(GetFullDataPointAttr(nDataCol, nDataRow));
-//STRIP001
-//STRIP001      SdrObject* pDataPointObj;
-//STRIP001      SdrPage* pPage = GetPage(0);
-//STRIP001      DBG_ASSERT(pPage, "ChartModel::ChangeDataPointAttr:Keine Seite vorhanden!");
-//STRIP001
-//STRIP001      if (pObjId->GetObjId() == CHOBJID_LEGEND_SYMBOL_COL)
-//STRIP001      {
-//STRIP001 //-/         rObj.SetAttributes(aDataPointAttr, FALSE);
-//STRIP001          rObj.SetItemSetAndBroadcast(aDataPointAttr);
-//STRIP001          pDataPointObj = CDPAGetDataPointObj(nDataCol,nDataRow);
-//STRIP001          if (!pDataPointObj)
-//STRIP001              return TRUE;
-//STRIP001          pObjId = GetObjectId(*pDataPointObj);
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if (GetShowLegend())
-//STRIP001              ChangeLegendPointAttr(nDataCol,aDataPointAttr);
-//STRIP001
-//STRIP001          pDataPointObj = &rObj;
-//STRIP001      }
-//STRIP001
-//STRIP001      if( (eDataDescr != CHDESCR_NONE) && bShowDataDescr) //#54870#
-//STRIP001         ChangePointDescrSymbolAttr(nDataCol,nDataRow,aDataPointAttr);
-//STRIP001
-//STRIP001      BOOL bOld=bAttrAutoStorage;
-//STRIP001      SetAttrAutoStorage(FALSE);
-//STRIP001
-//STRIP001 //-/     pDataPointObj->SetAttributes(aDataPointAttr, FALSE);
-//STRIP001      pDataPointObj->SetItemSetAndBroadcast(aDataPointAttr);
-//STRIP001
-//STRIP001      if(bBuildChart)
-//STRIP001      {
-//STRIP001          if(IsAttrChangeNeedsBuildChart(rAttr))
-//STRIP001              BuildChart(FALSE);
-//STRIP001          else
-//STRIP001              if(Is3DChart())
-//STRIP001 //-/                 rObj.SetAttributes(rAttr,FALSE);
-//STRIP001                  rObj.SetItemSetAndBroadcast(rAttr);
-//STRIP001      }
-//STRIP001      SetAttrAutoStorage(bOld);
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  else return FALSE;
-//STRIP001 }
-
-/*************************************************************************
-|*
 |* Aendere die Attribute einer Achse
 |*
 \************************************************************************/
@@ -2073,36 +998,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL ChartModel::SetAllAxisAttributes ()
-//STRIP001 {
-//STRIP001  SdrPage *pPage=GetPage(0);
-//STRIP001  if (!pPage) return FALSE;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (pChartXAxis->IsVisible())
-//STRIP001          SetAxisAttributes(&GetAttr(CHOBJID_DIAGRAM_X_AXIS),
-//STRIP001           (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_X_AXIS,*pPage,0,IM_DEEPWITHGROUPS));
-//STRIP001
-//STRIP001      if (CanAxis(CHART_AXIS_SECONDARY_X) && pChartAAxis->IsVisible() )
-//STRIP001          SetAxisAttributes(&GetAttr(CHOBJID_DIAGRAM_A_AXIS),
-//STRIP001           (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_A_AXIS,*pPage,0,IM_DEEPWITHGROUPS));
-//STRIP001
-//STRIP001      if (CanAxis(CHART_AXIS_SECONDARY_Y) && pChartBAxis->IsVisible() )
-//STRIP001          SetAxisAttributes(&GetAttr(CHOBJID_DIAGRAM_B_AXIS),
-//STRIP001           (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_B_AXIS,*pPage,0,IM_DEEPWITHGROUPS));
-//STRIP001
-//STRIP001      if (pChartYAxis->IsVisible())
-//STRIP001          SetAxisAttributes(&GetAttr(CHOBJID_DIAGRAM_Y_AXIS),
-//STRIP001           (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_Y_AXIS,*pPage,0,IM_DEEPWITHGROUPS));
-//STRIP001
-//STRIP001      if (Is3DChart () && pChartZAxis->IsVisible())
-//STRIP001          SetAxisAttributes(&GetAttr(CHOBJID_DIAGRAM_Z_AXIS),
-//STRIP001           (SdrObjGroup*)GetObjWithId(CHOBJID_DIAGRAM_Z_AXIS,*pPage,0,IM_DEEPWITHGROUPS));
-//STRIP001
-//STRIP001      BuildChart(FALSE);
-//STRIP001      return TRUE;
-//STRIP001    }
-//STRIP001 }
 
 /*N*/ void ChartModel::SetTextFromObject( SdrTextObj* pObj,OutlinerParaObject* pTextObject )
 /*N*/ {
@@ -2201,36 +1096,12 @@ namespace binfilter {
 /*N*/   case CHOBJID_DIAGRAM_ROWGROUP:
 /*N*/   case CHOBJID_LEGEND_SYMBOL_ROW:
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/             SchDataRow* pDataRow =  GetDataRow(*pObj);
-//STRIP001 /*?*/             if(pDataRow)
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                  long nDataRow=pDataRow->GetRow();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                  PutDataRowAttr(nDataRow, rAttr,!bReplaceAll);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                  if (GetShowLegend())
-//STRIP001 /*?*/                        ChangeLegendRowAttr(nDataRow,rAttr);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                  if( (eDataDescr != CHDESCR_NONE) && bShowDataDescr)
-//STRIP001 /*?*/                          ChangeRowDescrSymbolAttr(nDataRow,rAttr);
-//STRIP001 /*?*/             }
 /*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_DATA:
 /*?*/   case CHOBJID_LEGEND_SYMBOL_COL:
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            SchDataPoint* pDataPoint = GetDataPoint(*pObj);
-//STRIP001 /*?*/            if(pDataPoint)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                PutDataPointAttr(pDataPoint->GetCol(), pDataPoint->GetRow(), rAttr,!bReplaceAll);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (GetShowLegend())
-//STRIP001 /*?*/                    ChangeLegendPointAttr(pDataPoint->GetCol(),rAttr);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( (eDataDescr != CHDESCR_NONE) && bShowDataDescr)
-//STRIP001 /*?*/                     ChangePointDescrSymbolAttr(pDataPoint->GetCol(),pDataPoint->GetRow(),rAttr);
-//STRIP001 /*?*/            }
 /*N*/       }
 /*?*/       break;
 /*?*/
@@ -2238,9 +1109,6 @@ namespace binfilter {
 /*?*/   case CHOBJID_DIAGRAM_AVERAGEVALUE :
 /*?*/   case CHOBJID_DIAGRAM_REGRESSION :
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
-//STRIP001 /*?*/        if(bReplaceAll)
-//STRIP001 /*?*/            GetAttr(pObj).ClearItem();
-//STRIP001 /*?*/        GetAttr(pObj).Put(rAttr,TRUE);
 /*?*/       break;
 /*?*/
 /*N*/   case CHOBJID_DIAGRAM_WALL:
@@ -2408,73 +1276,6 @@ namespace binfilter {
 //in diesem Fall muss GetAttr(SdrObject*) statt GetAttr(long id) gerufen werden
 // GetAttr(long id, SfxItemSet&) besorgt alle für ein Objekt verfügbaren und
 // gültigen Attribute
-//STRIP001 SfxItemSet& ChartModel::GetAttr(const SdrObject *pObj)
-//STRIP001 {
-//STRIP001  CHART_TRACE( "ChartModel::GetAttr" );
-//STRIP001  SchObjectId* pObjId = GetObjectId(*pObj);
-//STRIP001  long nId=pObjId->GetObjId();
-//STRIP001
-//STRIP001  switch(nId)
-//STRIP001  {
-//STRIP001  case CHOBJID_DIAGRAM_SPECIAL_GROUP:
-//STRIP001  case CHOBJID_DIAGRAM_ROWGROUP:
-//STRIP001  case CHOBJID_LEGEND_SYMBOL_ROW:
-//STRIP001      {
-//STRIP001           SchDataRow* pDataRow =  GetDataRow(*pObj);
-//STRIP001           if(pDataRow)
-//STRIP001           {
-//STRIP001               return (SfxItemSet&)GetDataRowAttr(pDataRow->GetRow());
-//STRIP001           }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case CHOBJID_DIAGRAM_DATA :
-//STRIP001  case CHOBJID_LEGEND_SYMBOL_COL:
-//STRIP001      {
-//STRIP001          SchDataPoint* pDataPoint = GetDataPoint(*pObj);
-//STRIP001          if(pDataPoint)
-//STRIP001          {
-//STRIP001              return (SfxItemSet&)GetDataPointAttr(pDataPoint->GetCol(),pDataPoint->GetRow());
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case SID_DIAGRAM_ERROR :
-//STRIP001      {
-//STRIP001           SchDataRow* pDataRow =  GetDataRow(*pObj);
-//STRIP001           if(pDataRow)
-//STRIP001           {
-//STRIP001               return (SfxItemSet&)GetErrorAttr(pDataRow->GetRow());
-//STRIP001           }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_DIAGRAM_AVERAGEVALUE :
-//STRIP001      {
-//STRIP001           SchDataRow* pDataRow =  GetDataRow(*pObj);
-//STRIP001           if(pDataRow)
-//STRIP001           {
-//STRIP001               return (SfxItemSet&)GetAverageAttr(pDataRow->GetRow());
-//STRIP001           }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_DIAGRAM_REGRESSION :
-//STRIP001      {
-//STRIP001           SchDataRow* pDataRow =  GetDataRow(*pObj);
-//STRIP001           if(pDataRow)
-//STRIP001           {
-//STRIP001               return (SfxItemSet&)GetRegressAttr(pDataRow->GetRow());
-//STRIP001           }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      return  GetAttr(nId);
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  CHART_TRACE1( "GetAttr illegal Object Id (%ld), returning dummy", nId );
-//STRIP001  return *pDummyAttr;
-//STRIP001 }
 
 /*
 Fehlen evtl. noch in GetAttr(ID):
@@ -2848,41 +1649,6 @@ Fehlen evtl. noch in GetAttr(ID):
 pYGridMainAttr->Put(rAttr);
 */
 
-//STRIP001 BOOL ChartModel::MoveRow(long nRow,BOOL bUp)
-//STRIP001 {
-//STRIP001  BOOL bOK;
-//STRIP001
-//STRIP001  if(bUp)
-//STRIP001      nRow--;
-//STRIP001  if(!bSwitchData)
-//STRIP001      bOK=pChartData->SwapRowTranslation(nRow,nRow+1);
-//STRIP001  else
-//STRIP001      bOK=pChartData->SwapColTranslation(nRow,nRow+1);
-//STRIP001
-//STRIP001  if(bOK)
-//STRIP001  {
-//STRIP001      SetAttrAutoStorage(FALSE);//sonst gehen Datenpunktattr verloren
-//STRIP001      SwapRowAttr(nRow,nRow+1);
-//STRIP001  }
-//STRIP001
-//STRIP001  return bOK;
-//STRIP001 }
-//STRIP001 void ChartModel::SwapRowAttr(long nRow1,long nRow2)
-//STRIP001 {
-//STRIP001  SfxItemSet aSet(*pItemPool,nRowWhichPairs);
-//STRIP001  long nCol,nColCnt=GetColCount();
-//STRIP001
-//STRIP001  for(nCol=0;nCol<nColCnt;nCol++)
-//STRIP001  {
-//STRIP001      aSet.Put(GetDataPointAttr(nCol,nRow2));
-//STRIP001      PutDataPointAttr(nCol,nRow2,GetDataPointAttr(nCol,nRow1),FALSE);
-//STRIP001      PutDataPointAttr(nCol,nRow1,aSet,FALSE);
-//STRIP001      aSet.ClearItem();
-//STRIP001  }
-//STRIP001  aSet.Put(GetDataRowAttr(nRow2));
-//STRIP001  PutDataRowAttr(nRow2,GetDataRowAttr(nRow1),FALSE,FALSE);
-//STRIP001  PutDataRowAttr(nRow1,aSet,FALSE,FALSE);
-//STRIP001 }
 
 
 
