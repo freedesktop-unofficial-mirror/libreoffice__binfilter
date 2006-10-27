@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scroll.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:49:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:52:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,13 +55,9 @@ class SwScrollbar: public ScrollBar
 public:
     void    Show( BOOL bVisible = TRUE );
     void    Hide() { Show( FALSE ); }
-//STRIP001  void    SetPosSizePixel( const Point& rNewPos, const Size& rNewSize );
     BOOL    IsVisible(BOOL bReal = FALSE) const { return bReal ? ScrollBar::IsVisible() : bVisible; }
-//STRIP001  void    SetUpdateMode( BOOL bUpdate );
         // Aenderung der Dokumentgroesse
-//STRIP001  void    DocSzChgd(const Size &rNewSize);
         // Aenderung des sichtbaren Bereiches
-//STRIP001  void    ViewPortChgd(const Rectangle &rRectangle);
         // was fuer einer ist es denn ??
     int     IsHoriScroll() const { return bHori; }
 
@@ -69,7 +65,6 @@ public:
     BOOL    IsAuto() { return bAuto;}
 
     //Bewegungen des Thumbs abklemmen
-//STRIP001  void    EnableThumbPos( BOOL bEnable, const SwRect &rVisArea );
 
     SwScrollbar(Window *pParent, int bHori = TRUE );
     ~SwScrollbar();
