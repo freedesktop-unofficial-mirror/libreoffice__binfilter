@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cfgitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-03-07 10:12:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:54:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -146,7 +146,6 @@ struct SmFontFormat
 //    SmFontFormat( const Font &rFont );
 
     const Font      GetFont() const;
-//STRIP001     BOOL            operator == ( const SmFontFormat &rFntFmt ) const;
 };
 
 
@@ -174,16 +173,10 @@ class SmFontFormatList
 public:
     SmFontFormatList();
 
-//STRIP001     void    Clear();
     void    AddFontFormat( const String &rFntFmtId, const SmFontFormat &rFntFmt );
-//STRIP001     void    RemoveFontFormat( const String &rFntFmtId );
 
     const SmFontFormat *    GetFontFormat( const String &rFntFmtId ) const;
 //    const SmFontFormat *    GetFontFormat( USHORT nPos ) const;
-//STRIP001     const String            GetFontFormatId( const SmFontFormat &rFntFmt ) const;
-//STRIP001     const String            GetFontFormatId( const SmFontFormat &rFntFmt, BOOL bAdd );
-//STRIP001     const String            GetFontFormatId( USHORT nPos ) const;
-//STRIP001     const String            GetNewFontFormatId() const;
     USHORT                  GetCount() const    { return aEntries.Count(); }
 
     BOOL    IsModified() const          { return bModified; }
@@ -217,7 +210,6 @@ class SmMathConfig
     void    LoadFontFormatList();
     void    SaveFontFormatList();
 
-//STRIP001     void    StripFontFormatList( const SmSym *pUsedSymbols[], USHORT nCount );
 
 
     void    Save();
@@ -229,7 +221,6 @@ class SmMathConfig
                         const ::rtl::OUString &rSymbolName,
                         const ::rtl::OUString &rBaseNode ) const;
 
-//STRIP001     void            SetOtherIfNotEqual( BOOL &rbItem, BOOL bNewVal );
 
     DECL_LINK( TimeOut, Timer * );
 
@@ -251,30 +242,18 @@ public:
 
     USHORT          GetSymbolCount() const;
     const SmSym *   GetSymbol( USHORT nIndex ) const;
-//STRIP001     void            ReplaceSymbols( const SmSym *pNewSymbols[], USHORT nCount );
 
     const SmFormat &    GetStandardFormat() const;
-//STRIP001     void                SetStandardFormat( const SmFormat &rFormat );
 
     BOOL            IsPrintTitle() const;
-//STRIP001     void            SetPrintTitle( BOOL bVal );
     BOOL            IsPrintFormulaText() const;
-//STRIP001     void            SetPrintFormulaText( BOOL bVal );
     BOOL            IsPrintFrame() const;
-//STRIP001     void            SetPrintFrame( BOOL bVal );
     SmPrintSize     GetPrintSize() const;
-//STRIP001     void            SetPrintSize( SmPrintSize eSize );
     USHORT          GetPrintZoomFactor() const;
-//STRIP001     void            SetPrintZoomFactor( USHORT nVal );
 
     BOOL            IsIgnoreSpacesRight() const;
-//STRIP001     void            SetIgnoreSpacesRight( BOOL bVal );
-//STRIP001     BOOL            IsToolboxVisible() const;
-//STRIP001     void            SetToolboxVisible( BOOL bVal );
     BOOL            IsAutoRedraw() const;
-//STRIP001     void            SetAutoRedraw( BOOL bVal );
     BOOL            IsShowFormulaCursor() const;
-//STRIP001     void            SetShowFormulaCursor( BOOL bVal );
 };
 
 /////////////////////////////////////////////////////////////////
