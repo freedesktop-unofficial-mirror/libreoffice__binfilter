@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scdll.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:47:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:39:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -54,7 +53,6 @@
 #include "docsh.hxx"
 #include "tabvwsh.hxx"
 #include "prevwsh.hxx"
-// auto strip #include "drawsh.hxx"
 #include "drformsh.hxx"
 #include "drtxtob.hxx"
 #include "editsh.hxx"
@@ -84,11 +82,8 @@
 #include <bf_svx/itemdata.hxx>
 #endif
 
-// auto strip #include <bf_svx/flditem.hxx>
 #include <bf_svx/modctrl.hxx>
 #include <bf_svx/pszctrl.hxx>
-// auto strip #include <bf_svx/fntctl.hxx>
-// auto strip #include <bf_svx/fntszctl.hxx>
 #include <bf_svx/grafctrl.hxx>
 #include <bf_svx/galbrws.hxx>
 #include <bf_svx/clipboardctl.hxx>
@@ -108,16 +103,13 @@
 #include "navipi.hxx"
 #include "inputwin.hxx"
 #include <bf_svx/fontwork.hxx>
-// auto strip #include <bf_svx/srchdlg.hxx>
 #include <bf_offmgr/hyprlink.hxx>
 #include <bf_svx/imapdlg.hxx>
 
-// auto strip #include "editutil.hxx"
 #include <bf_svx/svdfield.hxx>      //  SdrRegisterFieldClasses
 #include <rtl/logfile.hxx>
 
 #include "dwfunctr.hxx"
-// auto strip #include "acredlin.hxx"
 namespace binfilter {
 
 //------------------------------------------------------------------
@@ -232,8 +224,6 @@ namespace binfilter {
 /*N*/   SvxPosSizeStatusBarControl      ::RegisterControl(SID_ATTR_SIZE,        pMod);
 /*N*/
 /*N*/   // Svx-Menue-Controller
-//STRIP001 /*N*/    SvxFontMenuControl              ::RegisterControl(SID_ATTR_CHAR_FONT,       pMod);
-//STRIP001 /*N*/    SvxFontSizeMenuControl          ::RegisterControl(SID_ATTR_CHAR_FONTHEIGHT, pMod);
 /*N*/
 /*N*/   //  Child-Windows
 /*N*/
@@ -309,47 +299,6 @@ namespace binfilter {
 
 #define TEXT_WIDTH(s)   rStatusBar.GetTextWidth((s))
 
-//STRIP001 void ScDLL::FillStatusBar(StatusBar &rStatusBar)
-//STRIP001 {
-//STRIP001  // Dokumentposition (Tabelle x / y)
-//STRIP001  rStatusBar.InsertItem( SID_STATUS_DOCPOS,
-//STRIP001                          TEXT_WIDTH( String().Fill( 10, 'X' ) ),
-//STRIP001                          SIB_LEFT|SIB_AUTOSIZE );
-//STRIP001
-//STRIP001  // Seitenvorlage
-//STRIP001  rStatusBar.InsertItem( SID_STATUS_PAGESTYLE,
-//STRIP001                          TEXT_WIDTH( String().Fill( 15, 'X' ) ),
-//STRIP001                          SIB_LEFT|SIB_AUTOSIZE );
-//STRIP001
-//STRIP001  // Ma"sstab
-//STRIP001  rStatusBar.InsertItem(  SID_ATTR_ZOOM,
-//STRIP001                          SvxZoomStatusBarControl::GetDefItemWidth(rStatusBar),
-//STRIP001                          SIB_CENTER );
-//STRIP001
-//STRIP001  // Einfuege-/Ueberschreibmodus
-//STRIP001  rStatusBar.InsertItem( SID_ATTR_INSERT,
-//STRIP001                          SvxInsertStatusBarControl::GetDefItemWidth(rStatusBar),
-//STRIP001                          SIB_CENTER );
-//STRIP001
-//STRIP001  // Selektionsmodus
-//STRIP001  rStatusBar.InsertItem( SID_STATUS_SELMODE,
-//STRIP001                          SvxSelectionModeControl::GetDefItemWidth(rStatusBar),
-//STRIP001                          SIB_CENTER );
-//STRIP001
-//STRIP001  // Dokument geaendert
-//STRIP001  rStatusBar.InsertItem( SID_DOC_MODIFIED,
-//STRIP001                          SvxModifyControl::GetDefItemWidth(rStatusBar));
-//STRIP001
-//STRIP001  // Mail
-//STRIP001  rStatusBar.InsertItem( SID_MAIL_NOTIFY,
-//STRIP001                          TEXT_WIDTH( String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("Mail")) ),
-//STRIP001                          SIB_CENTER );
-//STRIP001
-//STRIP001  // den aktuellen Kontext anzeigen Uhrzeit / FramePos / TabellenInfo / Errors
-//STRIP001  rStatusBar.InsertItem( SID_ATTR_SIZE,
-//STRIP001                          SvxPosSizeStatusBarControl::GetDefItemWidth(rStatusBar),
-//STRIP001                          SIB_AUTOSIZE|SIB_LEFT|SIB_USERDRAW);
-//STRIP001 }
 
 #undef TEXT_WIDTH
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rfindlst.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:47:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:39:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -67,11 +66,6 @@ ScRangeFindList::~ScRangeFindList()
         pEntry = aEntries.Next();
     }
 }
-//STRIP001
-//STRIP001 ColorData ScRangeFindList::GetColorName( USHORT nIndex )     // static
-//STRIP001 {
-//STRIP001  return aColNames[nIndex % SC_RANGECOLORS];
-//STRIP001 }
 
 //==================================================================
 
