@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dapiuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:11:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:01:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,12 +34,10 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <svtools/smplhint.hxx>
 #include <rtl/uuid.h>
 
 #include "dapiuno.hxx"
@@ -47,7 +45,6 @@
 #include "miscuno.hxx"
 #include "docsh.hxx"
 #include "pivot.hxx"
-// auto strip #include "rangeutl.hxx"
 #include "unoguard.hxx"
 #include "dpobject.hxx"
 #include "dpshttab.hxx"

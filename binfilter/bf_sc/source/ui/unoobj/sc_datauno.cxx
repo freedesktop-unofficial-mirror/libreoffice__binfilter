@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_datauno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:11:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:01:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,22 +34,16 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <tools/debug.hxx>
-// auto strip #include <svtools/smplhint.hxx>
 #include <svtools/zforlist.hxx>
 #include <rtl/uuid.h>
 
 #include <com/sun/star/awt/XBitmap.hpp>
 #include <com/sun/star/util/SortField.hpp>
 #include <com/sun/star/table/TableSortField.hpp>
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
-// auto strip #include <com/sun/star/table/TableOrientation.hpp>
-// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
 #include <com/sun/star/sheet/DataImportMode.hpp>
 
 #include "datauno.hxx"
@@ -57,7 +51,6 @@
 #include "cellsuno.hxx"
 #include "miscuno.hxx"
 #include "targuno.hxx"
-// auto strip #include "rangeutl.hxx"
 #include "dbcolect.hxx"
 #include "docsh.hxx"
 #include "dbdocfun.hxx"
