@@ -4,9 +4,9 @@
  *
  *  $RCSfile: UnoNameItemTable.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:20:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:53:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,6 @@
 #include "xit.hxx"
 #endif
 
-// auto strip #include "xdef.hxx"
 class SfxItemPool;
 class SfxItemSet;
 namespace binfilter {
