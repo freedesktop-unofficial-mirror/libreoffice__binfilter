@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ComboBox.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-03-14 10:52:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:59:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,21 +40,12 @@
 #ifndef _FORMS_COMBOBOX_HXX_
 #include "ComboBox.hxx"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
 #endif
@@ -74,15 +65,6 @@
 #include <connectivity/dbconversion.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
-// auto strip #include <com/sun/star/sdb/SQLErrorEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
-// auto strip #include <com/sun/star/sdbc/XRowSet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
@@ -95,15 +77,9 @@
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XLISTBOX_HPP_
-// auto strip #include <com/sun/star/awt/XListBox.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
-// auto strip #include <com/sun/star/sdb/SQLContext.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
