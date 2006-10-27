@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_pageitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:18:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:17:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,6 @@
 #ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_BREAKTYPE_HPP_
-// auto strip #include <com/sun/star/style/BreakType.hpp>
-// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
@@ -132,58 +129,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxPageItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          if ( aDescName.Len() )
-//STRIP001          {
-//STRIP001              rText = aDescName;
-//STRIP001              rText += cpDelim;
-//STRIP001          }
-//STRIP001          DBG_ASSERT( eNumType <= SVX_NUMBER_NONE, "enum overflow" );
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_PAGE_NUM_BEGIN + eNumType);
-//STRIP001          rText += cpDelim;
-//STRIP001          if ( bLandscape )
-//STRIP001              rText += SVX_RESSTR(RID_SVXITEMS_PAGE_LAND_TRUE);
-//STRIP001          else
-//STRIP001              rText += SVX_RESSTR(RID_SVXITEMS_PAGE_LAND_FALSE);
-//STRIP001          rText += GetUsageText( eUse );
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_PAGE_COMPLETE);
-//STRIP001          if ( aDescName.Len() )
-//STRIP001          {
-//STRIP001              rText += aDescName;
-//STRIP001              rText += cpDelim;
-//STRIP001          }
-//STRIP001          DBG_ASSERT( eNumType <= SVX_NUMBER_NONE, "enum overflow" );
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_PAGE_NUM_BEGIN + eNumType);
-//STRIP001          rText += cpDelim;
-//STRIP001          if ( bLandscape )
-//STRIP001              rText += SVX_RESSTR(RID_SVXITEMS_PAGE_LAND_TRUE);
-//STRIP001          else
-//STRIP001              rText += SVX_RESSTR(RID_SVXITEMS_PAGE_LAND_FALSE);
-//STRIP001          rText += GetUsageText( eUse );
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 /*N*/ sal_Bool SvxPageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
@@ -314,11 +259,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/ }
 
-//STRIP001 SvxSetItem::SvxSetItem( const USHORT nId, SfxItemSet* pSet ) :
-//STRIP001
-//STRIP001  SfxSetItem( nId, pSet )
-//STRIP001 {
-//STRIP001 }
 
 /*N*/ SfxPoolItem* SvxSetItem::Clone( SfxItemPool *pPool ) const
 /*N*/ {
@@ -327,17 +267,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxSetItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ SfxPoolItem* SvxSetItem::Create(SvStream &rStrm, USHORT nVersion) const
 /*N*/ {

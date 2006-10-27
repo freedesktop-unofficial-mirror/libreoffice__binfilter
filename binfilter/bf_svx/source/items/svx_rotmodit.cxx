@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_rotmodit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:19:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:17:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,45 +38,9 @@
 #endif
 #pragma hdrstop
 
-// auto strip #ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
-// auto strip #include <com/sun/star/table/BorderLine.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
-// auto strip #include <com/sun/star/table/ShadowLocation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
-// auto strip #include <com/sun/star/table/TableBorder.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
-// auto strip #include <com/sun/star/table/ShadowFormat.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
-// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
-// auto strip #include <com/sun/star/table/CellContentType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
-// auto strip #include <com/sun/star/table/TableOrientation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
-// auto strip #include <com/sun/star/table/CellHoriJustify.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
-// auto strip #include <com/sun/star/util/SortField.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
-// auto strip #include <com/sun/star/util/SortFieldType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
-// auto strip #include <com/sun/star/table/CellOrientation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
-// auto strip #include <com/sun/star/table/CellAddress.hpp>
-// auto strip #endif
 
 #include "rotmodit.hxx"
 namespace binfilter {
@@ -114,46 +78,7 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxRotateModeItem( (SvxRotateMode) nVal,Which() );
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SvxRotateModeItem::GetPresentation(
-//STRIP001                              SfxItemPresentation ePres,
-//STRIP001                              SfxMapUnit eCoreUnit, SfxMapUnit ePresUnit,
-//STRIP001                                 String& rText, const IntlWrapper * )  const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText.AppendAscii("...");
-//STRIP001          rText.AppendAscii(": ");
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += UniString::CreateFromInt32( GetValue() );
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 String __EXPORT SvxRotateModeItem::GetValueText( USHORT nVal ) const
-//STRIP001 {
-//STRIP001  String aText;
-//STRIP001
-//STRIP001  switch ( nVal )
-//STRIP001  {
-//STRIP001      case SVX_ROTATE_MODE_STANDARD:
-//STRIP001      case SVX_ROTATE_MODE_TOP:
-//STRIP001      case SVX_ROTATE_MODE_CENTER:
-//STRIP001      case SVX_ROTATE_MODE_BOTTOM:
-//STRIP001          aText.AppendAscii("...");
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          DBG_ERROR("SvxRotateModeItem: falscher enum");
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  return aText;
-//STRIP001 }
 
 /*?*/ USHORT __EXPORT SvxRotateModeItem::GetValueCount() const
 /*?*/ {
