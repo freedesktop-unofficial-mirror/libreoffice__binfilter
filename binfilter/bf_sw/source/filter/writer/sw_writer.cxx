@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_writer.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:26:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:46:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,23 +41,7 @@
 #endif
 
 #define _SVSTDARR_STRINGSSORTDTOR
-// auto strip #include <svtools/svstdarr.hxx>
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXDOCFILE_HXX //autogen
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #endif
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
-// auto strip #ifndef _FILTER_HXX //autogen
-// auto strip #include <svtools/filter.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_IMPGRF_HXX //autogen
-// auto strip #include <bf_svx/impgrf.hxx>
-// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -85,12 +69,6 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _FORMAT_HXX
-// auto strip #include <format.hxx>
-// auto strip #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer SwBookmark ...
 #endif
@@ -119,7 +97,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/   ~Writer_Impl();
 /*N*/
 /*N*/   void RemoveFontList( SwDoc& rDoc );
-//STRIP001  void InsertBkmk( const SwBookmark& rBkmk );
 /*N*/ };
 
 /*N*/ Writer_Impl::Writer_Impl( const SwDoc& rDoc )
@@ -151,34 +128,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Writer_Impl::InsertBkmk( const SwBookmark& rBkmk )
-//STRIP001 {
-//STRIP001  if( !pBkmkNodePos )
-//STRIP001      pBkmkNodePos = new SwBookmarkNodeTable;
-//STRIP001
-//STRIP001  ULONG nNd = rBkmk.GetPos().nNode.GetIndex();
-//STRIP001  SvPtrarr* pArr = pBkmkNodePos->Get( nNd );
-//STRIP001  if( !pArr )
-//STRIP001  {
-//STRIP001      pArr = new SvPtrarr( 1, 4 );
-//STRIP001      pBkmkNodePos->Insert( nNd, pArr );
-//STRIP001  }
-//STRIP001
-//STRIP001  void* p = (void*)&rBkmk;
-//STRIP001  pArr->Insert( p, pArr->Count() );
-//STRIP001
-//STRIP001  if( rBkmk.GetOtherPos() && rBkmk.GetOtherPos()->nNode != nNd )
-//STRIP001  {
-//STRIP001      nNd = rBkmk.GetOtherPos()->nNode.GetIndex();
-//STRIP001      pArr = pBkmkNodePos->Get( nNd );
-//STRIP001      if( !pArr )
-//STRIP001      {
-//STRIP001          pArr = new SvPtrarr( 1, 4 );
-//STRIP001          pBkmkNodePos->Insert( nNd, pArr );
-//STRIP001      }
-//STRIP001      pArr->Insert( p, pArr->Count() );
-//STRIP001  }
-//STRIP001 }
 
 /*
  * Dieses Modul ist die Zentrale-Sammelstelle fuer alle Write-Filter
@@ -249,49 +198,8 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 
 // suche die naechste Bookmark-Position aus der Bookmark-Tabelle
 
-//STRIP001 USHORT Writer::FindPos_Bkmk( const SwPosition& rPos ) const
-//STRIP001 {
-//STRIP001  USHORT nRet = USHRT_MAX;
-//STRIP001  const SwBookmarks& rBkmks = pDoc->GetBookmarks();
-//STRIP001
-//STRIP001  if( rBkmks.Count() )
-//STRIP001  {
-//STRIP001      SwBookmark aBkmk( rPos );
-//STRIP001      USHORT nPos;
-//STRIP001      if( rBkmks.Seek_Entry( &aBkmk, &nPos ))
-//STRIP001      {
-//STRIP001          // suche abwaerts nach weiteren Bookmarks auf der Cursor-Position
-//STRIP001          while( 0 < nPos &&
-//STRIP001              rBkmks[ nPos-1 ]->IsEqualPos( aBkmk ))
-//STRIP001              --nPos;
-//STRIP001      }
-//STRIP001      else if( nPos < rBkmks.Count() )
-//STRIP001          nRet = nPos;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 
-//STRIP001 SwPaM* Writer::NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx,
-//STRIP001                      BOOL bNodesArray ) const
-//STRIP001 {
-//STRIP001  SwNodes* pNds = bNodesArray ? &rDoc.GetNodes() : (SwNodes*)rDoc.GetUndoNds();
-//STRIP001
-//STRIP001  SwNodeIndex aStt( *pNds, nStartIdx );
-//STRIP001  SwCntntNode* pCNode = aStt.GetNode().GetCntntNode();
-//STRIP001  if( !pCNode && 0 == ( pCNode = pNds->GoNext( &aStt )) )
-//STRIP001      ASSERT( !this, "An StartPos kein ContentNode mehr" );
-//STRIP001
-//STRIP001  SwPaM* pNew = new SwPaM( aStt );
-//STRIP001  pNew->SetMark();
-//STRIP001  aStt = nEndIdx;
-//STRIP001  if( 0 == (pCNode = aStt.GetNode().GetCntntNode()) &&
-//STRIP001      0 == (pCNode = pNds->GoPrevious( &aStt )) )
-//STRIP001      ASSERT( !this, "An StartPos kein ContentNode mehr" );
-//STRIP001  pCNode->MakeEndIndex( &pNew->GetPoint()->nContent );
-//STRIP001  pNew->GetPoint()->nNode = aStt;
-//STRIP001  return pNew;
-//STRIP001 }
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -305,52 +213,8 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/ #endif
 
 
-//STRIP001 SvStream& Writer::OutHex( SvStream& rStrm, ULONG nHex, BYTE nLen )
-//STRIP001 {                                                   // in einen Stream aus
-//STRIP001  // Pointer an das Bufferende setzen
-//STRIP001  sal_Char* pStr = aNToABuf + (NTOABUFLEN-1);
-//STRIP001  for( BYTE n = 0; n < nLen; ++n )
-//STRIP001  {
-//STRIP001      *(--pStr) = (sal_Char)(nHex & 0xf ) + 48;
-//STRIP001      if( *pStr > '9' )
-//STRIP001          *pStr += 39;
-//STRIP001      nHex >>= 4;
-//STRIP001  }
-//STRIP001  return rStrm << pStr;
-//STRIP001 }
 
-//STRIP001 SvStream& Writer::OutLong( SvStream& rStrm, long nVal )
-//STRIP001 {
-//STRIP001  // Pointer an das Bufferende setzen
-//STRIP001  sal_Char* pStr = aNToABuf + (NTOABUFLEN-1);
-//STRIP001
-//STRIP001  int bNeg = nVal < 0;
-//STRIP001  if( bNeg )
-//STRIP001      nVal = -nVal;
-//STRIP001
-//STRIP001  do {
-//STRIP001      *(--pStr) = (sal_Char)(nVal % 10 ) + 48;
-//STRIP001      nVal /= 10;
-//STRIP001  } while( nVal );
-//STRIP001
-//STRIP001  // Ist Zahl negativ, dann noch -
-//STRIP001  if( bNeg )
-//STRIP001      *(--pStr) = '-';
-//STRIP001
-//STRIP001  return rStrm << pStr;
-//STRIP001 }
 
-//STRIP001 SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
-//STRIP001 {
-//STRIP001  // Pointer an das Bufferende setzen
-//STRIP001  sal_Char* pStr = aNToABuf + (NTOABUFLEN-1);
-//STRIP001
-//STRIP001  do {
-//STRIP001      *(--pStr) = (sal_Char)(nVal % 10 ) + 48;
-//STRIP001      nVal /= 10;
-//STRIP001  } while ( nVal );
-//STRIP001  return rStrm << pStr;
-//STRIP001 }
 
 
 /*N*/ ULONG Writer::Write( SwPaM& rPaM, SvStream& rStrm, const String* pFName )
@@ -372,12 +236,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/   return nRet;
 /*N*/ }
 
-//STRIP001 ULONG Writer::Write( SwPaM& rPam, SfxMedium& rMed, const String* pFileName )
-//STRIP001 {
-//STRIP001  return IsStgWriter()
-//STRIP001              ? Write( rPam, *rMed.GetStorage(), pFileName )
-//STRIP001              : Write( rPam, *rMed.GetOutStream(), pFileName );
-//STRIP001 }
 
 /*N*/ ULONG Writer::Write( SwPaM& rPam, SvStorage&, const String* )
 /*N*/ {
@@ -386,68 +244,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/ }
 
 
-//STRIP001 BOOL Writer::CopyLocalFileToINet( String& rFileNm )
-//STRIP001 {
-//STRIP001  if( !pOrigFileName )                // can be happen, by example if we
-//STRIP001      return FALSE;                   // write into the clipboard
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  INetURLObject aFileUrl( rFileNm ), aTargetUrl( *pOrigFileName );
-//STRIP001
-//STRIP001 // JP 01.11.00: what is the correct question for the portal??
-//STRIP001 //   if( aFileUrl.GetProtocol() == aFileUrl.GetProtocol() )
-//STRIP001 //       return bRet;
-//STRIP001 // this is our old without the Mail-Export
-//STRIP001     if( ! ( INET_PROT_FILE == aFileUrl.GetProtocol() &&
-//STRIP001          INET_PROT_FILE != aTargetUrl.GetProtocol() &&
-//STRIP001          INET_PROT_FTP <= aTargetUrl.GetProtocol() &&
-//STRIP001          INET_PROT_NEWS >= aTargetUrl.GetProtocol() ) )
-//STRIP001      return bRet;
-//STRIP001
-//STRIP001  if( pImpl->pSrcArr )
-//STRIP001  {
-//STRIP001      // wurde die Datei schon verschoben
-//STRIP001      USHORT nPos;
-//STRIP001      if( pImpl->pSrcArr->Seek_Entry( &rFileNm, &nPos ))
-//STRIP001      {
-//STRIP001          rFileNm = *(*pImpl->pDestArr)[ nPos ];
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pImpl->pSrcArr = new SvStringsSortDtor( 4, 4 );
-//STRIP001      pImpl->pDestArr = new SvStringsSortDtor( 4, 4 );
-//STRIP001  }
-//STRIP001
-//STRIP001  String *pSrc = new String( rFileNm );
-//STRIP001  String *pDest = new String( aTargetUrl.GetPartBeforeLastName() );
-//STRIP001  *pDest += aFileUrl.GetName();
-//STRIP001
-//STRIP001  SfxMedium aSrcFile( *pSrc, STREAM_READ, FALSE );
-//STRIP001  SfxMedium aDstFile( *pDest, STREAM_WRITE | STREAM_SHARE_DENYNONE, FALSE );
-//STRIP001
-//STRIP001  *aDstFile.GetOutStream() << *aSrcFile.GetInStream();
-//STRIP001
-//STRIP001  aSrcFile.Close();
-//STRIP001  aDstFile.Commit();
-//STRIP001
-//STRIP001  bRet = 0 == aDstFile.GetError();
-//STRIP001
-//STRIP001  if( bRet )
-//STRIP001  {
-//STRIP001      pImpl->pSrcArr->Insert( pSrc );
-//STRIP001      pImpl->pDestArr->Insert( pDest );
-//STRIP001      rFileNm = *pDest;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      delete pSrc;
-//STRIP001      delete pDest;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ void Writer::PutNumFmtFontsInAttrPool()
 /*N*/ {
@@ -504,15 +300,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Writer::PutCJKandCTLFontsInAttrPool()
-//STRIP001 {
-//STRIP001  if( !pImpl )
-//STRIP001      pImpl = new Writer_Impl( *pDoc );
-//STRIP001
-//STRIP001  SfxItemPool& rPool = pDoc->GetAttrPool();
-//STRIP001  _AddFontItems( rPool, RES_CHRATR_CJK_FONT );
-//STRIP001  _AddFontItems( rPool, RES_CHRATR_CTL_FONT );
-//STRIP001 }
 
 
 /*N*/ void Writer::_AddFontItems( SfxItemPool& rPool, USHORT nW )
@@ -555,68 +342,14 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 
 // build a bookmark table, which is sort by the node position. The
 // OtherPos of the bookmarks also inserted.
-//STRIP001 void Writer::CreateBookmarkTbl()
-//STRIP001 {
-//STRIP001  const SwBookmarks& rBkmks = pDoc->GetBookmarks();
-//STRIP001  for( USHORT n = rBkmks.Count(); n; )
-//STRIP001  {
-//STRIP001      const SwBookmark& rBkmk = *rBkmks[ --n ];
-//STRIP001      if( rBkmk.IsBookMark() )
-//STRIP001          pImpl->InsertBkmk( rBkmk );
-//STRIP001  }
-//STRIP001 }
 
 
 // search alle Bookmarks in the range and return it in the Array
-//STRIP001 USHORT Writer::GetBookmarks( const SwCntntNode& rNd, xub_StrLen nStt,
-//STRIP001                           xub_StrLen nEnd, SvPtrarr& rArr )
-//STRIP001 {
-//STRIP001  ASSERT( !rArr.Count(), "es sind noch Eintraege vorhanden" );
-//STRIP001
-//STRIP001  ULONG nNd = rNd.GetIndex();
-//STRIP001  SvPtrarr* pArr = pImpl->pBkmkNodePos ? pImpl->pBkmkNodePos->Get( nNd ) : 0;
-//STRIP001  if( pArr )
-//STRIP001  {
-//STRIP001      // there exist some bookmarks, search now all which is in the range
-//STRIP001      if( !nStt && nEnd == rNd.Len() )
-//STRIP001          // all
-//STRIP001          rArr.Insert( pArr, 0 );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          USHORT n;
-//STRIP001          xub_StrLen nCntnt;
-//STRIP001          for( n = 0; n < pArr->Count(); ++n )
-//STRIP001          {
-//STRIP001              void* p = (*pArr)[ n ];
-//STRIP001              const SwBookmark& rBkmk = *(SwBookmark*)p;
-//STRIP001              if( rBkmk.GetPos().nNode == nNd &&
-//STRIP001                  (nCntnt = rBkmk.GetPos().nContent.GetIndex() ) >= nStt &&
-//STRIP001                  nCntnt < nEnd )
-//STRIP001              {
-//STRIP001                  rArr.Insert( p, rArr.Count() );
-//STRIP001              }
-//STRIP001              else if( rBkmk.GetOtherPos() && nNd ==
-//STRIP001                      rBkmk.GetOtherPos()->nNode.GetIndex() && (nCntnt =
-//STRIP001                      rBkmk.GetOtherPos()->nContent.GetIndex() ) >= nStt &&
-//STRIP001                      nCntnt < nEnd )
-//STRIP001              {
-//STRIP001                  rArr.Insert( p, rArr.Count() );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return rArr.Count();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////
 
 // Storage-spezifisches
 
-//STRIP001 ULONG StgWriter::WriteStream()
-//STRIP001 {
-//STRIP001  ASSERT( !this, "Schreiben in Streams auf einem Storage?" );
-//STRIP001  return ERR_SWG_WRITE_ERROR;
-//STRIP001 }
 
 /*N*/ ULONG StgWriter::Write( SwPaM& rPaM, SvStorage& rStg, const String* pFName )
 /*N*/ {
