@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chartdoc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:16:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:22:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,29 +35,10 @@
 
 #pragma hdrstop
 
-// auto strip #include <bf_svx/eeitem.hxx>
 
-// auto strip #ifndef _CTRLTOOL_HXX //autogen
-// auto strip #include <svtools/ctrltool.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_OBJSH_HXX //autogen
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_INTERNO_HXX //autogen
-// auto strip #include <bf_sfx2/interno.hxx>
-// auto strip #endif
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MENU_HXX //autogen
-// auto strip #include <vcl/menu.hxx>
-// auto strip #endif
-// auto strip #ifndef _CTRLTOOL_HXX //autogen
-// auto strip #include <svtools/ctrltool.hxx>
-// auto strip #endif
 
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -67,9 +48,6 @@
 #endif
 
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
@@ -86,14 +64,10 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
-// auto strip #endif
 #ifndef _SCH_STLPOOL_HXX
 #include "stlpool.hxx"
 #endif
@@ -111,26 +85,12 @@
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 
 #include "glob.hrc"
-// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDLAYER_HXX //autogen
-// auto strip #include <bf_svx/svdlayer.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-// auto strip #include <svtools/pathoptions.hxx>
-// auto strip #endif
 
-// auto strip #include "pairs.hxx"
 #include "chaxis.hxx"
 
 #include "memchrt.hxx"
@@ -153,169 +113,6 @@ namespace binfilter {
 \************************************************************************/
 /*N*/ SdrModel* ChartModel::AllocModel() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  ByteString aBStr( aMainTitle, RTL_TEXTENCODING_ASCII_US );
-//STRIP001  CHART_TRACE1( "ChartModel::AllocModel (%s)", aBStr.GetBuffer() );
-//STRIP001 #endif
-//STRIP001
-//STRIP001  ChartModel *pNewModel = new ChartModel( SvtPathOptions().GetPalettePath(), NULL );
-//STRIP001  pNewModel->SetChartData (*pChartData, TRUE);
-//STRIP001
-//STRIP001  pNewModel->TextScalability ()      = bTextScalable;
-//STRIP001  pNewModel->IsCopied ()             = bIsCopied;
-//STRIP001  pNewModel->ShowAverage ()          = bShowAverage;
-//STRIP001  pNewModel->ChartKindError ()       = eErrorKind;
-//STRIP001  pNewModel->ChartIndicate ()        = eIndicate;
-//STRIP001  pNewModel->ChartRegress ()         = eRegression;
-//STRIP001
-//STRIP001  pNewModel->IndicatePercent ()      = fIndicatePercent;
-//STRIP001  pNewModel->IndicateBigError ()     = fIndicateBigError;
-//STRIP001  pNewModel->IndicatePlus ()         = fIndicatePlus;
-//STRIP001  pNewModel->IndicateMinus ()        = fIndicateMinus;
-//STRIP001  pNewModel->nSplineDepth             = nSplineDepth;
-//STRIP001  pNewModel->Granularity ()          = nGranularity;
-//STRIP001
-//STRIP001  pNewModel->InitialSize ()          = aInitialSize;
-//STRIP001  pNewModel->LightVec ()             = *aLightVec;
-//STRIP001  pNewModel->SetAmbientIntensity (fAmbientIntensity);
-//STRIP001  pNewModel->SetAmbientColor(aAmbientColor);
-//STRIP001  pNewModel->SpotIntensity ()        = fSpotIntensity;
-//STRIP001  pNewModel->SetSpotColor(aSpotColor);
-//STRIP001  pNewModel->ChartStyle ()           = eChartStyle;
-//STRIP001  pNewModel->OldChartStyle ()        = eOldChartStyle;
-//STRIP001  pNewModel->PieHeight ()            = nPieHeight;
-//STRIP001  pNewModel->PieSegCount ()          = nPieSegCount;
-//STRIP001  pNewModel->ShowMainTitle ()        = bShowMainTitle;
-//STRIP001  pNewModel->ShowSubTitle ()         = bShowSubTitle;
-//STRIP001  pNewModel->ShowXAxisTitle ()       = bShowXAxisTitle;
-//STRIP001  pNewModel->ShowYAxisTitle ()       = bShowYAxisTitle;
-//STRIP001  pNewModel->ShowZAxisTitle ()       = bShowZAxisTitle;
-//STRIP001 //    pNewModel->ShowXAxis ()            = bShowXAxis;
-//STRIP001 //    pNewModel->ShowYAxis ()            = bShowYAxis;
-//STRIP001 //    pNewModel->ShowZAxis ()            = bShowZAxis;
-//STRIP001  pNewModel->ShowXGridMain ()        = bShowXGridMain;
-//STRIP001  pNewModel->ShowYGridMain ()        = bShowYGridMain;
-//STRIP001  pNewModel->ShowZGridMain ()        = bShowZGridMain;
-//STRIP001  pNewModel->ShowXGridHelp ()        = bShowXGridHelp;
-//STRIP001  pNewModel->ShowYGridHelp ()        = bShowYGridHelp;
-//STRIP001  pNewModel->ShowZGridHelp()         = bShowZGridHelp;
-//STRIP001 //    pNewModel->ShowXDescr ()           = bShowXDescr;
-//STRIP001 //    pNewModel->ShowYDescr ()           = bShowYDescr;
-//STRIP001 //    pNewModel->ShowZDescr ()           = bShowZDescr;
-//STRIP001  pNewModel->MainTitle ()            = aMainTitle;
-//STRIP001  pNewModel->SubTitle ()             = aSubTitle;
-//STRIP001  pNewModel->XAxisTitle ()           = aXAxisTitle;
-//STRIP001  pNewModel->YAxisTitle ()           = aYAxisTitle;
-//STRIP001  pNewModel->ZAxisTitle ()           = aZAxisTitle;
-//STRIP001
-//STRIP001  pNewModel->ShowSym ()              = bShowSym;
-//STRIP001  pNewModel->SetSwitchData(bSwitchData);
-//STRIP001
-//STRIP001  pNewModel->aBarY1 = aBarY1;
-//STRIP001     pNewModel->aBarY1.ChangeModel( pNewModel );
-//STRIP001  pNewModel->aBarY2 = aBarY2;
-//STRIP001     pNewModel->aBarY2.ChangeModel( pNewModel );
-//STRIP001
-//STRIP001  pNewModel->ReadError ()            = bReadError;
-//STRIP001  pNewModel->DataDescr  ()           = eDataDescr;
-//STRIP001
-//STRIP001  pNewModel->CopyDefaultColors (pDefaultColors);
-//STRIP001  pNewModel->SetShowLegend (bLegendVisible);
-//STRIP001 //    pNewModel->SetChartData (*pChartData, TRUE); #64058#
-//STRIP001  pNewModel->SetAngles (nXAngle, nYAngle, nZAngle);
-//STRIP001
-//STRIP001  pNewModel->AllocPieSegOfs (nPieSegCount);
-//STRIP001
-//STRIP001  // #68527# BM: some attributes have been missing
-//STRIP001
-//STRIP001  pNewModel->SetUseRelativePositions( bUseRelativePositionsForChartGroups );
-//STRIP001  pNewModel->aDiagramRectangle                = aDiagramRectangle;
-//STRIP001  pNewModel->aLastDiagramRectangle            = aDiagramRectangle;
-//STRIP001  pNewModel->bDiagramHasBeenMovedOrResized    = bDiagramHasBeenMovedOrResized;
-//STRIP001  pNewModel->aLegendTopLeft                   = aLegendTopLeft;
-//STRIP001  pNewModel->aTitleTopCenter                  = aTitleTopCenter;
-//STRIP001  pNewModel->aSubTitleTopCenter               = aSubTitleTopCenter;
-//STRIP001  pNewModel->aTitleXAxisPosition              = aTitleXAxisPosition;
-//STRIP001  pNewModel->aTitleYAxisPosition              = aTitleYAxisPosition;
-//STRIP001  pNewModel->aTitleZAxisPosition              = aTitleZAxisPosition;
-//STRIP001  pNewModel->bAdjustMarginsForLegend          = bAdjustMarginsForLegend;
-//STRIP001  pNewModel->bAdjustMarginsForMainTitle       = bAdjustMarginsForMainTitle;
-//STRIP001  pNewModel->bAdjustMarginsForSubTitle        = bAdjustMarginsForSubTitle;
-//STRIP001  pNewModel->bAdjustMarginsForXAxisTitle      = bAdjustMarginsForXAxisTitle;
-//STRIP001  pNewModel->bAdjustMarginsForYAxisTitle      = bAdjustMarginsForYAxisTitle;
-//STRIP001  pNewModel->bAdjustMarginsForZAxisTitle      = bAdjustMarginsForZAxisTitle;
-//STRIP001  pNewModel->bDiagramHasBeenMovedOrResized    = bDiagramHasBeenMovedOrResized;
-//STRIP001  pNewModel->bMainTitleHasBeenMoved           = bMainTitleHasBeenMoved;
-//STRIP001  pNewModel->bSubTitleHasBeenMoved            = bSubTitleHasBeenMoved;
-//STRIP001  pNewModel->bLegendHasBeenMoved              = bLegendHasBeenMoved;
-//STRIP001  pNewModel->bXAxisTitleHasBeenMoved          = bXAxisTitleHasBeenMoved;
-//STRIP001  pNewModel->bYAxisTitleHasBeenMoved          = bYAxisTitleHasBeenMoved;
-//STRIP001  pNewModel->bZAxisTitleHasBeenMoved          = bZAxisTitleHasBeenMoved;
-//STRIP001  pNewModel->bSwitch3DColRow                  = bSwitch3DColRow;
-//STRIP001  pNewModel->nMarkLen                         = nMarkLen;
-//STRIP001  pNewModel->bCanRebuild                      = bCanRebuild;
-//STRIP001  pNewModel->bShowDataDescr                   = bShowDataDescr;
-//STRIP001  pNewModel->eAdjustXAxesTitle                = eAdjustXAxesTitle;
-//STRIP001  pNewModel->eAdjustYAxesTitle                = eAdjustYAxesTitle;
-//STRIP001  pNewModel->eAdjustZAxesTitle                = eAdjustZAxesTitle;
-//STRIP001  pNewModel->nBarPercentWidth                 = nBarPercentWidth;
-//STRIP001  pNewModel->nNumLinesInColChart              = nNumLinesInColChart;
-//STRIP001  pNewModel->aChartRect                       = aChartRect;
-//STRIP001  pNewModel->aInitialSize                     = aInitialSize;
-//STRIP001  pNewModel->nChartStatus                     = nChartStatus;
-//STRIP001  pNewModel->bAttrAutoStorage                 = bAttrAutoStorage;
-//STRIP001
-//STRIP001  // #68527# BM: End
-//STRIP001
-//STRIP001  pNewModel->PutTitleAttr(     *pTitleAttr     ,FALSE);
-//STRIP001  pNewModel->PutMainTitleAttr( *pMainTitleAttr ,FALSE);
-//STRIP001  pNewModel->PutSubTitleAttr(  *pSubTitleAttr  ,FALSE);
-//STRIP001  pNewModel->PutXAxisTitleAttr(*pXAxisTitleAttr,FALSE);
-//STRIP001  pNewModel->PutYAxisTitleAttr(*pYAxisTitleAttr,FALSE);
-//STRIP001  pNewModel->PutZAxisTitleAttr(*pZAxisTitleAttr,FALSE);
-//STRIP001
-//STRIP001  // merge numberformatters
-//STRIP001  if( pNewModel->pOwnNumFormatter && pNumFormatter )
-//STRIP001  {
-//STRIP001      SvNumberFormatterIndexTable* pTransTable =
-//STRIP001          pNewModel->pOwnNumFormatter->MergeFormatter( *pNumFormatter );
-//STRIP001
-//STRIP001      if( pTransTable && pTransTable->Count() )
-//STRIP001      {
-//STRIP001          // we have to merge some formats
-//STRIP001          DBG_ERROR1( "Unexpected situation: %d number format(s) have to be merged.", pTransTable->Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  pNewModel->PutAxisAttr (*pAxisAttr,FALSE);
-//STRIP001
-//STRIP001  pNewModel->CopyAxisMembers(this);
-//STRIP001  pNewModel->CopyAxisAttributes(this,FALSE);
-//STRIP001
-//STRIP001  pNewModel->PutGridAttr (*pGridAttr,FALSE);
-//STRIP001  pNewModel->PutXGridMainAttr(*pXGridMainAttr,FALSE);
-//STRIP001  pNewModel->PutYGridMainAttr(*pYGridMainAttr,FALSE);
-//STRIP001  pNewModel->PutZGridMainAttr(*pZGridMainAttr,FALSE);
-//STRIP001  pNewModel->PutXGridHelpAttr(*pXGridHelpAttr,FALSE);
-//STRIP001  pNewModel->PutYGridHelpAttr(*pYGridHelpAttr,FALSE);
-//STRIP001  pNewModel->PutZGridHelpAttr(*pZGridHelpAttr,FALSE);
-//STRIP001
-//STRIP001  pNewModel->PutDiagramAreaAttr(*pDiagramAreaAttr,FALSE);
-//STRIP001  pNewModel->PutDiagramWallAttr(*pDiagramWallAttr,FALSE);
-//STRIP001  pNewModel->PutDiagramFloorAttr(*pDiagramFloorAttr,FALSE);
-//STRIP001
-//STRIP001  pNewModel->PutLegendAttr (*pLegendAttr,FALSE);
-//STRIP001  pNewModel->SetItemSetLists(*this);
-//STRIP001  pNewModel->PutChartAttr(*pChartAttr,FALSE);
-//STRIP001
-//STRIP001  pNewModel->SetAttributes(CHOBJID_DIAGRAM_STOCKLINE_GROUP,*pStockLineAttr,FALSE);
-//STRIP001  pNewModel->SetAttributes(CHOBJID_DIAGRAM_STOCKLOSS_GROUP,*pStockLossAttr,FALSE);
-//STRIP001  pNewModel->SetAttributes(CHOBJID_DIAGRAM_STOCKPLUS_GROUP,*pStockPlusAttr,FALSE);
-//STRIP001
-//STRIP001  DBG_ITEMS((SfxItemSet&)pNewModel->GetDataRowAttr(0),pNewModel);
-//STRIP001  DBG_ITEMS((SfxItemSet&)GetDataRowAttr(0),(ChartModel*)this);
-//STRIP001
-//STRIP001  return pNewModel;
 /*N*/ }
 
 /*************************************************************************
