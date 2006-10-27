@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porlin.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:30:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:12:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,22 +37,11 @@
 #pragma hdrstop
 
 #ifdef BIDI
-// auto strip #ifndef _OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 
-// auto strip #include "errhdl.hxx"   // ASSERT
 
 #include "txtcfg.hxx"
-// auto strip #include "porlin.hxx"
-// auto strip #include "inftxt.hxx"
-// auto strip #include "portxt.hxx"
 #include "pormulti.hxx"
-// auto strip #include "porglue.hxx"
 #include "inftxt.hxx"
 #include "blink.hxx"
 namespace binfilter {
@@ -98,10 +87,6 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/   return GetLen() || Width() ? this : 0;
 /*N*/ }
 
-//STRIP001 KSHORT SwLinePortion::GetViewWidth( const SwTxtSizeInfo & ) const
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 /*************************************************************************
  *               SwLinePortion::SwLinePortion( )
@@ -118,72 +103,6 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *               SwLinePortion::PrePaint()
  *************************************************************************/
 
-//STRIP001 void SwLinePortion::PrePaint( const SwTxtPaintInfo& rInf,
-//STRIP001                               const SwLinePortion* pLast ) const
-//STRIP001 {
-//STRIP001     ASSERT( rInf.OnWin(), "SwLinePortion::PrePaint: don't prepaint on a printer");
-//STRIP001  ASSERT( !Width(), "SwLinePortion::PrePaint: For Width()==0 only!");
-//STRIP001
-//STRIP001     const KSHORT nViewWidth = GetViewWidth( rInf );
-//STRIP001
-//STRIP001     if( ! nViewWidth )
-//STRIP001         return;
-//STRIP001
-//STRIP001     const KSHORT nHalfView = nViewWidth / 2;
-//STRIP001     USHORT nLastWidth = pLast->Width();
-//STRIP001
-//STRIP001     if ( pLast->InSpaceGrp() && rInf.GetSpaceAdd() )
-//STRIP001         nLastWidth += (USHORT)pLast->CalcSpacing( rInf.GetSpaceAdd(), rInf );
-//STRIP001
-//STRIP001     KSHORT nPos;
-//STRIP001     SwTxtPaintInfo aInf( rInf );
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001     const BOOL bBidiPor = ( rInf.GetTxtFrm()->IsRightToLeft() ) !=
-//STRIP001                           ( 0 != ( TEXT_LAYOUT_BIDI_RTL & rInf.GetOut()->GetLayoutMode() ) );
-//STRIP001
-//STRIP001     USHORT nDir = bBidiPor ?
-//STRIP001                   1800 :
-//STRIP001                   rInf.GetFont()->GetOrientation( rInf.GetTxtFrm()->IsVertical() );
-//STRIP001 #else
-//STRIP001     USHORT nDir = rInf.GetFont()->GetOrientation( rInf.GetTxtFrm()->IsVertical() );
-//STRIP001 #endif
-//STRIP001
-//STRIP001     switch ( nDir )
-//STRIP001     {
-//STRIP001     case 0 :
-//STRIP001         nPos = KSHORT( rInf.X() );
-//STRIP001         if( nLastWidth > nHalfView )
-//STRIP001             nPos += nLastWidth - nHalfView;
-//STRIP001         aInf.X( nPos );
-//STRIP001         break;
-//STRIP001     case 900 :
-//STRIP001         nPos = KSHORT( rInf.Y() );
-//STRIP001         if( nLastWidth > nHalfView )
-//STRIP001             nPos -= nLastWidth + nHalfView;
-//STRIP001         aInf.Y( nPos );
-//STRIP001         break;
-//STRIP001 #ifdef BIDI
-//STRIP001     case 1800 :
-//STRIP001         nPos = KSHORT( rInf.X() );
-//STRIP001         if( nLastWidth > nHalfView )
-//STRIP001             nPos -= nLastWidth + nHalfView;
-//STRIP001         aInf.X( nPos );
-//STRIP001         break;
-//STRIP001 #endif
-//STRIP001     case 2700 :
-//STRIP001         nPos = KSHORT( rInf.Y() );
-//STRIP001         if( nLastWidth > nHalfView )
-//STRIP001             nPos += nLastWidth - nHalfView;
-//STRIP001         aInf.Y( nPos );
-//STRIP001         break;
-//STRIP001     }
-//STRIP001
-//STRIP001  SwLinePortion *pThis = (SwLinePortion*)this;
-//STRIP001  pThis->Width( nViewWidth );
-//STRIP001  Paint( aInf );
-//STRIP001  pThis->Width(0);
-//STRIP001 }
 
 /*************************************************************************
  *                  SwLinePortion::CalcTxtSize()
@@ -304,13 +223,6 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *                virtual SwLinePortion::GetCrsrOfst()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwLinePortion::GetCrsrOfst( const KSHORT nOfst ) const
-//STRIP001 {
-//STRIP001  if( nOfst > ( PrtWidth() / 2 ) )
-//STRIP001      return GetLen();
-//STRIP001  else
-//STRIP001      return 0;
-//STRIP001 }
 
 /*************************************************************************
  *                virtual SwLinePortion::GetTxtSize()
@@ -329,22 +241,6 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *                virtual SwLinePortion::Check()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwLinePortion::Check( SvStream &, SwTxtSizeInfo & ) //$ ostream
-//STRIP001 {
-//STRIP001 #ifdef USED
-//STRIP001  SwPosSize aSize( GetTxtSize( rInfo ) );
-//STRIP001  if( Width() != aSize.Width() )
-//STRIP001  {
-//STRIP001      CONSTCHAR( pDbgTxt, "Error in width of SwLinePortion: " );
-//STRIP001      rOs << pDbgTxt << endl;
-//STRIP001      operator<<( rOs );
-//STRIP001      rOs << endl;
-//STRIP001      rOs << "Had: " << Width() << " And: " << aSize.Width();
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001 #endif /* USED */
-//STRIP001  return sal_True;
-//STRIP001 }
 #endif
 
 /*************************************************************************
@@ -455,10 +351,5 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *              virtual SwLinePortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwLinePortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     String aString;
-//STRIP001     rPH.Special( GetLen(), aString, GetWhichPor() );
-//STRIP001 }
 
 }
