@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoutl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:03:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:44:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,24 +36,12 @@
 #ifndef _SVDOUTL_HXX //autogen
 #include "svdoutl.hxx"
 #endif
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include "outliner.hxx"
-// auto strip #endif
 #ifndef _SVDOTEXT_HXX //autogen
 #include "svdotext.hxx"
 #endif
 #ifndef _EDITSTAT_HXX //autogen wg. EE_CNTRL_STRETCHING
 #include <editstat.hxx>
 #endif
-// auto strip #ifndef _SVDMODEL_HXX //autogen wg. SdrModel
-// auto strip #include <svdmodel.hxx>
-// auto strip #endif
-// auto strip #ifndef _EEITEM_HXX //autogen wg. EE_ITEMS_START
-// auto strip #include <eeitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXITEMPOOL_HXX //autogen wg. SfxItemPool
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
