@@ -4,9 +4,9 @@
  *
  *  $RCSfile: GroupManager.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:35:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:57:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,28 +36,16 @@
 #ifndef _FRM_GROUPMANAGER_HXX_
 #define _FRM_GROUPMANAGER_HXX_
 
-// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
-// auto strip #include <com/sun/star/sdbc/XRowSet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
 #include <com/sun/star/awt/XControlModel.hpp>
 #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
-// auto strip #include <com/sun/star/container/XContainerListener.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
 #include <com/sun/star/container/XContainer.hpp>
 #endif
 
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
@@ -66,9 +54,6 @@
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_TYPES_HXX_
-// auto strip #include <comphelper/types.hxx>
-// auto strip #endif
 namespace binfilter {
     using namespace ::comphelper;
 
