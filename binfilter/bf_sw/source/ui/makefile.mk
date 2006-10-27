@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 14:59:16 $
+#   last change: $Author: rt $ $Date: 2006-10-27 23:57:40 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,46 +68,16 @@ LIBFLAGS=/NOI /NOE /PAGE:256
 
 # andere Label als Verzeichnisnamen fuer VC++/NT
 
-#SUBLIBS1= \
-#		$(SLB)$/app.lib      \
-#		$(SLB)$/cctrl.lib    \
-#		$(SLB)$/chrdlg.lib   \
-#		$(SLB)$/config.lib   \
-#		$(SLB)$/dbui.lib     \
-#		$(SLB)$/dialog.lib   \
-#		$(SLB)$/dochdl.lib   \
-#		$(SLB)$/docvw.lib    \
-#        $(SLB)$/envelp.lib   \
-#		$(SLB)$/fldui.lib    \
-#		$(SLB)$/fmtui.lib    \
-#		$(SLB)$/frmdlg.lib   \
-#		$(SLB)$/globdoc.lib
-
 SUBLIBS1= \
         $(SLB)$/sw_app.lib      \
         $(SLB)$/sw_config.lib   \
         $(SLB)$/sw_dbui.lib     \
-        $(SLB)$/sw_dialog.lib   \
         $(SLB)$/sw_dochdl.lib   \
         $(SLB)$/sw_docvw.lib    \
         $(SLB)$/sw_envelp.lib   \
         $(SLB)$/sw_fldui.lib    \
         $(SLB)$/sw_globdoc.lib
         
-#SUBLIBS2= \
-#		$(SLB)$/index.lib    \
-#		$(SLB)$/lingu.lib    \
-#		$(SLB)$/misc.lib     \
-#		$(SLB)$/ribbar.lib   \
-#		$(SLB)$/shells.lib   \
-#		$(SLB)$/table.lib    \
-#		$(SLB)$/unoidl.lib   \
-#		$(SLB)$/utlui.lib    \
-#		$(SLB)$/web.lib   \
-#		$(SLB)$/wizard.lib   \
-#		$(SLB)$/uiview.lib   \
-#		$(SLB)$/wrtsh.lib
-
 SUBLIBS2= \
         $(SLB)$/sw_index.lib    \
         $(SLB)$/sw_misc.lib     \
