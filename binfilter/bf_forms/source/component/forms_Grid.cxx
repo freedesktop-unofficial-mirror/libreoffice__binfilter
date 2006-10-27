@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Grid.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2006-10-12 10:28:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:02:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XLOADABLE_HPP_
-// auto strip #include <com/sun/star/form/XLoadable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_FONTRELIEF_HPP_
 #include <com/sun/star/awt/FontRelief.hpp>
 #endif
@@ -60,16 +57,7 @@
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
-// auto strip #include <comphelper/extract.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
