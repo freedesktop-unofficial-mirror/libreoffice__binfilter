@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdtouch.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:07:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:46:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,8 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #include "svdtouch.hxx"
-// auto strip #include "xoutx.hxx"
 
 #ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
@@ -213,12 +211,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 FASTBOOL IsRectTouchesPoly(const Polygon& rPoly, const Rectangle& rHit)
-//STRIP001 {
-//STRIP001  ImpPolyHitCalc aHit(rHit);
-//STRIP001  CheckPolyHit(rPoly,aHit);
-//STRIP001  return aHit.IsHit();
-//STRIP001 }
 
 /*N*/ FASTBOOL IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit)
 /*N*/ {
@@ -230,30 +222,8 @@ namespace binfilter {
 /*N*/   return aHit.IsHit();
 /*N*/ }
 
-//STRIP001 FASTBOOL IsRectTouchesPoly(const XPolygon& rPoly, const Rectangle& rHit, OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  return IsRectTouchesPoly(XOutCreatePolygon(rPoly,pOut),rHit);
-//STRIP001 }
 
-//STRIP001 FASTBOOL IsRectTouchesPoly(const XPolyPolygon& rPoly, const Rectangle& rHit, OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  ImpPolyHitCalc aHit(rHit);
-//STRIP001  USHORT nAnz=rPoly.Count();
-//STRIP001  for (USHORT i=0; i<nAnz && !aHit.IsDecided(); i++) {
-//STRIP001      CheckPolyHit(XOutCreatePolygon(rPoly[i],pOut),aHit);
-//STRIP001  }
-//STRIP001  return aHit.IsHit();
-//STRIP001 }
 
-//STRIP001 FASTBOOL IsRectTouchesLine(const Point& rPt1, const Point& rPt2, const Rectangle& rHit)
-//STRIP001 {
-//STRIP001  Polygon aPol(2);
-//STRIP001  aPol[0]=rPt1;
-//STRIP001  aPol[1]=rPt2;
-//STRIP001  ImpPolyHitCalc aHit(rHit,TRUE);
-//STRIP001  CheckPolyHit(aPol,aHit);
-//STRIP001  return aHit.IsHit();
-//STRIP001 }
 
 /*N*/ FASTBOOL IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit)
 /*N*/ {
@@ -262,30 +232,8 @@ namespace binfilter {
 /*N*/   return aHit.IsHit();
 /*N*/ }
 
-//STRIP001 FASTBOOL IsRectTouchesLine(const PolyPolygon& rLine, const Rectangle& rHit)
-//STRIP001 {
-//STRIP001  ImpPolyHitCalc aHit(rHit,TRUE);
-//STRIP001  USHORT nAnz=rLine.Count();
-//STRIP001  for (USHORT nNum=0; nNum<nAnz && !aHit.IsHit(); nNum++) {
-//STRIP001      CheckPolyHit(rLine[nNum],aHit);
-//STRIP001  }
-//STRIP001  return aHit.IsHit();
-//STRIP001 }
 
-//STRIP001 FASTBOOL IsRectTouchesLine(const XPolygon& rLine, const Rectangle& rHit, OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  return IsRectTouchesLine(XOutCreatePolygon(rLine,pOut),rHit);
-//STRIP001 }
 
-//STRIP001 FASTBOOL IsRectTouchesLine(const XPolyPolygon& rLine, const Rectangle& rHit, OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  ImpPolyHitCalc aHit(rHit,TRUE);
-//STRIP001  USHORT nAnz=rLine.Count();
-//STRIP001  for (USHORT nNum=0; nNum<nAnz && !aHit.IsHit(); nNum++) {
-//STRIP001      CheckPolyHit(XOutCreatePolygon(rLine[nNum],pOut),aHit);
-//STRIP001  }
-//STRIP001  return aHit.IsHit();
-//STRIP001 }
 
 /*N*/ BYTE CheckPointTouchesPoly(const Polygon& rPoly, const Point& rHit) // 0=Ausserhalb, 1=Innerhalb, 2=Beruehrung
 /*N*/ {
@@ -334,37 +282,8 @@ namespace binfilter {
 /*N*/   return CheckPointTouchesPoly(rPoly,rHit)!=0;
 /*N*/ }
 
-//STRIP001 FASTBOOL IsPointInsidePoly(const PolyPolygon& rPoly, const Point& rHit)
-//STRIP001 {
-//STRIP001  FASTBOOL bInside=FALSE;
-//STRIP001  FASTBOOL bEdge=FALSE;
-//STRIP001  USHORT nAnz=rPoly.Count();
-//STRIP001  for (USHORT i=0; i<nAnz && !bEdge; i++) {
-//STRIP001      BYTE n=CheckPointTouchesPoly(rPoly.GetObject(i),rHit);
-//STRIP001      bEdge=n==2;
-//STRIP001      if (n==1) bInside=!bInside;
-//STRIP001  }
-//STRIP001  return bInside || bEdge;
-//STRIP001 }
 
-//STRIP001 FASTBOOL IsPointInsidePoly(const XPolygon& rPoly, const Point& rHit, OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  return IsPointInsidePoly(XOutCreatePolygon(rPoly,pOut),rHit);
-//STRIP001 }
 
-//STRIP001 FASTBOOL IsPointInsidePoly(const XPolyPolygon& rPoly, const Point& rHit, OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  FASTBOOL bInside=FALSE;
-//STRIP001  FASTBOOL bEdge=FALSE;
-//STRIP001  USHORT nAnz=rPoly.Count();
-//STRIP001  for (USHORT i=0; i<nAnz && !bEdge; i++) {
-//STRIP001      BYTE n=CheckPointTouchesPoly(XOutCreatePolygon(rPoly[i],pOut),rHit);
-//STRIP001      bEdge=n==2;
-//STRIP001      if (n==1) bInside=!bInside;
-//STRIP001  }
-//STRIP001  return bInside || bEdge;
-//STRIP001
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdsuro.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:07:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:46:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #include "svdpage.hxx"
 #include "svdmodel.hxx"
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,58 +111,6 @@ namespace binfilter {
 /*N*/               nGrpLevel=0;
 /*N*/               while (pL!=NULL) { pL=pL->GetUpList(); nGrpLevel++; }
 /*N*/               if (nGrpLevel!=0) { DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Aha, verschachtelt
-//STRIP001 /*?*/                    pGrpOrdNums=new UINT32[nGrpLevel];
-//STRIP001 /*?*/                    const SdrObjList* pL=pRootList;
-//STRIP001 /*?*/                    for (unsigned i=nGrpLevel; i>0;) {
-//STRIP001 /*?*/                        i--;
-//STRIP001 /*?*/                        SdrObject* pGrp=pL->GetOwnerObj();
-//STRIP001 /*?*/                        if (pGrp!=NULL && pL->GetListKind()==SDROBJLIST_GROUPOBJ && pGrp->GetObjList()==pL->GetUpList() && pGrp->GetSubList()==pL) {
-//STRIP001 /*?*/                            pGrpOrdNums[i]=pGrp->GetOrdNum();
-//STRIP001 /*?*/                        } else { // sonst Fehlerhafte Verkettung
-//STRIP001 /*?*/ #ifdef DBG_UTIL
-//STRIP001 /*?*/                            ByteString aStr("ImpMakeSurrogate() - Inkonsistente Verkettung:\n");
-//STRIP001 /*?*/                            String aStr1;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            pObj->TakeObjNameSingul(aStr1);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            aStr += "Schleifendurchlauf=";
-//STRIP001 /*?*/                            aStr += ByteString::CreateFromInt32( i );
-//STRIP001 /*?*/                            aStr += " GroupingLevel=";
-//STRIP001 /*?*/                            aStr += ByteString::CreateFromInt32( nGrpLevel );
-//STRIP001 /*?*/                            aStr += " Ordnumgszahl=";
-//STRIP001 /*?*/                            aStr += ByteString::CreateFromInt32( pObj->GetOrdNum() );
-//STRIP001 /*?*/                            aStr += "\nObjektbezeichnung='";
-//STRIP001 /*?*/                            aStr += ByteString(aStr1, gsl_getSystemTextEncoding());
-//STRIP001 /*?*/                            aStr += "'\n";
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            if(pGrp)
-//STRIP001 /*?*/                                aStr += "\n- Liste mit Parent hat kein OwnerObj.";
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            if(pL->GetListKind()==SDROBJLIST_GROUPOBJ)
-//STRIP001 /*?*/                                aStr += "\n- Liste mit Parent liefert ListKind!=SDROBJLIST_GROUPOBJ.";
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            if(pGrp && pGrp->GetObjList() == pL->GetUpList())
-//STRIP001 /*?*/                                aStr += "\n- ObjList des OwnerObj und ParentList seiner SubList sind nicht identisch.";
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            if(pGrp && pGrp->GetSubList() == pL)
-//STRIP001 /*?*/                                aStr += "\n- Sublist des OwnerObj des OwnerObj entspricht nicht der Liste selbst.";
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            DBG_ERROR(aStr.GetBuffer());
-//STRIP001 /*?*/ #endif
-//STRIP001 /*?*/                            delete [] pGrpOrdNums;
-//STRIP001 /*?*/                            pGrpOrdNums=NULL;
-//STRIP001 /*?*/                            nGrpLevel=0;
-//STRIP001 /*?*/                            return;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        pL=pL->GetUpList();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    pRootList=pL;
-//STRIP001 /*?*/                    if (pL==NULL || pL->GetUpList()!=NULL || pL->GetOwnerObj()!=NULL || pL->GetListKind()==SDROBJLIST_GROUPOBJ) {
-//STRIP001 /*?*/                        delete [] pGrpOrdNums;
-//STRIP001 /*?*/                        pGrpOrdNums=NULL;
-//STRIP001 /*?*/                        nGrpLevel=0;
-//STRIP001 /*?*/                        return;
-//STRIP001 /*?*/                    }
 /*N*/               } // if (nGrpLevel!=0)
 /*N*/           } // if (eList!=SDROBJLIST_SAMELIST)
 /*N*/           if (bSameList) eList=SDROBJLIST_SAMELIST;
