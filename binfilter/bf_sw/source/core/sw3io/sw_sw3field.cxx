@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:34:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:58:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@
 #include <stdlib.h>
 
 #include <stdio.h>
-// auto strip #include "hintids.hxx"
 
 #ifndef _TOOLS_RESID_HXX
 #include <tools/resid.hxx>
@@ -47,9 +46,6 @@
 #ifndef _SFXMACITEM_HXX //autogen
 #include <svtools/macitem.hxx>
 #endif
-// auto strip #ifndef _ZFORLIST_HXX //autogen
-// auto strip #include <svtools/zforlist.hxx>
-// auto strip #endif
 #ifndef _ZFORMAT_HXX //autogen
 #include <svtools/zformat.hxx>
 #endif
@@ -62,7 +58,6 @@
 
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #ifndef _FMTINFMT_HXX //autogen
@@ -77,10 +72,7 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #include "docary.hxx"
 #include "sw3imp.hxx"
-// auto strip #include "sw3ids.hxx"
-// auto strip #include "fldbas.hxx"
 #include "flddat.hxx"
 #include "docufld.hxx"
 #include "chpfld.hxx"
