@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:40:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:07:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,36 +37,22 @@
 
 #include <stdio.h>
 
-// auto strip #ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
-// auto strip #include <com/sun/star/ucb/XCommandEnvironment.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETEXCEPTION_HPP_
-// auto strip #include <com/sun/star/lang/WrappedTargetException.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UCB_INTERACTIVEAUGMENTEDIOEXCEPTION_HPP_
 #include <com/sun/star/ucb/InteractiveAugmentedIOException.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UCB_IOERRORCODE_HPP_
-// auto strip #include <com/sun/star/ucb/IOErrorCode.hpp>
-// auto strip #endif
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #include <com/sun/star/uno/Any.hxx>
 
 #include <ucbhelper/content.hxx>
 #include <tools/urlobj.hxx>
 #include <svtools/pathoptions.hxx>
-// auto strip #include <so3/svstor.hxx>
 #include <sot/storinfo.hxx>
 
 #ifndef _SVSTDARR_ULONGS_DECL
 #define _SVSTDARR_ULONGS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #pragma hdrstop
 
 #include "cfgmgr.hxx"
-// auto strip #include "cfgitem.hxx"
 #include "objsh.hxx"
 #include "cfgimpl.hxx"
 #include "docfile.hxx"
@@ -222,9 +208,6 @@ static const char pStorageName[] = "Configurations";
 
 /*?*/ void SfxConfigManager::SetModified(BOOL bMod)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  bModified = bMod;
-//STRIP001  if ( bMod && pObjShell)
-//STRIP001      pObjShell->SetModified( TRUE );
 /*?*/ }
 
 /*N*/ BOOL SfxConfigManager::HasConfiguration( SotStorage& rStorage )
@@ -373,37 +356,6 @@ static const char pStorageName[] = "Configurations";
 /*?*/ BOOL SfxConfigManager::StoreConfiguration_Impl( SotStorage* pStorage )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/     BOOL bRet = TRUE;
-//STRIP001
-//STRIP001     // store directly into the destination storage
-//STRIP001     USHORT nCount = pItemArr->Count();
-//STRIP001     for ( USHORT nPos=0; bRet && nPos<nCount; nPos++ )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[nPos];
-//STRIP001         SfxConfigItem* pCItem = pItem->pCItem;
-//STRIP001         if ( pCItem && pCItem->IsModified() )
-//STRIP001          pItem->bDefault = pCItem->IsDefault();
-//STRIP001
-//STRIP001         if ( pItem->bDefault )
-//STRIP001         {
-//STRIP001             // elements with default configuration will not be stored
-//STRIP001             if ( pStorage->IsContained( pItem->aStreamName ) )
-//STRIP001                 pStorage->Remove( pItem->aStreamName );
-//STRIP001         }
-//STRIP001         else if ( pCItem )
-//STRIP001         {
-//STRIP001             if( pCItem->IsModified() || !pStorage->IsContained( pItem->aStreamName ) )
-//STRIP001          {
-//STRIP001                 // store all items that have not been stored before
-//STRIP001                 bRet = pCItem->Store( *pStorage );
-//STRIP001              if ( pStorage == m_xStorage )
-//STRIP001                  pItem->xStorage = m_xStorage;
-//STRIP001          }
-//STRIP001         }
-//STRIP001
-//STRIP001      if ( pCItem )
-//STRIP001          pCItem->SetModified( FALSE );
-//STRIP001     }
-//STRIP001
 /*?*/     return bRet;
 /*?*/ }
 
@@ -538,269 +490,32 @@ static const char pStorageName[] = "Configurations";
 
 /*?*/ BOOL SfxConfigManager::StoreConfigItem( SfxConfigItem& rCItem )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;//STRIP001
-//STRIP001     DBG_ASSERT( m_xStorage.Is(), "No storage for configurations!" );
-//STRIP001     if ( !m_xStorage.Is() )
-//STRIP001         return FALSE;
-//STRIP001
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001
-//STRIP001     // search for item
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == rCItem.GetType() )
-//STRIP001         {
-//STRIP001             pItem->bDefault = rCItem.IsDefault();
-//STRIP001             if ( rCItem.IsDefault() )
-//STRIP001             {
-//STRIP001                 // elements with default configuration will not be stored
-//STRIP001                 if ( m_xStorage->IsContained( pItem->aStreamName ) )
-//STRIP001                     bRet = m_xStorage->Remove( pItem->aStreamName );
-//STRIP001             }
-//STRIP001             else
-//STRIP001             {
-//STRIP001                 pItem->xStorage = m_xStorage;
-//STRIP001                 if( rCItem.IsModified() || !m_xStorage->IsContained( pItem->aStreamName ) )
-//STRIP001              {
-//STRIP001                     // store all items that have not been stored before
-//STRIP001                     bRet = rCItem.Store( *m_xStorage );
-//STRIP001              }
-//STRIP001             }
-//STRIP001
-//STRIP001             if ( rCItem.GetConfigManager() == this  )
-//STRIP001              rCItem.SetModified( FALSE );
-//STRIP001
-//STRIP001          break;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     DBG_ASSERT( i<pItemArr->Count(), "Item not registered!" );
-//STRIP001     return bRet;
 /*?*/ }
 
-//STRIP001 BOOL SfxConfigManager::StoreAlwaysConfigItem( SfxConfigItem& rCItem )
-//STRIP001 {
-//STRIP001     DBG_ASSERT( m_xStorage.Is(), "No storage for configurations!" );
-//STRIP001     if ( !m_xStorage.Is() )
-//STRIP001         return FALSE;
-//STRIP001
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001
-//STRIP001     // search for item
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == rCItem.GetType() )
-//STRIP001         {
-//STRIP001             pItem->bDefault = FALSE;
-//STRIP001             pItem->xStorage = m_xStorage;
-//STRIP001
-//STRIP001             // store all items that have not been stored before
-//STRIP001             bRet = rCItem.Store( *m_xStorage );
-//STRIP001
-//STRIP001             if ( rCItem.GetConfigManager() == this  )
-//STRIP001              rCItem.SetModified( FALSE );
-//STRIP001
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*?*/ void SfxConfigManager::CopyConfigItem( SfxConfigManager& rMgr, USHORT nType )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  BOOL bIsDefault = TRUE;
-//STRIP001  for( USHORT i = 0; i < rMgr.pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*rMgr.pItemArr)[i];
-//STRIP001         if ( pItem->nType == nType )
-//STRIP001         {
-//STRIP001             if ( rMgr.m_xStorage->IsContained( pItem->aStreamName ) )
-//STRIP001          {
-//STRIP001              rMgr.m_xStorage->CopyTo( pItem->aStreamName, m_xStorage, pItem->aStreamName );
-//STRIP001              bIsDefault = FALSE;
-//STRIP001
-//STRIP001              // Important: Set modified flag, because SfxConfigManager is modified due to CopyTo!
-//STRIP001              // Otherwise StoreConfiguration doesn't call Commit() which is needed to write back to the storage.
-//STRIP001              SetModified( TRUE );
-//STRIP001          }
-//STRIP001
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     for( USHORT n = 0; n < pItemArr->Count(); ++n )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[n];
-//STRIP001      if ( pItem->nType == nType )
-//STRIP001      {
-//STRIP001          // needs update of internal data!
-//STRIP001          pItem->bDefault = bIsDefault;
-//STRIP001          pItem->xStorage = m_xStorage;
-//STRIP001          if ( bIsDefault && m_xStorage->IsContained( pItem->aStreamName ))
-//STRIP001               m_xStorage->Remove( pItem->aStreamName );
-//STRIP001          return;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( !bIsDefault )
-//STRIP001  {
-//STRIP001      SfxConfigItem_Impl* pItem = new SfxConfigItem_Impl;
-//STRIP001      pItemArr->Insert( pItem, pItemArr->Count() );
-//STRIP001      pItem->aStreamName = SfxConfigManagerImExport_Impl::GetStreamName( nType );
-//STRIP001      pItem->nType = nType;
-//STRIP001      pItem->xStorage = m_xStorage;
-//STRIP001
-//STRIP001      // compatibility for 5.0 format
-//STRIP001      pItem->bDefault = FALSE;
-//STRIP001  }
 /*?*/ }
 
 /*?*/ void SfxConfigManager::RemovePersistentConfigItem( USHORT nType )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == nType )
-//STRIP001      {
-//STRIP001             if ( m_xStorage->IsContained( pItem->aStreamName ) )
-//STRIP001                 m_xStorage->Remove( pItem->aStreamName );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     for( USHORT n = 0; n < pItemArr->Count(); ++n )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[n];
-//STRIP001      if ( pItem->nType == nType )
-//STRIP001      {
-//STRIP001             if ( pItem->pCItem )
-//STRIP001             {
-//STRIP001                 pItem->pCItem->ReConnect( NULL );
-//STRIP001                 SfxConfigItems_Impl& rItems = pItem->aItems;
-//STRIP001                 USHORT nCount = rItems.Count();
-//STRIP001                 for ( USHORT nItem=0; nItem<nCount; nItem++ )
-//STRIP001                  rItems[nItem]->ReConnect( NULL );
-//STRIP001             }
-//STRIP001
-//STRIP001             delete pItemArr->GetObject( n );
-//STRIP001             pItemArr->Remove( n );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
 /*?*/ }
 
 /*?*/ void SfxConfigManager::ReInitialize( USHORT nType )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == nType )
-//STRIP001         {
-//STRIP001             if ( pItem->pCItem )
-//STRIP001             {
-//STRIP001                 pItem->pCItem->ReInitialize();
-//STRIP001                 SfxConfigItems_Impl& rItems = pItem->aItems;
-//STRIP001                 USHORT nCount = rItems.Count();
-//STRIP001                 for ( USHORT nItem=0; nItem<nCount; nItem++ )
-//STRIP001                         rItems[nItem]->ReInitialize();
-//STRIP001             }
-//STRIP001
-//STRIP001             break;
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
-//STRIP001 void SfxConfigManager::ReInitialize( const String& rStreamName )
-//STRIP001 {
-//STRIP001  if ( !pObjShell && m_xStorage.Is() )
-//STRIP001  {
-//STRIP001      //StoreConfiguration(m_xStorage);
-//STRIP001 /*
-//STRIP001      String aName = m_xStorage->GetName();
-//STRIP001      SotStorageRef xStorage = new SotStorage( aName, STREAM_STD_READWRITE );
-//STRIP001      for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001      {
-//STRIP001          SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001          if ( pItem->xStorage == m_xStorage )
-//STRIP001              pItem->xStorage = xStorage;
-//STRIP001      }
-//STRIP001
-//STRIP001      m_xStorage = xStorage;
-//STRIP001 */
-//STRIP001      m_xStorage->Revert();
-//STRIP001
-//STRIP001      USHORT nType = SfxConfigManagerImExport_Impl::GetType( rStreamName );
-//STRIP001      if ( nType )
-//STRIP001          ReInitialize( nType );
-//STRIP001  }
-//STRIP001 }
 
 /*?*/ void SfxConfigManager::ReInitialize( SfxConfigItem* pCItem )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == pCItem->GetType() )
-//STRIP001         {
-//STRIP001             if ( pItem->pCItem )
-//STRIP001             {
-//STRIP001                 if ( pItem->pCItem != pCItem )
-//STRIP001                     pItem->pCItem->ReInitialize();
-//STRIP001                 SfxConfigItems_Impl& rItems = pItem->aItems;
-//STRIP001                 USHORT nCount = rItems.Count();
-//STRIP001                 for ( USHORT nItem=0; nItem<nCount; nItem++ )
-//STRIP001                     if ( rItems[nItem] != pCItem )
-//STRIP001                         rItems[nItem]->ReInitialize();
-//STRIP001             }
-//STRIP001
-//STRIP001             break;
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
 /*?*/ void SfxConfigManager::ResetConfigItem( USHORT nType )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == nType )
-//STRIP001         {
-//STRIP001             // elements with default configuration will not be stored
-//STRIP001             if ( m_xStorage->IsContained( pItem->aStreamName ) )
-//STRIP001             {
-//STRIP001                 m_xStorage->Remove( pItem->aStreamName );
-//STRIP001
-//STRIP001              // Important: Set modified flag, because SfxConfigManager is modified due to m_xStorage->Remove!
-//STRIP001              // Otherwise StoreConfiguration doesn't call Commit() which is needed to write back to the storage.
-//STRIP001              SetModified( TRUE );
-//STRIP001          }
-//STRIP001             pItem->bDefault = TRUE;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
 /*?*/ void SfxConfigManager::ReConnect( USHORT nType, SfxConfigManager* pOther )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-//STRIP001     {
-//STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-//STRIP001         if ( pItem->nType == nType )
-//STRIP001         {
-//STRIP001             if ( pItem->pCItem )
-//STRIP001             {
-//STRIP001                 pItem->pCItem->ReConnect( pOther );
-//STRIP001                 SfxConfigItems_Impl& rItems = pItem->aItems;
-//STRIP001                 USHORT nCount = rItems.Count();
-//STRIP001                 for ( USHORT nItem=0; nItem<nCount; nItem++ )
-//STRIP001                         rItems[nItem]->ReConnect( pOther );
-//STRIP001             }
-//STRIP001
-//STRIP001             break;
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
 }
