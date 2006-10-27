@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_defltuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:22:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:02:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,17 +34,13 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <svtools/smplhint.hxx>
 #include <svtools/itemprop.hxx>
-// auto strip #include <bf_svx/unomid.hxx>
 #include <i18npool/mslangid.hxx>
 
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include "scitems.hxx"
 #include "defltuno.hxx"
