@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:54:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:00:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,32 +36,16 @@
 
 #define _SWLIB_CXX
 
-// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
-// auto strip #include <bf_sfx2/docfac.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _INETTYPE_HXX //autogen
-// auto strip #include <svtools/inettype.hxx>
-// auto strip #endif
-// auto strip #ifndef _MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 #ifndef _PARHTML_HXX //autogen
 #include <svtools/parhtml.hxx>
 #endif
 
-// auto strip #include <swdll.hxx>
 #include <swdll0.hxx> // wird vom makefile generiert
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
