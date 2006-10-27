@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tpprint.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:23:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:29:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,34 +36,11 @@
 #ifndef SC_TPPRINT_HXX
 #define SC_TPPRINT_HXX
 
-// auto strip #ifndef _SFXTABDLG_HXX
-// auto strip #include <bf_sfx2/tabdlg.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_FIXED_HXX
-// auto strip #include <vcl/fixed.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //===================================================================
 
-//STRIP001 class ScTpPrintOptions : public SfxTabPage
-//STRIP001 {
-//STRIP001  FixedLine       aPagesFL;
-//STRIP001  CheckBox        aSkipEmptyPagesCB;
-//STRIP001  FixedLine       aSheetsFL;
-//STRIP001  CheckBox        aSelectedSheetsCB;
-//STRIP001
-//STRIP001          ScTpPrintOptions( Window* pParent, const SfxItemSet& rCoreSet );
-//STRIP001          ~ScTpPrintOptions();
-//STRIP001
-//STRIP001 public:
-//STRIP001  static SfxTabPage*  Create( Window* pParent, const SfxItemSet& rCoreSet );
-//STRIP001  static USHORT*      GetRanges();
-//STRIP001  virtual BOOL        FillItemSet( SfxItemSet& rCoreSet );
-//STRIP001  virtual void        Reset( const SfxItemSet& rCoreSet );
-//STRIP001  virtual int         DeactivatePage( SfxItemSet* pSet = NULL );
-//STRIP001 };
 
 } //namespace binfilter
 #endif

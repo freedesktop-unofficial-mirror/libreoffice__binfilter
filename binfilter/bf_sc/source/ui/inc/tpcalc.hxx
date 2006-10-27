@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tpcalc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:22:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:28:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,25 +37,10 @@
 #define SC_TPCALC_HXX
 
 
-// auto strip #ifndef _SFXTABDLG_HXX //autogen
-// auto strip #include <bf_sfx2/tabdlg.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_FIXED_HXX //autogen
-// auto strip #include <vcl/fixed.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_FIELD_HXX //autogen
-// auto strip #include <vcl/field.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_GROUP_HXX //autogen
-// auto strip #include <vcl/group.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _STDCTRL_HXX //autogen
-// auto strip #include <svtools/stdctrl.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -63,64 +48,6 @@ namespace binfilter {
 
 class ScDocOptions;
 
-//STRIP001 class ScTpCalcOptions : public SfxTabPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  static  SfxTabPage* Create          ( Window*               pParent,
-//STRIP001                                        const SfxItemSet&     rCoreSet );
-//STRIP001  static  USHORT*     GetRanges       ();
-//STRIP001  virtual BOOL        FillItemSet     ( SfxItemSet& rCoreSet );
-//STRIP001  virtual void        Reset           ( const SfxItemSet& rCoreSet );
-//STRIP001  virtual int         DeactivatePage  ( SfxItemSet* pSet = NULL );
-//STRIP001
-//STRIP001 private:
-//STRIP001              ScTpCalcOptions( Window*            pParent,
-//STRIP001                               const SfxItemSet&  rCoreSet );
-//STRIP001              ~ScTpCalcOptions();
-//STRIP001
-//STRIP001 private:
-//STRIP001     FixedLine       aGbZRefs;
-//STRIP001     CheckBox        aBtnIterate;
-//STRIP001  FixedText       aFtSteps;
-//STRIP001  NumericField    aEdSteps;
-//STRIP001  FixedText       aFtEps;
-//STRIP001  Edit            aEdEps;
-//STRIP001
-//STRIP001     FixedLine       aSeparatorFL;
-//STRIP001     FixedLine       aGbDate;
-//STRIP001     RadioButton     aBtnDateStd;
-//STRIP001  RadioButton     aBtnDateSc10;
-//STRIP001  RadioButton     aBtnDate1904;
-//STRIP001
-//STRIP001     FixedLine       aHSeparatorFL;
-//STRIP001     CheckBox        aBtnCase;
-//STRIP001  CheckBox        aBtnCalc;
-//STRIP001  CheckBox        aBtnMatch;
-//STRIP001     CheckBox        aBtnRegex;
-//STRIP001  CheckBox        aBtnLookUp;
-//STRIP001
-//STRIP001  FixedText       aFtPrec;
-//STRIP001  NumericField    aEdPrec;
-//STRIP001
-//STRIP001  String          aDecSep;
-//STRIP001
-//STRIP001  ScDocOptions*   pOldOptions;
-//STRIP001  ScDocOptions*   pLocalOptions;
-//STRIP001  USHORT          nWhichCalc;
-//STRIP001
-//STRIP001 #ifdef _TPCALC_CXX
-//STRIP001 private:
-//STRIP001  void            Init();
-//STRIP001  BOOL            CheckEps();
-//STRIP001  BOOL            GetEps( double& rEps );
-//STRIP001
-//STRIP001  //------------------------------------
-//STRIP001  // Handler:
-//STRIP001  DECL_LINK( RadioClickHdl, RadioButton* );
-//STRIP001  DECL_LINK( CheckClickHdl, CheckBox* );
-//STRIP001
-//STRIP001 #endif
-//STRIP001 };
 
 
 } //namespace binfilter
