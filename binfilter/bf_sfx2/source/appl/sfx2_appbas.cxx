@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:01:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:53:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,34 +36,13 @@
 #ifndef _COM_SUN_STAR_FRAME_XDESKTOP_HPP_
 #include <com/sun/star/frame/XDesktop.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
-// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-// auto strip #ifndef _BASRDLL_HXX //autogen
-// auto strip #include <basic/basrdll.hxx>
-// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
-// auto strip #ifndef _SFXMACITEM_HXX //autogen
-// auto strip #include <svtools/macitem.hxx>
-// auto strip #endif
-// auto strip #ifndef __SBX_SBX_FACTORY_HXX //autogen
-// auto strip #include <svtools/sbxfac.hxx>
-// auto strip #endif
-// auto strip #ifndef _SBXCLASS_HXX //autogen
-// auto strip #include <svtools/sbx.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_GRADIENT_HXX
-// auto strip #include <vcl/gradient.hxx>
-// auto strip #endif
 #ifndef _SFXRECTITEM_HXX //autogen
 #include <svtools/rectitem.hxx>
 #endif
@@ -73,74 +52,23 @@
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
-// auto strip #ifndef _SB_SBMOD_HXX //autogen
-// auto strip #include <basic/sbmod.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
-// auto strip #ifndef _SB_SBMETH_HXX //autogen
-// auto strip #include <basic/sbmeth.hxx>
-// auto strip #endif
-// auto strip #ifndef _SB_SBSTAR_HXX //autogen
-// auto strip #include <basic/sbstar.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_WRKWIN_HXX
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
-// auto strip #ifndef _MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 #ifndef _REGCODE_HXX
 #endif
 #ifndef _SB_SBUNO_HXX
 #include <basic/sbuno.hxx>
 #endif
-// auto strip #ifndef _SFXECODE_HXX
-// auto strip #include <svtools/sfxecode.hxx>
-// auto strip #endif
-// auto strip #ifndef _EHDL_HXX
-// auto strip #include <svtools/ehdl.hxx>
-// auto strip #endif
 
-// auto strip #include <svtools/undoopt.hxx>
 #include <svtools/pathoptions.hxx>
-// auto strip #include <svtools/useroptions.hxx>
-// auto strip #include <unotools/bootstrap.hxx>
 
 #pragma hdrstop
 
 #include "appuno.hxx"
-// auto strip #include "module.hxx"
-// auto strip #include "arrdecl.hxx"
-// auto strip #include "app.hxx"
-// auto strip #include "sfxtypes.hxx"
-// auto strip #include "sfxresid.hxx"
-// auto strip #include "msg.hxx"
-// auto strip #include "msgpool.hxx"
-// auto strip #include "progress.hxx"
 #include "objsh.hxx"
-// auto strip #include "objitem.hxx"
-// auto strip #include "viewfrm.hxx"
-// auto strip #include "viewsh.hxx"
-// auto strip #include "dispatch.hxx"
-// auto strip #include "tplpitem.hxx"
-// auto strip #include "minfitem.hxx"
 #include "app.hrc"
-// auto strip #include "evntconf.hxx"
-// auto strip #include "macrconf.hxx"
-// auto strip #include "request.hxx"
-// auto strip #include "docinf.hxx"
 #include "dinfdlg.hxx"
 #include "appdata.hxx"
-// auto strip #include "appbas.hxx"
-// auto strip #include "sfxhelp.hxx"
 #include "stbmgr.hxx"
 #include "appimp.hxx"
-// auto strip #include "basmgr.hxx"
 #include "dlgcont.hxx"
 
 #ifndef _BASMGR_HXX
@@ -148,14 +76,10 @@
 #endif
 
 #include "scriptcont.hxx"
-// auto strip #include "helper.hxx"
 
 #define ITEMID_SEARCH SID_SEARCH_ITEM
 
 #include "srchitem.hxx"
-// auto strip #ifndef _VOS_SOCKET_HXX_ //autogen
-// auto strip #include <vos/socket.hxx>
-// auto strip #endif
 
 #define SFX_TYPEMAP
 #define Selection
@@ -249,18 +173,6 @@ StarBASIC* SfxApplication::GetBasic_Impl() const
 }
 
 //------------------------------------------------------------------------
-//STRIP001 String lcl_GetVersionString(ResMgr* pImpResMgr)
-//STRIP001 {
-//STRIP001  ::rtl::OUString aDefault;
-//STRIP001  String aVersion( utl::Bootstrap::getBuildIdData( aDefault ));
-//STRIP001
-//STRIP001  if ( aVersion.Len() == 0 )
-//STRIP001      DBG_ERROR( "No BUILDID in bootstrap file found" );
-//STRIP001
-//STRIP001  aVersion.Erase( 0, aVersion.Search( ':' ) + 1 );
-//STRIP001  aVersion.Erase( aVersion.Search( ')' ) );
-//STRIP001  return aVersion;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 /*(mba)
@@ -563,55 +475,9 @@ SbxVariable* SfxConstants_Impl::Find
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxApplication::RegisterBasicConstants
-//STRIP001 (
-//STRIP001  const char*        pPrefix, // Prefix vor Konstanten-Namen
-//STRIP001  const SfxConstant* pConsts, // Array von <SfxConstant> Instanzen
-//STRIP001  sal_uInt16 nCount               // Anahl der Kontanten in pConsts
-//STRIP001 )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Diese Methode meldet Konstanten beim BASIC an. Sie sollte on-demand
-//STRIP001  (in GetSbxObject() der Applikation) gerufen werden. Das Array mu\s
-//STRIP001  alphabetisch nach den Namen sortiert sein!
-//STRIP001
-//STRIP001  Durch den Prefix kann Speicher gespart und das Suchen beschleunigt
-//STRIP001  werden. Im StarOffice soll der Prefix "so" verwendet werden.
-//STRIP001
-//STRIP001
-//STRIP001  [Beispiel]
-//STRIP001
-//STRIP001  const SfxConstant __FAR_DATA aConstants[] =
-//STRIP001  {
-//STRIP001      SFX_BOOL_CONSTANT( "False", sal_False ),
-//STRIP001      SFX_BOOL_CONSTANT( "True",  sal_True ),
-//STRIP001  };
-//STRIP001
-//STRIP001  ...
-//STRIP001  SFX_APP()->RegisterBasicConstants( 0, aConstants, 2 );
-//STRIP001  ...
-//STRIP001
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001 //   DBG_ASSERT( pImp->pBasicMgr, "no basic available" );
-//STRIP001
-//STRIP001 //   pImp->pBasicMgr->GetLib(0)->Insert(
-//STRIP001 //               new SfxConstants_Impl( pPrefix, pConsts, nCount ) );
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 SbxVariable* MakeVariable( StarBASIC *pBas, SbxObject *pObject,
-//STRIP001         const char *pName, sal_uInt32 nSID, SbxDataType eType, SbxClassType eClassType )
-//STRIP001 {
-//STRIP001  SbxVariable *pVar = pBas->Make( String::CreateFromAscii(pName), eClassType, eType ); //SbxCLASS_PROPERTY
-//STRIP001  pVar->SetUserData( nSID );
-//STRIP001  pVar->SetFlag( SBX_DONTSTORE );
-//STRIP001  pObject->StartListening( pVar->GetBroadcaster() );
-//STRIP001  return pVar;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -736,20 +602,11 @@ BasicManager* SfxApplication::GetBasicManager()
 
 //--------------------------------------------------------------------
 
-//STRIP001 Reference< XLibraryContainer > SfxApplication::GetDialogContainer()
-//STRIP001 {
-//STRIP001  Reference< XLibraryContainer > xRet
-//STRIP001      = static_cast< XLibraryContainer* >( pImp->pDialogLibContainer );
-//STRIP001  return xRet;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
 /*?*/ Reference< XLibraryContainer > SfxApplication::GetBasicContainer()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");   Reference< XLibraryContainer > xRet; return xRet;//STRIP001
-//STRIP001  Reference< XLibraryContainer > xRet
-//STRIP001      = static_cast< XLibraryContainer* >( pImp->pBasicLibContainer );
-//STRIP001  return xRet;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -761,10 +618,6 @@ BasicManager* SfxApplication::GetBasicManager()
 
 //--------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SfxApplication::IsInBasicCall() const
-//STRIP001 {
-//STRIP001  return 0 != pAppData_Impl->nBasicCallLevel;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -861,377 +714,32 @@ BasicManager* SfxApplication::GetBasicManager()
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxApplication::EventExec_Impl( SfxRequest &rReq, SfxObjectShell *pObjSh )
-//STRIP001 {
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 
-//STRIP001 void SfxApplication::EventState_Impl
-//STRIP001 (
-//STRIP001  sal_uInt16          nSID,
-//STRIP001  SfxItemSet&     rSet,
-//STRIP001  SfxObjectShell* pObjSh
-//STRIP001 )
-//STRIP001 {
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 /*?*/ void SfxApplication::PropExec_Impl( SfxRequest &rReq )
 /*?*/ {
-//STRIP001 #if SUPD<613//MUSTINI
-//STRIP001  SfxIniManager *pIniMgr = GetIniManager();
-//STRIP001 #endif
-//STRIP001  const SfxItemSet *pArgs = rReq.GetArgs();
-//STRIP001  sal_uInt16 nSID = rReq.GetSlot();
-//STRIP001  switch ( nSID )
-//STRIP001  {
-//STRIP001      case SID_CREATE_BASICOBJECT:
-//STRIP001      {
-//STRIP001          SFX_REQUEST_ARG(rReq, pItem, SfxStringItem, nSID, sal_False);
-//STRIP001          if ( pItem )
-//STRIP001          {
-//STRIP001              SbxObject* pObject = SbxBase::CreateObject( pItem->GetValue() );
-//STRIP001              pObject->AddRef();
-//STRIP001 //(mba)                rReq.SetReturnValue( SfxObjectItem( 0, pObject ) );
-//STRIP001              rReq.Done();
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_DELETE_BASICOBJECT:
-//STRIP001      {
-//STRIP001          SFX_REQUEST_ARG(rReq, pItem, SfxObjectItem, nSID, sal_False);
-//STRIP001          if ( pItem )
-//STRIP001          {
-//STRIP001 //(mba)                SbxObject* pObject = pItem->GetObject();
-//STRIP001 //(mba)                pObject->ReleaseRef();
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_WIN_POSSIZE:
-//STRIP001      {
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_INTERACTIVEMODE:
-//STRIP001      {
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_ATTR_UNDO_COUNT:
-//STRIP001      {
-//STRIP001          SFX_REQUEST_ARG(rReq, pCountItem, SfxUInt16Item, nSID, sal_False);
-//STRIP001             SvtUndoOptions().SetUndoCount( pCountItem->GetValue() );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_WIN_VISIBLE:
-//STRIP001      {
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_ON_STARTAPP:
-//STRIP001      case SID_ON_CLOSEAPP:
-//STRIP001      case SID_ON_CREATEDOC:
-//STRIP001      case SID_ON_OPENDOC:
-//STRIP001      case SID_ON_PREPARECLOSEDOC:
-//STRIP001      case SID_ON_CLOSEDOC:
-//STRIP001      case SID_ON_SAVEDOC:
-//STRIP001      case SID_ON_SAVEASDOC:
-//STRIP001      case SID_ON_ACTIVATEDOC:
-//STRIP001      case SID_ON_DEACTIVATEDOC:
-//STRIP001      case SID_ON_PRINTDOC:
-//STRIP001      case SID_ON_SAVEDOCDONE:
-//STRIP001      case SID_ON_SAVEASDOCDONE:
-//STRIP001          EventExec_Impl( rReq, 0 );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SID_STATUSBARTEXT:
-//STRIP001      {
-//STRIP001          SFX_REQUEST_ARG(rReq, pStringItem, SfxStringItem, nSID, sal_False);
-//STRIP001          String aText = pStringItem->GetValue();
-//STRIP001          if ( aText.Len() )
-//STRIP001              GetpApp()->ShowStatusText( aText );
-//STRIP001          else
-//STRIP001              GetpApp()->HideStatusText();
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_HELP:
-//STRIP001      {
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_PLAYMACRO:
-//STRIP001          PlayMacro_Impl( rReq, GetBasic() );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SID_OFFICE_PRIVATE_USE:
-//STRIP001      case SID_OFFICE_COMMERCIAL_USE:
-//STRIP001      {
-//STRIP001          DBG_ASSERT( sal_False, "SfxApplication::PropExec_Impl()\nSID_OFFICE_PRIVATE_USE & SID_OFFICE_COMMERCIAL_USE are obsolete!\n" );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case SID_OFFICE_CUSTOMERNUMBER:
-//STRIP001      {
-//STRIP001          SFX_REQUEST_ARG(rReq, pStringItem, SfxStringItem, nSID, sal_False);
-//STRIP001
-//STRIP001          if ( pStringItem )
-//STRIP001              SvtUserOptions().SetCustomerNumber( pStringItem->GetValue() );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
 /*?*/ }
 
 //-------------------------------------------------------------------------
 /*?*/ void SfxApplication::PropState_Impl( SfxItemSet &rSet )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SfxViewFrame *pFrame = SfxViewFrame::Current();
-//STRIP001  SfxWhichIter aIter(rSet);
-//STRIP001  for ( sal_uInt16 nSID = aIter.FirstWhich(); nSID; nSID = aIter.NextWhich() )
-//STRIP001  {
-//STRIP001      switch ( nSID )
-//STRIP001      {
-//STRIP001          case SID_PROGNAME:
-//STRIP001              rSet.Put( SfxStringItem( SID_PROGNAME, GetName() ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_ACTIVEDOCUMENT:
-//STRIP001              rSet.Put( SfxObjectItem( SID_ACTIVEDOCUMENT, SfxObjectShell::Current() ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_APPLICATION:
-//STRIP001                 rSet.Put( SfxObjectItem( SID_APPLICATION, this ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_STARWRITER:
-//STRIP001          {
-//STRIP001              SfxModule *pMod = (*(SfxModule**) GetAppData(BF_SHL_WRITER))->Load();
-//STRIP001              if ( pMod ) HACK(muss vom Modul selbst gemacht werden)
-//STRIP001                  pMod->SetName( DEFINE_CONST_UNICODE("StarWriter") );
-//STRIP001                 rSet.Put( SfxObjectItem( nSID, pMod ) );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          case SID_STARDRAW:
-//STRIP001          {
-//STRIP001              SfxModule *pMod = (*(SfxModule**) GetAppData(BF_SHL_DRAW))->Load();
-//STRIP001              if ( pMod ) HACK(muss vom Modul selbst gemacht werden)
-//STRIP001                  pMod->SetName( DEFINE_CONST_UNICODE("StarDraw") );
-//STRIP001                 rSet.Put( SfxObjectItem( nSID, pMod  ) );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          case SID_STARCALC:
-//STRIP001          {
-//STRIP001              SfxModule *pMod = (*(SfxModule**) GetAppData(BF_SHL_CALC))->Load();
-//STRIP001              if ( pMod ) HACK(muss vom Modul selbst gemacht werden)
-//STRIP001                  pMod->SetName( DEFINE_CONST_UNICODE("StarCalc") );
-//STRIP001                 rSet.Put( SfxObjectItem( nSID, pMod  ) );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          case SID_PROGFILENAME:
-//STRIP001              rSet.Put( SfxStringItem( SID_PROGFILENAME, Application::GetAppFileName() ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_INTERACTIVEMODE:
-//STRIP001              rSet.Put( SfxBoolItem( SID_INTERACTIVEMODE, !IsDispatcherLocked() ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_ATTR_UNDO_COUNT:
-//STRIP001                 rSet.Put( SfxUInt16Item( SID_ATTR_UNDO_COUNT, SvtUndoOptions().GetUndoCount() ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_ON_STARTAPP:
-//STRIP001          case SID_ON_CLOSEAPP:
-//STRIP001          case SID_ON_CREATEDOC:
-//STRIP001          case SID_ON_OPENDOC:
-//STRIP001          case SID_ON_PREPARECLOSEDOC:
-//STRIP001          case SID_ON_CLOSEDOC:
-//STRIP001          case SID_ON_SAVEDOC:
-//STRIP001          case SID_ON_SAVEASDOC:
-//STRIP001          case SID_ON_ACTIVATEDOC:
-//STRIP001          case SID_ON_DEACTIVATEDOC:
-//STRIP001          case SID_ON_PRINTDOC:
-//STRIP001          case SID_ON_SAVEDOCDONE:
-//STRIP001          case SID_ON_SAVEASDOCDONE:
-//STRIP001              EventState_Impl( nSID, rSet, 0 );
-//STRIP001
-//STRIP001          case SID_UPDATE_VERSION:
-//STRIP001              rSet.Put( SfxUInt32Item( SID_UPDATE_VERSION, SUPD ) );
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SID_BUILD_VERSION:
-//STRIP001          {
-//STRIP001              String aVersion = lcl_GetVersionString(pAppData_Impl->pLabelResMgr);
-//STRIP001              rSet.Put( SfxUInt32Item( SID_BUILD_VERSION, (sal_uInt32) aVersion.ToInt32() ) );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          case SID_STATUSBARTEXT:
-//STRIP001          {
-//STRIP001              rSet.Put( SfxStringItem( SID_STATUSBARTEXT, GetStatusBarManager()->GetStatusBar()->GetText() ) );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case SID_OFFICE_VERSION_ID:
-//STRIP001          {
-//STRIP001              String sVersionString;
-//STRIP001              ResId aVerId( STR_VERSION_ID, pAppData_Impl->pLabelResMgr );
-//STRIP001              if(pAppData_Impl->pLabelResMgr->IsAvailable(    aVerId.SetRT( RSC_STRING ) ))
-//STRIP001                  sVersionString += String(aVerId);
-//STRIP001              else
-//STRIP001                  sVersionString += DEFINE_CONST_UNICODE("50"); // wenn man keine Iso-Dll haben sollte und vorher nicht abgeraucht ist
-//STRIP001              String sOS(S2U(getenv("OS")));
-//STRIP001              String sProc(S2U(getenv("CPU")));
-//STRIP001
-//STRIP001              sal_uInt16 nSystem = SYSTEM_ID;
-//STRIP001              if(nSystem < 10)
-//STRIP001                  sVersionString += 0x0030 ; // '0' = 30h
-//STRIP001              sVersionString += String::CreateFromInt32( nSystem );
-//STRIP001              String sBuildVersion = lcl_GetVersionString(pAppData_Impl->pLabelResMgr);
-//STRIP001              sal_uInt16 nLen = sBuildVersion.Len();
-//STRIP001              if(nLen > 4)
-//STRIP001              {
-//STRIP001                  DBG_ERROR("Buildversion laenger als 4 Zeichen ?")
-//STRIP001                  sBuildVersion.Erase(4, nLen - 4);
-//STRIP001              }
-//STRIP001              else if(nLen < 4)
-//STRIP001              {
-//STRIP001                  DBG_ERROR("Buildversion kuerzer als 4 Zeichen ?")
-//STRIP001
-//STRIP001                  while(5 > nLen++)
-//STRIP001                      sBuildVersion.Insert(DEFINE_CONST_UNICODE("0"), 0);
-//STRIP001              }
-//STRIP001              sVersionString += sBuildVersion;
-//STRIP001              String sResStr(S2U(ResMgr::GetLang()));
-//STRIP001              if( sResStr.Len() < 2)
-//STRIP001                  sResStr.Insert(DEFINE_CONST_UNICODE("0"), 0);
-//STRIP001              sVersionString += sResStr;
-//STRIP001
-//STRIP001              aVerId = ResId( STR_VERSION_TYPE, pAppData_Impl->pLabelResMgr );
-//STRIP001              if(pAppData_Impl->pLabelResMgr->IsAvailable(    aVerId.SetRT( RSC_STRING ) ))
-//STRIP001                  sVersionString += String(aVerId);
-//STRIP001              else
-//STRIP001                  sVersionString += DEFINE_CONST_UNICODE("99"); // wenn man keine Iso-Dll haben sollte
-//STRIP001
-//STRIP001              sal_uInt16 nDemoKind = GetDemoKind();
-//STRIP001              switch(nDemoKind)
-//STRIP001              {
-//STRIP001                  case  SFX_DEMOKIND_FULL  : sVersionString += '1'; break;
-//STRIP001                  case  SFX_DEMOKIND_TRYBUY: sVersionString += '2'; break;
-//STRIP001                  case  SFX_DEMOKIND_DEMO  : sVersionString += '3'; break;
-//STRIP001                  default: sVersionString += '0';
-//STRIP001              }
-//STRIP001
-//STRIP001              sVersionString += Application::IsRemoteServer() ? '1' : '0';
-//STRIP001              rSet.Put(SfxStringItem(nSID, sVersionString));
-//STRIP001
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SID_OFFICE_PRIVATE_USE:
-//STRIP001          case SID_OFFICE_COMMERCIAL_USE:
-//STRIP001          {
-//STRIP001              DBG_ASSERT( sal_False, "SfxApplication::PropState_Impl()\nSID_OFFICE_PRIVATE_USE & SID_OFFICE_COMMERCIAL_USE are obsolete!\n" );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          case SID_OFFICE_CUSTOMERNUMBER:
-//STRIP001          {
-//STRIP001              rSet.Put( SfxStringItem( nSID, SvtUserOptions().GetCustomerNumber() ) );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
 /*?*/ }
 
 //--------------------------------------------------------------------
 /*N*/ void SfxApplication::MacroExec_Impl( SfxRequest& rReq )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_MEMTEST();
-//STRIP001  if ( SfxMacroConfig::IsMacroSlot( rReq.GetSlot() ) )
-//STRIP001  {
-//STRIP001      // SlotId referenzieren, damit nicht im Execute der Slot abgeschossen
-//STRIP001      // werden kann
-//STRIP001      GetMacroConfig()->RegisterSlotId(rReq.GetSlot());
-//STRIP001      SFX_REQUEST_ARG(rReq, pArgs, SfxStringItem,
-//STRIP001                      rReq.GetSlot(), sal_False);
-//STRIP001      String aArgs;
-//STRIP001      if( pArgs ) aArgs = pArgs->GetValue();
-//STRIP001      if ( GetMacroConfig()->ExecuteMacro(rReq.GetSlot(), aArgs ) )
-//STRIP001          rReq.Done();
-//STRIP001      GetMacroConfig()->ReleaseSlotId(rReq.GetSlot());
-//STRIP001  }
 /*N*/ }
 
 //--------------------------------------------------------------------
 /*N*/ void SfxApplication::MacroState_Impl( SfxItemSet& rSet )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_MEMTEST();
-//STRIP001
-//STRIP001    // Gestrichen, da zu teuer! Ausserdem waere ein EnterBasicCall noetig
-//STRIP001 /*
-//STRIP001  const sal_uInt16 *pRanges = rSet.GetRanges();
-//STRIP001  DBG_ASSERT(pRanges && *pRanges, "Set ohne Bereich");
-//STRIP001  while ( *pRanges )
-//STRIP001  {
-//STRIP001      for(sal_uInt16 nWhich = *pRanges++; nWhich <= *pRanges; ++nWhich)
-//STRIP001      {
-//STRIP001          sal_Bool bOK = sal_False;
-//STRIP001          if ( SfxMacroConfig::IsMacroSlot( nWhich ) )
-//STRIP001              bOK = GetMacroConfig()->CheckMacro(nWhich);
-//STRIP001
-//STRIP001          if ( !bOK )
-//STRIP001              rSet.DisableItem(nWhich);
-//STRIP001      }
-//STRIP001
-//STRIP001      ++pRanges;
-//STRIP001  }
-//STRIP001  */
 /*N*/ }
 
 //-------------------------------------------------------------------------
 
-//STRIP001 void SfxApplication::PlayMacro_Impl( SfxRequest &rReq, StarBASIC *pBasic )
-//STRIP001 {
-//STRIP001  EnterBasicCall();
-//STRIP001  sal_Bool bOK = sal_False;
-//STRIP001
-//STRIP001  // Makro und asynch-Flag
-//STRIP001  SFX_REQUEST_ARG(rReq,pMacro,SfxStringItem,SID_STATEMENT,sal_False);
-//STRIP001  SFX_REQUEST_ARG(rReq,pAsynch,SfxBoolItem,SID_ASYNCHRON,sal_False);
-//STRIP001
-//STRIP001  if ( pAsynch && pAsynch->GetValue() )
-//STRIP001  {
-//STRIP001      // asynchron ausf"uhren
-//STRIP001      GetDispatcher_Impl()->Execute( SID_PLAYMACRO, SFX_CALLMODE_ASYNCHRON, pMacro, 0L );
-//STRIP001      rReq.Done();
-//STRIP001  }
-//STRIP001  else if ( pMacro )
-//STRIP001  {
-//STRIP001      // Statement aufbereiten
-//STRIP001      DBG_ASSERT( pBasic, "no BASIC found" ) ;
-//STRIP001      String aStatement( '[' );
-//STRIP001      aStatement += pMacro->GetValue();
-//STRIP001      aStatement += ']';
-//STRIP001
-//STRIP001      // P"aventiv den Request abschlie\sen, da er ggf. zerst"ort wird
-//STRIP001      rReq.Done();
-//STRIP001      rReq.ReleaseArgs();
-//STRIP001
-//STRIP001      // Statement ausf"uhren
-//STRIP001      SbxVariable* pRet = pBasic->Execute( aStatement );
-//STRIP001      bOK = 0 == SbxBase::GetError();
-//STRIP001      SbxBase::ResetError();
-//STRIP001  }
-//STRIP001
-//STRIP001  LeaveBasicCall();
-//STRIP001  rReq.SetReturnValue(SfxBoolItem(0,bOK));
-//STRIP001 }
 
 
 }
