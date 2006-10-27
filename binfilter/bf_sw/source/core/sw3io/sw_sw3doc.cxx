@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3doc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 08:27:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:57:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,17 +62,14 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #include "docary.hxx"
 #include "swrect.hxx"
 #include "swerror.h"
 #include "pam.hxx"
-// auto strip #include "fldbas.hxx"
 #include "rootfrm.hxx"
 #include "pagedesc.hxx"
 #include "ndtxt.hxx"
 #include "ndole.hxx"
 #include "sw3imp.hxx"
-// auto strip #include "poolfmt.hxx"
 namespace binfilter {
 
 
