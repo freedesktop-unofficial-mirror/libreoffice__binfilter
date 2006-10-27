@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undodraw.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:27:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:31:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,16 +56,6 @@ public:
     SfxUndoAction*          GetDrawUndo()       { return pDrawUndo; }
     void                    ForgetDrawUndo();
 
-//STRIP001  virtual BOOL            IsLinked();
-//STRIP001  virtual void            SetLinked( BOOL bIsLinked );
-//STRIP001  virtual void            Undo();
-//STRIP001  virtual void            Redo();
-//STRIP001  virtual void            Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL            CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001  virtual BOOL            Merge( SfxUndoAction *pNextAction );
-//STRIP001  virtual String          GetComment() const;
-//STRIP001  virtual String          GetRepeatComment(SfxRepeatTarget&) const;
-//STRIP001  virtual USHORT          GetId() const;
 };
 
 

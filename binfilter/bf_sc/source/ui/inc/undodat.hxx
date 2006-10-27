@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undodat.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:26:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:31:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,266 +69,31 @@ class ScDPObject;
 
 //----------------------------------------------------------------------------
 
-//STRIP001 class ScUndoDoOutline: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoDoOutline( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nNewStart, USHORT nNewEnd, USHORT nNewTab,
-//STRIP001                          ScDocument* pNewUndoDoc, BOOL bNewColumns,
-//STRIP001                          USHORT nNewLevel, USHORT nNewEntry, BOOL bNewShow );
-//STRIP001  virtual         ~ScUndoDoOutline();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nStart;
-//STRIP001  USHORT          nEnd;
-//STRIP001  USHORT          nTab;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  BOOL            bColumns;
-//STRIP001  USHORT          nLevel;
-//STRIP001  USHORT          nEntry;
-//STRIP001  BOOL            bShow;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoMakeOutline: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoMakeOutline( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nStartX, USHORT nStartY, USHORT nStartZ,
-//STRIP001                          USHORT nEndX, USHORT nEndY, USHORT nEndZ,
-//STRIP001                          ScOutlineTable* pNewUndoTab,
-//STRIP001                          BOOL bNewColumns, BOOL bNewMake );
-//STRIP001  virtual         ~ScUndoMakeOutline();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTripel        aBlockStart;
-//STRIP001  ScTripel        aBlockEnd;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001  BOOL            bColumns;
-//STRIP001  BOOL            bMake;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoOutlineLevel: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoOutlineLevel( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nNewStart, USHORT nNewEnd, USHORT nNewTab,
-//STRIP001                          ScDocument* pNewUndoDoc, ScOutlineTable* pNewUndoTab,
-//STRIP001                          BOOL bNewColumns, USHORT nNewLevel );
-//STRIP001  virtual         ~ScUndoOutlineLevel();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nStart;
-//STRIP001  USHORT          nEnd;
-//STRIP001  USHORT          nTab;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001  BOOL            bColumns;
-//STRIP001  USHORT          nLevel;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoOutlineBlock: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoOutlineBlock( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nStartX, USHORT nStartY, USHORT nStartZ,
-//STRIP001                          USHORT nEndX, USHORT nEndY, USHORT nEndZ,
-//STRIP001                          ScDocument* pNewUndoDoc, ScOutlineTable* pNewUndoTab,
-//STRIP001                          BOOL bNewShow );
-//STRIP001  virtual         ~ScUndoOutlineBlock();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTripel        aBlockStart;
-//STRIP001  ScTripel        aBlockEnd;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001  BOOL            bShow;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoRemoveAllOutlines: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoRemoveAllOutlines( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nStartX, USHORT nStartY, USHORT nStartZ,
-//STRIP001                          USHORT nEndX, USHORT nEndY, USHORT nEndZ,
-//STRIP001                          ScDocument* pNewUndoDoc, ScOutlineTable* pNewUndoTab );
-//STRIP001  virtual         ~ScUndoRemoveAllOutlines();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTripel        aBlockStart;
-//STRIP001  ScTripel        aBlockEnd;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoAutoOutline: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoAutoOutline( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nStartX, USHORT nStartY, USHORT nStartZ,
-//STRIP001                          USHORT nEndX, USHORT nEndY, USHORT nEndZ,
-//STRIP001                          ScDocument* pNewUndoDoc, ScOutlineTable* pNewUndoTab );
-//STRIP001  virtual         ~ScUndoAutoOutline();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTripel        aBlockStart;
-//STRIP001  ScTripel        aBlockEnd;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoSubTotals: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoSubTotals( ScDocShell* pNewDocShell, USHORT nNewTab,
-//STRIP001                          const ScSubTotalParam& rNewParam, USHORT nNewEndY,
-//STRIP001                          ScDocument* pNewUndoDoc, ScOutlineTable* pNewUndoTab,
-//STRIP001 //                           ScDBData* pNewData,
-//STRIP001                          ScRangeName* pNewUndoRange, ScDBCollection* pNewUndoDB );
-//STRIP001  virtual         ~ScUndoSubTotals();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nTab;
-//STRIP001  ScSubTotalParam aParam;                         // Original uebergebener Parameter
-//STRIP001  USHORT          nNewEndRow;                     // Ergebnis-Groesse
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001 //   ScDBData*       pUndoDBData;
-//STRIP001  ScRangeName*    pUndoRange;
-//STRIP001  ScDBCollection* pUndoDB;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoSort: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoSort( ScDocShell* pNewDocShell, USHORT nNewTab,
-//STRIP001                          const ScSortParam& rParam,
-//STRIP001                          BOOL bQuery, ScDocument* pNewUndoDoc,
-//STRIP001                          ScDBCollection* pNewUndoDB, const ScRange* pDest = NULL );
-//STRIP001  virtual         ~ScUndoSort();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nTab;
-//STRIP001  ScSortParam     aSortParam;
-//STRIP001  BOOL            bRepeatQuery;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScDBCollection* pUndoDB;                // wegen Quell- und Zielbereich
-//STRIP001  BOOL            bDestArea;
-//STRIP001  ScRange         aDestRange;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoQuery: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoQuery( ScDocShell* pNewDocShell, USHORT nNewTab,
-//STRIP001                          const ScQueryParam& rParam, ScDocument* pNewUndoDoc,
-//STRIP001                          ScDBCollection* pNewUndoDB, const ScRange* pOld,
-//STRIP001                          BOOL bSize, const ScRange* pAdvSrc );
-//STRIP001  virtual         ~ScUndoQuery();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nTab;
-//STRIP001  ScQueryParam    aQueryParam;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScDBCollection* pUndoDB;                // wegen Quell- und Zielbereich
-//STRIP001  ScRange         aOldDest;
-//STRIP001  ScRange         aAdvSource;
-//STRIP001  BOOL            bIsAdvanced;
-//STRIP001  BOOL            bDestArea;
-//STRIP001  BOOL            bDoSize;
-//STRIP001 };
 
 
 class ScUndoDBData: public ScSimpleUndo
 {
 public:
-//STRIP001                  TYPEINFO();
                     ScUndoDBData( ScDocShell* pNewDocShell,
                             ScDBCollection* pNewUndoColl, ScDBCollection* pNewRedoColl );
     virtual         ~ScUndoDBData();
 
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
     virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
 
     virtual String  GetComment() const;
@@ -339,164 +104,19 @@ private:
 };
 
 
-//STRIP001 class ScUndoImportData: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoImportData( ScDocShell* pNewDocShell, USHORT nNewTab,
-//STRIP001                          const ScImportParam& rParam, USHORT nNewEndX, USHORT nNewEndY,
-//STRIP001                          USHORT nNewFormula,
-//STRIP001                          ScDocument* pNewUndoDoc, ScDocument* pNewRedoDoc,
-//STRIP001                          ScDBData* pNewUndoData, ScDBData* pNewRedoData );
-//STRIP001  virtual         ~ScUndoImportData();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nTab;
-//STRIP001  ScImportParam   aImportParam;
-//STRIP001  USHORT          nEndCol;
-//STRIP001  USHORT          nEndRow;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScDocument*     pRedoDoc;
-//STRIP001  ScDBData*       pUndoDBData;
-//STRIP001  ScDBData*       pRedoDBData;
-//STRIP001  USHORT          nFormulaCols;
-//STRIP001  BOOL            bRedoFilled;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoRepeatDB: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoRepeatDB( ScDocShell* pNewDocShell, USHORT nNewTab,
-//STRIP001                          USHORT nStartX, USHORT nStartY, USHORT nEndX, USHORT nEndY,
-//STRIP001                          USHORT nResultEndRow, USHORT nCurX, USHORT nCurY,
-//STRIP001                          ScDocument* pNewUndoDoc, ScOutlineTable* pNewUndoTab,
-//STRIP001                          ScRangeName* pNewUndoRange, ScDBCollection* pNewUndoDB,
-//STRIP001                          const ScRange* pOldQ, const ScRange* pNewQ );
-//STRIP001  virtual         ~ScUndoRepeatDB();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScTripel        aBlockStart;
-//STRIP001  ScTripel        aBlockEnd;
-//STRIP001  USHORT          nNewEndRow;
-//STRIP001  ScTripel        aCursorPos;
-//STRIP001  ScDocument*     pUndoDoc;
-//STRIP001  ScOutlineTable* pUndoTable;
-//STRIP001  ScRangeName*    pUndoRange;
-//STRIP001  ScDBCollection* pUndoDB;
-//STRIP001  ScRange         aOldQuery;
-//STRIP001  ScRange         aNewQuery;
-//STRIP001  BOOL            bQuerySize;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoPivot: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoPivot( ScDocShell* pNewDocShell,
-//STRIP001                          const ScArea& rOld, const ScArea& rNew,
-//STRIP001                          ScDocument* pOldDoc, ScDocument* pNewDoc,
-//STRIP001                          const ScPivot* pOldPivot, const ScPivot* pNewPivot );
-//STRIP001  virtual         ~ScUndoPivot();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScArea          aOldArea;
-//STRIP001  ScArea          aNewArea;
-//STRIP001  ScDocument*     pOldUndoDoc;
-//STRIP001  ScDocument*     pNewUndoDoc;
-//STRIP001  ScPivotParam    aOldParam;              // fuer Redo
-//STRIP001  ScQueryParam    aOldQuery;
-//STRIP001  ScArea          aOldSrc;
-//STRIP001  ScPivotParam    aNewParam;              // fuer Undo in Collection
-//STRIP001  ScQueryParam    aNewQuery;
-//STRIP001  ScArea          aNewSrc;
-//STRIP001  String          aOldName;
-//STRIP001  String          aOldTag;
-//STRIP001  String          aNewName;
-//STRIP001  String          aNewTag;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoDataPilot: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoDataPilot( ScDocShell* pNewDocShell,
-//STRIP001                          ScDocument* pOldDoc, ScDocument* pNewDoc,
-//STRIP001                          const ScDPObject* pOldObj, const ScDPObject* pNewObj );
-//STRIP001  virtual         ~ScUndoDataPilot();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScDocument*     pOldUndoDoc;
-//STRIP001  ScDocument*     pNewUndoDoc;
-//STRIP001  ScDPObject*     pOldDPObject;
-//STRIP001  ScDPObject*     pNewDPObject;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoConsolidate: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                      TYPEINFO();
-//STRIP001                      ScUndoConsolidate( ScDocShell* pNewDocShell,
-//STRIP001                              const ScArea& rArea, const ScConsolidateParam& rPar,
-//STRIP001                              ScDocument* pNewUndoDoc, BOOL bReference,
-//STRIP001                              USHORT nInsCount, ScOutlineTable* pTab,
-//STRIP001                              ScDBData* pData );
-//STRIP001  virtual             ~ScUndoConsolidate();
-//STRIP001
-//STRIP001  virtual void        Undo();
-//STRIP001  virtual void        Redo();
-//STRIP001  virtual void        Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL        CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String      GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScArea              aDestArea;
-//STRIP001  ScDocument*         pUndoDoc;
-//STRIP001  ScConsolidateParam  aParam;
-//STRIP001  BOOL                bInsRef;
-//STRIP001  USHORT              nInsertCount;
-//STRIP001  ScOutlineTable*     pUndoTab;
-//STRIP001  ScDBData*           pUndoData;
-//STRIP001 };
 
 
 class ScUndoChartData: public ScSimpleUndo
 {
 public:
-//STRIP001                      TYPEINFO();
                         ScUndoChartData( ScDocShell* pNewDocShell,
                                 const String& rName, const ScRange& rNew,
                                 BOOL bColHdr, BOOL bRowHdr, BOOL bAdd );
@@ -505,12 +125,7 @@ public:
                                 BOOL bColHdr, BOOL bRowHdr, BOOL bAdd );
     virtual             ~ScUndoChartData();
 
-//STRIP001  virtual void        Undo();
-//STRIP001  virtual void        Redo();
-//STRIP001  virtual void        Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL        CanRepeat(SfxRepeatTarget& rTarget) const;
 
-//STRIP001  virtual String      GetComment() const;
 
 private:
     String              aChartName;
@@ -523,7 +138,6 @@ private:
     BOOL                bNewRowHeaders;
     BOOL                bAddRange;
 
-//STRIP001  void                Init();
 };
 
 

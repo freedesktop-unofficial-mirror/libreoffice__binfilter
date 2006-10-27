@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undocell.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:26:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:31:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,111 +52,20 @@ class ScRangeName;
 
 //----------------------------------------------------------------------------
 
-//STRIP001 class ScUndoCursorAttr: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoCursorAttr( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nNewCol, USHORT nNewRow, USHORT nNewTab,
-//STRIP001                          const ScPatternAttr* pOldPat, const ScPatternAttr* pNewPat,
-//STRIP001                          const ScPatternAttr* pApplyPat, BOOL bAutomatic );
-//STRIP001  virtual         ~ScUndoCursorAttr();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nCol;
-//STRIP001  USHORT          nRow;
-//STRIP001  USHORT          nTab;
-//STRIP001  ScPatternAttr*  pOldPattern;
-//STRIP001  ScPatternAttr*  pNewPattern;
-//STRIP001  ScPatternAttr*  pApplyPattern;
-//STRIP001  BOOL            bIsAutomatic;
-//STRIP001
-//STRIP001  void            DoChange( const ScPatternAttr* pWhichPattern ) const;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoEnterData: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoEnterData( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nNewCol, USHORT nNewRow, USHORT nNewTab,
-//STRIP001                          USHORT nNewCount, USHORT* pNewTabs,
-//STRIP001                          ScBaseCell** ppOldData, BOOL* pHasForm, ULONG* pOldForm,
-//STRIP001                          const String& rNewStr, EditTextObject* pObj = NULL );
-//STRIP001  virtual         ~ScUndoEnterData();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  String          aNewString;
-//STRIP001  USHORT*         pTabs;
-//STRIP001  ScBaseCell**    ppOldCells;
-//STRIP001  BOOL*           pHasFormat;
-//STRIP001  ULONG*          pOldFormats;
-//STRIP001  EditTextObject* pNewEditData;
-//STRIP001  ULONG           nEndChangeAction;
-//STRIP001  USHORT          nCol;
-//STRIP001  USHORT          nRow;
-//STRIP001  USHORT          nTab;
-//STRIP001  USHORT          nCount;             //  markierte Tabellen
-//STRIP001
-//STRIP001  void            DoChange() const;
-//STRIP001  void            SetChangeTrack();
-//STRIP001 };
 
 
-//STRIP001 class ScUndoEnterValue: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoEnterValue( ScDocShell* pNewDocShell,
-//STRIP001                          const ScAddress& rNewPos,
-//STRIP001                          ScBaseCell* pUndoCell, double nVal, BOOL bHeight );
-//STRIP001  virtual         ~ScUndoEnterValue();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScAddress       aPos;
-//STRIP001  ScBaseCell*     pOldCell;
-//STRIP001  double          nValue;
-//STRIP001  ULONG           nEndChangeAction;
-//STRIP001  BOOL            bNeedHeight;
-//STRIP001
-//STRIP001  void            SetChangeTrack();
-//STRIP001 };
 
 
 class ScUndoPutCell: public ScSimpleUndo
 {
 public:
-//STRIP001                  TYPEINFO();
                     ScUndoPutCell( ScDocShell* pNewDocShell,
                             const ScAddress& rNewPos,
                             ScBaseCell* pUndoCell, ScBaseCell* pRedoCell, BOOL bHeight );
     virtual         ~ScUndoPutCell();
 
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
     virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
 
     virtual String  GetComment() const;
@@ -172,105 +81,19 @@ private:
 };
 
 
-//STRIP001 class ScUndoPageBreak: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoPageBreak( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nNewCol, USHORT nNewRow, USHORT nNewTab,
-//STRIP001                          BOOL bNewColumn, BOOL bNewInsert );
-//STRIP001  virtual         ~ScUndoPageBreak();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nCol;
-//STRIP001  USHORT          nRow;
-//STRIP001  USHORT          nTab;
-//STRIP001  BOOL            bColumn;        // Spalten- oder Zeilenumbruch
-//STRIP001  BOOL            bInsert;        // Einfuegen oder Loeschen
-//STRIP001
-//STRIP001  void            DoChange( BOOL bInsert ) const;
-//STRIP001 };
 
-//STRIP001 class ScUndoPrintZoom: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoPrintZoom( ScDocShell* pNewDocShell, USHORT nT,
-//STRIP001                                  USHORT nOS, USHORT nOP, USHORT nNS, USHORT nNP );
-//STRIP001  virtual         ~ScUndoPrintZoom();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nTab;
-//STRIP001  USHORT          nOldScale;
-//STRIP001  USHORT          nOldPages;
-//STRIP001  USHORT          nNewScale;
-//STRIP001  USHORT          nNewPages;
-//STRIP001
-//STRIP001  void            DoChange( BOOL bUndo );
-//STRIP001 };
 
-//STRIP001 class ScUndoThesaurus: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoThesaurus( ScDocShell* pNewDocShell,
-//STRIP001                          USHORT nNewCol, USHORT nNewRow, USHORT nNewTab,
-//STRIP001                          const String& rNewUndoStr, const EditTextObject* pUndoTObj,
-//STRIP001                          const String& rNewRedoStr, const EditTextObject* pRedoTObj);
-//STRIP001  virtual         ~ScUndoThesaurus();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT          nCol;
-//STRIP001  USHORT          nRow;
-//STRIP001  USHORT          nTab;
-//STRIP001  String          aUndoStr;           // Daten bei StringZelle
-//STRIP001  EditTextObject* pUndoTObject;       //       bei EditZelle
-//STRIP001  String          aRedoStr;
-//STRIP001  EditTextObject* pRedoTObject;
-//STRIP001  ULONG           nEndChangeAction;
-//STRIP001
-//STRIP001  void            DoChange( BOOL bUndo, const String& rStr,
-//STRIP001                              const EditTextObject* pTObj );
-//STRIP001  void            SetChangeTrack( ScBaseCell* pOldCell );
-//STRIP001 };
 
 
 class ScUndoNote: public ScSimpleUndo
 {
 public:
-//STRIP001                  TYPEINFO();
                     ScUndoNote( ScDocShell* pNewDocShell,
                                 BOOL bShow, const ScAddress& rNewPos,
                                 SdrUndoAction* pDraw );
     virtual         ~ScUndoNote();
 
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
 
-//STRIP001  virtual String  GetComment() const;
 
 private:
     BOOL            bIsShow;
@@ -279,66 +102,17 @@ private:
 };
 
 
-//STRIP001 class ScUndoEditNote: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoEditNote( ScDocShell* pNewDocShell,
-//STRIP001                                  const ScAddress& rNewPos,
-//STRIP001                                  const ScPostIt& rOld,
-//STRIP001                                  const ScPostIt& rNew );
-//STRIP001  virtual         ~ScUndoEditNote();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScAddress       aPos;
-//STRIP001  ScPostIt        aOldNote;
-//STRIP001  ScPostIt        aNewNote;
-//STRIP001 };
 
 
-//STRIP001 class ScUndoDetective: public ScSimpleUndo
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScUndoDetective( ScDocShell* pNewDocShell,
-//STRIP001                                  SdrUndoAction* pDraw, const ScDetOpData* pOperation,
-//STRIP001                                  ScDetOpList* pUndoList = NULL );
-//STRIP001  virtual         ~ScUndoDetective();
-//STRIP001
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
-//STRIP001
-//STRIP001  virtual String  GetComment() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  BOOL            bIsDelete;
-//STRIP001  ScDetOpList*    pOldList;
-//STRIP001  USHORT          nAction;
-//STRIP001  ScAddress       aPos;
-//STRIP001  SdrUndoAction*  pDrawUndo;
-//STRIP001 };
 
 
 class ScUndoRangeNames: public ScSimpleUndo
 {
 public:
-//STRIP001                  TYPEINFO();
                     ScUndoRangeNames( ScDocShell* pNewDocShell,
                                         ScRangeName* pOld, ScRangeName* pNew );
     virtual         ~ScUndoRangeNames();
 
-//STRIP001  virtual void    Undo();
-//STRIP001  virtual void    Redo();
-//STRIP001  virtual void    Repeat(SfxRepeatTarget& rTarget);
     virtual BOOL    CanRepeat(SfxRepeatTarget& rTarget) const;
 
     virtual String  GetComment() const;
@@ -347,7 +121,6 @@ private:
     ScRangeName*    pOldRanges;
     ScRangeName*    pNewRanges;
 
-//STRIP001  void            DoChange( BOOL bUndo );
 };
 
 

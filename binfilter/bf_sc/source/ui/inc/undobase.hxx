@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undobase.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:25:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:30:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,6 @@ class ScRefUndoData;
 class ScSimpleUndo: public SfxUndoAction
 {
 public:
-//STRIP001                  TYPEINFO();
                     ScSimpleUndo( ScDocShell* pDocSh );
     virtual         ~ScSimpleUndo();
 
@@ -65,13 +64,6 @@ protected:
     ScDocShell*     pDocShell;
     SfxUndoAction*  pDetectiveUndo;
 
-//STRIP001  void            BeginUndo();
-//STRIP001  void            EndUndo();
-//STRIP001  void            BeginRedo();
-//STRIP001  void            EndRedo();
-//STRIP001
-//STRIP001  static void     ShowTable( USHORT nTab );
-//STRIP001  static void     ShowTable( const ScRange& rRange );
 };
 
 //----------------------------------------------------------------------------
@@ -81,7 +73,6 @@ enum ScBlockUndoMode { SC_UNDO_SIMPLE, SC_UNDO_MANUALHEIGHT, SC_UNDO_AUTOHEIGHT 
 class ScBlockUndo: public ScSimpleUndo
 {
 public:
-//STRIP001                  TYPEINFO();
                     ScBlockUndo( ScDocShell* pDocSh, const ScRange& rRange,
                                  ScBlockUndoMode eBlockMode );
     virtual         ~ScBlockUndo();
@@ -91,42 +82,13 @@ protected:
     SdrUndoAction*  pDrawUndo;
     ScBlockUndoMode eMode;
 
-//STRIP001  void            BeginUndo();
-//STRIP001  void            EndUndo();
 //  void            BeginRedo();
-//STRIP001  void            EndRedo();
 
-//STRIP001  BOOL            AdjustHeight();
-//STRIP001  void            ShowBlock();
 };
 
 //----------------------------------------------------------------------------
 
-//STRIP001 enum ScMoveUndoMode { SC_UNDO_REFFIRST, SC_UNDO_REFLAST };
 
-//STRIP001 class ScMoveUndo: public ScSimpleUndo                // mit Referenzen
-//STRIP001 {
-//STRIP001 public:
-//STRIP001                  TYPEINFO();
-//STRIP001                  ScMoveUndo( ScDocShell* pDocSh,
-//STRIP001                              ScDocument* pRefDoc, ScRefUndoData* pRefData,
-//STRIP001                              ScMoveUndoMode eRefMode );
-//STRIP001  virtual         ~ScMoveUndo();
-//STRIP001
-//STRIP001 protected:
-//STRIP001  SdrUndoAction*  pDrawUndo;
-//STRIP001  ScDocument*     pRefUndoDoc;
-//STRIP001  ScRefUndoData*  pRefUndoData;
-//STRIP001  ScMoveUndoMode  eMode;
-//STRIP001
-//STRIP001  void            BeginUndo();
-//STRIP001  void            EndUndo();
-//STRIP001 //   void            BeginRedo();
-//STRIP001 //   void            EndRedo();
-//STRIP001
-//STRIP001 private:
-//STRIP001  void            UndoRef();
-//STRIP001 };
 
 //----------------------------------------------------------------------------
 
