@@ -4,9 +4,9 @@
  *
  *  $RCSfile: portab.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:24:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:07:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,6 @@ class SwTabPortion : public SwFixPortion
     sal_Bool PreFormat( SwTxtFormatInfo &rInf );
 public:
     SwTabPortion( const KSHORT nTabPos, const xub_Unicode cFill = '\0' );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
     sal_Bool PostFormat( SwTxtFormatInfo &rInf );
@@ -59,7 +58,6 @@ public:
     inline  KSHORT GetTabPos() const { return nTabPos; }
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };

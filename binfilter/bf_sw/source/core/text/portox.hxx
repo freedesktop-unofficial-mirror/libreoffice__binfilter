@@ -4,9 +4,9 @@
  *
  *  $RCSfile: portox.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:24:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:07:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,6 @@ class SwToxPortion : public SwTxtPortion
 {
 public:
     inline  SwToxPortion(){ SetWhichPor( POR_TOX ); }
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     OUTPUT_OPERATOR
 };
 
@@ -63,12 +62,9 @@ class SwIsoToxPortion : public SwToxPortion
 public:
             SwIsoToxPortion();
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual SwLinePortion *Compress();
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
