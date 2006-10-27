@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:16:29 $
+#   last change: $Author: rt $ $Date: 2006-10-27 19:25:54 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 SRS1NAME=$(TARGET)
 SRC1FILES = \
-        sfx2_doc.src sfx2_new.src sfx2_doctdlg.src sfx2_docvor.src sfx2_doctempl.src sfx2_sfxbasemodel.src
+        sfx2_doc.src sfx2_new.src sfx2_doctempl.src sfx2_sfxbasemodel.src
 
 SLOFILES =	\
         $(SLO)$/sfx2_docfile.obj \
@@ -78,9 +78,7 @@ SLOFILES =	\
         $(SLO)$/sfx2_docfilt.obj \
         $(SLO)$/sfx2_doctempl.obj \
         $(SLO)$/sfx2_doctemplates.obj \
-        $(SLO)$/sfx2_docvor.obj \
         $(SLO)$/sfx2_new.obj \
-        $(SLO)$/sfx2_doctdlg.obj \
         $(SLO)$/sfx2_frameobj.obj \
         $(SLO)$/sfx2_sfxbasemodel.obj \
         $(SLO)$/sfx2_xmlversion.obj
