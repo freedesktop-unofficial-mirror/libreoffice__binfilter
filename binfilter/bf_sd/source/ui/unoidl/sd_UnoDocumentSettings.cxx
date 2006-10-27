@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_UnoDocumentSettings.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:25:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:35:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,25 +35,10 @@
 
 #include <vector>
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
-// auto strip #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _CPPUHELPER_IMPLBASE3_HXX_
-// auto strip #include <cppuhelper/implbase3.hxx>
-// auto strip #endif
 
 #ifndef _COMPHELPER_PROPERTYSETHELPER_HXX_
 #include <comphelper/propertysethelper.hxx>
@@ -79,16 +64,7 @@
 #include <osl/diagnose.h>
 #endif
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
 #include "drawdoc.hxx"
 #ifndef SVX_LIGHT
@@ -107,9 +83,6 @@
 #include "sdattr.hxx"
 #endif
 #endif
-// auto strip #ifndef _SD_VIEWSHEL_HXX
-// auto strip #include "../inc/viewshel.hxx"
-// auto strip #endif
 #ifndef _SD_FRMVIEW_HXX
 #include "../inc/frmview.hxx"
 #endif
@@ -118,9 +91,6 @@
 #include <sdoutl.hxx>
 #endif
 #else
-// auto strip #ifndef _SVDOUTL_HXX
-// auto strip #include <bf_svx/svdoutl.hxx>
-// auto strip #endif
 #endif
 #ifndef _EDITSTAT_HXX
 #include <bf_svx/editstat.hxx>
