@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_adiasync.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:03:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:28:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -44,8 +43,6 @@
 #include <bf_sfx2/objsh.hxx>
 
 #include "adiasync.hxx"
-// auto strip #include "brdcst.hxx"
-// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "bf_sc.hrc"        // FID_DATACHANGED
 
@@ -69,12 +66,6 @@ static ScAddInAsync aSeekObj;
 
 /*N*/ SV_IMPL_PTRARR_SORT( ScAddInDocs, ScAddInDocPtr );
 
-//STRIP001 extern "C" {
-//STRIP001 void CALLTYPE ScAddInAsyncCallBack( double& nHandle, void* pData )
-//STRIP001 {
-//STRIP001  ScAddInAsync::CallBack( ULONG( nHandle ), pData );
-//STRIP001 }
-//STRIP001 }
 
 
 
@@ -108,9 +99,6 @@ static ScAddInAsync aSeekObj;
 /*N*/   {
 /*?*/       // im dTor wg. theAddInAsyncTbl.DeleteAndDestroy in ScGlobal::Clear
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFuncData->Unadvice( (double)nHandle );
-//STRIP001 /*?*/        if ( eType == PTR_STRING && pStr )      // mit Typvergleich wg. Union!
-//STRIP001 /*?*/            delete pStr;
-//STRIP001 /*?*/        delete pDocs;
 /*N*/   }
 /*N*/ }
 
@@ -129,47 +117,6 @@ static ScAddInAsync aSeekObj;
 
 
 
-//STRIP001 void ScAddInAsync::CallBack( ULONG nHandleP, void* pData )
-//STRIP001 {
-//STRIP001  ScAddInAsync* p;
-//STRIP001  if ( !(p = Get( nHandleP )) )
-//STRIP001      return;
-//STRIP001  // keiner mehr dran? Unadvice und weg damit
-//STRIP001  if ( !p->HasListeners() )
-//STRIP001  {
-//STRIP001      // nicht im dTor wg. theAddInAsyncTbl.DeleteAndDestroy in ScGlobal::Clear
-//STRIP001      theAddInAsyncTbl.Remove( p );
-//STRIP001      delete p;
-//STRIP001      return ;
-//STRIP001  }
-//STRIP001  switch ( p->eType )
-//STRIP001  {
-//STRIP001      case PTR_DOUBLE :
-//STRIP001          p->nVal = *(double*)pData;
-//STRIP001          break;
-//STRIP001      case PTR_STRING :
-//STRIP001          if ( p->pStr )
-//STRIP001              *p->pStr = String( (sal_Char*)pData, osl_getThreadTextEncoding() );
-//STRIP001          else
-//STRIP001              p->pStr = new String( (sal_Char*)pData, osl_getThreadTextEncoding() );
-//STRIP001          break;
-//STRIP001      default :
-//STRIP001          DBG_ERROR( "unbekannter AsyncType" );
-//STRIP001          return;
-//STRIP001  }
-//STRIP001  p->bValid = TRUE;
-//STRIP001  p->Broadcast( ScHint( SC_HINT_DATACHANGED, ScAddress( 0 ), NULL ) );
-//STRIP001
-//STRIP001  const ScDocument** ppDoc = (const ScDocument**) p->pDocs->GetData();
-//STRIP001  USHORT nCount = p->pDocs->Count();
-//STRIP001  for ( USHORT j=0; j<nCount; j++, ppDoc++ )
-//STRIP001  {
-//STRIP001      ScDocument* pDoc = (ScDocument*)*ppDoc;
-//STRIP001      pDoc->TrackFormulas();
-//STRIP001      pDoc->GetDocumentShell()->Broadcast( SfxSimpleHint( FID_DATACHANGED ) );
-//STRIP001      pDoc->ResetChanged( ScRange(0,0,0,MAXCOL,MAXROW,MAXTAB) );
-//STRIP001  }
-//STRIP001 }
 
 
 
