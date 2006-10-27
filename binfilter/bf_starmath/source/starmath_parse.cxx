@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:53:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:57:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,31 +41,13 @@
 
 #include <com/sun/star/i18n/UnicodeType.hpp>
 
-// auto strip #ifndef _LANG_HXX
-// auto strip #include <tools/lang.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
 
-// auto strip #ifndef PARSE_HXX
-// auto strip #include "parse.hxx"
-// auto strip #endif
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
-// auto strip #ifndef _SMDLL_HXX
-// auto strip #include "smdll.hxx"
-// auto strip #endif
-// auto strip #ifndef _SMMOD_HXX
-// auto strip #include "smmod.hxx"
-// auto strip #endif
 #ifndef CONFIG_HXX
 #include "config.hxx"
 #endif
@@ -77,11 +59,6 @@ using namespace ::com::sun::star::i18n;
 
 ///////////////////////////////////////////////////////////////////////////
 
-//STRIP001 static inline BOOL strnccmp(const String &u1, xub_StrLen nIdx,
-//STRIP001                          const sal_Char *s2, xub_StrLen nLen)
-//STRIP001 {
-//STRIP001  return u1.EqualsIgnoreCaseAscii( s2, nIdx, nLen );
-//STRIP001 }
 
 /*N*/ static const sal_Unicode aDelimiterTable[] =
 /*N*/ {
@@ -92,10 +69,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/ };
 
 
-//STRIP001 static inline BOOL IsDigit( sal_Unicode cChar )
-//STRIP001 {
-//STRIP001  return '0' <= cChar && cChar <= '9';
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -2402,38 +2375,10 @@ const sal_Int32 coNumContFlags =
 /*N*/ }
 
 
-//STRIP001 const SmErrorDesc  *SmParser::NextError()
-//STRIP001 {
-//STRIP001  if (ErrDescList.Count())
-//STRIP001      if (CurError > 0) return ErrDescList.Seek(--CurError);
-//STRIP001      else
-//STRIP001      {
-//STRIP001          CurError = 0;
-//STRIP001          return ErrDescList.Seek(CurError);
-//STRIP001      }
-//STRIP001  else return 0;
-//STRIP001 }
 
 
-//STRIP001 const SmErrorDesc  *SmParser::PrevError()
-//STRIP001 {
-//STRIP001  if (ErrDescList.Count())
-//STRIP001      if (CurError < (int) (ErrDescList.Count() - 1)) return ErrDescList.Seek(++CurError);
-//STRIP001      else
-//STRIP001      {
-//STRIP001          CurError = (int) (ErrDescList.Count() - 1);
-//STRIP001          return ErrDescList.Seek(CurError);
-//STRIP001      }
-//STRIP001  else return 0;
-//STRIP001 }
 
 
-//STRIP001 const SmErrorDesc  *SmParser::GetError(USHORT i)
-//STRIP001 {
-//STRIP001  return (i >= 0  &&  i < ErrDescList.Count())
-//STRIP001             ? ErrDescList.Seek(i)
-//STRIP001             : ErrDescList.Seek(CurError);
-//STRIP001 }
 
 
 }
