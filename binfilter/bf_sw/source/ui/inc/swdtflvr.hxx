@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swdtflvr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:52:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:54:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
-// auto strip #ifndef _SV_GRAPH_HXX
-// auto strip #include <vcl/graph.hxx>
-// auto strip #endif
 #ifndef _LNKBASE_HXX
 #include <so3/lnkbase.hxx>
 #endif
@@ -104,76 +101,27 @@ class SwTransferable : public TransferableHelper
     BOOL bCleanUp   :1; //D&D cleanup after Drop (not by internal Drop)
 
     // helper methods for the copy
-//STRIP001  SvEmbeddedObject* FindOLEObj() const;
-//STRIP001  void DeleteSelection();
 
     // helper methods for the paste
-//STRIP001  static void SetSelInShell( SwWrtShell& , BOOL , const Point* );
-//STRIP001  static BOOL _CheckForURLOrLNKFile( TransferableDataHelper& rData,
-//STRIP001                              String& rFileName, String* pTitle = 0 );
     static int _TestAllowedFormat( const TransferableDataHelper& rData,
                                         ULONG nFormat, USHORT nDestination );
 
-//STRIP001  static int _PasteFileContent( TransferableDataHelper&,
-//STRIP001                                  SwWrtShell& rSh, ULONG nFmt, BOOL bMsg );
-//STRIP001  static int _PasteOLE( TransferableDataHelper& rData, SwWrtShell& rSh,
-//STRIP001                          ULONG nFmt, BYTE nActionFlags, BOOL bMsg );
-//STRIP001  static int _PasteTargetURL( TransferableDataHelper& rData, SwWrtShell& rSh,
-//STRIP001                      USHORT nAction, const Point* pPt, BOOL bInsertGRF );
 
-//STRIP001  static int _PasteDDE( TransferableDataHelper& rData, SwWrtShell& rWrtShell,
-//STRIP001                          FASTBOOL bReReadGrf, BOOL bMsg );
 
-//STRIP001  static int _PasteSdrFormat(  TransferableDataHelper& rData,
-//STRIP001                                  SwWrtShell& rSh, USHORT nAction,
-//STRIP001                                  const Point* pPt, BYTE nActionFlags );
 
-//STRIP001  static int _PasteGrf( TransferableDataHelper& rData, SwWrtShell& rSh,
-//STRIP001                              ULONG nFmt, USHORT nAction, const Point* pPt,
-//STRIP001                              BYTE nActionFlags, BOOL bMsg );
 
-//STRIP001  static int _PasteImageMap( TransferableDataHelper& rData,
-//STRIP001                                  SwWrtShell& rSh );
 
-//STRIP001  static int _PasteAsHyperlink( TransferableDataHelper& rData,
-//STRIP001                                      SwWrtShell& rSh, ULONG nFmt );
 
-//STRIP001  static int _PasteFileName( TransferableDataHelper& rData,
-//STRIP001                          SwWrtShell& rSh, ULONG nFmt, USHORT nAction,
-//STRIP001                          const Point* pPt, BYTE nActionFlags, BOOL bMsg );
 
-//STRIP001  static int _PasteDBData( TransferableDataHelper& rData, SwWrtShell& rSh,
-//STRIP001                          ULONG nFmt, BOOL bLink, const Point* pDragPt,
-//STRIP001                          BOOL bMsg );
 
-//STRIP001  static int _PasteFileList( TransferableDataHelper& rData,
-//STRIP001                              SwWrtShell& rSh, BOOL bLink,
-//STRIP001                              const Point* pPt, BOOL bMsg );
 
-//STRIP001  int PrivateDrop( SwWrtShell& rSh, const Point& rDragPt, BOOL bMove,
-//STRIP001                      BOOL bIsXSelection );
-//STRIP001  int PrivatePaste( SwWrtShell& rShell );
 
-//STRIP001  void SetDataForDragAndDrop( const Point& rSttPos );
 
                                     // not available
-//STRIP001                                  SwTransferable();
-//STRIP001                                  SwTransferable( const SwTransferable& );
-//STRIP001  SwTransferable&                 operator=( const SwTransferable& );
 
 protected:
-//STRIP001  virtual void        AddSupportedFormats();
-//STRIP001  virtual sal_Bool    GetData( const DATA_FLAVOR& rFlavor );
-//STRIP001  virtual sal_Bool    WriteObject( SotStorageStreamRef& rxOStm,
-//STRIP001                                      void* pUserObject,
-//STRIP001                                      sal_uInt32 nUserObjectId,
-//STRIP001                                      const DATA_FLAVOR& rFlavor );
-//STRIP001  virtual void        DragFinished( sal_Int8 nDropAction );
-//STRIP001  virtual void        ObjectReleased();
 
 public:
-//STRIP001  SwTransferable( SwWrtShell& );
-//STRIP001  virtual ~SwTransferable();
 
     static USHORT GetSotDestination( const SwWrtShell& rSh, const Point* = 0 );
 
@@ -182,43 +130,23 @@ public:
     static void InitOle( SvEmbeddedObjectRef rRef, SwDoc& rDoc );
 
     // copy - methods and helper methods for the copy
-//STRIP001  int  Cut();
-//STRIP001  int  Copy( BOOL bIsCut = FALSE );
-//STRIP001  int  CalculateAndCopy();                // special for Calculator
-//STRIP001  int  CopyGlossary( SwTextBlocks& rGlossary, const String& rStr );
 
     // remove the DDE-Link format promise
-//STRIP001  void RemoveDDELinkFormat( const Window& rWin );
 
     // paste - methods and helper methods for the paste
     static BOOL IsPaste( const SwWrtShell&, const TransferableDataHelper& );
-//STRIP001  static int Paste( SwWrtShell&, TransferableDataHelper& );
-//STRIP001  static int PasteData( TransferableDataHelper& rData,
-//STRIP001                        SwWrtShell& rSh, USHORT nAction, ULONG nFormat,
-//STRIP001                        USHORT nDestination, BOOL bIsPasteFmt,
-//STRIP001                           sal_Bool bIsDefault,
-//STRIP001                           const Point* pDDPos = 0, sal_Int8 nDropAction = 0,
-//STRIP001                        BOOL bPasteSelection = FALSE );
 
     static BOOL IsPasteSpecial( const SwWrtShell& rWrtShell,
                                 const TransferableDataHelper& );
-//STRIP001     static int PasteSpecial( SwWrtShell& rSh, TransferableDataHelper&, ULONG& rFormatUsed );
-//STRIP001  static int PasteFormat( SwWrtShell& rSh, TransferableDataHelper& rData,
-//STRIP001                           ULONG nFormat );
 
     static void FillClipFmtItem( const SwWrtShell& rSh,
                                 const TransferableDataHelper& rData,
                                 SvxClipboardFmtItem & rToFill );
 
     // Interfaces for Drag & Drop
-//STRIP001  void StartDrag( Window* pWin, const Point& rPos );
-//STRIP001  SwWrtShell* GetShell()              { return pWrtShell; }
-//STRIP001  void SetCleanUp( BOOL bFlag )       { bCleanUp = bFlag; }
 
     // Interfaces for Selection
     /* #96392# Added pCreator to distinguish SwFrameShell from SwWrtShell. */
-//STRIP001  static void CreateSelection( SwWrtShell & rSh,
-//STRIP001                               const ViewShell * pCreator = NULL );
     static void ClearSelection( SwWrtShell& rSh,
                                 const ViewShell * pCreator = NULL );
 
