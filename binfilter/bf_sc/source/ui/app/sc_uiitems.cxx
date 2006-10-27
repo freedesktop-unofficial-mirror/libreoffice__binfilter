@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_uiitems.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 08:03:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:41:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,29 +145,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScSortItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("SortItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScSortItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScSortItem& rOther = (const ScSortItem&)rItem;
-//STRIP001
-//STRIP001  return (   (pViewData   == rOther.pViewData)
-//STRIP001          && (theSortData == rOther.theSortData) );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScSortItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScSortItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 //      ScQueryItem - Daten fuer den Filterdialog
@@ -211,50 +194,16 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScQueryItem::SetAdvancedQuerySource(const ScRange* pSource)
-//STRIP001 {
-//STRIP001  if (pSource)
-//STRIP001  {
-//STRIP001      aAdvSource = *pSource;
-//STRIP001      bIsAdvanced = TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bIsAdvanced = FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScQueryItem::GetAdvancedQuerySource(ScRange& rSource) const
-//STRIP001 {
-//STRIP001  rSource = aAdvSource;
-//STRIP001  return bIsAdvanced;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScQueryItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("QueryItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScQueryItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScQueryItem& rQueryItem = (const ScQueryItem&)rItem;
-//STRIP001
-//STRIP001  return (   (pViewData    == rQueryItem.pViewData)
-//STRIP001          && (bIsAdvanced  == rQueryItem.bIsAdvanced)
-//STRIP001          && (aAdvSource   == rQueryItem.aAdvSource)
-//STRIP001          && (theQueryData == rQueryItem.theQueryData) );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScQueryItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScQueryItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 //      ScSubTotalItem - Daten fuer den Zwischenergebnisdialog
@@ -294,29 +243,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScSubTotalItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("SubTotalItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScSubTotalItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScSubTotalItem& rSTItem = (const ScSubTotalItem&)rItem;
-//STRIP001
-//STRIP001  return (   (pViewData       == rSTItem.pViewData)
-//STRIP001          && (theSubTotalData == rSTItem.theSubTotalData) );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScSubTotalItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScSubTotalItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 //      ScUserListItem - Transporter fuer den Benutzerlisten-TabPage
@@ -346,43 +278,16 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScUserListItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScUserListItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScUserListItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScUserListItem& r = (const ScUserListItem&)rItem;
-//STRIP001  BOOL bEqual = FALSE;
-//STRIP001
-//STRIP001  if ( !pUserList || !(r.pUserList) )
-//STRIP001      bEqual = ( !pUserList && !(r.pUserList) );
-//STRIP001  else
-//STRIP001      bEqual = ( *pUserList == *(r.pUserList) );
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScUserListItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScUserListItem( *this );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScUserListItem::SetUserList( const ScUserList& rUserList )
-//STRIP001 {
-//STRIP001  delete pUserList;
-//STRIP001  pUserList = new ScUserList( rUserList );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 //      ScConsolidateItem - Daten fuer den Konsolidieren-Dialog
@@ -412,28 +317,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScConsolidateItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScConsolidateItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScConsolidateItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScConsolidateItem& rCItem = (const ScConsolidateItem&)rItem;
-//STRIP001
-//STRIP001  return ( theConsData == rCItem.theConsData);
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScConsolidateItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScConsolidateItem( *this );
-//STRIP001 }
 
 
 // -----------------------------------------------------------------------
@@ -473,30 +362,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScPivotItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScPivotItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScPivotItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScPivotItem& rPItem = (const ScPivotItem&)rItem;
-//STRIP001  DBG_ASSERT( pSaveData && rPItem.pSaveData, "pSaveData" );
-//STRIP001  return ( *pSaveData == *rPItem.pSaveData &&
-//STRIP001           aDestRange == rPItem.aDestRange &&
-//STRIP001           bNewSheet  == rPItem.bNewSheet );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScPivotItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScPivotItem( *this );
-//STRIP001 }
 
 
 // -----------------------------------------------------------------------
@@ -526,26 +397,10 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScSolveItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScSolveItem"));
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScSolveItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScSolveItem& rPItem = (const ScSolveItem&)rItem;
-//STRIP001
-//STRIP001  return ( theSolveData == rPItem.theSolveData );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScSolveItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScSolveItem( *this );
-//STRIP001 }
 }
