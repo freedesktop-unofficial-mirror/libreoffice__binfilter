@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-09-25 12:43:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:15:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,15 +42,10 @@
 
 #include <svtools/zforlist.hxx>
 
-// auto strip #include "scitems.hxx"
-// auto strip #include "global.hxx"
 #include "dociter.hxx"
 #include "document.hxx"
-// auto strip #include "table.hxx"
-// auto strip #include "column.hxx"
 #include "cell.hxx"
 #include "attarray.hxx"
-// auto strip #include "patattr.hxx"
 #include "docoptio.hxx"
 namespace binfilter {
 
@@ -219,14 +213,6 @@ void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
         ScDocument* pDoc )
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rpArr != pNewArr || nAttrEndRow < nRow )
-//STRIP001  {
-//STRIP001      short nPos;
-//STRIP001      pNewArr->Search( nRow, nPos );  // nPos 0 gueltig wenn nicht gefunden
-//STRIP001      const ScPatternAttr* pPattern = pNewArr->pData[nPos].pPattern;
-//STRIP001      nFormat = pPattern->GetNumberFormat( pDoc->GetFormatTable() );
-//STRIP001      rpArr = pNewArr;
-//STRIP001      nAttrEndRow = pNewArr->pData[nPos].nRow;
-//STRIP001  }
 }
 
 /*N*/ ScValueIterator::ScValueIterator( ScDocument* pDocument,
@@ -1094,243 +1080,9 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 
 //-------------------------------------------------------------------------------
 
-//STRIP001 ScHorizontalAttrIterator::ScHorizontalAttrIterator( ScDocument* pDocument, USHORT nTable,
-//STRIP001                          USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 ) :
-//STRIP001  pDoc( pDocument ),
-//STRIP001  nTab( nTable ),
-//STRIP001  nStartCol( nCol1 ),
-//STRIP001  nStartRow( nRow1 ),
-//STRIP001  nEndCol( nCol2 ),
-//STRIP001  nEndRow( nRow2 )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( pDoc->pTab[nTab], "Tabelle nicht da" );
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001
-//STRIP001  nRow = nStartRow;
-//STRIP001  nCol = nStartCol;
-//STRIP001  bRowEmpty = FALSE;
-//STRIP001
-//STRIP001  pIndices    = new USHORT[nEndCol-nStartCol+1];
-//STRIP001  pNextEnd    = new USHORT[nEndCol-nStartCol+1];
-//STRIP001  ppPatterns  = new const ScPatternAttr*[nEndCol-nStartCol+1];
-//STRIP001
-//STRIP001  USHORT nSkipTo = MAXROW;
-//STRIP001  BOOL bEmpty = TRUE;
-//STRIP001  for (i=nStartCol; i<=nEndCol; i++)
-//STRIP001  {
-//STRIP001      USHORT nPos = i - nStartCol;
-//STRIP001      ScAttrArray* pArray = pDoc->pTab[nTab]->aCol[i].pAttrArray;
-//STRIP001      DBG_ASSERT( pArray, "pArray == 0" );
-//STRIP001
-//STRIP001      short s;
-//STRIP001      pArray->Search( nStartRow, s );
-//STRIP001      USHORT nIndex = (USHORT) s;
-//STRIP001
-//STRIP001      const ScPatternAttr* pPattern = pArray->pData[nIndex].pPattern;
-//STRIP001      USHORT nThisEnd = pArray->pData[nIndex].nRow;
-//STRIP001      if ( IsDefaultItem( pPattern ) )
-//STRIP001      {
-//STRIP001          pPattern = NULL;
-//STRIP001          if ( nThisEnd < nSkipTo )
-//STRIP001              nSkipTo = nThisEnd;         // nSkipTo kann gleich hier gesetzt werden
-//STRIP001      }
-//STRIP001      else
-//STRIP001          bEmpty = FALSE;                 // Attribute gefunden
-//STRIP001
-//STRIP001      pIndices[nPos] = nIndex;
-//STRIP001      pNextEnd[nPos] = nThisEnd;
-//STRIP001      ppPatterns[nPos] = pPattern;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bEmpty)
-//STRIP001      nRow = nSkipTo;                     // bis zum naechsten Bereichsende ueberspringen
-//STRIP001  bRowEmpty = bEmpty;
-//STRIP001 }
-//STRIP001
-//STRIP001 ScHorizontalAttrIterator::~ScHorizontalAttrIterator()
-//STRIP001 {
-//STRIP001  delete[] (ScPatternAttr**)ppPatterns;
-//STRIP001  delete[] pNextEnd;
-//STRIP001  delete[] pIndices;
-//STRIP001 }
-//STRIP001
-//STRIP001 const ScPatternAttr* ScHorizontalAttrIterator::GetNext( USHORT& rCol1, USHORT& rCol2, USHORT& rRow )
-//STRIP001 {
-//STRIP001  for (;;)
-//STRIP001  {
-//STRIP001      if (!bRowEmpty)
-//STRIP001      {
-//STRIP001          // in dieser Zeile suchen
-//STRIP001
-//STRIP001          while ( nCol <= nEndCol && !ppPatterns[nCol-nStartCol] )
-//STRIP001              ++nCol;
-//STRIP001
-//STRIP001          if ( nCol <= nEndCol )
-//STRIP001          {
-//STRIP001              const ScPatternAttr* pPat = ppPatterns[nCol-nStartCol];
-//STRIP001              rRow = nRow;
-//STRIP001              rCol1 = nCol;
-//STRIP001              while ( nCol < nEndCol && ppPatterns[nCol+1-nStartCol] == pPat )
-//STRIP001                  ++nCol;
-//STRIP001              rCol2 = nCol;
-//STRIP001              ++nCol;                 // hochzaehlen fuer naechsten Aufruf
-//STRIP001              return pPat;            // gefunden
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      // naechste Zeile
-//STRIP001
-//STRIP001      ++nRow;
-//STRIP001      if ( nRow > nEndRow )       // schon am Ende?
-//STRIP001          return NULL;            // nichts gefunden
-//STRIP001
-//STRIP001      BOOL bEmpty = TRUE;
-//STRIP001      for (USHORT i=nStartCol; i<=nEndCol; i++)
-//STRIP001      {
-//STRIP001          USHORT nPos = i-nStartCol;
-//STRIP001          if ( pNextEnd[nPos] < nRow )
-//STRIP001          {
-//STRIP001              ScAttrArray* pArray = pDoc->pTab[nTab]->aCol[i].pAttrArray;
-//STRIP001
-//STRIP001              USHORT nIndex = ++pIndices[nPos];
-//STRIP001              if ( nIndex < pArray->nCount )
-//STRIP001              {
-//STRIP001                  const ScPatternAttr* pPattern = pArray->pData[nIndex].pPattern;
-//STRIP001                  USHORT nThisEnd = pArray->pData[nIndex].nRow;
-//STRIP001                  if ( IsDefaultItem( pPattern ) )
-//STRIP001                      pPattern = NULL;
-//STRIP001                  else
-//STRIP001                      bEmpty = FALSE;                 // Attribute gefunden
-//STRIP001
-//STRIP001                  pNextEnd[nPos] = nThisEnd;
-//STRIP001                  ppPatterns[nPos] = pPattern;
-//STRIP001
-//STRIP001                  DBG_ASSERT( pNextEnd[nPos] >= nRow, "Reihenfolge durcheinander" );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  DBG_ERROR("AttrArray reicht nicht bis MAXROW");
-//STRIP001                  pNextEnd[nPos] = MAXROW;
-//STRIP001                  ppPatterns[nPos] = NULL;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if ( ppPatterns[nPos] )
-//STRIP001              bEmpty = FALSE;                         // Bereich noch nicht zuende
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bEmpty)
-//STRIP001      {
-//STRIP001          USHORT nCount = nEndCol-nStartCol+1;
-//STRIP001          USHORT nSkipTo = pNextEnd[0];               // naechstes Bereichsende suchen
-//STRIP001          for (i=1; i<nCount; i++)
-//STRIP001              if ( pNextEnd[i] < nSkipTo )
-//STRIP001                  nSkipTo = pNextEnd[i];
-//STRIP001          nRow = nSkipTo;                             // leere Zeilen ueberspringen
-//STRIP001      }
-//STRIP001      bRowEmpty = bEmpty;
-//STRIP001      nCol = nStartCol;           // wieder links anfangen
-//STRIP001  }
-//STRIP001
-//STRIP001  return NULL;
-//STRIP001 }
 
 //-------------------------------------------------------------------------------
 
-//STRIP001 inline BOOL IsGreater( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 )
-//STRIP001 {
-//STRIP001  return ( nRow1 > nRow2 ) || ( nRow1 == nRow2 && nCol1 > nCol2 );
-//STRIP001 }
-//STRIP001
-//STRIP001 ScUsedAreaIterator::ScUsedAreaIterator( ScDocument* pDocument, USHORT nTable,
-//STRIP001                          USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 ) :
-//STRIP001  aCellIter( pDocument, nTable, nCol1, nRow1, nCol2, nRow2 ),
-//STRIP001  aAttrIter( pDocument, nTable, nCol1, nRow1, nCol2, nRow2 ),
-//STRIP001  nNextCol( nCol1 ),
-//STRIP001  nNextRow( nRow1 )
-//STRIP001 {
-//STRIP001  pCell    = aCellIter.GetNext( nCellCol, nCellRow );
-//STRIP001  pPattern = aAttrIter.GetNext( nAttrCol1, nAttrCol2, nAttrRow );
-//STRIP001 }
-//STRIP001
-//STRIP001 ScUsedAreaIterator::~ScUsedAreaIterator()
-//STRIP001 {
-//STRIP001 }
-//STRIP001
-//STRIP001 BOOL ScUsedAreaIterator::GetNext()
-//STRIP001 {
-//STRIP001  //  Iteratoren weiterzaehlen
-//STRIP001
-//STRIP001  if ( pCell && IsGreater( nNextCol, nNextRow, nCellCol, nCellRow ) )
-//STRIP001      pCell = aCellIter.GetNext( nCellCol, nCellRow );
-//STRIP001
-//STRIP001  while ( pCell && pCell->GetCellType() == CELLTYPE_NOTE && !pCell->GetNotePtr() )
-//STRIP001      pCell = aCellIter.GetNext( nCellCol, nCellRow );
-//STRIP001
-//STRIP001  if ( pPattern && IsGreater( nNextCol, nNextRow, nAttrCol2, nAttrRow ) )
-//STRIP001      pPattern = aAttrIter.GetNext( nAttrCol1, nAttrCol2, nAttrRow );
-//STRIP001
-//STRIP001  if ( pPattern && nAttrRow == nNextRow && nAttrCol1 < nNextCol )
-//STRIP001      nAttrCol1 = nNextCol;
-//STRIP001
-//STRIP001  //  naechsten Abschnitt heraussuchen
-//STRIP001
-//STRIP001  BOOL bFound = TRUE;
-//STRIP001  BOOL bUseCell = FALSE;
-//STRIP001
-//STRIP001  if ( pCell && pPattern )
-//STRIP001  {
-//STRIP001      if ( IsGreater( nCellCol, nCellRow, nAttrCol1, nAttrRow ) )     // vorne nur Attribute ?
-//STRIP001      {
-//STRIP001          pFoundCell = NULL;
-//STRIP001          pFoundPattern = pPattern;
-//STRIP001          nFoundRow = nAttrRow;
-//STRIP001          nFoundStartCol = nAttrCol1;
-//STRIP001          if ( nCellRow == nAttrRow && nCellCol <= nAttrCol2 )        // auch Zelle im Bereich ?
-//STRIP001              nFoundEndCol = nCellCol - 1;                            // nur bis vor der Zelle
-//STRIP001          else
-//STRIP001              nFoundEndCol = nAttrCol2;                               // alles
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          bUseCell = TRUE;
-//STRIP001          if ( nAttrRow == nCellRow && nAttrCol1 == nCellCol )        // Attribute auf der Zelle ?
-//STRIP001              pFoundPattern = pPattern;
-//STRIP001          else
-//STRIP001              pFoundPattern = NULL;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if ( pCell )                   // nur Zelle -> direkt uebernehmen
-//STRIP001  {
-//STRIP001      pFoundPattern = NULL;
-//STRIP001      bUseCell = TRUE;                // Position von Zelle
-//STRIP001  }
-//STRIP001  else if ( pPattern )                // nur Attribute -> direkt uebernehmen
-//STRIP001  {
-//STRIP001      pFoundCell = NULL;
-//STRIP001      pFoundPattern = pPattern;
-//STRIP001      nFoundRow = nAttrRow;
-//STRIP001      nFoundStartCol = nAttrCol1;
-//STRIP001      nFoundEndCol = nAttrCol2;
-//STRIP001  }
-//STRIP001  else                                // gar nichts
-//STRIP001      bFound = FALSE;
-//STRIP001
-//STRIP001  if ( bUseCell )                     // Position von Zelle
-//STRIP001  {
-//STRIP001      pFoundCell = pCell;
-//STRIP001      nFoundRow = nCellRow;
-//STRIP001      nFoundStartCol = nFoundEndCol = nCellCol;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bFound)
-//STRIP001  {
-//STRIP001      nNextRow = nFoundRow;
-//STRIP001      nNextCol = nFoundEndCol + 1;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
 //-------------------------------------------------------------------------------
 
