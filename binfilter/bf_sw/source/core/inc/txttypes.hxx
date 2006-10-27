@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txttypes.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:41:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:50:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 #ifndef _TXTTYPES_HXX
 #define _TXTTYPES_HXX
 
-// auto strip #include "swtypes.hxx"
 namespace binfilter {
 
 // Ueberpruefte USHORTs, z.B. Indizes auf Arrays oder garantiert kleine

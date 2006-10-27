@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:42:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:50:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -114,7 +114,6 @@ class SwViewImp
     SwLayIdle     *pIdleAct;     //Analog zur SwLayAction fuer SwLayIdle.
 
 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001  SwAccessibleMap *pAccMap;       // Accessible Wrappers
 #endif
 
 
@@ -138,7 +137,6 @@ class SwViewImp
     SwRect aSmoothRect;
 
     // OD 12.12.2002 #103492#
-//STRIP001     SwPagePreviewLayout* mpPgPrevwLayout;
 
     /**
         Signal whether to stop printing.
@@ -170,23 +168,11 @@ class SwViewImp
     void SetScrolled()        { bScrolled = TRUE; }
 
     SwScrollAreas *GetScrollRects() { return pScrollRects; }
-//STRIP001  void FlushScrolledArea();
-//STRIP001  BOOL _FlushScrolledArea( SwRect& rRect );
-//STRIP001  BOOL FlushScrolledArea( SwRect& rRect )
-//STRIP001  { if( !pScrolledArea ) return FALSE; return _FlushScrolledArea( rRect ); }
-//STRIP001  void _ScrolledRect( const SwRect& rRect, long nOffs );
-//STRIP001  void ScrolledRect( const SwRect& rRect, long nOffs )
-//STRIP001  { if( pScrolledArea ) _ScrolledRect( rRect, nOffs ); }
 
     void StartAction();         //Henkel Anzeigen und verstecken.
     void EndAction();           //gerufen von ViewShell::ImplXXXAction
-//STRIP001  void LockPaint();           //dito, gerufen von ViewShell::ImplLockPaint
-//STRIP001  void UnlockPaint();
 
-//STRIP001  void PaintFlyChilds( SwFlyFrm *pFly, ExtOutputDevice& rOut,
-//STRIP001                       const SdrPaintInfoRec& rInfoRec );
 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001  SwAccessibleMap *CreateAccessibleMap();
 #endif
 
 public:
@@ -197,7 +183,6 @@ public:
     const ViewShell *GetShell() const { return pSh; }
           ViewShell *GetShell()       { return pSh; }
 
-//STRIP001  Color GetRetoucheColor() const;
 
     //Verwaltung zur ersten sichtbaren Seite
     inline const SwPageFrm *GetFirstVisPage() const;
@@ -207,7 +192,6 @@ public:
     //SS'en fuer Paint- und Scrollrects.
     BOOL AddPaintRect( const SwRect &rRect );
     void AddScrollRect( const SwFrm *pFrm, const SwRect &rRect, long nOffs );
-//STRIP001  void MoveScrollArea();
     SwRegionRects *GetRegion()      { return pRegion; }
     void DelRegions();                      //Loescht Scroll- und PaintRects
 
@@ -218,8 +202,6 @@ public:
     //ueberlappt. Das 'reingereichte Rechteck wird veraendert!
     void RestartScrollTimer()            { aScrollTimer.Start(); }
     DECL_LINK( RefreshScrolledHdl, Timer * );
-//STRIP001  void _RefreshScrolledArea( const SwRect &rRect );
-//STRIP001  void RefreshScrolledArea( SwRect &rRect );
 
     //Wird vom Layout ggf. waehrend einer Action gerufen, wenn der
     //Verdacht besteht, dass es etwas drunter und drueber geht.
@@ -248,17 +230,11 @@ public:
     // direction at the outliner of the draw view for painting layers <hell>
     // and <heaven>.
     // OD 25.06.2003 #108784# - correct type of 1st parameter
-//STRIP001     void   PaintLayer  ( const SdrLayerID _nLayerID,
-//STRIP001                          const SwRect& _rRect,
-//STRIP001                          const Color* _pPageBackgrdColor = 0,
-//STRIP001                          const bool _bIsPageRightToLeft = false ) const;
 
     //wird als Link an die DrawEngine uebergeben, entscheidet was wie
     //gepaintet wird oder nicht.
-//STRIP001     DECL_LINK( PaintDispatcher, SdrPaintProcRec * );
 
     // Interface Drawing
-//STRIP001  BOOL IsDragPossible( const Point &rPoint );
     void NotifySizeChg( const Size &rNewSz );
 
     //SS Fuer die Lay- bzw. IdleAction und verwandtes
@@ -281,37 +257,25 @@ public:
     USHORT  GetRestoreActions() const{return nRestoreActions;}
 
     // OD 12.12.2002 #103492#
-//STRIP001     void InitPagePreviewLayout();
 
     // OD 12.12.2002 #103492#
-//STRIP001     inline SwPagePreviewLayout* PagePreviewLayout()
-//STRIP001     {
-//STRIP001         return mpPgPrevwLayout;
-//STRIP001     }
 
 #ifdef ACCESSIBLE_LAYOUT
     // Is this view accessible?
-//STRIP001  sal_Bool IsAccessible() const { return pAccMap != 0; }
 
-//STRIP001  inline SwAccessibleMap& GetAccessibleMap();
 
     // Update (this) accessible view
-//STRIP001  void UpdateAccessible();
 
     // Remove a frame from the accessible view
     void DisposeAccessible( const SwFrm *pFrm, const SdrObject *pObj,
                             sal_Bool bRecursive );
-//STRIP001  inline void DisposeAccessibleFrm( const SwFrm *pFrm,
-//STRIP001                             sal_Bool bRecursive=sal_False );
     inline void DisposeAccessibleObj( const SdrObject *pObj );
 
     // Move a frame's position in the accessible view
     void MoveAccessible( const SwFrm *pFrm, const SdrObject *pObj,
                          const SwRect& rOldFrm );
-//STRIP001  inline void MoveAccessibleFrm( const SwFrm *pFrm, const SwRect& rOldFrm );
 
     // Add a frame in the accessible view
-//STRIP001  inline void AddAccessibleFrm( const SwFrm *pFrm );
 
      inline void AddAccessibleObj( const SdrObject *pObj );
 
@@ -319,31 +283,19 @@ public:
     void InvalidateAccessibleFrmContent( const SwFrm *pFrm );
 
     // Invalidate accessible frame's cursor position
-//STRIP001  void InvalidateAccessibleCursorPosition( const SwFrm *pFrm );
 
     // Invalidate editable state for all accessible frames
-//STRIP001  void InvalidateAccessibleEditableState( sal_Bool bAllShells=sal_True,
-//STRIP001                                          const SwFrm *pFrm=0 );
 
     // Invalidate opaque state for all accessible frames
-//STRIP001  void InvalidateAccessibleOpaqueState();
 
     // Invalidate frame's relation set (for chained frames)
-//STRIP001  void InvalidateAccessibleRelationSet( const SwFlyFrm *pMaster,
-//STRIP001                                           const SwFlyFrm *pFollow );
 
     // update data for accessible preview
     // OD 15.01.2003 #103492# - change method signature due to new page preview
     // functionality
-//STRIP001     void UpdateAccessiblePreview( const std::vector<PrevwPage*>& _rPrevwPages,
-//STRIP001                                   const Fraction&  _rScale,
-//STRIP001                                   const SwPageFrm* _pSelectedPageFrm,
-//STRIP001                                   const Size&      _rPrevwWinSize );
 
-//STRIP001     void InvalidateAccessiblePreViewSelection( sal_uInt16 nSelPage );
 
     // Fire all accessible events that have been collected so far
-//STRIP001  void FireAccessibleEvents();
 #endif
 };
 
@@ -351,14 +303,6 @@ public:
 //gescrolled wird. Handles und sontiges vom Drawing werden im CTor
 //gehidet und im DTor wieder sichtbar gemacht.
 //AW 06-Sep99: Hiding of handles is no longer necessary, removed
-//STRIP001 class SwSaveHdl
-//STRIP001 {
-//STRIP001  SwViewImp *pImp;
-//STRIP001  BOOL       bXorVis;
-//STRIP001 public:
-//STRIP001  SwSaveHdl( SwViewImp *pImp );
-//STRIP001  ~SwSaveHdl();
-//STRIP001 };
 
 
 inline SwPageFrm *SwViewImp::GetFirstVisPage()
@@ -376,36 +320,14 @@ inline const SwPageFrm *SwViewImp::GetFirstVisPage() const
 }
 
 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 inline SwAccessibleMap& SwViewImp::GetAccessibleMap()
-//STRIP001 {
-//STRIP001  if( !pAccMap )
-//STRIP001      CreateAccessibleMap();
-//STRIP001
-//STRIP001  return *pAccMap;
-//STRIP001 }
 
-//STRIP001 inline void SwViewImp::DisposeAccessibleFrm( const SwFrm *pFrm,
-//STRIP001                             sal_Bool bRecursive )
-//STRIP001 {
-//STRIP001  DisposeAccessible( pFrm, 0, bRecursive );
-//STRIP001 }
 
 inline void SwViewImp::DisposeAccessibleObj( const SdrObject *pObj )
 {
     DisposeAccessible( 0, pObj, sal_False );
 }
 
-//STRIP001 inline void SwViewImp::MoveAccessibleFrm( const SwFrm *pFrm,
-//STRIP001                                        const SwRect& rOldFrm )
-//STRIP001 {
-//STRIP001  MoveAccessible( pFrm, 0, rOldFrm );
-//STRIP001 }
 
-//STRIP001 inline void SwViewImp::AddAccessibleFrm( const SwFrm *pFrm )
-//STRIP001 {
-//STRIP001  SwRect aEmptyRect;
-//STRIP001  MoveAccessible( pFrm, 0, aEmptyRect );
-//STRIP001 }
 
 inline void SwViewImp::AddAccessibleObj( const SdrObject *pObj )
 {

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrong.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:43:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:50:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,23 +70,12 @@ public:
         { if( STRING_LEN == GetBeginInv() ) SetInvalid( nBegin, nEnd );
           else _Invalidate( nBegin, nEnd ); }
     BOOL InvalidateWrong();
-//STRIP001  BOOL Fresh( xub_StrLen &rStart, xub_StrLen &rEnd, xub_StrLen nPos,
-//STRIP001          xub_StrLen nLen, USHORT nIndex, xub_StrLen nCursorPos );
-//STRIP001  USHORT GetPos( xub_StrLen nValue ) const;
-//STRIP001  sal_Bool Check( xub_StrLen &rChk, xub_StrLen &rLn ) const;
-//STRIP001  sal_Bool InWrongWord( xub_StrLen &rChk, xub_StrLen &rLn ) const;
-//STRIP001  xub_StrLen NextWrong( xub_StrLen nChk ) const;
-//STRIP001  xub_StrLen LastWrong( xub_StrLen nChk ) const;
     void Move( xub_StrLen nPos, long nDiff ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void Move( xub_StrLen nPos, long nDiff );
-//STRIP001  void Clear();
-//STRIP001  void Clear( xub_StrLen nBegin, xub_StrLen nEnd );
 
     // Divide the list into two part, the wrong words until nSplitPos will be
     // removed and transferred to a new SwWrongList.
-//STRIP001     SwWrongList* SplitList( xub_StrLen nSplitPos );
     // Join the next SwWrongList, nInsertPos is my own text length, where
     // the other wrong list has to be inserted.
-//STRIP001     void JoinList( SwWrongList* pNext, xub_StrLen nInsertPos );
 
     inline xub_StrLen Len( USHORT nIdx ) const { return WRLEN( nIdx );  }
     inline xub_StrLen Pos( USHORT nIdx ) const { return WRPOS( nIdx );  }
