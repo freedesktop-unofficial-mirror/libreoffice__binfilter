@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:52:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:26:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -176,20 +176,6 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*?*/   const String&       rUserData       // zum Wiedererkennen oder (frei verwendbar)
 /*?*/ )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_CHKTHIS(SfxObjectFactory, 0);
-//STRIP001  sal_uInt16 nDemo = SFX_APP()->GetDemoKind();
-//STRIP001
-//STRIP001  SfxFilter* pFilter = new SfxFilter(
-//STRIP001      rName, rWildcard, eType, lFormat, rMacType,
-//STRIP001      rTypeName, nIconId, rMimeType, pImpl->pFilterContainer, rUserData );
-//STRIP001 /*   if( nDemo != SFX_DEMOKIND_DEMO && nDemo != SFX_DEMOKIND_INVALID ||
-//STRIP001      pFilter->IsOwnFormat() )*/
-//STRIP001  // Jetzt immer uebernehmen, da es keine Demo mehr gibt. Sonst bei Ablauf
-//STRIP001  // Absturz in sba
-//STRIP001  pImpl->pFilterContainer->AddFilter(
-//STRIP001      pFilter, pImpl->pFilterContainer->GetFilterCount() );
-//STRIP001 /*   else
-//STRIP001      delete pFilter;*/
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -457,10 +443,6 @@ void lc_bfsleep(int _nSec)
 
 //--------------------------------------------------------------------
 
-//STRIP001 const String& SfxObjectFactory::GetHelpFile() const
-//STRIP001 {
-//STRIP001  return pImpl->aHelpFile;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -471,10 +453,6 @@ void lc_bfsleep(int _nSec)
 
 //--------------------------------------------------------------------
 
-//STRIP001 const String& SfxObjectFactory::GetHelpPIFile() const
-//STRIP001 {
-//STRIP001  return pImpl->aHelpPIFile;
-//STRIP001 }
 
 /*N*/ SfxModule* SfxObjectFactory::GetModule() const
 /*N*/ {
@@ -523,22 +501,9 @@ void lc_bfsleep(int _nSec)
 /*N*/   pImpl->nImageId = nImageId;
 /*N*/ }
 
-//STRIP001 sal_uInt16 SfxObjectFactory::GetExplorerImageId() const
-//STRIP001 {
-//STRIP001  return pImpl->nImageId;
-//STRIP001 }
 
 /*?*/ void SfxObjectFactory::SetStandardTemplate( const String& rFactoryURL, const String& rTemplate )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  const SfxObjectFactory* pFactory = SfxObjectFactory::GetFactory( rFactoryURL );
-//STRIP001  if ( pFactory )
-//STRIP001  {
-//STRIP001      ((SfxObjectFactory*)pFactory)->pImpl->aStandardTemplate = rTemplate;
-//STRIP001      SvtModuleOptions aModOpt;
-//STRIP001      SvtModuleOptions::EFactory eFac = SvtModuleOptions::E_WRITER;
-//STRIP001      if ( SvtModuleOptions::ClassifyFactoryByName( pFactory->GetDocumentServiceName(), eFac ) )
-//STRIP001          aModOpt.SetFactoryStandardTemplate( eFac, rTemplate );
-//STRIP001  }
 /*?*/ }
 
 /*N*/ const String& SfxObjectFactory::GetStandardTemplate() const
@@ -586,20 +551,6 @@ void lc_bfsleep(int _nSec)
 
 /*?*/ const SfxFilter* SfxObjectFactory::GetTemplateFilter() const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  USHORT nFilterCount = pImpl->pFilterContainer->GetFilterCount();
-//STRIP001  USHORT nVersion = 0;
-//STRIP001  const SfxFilter *pFilter = NULL;
-//STRIP001  for( int n=0; n<nFilterCount; n++)
-//STRIP001  {
-//STRIP001      const SfxFilter *pTemp = pImpl->pFilterContainer->GetFilter(n);
-//STRIP001      if( pTemp && pTemp->IsOwnFormat() && pTemp->IsOwnTemplateFormat() && ( pTemp->GetVersion() > nVersion ) )
-//STRIP001      {
-//STRIP001          pFilter = pTemp;
-//STRIP001          nVersion = pTemp->GetVersion();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pFilter;
 /*?*/ }
 
 /*N*/ void SfxObjectFactory::SetCreateNewSlotId( sal_uInt16 nId )
@@ -612,19 +563,7 @@ void lc_bfsleep(int _nSec)
 /*N*/   return pImpl->nCreateNewSlotId;
 /*N*/ }
 
-//STRIP001 void SfxObjectFactory::SetDocumentTypeNameResource( const ResId& rId )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( !pImpl->pNameResId, "UI-Namensresource mehrfach gesetzt!" );
-//STRIP001  pImpl->pNameResId = new ResId( rId );
-//STRIP001 }
 
-//STRIP001 String SfxObjectFactory::GetDocumentTypeName() const
-//STRIP001 {
-//STRIP001  ((SfxObjectFactory*)this)->DoInitFactory();
-//STRIP001  if ( pImpl->pNameResId )
-//STRIP001      return String( *pImpl->pNameResId );
-//STRIP001  return String();
-//STRIP001 }
 
 /*N*/ void SfxObjectFactory::SetDocumentServiceName( const ::rtl::OUString& rServiceName )
 /*N*/ {
@@ -676,10 +615,6 @@ void lc_bfsleep(int _nSec)
 
 /*?*/ String SfxObjectFactory::GetModuleName() const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     SvtModuleOptions::EFactory eFac = SvtModuleOptions::E_WRITER;
-//STRIP001     if ( SvtModuleOptions::ClassifyFactoryByName( GetDocumentServiceName(), eFac ) )
-//STRIP001         return SvtModuleOptions().GetModuleName( eFac );
-//STRIP001     else
 /*?*/         return String();
 /*?*/ }
 }
