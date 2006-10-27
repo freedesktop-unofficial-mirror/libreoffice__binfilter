@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlinguconfig.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:20:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:05:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,11 +71,6 @@ static sal_uInt32 mnImplUseCount = 0L;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 sal_Bool SwLinguConfig::SetProperty(const ::rtl::OUString &rPropertyName, const ::com::sun::star::uno::Any &rValue)
-//STRIP001 {
-//STRIP001  ImplCreateOnDemand();
-//STRIP001  return mpImplLinguConfig->SetProperty(rPropertyName, rValue);
-//STRIP001 }
 
 /*N*/ sal_Bool SwLinguConfig::GetOptions(SvtLinguOptions &rOptions) const
 /*N*/ {
@@ -83,11 +78,6 @@ static sal_uInt32 mnImplUseCount = 0L;
 /*N*/   return mpImplLinguConfig->GetOptions(rOptions);
 /*N*/ }
 
-//STRIP001 ::com::sun::star::uno::Any SwLinguConfig::GetProperty(const ::rtl::OUString &rPropertyName) const
-//STRIP001 {
-//STRIP001  ImplCreateOnDemand();
-//STRIP001  return mpImplLinguConfig->GetProperty(rPropertyName);
-//STRIP001 }
 
 // eof
 }
