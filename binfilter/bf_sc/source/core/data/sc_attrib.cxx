@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_attrib.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:38:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:13:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -45,32 +44,14 @@
 #ifndef _COM_SUN_STAR_UTIL_CELLPROTECTION_HPP_
 #include <com/sun/star/util/CellProtection.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
-// auto strip #include <com/sun/star/util/XProtectable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/boxitem.hxx>
-// auto strip #include <bf_svx/editdata.hxx>
-// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
@@ -85,10 +66,8 @@
 #endif
 
 #include <bf_svx/flditem.hxx>
-// auto strip #include <svtools/args.hxx>
 
 #include "attrib.hxx"
-// auto strip #include "global.hxx"
 #include "editutil.hxx"
 #include "bf_sc.hrc"
 #include "globstr.hrc"
@@ -181,15 +160,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScMergeAttr::GetValueText() const
-//STRIP001 {
-//STRIP001  String aString( '(' );
-//STRIP001  aString += String::CreateFromInt32( nColMerge );
-//STRIP001  aString += ',';
-//STRIP001  aString += String::CreateFromInt32( nRowMerge );
-//STRIP001  aString += ')';
-//STRIP001  return aString;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -360,66 +330,9 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScProtectionAttr::GetValueText() const
-//STRIP001 {
-//STRIP001  String aValue;
-//STRIP001  String aStrYes ( ScGlobal::GetRscString(STR_YES) );
-//STRIP001  String aStrNo  ( ScGlobal::GetRscString(STR_NO) );
-//STRIP001  sal_Unicode cDelim = ',';
-//STRIP001
-//STRIP001  aValue  = '(';
-//STRIP001  aValue += (bProtection  ? aStrYes : aStrNo);    aValue += cDelim;
-//STRIP001  aValue += (bHideFormula ? aStrYes : aStrNo);    aValue += cDelim;
-//STRIP001  aValue += (bHideCell    ? aStrYes : aStrNo);    aValue += cDelim;
-//STRIP001  aValue += (bHidePrint   ? aStrYes : aStrNo);
-//STRIP001  aValue += ')';
-//STRIP001
-//STRIP001  return aValue;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation __EXPORT ScProtectionAttr::GetPresentation
-//STRIP001  (
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric,
-//STRIP001      SfxMapUnit ePresMetric,
-//STRIP001      String& rText,
-//STRIP001         const IntlWrapper* pIntl
-//STRIP001  ) const
-//STRIP001 {
-//STRIP001  String aStrYes  ( ScGlobal::GetRscString(STR_YES) );
-//STRIP001  String aStrNo   ( ScGlobal::GetRscString(STR_NO) );
-//STRIP001  String aStrSep   = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM( ": " ));
-//STRIP001  String aStrDelim = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM( ", " ));
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText = GetValueText();
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_PROTECTION); rText += aStrSep;
-//STRIP001          rText += (bProtection ? aStrYes : aStrNo);       rText += aStrDelim;
-//STRIP001          rText += ScGlobal::GetRscString(STR_FORMULAS);   rText += aStrSep;
-//STRIP001          rText += (!bHideFormula ? aStrYes : aStrNo);     rText += aStrDelim;
-//STRIP001          rText += ScGlobal::GetRscString(STR_HIDE);       rText += aStrSep;
-//STRIP001          rText += (bHideCell ? aStrYes : aStrNo);         rText += aStrDelim;
-//STRIP001          rText += ScGlobal::GetRscString(STR_PRINT);      rText += aStrSep;
-//STRIP001          rText += (!bHidePrint ? aStrYes : aStrNo);
-//STRIP001          break;
-//STRIP001
-//STRIP001      default:
-//STRIP001          ePres = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -471,77 +384,23 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScProtectionAttr::SetProtection( BOOL bProtect)
-//STRIP001 {
-//STRIP001  bProtection =  bProtect;
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScProtectionAttr::SetHideFormula( BOOL bHFormula)
-//STRIP001 {
-//STRIP001  bHideFormula = bHFormula;
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScProtectionAttr::SetHideCell( BOOL bHCell)
-//STRIP001 {
-//STRIP001  bHideCell = bHCell;
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScProtectionAttr::SetHidePrint( BOOL bHPrint)
-//STRIP001 {
-//STRIP001  bHidePrint = bHPrint;
-//STRIP001  return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 //      ScRangeItem - Tabellenbereich
 // -----------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScRangeItem::Record( SfxArguments& rArgs ) const
-//STRIP001 {
-//STRIP001  const ScAddress& rStart = aRange.aStart;
-//STRIP001  const ScAddress& rEnd   = aRange.aEnd;
-//STRIP001
-//STRIP001  rArgs.AppendInteger( rStart.Col() );
-//STRIP001  rArgs.AppendInteger( rStart.Row() );
-//STRIP001  rArgs.AppendInteger( rStart.Tab() );
-//STRIP001  rArgs.AppendInteger( rEnd  .Col() );
-//STRIP001  rArgs.AppendInteger( rEnd  .Row() );
-//STRIP001  rArgs.AppendInteger( rEnd.Tab() );
-//STRIP001  rArgs.AppendInteger( nFlags );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxArgumentError __EXPORT ScRangeItem::Construct( USHORT nId, const SfxArguments& rArgs )
-//STRIP001 {
-//STRIP001  if ( rArgs.Count() < 7 )
-//STRIP001      return SFX_ARGUMENT_ERROR( rArgs.Count(), SFX_ERR_ARGUMENT_EXPECTED );
-//STRIP001  if ( rArgs.Count() > 7 )
-//STRIP001      return SFX_ARGUMENT_ERROR( rArgs.Count()-1, SFX_ERR_TOO_MANY_ARGUMENTS );
-//STRIP001
-//STRIP001  ScAddress& rStart = aRange.aStart;
-//STRIP001  ScAddress& rEnd   = aRange.aEnd;
-//STRIP001
-//STRIP001  SetWhich( nId );
-//STRIP001  rStart.SetCol( rArgs.Get( 0 ).GetInteger() );
-//STRIP001  rStart.SetRow( rArgs.Get( 1 ).GetInteger() );
-//STRIP001  rStart.SetTab( rArgs.Get( 2 ).GetInteger() );
-//STRIP001  rEnd  .SetCol( rArgs.Get( 3 ).GetInteger() );
-//STRIP001  rEnd  .SetRow( rArgs.Get( 4 ).GetInteger() );
-//STRIP001  rEnd  .SetTab( rArgs.Get( 5 ).GetInteger() );
-//STRIP001  nFlags = (USHORT)rArgs.Get( 6 ).GetInteger();
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -561,35 +420,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation __EXPORT ScRangeItem::GetPresentation
-//STRIP001  (
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit          eCoreUnit,
-//STRIP001      SfxMapUnit          ePresUnit,
-//STRIP001      String&             rText,
-//STRIP001         const IntlWrapper* pIntl
-//STRIP001  ) const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      rText  = ScGlobal::GetRscString(STR_AREA);
-//STRIP001      rText.AppendAscii(RTL_CONSTASCII_STRINGPARAM( ": " ));
-//STRIP001 //       break;// Durchfallen !!!
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          String aText;
-//STRIP001          aRange.Format( aText );
-//STRIP001          rText += aText;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 //-----------------------------------------------------------------------
 
@@ -700,60 +530,12 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScTableListItem::Record( SfxArguments& rArgs ) const
-//STRIP001 {
-//STRIP001  rArgs.AppendInteger( nCount );
-//STRIP001
-//STRIP001  if ( nCount>0 && pTabArr )
-//STRIP001      for ( USHORT i=0; i<nCount; i++ )
-//STRIP001          rArgs.AppendInteger( pTabArr[i] );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxArgumentError __EXPORT ScTableListItem::Construct( USHORT nId, const SfxArguments& rArgs )
-//STRIP001 {
-//STRIP001  USHORT nCount = rArgs.Get( 0 ).GetInteger();
-//STRIP001
-//STRIP001  if ( pTabArr )
-//STRIP001      delete [] pTabArr, pTabArr = NULL;
-//STRIP001
-//STRIP001  if ( nCount > 0 )
-//STRIP001  {
-//STRIP001      if ( rArgs.Count()-1 < nCount )
-//STRIP001          return SFX_ARGUMENT_ERROR( rArgs.Count(), SFX_ERR_ARGUMENT_EXPECTED );
-//STRIP001      if ( rArgs.Count()-1 > nCount )
-//STRIP001          return SFX_ARGUMENT_ERROR( rArgs.Count()-1, SFX_ERR_TOO_MANY_ARGUMENTS );
-//STRIP001
-//STRIP001      SetWhich( nId );
-//STRIP001      pTabArr = new USHORT [nCount];
-//STRIP001
-//STRIP001      for ( USHORT i=0; i<nCount; i++ )
-//STRIP001          pTabArr[i] = rArgs.Get( i+1 ).GetInteger();
-//STRIP001  }
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 ScTableListItem& ScTableListItem::operator=( const ScTableListItem& rCpy )
-//STRIP001 {
-//STRIP001  delete [] pTabArr;
-//STRIP001
-//STRIP001  if ( rCpy.nCount > 0 )
-//STRIP001  {
-//STRIP001      pTabArr = new USHORT [rCpy.nCount];
-//STRIP001      for ( USHORT i=0; i<rCpy.nCount; i++ )
-//STRIP001          pTabArr[i] = rCpy.pTabArr[i];
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pTabArr = NULL;
-//STRIP001
-//STRIP001  nCount = rCpy.nCount;
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -788,44 +570,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation __EXPORT ScTableListItem::GetPresentation
-//STRIP001  (
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit          eCoreUnit,
-//STRIP001      SfxMapUnit          ePresUnit,
-//STRIP001      String&             rText,
-//STRIP001         const IntlWrapper* pIntl
-//STRIP001  ) const
-//STRIP001 {
-//STRIP001  const sal_Unicode cDelim = ',';
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          {
-//STRIP001          rText  = '(';
-//STRIP001          if ( nCount>0 && pTabArr )
-//STRIP001              for ( USHORT i=0; i<nCount; i++ )
-//STRIP001              {
-//STRIP001                  rText += String::CreateFromInt32( pTabArr[i] );
-//STRIP001                  if ( i<(nCount-1) )
-//STRIP001                      rText += cDelim;
-//STRIP001              }
-//STRIP001          rText += ')';
-//STRIP001          }
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //-----------------------------------------------------------------------
 
@@ -872,13 +616,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 BOOL ScTableListItem::GetTableList( List& aList ) const
-//STRIP001 {
-//STRIP001  for ( USHORT i=0; i<nCount; i++ )
-//STRIP001      aList.Insert( new USHORT( pTabArr[i] ) );
-//STRIP001
-//STRIP001  return ( nCount > 0 );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1370,60 +1107,9 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation __EXPORT ScViewObjectModeItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001  String&             rText,
-//STRIP001     const IntlWrapper* pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  String  aDel = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(": "));
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      switch( Which() )
-//STRIP001      {
-//STRIP001          case SID_SCATTR_PAGE_CHARTS:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_VOBJ_CHART);
-//STRIP001          rText += aDel;
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SID_SCATTR_PAGE_OBJECTS:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_VOBJ_OBJECT);
-//STRIP001          rText += aDel;
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SID_SCATTR_PAGE_DRAWINGS:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_VOBJ_DRAWINGS);
-//STRIP001          rText += aDel;
-//STRIP001          break;
-//STRIP001
-//STRIP001          default:
-//STRIP001          ePres = SFX_ITEM_PRESENTATION_NAMELESS;//das geht immer!
-//STRIP001          break;
-//STRIP001      }
-//STRIP001 //       break; // DURCHFALLEN!!!
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      rText += ScGlobal::GetRscString(STR_VOBJ_MODE_SHOW+GetValue());
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScViewObjectModeItem::GetValueText( USHORT nVal ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nVal <= VOBJ_MODE_DUMMY, "enum overflow!" );
-//STRIP001
-//STRIP001  return ScGlobal::GetRscString( STR_VOBJ_MODE_SHOW + nVal );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
