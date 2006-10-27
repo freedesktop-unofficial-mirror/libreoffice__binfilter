@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldwrap.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:32:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:40:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,8 +46,6 @@ public:
 
     SFX_DECL_CHILDWINDOW(SwFldDlgWrapper);
 
-//STRIP001  virtual BOOL    ReInitDlg(SwDocShell *pDocSh);
-//STRIP001  void            ShowPage(USHORT nPage = 0);
 };
 /* -----------------04.02.2003 14:14-----------------
  * field dialog only showing database page to support
