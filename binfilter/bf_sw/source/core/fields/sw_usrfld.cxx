@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_usrfld.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:33:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:39:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,20 +36,11 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _ZFORLIST_HXX
-// auto strip #include <svtools/zforlist.hxx>
-// auto strip #endif
 #ifndef _ZFORMAT_HXX //autogen
 #include <svtools/zformat.hxx>
 #endif
-// auto strip #ifndef _SVDMODEL_HXX
-// auto strip #include <bf_svx/svdmodel.hxx>
-// auto strip #endif
 
 
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx>
-// auto strip #endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
@@ -64,12 +55,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _EDITSH_HXX
-// auto strip #include <editsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _DPAGE_HXX
-// auto strip #include <dpage.hxx>
-// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
@@ -268,15 +253,6 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   return aName;
 /*N*/ }
 
-//STRIP001 void SwUserFieldType::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
-//STRIP001 {
-//STRIP001  if( !pOld && !pNew )
-//STRIP001      ChgValid( sal_False );
-//STRIP001
-//STRIP001  SwModify::Modify( pOld, pNew );
-//STRIP001  // und ggfs. am UserFeld haengende InputFelder updaten!
-//STRIP001  GetDoc()->GetSysFldType( RES_INPUTFLD )->UpdateFlds();
-//STRIP001 }
 
 /*N*/ double SwUserFieldType::GetValue( SwCalc& rCalc )
 /*N*/ {
@@ -338,7 +314,6 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/       // der SdrPage (und damit den VCControls) sagen, das sich was getan hat
 /*N*/       if( GetDoc()->GetDrawModel() && GetDepends() )
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ((SwDPage*)GetDoc()->GetDrawModel()->GetPage( 0 ))->
-//STRIP001 /*?*/                    UpdateLinkData( aName, aContent );
 /*N*/
 /*N*/       sal_Bool bModified = GetDoc()->IsModified();
 /*N*/       GetDoc()->SetModified();
@@ -347,35 +322,6 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SwUserFieldType::CtrlSetContent( const String& rStr )
-//STRIP001 {
-//STRIP001  if( aContent != rStr )
-//STRIP001  {
-//STRIP001      aContent = rStr;
-//STRIP001      bValidValue = sal_False;
-//STRIP001
-//STRIP001      sal_Bool bModified = GetDoc()->IsModified();
-//STRIP001      GetDoc()->SetModified();
-//STRIP001      if( !bModified )    // Bug 57028
-//STRIP001          GetDoc()->SetUndoNoResetModified();
-//STRIP001
-//STRIP001      // dann mal alle Feldern updaten
-//STRIP001      if( GetDepends() )
-//STRIP001      {
-//STRIP001          SwEditShell* pSh = GetDoc()->GetEditShell();
-//STRIP001          if( pSh )
-//STRIP001              pSh->StartAllAction();
-//STRIP001
-//STRIP001          Modify( 0, 0 );
-//STRIP001          GetDoc()->UpdateUsrFlds();
-//STRIP001          GetDoc()->UpdateExpFlds();
-//STRIP001
-//STRIP001          GetDoc()->SetModified();
-//STRIP001          if( pSh )
-//STRIP001              pSh->EndAllAction();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 /*-----------------04.03.98 17:05-------------------
 
 --------------------------------------------------*/
