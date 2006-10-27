@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx__xpoly.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:38:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:02:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,13 +36,10 @@
 #include <math.h>
 #include <string.h>
 #include <tools/stream.hxx>
-// auto strip #include <tools/debug.hxx>
-// auto strip #include <tools/poly.hxx>
 
 #pragma hdrstop
 
 #include "xoutx.hxx"
-// auto strip #include "xpoly.hxx"
 #include "xpolyimp.hxx"
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
@@ -523,11 +520,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 USHORT XPolygon::GetSize() const
-//STRIP001 {
-//STRIP001  pImpXPolygon->CheckPointDelete();
-//STRIP001  return pImpXPolygon->nSize;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -601,22 +593,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolygon::Insert( USHORT nPos, const XPolygon& rXPoly )
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001  if (nPos>pImpXPolygon->nPoints) nPos=pImpXPolygon->nPoints;
-//STRIP001
-//STRIP001  USHORT nPoints = rXPoly.GetPointCount();
-//STRIP001
-//STRIP001  pImpXPolygon->InsertSpace( nPos, nPoints );
-//STRIP001
-//STRIP001  memcpy( &(pImpXPolygon->pPointAry[nPos]),
-//STRIP001          rXPoly.pImpXPolygon->pPointAry,
-//STRIP001          nPoints*sizeof( Point ) );
-//STRIP001  memcpy( &(pImpXPolygon->pFlagAry[nPos]),
-//STRIP001          rXPoly.pImpXPolygon->pFlagAry,
-//STRIP001          nPoints );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -628,21 +604,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolygon::Insert( USHORT nPos, const Polygon& rPoly )
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001  if (nPos>pImpXPolygon->nPoints) nPos=pImpXPolygon->nPoints;
-//STRIP001
-//STRIP001  USHORT nPoints = rPoly.GetSize();
-//STRIP001
-//STRIP001  pImpXPolygon->InsertSpace( nPos, nPoints );
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  for( i=0; i < nPoints; i++ )
-//STRIP001      pImpXPolygon->pPointAry[i] = rPoly[i];
-//STRIP001
-//STRIP001  // Die Flags sind durch das InsertSpace bereits auf 0 gesetzt
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -897,11 +858,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 BOOL XPolygon::IsSmooth(USHORT nPos) const
-//STRIP001 {
-//STRIP001  XPolyFlags eFlag = (XPolyFlags) pImpXPolygon->pFlagAry[nPos];
-//STRIP001  return ( eFlag == XPOLY_SMOOTH || eFlag == XPOLY_SYMMTR );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -913,14 +869,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 double XPolygon::CalcDistance(USHORT nP1, USHORT nP2)
-//STRIP001 {
-//STRIP001  const Point& rP1 = pImpXPolygon->pPointAry[nP1];
-//STRIP001  const Point& rP2 = pImpXPolygon->pPointAry[nP2];
-//STRIP001  double fDx = rP2.X() - rP1.X();
-//STRIP001  double fDy = rP2.Y() - rP1.Y();
-//STRIP001  return sqrt(fDx * fDx + fDy * fDy);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1060,39 +1008,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XPolygon::CalcSmoothJoin(USHORT nCenter, USHORT nDrag, USHORT nPnt)
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  USHORT  nMaxPnt = pImpXPolygon->nPoints - 1;
-//STRIP001
-//STRIP001 //  if ( nCenter == nMaxPnt )   nPnt = 1;
-//STRIP001 //  else if ( nCenter == 0 )    nPnt = nMaxPnt - 1;
-//STRIP001
-//STRIP001  // Wenn nPnt kein Control-Punkt, d.h. nicht verschiebbar, dann
-//STRIP001  // statt dessen nDrag auf der Achse nCenter-nPnt verschieben
-//STRIP001  if ( !IsControl(nPnt) )
-//STRIP001  {
-//STRIP001      USHORT nTmp = nDrag;
-//STRIP001      nDrag = nPnt;
-//STRIP001      nPnt = nTmp;
-//STRIP001  }
-//STRIP001  Point*  pPoints = pImpXPolygon->pPointAry;
-//STRIP001  Point   aDiff   = pPoints[nDrag] - pPoints[nCenter];
-//STRIP001  double  fDiv    = CalcDistance(nCenter, nDrag);
-//STRIP001
-//STRIP001  if ( fDiv )
-//STRIP001  {
-//STRIP001      double fRatio = CalcDistance(nCenter, nPnt) / fDiv;
-//STRIP001      // bei SMOOTH bisherige Laenge beibehalten
-//STRIP001      if ( GetFlags(nCenter) == XPOLY_SMOOTH || !IsControl(nDrag) )
-//STRIP001      {
-//STRIP001          aDiff.X() = (long) (fRatio * aDiff.X());
-//STRIP001          aDiff.Y() = (long) (fRatio * aDiff.Y());
-//STRIP001      }
-//STRIP001      pPoints[nPnt] = pPoints[nCenter] - aDiff;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1107,33 +1022,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XPolygon::CalcTangent(USHORT nCenter, USHORT nPrev, USHORT nNext)
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  double fAbsLen = CalcDistance(nNext, nPrev);
-//STRIP001
-//STRIP001  if ( fAbsLen )
-//STRIP001  {
-//STRIP001      const Point& rCenter = pImpXPolygon->pPointAry[nCenter];
-//STRIP001      Point&  rNext = pImpXPolygon->pPointAry[nNext];
-//STRIP001      Point&  rPrev = pImpXPolygon->pPointAry[nPrev];
-//STRIP001      Point   aDiff = rNext - rPrev;
-//STRIP001      double  fNextLen = CalcDistance(nCenter, nNext) / fAbsLen;
-//STRIP001      double  fPrevLen = CalcDistance(nCenter, nPrev) / fAbsLen;
-//STRIP001
-//STRIP001      // bei SYMMTR gleiche Laenge fuer beide Seiten
-//STRIP001      if ( GetFlags(nCenter) == XPOLY_SYMMTR )
-//STRIP001      {
-//STRIP001          fPrevLen = (fNextLen + fPrevLen) / 2;
-//STRIP001          fNextLen = fPrevLen;
-//STRIP001      }
-//STRIP001      rNext.X() = rCenter.X() + (long) (fNextLen * aDiff.X());
-//STRIP001      rNext.Y() = rCenter.Y() + (long) (fNextLen * aDiff.Y());
-//STRIP001      rPrev.X() = rCenter.X() - (long) (fPrevLen * aDiff.X());
-//STRIP001      rPrev.Y() = rCenter.Y() - (long) (fPrevLen * aDiff.Y());
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1145,73 +1033,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XPolygon::PointsToBezier(USHORT nFirst)
-//STRIP001 {
-//STRIP001  double  nFullLength, nPart1Length, nPart2Length;
-//STRIP001  double  fX0, fY0, fX1, fY1, fX2, fY2, fX3, fY3;
-//STRIP001  double  fTx1, fTx2, fTy1, fTy2;
-//STRIP001  double  fT1, fU1, fT2, fU2, fV;
-//STRIP001  Point*  pPoints = pImpXPolygon->pPointAry;
-//STRIP001
-//STRIP001  if ( nFirst > pImpXPolygon->nPoints - 4 || IsControl(nFirst) ||
-//STRIP001       IsControl(nFirst+1) || IsControl(nFirst+2) || IsControl(nFirst+3) )
-//STRIP001      return;
-//STRIP001
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  fTx1 = pPoints[nFirst+1].X();
-//STRIP001  fTy1 = pPoints[nFirst+1].Y();
-//STRIP001  fTx2 = pPoints[nFirst+2].X();
-//STRIP001  fTy2 = pPoints[nFirst+2].Y();
-//STRIP001  fX0  = pPoints[nFirst  ].X();
-//STRIP001  fY0  = pPoints[nFirst  ].Y();
-//STRIP001  fX3  = pPoints[nFirst+3].X();
-//STRIP001  fY3  = pPoints[nFirst+3].Y();
-//STRIP001
-//STRIP001  nPart1Length = CalcDistance(nFirst, nFirst+1);
-//STRIP001  nPart2Length = nPart1Length + CalcDistance(nFirst+1, nFirst+2);
-//STRIP001  nFullLength  = nPart2Length + CalcDistance(nFirst+2, nFirst+3);
-//STRIP001  if ( nFullLength < 20 )
-//STRIP001      return;
-//STRIP001
-//STRIP001  if ( nPart2Length == nFullLength )
-//STRIP001      nPart2Length -= 1;
-//STRIP001  if ( nPart1Length == nFullLength )
-//STRIP001      nPart1Length = nPart2Length - 1;
-//STRIP001  if ( nPart1Length <= 0 )
-//STRIP001      nPart1Length = 1;
-//STRIP001  if ( nPart2Length <= 0 || nPart2Length == nPart1Length )
-//STRIP001      nPart2Length = nPart1Length + 1;
-//STRIP001
-//STRIP001  fT1 = nPart1Length / nFullLength;
-//STRIP001  fU1 = 1.0 - fT1;
-//STRIP001  fT2 = nPart2Length / nFullLength;
-//STRIP001  fU2 = 1.0 - fT2;
-//STRIP001  fV = 3 * (1.0 - (fT1 * fU2) / (fT2 * fU1));
-//STRIP001
-//STRIP001  fX1 = fTx1 / (fT1 * fU1 * fU1) - fTx2 * fT1 / (fT2 * fT2 * fU1 * fU2);
-//STRIP001  fX1 /= fV;
-//STRIP001  fX1 -= fX0 * ( fU1 / fT1 + fU2 / fT2) / 3;
-//STRIP001  fX1 += fX3 * ( fT1 * fT2 / (fU1 * fU2)) / 3;
-//STRIP001
-//STRIP001  fY1 = fTy1 / (fT1 * fU1 * fU1) - fTy2 * fT1 / (fT2 * fT2 * fU1 * fU2);
-//STRIP001  fY1 /= fV;
-//STRIP001  fY1 -= fY0 * ( fU1 / fT1 + fU2 / fT2) / 3;
-//STRIP001  fY1 += fY3 * ( fT1 * fT2 / (fU1 * fU2)) / 3;
-//STRIP001
-//STRIP001  fX2 = fTx2 / (fT2 * fT2 * fU2 * 3) - fX0 * fU2 * fU2 / ( fT2 * fT2 * 3);
-//STRIP001  fX2 -= fX1 * fU2 / fT2;
-//STRIP001  fX2 -= fX3 * fT2 / (fU2 * 3);
-//STRIP001
-//STRIP001  fY2 = fTy2 / (fT2 * fT2 * fU2 * 3) - fY0 * fU2 * fU2 / ( fT2 * fT2 * 3);
-//STRIP001  fY2 -= fY1 * fU2 / fT2;
-//STRIP001  fY2 -= fY3 * fT2 / (fU2 * 3);
-//STRIP001
-//STRIP001  pPoints[nFirst+1] = Point((long) fX1, (long) fY1);
-//STRIP001  pPoints[nFirst+2] = Point((long) fX2, (long) fY2);
-//STRIP001  SetFlags(nFirst+1, XPOLY_CONTROL);
-//STRIP001  SetFlags(nFirst+2, XPOLY_CONTROL);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1372,21 +1193,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolygon::SlantY(long nXRef, double fSin, double fCos)
-//STRIP001 {
-//STRIP001  pImpXPolygon->CheckPointDelete();
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  USHORT nPntCnt = pImpXPolygon->nPoints;
-//STRIP001
-//STRIP001  for (USHORT i = 0; i < nPntCnt; i++)
-//STRIP001  {
-//STRIP001      Point& rPnt = pImpXPolygon->pPointAry[i];
-//STRIP001      long nDx = rPnt.X() - nXRef;
-//STRIP001      rPnt.X() = nXRef + (long)(fCos * nDx);
-//STRIP001      rPnt.Y() -= (long)(fSin * nDx);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1404,53 +1210,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolygon::Distort(const Rectangle& rRefRect,
-//STRIP001                     const XPolygon& rDistortedRect)
-//STRIP001 {
-//STRIP001  pImpXPolygon->CheckPointDelete();
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  long    Xr, Wr, X1, X2, X3, X4;
-//STRIP001  long    Yr, Hr, Y1, Y2, Y3, Y4;
-//STRIP001  double  fTx, fTy, fUx, fUy;
-//STRIP001
-//STRIP001  Xr = rRefRect.Left();
-//STRIP001  Yr = rRefRect.Top();
-//STRIP001  Wr = rRefRect.GetWidth();
-//STRIP001  Hr = rRefRect.GetHeight();
-//STRIP001
-//STRIP001  if ( Wr && Hr )
-//STRIP001  {
-//STRIP001      DBG_ASSERT(rDistortedRect.pImpXPolygon->nPoints >= 4,
-//STRIP001                 "Distort-Rechteck zu klein");
-//STRIP001
-//STRIP001      X1 = rDistortedRect[0].X();
-//STRIP001      Y1 = rDistortedRect[0].Y();
-//STRIP001      X2 = rDistortedRect[1].X();
-//STRIP001      Y2 = rDistortedRect[1].Y();
-//STRIP001      X3 = rDistortedRect[3].X();
-//STRIP001      Y3 = rDistortedRect[3].Y();
-//STRIP001      X4 = rDistortedRect[2].X();
-//STRIP001      Y4 = rDistortedRect[2].Y();
-//STRIP001
-//STRIP001      USHORT nPntCnt = pImpXPolygon->nPoints;
-//STRIP001
-//STRIP001      for (USHORT i = 0; i < nPntCnt; i++)
-//STRIP001      {
-//STRIP001          Point& rPnt = pImpXPolygon->pPointAry[i];
-//STRIP001
-//STRIP001          fTx = (double)(rPnt.X() - Xr) / Wr;
-//STRIP001          fTy = (double)(rPnt.Y() - Yr) / Hr;
-//STRIP001          fUx = 1.0 - fTx;
-//STRIP001          fUy = 1.0 - fTy;
-//STRIP001
-//STRIP001          rPnt.X() = (long) ( fUy * (fUx * X1 + fTx * X2) +
-//STRIP001                              fTy * (fUx * X3 + fTx * X4) );
-//STRIP001          rPnt.Y() = (long) ( fUx * (fUy * Y1 + fTy * Y3) +
-//STRIP001                              fTx * (fUy * Y2 + fTy * Y4) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1459,40 +1218,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XPolygon::Rotate20()
-//STRIP001 {
-//STRIP001  pImpXPolygon->CheckPointDelete();
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  double   fMinY   = pImpXPolygon->pPointAry->Y();
-//STRIP001  double   fMinX   = pImpXPolygon->pPointAry->X();
-//STRIP001  long     nPntCnt = pImpXPolygon->nPoints;
-//STRIP001  long     nIndex0 = 0;
-//STRIP001
-//STRIP001  for (long nPoints = 1;
-//STRIP001            nPoints < nPntCnt;
-//STRIP001            nPoints ++)
-//STRIP001  {
-//STRIP001      Point &rPnt = pImpXPolygon->pPointAry[nPoints];
-//STRIP001
-//STRIP001      if ((rPnt.X () < fMinX) || (fMinX == rPnt.X ()) &&
-//STRIP001                                 (fMinY >= rPnt.Y ()))
-//STRIP001      {
-//STRIP001          fMinX   = rPnt.X ();
-//STRIP001          fMinY   = rPnt.Y ();
-//STRIP001          nIndex0 = nPoints;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nIndex0 < nPntCnt)
-//STRIP001  {
-//STRIP001      Point *pTemp = new Point [nIndex0];
-//STRIP001      memcpy (pTemp, pImpXPolygon->pPointAry, nIndex0 * sizeof (Point));
-//STRIP001      memcpy (pImpXPolygon->pPointAry, &pImpXPolygon->pPointAry [nIndex0], (nPntCnt - nIndex0) * sizeof (Point));
-//STRIP001      memcpy (&pImpXPolygon->pPointAry [nIndex0], pTemp, nIndex0 * sizeof (Point));
-//STRIP001      delete[] pTemp;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1783,18 +1508,6 @@ namespace binfilter {
 *************************************************************************/
 
 
-//STRIP001 FASTBOOL ImpXPolyPolygon::operator==(const ImpXPolyPolygon& rImpXPolyPoly) const
-//STRIP001 {
-//STRIP001  USHORT nAnz=(USHORT)aXPolyList.Count();
-//STRIP001  const XPolygonList& rCmpList=rImpXPolyPoly.aXPolyList;
-//STRIP001  if (nAnz!=(USHORT)rCmpList.Count()) return FALSE;
-//STRIP001  FASTBOOL bEq=TRUE;
-//STRIP001  for (USHORT i=nAnz; i>0 && bEq;) {
-//STRIP001      i--;
-//STRIP001      bEq= *aXPolyList.GetObject(i) == *rCmpList.GetObject(i);
-//STRIP001  }
-//STRIP001  return bEq;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1932,18 +1645,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolyPolygon::Insert( const XPolyPolygon& rXPolyPoly, USHORT nPos )
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  for (USHORT i = 0; i < rXPolyPoly.Count(); i++)
-//STRIP001  {
-//STRIP001      XPolygon* pXPoly = new XPolygon(rXPolyPoly[i]);
-//STRIP001      pImpXPolyPolygon->aXPolyList.Insert(pXPoly, nPos);
-//STRIP001      if ( nPos != XPOLYPOLY_APPEND )
-//STRIP001          nPos++;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1955,14 +1656,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 XPolygon XPolyPolygon::Remove( USHORT nPos )
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001  XPolygon* pTmpXPoly = pImpXPolyPolygon->aXPolyList.Remove( nPos );
-//STRIP001  XPolygon  aXPoly( *pTmpXPoly );
-//STRIP001  delete pTmpXPoly;
-//STRIP001  return aXPoly;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1975,15 +1668,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 XPolygon XPolyPolygon::Replace( const XPolygon& rXPoly, USHORT nPos )
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001  XPolygon* pXPoly = new XPolygon( rXPoly );
-//STRIP001  XPolygon* pTmpXPoly = pImpXPolyPolygon->aXPolyList.Replace( pXPoly, nPos );
-//STRIP001  XPolygon  aXPoly( *pTmpXPoly );
-//STRIP001  delete pTmpXPoly;
-//STRIP001  return aXPoly;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -2152,11 +1836,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 BOOL XPolyPolygon::operator==( const XPolyPolygon& rXPolyPoly ) const
-//STRIP001 {
-//STRIP001  if (pImpXPolyPolygon==rXPolyPoly.pImpXPolyPolygon) return TRUE;
-//STRIP001  return *pImpXPolyPolygon == *rXPolyPoly.pImpXPolyPolygon;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -2169,11 +1848,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 BOOL XPolyPolygon::operator!=( const XPolyPolygon& rXPolyPoly ) const
-//STRIP001 {
-//STRIP001  if (pImpXPolyPolygon==rXPolyPoly.pImpXPolyPolygon) return FALSE;
-//STRIP001  return *pImpXPolyPolygon != *rXPolyPoly.pImpXPolyPolygon;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2219,13 +1893,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XPolyPolygon::Rotate20()
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  for (USHORT i = 0; i < Count(); i++)
-//STRIP001      pImpXPolyPolygon->aXPolyList.GetObject(i)->Rotate20();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2238,18 +1905,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolyPolygon::Rotate(const Point& rCenter, USHORT nAngle)
-//STRIP001 {
-//STRIP001  nAngle %= 3600;
-//STRIP001
-//STRIP001  if ( nAngle != 0 )
-//STRIP001  {
-//STRIP001      double fAngle = F_PI * nAngle / 1800;
-//STRIP001      double fSin = sin(fAngle);
-//STRIP001      double fCos = cos(fAngle);
-//STRIP001      Rotate(rCenter, fSin, fCos);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2299,13 +1954,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolyPolygon::SlantY(long nXRef, double fSin, double fCos)
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  for (USHORT i = 0; i < Count(); i++)
-//STRIP001      pImpXPolyPolygon->aXPolyList.GetObject(i)->SlantY(nXRef, fSin, fCos);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2323,15 +1971,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 void XPolyPolygon::Distort(const Rectangle& rRefRect,
-//STRIP001                         const XPolygon& rDistortedRect)
-//STRIP001 {
-//STRIP001  CheckReference();
-//STRIP001
-//STRIP001  for (USHORT i = 0; i < Count(); i++)
-//STRIP001      pImpXPolyPolygon->aXPolyList.GetObject(i)->Distort(rRefRect,
-//STRIP001                                                         rDistortedRect);
-//STRIP001 }
 
 
 /*************************************************************************
