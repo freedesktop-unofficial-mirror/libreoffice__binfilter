@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chgtrack.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:05:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:30:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,24 +35,9 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHL_HXX //autogen
-// auto strip #include <tools/shl.hxx>      // SHL_CALC
-// auto strip #endif
-// auto strip #ifndef _STACK_HXX //autogen
-// auto strip #include <tools/stack.hxx>
-// auto strip #endif
-// auto strip #ifndef _RTTI_HXX //autogen
-// auto strip #include <tools/rtti.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
 #endif
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 #ifndef _SFXISETHINT_HXX //autogen
 #include <svtools/isethint.hxx>
 #endif
@@ -73,9 +58,7 @@
 #endif
 
 #include "cell.hxx"
-// auto strip #include "document.hxx"
 #include "dociter.hxx"
-// auto strip #include "global.hxx"
 #include "rechead.hxx"
 #include "scerrors.hxx"
 #include "scmod.hxx"        // SC_MOD
