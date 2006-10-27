@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:18:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:31:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,24 +39,17 @@
 #include "rcid.hrc"
 
 // Default Bitmap fuer ToolBox
-//STRIP001 #define BMP_FEHLT                    (RC_APP_BEGIN + 1)
 
 // Document-Icon
 #define RC_DOC_ICON                 (RC_APP_BEGIN + 2)
 
 //Soll das Clipboard fuer andere Applikationen...
-//STRIP001 #define MSG_CLPBRD_CLEAR         (RC_APP_BEGIN + 3)
 
-//STRIP001 #define STR_CANTCREATE               (RC_APP_BEGIN + 4)
-//STRIP001 #define STR_CANTOPEN             (RC_APP_BEGIN + 5)
 
 // Messages
-//STRIP001 #define MSG_ERROR_SEND_MAIL      ( RC_APP_BEGIN + 6)
-//STRIP001 #define MSG_SAVE_HTML_QUERY         ( RC_APP_BEGIN + 7)
 
 //Fuer das Interface, weil der RID_APP_BEGIN jetzt Desktop ist.
 #define RID_SW_NAME                 ( RC_APP_BEGIN + 8)
-//STRIP001 #define MSG_SAVEAS_HTML_QUERY       ( RC_APP_BEGIN + 9)
 
 
 #define STR_UNBENANNT               (RC_APP_BEGIN + 13)
@@ -65,8 +58,6 @@
 #define STR_PAGE_COUNT_MACRO        (RC_APP_BEGIN + 16)
 
 // Bitmap fuer die NumerierungsVorlagen im Organizer
-//STRIP001 #define BMP_STYLES_FAMILY_NUM        (RC_APP_BEGIN + 17)
-//STRIP001 #define BMP_STYLES_FAMILY_NUM_HC (RC_APP_BEGIN + 18)
 
 // Strings fuer Bereiche in der Konfiguration
 #define STR_GRP_FILE                (RC_APP_BEGIN + 56)
@@ -87,18 +78,10 @@
 #define STR_GRP_MACRO               (RC_APP_BEGIN + 71)
 #define RES_EXT_HELP_STRING         (RC_APP_BEGIN + 72)
 #define RES_STD_HELP_STRING         (RC_APP_BEGIN + 73)
-//STRIP001 #define STR_PAGEOFFSET               (RC_APP_BEGIN + 74)
 #define STR_PAGEBREAK               (RC_APP_BEGIN + 75)
-//STRIP001 #define STR_REDLINE_UNKNOWN_AUTHOR   (RC_APP_BEGIN + 76)
-//STRIP001 #define STR_WESTERN_FONT            (RC_APP_BEGIN + 77)
-//STRIP001 #define STR_CJK_FONT                (RC_APP_BEGIN + 78)
 //#define MSG_INS_MERGE_FIELDS        (RC_APP_BEGIN + 79)
-//STRIP001 #define MSG_PRINT_AS_MERGE          (RC_APP_BEGIN + 80)
-//STRIP001 #define MSG_MERGE_SOURCE_UNAVAILABLE (RC_APP_BEGIN + 81)
-//STRIP001 #define MSG_DATA_SOURCES_UNAVAILABLE (RC_APP_BEGIN + 82)
 #define SID_TOGGLETOOLBOX           (RC_APP_BEGIN + 89)
 
-//STRIP001 #define STR_ENV_TITLE                (RC_APP_BEGIN + 91)
 #define STR_LAB_TITLE               (RC_APP_BEGIN + 92)
 
 #define STR_HUMAN_SWDOC_NAME        (RC_APP_BEGIN + 93)
@@ -175,7 +158,6 @@
 #define STR_WRITER_DOCUMENT_FULLTYPE_50 (RC_APP_BEGIN + 101)
 #define STR_WRITER_DOCUMENT_FULLTYPE    (RC_APP_BEGIN + 100)
 
-//STRIP001 #define STR_ABSTRACT_TITLE           (RC_APP_BEGIN +99)
 
 #define APP_ACT_END                 STR_WRITER_DOCUMENT_FULLTYPE_50
 
