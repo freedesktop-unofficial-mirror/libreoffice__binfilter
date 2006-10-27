@@ -4,9 +4,9 @@
  *
  *  $RCSfile: textsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:57:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:57:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,33 +43,21 @@ class Button;
 namespace binfilter {
 
 
-//STRIP001 class SwFldMgr;
 class SvxHyperlinkItem;
 
 class SwTextShell: public SwBaseShell
 {
-//STRIP001  SwFldMgr*   pPostItFldMgr;
 
-//STRIP001     void InsertSymbol( SfxRequest& );
-//STRIP001  void InsertHyperlink(const SvxHyperlinkItem& rHlnkItem);
-//STRIP001     BOOL InsertGraphicDlg( SfxRequest& );
-//STRIP001     void ChangeHeaderOrFooter(const String& rStyleName, BOOL bHeader, BOOL bOn, BOOL bShowWarning);
 
 public:
     SFX_DECL_INTERFACE(SW_TEXTSHELL);
     TYPEINFO();
 
-//STRIP001  DECL_LINK( PostItNextHdl, Button * );
-//STRIP001  DECL_LINK( PostItPrevHdl, Button * );
-//STRIP001  DECL_LINK( RedlineNextHdl, Button * );
-//STRIP001  DECL_LINK( RedlinePrevHdl, Button * );
 
-//STRIP001  void    Execute(SfxRequest &);
     void    GetState(SfxItemSet &);
 
     void    ExecInsert(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecInsert(SfxRequest &);
     void    StateInsert(SfxItemSet&);
-//STRIP001  void    ExecDelete(SfxRequest &);
     void    ExecEnterNum(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecEnterNum(SfxRequest &);
     void    ExecBasicMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecBasicMove(SfxRequest &);
     void    ExecMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMove(SfxRequest &);
@@ -77,7 +65,6 @@ public:
     void    ExecMoveCol(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecMoveCol(SfxRequest &);
     void    ExecMoveLingu(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecMoveLingu(SfxRequest &);
     void    ExecMoveMisc(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMoveMisc(SfxRequest &);
-//STRIP001  void    ExecField(SfxRequest &rReq);
     void    StateField(SfxItemSet &);
     void    ExecIdx(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}  ;//STRIP001  void    ExecIdx(SfxRequest &);
     void    GetIdxState(SfxItemSet &);
