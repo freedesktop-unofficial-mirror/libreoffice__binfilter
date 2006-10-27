@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Edit.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2006-10-12 10:27:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:00:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,17 +53,8 @@
 #include <com/sun/star/form/XChangeBroadcaster.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/lang/XEventListener.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-// auto strip #include <com/sun/star/lang/XComponent.hpp>
-// auto strip #endif
 
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
@@ -73,13 +64,7 @@
 #include "Edit.hxx"
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_TYPE_HXX_
-// auto strip #include <com/sun/star/uno/Type.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
 #endif
@@ -92,23 +77,14 @@
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _SV_WINTYPES_HXX
-// auto strip #include <vcl/wintypes.hxx>
-// auto strip #endif
 
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
-// auto strip #include <comphelper/datetime.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
