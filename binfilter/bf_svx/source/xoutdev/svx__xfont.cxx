@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx__xfont.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:29:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:01:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,17 +33,14 @@
  *
  ************************************************************************/
 
-// auto strip #include <tools/poly.hxx>
 #include <vcl/metric.hxx>
 #include <vcl/virdev.hxx>
 #include <math.h>
-// auto strip #include "xpoly.hxx"
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
 #endif
 
-// auto strip #include "xattr.hxx"
 #include "xoutx.hxx"
 
 // #101498#
@@ -51,9 +48,6 @@
 #include "outliner.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
@@ -63,9 +57,6 @@
 #include <com/sun/star/i18n/XBreakIterator.hpp>
 #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
@@ -218,24 +209,6 @@ using namespace ::com::sun::star::i18n;
 
 // #101498# Helper method ImpDrawTextArray to draw text taking into account
 // hor/vertical and BIDI, especially right-to-left.
-//STRIP001 void ImpDrawTextArray(OutputDevice* pOut, const Point& rPos, DrawPortionInfo* pInfo, long* pDXArray,
-//STRIP001  xub_StrLen nIndex, xub_StrLen nLen)
-//STRIP001 {
-//STRIP001  sal_Bool bRightToLeft(pInfo->IsRTL());
-//STRIP001
-//STRIP001  if(bRightToLeft)
-//STRIP001  {
-//STRIP001      pOut->DrawTextArray(rPos, pInfo->rText, pDXArray,
-//STRIP001          pInfo->nTextStart + (pInfo->nTextLen - (nIndex + nLen)),
-//STRIP001          nLen);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pOut->DrawTextArray(rPos, pInfo->rText, pDXArray,
-//STRIP001          pInfo->nTextStart + nIndex,
-//STRIP001          nLen);
-//STRIP001  }
-//STRIP001 }
 
 // #101498# Helper method ImpXOutGetTextOutline to get text outline taking into account
 // hor/vertical and BIDI, especially right-to-left.
@@ -567,7 +540,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       pOut->SetFont(aFont);
 /*?*/                       if(bDraw)
 /*?*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                            ImpDrawTextArray(pOut, aPos, pInfo, (long*)pDXArray, nChar, nCnt);
 /*?*/                       }
 /*N*/                   }
 /*N*/                   else
@@ -629,29 +601,12 @@ using namespace ::com::sun::star::i18n;
 /*?*/
 /*?*/                           if(aPolyPoly.Count() > 0 && aPolyPoly[0].GetSize() > 0)
 /*?*/                           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001 /*?*/                                // #103163# Create in-between XPolxPolygon
-//STRIP001 /*?*/                                XPolyPolygon aNextChar(aPolyPoly);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                if ( bIsSlantShadow )
-//STRIP001 /*?*/                                {
-//STRIP001 /*?*/                                    if ( nFormTextShdwYVal && nFormTextShdwYVal != 100 )
-//STRIP001 /*?*/                                        aNextChar.Scale(1.0, (double)nFormTextShdwYVal/100);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                    aNextChar.SlantX(nAscent,
-//STRIP001 /*?*/                                                 sin(- F_PI * nFormTextShdwXVal / 1800),
-//STRIP001 /*?*/                                                 cos(- F_PI * nFormTextShdwXVal / 1800));
-//STRIP001 /*?*/                                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                // #103163# Insert in-between XPolxPolygon to main XPolxPolygon
-//STRIP001 /*?*/                                aChar.Insert(aNextChar);
 /*?*/                           }
 /*?*/                       }
 /*?*/                   }
 /*?*/
 /*?*/                   if ( eFormTextStyle == XFT_SLANTY )
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                        aPolyPos.Y() -= nAscent;
-//STRIP001 /*?*/                        aChar.SlantY(0, fSin, fCos);
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
