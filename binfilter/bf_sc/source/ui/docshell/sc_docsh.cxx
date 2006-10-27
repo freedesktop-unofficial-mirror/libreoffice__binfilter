@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:07:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:47:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,49 +35,25 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
-// auto strip #ifndef _SVX_SVXENUM_HXX
-// auto strip #include <bf_svx/svxenum.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_ALGITEM_HXX
-// auto strip #include <bf_svx/algitem.hxx>
-// auto strip #endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <svtools/securityoptions.hxx>
-// auto strip #include <tools/stream.hxx>
-// auto strip #include <tools/string.hxx>
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #include <vcl/waitobj.hxx>
 #include <svtools/ctrltool.hxx>
 #include <svtools/sfxecode.hxx>
-// auto strip #include <svtools/zforlist.hxx>
-// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/dinfdlg.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/docfilt.hxx>
-// auto strip #include <bf_sfx2/evntconf.hxx>
 #include <bf_sfx2/sfx.hrc>
-// auto strip #include <bf_sfx2/topfrm.hxx>
-// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/svxmsbas.hxx>
 #include <bf_offmgr/app.hxx>
 #include <bf_offmgr/fltrcfg.hxx>
 #include <so3/clsids.hxx>
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #ifndef _SV_VIRDEV_HXX
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #endif
 
 #ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
@@ -96,42 +72,30 @@ SO2_DECL_REF(SvStorageStream)
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include "cell.hxx"
-// auto strip #include "global.hxx"
 #include "filter.hxx"
 #include "scmod.hxx"
 #include "tabvwsh.hxx"
 #include "docfunc.hxx"
-// auto strip #include "imoptdlg.hxx"
 #include "impex.hxx"
 #include "scresid.hxx"
 #include "bf_sc.hrc"
 #include "globstr.hrc"
-// auto strip #include "tpstat.hxx"
 #include "scerrors.hxx"
-// auto strip #include "brdcst.hxx"
 #include "stlpool.hxx"
 #include "autostyl.hxx"
-// auto strip #include "attrib.hxx"
 #include "asciiopt.hxx"
-// auto strip #include "waitoff.hxx"
 #include "docpool.hxx"      // LoadCompleted
 #include "progress.hxx"
 #include "pntlock.hxx"
-// auto strip #include "collect.hxx"
 #include "docuno.hxx"
 #include "appoptio.hxx"
 #include "detdata.hxx"
 #include "printfun.hxx"
-// auto strip #include "dociter.hxx"
-// auto strip #include "cellform.hxx"
 #include "chartlis.hxx"
 #include "hints.hxx"
 #include "xmlwrap.hxx"
 #include "drwlayer.hxx"
-// auto strip #include "refreshtimer.hxx"
 #include "dbcolect.hxx"
-// auto strip #include "scextopt.hxx"
 
 #include "docsh.hxx"
 #include "ViewSettingsSequenceDefines.hxx"
@@ -246,29 +210,9 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 
 //------------------------------------------------------------------
 
-//STRIP001 void ScDocShell::DoEnterHandler()
-//STRIP001 {
-//STRIP001  ScTabViewShell* pViewSh = ScTabViewShell::GetActiveViewShell();
-//STRIP001  if (pViewSh)
-//STRIP001      if (pViewSh->GetViewData()->GetDocShell() == this)
-//STRIP001          SC_MOD()->InputEnterHandler();
-//STRIP001 }
 
 //------------------------------------------------------------------
 
-//STRIP001 USHORT ScDocShell::GetSaveTab()
-//STRIP001 {
-//STRIP001  USHORT nTab = 0;
-//STRIP001  ScTabViewShell* pSh = GetBestViewShell();
-//STRIP001  if (pSh)
-//STRIP001  {
-//STRIP001      const ScMarkData& rMark = pSh->GetViewData()->GetMarkData();
-//STRIP001      for ( nTab = 0; nTab <= MAXTAB; nTab++ )    // erste markierte Tabelle
-//STRIP001          if ( rMark.GetTableSelect( nTab ) )
-//STRIP001              break;
-//STRIP001  }
-//STRIP001  return nTab;
-//STRIP001 }
 
 //------------------------------------------------------------------
 
@@ -617,75 +561,6 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 
 /*N*/ void ScDocShell::AfterXMLLoading(sal_Bool bRet)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
-//STRIP001  {
-//STRIP001      UpdateLinks();
-//STRIP001      // don't prevent establishing of listeners anymore
-//STRIP001      aDocument.SetInsertingFromOtherDoc( FALSE );
-//STRIP001      if ( bRet )
-//STRIP001      {
-//STRIP001          ScChartListenerCollection* pChartListener = aDocument.GetChartListenerCollection();
-//STRIP001          if (pChartListener)
-//STRIP001              pChartListener->UpdateDirtyCharts();
-//STRIP001
-//STRIP001          // #95582#; set the table names of linked tables to the new path
-//STRIP001          USHORT nTabCount = aDocument.GetTableCount();
-//STRIP001          for (USHORT i = 0; i < nTabCount; ++i)
-//STRIP001          {
-//STRIP001              if (aDocument.IsLinked( i ))
-//STRIP001              {
-//STRIP001                  String aName;
-//STRIP001                  aDocument.GetName(i, aName);
-//STRIP001                  String aLinkTabName = aDocument.GetLinkTab(i);
-//STRIP001                  xub_StrLen nLinkTabNameLength = aLinkTabName.Len();
-//STRIP001                  xub_StrLen nNameLength = aName.Len();
-//STRIP001                  if (nLinkTabNameLength < nNameLength)
-//STRIP001                  {
-//STRIP001
-//STRIP001                      // remove the quottes on begin and end of the docname and restore the escaped quotes
-//STRIP001                      const sal_Unicode* pNameBuffer = aName.GetBuffer();
-//STRIP001                      if ( *pNameBuffer == '\'' && // all docnames have to have a ' character on the first pos
-//STRIP001                          ScGlobal::UnicodeStrChr( pNameBuffer, SC_COMPILER_FILE_TAB_SEP ) )
-//STRIP001                      {
-//STRIP001                          ::rtl::OUStringBuffer aDocURLBuffer;
-//STRIP001                          BOOL bQuote = TRUE;         // Dokumentenname ist immer quoted
-//STRIP001                          ++pNameBuffer;
-//STRIP001                          while ( bQuote && *pNameBuffer )
-//STRIP001                          {
-//STRIP001                              if ( *pNameBuffer == '\'' && *(pNameBuffer-1) != '\\' )
-//STRIP001                                  bQuote = FALSE;
-//STRIP001                              else if( !(*pNameBuffer == '\\' && *(pNameBuffer+1) == '\'') )
-//STRIP001                                  aDocURLBuffer.append(*pNameBuffer);     // falls escaped Quote: nur Quote in den Namen
-//STRIP001                              ++pNameBuffer;
-//STRIP001                          }
-//STRIP001
-//STRIP001
-//STRIP001                          if( *pNameBuffer == SC_COMPILER_FILE_TAB_SEP )  // after the last quote of the docname should be the # char
-//STRIP001                          {
-//STRIP001                              xub_StrLen nIndex = nNameLength - nLinkTabNameLength;
-//STRIP001                              INetURLObject aINetURLObject(aDocURLBuffer.makeStringAndClear());
-//STRIP001                              if( aName.Equals(aLinkTabName, nIndex, nLinkTabNameLength) &&
-//STRIP001                                  (aName.GetChar(nIndex - 1) == '#') && // before the table name should be the # char
-//STRIP001                                  !aINetURLObject.HasError()) // the docname should be a valid URL
-//STRIP001                              {
-//STRIP001                                  aName = ScGlobal::GetDocTabName( aDocument.GetLinkDoc( i ), aDocument.GetLinkTab( i ) );
-//STRIP001                                  aDocument.RenameTab(i, aName, TRUE, TRUE);
-//STRIP001                              }
-//STRIP001                              // else;  nothing has to happen, because it is a user given name
-//STRIP001                          }
-//STRIP001                          // else;  nothing has to happen, because it is a user given name
-//STRIP001                      }
-//STRIP001                      // else;  nothing has to happen, because it is a user given name
-//STRIP001                  }
-//STRIP001                  // else;  nothing has to happen, because it is a user given name
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      ScColumn::bDoubleAlloc = sal_False;
-//STRIP001     }
-//STRIP001     else
-//STRIP001      aDocument.SetInsertingFromOtherDoc( FALSE );
-//STRIP001
             aDocument.SetInsertingFromOtherDoc( FALSE );
             aDocument.SetImportingXML( FALSE );
 
@@ -819,88 +694,12 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*?*/       //  (handled by AddInitial)
 /*?*/
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScAutoStyleHint& rStlHint = (ScAutoStyleHint&)rHint;
-//STRIP001 /*?*/        ScRange aRange = rStlHint.GetRange();
-//STRIP001 /*?*/        String aName1 = rStlHint.GetStyle1();
-//STRIP001 /*?*/        String aName2 = rStlHint.GetStyle2();
-//STRIP001 /*?*/        UINT32 nTimeout = rStlHint.GetTimeout();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (!pAutoStyleList)
-//STRIP001 /*?*/            pAutoStyleList = new ScAutoStyleList(this);
-//STRIP001 /*?*/        pAutoStyleList->AddInitial( aRange, aName1, nTimeout, aName2 );
 /*N*/   }
 /*N*/ }
 
     // Inhalte fuer Organizer laden
 
 
-//STRIP001 BOOL __EXPORT ScDocShell::LoadFrom( SvStorage* pStor )
-//STRIP001 {
-//STRIP001  RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::LoadFrom" );
-//STRIP001
-//STRIP001  ScRefreshTimerProtector( aDocument.GetRefreshTimerControlAddress() );
-//STRIP001
-//STRIP001  DBG_ASSERT( pStor, "Nanu... LoadFrom ohne Storage?" );
-//STRIP001  BOOL bXML = ( pStor->GetVersion() >= SOFFICE_FILEFORMAT_60 );
-//STRIP001
-//STRIP001  WaitObject aWait( GetDialogParent() );
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001     if (GetMedium())
-//STRIP001     {
-//STRIP001         SFX_ITEMSET_ARG( GetMedium()->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
-//STRIP001         nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
-//STRIP001     }
-//STRIP001
-//STRIP001  if ( bXML )
-//STRIP001  {
-//STRIP001      //  until loading/saving only the styles in XML is implemented,
-//STRIP001      //  load the whole file
-//STRIP001
-//STRIP001      bRet = LoadXML( GetMedium(), pStor );
-//STRIP001      InitItems();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SvStorageStreamRef aPoolStm = pStor->OpenStream( String::CreateFromAscii(pStyleName), STREAM_STD_READ );
-//STRIP001      if ( !aPoolStm->GetError() )
-//STRIP001      {
-//STRIP001          aPoolStm->SetVersion(pStor->GetVersion());
-//STRIP001
-//STRIP001          aDocument.Clear();                      // keine Referenzen auf Pool behalten!
-//STRIP001          RemoveItem( SID_ATTR_CHAR_FONTLIST );
-//STRIP001          RemoveItem( ITEMID_COLOR_TABLE );
-//STRIP001          RemoveItem( ITEMID_GRADIENT_LIST );
-//STRIP001          RemoveItem( ITEMID_HATCH_LIST );
-//STRIP001          RemoveItem( ITEMID_BITMAP_LIST );
-//STRIP001          RemoveItem( ITEMID_DASH_LIST );
-//STRIP001          RemoveItem( ITEMID_LINEEND_LIST );
-//STRIP001
-//STRIP001          aDocument.LoadPool( *aPoolStm, TRUE );      // TRUE: RefCounts aus Datei laden
-//STRIP001          bRet = (aPoolStm->GetError() == 0);
-//STRIP001          DBG_ASSERT( bRet, "Error in pool stream" );
-//STRIP001
-//STRIP001          //  UpdateStdNames is called from ScDocument::Load, but is also needed
-//STRIP001          //  if only the styles are loaded!
-//STRIP001          ScStyleSheetPool* pStylePool = aDocument.GetStyleSheetPool();
-//STRIP001          if (pStylePool)
-//STRIP001              pStylePool->UpdateStdNames();   // correct style names for different languages
-//STRIP001
-//STRIP001          //  Hier auf keinen Fall LoadCompleted, weil ohne Laden der Tabellen die RefCounts
-//STRIP001          //  nicht hochgezaehlt wurden.
-//STRIP001          //  Die Items wuerden dann geloescht, und beim Speichern wuerde Muell herauskommen.
-//STRIP001          //  Darum die Ref-Counts aus der Datei laden (TRUE bei LoadPool).
-//STRIP001          //  (Bug #37635#)
-//STRIP001
-//STRIP001          InitItems();
-//STRIP001          //  CalcOutputFactor interessiert hier nicht
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxObjectShell::LoadFrom( pStor );
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 /*N*/ BOOL __EXPORT ScDocShell::ConvertFrom( SfxMedium& rMedium )
@@ -965,57 +764,10 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/       else if (aFltName.EqualsAscii(pFilterSc10))
 /*N*/       {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001       SvStream* pStream = rMedium.GetInStream();
-//STRIP001 /*?*/            if (pStream)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                FltError eError = ScImportStarCalc10( *pStream, &aDocument );
-//STRIP001 /*?*/                if (eError != eERR_OK)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if (!GetError())
-//STRIP001 /*?*/                        SetError(eError);
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    bRet = TRUE;
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterLotus))
 /*N*/       {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pStream = rMedium.GetInStream();
-//STRIP001 /*N*/ //         if (pStream)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                String sItStr;
-//STRIP001 /*?*/                SfxItemSet*  pSet = rMedium.GetItemSet();
-//STRIP001 /*?*/                const SfxPoolItem* pItem;
-//STRIP001 /*?*/                if ( pSet && SFX_ITEM_SET ==
-//STRIP001 /*?*/                     pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    sItStr = ((const SfxStringItem*)pItem)->GetValue();
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (sItStr.Len() == 0)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    //  default for lotus import (from API without options):
-//STRIP001 /*?*/                    //  IBM_437 encoding
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    sItStr = ScGlobal::GetCharsetString( RTL_TEXTENCODING_IBM_437 );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                ScColumn::bDoubleAlloc = TRUE;
-//STRIP001 /*?*/                FltError eError = ScImportLotus123( rMedium, &aDocument,
-//STRIP001 /*?*/                                    ScGlobal::GetCharsetValue(sItStr));
-//STRIP001 /*?*/                ScColumn::bDoubleAlloc = FALSE;
-//STRIP001 /*?*/                if (eError != eERR_OK)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if (!GetError())
-//STRIP001 /*?*/                        SetError(eError);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if( ( eError & ERRCODE_WARNING_MASK ) == ERRCODE_WARNING_MASK )
-//STRIP001 /*?*/                        bRet = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    bRet = TRUE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/ //             rMedium.CloseInStream();
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/       else if ( aFltName.EqualsAscii(pFilterExcel4) || aFltName.EqualsAscii(pFilterExcel5) ||
 /*N*/                  aFltName.EqualsAscii(pFilterExcel95) || aFltName.EqualsAscii(pFilterExcel97) ||
@@ -1023,42 +775,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/                  aFltName.EqualsAscii(pFilterEx95Temp) || aFltName.EqualsAscii(pFilterEx97Temp) )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EXCIMPFORMAT eFormat = EIF_AUTO;
-//STRIP001 /*?*/            if ( aFltName.EqualsAscii(pFilterExcel4) || aFltName.EqualsAscii(pFilterEx4Temp) )
-//STRIP001 /*?*/                eFormat = EIF_BIFF_LE4;
-//STRIP001 /*?*/            else if ( aFltName.EqualsAscii(pFilterExcel5) || aFltName.EqualsAscii(pFilterExcel95) ||
-//STRIP001 /*?*/                      aFltName.EqualsAscii(pFilterEx5Temp) || aFltName.EqualsAscii(pFilterEx95Temp) )
-//STRIP001 /*?*/                eFormat = EIF_BIFF5;
-//STRIP001 /*?*/            else if ( aFltName.EqualsAscii(pFilterExcel97) || aFltName.EqualsAscii(pFilterEx97Temp) )
-//STRIP001 /*?*/                eFormat = EIF_BIFF8;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            MakeDrawLayer();                //! im Filter
-//STRIP001 /*?*/             CalcOutputFactor();             // #93255# prepare update of row height
-//STRIP001 /*?*/            ScColumn::bDoubleAlloc = TRUE;
-//STRIP001 /*?*/            FltError eError = ScImportExcel( rMedium, &aDocument, eFormat );
-//STRIP001 /*?*/            ScColumn::bDoubleAlloc = FALSE;
-//STRIP001 /*?*/            aDocument.UpdateFontCharSet();
-//STRIP001 /*?*/            if ( aDocument.IsChartListenerCollectionNeedsUpdate() )
-//STRIP001 /*?*/                aDocument.UpdateChartListenerCollection();              //! fuer alle Importe?
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // #75299# all graphics objects must have names
-//STRIP001 /*?*/            aDocument.EnsureGraphicNames();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (eError == SCWARN_IMPORT_RANGE_OVERFLOW)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (!GetError())
-//STRIP001 /*?*/                    SetError(eError);
-//STRIP001 /*?*/                bRet = TRUE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if (eError != eERR_OK)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (!GetError())
-//STRIP001 /*?*/                    SetError(eError);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                bRet = TRUE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/             // #93255# update of row height done inside of Excel filter to speed up chart import
-//STRIP001 /*?*/ //            bSetRowHeights = TRUE;      //  #75357# optimal row heights must be updated
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterAscii))
 /*N*/       {
@@ -1123,43 +839,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       else if (aFltName.EqualsAscii(pFilterDBase))
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sItStr;
-//STRIP001 /*?*/            SfxItemSet*  pSet = rMedium.GetItemSet();
-//STRIP001 /*?*/            const SfxPoolItem* pItem;
-//STRIP001 /*?*/            if ( pSet && SFX_ITEM_SET ==
-//STRIP001 /*?*/                 pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                sItStr = ((const SfxStringItem*)pItem)->GetValue();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (sItStr.Len() == 0)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                //  default for dBase import (from API without options):
-//STRIP001 /*?*/                //  IBM_850 encoding
-//STRIP001 /*?*/
-//STRIP001 /*?*/                sItStr = ScGlobal::GetCharsetString( RTL_TEXTENCODING_IBM_850 );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ULONG eError = DBaseImport( rMedium.GetPhysicalName(),
-//STRIP001 /*?*/                    ScGlobal::GetCharsetValue(sItStr), bSimpleColWidth );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (eError != eERR_OK)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (!GetError())
-//STRIP001 /*?*/                    SetError(eError);
-//STRIP001 /*?*/                bRet = ( eError == SCWARN_IMPORT_RANGE_OVERFLOW );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                bRet = TRUE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            aColWidthRange.aStart.SetRow( 1 );  // Spaltenheader nicht
-//STRIP001 /*?*/            bSetColWidths = TRUE;
-//STRIP001 /*?*/            bSetSimpleTextColWidths = TRUE;
-//STRIP001 /*?*/            // Memo-Felder fuehren zu einem bSimpleColWidth[nCol]==FALSE
-//STRIP001 /*?*/            for ( USHORT nCol=0; nCol <= MAXCOL && !bSetRowHeights; nCol++ )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if ( !bSimpleColWidth[nCol] )
-//STRIP001 /*?*/                    bSetRowHeights = TRUE;
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterDif))
 /*N*/       {
@@ -1167,37 +846,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*?*/           if (pStream)
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError;
-//STRIP001 /*?*/                String sItStr;
-//STRIP001 /*?*/                SfxItemSet*  pSet = rMedium.GetItemSet();
-//STRIP001 /*?*/                const SfxPoolItem* pItem;
-//STRIP001 /*?*/                if ( pSet && SFX_ITEM_SET ==
-//STRIP001 /*?*/                     pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    sItStr = ((const SfxStringItem*)pItem)->GetValue();
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (sItStr.Len() == 0)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    //  default for DIF import (from API without options):
-//STRIP001 /*?*/                    //  ISO8859-1/MS_1252 encoding
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    sItStr = ScGlobal::GetCharsetString( RTL_TEXTENCODING_MS_1252 );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                eError = ScImportDif( *pStream, &aDocument, ScAddress(0,0,0),
-//STRIP001 /*?*/                                    ScGlobal::GetCharsetValue(sItStr));
-//STRIP001 /*?*/                if (eError != eERR_OK)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if (!GetError())
-//STRIP001 /*?*/                        SetError(eError);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if( ( eError & ERRCODE_WARNING_MASK ) == ERRCODE_WARNING_MASK )
-//STRIP001 /*?*/                        bRet = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    bRet = TRUE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                rMedium.CloseInStream();
 /*?*/           }
 /*?*/           bSetColWidths = TRUE;
 /*?*/           bSetSimpleTextColWidths = TRUE;
@@ -1230,70 +878,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       else if (aFltName.EqualsAscii(pFilterRtf))
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
-//STRIP001 /*?*/            if( !rMedium.IsStorage() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SvStream* pInStream = rMedium.GetInStream();
-//STRIP001 /*?*/                if (pInStream)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pInStream->Seek( 0 );
-//STRIP001 /*?*/                    ScRange aRange;
-//STRIP001 /*?*/                    eError = ScImportRTF( *pInStream, &aDocument, aRange );
-//STRIP001 /*?*/                    if (eError != eERR_OK)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if (!GetError())
-//STRIP001 /*?*/                            SetError(eError);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if( ( eError & ERRCODE_WARNING_MASK ) == ERRCODE_WARNING_MASK )
-//STRIP001 /*?*/                            bRet = TRUE;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        bRet = TRUE;
-//STRIP001 /*?*/                    aDocument.StartAllListeners();
-//STRIP001 /*?*/                    aDocument.SetDirty();
-//STRIP001 /*?*/                    bSetColWidths = TRUE;
-//STRIP001 /*?*/                    bSetRowHeights = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    DBG_ERROR( "No Stream" );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( eError != eERR_OK && !GetError() )
-//STRIP001 /*?*/                SetError(eError);
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterHtml) || aFltName.EqualsAscii(pFilterHtmlWebQ))
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
-//STRIP001 /*?*/            BOOL bWebQuery = aFltName.EqualsAscii(pFilterHtmlWebQ);
-//STRIP001 /*?*/            if( !rMedium.IsStorage() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SvStream* pInStream = rMedium.GetInStream();
-//STRIP001 /*?*/                if (pInStream)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pInStream->Seek( 0 );
-//STRIP001 /*?*/                    ScRange aRange;
-//STRIP001 /*?*/                    // HTML macht eigenes ColWidth/RowHeight
-//STRIP001 /*?*/                    CalcOutputFactor();
-//STRIP001 /*?*/                    eError = ScImportHTML( *pInStream, &aDocument, aRange,
-//STRIP001 /*?*/                                            GetOutputFactor(), !bWebQuery );
-//STRIP001 /*?*/                    if (eError != eERR_OK)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if (!GetError())
-//STRIP001 /*?*/                            SetError(eError);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if( ( eError & ERRCODE_WARNING_MASK ) == ERRCODE_WARNING_MASK )
-//STRIP001 /*?*/                            bRet = TRUE;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        bRet = TRUE;
-//STRIP001 /*?*/                    aDocument.StartAllListeners();
-//STRIP001 /*?*/                    aDocument.SetDirty();
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    DBG_ERROR( "No Stream" );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( eError != eERR_OK && !GetError() )
-//STRIP001 /*?*/                SetError(eError);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1446,681 +1034,17 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/ }
 
 
-//STRIP001 BOOL __EXPORT ScDocShell::IsInformationLost()
-//STRIP001 {
-//STRIP001 /*
-//STRIP001  const SfxFilter *pFilt = GetMedium()->GetFilter();
-//STRIP001  BOOL bRet = pFilt && pFilt->IsAlienFormat() && bNoInformLost;
-//STRIP001  if (bNoInformLost)                  // nur einmal!!
-//STRIP001      bNoInformLost = FALSE;
-//STRIP001  return bRet;
-//STRIP001 */
-//STRIP001  //!!! bei Gelegenheit ein korrekte eigene Behandlung einbauen
-//STRIP001
-//STRIP001  return SfxObjectShell::IsInformationLost();
-//STRIP001 }
 
 
 // Xcl-like column width measured in characters of standard font.
-//STRIP001 xub_StrLen lcl_ScDocShell_GetColWidthInChars( USHORT nWidth )
-//STRIP001 {
-//STRIP001     // double fColScale = 1.0;
-//STRIP001  double  f = nWidth;
-//STRIP001  f *= 1328.0 / 25.0;
-//STRIP001  f += 90.0;
-//STRIP001  f *= 1.0 / 23.0;
-//STRIP001  // f /= fColScale * 256.0;
-//STRIP001  f /= 256.0;
-//STRIP001
-//STRIP001  return xub_StrLen( f );
-//STRIP001 }
 
 
-//STRIP001 void lcl_ScDocShell_GetFixedWidthString( String& rStr, const ScDocument& rDoc,
-//STRIP001         USHORT nTab, USHORT nCol, BOOL bValue, SvxCellHorJustify eHorJust )
-//STRIP001 {
-//STRIP001     xub_StrLen nLen = lcl_ScDocShell_GetColWidthInChars(
-//STRIP001             rDoc.GetColWidth( nCol, nTab ) );
-//STRIP001     if ( nLen < rStr.Len() )
-//STRIP001     {
-//STRIP001         if ( bValue )
-//STRIP001             rStr.AssignAscii( "###" );
-//STRIP001         rStr.Erase( nLen );
-//STRIP001     }
-//STRIP001     if ( nLen > rStr.Len() )
-//STRIP001     {
-//STRIP001         if ( bValue && eHorJust == SVX_HOR_JUSTIFY_STANDARD )
-//STRIP001             eHorJust = SVX_HOR_JUSTIFY_RIGHT;
-//STRIP001         switch ( eHorJust )
-//STRIP001         {
-//STRIP001             case SVX_HOR_JUSTIFY_RIGHT:
-//STRIP001             {
-//STRIP001                 String aTmp;
-//STRIP001                 aTmp.Fill( nLen - rStr.Len() );
-//STRIP001                 rStr.Insert( aTmp, 0 );
-//STRIP001             }
-//STRIP001             break;
-//STRIP001             case SVX_HOR_JUSTIFY_CENTER:
-//STRIP001             {
-//STRIP001                 xub_StrLen nLen2 = (nLen - rStr.Len()) / 2;
-//STRIP001                 String aTmp;
-//STRIP001                 aTmp.Fill( nLen2 );
-//STRIP001                 rStr.Insert( aTmp, 0 );
-//STRIP001                 rStr.Expand( nLen );
-//STRIP001             }
-//STRIP001             break;
-//STRIP001             default:
-//STRIP001                 rStr.Expand( nLen );
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
 
 
-//STRIP001 void lcl_ScDocShell_WriteEmptyFixedWidthString( SvStream& rStream,
-//STRIP001         const ScDocument& rDoc, USHORT nTab, USHORT nCol )
-//STRIP001 {
-//STRIP001     String aString;
-//STRIP001     lcl_ScDocShell_GetFixedWidthString( aString, rDoc, nTab, nCol, FALSE,
-//STRIP001             SVX_HOR_JUSTIFY_STANDARD );
-//STRIP001     rStream.WriteUnicodeOrByteText( aString );
-//STRIP001 }
 
 
-//STRIP001 void ScDocShell::AsciiSave( SvStream& rStream, const ScImportOptions& rAsciiOpt )
-//STRIP001 {
-//STRIP001     sal_Unicode cDelim    = rAsciiOpt.nFieldSepCode;
-//STRIP001     sal_Unicode cStrDelim = rAsciiOpt.nTextSepCode;
-//STRIP001     CharSet eCharSet      = rAsciiOpt.eCharSet;
-//STRIP001     BOOL bFixedWidth      = rAsciiOpt.bFixedWidth;
-//STRIP001
-//STRIP001  CharSet eOldCharSet = rStream.GetStreamCharSet();
-//STRIP001  rStream.SetStreamCharSet( eCharSet );
-//STRIP001  USHORT nOldNumberFormatInt = rStream.GetNumberFormatInt();
-//STRIP001     ByteString aStrDelimEncoded;    // only used if not Unicode
-//STRIP001     UniString aStrDelimDecoded;     // only used if context encoding
-//STRIP001     BOOL bContextOrNotAsciiEncoding;
-//STRIP001  if ( eCharSet == RTL_TEXTENCODING_UNICODE )
-//STRIP001     {
-//STRIP001      rStream.StartWritingUnicodeText();
-//STRIP001         bContextOrNotAsciiEncoding = FALSE;
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         aStrDelimEncoded = ByteString( cStrDelim, eCharSet );
-//STRIP001         rtl_TextEncodingInfo aInfo;
-//STRIP001         aInfo.StructSize = sizeof(aInfo);
-//STRIP001         if ( rtl_getTextEncodingInfo( eCharSet, &aInfo ) )
-//STRIP001         {
-//STRIP001             bContextOrNotAsciiEncoding =
-//STRIP001                 (((aInfo.Flags & RTL_TEXTENCODING_INFO_CONTEXT) != 0) ||
-//STRIP001                  ((aInfo.Flags & RTL_TEXTENCODING_INFO_ASCII) == 0));
-//STRIP001             if ( bContextOrNotAsciiEncoding )
-//STRIP001                 aStrDelimDecoded = String( aStrDelimEncoded, eCharSet );
-//STRIP001         }
-//STRIP001         else
-//STRIP001             bContextOrNotAsciiEncoding = FALSE;
-//STRIP001     }
-//STRIP001
-//STRIP001  USHORT nStartCol = 0;
-//STRIP001  USHORT nStartRow = 0;
-//STRIP001  USHORT nTab = GetSaveTab();
-//STRIP001  USHORT nEndCol, nEndRow;
-//STRIP001  aDocument.GetCellArea( nTab, nEndCol, nEndRow );
-//STRIP001
-//STRIP001  ScProgress aProgress( this, ScGlobal::GetRscString( STR_SAVE_DOC ), nEndRow );
-//STRIP001
-//STRIP001  String aString;
-//STRIP001
-//STRIP001  ScTabViewShell* pViewSh = PTR_CAST(ScTabViewShell, SfxViewShell::Current());
-//STRIP001  const ScViewOptions& rOpt = (pViewSh)
-//STRIP001                              ? pViewSh->GetViewData()->GetOptions()
-//STRIP001                              : aDocument.GetViewOptions();
-//STRIP001  BOOL bShowFormulas = rOpt.GetOption( VOPT_FORMULAS );
-//STRIP001  BOOL bTabProtect = aDocument.IsTabProtected( nTab );
-//STRIP001
-//STRIP001  USHORT nCol;
-//STRIP001  USHORT nRow;
-//STRIP001  USHORT nNextCol = nStartCol;
-//STRIP001  USHORT nNextRow = nStartRow;
-//STRIP001  USHORT nEmptyCol, nEmptyRow;
-//STRIP001  SvNumberFormatter& rFormatter = *aDocument.GetFormatTable();
-//STRIP001
-//STRIP001  ScHorizontalCellIterator aIter( &aDocument, nTab, nStartCol, nStartRow,
-//STRIP001      nEndCol, nEndRow );
-//STRIP001  ScBaseCell* pCell;
-//STRIP001  while ( pCell = aIter.GetNext( nCol, nRow ) )
-//STRIP001     {
-//STRIP001         BOOL bProgress = FALSE;      // only upon line change
-//STRIP001         if ( nNextRow < nRow )
-//STRIP001         {   // empty rows or/and empty columns up to end of row
-//STRIP001             bProgress = TRUE;
-//STRIP001             for ( nEmptyCol = nNextCol; nEmptyCol < nEndCol; nEmptyCol++ )
-//STRIP001             {   // remaining columns of last row
-//STRIP001                 if ( bFixedWidth )
-//STRIP001                     lcl_ScDocShell_WriteEmptyFixedWidthString( rStream,
-//STRIP001                             aDocument, nTab, nEmptyCol );
-//STRIP001                 else if ( cDelim != 0 )
-//STRIP001                     rStream.WriteUniOrByteChar( cDelim );
-//STRIP001             }
-//STRIP001             endlub( rStream );
-//STRIP001             nNextRow++;
-//STRIP001             for ( nEmptyRow = nNextRow; nEmptyRow < nRow; nEmptyRow++ )
-//STRIP001             {   // completely empty rows
-//STRIP001                 for ( nEmptyCol = nStartCol; nEmptyCol < nEndCol; nEmptyCol++ )
-//STRIP001                 {
-//STRIP001                     if ( bFixedWidth )
-//STRIP001                         lcl_ScDocShell_WriteEmptyFixedWidthString( rStream,
-//STRIP001                                 aDocument, nTab, nEmptyCol );
-//STRIP001                     else if ( cDelim != 0 )
-//STRIP001                         rStream.WriteUniOrByteChar( cDelim );
-//STRIP001                 }
-//STRIP001                 endlub( rStream );
-//STRIP001             }
-//STRIP001             for ( nEmptyCol = nStartCol; nEmptyCol < nCol; nEmptyCol++ )
-//STRIP001             {   // empty columns at beginning of row
-//STRIP001                 if ( bFixedWidth )
-//STRIP001                     lcl_ScDocShell_WriteEmptyFixedWidthString( rStream,
-//STRIP001                             aDocument, nTab, nEmptyCol );
-//STRIP001                 else if ( cDelim != 0 )
-//STRIP001                     rStream.WriteUniOrByteChar( cDelim );
-//STRIP001             }
-//STRIP001             nNextRow = nRow;
-//STRIP001         }
-//STRIP001         else if ( nNextCol < nCol )
-//STRIP001         {   // empty columns in same row
-//STRIP001             for ( nEmptyCol = nNextCol; nEmptyCol < nCol; nEmptyCol++ )
-//STRIP001             {   // columns in between
-//STRIP001                 if ( bFixedWidth )
-//STRIP001                     lcl_ScDocShell_WriteEmptyFixedWidthString( rStream,
-//STRIP001                             aDocument, nTab, nEmptyCol );
-//STRIP001                 else if ( cDelim != 0 )
-//STRIP001                     rStream.WriteUniOrByteChar( cDelim );
-//STRIP001             }
-//STRIP001         }
-//STRIP001         if ( nCol == nEndCol )
-//STRIP001         {
-//STRIP001             bProgress = TRUE;
-//STRIP001             nNextCol = nStartCol;
-//STRIP001             nNextRow = nRow + 1;
-//STRIP001         }
-//STRIP001         else
-//STRIP001             nNextCol = nCol + 1;
-//STRIP001
-//STRIP001         CellType eType = pCell->GetCellType();
-//STRIP001         if ( bTabProtect )
-//STRIP001         {
-//STRIP001             const ScProtectionAttr* pProtAttr =
-//STRIP001                 (const ScProtectionAttr*) aDocument.GetAttr(
-//STRIP001                                                             nCol, nRow, nTab, ATTR_PROTECTION );
-//STRIP001             if ( pProtAttr->GetHideCell() ||
-//STRIP001                     ( eType == CELLTYPE_FORMULA && bShowFormulas &&
-//STRIP001                       pProtAttr->GetHideFormula() ) )
-//STRIP001                 eType = CELLTYPE_NONE;   // hide
-//STRIP001         }
-//STRIP001         BOOL bString;
-//STRIP001         switch ( eType )
-//STRIP001         {
-//STRIP001             case CELLTYPE_NOTE:
-//STRIP001             case CELLTYPE_NONE:
-//STRIP001                 aString.Erase();
-//STRIP001                 bString = FALSE;
-//STRIP001                 break;
-//STRIP001             case CELLTYPE_FORMULA :
-//STRIP001                 {
-//STRIP001                     USHORT nErrCode;
-//STRIP001                     if ( bShowFormulas )
-//STRIP001                     {
-//STRIP001                         ((ScFormulaCell*)pCell)->GetFormula( aString );
-//STRIP001                         bString = TRUE;
-//STRIP001                     }
-//STRIP001                     else if ( nErrCode = ((ScFormulaCell*)pCell)->GetErrCode() )
-//STRIP001                     {
-//STRIP001                         aString = ScGlobal::GetErrorString( nErrCode );
-//STRIP001                         bString = TRUE;
-//STRIP001                     }
-//STRIP001                     else if ( ((ScFormulaCell*)pCell)->IsValue() )
-//STRIP001                     {
-//STRIP001                         ULONG nFormat;
-//STRIP001                         aDocument.GetNumberFormat( nCol, nRow, nTab, nFormat );
-//STRIP001                         if ( bFixedWidth )
-//STRIP001                         {
-//STRIP001                             Color* pDummy;
-//STRIP001                             ScCellFormat::GetString( pCell, nFormat, aString, &pDummy, rFormatter );
-//STRIP001                         }
-//STRIP001                         else
-//STRIP001                             ScCellFormat::GetInputString( pCell, nFormat, aString, rFormatter );
-//STRIP001                         bString = FALSE;
-//STRIP001                     }
-//STRIP001                     else
-//STRIP001                     {
-//STRIP001                         ((ScFormulaCell*)pCell)->GetString( aString );
-//STRIP001                         bString = TRUE;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001             case CELLTYPE_STRING :
-//STRIP001                 ((ScStringCell*)pCell)->GetString( aString );
-//STRIP001                 bString = TRUE;
-//STRIP001                 break;
-//STRIP001             case CELLTYPE_EDIT :
-//STRIP001                 ((ScEditCell*)pCell)->GetString( aString );
-//STRIP001                 bString = TRUE;
-//STRIP001                 break;
-//STRIP001             case CELLTYPE_VALUE :
-//STRIP001                 {
-//STRIP001                     ULONG nFormat;
-//STRIP001                     aDocument.GetNumberFormat( nCol, nRow, nTab, nFormat );
-//STRIP001                     if ( bFixedWidth )
-//STRIP001                     {
-//STRIP001                         Color* pDummy;
-//STRIP001                         ScCellFormat::GetString( pCell, nFormat, aString, &pDummy, rFormatter );
-//STRIP001                     }
-//STRIP001                     else
-//STRIP001                         ScCellFormat::GetInputString( pCell, nFormat, aString, rFormatter );
-//STRIP001                     bString = FALSE;
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001             default:
-//STRIP001                 DBG_ERROR( "ScDocShell::AsciiSave: unknown CellType" );
-//STRIP001                 aString.Erase();
-//STRIP001                 bString = FALSE;
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( bFixedWidth )
-//STRIP001         {
-//STRIP001             SvxCellHorJustify eHorJust = (SvxCellHorJustify)
-//STRIP001                 ((const SvxHorJustifyItem*) aDocument.GetAttr( nCol, nRow,
-//STRIP001                 nTab, ATTR_HOR_JUSTIFY ))->GetValue();
-//STRIP001             lcl_ScDocShell_GetFixedWidthString( aString, aDocument, nTab, nCol,
-//STRIP001                     !bString, eHorJust );
-//STRIP001             rStream.WriteUnicodeOrByteText( aString );
-//STRIP001         }
-//STRIP001         else if ( bString )
-//STRIP001         {
-//STRIP001             if ( cStrDelim != 0 ) //@ BugId 55355
-//STRIP001             {
-//STRIP001                 if ( eCharSet == RTL_TEXTENCODING_UNICODE )
-//STRIP001                 {
-//STRIP001                     xub_StrLen nPos = aString.Search( cStrDelim );
-//STRIP001                     while ( nPos != STRING_NOTFOUND )
-//STRIP001                     {
-//STRIP001                         aString.Insert( cStrDelim, nPos );
-//STRIP001                         nPos = aString.Search( cStrDelim, nPos+2 );
-//STRIP001                     }
-//STRIP001                     rStream.WriteUniOrByteChar( cStrDelim, eCharSet );
-//STRIP001                     rStream.WriteUnicodeText( aString );
-//STRIP001                     rStream.WriteUniOrByteChar( cStrDelim, eCharSet );
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     // #105549# This is nasty. The Unicode to byte encoding
-//STRIP001                     // may convert typographical quotation marks to ASCII
-//STRIP001                     // quotation marks, which may interfer with the delimiter,
-//STRIP001                     // so we have to escape delimiters after the string has
-//STRIP001                     // been encoded. Since this may happen also with UTF-8
-//STRIP001                     // encoded typographical quotation marks if such was
-//STRIP001                     // specified as a delimiter we have to check for the full
-//STRIP001                     // encoded delimiter string, not just one character.
-//STRIP001                     // Now for RTL_TEXTENCODING_ISO_2022_... and similar brain
-//STRIP001                     // dead encodings where one code point (and especially a
-//STRIP001                     // low ASCII value) may represent different characters, we
-//STRIP001                     // have to convert forth and back and forth again. Same for
-//STRIP001                     // UTF-7 since it is a context sensitive encoding too.
-//STRIP001
-//STRIP001                     if ( bContextOrNotAsciiEncoding )
-//STRIP001                     {
-//STRIP001                         // to byte encoding
-//STRIP001                         ByteString aStrEnc( aString, eCharSet );
-//STRIP001                         // back to Unicode
-//STRIP001                         UniString aStrDec( aStrEnc, eCharSet );
-//STRIP001                         // search on re-decoded string
-//STRIP001                         xub_StrLen nPos = aStrDec.Search( aStrDelimDecoded );
-//STRIP001                         while ( nPos != STRING_NOTFOUND )
-//STRIP001                         {
-//STRIP001                             aStrDec.Insert( aStrDelimDecoded, nPos );
-//STRIP001                             nPos = aStrDec.Search( aStrDelimDecoded,
-//STRIP001                                     nPos+1+aStrDelimDecoded.Len() );
-//STRIP001                         }
-//STRIP001                         // write byte re-encoded
-//STRIP001                         rStream.WriteUniOrByteChar( cStrDelim, eCharSet );
-//STRIP001                         rStream.WriteUnicodeOrByteText( aStrDec, eCharSet );
-//STRIP001                         rStream.WriteUniOrByteChar( cStrDelim, eCharSet );
-//STRIP001                     }
-//STRIP001                     else
-//STRIP001                     {
-//STRIP001                         ByteString aStrEnc( aString, eCharSet );
-//STRIP001                         // search on encoded string
-//STRIP001                         xub_StrLen nPos = aStrEnc.Search( aStrDelimEncoded );
-//STRIP001                         while ( nPos != STRING_NOTFOUND )
-//STRIP001                         {
-//STRIP001                             aStrEnc.Insert( aStrDelimEncoded, nPos );
-//STRIP001                             nPos = aStrEnc.Search( aStrDelimEncoded,
-//STRIP001                                     nPos+1+aStrDelimEncoded.Len() );
-//STRIP001                         }
-//STRIP001                         // write byte encoded
-//STRIP001                         rStream.Write( aStrDelimEncoded.GetBuffer(),
-//STRIP001                                 aStrDelimEncoded.Len() );
-//STRIP001                         rStream.Write( aStrEnc.GetBuffer(), aStrEnc.Len() );
-//STRIP001                         rStream.Write( aStrDelimEncoded.GetBuffer(),
-//STRIP001                                 aStrDelimEncoded.Len() );
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             else
-//STRIP001                 rStream.WriteUnicodeOrByteText( aString );
-//STRIP001         }
-//STRIP001         else
-//STRIP001             rStream.WriteUnicodeOrByteText( aString );
-//STRIP001
-//STRIP001         if( nCol < nEndCol )
-//STRIP001         {
-//STRIP001             if(cDelim!=0) //@ BugId 55355
-//STRIP001                 rStream.WriteUniOrByteChar( cDelim );
-//STRIP001         }
-//STRIP001         else
-//STRIP001             endlub( rStream );
-//STRIP001
-//STRIP001         if ( bProgress )
-//STRIP001             aProgress.SetStateOnPercent( nRow );
-//STRIP001     }
-//STRIP001
-//STRIP001  // write out empty if requested
-//STRIP001  if ( nNextRow <= nEndRow )
-//STRIP001  {
-//STRIP001         for ( nEmptyCol = nNextCol; nEmptyCol < nEndCol; nEmptyCol++ )
-//STRIP001         {    // remaining empty columns of last row
-//STRIP001             if ( bFixedWidth )
-//STRIP001                 lcl_ScDocShell_WriteEmptyFixedWidthString( rStream,
-//STRIP001                         aDocument, nTab, nEmptyCol );
-//STRIP001             else if ( cDelim != 0 )
-//STRIP001                 rStream.WriteUniOrByteChar( cDelim );
-//STRIP001         }
-//STRIP001      endlub( rStream );
-//STRIP001      nNextRow++;
-//STRIP001  }
-//STRIP001  for ( nEmptyRow = nNextRow; nEmptyRow <= nEndRow; nEmptyRow++ )
-//STRIP001  {   // entire empty rows
-//STRIP001         for ( nEmptyCol = nStartCol; nEmptyCol < nEndCol; nEmptyCol++ )
-//STRIP001         {
-//STRIP001             if ( bFixedWidth )
-//STRIP001                 lcl_ScDocShell_WriteEmptyFixedWidthString( rStream,
-//STRIP001                         aDocument, nTab, nEmptyCol );
-//STRIP001             else if ( cDelim != 0 )
-//STRIP001                 rStream.WriteUniOrByteChar( cDelim );
-//STRIP001         }
-//STRIP001      endlub( rStream );
-//STRIP001  }
-//STRIP001
-//STRIP001  rStream.SetStreamCharSet( eOldCharSet );
-//STRIP001  rStream.SetNumberFormatInt( nOldNumberFormatInt );
-//STRIP001 }
 
 
-//STRIP001 BOOL __EXPORT ScDocShell::ConvertTo( SfxMedium &rMed )
-//STRIP001 {
-//STRIP001  RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ConvertTo" );
-//STRIP001
-//STRIP001  ScRefreshTimerProtector( aDocument.GetRefreshTimerControlAddress() );
-//STRIP001
-//STRIP001     //  #i6500# don't call DoEnterHandler here (doesn't work with AutoSave),
-//STRIP001     //  it's already in ExecuteSave (as for Save and SaveAs)
-//STRIP001
-//STRIP001  if (pAutoStyleList)
-//STRIP001      pAutoStyleList->ExecuteAllNow();                // Vorlagen-Timeouts jetzt ausfuehren
-//STRIP001  if (GetCreateMode()== SFX_CREATE_MODE_STANDARD)
-//STRIP001      SvInPlaceObject::SetVisArea( Rectangle() );     // normal bearbeitet -> keine VisArea
-//STRIP001
-//STRIP001  DBG_ASSERT( rMed.GetFilter(), "Filter == 0" );
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  String aFltName = rMed.GetFilter()->GetFilterName();
-//STRIP001
-//STRIP001 /*
-//STRIP001  if (aFltName.EqualsAscii(pFilterLotus))
-//STRIP001  {
-//STRIP001      SvStream* pStream = rMed.GetOutStream();
-//STRIP001      if (pStream)
-//STRIP001      {
-//STRIP001          FltError eError = ScExportLotus123( *pStream, &aDocument, ExpWK1,
-//STRIP001                                              CHARSET_IBMPC_437 );
-//STRIP001          bRet = eError == eERR_OK;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001 */
-//STRIP001  if ( aFltName.EqualsAscii(pFilterSc30) || aFltName.EqualsAscii(pFilterSc40) )
-//STRIP001  {
-//STRIP001      //  Calc3/4 - "Export"
-//STRIP001      //! wird nicht gerufen (geht ueber Save/SaveAs) - wird das noch gebraucht ???????
-//STRIP001
-//STRIP001      DBG_ERROR("ConvertTo fuer altes Calc gibt's noch...");
-//STRIP001      SvStorage* pStor = rMed.GetStorage();
-//STRIP001      if ( pStor )
-//STRIP001      {
-//STRIP001          //  wait cursor is handled with progress bar
-//STRIP001          bRet = SfxInPlaceObject::SaveAs( pStor );
-//STRIP001          if( bRet )
-//STRIP001              bRet = SaveCalc( pStor );
-//STRIP001
-//STRIP001          String aShortTypeName = String( ScResId(SCSTR_SHORT_SCDOC_NAME) );  // "Dokument"
-//STRIP001          if ( aFltName.EqualsAscii(pFilterSc30) )
-//STRIP001          {
-//STRIP001              //  Ole-Geraffel auf 3.0-Werte setzen:
-//STRIP001              SvGlobalName aName( BF_SO3_SC_CLASSID_30 );
-//STRIP001              UINT32 nClip = SOT_FORMATSTR_ID_STARCALC_30;
-//STRIP001              pStor->SetClass( aName, nClip, aShortTypeName );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              //  Ole-Geraffel auf 4.0-Werte setzen:
-//STRIP001              SvGlobalName aName( BF_SO3_SC_CLASSID_40 );
-//STRIP001              UINT32 nClip = SOT_FORMATSTR_ID_STARCALC_40;
-//STRIP001              pStor->SetClass( aName, nClip, aShortTypeName );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterXML))
-//STRIP001  {
-//STRIP001      bRet = SaveXML( &rMed, NULL );
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterExcel5) || aFltName.EqualsAscii(pFilterExcel95) ||
-//STRIP001           aFltName.EqualsAscii(pFilterExcel97) || aFltName.EqualsAscii(pFilterEx5Temp) ||
-//STRIP001           aFltName.EqualsAscii(pFilterEx95Temp) || aFltName.EqualsAscii(pFilterEx97Temp))
-//STRIP001  {
-//STRIP001      WaitObject aWait( GetDialogParent() );
-//STRIP001
-//STRIP001      ScTabViewShell* pViewShell = GetBestViewShell();
-//STRIP001      if( pViewShell )
-//STRIP001      {
-//STRIP001             ScExtDocOptions* pExtDocOpt = aDocument.GetExtDocOptions();
-//STRIP001             if( !pExtDocOpt )
-//STRIP001                 aDocument.SetExtDocOptions( pExtDocOpt = new ScExtDocOptions );
-//STRIP001          pViewShell->GetViewData()->WriteExtOptions( *pExtDocOpt );
-//STRIP001      }
-//STRIP001
-//STRIP001      BOOL bFake97 = ( aFltName.EqualsAscii(pFilterExcel97) || aFltName.EqualsAscii(pFilterEx97Temp) );
-//STRIP001      FltError eError = ScExportExcel5( rMed, &aDocument, bFake97, RTL_TEXTENCODING_MS_1252 );
-//STRIP001
-//STRIP001      if (eError && !GetError())
-//STRIP001          SetError(eError);
-//STRIP001
-//STRIP001      if( ( eError & ERRCODE_WARNING_MASK ) == ERRCODE_WARNING_MASK )
-//STRIP001          bRet = TRUE;
-//STRIP001      else
-//STRIP001          bRet = eError == eERR_OK;
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterAscii))
-//STRIP001  {
-//STRIP001      SvStream* pStream = rMed.GetOutStream();
-//STRIP001      if (pStream)
-//STRIP001      {
-//STRIP001          String sItStr;
-//STRIP001          SfxItemSet*  pSet = rMed.GetItemSet();
-//STRIP001          const SfxPoolItem* pItem;
-//STRIP001          if ( pSet && SFX_ITEM_SET ==
-//STRIP001               pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-//STRIP001          {
-//STRIP001              sItStr = ((const SfxStringItem*)pItem)->GetValue();
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( sItStr.Len() == 0 )
-//STRIP001          {
-//STRIP001              //  default for ascii export (from API without options):
-//STRIP001              //  ISO8859-1/MS_1252 encoding, comma, double quotes
-//STRIP001
-//STRIP001              ScImportOptions aDefOptions( ',', '"', RTL_TEXTENCODING_MS_1252 );
-//STRIP001              sItStr = aDefOptions.BuildString();
-//STRIP001          }
-//STRIP001
-//STRIP001          WaitObject aWait( GetDialogParent() );
-//STRIP001          ScImportOptions aOptions( sItStr );
-//STRIP001          AsciiSave( *pStream, aOptions );
-//STRIP001          bRet = TRUE;
-//STRIP001
-//STRIP001          if (aDocument.GetTableCount() > 1)
-//STRIP001              if (!rMed.GetError())
-//STRIP001                  rMed.SetError(SCWARN_EXPORT_ASCII);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterDBase))
-//STRIP001  {
-//STRIP001      String sCharSet;
-//STRIP001      SfxItemSet* pSet = rMed.GetItemSet();
-//STRIP001      const SfxPoolItem* pItem;
-//STRIP001      if ( pSet && SFX_ITEM_SET ==
-//STRIP001           pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-//STRIP001      {
-//STRIP001          sCharSet = ((const SfxStringItem*)pItem)->GetValue();
-//STRIP001      }
-//STRIP001
-//STRIP001      if (sCharSet.Len() == 0)
-//STRIP001      {
-//STRIP001          //  default for dBase export (from API without options):
-//STRIP001          //  IBM_850 encoding
-//STRIP001
-//STRIP001          sCharSet = ScGlobal::GetCharsetString( RTL_TEXTENCODING_IBM_850 );
-//STRIP001      }
-//STRIP001
-//STRIP001      WaitObject aWait( GetDialogParent() );
-//STRIP001 // HACK damit Sba geoffnetes TempFile ueberschreiben kann
-//STRIP001      rMed.CloseOutStream();
-//STRIP001      BOOL bHasMemo = FALSE;
-//STRIP001
-//STRIP001      ULONG eError = DBaseExport( rMed.GetPhysicalName(),
-//STRIP001                      ScGlobal::GetCharsetValue(sCharSet), bHasMemo );
-//STRIP001
-//STRIP001      if ( eError != eERR_OK && (eError & ERRCODE_WARNING_MASK) )
-//STRIP001      {
-//STRIP001 //!          if ( !rMed.GetError() )
-//STRIP001 //!              rMed.SetError( eError );
-//STRIP001          eError = eERR_OK;
-//STRIP001      }
-//STRIP001 //!      else if ( aDocument.GetTableCount() > 1 && !rMed.GetError() )
-//STRIP001 //!          rMed.SetError( SCWARN_EXPORT_ASCII );
-//STRIP001
-//STRIP001      INetURLObject aTmpFile( rMed.GetPhysicalName(), INET_PROT_FILE );
-//STRIP001      if ( bHasMemo )
-//STRIP001          aTmpFile.setExtension( String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("dbt")) );
-//STRIP001      if ( eError != eERR_OK )
-//STRIP001      {
-//STRIP001          if (!GetError())
-//STRIP001              SetError(eError);
-//STRIP001          if ( bHasMemo && IsDocument( aTmpFile ) )
-//STRIP001              KillFile( aTmpFile );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          bRet = TRUE;
-//STRIP001          if ( bHasMemo )
-//STRIP001          {
-//STRIP001              SfxStringItem* pNameItem =
-//STRIP001                  (SfxStringItem*) rMed.GetItemSet()->GetItem( SID_FILE_NAME );
-//STRIP001              INetURLObject aDbtFile( pNameItem->GetValue(), INET_PROT_FILE );
-//STRIP001              aDbtFile.setExtension( String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("dbt")) );
-//STRIP001              if ( IsDocument( aDbtFile ) && !KillFile( aDbtFile ) )
-//STRIP001                  bRet = FALSE;
-//STRIP001              if ( bRet && !MoveFile( aTmpFile, aDbtFile ) )
-//STRIP001                  bRet = FALSE;
-//STRIP001              if ( !bRet )
-//STRIP001              {
-//STRIP001                  KillFile( aTmpFile );
-//STRIP001                  if ( !GetError() )
-//STRIP001                      SetError( SCERR_EXPORT_DATA );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterDif))
-//STRIP001  {
-//STRIP001      SvStream* pStream = rMed.GetOutStream();
-//STRIP001      if (pStream)
-//STRIP001      {
-//STRIP001          String sItStr;
-//STRIP001          SfxItemSet*  pSet = rMed.GetItemSet();
-//STRIP001          const SfxPoolItem* pItem;
-//STRIP001          if ( pSet && SFX_ITEM_SET ==
-//STRIP001               pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
-//STRIP001          {
-//STRIP001              sItStr = ((const SfxStringItem*)pItem)->GetValue();
-//STRIP001          }
-//STRIP001
-//STRIP001          if (sItStr.Len() == 0)
-//STRIP001          {
-//STRIP001              //  default for DIF export (from API without options):
-//STRIP001              //  ISO8859-1/MS_1252 encoding
-//STRIP001
-//STRIP001              sItStr = ScGlobal::GetCharsetString( RTL_TEXTENCODING_MS_1252 );
-//STRIP001          }
-//STRIP001
-//STRIP001          WaitObject aWait( GetDialogParent() );
-//STRIP001          ScExportDif( *pStream, &aDocument, ScAddress(0,0,0),
-//STRIP001              ScGlobal::GetCharsetValue(sItStr) );
-//STRIP001          bRet = TRUE;
-//STRIP001
-//STRIP001          if (aDocument.GetTableCount() > 1)
-//STRIP001              if (!rMed.GetError())
-//STRIP001                  rMed.SetError(SCWARN_EXPORT_ASCII);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterSylk))
-//STRIP001  {
-//STRIP001      SvStream* pStream = rMed.GetOutStream();
-//STRIP001      if ( pStream )
-//STRIP001      {
-//STRIP001          WaitObject aWait( GetDialogParent() );
-//STRIP001
-//STRIP001          USHORT nEndCol, nEndRow;
-//STRIP001          aDocument.GetCellArea( 0, nEndCol, nEndRow );
-//STRIP001          ScRange aRange( 0,0,0, nEndCol,nEndRow,0 );
-//STRIP001
-//STRIP001          ScImportExport aImExport( &aDocument, aRange );
-//STRIP001             aImExport.SetFormulas( TRUE );
-//STRIP001          bRet = aImExport.ExportStream( *pStream, SOT_FORMATSTR_ID_SYLK );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (aFltName.EqualsAscii(pFilterHtml))
-//STRIP001  {
-//STRIP001      SvStream* pStream = rMed.GetOutStream();
-//STRIP001      if ( pStream )
-//STRIP001      {
-//STRIP001             WaitObject aWait( GetDialogParent() );
-//STRIP001          ScImportExport aImExport( &aDocument );
-//STRIP001          aImExport.SetStreamPath( rMed.GetName() );
-//STRIP001          bRet = aImExport.ExportStream( *pStream, SOT_FORMATSTR_ID_HTML );
-//STRIP001             if ( bRet && aImExport.GetNonConvertibleChars().Len() )
-//STRIP001                 SetError( *new StringErrorInfo(
-//STRIP001                     SCWARN_EXPORT_NONCONVERTIBLE_CHARS,
-//STRIP001                     aImExport.GetNonConvertibleChars(),
-//STRIP001                     ERRCODE_BUTTON_OK | ERRCODE_MSG_INFO ) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if (GetError())
-//STRIP001          SetError(SCERR_IMPORT_NI);
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 /*N*/ BOOL __EXPORT ScDocShell::SaveCompleted( SvStorage * pStor )
@@ -2139,51 +1063,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/ }
 
 
-//STRIP001 USHORT __EXPORT ScDocShell::PrepareClose( BOOL bUI, BOOL bForBrowsing )
-//STRIP001 {
-//STRIP001  if(SC_MOD()->GetCurRefDlgId()>0)
-//STRIP001  {
-//STRIP001      SfxViewFrame* pFrame = SfxViewFrame::GetFirst( this, TYPE(SfxTopViewFrame) );
-//STRIP001      if( pFrame )
-//STRIP001      {
-//STRIP001          SfxViewShell* p = pFrame->GetViewShell();
-//STRIP001          ScTabViewShell* pViewSh = PTR_CAST(ScTabViewShell,p);
-//STRIP001          if(pViewSh!=NULL)
-//STRIP001          {
-//STRIP001              Window *pWin=pViewSh->GetWindow();
-//STRIP001              if(pWin!=NULL) pWin->GrabFocus();
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  if ( aDocument.IsInLinkUpdate() || aDocument.IsInInterpreter() )
-//STRIP001  {
-//STRIP001      ErrorMessage(STR_CLOSE_ERROR_LINK);
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  DoEnterHandler();
-//STRIP001
-//STRIP001  USHORT nRet = SfxObjectShell::PrepareClose( bUI, bForBrowsing );
-//STRIP001  if (nRet == TRUE)                       // TRUE = schliessen
-//STRIP001      aDocument.DisableIdle(TRUE);        // nicht mehr drin rumpfuschen !!!
-//STRIP001
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 void ScDocShell::PrepareReload()
-//STRIP001 {
-//STRIP001  SfxObjectShell::PrepareReload();    // tut nichts?
-//STRIP001
-//STRIP001  //  Das Disconnect von DDE-Links kann Reschedule ausloesen.
-//STRIP001  //  Wenn die DDE-Links erst im Dokument-dtor geloescht werden, kann beim Reload
-//STRIP001  //  aus diesem Reschedule das DDE-Link-Update fuer das neue Dokument ausgeloest
-//STRIP001  //  werden. Dabei verklemmt sicht dann irgendwas.
-//STRIP001  //  -> Beim Reload die DDE-Links des alten Dokuments vorher disconnecten
-//STRIP001
-//STRIP001  aDocument.DisconnectDdeLinks();
-//STRIP001 }
 
 
 /*N*/ String ScDocShell::GetOwnFilterName()         // static
@@ -2263,26 +1143,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       __SCDOCSHELL_INIT
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ScDocShell" );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SetPool( &SC_MOD()->GetPool() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SetShell(this);
-//STRIP001 /*?*/    bIsInplace = rShell.bIsInplace;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    pDocFunc = new ScDocFunc(*this);
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  SetBaseModel needs exception handling
-//STRIP001 /*?*/    ScModelObj::CreateAndSet( this );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    StartListening(*this);
-//STRIP001 /*?*/    SfxStyleSheetPool* pStlPool = aDocument.GetStyleSheetPool();
-//STRIP001 /*?*/    if (pStlPool)
-//STRIP001 /*?*/        StartListening(*pStlPool);
-//STRIP001 /*?*/
-//STRIP001 /*?*/    GetPageOnFromPageStyleSet( NULL, 0, bHeaderOn, bFooterOn );
-//STRIP001 /*?*/    SetHelpId( HID_SCSHELL_DOCSH );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  InitItems und CalcOutputFactor werden jetzt nach bei Load/ConvertFrom/InitNew gerufen
 /*N*/ }
 
 //------------------------------------------------------------------
@@ -2447,43 +1307,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScDocShell::SetInUndo(BOOL bSet)
-//STRIP001 {
-//STRIP001  bIsInUndo = bSet;
-//STRIP001 }
 
 
-//STRIP001 void ScDocShell::GetDocStat( ScDocStat& rDocStat )
-//STRIP001 {
-//STRIP001  SfxPrinter* pPrinter = GetPrinter();
-//STRIP001
-//STRIP001  aDocument.GetDocStat( rDocStat );
-//STRIP001  rDocStat.nPageCount = 0;
-//STRIP001
-//STRIP001  if ( pPrinter )
-//STRIP001      for ( USHORT i=0; i<rDocStat.nTableCount; i++ )
-//STRIP001          rDocStat.nPageCount +=
-//STRIP001              (USHORT) ScPrintFunc( this, pPrinter, i ).GetTotalPages();
-//STRIP001 }
 
 
-//STRIP001 SfxDocumentInfoDialog* __EXPORT ScDocShell::CreateDocumentInfoDialog(
-//STRIP001                                       Window *pParent, const SfxItemSet &rSet )
-//STRIP001 {
-//STRIP001  SfxDocumentInfoDialog* pDlg   = new SfxDocumentInfoDialog( pParent, rSet );
-//STRIP001  ScDocShell*            pDocSh = PTR_CAST(ScDocShell,SfxObjectShell::Current());
-//STRIP001
-//STRIP001  //nur mit Statistik, wenn dieses Doc auch angezeigt wird, nicht
-//STRIP001  //aus dem Doc-Manager
-//STRIP001
-//STRIP001  if( pDocSh == this )
-//STRIP001      pDlg->AddTabPage( 42,
-//STRIP001                        ScGlobal::GetRscString( STR_DOC_STAT ),
-//STRIP001                        ScDocStatPage::Create,
-//STRIP001                        NULL );
-//STRIP001
-//STRIP001  return pDlg;
-//STRIP001 }
 
 /*N*/ Window* ScDocShell::GetDialogParent()
 /*N*/ {
