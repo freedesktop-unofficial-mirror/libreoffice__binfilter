@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdio.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:56:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:39:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -649,30 +649,6 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 BOOL SdrIsModel(SvStream& rIn)
-//STRIP001 {
-//STRIP001  if(!rIn.GetError() && !rIn.IsEof())
-//STRIP001  {
-//STRIP001      SdrIOHeaderLookAhead aHead(rIn);
-//STRIP001
-//STRIP001      if(!rIn.GetError() && aHead.IsMagic() && aHead.IsID(SdrIOModlID))
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL SdrIsView(SvStream& rIn)
-//STRIP001 {
-//STRIP001  if(!rIn.GetError() && !rIn.IsEof())
-//STRIP001  {
-//STRIP001      SdrIOHeaderLookAhead aHead(rIn);
-//STRIP001
-//STRIP001      if(!rIn.GetError() && aHead.IsMagic() && aHead.IsID(SdrIOViewID))
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 }
