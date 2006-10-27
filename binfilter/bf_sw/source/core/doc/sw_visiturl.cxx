@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_visiturl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:46:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:28:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
@@ -50,9 +47,6 @@
 #ifndef _INETHIST_HXX //autogen
 #include <svtools/inethist.hxx>
 #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 
 #ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
