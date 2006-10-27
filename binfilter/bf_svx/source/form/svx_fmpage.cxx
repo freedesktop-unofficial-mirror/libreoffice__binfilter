@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmpage.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:44:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:56:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,12 +41,6 @@
 #include "fmpage.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 
 
 #ifndef _SVX_FMMODEL_HXX
@@ -54,9 +48,6 @@
 #endif
 
 #ifndef SVX_LIGHT
-// auto strip #ifndef _SVX_FMOBJ_HXX
-// auto strip #include "fmobj.hxx"
-// auto strip #endif
 #endif
 
 #ifndef SVX_LIGHT
@@ -65,13 +56,7 @@
 #endif
 #endif
 
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_DIALMGR_HXX
-// auto strip #include "dialmgr.hxx"
-// auto strip #endif
 
 #ifndef SVX_LIGHT
 #ifndef _SVX_FMPGEIMP_HXX
@@ -84,50 +69,23 @@
 #endif
 
 #ifndef SVX_LIGHT
-// auto strip #ifndef _SFX_OBJSH_HXX //autogen
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #endif
 #endif
 
-// auto strip #ifndef _SVDITER_HXX //autogen
-// auto strip #include "svditer.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDVIEW_HXX //autogen
-// auto strip #include <svdview.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_HELP_HXX //autogen
-// auto strip #include <vcl/help.hxx>
-// auto strip #endif
 
 
 #ifndef SVX_LIGHT
-// auto strip #ifndef _SVX_FMGLOB_HXX
-// auto strip #include "fmglob.hxx"
-// auto strip #endif
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
 #endif
-// auto strip #ifndef _SVX_FMPROP_HXX
-// auto strip #include "fmprop.hxx"
-// auto strip #endif
 #ifndef _SVX_FMUNDO_HXX
 #include "fmundo.hxx"
 #endif
-// auto strip #ifndef _SVX_FMTOOLS_HXX
-// auto strip #include "fmtools.hxx"
-// auto strip #endif
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 #endif
 
-// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
-// auto strip #include <comphelper/property.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -146,17 +104,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-//STRIP001 FmFormPage::FmFormPage(const FmFormPage& rPage)
-//STRIP001         :SdrPage(rPage)
-//STRIP001         ,pBasic(0)
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001         ,pImpl(new FmFormPageImpl(this, *rPage.GetImpl()))
-//STRIP001 #else
-//STRIP001         ,pImpl(NULL)
-//STRIP001 #endif
-//STRIP001 {
-//STRIP001  aPageName = rPage.aPageName;
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ FmFormPage::~FmFormPage()
@@ -267,20 +214,8 @@ namespace binfilter {
 
 #ifndef SVX_LIGHT
 //------------------------------------------------------------------
-//STRIP001 void FmFormPage::InsertFormObjectEnsureEnv(const SdrObject* _pSourceObject, SdrObject* _pClone, sal_Bool _bTryPreserveName, sal_uInt32 _nPos,
-//STRIP001  const SdrInsertReason* _pReason)
-//STRIP001 {
-//STRIP001  DBG_ERROR("FmFormPage::InsertFormObjectEnsureEnv : obsolete method used (maybe I should write a changes mail ?) !");
-//STRIP001  InsertObject(_pClone, _nPos, _pReason);
-//STRIP001  return;
-//STRIP001 }
 
 //------------------------------------------------------------------
-//STRIP001 sal_Bool FmFormPage::EnsureFormObjectEnv(const SdrObject* _pObj)
-//STRIP001 {
-//STRIP001  DBG_ERROR("FmFormPage::EnsureFormObjectEnv : obsolete method used (maybe I should write a changes mail ?) !");
-//STRIP001  return sal_False;
-//STRIP001 }
 #endif
 
 //------------------------------------------------------------------
@@ -295,79 +230,8 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-//STRIP001 sal_Bool FmFormPage::RequestHelp( Window* pWindow, SdrView* pView,
-//STRIP001                            const HelpEvent& rEvt )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if( !pView->IsAction() )
-//STRIP001  {
-//STRIP001      Point aPos = rEvt.GetMousePosPixel();
-//STRIP001      aPos = pWindow->ScreenToOutputPixel( aPos );
-//STRIP001      aPos = pWindow->PixelToLogic( aPos );
-//STRIP001
-//STRIP001      SdrObject* pObj = NULL;
-//STRIP001      SdrPageView* pPV = NULL;
-//STRIP001      if( pView->PickObj( aPos, 0, pObj, pPV, SDRSEARCH_DEEP ) )
-//STRIP001      {
-//STRIP001          // Ein Object getroffen
-//STRIP001          if( pObj->ISA(FmFormObj) )
-//STRIP001          {
-//STRIP001              UniString aHelpText;
-//STRIP001              ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >  xSet(((FmFormObj*)pObj)->GetUnoControlModel(), ::com::sun::star::uno::UNO_QUERY);
-//STRIP001              if (xSet.is())
-//STRIP001              {
-//STRIP001                  if (::comphelper::hasProperty(FM_PROP_HELPTEXT, xSet))
-//STRIP001                      aHelpText = ::comphelper::getString(xSet->getPropertyValue(FM_PROP_HELPTEXT)).getStr();
-//STRIP001
-//STRIP001                  if (!aHelpText.Len() && ::comphelper::hasProperty(FM_PROP_TARGET_URL, xSet))
-//STRIP001                  {
-//STRIP001                      ::rtl::OUString aText = ::comphelper::getString(xSet->getPropertyValue(FM_PROP_TARGET_URL));
-//STRIP001                      INetURLObject aUrl(aText);
-//STRIP001
-//STRIP001                      // testen, ob es ein Protokoll-Typ ist, den ich anzeigen will
-//STRIP001                      INetProtocol aProtocol = aUrl.GetProtocol();
-//STRIP001                      static const INetProtocol s_aQuickHelpSupported[] =
-//STRIP001                          {   INET_PROT_FTP, INET_PROT_HTTP, INET_PROT_FILE, INET_PROT_MAILTO, INET_PROT_NEWS,
-//STRIP001                              INET_PROT_HTTPS, INET_PROT_JAVASCRIPT, INET_PROT_IMAP, INET_PROT_POP3,
-//STRIP001                              INET_PROT_VIM, INET_PROT_LDAP
-//STRIP001                          };
-//STRIP001                      for (sal_uInt16 i=0; i<sizeof(s_aQuickHelpSupported)/sizeof(s_aQuickHelpSupported[0]); ++i)
-//STRIP001                          if (s_aQuickHelpSupported[i] == aProtocol)
-//STRIP001                          {
-//STRIP001                              aHelpText = INetURLObject::decode(aUrl.GetURLNoPass(), '%', INetURLObject::DECODE_UNAMBIGUOUS);
-//STRIP001                              break;
-//STRIP001                          }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if ( aHelpText.Len() != 0 )
-//STRIP001              {
-//STRIP001                  // Hilfe anzeigen
-//STRIP001                  Rectangle aItemRect = pObj->GetBoundRect();
-//STRIP001                  aItemRect = pWindow->LogicToPixel( aItemRect );
-//STRIP001                  Point aPt = pWindow->OutputToScreenPixel( aItemRect.TopLeft() );
-//STRIP001                  aItemRect.Left()   = aPt.X();
-//STRIP001                  aItemRect.Top()    = aPt.Y();
-//STRIP001                  aPt = pWindow->OutputToScreenPixel( aItemRect.BottomRight() );
-//STRIP001                  aItemRect.Right()  = aPt.X();
-//STRIP001                  aItemRect.Bottom() = aPt.Y();
-//STRIP001                  if( rEvt.GetMode() == HELPMODE_BALLOON )
-//STRIP001                      Help::ShowBalloon( pWindow, aItemRect.Center(), aItemRect, aHelpText);
-//STRIP001                  else
-//STRIP001                      Help::ShowQuickHelp( pWindow, aItemRect, aHelpText );
-//STRIP001              }
-//STRIP001              return sal_True;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return sal_False;
-//STRIP001 }
 
 //------------------------------------------------------------------
-//STRIP001 SdrObject* FmFormPage::NbcRemoveObject(sal_uInt32 nObjNum)
-//STRIP001 {
-//STRIP001  return SdrPage::NbcRemoveObject(nObjNum);
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ SdrObject* FmFormPage::RemoveObject(sal_uInt32 nObjNum)
@@ -381,10 +245,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-//STRIP001 SdrObject* FmFormPage::NbcReplaceObject(SdrObject* pNewObj, sal_uInt32 nObjNum)
-//STRIP001 {
-//STRIP001  return SdrPage::NbcReplaceObject(pNewObj, nObjNum);
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ SdrObject* FmFormPage::ReplaceObject(SdrObject* pNewObj, sal_uInt32 nObjNum)
@@ -394,31 +254,9 @@ namespace binfilter {
 
 
 //------------------------------------------------------------------
-//STRIP001 void FmFormPage::SetBasic( StarBASIC* pBas )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 void FmFormPage::RequestBasic()
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 XubString FmFormPage::GetLinkData( const XubString& rLinkName )
-//STRIP001 {
-//STRIP001  return XubString();
-//STRIP001 }
 
-//STRIP001 void FmFormPage::SetLinkData( const XubString& rLinkName, const XubString& rLinkData )
-//STRIP001 {
-//STRIP001 }
-//STRIP001
-//STRIP001 void FmFormPage::UpdateLinkData( const XubString& rLinkName, const XubString& rLinkData )
-//STRIP001 {
-//STRIP001 }
-//STRIP001
-//STRIP001 SfxJSArray* FmFormPage::GetFormsArray() const
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 
 
