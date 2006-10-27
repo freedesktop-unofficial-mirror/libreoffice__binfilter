@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3num.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:03:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:59:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,9 +50,6 @@
 
 #include "pam.hxx"
 #include "ndtxt.hxx"
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include "docary.hxx"
-// auto strip #endif
 
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
@@ -64,9 +61,6 @@
 #include <bf_svx/tstpitem.hxx>
 #endif
 
-// auto strip #ifndef _VCL_VCLENUM_HXX
-// auto strip #include <vcl/vclenum.hxx>
-// auto strip #endif
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif
@@ -88,7 +82,6 @@
 #endif
 
 #include "sw3imp.hxx"
-// auto strip #include "numrule.hxx"
 #include "ftninfo.hxx"
 #include "pagedesc.hxx"
 #ifndef _SWSTYLENAMEMAPPER_HXX
