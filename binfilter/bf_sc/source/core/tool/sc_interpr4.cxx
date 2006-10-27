@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2006-08-14 13:19:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:34:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -66,37 +65,26 @@
 #endif
 
 
-// auto strip #include <rangelst.hxx>
 #include <bf_sfx2/app.hxx>
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #include <bf_sfx2/objsh.hxx>
 #include <basic/sbmeth.hxx>
 #include <basic/sbmod.hxx>
 #include <basic/sbstar.hxx>
 #include <basic/sbx.hxx>
 #include <svtools/zforlist.hxx>
-// auto strip #include <tools/urlobj.hxx>
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
 #include <math.h>
 #include <float.h>
 
-// auto strip #include <com/sun/star/table/XCellRange.hpp>
 
 using namespace ::com::sun::star;
 
 #include "interpre.hxx"
-// auto strip #include "global.hxx"
 #include "dbcolect.hxx"
-// auto strip #include "cell.hxx"
-// auto strip #include "callform.hxx"
 #include "addincol.hxx"
-// auto strip #include "document.hxx"
 #include "dociter.hxx"
-// auto strip #include "docoptio.hxx"
 #include "scmatrix.hxx"
-// auto strip #include "adiasync.hxx"
 #include "bf_sc.hrc"
 #include "cellsuno.hxx"
 #include "optuno.hxx"
@@ -2585,179 +2573,6 @@ void ScInterpreter::ScSpewFunc()
 /*N*/
 /*N*/  extern void StartInvader( Window* pParent ); // StarWars, Wrapper in SVX options/optpath.cxx
 /*N*/  extern void Game();                      // Froggie
-//STRIP001 void ScInterpreter::ScGame()
-//STRIP001 {
-//STRIP001  enum GameType {
-//STRIP001      SC_GAME_NONE,
-//STRIP001      SC_GAME_ONCE,
-//STRIP001      SC_GAME_START,
-//STRIP001      SC_GAME_TICTACTOE = SC_GAME_START,
-//STRIP001      SC_GAME_STARWARS,
-//STRIP001      SC_GAME_FROGGER,
-//STRIP001      SC_GAME_COUNT
-//STRIP001  };
-//STRIP001  // ein grep im binary laeuft ins leere
-//STRIP001  static sal_Char sGameNone[]         = "\14\36\6\137\10\27\36\13\100";
-//STRIP001  static sal_Char sGameOnce[]         = "\20\27\137\21\20\123\137\21\20\13\137\36\30\36\26\21\136";
-//STRIP001  static sal_Char sGameTicTacToe[]    = "\53\26\34\53\36\34\53\20\32";
-//STRIP001  static sal_Char sGameStarWars[]     = "\54\13\36\15\50\36\15\14";
-//STRIP001  static sal_Char sGameFrogger[]      = "\71\15\20\30\30\26\32";
-//STRIP001  sal_Char* const pGames[SC_GAME_COUNT] = {
-//STRIP001      sGameNone,
-//STRIP001      sGameOnce,
-//STRIP001      sGameTicTacToe,
-//STRIP001      sGameStarWars,
-//STRIP001      sGameFrogger
-//STRIP001  };
-//STRIP001 #if 0
-//STRIP001 say what?
-//STRIP001 oh no, not again!
-//STRIP001 TicTacToe
-//STRIP001 StarWars
-//STRIP001 Froggie
-//STRIP001 // Routine um Datenblock zu erzeugen:
-//STRIP001 #include <stdio.h>
-//STRIP001 int main()
-//STRIP001 {
-//STRIP001  int b = 1;
-//STRIP001  int c;
-//STRIP001  while ( (c = getchar()) != EOF )
-//STRIP001  {
-//STRIP001      if ( b == 1 )
-//STRIP001      {
-//STRIP001          printf( "\"" );
-//STRIP001          b = 0;
-//STRIP001      }
-//STRIP001      if ( c != 10 )
-//STRIP001      {
-//STRIP001          c ^= 0x7F;
-//STRIP001          printf( "\\%o", c );
-//STRIP001
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          printf( "\";\n" );
-//STRIP001          b = 1;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
-//STRIP001 #endif
-//STRIP001  static BOOL bRun[SC_GAME_COUNT] = { FALSE };
-//STRIP001  static BOOL bFirst = TRUE;
-//STRIP001  if ( bFirst )
-//STRIP001  {
-//STRIP001      bFirst = FALSE;
-//STRIP001      for ( int j = SC_GAME_NONE; j < SC_GAME_COUNT; j++ )
-//STRIP001      {
-//STRIP001          sal_Char* p = pGames[j];
-//STRIP001          while ( *p )
-//STRIP001              *p++ ^= 0x7F;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  String aResult;
-//STRIP001  GameType eGame = SC_GAME_NONE;
-//STRIP001  BYTE nParamCount = GetByte();
-//STRIP001  if ( nParamCount >= 1 )
-//STRIP001  {
-//STRIP001      String aStr( GetString() );
-//STRIP001      nParamCount--;
-//STRIP001      for ( int j = SC_GAME_START; j < SC_GAME_COUNT; j++ )
-//STRIP001      {
-//STRIP001          if ( aStr.EqualsAscii( pGames[j] ) )
-//STRIP001          {
-//STRIP001              eGame = (GameType) j;
-//STRIP001              break;  // for
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if ( eGame != SC_GAME_NONE )
-//STRIP001      {
-//STRIP001          // jedes Game nur ein einziges Mal starten, um nicht durch Recalc
-//STRIP001          // o.ae. mehrere Instanzen zu haben, ideal waere eine Abfrage an den
-//STRIP001          // Games, ob sie bereits laufen ...
-//STRIP001          if ( bRun[ eGame ] && eGame != SC_GAME_TICTACTOE )
-//STRIP001              eGame = SC_GAME_ONCE;
-//STRIP001          else
-//STRIP001          {
-//STRIP001              bRun[ eGame ] = TRUE;
-//STRIP001              switch ( eGame )
-//STRIP001              {
-//STRIP001                  case SC_GAME_TICTACTOE :
-//STRIP001                  {
-//STRIP001                      static ScTicTacToe* pTicTacToe = NULL;
-//STRIP001                      static ScRange aTTTrange;
-//STRIP001                      static BOOL bHumanFirst = FALSE;
-//STRIP001                      if ( nParamCount >= 1 )
-//STRIP001                      {
-//STRIP001                          if ( GetStackType() == svDoubleRef )
-//STRIP001                          {
-//STRIP001                              ScRange aRange;
-//STRIP001                              PopDoubleRef( aRange );
-//STRIP001                              nParamCount--;
-//STRIP001                              if ( aRange.aEnd.Col() - aRange.aStart.Col() == 2
-//STRIP001                                && aRange.aEnd.Row() - aRange.aStart.Row() == 2 )
-//STRIP001                              {
-//STRIP001                                  BOOL bOk;
-//STRIP001                                  if ( pTicTacToe )
-//STRIP001                                      bOk = (aRange == aTTTrange);
-//STRIP001                                  else
-//STRIP001                                  {
-//STRIP001                                      bOk =TRUE;
-//STRIP001                                      aTTTrange = aRange;
-//STRIP001                                      pTicTacToe = new ScTicTacToe( pDok,
-//STRIP001                                          aRange.aStart );
-//STRIP001                                      pTicTacToe->Initialize( bHumanFirst );
-//STRIP001                                  }
-//STRIP001                                  // nur einmal und das auf dem gleichen Range
-//STRIP001                                  if ( !bOk )
-//STRIP001                                      eGame = SC_GAME_ONCE;
-//STRIP001                                  else
-//STRIP001                                  {
-//STRIP001                                      Square_Type aWinner = pTicTacToe->CalcMove();
-//STRIP001                                      pTicTacToe->GetOutput( aResult );
-//STRIP001                                      if ( aWinner != pTicTacToe->GetEmpty() )
-//STRIP001                                      {
-//STRIP001                                          delete pTicTacToe;
-//STRIP001                                          pTicTacToe = NULL;
-//STRIP001                                          bRun[ eGame ] = FALSE;
-//STRIP001                                          bHumanFirst = !bHumanFirst;
-//STRIP001                                      }
-//STRIP001                                      pDok->GetDocumentShell()->Broadcast(
-//STRIP001                                          SfxSimpleHint( FID_DATACHANGED ) );
-//STRIP001                                      pDok->ResetChanged( aRange );
-//STRIP001                                  }
-//STRIP001                              }
-//STRIP001                              else
-//STRIP001                                  SetError( errIllegalArgument );
-//STRIP001                          }
-//STRIP001                          else
-//STRIP001                              SetError( errIllegalParameter );
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                          SetError( errIllegalParameter );
-//STRIP001                  }
-//STRIP001                  break;
-//STRIP001                  case SC_GAME_STARWARS :
-//STRIP001 #ifdef SC_INVADER_GPF
-//STRIP001                      if ( getenv( "SC_INVADER_GPF" ) )
-//STRIP001 #endif
-//STRIP001 //                           StartInvader( Application::GetDefDialogParent() );
-//STRIP001                  break;
-//STRIP001                  case SC_GAME_FROGGER :
-//STRIP001                      //Game();
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // Stack aufraeumen
-//STRIP001  while ( nParamCount-- )
-//STRIP001      Pop();
-//STRIP001  if ( !aResult.Len() )
-//STRIP001      PushString( String( pGames[ eGame ], RTL_TEXTENCODING_ASCII_US ) );
-//STRIP001  else
-//STRIP001      PushString( aResult );
-//STRIP001 }
 
 void ScInterpreter::ScTTT()
 {   // Temporaerer Test-Tanz, zum auspropieren von Funktionen etc.
