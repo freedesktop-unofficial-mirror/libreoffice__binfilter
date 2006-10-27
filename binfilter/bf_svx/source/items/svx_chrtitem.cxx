@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_chrtitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:15:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:14:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,18 +38,9 @@
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
-// auto strip #ifndef __SBX_SBXVARIABLE_HXX
-// auto strip #include <svtools/sbxvar.hxx>
-// auto strip #endif
 #if defined UNX && !defined LINUX
 #include <wchar.h>
 #endif
-// auto strip #ifndef INCLUDED_RTL_MATH_HXX
-// auto strip #include <rtl/math.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_INTLWRAPPER_HXX
-// auto strip #include <unotools/intlwrapper.hxx>
-// auto strip #endif
 
 #ifdef MAC
 #include <stdlib.h>
@@ -57,7 +48,6 @@
 
 #include <stdio.h>
 #include <float.h>
-// auto strip #include <rtl/math.hxx>
 
 #define ITEMID_CHARTSTYLE       0
 #define ITEMID_CHARTDATADESCR   0
@@ -87,9 +77,6 @@ using namespace ::com::sun::star;
 /*N*/ TYPEINIT1(SvxChartLegendPosItem, SfxEnumItem);
 /*N*/ TYPEINIT1(SvxChartTextOrderItem, SfxEnumItem);
 /*N*/ TYPEINIT1(SvxChartTextOrientItem, SfxEnumItem);
-//STRIP001 TYPEINIT1(SvxChartIndicateItem, SfxEnumItem);
-//STRIP001 TYPEINIT1(SvxChartKindErrorItem, SfxEnumItem);
-//STRIP001 TYPEINIT1(SvxChartRegressItem, SfxEnumItem);
 /*N*/ TYPEINIT1(SvxDoubleItem, SfxPoolItem);
 
 /*************************************************************************
@@ -105,10 +92,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxChartStyleItem::SvxChartStyleItem(SvStream& rIn, USHORT nId) :
-//STRIP001  SfxEnumItem(nId, rIn)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -119,10 +102,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartStyleItem::Create(SvStream& rIn, USHORT nVer) const
-//STRIP001 {
-//STRIP001  return new SvxChartStyleItem(rIn, Which());
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -270,11 +249,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxDoubleItem::SvxDoubleItem(SvStream& rIn, USHORT nId) :
-//STRIP001  SfxPoolItem(nId)
-//STRIP001 {
-//STRIP001  rIn >> fVal;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -286,29 +260,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxDoubleItem::GetValueText() const
-//STRIP001 {
-//STRIP001  ::rtl::OString aOStr( ::rtl::math::doubleToString( fVal, rtl_math_StringFormat_E, 4, '.', false ) );
-//STRIP001  return String( aOStr.getStr(), (sal_uInt16)aOStr.getLength() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxDoubleItem::GetPresentation
-//STRIP001          ( SfxItemPresentation ePresentation, SfxMapUnit eCoreMetric,
-//STRIP001               SfxMapUnit ePresentationMetric, XubString& rText,
-//STRIP001               const IntlWrapper * pIntlWrapper) const
-//STRIP001 {
-//STRIP001     DBG_ASSERT( pIntlWrapper, "SvxDoubleItem::GetPresentation: no IntlWrapper" );
-//STRIP001     if ( pIntlWrapper )
-//STRIP001     {
-//STRIP001         rText = ::rtl::math::doubleToUString( fVal, rtl_math_StringFormat_E, 4,
-//STRIP001             pIntlWrapper->getLocaleData()->getNumDecimalSep().GetChar(0), true );
-//STRIP001     }
-//STRIP001     else
-//STRIP001      rText = GetValueText();
-//STRIP001  return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -343,24 +297,12 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 double SvxDoubleItem::GetMin() const
-//STRIP001 {
-//STRIP001  return DBL_MIN;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 double SvxDoubleItem::GetMax() const
-//STRIP001 {
-//STRIP001  return DBL_MAX;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxFieldUnit SvxDoubleItem::GetUnit() const
-//STRIP001 {
-//STRIP001  return SFX_FUNIT_NONE;
-//STRIP001 }
 
 
 
@@ -386,41 +328,18 @@ using namespace ::com::sun::star;
 |*
 *************************************************************************/
 
-//STRIP001 SvxChartKindErrorItem::SvxChartKindErrorItem(SvxChartKindError eOrient,
-//STRIP001                                             USHORT nId) :
-//STRIP001  SfxEnumItem(nId, eOrient)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxChartKindErrorItem::SvxChartKindErrorItem(SvStream& rIn, USHORT nId) :
-//STRIP001  SfxEnumItem(nId, rIn)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartKindErrorItem::Clone(SfxItemPool* pPool) const
-//STRIP001 {
-//STRIP001  return new SvxChartKindErrorItem(*this);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartKindErrorItem::Create(SvStream& rIn, USHORT nVer) const
-//STRIP001 {
-//STRIP001  return new SvxChartKindErrorItem(rIn, Which());
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 USHORT SvxChartKindErrorItem::GetVersion (USHORT nFileFormatVersion) const
-//STRIP001 {
-//STRIP001  return (nFileFormatVersion == SOFFICE_FILEFORMAT_31)
-//STRIP001             ? USHRT_MAX
-//STRIP001             : 0;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -428,41 +347,18 @@ using namespace ::com::sun::star;
 |*
 *************************************************************************/
 
-//STRIP001 SvxChartIndicateItem::SvxChartIndicateItem(SvxChartIndicate eOrient,
-//STRIP001                                             USHORT nId) :
-//STRIP001  SfxEnumItem(nId, eOrient)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxChartIndicateItem::SvxChartIndicateItem(SvStream& rIn, USHORT nId) :
-//STRIP001  SfxEnumItem(nId, rIn)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartIndicateItem::Clone(SfxItemPool* pPool) const
-//STRIP001 {
-//STRIP001  return new SvxChartIndicateItem(*this);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartIndicateItem::Create(SvStream& rIn, USHORT nVer) const
-//STRIP001 {
-//STRIP001  return new SvxChartIndicateItem(rIn, Which());
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 USHORT SvxChartIndicateItem::GetVersion (USHORT nFileFormatVersion) const
-//STRIP001 {
-//STRIP001  return (nFileFormatVersion == SOFFICE_FILEFORMAT_31)
-//STRIP001             ? USHRT_MAX
-//STRIP001             : 0;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -470,41 +366,18 @@ using namespace ::com::sun::star;
 |*
 *************************************************************************/
 
-//STRIP001 SvxChartRegressItem::SvxChartRegressItem(SvxChartRegress eOrient,
-//STRIP001                                             USHORT nId) :
-//STRIP001  SfxEnumItem(nId, eOrient)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxChartRegressItem::SvxChartRegressItem(SvStream& rIn, USHORT nId) :
-//STRIP001  SfxEnumItem(nId, rIn)
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartRegressItem::Clone(SfxItemPool* pPool) const
-//STRIP001 {
-//STRIP001  return new SvxChartRegressItem(*this);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxChartRegressItem::Create(SvStream& rIn, USHORT nVer) const
-//STRIP001 {
-//STRIP001  return new SvxChartRegressItem(rIn, Which());
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 USHORT SvxChartRegressItem::GetVersion (USHORT nFileFormatVersion) const
-//STRIP001 {
-//STRIP001  return (nFileFormatVersion == SOFFICE_FILEFORMAT_31)
-//STRIP001             ? USHRT_MAX
-//STRIP001             : 0;
-//STRIP001 }
 
 
 }
