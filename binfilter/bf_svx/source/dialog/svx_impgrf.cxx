@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impgrf.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:52:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:22:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,47 +37,12 @@
 
 #include <limits.h>             // USHRT_MAX
 
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _BIGINT_HXX
-// auto strip #include <tools/bigint.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFXDISPATCH_HXX
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_WAITOBJ_HXX //autogen
-// auto strip #include <vcl/waitobj.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-// auto strip #include <svtools/pathoptions.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_VIEWOPTIONS_HXX
-// auto strip #include <svtools/viewoptions.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-// auto strip #include <unotools/localfilehelper.hxx>
-// auto strip #endif
 #pragma hdrstop
 
-// auto strip #include <ucbhelper/content.hxx>
-// auto strip #include <osl/file.hxx>
 
-// auto strip #ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
-// auto strip #include <com/sun/star/ucb/CommandAbortedException.hpp>
-// auto strip #endif
 
 using namespace ::ucb;
 using namespace ::com::sun::star::uno;
@@ -89,7 +54,6 @@ using namespace ::com::sun::star::uno;
 #include "impgrf.hxx"
 
 #include "dialmgr.hxx"
-// auto strip #include "svxerr.hxx"
 #include "helpid.hrc"
 namespace binfilter {
 
@@ -139,65 +103,6 @@ namespace binfilter {
 
 #pragma optimize( "", off )
 
-//STRIP001 int LoadGraphic( const String &rPath, const String &rFilterName,
-//STRIP001               Graphic& rGraphic, GraphicFilter* pFilter,
-//STRIP001               USHORT* pDeterminedFormat )
-//STRIP001 {
-//STRIP001  if ( !pFilter )
-//STRIP001      pFilter = ::GetGrfFilter();
-//STRIP001
-//STRIP001  const int nFilter = rFilterName.Len() && pFilter->GetImportFormatCount()
-//STRIP001                  ? pFilter->GetImportFormatNumber( rFilterName )
-//STRIP001                  : GRFILTER_FORMAT_DONTKNOW;
-//STRIP001
-//STRIP001  SfxMedium* pMed = 0;
-//STRIP001
-//STRIP001  // dann teste mal auf File-Protokoll:
-//STRIP001  SvStream* pStream = NULL;
-//STRIP001  INetURLObject aURL( rPath );
-//STRIP001
-//STRIP001  if ( aURL.HasError() || INET_PROT_NOT_VALID == aURL.GetProtocol() )
-//STRIP001  {
-//STRIP001      aURL.SetSmartProtocol( INET_PROT_FILE );
-//STRIP001      aURL.SetSmartURL( rPath );
-//STRIP001  }
-//STRIP001  else if ( INET_PROT_FILE != aURL.GetProtocol() )
-//STRIP001  {
-//STRIP001      // z.Z. nur auf die aktuelle DocShell
-//STRIP001      pMed = new SfxMedium( rPath, STREAM_READ, TRUE );
-//STRIP001      pMed->SetTransferPriority( SFX_TFPRIO_SYNCHRON );
-//STRIP001      pMed->DownLoad();
-//STRIP001      pStream = pMed->GetInStream();
-//STRIP001  }
-//STRIP001  int nRes = GRFILTER_OK;
-//STRIP001
-//STRIP001  if ( !pStream )
-//STRIP001      nRes = pFilter->ImportGraphic( rGraphic, aURL, nFilter, pDeterminedFormat );
-//STRIP001  else
-//STRIP001      nRes = pFilter->ImportGraphic( rGraphic, rPath, *pStream,
-//STRIP001                                     nFilter, pDeterminedFormat );
-//STRIP001
-//STRIP001 #ifndef PRODUCT
-//STRIP001  if( nRes )
-//STRIP001  {
-//STRIP001      if( pMed )
-//STRIP001      {
-//STRIP001          DBG_WARNING3( "GrafikFehler [%d] - [%s] URL[%s]",
-//STRIP001                          nRes,
-//STRIP001                          pMed->GetPhysicalName().GetBuffer(),
-//STRIP001                          rPath.GetBuffer() );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          DBG_WARNING2( "GrafikFehler [%d] - [%s]", nRes, rPath.GetBuffer() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  if ( pMed )
-//STRIP001      delete pMed;
-//STRIP001  return nRes;
-//STRIP001 }
 
 #pragma optimize( "", on )
 
