@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode8.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:55:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:25:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -241,22 +241,6 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/   }
 /*N*/ }
 
-//STRIP001 bool ChartModel::IsFlat3DChart() const
-//STRIP001 {
-//STRIP001     switch( eChartStyle )
-//STRIP001     {
-//STRIP001      case CHSTYLE_3D_FLATCOLUMN:
-//STRIP001      case CHSTYLE_3D_FLATBAR:
-//STRIP001      case CHSTYLE_3D_STACKEDFLATCOLUMN:
-//STRIP001      case CHSTYLE_3D_STACKEDFLATBAR:
-//STRIP001      case CHSTYLE_3D_PERCENTFLATCOLUMN:
-//STRIP001      case CHSTYLE_3D_PERCENTFLATBAR:
-//STRIP001             return true;
-//STRIP001
-//STRIP001         default:
-//STRIP001             return false;
-//STRIP001     }
-//STRIP001 }
 
 /*N*/ BOOL ChartModel::Is3DChart() const
 /*N*/ {
@@ -444,22 +428,6 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL ChartModel::IsPieOrDonutChart() const
-//STRIP001 {
-//STRIP001  switch( eChartStyle )
-//STRIP001  {
-//STRIP001      case CHSTYLE_3D_PIE :
-//STRIP001      case CHSTYLE_2D_PIE :
-//STRIP001      case CHSTYLE_2D_PIE_SEGOF1:
-//STRIP001      case CHSTYLE_2D_PIE_SEGOFALL:
-//STRIP001      case CHSTYLE_2D_DONUT1:
-//STRIP001      case CHSTYLE_2D_DONUT2:
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001      default:
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ BOOL ChartModel::IsPieChart() const
 /*N*/ {
