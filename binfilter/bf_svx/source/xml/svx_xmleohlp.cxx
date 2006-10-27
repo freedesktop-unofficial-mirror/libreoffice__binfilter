@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-02-01 18:36:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:59:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,12 +48,6 @@
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-// auto strip #ifndef _PERSIST_HXX
-// auto strip #include <so3/persist.hxx>
-// auto strip #endif
-// auto strip #ifndef _FACTORY_HXX
-// auto strip #include <so3/factory.hxx>
-// auto strip #endif
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
@@ -150,30 +144,24 @@ public:
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    MutexGuard          aGuard( maMutex );
-//STRIP001  return xIn->readSomeBytes( aData, nMaxBytesToRead );
 /*?*/ }
 
 /*?*/ void SAL_CALL InputStorageWrapper_Impl::skipBytes( sal_Int32 nBytesToSkip )
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
-//STRIP001  xIn->skipBytes( nBytesToSkip );
 /*?*/ }
 
 /*?*/ sal_Int32 SAL_CALL InputStorageWrapper_Impl::available()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     MutexGuard          aGuard( maMutex );
-//STRIP001  return xIn->available();
 /*?*/ }
 
 /*?*/ void SAL_CALL InputStorageWrapper_Impl::closeInput()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
-//STRIP001  xIn->closeInput();
-//STRIP001  xIn = 0;
-//STRIP001  xStor = 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------------
@@ -244,7 +232,6 @@ public:
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
-//STRIP001  xOut->flush();
 /*?*/ }
 
 /*N*/ void SAL_CALL OutputStorageWrapper_Impl::closeOutput()
@@ -739,28 +726,12 @@ struct OUStringLess
 /*?*/   throw (RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;//STRIP001  MutexGuard          aGuard( maMutex );
-//STRIP001  return Sequence< OUString >(0);
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasByName( const OUString& rURLStr )
 /*?*/   throw (RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
-//STRIP001  if( EMBEDDEDOBJECTHELPER_MODE_READ == meCreateMode )
-//STRIP001  {
-//STRIP001      return sal_True;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      OUString    aContainerStorageName, aObjectStorageName;
-//STRIP001      if( !ImplGetStorageNames( rURLStr, aContainerStorageName,
-//STRIP001                                aObjectStorageName,
-//STRIP001                                sal_True ) )
-//STRIP001          return sal_False;
-//STRIP001
-//STRIP001      return aObjectStorageName.getLength() > 0 &&
-//STRIP001             mpDocPersist->Find( aObjectStorageName );
-//STRIP001  }
 /*?*/ }
 
 // XNameAccess
@@ -768,24 +739,11 @@ struct OUStringLess
 /*?*/   throw (RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001    MutexGuard          aGuard( maMutex );
-//STRIP001  if( EMBEDDEDOBJECTHELPER_MODE_READ == meCreateMode )
-//STRIP001      return ::getCppuType((const Reference<XOutputStream>*)0);
-//STRIP001  else
-//STRIP001      return ::getCppuType((const Reference<XInputStream>*)0);
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasElements()
 /*?*/   throw (RuntimeException)
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
-//STRIP001  if( EMBEDDEDOBJECTHELPER_MODE_READ == meCreateMode )
-//STRIP001  {
-//STRIP001      return sal_True;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      return mpDocPersist->GetObjectList() != 0 &&
-//STRIP001             mpDocPersist->GetObjectList()->Count() > 0;
-//STRIP001  }
 /*?*/ }
 }
