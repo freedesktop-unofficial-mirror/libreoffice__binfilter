@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_bitset.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:33:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:02:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,11 +97,6 @@ namespace binfilter {
 
 // substracts nOffset from each bit-value in the set
 
-//STRIP001 BitSet BitSet::operator>>( USHORT nOffset ) const
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  return BitSet();
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -148,46 +143,6 @@ namespace binfilter {
 
 // creates a bitset from an array
 
-//STRIP001 BitSet::BitSet( USHORT* pArray, USHORT nSize ):
-//STRIP001  nCount(0)
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // find the highest bit to set
-//STRIP001  USHORT nMax = 0;
-//STRIP001  for ( USHORT n = 0; n < nCount; ++n )
-//STRIP001      if ( pArray[n] > nMax )
-//STRIP001          nMax = pArray[n];
-//STRIP001
-//STRIP001  // if there are bits at all
-//STRIP001  if ( nMax > 0 )
-//STRIP001  {
-//STRIP001      // allocate memory for all blocks needed
-//STRIP001      nBlocks = nMax / 32 + 1;
-//STRIP001      pBitmap = new ULONG[nBlocks];
-//STRIP001      memset( pBitmap, 0, 4 * nBlocks );
-//STRIP001
-//STRIP001      // set all the bits
-//STRIP001      for ( USHORT n = 0; n < nCount; ++n )
-//STRIP001      {
-//STRIP001          // compute the block no. and bitvalue
-//STRIP001          USHORT nBlock = n / 32;
-//STRIP001          ULONG nBitVal = 1L << (n % 32);
-//STRIP001
-//STRIP001          // set a single bit
-//STRIP001          if ( ( *(pBitmap+nBlock) & nBitVal ) == 0 )
-//STRIP001          {
-//STRIP001              *(pBitmap+nBlock) |= nBitVal;
-//STRIP001              ++nCount;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // initalize emtpy set
-//STRIP001      nBlocks = 0;
-//STRIP001      pBitmap = 0;
-//STRIP001  }
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -203,47 +158,16 @@ namespace binfilter {
 
 // creates a bitmap with all bits in rRange set
 
-//STRIP001 BitSet::BitSet( const Range& rRange )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
 // assignment from another bitset
 
-//STRIP001 BitSet& BitSet::operator=( const BitSet& rOrig )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  if ( this != &rOrig )
-//STRIP001  {
-//STRIP001         delete [] pBitmap;
-//STRIP001      CopyFrom(rOrig);
-//STRIP001  }
-//STRIP001  return *this;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
 // assignment from a single bit
 
-//STRIP001 BitSet& BitSet::operator=( USHORT nBit )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001     delete [] pBitmap;
-//STRIP001
-//STRIP001  USHORT nBlocks = nBit / 32;
-//STRIP001  ULONG nBitVal = 1L << (nBit % 32);
-//STRIP001  nCount = 1;
-//STRIP001
-//STRIP001  ULONG *pBitmap = new ULONG[nBlocks];
-//STRIP001  memset( pBitmap + nBlocks, 0, 4 * nBlocks );
-//STRIP001
-//STRIP001  *(pBitmap+nBlocks) = nBitVal;
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -356,19 +280,6 @@ namespace binfilter {
 
 // determines if the bitsets are equal
 
-//STRIP001 BOOL BitSet::operator==( const BitSet& rSet ) const
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  if ( nBlocks != rSet.nBlocks )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  USHORT nBlock = nBlocks;
-//STRIP001  while ( nBlock-- > 0 )
-//STRIP001      if ( *(pBitmap+nBlock) != *(rSet.pBitmap+nBlock) )
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
