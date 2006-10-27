@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:27:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:27:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,6 @@
 //#ifndef ENABLE_STRING_STREAM_OPERATORS
 //#define ENABLE_STRING_STREAM_OPERATORS
 //#endif
-// auto strip #include <tools/stream.hxx>
 #endif
 
 #ifndef _ZFORLIST_HXX //autogen
@@ -47,9 +46,6 @@
 #endif
 #include <svtools/zforlist.hxx>
 #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
 
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
@@ -123,27 +119,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchMemChart::SchMemChart() :
-//STRIP001  nTranslated(TRANS_NONE),
-//STRIP001  nRefCount (0),
-//STRIP001  mpColNameBuffer(NULL),
-//STRIP001  mpRowNameBuffer(NULL),
-//STRIP001  nRowCnt (0),
-//STRIP001  nColCnt (0),
-//STRIP001  eDataType(NUMBERFORMAT_NUMBER),
-//STRIP001  pData (0),
-//STRIP001  pColText (0),
-//STRIP001  pRowText (0),
-//STRIP001  myID (CHDATAID_MEMCHART_PLUS),
-//STRIP001  mpNumFormatter(NULL),
-//STRIP001  pRowNumFmtId(NULL),
-//STRIP001  pColNumFmtId(NULL),
-//STRIP001  pRowTable(NULL),
-//STRIP001  pColTable(NULL),
-//STRIP001  bReadOnly(FALSE),
-//STRIP001  nLastSelInfoReturn(0)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -336,30 +311,6 @@ namespace binfilter {
 /*N*/     SetChartRange( rMemChart.GetChartRange());
 /*N*/ }
 
-//STRIP001 long SchMemChart::GetTableIndexRow(long nRow) const
-//STRIP001 {
-//STRIP001  long nTmp=-1;
-//STRIP001  if(nRow<nRowCnt && nRow>=0)
-//STRIP001      for(long i=0;i<nRowCnt;i++)
-//STRIP001          if(pRowTable[i]==nRow)
-//STRIP001              nTmp=i;
-//STRIP001  if(nTmp!=-1)
-//STRIP001      nRow=nTmp;
-//STRIP001
-//STRIP001  return nRow;
-//STRIP001 }
-//STRIP001 long SchMemChart::GetTableIndexCol(long nCol) const
-//STRIP001 {
-//STRIP001  long nTmp=-1;
-//STRIP001  if(nCol<nColCnt && nCol>=0)
-//STRIP001      for(long i=0;i<nColCnt;i++)
-//STRIP001          if(pColTable[i]==nCol)
-//STRIP001              nTmp=i;
-//STRIP001  if(nTmp!=-1)
-//STRIP001      nCol=nTmp;
-//STRIP001
-//STRIP001  return nCol;
-//STRIP001 }
 /*N*/ long SchMemChart::SubmitSelection(const ChartSelectionInfo& aInfo)
 /*N*/ {
 /*N*/   ChartSelectionInfo aNewInfo=aInfo;
@@ -382,58 +333,6 @@ namespace binfilter {
 /*N*/       return nLastSelInfoReturn=0;
 /*N*/   }
 /*N*/ }
-//STRIP001 BOOL SchMemChart::TransCol(long nCol,BOOL bUp)
-//STRIP001 {
-//STRIP001  if(nTranslated==TRANS_ROW)
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if(bUp)
-//STRIP001  {
-//STRIP001      if(nCol+1 >= nColCnt)
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001      long tmp=pColTable[nCol];
-//STRIP001      pColTable[nCol]=pColTable[nCol+1];
-//STRIP001      pColTable[nCol+1]=tmp;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if(nCol-1 <= 0)
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001      long tmp=pColTable[nCol];
-//STRIP001      pColTable[nCol]=pColTable[nCol-1];
-//STRIP001      pColTable[nCol-1]=tmp;
-//STRIP001  }
-//STRIP001  nTranslated=TRANS_COL;
-//STRIP001  return TRUE;
-//STRIP001 }
-//STRIP001 BOOL SchMemChart::TransRow(long nRow,BOOL bUp)
-//STRIP001 {
-//STRIP001  if(nTranslated==TRANS_COL)
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if(bUp)
-//STRIP001  {
-//STRIP001      if(nRow+1 >= nRowCnt)
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001      long tmp=pRowTable[nRow];
-//STRIP001      pRowTable[nRow]=pRowTable[nRow+1];
-//STRIP001      pRowTable[nRow+1]=tmp;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if(nRow-1 <= 0)
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001      long tmp=pRowTable[nRow];
-//STRIP001      pRowTable[nRow]=pRowTable[nRow-1];
-//STRIP001      pRowTable[nRow-1]=tmp;
-//STRIP001  }
-//STRIP001  nTranslated=TRANS_ROW;
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //Überprüft, ob die Umordnung/Translation OK ist, Fehlerfall, wenn :
 // a) Spaltenumordnung aber Reihen vertauscht (FALSE,TRANS_ERROR)
@@ -546,60 +445,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL SchMemChart::SwapRowTranslation(long n1,long n2)
-//STRIP001 {
-//STRIP001  if(nTranslated==TRANS_COL)
-//STRIP001  {
-//STRIP001      DBG_ERROR("Chart: Invalid Reorganisation of Chart attempted");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  if(!(n1>=0 && n2>=0 && n1<nRowCnt && n2<nRowCnt))
-//STRIP001  {
-//STRIP001      DBG_ERROR("Chart: Invalid Reorganisation of Chart attempted, index error");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  long nTmp=pRowTable[n1];
-//STRIP001  pRowTable[n1]=pRowTable[n2];
-//STRIP001  pRowTable[n2]=nTmp;
-//STRIP001
-//STRIP001  nTranslated=TRANS_ROW;
-//STRIP001
-//STRIP001  VerifyTranslation(); //evtl. wurde mit dieser Aktion die Umordnung aufgehoben!
-//STRIP001  return TRUE;
-//STRIP001 }
-//STRIP001 BOOL SchMemChart::SwapColTranslation(long n1,long n2)
-//STRIP001 {
-//STRIP001  if(!(n1>=0 && n2>=0 && n1<nColCnt && n2<nColCnt))
-//STRIP001  {
-//STRIP001      DBG_ERROR("Chart: Invalid Reorganisation of Chart attempted, index error");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(nTranslated==TRANS_ROW)
-//STRIP001  {
-//STRIP001      DBG_ERROR("Chart: Invalid Reorganisation of Chart attempted");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  long nTmp=pColTable[n1];
-//STRIP001  pColTable[n1]=pColTable[n2];
-//STRIP001  pColTable[n2]=nTmp;
-//STRIP001
-//STRIP001     //   The last swap might have returned the permutation back to identity.
-//STRIP001     //   Test this and set the flag nTranslated accordingly.
-//STRIP001  nTranslated=TRANS_NONE;
-//STRIP001  for (long nCol=0; nCol<nColCnt; nCol++)
-//STRIP001      if (pColTable[nCol] != nCol)
-//STRIP001         {
-//STRIP001          //  There is at least one moved column.
-//STRIP001          nTranslated=TRANS_COL;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001  DBG_ASSERT(((SchMemChart*)this)->VerifyTranslation(),"Translation table corrupted in MemChart");
-//STRIP001  return TRUE;
-//STRIP001 }
 /*************************************************************************
 |*
 |* Wie GetData, aber in Prozentwerten
@@ -780,30 +625,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SchMemChart::QuickSortTableCols (long l,long r,long nRow)
-//STRIP001 {
-//STRIP001  if (r > l)
-//STRIP001  {
-//STRIP001      double v = *(pData + r * nRowCnt + nRow);
-//STRIP001      long   i = l - 1;
-//STRIP001      long   j = r;
-//STRIP001
-//STRIP001      while (TRUE)
-//STRIP001      {
-//STRIP001          while (*(pData + (++ i) * nRowCnt + nRow) < v)
-//STRIP001              ;
-//STRIP001          while (*(pData + (-- j) * nRowCnt + nRow) > v)
-//STRIP001              ;
-//STRIP001
-//STRIP001          if (i >= j) break;
-//STRIP001          else SwapCols (i, j);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (i != r) SwapCols (i, r);
-//STRIP001      QuickSortTableCols (l, i - 1, nRow);
-//STRIP001      QuickSortTableCols (i + 1, r, nRow);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -811,30 +632,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SchMemChart::QuickSortTableRows (long l,long r,long nCol)
-//STRIP001 {
-//STRIP001  if (r > l)
-//STRIP001  {
-//STRIP001      double v = *(pData + r + nCol * nRowCnt);
-//STRIP001      long   i = l - 1;
-//STRIP001      long   j = r;
-//STRIP001
-//STRIP001      while (TRUE)
-//STRIP001      {
-//STRIP001          while (*(pData + (++ i) + nCol * nRowCnt) < v)
-//STRIP001              ;
-//STRIP001          while (*(pData + (-- j) + nCol * nRowCnt) > v)
-//STRIP001              ;
-//STRIP001
-//STRIP001          if (i >= j) break;
-//STRIP001          else SwapRows (i, j);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (i != r) SwapRows (i, r);
-//STRIP001      QuickSortTableRows (l, i - 1, nCol);
-//STRIP001      QuickSortTableRows (i + 1, r, nCol);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SchMemChart::InitNumFmt()
 /*N*/ {
@@ -852,41 +649,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SchMemChart::QuickSortCols(long l,long r,long nRow)
-//STRIP001 {
-//STRIP001  if (r > l)
-//STRIP001  {
-//STRIP001      double v = *(pData + r * nRowCnt + nRow);
-//STRIP001      long   i = l - 1;
-//STRIP001      long   j = r;
-//STRIP001
-//STRIP001      while (TRUE)
-//STRIP001      {
-//STRIP001          while (*(pData + (++ i) * nRowCnt + nRow) < v)
-//STRIP001              ;
-//STRIP001          while (*(pData + (-- j) * nRowCnt + nRow) > v)
-//STRIP001              ;
-//STRIP001
-//STRIP001          if (i >= j) break;
-//STRIP001          else
-//STRIP001          {
-//STRIP001              double temp = *(pData + i * nRowCnt + nRow);
-//STRIP001              *(pData + i * nRowCnt + nRow) = *(pData + j * nRowCnt + nRow);
-//STRIP001              *(pData + j * nRowCnt + nRow) = temp;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if (i != r)
-//STRIP001      {
-//STRIP001          double temp = *(pData + r * nRowCnt + nRow);
-//STRIP001          *(pData + r * nRowCnt + nRow) = *(pData + i * nRowCnt + nRow);
-//STRIP001          *(pData + i * nRowCnt + nRow) = temp;
-//STRIP001      }
-//STRIP001
-//STRIP001      QuickSortCols (l, i - 1, nRow);
-//STRIP001      QuickSortCols (i + 1, r, nRow);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -894,43 +656,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SchMemChart::QuickSortRows (long l,
-//STRIP001                               long r,
-//STRIP001                               long nCol)
-//STRIP001 {
-//STRIP001  if (r > l)
-//STRIP001  {
-//STRIP001      double v = *(pData + r + nCol * nRowCnt);
-//STRIP001      long   i = l - 1;
-//STRIP001      long   j = r;
-//STRIP001
-//STRIP001      while (TRUE)
-//STRIP001      {
-//STRIP001          while (*(pData + (++ i) + nCol * nRowCnt) < v)
-//STRIP001              ;
-//STRIP001          while (*(pData + (-- j) + nCol * nRowCnt) > v)
-//STRIP001              ;
-//STRIP001
-//STRIP001          if (i >= j) break;
-//STRIP001          else
-//STRIP001          {
-//STRIP001              double temp = *(pData + i + nCol * nRowCnt);
-//STRIP001              *(pData + i + nCol * nRowCnt) = *(pData + j + nCol * nRowCnt);
-//STRIP001              *(pData + j + nCol * nRowCnt) = temp;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if (i != r)
-//STRIP001      {
-//STRIP001          double temp = *(pData + r + nCol * nRowCnt);
-//STRIP001          *(pData + r + nCol * nRowCnt) = *(pData + i + nCol * nRowCnt);
-//STRIP001          *(pData + i + nCol * nRowCnt) = temp;
-//STRIP001      }
-//STRIP001
-//STRIP001      QuickSortRows (l, i - 1, nCol);
-//STRIP001      QuickSortRows (i + 1, r, nCol);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ String SchMemChart::GetDefaultColumnText( sal_Int32 nCol ) const
 /*N*/ {
@@ -1226,24 +951,6 @@ using namespace ::com::sun::star;
 /*?*/             // quote table name if it contains spaces or quotes
 /*?*/             if( bNeedsQuoting )
 /*?*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                 // leading quote
-//STRIP001 /*?*/                 aBuffer.append( aQuote );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // escape existing quotes
-//STRIP001 /*?*/                 if( bNeedsEscaping )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     const sal_Unicode * pTableNameBeg = aIter->msTableName.getStr();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // append the quoted string at the buffer
-//STRIP001 /*?*/                     ::std::for_each( pTableNameBeg,
-//STRIP001 /*?*/                                      pTableNameBeg + aIter->msTableName.getLength(),
-//STRIP001 /*?*/                                      lcl_Escape( aBuffer ) );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                     aBuffer.append( aIter->msTableName );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // final quote
-//STRIP001 /*?*/                 aBuffer.append( aQuote );
 /*?*/             }
 /*?*/             else
 /*?*/                 aBuffer.append( aIter->msTableName );
