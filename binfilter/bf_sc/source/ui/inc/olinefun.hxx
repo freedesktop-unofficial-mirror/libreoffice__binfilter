@@ -4,9 +4,9 @@
  *
  *  $RCSfile: olinefun.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:02:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:19:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,8 +67,6 @@ public:
     BOOL        ShowMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi );
     BOOL        HideMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi );
 
-//STRIP001  BOOL        ShowOutline( USHORT nTab, BOOL bColumns, USHORT nLevel, USHORT nEntry,
-//STRIP001                                  BOOL bRecord, BOOL bPaint, BOOL bApi );
     BOOL        HideOutline( USHORT nTab, BOOL bColumns, USHORT nLevel, USHORT nEntry,
                                     BOOL bRecord, BOOL bPaint, BOOL bApi );
 };
