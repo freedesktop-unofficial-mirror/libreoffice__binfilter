@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_fielduno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:13:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:03:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,27 +34,15 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 
 #pragma hdrstop
 
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>

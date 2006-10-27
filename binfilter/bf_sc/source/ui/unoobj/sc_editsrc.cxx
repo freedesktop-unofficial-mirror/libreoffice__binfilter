@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editsrc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:13:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:02:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,23 +34,18 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 #include <bf_svx/unofored.hxx>
 
 #include "editsrc.hxx"
-// auto strip #include "textuno.hxx"
 #include "editutil.hxx"
 #include "docsh.hxx"
 #include "docfunc.hxx"
 #include "hints.hxx"
-// auto strip #include "patattr.hxx"
 #include "unoguard.hxx"
 #ifndef _SC_ACCESSIBLETEXT_HXX
 #include "AccessibleText.hxx"
