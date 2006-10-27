@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ImageControl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:47:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:03:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,13 +50,9 @@
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
 #endif
-// auto strip #include "conversion.hxx"
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-// auto strip #ifndef _UNTOOLS_UCBLOCKBYTES_HXX
-// auto strip #include <unotools/ucblockbytes.hxx>
-// auto strip #endif
 #ifndef _FILEDLGHELPER_HXX
 #include <bf_sfx2/filedlghelper.hxx>
 #endif
@@ -67,18 +63,12 @@
 #include <com/sun/star/awt/PopupMenuDirection.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
-// auto strip #include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
 #include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
 #endif
 #ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
 #include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
-// auto strip #include <com/sun/star/ui/dialogs/XFilePicker.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
 #include <com/sun/star/sdbc/DataType.hpp>
 #endif
@@ -88,38 +78,14 @@
 #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XDIALOG_HPP_
-// auto strip #include <com/sun/star/awt/XDialog.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
 #include <com/sun/star/io/XActiveDataSink.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_NOTCONNECTEDEXCEPTION_HPP_
-// auto strip #include <com/sun/star/io/NotConnectedException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_IMPGRF_HXX
-// auto strip #include <bf_svx/impgrf.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
 #ifndef _UNOTOOLS_STREAMHELPER_HXX_
 #include <unotools/streamhelper.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
-// auto strip #include <comphelper/extract.hxx>
-// auto strip #endif
 #ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
 #endif
