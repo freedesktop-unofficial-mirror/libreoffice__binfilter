@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdocirc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:59:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:41:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include <svtools/style.hxx>
 #endif
 
-// auto strip #ifndef _BIGINT_HXX //autogen
-// auto strip #include <tools/bigint.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
@@ -63,21 +60,9 @@
 
 #include "svdocirc.hxx"
 #include <math.h>
-// auto strip #include "xpool.hxx"
-// auto strip #include "svdtouch.hxx"
-// auto strip #include "svdxout.hxx"
-// auto strip #include "svdattr.hxx"
 #include "svdpool.hxx"
 #include "svdattrx.hxx"
-// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-// auto strip #include "svdetc.hxx"
-// auto strip #include "svddrag.hxx"
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "svdpage.hxx"
-// auto strip #include "svdopath.hxx" // fuer die Objektkonvertierung
-// auto strip #include "svdview.hxx"  // Zum Draggen (Ortho)
-// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 
 #ifndef _EEITEM_HXX
@@ -167,14 +152,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 void SdrCircObj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  FASTBOOL bCanConv=!HasText() || ImpCanConvTextToCurve();
-//STRIP001  rInfo.bEdgeRadiusAllowed    = FALSE;
-//STRIP001  rInfo.bCanConvToPath=bCanConv;
-//STRIP001  rInfo.bCanConvToPoly=bCanConv;
-//STRIP001  rInfo.bCanConvToContour = !IsFontwork() && (rInfo.bCanConvToPoly || LineGeometryUsageIsNecessary());
-//STRIP001 }
 
 /*N*/ UINT16 SdrCircObj::GetObjIdentifier() const
 /*N*/ {
@@ -398,7 +375,6 @@ namespace binfilter {
 /*?*/       if( pLineGeometry.get() )
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/           // draw the line geometry
-//STRIP001 /*?*/            ImpDrawShadowLineGeometry(rXOut, rSet, *pLineGeometry);
 /*?*/       }
 /*N*/   }
 
@@ -445,182 +421,15 @@ namespace binfilter {
 /*N*/
 /*N*/   FASTBOOL bOk=TRUE;
 /*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
 /*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        bOk=PaintGluePoints(rXOut,rInfoRec);
 /*N*/   }
 /*N*/
 /*N*/   return bOk;
 /*N*/ }
 
-//STRIP001 SdrObject* SdrCircObj::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-//STRIP001 {
-//STRIP001  if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
-//STRIP001  Point aPt(rPnt);
-//STRIP001  Point aZero;
-//STRIP001  aPt.X()-=aRect.Left();
-//STRIP001  aPt.Y()-=aRect.Top();
-//STRIP001
-//STRIP001  INT32 nMyTol=nTol;
-//STRIP001  FASTBOOL bFilled=eKind!=OBJ_CARC && (bTextFrame || HasFill());
-//STRIP001
-//STRIP001  INT32 nWdt=ImpGetLineWdt()/2; // Halbe Strichstaerke
-//STRIP001  long nBoundWdt=aRect.GetWidth()-1;
-//STRIP001  long nBoundHgt=aRect.GetHeight()-1;
-//STRIP001  if (eKind==OBJ_SECT) {
-//STRIP001      long nTmpWink=NormAngle360(nEndWink-nStartWink);
-//STRIP001      if (nTmpWink<9000) {
-//STRIP001          nBoundWdt=0;
-//STRIP001          nBoundHgt=0;
-//STRIP001      } else if (nTmpWink<27000) {
-//STRIP001          nBoundWdt/=2;
-//STRIP001          nBoundHgt/=2;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (bFilled && nBoundWdt>short(nTol) && nBoundHgt>short(nTol) && Abs(aGeo.nShearWink)<=4500) nMyTol=0; // Keine Toleranz noetig hier
-//STRIP001  if (nWdt>nMyTol) nMyTol=nWdt; // Bei dicker Umrandung keine Toleranz noetig
-//STRIP001
-//STRIP001  // Den uebergebenen Punkt auf den gedrehten, geshearten Kreis transformieren
-//STRIP001  // Unrotate:
-//STRIP001  if (aGeo.nDrehWink!=0) RotatePoint(aPt,aZero,-aGeo.nSin,aGeo.nCos); // -sin fuer Umkehrung
-//STRIP001  // Unshear:
-//STRIP001  if (aGeo.nShearWink!=0) ShearPoint(aPt,aZero,-aGeo.nTan); // -tan fuer Umkehrung
-//STRIP001
-//STRIP001  long nXRad=aRect.GetWidth()/2;  if (nXRad<1) nXRad=1;
-//STRIP001  long nYRad=aRect.GetHeight()/2; if (nYRad<1) nYRad=1;
-//STRIP001
-//STRIP001  // Die wirklichen Radien fuer spaeter merken
-//STRIP001  long nXRadReal=nXRad;
-//STRIP001  long nYRadReal=nYRad;
-//STRIP001  aPt.X()-=nXRad;
-//STRIP001  aPt.Y()-=nYRad;
-//STRIP001  Point aPtNoStretch(aPt);
-//STRIP001
-//STRIP001  if (nXRad>nYRad) {
-//STRIP001      aPt.Y()=BigMulDiv(aPt.Y(),nXRad,nYRad);
-//STRIP001      // Da die Strichstaerke bei Ellipsen ueberall gleich ist:
-//STRIP001      if (Abs(aPt.X())<Abs(aPt.Y())) {
-//STRIP001          nMyTol=BigMulDiv(nMyTol,nXRad,nYRad);
-//STRIP001      }
-//STRIP001      nYRad=nXRad;
-//STRIP001  }
-//STRIP001  if (nYRad>nXRad) {
-//STRIP001      aPt.X()=BigMulDiv(aPt.X(),nYRad,nXRad);
-//STRIP001      // Da die Strichstaerke bei Ellipsen ueberall gleich ist:
-//STRIP001      if (Abs(aPt.Y())<Abs(aPt.X())) {
-//STRIP001          nMyTol=BigMulDiv(nMyTol,nYRad,nXRad);
-//STRIP001      }
-//STRIP001      nXRad=nYRad;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Die BigInts haben bei *= leider ein Vorzeichenproblem (a*=a;)
-//STRIP001  // (SV250A), deshalb hier soviele Instanzen. (JOE)
-//STRIP001  long nAussen=nXRad+nMyTol;
-//STRIP001  BigInt nBigTmpA(nAussen);
-//STRIP001  BigInt nAusRadQ(nBigTmpA*nBigTmpA);
-//STRIP001  long nInnen=nXRad-nMyTol; if (nInnen<=0) nInnen=0;
-//STRIP001  BigInt nBigTmpI(nInnen);
-//STRIP001  // wird sonst nicht benoetigt, ggf. BugMul sparen:
-//STRIP001  BigInt nInnRadQ((!bFilled && nInnen!=0) ? nBigTmpI*nBigTmpI : nBigTmpI);
-//STRIP001
-//STRIP001  // Radius von aPt berechnen
-//STRIP001  BigInt nBigTmpX(aPt.X());
-//STRIP001  BigInt nBigTmpY(aPt.Y());
-//STRIP001  BigInt nPntRadQ(nBigTmpX*nBigTmpX+nBigTmpY*nBigTmpY);
-//STRIP001
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  if (nPntRadQ<=nAusRadQ) { // sonst ausserhalb
-//STRIP001      if (nInnen==0) bRet=TRUE;
-//STRIP001      else if (eKind==OBJ_CIRC) { // Vollkreis
-//STRIP001          if (bFilled) bRet=TRUE;
-//STRIP001          else if (nPntRadQ>=nInnRadQ) bRet=TRUE;
-//STRIP001      } else { // Teilkreise
-//STRIP001          long nWink=NormAngle360(GetAngle(aPt));
-//STRIP001          long a=nStartWink;
-//STRIP001          long e=nEndWink;
-//STRIP001          if (e<a) e+=36000;
-//STRIP001          if (nWink<a) nWink+=36000;
-//STRIP001          if (nWink>=a && nWink<=e) {
-//STRIP001              if (bFilled) bRet=TRUE;
-//STRIP001              else if (nPntRadQ>=nInnRadQ) bRet=TRUE;
-//STRIP001          }
-//STRIP001          if (!bRet) {
-//STRIP001              Rectangle aR(aPtNoStretch.X()-nMyTol,aPtNoStretch.Y()-nMyTol,
-//STRIP001                           aPtNoStretch.X()+nMyTol,aPtNoStretch.Y()+nMyTol);
-//STRIP001              Point aP1(aPnt1);
-//STRIP001              aP1.X()-=aRect.Left()+nXRadReal;
-//STRIP001              aP1.Y()-=aRect.Top()+nYRadReal;
-//STRIP001              Point aP2(aPnt2);
-//STRIP001              aP2.X()-=aRect.Left()+nXRadReal;
-//STRIP001              aP2.Y()-=aRect.Top()+nYRadReal;
-//STRIP001              if (eKind==OBJ_SECT) { // Kreissektor: nur noch die beiden Strecken testen
-//STRIP001                  bRet=IsRectTouchesLine(aZero,aP1,aR) || IsRectTouchesLine(aZero,aP2,aR);
-//STRIP001              }
-//STRIP001              if (eKind==OBJ_CCUT) { // Kreisabschnitt noch die Sehne und die MaeuseEcke (Dreieck) testen
-//STRIP001                  if (IsRectTouchesLine(aP1,aP2,aR)) bRet=TRUE; // die Sehne
-//STRIP001                  else if (bFilled) { // und nun die Maeusescke
-//STRIP001                      Polygon aPoly(XOutCreatePolygon(GetXPoly(),NULL));
-//STRIP001                      bRet=IsPointInsidePoly(aPoly,rPnt);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (!bRet && HasText()) bRet=SdrTextObj::CheckHit(rPnt,nTol,pVisiLayer)!=NULL;
-//STRIP001  return bRet ? (SdrObject*)this : NULL;
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  USHORT nID=STR_ObjNameSingulCIRC;
-//STRIP001  if (aRect.GetWidth()==aRect.GetHeight() && aGeo.nShearWink==0) {
-//STRIP001      switch (eKind) {
-//STRIP001          case OBJ_CIRC: nID=STR_ObjNameSingulCIRC; break;
-//STRIP001          case OBJ_SECT: nID=STR_ObjNameSingulSECT; break;
-//STRIP001          case OBJ_CARC: nID=STR_ObjNameSingulCARC; break;
-//STRIP001          case OBJ_CCUT: nID=STR_ObjNameSingulCCUT; break;
-//STRIP001      }
-//STRIP001  } else {
-//STRIP001      switch (eKind) {
-//STRIP001          case OBJ_CIRC: nID=STR_ObjNameSingulCIRCE; break;
-//STRIP001          case OBJ_SECT: nID=STR_ObjNameSingulSECTE; break;
-//STRIP001          case OBJ_CARC: nID=STR_ObjNameSingulCARCE; break;
-//STRIP001          case OBJ_CCUT: nID=STR_ObjNameSingulCCUTE; break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  rName=ImpGetResStr(nID);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  USHORT nID=STR_ObjNamePluralCIRC;
-//STRIP001  if (aRect.GetWidth()==aRect.GetHeight() && aGeo.nShearWink==0) {
-//STRIP001      switch (eKind) {
-//STRIP001          case OBJ_CIRC: nID=STR_ObjNamePluralCIRC; break;
-//STRIP001          case OBJ_SECT: nID=STR_ObjNamePluralSECT; break;
-//STRIP001          case OBJ_CARC: nID=STR_ObjNamePluralCARC; break;
-//STRIP001          case OBJ_CCUT: nID=STR_ObjNamePluralCCUT; break;
-//STRIP001      }
-//STRIP001  } else {
-//STRIP001      switch (eKind) {
-//STRIP001          case OBJ_CIRC: nID=STR_ObjNamePluralCIRCE; break;
-//STRIP001          case OBJ_SECT: nID=STR_ObjNamePluralSECTE; break;
-//STRIP001          case OBJ_CARC: nID=STR_ObjNamePluralCARCE; break;
-//STRIP001          case OBJ_CCUT: nID=STR_ObjNamePluralCCUTE; break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  rName=ImpGetResStr(nID);
-//STRIP001 }
 
 /*N*/ void SdrCircObj::operator=(const SdrObject& rObj)
 /*N*/ {
@@ -649,397 +458,25 @@ namespace binfilter {
 /*N*/   SdrRectObj::TakeContour(rPoly);
 /*N*/ }
 
-//STRIP001 void SdrCircObj::TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 class ImpCircUser
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  Rectangle                   aR;
-//STRIP001  Point                       aCenter;
-//STRIP001  Point                       aRadius;
-//STRIP001  Point                       aP1;
-//STRIP001  Point                       aP2;
-//STRIP001  long                        nMaxRad;
-//STRIP001  long                        nHgt;
-//STRIP001  long                        nWdt;
-//STRIP001  long                        nStart;
-//STRIP001  long                        nEnd;
-//STRIP001  FASTBOOL                    bRight; // noch nicht implementiert
-//STRIP001
-//STRIP001 public:
-//STRIP001  ImpCircUser()
-//STRIP001  :   nMaxRad(0),
-//STRIP001      nHgt(0),
-//STRIP001      nWdt(0),
-//STRIP001      nStart(0),
-//STRIP001      nEnd(0),
-//STRIP001      bRight(FALSE)
-//STRIP001  {}
-//STRIP001  void SetCreateParams(SdrDragStat& rStat);
-//STRIP001 };
 
-//STRIP001 USHORT SdrCircObj::GetHdlCount() const
-//STRIP001 {
-//STRIP001  if (eKind!=OBJ_CIRC) {
-//STRIP001      return 10;
-//STRIP001  } else {
-//STRIP001      return 8;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 SdrHdl* SdrCircObj::GetHdl(USHORT nHdlNum) const
-//STRIP001 {
-//STRIP001  if (eKind==OBJ_CIRC) nHdlNum+=2; // Keine Winkelhandles fuer den Vollkreis
-//STRIP001  SdrHdl* pH=NULL;
-//STRIP001  Point aPnt;
-//STRIP001  SdrHdlKind eKind=HDL_MOVE;
-//STRIP001  USHORT nPNum=0;
-//STRIP001  switch (nHdlNum) {
-//STRIP001      case 0: aPnt=aPnt1; eKind=HDL_CIRC; nPNum=1; break; // StartWink
-//STRIP001      case 1: aPnt=aPnt2; eKind=HDL_CIRC; nPNum=2; break; // EndWink
-//STRIP001      case 2: aPnt=aRect.TopLeft();      eKind=HDL_UPLFT; break; // Oben links
-//STRIP001      case 3: aPnt=aRect.TopCenter();    eKind=HDL_UPPER; break; // Oben
-//STRIP001      case 4: aPnt=aRect.TopRight();     eKind=HDL_UPRGT; break; // Oben rechts
-//STRIP001      case 5: aPnt=aRect.LeftCenter();   eKind=HDL_LEFT ; break; // Links
-//STRIP001      case 6: aPnt=aRect.RightCenter();  eKind=HDL_RIGHT; break; // Rechts
-//STRIP001      case 7: aPnt=aRect.BottomLeft();   eKind=HDL_LWLFT; break; // Unten links
-//STRIP001      case 8: aPnt=aRect.BottomCenter(); eKind=HDL_LOWER; break; // Unten
-//STRIP001      case 9: aPnt=aRect.BottomRight();  eKind=HDL_LWRGT; break; // Unten rechts
-//STRIP001  }
-//STRIP001  if (aGeo.nShearWink!=0) ShearPoint(aPnt,aRect.TopLeft(),aGeo.nTan);
-//STRIP001  if (aGeo.nDrehWink!=0) RotatePoint(aPnt,aRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001  if (eKind!=HDL_MOVE) {
-//STRIP001      pH=new SdrHdl(aPnt,eKind);
-//STRIP001      pH->SetPointNum(nPNum);
-//STRIP001      pH->SetObj((SdrObject*)this);
-//STRIP001      pH->SetDrehWink(aGeo.nDrehWink);
-//STRIP001  }
-//STRIP001  return pH;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::BegDrag(SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  FASTBOOL bWink=rDrag.GetHdl()!=NULL && rDrag.GetHdl()->GetKind()==HDL_CIRC;
-//STRIP001  FASTBOOL bOk=bWink;
-//STRIP001  if (bWink) {
-//STRIP001      long* pWink=new long;
-//STRIP001      *pWink=0;
-//STRIP001      rDrag.SetUser(pWink);
-//STRIP001      if (rDrag.GetHdl()->GetPointNum()==1 || rDrag.GetHdl()->GetPointNum()==2) {
-//STRIP001          rDrag.SetNoSnap(TRUE);
-//STRIP001      }
-//STRIP001  } else {
-//STRIP001      bOk=SdrTextObj::BegDrag(rDrag);
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::MovDrag(SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  FASTBOOL bWink=rDrag.GetHdl()!=NULL && rDrag.GetHdl()->GetKind()==HDL_CIRC;
-//STRIP001  if (bWink) {
-//STRIP001      Point aPt(rDrag.GetNow());
-//STRIP001      // Unrotate:
-//STRIP001      if (aGeo.nDrehWink!=0) RotatePoint(aPt,aRect.TopLeft(),-aGeo.nSin,aGeo.nCos); // -sin fuer Umkehrung
-//STRIP001      // Unshear:
-//STRIP001      if (aGeo.nShearWink!=0) ShearPoint(aPt,aRect.TopLeft(),-aGeo.nTan); // -tan fuer Umkehrung
-//STRIP001      aPt-=aRect.Center();
-//STRIP001      long nWdt=aRect.Right()-aRect.Left();
-//STRIP001      long nHgt=aRect.Bottom()-aRect.Top();
-//STRIP001      if (nWdt>=nHgt) {
-//STRIP001          aPt.Y()=BigMulDiv(aPt.Y(),nWdt,nHgt);
-//STRIP001      } else {
-//STRIP001          aPt.X()=BigMulDiv(aPt.X(),nHgt,nWdt);
-//STRIP001      }
-//STRIP001      long nWink=NormAngle360(GetAngle(aPt));
-//STRIP001      if (rDrag.GetView()!=NULL && rDrag.GetView()->IsAngleSnapEnabled()) {
-//STRIP001          long nSA=rDrag.GetView()->GetSnapAngle();
-//STRIP001          if (nSA!=0) { // Winkelfang
-//STRIP001              nWink+=nSA/2;
-//STRIP001              nWink/=nSA;
-//STRIP001              nWink*=nSA;
-//STRIP001              nWink=NormAngle360(nWink);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      long* pWink=(long*)(rDrag.GetUser());
-//STRIP001      if (*pWink!=nWink) {
-//STRIP001          *pWink=nWink;
-//STRIP001          return TRUE;
-//STRIP001      } else {
-//STRIP001          return FALSE;
-//STRIP001      }
-//STRIP001  } else {
-//STRIP001      return SdrTextObj::MovDrag(rDrag);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::EndDrag(SdrDragStat& rDrag)
-//STRIP001 {
-//STRIP001  FASTBOOL bWink=rDrag.GetHdl()!=NULL && rDrag.GetHdl()->GetKind()==HDL_CIRC;
-//STRIP001  if (bWink) {
-//STRIP001      Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
-//STRIP001      SendRepaintBroadcast();
-//STRIP001      long nWink=*((long*)(rDrag.GetUser()));
-//STRIP001      if (rDrag.GetHdl()->GetPointNum()==1) nStartWink=nWink;
-//STRIP001      if (rDrag.GetHdl()->GetPointNum()==2) nEndWink=nWink;
-//STRIP001      SetRectsDirty();
-//STRIP001      SetXPolyDirty();
-//STRIP001      ImpSetCircInfoToAttr();
-//STRIP001      SetChanged();
-//STRIP001      SendRepaintBroadcast();
-//STRIP001      SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
-//STRIP001      return TRUE;
-//STRIP001  } else {
-//STRIP001      return SdrTextObj::EndDrag(rDrag);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::BrkDrag(SdrDragStat& rDrag) const
-//STRIP001 {
-//STRIP001  SdrTextObj::BrkDrag(rDrag);
-//STRIP001 }
 
-//STRIP001 XubString SdrCircObj::GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const
-//STRIP001 {
-//STRIP001  if(bCreateComment)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001      ImpTakeDescriptionStr(STR_ViewCreateObj, aStr);
-//STRIP001      UINT32 nPntAnz(rDrag.GetPointAnz());
-//STRIP001
-//STRIP001      if(eKind != OBJ_CIRC && nPntAnz > 2)
-//STRIP001      {
-//STRIP001          ImpCircUser* pU = (ImpCircUser*)rDrag.GetUser();
-//STRIP001          INT32 nWink;
-//STRIP001
-//STRIP001          aStr.AppendAscii(" (");
-//STRIP001
-//STRIP001          if(nPntAnz == 3)
-//STRIP001              nWink = pU->nStart;
-//STRIP001          else
-//STRIP001              nWink = pU->nEnd;
-//STRIP001
-//STRIP001          aStr += GetWinkStr(nWink,FALSE);
-//STRIP001          aStr += sal_Unicode(')');
-//STRIP001      }
-//STRIP001      return aStr;
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bWink(rDrag.GetHdl() && rDrag.GetHdl()->GetKind() == HDL_CIRC);
-//STRIP001
-//STRIP001  if(bWink)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001      INT32 nWink(*((long*)(rDrag.GetUser())));
-//STRIP001
-//STRIP001      ImpTakeDescriptionStr(STR_DragCircAngle, aStr);
-//STRIP001      aStr.AppendAscii(" (");
-//STRIP001      aStr += GetWinkStr(nWink,FALSE);
-//STRIP001      aStr += sal_Unicode(')');
-//STRIP001
-//STRIP001      return aStr;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      return SdrTextObj::GetDragComment(rDrag, bUndoDragComment, FALSE);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const
-//STRIP001 {
-//STRIP001  rXPP.Clear();
-//STRIP001  FASTBOOL bWink=rDrag.GetHdl()!=NULL && rDrag.GetHdl()->GetKind()==HDL_CIRC;
-//STRIP001  long a=nStartWink;
-//STRIP001  long e=nEndWink;
-//STRIP001  if (bWink) {
-//STRIP001      long nWink=*((long*)(rDrag.GetUser()));
-//STRIP001      if (rDrag.GetHdl()->GetPointNum()==1) a=nWink;
-//STRIP001      else e=nWink;
-//STRIP001  }
-//STRIP001  Rectangle aTmpRect(bWink ? aRect : ImpDragCalcRect(rDrag));
-//STRIP001  XPolygon aXP(ImpCalcXPoly(aTmpRect,a,e));
-//STRIP001  if (!bXPolyIsLine) { // Polygon schliessen
-//STRIP001      USHORT n=aXP.GetPointCount();
-//STRIP001      Point aPnt(aXP[0]);
-//STRIP001      aXP[n]=aPnt;
-//STRIP001  }
-//STRIP001  rXPP.Insert(aXP);
-//STRIP001 }
 
-//STRIP001 void ImpCircUser::SetCreateParams(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  rStat.TakeCreateRect(aR);
-//STRIP001  aR.Justify();
-//STRIP001  aCenter=aR.Center();
-//STRIP001  nWdt=aR.Right()-aR.Left();
-//STRIP001  nHgt=aR.Bottom()-aR.Top();
-//STRIP001  nMaxRad=((nWdt>nHgt ? nWdt : nHgt)+1) /2;
-//STRIP001  nStart=0;
-//STRIP001  nEnd=36000;
-//STRIP001  if (rStat.GetPointAnz()>2) {
-//STRIP001      Point aP(rStat.GetPoint(2)-aCenter);
-//STRIP001      if (nWdt==0) aP.X()=0;
-//STRIP001      if (nHgt==0) aP.Y()=0;
-//STRIP001      if (nWdt>=nHgt) {
-//STRIP001          if (nHgt!=0) aP.Y()=aP.Y()*nWdt/nHgt;
-//STRIP001      } else {
-//STRIP001          if (nWdt!=0) aP.X()=aP.X()*nHgt/nWdt;
-//STRIP001      }
-//STRIP001      nStart=NormAngle360(GetAngle(aP));
-//STRIP001      if (rStat.GetView()!=NULL && rStat.GetView()->IsAngleSnapEnabled()) {
-//STRIP001          long nSA=rStat.GetView()->GetSnapAngle();
-//STRIP001          if (nSA!=0) { // Winkelfang
-//STRIP001              nStart+=nSA/2;
-//STRIP001              nStart/=nSA;
-//STRIP001              nStart*=nSA;
-//STRIP001              nStart=NormAngle360(nStart);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      SetWinkPnt(aR,nStart,aP1);
-//STRIP001      nEnd=nStart;
-//STRIP001      aP2=aP1;
-//STRIP001  } else aP1=aCenter;
-//STRIP001  if (rStat.GetPointAnz()>3) {
-//STRIP001      Point aP(rStat.GetPoint(3)-aCenter);
-//STRIP001      if (nWdt>=nHgt) {
-//STRIP001          aP.Y()=BigMulDiv(aP.Y(),nWdt,nHgt);
-//STRIP001      } else {
-//STRIP001          aP.X()=BigMulDiv(aP.X(),nHgt,nWdt);
-//STRIP001      }
-//STRIP001      nEnd=NormAngle360(GetAngle(aP));
-//STRIP001      if (rStat.GetView()!=NULL && rStat.GetView()->IsAngleSnapEnabled()) {
-//STRIP001          long nSA=rStat.GetView()->GetSnapAngle();
-//STRIP001          if (nSA!=0) { // Winkelfang
-//STRIP001              nEnd+=nSA/2;
-//STRIP001              nEnd/=nSA;
-//STRIP001              nEnd*=nSA;
-//STRIP001              nEnd=NormAngle360(nEnd);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      SetWinkPnt(aR,nEnd,aP2);
-//STRIP001  } else aP2=aCenter;
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::ImpSetCreateParams(SdrDragStat& rStat) const
-//STRIP001 {
-//STRIP001  ImpCircUser* pU=(ImpCircUser*)rStat.GetUser();
-//STRIP001  if (pU==NULL) {
-//STRIP001      pU=new ImpCircUser;
-//STRIP001      rStat.SetUser(pU);
-//STRIP001  }
-//STRIP001  pU->SetCreateParams(rStat);
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::BegCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  rStat.SetOrtho4Possible();
-//STRIP001  ImpSetCreateParams(rStat);
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::MovCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  ImpSetCreateParams(rStat);
-//STRIP001  ImpCircUser* pU=(ImpCircUser*)rStat.GetUser();
-//STRIP001  rStat.SetActionRect(pU->aR);
-//STRIP001  aRect=pU->aR; // fuer ObjName
-//STRIP001  ImpJustifyRect(aRect);
-//STRIP001  nStartWink=pU->nStart;
-//STRIP001  nEndWink=pU->nEnd;
-//STRIP001  bBoundRectDirty=TRUE;
-//STRIP001  bSnapRectDirty=TRUE;
-//STRIP001  SetXPolyDirty();
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd)
-//STRIP001 {
-//STRIP001  ImpSetCreateParams(rStat);
-//STRIP001  ImpCircUser* pU=(ImpCircUser*)rStat.GetUser();
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  if (eCmd==SDRCREATE_FORCEEND && rStat.GetPointAnz()<4) eKind=OBJ_CIRC;
-//STRIP001  if (eKind==OBJ_CIRC) {
-//STRIP001      bRet=rStat.GetPointAnz()>=2;
-//STRIP001      if (bRet) {
-//STRIP001          aRect=pU->aR;
-//STRIP001          ImpJustifyRect(aRect);
-//STRIP001      }
-//STRIP001  } else {
-//STRIP001      rStat.SetNoSnap(rStat.GetPointAnz()>=2);
-//STRIP001      rStat.SetOrtho4Possible(rStat.GetPointAnz()<2);
-//STRIP001      bRet=rStat.GetPointAnz()>=4;
-//STRIP001      if (bRet) {
-//STRIP001          aRect=pU->aR;
-//STRIP001          ImpJustifyRect(aRect);
-//STRIP001          nStartWink=pU->nStart;
-//STRIP001          nEndWink=pU->nEnd;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  bClosedObj=eKind!=OBJ_CARC;
-//STRIP001  SetRectsDirty();
-//STRIP001  SetXPolyDirty();
-//STRIP001  ImpSetCircInfoToAttr();
-//STRIP001  if (bRet) {
-//STRIP001      delete pU;
-//STRIP001      rStat.SetUser(NULL);
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::BrkCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  ImpCircUser* pU=(ImpCircUser*)rStat.GetUser();
-//STRIP001  delete pU;
-//STRIP001  rStat.SetUser(NULL);
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrCircObj::BckCreate(SdrDragStat& rStat)
-//STRIP001 {
-//STRIP001  rStat.SetNoSnap(rStat.GetPointAnz()>=3);
-//STRIP001  rStat.SetOrtho4Possible(rStat.GetPointAnz()<3);
-//STRIP001  return eKind!=OBJ_CIRC;
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const
-//STRIP001 {
-//STRIP001  rXPP.Clear();
-//STRIP001  ImpCircUser* pU=(ImpCircUser*)rDrag.GetUser();
-//STRIP001  if (eKind==OBJ_CIRC || rDrag.GetPointAnz()<4) {
-//STRIP001      rXPP.Insert(XPolygon(pU->aCenter,pU->aR.GetWidth()/2,pU->aR.GetHeight()/2));
-//STRIP001      if (rDrag.GetPointAnz()==3) {
-//STRIP001          XPolygon aXP(2);
-//STRIP001          aXP[0]=pU->aCenter;
-//STRIP001          aXP[1]=pU->aP1;
-//STRIP001          rXPP.Insert(aXP);
-//STRIP001      }
-//STRIP001  } else {
-//STRIP001      XPolygon aXP(ImpCalcXPoly(pU->aR,pU->nStart,pU->nEnd));
-//STRIP001      if (!bXPolyIsLine) { // Polygon schliessen
-//STRIP001          USHORT n=aXP.GetPointCount();
-//STRIP001          Point aPnt(aXP[0]);
-//STRIP001          aXP[n]=aPnt;
-//STRIP001      }
-//STRIP001      rXPP.Insert(aXP);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 Pointer SdrCircObj::GetCreatePointer() const
-//STRIP001 {
-//STRIP001  switch (eKind) {
-//STRIP001      case OBJ_CIRC: return Pointer(POINTER_DRAW_ELLIPSE);
-//STRIP001      case OBJ_SECT: return Pointer(POINTER_DRAW_PIE);
-//STRIP001      case OBJ_CARC: return Pointer(POINTER_DRAW_ARC);
-//STRIP001      case OBJ_CCUT: return Pointer(POINTER_DRAW_CIRCLECUT);
-//STRIP001  } // switch
-//STRIP001  return Pointer(POINTER_CROSS);
-//STRIP001 }
 
 /*N*/ void SdrCircObj::NbcMove(const Size& aSiz)
 /*N*/ {
@@ -1111,90 +548,9 @@ namespace binfilter {
 /*N*/   ImpSetCircInfoToAttr();
 /*N*/ }
 
-//STRIP001 void SdrCircObj::NbcMirror(const Point& rRef1, const Point& rRef2)
-//STRIP001 {
-//STRIP001  long nWink0=aGeo.nDrehWink;
-//STRIP001  FASTBOOL bFreeMirr=eKind!=OBJ_CIRC;
-//STRIP001  Point aTmpPt1;
-//STRIP001  Point aTmpPt2;
-//STRIP001  if (bFreeMirr) { // bei freier Spiegelachse einige Vorbereitungen Treffen
-//STRIP001      Point aCenter(aRect.Center());
-//STRIP001      long nWdt=aRect.GetWidth()-1;
-//STRIP001      long nHgt=aRect.GetHeight()-1;
-//STRIP001      long nMaxRad=((nWdt>nHgt ? nWdt : nHgt)+1) /2;
-//STRIP001      double a;
-//STRIP001      // Startpunkt
-//STRIP001      a=nStartWink*nPi180;
-//STRIP001      aTmpPt1=Point(Round(cos(a)*nMaxRad),-Round(sin(a)*nMaxRad));
-//STRIP001      if (nWdt==0) aTmpPt1.X()=0;
-//STRIP001      if (nHgt==0) aTmpPt1.Y()=0;
-//STRIP001      aTmpPt1+=aCenter;
-//STRIP001      // Endpunkt
-//STRIP001      a=nEndWink*nPi180;
-//STRIP001      aTmpPt2=Point(Round(cos(a)*nMaxRad),-Round(sin(a)*nMaxRad));
-//STRIP001      if (nWdt==0) aTmpPt2.X()=0;
-//STRIP001      if (nHgt==0) aTmpPt2.Y()=0;
-//STRIP001      aTmpPt2+=aCenter;
-//STRIP001      if (aGeo.nDrehWink!=0) {
-//STRIP001          RotatePoint(aTmpPt1,aRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001          RotatePoint(aTmpPt2,aRect.TopLeft(),aGeo.nSin,aGeo.nCos);
-//STRIP001      }
-//STRIP001      if (aGeo.nShearWink!=0) {
-//STRIP001          ShearPoint(aTmpPt1,aRect.TopLeft(),aGeo.nTan);
-//STRIP001          ShearPoint(aTmpPt2,aRect.TopLeft(),aGeo.nTan);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  SdrTextObj::NbcMirror(rRef1,rRef2);
-//STRIP001  if (eKind!=OBJ_CIRC) { // Anpassung von Start- und Endwinkel
-//STRIP001      MirrorPoint(aTmpPt1,rRef1,rRef2);
-//STRIP001      MirrorPoint(aTmpPt2,rRef1,rRef2);
-//STRIP001      // Unrotate:
-//STRIP001      if (aGeo.nDrehWink!=0) {
-//STRIP001          RotatePoint(aTmpPt1,aRect.TopLeft(),-aGeo.nSin,aGeo.nCos); // -sin fuer Umkehrung
-//STRIP001          RotatePoint(aTmpPt2,aRect.TopLeft(),-aGeo.nSin,aGeo.nCos); // -sin fuer Umkehrung
-//STRIP001      }
-//STRIP001      // Unshear:
-//STRIP001      if (aGeo.nShearWink!=0) {
-//STRIP001          ShearPoint(aTmpPt1,aRect.TopLeft(),-aGeo.nTan); // -tan fuer Umkehrung
-//STRIP001          ShearPoint(aTmpPt2,aRect.TopLeft(),-aGeo.nTan); // -tan fuer Umkehrung
-//STRIP001      }
-//STRIP001      Point aCenter(aRect.Center());
-//STRIP001      aTmpPt1-=aCenter;
-//STRIP001      aTmpPt2-=aCenter;
-//STRIP001      // Weil gespiegelt sind die Winkel nun auch noch vertauscht
-//STRIP001      nStartWink=GetAngle(aTmpPt2);
-//STRIP001      nEndWink  =GetAngle(aTmpPt1);
-//STRIP001      long nWinkDif=nEndWink-nStartWink;
-//STRIP001      nStartWink=NormAngle360(nStartWink);
-//STRIP001      nEndWink  =NormAngle360(nEndWink);
-//STRIP001      if (nWinkDif==36000) nEndWink+=nWinkDif; // Vollkreis
-//STRIP001  }
-//STRIP001  SetXPolyDirty();
-//STRIP001  ImpSetCircInfoToAttr();
-//STRIP001 }
 
-//STRIP001 SdrObjGeoData* SdrCircObj::NewGeoData() const
-//STRIP001 {
-//STRIP001  return new SdrCircObjGeoData;
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::SaveGeoData(SdrObjGeoData& rGeo) const
-//STRIP001 {
-//STRIP001  SdrRectObj::SaveGeoData(rGeo);
-//STRIP001  SdrCircObjGeoData& rCGeo=(SdrCircObjGeoData&)rGeo;
-//STRIP001  rCGeo.nStartWink=nStartWink;
-//STRIP001  rCGeo.nEndWink  =nEndWink;
-//STRIP001 }
 
-//STRIP001 void SdrCircObj::RestGeoData(const SdrObjGeoData& rGeo)
-//STRIP001 {
-//STRIP001  SdrRectObj::RestGeoData(rGeo);
-//STRIP001  SdrCircObjGeoData& rCGeo=(SdrCircObjGeoData&)rGeo;
-//STRIP001  nStartWink=rCGeo.nStartWink;
-//STRIP001  nEndWink  =rCGeo.nEndWink;
-//STRIP001  SetXPolyDirty();
-//STRIP001  ImpSetCircInfoToAttr();
-//STRIP001 }
 
 /*N*/ void Union(Rectangle& rR, const Point& rP)
 /*N*/ {
@@ -1285,23 +641,7 @@ namespace binfilter {
 /*N*/   ImpSetCircInfoToAttr();
 /*N*/ }
 
-//STRIP001 USHORT SdrCircObj::GetSnapPointCount() const
-//STRIP001 {
-//STRIP001  if (eKind==OBJ_CIRC) {
-//STRIP001      return 1;
-//STRIP001  } else {
-//STRIP001      return 3;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 Point SdrCircObj::GetSnapPoint(USHORT i) const
-//STRIP001 {
-//STRIP001  switch (i) {
-//STRIP001      case 1 : return aPnt1;
-//STRIP001      case 2 : return aPnt2;
-//STRIP001      default: return aRect.Center();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void __EXPORT SdrCircObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
