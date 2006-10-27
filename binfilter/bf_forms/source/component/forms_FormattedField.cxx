@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_FormattedField.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:15:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:01:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,25 +58,13 @@
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
-// auto strip #ifndef _FRM_RESOURCE_HXX_
-// auto strip #include "frm_resource.hxx"
-// auto strip #endif
 #ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
 #endif
 
-// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
-// auto strip #include <comphelper/sequence.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
-// auto strip #include <comphelper/datetime.hxx>
-// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
@@ -94,12 +82,6 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_WINTYPES_HXX
-// auto strip #include <vcl/wintypes.hxx>
-// auto strip #endif
 #ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
 #endif
@@ -107,15 +89,9 @@
 #include <rtl/textenc.h>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_MOUSEEVENT_HPP_
-// auto strip #include <com/sun/star/awt/MouseEvent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XSUBMIT_HPP_
 #include <com/sun/star/form/XSubmit.hpp>
 #endif
