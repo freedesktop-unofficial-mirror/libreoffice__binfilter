@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_thints.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-02-28 10:34:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:19:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,33 +40,18 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #ifndef _SOT_FACTORY_HXX
-// auto strip #include <sot/factory.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_XMLCNITM_HXX
-// auto strip #include <bf_svx/xmlcnitm.hxx>
-// auto strip #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
 #include <svtools/itemiter.hxx>
 #endif
-// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
-// auto strip #include <bf_svx/fontitem.hxx>
-// auto strip #endif
 #ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
 #endif
 #ifndef _SVX_EMPHITEM_HXX //autogen
 #include <bf_svx/emphitem.hxx>
 #endif
-// auto strip #ifndef _SVX_CHARSCALEITEM_HXX
-// auto strip #include <bf_svx/charscaleitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_CHARROTATEITEM_HXX
-// auto strip #include <bf_svx/charrotateitem.hxx>
-// auto strip #endif
 
 #ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
@@ -74,9 +59,6 @@
 #ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
 #endif
-// auto strip #ifndef _FMTFLD_HXX //autogen
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
@@ -110,9 +92,6 @@
 #ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
 #endif
-// auto strip #ifndef _CHARATR_HXX
-// auto strip #include <charatr.hxx>
-// auto strip #endif
 #ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
 #endif
@@ -122,9 +101,6 @@
 #ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
 #endif
-// auto strip #ifndef _FMTRUBY_HXX
-// auto strip #include <fmtruby.hxx>
-// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
@@ -136,24 +112,12 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx>
-// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
 #endif
@@ -175,9 +139,6 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
 // OD 26.06.2003 #108784#
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
@@ -292,7 +253,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   case RES_UNKNOWNATR_CONTAINER:
 /*?*/   case RES_TXTATR_UNKNOWN_CONTAINER:
             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtXMLAttrContainer( (SvXMLAttrContainerItem&)rNew,
-//STRIP001 /*?*/                                        nStt, nEnd );
 /*?*/       break;
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       pNew = new SwTxtRuby( (SwFmtRuby&)rNew, nStt, nEnd );
@@ -713,18 +673,6 @@ using namespace ::com::sun::star::i18n;
  *                      SwTxtNode::DelSoftHyph()
  *************************************************************************/
 
-//STRIP001 void SwTxtNode::DelSoftHyph( const xub_StrLen nStart, const xub_StrLen nEnd )
-//STRIP001 {
-//STRIP001  xub_StrLen nFndPos = nStart, nEndPos = nEnd;
-//STRIP001  while( STRING_NOTFOUND !=
-//STRIP001          ( nFndPos = aText.Search( CHAR_SOFTHYPHEN, nFndPos )) &&
-//STRIP001          nFndPos < nEndPos )
-//STRIP001  {
-//STRIP001      const SwIndex aIdx( this, nFndPos );
-//STRIP001      Erase( aIdx, 1 );
-//STRIP001      --nEndPos;
-//STRIP001  }
-//STRIP001 }
 
 // setze diese Attribute am TextNode. Wird der gesamte Bereich umspannt,
 // dann setze sie nur im AutoAttrSet (SwCntntNode:: SetAttr)
@@ -783,8 +731,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/               GetDoc()->GetDfltCharFmt()==((SwFmtCharFmt*)pItem)->GetCharFmt())
 /*N*/           {
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SwIndex aIndex( this, nStt );
-//STRIP001 /*?*/                RstAttr( aIndex, nEnd - nStt, RES_TXTATR_CHARFMT, 0 );
-//STRIP001 /*?*/                DontExpandFmt( aIndex );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -1073,26 +1019,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return rSet.Count() ? TRUE : FALSE;
 /*N*/ }
 
-//STRIP001 int lcl_IsNewAttrInSet( const SwpHints& rHints, const SfxPoolItem& rItem,
-//STRIP001                      const xub_StrLen nEnd )
-//STRIP001 {
-//STRIP001  int bIns = TRUE;
-//STRIP001  for( USHORT i = 0; i < rHints.Count(); ++i )
-//STRIP001  {
-//STRIP001      const SwTxtAttr *pOther = rHints[ i ];
-//STRIP001      if( *pOther->GetStart() )
-//STRIP001          break;
-//STRIP001
-//STRIP001      if( pOther->GetEnd() &&
-//STRIP001          *pOther->GetEnd() == nEnd &&
-//STRIP001          ( pOther->IsCharFmtAttr() || pOther->Which() == rItem.Which() ) )
-//STRIP001      {
-//STRIP001          bIns = FALSE;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bIns;
-//STRIP001 }
 
 /*N*/ void SwTxtNode::FmtToTxtAttr( SwTxtNode* pNd )
 /*N*/ {
@@ -1112,15 +1038,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/           while( TRUE )
 /*?*/           {
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pSwpHints, *pItem, GetTxt().Len() ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pSwpHints->SwpHintsArr::Insert(
-//STRIP001 /*?*/                            MakeTxtAttr( *pItem, 0, GetTxt().Len() ) );
-//STRIP001 /*?*/                    GetpSwAttrSet()->ClearItem( pItem->Which() );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( aIter.IsAtEnd() )
-//STRIP001 /*?*/                    break;
-//STRIP001 /*?*/                pItem = aIter.NextItem();
 /*?*/           }
 /*?*/       }
 /*N*/
@@ -1137,23 +1054,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       if( aThisSet.Count() )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemIter aIter( aThisSet );
-//STRIP001 /*?*/            const SfxPoolItem* pItem = aIter.GetCurItem(), *pNdItem;
-//STRIP001 /*?*/            while( TRUE )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if( ( SFX_ITEM_SET != aNdSet.GetItemState( pItem->Which(), FALSE,
-//STRIP001 /*?*/                    &pNdItem ) || *pItem != *pNdItem ) &&
-//STRIP001 /*?*/                    lcl_IsNewAttrInSet( *pSwpHints, *pItem, GetTxt().Len() ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    pSwpHints->SwpHintsArr::Insert(
-//STRIP001 /*?*/                            MakeTxtAttr( *pItem, 0, GetTxt().Len() ) );
-//STRIP001 /*?*/                    GetpSwAttrSet()->ClearItem( pItem->Which() );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                aNdSet.ClearItem( pItem->Which() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( aIter.IsAtEnd() )
-//STRIP001 /*?*/                    break;
-//STRIP001 /*?*/                pItem = aIter.NextItem();
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/
 /*N*/       if( aNdSet.Count() )
@@ -1163,13 +1063,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/           while( TRUE )
 /*?*/           {
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pNd->pSwpHints, *pItem, pNd->GetTxt().Len() ) )
-//STRIP001 /*?*/                    pNd->pSwpHints->SwpHintsArr::Insert(
-//STRIP001 /*?*/                            pNd->MakeTxtAttr( *pItem, 0, pNd->GetTxt().Len() ) );
-//STRIP001 /*?*/                pNd->GetpSwAttrSet()->ClearItem( pItem->Which() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( aIter.IsAtEnd() )
-//STRIP001 /*?*/                    break;
-//STRIP001 /*?*/                pItem = aIter.NextItem();
 /*?*/           }
 /*?*/
 /*?*/           SwFmtChg aTmp1( pNd->GetFmtColl() );
@@ -1282,11 +1175,6 @@ using namespace ::com::sun::star::i18n;
  *                      SwpHints::NoteInHistory()
  *************************************************************************/
 
-//STRIP001 void SwpHints::NoteInHistory( SwTxtAttr *pAttr, const BOOL bNew )
-//STRIP001 {
-//STRIP001  if ( pHistory )
-//STRIP001      pHistory->Add( pAttr, bNew );
-//STRIP001 }
 
 /*************************************************************************
  *                      SwpHints::ClearDummies()
@@ -1596,34 +1484,6 @@ using namespace ::com::sun::star::i18n;
  * identischen Bereich mit einem inneren Attribut bekaeme.
  */
 
-//STRIP001 BOOL SwpHints::Forget( const std::vector< const SwTxtAttr* >* pExcludes,
-//STRIP001                        const USHORT i, const USHORT nWhich,
-//STRIP001                        const xub_StrLen nStrt, const xub_StrLen nEnd )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  for ( USHORT j = ( pExcludes ? i + 1 : 0 ); j < Count(); j++ )
-//STRIP001  {
-//STRIP001         SwTxtAttr *pHt = GetHt( j );
-//STRIP001      if ( *pHt->GetStart() > nStrt )
-//STRIP001          break;
-//STRIP001      const USHORT nWhch = pHt->Which();
-//STRIP001      const xub_StrLen *pEnd = pHt->GetEnd();
-//STRIP001
-//STRIP001         // Check if we already have an attribute of type nWhich with the
-//STRIP001         // same range as the new attribute. We only consider attributes
-//STRIP001         // which are not included in rExclude.
-//STRIP001      if ( pEnd && *pEnd == nEnd &&
-//STRIP001           ( nWhch == nWhich ||
-//STRIP001              ( pHt->IsCharFmtAttr() && lcl_Included( nWhich, pHt ) ) ) &&
-//STRIP001           ( ! pExcludes ||
-//STRIP001             pExcludes->end() == std::find( pExcludes->begin(), pExcludes->end(), pHt ) ) )
-//STRIP001         {
-//STRIP001             bRet = TRUE;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwpHints::Insert()
@@ -1714,9 +1574,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       if( pFldType != pFld->GetTyp() )
 /*N*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtFld* pFmtFld = (SwFmtFld*)&((SwTxtFld*)pHint)
-//STRIP001 /*?*/                                                                ->GetFld();
-//STRIP001 /*?*/                            pFldType->Add( pFmtFld );          // ummelden
-//STRIP001 /*?*/                            pFmtFld->GetFld()->ChgTyp( pFldType );
 /*N*/                       }
 /*N*/                       pFldType->SetSeqRefNo( *(SwSetExpField*)pFld );
 /*N*/                   }
@@ -1753,34 +1610,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   0 != ( pHintEnd = pHint->GetEnd() ) )
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwComparePosition eCmp = ::ComparePosition(
-//STRIP001 /*?*/                            *pHt->GetStart(), *pHtEnd,
-//STRIP001 /*?*/                            *pHint->GetStart(), *pHintEnd );
-//STRIP001 /*?*/                    BOOL bDelOld = TRUE, bChgStart = FALSE, bChgEnd = FALSE;
-//STRIP001 /*?*/                    switch( eCmp )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                    case POS_BEFORE:
-//STRIP001 /*?*/                    case POS_BEHIND:    bDelOld = FALSE; break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    case POS_OUTSIDE:   bChgStart = bChgEnd = TRUE; break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    case POS_COLLIDE_END:
-//STRIP001 /*?*/                    case POS_OVERLAP_BEFORE:    bChgStart = TRUE; break;
-//STRIP001 /*?*/                    case POS_COLLIDE_START:
-//STRIP001 /*?*/                    case POS_OVERLAP_BEHIND:    bChgEnd = TRUE; break;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if( bChgStart )
-//STRIP001 /*?*/                        *pHint->GetStart() = *pHt->GetStart();
-//STRIP001 /*?*/                    if( bChgEnd )
-//STRIP001 /*?*/                        *pHintEnd = *pHtEnd;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if( bDelOld )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if( pHistory )
-//STRIP001 /*?*/                            pHistory->Add( pHt );
-//STRIP001 /*?*/                        rNode.DestroyAttr( Cut( n-- ) );
-//STRIP001 /*?*/                        --nEnd;
-//STRIP001 /*?*/                    }
 /*N*/               }
 /*N*/       }
 /*N*/       break;
@@ -1791,9 +1620,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ((SwTxtRuby*)pHint)->ChgTxtNode( &rNode );
-//STRIP001 /*?*/            SwCharFmt* pFmt = rNode.GetDoc()->GetCharFmtFromPool(
-//STRIP001 /*?*/                                                    RES_POOLCHR_RUBYTEXT );
-//STRIP001 /*?*/            pFmt->Add( (SwTxtRuby*)pHint );
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -1901,8 +1727,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           if( !bOtherFmt )
 /*?*/                           {
                                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                                 bOtherFmt = !lcl_Included( pOther->Which(),
-//STRIP001 /*?*/                                                           pHint );
-//STRIP001 /*?*/                                bCheckInclude = TRUE;
 /*?*/                           }
 /*?*/                           if( bOtherFmt )
 /*?*/                               nHtEnd = *pOther->GetStart();
@@ -2207,54 +2031,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       DeleteAtPos( nPos );
 /*N*/ }
 
-//STRIP001 void SwTxtNode::ClearSwpHintsArr( int bDelAll, int bDelFields )
-//STRIP001 {
-//STRIP001  if( pSwpHints )
-//STRIP001  {
-//STRIP001      USHORT nPos = 0;
-//STRIP001      while( nPos < pSwpHints->Count() )
-//STRIP001      {
-//STRIP001          SwTxtAttr* pDel = pSwpHints->GetHt( nPos );
-//STRIP001          BOOL bDel = bDelAll;
-//STRIP001          if( !bDelAll )
-//STRIP001              switch( pDel->Which() )
-//STRIP001              {
-//STRIP001              case RES_TXTATR_FLYCNT:
-//STRIP001              case RES_TXTATR_FTN:
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case RES_TXTATR_FIELD:
-//STRIP001              case RES_TXTATR_HARDBLANK:
-//STRIP001                  if( bDelFields )
-//STRIP001                      bDel = TRUE;
-//STRIP001                  break;
-//STRIP001              default:
-//STRIP001                  bDel = TRUE; break;
-//STRIP001              }
-//STRIP001          if( bDel )
-//STRIP001          {
-//STRIP001              pSwpHints->SwpHintsArr::DeleteAtPos( nPos );
-//STRIP001              DestroyAttr( pDel );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              ++nPos;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 FASTBOOL SwTxtNode::IsInSymbolFont( xub_StrLen nPos ) const
-//STRIP001 {
-//STRIP001  SfxItemSet aSet( (SfxItemPool&)GetDoc()->GetAttrPool(),
-//STRIP001                  RES_CHRATR_FONT, RES_CHRATR_FONT );
-//STRIP001  if( GetAttr( aSet, nPos, nPos ))
-//STRIP001      return RTL_TEXTENCODING_SYMBOL == ((SvxFontItem&)aSet.Get( RES_CHRATR_FONT ))
-//STRIP001                                  .GetCharSet();
-//STRIP001  return FALSE;
-//STRIP001
-//STRIP001 //JP 07.10.95: waere so auch nicht schlecht!
-//STRIP001 //   SwTxtFrmInfo aFInfo( GetFrm() );
-//STRIP001 //   return aFInfo.IsBullet( nPos );
-//STRIP001 }
 
 /*N*/ #ifdef VERTICAL_LAYOUT
 /*N*/ USHORT SwTxtNode::GetLang( const xub_StrLen nBegin, const xub_StrLen nLen,
