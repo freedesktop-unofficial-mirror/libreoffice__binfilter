@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_txtrange.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:28:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:46:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,13 +42,7 @@
 #include "txtrange.hxx"
 #include <math.h>
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
@@ -150,17 +144,6 @@ namespace binfilter {
  * the cache has to be cleared.
  * --------------------------------------------------*/
 
-//STRIP001 void TextRanger::SetVertical( BOOL bNew )
-//STRIP001 {
-//STRIP001  if( IsVertical() != bNew )
-//STRIP001  {
-//STRIP001      bVertical = bNew;
-//STRIP001      for( USHORT i = 0; i < nCacheSize; ++i )
-//STRIP001          delete pCache[i];
-//STRIP001      memset( pRangeArr, 0, nCacheSize * sizeof( Range ) );
-//STRIP001      memset( pCache, 0, nCacheSize * sizeof( SvLongsPtr ) );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -200,10 +183,6 @@ namespace binfilter {
 /*N*/   void NoteRange( BOOL bToggle );
 /*N*/   long Cut( long nY, const Point& rPt1, const Point& rPt2 );
 /*N*/   void Add();
-//STRIP001  void _NoteFarPoint( long nPx, long nPyDiff, long nDiff );
-//STRIP001  void NoteFarPoint( long nPx, long nPyDiff, long nDiff )
-//STRIP001      { if( nDiff ) _NoteFarPoint( nPx, nPyDiff, nDiff ); }
-//STRIP001  long CalcMax( const Point& rPt1, const Point& rPt2, long nRange, long nFar );
 /*N*/   void CheckCut( const Point& rLst, const Point& rNxt );
 /*N*/   inline long A( const Point& rP ) const { return bRotate ? rP.Y() : rP.X(); }
 /*N*/   inline long B( const Point& rP ) const { return bRotate ? rP.X() : rP.Y(); }
@@ -251,31 +230,6 @@ namespace binfilter {
 /*N*/   pLongArr->Remove( 0, pLongArr->Count() );
 /*N*/ }
 
-//STRIP001 long SvxBoundArgs::CalcMax( const Point& rPt1, const Point& rPt2,
-//STRIP001  long nRange, long nFarRange )
-//STRIP001 {
-//STRIP001  double nDa = Cut( nRange, rPt1, rPt2 ) - Cut( nFarRange, rPt1, rPt2 );
-//STRIP001  double nB;
-//STRIP001  if( nDa < 0 )
-//STRIP001  {
-//STRIP001      nDa = -nDa;
-//STRIP001      nB = nEnd;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      nB = nStart;
-//STRIP001  nB *= nB;
-//STRIP001  nB += nDa * nDa;
-//STRIP001  nB = nRange + nDa * ( nFarRange - nRange ) / sqrt( nB );
-//STRIP001
-//STRIP001  BOOL bNote;
-//STRIP001  if( nB < B(rPt2) )
-//STRIP001      bNote = nB > B(rPt1);
-//STRIP001  else
-//STRIP001      bNote = nB < B(rPt1);
-//STRIP001  if( bNote )
-//STRIP001      return( long( nB ) );
-//STRIP001  return 0;
-//STRIP001 }
 
 /*N*/ void SvxBoundArgs::CheckCut( const Point& rLst, const Point& rNxt )
 /*N*/ {
@@ -289,29 +243,14 @@ namespace binfilter {
 /*N*/       if( nLowDiff && ( ( nCut & 1 ) || nLast == 1 || nNext == 1 ) )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nBottom, nLower );
-//STRIP001 /*?*/            if( nYps )
-//STRIP001 /*?*/                _NoteFarPoint( Cut( nYps, rLst, rNxt ), nLower-nYps, nLowDiff );
 /*N*/       }
 /*N*/       if( nUpDiff && ( ( nCut & 2 ) || nLast == 2 || nNext == 2 ) )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nTop, nUpper );
-//STRIP001 /*?*/            if( nYps )
-//STRIP001 /*?*/                _NoteFarPoint( Cut( nYps, rLst, rNxt ), nYps-nUpper, nUpDiff );
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SvxBoundArgs::_NoteFarPoint( long nPa, long nPbDiff, long nDiff )
-//STRIP001 {
-//STRIP001  long nTmpA;
-//STRIP001  double nQuot = 2 * nDiff - nPbDiff;
-//STRIP001  nQuot *= nPbDiff;
-//STRIP001  nQuot = sqrt( nQuot );
-//STRIP001  nQuot /= nDiff;
-//STRIP001  nTmpA = nPa - long( nStart * nQuot );
-//STRIP001  nPbDiff = nPa + long( nEnd * nQuot );
-//STRIP001  NoteMargin( nTmpA, nPbDiff );
-//STRIP001 }
 
 /*N*/ void SvxBoundArgs::NoteRange( BOOL bToggle )
 /*N*/ {
@@ -395,14 +334,6 @@ namespace binfilter {
 /*N*/               if( nLast )
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bMultiple || !nAct )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        nMin = USHRT_MAX;
-//STRIP001 /*?*/                        nMax = 0;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    if( nLast & 1 )
-//STRIP001 /*?*/                        NoteFarPoint( A(rNull), nLower - B(rNull), nLowDiff );
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        NoteFarPoint( A(rNull), B(rNull) - nUpper, nUpDiff );
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -732,12 +663,6 @@ namespace binfilter {
 /*N*/   return pCache[ nIndex ];
 /*N*/ }
 
-//STRIP001 const Rectangle& TextRanger::_GetBoundRect()
-//STRIP001 {
-//STRIP001  DBG_ASSERT( 0 == pBound, "Don't call twice." );
-//STRIP001  pBound = new Rectangle( pPoly->GetBoundRect() );
-//STRIP001  return *pBound;
-//STRIP001 }
 
 
 }
