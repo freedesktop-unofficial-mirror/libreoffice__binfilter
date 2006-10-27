@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_imoptdlg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:59:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:44:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,13 +34,11 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "imoptdlg.hxx"
-// auto strip #include "scresid.hxx"
 #include "imoptdlg.hrc"
 
 #ifndef _RTL_TENCINFO_H
@@ -49,9 +47,6 @@
 
 static const sal_Char pStrFix[] = "FIX";
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //STRIP001 added by binary filter//========================================================================
-// auto strip #include <tools/debug.hxx> //STRIP001 added by binary filter // ScDelimiterTable
-// auto strip #endif //STRIP001 added by binary filter//========================================================================
 namespace binfilter {
 
 class ScDelimiterTable
@@ -129,190 +124,18 @@ private:
 // ScImportOptionsDlg
 //========================================================================
 
-//STRIP001 ScImportOptionsDlg::ScImportOptionsDlg(
-//STRIP001         Window*                 pParent,
-//STRIP001         BOOL                    bAscii,
-//STRIP001         const ScImportOptions*  pOptions,
-//STRIP001         const String*           pStrTitle,
-//STRIP001         BOOL                    bMultiByte,
-//STRIP001         BOOL                    bOnlyDbtoolsEncodings,
-//STRIP001         BOOL                    bImport )
-//STRIP001
-//STRIP001  :   ModalDialog ( pParent, ScResId( RID_SCDLG_IMPORTOPT ) ),
-//STRIP001      aBtnOk      ( this, ScResId( BTN_OK ) ),
-//STRIP001      aBtnCancel  ( this, ScResId( BTN_CANCEL ) ),
-//STRIP001      aBtnHelp    ( this, ScResId( BTN_HELP ) ),
-//STRIP001      aFtFieldSep ( this, ScResId( FT_FIELDSEP ) ),
-//STRIP001      aEdFieldSep ( this, ScResId( ED_FIELDSEP ) ),
-//STRIP001      aFtTextSep  ( this, ScResId( FT_TEXTSEP ) ),
-//STRIP001      aEdTextSep  ( this, ScResId( ED_TEXTSEP ) ),
-//STRIP001      aFtFont     ( this, ScResId( FT_FONT ) ),
-//STRIP001         aLbFont     ( this, ScResId( bAscii ? DDLB_FONT : LB_FONT ) ),
-//STRIP001         aFlFieldOpt ( this, ScResId( FL_FIELDOPT ) ),
-//STRIP001         aCbFixed    ( this, ScResId( CB_FIXEDWIDTH ) )
-//STRIP001 {
-//STRIP001 /*N*/    // im Ctor-Initializer nicht moeglich (MSC kann das nicht):
-//STRIP001 /*N*/    pFieldSepTab = new ScDelimiterTable( String(ScResId(SCSTR_FIELDSEP)) );
-//STRIP001 /*N*/    pTextSepTab  = new ScDelimiterTable( String(ScResId(SCSTR_TEXTSEP)) );
-//STRIP001 /*N*/
-//STRIP001 /*N*/    String aStr = pFieldSepTab->FirstDel();
-//STRIP001 /*N*/    sal_Unicode nCode;
-//STRIP001 /*N*/
-//STRIP001 /*N*/    while ( aStr.Len() > 0 )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        aEdFieldSep.InsertEntry( aStr );
-//STRIP001 /*N*/        aStr = pFieldSepTab->NextDel();
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/
-//STRIP001 /*N*/    aStr = pTextSepTab->FirstDel();
-//STRIP001 /*N*/
-//STRIP001 /*N*/    while ( aStr.Len() > 0 )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        aEdTextSep.InsertEntry( aStr );
-//STRIP001 /*N*/        aStr = pTextSepTab->NextDel();
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/
-//STRIP001 /*N*/    aEdFieldSep.SetText( aEdFieldSep.GetEntry(0) );
-//STRIP001 /*N*/    aEdTextSep.SetText( aEdTextSep.GetEntry(0) );
-//STRIP001 /*N*/
-//STRIP001 /*N*/     if ( bOnlyDbtoolsEncodings )
-//STRIP001 /*N*/     {   //!TODO: Unicode and MultiByte would need work in each filter
-//STRIP001 /*N*/         // Think of field lengths in dBase export
-//STRIP001 /*N*/        if ( bMultiByte )
-//STRIP001 /*N*/             aLbFont.FillFromDbTextEncodingMap( bImport, RTL_TEXTENCODING_INFO_UNICODE );
-//STRIP001 /*N*/        else
-//STRIP001 /*N*/             aLbFont.FillFromDbTextEncodingMap( bImport, RTL_TEXTENCODING_INFO_UNICODE |
-//STRIP001 /*N*/                 RTL_TEXTENCODING_INFO_MULTIBYTE );
-//STRIP001 /*N*/     }
-//STRIP001 /*N*/     else if ( !bAscii )
-//STRIP001 /*N*/     {   //!TODO: Unicode would need work in each filter
-//STRIP001 /*N*/        if ( bMultiByte )
-//STRIP001 /*N*/             aLbFont.FillFromTextEncodingTable( bImport, RTL_TEXTENCODING_INFO_UNICODE );
-//STRIP001 /*N*/        else
-//STRIP001 /*N*/            aLbFont.FillFromTextEncodingTable( bImport, RTL_TEXTENCODING_INFO_UNICODE |
-//STRIP001 /*N*/                 RTL_TEXTENCODING_INFO_MULTIBYTE );
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/    else
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        if ( pOptions )
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            nCode = pOptions->nFieldSepCode;
-//STRIP001 /*N*/            aStr  = pFieldSepTab->GetDelimiter( nCode );
-//STRIP001 /*N*/
-//STRIP001 /*N*/            if ( !aStr.Len() )
-//STRIP001 /*N*/                aEdFieldSep.SetText( String((sal_Unicode)nCode) );
-//STRIP001 /*N*/            else
-//STRIP001 /*N*/                aEdFieldSep.SetText( aStr );
-//STRIP001 /*N*/
-//STRIP001 /*N*/            nCode = pOptions->nTextSepCode;
-//STRIP001 /*N*/            aStr  = pTextSepTab->GetDelimiter( nCode );
-//STRIP001 /*N*/
-//STRIP001 /*N*/            if ( !aStr.Len() )
-//STRIP001 /*N*/                aEdTextSep.SetText( String((sal_Unicode)nCode) );
-//STRIP001 /*N*/            else
-//STRIP001 /*N*/                aEdTextSep.SetText( aStr );
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        // all encodings allowed, even Unicode
-//STRIP001 /*N*/        aLbFont.FillFromTextEncodingTable( bImport );
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/
-//STRIP001 /*N*/     if( bAscii )
-//STRIP001 /*N*/     {
-//STRIP001 /*N*/         Size aWinSize( GetSizePixel() );
-//STRIP001 /*N*/         aWinSize.Height() = aCbFixed.GetPosPixel().Y() + aCbFixed.GetSizePixel().Height();
-//STRIP001 /*N*/         Size aDiffSize( LogicToPixel( Size( 0, 6 ), MapMode( MAP_APPFONT ) ) );
-//STRIP001 /*N*/         aWinSize.Height() += aDiffSize.Height();
-//STRIP001 /*N*/         SetSizePixel( aWinSize );
-//STRIP001 /*N*/         aCbFixed.Show();
-//STRIP001 /*N*/         aCbFixed.SetClickHdl( LINK( this, ScImportOptionsDlg, FixedWidthHdl ) );
-//STRIP001 /*N*/         aCbFixed.Check( FALSE );
-//STRIP001 /*N*/     }
-//STRIP001 /*N*/     else
-//STRIP001 /*N*/     {
-//STRIP001 /*N*/         aFlFieldOpt.SetText( aFtFont.GetText() );
-//STRIP001 /*N*/        aFtFieldSep.Hide();
-//STRIP001 /*N*/         aFtTextSep.Hide();
-//STRIP001 /*N*/         aFtFont.Hide();
-//STRIP001 /*N*/        aEdFieldSep.Hide();
-//STRIP001 /*N*/         aEdTextSep.Hide();
-//STRIP001 /*N*/         aCbFixed.Hide();
-//STRIP001 /*N*/        aLbFont.GrabFocus();
-//STRIP001 /*N*/     }
-//STRIP001 /*N*/
-//STRIP001 /*N*/    aLbFont.SelectTextEncoding( pOptions ? pOptions->eCharSet :
-//STRIP001 /*N*/        gsl_getSystemTextEncoding() );
-//STRIP001 /*N*/
-//STRIP001 /*N*/    // optionaler Titel:
-//STRIP001 /*N*/    if ( pStrTitle )
-//STRIP001 /*N*/        SetText( *pStrTitle );
-//STRIP001 /*N*/
-//STRIP001 /*N*/    FreeResource();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 __EXPORT ScImportOptionsDlg::~ScImportOptionsDlg()
-//STRIP001 {
-//STRIP001  delete pFieldSepTab;
-//STRIP001  delete pTextSepTab;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScImportOptionsDlg::GetImportOptions( ScImportOptions& rOptions ) const
-//STRIP001 {
-//STRIP001 /*N*/    rOptions.SetTextEncoding( aLbFont.GetSelectTextEncoding() );
-//STRIP001 /*N*/
-//STRIP001 /*N*/     if ( aCbFixed.IsVisible() )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        rOptions.nFieldSepCode = GetCodeFromCombo( aEdFieldSep );
-//STRIP001 /*N*/        rOptions.nTextSepCode  = GetCodeFromCombo( aEdTextSep );
-//STRIP001 /*N*/         rOptions.bFixedWidth = aCbFixed.IsChecked();
-//STRIP001 /*N*/    }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 USHORT ScImportOptionsDlg::GetCodeFromCombo( const ComboBox& rEd ) const
-//STRIP001 {
-//STRIP001  ScDelimiterTable* pTab;
-//STRIP001  String  aStr( rEd.GetText() );
-//STRIP001  USHORT  nCode;
-//STRIP001
-//STRIP001  if ( &rEd == &aEdTextSep )
-//STRIP001      pTab = pTextSepTab;
-//STRIP001  else
-//STRIP001      pTab = pFieldSepTab;
-//STRIP001
-//STRIP001  if ( !aStr.Len() )
-//STRIP001  {
-//STRIP001      nCode = 0;          // kein Trennzeichen
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nCode = pTab->GetCode( aStr );
-//STRIP001
-//STRIP001      if ( nCode == 0 )
-//STRIP001          nCode = (USHORT)aStr.GetChar(0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return nCode;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 IMPL_LINK( ScImportOptionsDlg, FixedWidthHdl, CheckBox*, pCheckBox )
-//STRIP001 {
-//STRIP001     if( pCheckBox == &aCbFixed )
-//STRIP001     {
-//STRIP001         BOOL bEnable = !aCbFixed.IsChecked();
-//STRIP001         aFtFieldSep.Enable( bEnable );
-//STRIP001         aEdFieldSep.Enable( bEnable );
-//STRIP001         aFtTextSep.Enable( bEnable );
-//STRIP001         aEdTextSep.Enable( bEnable );
-//STRIP001     }
-//STRIP001     return 0;
-//STRIP001 }
 
 
 //------------------------------------------------------------------------
