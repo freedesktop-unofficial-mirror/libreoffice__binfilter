@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txmsrt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:37:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:16:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _TOOLS_RESID_HXX
-// auto strip #include <tools/resid.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
 #endif
@@ -56,34 +53,16 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
 #ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX //autogen
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
 #endif
@@ -93,21 +72,9 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _TXTATR_HXX
-// auto strip #include <txtatr.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>
 #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
 #endif
@@ -129,7 +96,6 @@ using namespace ::rtl;
     Beschreibung: Strings initialisieren
  --------------------------------------------------------------------*/
 
-//STRIP001 USHORT SwTOXSortTabBase::nOpt = 0;
 
 SV_IMPL_VARARR( SwTOXSources, SwTOXSource )
 
@@ -180,10 +146,6 @@ SwTOXInternational::SwTOXInternational( LanguageType nLang, USHORT nOpt,
     delete pIndexWrapper;
  }
 
-//STRIP001 String SwTOXInternational::ToUpper( const String& rStr, xub_StrLen nPos ) const
-//STRIP001 {
-//STRIP001  return pCharClass->toUpper( rStr, nPos, 1 );
-//STRIP001 }
 inline BOOL SwTOXInternational::IsNumeric( const String& rStr ) const
 {
     return pCharClass->isNumeric( rStr );
@@ -198,16 +160,7 @@ sal_Int32 SwTOXInternational::Compare( const String& rTxt1, const String& rTxtRe
                                              rTxt2, rTxtReading2, rLocale2 );
 }
 
-//STRIP001 String SwTOXInternational::GetIndexKey( const String& rTxt, const String& rTxtReading,
-//STRIP001                                         const ::com::sun::star::lang::Locale& rLocale ) const
-//STRIP001 {
-//STRIP001     return pIndexWrapper->GetIndexKey( rTxt, rTxtReading, rLocale );
-//STRIP001 }
 
-//STRIP001 String SwTOXInternational::GetFollowingText( BOOL bMorePages ) const
-//STRIP001 {
-//STRIP001  return pIndexWrapper->GetFollowingText( bMorePages );
-//STRIP001 }
 
 /*--------------------------------------------------------------------
      Beschreibung:  SortierElement fuer Verzeichniseintraege
@@ -379,51 +332,12 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwTOXIndex::SwTOXIndex( const SwTxtNode& rNd,
-//STRIP001                         const SwTxtTOXMark* pMark, USHORT nOptions,
-//STRIP001                         BYTE nKyLevel,
-//STRIP001                         const SwTOXInternational& rIntl,
-//STRIP001                         const ::com::sun::star::lang::Locale& rLocale )
-//STRIP001     : SwTOXSortTabBase( TOX_SORT_INDEX, &rNd, pMark, &rIntl, &rLocale ),
-//STRIP001  nKeyLevel(nKyLevel)
-//STRIP001 {
-//STRIP001  nPos = rNd.GetIndex();
-//STRIP001  nOpt = nOptions;
-//STRIP001 }
 
 //
 // Stichworte vergleichen. Bezieht sich nur auf den Text
 //
 
 
-//STRIP001 BOOL SwTOXIndex::operator==( const SwTOXSortTabBase& rCmpBase )
-//STRIP001 {
-//STRIP001  SwTOXIndex& rCmp = (SwTOXIndex&)rCmpBase;
-//STRIP001
-//STRIP001  // In Abhaengigkeit von den Optionen Grosskleinschreibung beachten
-//STRIP001  if(GetLevel() != rCmp.GetLevel() || nKeyLevel != rCmp.nKeyLevel)
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  ASSERT(pTxtMark, "pTxtMark == 0, Kein Stichwort");
-//STRIP001  const SwTOXMark& rTOXMark = pTxtMark->GetTOXMark();
-//STRIP001
-//STRIP001     String sMyTxt;
-//STRIP001     String sMyTxtReading;
-//STRIP001     GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001     String sOtherTxt;
-//STRIP001     String sOtherTxtReading;
-//STRIP001     rCmp.GetTxt( sOtherTxt, sOtherTxtReading );
-//STRIP001
-//STRIP001     BOOL bRet = pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                                    sOtherTxt, sOtherTxtReading, rCmp.GetLocale() );
-//STRIP001
-//STRIP001  // Wenn nicht zusammengefasst wird muss die Pos aus gewertet werden
-//STRIP001  if(bRet && !(GetOptions() & TOI_SAME_ENTRY))
-//STRIP001      bRet = nPos == rCmp.nPos;
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 //
 // kleiner haengt nur vom Text ab
@@ -431,35 +345,6 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
 
 //
 
-//STRIP001 BOOL SwTOXIndex::operator<( const SwTOXSortTabBase& rCmpBase )
-//STRIP001 {
-//STRIP001  SwTOXIndex& rCmp = (SwTOXIndex&)rCmpBase;
-//STRIP001
-//STRIP001  ASSERT(pTxtMark, "pTxtMark == 0, Kein Stichwort");
-//STRIP001  const SwTOXMark& rTOXMark = pTxtMark->GetTOXMark();
-//STRIP001
-//STRIP001     String sMyTxt;
-//STRIP001     String sMyTxtReading;
-//STRIP001     GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001     String sOtherTxt;
-//STRIP001     String sOtherTxtReading;
-//STRIP001     rCmp.GetTxt( sOtherTxt, sOtherTxtReading );
-//STRIP001
-//STRIP001     BOOL bRet = GetLevel() == rCmp.GetLevel() &&
-//STRIP001                 pTOXIntl->IsLess( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                                   sOtherTxt, sOtherTxtReading, rCmp.GetLocale() );
-//STRIP001
-//STRIP001  // Wenn nicht zusammengefasst wird muss die Pos aus gewertet werden
-//STRIP001  if( !bRet && !(GetOptions() & TOI_SAME_ENTRY) )
-//STRIP001     {
-//STRIP001         bRet = pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                                    sOtherTxt, sOtherTxtReading, rCmp.GetLocale() ) &&
-//STRIP001                nPos < rCmp.nPos;
-//STRIP001     }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 //
 // Das Stichwort selbst
@@ -467,137 +352,24 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
 
 //
 
-//STRIP001 void SwTOXIndex::_GetText( String& rTxt, String& rTxtReading )
-//STRIP001 {
-//STRIP001  ASSERT(pTxtMark, "pTxtMark == 0, Kein Stichwort");
-//STRIP001  const SwTOXMark& rTOXMark = pTxtMark->GetTOXMark();
-//STRIP001  switch(nKeyLevel)
-//STRIP001  {
-//STRIP001      case FORM_PRIMARY_KEY    :
-//STRIP001         {
-//STRIP001          rTxt = rTOXMark.GetPrimaryKey();
-//STRIP001             rTxtReading = rTOXMark.GetPrimaryKeyReading();
-//STRIP001         }
-//STRIP001      break;
-//STRIP001      case FORM_SECONDARY_KEY  :
-//STRIP001         {
-//STRIP001          rTxt = rTOXMark.GetSecondaryKey();
-//STRIP001             rTxtReading = rTOXMark.GetSecondaryKeyReading();
-//STRIP001         }
-//STRIP001      break;
-//STRIP001      case FORM_ENTRY          :
-//STRIP001         {
-//STRIP001          rTxt = rTOXMark.GetText();
-//STRIP001             rTxtReading = rTOXMark.GetTextReading();
-//STRIP001         }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  // if TOI_INITIAL_CAPS is set, first character is to be capitalized
-//STRIP001  if( TOI_INITIAL_CAPS & nOpt && pTOXIntl )
-//STRIP001  {
-//STRIP001      String sUpper( pTOXIntl->ToUpper( rTxt, 0 ));
-//STRIP001      rTxt.Erase( 0, 1 ).Insert( sUpper, 0 );
-//STRIP001  }
-//STRIP001 }
-
-//STRIP001 void SwTOXIndex::FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT ) const
-//STRIP001 {
-//STRIP001  const xub_StrLen* pEnd = pTxtMark->GetEnd();
-//STRIP001  String sTmp;
-//STRIP001     String sTmpReading;
-//STRIP001  if( pEnd && !pTxtMark->GetTOXMark().IsAlternativeText() &&
-//STRIP001          0 == (GetOptions() & TOI_KEY_AS_ENTRY))
-//STRIP001  {
-//STRIP001      sTmp = ((SwTxtNode*)aTOXSources[0].pNd)->GetExpandTxt(
-//STRIP001                          *pTxtMark->GetStart(),
-//STRIP001                          *pEnd - *pTxtMark->GetStart());
-//STRIP001      if(TOI_INITIAL_CAPS&nOpt && pTOXIntl)
-//STRIP001      {
-//STRIP001          String sUpper( pTOXIntl->ToUpper( sTmp, 0 ));
-//STRIP001          sTmp.Erase( 0, 1 ).Insert( sUpper, 0 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001         GetTxt( sTmp, sTmpReading );
-//STRIP001
-//STRIP001  rNd.Insert( sTmp, rInsPos );
-//STRIP001 }
 
 
 
-//STRIP001 USHORT SwTOXIndex::GetLevel() const
-//STRIP001 {
-//STRIP001  ASSERT(pTxtMark, "pTxtMark == 0, Kein Stichwort");
-//STRIP001
-//STRIP001  USHORT nForm = FORM_PRIMARY_KEY;
-//STRIP001
-//STRIP001  if( 0 == (GetOptions() & TOI_KEY_AS_ENTRY)&&
-//STRIP001      pTxtMark->GetTOXMark().GetPrimaryKey().Len() )
-//STRIP001  {
-//STRIP001      nForm = FORM_SECONDARY_KEY;
-//STRIP001      if( pTxtMark->GetTOXMark().GetSecondaryKey().Len() )
-//STRIP001          nForm = FORM_ENTRY;
-//STRIP001  }
-//STRIP001  return nForm;
-//STRIP001 }
+
 
 /*--------------------------------------------------------------------
      Beschreibung: Schluessel und Trennzeichen
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwTOXCustom::SwTOXCustom(const String& rStr, USHORT nLevel,
-//STRIP001                          const SwTOXInternational& rIntl,
-//STRIP001                          const ::com::sun::star::lang::Locale& rLocale )
-//STRIP001     : SwTOXSortTabBase( TOX_SORT_CUSTOM, 0, 0, &rIntl, &rLocale ),
-//STRIP001  aKey(rStr), nLev(nLevel)
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 BOOL SwTOXCustom::operator==(const SwTOXSortTabBase& rCmpBase)
-//STRIP001 {
-//STRIP001     String sMyTxt;
-//STRIP001     String sMyTxtReading;
-//STRIP001     GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001     String sOtherTxt;
-//STRIP001     String sOtherTxtReading;
-//STRIP001     rCmpBase.GetTxt( sOtherTxt, sOtherTxtReading );
-//STRIP001
-//STRIP001     return GetLevel() == rCmpBase.GetLevel() &&
-//STRIP001            pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                               sOtherTxt, sOtherTxtReading, rCmpBase.GetLocale() );
-//STRIP001 }
 
 
-//STRIP001 BOOL SwTOXCustom::operator < (const SwTOXSortTabBase& rCmpBase)
-//STRIP001 {
-//STRIP001     String sMyTxt;
-//STRIP001     String sMyTxtReading;
-//STRIP001     GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001     String sOtherTxt;
-//STRIP001     String sOtherTxtReading;
-//STRIP001     rCmpBase.GetTxt( sOtherTxt, sOtherTxtReading );
-//STRIP001
-//STRIP001     return  GetLevel() <= rCmpBase.GetLevel() &&
-//STRIP001             pTOXIntl->IsLess( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                               sOtherTxt, sOtherTxtReading, rCmpBase.GetLocale() );
-//STRIP001 }
 
 
-//STRIP001 USHORT SwTOXCustom::GetLevel() const
-//STRIP001 {
-//STRIP001  return nLev;
-//STRIP001 }
 
 
-//STRIP001 void SwTOXCustom::_GetText( String& rTxt, String &rTxtReading )
-//STRIP001 {
-//STRIP001  rTxt = aKey;
-//STRIP001     /// !!!!!!!!!!!!!!
-//STRIP001 }
 
 
 /*--------------------------------------------------------------------
@@ -605,55 +377,18 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwTOXContent::SwTOXContent( const SwTxtNode& rNd, const SwTxtTOXMark* pMark,
-//STRIP001                      const SwTOXInternational& rIntl)
-//STRIP001     : SwTOXSortTabBase( TOX_SORT_CONTENT, &rNd, pMark, &rIntl )
-//STRIP001 {
-//STRIP001 }
 
 
 //  Der Text des Inhalts
 //
 
-//STRIP001 void SwTOXContent::_GetText( String& rTxt, String& rTxtReading )
-//STRIP001 {
-//STRIP001  const xub_StrLen* pEnd = pTxtMark->GetEnd();
-//STRIP001  if( pEnd && !pTxtMark->GetTOXMark().IsAlternativeText() )
-//STRIP001     {
-//STRIP001      rTxt = ((SwTxtNode*)aTOXSources[0].pNd)->GetExpandTxt(
-//STRIP001                                   *pTxtMark->GetStart(),
-//STRIP001                                   *pEnd - *pTxtMark->GetStart() );
-//STRIP001
-//STRIP001         rTxtReading = pTxtMark->GetTOXMark().GetTextReading();
-//STRIP001     }
-//STRIP001  else
-//STRIP001      rTxt = pTxtMark->GetTOXMark().GetAlternativeText();
-//STRIP001 }
 
-//STRIP001 void SwTOXContent::FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT ) const
-//STRIP001 {
-//STRIP001  const xub_StrLen* pEnd = pTxtMark->GetEnd();
-//STRIP001  if( pEnd && !pTxtMark->GetTOXMark().IsAlternativeText() )
-//STRIP001      ((SwTxtNode*)aTOXSources[0].pNd)->GetExpandTxt( rNd, &rInsPos,
-//STRIP001                                  *pTxtMark->GetStart(),
-//STRIP001                                  *pEnd - *pTxtMark->GetStart() );
-//STRIP001  else
-//STRIP001     {
-//STRIP001         String sTmp, sTmpReading;
-//STRIP001         GetTxt( sTmp, sTmpReading );
-//STRIP001         rNd.Insert( sTmp, rInsPos );
-//STRIP001     }
-//STRIP001 }
 
 //
 // Die Ebene fuer Anzeige
 //
 
 
-//STRIP001 USHORT SwTOXContent::GetLevel() const
-//STRIP001 {
-//STRIP001  return pTxtMark->GetTOXMark().GetLevel();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
      Beschreibung: Verzeichnis aus Absaetzen zusammengesammelt
@@ -664,161 +399,13 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
 // sondern muss die vom "Henkel" sein  !!
 
 
-//STRIP001 SwTOXPara::SwTOXPara( const SwCntntNode& rNd, SwTOXElement eT, USHORT nLevel )
-//STRIP001  : SwTOXSortTabBase( TOX_SORT_PARA, &rNd, 0, 0 ),
-//STRIP001  eType( eT ),
-//STRIP001  m_nLevel(nLevel),
-//STRIP001  nStartIndex(0),
-//STRIP001  nEndIndex(STRING_LEN)
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 void SwTOXPara::_GetText( String& rTxt, String& rTxtReading )
-//STRIP001 {
-//STRIP001  const SwCntntNode* pNd = aTOXSources[0].pNd;
-//STRIP001  switch( eType )
-//STRIP001  {
-//STRIP001  case TOX_SEQUENCE:
-//STRIP001  case TOX_TEMPLATE:
-//STRIP001     case TOX_OUTLINELEVEL:
-//STRIP001      {
-//STRIP001          xub_StrLen nStt = nStartIndex;
-//STRIP001 /* JP 22.01.98:
-//STRIP001  Tabs ueberspringen - macht aber keinen Sinn, solange in der TOX-Form
-//STRIP001  nicht die KapitelNummer eingestellt werden kann
-//STRIP001          const String& rTmp = ((SwTxtNode*)pNd)->GetTxt();
-//STRIP001          while( '\t' == rTmp.GetChar( nStt ) && nStt < rTmp.Len() )
-//STRIP001              ++nStt;
-//STRIP001 */
-//STRIP001          rTxt = ((SwTxtNode*)pNd)->GetExpandTxt(
-//STRIP001                  nStt,
-//STRIP001                  STRING_NOTFOUND == nEndIndex ? STRING_LEN : nEndIndex - nStt);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case TOX_OLE:
-//STRIP001  case TOX_GRAPHIC:
-//STRIP001  case TOX_FRAME:
-//STRIP001      {
-//STRIP001          // suche das FlyFormat, dort steht der Object/Grafik-Name
-//STRIP001          SwFrmFmt* pFly = pNd->GetFlyFmt();
-//STRIP001          if( pFly )
-//STRIP001              rTxt = pFly->GetName();
-//STRIP001          else
-//STRIP001          {
-//STRIP001              ASSERT( !this, "Grafik/Object ohne Namen" )
-//STRIP001              USHORT nId = TOX_OLE == eType
-//STRIP001                              ? STR_OBJECT_DEFNAME
-//STRIP001                              : TOX_GRAPHIC == eType
-//STRIP001                                  ? STR_GRAPHIC_DEFNAME
-//STRIP001                                  : STR_FRAME_DEFNAME;
-//STRIP001              rTxt = SW_RESSTR( nId );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001 }
-
-//STRIP001 void SwTOXPara::FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT ) const
-//STRIP001 {
-//STRIP001     if( TOX_TEMPLATE == eType || TOX_SEQUENCE == eType  || TOX_OUTLINELEVEL == eType)
-//STRIP001  {
-//STRIP001      SwTxtNode* pSrc = (SwTxtNode*)aTOXSources[0].pNd;
-//STRIP001      xub_StrLen nStt = nStartIndex;
-//STRIP001 /* JP 22.01.98:
-//STRIP001  Tabs ueberspringen - macht aber keinen Sinn, solange in der TOX-Form
-//STRIP001  nicht die KapitelNummer eingestellt werden kann
-//STRIP001      const String& rTxt = pSrc->GetTxt();
-//STRIP001      while( '\t' == rTxt.GetChar( nStt ) && nStt < rTxt.Len() )
-//STRIP001          ++nStt;
-//STRIP001 */
-//STRIP001      pSrc->GetExpandTxt( rNd, &rInsPos, nStt,
-//STRIP001              nEndIndex == STRING_LEN ? STRING_LEN : nEndIndex - nStt,
-//STRIP001                 FALSE, FALSE, TRUE );
-//STRIP001  }
-//STRIP001  else
-//STRIP001     {
-//STRIP001         String sTmp, sTmpReading;
-//STRIP001         GetTxt( sTmp, sTmpReading );
-//STRIP001          sTmp.SearchAndReplaceAll('\t', ' ');
-//STRIP001         rNd.Insert( sTmp, rInsPos );
-//STRIP001     }
-//STRIP001 }
 
 
-//STRIP001 USHORT SwTOXPara::GetLevel() const
-//STRIP001 {
-//STRIP001  USHORT nRet = m_nLevel;
-//STRIP001  const SwCntntNode*  pNd = aTOXSources[0].pNd;
-//STRIP001
-//STRIP001     if( TOX_OUTLINELEVEL == eType && pNd->GetTxtNode() )
-//STRIP001  {
-//STRIP001      USHORT nTmp = ((SwTxtNode*)pNd)->GetTxtColl()->GetOutlineLevel();
-//STRIP001      if(nTmp < NO_NUMBERING)
-//STRIP001          nRet = nTmp + 1;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 
-//STRIP001 String SwTOXPara::GetURL() const
-//STRIP001 {
-//STRIP001  String aTxt;
-//STRIP001  const SwCntntNode* pNd = aTOXSources[0].pNd;
-//STRIP001  switch( eType )
-//STRIP001  {
-//STRIP001  case TOX_TEMPLATE:
-//STRIP001     case TOX_OUTLINELEVEL:
-//STRIP001      {
-//STRIP001          if( MAXLEVEL >= ((SwTxtNode*)pNd)->GetTxtColl()->GetOutlineLevel())
-//STRIP001          {
-//STRIP001              aTxt = '#';
-//STRIP001              const SwNodeNum* pNum = ((SwTxtNode*)pNd)->GetOutlineNum();
-//STRIP001              if( pNum && pNd->GetDoc()->GetOutlineNumRule() )
-//STRIP001              {
-//STRIP001                  // dann noch die rel. Nummer davor setzen
-//STRIP001                  const SwNumRule& rRule = *pNd->GetDoc()->GetOutlineNumRule();
-//STRIP001                  const USHORT nCurrLevel = pNum->GetLevel();
-//STRIP001                     if(nCurrLevel <= MAXLEVEL)
-//STRIP001                      for( int n = 0; n <= nCurrLevel; ++n )
-//STRIP001                  {
-//STRIP001                      int nNum = pNum->GetLevelVal()[ n ];
-//STRIP001                      nNum -= ( rRule.Get( n ).GetStart() - 1 );
-//STRIP001                      ( aTxt += String::CreateFromInt32( nNum )) += '.';
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              aTxt += ((SwTxtNode*)pNd)->GetExpandTxt();
-//STRIP001              ( aTxt += cMarkSeperator ).AppendAscii( pMarkToOutline );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case TOX_OLE:
-//STRIP001  case TOX_GRAPHIC:
-//STRIP001  case TOX_FRAME:
-//STRIP001      {
-//STRIP001          // suche das FlyFormat, dort steht der Object/Grafik-Name
-//STRIP001          SwFrmFmt* pFly = pNd->GetFlyFmt();
-//STRIP001          if( pFly )
-//STRIP001          {
-//STRIP001              (( aTxt = '#' ) += pFly->GetName() ) += cMarkSeperator;
-//STRIP001              const sal_Char* pStr;
-//STRIP001              switch( eType )
-//STRIP001              {
-//STRIP001              case TOX_OLE:       pStr = pMarkToOLE; break;
-//STRIP001              case TOX_GRAPHIC:   pStr = pMarkToGraphic; break;
-//STRIP001              case TOX_FRAME:     pStr = pMarkToFrame; break;
-//STRIP001              default:            pStr = 0;
-//STRIP001              }
-//STRIP001              if( pStr )
-//STRIP001                  aTxt.AppendAscii( pStr );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return aTxt;
-//STRIP001 }
+
 
 
 /*--------------------------------------------------------------------
@@ -826,48 +413,11 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwTOXTable::SwTOXTable( const SwCntntNode& rNd )
-//STRIP001  : SwTOXSortTabBase( TOX_SORT_TABLE, &rNd, 0, 0 ),
-//STRIP001  nLevel(FORM_ALPHA_DELIMITTER)
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 void SwTOXTable::_GetText( String& rTxt, String& rTxtReading )
-//STRIP001 {
-//STRIP001  const SwNode* pNd = aTOXSources[0].pNd;
-//STRIP001  if( pNd && 0 != ( pNd = pNd->FindTableNode() ) )
-//STRIP001  {
-//STRIP001      rTxt = ((SwTableNode*)pNd)->GetTable().GetFrmFmt()->GetName();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ASSERT( !this, "Wo ist meine Tabelle geblieben?" )
-//STRIP001      rTxt = SW_RESSTR( STR_TABLE_DEFNAME );
-//STRIP001  }
-//STRIP001 }
-
-//STRIP001 USHORT SwTOXTable::GetLevel() const
-//STRIP001 {
-//STRIP001  return nLevel;
-//STRIP001 }
 
 
-//STRIP001 String SwTOXTable::GetURL() const
-//STRIP001 {
-//STRIP001  String aTxt;
-//STRIP001  const SwNode* pNd = aTOXSources[0].pNd;
-//STRIP001  if( pNd && 0 != ( pNd = pNd->FindTableNode() ) )
-//STRIP001  {
-//STRIP001      aTxt = ((SwTableNode*)pNd)->GetTable().GetFrmFmt()->GetName();
-//STRIP001      if( aTxt.Len() )
-//STRIP001      {
-//STRIP001          ( aTxt.Insert( '#', 0 ) += cMarkSeperator ).
-//STRIP001                                          AppendAscii( pMarkToTable );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return aTxt;
-//STRIP001 }
+
 /*-- 15.09.99 14:28:08---------------------------------------------------
 
   -----------------------------------------------------------------------*/

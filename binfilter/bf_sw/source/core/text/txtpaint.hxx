@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtpaint.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:35:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:15:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _TXTPAINT_HXX
 #define _TXTPAINT_HXX
 
-// auto strip #ifndef _SV_REGION_HXX //autogen
-// auto strip #include <vcl/region.hxx>
-// auto strip #endif
 #ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
 #endif
@@ -46,9 +43,6 @@
 class SwRect;               // SwSaveClip
 
 #ifdef VERTICAL_LAYOUT
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>
-// auto strip #endif
 #endif
 namespace binfilter {
 
@@ -63,23 +57,9 @@ class SwSaveClip
           sal_Bool     bChg;
 protected:
     OutputDevice *pOut;
-//STRIP001 #ifdef VERTICAL_LAYOUT
-//STRIP001     void _ChgClip( const SwRect &rRect, const SwTxtFrm* pFrm,
-//STRIP001                    sal_Bool bEnlargeRect );
-//STRIP001 #else
-//STRIP001     void _ChgClip( const SwRect &rRect, sal_Bool bEnlargeRect );
-//STRIP001 #endif
 public:
     inline SwSaveClip( OutputDevice *pOut );
     inline ~SwSaveClip();
-//STRIP001 #ifdef VERTICAL_LAYOUT
-//STRIP001     inline void ChgClip( const SwRect &rRect, const SwTxtFrm* pFrm = 0,
-//STRIP001                          sal_Bool bEnlargeRect = sal_False)
-//STRIP001              { if( pOut ) _ChgClip( rRect, pFrm, bEnlargeRect ); }
-//STRIP001 #else
-//STRIP001     inline void ChgClip( const SwRect &rRect, sal_Bool bEnlargeRect = sal_False )
-//STRIP001              { if( pOut ) _ChgClip( rRect, bEnlargeRect ); }
-//STRIP001 #endif
     void Reset(){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           void Reset();
     inline sal_Bool IsOn()  const { return bOn; }
     inline sal_Bool IsChg() const { return bChg; }
