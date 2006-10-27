@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_inputopt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:10:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:33:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,13 +42,9 @@
 
 #include <tools/debug.hxx>
 
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
-// auto strip #include "cfgids.hxx"
 #include "inputopt.hxx"
 #include "rechead.hxx"
-// auto strip #include "scresid.hxx"
 #include "global.hxx"
 #include "bf_sc.hrc"
 #include "miscuno.hxx"
@@ -269,68 +264,9 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 
-//STRIP001 void ScInputCfg::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCINPUTOPT_MOVEDIR:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetMoveDir();
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_MOVESEL:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetMoveSelection() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_EDTEREDIT:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetEnterEdit() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_EXTENDFMT:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetExtendFormat() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_RANGEFIND:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetRangeFinder() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_EXPANDREFS:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetExpandRefs() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_MARKHEADER:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetMarkHeader() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_USETABCOL:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetUseTabCol() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_TEXTWYSIWYG:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetTextWysiwyg() );
-//STRIP001              break;
-//STRIP001             case SCINPUTOPT_REPLCELLSWARN:
-//STRIP001                 ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetReplaceCellsWarn() );
-//STRIP001                 break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 
-//STRIP001 void ScInputCfg::Notify( const Sequence<rtl::OUString>& aPropertyNames )
-//STRIP001 {
-//STRIP001  DBG_ERROR("properties have been changed")
-//STRIP001 }
 
-//STRIP001 void ScInputCfg::SetOptions( const ScInputOptions& rNew )
-//STRIP001 {
-//STRIP001  *(ScInputOptions*)this = rNew;
-//STRIP001  SetModified();
-//STRIP001 }
 
-//STRIP001 void ScInputCfg::OptionsChanged()
-//STRIP001 {
-//STRIP001  SetModified();
-//STRIP001 }
 
 
 }
