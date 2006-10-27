@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porftn.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:22:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:06:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ class SwFtnPortion : public SwFldPortion
 public:
     SwFtnPortion( const XubString &rExpand, SwTxtFrm *pFrm, SwTxtFtn *pFtn,
                   KSHORT nOrig = KSHRT_MAX );
-//STRIP001  void ClearFtn();
     inline KSHORT& Orig() { return nOrigHeight; }
 
     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
@@ -85,23 +84,12 @@ public:
 
 class SwQuoVadisPortion : public SwFldPortion
 {
-//STRIP001  XubString   aErgo;
 public:
     SwQuoVadisPortion( const XubString &rExp, const XubString& rStr ): SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001             SwQuoVadisPortion( const XubString &rExp, const XubString& rStr );
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-//STRIP001  virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
-//STRIP001
-//STRIP001  inline void SetNumber( const XubString& rStr ) { aErgo = rStr; }
-//STRIP001  inline const XubString &GetQuoTxt() const { return aExpand; }
-//STRIP001  inline const XubString &GetContTxt() const { return aErgo; }
 
     // Felder-Cloner fuer SplitGlue
-//STRIP001  virtual SwFldPortion *Clone( const XubString &rExpand ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
-//STRIP001
     OUTPUT_OPERATOR
 };
 
@@ -113,11 +101,6 @@ class SwErgoSumPortion : public SwFldPortion
 {
 public:
 SwErgoSumPortion( const XubString &rExp, const XubString& rStr ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           SwErgoSumPortion( const XubString &rExp, const XubString& rStr );
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
-//STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001
-//STRIP001  // Felder-Cloner fuer SplitGlue
-//STRIP001  virtual SwFldPortion *Clone( const XubString &rExpand ) const;
     OUTPUT_OPERATOR
 };
 
