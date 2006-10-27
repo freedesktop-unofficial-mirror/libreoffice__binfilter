@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xline.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:40:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:03:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,13 +38,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <tools/bigint.hxx>
-// auto strip #include <tools/poly.hxx>
-// auto strip #include <vcl/svapp.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
-// auto strip #include <vcl/gdimtf.hxx>
-// auto strip #include <vcl/gradient.hxx>
-// auto strip #include "xpoly.hxx"
 #include "xoutx.hxx"
 
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
@@ -420,20 +415,6 @@ namespace binfilter {
 /*N*/   return aPoly;
 /*N*/ }
 
-//STRIP001 PolyPolygon XOutCreatePolyPolygonBezier( const XPolyPolygon& rXPolyPoly, OutputDevice* pOut )
-//STRIP001 {
-//STRIP001  PolyPolygon aPolyPoly;
-//STRIP001
-//STRIP001  USHORT  nCount = rXPolyPoly.Count(), i;
-//STRIP001
-//STRIP001  for( i = 0; i < nCount; i++ )
-//STRIP001  {
-//STRIP001      if( rXPolyPoly[i].GetPointCount() > 0 )
-//STRIP001          aPolyPoly.Insert(XOutCreatePolygonBezier(rXPolyPoly[i], pOut));
-//STRIP001  }
-//STRIP001
-//STRIP001  return aPolyPoly;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -496,125 +477,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XOutputDevice::CalcFatLineJoin(const Point& rEnd, const Point& rNext,
-//STRIP001                                  XLineParam& rParam)
-//STRIP001 {
-//STRIP001  long nNextDx = rNext.X() - rEnd.X();
-//STRIP001  long nNextDy = rNext.Y() - rEnd.Y();
-//STRIP001
-//STRIP001  if ( nNextDx || nNextDy )
-//STRIP001  {
-//STRIP001      double fRound;
-//STRIP001      long nJoinDx, nJoinDy;
-//STRIP001      BOOL bFlatJoin = FALSE;
-//STRIP001      BOOL bResetJoin = FALSE;
-//STRIP001
-//STRIP001      double fNextLen = sqrt((double) nNextDx * nNextDx +
-//STRIP001                             (double) nNextDy * nNextDy);
-//STRIP001
-//STRIP001      // Berechnung des Anschlussuebergangs durch Auswertung
-//STRIP001      // der Seitenverhaeltnisse in den Uebergangsdreiecken
-//STRIP001      long nPrevDxW = rParam.nDxW;
-//STRIP001      long nPrevDyW = rParam.nDyW;
-//STRIP001
-//STRIP001      double fWidth = (double) nLineWidth / fNextLen;
-//STRIP001      if ( nNextDy >= 0 ) fRound =  0.5;
-//STRIP001      else                fRound = -0.5;
-//STRIP001      long nNextDxW =   (long) (fWidth * nNextDy + fRound);
-//STRIP001      if ( nNextDx >= 0 ) fRound =  0.5;
-//STRIP001      else                fRound = -0.5;
-//STRIP001      long nNextDyW = - (long) (fWidth * nNextDx + fRound);
-//STRIP001      long nDxA = nNextDxW - nPrevDxW;
-//STRIP001      long nDyA = nNextDyW - nPrevDyW;
-//STRIP001      long nDxU = nPrevDxW + nNextDxW;
-//STRIP001      long nDyU = nPrevDyW + nNextDyW;
-//STRIP001      double fJoin = nDxA * nDxA + nDyA * nDyA;
-//STRIP001      double fULen = nDxU * nDxU + nDyU * nDyU;
-//STRIP001
-//STRIP001      if ( fULen > 0 )    fJoin = sqrt(fJoin / fULen) / 2;
-//STRIP001      else                fJoin = 0;
-//STRIP001
-//STRIP001      if ( fJoin > 0.7 )
-//STRIP001      {
-//STRIP001          double fJoinLen = fJoin * nLineWidth;
-//STRIP001          double fLen = rParam.fLength < fNextLen ? rParam.fLength : fNextLen;
-//STRIP001
-//STRIP001          if ( fJoinLen > fLen )
-//STRIP001          {
-//STRIP001              fJoin = 0;
-//STRIP001              if ( fLen == rParam.fLength )
-//STRIP001                  bResetJoin = TRUE;
-//STRIP001          }
-//STRIP001          bFlatJoin = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( nPrevDyW >= 0 )    fRound =  0.5;
-//STRIP001      else                    fRound = -0.5;
-//STRIP001      nJoinDx = -(long) (fJoin * nPrevDyW + fRound);
-//STRIP001
-//STRIP001      if ( nPrevDxW >= 0 )    fRound =  0.5;
-//STRIP001      else                    fRound = -0.5;
-//STRIP001      nJoinDy = (long) (fJoin * nPrevDxW + fRound);
-//STRIP001
-//STRIP001      // mit Vektorprodukt feststellen, ob Anschlusslinie links oder rechts
-//STRIP001      // von der ersten Linie verlaeuft; < 0 -> links
-//STRIP001      BOOL bLeftTurn =( (rParam.nLineDx * nNextDy -
-//STRIP001                         rParam.nLineDy * nNextDx) < 0 );
-//STRIP001
-//STRIP001      if ( bLeftTurn )
-//STRIP001      {
-//STRIP001          nJoinDx = - nJoinDx;
-//STRIP001          nJoinDy = - nJoinDy;
-//STRIP001      }
-//STRIP001      rParam.bUseJoin3 = FALSE;
-//STRIP001
-//STRIP001      if ( bFlatJoin )
-//STRIP001      {
-//STRIP001          if ( bLeftTurn )
-//STRIP001          {
-//STRIP001              rParam.aJoin3 = rParam.aJoin1;
-//STRIP001              rParam.aJoin1 = rParam.aJoin2;
-//STRIP001              if ( bResetJoin )
-//STRIP001                  rParam.aJoin3 = rParam.aJoin2;
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  rParam.aJoin3.X() += nJoinDx;
-//STRIP001                  rParam.aJoin3.Y() += nJoinDy;
-//STRIP001              }
-//STRIP001              rParam.aJoin2.X() = rEnd.X() - nNextDxW / 2;
-//STRIP001              rParam.aJoin2.Y() = rEnd.Y() - nNextDyW / 2;
-//STRIP001              rParam.bUseJoin3 = TRUE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              if ( bResetJoin )
-//STRIP001                  rParam.aJoin2 = rParam.aJoin1;
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  rParam.aJoin2.X() -= nJoinDx;
-//STRIP001                  rParam.aJoin2.Y() -= nJoinDy;
-//STRIP001              }
-//STRIP001              rParam.aJoin3.X() = rEnd.X() + nNextDxW / 2;
-//STRIP001              rParam.aJoin3.Y() = rEnd.Y() + nNextDyW / 2;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          rParam.aJoin1.X() += nJoinDx;
-//STRIP001          rParam.aJoin1.Y() += nJoinDy;
-//STRIP001          rParam.aJoin2.X() -= nJoinDx;
-//STRIP001          rParam.aJoin2.Y() -= nJoinDy;
-//STRIP001          rParam.aJoin3 = rParam.aJoin1;
-//STRIP001      }
-//STRIP001      rParam.bHasJoin = TRUE;
-//STRIP001
-//STRIP001      rParam.fLength = fNextLen;
-//STRIP001      rParam.nLineDx = nNextDx;
-//STRIP001      rParam.nLineDy = nNextDy;
-//STRIP001      rParam.nDxW = nNextDxW;
-//STRIP001      rParam.nDyW = nNextDyW;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -626,21 +488,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XOutputDevice::DrawStartEndPoly(const Point& rPos,
-//STRIP001                                   const XPolygon& rXPoly,
-//STRIP001                                   const XLineParam& rParam)
-//STRIP001 {
-//STRIP001  XPolygon    aXPoly(rXPoly);
-//STRIP001  Polygon     aPoly;
-//STRIP001
-//STRIP001
-//STRIP001  if ( rParam.fLength )
-//STRIP001      aXPoly.Rotate(Point(0,0), (double) rParam.nLineDx / rParam.fLength,
-//STRIP001                                (double) rParam.nLineDy / rParam.fLength);
-//STRIP001  aXPoly.Translate(rPos);
-//STRIP001  aPoly = XOutCreatePolygon(aXPoly, pOut);
-//STRIP001  pOut->DrawPolygon(aPoly);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -652,53 +499,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XOutputDevice::DrawLineStartEnd(const Polygon& rPoly)
-//STRIP001 {
-//STRIP001  Point   aDiff;
-//STRIP001  USHORT  nPntMax = rPoly.GetSize() - 1;
-//STRIP001  USHORT  i = 0;
-//STRIP001
-//STRIP001  if ( bLineStart || bLineEnd )
-//STRIP001  {   // Linien mit Laenge 0 nicht beruecksichtigen
-//STRIP001      while ( i < nPntMax )
-//STRIP001      {
-//STRIP001          aDiff = rPoly[i+1] - rPoly[i];
-//STRIP001          if ( aDiff.X() || aDiff.Y() )
-//STRIP001              break;
-//STRIP001          i++;
-//STRIP001      }
-//STRIP001      while ( nPntMax > i )
-//STRIP001      {
-//STRIP001          aDiff = rPoly[nPntMax] - rPoly[0];
-//STRIP001          if ( aDiff.X() || aDiff.Y() )
-//STRIP001              break;
-//STRIP001          nPntMax--;
-//STRIP001      }
-//STRIP001      if ( i < nPntMax )
-//STRIP001      {
-//STRIP001          XLineParam  aLineParam;
-//STRIP001          const Color aLineColor( pOut->GetLineColor() );
-//STRIP001          const Color aFillColor( pOut->GetFillColor() );
-//STRIP001
-//STRIP001          pOut->SetLineColor();
-//STRIP001          pOut->SetFillColor( aLineColor );
-//STRIP001
-//STRIP001          if( bLineStart )
-//STRIP001          {
-//STRIP001              aLineParam.Init(rPoly[i], rPoly[i+1], 1);
-//STRIP001              DrawStartEndPoly(rPoly[i], aLineStartPoly, aLineParam);
-//STRIP001          }
-//STRIP001          if ( bLineEnd )
-//STRIP001          {
-//STRIP001              aLineParam.Init(rPoly[nPntMax], rPoly[nPntMax-1], 1);
-//STRIP001              DrawStartEndPoly(rPoly[nPntMax], aLineEndPoly, aLineParam);
-//STRIP001          }
-//STRIP001
-//STRIP001          pOut->SetFillColor( aFillColor );
-//STRIP001          pOut->SetLineColor( aLineColor );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -710,148 +510,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XOutputDevice::DrawFatLine(const Point& rStart, const Point& rEnd,
-//STRIP001                          const Point* pNext, XLineParam& rParam)
-//STRIP001 {
-//STRIP001  Polygon aPoly(5);
-//STRIP001  BOOL    bLineComplete = FALSE;
-//STRIP001
-//STRIP001  long nLineDx = rParam.nLineDx;
-//STRIP001  long nLineDy = rParam.nLineDy;
-//STRIP001  double fLength = rParam.fLength;
-//STRIP001
-//STRIP001  long nDxW = rParam.nDxW;
-//STRIP001  long nDyW = rParam.nDyW;
-//STRIP001
-//STRIP001  double  fDx = 0, fDy = 0;
-//STRIP001  long    nDx, nDy;
-//STRIP001  long    nSeg = rParam.nPatSeg;
-//STRIP001  long    nPattern;
-//STRIP001
-//STRIP001  // Linienmuster vorhanden?
-//STRIP001  if ( !pLinePattern )
-//STRIP001  {
-//STRIP001      nPattern = -1;
-//STRIP001      nSeg = 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Angefangenes Segment zu Ende zeichnen?
-//STRIP001      if ( rParam.nPatRemain )
-//STRIP001          nPattern = rParam.nPatRemain;
-//STRIP001      else    // sonst naechstes Segment
-//STRIP001      {
-//STRIP001          nSeg++;
-//STRIP001          if ( pLinePattern[nSeg] == 0 )  nSeg = 0;
-//STRIP001          nPattern = pLinePattern[nSeg];
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aPoly[0].X() = rStart.X() + nDxW / 2;
-//STRIP001  aPoly[0].Y() = rStart.Y() + nDyW / 2;
-//STRIP001  aPoly[1].X() = aPoly[0].X() - nDxW;
-//STRIP001  aPoly[1].Y() = aPoly[0].Y() - nDyW;
-//STRIP001  aPoly[2] = aPoly[1];
-//STRIP001  aPoly[3] = aPoly[0];
-//STRIP001  aPoly[4] = aPoly[0];
-//STRIP001  // An vorheriges Segment anschliessen?
-//STRIP001  if ( rParam.bHasJoin )
-//STRIP001  {
-//STRIP001      aPoly[0] = rParam.aJoin1;
-//STRIP001      aPoly[1] = rParam.aJoin2;
-//STRIP001      aPoly[4] = rParam.aJoin3;
-//STRIP001  }
-//STRIP001  // Punkte zum Testen auf erreichen des Linienendes
-//STRIP001  Point SegStart = rStart;
-//STRIP001  Point SegEnd   = rStart;
-//STRIP001
-//STRIP001  // Anschlusspunkte zunaechst im rechten Winkel an das Linienende
-//STRIP001  rParam.aJoin1.X() = rEnd.X() + nDxW / 2;
-//STRIP001  rParam.aJoin1.Y() = rEnd.Y() + nDyW / 2;
-//STRIP001  rParam.aJoin2 = rParam.aJoin1;
-//STRIP001  rParam.aJoin2.X() -= nDxW;
-//STRIP001  rParam.aJoin2.Y() -= nDyW;
-//STRIP001  rParam.bHasJoin = FALSE;
-//STRIP001  rParam.bUseJoin3 = FALSE;
-//STRIP001
-//STRIP001  // Anschlusslinie vorhanden?
-//STRIP001  if ( pNext )
-//STRIP001      CalcFatLineJoin(rEnd, *pNext, rParam);
-//STRIP001
-//STRIP001  while ( !bLineComplete )
-//STRIP001  {
-//STRIP001      double fSegLength;
-//STRIP001      // nPattern < 0: durchgehende Linie
-//STRIP001      if ( nPattern < 0 ) fSegLength = 1.0;
-//STRIP001      else                fSegLength = (double) nPattern / fLength;
-//STRIP001      fDx += fSegLength * nLineDx;
-//STRIP001      fDy += fSegLength * nLineDy;
-//STRIP001      nDx = (long) fDx;
-//STRIP001      nDy = (long) fDy;
-//STRIP001      fDx -= nDx;     // Rundungsfehler ausgleichen
-//STRIP001      fDy -= nDy;
-//STRIP001      aPoly[2].X() += nDx;
-//STRIP001      aPoly[2].Y() += nDy;
-//STRIP001      aPoly[3].X() += nDx;
-//STRIP001      aPoly[3].Y() += nDy;
-//STRIP001      SegEnd.X() += nDx;
-//STRIP001      SegEnd.Y() += nDy;
-//STRIP001
-//STRIP001      // wenn das rEnde ueberschritten wurde, hat das Vorzeichen
-//STRIP001      // der Abstaende vom rEndpunkt gewechselt; durch Xor-Verknuepfung
-//STRIP001      // wird dieser Wechsel festgestellt
-//STRIP001      long nEndDiffX = (SegEnd.X() - rEnd.X());
-//STRIP001      long nEndDiffY = (SegEnd.Y() - rEnd.Y());
-//STRIP001
-//STRIP001      if ( (nEndDiffX ^ (SegStart.X() - rEnd.X())) < 0 ||
-//STRIP001           (nEndDiffY ^ (SegStart.Y() - rEnd.Y())) < 0 ||
-//STRIP001           (!nEndDiffX && !nEndDiffY) )
-//STRIP001      {
-//STRIP001          if ( nDx || nDy )
-//STRIP001          {
-//STRIP001              if ( Abs(nDx) >= Abs(nDy) )
-//STRIP001              {
-//STRIP001                  long nDiffX = SegEnd.X() - rEnd.X();
-//STRIP001                  rParam.nPatRemain = nPattern * nDiffX / nDx;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  long nDiffY = SegEnd.Y() - rEnd.Y();
-//STRIP001                  rParam.nPatRemain = nPattern * nDiffY / nDy;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              rParam.nPatRemain = 0;
-//STRIP001
-//STRIP001          rParam.nPatSeg = nSeg;
-//STRIP001          if ( rParam.bUseJoin3 )
-//STRIP001          {
-//STRIP001              aPoly[2] = rParam.aJoin1;
-//STRIP001              aPoly[3] = rParam.aJoin3;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              aPoly[2] = rParam.aJoin2;
-//STRIP001              aPoly[3] = rParam.aJoin1;
-//STRIP001          }
-//STRIP001          bLineComplete = TRUE;
-//STRIP001      }
-//STRIP001      if ( !(nSeg & 0x1) )
-//STRIP001          pOut->DrawPolygon(aPoly);
-//STRIP001
-//STRIP001      aPoly[0] = aPoly[3];
-//STRIP001      aPoly[1] = aPoly[2];
-//STRIP001      aPoly[4] = aPoly[0];
-//STRIP001      SegStart = SegEnd;
-//STRIP001
-//STRIP001      if ( pLinePattern )
-//STRIP001      {
-//STRIP001          nSeg++;
-//STRIP001          if ( pLinePattern[nSeg] == 0 )
-//STRIP001              nSeg = 0;
-//STRIP001          nPattern = pLinePattern[nSeg];
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -863,114 +521,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void XOutputDevice::DrawPatternLine(const Point& rStart, const Point& rEnd,
-//STRIP001                                  XLineParam& rParam)
-//STRIP001 {
-//STRIP001  Point   aP1, aP2;
-//STRIP001  BOOL    bLineComplete = FALSE;
-//STRIP001
-//STRIP001  long    nLineDx = rParam.nLineDx;
-//STRIP001  long    nLineDy = rParam.nLineDy;
-//STRIP001  double  fLength = rParam.fLength;
-//STRIP001
-//STRIP001  long    nDxW = rParam.nDxW;
-//STRIP001  long    nDyW = rParam.nDyW;
-//STRIP001
-//STRIP001  double  fDx = 0, fDy = 0;
-//STRIP001  long    nDx, nDy;
-//STRIP001  long    nSeg = rParam.nPatSeg;
-//STRIP001  long    nPattern;
-//STRIP001
-//STRIP001  // Linienmuster vorhanden?
-//STRIP001  if ( !pLinePattern )
-//STRIP001  {
-//STRIP001      nPattern = -1;
-//STRIP001      nSeg = 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Angefangenes Segment zu Ende zeichnen?
-//STRIP001      if ( rParam.nPatRemain )
-//STRIP001          nPattern = rParam.nPatRemain;
-//STRIP001      else    // sonst naechstes Segment
-//STRIP001      {
-//STRIP001          nSeg++;
-//STRIP001          if ( pLinePattern[nSeg] == 0 )  nSeg = 0;
-//STRIP001          nPattern = pLinePattern[nSeg];
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // Punkte fuer DrawLine initialisieren
-//STRIP001  aP1 = rStart;
-//STRIP001  aP2 = aP1;
-//STRIP001
-//STRIP001  // Punkte zum Testen auf erreichen des Linienendes
-//STRIP001  Point SegStart = rStart;
-//STRIP001  Point SegEnd   = rStart;
-//STRIP001
-//STRIP001  while ( !bLineComplete )
-//STRIP001  {
-//STRIP001      double fSegLength;
-//STRIP001      // nPattern < 0: durchgehende Linie
-//STRIP001      if ( nPattern < 0 ) fSegLength = 1.0;
-//STRIP001      else                fSegLength = (double) nPattern / fLength;
-//STRIP001      fDx += fSegLength * nLineDx;
-//STRIP001      fDy += fSegLength * nLineDy;
-//STRIP001      nDx = (long) fDx;
-//STRIP001      nDy = (long) fDy;
-//STRIP001      fDx -= nDx;     // Rundungsfehler ausgleichen
-//STRIP001      fDy -= nDy;
-//STRIP001      aP2.X() += nDx;
-//STRIP001      aP2.Y() += nDy;
-//STRIP001      SegEnd.X() += nDx;
-//STRIP001      SegEnd.Y() += nDy;
-//STRIP001
-//STRIP001      // wenn das Ende ueberschritten wurde, hat das Vorzeichen
-//STRIP001      // der Abstaende vom Endpunkt gewechselt; durch Xor-Verknuepfung
-//STRIP001      // wird dieser Wechsel festgestellt
-//STRIP001      long nEndDiffX = (SegEnd.X() - rEnd.X());
-//STRIP001      long nEndDiffY = (SegEnd.Y() - rEnd.Y());
-//STRIP001
-//STRIP001      if ( (nEndDiffX ^ (SegStart.X() - rEnd.X())) < 0 ||
-//STRIP001           (nEndDiffY ^ (SegStart.Y() - rEnd.Y())) < 0 ||
-//STRIP001           (!nEndDiffX && !nEndDiffY) )
-//STRIP001      {
-//STRIP001          if ( nDx || nDy )
-//STRIP001          {
-//STRIP001              if ( Abs(nDx) >= Abs(nDy) )
-//STRIP001              {
-//STRIP001                  long nDiffX = SegEnd.X() - rEnd.X();
-//STRIP001                  rParam.nPatRemain = nPattern * nDiffX / nDx;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  long nDiffY = SegEnd.Y() - rEnd.Y();
-//STRIP001                  rParam.nPatRemain = nPattern * nDiffY / nDy;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              rParam.nPatRemain = 0;
-//STRIP001
-//STRIP001          rParam.nPatSeg = nSeg;
-//STRIP001          aP2 = rEnd;
-//STRIP001          bLineComplete = TRUE;
-//STRIP001      }
-//STRIP001      if ( !(nSeg & 0x1) )
-//STRIP001      {
-//STRIP001          pOut->DrawLine(aP1, aP2);
-//STRIP001      }
-//STRIP001
-//STRIP001      aP1 = aP2;
-//STRIP001      SegStart = SegEnd;
-//STRIP001
-//STRIP001      if ( pLinePattern )
-//STRIP001      {
-//STRIP001          nSeg++;
-//STRIP001          if ( pLinePattern[nSeg] == 0 )
-//STRIP001              nSeg = 0;
-//STRIP001          nPattern = pLinePattern[nSeg];
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1062,17 +612,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if( bHair || ( ( XLINE_SOLID == eLineStyle ) && ( nLineWidth ==  0 ) ) )
 /*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
-//STRIP001 /*?*/            // #107240#
-//STRIP001 /*?*/            // Since this method is also used for XOR drawing it's not allowed
-//STRIP001 /*?*/            // to optimize to line drawing here. DrawLine() does not draw the
-//STRIP001 /*?*/            // last point, thus a cycle with XOR drawing with DrawPolyLine() and then
-//STRIP001 /*?*/            // deleting the last part with DrawLine() results in one point not being deleted.
-//STRIP001 /*?*/            // if( 1 == nPntMax )
-//STRIP001 /*?*/            //  pOut->DrawLine( rPoly[ 0 ], rPoly[ 1 ] );
-//STRIP001 /*?*/            // else
-//STRIP001 /*?*/            pOut->DrawPolyLine( rPoly );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            DrawLineStartEnd( rPoly );
 /*N*/       }
 /*N*/       else if( XLINE_NONE != eLineStyle )
 /*N*/       {
@@ -1207,11 +746,6 @@ namespace binfilter {
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawFatLine(aPoly[i], aPoly[i+1], pNextPoint, aLParam);
 /*?*/               else
 /*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                    aLParam.nLineDx = aPoly[i+1].X() - aPoly[i].X();
-//STRIP001 /*?*/                    aLParam.nLineDy = aPoly[i+1].Y() - aPoly[i].Y();
-//STRIP001 /*?*/                    aLParam.fLength = sqrt((double) aLParam.nLineDx * aLParam.nLineDx +
-//STRIP001 /*?*/                                           (double) aLParam.nLineDy * aLParam.nLineDy);
-//STRIP001 /*?*/                    DrawPatternLine(aPoly[i], aPoly[i+1], aLParam);
 /*?*/               }
 /*?*/               i = nPos;
 /*?*/           }
@@ -1221,11 +755,6 @@ namespace binfilter {
 /*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     DrawFatLine(aPoly[i], aPoly[0], &aPoly[1], aLParam);
 /*?*/               else
 /*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                    aLParam.nLineDx = aPoly[0].X() - aPoly[i].X();
-//STRIP001 /*?*/                    aLParam.nLineDy = aPoly[0].Y() - aPoly[i].Y();
-//STRIP001 /*?*/                    aLParam.fLength = sqrt((double) aLParam.nLineDx * aLParam.nLineDx +
-//STRIP001 /*?*/                                           (double) aLParam.nLineDy * aLParam.nLineDy);
-//STRIP001 /*?*/                    DrawPatternLine(aPoly[i], aPoly[0], aLParam);
 /*?*/               }
 /*?*/           }
 /*?*/           else

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabbtmp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:42:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:03:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 #ifndef SVX_LIGHT
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 #ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
 #endif
@@ -46,21 +43,16 @@
 #include <unotools/ucbstreamhelper.hxx>
 #endif
 
-// auto strip #include "xmlxtexp.hxx"
 #include "xmlxtimp.hxx"
 
 #endif
 
 #include <tools/urlobj.hxx>
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #include <svtools/itemset.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include "dialogs.hrc"
 #include "dialmgr.hxx"
 #include "xtable.hxx"
 #include "xiocomp.hxx"
-// auto strip #include "xpool.hxx"
-// auto strip #include "xoutx.hxx"
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -368,24 +360,6 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
 /*N*/ BOOL XBitmapList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;//STRIP001
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001
-//STRIP001  INetURLObject aURL( aPath );
-//STRIP001
-//STRIP001  if( INET_PROT_NOT_VALID == aURL.GetProtocol() )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( !aPath.Len(), "invalid URL" );
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  aURL.Append( aName );
-//STRIP001
-//STRIP001  if( !aURL.getExtension().Len() )
-//STRIP001      aURL.setExtension( String( pszExtBitmap, 3 ) );
-//STRIP001
-//STRIP001  uno::Reference< container::XNameContainer > xTable( SvxUnoXBitmapTable_createInstance( this ), uno::UNO_QUERY );
-//STRIP001  return SvxXMLXTableExportComponent::save( aURL.GetMainURL( INetURLObject::NO_DECODE ), xTable );
-//STRIP001
 /*
     SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
     aMedium.IsRemote();
@@ -403,9 +377,6 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
     return( aMedium.GetError() == 0 );
 */
-//STRIP001 #else
-//STRIP001  return FALSE;
-//STRIP001 #endif
 /*N*/ }
 
 /************************************************************************/
