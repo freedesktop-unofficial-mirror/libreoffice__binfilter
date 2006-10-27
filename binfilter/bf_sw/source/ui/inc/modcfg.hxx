@@ -4,9 +4,9 @@
  *
  *  $RCSfile: modcfg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:42:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:47:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,7 +93,6 @@ class SwRevisionConfig : public ::utl::ConfigItem
         SwRevisionConfig();
         ~SwRevisionConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -121,7 +120,6 @@ class SwInsertConfig : public ::utl::ConfigItem
         SwInsertConfig(sal_Bool bWeb);
         ~SwInsertConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -147,7 +145,6 @@ class SwTableConfig : public ::utl::ConfigItem
         SwTableConfig(sal_Bool bWeb);
         ~SwTableConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -175,7 +172,6 @@ class SwMiscConfig : public ::utl::ConfigItem
         SwMiscConfig();
         ~SwMiscConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -272,8 +268,6 @@ public:
                     bHTML ? (aWebInsertConfig.nInsTblFlags = nSet) : (aInsertConfig.nInsTblFlags = nSet);
                     bHTML ? aWebInsertConfig.SetModified() : aInsertConfig.SetModified();}
 
-//STRIP001  const InsCaptionOpt* GetCapOption(BOOL bHTML, const SwCapObjType eType, const SvGlobalName *pOleId);
-//STRIP001  BOOL        SetCapOption(BOOL bHTML, const InsCaptionOpt* pOpt);
 
 
     BOOL        IsGrfToGalleryAsLnk() const     { return aMiscConfig.bGrfToGalleryAsLnk; }
