@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_viewopti.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:19:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:39:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,22 +34,15 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <vcl/svapp.hxx>
 
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
-// auto strip #include "global.hxx"
 #include "globstr.hrc"
-// auto strip #include "cfgids.hxx"
 #include "viewopti.hxx"
 #include "rechead.hxx"
-// auto strip #include "scresid.hxx"
 #include "bf_sc.hrc"
 #include "miscuno.hxx"
 namespace binfilter {
@@ -60,7 +53,6 @@ using namespace ::com::sun::star::uno;
 
 //------------------------------------------------------------------
 
-//STRIP001 TYPEINIT1(ScTpViewItem,  SfxPoolItem);
 
 #define SC_VERSION ((USHORT)302)
 
@@ -351,78 +343,29 @@ using namespace ::com::sun::star::uno;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvxGridItem* ScViewOptions::CreateGridItem( USHORT nId /* = SID_ATTR_GRID_OPTIONS */ ) const
-//STRIP001 {
-//STRIP001  SvxGridItem* pItem = new SvxGridItem( nId );
-//STRIP001
-//STRIP001  pItem->SetFldDrawX      ( aGridOpt.GetFldDrawX() );
-//STRIP001  pItem->SetFldDivisionX  ( aGridOpt.GetFldDivisionX() );
-//STRIP001  pItem->SetFldDrawY      ( aGridOpt.GetFldDrawY() );
-//STRIP001  pItem->SetFldDivisionY  ( aGridOpt.GetFldDivisionY() );
-//STRIP001  pItem->SetFldSnapX      ( aGridOpt.GetFldSnapX() );
-//STRIP001  pItem->SetFldSnapY      ( aGridOpt.GetFldSnapY() );
-//STRIP001  pItem->SetUseGridSnap   ( aGridOpt.GetUseGridSnap() );
-//STRIP001  pItem->SetSynchronize   ( aGridOpt.GetSynchronize() );
-//STRIP001  pItem->SetGridVisible   ( aGridOpt.GetGridVisible() );
-//STRIP001  pItem->SetEqualGrid     ( aGridOpt.GetEqualGrid() );
-//STRIP001
-//STRIP001  return pItem;
-//STRIP001 }
 
 //========================================================================
 //      ScTpViewItem - Daten fuer die ViewOptions-TabPage
 //========================================================================
 
-//STRIP001 ScTpViewItem::ScTpViewItem( USHORT nWhich ) : SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScTpViewItem::ScTpViewItem( USHORT nWhich, const ScViewOptions& rOpt )
-//STRIP001  :   SfxPoolItem ( nWhich ),
-//STRIP001      theOptions  ( rOpt )
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScTpViewItem::ScTpViewItem( const ScTpViewItem& rItem )
-//STRIP001  :   SfxPoolItem ( rItem ),
-//STRIP001      theOptions  ( rItem.theOptions )
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 __EXPORT ScTpViewItem::~ScTpViewItem()
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScTpViewItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("ScTpViewItem") );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScTpViewItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScTpViewItem& rPItem = (const ScTpViewItem&)rItem;
-//STRIP001
-//STRIP001  return ( theOptions == rPItem.theOptions );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScTpViewItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScTpViewItem( *this );
-//STRIP001 }
 
 //==================================================================
 //  Config Item containing view options
@@ -718,160 +661,21 @@ using namespace ::com::sun::star::uno;
 /*N*/ IMPL_LINK( ScViewCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetLayoutPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCLAYOUTOPT_GRIDCOLOR:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetGridColor().GetColor();
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_GRIDLINES:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_GRID ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_PAGEBREAK:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_PAGEBREAKS ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_GUIDE:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_HELPLINES ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_SIMPLECONT:
-//STRIP001              // content is reversed
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], !GetOption( VOPT_SOLIDHANDLES ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_LARGECONT:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_BIGHANDLES ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_COLROWHDR:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_HEADER ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_HORISCROLL:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_HSCROLL ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_VERTSCROLL:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_VSCROLL ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_SHEETTAB:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_TABCONTROLS ) );
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_OUTLINE:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_OUTLINER ) );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aLayoutItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScViewCfg, DisplayCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetDisplayPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCDISPLAYOPT_FORMULA:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_FORMULAS ) );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_ZEROVALUE:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_NULLVALS ) );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_NOTETAG:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_NOTES ) );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_VALUEHI:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_SYNTAX ) );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_ANCHOR:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_ANCHOR ) );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_TEXTOVER:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetOption( VOPT_CLIPMARKS ) );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_OBJECTGRA:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetObjMode( VOBJ_TYPE_OLE );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_CHART:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetObjMode( VOBJ_TYPE_CHART );
-//STRIP001              break;
-//STRIP001          case SCDISPLAYOPT_DRAWING:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetObjMode( VOBJ_TYPE_DRAW );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aDisplayItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScViewCfg, GridCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ScGridOptions& rGrid = GetGridOptions();
-//STRIP001
-//STRIP001  Sequence<OUString> aNames = GetGridPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCGRIDOPT_RESOLU_X:
-//STRIP001              pValues[nProp] <<= (sal_Int32) rGrid.GetFldDrawX();
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_RESOLU_Y:
-//STRIP001              pValues[nProp] <<= (sal_Int32) rGrid.GetFldDrawY();
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_SUBDIV_X:
-//STRIP001              pValues[nProp] <<= (sal_Int32) rGrid.GetFldDivisionX();
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_SUBDIV_Y:
-//STRIP001              pValues[nProp] <<= (sal_Int32) rGrid.GetFldDivisionY();
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_OPTION_X:
-//STRIP001              pValues[nProp] <<= (sal_Int32) rGrid.GetFldSnapX();
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_OPTION_Y:
-//STRIP001              pValues[nProp] <<= (sal_Int32) rGrid.GetFldSnapY();
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_SNAPTOGRID:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], rGrid.GetUseGridSnap() );
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_SYNCHRON:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], rGrid.GetSynchronize() );
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_VISIBLE:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], rGrid.GetGridVisible() );
-//STRIP001              break;
-//STRIP001          case SCGRIDOPT_SIZETOGRID:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], rGrid.GetEqualGrid() );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aGridItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void ScViewCfg::SetOptions( const ScViewOptions& rNew )
-//STRIP001 {
-//STRIP001  *(ScViewOptions*)this = rNew;
-//STRIP001  aLayoutItem.SetModified();
-//STRIP001  aDisplayItem.SetModified();
-//STRIP001  aGridItem.SetModified();
-//STRIP001 }
 
 
 }
