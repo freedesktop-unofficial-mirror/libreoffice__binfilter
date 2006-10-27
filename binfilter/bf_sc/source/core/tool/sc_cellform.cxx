@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cellform.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:04:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:29:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,12 +41,10 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <bf_sfx2/objsh.hxx>
-// auto strip #include <svtools/smplhint.hxx>
 #include <svtools/zforlist.hxx>
 
 #include "cellform.hxx"
 #include "cell.hxx"
-// auto strip #include "compiler.hxx"
 #include "document.hxx"
 #include "bf_sc.hrc"
 namespace binfilter {
@@ -137,26 +134,6 @@ const ScFormulaCell* pLastFormulaTreeTop = 0;
 /*N*/                       if ( nErrCode == errInterpOverflow )
 /*N*/                       {   // maxrecursion ausbuegeln, Err527 Workaround
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = pFCell->GetDocument();
-//STRIP001 /*?*/                            // z.B. nach Import von Fremdformaten FormulaTree
-//STRIP001 /*?*/                            // aufbauen
-//STRIP001 /*?*/                            if ( !pDoc->IsInFormulaTree( pFCell ) )
-//STRIP001 /*?*/                                pFCell->SetDirty();
-//STRIP001 /*?*/                            if ( pDoc->GetAutoCalc()
-//STRIP001 /*?*/                              && !pDoc->GetHardRecalcState()
-//STRIP001 /*?*/                              && pLastFormulaTreeTop != pDoc->GetFormulaTree() )
-//STRIP001 /*?*/                            {
-//STRIP001 /*?*/                                pLastFormulaTreeTop = pDoc->GetFormulaTree();
-//STRIP001 /*?*/                                // ohne ProgressBar falls fehlendes Repaint:
-//STRIP001 /*?*/                                // pDoc->CalcFormulaTree( FALSE, TRUE );
-//STRIP001 /*?*/                                //! austesten
-//STRIP001 /*?*/                                pDoc->CalcFormulaTree( FALSE, FALSE );
-//STRIP001 /*?*/                                nErrCode = pFCell->GetErrCode();
-//STRIP001 /*?*/                                if ( nErrCode != errInterpOverflow )
-//STRIP001 /*?*/                                {   // von hinten durch die Brust ins Auge ...
-//STRIP001 /*?*/                                    pDoc->GetDocumentShell()->Broadcast( SfxSimpleHint( FID_DATACHANGED ) );
-//STRIP001 /*?*/                                    pDoc->ResetChanged( ScRange(0,0,0,MAXCOL,MAXROW,MAXTAB) );
-//STRIP001 /*?*/                                }
-//STRIP001 /*?*/                            }
 /*N*/                       }
 /*N*/
 /*N*/                       // erst nach dem Interpretieren (GetErrCode) das Zahlformat holen:

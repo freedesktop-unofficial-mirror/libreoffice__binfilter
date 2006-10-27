@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_autoform.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:03:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:29:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,27 +42,18 @@
 
 #include "autoform.hxx"
 
-// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <svtools/pathoptions.hxx>
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #include <tools/shl.hxx>
-// auto strip #include <vcl/svapp.hxx>
 #include <vcl/outdev.hxx>
 #include <bf_svx/dialmgr.hxx>
 #include <bf_svx/dialogs.hrc>
-// auto strip #include <bf_svx/langitem.hxx>
 #include <tools/urlobj.hxx>
 
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
 
 #include "globstr.hrc"
-// auto strip #include "document.hxx"
 namespace binfilter {
 
 //------------------------------------------------------------------------
@@ -272,8 +262,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/ void ScAutoFormatDataField::SetAdjust( const SvxAdjustItem& rAdjust )
 /*N*/ {
 /*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aAdjust.SetAdjust( rAdjust.GetAdjust() );
-//STRIP001     aAdjust.SetOneWord( rAdjust.GetOneWord() );
-//STRIP001     aAdjust.SetLastBlock( rAdjust.GetLastBlock() );
 /*N*/ }
 
 /*N*/ #define READ( aItem, ItemType, nVers )      \
@@ -538,180 +526,11 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScAutoFormatData::CopyItem( USHORT nToIndex, USHORT nFromIndex, USHORT nWhich )
-//STRIP001 {
-//STRIP001     const SfxPoolItem* pItem = GetItem( nFromIndex, nWhich );
-//STRIP001     if( pItem )
-//STRIP001         PutItem( nToIndex, *pItem );
-//STRIP001 }
 
-//STRIP001 const ScNumFormatAbbrev& ScAutoFormatData::GetNumFormat( USHORT nIndex ) const
-//STRIP001 {
-//STRIP001     return GetField( nIndex ).GetNumFormat();
-//STRIP001 }
 
-//STRIP001 void ScAutoFormatData::SetNumFormat( USHORT nIndex, const ScNumFormatAbbrev& rNumFormat )
-//STRIP001 {
-//STRIP001     GetField( nIndex ).SetNumFormat( rNumFormat );
-//STRIP001 }
 
-//STRIP001 BOOL ScAutoFormatData::IsEqualData( USHORT nIndex1, USHORT nIndex2 ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual = TRUE;
-//STRIP001     const ScAutoFormatDataField& rField1 = GetField( nIndex1 );
-//STRIP001     const ScAutoFormatDataField& rField2 = GetField( nIndex2 );
-//STRIP001
-//STRIP001     if( bIncludeValueFormat )
-//STRIP001  {
-//STRIP001         bEqual = bEqual
-//STRIP001             && (rField1.GetNumFormat()      == rField2.GetNumFormat());
-//STRIP001  }
-//STRIP001     if( bIncludeFont )
-//STRIP001  {
-//STRIP001         bEqual = bEqual
-//STRIP001             && (rField1.GetFont()           == rField2.GetFont())
-//STRIP001             && (rField1.GetHeight()         == rField2.GetHeight())
-//STRIP001             && (rField1.GetWeight()         == rField2.GetWeight())
-//STRIP001             && (rField1.GetPosture()        == rField2.GetPosture())
-//STRIP001             && (rField1.GetCJKFont()        == rField2.GetCJKFont())
-//STRIP001             && (rField1.GetCJKHeight()      == rField2.GetCJKHeight())
-//STRIP001             && (rField1.GetCJKWeight()      == rField2.GetCJKWeight())
-//STRIP001             && (rField1.GetCJKPosture()     == rField2.GetCJKPosture())
-//STRIP001             && (rField1.GetCTLFont()        == rField2.GetCTLFont())
-//STRIP001             && (rField1.GetCTLHeight()      == rField2.GetCTLHeight())
-//STRIP001             && (rField1.GetCTLWeight()      == rField2.GetCTLWeight())
-//STRIP001             && (rField1.GetCTLPosture()     == rField2.GetCTLPosture())
-//STRIP001             && (rField1.GetUnderline()      == rField2.GetUnderline())
-//STRIP001             && (rField1.GetCrossedOut()     == rField2.GetCrossedOut())
-//STRIP001             && (rField1.GetContour()        == rField2.GetContour())
-//STRIP001             && (rField1.GetShadowed()       == rField2.GetShadowed())
-//STRIP001             && (rField1.GetColor()          == rField2.GetColor());
-//STRIP001  }
-//STRIP001     if( bIncludeJustify )
-//STRIP001  {
-//STRIP001         bEqual = bEqual
-//STRIP001             && (rField1.GetHorJustify()     == rField2.GetHorJustify())
-//STRIP001             && (rField1.GetVerJustify()     == rField2.GetVerJustify())
-//STRIP001             && (rField1.GetOrientation()    == rField2.GetOrientation())
-//STRIP001             && (rField1.GetLinebreak()      == rField2.GetLinebreak())
-//STRIP001             && (rField1.GetMargin()         == rField2.GetMargin())
-//STRIP001             && (rField1.GetRotateAngle()    == rField2.GetRotateAngle())
-//STRIP001             && (rField1.GetRotateMode()     == rField2.GetRotateMode());
-//STRIP001  }
-//STRIP001     if( bIncludeFrame )
-//STRIP001     {
-//STRIP001         bEqual = bEqual
-//STRIP001             && (rField1.GetBox()            == rField2.GetBox());
-//STRIP001     }
-//STRIP001     if( bIncludeBackground )
-//STRIP001     {
-//STRIP001         bEqual = bEqual
-//STRIP001             && (rField1.GetBackground()     == rField2.GetBackground());
-//STRIP001     }
-//STRIP001  return bEqual;
-//STRIP001 }
 
-//STRIP001 void ScAutoFormatData::FillToItemSet( USHORT nIndex, SfxItemSet& rItemSet, ScDocument& rDoc ) const
-//STRIP001 {
-//STRIP001     const ScAutoFormatDataField& rField = GetField( nIndex );
-//STRIP001
-//STRIP001     if( bIncludeValueFormat )
-//STRIP001     {
-//STRIP001         ScNumFormatAbbrev& rNumFormat = (ScNumFormatAbbrev&)rField.GetNumFormat();
-//STRIP001         SfxUInt32Item aValueFormat( ATTR_VALUE_FORMAT, 0 );
-//STRIP001         aValueFormat.SetValue( rNumFormat.GetFormatIndex( *rDoc.GetFormatTable() ) );
-//STRIP001         rItemSet.Put( aValueFormat );
-//STRIP001         rItemSet.Put( SvxLanguageItem( rNumFormat.GetLanguage(), ATTR_LANGUAGE_FORMAT ) );
-//STRIP001     }
-//STRIP001     if( bIncludeFont )
-//STRIP001     {
-//STRIP001         rItemSet.Put( rField.GetFont() );
-//STRIP001         rItemSet.Put( rField.GetHeight() );
-//STRIP001         rItemSet.Put( rField.GetWeight() );
-//STRIP001         rItemSet.Put( rField.GetPosture() );
-//STRIP001         // #103065# do not insert empty CJK font
-//STRIP001         const SvxFontItem& rCJKFont = rField.GetCJKFont();
-//STRIP001         if( rCJKFont.GetStyleName().Len() )
-//STRIP001         {
-//STRIP001             rItemSet.Put( rCJKFont );
-//STRIP001             rItemSet.Put( rField.GetCJKHeight() );
-//STRIP001             rItemSet.Put( rField.GetCJKWeight() );
-//STRIP001             rItemSet.Put( rField.GetCJKPosture() );
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             rItemSet.Put( rField.GetHeight(), ATTR_CJK_FONT_HEIGHT );
-//STRIP001             rItemSet.Put( rField.GetWeight(), ATTR_CJK_FONT_WEIGHT );
-//STRIP001             rItemSet.Put( rField.GetPosture(), ATTR_CJK_FONT_POSTURE );
-//STRIP001         }
-//STRIP001         // #103065# do not insert empty CTL font
-//STRIP001         const SvxFontItem& rCTLFont = rField.GetCTLFont();
-//STRIP001         if( rCTLFont.GetStyleName().Len() )
-//STRIP001         {
-//STRIP001             rItemSet.Put( rCTLFont );
-//STRIP001             rItemSet.Put( rField.GetCTLHeight() );
-//STRIP001             rItemSet.Put( rField.GetCTLWeight() );
-//STRIP001             rItemSet.Put( rField.GetCTLPosture() );
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             rItemSet.Put( rField.GetHeight(), ATTR_CTL_FONT_HEIGHT );
-//STRIP001             rItemSet.Put( rField.GetWeight(), ATTR_CTL_FONT_WEIGHT );
-//STRIP001             rItemSet.Put( rField.GetPosture(), ATTR_CTL_FONT_POSTURE );
-//STRIP001         }
-//STRIP001         rItemSet.Put( rField.GetUnderline() );
-//STRIP001         rItemSet.Put( rField.GetCrossedOut() );
-//STRIP001         rItemSet.Put( rField.GetContour() );
-//STRIP001         rItemSet.Put( rField.GetShadowed() );
-//STRIP001         rItemSet.Put( rField.GetColor() );
-//STRIP001     }
-//STRIP001     if( bIncludeJustify )
-//STRIP001     {
-//STRIP001         rItemSet.Put( rField.GetHorJustify() );
-//STRIP001         rItemSet.Put( rField.GetVerJustify() );
-//STRIP001         rItemSet.Put( rField.GetOrientation() );
-//STRIP001         rItemSet.Put( rField.GetLinebreak() );
-//STRIP001         rItemSet.Put( rField.GetMargin() );
-//STRIP001         rItemSet.Put( rField.GetRotateAngle() );
-//STRIP001         rItemSet.Put( rField.GetRotateMode() );
-//STRIP001     }
-//STRIP001     if( bIncludeFrame )
-//STRIP001         rItemSet.Put( rField.GetBox() );
-//STRIP001     if( bIncludeBackground )
-//STRIP001         rItemSet.Put( rField.GetBackground() );
-//STRIP001 }
 
-//STRIP001 void ScAutoFormatData::GetFromItemSet( USHORT nIndex, const SfxItemSet& rItemSet, const ScNumFormatAbbrev& rNumFormat )
-//STRIP001 {
-//STRIP001     ScAutoFormatDataField& rField = GetField( nIndex );
-//STRIP001
-//STRIP001     rField.SetNumFormat     ( rNumFormat);
-//STRIP001     rField.SetFont          ( (const SvxFontItem&)          rItemSet.Get( ATTR_FONT ) );
-//STRIP001     rField.SetHeight        ( (const SvxFontHeightItem&)    rItemSet.Get( ATTR_FONT_HEIGHT ) );
-//STRIP001     rField.SetWeight        ( (const SvxWeightItem&)        rItemSet.Get( ATTR_FONT_WEIGHT ) );
-//STRIP001     rField.SetPosture       ( (const SvxPostureItem&)       rItemSet.Get( ATTR_FONT_POSTURE ) );
-//STRIP001     rField.SetCJKFont       ( (const SvxFontItem&)          rItemSet.Get( ATTR_CJK_FONT ) );
-//STRIP001     rField.SetCJKHeight     ( (const SvxFontHeightItem&)    rItemSet.Get( ATTR_CJK_FONT_HEIGHT ) );
-//STRIP001     rField.SetCJKWeight     ( (const SvxWeightItem&)        rItemSet.Get( ATTR_CJK_FONT_WEIGHT ) );
-//STRIP001     rField.SetCJKPosture    ( (const SvxPostureItem&)       rItemSet.Get( ATTR_CJK_FONT_POSTURE ) );
-//STRIP001     rField.SetCTLFont       ( (const SvxFontItem&)          rItemSet.Get( ATTR_CTL_FONT ) );
-//STRIP001     rField.SetCTLHeight     ( (const SvxFontHeightItem&)    rItemSet.Get( ATTR_CTL_FONT_HEIGHT ) );
-//STRIP001     rField.SetCTLWeight     ( (const SvxWeightItem&)        rItemSet.Get( ATTR_CTL_FONT_WEIGHT ) );
-//STRIP001     rField.SetCTLPosture    ( (const SvxPostureItem&)       rItemSet.Get( ATTR_CTL_FONT_POSTURE ) );
-//STRIP001     rField.SetUnderline     ( (const SvxUnderlineItem&)     rItemSet.Get( ATTR_FONT_UNDERLINE ) );
-//STRIP001     rField.SetCrossedOut    ( (const SvxCrossedOutItem&)    rItemSet.Get( ATTR_FONT_CROSSEDOUT ) );
-//STRIP001     rField.SetContour       ( (const SvxContourItem&)       rItemSet.Get( ATTR_FONT_CONTOUR ) );
-//STRIP001     rField.SetShadowed      ( (const SvxShadowedItem&)      rItemSet.Get( ATTR_FONT_SHADOWED ) );
-//STRIP001     rField.SetColor         ( (const SvxColorItem&)         rItemSet.Get( ATTR_FONT_COLOR ) );
-//STRIP001     rField.SetHorJustify    ( (const SvxHorJustifyItem&)    rItemSet.Get( ATTR_HOR_JUSTIFY ) );
-//STRIP001     rField.SetVerJustify    ( (const SvxVerJustifyItem&)    rItemSet.Get( ATTR_VER_JUSTIFY ) );
-//STRIP001     rField.SetOrientation   ( (const SvxOrientationItem&)   rItemSet.Get( ATTR_ORIENTATION ) );
-//STRIP001     rField.SetLinebreak     ( (const SfxBoolItem&)          rItemSet.Get( ATTR_LINEBREAK ) );
-//STRIP001     rField.SetMargin        ( (const SvxMarginItem&)        rItemSet.Get( ATTR_MARGIN ) );
-//STRIP001     rField.SetBackground    ( (const SvxBrushItem&)         rItemSet.Get( ATTR_BACKGROUND ) );
-//STRIP001     rField.SetRotateAngle   ( (const SfxInt32Item&)           rItemSet.Get( ATTR_ROTATE_VALUE ) );
-//STRIP001     rField.SetRotateMode    ( (const SvxRotateModeItem&)    rItemSet.Get( ATTR_ROTATE_MODE ) );
-//STRIP001 }
 
 /*N*/  BOOL ScAutoFormatData::Load( SvStream& rStream, const ScAfVersions& rVersions )
 /*N*/  {
@@ -938,19 +757,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   bSaveLater = bSet;
 /*N*/ }
 
-//STRIP001 short ScAutoFormat::Compare(DataObject* pKey1, DataObject* pKey2) const
-//STRIP001 {
-//STRIP001  String aStr1;
-//STRIP001  String aStr2;
-//STRIP001  ((ScAutoFormatData*)pKey1)->GetName(aStr1);
-//STRIP001  ((ScAutoFormatData*)pKey2)->GetName(aStr2);
-//STRIP001  String aStrStandard = ScGlobal::GetRscString(STR_STYLENAME_STANDARD);
-//STRIP001     if ( ScGlobal::pTransliteration->isEqual( aStr1, aStrStandard ) )
-//STRIP001      return -1;
-//STRIP001     if ( ScGlobal::pTransliteration->isEqual( aStr2, aStrStandard ) )
-//STRIP001      return 1;
-//STRIP001     return (short) ScGlobal::pTransliteration->compareString( aStr1, aStr2 );
-//STRIP001 }
 
 /*N*/ BOOL ScAutoFormat::Load()
 /*N*/ {
@@ -1101,21 +907,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 USHORT ScAutoFormat::FindIndexPerName( const String& rName ) const
-//STRIP001 {
-//STRIP001  String              aName;
-//STRIP001
-//STRIP001  for( USHORT i=0; i<nCount ; i++ )
-//STRIP001  {
-//STRIP001      ScAutoFormatData* pItem = (ScAutoFormatData*)pItems[i];
-//STRIP001      pItem->GetName( aName );
-//STRIP001
-//STRIP001      if( aName == rName )
-//STRIP001          return i;
-//STRIP001  }
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
 
 
