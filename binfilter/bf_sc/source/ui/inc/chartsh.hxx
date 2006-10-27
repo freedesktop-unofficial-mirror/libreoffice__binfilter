@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chartsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:35:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:02:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,11 +57,9 @@ class ScChartShell: public ScDrawShell
 {
 public:
 
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_CHART_SHELL);
 
     ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}//STRIP001    ScChartShell(ScViewData* pData);
-//STRIP001  virtual     ~ScChartShell();
 
 };
 

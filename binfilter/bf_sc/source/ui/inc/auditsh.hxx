@@ -4,9 +4,9 @@
  *
  *  $RCSfile: auditsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:33:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:00:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,16 +50,11 @@ class ScViewData;
 
 class ScAuditingShell : public SfxShell
 {
-//STRIP001 private:
-//STRIP001  ScViewData* pViewData;
-//STRIP001  USHORT      nFunction;
 
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_AUDITING_SHELL);
 
     ScAuditingShell(ScViewData* pData);
-//STRIP001                  ~ScAuditingShell();
 
     void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void   Execute(SfxRequest& rReq);
     void    GetState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001   void    GetState(SfxItemSet& rSet);
