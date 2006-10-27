@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fileobj.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:11:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:49:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _FILEOBJ_HXX
 #define _FILEOBJ_HXX
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 #ifndef _LINKSRC_HXX //autogen
 #include <so3/linksrc.hxx>
 #endif
@@ -91,15 +88,11 @@ public:
                             BOOL bSynchron = FALSE );
 
     virtual BOOL Connect( ::so3::SvBaseLink* );
-//STRIP001  virtual String Edit( Window*, ::so3::SvBaseLink* );
 
     // erfrage ob das man direkt auf die Daten zugreifen kann oder ob das
     // erst angestossen werden muss
-//STRIP001  virtual BOOL IsPending() const;
-//STRIP001  virtual BOOL IsDataComplete() const;
 
     void CancelTransfers();
-//STRIP001  void SetTransferPriority( USHORT nPrio );
 };
 
 
