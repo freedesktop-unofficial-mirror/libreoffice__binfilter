@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_tablink.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:12:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:50:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,6 @@
 //------------------------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -51,24 +50,17 @@
 #include <svtools/itemset.hxx>
 #include <svtools/stritem.hxx>
 #include <bf_sfx2/docfile.hxx>
-// auto strip #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_svx/linkmgr.hxx>
-// auto strip #include <tools/urlobj.hxx>
 #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
 #endif
 
 #include "tablink.hxx"
 
-// auto strip #include "scextopt.hxx"
-// auto strip #include "table.hxx"
-// auto strip #include "document.hxx"
 #include "docsh.hxx"
 #include "globstr.hrc"
 #include "undoblk.hxx"
-// auto strip #include "undotab.hxx"
-// auto strip #include "global.hxx"
 #include "hints.hxx"
 namespace binfilter {
 
@@ -123,25 +115,6 @@ namespace binfilter {
 /*N*/           pDoc->SetLink( nTab, SC_LINK_NONE, aEmpty, aEmpty, aEmpty, aEmpty, 0 );
 /*N*/ }
 
-//STRIP001 BOOL __EXPORT ScTableLink::Edit(Window* pParent)
-//STRIP001 {
-//STRIP001  //  DefModalDialogParent setzen, weil evtl. aus der DocShell beim ConvertFrom
-//STRIP001  //  ein Optionen-Dialog kommt...
-//STRIP001
-//STRIP001  Window* pOldParent = Application::GetDefDialogParent();
-//STRIP001  if (pParent)
-//STRIP001      Application::SetDefDialogParent(pParent);
-//STRIP001
-//STRIP001  bInEdit = TRUE;
-//STRIP001
-//STRIP001  BOOL bRet = SvBaseLink::Edit(pParent);
-//STRIP001
-//STRIP001  bInEdit = FALSE;
-//STRIP001
-//STRIP001  Application::SetDefDialogParent(pOldParent);
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ void __EXPORT ScTableLink::DataChanged( const String&,
 /*N*/                                       const ::com::sun::star::uno::Any& )
@@ -162,29 +135,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void __EXPORT ScTableLink::Closed()
-//STRIP001 {
-//STRIP001  // Verknuepfung loeschen: Undo
-//STRIP001  ScDocument* pDoc = pDocShell->GetDocument();
-//STRIP001  BOOL bUndo (pDoc->IsUndoEnabled());
-//STRIP001
-//STRIP001  if (bAddUndo && bUndo)
-//STRIP001  {
-//STRIP001      pDocShell->GetUndoManager()->AddUndoAction(
-//STRIP001              new ScUndoRemoveLink( pDocShell, aFileName ) );
-//STRIP001
-//STRIP001      bAddUndo = FALSE;   // nur einmal
-//STRIP001  }
-//STRIP001
-//STRIP001  // Verbindung wird im dtor aufgehoben
-//STRIP001
-//STRIP001  SvBaseLink::Closed();
-//STRIP001 }
 
-//STRIP001 BOOL ScTableLink::IsUsed() const
-//STRIP001 {
-//STRIP001  return pDocShell->GetDocument()->HasLink( aFileName, aFilterName, aOptions );
-//STRIP001 }
 
 /*N*/ BOOL ScTableLink::Refresh(const String& rNewFile, const String& rNewFilter,
 /*N*/                           const String* pNewOptions, ULONG nNewRefresh )
@@ -472,12 +423,6 @@ namespace binfilter {
 /*M*/   if( pDoc )
 /*M*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScExtDocOptions*  pExtDocOpt = pDoc->GetExtDocOptions();
-//STRIP001 /*?*/        if( !pExtDocOpt )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pExtDocOpt = new ScExtDocOptions;
-//STRIP001 /*?*/            pDoc->SetExtDocOptions( pExtDocOpt );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        pExtDocOpt->nLinkCnt = nRekCnt;
 /*M*/   }
 /*M*/
 /*M*/   pDocShell->DoLoad( pMedium );
