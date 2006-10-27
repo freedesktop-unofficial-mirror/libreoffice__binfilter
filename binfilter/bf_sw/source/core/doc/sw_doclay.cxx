@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:37:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:24:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,33 +47,6 @@
 #ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
 #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_KEEPITEM_HXX //autogen
-// auto strip #include <bf_svx/keepitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
-// auto strip #include <bf_svx/lrspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
-// auto strip #include <bf_svx/boxitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_SHADITEM_HXX //autogen
-// auto strip #include <bf_svx/shaditem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
-// auto strip #include <bf_svx/protitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
-// auto strip #include <bf_svx/opaqitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PRNTITEM_HXX //autogen
-// auto strip #include <bf_svx/prntitem.hxx>
-// auto strip #endif
 #ifndef _SVX_FMGLOB_HXX
 #include <bf_svx/fmglob.hxx>
 #endif
@@ -86,60 +59,30 @@
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
 
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-// auto strip #ifndef _TXATBASE_HXX //autogen
-// auto strip #include <txatbase.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTFLD_HXX //autogen
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _FMTORNT_HXX //autogen
-// auto strip #include <fmtornt.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTCNTNT_HXX //autogen
-// auto strip #include <fmtcntnt.hxx>
-// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-// auto strip #ifndef _FMTSRND_HXX //autogen
-// auto strip #include <fmtsrnd.hxx>
-// auto strip #endif
 #ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
 #endif
 #ifndef _FRMCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX //autogen
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _DCONTACT_HXX //autogen
-// auto strip #include <dcontact.hxx>
-// auto strip #endif
 #ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
 #endif
@@ -149,27 +92,15 @@
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer Expression-Felder
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _NDNOTXT_HXX
-// auto strip #include <ndnotxt.hxx>
-// auto strip #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-// auto strip #ifndef _PAGEFRM_HXX
-// auto strip #include <pagefrm.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -188,33 +119,15 @@
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-// auto strip #ifndef _SWUNDO_HXX
-// auto strip #include <swundo.hxx>
-// auto strip #endif
-// auto strip #ifndef _FLYPOS_HXX
-// auto strip #include <flypos.hxx>
-// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-// auto strip #ifndef _EXPFLD_HXX
-// auto strip #include <expfld.hxx>     // InsertLabel
-// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // PoolVorlagen-Id's
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _TBLSEL_HXX
-// auto strip #include <tblsel.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>
-// auto strip #endif
 #ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
 #endif
@@ -224,9 +137,6 @@
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
-// auto strip #ifndef _PAGEDESC_HXX
-// auto strip #include <pagedesc.hxx>
-// auto strip #endif
 
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>      // STR-ResId's
@@ -328,14 +238,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   case RND_DRAW_OBJECT:
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFmt = MakeDrawFrmFmt( aEmptyStr, GetDfltFrmFmt() );
-//STRIP001 /*?*/            if( pSet )      // noch ein paar Attribute setzen ?
-//STRIP001 /*?*/                pFmt->SetAttr( *pSet );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if( DoesUndo() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ClearRedo();
-//STRIP001 /*?*/                AppendUndo( new SwUndoInsLayFmt( pFmt ));
-//STRIP001 /*?*/            }
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -377,14 +279,10 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   if ( rChain.GetPrev() )
 /*N*/   {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rChain.GetPrev()->GetChain() );
-//STRIP001 /*?*/        aChain.SetNext( rChain.GetNext() );
-//STRIP001 /*?*/        SetAttr( aChain, *rChain.GetPrev() );
 /*N*/   }
 /*N*/   if ( rChain.GetNext() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( rChain.GetNext()->GetChain() );
-//STRIP001 /*?*/        aChain.SetPrev( rChain.GetPrev() );
-//STRIP001 /*?*/        SetAttr( aChain, *rChain.GetNext() );
 /*N*/   }
 
 /*N*/   const SwNodeIndex* pCntIdx = pFmt->GetCntnt().GetCntntIdx();
@@ -419,8 +317,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   if( DoesUndo() && (RES_FLYFRMFMT == nWh || RES_DRAWFRMFMT == nWh) )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // erstmal werden alle Undo - Objecte geloescht.
-//STRIP001 /*?*/        ClearRedo();
-//STRIP001 /*?*/        AppendUndo( new SwUndoDelLayFmt( pFmt ));
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -582,8 +478,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/       if( DoesUndo() )
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            ClearRedo();
-//STRIP001 /*?*/            AppendUndo( new SwUndoInsLayFmt( pDest ));
 /*N*/       }
 /*N*/
 /*N*/       // sorge dafuer das auch Fly's in Fly's kopiert werden
@@ -613,8 +507,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/       if( DoesUndo() )
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            ClearRedo();
-//STRIP001 /*?*/            AppendUndo( new SwUndoInsLayFmt( pDest ));
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -850,122 +742,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   return pFmt;
 /*N*/ }
 
-//STRIP001 SwFlyFrmFmt* SwDoc::MakeFlyAndMove( const SwPaM& rPam, const SfxItemSet& rSet,
-//STRIP001                                  const SwSelBoxes* pSelBoxes,
-//STRIP001                                  SwFrmFmt *pParent )
-//STRIP001 {
-//STRIP001  SwFmtAnchor& rAnch = (SwFmtAnchor&)rSet.Get( RES_ANCHOR );
-//STRIP001
-//STRIP001  StartUndo( UNDO_INSLAYFMT );
-//STRIP001
-//STRIP001  SwFlyFrmFmt* pFmt = MakeFlySection( rAnch.GetAnchorId(), rPam.GetPoint(),
-//STRIP001                                      &rSet, pParent );
-//STRIP001
-//STRIP001  // Wenn Inhalt selektiert ist, so wird dieser jetzt zum Inhalt des
-//STRIP001  // neuen Rahmen. Sprich er wird in die entspr. Sektion des NodesArr
-//STRIP001  //gemoved.
-//STRIP001
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      do {        // middle check loop
-//STRIP001          const SwFmtCntnt &rCntnt = pFmt->GetCntnt();
-//STRIP001          ASSERT( rCntnt.GetCntntIdx(), "Kein Inhalt vorbereitet." );
-//STRIP001          SwNodeIndex aIndex( *(rCntnt.GetCntntIdx()), 1 );
-//STRIP001          SwCntntNode *pNode = aIndex.GetNode().GetCntntNode();
-//STRIP001
-//STRIP001          // ACHTUNG: nicht einen Index auf dem Stack erzeugen, sonst
-//STRIP001          //          kann der CntntnNode am Ende nicht geloscht werden !!
-//STRIP001          SwPosition aPos( aIndex );
-//STRIP001          aPos.nContent.Assign( pNode, 0 );
-//STRIP001
-//STRIP001          if( pSelBoxes && pSelBoxes->Count() )
-//STRIP001          {
-//STRIP001              // Tabellenselection
-//STRIP001              // kopiere Teile aus einer Tabelle: lege eine Tabelle mit der
-//STRIP001              // Breite der Originalen an und move (kopiere/loesche) die
-//STRIP001              // selektierten Boxen. Die Groessen werden prozentual
-//STRIP001              // korrigiert.
-//STRIP001
-//STRIP001              SwTableNode* pTblNd = (SwTableNode*)(*pSelBoxes)[0]->
-//STRIP001                                              GetSttNd()->FindTableNode();
-//STRIP001              if( !pTblNd )
-//STRIP001                  break;
-//STRIP001
-//STRIP001              SwTable& rTbl = pTblNd->GetTable();
-//STRIP001
-//STRIP001              // ist die gesamte Tabelle selektiert ?
-//STRIP001              if( pSelBoxes->Count() == rTbl.GetTabSortBoxes().Count() )
-//STRIP001              {
-//STRIP001                  // verschiebe die gesamte Tabelle
-//STRIP001                  SwNodeRange aRg( *pTblNd, 0, *pTblNd->EndOfSectionNode(), 1 );
-//STRIP001
-//STRIP001                  // wird die gesamte Tabelle verschoben und steht diese
-//STRIP001                  // in einem FlyFrame, dann erzeuge dahinter einen neuen
-//STRIP001                  // TextNode. Dadurch bleibt dieser Fly erhalten !
-//STRIP001                  if( aRg.aEnd.GetNode().IsEndNode() )
-//STRIP001                      GetNodes().MakeTxtNode( aRg.aStart,
-//STRIP001                                  (SwTxtFmtColl*)GetDfltTxtFmtColl() );
-//STRIP001
-//STRIP001                  Move( aRg, aPos.nNode );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  rTbl.MakeCopy( this, aPos, *pSelBoxes );
-//STRIP001                  rTbl.DeleteSel( this, *pSelBoxes );
-//STRIP001              }
-//STRIP001
-//STRIP001              // wenn Tabelle im Rahmen, dann ohne nachfolgenden TextNode
-//STRIP001              aIndex = rCntnt.GetCntntIdx()->GetNode().EndOfSectionIndex() - 1;
-//STRIP001              ASSERT( aIndex.GetNode().GetTxtNode(),
-//STRIP001                      "hier sollte ein TextNode stehen" );
-//STRIP001              aPos.nContent.Assign( 0, 0 );       // Index abmelden !!
-//STRIP001              GetNodes().Delete( aIndex, 1 );
-//STRIP001
-//STRIP001 //JP erstmal ein Hack, solange keine Flys/Headers/Footers Undofaehig sind
-//STRIP001 if( DoesUndo() ) // werden erstmal alle Undo - Objecte geloescht.
-//STRIP001  DelAllUndoObj();
-//STRIP001
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001 /*
-//STRIP001              // alle Pams verschieben
-//STRIP001              SwPaM* pTmp = (SwPaM*)&rPam;
-//STRIP001              do {
-//STRIP001                  if( pTmp->HasMark() &&
-//STRIP001                      *pTmp->GetPoint() != *pTmp->GetMark() )
-//STRIP001                      MoveAndJoin( *pTmp, aPos );
-//STRIP001              } while( &rPam != ( pTmp = (SwPaM*)pTmp->GetNext() ) );
-//STRIP001 */
-//STRIP001              // copy all Pams and then delete all
-//STRIP001              SwPaM* pTmp = (SwPaM*)&rPam;
-//STRIP001              BOOL bOldFlag = bCopyIsMove, bOldUndo = bUndo;
-//STRIP001              bCopyIsMove = TRUE;
-//STRIP001              bUndo = FALSE;
-//STRIP001              do {
-//STRIP001                  if( pTmp->HasMark() &&
-//STRIP001                      *pTmp->GetPoint() != *pTmp->GetMark() )
-//STRIP001                      Copy( *pTmp, aPos );
-//STRIP001              } while( &rPam != ( pTmp = (SwPaM*)pTmp->GetNext() ) );
-//STRIP001              bCopyIsMove = bOldFlag;
-//STRIP001              bUndo = bOldUndo;
-//STRIP001
-//STRIP001              pTmp = (SwPaM*)&rPam;
-//STRIP001              do {
-//STRIP001                  if( pTmp->HasMark() &&
-//STRIP001                      *pTmp->GetPoint() != *pTmp->GetMark() )
-//STRIP001                      DeleteAndJoin( *pTmp );
-//STRIP001              } while( &rPam != ( pTmp = (SwPaM*)pTmp->GetNext() ) );
-//STRIP001          }
-//STRIP001      } while( sal_False );
-//STRIP001  }
-//STRIP001
-//STRIP001  SetModified();
-//STRIP001
-//STRIP001  EndUndo( UNDO_INSLAYFMT );
-//STRIP001
-//STRIP001  return pFmt;
-//STRIP001 }
 
 
     //Einfuegen eines DrawObjectes. Das Object muss bereits im DrawModel
@@ -1088,128 +864,12 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
     frames at character - o.k. if the pam start at least at the same position
                          as the frame
  ---------------------------------------------------------------------------*/
-//STRIP001 sal_Bool TstFlyRange( const SwPaM* pPam, const SwPosition* pFlyPos,
-//STRIP001                      RndStdIds nAnchorId )
-//STRIP001 {
-//STRIP001  sal_Bool bOk = FALSE;
-//STRIP001  const SwPaM* pTmp = pPam;
-//STRIP001  do {
-//STRIP001      const sal_uInt32 nFlyIndex = pFlyPos->nNode.GetIndex();
-//STRIP001      const SwPosition* pPaMStart = pTmp->Start();
-//STRIP001      const SwPosition* pPaMEnd = pTmp->End();
-//STRIP001      const sal_uInt32 nPamStartIndex = pPaMStart->nNode.GetIndex();
-//STRIP001      const sal_uInt32 nPamEndIndex = pPaMEnd->nNode.GetIndex();
-//STRIP001      if(FLY_AT_CNTNT == nAnchorId)
-//STRIP001          bOk = (nPamStartIndex < nFlyIndex && nPamEndIndex > nFlyIndex) ||
-//STRIP001             (((nPamStartIndex == nFlyIndex) && (pPaMStart->nContent.GetIndex() == 0)) &&
-//STRIP001             (nPamEndIndex > nFlyIndex));
-//STRIP001      else
-//STRIP001      {
-//STRIP001          xub_StrLen nFlyContentIndex = pFlyPos->nContent.GetIndex();
-//STRIP001          xub_StrLen nPamEndContentIndex = pPaMEnd->nContent.GetIndex();
-//STRIP001          bOk = (nPamStartIndex < nFlyIndex &&
-//STRIP001              (( nPamEndIndex > nFlyIndex )||
-//STRIP001               ((nPamEndIndex == nFlyIndex) &&
-//STRIP001                   (nPamEndContentIndex > nFlyContentIndex))) )
-//STRIP001              ||
-//STRIP001                  (((nPamStartIndex == nFlyIndex) &&
-//STRIP001                    (pPaMStart->nContent.GetIndex() <= nFlyContentIndex)) &&
-//STRIP001                      ((nPamEndIndex > nFlyIndex) ||
-//STRIP001                      (nPamEndContentIndex > nFlyContentIndex )));
-//STRIP001      }
-//STRIP001
-//STRIP001  } while( !bOk && pPam != ( pTmp = (const SwPaM*)pTmp->GetNext() ));
-//STRIP001  return bOk;
-//STRIP001 }
 
 
 /*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& rPosFlyFmts,
 /*N*/                          const SwPaM* pCmpRange, sal_Bool bDrawAlso ) const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
-//STRIP001  const SwPosition* pAPos;
-//STRIP001  SwFrmFmt *pFly;
-//STRIP001
-//STRIP001  // erstmal alle Absatzgebundenen einsammeln
-//STRIP001  for( sal_uInt16 n = 0; n < GetSpzFrmFmts()->Count(); ++n )
-//STRIP001  {
-//STRIP001      pFly = (*GetSpzFrmFmts())[ n ];
-//STRIP001      sal_Bool bDrawFmt = bDrawAlso ? RES_DRAWFRMFMT == pFly->Which() : sal_False;
-//STRIP001      sal_Bool bFlyFmt = RES_FLYFRMFMT == pFly->Which();
-//STRIP001      if( bFlyFmt || bDrawFmt )
-//STRIP001      {
-//STRIP001          const SwFmtAnchor& rAnchor = pFly->GetAnchor();
-//STRIP001          if( ( FLY_AT_CNTNT == rAnchor.GetAnchorId() ||
-//STRIP001              FLY_AT_FLY == rAnchor.GetAnchorId() ||
-//STRIP001              FLY_AUTO_CNTNT == rAnchor.GetAnchorId() ) &&
-//STRIP001              0 != ( pAPos = rAnchor.GetCntntAnchor()) )
-//STRIP001          {
-//STRIP001              if( pCmpRange &&
-//STRIP001                  !TstFlyRange( pCmpRange, pAPos, rAnchor.GetAnchorId() ))
-//STRIP001                      continue;       // kein gueltiger FlyFrame
-//STRIP001              pFPos = new SwPosFlyFrm( pAPos->nNode, pFly, rPosFlyFmts.Count() );
-//STRIP001              rPosFlyFmts.Insert( pFPos );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // kein Layout oder nur ein Teil, dann wars das
-//STRIP001  // Seitenbezogen Flys nur, wenn vollstaendig "gewuenscht" wird !
-//STRIP001  if( !GetRootFrm() || pCmpRange )
-//STRIP001      return;
-//STRIP001
-//STRIP001  pFPos = 0;
-//STRIP001  SwPageFrm *pPage = (SwPageFrm*)GetRootFrm()->GetLower();
-//STRIP001  while( pPage )
-//STRIP001  {
-//STRIP001      if( pPage->GetSortedObjs() )
-//STRIP001      {
-//STRIP001          SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
-//STRIP001          for( sal_uInt16 i = 0; i < rObjs.Count(); ++i)
-//STRIP001          {
-//STRIP001              SdrObject *pO = rObjs[i];
-//STRIP001              SwVirtFlyDrawObj *pObj = pO->IsWriterFlyFrame() ?
-//STRIP001                                                  (SwVirtFlyDrawObj*)pO : 0;
-//STRIP001              if( pObj )
-//STRIP001                  pFly = pObj->GetFlyFrm()->GetFmt();
-//STRIP001              else if ( bDrawAlso )
-//STRIP001                  pFly = ::FindFrmFmt( rObjs[i] );
-//STRIP001              else
-//STRIP001                  continue;
-//STRIP001
-//STRIP001              const SwFmtAnchor& rAnchor = pFly->GetAnchor();
-//STRIP001              if( FLY_AT_CNTNT != rAnchor.GetAnchorId() &&
-//STRIP001                  FLY_AT_FLY != rAnchor.GetAnchorId() &&
-//STRIP001                  FLY_AUTO_CNTNT != rAnchor.GetAnchorId() )
-//STRIP001              {
-//STRIP001                  const SwCntntFrm * pCntntFrm = pPage->FindFirstBodyCntnt();
-//STRIP001                  if ( !pCntntFrm )
-//STRIP001                  {
-//STRIP001                      //Oops! Eine leere Seite. Damit der Rahmen nicht ganz
-//STRIP001                      //verlorengeht (RTF) suchen wir schnell den letzen
-//STRIP001                      //Cntnt der vor der Seite steht.
-//STRIP001                      SwPageFrm *pPrv = (SwPageFrm*)pPage->GetPrev();
-//STRIP001                      while ( !pCntntFrm && pPrv )
-//STRIP001                      {
-//STRIP001                          pCntntFrm = pPrv->FindFirstBodyCntnt();
-//STRIP001                          pPrv = (SwPageFrm*)pPrv->GetPrev();
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  if ( pCntntFrm )
-//STRIP001                  {
-//STRIP001                      SwNodeIndex aIdx( *pCntntFrm->GetNode() );
-//STRIP001                      pFPos = new SwPosFlyFrm( aIdx, pFly, rPosFlyFmts.Count() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if ( pFPos )
-//STRIP001              {
-//STRIP001                  rPosFlyFmts.Insert( pFPos );
-//STRIP001                  pFPos = 0;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001  }
 /*N*/ }
 
 /*************************************************************************
@@ -1233,304 +893,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
    Otherwise the new set will not be changed.
 */
 
-//STRIP001 void lcl_CpyAttr( SfxItemSet &rNewSet, const SfxItemSet &rOldSet, sal_uInt16 nWhich )
-//STRIP001 {
-//STRIP001  const SfxPoolItem *pOldItem = NULL, *pNewItem = NULL;
-//STRIP001
-//STRIP001     rOldSet.GetItemState( nWhich, sal_False, &pOldItem);
-//STRIP001  if (pOldItem != NULL)
-//STRIP001      rNewSet.Put( *pOldItem );
-//STRIP001     else
-//STRIP001     {
-//STRIP001         pOldItem = rOldSet.GetItem( nWhich, sal_True);
-//STRIP001         if (pOldItem != NULL)
-//STRIP001         {
-//STRIP001             pNewItem = rNewSet.GetItem( nWhich, sal_True);
-//STRIP001             if (pNewItem != NULL)
-//STRIP001             {
-//STRIP001                 if (*pOldItem != *pNewItem)
-//STRIP001                     rNewSet.Put( *pOldItem );
-//STRIP001             }
-//STRIP001             else
-//STRIP001                 ASSERT(0, "What am I doing here?");
-//STRIP001         }
-//STRIP001         else
-//STRIP001             ASSERT(0, "What am I doing here?");
-//STRIP001     }
-//STRIP001
-//STRIP001 }
 
 
-//STRIP001 SwFlyFrmFmt* SwDoc::InsertLabel( const SwLabelType eType, const String &rTxt,
-//STRIP001          const sal_Bool bBefore, const sal_uInt16 nId, const sal_uInt32 nNdIdx,
-//STRIP001          const sal_Bool bCpyBrd )
-//STRIP001 {
-//STRIP001  sal_Bool bWasUndo = DoesUndo();
-//STRIP001  SwUndoInsertLabel* pUndo = 0;
-//STRIP001  if( bWasUndo )
-//STRIP001  {
-//STRIP001      ClearRedo();
-//STRIP001      pUndo = new SwUndoInsertLabel( eType, rTxt, bBefore, nId, bCpyBrd );
-//STRIP001      DoUndo( sal_False );
-//STRIP001  }
-//STRIP001
-//STRIP001  sal_Bool bTable = sal_False;    //Um etwas Code zu sparen.
-//STRIP001
-//STRIP001  //Erstmal das Feld bauen, weil ueber den Namen die TxtColl besorgt werden
-//STRIP001  //muss
-//STRIP001  ASSERT( nId < GetFldTypes()->Count(), "FldType ueberindiziert." );
-//STRIP001  SwFieldType *pType = (*GetFldTypes())[nId];
-//STRIP001  ASSERT( pType->Which() == RES_SETEXPFLD, "Falsche Id fuer Label" );
-//STRIP001  SwSetExpField aFld( (SwSetExpFieldType*)pType, aEmptyStr, SVX_NUM_ARABIC);
-//STRIP001
-//STRIP001  SwTxtFmtColl *pColl = 0;
-//STRIP001  for( sal_uInt16 i = pTxtFmtCollTbl->Count(); i; )
-//STRIP001  {
-//STRIP001      if( (*pTxtFmtCollTbl)[ --i ]->GetName() == pType->GetName() )
-//STRIP001      {
-//STRIP001          pColl = (*pTxtFmtCollTbl)[i];
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( !pColl )
-//STRIP001  {
-//STRIP001      ASSERT( !this, "TxtCollection fuer Label nicht gefunden." );
-//STRIP001      pColl = GetTxtCollFromPool( RES_POOLCOLL_TEXT );
-//STRIP001  }
-//STRIP001
-//STRIP001  SwTxtNode *pNew = 0;
-//STRIP001  SwFlyFrmFmt* pNewFmt = 0;
-//STRIP001
-//STRIP001  switch ( eType )
-//STRIP001  {
-//STRIP001      case LTYPE_TABLE:
-//STRIP001          bTable = sal_True;
-//STRIP001          /* Kein Break hier */
-//STRIP001      case LTYPE_FLY:
-//STRIP001          //Am Anfang/Ende der Fly-Section den entsprechenden Node mit Feld
-//STRIP001          //einfuegen (Frame wird automatisch erzeugt).
-//STRIP001          {
-//STRIP001              SwStartNode *pSttNd = GetNodes()[nNdIdx]->GetStartNode();
-//STRIP001              ASSERT( pSttNd, "Kein StartNode in InsertLabel." );
-//STRIP001              sal_uInt32 nNode;
-//STRIP001              if( bBefore )
-//STRIP001              {
-//STRIP001                  nNode = pSttNd->GetIndex();
-//STRIP001                  if( !bTable )
-//STRIP001                      ++nNode;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  nNode = pSttNd->EndOfSectionIndex();
-//STRIP001                  if( bTable )
-//STRIP001                      ++nNode;
-//STRIP001              }
-//STRIP001
-//STRIP001              if( pUndo )
-//STRIP001                  pUndo->SetNodePos( nNode );
-//STRIP001
-//STRIP001              //Node fuer Beschriftungsabsatz erzeugen.
-//STRIP001              SwNodeIndex aIdx( GetNodes(), nNode );
-//STRIP001              pNew = GetNodes().MakeTxtNode( aIdx, pColl );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case LTYPE_OBJECT:
-//STRIP001          {
-//STRIP001              //Rahmen zerstoeren, neuen Rahmen einfuegen, entsprechenden
-//STRIP001              // Node mit Feld in den neuen Rahmen, den alten Rahmen mit
-//STRIP001              // dem Object (Grafik/Ole) absatzgebunden in den neuen Rahmen,
-//STRIP001              // Frames erzeugen.
-//STRIP001
-//STRIP001              //Erstmal das Format zum Fly besorgen und das Layout entkoppeln.
-//STRIP001              SwFrmFmt *pOldFmt = GetNodes()[nNdIdx]->GetFlyFmt();
-//STRIP001              ASSERT( pOldFmt, "Format des Fly nicht gefunden." );
-//STRIP001              pOldFmt->DelFrms();
-//STRIP001
-//STRIP001              pNewFmt = MakeFlyFrmFmt( GetUniqueFrameName(),
-//STRIP001                                  GetFrmFmtFromPool( RES_POOLFRM_FRAME ));
-//STRIP001
-//STRIP001                 /* #i6447#: Only the selected items are copied from the old
-//STRIP001                    format. */
-//STRIP001              SfxItemSet* pNewSet = pNewFmt->GetAttrSet().Clone( sal_True );
-//STRIP001
-//STRIP001
-//STRIP001              //Diejenigen Attribute uebertragen die auch gesetzt sind,
-//STRIP001              //andere sollen weiterhin aus den Vorlagen gueltig werden.
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_PRINT );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_OPAQUE );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_PROTECT );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_SURROUND );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_VERT_ORIENT );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_HORI_ORIENT );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_LR_SPACE );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_UL_SPACE );
-//STRIP001              lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_BACKGROUND );
-//STRIP001              if( bCpyBrd )
-//STRIP001              {
-//STRIP001                  // JP 07.07.99: Bug 67029 - if at Grafik no BoxItem but
-//STRIP001                  //              in the new Format is any, then set the
-//STRIP001                  //              default item in the new Set. Because
-//STRIP001                  //              the Size of the Grafik have never been
-//STRIP001                  //              changed!
-//STRIP001                  const SfxPoolItem *pItem;
-//STRIP001                  if( SFX_ITEM_SET == pOldFmt->GetAttrSet().
-//STRIP001                          GetItemState( RES_BOX, sal_True, &pItem ))
-//STRIP001                      pNewSet->Put( *pItem );
-//STRIP001                  else if( SFX_ITEM_SET == pNewFmt->GetAttrSet().
-//STRIP001                          GetItemState( RES_BOX, sal_True ))
-//STRIP001                      pNewSet->Put( *GetDfltAttr( RES_BOX ) );
-//STRIP001
-//STRIP001                  if( SFX_ITEM_SET == pOldFmt->GetAttrSet().
-//STRIP001                          GetItemState( RES_SHADOW, sal_True, &pItem ))
-//STRIP001                      pNewSet->Put( *pItem );
-//STRIP001                  else if( SFX_ITEM_SET == pNewFmt->GetAttrSet().
-//STRIP001                          GetItemState( RES_SHADOW, sal_True ))
-//STRIP001                      pNewSet->Put( *GetDfltAttr( RES_SHADOW ) );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  //Die Attribute hart setzen, weil sie sonst aus der
-//STRIP001                  // Vorlage kommen koenten und dann passt die
-//STRIP001                  // Grossenberechnung nicht mehr.
-//STRIP001                  pNewSet->Put( SvxBoxItem() );
-//STRIP001                  pNewSet->Put( SvxShadowItem() );
-//STRIP001              }
-//STRIP001
-//STRIP001              //Anker immer uebertragen, ist sowieso ein hartes Attribut.
-//STRIP001              pNewSet->Put( pOldFmt->GetAnchor() );
-//STRIP001
-//STRIP001              //In der Hoehe soll der neue Varabel sein!
-//STRIP001              SwFmtFrmSize aFrmSize( pOldFmt->GetFrmSize() );
-//STRIP001              aFrmSize.SetSizeType( ATT_MIN_SIZE );
-//STRIP001              pNewSet->Put( aFrmSize );
-//STRIP001
-//STRIP001              SwStartNode* pSttNd = GetNodes().MakeTextSection(
-//STRIP001                          SwNodeIndex( GetNodes().GetEndOfAutotext() ),
-//STRIP001                          SwFlyStartNode, pColl );
-//STRIP001              pNewSet->Put( SwFmtCntnt( pSttNd ));
-//STRIP001
-//STRIP001              pNewFmt->SetAttr( *pNewSet );
-//STRIP001
-//STRIP001              //Bei InCntnt's wird es spannend: Das TxtAttribut muss
-//STRIP001              //vernichtet werden. Leider reisst dies neben den Frms auch
-//STRIP001              //noch das Format mit in sein Grab. Um dass zu unterbinden
-//STRIP001              //loesen wir vorher die Verbindung zwischen Attribut und Format.
-//STRIP001
-//STRIP001              const SwFmtAnchor& rAnchor = pNewFmt->GetAnchor();
-//STRIP001              if( FLY_IN_CNTNT == rAnchor.GetAnchorId() )
-//STRIP001              {
-//STRIP001                  const SwPosition *pPos = rAnchor.GetCntntAnchor();
-//STRIP001                  SwTxtNode *pTxtNode = pPos->nNode.GetNode().GetTxtNode();
-//STRIP001                  ASSERT( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
-//STRIP001                  const xub_StrLen nIdx = pPos->nContent.GetIndex();
-//STRIP001                  SwTxtAttr *pHnt = pTxtNode->GetTxtAttr( nIdx, RES_TXTATR_FLYCNT );
-//STRIP001
-//STRIP001 #ifndef PRODUCT
-//STRIP001                  ASSERT( pHnt && pHnt->Which() == RES_TXTATR_FLYCNT,
-//STRIP001                              "Missing FlyInCnt-Hint." );
-//STRIP001                  ASSERT( pHnt && ((SwFmtFlyCnt&)pHnt->GetFlyCnt()).
-//STRIP001                              GetFrmFmt() == pOldFmt,
-//STRIP001                              "Wrong TxtFlyCnt-Hint." );
-//STRIP001 #endif
-//STRIP001                  ((SwFmtFlyCnt&)pHnt->GetFlyCnt()).SetFlyFmt( pNewFmt );
-//STRIP001              }
-//STRIP001
-//STRIP001
-//STRIP001              //Der Alte soll keinen Umlauf haben, und er soll oben/mittig
-//STRIP001              //ausgerichtet sein.
-//STRIP001              //Ausserdem soll die Breite 100% betragen und bei Aenderungen
-//STRIP001              //Die Hoehe mit anpassen.
-//STRIP001              pNewSet->ClearItem();
-//STRIP001
-//STRIP001              pNewSet->Put( SwFmtSurround( SURROUND_NONE ) );
-//STRIP001              pNewSet->Put( SvxOpaqueItem( RES_OPAQUE, sal_True ) );
-//STRIP001              pNewSet->Put( SwFmtVertOrient( VERT_TOP ) );
-//STRIP001              pNewSet->Put( SwFmtHoriOrient( HORI_CENTER ) );
-//STRIP001
-//STRIP001              aFrmSize = pOldFmt->GetFrmSize();
-//STRIP001              aFrmSize.SetWidthPercent( 100 );
-//STRIP001              aFrmSize.SetHeightPercent( 255 );
-//STRIP001              pNewSet->Put( aFrmSize );
-//STRIP001
-//STRIP001              //Die Attribute setzen wir hart, weil sie sonst aus der Vorlage
-//STRIP001              //kommen koenten und dann passt die Grossenberechnung nicht mehr.
-//STRIP001              if( bCpyBrd )
-//STRIP001              {
-//STRIP001                  pNewSet->Put( SvxBoxItem() );
-//STRIP001                  pNewSet->Put( SvxShadowItem() );
-//STRIP001              }
-//STRIP001              pNewSet->Put( SvxLRSpaceItem() );
-//STRIP001              pNewSet->Put( SvxULSpaceItem() );
-//STRIP001
-//STRIP001              //Der Alte ist absatzgebunden, und zwar am Absatz im neuen.
-//STRIP001              SwFmtAnchor aAnch( FLY_AT_CNTNT );
-//STRIP001              SwNodeIndex aAnchIdx( *pNewFmt->GetCntnt().GetCntntIdx(), 1 );
-//STRIP001              pNew = aAnchIdx.GetNode().GetTxtNode();
-//STRIP001              SwPosition aPos( aAnchIdx );
-//STRIP001              aAnch.SetAnchor( &aPos );
-//STRIP001              pNewSet->Put( aAnch );
-//STRIP001
-//STRIP001              if( pUndo )
-//STRIP001                  pUndo->SetFlys( *pOldFmt, *pNewSet, *pNewFmt );
-//STRIP001              else
-//STRIP001                  pOldFmt->SetAttr( *pNewSet );
-//STRIP001
-//STRIP001              delete pNewSet;
-//STRIP001
-//STRIP001              //Nun nur noch die Flys erzeugen lassen. Das ueberlassen
-//STRIP001              //wir vorhanden Methoden (insb. fuer InCntFlys etwas aufwendig).
-//STRIP001              pNewFmt->MakeFrms();
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      default:
-//STRIP001          ASSERT( !this, "Neuer LabelType?." );
-//STRIP001  }
-//STRIP001  ASSERT( pNew, "No Label inserted" );
-//STRIP001
-//STRIP001  if( pNew )
-//STRIP001  {
-//STRIP001      //String aufbereiten
-//STRIP001      String aTxt( aFld.GetTyp()->GetName() );
-//STRIP001      aTxt += ' ';
-//STRIP001      xub_StrLen nIdx = aTxt.Len();
-//STRIP001      aTxt += rTxt;
-//STRIP001
-//STRIP001      //String einfuegen
-//STRIP001      SwIndex aIdx( pNew, 0 );
-//STRIP001      pNew->Insert( aTxt, aIdx );
-//STRIP001
-//STRIP001      //Feld einfuegen
-//STRIP001      pNew->Insert( SwFmtFld( aFld ), nIdx, nIdx );
-//STRIP001
-//STRIP001      if ( bTable )
-//STRIP001      {
-//STRIP001          if ( bBefore )
-//STRIP001          {
-//STRIP001              if ( !pNew->GetSwAttrSet().GetKeep().GetValue()  )
-//STRIP001                  pNew->SwCntntNode::SetAttr( SvxFmtKeepItem( sal_True ) );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              SwTableNode *pNd = GetNodes()[nNdIdx]->GetStartNode()->GetTableNode();
-//STRIP001              SwTable &rTbl = pNd->GetTable();
-//STRIP001              if ( !rTbl.GetFrmFmt()->GetKeep().GetValue() )
-//STRIP001                  rTbl.GetFrmFmt()->SetAttr( SvxFmtKeepItem( sal_True ) );
-//STRIP001              if ( pUndo )
-//STRIP001                  pUndo->SetUndoKeep();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pUndo )
-//STRIP001      AppendUndo( pUndo );
-//STRIP001  else
-//STRIP001      DelAllUndoObj();
-//STRIP001  DoUndo( bWasUndo );
-//STRIP001
-//STRIP001  return pNewFmt;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1541,213 +905,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 |*
 |*************************************************************************/
 
-//STRIP001 SwFlyFrmFmt* SwDoc::InsertDrawLabel( const String &rTxt,
-//STRIP001                                   const sal_uInt16 nId,
-//STRIP001                                   SdrObject& rSdrObj )
-//STRIP001 {
-//STRIP001
-//STRIP001  SwDrawContact *pContact = (SwDrawContact*)GetUserCall( &rSdrObj );
-//STRIP001  ASSERT( RES_DRAWFRMFMT == pContact->GetFmt()->Which(),
-//STRIP001          "Kein DrawFrmFmt" );
-//STRIP001  if( !pContact )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  SwDrawFrmFmt *pOldFmt = (SwDrawFrmFmt *)pContact->GetFmt();
-//STRIP001  if( !pOldFmt )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  sal_Bool bWasUndo = DoesUndo();
-//STRIP001  sal_Bool bWasNoDrawUndo = IsNoDrawUndoObj();
-//STRIP001  SwUndoInsertLabel* pUndo = 0;
-//STRIP001  if( bWasUndo )
-//STRIP001  {
-//STRIP001      ClearRedo();
-//STRIP001      pUndo = new SwUndoInsertLabel( LTYPE_DRAW, rTxt, sal_False, nId, sal_False );
-//STRIP001      DoUndo( sal_False );
-//STRIP001      SetNoDrawUndoObj( sal_True );
-//STRIP001  }
-//STRIP001
-//STRIP001  // Erstmal das Feld bauen, weil ueber den Namen die TxtColl besorgt
-//STRIP001  // werden muss
-//STRIP001  ASSERT( nId < GetFldTypes()->Count(), "FldType ueberindiziert." );
-//STRIP001  SwFieldType *pType = (*GetFldTypes())[nId];
-//STRIP001  ASSERT( pType->Which() == RES_SETEXPFLD, "Falsche Id fuer Label" );
-//STRIP001  SwSetExpField aFld( (SwSetExpFieldType*)pType, aEmptyStr,
-//STRIP001                      SVX_NUM_ARABIC);
-//STRIP001
-//STRIP001  SwTxtFmtColl *pColl = FindTxtFmtCollByName( pType->GetName() );
-//STRIP001  if( !pColl )
-//STRIP001  {
-//STRIP001      ASSERT( !this, "TxtCollection fuer Label nicht gefunden." );
-//STRIP001      pColl = GetTxtCollFromPool( RES_POOLCOLL_TEXT );
-//STRIP001  }
-//STRIP001
-//STRIP001  SwTxtNode *pNew = 0;
-//STRIP001  SwFlyFrmFmt *pNewFmt = 0;
-//STRIP001
-//STRIP001  // Rahmen zerstoeren, neuen Rahmen einfuegen, entsprechenden
-//STRIP001  // Node mit Feld in den neuen Rahmen, den alten Rahmen mit
-//STRIP001  // dem Object (Grafik/Ole) absatzgebunden in den neuen Rahmen,
-//STRIP001  // Frames erzeugen.
-//STRIP001
-//STRIP001  pOldFmt->DelFrms();
-//STRIP001
-//STRIP001  //Bei InCntnt's wird es spannend: Das TxtAttribut muss
-//STRIP001  //vernichtet werden. Leider reisst dies neben den Frms auch
-//STRIP001  //noch das Format mit in sein Grab. Um dass zu unterbinden
-//STRIP001  //loesen wir vorher die Verbindung zwischen Attribut und Format.
-//STRIP001  SfxItemSet* pNewSet = pOldFmt->GetAttrSet().Clone( sal_False );
-//STRIP001
-//STRIP001  // Ggf. Groesse und Position des Rahmens schuetzen
-//STRIP001  if ( rSdrObj.IsMoveProtect() || rSdrObj.IsResizeProtect() )
-//STRIP001  {
-//STRIP001      SvxProtectItem aProtect;
-//STRIP001      aProtect.SetCntntProtect( sal_False );
-//STRIP001      aProtect.SetPosProtect( rSdrObj.IsMoveProtect() );
-//STRIP001      aProtect.SetSizeProtect( rSdrObj.IsResizeProtect() );
-//STRIP001      pNewSet->Put( aProtect );
-//STRIP001  }
-//STRIP001
-//STRIP001  // Umlauf uebernehmen
-//STRIP001  lcl_CpyAttr( *pNewSet, pOldFmt->GetAttrSet(), RES_SURROUND );
-//STRIP001
-//STRIP001  // Den Rahmen ggf. in den Hintergrund schicken.
-//STRIP001  sal_Int8 nLayerId = rSdrObj.GetLayer();
-//STRIP001     // OD 02.07.2003 #108784# - consider 'invisible' hell layer.
-//STRIP001  if ( GetHellId() != nLayerId &&
-//STRIP001      GetInvisibleHellId() != nLayerId )
-//STRIP001  {
-//STRIP001      SvxOpaqueItem aOpaque;
-//STRIP001      aOpaque.SetValue( sal_True );
-//STRIP001      pNewSet->Put( aOpaque );
-//STRIP001  }
-//STRIP001
-//STRIP001  // Position uebernehmen
-//STRIP001  Point aPoint( rSdrObj.GetRelativePos() );
-//STRIP001  SwFmtVertOrient aVert( aPoint.B(), VERT_NONE, FRAME );
-//STRIP001  SwFmtHoriOrient aHori( aPoint.A(), HORI_NONE, FRAME );
-//STRIP001  pNewSet->Put( aVert );
-//STRIP001  pNewSet->Put( aHori );
-//STRIP001
-//STRIP001  pNewSet->Put( pOldFmt->GetAnchor() );
-//STRIP001
-//STRIP001  //In der Hoehe soll der neue Varabel sein!
-//STRIP001      Size aSz( rSdrObj.GetBoundRect().GetSize() );
-//STRIP001  SwFmtFrmSize aFrmSize( ATT_MIN_SIZE, aSz.Width(), aSz.Height() );
-//STRIP001  pNewSet->Put( aFrmSize );
-//STRIP001
-//STRIP001  // Abstaende auf den neuen Rahmen uebertragen. Eine Umrandung
-//STRIP001  // gibt es beu Zeichen-Objekten nicht, also muss sie geloescht
-//STRIP001  // werden.
-//STRIP001  // MA: Falsch sie wird nicht gesetzt, denn die aus der Vorlage
-//STRIP001  // soll ruhig wirksam werden
-//STRIP001  pNewSet->Put( pOldFmt->GetLRSpace() );
-//STRIP001  pNewSet->Put( pOldFmt->GetULSpace() );
-//STRIP001
-//STRIP001  SwStartNode* pSttNd = GetNodes().MakeTextSection(
-//STRIP001              SwNodeIndex( GetNodes().GetEndOfAutotext() ),
-//STRIP001              SwFlyStartNode, pColl );
-//STRIP001
-//STRIP001  pNewFmt = MakeFlyFrmFmt( GetUniqueFrameName(),
-//STRIP001                      GetFrmFmtFromPool( RES_POOLFRM_FRAME ));
-//STRIP001
-//STRIP001  // JP 28.10.99: Bug 69487 - set border and shadow to default if the
-//STRIP001  //              template contains any.
-//STRIP001  if( SFX_ITEM_SET == pNewFmt->GetAttrSet().GetItemState( RES_BOX, sal_True ))
-//STRIP001      pNewSet->Put( *GetDfltAttr( RES_BOX ) );
-//STRIP001
-//STRIP001  if( SFX_ITEM_SET == pNewFmt->GetAttrSet().GetItemState(RES_SHADOW,sal_True))
-//STRIP001      pNewSet->Put( *GetDfltAttr( RES_SHADOW ) );
-//STRIP001
-//STRIP001  pNewFmt->SetAttr( SwFmtCntnt( pSttNd ));
-//STRIP001  pNewFmt->SetAttr( *pNewSet );
-//STRIP001
-//STRIP001  const SwFmtAnchor& rAnchor = pNewFmt->GetAnchor();
-//STRIP001  if( FLY_IN_CNTNT == rAnchor.GetAnchorId() )
-//STRIP001  {
-//STRIP001      const SwPosition *pPos = rAnchor.GetCntntAnchor();
-//STRIP001      SwTxtNode *pTxtNode = pPos->nNode.GetNode().GetTxtNode();
-//STRIP001      ASSERT( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
-//STRIP001      const xub_StrLen nIdx = pPos->nContent.GetIndex();
-//STRIP001      SwTxtAttr *pHnt = pTxtNode->GetTxtAttr( nIdx, RES_TXTATR_FLYCNT );
-//STRIP001
-//STRIP001 #ifndef PRODUCT
-//STRIP001      ASSERT( pHnt && pHnt->Which() == RES_TXTATR_FLYCNT,
-//STRIP001                  "Missing FlyInCnt-Hint." );
-//STRIP001      ASSERT( pHnt && ((SwFmtFlyCnt&)pHnt->GetFlyCnt()).
-//STRIP001                  GetFrmFmt() == (SwFrmFmt*)pOldFmt,
-//STRIP001                  "Wrong TxtFlyCnt-Hint." );
-//STRIP001 #endif
-//STRIP001      ((SwFmtFlyCnt&)pHnt->GetFlyCnt()).SetFlyFmt( pNewFmt );
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  //Der Alte soll keinen Umlauf haben, und er soll oben/mittig
-//STRIP001  //ausgerichtet sein.
-//STRIP001  pNewSet->ClearItem();
-//STRIP001
-//STRIP001  pNewSet->Put( SwFmtSurround( SURROUND_NONE ) );
-//STRIP001  if( nLayerId == GetHellId() )
-//STRIP001      rSdrObj.SetLayer( GetHeavenId() );
-//STRIP001     // OD 02.07.2003 #108784# - consider drawing objects in 'invisible' hell layer
-//STRIP001     else if( nLayerId == GetInvisibleHellId() )
-//STRIP001         rSdrObj.SetLayer( GetInvisibleHeavenId() );
-//STRIP001  pNewSet->Put( SvxLRSpaceItem() );
-//STRIP001  pNewSet->Put( SvxULSpaceItem() );
-//STRIP001
-//STRIP001  rSdrObj.SetRelativePos( Point(0,0) );
-//STRIP001
-//STRIP001  //Der Alte ist absatzgebunden, und zwar am Absatz im neuen.
-//STRIP001  SwFmtAnchor aAnch( FLY_AT_CNTNT );
-//STRIP001  SwNodeIndex aAnchIdx( *pNewFmt->GetCntnt().GetCntntIdx(), 1 );
-//STRIP001  pNew = aAnchIdx.GetNode().GetTxtNode();
-//STRIP001  SwPosition aPos( aAnchIdx );
-//STRIP001  aAnch.SetAnchor( &aPos );
-//STRIP001  pNewSet->Put( aAnch );
-//STRIP001
-//STRIP001  if( pUndo )
-//STRIP001  {
-//STRIP001      pUndo->SetFlys( *pOldFmt, *pNewSet, *pNewFmt );
-//STRIP001      pUndo->SetDrawObj( aPoint, nLayerId );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pOldFmt->SetAttr( *pNewSet );
-//STRIP001
-//STRIP001  delete pNewSet;
-//STRIP001
-//STRIP001  //Nun nur noch die Flys erzeugen lassen. Das ueberlassen
-//STRIP001  //wir vorhanden Methoden (insb. fuer InCntFlys etwas aufwendig).
-//STRIP001  pNewFmt->MakeFrms();
-//STRIP001
-//STRIP001  ASSERT( pNew, "No Label inserted" );
-//STRIP001
-//STRIP001  if( pNew )
-//STRIP001  {
-//STRIP001      //String aufbereiten
-//STRIP001      String aTxt( aFld.GetTyp()->GetName() );
-//STRIP001      aTxt += ' ';
-//STRIP001      xub_StrLen nIdx = aTxt.Len();
-//STRIP001      aTxt += rTxt;
-//STRIP001
-//STRIP001      //String einfuegen
-//STRIP001      SwIndex aIdx( pNew, 0 );
-//STRIP001      pNew->Insert( aTxt, aIdx );
-//STRIP001
-//STRIP001      //Feld einfuegen
-//STRIP001      pNew->Insert( SwFmtFld( aFld ), nIdx, nIdx );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pUndo )
-//STRIP001  {
-//STRIP001      AppendUndo( pUndo );
-//STRIP001      SetNoDrawUndoObj( bWasNoDrawUndo );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DelAllUndoObj();
-//STRIP001  DoUndo( bWasUndo );
-//STRIP001
-//STRIP001  return pNewFmt;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1815,22 +972,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 IMPL_STATIC_LINK( SwDoc, BackgroundDone, SvxBrushItem*, EMPTYARG )
-//STRIP001 {
-//STRIP001  ViewShell *pSh, *pStartSh;
-//STRIP001  pSh = pStartSh = pThis->GetRootFrm()->GetCurrShell();
-//STRIP001  if( pStartSh )
-//STRIP001      do {
-//STRIP001          if( pSh->GetWin() )
-//STRIP001          {
-//STRIP001              //Fuer Repaint mir virtuellen Device sorgen.
-//STRIP001              pSh->LockPaint();
-//STRIP001              pSh->UnlockPaint( sal_True );
-//STRIP001          }
-//STRIP001          pSh = (ViewShell*)pSh->GetNext();
-//STRIP001      } while( pSh != pStartSh );
-//STRIP001  return 0;
-//STRIP001 }
 
 /*N*/ String lcl_GetUniqueFlyName( const SwDoc* pDoc, sal_uInt16 nDefStrId )
 /*N*/ {
@@ -2149,8 +1290,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*?*/           if( !pItem )
 /*?*/           {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwPageDesc* pPgDsc = pNd->FindPageDesc( FALSE );
-//STRIP001 /*?*/                if( pPgDsc )
-//STRIP001 /*?*/                    pItem = &pPgDsc->GetMaster().GetFrmDir();
 /*?*/           }
 /*?*/       }
 /*?*/       if( !pItem )
@@ -2161,66 +1300,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*N*/     return nRet;
 /*N*/ }
 
-//STRIP001 sal_Bool SwDoc::IsInVerticalText( const SwPosition& rPos, const Point* pPt ) const
-//STRIP001 {
-//STRIP001     const short nDir = GetTextDirection( rPos, pPt );
-//STRIP001     return FRMDIR_VERT_TOP_RIGHT == nDir || FRMDIR_VERT_TOP_LEFT == nDir;
-//STRIP001 }
 
 #else
 
-//STRIP001 sal_Bool SwDoc::IsInVerticalText( const SwPosition& rPos, const Point* pPt ) const
-//STRIP001 {
-//STRIP001  sal_Bool bRet;
-//STRIP001  Point aPt;
-//STRIP001  if( pPt )
-//STRIP001      aPt = *pPt;
-//STRIP001
-//STRIP001  SwCntntNode *pNd = rPos.nNode.GetNode().GetCntntNode();
-//STRIP001  SwCntntFrm *pFrm;
-//STRIP001
-//STRIP001  if( pNd && 0 != (pFrm = pNd->GetFrm( &aPt, &rPos )) )
-//STRIP001      bRet = pFrm->IsVertical();
-//STRIP001  else
-//STRIP001  {
-//STRIP001      const SvxFrameDirectionItem* pItem = 0;
-//STRIP001      if( pNd )
-//STRIP001      {
-//STRIP001          // in a flyframe? Then look at that for the correct attribute
-//STRIP001          const SwFrmFmt* pFlyFmt = pNd->GetFlyFmt();
-//STRIP001          while( pFlyFmt )
-//STRIP001          {
-//STRIP001              pItem = &pFlyFmt->GetFrmDir();
-//STRIP001              if( FRMDIR_ENVIRONMENT == pItem->GetValue() )
-//STRIP001              {
-//STRIP001                  pItem = 0;
-//STRIP001                  const SwFmtAnchor* pAnchor = &pFlyFmt->GetAnchor();
-//STRIP001                  if( FLY_PAGE != pAnchor->GetAnchorId() &&
-//STRIP001                      pAnchor->GetCntntAnchor() )
-//STRIP001                      pFlyFmt = pAnchor->GetCntntAnchor()->nNode.
-//STRIP001                                          GetNode().GetFlyFmt();
-//STRIP001                  else
-//STRIP001                      pFlyFmt = 0;
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  pFlyFmt = 0;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( !pItem )
-//STRIP001          {
-//STRIP001              const SwPageDesc* pPgDsc = pNd->FindPageDesc( FALSE );
-//STRIP001              if( pPgDsc )
-//STRIP001                  pItem = &pPgDsc->GetMaster().GetFrmDir();
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if( !pItem )
-//STRIP001          pItem = (SvxFrameDirectionItem*)&GetAttrPool().GetDefaultItem(
-//STRIP001                                                          RES_FRAMEDIR );
-//STRIP001      bRet = FRMDIR_VERT_TOP_RIGHT == pItem->GetValue() ||
-//STRIP001             FRMDIR_VERT_TOP_LEFT == pItem->GetValue();
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 #endif
 }
