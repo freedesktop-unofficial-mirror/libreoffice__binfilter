@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fltoptint.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:27:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:35:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_FILTEROPTIONSREQUEST_HPP_
-// auto strip #include <com/sun/star/document/FilterOptionsRequest.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XINTERACTIONFILTEROPTIONS_HPP_
 #include <com/sun/star/document/XInteractionFilterOptions.hpp>
 #endif
