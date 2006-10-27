@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLExportIterator.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:24:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:25:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -45,18 +44,9 @@
 #include "XMLExportIterator.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XSIMPLETEXT_HPP_
-// auto strip #include <com/sun/star/text/XSimpleText.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLADDRESSABLE_HPP_
-// auto strip #include <com/sun/star/sheet/XCellAddressable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XCELLRANGESQUERY_HPP_
 #include <com/sun/star/sheet/XCellRangesQuery.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_CELLFLAGS_HPP_
-// auto strip #include <com/sun/star/sheet/CellFlags.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XSheetAnnotationsSupplier.hpp>
 #endif
@@ -65,9 +55,6 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include <bf_xmloff/xmlnmspe.hxx>
-// auto strip #endif
 
 #ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
