@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:14:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:34:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,22 +42,15 @@
 
 #include <bf_svx/linkmgr.hxx>
 #include <bf_sfx2/dispatch.hxx>
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #include <svtools/stritem.hxx>
 #include <svtools/zforlist.hxx>
 #include <string.h>
 #include <math.h>
 
 #include "interpre.hxx"
-// auto strip #include "attrib.hxx"
 #include "bf_sc.hrc"
 #include "ddelink.hxx"
 #include "scmatrix.hxx"
-// auto strip #include "compiler.hxx"
-// auto strip #include "cell.hxx"
-// auto strip #include "document.hxx"
 #include "dociter.hxx"
-// auto strip #include "docoptio.hxx"
 #include "unitconv.hxx"
 #include "globstr.hrc"
 #include "hints.hxx"

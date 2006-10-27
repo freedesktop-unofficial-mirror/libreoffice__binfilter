@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr1.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:14:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:34:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -51,16 +50,10 @@
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/algitem.hxx>
 #include <unotools/textsearch.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <tools/solar.h>
-// auto strip #include <unotools/charclass.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/printer.hxx>
-// auto strip #include <unotools/collatorwrapper.hxx>
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 
 #include <stdlib.h>
 #include <string.h>
@@ -68,10 +61,7 @@
 
 #include "interpre.hxx"
 #include "patattr.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "document.hxx"
 #include "dociter.hxx"
-// auto strip #include "cell.hxx"
 #include "scmatrix.hxx"
 #include "docoptio.hxx"
 #include "globstr.hrc"
