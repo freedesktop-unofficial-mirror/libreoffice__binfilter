@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unokywds.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:21:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:34:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SD_UNOKYWDS_HXX_
 #define _SD_UNOKYWDS_HXX_
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
