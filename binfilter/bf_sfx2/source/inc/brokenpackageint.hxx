@@ -4,9 +4,9 @@
  *
  *  $RCSfile: brokenpackageint.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:22:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:33:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,15 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_BROKENPACKAGEREQUEST_HPP_
-// auto strip #include <com/sun/star/document/BrokenPackageRequest.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONAPPROVE_HPP_
-// auto strip #include <com/sun/star/task/XInteractionApprove.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONDISAPPROVE_HPP_
-// auto strip #include <com/sun/star/task/XInteractionDisapprove.hpp>
-// auto strip #endif
 
 #ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
 #include <framework/interaction.hxx>
