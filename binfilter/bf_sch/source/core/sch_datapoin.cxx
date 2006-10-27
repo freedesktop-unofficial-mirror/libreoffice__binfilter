@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_datapoin.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:56:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:26:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -125,12 +125,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SchDataPoint::SchDataPoint(const SchDataPoint& rDataPoint) :
-//STRIP001  SdrObjUserData(rDataPoint),
-//STRIP001  nCol(rDataPoint.nCol),
-//STRIP001  nRow(rDataPoint.nRow)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*
