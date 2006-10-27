@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_sclib.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:47:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:39:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,6 @@
 #include <svtools/inettype.hxx>
 #include <svtools/parhtml.hxx>
 #include <so3/clsids.hxx>
-// auto strip #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/app.hxx>
@@ -56,7 +55,6 @@
 
 #include <signal.h>
 
-// auto strip #include "scdll.hxx"
 
 #include "docsh.hxx"
 #include "bf_sc.hrc"
@@ -351,14 +349,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( !pFilter )
         return FALSE;
-//STRIP001
-//STRIP001  //  TRUE for XML file or template
-//STRIP001  //  (template filter has no internal name -> allow configuration key names)
-//STRIP001
-//STRIP001  String aName = pFilter->GetFilterName();
-//STRIP001  return aName.EqualsAscii(pFilterXML) ||
-//STRIP001         aName.EqualsAscii("calc_StarOffice_XML_Calc") ||
-//STRIP001         aName.EqualsAscii("calc_StarOffice_XML_Calc_Template");
 }
 
 /*N*/ ULONG __EXPORT ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
