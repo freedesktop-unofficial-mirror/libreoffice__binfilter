@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:20:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:21:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,24 +41,14 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/algitem.hxx>
-// auto strip #include <bf_svx/brshitem.hxx>
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/scripttypeitem.hxx>
-// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/langitem.hxx>
-// auto strip #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/dispatch.hxx>
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #include <bf_sfx2/viewfrm.hxx>
-// auto strip #include <bf_sfx2/viewsh.hxx>
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <vcl/image.hxx>
 #include <tools/rcid.h>
 #include <vcl/virdev.hxx>
-// auto strip #include <unotools/charclass.hxx>
 #include <stdlib.h>
 #include <time.h>
 #include <ctype.h>
@@ -68,35 +57,11 @@
 #ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
-// auto strip #include <unotools/calendarwrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-// auto strip #include <unotools/collatorwrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
-// auto strip #endif
 #ifndef _UNOTOOLS_INTLWRAPPER_HXX
 #include <unotools/intlwrapper.hxx>
 #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-// auto strip #include <svtools/syslocale.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 
-// auto strip #include "global.hxx"
-// auto strip #include "scresid.hxx"
 #include "autoform.hxx"
-// auto strip #include "document.hxx"
 #include "patattr.hxx"
 #include "addincol.hxx"
 #include "adiasync.hxx"
@@ -106,7 +71,6 @@
 #include "docpool.hxx"
 #include "unitconv.hxx"
 #include "globstr.hrc"
-#include "scfuncs.hrc"
 #include "bf_sc.hrc"
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -360,33 +324,8 @@ void global_InitAppOptions();
 /*N*/       );
 /*N*/ }
 
-//STRIP001 const SvxSearchItem& ScGlobal::GetSearchItem()
-//STRIP001 {
-//STRIP001  if (!pSearchItem)
-//STRIP001  {
-//STRIP001      pSearchItem = new SvxSearchItem( SID_SEARCH_ITEM );
-//STRIP001      pSearchItem->SetAppFlag( SVX_SEARCHAPP_CALC );
-//STRIP001  }
-//STRIP001  return *pSearchItem;
-//STRIP001 }
 
-//STRIP001 void ScGlobal::SetSearchItem( const SvxSearchItem& rNew )
-//STRIP001 {
-//STRIP001  // Hier waere ein Zuweisungsoperator ganz nett:
-//STRIP001  delete pSearchItem;
-//STRIP001  pSearchItem = (SvxSearchItem*)rNew.Clone();
-//STRIP001
-//STRIP001  pSearchItem->SetWhich( SID_SEARCH_ITEM );
-//STRIP001 }
 
-//STRIP001 void ScGlobal::ClearAutoFormat()
-//STRIP001 {
-//STRIP001  if (pAutoFormat!=NULL)
-//STRIP001  {
-//STRIP001      delete pAutoFormat;
-//STRIP001      pAutoFormat=NULL;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ ScAutoFormat* ScGlobal::GetAutoFormat()
 /*N*/ {
@@ -475,105 +414,10 @@ void global_InitAppOptions();
 /*N*/   return sResStr;
 /*N*/ }
 
-//STRIP001 String ScGlobal::GetLongErrorString(USHORT nErrNumber)
-//STRIP001 {
-//STRIP001  switch (nErrNumber)
-//STRIP001  {
-//STRIP001      case 0:
-//STRIP001          break;
-//STRIP001      case 1:
-//STRIP001      case errIllegalArgument:
-//STRIP001          nErrNumber = STR_LONG_ERR_ILL_ARG;
-//STRIP001      break;
-//STRIP001      case 2:
-//STRIP001      case 3:
-//STRIP001      case 4:
-//STRIP001      case 5:
-//STRIP001      case errIllegalFPOperation:
-//STRIP001          nErrNumber = STR_LONG_ERR_ILL_FPO;
-//STRIP001      break;
-//STRIP001      case errIllegalChar:
-//STRIP001          nErrNumber = STR_LONG_ERR_ILL_CHAR;
-//STRIP001      break;
-//STRIP001      case errIllegalParameter:
-//STRIP001          nErrNumber = STR_LONG_ERR_ILL_PAR;
-//STRIP001      break;
-//STRIP001      case errSeparator:
-//STRIP001          nErrNumber = STR_LONG_ERR_ILL_SEP;
-//STRIP001      break;
-//STRIP001      case errPair:
-//STRIP001      case errPairExpected:
-//STRIP001          nErrNumber = STR_LONG_ERR_PAIR;
-//STRIP001      break;
-//STRIP001      case errOperatorExpected:
-//STRIP001          nErrNumber = STR_LONG_ERR_OP_EXP;
-//STRIP001      break;
-//STRIP001      case errVariableExpected:
-//STRIP001      case errParameterExpected:
-//STRIP001          nErrNumber = STR_LONG_ERR_VAR_EXP;
-//STRIP001      break;
-//STRIP001      case errCodeOverflow:
-//STRIP001          nErrNumber = STR_LONG_ERR_CODE_OVF;
-//STRIP001      break;
-//STRIP001      case errStringOverflow:
-//STRIP001          nErrNumber = STR_LONG_ERR_STR_OVF;
-//STRIP001      break;
-//STRIP001      case errStackOverflow:
-//STRIP001      case errInterpOverflow:
-//STRIP001          nErrNumber = STR_LONG_ERR_STACK_OVF;
-//STRIP001      break;
-//STRIP001      case errIllegalJump:
-//STRIP001      case errUnknownState:
-//STRIP001      case errUnknownVariable:
-//STRIP001      case errUnknownOpCode:
-//STRIP001      case errUnknownStackVariable:
-//STRIP001      case errUnknownToken:
-//STRIP001      case errNoCode:
-//STRIP001      case errDoubleRef:
-//STRIP001          nErrNumber = STR_LONG_ERR_SYNTAX;
-//STRIP001      break;
-//STRIP001      case errCircularReference:
-//STRIP001          nErrNumber = STR_LONG_ERR_CIRC_REF;
-//STRIP001      break;
-//STRIP001      case errNoConvergence:
-//STRIP001          nErrNumber = STR_LONG_ERR_NO_CONV;
-//STRIP001      break;
-//STRIP001      case errNoRef:
-//STRIP001          nErrNumber = STR_LONG_ERR_NO_REF;
-//STRIP001      break;
-//STRIP001      case errNoName:
-//STRIP001          nErrNumber = STR_LONG_ERR_NO_NAME;
-//STRIP001      break;
-//STRIP001         case errNoAddin:
-//STRIP001             nErrNumber = STR_LONG_ERR_NO_ADDIN;
-//STRIP001      break;
-//STRIP001         case errNoMacro:
-//STRIP001             nErrNumber = STR_LONG_ERR_NO_MACRO;
-//STRIP001      break;
-//STRIP001      case errNoValue:
-//STRIP001          nErrNumber = STR_LONG_ERR_NO_VALUE;
-//STRIP001      break;
-//STRIP001      case NOVALUE:
-//STRIP001          nErrNumber = STR_LONG_ERR_NV;
-//STRIP001      break;
-//STRIP001      default:
-//STRIP001          nErrNumber = STR_ERROR_STR;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  String aRes( GetRscString( nErrNumber ) );
-//STRIP001  if( bOderSo )
-//STRIP001  {
-//STRIP001      String aOderSo( GetRscString( STR_ODER_SO ) );
-//STRIP001      aOderSo.SearchAndReplace( String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("%s")), aRes );
-//STRIP001      aRes = aOderSo;
-//STRIP001  }
-//STRIP001  return aRes;
-//STRIP001 }
 
 /*N*/ SvxBrushItem* ScGlobal::GetButtonBrushItem()
 /*N*/ {
 /*?*/     DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 pButtonBrushItem->SetColor( Application::GetSettings().GetStyleSettings().GetFaceColor() );
-//STRIP001     return pButtonBrushItem;
 /*N*/ }
 
 /*N*/ const String& ScGlobal::GetEmptyString()
@@ -581,13 +425,6 @@ void global_InitAppOptions();
 /*N*/   return *pEmptyString;
 /*N*/ }
 
-//STRIP001 ImageList* ScGlobal::GetOutlineSymbols( bool bHC )
-//STRIP001 {
-//STRIP001     ImageList*& rpImageList = bHC ? pOutlineBitmapsHC : pOutlineBitmaps;
-//STRIP001     if( !rpImageList )
-//STRIP001         rpImageList = new ImageList( ScResId( bHC ? RID_OUTLINEBITMAPS_H : RID_OUTLINEBITMAPS ) );
-//STRIP001     return rpImageList;
-//STRIP001 }
 
 /*N*/ void ScGlobal::Init()
 /*N*/ {
@@ -659,15 +496,7 @@ void global_InitAppOptions();
 /*N*/   }
 /*N*/ }
 
-//STRIP001 const String& ScGlobal::GetClipDocName()
-//STRIP001 {
-//STRIP001  return *pStrClipDocName;
-//STRIP001 }
 
-//STRIP001 void ScGlobal::SetClipDocName( const String& rNew )
-//STRIP001 {
-//STRIP001  *pStrClipDocName = rNew;
-//STRIP001 }
 
 
 /*N*/ void ScGlobal::InitTextHeight(SfxItemPool* pPool)
@@ -816,18 +645,6 @@ void global_InitAppOptions();
 /*N*/   return pStarCalcFunctionList;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-//STRIP001 ScFunctionMgr* ScGlobal::GetStarCalcFunctionMgr()
-//STRIP001 {
-//STRIP001  if ( !pStarCalcFunctionMgr )
-//STRIP001      pStarCalcFunctionMgr = new ScFunctionMgr;
-//STRIP001
-//STRIP001  return pStarCalcFunctionMgr;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
 // static
 /*N*/ ScUnitConverter* ScGlobal::GetUnitConverter()
 /*N*/ {
@@ -887,45 +704,6 @@ void global_InitAppOptions();
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 void ScGlobal::OpenURL( const String& rURL, const String& rTarget )
-//STRIP001 {
-//STRIP001  //  OpenURL wird immer ueber irgendwelche Umwege durch Mausklicks im GridWindow
-//STRIP001  //  aufgerufen, darum stimmen pScActiveViewShell und nScClickMouseModifier.
-//STRIP001
-//STRIP001  SfxStringItem aUrl( SID_FILE_NAME, rURL );
-//STRIP001  SfxStringItem aTarget( SID_TARGETNAME, rTarget );
-//STRIP001
-//STRIP001  if ( nScClickMouseModifier & KEY_MOD1 )     // control-click -> into new window
-//STRIP001      aTarget.SetValue(
-//STRIP001          String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("_blank")) );
-//STRIP001
-//STRIP001  SfxViewFrame* pFrame = NULL;
-//STRIP001  String aReferName;
-//STRIP001  if ( pScActiveViewShell )
-//STRIP001  {
-//STRIP001      pFrame = pScActiveViewShell->GetViewFrame();
-//STRIP001      SfxMedium* pMed = pFrame->GetObjectShell()->GetMedium();
-//STRIP001      if (pMed)
-//STRIP001          aReferName = pMed->GetName();
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxFrameItem aFrm( SID_DOCFRAME, pFrame );
-//STRIP001  SfxStringItem aReferer( SID_REFERER, aReferName );
-//STRIP001
-//STRIP001  SfxBoolItem aNewView( SID_OPEN_NEW_VIEW, FALSE );
-//STRIP001  SfxBoolItem aBrowsing( SID_BROWSE, TRUE );
-//STRIP001
-//STRIP001  //  kein SID_SILENT mehr wegen Bug #42525# (war angeblich sowieso falsch)
-//STRIP001
-//STRIP001  SfxViewFrame* pViewFrm = SfxViewFrame::Current();
-//STRIP001  if (pViewFrm)
-//STRIP001      pViewFrm->GetDispatcher()->Execute( SID_OPENDOC,
-//STRIP001                                  SFX_CALLMODE_ASYNCHRON | SFX_CALLMODE_RECORD,
-//STRIP001                                  &aUrl, &aTarget,
-//STRIP001                                  &aFrm, &aReferer,
-//STRIP001                                  &aNewView, &aBrowsing,
-//STRIP001                                  0L );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -946,93 +724,6 @@ void global_InitAppOptions();
 /*N*/   return Application::GetSettings().GetLanguage();
 /*N*/ }
 
-//STRIP001 USHORT ScGlobal::GetScriptedWhichID( BYTE nScriptType, USHORT nWhich )
-//STRIP001 {
-//STRIP001     switch ( nScriptType )
-//STRIP001     {
-//STRIP001         case SCRIPTTYPE_LATIN:
-//STRIP001      case SCRIPTTYPE_ASIAN:
-//STRIP001         case SCRIPTTYPE_COMPLEX:
-//STRIP001         break;      // take exact matches
-//STRIP001         default:    // prefer one, first COMPLEX, then ASIAN
-//STRIP001             if ( nScriptType & SCRIPTTYPE_COMPLEX )
-//STRIP001                 nScriptType = SCRIPTTYPE_COMPLEX;
-//STRIP001             else if ( nScriptType & SCRIPTTYPE_ASIAN )
-//STRIP001                 nScriptType = SCRIPTTYPE_ASIAN;
-//STRIP001     }
-//STRIP001     switch ( nScriptType )
-//STRIP001     {
-//STRIP001         case SCRIPTTYPE_COMPLEX:
-//STRIP001         {
-//STRIP001             switch ( nWhich )
-//STRIP001             {
-//STRIP001                 case ATTR_FONT:
-//STRIP001                 case ATTR_CJK_FONT:
-//STRIP001                     nWhich = ATTR_CTL_FONT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_FONT_HEIGHT:
-//STRIP001                 case ATTR_CJK_FONT_HEIGHT:
-//STRIP001                     nWhich = ATTR_CTL_FONT_HEIGHT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_FONT_WEIGHT:
-//STRIP001                 case ATTR_CJK_FONT_WEIGHT:
-//STRIP001                     nWhich = ATTR_CTL_FONT_WEIGHT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_FONT_POSTURE:
-//STRIP001                 case ATTR_CJK_FONT_POSTURE:
-//STRIP001                     nWhich = ATTR_CTL_FONT_POSTURE;
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001         }
-//STRIP001         break;
-//STRIP001      case SCRIPTTYPE_ASIAN:
-//STRIP001         {
-//STRIP001             switch ( nWhich )
-//STRIP001             {
-//STRIP001                 case ATTR_FONT:
-//STRIP001                 case ATTR_CTL_FONT:
-//STRIP001                     nWhich = ATTR_CJK_FONT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_FONT_HEIGHT:
-//STRIP001                 case ATTR_CTL_FONT_HEIGHT:
-//STRIP001                     nWhich = ATTR_CJK_FONT_HEIGHT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_FONT_WEIGHT:
-//STRIP001                 case ATTR_CTL_FONT_WEIGHT:
-//STRIP001                     nWhich = ATTR_CJK_FONT_WEIGHT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_FONT_POSTURE:
-//STRIP001                 case ATTR_CTL_FONT_POSTURE:
-//STRIP001                     nWhich = ATTR_CJK_FONT_POSTURE;
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001         }
-//STRIP001         break;
-//STRIP001         default:
-//STRIP001         {
-//STRIP001             switch ( nWhich )
-//STRIP001             {
-//STRIP001                 case ATTR_CTL_FONT:
-//STRIP001                 case ATTR_CJK_FONT:
-//STRIP001                     nWhich = ATTR_FONT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_CTL_FONT_HEIGHT:
-//STRIP001                 case ATTR_CJK_FONT_HEIGHT:
-//STRIP001                     nWhich = ATTR_FONT_HEIGHT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_CTL_FONT_WEIGHT:
-//STRIP001                 case ATTR_CJK_FONT_WEIGHT:
-//STRIP001                     nWhich = ATTR_FONT_WEIGHT;
-//STRIP001                 break;
-//STRIP001                 case ATTR_CTL_FONT_POSTURE:
-//STRIP001                 case ATTR_CJK_FONT_POSTURE:
-//STRIP001                     nWhich = ATTR_FONT_POSTURE;
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001     return nWhich;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -1060,560 +751,10 @@ void global_InitAppOptions();
 /*N*/ }
 
 
-
-//===================================================================
-//  class ScFormulaUtil - statische Methoden
-//===================================================================
-
-//STRIP001 ScFuncDesc aDefaultFuncDesc;
-
-//STRIP001 const ScFuncDesc* ScFormulaUtil::GetDefaultFuncDesc()
-//STRIP001 {
-//STRIP001  return &aDefaultFuncDesc;
-//STRIP001 }
-
-//STRIP001 BOOL ScFormulaUtil::GetNextFunc( const String&   rFormula,
-//STRIP001                               BOOL           bBack,
-//STRIP001                               xub_StrLen&    rFStart,   // Ein- und Ausgabe
-//STRIP001                               xub_StrLen*    pFEnd,     // = NULL
-//STRIP001                               ScFuncDesc**   ppFDesc,   // = NULL
-//STRIP001                               String***      pppArgs )  // = NULL
-//STRIP001 {
-//STRIP001  BOOL        bFound = FALSE;
-//STRIP001  xub_StrLen  nOldStart = rFStart;
-//STRIP001  String      aFname;
-//STRIP001
-//STRIP001  rFStart = GetFunctionStart( rFormula, rFStart, bBack, ppFDesc ? &aFname : NULL );
-//STRIP001  bFound  = ( rFStart != FUNC_NOTFOUND );
-//STRIP001
-//STRIP001  if ( bFound )
-//STRIP001  {
-//STRIP001      if ( pFEnd )
-//STRIP001          *pFEnd = GetFunctionEnd( rFormula, rFStart );
-//STRIP001
-//STRIP001      if ( ppFDesc )
-//STRIP001      {
-//STRIP001          ScFunctionMgr* pFuncMgr = ScGlobal::GetStarCalcFunctionMgr();
-//STRIP001          *ppFDesc = pFuncMgr->Get( aFname );
-//STRIP001          if ( *ppFDesc )
-//STRIP001          {
-//STRIP001              if (pppArgs)
-//STRIP001                  *pppArgs = GetArgStrings( rFormula, rFStart, (*ppFDesc)->nArgCount );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              *ppFDesc = &aDefaultFuncDesc;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      rFStart = nOldStart;
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 void ScFormulaUtil::FillArgStrings( const String&    rFormula,
-//STRIP001                                  xub_StrLen      nFuncPos,
-//STRIP001                                  USHORT          nArgs,
-//STRIP001                                  String**        aArgArr )
-//STRIP001 {
-//STRIP001  if ( !aArgArr ) return;
-//STRIP001
-//STRIP001  xub_StrLen  nStart  = 0;
-//STRIP001  xub_StrLen  nEnd    = 0;
-//STRIP001  USHORT      i;
-//STRIP001  BOOL        bLast   = FALSE;
-//STRIP001
-//STRIP001  for ( i=0; i<nArgs && !bLast; i++ )
-//STRIP001  {
-//STRIP001      nStart = GetArgStart( rFormula, nFuncPos, i );
-//STRIP001
-//STRIP001      if ( i+1<nArgs ) // letztes Argument?
-//STRIP001      {
-//STRIP001          nEnd = GetArgStart( rFormula, nFuncPos, i+1 );
-//STRIP001
-//STRIP001          if ( nEnd != nStart )
-//STRIP001              aArgArr[i] = new String( rFormula.Copy( nStart, nEnd-1-nStart ) );
-//STRIP001          else
-//STRIP001              aArgArr[i] = new String, bLast = TRUE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nEnd = GetFunctionEnd( rFormula, nFuncPos )-1;
-//STRIP001          if ( nStart < nEnd )
-//STRIP001              aArgArr[i] = new String( rFormula.Copy( nStart, nEnd-nStart ) );
-//STRIP001          else
-//STRIP001              aArgArr[i] = new String;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( bLast )
-//STRIP001      for ( ; i<nArgs; i++ )
-//STRIP001          aArgArr[i] = new String;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 String** ScFormulaUtil::GetArgStrings( const String& rFormula,
-//STRIP001                                     xub_StrLen nFuncPos,
-//STRIP001                                     USHORT nArgs )
-//STRIP001 {
-//STRIP001  String** aArgArr = NULL;
-//STRIP001  if (nArgs)
-//STRIP001  {
-//STRIP001      aArgArr = new String*[nArgs];
-//STRIP001      FillArgStrings( rFormula, nFuncPos, nArgs, aArgArr );
-//STRIP001  }
-//STRIP001  return aArgArr;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 inline BOOL IsFormulaText( const String& rStr, xub_StrLen nPos )
-//STRIP001 {
-//STRIP001  if( ScGlobal::pCharClass->isLetterNumeric( rStr, nPos ) )
-//STRIP001      return TRUE;
-//STRIP001  else
-//STRIP001  {   // In internationalized versions function names may contain a dot
-//STRIP001      //  and in every version also an underscore... ;-)
-//STRIP001      sal_Unicode c = rStr.GetChar(nPos);
-//STRIP001      return c == '.' || c == '_';
-//STRIP001  }
-//STRIP001
-//STRIP001 }
-
-//STRIP001 xub_StrLen ScFormulaUtil::GetFunctionStart( const String&    rFormula,
-//STRIP001                                      xub_StrLen      nStart,
-//STRIP001                                      BOOL            bBack,
-//STRIP001                                      String*         pFuncName )
-//STRIP001 {
-//STRIP001  xub_StrLen nStrLen = rFormula.Len();
-//STRIP001
-//STRIP001  if ( nStrLen < nStart )
-//STRIP001      return nStart;
-//STRIP001
-//STRIP001  xub_StrLen  nFStart = FUNC_NOTFOUND;
-//STRIP001  xub_StrLen  nParPos = nStart;
-//STRIP001
-//STRIP001  BOOL bRepeat, bFound;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      bFound  = FALSE;
-//STRIP001      bRepeat = FALSE;
-//STRIP001
-//STRIP001      if ( bBack )
-//STRIP001      {
-//STRIP001          while ( !bFound && (nParPos > 0) )
-//STRIP001          {
-//STRIP001              if ( rFormula.GetChar(nParPos) == '"' )
-//STRIP001              {
-//STRIP001                  nParPos--;
-//STRIP001                  while ( (nParPos > 0) && rFormula.GetChar(nParPos) != '"' )
-//STRIP001                      nParPos--;
-//STRIP001                  if (nParPos > 0)
-//STRIP001                      nParPos--;
-//STRIP001              }
-//STRIP001              else if ( !(bFound = ( rFormula.GetChar(nParPos) == '(' ) ) )
-//STRIP001                  nParPos--;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          while ( !bFound && (nParPos < nStrLen) )
-//STRIP001          {
-//STRIP001              if ( rFormula.GetChar(nParPos) == '"' )
-//STRIP001              {
-//STRIP001                  nParPos++;
-//STRIP001                  while ( (nParPos < nStrLen) && rFormula.GetChar(nParPos) != '"' )
-//STRIP001                      nParPos++;
-//STRIP001                  nParPos++;
-//STRIP001              }
-//STRIP001              else if ( !(bFound = ( rFormula.GetChar(nParPos) == '(' ) ) )
-//STRIP001                  nParPos++;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( bFound && (nParPos > 0) )
-//STRIP001      {
-//STRIP001          nFStart = nParPos-1;
-//STRIP001
-//STRIP001          while ( (nFStart > 0) && IsFormulaText( rFormula, nFStart ))
-//STRIP001              nFStart--;
-//STRIP001      }
-//STRIP001
-//STRIP001      nFStart++;
-//STRIP001
-//STRIP001      if ( bFound )
-//STRIP001      {
-//STRIP001          if ( IsFormulaText( rFormula, nFStart ) )
-//STRIP001          {
-//STRIP001                                  //  Funktion gefunden
-//STRIP001              if ( pFuncName )
-//STRIP001                  *pFuncName = rFormula.Copy( nFStart, nParPos-nFStart );
-//STRIP001          }
-//STRIP001          else                    // Klammern ohne Funktion -> weitersuchen
-//STRIP001          {
-//STRIP001              bRepeat = TRUE;
-//STRIP001              if ( !bBack )
-//STRIP001                  nParPos++;
-//STRIP001              else if (nParPos > 0)
-//STRIP001                  nParPos--;
-//STRIP001              else
-//STRIP001                  bRepeat = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else                        // keine Klammern gefunden
-//STRIP001      {
-//STRIP001          nFStart = FUNC_NOTFOUND;
-//STRIP001          if ( pFuncName )
-//STRIP001              pFuncName->Erase();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  while(bRepeat);
-//STRIP001
-//STRIP001  return nFStart;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 xub_StrLen   ScFormulaUtil::GetFunctionEnd( const String& rStr, xub_StrLen nStart )
-//STRIP001 {
-//STRIP001  xub_StrLen nStrLen = rStr.Len();
-//STRIP001
-//STRIP001  if ( nStrLen < nStart )
-//STRIP001      return nStart;
-//STRIP001
-//STRIP001  short   nParCount = 0;
-//STRIP001  BOOL    bFound = FALSE;
-//STRIP001
-//STRIP001  while ( !bFound && (nStart < nStrLen) )
-//STRIP001  {
-//STRIP001      sal_Unicode c = rStr.GetChar(nStart);
-//STRIP001
-//STRIP001      if ( c == '"' )
-//STRIP001      {
-//STRIP001          nStart++;
-//STRIP001          while ( (nStart < nStrLen) && rStr.GetChar(nStart) != '"' )
-//STRIP001              nStart++;
-//STRIP001      }
-//STRIP001      else if ( c == '(' )
-//STRIP001          nParCount++;
-//STRIP001      else if ( c == ')' )
-//STRIP001      {
-//STRIP001          nParCount--;
-//STRIP001          if ( nParCount == 0 )
-//STRIP001              bFound = TRUE;
-//STRIP001          else if ( nParCount < 0 )
-//STRIP001          {
-//STRIP001              bFound = TRUE;
-//STRIP001              nStart--;   // einen zu weit gelesen
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if ( c == ';' )
-//STRIP001      {
-//STRIP001          if ( nParCount == 0 )
-//STRIP001          {
-//STRIP001              bFound = TRUE;
-//STRIP001              nStart--;   // einen zu weit gelesen
-//STRIP001          }
-//STRIP001      }
-//STRIP001      nStart++; // hinter gefundene Position stellen
-//STRIP001  }
-//STRIP001
-//STRIP001  return nStart;
-//STRIP001 }
-
-//------------------------------------------------------------------
-
-//STRIP001 xub_StrLen ScFormulaUtil::GetArgStart( const String& rStr, xub_StrLen nStart, USHORT nArg )
-//STRIP001 {
-//STRIP001  xub_StrLen nStrLen = rStr.Len();
-//STRIP001
-//STRIP001  if ( nStrLen < nStart )
-//STRIP001      return nStart;
-//STRIP001
-//STRIP001  short   nParCount   = 0;
-//STRIP001  short   nSemiCount  = 0;
-//STRIP001  BOOL    bFound      = FALSE;
-//STRIP001
-//STRIP001  while ( !bFound && (nStart < nStrLen) )
-//STRIP001  {
-//STRIP001      sal_Unicode c = rStr.GetChar(nStart);
-//STRIP001
-//STRIP001      if ( c == '"' )
-//STRIP001      {
-//STRIP001          nStart++;
-//STRIP001          while ( (nStart < nStrLen) && rStr.GetChar(nStart) != '"' )
-//STRIP001              nStart++;
-//STRIP001      }
-//STRIP001      else if ( c == '(' )
-//STRIP001      {
-//STRIP001          bFound = ( nArg == 0 );
-//STRIP001          nParCount++;
-//STRIP001      }
-//STRIP001      else if ( c == ')' )
-//STRIP001      {
-//STRIP001          nParCount--;
-//STRIP001          bFound = ( nParCount == 0 );
-//STRIP001      }
-//STRIP001      else if ( c == ';' )
-//STRIP001      {
-//STRIP001          if ( nParCount == 1 )
-//STRIP001          {
-//STRIP001              nArg--;
-//STRIP001              bFound = ( nArg == 0  );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      nStart++;
-//STRIP001  }
-//STRIP001
-//STRIP001  return nStart;
-//STRIP001 }
-
-
-//===================================================================
-// class ScFunctionList:
-//===================================================================
-
-//===================================================================
-//      class ScFuncRes
-// fuer temporaere Objekte zum Holen der Resourcen
-
-//STRIP001 class ScFuncRes : public Resource
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  ScFuncRes( ResId&, ScFuncDesc* );
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT GetNum();
-//STRIP001 };
-
-//--------------------------------------------------------------------
-
-//STRIP001 ScFuncRes::ScFuncRes( ResId &aRes, ScFuncDesc* pDesc )
-//STRIP001  : Resource(aRes)
-//STRIP001 {
-//STRIP001  USHORT      nArgs;
-//STRIP001
-//STRIP001  pDesc->nCategory = 1;
-//STRIP001  pDesc->nCategory = GetNum();
-//STRIP001  pDesc->nHelpId = GetNum() + 32768;      //! Hack, siehe ScFuncs.src
-//STRIP001  pDesc->nArgCount = GetNum();
-//STRIP001  nArgs = pDesc->nArgCount;
-//STRIP001  if (nArgs >= VAR_ARGS) nArgs = nArgs-VAR_ARGS+1;
-//STRIP001  if (nArgs)
-//STRIP001  {
-//STRIP001      pDesc->aDefArgOpt = new BOOL[nArgs];
-//STRIP001      for (USHORT i = 0; i < nArgs; i++)
-//STRIP001          pDesc->aDefArgOpt[i] = (BOOL)GetNum();
-//STRIP001  }
-//STRIP001
-//STRIP001  pDesc->pFuncName = new String( ScCompiler::pSymbolTableNative[aRes.GetId()] );
-//STRIP001  pDesc->pFuncDesc = new String(ScResId(1));
-//STRIP001
-//STRIP001  if (nArgs)
-//STRIP001  {
-//STRIP001      pDesc->aDefArgNames = new String*[nArgs];
-//STRIP001      pDesc->aDefArgDescs = new String*[nArgs];
-//STRIP001      for (USHORT i = 0; i < nArgs; i++)
-//STRIP001      {
-//STRIP001          pDesc->aDefArgNames[i] = new String(ScResId(2*(i+1)  ));
-//STRIP001          pDesc->aDefArgDescs[i] = new String(ScResId(2*(i+1)+1));
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  FreeResource();
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 USHORT ScFuncRes::GetNum()
-//STRIP001 {
-//STRIP001  return ReadShortRes();
-//STRIP001 }
-
-//=========================================================================
-
-// um an die protected von Resource ranzukommen
-//STRIP001 class ScResourcePublisher : public Resource
-//STRIP001 {
-//STRIP001 public:
-//STRIP001      ScResourcePublisher( const ScResId& rId ) : Resource( rId ) {}
-//STRIP001  BOOL            IsAvailableRes( const ResId& rId ) const
-//STRIP001                      { return Resource::IsAvailableRes( rId ); }
-//STRIP001  void            FreeResource() { Resource::FreeResource(); }
-//STRIP001 };
-
-
 /*N*/ ScFunctionList::ScFunctionList() :
 /*N*/       nMaxFuncNameLen ( 0 )
 /*N*/ {
 /*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScFuncDesc*       pDesc   = NULL;
-//STRIP001  xub_StrLen      nStrLen = 0;
-//STRIP001  FuncCollection* pFuncColl;
-//STRIP001  USHORT i,j;
-//STRIP001  USHORT nDescBlock[] =
-//STRIP001  {
-//STRIP001      RID_SC_FUNCTION_DESCRIPTIONS1,
-//STRIP001      RID_SC_FUNCTION_DESCRIPTIONS2
-//STRIP001  };
-//STRIP001  const USHORT nBlocks = sizeof(nDescBlock) / sizeof(USHORT);
-//STRIP001
-//STRIP001  aFunctionList.Clear();
-//STRIP001
-//STRIP001  for ( USHORT k = 0; k < nBlocks; k++ )
-//STRIP001  {
-//STRIP001      ScResourcePublisher* pBlock =
-//STRIP001          new ScResourcePublisher( ScResId( nDescBlock[k] ) );
-//STRIP001      for (i = 0; i <= SC_OPCODE_LAST_OPCODE_ID; i++)
-//STRIP001      {   // Alle moeglichen OpCodes abgrasen.
-//STRIP001          // Das ist zwar nicht das schnellste, aber sonst muessten
-//STRIP001          // die Sub-Ressources innerhalb der Ressource-Bloecke und die
-//STRIP001          // Ressource-Bloecke selber nach OpCodes geordnet sein,
-//STRIP001          // was wohl eher utopisch ist..
-//STRIP001          ScResId aRes(i);
-//STRIP001          aRes.SetRT(RSC_RESOURCE);
-//STRIP001          if (pBlock->IsAvailableRes(aRes))
-//STRIP001          {   // Subresource fuer OpCode vorhanden
-//STRIP001              pDesc = new ScFuncDesc;
-//STRIP001              ScFuncRes aSubRes(aRes, pDesc);
-//STRIP001              pDesc->nFIndex = i;
-//STRIP001              aFunctionList.Insert( pDesc, LIST_APPEND );
-//STRIP001
-//STRIP001              nStrLen = (*(pDesc->pFuncName)).Len();
-//STRIP001              if (nStrLen > nMaxFuncNameLen)
-//STRIP001                  nMaxFuncNameLen = nStrLen;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pBlock->FreeResource();
-//STRIP001      delete pBlock;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT nNextId = SC_OPCODE_LAST_OPCODE_ID + 1;      // FuncID for AddIn functions
-//STRIP001
-//STRIP001  // Auswertung AddIn-Liste
-//STRIP001  String aDefArgNameValue =   String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("value"));
-//STRIP001  String aDefArgNameString =  String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("string"));
-//STRIP001  String aDefArgNameValues =  String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("values"));
-//STRIP001  String aDefArgNameStrings = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("strings"));
-//STRIP001  String aDefArgNameCells =   String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("cells"));
-//STRIP001  String aDefArgNameNone =    String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("none"));
-//STRIP001  String aDefArgDescValue =   String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("a value"));
-//STRIP001  String aDefArgDescString =  String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("a string"));
-//STRIP001  String aDefArgDescValues =  String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("array of values"));
-//STRIP001  String aDefArgDescStrings = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("array of strings"));
-//STRIP001  String aDefArgDescCells =   String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("range of cells"));
-//STRIP001  String aDefArgDescNone =    String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("none"));
-//STRIP001  String aArgName, aArgDesc;
-//STRIP001  pFuncColl = ScGlobal::GetFuncCollection();
-//STRIP001  for (i = 0; i < pFuncColl->GetCount(); i++)
-//STRIP001  {
-//STRIP001      pDesc = new ScFuncDesc;
-//STRIP001      FuncData *pAddInFuncData = (FuncData*)pFuncColl->At(i);
-//STRIP001      USHORT nArgs = pAddInFuncData->GetParamCount() - 1;
-//STRIP001      pAddInFuncData->GetParamDesc( aArgName, aArgDesc, 0 );
-//STRIP001        pDesc->nFIndex     = nNextId++;               //  ??? OpCode vergeben
-//STRIP001        pDesc->nCategory   = ID_FUNCTION_GRP_ADDINS;
-//STRIP001        pDesc->pFuncName   = new String(pAddInFuncData->GetInternalName());
-//STRIP001        pDesc->pFuncName->ToUpperAscii();
-//STRIP001        pDesc->pFuncDesc   = new String( aArgDesc );
-//STRIP001      *(pDesc->pFuncDesc) += '\n';
-//STRIP001        pDesc->pFuncDesc->AppendAscii(RTL_CONSTASCII_STRINGPARAM( "( AddIn: " ));
-//STRIP001      *(pDesc->pFuncDesc) += pAddInFuncData->GetModuleName();
-//STRIP001        pDesc->pFuncDesc->AppendAscii(RTL_CONSTASCII_STRINGPARAM( " )" ));
-//STRIP001        pDesc->nArgCount   = nArgs;
-//STRIP001      if (nArgs)
-//STRIP001      {
-//STRIP001          pDesc->aDefArgOpt   = new BOOL[nArgs];
-//STRIP001          pDesc->aDefArgNames = new String*[nArgs];
-//STRIP001          pDesc->aDefArgDescs = new String*[nArgs];
-//STRIP001          for (j = 0; j < nArgs; j++)
-//STRIP001          {
-//STRIP001              pDesc->aDefArgOpt[j] = FALSE;
-//STRIP001              pAddInFuncData->GetParamDesc( aArgName, aArgDesc, j+1 );
-//STRIP001              if ( aArgName.Len() )
-//STRIP001                  pDesc->aDefArgNames[j] = new String( aArgName );
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  switch (pAddInFuncData->GetParamType(j+1))
-//STRIP001                  {
-//STRIP001                      case PTR_DOUBLE:
-//STRIP001                          pDesc->aDefArgNames[j] = new String( aDefArgNameValue );
-//STRIP001                          break;
-//STRIP001                      case PTR_STRING:
-//STRIP001                          pDesc->aDefArgNames[j] = new String( aDefArgNameString );
-//STRIP001                          break;
-//STRIP001                      case PTR_DOUBLE_ARR:
-//STRIP001                          pDesc->aDefArgNames[j] = new String( aDefArgNameValues );
-//STRIP001                          break;
-//STRIP001                      case PTR_STRING_ARR:
-//STRIP001                          pDesc->aDefArgNames[j] = new String( aDefArgNameStrings );
-//STRIP001                          break;
-//STRIP001                      case PTR_CELL_ARR:
-//STRIP001                          pDesc->aDefArgNames[j] = new String( aDefArgNameCells );
-//STRIP001                          break;
-//STRIP001                      default:
-//STRIP001                          pDesc->aDefArgNames[j] = new String( aDefArgNameNone );
-//STRIP001                          break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if ( aArgDesc.Len() )
-//STRIP001                  pDesc->aDefArgDescs[j] = new String( aArgDesc );
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  switch (pAddInFuncData->GetParamType(j+1))
-//STRIP001                  {
-//STRIP001                      case PTR_DOUBLE:
-//STRIP001                          pDesc->aDefArgDescs[j] = new String( aDefArgDescValue );
-//STRIP001                          break;
-//STRIP001                      case PTR_STRING:
-//STRIP001                          pDesc->aDefArgDescs[j] = new String( aDefArgDescString );
-//STRIP001                          break;
-//STRIP001                      case PTR_DOUBLE_ARR:
-//STRIP001                          pDesc->aDefArgDescs[j] = new String( aDefArgDescValues );
-//STRIP001                          break;
-//STRIP001                      case PTR_STRING_ARR:
-//STRIP001                          pDesc->aDefArgDescs[j] = new String( aDefArgDescStrings );
-//STRIP001                          break;
-//STRIP001                      case PTR_CELL_ARR:
-//STRIP001                          pDesc->aDefArgDescs[j] = new String( aDefArgDescCells );
-//STRIP001                          break;
-//STRIP001                      default:
-//STRIP001                          pDesc->aDefArgDescs[j] = new String( aDefArgDescNone );
-//STRIP001                          break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001 //       pDesc->nHelpId    = 0;
-//STRIP001
-//STRIP001      aFunctionList.Insert(pDesc, LIST_APPEND);
-//STRIP001      nStrLen = (*(pDesc->pFuncName)).Len();
-//STRIP001      if ( nStrLen > nMaxFuncNameLen)
-//STRIP001          nMaxFuncNameLen = nStrLen;
-//STRIP001  }
-//STRIP001
-//STRIP001  //  StarOne AddIns
-//STRIP001
-//STRIP001  ScUnoAddInCollection* pUnoAddIns = ScGlobal::GetAddInCollection();
-//STRIP001  long nUnoCount = pUnoAddIns->GetFuncCount();
-//STRIP001  for (long nFunc=0; nFunc<nUnoCount; nFunc++)
-//STRIP001  {
-//STRIP001      pDesc = new ScFuncDesc;
-//STRIP001      pDesc->nFIndex = nNextId++;
-//STRIP001
-//STRIP001      if ( pUnoAddIns->FillFunctionDesc( nFunc, *pDesc ) )
-//STRIP001      {
-//STRIP001          aFunctionList.Insert(pDesc, LIST_APPEND);
-//STRIP001          nStrLen = (*(pDesc->pFuncName)).Len();
-//STRIP001          if (nStrLen > nMaxFuncNameLen)
-//STRIP001              nMaxFuncNameLen = nStrLen;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          delete pDesc;
-//STRIP001  }
 }
 
 //------------------------------------------------------------------------
@@ -1670,88 +811,6 @@ void global_InitAppOptions();
 /*?*/       delete pFuncDesc;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-//STRIP001 String ScFuncDesc::GetSignature() const
-//STRIP001 {
-//STRIP001  String aSig;
-//STRIP001
-//STRIP001  if(pFuncName)
-//STRIP001  {
-//STRIP001      aSig = *pFuncName;
-//STRIP001      if ( nArgCount > 0 )
-//STRIP001      {
-//STRIP001          aSig.AppendAscii(RTL_CONSTASCII_STRINGPARAM( "( " ));
-//STRIP001          if ( nArgCount < VAR_ARGS )
-//STRIP001          {
-//STRIP001              for ( USHORT i=0; i<nArgCount; i++ )
-//STRIP001              {
-//STRIP001                  aSig += *(aDefArgNames[i]);
-//STRIP001                  if ( i != nArgCount-1 )
-//STRIP001                      aSig.AppendAscii(RTL_CONSTASCII_STRINGPARAM( "; " ));
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              USHORT nFix = nArgCount - VAR_ARGS;
-//STRIP001              for ( USHORT nArg = 0; nArg < nFix; nArg++ )
-//STRIP001              {
-//STRIP001                  aSig += *(aDefArgNames[nArg]);
-//STRIP001                  aSig.AppendAscii(RTL_CONSTASCII_STRINGPARAM( "; " ));
-//STRIP001              }
-//STRIP001              aSig += *(aDefArgNames[nFix]);
-//STRIP001              aSig += '1';
-//STRIP001              aSig.AppendAscii(RTL_CONSTASCII_STRINGPARAM( "; " ));
-//STRIP001              aSig += *(aDefArgNames[nFix]);
-//STRIP001              aSig += '2';
-//STRIP001              aSig.AppendAscii(RTL_CONSTASCII_STRINGPARAM( "; ... " ));
-//STRIP001          }
-//STRIP001
-//STRIP001             aSig.Append( 0xA0 ).Append( ')' );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          aSig.AppendAscii(RTL_CONSTASCII_STRINGPARAM( "()" ));
-//STRIP001  }
-//STRIP001  return aSig;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 String ScFuncDesc::GetFormulaString( String** aArgArr ) const
-//STRIP001 {
-//STRIP001  String aFormula;
-//STRIP001
-//STRIP001  if(pFuncName)
-//STRIP001  {
-//STRIP001      aFormula= *pFuncName;
-//STRIP001
-//STRIP001      aFormula += '(';
-//STRIP001
-//STRIP001      if ( nArgCount > 0 && aArgArr )
-//STRIP001      {
-//STRIP001          BOOL bLastArg = ( aArgArr[0]->Len() == 0 );
-//STRIP001
-//STRIP001          if ( !bLastArg )
-//STRIP001          {
-//STRIP001              for ( USHORT i=0; i<nArgCount && !bLastArg; i++ )
-//STRIP001              {
-//STRIP001                  aFormula += *(aArgArr[i]);
-//STRIP001
-//STRIP001                  if ( i < (nArgCount-1) )
-//STRIP001                  {
-//STRIP001                      bLastArg = !( aArgArr[i+1]->Len() > 0 );
-//STRIP001                      if ( !bLastArg )
-//STRIP001                          aFormula += ';';
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      aFormula += ')';
-//STRIP001  }
-//STRIP001  return aFormula;
-//STRIP001 }
-
 //========================================================================
 // class ScFunctionMgr:
 
@@ -1760,38 +819,6 @@ void global_InitAppOptions();
 /*N*/       pCurCatList ( NULL )
 /*N*/{
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/ DBG_ASSERT( pFuncList, "Funktionsliste nicht gefunden." );
-//STRIP001  ULONG       nCount  = pFuncList->GetCount();
-//STRIP001  ScFuncDesc* pDesc;
-//STRIP001  List*       pRootList;
-//STRIP001  ULONG       n;
-//STRIP001
-//STRIP001  for ( USHORT i=0; i<MAX_FUNCCAT; i++ )                  // Kategorie-Listen erstellen
-//STRIP001      aCatLists[i] = new List;
-//STRIP001
-//STRIP001  pRootList = aCatLists[0];                               // Gesamtliste ("Alle") erstellen
-//STRIP001  for ( n=0; n<nCount; n++ )
-//STRIP001  {
-//STRIP001      ULONG nTmpCnt=0;
-//STRIP001      pDesc = pFuncList->GetFunction(n);
-//STRIP001      for (nTmpCnt = 0; nTmpCnt < n; nTmpCnt++)
-//STRIP001      {
-//STRIP001          // ist zwar case-sensitiv, aber Umlaute muessen richtig einsortiert werden
-//STRIP001
-//STRIP001          ScFuncDesc* pTmpDesc = (ScFuncDesc*)pRootList->GetObject(nTmpCnt);
-//STRIP001          if ( ScGlobal::pCaseCollator->compareString(
-//STRIP001                      *pDesc->pFuncName, *pTmpDesc->pFuncName ) == COMPARE_LESS )
-//STRIP001              break;
-//STRIP001      }
-//STRIP001      pRootList->Insert(pDesc, nTmpCnt);                  // Einsortieren
-//STRIP001  }
-//STRIP001
-//STRIP001  for ( n=0; n<nCount; n++ )                              // in Gruppenlisten kopieren
-//STRIP001  {
-//STRIP001      pDesc = (ScFuncDesc*)pRootList->GetObject(n);
-//STRIP001      DBG_ASSERT((pDesc->nCategory) < MAX_FUNCCAT, "Unbekannte Kategorie");
-//STRIP001      if ((pDesc->nCategory) < MAX_FUNCCAT)
-//STRIP001          aCatLists[pDesc->nCategory]->Insert(pDesc, LIST_APPEND);
-//STRIP001  }
 }
 
 //------------------------------------------------------------------------
@@ -1799,62 +826,7 @@ void global_InitAppOptions();
 /*N*/ ScFunctionMgr::~ScFunctionMgr()
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i = 0; i < MAX_FUNCCAT; i++)
-//STRIP001      delete aCatLists[i];
-//STRIP001 //   delete pFuncList;       // Macht später die App
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-//STRIP001 ScFuncDesc* ScFunctionMgr::Get( const String& rFName )
-//STRIP001 {
-//STRIP001  ScFuncDesc* pDesc = NULL;
-//STRIP001  if (rFName.Len() <= pFuncList->GetMaxFuncNameLen())
-//STRIP001      for (pDesc = First(0); pDesc; pDesc = Next())
-//STRIP001          if (rFName.EqualsIgnoreCaseAscii(*(pDesc->pFuncName)))
-//STRIP001              break;
-//STRIP001  return pDesc;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 ScFuncDesc* ScFunctionMgr::Get( USHORT nFIndex )
-//STRIP001 {
-//STRIP001  ScFuncDesc* pDesc;
-//STRIP001  for (pDesc = First(0); pDesc; pDesc = Next())
-//STRIP001      if (pDesc->nFIndex == nFIndex)
-//STRIP001          break;
-//STRIP001  return pDesc;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 ScFuncDesc*  ScFunctionMgr::First( USHORT nCategory )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nCategory < MAX_FUNCCAT, "Unbekannte Kategorie" );
-//STRIP001
-//STRIP001  if ( nCategory < MAX_FUNCCAT )
-//STRIP001  {
-//STRIP001      pCurCatList = aCatLists[nCategory];
-//STRIP001      return (ScFuncDesc*)pCurCatList->First();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pCurCatList = NULL;
-//STRIP001      return NULL;
-//STRIP001  }
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 ScFuncDesc* ScFunctionMgr::Next()
-//STRIP001 {
-//STRIP001  if ( pCurCatList )
-//STRIP001      return (ScFuncDesc*)pCurCatList->Next();
-//STRIP001  else
-//STRIP001      return NULL;
-//STRIP001 }
-
-//------------------------------------------------------------------------
 
 /*N*/ String ColToAlpha( const USHORT nCol )
 /*N*/ {
