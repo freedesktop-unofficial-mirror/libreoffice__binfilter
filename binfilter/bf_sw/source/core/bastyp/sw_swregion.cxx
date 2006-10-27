@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swregion.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:21:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:16:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,8 +40,6 @@
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif
-// auto strip #include "swtypes.hxx"
-// auto strip #include "swrect.hxx"
 #include "swregion.hxx"
 namespace binfilter {
 
@@ -166,38 +164,6 @@ namespace binfilter {
  * einem Null-SRectangle.
  *************************************************************************/
 
-//STRIP001 void SwRegionRects::Invert()
-//STRIP001 {
-//STRIP001  // Nicht besonders elegant und schnell, aber wirkungsvoll:
-//STRIP001  // Wir legen eine weitere Region an und ziehen alle Flaechen ab,
-//STRIP001  // die in uns noch uebrig geblieben sind. Danach werden alle
-//STRIP001  // Werte uebertragen.
-//STRIP001
-//STRIP001  // Um unuetze Speicheranforderungen zu vermeiden versuchen wir die
-//STRIP001  // iniale Groesse moeglichst brauchbar anzulegen:
-//STRIP001  // Anzahl der Rechtecke in der Region * 2 + 2
-//STRIP001  // plus zwei um den Sonderfall eines einzelnen Loches (macht vier
-//STRIP001  // Rechtecke im inversen Fall) abzudecken.
-//STRIP001
-//STRIP001  SwRegionRects aInvRegion( aOrigin, Count()*2+2 );
-//STRIP001  const SwRect *pDat = GetData();
-//STRIP001  for( USHORT i = 0; i < Count(); ++pDat, ++i )
-//STRIP001      aInvRegion -= *pDat;
-//STRIP001
-//STRIP001  USHORT nCpy = Count(), nDel = 0;
-//STRIP001  if( aInvRegion.Count() < Count() )
-//STRIP001  {
-//STRIP001      nDel = Count() - aInvRegion.Count();
-//STRIP001      nCpy = aInvRegion.Count();
-//STRIP001  }
-//STRIP001  // alle vorhandenen ueberschreiben
-//STRIP001  memcpy( pData, aInvRegion.GetData(), nCpy * sizeof( SwRect ));
-//STRIP001
-//STRIP001  if( nCpy < aInvRegion.Count() )
-//STRIP001      Insert( &aInvRegion, nCpy, nCpy );
-//STRIP001  else if( nDel )
-//STRIP001      Remove( nCpy, nDel );
-//STRIP001 }
 /*************************************************************************
 |*
 |*  SwRegionRects::Compress()
@@ -207,59 +173,9 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 21. Apr. 93
 |*
 |*************************************************************************/
-//STRIP001 inline SwTwips CalcArea( const SwRect &rRect )
-//STRIP001 {
-//STRIP001  return rRect.Width() * rRect.Height();
-//STRIP001 }
 
 
 #pragma optimize("e",off)
-//STRIP001 void SwRegionRects::Compress( BOOL bFuzzy )
-//STRIP001 {
-//STRIP001  for ( int i = 0; i < Count(); ++i )
-//STRIP001  {
-//STRIP001      for ( int j = i+1; j < Count(); ++j )
-//STRIP001      {
-//STRIP001          //Wenn zwei Rechtecke ineinanderliegen, so ist eins davon
-//STRIP001          //uberfluessig.
-//STRIP001          if ( (*(pData + i)).IsInside( *(pData + j) ) )
-//STRIP001          {
-//STRIP001              Remove( j, 1 );
-//STRIP001              --j;
-//STRIP001          }
-//STRIP001          else if ( (*(pData + j)).IsInside( *(pData + i) ) )
-//STRIP001          {
-//STRIP001              *(pData + i) = *(pData + j);
-//STRIP001              Remove( j, 1 );
-//STRIP001              i = -1;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              //Wenn zwei Rechtecke dieselbe Flaeche haben wie deren
-//STRIP001              //Union abzueglich deren Intersection, so ist eines
-//STRIP001              //davon ueberfluessig.
-//STRIP001              //Um moeglichst viel zusammenzufassen und in der Folge
-//STRIP001              //moeglichst wenig einzelne Paints zu haben darf die Flaeche
-//STRIP001              //der Union ruhig ein bischen groesser sein
-//STRIP001              //( 9622 * 141.5 = 1361513 ~= ein virtel Zentimeter ueber die
-//STRIP001              //                            Breite einer DINA4 Seite)
-//STRIP001              const long nFuzzy = bFuzzy ? 1361513 : 0;
-//STRIP001              SwRect aUnion( *(pData + i) );aUnion.Union( *(pData + j) );
-//STRIP001              SwRect aInter( *(pData + i) );aInter.Intersection( *(pData + j));
-//STRIP001              if ( (::CalcArea( *(pData + i) ) +
-//STRIP001                    ::CalcArea( *(pData + j) ) + nFuzzy) >=
-//STRIP001                   (::CalcArea( aUnion ) - CalcArea( aInter )) )
-//STRIP001              {
-//STRIP001                  *(pData + i) = aUnion;
-//STRIP001                  Remove( j, 1 );
-//STRIP001                  i = -1;
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 #pragma optimize("",on)
 
 
