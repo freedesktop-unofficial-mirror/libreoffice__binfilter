@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_rect.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-03-07 10:13:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:57:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,26 +35,15 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _SV_WRKWIN_HXX //autogen
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
 #ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
 #endif
 
 
 #include "rect.hxx"
-// auto strip #include "types.hxx"
-// auto strip #include "utility.hxx"
 #include "smmod.hxx"
 namespace binfilter {
 
@@ -673,64 +662,7 @@ SmRect SmRect::AsGlyphRect() const
 
 
 // forward declaration
-//STRIP001 void SmDrawFrame(OutputDevice &rDev, const Rectangle &rRec,
-//STRIP001               const Color aCol = COL_BLACK);
 
-//STRIP001 void SmRect::Draw(OutputDevice &rDev, const Point &rPosition, int nFlags) const
-//STRIP001 {
-//STRIP001  if (IsEmpty())
-//STRIP001      return;
-//STRIP001
-//STRIP001  rDev.Push(PUSH_LINECOLOR);
-//STRIP001
-//STRIP001  if (nFlags & SM_RECT_LINES)
-//STRIP001  {   long   nLeftSpace  = 0,
-//STRIP001             nRightSpace = 0;
-//STRIP001
-//STRIP001      if (nFlags & SM_RECT_ITALIC)
-//STRIP001      {   nLeftSpace  = GetItalicLeftSpace();
-//STRIP001          nRightSpace = GetItalicRightSpace();
-//STRIP001      }
-//STRIP001
-//STRIP001      long  nLeft  = GetLeft()  - nLeftSpace,
-//STRIP001            nRight = GetRight() + nRightSpace;
-//STRIP001
-//STRIP001      Point aOffset (rPosition - GetTopLeft());
-//STRIP001
-//STRIP001      rDev.SetLineColor(COL_LIGHTBLUE);
-//STRIP001      rDev.DrawLine(Point(nLeft,  GetAlignB()) += aOffset,
-//STRIP001                    Point(nRight, GetAlignB()) += aOffset);
-//STRIP001      rDev.DrawLine(Point(nLeft,  GetAlignT()) += aOffset,
-//STRIP001                    Point(nRight, GetAlignT()) += aOffset);
-//STRIP001      if (HasBaseline())
-//STRIP001          rDev.DrawLine(Point(nLeft,  GetBaseline()) += aOffset,
-//STRIP001                        Point(nRight, GetBaseline()) += aOffset);
-//STRIP001
-//STRIP001      rDev.SetLineColor(COL_GRAY);
-//STRIP001      rDev.DrawLine(Point(nLeft,  GetHiAttrFence()) += aOffset,
-//STRIP001                    Point(nRight, GetHiAttrFence()) += aOffset);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nFlags & SM_RECT_MID)
-//STRIP001  {   Point   aCenter = rPosition
-//STRIP001                        + (Point(GetItalicCenterX(), GetAlignM()) -= GetTopLeft()),
-//STRIP001              aLenX     (GetWidth() / 5, 0),
-//STRIP001              aLenY     (0, GetHeight() / 16);
-//STRIP001
-//STRIP001      rDev.SetLineColor(COL_LIGHTGREEN);
-//STRIP001      rDev.DrawLine(aCenter - aLenX, aCenter + aLenX);
-//STRIP001      rDev.DrawLine(aCenter - aLenY, aCenter + aLenY);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nFlags & SM_RECT_ITALIC)
-//STRIP001      SmDrawFrame(rDev, Rectangle(rPosition - Point(GetItalicLeftSpace(), 0),
-//STRIP001              GetItalicSize()));
-//STRIP001
-//STRIP001  if (nFlags & SM_RECT_CORE)
-//STRIP001      SmDrawFrame(rDev, Rectangle(rPosition, GetSize()), COL_LIGHTRED);
-//STRIP001
-//STRIP001  rDev.Pop();
-//STRIP001 }
 
 
 
@@ -739,20 +671,6 @@ SmRect SmRect::AsGlyphRect() const
 //
 
 
-//STRIP001 void SmDrawFrame(OutputDevice &rDev, const Rectangle &rRec,
-//STRIP001               const Color aCol)
-//STRIP001 {
-//STRIP001  rDev.Push(PUSH_LINECOLOR);
-//STRIP001
-//STRIP001  rDev.SetLineColor(aCol);
-//STRIP001
-//STRIP001  rDev.DrawLine(rRec.TopLeft(),     rRec.BottomLeft());
-//STRIP001  rDev.DrawLine(rRec.BottomLeft(),  rRec.BottomRight());
-//STRIP001  rDev.DrawLine(rRec.BottomRight(), rRec.TopRight());
-//STRIP001  rDev.DrawLine(rRec.TopRight(),    rRec.TopLeft());
-//STRIP001
-//STRIP001  rDev.Pop();
-//STRIP001 }
 
 
 /*N*/ BOOL SmGetGlyphBoundRect(const OutputDevice &rDev,
