@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndhints.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:40:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:18:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,28 +50,6 @@ namespace binfilter {
 /*N*/ {
 #ifndef PRODUCT
         DBG_BF_ASSERT(0, "STRIP");//STRIP001    aDbstream << "DumpHints:" << endl;
-//STRIP001  (aDbstream << "\tStarts:" ).WriteNumber(rHtStart.Count()) << endl;
-//STRIP001  for( USHORT i = 0; i < rHtStart.Count(); ++i )
-//STRIP001  {
-//STRIP001      const SwTxtAttr *pHt = rHtStart[i];
-//STRIP001      ((((aDbstream << '\t').WriteNumber( i )<< " [").WriteNumber( pHt->Which() )
-//STRIP001          << ']' << '\t').WriteNumber( long( pHt ) )
-//STRIP001                << '\t').WriteNumber( *pHt->GetStart() );
-//STRIP001      if( pHt->GetEnd() )
-//STRIP001          (aDbstream << " -> " ).WriteNumber( *pHt->GetEnd() );
-//STRIP001      aDbstream << endl;
-//STRIP001  }
-//STRIP001  (aDbstream << "\tEnds:").WriteNumber( rHtEnd.Count() )<< endl;
-//STRIP001  for( i = 0; i < rHtEnd.Count(); ++i )
-//STRIP001  {
-//STRIP001      const SwTxtAttr *pHt = rHtEnd[i];
-//STRIP001      (((aDbstream << '\t').WriteNumber( i )<< " [").WriteNumber( pHt->Which() )
-//STRIP001          << ']' << '\t' ).WriteNumber( long( pHt ) );
-//STRIP001      if( pHt->GetEnd() )
-//STRIP001          (aDbstream << '\t').WriteNumber( *pHt->GetEnd() )<< " <- ";
-//STRIP001      aDbstream.WriteNumber( *pHt->GetStart() )<< endl;
-//STRIP001  }
-//STRIP001  aDbstream << endl;
 /*N*/ #endif
 /*N*/ }
 /*N*/ #else
