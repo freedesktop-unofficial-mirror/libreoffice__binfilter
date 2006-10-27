@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2006-09-15 12:47:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:58:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,11 +44,7 @@
 #if !defined _SVSTDARR_USHORTS_DECL || !defined _SVSTDARR_STRINGSDTOR_DECL
 #define _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -77,54 +73,9 @@
 #ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
-// auto strip #include <com/sun/star/form/XForm.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
-// auto strip #include <com/sun/star/form/XImageProducerSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
-// auto strip #include <com/sun/star/form/XFormController.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
-// auto strip #include <com/sun/star/form/XFormComponent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
-// auto strip #include <com/sun/star/form/XFormControllerListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
-// auto strip #include <com/sun/star/frame/XStorable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XNameReplace.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
-// auto strip #include <com/sun/star/container/XContainerListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
-// auto strip #include <com/sun/star/container/XSet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
 #endif
@@ -151,15 +102,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
@@ -172,9 +114,6 @@
 #ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
 #endif
-// auto strip #ifndef _SW3IDS_HXX
-// auto strip #include <sw3ids.hxx>
-// auto strip #endif
 #ifndef _SW3MARKS_HXX
 #include <sw3marks.hxx>
 #endif
@@ -184,9 +123,6 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-// auto strip #ifndef _SECTION_HXX
-// auto strip #include <section.hxx>
-// auto strip #endif
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
@@ -2829,32 +2765,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/ }
 
 #ifdef TEST_HUGE_DOCS
-//STRIP001 void Sw3IoImp::InHugeRecord()
-//STRIP001 {
-//STRIP001  OpenRec( SWG_TESTHUGEDOCS  );
-//STRIP001  sal_uInt32 nBlocks, nBlockSize;
-//STRIP001  *pStrm >> nBlocks >> nBlockSize;
-//STRIP001  sal_Char *pBuffer = new sal_Char[nBlockSize + 1];
-//STRIP001  for( sal_uInt32 i=0; i < nBlocks; i++ )
-//STRIP001      pStrm->Read( pBuffer, nBlockSize );
-//STRIP001
-//STRIP001  delete pBuffer;
-//STRIP001  CloseRec( SWG_TESTHUGEDOCS  );
-//STRIP001 }
 
-//STRIP001 void Sw3IoImp::OutHugeRecord( sal_uInt32 nBlocks, sal_uInt32 nBlockSize )
-//STRIP001 {
-//STRIP001  OpenRec( SWG_TESTHUGEDOCS  );
-//STRIP001  *pStrm << nBlocks << nBlockSize;
-//STRIP001  sal_Char *pBuffer = new sal_Char[nBlockSize + 1];
-//STRIP001  for( sal_uInt32 i=0; i << nBlockSize; i++ )
-//STRIP001      pBuffer[i] = (sal_Char)i;
-//STRIP001  for( i=0; i < nBlocks; i++ )
-//STRIP001      pStrm->Write( pBuffer, nBlockSize );
-//STRIP001
-//STRIP001  delete pBuffer;
-//STRIP001  CloseRec( SWG_TESTHUGEDOCS  );
-//STRIP001 }
 #endif
 
 
