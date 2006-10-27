@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotxln.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:03:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:44:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,24 +33,11 @@
  *
  ************************************************************************/
 
-// auto strip #include <unotools/ucbstreamhelper.hxx>
-// auto strip #include <unotools/localfilehelper.hxx>
 
-// auto strip #ifndef _UCBHELPER_CONTENT_HXX_
-// auto strip #include <ucbhelper/content.hxx>
-// auto strip #endif
-// auto strip #ifndef _UCBHELPER_CONTENTBROKER_HXX_
-// auto strip #include <ucbhelper/contentbroker.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_DATETIME_HXX_
-// auto strip #include <unotools/datetime.hxx>
-// auto strip #endif
 
 #include "svdotext.hxx"
-// auto strip #include "svditext.hxx"
 #include "svdmodel.hxx"
 #include "svdio.hxx"
-// auto strip #include "editdata.hxx"
 
 #ifndef SVX_LIGHT
 #ifndef _LNKBASE_HXX //autogen
@@ -62,9 +49,6 @@
 #include <linkmgr.hxx>
 #endif
 
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 
 #include <svtools/urihelper.hxx>
 
@@ -119,10 +103,6 @@ namespace binfilter {
 /*?*/ {
 /*?*/   if (pSdrObj )
 /*?*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        // pLink des Objekts auf NULL setzen, da die Link-Instanz ja gerade destruiert wird.
-//STRIP001 /*?*/        ImpSdrObjTextLinkUserData* pData=pSdrObj->GetLinkUserData();
-//STRIP001 /*?*/        if (pData!=NULL) pData->pLink=NULL;
-//STRIP001 /*?*/        pSdrObj->ReleaseTextLink();
 /*?*/   }
 /*?*/   SvBaseLink::Closed();
 /*?*/ }
@@ -285,131 +265,9 @@ namespace binfilter {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SdrTextObj::SetTextLink(const String& rFileName, const String& rFilterName, rtl_TextEncoding eCharSet)
-//STRIP001 {
-//STRIP001  if(eCharSet == RTL_TEXTENCODING_DONTKNOW)
-//STRIP001      eCharSet = gsl_getSystemTextEncoding();
-//STRIP001
-//STRIP001  ImpSdrObjTextLinkUserData* pData=GetLinkUserData();
-//STRIP001  if (pData!=NULL) {
-//STRIP001      ReleaseTextLink();
-//STRIP001  }
-//STRIP001  pData=new ImpSdrObjTextLinkUserData(this);
-//STRIP001  pData->aFileName=rFileName;
-//STRIP001  pData->aFilterName=rFilterName;
-//STRIP001  pData->eCharSet=eCharSet;
-//STRIP001  InsertUserData(pData);
-//STRIP001  ImpLinkAnmeldung();
-//STRIP001 }
 
-//STRIP001 void SdrTextObj::ReleaseTextLink()
-//STRIP001 {
-//STRIP001  ImpLinkAbmeldung();
-//STRIP001  USHORT nAnz=GetUserDataCount();
-//STRIP001  for (USHORT nNum=nAnz; nNum>0;) {
-//STRIP001      nNum--;
-//STRIP001      SdrObjUserData* pData=GetUserData(nNum);
-//STRIP001      if (pData->GetInventor()==SdrInventor && pData->GetId()==SDRUSERDATA_OBJTEXTLINK) {
-//STRIP001          DeleteUserData(nNum);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrTextObj::ReloadLinkedText(FASTBOOL bForceLoad)
-//STRIP001 {
-//STRIP001  ImpSdrObjTextLinkUserData*  pData = GetLinkUserData();
-//STRIP001  FASTBOOL                    bRet = TRUE;
-//STRIP001
-//STRIP001  if( pData )
-//STRIP001  {
-//STRIP001      ::ucb::ContentBroker*   pBroker = ::ucb::ContentBroker::get();
-//STRIP001      DateTime                aFileDT;
-//STRIP001      BOOL                    bExists = FALSE, bLoad = FALSE;
-//STRIP001
-//STRIP001      if( pBroker )
-//STRIP001      {
-//STRIP001          bExists = TRUE;
-//STRIP001
-//STRIP001          try
-//STRIP001          {
-//STRIP001              INetURLObject aURL( pData->aFileName );
-//STRIP001              DBG_ASSERT( aURL.GetProtocol() != INET_PROT_NOT_VALID, "invalid URL" );
-//STRIP001
-//STRIP001              ::ucb::Content aCnt( aURL.GetMainURL( INetURLObject::NO_DECODE ), ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XCommandEnvironment >() );
-//STRIP001              ::com::sun::star::uno::Any aAny( aCnt.getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DateModified" ) ) ) );
-//STRIP001              ::com::sun::star::util::DateTime aDateTime;
-//STRIP001
-//STRIP001              aAny >>= aDateTime;
-//STRIP001              ::utl::typeConvert( aDateTime, aFileDT );
-//STRIP001          }
-//STRIP001          catch( ... )
-//STRIP001          {
-//STRIP001              bExists = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bExists )
-//STRIP001      {
-//STRIP001          if( bForceLoad )
-//STRIP001              bLoad = TRUE;
-//STRIP001          else
-//STRIP001              bLoad = ( aFileDT > pData->aFileDate0 );
-//STRIP001
-//STRIP001          if( bLoad )
-//STRIP001          {
-//STRIP001              bRet = LoadText( pData->aFileName, pData->aFilterName, pData->eCharSet );
-//STRIP001          }
-//STRIP001
-//STRIP001          pData->aFileDate0 = aFileDT;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrTextObj::LoadText(const String& rFileName, const String& rFilterName, rtl_TextEncoding eCharSet)
-//STRIP001 {
-//STRIP001  INetURLObject   aFileURL( rFileName );
-//STRIP001  BOOL            bRet = FALSE;
-//STRIP001
-//STRIP001  if( aFileURL.GetProtocol() == INET_PROT_NOT_VALID )
-//STRIP001  {
-//STRIP001      String aFileURLStr;
-//STRIP001
-//STRIP001      if( ::utl::LocalFileHelper::ConvertPhysicalNameToURL( rFileName, aFileURLStr ) )
-//STRIP001          aFileURL = INetURLObject( aFileURLStr );
-//STRIP001      else
-//STRIP001          aFileURL.SetSmartURL( rFileName );
-//STRIP001  }
-//STRIP001
-//STRIP001  DBG_ASSERT( aFileURL.GetProtocol() != INET_PROT_NOT_VALID, "invalid URL" );
-//STRIP001
-//STRIP001  SvStream* pIStm = ::utl::UcbStreamHelper::CreateStream( aFileURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_READ );
-//STRIP001
-//STRIP001  if( pIStm )
-//STRIP001  {
-//STRIP001      // #90477# pIStm->SetStreamCharSet( eCharSet );
-//STRIP001      pIStm->SetStreamCharSet(GetSOLoadTextEncoding(eCharSet, (sal_uInt16)pIStm->GetVersion()));
-//STRIP001
-//STRIP001      char cRTF[5];
-//STRIP001      cRTF[4] = 0;
-//STRIP001      pIStm->Read(cRTF, 5);
-//STRIP001
-//STRIP001      BOOL bRTF = cRTF[0] == '{' && cRTF[1] == '\\' && cRTF[2] == 'r' && cRTF[3] == 't' && cRTF[4] == 'f';
-//STRIP001
-//STRIP001      pIStm->Seek(0);
-//STRIP001
-//STRIP001      if( !pIStm->GetError() )
-//STRIP001      {
-//STRIP001          SetText( *pIStm, bRTF ? EE_FORMAT_RTF : EE_FORMAT_TEXT );
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      delete pIStm;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ ImpSdrObjTextLinkUserData* SdrTextObj::GetLinkUserData() const
 /*N*/ {
@@ -454,7 +312,6 @@ namespace binfilter {
 /*N*/   if (pLinkManager!=NULL && pData!=NULL && pData->pLink!=NULL) { // Nicht 2x Abmelden
 /*N*/       // Bei Remove wird *pLink implizit deleted
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pLinkManager->Remove( pData->pLink );
-//STRIP001 /*?*/        pData->pLink=NULL;
 /*N*/   }
 /*N*/ #endif // SVX_LIGHT
 /*N*/ }
