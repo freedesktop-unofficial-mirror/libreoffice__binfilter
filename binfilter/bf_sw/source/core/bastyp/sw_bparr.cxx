@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_bparr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:18:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:15:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,24 +98,11 @@ const USHORT nBlockGrowSize = 20;
 
 // Einfachst-Implementation, evtl. spaeter mal komplexer
 #if 0
-//STRIP001 void BigPtrArray::Insert( const ElementPtr* p, ULONG pos, ULONG n )
-//STRIP001 {
-//STRIP001  while( n-- )
-//STRIP001      Insert( *p++, pos++ );
-//STRIP001 }
 #endif
 
 // Auch der Move ist schlicht. Optimieren ist hier wg. der
 // Stueckelung des Feldes zwecklos!
 
-//STRIP001 void BigPtrArray::Move( ULONG from, ULONG to )
-//STRIP001 {
-//STRIP001  USHORT cur = Index2Block( from );
-//STRIP001  BlockInfo* p = ppInf[ cur ];
-//STRIP001  ElementPtr pElem = p->pData[ from - p->nStart ];
-//STRIP001  Insert( pElem, to );            // erst einfuegen, dann loeschen !!!!
-//STRIP001  Remove( ( to < from ) ? ( from + 1 ) : from );
-//STRIP001 }
 
 // das Ende ist EXCLUSIV
 
@@ -493,13 +480,6 @@ const USHORT nBlockGrowSize = 20;
 // den fehlenden Call etwas Zeit.
 
 
-//STRIP001 ULONG BigPtrArray::GetIndex
-//STRIP001  ( const ElementPtr pTest, ULONG nStart, ULONG nEnd ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( pTest == pTest->pBlock->pData[ pTest->nOffset ],
-//STRIP001              "Element nicht im Block" );
-//STRIP001  return pTest->pBlock->nStart + pTest->nOffset;
-//STRIP001 }
 
 // Array komprimieren
 
