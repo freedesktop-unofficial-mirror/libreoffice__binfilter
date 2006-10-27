@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porfly.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:29:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:11:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,9 +48,7 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "flyfrm.hxx" // SwFlyInCntFrm
 #include "frmfmt.hxx"   // SwFrmFmt
-// auto strip #include "viewsh.hxx"
 
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
@@ -73,9 +71,7 @@
 #include "flyfrms.hxx"
 #include "txatbase.hxx" // SwTxtAttr
 #include "porfly.hxx"
-// auto strip #include "porlay.hxx" // SetFly
 #include "inftxt.hxx"   // SwTxtPaintInfo
-// auto strip #include "frmsh.hxx"
 namespace binfilter {
 
 /*************************************************************************
@@ -84,9 +80,6 @@ namespace binfilter {
  * Wir erwarten ein framelokales SwRect !
  *************************************************************************/
 
-//STRIP001 void SwFlyPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwFlyPortion::Format()
@@ -285,53 +278,6 @@ namespace binfilter {
 /*************************************************************************
  *                 virtual SwFlyCntPortion::Paint()
  *************************************************************************/
-//STRIP001 void SwFlyCntPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( bDraw )
-//STRIP001  {
-//STRIP001      if( !((SwDrawContact*)pContact)->GetAnchor() )
-//STRIP001      {
-//STRIP001             SwDrawContact* pDrawContact = static_cast<SwDrawContact*>(pContact);
-//STRIP001             Point aAnchorPos = pDrawContact->GetMaster()->GetAnchorPos();
-//STRIP001             pDrawContact->ConnectToLayout();
-//STRIP001             pDrawContact->GetMaster()->SetAnchorPos( aAnchorPos );
-//STRIP001             // OD 27.06.2003 #108784# - correct movement of 'virtual' drawing
-//STRIP001             // objects caused by the <SetAnchorPos(..)> of the 'master' drawing object.
-//STRIP001             pDrawContact->CorrectRelativePosOfVirtObjs();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Baseline-Ausgabe !
-//STRIP001      // 7922: Bei CompletePaint alles painten
-//STRIP001         SwRect aRepaintRect( rInf.GetPaintRect() );
-//STRIP001         if ( rInf.GetTxtFrm()->IsVertical() )
-//STRIP001             rInf.GetTxtFrm()->SwitchHorizontalToVertical( aRepaintRect );
-//STRIP001
-//STRIP001      if( (GetFlyFrm()->IsCompletePaint() ||
-//STRIP001              GetFlyFrm()->Frm().IsOver( aRepaintRect )) &&
-//STRIP001           SwFlyFrm::IsPaint( (SdrObject*)GetFlyFrm()->GetVirtDrawObj(),
-//STRIP001                              GetFlyFrm()->GetShell() ))
-//STRIP001      {
-//STRIP001          SwRect aRect( GetFlyFrm()->Frm() );
-//STRIP001          if( !GetFlyFrm()->IsCompletePaint() )
-//STRIP001                 aRect._Intersection( aRepaintRect );
-//STRIP001
-//STRIP001          GetFlyFrm()->Paint( aRect );
-//STRIP001          // Es hilft alles nichts, im zeichengebundenen Frame kann wer weiss
-//STRIP001          // was am OutputDevice eingestellt sein, wir muessen unseren Font
-//STRIP001          // wieder hineinselektieren. Dass wir im const stehen, soll uns
-//STRIP001          // daran nicht hindern:
-//STRIP001          ((SwTxtPaintInfo&)rInf).SelectFont();
-//STRIP001
-//STRIP001             // I want to know if this can really happen. So here comes a new
-//STRIP001             ASSERT( ! rInf.GetVsh() || rInf.GetVsh()->GetOut() == rInf.GetOut(),
-//STRIP001                     "SwFlyCntPortion::Paint: Outdev has changed" )
-//STRIP001             if( rInf.GetVsh() )
-//STRIP001                 ((SwTxtPaintInfo&)rInf).SetOut( rInf.GetVsh()->GetOut() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                  SwFlyCntPortion::SwFlyCntPortion()
@@ -703,28 +649,10 @@ namespace binfilter {
  *              virtual SwFlyCntPortion::GetFlyCrsrOfst()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwFlyCntPortion::GetFlyCrsrOfst( const KSHORT nOfst,
-//STRIP001  const Point &rPoint, SwPosition *pPos, const SwCrsrMoveState* pCMS ) const
-//STRIP001 {
-//STRIP001  // Da die FlyCnt nicht an der Seite haengen, wird ihr
-//STRIP001  // GetCrsrOfst() nicht gerufen. Um die Layoutseite
-//STRIP001  // von unnoetiger Verwaltung zu entlasten, ruft der Absatz
-//STRIP001  // das GetCrsrOfst des FlyFrm, wenn es erforderlich ist.
-//STRIP001  Point aPoint( rPoint );
-//STRIP001  if( !pPos || bDraw || !( GetFlyFrm()->GetCrsrOfst( pPos, aPoint, pCMS ) ) )
-//STRIP001      return SwLinePortion::GetCrsrOfst( nOfst );
-//STRIP001  else
-//STRIP001      return 0;
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwFlyCntPortion::GetCrsrOfst()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwFlyCntPortion::GetCrsrOfst( const KSHORT nOfst ) const
-//STRIP001 {
-//STRIP001  // ASSERT( !this, "SwFlyCntPortion::GetCrsrOfst: use GetFlyCrsrOfst()" );
-//STRIP001  return SwLinePortion::GetCrsrOfst( nOfst );
-//STRIP001 }
 
 }
