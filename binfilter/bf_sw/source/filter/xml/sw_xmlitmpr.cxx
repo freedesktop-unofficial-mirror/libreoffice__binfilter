@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmlitmpr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:43:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:56:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 
 #ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
