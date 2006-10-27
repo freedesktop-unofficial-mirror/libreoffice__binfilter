@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2006-07-10 12:26:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:30:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,19 +34,14 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #ifndef SC_XMLEXPRT_HXX
-// auto strip #include "xmlexprt.hxx"
-// auto strip #endif
 
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
@@ -124,41 +119,23 @@
 #include "docpool.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
-// auto strip #include <bf_xmloff/xmluconv.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include <bf_xmloff/families.hxx>
-// auto strip #endif
 #ifndef XMLOFF_NUMEHELP_HXX
 #include <bf_xmloff/numehelp.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_TXTPARAE_HXX
-// auto strip #include <bf_xmloff/txtparae.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLCNITM_HXX
 #include <bf_xmloff/xmlcnitm.hxx>
 #endif
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
@@ -171,67 +148,22 @@
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif
-// auto strip #ifndef _SCH_MEMCHRT_HXX
-// auto strip #include <bf_sch/memchrt.hxx>
-// auto strip #endif
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
-// auto strip #ifndef _EEITEM_HXX
-// auto strip #include <bf_svx/eeitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XUSEDAREACURSOR_HPP_
 #include <com/sun/star/sheet/XUsedAreaCursor.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
-// auto strip #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XAREALINKS_HPP_
 #include <com/sun/star/sheet/XAreaLinks.hpp>
 #endif
 #ifndef _COM_SUN_STAR_SHEET_XAREALINK_HPP_
 #include <com/sun/star/sheet/XAreaLink.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
-// auto strip #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
-// auto strip #include <com/sun/star/table/XColumnRowRange.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XPRINTAREAS_HPP_
-// auto strip #include <com/sun/star/sheet/XPrintAreas.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
-// auto strip #include <com/sun/star/util/XProtectable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
-// auto strip #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XUNIQUECELLFORMATRANGESSUPPLIER_HPP_
-// auto strip #include <com/sun/star/sheet/XUniqueCellFormatRangesSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLRANGESQUERY_HPP_
-// auto strip #include <com/sun/star/sheet/XCellRangesQuery.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_CELLFLAGS_HPP_
 #include <com/sun/star/sheet/CellFlags.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
-// auto strip #include <com/sun/star/util/XMergeable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XARRAYFORMULARANGE_HPP_
-// auto strip #include <com/sun/star/sheet/XArrayFormulaRange.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XLABELRANGES_HPP_
 #include <com/sun/star/sheet/XLabelRanges.hpp>
 #endif
@@ -250,12 +182,6 @@
 #ifndef _COM_SUN_STAR_SHEET_NAMEDRANGEFLAG_HPP_
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETLINKABLE_HPP_
-// auto strip #include <com/sun/star/sheet/XSheetLinkable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XFORMSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #endif
