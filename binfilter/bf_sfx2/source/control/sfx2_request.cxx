@@ -2,37 +2,16 @@
 // class SfxRequest
 //
 // (C) 1996 - 2000 StarDivision GmbH, Hamburg, Germany
-// $Author: hr $ $Date: 2004-08-03 14:37:45 $ $Revision: 1.4 $
+// $Author: rt $ $Date: 2006-10-27 19:10:10 $ $Revision: 1.5 $
 // $Logfile:   T:/bf_sfx2/source/control/request.cxv  $ $Workfile:   REQUEST.CXX  $
 //------------------------------------------------------------------*/
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_DISPATCHSTATEMENT_HPP_
-// auto strip #include <com/sun/star/frame/DispatchStatement.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XURLTRANSFORMER_HPP_
-// auto strip #include <com/sun/star/util/XURLTransformer.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHRECORDERSUPPLIER_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchRecorderSupplier.hpp>
-// auto strip #endif
 
 #ifndef _SFXITEMITER_HXX //autogen
 #include <svtools/itemiter.hxx>
@@ -46,20 +25,14 @@
 #include <svtools/itemdel.hxx>
 #endif
 
-// auto strip #include <comphelper/processfactory.hxx>
 
 #pragma hdrstop
 
 #include "request.hxx"
 #include "dispatch.hxx"
-// auto strip #include "msg.hxx"
 #include "viewfrm.hxx"
-// auto strip #include "macro.hxx"
 #include "objface.hxx"
 
-// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
-// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
-// auto strip #endif
 
 #ifndef _SFX_SFXUNO_HXX
 #include "sfxuno.hxx"
@@ -216,9 +189,6 @@ namespace binfilter {
 /*?*/     pImp->pViewFrame = pViewFrame;
 /*?*/     if( pImp->pViewFrame->GetDispatcher()->GetShellAndSlot_Impl( nSlotId, &pImp->pShell, &pImp->pSlot, TRUE, TRUE ) )
 /*?*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/         pImp->SetPool( &pImp->pShell->GetPool() );
-//STRIP001 /*?*/         pImp->xRecorder = SfxRequest::GetMacroRecorder( pViewFrame );
-//STRIP001 /*?*/         pImp->aTarget = pImp->pShell->GetName();
 /*?*/     }
 /*?*/ #ifdef DBG_UTIL
 /*?*/     else
@@ -337,51 +307,6 @@ namespace binfilter {
 */
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     String aCommand = String::CreateFromAscii(".uno:");
-//STRIP001     aCommand.AppendAscii( pSlot->GetUnoName() );
-//STRIP001  ::rtl::OUString aCmd( aCommand );
-//STRIP001     if(xRecorder.is())
-//STRIP001     {
-//STRIP001      uno::Reference< container::XIndexReplace > xReplace( xRecorder, uno::UNO_QUERY );
-//STRIP001      if ( xReplace.is() && aCmd.compareToAscii(".uno:InsertText") == COMPARE_EQUAL )
-//STRIP001      {
-//STRIP001          sal_Int32 nCount = xReplace->getCount();
-//STRIP001          if ( nCount )
-//STRIP001          {
-//STRIP001              frame::DispatchStatement aStatement;
-//STRIP001              uno::Any aElement = xReplace->getByIndex(nCount-1);
-//STRIP001              if ( (aElement >>= aStatement) && aStatement.aCommand == aCmd )
-//STRIP001              {
-//STRIP001                  ::rtl::OUString aStr;
-//STRIP001                  ::rtl::OUString aNew;
-//STRIP001                  aStatement.aArgs[0].Value >>= aStr;
-//STRIP001                  rArgs[0].Value >>= aNew;
-//STRIP001                  aStr += aNew;
-//STRIP001                  aStatement.aArgs[0].Value <<= aStr;
-//STRIP001                  aElement <<= aStatement;
-//STRIP001                  xReplace->replaceByIndex( nCount-1, aElement );
-//STRIP001                  return;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xFactory(
-//STRIP001                 ::legacy_binfilters::getLegacyProcessServiceFactory(),
-//STRIP001                 ::com::sun::star::uno::UNO_QUERY);
-//STRIP001
-//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::util::XURLTransformer > xTransform(
-//STRIP001                 xFactory->createInstance(::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer")),
-//STRIP001                 ::com::sun::star::uno::UNO_QUERY);
-//STRIP001
-//STRIP001         ::com::sun::star::util::URL aURL;
-//STRIP001         aURL.Complete = aCmd;
-//STRIP001         xTransform->parseStrict(aURL);
-//STRIP001
-//STRIP001         if (bDone)
-//STRIP001             xRecorder->recordDispatch(aURL,rArgs);
-//STRIP001         else
-//STRIP001             xRecorder->recordDispatchAsComment(aURL,rArgs);
-//STRIP001     }
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -404,21 +329,12 @@ namespace binfilter {
 */
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_MEMTEST();
-//STRIP001  pImp->pShell = &rSh;
-//STRIP001  pImp->pSlot = &rSlot;
-//STRIP001     pImp->xRecorder = xRecorder;
-//STRIP001  pImp->aTarget = rSh.GetName();
-//STRIP001     pImp->pViewFrame = pViewFrame;
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*?*/ void SfxRequest::SetArgs( const SfxAllItemSet& rArgs )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  delete pArgs;
-//STRIP001  pArgs = new SfxAllItemSet(rArgs);
-//STRIP001  pImp->SetPool( pArgs->GetPool() );
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -434,12 +350,6 @@ namespace binfilter {
 
 /*?*/ void SfxRequest::RemoveItem( USHORT nID )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (pArgs)
-//STRIP001  {
-//STRIP001      pArgs->ClearItem(nID);
-//STRIP001      if ( !pArgs->Count() )
-//STRIP001          DELETEZ(pArgs);
-//STRIP001  }
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -583,28 +493,6 @@ namespace binfilter {
 */
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  Done_Impl( &rSet );
-//STRIP001
-//STRIP001  // ggf. Items merken, damit StarDraw sie abfragen kann
-//STRIP001  if ( bKeep )
-//STRIP001  {
-//STRIP001      if ( !pArgs )
-//STRIP001      {
-//STRIP001          pArgs = new SfxAllItemSet( rSet );
-//STRIP001          pImp->SetPool( pArgs->GetPool() );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SfxItemIter aIter(rSet);
-//STRIP001          const SfxPoolItem* pItem = aIter.FirstItem();
-//STRIP001          while(pItem)
-//STRIP001          {
-//STRIP001              if(!IsInvalidItem(pItem))
-//STRIP001                  pArgs->Put(*pItem,pItem->Which());
-//STRIP001              pItem = aIter.NextItem();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -636,9 +524,6 @@ namespace binfilter {
 */
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  pImp->bCancelled = TRUE;
-//STRIP001  pImp->SetPool( 0 );
-//STRIP001  DELETEZ( pArgs );
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -821,7 +706,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-//STRIP001 ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > SfxRequest::GetMacroRecorder( SfxViewFrame* pView )
 
 /*  [Beschreibung]
 
@@ -831,29 +715,7 @@ namespace binfilter {
     (Siehe auch SfxViewFrame::MiscExec_Impl() und SID_RECORDING)
 */
 
-//STRIP001 {
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > xRecorder;
-//STRIP001
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > xSet(
-//STRIP001         (pView ? pView : SfxViewFrame::Current())->GetFrame()->GetFrameInterface(),
-//STRIP001         ::com::sun::star::uno::UNO_QUERY);
-//STRIP001
-//STRIP001     if(xSet.is())
-//STRIP001     {
-//STRIP001         ::com::sun::star::uno::Any aProp = xSet->getPropertyValue(::rtl::OUString::createFromAscii("DispatchRecorderSupplier"));
-//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorderSupplier > xSupplier;
-//STRIP001         aProp >>= xSupplier;
-//STRIP001         if(xSupplier.is())
-//STRIP001             xRecorder = xSupplier->getDispatchRecorder();
-//STRIP001     }
-//STRIP001
-//STRIP001     return xRecorder;
-//STRIP001 }
 
-//STRIP001 BOOL SfxRequest::HasMacroRecorder( SfxViewFrame* pView )
-//STRIP001 {
-//STRIP001     return GetMacroRecorder( pView ).is();
-//STRIP001 }
 
 
 //--------------------------------------------------------------------
@@ -873,7 +735,6 @@ namespace binfilter {
 //--------------------------------------------------------------------
 
 
-//STRIP001 FASTBOOL SfxRequest::IsRecording() const
 
 /*  [Beschreibung]
 
@@ -884,9 +745,6 @@ namespace binfilter {
     sonst FALSE.
 */
 
-//STRIP001 {
-//STRIP001     return ( AllowsRecording() && GetMacroRecorder().is() );
-//STRIP001 }
 
 //--------------------------------------------------------------------
 /*N*/ void SfxRequest::SetModifier( USHORT nModi )
@@ -922,8 +780,6 @@ namespace binfilter {
 */
 
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  pImp->aTarget = rTarget;
-//STRIP001  pImp->bUseTarget = TRUE;
 /*N*/ }
 
 /*N*/ void SfxRequest::AllowRecording( BOOL bSet )
