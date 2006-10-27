@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_hints.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:10:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:33:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -123,15 +122,6 @@ namespace binfilter {
 /*N*/   aUrl = rSourceUrl;
 /*N*/ }
 
-//STRIP001 void ScLinkRefreshedHint::SetDdeLink(
-//STRIP001          const String& rA, const String& rT, const String& rI, BYTE nM )
-//STRIP001 {
-//STRIP001  nLinkType = SC_LINKREFTYPE_DDE;
-//STRIP001  aDdeAppl  = rA;
-//STRIP001  aDdeTopic = rT;
-//STRIP001  aDdeItem  = rI;
-//STRIP001  nDdeMode  = nM;
-//STRIP001 }
 
 /*N*/ void ScLinkRefreshedHint::SetAreaLink( const ScAddress& rPos )
 /*N*/ {
@@ -143,18 +133,7 @@ namespace binfilter {
 //      ScAutoStyleHint - STYLE() function has been called
 // -----------------------------------------------------------------------
 
-//STRIP001 ScAutoStyleHint::ScAutoStyleHint( const ScRange& rR, const String& rSt1,
-//STRIP001                                      ULONG nT, const String& rSt2 ) :
-//STRIP001  aRange( rR ),
-//STRIP001  aStyle1( rSt1 ),
-//STRIP001  aStyle2( rSt2 ),
-//STRIP001  nTimeout( nT )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 ScAutoStyleHint::~ScAutoStyleHint()
-//STRIP001 {
-//STRIP001 }
 
 
 
