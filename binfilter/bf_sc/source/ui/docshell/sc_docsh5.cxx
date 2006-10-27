@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh5.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:08:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:48:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -149,43 +149,25 @@
 
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 
-// auto strip #include "scitems.hxx"
-// auto strip #include <vcl/svapp.hxx>
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
-// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/bindings.hxx>
-// auto strip #include <svtools/smplhint.hxx>
 
-// auto strip #include <com/sun/star/sdbc/XResultSet.hpp>
 
 // INCLUDE ---------------------------------------------------------------
 
 #include "docsh.hxx"
-// auto strip #include "global.hxx"
 #include "globstr.hrc"
 #include "undodat.hxx"
-// auto strip #include "undotab.hxx"
-// auto strip #include "undoblk.hxx"
 //#include "pivot.hxx"
-// auto strip #include "dpobject.hxx"
-// auto strip #include "dpshttab.hxx"
-// auto strip #include "dbdocfun.hxx"
 #include "consoli.hxx"
 #include "dbcolect.hxx"
-// auto strip #include "olinetab.hxx"
-// auto strip #include "patattr.hxx"
-// auto strip #include "attrib.hxx"
-// auto strip #include "docpool.hxx"
-// auto strip #include "uiitems.hxx"
 #include "bf_sc.hrc"
-// auto strip #include "waitoff.hxx"
 #include "sizedev.hxx"
 namespace binfilter {
 
@@ -200,21 +182,6 @@ namespace binfilter {
 /*N*/   //! StopMarking an der (aktiven) View?
 /*N*/
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Window* pParent = GetDialogParent();
-//STRIP001 /*?*/    ScWaitCursorOff aWaitOff( pParent );
-//STRIP001 /*?*/    BOOL bFocus = pParent && pParent->HasFocus();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if(nGlobStrId==STR_PROTECTIONERR)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if(IsReadOnly())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            nGlobStrId=STR_READONLYERR;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    InfoBox aBox( pParent, ScGlobal::GetRscString( nGlobStrId ) );
-//STRIP001 /*?*/    aBox.Execute();
-//STRIP001 /*?*/    if (bFocus)
-//STRIP001 /*?*/        pParent->GrabFocus();
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::IsEditable() const
@@ -227,45 +194,8 @@ namespace binfilter {
 /*N*/ void ScDocShell::DBAreaDeleted( USHORT nTab, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
-//STRIP001 /*?*/    aDocument.RemoveFlagsTab( nX1, nY1, nX2, nY1, nTab, SC_MF_AUTO );
-//STRIP001 /*?*/    PostPaint( nX1, nY1, nTab, nX2, nY1, nTab, PAINT_GRID );
-//STRIP001 /*?*/    aModificator.SetDocumentModified();
 /*N*/ }
 
-//STRIP001 ScDBData* lcl_GetDBNearCursor( ScDBCollection* pColl, USHORT nCol, USHORT nRow, USHORT nTab )
-//STRIP001 {
-//STRIP001  //! nach document/dbcolect verschieben
-//STRIP001
-//STRIP001  if (!pColl)
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  ScDBData* pNoNameData = NULL;
-//STRIP001  ScDBData* pNearData = NULL;
-//STRIP001  USHORT nCount = pColl->GetCount();
-//STRIP001  String aNoName = ScGlobal::GetRscString( STR_DB_NONAME );
-//STRIP001  USHORT nAreaTab, nStartCol, nStartRow, nEndCol, nEndRow;
-//STRIP001  for (USHORT i = 0; i < nCount; i++)
-//STRIP001  {
-//STRIP001      ScDBData* pDB = (*pColl)[i];
-//STRIP001      pDB->GetArea( nAreaTab, nStartCol, nStartRow, nEndCol, nEndRow );
-//STRIP001      if ( nTab == nAreaTab && nCol+1 >= nStartCol && nCol <= nEndCol+1 &&
-//STRIP001                               nRow+1 >= nStartRow && nRow <= nEndRow+1 )
-//STRIP001      {
-//STRIP001          if ( pDB->GetName() == aNoName )
-//STRIP001              pNoNameData = pDB;
-//STRIP001          else if ( nCol < nStartCol || nCol > nEndCol || nRow < nStartRow || nRow > nEndRow )
-//STRIP001          {
-//STRIP001              if (!pNearData)
-//STRIP001                  pNearData = pDB;    // ersten angrenzenden Bereich merken
-//STRIP001          }
-//STRIP001          else
-//STRIP001              return pDB;             // nicht "unbenannt" und Cursor steht wirklich drin
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (pNearData)
-//STRIP001      return pNearData;               // angrenzender, wenn nichts direkt getroffen
-//STRIP001  return pNoNameData;                 // "unbenannt" nur zurueck, wenn sonst nichts gefunden
-//STRIP001 }
 
 /*N*/ ScDBData* ScDocShell::GetDBData( const ScRange& rMarked, ScGetDBMode eMode, BOOL bForceMark )
 /*N*/ {
@@ -424,9 +354,6 @@ namespace binfilter {
 /*N*/           if ( pUndoColl )
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aDocument.CompileDBFormula( FALSE );      // CompileFormulaString
-//STRIP001 /*?*/
-//STRIP001 /*?*/                ScDBCollection* pRedoColl = new ScDBCollection( *pColl );
-//STRIP001 /*?*/                GetUndoManager()->AddUndoAction( new ScUndoDBData( this, pUndoColl, pRedoColl ) );
 /*N*/           }
 /*N*/
 /*N*/           //  neuen Bereich am Sba anmelden nicht mehr noetig
@@ -472,39 +399,7 @@ namespace binfilter {
 /*N*/                                   aProv.GetPPTX(),aProv.GetPPTY(), aZoom,aZoom, FALSE );
 /*N*/ }
 
-//STRIP001 void ScDocShell::PivotUpdate( ScPivot* pOldPivot, ScPivot* pNewPivot, BOOL bRecord, BOOL bApi )
-//STRIP001 {
-//STRIP001  DBG_ERRORFILE("PivotUpdate is obsolete!");
-//STRIP001 }
 
-//STRIP001 void ScDocShell::RefreshPivotTables( const ScRange& rSource )
-//STRIP001 {
-//STRIP001  //! rename to RefreshDataPilotTables?
-//STRIP001
-//STRIP001  ScDPCollection* pColl = aDocument.GetDPCollection();
-//STRIP001  if ( pColl )
-//STRIP001  {
-//STRIP001      //  DataPilotUpdate doesn't modify the collection order like PivotUpdate did,
-//STRIP001      //  so a simple loop can be used.
-//STRIP001
-//STRIP001      USHORT nCount = pColl->GetCount();
-//STRIP001      for ( USHORT i=0; i<nCount; i++ )
-//STRIP001      {
-//STRIP001          ScDPObject* pOld = (*pColl)[i];
-//STRIP001          if ( pOld )
-//STRIP001          {
-//STRIP001              const ScSheetSourceDesc* pSheetDesc = pOld->GetSheetDesc();
-//STRIP001              if ( pSheetDesc && pSheetDesc->aSourceRange.Intersects( rSource ) )
-//STRIP001              {
-//STRIP001                  ScDPObject* pNew = new ScDPObject( *pOld );
-//STRIP001                  ScDBDocFunc aFunc( *this );
-//STRIP001                  aFunc.DataPilotUpdate( pOld, pNew, TRUE, FALSE );
-//STRIP001                  delete pNew;    // DataPilotUpdate copies settings from "new" object
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ String lcl_GetAreaName( ScDocument* pDoc, ScArea* pArea )
 /*N*/ {
@@ -595,52 +490,10 @@ namespace binfilter {
 /*N*/       if (rParam.bReferenceData)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTabCount = aDocument.GetTableCount();
-//STRIP001 /*?*/            USHORT nInsertCount = aData.GetInsertCount();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // alte Outlines
-//STRIP001 /*?*/            ScOutlineTable* pTable = aDocument.GetOutlineTable( nDestTab );
-//STRIP001 /*?*/            ScOutlineTable* pUndoTab = pTable ? new ScOutlineTable( *pTable ) : NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pUndoDoc->InitUndo( &aDocument, 0, nTabCount-1, FALSE, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // Zeilenstatus
-//STRIP001 /*?*/            aDocument.CopyToDocument( 0,0,nDestTab, MAXCOL,MAXROW,nDestTab,
-//STRIP001 /*?*/                                    IDF_NONE, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // alle Formeln
-//STRIP001 /*?*/            aDocument.CopyToDocument( 0,0,0, MAXCOL,MAXROW,nTabCount-1,
-//STRIP001 /*?*/                                        IDF_FORMULA, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // komplette Ausgangszeilen
-//STRIP001 /*?*/            aDocument.CopyToDocument( 0,aDestArea.nRowStart,nDestTab,
-//STRIP001 /*?*/                                    MAXCOL,aDestArea.nRowEnd,nDestTab,
-//STRIP001 /*?*/                                    IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // alten Ausgabebereich
-//STRIP001 /*?*/            if (pDestData)
-//STRIP001 /*?*/                aDocument.CopyToDocument( aOldDest, IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoConsolidate( this, aDestArea, rParam, pUndoDoc,
-//STRIP001 /*?*/                                            TRUE, nInsertCount, pUndoTab, pUndoData ) );
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pUndoDoc->InitUndo( &aDocument, aDestArea.nTab, aDestArea.nTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            aDocument.CopyToDocument( aDestArea.nColStart, aDestArea.nRowStart, aDestArea.nTab,
-//STRIP001 /*?*/                                    aDestArea.nColEnd, aDestArea.nRowEnd, aDestArea.nTab,
-//STRIP001 /*?*/                                    IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // alten Ausgabebereich
-//STRIP001 /*?*/            if (pDestData)
-//STRIP001 /*?*/                aDocument.CopyToDocument( aOldDest, IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoConsolidate( this, aDestArea, rParam, pUndoDoc,
-//STRIP001 /*?*/                                            FALSE, 0, NULL, pUndoData ) );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -703,62 +556,6 @@ namespace binfilter {
 /*N*/       if (nSrcTab <= MAXTAB)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aDocument.TestCopyScenario( nSrcTab, nTab ) )            // Zellschutz testen
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ScDocShellModificator aModificator( *this );
-//STRIP001 /*?*/                ScMarkData aScenMark;
-//STRIP001 /*?*/                aDocument.MarkScenario( nSrcTab, nTab, aScenMark );
-//STRIP001 /*?*/                ScRange aMultiRange;
-//STRIP001 /*?*/                aScenMark.GetMultiMarkArea( aMultiRange );
-//STRIP001 /*?*/                USHORT nStartCol = aMultiRange.aStart.Col();
-//STRIP001 /*?*/                USHORT nStartRow = aMultiRange.aStart.Row();
-//STRIP001 /*?*/                USHORT nEndCol = aMultiRange.aEnd.Col();
-//STRIP001 /*?*/                USHORT nEndRow = aMultiRange.aEnd.Row();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (bRecord)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/                    pUndoDoc->InitUndo( &aDocument, nTab,nEndTab );             // auch alle Szenarien
-//STRIP001 /*?*/                    //  angezeigte Tabelle:
-//STRIP001 /*?*/                    aDocument.CopyToDocument( nStartCol,nStartRow,nTab,
-//STRIP001 /*?*/                                    nEndCol,nEndRow,nTab, IDF_ALL,TRUE, pUndoDoc, &aScenMark );
-//STRIP001 /*?*/                    //  Szenarien
-//STRIP001 /*?*/                    for (USHORT i=nTab+1; i<=nEndTab; i++)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pUndoDoc->SetScenario( i, TRUE );
-//STRIP001 /*?*/                        String aComment;
-//STRIP001 /*?*/                        Color  aColor;
-//STRIP001 /*?*/                        USHORT nScenFlags;
-//STRIP001 /*?*/                        aDocument.GetScenarioData( i, aComment, aColor, nScenFlags );
-//STRIP001 /*?*/                        pUndoDoc->SetScenarioData( i, aComment, aColor, nScenFlags );
-//STRIP001 /*?*/                        BOOL bActive = aDocument.IsActiveScenario( i );
-//STRIP001 /*?*/                        pUndoDoc->SetActiveScenario( i, bActive );
-//STRIP001 /*?*/                        //  Bei Zurueckkopier-Szenarios auch Inhalte
-//STRIP001 /*?*/                        if ( nScenFlags & SC_SCENARIO_TWOWAY )
-//STRIP001 /*?*/                            aDocument.CopyToDocument( 0,0,i, MAXCOL,MAXROW,i,
-//STRIP001 /*?*/                                                        IDF_ALL,FALSE, pUndoDoc );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoUseScenario( this, aScenMark,
-//STRIP001 /*?*/                                        ScArea( nTab,nStartCol,nStartRow,nEndCol,nEndRow ),
-//STRIP001 /*?*/                                        pUndoDoc, rName ) );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                aDocument.CopyScenario( nSrcTab, nTab );
-//STRIP001 /*?*/                aDocument.SetDirty();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  alles painten, weil in anderen Bereichen das aktive Szenario
-//STRIP001 /*?*/                //  geaendert sein kann
-//STRIP001 /*?*/                //! nur, wenn sichtbare Rahmen vorhanden?
-//STRIP001 /*?*/                PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab, PAINT_GRID );
-//STRIP001 /*?*/                aModificator.SetDocumentModified();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                InfoBox aBox(GetDialogParent(),
-//STRIP001 /*?*/                    ScGlobal::GetRscString( STR_PROTECTIONERR ) );
-//STRIP001 /*?*/                aBox.Execute();
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -776,29 +573,6 @@ namespace binfilter {
 /*N*/ {
 /*?*/   //  Undo
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aOldName;
-//STRIP001 /*?*/    aDocument.GetName( nTab, aOldName );
-//STRIP001 /*?*/    String aOldComment;
-//STRIP001 /*?*/    Color aOldColor;
-//STRIP001 /*?*/    USHORT nOldFlags;
-//STRIP001 /*?*/    aDocument.GetScenarioData( nTab, aOldComment, aOldColor, nOldFlags );
-//STRIP001 /*?*/    GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/        new ScUndoScenarioFlags( this, nTab,
-//STRIP001 /*?*/                aOldName, rName, aOldComment, rComment,
-//STRIP001 /*?*/                aOldColor, rColor, nOldFlags, nFlags ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //  ausfuehren
-//STRIP001 /*?*/    ScDocShellModificator aModificator( *this );
-//STRIP001 /*?*/    aDocument.RenameTab( nTab, rName );
-//STRIP001 /*?*/    aDocument.SetScenarioData( nTab, rComment, rColor, nFlags );
-//STRIP001 /*?*/    PostPaintGridAll();
-//STRIP001 /*?*/    aModificator.SetDocumentModified();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if ( rName != aOldName )
-//STRIP001 /*?*/        SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_TABLES_CHANGED ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SfxBindings* pBindings = GetViewBindings();
-//STRIP001 /*?*/    if (pBindings)
-//STRIP001 /*?*/        pBindings->Invalidate( SID_SELECT_SCENARIO );
 /*N*/ }
 
 /*N*/ USHORT ScDocShell::MakeScenario( USHORT nTab, const String& rName, const String& rComment,
@@ -806,137 +580,11 @@ namespace binfilter {
 /*N*/                                   ScMarkData& rMark, BOOL bRecord )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 rMark.MarkToMulti();
-//STRIP001 /*?*/    if (rMark.IsMultiMarked())
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        USHORT nNewTab = nTab + 1;
-//STRIP001 /*?*/        while (aDocument.IsScenario(nNewTab))
-//STRIP001 /*?*/            ++nNewTab;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        BOOL bCopyAll = ( (nFlags & SC_SCENARIO_COPYALL) != 0 );
-//STRIP001 /*?*/        const ScMarkData* pCopyMark = NULL;
-//STRIP001 /*?*/        if (!bCopyAll)
-//STRIP001 /*?*/            pCopyMark = &rMark;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScDocShellModificator aModificator( *this );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (aDocument.CopyTab( nTab, nNewTab, pCopyMark ))
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if (bRecord)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/                pUndoDoc->InitUndo( &aDocument, nTab,nTab );
-//STRIP001 /*?*/                GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoMakeScenario( this, nTab, nNewTab, pUndoDoc,
-//STRIP001 /*?*/                                                rName, rComment, rColor, nFlags, rMark ));
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            aDocument.RenameTab( nNewTab, rName, FALSE );           // ohne Formel-Update
-//STRIP001 /*?*/            aDocument.SetScenario( nNewTab, TRUE );
-//STRIP001 /*?*/            aDocument.SetScenarioData( nNewTab, rComment, rColor, nFlags );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ScMarkData aDestMark = rMark;
-//STRIP001 /*?*/            aDestMark.SelectOneTable( nNewTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            //!     auf Filter / Buttons / Merging testen !
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ScPatternAttr aProtPattern( aDocument.GetPool() );
-//STRIP001 /*?*/            aProtPattern.GetItemSet().Put( ScProtectionAttr( TRUE ) );
-//STRIP001 /*?*/            aDocument.ApplyPatternAreaTab( 0,0, MAXCOL,MAXROW, nNewTab, aProtPattern );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ScPatternAttr aPattern( aDocument.GetPool() );
-//STRIP001 /*?*/            aPattern.GetItemSet().Put( ScMergeFlagAttr( SC_MF_SCENARIO ) );
-//STRIP001 /*?*/            aPattern.GetItemSet().Put( ScProtectionAttr( TRUE ) );
-//STRIP001 /*?*/            aDocument.ApplySelectionPattern( aPattern, aDestMark );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (!bCopyAll)
-//STRIP001 /*?*/                aDocument.SetVisible( nNewTab, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            //  dies ist dann das aktive Szenario
-//STRIP001 /*?*/            aDocument.CopyScenario( nNewTab, nTab, TRUE );  // TRUE - nicht aus Szenario kopieren
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (nFlags & SC_SCENARIO_SHOWFRAME)
-//STRIP001 /*?*/                PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab, PAINT_GRID );  // Rahmen painten
-//STRIP001 /*?*/            PostPaintExtras();                                          // Tabellenreiter
-//STRIP001 /*?*/            aModificator.SetDocumentModified();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_TABLES_CHANGED ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            return nNewTab;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    return nTab;
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::MoveTable( USHORT nSrcTab, USHORT nDestTab, BOOL bCopy, BOOL bRecord )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if (bCopy)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if (bRecord)
-//STRIP001 /*?*/            aDocument.BeginDrawUndo();          // drawing layer must do its own undo actions
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (!aDocument.CopyTab( nSrcTab, nDestTab ))
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            //! EndDrawUndo?
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            USHORT nAdjSource = nSrcTab;
-//STRIP001 /*?*/            if ( nDestTab <= nSrcTab )
-//STRIP001 /*?*/                ++nAdjSource;               // new position of source table after CopyTab
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( aDocument.IsTabProtected( nAdjSource ) )
-//STRIP001 /*?*/                aDocument.SetTabProtection( nDestTab, TRUE, aDocument.GetTabPassword( nAdjSource ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (bRecord)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SvUShorts aSrcList;
-//STRIP001 /*?*/                SvUShorts aDestList;
-//STRIP001 /*?*/                aSrcList.Insert(nSrcTab,0);
-//STRIP001 /*?*/                aDestList.Insert(nDestTab,0);
-//STRIP001 /*?*/                GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                        new ScUndoCopyTab( this, aSrcList, aDestList ) );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        Broadcast( ScTablesHint( SC_TAB_COPIED, nSrcTab, nDestTab ) );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if ( aDocument.GetChangeTrack() )
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( nSrcTab<nDestTab && nDestTab!=SC_TAB_APPEND )
-//STRIP001 /*?*/            nDestTab--;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( nSrcTab == nDestTab )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            //! allow only for api calls?
-//STRIP001 /*?*/            return TRUE;    // nothing to do, but valid
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (!aDocument.MoveTab( nSrcTab, nDestTab ))
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/        else if (bRecord)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SvUShorts aSrcList;
-//STRIP001 /*?*/            SvUShorts aDestList;
-//STRIP001 /*?*/            aSrcList.Insert(nSrcTab,0);
-//STRIP001 /*?*/            aDestList.Insert(nDestTab,0);
-//STRIP001 /*?*/            GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoMoveTab( this, aSrcList, aDestList ) );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        Broadcast( ScTablesHint( SC_TAB_MOVED, nSrcTab, nDestTab ) );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    PostPaintGridAll();
-//STRIP001 /*?*/    PostPaintExtras();
-//STRIP001 /*?*/    aModificator.SetDocumentModified();
-//STRIP001 /*?*/    SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_TABLES_CHANGED ) );
-//STRIP001 /*?*/
 /*?*/   return TRUE;
 /*N*/ }
 
@@ -944,25 +592,6 @@ namespace binfilter {
 /*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, pDBData )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDBDocFunc aFunc(*this);
-//STRIP001
-//STRIP001  BOOL bContinue = TRUE;
-//STRIP001  ScImportParam aImportParam;
-//STRIP001  pDBData->GetImportParam( aImportParam );
-//STRIP001  if (aImportParam.bImport && !pDBData->HasImportSelection())
-//STRIP001  {
-//STRIP001      ScRange aRange;
-//STRIP001      pDBData->GetArea( aRange );
-//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet> xResultSet;
-//STRIP001      bContinue = aFunc.DoImport( aRange.aStart.Tab(), aImportParam, xResultSet, NULL, TRUE, FALSE ); //! Api-Flag as parameter
-//STRIP001      // internal operations (sort, query, subtotal) only if no error
-//STRIP001      if (bContinue)
-//STRIP001      {
-//STRIP001          aFunc.RepeatDB( pDBData->GetName(), TRUE, TRUE );
-//STRIP001          RefreshPivotTables(aRange);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bContinue != 0;
 /*N*/ }
 
 }
