@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pam.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:27:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:19:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #include <bf_svx/protitem.hxx>
 #endif
 
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -61,12 +58,6 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
 #endif
@@ -82,9 +73,6 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
 #endif
@@ -232,44 +220,6 @@ SwComparePosition ComparePosition(
     return nRet;
 }
 
-//STRIP001 SwComparePosition ComparePosition(
-//STRIP001          const unsigned long nStt1, const unsigned long nEnd1,
-//STRIP001          const unsigned long nStt2, const unsigned long nEnd2 )
-//STRIP001 {
-//STRIP001  SwComparePosition nRet;
-//STRIP001  if( nStt1 < nStt2 )
-//STRIP001  {
-//STRIP001      if( nEnd1 > nStt2 )
-//STRIP001      {
-//STRIP001          if( nEnd1 >= nEnd2 )
-//STRIP001              nRet = POS_OUTSIDE;
-//STRIP001          else
-//STRIP001              nRet = POS_OVERLAP_BEFORE;
-//STRIP001
-//STRIP001      }
-//STRIP001      else if( nEnd1 == nStt2 )
-//STRIP001          nRet = POS_COLLIDE_END;
-//STRIP001      else
-//STRIP001          nRet = POS_BEFORE;
-//STRIP001  }
-//STRIP001  else if( nEnd2 > nStt1 )
-//STRIP001  {
-//STRIP001      if( nEnd2 >= nEnd1 )
-//STRIP001      {
-//STRIP001          if( nEnd2 == nEnd1 && nStt2 == nStt1 )
-//STRIP001              nRet = POS_EQUAL;
-//STRIP001          else
-//STRIP001              nRet = POS_INSIDE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          nRet = POS_OVERLAP_BEHIND;
-//STRIP001  }
-//STRIP001  else if( nEnd2 == nStt1 )
-//STRIP001      nRet = POS_COLLIDE_START;
-//STRIP001  else
-//STRIP001      nRet = POS_BEHIND;
-//STRIP001  return nRet;
-//STRIP001 }
 
 /*  */
 
@@ -422,20 +372,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   pPoint = &aBound2;
 /*N*/ }
 
-//STRIP001 SwPaM::SwPaM( const SwNodeIndex& rMk, const SwNodeIndex& rPt,
-//STRIP001              long nMkOffset, long nPtOffset, SwPaM* pRing )
-//STRIP001  : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
-//STRIP001 {
-//STRIP001  if( nMkOffset )
-//STRIP001      aBound1.nNode += nMkOffset;
-//STRIP001  if( nPtOffset )
-//STRIP001      aBound2.nNode += nPtOffset;
-//STRIP001
-//STRIP001  aBound1.nContent.Assign( aBound1.nNode.GetNode().GetCntntNode(), 0 );
-//STRIP001  aBound2.nContent.Assign( aBound2.nNode.GetNode().GetCntntNode(), 0 );
-//STRIP001  pMark = &aBound1;
-//STRIP001  pPoint = &aBound2;
-//STRIP001 }
 
 /*N*/ SwPaM::SwPaM( const SwNode& rMk, const SwNode& rPt,
 /*N*/               long nMkOffset, long nPtOffset, SwPaM* pRing )
@@ -452,15 +388,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   pPoint = &aBound2;
 /*N*/ }
 
-//STRIP001 SwPaM::SwPaM( const SwNodeIndex& rMk, xub_StrLen nMkCntnt,
-//STRIP001            const SwNodeIndex& rPt, xub_StrLen nPtCntnt, SwPaM* pRing )
-//STRIP001  : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
-//STRIP001 {
-//STRIP001  aBound1.nContent.Assign( rMk.GetNode().GetCntntNode(), nMkCntnt );
-//STRIP001  aBound2.nContent.Assign( rPt.GetNode().GetCntntNode(), nPtCntnt );
-//STRIP001  pMark = &aBound1;
-//STRIP001  pPoint = &aBound2;
-//STRIP001 }
 
 /*N*/ SwPaM::SwPaM( const SwNode& rMk, xub_StrLen nMkCntnt,
 /*N*/             const SwNode& rPt, xub_StrLen nPtCntnt, SwPaM* pRing )
@@ -562,39 +489,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 *************************************************************************/
 
 
-//STRIP001 SwPaM* SwPaM::MakeRegion( SwMoveFn fnMove, const SwPaM * pOrigRg )
-//STRIP001 {
-//STRIP001  SwPaM* pPam;
-//STRIP001  if( pOrigRg == 0 )
-//STRIP001  {
-//STRIP001      pPam = new SwPaM( *pPoint );
-//STRIP001      pPam->SetMark();                    // setze Anfang fest
-//STRIP001      pPam->Move( fnMove, fnGoSection);       // an Anfang / Ende vom Node
-//STRIP001
-//STRIP001      // stelle SPoint wieder auf alte Position, GetMark auf das "Ende"
-//STRIP001      pPam->Exchange();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pPam = new SwPaM( *(SwPaM*)pOrigRg );   // die Suchregion ist vorgegeben
-//STRIP001      // sorge dafuer, dass SPoint auf dem "echten" StartPunkt steht
-//STRIP001      // FORWARD  --> SPoint immer kleiner  als GetMark
-//STRIP001      // BACKWARD --> SPoint immer groesser als GetMark
-//STRIP001      if( (pPam->GetMark()->*fnMove->fnCmpOp)( *pPam->GetPoint() ) )
-//STRIP001          pPam->Exchange();
-//STRIP001  }
-//STRIP001  return pPam;
-//STRIP001 }
 
-//STRIP001 SwPaM & SwPaM::Normalize(BOOL bPointFirst)
-//STRIP001 {
-//STRIP001     if (HasMark())
-//STRIP001         if ((bPointFirst && *pPoint > *pMark) ||
-//STRIP001             (! bPointFirst && *pPoint < *pMark))
-//STRIP001             Exchange();
-//STRIP001
-//STRIP001     return *this;
-//STRIP001 }
 
 /*N*/ USHORT SwPaM::GetPageNum( BOOL bAtPoint, const Point* pLayPos )
 /*N*/ {
@@ -745,76 +640,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 // Fall, darf die Position vom Pam nicht veraendert werden!
 
 
-//STRIP001 SwCntntNode* GetNode( SwPaM & rPam, FASTBOOL& rbFirst, SwMoveFn fnMove,
-//STRIP001                      FASTBOOL bInReadOnly )
-//STRIP001 {
-//STRIP001  SwCntntNode * pNd = 0;
-//STRIP001  SwCntntFrm* pFrm;
-//STRIP001  if( ((*rPam.GetPoint()).*fnMove->fnCmpOp)( *rPam.GetMark() ) ||
-//STRIP001      ( *rPam.GetPoint() == *rPam.GetMark() && rbFirst ) )
-//STRIP001  {
-//STRIP001      if( rbFirst )
-//STRIP001      {
-//STRIP001          rbFirst = FALSE;
-//STRIP001          pNd = rPam.GetCntntNode();
-//STRIP001          if( pNd &&
-//STRIP001              ( 0 == ( pFrm = pNd->GetFrm()) ||
-//STRIP001                ( !bInReadOnly && pFrm->IsProtected() ) ||
-//STRIP001                (pFrm->IsTxtFrm() && ((SwTxtFrm*)pFrm)->IsHiddenNow()) ) ||
-//STRIP001              ( !bInReadOnly && pNd->FindSectionNode() &&
-//STRIP001                pNd->FindSectionNode()->GetSection().IsProtect() ))
-//STRIP001              pNd = 0;
-//STRIP001      }
-//STRIP001
-//STRIP001      if( !pNd )          // steht Cursor auf keinem ContentNode ?
-//STRIP001      {
-//STRIP001          SwPosition aPos( *rPam.GetPoint() );
-//STRIP001          FASTBOOL bSrchForward = fnMove == fnMoveForward;
-//STRIP001          SwNodes& rNodes = aPos.nNode.GetNodes();
-//STRIP001
-//STRIP001          // zum naechsten / vorherigen ContentNode
-//STRIP001 // Funktioniert noch alles, wenn die Uerbpruefung vom ueberspringen der
-//STRIP001 // Sektions herausgenommen wird ??
-//STRIP001 //           if( (*fnMove->fnNds)( rNodes, &aPos.nNode ) )
-//STRIP001          while( TRUE )
-//STRIP001          {
-//STRIP001              pNd = bSrchForward
-//STRIP001                      ? rNodes.GoNextSection( &aPos.nNode, TRUE, !bInReadOnly )
-//STRIP001                      : rNodes.GoPrevSection( &aPos.nNode, TRUE, !bInReadOnly );
-//STRIP001              if( pNd )
-//STRIP001              {
-//STRIP001                  aPos.nContent.Assign( pNd, ::GetSttOrEnd( bSrchForward,*pNd ));
-//STRIP001                  // liegt Position immer noch im Bereich ?
-//STRIP001                  if( (aPos.*fnMove->fnCmpOp)( *rPam.GetMark() ) )
-//STRIP001                  {
-//STRIP001                      // nur in der AutoTextSection koennen Node stehen, die
-//STRIP001                      // nicht angezeigt werden !!
-//STRIP001                      if( 0 == ( pFrm = pNd->GetFrm()) ||
-//STRIP001                          ( !bInReadOnly && pFrm->IsProtected() ) ||
-//STRIP001                          ( pFrm->IsTxtFrm() &&
-//STRIP001                              ((SwTxtFrm*)pFrm)->IsHiddenNow() ) )
-//STRIP001
-//STRIP001 //                           rNodes[ rNodes.EndOfAutotext ]->StartOfSection().GetIndex()
-//STRIP001 //                           < aPos.nNode.GetIndex() && aPos.nNode.GetIndex()
-//STRIP001 //                           < rNodes.EndOfAutotext.GetIndex() &&
-//STRIP001 //                           0 == ( pFrm = pNd->GetFrm()) &&
-//STRIP001 //                           pFrm->IsProtected() )
-//STRIP001                      {
-//STRIP001                          pNd = 0;
-//STRIP001                          continue;       // suche weiter
-//STRIP001                      }
-//STRIP001                      *(SwPosition*)rPam.GetPoint() = aPos;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                      pNd = 0;            // kein gueltiger Node
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pNd;
-//STRIP001 }
 
 // ----------------------------------------------------------------------
 
@@ -844,15 +669,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ void GoStartSection( SwPosition * pPos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // springe zum Anfang der Section
-//STRIP001  SwNodes& rNodes = pPos->nNode.GetNodes();
-//STRIP001  USHORT nLevel = rNodes.GetSectionLevel( pPos->nNode );
-//STRIP001  if( pPos->nNode < rNodes.GetEndOfContent().StartOfSectionIndex() )
-//STRIP001      nLevel--;
-//STRIP001  do { rNodes.GoStartOfSection( &pPos->nNode ); } while( nLevel-- );
-//STRIP001
-//STRIP001  // steht jetzt schon auf einem CntntNode
-//STRIP001  pPos->nNode.GetNode().GetCntntNode()->MakeStartIndex( &pPos->nContent );
 /*N*/ }
 
 // gehe an das Ende der akt. Grund-Section
@@ -860,16 +676,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ void GoEndSection( SwPosition * pPos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // springe zum Anfang/Ende der Section
-//STRIP001  SwNodes& rNodes = pPos->nNode.GetNodes();
-//STRIP001  USHORT nLevel = rNodes.GetSectionLevel( pPos->nNode );
-//STRIP001  if( pPos->nNode < rNodes.GetEndOfContent().StartOfSectionIndex() )
-//STRIP001      nLevel--;
-//STRIP001  do { rNodes.GoEndOfSection( &pPos->nNode ); } while( nLevel-- );
-//STRIP001
-//STRIP001  // steht jetzt auf einem EndNode, also zum vorherigen CntntNode
-//STRIP001  if( GoPreviousNds( &pPos->nNode, TRUE ) )
-//STRIP001      pPos->nNode.GetNode().GetCntntNode()->MakeEndIndex( &pPos->nContent );
 /*N*/ }
 
 
@@ -883,7 +689,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ FASTBOOL GoInSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  (*fnMove->fnSections)( (SwPosition*)rPam.GetPoint() );
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -908,10 +713,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ FASTBOOL GoInCntntCells( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  if( (*fnMove->fnNd)( &rPam.GetPoint()->nNode.GetNode(),
-//STRIP001                       &rPam.GetPoint()->nContent, CRSR_SKIP_CELLS ))
-//STRIP001      return TRUE;
-//STRIP001  return GoInNode( rPam, fnMove );
 /*N*/ }
 
 // --------- Funktionsdefinitionen fuer die SwCrsrShell --------------
@@ -919,15 +720,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ FASTBOOL GoPrevPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( rPam.Move( fnMoveBackward, fnGoNode ) )
-//STRIP001  {
-//STRIP001      // steht immer auf einem ContentNode !
-//STRIP001      SwPosition& rPos = *rPam.GetPoint();
-//STRIP001      SwCntntNode * pNd = rPos.nNode.GetNode().GetCntntNode();
-//STRIP001      rPos.nContent.Assign( pNd,
-//STRIP001                          ::GetSttOrEnd( aPosPara == fnMoveForward, *pNd ) );
-//STRIP001      return TRUE;
-//STRIP001  }
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -999,42 +791,12 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ FASTBOOL GoNextSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwPosition& rPos = *rPam.GetPoint();
-//STRIP001  SwPosition aSavePos( rPos );        // eine Vergleichsposition
-//STRIP001  SwNodes& rNds = aSavePos.nNode.GetNodes();
-//STRIP001  rNds.GoEndOfSection( &rPos.nNode );
-//STRIP001
-//STRIP001  // kein weiterer ContentNode vorhanden ?
-//STRIP001  if( !GoInCntnt( rPam, fnMoveForward ) )
-//STRIP001  {
-//STRIP001      rPos = aSavePos;        // Cusror nicht veraendern
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  (rNds.*fnMove->fnSection)( &rPos.nNode );
-//STRIP001  SwCntntNode *pNd = rPos.nNode.GetNode().GetCntntNode();
-//STRIP001  rPos.nContent.Assign( pNd,
-//STRIP001                      ::GetSttOrEnd( fnMove == fnMoveForward, *pNd ) );
 /*N*/   return TRUE;
 /*N*/ }
 
 
 /*N*/ FASTBOOL GoPrevSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwPosition& rPos = *rPam.GetPoint();
-//STRIP001  SwPosition aSavePos( rPos );        // eine Vergleichsposition
-//STRIP001  SwNodes& rNds = aSavePos.nNode.GetNodes();
-//STRIP001  rNds.GoStartOfSection( &rPos.nNode );
-//STRIP001
-//STRIP001  // kein weiterer ContentNode vorhanden ?
-//STRIP001  if( !GoInCntnt( rPam, fnMoveBackward ))
-//STRIP001  {
-//STRIP001      rPos = aSavePos;        // Cusror nicht veraendern
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  (rNds.*fnMove->fnSection)( &rPos.nNode );
-//STRIP001  SwCntntNode *pNd = rPos.nNode.GetNode().GetCntntNode();
-//STRIP001  rPos.nContent.Assign( pNd,
-//STRIP001                          ::GetSttOrEnd( fnMove == fnMoveForward, *pNd ));
 /*N*/   return TRUE;
 /*N*/ }
 
