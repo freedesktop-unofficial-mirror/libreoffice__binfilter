@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unottabl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:30:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:57:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,17 +37,8 @@
 #include <com/sun/star/awt/Gradient.hpp>
 #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX__XGRADIENT_HXX //autogen
-// auto strip #include "xgrad.hxx"
-// auto strip #endif
 
 #ifndef _XDEF_HXX
 #include "xdef.hxx"
@@ -57,8 +48,6 @@
 #include "xflftrit.hxx"
 #endif
 
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "xflhtit.hxx"
 
 #ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"

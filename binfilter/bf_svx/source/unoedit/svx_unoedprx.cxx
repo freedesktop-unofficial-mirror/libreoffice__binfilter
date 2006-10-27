@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoedprx.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:32:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:58:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,25 +45,10 @@
 #include <vector>
 #include <algorithm>
 
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_WINDOW_HXX
-// auto strip #include <vcl/window.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 //------------------------------------------------------------------------
 //
@@ -79,12 +64,7 @@
 #include "unotext.hxx"
 #endif
 
-// auto strip #include "unoedhlp.hxx"
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "svdpntv.hxx"
-// auto strip #include "editdata.hxx"
 #include "editeng.hxx"
-// auto strip #include "editview.hxx"
 #include "AccessibleStringWrap.hxx"
 namespace binfilter {
 
