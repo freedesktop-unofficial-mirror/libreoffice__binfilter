@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmobj.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:02:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:08:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ public:
     TYPEINFO();
 
 protected:
-//STRIP001  FmFormObj(const ::rtl::OUString& rModelName,sal_Int32 _nType);
     FmFormObj(sal_Int32 _nType);
 
     const ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexContainer>& GetParent() const {return xParent;}
@@ -98,13 +97,8 @@ public:
     virtual sal_uInt32 GetObjInventor() const;
     virtual sal_uInt16 GetObjIdentifier() const;
 
-//STRIP001  virtual SdrObject*  Clone() const;
-//STRIP001  virtual SdrObject*  Clone(SdrPage* pPage, SdrModel* pModel) const;
-//STRIP001  virtual void        operator= (const SdrObject& rObj);
 
-//STRIP001  virtual void clonedFrom(const FmFormObj* _pSource);
 
-//STRIP001  static ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> ensureModelEnv(const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>& _rSourceContainer, const ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexContainer> _rTopLevelDestContainer);
 
     /** returns the type of this form object. See fmglob.hxx
     */
@@ -113,7 +107,6 @@ public:
 protected:
     virtual void     WriteData(SvStream& rOut) const;
     virtual void     ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
 
     DECL_LINK(OnCreate, void* );
 };
