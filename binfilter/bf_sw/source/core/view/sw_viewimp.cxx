@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewimp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:56:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:24:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,36 +47,17 @@
 #include "rootfrm.hxx"
 #include "pagefrm.hxx"
 #include "viewimp.hxx"
-// auto strip #include "errhdl.hxx"
 #include "viewopt.hxx"
-// auto strip #include "flyfrm.hxx"
-// auto strip #include "frmfmt.hxx"
 #include "layact.hxx"
 #include "swregion.hxx"
-// auto strip #include "dflyobj.hxx"
 #include "dview.hxx"
-// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-// auto strip #include <svtools/colorcfg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWMODULE_HXX
-// auto strip #include <swmodule.hxx>
-// auto strip #endif
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
 #ifdef ACCESSIBLE_LAYOUT
-// auto strip #ifndef _ACCMAP_HXX
-// auto strip #include <accmap.hxx>
-// auto strip #endif
 #endif
 
 // OD 12.12.2002 #103492#
-// auto strip #ifndef _PAGEPREVIEWLAYOUT_HXX
-// auto strip #include <pagepreviewlayout.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
@@ -159,9 +140,7 @@ namespace binfilter {
 /*N*/   pDrawView( 0 ),
 /*N*/     nRestoreActions( 0 ) //STRIP001 ,
 /*N*/     // OD 12.12.2002 #103492#
-//STRIP001 /*N*/     mpPgPrevwLayout( 0 )
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 /*N*/    ,pAccMap( 0 )
 /*N*/ #endif
 /*N*/ {
 /*N*/   bResetXorVisibility = bShowHdlPaint =
@@ -186,11 +165,9 @@ namespace binfilter {
 /*N*/ SwViewImp::~SwViewImp()
 /*N*/ {
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 /*N*/    delete pAccMap;
 /*N*/ #endif
 /*N*/
 /*N*/     // OD 12.12.2002 #103492#
-//STRIP001 /*N*/     delete mpPgPrevwLayout;
 /*N*/
 /*N*/   //JP 29.03.96: nach ShowPage muss auch HidePage gemacht werden!!!
 /*N*/   if( pDrawView )
@@ -362,23 +339,6 @@ namespace binfilter {
 |*
 ******************************************************************************/
 
-//STRIP001 Color SwViewImp::GetRetoucheColor() const
-//STRIP001 {
-//STRIP001     Color aRet( COL_TRANSPARENT );
-//STRIP001  const ViewShell &rSh = *GetShell();
-//STRIP001  if ( rSh.GetWin() )
-//STRIP001  {
-//STRIP001      if ( rSh.GetDoc()->IsBrowseMode() &&
-//STRIP001           COL_TRANSPARENT != rSh.GetViewOptions()->GetRetoucheColor().GetColor() )
-//STRIP001          aRet = rSh.GetViewOptions()->GetRetoucheColor();
-//STRIP001         else if(rSh.GetViewOptions()->IsPagePreview()  &&
-//STRIP001                     !SW_MOD()->GetAccessibilityOptions().GetIsForPagePreviews())
-//STRIP001             aRet.SetColor(COL_WHITE);
-//STRIP001         else
-//STRIP001             aRet = SwViewOption::GetDocColor();
-//STRIP001     }
-//STRIP001  return aRet;
-//STRIP001 }
 
 /** create page preview layout
 
@@ -386,157 +346,22 @@ namespace binfilter {
 
     @author OD
 */
-//STRIP001 void SwViewImp::InitPagePreviewLayout()
-//STRIP001 {
-//STRIP001     ASSERT( pSh->GetLayout(), "no layout - page preview layout can not be created.");
-//STRIP001     if ( pSh->GetLayout() )
-//STRIP001         mpPgPrevwLayout = new SwPagePreviewLayout( *pSh, *(pSh->GetLayout()) );
-//STRIP001 }
 
-//STRIP001 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 void SwViewImp::UpdateAccessible()
-//STRIP001 {
-//STRIP001  // We require a layout and an XModel to be accessible.
-//STRIP001  SwDoc *pDoc = GetShell()->GetDoc();
-//STRIP001  Window *pWin = GetShell()->GetWin();
-//STRIP001  ASSERT( pDoc->GetRootFrm(), "no layout, no access" );
-//STRIP001  ASSERT( pWin, "no window, no access" );
-//STRIP001
-//STRIP001  if( IsAccessible() && pDoc->GetRootFrm() && pWin )
-//STRIP001      GetAccessibleMap().GetDocumentView();
-//STRIP001 }
 
 /*N*/ void SwViewImp::DisposeAccessible( const SwFrm *pFrm,
 /*N*/                                  const SdrObject *pObj,
 /*N*/                                  sal_Bool bRecursive )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*N*/    ASSERT( !pFrm || pFrm->IsAccessibleFrm(), "frame is not accessible" );
-//STRIP001 /*N*/    ViewShell *pVSh = GetShell();
-//STRIP001 /*N*/    ViewShell *pTmp = pVSh;
-//STRIP001 /*N*/    do
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        if( pTmp->Imp()->IsAccessible() )
-//STRIP001 /*N*/            pTmp->Imp()->GetAccessibleMap().Dispose( pFrm, pObj, bRecursive );
-//STRIP001 /*N*/        pTmp = (ViewShell *)pTmp->GetNext();
-//STRIP001 /*N*/    } while ( pTmp != pVSh );
 /*N*/ }
 
 /*N*/ void SwViewImp::MoveAccessible( const SwFrm *pFrm, const SdrObject *pObj,
 /*N*/                               const SwRect& rOldFrm )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*N*/    ASSERT( !pFrm || pFrm->IsAccessibleFrm(), "frame is not accessible" );
-//STRIP001 /*N*/    ViewShell *pVSh = GetShell();
-//STRIP001 /*N*/    ViewShell *pTmp = pVSh;
-//STRIP001 /*N*/    do
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        if( pTmp->Imp()->IsAccessible() )
-//STRIP001 /*N*/            pTmp->Imp()->GetAccessibleMap().InvalidatePosOrSize( pFrm, pObj,
-//STRIP001 /*N*/                                                                 rOldFrm );
-//STRIP001 /*N*/        pTmp = (ViewShell *)pTmp->GetNext();
-//STRIP001 /*N*/    } while ( pTmp != pVSh );
 /*N*/ }
 
 /*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm *pFrm )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*N*/    ASSERT( pFrm->IsAccessibleFrm(), "frame is not accessible" );
-//STRIP001 /*N*/    ViewShell *pVSh = GetShell();
-//STRIP001 /*N*/    ViewShell *pTmp = pVSh;
-//STRIP001 /*N*/    do
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        if( pTmp->Imp()->IsAccessible() )
-//STRIP001 /*N*/            pTmp->Imp()->GetAccessibleMap().InvalidateContent( pFrm );
-//STRIP001 /*N*/        pTmp = (ViewShell *)pTmp->GetNext();
-//STRIP001 /*N*/    } while ( pTmp != pVSh );
 /*N*/ }
 
-//STRIP001 void SwViewImp::InvalidateAccessibleCursorPosition( const SwFrm *pFrm )
-//STRIP001 {
-//STRIP001  if( IsAccessible() )
-//STRIP001      GetAccessibleMap().InvalidateCursorPosition( pFrm );
-//STRIP001 }
-//STRIP001
-//STRIP001 void SwViewImp::InvalidateAccessibleEditableState( sal_Bool bAllShells,
-//STRIP001                                                 const SwFrm *pFrm    )
-//STRIP001 {
-//STRIP001  if( bAllShells )
-//STRIP001  {
-//STRIP001      ViewShell *pVSh = GetShell();
-//STRIP001      ViewShell *pTmp = pVSh;
-//STRIP001      do
-//STRIP001      {
-//STRIP001          if( pTmp->Imp()->IsAccessible() )
-//STRIP001              pTmp->Imp()->GetAccessibleMap().InvalidateStates( ACC_STATE_EDITABLE, pFrm );
-//STRIP001          pTmp = (ViewShell *)pTmp->GetNext();
-//STRIP001      } while ( pTmp != pVSh );
-//STRIP001  }
-//STRIP001  else if( IsAccessible() )
-//STRIP001  {
-//STRIP001      GetAccessibleMap().InvalidateStates( ACC_STATE_EDITABLE, pFrm );
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001 void SwViewImp::InvalidateAccessibleOpaqueState()
-//STRIP001 {
-//STRIP001  ViewShell *pVSh = GetShell();
-//STRIP001  ViewShell *pTmp = pVSh;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      if( pTmp->Imp()->IsAccessible() )
-//STRIP001          pTmp->Imp()->GetAccessibleMap().InvalidateStates( ACC_STATE_OPAQUE );
-//STRIP001      pTmp = (ViewShell *)pTmp->GetNext();
-//STRIP001  } while ( pTmp != pVSh );
-//STRIP001 }
-//STRIP001
-//STRIP001 void SwViewImp::InvalidateAccessibleRelationSet( const SwFlyFrm *pMaster,
-//STRIP001                                                  const SwFlyFrm *pFollow )
-//STRIP001 {
-//STRIP001  ViewShell *pVSh = GetShell();
-//STRIP001  ViewShell *pTmp = pVSh;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      if( pTmp->Imp()->IsAccessible() )
-//STRIP001          pTmp->Imp()->GetAccessibleMap().InvalidateRelationSet( pMaster,
-//STRIP001                                                                    pFollow );
-//STRIP001      pTmp = (ViewShell *)pTmp->GetNext();
-//STRIP001  } while ( pTmp != pVSh );
-//STRIP001 }
-//STRIP001
 // OD 15.01.2003 #103492# - method signature change due to new page preview functionality
-//STRIP001 void SwViewImp::UpdateAccessiblePreview( const std::vector<PrevwPage*>& _rPrevwPages,
-//STRIP001                                          const Fraction&  _rScale,
-//STRIP001                                          const SwPageFrm* _pSelectedPageFrm,
-//STRIP001                                          const Size&      _rPrevwWinSize )
-//STRIP001 {
-//STRIP001     if( IsAccessible() )
-//STRIP001         GetAccessibleMap().UpdatePreview( _rPrevwPages, _rScale,
-//STRIP001                                           _pSelectedPageFrm, _rPrevwWinSize );
-//STRIP001 }
-//STRIP001
-//STRIP001 void SwViewImp::InvalidateAccessiblePreViewSelection( sal_uInt16 nSelPage )
-//STRIP001 {
-//STRIP001     if( IsAccessible() )
-//STRIP001         GetAccessibleMap().InvalidatePreViewSelection( nSelPage );
-//STRIP001 }
-//STRIP001
-//STRIP001 SwAccessibleMap *SwViewImp::CreateAccessibleMap()
-//STRIP001 {
-//STRIP001  ASSERT( !pAccMap, "accessible map exists" )
-//STRIP001  pAccMap = new SwAccessibleMap( GetShell() );
-//STRIP001  return pAccMap;
-//STRIP001 }
-//STRIP001
-//STRIP001 void SwViewImp::FireAccessibleEvents()
-//STRIP001 {
-//STRIP001  if( IsAccessible() )
-//STRIP001      GetAccessibleMap().FireEvents();
-//STRIP001 }
-//STRIP001
-//STRIP001 IMPL_LINK(SwViewImp, SetStopPrt, void *, EMPTYARG)
-//STRIP001 {
-//STRIP001  bStopPrt = TRUE;
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
-//STRIP001
-//STRIP001 #endif
 }
