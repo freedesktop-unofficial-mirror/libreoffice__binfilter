@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:40:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:14:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,37 +41,28 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/editobj.hxx>
-// auto strip #include <bf_svx/editstat.hxx>
 #include <bf_svx/emphitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
 #include <bf_svx/rotmodit.hxx>
 #include <bf_svx/scripttypeitem.hxx>
 #include <bf_svx/unolingu.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <vcl/outdev.hxx>
 #include <math.h>
 
-// auto strip #include "column.hxx"
 #include "cell.hxx"
 #include "document.hxx"
-// auto strip #include "docpool.hxx"
 #include "attarray.hxx"
 #include "patattr.hxx"
 #include "cellform.hxx"
-// auto strip #include "collect.hxx"
-// auto strip #include "stlsheet.hxx"
 #include "rechead.hxx"
-// auto strip #include "brdcst.hxx"
 #include "editutil.hxx"
 #include "subtotal.hxx"
 #include "markdata.hxx"
-// auto strip #include "compiler.hxx"           // ScTokenArray GetCodeLen
 #include "dbcolect.hxx"
 #include "bclist.hxx"
 namespace binfilter {
@@ -110,26 +100,6 @@ namespace binfilter {
 
 //  read string from a string cell in original CharSet
 
-//STRIP001 String lcl_ReadOriginalStringCell( SvStream& rStream, USHORT nVer, CharSet eSystemCharSet )
-//STRIP001 {
-//STRIP001  if( nVer >= SC_DATABYTES2 )
-//STRIP001  {
-//STRIP001      BYTE cData;
-//STRIP001      rStream >> cData;
-//STRIP001      if( cData & 0x0F )
-//STRIP001          rStream.SeekRel( cData & 0x0F );
-//STRIP001  }
-//STRIP001
-//STRIP001  CharSet eOld = rStream.GetStreamCharSet();
-//STRIP001  rStream.SetStreamCharSet( eSystemCharSet );     // no conversion
-//STRIP001
-//STRIP001  String aString;
-//STRIP001  rStream >> aString;
-//STRIP001
-//STRIP001  rStream.SetStreamCharSet( eOld );
-//STRIP001
-//STRIP001  return aString;
-//STRIP001 }
 
 #endif
 
@@ -248,24 +218,6 @@ namespace binfilter {
 BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTab )
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pDBColl = pDocument->GetDBCollection();
-//STRIP001  if ( pDBColl )
-//STRIP001  {
-//STRIP001      USHORT nCount = pDBColl->GetCount();
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ScDBData* pData = (*pDBColl)[i];
-//STRIP001          if ( pData->IsStripData() &&
-//STRIP001                  pData->HasImportParam() && !pData->HasImportSelection() )
-//STRIP001          {
-//STRIP001              ScRange aDBRange;
-//STRIP001              pData->GetArea(aDBRange);
-//STRIP001              if ( nTab == aDBRange.aStart.Tab() &&
-//STRIP001                   nCol >= aDBRange.aStart.Col() && nCol <= aDBRange.aEnd.Col() &&
-//STRIP001                   nRow >= aDBRange.aStart.Row() && nRow <= aDBRange.aEnd.Row() )
-//STRIP001                  return TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
 
     return FALSE;
 }
@@ -820,8 +772,6 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*?*/                       //  nur nach rechts:
 /*?*/                       //! unterscheiden nach Ausrichtung oben/unten (nur Text/ganze Hoehe)
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         if ( pPattern->GetRotateDir( pCondSet ) == SC_ROTDIR_RIGHT )
-//STRIP001 /*?*/                            nWidth += (long)( pDocument->GetRowHeight( nRow,nTab ) *
-//STRIP001 /*?*/                                                nPPT * nCosAbs / nSinAbs );
 /*?*/                   }
 /*?*/                   else
 /*?*/                       nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?
@@ -981,10 +931,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         if ( pPatter
 /*?*/               else if ( rOptions.bTotalSize )
 /*?*/               {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) ( pDocument->GetColWidth( nCol,nTab ) * nPPT );
-//STRIP001 /*?*/                    bAddMargin = FALSE;
-//STRIP001 /*?*/                    if ( pPattern->GetRotateDir( pCondSet ) == SC_ROTDIR_RIGHT )
-//STRIP001 /*?*/                        nWidth += (long)( pDocument->GetRowHeight( nRow,nTab ) *
-//STRIP001 /*?*/                                            nPPT * nCosAbs / nSinAbs );
 /*?*/               }
 /*?*/               else
 /*?*/                   nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?
@@ -1374,181 +1320,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL ScColumn::GetNextSpellingCell(USHORT& nRow, BOOL bInSel, const ScMarkData& rData) const
-//STRIP001 {
-//STRIP001  BOOL bStop = FALSE;
-//STRIP001  CellType eCellType;
-//STRIP001  USHORT nIndex;
-//STRIP001  if (!bInSel && Search(nRow, nIndex))
-//STRIP001  {
-//STRIP001      eCellType = GetCellType(nRow);
-//STRIP001      if ( (eCellType == CELLTYPE_STRING || eCellType == CELLTYPE_EDIT) &&
-//STRIP001           !(HasAttrib( nRow, nRow, HASATTR_PROTECTED) &&
-//STRIP001             pDocument->IsTabProtected(nTab)) )
-//STRIP001              return TRUE;
-//STRIP001  }
-//STRIP001  while (!bStop)
-//STRIP001  {
-//STRIP001      if (bInSel)
-//STRIP001      {
-//STRIP001          nRow = rData.GetNextMarked(nCol, nRow, FALSE);
-//STRIP001          if (nRow > MAXROW)
-//STRIP001          {
-//STRIP001              nRow = MAXROW+1;
-//STRIP001              bStop = TRUE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              eCellType = GetCellType(nRow);
-//STRIP001              if ( (eCellType == CELLTYPE_STRING || eCellType == CELLTYPE_EDIT) &&
-//STRIP001                   !(HasAttrib( nRow, nRow, HASATTR_PROTECTED) &&
-//STRIP001                     pDocument->IsTabProtected(nTab)) )
-//STRIP001                      return TRUE;
-//STRIP001              else
-//STRIP001                  nRow++;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if (GetNextDataPos(nRow))
-//STRIP001      {
-//STRIP001          eCellType = GetCellType(nRow);
-//STRIP001          if ( (eCellType == CELLTYPE_STRING || eCellType == CELLTYPE_EDIT) &&
-//STRIP001               !(HasAttrib( nRow, nRow, HASATTR_PROTECTED) &&
-//STRIP001                 pDocument->IsTabProtected(nTab)) )
-//STRIP001                  return TRUE;
-//STRIP001          else
-//STRIP001              nRow++;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nRow = MAXROW+1;
-//STRIP001          bStop = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 // =========================================================================================
 
-//STRIP001 void ScColumn::RemoveAutoSpellObj()
-//STRIP001 {
-//STRIP001  ScTabEditEngine* pEngine = NULL;
-//STRIP001
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      if ( pItems[i].pCell->GetCellType() == CELLTYPE_EDIT )
-//STRIP001      {
-//STRIP001          ScEditCell* pOldCell = (ScEditCell*) pItems[i].pCell;
-//STRIP001          const EditTextObject* pData = pOldCell->GetData();
-//STRIP001          //  keine Abfrage auf HasOnlineSpellErrors, damit es auch
-//STRIP001          //  nach dem Laden funktioniert
-//STRIP001
-//STRIP001          //  Fuer den Test auf harte Formatierung (ScEditAttrTester) sind die Defaults
-//STRIP001          //  in der EditEngine unwichtig. Wenn der Tester spaeter einmal gleiche
-//STRIP001          //  Attribute in Default und harter Formatierung erkennen und weglassen sollte,
-//STRIP001          //  muessten an der EditEngine zu jeder Zelle die richtigen Defaults gesetzt
-//STRIP001          //  werden!
-//STRIP001
-//STRIP001          //  auf Attribute testen
-//STRIP001          if ( !pEngine )
-//STRIP001              pEngine = new ScTabEditEngine(pDocument);
-//STRIP001          pEngine->SetText( *pData );
-//STRIP001          ScEditAttrTester aTester( pEngine );
-//STRIP001          if ( aTester.NeedsObject() )                    // nur Spell-Errors entfernen
-//STRIP001          {
-//STRIP001              EditTextObject* pNewData = pEngine->CreateTextObject(); // ohne BIGOBJ
-//STRIP001              pOldCell->SetData( pNewData, pEngine->GetEditTextObjectPool() );
-//STRIP001              delete pNewData;
-//STRIP001          }
-//STRIP001          else                                            // String erzeugen
-//STRIP001          {
-//STRIP001              String aText = ScEditUtil::GetSpaceDelimitedString( *pEngine );
-//STRIP001              ScBaseCell* pNewCell = new ScStringCell( aText );
-//STRIP001              ScBroadcasterList* pBC = pOldCell->GetBroadcaster();
-//STRIP001              pNewCell->SetBroadcaster( pBC );
-//STRIP001              pOldCell->ForgetBroadcaster();
-//STRIP001              if (pOldCell->GetNotePtr())
-//STRIP001                  pNewCell->SetNote( *pOldCell->GetNotePtr() );
-//STRIP001              pItems[i].pCell = pNewCell;
-//STRIP001              delete pOldCell;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001  delete pEngine;
-//STRIP001 }
 
-//STRIP001 void ScColumn::RemoveEditAttribs( USHORT nStartRow, USHORT nEndRow )
-//STRIP001 {
-//STRIP001  ScFieldEditEngine* pEngine = NULL;
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  Search( nStartRow, i );
-//STRIP001  for (; i<nCount && pItems[i].nRow <= nEndRow; i++)
-//STRIP001      if ( pItems[i].pCell->GetCellType() == CELLTYPE_EDIT )
-//STRIP001      {
-//STRIP001          ScEditCell* pOldCell = (ScEditCell*) pItems[i].pCell;
-//STRIP001          const EditTextObject* pData = pOldCell->GetData();
-//STRIP001
-//STRIP001          //  Fuer den Test auf harte Formatierung (ScEditAttrTester) sind die Defaults
-//STRIP001          //  in der EditEngine unwichtig. Wenn der Tester spaeter einmal gleiche
-//STRIP001          //  Attribute in Default und harter Formatierung erkennen und weglassen sollte,
-//STRIP001          //  muessten an der EditEngine zu jeder Zelle die richtigen Defaults gesetzt
-//STRIP001          //  werden!
-//STRIP001
-//STRIP001          //  auf Attribute testen
-//STRIP001          if ( !pEngine )
-//STRIP001          {
-//STRIP001              //pEngine = new ScTabEditEngine(pDocument);
-//STRIP001              pEngine = new ScFieldEditEngine( pDocument->GetEditPool() );
-//STRIP001              //  EE_CNTRL_ONLINESPELLING falls schon Fehler drin sind
-//STRIP001              pEngine->SetControlWord( pEngine->GetControlWord() | EE_CNTRL_ONLINESPELLING );
-//STRIP001              pEngine->SetForbiddenCharsTable( pDocument->GetForbiddenCharacters() );
-//STRIP001              pEngine->SetAsianCompressionMode( pDocument->GetAsianCompression() );
-//STRIP001              pEngine->SetKernAsianPunctuation( pDocument->GetAsianKerning() );
-//STRIP001          }
-//STRIP001          pEngine->SetText( *pData );
-//STRIP001          USHORT nParCount = pEngine->GetParagraphCount();
-//STRIP001          for (USHORT nPar=0; nPar<nParCount; nPar++)
-//STRIP001          {
-//STRIP001              pEngine->QuickRemoveCharAttribs( nPar );
-//STRIP001              const SfxItemSet& rOld = pEngine->GetParaAttribs( nPar );
-//STRIP001              if ( rOld.Count() )
-//STRIP001              {
-//STRIP001                  SfxItemSet aNew( *rOld.GetPool(), rOld.GetRanges() );   // leer
-//STRIP001                  pEngine->SetParaAttribs( nPar, aNew );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          //  URL-Felder in Text wandeln (andere gibt's nicht, darum pType=0)
-//STRIP001          pEngine->RemoveFields( TRUE );
-//STRIP001
-//STRIP001          BOOL bSpellErrors = pEngine->HasOnlineSpellErrors();
-//STRIP001          BOOL bNeedObject = bSpellErrors || nParCount>1;         // Errors/Absaetze behalten
-//STRIP001          //  ScEditAttrTester nicht mehr noetig, Felder sind raus
-//STRIP001
-//STRIP001          if ( bNeedObject )                                      // bleibt Edit-Zelle
-//STRIP001          {
-//STRIP001              ULONG nCtrl = pEngine->GetControlWord();
-//STRIP001              ULONG nWantBig = bSpellErrors ? EE_CNTRL_ALLOWBIGOBJS : 0;
-//STRIP001              if ( ( nCtrl & EE_CNTRL_ALLOWBIGOBJS ) != nWantBig )
-//STRIP001                  pEngine->SetControlWord( (nCtrl & ~EE_CNTRL_ALLOWBIGOBJS) | nWantBig );
-//STRIP001              EditTextObject* pNewData = pEngine->CreateTextObject();
-//STRIP001              pOldCell->SetData( pNewData, pEngine->GetEditTextObjectPool() );
-//STRIP001              delete pNewData;
-//STRIP001          }
-//STRIP001          else                                            // String erzeugen
-//STRIP001          {
-//STRIP001              String aText = ScEditUtil::GetSpaceDelimitedString( *pEngine );
-//STRIP001              ScBaseCell* pNewCell = new ScStringCell( aText );
-//STRIP001              ScBroadcasterList* pBC = pOldCell->GetBroadcaster();
-//STRIP001              pNewCell->SetBroadcaster( pBC );
-//STRIP001              pOldCell->ForgetBroadcaster();
-//STRIP001              if (pOldCell->GetNotePtr())
-//STRIP001                  pNewCell->SetNote( *pOldCell->GetNotePtr() );
-//STRIP001              pItems[i].pCell = pNewCell;
-//STRIP001              delete pOldCell;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001  delete pEngine;
-//STRIP001 }
 
 // =========================================================================================
 
@@ -1654,23 +1429,6 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 USHORT ScColumn::GetErrorData( USHORT nRow ) const
-//STRIP001 {
-//STRIP001  USHORT  nIndex;
-//STRIP001  if (Search(nRow, nIndex))
-//STRIP001  {
-//STRIP001      ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001      switch (pCell->GetCellType())
-//STRIP001      {
-//STRIP001          case CELLTYPE_FORMULA :
-//STRIP001              return ((ScFormulaCell*)pCell)->GetErrCode();
-//STRIP001          break;
-//STRIP001          default:
-//STRIP001          return 0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
 
 //------------
 
@@ -1697,24 +1455,6 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/   }
 /*N*/ }
 
-//STRIP001 USHORT ScColumn::VisibleCount( USHORT nStartRow, USHORT nEndRow ) const
-//STRIP001 {
-//STRIP001  //  Notizen werden nicht mitgezaehlt
-//STRIP001
-//STRIP001  USHORT nVisCount = 0;
-//STRIP001  USHORT nIndex;
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  while ( nIndex < nCount && pItems[nIndex].nRow <= nEndRow )
-//STRIP001  {
-//STRIP001      if ( pItems[nIndex].nRow >= nStartRow &&
-//STRIP001           pItems[nIndex].pCell->GetCellType() != CELLTYPE_NOTE )
-//STRIP001      {
-//STRIP001          ++nVisCount;
-//STRIP001      }
-//STRIP001      ++nIndex;
-//STRIP001  }
-//STRIP001  return nVisCount;
-//STRIP001 }
 
 /*N*/ USHORT ScColumn::GetLastVisDataPos(BOOL bNotes) const
 /*N*/ {
@@ -1757,15 +1497,6 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/   return nRet;
 /*N*/ }
 
-//STRIP001 BOOL ScColumn::HasVisibleDataAt(USHORT nRow) const
-//STRIP001 {
-//STRIP001  USHORT nIndex;
-//STRIP001  if (Search(nRow, nIndex))
-//STRIP001      if (CellVisible(pItems[nIndex].pCell))
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ BOOL ScColumn::IsEmptyAttr() const
 /*N*/ {
@@ -1780,184 +1511,12 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/   return (IsEmptyData() && IsEmptyAttr());
 /*N*/ }
 
-//STRIP001 BOOL ScColumn::IsEmptyBlock(USHORT nStartRow, USHORT nEndRow) const
-//STRIP001 {
-//STRIP001  if ( nCount == 0 || !pItems )
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  USHORT nIndex;
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  while ( nIndex < nCount && pItems[nIndex].nRow <= nEndRow )
-//STRIP001  {
-//STRIP001      if ( CellVisible(pItems[nIndex].pCell) )    // found a cell
-//STRIP001          return FALSE;                           // not empty
-//STRIP001      ++nIndex;
-//STRIP001  }
-//STRIP001  return TRUE;                                    // no cell found
-//STRIP001 }
 
-//STRIP001 USHORT ScColumn::GetEmptyLinesInBlock( USHORT nStartRow, USHORT nEndRow, ScDirection eDir ) const
-//STRIP001 {
-//STRIP001  USHORT nLines = 0;
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  short i;
-//STRIP001  if (pItems && (nCount > 0))
-//STRIP001  {
-//STRIP001      if (eDir == DIR_BOTTOM)
-//STRIP001      {
-//STRIP001          i = nCount;
-//STRIP001          while (!bFound && (i > 0))
-//STRIP001          {
-//STRIP001              i--;
-//STRIP001              if ( pItems[i].nRow < nStartRow )
-//STRIP001                  break;
-//STRIP001              bFound = pItems[i].nRow <= nEndRow && CellVisible(pItems[i].pCell);
-//STRIP001          }
-//STRIP001          if (bFound)
-//STRIP001              nLines = nEndRow - pItems[i].nRow;
-//STRIP001          else
-//STRIP001              nLines = nEndRow - nStartRow;
-//STRIP001      }
-//STRIP001      else if (eDir == DIR_TOP)
-//STRIP001      {
-//STRIP001          i = -1;
-//STRIP001          while (!bFound && (i+1 < (short)nCount))
-//STRIP001          {
-//STRIP001              i++;
-//STRIP001              if ( pItems[i].nRow > nEndRow )
-//STRIP001                  break;
-//STRIP001              bFound = pItems[i].nRow >= nStartRow && CellVisible(pItems[i].pCell);
-//STRIP001          }
-//STRIP001          if (bFound)
-//STRIP001              nLines = pItems[i].nRow - nStartRow;
-//STRIP001          else
-//STRIP001              nLines = nEndRow - nStartRow;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      nLines = nEndRow - nStartRow;
-//STRIP001  return nLines;
-//STRIP001 }
 
-//STRIP001 USHORT ScColumn::GetFirstDataPos() const
-//STRIP001 {
-//STRIP001  if (nCount)
-//STRIP001      return pItems[0].nRow;
-//STRIP001  else
-//STRIP001      return 0;
-//STRIP001 }
 
-//STRIP001 USHORT ScColumn::GetLastDataPos() const
-//STRIP001 {
-//STRIP001  if (nCount)
-//STRIP001      return pItems[nCount-1].nRow;
-//STRIP001  else
-//STRIP001      return 0;
-//STRIP001 }
 
-//STRIP001 BOOL ScColumn::GetPrevDataPos(USHORT& rRow) const
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  short i = (short)nCount - 1;
-//STRIP001  while (!bFound && (i >= 0))
-//STRIP001  {
-//STRIP001      bFound = (pItems[USHORT(i)].nRow < rRow);
-//STRIP001      if (bFound)
-//STRIP001          rRow = pItems[USHORT(i)].nRow;
-//STRIP001      i--;
-//STRIP001  }
-//STRIP001  return bFound;
-//STRIP001 }
 
-//STRIP001 BOOL ScColumn::GetNextDataPos(USHORT& rRow) const        // groesser als rRow
-//STRIP001 {
-//STRIP001  USHORT nIndex;
-//STRIP001  if (Search( rRow, nIndex ))
-//STRIP001      ++nIndex;                   // naechste Zelle
-//STRIP001
-//STRIP001  BOOL bMore = ( nIndex < nCount );
-//STRIP001  if ( bMore )
-//STRIP001      rRow = pItems[nIndex].nRow;
-//STRIP001  return bMore;
-//STRIP001 }
 
-//STRIP001 void ScColumn::FindDataAreaPos(USHORT& rRow, short nMovY) const
-//STRIP001 {
-//STRIP001  if (!nMovY) return;
-//STRIP001  BOOL bForward = (nMovY>0);
-//STRIP001
-//STRIP001  USHORT nIndex;
-//STRIP001  BOOL bThere = Search(rRow, nIndex);
-//STRIP001  if (bThere && !CellVisible(pItems[nIndex].pCell))
-//STRIP001      bThere = FALSE;
-//STRIP001
-//STRIP001  if (bThere)
-//STRIP001  {
-//STRIP001      USHORT nLast = rRow;
-//STRIP001      USHORT nOldIndex = nIndex;
-//STRIP001      if (bForward)
-//STRIP001      {
-//STRIP001          if (nIndex<nCount-1)
-//STRIP001          {
-//STRIP001              ++nIndex;
-//STRIP001              while (nIndex<nCount-1 && pItems[nIndex].nRow==nLast+1
-//STRIP001                                      && CellVisible(pItems[nIndex].pCell))
-//STRIP001              {
-//STRIP001                  ++nIndex;
-//STRIP001                  ++nLast;
-//STRIP001              }
-//STRIP001              if (nIndex==nCount-1)
-//STRIP001                  if (pItems[nIndex].nRow==nLast+1 && CellVisible(pItems[nIndex].pCell))
-//STRIP001                      ++nLast;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if (nIndex>0)
-//STRIP001          {
-//STRIP001              --nIndex;
-//STRIP001              while (nIndex>0 && pItems[nIndex].nRow+1==nLast
-//STRIP001                                      && CellVisible(pItems[nIndex].pCell))
-//STRIP001              {
-//STRIP001                  --nIndex;
-//STRIP001                  --nLast;
-//STRIP001              }
-//STRIP001              if (nIndex==0)
-//STRIP001                  if (pItems[nIndex].nRow+1==nLast && CellVisible(pItems[nIndex].pCell))
-//STRIP001                      --nLast;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if (nLast==rRow)
-//STRIP001      {
-//STRIP001          bThere = FALSE;
-//STRIP001          nIndex = bForward ? nOldIndex+1 : nOldIndex;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rRow = nLast;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (!bThere)
-//STRIP001  {
-//STRIP001      if (bForward)
-//STRIP001      {
-//STRIP001          while (nIndex<nCount && !CellVisible(pItems[nIndex].pCell))
-//STRIP001              ++nIndex;
-//STRIP001          if (nIndex<nCount)
-//STRIP001              rRow = pItems[nIndex].nRow;
-//STRIP001          else
-//STRIP001              rRow = MAXROW;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          while (nIndex>0 && !CellVisible(pItems[nIndex-1].pCell))
-//STRIP001              --nIndex;
-//STRIP001          if (nIndex>0)
-//STRIP001              rRow = pItems[nIndex-1].nRow;
-//STRIP001          else
-//STRIP001              rRow = 0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ BOOL ScColumn::HasDataAt(USHORT nRow) const
 /*N*/ {
@@ -1976,29 +1535,8 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/
 /*N*/ }
 
-//STRIP001 USHORT ScColumn::GetFirstEntryPos() const
-//STRIP001 {
-//STRIP001  if (pAttrArray)
-//STRIP001      return Min( GetFirstDataPos(), pAttrArray->GetFirstEntryPos() );
-//STRIP001  else
-//STRIP001      return GetFirstDataPos();
-//STRIP001 }
 
-//STRIP001 USHORT ScColumn::GetLastEntryPos() const
-//STRIP001 {
-//STRIP001  if (pAttrArray)
-//STRIP001      return Max( GetLastDataPos(), pAttrArray->GetLastEntryPos(TRUE) );
-//STRIP001  else
-//STRIP001      return GetLastDataPos();
-//STRIP001 }
 
-//STRIP001 USHORT ScColumn::GetLastAttrPos() const
-//STRIP001 {
-//STRIP001  if (pAttrArray)
-//STRIP001      return pAttrArray->GetLastEntryPos(FALSE);
-//STRIP001  else
-//STRIP001      return 0;
-//STRIP001 }
 
 /*N*/ BOOL ScColumn::IsAllAttrEqual( const ScColumn& rCol, USHORT nStartRow, USHORT nEndRow ) const
 /*N*/ {
@@ -2024,25 +1562,7 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/       return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL ScColumn::HasVisibleAttrIn( USHORT nStartRow, USHORT nEndRow ) const
-//STRIP001 {
-//STRIP001  if (pAttrArray)
-//STRIP001      return pAttrArray->HasVisibleAttrIn( nStartRow, nEndRow );
-//STRIP001  else
-//STRIP001      return FALSE;
-//STRIP001 }
 
-//STRIP001 void ScColumn::FindUsed( USHORT nStartRow, USHORT nEndRow, BOOL* pUsed ) const
-//STRIP001 {
-//STRIP001  USHORT nRow;
-//STRIP001  USHORT nIndex;
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  while ( (nIndex < nCount) ? ((nRow=pItems[nIndex].nRow) <= nEndRow) : FALSE )
-//STRIP001  {
-//STRIP001      pUsed[nRow-nStartRow] = TRUE;
-//STRIP001      ++nIndex;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void ScColumn::StartListening( SfxListener& rLst, USHORT nRow )
 /*N*/ {
@@ -2093,16 +1613,6 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/       pCell->SetBroadcaster(pBC);
 /*N*/   }
 /*N*/
-//STRIP001 #if 0
-//STRIP001  USHORT nCount = rSource.GetListenerCount();
-//STRIP001  for (USHORT i=nCount; i>0;)
-//STRIP001  {
-//STRIP001      --i;
-//STRIP001      SfxListener* pLst = rSource.GetListener(i);
-//STRIP001      pLst->StartListening(*pBC,TRUE);
-//STRIP001      pLst->EndListening(rSource);
-//STRIP001  }
-//STRIP001 #endif
 /*N*/   rSource.MoveListenersTo( *pBC );
 /*N*/ }
 
@@ -2133,16 +1643,6 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/ //        DBG_ERROR("ScColumn::EndListening - keine Zelle");
 /*N*/ }
 
-//STRIP001 void ScColumn::CompileDBFormula()
-//STRIP001 {
-//STRIP001  if (pItems)
-//STRIP001      for (USHORT i = 0; i < nCount; i++)
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[i].pCell;
-//STRIP001          if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001              ((ScFormulaCell*) pCell)->CompileDBFormula();
-//STRIP001      }
-//STRIP001 }
 
 /*N*/ void ScColumn::CompileDBFormula( BOOL bCreateFormulaString )
 /*N*/ {

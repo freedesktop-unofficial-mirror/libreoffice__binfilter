@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:39:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:14:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,17 +46,11 @@
 #ifndef _EDITOBJ_HXX //autogen
 #include <bf_svx/editobj.hxx>
 #endif
-// auto strip #ifndef _EDITSTAT_HXX //autogen
-// auto strip #include <bf_svx/editstat.hxx>
-// auto strip #endif
 
 #include "cell.hxx"
-// auto strip #include "compiler.hxx"
-// auto strip #include "document.hxx"
 #include "rangenam.hxx"
 #include "rechead.hxx"
 #include "refupdat.hxx"
-// auto strip #include "scmatrix.hxx"
 #include "editutil.hxx"
 #include "chgtrack.hxx"
 #include "indexmap.hxx"
@@ -148,22 +141,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/ #endif
 /*N*/ }
 
-//STRIP001 ScBaseCell* ScEditCell::Clone( ScDocument* pNewDoc ) const
-//STRIP001 {
-//STRIP001  return new ScEditCell( *this, pNewDoc );
-//STRIP001 }
 
-//STRIP001 void ScEditCell::SetData( const EditTextObject* pObject,
-//STRIP001          const SfxItemPool* pFromPool )
-//STRIP001 {
-//STRIP001  if ( pString )
-//STRIP001  {
-//STRIP001      delete pString;
-//STRIP001      pString = NULL;
-//STRIP001  }
-//STRIP001  delete pData;
-//STRIP001  SetTextObject( pObject, pFromPool );
-//STRIP001 }
 
 /*N*/ void ScEditCell::GetData( const EditTextObject*& rpObject ) const
 /*N*/ {
@@ -218,23 +196,8 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*?*/           // Leider gibt es keinen anderen Weg, um den Pool umzuhaengen,
 /*N*/   // als das Object durch eine entsprechende Engine zu schleusen.. // cellformats.sdc
 /*N*/ /*?*/             EditEngine& rEngine = pDoc->GetEditEngine();
-//STRIP001          if ( pObject->HasOnlineSpellErrors() )
-//STRIP001          {
-//STRIP001              ULONG nControl = rEngine.GetControlWord();
-//STRIP001              const ULONG nSpellControl = EE_CNTRL_ONLINESPELLING | EE_CNTRL_ALLOWBIGOBJS;
-//STRIP001              BOOL bNewControl = ( (nControl & nSpellControl) != nSpellControl );
-//STRIP001              if ( bNewControl )
-//STRIP001                  rEngine.SetControlWord( nControl | nSpellControl );
-//STRIP001              rEngine.SetText( *pObject );
-//STRIP001              pData = rEngine.CreateTextObject();
-//STRIP001              if ( bNewControl )
-//STRIP001                  rEngine.SetControlWord( nControl );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
 /*N*/ /*?*/                 rEngine.SetText( *pObject );
 /*N*/ /*?*/                 pData = rEngine.CreateTextObject();
-//STRIP001          }
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -635,290 +598,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/                                   short nDx, short nDy, short nDz,
 /*N*/                                   ScDocument* pUndoDoc )
 /*N*/  {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001 /*N*/    USHORT nCol1 = r.aStart.Col();
-//STRIP001 /*N*/    USHORT nRow1 = r.aStart.Row();
-//STRIP001 /*N*/    USHORT nTab1 = r.aStart.Tab();
-//STRIP001 /*N*/    USHORT nCol2 = r.aEnd.Col();
-//STRIP001 /*N*/    USHORT nRow2 = r.aEnd.Row();
-//STRIP001 /*N*/    USHORT nTab2 = r.aEnd.Tab();
-//STRIP001 /*N*/    USHORT nCol = aPos.Col();
-//STRIP001 /*N*/    USHORT nRow = aPos.Row();
-//STRIP001 /*N*/    USHORT nTab = aPos.Tab();
-//STRIP001 /*N*/      ScAddress aUndoPos( aPos );         // position for undo cell in pUndoDoc
-//STRIP001 /*N*/      ScAddress aOldPos( aPos );
-//STRIP001 /*N*/  //  BOOL bPosChanged = FALSE;           // ob diese Zelle bewegt wurde
-//STRIP001 /*N*/    BOOL bIsInsert = FALSE;
-//STRIP001 /*N*/    if (eUpdateRefMode == URM_INSDEL)
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        bIsInsert = (nDx >= 0 && nDy >= 0 && nDz >= 0);
-//STRIP001 /*N*/        if ( nDx && nRow >= nRow1 && nRow <= nRow2 &&
-//STRIP001 /*N*/            nTab >= nTab1 && nTab <= nTab2 )
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            if (nCol >= nCol1)
-//STRIP001 /*N*/            {
-//STRIP001 /*N*/                nCol += nDx;
-//STRIP001 /*N*/                if ((short) nCol < 0)
-//STRIP001 /*N*/                    nCol = 0;
-//STRIP001 /*N*/                else if ( nCol > MAXCOL )
-//STRIP001 /*N*/                    nCol = MAXCOL;
-//STRIP001 /*N*/                aPos.SetCol( nCol );
-//STRIP001 /*N*/  //                bPosChanged = TRUE;
-//STRIP001 /*N*/            }
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        if ( nDy && nCol >= nCol1 && nCol <= nCol2 &&
-//STRIP001 /*N*/            nTab >= nTab1 && nTab <= nTab2 )
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            if (nRow >= nRow1)
-//STRIP001 /*N*/            {
-//STRIP001 /*N*/                nRow += nDy;
-//STRIP001 /*N*/                if ((short) nRow < 0)
-//STRIP001 /*N*/                    nRow = 0;
-//STRIP001 /*N*/                else if ( nRow > MAXROW )
-//STRIP001 /*N*/                    nRow = MAXROW;
-//STRIP001 /*N*/                aPos.SetRow( nRow );
-//STRIP001 /*N*/  //                bPosChanged = TRUE;
-//STRIP001 /*N*/            }
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        if ( nDz && nCol >= nCol1 && nCol <= nCol2 &&
-//STRIP001 /*N*/            nRow >= nRow1 && nRow <= nRow2 )
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            if (nTab >= nTab1)
-//STRIP001 /*N*/            {
-//STRIP001 /*N*/                USHORT nMaxTab = pDocument->GetTableCount() - 1;
-//STRIP001 /*N*/                nTab += nDz;
-//STRIP001 /*N*/                if ((short) nTab < 0)
-//STRIP001 /*N*/                    nTab = 0;
-//STRIP001 /*N*/                else if ( nTab > nMaxTab )
-//STRIP001 /*N*/                    nTab = nMaxTab;
-//STRIP001 /*N*/                aPos.SetTab( nTab );
-//STRIP001 /*N*/  //                bPosChanged = TRUE;
-//STRIP001 /*N*/            }
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/    else if ( r.In( aPos ) )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        aOldPos.Set( nCol - nDx, nRow - nDy, nTab - nDz );
-//STRIP001 /*N*/  //        bPosChanged = TRUE;
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/
-//STRIP001 /*N*/    BOOL bHasRefs = FALSE;
-//STRIP001 /*N*/      BOOL bHasColRowNames = FALSE;
-//STRIP001 /*N*/    BOOL bOnRefMove = FALSE;
-//STRIP001 /*N*/    if ( !pDocument->IsClipOrUndo() )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        pCode->Reset();
-//STRIP001 /*N*/        bHasRefs = (pCode->GetNextReferenceRPN() != NULL);
-//STRIP001 /*N*/          if ( !bHasRefs || eUpdateRefMode == URM_COPY )
-//STRIP001 /*N*/          {
-//STRIP001 /*N*/              pCode->Reset();
-//STRIP001 /*N*/              bHasColRowNames = (pCode->GetNextColRowName() != NULL);
-//STRIP001 /*N*/              bHasRefs = bHasRefs || bHasColRowNames;
-//STRIP001 /*N*/          }
-//STRIP001 /*N*/        bOnRefMove = pCode->IsRecalcModeOnRefMove();
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/    if( bHasRefs || bOnRefMove )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        ScTokenArray* pOld = pUndoDoc ? pCode->Clone() : NULL;
-//STRIP001 /*N*/        BOOL bValChanged;
-//STRIP001 /*N*/        ScRangeData* pRangeData;
-//STRIP001 /*N*/        BOOL bRangeModified;            // beliebiger Range (nicht nur shared Formula)
-//STRIP001 /*N*/        if ( bHasRefs )
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            ScCompiler aComp(pDocument, aPos, *pCode);
-//STRIP001 /*N*/            pRangeData = aComp.UpdateReference(eUpdateRefMode, aOldPos, r,
-//STRIP001 /*N*/                                             nDx, nDy, nDz,
-//STRIP001 /*N*/                                             bValChanged);
-//STRIP001 /*N*/            bRangeModified = aComp.HasModifiedRange();
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        else
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            bValChanged = FALSE;
-//STRIP001 /*N*/            pRangeData = NULL;
-//STRIP001 /*N*/            bRangeModified = FALSE;
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        if ( bOnRefMove )
-//STRIP001 /*N*/            bOnRefMove = (bValChanged || (aPos != aOldPos));
-//STRIP001 /*N*/            // Zelle referiert sich evtl. selbst, z.B. ocColumn, ocRow ohne Parameter
-//STRIP001 /*N*/
-//STRIP001 /*N*/        BOOL bColRowNameCompile, bHasRelName, bNewListening, bNewRelName,
-//STRIP001 /*N*/              bInDeleteUndo;
-//STRIP001 /*N*/        if ( bHasRefs )
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            // Bei Insert muessen ColRowNames neu kompiliert werden, falls genau
-//STRIP001 /*N*/            // am Beginn des Bereiches inserted wird.
-//STRIP001 /*N*/            bColRowNameCompile =
-//STRIP001 /*N*/                (eUpdateRefMode == URM_INSDEL && (nDx > 0 || nDy > 0));
-//STRIP001 /*N*/            if ( bColRowNameCompile )
-//STRIP001 /*N*/            {
-//STRIP001 /*N*/                bColRowNameCompile = FALSE;
-//STRIP001 /*N*/                ScToken* t;
-//STRIP001 /*N*/                ScRangePairList* pColList = pDocument->GetColNameRanges();
-//STRIP001 /*N*/                ScRangePairList* pRowList = pDocument->GetRowNameRanges();
-//STRIP001 /*N*/                pCode->Reset();
-//STRIP001 /*N*/                while ( !bColRowNameCompile && (t = pCode->GetNextColRowName()) )
-//STRIP001 /*N*/                {
-//STRIP001 /*N*/                    SingleRefData& rRef = t->GetSingleRef();
-//STRIP001 /*N*/                    if ( nDy > 0 && rRef.IsColRel() )
-//STRIP001 /*N*/                    {   // ColName
-//STRIP001 /*N*/                        rRef.CalcAbsIfRel( aPos );
-//STRIP001 /*N*/                        ScAddress aAdr( rRef.nCol, rRef.nRow, rRef.nTab );
-//STRIP001 /*N*/                        ScRangePair* pR = pColList->Find( aAdr );
-//STRIP001 /*N*/                        if ( pR )
-//STRIP001 /*N*/                        {   // definiert
-//STRIP001 /*N*/                            if ( pR->GetRange(1).aStart.Row() == nRow1 )
-//STRIP001 /*N*/                                bColRowNameCompile = TRUE;
-//STRIP001 /*N*/                        }
-//STRIP001 /*N*/                        else
-//STRIP001 /*N*/                        {   // on the fly
-//STRIP001 /*N*/                            if ( rRef.nRow + 1 == nRow1 )
-//STRIP001 /*N*/                                bColRowNameCompile = TRUE;
-//STRIP001 /*N*/                        }
-//STRIP001 /*N*/                    }
-//STRIP001 /*N*/                    if ( nDx > 0 && rRef.IsRowRel() )
-//STRIP001 /*N*/                    {   // RowName
-//STRIP001 /*N*/                        rRef.CalcAbsIfRel( aPos );
-//STRIP001 /*N*/                        ScAddress aAdr( rRef.nCol, rRef.nRow, rRef.nTab );
-//STRIP001 /*N*/                        ScRangePair* pR = pRowList->Find( aAdr );
-//STRIP001 /*N*/                        if ( pR )
-//STRIP001 /*N*/                        {   // definiert
-//STRIP001 /*N*/                            if ( pR->GetRange(1).aStart.Col() == nCol1 )
-//STRIP001 /*N*/                                bColRowNameCompile = TRUE;
-//STRIP001 /*N*/                        }
-//STRIP001 /*N*/                        else
-//STRIP001 /*N*/                        {   // on the fly
-//STRIP001 /*N*/                            if ( rRef.nCol + 1 == nCol1 )
-//STRIP001 /*N*/                                bColRowNameCompile = TRUE;
-//STRIP001 /*N*/                        }
-//STRIP001 /*N*/                    }
-//STRIP001 /*N*/                }
-//STRIP001 /*N*/            }
-//STRIP001 /*N*/            else if ( eUpdateRefMode == URM_MOVE )
-//STRIP001 /*N*/            {   // bei Move/D&D neu kompilieren wenn ColRowName verschoben wurde
-//STRIP001 /*N*/                // oder diese Zelle auf einen zeigt und verschoben wurde
-//STRIP001 /*N*/                bColRowNameCompile = bCompile;      // evtl. aus Copy-ctor
-//STRIP001 /*N*/                if ( !bColRowNameCompile )
-//STRIP001 /*N*/                {
-//STRIP001 /*N*/                    BOOL bMoved = (aPos != aOldPos);
-//STRIP001 /*N*/                    pCode->Reset();
-//STRIP001 /*N*/                    ScToken* t = pCode->GetNextColRowName();
-//STRIP001 /*N*/                    if ( t && bMoved )
-//STRIP001 /*N*/                        bColRowNameCompile = TRUE;
-//STRIP001 /*N*/                    while ( t && !bColRowNameCompile )
-//STRIP001 /*N*/                    {
-//STRIP001 /*N*/                        SingleRefData& rRef = t->GetSingleRef();
-//STRIP001 /*N*/                        rRef.CalcAbsIfRel( aPos );
-//STRIP001 /*N*/                        if ( rRef.Valid() )
-//STRIP001 /*N*/                        {
-//STRIP001 /*N*/                            ScAddress aAdr( rRef.nCol, rRef.nRow, rRef.nTab );
-//STRIP001 /*N*/                            if ( r.In( aAdr ) )
-//STRIP001 /*N*/                                bColRowNameCompile = TRUE;
-//STRIP001 /*N*/                        }
-//STRIP001 /*N*/                        t = pCode->GetNextColRowName();
-//STRIP001 /*N*/                    }
-//STRIP001 /*N*/                }
-//STRIP001 /*N*/            }
-//STRIP001 /*N*/              else if ( eUpdateRefMode == URM_COPY && bHasColRowNames && bValChanged )
-//STRIP001 /*N*/              {
-//STRIP001 /*N*/                  bColRowNameCompile = TRUE;
-//STRIP001 /*N*/              }
-//STRIP001 /*N*/            ScChangeTrack* pChangeTrack = pDocument->GetChangeTrack();
-//STRIP001 /*N*/            if ( pChangeTrack && pChangeTrack->IsInDeleteUndo() )
-//STRIP001 /*N*/                bInDeleteUndo = TRUE;
-//STRIP001 /*N*/            else
-//STRIP001 /*N*/                bInDeleteUndo = FALSE;
-//STRIP001 /*N*/            // Referenz geaendert und neues Listening noetig?
-//STRIP001 /*N*/            // ausser Insert/Delete ohne Spezialitaeten
-//STRIP001 /*N*/            bNewListening = ( bRangeModified || pRangeData || bColRowNameCompile
-//STRIP001 /*N*/                || (bValChanged && (eUpdateRefMode != URM_INSDEL ||
-//STRIP001 /*N*/                    bInDeleteUndo)) );
-//STRIP001 /*N*/            bHasRelName = HasRelNameReference();
-//STRIP001 /*N*/            bNewRelName = (bHasRelName && eUpdateRefMode != URM_COPY);
-//STRIP001 /*N*/            if ( bNewListening )
-//STRIP001 /*N*/                  EndListeningTo( pDocument, 0, pOld, aOldPos );
-//STRIP001 /*N*/            else if ( bNewRelName )
-//STRIP001 /*N*/                  EndListeningTo( pDocument, SC_LISTENING_NAMES_REL, pOld, aOldPos );
-//STRIP001 /*N*/                // RelNameRefs werden immer mitverschoben
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        else
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            bColRowNameCompile = bHasRelName = bNewListening = bNewRelName =
-//STRIP001 /*N*/                  bInDeleteUndo = FALSE;
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/
-//STRIP001 /*N*/        BOOL bNeedDirty;
-//STRIP001 /*N*/        // NeedDirty bei Aenderungen ausser Copy und Move/Insert ohne RelNames
-//STRIP001 /*N*/        if ( bRangeModified || pRangeData || bColRowNameCompile
-//STRIP001 /*N*/          || (bValChanged && eUpdateRefMode != URM_COPY
-//STRIP001 /*N*/                && (eUpdateRefMode != URM_MOVE || bHasRelName)
-//STRIP001 /*N*/                && (!bIsInsert || bHasRelName || bInDeleteUndo)) || bOnRefMove )
-//STRIP001 /*N*/            bNeedDirty = TRUE;
-//STRIP001 /*N*/        else
-//STRIP001 /*N*/            bNeedDirty = FALSE;
-//STRIP001 /*N*/          if (pUndoDoc && (bValChanged || pRangeData || bOnRefMove))
-//STRIP001 /*N*/          {
-//STRIP001 /*N*/              //  Copy the cell to aUndoPos, which is its current position in the document,
-//STRIP001 /*N*/              //  so this works when UpdateReference is called before moving the cells
-//STRIP001 /*N*/              //  (InsertCells/DeleteCells - aPos is changed above) as well as when UpdateReference
-//STRIP001 /*N*/              //  is called after moving the cells (MoveBlock/PasteFromClip - aOldPos is changed).
-//STRIP001 /*N*/
-//STRIP001 /*N*/              ScFormulaCell* pFCell = new ScFormulaCell( pUndoDoc, aUndoPos, pOld, cMatrixFlag );
-//STRIP001 /*N*/              pFCell->nErgValue = MINDOUBLE;      // to recognize it as changed later (Cut/Paste!)
-//STRIP001 /*N*/              pUndoDoc->PutCell( aUndoPos, pFCell );
-//STRIP001 /*N*/          }
-//STRIP001 /*N*/          bValChanged = FALSE;
-//STRIP001 /*N*/          if ( pRangeData )
-//STRIP001 /*N*/          {   // Replace shared formula with own formula
-//STRIP001 /*N*/              pDocument->RemoveFromFormulaTree( this );   // update formula count
-//STRIP001 /*N*/              delete pCode;
-//STRIP001 /*N*/              pCode = pRangeData->GetCode()->Clone();
-//STRIP001 /*N*/              pCode->SetReplacedSharedFormula( TRUE );
-//STRIP001 /*N*/              ScCompiler aComp2(pDocument, aPos, *pCode);
-//STRIP001 /*N*/              aComp2.MoveRelWrap();
-//STRIP001 /*N*/              aComp2.UpdateSharedFormulaReference( eUpdateRefMode, aOldPos, r,
-//STRIP001 /*N*/                  nDx, nDy, nDz );
-//STRIP001 /*N*/              bValChanged = TRUE;
-//STRIP001 /*N*/              bNeedDirty = TRUE;
-//STRIP001 /*N*/          }
-//STRIP001 /*N*/          if ( ( bCompile = (bCompile || bValChanged || bRangeModified || bColRowNameCompile) ) != 0 )
-//STRIP001 /*N*/          {
-//STRIP001 /*N*/              CompileTokenArray( bNewListening ); // kein Listening
-//STRIP001 /*N*/              bNeedDirty = TRUE;
-//STRIP001 /*N*/          }
-//STRIP001 /*N*/          if ( !bInDeleteUndo )
-//STRIP001 /*N*/          {   // In ChangeTrack Delete-Reject listeners are established in
-//STRIP001 /*N*/              // InsertCol/InsertRow
-//STRIP001 /*N*/              if ( bNewListening )
-//STRIP001 /*N*/              {
-//STRIP001 /*N*/                  if ( pRangeData && eUpdateRefMode == URM_INSDEL )
-//STRIP001 /*N*/                  {
-//STRIP001 /*N*/                      // All replaced shared formula listeners have to be
-//STRIP001 /*N*/                      // established after an Insert or Delete. Do nothing here.
-//STRIP001 /*N*/                  }
-//STRIP001 /*N*/                  else if ( eUpdateRefMode == URM_INSDEL && !bIsInsert )
-//STRIP001 /*N*/                  {
-//STRIP001 /*N*/                      // Deletes establish listeners on names _after_
-//STRIP001 /*N*/                      // UpdateReference and the following Delete.
-//STRIP001 /*N*/                      StartListeningTo( pDocument, SC_LISTENING_EXCEPT |
-//STRIP001 /*N*/                              SC_LISTENING_NAMES_ABS | SC_LISTENING_NAMES_REL );
-//STRIP001 /*N*/                  }
-//STRIP001 /*N*/                  else
-//STRIP001 /*N*/                      StartListeningTo( pDocument, 0 );
-//STRIP001 /*N*/              }
-//STRIP001 /*N*/              else if ( bNewRelName && eUpdateRefMode != URM_INSDEL )
-//STRIP001 /*N*/                  StartListeningTo( pDocument, SC_LISTENING_NAMES_REL );
-//STRIP001 /*N*/                  // Insert/Delete RelNameListening/SetDirty follows later
-//STRIP001 /*N*/          }
-//STRIP001 /*N*/          if ( bNeedDirty && (!(eUpdateRefMode == URM_INSDEL && bHasRelName) || pRangeData) )
-//STRIP001 /*N*/          {   // Referenzen abgeschnitten, ungueltig o.ae.?
-//STRIP001 /*N*/              BOOL bOldAutoCalc = pDocument->GetAutoCalc();
-//STRIP001 /*N*/              // kein Interpret in SubMinimalRecalc wegen evtl. falscher Referenzen
-//STRIP001 /*N*/              pDocument->SetAutoCalc( FALSE );
-//STRIP001 /*N*/              SetDirty();
-//STRIP001 /*N*/              pDocument->SetAutoCalc( bOldAutoCalc );
-//STRIP001 /*N*/          }
-//STRIP001 /*N*/
-//STRIP001 /*N*/          delete pOld;
-//STRIP001 /*N*/      }
 /*N*/  }
 
 /*N*/ void ScFormulaCell::UpdateInsertTab(USHORT nTable)

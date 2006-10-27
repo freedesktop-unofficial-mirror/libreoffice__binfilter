@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:40:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:14:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,19 +41,15 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <svtools/poolcach.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <bf_svx/scripttypeitem.hxx>
 #include <string.h>
 
 #include "scitems.hxx"
-// auto strip #include "column.hxx"
 #include "cell.hxx"
 #include "document.hxx"
 #include "docpool.hxx"
 #include "attarray.hxx"
 #include "patattr.hxx"
-// auto strip #include "compiler.hxx"
-// auto strip #include "brdcst.hxx"
 #include "markdata.hxx"
 namespace binfilter {
 
@@ -108,10 +103,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 short ScColumn::GetNextUnprotected( short nRow, BOOL bUp ) const
-//STRIP001 {
-//STRIP001  return pAttrArray->GetNextUnprotected(nRow, bUp);
-//STRIP001 }
 
 
 /*N*/ USHORT ScColumn::GetBlockMatrixEdges( USHORT nRow1, USHORT nRow2, USHORT nMask ) const
@@ -247,11 +238,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScColumn::HasLines( USHORT nRow1, USHORT nRow2, Rectangle& rSizes,
-//STRIP001                          BOOL bLeft, BOOL bRight ) const
-//STRIP001 {
-//STRIP001  return pAttrArray->HasLines( nRow1, nRow2, rSizes, bLeft, bRight );
-//STRIP001 }
 
 
 /*N*/ BOOL ScColumn::HasAttrib( USHORT nRow1, USHORT nRow2, USHORT nMask ) const
@@ -260,25 +246,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScColumn::HasAttribSelection( const ScMarkData& rMark, USHORT nMask ) const
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001
-//STRIP001  USHORT nTop;
-//STRIP001  USHORT nBottom;
-//STRIP001
-//STRIP001  if (rMark.IsMultiMarked())
-//STRIP001  {
-//STRIP001      ScMarkArrayIter aMarkIter( rMark.GetArray()+nCol );
-//STRIP001      while (aMarkIter.Next( nTop, nBottom ) && !bFound)
-//STRIP001      {
-//STRIP001          if (pAttrArray->HasAttrib( nTop, nBottom, nMask ))
-//STRIP001              bFound = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
 
 /*N*/ BOOL ScColumn::ExtendMerge( USHORT nThisCol, USHORT nStartRow, USHORT nEndRow,
@@ -309,19 +276,8 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScColumn::MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner,
-//STRIP001                          ScLineFlags& rFlags,
-//STRIP001                          USHORT nStartRow, USHORT nEndRow, BOOL bLeft, USHORT nDistRight ) const
-//STRIP001 {
-//STRIP001  pAttrArray->MergeBlockFrame( pLineOuter, pLineInner, rFlags, nStartRow, nEndRow, bLeft, nDistRight );
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::ApplyBlockFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
-//STRIP001                          USHORT nStartRow, USHORT nEndRow, BOOL bLeft, USHORT nDistRight )
-//STRIP001 {
-//STRIP001  pAttrArray->ApplyBlockFrame( pLineOuter, pLineInner, nStartRow, nEndRow, bLeft, nDistRight );
-//STRIP001 }
 
 
 /*N*/ const ScPatternAttr* ScColumn::GetPattern( USHORT nRow ) const
@@ -367,64 +323,12 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScColumn::ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark )
-//STRIP001 {
-//STRIP001  USHORT nTop;
-//STRIP001  USHORT nBottom;
-//STRIP001
-//STRIP001  if ( pAttrArray && rMark.IsMultiMarked() )
-//STRIP001  {
-//STRIP001      ScMarkArrayIter aMarkIter( rMark.GetArray() + nCol );
-//STRIP001      while (aMarkIter.Next( nTop, nBottom ))
-//STRIP001          pAttrArray->ChangeIndent(nTop, nBottom, bIncrement);
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::ClearSelectionItems( const USHORT* pWhich,const ScMarkData& rMark )
-//STRIP001 {
-//STRIP001  USHORT nTop;
-//STRIP001  USHORT nBottom;
-//STRIP001
-//STRIP001  if ( pAttrArray && rMark.IsMultiMarked() )
-//STRIP001  {
-//STRIP001      ScMarkArrayIter aMarkIter( rMark.GetArray() + nCol );
-//STRIP001      while (aMarkIter.Next( nTop, nBottom ))
-//STRIP001          pAttrArray->ClearItems(nTop, nBottom, pWhich);
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::DeleteSelection( USHORT nDelFlag, const ScMarkData& rMark )
-//STRIP001 {
-//STRIP001  USHORT nTop;
-//STRIP001  USHORT nBottom;
-//STRIP001
-//STRIP001  if ( rMark.IsMultiMarked() )
-//STRIP001  {
-//STRIP001      ScMarkArrayIter aMarkIter( rMark.GetArray() + nCol );
-//STRIP001      while (aMarkIter.Next( nTop, nBottom ))
-//STRIP001          DeleteArea(nTop, nBottom, nDelFlag);
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::ApplyPattern( USHORT nRow, const ScPatternAttr& rPatAttr )
-//STRIP001 {
-//STRIP001  const SfxItemSet* pSet = &rPatAttr.GetItemSet();
-//STRIP001  SfxItemPoolCache aCache( pDocument->GetPool(), pSet );
-//STRIP001
-//STRIP001  const ScPatternAttr* pPattern = pAttrArray->GetPattern( nRow );
-//STRIP001
-//STRIP001  //  TRUE = alten Eintrag behalten
-//STRIP001
-//STRIP001  ScPatternAttr* pNewPattern = (ScPatternAttr*) &aCache.ApplyTo( *pPattern, TRUE );
-//STRIP001  ScDocumentPool::CheckRef( *pPattern );
-//STRIP001  ScDocumentPool::CheckRef( *pNewPattern );
-//STRIP001
-//STRIP001  if (pNewPattern != pPattern)
-//STRIP001    pAttrArray->SetPattern( nRow, pNewPattern );
-//STRIP001 }
 
 
 /*N*/ void ScColumn::ApplyPatternArea( USHORT nStartRow, USHORT nEndRow, const ScPatternAttr& rPatAttr )
@@ -435,44 +339,8 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScColumn::ApplyPatternIfNumberformatIncompatible( const ScRange& rRange,
-//STRIP001      const ScPatternAttr& rPattern, short nNewType )
-//STRIP001 {
-//STRIP001  const SfxItemSet* pSet = &rPattern.GetItemSet();
-//STRIP001  SfxItemPoolCache aCache( pDocument->GetPool(), pSet );
-//STRIP001  SvNumberFormatter* pFormatter = pDocument->GetFormatTable();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  for ( USHORT nRow = rRange.aStart.Row(); nRow <= nEndRow; nRow++ )
-//STRIP001  {
-//STRIP001      USHORT nRow1, nRow2;
-//STRIP001      const ScPatternAttr* pPattern = pAttrArray->GetPatternRange(
-//STRIP001          nRow1, nRow2, nRow );
-//STRIP001      ULONG nFormat = pPattern->GetNumberFormat( pFormatter );
-//STRIP001      short nOldType = pFormatter->GetType( nFormat );
-//STRIP001      if ( nOldType == nNewType || pFormatter->IsCompatible( nOldType, nNewType ) )
-//STRIP001          nRow = nRow2;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          USHORT nNewRow1 = Max( nRow1, nRow );
-//STRIP001          USHORT nNewRow2 = Min( nRow2, nEndRow );
-//STRIP001          pAttrArray->ApplyCacheArea( nNewRow1, nNewRow2, &aCache );
-//STRIP001          nRow = nNewRow2;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::ApplyStyle( USHORT nRow, const ScStyleSheet& rStyle )
-//STRIP001 {
-//STRIP001  const ScPatternAttr* pPattern = pAttrArray->GetPattern(nRow);
-//STRIP001  ScPatternAttr* pNewPattern = new ScPatternAttr(*pPattern);
-//STRIP001  if (pNewPattern)
-//STRIP001  {
-//STRIP001      pNewPattern->SetStyleSheet((ScStyleSheet*)&rStyle);
-//STRIP001      pAttrArray->SetPattern(nRow, pNewPattern, TRUE);
-//STRIP001      delete pNewPattern;
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void ScColumn::ApplyStyleArea( USHORT nStartRow, USHORT nEndRow, const ScStyleSheet& rStyle )
@@ -495,22 +363,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScColumn::ApplySelectionLineStyle( const ScMarkData& rMark,
-//STRIP001                                  const SvxBorderLine* pLine, BOOL bColorOnly )
-//STRIP001 {
-//STRIP001  if ( bColorOnly && !pLine )
-//STRIP001      return;
-//STRIP001
-//STRIP001  USHORT nTop;
-//STRIP001  USHORT nBottom;
-//STRIP001
-//STRIP001  if (rMark.IsMultiMarked())
-//STRIP001  {
-//STRIP001      ScMarkArrayIter aMarkIter( rMark.GetArray()+nCol );
-//STRIP001      while (aMarkIter.Next( nTop, nBottom ))
-//STRIP001          pAttrArray->ApplyLineStyleArea(nTop, nBottom, pLine, bColorOnly );
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ const ScStyleSheet* ScColumn::GetStyle( USHORT nRow ) const
@@ -618,11 +470,6 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 }
 
 
-//STRIP001 void ScColumn::SetPatternArea( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                              const ScPatternAttr& rPatAttr, BOOL bPutToPool )
-//STRIP001 {
-//STRIP001  pAttrArray->SetPatternArea( nStartRow, nEndRow, &rPatAttr, bPutToPool );
-//STRIP001 }
 
 
 /*N*/ void ScColumn::ApplyAttr( USHORT nRow, const SfxPoolItem& rAttr )
@@ -795,339 +642,11 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 
 //  SetNewRow gehoert zu SwapRow
 
-//STRIP001 void ScColumn::SetNewRow( USHORT nOldRow, USHORT nNewRow )   // nNewRow muss leer sein
-//STRIP001 {
-//STRIP001  USHORT  nIndex;
-//STRIP001  if (Search(nOldRow, nIndex))
-//STRIP001  {
-//STRIP001      ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001      --nCount;
-//STRIP001      memmove( &pItems[nIndex], &pItems[nIndex + 1], (nCount - nIndex) * sizeof(ColEntry) );
-//STRIP001
-//STRIP001      ScBroadcasterList* pBC = pCell->GetBroadcaster();
-//STRIP001      if (pBC)
-//STRIP001      {
-//STRIP001          MoveListeners( *pBC, nOldRow );     // Broadcaster bleibt an alter Stelle
-//STRIP001          pCell->SetBroadcaster(NULL);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (pCell->GetCellType() != CELLTYPE_NOTE)      // sonst geloescht
-//STRIP001      {
-//STRIP001          Insert(nNewRow, pCell);
-//STRIP001
-//STRIP001          short dy = (short)nNewRow - (short)nOldRow;
-//STRIP001          if (pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001          {
-//STRIP001              ScFormulaCell* pFormula = (ScFormulaCell*)pCell;
-//STRIP001              ScRange aRange( ScAddress( 0, nNewRow, nTab ),
-//STRIP001                              ScAddress( MAXCOL, nNewRow, nTab ) );
-//STRIP001              pFormula->aPos.SetRow( nNewRow );
-//STRIP001              pFormula->UpdateReference(URM_MOVE, aRange, 0, -dy, 0);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //  SwapRow zum Sortieren
 
-//STRIP001 void ScColumn::SwapRow(USHORT nRow1, USHORT nRow2)
-//STRIP001 {
-//STRIP001  //      Zeiger vertauschen klappt nicht wegen Broadcastern
-//STRIP001  //      (Absturz, wenn Zelle, auch indirekt, auf sich selbst broadcasted)
-//STRIP001
-//STRIP001  ScBaseCell *pCell1, *pCell2;
-//STRIP001  USHORT nIndex1, nIndex2;
-//STRIP001
-//STRIP001  if ( Search( nRow1, nIndex1 ) )
-//STRIP001      pCell1 = pItems[nIndex1].pCell;
-//STRIP001  else
-//STRIP001      pCell1 = NULL;
-//STRIP001  if ( Search( nRow2, nIndex2 ) )
-//STRIP001      pCell2 = pItems[nIndex2].pCell;
-//STRIP001  else
-//STRIP001      pCell2 = NULL;
-//STRIP001
-//STRIP001  if ( !pCell1 && !pCell2 )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  CellType eType1 = ( pCell1 ? pCell1->GetCellType() : CELLTYPE_NONE );
-//STRIP001  CellType eType2 = ( pCell2 ? pCell2->GetCellType() : CELLTYPE_NONE );
-//STRIP001
-//STRIP001  // Broadcaster bleiben an alter Stelle
-//STRIP001  ScBroadcasterList *pBC1, *pBC2;
-//STRIP001
-//STRIP001  if ( eType1 != CELLTYPE_FORMULA && eType2 != CELLTYPE_FORMULA )
-//STRIP001  {   // simple swap, kann nichts auf sich selbst broadcasten
-//STRIP001      if ( pCell1 )
-//STRIP001      {
-//STRIP001          pBC1 = pCell1->GetBroadcaster();
-//STRIP001          if ( pBC1 )
-//STRIP001              pCell1->ForgetBroadcaster();
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pBC1 = NULL;
-//STRIP001
-//STRIP001      if ( pCell2 )
-//STRIP001      {
-//STRIP001          pBC2 = pCell2->GetBroadcaster();
-//STRIP001          if ( pBC2 )
-//STRIP001              pCell2->ForgetBroadcaster();
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pBC2 = NULL;
-//STRIP001
-//STRIP001      if ( pCell1 && pCell2 )
-//STRIP001      {
-//STRIP001          pItems[nIndex1].pCell = pCell2;
-//STRIP001          pItems[nIndex2].pCell = pCell1;
-//STRIP001          if ( pBC1 )
-//STRIP001              pCell2->SetBroadcaster( pBC1 );
-//STRIP001          if ( pBC2 )
-//STRIP001              pCell1->SetBroadcaster( pBC2 );
-//STRIP001          ScAddress aPos( nCol, nRow1, nTab );
-//STRIP001             ScHint aHint( SC_HINT_DATACHANGED, aPos, pCell2 );
-//STRIP001          pDocument->Broadcast( aHint );
-//STRIP001          aHint.GetAddress().SetRow( nRow2 );
-//STRIP001             aHint.SetCell( pCell1 );
-//STRIP001          pDocument->Broadcast( aHint );
-//STRIP001      }
-//STRIP001      else if ( pCell1 )
-//STRIP001      {
-//STRIP001          ScNoteCell* pNew = ( pBC1 ? new ScNoteCell : NULL );
-//STRIP001          if ( pNew )
-//STRIP001          {
-//STRIP001              pItems[nIndex1].pCell = pNew;
-//STRIP001              pNew->SetBroadcaster( pBC1 );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {   // Loeschen
-//STRIP001              --nCount;
-//STRIP001              memmove( &pItems[nIndex1], &pItems[nIndex1 + 1], (nCount - nIndex1) * sizeof(ColEntry) );
-//STRIP001              pItems[nCount].nRow = 0;
-//STRIP001              pItems[nCount].pCell = NULL;
-//STRIP001          }
-//STRIP001          // Einfuegen
-//STRIP001          Insert( nRow2, pCell1 );
-//STRIP001          pDocument->Broadcast( ScHint( SC_HINT_DATACHANGED,
-//STRIP001              ScAddress( nCol, nRow1, nTab ), pNew ) );
-//STRIP001      }
-//STRIP001      else    // pCell2
-//STRIP001      {
-//STRIP001          ScNoteCell* pNew = ( pBC2 ? new ScNoteCell : NULL );
-//STRIP001          if ( pNew )
-//STRIP001          {
-//STRIP001              pItems[nIndex2].pCell = pNew;
-//STRIP001              pNew->SetBroadcaster( pBC2 );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {   // Loeschen
-//STRIP001              --nCount;
-//STRIP001              memmove( &pItems[nIndex2], &pItems[nIndex2 + 1], (nCount - nIndex2) * sizeof(ColEntry) );
-//STRIP001              pItems[nCount].nRow = 0;
-//STRIP001              pItems[nCount].pCell = NULL;
-//STRIP001          }
-//STRIP001          // Einfuegen
-//STRIP001          Insert( nRow1, pCell2 );
-//STRIP001          pDocument->Broadcast( ScHint( SC_HINT_DATACHANGED,
-//STRIP001              ScAddress( nCol, nRow2, nTab ), pNew ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      return ;
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab hier ist mindestens eine Formelzelle beteiligt
-//STRIP001
-//STRIP001  if ( eType1 == CELLTYPE_FORMULA && eType2 == CELLTYPE_FORMULA )
-//STRIP001  {
-//STRIP001      ScTokenArray* pCode1 = ((ScFormulaCell*)pCell1)->GetCode();
-//STRIP001      ScTokenArray* pCode2 = ((ScFormulaCell*)pCell2)->GetCode();
-//STRIP001
-//STRIP001      if (pCode1->GetLen() == pCode2->GetLen())       // nicht-UPN
-//STRIP001      {
-//STRIP001          BOOL bEqual = TRUE;
-//STRIP001          USHORT nLen = pCode1->GetLen();
-//STRIP001          ScToken** ppToken1 = pCode1->GetArray();
-//STRIP001          ScToken** ppToken2 = pCode2->GetArray();
-//STRIP001          for (USHORT i=0; i<nLen; i++)
-//STRIP001             {
-//STRIP001                 if ( !ppToken1[i]->TextEqual(*(ppToken2[i])) ||
-//STRIP001                         ppToken1[i]->Is3DRef() || ppToken2[i]->Is3DRef() )
-//STRIP001              {
-//STRIP001                  bEqual = FALSE;
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001             }
-//STRIP001
-//STRIP001          if (bEqual)             // gleiche Formeln nicht vertauschen
-//STRIP001              return;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( ( eType1 == CELLTYPE_FORMULA && ((ScFormulaCell*)pCell1)->GetMatrixFlag() != 0 ) ||
-//STRIP001       ( eType2 == CELLTYPE_FORMULA && ((ScFormulaCell*)pCell2)->GetMatrixFlag() != 0 ) )
-//STRIP001  {
-//STRIP001      //  never move any array formulas
-//STRIP001      //  (disabling sort if parts of array formulas are contained is done at ui)
-//STRIP001
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  ScBaseCell *pNew1, *pNew2;
-//STRIP001
-//STRIP001  //  hier kein UpdateReference wegen #30529# - mitsortiert werden nur noch relative Referenzen
-//STRIP001 //   short dy = (short)nRow2 - (short)nRow1;
-//STRIP001
-//STRIP001  if (pCell1)
-//STRIP001  {
-//STRIP001      pBC1 = pCell1->GetBroadcaster();
-//STRIP001      if ( pBC1 )
-//STRIP001          pCell1->ForgetBroadcaster();
-//STRIP001      if ( eType1 == CELLTYPE_FORMULA )
-//STRIP001      {
-//STRIP001             pNew2 = new ScFormulaCell( pDocument, ScAddress( nCol, nRow2, nTab ),
-//STRIP001                 *(const ScFormulaCell*)pCell1, 0x0001 );
-//STRIP001 //           ScRange aRange( ScAddress( 0, nRow2, nTab ), ScAddress( MAXCOL, nRow2, nTab ) );
-//STRIP001 //           ((ScFormulaCell*)pNew2)->UpdateReference(URM_MOVE, aRange, 0, dy, 0);
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pNew2 = pCell1->Clone( pDocument );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pNew2 = NULL;
-//STRIP001      pBC1 = NULL;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pCell2)
-//STRIP001  {
-//STRIP001      pBC2 = pCell2->GetBroadcaster();
-//STRIP001      if ( pBC2 )
-//STRIP001          pCell2->ForgetBroadcaster();
-//STRIP001      if ( eType2 == CELLTYPE_FORMULA )
-//STRIP001      {
-//STRIP001             pNew1 = new ScFormulaCell( pDocument, ScAddress( nCol, nRow1, nTab ),
-//STRIP001                 *(const ScFormulaCell*)pCell2, 0x0001 );
-//STRIP001 //           ScRange aRange( ScAddress( 0, nRow1, nTab ), ScAddress( MAXCOL, nRow1, nTab ) );
-//STRIP001 //           ((ScFormulaCell*)pNew1)->UpdateReference(URM_MOVE, aRange, 0, -dy, 0);
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pNew1 = pCell2->Clone( pDocument );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pNew1 = NULL;
-//STRIP001      pBC2 = NULL;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( !pNew1 && pBC1 )
-//STRIP001      pNew1 = new ScNoteCell;
-//STRIP001  if ( !pNew2 && pBC2 )
-//STRIP001      pNew2 = new ScNoteCell;
-//STRIP001
-//STRIP001  //  Delete nur, wenn es keine neue Zelle gibt (Insert loescht die alte Zelle auch)
-//STRIP001  //  Notizen muessen aber einzeln geloescht werden, weil Insert sie stehenlaesst
-//STRIP001
-//STRIP001  if ( pCell1 && ( !pNew1 || (pCell1->GetNotePtr() && !pNew1->GetNotePtr()) ) )
-//STRIP001      Delete( nRow1 );
-//STRIP001  if ( pCell2 && ( !pNew2 || (pCell2->GetNotePtr() && !pNew2->GetNotePtr()) ) )
-//STRIP001      Delete( nRow2 );
-//STRIP001
-//STRIP001  if (pNew1)
-//STRIP001  {
-//STRIP001      Insert( nRow1, pNew1 );
-//STRIP001      if ( pBC1 )
-//STRIP001          pNew1->SetBroadcaster( pBC1 );
-//STRIP001  }
-//STRIP001  if (pNew2)
-//STRIP001  {
-//STRIP001      Insert( nRow2, pNew2 );
-//STRIP001      if ( pBC2 )
-//STRIP001          pNew2->SetBroadcaster( pBC2 );
-//STRIP001  }
-//STRIP001
-//STRIP001  //  #64122# Bei Formeln hinterher nochmal broadcasten, damit die Formel nicht in irgendwelchen
-//STRIP001  //  FormulaTrack-Listen landet, ohne die Broadcaster beruecksichtigt zu haben
-//STRIP001  //  (erst hier, wenn beide Zellen eingefuegt sind)
-//STRIP001  if ( pBC1 && eType2 == CELLTYPE_FORMULA )
-//STRIP001      pDocument->Broadcast( ScHint( SC_HINT_DATACHANGED, ScAddress( nCol, nRow1, nTab ), pNew1 ) );
-//STRIP001  if ( pBC2 && eType1 == CELLTYPE_FORMULA )
-//STRIP001      pDocument->Broadcast( ScHint( SC_HINT_DATACHANGED, ScAddress( nCol, nRow2, nTab ), pNew2 ) );
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::SwapCell( USHORT nRow, ScColumn& rCol)
-//STRIP001 {
-//STRIP001  BOOL bFound1;
-//STRIP001  BOOL bFound2;
-//STRIP001  USHORT nIndex1;
-//STRIP001  USHORT nIndex2;
-//STRIP001  bFound1 = Search(nRow, nIndex1);
-//STRIP001  bFound2 = rCol.Search(nRow, nIndex2);
-//STRIP001  if (bFound1 && bFound2)
-//STRIP001  {
-//STRIP001      // Tauschen
-//STRIP001      ScFormulaCell* pCell1 = (ScFormulaCell*) pItems[nIndex1].pCell;
-//STRIP001      ScFormulaCell* pCell2 = (ScFormulaCell*) rCol.pItems[nIndex2].pCell;
-//STRIP001      pItems[nIndex1].pCell = pCell2;
-//STRIP001      rCol.pItems[nIndex2].pCell = pCell1;
-//STRIP001      // Referenzen aktualisieren
-//STRIP001      short dx = (short)rCol.nCol - (short)nCol;
-//STRIP001      if (pCell1->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001      {
-//STRIP001          ScRange aRange( ScAddress( rCol.nCol, 0, nTab ),
-//STRIP001                          ScAddress( rCol.nCol, MAXROW, nTab ) );
-//STRIP001          pCell1->aPos.SetCol( rCol.nCol );
-//STRIP001          pCell1->UpdateReference(URM_MOVE, aRange, dx, 0, 0);
-//STRIP001      }
-//STRIP001      if (pCell2->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001      {
-//STRIP001          ScRange aRange( ScAddress( nCol, 0, nTab ),
-//STRIP001                          ScAddress( nCol, MAXROW, nTab ) );
-//STRIP001          pCell2->aPos.SetCol( nCol );
-//STRIP001          pCell2->UpdateReference(URM_MOVE, aRange, -dx, 0, 0);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (bFound1)
-//STRIP001  {
-//STRIP001      ScFormulaCell* pCell = (ScFormulaCell*) pItems[nIndex1].pCell;
-//STRIP001      // Loeschen
-//STRIP001      --nCount;
-//STRIP001      memmove( &pItems[nIndex1], &pItems[nIndex1 + 1], (nCount - nIndex1) * sizeof(ColEntry) );
-//STRIP001      pItems[nCount].nRow = 0;
-//STRIP001      pItems[nCount].pCell = NULL;
-//STRIP001      // Referenzen aktualisieren
-//STRIP001      short dx = (short)rCol.nCol - (short)nCol;
-//STRIP001      if (pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001      {
-//STRIP001          ScRange aRange( ScAddress( rCol.nCol, 0, nTab ),
-//STRIP001                          ScAddress( rCol.nCol, MAXROW, nTab ) );
-//STRIP001          pCell->aPos.SetCol( rCol.nCol );
-//STRIP001          pCell->UpdateReference(URM_MOVE, aRange, dx, 0, 0);
-//STRIP001      }
-//STRIP001      // Einfuegen
-//STRIP001      rCol.Insert(nRow, pCell);
-//STRIP001  }
-//STRIP001  else if (bFound2)
-//STRIP001  {
-//STRIP001      ScFormulaCell* pCell = (ScFormulaCell*) rCol.pItems[nIndex2].pCell;
-//STRIP001      // Loeschen
-//STRIP001      --(rCol.nCount);
-//STRIP001      memmove( &rCol.pItems[nIndex2], &rCol.pItems[nIndex2 + 1], (rCol.nCount - nIndex2) * sizeof(ColEntry) );
-//STRIP001      rCol.pItems[rCol.nCount].nRow = 0;
-//STRIP001      rCol.pItems[rCol.nCount].pCell = NULL;
-//STRIP001      // Referenzen aktualisieren
-//STRIP001      short dx = (short)rCol.nCol - (short)nCol;
-//STRIP001      if (pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001      {
-//STRIP001          ScRange aRange( ScAddress( nCol, 0, nTab ),
-//STRIP001                          ScAddress( nCol, MAXROW, nTab ) );
-//STRIP001          pCell->aPos.SetCol( nCol );
-//STRIP001          pCell->UpdateReference(URM_MOVE, aRange, dx, 0, 0);
-//STRIP001      }
-//STRIP001      // Einfuegen
-//STRIP001      Insert(nRow, pCell);
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ BOOL ScColumn::TestInsertCol( USHORT nStartRow, USHORT nEndRow) const
@@ -1286,40 +805,6 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 /*N*/ }
 
 
-//STRIP001 void ScColumn::CopyToClip(USHORT nRow1, USHORT nRow2, ScColumn& rColumn, BOOL bKeepScenarioFlags)
-//STRIP001 {
-//STRIP001  pAttrArray->CopyArea( nRow1, nRow2, 0, *rColumn.pAttrArray,
-//STRIP001                          bKeepScenarioFlags ? (SC_MF_ALL & ~SC_MF_SCENARIO) : SC_MF_ALL );
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  USHORT nBlockCount = 0;
-//STRIP001  USHORT nStartIndex, nEndIndex;
-//STRIP001  for (i = 0; i < nCount; i++)
-//STRIP001      if ((pItems[i].nRow >= nRow1) && (pItems[i].nRow <= nRow2))
-//STRIP001      {
-//STRIP001          if (!nBlockCount)
-//STRIP001              nStartIndex = i;
-//STRIP001          nEndIndex = i;
-//STRIP001          ++nBlockCount;
-//STRIP001
-//STRIP001          //  im Clipboard muessen interpretierte Zellen stehen, um andere Formate
-//STRIP001          //  (Text, Grafik...) erzueugen zu koennen
-//STRIP001
-//STRIP001          if ( pItems[i].pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001          {
-//STRIP001              ScFormulaCell* pFCell = (ScFormulaCell*) pItems[i].pCell;
-//STRIP001              if (pFCell->GetDirty() && pDocument->GetAutoCalc())
-//STRIP001                  pFCell->Interpret();
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001  if (nBlockCount)
-//STRIP001  {
-//STRIP001      rColumn.Resize( rColumn.GetCellCount() + nBlockCount );
-//STRIP001      for (i = nStartIndex; i <= nEndIndex; i++)
-//STRIP001          rColumn.Append(pItems[i].nRow, pItems[i].pCell->Clone(rColumn.pDocument));
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void ScColumn::CopyToColumn(USHORT nRow1, USHORT nRow2, USHORT nFlags, BOOL bMarked,
@@ -1408,118 +893,14 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 /*N*/ }
 
 
-//STRIP001 void ScColumn::UndoToColumn(USHORT nRow1, USHORT nRow2, USHORT nFlags, BOOL bMarked,
-//STRIP001                              ScColumn& rColumn, const ScMarkData* pMarkData )
-//STRIP001 {
-//STRIP001  if (nRow1 > 0)
-//STRIP001      CopyToColumn( 0, nRow1-1, IDF_FORMULA, FALSE, rColumn );
-//STRIP001
-//STRIP001  CopyToColumn( nRow1, nRow2, nFlags, bMarked, rColumn, pMarkData );      //! bMarked ????
-//STRIP001
-//STRIP001  if (nRow2 < MAXROW)
-//STRIP001      CopyToColumn( nRow2+1, MAXROW, IDF_FORMULA, FALSE, rColumn );
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::CopyUpdated( const ScColumn& rPosCol, ScColumn& rDestCol ) const
-//STRIP001 {
-//STRIP001  ScDocument* pDestDoc = rDestCol.pDocument;
-//STRIP001
-//STRIP001  USHORT nPosCount = rPosCol.nCount;
-//STRIP001  for (USHORT nPosIndex = 0; nPosIndex < nPosCount; nPosIndex++)
-//STRIP001  {
-//STRIP001      USHORT nRow = rPosCol.pItems[nPosIndex].nRow;
-//STRIP001      USHORT nThisIndex;
-//STRIP001      if ( Search( nRow, nThisIndex ) )
-//STRIP001      {
-//STRIP001          ScBaseCell* pNew = pItems[nThisIndex].pCell->Clone(pDestDoc);
-//STRIP001          rDestCol.Insert( nRow, pNew );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //  Dummy:
-//STRIP001  //  CopyToColumn( 0,MAXROW, IDF_FORMULA, FALSE, rDestCol, NULL, FALSE );
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::CopyScenarioFrom( const ScColumn& rSrcCol )
-//STRIP001 {
-//STRIP001  //  Dies ist die Szenario-Tabelle, die Daten werden hineinkopiert
-//STRIP001
-//STRIP001  ScAttrIterator aAttrIter( pAttrArray, 0, MAXROW );
-//STRIP001  USHORT nStart, nEnd;
-//STRIP001  const ScPatternAttr* pPattern = aAttrIter.Next( nStart, nEnd );
-//STRIP001  while (pPattern)
-//STRIP001  {
-//STRIP001      if ( ((ScMergeFlagAttr&)pPattern->GetItem( ATTR_MERGE_FLAG )).IsScenario() )
-//STRIP001      {
-//STRIP001          DeleteArea( nStart, nEnd, IDF_CONTENTS );
-//STRIP001          ((ScColumn&)rSrcCol).
-//STRIP001              CopyToColumn( nStart, nEnd, IDF_CONTENTS, FALSE, *this );
-//STRIP001
-//STRIP001          //  UpdateUsed nicht noetig, schon in TestCopyScenario passiert
-//STRIP001
-//STRIP001          short nDz = ((short)nTab) - (short)rSrcCol.nTab;
-//STRIP001          UpdateReference(URM_COPY, nCol, nStart, nTab,
-//STRIP001                                    nCol, nEnd,   nTab,
-//STRIP001                                    0, 0, nDz, NULL);
-//STRIP001          UpdateCompile();
-//STRIP001      }
-//STRIP001
-//STRIP001      //! CopyToColumn "const" machen !!!
-//STRIP001
-//STRIP001      pPattern = aAttrIter.Next( nStart, nEnd );
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::CopyScenarioTo( ScColumn& rDestCol ) const
-//STRIP001 {
-//STRIP001  //  Dies ist die Szenario-Tabelle, die Daten werden in die andere kopiert
-//STRIP001
-//STRIP001  ScAttrIterator aAttrIter( pAttrArray, 0, MAXROW );
-//STRIP001  USHORT nStart, nEnd;
-//STRIP001  const ScPatternAttr* pPattern = aAttrIter.Next( nStart, nEnd );
-//STRIP001  while (pPattern)
-//STRIP001  {
-//STRIP001      if ( ((ScMergeFlagAttr&)pPattern->GetItem( ATTR_MERGE_FLAG )).IsScenario() )
-//STRIP001      {
-//STRIP001          rDestCol.DeleteArea( nStart, nEnd, IDF_CONTENTS );
-//STRIP001          ((ScColumn*)this)->
-//STRIP001              CopyToColumn( nStart, nEnd, IDF_CONTENTS, FALSE, rDestCol );
-//STRIP001
-//STRIP001          //  UpdateUsed nicht noetig, schon in TestCopyScenario passiert
-//STRIP001
-//STRIP001          short nDz = ((short)rDestCol.nTab) - (short)nTab;
-//STRIP001          rDestCol.UpdateReference(URM_COPY, rDestCol.nCol, nStart, rDestCol.nTab,
-//STRIP001                                             rDestCol.nCol, nEnd,   rDestCol.nTab,
-//STRIP001                                             0, 0, nDz, NULL);
-//STRIP001          rDestCol.UpdateCompile();
-//STRIP001      }
-//STRIP001
-//STRIP001      //! CopyToColumn "const" machen !!!
-//STRIP001
-//STRIP001      pPattern = aAttrIter.Next( nStart, nEnd );
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 BOOL ScColumn::TestCopyScenarioTo( const ScColumn& rDestCol ) const
-//STRIP001 {
-//STRIP001  BOOL bOk = TRUE;
-//STRIP001  ScAttrIterator aAttrIter( pAttrArray, 0, MAXROW );
-//STRIP001  USHORT nStart, nEnd;
-//STRIP001  const ScPatternAttr* pPattern = aAttrIter.Next( nStart, nEnd );
-//STRIP001  while (pPattern && bOk)
-//STRIP001  {
-//STRIP001      if ( ((ScMergeFlagAttr&)pPattern->GetItem( ATTR_MERGE_FLAG )).IsScenario() )
-//STRIP001          if ( rDestCol.pAttrArray->HasAttrib( nStart, nEnd, HASATTR_PROTECTED ) )
-//STRIP001              bOk = FALSE;
-//STRIP001
-//STRIP001      pPattern = aAttrIter.Next( nStart, nEnd );
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
 
 /*N*/ void ScColumn::MarkScenarioIn( ScMarkData& rDestMark ) const
@@ -1644,12 +1025,6 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 /*N*/       if ( eUpdateRefMode == URM_COPY && nRow1 == nRow2 )
 /*N*/       {   // z.B. eine einzelne Zelle aus dem Clipboard eingefuegt
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
-//STRIP001 /*?*/            if ( Search( nRow1, nIndex ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ScFormulaCell* pCell = (ScFormulaCell*) pItems[nIndex].pCell;
-//STRIP001 /*?*/                if( pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001 /*?*/                    pCell->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1670,8 +1045,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
 /*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
-//STRIP001 /*?*/                         if ( nRow != pItems[i].nRow )
-//STRIP001 /*?*/                             Search( nRow, i );  // Listener removed/inserted?
 /*?*/                     }
 /*?*/                 }
 /*?*/             }
@@ -1684,9 +1057,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
 /*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nRow = pItems[i].nRow;
-//STRIP001 /*?*/                         ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
-//STRIP001 /*?*/                         if ( nRow != pItems[i].nRow )
-//STRIP001 /*?*/                             Search( nRow, i );  // Listener removed/inserted?
 /*?*/                     }
 /*?*/                 }
 /*?*/             }
@@ -1695,39 +1065,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*N*/ }
 
 
-//STRIP001 void ScColumn::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest,
-//STRIP001                                  ScDocument* pUndoDoc )
-//STRIP001 {
-//STRIP001  if (pItems)
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[i].pCell;
-//STRIP001          if (pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001          {
-//STRIP001              USHORT nRow = pItems[i].nRow;
-//STRIP001              ((ScFormulaCell*)pCell)->UpdateTranspose( rSource, rDest, pUndoDoc );
-//STRIP001              if ( nRow != pItems[i].nRow )
-//STRIP001                  Search( nRow, i );              // Listener geloescht/eingefuegt?
-//STRIP001          }
-//STRIP001      }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY )
-//STRIP001 {
-//STRIP001  if (pItems)
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[i].pCell;
-//STRIP001          if (pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001          {
-//STRIP001              USHORT nRow = pItems[i].nRow;
-//STRIP001              ((ScFormulaCell*)pCell)->UpdateGrow( rArea, nGrowX, nGrowY );
-//STRIP001              if ( nRow != pItems[i].nRow )
-//STRIP001                  Search( nRow, i );              // Listener geloescht/eingefuegt?
-//STRIP001          }
-//STRIP001      }
-//STRIP001 }
 
 
 /*N*/ void ScColumn::UpdateInsertTab( USHORT nTable)
@@ -1755,21 +1094,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*N*/ }
 
 
-//STRIP001 void ScColumn::UpdateInsertTabAbs(USHORT nTable)
-//STRIP001 {
-//STRIP001  if (pItems)
-//STRIP001      for (USHORT i = 0; i < nCount; i++)
-//STRIP001      {
-//STRIP001          ScFormulaCell* pCell = (ScFormulaCell*) pItems[i].pCell;
-//STRIP001          if( pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001          {
-//STRIP001              USHORT nRow = pItems[i].nRow;
-//STRIP001              pCell->UpdateInsertTabAbs(nTable);
-//STRIP001              if ( nRow != pItems[i].nRow )
-//STRIP001                  Search( nRow, i );      // Listener geloescht/eingefuegt?
-//STRIP001          }
-//STRIP001      }
-//STRIP001 }
 
 
 /*N*/  void ScColumn::UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScColumn* pRefUndo )
@@ -1867,24 +1191,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*N*/ }
 
 
-//STRIP001 void ScColumn::ReplaceRangeNamesInUse(USHORT nRow1, USHORT nRow2,
-//STRIP001                                   const ScIndexMap& rMap )
-//STRIP001 {
-//STRIP001  BOOL bInUse = FALSE;
-//STRIP001  if (pItems)
-//STRIP001      for (USHORT i = 0; i < nCount; i++)
-//STRIP001      {
-//STRIP001          if ((pItems[i].nRow >= nRow1) &&
-//STRIP001              (pItems[i].nRow <= nRow2) &&
-//STRIP001              (pItems[i].pCell->GetCellType() == CELLTYPE_FORMULA))
-//STRIP001          {
-//STRIP001              USHORT nRow = pItems[i].nRow;
-//STRIP001              ((ScFormulaCell*)pItems[i].pCell)->ReplaceRangeNamesInUse( rMap );
-//STRIP001              if ( nRow != pItems[i].nRow )
-//STRIP001                  Search( nRow, i );      // Listener geloescht/eingefuegt?
-//STRIP001          }
-//STRIP001      }
-//STRIP001 }
 
 
 /*N*/ void ScColumn::SetDirtyVar()
@@ -1917,32 +1223,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*N*/ }
 
 
-//STRIP001 void ScColumn::SetDirty( const ScRange& rRange )
-//STRIP001 {    // broadcastet alles innerhalb eines Range, mit FormulaTrack
-//STRIP001  if ( !pItems || !nCount )
-//STRIP001      return ;
-//STRIP001  BOOL bOldAutoCalc = pDocument->GetAutoCalc();
-//STRIP001  pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
-//STRIP001  USHORT nRow2 = rRange.aEnd.Row();
-//STRIP001  ScAddress aPos( nCol, 0, nTab );
-//STRIP001     ScHint aHint( SC_HINT_DATACHANGED, aPos, NULL );
-//STRIP001  USHORT nRow, nIndex;
-//STRIP001  Search( rRange.aStart.Row(), nIndex );
-//STRIP001  while ( nIndex < nCount && (nRow = pItems[nIndex].nRow) <= nRow2 )
-//STRIP001  {
-//STRIP001      ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001      if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001          ((ScFormulaCell*)pCell)->SetDirty();
-//STRIP001      else
-//STRIP001      {
-//STRIP001          aHint.GetAddress().SetRow( nRow );
-//STRIP001             aHint.SetCell( pCell );
-//STRIP001          pDocument->Broadcast( aHint );
-//STRIP001      }
-//STRIP001      nIndex++;
-//STRIP001  }
-//STRIP001  pDocument->SetAutoCalc( bOldAutoCalc );
-//STRIP001 }
 
 
 /*N*/  void ScColumn::SetTableOpDirty( const ScRange& rRange )
@@ -2120,36 +1400,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*N*/ }
 
 
-//STRIP001 short ScColumn::SearchStyle( short nRow, const ScStyleSheet* pSearchStyle,
-//STRIP001                              BOOL bUp, BOOL bInSelection, const ScMarkData& rMark )
-//STRIP001 {
-//STRIP001  if (bInSelection)
-//STRIP001  {
-//STRIP001      if (rMark.IsMultiMarked())
-//STRIP001          return pAttrArray->SearchStyle( nRow, pSearchStyle, bUp,
-//STRIP001                                  (ScMarkArray*) rMark.GetArray()+nCol );     //! const
-//STRIP001      else
-//STRIP001          return -1;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return pAttrArray->SearchStyle( nRow, pSearchStyle, bUp, NULL );
-//STRIP001 }
 
 
-//STRIP001 BOOL ScColumn::SearchStyleRange( short& rRow, short& rEndRow, const ScStyleSheet* pSearchStyle,
-//STRIP001                                  BOOL bUp, BOOL bInSelection, const ScMarkData& rMark )
-//STRIP001 {
-//STRIP001  if (bInSelection)
-//STRIP001  {
-//STRIP001      if (rMark.IsMultiMarked())
-//STRIP001          return pAttrArray->SearchStyleRange( rRow, rEndRow, pSearchStyle, bUp,
-//STRIP001                                  (ScMarkArray*) rMark.GetArray()+nCol );     //! const
-//STRIP001      else
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return pAttrArray->SearchStyleRange( rRow, rEndRow, pSearchStyle, bUp, NULL );
-//STRIP001 }
 
 
 }
