@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrref.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:38:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:17:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,18 +36,12 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
 #endif
 #ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -78,7 +72,6 @@ namespace binfilter {
 int SwFmtRefMark::operator==( const SfxPoolItem& rAttr ) const
 {
     {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return aRefName == ((SwFmtRefMark&)rAttr).aRefName;
 }
 
 /*N*/ SfxPoolItem* SwFmtRefMark::Clone( SfxItemPool* ) const
