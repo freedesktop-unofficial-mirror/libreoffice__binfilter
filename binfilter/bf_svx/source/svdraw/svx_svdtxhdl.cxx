@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdtxhdl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:08:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:47:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,67 +35,33 @@
 
 #include "svdtxhdl.hxx"
 #include <limits.h>
-// auto strip #include "svditext.hxx"
 #include "svdmodel.hxx"
-// auto strip #include "svdpage.hxx"
-// auto strip #include "svdogrp.hxx"
 #include "svdotext.hxx"
-// auto strip #include "svdxout.hxx"
 #include "svdoutl.hxx"
 
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include "outliner.hxx"
-// auto strip #endif
 
 #ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
 #endif
 
-// auto strip #ifndef _SVX_SVXFONT_HXX //autogen
-// auto strip #include "svxfont.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNCLIT_HXX //autogen
-// auto strip #include "xlnclit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNWTIT_HXX //autogen
-// auto strip #include "xlnwtit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
-// auto strip #include "xflclit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SV_METRIC_HXX //autogen
-// auto strip #include <vcl/metric.hxx>
-// auto strip #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // #101499#
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_I18N_XBREAKITERATOR_HPP_
-// auto strip #include <com/sun/star/i18n/XBreakIterator.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 #endif
 
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include "unolingu.hxx"
-// auto strip #endif
 
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
@@ -124,40 +90,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   aVDev.SetMapMode(aMap);
 /*N*/ }
 
-//STRIP001 void ImpTextPortionHandler::ConvertToPathObj(SdrObjGroup& rGroup, FASTBOOL bPoly)
-//STRIP001 {
-//STRIP001  bToPoly=bPoly;
-//STRIP001  pGroup=&rGroup;
-//STRIP001
-//STRIP001  Rectangle aAnchorRect;
-//STRIP001  Rectangle aTextRect;
-//STRIP001  SdrFitToSizeType eFit=rTextObj.GetFitToSize();
-//STRIP001  FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
-//STRIP001  // Bei TakeTextRect wird u.a. auch der Text in
-//STRIP001  // den Outliner gesteckt
-//STRIP001  rTextObj.TakeTextRect(rOutliner,aTextRect,FALSE,&aAnchorRect);
-//STRIP001  aFormTextBoundRect=aTextRect; // Missbrauch von FormTextBoundRect
-//STRIP001  if (bFitToSize) aFormTextBoundRect=aAnchorRect;
-//STRIP001  rOutliner.SetDrawPortionHdl(LINK(this,ImpTextPortionHandler,ConvertHdl));
-//STRIP001  rOutliner.StripPortions();
-//STRIP001  rOutliner.SetDrawPortionHdl(Link());
-//STRIP001  rOutliner.Clear();
-//STRIP001
-//STRIP001  if(bFitToSize)
-//STRIP001  {
-//STRIP001      Fraction nX(aAnchorRect.Right()-aAnchorRect.Left(),aTextRect.Right()-aTextRect.Left());
-//STRIP001      Fraction nY(aAnchorRect.Bottom()-aAnchorRect.Top(),aTextRect.Bottom()-aTextRect.Top());
-//STRIP001
-//STRIP001      // #95395# scale from top-right when vertical text
-//STRIP001      if(rOutliner.IsVertical())
-//STRIP001          pGroup->NbcResize(aAnchorRect.TopRight(),nX,nY);
-//STRIP001      else
-//STRIP001          pGroup->NbcResize(aAnchorRect.TopLeft(),nX,nY);
-//STRIP001  }
-//STRIP001  if (rTextObj.aGeo.nDrehWink!=0) { // #35825# Rotieren erst nach Resize (wg. FitToSize)
-//STRIP001      pGroup->NbcRotate(aFormTextBoundRect.TopLeft(),rTextObj.aGeo.nDrehWink,rTextObj.aGeo.nSin,rTextObj.aGeo.nCos);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void ImpTextPortionHandler::DrawTextToPath(ExtOutputDevice& rXOut, FASTBOOL bDrawEffect)
 /*N*/ {
@@ -445,224 +377,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 IMPL_LINK(ImpTextPortionHandler,ConvertHdl,DrawPortionInfo*,pInfo)
-//STRIP001 {
-//STRIP001  // aFormTextBoundRect enthaelt den Ausgabebereich des Textobjekts
-//STRIP001  BOOL bIsVertical(rOutliner.IsVertical());
-//STRIP001  Point aPos(aFormTextBoundRect.TopLeft() + pInfo->rStartPos);
-//STRIP001  Color aColor(pInfo->rFont.GetColor());
-//STRIP001
-//STRIP001  if(bIsVertical)
-//STRIP001      aPos = aFormTextBoundRect.TopRight() + pInfo->rStartPos;
-//STRIP001
-//STRIP001  // #100318# new for XOutGetCharOutline
-//STRIP001  // xub_StrLen nCnt = pInfo->nTextLen;
-//STRIP001
-//STRIP001  Point aStartPos(aPos);
-//STRIP001  SfxItemSet aAttrSet((SfxItemPool&)(*rTextObj.GetItemPool()));
-//STRIP001  long nHochTief(pInfo->rFont.GetEscapement());
-//STRIP001  FontMetric aFontMetric(aVDev.GetFontMetric());
-//STRIP001  sal_Int32 nLineLen(0L);
-//STRIP001
-//STRIP001  if(!nHochTief)
-//STRIP001  {
-//STRIP001      // Normalstellung
-//STRIP001      aVDev.SetFont(pInfo->rFont);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Fuer Hoch-Tiefstellung den Font verkleinern
-//STRIP001      long nPercent(pInfo->rFont.GetPropr());
-//STRIP001
-//STRIP001      if(nPercent != 100)
-//STRIP001      {
-//STRIP001          Font aFont(pInfo->rFont);
-//STRIP001          Size aSize(aFont.GetSize());
-//STRIP001
-//STRIP001          aSize.Height() = (aSize.Height() * nPercent +50) / 100;
-//STRIP001          aSize.Width() = (aSize.Width() * nPercent +50) / 100;
-//STRIP001          aFont.SetSize(aSize);
-//STRIP001          aVDev.SetFont(aFont);
-//STRIP001      }
-//STRIP001
-//STRIP001      sal_Bool bNeg(nHochTief < 0);
-//STRIP001
-//STRIP001      if(bNeg)
-//STRIP001          nHochTief = -nHochTief;
-//STRIP001
-//STRIP001      nHochTief = (nHochTief * pInfo->rFont.GetSize().Height() +50) /100;
-//STRIP001
-//STRIP001      if(bNeg)
-//STRIP001          nHochTief = -nHochTief;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(bIsVertical)
-//STRIP001      // #83068#
-//STRIP001      aPos.X() += aFontMetric.GetAscent() + nHochTief;
-//STRIP001  else
-//STRIP001      aPos.Y() -= aFontMetric.GetAscent() + nHochTief;
-//STRIP001
-//STRIP001  if (pInfo->rFont.IsOutline())
-//STRIP001  {
-//STRIP001      aAttrSet.Put(XLineColorItem(String(),aColor));
-//STRIP001      aAttrSet.Put(XLineStyleItem(XLINE_SOLID));
-//STRIP001      aAttrSet.Put(XLineWidthItem(0));
-//STRIP001      aAttrSet.Put(XFillStyleItem(XFILL_NONE));
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aAttrSet.Put(XFillColorItem(String(),aColor));
-//STRIP001      aAttrSet.Put(XLineStyleItem(XLINE_NONE));
-//STRIP001      aAttrSet.Put(XFillStyleItem(XFILL_SOLID));
-//STRIP001  }
-//STRIP001
-//STRIP001  // #100318# convert in a single step
-//STRIP001  // #101499# Use GetTextOutlines and a PolyPolyVector now
-//STRIP001  PolyPolyVector aPolyPolyVector;
-//STRIP001
-//STRIP001  if(aVDev.GetTextOutlines(aPolyPolyVector, pInfo->rText, pInfo->nTextStart, pInfo->nTextStart, pInfo->nTextLen)
-//STRIP001      && aPolyPolyVector.size())
-//STRIP001  {
-//STRIP001      for(sal_uInt32 a(0); a < aPolyPolyVector.size(); a++)
-//STRIP001      {
-//STRIP001          PolyPolygon aPolyPoly(aPolyPolyVector[a]);
-//STRIP001
-//STRIP001          if(aPolyPoly.Count() > 0 && aPolyPoly[0].GetSize() > 0)
-//STRIP001          {
-//STRIP001
-//STRIP001              XPolyPolygon aXPP(aPolyPoly);
-//STRIP001
-//STRIP001              // rotate 270 degree if vertical since result is unrotated
-//STRIP001              if(bIsVertical)
-//STRIP001                  aXPP.Rotate(Point(), 2700);
-//STRIP001
-//STRIP001              // result is baseline oriented, thus move one line height, too
-//STRIP001              if(bIsVertical)
-//STRIP001                  aXPP.Move(-aFontMetric.GetAscent(), 0);
-//STRIP001              else
-//STRIP001                  aXPP.Move(0, aFontMetric.GetAscent());
-//STRIP001
-//STRIP001              // move to output coordinates
-//STRIP001              aXPP.Move(aPos.X(), aPos.Y());
-//STRIP001              SdrObject* pObj = rTextObj.ImpConvertMakeObj(aXPP, TRUE, !bToPoly, TRUE);
-//STRIP001
-//STRIP001              pObj->SetItemSet(aAttrSet);
-//STRIP001              pGroup->GetSubList()->InsertObject(pObj);
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      nLineLen = pInfo->pDXArray[pInfo->nTextLen - 1];
-//STRIP001  }
-//STRIP001
-//STRIP001  FontUnderline eUndl=pInfo->rFont.GetUnderline();
-//STRIP001  FontStrikeout eStrk=pInfo->rFont.GetStrikeout();
-//STRIP001  if (eUndl!=UNDERLINE_NONE) {
-//STRIP001      FASTBOOL bDouble=eUndl==UNDERLINE_DOUBLE;
-//STRIP001      long nDescent=aFontMetric.GetDescent();
-//STRIP001      long nAscend=aFontMetric.GetAscent();
-//STRIP001      long nDick=nDescent / (bDouble ? 5 : 3);
-//STRIP001      long nDist=(nDescent-nDick*2)/3; // Linienabstand bei doppelt
-//STRIP001
-//STRIP001      XPolyPolygon aXPP;
-//STRIP001      if (eUndl!=UNDERLINE_DOTTED) {
-//STRIP001          Point aPoint(0,0);
-//STRIP001          XPolygon aXP(Rectangle(aPoint,bIsVertical ? Point(nDick,nLineLen) : Point(nLineLen,nDick)));
-//STRIP001          if(bIsVertical)
-//STRIP001              aXP.Move(nAscend-nDist,0);
-//STRIP001          aXPP.Insert(aXP);
-//STRIP001          if (bDouble) {
-//STRIP001              if(bIsVertical)
-//STRIP001                  aXP.Move(-(nDick+nDist),0);
-//STRIP001              else
-//STRIP001                  aXP.Move(0,nDick+nDist);
-//STRIP001              aXPP.Insert(aXP);
-//STRIP001          }
-//STRIP001      } else {
-//STRIP001          Point aPoint(0,0);
-//STRIP001          XPolygon aXP(Rectangle(aPoint,Point(nDick,nDick)));
-//STRIP001          long n=0;
-//STRIP001          while (n<=nLineLen) {
-//STRIP001              if (n+nDick>nLineLen) { // ler letzte Dot ggf. etwas schmaler
-//STRIP001                  aXP=XPolygon(Rectangle(
-//STRIP001                      bIsVertical ? Point(0,n) : Point(n,0),
-//STRIP001                      bIsVertical ? Point(nDick,nLineLen) : Point(nLineLen,nDick)));
-//STRIP001              }
-//STRIP001              aXPP.Insert(aXP);
-//STRIP001              if(bIsVertical)
-//STRIP001                  aXP.Move(0,2*nDick);
-//STRIP001              else
-//STRIP001                  aXP.Move(2*nDick,0);
-//STRIP001              n+=2*nDick;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      long y=nDescent-nDick; // y-Position der Striche zur Baseline bestimmen
-//STRIP001      if (bDouble) y-=nDick+nDist;
-//STRIP001      y=(y+1)/2;
-//STRIP001
-//STRIP001      if(bIsVertical)
-//STRIP001          aXPP.Move(aStartPos.X()-(y-nHochTief),aStartPos.Y());
-//STRIP001      else
-//STRIP001          aXPP.Move(aStartPos.X(),aStartPos.Y()+y-nHochTief);
-//STRIP001      // aFormTextBoundRect enthaelt den Ausgabebereich des Textobjekts
-//STRIP001      // #35825# Rotieren erst nach Resize (wg. FitToSize)
-//STRIP001      //RotateXPoly(aXPP,aFormTextBoundRect.TopLeft(),rTextObj.aGeo.nSin,rTextObj.aGeo.nCos);
-//STRIP001      SdrObject* pObj=rTextObj.ImpConvertMakeObj(aXPP,TRUE,!bToPoly, TRUE);
-//STRIP001      pObj->SetItemSet(aAttrSet);
-//STRIP001      pGroup->GetSubList()->InsertObject(pObj);
-//STRIP001  }
-//STRIP001  if (eStrk!=STRIKEOUT_NONE) {
-//STRIP001      FASTBOOL bDouble=eStrk==STRIKEOUT_DOUBLE;
-//STRIP001      long nDescent=aFontMetric.GetDescent();
-//STRIP001      long nAscend=aFontMetric.GetAscent();
-//STRIP001      long nDick=nDescent / (bDouble ? 5 : 3);
-//STRIP001      long nDist=(nDescent-nDick*2)/3; // Linienabstand bei doppelt
-//STRIP001
-//STRIP001      XPolyPolygon aXPP;
-//STRIP001      Point aPoint(0,0);
-//STRIP001      XPolygon aXP(Rectangle(aPoint,bIsVertical ? Point(nDick,nLineLen) : Point(nLineLen,nDick)));
-//STRIP001      aXPP.Insert(aXP);
-//STRIP001      if (bDouble) {
-//STRIP001          if(bIsVertical)
-//STRIP001              aXP.Move(-(nDick+nDist),0);
-//STRIP001          else
-//STRIP001              aXP.Move(0,nDick+nDist);
-//STRIP001          aXPP.Insert(aXP);
-//STRIP001      }
-//STRIP001
-//STRIP001      // y-Position der Striche zur Baseline bestimmen
-//STRIP001      long y=-(long)(aFontMetric.GetAscent()-aFontMetric.GetIntLeading()+1)/3;
-//STRIP001      if (!bDouble) y-=(nDick+1)/2;
-//STRIP001      else y-=nDick+(nDist+1)/2;
-//STRIP001
-//STRIP001      if(bIsVertical)
-//STRIP001          aXPP.Move(aStartPos.X()-(y-nHochTief),aStartPos.Y());
-//STRIP001      else
-//STRIP001          aXPP.Move(aStartPos.X(),aStartPos.Y() +y-nHochTief);
-//STRIP001      // aFormTextBoundRect enthaelt den Ausgabebereich des Textobjekts
-//STRIP001      // #35825# Rotieren erst nach Resize (wg. FitToSize)
-//STRIP001      //RotateXPoly(aXPP,aFormTextBoundRect.TopLeft(),rTextObj.aGeo.nSin,rTextObj.aGeo.nCos);
-//STRIP001      SdrObject* pObj=rTextObj.ImpConvertMakeObj(aXPP,TRUE,!bToPoly, TRUE);
-//STRIP001      pObj->SetItemSet(aAttrSet);
-//STRIP001      pGroup->GetSubList()->InsertObject(pObj);
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 void ImpTextPortionHandler::DrawFitText(ExtOutputDevice& rXOut, const Point& rPos, const Fraction& rXFact)
-//STRIP001 {
-//STRIP001  pXOut=&rXOut;
-//STRIP001  aPos=rPos;
-//STRIP001  aXFact=rXFact;
-//STRIP001  rOutliner.SetDrawPortionHdl(LINK(this,ImpTextPortionHandler,FitTextDrawHdl));
-//STRIP001  rOutliner.StripPortions();
-//STRIP001  rOutliner.SetDrawPortionHdl(Link());
-//STRIP001 }
 
-//STRIP001 IMPL_LINK(ImpTextPortionHandler,FitTextDrawHdl,DrawPortionInfo*,pInfo)
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 //IMPL_LINK(ImpTextPortionHandler, FormTextWidthHdl, DrawPortionInfo*, pInfo)
 //{
