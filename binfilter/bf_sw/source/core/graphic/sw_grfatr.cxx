@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_grfatr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:18:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:40:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -220,9 +220,6 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/   : SvxGrfCrop( RES_GRFATR_CROPGRF )
 /*N*/ {}
 
-//STRIP001 SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
-//STRIP001  : SvxGrfCrop( nL, nR, nT, nB, RES_GRFATR_CROPGRF )
-//STRIP001 {}
 
 /*N*/ SfxPoolItem* SwCropGrf::Clone( SfxItemPool* ) const
 /*N*/ {
@@ -379,14 +376,6 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/   return new SwDrawModeGrf( *this );
 /*N*/ }
 
-//STRIP001 USHORT SwDrawModeGrf::GetValueCount() const
-//STRIP001 {
-//STRIP001  // GRAPHICDRAWMODE_STANDARD = 0,
-//STRIP001  // GRAPHICDRAWMODE_GREYS = 1,
-//STRIP001  // GRAPHICDRAWMODE_MONO = 2,
-//STRIP001  // GRAPHICDRAWMODE_WATERMARK = 3
-//STRIP001  return GRAPHICDRAWMODE_WATERMARK + 1;
-//STRIP001 }
 
 /*N*/ BOOL SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                               BYTE nMemberId ) const
