@@ -4,9 +4,9 @@
  *
  *  $RCSfile: strings.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:54:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:05:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,13 +86,8 @@ inline ConstAsciiString::operator const ::rtl::OUString () const
 #define IMPLEMENT_CONSTASCII_USTRING(name, asciivalue)  \
     ::binfilter::frm::ConstAsciiString name(asciivalue, sizeof(asciivalue) - 1)
 
-//#define DECLARE_CONSTASCII_USTRING(name)                  extern ::rtl::OUString name;
-//#define IMPLEMENT_CONSTASCII_USTRING(name, asciivalue)    ::rtl::OUString name = ::rtl::OUString::createFromAscii(asciivalue)
-
-//.........................................................................
 }   // namespace frm
 //.........................................................................
 
 }//end of namespace binfilter
-#endif _FRM_STRINGS_HXX_
-
+#endif // _FRM_STRINGS_HXX_
