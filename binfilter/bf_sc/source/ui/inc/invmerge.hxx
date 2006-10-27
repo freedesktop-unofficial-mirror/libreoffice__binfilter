@@ -4,9 +4,9 @@
  *
  *  $RCSfile: invmerge.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:57:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:15:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,6 @@ public:
                 ScInvertMerger( Window* pWindow );
                 ~ScInvertMerger();
 
-//STRIP001  void        AddRect( const Rectangle& rRect );
     void        Flush();
 };
 

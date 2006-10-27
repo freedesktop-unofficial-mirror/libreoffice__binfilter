@@ -4,9 +4,9 @@
  *
  *  $RCSfile: inputwin.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:55:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:14:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,43 +73,22 @@ public:
                     ScTextWnd( Window* pParent );
     virtual         ~ScTextWnd();
 
-//STRIP001  void            SetTextString( const String& rString );
-//STRIP001  const String&   GetTextString() const;
 
-//STRIP001  BOOL            IsActive();
-//STRIP001  EditView*       GetEditView();
 
                         // fuer FunktionsAutopiloten
-//STRIP001  void            MakeDialogEditView();
 
-//STRIP001  void            StartEditEngine();
-//STRIP001  void            StopEditEngine( BOOL bAll );
 
-//STRIP001  virtual void    DataChanged( const DataChangedEvent& rDCEvt );
 
-//STRIP001  void            SetFormulaMode( BOOL bSet );
 
-//STRIP001  virtual ::com::sun::star::uno::Reference< ::com::sun::star::accessibility::XAccessible > CreateAccessible();
 
-//STRIP001     void            SetAccessibleTextData(ScAccessibleEditLineTextData* pTextData) {pAccTextData = pTextData;}
 
     DECL_LINK( NotifyHdl, EENotify* );
 
 protected:
-//STRIP001  virtual void    Paint( const Rectangle& rRec );
     virtual void    Resize();
 
-//STRIP001  virtual void    MouseMove( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseButtonDown( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseButtonUp( const MouseEvent& rMEvt );
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
-//STRIP001  virtual void    KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual void    GetFocus();
-//STRIP001  virtual void    LoseFocus();
 
-//STRIP001  virtual void    StartDrag( sal_Int8 nAction, const Point& rPosPixel );
 
-//STRIP001  virtual String  GetText() const;
 
 private:
     void            ImplInitSettings();
@@ -144,23 +123,16 @@ public:
                     ScPosWnd( Window* pParent );
     virtual         ~ScPosWnd();
 
-//STRIP001  void            SetPos( const String& rPosStr );        // angezeigter Text
-//STRIP001  void            SetFormulaMode( BOOL bSet );
 
 protected:
-//STRIP001  virtual void    Select();
 
-//STRIP001  virtual long    Notify( NotifyEvent& rNEvt );
 
     virtual void    SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                             const SfxHint& rHint, const TypeId& rHintType );
 
 private:
     void            FillRangeNames();
-//STRIP001  void            FillFunctions();
-//STRIP001  void            DoEnter();
 
-//STRIP001  void            ReleaseFocus_Impl();
 };
 
 //========================================================================
@@ -172,46 +144,22 @@ public:
     virtual         ~ScInputWindow();
 
     virtual void    Resize();
-//STRIP001  virtual void    Select();
 
-//STRIP001  void            SetFuncString( const String& rString, BOOL bDoEdit = TRUE );
-//STRIP001  void            SetPosString( const String& rStr );
-//STRIP001  void            SetTextString( const String& rString );
-//STRIP001  const String&   GetTextString();
 
-//STRIP001  void            SetOkCancelMode();
-//STRIP001  void            SetSumAssignMode();
-//STRIP001  void            EnableButtons( BOOL bEnable = TRUE );
 
-//STRIP001  void            SetFormulaMode( BOOL bSet );
 
-//STRIP001  BOOL            IsActive();
-//STRIP001  EditView*       GetEditView();
-//STRIP001  EditView*       ActivateEdit( const String&     rText,
-//STRIP001                                const ESelection& rSel );
 
-//STRIP001  void            TextGrabFocus();
-//STRIP001  void            TextInvalidate();
-//STRIP001  void            SwitchToTextWin();
-//STRIP001
-//STRIP001  void            PosGrabFocus();
 
     // Fuer FunktionsAutopiloten
-//STRIP001  void            MakeDialogEditView();
 
-//STRIP001  void            StopEditEngine( BOOL bAll );
 
-//STRIP001  void            SetInputHandler( ScInputHandler* pNew );
 
     ScInputHandler* GetInputHandler(){ return pInputHdl;}
 
     void            StateChanged( StateChangedType nType );
-//STRIP001  virtual void    DataChanged( const DataChangedEvent& rDCEvt );
 
 
 protected:
-//STRIP001  virtual void    SetText( const String& rString );
-//STRIP001  virtual String  GetText() const;
 
     sal_Bool        UseSubTotal( ScRangeList* pRangeList ) const;
 
