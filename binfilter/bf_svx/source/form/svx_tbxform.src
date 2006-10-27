@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_tbxform.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:50:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:00:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -545,94 +545,6 @@ FloatingWindow RID_SVXTBX_FORM
     Text[ he ] = "β€®Χ¤Χ•Χ Χ§Χ¦Χ™Χ•Χª ΧΧ•Χ¤Χ΅β€¬";
 };
 
-//STRIP001 ModalDialog RID_SVX_DLG_INPUTRECORDNO
-//STRIP001 {
-//STRIP001  OutputSize = TRUE ;
-//STRIP001  SVLook = TRUE ;
-//STRIP001  Size = MAP_APPFONT ( 130 , 45 ) ;
-//STRIP001  Moveable = TRUE ;
-//STRIP001  Closeable = TRUE ;
-//STRIP001  Text = "Datensatznummer" ;
-//STRIP001  Text [ english ] =  "Absolute Record";
-//STRIP001  Text [ english_us ] = "Record Number";
-//STRIP001  Text [ portuguese ] = "Nϊmero do registo";
-//STRIP001  Text [ russian ] = "Νξμε?ηΰοθρθ";
-//STRIP001  Text [ dutch ] = "Recordnummer";
-//STRIP001  Text [ french ] = "Numιro d'enregistrement";
-//STRIP001  Text [ spanish ] = "Nϊmero de registro";
-//STRIP001  Text [ italian ] = "Numero record dati";
-//STRIP001  Text [ danish ] = "Datapostnummer";
-//STRIP001  Text [ swedish ] = "Datapostnummer";
-//STRIP001  Text [ polish ] = "Numer rekordu";
-//STRIP001  Text [ portuguese_brazilian ] = "Nϊmero do Registro";
-//STRIP001  Text [ japanese ] = "γƒ¬γ‚³γƒΌγƒ‰η•ªε·";
-//STRIP001  Text [ chinese_simplified ] = "ζ•°ζ®ζ΅η›®ηΌ–ε·";
-//STRIP001
-//STRIP001  FixedText 1
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 6 , 6 ) ;
-//STRIP001      Size = MAP_APPFONT ( 70 , 12 ) ;
-//STRIP001      Text = "gehe zu Datensatz";
-//STRIP001      Text [ ENGLISH ] = "go to record";
-//STRIP001      Text[ english_us ] = "go to record";
-//STRIP001      Text[ portuguese ] = "ir para registo";
-//STRIP001      Text[ russian ] = "οεπεις??ηΰοθρθ";
-//STRIP001      Text[ greek ] = "μετάβαση στην εγγραφ?";
-//STRIP001      Text[ dutch ] = "ga naar record";
-//STRIP001      Text[ french ] = "Passer ?l'enregistrement";
-//STRIP001      Text[ spanish ] = "Ir a registro";
-//STRIP001      Text[ italian ] = "Vai al record di dati";
-//STRIP001      Text[ danish ] = "g?til datapost";
-//STRIP001      Text[ swedish ] = "g?till datapost";
-//STRIP001      Text[ polish ] = "przejd?do rekordu";
-//STRIP001      Text[ portuguese_brazilian ] = "ir para o registro";
-//STRIP001      Text[ japanese ] = "γƒ¬γ‚³γƒΌγƒ‰γ?";
-//STRIP001      Text[ korean ] = "λ μ½”λ“λ΅ κ°€κΈ?";
-//STRIP001      Text[ chinese_simplified ] = "θ½¬ε°ζ•°ζ®ζ΅η›®";
-//STRIP001      Text[ chinese_traditional ] = "θ½‰ε°θ³‡ζ–™ζΆη›®";
-//STRIP001      Text[ arabic ] = "ΗαΗδΚήΗα Εα?ΗαΣΜ?";
-//STRIP001      Text[ turkish ] = "Veri kόmesine git";
-//STRIP001      Text[ catalan ] = "vιs al registre";
-//STRIP001      Text[ finnish ] = "siirry tietueeseen";
-//STRIP001      Text[ thai ] = "ΰΉ„ΰΈ›ΰΈΆΰΈ±ΰΈ‡ΰΈ£ΰΈ°ΰΉ€ΰΈΰΈµΰΈΆΰΈ™";
-//STRIP001      Text[ czech ] = "pΕ™ejΓ­t na zΓ΅znam";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧΆΧ‘Χ?ΧΧ¨Χ©Χ•ΧΧ”β€?";
-//STRIP001      Text[ hindi ] = "ΰ¤²ΰ¥‡ΰ¤–ΰ¤Ύ ΰ¤®ΰ¥‡ΰ¤?ΰ¤ΰ¤Ύΰ¤?";
-//STRIP001      Text[ slovak ] = "prejsΕ¥ na zΓ΅znam";
-//STRIP001  };
-//STRIP001  NumericField 1
-//STRIP001  {
-//STRIP001      Border = TRUE ;
-//STRIP001      Pos = MAP_APPFONT ( 79 , 6 ) ;
-//STRIP001      Size = MAP_APPFONT ( 45 , 12 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001  };
-//STRIP001  OKButton 1
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 6 , 25 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001      DefButton = TRUE ;
-//STRIP001  };
-//STRIP001  CancelButton 1
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 74 , 25 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001  };
-//STRIP001  Text[ greek ] = "Αριθμό?εγγραφής";
-//STRIP001  Text[ korean ] = "λ μ½”λ“?λ²νΈ";
-//STRIP001  Text[ chinese_traditional ] = "θ³‡ζ–™ζΆη›®η·¨θ™";
-//STRIP001  Text[ arabic ] = "Ρή?ΗαΣΜ?";
-//STRIP001  Text[ turkish ] = "Veri kόmesi no.";
-//STRIP001  Text[ catalan ] = "Nϊmero de registre";
-//STRIP001  Text[ finnish ] = "Tietueen numero";
-//STRIP001  Text[ thai ] = "ΰΉ€ΰΈ¥ΰΈ‚ΰΈ£ΰΈ°ΰΉ€ΰΈΰΈµΰΈΆΰΈ™";
-//STRIP001  Text[ czech ] = "ΔΓ­slo zΓ΅znamu";
-//STRIP001  Text[ hebrew ] = "β€®ΧΧ΅Χ¤Χ?Χ¨Χ©Χ•ΧΧ”β€?";
-//STRIP001  Text[ hindi ] = "ΰ¤²ΰ¥‡ΰ¤–ΰ¤Ύ ΰ¤Έΰ¤‚ΰ¤–ΰ¥ΰ¤―ΰ¤Ύ";
-//STRIP001  Text[ slovak ] = "ΔΓ­slo zΓ΅znamu";
-//STRIP001 };
 
 
 
