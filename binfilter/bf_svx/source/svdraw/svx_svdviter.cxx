@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdviter.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:08:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:47:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,16 +34,10 @@
  ************************************************************************/
 
 #include "svdviter.hxx"
-// auto strip #include "svdobj.hxx"
 #include "svdpage.hxx"
-// auto strip #include "svdmodel.hxx"
 #include "svdview.hxx"
 #include "svdpagv.hxx"
-// auto strip #include "svdsob.hxx"
 
-// auto strip #ifndef _SFXBRDCST_HXX //autogen
-// auto strip #include <svtools/brdcst.hxx>
-// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,24 +52,9 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SdrViewIter::SdrViewIter(const SdrModel* pModel_)
-//STRIP001 {
-//STRIP001  pModel=pModel_;
-//STRIP001  pPage=NULL;
-//STRIP001  pObject=NULL;
-//STRIP001  ImpInitVars();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SdrViewIter::SdrViewIter(const SdrPage* pPage_, FASTBOOL bNoMasterPage_)
-//STRIP001 {
-//STRIP001  pPage=pPage_;
-//STRIP001  pModel=pPage_!=NULL ? pPage_->GetModel() : NULL;
-//STRIP001  pObject=NULL;
-//STRIP001  bNoMasterPage=bNoMasterPage_;
-//STRIP001  ImpInitVars();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -176,63 +155,12 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SdrPageView* SdrViewIter::ImpFindPageView()
-//STRIP001 {
-//STRIP001  SdrView* pRet=NULL;
-//STRIP001  if (pModel!=NULL) {
-//STRIP001      while (pAktView!=NULL) {
-//STRIP001          USHORT nPvAnz=pAktView->GetPageViewCount();
-//STRIP001          while (nPageViewNum<nPvAnz) {
-//STRIP001              SdrPageView* pPV=pAktView->GetPageViewPvNum(nPageViewNum);
-//STRIP001              if (pPage!=NULL) {
-//STRIP001                  if (ImpCheckPageView(pPV)) {
-//STRIP001                      return pPV;
-//STRIP001                  }
-//STRIP001              } else {
-//STRIP001                  return pPV;
-//STRIP001              }
-//STRIP001              nPageViewNum++;
-//STRIP001          }
-//STRIP001          nListenerNum++;
-//STRIP001          ImpFindView();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 OutputDevice* SdrViewIter::ImpFindOutDev()
-//STRIP001 {
-//STRIP001  while (pAktView!=NULL) {
-//STRIP001      USHORT nOutDevAnz=pAktView->GetWinCount();
-//STRIP001      if (nOutDevNum<nOutDevAnz) {
-//STRIP001          return pAktView->GetWin(nOutDevNum);
-//STRIP001      }
-//STRIP001      nListenerNum++;
-//STRIP001      ImpFindView();
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 Window* SdrViewIter::ImpFindWindow()
-//STRIP001 {
-//STRIP001  while (pAktView!=NULL) {
-//STRIP001      USHORT nOutDevAnz=pAktView->GetWinCount();
-//STRIP001      while (nOutDevNum<nOutDevAnz) {
-//STRIP001          OutputDevice* pOutDev=pAktView->GetWin(nOutDevNum);
-//STRIP001          if (pOutDev->GetOutDevType()==OUTDEV_WINDOW) {
-//STRIP001              return (Window*)pOutDev;
-//STRIP001          }
-//STRIP001          nOutDevNum++;
-//STRIP001      }
-//STRIP001      nListenerNum++;
-//STRIP001      ImpFindView();
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -252,54 +180,21 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SdrPageView* SdrViewIter::FirstPageView()
-//STRIP001 {
-//STRIP001  ImpInitVars();
-//STRIP001  ImpFindView();
-//STRIP001  return ImpFindPageView();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SdrPageView* SdrViewIter::NextPageView()
-//STRIP001 {
-//STRIP001  nPageViewNum++;
-//STRIP001  return ImpFindPageView();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 OutputDevice* SdrViewIter::FirstOutDev()
-//STRIP001 {
-//STRIP001  ImpInitVars();
-//STRIP001  ImpFindView();
-//STRIP001  return ImpFindOutDev();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 OutputDevice* SdrViewIter::NextOutDev()
-//STRIP001 {
-//STRIP001  nOutDevNum++;
-//STRIP001  return ImpFindOutDev();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 Window* SdrViewIter::FirstWindow()
-//STRIP001 {
-//STRIP001  ImpInitVars();
-//STRIP001  ImpFindView();
-//STRIP001  return ImpFindWindow();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 Window* SdrViewIter::NextWindow()
-//STRIP001 {
-//STRIP001  nOutDevNum++;
-//STRIP001  return ImpFindWindow();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
