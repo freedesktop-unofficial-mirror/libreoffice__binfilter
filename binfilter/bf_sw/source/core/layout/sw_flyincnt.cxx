@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flyincnt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:47:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:52:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,14 +36,12 @@
 
 #pragma hdrstop
 
-// auto strip #include "cntfrm.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
 #include "doc.hxx"
-// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "hints.hxx"
