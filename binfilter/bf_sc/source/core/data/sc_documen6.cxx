@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen6.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:43:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:16:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,32 +79,6 @@ using namespace ::com::sun::star;
 /*N*/     return pScriptTypeData->xBreakIter;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::HasStringWeakCharacters( const String& rString )
-//STRIP001 {
-//STRIP001  BYTE nRet = 0;
-//STRIP001  if (rString.Len())
-//STRIP001  {
-//STRIP001         uno::Reference<i18n::XBreakIterator> xBreakIter = GetBreakIterator();
-//STRIP001      if ( xBreakIter.is() )
-//STRIP001      {
-//STRIP001          ::rtl::OUString aText = rString;
-//STRIP001          sal_Int32 nLen = aText.getLength();
-//STRIP001
-//STRIP001          sal_Int32 nPos = 0;
-//STRIP001          do
-//STRIP001          {
-//STRIP001              sal_Int16 nType = xBreakIter->getScriptType( aText, nPos );
-//STRIP001              if ( nType == i18n::ScriptType::WEAK )
-//STRIP001                  return TRUE;                            // found
-//STRIP001
-//STRIP001              nPos = xBreakIter->endOfScript( aText, nPos, nType );
-//STRIP001          }
-//STRIP001          while ( nPos >= 0 && nPos < nLen );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;       // none found
-//STRIP001 }
 
 /*N*/ BYTE ScDocument::GetStringScriptType( const String& rString )
 /*N*/ {
