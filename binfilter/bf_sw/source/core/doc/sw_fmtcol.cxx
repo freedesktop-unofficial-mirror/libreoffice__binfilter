@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fmtcol.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:40:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:25:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,9 +53,6 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>          // fuer GetAttrPool
@@ -63,15 +60,9 @@
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _CALC_HXX
-// auto strip #include <calc.hxx>
-// auto strip #endif
 #ifndef _NODE_HXX
 #include <node.hxx>
 #endif
@@ -282,16 +273,6 @@ namespace binfilter {
 /*N*/       SwFmtColl::Modify( pOld, pNew );
 /*N*/ }
 
-//STRIP001 BOOL SwTxtFmtColl::IsAtDocNodeSet() const
-//STRIP001 {
-//STRIP001  SwClientIter aIter( *(SwModify*)this );
-//STRIP001  const SwNodes& rNds = GetDoc()->GetNodes();
-//STRIP001  for( SwClient* pC = aIter.First(TYPE(SwCntntNode)); pC; pC = aIter.Next() )
-//STRIP001      if( &((SwCntntNode*)pC)->GetNodes() == &rNds )
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //FEATURE::CONDCOLL
 
@@ -303,25 +284,8 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SwCollCondition::SwCollCondition( SwTxtFmtColl* pColl, ULONG nMasterCond,
-//STRIP001                                  const String& rSubExp )
-//STRIP001  : SwClient( pColl ), nCondition( nMasterCond )
-//STRIP001 {
-//STRIP001  if( USRFLD_EXPRESSION & nCondition )
-//STRIP001      aSubCondition.pFldExpression = new String( rSubExp );
-//STRIP001  else
-//STRIP001      aSubCondition.nSubCondition = 0;
-//STRIP001 }
 
 
-//STRIP001 SwCollCondition::SwCollCondition( const SwCollCondition& rCopy )
-//STRIP001  : SwClient( (SwModify*)rCopy.GetRegisteredIn() ), nCondition( rCopy.nCondition )
-//STRIP001 {
-//STRIP001  if( USRFLD_EXPRESSION & rCopy.nCondition )
-//STRIP001      aSubCondition.pFldExpression = new String( *rCopy.GetFldExpression() );
-//STRIP001  else
-//STRIP001      aSubCondition.nSubCondition = rCopy.aSubCondition.nSubCondition;
-//STRIP001 }
 
 
 /*N*/ SwCollCondition::~SwCollCondition()
@@ -334,32 +298,6 @@ namespace binfilter {
 /*N*/  int SwCollCondition::operator==( const SwCollCondition& rCmp ) const
 /*N*/  {
 DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
-//STRIP001  if( nCondition == rCmp.nCondition )
-//STRIP001  {
-//STRIP001      if( USRFLD_EXPRESSION & nCondition )
-//STRIP001      {
-//STRIP001          // in der SubCondition steht die Expression fuer das UserFeld
-//STRIP001          const String* pTmp = aSubCondition.pFldExpression;
-//STRIP001          if( !pTmp )
-//STRIP001              pTmp = rCmp.aSubCondition.pFldExpression;
-//STRIP001          if( pTmp )
-//STRIP001          {
-//STRIP001              SwTxtFmtColl* pColl = GetTxtFmtColl();
-//STRIP001              if( !pColl )
-//STRIP001                  pColl = rCmp.GetTxtFmtColl();
-//STRIP001
-//STRIP001              if( pColl )
-//STRIP001              {
-//STRIP001                  SwCalc aCalc( *pColl->GetDoc() );
-//STRIP001                  nRet = 0 != aCalc.Calculate( *pTmp ).GetBool();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if( aSubCondition.nSubCondition ==
-//STRIP001                  rCmp.aSubCondition.nSubCondition )
-//STRIP001          nRet = 1;
-//STRIP001  }
-//STRIP001  return nRet;
 /*N*/ }
 
 
@@ -378,10 +316,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
 
 #ifdef USED
     // zum "abfischen" von Aenderungen
-//STRIP001 void SwConditionTxtFmtColl::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
-//STRIP001 {
-//STRIP001  SwTxtFmtColl::Modify( pOld, pNew );
-//STRIP001 }
 #endif
 
 
@@ -401,54 +335,10 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
 /*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& rCond )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for( USHORT n = 0; n < aCondColls.Count(); ++n )
-//STRIP001      if( *aCondColls[ n ] == rCond )
-//STRIP001      {
-//STRIP001          aCondColls.DeleteAndDestroy( n );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001  // nicht gefunden -> als einfuegen
-//STRIP001  SwCollCondition* pNew = new SwCollCondition( rCond );
-//STRIP001  aCondColls.Insert( pNew, aCondColls.Count() );
 /*N*/ }
 
 
-//STRIP001 BOOL SwConditionTxtFmtColl::RemoveCondition( const SwCollCondition& rCond )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  for( USHORT n = 0; n < aCondColls.Count(); ++n )
-//STRIP001      if( *aCondColls[ n ] == rCond )
-//STRIP001      {
-//STRIP001          aCondColls.DeleteAndDestroy( n );
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 void SwConditionTxtFmtColl::SetConditions( const SwFmtCollConditions& rCndClls )
-//STRIP001 {
-//STRIP001  // Kopiere noch die Bedingungen
-//STRIP001  // aber erst die alten loeschen!
-//STRIP001  if( aCondColls.Count() )
-//STRIP001      aCondColls.DeleteAndDestroy( 0, aCondColls.Count() );
-//STRIP001  SwDoc& rDoc = *GetDoc();
-//STRIP001  for( USHORT n = 0; n < rCndClls.Count(); ++n )
-//STRIP001  {
-//STRIP001      SwCollCondition* pFnd = rCndClls[ n ];
-//STRIP001      SwTxtFmtColl* pTmpColl = pFnd->GetTxtFmtColl()
-//STRIP001                                  ? rDoc.CopyTxtColl( *pFnd->GetTxtFmtColl() )
-//STRIP001                                  : 0;
-//STRIP001      SwCollCondition* pNew;
-//STRIP001      if( USRFLD_EXPRESSION & pFnd->GetCondition() )
-//STRIP001          pNew = new SwCollCondition( pTmpColl, pFnd->GetCondition(),
-//STRIP001                                      *pFnd->GetFldExpression() );
-//STRIP001      else
-//STRIP001          pNew = new SwCollCondition( pTmpColl, pFnd->GetCondition(),
-//STRIP001                                      pFnd->GetSubCondition() );
-//STRIP001      aCondColls.Insert( pNew, n );
-//STRIP001  }
-//STRIP001 }
 
 //FEATURE::CONDCOLL
 
