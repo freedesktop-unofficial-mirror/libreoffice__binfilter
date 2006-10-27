@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editable.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:45:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:08:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@ public:
             ScEditableTester( ScDocument* pDoc, const ScMarkData& rMark );
 
             // calls TestView
-//STRIP001          ScEditableTester( ScViewFunc* pView );
 
             ~ScEditableTester() {}
 
@@ -83,11 +82,7 @@ public:
     void    TestSelectedBlock( ScDocument* pDoc,
                         USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                         const ScMarkData& rMark );
-//STRIP001  void    TestRange( ScDocument* pDoc, const ScRange& rRange );
-//STRIP001  void    TestSelection( ScDocument* pDoc, const ScMarkData& rMark );
-//STRIP001  void    TestView( ScViewFunc* pView );
 
-//STRIP001  void    Reset();
 
     BOOL    IsEditable() const          { return bIsEditable; }
     BOOL    IsFormatEditable() const    { return bIsEditable || bOnlyMatrix; }
