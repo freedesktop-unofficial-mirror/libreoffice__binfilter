@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ssfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:52:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:55:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,12 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _PAGEFRM_HXX
-// auto strip #include <pagefrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -53,16 +47,7 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _DVIEW_HXX
-// auto strip #include <dview.hxx>
-// auto strip #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
@@ -104,15 +89,9 @@
 #ifndef _SVX_SHADITEM_HXX //autogen
 #include <bf_svx/shaditem.hxx>
 #endif
-// auto strip #ifndef _FMTCLDS_HXX //autogen
-// auto strip #include <fmtclds.hxx>
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
-// auto strip #ifndef _VIEWIMP_HXX
-// auto strip #include <viewimp.hxx>
-// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
@@ -290,111 +269,6 @@ namespace binfilter {
 /*N*/     BOOL bChg = bOldR2L != IsRightToLeft();
 /*N*/     if( ( IsVertical() != bOldVert ) || bChg || IsReverse() != bOldRev )
 /*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001         InvalidateAll();
-//STRIP001         if( IsLayoutFrm() )
-//STRIP001         {
-//STRIP001             SwFrm* pFrm = ((SwLayoutFrm*)this)->Lower();
-//STRIP001             const SwFmtCol* pCol = NULL;
-//STRIP001             SwLayoutFrm* pBody;
-//STRIP001             if( pFrm )
-//STRIP001             {
-//STRIP001                 if( IsPageFrm() )
-//STRIP001                 {
-//STRIP001                     // If we're a page frame and we change our layout direction,
-//STRIP001                     // we have to look for columns and rearrange them.
-//STRIP001                     pBody = ((SwPageFrm*)this)->FindBodyCont();
-//STRIP001                     if(pBody && pBody->Lower() && pBody->Lower()->IsColumnFrm())
-//STRIP001                         pCol = &((SwPageFrm*)this)->GetFmt()->GetCol();
-//STRIP001                     SwSortDrawObjs *pObjs = ((SwPageFrm*)this)->GetSortedObjs();
-//STRIP001                     if( pObjs )
-//STRIP001                     {
-//STRIP001                         USHORT nCnt = pObjs->Count();
-//STRIP001                         for ( USHORT i = 0; i < nCnt; ++i )
-//STRIP001                         {
-//STRIP001                             SdrObject *pObj = (*pObjs)[i];
-//STRIP001                             if ( pObj->IsWriterFlyFrame() )
-//STRIP001                             {
-//STRIP001                                 SwFlyFrm *pFly =
-//STRIP001                                          ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
-//STRIP001                                 if( pFly->GetAnchor() == this )
-//STRIP001                                     pFly->CheckDirChange();
-//STRIP001                             }
-//STRIP001                             else
-//STRIP001                             {
-//STRIP001                              const SwDrawContact* pContact =
-//STRIP001                                  (SwDrawContact*)GetUserCall(pObj);
-//STRIP001                              if ( pContact && pContact->GetAnchor() == this )
-//STRIP001                              {
-//STRIP001                                     // OD 30.06.2003 #108784# - Note: only 'at page'
-//STRIP001                                     // anchored drawing objects are considered here.
-//STRIP001                                     // change anchor position
-//STRIP001                                     pObj->SetAnchorPos( GetFrmAnchorPos( ::HasWrap( pObj ) ) );
-//STRIP001                                  // check if the new position
-//STRIP001                                  // would not exceed the margins of the page
-//STRIP001                                     CaptureDrawObj( *pObj, Frm() );
-//STRIP001                              }
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001                 else if( pFrm->IsColumnFrm() )
-//STRIP001                 {
-//STRIP001                     pBody = ((SwLayoutFrm*)this);
-//STRIP001                     const SwFrmFmt *pFmt = pBody->GetFmt();
-//STRIP001                     if( pFmt )
-//STRIP001                         pCol = &pFmt->GetCol();
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             while( pFrm )
-//STRIP001             {
-//STRIP001                 pFrm->CheckDirChange();
-//STRIP001                 pFrm = pFrm->GetNext();
-//STRIP001             }
-//STRIP001             if( pCol )
-//STRIP001                 pBody->AdjustColumns( pCol, TRUE );
-//STRIP001         }
-//STRIP001         else if( IsTxtFrm() )
-//STRIP001             ((SwTxtFrm*)this)->Prepare( PREP_CLEAR );
-//STRIP001
-//STRIP001         if( !IsPageFrm() && GetDrawObjs() )
-//STRIP001         {
-//STRIP001             const SwDrawObjs *pObjs = GetDrawObjs();
-//STRIP001             USHORT nCnt = pObjs->Count();
-//STRIP001             for ( USHORT i = 0; i < nCnt; ++i )
-//STRIP001             {
-//STRIP001                 SdrObject *pObj = (*pObjs)[i];
-//STRIP001                 if( pObj->IsWriterFlyFrame() )
-//STRIP001                     ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->CheckDirChange();
-//STRIP001                 else
-//STRIP001              {
-//STRIP001                     // change anchor position
-//STRIP001                     pObj->SetAnchorPos( GetFrmAnchorPos( ::HasWrap( pObj ) ) );
-//STRIP001                     // OD 30.06.2003 #108784# - consider 'virtual' drawing objects:
-//STRIP001                     if ( pObj->ISA(SwDrawVirtObj) )
-//STRIP001                     {
-//STRIP001                         static_cast<SwDrawVirtObj*>(pObj)->AdjustRelativePosToReference();
-//STRIP001                     }
-//STRIP001                     else
-//STRIP001                     {
-//STRIP001                         SwPageFrm* pPage = FindPageFrm();
-//STRIP001                         if ( pPage )
-//STRIP001                         {
-//STRIP001                             // check if the new position
-//STRIP001                             // would not exceed the margins of the page
-//STRIP001                             CaptureDrawObj( *pObj, pPage->Frm() );
-//STRIP001                         }
-//STRIP001                         // OD 30.06.2003 #108784# - correct relative position
-//STRIP001                         // of 'virtual' drawing objects.
-//STRIP001                         SwDrawContact* pDrawContact =
-//STRIP001                             static_cast<SwDrawContact*>(pObj->GetUserCall());
-//STRIP001                         if ( pDrawContact )
-//STRIP001                         {
-//STRIP001                             pDrawContact->CorrectRelativePosOfVirtObjs();
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001              }
-//STRIP001             }
-//STRIP001         }
 /*N*/     }
 /*N*/ }
 
@@ -447,7 +321,6 @@ namespace binfilter {
 /*?*/           if( pVSh && pVSh->Imp() )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( !GetLower(), "Lowers should be dispose already!" );
-//STRIP001 /*?*/                pVSh->Imp()->DisposeAccessibleFrm( this );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -548,10 +421,6 @@ namespace binfilter {
 /*?*/             while( nPos < rFtnIdxs.Count() )
 /*?*/             {
 /*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTxtFtn = rFtnIdxs[ nPos ];
-//STRIP001 /*?*/                 if( pTxtFtn->GetTxtNode().GetIndex() > nIndex )
-//STRIP001 /*?*/                     break;
-//STRIP001 /*?*/                 pTxtFtn->DelFrms();
-//STRIP001 /*?*/                 ++nPos;
 /*?*/             }
 /*N*/         }
 /*N*/   }

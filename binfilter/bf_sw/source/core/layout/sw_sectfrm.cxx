@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sectfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:52:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:55:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,27 +61,15 @@
 #endif
 
 #include "doc.hxx"          // SwDoc
-// auto strip #include "cntfrm.hxx"     // SwCntntFrm
-// auto strip #include "rootfrm.hxx"        // SwRootFrm
 #include "pagefrm.hxx"      // SwPageFrm
-// auto strip #include "fmtpdsc.hxx"        // SwFmtPageDesc
-// auto strip #include "fmtcntnt.hxx"       // SwFmtCntnt
-// auto strip #include "ndindex.hxx"        // SwNodeIndex
-// auto strip #include "ftnidx.hxx"
 #include "txtfrm.hxx"       // SwTxtFrm
 #include "fmtclds.hxx"      // SwFmtCol
 #include "colfrm.hxx"       // SwColumnFrm
 #include "tabfrm.hxx"       // SwTabFrm
 #include "flyfrm.hxx"       // SwFlyFrm
 #include "ftnfrm.hxx"       // SwFtnFrm
-// auto strip #include "layouter.hxx"       // SwLayouter
 #include "dbg_lay.hxx"
-// auto strip #include "viewsh.hxx"
-// auto strip #include "viewimp.hxx"
 #include "frmsh.hxx"
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
@@ -233,31 +221,6 @@ namespace binfilter {
 /*?*/   return NULL;
 /*N*/ }
 
-//STRIP001 SwSectionFrm *SwSectionFrm::FindFirstSectionMaster()
-//STRIP001 {
-//STRIP001  ASSERT( IsFollow(), "FindSectionMaster: !IsFollow" );
-//STRIP001  SwClientIter aIter( *(pSection->GetFmt()) );
-//STRIP001  SwClient *pLast = aIter.GoStart();
-//STRIP001  while ( pLast )
-//STRIP001  {
-//STRIP001      if ( pLast->ISA( SwFrm ) )
-//STRIP001      {
-//STRIP001          SwSectionFrm* pSect = (SwSectionFrm*)pLast;
-//STRIP001          if( !pSect->IsFollow() )
-//STRIP001          {
-//STRIP001              SwSectionFrm *pNxt = pSect;
-//STRIP001              while ( pNxt )
-//STRIP001              {
-//STRIP001                  if( pNxt->GetFollow() == this )
-//STRIP001                      return pSect;
-//STRIP001                  pNxt = pNxt->GetFollow();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pLast = aIter++;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -407,94 +370,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void SwSectionFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
-//STRIP001 {
-//STRIP001  ASSERT( pParent, "Kein Parent fuer Paste." );
-//STRIP001  ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-//STRIP001  ASSERT( pParent != this, "Bin selbst der Parent." );
-//STRIP001  ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-//STRIP001  ASSERT( !GetPrev() && !GetUpper(),
-//STRIP001          "Bin noch irgendwo angemeldet." );
-//STRIP001
-//STRIP001  PROTOCOL( this, PROT_PASTE, 0, GetUpper() )
-//STRIP001
-//STRIP001  //In den Baum einhaengen.
-//STRIP001  SwSectionFrm* pSect = pParent->FindSctFrm();
-//STRIP001
-//STRIP001     SWRECTFN( pParent )
-//STRIP001  if( pSect && HasToBreak( pSect ) )
-//STRIP001  {
-//STRIP001      if( pParent->IsColBodyFrm() ) // handelt es sich um einen spaltigen Bereich
-//STRIP001      {
-//STRIP001          // Falls wir zufaellig am Ende einer Spalte stehen, muss pSibling
-//STRIP001          // auf den ersten Frame der naechsten Spalte zeigen, damit
-//STRIP001          // der Inhalt der naechsten Spalte von InsertGroup richtig in den
-//STRIP001          // neu angelegten pSect umgehaengt wird.
-//STRIP001          SwColumnFrm *pCol = (SwColumnFrm*)pParent->GetUpper();
-//STRIP001          while( !pSibling && 0 != ( pCol = (SwColumnFrm*)pCol->GetNext() ) )
-//STRIP001              pSibling = ((SwLayoutFrm*)((SwColumnFrm*)pCol)->Lower())->Lower();
-//STRIP001          if( pSibling )
-//STRIP001          {
-//STRIP001              // Schlimmer noch: alle folgenden Spalteninhalte muessen
-//STRIP001              // an die pSibling-Kette angehaengt werden, damit sie
-//STRIP001              // mitgenommen werden.
-//STRIP001              SwFrm *pTmp = pSibling;
-//STRIP001              while ( 0 != ( pCol = (SwColumnFrm*)pCol->GetNext() ) )
-//STRIP001              {
-//STRIP001                  while ( pTmp->GetNext() )
-//STRIP001                      pTmp = pTmp->GetNext();
-//STRIP001                  SwFrm* pSave = ::SaveCntnt( pCol );
-//STRIP001                  ::RestoreCntnt( pSave, pSibling->GetUpper(), pTmp );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pParent = pSect;
-//STRIP001      pSect = new SwSectionFrm( *((SwSectionFrm*)pParent)->GetSection() );
-//STRIP001      // Wenn pParent in zwei Teile zerlegt wird, so muss sein Follow am
-//STRIP001      // neuen, zweiten Teil angebracht werden.
-//STRIP001      pSect->SetFollow( ((SwSectionFrm*)pParent)->GetFollow() );
-//STRIP001      ((SwSectionFrm*)pParent)->SetFollow( NULL );
-//STRIP001      if( pSect->GetFollow() )
-//STRIP001          pParent->_InvalidateSize();
-//STRIP001
-//STRIP001      InsertGroupBefore( pParent, pSibling, pSect );
-//STRIP001         pSect->Init();
-//STRIP001         (pSect->*fnRect->fnMakePos)( pSect->GetUpper(), pSect->GetPrev(), TRUE);
-//STRIP001      if( !((SwLayoutFrm*)pParent)->Lower() )
-//STRIP001      {
-//STRIP001          SwSectionFrm::MoveCntntAndDelete( (SwSectionFrm*)pParent, FALSE );
-//STRIP001          pParent = this;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      InsertGroupBefore( pParent, pSibling, NULL );
-//STRIP001
-//STRIP001  _InvalidateAll();
-//STRIP001  SwPageFrm *pPage = FindPageFrm();
-//STRIP001  InvalidatePage( pPage );
-//STRIP001
-//STRIP001  if ( pSibling )
-//STRIP001  {
-//STRIP001      pSibling->_InvalidatePos();
-//STRIP001      pSibling->_InvalidatePrt();
-//STRIP001      if ( pSibling->IsCntntFrm() )
-//STRIP001          pSibling->InvalidatePage( pPage );
-//STRIP001  }
-//STRIP001
-//STRIP001     SwTwips nFrmHeight = (Frm().*fnRect->fnGetHeight)();
-//STRIP001     if( nFrmHeight )
-//STRIP001         pParent->Grow( nFrmHeight );
-//STRIP001
-//STRIP001  if ( GetPrev() )
-//STRIP001  {
-//STRIP001      if ( !IsFollow() )
-//STRIP001      {
-//STRIP001          GetPrev()->InvalidateSize();
-//STRIP001          if ( GetPrev()->IsCntntFrm() )
-//STRIP001              GetPrev()->InvalidatePage( pPage );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 /*************************************************************************
@@ -511,26 +386,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 BOOL SwSectionFrm::HasToBreak( const SwFrm* pFrm ) const
-//STRIP001 {
-//STRIP001  if( !pFrm->IsSctFrm() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  SwSectionFmt *pTmp = (SwSectionFmt*)GetFmt();
-//STRIP001 //   if( !pTmp->GetSect().GetValue() )
-//STRIP001 //       return FALSE;
-//STRIP001
-//STRIP001  const SwFrmFmt *pOtherFmt = ((SwSectionFrm*)pFrm)->GetFmt();
-//STRIP001  do
-//STRIP001  {
-//STRIP001      pTmp = pTmp->GetParent();
-//STRIP001      if( !pTmp )
-//STRIP001          return FALSE;
-//STRIP001      if( pTmp == pOtherFmt )
-//STRIP001          return TRUE;
-//STRIP001  } while( TRUE ); // ( pTmp->GetSect().GetValue() );
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -596,46 +451,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 BOOL SwSectionFrm::SplitSect( SwFrm* pFrm, BOOL bApres )
-//STRIP001 {
-//STRIP001  ASSERT( pFrm, "SplitSect: Why?" );
-//STRIP001  SwFrm* pOther = bApres ? pFrm->FindNext() : pFrm->FindPrev();
-//STRIP001  if( !pOther )
-//STRIP001      return FALSE;
-//STRIP001  SwSectionFrm* pSect = pOther->FindSctFrm();
-//STRIP001     if( pSect != this )
-//STRIP001      return FALSE;
-//STRIP001  // Den Inhalt zur Seite stellen
-//STRIP001  SwFrm* pSav = ::SaveCntnt( this, bApres ? pOther : pFrm );
-//STRIP001  ASSERT( pSav, "SplitSect: What's on?" );
-//STRIP001  if( pSav ) // Robust
-//STRIP001  {   // Einen neuen SctFrm anlegen, nicht als Follow/Master
-//STRIP001         SwSectionFrm* pNew = new SwSectionFrm( *pSect->GetSection() );
-//STRIP001      pNew->InsertBehind( pSect->GetUpper(), pSect );
-//STRIP001         pNew->Init();
-//STRIP001         SWRECTFN( this )
-//STRIP001         (pNew->*fnRect->fnMakePos)( NULL, pSect, TRUE );
-//STRIP001         // OD 25.03.2003 #108339# - restore content:
-//STRIP001         // determine layout frame for restoring content after the initialization
-//STRIP001         // of the section frame. In the section initialization the columns are
-//STRIP001         // created.
-//STRIP001         {
-//STRIP001             SwLayoutFrm* pLay = pNew;
-//STRIP001             // Search for last layout frame, e.g. for columned sections.
-//STRIP001             while( pLay->Lower() && pLay->Lower()->IsLayoutFrm() )
-//STRIP001                 pLay = (SwLayoutFrm*)pLay->Lower();
-//STRIP001             ::RestoreCntnt( pSav, pLay, NULL );
-//STRIP001         }
-//STRIP001         _InvalidateSize();
-//STRIP001         if( HasFollow() )
-//STRIP001         {
-//STRIP001             pNew->SetFollow( GetFollow() );
-//STRIP001             SetFollow( NULL );
-//STRIP001         }
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -654,22 +469,6 @@ namespace binfilter {
 // Wenn ein mehrspaltiger Bereich aufgehoben wird, muessen die ContentFrms
 // invalidiert werden
 
-//STRIP001 void lcl_InvalidateInfFlags( SwFrm* pFrm, BOOL bInva )
-//STRIP001 {
-//STRIP001  while ( pFrm )
-//STRIP001  {
-//STRIP001      pFrm->InvalidateInfFlags();
-//STRIP001      if( bInva )
-//STRIP001      {
-//STRIP001          pFrm->_InvalidatePos();
-//STRIP001          pFrm->_InvalidateSize();
-//STRIP001          pFrm->_InvalidatePrt();
-//STRIP001      }
-//STRIP001      if( pFrm->IsLayoutFrm() )
-//STRIP001          lcl_InvalidateInfFlags( ((SwLayoutFrm*)pFrm)->GetLower(), FALSE );
-//STRIP001      pFrm = pFrm->GetNext();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ #define FIRSTLEAF( pLayFrm ) ( ( pLayFrm->Lower() && pLayFrm->Lower()->IsColumnFrm() )\
 /*N*/                   ? pLayFrm->GetNextLayoutLeaf() \
@@ -769,11 +568,6 @@ namespace binfilter {
 /*N*/   // Der Inhalt wird eingefuegt..
 /*N*/   if( pSave )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        lcl_InvalidateInfFlags( pSave, bSize );
-//STRIP001 /*?*/        ::RestoreCntnt( pSave, pUp, pPrv );
-//STRIP001 /*?*/        pUp->FindPageFrm()->InvalidateCntnt();
-//STRIP001 /*?*/        if( !bOldFtn )
-//STRIP001 /*?*/            ((SwFtnFrm*)pUp)->ColUnlock();
 /*N*/   }
 /*N*/   // jetzt koennen eventuell zwei Teile des uebergeordneten Bereich verschmelzen
 /*N*/   if( pPrvSct && !pPrvSct->IsJoinLocked() )
@@ -825,24 +619,7 @@ namespace binfilter {
 /*?*/       DelEmpty( FALSE );
 /*N*/ }
 
-//STRIP001 BOOL SwSectionFrm::ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat )
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "Hups, wo ist meine Tarnkappe?" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 const SwSectionFmt* SwSectionFrm::_GetEndSectFmt() const
-//STRIP001 {
-//STRIP001  const SwSectionFmt *pFmt = pSection->GetFmt();
-//STRIP001  while( !pFmt->GetEndAtTxtEnd().IsAtEnd() )
-//STRIP001  {
-//STRIP001      if( pFmt->GetRegisteredIn()->ISA( SwSectionFmt ) )
-//STRIP001          pFmt = (SwSectionFmt*)pFmt->GetRegisteredIn();
-//STRIP001      else
-//STRIP001          return NULL;
-//STRIP001  }
-//STRIP001  return pFmt;
-//STRIP001 }
 
 /*N*/ void lcl_FindCntntFrm( SwCntntFrm* &rpCntntFrm, SwFtnFrm* &rpFtnFrm,
 /*N*/   SwFrm* pFrm, BOOL &rbChkFtn )
@@ -882,20 +659,6 @@ namespace binfilter {
 /*N*/   if( nMode )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt *pFmt = IsEndnAtEnd() ? GetEndSectFmt() :
-//STRIP001 /*?*/                                   pSection->GetFmt();
-//STRIP001 /*?*/        do {
-//STRIP001 /*?*/            while( pSect->HasFollow() )
-//STRIP001 /*?*/                pSect = pSect->GetFollow();
-//STRIP001 /*?*/            SwFrm* pTmp = pSect->FindNext();
-//STRIP001 /*?*/            while( pTmp && pTmp->IsSctFrm() &&
-//STRIP001 /*?*/                   !((SwSectionFrm*)pTmp)->GetSection() )
-//STRIP001 /*?*/                pTmp = pTmp->FindNext();
-//STRIP001 /*?*/            if( pTmp && pTmp->IsSctFrm() &&
-//STRIP001 /*?*/                ((SwSectionFrm*)pTmp)->IsDescendantFrom( pFmt ) )
-//STRIP001 /*?*/                pSect = (SwSectionFrm*)pTmp;
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/        } while( TRUE );
 /*N*/   }
 /*N*/   BOOL bFtnFound = nMode == FINDMODE_ENDNOTE;
 /*N*/   do
@@ -913,14 +676,6 @@ namespace binfilter {
 
 /*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& rMinDiff ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  if( ToMaximize( TRUE ) )
-//STRIP001  {
-//STRIP001         SWRECTFN( this )
-//STRIP001         rMinDiff = (GetUpper()->*fnRect->fnGetPrtBottom)();
-//STRIP001         rMinDiff = (Frm().*fnRect->fnBottomDist)( rMinDiff );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
 /*N*/ }
 
 /*************************************************************************
@@ -937,47 +692,6 @@ namespace binfilter {
  *
  *************************************************************************/
 
-//STRIP001 SwFtnFrm* lcl_FindEndnote( SwSectionFrm* &rpSect, BOOL &rbEmpty,
-//STRIP001  SwLayouter *pLayouter )
-//STRIP001 {
-//STRIP001  // if rEmpty is set, the rpSect is already searched
-//STRIP001  SwSectionFrm* pSect = rbEmpty ? rpSect->GetFollow() : rpSect;
-//STRIP001  while( pSect )
-//STRIP001  {
-//STRIP001      ASSERT( pSect->Lower() && pSect->Lower()->IsColumnFrm(),
-//STRIP001          "InsertEndnotes: Where's my column?" );
-//STRIP001      SwColumnFrm* pCol = (SwColumnFrm*)pSect->Lower();
-//STRIP001      do // check all columns
-//STRIP001      {
-//STRIP001          SwFtnContFrm* pFtnCont = pCol->FindFtnCont();
-//STRIP001          if( pFtnCont )
-//STRIP001          {
-//STRIP001              SwFtnFrm* pRet = (SwFtnFrm*)pFtnCont->Lower();
-//STRIP001              while( pRet ) // look for endnotes
-//STRIP001              {
-//STRIP001                  if( pRet->GetAttr()->GetFtn().IsEndNote() )
-//STRIP001                  {
-//STRIP001                      if( pRet->GetMaster() )
-//STRIP001                      {
-//STRIP001                          if( pLayouter )
-//STRIP001                              pLayouter->CollectEndnote( pRet );
-//STRIP001                          else
-//STRIP001                              return 0;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                          return pRet; // Found
-//STRIP001                  }
-//STRIP001                  pRet = (SwFtnFrm*)pRet->GetNext();
-//STRIP001              }
-//STRIP001          }
-//STRIP001          pCol = (SwColumnFrm*)pCol->GetNext();
-//STRIP001      } while ( pCol );
-//STRIP001      rpSect = pSect;
-//STRIP001      pSect = pLayouter ? pSect->GetFollow() : NULL;
-//STRIP001      rbEmpty = TRUE;
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*N*/ void lcl_ColumnRefresh( SwSectionFrm* pSect, BOOL bFollow )
 /*N*/ {
@@ -1006,21 +720,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SwSectionFrm::CollectEndnotes( SwLayouter* pLayouter )
-//STRIP001 {
-//STRIP001  ASSERT( IsColLocked(), "CollectEndnotes: You love the risk?" );
-//STRIP001  ASSERT( Lower() && Lower()->IsColumnFrm(), "Where's my column?" );
-//STRIP001  SwSectionFrm* pSect = this;
-//STRIP001  SwFtnFrm* pFtn;
-//STRIP001  BOOL bEmpty = FALSE;
-//STRIP001  // pSect is the last sectionfrm without endnotes or the this-pointer
-//STRIP001  // the first sectionfrm with endnotes may be destroyed, when the endnotes
-//STRIP001  // is cutted
-//STRIP001  while( 0 != (pFtn = lcl_FindEndnote( pSect, bEmpty, pLayouter )) )
-//STRIP001      pLayouter->CollectEndnote( pFtn );
-//STRIP001  if( pLayouter->HasEndnotes() )
-//STRIP001      lcl_ColumnRefresh( this, TRUE );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1064,21 +763,6 @@ namespace binfilter {
 /*N*/     if( !bCalc && !bGrow && IsAnyNoteAtEnd() && !IsInFtn() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSectionFrm *pSect = this;
-//STRIP001 /*?*/        BOOL bEmpty = FALSE;
-//STRIP001 /*?*/        SwLayoutFrm* pFtn = IsEndnAtEnd() ?
-//STRIP001 /*?*/            lcl_FindEndnote( pSect, bEmpty, NULL ) : NULL;
-//STRIP001 /*?*/        if( pFtn )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pFtn = pFtn->FindFtnBossFrm();
-//STRIP001 /*?*/            SwFrm* pTmp = FindLastCntnt( FINDMODE_LASTCNT );
-//STRIP001 /*?*/             // OD 08.11.2002 #104840# - use <SwLayoutFrm::IsBefore(..)>
-//STRIP001 /*?*/             if ( pTmp &&
-//STRIP001 /*?*/                  pFtn->IsBefore( pTmp->FindFtnBossFrm() )
-//STRIP001 /*?*/                )
-//STRIP001 /*?*/                bCalc = TRUE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else if( GetFollow() && !GetFollow()->ContainsAny() )
-//STRIP001 /*?*/            bCalc = TRUE;
 /*N*/   }
 /*N*/   if( bCalc )
 /*N*/   {
@@ -2127,36 +1811,7 @@ namespace binfilter {
 /*N*/   return NULL;
 /*N*/ }
 
-//STRIP001 BOOL SwSectionFrm::IsAncestorOf( const SwSection* pSect ) const
-//STRIP001 {
-//STRIP001  if( !pSection || !pSect )
-//STRIP001      return FALSE;
-//STRIP001  const SwSectionFmt *pFmt = pSect->GetFmt();
-//STRIP001  const SwSectionFmt *pMyFmt = pSection->GetFmt();
-//STRIP001  while( pFmt != pMyFmt )
-//STRIP001  {
-//STRIP001      if( pFmt->GetRegisteredIn()->ISA( SwSectionFmt ) )
-//STRIP001          pFmt = (SwSectionFmt*)pFmt->GetRegisteredIn();
-//STRIP001      else
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL SwSectionFrm::IsDescendantFrom( const SwSectionFmt* pFmt ) const
-//STRIP001 {
-//STRIP001  if( !pSection || !pFmt )
-//STRIP001      return FALSE;
-//STRIP001  const SwSectionFmt *pMyFmt = pSection->GetFmt();
-//STRIP001  while( pFmt != pMyFmt )
-//STRIP001  {
-//STRIP001      if( pMyFmt->GetRegisteredIn()->ISA( SwSectionFmt ) )
-//STRIP001          pMyFmt = (SwSectionFmt*)pMyFmt->GetRegisteredIn();
-//STRIP001      else
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ void SwSectionFrm::CalcFtnAtEndFlag()
 /*N*/ {
@@ -2181,10 +1836,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL SwSectionFrm::IsEndnoteAtMyEnd() const
-//STRIP001 {
-//STRIP001  return pSection->GetFmt()->GetEndAtTxtEnd( FALSE ).IsAtEnd();
-//STRIP001 }
 
 /*N*/ void SwSectionFrm::CalcEndAtEndFlag()
 /*N*/ {
@@ -2262,26 +1913,6 @@ namespace binfilter {
 /*?*/               //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
 /*?*/               //bleibt uns nur einen temporaeres Attribut zu basteln.
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtCol aCol;
-//STRIP001 /*?*/                if ( Lower() && Lower()->IsColumnFrm() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    USHORT nCol = 0;
-//STRIP001 /*?*/                    SwFrm *pTmp = Lower();
-//STRIP001 /*?*/                    do
-//STRIP001 /*?*/                    {   ++nCol;
-//STRIP001 /*?*/                        pTmp = pTmp->GetNext();
-//STRIP001 /*?*/                    } while ( pTmp );
-//STRIP001 /*?*/                    aCol.Init( nCol, 0, 1000 );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                BOOL bChgFtn = IsFtnAtEnd();
-//STRIP001 /*?*/                BOOL bChgEndn = IsEndnAtEnd();
-//STRIP001 /*?*/                BOOL bChgMyEndn = IsEndnoteAtMyEnd();
-//STRIP001 /*?*/                CalcFtnAtEndFlag();
-//STRIP001 /*?*/                CalcEndAtEndFlag();
-//STRIP001 /*?*/                bChgFtn = ( bChgFtn != IsFtnAtEnd() ) ||
-//STRIP001 /*?*/                          ( bChgEndn != IsEndnAtEnd() ) ||
-//STRIP001 /*?*/                          ( bChgMyEndn != IsEndnoteAtMyEnd() );
-//STRIP001 /*?*/                ChgColumns( aCol, rNewCol, bChgFtn );
-//STRIP001 /*?*/                rInvFlags |= 0x10;
 /*?*/           }
 /*?*/           rInvFlags |= 0x01;
 /*?*/           bClear = FALSE;
@@ -2314,14 +1945,6 @@ namespace binfilter {
 /*?*/           if( !IsInFtn() )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOld = IsEndnAtEnd();
-//STRIP001 /*?*/                BOOL bMyOld = IsEndnoteAtMyEnd();
-//STRIP001 /*?*/                CalcEndAtEndFlag();
-//STRIP001 /*?*/                if( bOld != IsEndnAtEnd() || bMyOld != IsEndnoteAtMyEnd())
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    const SwFmtCol& rNewCol = GetFmt()->GetCol();
-//STRIP001 /*?*/                    ChgColumns( rNewCol, rNewCol, TRUE );
-//STRIP001 /*?*/                    rInvFlags |= 0x01;
-//STRIP001 /*?*/                }
 /*?*/           }
 /*?*/           break;
 /*?*/       case RES_COLUMNBALANCE:
@@ -2335,9 +1958,6 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_PROTECT:
 /*M*/           { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                ViewShell *pSh = GetShell();
-//STRIP001 /*?*/                if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-//STRIP001 /*?*/                    pSh->Imp()->InvalidateAccessibleEditableState( sal_True, this );
 /*M*/           }
 /*M*/           break;
 /*M*/
@@ -2384,9 +2004,6 @@ namespace binfilter {
 /*?*/   while( pCont && !bRet )
 /*?*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pCont->FindFootNote() )
-//STRIP001 /*?*/            bRet = TRUE;
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            pCont = ContainsFtnCont( pCont );
 /*?*/   }
 /*?*/   return bRet;
 /*N*/ }
