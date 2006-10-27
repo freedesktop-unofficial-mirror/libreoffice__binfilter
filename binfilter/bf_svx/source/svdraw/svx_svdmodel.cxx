@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:05:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:40:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,14 +38,7 @@
 #endif
 
 #include "svdmodel.hxx"
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #include <unotools/ucbstreamhelper.hxx>
 
-// auto strip #ifndef _STRING_H
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _SFX_WHITER_HXX
 #include <svtools/whiter.hxx>
@@ -68,9 +61,6 @@
 #ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
 #endif
-// auto strip #ifndef _SVX_XFLGRIT_HXX
-// auto strip #include "xflgrit.hxx"
-// auto strip #endif
 #ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
 #endif
@@ -82,25 +72,18 @@
 #endif
 
 
-// auto strip #include "svditext.hxx"
 #include "editeng.hxx"   // Fuer EditEngine::CreatePool()
 
 #include "xtable.hxx"
-// auto strip #include "xoutx.hxx"
 
 #include "svditer.hxx"
-// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
 #include "svdpage.hxx"
-// auto strip #include "svdlayer.hxx"
 #include "svdundo.hxx"
 #include "svdpool.hxx"
-// auto strip #include "svdobj.hxx"
-// auto strip #include "svdotext.hxx"  // fuer ReformatAllTextObjects und CalcFieldValue
 #include "svdetc.hxx"
 #include "svdoutl.hxx"
 #include "svdoole2.hxx"
-// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 #include "svdoutlinercache.hxx"
 
@@ -136,17 +119,8 @@
 #include <tools/bigint.hxx>
 #endif
 
-// auto strip #ifndef _SVX_NUMITEM_HXX //autogen
-// auto strip #include <numitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_BULITEM_HXX //autogen
-// auto strip #include <bulitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _OUTLOBJ_HXX
-// auto strip #include <outlobj.hxx>
-// auto strip #endif
 
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
@@ -160,26 +134,17 @@
 #include <svtools/zforlist.hxx>
 #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 // #90477#
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
 
-// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-// auto strip #include <svtools/syslocale.hxx>
-// auto strip #endif
 
 // #95114#
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
-// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
-// auto strip #endif
 
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
@@ -579,29 +544,9 @@ using namespace ::com::sun::star;
 /*N*/   return mbInDestruction;
 /*N*/ }
 
-//STRIP001 const SvNumberFormatter& SdrModel::GetNumberFormatter() const
-//STRIP001 {
-//STRIP001  if(!mpNumberFormatter)
-//STRIP001  {
-//STRIP001      // use cast here since from outside view this IS a const method
-//STRIP001      ((SdrModel*)this)->mpNumberFormatter = new SvNumberFormatter(
-//STRIP001          ::legacy_binfilters::getLegacyProcessServiceFactory(), LANGUAGE_SYSTEM);
-//STRIP001  }
-//STRIP001
-//STRIP001  return *mpNumberFormatter;
-//STRIP001 }
 
 // noch nicht implementiert:
-//STRIP001 void SdrModel::operator=(const SdrModel& rSrcModel)
-//STRIP001 {
-//STRIP001  DBG_ERROR("SdrModel::operator=() ist noch nicht implementiert");
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrModel::operator==(const SdrModel& rCmpModel) const
-//STRIP001 {
-//STRIP001  DBG_ERROR("SdrModel::operator==() ist noch nicht implementiert");
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void SdrModel::SetSwapGraphics( FASTBOOL bSwap )
 /*N*/ {
@@ -684,138 +629,19 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrModel::Undo()
-//STRIP001 {
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  SfxUndoAction* pDo=(SfxUndoAction*)GetUndoAction(0);
-//STRIP001  if (pDo!=NULL) {
-//STRIP001      pDo->Undo();
-//STRIP001      if (pRedoStack==NULL) pRedoStack=new Container(1024,16,16);
-//STRIP001      pRedoStack->Insert(pUndoStack->Remove((ULONG)0),(ULONG)0);
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrModel::Redo()
-//STRIP001 {
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  SfxUndoAction* pDo=(SfxUndoAction*)GetRedoAction(0);
-//STRIP001  if (pDo!=NULL) {
-//STRIP001      pDo->Redo();
-//STRIP001      if (pUndoStack==NULL) pUndoStack=new Container(1024,16,16);
-//STRIP001      pUndoStack->Insert(pRedoStack->Remove((ULONG)0),(ULONG)0);
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrModel::Repeat(SfxRepeatTarget& rView)
-//STRIP001 {
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  SfxUndoAction* pDo=(SfxUndoAction*)GetUndoAction(0);
-//STRIP001  if (pDo!=NULL) {
-//STRIP001      if (pDo->CanRepeat(rView)) {
-//STRIP001          pDo->Repeat(rView);
-//STRIP001          bRet=TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 void SdrModel::ImpPostUndoAction(SdrUndoAction* pUndo)
-//STRIP001 {
-//STRIP001  if (aUndoLink.IsSet()) {
-//STRIP001      aUndoLink.Call(pUndo);
-//STRIP001  } else {
-//STRIP001      if (pUndoStack==NULL) pUndoStack=new Container(1024,16,16);
-//STRIP001      pUndoStack->Insert(pUndo,(ULONG)0);
-//STRIP001      while (pUndoStack->Count()>nMaxUndoCount) {
-//STRIP001          delete (SfxUndoAction*)  pUndoStack->Remove(pUndoStack->Count()-1);
-//STRIP001      }
-//STRIP001      if (pRedoStack!=NULL) pRedoStack->Clear();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::BegUndo()
-//STRIP001 {
-//STRIP001  if (pAktUndoGroup==NULL) {
-//STRIP001      pAktUndoGroup=new SdrUndoGroup(*this);
-//STRIP001      nUndoLevel=1;
-//STRIP001  } else {
-//STRIP001      nUndoLevel++;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::BegUndo(const XubString& rComment)
-//STRIP001 {
-//STRIP001  BegUndo();
-//STRIP001  if (nUndoLevel==1) {
-//STRIP001      pAktUndoGroup->SetComment(rComment);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::BegUndo(const XubString& rComment, const XubString& rObjDescr, SdrRepeatFunc eFunc)
-//STRIP001 {
-//STRIP001  BegUndo();
-//STRIP001  if (nUndoLevel==1) {
-//STRIP001      pAktUndoGroup->SetComment(rComment);
-//STRIP001      pAktUndoGroup->SetObjDescription(rObjDescr);
-//STRIP001      pAktUndoGroup->SetRepeatFunction(eFunc);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::BegUndo(SdrUndoGroup* pUndoGrp)
-//STRIP001 {
-//STRIP001  if (pAktUndoGroup==NULL) {
-//STRIP001      pAktUndoGroup=pUndoGrp;
-//STRIP001      nUndoLevel=1;
-//STRIP001  } else {
-//STRIP001      delete pUndoGrp;
-//STRIP001      nUndoLevel++;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::EndUndo()
-//STRIP001 {
-//STRIP001  DBG_ASSERT(nUndoLevel!=0,"SdrModel::EndUndo(): UndoLevel ist bereits auf 0!");
-//STRIP001  if (pAktUndoGroup!=NULL) {
-//STRIP001      nUndoLevel--;
-//STRIP001      if (nUndoLevel==0) {
-//STRIP001          if (pAktUndoGroup->GetActionCount()!=0) {
-//STRIP001              SdrUndoAction* pUndo=pAktUndoGroup;
-//STRIP001              pAktUndoGroup=NULL;
-//STRIP001              ImpPostUndoAction(pUndo);
-//STRIP001          } else { // war nix drin
-//STRIP001              delete pAktUndoGroup;
-//STRIP001              pAktUndoGroup=NULL;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::SetUndoComment(const XubString& rComment)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(nUndoLevel!=0,"SdrModel::SetUndoComment(): UndoLevel ist auf 0!");
-//STRIP001  if (nUndoLevel==1) {
-//STRIP001      pAktUndoGroup->SetComment(rComment);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::SetUndoComment(const XubString& rComment, const XubString& rObjDescr)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(nUndoLevel!=0,"SdrModel::SetUndoComment(): UndoLevel ist auf 0!");
-//STRIP001  if (nUndoLevel==1) {
-//STRIP001      pAktUndoGroup->SetComment(rComment);
-//STRIP001      pAktUndoGroup->SetObjDescription(rObjDescr);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrModel::AddUndo(SdrUndoAction* pUndo)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (pAktUndoGroup!=NULL) {
-//STRIP001      pAktUndoGroup->AddAction(pUndo);
-//STRIP001  } else {
-//STRIP001      ImpPostUndoAction(pUndo);
-//STRIP001  }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -862,7 +688,6 @@ using namespace ::com::sun::star;
 /*N*/ SdrModel* SdrModel::AllocModel() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   SdrModel* pModel=new SdrModel;
-//STRIP001  pModel->SetScaleUnit(eObjUnit,aObjUnit);
 /*N*/   return pModel;
 /*N*/ }
 
@@ -871,46 +696,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SdrPage(*this,bMasterPage);
 /*N*/ }
 
-//STRIP001 const SdrModel* SdrModel::LoadModel(const String& rFileName)
-//STRIP001 {
-//STRIP001  if(pLoadedModel && aLoadedModelFN.Equals(rFileName))
-//STRIP001  {
-//STRIP001      return pLoadedModel;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      delete pLoadedModel;
-//STRIP001      pLoadedModel = NULL;
-//STRIP001      aLoadedModelFN = String();
-//STRIP001
-//STRIP001      SdrModel*           pModel = new SdrModel;
-//STRIP001      const INetURLObject aFileURL( rFileName );
-//STRIP001
-//STRIP001      DBG_ASSERT( aFileURL.GetProtocol() != INET_PROT_NOT_VALID, "invalid URL" );
-//STRIP001
-//STRIP001      SvStream* pIStm = ::utl::UcbStreamHelper::CreateStream( aFileURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_READ );
-//STRIP001
-//STRIP001      if( pIStm )
-//STRIP001      {
-//STRIP001          pModel->GetItemPool().Load( *pIStm );
-//STRIP001          (*pIStm) >> *pModel;
-//STRIP001
-//STRIP001          if( pIStm->GetError() )
-//STRIP001              delete pModel, pModel = NULL;
-//STRIP001          else
-//STRIP001          {
-//STRIP001              pLoadedModel = pModel;
-//STRIP001              aLoadedModelFN = rFileName;
-//STRIP001          }
-//STRIP001
-//STRIP001          delete pIStm;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          delete pModel, pModel = NULL;
-//STRIP001
-//STRIP001      return pModel;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrModel::DisposeLoadedModels()
 /*N*/ {
@@ -924,31 +709,6 @@ using namespace ::com::sun::star;
 /*N*/   SetTextDefaults( pItemPool, nDefTextHgt );
 /*N*/ }
 
-//STRIP001 void ImpGetDefaultFontsLanguage( SvxFontItem& rLatin, SvxFontItem& rAsian, SvxFontItem& rComplex)
-//STRIP001 {
-//STRIP001  const USHORT nItemCnt = 3;
-//STRIP001  static struct {
-//STRIP001      USHORT nFntType, nLanguage;
-//STRIP001  }  aOutTypeArr[ nItemCnt ] = {
-//STRIP001      {  DEFAULTFONT_LATIN_TEXT, LANGUAGE_ENGLISH_US },
-//STRIP001      {  DEFAULTFONT_CJK_TEXT, LANGUAGE_ENGLISH_US },
-//STRIP001      {  DEFAULTFONT_CTL_TEXT, LANGUAGE_ARABIC_SAUDI_ARABIA }
-//STRIP001  };
-//STRIP001  SvxFontItem* aItemArr[ nItemCnt ] = { &rLatin, &rAsian, &rComplex };
-//STRIP001
-//STRIP001  for( USHORT n = 0; n < nItemCnt; ++n )
-//STRIP001  {
-//STRIP001      Font aFnt( OutputDevice::GetDefaultFont(
-//STRIP001          aOutTypeArr[ n ].nFntType, aOutTypeArr[ n ].nLanguage,
-//STRIP001          DEFAULTFONT_FLAGS_ONLYONE, 0 ));
-//STRIP001      SvxFontItem* pI = aItemArr[ n ];
-//STRIP001      pI->GetFamily() = aFnt.GetFamily();
-//STRIP001      pI->GetFamilyName() = aFnt.GetName();
-//STRIP001      pI->GetStyleName().Erase();
-//STRIP001      pI->GetPitch() = aFnt.GetPitch();
-//STRIP001      pI->GetCharSet() = aFnt.GetCharSet();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrModel::SetTextDefaults( SfxItemPool* pItemPool, ULONG nDefTextHgt )
 /*N*/ {
@@ -1000,13 +760,6 @@ using namespace ::com::sun::star;
 /*N*/   return *pDrawOutliner;
 /*N*/ }
 
-//STRIP001 const SdrTextObj* SdrModel::GetFormattingTextObj() const
-//STRIP001 {
-//STRIP001  if (pDrawOutliner!=NULL) {
-//STRIP001      return pDrawOutliner->GetTextObj();
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*N*/ void SdrModel::ImpSetOutlinerDefaults( SdrOutliner* pOutliner, BOOL bInit )
 /*N*/ {
@@ -1086,31 +839,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // Die Vorlagenattribute der Zeichenobjekte in harte Attribute verwandeln.
-//STRIP001 void SdrModel::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-//STRIP001 {
-//STRIP001  USHORT nAnz=GetMasterPageCount();
-//STRIP001  USHORT nNum;
-//STRIP001  for (nNum=0; nNum<nAnz; nNum++) {
-//STRIP001      GetMasterPage(nNum)->BurnInStyleSheetAttributes( bPseudoSheetsOnly );
-//STRIP001  }
-//STRIP001  nAnz=GetPageCount();
-//STRIP001  for (nNum=0; nNum<nAnz; nNum++) {
-//STRIP001      GetPage(nNum)->BurnInStyleSheetAttributes( bPseudoSheetsOnly );
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrModel::RemoveNotPersistentObjects(FASTBOOL bNoBroadcast)
-//STRIP001 {
-//STRIP001  USHORT nAnz=GetMasterPageCount();
-//STRIP001  USHORT nNum;
-//STRIP001  for (nNum=0; nNum<nAnz; nNum++) {
-//STRIP001      GetMasterPage(nNum)->RemoveNotPersistentObjects(bNoBroadcast);
-//STRIP001  }
-//STRIP001  nAnz=GetPageCount();
-//STRIP001  for (nNum=0; nNum<nAnz; nNum++) {
-//STRIP001      GetPage(nNum)->RemoveNotPersistentObjects(bNoBroadcast);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrModel::RefDeviceChanged()
 /*N*/ {
@@ -1237,18 +966,6 @@ using namespace ::com::sun::star;
 /*N*/   TakeUnitStr(eUIUnit,aUIUnitStr);
 /*N*/ }
 
-//STRIP001 void SdrModel::SetScaleUnit(MapUnit eMap, const Fraction& rFrac)
-//STRIP001 {
-//STRIP001  if (eObjUnit!=eMap || aObjUnit!=rFrac) {
-//STRIP001      eObjUnit=eMap;
-//STRIP001      aObjUnit=rFrac;
-//STRIP001      pItemPool->SetDefaultMetric((SfxMapUnit)eObjUnit);
-//STRIP001      ImpSetUIUnit();
-//STRIP001      ImpSetOutlinerDefaults( pDrawOutliner );
-//STRIP001      ImpSetOutlinerDefaults( pHitTestOutliner );
-//STRIP001      ImpReformatAllTextObjects(); // #40424#
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrModel::SetScaleUnit(MapUnit eMap)
 /*N*/ {
@@ -1497,61 +1214,7 @@ using namespace ::com::sun::star;
 /*?*/       rStr += aUIUnitStr;
 /*?*/ }
 
-//STRIP001 void SdrModel::TakeWinkStr(long nWink, XubString& rStr, FASTBOOL bNoDegChar) const
-//STRIP001 {
-//STRIP001  BOOL bNeg(nWink < 0);
-//STRIP001
-//STRIP001  if(bNeg)
-//STRIP001      nWink = -nWink;
-//STRIP001
-//STRIP001  rStr = UniString::CreateFromInt32(nWink);
-//STRIP001
-//STRIP001     SvtSysLocale aSysLoc;
-//STRIP001     const LocaleDataWrapper& rLoc = aSysLoc.GetLocaleData();
-//STRIP001  xub_StrLen nAnz(2);
-//STRIP001
-//STRIP001     if(rLoc.isNumLeadingZero())
-//STRIP001      nAnz++;
-//STRIP001
-//STRIP001  while(rStr.Len() < nAnz)
-//STRIP001      rStr.Insert(sal_Unicode('0'), 0);
-//STRIP001
-//STRIP001     rStr.Insert(rLoc.getNumDecimalSep().GetChar(0), rStr.Len() - 2);
-//STRIP001
-//STRIP001  if(bNeg)
-//STRIP001      rStr.Insert(sal_Unicode('-'), 0);
-//STRIP001
-//STRIP001  if(!bNoDegChar)
-//STRIP001      rStr += DEGREE_CHAR;
-//STRIP001 }
 
-//STRIP001 void SdrModel::TakePercentStr(const Fraction& rVal, XubString& rStr, FASTBOOL bNoPercentChar) const
-//STRIP001 {
-//STRIP001  INT32 nMul(rVal.GetNumerator());
-//STRIP001  INT32 nDiv(rVal.GetDenominator());
-//STRIP001  BOOL bNeg(nMul < 0);
-//STRIP001
-//STRIP001  if(nDiv < 0)
-//STRIP001      bNeg = !bNeg;
-//STRIP001
-//STRIP001  if(nMul < 0)
-//STRIP001      nMul = -nMul;
-//STRIP001
-//STRIP001  if(nDiv < 0)
-//STRIP001      nDiv = -nDiv;
-//STRIP001
-//STRIP001  nMul *= 100;
-//STRIP001  nMul += nDiv/2;
-//STRIP001  nMul /= nDiv;
-//STRIP001
-//STRIP001  rStr = UniString::CreateFromInt32(nMul);
-//STRIP001
-//STRIP001  if(bNeg)
-//STRIP001      rStr.Insert(sal_Unicode('-'), 0);
-//STRIP001
-//STRIP001  if(!bNoPercentChar)
-//STRIP001      rStr += sal_Unicode('%');
-//STRIP001 }
 
 /*N*/ void SdrModel::SetChanged(FASTBOOL bFlg)
 /*N*/ {
@@ -1606,14 +1269,6 @@ using namespace ::com::sun::star;
 /*N*/   return pPg;
 /*N*/ }
 
-//STRIP001 void SdrModel::MovePage(USHORT nPgNum, USHORT nNewPos)
-//STRIP001 {
-//STRIP001  SdrPage* pPg=(SdrPage*)aPages.Remove(nPgNum);
-//STRIP001  if (pPg!=NULL) {
-//STRIP001      pPg->SetInserted(FALSE);
-//STRIP001      InsertPage(pPg,nNewPos);
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrModel::InsertMasterPage(SdrPage* pPage, USHORT nPos)
 /*N*/ {
@@ -1624,12 +1279,6 @@ using namespace ::com::sun::star;
 /*N*/   pPage->SetPageNum(nPos);
 /*N*/   pPage->SetModel(this);
 /*N*/   if (nPos<nAnz) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        bMPgNumsDirty=TRUE;
-//STRIP001 /*?*/        // Anpassen der MasterPageDescriptoren
-//STRIP001 /*?*/        USHORT nPageAnz=GetPageCount();
-//STRIP001 /*?*/        for (USHORT np=0; np<nPageAnz; np++) {
-//STRIP001 /*?*/            GetPage(np)->ImpMasterPageInserted(nPos);
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/   SetChanged();
 /*N*/   SdrHint aHint(HINT_PAGEORDERCHG);
@@ -2396,237 +2045,14 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 FASTBOOL SdrModel::WriteModelInfo(SvStream& rOut) const
-//STRIP001 {
-//STRIP001  FASTBOOL bRet=FALSE;
-//STRIP001  if (rOut.GetError()!=0) return bRet;
-//STRIP001  SdrIOHeaderLookAhead aLookAhead(rOut);
-//STRIP001  ULONG nCompat;
-//STRIP001  rOut>>nCompat;
-//STRIP001  char cMagic[4];
-//STRIP001  FASTBOOL bJoeMagicOk=(rOut.Read(cMagic,4)==4) && memcmp(cMagic,SdrIOJoeMagic,4)==0;
-//STRIP001  if (aLookAhead.GetVersion()>=11 && aLookAhead.IsMagic() &&
-//STRIP001      bJoeMagicOk && aLookAhead.IsID(SdrIOModlID) && rOut.GetError()==0)
-//STRIP001  {
-//STRIP001      rOut<<aInfo;
-//STRIP001      bRet=rOut.GetError()==0;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 FASTBOOL SdrModel::CheckConsistence() const
-//STRIP001 {
-//STRIP001  FASTBOOL bRet=TRUE;
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  DBG_CHKTHIS(SdrModel,NULL);
-//STRIP001 #endif
-//STRIP001  return bRet;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // #48289#
-//STRIP001 void SdrModel::CopyPages(USHORT nFirstPageNum, USHORT nLastPageNum,
-//STRIP001                       USHORT nDestPos,
-//STRIP001                       FASTBOOL bUndo, FASTBOOL bMoveNoCopy)
-//STRIP001 {
-//STRIP001  if (bUndo) {
-//STRIP001      BegUndo(ImpGetResStr(STR_UndoMergeModel));
-//STRIP001  }
-//STRIP001  USHORT nPageAnz=GetPageCount();
-//STRIP001  USHORT nMaxPage=nPageAnz; if (nMaxPage!=0) nMaxPage--;
-//STRIP001  if (nFirstPageNum>nMaxPage) nFirstPageNum=nMaxPage;
-//STRIP001  if (nLastPageNum>nMaxPage)  nLastPageNum =nMaxPage;
-//STRIP001  FASTBOOL bReverse=nLastPageNum<nFirstPageNum;
-//STRIP001  if (nDestPos>nPageAnz) nDestPos=nPageAnz;
-//STRIP001
-//STRIP001  // Zunaechst die Zeiger der betroffenen Seiten in einem Array sichern
-//STRIP001  USHORT nPageNum=nFirstPageNum;
-//STRIP001  USHORT nCopyAnz=((!bReverse)?(nLastPageNum-nFirstPageNum):(nFirstPageNum-nLastPageNum))+1;
-//STRIP001  SdrPage** pPagePtrs=new SdrPage*[nCopyAnz];
-//STRIP001  USHORT nCopyNum;
-//STRIP001  for (nCopyNum=0; nCopyNum<nCopyAnz; nCopyNum++) {
-//STRIP001      pPagePtrs[nCopyNum]=GetPage(nPageNum);
-//STRIP001      if (bReverse) nPageNum--;
-//STRIP001      else nPageNum++;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Jetzt die Seiten kopieren
-//STRIP001  USHORT nDestNum=nDestPos;
-//STRIP001  for (nCopyNum=0; nCopyNum<nCopyAnz; nCopyNum++) {
-//STRIP001      SdrPage* pPg=pPagePtrs[nCopyNum];
-//STRIP001      USHORT nPageNum=pPg->GetPageNum();
-//STRIP001      if (!bMoveNoCopy) {
-//STRIP001          const SdrPage* pPg1=GetPage(nPageNum);
-//STRIP001          pPg=pPg1->Clone();
-//STRIP001          InsertPage(pPg,nDestNum);
-//STRIP001          if (bUndo) AddUndo(new SdrUndoCopyPage(*pPg));
-//STRIP001          nDestNum++;
-//STRIP001      } else {
-//STRIP001          // Move ist nicht getestet!
-//STRIP001          if (nDestNum>nPageNum) nDestNum--;
-//STRIP001          if (bUndo) AddUndo(new SdrUndoSetPageNum(*GetPage(nPageNum),nPageNum,nDestNum));
-//STRIP001          pPg=RemovePage(nPageNum);
-//STRIP001          InsertPage(pPg,nDestNum);
-//STRIP001          nDestNum++;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (bReverse) nPageNum--;
-//STRIP001      else nPageNum++;
-//STRIP001  }
-//STRIP001
-//STRIP001  delete[] pPagePtrs;
-//STRIP001  if (bUndo) EndUndo();
-//STRIP001 }
 
-//STRIP001 void SdrModel::Merge(SdrModel& rSourceModel,
-//STRIP001                   USHORT nFirstPageNum, USHORT nLastPageNum,
-//STRIP001                   USHORT nDestPos,
-//STRIP001                   FASTBOOL bMergeMasterPages, FASTBOOL bAllMasterPages,
-//STRIP001                   FASTBOOL bUndo, FASTBOOL bTreadSourceAsConst)
-//STRIP001 {
-//STRIP001  if (&rSourceModel==this) { // #48289#
-//STRIP001      CopyPages(nFirstPageNum,nLastPageNum,nDestPos,bUndo,!bTreadSourceAsConst);
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  if (bUndo) {
-//STRIP001      BegUndo(ImpGetResStr(STR_UndoMergeModel));
-//STRIP001  }
-//STRIP001  USHORT nSrcPageAnz=rSourceModel.GetPageCount();
-//STRIP001  USHORT nSrcMasterPageAnz=rSourceModel.GetMasterPageCount();
-//STRIP001  USHORT nDstMasterPageAnz=GetMasterPageCount();
-//STRIP001  FASTBOOL bInsPages=(nFirstPageNum<nSrcPageAnz || nLastPageNum<nSrcPageAnz);
-//STRIP001  USHORT nMaxSrcPage=nSrcPageAnz; if (nMaxSrcPage!=0) nMaxSrcPage--;
-//STRIP001  if (nFirstPageNum>nMaxSrcPage) nFirstPageNum=nMaxSrcPage;
-//STRIP001  if (nLastPageNum>nMaxSrcPage)  nLastPageNum =nMaxSrcPage;
-//STRIP001  FASTBOOL bReverse=nLastPageNum<nFirstPageNum;
-//STRIP001
-//STRIP001  USHORT*   pMasterMap=NULL;
-//STRIP001  FASTBOOL* pMasterNeed=NULL;
-//STRIP001  USHORT    nMasterNeed=0;
-//STRIP001  if (bMergeMasterPages && nSrcMasterPageAnz!=0) {
-//STRIP001      // Feststellen, welche MasterPages aus rSrcModel benoetigt werden
-//STRIP001      pMasterMap=new USHORT[nSrcMasterPageAnz];
-//STRIP001      pMasterNeed=new FASTBOOL[nSrcMasterPageAnz];
-//STRIP001      memset(pMasterMap,0xFF,nSrcMasterPageAnz*sizeof(USHORT));
-//STRIP001      if (bAllMasterPages) {
-//STRIP001          memset(pMasterNeed,TRUE,nSrcMasterPageAnz*sizeof(FASTBOOL));
-//STRIP001      } else {
-//STRIP001          memset(pMasterNeed,FALSE,nSrcMasterPageAnz*sizeof(FASTBOOL));
-//STRIP001          USHORT nAnf= bReverse ? nLastPageNum : nFirstPageNum;
-//STRIP001          USHORT nEnd= bReverse ? nFirstPageNum : nLastPageNum;
-//STRIP001          for (USHORT i=nAnf; i<=nEnd; i++) {
-//STRIP001              const SdrPage* pPg=rSourceModel.GetPage(i);
-//STRIP001              USHORT nMasterDescrAnz=pPg->GetMasterPageCount();
-//STRIP001              for (USHORT j=0; j<nMasterDescrAnz; j++) {
-//STRIP001                  const SdrMasterPageDescriptor& rMaster=pPg->GetMasterPageDescriptor(j);
-//STRIP001                  USHORT nMPgNum=rMaster.GetPageNum();
-//STRIP001                  if (nMPgNum<nSrcMasterPageAnz) {
-//STRIP001                      pMasterNeed[nMPgNum]=TRUE;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      // Nun das Mapping der MasterPages bestimmen
-//STRIP001      USHORT nAktMaPagNum=nDstMasterPageAnz;
-//STRIP001      for (USHORT i=0; i<nSrcMasterPageAnz; i++) {
-//STRIP001          if (pMasterNeed[i]) {
-//STRIP001              pMasterMap[i]=nAktMaPagNum;
-//STRIP001              nAktMaPagNum++;
-//STRIP001              nMasterNeed++;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // rueberholen der Zeichenseiten
-//STRIP001  if (bInsPages) {
-//STRIP001      USHORT nSourcePos=nFirstPageNum;
-//STRIP001      USHORT nMergeCount=USHORT(Abs((long)((long)nFirstPageNum-nLastPageNum))+1);
-//STRIP001      if (nDestPos>GetPageCount()) nDestPos=GetPageCount();
-//STRIP001      while (nMergeCount>0) {
-//STRIP001          SdrPage* pPg=NULL;
-//STRIP001          if (bTreadSourceAsConst) {
-//STRIP001              const SdrPage* pPg1=rSourceModel.GetPage(nSourcePos);
-//STRIP001              pPg=pPg1->Clone();
-//STRIP001          } else {
-//STRIP001              pPg=rSourceModel.RemovePage(nSourcePos);
-//STRIP001          }
-//STRIP001          if (pPg!=NULL) {
-//STRIP001              InsertPage(pPg,nDestPos);
-//STRIP001              if (bUndo) AddUndo(new SdrUndoNewPage(*pPg));
-//STRIP001              // und nun zu den MasterPageDescriptoren
-//STRIP001              USHORT nMasterDescrAnz=pPg->GetMasterPageCount();
-//STRIP001              for (USHORT nMaster=nMasterDescrAnz; nMaster>0;) {
-//STRIP001                  nMaster--;
-//STRIP001                  const SdrMasterPageDescriptor& rConstMaster=pPg->GetMasterPageDescriptor(nMaster);
-//STRIP001                  USHORT nMaPgNum=rConstMaster.GetPageNum();
-//STRIP001                  if (bMergeMasterPages) {
-//STRIP001                      USHORT nNeuNum=0xFFFF;
-//STRIP001                      if (pMasterMap!=NULL) nNeuNum=pMasterMap[nMaPgNum];
-//STRIP001                      if (nNeuNum!=0xFFFF) {
-//STRIP001                          if (bUndo) AddUndo(new SdrUndoPageChangeMasterPage(*pPg,nNeuNum));
-//STRIP001                          SdrMasterPageDescriptor& rMaster=pPg->GetMasterPageDescriptor(nMaster);
-//STRIP001                          rMaster.SetPageNum(nNeuNum);
-//STRIP001                      }
-//STRIP001                      DBG_ASSERT(nNeuNum!=0xFFFF,"SdrModel::Merge(): Irgendwas ist krumm beim Mappen der MasterPages");
-//STRIP001                  } else {
-//STRIP001                      if (nMaPgNum>=nDstMasterPageAnz) {
-//STRIP001                          // Aha, die ist ausserbalb des urspruenglichen Bereichs der Masterpages des DstModel
-//STRIP001                          pPg->RemoveMasterPage(nMaster);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          } else {
-//STRIP001              DBG_ERROR("SdrModel::Merge(): Zeichenseite im SourceModel nicht gefunden");
-//STRIP001          }
-//STRIP001          nDestPos++;
-//STRIP001          if (bReverse) nSourcePos--;
-//STRIP001          else if (bTreadSourceAsConst) nSourcePos++;
-//STRIP001          nMergeCount--;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // rueberholen der Masterpages
-//STRIP001  if (pMasterMap!=NULL && pMasterNeed!=NULL && nMasterNeed!=0) {
-//STRIP001      for (USHORT i=nSrcMasterPageAnz; i>0;) {
-//STRIP001          i--;
-//STRIP001          if (pMasterNeed[i]) {
-//STRIP001              SdrPage* pPg=NULL;
-//STRIP001              if (bTreadSourceAsConst) {
-//STRIP001                  const SdrPage* pPg1=rSourceModel.GetMasterPage(i);
-//STRIP001                  pPg=pPg1->Clone();
-//STRIP001              } else {
-//STRIP001                  pPg=rSourceModel.RemoveMasterPage(i);
-//STRIP001              }
-//STRIP001              if (pPg!=NULL) {
-//STRIP001                  // und alle ans einstige Ende des DstModel reinschieben.
-//STRIP001                  // nicht InsertMasterPage() verwenden da die Sache
-//STRIP001                  // inkonsistent ist bis alle drin sind
-//STRIP001                  aMaPag.Insert(pPg,nDstMasterPageAnz);
-//STRIP001                  pPg->SetInserted(TRUE);
-//STRIP001                  pPg->SetModel(this);
-//STRIP001                  bMPgNumsDirty=TRUE;
-//STRIP001                  if (bUndo) AddUndo(new SdrUndoNewPage(*pPg));
-//STRIP001              } else {
-//STRIP001                  DBG_ERROR("SdrModel::Merge(): MasterPage im SourceModel nicht gefunden");
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  delete [] pMasterMap;
-//STRIP001  delete [] pMasterNeed;
-//STRIP001
-//STRIP001  bMPgNumsDirty=TRUE;
-//STRIP001  bPagNumsDirty=TRUE;
-//STRIP001
-//STRIP001  SetChanged();
-//STRIP001  // Fehlt: Mergen und Mapping der Layer
-//STRIP001  // an den Objekten sowie an den MasterPageDescriptoren
-//STRIP001  if (bUndo) EndUndo();
-//STRIP001 }
 
 /*N*/ void SdrModel::SetStarDrawPreviewMode(BOOL bPreview)
 /*N*/ {
@@ -2642,11 +2068,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 void SdrModel::PrepareStore()
-//STRIP001 {
-//STRIP001  // is done by PreSave now
-//STRIP001  DBG_ERROR("Please call PreSave now. It'll do the desired job.");
-//STRIP001 }
 
 /*N*/ void SdrModel::PreSave()
 /*N*/ {
@@ -2852,24 +2273,6 @@ using namespace ::com::sun::star;
 /*N*/   ImpReformatAllTextObjects();
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrModel::HasTransparentObjects( BOOL bCheckForAlphaChannel ) const
-//STRIP001 {
-//STRIP001  FASTBOOL    bRet = FALSE;
-//STRIP001  USHORT      n, nCount;
-//STRIP001
-//STRIP001  for( n = 0, nCount = GetMasterPageCount(); ( n < nCount ) && !bRet; n++ )
-//STRIP001      if( GetMasterPage( n )->HasTransparentObjects( bCheckForAlphaChannel ) )
-//STRIP001          bRet = TRUE;
-//STRIP001
-//STRIP001  if( !bRet )
-//STRIP001  {
-//STRIP001      for( n = 0, nCount = GetPageCount(); ( n < nCount ) && !bRet; n++ )
-//STRIP001          if( GetPage( n )->HasTransparentObjects( bCheckForAlphaChannel ) )
-//STRIP001              bRet = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ SdrOutliner* SdrModel::createOutliner( USHORT nOutlinerMode )
 /*N*/ {
