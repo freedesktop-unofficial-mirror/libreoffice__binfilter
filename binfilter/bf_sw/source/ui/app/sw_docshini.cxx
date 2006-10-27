@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:51:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:59:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,39 +50,21 @@
 #ifndef _SOT_STORINFO_HXX
 #include <sot/storinfo.hxx>
 #endif
-// auto strip #ifndef _SVSTOR_HXX
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _ZFORLIST_HXX //autogen
-// auto strip #include <svtools/zforlist.hxx>
-// auto strip #endif
 #ifndef _CTRLTOOL_HXX //autogen
 #include <svtools/ctrltool.hxx>
 #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
-// auto strip #ifndef _SFXDOCINF_HXX //autogen
-// auto strip #include <bf_sfx2/docinf.hxx>
-// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _OFA_MISCCFG_HXX //autogen
-// auto strip #include <bf_sfx2/misccfg.hxx>
-// auto strip #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
 #ifndef _SVX_ASIANCFG_HXX
 #include <bf_svx/asiancfg.hxx>
 #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-// auto strip #include <unotools/localedatawrapper.hxx>
-// auto strip #endif
 #ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
 #endif
@@ -93,18 +75,6 @@
 #include <bf_svx/adjitem.hxx>
 #endif
 
-// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
-// auto strip #include <bf_linguistic/lngprops.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_SFXUNO_HXX
-// auto strip #include <bf_sfx2/sfxuno.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
-// auto strip #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
 #endif
@@ -140,9 +110,6 @@
 #ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
 #endif
-// auto strip #ifndef _MySVXACORR_HXX //autogen
-// auto strip #include <bf_svx/svxacorr.hxx>
-// auto strip #endif
 
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
@@ -156,12 +123,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _FMTCOL_HXX //autogen
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
@@ -176,18 +137,9 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCFAC_HXX
-// auto strip #include <docfac.hxx>
-// auto strip #endif
 #ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
 #endif
-// auto strip #ifndef _SHELLIO_HXX
-// auto strip #include <shellio.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOX_HXX
-// auto strip #include <tox.hxx>
-// auto strip #endif
 #ifndef _SW3IO_HXX
 #include <sw3io.hxx>        // I/O, Hausformat
 #endif
@@ -197,9 +149,6 @@
 #ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
 #endif
-// auto strip #ifndef _DBMGR_HXX
-// auto strip #include <dbmgr.hxx>
-// auto strip #endif
 #ifndef _USRPREF_HXX
 #include <usrpref.hxx>
 #endif
@@ -209,24 +158,15 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-// auto strip #ifndef _MODCFG_HXX
-// auto strip #include <modcfg.hxx>
-// auto strip #endif
 #ifndef _GLOBDOC_HXX
 #include <globdoc.hxx>
 #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-// auto strip #ifndef _MDIEXP_HXX
-// auto strip #include <mdiexp.hxx>
-// auto strip #endif
 #ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
 #endif
-// auto strip #ifndef _FLDUPDE_HXX
-// auto strip #include <fldupde.hxx>
-// auto strip #endif
 #ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
 #endif
@@ -301,13 +241,6 @@ using namespace ::rtl;
 /*N*/         if(aLocales.getLength())
 /*N*/         {
 /*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const Locale* pLocales = aLocales.getConstArray();
-//STRIP001 /*?*/             for(sal_Int32 i = 0; i < aLocales.getLength(); i++)
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 ForbiddenCharacters aForbidden;
-//STRIP001 /*?*/                 aAsian.GetStartEndChars( pLocales[i], aForbidden.beginLine, aForbidden.endLine);
-//STRIP001 /*?*/                 LanguageType  eLang = SvxLocaleToLanguage(pLocales[i]);
-//STRIP001 /*?*/                 pDoc->SetForbiddenCharacters( eLang, aForbidden);
-//STRIP001 /*?*/             }
 /*N*/         }
 /*N*/         pDoc->SetKernAsianPunctuation(!aAsian.IsKerningWesternTextOnly());
 /*N*/         pDoc->SetCharCompressType((SwCharCompressType)aAsian.GetCharDistanceCompression());
@@ -614,18 +547,6 @@ using namespace ::rtl;
 /*N*/       pDoc = 0;       // wir haben das Doc nicht mehr !!
 /*N*/   }
 /*N*/ }
-//STRIP001 void SwDocShell::InvalidateModel()
-//STRIP001 {
-//STRIP001  // Uno-Object abklemmen
-//STRIP001  uno::Reference< text::XTextDocument >  xDoc(GetBaseModel(), uno::UNO_QUERY);
-//STRIP001  ((SwXTextDocument*)xDoc.get())->Invalidate();
-//STRIP001 }
-//STRIP001 void SwDocShell::ReactivateModel()
-//STRIP001 {
-//STRIP001  // Uno-Object abklemmen
-//STRIP001  uno::Reference< text::XTextDocument >  xDoc(GetBaseModel(), uno::UNO_QUERY);
-//STRIP001  ((SwXTextDocument*)xDoc.get())->Reactivate(this);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Laden, Default-Format
@@ -688,9 +609,6 @@ using namespace ::rtl;
 /*N*/       case SFX_CREATE_MODE_EMBEDDED:
 /*N*/           if ( bXML )
 /*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                // fuer MWERKS (Mac-Compiler): kann nicht selbststaendig casten
-//STRIP001 /*?*/                SvEmbeddedObject* pObj = this;
-//STRIP001 /*?*/                SwTransferable::InitOle( pObj, *pDoc );
 /*N*/           }
             // SfxProgress unterdruecken, wenn man Embedded ist
 /*N*/           SW_MOD()->SetEmbeddedLoadSave( sal_True );
@@ -871,8 +789,6 @@ using namespace ::rtl;
 /*?*/           if( 0 == ( nErr = aMed.GetInStream()->GetError() ) )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwWait aWait( *this, sal_True );
-//STRIP001 /*?*/                SwReader aRead( aMed, rNm, pDoc );
-//STRIP001 /*?*/                nErr = aRead.Read( *ReadSwg );
 /*?*/           }
 /*?*/       }
 /*?*/
