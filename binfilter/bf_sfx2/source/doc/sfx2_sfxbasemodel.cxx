@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:28:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:31:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -345,49 +345,11 @@ extern void* getWinMetaFileFromGDI_Impl( const GDIMetaFile* pGDIMeta, const Size
 extern SvMemoryStream* getMetaMemStrFromGDI_Impl( const GDIMetaFile* pGDIMeta, sal_uInt32 nFormat );
 extern sal_Bool supportsMetaFileHandle_Impl();
 
-//STRIP001 class SfxPrintJob_Impl : public cppu::WeakImplHelper1
-//STRIP001 <
-//STRIP001  ::com::sun::star::view::XPrintJob
-//STRIP001 >
-//STRIP001 {
-//STRIP001      IMPL_SfxBaseModel_DataContainer* m_pData;
-//STRIP001
-//STRIP001 public:
-//STRIP001      SfxPrintJob_Impl( IMPL_SfxBaseModel_DataContainer* pData );
-//STRIP001      virtual Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL getPrintOptions(  ) throw (RuntimeException);
-//STRIP001      virtual Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL getPrinter(  ) throw (RuntimeException);
-//STRIP001      virtual Reference< ::com::sun::star::view::XPrintable > SAL_CALL getPrintable(  ) throw (RuntimeException);
-//STRIP001      virtual void SAL_CALL cancelJob() throw (RuntimeException);
-//STRIP001 };
 
-//STRIP001 SfxPrintJob_Impl::SfxPrintJob_Impl( IMPL_SfxBaseModel_DataContainer* pData )
-//STRIP001  : m_pData( pData )
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL SfxPrintJob_Impl::getPrintOptions() throw (RuntimeException)
-//STRIP001 {
-//STRIP001  return m_pData->m_aPrintOptions;
-//STRIP001 }
 
-//STRIP001 Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL SfxPrintJob_Impl::getPrinter() throw (RuntimeException)
-//STRIP001 {
-//STRIP001  Reference < view::XPrintable > xPrintable( m_pData->m_pObjectShell->GetModel(), UNO_QUERY );
-//STRIP001  if ( xPrintable.is() )
-//STRIP001      return xPrintable->getPrinter();
-//STRIP001  return Sequence< ::com::sun::star::beans::PropertyValue >();
-//STRIP001 }
 
-//STRIP001 Reference< ::com::sun::star::view::XPrintable > SAL_CALL SfxPrintJob_Impl::getPrintable() throw (RuntimeException)
-//STRIP001 {
-//STRIP001  Reference < view::XPrintable > xPrintable( m_pData->m_pObjectShell->GetModel(), UNO_QUERY );
-//STRIP001  return xPrintable;
-//STRIP001 }
 
-//STRIP001 void SAL_CALL SfxPrintJob_Impl::cancelJob() throw (RuntimeException)
-//STRIP001 {
-//STRIP001  m_pData->m_pObjectShell->Broadcast( SfxPrintingHint( -2, NULL, NULL ) );
-//STRIP001 }
 
 //________________________________________________________________________________________________________
 //  constructor
@@ -1305,184 +1267,12 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 //  XPrintable
 //________________________________________________________________________________________________________
 
-//STRIP001 SEQUENCE< PROPERTYVALUE > SAL_CALL SfxBaseModel::getPrinter() throw(::com::sun::star::uno::RuntimeException)
-//STRIP001 {
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      throw DISPOSEDEXCEPTION();
-//STRIP001
-//STRIP001  // Printer beschaffen
-//STRIP001  SfxViewFrame *pViewFrm = m_pData->m_pObjectShell.Is() ?
-//STRIP001                              SfxViewFrame::GetFirst( m_pData->m_pObjectShell, 0, sal_False ) : 0;
-//STRIP001  if ( !pViewFrm )
-//STRIP001      return SEQUENCE< PROPERTYVALUE >();
-//STRIP001  const SfxPrinter *pPrinter = pViewFrm->GetViewShell()->GetPrinter(sal_True);
-//STRIP001  if ( !pPrinter )
-//STRIP001      return SEQUENCE< PROPERTYVALUE >();
-//STRIP001
-//STRIP001  // Printer Eigenschaften uebertragen
-//STRIP001  SEQUENCE< PROPERTYVALUE > aPrinter(8);
-//STRIP001
-//STRIP001  aPrinter.getArray()[7].Name = DEFINE_CONST_UNICODE( "CanSetPaperSize" );
-//STRIP001  aPrinter.getArray()[7].Value <<= ( pPrinter->HasSupport( SUPPORT_SET_PAPERSIZE ) );
-//STRIP001
-//STRIP001  aPrinter.getArray()[6].Name = DEFINE_CONST_UNICODE( "CanSetPaperFormat" );
-//STRIP001  aPrinter.getArray()[6].Value <<= ( pPrinter->HasSupport( SUPPORT_SET_PAPER ) );
-//STRIP001
-//STRIP001  aPrinter.getArray()[5].Name = DEFINE_CONST_UNICODE( "CanSetPaperOrientation" );
-//STRIP001  aPrinter.getArray()[5].Value <<= ( pPrinter->HasSupport( SUPPORT_SET_ORIENTATION ) );
-//STRIP001
-//STRIP001  aPrinter.getArray()[4].Name = DEFINE_CONST_UNICODE( "IsBusy" );
-//STRIP001  aPrinter.getArray()[4].Value <<= ( pPrinter->IsPrinting() );
-//STRIP001
-//STRIP001  aPrinter.getArray()[3].Name = DEFINE_CONST_UNICODE( "PaperSize" );
-//STRIP001  SIZE aSize = impl_Size_Object2Struct(pPrinter->GetPaperSize() );
-//STRIP001  aPrinter.getArray()[3].Value <<= aSize;
-//STRIP001
-//STRIP001  aPrinter.getArray()[2].Name = DEFINE_CONST_UNICODE( "PaperFormat" );
-//STRIP001  PAPERFORMAT eFormat = (PAPERFORMAT)pPrinter->GetPaper();
-//STRIP001  aPrinter.getArray()[2].Value <<= eFormat;
-//STRIP001
-//STRIP001  aPrinter.getArray()[1].Name = DEFINE_CONST_UNICODE( "PaperOrientation" );
-//STRIP001  PAPERORIENTATION eOrient = (PAPERORIENTATION)pPrinter->GetOrientation();
-//STRIP001  aPrinter.getArray()[1].Value <<= eOrient;
-//STRIP001
-//STRIP001  aPrinter.getArray()[0].Name = DEFINE_CONST_UNICODE( "Name" );
-//STRIP001  String sStringTemp = pPrinter->GetName() ;
-//STRIP001  aPrinter.getArray()[0].Value <<= ::rtl::OUString( sStringTemp );
-//STRIP001
-//STRIP001  return aPrinter;
-//STRIP001 }
 
 //________________________________________________________________________________________________________
 //  XPrintable
 //________________________________________________________________________________________________________
 
-//STRIP001 void SfxBaseModel::impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh)
-//STRIP001
-//STRIP001 {
-//STRIP001  // alten Printer beschaffen
-//STRIP001  SfxViewFrame *pViewFrm = m_pData->m_pObjectShell.Is() ?
-//STRIP001                              SfxViewFrame::GetFirst( m_pData->m_pObjectShell, 0, sal_False ) : 0;
-//STRIP001  if ( !pViewFrm )
-//STRIP001      return;
-//STRIP001  pViewSh = pViewFrm->GetViewShell();
-//STRIP001  pPrinter = pViewSh->GetPrinter(sal_True);
-//STRIP001  if ( !pPrinter )
-//STRIP001      return;
-//STRIP001
-//STRIP001  // new Printer-Name available?
-//STRIP001  nChangeFlags = 0;
-//STRIP001     sal_Int32 lDummy;
-//STRIP001  for ( int n = 0; n < rPrinter.getLength(); ++n )
-//STRIP001  {
-//STRIP001      // get Property-Value from printer description
-//STRIP001      const PROPERTYVALUE &rProp = rPrinter.getConstArray()[n];
-//STRIP001
-//STRIP001      // Name-Property?
-//STRIP001      if ( rProp.Name.compareToAscii( "Name" ) == 0 )
-//STRIP001      {
-//STRIP001          OUSTRING sTemp;
-//STRIP001             if ( ( rProp.Value >>= sTemp ) == sal_False )
-//STRIP001              throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001
-//STRIP001          String aPrinterName( sTemp ) ;
-//STRIP001             pPrinter = new SfxPrinter( pPrinter->GetOptions().Clone(), aPrinterName );
-//STRIP001          nChangeFlags = SFX_PRINTER_PRINTER;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  Size aSetPaperSize( 0, 0);
-//STRIP001     PAPERFORMAT nPaperFormat = (PAPERFORMAT) PAPER_USER;
-//STRIP001  // other properties
-//STRIP001  for ( int i = 0; i < rPrinter.getLength(); ++i )
-//STRIP001  {
-//STRIP001      // get Property-Value from printer description
-//STRIP001      const PROPERTYVALUE &rProp = rPrinter.getConstArray()[i];
-//STRIP001
-//STRIP001      // PaperOrientation-Property?
-//STRIP001      if ( rProp.Name.compareToAscii( "PaperOrientation" ) == 0 )
-//STRIP001      {
-//STRIP001             PAPERORIENTATION eOrient;
-//STRIP001             if ( ( rProp.Value >>= eOrient ) == sal_False )
-//STRIP001             {
-//STRIP001                 if ( ( rProp.Value >>= lDummy ) == sal_False )
-//STRIP001                     throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001                 eOrient = ( PAPERORIENTATION ) lDummy;
-//STRIP001             }
-//STRIP001
-//STRIP001             pPrinter->SetOrientation( (Orientation) eOrient );
-//STRIP001          nChangeFlags |= SFX_PRINTER_CHG_ORIENTATION;
-//STRIP001      }
-//STRIP001
-//STRIP001      // PaperFormat-Property?
-//STRIP001      if ( rProp.Name.compareToAscii( "PaperFormat" ) == 0 )
-//STRIP001      {
-//STRIP001          if ( ( rProp.Value >>= nPaperFormat ) == sal_False )
-//STRIP001             {
-//STRIP001                 if ( ( rProp.Value >>= lDummy ) == sal_False )
-//STRIP001                     throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001                 nPaperFormat = ( PAPERFORMAT ) lDummy;
-//STRIP001             }
-//STRIP001
-//STRIP001          pPrinter->SetPaper( (Paper) nPaperFormat );
-//STRIP001          nChangeFlags |= SFX_PRINTER_CHG_SIZE;
-//STRIP001      }
-//STRIP001
-//STRIP001      // PaperSize-Property?
-//STRIP001      if ( rProp.Name.compareToAscii( "PaperSize" ) == 0 )
-//STRIP001      {
-//STRIP001          SIZE aTempSize ;
-//STRIP001          if ( ( rProp.Value >>= aTempSize ) == sal_False )
-//STRIP001          {
-//STRIP001              throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              aSetPaperSize = impl_Size_Struct2Object(aTempSize);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //os 12.11.98: die PaperSize darf nur gesetzt werden, wenn tatsaechlich
-//STRIP001  //PAPER_USER gilt, sonst koennte vom Treiber ein falsches Format gewaehlt werden
-//STRIP001     if(nPaperFormat == PAPER_USER && aSetPaperSize.Width())
-//STRIP001  {
-//STRIP001      //JP 23.09.98 - Bug 56929 - MapMode von 100mm in die am
-//STRIP001      //          Device gesetzten umrechnen. Zusaetzlich nur dann
-//STRIP001      //          setzen, wenn sie wirklich veraendert wurden.
-//STRIP001      aSetPaperSize = pPrinter->LogicToPixel( aSetPaperSize, MAP_100TH_MM );
-//STRIP001      if( aSetPaperSize != pPrinter->GetPaperSizePixel() )
-//STRIP001      {
-//STRIP001          pPrinter->SetPaperSizeUser( pPrinter->PixelToLogic( aSetPaperSize ) );
-//STRIP001          nChangeFlags |= SFX_PRINTER_CHG_SIZE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     // #96772#: wait until printing is done
-//STRIP001     SfxPrinter* pDocPrinter = pViewSh->GetPrinter();
-//STRIP001     while ( pDocPrinter->IsPrinting() )
-//STRIP001         Application::Yield();
-//STRIP001 }
 
-//STRIP001 void SAL_CALL SfxBaseModel::setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter)
-//STRIP001         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
-//STRIP001 {
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      throw DISPOSEDEXCEPTION();
-//STRIP001
-//STRIP001  SfxViewShell* pViewSh = NULL;
-//STRIP001  SfxPrinter* pPrinter = NULL;
-//STRIP001  sal_uInt16 nChangeFlags = 0;
-//STRIP001  impl_setPrinter(rPrinter,pPrinter,nChangeFlags,pViewSh);
-//STRIP001  // set new printer
-//STRIP001  if ( pViewSh && pPrinter )
-//STRIP001      pViewSh->SetPrinter( pPrinter, nChangeFlags );
-//STRIP001 }
 
 //________________________________________________________________________________________________________
 //  ImplPrintWatch thread for asynchronous printing with moving temp. file to ucb location
@@ -1492,96 +1282,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
    print jobs to temp. localy files. If they finish we move the temp. files
    to her right locations by using the ucb.
  */
-//STRIP001 class ImplUCBPrintWatcher : public ::osl::Thread
-//STRIP001 {
-//STRIP001     private:
-//STRIP001         /// of course we must know the printer which execute the job
-//STRIP001         SfxPrinter* m_pPrinter;
-//STRIP001         /// this describes the target location for the printed temp file
-//STRIP001         String m_sTargetURL;
-//STRIP001         /// it holds the temp file alive, till the print job will finish and remove it from disk automaticly if the object die
-//STRIP001         ::utl::TempFile* m_pTempFile;
-//STRIP001
-//STRIP001     public:
-//STRIP001         /* initialize this watcher but don't start it */
-//STRIP001         ImplUCBPrintWatcher( SfxPrinter* pPrinter, ::utl::TempFile* pTempFile, const String& sTargetURL )
-//STRIP001                 : m_pPrinter  ( pPrinter   )
-//STRIP001                 , m_sTargetURL( sTargetURL )
-//STRIP001                 , m_pTempFile ( pTempFile  )
-//STRIP001         {}
-//STRIP001
-//STRIP001         /* waits for finishing of the print job and moves the temp file afterwards
-//STRIP001            Note: Starting of the job is done outside this thread!
-//STRIP001            But we have to free some of the given ressources on heap!
-//STRIP001          */
-//STRIP001         void SAL_CALL run()
-//STRIP001         {
-//STRIP001             /* SAFE { */
-//STRIP001             {
-//STRIP001                 ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001                 while( m_pPrinter->IsPrinting() )
-//STRIP001                     Application::Yield();
-//STRIP001                 m_pPrinter = NULL; // don't delete it! It's borrowed only :-)
-//STRIP001             }
-//STRIP001             /* } SAFE */
-//STRIP001
-//STRIP001             // lock for further using of our member isn't neccessary - because
-//STRIP001             // we truns alone by defenition. Nobody join for us nor use us ...
-//STRIP001             ImplUCBPrintWatcher::moveAndDeleteTemp(&m_pTempFile,m_sTargetURL);
-//STRIP001
-//STRIP001             // finishing of this run() method will call onTerminate() automaticly
-//STRIP001             // kill this thread there!
-//STRIP001         }
-//STRIP001
-//STRIP001         /* nobody wait for this thread. We must kill ourself ...
-//STRIP001          */
-//STRIP001         void SAL_CALL onTerminated()
-//STRIP001         {
-//STRIP001             delete this;
-//STRIP001         }
-//STRIP001
-//STRIP001         /* static helper to move the temp. file to the target location by using the ucb
-//STRIP001            It's static to be useable from outside too. So it's not realy neccessary to start
-//STRIP001            the thread, if finishing of the job was detected outside this thread.
-//STRIP001            But it must be called without using a corresponding thread for the given parameter!
-//STRIP001          */
-//STRIP001         static void moveAndDeleteTemp( ::utl::TempFile** ppTempFile, const String& sTargetURL )
-//STRIP001         {
-//STRIP001             // move the file
-//STRIP001             try
-//STRIP001             {
-//STRIP001              INetURLObject aSplitter(sTargetURL);
-//STRIP001              String        sFileName = aSplitter.getName(
-//STRIP001                                          INetURLObject::LAST_SEGMENT,
-//STRIP001                                          true,
-//STRIP001                                          INetURLObject::DECODE_WITH_CHARSET);
-//STRIP001              if (aSplitter.removeSegment() && sFileName.Len()>0)
-//STRIP001              {
-//STRIP001                  ::ucb::Content aSource(
-//STRIP001                          ::rtl::OUString((*ppTempFile)->GetURL()),
-//STRIP001                          ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XCommandEnvironment >());
-//STRIP001
-//STRIP001                  ::ucb::Content aTarget(
-//STRIP001                          ::rtl::OUString(aSplitter.GetMainURL(INetURLObject::NO_DECODE)),
-//STRIP001                          ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XCommandEnvironment >());
-//STRIP001
-//STRIP001                  aTarget.transferContent(
-//STRIP001                          aSource,
-//STRIP001                          ::ucb::InsertOperation_COPY,
-//STRIP001                          ::rtl::OUString(sFileName),
-//STRIP001                          ::com::sun::star::ucb::NameClash::OVERWRITE);
-//STRIP001              }
-//STRIP001             }
-//STRIP001             catch( ::com::sun::star::ucb::ContentCreationException& ) { DBG_ERROR("content create exception"); }
-//STRIP001             catch( ::com::sun::star::ucb::CommandAbortedException&  ) { DBG_ERROR("command abort exception"); }
-//STRIP001             catch( ::com::sun::star::uno::RuntimeException&         ) { DBG_ERROR("runtime exception"); }
-//STRIP001             catch( ::com::sun::star::uno::Exception&                ) { DBG_ERROR("unknown exception"); }
-//STRIP001
-//STRIP001             // kill the temp file!
-//STRIP001             delete *ppTempFile;
-//STRIP001             *ppTempFile = NULL;
-//STRIP001         }
-//STRIP001 };
 
 //------------------------------------------------
 
@@ -1591,186 +1291,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/ void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& rOptions)
 /*?*/         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/    // object already disposed?
-//STRIP001 /*?*/    // object already disposed?
-//STRIP001 /*?*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001 /*?*/    if ( impl_isDisposed() )
-//STRIP001 /*?*/        throw DISPOSEDEXCEPTION();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    // get view for sfx printing capabilities
-//STRIP001 /*?*/    SfxViewFrame *pViewFrm = m_pData->m_pObjectShell.Is() ?
-//STRIP001 /*?*/                                SfxViewFrame::GetFirst( m_pData->m_pObjectShell, 0, sal_False ) : 0;
-//STRIP001 /*?*/    if ( !pViewFrm )
-//STRIP001 /*?*/        return;
-//STRIP001 /*?*/    SfxViewShell* pView = pViewFrm->GetViewShell();
-//STRIP001 /*?*/    if ( !pView )
-//STRIP001 /*?*/        return;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SfxAllItemSet aArgs( pView->GetPool() );
-//STRIP001 /*?*/     sal_Bool bMonitor = sal_False;
-//STRIP001 /*?*/     // We need this information at the end of this method, if we start the vcl printer
-//STRIP001 /*?*/     // by executing the slot. Because if it is a ucb relevant URL we must wait for
-//STRIP001 /*?*/     // finishing the print job and move the temporary local file by using the ucb
-//STRIP001 /*?*/     // to the right location. But in case of no file name is given or it is already
-//STRIP001 /*?*/     // a local one we can supress this special handling. Because then vcl makes all
-//STRIP001 /*?*/     // right for us.
-//STRIP001 /*?*/     String sUcbUrl;
-//STRIP001 /*?*/     ::utl::TempFile* pUCBPrintTempFile = NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/     sal_Bool bWaitUntilEnd = sal_False;
-//STRIP001 /*?*/    for ( int n = 0; n < rOptions.getLength(); ++n )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        // get Property-Value from options
-//STRIP001 /*?*/        const PROPERTYVALUE &rProp = rOptions.getConstArray()[n];
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // FileName-Property?
-//STRIP001 /*?*/        if ( rProp.Name.compareToAscii( "FileName" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             // unpack th URL and check for a valid and well known protocol
-//STRIP001 /*?*/             OUSTRING sTemp;
-//STRIP001 /*?*/             if (
-//STRIP001 /*?*/                 ( rProp.Value.getValueType()!=::getCppuType((const OUSTRING*)0))  ||
-//STRIP001 /*?*/                 (!(rProp.Value>>=sTemp))
-//STRIP001 /*?*/                )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/
-//STRIP001 /*?*/             String        sPath        ;
-//STRIP001 /*?*/             String        sURL  (sTemp);
-//STRIP001 /*?*/             INetURLObject aCheck(sURL );
-//STRIP001 /*?*/             if (aCheck.GetProtocol()==INET_PROT_NOT_VALID)
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 // OK - it's not a valid URL. But may it's a simple
-//STRIP001 /*?*/                 // system path directly. It will be supported for historical
-//STRIP001 /*?*/                 // reasons. Otherwhise we break to much external code ...
-//STRIP001 /*?*/                 // We try to convert it to a file URL. If its possible
-//STRIP001 /*?*/                 // we put the system path to the item set and let vcl work with it.
-//STRIP001 /*?*/                 // No ucb or thread will be neccessary then. In case it couldnt be
-//STRIP001 /*?*/                 // converted its not an URL nor a system path. Then we can't accept
-//STRIP001 /*?*/                 // this parameter and have to throw an exception.
-//STRIP001 /*?*/                 ::rtl::OUString sSystemPath(sTemp);
-//STRIP001 /*?*/                 ::rtl::OUString sFileURL          ;
-//STRIP001 /*?*/                 if (::osl::FileBase::getFileURLFromSystemPath(sSystemPath,sFileURL)!=::osl::FileBase::E_None)
-//STRIP001 /*?*/                     throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/                 aArgs.Put( SfxStringItem(SID_FILE_NAME,sTemp) );
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/             else
-//STRIP001 /*?*/             // It's a valid URL. but now we must know, if it is a local one or not.
-//STRIP001 /*?*/             // It's a question of using ucb or not!
-//STRIP001 /*?*/             if (::utl::LocalFileHelper::ConvertURLToSystemPath(sURL,sPath))
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 // it's a local file, we can use vcl without special handling
-//STRIP001 /*?*/                 // And we have to use the system notation of the incoming URL.
-//STRIP001 /*?*/                 // But it into the descriptor and let the slot be executed at
-//STRIP001 /*?*/                 // the end of this method.
-//STRIP001 /*?*/                 aArgs.Put( SfxStringItem(SID_FILE_NAME,sPath) );
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/             else
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 // it's an ucb target. So we must use a temp. file for vcl
-//STRIP001 /*?*/                 // and move it after printing by using the ucb.
-//STRIP001 /*?*/                 // Create a temp file on the heap (because it must delete the
-//STRIP001 /*?*/                 // real file on disk automaticly if it die - bt we have to share it with
-//STRIP001 /*?*/                 // some other sources ... e.g. the ImplUCBPrintWatcher).
-//STRIP001 /*?*/                 // And we put the name of this temp file to the descriptor instead
-//STRIP001 /*?*/                 // of the URL. The URL we save for later using seperatly.
-//STRIP001 /*?*/                 // Execution of the print job will be done later by executing
-//STRIP001 /*?*/                 // a slot ...
-//STRIP001 /*?*/                 pUCBPrintTempFile = new ::utl::TempFile();
-//STRIP001 /*?*/                 pUCBPrintTempFile->EnableKillingFile();
-//STRIP001 /*?*/                 aArgs.Put( SfxStringItem(SID_FILE_NAME,pUCBPrintTempFile->GetFileName()) );
-//STRIP001 /*?*/                 sUcbUrl = sURL;
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // CopyCount-Property
-//STRIP001 /*?*/        else if ( rProp.Name.compareToAscii( "CopyCount" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            sal_Int32 nCopies = 0;
-//STRIP001 /*?*/            if ( ( rProp.Value >>= nCopies ) == sal_False )
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/             aArgs.Put( SfxInt16Item( SID_PRINT_COPIES, (USHORT) nCopies ) );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Collate-Property
-//STRIP001 /*?*/        else if ( rProp.Name.compareToAscii( "Collate" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             sal_Bool bTemp ;
-//STRIP001 /*?*/             if ( rProp.Value >>= bTemp )
-//STRIP001 /*?*/                 aArgs.Put( SfxBoolItem( SID_PRINT_COLLATE, bTemp ) );
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Sort-Property
-//STRIP001 /*?*/        else if ( rProp.Name.compareToAscii( "Sort" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             sal_Bool bTemp ;
-//STRIP001 /*?*/             if( rProp.Value >>= bTemp )
-//STRIP001 /*?*/                aArgs.Put( SfxBoolItem( SID_PRINT_SORT, bTemp ) );
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Pages-Property
-//STRIP001 /*?*/        else if ( rProp.Name.compareToAscii( "Pages" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             OUSTRING sTemp;
-//STRIP001 /*?*/             if( rProp.Value >>= sTemp )
-//STRIP001 /*?*/                aArgs.Put( SfxStringItem( SID_PRINT_PAGES, String( sTemp ) ) );
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // MonitorVisible
-//STRIP001 /*?*/        else if ( rProp.Name.compareToAscii( "MonitorVisible" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             if( !(rProp.Value >>= bMonitor) )
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // MonitorVisible
-//STRIP001 /*?*/        else if ( rProp.Name.compareToAscii( "Wait" ) == 0 )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             if ( !(rProp.Value >>= bWaitUntilEnd) )
-//STRIP001 /*?*/                throw ILLEGALARGUMENTEXCEPTION();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/     // Execute the print request every time.
-//STRIP001 /*?*/     // It doesn'tmatter if it is a real printer used or we print to a local file
-//STRIP001 /*?*/     // nor if we print to a temp file and move it afterwards by using the ucb.
-//STRIP001 /*?*/     // That will be handled later. see pUCBPrintFile below!
-//STRIP001 /*?*/    aArgs.Put( SfxBoolItem( SID_SILENT, !bMonitor ) );
-//STRIP001 /*?*/    if ( bWaitUntilEnd )
-//STRIP001 /*?*/        aArgs.Put( SfxBoolItem( SID_ASYNCHRON, sal_False ) );
-//STRIP001 /*?*/    SfxRequest aReq( SID_PRINTDOC, SFX_CALLMODE_SYNCHRON | SFX_CALLMODE_API, pView->GetPool() );
-//STRIP001 /*?*/    aReq.SetArgs( aArgs );
-//STRIP001 /*?*/    pView->ExecuteSlot( aReq );
-//STRIP001 /*?*/
-//STRIP001 /*?*/     // Ok - may be execution before has finished (or started!) printing.
-//STRIP001 /*?*/     // And may it was a printing to a file.
-//STRIP001 /*?*/     // Now we have to check if we can move the file (if neccessary) via ucb to his right location.
-//STRIP001 /*?*/     // Cases:
-//STRIP001 /*?*/     //  a) printing finished                        => move the file directly and forget the watcher thread
-//STRIP001 /*?*/     //  b) printing is asynchron and runs currently => start watcher thread and exit this method
-//STRIP001 /*?*/     //                                                 This thread make all neccessary things by itself.
-//STRIP001 /*?*/     if (pUCBPrintTempFile!=NULL)
-//STRIP001 /*?*/     {
-//STRIP001 /*?*/         // a)
-//STRIP001 /*?*/         SfxPrinter* pPrinter = pView->GetPrinter();
-//STRIP001 /*?*/         if ( ! pPrinter->IsPrinting() )
-//STRIP001 /*?*/             ImplUCBPrintWatcher::moveAndDeleteTemp(&pUCBPrintTempFile,sUcbUrl);
-//STRIP001 /*?*/         // b)
-//STRIP001 /*?*/         else
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             // Note: we create(d) some ressource on the heap. (thread and tep file)
-//STRIP001 /*?*/             // They will be delected by the thread automaticly if he finish his run() method.
-//STRIP001 /*?*/             ImplUCBPrintWatcher* pWatcher = new ImplUCBPrintWatcher( pPrinter, pUCBPrintTempFile, sUcbUrl );
-//STRIP001 /*?*/             pWatcher->create();
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/     }
 /*?*/ }
 
 //________________________________________________________________________________________________________
@@ -2007,108 +1527,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/              ::com::sun::star::io::IOException,
 /*?*/              ::com::sun::star::uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); ANY aAny; return aAny;//STRIP001
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      throw DISPOSEDEXCEPTION();
-//STRIP001
-//STRIP001  ANY aAny;
-//STRIP001
-//STRIP001  if ( m_pData->m_pObjectShell.Is() )
-//STRIP001  {
-//STRIP001      if ( aFlavor.MimeType.equalsAscii( "application/x-openoffice;windows_formatname=\"GDIMetaFile\"" ) )
-//STRIP001      {
-//STRIP001          if ( aFlavor.DataType == getCppuType( (const Sequence< sal_Int8 >*) 0 ) )
-//STRIP001          {
-//STRIP001              GDIMetaFile* pMetaFile = m_pData->m_pObjectShell->GetPreviewMetaFile( sal_True );
-//STRIP001
-//STRIP001              if ( pMetaFile )
-//STRIP001              {
-//STRIP001                  SvMemoryStream aMemStm( 65535, 65535 );
-//STRIP001
-//STRIP001                  pMetaFile->Write( aMemStm );
-//STRIP001                  delete pMetaFile;
-//STRIP001                  aAny <<= Sequence< sal_Int8 >( reinterpret_cast< const sal_Int8* >( aMemStm.GetData() ),
-//STRIP001                                                  aMemStm.Seek( STREAM_SEEK_TO_END ) );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              throw UNSUPPORTEDFLAVOREXCEPTION();
-//STRIP001      }
-//STRIP001      else if ( aFlavor.MimeType.equalsAscii( "application/x-openoffice;windows_formatname=\"Image EMF\"" ) )
-//STRIP001      {
-//STRIP001          if ( aFlavor.DataType == getCppuType( (const Sequence< sal_Int8 >*) 0 ) )
-//STRIP001          {
-//STRIP001              GDIMetaFile* pMetaFile = m_pData->m_pObjectShell->GetPreviewMetaFile( sal_True );
-//STRIP001
-//STRIP001              if ( pMetaFile )
-//STRIP001              {
-//STRIP001                  SvMemoryStream* pStream = getMetaMemStrFromGDI_Impl( pMetaFile, CVT_EMF );
-//STRIP001                  delete pMetaFile;
-//STRIP001                  if ( pStream )
-//STRIP001                  {
-//STRIP001                      aAny <<= Sequence< sal_Int8 >( reinterpret_cast< const sal_Int8* >( pStream->GetData() ),
-//STRIP001                                                      pStream->Seek( STREAM_SEEK_TO_END ) );
-//STRIP001                      delete pStream;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if ( supportsMetaFileHandle_Impl()
-//STRIP001            && aFlavor.DataType == getCppuType( (const sal_uInt64*) 0 ) )
-//STRIP001          {
-//STRIP001              GDIMetaFile* pMetaFile = m_pData->m_pObjectShell->GetPreviewMetaFile( sal_True );
-//STRIP001
-//STRIP001              if ( pMetaFile )
-//STRIP001              {
-//STRIP001                  aAny <<= reinterpret_cast< const sal_uInt64 >( getEnhMetaFileFromGDI_Impl( pMetaFile ) );
-//STRIP001                  delete pMetaFile;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              throw UNSUPPORTEDFLAVOREXCEPTION();
-//STRIP001      }
-//STRIP001      else if ( aFlavor.MimeType.equalsAscii( "application/x-openoffice;windows_formatname=\"Image WMF\"" ) )
-//STRIP001      {
-//STRIP001          if ( aFlavor.DataType == getCppuType( (const Sequence< sal_Int8 >*) 0 ) )
-//STRIP001          {
-//STRIP001              GDIMetaFile* pMetaFile = m_pData->m_pObjectShell->GetPreviewMetaFile( sal_True );
-//STRIP001
-//STRIP001              if ( pMetaFile )
-//STRIP001              {
-//STRIP001                  SvMemoryStream* pStream = getMetaMemStrFromGDI_Impl( pMetaFile, CVT_WMF );
-//STRIP001                  delete pMetaFile;
-//STRIP001
-//STRIP001                  if ( pStream )
-//STRIP001                  {
-//STRIP001                      aAny <<= Sequence< sal_Int8 >( reinterpret_cast< const sal_Int8* >( pStream->GetData() ),
-//STRIP001                                                      pStream->Seek( STREAM_SEEK_TO_END ) );
-//STRIP001                      delete pStream;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if ( supportsMetaFileHandle_Impl()
-//STRIP001            && aFlavor.DataType == getCppuType( (const sal_uInt64*) 0 ) )
-//STRIP001          {
-//STRIP001              // means HGLOBAL handler to memory storage containing METAFILEPICT structure
-//STRIP001
-//STRIP001              GDIMetaFile* pMetaFile = m_pData->m_pObjectShell->GetPreviewMetaFile( sal_True );
-//STRIP001
-//STRIP001              if ( pMetaFile )
-//STRIP001              {
-//STRIP001                  Size aMetaSize = pMetaFile->GetPrefSize();
-//STRIP001                  aAny <<= reinterpret_cast< const sal_uInt64 >( getWinMetaFileFromGDI_Impl( pMetaFile, aMetaSize ) );
-//STRIP001
-//STRIP001                  delete pMetaFile;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              throw UNSUPPORTEDFLAVOREXCEPTION();
-//STRIP001      }
-//STRIP001      else
-//STRIP001          throw UNSUPPORTEDFLAVOREXCEPTION();
-//STRIP001  }
-//STRIP001
-//STRIP001  return aAny;
 /*?*/ }
 
 //________________________________________________________________________________________________________
@@ -2119,43 +1537,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/ SEQUENCE< DATAFLAVOR > SAL_CALL SfxBaseModel::getTransferDataFlavors()
 /*?*/       throw (::com::sun::star::uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0); return aDATAFLAVOR;//STRIP001
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      throw DISPOSEDEXCEPTION();
-//STRIP001
-//STRIP001  sal_Int32 nSuppFlavors = supportsMetaFileHandle_Impl() ? 5 : 3;
-//STRIP001  SEQUENCE< DATAFLAVOR > aFlavorSeq( nSuppFlavors );
-//STRIP001
-//STRIP001  aFlavorSeq[0].MimeType =
-//STRIP001      ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-openoffice;windows_formatname=\"GDIMetaFile\"" ) );
-//STRIP001  aFlavorSeq[0].HumanPresentableName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "GDIMetaFile" ) );
-//STRIP001  aFlavorSeq[0].DataType = getCppuType( (const Sequence< sal_Int8 >*) 0 );
-//STRIP001
-//STRIP001  aFlavorSeq[1].MimeType =
-//STRIP001      ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-openoffice;windows_formatname=\"Image EMF\"" ) );
-//STRIP001  aFlavorSeq[1].HumanPresentableName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Enhanced Windows MetaFile" ) );
-//STRIP001  aFlavorSeq[1].DataType = getCppuType( (const Sequence< sal_Int8 >*) 0 );
-//STRIP001
-//STRIP001  aFlavorSeq[2].MimeType =
-//STRIP001      ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-openoffice;windows_formatname=\"Image WMF\"" ) );
-//STRIP001  aFlavorSeq[2].HumanPresentableName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Windows MetaFile" ) );
-//STRIP001  aFlavorSeq[2].DataType = getCppuType( (const Sequence< sal_Int8 >*) 0 );
-//STRIP001
-//STRIP001  if ( nSuppFlavors == 5 )
-//STRIP001  {
-//STRIP001      aFlavorSeq[3].MimeType =
-//STRIP001          ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-openoffice;windows_formatname=\"Image EMF\"" ) );
-//STRIP001      aFlavorSeq[3].HumanPresentableName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Enhanced Windows MetaFile" ) );
-//STRIP001      aFlavorSeq[3].DataType = getCppuType( (const sal_uInt64*) 0 );
-//STRIP001
-//STRIP001      aFlavorSeq[4].MimeType =
-//STRIP001          ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-openoffice;windows_formatname=\"Image WMF\"" ) );
-//STRIP001      aFlavorSeq[4].HumanPresentableName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Windows MetaFile" ) );
-//STRIP001      aFlavorSeq[4].DataType = getCppuType( (const sal_uInt64*) 0 );
-//STRIP001  }
-//STRIP001
-//STRIP001  return aFlavorSeq;
 /*?*/ }
 
 //________________________________________________________________________________________________________
@@ -2163,38 +1544,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 //________________________________________________________________________________________________________
 
 
-//STRIP001 sal_Bool SAL_CALL SfxBaseModel::isDataFlavorSupported( const DATAFLAVOR& aFlavor )
-//STRIP001      throw (::com::sun::star::uno::RuntimeException)
-//STRIP001 {
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      throw DISPOSEDEXCEPTION();
-//STRIP001
-//STRIP001  if ( aFlavor.MimeType.equalsAscii( "application/x-openoffice;windows_formatname=\"GDIMetaFile\"" ) )
-//STRIP001  {
-//STRIP001      if ( aFlavor.DataType == getCppuType( (const Sequence< sal_Int8 >*) 0 ) )
-//STRIP001          return sal_True;
-//STRIP001  }
-//STRIP001  else if ( aFlavor.MimeType.equalsAscii( "application/x-openoffice;windows_formatname=\"Image EMF\"" ) )
-//STRIP001  {
-//STRIP001      if ( aFlavor.DataType == getCppuType( (const Sequence< sal_Int8 >*) 0 ) )
-//STRIP001          return sal_True;
-//STRIP001      else if ( supportsMetaFileHandle_Impl()
-//STRIP001        && aFlavor.DataType == getCppuType( (const sal_uInt64*) 0 ) )
-//STRIP001          return sal_True;
-//STRIP001  }
-//STRIP001  else if ( aFlavor.MimeType.equalsAscii( "application/x-openoffice;windows_formatname=\"Image WMF\"" ) )
-//STRIP001  {
-//STRIP001      if ( aFlavor.DataType == getCppuType( (const Sequence< sal_Int8 >*) 0 ) )
-//STRIP001          return sal_True;
-//STRIP001      else if ( supportsMetaFileHandle_Impl()
-//STRIP001        && aFlavor.DataType == getCppuType( (const sal_uInt64*) 0 ) )
-//STRIP001          return sal_True;
-//STRIP001  }
-//STRIP001
-//STRIP001  return sal_False;
-//STRIP001 }
 
 
 //--------------------------------------------------------------------------------------------------------
@@ -2370,16 +1719,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/           }
 /*?*/           else if ( pPrintHint->GetWhich() != -2 )
 /*?*/           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001 /*?*/                view::PrintJobEvent aEvent;
-//STRIP001 /*?*/                aEvent.Source = m_pData->m_xPrintJob;
-//STRIP001 /*?*/                aEvent.State = (::com::sun::star::view::PrintableState) pPrintHint->GetWhich();
-//STRIP001 /*?*/                ::cppu::OInterfaceContainerHelper* pContainer = m_pData->m_aInterfaceContainer.getContainer( ::getCppuType( ( const uno::Reference< view::XPrintJobListener >*) NULL ) );
-//STRIP001 /*?*/                if ( pContainer!=NULL )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ::cppu::OInterfaceIteratorHelper pIterator(*pContainer);
-//STRIP001 /*?*/                    while (pIterator.hasMoreElements())
-//STRIP001 /*?*/                        ((view::XPrintJobListener*)pIterator.next())->printJobEvent( aEvent );
-//STRIP001 /*?*/                }
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -2622,24 +1961,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   return !impl_isDisposed() && (NULL != m_pData->m_aInterfaceContainer.getContainer( ::getCppuType((const REFERENCE< XDOCEVENTLISTENER >*)0) ) );
 /*N*/ }
 
-//STRIP001 void SAL_CALL SfxBaseModel::addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException)
-//STRIP001 {
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  m_pData->m_aInterfaceContainer.addInterface( ::getCppuType((const REFERENCE< XPRINTJOBLISTENER >*)0), xListener );
-//STRIP001 }
 
-//STRIP001 void SAL_CALL SfxBaseModel::removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException)
-//STRIP001 {
-//STRIP001  // object already disposed?
-//STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-//STRIP001  if ( impl_isDisposed() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  m_pData->m_aInterfaceContainer.removeInterface( ::getCppuType((const REFERENCE< XPRINTJOBLISTENER >*)0), xListener );
-//STRIP001 }
 
 }
