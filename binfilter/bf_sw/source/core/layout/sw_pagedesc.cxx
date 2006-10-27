@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pagedesc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:51:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:54:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,21 +75,9 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx> // SwTxtFmtColl
-// auto strip #endif
 #ifndef _NODE_HXX //autogen
 #include <node.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX //autogen
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMTOOL_HXX //autogen
-// auto strip #include <frmtool.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -205,17 +193,6 @@ namespace binfilter {
 
 
     // erfrage vom Modify Informationen
-//STRIP001 BOOL SwPageDesc::GetInfo( SfxPoolItem & rInfo ) const
-//STRIP001 {
-//STRIP001 //    if( RES_AUTOFMT_DOCNODE == rInfo.Which() )
-//STRIP001 //    {
-//STRIP001      // dann weiter zum Format
-//STRIP001      if( !aMaster.GetInfo( rInfo ) )
-//STRIP001          return FALSE;       // gefunden
-//STRIP001      return aLeft.GetInfo( rInfo );
-//STRIP001 //    }
-//STRIP001 //    return TRUE;        // weiter suchen
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -315,80 +292,9 @@ namespace binfilter {
 /*N*/       RegisterChange();
 /*N*/ }
 
-//STRIP001 const SwFrm* lcl_GetFrmOfNode( const SwNode& rNd )
-//STRIP001 {
-//STRIP001  SwModify* pMod;
-//STRIP001  USHORT nFrmType;
-//STRIP001
-//STRIP001  if( rNd.IsCntntNode() )
-//STRIP001  {
-//STRIP001      pMod = &(SwCntntNode&)rNd;
-//STRIP001      nFrmType = FRM_CNTNT;
-//STRIP001  }
-//STRIP001  else if( rNd.IsTableNode() )
-//STRIP001  {
-//STRIP001      pMod = ((SwTableNode&)rNd).GetTable().GetFrmFmt();
-//STRIP001      nFrmType = FRM_TAB;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pMod = 0;
-//STRIP001
-//STRIP001  Point aNullPt;
-//STRIP001  return pMod ? ::GetFrmOfModify( *pMod, nFrmType, &aNullPt, 0, FALSE )
-//STRIP001              : 0;
-//STRIP001 }
 
-//STRIP001 const SwPageDesc* SwPageDesc::GetPageDescOfNode(const SwNode& rNd)
-//STRIP001 {
-//STRIP001  const SwPageDesc* pRet = 0;
-//STRIP001  const SwFrm* pChkFrm = ::lcl_GetFrmOfNode( rNd );
-//STRIP001  if (pChkFrm && (pChkFrm = pChkFrm->FindPageFrm()))
-//STRIP001      pRet = ((const SwPageFrm*)pChkFrm)->GetPageDesc();
-//STRIP001  return pRet;
-//STRIP001 }
 
-//STRIP001 const SwFrmFmt* SwPageDesc::GetPageFmtOfNode( const SwNode& rNd,
-//STRIP001                                            BOOL bCheckForThisPgDc ) const
-//STRIP001 {
-//STRIP001  // welches PageDescFormat ist fuer diesen Node gueltig?
-//STRIP001  const SwFrmFmt* pRet;
-//STRIP001  const SwFrm* pChkFrm = ::lcl_GetFrmOfNode( rNd );
-//STRIP001
-//STRIP001  if( pChkFrm && 0 != ( pChkFrm = pChkFrm->FindPageFrm() ))
-//STRIP001  {
-//STRIP001      const SwPageDesc* pPd = bCheckForThisPgDc ? this :
-//STRIP001                              ((SwPageFrm*)pChkFrm)->GetPageDesc();
-//STRIP001      pRet = &pPd->GetMaster();
-//STRIP001      ASSERT( ((SwPageFrm*)pChkFrm)->GetPageDesc() == pPd,
-//STRIP001              "Falcher Node fuers erkennen des Seitenformats" );
-//STRIP001      // an welchem Format haengt diese Seite?
-//STRIP001      if( pRet != pChkFrm->GetRegisteredIn() )
-//STRIP001      {
-//STRIP001          pRet = &pPd->GetLeft();
-//STRIP001          ASSERT( pRet == pChkFrm->GetRegisteredIn(),
-//STRIP001                  "Falcher Node fuers erkennen des Seitenformats" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pRet = &GetMaster();
-//STRIP001  return pRet;
-//STRIP001 }
 
-//STRIP001 BOOL SwPageDesc::IsFollowNextPageOfNode( const SwNode& rNd ) const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( GetFollow() && this != GetFollow() )
-//STRIP001  {
-//STRIP001      const SwFrm* pChkFrm = ::lcl_GetFrmOfNode( rNd );
-//STRIP001      if( pChkFrm && 0 != ( pChkFrm = pChkFrm->FindPageFrm() ) &&
-//STRIP001          pChkFrm->IsPageFrm() &&
-//STRIP001          ( !pChkFrm->GetNext() || GetFollow() ==
-//STRIP001                      ((SwPageFrm*)pChkFrm->GetNext())->GetPageDesc() ))
-//STRIP001          // die Seite gefunden, auf die der Follow verweist
-//STRIP001          bRet = TRUE;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*************************************************************************
 |*
