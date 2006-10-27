@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewdata.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:28:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:32:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -126,7 +126,6 @@ private:
     BOOL            bOldCurValid;               // "virtuelle" Cursorpos. bei zusammengefassten
 
                     ScViewDataTable();
-//STRIP001                  ScViewDataTable( const ScViewDataTable& rDataTable );
                     ~ScViewDataTable();
 
     void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
@@ -194,20 +193,14 @@ private:
 
     long                nTabBarWidth;               // #116578# from user data
 
-//STRIP001  DECL_LINK (EmptyEditHdl, EditStatus*);
-//STRIP001  DECL_LINK (EditEngineHdl, EditStatus*);
 
     void            CalcPPT();
 
 public:
                     ScViewData( ScDocShell* pDocSh, ScTabViewShell* pViewSh );
-//STRIP001                  ScViewData( const ScViewData& rViewData );
                     ~ScViewData();
 
-//STRIP001  void            InitData( ScDocument* pDocument );
-//STRIP001  void            InitFrom( const ScViewData* pRef );
 
-//STRIP001  void            SetDocShell( ScDocShell* pShell );
 
     ScDocShell*     GetDocShell() const     { return pDocShell; }
     ScDBFunc*       GetView() const         { return pView; }
@@ -224,12 +217,9 @@ public:
     ScDrawView*     GetScDrawView();            // von View
     BOOL            IsMinimized();              // von View
 
-//STRIP001  void            UpdateInputHandler( BOOL bForce = FALSE, BOOL bStopEditing = TRUE );
 
     void            WriteUserData(String& rData);
     void            ReadUserData(const String& rData);      // #116578#
-//STRIP001  void            WriteExtOptions(ScExtDocOptions& rOpt);
-//STRIP001  void            ReadExtOptions(const ScExtDocOptions& rOpt);
     void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
     void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);  // #116578#
 
@@ -243,9 +233,6 @@ public:
     void            UpdateThis();
 
     void            InsertTab( USHORT nTab );
-//STRIP001  void            DeleteTab( USHORT nTab );
-//STRIP001  void            CopyTab( USHORT nSrcTab, USHORT nDestTab );
-//STRIP001  void            MoveTab( USHORT nSrcTab, USHORT nDestTab );
 
     USHORT          GetRefTabNo() const                     { return nRefTabNo; }
     void            SetRefTabNo( USHORT nNewTab )           { nRefTabNo = nNewTab; }
@@ -257,8 +244,6 @@ public:
     USHORT          GetCurX() const                         { return pThisTab->nCurX; }
     USHORT          GetCurY() const                         { return pThisTab->nCurY; }
     BOOL            HasOldCursor() const                    { return pThisTab->bOldCurValid; }
-//STRIP001  USHORT          GetOldCurX() const;
-//STRIP001  USHORT          GetOldCurY() const;
     ScSplitMode     GetHSplitMode() const                   { return pThisTab->eHSplitMode; }
     ScSplitMode     GetVSplitMode() const                   { return pThisTab->eVSplitMode; }
     long            GetHSplitPos() const                    { return pThisTab->nHSplitPos; }
@@ -267,12 +252,8 @@ public:
     USHORT          GetFixPosY() const                      { return pThisTab->nFixPosY; }
     BOOL            IsPagebreakMode() const                 { return bPagebreak; }
 
-//STRIP001  void            SetPosX( ScHSplitPos eWhich, USHORT nNewPosX );
-//STRIP001  void            SetPosY( ScVSplitPos eWhich, USHORT nNewPosY );
     void            SetCurX( USHORT nNewCurX )                      { pThisTab->nCurX = nNewCurX; }
     void            SetCurY( USHORT nNewCurY )                      { pThisTab->nCurY = nNewCurY; }
-//STRIP001  void            SetOldCursor( USHORT nNewX, USHORT nNewY );
-//STRIP001  void            ResetOldCursor();
     void            SetHSplitMode( ScSplitMode eMode )              { pThisTab->eHSplitMode = eMode; }
     void            SetVSplitMode( ScSplitMode eMode )              { pThisTab->eVSplitMode = eMode; }
     void            SetHSplitPos( long nPos )                       { pThisTab->nHSplitPos = nPos; }
@@ -300,17 +281,9 @@ public:
     BOOL            GetSimpleArea( ScRange& rRange );
     void            GetMultiArea( ScRangeListRef& rRange ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void          GetMultiArea( ScRangeListRef& rRange );
 
-//STRIP001  BOOL            SimpleColMarked();
-//STRIP001  BOOL            SimpleRowMarked();
 
     BOOL            IsMultiMarked();
 
-//STRIP001  void            SetFillMode( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow );
-//STRIP001  void            SetDragMode( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                  BYTE nMode );
-//STRIP001  void            GetFillData( USHORT& rStartCol, USHORT& rStartRow,
-//STRIP001                               USHORT& rEndCol, USHORT& rEndRow );
-//STRIP001  void            ResetFillMode();
     BOOL            IsAnyFillMode()             { return nFillMode != SC_FILL_NONE; }
     BOOL            IsFillMode()                { return nFillMode == SC_FILL_FILL; }
     BYTE            GetFillMode()               { return nFillMode; }
@@ -321,9 +294,6 @@ public:
                                         short& rPosX, short& rPosY,
                                         BOOL bTestMerge = TRUE, BOOL bRepair = FALSE,
                                         BOOL bNextIfLarge = TRUE );
-//STRIP001  void            GetMouseQuadrant( const Point& rClickPos, ScSplitPos eWhich,
-//STRIP001                                      short nPosX, short nPosY, BOOL& rLeft, BOOL& rTop );
-//STRIP001
     BOOL            IsRefMode() const                       { return bIsRefMode; }
     ScRefType       GetRefType() const                      { return eRefType; }
     USHORT          GetRefStartX() const                    { return nRefStartX; }
@@ -370,28 +340,19 @@ public:
 
     void            KillEditView();
     void            ResetEditView();
-//STRIP001  void            SetEditEngine( ScSplitPos eWhich,
-//STRIP001                                  ScEditEngineDefaulter* pNewEngine,
-//STRIP001                                  Window* pWin, USHORT nNewX, USHORT nNewY );
-//STRIP001  void            GetEditView( ScSplitPos eWhich, EditView*& rViewPtr, USHORT& rCol, USHORT& rRow );
     BOOL            HasEditView( ScSplitPos eWhich ) const
                                         { return pEditView[eWhich] && bEditActive[eWhich]; }
     EditView*       GetEditView( ScSplitPos eWhich ) const
                                         { return pEditView[eWhich]; }
 
-//STRIP001  void            EditGrowX();
-//STRIP001  void            EditGrowY( BOOL bInitial = FALSE );
 
     USHORT          GetEditViewCol() const          { return nEditCol; }
     USHORT          GetEditViewRow() const          { return nEditRow; }
     USHORT          GetEditEndCol() const           { return nEditEndCol; }
     USHORT          GetEditEndRow() const           { return nEditEndRow; }
 
-//STRIP001  Rectangle       GetEditArea( ScSplitPos eWhich, USHORT nPosX, USHORT nPosY, Window* pWin,
-//STRIP001                                  const ScPatternAttr* pPattern, BOOL bForceToTop );
 
     void            SetTabNo( USHORT nNewTab );     // #116578#
-//STRIP001  void            SetActivePart( ScSplitPos eNewActive );
 
     Point           GetScrPos( USHORT nWhereX, USHORT nWhereY, ScSplitPos eWhich,
                                 BOOL bAllowNeg = FALSE ) const;
@@ -403,18 +364,8 @@ public:
 
     USHORT          VisibleCellsX( ScHSplitPos eWhichX ) const;     // angezeigte komplette Zellen
     USHORT          VisibleCellsY( ScVSplitPos eWhichY ) const;
-//STRIP001  USHORT          PrevCellsX( ScHSplitPos eWhichX ) const;        // Zellen auf der vorgehenden Seite
-//STRIP001  USHORT          PrevCellsY( ScVSplitPos eWhichY ) const;
-//STRIP001  USHORT          LastCellsX( ScHSplitPos eWhichX ) const;        // Zellen auf der letzten Seite
-//STRIP001  USHORT          LastCellsY( ScVSplitPos eWhichY ) const;
 
-//STRIP001  BOOL            IsOle();
-//STRIP001  void            UpdateOle( ScSplitPos eWhich );
-//STRIP001  void            SetScreen( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 );
-//STRIP001  void            SetScreen( const Rectangle& rVisArea );
-//STRIP001  void            SetScreenPos( const Point& rVisAreaStart );
 
-//STRIP001  void            UpdateScreenZoom( const Fraction& rNewX, const Fraction& rNewY );
 
     Size            GetScrSize() const              { return aScrSize; }
 
@@ -425,17 +376,12 @@ public:
     void            SetSpellingView( EditView* pSpView) { pSpellingView = pSpView; }
     EditView*       GetSpellingView() const { return pSpellingView; }
 
-//STRIP001  void            UpdateOutlinerFlags( Outliner& rOutl ) const;
 
-//STRIP001  Point           GetMousePosPixel();
 
-//STRIP001  BOOL            UpdateFixX(USHORT nTab = MAXTAB+1);
-//STRIP001  BOOL            UpdateFixY(USHORT nTab = MAXTAB+1);
 
     USHORT          GetTabStartCol() const          { return nTabStartCol; }
     void            SetTabStartCol(USHORT nNew)     { nTabStartCol = nNew; }
 
-//STRIP001  ScAddress       GetCurPos() const;
 
     const Size&     GetScenButSize() const              { return aScenButSize; }
     void            SetScenButSize(const Size& rNew)    { aScenButSize = rNew; }
