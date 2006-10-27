@@ -4,9 +4,9 @@
  *
  *  $RCSfile: paralist.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:42:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:31:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,24 +60,13 @@ public:
     Paragraph*      GetParagraph( ULONG nPos ) const    { return (Paragraph*)List::GetObject( nPos ); }
 
     ULONG           GetAbsPos( Paragraph* pParent ) const { return List::GetPos( pParent ); }
-//STRIP001  ULONG           GetVisPos( Paragraph* pParagraph );
 
     void            Insert( Paragraph* pPara, ULONG nAbsPos = LIST_APPEND ) { List::Insert( pPara, nAbsPos ); }
     void            Remove( ULONG nPara ) { List::Remove( nPara ); }
-//STRIP001  void            MoveParagraphs( ULONG nStart, ULONG nDest, ULONG nCount );
 
-//STRIP001  Paragraph*      NextVisible( Paragraph* ) const;
-//STRIP001  Paragraph*      PrevVisible( Paragraph* ) const;
-//STRIP001  Paragraph*      LastVisible() const;
 
 /*NBFF*/    Paragraph*      GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const;
-//STRIP001  BOOL            HasChilds( Paragraph* pParagraph ) const;
-//STRIP001  BOOL            HasHiddenChilds( Paragraph* pParagraph ) const;
-//STRIP001  BOOL            HasVisibleChilds( Paragraph* pParagraph ) const;
-//STRIP001  ULONG           GetChildCount( Paragraph* pParagraph ) const;
 
-//STRIP001  void            Expand( Paragraph* pParent );
-//STRIP001  void            Collapse( Paragraph* pParent );
 
     void            SetVisibleStateChangedHdl( const Link& rLink ) { aVisibleStateChangedHdl = rLink; }
     Link            GetVisibleStateChangedHdl() const { return aVisibleStateChangedHdl; }
