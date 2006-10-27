@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:09:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:26:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -130,9 +130,6 @@
 #ifndef _SVSTOR_HXX //autogen
 #include <so3/svstor.hxx>
 #endif
-//STRIP001 #ifndef _EXTATTR_HXX
-//STRIP001 #include <svtools/extattr.hxx>
-//STRIP001 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
@@ -288,19 +285,6 @@ namespace binfilter {
 /*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& xRequest )
 /*N*/         throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( !m_xInter.is() )
-//STRIP001      return;
-//STRIP001
-//STRIP001     ::com::sun::star::uno::Any aRequest = xRequest->getRequest();
-//STRIP001     ::com::sun::star::ucb::InteractiveIOException aIoException;
-//STRIP001     ::com::sun::star::ucb::UnsupportedDataSinkException aSinkException;
-//STRIP001     if ( (aRequest >>= aIoException) && ( aIoException.Code == IOErrorCode_ACCESS_DENIED || aIoException.Code == IOErrorCode_LOCKING_VIOLATION ) )
-//STRIP001         return;
-//STRIP001     else
-//STRIP001     if ( aRequest >>= aSinkException )
-//STRIP001         return;
-//STRIP001     else
-//STRIP001         m_xInter->handle( xRequest );
 /*N*/ }
 
 /*?*/ String ConvertDateTime_Impl(const SfxStamp &rTime, const LocaleDataWrapper& rWrapper);
@@ -382,7 +366,6 @@ namespace binfilter {
 /*?*/     SfxPoolCancelManagerRef xCancelManager;
 /*?*/     UcbLockBytesCancellable_Impl* pCancellable;
 /*?*/     SfxMedium*       pAntiImpl;
-//STRIP001 /*?*/     SvEaMgr*         pEaMgr;
 /*?*/
 /*?*/     long             nFileVersion;
 /*?*/
@@ -438,8 +421,6 @@ namespace binfilter {
 
 /*N*/ void SfxMedium::DataAvailable_Impl()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     pImp->aAvailableLink.ClearPendingCall();
-//STRIP001     pImp->aAvailableLink.Call( NULL );
 /*N*/ }
 
 /*N*/ void SfxMedium::Cancel_Impl()
@@ -474,7 +455,6 @@ namespace binfilter {
 /*N*/     pLoadEnv( 0 ), pAntiImpl( pAntiImplP ),
 /*N*/     bDontCreateCancellable( sal_False ), pTempDir( NULL ), bIsDiskSpannedJAR( sal_False ),
 /*N*/     bDownloadDone( sal_True ), bDontCallDoneLinkOnSharingError( sal_False ),nFileVersion( 0 ),
-//STRIP001  pEaMgr( NULL ),
 /*N*/   pTempFile( NULL ),
 /*N*/   nLastStorageError( 0 ),
 /*N*/   bIsCharsetInitialized( sal_False ),
@@ -497,7 +477,6 @@ namespace binfilter {
 /*N*/     aDoneLink.ClearPendingCall();
 /*N*/     aAvailableLink.ClearPendingCall();
 /*N*/
-//STRIP001 /*N*/     delete pEaMgr;
 /*N*/     delete pVersions;
 /*N*/
 /*N*/     if ( pTempFile )
@@ -825,126 +804,12 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-//STRIP001 sal_Bool SfxMedium::IsPreview_Impl()
-//STRIP001 {
-//STRIP001     sal_Bool bPreview = sal_False;
-//STRIP001     SFX_ITEMSET_ARG( GetItemSet(), pPreview, SfxBoolItem, SID_PREVIEW, sal_False);
-//STRIP001     if ( pPreview )
-//STRIP001         bPreview = pPreview->GetValue();
-//STRIP001     else
-//STRIP001     {
-//STRIP001         SFX_ITEMSET_ARG( GetItemSet(), pFlags, SfxStringItem, SID_OPTIONS, sal_False);
-//STRIP001         if ( pFlags )
-//STRIP001         {
-//STRIP001             String aFileFlags = pFlags->GetValue();
-//STRIP001             aFileFlags.ToUpperAscii();
-//STRIP001             if ( STRING_NOTFOUND != aFileFlags.Search( 'B' ) )
-//STRIP001                 bPreview = sal_True;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return bPreview;
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::TryStorage()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     GetStorage();
-//STRIP001
-//STRIP001     if ( aStorage.Is() )
-//STRIP001         return sal_True;
-//STRIP001
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >  xSMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::util::XArchiver >
-//STRIP001             xPacker( xSMgr->createInstance( DEFINE_CONST_UNICODE( "com.sun.star.util.Archiver" ) ), ::com::sun::star::uno::UNO_QUERY );
-//STRIP001
-//STRIP001     if( !xPacker.is() )
-//STRIP001         return sal_False;
-//STRIP001
-//STRIP001     // extract extra data
-//STRIP001     ::rtl::OUString aPath = GetURLObject().PathToFileName();
-//STRIP001     ::rtl::OUString aExtraData = xPacker->getExtraData( aPath );
-//STRIP001     const ::rtl::OUString aSig1( DEFINE_CONST_UNICODE( "private:" ) );
-//STRIP001     String aTmp( '?' );
-//STRIP001     aTmp += pFilter->GetFilterContainer()->GetName();
-//STRIP001     const ::rtl::OUString aSig2( aTmp );
-//STRIP001     sal_Int32 nIndex1 = aExtraData.indexOf( aSig1 );
-//STRIP001     sal_Int32 nIndex2 = aExtraData.indexOf( aSig2 );
-//STRIP001
-//STRIP001     if( nIndex1 != 0 || nIndex2 == -1 )
-//STRIP001         return sal_False;
-//STRIP001
-//STRIP001     nIndex1 += aSig1.getLength();
-//STRIP001     ::rtl::OUString aTempDoku = aExtraData.copy( nIndex1, nIndex2 - nIndex1 );
-//STRIP001
-//STRIP001     // create a temp dir to unpack to
-//STRIP001     pImp->pTempDir = new ::utl::TempFile( NULL, sal_True );
-//STRIP001     pImp->pTempDir->EnableKillingFile( sal_True );
-//STRIP001
-//STRIP001     // unpack all files to temp dir
-//STRIP001     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler > xInteractionHandler = GetInteractionHandler();
-//STRIP001     if (xInteractionHandler.is())
-//STRIP001     {
-//STRIP001         aArgs.realloc(1);
-//STRIP001         aArgs.getArray()[0].Name = DEFINE_CONST_UNICODE( "InteractionHandler" );
-//STRIP001         aArgs.getArray()[0].Value <<= xInteractionHandler ;
-//STRIP001     }
-//STRIP001     ::com::sun::star::uno::Sequence< ::rtl::OUString > files(0);
-//STRIP001
-//STRIP001     if( !xPacker->unpack( pImp->pTempDir->GetURL(), aPath, files, aArgs ) )
-//STRIP001         return sal_False;
-//STRIP001
-//STRIP001     String aNewName = pImp->pTempDir->GetURL();
-//STRIP001     aNewName += '/';
-//STRIP001     aNewName += String( aTempDoku );
-//STRIP001     CloseInStream_Impl();
-//STRIP001     String aTemp;
-//STRIP001     ::utl::LocalFileHelper::ConvertURLToPhysicalName( aNewName, aTemp );
-//STRIP001     SetPhysicalName_Impl( aTemp );
-//STRIP001     GetStorage();
-//STRIP001
-//STRIP001     if ( aStorage.Is() )
-//STRIP001     {
-//STRIP001         const SfxFilter *pRealFilter = SFX_APP()->GetFilterMatcher().GetFilter4ClipBoardId( aStorage->GetFormat() );
-//STRIP001         if ( pRealFilter )
-//STRIP001         {
-//STRIP001             pImp->nFileVersion = pRealFilter->GetVersion();
-//STRIP001             aStorage->SetVersion( pImp->nFileVersion );
-//STRIP001         }
-//STRIP001
-//STRIP001         DBG_ASSERT( pRealFilter, "Unknown storage format!" );
-//STRIP001     }
-//STRIP001
-//STRIP001     return aStorage.Is();
 /*N*/ }
 
-//STRIP001 ErrCode SfxMedium::Unpack_Impl( const String& rDest )
-//STRIP001 {
-//STRIP001     ErrCode nRet = ERRCODE_NONE;
-//STRIP001     if ( pImp->pTempDir )
-//STRIP001     {
-//STRIP001 /*
-//STRIP001         DirEntry aDestEntry( rDest );
-//STRIP001         Dir aDir( pImp->pTempDir->GetName(), FSYS_KIND_FILE );
-//STRIP001         sal_uInt16 nCount = aDir.Count();
-//STRIP001         for ( sal_uInt16 n=0; n<nCount; n++ )
-//STRIP001         {
-//STRIP001             DirEntry aDest( aDestEntry.GetPath() );
-//STRIP001             DirEntry aTmp = aDir[n];
-//STRIP001             aDest += aTmp.GetName();
-//STRIP001             if ( aDir[n] == DirEntry( GetPhysicalName() ) )
-//STRIP001                 continue;
-//STRIP001
-//STRIP001             nRet = aTmp.CopyTo( aDest, FSYS_ACTION_COPYFILE );
-//STRIP001             if ( nRet != ERRCODE_NONE )
-//STRIP001                 break;
-//STRIP001         }
-//STRIP001  */
-//STRIP001     }
-//STRIP001
-//STRIP001     return nRet;
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ SvStorage* SfxMedium::GetOutputStorage( BOOL bUCBStorage )
@@ -1207,117 +1072,6 @@ namespace binfilter {
 /*?*/     bSetFilter  = sal_False;
 /*?*/ }
 
-//STRIP001 sal_Bool SfxMedium::TransactedTransferForFS_Impl( const INetURLObject& aSource,
-//STRIP001                                              const INetURLObject& aDest,
-//STRIP001                                              const Reference< ::com::sun::star::ucb::XCommandEnvironment >& xComEnv )
-//STRIP001 {
-//STRIP001  sal_Bool bResult = sal_False;
-//STRIP001  Reference< ::com::sun::star::ucb::XCommandEnvironment > xDummyEnv;
-//STRIP001  Reference< XOutputStream > aDestStream;
-//STRIP001  Reference< XSimpleFileAccess > aSimpleAccess;
-//STRIP001  ::ucb::Content aOriginalContent;
-//STRIP001
-//STRIP001  DBG_ASSERT( ::utl::LocalFileHelper::IsLocalFile( aDest.GetMainURL( INetURLObject::NO_DECODE ) ),
-//STRIP001              "SfxMedium::TransactedTransferForFS() should be used only for local contents!" );
-//STRIP001
-//STRIP001  if( ::ucb::Content::create( aDest.GetMainURL( INetURLObject::NO_DECODE ), xComEnv, aOriginalContent ) )
-//STRIP001  {
-//STRIP001      Close();
-//STRIP001      ::ucb::Content aTempCont;
-//STRIP001      if( ::ucb::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xDummyEnv, aTempCont ) )
-//STRIP001      {
-//STRIP001          sal_Bool bTransactStarted = sal_False;
-//STRIP001          SFX_ITEMSET_ARG( GetItemSet(), pOverWrite, SfxBoolItem, SID_OVERWRITE, sal_False );
-//STRIP001              SFX_ITEMSET_ARG( GetItemSet(), pRename, SfxBoolItem, SID_RENAME, sal_False );
-//STRIP001          sal_Bool bRename = pRename ? pRename->GetValue() : FALSE;
-//STRIP001          sal_Bool bOverWrite = pOverWrite ? pOverWrite->GetValue() : !bRename;
-//STRIP001
-//STRIP001          try
-//STRIP001          {
-//STRIP001              if( bOverWrite && ::utl::UCBContentHelper::IsDocument( aDest.GetMainURL( INetURLObject::NO_DECODE ) ) )
-//STRIP001              {
-//STRIP001                  if( ! pImp->m_aBackupURL.getLength() )
-//STRIP001                      DoInternalBackup_Impl( aOriginalContent );
-//STRIP001
-//STRIP001                  if( pImp->m_aBackupURL.getLength() )
-//STRIP001                  {
-//STRIP001                      Reference< XInputStream > aTempInput = aTempCont.openStream();
-//STRIP001                      bTransactStarted = sal_True;
-//STRIP001                      aOriginalContent.writeStream( aTempInput, bOverWrite );
-//STRIP001                      bResult = sal_True;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      WarningBox( NULL, SfxResId( MSG_WARNING_BACKUP ) ).Execute();
-//STRIP001                      eError = ERRCODE_ABORT;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  Reference< XInputStream > aTempInput = aTempCont.openStream();
-//STRIP001                  aOriginalContent.writeStream( aTempInput, bOverWrite );
-//STRIP001                  bResult = sal_True;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          catch ( ::com::sun::star::ucb::CommandAbortedException& )
-//STRIP001          {
-//STRIP001              eError = ERRCODE_ABORT;
-//STRIP001          }
-//STRIP001          catch ( ::com::sun::star::ucb::CommandFailedException& )
-//STRIP001          {
-//STRIP001              eError = ERRCODE_ABORT;
-//STRIP001          }
-//STRIP001          catch ( ::com::sun::star::ucb::InteractiveIOException& r )
-//STRIP001          {
-//STRIP001              if ( r.Code == IOErrorCode_ACCESS_DENIED )
-//STRIP001                  eError = ERRCODE_IO_ACCESSDENIED;
-//STRIP001              else if ( r.Code == IOErrorCode_NOT_EXISTING )
-//STRIP001                  eError = ERRCODE_IO_NOTEXISTS;
-//STRIP001              else if ( r.Code == IOErrorCode_CANT_READ )
-//STRIP001                  eError = ERRCODE_IO_CANTREAD;
-//STRIP001              else
-//STRIP001                  eError = ERRCODE_IO_GENERAL;
-//STRIP001          }
-//STRIP001          catch ( ::com::sun::star::uno::Exception& e )
-//STRIP001          {
-//STRIP001              eError = ERRCODE_IO_GENERAL;
-//STRIP001          }
-//STRIP001
-//STRIP001              if ( bResult )
-//STRIP001              {
-//STRIP001              pImp->pTempFile->EnableKillingFile( sal_True );
-//STRIP001                  delete pImp->pTempFile;
-//STRIP001                  pImp->pTempFile = NULL;
-//STRIP001
-//STRIP001              // without a TempFile the physical and logical name should be the same
-//STRIP001                  ::utl::LocalFileHelper::ConvertURLToPhysicalName( GetURLObject().GetMainURL( INetURLObject::NO_DECODE ),
-//STRIP001                                                                aName );
-//STRIP001              }
-//STRIP001          else if ( bTransactStarted )
-//STRIP001          {
-//STRIP001              try
-//STRIP001              {
-//STRIP001                  ::ucb::Content aTransactCont;
-//STRIP001                  if( ::ucb::Content::create( pImp->m_aBackupURL, xDummyEnv, aTransactCont ) )
-//STRIP001                  {
-//STRIP001                      Reference< XInputStream > aOrigInput = aTransactCont.openStream();
-//STRIP001                      aOriginalContent.writeStream( aOrigInput, sal_True );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              catch( Exception& )
-//STRIP001              {
-//STRIP001                  // in case of failure here the backup file should not be removed
-//STRIP001                  pImp->m_bRemoveBackup = sal_False;
-//STRIP001                  eError = ERRCODE_IO_GENERAL;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001          eError = ERRCODE_IO_CANTREAD;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bResult;
-//STRIP001 }
 
 
 //------------------------------------------------------------------
@@ -1383,292 +1137,18 @@ namespace binfilter {
 /*N*/           return;
 /*N*/       }
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); return;//STRIP001
-//STRIP001 /*?*/         GetContent();
-//STRIP001 /*?*/         if ( !pImp->aContent.get().is() )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             eError = ERRCODE_IO_NOTEXISTS;
-//STRIP001 /*?*/             return;
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         SFX_ITEMSET_ARG( GetItemSet(), pSegmentSize, SfxInt32Item, SID_SEGMENTSIZE, sal_False);
-//STRIP001 /*?*/         if ( pSegmentSize )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             // this file must be stored into a disk spanned package
-//STRIP001 /*?*/             SotStorageRef xStor = new SotStorage( TRUE, GetName(), STREAM_STD_READWRITE | STREAM_TRUNC, STORAGE_TRANSACTED );
-//STRIP001 /*?*/             if ( xStor->GetError() == ERRCODE_NONE )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                // set segment size property; package will automatically be divided in pieces fitting
-//STRIP001 /*?*/                // into this size
-//STRIP001 /*?*/                 ::com::sun::star::uno::Any aAny;
-//STRIP001 /*?*/                 aAny <<= pSegmentSize->GetValue();
-//STRIP001 /*?*/                 xStor->SetProperty( String::CreateFromAscii("SegmentSize"), aAny );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // copy the temporary storage into the disk spanned package
-//STRIP001 /*?*/                 GetStorage()->CopyTo( xStor );
-//STRIP001 /*?*/                 xStor->Commit();
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( !GetError() )
-//STRIP001 /*?*/                SetError( xStor->GetError() );
-//STRIP001 /*?*/             return;
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( pFilter && SOFFICE_FILEFORMAT_60 <= pFilter->GetVersion() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             SFX_ITEMSET_ARG( GetItemSet(), pItem, SfxBoolItem, SID_UNPACK, sal_False);
-//STRIP001 /*?*/             if ( pItem && pItem->GetValue() )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                // this file must be stored without packing into a JAR file
-//STRIP001 /*?*/                // check for an existing unpacked storage
-//STRIP001 /*?*/                SvStream* pStream = ::utl::UcbStreamHelper::CreateStream( GetName(), STREAM_STD_READ );
-//STRIP001 /*?*/                 if ( !pStream->GetError() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    String aURL = UCBStorage::GetLinkedFile( *pStream );
-//STRIP001 /*?*/                    if ( aURL.Len() )
-//STRIP001 /*?*/                        // remove a possibly existing old folder
-//STRIP001 /*?*/                        ::utl::UCBContentHelper::Kill( aURL );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     DELETEZ( pStream );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // create a new folder based storage
-//STRIP001 /*?*/                 SvStorageRef xStor = new SvStorage( TRUE, GetName(), STREAM_STD_READWRITE, STORAGE_CREATE_UNPACKED );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // copy package into unpacked storage
-//STRIP001 /*?*/                 if ( xStor->GetError() == ERRCODE_NONE && GetStorage()->CopyTo( xStor ) )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     // commit changes, writing will happen now
-//STRIP001 /*?*/                     xStor->Commit();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // take new unpacked storage as own storage
-//STRIP001 /*?*/                     Close();
-//STRIP001 /*?*/                     DELETEZ( pImp->pTempFile );
-//STRIP001 /*?*/                     ::utl::LocalFileHelper::ConvertURLToPhysicalName( GetURLObject().GetMainURL( INetURLObject::NO_DECODE ), aName );
-//STRIP001 /*?*/                     SetStorage_Impl( xStor );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 else if ( !GetError() )
-//STRIP001 /*?*/                     SetError( xStor->GetError() );
-//STRIP001 /*?*/                 return;
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         sal_Bool bSuccess = sal_False;
-//STRIP001 /*?*/         INetURLObject aDest( GetURLObject() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/         // source is the temp file written so far
-//STRIP001 /*?*/         INetURLObject aSource( pImp->pTempFile->GetURL() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // a special case, an interaction handler should be used for
-//STRIP001 /*?*/        // authentication in case it is available
-//STRIP001 /*?*/        Reference< ::com::sun::star::ucb::XCommandEnvironment > xComEnv;
-//STRIP001 /*?*/            Reference< ::com::sun::star::task::XInteractionHandler > xInteractionHandler = GetInteractionHandler();
-//STRIP001 /*?*/         if (xInteractionHandler.is())
-//STRIP001 /*?*/            xComEnv = new ::ucb::CommandEnvironment( xInteractionHandler,
-//STRIP001 /*?*/                                                      Reference< ::com::sun::star::ucb::XProgressHandler >() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( ::utl::LocalFileHelper::IsLocalFile( aDest.GetMainURL( INetURLObject::NO_DECODE ) ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            TransactedTransferForFS_Impl( aSource, aDest, xComEnv );
-//STRIP001 /*?*/            return;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( aDest.removeSegment() )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             // create content for the parent folder and call transfer on that content with the source content
-//STRIP001 /*?*/             // and the destination file name as parameters
-//STRIP001 /*?*/             ::ucb::Content aSourceContent;
-//STRIP001 /*?*/             ::ucb::Content aTransferContent;
-//STRIP001 /*?*/
-//STRIP001 /*?*/             String aFileName = GetLongName();
-//STRIP001 /*?*/             if ( !aFileName.Len() )
-//STRIP001 /*?*/                 aFileName = GetURLObject().getName( INetURLObject::LAST_SEGMENT, true, INetURLObject::DECODE_WITH_CHARSET );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             if ( ::ucb::Content::create( aDest.GetMainURL( INetURLObject::NO_DECODE ), xComEnv, aTransferContent ) )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 // free resources, otherwise the transfer may fail
-//STRIP001 /*?*/                 Close();
-//STRIP001 /*?*/                 // don't create content before Close(), because if the storage was opened in direct mode, it will be flushed
-//STRIP001 /*?*/                 // in Close() and this leads to a transfer command executed in the package, which currently is implemented as
-//STRIP001 /*?*/                 // remove+move in the file FCP. The "remove" is notified to the ::ucb::Content, that clears its URL and its
-//STRIP001 /*?*/                 // content reference in this notification and thus will never get back any URL, so my transfer will fail!
-//STRIP001 /*?*/                 ::ucb::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xEnv, aSourceContent );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // check for external parameters that may customize the handling of NameClash situations
-//STRIP001 /*?*/                 SFX_ITEMSET_ARG( GetItemSet(), pRename, SfxBoolItem, SID_RENAME, sal_False );
-//STRIP001 /*?*/                 SFX_ITEMSET_ARG( GetItemSet(), pOverWrite, SfxBoolItem, SID_OVERWRITE, sal_False );
-//STRIP001 /*?*/                 sal_Int32 nNameClash;
-//STRIP001 /*?*/                 if ( pOverWrite && !pOverWrite->GetValue() )
-//STRIP001 /*?*/                     // argument says: never overwrite
-//STRIP001 /*?*/                     nNameClash = NameClash::ERROR;
-//STRIP001 /*?*/                 else if ( pRename && pRename->GetValue() )
-//STRIP001 /*?*/                     // argument says: rename file
-//STRIP001 /*?*/                     nNameClash = NameClash::RENAME;
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                     // default is overwrite existing files
-//STRIP001 /*?*/                     nNameClash = NameClash::OVERWRITE;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 try
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     bSuccess = aTransferContent.transferContent( aSourceContent, ::ucb::InsertOperation_COPY, aFileName, nNameClash );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 catch ( ::com::sun::star::ucb::CommandAbortedException& )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     eError = ERRCODE_ABORT;
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 catch ( ::com::sun::star::ucb::CommandFailedException& )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     eError = ERRCODE_ABORT;
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 catch ( ::com::sun::star::ucb::InteractiveIOException& r )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     if ( r.Code == IOErrorCode_ACCESS_DENIED )
-//STRIP001 /*?*/                         eError = ERRCODE_IO_ACCESSDENIED;
-//STRIP001 /*?*/                     else if ( r.Code == IOErrorCode_NOT_EXISTING )
-//STRIP001 /*?*/                         eError = ERRCODE_IO_NOTEXISTS;
-//STRIP001 /*?*/                     else if ( r.Code == IOErrorCode_CANT_READ )
-//STRIP001 /*?*/                         eError = ERRCODE_IO_CANTREAD;
-//STRIP001 /*?*/                     else
-//STRIP001 /*?*/                         eError = ERRCODE_IO_GENERAL;
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 catch ( ::com::sun::star::uno::Exception& e )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     eError = ERRCODE_IO_GENERAL;
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // do not switch from temporary file in case of nonfile protocol
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
 /*?*/     }
 /*N*/ }
 
 //------------------------------------------------------------------
-//STRIP001 void SfxMedium::DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent,
-//STRIP001                                     const String& aPrefix,
-//STRIP001                                     const String& aExtension,
-//STRIP001                                     const String& aDestDir )
-//STRIP001 {
-//STRIP001  if ( pImp->m_aBackupURL.getLength() )
-//STRIP001      return; // the backup was done already
-//STRIP001
-//STRIP001  ::utl::TempFile aTransactTemp( aPrefix, &aExtension, &aDestDir );
-//STRIP001  aTransactTemp.EnableKillingFile( sal_False );
-//STRIP001
-//STRIP001  INetURLObject aBackObj( aTransactTemp.GetURL() );
-//STRIP001  ::rtl::OUString aBackupName = aBackObj.getName( INetURLObject::LAST_SEGMENT, true, INetURLObject::DECODE_WITH_CHARSET );
-//STRIP001
-//STRIP001  Reference < ::com::sun::star::ucb::XCommandEnvironment > xDummyEnv;
-//STRIP001  ::ucb::Content aBackupCont;
-//STRIP001  if( ::ucb::Content::create( aDestDir, xDummyEnv, aBackupCont ) )
-//STRIP001  {
-//STRIP001      try
-//STRIP001      {
-//STRIP001          if( aBackupCont.transferContent( aOriginalContent,
-//STRIP001                                          ::ucb::InsertOperation_COPY,
-//STRIP001                                          aBackupName,
-//STRIP001                                          NameClash::OVERWRITE ) )
-//STRIP001          {
-//STRIP001              pImp->m_aBackupURL = aBackObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001              pImp->m_bRemoveBackup = sal_True;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      catch( Exception& )
-//STRIP001      {}
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( !pImp->m_aBackupURL.getLength() )
-//STRIP001      aTransactTemp.EnableKillingFile( sal_True );
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*?*/ void SfxMedium::DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-//STRIP001  if ( pImp->m_aBackupURL.getLength() )
-//STRIP001      return; // the backup was done already
-//STRIP001
-//STRIP001  ::rtl::OUString aFileName =  GetURLObject().getName( INetURLObject::LAST_SEGMENT,
-//STRIP001                                                      true,
-//STRIP001                                                      INetURLObject::NO_DECODE );
-//STRIP001
-//STRIP001  sal_Int32 nPrefixLen = aFileName.lastIndexOf( '.' );
-//STRIP001  String aPrefix = ( nPrefixLen == -1 ) ? aFileName : aFileName.copy( 0, nPrefixLen );
-//STRIP001  String aExtension = ( nPrefixLen == -1 ) ? String() : String(aFileName.copy( nPrefixLen ));
-//STRIP001      String aBakDir = SvtPathOptions().GetBackupPath();
-//STRIP001
-//STRIP001  DoInternalBackup_Impl( aOriginalContent, aPrefix, aExtension, aBakDir );
-//STRIP001
-//STRIP001  if ( !pImp->m_aBackupURL.getLength() )
-//STRIP001  {
-//STRIP001      // the copiing to the backup catalog failed ( for example because
-//STRIP001      // of using an encrypted partition as target catalog )
-//STRIP001      // since the user did not specify to make backup explicitly
-//STRIP001      // office should try to make backup in another place,
-//STRIP001      // target catalog does not look bad for this case ( and looks
-//STRIP001      // to be the only way for encrypted partitions )
-//STRIP001
-//STRIP001      INetURLObject aDest = GetURLObject();
-//STRIP001      if ( aDest.removeSegment() )
-//STRIP001          DoInternalBackup_Impl( aOriginalContent, aPrefix, aExtension, aDest.GetMainURL( INetURLObject::NO_DECODE ) );
-//STRIP001  }
 /*?*/ }
 
 
 //------------------------------------------------------------------
-//STRIP001 void SfxMedium::DoBackup_Impl()
-//STRIP001 {
-//STRIP001      // source file name is the logical name of this medium
-//STRIP001     INetURLObject aSource( GetURLObject() );
-//STRIP001
-//STRIP001  // there is nothing to backup in case source file does not exist
-//STRIP001  if ( !::utl::UCBContentHelper::IsDocument( aSource.GetMainURL( INetURLObject::NO_DECODE ) ) )
-//STRIP001      return;
-//STRIP001
-//STRIP001     sal_Bool        bSuccess = sal_False;
-//STRIP001
-//STRIP001     // get path for backups
-//STRIP001     String aBakDir = SvtPathOptions().GetBackupPath();
-//STRIP001     if( aBakDir.Len() )
-//STRIP001     {
-//STRIP001         // create content for the parent folder ( = backup folder )
-//STRIP001         ::ucb::Content  aContent;
-//STRIP001         Reference < ::com::sun::star::ucb::XCommandEnvironment > xEnv;
-//STRIP001         if( ::ucb::Content::create( aBakDir, xEnv, aContent ) )
-//STRIP001      {
-//STRIP001          // save as ".bak" file
-//STRIP001          INetURLObject aDest( aBakDir );
-//STRIP001          aDest.insertName( aSource.getName() );
-//STRIP001          aDest.setExtension( DEFINE_CONST_UNICODE( "bak" ) );
-//STRIP001          String aFileName = aDest.getName( INetURLObject::LAST_SEGMENT, true, INetURLObject::DECODE_WITH_CHARSET );
-//STRIP001
-//STRIP001          // create a content for the source file
-//STRIP001          ::ucb::Content aSourceContent;
-//STRIP001          if ( ::ucb::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xEnv, aSourceContent ) )
-//STRIP001          {
-//STRIP001              try
-//STRIP001              {
-//STRIP001                  // do the transfer ( copy source file to backup dir )
-//STRIP001                  bSuccess = aContent.transferContent( aSourceContent,
-//STRIP001                                                      ::ucb::InsertOperation_COPY,
-//STRIP001                                                      aFileName,
-//STRIP001                                                      NameClash::OVERWRITE );
-//STRIP001                  if( bSuccess )
-//STRIP001                  {
-//STRIP001                      pImp->m_aBackupURL = aDest.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001                      pImp->m_bRemoveBackup = sal_False;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              catch ( ::com::sun::star::uno::Exception& )
-//STRIP001              {
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( !bSuccess )
-//STRIP001  {
-//STRIP001      eError = ERRCODE_ABORT;
-//STRIP001         WarningBox( NULL, SfxResId( MSG_WARNING_BACKUP ) ).Execute();
-//STRIP001  }
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ void SfxMedium::ClearBackup_Impl()
@@ -2025,8 +1505,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*?*/     if( bTemporary )
 /*?*/         CreateTempFile();
 /*?*/
-//STRIP001 /*?*/     if ( rMedium.pImp->pEaMgr )
-//STRIP001 /*?*/         GetEaMgr();
 /*?*/ }
 
 //------------------------------------------------------------------
@@ -2140,21 +1618,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 
 //------------------------------------------------------------------
 
-//STRIP001 void SfxMedium::RefreshName_Impl()
-//STRIP001 {
-//STRIP001 #if 0   //(dv)
-//STRIP001     if ( pImp->aContent.get().is() )
-//STRIP001     {
-//STRIP001         String aNameP = pImp->xAnchor->GetViewURL();
-//STRIP001         pImp->aOrigURL = aNameP;
-//STRIP001         aLogicName = aNameP;
-//STRIP001         DELETEZ( pURLObj );
-//STRIP001         if (aLogicName.Len())
-//STRIP001             aLogicName = GetURLObject().GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001         SetIsRemote_Impl();
-//STRIP001     }
-//STRIP001 #endif  //(dv)
-//STRIP001 }
 
 /*N*/ void SfxMedium::SetIsRemote_Impl()
 /*N*/ {
@@ -2183,17 +1646,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 
 
 
-//STRIP001 void SfxMedium::SetName( const String& aNameP, sal_Bool bSetOrigURL )
-//STRIP001 {
-//STRIP001     if( !pImp->aOrigURL.Len() )
-//STRIP001         pImp->aOrigURL = aLogicName;
-//STRIP001     if( bSetOrigURL )
-//STRIP001         pImp->aOrigURL = aNameP;
-//STRIP001     aLogicName = aNameP;
-//STRIP001     DELETEZ( pURLObj );
-//STRIP001     pImp->aContent = ::ucb::Content();
-//STRIP001     Init_Impl();
-//STRIP001 }
 
 //----------------------------------------------------------------
 /*N*/ const String& SfxMedium::GetOrigURL() const
@@ -2205,48 +1657,11 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 
 /*N*/ void SfxMedium::SetPhysicalName_Impl( const String& rNameP )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if ( rNameP != aName )
-//STRIP001     {
-//STRIP001         if( pImp->pTempFile )
-//STRIP001         {
-//STRIP001             delete pImp->pTempFile;
-//STRIP001             pImp->pTempFile = NULL;
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( aName.Len() || rNameP.Len() )
-//STRIP001             pImp->aContent = ::ucb::Content();
-//STRIP001
-//STRIP001         aName = rNameP;
-//STRIP001         bTriedStorage = sal_False;
-//STRIP001         pImp->bIsStorage = sal_False;
-//STRIP001     }
 /*N*/ }
 
 //----------------------------------------------------------------
-//STRIP001 void SfxMedium::MoveTempTo_Impl( SfxMedium* pMedium )
-//STRIP001 {
-//STRIP001     if ( pMedium && pMedium != this && pImp->pTempFile )
-//STRIP001     {
-//STRIP001         if( pMedium->pImp->pTempFile )
-//STRIP001             delete pMedium->pImp->pTempFile;
-//STRIP001         pMedium->pImp->pTempFile = pImp->pTempFile;
-//STRIP001
-//STRIP001      pImp->pTempFile->EnableKillingFile( sal_True );
-//STRIP001      pImp->pTempFile = NULL;
-//STRIP001
-//STRIP001      pMedium->aName = pMedium->pImp->pTempFile->GetFileName();
-//STRIP001
-//STRIP001         pMedium->CloseInStream();
-//STRIP001      pMedium->CloseStorage();
-//STRIP001         pMedium->pImp->aContent = ::ucb::Content();
-//STRIP001     }
-//STRIP001 }
 
 //------------------------------------------------------------------
-//STRIP001 void SfxMedium::SetTemporary( sal_Bool bTemp )
-//STRIP001 {
-//STRIP001     pImp->bIsTemp = bTemp;
-//STRIP001 }
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsTemporary() const
@@ -2371,11 +1786,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/ }
 //------------------------------------------------------------------
 
-//STRIP001 void SfxMedium::SetItemSet(SfxItemSet *pNewSet)
-//STRIP001 {
-//STRIP001     delete pSet;
-//STRIP001     pSet = pNewSet;
-//STRIP001 }
 //------------------------------------------------------------------
 
 /*N*/ void SfxMedium::SetClassFilter( const SvGlobalName & rFilterClass )
@@ -2400,10 +1810,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 
 //----------------------------------------------------------------
 
-//STRIP001 const String& SfxMedium::GetPreRedirectedURL() const
-//STRIP001 {
-//STRIP001     return pImp->aPreRedirectionURL;
-//STRIP001 }
 //----------------------------------------------------------------
 
 /*N*/ sal_uInt32 SfxMedium::GetMIMEAndRedirect( String &rName )
@@ -2460,10 +1866,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/ }
 //----------------------------------------------------------------
 
-//STRIP001 const String& SfxMedium::GetReferer( ) const
-//STRIP001 {
-//STRIP001     return pImp->aReferer;
-//STRIP001 }
 //----------------------------------------------------------------
 
 /*N*/ void SfxMedium::SetTransferPriority( sal_uInt16 nPrio )
@@ -2472,22 +1874,10 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/ }
 //----------------------------------------------------------------
 
-//STRIP001 sal_uInt16 SfxMedium::GetTransferPriority( ) const
-//STRIP001 {
-//STRIP001     return pImp->nPrio;
-//STRIP001 }
 //----------------------------------------------------------------
 
-//STRIP001 void SfxMedium::SetExpired_Impl( const DateTime& rDateTime )
-//STRIP001 {
-//STRIP001     pImp->aExpireTime = rDateTime;
-//STRIP001 }
 //----------------------------------------------------------------
 
-//STRIP001 sal_Bool SfxMedium::IsExpired() const
-//STRIP001 {
-//STRIP001     return pImp->aExpireTime.IsValid() && pImp->aExpireTime < DateTime();
-//STRIP001 }
 //----------------------------------------------------------------
 
 /*N*/ void SfxMedium::ForceSynchronStream_Impl( sal_Bool bForce )
@@ -2607,19 +1997,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 
 /*N*/ SvEaMgr* SfxMedium::GetEaMgr()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     if ( !pImp->pEaMgr && pFilter )
-//STRIP001     {
-//STRIP001         /* the stream in the storage is probably not a filestream ( the stream is
-//STRIP001             closed anyway! ). Therefor we will always use GetPhysicalName to
-//STRIP001             create the SvEaMgr. */
-//STRIP001         //  SvStream *pStream = aStorage.Is() ? aStorage->GetTargetSvStream() : NULL;
-//STRIP001         //  if ( pStream && pStream->IsA() == ID_FILESTREAM )
-//STRIP001         //      pImp->pEaMgr = new SvEaMgr(*(SvFileStream *)pStream);
-//STRIP001         //  else
-//STRIP001         pImp->pEaMgr = new SvEaMgr( GetPhysicalName() );
-//STRIP001     }
-//STRIP001
-//STRIP001     return pImp->pEaMgr;
 /*N*/ }
 
 //----------------------------------------------------------------
@@ -2668,129 +2045,11 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/     return pImp->pVersions;
 /*N*/ }
 
-//STRIP001 SfxVersionTableDtor* SfxMedium::GetVersionList( SvStorage* pStor )
-//STRIP001 {
-//STRIP001  SfxVersionTableDtor* pVersions = NULL;
-//STRIP001
-//STRIP001  if( pStor )
-//STRIP001  {
-//STRIP001         SvStorageStreamRef aStream =
-//STRIP001             pStor->OpenStream( DEFINE_CONST_UNICODE( "VersionList" ), SFX_STREAM_READONLY | STREAM_NOCREATE );
-//STRIP001         if ( aStream.Is() && aStream->GetError() == SVSTREAM_OK )
-//STRIP001         {
-//STRIP001             pVersions = new SfxVersionTableDtor;
-//STRIP001             pVersions->Read( *aStream );
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001          SfxVersionTableDtor *pList = new SfxVersionTableDtor;
-//STRIP001          if ( SfxXMLVersList_Impl::ReadInfo( pStor, pList ) )
-//STRIP001              pVersions = pList;
-//STRIP001          else
-//STRIP001              delete pList;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return pVersions;
-//STRIP001 }
 
 
-//STRIP001 sal_uInt16 SfxMedium::AddVersion_Impl( SfxVersionInfo& rInfo )
-//STRIP001 {
-//STRIP001     if ( GetStorage() )
-//STRIP001     {
-//STRIP001         if ( !pImp->pVersions )
-//STRIP001             pImp->pVersions = new SfxVersionTableDtor;
-//STRIP001
-//STRIP001         // Einen eindeutigen Namen f"ur den Stream ermitteln
-//STRIP001         SvULongs aLongs;
-//STRIP001         SfxVersionInfo* pInfo = pImp->pVersions->First();
-//STRIP001         while ( pInfo )
-//STRIP001         {
-//STRIP001             sal_uInt32 nVer = (sal_uInt32) pInfo->aName.Copy(7).ToInt32();
-//STRIP001             sal_uInt16 n;
-//STRIP001             for ( n=0; n<aLongs.Count(); n++ )
-//STRIP001                 if ( nVer<aLongs[n] )
-//STRIP001                     break;
-//STRIP001
-//STRIP001             aLongs.Insert( nVer, n );
-//STRIP001             pInfo = pImp->pVersions->Next();
-//STRIP001         }
-//STRIP001
-//STRIP001         sal_uInt16 nKey;
-//STRIP001         for ( nKey=0; nKey<aLongs.Count(); nKey++ )
-//STRIP001             if ( aLongs[nKey] > ( ULONG ) nKey+1 )
-//STRIP001                 break;
-//STRIP001
-//STRIP001         rInfo.aName = DEFINE_CONST_UNICODE( "Version" );
-//STRIP001         rInfo.aName += String::CreateFromInt32( nKey + 1 );
-//STRIP001         pInfo = new SfxVersionInfo( rInfo );
-//STRIP001         pImp->pVersions->Insert( pInfo, LIST_APPEND );
-//STRIP001         return nKey;
-//STRIP001     }
-//STRIP001
-//STRIP001     return 0;
-//STRIP001 }
 
-//STRIP001 sal_Bool SfxMedium::RemoveVersion_Impl( const SfxVersionInfo& rInfo )
-//STRIP001 {
-//STRIP001     if ( !pImp->pVersions )
-//STRIP001         return sal_False;
-//STRIP001
-//STRIP001     SfxVersionInfo* pInfo = pImp->pVersions->First();
-//STRIP001     while( pInfo )
-//STRIP001     {
-//STRIP001         if ( pInfo->aName == rInfo.aName )
-//STRIP001         {
-//STRIP001             pImp->pVersions->Remove( pInfo );
-//STRIP001             delete pInfo;
-//STRIP001             return sal_True;
-//STRIP001         }
-//STRIP001
-//STRIP001         pInfo = pImp->pVersions->Next();
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
-//STRIP001 sal_Bool SfxMedium::TransferVersionList_Impl( SfxMedium& rMedium )
-//STRIP001 {
-//STRIP001     if ( rMedium.pImp->pVersions )
-//STRIP001     {
-//STRIP001         delete pImp->pVersions;
-//STRIP001         pImp->pVersions = new SfxVersionTableDtor( *rMedium.pImp->pVersions );
-//STRIP001         return sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
-//STRIP001 sal_Bool SfxMedium::SaveVersionList_Impl( sal_Bool bUseXML )
-//STRIP001 {
-//STRIP001     if ( GetStorage() )
-//STRIP001     {
-//STRIP001         if ( !pImp->pVersions )
-//STRIP001             return sal_True;
-//STRIP001
-//STRIP001         if ( bUseXML )
-//STRIP001         {
-//STRIP001             SfxXMLVersList_Impl::WriteInfo( aStorage, pImp->pVersions );
-//STRIP001             return sal_True;
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             SvStorageStreamRef aStream =
-//STRIP001                 GetStorage()->OpenStream( DEFINE_CONST_UNICODE( "VersionList" ), SFX_STREAM_READWRITE );
-//STRIP001             if ( aStream.Is() && aStream->GetError() == SVSTREAM_OK )
-//STRIP001             {
-//STRIP001                 pImp->pVersions->Write( *aStream );
-//STRIP001                 return sal_True;
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
 //----------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsReadOnly()
@@ -2812,48 +2071,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/ }
 
 //----------------------------------------------------------------
-//STRIP001 void SfxMedium::TryToSwitchToRepairedTemp()
-//STRIP001 {
-//STRIP001  // the medium should be opened in repair mode
-//STRIP001     SFX_ITEMSET_ARG( GetItemSet(), pRepairItem, SfxBoolItem, SID_REPAIRPACKAGE, FALSE );
-//STRIP001     if ( pRepairItem && pRepairItem->GetValue() )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( aStorage, "Possible performance problem" );
-//STRIP001      if ( GetStorage() )
-//STRIP001      {
-//STRIP001          ::utl::TempFile* pTmpFile = new ::utl::TempFile();
-//STRIP001          pTmpFile->EnableKillingFile( sal_True );
-//STRIP001          ::rtl::OUString aNewName = pTmpFile->GetFileName();
-//STRIP001
-//STRIP001          if( aNewName.getLength() )
-//STRIP001          {
-//STRIP001              SvStorageRef aNewStorage = new SvStorage( sal_True, aNewName, STREAM_WRITE | STREAM_TRUNC, STORAGE_TRANSACTED );
-//STRIP001              if ( aNewStorage->GetError() == SVSTREAM_OK )
-//STRIP001              {
-//STRIP001                  aStorage->CopyTo( &aNewStorage );
-//STRIP001                  aNewStorage->Commit();
-//STRIP001
-//STRIP001                  if ( aNewStorage->GetError() == SVSTREAM_OK )
-//STRIP001                  {
-//STRIP001                      CloseInStream();
-//STRIP001                      CloseStorage();
-//STRIP001                      if ( pImp->pTempFile )
-//STRIP001                          DELETEZ( pImp->pTempFile );
-//STRIP001
-//STRIP001                      pImp->pTempFile = pTmpFile;
-//STRIP001                      aName = aNewName;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              SetError( aNewStorage->GetError() );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              SetError( ERRCODE_IO_CANTWRITE );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          SetError( ERRCODE_IO_CANTREAD );
-//STRIP001  }
-//STRIP001 }
 
 //----------------------------------------------------------------
 /*N*/ void SfxMedium::CreateTempFile()
@@ -2934,46 +2151,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*?*/     return (SfxLoadEnvironment*) &pImp->xLoadRef;
 /*?*/ }
 
-//STRIP001 ::rtl::OUString SfxMedium::GetCharset()
-//STRIP001 {
-//STRIP001     if( !pImp->bIsCharsetInitialized )
-//STRIP001  {
-//STRIP001      // Set an error in case there is no content?
-//STRIP001      if ( GetContent().is() )
-//STRIP001      {
-//STRIP001          pImp->bIsCharsetInitialized = sal_True;
-//STRIP001
-//STRIP001          try
-//STRIP001          {
-//STRIP001              Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString::createFromAscii( "MediaType" ) );
-//STRIP001              ::rtl::OUString aField;
-//STRIP001              aAny >>= aField;
-//STRIP001
-//STRIP001              ::rtl::OString sContent = ::rtl::OUStringToOString( aField, RTL_TEXTENCODING_ASCII_US );
-//STRIP001              ByteString sType, sSubType;
-//STRIP001              INetContentTypeParameterList aParameters;
-//STRIP001
-//STRIP001              if( INetContentTypes::parse( sContent, sType, sSubType, &aParameters ) )
-//STRIP001              {
-//STRIP001                  const INetContentTypeParameter * pCharset = aParameters.find("charset");
-//STRIP001                  if (pCharset != 0)
-//STRIP001                      pImp->aCharset = pCharset->m_sValue;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          catch ( ::com::sun::star::uno::Exception& )
-//STRIP001          {
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pImp->aCharset;
-//STRIP001 }
 
-//STRIP001 void SfxMedium::SetCharset( ::rtl::OUString aChs )
-//STRIP001 {
-//STRIP001  pImp->bIsCharsetInitialized = sal_True;
-//STRIP001  pImp->aCharset = aChs;
-//STRIP001 }
 
 //----------------------------------------------------------------
 #define nActVersion 1
@@ -3025,18 +2203,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/     Clear();
 /*N*/ }
 
-//STRIP001 SfxVersionTableDtor& SfxVersionTableDtor::operator=( const SfxVersionTableDtor& rTbl )
-//STRIP001 {
-//STRIP001     DelDtor();
-//STRIP001     SfxVersionInfo* pTmp = ((SfxVersionTableDtor&)rTbl).First();
-//STRIP001     while( pTmp )
-//STRIP001     {
-//STRIP001         SfxVersionInfo *pNew = new SfxVersionInfo( *pTmp );
-//STRIP001         Insert( pNew, LIST_APPEND );
-//STRIP001         pTmp = ((SfxVersionTableDtor&)rTbl).Next();
-//STRIP001     }
-//STRIP001     return *this;
-//STRIP001 }
 
 //----------------------------------------------------------------
 //----------------------------------------------------------------
@@ -3045,21 +2211,5 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*?*/ {
 /*?*/ }
 
-//STRIP001 SvStringsDtor* SfxVersionTableDtor::GetVersions() const
-//STRIP001 {
-//STRIP001     SvStringsDtor *pList = new SvStringsDtor;
-//STRIP001     SfxVersionInfo* pInfo = ((SfxVersionTableDtor*) this)->First();
-//STRIP001  LocaleDataWrapper aLocaleWrapper( ::legacy_binfilters::getLegacyProcessServiceFactory(), Application::GetSettings().GetLocale() );
-//STRIP001     while ( pInfo )
-//STRIP001     {
-//STRIP001         String *pString = new String( pInfo->aComment );
-//STRIP001         (*pString) += DEFINE_CONST_UNICODE( "; " );
-//STRIP001         (*pString) += ConvertDateTime_Impl( pInfo->aCreateStamp, aLocaleWrapper );
-//STRIP001         pList->Insert( pString, pList->Count() );
-//STRIP001         pInfo = ((SfxVersionTableDtor*) this)->Next();
-//STRIP001     }
-//STRIP001
-//STRIP001     return pList;
-//STRIP001 }
 
 }
