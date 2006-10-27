@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_cfgitem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-03-07 10:12:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:55:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,6 @@
 #include "cfgitem.hxx"
 
 #include "starmath.hrc"
-// auto strip #include "smdll.hxx"
 #include "format.hxx"
 namespace binfilter {
 
@@ -254,12 +253,6 @@ static const char* aRootName = "Office.Math";
 
 // /*N*/ SmFontFormat::SmFontFormat( const Font &rFont )
 // /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     aName       = rFont.GetName();
-//STRIP001     nCharSet    = (INT16) rFont.GetCharSet();
-//STRIP001     nFamily     = (INT16) rFont.GetFamily();
-//STRIP001     nPitch      = (INT16) rFont.GetPitch();
-//STRIP001     nWeight     = (INT16) rFont.GetWeight();
-//STRIP001     nItalic     = (INT16) rFont.GetItalic();
 // /*N*/ }
 
 
@@ -276,15 +269,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 BOOL SmFontFormat::operator == ( const SmFontFormat &rFntFmt ) const
-//STRIP001 {
-//STRIP001     return  aName    == rFntFmt.aName       &&
-//STRIP001             nCharSet == rFntFmt.nCharSet    &&
-//STRIP001             nFamily  == rFntFmt.nFamily     &&
-//STRIP001             nPitch   == rFntFmt.nPitch      &&
-//STRIP001             nWeight  == rFntFmt.nWeight     &&
-//STRIP001             nItalic  == rFntFmt.nItalic;
-//STRIP001 }
 
 
 /////////////////////////////////////////////////////////////////
@@ -302,15 +286,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmFontFormatList::Clear()
-//STRIP001 {
-//STRIP001     USHORT nCnt = aEntries.Count();
-//STRIP001     if (nCnt)
-//STRIP001     {
-//STRIP001         aEntries.Remove( 0, nCnt );
-//STRIP001         SetModified( TRUE );
-//STRIP001     }
-//STRIP001 }
 
 
 /*N*/ void SmFontFormatList::AddFontFormat( const String &rFntFmtId,
@@ -327,25 +302,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmFontFormatList::RemoveFontFormat( const String &rFntFmtId )
-//STRIP001 {
-//STRIP001     USHORT nPos = 0xFFFF;
-//STRIP001
-//STRIP001     // search for entry
-//STRIP001     USHORT nCnt = aEntries.Count();
-//STRIP001     for (USHORT i = 0;  i < nCnt  &&  nPos == 0xFFFF;  ++i)
-//STRIP001     {
-//STRIP001         if (aEntries[i].aId == rFntFmtId)
-//STRIP001             nPos = i;
-//STRIP001     }
-//STRIP001
-//STRIP001     // remove entry if found
-//STRIP001     if (nPos != 0xFFFF)
-//STRIP001     {
-//STRIP001         aEntries.Remove( nPos );
-//STRIP001         SetModified( TRUE );
-//STRIP001     }
-//STRIP001 }
 
 
 /*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( const String &rFntFmtId ) const
@@ -374,62 +330,12 @@ static const char* aRootName = "Office.Math";
 // /*N*/ }
 
 
-//STRIP001 const String SmFontFormatList::GetFontFormatId( const SmFontFormat &rFntFmt ) const
-//STRIP001 {
-//STRIP001     String aRes;
-//STRIP001
-//STRIP001     USHORT nCnt = aEntries.Count();
-//STRIP001     USHORT i;
-//STRIP001     for (i = 0;  i < nCnt  &&  0 == aRes.Len();  ++i)
-//STRIP001     {
-//STRIP001         if (aEntries[i].aFntFmt == rFntFmt)
-//STRIP001             aRes = aEntries[i].aId;
-//STRIP001     }
-//STRIP001
-//STRIP001     return aRes;
-//STRIP001 }
 
 
-//STRIP001 const String SmFontFormatList::GetFontFormatId( const SmFontFormat &rFntFmt, BOOL bAdd )
-//STRIP001 {
-//STRIP001     String aRes( GetFontFormatId( rFntFmt) );
-//STRIP001     if (0 == aRes.Len()  &&  bAdd)
-//STRIP001     {
-//STRIP001         aRes = GetNewFontFormatId();
-//STRIP001         AddFontFormat( aRes, rFntFmt );
-//STRIP001     }
-//STRIP001     return aRes;
-//STRIP001 }
 
 
-//STRIP001 const String SmFontFormatList::GetFontFormatId( USHORT nPos ) const
-//STRIP001 {
-//STRIP001     String aRes;
-//STRIP001     if (nPos < aEntries.Count())
-//STRIP001         aRes = aEntries[nPos].aId;
-//STRIP001     return aRes;
-//STRIP001 }
 
 
-//STRIP001 const String SmFontFormatList::GetNewFontFormatId() const
-//STRIP001 {
-//STRIP001     // returns first unused FormatId
-//STRIP001
-//STRIP001     String aRes;
-//STRIP001
-//STRIP001     String aPrefix( RTL_CONSTASCII_STRINGPARAM( "Id" ) );
-//STRIP001     INT32 nCnt = GetCount();
-//STRIP001     for (INT32 i = 1;  i <= nCnt + 1  &&  0 == aRes.Len();  ++i)
-//STRIP001     {
-//STRIP001         String aTmpId( aPrefix );
-//STRIP001         aTmpId += String::CreateFromInt32( i );
-//STRIP001         if (!GetFontFormat( aTmpId ))
-//STRIP001             aRes = aTmpId;
-//STRIP001     }
-//STRIP001     DBG_ASSERT( 0 != aRes.Len(), "failed to create new FontFormatId" );
-//STRIP001
-//STRIP001     return aRes;
-//STRIP001 }
 
 /////////////////////////////////////////////////////////////////
 
@@ -614,71 +520,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::ReplaceSymbols( const SmSym *pNewSymbols[], USHORT nCount )
-//STRIP001 {
-//STRIP001     // clear old symbols and have the new ones loaded on demand
-//STRIP001     if (pSymbols)
-//STRIP001     {
-//STRIP001         delete [] pSymbols;
-//STRIP001         pSymbols = 0;
-//STRIP001     }
-//STRIP001
-//STRIP001     SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ),
-//STRIP001                            CONFIG_MODE_DELAYED_UPDATE );
-//STRIP001
-//STRIP001     Sequence< OUString > aNames = lcl_GetSymbolPropertyNames();
-//STRIP001     const OUString *pNames = aNames.getConstArray();
-//STRIP001     INT32 nSymbolProps = aNames.getLength();
-//STRIP001
-//STRIP001     Sequence< PropertyValue > aValues( nCount * nSymbolProps );
-//STRIP001     PropertyValue *pValues = aValues.getArray();
-//STRIP001
-//STRIP001     PropertyValue *pVal = pValues;
-//STRIP001     OUString aDelim( OUString::valueOf( (sal_Unicode) '/' ) );
-//STRIP001     for (USHORT i = 0;  i < nCount;  ++i)
-//STRIP001     {
-//STRIP001         const SmSym &rSymbol = *pNewSymbols[i];
-//STRIP001         const Font  &rFont = rSymbol.GetFace();
-//STRIP001         OUString  aNodeNameDelim( A2OU( SYMBOL_LIST ) );
-//STRIP001         aNodeNameDelim += aDelim;
-//STRIP001         aNodeNameDelim += rSymbol.GetExportName();
-//STRIP001         aNodeNameDelim += aDelim;
-//STRIP001
-//STRIP001         const OUString *pName = pNames;
-//STRIP001
-//STRIP001         // Char
-//STRIP001         pVal->Name  = aNodeNameDelim;
-//STRIP001         pVal->Name += *pName++;
-//STRIP001         pVal->Value <<= (INT32) rSymbol.GetCharacter();
-//STRIP001         pVal++;
-//STRIP001         // Set
-//STRIP001         pVal->Name  = aNodeNameDelim;
-//STRIP001         pVal->Name += *pName++;
-//STRIP001         OUString aTmp( rSymbol.GetSetName() );
-//STRIP001         if (rSymbol.IsPredefined())
-//STRIP001             aTmp = GetExportSymbolSetName( aTmp );
-//STRIP001         pVal->Value <<= aTmp;
-//STRIP001         pVal++;
-//STRIP001         // Predefined
-//STRIP001         pVal->Name  = aNodeNameDelim;
-//STRIP001         pVal->Name += *pName++;
-//STRIP001         pVal->Value <<= (BOOL) rSymbol.IsPredefined();
-//STRIP001         pVal++;
-//STRIP001         // FontFormatId
-//STRIP001         SmFontFormat aFntFmt( rSymbol.GetFace() );
-//STRIP001         String aFntFmtId( GetFontFormatList().GetFontFormatId( aFntFmt, TRUE ) );
-//STRIP001         DBG_ASSERT( aFntFmtId.Len(), "FontFormatId not found" );
-//STRIP001         pVal->Name  = aNodeNameDelim;
-//STRIP001         pVal->Name += *pName++;
-//STRIP001         pVal->Value <<= OUString( aFntFmtId );
-//STRIP001         pVal++;
-//STRIP001     }
-//STRIP001     DBG_ASSERT( pVal - pValues == nCount * nSymbolProps, "properties missing" );
-//STRIP001     aCfg.ReplaceSetProperties( A2OU( SYMBOL_LIST ) , aValues );
-//STRIP001
-//STRIP001     StripFontFormatList( pNewSymbols, nCount );
-//STRIP001     SaveFontFormatList();
-//STRIP001 }
 
 
 /*N*/ SmFontFormatList & SmMathConfig::GetFontFormatList()
@@ -809,45 +650,6 @@ static const char* aRootName = "Office.Math";
 /*?*/     for (USHORT i = 0;  i < nCount;  ++i)
 /*?*/     {
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aFntFmtId( rFntFmtList.GetFontFormatId( i ) );
-//STRIP001 /*?*/         const SmFontFormat aFntFmt( *rFntFmtList.GetFontFormat( aFntFmtId ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/         OUString  aNodeNameDelim( A2OU( FONT_FORMAT_LIST ) );
-//STRIP001 /*?*/         aNodeNameDelim += aDelim;
-//STRIP001 /*?*/         aNodeNameDelim += aFntFmtId;
-//STRIP001 /*?*/         aNodeNameDelim += aDelim;
-//STRIP001 /*?*/
-//STRIP001 /*?*/         const OUString *pName = aNames.getConstArray();;
-//STRIP001 /*?*/
-//STRIP001 /*?*/         // Name
-//STRIP001 /*?*/         pVal->Name  = aNodeNameDelim;
-//STRIP001 /*?*/         pVal->Name += *pName++;
-//STRIP001 /*?*/         pVal->Value <<= OUString( aFntFmt.aName );
-//STRIP001 /*?*/         pVal++;
-//STRIP001 /*?*/         // CharSet
-//STRIP001 /*?*/         pVal->Name  = aNodeNameDelim;
-//STRIP001 /*?*/         pVal->Name += *pName++;
-//STRIP001 /*?*/         pVal->Value <<= (INT16) aFntFmt.nCharSet; // 6.0 file-format GetSOStoreTextEncoding not needed
-//STRIP001 /*?*/         pVal++;
-//STRIP001 /*?*/         // Family
-//STRIP001 /*?*/         pVal->Name  = aNodeNameDelim;
-//STRIP001 /*?*/         pVal->Name += *pName++;
-//STRIP001 /*?*/         pVal->Value <<= (INT16) aFntFmt.nFamily;
-//STRIP001 /*?*/         pVal++;
-//STRIP001 /*?*/         // Pitch
-//STRIP001 /*?*/         pVal->Name  = aNodeNameDelim;
-//STRIP001 /*?*/         pVal->Name += *pName++;
-//STRIP001 /*?*/         pVal->Value <<= (INT16) aFntFmt.nPitch;
-//STRIP001 /*?*/         pVal++;
-//STRIP001 /*?*/         // Weight
-//STRIP001 /*?*/         pVal->Name  = aNodeNameDelim;
-//STRIP001 /*?*/         pVal->Name += *pName++;
-//STRIP001 /*?*/         pVal->Value <<= (INT16) aFntFmt.nWeight;
-//STRIP001 /*?*/         pVal++;
-//STRIP001 /*?*/         // Italic
-//STRIP001 /*?*/         pVal->Name  = aNodeNameDelim;
-//STRIP001 /*?*/         pVal->Name += *pName++;
-//STRIP001 /*?*/         pVal->Value <<= (INT16) aFntFmt.nItalic;
-//STRIP001 /*?*/         pVal++;
 /*?*/     }
 /*?*/     DBG_ASSERT( pVal - pValues == nCount * nSymbolProps, "properties missing" );
 /*?*/     aCfg.ReplaceSetProperties( A2OU( FONT_FORMAT_LIST ) , aValues );
@@ -856,45 +658,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::StripFontFormatList( const SmSym *pUsedSymbols[], USHORT nCount )
-//STRIP001 {
-//STRIP001     USHORT i;
-//STRIP001
-//STRIP001     // build list of used font-formats
-//STRIP001     //!! font-format IDs may be different !!
-//STRIP001     SmFontFormatList aUsedList;
-//STRIP001     for (i = 0;  i < nCount;  ++i)
-//STRIP001     {
-//STRIP001         DBG_ASSERT( pUsedSymbols[i], "null pointer for symbol" );
-//STRIP001         aUsedList.GetFontFormatId( SmFontFormat( pUsedSymbols[i]->GetFace() ) , TRUE );
-//STRIP001     }
-//STRIP001     const SmFormat & rStdFmt = GetStandardFormat();
-//STRIP001     for (i = FNT_BEGIN;  i <= FNT_END;  ++i)
-//STRIP001     {
-//STRIP001         aUsedList.GetFontFormatId( SmFontFormat( rStdFmt.GetFont( i ) ) , TRUE );
-//STRIP001     }
-//STRIP001
-//STRIP001     // remove unused font-formats from list
-//STRIP001     SmFontFormatList &rFntFmtList = GetFontFormatList();
-//STRIP001     USHORT nCnt = rFntFmtList.GetCount();
-//STRIP001     SmFontFormat *pFormat = new SmFontFormat[ nCnt ];
-//STRIP001     String       *pId     = new String      [ nCnt ];
-//STRIP001     INT32 k;
-//STRIP001     for (k = 0;  k < nCnt;  ++k)
-//STRIP001     {
-//STRIP001         pFormat[k] = *rFntFmtList.GetFontFormat( (USHORT) k );
-//STRIP001         pId[k]     = rFntFmtList.GetFontFormatId( (USHORT) k );
-//STRIP001     }
-//STRIP001     for (k = 0;  k < nCnt;  ++k)
-//STRIP001     {
-//STRIP001         if (0 == aUsedList.GetFontFormatId( pFormat[k] ).Len())
-//STRIP001         {
-//STRIP001             rFntFmtList.RemoveFontFormat( pId[k] );
-//STRIP001         }
-//STRIP001     }
-//STRIP001     delete [] pId;
-//STRIP001     delete [] pFormat;
-//STRIP001 }
 
 
 /*N*/ void SmMathConfig::LoadOther()
@@ -1129,8 +892,6 @@ static const char* aRootName = "Office.Math";
 /*?*/         if (!pFormat->IsDefaultFont( i ))
 /*?*/         {
 /*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmFontFormat aFntFmt( pFormat->GetFont( i ) );
-//STRIP001 /*?*/             aFntFmtId = GetFontFormatList().GetFontFormatId( aFntFmt, TRUE );
-//STRIP001 /*?*/             DBG_ASSERT( aFntFmtId.getLength(), "FontFormatId not found" );
 /*?*/         }
 /*?*/
 /*?*/         *pValue++ <<= aFntFmtId;
@@ -1151,16 +912,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetStandardFormat( const SmFormat &rFormat )
-//STRIP001 {
-//STRIP001     if (!pFormat)
-//STRIP001         LoadFormat();
-//STRIP001     if (rFormat != *pFormat)
-//STRIP001     {
-//STRIP001         *pFormat = rFormat;
-//STRIP001         SetFormatModified( TRUE );
-//STRIP001     }
-//STRIP001 }
 
 
 /*N*/ SmPrintSize SmMathConfig::GetPrintSize() const
@@ -1171,16 +922,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetPrintSize( SmPrintSize eSize )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     if (eSize != pOther->ePrintSize)
-//STRIP001     {
-//STRIP001         pOther->ePrintSize = eSize;
-//STRIP001         SetOtherModified( TRUE );
-//STRIP001     }
-//STRIP001 }
 
 
 /*N*/ USHORT SmMathConfig::GetPrintZoomFactor() const
@@ -1191,26 +932,8 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetPrintZoomFactor( USHORT nVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     if (nVal != pOther->nPrintZoomFactor)
-//STRIP001     {
-//STRIP001         pOther->nPrintZoomFactor = nVal;
-//STRIP001         SetOtherModified( TRUE );
-//STRIP001     }
-//STRIP001 }
 
 
-//STRIP001 void SmMathConfig::SetOtherIfNotEqual( BOOL &rbItem, BOOL bNewVal )
-//STRIP001 {
-//STRIP001     if (bNewVal != rbItem)
-//STRIP001     {
-//STRIP001         rbItem = bNewVal;
-//STRIP001         SetOtherModified( TRUE );
-//STRIP001     }
-//STRIP001 }
 
 
 /*N*/ BOOL SmMathConfig::IsPrintTitle() const
@@ -1221,12 +944,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetPrintTitle( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bPrintTitle, bVal );
-//STRIP001 }
 
 
 /*N*/ BOOL SmMathConfig::IsPrintFormulaText() const
@@ -1237,12 +954,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetPrintFormulaText( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bPrintFormulaText, bVal );
-//STRIP001 }
 
 
 /*N*/ BOOL SmMathConfig::IsPrintFrame() const
@@ -1253,12 +964,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetPrintFrame( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bPrintFrame, bVal );
-//STRIP001 }
 
 
 /*N*/ BOOL SmMathConfig::IsIgnoreSpacesRight() const
@@ -1269,28 +974,10 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetIgnoreSpacesRight( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bIgnoreSpacesRight, bVal );
-//STRIP001 }
 
 
-//STRIP001 BOOL SmMathConfig::IsToolboxVisible() const
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         ((SmMathConfig *) this)->LoadOther();
-//STRIP001     return pOther->bToolboxVisible;
-//STRIP001 }
 
 
-//STRIP001 void SmMathConfig::SetToolboxVisible( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bToolboxVisible, bVal );
-//STRIP001 }
 
 
 /*N*/ BOOL SmMathConfig::IsAutoRedraw() const
@@ -1301,12 +988,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetAutoRedraw( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bAutoRedraw, bVal );
-//STRIP001 }
 
 
 /*N*/ BOOL SmMathConfig::IsShowFormulaCursor() const
@@ -1317,12 +998,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-//STRIP001 void SmMathConfig::SetShowFormulaCursor( BOOL bVal )
-//STRIP001 {
-//STRIP001     if (!pOther)
-//STRIP001         LoadOther();
-//STRIP001     SetOtherIfNotEqual( pOther->bFormulaCursor, bVal );
-//STRIP001 }
 
 
 /*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, p )
