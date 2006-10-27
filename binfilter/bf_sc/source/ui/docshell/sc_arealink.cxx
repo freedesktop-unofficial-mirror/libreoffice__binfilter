@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_arealink.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:05:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:46:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,23 +42,18 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
-// auto strip #include <bf_svx/linkmgr.hxx>
 #include <svtools/stritem.hxx>
 #include <vcl/msgbox.hxx>
 
 #include "arealink.hxx"
 
 #include "tablink.hxx"
-// auto strip #include "document.hxx"
 #include "docsh.hxx"
 #include "rangenam.hxx"
 #include "dbcolect.hxx"
-// auto strip #include "undoblk.hxx"
 #include "globstr.hrc"
 #include "markdata.hxx"
 #include "hints.hxx"
-// auto strip #include "htmlimp.hxx"
-// auto strip #include "linkarea.hxx"           // dialog
 
 #include "attrib.hxx"           // raus, wenn ResetAttrib am Dokument
 #include "patattr.hxx"          // raus, wenn ResetAttrib am Dokument
@@ -96,109 +90,20 @@ namespace binfilter {
 /*N*/   StopRefreshTimer();
 /*N*/ }
 
-//STRIP001 BOOL __EXPORT ScAreaLink::Edit(Window* pParent)
-//STRIP001 {
-//STRIP001  //  use own dialog instead of SvBaseLink::Edit...
-//STRIP001  //  DefModalDialogParent setzen, weil evtl. aus der DocShell beim ConvertFrom
-//STRIP001  //  ein Optionen-Dialog kommt...
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  ScLinkedAreaDlg* pDlg = new ScLinkedAreaDlg( pParent );
-//STRIP001  pDlg->InitFromOldLink( aFileName, aFilterName, aOptions, aSourceArea, GetRefreshDelay() );
-//STRIP001  if (pDlg->Execute() == RET_OK)
-//STRIP001  {
-//STRIP001      aOptions = pDlg->GetOptions();
-//STRIP001      bRet = Refresh( pDlg->GetURL(), pDlg->GetFilter(), pDlg->GetSource(), pDlg->GetRefresh() );
-//STRIP001
-//STRIP001      //  copy source data from members (set in Refresh) into link name for dialog
-//STRIP001      String aLinkName;
-//STRIP001      ::so3::MakeLnkName( aLinkName, NULL, aFileName, aSourceArea, &aFilterName );
-//STRIP001      SetName( aLinkName );
-//STRIP001  }
-//STRIP001  delete pDlg;
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/  void __EXPORT ScAreaLink::DataChanged( const String&,
 /*N*/                                      const ::com::sun::star::uno::Any& )
 /*N*/ {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/     //  bei bInCreate nichts tun, damit Update gerufen werden kann, um den Status im
-//STRIP001  //  LinkManager zu setzen, ohne die Daten im Dokument zu aendern
-//STRIP001
-//STRIP001  if (bInCreate)
-//STRIP001      return;
-//STRIP001
-//STRIP001  SvxLinkManager* pLinkManager=pDocShell->GetDocument()->GetLinkManager();
-//STRIP001  if (pLinkManager!=NULL)
-//STRIP001  {
-//STRIP001      String aFile;
-//STRIP001      String aFilter;
-//STRIP001      String aArea;
-//STRIP001      pLinkManager->GetDisplayNames( this,0,&aFile,&aArea,&aFilter);
-//STRIP001
-//STRIP001      //  the file dialog returns the filter name with the application prefix
-//STRIP001      //  -> remove prefix
-//STRIP001      ScDocumentLoader::RemoveAppPrefix( aFilter );
-//STRIP001
-//STRIP001      // #81155# dialog doesn't set area, so keep old one
-//STRIP001      if ( !aArea.Len() )
-//STRIP001      {
-//STRIP001          aArea = aSourceArea;
-//STRIP001
-//STRIP001          // adjust in dialog:
-//STRIP001          String aLinkName;
-//STRIP001          ::so3::MakeLnkName( aLinkName, NULL, aFile, aArea, &aFilter );
-//STRIP001          SetName( aLinkName );
-//STRIP001      }
-//STRIP001
-//STRIP001      Refresh( aFile, aFilter, aArea, GetRefreshDelay() );
-//STRIP001  }
 /*N*/ }
 
-//STRIP001 void __EXPORT ScAreaLink::Closed()
-//STRIP001 {
-//STRIP001  // Verknuepfung loeschen: Undo
-//STRIP001
-//STRIP001  ScDocument* pDoc = pDocShell->GetDocument();
-//STRIP001  BOOL bUndo (pDoc->IsUndoEnabled());
-//STRIP001  if (bAddUndo && bUndo)
-//STRIP001  {
-//STRIP001      pDocShell->GetUndoManager()->AddUndoAction( new ScUndoRemoveAreaLink( pDocShell,
-//STRIP001                                                      aFileName, aFilterName, aOptions,
-//STRIP001                                                      aSourceArea, aDestArea, GetRefreshDelay() ) );
-//STRIP001
-//STRIP001      bAddUndo = FALSE;   // nur einmal
-//STRIP001  }
-//STRIP001
-//STRIP001  SvBaseLink::Closed();
-//STRIP001 }
 
 /*N*/ void ScAreaLink::SetDestArea(const ScRange& rNew)
 /*N*/ {
 /*N*/   aDestArea = rNew;           // fuer Undo
 /*N*/ }
 
-//STRIP001 void ScAreaLink::SetSource(const String& rDoc, const String& rFlt, const String& rOpt,
-//STRIP001                              const String& rArea)
-//STRIP001 {
-//STRIP001  aFileName   = rDoc;
-//STRIP001  aFilterName = rFlt;
-//STRIP001  aOptions    = rOpt;
-//STRIP001  aSourceArea = rArea;
-//STRIP001
-//STRIP001  //  also update link name for dialog
-//STRIP001  String aLinkName;
-//STRIP001  ::so3::MakeLnkName( aLinkName, NULL, aFileName, aSourceArea, &aFilterName );
-//STRIP001  SetName( aLinkName );
-//STRIP001 }
 
-//STRIP001 BOOL ScAreaLink::IsEqual( const String& rFile, const String& rFilter, const String& rOpt,
-//STRIP001                          const String& rSource, const ScRange& rDest ) const
-//STRIP001 {
-//STRIP001  return aFileName == rFile && aFilterName == rFilter && aOptions == rOpt &&
-//STRIP001          aSourceArea == rSource && aDestArea.aStart == rDest.aStart;
-//STRIP001 }
 
 // find a range with name >rAreaName< in >pSrcDoc<, return it in >rRange<
 /*N*/ BOOL ScAreaLink::FindExtRange( ScRange& rRange, ScDocument* pSrcDoc, const String& rAreaName )
@@ -421,16 +326,6 @@ namespace binfilter {
 /*N*/       if ( bAddUndo && bUndo)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/            pRedoDoc->InitUndo( pDoc, nDestTab, nDestTab );
-//STRIP001 /*?*/            pDoc->CopyToDocument( aNewRange, IDF_ALL, FALSE, pRedoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pDocShell->GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                new ScUndoUpdateAreaLink( pDocShell,
-//STRIP001 /*?*/                                            aFileName, aFilterName, aOptions,
-//STRIP001 /*?*/                                            aSourceArea, aOldRange, GetRefreshDelay(),
-//STRIP001 /*?*/                                            aNewUrl, rNewFilter, aNewOpt,
-//STRIP001 /*?*/                                            rNewArea, aNewRange, nNewRefresh,
-//STRIP001 /*?*/                                            pUndoDoc, pRedoDoc, bDoInsert ) );
 /*N*/       }
 /*N*/
 /*N*/       //  neue Einstellungen merken
@@ -498,8 +393,6 @@ namespace binfilter {
 /*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, pCaller )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 long nRes = Refresh( aFileName, aFilterName, aSourceArea,
-//STRIP001      GetRefreshDelay() ) != 0;
-//STRIP001  return nRes;
 /*N*/ }
 
 }
