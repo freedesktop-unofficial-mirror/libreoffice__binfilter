@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:38:44 $
+#   last change: $Author: rt $ $Date: 2006-10-28 00:20:13 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -45,64 +45,20 @@ NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_changedb.cxx \
-        sw_DropDownFieldDialog.cxx\
-        sw_flddb.cxx \
-        sw_flddinf.cxx \
-        sw_flddok.cxx \
-        sw_fldedt.cxx \
-        sw_fldfunc.cxx \
-        sw_fldmgr.cxx \
-        sw_fldpage.cxx \
-        sw_fldtdlg.cxx \
-        sw_fldvar.cxx \
-        sw_javaedit.cxx \
-        sw_inpdlg.cxx \
-        sw_xfldui.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_changedb.src \
-        sw_DropDownFieldDialog.src\
-        sw_flddb.src \
-        sw_flddinf.src \
-        sw_flddok.src \
-        sw_fldfunc.src \
-        sw_fldref.src \
-        sw_fldtdlg.src \
-        sw_fldui.src \
-        sw_fldvar.src \
-        sw_javaedit.src \
-        sw_inpdlg.src
+        sw_fldui.src
 
 SLOFILES =  \
-        $(SLO)$/sw_changedb.obj \
-        $(SLO)$/sw_DropDownFieldDialog.obj \
-        $(SLO)$/sw_flddb.obj \
-        $(SLO)$/sw_flddinf.obj \
-        $(SLO)$/sw_flddok.obj \
-        $(SLO)$/sw_fldedt.obj \
-        $(SLO)$/sw_fldfunc.obj \
         $(SLO)$/sw_fldmgr.obj \
-        $(SLO)$/sw_fldpage.obj \
-        $(SLO)$/sw_fldtdlg.obj \
-        $(SLO)$/sw_fldvar.obj \
-        $(SLO)$/sw_javaedit.obj \
-        $(SLO)$/sw_inpdlg.obj \
-        $(SLO)$/sw_xfldui.obj
-
-EXCEPTIONSFILES =  \
-        $(SLO)$/sw_xfldui.obj
+        $(SLO)$/sw_fldtdlg.obj
 
 # --- Tagets -------------------------------------------------------
 
