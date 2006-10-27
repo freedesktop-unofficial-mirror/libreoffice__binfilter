@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfact.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:59:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:25:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _REF_HXX
-// auto strip #include <tools/ref.hxx>
-// auto strip #endif
 
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
@@ -55,9 +52,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
 
 #ifndef _CMDID_H
 #include <cmdid.h>
@@ -118,11 +112,6 @@ namespace binfilter {
  *  Aenderung   :   JP 01-27-94 11:37am
  ******************************************************************************/
 
-//STRIP001 ULONG SwDocFac::Count() const
-//STRIP001 {
-//STRIP001  // minus den Grund-SectionNodes
-//STRIP001  return pDoc ? pDoc->GetNodes().GetEndOfContent().GetIndex() - 10 : 0;
-//STRIP001 }
 
 
 }
