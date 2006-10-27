@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:33:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:15:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 
@@ -225,33 +224,23 @@
 
 #define _ZFORLIST_DECLARE_TABLE
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
 #include <bf_svx/linkmgr.hxx>
-// auto strip #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
-// auto strip #include <comphelper/processfactory.hxx>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <svtools/PasswordHelper.hxx>
 #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 #ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
 #endif
 
-// auto strip #include "document.hxx"
-// auto strip #include "table.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
@@ -263,23 +252,15 @@
 #include "globstr.hrc"
 #include "chartarr.hxx"
 #include "rechead.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "brdcst.hxx"
 #include "bcaslot.hxx"
-// auto strip #include "adiasync.hxx"
 #include "addinlis.hxx"
 #include "chartlis.hxx"
-// auto strip #include "markdata.hxx"
-// auto strip #include "conditio.hxx"
 #include "validat.hxx"
-// auto strip #include "progress.hxx"
 #include "detdata.hxx"
 #include "bf_sc.hrc"                // FID_DATACHANGED
-// auto strip #include "ddelink.hxx"
 #include "chgtrack.hxx"
 #include "chgviset.hxx"
 #include "editutil.hxx"
-// auto strip #include "hints.hxx"
 #include "dpobject.hxx"
 #include "indexmap.hxx"
 #include "scrdata.hxx"
@@ -408,14 +389,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 sal_uInt32 ScDocument::GetDocumentID() const
-//STRIP001 {
-//STRIP001     const ScDocument* pThis = this;
-//STRIP001     sal_uInt32 nCrc = rtl_crc32( 0, &pThis, sizeof(ScDocument*) );
-//STRIP001     // the this pointer only might not be sufficient
-//STRIP001     nCrc = rtl_crc32( nCrc, &pShell, sizeof(SfxObjectShell*) );
-//STRIP001     return nCrc;
-//STRIP001 }
 
 
 /*N*/ void ScDocument::StartChangeTracking() // Changetracking.sdc
@@ -444,37 +417,9 @@ namespace binfilter {
 /*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, pTimer )
 /*N*/  {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( ScDdeLink::IsInUpdate() )        // nicht verschachteln
-//STRIP001  {
-//STRIP001      aTrackTimer.Start();            // spaeter nochmal versuchen
-//STRIP001  }
-//STRIP001  else if (pShell)                    // ausfuehren
-//STRIP001  {
-//STRIP001      TrackFormulas();
-//STRIP001      pShell->Broadcast( SfxSimpleHint( FID_DATACHANGED ) );
-//STRIP001      ResetChanged( ScRange(0,0,0,MAXCOL,MAXROW,MAXTAB) );
-//STRIP001
-//STRIP001          //  modified...
-//STRIP001
-//STRIP001      if (!pShell->IsModified())
-//STRIP001      {
-//STRIP001          pShell->SetModified( TRUE );
-//STRIP001          SfxBindings* pBindings = GetViewBindings();
-//STRIP001          if (pBindings)
-//STRIP001          {
-//STRIP001              pBindings->Invalidate( SID_SAVEDOC );
-//STRIP001              pBindings->Invalidate( SID_DOC_MODIFIED );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void ScDocument::StartTrackTimer()
-//STRIP001 {
-//STRIP001  if (!aTrackTimer.IsActive())        // nicht ewig aufschieben
-//STRIP001      aTrackTimer.Start();
-//STRIP001 }
 
 /*N*/ ScDocument::~ScDocument()
 /*N*/ {
@@ -561,44 +506,6 @@ namespace binfilter {
 /*N*/
 /*N*/ }
 
-//STRIP001 void ScDocument::InitClipPtrs( ScDocument* pSourceDoc )
-//STRIP001 {
-//STRIP001  DBG_ASSERT(bIsClip, "InitClipPtrs und nicht bIsClip");
-//STRIP001
-//STRIP001  if (pCondFormList)
-//STRIP001  {
-//STRIP001      pCondFormList->DeleteAndDestroy( 0, pCondFormList->Count() );
-//STRIP001      DELETEZ(pCondFormList);
-//STRIP001  }
-//STRIP001  if (pValidationList)
-//STRIP001  {
-//STRIP001      pValidationList->DeleteAndDestroy( 0, pValidationList->Count() );
-//STRIP001      DELETEZ(pValidationList);
-//STRIP001  }
-//STRIP001
-//STRIP001  Clear();
-//STRIP001
-//STRIP001  xPoolHelper = pSourceDoc->xPoolHelper;
-//STRIP001
-//STRIP001  //  bedingte Formate / Gueltigkeiten
-//STRIP001  //! Vorlagen kopieren?
-//STRIP001  const ScConditionalFormatList* pSourceCond = pSourceDoc->pCondFormList;
-//STRIP001  if ( pSourceCond )
-//STRIP001      pCondFormList = new ScConditionalFormatList(this, *pSourceCond);
-//STRIP001  const ScValidationDataList* pSourceValid = pSourceDoc->pValidationList;
-//STRIP001  if ( pSourceValid )
-//STRIP001      pValidationList = new ScValidationDataList(this, *pSourceValid);
-//STRIP001
-//STRIP001                      // Links in Stream speichern
-//STRIP001  delete pClipData;
-//STRIP001  if (pSourceDoc->HasDdeLinks())
-//STRIP001  {
-//STRIP001      pClipData = new SvMemoryStream;
-//STRIP001      pSourceDoc->SaveDdeLinks(*pClipData);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pClipData = NULL;
-//STRIP001 }
 
 /*N*/ SvNumberFormatter* ScDocument::GetFormatTable() const
 /*N*/ {
@@ -631,35 +538,11 @@ namespace binfilter {
 /*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
-//STRIP001  {
-//STRIP001      InitClipPtrs(pSourceDoc);
-//STRIP001
-//STRIP001      for (USHORT i = 0; i <= MAXTAB; i++)
-//STRIP001          if (pSourceDoc->pTab[i])
-//STRIP001              if (!pMarks || pMarks->GetTableSelect(i))
-//STRIP001              {
-//STRIP001                  String aString;
-//STRIP001                  pSourceDoc->pTab[i]->GetName(aString);
-//STRIP001                  pTab[i] = new ScTable(this, i, aString);
-//STRIP001                  nMaxTableNumber = i+1;
-//STRIP001              }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR("ResetClip");
 /*N*/ }
 
 /*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, USHORT nTab )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
-//STRIP001  {
-//STRIP001      InitClipPtrs(pSourceDoc);
-//STRIP001
-//STRIP001      pTab[nTab] = new ScTable(this, nTab,
-//STRIP001                          String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("baeh")));
-//STRIP001      nMaxTableNumber = nTab+1;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR("ResetClip");
 }
 
 /*N*/ void lcl_RefreshPivotData( ScPivotCollection* pColl )
@@ -1286,13 +1169,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   bLostData = TRUE;
 /*N*/ }
 
-//STRIP001 void ScDocument::DeleteNumberFormat( const ULONG* pDelKeys, ULONG nCount )
-//STRIP001 {
-//STRIP001 /*
-//STRIP001  for (ULONG i = 0; i < nCount; i++)
-//STRIP001      xPoolHelper->GetFormTable()->DeleteEntry(pDelKeys[i]);
-//STRIP001 */
-//STRIP001 }
 
 /*N*/ void ScDocument::PutCell( USHORT nCol, USHORT nRow, USHORT nTab,
 /*N*/                         ScBaseCell* pCell, ULONG nFormatIndex, BOOL bForceTab )
@@ -1354,49 +1230,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::GetPrintAreaHor( USHORT nTab, USHORT nStartRow, USHORT nEndRow,
-//STRIP001                                      USHORT& rEndCol, BOOL bNotes ) const
-//STRIP001 {
-//STRIP001  if (nTab<=MAXTAB && pTab[nTab])
-//STRIP001  {
-//STRIP001      BOOL bAny = pTab[nTab]->GetPrintAreaHor( nStartRow, nEndRow, rEndCol, bNotes );
-//STRIP001      if (pDrawLayer)
-//STRIP001      {
-//STRIP001          ScRange aDrawRange(0,nStartRow,nTab, MAXCOL,nEndRow,nTab);
-//STRIP001          if (DrawGetPrintArea( aDrawRange, TRUE, FALSE ))
-//STRIP001          {
-//STRIP001              if (aDrawRange.aEnd.Col()>rEndCol) rEndCol=aDrawRange.aEnd.Col();
-//STRIP001              bAny = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      return bAny;
-//STRIP001  }
-//STRIP001
-//STRIP001  rEndCol = 0;
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScDocument::GetPrintAreaVer( USHORT nTab, USHORT nStartCol, USHORT nEndCol,
-//STRIP001                                      USHORT& rEndRow, BOOL bNotes ) const
-//STRIP001 {
-//STRIP001  if (nTab<=MAXTAB && pTab[nTab])
-//STRIP001  {
-//STRIP001      BOOL bAny = pTab[nTab]->GetPrintAreaVer( nStartCol, nEndCol, rEndRow, bNotes );
-//STRIP001      if (pDrawLayer)
-//STRIP001      {
-//STRIP001          ScRange aDrawRange(nStartCol,0,nTab, nEndCol,MAXROW,nTab);
-//STRIP001          if (DrawGetPrintArea( aDrawRange, FALSE, TRUE ))
-//STRIP001          {
-//STRIP001              if (aDrawRange.aEnd.Row()>rEndRow) rEndRow=aDrawRange.aEnd.Row();
-//STRIP001              bAny = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      return bAny;
-//STRIP001  }
-//STRIP001
-//STRIP001  rEndRow = 0;
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ BOOL ScDocument::GetDataStart( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow ) const
 /*N*/ {
@@ -1421,199 +1255,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::MoveTab( USHORT nOldPos, USHORT nNewPos )
-//STRIP001 {
-//STRIP001  if (nOldPos == nNewPos) return FALSE;
-//STRIP001  BOOL bValid = FALSE;
-//STRIP001  if (VALIDTAB(nOldPos))
-//STRIP001  {
-//STRIP001      if (pTab[nOldPos])
-//STRIP001      {
-//STRIP001          USHORT nTabCount = GetTableCount();
-//STRIP001          if (nTabCount > 1)
-//STRIP001          {
-//STRIP001              BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001              SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001              SetNoListening( TRUE );
-//STRIP001              ScProgress* pProgress = new ScProgress( GetDocumentShell(),
-//STRIP001                  ScGlobal::GetRscString(STR_UNDO_MOVE_TAB), GetCodeCount() );
-//STRIP001              if (nNewPos == SC_TAB_APPEND)
-//STRIP001                  nNewPos = nTabCount-1;
-//STRIP001
-//STRIP001              //  Referenz-Updaterei
-//STRIP001              //! mit UpdateReference zusammenfassen!
-//STRIP001
-//STRIP001              short nDz = ((short)nNewPos) - (short)nOldPos;
-//STRIP001              ScRange aSourceRange( 0,0,nOldPos, MAXCOL,MAXROW,nOldPos );
-//STRIP001              pRangeName->UpdateTabRef(nOldPos, 3, nNewPos);
-//STRIP001              pDBCollection->UpdateMoveTab( nOldPos, nNewPos );
-//STRIP001              xColNameRanges->UpdateReference( URM_REORDER, this, aSourceRange, 0,0,nDz );
-//STRIP001              xRowNameRanges->UpdateReference( URM_REORDER, this, aSourceRange, 0,0,nDz );
-//STRIP001              if (pPivotCollection)
-//STRIP001                  pPivotCollection->UpdateReference( URM_REORDER,
-//STRIP001                                  0,0,nOldPos, MAXCOL,MAXROW,nOldPos, 0,0,nDz );
-//STRIP001              if (pDPCollection)
-//STRIP001                  pDPCollection->UpdateReference( URM_REORDER, aSourceRange, 0,0,nDz );
-//STRIP001              if (pDetOpList)
-//STRIP001                  pDetOpList->UpdateReference( this, URM_REORDER, aSourceRange, 0,0,nDz );
-//STRIP001              UpdateChartRef( URM_REORDER,
-//STRIP001                                  0,0,nOldPos, MAXCOL,MAXROW,nOldPos, 0,0,nDz );
-//STRIP001              UpdateRefAreaLinks( URM_REORDER, aSourceRange, 0,0,nDz );
-//STRIP001              if ( pCondFormList )
-//STRIP001                  pCondFormList->UpdateMoveTab( nOldPos, nNewPos );
-//STRIP001              if ( pUnoBroadcaster )
-//STRIP001                  pUnoBroadcaster->Broadcast( ScUpdateRefHint( URM_REORDER,
-//STRIP001                                  aSourceRange, 0,0,nDz ) );
-//STRIP001
-//STRIP001              ScTable* pSaveTab = pTab[nOldPos];
-//STRIP001              USHORT i;
-//STRIP001              for (i = nOldPos + 1; i < nTabCount; i++)
-//STRIP001                  pTab[i - 1] = pTab[i];
-//STRIP001              pTab[i-1] = NULL;
-//STRIP001              for (i = nTabCount - 1; i > nNewPos; i--)
-//STRIP001                  pTab[i] = pTab[i - 1];
-//STRIP001              pTab[nNewPos] = pSaveTab;
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i])
-//STRIP001                      pTab[i]->UpdateMoveTab( nOldPos, nNewPos, i, *pProgress );
-//STRIP001              delete pProgress;   // freimachen fuer evtl. andere
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i])
-//STRIP001                      pTab[i]->UpdateCompile();
-//STRIP001              SetNoListening( FALSE );
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i])
-//STRIP001                      pTab[i]->StartAllListeners();
-//STRIP001              // #81844# sheet names of references may not be valid until sheet is moved
-//STRIP001              pChartListenerCollection->UpdateScheduledSeriesRanges();
-//STRIP001              SetDirty();
-//STRIP001              SetAutoCalc( bOldAutoCalc );
-//STRIP001
-//STRIP001              if (pDrawLayer)
-//STRIP001                  DrawMovePage( nOldPos, nNewPos );
-//STRIP001
-//STRIP001              bValid = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bValid;
-//STRIP001 }
 
-//STRIP001 BOOL ScDocument::CopyTab( USHORT nOldPos, USHORT nNewPos, const ScMarkData* pOnlyMarked )
-//STRIP001 {
-//STRIP001  if (SC_TAB_APPEND == nNewPos ) nNewPos = nMaxTableNumber;
-//STRIP001  String aName;
-//STRIP001  GetName(nOldPos, aName);
-//STRIP001
-//STRIP001  //  vorneweg testen, ob der Prefix als gueltig erkannt wird
-//STRIP001  //  wenn nicht, nur doppelte vermeiden
-//STRIP001  BOOL bPrefix = ValidTabName( aName );
-//STRIP001  DBG_ASSERT(bPrefix, "ungueltiger Tabellenname");
-//STRIP001  USHORT nDummy;
-//STRIP001
-//STRIP001  CreateValidTabName(aName);
-//STRIP001
-//STRIP001  BOOL bValid;
-//STRIP001  if (bPrefix)
-//STRIP001      bValid = ( ValidNewTabName(aName) && (nMaxTableNumber <= MAXTAB) );
-//STRIP001  else
-//STRIP001      bValid = ( !GetTable( aName, nDummy ) && (nMaxTableNumber <= MAXTAB) );
-//STRIP001
-//STRIP001  BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001  SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001  if (bValid)
-//STRIP001  {
-//STRIP001      if (nNewPos == nMaxTableNumber)
-//STRIP001      {
-//STRIP001          pTab[nMaxTableNumber] = new ScTable(this, nMaxTableNumber, aName);
-//STRIP001          ++nMaxTableNumber;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if (VALIDTAB(nNewPos) && (nNewPos < nMaxTableNumber))
-//STRIP001          {
-//STRIP001              SetNoListening( TRUE );
-//STRIP001
-//STRIP001              ScRange aRange( 0,0,nNewPos, MAXCOL,MAXROW,MAXTAB );
-//STRIP001              xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,1 );
-//STRIP001              xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,1 );
-//STRIP001              pRangeName->UpdateTabRef(nNewPos, 1);
-//STRIP001              pDBCollection->UpdateReference(
-//STRIP001                                  URM_INSDEL, 0,0,nNewPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
-//STRIP001              if (pPivotCollection)
-//STRIP001                  pPivotCollection->UpdateReference(
-//STRIP001                                  URM_INSDEL, 0,0,nNewPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
-//STRIP001              if (pDPCollection)
-//STRIP001                  pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
-//STRIP001              if (pDetOpList)
-//STRIP001                  pDetOpList->UpdateReference( this, URM_INSDEL, aRange, 0,0,1 );
-//STRIP001              UpdateChartRef( URM_INSDEL, 0,0,nNewPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
-//STRIP001              UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,1 );
-//STRIP001              if ( pUnoBroadcaster )
-//STRIP001                  pUnoBroadcaster->Broadcast( ScUpdateRefHint( URM_INSDEL, aRange, 0,0,1 ) );
-//STRIP001
-//STRIP001              USHORT i;
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i] && i != nOldPos)
-//STRIP001                      pTab[i]->UpdateInsertTab(nNewPos);
-//STRIP001              for (i = nMaxTableNumber; i > nNewPos; i--)
-//STRIP001                  pTab[i] = pTab[i - 1];
-//STRIP001              if (nNewPos <= nOldPos)
-//STRIP001                  nOldPos++;
-//STRIP001              pTab[nNewPos] = new ScTable(this, nNewPos, aName);
-//STRIP001              ++nMaxTableNumber;
-//STRIP001              bValid = TRUE;
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i] && i != nOldPos && i != nNewPos)
-//STRIP001                      pTab[i]->UpdateCompile();
-//STRIP001              SetNoListening( FALSE );
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i] && i != nOldPos && i != nNewPos)
-//STRIP001                      pTab[i]->StartAllListeners();
-//STRIP001
-//STRIP001              //  update conditional formats after table is inserted
-//STRIP001              if ( pCondFormList )
-//STRIP001                  pCondFormList->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
-//STRIP001              // #81844# sheet names of references may not be valid until sheet is copied
-//STRIP001              pChartListenerCollection->UpdateScheduledSeriesRanges();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              bValid = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (bValid)
-//STRIP001  {
-//STRIP001      SetNoListening( TRUE );     // noch nicht bei CopyToTable/Insert
-//STRIP001      pTab[nOldPos]->CopyToTable(0, 0, MAXCOL, MAXROW, IDF_ALL, (pOnlyMarked != NULL),
-//STRIP001                                      pTab[nNewPos], pOnlyMarked );
-//STRIP001      short nDz;
-//STRIP001 /*       if (nNewPos < nOldPos)
-//STRIP001          nDz = ((short)nNewPos) - (short)nOldPos + 1;
-//STRIP001      else
-//STRIP001 */           nDz = ((short)nNewPos) - (short)nOldPos;
-//STRIP001      pTab[nNewPos]->UpdateReference(URM_COPY, 0, 0, nNewPos , MAXCOL, MAXROW,
-//STRIP001                                      nNewPos, 0, 0, nDz, NULL);
-//STRIP001
-//STRIP001      pTab[nNewPos]->UpdateInsertTabAbs(nNewPos); // alle abs. um eins hoch!!
-//STRIP001      pTab[nOldPos]->UpdateInsertTab(nNewPos);
-//STRIP001
-//STRIP001      pTab[nOldPos]->UpdateCompile();
-//STRIP001      pTab[nNewPos]->UpdateCompile( TRUE );   // #67996# maybe already compiled in Clone, but used names need recompilation
-//STRIP001      SetNoListening( FALSE );
-//STRIP001      pTab[nOldPos]->StartAllListeners();
-//STRIP001      pTab[nNewPos]->StartAllListeners();
-//STRIP001      SetDirty();
-//STRIP001      SetAutoCalc( bOldAutoCalc );
-//STRIP001
-//STRIP001      if (pDrawLayer)
-//STRIP001          DrawCopyPage( nOldPos, nNewPos );
-//STRIP001
-//STRIP001      pTab[nNewPos]->SetPageStyle( pTab[nOldPos]->GetPageStyle() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      SetAutoCalc( bOldAutoCalc );
-//STRIP001  return bValid;
-//STRIP001 }
 
 /*N*/ ULONG ScDocument::TransferTab( ScDocument* pSrcDoc, USHORT nSrcPos,
 /*N*/                               USHORT nDestPos, BOOL bInsertNew,
@@ -1686,32 +1328,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*?*/               {
 /*?*/                   if (pSrcDoc->pTab[j])
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSrcDoc->pTab[j]->IsRangeNameInUse(0, 0, MAXCOL, MAXROW,
-//STRIP001 /*?*/                                                           nOldIndex);
 /*?*/               }
 /*?*/               if (bInUse)
 /*?*/               {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScRangeData* pData = new ScRangeData( *pSrcData );
-//STRIP001 /*?*/                    pData->SetDocument(this);
-//STRIP001 /*?*/                    if ( pRangeName->FindIndex( pData->GetIndex() ) )
-//STRIP001 /*?*/                        pData->SetIndex(0);     // need new index, done in Insert
-//STRIP001 /*?*/                    if (!pRangeName->Insert(pData))
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        delete pData;
-//STRIP001 /*?*/                        nRetVal += 2;
-//STRIP001 /*?*/                        // InfoBox :: Name doppelt
-//STRIP001 /*?*/                        pSrcRangeNames[i] = NULL;
-//STRIP001 /*?*/                        aSrcRangeMap.SetPair( i, nOldIndex, 0 );
-//STRIP001 /*?*/                        bRangeNameReplace = TRUE;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pData->TransferTabRef( nSrcPos, nDestPos );
-//STRIP001 /*?*/                        pSrcRangeNames[i] = pData;
-//STRIP001 /*?*/                        USHORT nNewIndex = pData->GetIndex();
-//STRIP001 /*?*/                        aSrcRangeMap.SetPair( i, nOldIndex, nNewIndex );
-//STRIP001 /*?*/                        if ( !bRangeNameReplace )
-//STRIP001 /*?*/                            bRangeNameReplace = ( nOldIndex != nNewIndex );
-//STRIP001 /*?*/                    }
 /*?*/               }
 /*?*/               else
 /*?*/               {
@@ -1724,12 +1344,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSr
 /*?*/               // first update all inserted named formulas if they contain other
 /*?*/               // range names and used indices changed
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if ( pSrcRangeNames[i] )
-//STRIP001 /*?*/                        pSrcRangeNames[i]->ReplaceRangeNamesInUse( aSrcRangeMap );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                // then update the formulas, they might need the just updated range names
-//STRIP001 /*?*/                pTab[nDestPos]->ReplaceRangeNamesInUse( 0, 0, MAXCOL, MAXROW, aSrcRangeMap );
 /*N*/           }
 /*N*/           if ( pSrcRangeNames )
 /*?*/               delete [] pSrcRangeNames;
@@ -1777,33 +1391,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i
 /*N*/           pTab[nTab]->SetError( nCol, nRow, nError );
 /*N*/ }
 
-//STRIP001 void ScDocument::EraseNonUsedSharedNames(USHORT nLevel)
-//STRIP001 {
-//STRIP001  for (USHORT i = 0; i < pRangeName->GetCount(); i++)
-//STRIP001  {
-//STRIP001      ScRangeData* pRangeData = (*pRangeName)[i];
-//STRIP001      if (pRangeData && pRangeData->HasType(RT_SHARED))
-//STRIP001      {
-//STRIP001          String aName;
-//STRIP001          pRangeData->GetName(aName);
-//STRIP001          aName.Erase(0, 6);                      // !!! vgl. Table4, FillFormula !!
-//STRIP001          USHORT nInd = (USHORT) aName.ToInt32();
-//STRIP001          if (nInd <= nLevel)
-//STRIP001          {
-//STRIP001              USHORT nIndex = pRangeData->GetIndex();
-//STRIP001              BOOL bInUse = FALSE;
-//STRIP001              for (USHORT j = 0; !bInUse && (j <= MAXTAB); j++)
-//STRIP001              {
-//STRIP001                  if (pTab[j])
-//STRIP001                      bInUse = pTab[j]->IsRangeNameInUse(0, 0, MAXCOL-1, MAXROW-1,
-//STRIP001                                                         nIndex);
-//STRIP001              }
-//STRIP001              if (!bInUse)
-//STRIP001                  pRangeName->AtFree(i);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //  ----------------------------------------------------------------------------
 
