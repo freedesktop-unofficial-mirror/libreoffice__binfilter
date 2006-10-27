@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoclbck.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:49:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:23:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,40 +35,19 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _UNOOBJ_HXX
-// auto strip #include <unoobj.hxx>
-// auto strip #endif
 #ifndef _UNOIDX_HXX
 #include <unoidx.hxx>
 #endif
-// auto strip #ifndef _TOX_HXX
-// auto strip #include <tox.hxx>
-// auto strip #endif
 #ifndef _UNOCLBCK_HXX
 #include <unoclbck.hxx>
 #endif
-// auto strip #ifndef _TXTFTN_HXX
-// auto strip #include <txtftn.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTFTN_HXX
-// auto strip #include <fmtftn.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -77,12 +56,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _FMTRFMRK_HXX
-// auto strip #include <fmtrfmrk.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTRFMRK_HXX
-// auto strip #include <txtrfmrk.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /* -----------------------------06.01.00 13:51--------------------------------
