@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unocpres.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:25:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:36:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
 #endif
@@ -45,11 +42,8 @@
 #ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
 #endif
-// auto strip #include <comphelper/extract.hxx>
 
 #include "unohelp.hxx"
-// auto strip #include "unomodel.hxx"
-// auto strip #include "drawdoc.hxx"
 #include "unocpres.hxx"
 #include "cusshow.hxx"
 #include "unopage.hxx"

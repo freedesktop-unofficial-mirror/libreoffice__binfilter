@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_facreg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:25:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:36:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 #include <string.h>
 
-// auto strip #ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
-// auto strip #endif
 
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
@@ -58,9 +55,6 @@ extern uno::Reference< uno::XInterface > SAL_CALL SdPresentationDocument_createI
 extern OUString SdPresentationDocument_getImplementationName() throw( uno::RuntimeException );
 extern uno::Sequence< OUString > SAL_CALL SdPresentationDocument_getSupportedServiceNames() throw( uno::RuntimeException );
 
-//STRIP001 extern uno::Reference< uno::XInterface > SAL_CALL SdHtmlOptionsDialog_CreateInstance( const uno::Reference< lang::XMultiServiceFactory > & _rxFactory );
-//STRIP001 extern OUString SdHtmlOptionsDialog_getImplementationName() throw( uno::RuntimeException );
-//STRIP001 extern uno::Sequence< OUString > SAL_CALL SdHtmlOptionsDialog_getSupportedServiceNames() throw( uno::RuntimeException );
 
 #ifdef __cplusplus
 extern "C"
@@ -90,7 +84,6 @@ sal_Bool SAL_CALL component_writeInfo( void * pServiceManager, void * pRegistryK
         {
             registry::XRegistryKey *pKey = reinterpret_cast< registry::XRegistryKey * >( pRegistryKey );
 
-//STRIP001          writeInfo( pKey, SdHtmlOptionsDialog_getImplementationName(), SdHtmlOptionsDialog_getSupportedServiceNames() );
             writeInfo( pKey, SdDrawingDocument_getImplementationName(), SdDrawingDocument_getSupportedServiceNames() );
             writeInfo( pKey, SdPresentationDocument_getImplementationName(), SdPresentationDocument_getSupportedServiceNames() );
         }
@@ -115,10 +108,6 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
         const sal_Int32 nImplNameLen = strlen( pImplName );
         if(0)//STRIP001 if( SdHtmlOptionsDialog_getImplementationName().equalsAsciiL( pImplName, nImplNameLen ) )
         {
-//STRIP001          xFactory = ::cppu::createSingleFactory( xMSF,
-//STRIP001              SdHtmlOptionsDialog_getImplementationName(),
-//STRIP001              SdHtmlOptionsDialog_CreateInstance,
-//STRIP001              SdHtmlOptionsDialog_getSupportedServiceNames() );
         }
         else if( SdDrawingDocument_getImplementationName().equalsAsciiL( pImplName, nImplNameLen ) )
         {

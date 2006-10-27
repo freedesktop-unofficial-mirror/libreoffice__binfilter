@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unogstyl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:26:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:36:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,13 +41,7 @@
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #ifndef _SFXSTYLE_HXX
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFX_ITEMPROP_HXX
-// auto strip #include <svtools/itemprop.hxx>
-// auto strip #endif
 
 #ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
@@ -56,17 +50,14 @@
 #include <svtools/smplhint.hxx>
 #endif
 
-// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
 #include <bf_svx/unoprov.hxx>
 
-// auto strip #include <unohelp.hxx>
 #include <unogsfm.hxx>
 #include <unogstyl.hxx>
 #include <unokywds.hxx>
-// auto strip #include <unomodel.hxx>
 #include <helpids.h>
 #include <unoprnms.hxx>
 namespace binfilter {

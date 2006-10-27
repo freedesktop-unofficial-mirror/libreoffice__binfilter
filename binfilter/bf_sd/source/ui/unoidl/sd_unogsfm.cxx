@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unogsfm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:26:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:36:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
-// auto strip #include <com/sun/star/style/XStyle.hpp>
-// auto strip #endif
 
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
@@ -49,7 +46,6 @@
 #include <svtools/style.hxx>
 #endif
 
-// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
