@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtfly.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:32:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:13:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #include "frmsh.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -44,16 +43,11 @@
 
 #include "doc.hxx"
 #include "viewsh.hxx"
-// auto strip #include "pagefrm.hxx"
 #include "rootfrm.hxx"
-// auto strip #include "viewimp.hxx"        // SwViewImp
 #include "pam.hxx"          // SwPosition
-// auto strip #include "swregion.hxx"       // SwRegionRects
 #include "dcontact.hxx"     // SwContact
 #include "dflyobj.hxx"      // SdrObject
-// auto strip #include "flyfrm.hxx"   // SwFlyFrm
 #include "frmtool.hxx"    // ::DrawGraphic
-// auto strip #include "porfld.hxx"     // SwGrfNumPortion
 #ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
 #endif
@@ -62,9 +56,6 @@
 #include <math.h>
 #endif
 
-// auto strip #ifndef _XPOLY_HXX //autogen
-// auto strip #include <bf_svx/xpoly.hxx>
-// auto strip #endif
 
 #ifndef _E3D_OBJ3D_HXX //autogen
 #include <bf_svx/obj3d.hxx>
@@ -92,21 +83,9 @@
 #ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX //autogen
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _VIRDEV_HXX //autogen
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
@@ -123,19 +102,12 @@
 #include <bf_svx/svdoedge.hxx>
 #endif
 
-// auto strip #include "txtfrm.hxx"     // SwTxtFrm
 #include "itrform2.hxx"   // SwTxtFormatter
 #include "porfly.hxx"     // NewFlyCntPortion
 #include "porfld.hxx"     // SwGrfNumPortion
 
-// auto strip #include "txtfly.hxx"   // SwTxtFly
-// auto strip #include "txtpaint.hxx"   // SwSaveClip
 
-// auto strip #include "txtatr.hxx"   // SwTxtFlyCnt
-// auto strip #include "txtcfg.hxx"
-// auto strip #include "notxtfrm.hxx"
 #include "flyfrms.hxx"
-// auto strip #include "drawfont.hxx" // SwDrawTextInfo
 #include "fmtcnct.hxx"  // SwFmtChain
 
 #ifndef PRODUCT
@@ -309,25 +281,6 @@ namespace binfilter {
 /*N*/   sal_uInt8 nFlags = SETBASE_ULSPACE;
 /*N*/   if( GetMulti() )
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/   {
-//STRIP001 /*?*/        aTmpInf.SetDirection( GetMulti()->GetDirection() );
-//STRIP001 /*?*/        if( GetMulti()->HasRotation() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            nFlags |= SETBASE_ROTATE;
-//STRIP001 /*?*/            if( GetMulti()->IsRevers() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                nFlags |= SETBASE_REVERSE;
-//STRIP001 /*?*/                aTmpInf.X( aTmpInf.X() - nAscent );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                aTmpInf.X( aTmpInf.X() + nAscent );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/         else
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             if ( GetMulti()->IsBidi() )
-//STRIP001 /*?*/                 nFlags |= SETBASE_BIDI;
-//STRIP001 /*?*/            aTmpInf.Y( aTmpInf.Y() + nAscent );
-//STRIP001 /*?*/         }
-//STRIP001 /*N*/    }
 /*N*/   else
 /*N*/       aTmpInf.Y( aTmpInf.Y() + nAscent );
 /*N*/
@@ -344,14 +297,6 @@ namespace binfilter {
 /*N*/           if( pPos->IsGrfNumPortion() )
 /*N*/           {
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( !nFlyAsc && !nFlyDesc )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    nTmpAscent = nAscent;
-//STRIP001 /*?*/                    nFlyAsc = nAscent;
-//STRIP001 /*?*/                    nTmpDescent = nTmpHeight - nAscent;
-//STRIP001 /*?*/                    nFlyDesc = nTmpDescent;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                ((SwGrfNumPortion*)pPos)->SetBase( nTmpAscent, nTmpDescent,
-//STRIP001 /*?*/                                                   nFlyAsc, nFlyDesc );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -366,38 +311,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if( pPos->IsMultiPortion() && ((SwMultiPortion*)pPos)->HasFlyInCntnt() )
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
-//STRIP001 /*?*/            ASSERT( !GetMulti(), "Too much multi" );
-//STRIP001 /*?*/            ((SwTxtFormatter*)this)->pMulti = (SwMultiPortion*)pPos;
-//STRIP001 /*?*/            SwLineLayout *pLay = &GetMulti()->GetRoot();
-//STRIP001 /*?*/             Point aSt( aTmpInf.X(), aStart.Y() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             if ( GetMulti()->HasBrackets() )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 ASSERT( GetMulti()->IsDouble(), "Brackets only for doubles");
-//STRIP001 /*?*/                 aSt.X() += ((SwDoubleLinePortion*)GetMulti())->PreWidth();
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/             else if( GetMulti()->HasRotation() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                aSt.Y() += pCurr->GetAscent() - GetMulti()->GetAscent();
-//STRIP001 /*?*/                 if( GetMulti()->IsRevers() )
-//STRIP001 /*?*/                     aSt.X() += GetMulti()->Width();
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                    aSt.Y() += GetMulti()->Height();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/             else if ( GetMulti()->IsBidi() )
-//STRIP001 /*?*/                 // jump to end of the bidi portion
-//STRIP001 /*?*/                 aSt.X() += pLay->Width();
-//STRIP001 /*?*/
-//STRIP001 /*?*/             xub_StrLen nStIdx = aTmpInf.GetIdx();
-//STRIP001 /*?*/            do
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                UpdatePos( pLay, aSt, nStIdx, bAllWays );
-//STRIP001 /*?*/                nStIdx += pLay->GetLen();
-//STRIP001 /*?*/                aSt.Y() += pLay->Height();
-//STRIP001 /*?*/                pLay = pLay->GetNext();
-//STRIP001 /*?*/            } while ( pLay );
-//STRIP001 /*?*/            ((SwTxtFormatter*)this)->pMulti = NULL;
-//STRIP001 /*N*/        }
 /*N*/       pPos->Move( aTmpInf );
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
@@ -421,8 +334,6 @@ namespace binfilter {
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nFlags |= SETBASE_ROTATE;
-//STRIP001 /*?*/        if( GetMulti()->IsRevers() )
-//STRIP001 /*?*/            nFlags |= SETBASE_REVERSE;
 /*N*/   }
 /*N*/
 /*N*/   long nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc;
@@ -442,7 +353,6 @@ namespace binfilter {
 /*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
 /*N*/                 {
                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nBaseLine = GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( nBaseLine );
-//STRIP001 /*?*/                     aBase = Point( nBaseLine, ((SwFlyCntPortion*)pPos)->GetRefPoint().Y() );
 /*N*/                 }
 /*N*/                 else
 /*N*/                     aBase = Point( ((SwFlyCntPortion*)pPos)->GetRefPoint().X(), nBaseLine );
@@ -808,8 +718,6 @@ namespace binfilter {
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nMode |= SETBASE_ROTATE;
-//STRIP001 /*?*/        if( GetMulti()->IsRevers() )
-//STRIP001 /*?*/            nMode |= SETBASE_REVERSE;
 /*N*/   }
 /*N*/
 /*N*/     Point aTmpBase( aBase );
@@ -1007,121 +915,6 @@ namespace binfilter {
 
 #define UINT32_MAX 0xFFFFFFFF
 
-//STRIP001 sal_Bool SwTxtFly::DrawTextOpaque( SwDrawTextInfo &rInf )
-//STRIP001 {
-//STRIP001  SwSaveClip aClipSave( rInf.GetpOut() );
-//STRIP001  SwRect aRect( rInf.GetPos(), rInf.GetSize() );
-//STRIP001  if( rInf.GetSpace() )
-//STRIP001  {
-//STRIP001      xub_StrLen nTmpLen = STRING_LEN == rInf.GetLen() ? rInf.GetText().Len() :
-//STRIP001                                                    rInf.GetLen();
-//STRIP001      if( rInf.GetSpace() > 0 )
-//STRIP001      {
-//STRIP001          xub_StrLen nSpaceCnt = 0;
-//STRIP001          const xub_StrLen nEndPos = rInf.GetIdx() + nTmpLen;
-//STRIP001          for( xub_StrLen nPos = rInf.GetIdx(); nPos < nEndPos; ++nPos )
-//STRIP001          {
-//STRIP001              if( CH_BLANK == rInf.GetText().GetChar( nPos ) )
-//STRIP001                  ++nSpaceCnt;
-//STRIP001          }
-//STRIP001          if( nSpaceCnt )
-//STRIP001              aRect.Width( aRect.Width() + nSpaceCnt * rInf.GetSpace() );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          aRect.Width( aRect.Width() - nTmpLen * rInf.GetSpace() );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( aClipSave.IsOn() && rInf.GetOut().IsClipRegion() )
-//STRIP001  {
-//STRIP001      SwRect aClipRect( rInf.GetOut().GetClipRegion().GetBoundRect() );
-//STRIP001      aRect.Intersection( aClipRect );
-//STRIP001  }
-//STRIP001
-//STRIP001  SwRegionRects aRegion( aRect );
-//STRIP001
-//STRIP001  sal_Bool bOpaque = sal_False;
-//STRIP001  const UINT32 nCurrOrd = pCurrFly ? pCurrFly->GetOrdNum() : UINT32_MAX;
-//STRIP001  ASSERT( !bTopRule, "DrawTextOpaque: Wrong TopRule" );
-//STRIP001
-//STRIP001  MSHORT nCount;
-//STRIP001  if( bOn && ( 0 != ( nCount = GetFlyList()->Count() ) ) )
-//STRIP001  {
-//STRIP001      MSHORT nHellId = pPage->GetShell()->GetDoc()->GetHellId();
-//STRIP001      for( MSHORT i = 0; i < nCount; ++i )
-//STRIP001      {
-//STRIP001          const SdrObject *pTmp = (*pFlyList)[ i ];
-//STRIP001          if( pTmp->IsWriterFlyFrame() && pCurrFly != pTmp )
-//STRIP001          {
-//STRIP001              SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pTmp)->GetFlyFrm();
-//STRIP001              if( aRegion.GetOrigin().IsOver( pFly->Frm() ) )
-//STRIP001              {
-//STRIP001                  const SwFrmFmt *pFmt = pFly->GetFmt();
-//STRIP001                  const SwFmtSurround &rSur = pFmt->GetSurround();
-//STRIP001                  const SwFmtAnchor& rAnchor = pFmt->GetAnchor();
-//STRIP001                      //Nur undurchsichtige und weiter oben liegende.
-//STRIP001                     /// OD 08.10.2002 #103898# - add condition
-//STRIP001                     /// <!(pFly->IsBackgroundTransparent() || pFly->IsShadowTransparent())>
-//STRIP001                     if( !( pFly->IsBackgroundTransparent()
-//STRIP001                            || pFly->IsShadowTransparent() ) &&
-//STRIP001                         SURROUND_THROUGHT == rSur.GetSurround() &&
-//STRIP001                         ( !rSur.IsAnchorOnly() ||
-//STRIP001                           GetMaster() == &lcl_TheAnchor( pTmp ) ||
-//STRIP001                           ( FLY_AT_CNTNT != rAnchor.GetAnchorId() &&
-//STRIP001                               FLY_AUTO_CNTNT != rAnchor.GetAnchorId()
-//STRIP001                           )
-//STRIP001                         ) &&
-//STRIP001                         pTmp->GetLayer() != nHellId &&
-//STRIP001                         nCurrOrd < pTmp->GetOrdNum()
-//STRIP001                       )
-//STRIP001                  {
-//STRIP001                      //Ausser der Inhalt ist Transparent
-//STRIP001                      const SwNoTxtFrm *pNoTxt =
-//STRIP001                              pFly->Lower() && pFly->Lower()->IsNoTxtFrm()
-//STRIP001                                                 ? (SwNoTxtFrm*)pFly->Lower()
-//STRIP001                                                 : 0;
-//STRIP001                      if ( !pNoTxt ||
-//STRIP001                           (!pNoTxt->IsTransparent() && !rSur.IsContour()) )
-//STRIP001                      {
-//STRIP001                          bOpaque = sal_True;
-//STRIP001                          aRegion -= pFly->Frm();
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  Point aPos( rInf.GetPos().X(), rInf.GetPos().Y() + rInf.GetAscent() );
-//STRIP001  const Point &rOld = rInf.GetPos();
-//STRIP001  rInf.SetPos( aPos );
-//STRIP001
-//STRIP001  if( !bOpaque )
-//STRIP001  {
-//STRIP001      if( rInf.GetKern() )
-//STRIP001          rInf.GetFont()->_DrawStretchText( rInf );
-//STRIP001      else
-//STRIP001          rInf.GetFont()->_DrawText( rInf );
-//STRIP001      rInf.SetPos( rOld );
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001  else if( aRegion.Count() )
-//STRIP001  {
-//STRIP001      // Was fuer ein Aufwand ...
-//STRIP001      SwSaveClip aClipVout( rInf.GetpOut() );
-//STRIP001      for( MSHORT i = 0; i < aRegion.Count(); ++i )
-//STRIP001      {
-//STRIP001          SwRect &rRect = aRegion[i];
-//STRIP001          if( rRect != aRegion.GetOrigin() )
-//STRIP001              aClipVout.ChgClip( rRect );
-//STRIP001          if( rInf.GetKern() )
-//STRIP001              rInf.GetFont()->_DrawStretchText( rInf );
-//STRIP001          else
-//STRIP001              rInf.GetFont()->_DrawText( rInf );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  rInf.SetPos( rOld );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFly::DrawFlyRect()
@@ -1132,58 +925,6 @@ namespace binfilter {
  * 2) FlyToRect() liefert groessere Werte als die Framedaten !
  *************************************************************************/
 
-//STRIP001 void SwTxtFly::DrawFlyRect( OutputDevice *pOut, const SwRect &rRect,
-//STRIP001      const SwTxtPaintInfo &rInf, sal_Bool bNoGraphic )
-//STRIP001 {
-//STRIP001  SwRegionRects aRegion( rRect );
-//STRIP001  ASSERT( !bTopRule, "DrawFlyRect: Wrong TopRule" );
-//STRIP001  MSHORT nCount;
-//STRIP001  if( bOn && ( 0 != ( nCount = GetFlyList()->Count() ) ) )
-//STRIP001  {
-//STRIP001      MSHORT nHellId = pPage->GetShell()->GetDoc()->GetHellId();
-//STRIP001      for( MSHORT i = 0; i < nCount; ++i )
-//STRIP001      {
-//STRIP001          const SdrObject *pTmp = (*pFlyList)[ i ];
-//STRIP001          if( pCurrFly != pTmp && pTmp->IsWriterFlyFrame() )
-//STRIP001          {
-//STRIP001              const SwFrmFmt *pFmt =
-//STRIP001                  ((SwContact*)GetUserCall(pTmp))->GetFmt();
-//STRIP001              const SwFmtSurround &rSur = pFmt->GetSurround();
-//STRIP001
-//STRIP001                 // OD 24.01.2003 #106593# - correct clipping of fly frame area.
-//STRIP001                 // Consider that fly frame background/shadow can be transparent
-//STRIP001                 // and <SwAlignRect(..)> fly frame area
-//STRIP001                 const SwFlyFrm *pFly = static_cast<const SwVirtFlyDrawObj*>(pTmp)->GetFlyFrm();
-//STRIP001                 bool bClipFlyArea =
-//STRIP001                         ( (SURROUND_THROUGHT == rSur.GetSurround()) ?
-//STRIP001                           (pTmp->GetLayer() != nHellId) : !rSur.IsContour() ) &&
-//STRIP001                         !pFly->IsBackgroundTransparent() &&
-//STRIP001                         !pFly->IsShadowTransparent();
-//STRIP001                 if ( bClipFlyArea )
-//STRIP001              {
-//STRIP001                  SwRect aFly( pTmp->GetBoundRect() );
-//STRIP001                     // OD 24.01.2003 #106593#
-//STRIP001                     ::SwAlignRect( aFly, pPage->GetShell() );
-//STRIP001                  if( aFly.Width() > 0 && aFly.Height() > 0 )
-//STRIP001                      aRegion -= aFly;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  for( MSHORT i = 0; i < aRegion.Count(); ++i )
-//STRIP001  {
-//STRIP001      if ( bNoGraphic )
-//STRIP001          pOut->DrawRect( aRegion[i].SVRect() );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          ASSERT( ((SvxBrushItem*)-1) != rInf.GetBrushItem(),
-//STRIP001                  "DrawRect: Uninitialized BrushItem!" );
-//STRIP001          ::DrawGraphic( rInf.GetBrushItem(), pOut, rInf.GetBrushRect(),
-//STRIP001                     aRegion[i] );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFly::GetTop()
@@ -1613,10 +1354,6 @@ namespace binfilter {
 /*N*/           // diese aendert dadurch ggf. ihre Groesse, ruft deshalb ein
 /*N*/           // ClrObject() auf.
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PolyPolygon aPoly;
-//STRIP001 /*?*/            if( !((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->GetContour( aPoly ) )
-//STRIP001 /*?*/                aPoly = PolyPolygon( ((SwVirtFlyDrawObj*)pObj)->
-//STRIP001 /*?*/                                     GetFlyFrm()->Frm().SVRect() );
-//STRIP001 /*?*/            aXPoly = XPolyPolygon( aPoly );
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1713,49 +1450,6 @@ namespace binfilter {
  *************************************************************************/
 #ifndef PRODUCT
 
-//STRIP001 void SwContourCache::ShowContour( OutputDevice* pOut, const SdrObject* pObj,
-//STRIP001  const Color& rClosedColor, const Color& rOpenColor )
-//STRIP001 {
-//STRIP001  MSHORT nPos = 0; // Suche im Cache ...
-//STRIP001  while( nPos < POLY_CNT && pObj != pSdrObj[ nPos ] )
-//STRIP001      ++nPos;
-//STRIP001  if( POLY_CNT != nPos )
-//STRIP001  {
-//STRIP001      const PolyPolygon* pPol = pTextRanger[ nPos ]->GetLinePolygon();
-//STRIP001      if( !pPol )
-//STRIP001          pPol = &(pTextRanger[ nPos ]->GetPolyPolygon());
-//STRIP001      for( MSHORT i = 0; i < pPol->Count(); ++i )
-//STRIP001      {
-//STRIP001          pOut->SetLineColor( rOpenColor );
-//STRIP001          const Polygon& rPol = (*pPol)[ i ];
-//STRIP001          MSHORT nCount = rPol.GetSize();
-//STRIP001          if( nCount > 1 && rPol[ 0 ] == rPol[ nCount - 1 ] )
-//STRIP001              pOut->SetLineColor( rClosedColor );
-//STRIP001          pOut->DrawPolygon( rPol );
-//STRIP001      }
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001      static KSHORT nRadius = 0;
-//STRIP001      if( nRadius )
-//STRIP001      {
-//STRIP001          KSHORT nHalf = nRadius / 2;
-//STRIP001          Size aSz( nRadius, nRadius );
-//STRIP001          for( MSHORT i = 0; i < pPol->Count(); ++i )
-//STRIP001          {
-//STRIP001              const Polygon& rPol = (*pPol)[ i ];
-//STRIP001              MSHORT nCount = rPol.GetSize();
-//STRIP001              for( MSHORT k = 0; k < nCount; ++k )
-//STRIP001              {
-//STRIP001                  Point aPt( rPol[ k ] );
-//STRIP001                  aPt.X() -= nHalf;
-//STRIP001                  aPt.Y() -= nHalf;
-//STRIP001                  Rectangle aTmp( aPt, aSz );
-//STRIP001                  pOut->DrawEllipse( aTmp );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001 #endif
-//STRIP001  }
-//STRIP001 }
 #endif
 
 /*************************************************************************
@@ -1764,29 +1458,6 @@ namespace binfilter {
  *************************************************************************/
 #ifndef PRODUCT
 
-//STRIP001 void SwTxtFly::ShowContour( OutputDevice* pOut )
-//STRIP001 {
-//STRIP001  MSHORT nFlyCount;
-//STRIP001  if( bOn && ( 0 != ( nFlyCount = GetFlyList()->Count() ) ) )
-//STRIP001  {
-//STRIP001      static ULONG nWidth = 20;
-//STRIP001      Color aRedColor( COL_LIGHTRED );
-//STRIP001      Color aGreenColor( COL_LIGHTGREEN );
-//STRIP001      Color aSaveColor( pOut->GetLineColor() );
-//STRIP001      for( MSHORT j = 0; j < nFlyCount; ++j )
-//STRIP001      {
-//STRIP001          const SdrObject *pObj = (*pFlyList)[ j ];
-//STRIP001          if( !((SwContact*)GetUserCall(pObj))->GetFmt()->GetSurround().IsContour() )
-//STRIP001          {
-//STRIP001              Rectangle aRect = pObj->GetBoundRect();
-//STRIP001              pOut->DrawRect( aRect );
-//STRIP001              continue;
-//STRIP001          }
-//STRIP001          pContourCache->ShowContour( pOut, pObj, aRedColor, aGreenColor );
-//STRIP001      }
-//STRIP001      pOut->SetLineColor( aSaveColor );
-//STRIP001  }
-//STRIP001 }
 #endif
 
 /*************************************************************************
@@ -2255,64 +1926,6 @@ namespace binfilter {
 /*N*/     return bRet;
 /*N*/ }
 
-//STRIP001 const SwFrmFmt* SwTxtFrm::IsFirstBullet()
-//STRIP001 {
-//STRIP001  GetFormatted();
-//STRIP001  const SwLineLayout *pLayout = GetPara();
-//STRIP001  if( !pLayout ||
-//STRIP001      ( !pLayout->GetLen() && !pLayout->GetPortion() && !pLayout->GetNext() ) )
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  SwLinePortion* pPor = pLayout->GetFirstPortion();
-//STRIP001  while( pPor->IsFlyPortion() && pPor->GetPortion() )
-//STRIP001      pPor = pPor->GetPortion();
-//STRIP001  SwLinePortion* pTmp;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      pTmp = pLayout->GetFirstPortion();
-//STRIP001      while( pTmp && !pTmp->InTxtGrp() )
-//STRIP001          pTmp = pTmp->GetPortion();
-//STRIP001      pLayout = pLayout->GetNext();
-//STRIP001  } while( !pTmp && pLayout );
-//STRIP001  long nMaxHeight = pTmp ? ( pTmp->Height() * 15 ) / 10 : 0;
-//STRIP001  if( !nMaxHeight )
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  long nMaxWidth = 2*pTmp->Height();
-//STRIP001  if( pPor->IsFlyCntPortion() &&
-//STRIP001      ( pPor->Height() < nMaxHeight && pPor->Width() < nMaxWidth ) )
-//STRIP001      return ((SwFlyCntPortion*)pPor)->GetFrmFmt();
-//STRIP001
-//STRIP001  const SwFrmFmt* pRet = NULL;
-//STRIP001
-//STRIP001  SwPageFrm* pPage = FindPageFrm();
-//STRIP001  const SwSortDrawObjs *pSorted = pPage->GetSortedObjs();
-//STRIP001  if( pSorted )
-//STRIP001  {
-//STRIP001      for ( MSHORT i = 0; i < pSorted->Count(); ++i )
-//STRIP001      {
-//STRIP001          const SdrObject *pObj = (*pSorted)[i];
-//STRIP001          if( this == &lcl_TheAnchor( pObj ) )
-//STRIP001          {
-//STRIP001              SwRect aBound( GetBoundRect( pObj ) );
-//STRIP001              if( aBound.Top() > Frm().Top() + Prt().Top() )
-//STRIP001                  aBound.Top( Frm().Top() + Prt().Top() );
-//STRIP001              if( aBound.Left() > Frm().Left() + Prt().Left() )
-//STRIP001                  aBound.Left( Frm().Left() + Prt().Left() );
-//STRIP001              if( aBound.Height() < nMaxHeight && aBound.Width() < nMaxWidth )
-//STRIP001              {
-//STRIP001                  pRet = ((SwContact*)GetUserCall(pObj))->GetFmt();
-//STRIP001                  _FlyCntnt eOrder = pRet->GetSurround().GetSurround();
-//STRIP001                  if( SURROUND_THROUGHT == eOrder || SURROUND_NONE == eOrder )
-//STRIP001                      pRet = NULL;
-//STRIP001                  else
-//STRIP001                      break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
 
 
 }
