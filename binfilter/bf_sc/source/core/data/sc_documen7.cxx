@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen7.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:44:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:17:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,14 +34,12 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include <vcl/svapp.hxx>
 
 #if defined( WNT ) && defined( erBEEP )
 #include <svwin.h>
@@ -51,23 +49,13 @@
 #endif
 
 #include "document.hxx"
-// auto strip #include "brdcst.hxx"
 #include "bcaslot.hxx"
 #include "cell.hxx"
-// auto strip #include "compiler.hxx"       // errCircularReference
-// auto strip #include "scerrors.hxx"
-// auto strip #include "docoptio.hxx"
-// auto strip #include "refupdat.hxx"
-// auto strip #include "table.hxx"
-// auto strip #include "progress.hxx"
 #include "scmod.hxx"        // SC_MOD
 #include "inputopt.hxx"     // GetExpandRefs
 #include "conditio.hxx"
 #include "bclist.hxx"
 
-// auto strip #ifndef _SHL_HXX //autogen
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
 
 
 #include "globstr.hrc"
@@ -272,129 +260,6 @@ ULONG erCountBCAFinds = 0;
 /*N*/ }
 
 
-//STRIP001 void ScDocument::CalcFormulaTree( BOOL bOnlyForced, BOOL bNoProgress )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( !IsCalculatingFormulaTree(), "CalcFormulaTree recursion" );
-//STRIP001  // never ever recurse into this, might end up lost in infinity
-//STRIP001  if ( IsCalculatingFormulaTree() )
-//STRIP001      return ;
-//STRIP001  bCalculatingFormulaTree = TRUE;
-//STRIP001
-//STRIP001  SetForcedFormulaPending( FALSE );
-//STRIP001  BOOL bOldIdleDisabled = IsIdleDisabled();
-//STRIP001  DisableIdle( TRUE );
-//STRIP001  BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001  //! _nicht_ SetAutoCalc( TRUE ) weil das evtl. CalcFormulaTree( TRUE )
-//STRIP001  //! aufruft, wenn vorher disabled war und bHasForcedFormulas gesetzt ist
-//STRIP001  bAutoCalc = TRUE;
-//STRIP001  if ( nHardRecalcState )
-//STRIP001      CalcAll();
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ScFormulaCell* pCell = pFormulaTree;
-//STRIP001      while ( pCell )
-//STRIP001      {
-//STRIP001          if ( pCell->GetDirty() )
-//STRIP001              pCell = pCell->GetNext();       // alles klar
-//STRIP001          else
-//STRIP001          {
-//STRIP001              if ( pCell->GetCode()->IsRecalcModeAlways() )
-//STRIP001              {
-//STRIP001                  // pCell wird im SetDirty neu angehaengt!
-//STRIP001                  ScFormulaCell* pNext = pCell->GetNext();
-//STRIP001                  pCell->SetDirty();
-//STRIP001                  // falls pNext==0 und neue abhaengige hinten angehaengt
-//STRIP001                  // wurden, so macht das nichts, da die alle bDirty sind
-//STRIP001                  pCell = pNext;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {   // andere simpel berechnen, evtl. auch errInterpOverflow
-//STRIP001                  // (Err527) wg. Aufruf aus CellForm dirty setzen
-//STRIP001                  pCell->SetDirtyVar();
-//STRIP001                  pCell = pCell->GetNext();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      BOOL bProgress = !bOnlyForced && nFormulaCodeInTree && !bNoProgress;
-//STRIP001      if ( bProgress )
-//STRIP001          ScProgress::CreateInterpretProgress( this, TRUE );
-//STRIP001      ULONG nLastFormulaCodeInTree;
-//STRIP001      BOOL bErr527 = FALSE;       // damned maxrecursion
-//STRIP001      do
-//STRIP001      {   // while ( bErr527 && nLastFormulaCodeInTree > nFormulaCodeInTree );
-//STRIP001          if ( bErr527 )
-//STRIP001          {
-//STRIP001              bErr527 = FALSE;
-//STRIP001              pLastFormulaTreeTop = 0;        // reset fuer CellForm
-//STRIP001          }
-//STRIP001          pCell = pFormulaTree;
-//STRIP001          nLastFormulaCodeInTree = nFormulaCodeInTree;
-//STRIP001          ScFormulaCell* pLastNoGood = 0;
-//STRIP001          while ( pCell )
-//STRIP001          {
-//STRIP001              if ( pCell->GetCode()->GetError() == errInterpOverflow )
-//STRIP001                  pCell->SetDirtyVar();       // Err527 wieder dirty
-//STRIP001              // Interpret setzt bDirty zurueck und callt Remove, auch der referierten!
-//STRIP001              // bei maxrecursion (Err527) oder RECALCMODE_ALWAYS bleibt die Zelle
-//STRIP001              if ( bOnlyForced )
-//STRIP001              {
-//STRIP001                  if ( pCell->GetCode()->IsRecalcModeForced() )
-//STRIP001                      pCell->Interpret();
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  pCell->Interpret();
-//STRIP001              }
-//STRIP001              if ( pCell->GetPrevious() || pCell == pFormulaTree )
-//STRIP001              {   // (IsInFormulaTree(pCell)) kein Remove gewesen => next
-//STRIP001                  if ( pCell->GetCode()->GetError() == errInterpOverflow )
-//STRIP001                      bErr527 = TRUE;
-//STRIP001                  pLastNoGood = pCell;
-//STRIP001                  pCell = pCell->GetNext();
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  if ( pFormulaTree )
-//STRIP001                  {
-//STRIP001                      if ( pFormulaTree->GetDirty() && !bOnlyForced )
-//STRIP001                      {
-//STRIP001                          pCell = pFormulaTree;
-//STRIP001                          pLastNoGood = 0;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          // IsInFormulaTree(pLastNoGood)
-//STRIP001                          if ( pLastNoGood && (pLastNoGood->GetPrevious() ||
-//STRIP001                                  pLastNoGood == pFormulaTree) )
-//STRIP001                              pCell = pLastNoGood->GetNext();
-//STRIP001                          else
-//STRIP001                          {
-//STRIP001                              pCell = pFormulaTree;
-//STRIP001                              while ( pCell && !pCell->GetDirty() &&
-//STRIP001                                      pCell->GetCode()->GetError() != errInterpOverflow )
-//STRIP001                                  pCell = pCell->GetNext();
-//STRIP001                              if ( pCell )
-//STRIP001                                  pLastNoGood = pCell->GetPrevious();
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                      pCell = 0;
-//STRIP001              }
-//STRIP001              if ( ScProgress::IsUserBreak() )
-//STRIP001              {
-//STRIP001                  pCell = 0;
-//STRIP001                  bErr527 = FALSE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      } while ( bErr527 && nLastFormulaCodeInTree > nFormulaCodeInTree );
-//STRIP001      if ( bProgress )
-//STRIP001          ScProgress::DeleteInterpretProgress();
-//STRIP001  }
-//STRIP001  bAutoCalc = bOldAutoCalc;
-//STRIP001  DisableIdle( bOldIdleDisabled );
-//STRIP001  bCalculatingFormulaTree = FALSE;
-//STRIP001 }
 
 
 /*N*/ void ScDocument::ClearFormulaTree()
@@ -529,8 +394,6 @@ ULONG erCountBCAFinds = 0;
 /*N*/   BOOL bExpandRefsOld = IsExpandRefs();
 /*N*/   if ( eUpdateRefMode == URM_INSDEL && (nDx > 0 || nDy > 0 || nDz > 0) )
 /*N*/       SetExpandRefs( SC_MOD()->GetInputOptions().GetExpandRefs() );
-//STRIP001  if ( pBASM )
-//STRIP001      pBASM->UpdateBroadcastAreas( eUpdateRefMode, rRange, nDx, nDy, nDz );
 /*N*/   SetExpandRefs( bExpandRefsOld );
 /*N*/ }
 
