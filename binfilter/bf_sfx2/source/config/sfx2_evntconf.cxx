@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_evntconf.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:41:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:07:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,29 +36,7 @@
 #ifndef _SV_MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
 #endif
-// auto strip #ifndef _SV_RESARY_HXX
-// auto strip #include <tools/resary.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXLSTNER_HXX //autogen
-// auto strip #include <svtools/lstner.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _BASMGR_HXX //autogen
-// auto strip #include <basic/basmgr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SB_SBMOD_HXX //autogen
-// auto strip #include <basic/sbmod.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SBXCLASS_HXX //autogen
-// auto strip #include <svtools/sbx.hxx>
-// auto strip #endif
 
-// auto strip #include <svtools/securityoptions.hxx>
 
 #pragma hdrstop
 
@@ -66,42 +44,18 @@
 #include <rtl/ustring.h>
 #endif
 
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <framework/eventsconfiguration.hxx>
-// auto strip #include <comphelper/processfactory.hxx>
 
-// auto strip #include "evntconf.hxx"
 
 #include "macrconf.hxx"
-// auto strip #include "docfile.hxx"
-// auto strip #include "app.hxx"
 #include "objsh.hxx"
 #include "dispatch.hxx"
 #include "config.hrc"
 #include "sfxresid.hxx"
-// auto strip #include "cfgmgr.hxx"
-// auto strip #include "macropg.hxx"
-// auto strip #include "docinf.hxx"
 #include "eventsupplier.hxx"
 
 #include "sfxsids.hrc"
 #include "sfxlocal.hrc"
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef  _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XNameReplace.hpp>
-// auto strip #endif
-// auto strip #ifndef  _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
-// auto strip #include <com/sun/star/document/XEventsSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -141,25 +95,6 @@ public:
 /*?*/ SfxMacroQueryDlg_Impl::SfxMacroQueryDlg_Impl( const String& rMacName, BOOL bDefault ) :
 /*?*/     QueryBox( NULL, SfxResId( DLG_MACROQUERY ) )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     SetButtonText( GetButtonId(0), String( SfxResId(BTN_OK) ) );
-//STRIP001     SetButtonText( GetButtonId(1), String( SfxResId(BTN_CANCEL) ) );
-//STRIP001
-//STRIP001     String aText = GetMessText();
-//STRIP001     aText.SearchAndReplace( String::CreateFromAscii("$(MACRO)"), rMacName );
-//STRIP001
-//STRIP001     if ( bDefault )
-//STRIP001     {
-//STRIP001         SetFocusButton(GetButtonId(0));
-//STRIP001         aText.SearchAndReplace( String::CreateFromAscii("$(TEXT)"), String( SfxResId(FT_OK) ) );
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         SetFocusButton(GetButtonId(1));
-//STRIP001         aText.SearchAndReplace( String::CreateFromAscii("$(TEXT)"), String( SfxResId(FT_CANCEL) ) );
-//STRIP001     }
-//STRIP001
-//STRIP001     SetMessText( aText );
-//STRIP001     FreeResource();
 /*?*/ }
 
 // class SfxAsyncEvent_Impl ----------------------------------------------
@@ -183,12 +118,6 @@ public:
 
 /*?*/ void SfxAsyncEvent_Impl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     SfxSimpleHint* pHint = PTR_CAST( SfxSimpleHint, &rHint );
-//STRIP001     if( pHint && pHint->GetId() == SFX_HINT_DYING && pTimer->IsActive() )
-//STRIP001     {
-//STRIP001         pTimer->Stop();
-//STRIP001         delete this;
-//STRIP001     }
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -198,11 +127,6 @@ public:
 /*?*/  , pSh( pDoc )
 /*?*/  , pMacro( pMac )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if( pSh ) StartListening( *pSh );
-//STRIP001     pTimer = new Timer;
-//STRIP001     pTimer->SetTimeoutHdl( LINK(this, SfxAsyncEvent_Impl, TimerHdl) );
-//STRIP001     pTimer->SetTimeout( 0 );
-//STRIP001     pTimer->Start();
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -216,18 +140,6 @@ public:
 
 /*?*/ IMPL_LINK(SfxAsyncEvent_Impl, TimerHdl, Timer*, pTimer)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     pTimer->Stop();
-//STRIP001     ScriptType eSType = pMacro->GetScriptType();
-//STRIP001     BOOL bIsBasic = ( eSType == STARBASIC );
-//STRIP001     if ( bIsBasic && StarBASIC::IsRunning() )
-//STRIP001         // Neues eventgebundenes Macro erst ausf"uhren, wenn gerade kein anderes Macro mehr l"auft
-//STRIP001         pTimer->Start();
-//STRIP001     else
-//STRIP001     {
-//STRIP001         SFX_APP()->GetMacroConfig()->ExecuteMacro( pSh, pMacro, aArgs );
-//STRIP001         delete this;
-//STRIP001     }
-//STRIP001
 /*?*/     return 0L;
 /*?*/ }
 
@@ -317,35 +229,12 @@ public:
 
 /*?*/ String SfxEventConfiguration::GetEventName(USHORT nId) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return String();//STRIP001
-//STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
-//STRIP001     USHORT nCount = pEventArr->Count();
-//STRIP001     for (USHORT n=1; n<nCount; n++)
-//STRIP001     {
-//STRIP001         if ((*pEventArr)[n]->nEventId == nId)
-//STRIP001         {
-//STRIP001             return (*pEventArr)[n]->aEventName;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     DBG_ERROR("Event nicht gefunden!");
-//STRIP001     return (*pEventArr)[0]->aEventName;
 /*?*/ }
 
 //==========================================================================
 
 /*?*/ USHORT SfxEventConfiguration::GetEventId(const String& rName) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
-//STRIP001     USHORT nCount = pEventArr->Count();
-//STRIP001     for (USHORT n=1; n<nCount; n++)
-//STRIP001     {
-//STRIP001         if ((*pEventArr)[n]->aEventName == rName)
-//STRIP001         {
-//STRIP001             return (*pEventArr)[n]->nEventId;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     DBG_ERROR("Event nicht gefunden!");
 /*?*/     return SFX_NO_EVENT;
 /*?*/ }
 
@@ -379,13 +268,6 @@ public:
 /*?*/     SfxObjectShell* pDoc
 /*?*/ )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     pDocEventConfig = pDoc ? pDoc->GetEventConfig_Impl() : NULL;
-//STRIP001     const SvxMacro* pMacro=NULL;
-//STRIP001     if ( pDocEventConfig )
-//STRIP001         pMacro = pDocEventConfig->aMacroTable.Seek( nId );
-//STRIP001     if ( !pMacro )
-//STRIP001         pMacro = GetAppEventConfig_Impl()->aMacroTable.Seek( nId );
-//STRIP001     return pMacro;
 /*?*/ }
 
 /*?*/ const SfxMacroInfo* SfxEventConfiguration::GetMacroInfo
@@ -394,16 +276,6 @@ public:
 /*?*/     SfxObjectShell* pDoc
 /*?*/ ) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
-//STRIP001
-//STRIP001     SfxEventConfigItem_Impl *pDocEventConfig = pDoc ? pDoc->GetEventConfig_Impl() : NULL;
-//STRIP001     const SvxMacro* pMacro=NULL;
-//STRIP001     if ( pDocEventConfig )
-//STRIP001         pMacro = pDocEventConfig->aMacroTable.Seek( nId );
-//STRIP001     if ( !pMacro )
-//STRIP001         pMacro = const_cast< SfxEventConfiguration* >(this)->GetAppEventConfig_Impl()->aMacroTable.Seek( nId );
-//STRIP001
-//STRIP001     return SFX_APP()->GetMacroConfig()->GetMacroInfo_Impl( pMacro );
 /*?*/ }
 
 //==========================================================================
@@ -491,97 +363,16 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 
 /*?*/ BOOL SfxEventConfigItem_Impl::LoadXML( SvStream& rInStream )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     ::framework::EventsConfig aCfg;
-//STRIP001     if ( ::framework::EventsConfiguration::LoadEventsConfig( rInStream, aCfg ) )
-//STRIP001     {
-//STRIP001         long nCount = aCfg.aEventNames.getLength();
-//STRIP001         for ( long i=0; i<nCount; i++ )
-//STRIP001         {
-//STRIP001             SvxMacro* pMacro = SfxEvents_Impl::ConvertToMacro( aCfg.aEventsProperties[i], NULL, TRUE );
-//STRIP001             USHORT nID = (USHORT) SfxEventConfiguration::GetEventId_Impl( aCfg.aEventNames[i] );
-//STRIP001             if ( nID && pMacro )
-//STRIP001                 pEvConfig->PropagateEvent_Impl( pObjShell, nID, pMacro );
-//STRIP001          else
-//STRIP001              DBG_ERROR("Suspicious event binding!");
-//STRIP001         }
-//STRIP001
-//STRIP001      return TRUE;
-//STRIP001     }
-//STRIP001
-//STRIP001     return FALSE;
 /*?*/ }
 
 //==========================================================================
 
 /*?*/ BOOL SfxEventConfigItem_Impl::Store(SvStream& rStream)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     USHORT nWarn=0;
-//STRIP001     if ( bWarning )
-//STRIP001         nWarn |= 0x01;
-//STRIP001     if ( bAlwaysWarning )
-//STRIP001         nWarn |= 0x02;
-//STRIP001     rStream << nVersion << nWarn;
-//STRIP001     aMacroTable.Write( rStream );
-//STRIP001     return TRUE;
 /*?*/ }
 
 /*?*/ BOOL SfxEventConfigItem_Impl::StoreXML( SvStream& rOutStream )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     // get the event names
-//STRIP001     ResStringArray aEventNames( SfxResId( EVENT_NAMES_ARY ) );
-//STRIP001     long nNamesCount = aEventNames.Count();
-//STRIP001
-//STRIP001     // create two sequences for names and properties
-//STRIP001     SEQUENCE < OUSTRING > aSequence( nNamesCount );
-//STRIP001     SEQUENCE < ANY > aData( nNamesCount );
-//STRIP001
-//STRIP001     // fill in the names
-//STRIP001     OUSTRING* pNames = aSequence.getArray();
-//STRIP001     long i;
-//STRIP001     for ( i=0; i<nNamesCount; i++ )
-//STRIP001         pNames[i] = aEventNames.GetString( (USHORT) i);
-//STRIP001
-//STRIP001     REFERENCE< XEVENTSSUPPLIER > xSupplier;
-//STRIP001  if ( pObjShell )
-//STRIP001  {
-//STRIP001      xSupplier = REFERENCE< XEVENTSSUPPLIER >( pObjShell->GetModel(), UNO_QUERY );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      xSupplier = REFERENCE< XEVENTSSUPPLIER >
-//STRIP001                 ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-//STRIP001                         ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
-//STRIP001  }
-//STRIP001
-//STRIP001     // fill in the bindings
-//STRIP001     REFERENCE< XNAMEREPLACE > xEvents = xSupplier->getEvents();
-//STRIP001     SvxMacroTableDtor& rTable = aMacroTable;
-//STRIP001     long nCount = (long) rTable.Count();
-//STRIP001     for ( i=0; i<nCount; i++ )
-//STRIP001     {
-//STRIP001         USHORT nID = (USHORT) rTable.GetObjectKey( i );
-//STRIP001         OUSTRING aEventName = pEvConfig->GetEventName_Impl( nID );
-//STRIP001         if ( aEventName.getLength() )
-//STRIP001         {
-//STRIP001             // search name
-//STRIP001             for ( long n=0; n<(long)nNamesCount; n++ )
-//STRIP001             {
-//STRIP001                 if ( aSequence[n] == aEventName )
-//STRIP001                 {
-//STRIP001                     aData[n] = xEvents->getByName( aEventName );
-//STRIP001                     break;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001
-//STRIP001          DBG_ASSERT( n<nNamesCount, "Unknown event!" );
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     ::framework::EventsConfig aCfg;
-//STRIP001     aCfg.aEventNames = aSequence;
-//STRIP001     aCfg.aEventsProperties = aData;
-//STRIP001
-//STRIP001     return ::framework::EventsConfiguration::StoreEventsConfig( rOutStream, aCfg );
 /*?*/ }
 
 //==========================================================================
@@ -605,35 +396,10 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 
 /*?*/ int SfxEventConfigItem_Impl::Load( SotStorage& rStorage )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     SotStorageStreamRef xStream = rStorage.OpenSotStream( SfxEventConfigItem_Impl::GetStreamName(), STREAM_STD_READ );
-//STRIP001     if ( xStream->GetError() )
-//STRIP001         return SfxConfigItem::ERR_READ;
-//STRIP001     else
-//STRIP001  {
-//STRIP001      if ( bInitialized )
-//STRIP001      {
-//STRIP001          aMacroTable.DelDtor();
-//STRIP001          pEvConfig->PropagateEvents_Impl( pObjShell, aMacroTable );
-//STRIP001      }
-//STRIP001
-//STRIP001         if ( LoadXML( *xStream ) )
-//STRIP001          return SfxConfigItem::ERR_OK;
-//STRIP001      else
-//STRIP001          return SfxConfigItem::ERR_READ;
-//STRIP001  }
 /*?*/ }
 
 /*?*/ BOOL SfxEventConfigItem_Impl::Store( SotStorage& rStorage )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  if ( pObjShell )
-//STRIP001      // DocEventConfig is stored with the document
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001     SotStorageStreamRef xStream = rStorage.OpenSotStream( SfxEventConfigItem_Impl::GetStreamName(), STREAM_STD_READWRITE|STREAM_TRUNC );
-//STRIP001     if ( xStream->GetError() )
-//STRIP001         return FALSE;
-//STRIP001     else
-//STRIP001         return StoreXML( *xStream );
 /*?*/ }
 
 
@@ -661,11 +427,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 
 /*?*/ void SfxEventConfiguration::AddEvents( SfxMacroTabPage* pPage ) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
-//STRIP001     USHORT nCount = pEventArr->Count();
-//STRIP001     for (USHORT n=1; n<nCount; n++)
-//STRIP001      if ( (*pEventArr)[n]->aEventName.Len() )
-//STRIP001          pPage->AddEvent( (*pEventArr)[n]->aEventName, (*pEventArr)[n]->nEventId );
 /*?*/ }
 
 /*?*/ SvxMacroTableDtor* SfxEventConfiguration::GetAppEventTable()
@@ -683,26 +444,11 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 
 /*?*/ void SfxEventConfiguration::SetAppEventTable( const SvxMacroTableDtor& rTable )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     //GetAppEventConfig_Impl()->aMacroTable = rTable;
-//STRIP001     //pAppEventConfig->SetDefault(FALSE);
-//STRIP001     PropagateEvents_Impl( NULL, rTable );
 /*?*/ }
 
 /*?*/ void SfxEventConfiguration::SetDocEventTable( SfxObjectShell *pDoc,
 /*?*/     const SvxMacroTableDtor& rTable )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if ( pDoc )
-//STRIP001     {
-//STRIP001      // if CfgMgr does not exist, create it, otherwise ConfigItem will not have a ConfigManager!
-//STRIP001      pDoc->GetConfigManager(TRUE);
-//STRIP001         pDocEventConfig = pDoc->GetEventConfig_Impl( TRUE );
-//STRIP001         //pDocEventConfig->aMacroTable = rTable;
-//STRIP001         //pDocEventConfig->SetDefault(FALSE);
-//STRIP001         pDoc->SetModified(TRUE);
-//STRIP001         PropagateEvents_Impl( pDoc, rTable );
-//STRIP001     }
-//STRIP001     else
-//STRIP001         DBG_ERROR( "Kein Dokument!" );
 /*?*/ }
 
 //--------------------------------------------------------------------------
@@ -789,44 +535,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/                                                  USHORT nId,
 /*?*/                                                  const SvxMacro* pMacro )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     REFERENCE< XEVENTSSUPPLIER > xSupplier;
-//STRIP001  if ( pDoc )
-//STRIP001  {
-//STRIP001      xSupplier = REFERENCE< XEVENTSSUPPLIER >( pDoc->GetModel(), UNO_QUERY );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      xSupplier = REFERENCE< XEVENTSSUPPLIER >
-//STRIP001                 ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-//STRIP001                         ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( xSupplier.is() )
-//STRIP001     {
-//STRIP001         REFERENCE< XNAMEREPLACE > xEvents = xSupplier->getEvents();
-//STRIP001
-//STRIP001         bIgnoreConfigure = sal_True;
-//STRIP001
-//STRIP001         OUSTRING aEventName = GetEventName_Impl( nId );
-//STRIP001
-//STRIP001         if ( aEventName.getLength() )
-//STRIP001         {
-//STRIP001             ANY aEventData = CreateEventData_Impl( pMacro );
-//STRIP001
-//STRIP001             try
-//STRIP001             {
-//STRIP001                 xEvents->replaceByName( aEventName, aEventData );
-//STRIP001             }
-//STRIP001             catch( ::com::sun::star::lang::IllegalArgumentException )
-//STRIP001             { DBG_ERRORFILE( "PropagateEvents_Impl: caught IllegalArgumentException" ) }
-//STRIP001             catch( ::com::sun::star::container::NoSuchElementException )
-//STRIP001             { DBG_ERRORFILE( "PropagateEvents_Impl: caught NoSuchElementException" ) }
-//STRIP001         }
-//STRIP001         else
-//STRIP001             DBG_WARNING( "PropagateEvents_Impl: Got unkown event" );
-//STRIP001
-//STRIP001         bIgnoreConfigure = sal_False;
-//STRIP001     }
 /*?*/ }
 
 // -------------------------------------------------------------------------------------------------------
@@ -1100,28 +808,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/     return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL SfxEventConfiguration::Export( SvStream* pInStream, SvStream& rOutStream, SfxObjectShell* pDoc )
-//STRIP001 {
-//STRIP001     if ( pDoc )
-//STRIP001     {
-//STRIP001         DBG_ASSERT( !pInStream, "DocEventConfig can't be converted!" );
-//STRIP001         SfxEventConfigItem_Impl* pCfg = pDoc->GetEventConfig_Impl();
-//STRIP001         if ( pCfg )
-//STRIP001             return pCfg->Store( rOutStream );
-//STRIP001         DBG_ERROR("Couldn't create EventConfiguration!");
-//STRIP001         return FALSE;
-//STRIP001     }
-//STRIP001     else if ( pInStream )
-//STRIP001     {
-//STRIP001         SfxEventConfiguration aConfig;
-//STRIP001         if ( aConfig.GetAppEventConfig_Impl()->LoadXML( *pInStream ) )
-//STRIP001             return aConfig.pAppEventConfig->Store( rOutStream );
-//STRIP001         return FALSE;
-//STRIP001     }
-//STRIP001
-//STRIP001     DBG_ERROR( "No InStream!" );
-//STRIP001     return FALSE;
-//STRIP001 }
 
 
 }
