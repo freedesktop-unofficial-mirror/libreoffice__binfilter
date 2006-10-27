@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swatrset.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:17:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:14:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,25 +38,10 @@
 
 #include <hintids.hxx>
 
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
 #define ITEMID_LINE             SID_ATTR_LINE_STYLE
-// auto strip #ifndef _SVX_BOLNITEM_HXX //autogen
-// auto strip #include <bf_svx/bolnitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
-// auto strip #include <bf_svx/boxitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _XTABLE_HXX //autogen
-// auto strip #include <bf_svx/xtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _OFF_APP_HXX //autogen
-// auto strip #include <bf_offmgr/app.hxx>
-// auto strip #endif
 
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
@@ -78,12 +63,6 @@
 #ifndef _NODE_HXX //autogen
 #include <node.hxx>
 #endif
-// auto strip #ifndef _FORMAT_HXX //autogen
-// auto strip #include <format.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWATRSET_HXX
-// auto strip #include <swatrset.hxx>
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>       // fuer SetModifyAtAttr
 #endif
