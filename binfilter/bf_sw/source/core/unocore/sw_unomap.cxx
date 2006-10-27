@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unomap.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:09:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:23:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,25 +42,13 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SVX_UNOMID_HXX
-// auto strip #include <bf_svx/unomid.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_TYPEGENERATION_HXX
 #include <comphelper/TypeGeneration.hxx>
 #endif
 #ifndef _COM_SUN_STAR_BEANS_PropertyAttribute_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
-// auto strip #include <com/sun/star/text/PageNumberType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
-// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _UNOMAP_HXX
 #include <unomap.hxx>
 #endif
