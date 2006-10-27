@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_scene3d.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:34:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:51:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
 #ifndef _SVDITER_HXX
 #include "svditer.hxx"
@@ -50,29 +49,17 @@
 #include <stdlib.h>
 #endif
 
-// auto strip #ifndef _E3D_GLOBL3D_HXX
-// auto strip #include "globl3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
 
-// auto strip #ifndef _E3D_SCENE3D_HXX
-// auto strip #include "scene3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_UNDO_HXX
 #include "e3dundo.hxx"
 #endif
 
-// auto strip #ifndef _B3D_BASE3D_HXX
-// auto strip #include <goodies/base3d.hxx>
-// auto strip #endif
 
 #ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
@@ -90,33 +77,15 @@
 #include "svxids.hrc"
 #endif
 
-// auto strip #ifndef _SVX_COLRITEM_HXX
-// auto strip #include "colritem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVXE3DITEM_HXX
-// auto strip #include "e3ditem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNTRIT_HXX
-// auto strip #include "xlntrit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLTRIT_HXX
-// auto strip #include "xfltrit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include "svx3ditems.hxx"
-// auto strip #endif
 
 #ifndef _SFX_WHITER_HXX
 #include <svtools/whiter.hxx>
 #endif
 
-// auto strip #ifndef _SVX_XFLFTRIT_HXX
-// auto strip #include "xflftrit.hxx"
-// auto strip #endif
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
@@ -244,45 +213,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL E3dScene::AreThereTransparentParts() const
-//STRIP001 {
-//STRIP001  BOOL bRetval(FALSE);
-//STRIP001
-//STRIP001  SdrObjListIter a3DIterator(*pSub, IM_DEEPWITHGROUPS);
-//STRIP001  while ( !bRetval && a3DIterator.IsMore() )
-//STRIP001  {
-//STRIP001      SdrObject* pObj = a3DIterator.Next();
-//STRIP001
-//STRIP001      // Nur darstellbare Objekte bewerten
-//STRIP001      if(pObj->ISA(E3dCompoundObject))
-//STRIP001      {
-//STRIP001          // get const ItemSet reference
-//STRIP001          const SfxItemSet& rSet = pObj->GetItemSet();
-//STRIP001
-//STRIP001          // Flaechenattribut testen
-//STRIP001          UINT16 nFillTrans = ((const XFillTransparenceItem&)(rSet.Get(XATTR_FILLTRANSPARENCE))).GetValue();
-//STRIP001          if(nFillTrans != 0)
-//STRIP001              bRetval = TRUE;
-//STRIP001
-//STRIP001          if(!bRetval)
-//STRIP001          {
-//STRIP001              // Linienattribut testen
-//STRIP001              UINT16 nLineTransparence = ((const XLineTransparenceItem&)(rSet.Get(XATTR_LINETRANSPARENCE))).GetValue();
-//STRIP001              if(nLineTransparence != 0)
-//STRIP001                  bRetval = TRUE;
-//STRIP001
-//STRIP001              if(!bRetval)
-//STRIP001              {
-//STRIP001                  // test FloatTransparence
-//STRIP001                  const XFillFloatTransparenceItem& rFloatTrans = ((const XFillFloatTransparenceItem&)(rSet.Get(XATTR_FILLFLOATTRANSPARENCE)));
-//STRIP001                  if(rFloatTrans.IsEnabled())
-//STRIP001                      bRetval = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRetval;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -290,10 +220,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 UINT16 E3dScene::GetObjIdentifier() const
-//STRIP001 {
-//STRIP001  return E3D_SCENE_ID;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -301,11 +227,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 USHORT E3dScene::GetHdlCount() const
-//STRIP001 {
-//STRIP001  // Ueberladung aus E3dObject rueckgaengig machen
-//STRIP001  return SdrAttrObj::GetHdlCount();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -313,20 +234,11 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::AddToHdlList(SdrHdlList& rHdlList) const
-//STRIP001 {
-//STRIP001  // Ueberladung aus E3dObject rueckgaengig machen
-//STRIP001  SdrAttrObj::AddToHdlList(rHdlList);
-//STRIP001 }
 
 /*************************************************************************
 |*
 \************************************************************************/
 
-//STRIP001 FASTBOOL E3dScene::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -348,12 +260,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::NbcMove(const Size& rSize)
-//STRIP001 {
-//STRIP001  Rectangle aNewSnapRect = GetSnapRect();
-//STRIP001  MoveRect(aNewSnapRect, rSize);
-//STRIP001  NbcSetSnapRect(aNewSnapRect);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -465,14 +371,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::SetDoubleBuffered(FASTBOOL bBuff)
-//STRIP001 {
-//STRIP001  if ( bDoubleBuffered != (BOOL)bBuff )
-//STRIP001  {
-//STRIP001      bDoubleBuffered = bBuff;
-//STRIP001      SetRectsDirty();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -480,14 +378,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::SetClipping(FASTBOOL bClip)
-//STRIP001 {
-//STRIP001  if ( bClipping != (BOOL)bClip )
-//STRIP001  {
-//STRIP001      bClipping = bClip;
-//STRIP001      SetRectsDirty();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -495,14 +385,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::SetFitInSnapRect(FASTBOOL bFit)
-//STRIP001 {
-//STRIP001  if ( bFitInSnapRect != (BOOL)bFit )
-//STRIP001  {
-//STRIP001      bFitInSnapRect = bFit;
-//STRIP001      SetRectsDirty();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -947,31 +829,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dObject::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dScene& r3DObj = (const E3dScene&) rObj;
-//STRIP001  aCamera          = r3DObj.aCamera;
-//STRIP001  bDoubleBuffered  = r3DObj.bDoubleBuffered;
-//STRIP001  bClipping        = r3DObj.bClipping;
-//STRIP001  bFitInSnapRect   = r3DObj.bFitInSnapRect;
-//STRIP001  nSortingMode     = r3DObj.nSortingMode;
-//STRIP001
-//STRIP001  // neu ab 377:
-//STRIP001  aCameraSet = r3DObj.aCameraSet;
-//STRIP001  ImpSetSceneItemsFromCamera();
-//STRIP001
-//STRIP001  // neu ab 383:
-//STRIP001  aLightGroup = r3DObj.aLightGroup;
-//STRIP001  ImpSetLightItemsFromLightGroup();
-//STRIP001  bDither = r3DObj.bDither;
-//STRIP001
-//STRIP001  bBoundVolValid = FALSE;
-//STRIP001  RebuildLists();
-//STRIP001
-//STRIP001  SetRectsDirty();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1111,52 +968,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::RotateScene (const Point& rRef, long nWink, double sn, double cs)
-//STRIP001 {
-//STRIP001  Point UpperLeft, LowerRight, Center, NewCenter;
-//STRIP001
-//STRIP001  UpperLeft = aOutRect.TopLeft();
-//STRIP001  LowerRight = aOutRect.BottomRight();
-//STRIP001
-//STRIP001  long dxOutRectHalf = labs(UpperLeft.X() - LowerRight.X());
-//STRIP001  dxOutRectHalf /= 2;
-//STRIP001  long dyOutRectHalf = labs(UpperLeft.Y() - LowerRight.Y());
-//STRIP001  dyOutRectHalf /= 2;
-//STRIP001
-//STRIP001  Rectangle RectQuelle(aOutRect), RectZiel(aOutRect);
-//STRIP001
-//STRIP001     // Nur der Mittelpunkt wird bewegt. Die Ecken werden von NbcMove bewegt.
-//STRIP001     // Fuer das Drehen wird von mir ein kartesisches Koordinatensystem verwendet in dem der Drehpunkt
-//STRIP001     // der Nullpunkt ist und die Y- Achse nach oben ansteigt, die X-Achse nach rechts.
-//STRIP001     // Dies muss bei den Y-Werten beachtet werden. (Auf dem Blatt zeigt die Y-Achse nach unten
-//STRIP001  Center.X() = (UpperLeft.X() + dxOutRectHalf) - rRef.X();
-//STRIP001  Center.Y() = -((UpperLeft.Y() + dyOutRectHalf) - rRef.Y());
-//STRIP001                // Ein paar Spezialfaelle zuerst abhandeln (n*90 Grad n ganzzahlig)
-//STRIP001  if (sn==1.0 && cs==0.0) { // 90deg
-//STRIP001      NewCenter.X() = -Center.Y();
-//STRIP001      NewCenter.Y() = -Center.X();
-//STRIP001  } else if (sn==0.0 && cs==-1.0) { // 180deg
-//STRIP001      NewCenter.X() = -Center.X();
-//STRIP001      NewCenter.Y() = -Center.Y();
-//STRIP001  } else if (sn==-1.0 && cs==0.0) { // 270deg
-//STRIP001      NewCenter.X() =  Center.Y();
-//STRIP001      NewCenter.Y() = -Center.X();
-//STRIP001  }
-//STRIP001  else          // Hier wird um einen beliebigen Winkel in mathematisch positiver Richtung gedreht!
-//STRIP001  {             // xneu = x * cos(alpha) - y * sin(alpha)
-//STRIP001                // yneu = x * sin(alpha) + y * cos(alpha)
-//STRIP001                // Unten Rechts wird nicht gedreht: die Seiten von RectQuelle muessen parallel
-//STRIP001                // zu den Koordinatenachsen bleiben.
-//STRIP001      NewCenter.X() = (long) (Center.X() * cs - Center.Y() * sn);
-//STRIP001      NewCenter.Y() = (long) (Center.X() * sn + Center.Y() * cs);
-//STRIP001  }
-//STRIP001
-//STRIP001  Size Differenz;
-//STRIP001  Point DiffPoint = (NewCenter - Center);
-//STRIP001  Differenz.Width() = DiffPoint.X();
-//STRIP001  Differenz.Height() = -DiffPoint.Y();  // Man beachte dass die Y-Achse nach unten positiv gezaehlt wird.
-//STRIP001  NbcMove (Differenz);  // fuehrt die eigentliche Koordinatentransformation durch.
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1164,19 +975,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulScene3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1184,10 +982,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralScene3d);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1197,30 +991,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dScene::NbcRotate(const Point& rRef, long nWink, double sn, double cs)
-//STRIP001 {
-//STRIP001      // Also derzeit sind die Klebepunkte relativ zum aOutRect der Szene definiert. Vor dem Drehen
-//STRIP001      // werden die Klebepunkte relativ zur Seite definiert. Sie nehmen an der Drehung der Szene noch nicht Teil
-//STRIP001      // dafuer gibt es den
-//STRIP001  SetGlueReallyAbsolute(TRUE);
-//STRIP001
-//STRIP001      // So dass war die Szene, ab jetzt kommen die Objekte in der Szene
-//STRIP001      // 3D-Objekte gibt es nur ein einziges das kann zwar mehrere Flaechen haben aber die Flaechen
-//STRIP001      // muessen ja nicht zusammenhaengend sein
-//STRIP001      // es ermoeglicht den Zugriff auf Kindobjekte
-//STRIP001      // Ich gehe also die gesamte Liste durch und rotiere um die Z-Achse die durch den
-//STRIP001      // Mittelpunkt von aOutRect geht (Satz von Steiner), also RotateZ
-//STRIP001
-//STRIP001  RotateScene (rRef, nWink, sn, cs);  // Rotiert die Szene
-//STRIP001  double fWinkelInRad = nWink/100 * F_PI180;
-//STRIP001  NbcRotateZ(fWinkelInRad);
-//STRIP001  FitSnapRectToBoundVol();
-//STRIP001  SetRectsDirty();    // Veranlasst eine Neuberechnung aller BoundRects
-//STRIP001  NbcRotateGluePoints(rRef,nWink,sn,cs);  // Rotiert die Klebepunkte (die haben noch Koordinaten relativ
-//STRIP001                                          // zum Urpsung des Blattes
-//STRIP001  SetGlueReallyAbsolute(FALSE);  // ab jetzt sind sie wieder relativ zum BoundRect (also dem aOutRect definiert)
-//STRIP001  SetRectsDirty();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1789,23 +1559,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL E3dScene::IsBreakObjPossible()
-//STRIP001 {
-//STRIP001  // Szene ist aufzubrechen, wenn alle Mitglieder aufzubrechen sind
-//STRIP001  SdrObjList* pSubList = GetSubList();
-//STRIP001  if(pSubList)
-//STRIP001  {
-//STRIP001      SdrObjListIter a3DIterator(*pSubList, IM_DEEPWITHGROUPS);
-//STRIP001      while ( a3DIterator.IsMore() )
-//STRIP001      {
-//STRIP001          E3dObject* pObj = (E3dObject*) a3DIterator.Next();
-//STRIP001          DBG_ASSERT(pObj->ISA(E3dObject), "AW: In Szenen sind nur 3D-Objekte erlaubt!");
-//STRIP001          if(!pObj->IsBreakObjPossible())
-//STRIP001              return FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*************************************************************************
 |*
