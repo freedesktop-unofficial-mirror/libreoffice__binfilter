@@ -4,9 +4,9 @@
  *
  *  $RCSfile: virtoutp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:55:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:56:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,22 +62,17 @@ private:
     Size            aSize;
     USHORT          nCount;
 
-//STRIP001  BOOL DoesFit( const Size &rOut );
 
 public:
     SwLayVout() : pVirDev(NULL), pOut(0), aSize(0, VIRTUALHEIGHT), nCount(0) {}
     ~SwLayVout() { delete pVirDev; }
 
     /// OD 27.09.2002 #103636# - change 2nd parameter <rRect> - no longer <const>
-//STRIP001     void Enter( ViewShell *pShell, SwRect &rRect, BOOL bOn );
-//STRIP001  void Leave() { --nCount; Flush(); }
 
     void SetOrgRect( SwRect &rRect ) { aOrgRect = rRect; }
     const SwRect& GetOrgRect() const { return aOrgRect; }
 
     BOOL IsFlushable() { return 0 != pOut; }
-//STRIP001  void _Flush();
-//STRIP001  void Flush() { if( pOut ) _Flush(); }
 };
 
 
