@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_deflt3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:29:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:47:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
-// auto strip #ifndef _E3D_DEFLT3D_HXX
-// auto strip #include "deflt3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_CUBE3D_HXX
 #include "cube3d.hxx"
@@ -47,13 +44,7 @@
 #include "svxids.hrc"
 #endif
 
-// auto strip #ifndef _SVX_COLRITEM_HXX
-// auto strip #include "colritem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVXE3DITEM_HXX
-// auto strip #include "e3ditem.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_dlight3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:29:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:48:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,6 @@
 #include "dlight3d.hxx"
 #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dDistantLight, E3dLight);
@@ -201,13 +198,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dDistantLight::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dLight::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dDistantLight& r3DObj = (const E3dDistantLight&)rObj;
-//STRIP001  aDirection = r3DObj.aDirection;
-//STRIP001 }
 
 
 }
