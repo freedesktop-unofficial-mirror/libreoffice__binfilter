@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvcontrol.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:39:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:04:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -179,20 +179,9 @@ struct ScCsvLayoutData
 
     explicit                    ScCsvLayoutData();
 
-//STRIP001     /** Returns differences to rData.
-//STRIP001         @descr  For each difference the appropriate bit is set in the returned value. */
-//STRIP001     ScCsvDiff                   GetDiff( const ScCsvLayoutData& rData ) const;
 };
 
-//STRIP001 inline bool operator==( const ScCsvLayoutData& rData1, const ScCsvLayoutData& rData2 )
-//STRIP001 {
-//STRIP001     return rData1.GetDiff( rData2 ) == CSV_DIFF_EQUAL;
-//STRIP001 }
 
-//STRIP001 inline bool operator!=( const ScCsvLayoutData& rData1, const ScCsvLayoutData& rData2 )
-//STRIP001 {
-//STRIP001     return !(rData1 == rData2);
-//STRIP001 }
 
 
 // ============================================================================
@@ -319,23 +308,6 @@ public:
 
     // repaint helpers --------------------------------------------------------
 
-//STRIP001     /** Sets the graphic invalid (next Redraw() will not use cached graphic). */
-//STRIP001     inline void                 InvalidateGfx() { mbValidGfx = false; }
-//STRIP001     /** Sets the graphic valid (next Redraw() will use cached graphic). */
-//STRIP001     inline void                 ValidateGfx() { mbValidGfx = true; }
-//STRIP001     /** Returns true, if cached graphic is valid. */
-//STRIP001     inline bool                 IsValidGfx() const { return mbValidGfx; }
-//STRIP001
-//STRIP001     /** Repaints all controls.
-//STRIP001         @param bInvalidate  true = invalidates graphics of this control (not all). */
-//STRIP001     void                        Repaint( bool bInvalidate = false );
-//STRIP001     /** Increases no-repaint counter (controls do not repaint until the last EnableRepaint()). */
-//STRIP001     void                        DisableRepaint();
-//STRIP001     /** Decreases no-repaint counter and repaints if counter reaches 0.
-//STRIP001         @param bInvalidate  true = invalidates graphics of this control (not all). */
-//STRIP001     void                        EnableRepaint( bool bInvalidate = false );
-//STRIP001     /** Returns true, if controls will not repaint. */
-//STRIP001     inline bool                 IsNoRepaint() const { return mrData.mnNoRepaint > 0; }
 
     // command handling -------------------------------------------------------
 
@@ -359,88 +331,12 @@ public:
     /** Returns true, if the Right-to-Left layout mode is active. */
     inline bool                 IsRTL() const { return mrData.mbAppRTL; }
 
-//STRIP001     /** Returns the number of available positions. */
-//STRIP001     inline sal_Int32            GetPosCount() const { return mrData.mnPosCount; }
-//STRIP001     /** Returns the number of visible positions. */
-//STRIP001     sal_Int32                   GetVisPosCount() const;
-//STRIP001     /** Returns the first visible position. */
-//STRIP001     inline sal_Int32            GetFirstVisPos() const { return mrData.mnPosOffset; }
-//STRIP001     /** Returns the last visible position. */
-//STRIP001     inline sal_Int32            GetLastVisPos() const { return GetFirstVisPos() + GetVisPosCount(); }
-//STRIP001     /** Returns highest possible position for first visible character. */
-//STRIP001     sal_Int32                   GetMaxPosOffset() const;
-//STRIP001
-//STRIP001     /** Returns true, if it is allowed to set a split at nPos. */
-//STRIP001     bool                        IsValidSplitPos( sal_Int32 nPos ) const;
-//STRIP001     /** Returns true, if nPos is an allowed AND visible split position. */
-//STRIP001     bool                        IsVisibleSplitPos( sal_Int32 nPos ) const;
-//STRIP001
-//STRIP001     /** Returns the width of the header column. */
-//STRIP001     inline sal_Int32            GetHdrWidth() const { return mrData.mnHdrWidth; }
-//STRIP001     /** Returns the width of one character column. */
-//STRIP001     inline sal_Int32            GetCharWidth() const { return mrData.mnCharWidth; }
-//STRIP001     /** Returns the start position of the header column. */
-//STRIP001     sal_Int32                   GetHdrX() const;
-//STRIP001     /** Returns the X position of the first pixel of the data area. */
-//STRIP001     sal_Int32                   GetFirstX() const;
-//STRIP001     /** Returns the X position of the last pixel of the data area. */
-//STRIP001     sal_Int32                   GetLastX() const;
-//STRIP001     /** Returns output X coordinate of the specified position. */
-//STRIP001     sal_Int32                   GetX( sal_Int32 nPos ) const;
-//STRIP001     /** Returns position from output coordinate. */
-//STRIP001     sal_Int32                   GetPosFromX( sal_Int32 nX ) const;
-//STRIP001
-//STRIP001     /** Returns the number of data lines. */
-//STRIP001     inline sal_Int32            GetLineCount() const { return mrData.mnLineCount; }
-//STRIP001     /** Returns the number of visible lines (including partly visible bottom line). */
-//STRIP001     sal_Int32                   GetVisLineCount() const;
-//STRIP001     /** Returns index of first visible line. */
-//STRIP001     inline sal_Int32            GetFirstVisLine() const { return mrData.mnLineOffset; }
-//STRIP001     /** Returns index of last visible line. */
-//STRIP001     sal_Int32                   GetLastVisLine() const;
-//STRIP001     /** Returns highest possible index for first line. */
-//STRIP001     sal_Int32                   GetMaxLineOffset() const;
-//STRIP001
-//STRIP001     /** Returns true, if nLine is a valid line index. */
-//STRIP001     bool                        IsValidLine( sal_Int32 nLine ) const;
-//STRIP001     /** Returns true, if nLine is a valid and visible line index. */
-//STRIP001     bool                        IsVisibleLine( sal_Int32 nLine ) const;
-//STRIP001
-//STRIP001     /** Returns the height of the header line. */
-//STRIP001     inline sal_Int32            GetHdrHeight() const { return mrData.mnHdrHeight; }
-//STRIP001     /** Returns the height of one line. */
-//STRIP001     inline sal_Int32            GetLineHeight() const { return mrData.mnLineHeight; }
-//STRIP001     /** Returns output Y coordinate of the specified line. */
-//STRIP001     sal_Int32                   GetY( sal_Int32 nLine ) const;
-//STRIP001     /** Returns line index from output coordinate. */
-//STRIP001     sal_Int32                   GetLineFromY( sal_Int32 nY ) const;
-//STRIP001
-//STRIP001     /** Returns the ruler cursor position. */
-//STRIP001     inline sal_Int32            GetRulerCursorPos() const { return mrData.mnPosCursor; }
-//STRIP001     /** Returns the data grid cursor position (not column index!). */
-//STRIP001     inline sal_Int32            GetGridCursorPos() const { return mrData.mnColCursor; }
 
     // static helpers ---------------------------------------------------------
 
-//STRIP001     /** Inverts a rectangle in the specified output device. */
-//STRIP001     static void                 ImplInvertRect( OutputDevice& rOutDev, const Rectangle& rRect );
 
-//STRIP001     /** Returns direction code for the keys LEFT, RIGHT, HOME, END.
-//STRIP001         @param bHomeEnd  false = ignore HOME and END key. */
-//STRIP001     static ScMoveMode           GetHorzDirection( sal_uInt16 nCode, bool bHomeEnd );
-//STRIP001     /** Returns direction code for the keys UP, DOWN, HOME, END, PAGE UP, PAGE DOWN.
-//STRIP001         @param bHomeEnd  false = ignore HOME and END key. */
-//STRIP001     static ScMoveMode           GetVertDirection( sal_uInt16 nCode, bool bHomeEnd );
 
     // accessibility ----------------------------------------------------------
-//STRIP001 public:
-//STRIP001     /** Creates and returns the accessible object of this control. Do not overwrite in
-//STRIP001         derived classes, use ImplCreateAccessible() instead. */
-//STRIP001     virtual XAccessibleRef     CreateAccessible();
-//STRIP001
-//STRIP001 protected:
-//STRIP001     /** Derived classes create a new accessible object here. */
-//STRIP001     virtual ScAccessibleCsvControl* ImplCreateAccessible() = NULL;
 };
 
 

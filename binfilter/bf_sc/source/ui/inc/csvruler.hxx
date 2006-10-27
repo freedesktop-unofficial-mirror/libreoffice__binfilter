@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvruler.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:39:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:04:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,125 +86,15 @@ public:
     explicit                    ScCsvRuler( ScCsvControl& rParent );
 
     // common ruler handling --------------------------------------------------
-//STRIP001 public:
-//STRIP001     /** Sets position and size of the ruler. The height is calculated internally. */
-//STRIP001     virtual void                SetPosSizePixel(
-//STRIP001                                     sal_Int32 nX, sal_Int32 nY,
-//STRIP001                                     sal_Int32 nWidth, sal_Int32 nHeight,
-//STRIP001                                     sal_uInt16 nFlags = WINDOW_POSSIZE_ALL );
-//STRIP001
-//STRIP001     /** Apply current layout data to the ruler. */
-//STRIP001     void                        ApplyLayout( const ScCsvLayoutData& rOldData );
-//STRIP001
-//STRIP001 private:
-//STRIP001     /** Reads colors from system settings. */
-//STRIP001     void                        InitColors();
-//STRIP001     /** Initializes all data dependent from the control's size. */
-//STRIP001     void                        InitSizeData();
-//STRIP001
-//STRIP001     /** Moves cursor to a new position.
-//STRIP001         @param bScroll  TRUE = The method may scroll the ruler. */
-//STRIP001     void                        MoveCursor( sal_Int32 nPos, bool bScroll = true );
-//STRIP001     /** Moves cursor to the given direction. */
-//STRIP001     void                        MoveCursorRel( ScMoveMode eDir );
-//STRIP001     /** Sets cursor to an existing split, according to eDir. */
-//STRIP001     void                        MoveCursorToSplit( ScMoveMode eDir );
-//STRIP001     /** Scrolls data grid vertically. */
-//STRIP001     void                        ScrollVertRel( ScMoveMode eDir );
 
     // split handling ---------------------------------------------------------
-//STRIP001 public:
-//STRIP001     /** Returns the split array. */
-//STRIP001     inline const ScCsvSplits&   GetSplits() const { return maSplits; }
-//STRIP001     /** Returns the number of splits. */
-//STRIP001     inline sal_uInt32           GetSplitCount() const
-//STRIP001                                     { return maSplits.Count(); }
-//STRIP001     /** Returns the position of the specified split. */
-//STRIP001     inline sal_Int32            GetSplitPos( sal_uInt32 nIndex ) const
-//STRIP001                                     { return maSplits[ nIndex ]; }
-//STRIP001     /** Finds a position nearest to nPos which does not cause scrolling the visible area. */
-//STRIP001     sal_Int32                   GetNoScrollPos( sal_Int32 nPos ) const;
-//STRIP001
-//STRIP001     /** Returns true if at position nPos is a split. */
-//STRIP001     inline bool                 HasSplit( sal_Int32 nPos ) const { return maSplits.HasSplit( nPos ); }
-//STRIP001     /** Inserts a split. */
-//STRIP001     void                        InsertSplit( sal_Int32 nPos );
-//STRIP001     /** Removes a split. */
-//STRIP001     void                        RemoveSplit( sal_Int32 nPos );
-//STRIP001     /** Moves a split from nPos to nNewPos. */
-//STRIP001     void                        MoveSplit( sal_Int32 nPos, sal_Int32 nNewPos );
-//STRIP001     /** Removes all splits of the ruler. */
-//STRIP001     void                        RemoveAllSplits();
-//STRIP001
-//STRIP001 private:
-//STRIP001     /** Finds next position without a split. */
-//STRIP001     sal_Int32                   FindEmptyPos( sal_Int32 nPos, ScMoveMode eDir ) const;
-//STRIP001
-//STRIP001     /** Moves split and cursor to nNewPos and commits event. */
-//STRIP001     void                        MoveCurrSplit( sal_Int32 nNewPos );
-//STRIP001     /** Moves split and cursor to the given direction and commits event. */
-//STRIP001     void                        MoveCurrSplitRel( ScMoveMode eDir );
 
     // event handling ---------------------------------------------------------
-//STRIP001 protected:
-//STRIP001     virtual void                Resize();
-//STRIP001     virtual void                GetFocus();
-//STRIP001     virtual void                LoseFocus();
-//STRIP001     virtual void                DataChanged( const DataChangedEvent& rDCEvt );
-//STRIP001
-//STRIP001     virtual void                MouseButtonDown( const MouseEvent& rMEvt );
-//STRIP001     virtual void                MouseMove( const MouseEvent& rMEvt );
-//STRIP001     virtual void                Tracking( const TrackingEvent& rTEvt );
-//STRIP001
-//STRIP001     virtual void                KeyInput( const KeyEvent& rKEvt );
-//STRIP001
-//STRIP001 private:
-//STRIP001     /** Starts tracking at the specified position. */
-//STRIP001     void                        StartMouseTracking( sal_Int32 nPos );
-//STRIP001     /** Moves tracking to a new position. */
-//STRIP001     void                        MoveMouseTracking( sal_Int32 nPos );
-//STRIP001     /** Applies tracking action for the current tracking position.
-//STRIP001         @param bApply  TRUE = apply action, FALSE = cancel action. */
-//STRIP001     void                        EndMouseTracking( bool bApply );
 
     // painting ---------------------------------------------------------------
-//STRIP001 protected:
-//STRIP001     virtual void                Paint( const Rectangle& );
 
-//STRIP001 public:
-//STRIP001     /** Redraws the entire ruler. */
-//STRIP001     void                        ImplRedraw();
 
-//STRIP001 private:
-//STRIP001     /** Returns the width of the control. */
-//STRIP001     inline sal_Int32            GetWidth() const { return maWinSize.Width(); }
-//STRIP001     /** Returns the height of the control. */
-//STRIP001     inline sal_Int32            GetHeight() const { return maWinSize.Height(); }
-//STRIP001
-//STRIP001     /** Draws the background and active area to maBackgrDev (only the given X range). */
-//STRIP001     void                        ImplDrawArea( sal_Int32 nPosX, sal_Int32 nWidth );
-//STRIP001     /** Draws the entire ruler background with scaling to maBackgrDev. */
-//STRIP001     void                        ImplDrawBackgrDev();
-//STRIP001
-//STRIP001     /** Draws a split to maRulerDev. */
-//STRIP001     void                        ImplDrawSplit( sal_Int32 nPos );
-//STRIP001     /** Erases a split from maRulerDev. */
-//STRIP001     void                        ImplEraseSplit( sal_Int32 nPos );
-//STRIP001     /** Draws the ruler background, all splits and the cursor to maRulerDev. */
-//STRIP001     void                        ImplDrawRulerDev();
-//STRIP001
-//STRIP001     /** Inverts the cursor bar at the specified position in maRulerDev. */
-//STRIP001     void                        ImplInvertCursor( sal_Int32 nPos );
-//STRIP001     /** Draws directly tracking rectangle to the column with the specified index. */
-//STRIP001     void                        ImplDrawTrackingRect();
-//STRIP001
-//STRIP001     /** Sets arrow or horizontal split pointer. */
-//STRIP001     void                        ImplSetMousePointer( sal_Int32 nPos );
 
-//STRIP001     // accessibility ----------------------------------------------------------
-//STRIP001 protected:
-//STRIP001     /** Creates a new accessible object. */
-//STRIP001     virtual ScAccessibleCsvControl* ImplCreateAccessible();
 };
 
 

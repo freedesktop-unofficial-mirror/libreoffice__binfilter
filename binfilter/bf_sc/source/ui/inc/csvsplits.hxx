@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvsplits.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:40:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:05:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,45 +66,6 @@ private:
 
     ScSplitVector               maVec;          /// The split containter.
 
-//STRIP001 public:
-//STRIP001     // *** access by position *** ---------------------------------------------
-//STRIP001
-//STRIP001     /** Inserts a new split at position nPos into the vector.
-//STRIP001         @return  true = split inserted (nPos was valid and empty). */
-//STRIP001     bool                        Insert( sal_Int32 nPos );
-//STRIP001     /** Removes a split by position.
-//STRIP001         @return  true = split found and removed. */
-//STRIP001     bool                        Remove( sal_Int32 nPos );
-//STRIP001     /** Removes a range of splits in the given position range. */
-//STRIP001     void                        RemoveRange( sal_Int32 nPosStart, sal_Int32 nPosEnd );
-//STRIP001     /** Removes all elements from the vector. */
-//STRIP001     void                        Clear();
-//STRIP001
-//STRIP001     /** Returns true if at position nPos is a split. */
-//STRIP001     bool                        HasSplit( sal_Int32 nPos ) const;
-//STRIP001
-//STRIP001     // *** access by index *** ------------------------------------------------
-//STRIP001
-//STRIP001     /** Searches for a split at position nPos.
-//STRIP001         @return  the vector index of the split. */
-//STRIP001     sal_uInt32                  GetIndex( sal_Int32 nPos ) const;
-//STRIP001     /** Returns index of the first split greater than or equal to nPos. */
-//STRIP001     sal_uInt32                  LowerBound( sal_Int32 nPos ) const;
-//STRIP001     /** Returns index of the last split less than or equal to nPos. */
-//STRIP001     sal_uInt32                  UpperBound( sal_Int32 nPos ) const;
-//STRIP001
-//STRIP001     /** Returns the number of splits. */
-//STRIP001     inline sal_uInt32           Count() const
-//STRIP001                                     { return maVec.size(); }
-//STRIP001     /** Returns the position of the specified split. */
-//STRIP001     sal_Int32                   GetPos( sal_uInt32 nIndex ) const;
-//STRIP001     /** Returns the position of the specified split. */
-//STRIP001     inline sal_Int32            operator[]( sal_uInt32 nIndex ) const
-//STRIP001                                     { return GetPos( nIndex ); }
-//STRIP001
-//STRIP001 private:
-//STRIP001     /** Returns the vector index of an iterator. */
-//STRIP001     sal_uInt32                  GetIterIndex( const_iterator aIter ) const;
 };
 
 
