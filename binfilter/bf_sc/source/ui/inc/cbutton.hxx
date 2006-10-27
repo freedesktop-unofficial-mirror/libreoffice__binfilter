@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cbutton.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:34:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:01:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,6 @@
 #include <tools/gen.hxx>
 #endif
 
-// auto strip #ifndef _COLOR_HXX //autogen
-// auto strip #include <tools/color.hxx>
-// auto strip #endif
 
 class Window;
 namespace binfilter {
@@ -58,19 +55,8 @@ public:
             ScDDComboBoxButton( Window* pOutputDevice );
             ~ScDDComboBoxButton();
 
-//STRIP001  void    Draw( const Point&  rAt,
-//STRIP001                const Size&   rSize,
-//STRIP001                   BOOL          bState,
-//STRIP001                BOOL          bBtnIn = FALSE );
 
-//STRIP001 void Draw( const Point&  rAt,
-//STRIP001                  BOOL          bState,
-//STRIP001            BOOL          bBtnIn = FALSE )
-//STRIP001                { Draw( rAt, aBtnSize, bState, bBtnIn ); }
 
-//STRIP001    void    Draw( BOOL          bState,
-//STRIP001                  BOOL          bBtnIn = FALSE )
-//STRIP001                { Draw( aBtnPos, aBtnSize, bState, bBtnIn ); }
 
     void    SetOptSizePixel();
 
@@ -81,8 +67,6 @@ public:
     Size    GetSizePixel() const                 { return aBtnSize; }
 
 private:
-//STRIP001  void    ImpDrawArrow( const Rectangle&  rRect,
-//STRIP001                           BOOL              bState );
 
 protected:
     Window* pOut;
