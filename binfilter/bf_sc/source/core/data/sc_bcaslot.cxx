@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_bcaslot.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:38:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:13:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,12 +46,8 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "document.hxx"
-// auto strip #include "brdcst.hxx"
 #include "bcaslot.hxx"
 #include "scerrors.hxx"
-// auto strip #include "docoptio.hxx"
-// auto strip #include "refupdat.hxx"
-// auto strip #include "table.hxx"
 namespace binfilter {
 
 // Anzahl der Slots je Dimension
@@ -324,74 +319,8 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 #pragma optimize("",on)
 #endif
 
-//STRIP001 void ScBroadcastAreaSlot::UpdateRemove( UpdateRefMode eUpdateRefMode,
-//STRIP001      const ScRange& rRange, short nDx, short nDy, short nDz
-//STRIP001  )
-//STRIP001 {
-//STRIP001  USHORT nPos = pBroadcastAreaTbl->Count();
-//STRIP001  if ( nPos )
-//STRIP001  {
-//STRIP001      USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-//STRIP001      USHORT theCol1, theRow1, theTab1, theCol2, theRow2, theTab2;
-//STRIP001      nCol1 = rRange.aStart.Col();
-//STRIP001      nRow1 = rRange.aStart.Row();
-//STRIP001      nTab1 = rRange.aStart.Tab();
-//STRIP001      nCol2 = rRange.aEnd.Col();
-//STRIP001      nRow2 = rRange.aEnd.Row();
-//STRIP001      nTab2 = rRange.aEnd.Tab();
-//STRIP001      ScAddress aAdr;
-//STRIP001      const ScBroadcastArea** ppArea =
-//STRIP001          ((const ScBroadcastArea**) pBroadcastAreaTbl->GetData()) + nPos - 1;
-//STRIP001      for ( ; nPos-- >0; ppArea-- )
-//STRIP001      {   // rueckwaerts wg. Pointer-Aufrueckerei im Array
-//STRIP001          ScBroadcastArea* pArea = (ScBroadcastArea*) *ppArea;
-//STRIP001          if ( pArea->IsInUpdateChain() )
-//STRIP001          {
-//STRIP001              pBroadcastAreaTbl->Remove( nPos );
-//STRIP001              // Remove kann pData veraendern
-//STRIP001              ppArea = (const ScBroadcastArea**)
-//STRIP001                  pBroadcastAreaTbl->GetData() + nPos;
-//STRIP001              pArea->DecRef();
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              aAdr = pArea->GetStart();
-//STRIP001              theCol1 = aAdr.Col();
-//STRIP001              theRow1 = aAdr.Row();
-//STRIP001              theTab1 = aAdr.Tab();
-//STRIP001              aAdr = pArea->GetEnd();
-//STRIP001              theCol2 = aAdr.Col();
-//STRIP001              theRow2 = aAdr.Row();
-//STRIP001              theTab2 = aAdr.Tab();
-//STRIP001              if ( ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001                      nCol1,nRow1,nTab1, nCol2,nRow2,nTab2, nDx,nDy,nDz,
-//STRIP001                      theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 )
-//STRIP001                  )
-//STRIP001              {
-//STRIP001                  pBroadcastAreaTbl->Remove( nPos );
-//STRIP001                  // Remove kann pData veraendern
-//STRIP001                  ppArea = (const ScBroadcastArea**)
-//STRIP001                      pBroadcastAreaTbl->GetData() + nPos;
-//STRIP001                  pArea->DecRef();
-//STRIP001                  pArea->SetInUpdateChain( TRUE );
-//STRIP001                  ScBroadcastArea* pUC = pBASM->GetEOUpdateChain();
-//STRIP001                  if ( pUC )
-//STRIP001                      pUC->SetUpdateChainNext( pArea );
-//STRIP001                  else    // kein Ende kein Anfang
-//STRIP001                      pBASM->SetUpdateChain( pArea );
-//STRIP001                  pBASM->SetEOUpdateChain( pArea );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScBroadcastAreaSlot::UpdateInsert( ScBroadcastArea* pArea )
-//STRIP001 {
-//STRIP001  if ( pBroadcastAreaTbl->Insert( pArea ) )
-//STRIP001      pArea->IncRef();
-//STRIP001 }
 
 
 // --- ScBroadcastAreaSlotMachine -------------------------------------
@@ -655,99 +584,5 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 /*N*/ }
 
 
-//STRIP001 // alle Betroffenen austragen, verketten, Range anpassen, neu eintragen
-//STRIP001 void ScBroadcastAreaSlotMachine::UpdateBroadcastAreas(
-//STRIP001      UpdateRefMode eUpdateRefMode,
-//STRIP001      const ScRange& rRange, short nDx, short nDy, short nDz
-//STRIP001  )
-//STRIP001 {
-//STRIP001  USHORT nStart, nEnd, nRowBreak;
-//STRIP001  // Betroffene austragen und verketten
-//STRIP001  ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
-//STRIP001  USHORT nOff = nStart;
-//STRIP001  USHORT nBreak = nOff + nRowBreak;
-//STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
-//STRIP001  while ( nOff <= nEnd )
-//STRIP001  {
-//STRIP001      if ( *pp )
-//STRIP001          (*pp)->UpdateRemove( eUpdateRefMode, rRange, nDx, nDy, nDz );
-//STRIP001      if ( nOff < nBreak )
-//STRIP001      {
-//STRIP001          ++nOff;
-//STRIP001          ++pp;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nStart += BCA_SLOTS_ROW;
-//STRIP001          nOff = nStart;
-//STRIP001          pp = ppSlots + nOff;
-//STRIP001          nBreak = nOff + nRowBreak;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // Verkettung abarbeiten
-//STRIP001  USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-//STRIP001  USHORT theCol1, theRow1, theTab1, theCol2, theRow2, theTab2;
-//STRIP001  nCol1 = rRange.aStart.Col();
-//STRIP001  nRow1 = rRange.aStart.Row();
-//STRIP001  nTab1 = rRange.aStart.Tab();
-//STRIP001  nCol2 = rRange.aEnd.Col();
-//STRIP001  nRow2 = rRange.aEnd.Row();
-//STRIP001  nTab2 = rRange.aEnd.Tab();
-//STRIP001  while ( pUpdateChain )
-//STRIP001  {
-//STRIP001      ScAddress aAdr;
-//STRIP001      ScRange aRange;
-//STRIP001      ScBroadcastArea* pArea = pUpdateChain;
-//STRIP001      pUpdateChain = pArea->GetUpdateChainNext();
-//STRIP001
-//STRIP001      // Range anpassen
-//STRIP001      aAdr = pArea->GetStart();
-//STRIP001      theCol1 = aAdr.Col();
-//STRIP001      theRow1 = aAdr.Row();
-//STRIP001      theTab1 = aAdr.Tab();
-//STRIP001      aAdr = pArea->GetEnd();
-//STRIP001      theCol2 = aAdr.Col();
-//STRIP001      theRow2 = aAdr.Row();
-//STRIP001      theTab2 = aAdr.Tab();
-//STRIP001      if ( ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001              nCol1,nRow1,nTab1, nCol2,nRow2,nTab2, nDx,nDy,nDz,
-//STRIP001              theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 )
-//STRIP001          )
-//STRIP001      {
-//STRIP001          aRange = ScRange( ScAddress( theCol1,theRow1,theTab1 ),
-//STRIP001                              ScAddress( theCol2,theRow2,theTab2 ) );
-//STRIP001          pArea->UpdateRange( aRange );
-//STRIP001          pArea->Broadcast( ScAreaChangedHint( aRange ) );    // fuer DDE
-//STRIP001      }
-//STRIP001
-//STRIP001      // in die Slots eintragen
-//STRIP001      ComputeAreaPoints( aRange, nStart, nEnd, nRowBreak );
-//STRIP001      nOff = nStart;
-//STRIP001      nBreak = nOff + nRowBreak;
-//STRIP001      pp = ppSlots + nOff;
-//STRIP001      while ( nOff <= nEnd )
-//STRIP001      {
-//STRIP001          if ( *pp )
-//STRIP001              (*pp)->UpdateInsert( pArea );
-//STRIP001          if ( nOff < nBreak )
-//STRIP001          {
-//STRIP001              ++nOff;
-//STRIP001              ++pp;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nStart += BCA_SLOTS_ROW;
-//STRIP001              nOff = nStart;
-//STRIP001              pp = ppSlots + nOff;
-//STRIP001              nBreak = nOff + nRowBreak;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      // Verkettung loesen
-//STRIP001      pArea->SetUpdateChainNext( NULL );
-//STRIP001      pArea->SetInUpdateChain( FALSE );
-//STRIP001  }
-//STRIP001  pEOUpdateChain = NULL;
-//STRIP001 }
 
 }
