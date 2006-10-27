@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:48:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:40:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,53 +81,11 @@ namespace binfilter {
 /*N*/ }
 
 // static
-//STRIP001 void ScModule::SetAutoSpellProperty( BOOL bSet )
-//STRIP001 {
-//STRIP001  //  use SvtLinguConfig instead of service LinguProperties to avoid
-//STRIP001  //  loading the linguistic component
-//STRIP001  SvtLinguConfig aConfig;
-//STRIP001
-//STRIP001  uno::Any aAny;
-//STRIP001  aAny <<= bSet;
-//STRIP001  aConfig.SetProperty( ::rtl::OUString::createFromAscii( LINGUPROP_AUTOSPELL ), aAny );
-//STRIP001 }
 
 // static
-//STRIP001 void ScModule::SetHideAutoProperty( BOOL bSet )
-//STRIP001 {
-//STRIP001  //  use SvtLinguConfig instead of service LinguProperties to avoid
-//STRIP001  //  loading the linguistic component
-//STRIP001  SvtLinguConfig aConfig;
-//STRIP001
-//STRIP001  uno::Any aAny;
-//STRIP001  aAny <<= bSet;
-//STRIP001  aConfig.SetProperty( ::rtl::OUString::createFromAscii( LINGUPROP_HIDEAUTO ), aAny );
-//STRIP001 }
 
 
 // static
-//STRIP001 BOOL ScModule::HasThesaurusLanguage( USHORT nLang )
-//STRIP001 {
-//STRIP001  if ( nLang == LANGUAGE_NONE )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  lang::Locale aLocale;
-//STRIP001  SvxLanguageToLocale( aLocale, nLang );
-//STRIP001
-//STRIP001  BOOL bHasLang = FALSE;
-//STRIP001  try
-//STRIP001  {
-//STRIP001      uno::Reference< linguistic2::XThesaurus > xThes(LinguMgr::GetThesaurus());
-//STRIP001      if ( xThes.is() )
-//STRIP001          bHasLang = xThes->hasLocale( aLocale );
-//STRIP001  }
-//STRIP001  catch( uno::Exception& )
-//STRIP001  {
-//STRIP001      DBG_ERROR("Error in Thesaurus");
-//STRIP001  }
-//STRIP001
-//STRIP001  return bHasLang;
-//STRIP001 }
 
 
 }
