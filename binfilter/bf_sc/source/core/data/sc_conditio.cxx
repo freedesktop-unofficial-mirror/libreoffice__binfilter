@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_conditio.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:12:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:15:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,17 +46,12 @@
 #include <svtools/zforlist.hxx>
 #include <rtl/math.hxx>
 
-// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-// auto strip #include <unotools/collatorwrapper.hxx>
-// auto strip #endif
 
 #include "conditio.hxx"
 #include "cell.hxx"
 #include "document.hxx"
 #include "hints.hxx"
-// auto strip #include "compiler.hxx"
 #include "rechead.hxx"
-// auto strip #include "rangelst.hxx"
 #include "stlpool.hxx"
 #include "rangenam.hxx"
 namespace binfilter {
@@ -493,13 +487,6 @@ namespace binfilter {
 /*N*/       nOptions |= SC_COND_NOBLANKS;
 /*N*/ }
 
-//STRIP001 void ScConditionEntry::CompileAll()
-//STRIP001 {
-//STRIP001  //  Formelzellen loeschen, dann wird beim naechsten IsValid neu kompiliert
-//STRIP001
-//STRIP001  DELETEZ(pFCell1);
-//STRIP001  DELETEZ(pFCell2);
-//STRIP001 }
 
 /*N*/ void ScConditionEntry::CompileXML()
 /*N*/ {
@@ -585,21 +572,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScConditionEntry::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos )
-//STRIP001 {
-//STRIP001  if (pFormula1)
-//STRIP001  {
-//STRIP001      ScCompiler aComp( pDoc, aSrcPos, *pFormula1 );
-//STRIP001      aComp.UpdateMoveTab(nOldPos, nNewPos, TRUE );
-//STRIP001      DELETEZ(pFCell1);
-//STRIP001  }
-//STRIP001  if (pFormula2)
-//STRIP001  {
-//STRIP001      ScCompiler aComp( pDoc, aSrcPos, *pFormula2 );
-//STRIP001      aComp.UpdateMoveTab(nOldPos, nNewPos, TRUE );
-//STRIP001      DELETEZ(pFCell2);
-//STRIP001  }
-//STRIP001 }
 
 //! als Vergleichsoperator ans TokenArray ???
 
@@ -799,80 +771,6 @@ namespace binfilter {
 /*N*/   return bValid;
 /*N*/ }
 
-//STRIP001 BOOL ScConditionEntry::IsValidStr( const String& rArg ) const
-//STRIP001 {
-//STRIP001  //  Interpret muss schon gerufen sein
-//STRIP001
-//STRIP001  if ( eOp == SC_COND_DIRECT )                // Formel ist unabhaengig vom Inhalt
-//STRIP001      return !::rtl::math::approxEqual( nVal1, 0.0 );
-//STRIP001
-//STRIP001  //  Wenn Bedingung Zahl enthaelt, immer FALSE, ausser bei "ungleich"
-//STRIP001
-//STRIP001  if ( !bIsStr1 )
-//STRIP001      return ( eOp == SC_COND_NOTEQUAL );
-//STRIP001  if ( eOp == SC_COND_BETWEEN || eOp == SC_COND_NOTBETWEEN )
-//STRIP001      if ( !bIsStr2 )
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001  String aUpVal1( aStrVal1 );     //! als Member? (dann auch in Interpret setzen)
-//STRIP001  String aUpVal2( aStrVal2 );
-//STRIP001
-//STRIP001  if ( eOp == SC_COND_BETWEEN || eOp == SC_COND_NOTBETWEEN )
-//STRIP001      if ( ScGlobal::pCollator->compareString( aUpVal1, aUpVal2 )
-//STRIP001              == COMPARE_GREATER )
-//STRIP001      {
-//STRIP001          //  richtige Reihenfolge fuer Wertebereich
-//STRIP001          String aTemp( aUpVal1 ); aUpVal1 = aUpVal2; aUpVal2 = aTemp;
-//STRIP001      }
-//STRIP001
-//STRIP001  BOOL bValid;
-//STRIP001  switch ( eOp )
-//STRIP001  {
-//STRIP001      case SC_COND_EQUAL:
-//STRIP001          bValid = (ScGlobal::pCollator->compareString(
-//STRIP001              rArg, aUpVal1 ) == COMPARE_EQUAL);
-//STRIP001      break;
-//STRIP001      case SC_COND_NOTEQUAL:
-//STRIP001          bValid = (ScGlobal::pCollator->compareString(
-//STRIP001              rArg, aUpVal1 ) != COMPARE_EQUAL);
-//STRIP001      break;
-//STRIP001      default:
-//STRIP001      {
-//STRIP001          sal_Int32 nCompare = ScGlobal::pCollator->compareString(
-//STRIP001              rArg, aUpVal1 );
-//STRIP001          switch ( eOp )
-//STRIP001          {
-//STRIP001              case SC_COND_GREATER:
-//STRIP001                  bValid = ( nCompare == COMPARE_GREATER );
-//STRIP001                  break;
-//STRIP001              case SC_COND_EQGREATER:
-//STRIP001                  bValid = ( nCompare == COMPARE_EQUAL || nCompare == COMPARE_GREATER );
-//STRIP001                  break;
-//STRIP001              case SC_COND_LESS:
-//STRIP001                  bValid = ( nCompare == COMPARE_LESS );
-//STRIP001                  break;
-//STRIP001              case SC_COND_EQLESS:
-//STRIP001                  bValid = ( nCompare == COMPARE_EQUAL || nCompare == COMPARE_LESS );
-//STRIP001                  break;
-//STRIP001              case SC_COND_BETWEEN:
-//STRIP001              case SC_COND_NOTBETWEEN:
-//STRIP001                  //  Test auf NOTBETWEEN:
-//STRIP001                  bValid = ( nCompare == COMPARE_LESS ||
-//STRIP001                      ScGlobal::pCollator->compareString( rArg,
-//STRIP001                      aUpVal2 ) == COMPARE_GREATER );
-//STRIP001                  if ( eOp == SC_COND_BETWEEN )
-//STRIP001                      bValid = !bValid;
-//STRIP001                  break;
-//STRIP001              //  SC_COND_DIRECT schon oben abgefragt
-//STRIP001              default:
-//STRIP001                  DBG_ERROR("unbekannte Operation bei ScConditionEntry");
-//STRIP001                  bValid = FALSE;
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bValid;
-//STRIP001 }
 
 /*N*/ BOOL ScConditionEntry::IsCellValid( ScBaseCell* pCell, const ScAddress& rPos ) const
 /*N*/ {
@@ -978,42 +876,6 @@ namespace binfilter {
 /*N*/   return aRet;
 /*N*/ }
 
-//STRIP001 ScTokenArray* ScConditionEntry::CreateTokenArry( USHORT nIndex ) const
-//STRIP001 {
-//STRIP001  ScTokenArray* pRet;
-//STRIP001  ScAddress aAddr;
-//STRIP001
-//STRIP001  if ( nIndex==0 )
-//STRIP001  {
-//STRIP001      if ( pFormula1 )
-//STRIP001          pRet = new ScTokenArray( *pFormula1 );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pRet = new ScTokenArray();
-//STRIP001          if (bIsStr1)
-//STRIP001              pRet->AddString( aStrVal1.GetBuffer() );
-//STRIP001          else
-//STRIP001              pRet->AddDouble( nVal1 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if ( nIndex==1 )
-//STRIP001  {
-//STRIP001      if ( pFormula2 )
-//STRIP001          pRet = new ScTokenArray( *pFormula2 );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pRet = new ScTokenArray();
-//STRIP001          if (bIsStr2)
-//STRIP001              pRet->AddString( aStrVal2.GetBuffer() );
-//STRIP001          else
-//STRIP001              pRet->AddDouble( nVal2 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR("GetExpression: falscher Index");
-//STRIP001
-//STRIP001  return pRet;
-//STRIP001 }
 
 /*N*/ void ScConditionEntry::SourceChanged( const ScAddress& rChanged )
 /*N*/ {
@@ -1473,11 +1335,6 @@ namespace binfilter {
 /*N*/   pAreas = NULL;
 /*N*/ }
 
-//STRIP001 void ScConditionalFormat::CompileAll()
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<nEntryCount; i++)
-//STRIP001      ppEntries[i]->CompileAll();
-//STRIP001 }
 
 /*N*/ void ScConditionalFormat::CompileXML()
 /*N*/ {
@@ -1495,14 +1352,6 @@ namespace binfilter {
 /*N*/   pAreas = NULL;
 /*N*/ }
 
-//STRIP001 void ScConditionalFormat::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos )
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<nEntryCount; i++)
-//STRIP001      ppEntries[i]->UpdateMoveTab( nOldPos, nNewPos );
-//STRIP001
-//STRIP001  delete pAreas;      // aus dem AttrArray kommt beim Einfuegen/Loeschen kein Aufruf
-//STRIP001  pAreas = NULL;
-//STRIP001 }
 
 /*N*/ void ScConditionalFormat::SourceChanged( const ScAddress& rAddr )
 /*N*/ {
@@ -1537,18 +1386,6 @@ namespace binfilter {
 /*N*/   //!     sortierte Eintraege aus rList schneller einfuegen ???
 /*N*/ }
 
-//STRIP001 BOOL ScConditionalFormatList::operator==( const ScConditionalFormatList& r ) const
-//STRIP001 {
-//STRIP001  // fuer Ref-Undo - interne Variablen werden nicht verglichen
-//STRIP001
-//STRIP001  USHORT nCount = Count();
-//STRIP001  BOOL bEqual = ( nCount == r.Count() );
-//STRIP001  for (USHORT i=0; i<nCount && bEqual; i++)           // Eintraege sind sortiert
-//STRIP001      if ( !(*this)[i]->EqualEntries(*r[i]) )         // Eintraege unterschiedlich ?
-//STRIP001          bEqual = FALSE;
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 /*N*/ void ScConditionalFormatList::Load( SvStream& rStream, ScDocument* pDocument )
 /*N*/ {
@@ -1605,12 +1442,6 @@ namespace binfilter {
 /*N*/       (*this)[i]->SetUsed(FALSE);
 /*N*/ }
 
-//STRIP001 void ScConditionalFormatList::CompileAll()
-//STRIP001 {
-//STRIP001  USHORT nCount = Count();
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      (*this)[i]->CompileAll();
-//STRIP001 }
 
 /*N*/ void ScConditionalFormatList::CompileXML()
 /*N*/ {
@@ -1627,12 +1458,6 @@ namespace binfilter {
 /*N*/       (*this)[i]->UpdateReference( eUpdateRefMode, rRange, nDx, nDy, nDz );
 /*N*/ }
 
-//STRIP001 void ScConditionalFormatList::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos )
-//STRIP001 {
-//STRIP001  USHORT nCount = Count();
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      (*this)[i]->UpdateMoveTab( nOldPos, nNewPos );
-//STRIP001 }
 
 /*N*/ void ScConditionalFormatList::SourceChanged( const ScAddress& rAddr )
 /*N*/ {
