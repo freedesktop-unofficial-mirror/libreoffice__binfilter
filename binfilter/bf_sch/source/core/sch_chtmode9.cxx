@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode9.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:34:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:25:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,37 +42,21 @@
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 
 #if SUPD > 364
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
 #endif
-// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_XLNWTIT_HXX //autogen
-// auto strip #include <bf_svx/xlnwtit.hxx>
-// auto strip #endif
 #else
-// auto strip #ifndef _XTABLE_HXX //autogen
-// auto strip #include <bf_svx/xtable.hxx>
-// auto strip #endif
 #endif // SUPD
 
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
-// auto strip #include <svtools/zforlist.hxx>
 #endif
 
-// auto strip #ifndef _SFXDOCFILE_HXX
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #endif
 
 #include <list>
 
@@ -92,11 +76,7 @@
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
@@ -105,52 +85,25 @@
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/fwdtitem.hxx>
 #else
-// auto strip #ifndef _CTRLTOOL_HXX //autogen
-// auto strip #include <svtools/ctrltool.hxx>
-// auto strip #endif
 #endif
 
 // header for class SdrOutliner
-// auto strip #ifndef _SVDOUTL_HXX
-// auto strip #include <bf_svx/svdoutl.hxx>
-// auto strip #endif
 // header for GetDraftFillColor()
 #ifndef _SVDETC_HXX
 #include <bf_svx/svdetc.hxx>
 #endif
 
 #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 #endif
-// auto strip #ifndef _SCH_SCHRESID_HXX
-// auto strip #include "schresid.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_SCHGROUP_HXX
-// auto strip #include "schgroup.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAROW_HXX
-// auto strip #include "datarow.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_OBJID_HXX
-// auto strip #include "objid.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAPOIN_HXX
-// auto strip #include "datapoin.hxx"
-// auto strip #endif
-// auto strip #ifndef _DEFINES_HXX
-// auto strip #include "defines.hxx"
-// auto strip #endif
 
 #include "ChXChartDocument.hxx"
 
 #include <float.h>
 #include "glob.hrc"
 
-// auto strip #include "pairs.hxx"
 #include "chaxis.hxx"
 #include "chdescr.hxx"
-// auto strip #include "chartbar.hxx"
 #include "calculat.hxx"
 namespace binfilter {
 
@@ -692,7 +645,6 @@ namespace binfilter {
 /*N*/
 /*N*/                   if (!nCol && ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
                         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pList->NbcInsertObject(AverageValueY(nRow,FALSE,aRect,
-//STRIP001 /*?*/                                                                        pAxis->CalcFact(GetAverageValueY(nRow))));
 /*N*/
 /*N*/                   if (bShow && ((!bLogarithm && (fData != DBL_MIN)) ||
 /*N*/                                 (bLogarithm && (fData != DBL_MIN) && (fData > 0.0))))
@@ -915,7 +867,6 @@ namespace binfilter {
 /*N*/
 /*N*/                   if (!nCol && ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
 /*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pList->NbcInsertObject (AverageValueY (nRow, TRUE, aRect,
-//STRIP001 /*?*/                                                                          pAxis->CalcFact(GetAverageValueY (nRow))));
 /*N*/
 /*N*/                   if ((bShow) && ((!bLogarithm && (fData != DBL_MIN)) ||
 /*N*/                                   (bLogarithm && (fData != DBL_MIN) && (fData > 0.0))))
@@ -1234,15 +1185,6 @@ namespace binfilter {
 /*N*/       if ( ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(!pStatList)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pStatGroup=(SchObjGroup*)CreateSimpleGroup(CHOBJID_DIAGRAM_STATISTICS_GROUP,TRUE,TRUE);
-//STRIP001 /*?*/                pStatGroup->InsertUserData(new SchDataRow(nRow));
-//STRIP001 /*?*/                pList->NbcInsertObject(pStatGroup);
-//STRIP001 /*?*/                pStatList = pStatGroup->GetSubList();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001          pList->NbcInsertObject(
-//STRIP001 /*?*/                AverageValueY( nRow, FALSE, pAxis, GetAverageValueY(nRow)) );
 /*N*/       }
 /*N*/
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
@@ -1265,13 +1207,6 @@ namespace binfilter {
 /*N*/                    CHERROR_NONE)
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(!pStatList)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pStatGroup=(SchObjGroup*)CreateSimpleGroup(CHOBJID_DIAGRAM_STATISTICS_GROUP,TRUE,TRUE);
-//STRIP001 /*?*/                        pStatGroup->InsertUserData(new SchDataRow(nRow));
-//STRIP001 /*?*/                        pList->NbcInsertObject(pStatGroup);
-//STRIP001 /*?*/                        pStatList = pStatGroup->GetSubList();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    AverageErrorY(nRow,fData,aObjRect.TopCenter(),FALSE,aDataPointAttr,pStatList,pAxis);
 /*N*/               }
 /*N*/
 /*N*/
@@ -1282,25 +1217,6 @@ namespace binfilter {
 /*N*/               if((eDescr!=CHDESCR_NONE)&&bShowDataDescr)
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DataDescription aDescr;
-//STRIP001 /*?*/                    ClearDataDescription(&aDescr,1);
-//STRIP001 /*?*/                    aDescr.eDescr = eDescr;
-//STRIP001 /*?*/                    aDescr.bSymbol=((const SfxBoolItem&)aDataPointAttr.Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if (!pDescrList)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        SchObjGroup* pDescrGroup =
-//STRIP001 /*?*/                            (SchObjGroup*)CreateSimpleGroup(CHOBJID_DIAGRAM_DESCRGROUP,TRUE,TRUE);
-//STRIP001 /*?*/                        pDescrGroup->InsertUserData(new SchDataRow(nRow));
-//STRIP001 /*?*/                        pList->NbcInsertObject(pDescrGroup);
-//STRIP001 /*?*/                        pDescrList = pDescrGroup->GetSubList();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    aDescr.fValue = fData;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    aDescr.aTextPos2D = aObjRect.TopCenter();
-//STRIP001 /*?*/                    aDescr.eAdjust = CHADJUST_BOTTOM_CENTER;
-//STRIP001 /*?*/                    CreateDataDescr(aDescr,nCol,nRow,pAxis,FALSE);
-//STRIP001 /*?*/                    pDescrList->NbcInsertObject(aDescr.pLabelObj);
 /*N*/               }
 /*N*/               // ************************* end description *******************************
 /*N*/           }
@@ -1414,7 +1330,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if (((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pList->NbcInsertObject (AverageValueY (nRow, FALSE, aRect,
-//STRIP001 /*?*/                                                                  pAxis->CalcFact(GetAverageValueY (nRow))));
 /*N*/       }
 /*N*/
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
@@ -2003,10 +1918,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ChartModel::ResetLastAxisNumFmt( INT32 nFmt )
-//STRIP001 {
-//STRIP001     nXLastNumFmt = nYLastNumFmt = nBLastNumFmt = nFmt;
-//STRIP001 }
 
 /*N*/ void ChartModel::HandsOff()
 /*N*/ {
@@ -2014,91 +1925,6 @@ namespace binfilter {
 /*N*/   mpDocStor = NULL;
 /*N*/ }
 
-//STRIP001 SvStream* ChartModel::GetDocumentStream( SdrDocumentStreamInfo& rStreamInfo ) const
-//STRIP001 {
-//STRIP001     static const String aStreamName( RTL_CONSTASCII_USTRINGPARAM( "StarChartDocument" ));
-//STRIP001  SotStorage* pStor = pDocShell ? pDocShell->GetMedium()->GetStorage() : NULL;
-//STRIP001  SvStream*   pRet = NULL;
-//STRIP001
-//STRIP001  if( pStor )
-//STRIP001  {
-//STRIP001      if( rStreamInfo.maUserData.Len() &&
-//STRIP001          ( rStreamInfo.maUserData.GetToken( 0, ':' ) ==
-//STRIP001            String( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.Package" ) ) ) )
-//STRIP001      {
-//STRIP001          const String aPicturePath( rStreamInfo.maUserData.GetToken( 1, ':' ) );
-//STRIP001
-//STRIP001          // graphic from picture stream in picture storage in XML package
-//STRIP001          if( aPicturePath.GetTokenCount( '/' ) == 2 )
-//STRIP001          {
-//STRIP001              const String aPictureStreamName( aPicturePath.GetToken( 1, '/' ) );
-//STRIP001
-//STRIP001              if( !mxPictureStorage.Is() )
-//STRIP001              {
-//STRIP001                  const String aPictureStorageName( aPicturePath.GetToken( 0, '/' ) );
-//STRIP001
-//STRIP001                  if( pStor->IsContained( aPictureStorageName ) &&
-//STRIP001                      pStor->IsStorage( aPictureStorageName )  )
-//STRIP001                  {
-//STRIP001                         // member is mutable
-//STRIP001                         mxPictureStorage = pStor->OpenUCBStorage( aPictureStorageName, STREAM_READ );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              if( mxPictureStorage.Is() &&
-//STRIP001                  mxPictureStorage->IsContained( aPictureStreamName ) &&
-//STRIP001                  mxPictureStorage->IsStream( aPictureStreamName ) )
-//STRIP001              {
-//STRIP001                  pRet = mxPictureStorage->OpenSotStream( aPictureStreamName, STREAM_READ );
-//STRIP001
-//STRIP001                  if( pRet )
-//STRIP001                  {
-//STRIP001                      pRet->SetVersion( mxPictureStorage->GetVersion() );
-//STRIP001                      pRet->SetKey( mxPictureStorage->GetKey() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          rStreamInfo.mbDeleteAfterUse = ( pRet != NULL );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // graphic from plain binary document stream
-//STRIP001          if( !mpDocStor )
-//STRIP001          {
-//STRIP001                 SotStorageStreamRef docStream = pStor->OpenSotStream( aStreamName, STREAM_READ );
-//STRIP001              docStream->SetVersion( pStor->GetVersion() );
-//STRIP001              docStream->SetKey( pStor->GetKey() );
-//STRIP001
-//STRIP001              // members are mutable
-//STRIP001              mxDocStream = docStream;
-//STRIP001              mpDocStor = pStor;
-//STRIP001          }
-//STRIP001
-//STRIP001          pRet = mxDocStream;
-//STRIP001          rStreamInfo.mbDeleteAfterUse = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001  if( pRet )
-//STRIP001  {
-//STRIP001      // try to get some information from stream
-//STRIP001      const ULONG nStartPos = pRet->Tell();
-//STRIP001      const ULONG nEndPos = pRet->Seek( STREAM_SEEK_TO_END );
-//STRIP001      const ULONG nStmLen = nEndPos - nStartPos;
-//STRIP001      sal_uChar   aTestByte;
-//STRIP001
-//STRIP001      // try to read one byte
-//STRIP001      if( nStmLen )
-//STRIP001          *pRet >> aTestByte;
-//STRIP001
-//STRIP001      pRet->Seek( nStartPos );
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  return pRet;
-//STRIP001 }
 
 /*N*/ uno::Sequence< uno::Sequence< sal_Int32 > > ChartModel::GetSetDataPointList()
 /*N*/ {
@@ -2172,8 +1998,4 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-//STRIP001 SvNumberFormatter * ChartModel::GetOwnNumberFormatter() const
-//STRIP001 {
-//STRIP001     return pOwnNumFormatter;
-//STRIP001 }
 }
