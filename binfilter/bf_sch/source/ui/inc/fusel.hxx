@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fusel.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:54:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:53:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,20 +58,14 @@ protected:
     BOOL    bVCAction;
     SdrDragMethod* pDragMethod;
 
-//STRIP001  void CreatePieDragMethod( SdrCircObj* pPie );
 
 public:
-//STRIP001  TYPEINFO();
 
     SchFuSelection(SchViewShell* pViewSh, SchWindow* pWin, SchView* pView,
                    ChartModel* pDoc, SfxRequest& rReq);
 
     virtual ~SchFuSelection();
 
-//STRIP001  virtual BOOL MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonDown(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL Command(const CommandEvent& rCEvt);
 
     virtual void Activate();
     virtual void Deactivate();

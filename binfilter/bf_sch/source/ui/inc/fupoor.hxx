@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fupoor.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:53:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:53:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -89,37 +89,22 @@ protected:
 
     BOOL            bFirstMouseMove;
 
-//STRIP001  virtual void RemarkObject ();
-//STRIP001  virtual void Select3DGroupMembers(SdrObject *pObj,  SdrPageView* pPV);
 
 public:
-//STRIP001  TYPEINFO();
 
     SchFuPoor(SchViewShell* pViewSh, SchWindow* pWin, SchView* pView,
               ChartModel* pDoc, SfxRequest& rReq);
     virtual ~SchFuPoor();
 
-//STRIP001  virtual BOOL DoCut();
-//STRIP001  virtual void DoCopy();
-//STRIP001  virtual void DoPaste();
 
     // Mouse- & Key-Events; Returnwert=TRUE: Event wurde bearbeitet
-//STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual BOOL MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonDown(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL Command(const CommandEvent& rCEvt);
-//STRIP001  virtual void Paint(const Rectangle& rRect, SchWindow* pWin);
 
     virtual void Activate();        // Function aktivieren
     virtual void Deactivate();      // Function deaktivieren
 
-//STRIP001  void SetWindow(SchWindow* pWin) { pWindow = pWin; }
 
-//STRIP001  virtual void SelectionHasChanged();
 
     USHORT GetSlotID() const { return( nSlotId ); }
-//STRIP001  USHORT GetSlotValue() const { return( nSlotValue ); }
 
 };
 

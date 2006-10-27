@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fudraw.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:51:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:53:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,7 +95,6 @@ protected:
 
         @returns TRUE, if an object could be marked
      */
-//STRIP001     BOOL MarkChartObject( lcl_Selection_Direction eDirection, int nDepth = 0, bool bEnterDiagram = true );
 
     /** moves an object in one of the four directions given in
         lcl_Movement_Direction.  This is only possible for top-level
@@ -115,7 +114,6 @@ protected:
 
         @returns TRUE, if the object could be moved
      */
-//STRIP001     BOOL MoveMarkedObject( lcl_Movement_Direction eDirection, long nAmount, bool bPixel = false );
 
     /** resizes an object by the amount given into the larger of width
         and height.  In the smaller extent the amount is calculated
@@ -133,7 +131,6 @@ protected:
 
         @returns TRUE, if the object could be resized
      */
-//STRIP001     BOOL ResizeMarkedObject( long nAmount, bool bPixel = false );
 
     /** moves a pie segment by the given amount in percent
 
@@ -145,21 +142,18 @@ protected:
 
         @returns TRUE, if the object was a pie and could be moved
      */
-//STRIP001     BOOL MovePieSegment( bool bOut, long nAmount );
 
     /** determines if the object currently selected is valid, i.e. it
         may be selected in the UI for making changes.
 
         @returns true, if a valid object is selected.
      */
-//STRIP001     bool ValidObjectSelected();
 
     /** For some objects only the 8 green handles of the group are
         shown, for others a special handling is required, e.g. bars in
         a bar chart.  This is done here for the currently selected
         object.
      */
-//STRIP001     void AdjustHandles( SdrObject* pObj );
 
     /** Some groups in a chart may not be entered, e.g. an axis
         object.  Otherwise you would be able to select all tick-mark
@@ -168,35 +162,26 @@ protected:
         @returns true, if the currently selected object is a group
                  that may be entered, e.g. a data series object.
      */
-//STRIP001     bool MayEnterGroup();
 
     /** get the object which is currently selected in the UI.  In the
         chart this can only be one object at a time.
      */
-//STRIP001     SdrObject* GetCurrentlyMarkedObject();
 
     /** after move or resize there have to be some things set at chart
         objects and the model.  It is called by MoveMarkedObject.
      */
-//STRIP001     void ApplyMoveResizeChanges();
 
 public:
-//STRIP001  TYPEINFO();
 
     SchFuDraw(SchViewShell* pViewSh, SchWindow* pWin, SchView* pView,
               ChartModel* pDoc, SfxRequest& rReq);
     virtual ~SchFuDraw();
 
-//STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual BOOL MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonDown(const MouseEvent& rMEvt);
 
     virtual void Activate();
 
     virtual void ForcePointer(const MouseEvent* pMEvt = NULL);
 
-//STRIP001  virtual void DoubleClick();
 };
 
 } //namespace binfilter
