@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr6.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:12:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:35:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,9 +41,6 @@
 
 #include <math.h>
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
 #include "interpre.hxx"
 namespace binfilter {

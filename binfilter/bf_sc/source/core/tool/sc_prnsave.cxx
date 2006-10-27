@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_prnsave.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:14:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:36:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -95,26 +94,7 @@ namespace binfilter {
 /*N*/   pRepeatRow = pRow ? new ScRange(*pRow) : NULL;
 /*N*/ }
 
-//STRIP001 inline BOOL PtrEqual( const ScRange* p1, const ScRange* p2 )
-//STRIP001 {
-//STRIP001  return ( !p1 && !p2 ) || ( p1 && p2 && *p1 == *p2 );
-//STRIP001 }
 
-//STRIP001 BOOL ScPrintSaverTab::operator==( const ScPrintSaverTab& rCmp ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual = ( nPrintCount == rCmp.nPrintCount &&
-//STRIP001                  PtrEqual( pRepeatCol, rCmp.pRepeatCol ) &&
-//STRIP001                  PtrEqual( pRepeatRow, rCmp.pRepeatRow ) );
-//STRIP001  if (bEqual)
-//STRIP001      for (USHORT i=0; i<nPrintCount; i++)
-//STRIP001          if ( pPrintRanges[i] != rCmp.pPrintRanges[i] )
-//STRIP001          {
-//STRIP001              bEqual = FALSE;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 //
 //      Daten fuer das ganze Dokument
@@ -140,24 +120,7 @@ namespace binfilter {
 /*N*/   return pData[nTab];
 /*N*/ }
 
-//STRIP001 const ScPrintSaverTab& ScPrintRangeSaver::GetTabData(USHORT nTab) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT(nTab<nTabCount,"ScPrintRangeSaver Tab zu gross");
-//STRIP001  return pData[nTab];
-//STRIP001 }
 
-//STRIP001 BOOL ScPrintRangeSaver::operator==( const ScPrintRangeSaver& rCmp ) const
-//STRIP001 {
-//STRIP001  BOOL bEqual = ( nTabCount == rCmp.nTabCount );
-//STRIP001  if (bEqual)
-//STRIP001      for (USHORT i=0; i<nTabCount; i++)
-//STRIP001          if (!(pData[i]==rCmp.pData[i]))
-//STRIP001          {
-//STRIP001              bEqual = FALSE;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001  return bEqual;
-//STRIP001 }
 
 
 
