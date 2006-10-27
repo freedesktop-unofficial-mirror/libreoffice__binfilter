@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:44:03 $
+#   last change: $Author: rt $ $Date: 2006-10-27 16:47:39 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -66,24 +66,9 @@ SRC1FILES = \
     sc_popup.src	 \
     sc_toolbox.src	 \
     sc_scstring.src \
-    sc_attrdlg.src  \
-    sc_filter.src	 \
-    sc_namedlg.src  \
-    sc_miscdlgs.src \
-    sc_autofmt.src  \
-    sc_solvrdlg.src \
-    sc_tabopdlg.src \
     sc_hdrcont.src  \
     sc_globstr.src  \
-    sc_optdlg.src   \
-    sc_scerrors.src \
-    sc_textdlgs.src \
-    sc_chartdlg.src \
-    sc_scfuncs.src	 \
-    sc_crnrdlg.src	 \
-    sc_condfrmt.src \
-    sc_opredlin.src \
-    sc_simpref.src
+    sc_scerrors.src
 
 # --- Targets -------------------------------------------------------
 
