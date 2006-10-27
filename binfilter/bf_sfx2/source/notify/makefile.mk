@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:17:17 $
+#   last change: $Author: rt $ $Date: 2006-10-27 19:43:41 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -54,16 +54,9 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sfx2_eventsupplier.cxx \
-        sfx2_hintpost.cxx \
-        sfx2_linkhdl.cxx \
-        $(PROJECTPCHSOURCE).cxx
-
 SLOFILES =	\
         $(SLO)$/sfx2_eventsupplier.obj \
-        $(SLO)$/sfx2_hintpost.obj \
-        $(SLO)$/sfx2_linkhdl.obj
+        $(SLO)$/sfx2_hintpost.obj
 
 EXCEPTIONSFILES =	\
         $(SLO)$/sfx2_eventsupplier.obj
