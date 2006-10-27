@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:28:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:56:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-// auto strip #include <com/sun/star/awt/FontSlant.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>  //added by BerryJia for fixing Bug102407 2002-11-4
 #endif
@@ -53,18 +50,12 @@
 #ifndef _B2D_MATRIX3D_HXX
 #include <goodies/matrix3d.hxx>
 #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
 #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 #ifndef _FLTCALL_HXX
 #include <svtools/fltcall.hxx>
 #endif
@@ -74,12 +65,8 @@
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
-// auto strip #include <tools/urlobj.hxx>
 
-// auto strip #include "unoprnms.hxx"
-// auto strip #include "unoshape.hxx"
 #include "unopage.hxx"
-// auto strip #include "svdobj.hxx"
 #include "svdpage.hxx"
 #include "svdmodel.hxx"
 #include "svdouno.hxx"
@@ -1556,9 +1543,6 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygonBezier::getSupportedServic
 * class SvxGraphicObject                                               *
 ***********************************************************************/
 }
-// auto strip #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
-// auto strip #include <com/sun/star/awt/XBitmap.hpp>
-// auto strip #endif
 #ifndef _SV_CVTGRF_HXX
 #include <vcl/cvtgrf.hxx>
 #endif
