@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tblcalc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:14:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:39:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,12 +44,6 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>        // fuer GetBodyTxtNode
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -62,9 +56,6 @@
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>
 #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>  // fuer Modify()
-// auto strip #endif
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer _SetGetExpFld
 #endif
