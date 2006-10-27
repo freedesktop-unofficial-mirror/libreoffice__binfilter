@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:05:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:57:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,18 +33,9 @@
  *
  ************************************************************************/
 
-#pragma hdrstop
-
-
-// auto strip #ifndef _GLOBNAME_HXX //autogen
-// auto strip #include <tools/globname.hxx>
-// auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
 #endif
-// auto strip #ifndef _SFXMSG_HXX //autogen
-// auto strip #include <bf_sfx2/msg.hxx>
-// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
@@ -54,49 +45,25 @@
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
-// auto strip #ifndef _SFXREQUEST_HXX //autogen
-// auto strip #include <bf_sfx2/request.hxx>
-// auto strip #endif
 #ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
 #endif
-// auto strip #ifndef _SFXVIEWSH_HXX
-// auto strip #include <bf_sfx2/viewsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _FACTORY_HXX //autogen
-// auto strip #include <so3/factory.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_WRKWIN_HXX //autogen
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
-// auto strip #ifndef _RTTI_HXX
-// auto strip #include <tools/rtti.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SMMOD_HXX
-// auto strip #include "smmod.hxx"
-// auto strip #endif
-// auto strip #ifndef SYMBOL_HXX
-// auto strip #include "symbol.hxx"
-// auto strip #endif
+#include <vcl/virdev.hxx>
+
+#ifndef _SFXITEMSET_HXX
+#include <svtools/itemset.hxx>
+#endif
+
 #ifndef _CONFIG_HXX
 #include "config.hxx"
 #endif
-#ifndef _DIALOG_HXX
-#include "dialog.hxx"
-#endif
-// auto strip #ifndef EDIT_HXX
-// auto strip #include "edit.hxx"
-// auto strip #endif
 #ifndef VIEW_HXX
 #include "view.hxx"
 #endif
@@ -197,25 +164,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 const String SmLocalizedSymbolData::GetExportSymbolSetName( const String &rUiName ) const
-//STRIP001 {
-//STRIP001  String aRes;
-//STRIP001
-//STRIP001     const SmLocalizedSymbolData &rData = SM_MOD1()->GetLocSymbolData();
-//STRIP001     const ResStringArray &rUiNames = rData.GetUiSymbolSetNamesArray();
-//STRIP001     const ResStringArray &rExportNames = rData.GetExportSymbolSetNamesArray();
-//STRIP001  USHORT nCount = rUiNames.Count();
-//STRIP001     for (USHORT i = 0;  i < nCount  &&  !aRes.Len();  ++i)
-//STRIP001  {
-//STRIP001         if (rUiName == rUiNames.GetString(i))
-//STRIP001      {
-//STRIP001          aRes = rExportNames.GetString(i);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return aRes;
-//STRIP001 }
 
 
 /*N*/ const ResStringArray* SmLocalizedSymbolData::Get50NamesArray( LanguageType nLang )
@@ -382,64 +330,9 @@ namespace binfilter {
 /*N*/   rBar.InsertItem(SID_MODIFYSTATUS, rBar.GetTextWidth(C2S(" * ")));
 /*N*/ }
 
-//STRIP001 SfxModule *SmModule::Load()
-//STRIP001 {
-//STRIP001  return this;
-//STRIP001 }
-
-//STRIP001 void SmModule::Free()
-//STRIP001 {
-//STRIP001 }
-
-
 /*N*/ SfxModule *SmModuleDummy::Load()
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
-/* -----------------15.02.99 12:45-------------------
- *
- * --------------------------------------------------*/
-//STRIP001 SfxItemSet*   SmModule::CreateItemSet( USHORT nId )
-//STRIP001 {
-//STRIP001  SfxItemSet*  pRet = 0;
-//STRIP001  if(nId == SID_SM_EDITOPTIONS)
-//STRIP001  {
-//STRIP001      pRet = new SfxItemSet(GetPool(),
-//STRIP001                           //TP_SMPRINT
-//STRIP001                           SID_PRINTSIZE,         SID_PRINTSIZE,
-//STRIP001                           SID_PRINTZOOM,         SID_PRINTZOOM,
-//STRIP001                           SID_PRINTTITLE,        SID_PRINTTITLE,
-//STRIP001                           SID_PRINTTEXT,         SID_PRINTTEXT,
-//STRIP001                           SID_PRINTFRAME,        SID_PRINTFRAME,
-//STRIP001                           SID_NO_RIGHT_SPACES,   SID_NO_RIGHT_SPACES,
-//STRIP001                           0 );
-//STRIP001
-//STRIP001          GetConfig()->ConfigToItemSet(*pRet);
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
-/* -----------------15.02.99 12:45-------------------
- *
- * --------------------------------------------------*/
-//STRIP001 void SmModule::ApplyItemSet( USHORT nId, const SfxItemSet& rSet )
-//STRIP001 {
-//STRIP001  if(nId == SID_SM_EDITOPTIONS)
-//STRIP001  {
-//STRIP001      GetConfig()->ItemSetToConfig(rSet);
-//STRIP001  }
-//STRIP001 }
-/* -----------------15.02.99 12:45-------------------
- *
- * --------------------------------------------------*/
-//STRIP001 SfxTabPage*   SmModule::CreateTabPage( USHORT nId, Window* pParent, const SfxItemSet& rSet )
-//STRIP001 {
-//STRIP001  SfxTabPage*  pRet = 0;
-//STRIP001  if(nId == SID_SM_TP_PRINTOPTIONS)
-//STRIP001      pRet = SmPrintOptionsTabPage::Create( pParent, rSet );
-//STRIP001  return pRet;
-//STRIP001
-//STRIP001 }
-
-
 
 }
