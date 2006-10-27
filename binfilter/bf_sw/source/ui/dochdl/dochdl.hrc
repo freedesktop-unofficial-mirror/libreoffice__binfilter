@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dochdl.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:41:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:08:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,21 +38,13 @@
 
 #include "rcid.hrc"
 
-//STRIP001 #define STR_NOGLOS1                 (RC_DOCHDL_BEGIN + 1)
-//STRIP001 #define STR_NOGLOS2                 (RC_DOCHDL_BEGIN + 2)
-//STRIP001 #define MSG_ERR_INSERT_GLOS         (RC_DOCHDL_BEGIN + 3)
-//STRIP001 #define MSG_CLPBRD_FORMAT_ERROR     (RC_DOCHDL_BEGIN + 4)
-//STRIP001 #define MSG_UPDATE_NEW_GLOS_FMT     (RC_DOCHDL_BEGIN + 5)
 
-//STRIP001 #define DLG_SEL_GLOS                (RC_DOCHDL_BEGIN + 6)
-//STRIP001 #define STR_NO_TABLE                (RC_DOCHDL_BEGIN + 7)
 
 #define STR_PRIVATETEXT             (RC_DOCHDL_BEGIN + 8)
 #define STR_PRIVATEGRAPHIC          (RC_DOCHDL_BEGIN + 9)
 #define STR_PRIVATEOLE              (RC_DOCHDL_BEGIN + 10)
 #define STR_DDEFORMAT               (RC_DOCHDL_BEGIN + 11)
 
-//STRIP001 #define BMP_SW_TEAM_MUGSHOT          (RC_DOCHDL_BEGIN + 12)
 #define STR_SW_TEAM_NAMES           (RC_DOCHDL_BEGIN + 13)
 
 #define DOCHDL_ACT_END              STR_CANT_EDIT_INFO
