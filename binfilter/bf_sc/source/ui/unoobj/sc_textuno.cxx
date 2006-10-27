@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:18:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:06:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,25 +34,16 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
@@ -67,19 +58,13 @@
 #endif
 
 #include <bf_svx/flditem.hxx>
-// auto strip #include <bf_svx/unomid.hxx>
-// auto strip #include <bf_svx/unoprnms.hxx>
 #include <bf_svx/unofored.hxx>
 #include <rtl/uuid.h>
 #ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-// auto strip #include <com/sun/star/awt/FontSlant.hpp>
-// auto strip #endif
 
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include "textuno.hxx"
 #include "fielduno.hxx"
