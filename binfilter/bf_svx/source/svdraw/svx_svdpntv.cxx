@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:05:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:45:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,67 +39,29 @@
 #ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
-// auto strip #include <com/sun/star/awt/XControl.hpp>
-// auto strip #endif
 
-// auto strip #include "svdpntv.hxx"
-// auto strip #include "editdata.hxx"
-// auto strip #include "svdmrkv.hxx"
-// auto strip #include "svdxout.hxx"
 #include "svdpagv.hxx"
 #include "svdpage.hxx"
-// auto strip #include "svdmodel.hxx"
 #include "svdvmark.hxx"
 #include "svdio.hxx"
-// auto strip #include "svdundo.hxx"
 #include "svdview.hxx"
-// auto strip #include "svdglue.hxx"
-// auto strip #include "svdobj.hxx"
 #include "svdograf.hxx"
-// auto strip #include "svdattrx.hxx"
-// auto strip #include "svdibrow.hxx"
-// auto strip #include "svditer.hxx"
 #include "svdouno.hxx"
 
-// auto strip #ifndef _SVX_XLNCLIT_HXX
-// auto strip #include "xlnclit.hxx"
-// auto strip #endif
-// auto strip #ifndef _SVX_XFLCLIT_HXX
-// auto strip #include "xflclit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _EEITEM_HXX //autogen
-// auto strip #include <eeitem.hxx>
-// auto strip #endif
 
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
 
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMITER_HXX //autogen
-// auto strip #include <svtools/itemiter.hxx>
-// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
 
-// auto strip #ifndef _B2D_MBMP_HXX
-// auto strip #include <goodies/b2dmbmp.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _B2D_MTRI_HXX
-// auto strip #include <goodies/b2dmtri.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _GRFMGR_HXX
-// auto strip #include <goodies/grfmgr.hxx>
-// auto strip #endif
 
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
@@ -112,107 +74,8 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void RollingRect::DrawHor(OutputDevice& rOut, long x1, long x2, long y, BOOL bMov) const
-//STRIP001 {
-//STRIP001  USHORT nLen2=nLen*2;
-//STRIP001  BOOL bBck=x1>x2;
-//STRIP001  long nOfs=nIdx;
-//STRIP001  if (bBck) {
-//STRIP001      long nTmp;
-//STRIP001      nTmp=x1-x2+1+nLen2+nLen;
-//STRIP001      nTmp%=nLen2;
-//STRIP001      nOfs=nLen2-nOfs+nTmp;
-//STRIP001      nTmp=x1; x1=x2; x2=nTmp;
-//STRIP001  }
-//STRIP001  while (nOfs>0) nOfs-=nLen2;
-//STRIP001  long a1,a2,a;
-//STRIP001  a=x1+nOfs;
-//STRIP001  while (a<=x2+1) {
-//STRIP001      a1=a;
-//STRIP001      a2=a+(nLen-1);
-//STRIP001      if (bMov) {
-//STRIP001          if (!bBck) a2++; else a1--;
-//STRIP001          if (a1>=x1 && a1<=x2) ((Window&)rOut).Invert(Rectangle(a1,y,a1,y));
-//STRIP001          if (a2>=x1 && a2<=x2) ((Window&)rOut).Invert(Rectangle(a2,y,a2,y));
-//STRIP001      } else {
-//STRIP001          if (a1<x1) a1=x1;
-//STRIP001          if (a2>x2) a2=x2;
-//STRIP001          if (a1<=a2) ((Window&)rOut).Invert(Rectangle(a1,y,a2,y));
-//STRIP001      }
-//STRIP001      a+=nLen2;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void RollingRect::DrawVer(OutputDevice& rOut, long x, long y1, long y2, BOOL bMov) const
-//STRIP001 {
-//STRIP001  USHORT nLen2=nLen*2;
-//STRIP001  BOOL bBck=y1>y2;
-//STRIP001  long nOfs=nIdx;
-//STRIP001  if (bBck) {
-//STRIP001      long nTmp;
-//STRIP001      nTmp=y1-y2+1+nLen2+nLen;
-//STRIP001      nTmp%=nLen2;
-//STRIP001      nOfs=nLen2-nOfs+nTmp;
-//STRIP001      nTmp=y1; y1=y2; y2=nTmp;
-//STRIP001  }
-//STRIP001  while (nOfs>0) nOfs-=nLen2;
-//STRIP001  long a1,a2,a;
-//STRIP001  a=y1+nOfs;
-//STRIP001  while (a<=y2+1) {
-//STRIP001      a1=a;
-//STRIP001      a2=a+nLen-1;
-//STRIP001      if (bMov) {
-//STRIP001          if (!bBck) a2++; else a1--;
-//STRIP001          if (a1>=y1 && a1<=y2) ((Window&)rOut).Invert(Rectangle(x,a1,x,a1));
-//STRIP001          if (a2>=y1 && a2<=y2) ((Window&)rOut).Invert(Rectangle(x,a2,x,a2));
-//STRIP001      } else {
-//STRIP001          if (a1<y1) a1=y1;
-//STRIP001          if (a2>y2) a2=y2;
-//STRIP001          if (a1<=a2) ((Window&)rOut).Invert(Rectangle(x,a1,x,a2));
-//STRIP001      }
-//STRIP001      a+=nLen2;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void RollingRect::DrawRect(OutputDevice& rOut, BOOL bMov) const
-//STRIP001 {
-//STRIP001  BOOL bMap0=rOut.IsMapModeEnabled();
-//STRIP001  Point aPt1(rOut.LogicToPixel(aP1));
-//STRIP001  Point aPt2(rOut.LogicToPixel(aP2));
-//STRIP001  rOut.EnableMapMode(FALSE);
-//STRIP001  Size aS(rOut.GetOutputSizePixel());
-//STRIP001  long dx=Abs(aPt2.X()-aPt1.X());
-//STRIP001  long dy=Abs(aPt2.Y()-aPt1.Y());
-//STRIP001  if (IsStripes()) {
-//STRIP001      DrawHor(rOut,aPt1.X(),0,aPt1.Y(),bMov);
-//STRIP001      DrawHor(rOut,aPt2.X(),aS.Width(),aPt1.Y(),bMov);
-//STRIP001      if (dy!=0) {
-//STRIP001          DrawHor(rOut,aPt1.X(),0,aPt2.Y(),bMov);
-//STRIP001          DrawHor(rOut,aPt2.X(),aS.Width(),aPt2.Y(),bMov);
-//STRIP001      }
-//STRIP001      DrawVer(rOut,aPt1.X(),aPt1.Y(),0,bMov);
-//STRIP001      DrawVer(rOut,aPt1.X(),aPt2.Y(),aS.Height(),bMov);
-//STRIP001      if (dx!=0) {
-//STRIP001          DrawVer(rOut,aPt2.X(),aPt1.Y(),0,bMov);
-//STRIP001          DrawVer(rOut,aPt2.X(),aPt2.Y(),aS.Height(),bMov);
-//STRIP001      }
-//STRIP001  } else if (IsCrossHair()) {
-//STRIP001      DrawHor(rOut,aPt1.X(),0,aPt1.Y(),bMov);
-//STRIP001      DrawHor(rOut,aPt1.X(),aS.Width(),aPt1.Y(),bMov);
-//STRIP001      DrawVer(rOut,aPt1.X(),aPt1.Y(),0,bMov);
-//STRIP001      DrawVer(rOut,aPt1.X(),aPt1.Y(),aS.Height(),bMov);
-//STRIP001  } else {
-//STRIP001      if (dx!=0) {
-//STRIP001          DrawHor(rOut,aPt1.X(),aPt2.X(),aPt1.Y(),bMov);
-//STRIP001          if (dy>0) DrawHor(rOut,aPt2.X(),aPt1.X(),aPt2.Y(),bMov);
-//STRIP001      }
-//STRIP001      if (dy!=0 || (dy==1 && dx>1)) {
-//STRIP001          DrawVer(rOut,aPt1.X(),aPt1.Y(),aPt2.Y(),bMov);
-//STRIP001          if (dx>0) DrawVer(rOut,aPt2.X(),aPt2.Y(),aPt1.Y(),bMov);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  rOut.EnableMapMode(bMap0);
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -224,55 +87,13 @@ using namespace ::com::sun::star;
 /*N*/   pOut=NULL;
 /*N*/ }
 
-//STRIP001 void FrameAnimator::Start() const
-//STRIP001 {
-//STRIP001  if (!Application::IsRemoteServer())
-//STRIP001  {
-//STRIP001        // Die Animation ist in der Remote-Version zu langsam.
-//STRIP001        // Daher nur in der Nicht-Remote-Version Animation starten
-//STRIP001        ((FrameAnimator*)this)->aTim.Start();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void FrameAnimator::Stop() const
-//STRIP001 {
-//STRIP001  ((FrameAnimator*)this)->aTim.Stop();
-//STRIP001 }
 
 /*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,pTim)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (rView.aDragStat.IsShown()) {
-//STRIP001      USHORT i=0;
-//STRIP001      do {
-//STRIP001          OutputDevice* pO=rView.pDragWin;
-//STRIP001          if (pO==NULL) {
-//STRIP001              pO=rView.GetWin(i);
-//STRIP001              i++;
-//STRIP001          }
-//STRIP001          if (pO!=NULL) {
-//STRIP001              RollIt(*pO,FALSE);
-//STRIP001          }
-//STRIP001      } while (pOut==NULL && i<rView.GetWinCount());
-//STRIP001      IncRollIdx();
-//STRIP001  }
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void FrameAnimator::Invert(OutputDevice* pNewOut) const
-//STRIP001 {
-//STRIP001  USHORT i=0;
-//STRIP001  ((FrameAnimator*)this)->pOut=pNewOut;
-//STRIP001  do {
-//STRIP001      OutputDevice* pO=pNewOut;
-//STRIP001      if (pO==NULL) {
-//STRIP001          pO=rView.GetWin(i);
-//STRIP001          i++;
-//STRIP001      }
-//STRIP001      if (pO!=NULL) {
-//STRIP001          RollingRect::Invert(*pO);
-//STRIP001      }
-//STRIP001  } while (pOut==NULL && i<rView.GetWinCount());
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //#define   TEST_IAO
@@ -668,71 +489,14 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 struct ImpAsyncStruct
-//STRIP001 {
-//STRIP001  const SdrObject*    mpObj;
-//STRIP001  const OutputDevice* mpOut;
-//STRIP001  const Rectangle     maRectPix;
-//STRIP001
-//STRIP001                      ImpAsyncStruct( const SdrObject* pObj, const OutputDevice* pOut ) :
-//STRIP001                          mpObj( pObj ), mpOut( pOut ), maRectPix( pOut->LogicToPixel( pObj->GetBoundRect() ) ) {}
-//STRIP001 };
 
-//STRIP001 void SdrPaintView::ImpAddAsyncObj( const SdrObject* pObj, const OutputDevice* pOut )
-//STRIP001 {
-//STRIP001  aAsyncPaintList.Insert( new ImpAsyncStruct( pObj, pOut ), LIST_APPEND );
-//STRIP001 }
 
 /*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* pObj )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-//STRIP001     // #110290# Remove the given object from the
-//STRIP001     // maSwappedInGraphicsStack list, as the object
-//STRIP001     // itself caters for swapout again.
-//STRIP001     maSwappedInGraphicsStack.remove( (SdrGrafObj*)pObj );
 /*?*/ }
 
 /*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,pTimer)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  while( aAsyncPaintList.Count() )
-//STRIP001  {
-//STRIP001      Rectangle           aInvRect;
-//STRIP001      const OutputDevice* pOut = NULL;
-//STRIP001
-//STRIP001      for( void* p = aAsyncPaintList.First(); p;  )
-//STRIP001      {
-//STRIP001          ImpAsyncStruct* pAsync = (ImpAsyncStruct*) p;
-//STRIP001          BOOL            bMatch = TRUE;
-//STRIP001
-//STRIP001          if( pAsync->mpObj && pAsync->mpObj->ISA( SdrGrafObj) )
-//STRIP001             {
-//STRIP001                 // #110290# Store swapped-in graphic, such that we can later
-//STRIP001                 // force-swap it out, when this view is cleared.
-//STRIP001                 maSwappedInGraphicsStack.push_front( (SdrGrafObj*) pAsync->mpObj );
-//STRIP001
-//STRIP001              ( (SdrGrafObj*) pAsync->mpObj )->ForceSwapIn();
-//STRIP001             }
-//STRIP001
-//STRIP001          if( !pOut )
-//STRIP001              pOut = pAsync->mpOut;
-//STRIP001          else if( pOut != pAsync->mpOut )
-//STRIP001              bMatch = FALSE;
-//STRIP001
-//STRIP001          if( bMatch )
-//STRIP001          {
-//STRIP001              aInvRect.Union( pAsync->maRectPix );
-//STRIP001              delete (ImpAsyncStruct*) aAsyncPaintList.Remove();
-//STRIP001              p = aAsyncPaintList.GetCurObject();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              p = aAsyncPaintList.Next();
-//STRIP001      }
-//STRIP001
-//STRIP001      if( OUTDEV_WINDOW == pOut->GetOutDevType() )
-//STRIP001          ( (Window*) pOut )->Invalidate( pOut->PixelToLogic( aInvRect ) );
-//STRIP001  }
-//STRIP001
-//STRIP001  ((SdrMarkView*)this)->ImpAfterPaint();
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
@@ -818,39 +582,18 @@ using namespace ::com::sun::star;
 /*N*/   return IsEncirclement();
 /*N*/ }
 
-//STRIP001 void SdrPaintView::MovAction(const Point& rPnt)
-//STRIP001 {
-//STRIP001  if (IsEncirclement()) {
-//STRIP001      MovEncirclement(rPnt);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::EndAction()
-//STRIP001 {
-//STRIP001  if (IsEncirclement()) EndEncirclement();
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::BckAction()
-//STRIP001 {
-//STRIP001  BrkEncirclement();
-//STRIP001 }
 
 /*N*/ void SdrPaintView::BrkAction()
 /*N*/ {
 /*N*/   BrkEncirclement();
 /*N*/ }
 
-//STRIP001 void SdrPaintView::TakeActionRect(Rectangle& rRect) const
-//STRIP001 {
-//STRIP001  if (IsEncirclement()) {
-//STRIP001      rRect=Rectangle(aDragStat.GetStart(),aDragStat.GetNow());
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        DrawEncirclement(pOut);
 /*N*/   }
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
@@ -861,16 +604,6 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 USHORT SdrPaintView::ImpGetMinMovLogic(short nMinMov, const OutputDevice* pOut) const
-//STRIP001 {
-//STRIP001  if (nMinMov>=0) return USHORT(nMinMov);
-//STRIP001  if (pOut==NULL) pOut=GetWin(0);
-//STRIP001  if (pOut!=NULL) {
-//STRIP001      return short(-pOut->PixelToLogic(Size(nMinMov,0)).Width());
-//STRIP001  } else {
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ USHORT SdrPaintView::ImpGetHitTolLogic(short nHitTol, const OutputDevice* pOut) const
 /*N*/ {
@@ -899,75 +632,17 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SdrPaintView::BegEncirclement(const Point& rPnt, OutputDevice* pOut, short nMinMov)
-//STRIP001 {
-//STRIP001  BrkAction();
-//STRIP001  aDragStat.Reset(rPnt);
-//STRIP001  aDragStat.SetMinMove(ImpGetMinMovLogic(nMinMov,pOut));
-//STRIP001  if (nMinMov==0) aDragStat.SetMinMoved();
-//STRIP001  aAni.Reset();
-//STRIP001  aDragStat.NextPoint();
-//STRIP001  pDragWin=pOut;
-//STRIP001  bEncircle=TRUE;
-//STRIP001  if (aDragStat.IsMinMoved()) ShowEncirclement(pOut);
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::MovEncirclement(const Point& rPnt)
-//STRIP001 {
-//STRIP001  if (IsEncirclement()) {
-//STRIP001      if (aDragStat.IsMinMoved()) HideEncirclement(pDragWin);
-//STRIP001      aDragStat.NextMove(rPnt);
-//STRIP001      if (aDragStat.CheckMinMoved(rPnt)) ShowEncirclement(pDragWin);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 Rectangle SdrPaintView::EndEncirclement(BOOL bNoJustify)
-//STRIP001 {
-//STRIP001  if (IsEncirclement() && aDragStat.IsMinMoved()) {
-//STRIP001      HideEncirclement(pDragWin);
-//STRIP001      bEncircle=FALSE;
-//STRIP001      Rectangle aRect(aDragStat.GetStart(),aDragStat.GetNow());
-//STRIP001      if (!bNoJustify) aRect.Justify();
-//STRIP001      return aRect;
-//STRIP001  }
-//STRIP001  bEncircle=FALSE;
-//STRIP001  return Rectangle();
-//STRIP001 }
 
 /*N*/ void SdrPaintView::BrkEncirclement()
 /*N*/ {
 /*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        HideEncirclement(pDragWin);
-//STRIP001 /*?*/        bEncircle=FALSE;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrPaintView::ShowEncirclement(OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  if (IsEncirclement() && !aDragStat.IsShown()) {
-//STRIP001      DrawEncirclement(pOut);
-//STRIP001      aDragStat.SetShown(TRUE);
-//STRIP001      aAni.Start();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::HideEncirclement(OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  if (IsEncirclement() && aDragStat.IsShown()) {
-//STRIP001      aAni.Stop();
-//STRIP001      DrawEncirclement(pOut);
-//STRIP001      aDragStat.SetShown(FALSE);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::DrawEncirclement(OutputDevice* pOut) const
-//STRIP001 {
-//STRIP001  if (IsEncirclement()) {
-//STRIP001      aAni.SetP1(aDragStat.GetStart());
-//STRIP001      aAni.SetP2(aDragStat.GetNow());
-//STRIP001      aAni.Invert(pOut);
-//STRIP001  }
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1049,9 +724,6 @@ using namespace ::com::sun::star;
 /*N*/       if (pTmpPV==NULL) {
 /*N*/           USHORT nPos=GetHiddenPV(pPage);   // War die schon mal da?
 /*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                pPV=GetPageHidePvNum(nPos);
-//STRIP001 /*?*/                aPagHide.Remove(nPos);
-//STRIP001 /*?*/                pPV->SetOffset(rOffs);
 /*N*/           } else {
 /*N*/               pPV=new SdrPageView(pPage,rOffs,*((SdrView*)this));
 /*N*/           }
@@ -1072,10 +744,6 @@ using namespace ::com::sun::star;
 /*N*/   return ShowPage(pMod->GetPage(nPgNum),rOffs);
 /*N*/ }
 
-//STRIP001 SdrPageView* SdrPaintView::ShowMasterPagePgNum(USHORT nPgNum, const Point& rOffs)
-//STRIP001 {
-//STRIP001  return ShowPage(pMod->GetMasterPage(nPgNum),rOffs);
-//STRIP001 }
 
 /*N*/ void SdrPaintView::HidePage(SdrPageView* pPV)
 /*N*/ {
@@ -1093,27 +761,13 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrPaintView::HidePagePgNum(USHORT nPgNum)
-//STRIP001 {
-//STRIP001  HidePage(pMod->GetPage(nPgNum));
-//STRIP001 }
 
 /*N*/ void SdrPaintView::HideAllPages()
 /*N*/ {
 /*N*/   while (GetPageViewCount()>0) HidePagePvNum(0);
 /*N*/ }
 
-//STRIP001 void SdrPaintView::SetPagePos(SdrPageView* pPV, const Point& rOffs)
-//STRIP001 {
-//STRIP001  if (pPV!=NULL) {
-//STRIP001      pPV->SetOffset(rOffs);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetPagePosPgNum(USHORT nPgNum, const Point& rOffs)
-//STRIP001 {
-//STRIP001  SetPagePos(pMod->GetPage(nPgNum),rOffs);
-//STRIP001 }
 
 /*N*/ SdrPageView* SdrPaintView::GetPageView(const SdrPage* pPage) const
 /*N*/ {
@@ -1128,58 +782,9 @@ using namespace ::com::sun::star;
 /*N*/   else return pPV;
 /*N*/ }
 
-//STRIP001 SdrPageView* SdrPaintView::GetPageViewPgNum(USHORT nPgNum) const
-//STRIP001 {
-//STRIP001  return GetPageView(pMod->GetPage(nPgNum));
-//STRIP001 }
 
-//STRIP001 SdrPageView* SdrPaintView::GetPageView(const Point& rPnt) const
-//STRIP001 {
-//STRIP001  SdrPageView* pHit=NULL;
-//STRIP001  SdrPageView* pBest=GetPageViewPvNum(0);
-//STRIP001  ULONG        nBest=0xFFFFFFFF;
-//STRIP001
-//STRIP001  for (USHORT i=GetPageViewCount(); i>0 && pHit==NULL;) {
-//STRIP001      i--;
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      Rectangle aRect(pPV->GetPageRect());
-//STRIP001      if (aRect.IsInside(rPnt)) {
-//STRIP001          pHit=pPV;
-//STRIP001          pBest=pHit;
-//STRIP001      } else {
-//STRIP001          ULONG dx=0,dy=0;
-//STRIP001          if (rPnt.X()<aRect.Left  ()) dx=ULONG(aRect.Left  ()-rPnt.X());
-//STRIP001          if (rPnt.Y()<aRect.Top   ()) dy=ULONG(aRect.Top   ()-rPnt.Y());
-//STRIP001          if (rPnt.X()>aRect.Right ()) dx=ULONG(rPnt.X()-aRect.Left  ());
-//STRIP001          if (rPnt.Y()>aRect.Bottom()) dy=ULONG(rPnt.Y()-aRect.Bottom());
-//STRIP001          ULONG nDist=dx+dy;
-//STRIP001          if (nDist<nBest) {
-//STRIP001              nBest=nDist;
-//STRIP001              pBest=pPV;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pBest;
-//STRIP001 }
 
-//STRIP001 USHORT SdrPaintView::GetPageViewNum(const SdrPageView* pPV) const
-//STRIP001 {
-//STRIP001  if (pPV==NULL) return 0xFFFF;
-//STRIP001  ULONG nNum=aPagV.GetPos(pPV);
-//STRIP001  if (nNum==CONTAINER_ENTRY_NOTFOUND) nNum=0xFFFF;
-//STRIP001  return USHORT(nNum);
-//STRIP001 }
 
-//STRIP001 SdrPageView* SdrPaintView::HitPage(const Point& rPnt) const
-//STRIP001 {
-//STRIP001  SdrPageView* pHit=NULL;
-//STRIP001  for (USHORT i=GetPageViewCount(); i>0 && pHit==NULL;) {
-//STRIP001      i--;
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      if (pPV->GetPageRect().IsInside(rPnt)) pHit=pPV;
-//STRIP001  }
-//STRIP001  return pHit;
-//STRIP001 }
 
 /*N*/ USHORT SdrPaintView::GetHiddenPV(const SdrPage* pPage) const
 /*N*/ {
@@ -1193,13 +798,6 @@ using namespace ::com::sun::star;
 /*N*/   return i;
 /*N*/ }
 
-//STRIP001 USHORT SdrPaintView::GetPageHideNum(const SdrPageView* pPV) const
-//STRIP001 {
-//STRIP001  if (pPV==NULL) return 0xFFFF;
-//STRIP001  ULONG nNum=aPagHide.GetPos(pPV);
-//STRIP001  if (nNum==CONTAINER_ENTRY_NOTFOUND) nNum=0xFFFF;
-//STRIP001  return USHORT(nNum);
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1232,87 +830,14 @@ using namespace ::com::sun::star;
 
 /*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT nNum )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();//STRIP001
-//STRIP001     OutputDevice* pWin = GetWin(nNum);
-//STRIP001
-//STRIP001     if( pWin )
-//STRIP001     {
-//STRIP001         // get visible area
-//STRIP001         Size aVisSizePixel( pWin->GetOutputSizePixel() );
-//STRIP001         return Rectangle( pWin->PixelToLogic(Rectangle(Point(0,0), aVisSizePixel)) );
-//STRIP001     }
-//STRIP001
-//STRIP001     return Rectangle();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 TRISTATE SdrPaintView::IsLayerSetVisible(const XubString& rName) const
-//STRIP001 {
-//STRIP001  TRISTATE nRet=FALSE;
-//STRIP001  USHORT i=0;
-//STRIP001  BOOL b1st=TRUE;
-//STRIP001  while (i<GetPageViewCount() && nRet!=FUZZY) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      BOOL bOn=pPV->IsLayerSetVisible(rName);
-//STRIP001      if (b1st) {
-//STRIP001          nRet=bOn;
-//STRIP001          b1st=FALSE;
-//STRIP001      } else {
-//STRIP001          if (nRet!=bOn) nRet=FUZZY;
-//STRIP001      }
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::ShowLayerSet(const XubString& rName, BOOL bShow)
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  for (i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->ShowLayerSet(rName,bShow);
-//STRIP001  }
-//STRIP001  InvalidateAllWin();
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetLayerVisible(const XubString& rName, BOOL bShow)
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  for (i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->SetLayerVisible(rName,bShow);
-//STRIP001  }
-//STRIP001  InvalidateAllWin();
-//STRIP001 }
 
-//STRIP001 TRISTATE SdrPaintView::IsLayerVisible(const XubString& rName) const
-//STRIP001 {
-//STRIP001  TRISTATE nRet=FALSE;
-//STRIP001  USHORT i=0;
-//STRIP001  BOOL b1st=TRUE;
-//STRIP001  while (i<GetPageViewCount() && nRet!=FUZZY) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      BOOL bOn=pPV->IsLayerVisible(rName);
-//STRIP001      if (b1st) {
-//STRIP001          nRet=bOn;
-//STRIP001          b1st=FALSE;
-//STRIP001      } else {
-//STRIP001          if (nRet!=bOn) nRet=FUZZY;
-//STRIP001      }
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetAllLayersVisible(BOOL bShow)
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  for (i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->SetAllLayersVisible(bShow);
-//STRIP001  }
-//STRIP001  InvalidateAllWin();
-//STRIP001 }
 
 /*N*/ void SdrPaintView::SetLayerLocked(const XubString& rName, BOOL bLock)
 /*N*/ {
@@ -1323,116 +848,18 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 TRISTATE SdrPaintView::IsLayerLocked(const XubString& rName) const
-//STRIP001 {
-//STRIP001  TRISTATE nRet=FALSE;
-//STRIP001  USHORT i=0;
-//STRIP001  BOOL b1st=TRUE;
-//STRIP001  while (i<GetPageViewCount() && nRet!=FUZZY) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      BOOL bLock=pPV->IsLayerLocked(rName);
-//STRIP001      if (b1st) {
-//STRIP001          nRet=bLock;
-//STRIP001          b1st=FALSE;
-//STRIP001      } else {
-//STRIP001          if (nRet!=bLock) nRet=FUZZY;
-//STRIP001      }
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetAllLayersLocked(BOOL bLock)
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  for (i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->SetAllLayersLocked(bLock);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetLayerPrintable(const XubString& rName, BOOL bPrn)
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  for (i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->SetLayerPrintable(rName,bPrn);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 TRISTATE SdrPaintView::IsLayerPrintable(const XubString& rName) const
-//STRIP001 {
-//STRIP001  TRISTATE nRet=FALSE;
-//STRIP001  USHORT i=0;
-//STRIP001  BOOL b1st=TRUE;
-//STRIP001  while (i<GetPageViewCount() && nRet!=FUZZY) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      BOOL bPrn=pPV->IsLayerPrintable(rName);
-//STRIP001      if (b1st) {
-//STRIP001          nRet=bPrn;
-//STRIP001          b1st=FALSE;
-//STRIP001      } else {
-//STRIP001          if (nRet!=bPrn) nRet=FUZZY;
-//STRIP001      }
-//STRIP001      i++;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetAllLayersPrintable(BOOL bPrn)
-//STRIP001 {
-//STRIP001  for (USHORT nv=0; nv<GetPageViewCount(); nv++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(nv);
-//STRIP001      pPV->SetAllLayersPrintable(bPrn);
-//STRIP001  }
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrPaintView::InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  for (USHORT i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->InitRedraw(pOut,rReg,nPaintMode,NULL);
-//STRIP001  }
-//STRIP001  USHORT nWinNum=aWinList.Find(pOut);
-//STRIP001  if (nWinNum!=SDRVIEWWIN_NOTFOUND) {
-//STRIP001      ((SdrMarkView*)this)->AfterInitRedraw(nWinNum);
-//STRIP001      if (IsShownXorVisibleWinNum(nWinNum)) { // Durch Invalidate zerstoerte Handles wiederherstellen
-//STRIP001          OutputDevice* pOut=GetWin(nWinNum);
-//STRIP001          if (pOut!=NULL && pOut->GetOutDevType()!=OUTDEV_PRINTER) {
-//STRIP001              ToggleShownXor(pOut,&rReg);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  RestartAfterPaintTimer();
 /*N*/ }
 
-//STRIP001 B2dIAOManager* SdrPaintView::GetIAOManager(OutputDevice* pOut)
-//STRIP001 {
-//STRIP001  UINT16 nWinIndex = aWinList.Find(pOut);
-//STRIP001  if(nWinIndex != SDRVIEWWIN_NOTFOUND)
-//STRIP001  {
-//STRIP001      if(aWinList[nWinIndex].pIAOManager)
-//STRIP001      {
-//STRIP001          return aWinList[nWinIndex].pIAOManager;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
-//STRIP001 B2dIAOManager* SdrPaintView::GetFirstIAOManager()
-//STRIP001 {
-//STRIP001  if(aWinList.GetCount())
-//STRIP001  {
-//STRIP001      if(aWinList[0].pIAOManager)
-//STRIP001      {
-//STRIP001          return aWinList[0].pIAOManager;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 //STRIP012/*N*/ void SdrPaintView::RefreshAllIAOManagers()
 //STRIP012/*N*/ {
@@ -1453,139 +880,7 @@ using namespace ::com::sun::star;
 //STRIP012static UINT32 nInsertIncrement = 100;
 //STRIP012#endif
 
-//STRIP001 BOOL SdrPaintView::KeyInput(const KeyEvent& rKEvt, Window* pWin)
-//STRIP001 {
-//STRIP001 #ifdef TEST_IAO
-//STRIP001  B2dIAOManager* pIAOManager = NULL;
-//STRIP001  if(aWinList.GetCount() && aWinList[0].pIAOManager)
-//STRIP001      pIAOManager = aWinList[0].pIAOManager;
-//STRIP001
-//STRIP001  if(pIAOManager)
-//STRIP001  {
-//STRIP001      switch(rKEvt.GetCharCode())
-//STRIP001      {
-//STRIP001          case '1' :  // On/Off
-//STRIP001          {
-//STRIP001              pIAOManager->SetVisible(!pIAOManager->IsVisible());
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case 'a':
-//STRIP001          case 's':
-//STRIP001          case 'w':
-//STRIP001          case 'y':   // move all
-//STRIP001          {
-//STRIP001              Vector2D aMove;
-//STRIP001
-//STRIP001              if(rKEvt.GetCharCode() == 'a') aMove.X() -= (double)nStepWidthForMove;
-//STRIP001              if(rKEvt.GetCharCode() == 's') aMove.X() += (double)nStepWidthForMove;
-//STRIP001              if(rKEvt.GetCharCode() == 'w') aMove.Y() -= (double)nStepWidthForMove;
-//STRIP001              if(rKEvt.GetCharCode() == 'y') aMove.Y() += (double)nStepWidthForMove;
-//STRIP001
-//STRIP001              Matrix3D aTrans;
-//STRIP001              aTrans.Translate(aMove);
-//STRIP001              pIAOManager->Transform(aTrans);
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case '3':
-//STRIP001          {
-//STRIP001              nDirectObjectNum++;
-//STRIP001              if(nDirectObjectNum >= pIAOManager->GetIAOCount())
-//STRIP001                  nDirectObjectNum = 0L;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case '2':
-//STRIP001          {
-//STRIP001              if(nDirectObjectNum)
-//STRIP001                  nDirectObjectNum--;
-//STRIP001              else
-//STRIP001                  nDirectObjectNum = pIAOManager->GetIAOCount()-1;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case '4':
-//STRIP001          {
-//STRIP001              B2dIAObject* pAct = pIAOManager->GetIAObject(nDirectObjectNum);
-//STRIP001              if(pAct)
-//STRIP001              {
-//STRIP001                  delete pAct;
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case '5':
-//STRIP001          {
-//STRIP001              B2dIAOMarker* pMarker = new B2dIAOMarker(pIAOManager, Point(nInsertXPos, nInsertYPos), B2D_IAO_MARKER_RECT_7X7);
-//STRIP001              nInsertXPos += nInsertIncrement;
-//STRIP001              nInsertYPos += nInsertIncrement;
-//STRIP001              pMarker->SetBaseColor(Color(COL_YELLOW));
-//STRIP001              pMarker->Set2ndColor(Color(COL_BLACK));
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case 'd':
-//STRIP001          case 'f':
-//STRIP001          case 'r':
-//STRIP001          case 'c':   // move
-//STRIP001          {
-//STRIP001              Vector2D aMove;
-//STRIP001
-//STRIP001              if(rKEvt.GetCharCode() == 'd') aMove.X() -= (double)nStepWidthForMove;
-//STRIP001              if(rKEvt.GetCharCode() == 'f') aMove.X() += (double)nStepWidthForMove;
-//STRIP001              if(rKEvt.GetCharCode() == 'r') aMove.Y() -= (double)nStepWidthForMove;
-//STRIP001              if(rKEvt.GetCharCode() == 'c') aMove.Y() += (double)nStepWidthForMove;
-//STRIP001
-//STRIP001              Matrix3D aTrans;
-//STRIP001              aTrans.Translate(aMove);
-//STRIP001
-//STRIP001              B2dIAObject* pAct = pIAOManager->GetIAObject(nDirectObjectNum);
-//STRIP001              if(pAct)
-//STRIP001                  pAct->Transform(aTrans);
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          case 't':
-//STRIP001          case 'z':
-//STRIP001          case 'u':
-//STRIP001          case 'i':   // rotate all
-//STRIP001          {
-//STRIP001              B2dIAObject* pCenterObj = pIAOManager->GetIAObject(nDirectObjectNum);
-//STRIP001              if(pCenterObj)
-//STRIP001              {
-//STRIP001                  Vector2D aCenter(pCenterObj->GetBasePosition());
-//STRIP001                  Matrix3D aTrans;
-//STRIP001
-//STRIP001                  aTrans.Translate(-aCenter);
-//STRIP001                  if(rKEvt.GetCharCode() == 't') aTrans.Rotate(  1.0 * (F_PI / 180.0));
-//STRIP001                  if(rKEvt.GetCharCode() == 'z') aTrans.Rotate( 10.0 * (F_PI / 180.0));
-//STRIP001                  if(rKEvt.GetCharCode() == 'u') aTrans.Rotate(-10.0 * (F_PI / 180.0));
-//STRIP001                  if(rKEvt.GetCharCode() == 'i') aTrans.Rotate( -1.0 * (F_PI / 180.0));
-//STRIP001                  aTrans.Translate(aCenter);
-//STRIP001
-//STRIP001                  pIAOManager->Transform(aTrans);
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      // update display if necessary
-//STRIP001      pIAOManager->UpdateDisplay();
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::InitRedraw(USHORT nWinNum, const Region& rReg, USHORT nPaintMode)
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<GetPageViewCount(); i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      pPV->InitRedraw(nWinNum,rReg,nPaintMode,NULL);
-//STRIP001  }
-//STRIP001  ((SdrMarkView*)this)->AfterInitRedraw(nWinNum);
-//STRIP001  if (IsShownXorVisibleWinNum(nWinNum)) { // Durch Invalidate zerstoerte Handles wiederherstellen
-//STRIP001      OutputDevice* pOut=GetWin(nWinNum);
-//STRIP001      if (pOut!=NULL && pOut->GetOutDevType()!=OUTDEV_PRINTER) {
-//STRIP001          ToggleShownXor(pOut,&rReg);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  RestartAfterPaintTimer();
-//STRIP001 }
 
 /*N*/ void SdrPaintView::PostPaint()
 /*N*/ {
@@ -1599,50 +894,11 @@ using namespace ::com::sun::star;
 /*N*/   aAfterPaintTimer.Start();
 /*N*/ }
 
-//STRIP001 BOOL SdrPaintView::IsRedrawReady() const
-//STRIP001 {
-//STRIP001  BOOL bOk=TRUE;
-//STRIP001  for (USHORT i=0; i<GetPageViewCount() && bOk; i++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
-//STRIP001      bOk=pPV->IsReady();
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
-//STRIP001 BOOL SdrPaintView::RedrawOne(USHORT nBrkEvent)
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL SdrPaintView::RedrawUntilInput(USHORT nBrkEvent)
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ void SdrPaintView::GlueInvalidate() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
-//STRIP001  USHORT nPvAnz=GetPageViewCount();
-//STRIP001  USHORT nWinAnz=GetWinCount();
-//STRIP001  for (USHORT nWinNum=0; nWinNum<nWinAnz; nWinNum++) {
-//STRIP001      OutputDevice* pOut=GetWin(nWinNum);
-//STRIP001      if (pOut->GetOutDevType()==OUTDEV_WINDOW) {
-//STRIP001          pXOut->SetOutDev(pOut);
-//STRIP001          for (USHORT nPvNum=0; nPvNum<nPvAnz; nPvNum++) {
-//STRIP001              const SdrPageView* pPV=GetPageViewPvNum(nPvNum);
-//STRIP001              const SdrObjList* pOL=pPV->GetObjList();
-//STRIP001              pXOut->SetOffset(pPV->GetOffset());
-//STRIP001              ULONG nObjAnz=pOL->GetObjCount();
-//STRIP001              for (ULONG nObjNum=0; nObjNum<nObjAnz; nObjNum++) {
-//STRIP001                  const SdrObject* pObj=pOL->GetObj(nObjNum);
-//STRIP001                  const SdrGluePointList* pGPL=pObj->GetGluePointList();
-//STRIP001                  if (pGPL!=NULL && pGPL->GetCount()!=0) {
-//STRIP001                      pGPL->Invalidate(*(Window*)pOut,pObj);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pXOut->SetOffset(Point(0,0));
-//STRIP001  }
 /*N*/ }
 
 /*N*/ void SdrPaintView::InvalidateAllWin()
@@ -1690,13 +946,6 @@ using namespace ::com::sun::star;
 /*N*/   rWin.Invalidate(rRect);
 /*N*/ }
 
-//STRIP001 void SdrPaintView::LeaveOneGroup()
-//STRIP001 {
-//STRIP001  for (USHORT nv=0; nv<GetPageViewCount(); nv++) {
-//STRIP001      SdrPageView* pPV=GetPageViewPvNum(nv);
-//STRIP001      pPV->LeaveOneGroup();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrPaintView::LeaveAllGroup()
 /*N*/ {
@@ -1743,67 +992,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SdrPaintView::SetNotPersistDefaultAttr(const SfxItemSet& rAttr, BOOL bReplaceAll)
-//STRIP001 {
-//STRIP001  // bReplaceAll hat hier keinerlei Wirkung
-//STRIP001  BOOL bMeasure=ISA(SdrView) && ((SdrView*)this)->IsMeasureTool();
-//STRIP001  const SfxPoolItem *pPoolItem=NULL;
-//STRIP001  if (rAttr.GetItemState(SDRATTR_LAYERID,TRUE,&pPoolItem)==SFX_ITEM_SET) {
-//STRIP001      SdrLayerID nLayerId=((const SdrLayerIdItem*)pPoolItem)->GetValue();
-//STRIP001      const SdrLayer* pLayer=pMod->GetLayerAdmin().GetLayerPerID(nLayerId);
-//STRIP001      if (pLayer!=NULL) {
-//STRIP001          if (bMeasure) aMeasureLayer=pLayer->GetName();
-//STRIP001          else aAktLayer=pLayer->GetName();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (rAttr.GetItemState(SDRATTR_LAYERNAME,TRUE,&pPoolItem)==SFX_ITEM_SET) {
-//STRIP001      if (bMeasure) aMeasureLayer=((const SdrLayerNameItem*)pPoolItem)->GetValue();
-//STRIP001      else aAktLayer=((const SdrLayerNameItem*)pPoolItem)->GetValue();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::MergeNotPersistDefaultAttr(SfxItemSet& rAttr, BOOL bOnlyHardAttr) const
-//STRIP001 {
-//STRIP001  // bOnlyHardAttr hat hier keinerlei Wirkung
-//STRIP001  BOOL bMeasure=ISA(SdrView) && ((SdrView*)this)->IsMeasureTool();
-//STRIP001  const XubString& aNam=bMeasure?aMeasureLayer:aAktLayer;
-//STRIP001  rAttr.Put(SdrLayerNameItem(aNam));
-//STRIP001  SdrLayerID nLayer=pMod->GetLayerAdmin().GetLayerID(aNam,TRUE);
-//STRIP001  if (nLayer!=SDRLAYER_NOTFOUND) {
-//STRIP001      rAttr.Put(SdrLayerIdItem(nLayer));
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::SetDefaultAttr(const SfxItemSet& rAttr, BOOL bReplaceAll)
-//STRIP001 {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  {
-//STRIP001      BOOL bHasEEFeatureItems=FALSE;
-//STRIP001      SfxItemIter aIter(rAttr);
-//STRIP001      const SfxPoolItem* pItem=aIter.FirstItem();
-//STRIP001      while (!bHasEEFeatureItems && pItem!=NULL) {
-//STRIP001          if (!IsInvalidItem(pItem)) {
-//STRIP001              USHORT nW=pItem->Which();
-//STRIP001              if (nW>=EE_FEATURE_START && nW<=EE_FEATURE_END) bHasEEFeatureItems=TRUE;
-//STRIP001          }
-//STRIP001          pItem=aIter.NextItem();
-//STRIP001      }
-//STRIP001
-//STRIP001      if(bHasEEFeatureItems)
-//STRIP001      {
-//STRIP001          String aMessage;
-//STRIP001          aMessage.AppendAscii("SdrPaintView::SetDefaultAttr(): Das setzen von EE_FEATURE-Items an der SdrView macht keinen Sinn! Es fuehrt nur zu Overhead und nicht mehr lesbaren Dokumenten.");
-//STRIP001          InfoBox(NULL, aMessage).Execute();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  if (bReplaceAll) aDefaultAttr.Set(rAttr);
-//STRIP001  else aDefaultAttr.Put(rAttr,FALSE); // FALSE= InvalidItems nicht als Default, sondern als "Loecher" betrachten
-//STRIP001  SetNotPersistDefaultAttr(rAttr,bReplaceAll);
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if (pItemBrowser!=NULL) pItemBrowser->SetDirty();
-//STRIP001 #endif
-//STRIP001 }
 
 /*N*/ void SdrPaintView::SetDefaultStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
 /*N*/ {
@@ -1824,78 +1014,16 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /* new interface src537 */
-//STRIP001 BOOL SdrPaintView::GetAttributes(SfxItemSet& rTargetSet, BOOL bOnlyHardAttr) const
-//STRIP001 {
-//STRIP001  if(bOnlyHardAttr || !pDefaultStyleSheet)
-//STRIP001  {
-//STRIP001      rTargetSet.Put(aDefaultAttr, FALSE);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // sonst DefStyleSheet dazumergen
-//STRIP001      rTargetSet.Put(pDefaultStyleSheet->GetItemSet(), FALSE);
-//STRIP001      rTargetSet.Put(aDefaultAttr, FALSE);
-//STRIP001  }
-//STRIP001  MergeNotPersistDefaultAttr(rTargetSet, bOnlyHardAttr);
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL SdrPaintView::SetAttributes(const SfxItemSet& rSet, BOOL bReplaceAll)
-//STRIP001 {
-//STRIP001  SetDefaultAttr(rSet,bReplaceAll);
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 SfxStyleSheet* SdrPaintView::GetStyleSheet(BOOL& rOk) const
-//STRIP001 {
-//STRIP001  rOk=TRUE;
-//STRIP001  return GetDefaultStyleSheet();
-//STRIP001 }
 
 /*N*/ BOOL SdrPaintView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  SetDefaultStyleSheet(pStyleSheet,bDontRemoveHardAttr);
-//STRIP001  return TRUE;
 /*N*/ }
 
-//STRIP001 void SdrPaintView::SetDisabledAttr(const SfxItemSet* pNewDisabledAttr)
-//STRIP001 {
-//STRIP001  if (pDisabledAttr!=NULL || pNewDisabledAttr!=NULL) {
-//STRIP001      if (pDisabledAttr!=NULL) delete pDisabledAttr;
-//STRIP001      pDisabledAttr=NULL;
-//STRIP001      if (pNewDisabledAttr!=NULL) {
-//STRIP001          pDisabledAttr=new SfxItemSet(*pNewDisabledAttr);
-//STRIP001      }
-//STRIP001      for (USHORT nv=0; nv<GetPageViewCount(); nv++) {
-//STRIP001          SdrPageView* pPV=GetPageViewPvNum(nv);
-//STRIP001          if (pPV->GetEnteredLevel()!=0) {
-//STRIP001              InvalidateAllWin(pPV->GetPageRect());
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SdrPaintView::ShowItemBrowser(BOOL bShow)
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if (bShow) {
-//STRIP001      if (pItemBrowser==NULL) {
-//STRIP001          pItemBrowser=new SdrItemBrowser(*(SdrView*)this);
-//STRIP001          pItemBrowser->SetFloatingMode(TRUE);
-//STRIP001      }
-//STRIP001      pItemBrowser->Show();
-//STRIP001      pItemBrowser->GrabFocus();
-//STRIP001  } else {
-//STRIP001      if (pItemBrowser!=NULL) {
-//STRIP001          pItemBrowser->Hide();
-//STRIP001          delete pItemBrowser;
-//STRIP001          pItemBrowser=NULL;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2010,61 +1138,7 @@ using namespace ::com::sun::star;
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 void SdrPaintView::MakeVisible(const Rectangle& rRect, Window& rWin)
-//STRIP001 {
-//STRIP001  MapMode aMap(rWin.GetMapMode());
-//STRIP001  Size aActualSize(rWin.GetOutputSize());
-//STRIP001
-//STRIP001  if( aActualSize.Height() > 0 && aActualSize.Width() > 0 )
-//STRIP001  {
-//STRIP001      Size aNewSize(rRect.GetSize());
-//STRIP001      BOOL bNewScale=FALSE;
-//STRIP001      BOOL bNeedMoreX=aNewSize.Width()>aActualSize.Width();
-//STRIP001      BOOL bNeedMoreY=aNewSize.Height()>aActualSize.Height();
-//STRIP001      if (bNeedMoreX || bNeedMoreY)
-//STRIP001      {
-//STRIP001          bNewScale=TRUE;
-//STRIP001          // Neuen MapMode (Size+Org) setzen und dabei alles invalidieren
-//STRIP001          Fraction aXFact(aNewSize.Width(),aActualSize.Width());
-//STRIP001          Fraction aYFact(aNewSize.Height(),aActualSize.Height());
-//STRIP001          if (aYFact>aXFact) aXFact=aYFact;
-//STRIP001          aXFact*=aMap.GetScaleX();
-//STRIP001          aXFact.ReduceInaccurate(10); // Um Ueberlaeufe und BigInt-Mapping zu vermeiden
-//STRIP001          aMap.SetScaleX(aXFact);
-//STRIP001          aMap.SetScaleY(aYFact);
-//STRIP001          rWin.SetMapMode(aMap);
-//STRIP001          aActualSize=rWin.GetOutputSize();
-//STRIP001      }
-//STRIP001      Point aOrg(aMap.GetOrigin());
-//STRIP001      long dx=0,dy=0;
-//STRIP001      long l=-aOrg.X();
-//STRIP001      long r=-aOrg.X()+aActualSize.Width()-1;
-//STRIP001      long o=-aOrg.Y();
-//STRIP001      long u=-aOrg.Y()+aActualSize.Height()-1;
-//STRIP001      if (l>rRect.Left()) dx=rRect.Left()-l;
-//STRIP001      else if (r<rRect.Right()) dx=rRect.Right()-r;
-//STRIP001      if (o>rRect.Top()) dy=rRect.Top()-o;
-//STRIP001      else if (u<rRect.Bottom()) dy=rRect.Bottom()-u;
-//STRIP001      aMap.SetOrigin(Point(aOrg.X()-dx,aOrg.Y()-dy));
-//STRIP001      if (!bNewScale) {
-//STRIP001          if (dx!=0 || dy!=0) {
-//STRIP001              BOOL bXor=IsShownXorVisible(&rWin);
-//STRIP001              if (bXor) HideShownXor(&rWin);
-//STRIP001              rWin.Scroll(-dx,-dy);
-//STRIP001              rWin.SetMapMode(aMap);
-//STRIP001              rWin.Update();
-//STRIP001              if (bXor) ShowShownXor(&rWin);
-//STRIP001          }
-//STRIP001      } else {
-//STRIP001          rWin.SetMapMode(aMap);
-//STRIP001          InvalidateOneWin(rWin);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrPaintView::DoConnect(SdrOle2Obj* pOleObj)
-//STRIP001 {
-//STRIP001 }
 
 /*N*/ void SdrPaintView::VisAreaChanged(const OutputDevice* pOut)
 /*N*/ {
@@ -2132,10 +1206,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 const svtools::ColorConfig& SdrPaintView::getColorConfig() const
-//STRIP001 {
-//STRIP001  return maColorConfig;
-//STRIP001 }
 
 /*N*/ void SdrPaintView::onChangeColorConfig()
 /*N*/ {
@@ -2147,154 +1217,8 @@ using namespace ::com::sun::star;
 /*N*/   maGridColor = aColor;
 /*N*/ }
 
-//STRIP001 Color SdrPaintView::GetGridColor() const
-//STRIP001 {
-//STRIP001  return maGridColor;
-//STRIP001 }
 
 // #103834# Set background color for svx at SdrPageViews
-//STRIP001 void SdrPaintView::SetApplicationBackgroundColor(Color aBackgroundColor)
-//STRIP001 {
-//STRIP001  for(sal_uInt16 a(0); a < GetPageViewCount(); a++)
-//STRIP001  {
-//STRIP001      SdrPageView* pPageView = GetPageViewPvNum(a);
-//STRIP001      pPageView->SetApplicationBackgroundColor(aBackgroundColor);
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001 // #103911# Set document color for svx at SdrPageViews
-//STRIP001 void SdrPaintView::SetApplicationDocumentColor(Color aDocumentColor)
-//STRIP001 {
-//STRIP001  for(sal_uInt16 a(0); a < GetPageViewCount(); a++)
-//STRIP001  {
-//STRIP001      SdrPageView* pPageView = GetPageViewPvNum(a);
-//STRIP001      pPageView->SetApplicationDocumentColor(aDocumentColor);
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001 // declaration extracted from svdedxv.cxx
-//STRIP001 #define SPOTCOUNT    5
-//STRIP001
-//STRIP001 Color SdrPaintView::CalcBackgroundColor( const Rectangle& rArea,
-//STRIP001                                          const SetOfByte& rVisibleLayers,
-//STRIP001                                          const SdrPage&   rCurrPage ) const
-//STRIP001 {
-//STRIP001     // code extracted from SdrObjEditView::ImpGetTextEditBackgroundColor
-//STRIP001     svtools::ColorConfig aColorConfig;
-//STRIP001     Color aBackground(aColorConfig.GetColorValue(svtools::DOCCOLOR).nColor);
-//STRIP001
-//STRIP001  // #98988# test if we are in High contrast mode; if yes, take
-//STRIP001  // application background color
-//STRIP001     // #10049# wrong, always use svtools::DOCCOLOR as default and use document settings if
-//STRIP001  //         not hc mode
-//STRIP001  const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
-//STRIP001
-//STRIP001  if(!rStyleSettings.GetHighContrastMode())
-//STRIP001  {
-//STRIP001         // Ok, dann eben die Page durchsuchen!
-//STRIP001         Point aSpotPos[SPOTCOUNT];
-//STRIP001         Color aSpotColor[SPOTCOUNT];
-//STRIP001         ULONG nHeight( rArea.GetSize().Height() );
-//STRIP001         ULONG nWidth( rArea.GetSize().Width() );
-//STRIP001         ULONG nWidth14  = nWidth / 4;
-//STRIP001         ULONG nHeight14 = nHeight / 4;
-//STRIP001         ULONG nWidth34  = ( 3 * nWidth ) / 4;
-//STRIP001         ULONG nHeight34 = ( 3 * nHeight ) / 4;
-//STRIP001
-//STRIP001         USHORT i;
-//STRIP001         for ( i = 0; i < SPOTCOUNT; i++ )
-//STRIP001         {
-//STRIP001             // Es wird anhand von fuenf Spots die Farbe untersucht
-//STRIP001             switch ( i )
-//STRIP001             {
-//STRIP001                 case 0 :
-//STRIP001                 {
-//STRIP001                     // Center-Spot
-//STRIP001                     aSpotPos[i] = rArea.Center();
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001
-//STRIP001                 case 1 :
-//STRIP001                 {
-//STRIP001                     // TopLeft-Spot
-//STRIP001                     aSpotPos[i] = rArea.TopLeft();
-//STRIP001                     aSpotPos[i].X() += nWidth14;
-//STRIP001                     aSpotPos[i].Y() += nHeight14;
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001
-//STRIP001                 case 2 :
-//STRIP001                 {
-//STRIP001                     // TopRight-Spot
-//STRIP001                     aSpotPos[i] = rArea.TopLeft();
-//STRIP001                     aSpotPos[i].X() += nWidth34;
-//STRIP001                     aSpotPos[i].Y() += nHeight14;
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001
-//STRIP001                 case 3 :
-//STRIP001                 {
-//STRIP001                     // BottomLeft-Spot
-//STRIP001                     aSpotPos[i] = rArea.TopLeft();
-//STRIP001                     aSpotPos[i].X() += nWidth14;
-//STRIP001                     aSpotPos[i].Y() += nHeight34;
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001
-//STRIP001                 case 4 :
-//STRIP001                 {
-//STRIP001                     // BottomRight-Spot
-//STRIP001                     aSpotPos[i] = rArea.TopLeft();
-//STRIP001                     aSpotPos[i].X() += nWidth34;
-//STRIP001                     aSpotPos[i].Y() += nHeight34;
-//STRIP001                 }
-//STRIP001                 break;
-//STRIP001
-//STRIP001             }
-//STRIP001
-//STRIP001             aSpotColor[i] = Color( COL_WHITE );
-//STRIP001             rCurrPage.GetFillColor(aSpotPos[i], rVisibleLayers, bLayerSortedRedraw, aSpotColor[i]);
-//STRIP001         }
-//STRIP001
-//STRIP001         USHORT aMatch[SPOTCOUNT];
-//STRIP001
-//STRIP001         for ( i = 0; i < SPOTCOUNT; i++ )
-//STRIP001         {
-//STRIP001             // Wurden gleiche Spot-Farben gefuden?
-//STRIP001             aMatch[i] = 0;
-//STRIP001
-//STRIP001             for ( USHORT j = 0; j < SPOTCOUNT; j++ )
-//STRIP001             {
-//STRIP001                 if( j != i )
-//STRIP001                 {
-//STRIP001                     if( aSpotColor[i] == aSpotColor[j] )
-//STRIP001                     {
-//STRIP001                         aMatch[i]++;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         // Das hoechste Gewicht hat der Spot in der Mitte
-//STRIP001         aBackground = aSpotColor[0];
-//STRIP001
-//STRIP001         for ( USHORT nMatchCount = SPOTCOUNT - 1; nMatchCount > 1; nMatchCount-- )
-//STRIP001         {
-//STRIP001             // Welche Spot-Farbe wurde am haeufigsten gefunden?
-//STRIP001             for ( USHORT i = 0; i < SPOTCOUNT; i++ )
-//STRIP001             {
-//STRIP001                 if( aMatch[i] == nMatchCount )
-//STRIP001                 {
-//STRIP001                     aBackground = aSpotColor[i];
-//STRIP001                     nMatchCount = 1;   // Abbruch auch der aeusseren for-Schleife
-//STRIP001                     break;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001  }
-//STRIP001
-//STRIP001     return aBackground;
-//STRIP001 }
 
 /*N*/ void SdrPaintView::ImpForceSwapOut()
 /*N*/ {
