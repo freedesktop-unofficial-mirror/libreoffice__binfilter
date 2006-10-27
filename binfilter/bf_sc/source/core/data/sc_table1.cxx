@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table1.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:53:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:24:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -100,19 +99,13 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include "scitems.hxx"
 #include <unotools/textsearch.hxx>
 #include <bf_sfx2/objsh.hxx>
 
-// auto strip #include "attrib.hxx"
-// auto strip #include "patattr.hxx"
 #include "cell.hxx"
-// auto strip #include "table.hxx"
 #include "document.hxx"
 #include "drwlayer.hxx"
 #include "olinetab.hxx"
-// auto strip #include "stlsheet.hxx"
-// auto strip #include "global.hxx"
 #include "globstr.hrc"
 #include "refupdat.hxx"
 #include "markdata.hxx"
@@ -272,19 +265,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/       bFormula, STD_COL_WIDTH - STD_EXTRA_WIDTH, pMarkData, bSimpleTextImport );
 /*N*/ }
 
-//STRIP001 long ScTable::GetNeededSize( USHORT nCol, USHORT nRow,
-//STRIP001                              OutputDevice* pDev,
-//STRIP001                              double nPPTX, double nPPTY,
-//STRIP001                              const Fraction& rZoomX, const Fraction& rZoomY,
-//STRIP001                              BOOL bWidth, BOOL bTotalSize )
-//STRIP001 {
-//STRIP001  ScNeededSizeOptions aOptions;
-//STRIP001  aOptions.bSkipMerged = FALSE;       // zusammengefasste mitzaehlen
-//STRIP001  aOptions.bTotalSize  = bTotalSize;
-//STRIP001
-//STRIP001  return aCol[nCol].GetNeededSize
-//STRIP001      ( nRow, pDev, nPPTX, nPPTY, rZoomX, rZoomY, bWidth, aOptions );
-//STRIP001 }
 
 /*N*/ BOOL ScTable::SetOptimalHeight( USHORT nStartRow, USHORT nEndRow, USHORT nExtra,
 /*N*/                               OutputDevice* pDev,
@@ -480,73 +460,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/   return bFound;
 /*N*/ }
 
-//STRIP001 BOOL ScTable::GetPrintAreaHor( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                              USHORT& rEndCol, BOOL bNotes ) const
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  USHORT nMaxX = 0;
-//STRIP001  USHORT i;
-//STRIP001
-//STRIP001  for (i=0; i<=MAXCOL; i++)               // Attribute testen
-//STRIP001  {
-//STRIP001      if (aCol[i].HasVisibleAttrIn( nStartRow, nEndRow ))
-//STRIP001      {
-//STRIP001          bFound = TRUE;
-//STRIP001          nMaxX = i;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nMaxX == MAXCOL)                    // Attribute rechts weglassen
-//STRIP001  {
-//STRIP001      --nMaxX;
-//STRIP001      while ( nMaxX>0 && aCol[nMaxX].IsVisibleAttrEqual(aCol[nMaxX+1], nStartRow, nEndRow) )
-//STRIP001          --nMaxX;
-//STRIP001  }
-//STRIP001
-//STRIP001  for (i=0; i<=MAXCOL; i++)               // Daten testen
-//STRIP001  {
-//STRIP001      if (!aCol[i].IsEmptyBlock( nStartRow, nEndRow ))        //! bNotes ??????
-//STRIP001      {
-//STRIP001          bFound = TRUE;
-//STRIP001          if (i>nMaxX)
-//STRIP001              nMaxX = i;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  rEndCol = nMaxX;
-//STRIP001  return bFound;
-//STRIP001 }
 
-//STRIP001 BOOL ScTable::GetPrintAreaVer( USHORT nStartCol, USHORT nEndCol,
-//STRIP001                              USHORT& rEndRow, BOOL bNotes ) const
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  USHORT nMaxY = 0;
-//STRIP001  USHORT i;
-//STRIP001
-//STRIP001  for (i=nStartCol; i<=nEndCol; i++)              // Attribute testen
-//STRIP001  {
-//STRIP001      USHORT nFirstRow,nLastRow;
-//STRIP001      if (aCol[i].HasVisibleAttr( nFirstRow,nLastRow, FALSE ))
-//STRIP001      {
-//STRIP001          bFound = TRUE;
-//STRIP001          if (nLastRow > nMaxY)
-//STRIP001              nMaxY = nLastRow;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  for (i=nStartCol; i<=nEndCol; i++)              // Daten testen
-//STRIP001      if (!aCol[i].IsEmptyVisData(bNotes))
-//STRIP001      {
-//STRIP001          bFound = TRUE;
-//STRIP001          USHORT nColY = aCol[i].GetLastVisDataPos(bNotes);
-//STRIP001          if (nColY > nMaxY)
-//STRIP001              nMaxY = nColY;
-//STRIP001      }
-//STRIP001
-//STRIP001  rEndRow = nMaxY;
-//STRIP001  return bFound;
-//STRIP001 }
 
 /*N*/ BOOL ScTable::GetDataStart( USHORT& rStartCol, USHORT& rStartRow ) const
 /*N*/ {
@@ -599,385 +513,17 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/                           BOOL bIncludeOld )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    BOOL bLeft       = FALSE;
-//STRIP001  BOOL bRight  = FALSE;
-//STRIP001  BOOL bTop        = FALSE;
-//STRIP001  BOOL bBottom = FALSE;
-//STRIP001  BOOL bChanged;
-//STRIP001  BOOL bFound;
-//STRIP001  USHORT i;
-//STRIP001  USHORT nTest;
-//STRIP001
-//STRIP001  do
-//STRIP001  {
-//STRIP001      bChanged = FALSE;
-//STRIP001
-//STRIP001      USHORT nStart = rStartRow;
-//STRIP001      USHORT nEnd = rEndRow;
-//STRIP001      if (nStart>0) --nStart;
-//STRIP001      if (nEnd<MAXROW) ++nEnd;
-//STRIP001
-//STRIP001      if (rEndCol < MAXCOL)
-//STRIP001          if (!aCol[rEndCol+1].IsEmptyBlock(nStart,nEnd))
-//STRIP001          {
-//STRIP001              ++rEndCol;
-//STRIP001              bChanged = TRUE;
-//STRIP001              bRight = TRUE;
-//STRIP001          }
-//STRIP001
-//STRIP001      if (rStartCol > 0)
-//STRIP001          if (!aCol[rStartCol-1].IsEmptyBlock(nStart,nEnd))
-//STRIP001          {
-//STRIP001              --rStartCol;
-//STRIP001              bChanged = TRUE;
-//STRIP001              bLeft = TRUE;
-//STRIP001          }
-//STRIP001
-//STRIP001      if (rEndRow < MAXROW)
-//STRIP001      {
-//STRIP001          nTest = rEndRow+1;
-//STRIP001          bFound = FALSE;
-//STRIP001          for (i=rStartCol; i<=rEndCol && !bFound; i++)
-//STRIP001              if (aCol[i].HasDataAt(nTest))
-//STRIP001                  bFound = TRUE;
-//STRIP001          if (bFound)
-//STRIP001          {
-//STRIP001              ++rEndRow;
-//STRIP001              bChanged = TRUE;
-//STRIP001              bBottom = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if (rStartRow > 0)
-//STRIP001      {
-//STRIP001          nTest = rStartRow-1;
-//STRIP001          bFound = FALSE;
-//STRIP001          for (i=rStartCol; i<=rEndCol && !bFound; i++)
-//STRIP001              if (aCol[i].HasDataAt(nTest))
-//STRIP001                  bFound = TRUE;
-//STRIP001          if (bFound)
-//STRIP001          {
-//STRIP001              --rStartRow;
-//STRIP001              bChanged = TRUE;
-//STRIP001              bTop = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  while( bChanged );
-//STRIP001
-//STRIP001  if ( !bIncludeOld )
-//STRIP001  {
-//STRIP001      if ( !bLeft && rStartCol < MAXCOL && rStartCol < rEndCol )
-//STRIP001          if ( aCol[rStartCol].IsEmptyBlock(rStartRow,rEndRow) )
-//STRIP001              ++rStartCol;
-//STRIP001      if ( !bRight && rEndCol > 0 && rStartCol < rEndCol )
-//STRIP001          if ( aCol[rEndCol].IsEmptyBlock(rStartRow,rEndRow) )
-//STRIP001              --rEndCol;
-//STRIP001      if ( !bTop && rStartRow < MAXROW && rStartRow < rEndRow )
-//STRIP001      {
-//STRIP001          bFound = FALSE;
-//STRIP001          for (i=rStartCol; i<=rEndCol && !bFound; i++)
-//STRIP001              if (aCol[i].HasDataAt(rStartRow))
-//STRIP001                  bFound = TRUE;
-//STRIP001          if (!bFound)
-//STRIP001              ++rStartRow;
-//STRIP001      }
-//STRIP001      if ( !bBottom && rEndRow > 0 && rStartRow < rEndRow )
-//STRIP001      {
-//STRIP001          bFound = FALSE;
-//STRIP001          for (i=rStartCol; i<=rEndCol && !bFound; i++)
-//STRIP001              if (aCol[i].HasDataAt(rEndRow))
-//STRIP001                  bFound = TRUE;
-//STRIP001          if (!bFound)
-//STRIP001              --rEndRow;
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
-//STRIP001 USHORT ScTable::GetEmptyLinesInBlock( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                      USHORT nEndCol, USHORT nEndRow, ScDirection eDir )
-//STRIP001 {
-//STRIP001  USHORT nCount = 0;
-//STRIP001  USHORT nCol;
-//STRIP001  if ((eDir == DIR_BOTTOM) || (eDir == DIR_TOP))
-//STRIP001  {
-//STRIP001      nCount = nEndRow - nStartRow;
-//STRIP001      for (nCol = nStartCol; nCol <= nEndCol; nCol++)
-//STRIP001          nCount = Min(nCount, aCol[nCol].GetEmptyLinesInBlock(nStartRow, nEndRow, eDir));
-//STRIP001  }
-//STRIP001  else if (eDir == DIR_RIGHT)
-//STRIP001  {
-//STRIP001      nCol = nEndCol;
-//STRIP001      while (((short)nCol >= (short)nStartCol) &&
-//STRIP001               aCol[nCol].IsEmptyBlock(nStartRow, nEndRow))
-//STRIP001      {
-//STRIP001          nCount++;
-//STRIP001          nCol--;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nCol = nStartCol;
-//STRIP001      while ((nCol <= nEndCol) && aCol[nCol].IsEmptyBlock(nStartRow, nEndRow))
-//STRIP001      {
-//STRIP001          nCount++;
-//STRIP001          nCol++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nCount;
-//STRIP001 }
 
-//STRIP001 BOOL ScTable::IsEmptyLine( USHORT nRow, USHORT nStartCol, USHORT nEndCol )
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  for (USHORT i=nStartCol; i<=nEndCol && !bFound; i++)
-//STRIP001      if (aCol[i].HasDataAt(nRow))
-//STRIP001          bFound = TRUE;
-//STRIP001  return !bFound;
-//STRIP001 }
 
-//STRIP001 void ScTable::LimitChartArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rEndCol, USHORT& rEndRow )
-//STRIP001 {
-//STRIP001  while ( rStartCol<rEndCol && aCol[rStartCol].IsEmptyBlock(rStartRow,rEndRow) )
-//STRIP001      ++rStartCol;
-//STRIP001
-//STRIP001  while ( rStartCol<rEndCol && aCol[rEndCol].IsEmptyBlock(rStartRow,rEndRow) )
-//STRIP001      --rEndCol;
-//STRIP001
-//STRIP001  while ( rStartRow<rEndRow && IsEmptyLine(rStartRow, rStartCol, rEndCol) )
-//STRIP001      ++rStartRow;
-//STRIP001
-//STRIP001  while ( rStartRow<rEndRow && IsEmptyLine(rEndRow, rStartCol, rEndCol) )
-//STRIP001      --rEndRow;
-//STRIP001 }
 
-//STRIP001 void ScTable::FindAreaPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY )
-//STRIP001 {
-//STRIP001  if (nMovX)
-//STRIP001  {
-//STRIP001      short nNewCol = (short) rCol;
-//STRIP001      BOOL bThere = aCol[nNewCol].HasVisibleDataAt(rRow);
-//STRIP001      BOOL bFnd;
-//STRIP001      if (bThere)
-//STRIP001      {
-//STRIP001          do
-//STRIP001          {
-//STRIP001              nNewCol += nMovX;
-//STRIP001              bFnd = (nNewCol>=0 && nNewCol<=MAXCOL) ? aCol[nNewCol].HasVisibleDataAt(rRow) : FALSE;
-//STRIP001          }
-//STRIP001          while (bFnd);
-//STRIP001          nNewCol -= nMovX;
-//STRIP001
-//STRIP001          if (nNewCol == (short)rCol)
-//STRIP001              bThere = FALSE;
-//STRIP001      }
-//STRIP001
-//STRIP001      if (!bThere)
-//STRIP001      {
-//STRIP001          do
-//STRIP001          {
-//STRIP001              nNewCol += nMovX;
-//STRIP001              bFnd = (nNewCol>=0 && nNewCol<=MAXCOL) ? aCol[nNewCol].HasVisibleDataAt(rRow) : TRUE;
-//STRIP001          }
-//STRIP001          while (!bFnd);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (nNewCol<0) nNewCol=0;
-//STRIP001      if (nNewCol>MAXCOL) nNewCol=MAXCOL;
-//STRIP001      rCol = (USHORT) nNewCol;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nMovY)
-//STRIP001      aCol[rCol].FindDataAreaPos(rRow,nMovY);
-//STRIP001 }
 
-//STRIP001 BOOL ScTable::ValidNextPos( USHORT nCol, USHORT nRow, const ScMarkData& rMark,
-//STRIP001                              BOOL bMarked, BOOL bUnprotected )
-//STRIP001 {
-//STRIP001  if (nCol > MAXCOL || nRow > MAXROW)
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if (bMarked && !rMark.IsCellMarked(nCol,nRow))
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if (bUnprotected && ((const ScProtectionAttr*)
-//STRIP001                      GetAttr(nCol,nRow,ATTR_PROTECTION))->GetProtection())
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if (bMarked || bUnprotected)        //! auch sonst ???
-//STRIP001  {
-//STRIP001      //  #53697# ausgeblendete muessen uebersprungen werden, weil der Cursor sonst
-//STRIP001      //  auf der naechsten Zelle landet, auch wenn die geschuetzt/nicht markiert ist.
-//STRIP001      //! per Extra-Parameter steuern, nur fuer Cursor-Bewegung ???
-//STRIP001
-//STRIP001      if ( pRowFlags && ( pRowFlags[nRow] & CR_HIDDEN ) )
-//STRIP001          return FALSE;
-//STRIP001      if ( pColFlags && ( pColFlags[nCol] & CR_HIDDEN ) )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ void ScTable::GetNextPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY,
 /*N*/                               BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bUnprotected && !IsProtected())     // Tabelle ueberhaupt geschuetzt?
-//STRIP001      bUnprotected = FALSE;
-//STRIP001
-//STRIP001  USHORT nWrap = 0;
-//STRIP001  short nCol = rCol;
-//STRIP001  short nRow = rRow;
-//STRIP001
-//STRIP001  nCol += nMovX;
-//STRIP001  nRow += nMovY;
-//STRIP001
-//STRIP001  DBG_ASSERT( !nMovY || !bUnprotected,
-//STRIP001              "GetNextPos mit bUnprotected horizontal nicht implementiert" );
-//STRIP001
-//STRIP001  if ( nMovY && bMarked )
-//STRIP001  {
-//STRIP001      BOOL bUp = ( nMovY < 0 );
-//STRIP001      nRow = rMark.GetNextMarked( nCol, nRow, bUp );
-//STRIP001      while ( VALIDROW(nRow) && pRowFlags && (pRowFlags[nRow] & CR_HIDDEN) )
-//STRIP001      {
-//STRIP001          //  #53697# ausgeblendete ueberspringen (s.o.)
-//STRIP001          nRow += nMovY;
-//STRIP001          nRow = rMark.GetNextMarked( nCol, nRow, bUp );
-//STRIP001      }
-//STRIP001
-//STRIP001      while ( nRow < 0 || nRow > MAXROW )
-//STRIP001      {
-//STRIP001          nCol += nMovY;
-//STRIP001          while ( VALIDCOL(nCol) && pColFlags && (pColFlags[nCol] & CR_HIDDEN) )
-//STRIP001              nCol += nMovY;      //  #53697# ausgeblendete ueberspringen (s.o.)
-//STRIP001          if (nCol < 0)
-//STRIP001          {
-//STRIP001              nCol = MAXCOL;
-//STRIP001              if (++nWrap >= 2)
-//STRIP001                  return;
-//STRIP001          }
-//STRIP001          else if (nCol > MAXCOL)
-//STRIP001          {
-//STRIP001              nCol = 0;
-//STRIP001              if (++nWrap >= 2)
-//STRIP001                  return;
-//STRIP001          }
-//STRIP001          if (nRow < 0)
-//STRIP001              nRow = MAXROW;
-//STRIP001          else if (nRow > MAXROW)
-//STRIP001              nRow = 0;
-//STRIP001          nRow = rMark.GetNextMarked( nCol, nRow, bUp );
-//STRIP001          while ( VALIDROW(nRow) && pRowFlags && (pRowFlags[nRow] & CR_HIDDEN) )
-//STRIP001          {
-//STRIP001              //  #53697# ausgeblendete ueberspringen (s.o.)
-//STRIP001              nRow += nMovY;
-//STRIP001              nRow = rMark.GetNextMarked( nCol, nRow, bUp );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nMovX && ( bMarked || bUnprotected ) )
-//STRIP001  {
-//STRIP001      // initiales Weiterzaehlen wrappen:
-//STRIP001      if (nCol<0)
-//STRIP001      {
-//STRIP001          nCol = MAXCOL;
-//STRIP001          --nRow;
-//STRIP001          if (nRow<0)
-//STRIP001              nRow = MAXROW;
-//STRIP001      }
-//STRIP001      if (nCol>MAXCOL)
-//STRIP001      {
-//STRIP001          nCol = 0;
-//STRIP001          ++nRow;
-//STRIP001          if (nRow>MAXROW)
-//STRIP001              nRow = 0;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( !ValidNextPos(nCol, nRow, rMark, bMarked, bUnprotected) )
-//STRIP001      {
-//STRIP001          short* pNextRows = new short[MAXCOL+1];
-//STRIP001          USHORT i;
-//STRIP001
-//STRIP001          if ( nMovX > 0 )                            //  vorwaerts
-//STRIP001          {
-//STRIP001              for (i=0; i<=MAXCOL; i++)
-//STRIP001                  pNextRows[i] = (i<nCol) ? (nRow+1) : nRow;
-//STRIP001              do
-//STRIP001              {
-//STRIP001                  short nNextRow = pNextRows[nCol] + 1;
-//STRIP001                  if ( bMarked )
-//STRIP001                      nNextRow = rMark.GetNextMarked( nCol, nNextRow, FALSE );
-//STRIP001                  if ( bUnprotected )
-//STRIP001                      nNextRow = aCol[nCol].GetNextUnprotected( nNextRow, FALSE );
-//STRIP001                  pNextRows[nCol] = nNextRow;
-//STRIP001
-//STRIP001                  short nMinRow = MAXROW+1;
-//STRIP001                  for (i=0; i<=MAXCOL; i++)
-//STRIP001                      if (pNextRows[i] < nMinRow)     // bei gleichen den linken
-//STRIP001                      {
-//STRIP001                          nMinRow = pNextRows[i];
-//STRIP001                          nCol = i;
-//STRIP001                      }
-//STRIP001                  nRow = nMinRow;
-//STRIP001
-//STRIP001                  if ( nRow > MAXROW )
-//STRIP001                  {
-//STRIP001                      if (++nWrap >= 2) break;        // ungueltigen Wert behalten
-//STRIP001                      nCol = nRow = 0;
-//STRIP001                      for (i=0; i<=MAXCOL; i++)
-//STRIP001                          pNextRows[i] = 0;           // alles ganz von vorne
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              while ( !ValidNextPos(nCol, nRow, rMark, bMarked, bUnprotected) );
-//STRIP001          }
-//STRIP001          else                                        //  rueckwaerts
-//STRIP001          {
-//STRIP001              for (i=0; i<=MAXCOL; i++)
-//STRIP001                  pNextRows[i] = (i>nCol) ? (nRow-1) : nRow;
-//STRIP001              do
-//STRIP001              {
-//STRIP001                  short nNextRow = pNextRows[nCol] - 1;
-//STRIP001                  if ( bMarked )
-//STRIP001                      nNextRow = rMark.GetNextMarked( nCol, nNextRow, TRUE );
-//STRIP001                  if ( bUnprotected )
-//STRIP001                      nNextRow = aCol[nCol].GetNextUnprotected( nNextRow, TRUE );
-//STRIP001                  pNextRows[nCol] = nNextRow;
-//STRIP001
-//STRIP001                  short nMaxRow = -1;
-//STRIP001                  for (i=0; i<=MAXCOL; i++)
-//STRIP001                      if (pNextRows[i] >= nMaxRow)    // bei gleichen den rechten
-//STRIP001                      {
-//STRIP001                          nMaxRow = pNextRows[i];
-//STRIP001                          nCol = i;
-//STRIP001                      }
-//STRIP001                  nRow = nMaxRow;
-//STRIP001
-//STRIP001                  if ( nRow < 0 )
-//STRIP001                  {
-//STRIP001                      if (++nWrap >= 2) break;        // ungueltigen Wert behalten
-//STRIP001                      nCol = MAXCOL;
-//STRIP001                      nRow = MAXROW;
-//STRIP001                      for (i=0; i<=MAXCOL; i++)
-//STRIP001                          pNextRows[i] = MAXROW;      // alles ganz von vorne
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              while ( !ValidNextPos(nCol, nRow, rMark, bMarked, bUnprotected) );
-//STRIP001          }
-//STRIP001
-//STRIP001          delete[] pNextRows;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //  ungueltige Werte kommen z.b. bei Tab heraus,
-//STRIP001  //  wenn nicht markiert und nicht geschuetzt ist (linker / rechter Rand),
-//STRIP001  //  dann Werte unveraendert lassen
-//STRIP001
-//STRIP001  if (VALIDCOLROW(nCol,nRow))
-//STRIP001  {
-//STRIP001      rCol = nCol;
-//STRIP001      rRow = nRow;
-//STRIP001  }
 /*N*/ }
 
 /*N*/ BOOL ScTable::GetNextMarkedCell( USHORT& rCol, USHORT& rRow, const ScMarkData& rMark )
@@ -1028,18 +574,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bUnprotected && !IsProte
 /*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // only within the table
 /*N*/   {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
-//STRIP001 /*?*/        if ( eUpdateRefMode != URM_COPY && pDrawLayer )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if ( eUpdateRefMode == URM_MOVE )
-//STRIP001 /*?*/            {                                               // source range
-//STRIP001 /*?*/                nCol1 -= nDx;
-//STRIP001 /*?*/                nRow1 -= nDy;
-//STRIP001 /*?*/                nCol2 -= nDx;
-//STRIP001 /*?*/                nRow2 -= nDy;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            pDrawLayer->MoveArea( nTab, nCol1,nRow1, nCol2,nRow2, nDx,nDy,
-//STRIP001 /*?*/                                    (eUpdateRefMode == URM_INSDEL) );
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/ }
 
@@ -1144,18 +678,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pD
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScTable::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest,
-//STRIP001                                  ScDocument* pUndoDoc )
-//STRIP001 {
-//STRIP001  for ( USHORT i=0; i<=MAXCOL; i++ )
-//STRIP001      aCol[i].UpdateTranspose( rSource, rDest, pUndoDoc );
-//STRIP001 }
 
-//STRIP001 void ScTable::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY )
-//STRIP001 {
-//STRIP001  for ( USHORT i=0; i<=MAXCOL; i++ )
-//STRIP001      aCol[i].UpdateGrow( rArea, nGrowX, nGrowY );
-//STRIP001 }
 
 /*N*/ void ScTable::UpdateInsertTab(USHORT nTable)
 /*N*/ {
@@ -1163,10 +686,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pD
 /*N*/   for (USHORT i=0; i <= MAXCOL; i++) aCol[i].UpdateInsertTab(nTable);
 /*N*/ }
 
-//STRIP001 void ScTable::UpdateInsertTabOnlyCells(USHORT nTable)
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i <= MAXCOL; i++) aCol[i].UpdateInsertTabOnlyCells(nTable);
-//STRIP001 }
 
 /*N*/  void ScTable::UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo )
 /*N*/  {
@@ -1218,9 +737,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pD
 /*N*/                                   const ScIndexMap& rMap )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for (USHORT i = nCol1; i <= nCol2 && (i <= MAXCOL); i++)
-//STRIP001  {
-//STRIP001      aCol[i].ReplaceRangeNamesInUse( nRow1, nRow2, rMap );
-//STRIP001  }
 /*N*/ }
 
 /*N*/ void ScTable::ExtendPrintArea( OutputDevice* pDev,
@@ -1367,20 +883,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for (USHORT i = nCol1; i <= 
 /*N*/   rSaveTab.SetRepeat( pRepeatColRange, pRepeatRowRange );
 /*N*/ }
 
-//STRIP001 void ScTable::RestorePrintRanges( const ScPrintSaverTab& rSaveTab )
-//STRIP001 {
-//STRIP001  USHORT nNewCount = rSaveTab.GetPrintCount();
-//STRIP001  const ScRange* pNewRanges = rSaveTab.GetPrintRanges();
-//STRIP001
-//STRIP001  SetPrintRangeCount( nNewCount );
-//STRIP001  for (USHORT i=0; i<nNewCount; i++ )
-//STRIP001      SetPrintRange( i, pNewRanges[i] );
-//STRIP001
-//STRIP001  SetRepeatColRange( rSaveTab.GetRepeatCol() );
-//STRIP001  SetRepeatRowRange( rSaveTab.GetRepeatRow() );
-//STRIP001
-//STRIP001  UpdatePageBreaks(NULL);
-//STRIP001 }
 
 
 
