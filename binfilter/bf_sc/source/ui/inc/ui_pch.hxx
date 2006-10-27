@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2006-10-12 10:29:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:30:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,7 +144,6 @@
 #include <so3/factory.hxx>
 #include <so3/so2ref.hxx>
 #include <so3/so2dll.hxx>
-#include <bf_sfx2/tabdlg.hxx>
 #include <vcl/tabdlg.hxx>
 #include <vcl/tabpage.hxx>
 #include <vcl/tabctrl.hxx>
