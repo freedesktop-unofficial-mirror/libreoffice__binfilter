@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmod3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:52:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:23:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,23 +35,12 @@
 
 #define RAD2CDEG(fAngle) ( (long)(((fAngle)*18000.0/F_PI)+36000.0)%36000 )
 
-// auto strip #ifndef _E3D_LIGHT3D_HXX //autogen
-// auto strip #include <bf_svx/light3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDVIEW_HXX //autogen
-// auto strip #include <bf_svx/svdview.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDPAGV_HXX //autogen
-// auto strip #include <bf_svx/svdpagv.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/obj3d.hxx>
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
 #define ITEMID_ADJUST EE_PARA_JUST
-// auto strip #include <bf_svx/adjitem.hxx>
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
@@ -61,47 +50,21 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
-// auto strip #ifndef _SCH_OBJADJ_HXX
-// auto strip #include  "objadj.hxx"
-// auto strip #endif
 #ifndef _CHTMODEL_HXX
-// auto strip #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
-// auto strip #ifndef _SCH_SCHRESID_HXX
-// auto strip #include "schresid.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAROW_HXX
-// auto strip #include "datarow.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_DATAPOIN_HXX
-// auto strip #include "datapoin.hxx"
-// auto strip #endif
-// auto strip #ifndef _SCH_SCHGROUP_HXX
-// auto strip #include "schgroup.hxx"
-// auto strip #endif
 #ifndef _SCH_AXISID_HXX
 #include "axisid.hxx"
 #endif
 #ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
 #endif
-// auto strip #ifndef _E3D_LIGHT3D_HXX //autogen
-// auto strip #include <bf_svx/light3d.hxx>
-// auto strip #endif
 
 #undef  ITEMID_COLOR        //  Defined in svx3ditems.hxx
 #define ITEMID_COLOR       EE_CHAR_COLOR
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen wg. SvxColorItem  // #60999#
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _E3D_POLYGON3D_HXX
-// auto strip #include <bf_svx/polygn3d.hxx>
-// auto strip #endif
 #ifndef _SVDOCIRC_HXX //autogen
 #include <bf_svx/svdocirc.hxx>
 #endif
@@ -128,9 +91,6 @@
 #include "chdescr.hxx"
 #define FIXED_SIZE_FOR_3D_CHART_VOLUME          (10000)
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include <bf_svx/svx3ditems.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
@@ -1205,11 +1165,6 @@ namespace binfilter {
 /*N*/           if( pScene && bShowDataDescrLocal )
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 CreateDataDescr( aDescription, nCol, nRow, NULL, FALSE, TRUE );
-//STRIP001 /*?*/                aDescription.pLabelObj->SetMarkProtect( TRUE );
-//STRIP001 /*?*/                E3dLabelObj* pLabel = new E3dLabelObj( aDescription.aTextPos3D,
-//STRIP001 /*?*/                                                       aDescription.pLabelObj );
-//STRIP001 /*?*/                pLabel->SetMarkProtect(TRUE);
-//STRIP001 /*?*/                pScene->Insert3DObj(pLabel);
 /*N*/           }
 /*N*/
 /*N*/       }// end for nCol
@@ -1453,11 +1408,6 @@ namespace binfilter {
 /*?*/                       if( eDescr != CHDESCR_NONE && bValidData )
 /*?*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 CreateDataDescr( pDescription[ nCol ], nCol, nRow, NULL, FALSE, TRUE );
-//STRIP001 /*?*/                            pDescription[ nCol ].pLabelObj->SetMarkProtect( TRUE );
-//STRIP001 /*?*/                            E3dLabelObj* pLabel=new E3dLabelObj( pDescription[nCol].aTextPos3D,
-//STRIP001 /*?*/                                                                 pDescription[nCol].pLabelObj );
-//STRIP001 /*?*/                            pLabel->SetMarkProtect(TRUE);
-//STRIP001 /*?*/                            pScene->Insert3DObj(pLabel);
 /*?*/                       }
 /*N*/                   }
 /*N*/
@@ -1585,7 +1535,6 @@ namespace binfilter {
 /*?*/                       {
 /*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription = new DataDescription [nRowCnt];
-//STRIP001 /*?*/                            ClearDataDescription(pDescription,nRowCnt);
 /*?*/                       }
 /*?*/
 /*?*/                       pDescription [nRow].eDescr = eDescr;
@@ -1843,11 +1792,6 @@ namespace binfilter {
 /*?*/                       if (pScene && pDescription[nRow].fValue != DBL_MIN)
 /*?*/                       {
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   CreateDataDescr(pDescription[nRow], nCol, nRow, NULL, TRUE, TRUE);
-//STRIP001 /*?*/                            pDescription[nRow].pLabelObj->SetMarkProtect(TRUE);
-//STRIP001 /*?*/                            E3dLabelObj* pLabel=new E3dLabelObj( pDescription[nRow].aTextPos3D,
-//STRIP001 /*?*/                                                                 pDescription[nRow].pLabelObj );
-//STRIP001 /*?*/                            pLabel->SetMarkProtect(TRUE);
-//STRIP001 /*?*/                            pScene->Insert3DObj(pLabel);
 /*?*/                       }
 /*N*/                   }
 /*N*/               }
@@ -1889,104 +1833,6 @@ namespace binfilter {
 |* 3D-Kreisdiagramm erzeugen
 |*
 \************************************************************************/
-//STRIP001 void ChartModel::Segment3DDescr (DataDescription &rDescr,
-//STRIP001                 const Rectangle &rRect,
-//STRIP001                 long            nStartAng,
-//STRIP001                 long            nEndAng,
-//STRIP001                 long            nHeight,
-//STRIP001                 double          a,
-//STRIP001                 double          b,
-//STRIP001                 double          fZ)
-//STRIP001 {
-//STRIP001  long nAngleDiff;
-//STRIP001  long nAngleHook;
-//STRIP001
-//STRIP001  // bestimme die Winkelhalbierenden des Segments
-//STRIP001  nAngleDiff = (nEndAng - nStartAng) / 2;
-//STRIP001  nAngleHook = nStartAng + nAngleDiff;
-//STRIP001  double fFullAngle = ((double)nAngleHook / 18000.0) * F_PI;
-//STRIP001
-//STRIP001  Vector3D aPnt1(cos(fFullAngle) * (a * 1.1), sin(fFullAngle) * (a * 1.1), fZ);
-//STRIP001  Vector3D aPnt2(aPnt1);
-//STRIP001  aPnt2.Z() = -aPnt1.Z();
-//STRIP001  Vector3D aCenter;
-//STRIP001
-//STRIP001  B3dTransformationSet& rSet = pScene->GetCameraSet();
-//STRIP001  Volume3D aVolume = pScene->FitInSnapRect();
-//STRIP001  rSet.SetDeviceVolume(aVolume, FALSE);
-//STRIP001  Matrix4D mTransform = pScene->GetFullTransform();
-//STRIP001  rSet.SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001  Vector3D a2DCenter = rSet.ObjectToViewCoor(aCenter);
-//STRIP001  a2DCenter.Z() = 0.0;
-//STRIP001  Vector3D a2DPos1 = rSet.ObjectToViewCoor(aPnt1);
-//STRIP001  a2DPos1.Z() = 0.0;
-//STRIP001  Vector3D a2DPos2 = rSet.ObjectToViewCoor(aPnt2);
-//STRIP001  a2DPos2.Z() = 0.0;
-//STRIP001  Point a2DPos;
-//STRIP001
-//STRIP001  a2DPos1 -= a2DCenter;
-//STRIP001  a2DPos2 -= a2DCenter;
-//STRIP001
-//STRIP001  if(a2DPos1.GetLength() > a2DPos2.GetLength())
-//STRIP001  {
-//STRIP001      rDescr.aTextPos3D = aPnt1;
-//STRIP001      a2DPos=Point((long)a2DPos1.X(),(long)a2DPos1.Y());
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      rDescr.aTextPos3D = aPnt2;
-//STRIP001      a2DPos=Point((long)a2DPos2.X(),(long)a2DPos2.Y());
-//STRIP001  }
-//STRIP001  long nRealHookAngle = (36000-9000+(long)RAD2CDEG(atan2((double)a2DPos.X(),(double)a2DPos.Y())))%36000;
-//STRIP001  const long nSectorSize=(36000/8);
-//STRIP001  long nSector=((nRealHookAngle+nSectorSize/2)/nSectorSize);///In 8 Sektoren aufteilen
-//STRIP001
-//STRIP001  switch(nSector)
-//STRIP001  {
-//STRIP001      default:
-//STRIP001      case 0:
-//STRIP001          rDescr.eAdjust=CHADJUST_CENTER_LEFT;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_CENTER_LEFT");
-//STRIP001          break;
-//STRIP001      case 1:
-//STRIP001          rDescr.eAdjust=CHADJUST_BOTTOM_LEFT;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_BOTTOM_LEFT");
-//STRIP001          break;
-//STRIP001      case 2:
-//STRIP001          rDescr.eAdjust=CHADJUST_BOTTOM_CENTER;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_BOTTOM_CENTER");
-//STRIP001          break;
-//STRIP001      case 3:
-//STRIP001          rDescr.eAdjust=CHADJUST_BOTTOM_RIGHT;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_BOTTOM_RIGHT");
-//STRIP001          break;
-//STRIP001      case 4:
-//STRIP001          rDescr.eAdjust=CHADJUST_CENTER_RIGHT;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_CENTER_RIGHT");
-//STRIP001          break;
-//STRIP001      case 5:
-//STRIP001          rDescr.eAdjust=CHADJUST_TOP_RIGHT;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_TOP_RIGHT");
-//STRIP001          break;
-//STRIP001      case 6:
-//STRIP001          rDescr.eAdjust=CHADJUST_TOP_CENTER;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_TOP_CENTER");
-//STRIP001          break;
-//STRIP001      case 7:
-//STRIP001          rDescr.eAdjust=CHADJUST_TOP_LEFT;
-//STRIP001          CHART_TRACE( "Segment3DDescr CHADJUST_TOP_LEFT");
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  a2DPos+=Point((long)a2DCenter.X(),(long)a2DCenter.Y());
-//STRIP001  rDescr.aTextPos2D = a2DPos;
-//STRIP001  Rectangle aObjRect = rDescr.pLabelObj->GetLogicRect();
-//STRIP001  aObjRect.SetPos(a2DPos);
-//STRIP001  AdjustRect(aObjRect, rDescr.eAdjust);
-//STRIP001  rDescr.pLabelObj->NbcSetAnchorPos(a2DPos);
-//STRIP001  rDescr.pLabelObj->NbcSetRelativePos(aObjRect.TopLeft());
-//STRIP001  rDescr.pLabelObj->NbcSetLogicRect(aObjRect);
-//STRIP001 }
 
 /*N*/ SdrObjGroup* ChartModel::Create3DNewPieChart(Rectangle &rRect)
 /*N*/ {
@@ -2276,35 +2122,6 @@ namespace binfilter {
 /*N*/   aInitialSizefor3d = aInitialSize;
 /*N*/ }
 
-//STRIP001 void ChartModel::CopySpecialPointAttrToPage( long nRow )
-//STRIP001 {
-//STRIP001  //ToDo: Kann das hier nicht mittlerweile durch CopyPointAttrToPage esetzt werden?
-//STRIP001  SdrObjListIter aIterator(*GetPage(0), IM_DEEPWITHGROUPS);
-//STRIP001  while (aIterator.IsMore())
-//STRIP001  {
-//STRIP001      SdrObject* pObj = aIterator.Next();
-//STRIP001      SchObjectId* pObjId = GetObjectId(*pObj);
-//STRIP001
-//STRIP001      if (pObjId && (pObjId->GetObjId() == CHOBJID_DIAGRAM_SPECIAL_GROUP))
-//STRIP001      {
-//STRIP001          if (nRow == GetDataRow(*pObj)->GetRow())
-//STRIP001          {
-//STRIP001              SchDataPoint* pDataPoint = GetDataPoint(*pObj);
-//STRIP001
-//STRIP001              if(pDataPoint)
-//STRIP001
-//STRIP001 //-/                 pObj->NbcSetAttributes(GetFullDataPointAttr(pDataPoint->GetCol(),nRow),FALSE);
-//STRIP001                  pObj->SetItemSet(GetFullDataPointAttr(pDataPoint->GetCol(),nRow));
-//STRIP001
-//STRIP001              else
-//STRIP001
-//STRIP001 //-/                 pObj->NbcSetAttributes(GetDataRowAttr(nRow),FALSE);
-//STRIP001                  pObj->SetItemSet(GetDataRowAttr(nRow));
-//STRIP001
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 }

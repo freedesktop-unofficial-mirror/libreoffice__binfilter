@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chdescr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:52:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:22:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,13 +37,8 @@
 #endif
 
 #include "chdescr.hxx"
-// auto strip #include "chaxis.hxx"
 
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 #include "float.h"
-// auto strip #include "globfunc.hxx"
 #include "schgroup.hxx"
 #include "chtscene.hxx"
 namespace binfilter {
@@ -114,39 +109,6 @@ namespace binfilter {
 /*?*/       delete[] mpDescrArray;
 /*N*/ }
 
-//STRIP001 void ChartDataDescription::Create(long nRow)
-//STRIP001 {
-//STRIP001  if(!mpDescrArray)
-//STRIP001  {
-//STRIP001      mpDescrArray = new DataDescription[ mnRows * mnCols ];
-//STRIP001      long nElements = mnRows * mnCols;
-//STRIP001      while(nElements)
-//STRIP001      {
-//STRIP001          nElements--;
-//STRIP001          mpDescrArray[nElements].bSymbol = FALSE;
-//STRIP001          mpDescrArray[nElements].pLabelObj   = NULL;
-//STRIP001          mpDescrArray[nElements].fValue  = DBL_MIN;
-//STRIP001          mpDescrArray[nElements].aTextPos2D = Point(0,0);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if(!mpDescrLists)
-//STRIP001  {
-//STRIP001      mpDescrLists =new SdrObjList*[mnRows];
-//STRIP001      mpDescrGroups=new SchObjGroup*[mnRows];
-//STRIP001      for(long n=0;n<mnRows;n++)
-//STRIP001      {
-//STRIP001          mpDescrLists[n] =NULL;
-//STRIP001          mpDescrGroups[n]=NULL;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if(!mpDescrLists[nRow])
-//STRIP001  {
-//STRIP001      mpDescrGroups[nRow] = (SchObjGroup*)CreateSimpleGroup( CHOBJID_DIAGRAM_DESCRGROUP, TRUE, TRUE );
-//STRIP001      mpDescrGroups[nRow]->InsertUserData( new SchDataRow(nRow) );
-//STRIP001      mpDescrLists[nRow] = mpDescrGroups[nRow]->GetSubList();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ DataDescription* ChartDataDescription::Insert( long nCol, long nRow, const SfxItemSet& rAttr, Point aPos,
 /*N*/                                              BOOL bPercent, ChartAdjust eAdjust, ChartAxis* pAxis )
@@ -156,15 +118,6 @@ namespace binfilter {
 /*N*/   if(mbEnable && eDescr != CHDESCR_NONE)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Create(nRow); //evtl. Array und Liste erstellen
-//STRIP001 /*?*/        long nIndex = nCol + nRow * mnCols;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        mpDescrArray[nIndex].eDescr  = eDescr;
-//STRIP001 /*?*/        mpDescrArray[nIndex].bSymbol = ((const SfxBoolItem&)rAttr.Get(SCHATTR_DATADESCR_SHOW_SYM)).GetValue();
-//STRIP001 /*?*/        mpDescrArray[nIndex].fValue  = mpModel->GetData(nCol,nRow,bPercent);
-//STRIP001 /*?*/        mpDescrArray[nIndex].eAdjust = eAdjust;
-//STRIP001 /*?*/        mpDescrArray[nIndex].aTextPos2D = aPos;
-//STRIP001 /*?*/        mpModel->CreateDataDescr(mpDescrArray[nIndex],nCol,nRow,pAxis,bPercent);
-//STRIP001 /*?*/        return &mpDescrArray[nIndex];
 /*N*/   }
 /*N*/   return NULL;
 /*N*/ }
