@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impex.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:54:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:14:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,28 +74,12 @@ class ScImportExport
 
     ScAsciiOptions* pExtOptions;        // erweiterte Optionen
 
-//STRIP001  BOOL StartPaste();                  // Protect-Check, Undo einrichten
-//STRIP001  void EndPaste();                    // Undo/Redo-Aktionen, Repaint
-//STRIP001  BOOL Doc2Text( SvStream& );
-//STRIP001  BOOL Text2Doc( SvStream& );
-//STRIP001  BOOL Doc2Sylk( SvStream& );
-//STRIP001  BOOL Sylk2Doc( SvStream& );
-//STRIP001  BOOL Doc2HTML( SvStream& );
-//STRIP001  BOOL Doc2RTF( SvStream& );
-//STRIP001  BOOL Doc2Dif( SvStream& );
-//STRIP001  BOOL Dif2Doc( SvStream& );
     BOOL ExtText2Doc( SvStream& );      // mit pExtOptions
-//STRIP001  BOOL RTF2Doc( SvStream& );
-//STRIP001  BOOL HTML2Doc( SvStream& );
 
     //! only if stream is only used in own (!) memory
-//STRIP001  static  inline  void    SetNoEndianSwap( SvStream& rStrm );
 
 public:
     ScImportExport( ScDocument* );                  // Gesamtdokument
-//STRIP001  ScImportExport( ScDocument*, const String& );   // Bereichs/Zellangabe
-//STRIP001  ScImportExport( ScDocument*, const ScAddress& );
-//STRIP001  ScImportExport( ScDocument*, const ScRange& );
    ~ScImportExport();
 
     void SetExtOptions( const ScAsciiOptions& rOpt );
@@ -110,11 +94,8 @@ public:
     BOOL IsUndo() const      { return bUndo; }
     void SetUndo( BOOL b )   { bUndo = b;    }
 
-//STRIP001  static BOOL  IsFormatSupported( ULONG nFormat );
     static const sal_Unicode* ScanNextFieldFromString( const sal_Unicode* p,
             String& rField, sal_Unicode cStr, const sal_Unicode* pSeps, BOOL bMergeSeps );
-//STRIP001  static  void    WriteUnicodeOrByteString( SvStream& rStrm, const String& rString, BOOL bZero = FALSE );
-//STRIP001  static  void    WriteUnicodeOrByteEndl( SvStream& rStrm );
     static  inline  BOOL    IsEndianSwap( const SvStream& rStrm );
 
     sal_Unicode GetSeparator() const { return cSep; }
@@ -131,17 +112,9 @@ public:
     void            SetStreamPath( const String& rPath ) { aStreamPath = rPath; }
     const String&   GetStreamPath() const { return aStreamPath; }
 
-//STRIP001     BOOL ImportString( const ::rtl::OUString&, ULONG=FORMAT_STRING );
-//STRIP001  BOOL ExportString( ::rtl::OUString&, ULONG=FORMAT_STRING );
-//STRIP001  BOOL ExportByteString( ByteString&, rtl_TextEncoding, ULONG=FORMAT_STRING );
 
     BOOL ImportStream( SvStream&, ULONG=FORMAT_STRING );
-//STRIP001  BOOL ExportStream( SvStream&, ULONG=FORMAT_STRING );
 
-//STRIP001  BOOL ImportData( const String& rMimeType,
-//STRIP001                   const ::com::sun::star::uno::Any & rValue );
-//STRIP001  BOOL ExportData( const String& rMimeType,
-//STRIP001                   ::com::sun::star::uno::Any & rValue  );
 
     BOOL IsOverflow() const { return bOverflow; }       // nach dem Importieren
 

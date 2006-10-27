@@ -4,9 +4,9 @@
  *
  *  $RCSfile: inputhdl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:55:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:14:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,34 +134,9 @@ private:
 
 #ifdef _INPUTHDL_CXX
 private:
-//STRIP001  void            UpdateActiveView();
-//STRIP001  void            SetAllUpdateMode( BOOL bUpdate );
-//STRIP001  void            SyncViews( EditView* pSourceView = NULL );
-//STRIP001  BOOL            StartTable( sal_Unicode cTyped, BOOL bFromCommand );
-//STRIP001  void            RemoveSelection();
-//STRIP001  void            UpdateFormulaMode();
-//STRIP001  void            InvalidateAttribs();
     void            ImplCreateEditEngine();
-//STRIP001  DECL_LINK(      DelayTimer, Timer* );
-//STRIP001  void            GetColData();
-//STRIP001  void            UseColData();
-//STRIP001  void            NextAutoEntry( BOOL bBack );
-//STRIP001  void            UpdateAdjust( sal_Unicode cTyped );
-//STRIP001  void            GetFormulaData();
-//STRIP001  void            UseFormulaData();
-//STRIP001  void            NextFormulaEntry( BOOL bBack );
-//STRIP001  void            PasteFunctionData();
-//STRIP001  void            PasteManualTip();
-//STRIP001  EditView*       GetFuncEditView();
-//STRIP001  void            RemoveAdjust();
-//STRIP001  void            RemoveRangeFinder();
     void            DeleteRangeFinder();
-//STRIP001  void            UpdateParenthesis();
-//STRIP001  void            UpdateAutoCorrFlag();
     void            ResetAutoPar();
-//STRIP001  void            AutoParAdded();
-//STRIP001  BOOL            CursorAtClosingPar();
-//STRIP001  void            SkipClosingPar();
     void            StopInputWinEngine( BOOL bAll );
     DECL_LINK( ModifyHdl, void* );
 #endif
@@ -170,30 +145,18 @@ public:
                     ScInputHandler();
     virtual         ~ScInputHandler();
 
-//STRIP001  void            SetMode( ScInputMode eNewMode );
     BOOL            IsInputMode() const { return (eMode != SC_INPUT_NONE); }
     BOOL            IsEditMode() const  { return (eMode != SC_INPUT_NONE &&
                                                   eMode != SC_INPUT_TYPE); }
     BOOL            IsTopMode() const   { return (eMode == SC_INPUT_TOP);  }
 
-//STRIP001  const String&   GetEditString();
     const String&   GetFormString() const   { return aFormText; }
 
-//STRIP001  BOOL            GetTextAndFields( ScEditEngineDefaulter& rDestEngine );
 
-//STRIP001  BOOL            KeyInput( const KeyEvent& rKEvt, BOOL bStartEdit = FALSE );
     void            EnterHandler( BYTE nBlockMode = 0 );
-//STRIP001  void            CancelHandler();
-//STRIP001  void            SetReference( const ScRange& rRef, ScDocument* pDoc );
-//STRIP001  void            AddRefEntry();
 
-//STRIP001  BOOL            InputCommand( const CommandEvent& rCEvt, BOOL bForce );
 
-//STRIP001  void            InsertFunction( const String& rFuncName, BOOL bAddPar = TRUE );
-//STRIP001  void            ClearText();
 
-//STRIP001  void            InputSelection( EditView* pView );
-//STRIP001  void            InputChanged( EditView* pView );
 
     void            ViewShellGone(ScTabViewShell* pViewSh){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void         ViewShellGone(ScTabViewShell* pViewSh);
     void            SetRefViewShell(ScTabViewShell* pRefVsh) {pRefViewSh=pRefVsh;}
@@ -203,20 +166,15 @@ public:
                                     ScTabViewShell* pSourceSh = NULL,
                                     BOOL bStopEditing = TRUE);
 
-//STRIP001  void            ResetDelayTimer(); //BugId 54702
 
     void            HideTip();
-//STRIP001  void            ShowTip( const String& rText );     // am Cursor
 
     void            SetRefScale( const Fraction& rX, const Fraction& rY );
     void            UpdateRefDevice();
 
-//STRIP001  EditView*       GetActiveView();
     EditView*       GetTableView()      { return pTableView; }
     EditView*       GetTopView()        { return pTopView; }
 
-//STRIP001  BOOL            DataChanging( sal_Unicode cTyped = 0, BOOL bFromCommand = FALSE );
-//STRIP001  void            DataChanged();
 
     BOOL            TakesReturn() const     { return ( nTipVisible != 0 ); }
 
@@ -225,17 +183,11 @@ public:
     BOOL            GetSelIsRef() const     { return bSelIsRef; }
     void            SetSelIsRef(BOOL bSet)  { bSelIsRef = bSet; }
 
-//STRIP001  void            ShowRefFrame();
 
     ScRangeFindList* GetRangeFindList()     { return pRangeFindList; }
 
-//STRIP001  void            UpdateRange( USHORT nIndex, const ScRange& rNew );
 
     // Kommunikation mit Funktionsautopilot
-//STRIP001  void            InputGetSelection       ( xub_StrLen& rStart, xub_StrLen& rEnd );
-//STRIP001  void            InputSetSelection       ( xub_StrLen nStart, xub_StrLen nEnd );
-//STRIP001  void            InputReplaceSelection   ( const String& rStr );
-//STRIP001  String          InputGetFormulaStr      ();
 
     BOOL            IsFormulaMode() const                   { return bFormulaMode; }
     ScInputWindow*  GetInputWindow()                        { return pInputWin; }
@@ -244,21 +196,13 @@ public:
     BOOL            IsInEnterHandler() const                { return bInEnterHandler; }
     BOOL            IsInOwnChange() const                   { return bInOwnChange; }
 
-//STRIP001  BOOL            IsModalMode( SfxObjectShell* pDocSh );
 
-//STRIP001  void            ActivateInputWindow( const String&     rText,
-//STRIP001                                       const ESelection& rSel );
 
-//STRIP001  void            ForgetLastPattern();
 
-//STRIP001  void            UpdateSpellSettings( BOOL bFromStartTab = FALSE );
 
-//STRIP001  void            FormulaPreview();
 
-//STRIP001  Size            GetTextSize();      // in 1/100mm
 
                     // eigentlich private, fuer SID_INPUT_SUM public
-//STRIP001  void            InitRangeFinder( const String& rFormula );
 
     static void     SetAutoComplete(BOOL bSet)  { bAutoComplete = bSet; }
 };
@@ -280,9 +224,6 @@ public:
         ~ScInputHdlState();
 
     ScInputHdlState&    operator= ( const ScInputHdlState& r );
-//STRIP001  int                 operator==( const ScInputHdlState& r ) const;
-//STRIP001  int                 operator!=( const ScInputHdlState& r ) const
-//STRIP001                          { return !operator==( r ); }
 
     const ScAddress&        GetPos() const          { return aCursorPos; }
     const ScAddress&        GetStartPos() const     { return aStartPos; }

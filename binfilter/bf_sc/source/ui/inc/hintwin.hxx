@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hintwin.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:54:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:13:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,20 +43,8 @@ namespace binfilter {
 
 class ScHintWindow : public Window
 {
-//STRIP001 private:
-//STRIP001  String  aTitle;
-//STRIP001  String  aMessage;
-//STRIP001  Point   aTextStart;
-//STRIP001  long    nTextHeight;
-//STRIP001  Font    aTextFont;
-//STRIP001  Font    aHeadFont;
-//STRIP001
-//STRIP001 protected:
-//STRIP001  virtual void    Paint( const Rectangle& rRect );
-//STRIP001
 public:
     ScHintWindow( Window* pParent, const String& rTit, const String& rMsg ):Window( pParent ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;//STRIP001            ScHintWindow( Window* pParent, const String& rTit, const String& rMsg );
-//STRIP001          ~ScHintWindow();
 };
 
 
