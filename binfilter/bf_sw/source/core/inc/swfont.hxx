@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swfont.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:29:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:49:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,7 +88,6 @@ class SwSubFont : public SvxFont
     USHORT CalcEscAscent( const USHORT nOldAscent ) const;
     USHORT CalcEscHeight( const USHORT nOldHeight,
                           const USHORT nOldAscent ) const;
-//STRIP001     void CalcEsc( SwDrawTextInfo& rInf, Point& rPos );
 
     inline void CopyMagic( const SwSubFont& rFnt )
         { pMagic = rFnt.pMagic; nFntIndex = rFnt.nFntIndex; }
@@ -104,13 +103,8 @@ class SwSubFont : public SvxFont
     USHORT GetHeight( ViewShell *pSh, const OutputDevice *pOut );
     Size _GetTxtSize( SwDrawTextInfo& rInf );
     Size GetCapitalSize( SwDrawTextInfo& rInf );
-//STRIP001  void _DrawText( SwDrawTextInfo &rInf, const BOOL bGrey );
-//STRIP001  void DrawCapital( SwDrawTextInfo &rInf );
-//STRIP001  void DrawStretchCapital( SwDrawTextInfo &rInf );
     void DoOnCapitals( SwDoCapitals &rDo );
-//STRIP001  void _DrawStretchText( SwDrawTextInfo &rInf );
     xub_StrLen _GetCrsrOfst( SwDrawTextInfo& rInf );
-//STRIP001  xub_StrLen GetCapitalCrsrOfst( SwDrawTextInfo& rInf );
 
     inline void SetColor( const Color& rColor );
     inline void SetFillColor( const Color& rColor );
@@ -196,7 +190,6 @@ public:
     void GoMagic( ViewShell *pSh, BYTE nWhich );
     // set background color
     void SetBackColor( Color* pNewColor );
-//STRIP001  Color* XChgBackColor( Color* pNewColor );
     inline const Color* GetBackColor() const{ return pBackColor; }
 
     inline void ChkMagic( ViewShell *pSh, BYTE nWhich )
@@ -336,19 +329,9 @@ public:
     Size GetCapitalSize( SwDrawTextInfo& rInf )
         { return aSub[nActual].GetCapitalSize( rInf ); }
 
-//STRIP001  xub_StrLen GetCapitalBreak( ViewShell *pSh, const OutputDevice *pOut,
-//STRIP001      const SwScriptInfo* pScript, const XubString &rTxt,
-//STRIP001      long nTextWidth, xub_StrLen *pExtra, const xub_StrLen nIdx,
-//STRIP001      const xub_StrLen nLen );
 
-//STRIP001  xub_StrLen GetCapitalCrsrOfst( SwDrawTextInfo& rInf )
-//STRIP001      { return aSub[nActual].GetCapitalCrsrOfst( rInf ); }
 
-//STRIP001  void DrawCapital( SwDrawTextInfo &rInf )
-//STRIP001      { aSub[nActual].DrawCapital( rInf ); }
 
-//STRIP001  void DrawStretchCapital( SwDrawTextInfo &rInf )
-//STRIP001      { aSub[nActual].DrawStretchCapital( rInf ); }
 
     void DoOnCapitals( SwDoCapitals &rDo )
         { aSub[nActual].DoOnCapitals( rDo ); }
@@ -358,24 +341,12 @@ public:
 
     xub_StrLen GetTxtBreak( SwDrawTextInfo& rInf, long nTextWidth );
 
-//STRIP001  xub_StrLen GetTxtBreak( ViewShell *pSh, const OutputDevice *pOut,
-//STRIP001      const SwScriptInfo* pScript, const XubString &rTxt,
-//STRIP001      long nTextWidth, xub_StrLen& rExtraCharPos,
-//STRIP001      const xub_StrLen nIdx, const xub_StrLen nLen );
 
-//STRIP001  xub_StrLen GetTxtBreak( ViewShell *pSh, const OutputDevice *pOut,
-//STRIP001      const SwScriptInfo* pScript, const XubString &rTxt,
-//STRIP001      long nTextWidth, const xub_StrLen nIdx,
-//STRIP001      const xub_StrLen nLen );
 
     xub_StrLen _GetCrsrOfst( SwDrawTextInfo& rInf )
         { return aSub[nActual]._GetCrsrOfst( rInf ); }
 
-//STRIP001  inline void _DrawText( SwDrawTextInfo &rInf )
-//STRIP001      { aSub[nActual]._DrawText( rInf, IsGreyWave() ); }
 
-//STRIP001  inline void _DrawStretchText( SwDrawTextInfo &rInf )
-//STRIP001      { aSub[nActual]._DrawStretchText( rInf ); }
 
     inline short CheckKerning()
         { return aSub[nActual].CheckKerning(); }
