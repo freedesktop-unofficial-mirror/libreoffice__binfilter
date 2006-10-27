@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoattr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:11:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:41:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,40 +33,19 @@
  *
  ************************************************************************/
 
-// auto strip #include "svdoattr.hxx"
 #include "xpool.hxx"
-// auto strip #include "svditext.hxx"
-// auto strip #include "svdtouch.hxx"
 #include "svdio.hxx"
 #include "svdmodel.hxx"
-// auto strip #include "svdxout.hxx"
 #include "svdpage.hxx"
-// auto strip #include "svdattr.hxx"
-// auto strip #include "svdattrx.hxx"
 #include "svdpool.hxx"
-// auto strip #include "svdotext.hxx"
 #include "svdocapt.hxx"
-// auto strip #include "svdograf.hxx"
-// auto strip #include "svdoole2.hxx"
-// auto strip #include "svdorect.hxx"
-// auto strip #include "svdocirc.hxx"
-// auto strip #include "svdomeas.hxx"
 
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif
 
-// auto strip #ifndef _SFXITEMITER_HXX //autogen
-// auto strip #include <svtools/itemiter.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XENUM_HXX //autogen
-// auto strip #include "xenum.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLINEIT0_HXX //autogen
-// auto strip #include "xlineit0.hxx"
-// auto strip #endif
 
 #ifndef _SVX_XLNSTWIT_HXX //autogen
 #include "xlnstwit.hxx"
@@ -76,29 +55,11 @@
 #include "xlnedwit.hxx"
 #endif
 
-// auto strip #ifndef SVX_XFILLIT0_HXX //autogen
-// auto strip #include "xfillit0.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLBMTIT_HXX //autogen
-// auto strip #include "xflbmtit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_TEXTIT0_HXX //autogen
-// auto strip #include "xtextit0.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLBSTIT_HXX //autogen
-// auto strip #include "xflbstit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLBTOXY_HXX //autogen
-// auto strip #include "xflbtoxy.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFTSHIT_HXX //autogen
-// auto strip #include "xftshit.hxx"
-// auto strip #endif
 
 #ifndef _EEITEMID_HXX
 #include <eeitemid.hxx>
@@ -108,17 +69,8 @@
 #include "eeitem.hxx"
 #endif
 
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include "colritem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
-// auto strip #include "fontitem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
-// auto strip #include "fhgtitem.hxx"
-// auto strip #endif
 
 //#include <charscaleitem.hxx>
 
@@ -130,9 +82,6 @@
 #include <xlnwtit.hxx>
 #endif
 
-// auto strip #ifndef _SFXSTYLE_HXX //autogen
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
@@ -142,17 +91,11 @@
 #include <svtools/whiter.hxx>
 #endif
 
-// auto strip #ifndef _SVX_XLNCLIT_HXX //autogen
-// auto strip #include <xlnclit.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
 #endif
 
-// auto strip #ifndef _SVX_XLNTRIT_HXX //autogen
-// auto strip #include <xlntrit.hxx>
-// auto strip #endif
 
 #ifndef _SVX_XFLTRIT_HXX //autogen
 #include <xfltrit.hxx>
@@ -170,9 +113,6 @@
 #include "xflbckit.hxx"
 #endif
 
-// auto strip #ifndef _XTABLE_HXX
-// auto strip #include "xtable.hxx"
-// auto strip #endif
 
 #ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
@@ -183,9 +123,6 @@
 #ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
 #endif
-// auto strip #ifndef _SVX_XFLGRIT_HXX
-// auto strip #include "xflgrit.hxx"
-// auto strip #endif
 #ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
 #endif
@@ -517,32 +454,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 static void ImpScaleItemSet(SfxItemSet& rSet, const Fraction& rScale)
-//STRIP001 {
-//STRIP001  sal_Int32 nMul(rScale.GetNumerator());
-//STRIP001  sal_Int32 nDiv(rScale.GetDenominator());
-//STRIP001
-//STRIP001  if(!rScale.IsValid() || !nDiv)
-//STRIP001      return;
-//STRIP001
-//STRIP001  SfxWhichIter aIter(rSet);
-//STRIP001  sal_uInt16 nWhich(aIter.FirstWhich());
-//STRIP001  const SfxPoolItem *pItem = NULL;
-//STRIP001
-//STRIP001  while(nWhich)
-//STRIP001  {
-//STRIP001      if(SFX_ITEM_SET == rSet.GetItemState(nWhich, FALSE, &pItem))
-//STRIP001      {
-//STRIP001          if(pItem->HasMetrics())
-//STRIP001          {
-//STRIP001              SfxPoolItem* pNewItem = pItem->Clone();
-//STRIP001              pNewItem->ScaleMetrics(nMul, nDiv);
-//STRIP001              rSet.Put(*pNewItem);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      nWhich = aIter.NextWhich();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdrAttrObj::SetModel(SdrModel* pNewModel)
 /*N*/ {
@@ -561,149 +472,6 @@ namespace binfilter {
 /*N*/       // fuer ein bereits "lebendes" Model die Attribute von einem Pool in den anderen schieben
 /*N*/       if(pOldModel)
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            // Checken, ob sich die ScaleUnit geaendert hat.
-//STRIP001 /*?*/            // Denn dann muessen naemlich alle MetrikItems umgerechnet werden.
-//STRIP001 /*?*/            MapUnit aOldUnit(pOldModel->GetScaleUnit());
-//STRIP001 /*?*/            MapUnit aNewUnit(pNewModel->GetScaleUnit());
-//STRIP001 /*?*/            BOOL bScaleUnitChanged(aNewUnit != aOldUnit);
-//STRIP001 /*?*/            Fraction aMetricFactor;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if(bScaleUnitChanged)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                aMetricFactor = GetMapFactor(aOldUnit, aNewUnit).X();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if(mpObjectItemSet)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // #75371# To have a notify on scaling, do it on a copy of the
-//STRIP001 /*?*/                    // local ItemSet and set this one then
-//STRIP001 /*?*/                    SfxItemSet aItemSet(*mpObjectItemSet);
-//STRIP001 /*?*/                    ImpScaleItemSet(aItemSet, aMetricFactor);
-//STRIP001 /*?*/                    SetItemSet(aItemSet);
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // Und nun alle Items auf die das Obj verweisst aus
-//STRIP001 /*?*/            // dem alten Pools raus und in den neuen rein.
-//STRIP001 /*?*/            SfxStyleSheet* pOldStyleSheet = GetStyleSheet();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // ***** StyleSheets Anfang *****
-//STRIP001 /*?*/            // ggfs. StyleSheet und dessen Parents kopieren
-//STRIP001 /*?*/            // Follows werden nicht beruecksichtigt (ganz wie im Writer)
-//STRIP001 /*?*/            if(pOldStyleSheet)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SfxStyleSheetBase* pSheet = pOldStyleSheet;
-//STRIP001 /*?*/                SfxStyleSheetBasePool* pOldPool = pOldModel->GetStyleSheetPool();
-//STRIP001 /*?*/                SfxStyleSheetBasePool* pNewPool = pModel->GetStyleSheetPool();
-//STRIP001 /*?*/                DBG_ASSERT(pOldPool, "SdrAttrObj::SetModel(): Objekt hat StyleSheet aber keinen StyleSheetPool am SdrModel");
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if(pOldPool && pNewPool)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // Liste der zu kopierenden Vorlagen
-//STRIP001 /*?*/                    List aList;
-//STRIP001 /*?*/                    SfxStyleSheetBase* pAnchor = NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    while(pSheet)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pAnchor = pNewPool->Find(pSheet->GetName(), pSheet->GetFamily());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if(!pAnchor)
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            aList.Insert(pSheet, LIST_APPEND);
-//STRIP001 /*?*/                            pSheet = pOldPool->Find(pSheet->GetParent(), pSheet->GetFamily());
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            // die gesuchte Vorlage gibt's schon
-//STRIP001 /*?*/                            pSheet = NULL;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // kopieren und Parents der Kopien setzen
-//STRIP001 /*?*/                    pSheet = (SfxStyleSheetBase*)aList.First();
-//STRIP001 /*?*/                    SfxStyleSheetBase* pNewSheet = NULL;
-//STRIP001 /*?*/                    SfxStyleSheetBase* pLastSheet = NULL;
-//STRIP001 /*?*/                    SfxStyleSheetBase* pForThisObject = NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    while(pSheet)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pNewSheet = &pNewPool->Make(pSheet->GetName(), pSheet->GetFamily(), pSheet->GetMask());
-//STRIP001 /*?*/                        pNewSheet->GetItemSet().Put(pSheet->GetItemSet(), FALSE);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if(bScaleUnitChanged)
-//STRIP001 /*?*/                            ImpScaleItemSet(pNewSheet->GetItemSet(), aMetricFactor);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if(pLastSheet)
-//STRIP001 /*?*/                            pLastSheet->SetParent(pNewSheet->GetName());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if(!pForThisObject)
-//STRIP001 /*?*/                            pForThisObject = pNewSheet;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        pLastSheet = pNewSheet;
-//STRIP001 /*?*/                        pSheet = (SfxStyleSheetBase*)aList.Next();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // Veknuepfung mit der im Zielpool gefundenen Vorlage
-//STRIP001 /*?*/                    if(pAnchor && pLastSheet)
-//STRIP001 /*?*/                        pLastSheet->SetParent(pAnchor->GetName());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // falls die Liste leer war (alle Vorlagen schon im Zielpool
-//STRIP001 /*?*/                    // vorhanden) ist pForThisObject noch nicht gesetzt
-//STRIP001 /*?*/                    if(!pForThisObject && pAnchor)
-//STRIP001 /*?*/                        pForThisObject = pAnchor;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // am alten StyleSheet ab- und am neuen anmelden
-//STRIP001 /*?*/                    if(GetStyleSheet() != pForThisObject)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        RemoveStyleSheet();
-//STRIP001 /*?*/                        AddStyleSheet((SfxStyleSheet*)pForThisObject, TRUE);
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // Aha, im neuen Model gibt's also kein StyleSheetPool
-//STRIP001 /*?*/                    // also setzte ich "einfach" alle Attribute des alten StyleSheets hart
-//STRIP001 /*?*/                    List aList;
-//STRIP001 /*?*/                    const SfxItemSet* pItemSet = &pOldStyleSheet->GetItemSet();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    while(pItemSet)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        aList.Insert((void*)pItemSet, CONTAINER_APPEND);
-//STRIP001 /*?*/                        pItemSet = pItemSet->GetParent();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    SfxItemSet* pNewSet = CreateNewItemSet(pNewModel->GetItemPool());
-//STRIP001 /*?*/                    pItemSet = (SfxItemSet*)aList.Last();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    while(pItemSet)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pNewSet->Put(*pItemSet);
-//STRIP001 /*?*/                        pItemSet = (SfxItemSet*)aList.Prev();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // Attribute, die schon vorher hart gesetzt
-//STRIP001 /*?*/                    // waren muessen aber erhalten bleiben:
-//STRIP001 /*?*/                    if(mpObjectItemSet)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        SfxWhichIter aIter(*mpObjectItemSet);
-//STRIP001 /*?*/                        sal_uInt16 nWhich = aIter.FirstWhich();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        while(nWhich)
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            if(mpObjectItemSet->GetItemState(nWhich, FALSE) == SFX_ITEM_SET)
-//STRIP001 /*?*/                                pNewSet->Put(mpObjectItemSet->Get(nWhich));
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            nWhich = aIter.NextWhich();
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if(bScaleUnitChanged)
-//STRIP001 /*?*/                        ImpScaleItemSet(*pNewSet, aMetricFactor);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    ImpDeleteItemSet();
-//STRIP001 /*?*/                    mpObjectItemSet = pNewSet;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            // ***** StyleSheets Ende *****
 /*N*/       }
 /*N*/
 /*N*/       // Jedes Objekt bekommt initial den DefaultStyleSheet
@@ -1120,42 +888,6 @@ namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 FASTBOOL SdrAttrObj::ImpLineEndHitTest(const Point& rEndPt, double nSin, double nCos, FASTBOOL bStart, const Point& rHit, USHORT nTol) const
-//STRIP001 {
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001  sal_Int32 nWdt = 0;
-//STRIP001  BOOL bCenter = FALSE;
-//STRIP001  XPolygon aXPoly;
-//STRIP001
-//STRIP001  if(bStart)
-//STRIP001  {
-//STRIP001      nWdt = ((const XLineStartWidthItem&)(rSet.Get(XATTR_LINESTARTWIDTH))).GetValue();
-//STRIP001      bCenter = ((const XLineStartCenterItem&)(rSet.Get(XATTR_LINESTARTCENTER))).GetValue();
-//STRIP001      aXPoly = ((const XLineStartItem&)(rSet.Get(XATTR_LINESTART))).GetValue();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nWdt = ((const XLineEndWidthItem&)(rSet.Get(XATTR_LINEENDWIDTH))).GetValue();
-//STRIP001      bCenter = ((const XLineEndCenterItem&)(rSet.Get(XATTR_LINEENDCENTER))).GetValue();
-//STRIP001      aXPoly = ((const XLineEndItem&)(rSet.Get(XATTR_LINEEND))).GetValue();
-//STRIP001  }
-//STRIP001
-//STRIP001  if(nWdt < 0)
-//STRIP001  {
-//STRIP001      sal_Int32 nLineWdt = ((XLineWidthItem&)(rSet.Get(XATTR_LINEWIDTH))).GetValue(); // Strichstaerke
-//STRIP001      nWdt = -nLineWdt * nWdt / 100; // <0 = relativ
-//STRIP001  }
-//STRIP001
-//STRIP001  // InitLineStartEnd liefert bei bCenter=TRUE die halbe Hoehe
-//STRIP001  XOutputDevice::InitLineStartEnd(aXPoly, nWdt, bCenter);
-//STRIP001  RotateXPoly(aXPoly, Point(), nSin, nCos);
-//STRIP001  Point aHit(rHit);
-//STRIP001  aHit -= rEndPt;
-//STRIP001  Rectangle aHitRect(aHit.X() - nTol, aHit.Y() - nTol, aHit.X() + nTol, aHit.Y() + nTol);
-//STRIP001  FASTBOOL bHit = IsRectTouchesPoly(XOutCreatePolygon(aXPoly, NULL), aHitRect);
-//STRIP001
-//STRIP001  return bHit;
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrAttrObj::ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const
 /*N*/ {
@@ -1303,57 +1035,6 @@ namespace binfilter {
 // This is necessary since SetItemSet() of the old implementation calls
 // ItemSetChanged() which replaces in textobjects all text items which
 // is wrong behaviour for BurnInStyleSheet.
-//STRIP001 void SdrAttrObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-//STRIP001 {
-//STRIP001  if(GetStyleSheet() && HAS_BASE(SfxStyleSheet, mpStyleSheet))
-//STRIP001  {
-//STRIP001      // prepare copied, new itemset, but WITHOUT parent
-//STRIP001      ImpForceItemSet();
-//STRIP001      SfxItemSet* pDestItemSet = new SfxItemSet(*mpObjectItemSet);
-//STRIP001      pDestItemSet->SetParent(0L);
-//STRIP001
-//STRIP001      // pepare forgetting the current stylesheet like in RemoveStyleSheet()
-//STRIP001      EndListening(*mpStyleSheet);
-//STRIP001      EndListening(mpStyleSheet->GetPool());
-//STRIP001
-//STRIP001      // get itemset of the stylesheet
-//STRIP001      const SfxItemSet& rSet = mpStyleSheet->GetItemSet();
-//STRIP001
-//STRIP001      // prepare the iter; use the mpObjectItemSet which may have less
-//STRIP001      // WhichIDs than the style.
-//STRIP001      SfxWhichIter aIter(*pDestItemSet);
-//STRIP001      sal_uInt16 nWhich(aIter.FirstWhich());
-//STRIP001      const SfxPoolItem *pItem = NULL;
-//STRIP001
-//STRIP001      // set all attributes of the stylesheet at the new itemset
-//STRIP001      while(nWhich)
-//STRIP001      {
-//STRIP001          if(SFX_ITEM_SET == rSet.GetItemState(nWhich, TRUE, &pItem))
-//STRIP001              pDestItemSet->Put(*pItem);
-//STRIP001          nWhich = aIter.NextWhich();
-//STRIP001      }
-//STRIP001
-//STRIP001      // prepare 2nd loop
-//STRIP001      nWhich = aIter.FirstWhich();
-//STRIP001
-//STRIP001      // now set all hard attributes of the current at the new itemset
-//STRIP001      while(nWhich)
-//STRIP001      {
-//STRIP001          if(SFX_ITEM_SET == mpObjectItemSet->GetItemState(nWhich, FALSE, &pItem))
-//STRIP001              pDestItemSet->Put(*pItem);
-//STRIP001          nWhich = aIter.NextWhich();
-//STRIP001      }
-//STRIP001
-//STRIP001      // replace itemsets
-//STRIP001      delete mpObjectItemSet;
-//STRIP001      mpObjectItemSet = pDestItemSet;
-//STRIP001
-//STRIP001      // set necessary changes like in RemoveStyleSheet()
-//STRIP001      bBoundRectDirty = TRUE;
-//STRIP001      SetRectsDirty(TRUE);
-//STRIP001      mpStyleSheet = NULL;
-//STRIP001  }
-//STRIP001 }
 
 // #91695# back to corrected old version. Have to check new version again for later builds.
 //void SdrAttrObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
