@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpshttab.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:13:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:18:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,7 +46,6 @@
 #include "dpshttab.hxx"
 #include "document.hxx"
 #include "collect.hxx"
-// auto strip #include "cell.hxx"
 #include "globstr.hrc"
 namespace binfilter {
 
@@ -126,11 +124,6 @@ namespace binfilter {
 
 /*N*/ void ScSheetDPData::DisposeData()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  for (long i=0; i<pImpl->nColCount; i++)
-//STRIP001  {
-//STRIP001      delete pImpl->ppStrings[i];
-//STRIP001      pImpl->ppStrings[i] = NULL;
-//STRIP001  }
 /*N*/ }
 
 /*N*/ long ScSheetDPData::GetColumnCount()
@@ -138,66 +131,9 @@ namespace binfilter {
 /*N*/   return pImpl->nColCount;
 /*N*/ }
 
-//STRIP001 BOOL lcl_HasQuery( const ScQueryParam& rParam )
-//STRIP001 {
-//STRIP001  return rParam.GetEntryCount() > 0 &&
-//STRIP001          rParam.GetEntry(0).bDoQuery;
-//STRIP001 }
 
 /*N*/ const TypedStrCollection& ScSheetDPData::GetColumnEntries(long nColumn)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  DBG_ASSERT(nColumn>=0 && nColumn<pImpl->nColCount, "ScSheetDPData: wrong column");
-//STRIP001
-//STRIP001  if (!pImpl->ppStrings[nColumn])
-//STRIP001  {
-//STRIP001      TypedStrCollection* pColl = new TypedStrCollection;
-//STRIP001
-//STRIP001      //! document must have function to fill collection!!!
-//STRIP001      String aDocStr;
-//STRIP001      USHORT nDocCol = (USHORT)(pImpl->aRange.aStart.Col() + nColumn);
-//STRIP001      USHORT nDocTab = pImpl->aRange.aStart.Tab();
-//STRIP001      USHORT nStartRow = pImpl->aRange.aStart.Row()+1;    // start of data
-//STRIP001      USHORT nEndRow = pImpl->aRange.aEnd.Row();
-//STRIP001      USHORT nStartCol = pImpl->aRange.aStart.Col();
-//STRIP001      USHORT nEndCol = pImpl->aRange.aEnd.Col();
-//STRIP001      for (USHORT nRow = nStartRow; nRow <= nEndRow; nRow++)
-//STRIP001      {
-//STRIP001          if ( pImpl->bIgnoreEmptyRows &&
-//STRIP001                  pImpl->pDoc->IsBlockEmpty( nDocTab, nStartCol, nRow, nEndCol, nRow ) )
-//STRIP001          {
-//STRIP001              //  ignore this (empty) row
-//STRIP001              //! count and skip empty rows?
-//STRIP001          }
-//STRIP001          else if ( pImpl->bRepeatIfEmpty && nRow > nStartRow &&
-//STRIP001                      !pImpl->pDoc->HasData( nDocCol, nRow, nDocTab ) )
-//STRIP001          {
-//STRIP001              //  ignore empty member (if it's not the first row)
-//STRIP001          }
-//STRIP001          else if ( lcl_HasQuery(pImpl->aQuery) &&
-//STRIP001                      !pImpl->pDoc->ValidQuery( nRow, nDocTab, pImpl->aQuery, pSpecial ) )
-//STRIP001          {
-//STRIP001              //  this row is filtered out
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              TypedStrData* pNew;
-//STRIP001              pImpl->pDoc->GetString( nDocCol, nRow, nDocTab, aDocStr );
-//STRIP001              if ( pImpl->pDoc->HasValueData( nDocCol, nRow, nDocTab ) )
-//STRIP001              {
-//STRIP001                  double fVal = pImpl->pDoc->GetValue(ScAddress(nDocCol, nRow, nDocTab));
-//STRIP001                  pNew = new TypedStrData( aDocStr, fVal, SC_STRTYPE_VALUE );
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  pNew = new TypedStrData( aDocStr );
-//STRIP001
-//STRIP001              if (!pColl->Insert(pNew))
-//STRIP001                  delete pNew;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      pImpl->ppStrings[nColumn] = pColl;
-//STRIP001  }
-//STRIP001  return *pImpl->ppStrings[nColumn];
 /*N*/ }
 
 /*N*/ String ScSheetDPData::getDimensionName(long nColumn)
@@ -266,24 +202,6 @@ namespace binfilter {
 
 /*N*/ UINT32 ScSheetDPData::GetNumberFormat(long nDim)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  if (getIsDataLayoutDimension(nDim))
-//STRIP001  {
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001  else if ( nDim >= pImpl->nColCount )
-//STRIP001  {
-//STRIP001      DBG_ERROR("GetNumberFormat: invalid dimension");
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      //  is queried only once per dimension from ScDPOutput -> no need to cache
-//STRIP001
-//STRIP001      ScAddress aPos = pImpl->aRange.aStart;
-//STRIP001      aPos.SetCol( aPos.Col() + nDim );
-//STRIP001      aPos.SetRow( aPos.Row() + 1 );      // below title
-//STRIP001      return pImpl->pDoc->GetNumberFormat( aPos );
-//STRIP001  }
 /*N*/ }
 
 /*N*/ BOOL ScSheetDPData::getIsDataLayoutDimension(long nColumn)
@@ -302,115 +220,9 @@ namespace binfilter {
 /*N*/   pImpl->nNextRow = pImpl->aRange.aStart.Row() + 1;
 /*N*/ }
 
-//STRIP001 void lcl_GetStringOrValue( ScDPItemData& rData, ScDocument* pDoc,
-//STRIP001                          USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                          BOOL bRepeatIfEmpty, USHORT nFirstDataRow )
-//STRIP001 {
-//STRIP001  if ( bRepeatIfEmpty )
-//STRIP001  {
-//STRIP001      //  use first non-empty entry
-//STRIP001      //! just keep old ItemData ????
-//STRIP001      //! otherwise count empty cells and subtract!
-//STRIP001
-//STRIP001      while ( !pDoc->HasData( nCol, nRow, nTab ) && nRow > nFirstDataRow )
-//STRIP001          --nRow;
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bVal = pDoc->HasValueData( nCol, nRow, nTab );
-//STRIP001  rData.bHasValue = bVal;
-//STRIP001  if (bVal)
-//STRIP001      rData.fValue = pDoc->GetValue( ScAddress( nCol, nRow, nTab ) );
-//STRIP001  else
-//STRIP001      pDoc->GetString( nCol, nRow, nTab, rData.aString );
-//STRIP001 }
 
 /*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& rParam )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
-//STRIP001  if ( pImpl->nNextRow > pImpl->aRange.aEnd.Row() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  long i;
-//STRIP001  long nStartCol = pImpl->aRange.aStart.Col();
-//STRIP001  USHORT nDocTab = pImpl->aRange.aStart.Tab();
-//STRIP001  USHORT nFirstDataRow = pImpl->aRange.aStart.Row() + 1;
-//STRIP001
-//STRIP001  BOOL bFilteredOut;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      if ( pImpl->bIgnoreEmptyRows )
-//STRIP001      {
-//STRIP001          USHORT nEndCol = pImpl->aRange.aEnd.Col();
-//STRIP001          while ( pImpl->pDoc->IsBlockEmpty( nDocTab, (USHORT)nStartCol, pImpl->nNextRow,
-//STRIP001                                              nEndCol, pImpl->nNextRow ) )
-//STRIP001          {
-//STRIP001              ++pImpl->nNextRow;
-//STRIP001              if ( pImpl->nNextRow > pImpl->aRange.aEnd.Row() )
-//STRIP001                  return FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      bFilteredOut = ( lcl_HasQuery(pImpl->aQuery) &&
-//STRIP001              !pImpl->pDoc->ValidQuery( pImpl->nNextRow, nDocTab, pImpl->aQuery, pSpecial ) );
-//STRIP001      if ( bFilteredOut )
-//STRIP001      {
-//STRIP001          ++pImpl->nNextRow;
-//STRIP001          if ( pImpl->nNextRow > pImpl->aRange.aEnd.Row() )
-//STRIP001              return FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  while (bFilteredOut);
-//STRIP001
-//STRIP001  //! use more efficient iterators
-//STRIP001
-//STRIP001  for (i=0; i<rParam.nColCount; i++)
-//STRIP001  {
-//STRIP001      long nDim = rParam.pCols[i];
-//STRIP001      if ( getIsDataLayoutDimension(nDim) )
-//STRIP001          rParam.pColData[i].SetString( String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("x")) );
-//STRIP001      else
-//STRIP001          lcl_GetStringOrValue( rParam.pColData[i], pImpl->pDoc,
-//STRIP001                                  (USHORT)(nStartCol+nDim), pImpl->nNextRow, nDocTab,
-//STRIP001                                  pImpl->bRepeatIfEmpty, nFirstDataRow );
-//STRIP001  }
-//STRIP001
-//STRIP001  for (i=0; i<rParam.nRowCount; i++)
-//STRIP001  {
-//STRIP001      long nDim = rParam.pRows[i];
-//STRIP001      if ( getIsDataLayoutDimension(nDim) )
-//STRIP001          rParam.pRowData[i].SetString( String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("x")) );
-//STRIP001      else
-//STRIP001          lcl_GetStringOrValue( rParam.pRowData[i], pImpl->pDoc,
-//STRIP001                                  (USHORT)(nStartCol+nDim), pImpl->nNextRow, nDocTab,
-//STRIP001                                  pImpl->bRepeatIfEmpty, nFirstDataRow );
-//STRIP001  }
-//STRIP001
-//STRIP001  for (i=0; i<rParam.nDatCount; i++)
-//STRIP001  {
-//STRIP001      long nDim = rParam.pDats[i];
-//STRIP001      ScAddress aPos( (USHORT)(nStartCol+nDim), pImpl->nNextRow, nDocTab );
-//STRIP001      ScBaseCell* pCell = pImpl->pDoc->GetCell( aPos );
-//STRIP001      if ( !pCell || pCell->GetCellType() == CELLTYPE_NOTE )
-//STRIP001          rParam.pValues[i].Set( 0.0, SC_VALTYPE_EMPTY );
-//STRIP001      else if ( pCell->GetCellType() == CELLTYPE_FORMULA && ((ScFormulaCell*)pCell)->GetErrCode() )
-//STRIP001          rParam.pValues[i].Set( 0.0, SC_VALTYPE_ERROR );
-//STRIP001      else if ( pCell->HasValueData() )
-//STRIP001      {
-//STRIP001          //! GetValue method at BaseCell?
-//STRIP001          DBG_ASSERT( pCell->GetCellType() == CELLTYPE_VALUE ||
-//STRIP001                      pCell->GetCellType() == CELLTYPE_FORMULA, "wrong cell type" );
-//STRIP001          double fVal;
-//STRIP001          if ( pCell->GetCellType() == CELLTYPE_VALUE )
-//STRIP001              fVal = ((ScValueCell*)pCell)->GetValue();
-//STRIP001          else
-//STRIP001              fVal = ((ScFormulaCell*)pCell)->GetValue();
-//STRIP001          rParam.pValues[i].Set( fVal, SC_VALTYPE_VALUE );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rParam.pValues[i].Set( 0.0, SC_VALTYPE_STRING );
-//STRIP001  }
-//STRIP001
-//STRIP001  pImpl->nNextRow++;
-//STRIP001  return TRUE;
 /*N*/ }
 
 // -----------------------------------------------------------------------
