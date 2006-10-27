@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SchTransferable.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:43:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:49:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #ifndef _TRANSFER_HXX
 #include <svtools/transfer.hxx>
 #endif
-// auto strip #ifndef _EMBOBJ_HXX
-// auto strip #include <so3/embobj.hxx>
-// auto strip #endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
 class Graphic;
@@ -53,30 +50,11 @@ class SchTransferable :
     public TransferableHelper
 {
 private:
-//STRIP001
-//STRIP001     SdrModel *                      mpContentModel;
     SdrExchangeView  *              mpSourceView;
-//STRIP001     TransferableObjectDescriptor    maObjDesc;
-//STRIP001     sal_Bool                        mbLateInit;
-//STRIP001
-//STRIP001     SdrModel *                      mpOwnModel;
-//STRIP001     SdrExchangeView  *              mpOwnView;
-//STRIP001     Graphic  *                      mpGraphic;
-//STRIP001
-//STRIP001     bool                            mbDataCreated;
-//STRIP001     bool                            mbOwnView;
-//STRIP001     bool                            mbOwnDoc;
-//STRIP001
-//STRIP001     void                            CreateData();
 
 protected:
 
     // implementation of TransferableHelper methods
-//STRIP001  virtual void        AddSupportedFormats();
-//STRIP001  virtual sal_Bool    GetData( const ::com::sun::star::datatransfer::DataFlavor& rFlavor );
-//STRIP001  virtual sal_Bool    WriteObject( SotStorageStreamRef& rxOStm, void* pUserObject, sal_uInt32 nUserObjectId,
-//STRIP001                                   const ::com::sun::star::datatransfer::DataFlavor& rFlavor );
-//STRIP001  virtual void        ObjectReleased();
 
 public:
 
@@ -94,16 +72,6 @@ public:
                      SdrExchangeView* pSrcView,
                      const TransferableObjectDescriptor& rObjDesc,
                      sal_Bool bLateInit = sal_False );
-//STRIP001
-//STRIP001  virtual ~SchTransferable();
-//STRIP001
-//STRIP001  static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-//STRIP001  static SchTransferable* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
-//STRIP001
-//STRIP001     // XUnoTunnel ( ::TransferableHelper )
-//STRIP001     virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
-//STRIP001      throw( ::com::sun::star::uno::RuntimeException );
-//STRIP001
       const SdrExchangeView* GetView() throw()      { return mpSourceView; }
 };
 
