@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unopool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:27:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:56:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,12 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HDL_
-// auto strip #include <com/sun/star/beans/PropertyState.hpp>
-// auto strip #endif
 
 #include <comphelper/propertysetinfo.hxx>
 
@@ -46,9 +40,6 @@
 #include <rtl/uuid.h>
 #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
@@ -59,12 +50,6 @@
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
 #endif
-// auto strip #ifndef _SVDPOOL_HXX
-// auto strip #include "svdpool.hxx"
-// auto strip #endif
-// auto strip #ifndef SVX_UNOPROV_HXX
-// auto strip #include "unoprov.hxx"
-// auto strip #endif
 #ifndef _SVDOBJ_HXX
 #include "svdobj.hxx"
 #endif
@@ -77,9 +62,6 @@
 #ifndef _SVX_XFLBMTIT_HXX
 #include "xflbmtit.hxx"
 #endif
-// auto strip #ifndef _SVX_UNOWPAGE_HXX
-// auto strip #include "unopage.hxx"
-// auto strip #endif
 #ifndef _SVDETC_HXX
 #include "svdetc.hxx"
 #endif

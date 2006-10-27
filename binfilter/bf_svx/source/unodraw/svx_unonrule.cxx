@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unonrule.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:27:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:56:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,25 +40,13 @@
 #include <brshitem.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
 #include <com/sun/star/awt/XBitmap.hpp>
 #endif
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
-// auto strip #ifndef _GRFMGR_HXX
-// auto strip #include <goodies/grfmgr.hxx>
-// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
@@ -66,18 +54,11 @@
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
 #endif
-// auto strip #ifndef _SV_GRAPH_HXX
-// auto strip #include <vcl/graph.hxx>
-// auto strip #endif
 
-// auto strip #include <unotools/servicehelper.hxx>
 #include <toolkit/unohlp.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-// auto strip #include "unoprnms.hxx"
-// auto strip #include "numitem.hxx"
-// auto strip #include "eeitem.hxx"
 #include "unofdesc.hxx"
 #include "unonrule.hxx"
 #include "unotext.hxx"
@@ -609,7 +590,6 @@ uno::Reference< container::XIndexReplace > SvxCreateNumRule( SdrModel* pModel ) 
 
 ///////////////////////////////////////////////////////////////////////
 
-// auto strip #include <cppuhelper/implbase1.hxx>
 
 class SvxUnoNumberingRulesCompare : public ::cppu::WeakAggImplHelper1< ::com::sun::star::ucb::XAnyCompare >
 {
