@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unotext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:33:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:59:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,15 +37,6 @@
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
-// auto strip #include <com/sun/star/style/LineSpacing.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
-// auto strip #include <com/sun/star/text/HoriOrientation.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
-// auto strip #include <com/sun/star/text/ControlCharacter.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
 #endif
@@ -56,29 +47,14 @@
 #include <com/sun/star/text/XTextField.hdl>
 #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
 #include <eeitem.hxx>
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
 #define ITEMID_FONT EE_CHAR_FONTINFO
-// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
-// auto strip #include <fontitem.hxx>
-// auto strip #endif
 
 #define ITEMID_TABSTOP EE_PARA_TABS
-// auto strip #ifndef _SVX_TSPTITEM_HXX //autogen
-// auto strip #include <tstpitem.hxx>
-// auto strip #endif
 
 #ifndef _SVDOBJ_HXX
 #include "svdobj.hxx"
@@ -93,22 +69,11 @@
 #include <rtl/memory.h>
 
 #include "unoshtxt.hxx"
-// auto strip #include "unoprnms.hxx"
-// auto strip #include "unotext.hxx"
-// auto strip #include "unoedsrc.hxx"
-// auto strip #include "unomid.hxx"
 #include "unonrule.hxx"
 #include "unofdesc.hxx"
-// auto strip #include "unoapi.hxx"
 #include "unofield.hxx"
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
