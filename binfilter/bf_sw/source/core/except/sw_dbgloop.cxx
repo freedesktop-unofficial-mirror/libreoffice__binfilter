@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbgloop.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:04:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:35:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 //#error Wer fummelt denn an den makefiles rum?
 //#endif
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 //#include "dbgloop.hxx"
 //#include "errhdl.hxx"
 namespace binfilter {
@@ -110,16 +107,6 @@ namespace binfilter {
  *                       DbgLoopStack::Print()
  *************************************************************************/
 
-//STRIP001 void DbgLoopStack::Print( SvStream &rOS ) const
-//STRIP001 {
-//STRIP001  rOS << "POS: " << nPtr << '\n';
-//STRIP001  for( USHORT i = 0; i < DBG_MAX_STACK; ++i )
-//STRIP001      rOS << i << " ";
-//STRIP001  rOS << '\n';
-//STRIP001  for( i = 0; i < DBG_MAX_STACK; ++i )
-//STRIP001      rOS << aCount[i] << " ";
-//STRIP001  rOS << '\n';
-//STRIP001 }
 
 //#ifdef STAND_ALONE
 // compile with: cl /AL /DSTAND_ALONE dbgloop.cxx
@@ -137,40 +124,6 @@ namespace binfilter {
 ///*N*/     exit(0);
 ///*N*/ }
 
-//STRIP001 class Test
-//STRIP001 {
-//STRIP001 public:
-//STRIP001      void Run() const;
-//STRIP001 };
-//STRIP001
-//STRIP001 void Test::Run() const
-//STRIP001 {
-//STRIP001  cout << "---" << '\n';
-//STRIP001  for( USHORT i = 0; i < 10; ++i )
-//STRIP001  {
-//STRIP001      cout << "i" << i;
-//STRIP001      DBG_LOOP;
-//STRIP001      PrintLoopStack( cout );
-//STRIP001      for( USHORT j = 0; j < 10; ++j )
-//STRIP001      {
-//STRIP001          cout << " j" << j;
-//STRIP001          DBG_LOOP;
-//STRIP001          PrintLoopStack( cout );
-//STRIP001      }
-//STRIP001      cout << '\n';
-//STRIP001  }
-//STRIP001  PrintLoopStack( cout );
-//STRIP001 }
-//STRIP001
-//STRIP001 int main()
-//STRIP001 {
-//STRIP001  // unterschiedliche Instanzen waehlen wg. pDbg != pThis
-//STRIP001  Test aTest1;
-//STRIP001  aTest1.Run();
-//STRIP001  Test aTest2;
-//STRIP001  aTest2.Run();
-//STRIP001  return 0;
-//STRIP001 }
 //#endif
 
 
