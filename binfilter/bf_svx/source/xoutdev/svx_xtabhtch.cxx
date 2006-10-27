@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabhtch.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:43:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:04:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 
 #ifndef SVX_LIGHT
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 #ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
 #endif
@@ -50,7 +47,6 @@
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #include "xmlxtexp.hxx"
 #include "xmlxtimp.hxx"
 
 #endif
@@ -377,23 +373,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /*N*/ BOOL XHatchList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  INetURLObject aURL( aPath );
-//STRIP001
-//STRIP001  if( INET_PROT_NOT_VALID == aURL.GetProtocol() )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( !aPath.Len(), "invalid URL" );
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  aURL.Append( aName );
-//STRIP001
-//STRIP001  if( !aURL.getExtension().Len() )
-//STRIP001      aURL.setExtension( String( pszExtHatch, 3 ) );
-//STRIP001
-//STRIP001  uno::Reference< container::XNameContainer > xTable( SvxUnoXHatchTable_createInstance( this ), uno::UNO_QUERY );
-//STRIP001  return SvxXMLXTableExportComponent::save( aURL.GetMainURL( INetURLObject::NO_DECODE ), xTable );
-//STRIP001
 /*
     SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
     aMedium.IsRemote();
@@ -412,9 +391,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
     return( aMedium.GetError() == 0 );
 */
-//STRIP001 #else
-//STRIP001  return FALSE;
-//STRIP001 #endif
 /*N*/ }
 
 /************************************************************************/
