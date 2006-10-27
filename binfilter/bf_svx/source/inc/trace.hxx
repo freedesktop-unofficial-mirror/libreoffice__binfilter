@@ -4,9 +4,9 @@
  *
  *  $RCSfile: trace.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:11:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:13:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,18 +37,6 @@
 
 #if defined(DBG_UTIL) && defined(ENABLE_RANGE_TRACING)
 
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _VOS_THREAD_HXX_
-// auto strip #include <vos/thread.hxx>
-// auto strip #endif
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
