@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_crbm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:23:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:17:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,14 +42,7 @@
 
 #include "doc.hxx"
 #include "crsrsh.hxx"
-// auto strip #include "ndtxt.hxx"
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
 
-// auto strip #include "bookmrk.hxx"
-// auto strip #include "callnk.hxx"
-// auto strip #include "swcrsr.hxx"
 namespace binfilter {
 
 
@@ -59,185 +52,25 @@ namespace binfilter {
 
 
 // am CurCrsr.SPoint
-//STRIP001 FASTBOOL SwCrsrShell::SetBookmark( const KeyCode& rCode, const String& rName,
-//STRIP001                              const String& rShortName, BOOKMARK_TYPE eMark )
-//STRIP001 {
-//STRIP001  StartAction();
-//STRIP001  FASTBOOL bRet = 0 != pDoc->MakeBookmark( *GetCrsr(), rCode, rName,
-//STRIP001                                          rShortName, eMark);
-//STRIP001  EndAction();
-//STRIP001  return bRet;
-//STRIP001 }
 // setzt CurCrsr.SPoint
 
 
-//STRIP001 FASTBOOL SwCrsrShell::GotoBookmark(USHORT nPos, BOOL bAtStart)
-//STRIP001 {
-//STRIP001  // Crsr-Moves ueberwachen, evt. Link callen
-//STRIP001  FASTBOOL bRet = TRUE;
-//STRIP001  SwCallLink aLk( *this );
-//STRIP001
-//STRIP001  SwBookmark* pBkmk = pDoc->GetBookmarks()[ nPos ];
-//STRIP001  SwCursor* pCrsr = GetSwCrsr();
-//STRIP001  SwCrsrSaveState aSaveState( *pCrsr );
-//STRIP001
-//STRIP001  if( pBkmk->GetOtherPos() )
-//STRIP001  {
-//STRIP001      if( bAtStart )
-//STRIP001          *pCrsr->GetPoint() = *pBkmk->GetOtherPos() < pBkmk->GetPos()
-//STRIP001                                  ? *pBkmk->GetOtherPos()
-//STRIP001                                  : pBkmk->GetPos();
-//STRIP001      else
-//STRIP001          *pCrsr->GetPoint() = *pBkmk->GetOtherPos() > pBkmk->GetPos()
-//STRIP001                                  ? *pBkmk->GetOtherPos()
-//STRIP001                                  : pBkmk->GetPos();
-//STRIP001  }
-//STRIP001  else
-//STRIP001      *pCrsr->GetPoint() = pBkmk->GetPos();
-//STRIP001
-//STRIP001  if( pCrsr->IsSelOvr( SELOVER_CHECKNODESSECTION | SELOVER_TOGGLE ) )
-//STRIP001  {
-//STRIP001      pCrsr->DeleteMark();
-//STRIP001      pCrsr->RestoreSavePos();
-//STRIP001      bRet = FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      UpdateCrsr(SwCrsrShell::SCROLLWIN|SwCrsrShell::CHKRANGE|SwCrsrShell::READONLY);
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::GotoBookmark(USHORT nPos)
-//STRIP001 {
-//STRIP001  // Crsr-Moves ueberwachen, evt. Link callen
-//STRIP001  FASTBOOL bRet = TRUE;
-//STRIP001  SwCallLink aLk( *this );
-//STRIP001  SwBookmark* pBkmk = pDoc->GetBookmarks()[ nPos ];
-//STRIP001  SwCursor* pCrsr = GetSwCrsr();
-//STRIP001  SwCrsrSaveState aSaveState( *pCrsr );
-//STRIP001
-//STRIP001  *pCrsr->GetPoint() = pBkmk->GetPos();
-//STRIP001  if( pBkmk->GetOtherPos() )
-//STRIP001  {
-//STRIP001      pCrsr->SetMark();
-//STRIP001      *pCrsr->GetMark() = *pBkmk->GetOtherPos();
-//STRIP001      if( *pCrsr->GetMark() > *pCrsr->GetPoint() )
-//STRIP001          pCrsr->Exchange();
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pCrsr->IsSelOvr( SELOVER_CHECKNODESSECTION | SELOVER_TOGGLE ) )
-//STRIP001  {
-//STRIP001      pCrsr->DeleteMark();
-//STRIP001      pCrsr->RestoreSavePos();
-//STRIP001      bRet = FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      UpdateCrsr(SwCrsrShell::SCROLLWIN|SwCrsrShell::CHKRANGE|SwCrsrShell::READONLY);
-//STRIP001  return bRet;
-//STRIP001 }
 // TRUE, wenn's noch eine gab
 
 
-//STRIP001 FASTBOOL SwCrsrShell::GoNextBookmark()
-//STRIP001 {
-//STRIP001  SwBookmark aBM(*GetCrsr()->GetPoint());
-//STRIP001  USHORT nPos;
-//STRIP001  const SwBookmarks& rBkmks = pDoc->GetBookmarks();
-//STRIP001  rBkmks.Seek_Entry( &aBM, &nPos );
-//STRIP001  if ( nPos == rBkmks.Count() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // alle die Inhaltlich auf der gleichen Position stehen, ueberspringen
-//STRIP001  while( aBM.IsEqualPos( *rBkmks[ nPos ] ))
-//STRIP001      if( ++nPos == rBkmks.Count() )
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001  while( !GotoBookmark( nPos ))
-//STRIP001      if( ++nPos == rBkmks.Count() )
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
-
-
-//STRIP001 FASTBOOL SwCrsrShell::GoPrevBookmark()
-//STRIP001 {
-//STRIP001  const SwBookmarks& rBkmks = pDoc->GetBookmarks();
-//STRIP001  if ( !rBkmks.Count() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  USHORT nPos;
-//STRIP001  SwCursor* pCrsr = GetSwCrsr();
-//STRIP001  SwBookmark aBM( *pCrsr->GetPoint() );
-//STRIP001  rBkmks.Seek_Entry( &aBM, &nPos );
-//STRIP001
-//STRIP001  const SwBookmark* pBkmk;
-//STRIP001  // alle die Inhaltlich auf der gleichen Position stehen, ueberspringen
-//STRIP001  do {
-//STRIP001      if ( nPos == 0 )
-//STRIP001          return FALSE;
-//STRIP001  } while( aBM < *(pBkmk = rBkmks[--nPos]) || aBM.IsEqualPos( *pBkmk ));
-//STRIP001
-//STRIP001  SwCallLink aLk( *this );
-//STRIP001  SwCrsrSaveState aSaveState( *pCrsr );
-//STRIP001
-//STRIP001  FASTBOOL bRet = FALSE;
-//STRIP001  do {
-//STRIP001      pBkmk = rBkmks[ nPos ];
-//STRIP001
-//STRIP001      *pCrsr->GetPoint() = pBkmk->GetPos();
-//STRIP001      if( pBkmk->GetOtherPos() )
-//STRIP001      {
-//STRIP001          pCrsr->SetMark();
-//STRIP001          *pCrsr->GetMark() = *pBkmk->GetOtherPos();
-//STRIP001          if( *pCrsr->GetMark() < *pCrsr->GetPoint() )
-//STRIP001              pCrsr->Exchange();
-//STRIP001      }
-//STRIP001      if( !pCrsr->IsSelOvr( SELOVER_CHECKNODESSECTION | SELOVER_TOGGLE ) )
-//STRIP001      {
-//STRIP001          UpdateCrsr(SwCrsrShell::SCROLLWIN|SwCrsrShell::CHKRANGE|SwCrsrShell::READONLY);
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001  } while( !bRet && nPos-- );
-//STRIP001
-//STRIP001  if( !bRet )
-//STRIP001  {
-//STRIP001      pCrsr->DeleteMark();
-//STRIP001      pCrsr->RestoreSavePos();
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 
-//STRIP001 USHORT SwCrsrShell::GetBookmarkCnt(BOOL bBkmrk) const
-//STRIP001 {
-//STRIP001  return pDoc->GetBookmarkCnt(bBkmrk);
-//STRIP001 }
 
 
-//STRIP001 SwBookmark& SwCrsrShell::GetBookmark(USHORT nPos, BOOL bBkmrk)
-//STRIP001 {
-//STRIP001  return pDoc->GetBookmark(nPos, bBkmrk);
-//STRIP001 }
 
 
-//STRIP001 void SwCrsrShell::DelBookmark(USHORT nPos)
-//STRIP001 {
-//STRIP001  StartAction();
-//STRIP001  pDoc->DelBookmark(nPos);
-//STRIP001  EndAction();
-//STRIP001 }
 
 
-//STRIP001 void SwCrsrShell::DelBookmark( const String& rName )
-//STRIP001 {
-//STRIP001  StartAction();
-//STRIP001  pDoc->DelBookmark( rName );
-//STRIP001  EndAction();
-//STRIP001 }
+
+
 
 
 /*N*/ USHORT SwCrsrShell::FindBookmark( const String& rName )
@@ -248,10 +81,6 @@ namespace binfilter {
 
         // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
         // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-//STRIP001 void SwCrsrShell::MakeUniqueBookmarkName( String& rName )
-//STRIP001 {
-//STRIP001  pDoc->MakeUniqueBookmarkName( rName );
-//STRIP001 }
 
 
 
