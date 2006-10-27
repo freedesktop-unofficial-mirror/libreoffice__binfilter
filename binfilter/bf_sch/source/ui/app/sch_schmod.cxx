@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schmod.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:13:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:38:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,63 +37,32 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _FACTORY_HXX //autogen
-// auto strip #include <so3/factory.hxx>
-// auto strip #endif
 
 #include <bf_svx/svxids.hrc>
 
-// auto strip #include "schdll0.hxx"
 
 #ifndef _SFXOBJFACE_HXX //autogen
 #include <bf_sfx2/objface.hxx>
 #endif
 
-// auto strip #ifndef _SFXMSG_HXX //autogen
-// auto strip #include <bf_sfx2/msg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-// auto strip #ifndef _SFXVIEWFRM_HXX
-// auto strip #include <bf_sfx2/viewfrm.hxx>
-// auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
 #endif
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif
-// auto strip #ifndef _OBJFAC3D_HXX //autogen
-// auto strip #include <bf_svx/objfac3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXREQUEST_HXX //autogen
-// auto strip #include <bf_sfx2/request.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
-// auto strip #ifndef _XPOOL_HXX //autogen
-// auto strip #include <bf_svx/xpool.hxx>
-// auto strip #endif
 
 #define _SCH_DLL                 // fuer SD_MOD()
 #include "schmod.hxx"
-// auto strip #include "schdll.hxx"
 #include "schresid.hxx"
-// auto strip #include "objfac.hxx"
 
 #include "app.hrc"
 #include "glob.hrc"
 #include "strings.hrc"
 #include "res_bmp.hrc"
-// auto strip #include "cfgids.hxx"
 
 //STRIP008 /*N*/ TYPEINIT1( SchModuleDummy, SfxModule );
 //STRIP008 /*N*/ TYPEINIT1( SchModule, SchModuleDummy );
@@ -182,19 +151,6 @@ namespace binfilter {
 void SchModule::Execute(SfxRequest& rReq)
 {
     DBG_BF_ASSERT(0, "STRIP");//STRIP001    switch (rReq.GetSlot())
-//STRIP001  {
-//STRIP001      case SID_START_APP:
-//STRIP001          if( GetFrame())
-//STRIP001              GetFrame()->GetDispatcher()->Execute( SID_NEWDOCDIRECT,
-//STRIP001                                                    SFX_CALLMODE_SYNCHRON );
-//STRIP001          break;
-//STRIP001
-//STRIP001 // deprecated, but might be reactivated for portal version
-//STRIP001 //
-//STRIP001 //       case SID_OPTIONS:
-//STRIP001 //           ExecuteOptionsDlg(rReq);
-//STRIP001 //           break;
-//STRIP001  }
 }
 
 /*************************************************************************
@@ -214,12 +170,6 @@ void SchModule::Execute(SfxRequest& rReq)
 |*
 \************************************************************************/
 
-//STRIP001 XOutdevItemPool* SchModule::GetXOutDevPool()
-//STRIP001 {
-//STRIP001  if (!pXOutDevPool) pXOutDevPool = new XOutdevItemPool;
-//STRIP001
-//STRIP001  return pXOutDevPool;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -261,10 +211,6 @@ void SchModule::Execute(SfxRequest& rReq)
 |*
 \************************************************************************/
 
-//STRIP001 SfxModule *SchModule::Load()
-//STRIP001 {
-//STRIP001  return this;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -272,10 +218,6 @@ void SchModule::Execute(SfxRequest& rReq)
 |*
 \************************************************************************/
 
-//STRIP001 void SchModule::Free()
-//STRIP001 {
-//STRIP001 //    FreeLibSch ();
-//STRIP001 }
 
 /*N*/ SchOptions* SchModule::GetSchOptions()
 /*N*/ {

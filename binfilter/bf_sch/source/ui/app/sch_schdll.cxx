@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schdll.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:12:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:37:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #pragma hdrstop
 
 
-// auto strip #ifndef _STDCTRL_HXX
-// auto strip #include <svtools/stdctrl.hxx>
-// auto strip #endif
 
 #ifndef _SVX_PSZCTRL_HXX
 #include <bf_svx/pszctrl.hxx>
@@ -48,25 +45,10 @@
 #include <bf_svx/modctrl.hxx>
 #endif
 
-// auto strip #ifndef _SVX_XLINEIT0_HXX
-// auto strip #include <bf_svx/xlineit0.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNWTIT_HXX
-// auto strip #include <bf_svx/xlnwtit.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNCLIT_HXX
-// auto strip #include <bf_svx/xlnclit.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLCLIT_HXX
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFILLIT0_HXX
-// auto strip #include <bf_svx/xfillit0.hxx>
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -75,28 +57,14 @@
 #include <bf_svx/f3dchild.hxx>
 #endif
 // header for XFillTransparenceItem
-// auto strip #ifndef _SVX_XFLTRIT_HXX
-// auto strip #include <bf_svx/xfltrit.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
-// auto strip #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-// auto strip #endif
 
 
-// auto strip #include "schdll0.hxx"
 #include "docshell.hxx"
 #include "schmod.hxx"
 #include "app.hrc"
 #include "schresid.hxx"
-// auto strip #include "schdll.hxx"
 #include "memchrt.hxx"
 #include "viewshel.hxx"
-// auto strip #ifndef _CHTMODEL_HXX
-// auto strip #include "chtmodel.hxx"
-// auto strip #endif
-// auto strip #include "dgrdata.hxx"
-// auto strip #include "dlggraut.hxx"
-// auto strip #include "objfac.hxx"
 #include "res_bmp.hrc"  // contains define for RID_MENU, RID_ACCEL
 
 #include "globopt.hxx"
@@ -135,7 +103,6 @@ namespace binfilter {
 /*N*/   SchChartDocShell::RegisterInterface(pMod);
 /*N*/   SchViewShell::RegisterInterface(pMod);
 /*N*/
-//STRIP001 /*?*/    SchDiagramDataWrapper::RegisterChildWindow(0, pMod);
 /*N*/   Svx3DChildWindow::RegisterChildWindow(0, pMod);
 /*N*/   SvxPosSizeStatusBarControl::RegisterControl(SID_ATTR_SIZE, pMod);
 /*N*/   SvxModifyControl::RegisterControl(SID_DOC_MODIFIED, pMod);
@@ -160,29 +127,6 @@ namespace binfilter {
 
 /*N*/ extern_c void __LOADONCALLAPI SchSetTransparent( SvInPlaceObjectRef aIPObj, BOOL bTransp )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SchChartDocShellRef aSchChartDocShellRef = &aIPObj;
-//STRIP001
-//STRIP001  if (aSchChartDocShellRef.Is())
-//STRIP001  {
-//STRIP001      ChartModel& rDoc = aSchChartDocShellRef->GetDoc();
-//STRIP001
-//STRIP001      const SfxItemSet &rAttr = rDoc.GetDiagramAreaAttr();
-//STRIP001
-//STRIP001      SAL_CONST_CAST( SfxItemSet &, rAttr).Put( XLineStyleItem( XLINE_NONE ));
-//STRIP001      SAL_CONST_CAST( SfxItemSet &, rAttr).Put( XLineWidthItem( 0 ));
-//STRIP001      SAL_CONST_CAST( SfxItemSet &, rAttr).Put( XLineColorItem( String(), COL_BLACK ));
-//STRIP001      SAL_CONST_CAST( SfxItemSet &, rAttr).Put( XFillColorItem( String(), COL_WHITE ));
-//STRIP001
-//STRIP001      if( bTransp )
-//STRIP001          SAL_CONST_CAST( SfxItemSet &, rAttr).Put( XFillTransparenceItem( 100 ) );
-//STRIP001      else
-//STRIP001          SAL_CONST_CAST( SfxItemSet &, rAttr).ClearItem( XATTR_FILLTRANSPARENCE );
-//STRIP001
-//STRIP001         rDoc.PageColorChanged( rAttr );
-//STRIP001
-//STRIP001         // #109154# propagate changes in chart item set to drawing object
-//STRIP001         rDoc.BuildChart( FALSE );
-//STRIP001  }
 /*N*/ }
 
 /*************************************************************************
@@ -275,10 +219,6 @@ namespace binfilter {
 /*N*/                                                BOOL bPrePage)
 /*N*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
-//STRIP001
-//STRIP001  if(!pData)return NULL;
-//STRIP001  return new SchDiagramAutoPilotDlg( pParent, *new SchMemChart(*pData), rInAttrs,
-//STRIP001                                     rOutAttrs, bPrePage );
 /*N*/ }
 
 /*************************************************************************
@@ -291,8 +231,6 @@ namespace binfilter {
 /*N*/                                                SchMemChart* pData)
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
-//STRIP001
-//STRIP001  ((SchDiagramAutoPilotDlg*)pDlg)->ChangeChartData(*new SchMemChart(*pData));
 /*N*/ }
 
 /*************************************************************************
@@ -379,10 +317,6 @@ namespace binfilter {
 
 /*N*/ extern_c ChartModel* __LOADONCALLAPI SchGetModel (SvInPlaceObjectRef aIPObj)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  SchChartDocShellRef aSchChartDocShellRef = &aIPObj;
-//STRIP001
-//STRIP001  if (aSchChartDocShellRef.Is()) return &aSchChartDocShellRef->GetDoc();
-//STRIP001  else return 0;
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchGetDefaultForColumnText(
