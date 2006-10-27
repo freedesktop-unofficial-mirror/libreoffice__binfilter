@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_rulritem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:02:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:30:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 #pragma hdrstop
 
 #include "dialogs.hrc"
@@ -62,71 +59,15 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String SvxLongLRSpaceItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String();
-//STRIP001 }
 
 /*N*/ #define TWIP_TO_MM100(TWIP)   ((TWIP) >= 0 ? (((TWIP)*127L+36L)/72L) : (((TWIP)*127L-36L)/72L))
 /*N*/ #define MM100_TO_TWIP(MM100)  ((MM100) >= 0 ? (((MM100)*72L+63L)/127L) : (((MM100)*72L-63L)/127L))
 
-//STRIP001 sal_Bool SvxLongLRSpaceItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     sal_Int32 nVal;
-//STRIP001     switch( nMemberId )
-//STRIP001  {
-//STRIP001         case MID_LEFT: nVal = lLeft; break;
-//STRIP001         case MID_RIGHT: nVal = lRight; break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( bConvert )
-//STRIP001         nVal = TWIP_TO_MM100( nVal );
-//STRIP001
-//STRIP001     rVal <<= nVal;
-//STRIP001     return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
-//STRIP001 sal_Bool SvxLongLRSpaceItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     sal_Int32 nVal;
-//STRIP001     if ( rVal >>= nVal )
-//STRIP001     {
-//STRIP001         if ( bConvert )
-//STRIP001             nVal = MM100_TO_TWIP( nVal );
-//STRIP001
-//STRIP001         switch( nMemberId )
-//STRIP001         {
-//STRIP001             case MID_LEFT: lLeft = nVal; break;
-//STRIP001             case MID_RIGHT: lRight = nVal; break;
-//STRIP001             default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001         }
-//STRIP001
-//STRIP001         return sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLongLRSpaceItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     String&             rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -163,68 +104,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 String SvxLongULSpaceItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String();
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxLongULSpaceItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     sal_Int32 nVal;
-//STRIP001     switch( nMemberId )
-//STRIP001  {
-//STRIP001         case MID_UPPER: nVal = lLeft; break;
-//STRIP001         case MID_LOWER: nVal = lRight; break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( bConvert )
-//STRIP001         nVal = TWIP_TO_MM100( nVal );
-//STRIP001
-//STRIP001     rVal <<= nVal;
-//STRIP001     return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
-//STRIP001 sal_Bool SvxLongULSpaceItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     sal_Int32 nVal;
-//STRIP001     if ( rVal >>= nVal )
-//STRIP001     {
-//STRIP001         if ( bConvert )
-//STRIP001             nVal = MM100_TO_TWIP( nVal );
-//STRIP001
-//STRIP001         switch( nMemberId )
-//STRIP001         {
-//STRIP001             case MID_UPPER: lLeft = nVal; break;
-//STRIP001             case MID_LOWER: lRight = nVal; break;
-//STRIP001             default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001         }
-//STRIP001
-//STRIP001         return sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLongULSpaceItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     String&             rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -259,67 +144,13 @@ namespace binfilter {
 /*N*/           lHeight == ((const SvxPagePosSizeItem &)rCmp).lHeight;
 /*N*/ }
 
-//STRIP001 sal_Bool SvxPagePosSizeItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     sal_Int32 nVal;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_X: nVal = aPos.X(); break;
-//STRIP001         case MID_Y: nVal = aPos.Y(); break;
-//STRIP001         case MID_WIDTH: nVal = lWidth; break;
-//STRIP001         case MID_HEIGHT: nVal = lHeight; break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     rVal <<= nVal;
-//STRIP001     return TRUE;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxPagePosSizeItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001
-//STRIP001     sal_Int32 nVal;
-//STRIP001     if ( rVal >>= nVal )
-//STRIP001     {
-//STRIP001         switch ( nMemberId )
-//STRIP001         {
-//STRIP001             case MID_X: aPos.X() = nVal; break;
-//STRIP001             case MID_Y: aPos.Y() = nVal; break;
-//STRIP001             case MID_WIDTH: lWidth = nVal; break;
-//STRIP001             case MID_HEIGHT: lHeight = nVal; break;
-//STRIP001             default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001         }
-//STRIP001
-//STRIP001         return sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String SvxPagePosSizeItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxPagePosSizeItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     String&             rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -363,46 +194,14 @@ namespace binfilter {
 
 /*N*/ int SvxColumnItem::operator==(const SfxPoolItem& rCmp) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(!SfxPoolItem::operator==(rCmp) ||
-//STRIP001     nActColumn != ((const SvxColumnItem&)rCmp).nActColumn ||
-//STRIP001     nLeft != ((const SvxColumnItem&)rCmp).nLeft ||
-//STRIP001     nRight != ((const SvxColumnItem&)rCmp).nRight ||
-//STRIP001     bTable != ((const SvxColumnItem&)rCmp).bTable ||
-//STRIP001     Count() != ((const SvxColumnItem&)rCmp).Count())
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const USHORT nCount = ((const SvxColumnItem&)rCmp).Count();
-//STRIP001  for(USHORT i = 0; i < nCount;++i) {
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001      SvxColumnDescription *p1 = (SvxColumnDescription *)aColumns[i],
-//STRIP001                           *p2 = (SvxColumnDescription *)
-//STRIP001                                  ((const SvxColumnItem&)rCmp).aColumns[i];
-//STRIP001 #endif
-//STRIP001      if( (*this)[i] != ((const SvxColumnItem&)rCmp)[i] )
-//STRIP001          return FALSE;
-//STRIP001  }
 /*N*/   return TRUE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String SvxColumnItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxColumnItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     String&             rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -427,17 +226,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvxColumnItem::SvxColumnItem( USHORT nActCol, USHORT left, USHORT right ) :
-//STRIP001
-//STRIP001  SfxPoolItem( SID_RULER_BORDERS ),
-//STRIP001
-//STRIP001  nActColumn  ( nActCol ),
-//STRIP001  nLeft       ( left ),
-//STRIP001  nRight      ( right ),
-//STRIP001  bTable      ( TRUE )
-//STRIP001
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -467,18 +255,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 const SvxColumnItem &SvxColumnItem::operator=(const SvxColumnItem &rCopy)
-//STRIP001 {
-//STRIP001  nLeft = rCopy.nLeft;
-//STRIP001  nRight = rCopy.nRight;
-//STRIP001  bTable = rCopy.bTable;
-//STRIP001  nActColumn = rCopy.nActColumn;
-//STRIP001  DeleteAndDestroyColumns();
-//STRIP001  const USHORT nCount = rCopy.Count();
-//STRIP001  for(USHORT i = 0; i < nCount;++i)
-//STRIP001      Insert(rCopy[i], i);
-//STRIP001  return *this;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -500,101 +276,20 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 long SvxColumnItem::GetVisibleRight() const
-//STRIP001 {
-//STRIP001  USHORT nIdx = 0;
-//STRIP001
-//STRIP001  for ( USHORT i = 0; i < nActColumn; ++i )
-//STRIP001  {
-//STRIP001      if ( (*this)[i].bVisible )
-//STRIP001          ++nIdx;
-//STRIP001  }
-//STRIP001  return (*this)[nIdx].nEnd;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxColumnItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_COLUMNARRAY:
-//STRIP001         {
-//STRIP001             return sal_False;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001         case MID_RIGHT: rVal <<= nRight; break;
-//STRIP001         case MID_LEFT: rVal <<= nLeft; break;
-//STRIP001         case MID_ORTHO: rVal <<= (sal_Bool) bOrtho; break;
-//STRIP001         case MID_ACTUAL: rVal <<= (sal_Int32) nActColumn; break;
-//STRIP001         case MID_TABLE: rVal <<= (sal_Bool) bTable; break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxColumnItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Int32 nVal;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_COLUMNARRAY:
-//STRIP001         {
-//STRIP001             return sal_False;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001         case MID_RIGHT: rVal >>= nRight; break;
-//STRIP001         case MID_LEFT: rVal >>= nLeft; break;
-//STRIP001         case MID_ORTHO: rVal >>= nVal; bOrtho = (BOOL) nVal; break;
-//STRIP001         case MID_ACTUAL: rVal >>= nVal; nActColumn = (USHORT) nVal; break;
-//STRIP001         case MID_TABLE: rVal >>= nVal; bTable = (BOOL) nVal; break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_True;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int SvxObjectItem::operator==( const SfxPoolItem& rCmp ) const
-//STRIP001 {
-//STRIP001  return SfxPoolItem::operator==(rCmp) &&
-//STRIP001     nStartX == ((const SvxObjectItem&)rCmp).nStartX &&
-//STRIP001     nEndX == ((const SvxObjectItem&)rCmp).nEndX &&
-//STRIP001     nStartY == ((const SvxObjectItem&)rCmp).nStartY &&
-//STRIP001     nEndY == ((const SvxObjectItem&)rCmp).nEndY &&
-//STRIP001     bLimits == ((const SvxObjectItem&)rCmp).bLimits;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String SvxObjectItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxObjectItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     String&             rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxObjectItem::Clone(SfxItemPool *pPool) const
-//STRIP001 {
-//STRIP001  return new SvxObjectItem(*this);
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -614,55 +309,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvxObjectItem::SvxObjectItem( const SvxObjectItem& rCopy ) :
-//STRIP001
-//STRIP001  SfxPoolItem( rCopy ),
-//STRIP001
-//STRIP001  nStartX ( rCopy.nStartX ),
-//STRIP001  nEndX   ( rCopy.nEndX ),
-//STRIP001  nStartY ( rCopy.nStartY ),
-//STRIP001  nEndY   ( rCopy.nEndY ),
-//STRIP001  bLimits ( rCopy.bLimits )
-//STRIP001
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxObjectItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Int32 nVal = 0;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_START_X : rVal <<= nStartX; break;
-//STRIP001         case MID_START_Y : rVal <<= nStartY; break;
-//STRIP001         case MID_END_X : rVal <<= nEndX; break;
-//STRIP001         case MID_END_Y : rVal <<= nEndY; break;
-//STRIP001         case MID_LIMIT : rVal <<= bLimits; break;
-//STRIP001         default:
-//STRIP001             DBG_ERROR( "Wrong MemberId" );
-//STRIP001             return sal_False;
-//STRIP001     }
-//STRIP001
-//STRIP001     return TRUE;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxObjectItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     BOOL bRet=FALSE;
-//STRIP001     switch ( nMemberId )
-//STRIP001     {
-//STRIP001         case MID_START_X : bRet = (rVal >>= nStartX); break;
-//STRIP001         case MID_START_Y : bRet = (rVal >>= nStartY); break;
-//STRIP001         case MID_END_X : bRet = (rVal >>= nEndX); break;
-//STRIP001         case MID_END_Y : bRet = (rVal >>= nEndY); break;
-//STRIP001         case MID_LIMIT : bRet = (rVal >>= bLimits); break;
-//STRIP001         default: DBG_ERROR( "Wrong MemberId" );
-//STRIP001     }
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
 
 }
