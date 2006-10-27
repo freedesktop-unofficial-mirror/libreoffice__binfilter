@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_filtuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:14:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:03:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,22 +34,18 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include <com/sun/star/ui/dialogs/ExecutableDialogResults.hpp>
 #include <tools/urlobj.hxx>
-// auto strip #include <vcl/msgbox.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 
 #include "filtuno.hxx"
 #include "miscuno.hxx"
 #include "unoguard.hxx"
-// auto strip #include "scdll.hxx"
 #include "imoptdlg.hxx"
-// auto strip #include "asciiopt.hxx"
 #include "docsh.hxx"
 #include "globstr.hrc"
 namespace binfilter {
@@ -168,14 +164,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
             pInStream = ::utl::UcbStreamHelper::CreateStream( xInputStream );
 
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScImportAsciiDlg* pDlg = new ScImportAsciiDlg( NULL, aPrivDatName, pInStream, cAsciiDel );
-//STRIP001      if ( pDlg->Execute() == RET_OK )
-//STRIP001      {
-//STRIP001          ScAsciiOptions aOptions;
-//STRIP001          pDlg->GetOptions( aOptions );
-//STRIP001          aFilterOptions = aOptions.WriteToString();
-//STRIP001          nRet = ui::dialogs::ExecutableDialogResults::OK;
-//STRIP001      }
-//STRIP001      delete pDlg;
         delete pInStream;
     }
     else
@@ -247,19 +235,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
 
         ScImportOptions aOptions( cAsciiDel, cStrDel, eEncoding);
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScImportOptionsDlg* pDlg = new ScImportOptionsDlg( NULL, bAscii,
-//STRIP001                                  &aOptions, &aTitle, bMultiByte, bDBEnc,
-//STRIP001                                     !bExport );
-//STRIP001
-//STRIP001      if ( pDlg->Execute() == RET_OK )
-//STRIP001      {
-//STRIP001          pDlg->GetImportOptions( aOptions );
-//STRIP001          if ( bAscii )
-//STRIP001              aFilterOptions = aOptions.BuildString();
-//STRIP001          else
-//STRIP001              aFilterOptions = aOptions.aStrFont;
-//STRIP001          nRet = ui::dialogs::ExecutableDialogResults::OK;
-//STRIP001      }
-//STRIP001      delete pDlg;
     }
 
     xInputStream.clear();   // don't hold the stream longer than necessary
