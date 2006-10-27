@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_polyob3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:33:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:50:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 #include <stdio.h>
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
 #ifndef _INC_FLOAT
 #include <float.h>
@@ -46,29 +45,14 @@
 #include "svdopath.hxx"
 #endif
 
-// auto strip #ifndef _SVDITER_HXX //autogen
-// auto strip #include "svditer.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XATTR_HXX
-// auto strip #include "xattr.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDHDL_HXX
-// auto strip #include "svdhdl.hxx"
-// auto strip #endif
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
 #endif
 
-// auto strip #ifndef _B3D_BASE3D_HXX
-// auto strip #include <goodies/base3d.hxx>
-// auto strip #endif
 
 // FG: wegen der DEBUG-Ausgabe in Dateien (temporaer)
 #ifndef _INC_STDIO
@@ -263,19 +247,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolyObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulPoly3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -283,10 +254,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolyObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralPoly3d);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -541,12 +508,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolyObj::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
-//STRIP001  E3dDragDetail eDetail)
-//STRIP001 {
-//STRIP001  // Keine Aktion, da solche Objekte nur noch Hilfsobjekte beim
-//STRIP001  // Laden/Speichern von 4.0 Format sind.
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -554,25 +515,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolyObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dObject::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dPolyObj& r3DObj = (const E3dPolyObj&) rObj;
-//STRIP001
-//STRIP001  aPolyPoly3D      = r3DObj.aPolyPoly3D;
-//STRIP001  aPolyNormals3D   = r3DObj.aPolyNormals3D;
-//STRIP001  aPolyTexture3D   = r3DObj.aPolyTexture3D;
-//STRIP001  aNormal          = r3DObj.aNormal;
-//STRIP001
-//STRIP001  bDoubleSided     = r3DObj.bDoubleSided;
-//STRIP001  bBackSideVisible = r3DObj.bBackSideVisible;
-//STRIP001  bLighted         = r3DObj.bLighted;
-//STRIP001  bOwnAttrs        = r3DObj.bOwnAttrs;
-//STRIP001  bOwnStyle        = r3DObj.bOwnStyle;
-//STRIP001
-//STRIP001  nObjectnumber    = r3DObj.nObjectnumber;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -581,10 +523,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject *E3dPolyObj::DoConvertToPolyObj(BOOL bBezier) const
-//STRIP001 {
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -731,21 +669,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolyObj::NbcSetStyleSheet(SfxStyleSheet *pNewStyleSheet,
-//STRIP001                                FASTBOOL      bDontRemoveHardAttr)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-//STRIP001  DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
-//STRIP001
-//STRIP001
-//STRIP001  GetParentObj()->E3dObject::SendRepaintBroadcast ();
-//STRIP001  ForceDefaultAttrAgain ();
-//STRIP001  SdrAttrObj::NbcSetStyleSheet(pNewStyleSheet, bDontRemoveHardAttr);
-//STRIP001  bOwnAttrs = TRUE;
-//STRIP001  bOwnStyle = TRUE;
-//STRIP001  StructureChanged(this);
-//STRIP001  GetParentObj()->E3dObject::SendRepaintBroadcast ();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -753,17 +676,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 USHORT E3dPolyObj::GetPointCount () const
-//STRIP001 {
-//STRIP001  USHORT nResult = 0;
-//STRIP001
-//STRIP001  for (long nPoly = 0;
-//STRIP001            nPoly < aPolyPoly3D.Count();
-//STRIP001            nPoly ++)
-//STRIP001      nResult += (USHORT) (aPolyPoly3D[(USHORT)nPoly].GetPointCount());
-//STRIP001
-//STRIP001  return nResult;
-//STRIP001 }
 
 
 }
