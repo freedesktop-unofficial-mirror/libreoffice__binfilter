@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_number.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:43:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:27:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,15 +45,6 @@
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif
-// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
-// auto strip #include <bf_svx/brshitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
-// auto strip #include <bf_svx/lrspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_NUMITEM_HXX //autogen
-// auto strip #include <bf_svx/numitem.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -68,33 +59,18 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>
-// auto strip #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
@@ -187,8 +163,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
  ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::NotifyGraphicArrived()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if( GetCharFmt() )
-//STRIP001         UpdateNumNodes( (SwDoc*)GetCharFmt()->GetDoc() );
 /*N*/ }
 /* -----------------------------23.02.01 09:28--------------------------------
 
@@ -217,10 +191,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
  ---------------------------------------------------------------------------*/
 /*N*/ const Graphic* SwNumFmt::GetGraphic() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  const Graphic* pGrf = 0;
-//STRIP001  if( GetBrush() && GetCharFmt() )
-//STRIP001      pGrf = GetBrush()->GetGraphic( GetCharFmt()->GetDoc()->GetDocShell() );
-//STRIP001  return pGrf;
 /*N*/ }
 /* -----------------------------22.02.01 13:44--------------------------------
 
@@ -265,9 +235,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
  ---------------------------------------------------------------------------*/
 /*N*/ const String& SwNumFmt::GetCharFmtName() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if((SwCharFmt*)pRegisteredIn)
-//STRIP001      return ((SwCharFmt*)pRegisteredIn)->GetName();
-//STRIP001  else
 /*N*/       return aEmptyStr;
 /*N*/ }
 /* -----------------------------22.02.01 16:05--------------------------------
@@ -285,7 +252,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
  ---------------------------------------------------------------------------*/
 /*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient eSet)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SvxNumberFormat::SetVertOrient(eSet);
 /*N*/ }
 /* -----------------------------22.02.01 16:05--------------------------------
 
@@ -324,12 +290,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/                       if( pMod->IsA( TYPE( SwFmt )) )
 /*N*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNumRuleInfo aInfo( rRuleNm );
-//STRIP001 /*?*/                            pMod->GetInfo( aInfo );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            for( ULONG nFirst = 0, nLast = aInfo.GetList().Count();
-//STRIP001 /*?*/                                nFirst < nLast; ++nFirst )
-//STRIP001 /*?*/                                lcl_SetRuleChgd(
-//STRIP001 /*?*/                                    *aInfo.GetList().GetObject( nFirst ), i );
 /*?*/                       }
 /*N*/                       else if( ((SwTxtNode*)pMod)->GetNodes().IsDocNodes() )
 /*N*/                           lcl_SetRuleChgd( *(SwTxtNode*)pMod, i );
@@ -377,14 +337,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
  ---------------------------------------------------------------------------*/
 /*N*/ const SwFmtVertOrient*      SwNumFmt::GetGraphicOrientation() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     SvxFrameVertOrient  eOrient = SvxNumberFormat::GetVertOrient();
-//STRIP001     if(SVX_VERT_NONE == eOrient)
-//STRIP001         return 0;
-//STRIP001     else
-//STRIP001     {
-//STRIP001         pVertOrient->SetVertOrient((SwVertOrient)eOrient);
-//STRIP001         return pVertOrient;
-//STRIP001     }
 /*N*/ }
 
 /*N*/ BOOL SwNodeNum::operator==( const SwNodeNum& rNum ) const
@@ -510,18 +462,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
     // setzt Num oder NoNum fuer den Level am TextNode UND setzt die
     // richtige Attributierung
 
-//STRIP001 BOOL SwNumRule::IsRuleLSpace( SwTxtNode& rNd ) const
-//STRIP001 {
-//STRIP001  const SfxPoolItem* pItem;
-//STRIP001  BYTE nLvl;
-//STRIP001  const SwAttrSet* pASet = rNd.GetpSwAttrSet();
-//STRIP001  BOOL bRet = rNd.GetNum() && pASet && SFX_ITEM_SET == pASet->GetItemState(
-//STRIP001              RES_LR_SPACE, FALSE, &pItem ) && ( nLvl = (~NO_NUMLEVEL &
-//STRIP001              rNd.GetNum()->GetLevel() )) < MAXLEVEL &&
-//STRIP001              Get( nLvl ).GetAbsLSpace() == ((SvxLRSpaceItem*)pItem)->GetTxtLeft();
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ SwNumRule& SwNumRule::operator=( const SwNumRule& rNumRule )
 /*N*/ {
@@ -663,28 +603,6 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
     // richtigen CharFormaten eines Dokumentes haengen !!
     // (Kopiert die NumFormate und returnt sich selbst)
 
-//STRIP001 SwNumRule& SwNumRule::CopyNumRule( SwDoc* pDoc, const SwNumRule& rNumRule )
-//STRIP001 {
-//STRIP001  for( USHORT n = 0; n < MAXLEVEL; ++n )
-//STRIP001  {
-//STRIP001      Set( n, rNumRule.aFmts[ n ] );
-//STRIP001      if( aFmts[ n ] && aFmts[ n ]->GetCharFmt() &&
-//STRIP001          USHRT_MAX == pDoc->GetCharFmts()->GetPos( aFmts[n]->GetCharFmt() ))
-//STRIP001          // ueber unterschiedliche Dokumente kopieren, dann
-//STRIP001          // kopiere das entsprechende Char-Format ins neue
-//STRIP001          // Dokument.
-//STRIP001          aFmts[n]->SetCharFmt( pDoc->CopyCharFmt( *aFmts[n]->
-//STRIP001                                      GetCharFmt() ) );
-//STRIP001  }
-//STRIP001  eRuleType = rNumRule.eRuleType;
-//STRIP001  sName = rNumRule.sName;
-//STRIP001  bAutoRuleFlag = rNumRule.bAutoRuleFlag;
-//STRIP001  nPoolFmtId = rNumRule.GetPoolFmtId();
-//STRIP001  nPoolHelpId = rNumRule.GetPoolHelpId();
-//STRIP001  nPoolHlpFileId = rNumRule.GetPoolHlpFileId();
-//STRIP001  bInvalidRuleFlag = TRUE;
-//STRIP001  return *this;
-//STRIP001 }
 /* -----------------30.10.98 08:33-------------------
  *
  * --------------------------------------------------*/
