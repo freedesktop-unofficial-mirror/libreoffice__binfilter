@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unofield.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:32:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:58:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,12 +41,6 @@
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_NOSUPPORTEXCEPTION_HPP_
-// auto strip #include <com/sun/star/lang/NoSupportException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
-// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
@@ -61,9 +55,6 @@
 #include "eeitem.hxx"
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
@@ -73,10 +64,8 @@
 #include <bf_svx/itemdata.hxx>
 #endif
 
-// auto strip #include "flditem.hxx"
 #include "svdfield.hxx"
 #include "unofield.hxx"
-// auto strip #include "unoprov.hxx"
 #include "unotext.hxx"
 #include "adritem.hxx"
 namespace binfilter {

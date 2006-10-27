@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoedhlp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:31:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:58:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,6 @@
 #endif
 
 #include "unoedhlp.hxx"
-// auto strip #include "editdata.hxx"
 #include "editeng.hxx"
 namespace binfilter {
 
