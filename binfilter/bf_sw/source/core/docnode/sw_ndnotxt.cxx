@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndnotxt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:48:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:29:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,54 +44,27 @@
 #ifndef _IPOBJ_HXX
 #include <so3/ipobj.hxx>
 #endif
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _IPOBJ_HXX
-// auto strip #include <so3/ipobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 #ifndef _CONTDLG_HXX_
 #include <bf_svx/contdlg.hxx>
 #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDNOTXT_HXX
-// auto strip #include <ndnotxt.hxx>
-// auto strip #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-// auto strip #ifndef _NDINDEX_HXX
-// auto strip #include <ndindex.hxx>
-// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
 #endif
@@ -133,16 +106,8 @@ namespace binfilter {
 // bei Grafiken und OLE-Objekten
 
 
-//STRIP001 BOOL SwNoTxtNode::RestorePersistentData()
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
-//STRIP001 BOOL SwNoTxtNode::SavePersistentData()
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ void SwNoTxtNode::SetContour( const PolyPolygon *pPoly, BOOL bAutomatic )
@@ -158,71 +123,18 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SwNoTxtNode::CreateContour()
-//STRIP001 {
-//STRIP001  ASSERT( !pContour, "Contour available." );
-//STRIP001     pContour = new PolyPolygon(SvxContourDlg::CreateAutoContour(GetGraphic()));
-//STRIP001     bAutomaticContour = TRUE;
-//STRIP001  bContourMapModeValid = TRUE;
-//STRIP001  bPixelContour = FALSE;
-//STRIP001 }
 
 /*N*/ const PolyPolygon *SwNoTxtNode::HasContour() const
 /*N*/ {
 /*N*/   if( !bContourMapModeValid )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
-//STRIP001 /*?*/        BOOL bPixelGrf = aGrfMap.GetMapUnit() == MAP_PIXEL;
-//STRIP001 /*?*/        const MapMode aContourMap( bPixelGrf ? MAP_PIXEL : MAP_100TH_MM );
-//STRIP001 /*?*/        if( bPixelGrf ? !bPixelContour : aGrfMap != aContourMap )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            ASSERT( !bPixelGrf || aGrfMap == aContourMap,
-//STRIP001 /*?*/                    "scale factor for pixel unsupported" );
-//STRIP001 /*?*/            OutputDevice* pOutDev =
-//STRIP001 /*?*/                (bPixelGrf || bPixelContour) ? Application::GetDefaultDevice()
-//STRIP001 /*?*/                                             : 0;
-//STRIP001 /*?*/            USHORT nPolyCount = pContour->Count();
-//STRIP001 /*?*/            for( USHORT j=0; j<nPolyCount; j++ )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                Polygon& rPoly = (*pContour)[j];
-//STRIP001 /*?*/
-//STRIP001 /*?*/                USHORT nCount = rPoly.GetSize();
-//STRIP001 /*?*/                for( USHORT i=0 ; i<nCount; i++ )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if( bPixelGrf )
-//STRIP001 /*?*/                        rPoly[i] = pOutDev->LogicToPixel( rPoly[i],
-//STRIP001 /*?*/                                                          aContourMap );
-//STRIP001 /*?*/                    else if( bPixelContour )
-//STRIP001 /*?*/                        rPoly[i] = pOutDev->PixelToLogic( rPoly[i], aGrfMap );
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        rPoly[i] = OutputDevice::LogicToLogic( rPoly[i],
-//STRIP001 /*?*/                                                               aContourMap,
-//STRIP001 /*?*/                                                               aGrfMap );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        ((SwNoTxtNode *)this)->bContourMapModeValid = TRUE;
-//STRIP001 /*?*/        ((SwNoTxtNode *)this)->bPixelContour = FALSE;
 /*N*/   }
 /*N*/
 /*N*/   return pContour;
 /*N*/ }
 
-//STRIP001 void SwNoTxtNode::GetContour( PolyPolygon &rPoly ) const
-//STRIP001 {
-//STRIP001  ASSERT( pContour, "Contour not available." );
-//STRIP001  rPoly = *HasContour();
-//STRIP001 }
 
-//STRIP001 void SwNoTxtNode::SetContourAPI( const PolyPolygon *pPoly )
-//STRIP001 {
-//STRIP001  delete pContour;
-//STRIP001  if ( pPoly )
-//STRIP001      pContour = new PolyPolygon( *pPoly );
-//STRIP001  else
-//STRIP001      pContour = 0;
-//STRIP001  bContourMapModeValid = FALSE;
-//STRIP001 }
 
 /*N*/ BOOL SwNoTxtNode::GetContourAPI( PolyPolygon &rContour ) const
 /*N*/ {
