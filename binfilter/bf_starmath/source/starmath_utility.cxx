@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_utility.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:54:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:58:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,20 +33,6 @@
  *
  ************************************************************************/
 
-#pragma hdrstop
-
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_VIRDEV_HXX //autogen
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #endif
-//#ifndef NOOLDSV //autogen
-//#include <vcl/system.hxx>
-//#endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
@@ -54,12 +40,11 @@
 #include <osl/thread.h>
 #endif
 
+#include <vcl/virdev.hxx>
+
 #include "starmath.hrc"
 
-// auto strip #include "utility.hxx"
-#include "dialog.hxx"
 #include "view.hxx"
-// auto strip #include "smdll.hxx"
 namespace binfilter {
 
 
@@ -73,7 +58,6 @@ namespace binfilter {
 
 
 ////////////////////////////////////////
-
 
 /*N*/ SvStream& operator << (SvStream& rStream, const SmFace& rFont)
 /*N*/ {
@@ -136,36 +120,6 @@ namespace binfilter {
 /*N*/ SmRectCache::Key::Key(const XubString &rText, const Font &rFont)
 /*N*/ {
 /*N*/ }
-
-
-//STRIP001 BOOL SmRectCache::Key::operator <  (const Key &rKey) const
-//STRIP001 {
-//STRIP001 #ifdef never
-//STRIP001  BOOL  bRes = FALSE;
-//STRIP001
-//STRIP001  if (aText < rKey.aText)
-//STRIP001      bRes = TRUE;
-//STRIP001  else if ()
-//STRIP001
-//STRIP001  return      aText       <  rKey.aText
-//STRIP001          ||  aText       == rKey.aText        &&  aFontName   < rKey.aFontName
-//STRIP001          ||  aFontName   == rKey.aFontname    &&  aFontSize   < rKey.aFontSize
-//STRIP001          ||  aFontSize   == rKey.aFontSize    &&  eFontWeight < rKey.eFontWeight
-//STRIP001          ||  eFontWeight == rKey.eFontWeight  &&  eFontItalic < rKey.eFontItalic;
-//STRIP001 #endif
-//STRIP001  return FALSE;
-//STRIP001 }
-
-
-//STRIP001 BOOL SmRectCache::Key::operator == (const Key &rKey) const
-//STRIP001 {
-//STRIP001  return      aText       == rKey.aText
-//STRIP001          &&  aFontName   == rKey.aFontName
-//STRIP001          &&  aFontSize   == rKey.aFontSize
-//STRIP001          &&  eFontWeight == rKey.eFontWeight
-//STRIP001          &&  eFontItalic == rKey.eFontItalic;
-//STRIP001 }
-
 
 /*N*/ SmRectCache::SmRectCache()
 /*N*/ {
@@ -381,82 +335,6 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*N*/ }
 
 
-//STRIP001 SmPickList& SmPickList::operator=(const SmPickList& rList)
-//STRIP001 {
-//STRIP001  USHORT  nPos;
-//STRIP001
-//STRIP001  Clear();
-//STRIP001  nSize = rList.nSize;
-//STRIP001  for (nPos = 0; nPos < rList.Count(); nPos++)
-//STRIP001      InsertPtr(nPos, CreateItem(rList.Get(nPos)));
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
-
-
-//STRIP001 void SmPickList::Insert(const void *pItem)
-//STRIP001 {
-//STRIP001  Remove(pItem);
-//STRIP001  InsertPtr(0, CreateItem(pItem));
-//STRIP001
-//STRIP001  if (Count() > nSize)
-//STRIP001  {
-//STRIP001      DestroyItem(GetPtr(nSize));
-//STRIP001      RemovePtr(nSize, 1);
-//STRIP001  }
-//STRIP001 }
-
-
-//STRIP001 void SmPickList::Update(const void *pItem, const void *pNewItem)
-//STRIP001 {
-//STRIP001  USHORT  nPos;
-//STRIP001
-//STRIP001  for (nPos = 0; nPos < Count(); nPos++)
-//STRIP001      if (CompareItem(GetPtr(nPos), pItem))
-//STRIP001      {
-//STRIP001          DestroyItem(GetPtr(nPos));
-//STRIP001          GetPtr(nPos) = CreateItem(pNewItem);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001 }
-
-//STRIP001 void SmPickList::Remove(const void *pItem)
-//STRIP001 {
-//STRIP001  USHORT  nPos;
-//STRIP001
-//STRIP001  for (nPos = 0; nPos < Count(); nPos++)
-//STRIP001      if (CompareItem(GetPtr(nPos), pItem))
-//STRIP001      {
-//STRIP001          DestroyItem(GetPtr(nPos));
-//STRIP001          RemovePtr(nPos, 1);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001 }
-
-//STRIP001 void SmPickList::SetSize(USHORT nNewSize)
-//STRIP001 {
-//STRIP001  nSize = nNewSize;
-//STRIP001
-//STRIP001  while (Count() > nSize)
-//STRIP001  {
-//STRIP001      DestroyItem(GetPtr(Count() - 1));
-//STRIP001      RemovePtr(Count() - 1, 1);
-//STRIP001  }
-//STRIP001 }
-
-
-//STRIP001 BOOL SmPickList::Contains(const void *pItem) const
-//STRIP001 {
-//STRIP001  USHORT  nPos;
-//STRIP001
-//STRIP001  for (nPos = 0; nPos < Count(); nPos++)
-//STRIP001      if (CompareItem(GetPtr(nPos), pItem))
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
-
-
 /*N*/ void SmPickList::Clear()
 /*N*/ {
 /*N*/   USHORT  nPos;
@@ -466,47 +344,6 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*N*/
 /*N*/   RemovePtr(0, Count());
 /*N*/ }
-
-
-//STRIP001 SvStream& operator << (SvStream& rStream, const SmPickList& rPickList)
-//STRIP001 {
-//STRIP001  USHORT      nPos;
-//STRIP001
-//STRIP001  rStream << 'p';
-//STRIP001  rStream << rPickList.nSize;
-//STRIP001  rStream << rPickList.Count();
-//STRIP001
-//STRIP001  for (nPos = 0; nPos < rPickList.Count(); nPos++)
-//STRIP001      rPickList.SaveItem(rStream, rPickList.GetObject(nPos));
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
-
-//STRIP001 SvStream& operator >> (SvStream& rStream, SmPickList& rPickList)
-//STRIP001 {
-//STRIP001  char    cTag;
-//STRIP001  USHORT  nCount, nPos;
-//STRIP001  void   *pItem;
-//STRIP001
-//STRIP001  rPickList.Clear();
-//STRIP001
-//STRIP001  rStream >> cTag;
-//STRIP001  if (cTag == 'p')
-//STRIP001  {
-//STRIP001      rStream >> rPickList.nSize;
-//STRIP001      rStream >> nCount;
-//STRIP001
-//STRIP001      for (nPos = 0; nPos < nCount; nPos++)
-//STRIP001      {
-//STRIP001          pItem = rPickList.CreateItem(String());
-//STRIP001          rPickList.LoadItem(rStream, pItem);
-//STRIP001          rPickList.InsertPtr(nPos, pItem);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
-
 
 /**************************************************************************/
 /**************************************************************************/
@@ -529,42 +366,11 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*?*/ BOOL SmFontPickList::CompareItem(const void *pFirstItem, const void *pSecondItem) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    Font    *pFirstFont, *pSecondFont;
-//STRIP001
-//STRIP001  pFirstFont  = (Font *)pFirstItem;
-//STRIP001  pSecondFont = (Font *)pSecondItem;
-//STRIP001
-//STRIP001  if (pFirstFont->GetName() == pSecondFont->GetName())
-//STRIP001      if ((pFirstFont->GetFamily()  == pSecondFont->GetFamily())  &&
-//STRIP001          (pFirstFont->GetCharSet() == pSecondFont->GetCharSet()) &&
-//STRIP001          (pFirstFont->GetWeight()  == pSecondFont->GetWeight())  &&
-//STRIP001          (pFirstFont->GetItalic()  == pSecondFont->GetItalic()))
-//STRIP001          return (TRUE);
-//STRIP001
-//STRIP001  return FALSE;
 /*?*/ }
 
 /*?*/ String SmFontPickList::GetStringItem(void *pItem)
 /*?*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); String   aString; return aString;//STRIP001  Font   *pFont;
-//STRIP001  String  aString;
-//STRIP001     const sal_Char *pDelim = ", ";
-//STRIP001
-//STRIP001  pFont = (Font *)pItem;
-//STRIP001
-//STRIP001  aString = pFont->GetName();
-//STRIP001
-//STRIP001  if (pFont->GetItalic() != ITALIC_NONE)
-//STRIP001     {
-//STRIP001         aString.AppendAscii( pDelim );
-//STRIP001      aString += String(SmResId(RID_FONTITALIC));
-//STRIP001     }
-//STRIP001  if (pFont->GetWeight() == WEIGHT_BOLD)
-//STRIP001     {
-//STRIP001         aString.AppendAscii( pDelim );
-//STRIP001      aString += String(SmResId(RID_FONTBOLD));
-//STRIP001     }
-//STRIP001
-//STRIP001  return (aString);
 /*?*/ }
 
 /*?*/ void SmFontPickList::LoadItem(SvStream& rStream, void *pItem)
@@ -576,124 +382,6 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*?*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   rStream << *(const Font *) pItem;
 /*?*/ }
-
-//STRIP001 void SmFontPickList::Insert(const Font &rFont)
-//STRIP001 {
-//STRIP001  SmPickList::Insert((void *)&rFont);
-//STRIP001 }
-
-//STRIP001 void SmFontPickList::Update(const Font &rFont, const Font &rNewFont)
-//STRIP001 {
-//STRIP001  SmPickList::Update((void *)&rFont, (void *)&rNewFont);
-//STRIP001 }
-
-//STRIP001 void SmFontPickList::Remove(const Font &rFont)
-//STRIP001 {
-//STRIP001  SmPickList::Remove((void *)&rFont);
-//STRIP001 }
-
-
-//STRIP001 void SmFontPickList::ReadFrom(const SmFontDialog& rDialog)
-//STRIP001 {
-//STRIP001  Insert(rDialog.GetFont());
-//STRIP001 }
-
-//STRIP001 void SmFontPickList::WriteTo(SmFontDialog& rDialog) const
-//STRIP001 {
-//STRIP001  rDialog.SetFont(Get());
-//STRIP001 }
-
-
-/**************************************************************************/
-
-
-/**************************************************************************/
-
-//STRIP001 IMPL_LINK( SmFontPickListBox, SelectHdl, ListBox *, pListBox )
-//STRIP001 {
-//STRIP001  USHORT  nPos;
-//STRIP001  String  aString;
-//STRIP001
-//STRIP001  nPos = GetSelectEntryPos();
-//STRIP001
-//STRIP001  if (nPos != 0)
-//STRIP001  {
-//STRIP001      SmFontPickList::Insert(Get(nPos));
-//STRIP001      aString = GetEntry(nPos);
-//STRIP001      RemoveEntry(nPos);
-//STRIP001      InsertEntry(aString, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  SelectEntryPos(0);
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
-
-
-//STRIP001 SmFontPickListBox::SmFontPickListBox(Window* pParent, WinBits nWinStyle, USHORT nMax) :
-//STRIP001  SmFontPickList(nMax, nMax),
-//STRIP001  ListBox(pParent, nWinStyle)
-//STRIP001 {
-//STRIP001  SetSelectHdl(LINK(this, SmFontPickListBox, SelectHdl));
-//STRIP001 }
-
-
-//STRIP001 SmFontPickListBox::SmFontPickListBox(Window* pParent, const ResId& rResId, USHORT nMax) :
-//STRIP001  SmFontPickList(nMax, nMax),
-//STRIP001  ListBox(pParent, rResId)
-//STRIP001 {
-//STRIP001  SetSelectHdl(LINK(this, SmFontPickListBox, SelectHdl));
-//STRIP001 }
-
-
-//STRIP001 SmFontPickListBox& SmFontPickListBox::operator=(const SmFontPickList& rList)
-//STRIP001 {
-//STRIP001  USHORT nPos;
-//STRIP001
-//STRIP001  *(SmFontPickList *)this = rList;
-//STRIP001
-//STRIP001  for (nPos = 0; nPos < Count(); nPos++)
-//STRIP001      InsertEntry(GetStringItem(GetPtr(nPos)), nPos);
-//STRIP001
-//STRIP001  if (Count() > 0)
-//STRIP001      SelectEntry(GetStringItem(GetPtr(0)));
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
-
-//STRIP001 void SmFontPickListBox::Insert(const Font &rFont)
-//STRIP001 {
-//STRIP001  SmFontPickList::Insert(rFont);
-//STRIP001
-//STRIP001  RemoveEntry(GetStringItem(GetPtr(0)));
-//STRIP001  InsertEntry(GetStringItem(GetPtr(0)), 0);
-//STRIP001  SelectEntry(GetStringItem(GetPtr(0)));
-//STRIP001
-//STRIP001  while (GetEntryCount() > nSize)
-//STRIP001      RemoveEntry(GetEntryCount() - 1);
-//STRIP001
-//STRIP001  return;
-//STRIP001 }
-
-
-//STRIP001 void SmFontPickListBox::Update(const Font &rFont, const Font &rNewFont)
-//STRIP001 {
-//STRIP001  SmFontPickList::Update(rFont, rNewFont);
-//STRIP001
-//STRIP001  // ********************** hier fehlt noch was
-//STRIP001
-//STRIP001  return;
-//STRIP001 }
-
-
-//STRIP001 void SmFontPickListBox::Remove(const Font &rFont)
-//STRIP001 {
-//STRIP001  SmFontPickList::Remove(rFont);
-//STRIP001
-//STRIP001  // ********************** hier fehlt noch was
-//STRIP001
-//STRIP001  return;
-//STRIP001 }
 
 ////////////////////////////////////////
 
@@ -750,7 +438,5 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*N*/                      Fraction(rFaceSize.Height()) *= rFrac));
 /*N*/   return rFace;
 /*N*/ }
-
-
 
 }
