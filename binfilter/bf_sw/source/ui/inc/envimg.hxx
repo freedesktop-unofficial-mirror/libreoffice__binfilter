@@ -4,9 +4,9 @@
  *
  *  $RCSfile: envimg.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:30:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:39:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
 #endif
-// auto strip #ifndef _UTL_CONFIGITEM_HXX_
-// auto strip #include <unotools/configitem.hxx>
-// auto strip #endif
 namespace binfilter {
 
 // enum -----------------------------------------------------------------------
@@ -80,29 +77,16 @@ public:
 
     TYPEINFO();
 
-//STRIP001  SwEnvItem& operator =(const SwEnvItem& rItem);
 
     virtual int operator ==(const SfxPoolItem& rItem) const;
 
     virtual SfxPoolItem*     Clone(SfxItemPool* = 0) const;
-//STRIP001     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
 
 // class SwEnvCfgItem -------------------------------------------------------
-//STRIP001 class SwEnvCfgItem : public ::utl::ConfigItem
-//STRIP001 {
-//STRIP001  SwEnvItem aEnvItem;
 
-//STRIP001  ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
-//STRIP001 public:
-//STRIP001  SwEnvCfgItem();
-//STRIP001  ~SwEnvCfgItem();
 
-//STRIP001  SwEnvItem& GetItem() {return aEnvItem;}
 
-//STRIP001  virtual void            Commit();
-//STRIP001 };
 } //namespace binfilter
 #endif
 
