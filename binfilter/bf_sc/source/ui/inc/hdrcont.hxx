@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hdrcont.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:53:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:12:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,23 +86,15 @@ private:
     BOOL            bIgnoreMove;
 
     long            GetScrPos( USHORT nEntryNo );
-//STRIP001  USHORT          GetMousePos( const MouseEvent& rMEvt, BOOL& rBorder );
 
-//STRIP001  void            ShowDragHelp();
 
     void            DoPaint( USHORT nStart, USHORT nEnd );
 
 protected:
                     //  von Window ueberladen
 
-//STRIP001  virtual void    Paint( const Rectangle& rRect );
 
-//STRIP001  virtual void    MouseMove( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseButtonUp( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseButtonDown( const MouseEvent& rMEvt );
-//STRIP001  virtual void    Tracking( const TrackingEvent& rTEvt );
 
-//STRIP001  virtual void    RequestHelp( const HelpEvent& rHEvt );
 
                     //  neue Methoden
 
@@ -110,19 +102,12 @@ protected:
     virtual USHORT  GetEntrySize( USHORT nEntryNo ) = 0;        // Breite / Hoehe (Pixel)
     virtual String  GetEntryText( USHORT nEntryNo ) = 0;
 
-//STRIP001  virtual USHORT  GetHiddenCount( USHORT nEntryNo );
 
     virtual void    SetEntrySize( USHORT nPos, USHORT nNewWidth ) = 0;
     virtual void    HideEntries( USHORT nStart, USHORT nEnd ) = 0;
 
     virtual void    SetMarking( BOOL bSet );
-//STRIP001  virtual void    SelectWindow();
-//STRIP001  virtual BOOL    IsDisabled();
-//STRIP001  virtual BOOL    ResizeAllowed();
-//STRIP001  virtual String  GetDragHelp( long nVal );
 
-//STRIP001  virtual void    DrawInvert( long nDragPos );
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
 
 public:
             ScHeaderControl( Window* pParent, SelectionEngine* pSelectionEngine,

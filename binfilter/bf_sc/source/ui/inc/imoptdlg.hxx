@@ -4,9 +4,9 @@
  *
  *  $RCSfile: imoptdlg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:54:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:13:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,42 +70,6 @@ namespace binfilter {
 class ScImportOptions;
 class ScDelimiterTable;
 
-//STRIP001 class ScImportOptionsDlg : public ModalDialog
-//STRIP001 {
-//STRIP001 public:
-//STRIP001              ScImportOptionsDlg( Window*                 pParent,
-//STRIP001                                     BOOL                    bAscii = TRUE,
-//STRIP001                                  const ScImportOptions*  pOptions = NULL,
-//STRIP001                                  const String*           pStrTitle = NULL,
-//STRIP001                                     BOOL                    bMultiByte = FALSE,
-//STRIP001                                     BOOL                    bOnlyDbtoolsEncodings = FALSE,
-//STRIP001                                     BOOL                    bImport = TRUE );
-//STRIP001
-//STRIP001              ~ScImportOptionsDlg();
-//STRIP001
-//STRIP001  void GetImportOptions( ScImportOptions& rOptions ) const;
-//STRIP001
-//STRIP001 private:
-//STRIP001     FixedLine           aFlFieldOpt;
-//STRIP001  FixedText           aFtFont;
-//STRIP001  SvxTextEncodingBox  aLbFont;
-//STRIP001  FixedText           aFtFieldSep;
-//STRIP001  ComboBox            aEdFieldSep;
-//STRIP001  FixedText           aFtTextSep;
-//STRIP001  ComboBox            aEdTextSep;
-//STRIP001     CheckBox            aCbFixed;
-//STRIP001  OKButton            aBtnOk;
-//STRIP001  CancelButton        aBtnCancel;
-//STRIP001  HelpButton          aBtnHelp;
-//STRIP001
-//STRIP001  ScDelimiterTable*   pFieldSepTab;
-//STRIP001  ScDelimiterTable*   pTextSepTab;
-//STRIP001
-//STRIP001 private:
-//STRIP001  USHORT GetCodeFromCombo( const ComboBox& rEd ) const;
-//STRIP001
-//STRIP001     DECL_LINK( FixedWidthHdl, CheckBox* );
-//STRIP001 };
 
 //------------------------------------------------------------------------
 
