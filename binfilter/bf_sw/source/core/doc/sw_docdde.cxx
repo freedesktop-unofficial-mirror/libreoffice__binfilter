@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdde.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:33:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:22:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,18 +38,11 @@
 
 #include <stdlib.h>
 
-// auto strip #ifndef _INTN_HXX
-// auto strip #include <tools/intn.hxx>
-// auto strip #endif
-// auto strip #ifndef _APP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
 
 #define _SVSTDARR_STRINGS
-// auto strip #include <svtools/svstdarr.hxx>
 
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>           // LinkManager
@@ -84,12 +77,6 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>          // fuer SwTable
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
@@ -125,13 +112,6 @@ struct _FindItem
 /*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& rpBkmk, void* pArgs )
 /*N*/ {
 /*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  String sNm( GetAppCharClass().lower( rpBkmk->GetName() ));
-//STRIP001  if( sNm.Equals( ((_FindItem*)pArgs)->rItem ) )
-//STRIP001  {
-//STRIP001      ((_FindItem*)pArgs)->pBkmk = rpBkmk;
-//STRIP001      bRet = FALSE;
-//STRIP001  }
-//STRIP001
 /*N*/   return bRet;
 /*N*/ }
 
@@ -188,68 +168,9 @@ struct _FindItem
 
 
 
-//STRIP001 BOOL SwDoc::GetData( const String& rItem, const String& rMimeType,
-//STRIP001                   ::com::sun::star::uno::Any & rValue ) const
-//STRIP001 {
-//STRIP001  // haben wir ueberhaupt das Item vorraetig?
-//STRIP001  String sItem( GetAppCharClass().lower( rItem ));
-//STRIP001  _FindItem aPara( sItem );
-//STRIP001  ((SwBookmarks&)*pBookmarkTbl).ForEach( 0, pBookmarkTbl->Count(),
-//STRIP001                                          lcl_FindBookmark, &aPara );
-//STRIP001  if( aPara.pBkmk )
-//STRIP001  {
-//STRIP001      // gefunden, als erfrage die Daten
-//STRIP001      return SwServerObject( *aPara.pBkmk ).GetData( rValue, rMimeType );
-//STRIP001  }
-//STRIP001
-//STRIP001  ((SwSectionFmts&)*pSectionFmtTbl).ForEach( 0, pSectionFmtTbl->Count(),
-//STRIP001                                              lcl_FindSection, &aPara );
-//STRIP001  if( aPara.pSectNd )
-//STRIP001  {
-//STRIP001      // gefunden, als erfrage die Daten
-//STRIP001      return SwServerObject( *aPara.pSectNd ).GetData( rValue, rMimeType );
-//STRIP001  }
-//STRIP001
-//STRIP001  ((SwFrmFmts*)pTblFrmFmtTbl)->ForEach( 0, pTblFrmFmtTbl->Count(),
-//STRIP001                                          lcl_FindTable, &aPara );
-//STRIP001  if( aPara.pTblNd )
-//STRIP001  {
-//STRIP001      return SwServerObject( *aPara.pTblNd ).GetData( rValue, rMimeType );
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 
-//STRIP001 BOOL SwDoc::SetData( const String& rItem, const String& rMimeType,
-//STRIP001                   const ::com::sun::star::uno::Any & rValue )
-//STRIP001 {
-//STRIP001  // haben wir ueberhaupt das Item vorraetig?
-//STRIP001  String sItem( GetAppCharClass().lower( rItem ));
-//STRIP001  _FindItem aPara( sItem );
-//STRIP001  pBookmarkTbl->ForEach( 0, pBookmarkTbl->Count(), lcl_FindBookmark, &aPara );
-//STRIP001  if( aPara.pBkmk )
-//STRIP001  {
-//STRIP001      // gefunden, als erfrage die Daten
-//STRIP001      return SwServerObject( *aPara.pBkmk ).SetData( rMimeType, rValue );
-//STRIP001  }
-//STRIP001
-//STRIP001  pSectionFmtTbl->ForEach( 0, pSectionFmtTbl->Count(), lcl_FindSection, &aPara );
-//STRIP001  if( aPara.pSectNd )
-//STRIP001  {
-//STRIP001      // gefunden, als erfrage die Daten
-//STRIP001      return SwServerObject( *aPara.pSectNd ).SetData( rMimeType, rValue );
-//STRIP001  }
-//STRIP001
-//STRIP001  pTblFrmFmtTbl->ForEach( 0, pTblFrmFmtTbl->Count(), lcl_FindTable, &aPara );
-//STRIP001  if( aPara.pTblNd )
-//STRIP001  {
-//STRIP001      return SwServerObject( *aPara.pTblNd ).SetData( rMimeType, rValue );
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 
@@ -268,14 +189,6 @@ struct _FindItem
 /*N*/       {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // gefunden, also Hotlink einrichten
 /*?*/           // sollten wir schon einer sein?
-//STRIP001 /*?*/            if( 0 == (pObj = aPara.pBkmk->GetObject()) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObj = new SwServerObject( *aPara.pBkmk );
-//STRIP001 /*?*/                aPara.pBkmk->SetRefObject( pObj );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if( pObj->HasDataLinks() )
-//STRIP001 /*?*/                return pObj;
-//STRIP001 /*?*/            break;
 /*N*/       }
 /*N*/
 /*N*/       ((SwSectionFmts&)*pSectionFmtTbl).ForEach( 0, pSectionFmtTbl->Count(),
@@ -300,14 +213,6 @@ struct _FindItem
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // gefunden, also Hotlink einrichten
 /*?*/           // sollten wir schon einer sein?
-//STRIP001 /*?*/            if( 0 == (pObj = aPara.pTblNd->GetTable().GetObject()) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pObj = new SwServerObject( *aPara.pTblNd );
-//STRIP001 /*?*/                aPara.pTblNd->GetTable().SetRefObject( pObj );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if( pObj->HasDataLinks() )
-//STRIP001 /*?*/                return pObj;
-//STRIP001 /*?*/            break;
 /*?*/       }
 /*?*/       // bis hierhin, also nicht vorhanden
 /*?*/       return 0;
@@ -340,73 +245,6 @@ struct _FindItem
 /*N*/   if( STRING_NOTFOUND != nPos )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bWeiter = FALSE;
-//STRIP001 /*?*/        String sName( sItem.Copy( 0, nPos ) );
-//STRIP001 /*?*/        String sCmp( sItem.Copy( nPos + 1 ));
-//STRIP001 /*?*/        rCC.toLower( sItem );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        _FindItem aPara( sName );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( sCmp.EqualsAscii( pMarkToTable ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            rCC.toLower( sName );
-//STRIP001 /*?*/            ((SwFrmFmts*)pTblFrmFmtTbl)->ForEach( 0, pTblFrmFmtTbl->Count(),
-//STRIP001 /*?*/                                                    lcl_FindTable, &aPara );
-//STRIP001 /*?*/            if( aPara.pTblNd )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                rpRange = new SwNodeRange( *aPara.pTblNd, 0,
-//STRIP001 /*?*/                                *aPara.pTblNd->EndOfSectionNode(), 1 );
-//STRIP001 /*?*/                return TRUE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else if( sCmp.EqualsAscii( pMarkToFrame ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwNodeIndex* pIdx;
-//STRIP001 /*?*/            SwNode* pNd;
-//STRIP001 /*?*/            const SwFlyFrmFmt* pFlyFmt = FindFlyByName( sName );
-//STRIP001 /*?*/            if( pFlyFmt &&
-//STRIP001 /*?*/                0 != ( pIdx = (SwNodeIndex*)pFlyFmt->GetCntnt().GetCntntIdx() ) &&
-//STRIP001 /*?*/                !( pNd = &pIdx->GetNode())->IsNoTxtNode() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                rpRange = new SwNodeRange( *pNd, 1, *pNd->EndOfSectionNode() );
-//STRIP001 /*?*/                return TRUE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else if( sCmp.EqualsAscii( pMarkToRegion ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            sItem = sName;              // wird unten behandelt !
-//STRIP001 /*?*/            bWeiter = TRUE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else if( sCmp.EqualsAscii( pMarkToOutline ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwPosition aPos( SwNodeIndex( (SwNodes&)GetNodes() ));
-//STRIP001 /*?*/            if( GotoOutline( aPos, sName ))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwNode* pNd = &aPos.nNode.GetNode();
-//STRIP001 /*?*/                BYTE nLvl = pNd->GetTxtNode()->GetTxtColl()->GetOutlineLevel();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                const SwOutlineNodes& rOutlNds = GetNodes().GetOutLineNds();
-//STRIP001 /*?*/                USHORT nPos;
-//STRIP001 /*?*/                rOutlNds.Seek_Entry( pNd, &nPos );
-//STRIP001 /*?*/                rpRange = new SwNodeRange( aPos.nNode, 0, aPos.nNode );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // dann suche jetzt noch das Ende vom Bereich
-//STRIP001 /*?*/                for( ++nPos;
-//STRIP001 /*?*/                        nPos < rOutlNds.Count() &&
-//STRIP001 /*?*/                        nLvl < rOutlNds[ nPos ]->GetTxtNode()->
-//STRIP001 /*?*/                                GetTxtColl()->GetOutlineLevel();
-//STRIP001 /*?*/                    ++nPos )
-//STRIP001 /*?*/                    ;       // es gibt keinen Block
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( nPos < rOutlNds.Count() )
-//STRIP001 /*?*/                    rpRange->aEnd = *rOutlNds[ nPos ];
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    rpRange->aEnd = GetNodes().GetEndOfContent();
-//STRIP001 /*?*/                return TRUE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( !bWeiter )
-//STRIP001 /*?*/            return FALSE;
 /*N*/   }
 /*N*/
 /*N*/   // alte "Mechanik"
@@ -464,36 +302,6 @@ struct _FindItem
 /*?*/ }
 
 
-//STRIP001 USHORT SwDoc::GetServerObjects( SvStrings& rStrArr ) const
-//STRIP001 {
-//STRIP001  USHORT n;
-//STRIP001  for( n = pBookmarkTbl->Count(); n; )
-//STRIP001  {
-//STRIP001      SwBookmark* pBkmk = (*pBookmarkTbl)[ --n ];
-//STRIP001      if( pBkmk->IsBookMark() && pBkmk->GetOtherPos() )
-//STRIP001      {
-//STRIP001          String* pNew = new String( pBkmk->GetName() );
-//STRIP001          rStrArr.Insert( pNew, rStrArr.Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  for( n = pSectionFmtTbl->Count(); n; )
-//STRIP001  {
-//STRIP001      SwSectionFmt* pFmt = (*pSectionFmtTbl)[ --n ];
-//STRIP001      if( pFmt->IsInNodesArr() )
-//STRIP001      {
-//STRIP001          String* pNew = new String( pFmt->GetName() );
-//STRIP001          rStrArr.Insert( pNew, rStrArr.Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // und nochmal nach Namen sortieren:
-//STRIP001  if( 0 != ( n = rStrArr.Count() ) )
-//STRIP001      qsort( (void*)rStrArr.GetData(), n, sizeof( StringPtr ),
-//STRIP001                                                  lcl_ServerNamesCmpNm );
-//STRIP001
-//STRIP001  return n;
-//STRIP001 }
 
 
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docchart.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:32:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:21:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,13 +38,7 @@
 
 #include <float.h>
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _IPOBJ_HXX
-// auto strip #include <so3/ipobj.hxx>
-// auto strip #endif
 #ifndef _SCH_DLL_HXX
 #include <bf_sch/schdll.hxx>
 #endif
@@ -73,30 +67,18 @@
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _CELLFML_HXX
-// auto strip #include <cellfml.hxx>
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -398,82 +380,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SwDoc::UpdateCharts( const String &rName ) const
-//STRIP001 {
-//STRIP001  SwTable* pTmpTbl = SwTable::FindTable( FindTblFmtByName( rName ) );
-//STRIP001  if( pTmpTbl )
-//STRIP001  {
-//STRIP001      ViewShell* pVSh;
-//STRIP001      GetEditShell( &pVSh );
-//STRIP001
-//STRIP001      if( pVSh )
-//STRIP001          _UpdateCharts( *pTmpTbl, *pVSh );
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SwDoc::SetTableName( SwFrmFmt& rTblFmt, const String &rNewName )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const String aOldName( rTblFmt.GetName() );
-//STRIP001
-//STRIP001  BOOL bNameFound = 0 == rNewName.Len();
-//STRIP001  if( !bNameFound )
-//STRIP001  {
-//STRIP001      SwFrmFmt* pFmt;
-//STRIP001      const SwFrmFmts& rTbl = *GetTblFrmFmts();
-//STRIP001      for( USHORT i = rTbl.Count(); i; )
-//STRIP001          if( !( pFmt = rTbl[ --i ] )->IsDefault() &&
-//STRIP001              pFmt->GetName() == rNewName && IsUsed( *pFmt ) )
-//STRIP001          {
-//STRIP001              bNameFound = TRUE;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !bNameFound )
-//STRIP001      rTblFmt.SetName( rNewName, sal_True );
-//STRIP001  else
-//STRIP001      rTblFmt.SetName( GetUniqueTblName(), sal_True );
-//STRIP001
-//STRIP001  SwStartNode *pStNd;
-//STRIP001  SwNodeIndex aIdx( *GetNodes().GetEndOfAutotext().StartOfSectionNode(), 1 );
-//STRIP001  while ( 0 != (pStNd = aIdx.GetNode().GetStartNode()) )
-//STRIP001  {
-//STRIP001      aIdx++;
-//STRIP001      SwOLENode *pNd = aIdx.GetNode().GetOLENode();
-//STRIP001      if( pNd && aOldName == pNd->GetChartTblName() )
-//STRIP001      {
-//STRIP001          pNd->SetChartTblName( rNewName );
-//STRIP001
-//STRIP001          SwOLEObj& rOObj = pNd->GetOLEObj();
-//STRIP001          SchMemChart *pData = SchDLL::GetChartData( rOObj.GetOleRef() );
-//STRIP001          if( pData )
-//STRIP001          {
-//STRIP001              ViewShell* pVSh;
-//STRIP001              GetEditShell( &pVSh );
-//STRIP001
-//STRIP001              if( aOldName == pData->GetMainTitle() )
-//STRIP001              {
-//STRIP001                  pData->SetMainTitle( rNewName );
-//STRIP001                  if( pVSh )
-//STRIP001                      SchDLL::Update( rOObj.GetOleRef(), pData, pVSh->GetWin() );
-//STRIP001              }
-//STRIP001
-//STRIP001              if( pVSh )
-//STRIP001              {
-//STRIP001                  SwFrm *pFrm;
-//STRIP001                  SwClientIter aIter( *pNd );
-//STRIP001                  for( pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) ); pFrm;
-//STRIP001                          pFrm = (SwFrm*)aIter.Next() )
-//STRIP001                  {
-//STRIP001                      if( pFrm->Frm().HasArea() )
-//STRIP001                          pVSh->InvalidateWindows( pFrm->Frm() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      aIdx.Assign( *pStNd->EndOfSectionNode(), + 1 );
-//STRIP001  }
-//STRIP001  SetModified();
 /*N*/ }
 
 
