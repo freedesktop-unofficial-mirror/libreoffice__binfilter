@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porexp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:28:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:11:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,52 +36,28 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>    // SwViewOptions
-// auto strip #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
 #ifndef _POREXP_HXX
 #include <porexp.hxx>
 #endif
-// auto strip #ifndef _PORLAY_HXX
-// auto strip #include <porlay.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
  *                      class SwExpandPortion
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwExpandPortion::GetCrsrOfst( const MSHORT nOfst ) const
-//STRIP001 { return SwLinePortion::GetCrsrOfst( nOfst ); }
 
 /*************************************************************************
  *              virtual SwExpandPortion::GetExpTxt()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwExpandPortion::GetExpTxt( const SwTxtSizeInfo &rInf,
-//STRIP001                               XubString &rTxt ) const
-//STRIP001 {
-//STRIP001  rTxt.Erase();
-//STRIP001  // Nicht etwa: return 0 != rTxt.Len();
-//STRIP001  // Weil: leere Felder ersetzen CH_TXTATR gegen einen Leerstring
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwExpandPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwExpandPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     String aString;
-//STRIP001     rPH.Special( GetLen(), aString, GetWhichPor() );
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwExpandPortion::GetTxtSize()
@@ -120,23 +96,6 @@ namespace binfilter {
  *              virtual SwExpandPortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwExpandPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  SwTxtSlotLen aDiffTxt( &rInf, this );
-//STRIP001  rInf.DrawBackBrush( *this );
-//STRIP001
-//STRIP001     // do we have to repaint a post it portion?
-//STRIP001     if( rInf.OnWin() && pPortion && !pPortion->Width() )
-//STRIP001         pPortion->PrePaint( rInf, this );
-//STRIP001
-//STRIP001     // The contents of field portions is not considered during the
-//STRIP001     // calculation of the directions. Therefore we let vcl handle
-//STRIP001     // the calculation by removing the BIDI_STRONG_FLAG temporarily.
-//STRIP001     SwLayoutModeModifier aLayoutModeModifier( *rInf.GetOut() );
-//STRIP001     aLayoutModeModifier.SetAuto();
-//STRIP001
-//STRIP001  rInf.DrawText( *this, rInf.GetLen(), sal_False );
-//STRIP001 }
 
 /*************************************************************************
  *                      class SwBlankPortion
@@ -204,24 +163,6 @@ namespace binfilter {
  *************************************************************************/
 // Format end of Line
 
-//STRIP001 void SwBlankPortion::FormatEOL( SwTxtFormatInfo &rInf )
-//STRIP001 {
-//STRIP001  MSHORT nMay = MayUnderFlow( rInf, rInf.GetIdx() - nLineLength, sal_True );
-//STRIP001  if( nMay )
-//STRIP001  {
-//STRIP001      if( nMay > 1 )
-//STRIP001      {
-//STRIP001          if( rInf.GetLast() == this )
-//STRIP001             rInf.SetLast( FindPrevPortion( rInf.GetRoot() ) );
-//STRIP001          rInf.X( rInf.X() - PrtWidth() );
-//STRIP001          rInf.SetIdx( rInf.GetIdx() - GetLen() );
-//STRIP001      }
-//STRIP001      Truncate();
-//STRIP001      rInf.SetUnderFlow( this );
-//STRIP001      if( rInf.GetLast()->IsKernPortion() )
-//STRIP001          rInf.SetUnderFlow( rInf.GetLast() );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwBlankPortion::Format()
@@ -245,12 +186,6 @@ namespace binfilter {
  *                 virtual SwBlankPortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwBlankPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( !bMulti ) // No gray background for multiportion brackets
-//STRIP001      rInf.DrawViewOpt( *this, POR_BLANK );
-//STRIP001  SwExpandPortion::Paint( rInf );
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwBlankPortion::GetExpTxt()
@@ -266,61 +201,22 @@ namespace binfilter {
  *              virtual SwBlankPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwBlankPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     String aString( cChar );
-//STRIP001     rPH.Special( GetLen(), aString, GetWhichPor() );
-//STRIP001 }
 
 /*************************************************************************
  *                      class SwPostItsPortion
  *************************************************************************/
 
-//STRIP001 SwPostItsPortion::SwPostItsPortion( sal_Bool bScrpt )
-//STRIP001  : nViewWidth(0), bScript( bScrpt )
-//STRIP001 {
-//STRIP001  nLineLength = 1;
-//STRIP001  SetWhichPor( POR_POSTITS );
-//STRIP001 }
 
-//STRIP001 void SwPostItsPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( rInf.OnWin() && Width() )
-//STRIP001      rInf.DrawPostIts( *this, IsScript() );
-//STRIP001 }
 
-//STRIP001 KSHORT SwPostItsPortion::GetViewWidth( const SwTxtSizeInfo &rInf ) const
-//STRIP001 {
-//STRIP001  // Nicht zu fassen: PostIts sind immer zu sehen.
-//STRIP001  return rInf.OnWin() ?
-//STRIP001                 (KSHORT)rInf.GetOpt().GetPostItsWidth( rInf.GetOut() ) : 0;
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwPostItsPortion::Format()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwPostItsPortion::Format( SwTxtFormatInfo &rInf )
-//STRIP001 {
-//STRIP001  sal_Bool bRet = SwLinePortion::Format( rInf );
-//STRIP001  // 32749: PostIts sollen keine Auswirkung auf Zeilenhoehe etc. haben
-//STRIP001  SetAscent( 1 );
-//STRIP001  Height( 1 );
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwPostItsPortion::GetExpTxt()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwPostItsPortion::GetExpTxt( const SwTxtSizeInfo &rInf,
-//STRIP001                                XubString &rTxt ) const
-//STRIP001 {
-//STRIP001  if( rInf.OnWin() && rInf.GetOpt().IsPostIts() )
-//STRIP001      rTxt = ' ';
-//STRIP001  else
-//STRIP001      rTxt.Erase();
-//STRIP001  return sal_True;
-//STRIP001 }
 
 }
