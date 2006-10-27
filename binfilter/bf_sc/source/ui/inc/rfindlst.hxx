@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rfindlst.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:11:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:23:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,16 +69,10 @@ public:
             ~ScRangeFindList();
 
     ULONG   Count() const                       { return aEntries.Count(); }
-//STRIP001  void    Insert( ScRangeFindData* pNew )     { aEntries.Insert(pNew, LIST_APPEND); }
     ScRangeFindData* GetObject( ULONG nIndex ) const
                         { return (ScRangeFindData*)aEntries.GetObject(nIndex); }
-//STRIP001
-//STRIP001  void    SetHidden( BOOL bSet )              { bHidden = bSet; }
-//STRIP001
     const String&   GetDocName() const          { return aDocName; }
     BOOL            IsHidden() const            { return bHidden; }
-//STRIP001
-//STRIP001  static ColorData GetColorName( USHORT nIndex );
 };
 
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: select.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:12:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:23:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,15 +72,12 @@ private:
     BOOL            bStarted;
     ScTripel        aAnchorPos;
 
-//STRIP001  ScSplitPos      GetWhich();
 
 public:
                     ScViewFunctionSet( ScViewData* pNewViewData );
 
     void            SetSelectionEngine( ScViewSelectionEngine* pSelEngine );
 
-//STRIP001  void            SetAnchor( USHORT nPosX, USHORT nPosY );
-//STRIP001  void            SetAnchorFlag( BOOL bSet );
 
     virtual void    BeginDrag(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001      virtual void    BeginDrag();
     virtual void    CreateAnchor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  CreateAnchor();
@@ -90,7 +87,6 @@ public:
     virtual void    DeselectAtPoint( const Point& rPointPixel ){DBG_ASSERT(0, "STRIP")}; //STRIP001 virtual void    DeselectAtPoint( const Point& rPointPixel );
     virtual void    DeselectAll(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void   DeselectAll();
 
-//STRIP001  BOOL            SetCursorAtCell( short nPosX, short nPosY, BOOL bScroll );
 };
 
 
@@ -110,8 +106,6 @@ private:
 public:
                     ScHeaderFunctionSet( ScViewData* pNewViewData );
 
-//STRIP001  void            SetColumn( BOOL bSet );
-//STRIP001  void            SetWhich( ScSplitPos eNew );
 
     virtual void    BeginDrag(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void BeginDrag();
     virtual void    CreateAnchor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  CreateAnchor();

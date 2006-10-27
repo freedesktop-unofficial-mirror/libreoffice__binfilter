@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabview.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:20:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:27:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,15 +92,12 @@ private:
     BOOL            bAdd;
 
 protected:
-//STRIP001  virtual void    Paint( const Rectangle& rRect );
     virtual void    Resize();
-//STRIP001  virtual void    MouseButtonDown( const MouseEvent& rMEvt );
 public:
                     ScCornerButton( Window* pParent, ScViewData* pData, BOOL bAdditional );
                     ~ScCornerButton();
 
     virtual void    StateChanged( StateChangedType nType );
-//STRIP001  virtual void    DataChanged( const DataChangedEvent& rDCEvt );
 };
 
 
@@ -182,15 +179,12 @@ private:
 
     void            Init();
 
-//STRIP001  void            DoAddWin( ScGridWindow* pWin );
 
     void            InitScrollBar( ScrollBar& rScrollBar, long nMaxVal );
     DECL_LINK(      ScrollHdl, ScrollBar* );
     DECL_LINK(      EndScrollHdl, ScrollBar* );
 
     DECL_LINK(      SplitHdl, Splitter* );
-//STRIP001  void            DoHSplit(long nSplitPos);
-//STRIP001  void            DoVSplit(long nSplitPos);
 
     DECL_LINK(      TimerHdl, Timer* );
 
@@ -199,46 +193,35 @@ private:
     void            UpdateVarZoom();
 
 protected:
-//STRIP001  void            HideTip();
-//STRIP001  void            ShowRefTip();
 
     void            ZoomChanged();
     void            UpdateShow();
     void            GetBorderSize( SvBorder& rBorder, const Size& rSize );
 
-//STRIP001  void            ResetDrawDragMode();
-//STRIP001  BOOL            IsDrawTextEdit() const;
     void            DrawEnableAnim(BOOL bSet);
-//STRIP001  void            DrawShowMarkHdl(BOOL bShow);
 
     void            MakeDrawView( BYTE nForceDesignMode = SC_FORCEMODE_NONE );
 
     void            HideNoteMarker();
 
-//STRIP001  void            UpdateIMap( SdrObject* pObj );
 
 public:
                     ScTabView( Window* pParent, ScDocShell& rDocSh, ScTabViewShell* pViewShell );
                      ScTabView( Window* pParent, const ScTabView& rScTabView, ScTabViewShell* pViewShell );
                     ~ScTabView();
 
-//STRIP001  void            MakeDrawLayer();
 
     void            HideListBox();
 
-//STRIP001  BOOL            HasHintWindow() const   { return pInputHintWindow != NULL; }
-//STRIP001  void            RemoveHintWindow();
     void            TestHintWindow();
 
 
     DECL_LINK(      TabBarResize, void* );
-//STRIP001  void            SetTabBarWidth( long nNewWidth );
     long            GetTabBarWidth();
 
     void            DoResize( const Point& rOffset, const Size& rSize, BOOL bInner = FALSE );
     void            RepeatResize( BOOL bUpdateFix = TRUE );
     void            UpdateFixPos();
-//STRIP001  Point           GetGridOffset() const;
 
     BOOL            IsDrawSelMode() const       { return bDrawSelMode; }
     void            SetDrawSelMode(BOOL bNew)   { bDrawSelMode = bNew; }
@@ -248,17 +231,11 @@ public:
     FuPoor*         GetDrawFuncPtr()                    { return pDrawActual; }
     FuPoor*         GetDrawFuncOldPtr()                 { return pDrawOld; }
 
-//STRIP001  void            DrawDeselectAll();
-//STRIP001  void            DrawMarkListHasChanged();
-//STRIP001  void            UpdateAnchorHandles();
-//STRIP001  String          GetSelectedChartName() const;
 
     ScPageBreakData* GetPageBreakData()     { return pPageBreakData; }
     ScHighlightRanges* GetHighlightRanges() { return pHighlightRanges; }
 
-//STRIP001  void            UpdatePageBreakData( BOOL bForcePaint = FALSE );
 
-//STRIP001  void            DrawMarkRect( const Rectangle& rRect );
 
     ScViewData*         GetViewData()       { return &aViewData; }
     const ScViewData*   GetViewData() const { return &aViewData; }
@@ -266,69 +243,38 @@ public:
     ScViewFunctionSet*      GetFunctionSet()    { return &aFunctionSet; }
     ScViewSelectionEngine*  GetSelEngine()      { return pSelEngine; }
 
-//STRIP001  BOOL            SelMouseButtonDown( const MouseEvent& rMEvt );
 
     ScDrawView*     GetScDrawView()         { return pDrawView; }
     SdrView*        GetSdrView();           // gegen CLOKs
 
     BOOL            IsMinimized() const     { return bMinimized; }
 
-//STRIP001  void            TabChanged();
     void            SetZoom( const Fraction& rNewX, const Fraction& rNewY );
-//STRIP001  void            SetPagebreakMode( BOOL bSet );
 
     void            UpdateLayerLocks();
 
-//STRIP001  void            UpdateDrawTextOutliner();
-//STRIP001  void            DigitLanguageChanged();
 
     void            UpdateInputLine();
 
-//STRIP001  void            InitRefMode( USHORT nCurX, USHORT nCurY, USHORT nCurZ, ScRefType eType,
-//STRIP001                                  BOOL bPaint = TRUE );
-//STRIP001  void            DoneRefMode( BOOL bContinue = FALSE );
-//STRIP001  void            UpdateRef( USHORT nCurX, USHORT nCurY, USHORT nCurZ );
-//STRIP001  void            StopRefMode();
 
-//STRIP001  void            EndSelection();
     void            StopMarking();
-//STRIP001  void            FakeButtonUp( ScSplitPos eWhich );
 
     Window*         GetActiveWin();
     Window*         GetWindowByPos( ScSplitPos ePos );
 
-//STRIP001  ScSplitPos      FindWindow( Window* pWindow ) const;
 
-//STRIP001  void            SetActivePointer( const Pointer& rPointer );
-//STRIP001  void            SetActivePointer( const ResId& rId );
 
-//STRIP001  void            ActiveGrabFocus();
-//STRIP001  void            ActiveCaptureMouse();
-//STRIP001  void            ActiveReleaseMouse();
-//STRIP001  Point           ActivePixelToLogic( const Point& rDevicePoint );
 
-//STRIP001  void            ClickCursor( USHORT nPosX, USHORT nPosY, BOOL bControl );
 
     void            SetCursor( USHORT nPosX, USHORT nPosY, BOOL bNew = FALSE );
 
-//STRIP001  void            CellContentChanged();
-//STRIP001  void            SelectionChanged();
-//STRIP001  void            CursorPosChanged();
-//STRIP001  void            UpdateInputContext();
 
     void            CheckSelectionTransfer();
 
-//STRIP001  void            InvertHorizontal( ScVSplitPos eWhich, long nDragPos );
-//STRIP001  void            InvertVertical( ScHSplitPos eWhich, long nDragPos );
 
-//STRIP001  Point           GetInsertPos();
 
     void            UpdateAutoFillMark();
 
-//STRIP001  void            HideCursor();               // nur aktiver Teil
-//STRIP001  void            ShowCursor();
-//STRIP001  void            HideAllCursors();
-//STRIP001  void            ShowAllCursors();
 
     void            AlignToCursor( short nCurX, short nCurY, ScFollowMode eMode,
                                     const ScSplitPos* pWhich = NULL );
@@ -339,7 +285,6 @@ public:
 
 //  void            CalcZoom( SvxZoomType eType, USHORT& rZoom, USHORT& rCol, USHORT& rRow );
 
-//STRIP001  void            StartDataSelect();
 
                     //  MoveCursorAbs       - absolut
                     //  MoveCursorRel       - einzelne Zellen
@@ -347,55 +292,27 @@ public:
                     //  MoveCursorArea      - Datenblock
                     //  MoveCursorEnd       - links oben / benutzter Bereich
 
-//STRIP001  void            MoveCursorAbs( short nCurX, short nCurY, ScFollowMode eMode,
-//STRIP001                                  BOOL bShift, BOOL bControl,
-//STRIP001                                  BOOL bKeepOld = FALSE, BOOL bKeepSel = FALSE );
-//STRIP001  void            MoveCursorRel( short nMovX, short nMovY, ScFollowMode eMode,
-//STRIP001                                  BOOL bShift, BOOL bKeepSel = FALSE );
-//STRIP001  void            MoveCursorPage( short nMovX, short nMovY, ScFollowMode eMode,
-//STRIP001                                  BOOL bShift, BOOL bKeepSel = FALSE );
-//STRIP001  void            MoveCursorArea( short nMovX, short nMovY, ScFollowMode eMode,
-//STRIP001                                  BOOL bShift, BOOL bKeepSel = FALSE );
-//STRIP001  void            MoveCursorEnd( short nMovX, short nMovY, ScFollowMode eMode,
-//STRIP001                                  BOOL bShift, BOOL bKeepSel = FALSE );
-//STRIP001  void            MoveCursorScreen( short nMovX, short nMovY, ScFollowMode eMode, BOOL bShift );
 
-//STRIP001  void            MoveCursorEnter( BOOL bShift );     // Shift fuer Richtung (kein Markieren)
 
-//STRIP001     BOOL            MoveCursorKeyInput( const KeyEvent& rKeyEvent );
 
-//STRIP001  void            FindNextUnprot( BOOL bShift, BOOL bInSelection = TRUE );
 
     void            SetNewStartIfMarking();
 
     void            SetTabNo( USHORT nTab, BOOL bNew = FALSE );
-//STRIP001  void            SelectNextTab( short nDir );
 
-//STRIP001  void            ActivateView( BOOL bActivate, BOOL bFirst );
-//STRIP001  void            ActivatePart( ScSplitPos eWhich );
     BOOL            IsInActivatePart() const    { return bInActivatePart; }
 
-//STRIP001  void            SetTimer( ScGridWindow* pWin, const MouseEvent& rMEvt );
-//STRIP001  void            ResetTimer();
 
     void            ScrollX( long nDeltaX, ScHSplitPos eWhich, BOOL bUpdBars = TRUE );
     void            ScrollY( long nDeltaY, ScVSplitPos eWhich, BOOL bUpdBars = TRUE );
-//STRIP001  void            ScrollLines( long nDeltaX, long nDeltaY );              // aktives
 
-//STRIP001  BOOL            ScrollCommand( const CommandEvent& rCEvt, ScSplitPos ePos );
 
     void            ScrollToObject( SdrObject* pDrawObj );
-//STRIP001  void            MakeVisible( const Rectangle& rHMMRect );
 
                                     // Zeichnen
 
-//STRIP001  void            InvertBlockMark(USHORT nBlockStartX, USHORT nBlockStartY,
-//STRIP001                              USHORT nBlockEndX, USHORT nBlockEndY);
 
-//STRIP001  void            DrawDragRect( USHORT nStartX, USHORT nStartY, USHORT nEndX, USHORT nEndY,
-//STRIP001                                  ScSplitPos ePos );
 
-//STRIP001  void            PaintCell( USHORT nCol, USHORT nRow, USHORT nTab );
     void            PaintArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                                         ScUpdateMode eMode = SC_UPDATE_ALL );
 
@@ -405,25 +322,17 @@ public:
     void            PaintTopArea( USHORT nStartCol, USHORT nEndCol );
     void            PaintTop();
 
-//STRIP001  void            PaintLeftRow( USHORT nRow );
     void            PaintLeftArea( USHORT nStartRow, USHORT nEndRow );
     void            PaintLeft();
 
     BOOL            PaintExtras();
 
-//STRIP001  void            RecalcPPT();
 
-//STRIP001  void            CreateAnchorHandles(SdrHdlList& rHdl, const ScAddress& rAddress);
 
     void            UpdateFormulas();
     void            InterpretVisible();
-//STRIP001  void            CheckNeedsRepaint();
 
-//STRIP001  void            PaintRangeFinder( long nNumber = -1 );
-//STRIP001  void            AddHighlightRange( const ScRange& rRange, const Color& rColor );
-//STRIP001  void            ClearHighlightRanges();
 
-//STRIP001  long            DoChartSelection( ChartSelectionInfo &rInfo, const SchMemChart& rMemChart );
 
     long            GetGridWidth( ScHSplitPos eWhich );
     long            GetGridHeight( ScVSplitPos eWhich );
@@ -431,59 +340,37 @@ public:
     void            UpdateScrollBars();
     void            SetNewVisArea();
 
-//STRIP001  void            InvalidateAttribs();
 
-//STRIP001  void            MakeEditView( ScEditEngineDefaulter* pEngine, USHORT nCol, USHORT nRow );
     void            KillEditView( BOOL bNoPaint );
-//STRIP001  void            UpdateEditView();
 
 
                                     //  Bloecke
 
-//STRIP001  void            SelectAll( BOOL bContinue = FALSE );
-//STRIP001  void            SelectAllTables();
 
-//STRIP001  void            MarkCursor( USHORT nCurX, USHORT nCurY, USHORT nCurZ,
-//STRIP001                                  BOOL bCols = FALSE, BOOL bRows = FALSE );
-//STRIP001  void            InitBlockMode( USHORT nCurX, USHORT nCurY, USHORT nCurZ,
-//STRIP001                                  BOOL bTestNeg = FALSE,
-//STRIP001                                  BOOL bCols = FALSE, BOOL bRows = FALSE );
     void            InitOwnBlockMode();
     void            DoneBlockMode( BOOL bContinue = FALSE );
 
     BOOL            IsBlockMode() const     { return bIsBlockMode; }
 
-//STRIP001  void            MarkColumns();
-//STRIP001  void            MarkRows();
-//STRIP001  void            MarkDataArea( BOOL bIncludeCursor = TRUE );
     void            MarkMatrixFormula();
     void            Unmark();
 
     void            MarkRange( const ScRange& rRange, BOOL bSetCursor = TRUE, BOOL bContinue = FALSE );
 
-//STRIP001  BOOL            IsMarking( USHORT nCol, USHORT nRow, USHORT nTab ) const;
 
-//STRIP001  void            PaintMarks( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow );
-//STRIP001  void            PaintBlock( BOOL bReset = FALSE );
 
-//STRIP001  void            LockModifiers( USHORT nModifiers );
     USHORT          GetLockedModifiers() const;
     void            ViewOptionsHasChanged( BOOL bHScrollChanged,
                                             BOOL bGraphicsChanged = FALSE);
 
-//STRIP001  Point           GetMousePosPixel();
 
-//STRIP001  void            SnapSplitPos( Point& rScreenPosPixel );
     void            FreezeSplitters( BOOL bFreeze );
     void            RemoveSplit();
-//STRIP001  void            SplitAtCursor();
     void            SplitAtPixel( const Point& rPixel, BOOL bHor, BOOL bVer );
     void            InvalidateSplit();
 
     void            ErrorMessage( USHORT nGlobStrId );
-//STRIP001  Window*         GetParentOrChild( USHORT nChildId );
 
-//STRIP001  void            EnableRefInput(BOOL bFlag=TRUE);
 
     Window*         GetFrameWin() const { return pFrameWin; }
 };
