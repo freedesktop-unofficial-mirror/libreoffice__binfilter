@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_light3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:32:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:49:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,9 +45,6 @@
 #include "light3d.hxx"
 #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dLight, E3dPointObj);
@@ -216,14 +213,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLight::SetOn(FASTBOOL bNewOn)
-//STRIP001 {
-//STRIP001  if ( bOn != bNewOn )
-//STRIP001  {
-//STRIP001      bOn = bNewOn;
-//STRIP001      StructureChanged(this);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -231,22 +220,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLight::SetLightObjVisible(FASTBOOL bNewVisible)
-//STRIP001 {
-//STRIP001  if ( bVisible != bNewVisible )
-//STRIP001  {
-//STRIP001      bVisible = bNewVisible;
-//STRIP001      CreateLightObj();
-//STRIP001
-//STRIP001      if ( bVisible )
-//STRIP001          aLocalBoundVol = Volume3D(aPosition, Vector3D(), FALSE);
-//STRIP001      else
-//STRIP001          aLocalBoundVol = Volume3D();
-//STRIP001
-//STRIP001      bBoundVolValid = FALSE;
-//STRIP001      StructureChanged(this);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -322,20 +295,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLight::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dPointObj::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dLight& r3DObj = (const E3dLight&) rObj;
-//STRIP001
-//STRIP001  aColor      = r3DObj.aColor;
-//STRIP001  fIntensity  = r3DObj.fIntensity;
-//STRIP001  fRed        = r3DObj.fRed;
-//STRIP001  fGreen      = r3DObj.fGreen;
-//STRIP001  fBlue       = r3DObj.fBlue;
-//STRIP001  bOn         = r3DObj.bOn;
-//STRIP001  bVisible    = r3DObj.bVisible;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -343,9 +302,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dLight::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
 |*

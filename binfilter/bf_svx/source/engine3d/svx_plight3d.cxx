@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_plight3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:32:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:50:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,7 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_GLOBL3D_HXX
-// auto strip #include "globl3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
@@ -81,10 +75,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 UINT16 E3dPointLight::GetObjIdentifier() const
-//STRIP001 {
-//STRIP001  return E3D_POINTLIGHT_ID;
-//STRIP001 }
 
 /*************************************************************************
 |*

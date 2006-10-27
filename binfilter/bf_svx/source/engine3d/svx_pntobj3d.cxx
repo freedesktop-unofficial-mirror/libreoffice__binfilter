@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_pntobj3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:33:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:50:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include "svdio.hxx"
 #endif
 
-// auto strip #ifndef _E3D_GLOBL3D_HXX
-// auto strip #include "globl3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_PNTOBJ3D_HXX
 #include "pntobj3d.hxx"
@@ -94,10 +91,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 UINT16 E3dPointObj::GetObjIdentifier() const
-//STRIP001 {
-//STRIP001  return E3D_POINTOBJ_ID;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -184,15 +177,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPointObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dObject::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dPointObj& r3DObj = (const E3dPointObj&) rObj;
-//STRIP001  aPosition = r3DObj.aPosition;
-//STRIP001  // sicher ist sicher...
-//STRIP001  bTransPosValid = FALSE;
-//STRIP001 }
 
 
 
