@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLTrackedChangesContext.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:28:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:27:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -63,9 +62,6 @@
 #include "editutil.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
@@ -80,9 +76,6 @@
 #include <svtools/zforlist.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
-// auto strip #include <com/sun/star/text/XTextCursor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_text_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
 #endif
