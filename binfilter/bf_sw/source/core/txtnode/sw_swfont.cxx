@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swfont.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:40:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:19:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,15 +43,6 @@
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-// auto strip #ifndef _OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-// auto strip #include <unotools/localedatawrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
@@ -88,9 +79,6 @@
 #ifndef _SVX_CNTRITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
 #endif
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
 #ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
 #endif
@@ -139,9 +127,6 @@
 #ifndef _CHARATR_HXX
 #include <charatr.hxx>
 #endif
-// auto strip #ifndef _SWATRSET_HXX //autogen
-// auto strip #include <swatrset.hxx>
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // Bildschirmabgleich
 #endif
@@ -151,12 +136,6 @@
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>     // FontCache
 #endif
-// auto strip #ifndef _DRAWFONT_HXX
-// auto strip #include <drawfont.hxx>       // SwDrawTextInfo
-// auto strip #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>       // SwTxtFrm
-// auto strip #endif
 namespace binfilter {
 
 #if defined(WIN) || defined(WNT) || defined(PM2)
@@ -191,14 +170,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
  * die alte Brush wird _nicht_ destruiert, sondern ist der Rueckgabewert.
  ***********************************************************************/
 
-//STRIP001 Color* SwFont::XChgBackColor( Color* pNewColor )
-//STRIP001 {
-//STRIP001  Color* pRet = pBackColor;
-//STRIP001  pBackColor = pNewColor;
-//STRIP001  bFntChg = TRUE;
-//STRIP001  aSub[SW_LATIN].pMagic = aSub[SW_CJK].pMagic = aSub[SW_CTL].pMagic = 0;
-//STRIP001  return pRet;
-//STRIP001 }
 
 
 // maps directions for vertical layout
@@ -904,273 +875,17 @@ using namespace ::com::sun::star::i18n::ScriptType;
  *                    SwFont::GetTxtBreak()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwFont::GetTxtBreak( ViewShell *pSh,  const OutputDevice *pOut,
-//STRIP001  const SwScriptInfo* pScript, const XubString &rTxt, long nTextWidth,
-//STRIP001  const xub_StrLen nIdx, const xub_StrLen nLen )
-//STRIP001 {
-//STRIP001      ChgFnt( pSh, (OutputDevice *)pOut );
-//STRIP001
-//STRIP001  USHORT nTxtBreak = 0;
-//STRIP001
-//STRIP001  USHORT nLn = ( nLen == STRING_LEN ? rTxt.Len() : nLen );
-//STRIP001  if( aSub[nActual].IsCapital() && nLn )
-//STRIP001      nTxtBreak = GetCapitalBreak( pSh, pOut, pScript, rTxt, nTextWidth,
-//STRIP001                                   0, nIdx, nLn );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if ( !aSub[nActual].IsCaseMap() )
-//STRIP001          nTxtBreak = pOut->GetTextBreak( rTxt, nTextWidth,
-//STRIP001                                             nIdx, nLn, CheckKerning() );
-//STRIP001      else
-//STRIP001          nTxtBreak = pOut->GetTextBreak( aSub[nActual].CalcCaseMap( rTxt ),
-//STRIP001                      nTextWidth, nIdx, nLn, CheckKerning() );
-//STRIP001  }
-//STRIP001  return nTxtBreak;
-//STRIP001 }
 
 /*************************************************************************
  *                    SwFont::GetTxtBreak()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwFont::GetTxtBreak( ViewShell *pSh, const OutputDevice *pOut,
-//STRIP001    const SwScriptInfo* pScript, const XubString &rTxt, long nTextWidth,
-//STRIP001    xub_StrLen& rExtraCharPos, const xub_StrLen nIdx, const xub_StrLen nLen )
-//STRIP001 {
-//STRIP001  // Robust ...
-//STRIP001  if ( !pLastFont || pLastFont->GetOwner()!= aSub[nActual].pMagic )
-//STRIP001      ChgFnt( pSh, (OutputDevice *)pOut );
-//STRIP001
-//STRIP001  xub_StrLen nTxtBreak = 0;
-//STRIP001
-//STRIP001  xub_StrLen nLn = ( nLen == STRING_LEN ? rTxt.Len() : nLen );
-//STRIP001  if( aSub[nActual].IsCapital() && nLn )
-//STRIP001          nTxtBreak = GetCapitalBreak( pSh, pOut, pScript, rTxt, nTextWidth,
-//STRIP001                              &rExtraCharPos, nIdx, nLn );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if ( !aSub[nActual].IsCaseMap() )
-//STRIP001          nTxtBreak = pOut->GetTextBreak( rTxt, nTextWidth,
-//STRIP001                          '-', rExtraCharPos, nIdx, nLn, CheckKerning() );
-//STRIP001      else
-//STRIP001          nTxtBreak = pOut->GetTextBreak( aSub[nActual].CalcCaseMap( rTxt ),
-//STRIP001              nTextWidth, '-', rExtraCharPos, nIdx, nLn, CheckKerning() );
-//STRIP001  }
-//STRIP001  return nTxtBreak;
-//STRIP001 }
 
 /*************************************************************************
  *                    SwSubFont::_DrawText()
  *************************************************************************/
 
-//STRIP001 void SwSubFont::_DrawText( SwDrawTextInfo &rInf, const BOOL bGrey )
-//STRIP001 {
-//STRIP001     rInf.SetGreyWave( bGrey );
-//STRIP001  xub_StrLen nLn = rInf.GetText().Len();
-//STRIP001  if( !rInf.GetLen() || !nLn )
-//STRIP001      return;
-//STRIP001  if( STRING_LEN == rInf.GetLen() )
-//STRIP001      rInf.SetLen( nLn );
-//STRIP001
-//STRIP001  FontUnderline nOldUnder;
-//STRIP001     SwUnderlineFont* pUnderFnt = 0;
-//STRIP001
-//STRIP001     if( rInf.GetUnderFnt() )
-//STRIP001  {
-//STRIP001      nOldUnder = GetUnderline();
-//STRIP001      SetUnderline( UNDERLINE_NONE );
-//STRIP001         pUnderFnt = rInf.GetUnderFnt();
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !pLastFont || pLastFont->GetOwner()!=pMagic )
-//STRIP001      ChgFnt( rInf.GetShell(), rInf.GetpOut() );
-//STRIP001
-//STRIP001  Point aPos( rInf.GetPos() );
-//STRIP001  const Point &rOld = rInf.GetPos();
-//STRIP001  rInf.SetPos( aPos );
-//STRIP001
-//STRIP001  if( GetEscapement() )
-//STRIP001         CalcEsc( rInf, aPos );
-//STRIP001
-//STRIP001  rInf.SetKern( CheckKerning() + rInf.GetSperren() );
-//STRIP001
-//STRIP001  if( IsCapital() )
-//STRIP001         DrawCapital( rInf );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SV_STAT( nDrawText );
-//STRIP001      if ( !IsCaseMap() )
-//STRIP001          pLastFont->DrawText( rInf );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          const XubString &rOldStr = rInf.GetText();
-//STRIP001          XubString aString( CalcCaseMap( rOldStr ) );
-//STRIP001          sal_Bool bCaseMapLengthDiffers(aString.Len() != rOldStr.Len());
-//STRIP001
-//STRIP001          if(bCaseMapLengthDiffers && rInf.GetLen())
-//STRIP001          {
-//STRIP001              // #108203#
-//STRIP001              // If the length of the original string and the CaseMapped one
-//STRIP001              // are different, it is necessary to handle the given text part as
-//STRIP001              // a single snippet since itÄs size may differ, too.
-//STRIP001              xub_StrLen nOldIdx(rInf.GetIdx());
-//STRIP001              xub_StrLen nOldLen(rInf.GetLen());
-//STRIP001              const XubString aSnippet(rOldStr, nOldIdx, nOldLen);
-//STRIP001              XubString aNewText = CalcCaseMap(aSnippet);
-//STRIP001
-//STRIP001              rInf.SetText( aNewText );
-//STRIP001              rInf.SetIdx( 0 );
-//STRIP001              rInf.SetLen( aNewText.Len() );
-//STRIP001
-//STRIP001              pLastFont->DrawText( rInf );
-//STRIP001
-//STRIP001              rInf.SetIdx( nOldIdx );
-//STRIP001              rInf.SetLen( nOldLen );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rInf.SetText( aString );
-//STRIP001              pLastFont->DrawText( rInf );
-//STRIP001          }
-//STRIP001
-//STRIP001          rInf.SetText( rOldStr );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     if( pUnderFnt && nOldUnder != UNDERLINE_NONE )
-//STRIP001  {
-//STRIP001 static sal_Char __READONLY_DATA sDoubleSpace[] = "  ";
-//STRIP001      Size aSize = _GetTxtSize( rInf );
-//STRIP001         const XubString &rOldStr = rInf.GetText();
-//STRIP001         XubString aStr( sDoubleSpace, RTL_TEXTENCODING_MS_1252 );
-//STRIP001
-//STRIP001         xub_StrLen nOldIdx = rInf.GetIdx();
-//STRIP001      xub_StrLen nOldLen = rInf.GetLen();
-//STRIP001         long nSpace = 0;
-//STRIP001      if( rInf.GetSpace() )
-//STRIP001      {
-//STRIP001             xub_StrLen nTmpEnd = nOldIdx + nOldLen;
-//STRIP001          if( nTmpEnd > rOldStr.Len() )
-//STRIP001              nTmpEnd = rOldStr.Len();
-//STRIP001
-//STRIP001             const SwScriptInfo* pSI = rInf.GetScriptInfo();
-//STRIP001
-//STRIP001             const sal_Bool bAsianFont =
-//STRIP001                 ( rInf.GetFont() && SW_CJK == rInf.GetFont()->GetActual() );
-//STRIP001             for( xub_StrLen nTmp = nOldIdx; nTmp < nTmpEnd; ++nTmp )
-//STRIP001                 if( CH_BLANK == rOldStr.GetChar( nTmp ) || bAsianFont ||
-//STRIP001                     ( nTmp + 1 < rOldStr.Len() && pSI &&
-//STRIP001                       ASIAN == pSI->ScriptType( nTmp + 1 ) ) )
-//STRIP001                  ++nSpace;
-//STRIP001
-//STRIP001             // if next portion if a hole portion we do not consider any
-//STRIP001             // extra space added because the last character was ASIAN
-//STRIP001             if ( nSpace && rInf.IsSpaceStop() && bAsianFont )
-//STRIP001                  --nSpace;
-//STRIP001
-//STRIP001          nSpace *= rInf.GetSpace();
-//STRIP001      }
-//STRIP001
-//STRIP001         rInf.SetWidth( USHORT(aSize.Width() + nSpace) );
-//STRIP001         rInf.SetText( aStr );
-//STRIP001      rInf.SetIdx( 0 );
-//STRIP001      rInf.SetLen( 2 );
-//STRIP001         SetUnderline( nOldUnder );
-//STRIP001         rInf.SetUnderFnt( 0 );
-//STRIP001
-//STRIP001         // set position for underline font
-//STRIP001         rInf.SetPos( pUnderFnt->GetPos() );
-//STRIP001
-//STRIP001         pUnderFnt->GetFont()._DrawStretchText( rInf );
-//STRIP001
-//STRIP001         rInf.SetUnderFnt( pUnderFnt );
-//STRIP001         rInf.SetText( rOldStr );
-//STRIP001      rInf.SetIdx( nOldIdx );
-//STRIP001      rInf.SetLen( nOldLen );
-//STRIP001  }
-//STRIP001
-//STRIP001     rInf.SetPos( rOld );
-//STRIP001 }
 
-//STRIP001 void SwSubFont::_DrawStretchText( SwDrawTextInfo &rInf )
-//STRIP001 {
-//STRIP001  if( !rInf.GetLen() || !rInf.GetText().Len() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  FontUnderline nOldUnder;
-//STRIP001     SwUnderlineFont* pUnderFnt = 0;
-//STRIP001
-//STRIP001     if( rInf.GetUnderFnt() )
-//STRIP001  {
-//STRIP001      nOldUnder = GetUnderline();
-//STRIP001      SetUnderline( UNDERLINE_NONE );
-//STRIP001         pUnderFnt = rInf.GetUnderFnt();
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( !pLastFont || pLastFont->GetOwner() != pMagic )
-//STRIP001      ChgFnt( rInf.GetShell(), rInf.GetpOut() );
-//STRIP001
-//STRIP001     rInf.ApplyAutoColor();
-//STRIP001
-//STRIP001  Point aPos( rInf.GetPos() );
-//STRIP001
-//STRIP001  if( GetEscapement() )
-//STRIP001         CalcEsc( rInf, aPos );
-//STRIP001
-//STRIP001  rInf.SetKern( CheckKerning() + rInf.GetSperren() );
-//STRIP001     const Point &rOld = rInf.GetPos();
-//STRIP001     rInf.SetPos( aPos );
-//STRIP001
-//STRIP001  if( IsCapital() )
-//STRIP001      DrawStretchCapital( rInf );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SV_STAT( nDrawStretchText );
-//STRIP001
-//STRIP001         if ( rInf.GetFrm() )
-//STRIP001         {
-//STRIP001 #ifdef BIDI
-//STRIP001             if ( rInf.GetFrm()->IsRightToLeft() )
-//STRIP001                 rInf.GetFrm()->SwitchLTRtoRTL( aPos );
-//STRIP001 #endif
-//STRIP001
-//STRIP001             if ( rInf.GetFrm()->IsVertical() )
-//STRIP001                 rInf.GetFrm()->SwitchHorizontalToVertical( aPos );
-//STRIP001         }
-//STRIP001
-//STRIP001      if ( !IsCaseMap() )
-//STRIP001          rInf.GetOut().DrawStretchText( aPos, rInf.GetWidth(),
-//STRIP001                          rInf.GetText(), rInf.GetIdx(), rInf.GetLen() );
-//STRIP001      else
-//STRIP001          rInf.GetOut().DrawStretchText( aPos, rInf.GetWidth(), CalcCaseMap(
-//STRIP001                          rInf.GetText() ), rInf.GetIdx(), rInf.GetLen() );
-//STRIP001  }
-//STRIP001
-//STRIP001     if( pUnderFnt && nOldUnder != UNDERLINE_NONE )
-//STRIP001  {
-//STRIP001 static sal_Char __READONLY_DATA sDoubleSpace[] = "  ";
-//STRIP001      const XubString &rOldStr = rInf.GetText();
-//STRIP001      XubString aStr( sDoubleSpace, RTL_TEXTENCODING_MS_1252 );
-//STRIP001      xub_StrLen nOldIdx = rInf.GetIdx();
-//STRIP001      xub_StrLen nOldLen = rInf.GetLen();
-//STRIP001      rInf.SetText( aStr );
-//STRIP001      rInf.SetIdx( 0 );
-//STRIP001      rInf.SetLen( 2 );
-//STRIP001      SetUnderline( nOldUnder );
-//STRIP001         rInf.SetUnderFnt( 0 );
-//STRIP001
-//STRIP001         // set position for underline font
-//STRIP001         rInf.SetPos( pUnderFnt->GetPos() );
-//STRIP001
-//STRIP001         pUnderFnt->GetFont()._DrawStretchText( rInf );
-//STRIP001
-//STRIP001         rInf.SetUnderFnt( pUnderFnt );
-//STRIP001         rInf.SetText( rOldStr );
-//STRIP001      rInf.SetIdx( nOldIdx );
-//STRIP001      rInf.SetLen( nOldLen );
-//STRIP001  }
-//STRIP001
-//STRIP001     rInf.SetPos( rOld );
-//STRIP001 }
 
 /*************************************************************************
  *                    SwSubFont::_GetCrsrOfst()
@@ -1197,9 +912,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nCrsr = pLastFont->GetCrsrOfst( rInf );
 /*N*/       else
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            String aTmp = CalcCaseMap( rInf.GetText() );
-//STRIP001 /*?*/            rInf.SetText( aTmp );
-//STRIP001 /*?*/            nCrsr = pLastFont->GetCrsrOfst( rInf );
 /*N*/       }
 /*N*/       rInf.SetKern( nOldKern );
 /*N*/       rInf.SetText( rOldTxt );
@@ -1211,105 +923,8 @@ using namespace ::com::sun::star::i18n::ScriptType;
  *                    SwSubFont::CalcEsc()
  *************************************************************************/
 
-//STRIP001 void SwSubFont::CalcEsc( SwDrawTextInfo& rInf, Point& rPos )
-//STRIP001 {
-//STRIP001     long nOfst;
-//STRIP001
-//STRIP001     USHORT nDir = UnMapDirection(
-//STRIP001                 GetOrientation(), rInf.GetFrm() && rInf.GetFrm()->IsVertical() );
-//STRIP001
-//STRIP001     switch ( GetEscapement() )
-//STRIP001     {
-//STRIP001     case DFLT_ESC_AUTO_SUB :
-//STRIP001         nOfst = nOrgHeight - nOrgAscent -
-//STRIP001             pLastFont->GetHeight( rInf.GetShell(), rInf.GetpOut() ) +
-//STRIP001             pLastFont->GetAscent( rInf.GetShell(), rInf.GetpOut() );
-//STRIP001
-//STRIP001         switch ( nDir )
-//STRIP001         {
-//STRIP001         case 0 :
-//STRIP001             rPos.Y() += nOfst;
-//STRIP001             break;
-//STRIP001         case 900 :
-//STRIP001             rPos.X() += nOfst;
-//STRIP001             break;
-//STRIP001         case 2700 :
-//STRIP001             rPos.X() -= nOfst;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001
-//STRIP001         break;
-//STRIP001     case DFLT_ESC_AUTO_SUPER :
-//STRIP001         nOfst = pLastFont->GetAscent( rInf.GetShell(), rInf.GetpOut() ) -
-//STRIP001                 nOrgAscent;
-//STRIP001
-//STRIP001
-//STRIP001         switch ( nDir )
-//STRIP001         {
-//STRIP001         case 0 :
-//STRIP001             rPos.Y() += nOfst;
-//STRIP001             break;
-//STRIP001         case 900 :
-//STRIP001             rPos.X() += nOfst;
-//STRIP001             break;
-//STRIP001         case 2700 :
-//STRIP001             rPos.X() -= nOfst;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001
-//STRIP001         break;
-//STRIP001     default :
-//STRIP001         nOfst = ((long)nOrgHeight * GetEscapement()) / 100L;
-//STRIP001
-//STRIP001         switch ( nDir )
-//STRIP001         {
-//STRIP001         case 0 :
-//STRIP001             rPos.Y() -= nOfst;
-//STRIP001             break;
-//STRIP001         case 900 :
-//STRIP001             rPos.X() -= nOfst;
-//STRIP001             break;
-//STRIP001         case 2700 :
-//STRIP001             rPos.X() += nOfst;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
 
 // used during painting of small capitals
-//STRIP001 void SwDrawTextInfo::Shift( USHORT nDir )
-//STRIP001 {
-//STRIP001     ASSERT( bPos, "DrawTextInfo: Undefined Position" );
-//STRIP001     ASSERT( bSize, "DrawTextInfo: Undefined Width" );
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001     const BOOL bBidiPor = ( GetFrm() && GetFrm()->IsRightToLeft() ) !=
-//STRIP001                           ( 0 != ( TEXT_LAYOUT_BIDI_RTL & GetpOut()->GetLayoutMode() ) );
-//STRIP001
-//STRIP001     nDir = bBidiPor ?
-//STRIP001             1800 :
-//STRIP001             UnMapDirection( nDir, GetFrm() && GetFrm()->IsVertical() );
-//STRIP001 #else
-//STRIP001     nDir = UnMapDirection( nDir, GetFrm() && GetFrm()->IsVertical() );
-//STRIP001 #endif
-//STRIP001
-//STRIP001     switch ( nDir )
-//STRIP001     {
-//STRIP001     case 0 :
-//STRIP001         ((Point*)pPos)->X() += GetSize().Width();
-//STRIP001         break;
-//STRIP001     case 900 :
-//STRIP001         ASSERT( ((Point*)pPos)->Y() >= GetSize().Width(), "Going underground" );
-//STRIP001         ((Point*)pPos)->Y() -= GetSize().Width();
-//STRIP001         break;
-//STRIP001     case 1800 :
-//STRIP001         ((Point*)pPos)->X() -= GetSize().Width();
-//STRIP001         break;
-//STRIP001     case 2700 :
-//STRIP001         ((Point*)pPos)->Y() += GetSize().Width();
-//STRIP001         break;
-//STRIP001     }
-//STRIP001 }
 
 /*************************************************************************
  *                      SwUnderlineFont::~SwUnderlineFont
@@ -1317,45 +932,8 @@ using namespace ::com::sun::star::i18n::ScriptType;
  * Used for the "continuous underline" feature.
  *************************************************************************/
 
-//STRIP001 SwUnderlineFont::SwUnderlineFont( SwFont& rFnt, const Point& rPoint )
-//STRIP001         : pFnt( &rFnt ), aPos( rPoint )
-//STRIP001 {
-//STRIP001 };
 
-//STRIP001 SwUnderlineFont::~SwUnderlineFont()
-//STRIP001 {
-//STRIP001      delete pFnt;
-//STRIP001 }
 
 //Helper for filters to find true lineheight of a font
-//STRIP001 long AttrSetToLineHeight(const SwDoc &rDoc, const SwAttrSet &rSet,
-//STRIP001     const OutputDevice &rOut, sal_Int16 nScript)
-//STRIP001 {
-//STRIP001     SwFont aFont(&rSet, &rDoc);
-//STRIP001     BYTE nActual;
-//STRIP001     switch (nScript)
-//STRIP001     {
-//STRIP001         default:
-//STRIP001         case ::com::sun::star::i18n::ScriptType::LATIN:
-//STRIP001             nActual = SW_LATIN;
-//STRIP001             break;
-//STRIP001         case ::com::sun::star::i18n::ScriptType::ASIAN:
-//STRIP001             nActual = SW_CJK;
-//STRIP001             break;
-//STRIP001         case ::com::sun::star::i18n::ScriptType::COMPLEX:
-//STRIP001             nActual = SW_CTL;
-//STRIP001             break;
-//STRIP001     }
-//STRIP001     aFont.SetActual(nActual);
-//STRIP001
-//STRIP001     OutputDevice &rMutableOut = const_cast<OutputDevice &>(rOut);
-//STRIP001     const Font aOldFont(rMutableOut.GetFont());
-//STRIP001
-//STRIP001     rMutableOut.SetFont(aFont.GetActualFont());
-//STRIP001     long nHeight = rMutableOut.GetTextHeight();
-//STRIP001
-//STRIP001     rMutableOut.SetFont(aOldFont);
-//STRIP001     return nHeight;
-//STRIP001 }
 
 }
