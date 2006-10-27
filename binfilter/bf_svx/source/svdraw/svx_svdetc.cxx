@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:54:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:38:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 
 #include "svdetc.hxx"
 #include "svditext.hxx"
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "svdtrans.hxx"
-// auto strip #include "svdglob.hxx"
 #include "svdstr.hrc"
 #include "svdviter.hxx"
 #include "svdview.hxx"
@@ -55,45 +52,18 @@
 #include <eeitem.hxx>
 #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _CONFIG_HXX
-// auto strip #include <tools/config.hxx>
-// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
 #include <svtools/cacheoptions.hxx>
 #endif
 
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _BIGINT_HXX //autogen
-// auto strip #include <tools/bigint.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
-// auto strip #include "fontitem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include "colritem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
-// auto strip #include "fhgtitem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX__XGRADIENT_HXX //autogen
-// auto strip #include "xgrad.hxx"
-// auto strip #endif
 
-// auto strip #ifndef SVX_XFILLIT0_HXX //autogen
-// auto strip #include "xfillit0.hxx"
-// auto strip #endif
 
 #ifndef _SVX_XFLCLIT_HXX //autogen
 #include "xflclit.hxx"
@@ -115,25 +85,7 @@
 #include "svdoole2.hxx"
 #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-// auto strip #include <unotools/localedatawrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
-// auto strip #ifndef _ISOLANG_HXX
-// auto strip #include <tools/isolang.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
@@ -197,10 +149,6 @@ namespace binfilter {
 /*N*/   // die Objekte nicht mehr vorhanden sind
 /*N*/ }
 
-//STRIP001 void OLEObjCache::SetSize(ULONG nNewSize)
-//STRIP001 {
-//STRIP001  nSize = nNewSize;
-//STRIP001 }
 
 /*N*/ void OLEObjCache::InsertObj(SdrOle2Obj* pObj)
 /*N*/ {
@@ -286,9 +234,6 @@ namespace binfilter {
 /*N*/   if (a<b) ImpSubSort(a,b);
 /*N*/ }
 
-//STRIP001 void ContainerSorter::Is1stLessThan2nd(const void* pElem1, const void* pElem2) const
-//STRIP001 {
-//STRIP001 }
 
 /*?*/ void ContainerSorter::ImpSubSort(long nL, long nR) const
 /*?*/ {
@@ -317,24 +262,8 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 class ImpUShortContainerSorter: public ContainerSorter {
-//STRIP001 public:
-//STRIP001  ImpUShortContainerSorter(Container& rNewCont): ContainerSorter(rNewCont) {}
-//STRIP001  virtual int Compare(const void* pElem1, const void* pElem2) const;
-//STRIP001 };
 
-//STRIP001 int ImpUShortContainerSorter::Compare(const void* pElem1, const void* pElem2) const
-//STRIP001 {
-//STRIP001  USHORT n1=USHORT(ULONG(pElem1));
-//STRIP001  USHORT n2=USHORT(ULONG(pElem2));
-//STRIP001  return n1<n2 ? -1 : n1>n2 ? 1 : 0;
-//STRIP001 }
 
-//STRIP001 void UShortCont::Sort()
-//STRIP001 {
-//STRIP001  ImpUShortContainerSorter aSorter(aArr);
-//STRIP001  aSorter.DoSort();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -635,18 +564,6 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SdrEngineDefaults::LanguageHasChanged()
-//STRIP001 {
-//STRIP001  SdrGlobalData& rGlobalData=GetSdrGlobalData();
-//STRIP001  if (rGlobalData.pResMgr!=NULL) {
-//STRIP001      delete rGlobalData.pResMgr;
-//STRIP001      rGlobalData.pResMgr=NULL;
-//STRIP001  }
-//STRIP001  if (rGlobalData.pStrCache!=NULL) {
-//STRIP001      delete [] rGlobalData.pStrCache;
-//STRIP001      rGlobalData.pStrCache=NULL;
-//STRIP001  }
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -769,168 +686,18 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 BOOL SearchOutlinerItems(const SfxItemSet& rSet, BOOL bInklDefaults, BOOL* pbOnlyEE)
-//STRIP001 {
-//STRIP001  BOOL bHas=FALSE;
-//STRIP001  BOOL bOnly=TRUE;
-//STRIP001  BOOL bLookOnly=pbOnlyEE!=NULL;
-//STRIP001  SfxWhichIter aIter(rSet);
-//STRIP001  USHORT nWhich=aIter.FirstWhich();
-//STRIP001  while (((bLookOnly && bOnly) || !bHas) && nWhich!=0) {
-//STRIP001      // bei bInklDefaults ist der gesamte Which-Range
-//STRIP001      // ausschlaggebend, ansonsten nur die gesetzten Items
-//STRIP001      // Disabled und DontCare wird als Loch im Which-Range betrachtet
-//STRIP001      SfxItemState eState=rSet.GetItemState(nWhich);
-//STRIP001      if ((eState==SFX_ITEM_DEFAULT && bInklDefaults) || eState==SFX_ITEM_SET) {
-//STRIP001          if (nWhich<EE_ITEMS_START || nWhich>EE_ITEMS_END) bOnly=FALSE;
-//STRIP001          else bHas=TRUE;
-//STRIP001      }
-//STRIP001      nWhich=aIter.NextWhich();
-//STRIP001  }
-//STRIP001  if (!bHas) bOnly=FALSE;
-//STRIP001  if (pbOnlyEE!=NULL) *pbOnlyEE=bOnly;
-//STRIP001  return bHas;
-//STRIP001 }
 
-//STRIP001 USHORT* RemoveWhichRange(const USHORT* pOldWhichTable, USHORT nRangeBeg, USHORT nRangeEnd)
-//STRIP001 {
-//STRIP001  // insgesamt sind 6 Faelle moeglich (je Range):
-//STRIP001  //         [Beg..End]          zu entfernender Range
-//STRIP001  // [b..e]    [b..e]    [b..e]  Fall 1,3,2: egal, ganz weg, egal  + Ranges
-//STRIP001  // [b........e]  [b........e]  Fall 4,5  : Bereich verkleinern   | in
-//STRIP001  // [b......................e]  Fall 6    : Splitting             + pOldWhichTable
-//STRIP001  USHORT nAnz=0;
-//STRIP001  while (pOldWhichTable[nAnz]!=0) nAnz++;
-//STRIP001  nAnz++; // nAnz muesste nun in jedem Fall eine ungerade Zahl sein (0 am Ende des Arrays)
-//STRIP001  DBG_ASSERT((nAnz&1)==1,"Joe: RemoveWhichRange: WhichTable hat keine ungerade Anzahl von Eintraegen");
-//STRIP001  USHORT nAlloc=nAnz;
-//STRIP001  // benoetigte Groesse des neuen Arrays ermitteln
-//STRIP001  USHORT nNum=nAnz-1;
-//STRIP001  while (nNum!=0) {
-//STRIP001      nNum-=2;
-//STRIP001      USHORT nBeg=pOldWhichTable[nNum];
-//STRIP001      USHORT nEnd=pOldWhichTable[nNum+1];
-//STRIP001      if (nEnd<nRangeBeg)  /*nCase=1*/ ;
-//STRIP001      else if (nBeg>nRangeEnd) /* nCase=2 */ ;
-//STRIP001      else if (nBeg>=nRangeBeg && nEnd<=nRangeEnd) /* nCase=3 */ nAlloc-=2;
-//STRIP001      else if (nEnd<=nRangeEnd) /* nCase=4 */;
-//STRIP001      else if (nBeg>=nRangeBeg) /* nCase=5*/ ;
-//STRIP001      else /* nCase=6 */ nAlloc+=2;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT* pNewWhichTable=new USHORT[nAlloc];
-//STRIP001  memcpy(pNewWhichTable,pOldWhichTable,nAlloc*sizeof(USHORT));
-//STRIP001  pNewWhichTable[nAlloc-1]=0; // im Falle 3 fehlt die 0 am Ende
-//STRIP001  // nun die unerwuenschten Ranges entfernen
-//STRIP001  nNum=nAlloc-1;
-//STRIP001  while (nNum!=0) {
-//STRIP001      nNum-=2;
-//STRIP001      USHORT nBeg=pNewWhichTable[nNum];
-//STRIP001      USHORT nEnd=pNewWhichTable[nNum+1];
-//STRIP001      unsigned nCase=0;
-//STRIP001      if (nEnd<nRangeBeg) nCase=1;
-//STRIP001      else if (nBeg>nRangeEnd) nCase=2;
-//STRIP001      else if (nBeg>=nRangeBeg && nEnd<=nRangeEnd) nCase=3;
-//STRIP001      else if (nEnd<=nRangeEnd) nCase=4;
-//STRIP001      else if (nBeg>=nRangeBeg) nCase=5;
-//STRIP001      else nCase=6;
-//STRIP001      switch (nCase) {
-//STRIP001          case 3: {
-//STRIP001              unsigned nTailBytes=(nAnz-(nNum+2))*sizeof(USHORT);
-//STRIP001              memcpy(&pNewWhichTable[nNum],&pNewWhichTable[nNum+2],nTailBytes);
-//STRIP001              nAnz-=2; // Merken: Array hat sich verkleinert
-//STRIP001          } break;
-//STRIP001          case 4: pNewWhichTable[nNum+1]=nRangeBeg-1; break;
-//STRIP001          case 5: pNewWhichTable[nNum]=nRangeEnd+1;     break;
-//STRIP001          case 6: {
-//STRIP001              unsigned nTailBytes=(nAnz-(nNum+2))*sizeof(USHORT);
-//STRIP001              memcpy(&pNewWhichTable[nNum+4],&pNewWhichTable[nNum+2],nTailBytes);
-//STRIP001              nAnz+=2; // Merken: Array hat sich vergroessert
-//STRIP001              pNewWhichTable[nNum+2]=nRangeEnd+1;
-//STRIP001              pNewWhichTable[nNum+3]=pNewWhichTable[nNum+1];
-//STRIP001              pNewWhichTable[nNum+1]=nRangeBeg-1;
-//STRIP001          } break;
-//STRIP001      } // switch
-//STRIP001  }
-//STRIP001  return pNewWhichTable;
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SvdProgressInfo::SvdProgressInfo( Link *_pLink )
-//STRIP001 {
-//STRIP001  DBG_ASSERT(_pLink!=NULL,"SvdProgressInfo(): Kein Link angegeben!!");
-//STRIP001
-//STRIP001  pLink = _pLink;
-//STRIP001  nSumActionCount = 0;
-//STRIP001  nSumCurAction   = 0;
-//STRIP001
-//STRIP001  nObjCount = 0;
-//STRIP001  nCurObj   = 0;
-//STRIP001
-//STRIP001  nActionCount = 0;
-//STRIP001  nCurAction   = 0;
-//STRIP001
-//STRIP001  nInsertCount = 0;
-//STRIP001  nCurInsert   = 0;
-//STRIP001 }
 
-//STRIP001 void SvdProgressInfo::Init( ULONG _nSumActionCount, ULONG _nObjCount )
-//STRIP001 {
-//STRIP001  nSumActionCount = _nSumActionCount;
-//STRIP001  nObjCount = _nObjCount;
-//STRIP001 }
 
-//STRIP001 BOOL SvdProgressInfo::ReportActions( ULONG nAnzActions )
-//STRIP001 {
-//STRIP001  nSumCurAction += nAnzActions;
-//STRIP001  nCurAction += nAnzActions;
-//STRIP001  if(nCurAction > nActionCount)
-//STRIP001      nCurAction = nActionCount;
-//STRIP001
-//STRIP001  return pLink->Call(NULL) == 1L;
-//STRIP001 }
 
-//STRIP001 BOOL SvdProgressInfo::ReportInserts( ULONG nAnzInserts )
-//STRIP001 {
-//STRIP001  nSumCurAction += nAnzInserts;
-//STRIP001  nCurInsert += nAnzInserts;
-//STRIP001
-//STRIP001  return pLink->Call(NULL) == 1L;
-//STRIP001 }
 
-//STRIP001 BOOL SvdProgressInfo::ReportRescales( ULONG nAnzRescales )
-//STRIP001 {
-//STRIP001  nSumCurAction += nAnzRescales;
-//STRIP001  return pLink->Call(NULL) == 1L;
-//STRIP001 }
 
-//STRIP001 void SvdProgressInfo::SetActionCount( ULONG _nActionCount )
-//STRIP001 {
-//STRIP001  nActionCount = _nActionCount;
-//STRIP001 }
 
-//STRIP001 void SvdProgressInfo::SetInsertCount( ULONG _nInsertCount )
-//STRIP001 {
-//STRIP001  nInsertCount = _nInsertCount;
-//STRIP001 }
 
-//STRIP001 BOOL SvdProgressInfo::SetNextObject()
-//STRIP001 {
-//STRIP001  nActionCount = 0;
-//STRIP001  nCurAction   = 0;
-//STRIP001
-//STRIP001  nInsertCount = 0;
-//STRIP001  nCurInsert   = 0;
-//STRIP001
-//STRIP001  nCurObj++;
-//STRIP001  return ReportActions(0);
-//STRIP001 }
 
-//STRIP001 void SvdProgressInfo::ReportError()
-//STRIP001 {
-//STRIP001  pLink->Call((void *)1L);
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
