@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_usrpref.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:22:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:05:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,14 +36,8 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 
 
-// auto strip #include "swtypes.hxx"
-// auto strip #include "hintids.hxx"
-// auto strip #include "uitool.hxx"
 #include "usrpref.hxx"
 
 #ifndef _HORIORNT_HXX
@@ -51,25 +45,10 @@
 #endif
 
 #include "crstate.hxx"
-// auto strip #ifndef _OFA_OSPLCFG_HXX
-// auto strip #include <bf_offmgr/osplcfg.hxx>
-// auto strip #endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
 
-// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
-// auto strip #include <bf_linguistic/lngprops.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
@@ -83,10 +62,6 @@ using namespace ::com::sun::star::uno;
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
 /*N*/ #define C2S(cChar) String::CreateFromAscii(cChar)
 
-//STRIP001 void SwMasterUsrPref::SetUsrPref(const SwViewOption &rCopy)
-//STRIP001 {
-//STRIP001  *((SwViewOption*)this) = rCopy;
-//STRIP001 }
 
 /*N*/ SwMasterUsrPref::SwMasterUsrPref(BOOL bWeb) :
 /*N*/   aContentConfig(bWeb, *this),
@@ -175,43 +150,6 @@ using namespace ::com::sun::star::uno;
 /*-- 28.09.00 09:55:33---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void SwContentViewConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      sal_Bool bVal = FALSE;
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0: bVal = rParent.IsGraphic();    break;// "Display/GraphicObject",
-//STRIP001          case  1: bVal = rParent.IsTable();  break;// "Display/Table",
-//STRIP001          case  2: bVal = rParent.IsDraw();       break;// "Display/DrawingControl",
-//STRIP001          case  3: bVal = rParent.IsFldName();    break;// "Display/FieldCode",
-//STRIP001          case  4: bVal = rParent.IsPostIts();    break;// "Display/Note",
-//STRIP001             case  5: bVal = rParent.IsPreventTips(); break; // "Display/PreventTips"
-//STRIP001             case  6: bVal = rParent.IsViewMetaChars(); break; //"NonprintingCharacter/MetaCharacters"
-//STRIP001             case  7: bVal = rParent.IsParagraph(); break;// "NonprintingCharacter/ParagraphEnd",
-//STRIP001             case  8: bVal = rParent.IsSoftHyph(); break;// "NonprintingCharacter/OptionalHyphen",
-//STRIP001             case  9: bVal = rParent.IsBlank();  break;// "NonprintingCharacter/Space",
-//STRIP001             case 10: bVal = rParent.IsLineBreak();break;// "NonprintingCharacter/Break",
-//STRIP001             case 11: bVal = rParent.IsHardBlank(); break;// "NonprintingCharacter/ProtectedSpace",
-//STRIP001             case 12: bVal = rParent.IsTab();        break;// "NonprintingCharacter/Tab",
-//STRIP001             case 13: bVal = rParent.IsHidden(); break;// "NonprintingCharacter/HiddenText",
-//STRIP001             case 14: bVal = rParent.IsShowHiddenPara(); break;// "NonprintingCharacter/HiddenParagraph",
-//STRIP001             case 15: pValues[nProp] <<= rParent.GetUpdateLinkMode();    break;// "Update/Link",
-//STRIP001             case 16: bVal = rParent.IsUpdateFields(); break;// "Update/Field",
-//STRIP001             case 17: bVal = rParent.IsUpdateCharts(); break;// "Update/Chart"
-//STRIP001         }
-//STRIP001         if(nProp != 15)
-//STRIP001          pValues[nProp].setValue(&bVal, ::getBooleanCppuType());
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /*-- 28.09.00 09:55:34---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -310,49 +248,6 @@ using namespace ::com::sun::star::uno;
 /*-- 28.09.00 09:55:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void SwLayoutViewConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      sal_Bool bSet;
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001             case  0: bSet = rParent.IsCrossHair(); break;// "Line/Guide",
-//STRIP001             case  1: bSet = rParent.IsSolidMarkHdl(); break;// "Line/SimpleControlPoint",
-//STRIP001             case  2: bSet = rParent.IsBigMarkHdl(); break;// "Line/LargeControlPoint",
-//STRIP001             case  3: bSet = rParent.IsViewHScrollBar(); break;// "Window/HorizontalScroll",
-//STRIP001             case  4: bSet = rParent.IsViewVScrollBar(); break;// "Window/VerticalScroll",
-//STRIP001             case  5: bSet = rParent.IsViewAnyRuler(); break; // "Window/ShowRulers"
-//STRIP001             // #i14593# use IsView*Ruler(TRUE) instead of IsView*Ruler()
-//STRIP001             // this preserves the single ruler states even if "Window/ShowRulers" is off
-//STRIP001             case  6: bSet = rParent.IsViewHRuler(TRUE); break;// "Window/HorizontalRuler",
-//STRIP001             case  7: bSet = rParent.IsViewVRuler(TRUE); break;// "Window/VerticalRuler",
-//STRIP001             case  8:
-//STRIP001                 if(rParent.bIsHScrollMetricSet)
-//STRIP001                     pValues[nProp] <<= (sal_Int32)rParent.eHScrollMetric; // "Window/HorizontalRulerUnit"
-//STRIP001             break;
-//STRIP001             case  9:
-//STRIP001                 if(rParent.bIsVScrollMetricSet)
-//STRIP001                     pValues[nProp] <<= (sal_Int32)rParent.eVScrollMetric; // "Window/VerticalRulerUnit"
-//STRIP001             break;
-//STRIP001             case 10: bSet = rParent.IsSmoothScroll(); break;// "Window/SmoothScroll",
-//STRIP001             case 11: pValues[nProp] <<= (sal_Int32)rParent.GetZoom(); break;// "Zoom/Value",
-//STRIP001             case 12: pValues[nProp] <<= (sal_Int32)rParent.GetZoomType(); break;// "Zoom/Type",
-//STRIP001             case 13: pValues[nProp] <<= (sal_Int32)rParent.GetMetric(); break;// "Other/MeasureUnit",
-//STRIP001             case 14: pValues[nProp] <<= TWIP_TO_MM100(rParent.GetDefTab()); break;// "Other/TabStop",
-//STRIP001             case 15: bSet = rParent.IsVRulerRight(); break;// "Window/IsVerticalRulerRight",
-//STRIP001         }
-//STRIP001         if(nProp < 8 || nProp == 10)
-//STRIP001          pValues[nProp].setValue(&bSet, ::getBooleanCppuType());
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /*-- 28.09.00 09:55:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -467,32 +362,6 @@ using namespace ::com::sun::star::uno;
 /* -----------------------------19.01.01 13:07--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwGridConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      sal_Bool bSet;
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0: bSet = rParent.IsSnap(); break;//      "Option/SnapToGrid",
-//STRIP001          case  1: bSet = rParent.IsGridVisible(); break;//"Option/VisibleGrid",
-//STRIP001          case  2: bSet = rParent.IsSynchronize(); break;//  "Option/Synchronize",
-//STRIP001          case  3: pValues[nProp] <<= (sal_Int32)TWIP_TO_MM100(rParent.GetSnapSize().Width()); break;//      "Resolution/XAxis",
-//STRIP001          case  4: pValues[nProp] <<= (sal_Int32)TWIP_TO_MM100(rParent.GetSnapSize().Height()); break;//      "Resolution/YAxis",
-//STRIP001          case  5: pValues[nProp] <<= (sal_Int16)rParent.GetDivisionX(); break;//   "Subdivision/XAxis",
-//STRIP001          case  6: pValues[nProp] <<= (sal_Int16)rParent.GetDivisionY(); break;//   "Subdivision/YAxis"
-//STRIP001      }
-//STRIP001      if(nProp < 3)
-//STRIP001              pValues[nProp].setValue(&bSet, ::getBooleanCppuType());
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /* -----------------------------19.01.01 13:07--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -565,28 +434,6 @@ using namespace ::com::sun::star::uno;
 /* -----------------------------19.01.01 13:07--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwCursorConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      sal_Bool bSet;
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0: bSet = rParent.IsShadowCursor();       break;//  "DirectCursor/UseDirectCursor",
-//STRIP001          case  1: pValues[nProp] <<= (sal_Int32)rParent.GetShdwCrsrFillMode();   break;//  "DirectCursor/Insert",
-//STRIP001             case  2: bSet = rParent.IsCursorInProtectedArea(); break;// "Option/ProtectedArea"
-//STRIP001      }
-//STRIP001         if(nProp != 1 )
-//STRIP001              pValues[nProp].setValue(&bSet, ::getBooleanCppuType());
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /* -----------------------------19.01.01 13:07--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -640,19 +487,6 @@ using namespace ::com::sun::star::uno;
 /*-- 28.09.00 09:55:33---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void SwWebColorConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<Any> aValues(aPropNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001  for(int nProp = 0; nProp < aPropNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0: pValues[nProp] <<= (sal_Int32)rParent.GetRetoucheColor().GetColor();   break;// "Color",
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aPropNames, aValues);
-//STRIP001 }
 /*-- 28.09.00 09:55:34---------------------------------------------------
 
   -----------------------------------------------------------------------*/
