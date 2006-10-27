@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flyfrm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:28:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:44:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -146,15 +146,10 @@ public:
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
         // erfrage vom Client Informationen
     virtual BOOL GetInfo( SfxPoolItem& ) const;
-//STRIP001     virtual void Paint( const SwRect& ) const;
     virtual void ChgSize( const Size& aNewSize );
-//STRIP001  virtual BOOL GetCrsrOfst( SwPosition *, Point&,
-//STRIP001                              const SwCrsrMoveState* = 0 ) const;
 
-//STRIP001     virtual void  CheckDirection( BOOL bVert );
     virtual void Cut();
 #ifndef PRODUCT
-//STRIP001  virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
 #endif
 
     SwTwips _Shrink( SwTwips, SZPTR BOOL bTst );
@@ -170,17 +165,13 @@ public:
     SwFlyFrm *GetPrevLink() { return pPrevLink; }
     SwFlyFrm *GetNextLink() { return pNextLink; }
 
-//STRIP001  static void ChainFrames( SwFlyFrm *pMaster, SwFlyFrm *pFollow );
-//STRIP001  static void UnchainFrames( SwFlyFrm *pMaster, SwFlyFrm *pFollow );
 
-//STRIP001  SwFlyFrm *FindChainNeighbour( SwFrmFmt &rFmt, SwFrm *pAnch = 0 );
 
     const SwVirtFlyDrawObj *GetVirtDrawObj() const { return pDrawObj; }
           SwVirtFlyDrawObj *GetVirtDrawObj()       { return pDrawObj; }
     void NotifyDrawObj();
 
     const Point& GetCurRelPos() const { return aRelPos; }
-//STRIP001  void ChgRelPos( const Point &rAbsPos );
     BOOL IsInvalid() const { return bInvalid; }
     void Invalidate() const { ((SwFlyFrm*)this)->bInvalid = TRUE; }
     void Validate() const { ((SwFlyFrm*)this)->bInvalid = FALSE; }
@@ -206,7 +197,6 @@ public:
     BOOL IsLowerOf( const SwLayoutFrm *pUpper ) const;
     inline BOOL IsUpperOf( const SwFlyFrm *pLower ) const;
 
-//STRIP001  SwFrm *FindLastLower();
 
     SwRect AddSpacesToFrm() const;
 
@@ -218,7 +208,6 @@ public:
     BOOL ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel, SwTwips &rPos ) const;
 
     //Auf dieser Shell painten (PreView, Print-Flag usw. rekursiv beachten)?.
-//STRIP001  static BOOL IsPaint( SdrObject *pObj, const ViewShell *pSh );
 
     /** SwFlyFrm::IsBackgroundTransparent - for feature #99657#
 

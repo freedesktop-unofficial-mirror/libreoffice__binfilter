@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fntcache.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:29:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:45:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,9 +137,7 @@ public:
     inline USHORT   GetPropWidth() const { return nPropWidth; }
     inline BOOL     IsSymbol() const { return bSymbol; }
 
-//STRIP001  void   DrawText( SwDrawTextInfo &rInf );
     Size  GetTextSize( SwDrawTextInfo &rInf );
-//STRIP001  xub_StrLen GetCrsrOfst( SwDrawTextInfo &rInf );
 
     void CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut );
     void CreatePrtFont( const OutputDevice& rOut );
