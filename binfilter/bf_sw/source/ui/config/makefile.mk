@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:33:45 $
+#   last change: $Author: rt $ $Date: 2006-10-28 00:02:24 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,38 +52,17 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_barcfg.cxx \
-        sw_caption.cxx \
-        sw_cfgitems.cxx \
-        sw_dbconfig.cxx \
-        sw_fontcfg.cxx \
-        sw_modcfg.cxx \
-        sw_optload.cxx \
-        sw_optpage.cxx \
-        sw_prtopt.cxx \
-        sw_uinums.cxx \
-        sw_usrpref.cxx \
-        sw_viewopt.cxx \
-        sw_swlinguconfig.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =	\
-        sw_optdlg.src \
-        sw_optload.src \
-        sw_redlopt.src
+        sw_optload.src
 
 SLOFILES =	\
         $(SLO)$/sw_barcfg.obj \
         $(SLO)$/sw_caption.obj \
-        $(SLO)$/sw_cfgitems.obj \
         $(SLO)$/sw_dbconfig.obj \
         $(SLO)$/sw_fontcfg.obj \
         $(SLO)$/sw_modcfg.obj \
-        $(SLO)$/sw_optload.obj \
-        $(SLO)$/sw_optpage.obj \
         $(SLO)$/sw_prtopt.obj \
-        $(SLO)$/sw_uinums.obj \
         $(SLO)$/sw_usrpref.obj \
         $(SLO)$/sw_viewopt.obj \
         $(SLO)$/sw_swlinguconfig.obj
