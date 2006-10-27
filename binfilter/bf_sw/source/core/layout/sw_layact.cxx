@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:49:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:53:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,7 @@
 #pragma hdrstop
 
 #include <time.h>
-// auto strip #include "rootfrm.hxx"
 #include "pagefrm.hxx"
-// auto strip #include "cntfrm.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -49,10 +47,8 @@
 #include "viewimp.hxx"
 #include "crsrsh.hxx"
 #include "dflyobj.hxx"
-// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "dcontact.hxx"
-// auto strip #include "ndtxt.hxx"    // OnlineSpelling
 #include "frmfmt.hxx"
 #include "swregion.hxx"
 #include "viewopt.hxx"  // OnlineSpelling ueber Internal-TabPage testen.
@@ -68,15 +64,11 @@
 #ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
-// auto strip #include <bf_svx/opaqitem.hxx>
-// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
 
 #define _SVSTDARR_BOOLS
-// auto strip #include <svtools/svstdarr.hxx>
 
 #define _LAYACT_CXX
 #include "layact.hxx"
@@ -84,32 +76,21 @@
 #ifndef _SWWAIT_HXX
 #include <swwait.hxx>
 #endif
-// auto strip #ifndef _FMTSRND_HXX //autogen
-// auto strip #include <fmtsrnd.hxx>
-// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
 #endif
 
-// auto strip #include "swmodule.hxx"
-// auto strip #include "fmtline.hxx"
 #include "tabfrm.hxx"
 #include "ftnfrm.hxx"
 #include "txtfrm.hxx"
-// auto strip #include "notxtfrm.hxx"
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
 #include "mdiexp.hxx"
 #include "fmtornt.hxx"
 #include "sectfrm.hxx"
-// auto strip #include "lineinfo.hxx"
-// auto strip #include "scrrect.hxx"
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
@@ -258,54 +239,6 @@ namespace binfilter {
 /*N*/       if ( pFly == pSelfFly || !rRect.IsOver( pFly->Frm() ) )
 /*N*/           continue;
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        if ( pSelfFly && pSelfFly->IsLowerOf( pFly ) )
-//STRIP001 /*?*/            continue;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( pFly->GetVirtDrawObj()->GetLayer() == pFly->GetFmt()->GetDoc()->GetHellId() )
-//STRIP001 /*?*/            continue;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( pSelfFly )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            const SdrObject *pTmp = pSelfFly->GetVirtDrawObj();
-//STRIP001 /*?*/            if ( pO->GetLayer() == pTmp->GetLayer() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if ( pO->GetOrdNumDirect() < pTmp->GetOrdNumDirect() )
-//STRIP001 /*?*/                    //Im gleichen Layer werden nur obenliegende beachtet.
-//STRIP001 /*?*/                    continue;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                const FASTBOOL bLowerOfSelf = pFly->IsLowerOf( pSelfFly );
-//STRIP001 /*?*/                if ( !bLowerOfSelf && !pFly->GetFmt()->GetOpaque().GetValue() )
-//STRIP001 /*?*/                    //Aus anderem Layer interessieren uns nur nicht transparente
-//STRIP001 /*?*/                    //oder innenliegende
-//STRIP001 /*?*/                    continue;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         /// OD 19.08.2002 #99657#
-//STRIP001 /*?*/         ///     Fly frame without a lower have to be subtracted from paint region.
-//STRIP001 /*?*/         ///     For checking, if fly frame contains transparent graphic or
-//STRIP001 /*?*/         ///     has surrounded contour, assure that fly frame has a lower
-//STRIP001 /*?*/         if ( pFly->Lower() &&
-//STRIP001 /*?*/              pFly->Lower()->IsNoTxtFrm() &&
-//STRIP001 /*?*/              ( ((SwNoTxtFrm*)pFly->Lower())->IsTransparent() ||
-//STRIP001 /*?*/                pFly->GetFmt()->GetSurround().IsContour() )
-//STRIP001 /*?*/            )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            continue;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         /// OD 19.08.2002 #99657#
-//STRIP001 /*?*/         ///     Region of a fly frame with transparent background or a transparent
-//STRIP001 /*?*/         ///     shadow have not to be subtracted from paint region
-//STRIP001 /*?*/         if ( pFly->IsBackgroundTransparent() ||
-//STRIP001 /*?*/              pFly->IsShadowTransparent() )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             continue;
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        aTmp -= pFly->Frm();
 /*N*/   }
 /*N*/
 /*N*/   BOOL bPaint = FALSE;
@@ -1784,7 +1717,6 @@ namespace binfilter {
 /*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/                   pRootFrm->GetCurrShell() )
 /*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                    pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pLow, aOldFrm );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1881,17 +1813,6 @@ namespace binfilter {
 // NOTE: no adjustments for vertical layout support necessary
 /*N*/ BOOL CheckPos( SwFrm *pFrm )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( !pFrm->GetValidPosFlag() )
-//STRIP001  {
-//STRIP001      Point aOld( pFrm->Frm().Pos() );
-//STRIP001      pFrm->MakePos();
-//STRIP001      if ( aOld != pFrm->Frm().Pos() )
-//STRIP001      {
-//STRIP001          pFrm->Frm().Pos( aOld );
-//STRIP001          pFrm->_InvalidatePos();
-//STRIP001          return FALSE;
-//STRIP001      }
-//STRIP001  }
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -2237,21 +2158,6 @@ namespace binfilter {
 /*N*/                pCntnt->Frm().Top() > pImp->GetShell()->VisArea().Bottom())
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const long nBottom = pImp->GetShell()->VisArea().Bottom();
-//STRIP001 /*?*/                const SwFrm *pTmp = lcl_FindFirstInvaCntnt( pPage,
-//STRIP001 /*?*/                                                    nBottom, pCntnt );
-//STRIP001 /*?*/                if ( !pTmp )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if ( (!(IS_FLYS && IS_INVAFLY) ||
-//STRIP001 /*?*/                            !lcl_FindFirstInvaFly( pPage, nBottom )) &&
-//STRIP001 /*?*/                            (!pPage->IsInvalidLayout() ||
-//STRIP001 /*?*/                            !lcl_FindFirstInvaLay( pPage, nBottom )))
-//STRIP001                      SetBrowseActionStop( TRUE );
-//STRIP001 /*?*/                     // OD 14.04.2003 #106346# - consider interrupt formatting.
-//STRIP001 /*?*/                     if ( !mbFormatCntntOnInterrupt )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         return FALSE;
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                }
 /*N*/           }
 /*N*/           pCntnt = pCntnt->GetNextCntntFrm();
 /*N*/       }
@@ -2545,59 +2451,6 @@ namespace binfilter {
 |*  Letzte Aenderung    AMA 01. Feb. 96
 |*
 |*************************************************************************/
-//STRIP001 BOOL SwLayIdle::_FormatSpelling( const SwCntntFrm *pCnt )
-//STRIP001 {
-//STRIP001  ASSERT( pCnt->IsTxtFrm(), "NoTxt neighbour of Txt" );
-//STRIP001  if( pCnt->GetNode()->IsWrongDirty() )
-//STRIP001  {
-//STRIP001      if( STRING_LEN == nTxtPos )
-//STRIP001      {
-//STRIP001          --nTxtPos;
-//STRIP001          ViewShell *pSh = pImp->GetShell();
-//STRIP001          if( pSh->ISA(SwCrsrShell) && !((SwCrsrShell*)pSh)->IsTableMode() )
-//STRIP001          {
-//STRIP001              SwPaM *pCrsr = ((SwCrsrShell*)pSh)->GetCrsr();
-//STRIP001              if( !pCrsr->HasMark() && pCrsr == pCrsr->GetNext() )
-//STRIP001              {
-//STRIP001                  pCntntNode = pCrsr->GetCntntNode();
-//STRIP001                  nTxtPos =  pCrsr->GetPoint()->nContent.GetIndex();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      SwRect aRepaint( ((SwTxtFrm*)pCnt)->_AutoSpell( pCntntNode, nTxtPos ) );
-//STRIP001      bPageValid = bPageValid && !pCnt->GetNode()->IsWrongDirty();
-//STRIP001      if( !bPageValid )
-//STRIP001          bAllValid = FALSE;
-//STRIP001      if ( aRepaint.HasArea() )
-//STRIP001          pImp->GetShell()->InvalidateWindows( aRepaint );
-//STRIP001         if ( Application::AnyInput( INPUT_ANY ) )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001  //Die im Absatz verankerten Flys wollen auch mitspielen.
-//STRIP001  if ( pCnt->GetDrawObjs() )
-//STRIP001  {
-//STRIP001      const SwDrawObjs &rObjs = *pCnt->GetDrawObjs();
-//STRIP001      for ( USHORT i = 0; i < rObjs.Count(); ++i )
-//STRIP001      {
-//STRIP001          SdrObject *pO = rObjs[i];
-//STRIP001          if ( pO->IsWriterFlyFrame() )
-//STRIP001          {
-//STRIP001              SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-//STRIP001              if ( pFly->IsFlyInCntFrm() )
-//STRIP001              {
-//STRIP001                  const SwCntntFrm *pC = pFly->ContainsCntnt();
-//STRIP001                  while( pC )
-//STRIP001                  {
-//STRIP001                      if ( pC->IsTxtFrm() && _FormatSpelling( pC ) )
-//STRIP001                          return TRUE;
-//STRIP001                      pC = pC->GetNextCntntFrm();
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ BOOL SwLayIdle::FormatSpelling( BOOL bVisAreaOnly )
 /*N*/ {
@@ -2622,8 +2475,6 @@ namespace binfilter {
 /*?*/       while( pCnt && pPage->IsAnLower( pCnt ) )
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( _FormatSpelling( pCnt ) )
-//STRIP001 /*?*/                return TRUE;
-//STRIP001 /*?*/            pCnt = pCnt->GetNextCntntFrm();
 /*?*/       }
 /*?*/       if ( pPage->GetSortedObjs() )
 /*?*/       {
@@ -2638,8 +2489,6 @@ namespace binfilter {
 /*?*/                   while( pC )
 /*?*/                   {
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pC->IsTxtFrm() && _FormatSpelling( pC ) )
-//STRIP001 /*?*/                            return TRUE;
-//STRIP001 /*?*/                        pC = pC->GetNextCntntFrm();
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -2909,10 +2758,6 @@ namespace binfilter {
 /*?*/               if ( pImp->GetRegion() || pImp->GetScrollRects() )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->DelRegions();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    //Fuer Repaint mit virtuellem Device sorgen.
-//STRIP001 /*?*/                    pSh->LockPaint();
-//STRIP001 /*?*/                    bUnlock = TRUE;
 /*?*/               }
 /*?*/
 /*?*/               if ( bCrsrShell )
@@ -2924,18 +2769,6 @@ namespace binfilter {
 /*?*/               if( bUnlock )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bCrsrShell )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        // UnlockPaint overwrite the selection from the
-//STRIP001 /*?*/                        // CrsrShell and calls the virtual method paint
-//STRIP001 /*?*/                        // to fill the virtual device. This fill dont have
-//STRIP001 /*?*/                        // paint the selection! -> Set the focus flag at
-//STRIP001 /*?*/                        // CrsrShell and it dont paint the selection.
-//STRIP001 /*?*/                        ((SwCrsrShell*)pSh)->ShLooseFcs();
-//STRIP001 /*?*/                        pSh->UnlockPaint( TRUE );
-//STRIP001 /*?*/                        ((SwCrsrShell*)pSh)->ShGetFcs( FALSE );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        pSh->UnlockPaint( TRUE );
 /*?*/               }
 /*?*/
 /*?*/               pSh = (ViewShell*)pSh->GetNext();
@@ -2973,8 +2806,6 @@ namespace binfilter {
 /*N*/   pImp->GetShell()->EnableSmooth( TRUE );
 /*N*/
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 /*N*/     if( pImp->IsAccessible() )
-//STRIP001 /*N*/         pImp->FireAccessibleEvents();
 /*N*/ #endif
 /*N*/
 /*N*/ #ifndef PRODUCT
