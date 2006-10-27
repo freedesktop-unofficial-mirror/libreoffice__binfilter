@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ascatr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:58:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:25:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,11 +44,7 @@
 #endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
-// auto strip #ifndef _SVX_FONTITEM_HXX
-// auto strip #include <bf_svx/fontitem.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -71,24 +67,12 @@
 #ifndef _WRTASC_HXX
 #include <wrtasc.hxx>
 #endif
-// auto strip #ifndef _TXATBASE_HXX
-// auto strip #include <txatbase.hxx>
-// auto strip #endif
-// auto strip #ifndef _FCHRFMT_HXX
-// auto strip #include <fchrfmt.hxx>
-// auto strip #endif
 #ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
 #endif
-// auto strip #ifndef _TXTATR_HXX
-// auto strip #include <txtatr.hxx>
-// auto strip #endif
 #ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
 #endif
-// auto strip #ifndef _CHARFMT_HXX
-// auto strip #include <charfmt.hxx>
-// auto strip #endif
 #ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
 #endif
