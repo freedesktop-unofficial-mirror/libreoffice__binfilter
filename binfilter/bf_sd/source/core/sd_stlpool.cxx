@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlpool.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:24:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:03:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,9 +71,6 @@
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 #ifndef SVX_XFILLIT0_HXX //autogen
 #include <bf_svx/xfillit0.hxx>
 #endif
@@ -87,18 +84,12 @@
 #include <bf_svx/numitem.hxx>
 #endif
 #define ITEMID_BRUSH    0
-// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
-// auto strip #include <bf_svx/brshitem.hxx>
-// auto strip #endif
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
 #endif
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif
-// auto strip #ifndef _SVX_LANGITEM_HXX
-// auto strip #include <bf_svx/langitem.hxx>
-// auto strip #endif
 #define ITEMID_EMPHASISMARK       EE_CHAR_EMPHASISMARK
 #define ITEMID_CHARRELIEF         EE_CHAR_RELIEF
 #ifndef _SVX_CHARRELIEFITEM_HXX
@@ -110,8 +101,6 @@
 
 
 #include <bf_svx/svdattr.hxx>
-// auto strip #include "eetext.hxx"
-// auto strip #include <bf_svx/xtable.hxx>          // fuer RGB_Color
 #include <bf_svx/bulitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/adjitem.hxx>
@@ -126,7 +115,6 @@
 #include "sdresid.hxx"
 #include "stlsheet.hxx"
 #include "glob.hrc"
-// auto strip #include "glob.hxx"
 #include "drawdoc.hxx"
 #include "sdmod.hxx"
 #include "sdpage.hxx"
@@ -177,10 +165,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SfxStyleSheetBase* SdStyleSheetPool::Create(const SdStyleSheet& rStyle)
-//STRIP001 {
-//STRIP001  return new SdStyleSheet(rStyle);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -203,25 +187,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 String SdStyleSheetPool::GetLayoutName() const
-//STRIP001 {
-//STRIP001  String aName( SdResId(STR_LAYOUT_DEFAULT_NAME ) );
-//STRIP001  ULONG  nCount = aStyles.Count();
-//STRIP001
-//STRIP001  for( ULONG n = 0; n < nCount; n++ )
-//STRIP001  {
-//STRIP001      aName = aStyles.GetObject( n )->GetName();
-//STRIP001      USHORT nPos = aName.SearchAscii( SD_LT_SEPARATOR );
-//STRIP001      if( nPos != STRING_NOTFOUND )
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT nPos = aName.Search( sal_Unicode( ' ' ));
-//STRIP001  if( nPos != STRING_NOTFOUND )
-//STRIP001      aName.Erase( nPos );       // removing blanks and number (e.g. "Gliederung 1")
-//STRIP001
-//STRIP001  return aName;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -614,24 +579,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SdStyleSheetPool::EraseLayoutStyleSheets(const String& rLayoutName)
-//STRIP001 {
-//STRIP001  SfxStyleSheetBase* pSheet = NULL;
-//STRIP001
-//STRIP001  List* pNameList = CreateLayoutSheetNames(rLayoutName);
-//STRIP001
-//STRIP001  String* pName = (String*)pNameList->First();
-//STRIP001  while (pName)
-//STRIP001  {
-//STRIP001      pSheet = Find(*pName, SD_LT_FAMILY);
-//STRIP001      DBG_ASSERT(pSheet, "EraseLayoutStyleSheets: Vorlage nicht gefunden");
-//STRIP001      if (pSheet)
-//STRIP001          Erase(pSheet);
-//STRIP001      delete pName;
-//STRIP001      pName = (String*)pNameList->Next();
-//STRIP001  }
-//STRIP001  delete pNameList;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -643,41 +590,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SdStyleSheetPool::CopyGraphicSheets(SdStyleSheetPool& rSourcePool)
-//STRIP001 {
-//STRIP001  ULONG nCount = rSourcePool.aStyles.Count();
-//STRIP001
-//STRIP001  std::vector< std::pair< SfxStyleSheetBase*, String > > aNewStyles;
-//STRIP001
-//STRIP001  for (ULONG n = 0; n < nCount; n++)
-//STRIP001  {
-//STRIP001      SfxStyleSheet* pSheet = (SfxStyleSheet*) rSourcePool.aStyles.GetObject(n);
-//STRIP001
-//STRIP001      if( pSheet->GetFamily() == SFX_STYLE_FAMILY_PARA )
-//STRIP001      {
-//STRIP001          String aName( pSheet->GetName() );
-//STRIP001          if ( !Find( aName, SFX_STYLE_FAMILY_PARA ) )
-//STRIP001          {
-//STRIP001              SfxStyleSheetBase& rNewSheet = Make( aName, SFX_STYLE_FAMILY_PARA );
-//STRIP001
-//STRIP001                 // #91588# Also set parent relation for copied style sheets
-//STRIP001                 String aParent( pSheet->GetParent() );
-//STRIP001                 if( aParent.Len() )
-//STRIP001                  aNewStyles.push_back( std::pair< SfxStyleSheetBase*, String >( &rNewSheet, aParent ) );
-//STRIP001
-//STRIP001              rNewSheet.GetItemSet().Put( pSheet->GetItemSet() );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // set parents on newly added stylesheets
-//STRIP001  std::vector< std::pair< SfxStyleSheetBase*, String > >::iterator aIter;
-//STRIP001  for( aIter = aNewStyles.begin(); aIter != aNewStyles.end(); aIter++ )
-//STRIP001  {
-//STRIP001         DBG_ASSERT( rSourcePool.Find( (*aIter).second, SFX_STYLE_FAMILY_PARA ), "StyleSheet has invalid parent: Family mismatch" );
-//STRIP001      (*aIter).first->SetParent( (*aIter).second );
-//STRIP001  }
-//STRIP001 }
 
 
 /*************************************************************************
@@ -693,53 +605,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SdStyleSheetPool::CopyLayoutSheets(const String& rLayoutName,
-//STRIP001                                      SdStyleSheetPool& rSourcePool,
-//STRIP001                                      List* pCreatedSheets)
-//STRIP001 {
-//STRIP001  SfxStyleSheetBase* pSheet = NULL;
-//STRIP001
-//STRIP001  String aOutlineTag(SdResId(STR_LAYOUT_OUTLINE));
-//STRIP001
-//STRIP001  List* pNameList = CreateLayoutSheetNames(rLayoutName);
-//STRIP001
-//STRIP001  String* pName = (String*)pNameList->First();
-//STRIP001  while (pName)
-//STRIP001  {
-//STRIP001      pSheet = Find(*pName, SD_LT_FAMILY);
-//STRIP001      if (!pSheet)
-//STRIP001      {
-//STRIP001          SfxStyleSheetBase* pSourceSheet =
-//STRIP001                              rSourcePool.Find(*pName, SD_LT_FAMILY);
-//STRIP001          DBG_ASSERT(pSourceSheet,
-//STRIP001                     "CopyLayoutSheets: Quellvorlage nicht gefunden");
-//STRIP001          if (pSourceSheet)   // falls einer mit Methusalem-Doks. ankommt
-//STRIP001          {
-//STRIP001              SfxStyleSheetBase& rNewSheet = Make(*pName, SD_LT_FAMILY);
-//STRIP001              rNewSheet.GetItemSet().Put(pSourceSheet->GetItemSet());
-//STRIP001              if (pCreatedSheets)
-//STRIP001                  pCreatedSheets->Insert(&rNewSheet, LIST_APPEND);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      delete pName;
-//STRIP001      pName = (String*)pNameList->Next();
-//STRIP001  }
-//STRIP001  delete pNameList;
-//STRIP001
-//STRIP001  // Sonderbehandlung fuer Gliederungsvorlagen: Parentbeziehungen aufbauen
-//STRIP001  List* pOutlineSheets = CreateOutlineSheetList(rLayoutName);
-//STRIP001  SfxStyleSheetBase* pParent = (SfxStyleSheetBase*)pOutlineSheets->First();
-//STRIP001  pSheet = (SfxStyleSheetBase*)pOutlineSheets->Next();
-//STRIP001  while (pSheet)
-//STRIP001  {
-//STRIP001      // kein Parent?
-//STRIP001      if (pSheet->GetParent().Len() == 0)
-//STRIP001          pSheet->SetParent(pParent->GetName());
-//STRIP001      pParent = pSheet;
-//STRIP001      pSheet = (SfxStyleSheetBase*)pOutlineSheets->Next();
-//STRIP001  }
-//STRIP001  delete pOutlineSheets;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -748,48 +613,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 List* SdStyleSheetPool::CreateLayoutSheetNames(const String& rLayoutName) const
-//STRIP001 {
-//STRIP001  String aPrefix(rLayoutName);
-//STRIP001  String aSep( RTL_CONSTASCII_USTRINGPARAM( SD_LT_SEPARATOR ));
-//STRIP001  aPrefix.Insert(aSep);
-//STRIP001
-//STRIP001  List* pNameList = new List;
-//STRIP001
-//STRIP001  String aName(SdResId(STR_LAYOUT_OUTLINE));
-//STRIP001  String* pName = NULL;
-//STRIP001
-//STRIP001  for (USHORT nLevel = 1; nLevel < 10; nLevel++)
-//STRIP001  {
-//STRIP001      pName = new String(aName);
-//STRIP001      pName->Append( sal_Unicode( ' ' ));
-//STRIP001      pName->Append( String::CreateFromInt32( sal_Int32( nLevel )));
-//STRIP001      pName->Insert(aPrefix, 0);
-//STRIP001      pNameList->Insert(pName, LIST_APPEND);
-//STRIP001  }
-//STRIP001
-//STRIP001  pName = new String(SdResId(STR_LAYOUT_TITLE));
-//STRIP001  pName->Insert(aPrefix, 0);
-//STRIP001  pNameList->Insert(pName, LIST_APPEND);
-//STRIP001
-//STRIP001  pName = new String(SdResId(STR_LAYOUT_SUBTITLE));
-//STRIP001  pName->Insert(aPrefix, 0);
-//STRIP001  pNameList->Insert(pName, LIST_APPEND);
-//STRIP001
-//STRIP001  pName = new String(SdResId(STR_LAYOUT_NOTES));
-//STRIP001  pName->Insert(aPrefix, 0);
-//STRIP001  pNameList->Insert(pName, LIST_APPEND);
-//STRIP001
-//STRIP001  pName = new String(SdResId(STR_LAYOUT_BACKGROUNDOBJECTS));
-//STRIP001  pName->Insert(aPrefix, 0);
-//STRIP001  pNameList->Insert(pName, LIST_APPEND);
-//STRIP001
-//STRIP001  pName = new String(SdResId(STR_LAYOUT_BACKGROUND));
-//STRIP001  pName->Insert(aPrefix, 0);
-//STRIP001  pNameList->Insert(pName, LIST_APPEND);
-//STRIP001
-//STRIP001  return pNameList;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -798,24 +621,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 List* SdStyleSheetPool::CreateLayoutSheetList(const String& rLayoutName)
-//STRIP001 {
-//STRIP001  List* pList = new List;             // die kriegt der Caller
-//STRIP001  String aLayoutNameWithSep(rLayoutName);
-//STRIP001  aLayoutNameWithSep.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-//STRIP001  USHORT nLen = aLayoutNameWithSep.Len();
-//STRIP001
-//STRIP001  SfxStyleSheetIterator aIter(this, SD_LT_FAMILY);
-//STRIP001  SfxStyleSheetBase* pSheet = aIter.First();
-//STRIP001
-//STRIP001  while (pSheet)
-//STRIP001  {
-//STRIP001      if (pSheet->GetName().Match(aLayoutNameWithSep) == nLen)
-//STRIP001          pList->Insert(pSheet, LIST_APPEND);
-//STRIP001      pSheet = aIter.Next();
-//STRIP001  }
-//STRIP001  return pList;
-//STRIP001 }
 
 /*************************************************************************
 |*
