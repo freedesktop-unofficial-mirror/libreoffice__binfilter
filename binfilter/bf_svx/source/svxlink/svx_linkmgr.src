@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_linkmgr.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:12:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:49:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,42 +93,6 @@ String RID_SVXSTR_GRAFIKLINK
     Text[ ar ] = "ØµÙˆØ±Ø©";
     Text[ he ] = "â€®×’×¨×¤×™×§×”â€¬";
 };
-//STRIP001 String RID_SVXSTR_EDITGRFLINK
-//STRIP001 {
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Grafik Verknüpfen : Grafik Verkn³pfen */
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Grafik Verknüpfen : Grafik Verkn³pfen */
-//STRIP001      Text = "Grafik Verknüpfen" ;
-//STRIP001      Text [ ENGLISH ] = "Link to Graphic" ;
-//STRIP001      Text [ norwegian ] = "Koble til Grafikk" ;
-//STRIP001      Text [ italian ] = "Collega immagine" ;
-//STRIP001      Text [ portuguese_brazilian ] = "Vincular Figuras" ;
-//STRIP001      Text [ portuguese ] = "Ligar imagem" ;
-//STRIP001      Text [ finnish ] = "Linkit?kuvat" ;
-//STRIP001      Text [ danish ] = "Kæd grafik" ;
-//STRIP001      Text [ french ] = "Image du lien" ;
-//STRIP001      Text [ swedish ] = "Länka till grafik" ;
-//STRIP001      Text [ dutch ] = "Afbeelding koppelen" ;
-//STRIP001      Text [ spanish ] = "Enlazar imagen" ;
-//STRIP001      Text [ english_us ] = "Link graphics" ;
-//STRIP001      Text[ chinese_simplified ] = "é“¾æ¥å›¾å½¢";
-//STRIP001      Text[ russian ] = "Óñòàíîâëåíèå ñâÿçè";
-//STRIP001      Text[ polish ] = "Do³¹cz grafik?";
-//STRIP001      Text[ japanese ] = "å›³ã‚’ãƒªãƒ³ã‚¯ã™ã‚?";
-//STRIP001      Text[ chinese_traditional ] = "é€£çµåœ–å½¢";
-//STRIP001      Text[ arabic ] = "ÑÈ?ÇáÑÓæãÇÊ";
-//STRIP001      Text[ language_user1 ] = "; LS 09.08.99 Wir wollen in der franz?ischen Version m?lichst Substantive als Dialog?erschriften haben. Hier wird die bestehende Verkn?fung ge?dert, d.h., es wird eine neue Grafik ausgew?lt";
-//STRIP001      Text[ dutch ] = "Afbeelding koppelen";
-//STRIP001      Text[ chinese_simplified ] = "é“¾æ¥å›¾å½¢";
-//STRIP001      Text[ greek ] = "Óıíäåó?ãñáöéêïı";
-//STRIP001      Text[ korean ] = "ê·¸ë¦¼ ì—°ê²°";
-//STRIP001      Text[ turkish ] = "Grafik bağlantıs?oluştur";
-//STRIP001      Text[ catalan ] = "Enllaça la imatge";
-//STRIP001      Text[ thai ] = "à¹€à¸Šà¸·à¹ˆà¸­à¸¡à¹‚à¸¢à¸‡à¸à¸£à¸²à¸Ÿà¸´à¸„";
-//STRIP001      Text[ czech ] = "Propojit obrÃ¡zky";
-//STRIP001      Text[ hebrew ] = "â€®×§×™×©×•×?×’×¨×¤×™×§×”â€?";
-//STRIP001      Text[ hindi ] = "à¤¸à¥à¤šà¤¿à¤¤à¥à¤?à¤•à¥‹ à¤²à¤¿à¤‚à¤• à¤•à¤°à¥?";
-//STRIP001      Text[ slovak ] = "PrepojiÅ¥ obrÃ¡zky";
-//STRIP001 };
 
 String RID_SVXSTR_GRFLINKPROGRESS
 {
@@ -159,7 +123,3 @@ String RID_SVXSTR_GRFLINKPROGRESS
     Text[ ar ] = "Ø§Ø³ØªÙŠØ±Ø§Ø¯ Ø±Ø³ÙˆÙ…Ø§Øª...";
     Text[ he ] = "â€®×™×‘×•× ×’×¨×¤×™×§×”â€¬";
 };
-//STRIP001 Bitmap RID_SVXGRF_GRAPHICLOAD
-//STRIP001 {
-//STRIP001  File = "grfload.bmp" ;
-//STRIP001 };
