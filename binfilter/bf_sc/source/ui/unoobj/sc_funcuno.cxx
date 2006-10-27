@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_funcuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:15:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:03:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,14 +34,11 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <tools/debug.hxx>
 #include <bf_sfx2/app.hxx>
-// auto strip #include <svtools/itemprop.hxx>
 
 #include "funcuno.hxx"
 #include "miscuno.hxx"
@@ -49,12 +46,10 @@
 #include "unoguard.hxx"
 #include "scdll.hxx"
 #include "document.hxx"
-// auto strip #include "compiler.hxx"
 #include "callform.hxx"
 #include "addincol.hxx"
 #include "rangeseq.hxx"
 #include "cell.hxx"
-// auto strip #include "docoptio.hxx"
 #include "optuno.hxx"
 
 // for lcl_CopyData:

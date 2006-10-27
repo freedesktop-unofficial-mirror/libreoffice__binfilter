@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_nameuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:16:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:04:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,16 +34,13 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <svtools/smplhint.hxx>
 
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #include <com/sun/star/awt/XBitmap.hpp>
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 using namespace ::com::sun::star;
 
