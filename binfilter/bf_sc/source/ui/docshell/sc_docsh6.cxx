@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh6.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:08:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:48:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -149,23 +149,15 @@
 
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #ifndef PCH
-// auto strip #include <so3/ipenv.hxx>
-// auto strip #include "scitems.hxx"
 
 #include <so3/ipenv.hxx>
 
-// auto strip #ifndef _SFXPOOLITEM_HXX
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/pageitem.hxx>
-// auto strip #include <vcl/virdev.hxx>
 #include <bf_svx/linkmgr.hxx>
 #endif
 
@@ -175,10 +167,7 @@
 
 #include "docsh.hxx"
 
-// auto strip #include "stlsheet.hxx"
 #include "stlpool.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "viewdata.hxx"
 #include "tabvwsh.hxx"
 #include "tablink.hxx"
 #include "collect.hxx"
@@ -204,19 +193,6 @@ namespace binfilter {
 //  Ole
 //
 
-//STRIP001 String ScDocShell::CreateObjectName( const String& rPrefix )
-//STRIP001 {
-//STRIP001  String aStr( rPrefix );
-//STRIP001  USHORT i = 1;
-//STRIP001  aStr += String::CreateFromInt32( i );
-//STRIP001  while( Find( aStr ) )
-//STRIP001  {
-//STRIP001      i++;
-//STRIP001      aStr = rPrefix;
-//STRIP001      aStr += String::CreateFromInt32( i );
-//STRIP001  }
-//STRIP001  return aStr;
-//STRIP001 }
 
 /*N*/ void __EXPORT ScDocShell::SetVisArea( const Rectangle & rVisArea )
 /*N*/ {
@@ -276,14 +252,6 @@ namespace binfilter {
 /*N*/   if (aDocument.IsEmbedded())
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTripel aOldStart,aOldEnd;
-//STRIP001 /*?*/        aDocument.GetEmbedded(aOldStart,aOldEnd);
-//STRIP001 /*?*/        aDocument.SetEmbedded( aArea );
-//STRIP001 /*?*/        ScTripel aNewStart,aNewEnd;
-//STRIP001 /*?*/        aDocument.GetEmbedded(aNewStart,aNewEnd);
-//STRIP001 /*?*/        if (aNewStart!=aOldStart || aNewEnd!=aOldEnd)
-//STRIP001 /*?*/            PostPaint(0,0,0,MAXCOL,MAXROW,MAXTAB,PAINT_GRID);
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ViewChanged( ASPECT_CONTENT );          // auch im Container anzeigen
 /*N*/   }
 /*N*/ }
 
@@ -292,48 +260,6 @@ namespace binfilter {
 /*N*/   return (GetCreateMode() == SFX_CREATE_MODE_EMBEDDED);
 /*N*/ }
 
-//STRIP001 void ScDocShell::UpdateOle( const ScViewData* pViewData, BOOL bSnapSize )
-//STRIP001 {
-//STRIP001  //  wenn's gar nicht Ole ist, kann man sich die Berechnungen sparen
-//STRIP001  //  (VisArea wird dann beim Save wieder zurueckgesetzt)
-//STRIP001
-//STRIP001  if (GetCreateMode() == SFX_CREATE_MODE_STANDARD)
-//STRIP001      return;
-//STRIP001
-//STRIP001  DBG_ASSERT(pViewData,"pViewData==0 bei ScDocShell::UpdateOle");
-//STRIP001
-//STRIP001  Rectangle aOldArea = SfxInPlaceObject::GetVisArea();
-//STRIP001  Rectangle aNewArea = aOldArea;
-//STRIP001
-//STRIP001  BOOL bChange = FALSE;
-//STRIP001  BOOL bEmbedded = aDocument.IsEmbedded();
-//STRIP001  if (bEmbedded)
-//STRIP001      aNewArea = aDocument.GetEmbeddedRect();
-//STRIP001  else
-//STRIP001  {
-//STRIP001      USHORT nX = pViewData->GetPosX(SC_SPLIT_LEFT);
-//STRIP001      USHORT nY = pViewData->GetPosY(SC_SPLIT_BOTTOM);
-//STRIP001      Point aStart = aDocument.GetMMRect( nX,nY, nX,nY, 0 ).TopLeft();
-//STRIP001      aNewArea.SetPos(aStart);
-//STRIP001      if (bSnapSize)
-//STRIP001          aDocument.SnapVisArea(aNewArea);
-//STRIP001
-//STRIP001      if ( pViewData->GetTabNo() != aDocument.GetVisibleTab() )
-//STRIP001      {
-//STRIP001          aDocument.SetVisibleTab( pViewData->GetTabNo() );
-//STRIP001          bChange = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (aNewArea != aOldArea)
-//STRIP001  {
-//STRIP001      SetVisAreaOrSize( aNewArea, TRUE ); // hier muss auch der Start angepasst werden
-//STRIP001      bChange = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001 //   if (bChange)
-//STRIP001 //       DataChanged( SvDataType() );        //! passiert auch bei SetModified
-//STRIP001 }
 
 //
 //  Style-Krempel fuer Organizer etc.
@@ -352,46 +278,8 @@ namespace binfilter {
 /*N*/ void lcl_AdjustPool( SfxStyleSheetBasePool* pStylePool )
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pStylePool->SetSearchMask(SFX_STYLE_FAMILY_PAGE, 0xffff);
-//STRIP001 /*N*/    SfxStyleSheetBase *pStyle = pStylePool->First();
-//STRIP001 /*N*/    while ( pStyle )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        SfxItemSet& rStyleSet = pStyle->GetItemSet();
-//STRIP001 /*N*/
-//STRIP001 /*N*/        const SfxPoolItem* pItem;
-//STRIP001 /*N*/        if (rStyleSet.GetItemState(ATTR_PAGE_HEADERSET,FALSE,&pItem) == SFX_ITEM_SET)
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            SfxItemSet& rSrcSet = ((SvxSetItem*)pItem)->GetItemSet();
-//STRIP001 /*N*/            SfxItemSet* pDestSet = new SfxItemSet(*rStyleSet.GetPool(),rSrcSet.GetRanges());
-//STRIP001 /*N*/            pDestSet->Put(rSrcSet);
-//STRIP001 /*N*/            rStyleSet.Put(SvxSetItem(ATTR_PAGE_HEADERSET,pDestSet));
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/        if (rStyleSet.GetItemState(ATTR_PAGE_FOOTERSET,FALSE,&pItem) == SFX_ITEM_SET)
-//STRIP001 /*N*/        {
-//STRIP001 /*N*/            SfxItemSet& rSrcSet = ((SvxSetItem*)pItem)->GetItemSet();
-//STRIP001 /*N*/            SfxItemSet* pDestSet = new SfxItemSet(*rStyleSet.GetPool(),rSrcSet.GetRanges());
-//STRIP001 /*N*/            pDestSet->Put(rSrcSet);
-//STRIP001 /*N*/            rStyleSet.Put(SvxSetItem(ATTR_PAGE_FOOTERSET,pDestSet));
-//STRIP001 /*N*/        }
-//STRIP001 /*N*/
-//STRIP001 /*N*/        pStyle = pStylePool->Next();
-//STRIP001 /*N*/    }
 /*N*/ }
 
-//STRIP001 void __EXPORT ScDocShell::LoadStyles( SfxObjectShell &rSource )
-//STRIP001 {
-//STRIP001  aDocument.StylesToNames();
-//STRIP001
-//STRIP001  SfxObjectShell::LoadStyles(rSource);
-//STRIP001  lcl_AdjustPool( GetStyleSheetPool() );      // SetItems anpassen
-//STRIP001
-//STRIP001  aDocument.UpdStlShtPtrsFrmNms();
-//STRIP001
-//STRIP001  UpdateAllRowHeights();
-//STRIP001
-//STRIP001      //  Paint
-//STRIP001
-//STRIP001  PostPaint( 0,0,0, MAXCOL,MAXROW,MAXTAB, PAINT_GRID | PAINT_LEFT );
-//STRIP001 }
 
 /*N*/ void ScDocShell::LoadStylesArgs( ScDocShell& rSource, BOOL bReplace, BOOL bCellStyles, BOOL bPageStyles )
 /*N*/ {
@@ -460,17 +348,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL __EXPORT ScDocShell::Insert( SfxObjectShell &rSource,
-//STRIP001                              USHORT nSourceIdx1, USHORT nSourceIdx2, USHORT nSourceIdx3,
-//STRIP001                              USHORT &nIdx1, USHORT &nIdx2, USHORT &nIdx3, USHORT &rIdxDeleted )
-//STRIP001 {
-//STRIP001  BOOL bRet = SfxObjectShell::Insert( rSource, nSourceIdx1, nSourceIdx2, nSourceIdx3,
-//STRIP001                                          nIdx1, nIdx2, nIdx3, rIdxDeleted );
-//STRIP001  if (bRet)
-//STRIP001      lcl_AdjustPool( GetStyleSheetPool() );      // SetItems anpassen
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ void ScDocShell::UpdateLinks()
 /*N*/ {
@@ -489,17 +366,6 @@ namespace binfilter {
 /*?*/       if (pBase->ISA(ScTableLink))
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTableLink* pTabLink = (ScTableLink*)pBase;
-//STRIP001 /*?*/            if (pTabLink->IsUsed())
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                StrData* pData = new StrData(pTabLink->GetFileName());
-//STRIP001 /*?*/                if (!aNames.Insert(pData))
-//STRIP001 /*?*/                    delete pData;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else        // nicht mehr benutzt -> loeschen
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pTabLink->SetAddUndo(TRUE);
-//STRIP001 /*?*/                pLinkManager->Remove(i);
-//STRIP001 /*?*/            }
 /*?*/       }
 /*N*/   }
 /*N*/

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:07:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:47:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #ifndef _SVDPAGE_HXX //autogen
@@ -46,31 +45,21 @@
 
 
 #include "scitems.hxx"
-// auto strip #include <tools/gen.hxx>
-// auto strip #include <bf_sfx2/interno.hxx>
-// auto strip #include <so3/svstor.hxx>
 #include <svtools/ctrltool.hxx>
 #include <bf_svx/flstitem.hxx>
 #include <bf_svx/drawitem.hxx>
 #include <bf_sfx2/printer.hxx>
-// auto strip #include <svtools/smplhint.hxx>
 #include <bf_svx/svditer.hxx>
-// auto strip #include <bf_svx/svdobj.hxx>
 #include <bf_svx/svdoole2.hxx>
-// auto strip #include <vcl/svapp.hxx>
 #include <bf_offmgr/app.hxx>
 #include <bf_svx/asiancfg.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
-// auto strip #include <bf_svx/unolingu.hxx>
 #include <rtl/logfile.hxx>
 
 
 
 // INCLUDE ---------------------------------------------------------------
 /*
-// auto strip #include <svdrwetc.hxx>
-// auto strip #include <svdrwobx.hxx>
-// auto strip #include <sostor.hxx>
 */
 #include "drwlayer.hxx"
 #include "stlpool.hxx"
@@ -185,11 +174,6 @@ using namespace ::com::sun::star;
 /*?*/               for (sal_Int32 i = 0; i < aLocales.getLength(); i++)
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 i18n::ForbiddenCharacters aForbidden;
-//STRIP001 /*?*/                    aAsian.GetStartEndChars( pLocales[i], aForbidden.beginLine, aForbidden.endLine );
-//STRIP001 /*?*/                    LanguageType eLang = SvxLocaleToLanguage(pLocales[i]);
-//STRIP001 /*?*/                    //pDoc->SetForbiddenCharacters( eLang, aForbidden );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    xForbiddenTable->SetForbiddenCharacters( eLang, aForbidden );
 /*?*/               }
 /*?*/
 /*?*/               aDocument.SetForbiddenCharacters( xForbiddenTable );
@@ -221,14 +205,8 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScDocShell::Activate()
-//STRIP001 {
-//STRIP001 }
 
 
-//STRIP001 void __EXPORT ScDocShell::Deactivate()
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------
 
