@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpobject.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:45:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:18:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -237,45 +237,13 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new ScDPObject(*this)
 /*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc& rDesc)
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pImpDesc && rDesc == *pImpDesc )
-//STRIP001      return;             // nothing to do
-//STRIP001
-//STRIP001  DELETEZ( pSheetDesc );
-//STRIP001  DELETEZ( pServDesc );
-//STRIP001
-//STRIP001  delete pImpDesc;
-//STRIP001  pImpDesc = new ScImportSourceDesc(rDesc);
-//STRIP001
-//STRIP001  InvalidateSource();     // new source must be created
 /*N*/ }
 
 /*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc& rDesc)
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
-//STRIP001      return;             // nothing to do
-//STRIP001
-//STRIP001  DELETEZ( pSheetDesc );
-//STRIP001  DELETEZ( pImpDesc );
-//STRIP001
-//STRIP001  delete pServDesc;
-//STRIP001  pServDesc = new ScDPServiceDesc(rDesc);
-//STRIP001
-//STRIP001  InvalidateSource();     // new source must be created
 /*N*/ }
 
-//STRIP001 void ScDPObject::WriteSourceDataTo( ScDPObject& rDest ) const
-//STRIP001 {
-//STRIP001  if ( pSheetDesc )
-//STRIP001      rDest.SetSheetDesc( *pSheetDesc );
-//STRIP001  else if ( pImpDesc )
-//STRIP001      rDest.SetImportDesc( *pImpDesc );
-//STRIP001  else if ( pServDesc )
-//STRIP001      rDest.SetServiceData( *pServDesc );
-//STRIP001
-//STRIP001  //  name/tag are not source data, but needed along with source data
-//STRIP001
-//STRIP001  rDest.aTableName = aTableName;
-//STRIP001  rDest.aTableTag  = aTableTag;
-//STRIP001 }
 
 /*N*/ BOOL ScDPObject::IsSheetData() const
 /*N*/ {
@@ -292,18 +260,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   aTableTag = rNew;
 /*N*/ }
 
-//STRIP001 uno::Reference<sheet::XDimensionsSupplier> ScDPObject::GetSource()
-//STRIP001 {
-//STRIP001  CreateObjects();
-//STRIP001  return xSource;
-//STRIP001 }
 
-//STRIP001 void ScDPObject::CreateOutput()
-//STRIP001 {
-//STRIP001  CreateObjects();
-//STRIP001  if (!pOutput)
-//STRIP001      pOutput = new ScDPOutput( pDoc, xSource, aOutRange.aStart, IsSheetData() );
-//STRIP001 }
 
 /*N*/ void ScDPObject::CreateObjects()
 /*N*/ {
@@ -318,7 +275,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/       if ( pImpDesc )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDatabaseDPData* pData = new ScDatabaseDPData( pDoc->GetServiceManager(), *pImpDesc );
-//STRIP001 /*?*/            xSource = new ScDPSource( pData );
 /*N*/       }
 /*N*/       else if ( pServDesc )
 /*N*/       {
@@ -373,309 +329,31 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   xSource = NULL;
 /*N*/ }
 
-//STRIP001 ScRange ScDPObject::GetNewOutputRange( BOOL& rOverflow )
-//STRIP001 {
-//STRIP001  CreateOutput();             // create xSource and pOutput if not already done
-//STRIP001
-//STRIP001  rOverflow = pOutput->HasError();        // range overflow or exception from source
-//STRIP001  if ( rOverflow )
-//STRIP001      return ScRange( aOutRange.aStart );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      //  don't store the result in aOutRange, because nothing has been output yet
-//STRIP001      return pOutput->GetOutputRange();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScDPObject::Output()
-//STRIP001 {
-//STRIP001  //  clear old output area
-//STRIP001  pDoc->DeleteAreaTab( aOutRange.aStart.Col(), aOutRange.aStart.Row(),
-//STRIP001                       aOutRange.aEnd.Col(), aOutRange.aEnd.Row(),
-//STRIP001                       aOutRange.aStart.Tab(), IDF_ALL );
-//STRIP001
-//STRIP001  CreateOutput();             // create xSource and pOutput if not already done
-//STRIP001
-//STRIP001  pOutput->Output();
-//STRIP001
-//STRIP001  //  aOutRange is always the range that was last output to the document
-//STRIP001  aOutRange = pOutput->GetOutputRange();
-//STRIP001 }
 
 /*N*/ void ScDPObject::UpdateReference( UpdateRefMode eUpdateRefMode,
 /*N*/                                    const ScRange& rRange, short nDx, short nDy, short nDz )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Output area
-//STRIP001
-//STRIP001  USHORT nCol1 = aOutRange.aStart.Col();
-//STRIP001  USHORT nRow1 = aOutRange.aStart.Row();
-//STRIP001  USHORT nTab1 = aOutRange.aStart.Tab();
-//STRIP001  USHORT nCol2 = aOutRange.aEnd.Col();
-//STRIP001  USHORT nRow2 = aOutRange.aEnd.Row();
-//STRIP001  USHORT nTab2 = aOutRange.aEnd.Tab();
-//STRIP001
-//STRIP001  ScRefUpdateRes eRes =
-//STRIP001      ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001          rRange.aStart.Col(), rRange.aStart.Row(), rRange.aStart.Tab(),
-//STRIP001          rRange.aEnd.Col(), rRange.aEnd.Row(), rRange.aEnd.Tab(), nDx, nDy, nDz,
-//STRIP001          nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001  if ( eRes != UR_NOTHING )
-//STRIP001      SetOutRange( ScRange( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 ) );
-//STRIP001
-//STRIP001  // sheet source data
-//STRIP001
-//STRIP001  if ( pSheetDesc )
-//STRIP001  {
-//STRIP001      nCol1 = pSheetDesc->aSourceRange.aStart.Col();
-//STRIP001      nRow1 = pSheetDesc->aSourceRange.aStart.Row();
-//STRIP001      nTab1 = pSheetDesc->aSourceRange.aStart.Tab();
-//STRIP001      nCol2 = pSheetDesc->aSourceRange.aEnd.Col();
-//STRIP001      nRow2 = pSheetDesc->aSourceRange.aEnd.Row();
-//STRIP001      nTab2 = pSheetDesc->aSourceRange.aEnd.Tab();
-//STRIP001
-//STRIP001      eRes = ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001              rRange.aStart.Col(), rRange.aStart.Row(), rRange.aStart.Tab(),
-//STRIP001              rRange.aEnd.Col(), rRange.aEnd.Row(), rRange.aEnd.Tab(), nDx, nDy, nDz,
-//STRIP001              nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001      if ( eRes != UR_NOTHING )
-//STRIP001      {
-//STRIP001          ScSheetSourceDesc aNewDesc;
-//STRIP001          aNewDesc.aSourceRange = ScRange( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001
-//STRIP001          short nDiffX = nCol1 - (short) pSheetDesc->aSourceRange.aStart.Col();
-//STRIP001          short nDiffY = nRow1 - (short) pSheetDesc->aSourceRange.aStart.Row();
-//STRIP001
-//STRIP001          aNewDesc.aQueryParam = pSheetDesc->aQueryParam;
-//STRIP001          aNewDesc.aQueryParam.nCol1 += nDiffX;
-//STRIP001          aNewDesc.aQueryParam.nCol2 += nDiffX;
-//STRIP001          aNewDesc.aQueryParam.nRow1 += nDiffY;   //! used?
-//STRIP001          aNewDesc.aQueryParam.nRow2 += nDiffY;   //! used?
-//STRIP001          USHORT nEC = aNewDesc.aQueryParam.GetEntryCount();
-//STRIP001          for (USHORT i=0; i<nEC; i++)
-//STRIP001              if (aNewDesc.aQueryParam.GetEntry(i).bDoQuery)
-//STRIP001                  aNewDesc.aQueryParam.GetEntry(i).nField += nDiffX;
-//STRIP001
-//STRIP001          SetSheetDesc( aNewDesc );       // allocates new pSheetDesc
-//STRIP001      }
-//STRIP001  }
 }
 
 /*N*/ BOOL ScDPObject::RefsEqual( const ScDPObject& r ) const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( aOutRange != r.aOutRange )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if ( pSheetDesc && r.pSheetDesc )
-//STRIP001  {
-//STRIP001      if ( pSheetDesc->aSourceRange != r.pSheetDesc->aSourceRange )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  else if ( pSheetDesc || r.pSheetDesc )
-//STRIP001  {
-//STRIP001      DBG_ERROR("RefsEqual: SheetDesc set at only one object");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
 /*N*/ void ScDPObject::WriteRefsTo( ScDPObject& r ) const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   r.SetOutRange( aOutRange );
-//STRIP001  if ( pSheetDesc )
-//STRIP001      r.SetSheetDesc( *pSheetDesc );
 /*N*/ }
 
-//STRIP001 String ScDPObject::GetDimName( long nDim, BOOL& rIsDataLayout )
-//STRIP001 {
-//STRIP001  rIsDataLayout = FALSE;
-//STRIP001  String aRet;
-//STRIP001
-//STRIP001  if ( xSource.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XNameAccess> xDimsName = xSource->getDimensions();
-//STRIP001      uno::Reference<container::XIndexAccess> xDims = new ScNameToIndexAccess( xDimsName );
-//STRIP001      long nDimCount = xDims->getCount();
-//STRIP001      if ( nDim < nDimCount )
-//STRIP001      {
-//STRIP001          uno::Reference<uno::XInterface> xIntDim =
-//STRIP001              ScUnoHelpFunctions::AnyToInterface( xDims->getByIndex(nDim) );
-//STRIP001          uno::Reference<container::XNamed> xDimName( xIntDim, uno::UNO_QUERY );
-//STRIP001          uno::Reference<beans::XPropertySet> xDimProp( xIntDim, uno::UNO_QUERY );
-//STRIP001          if ( xDimName.is() && xDimProp.is() )
-//STRIP001          {
-//STRIP001              BOOL bData = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-//STRIP001                              ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
-//STRIP001              //! error checking -- is "IsDataLayoutDimension" property required??
-//STRIP001
-//STRIP001              ::rtl::OUString aName;
-//STRIP001              try
-//STRIP001              {
-//STRIP001                  aName = xDimName->getName();
-//STRIP001              }
-//STRIP001              catch(uno::Exception&)
-//STRIP001              {
-//STRIP001              }
-//STRIP001              if ( bData )
-//STRIP001                  rIsDataLayout = TRUE;
-//STRIP001              else
-//STRIP001                  aRet = String( aName );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return aRet;
-//STRIP001 }
 
-//STRIP001 void ScDPObject::GetPositionData( ScDPPositionData& rData, const ScAddress& rPos )
-//STRIP001 {
-//STRIP001  CreateOutput();             // create xSource and pOutput if not already done
-//STRIP001
-//STRIP001  pOutput->GetPositionData( rData, rPos );
-//STRIP001 }
 
-//STRIP001 BOOL ScDPObject::IsFilterButton( const ScAddress& rPos )
-//STRIP001 {
-//STRIP001  CreateOutput();             // create xSource and pOutput if not already done
-//STRIP001
-//STRIP001  return pOutput->IsFilterButton( rPos );
-//STRIP001 }
 
-//STRIP001 long ScDPObject::GetHeaderDim( const ScAddress& rPos )
-//STRIP001 {
-//STRIP001  CreateOutput();             // create xSource and pOutput if not already done
-//STRIP001
-//STRIP001  return pOutput->GetHeaderDim( rPos );
-//STRIP001 }
 
-//STRIP001 BOOL ScDPObject::GetHeaderDrag( const ScAddress& rPos, BOOL bMouseLeft, BOOL bMouseTop, long nDragDim,
-//STRIP001                              Rectangle& rPosRect, USHORT& rOrient, long& rDimPos )
-//STRIP001 {
-//STRIP001  CreateOutput();             // create xSource and pOutput if not already done
-//STRIP001
-//STRIP001  return pOutput->GetHeaderDrag( rPos, bMouseLeft, bMouseTop, nDragDim, rPosRect, rOrient, rDimPos );
-//STRIP001 }
 
-//STRIP001 void ScDPObject::ToggleDetails( ScDPPositionData& rElemDesc, ScDPObject* pDestObj )
-//STRIP001 {
-//STRIP001  CreateObjects();            // create xSource if not already done
-//STRIP001
-//STRIP001  //  find dimension name
-//STRIP001
-//STRIP001  uno::Reference<container::XNamed> xDim;
-//STRIP001  uno::Reference<container::XNameAccess> xDimsName = xSource->getDimensions();
-//STRIP001  uno::Reference<container::XIndexAccess> xIntDims = new ScNameToIndexAccess( xDimsName );
-//STRIP001  long nIntCount = xIntDims->getCount();
-//STRIP001  if ( rElemDesc.nDimension < nIntCount )
-//STRIP001  {
-//STRIP001      uno::Reference<uno::XInterface> xIntDim = ScUnoHelpFunctions::AnyToInterface(
-//STRIP001                                  xIntDims->getByIndex(rElemDesc.nDimension) );
-//STRIP001      xDim = uno::Reference<container::XNamed>( xIntDim, uno::UNO_QUERY );
-//STRIP001  }
-//STRIP001  DBG_ASSERT( xDim.is(), "dimension not found" );
-//STRIP001  if ( !xDim.is() ) return;
-//STRIP001  String aDimName = xDim->getName();
-//STRIP001
-//STRIP001  uno::Reference<beans::XPropertySet> xDimProp( xDim, uno::UNO_QUERY );
-//STRIP001  BOOL bDataLayout = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-//STRIP001                      ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
-//STRIP001  if (bDataLayout)
-//STRIP001  {
-//STRIP001      //  the elements of the data layout dimension can't be found by their names
-//STRIP001      //  -> don't change anything
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  //  query old state
-//STRIP001
-//STRIP001  long nHierCount = 0;
-//STRIP001  uno::Reference<container::XIndexAccess> xHiers;
-//STRIP001  uno::Reference<sheet::XHierarchiesSupplier> xHierSupp( xDim, uno::UNO_QUERY );
-//STRIP001  if ( xHierSupp.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XNameAccess> xHiersName = xHierSupp->getHierarchies();
-//STRIP001      xHiers = new ScNameToIndexAccess( xHiersName );
-//STRIP001      nHierCount = xHiers->getCount();
-//STRIP001  }
-//STRIP001  uno::Reference<uno::XInterface> xHier;
-//STRIP001  if ( rElemDesc.nHierarchy < nHierCount )
-//STRIP001      xHier = ScUnoHelpFunctions::AnyToInterface( xHiers->getByIndex(rElemDesc.nHierarchy) );
-//STRIP001  DBG_ASSERT( xHier.is(), "hierarchy not found" );
-//STRIP001  if ( !xHier.is() ) return;
-//STRIP001
-//STRIP001  long nLevCount = 0;
-//STRIP001  uno::Reference<container::XIndexAccess> xLevels;
-//STRIP001  uno::Reference<sheet::XLevelsSupplier> xLevSupp( xHier, uno::UNO_QUERY );
-//STRIP001  if ( xLevSupp.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XNameAccess> xLevsName = xLevSupp->getLevels();
-//STRIP001      xLevels = new ScNameToIndexAccess( xLevsName );
-//STRIP001      nLevCount = xLevels->getCount();
-//STRIP001  }
-//STRIP001  uno::Reference<uno::XInterface> xLevel;
-//STRIP001  if ( rElemDesc.nLevel < nLevCount )
-//STRIP001      xLevel = ScUnoHelpFunctions::AnyToInterface( xLevels->getByIndex(rElemDesc.nLevel) );
-//STRIP001  DBG_ASSERT( xLevel.is(), "level not found" );
-//STRIP001  if ( !xLevel.is() ) return;
-//STRIP001
-//STRIP001  uno::Reference<container::XNameAccess> xMembers;
-//STRIP001  uno::Reference<sheet::XMembersSupplier> xMbrSupp( xLevel, uno::UNO_QUERY );
-//STRIP001  if ( xMbrSupp.is() )
-//STRIP001      xMembers = xMbrSupp->getMembers();
-//STRIP001
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  BOOL bShowDetails = TRUE;
-//STRIP001
-//STRIP001  if ( xMembers.is() )
-//STRIP001  {
-//STRIP001      ::rtl::OUString aName = rElemDesc.aMemberName;
-//STRIP001      if ( xMembers->hasByName( aName ) )
-//STRIP001      {
-//STRIP001          uno::Reference<uno::XInterface> xMemberInt = ScUnoHelpFunctions::AnyToInterface(
-//STRIP001                                          xMembers->getByName( aName ) );
-//STRIP001          uno::Reference<beans::XPropertySet> xMbrProp( xMemberInt, uno::UNO_QUERY );
-//STRIP001          if ( xMbrProp.is() )
-//STRIP001          {
-//STRIP001              bShowDetails = ScUnoHelpFunctions::GetBoolProperty( xMbrProp,
-//STRIP001                                  ::rtl::OUString::createFromAscii(DP_PROP_SHOWDETAILS) );
-//STRIP001              //! don't set bFound if property is unknown?
-//STRIP001              bFound = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  DBG_ASSERT( bFound, "member not found" );
-//STRIP001
-//STRIP001  //! use Hierarchy and Level in SaveData !!!!
-//STRIP001
-//STRIP001  //  modify pDestObj if set, this object otherwise
-//STRIP001  ScDPSaveData* pModifyData = pDestObj ? ( pDestObj->pSaveData ) : pSaveData;
-//STRIP001  DBG_ASSERT( pModifyData, "no data?" );
-//STRIP001  if ( pModifyData )
-//STRIP001  {
-//STRIP001      pModifyData->GetDimensionByName(aDimName)->
-//STRIP001          GetMemberByName(rElemDesc.aMemberName)->SetShowDetails( !bShowDetails );    // toggle
-//STRIP001
-//STRIP001      if ( pDestObj )
-//STRIP001          pDestObj->InvalidateData();     // re-init source from SaveData
-//STRIP001      else
-//STRIP001          InvalidateData();               // re-init source from SaveData
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 long lcl_FindName( const ::rtl::OUString& rString, const uno::Reference<container::XNameAccess>& xCollection )
-//STRIP001 {
-//STRIP001  if ( xCollection.is() )
-//STRIP001  {
-//STRIP001      uno::Sequence<rtl::OUString> aSeq = xCollection->getElementNames();
-//STRIP001      long nCount = aSeq.getLength();
-//STRIP001      const ::rtl::OUString* pArr = aSeq.getConstArray();
-//STRIP001      for (long nPos=0; nPos<nCount; nPos++)
-//STRIP001          if ( pArr[nPos] == rString )
-//STRIP001              return nPos;
-//STRIP001  }
-//STRIP001  return -1;      // not found
-//STRIP001 }
 
 /*N*/ USHORT lcl_FirstSubTotal( const uno::Reference<beans::XPropertySet>& xDimProp )       // PIVOT_FUNC mask
 /*N*/ {
@@ -1130,134 +808,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   r.SetOutRange( aOutRange );
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 BOOL lcl_ShowEmptyFromDim( const uno::Reference<beans::XPropertySet>& xDimProp )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001  uno::Reference<sheet::XHierarchiesSupplier> xDimSupp( xDimProp, uno::UNO_QUERY );
-//STRIP001  if ( xDimProp.is() && xDimSupp.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XIndexAccess> xHiers = new ScNameToIndexAccess( xDimSupp->getHierarchies() );
-//STRIP001      long nHierarchy = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-//STRIP001                              ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
-//STRIP001      if ( nHierarchy >= xHiers->getCount() )
-//STRIP001          nHierarchy = 0;
-//STRIP001
-//STRIP001      uno::Reference<uno::XInterface> xHier = ScUnoHelpFunctions::AnyToInterface(
-//STRIP001                                  xHiers->getByIndex(nHierarchy) );
-//STRIP001      uno::Reference<sheet::XLevelsSupplier> xHierSupp( xHier, uno::UNO_QUERY );
-//STRIP001      if ( xHierSupp.is() )
-//STRIP001      {
-//STRIP001          uno::Reference<container::XIndexAccess> xLevels = new ScNameToIndexAccess( xHierSupp->getLevels() );
-//STRIP001          uno::Reference<uno::XInterface> xLevel =
-//STRIP001              ScUnoHelpFunctions::AnyToInterface( xLevels->getByIndex( 0 ) );
-//STRIP001          uno::Reference<beans::XPropertySet> xLevProp( xLevel, uno::UNO_QUERY );
-//STRIP001          if ( xLevProp.is() )
-//STRIP001              bRet = ScUnoHelpFunctions::GetBoolProperty( xLevProp,
-//STRIP001                                  ::rtl::OUString::createFromAscii(DP_PROP_SHOWEMPTY) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 BOOL ScDPObject::FillLabelData(ScPivotParam& rParam, BOOL* pShowAll, USHORT nShowAllMax) const
-//STRIP001 {
-//STRIP001  ((ScDPObject*)this)->CreateObjects();
-//STRIP001
-//STRIP001  uno::Reference<container::XNameAccess> xDimsName = xSource->getDimensions();
-//STRIP001  uno::Reference<container::XIndexAccess> xDims = new ScNameToIndexAccess( xDimsName );
-//STRIP001  long nDimCount = xDims->getCount();
-//STRIP001  if ( nDimCount > MAX_LABELS )
-//STRIP001      nDimCount = MAX_LABELS;
-//STRIP001  if (!nDimCount)
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  USHORT nOutCount = 0;
-//STRIP001  LabelData** aLabelArr = new LabelData*[nDimCount];
-//STRIP001  for (long nDim=0; nDim < nDimCount; nDim++)
-//STRIP001  {
-//STRIP001      String aFieldName;
-//STRIP001      uno::Reference<uno::XInterface> xIntDim =
-//STRIP001          ScUnoHelpFunctions::AnyToInterface( xDims->getByIndex(nDim) );
-//STRIP001      uno::Reference<container::XNamed> xDimName( xIntDim, uno::UNO_QUERY );
-//STRIP001      uno::Reference<beans::XPropertySet> xDimProp( xIntDim, uno::UNO_QUERY );
-//STRIP001
-//STRIP001      if ( xDimName.is() && xDimProp.is() )
-//STRIP001      {
-//STRIP001          BOOL bDuplicated = FALSE;
-//STRIP001          BOOL bData = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-//STRIP001                          ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
-//STRIP001          //! error checking -- is "IsDataLayoutDimension" property required??
-//STRIP001
-//STRIP001          try
-//STRIP001          {
-//STRIP001              aFieldName = String( xDimName->getName() );
-//STRIP001
-//STRIP001              uno::Any aOrigAny = xDimProp->getPropertyValue(
-//STRIP001                          ::rtl::OUString::createFromAscii(DP_PROP_ORIGINAL) );
-//STRIP001              uno::Reference<uno::XInterface> xIntOrig;
-//STRIP001              if ( (aOrigAny >>= xIntOrig) && xIntOrig.is() )
-//STRIP001                  bDuplicated = TRUE;
-//STRIP001          }
-//STRIP001          catch(uno::Exception&)
-//STRIP001          {
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( aFieldName.Len() && !bData && !bDuplicated )
-//STRIP001          {
-//STRIP001              BOOL bIsValue = TRUE;       //! check
-//STRIP001              USHORT nCol = nDim;         //! ???
-//STRIP001
-//STRIP001              aLabelArr[nOutCount] = new LabelData( aFieldName, nCol, bIsValue );
-//STRIP001              if ( pShowAll && nOutCount < nShowAllMax )
-//STRIP001                  pShowAll[nOutCount] = lcl_ShowEmptyFromDim( xDimProp );
-//STRIP001
-//STRIP001              ++nOutCount;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  rParam.SetLabelData( aLabelArr, nOutCount );
-//STRIP001
-//STRIP001  for (USHORT i=0; i<nOutCount; i++)
-//STRIP001      delete aLabelArr[i];
-//STRIP001  delete[] aLabelArr;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 //------------------------------------------------------------------------
 //  convert old pivot tables into new datapilot tables
 
-//STRIP001 String lcl_GetDimName( const uno::Reference<sheet::XDimensionsSupplier>& xSource, long nDim )
-//STRIP001 {
-//STRIP001  ::rtl::OUString aName;
-//STRIP001  if ( xSource.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XNameAccess> xDimsName = xSource->getDimensions();
-//STRIP001      uno::Reference<container::XIndexAccess> xDims = new ScNameToIndexAccess( xDimsName );
-//STRIP001      long nDimCount = xDims->getCount();
-//STRIP001      if ( nDim < nDimCount )
-//STRIP001      {
-//STRIP001          uno::Reference<uno::XInterface> xIntDim =
-//STRIP001              ScUnoHelpFunctions::AnyToInterface( xDims->getByIndex(nDim) );
-//STRIP001          uno::Reference<container::XNamed> xDimName( xIntDim, uno::UNO_QUERY );
-//STRIP001          if (xDimName.is())
-//STRIP001          {
-//STRIP001              try
-//STRIP001              {
-//STRIP001                  aName = xDimName->getName();
-//STRIP001              }
-//STRIP001              catch(uno::Exception&)
-//STRIP001              {
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return aName;
-//STRIP001 }
 
 // static
 /*N*/ void ScDPObject::ConvertOrientation( ScDPSaveData& rSaveData,
@@ -1405,122 +961,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   r.SetOutRange( aOutRange );
 // -----------------------------------------------------------------------
 
 //  static
-//STRIP001 BOOL ScDPObject::HasRegisteredSources()
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001
-//STRIP001  uno::Reference<lang::XMultiServiceFactory> xManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001  uno::Reference<container::XContentEnumerationAccess> xEnAc( xManager, uno::UNO_QUERY );
-//STRIP001  if ( xEnAc.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XEnumeration> xEnum = xEnAc->createContentEnumeration(
-//STRIP001                                      ::rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
-//STRIP001      if ( xEnum.is() && xEnum->hasMoreElements() )
-//STRIP001          bFound = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
 //  static
-//STRIP001 uno::Sequence<rtl::OUString> ScDPObject::GetRegisteredSources()
-//STRIP001 {
-//STRIP001  long nCount = 0;
-//STRIP001  uno::Sequence<rtl::OUString> aSeq(0);
-//STRIP001
-//STRIP001  //  use implementation names...
-//STRIP001
-//STRIP001  uno::Reference<lang::XMultiServiceFactory> xManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001  uno::Reference<container::XContentEnumerationAccess> xEnAc( xManager, uno::UNO_QUERY );
-//STRIP001  if ( xEnAc.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XEnumeration> xEnum = xEnAc->createContentEnumeration(
-//STRIP001                                      ::rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
-//STRIP001      if ( xEnum.is() )
-//STRIP001      {
-//STRIP001          while ( xEnum->hasMoreElements() )
-//STRIP001          {
-//STRIP001              uno::Any aAddInAny = xEnum->nextElement();
-//STRIP001 //               if ( aAddInAny.getReflection()->getTypeClass() == TypeClass_INTERFACE )
-//STRIP001              {
-//STRIP001                  uno::Reference<uno::XInterface> xIntFac;
-//STRIP001                  aAddInAny >>= xIntFac;
-//STRIP001                  if ( xIntFac.is() )
-//STRIP001                  {
-//STRIP001                      uno::Reference<lang::XServiceInfo> xInfo( xIntFac, uno::UNO_QUERY );
-//STRIP001                      if ( xInfo.is() )
-//STRIP001                      {
-//STRIP001                          ::rtl::OUString sName = xInfo->getImplementationName();
-//STRIP001
-//STRIP001                          aSeq.realloc( nCount+1 );
-//STRIP001                          aSeq.getArray()[nCount] = sName;
-//STRIP001                          ++nCount;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return aSeq;
-//STRIP001 }
 
 //  static
-//STRIP001 uno::Reference<sheet::XDimensionsSupplier> ScDPObject::CreateSource( const ScDPServiceDesc& rDesc )
-//STRIP001 {
-//STRIP001  ::rtl::OUString aImplName = rDesc.aServiceName;
-//STRIP001  uno::Reference<sheet::XDimensionsSupplier> xRet = NULL;
-//STRIP001
-//STRIP001  uno::Reference<lang::XMultiServiceFactory> xManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001  uno::Reference<container::XContentEnumerationAccess> xEnAc( xManager, uno::UNO_QUERY );
-//STRIP001  if ( xEnAc.is() )
-//STRIP001  {
-//STRIP001      uno::Reference<container::XEnumeration> xEnum = xEnAc->createContentEnumeration(
-//STRIP001                                      ::rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
-//STRIP001      if ( xEnum.is() )
-//STRIP001      {
-//STRIP001          while ( xEnum->hasMoreElements() && !xRet.is() )
-//STRIP001          {
-//STRIP001              uno::Any aAddInAny = xEnum->nextElement();
-//STRIP001 //               if ( aAddInAny.getReflection()->getTypeClass() == TypeClass_INTERFACE )
-//STRIP001              {
-//STRIP001                  uno::Reference<uno::XInterface> xIntFac;
-//STRIP001                  aAddInAny >>= xIntFac;
-//STRIP001                  if ( xIntFac.is() )
-//STRIP001                  {
-//STRIP001                      uno::Reference<lang::XServiceInfo> xInfo( xIntFac, uno::UNO_QUERY );
-//STRIP001                      uno::Reference<lang::XSingleServiceFactory> xFac( xIntFac, uno::UNO_QUERY );
-//STRIP001                      if ( xFac.is() && xInfo.is() && xInfo->getImplementationName() == aImplName )
-//STRIP001                      {
-//STRIP001                          try
-//STRIP001                          {
-//STRIP001                              uno::Reference<uno::XInterface> xInterface = xFac->createInstance();
-//STRIP001                              uno::Reference<lang::XInitialization> xInit( xInterface, uno::UNO_QUERY );
-//STRIP001                              if (xInit.is())
-//STRIP001                              {
-//STRIP001                                  //  initialize
-//STRIP001                                  uno::Sequence<uno::Any> aSeq(4);
-//STRIP001                                  uno::Any* pArray = aSeq.getArray();
-//STRIP001                                  pArray[0] <<= ::rtl::OUString( rDesc.aParSource );
-//STRIP001                                  pArray[1] <<= ::rtl::OUString( rDesc.aParName );
-//STRIP001                                  pArray[2] <<= ::rtl::OUString( rDesc.aParUser );
-//STRIP001                                  pArray[3] <<= ::rtl::OUString( rDesc.aParPass );
-//STRIP001                                  xInit->initialize( aSeq );
-//STRIP001                              }
-//STRIP001                              xRet = uno::Reference<sheet::XDimensionsSupplier>( xInterface, uno::UNO_QUERY );
-//STRIP001                          }
-//STRIP001                          catch(uno::Exception&)
-//STRIP001                          {
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return xRet;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
