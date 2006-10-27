@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rangenam.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:15:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:37:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -49,13 +48,9 @@
 #endif
 
 #include "rangenam.hxx"
-// auto strip #include "global.hxx"
 #include "compiler.hxx"
-// auto strip #include "rangeutl.hxx"
 #include "rechead.hxx"
-// auto strip #include "refupdat.hxx"
 #include "document.hxx"
-// auto strip #include "indexmap.hxx"
 namespace binfilter {
 
 
@@ -248,47 +243,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 void ScRangeData::GuessPosition()
-//STRIP001 {
-//STRIP001  //  setzt eine Position, mit der alle relative Referenzen bei CalcAbsIfRel
-//STRIP001  //  ohne Fehler verabsolutiert werden koennen
-//STRIP001
-//STRIP001  DBG_ASSERT(aPos == ScAddress(), "die Position geht jetzt verloren");
-//STRIP001
-//STRIP001  INT16 nMinCol = 0;
-//STRIP001  INT16 nMinRow = 0;
-//STRIP001  INT16 nMinTab = 0;
-//STRIP001
-//STRIP001  ScToken* t;
-//STRIP001  pCode->Reset();
-//STRIP001  while ( t = pCode->GetNextReference() )
-//STRIP001  {
-//STRIP001      SingleRefData& rRef1 = t->GetSingleRef();
-//STRIP001      if ( rRef1.IsColRel() && rRef1.nRelCol < nMinCol )
-//STRIP001          nMinCol = rRef1.nRelCol;
-//STRIP001      if ( rRef1.IsRowRel() && rRef1.nRelRow < nMinRow )
-//STRIP001          nMinRow = rRef1.nRelRow;
-//STRIP001      if ( rRef1.IsTabRel() && rRef1.nRelTab < nMinTab )
-//STRIP001          nMinTab = rRef1.nRelTab;
-//STRIP001
-//STRIP001      if ( t->GetType() == svDoubleRef )
-//STRIP001      {
-//STRIP001          SingleRefData& rRef2 = t->GetDoubleRef().Ref2;
-//STRIP001          if ( rRef2.IsColRel() && rRef2.nRelCol < nMinCol )
-//STRIP001              nMinCol = rRef2.nRelCol;
-//STRIP001          if ( rRef2.IsRowRel() && rRef2.nRelRow < nMinRow )
-//STRIP001              nMinRow = rRef2.nRelRow;
-//STRIP001          if ( rRef2.IsTabRel() && rRef2.nRelTab < nMinTab )
-//STRIP001              nMinTab = rRef2.nRelTab;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  aPos = ScAddress( (USHORT)(-nMinCol), (USHORT)(-nMinRow), (USHORT)(-nMinTab) );
-//STRIP001
-//STRIP001  //! Test
-//STRIP001 //   DBG_ERROR(String("Pos ")+String((USHORT)(-nMinCol))+String("/")+
-//STRIP001 //           String((USHORT)(-nMinRow))+String("/")+String((USHORT)(-nMinTab)));
-//STRIP001 }
 
 /*N*/ void ScRangeData::GetSymbol   (String& rSymbol) const
 /*N*/ {
@@ -354,104 +308,10 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void ScRangeData::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest )
-//STRIP001 {
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001
-//STRIP001  ScToken* t;
-//STRIP001  pCode->Reset();
-//STRIP001
-//STRIP001  for( t = pCode->GetNextReference(); t; t = pCode->GetNextReference() )
-//STRIP001  {
-//STRIP001      if( t->GetType() != svIndex )
-//STRIP001      {
-//STRIP001          SingleDoubleRefModifier aMod( *t );
-//STRIP001          ComplRefData& rRef = aMod.Ref();
-//STRIP001          if (!rRef.Ref1.IsColRel() && !rRef.Ref1.IsRowRel() &&
-//STRIP001                  (!rRef.Ref1.IsFlag3D() || !rRef.Ref1.IsTabRel()) &&
-//STRIP001              ( t->GetType() == svSingleRef ||
-//STRIP001              (!rRef.Ref2.IsColRel() && !rRef.Ref2.IsRowRel() &&
-//STRIP001                  (!rRef.Ref2.IsFlag3D() || !rRef.Ref2.IsTabRel()))))
-//STRIP001          {
-//STRIP001              if ( ScRefUpdate::UpdateTranspose( pDoc, rSource, rDest, rRef ) != UR_NOTHING )
-//STRIP001                  bChanged = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  bModified = bChanged;
-//STRIP001 }
 
-//STRIP001 void ScRangeData::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY )
-//STRIP001 {
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001
-//STRIP001  ScToken* t;
-//STRIP001  pCode->Reset();
-//STRIP001
-//STRIP001  for( t = pCode->GetNextReference(); t; t = pCode->GetNextReference() )
-//STRIP001  {
-//STRIP001      if( t->GetType() != svIndex )
-//STRIP001      {
-//STRIP001          SingleDoubleRefModifier aMod( *t );
-//STRIP001          ComplRefData& rRef = aMod.Ref();
-//STRIP001          if (!rRef.Ref1.IsColRel() && !rRef.Ref1.IsRowRel() &&
-//STRIP001                  (!rRef.Ref1.IsFlag3D() || !rRef.Ref1.IsTabRel()) &&
-//STRIP001              ( t->GetType() == svSingleRef ||
-//STRIP001              (!rRef.Ref2.IsColRel() && !rRef.Ref2.IsRowRel() &&
-//STRIP001                  (!rRef.Ref2.IsFlag3D() || !rRef.Ref2.IsTabRel()))))
-//STRIP001          {
-//STRIP001              if ( ScRefUpdate::UpdateGrow( rArea,nGrowX,nGrowY, rRef ) != UR_NOTHING )
-//STRIP001                  bChanged = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  bModified = bChanged;           // muss direkt hinterher ausgewertet werden
-//STRIP001 }
 
-//STRIP001 BOOL ScRangeData::operator== (const ScRangeData& rData) const        // fuer Undo
-//STRIP001 {
-//STRIP001  if ( nIndex != rData.nIndex ||
-//STRIP001       aName  != rData.aName  ||
-//STRIP001       aPos   != rData.aPos   ||
-//STRIP001       eType  != rData.eType     ) return FALSE;
-//STRIP001
-//STRIP001  USHORT nLen = pCode->GetLen();
-//STRIP001  if ( nLen != rData.pCode->GetLen() ) return FALSE;
-//STRIP001
-//STRIP001  ScToken** ppThis = pCode->GetArray();
-//STRIP001  ScToken** ppOther = rData.pCode->GetArray();
-//STRIP001
-//STRIP001  for ( USHORT i=0; i<nLen; i++ )
-//STRIP001      if ( ppThis[i] != ppOther[i] && !(*ppThis[i] == *ppOther[i]) )
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL ScRangeData::IsRangeAtCursor( const ScAddress& rPos, BOOL bStartOnly ) const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  ScRange aRange;
-//STRIP001  if ( IsReference(aRange) )
-//STRIP001  {
-//STRIP001      if ( bStartOnly )
-//STRIP001          bRet = ( rPos == aRange.aStart );
-//STRIP001      else
-//STRIP001          bRet = ( aRange.In( rPos ) );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 BOOL ScRangeData::IsRangeAtBlock( const ScRange& rBlock ) const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  ScRange aRange;
-//STRIP001  if ( IsReference(aRange) )
-//STRIP001      bRet = ( rBlock == aRange );
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ BOOL ScRangeData::IsReference( ScRange& rRange ) const
 /*N*/ {
@@ -463,42 +323,6 @@ namespace binfilter {
 /*N*/   return bIs;
 /*N*/ }
 
-//STRIP001 void ScRangeData::UpdateTabRef(USHORT nOldTable, USHORT nFlag, USHORT nNewTable)
-//STRIP001 {
-//STRIP001  pCode->Reset();
-//STRIP001  if( pCode->GetNextReference() )
-//STRIP001  {
-//STRIP001      ScRangeData* pRangeData;        // darf nicht dereferenziert werden!!
-//STRIP001      BOOL bChanged;
-//STRIP001      ScCompiler aComp( pDoc, aPos, *pCode );
-//STRIP001      switch (nFlag)
-//STRIP001      {
-//STRIP001          case 1:                                     // einfache InsertTab (doc.cxx)
-//STRIP001              pRangeData = aComp.UpdateInsertTab(nOldTable, TRUE );   // und CopyTab (doc2.cxx)
-//STRIP001              break;
-//STRIP001          case 2:                                     // einfaches delete (doc.cxx)
-//STRIP001              pRangeData = aComp.UpdateDeleteTab(nOldTable, FALSE, TRUE, bChanged);
-//STRIP001              break;
-//STRIP001          case 3:                                     // move (doc2.cxx)
-//STRIP001          {
-//STRIP001              pRangeData = aComp.UpdateMoveTab(nOldTable, nNewTable, TRUE );
-//STRIP001          }
-//STRIP001              break;
-//STRIP001          default:
-//STRIP001          {
-//STRIP001              DBG_ERROR("ScRangeName::UpdateTabRef: Unknown Flag");
-//STRIP001          }
-//STRIP001              break;
-//STRIP001      }
-//STRIP001      if (eType&RT_SHARED)
-//STRIP001      {
-//STRIP001          if (pRangeData)
-//STRIP001              eType = eType | RT_SHAREDMOD;
-//STRIP001          else
-//STRIP001              eType = eType & ~RT_SHAREDMOD;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //  wie beim Uebernehmen von Namen in Excel
 
@@ -551,32 +375,6 @@ namespace binfilter {
 /*N*/   } while ( !bOk );
 /*N*/ }
 
-//STRIP001 BOOL ScRangeData::IsNameValid( const String& rName, ScDocument* pDoc )
-//STRIP001 {
-//STRIP001     /*  If changed, ScfTools::ConvertToScDefinedName (sc/source/filter/ftools/ftools.cxx)
-//STRIP001         needs to be changed too. */
-//STRIP001  xub_StrLen nPos = 0;
-//STRIP001  xub_StrLen nLen = rName.Len();
-//STRIP001  if ( !nLen || !ScCompiler::IsCharWordChar( rName.GetChar(nPos++) ) )
-//STRIP001      return FALSE;
-//STRIP001  while ( nPos < nLen )
-//STRIP001  {
-//STRIP001      if ( !ScCompiler::IsWordChar( rName.GetChar(nPos++) ) )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  // Parse nicht auf VALID pruefen, es reicht, wenn irgendein Bestandteil
-//STRIP001  // erkannt wurde
-//STRIP001  ScRange aRange;
-//STRIP001  if( aRange.Parse( rName, pDoc ) )
-//STRIP001      return FALSE;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ScAddress aAddr;
-//STRIP001      if ( aAddr.Parse( rName, pDoc ) )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ USHORT ScRangeData::GetErrCode()
@@ -593,30 +391,6 @@ namespace binfilter {
 // bei TransferTab von einem in ein anderes Dokument anpassen,
 // um Referenzen auf die eigene Tabelle mitzubekommen
 
-//STRIP001 void ScRangeData::TransferTabRef( USHORT nOldTab, USHORT nNewTab )
-//STRIP001 {
-//STRIP001  short nTabDiff = nNewTab - nOldTab;
-//STRIP001  short nPosDiff = nNewTab - aPos.Tab();
-//STRIP001  aPos.SetTab( nNewTab );
-//STRIP001  ScToken* t;
-//STRIP001  pCode->Reset();
-//STRIP001  while ( t = pCode->GetNextReference() )
-//STRIP001  {
-//STRIP001      SingleRefData& rRef1 = t->GetSingleRef();
-//STRIP001      if ( rRef1.IsTabRel() )
-//STRIP001          rRef1.nTab += nPosDiff;
-//STRIP001      else
-//STRIP001          rRef1.nTab += nTabDiff;
-//STRIP001      if ( t->GetType() == svDoubleRef )
-//STRIP001      {
-//STRIP001          SingleRefData& rRef2 = t->GetDoubleRef().Ref2;
-//STRIP001          if ( rRef2.IsTabRel() )
-//STRIP001              rRef2.nTab += nPosDiff;
-//STRIP001          else
-//STRIP001              rRef2.nTab += nTabDiff;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void ScRangeData::ReplaceRangeNamesInUse( const ScIndexMap& rMap )
@@ -627,12 +401,6 @@ namespace binfilter {
 /*N*/       if ( p->GetOpCode() == ocName )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nIndex = p->GetIndex();
-//STRIP001 /*?*/            USHORT nNewIndex = rMap.Find( nIndex );
-//STRIP001 /*?*/            if ( nIndex != nNewIndex )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                p->SetIndex( nNewIndex );
-//STRIP001 /*?*/                bCompile = TRUE;
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 /*N*/   if ( bCompile )
@@ -824,22 +592,8 @@ namespace binfilter {
 /*N*/                                                  nDx, nDy, nDz);
 /*N*/ }
 
-//STRIP001 void ScRangeName::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest )
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      ((ScRangeData*)pItems[i])->UpdateTranspose( rSource, rDest );
-//STRIP001 }
 
-//STRIP001 void ScRangeName::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY )
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      ((ScRangeData*)pItems[i])->UpdateGrow( rArea, nGrowX, nGrowY );
-//STRIP001 }
 
-//STRIP001 BOOL ScRangeName::IsEqual(DataObject* pKey1, DataObject* pKey2) const
-//STRIP001 {
-//STRIP001  return *(ScRangeData*)pKey1 == *(ScRangeData*)pKey2;
-//STRIP001 }
 
 /*N*/ BOOL ScRangeName::Insert(DataObject* pDataObject)
 /*N*/ {
@@ -877,27 +631,7 @@ namespace binfilter {
 /*N*/       return NULL;
 /*N*/ }
 
-//STRIP001 ScRangeData* ScRangeName::GetRangeAtCursor( const ScAddress& rPos, BOOL bStartOnly ) const
-//STRIP001 {
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      for ( USHORT i = 0; i < nCount; i++ )
-//STRIP001          if ( ((ScRangeData*)pItems[i])->IsRangeAtCursor( rPos, bStartOnly ) )
-//STRIP001              return (ScRangeData*)pItems[i];
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
-//STRIP001 ScRangeData* ScRangeName::GetRangeAtBlock( const ScRange& rBlock ) const
-//STRIP001 {
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      for ( USHORT i = 0; i < nCount; i++ )
-//STRIP001          if ( ((ScRangeData*)pItems[i])->IsRangeAtBlock( rBlock ) )
-//STRIP001              return (ScRangeData*)pItems[i];
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*N*/ void ScRangeName::UpdateTabRef(USHORT nOldTable, USHORT nFlag, USHORT nNewTable)
 /*N*/ {
