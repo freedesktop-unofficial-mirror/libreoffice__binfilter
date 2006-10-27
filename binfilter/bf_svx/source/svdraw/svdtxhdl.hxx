@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdtxhdl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:50:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:35:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,13 +40,7 @@
 #include <vcl/virdev.hxx>
 #endif
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _LINK_HXX //autogen
-// auto strip #include <tools/link.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //************************************************************
@@ -101,15 +95,11 @@ private:
 public:
     ImpTextPortionHandler(SdrOutliner& rOutln, const SdrTextObj& rTxtObj);
 
-//STRIP001  void ConvertToPathObj(SdrObjGroup& rGroup, FASTBOOL bToPoly);
-//STRIP001  void DrawFitText(ExtOutputDevice& rXOut, const Point& rPos, const Fraction& rXFact);
     void DrawTextToPath(ExtOutputDevice& rXOut, FASTBOOL bDrawEffect=TRUE);
 
     // wird von DrawTextToPath() gesetzt:
     const Rectangle& GetFormTextBoundRect() { return aFormTextBoundRect; }
 
-//STRIP001  DECL_LINK(ConvertHdl,DrawPortionInfo*);
-//STRIP001  DECL_LINK(FitTextDrawHdl,DrawPortionInfo*);
 
     // #101498#
     DECL_LINK(FormTextRecordPortionHdl, DrawPortionInfo*);
