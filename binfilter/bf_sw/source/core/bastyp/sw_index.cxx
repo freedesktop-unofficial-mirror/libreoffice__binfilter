@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_index.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:19:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:15:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,30 +66,6 @@ int SwIndex::nSerial = 0;
 #define ARR_CHK_ARRAY       ChhkArr();
 
 
-//STRIP001 void SwIndexReg::ChkArr()
-//STRIP001 {
-//STRIP001  ASSERT( (pFirst && pLast) || (!pFirst && !pLast),
-//STRIP001          "Array falsch Indiziert" );
-//STRIP001
-//STRIP001  if( !pFirst )
-//STRIP001      return;
-//STRIP001
-//STRIP001  xub_StrLen nVal = 0;
-//STRIP001  const SwIndex* pIdx = pFirst, *pPrev = 0;
-//STRIP001  ASSERT( !pIdx->pPrev, "Array-pFirst nicht am Anfang" );
-//STRIP001
-//STRIP001  while( pIdx != pLast )
-//STRIP001  {
-//STRIP001      ASSERT( pIdx->pPrev != pIdx && pIdx->pNext != pIdx,
-//STRIP001              "Index zeigt auf sich selbst" )
-//STRIP001
-//STRIP001      ASSERT( pIdx->nIndex >= nVal, "Reihenfolge stimmt nicht" );
-//STRIP001      ASSERT( pPrev == pIdx->pPrev, "Verkettung stimmt nicht" );
-//STRIP001      pPrev = pIdx;
-//STRIP001      pIdx = pIdx->pNext;
-//STRIP001      nVal = pPrev->nIndex;
-//STRIP001  }
-//STRIP001 }
 
 #else                                   // CHK
 
@@ -137,16 +113,6 @@ int SwIndex::nSerial = 0;
 /*N*/ }
 
 
-//STRIP001 SwIndex::SwIndex( const SwIndex& rIdx, short nIdx )
-//STRIP001  : pArray( rIdx.pArray ), pNext( 0 ), pPrev( 0 )
-//STRIP001 {
-//STRIP001  ChgValue( rIdx, rIdx.nIndex + nIdx );
-//STRIP001
-//STRIP001 #ifndef PRODUCT
-//STRIP001  MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
-//STRIP001 #endif
-//STRIP001 IDX_CHK_ARRAY
-//STRIP001 }
 
 
 /*N*/ SwIndex::SwIndex( const SwIndex& rIdx )
@@ -431,24 +397,11 @@ int SwIndex::nSerial = 0;
 
 
 xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
-//STRIP001 {
-//STRIP001  ASSERT_ID( nIndex < INVALID_INDEX, ERR_OUTOFSCOPE );
-//STRIP001
-//STRIP001  xub_StrLen nOldIndex = nIndex;
-//STRIP001  ChgValue( *this, nIndex+1 );
-//STRIP001  return nOldIndex;
-//STRIP001 }
 
 #endif
 
 
 xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
-//STRIP001 {
-//STRIP001  ASSERT_ID( nIndex < INVALID_INDEX, ERR_OUTOFSCOPE );
-//STRIP001
-//STRIP001  ChgValue( *this, nIndex+1 );
-//STRIP001  return nIndex;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -475,11 +428,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP0
 #endif
 
 
-//STRIP001 xub_StrLen SwIndex::operator--()
-//STRIP001 {
-//STRIP001  ASSERT_ID( nIndex, ERR_OUTOFSCOPE );
-//STRIP001  return ChgValue( *this, nIndex-1 ).nIndex;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -509,11 +457,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP0
 *************************************************************************/
 
 
-//STRIP001 xub_StrLen SwIndex::operator-=( xub_StrLen nWert )
-//STRIP001 {
-//STRIP001  ASSERT_ID( nIndex >= nWert, ERR_OUTOFSCOPE );
-//STRIP001  return ChgValue( *this, nIndex - nWert ).nIndex;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -544,11 +487,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP0
 *************************************************************************/
 
 
-//STRIP001 xub_StrLen SwIndex::operator-=( const SwIndex & rIndex )
-//STRIP001 {
-//STRIP001  ASSERT_ID( nIndex >= rIndex.nIndex, ERR_OUTOFSCOPE );
-//STRIP001  return ChgValue( *this, nIndex - rIndex.nIndex ).nIndex;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -647,87 +585,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP0
 
 
 
-//STRIP001 void SwIndexReg::MoveIdx( const SwIndex& rOldPos, const SwIndex& rNewPos )
-//STRIP001 {
-//STRIP001  ASSERT( rOldPos.pArray == rNewPos.pArray,
-//STRIP001          "stehen in unterschiedlichen Arrays" );
-//STRIP001
-//STRIP001  SwIndex* pStt = (SwIndex*)&rOldPos, *pEnd = pStt;
-//STRIP001  SwIndex* pInsPos = (SwIndex*)&rNewPos;
-//STRIP001  xub_StrLen nOldIndex = rOldPos.nIndex,
-//STRIP001          nNewIndex = rNewPos.nIndex;
-//STRIP001
-//STRIP001  if( nOldIndex == nNewIndex )
-//STRIP001      return;
-//STRIP001
-//STRIP001  while( pInsPos->pPrev && pInsPos->pPrev->nIndex == nNewIndex )
-//STRIP001      pInsPos = pInsPos->pPrev;
-//STRIP001
-//STRIP001  if( nNewIndex > nOldIndex )
-//STRIP001      --nNewIndex;
-//STRIP001
-//STRIP001  while( pStt->pPrev && pStt->pPrev->nIndex == nOldIndex )
-//STRIP001  {
-//STRIP001      pStt = pStt->pPrev;
-//STRIP001      pStt->nIndex = nNewIndex;
-//STRIP001  }
-//STRIP001  while( pEnd->pNext && pEnd->pNext->nIndex == nOldIndex )
-//STRIP001  {
-//STRIP001      pEnd = pEnd->pNext;
-//STRIP001      pEnd->nIndex = nNewIndex;
-//STRIP001  }
-//STRIP001
-//STRIP001  {
-//STRIP001      for( SwIndex* pTmp = pStt; pTmp != pEnd; pTmp = pTmp->pNext )
-//STRIP001          pTmp->nIndex = nNewIndex;
-//STRIP001      pTmp->nIndex = nNewIndex;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Ausketten
-//STRIP001  if( !pStt->pPrev )
-//STRIP001  {
-//STRIP001      pFirst = pEnd->pNext;
-//STRIP001      pEnd->pNext->pPrev = 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pStt->pPrev->pNext = pEnd->pNext;
-//STRIP001
-//STRIP001  if( !pEnd->pNext )
-//STRIP001  {
-//STRIP001      pLast = pStt->pPrev;
-//STRIP001      pStt->pPrev->pNext = 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pEnd->pNext->pPrev = pStt->pPrev;
-//STRIP001
-//STRIP001  // wieder einketten
-//STRIP001  pStt->pPrev = pInsPos->pPrev;
-//STRIP001  pEnd->pNext = pInsPos;
-//STRIP001
-//STRIP001  if( pInsPos->pPrev )
-//STRIP001      pInsPos->pPrev->pNext = pStt;
-//STRIP001  pInsPos->pPrev = pEnd;
-//STRIP001
-//STRIP001  if( pInsPos == pFirst )
-//STRIP001      pFirst = pStt;
-//STRIP001
-//STRIP001  if( nNewIndex < nOldIndex )     // es wurde nach vorne verschoben
-//STRIP001  {
-//STRIP001      while( pInsPos && pInsPos->nIndex <= nOldIndex )
-//STRIP001      {
-//STRIP001          ++pInsPos->nIndex;
-//STRIP001          pInsPos = pInsPos->pNext;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else                            // es wurde nach hinten verschoben
-//STRIP001  {
-//STRIP001      while( pStt->pPrev && pStt->pPrev->nIndex > nOldIndex )
-//STRIP001      {
-//STRIP001          pStt = pStt->pPrev;
-//STRIP001          --pStt->nIndex;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SwIndexReg::MoveTo( SwIndexReg& rArr )
 /*N*/ {
