@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rangeseq.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:15:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:37:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,8 +42,6 @@
 #include <rtl/math.hxx>
 #include <tools/debug.hxx>
 
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
 #include "rangeseq.hxx"
 #include "document.hxx"
@@ -345,19 +342,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScByteSequenceToString::GetString( String& rString, const uno::Any& rAny,
-//STRIP001                                      sal_uInt16 nEncoding )
-//STRIP001 {
-//STRIP001  uno::Sequence<sal_Int8> aSeq;
-//STRIP001  if ( rAny >>= aSeq )
-//STRIP001  {
-//STRIP001      rString = String( (const sal_Char*)aSeq.getConstArray(),
-//STRIP001                          (xub_StrLen)aSeq.getLength(), nEncoding );
-//STRIP001      rString.EraseTrailingChars( (sal_Unicode) 0 );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
