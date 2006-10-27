@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unotext2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-06 16:14:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:59:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,9 +50,6 @@
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
@@ -62,8 +59,6 @@
 #include <bf_svx/itemdata.hxx>
 #endif
 
-// auto strip #include "flditem.hxx"
-// auto strip #include "unofield.hxx"
 #include "unotext.hxx"
 namespace binfilter {
 
