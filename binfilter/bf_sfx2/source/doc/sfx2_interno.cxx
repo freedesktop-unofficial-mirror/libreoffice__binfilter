@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:13:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:29:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,15 +40,6 @@
 
 #include <string> // HACK: prevent conflict between STLPORT and Workshop headers
 
-// auto strip #ifndef _SV_WRKWIN_HXX //autogen
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 
 #include <svtools/eitem.hxx>
 
@@ -56,34 +47,19 @@
 
 #define _SFX_INTERNO_CXX
 
-// auto strip #include "sfxtypes.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
 #include <svtools/imgdef.hxx>
 #endif
 
-// auto strip #include "tbxmgr.hxx"
-// auto strip #include "app.hxx"
 #include "dispatch.hxx"
 #include "request.hxx"
 #include "docfac.hxx"
-// auto strip #include "docfilt.hxx"
-// auto strip #include "viewfrm.hxx"
 #include "viewsh.hxx"
-// auto strip #include "virtmenu.hxx"
-// auto strip #include "mnumgr.hxx"
 #include "interno.hxx"
-// auto strip #include "ipfrm.hxx"
 #include "ipenv.hxx"
-// auto strip #include "imgmgr.hxx"
-// auto strip #include "childwin.hxx"
-// auto strip #include "arrdecl.hxx"
-// auto strip #include "cfgmgr.hxx"
-// auto strip #include "tbxconf.hxx"
 #include "fltfnc.hxx"
-// auto strip #include "accmgr.hxx"
 #include "sfxresid.hxx"
-// auto strip #include "topfrm.hxx"
 #include "doc.hrc"
 namespace binfilter {
 
@@ -297,7 +273,6 @@ namespace binfilter {
 /*N*/       // bei InPlace die View skalieren
 /*N*/         if ( GetIPEnv() && GetIPEnv()->GetEditWin() && !bDisableViewScaling && pIPF )
 /*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pIPF->GetEnv_Impl()->MakeScale( rRect.GetSize(), GetMapUnit(),
-//STRIP001 /*?*/                        pIPF->GetViewShell()->GetWindow()->GetOutputSizePixel() );
 /*N*/   }
 /*N*/ }
 
@@ -370,212 +345,27 @@ namespace binfilter {
 
 /*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL bActivate )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( bActivate )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( pObjShell,
-//STRIP001                  "SfxInPlaceObject::InPlaceActivate(): you must call SetShell() bevor" )
-//STRIP001      DBG_ASSERT (!pFrame, "Objekt ist noch aktiv!");
-//STRIP001
-//STRIP001      // IPFenster erzeugen
-//STRIP001      SfxInPlaceFrame *pIPFrame =
-//STRIP001                      new SfxInPlaceFrame( *pObjShell );
-//STRIP001      pFrame = pIPFrame;
-//STRIP001      SetIPEnv( pIPFrame->GetEnv_Impl() );
-//STRIP001
-//STRIP001      if ( GetIPClient()->Owner() )
-//STRIP001      {
-//STRIP001             pFrame->SetParentViewFrame_Impl( SfxViewFrame::Current() );
-//STRIP001      }
-//STRIP001
-//STRIP001      pIPFrame->GetDispatcher()->Flush();
-//STRIP001      pIPFrame->DoActivate( FALSE );
-//STRIP001  }
-//STRIP001
-//STRIP001  SvInPlaceObject::InPlaceActivate( bActivate );
-//STRIP001
-//STRIP001  if ( !bActivate )
-//STRIP001  {
-//STRIP001      // Im UIActivate wurde SetViewFrame(0) gemacht, aber neuerdings
-//STRIP001      // gibt es dann kein Deactivate(TRUE), weil alter und neuer
-//STRIP001      // ViewFrame der Applikation verschiedene Bindings haben.
-//STRIP001      // Frame samt Fenstern jetzt im Deactivate wegwerfen
-//STRIP001      // DoDeactivate erfolgt im UIDeactivate
-//STRIP001      pFrame->GetFrame()->DoClose();
-//STRIP001      pFrame = NULL;
-//STRIP001  }
 /*N*/ }
 
 //--------------------------------------------------------------------
 
 /*N*/ void SfxInPlaceObject::Embed( BOOL bEmbed )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*
-//STRIP001  SvInPlaceObject::Embed( bEmbed );
-//STRIP001
-//STRIP001  if( bEmbed )
-//STRIP001  {
-//STRIP001         DBG_ASSERT( pObjShell, "SfxInPlaceObject::Embed(): you must call SetShell() bevor" )
-//STRIP001      if (pFrame)
-//STRIP001      {
-//STRIP001          SetIPEnv( 0 );
-//STRIP001          pFrame->GetFrame()->DoClose();
-//STRIP001          pFrame = NULL;
-//STRIP001      }
-//STRIP001
-//STRIP001         pFrame = SfxTopFrame::Create( pObjShell,0 )->GetCurrentViewFrame();
-//STRIP001         pFrame->GetFrame()->Appear();
-//STRIP001
-//STRIP001      // Beim Writer stehen sonst die Scrollbars mittendrin
-//STRIP001      pFrame->InvalidateBorderImpl( pFrame->GetViewShell() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Unter WIN 3.1 mu\s das MDI-Window schon hier deleted werden,
-//STRIP001      // da sonst zun"achst die Verbindung zum Client geclosed wird, dieser
-//STRIP001      // dabei den Focus von Windows erh"alt, der ihm aber anschlie\send
-//STRIP001      // gleich wieder durch den Window-ctor des MDI-Windows entzogen wird.
-//STRIP001      pFrame->GetFrame()->DoClose();
-//STRIP001      pFrame = NULL;
-//STRIP001  }
-//STRIP001 */
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxInPlaceObject::UIActivate( BOOL bActivate )
-//STRIP001 {
-//STRIP001  SfxApplication *pApp = SFX_APP();
-//STRIP001  SfxViewFrame *pParent = pFrame->GetParentViewFrame_Impl();
-//STRIP001  if ( bActivate )
-//STRIP001  {
-//STRIP001      if ( pParent )
-//STRIP001          pParent->SetIPFrame_Impl( GetIPFrame_Impl() );
-//STRIP001
-//STRIP001      // DoActivate erfolgte schon im InPlaceActivate
-//STRIP001      pApp->SetViewFrame( pFrame );
-//STRIP001      pFrame->DoActivate( TRUE );
-//STRIP001         pFrame->GetDispatcher()->Update_Impl( TRUE );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if ( pParent )
-//STRIP001          // Bei internem InPlace das Container-Dokument aktivieren
-//STRIP001          pParent->SetIPFrame_Impl( NULL );
-//STRIP001
-//STRIP001      if ( pApp->GetViewFrame() == pFrame )
-//STRIP001          // Das muss nicht sein, es k"onnte auch die Task gewechselt worden sein
-//STRIP001          pApp->SetViewFrame( pParent );
-//STRIP001
-//STRIP001      pFrame->DoDeactivate( TRUE );
-//STRIP001  }
-//STRIP001
-//STRIP001  SvInPlaceObject::UIActivate( bActivate );
-//STRIP001  GetIPFrame_Impl()->GetEnv_Impl()->UIActivate(bActivate);
-//STRIP001
-//STRIP001  if ( !bActivate && pApp->GetViewFrame() == pFrame )
-//STRIP001  {
-//STRIP001      // Wenn jetzt noch der InPlaceFrame aktiv ist ( externes InPlace ),
-//STRIP001      // deaktivieren
-//STRIP001      pApp->SetViewFrame(0);
-//STRIP001  }
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxInPlaceObject::TopWinActivate( BOOL bActivate )
-//STRIP001 {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  ByteString aTest( "TopWinActivate( " );
-//STRIP001  aTest += bActivate ? "TRUE" : "FALSE";
-//STRIP001  aTest += " )";
-//STRIP001  DBG_TRACE( aTest.GetBuffer() );
-//STRIP001 #endif
-//STRIP001
-//STRIP001  if ( bActivate )
-//STRIP001  {
-//STRIP001      if ( GetProtocol().IsDocWinActive() && GetProtocol().IsUIActive() )
-//STRIP001      {
-//STRIP001          GetIPFrame_Impl()->GetEnv_Impl()->TopWinActivate(bActivate);
-//STRIP001
-//STRIP001          // Hier muss der ViewFrame gesetzt werden, da beim Umschalten von
-//STRIP001          // StarApplikation-MDI auf Applikation mit StarApplikation-IP diese
-//STRIP001          // nur ein TopWinActivate, aber kein DocWinActivate bekommt !
-//STRIP001
-//STRIP001          if ( SFX_APP()->GetViewFrame() != pFrame )
-//STRIP001              SFX_APP()->SetViewFrame( pFrame );
-//STRIP001          else
-//STRIP001              pFrame->DoActivate( FALSE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  SvInPlaceObject::TopWinActivate( bActivate );
-//STRIP001
-//STRIP001  if ( !bActivate )
-//STRIP001  {
-//STRIP001      if ( GetProtocol().IsDocWinActive() && GetProtocol().IsUIActive() )
-//STRIP001      {
-//STRIP001          GetIPFrame_Impl()->GetEnv_Impl()->TopWinActivate( bActivate );
-//STRIP001          pFrame->DoDeactivate( FALSE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxInPlaceObject::DocWinActivate( BOOL bActivate )
-//STRIP001 {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  ByteString aTest( "DocWinActivate( " );
-//STRIP001  aTest += bActivate ? "TRUE" : "FALSE";
-//STRIP001  aTest += " )";
-//STRIP001  DBG_TRACE( aTest.GetBuffer() );
-//STRIP001 #endif
-//STRIP001
-//STRIP001  if ( bActivate )
-//STRIP001  {
-//STRIP001      if ( GetProtocol().IsUIActive() )
-//STRIP001      {
-//STRIP001          GetIPFrame_Impl()->GetEnv_Impl()->DocWinActivate( bActivate );
-//STRIP001          if ( SFX_APP()->GetViewFrame() != pFrame )
-//STRIP001              SFX_APP()->SetViewFrame(pFrame);
-//STRIP001          else
-//STRIP001              pFrame->DoActivate(FALSE);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  SvInPlaceObject::DocWinActivate( bActivate );
-//STRIP001
-//STRIP001  if ( !bActivate )
-//STRIP001  {
-//STRIP001      if ( GetProtocol().IsUIActive() )
-//STRIP001      {
-//STRIP001          GetIPFrame_Impl()->GetEnv_Impl()->DocWinActivate( bActivate );
-//STRIP001          pFrame->DoDeactivate( FALSE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
 /*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & rDocName )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( !pFrame->IsA( TYPE(SfxInPlaceFrame) ) )
-//STRIP001  {
-//STRIP001      // Name f"ur Window zusammenbauen
-//STRIP001      String aName = GetShortTypeName();
-//STRIP001      aName += DEFINE_CONST_UNICODE( " in " );         //! muss noch internationalisiert werden
-//STRIP001      aName += rDocName;
-//STRIP001
-//STRIP001      // DocName in Titelzeile von MDI-Window und als SbxObject-Name setzen
-//STRIP001      pFrame->GetTopFrame()->GetWindow().SetText( aName );
-//STRIP001      pFrame->SetName( aName );
-//STRIP001
-//STRIP001      // Slots invalidieren, damit Menue-Eintr"age aktualisiert werden
-//STRIP001      pFrame->GetBindings().Invalidate(SID_CLOSEDOC);
-//STRIP001      pFrame->GetBindings().Invalidate(SID_SAVEDOC);
-//STRIP001      pFrame->GetBindings().Invalidate(SID_SAVEASDOC);
-//STRIP001      pFrame->GetBindings().Invalidate(SID_QUITAPP);
-//STRIP001  }
 /*N*/ }
 
 //--------------------------------------------------------------------
