@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:56:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:56:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,6 @@ public:
     SFX_DECL_INTERFACE(SW_TABSHELL);
     TYPEINFO();
 
-//STRIP001  void    Execute(SfxRequest &);
     void    GetState(SfxItemSet &);
     void    GetFrmBorderState(SfxItemSet &rSet);
     void    GetLineStyleState(SfxItemSet &rSet);
