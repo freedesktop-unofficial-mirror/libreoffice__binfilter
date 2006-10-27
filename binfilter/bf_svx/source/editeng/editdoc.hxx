@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editdoc.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:54:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:39:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -133,61 +133,19 @@ SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 )//STRIP008 ;
 typedef EditCharAttrib* EditCharAttribPtr;
 SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 )//STRIP008 ;
 
-//STRIP001 class ContentAttribsInfo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  SfxItemSet          aPrevParaAttribs;
-//STRIP001  CharAttribArray     aPrevCharAttribs;
-//STRIP001
-//STRIP001 public:
-//STRIP001                      ContentAttribsInfo( const SfxItemSet& rParaAttribs );
-//STRIP001
-//STRIP001  const SfxItemSet&       GetPrevParaAttribs() const  { return aPrevParaAttribs; }
-//STRIP001  const CharAttribArray&  GetPrevCharAttribs() const  { return aPrevCharAttribs; }
-//STRIP001
-//STRIP001  CharAttribArray&        GetPrevCharAttribs()        { return aPrevCharAttribs; }
-//STRIP001 };
 
-//STRIP001 typedef ContentAttribsInfo* ContentAttribsInfoPtr;
-//STRIP001 SV_DECL_PTRARR( ContentInfoArray, ContentAttribsInfoPtr, 1, 1 )//STRIP008 ;
 
 //  ----------------------------------------------------------------------
 //  class SvxFontTable
 //  ----------------------------------------------------------------------
-//STRIP001 DECLARE_TABLE( DummyFontTable, SvxFontItem* )//STRIP008 ;
-//STRIP001 class SvxFontTable : public DummyFontTable
-//STRIP001 {
-//STRIP001 public:
-//STRIP001          SvxFontTable();
-//STRIP001          ~SvxFontTable();
-//STRIP001
-//STRIP001  ULONG   GetId( const SvxFontItem& rFont );
-//STRIP001 };
 
 //  ----------------------------------------------------------------------
 //  class SvxColorList
 //  ----------------------------------------------------------------------
-//STRIP001 typedef ContentNode* ContentNodePtr;
-//STRIP001 DECLARE_LIST( DummyColorList, SvxColorItem* )//STRIP008 DECLARE_LIST( DummyColorList, SvxColorItem* );
-//STRIP001 class SvxColorList : public DummyColorList
-//STRIP001 {
-//STRIP001 public:
-//STRIP001          SvxColorList();
-//STRIP001          ~SvxColorList();
-//STRIP001
-//STRIP001  ULONG   GetId( const SvxColorItem& rColor );
-//STRIP001 };
 
 //  ----------------------------------------------------------------------
 //  class ItemList
 //  ----------------------------------------------------------------------
-//STRIP001 typedef const SfxPoolItem* ConstPoolItemPtr;
-//STRIP001 DECLARE_LIST( DummyItemList, ConstPoolItemPtr ) //STRIP008 DECLARE_LIST( DummyItemList, ConstPoolItemPtr );
-//STRIP001 class ItemList : public DummyItemList
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  const SfxPoolItem*  FindAttrib( USHORT nWhich );
-//STRIP001 };
 
 // -------------------------------------------------------------------------
 // class ContentAttribs
@@ -228,7 +186,6 @@ public:
                     CharAttribList();
                     ~CharAttribList();
 
-//STRIP001  void            DeleteEmptyAttribs(  SfxItemPool& rItemPool );
     void            RemoveItemsFromPool( SfxItemPool* pItemPool );
 
     EditCharAttrib* FindAttrib( USHORT nWhich, USHORT nPos );
@@ -249,14 +206,11 @@ public:
     BOOL            HasEmptyAttribs() const { return bHasEmptyAttribs; }
     BOOL&           HasEmptyAttribs()       { return bHasEmptyAttribs; }
     BOOL            HasBoundingAttrib( USHORT nBound );
-//STRIP001  BOOL            HasAttrib( USHORT nWhich ) const;
-//STRIP001  BOOL            HasAttrib( USHORT nStartPos, USHORT nEndPos ) const;
 
     CharAttribArray&        GetAttribs()        { return aAttribs; }
     const CharAttribArray&  GetAttribs() const  { return aAttribs; }
 
     // Debug:
-//STRIP001  BOOL            DbgCheckAttribs();
 };
 
 // -------------------------------------------------------------------------
@@ -384,8 +338,6 @@ struct ExtraPortionInfo
             ExtraPortionInfo();
             ~ExtraPortionInfo();
 
-//STRIP001     void    SaveOrgDXArray( const long* pDXArray, USHORT nLen );
-//STRIP001     void    DestroyOrgDXArray();
 };
 
 
@@ -453,7 +405,6 @@ public:
 
     void    Reset();
     USHORT  FindPortion( USHORT nCharPos, USHORT& rPortionStart, BOOL bPreferStartingPortion = FALSE );
-//STRIP001     USHORT  GetStartPos( USHORT nPortion );
     void    DeleteFromPortion( USHORT nDelFrom );
 };
 
@@ -542,7 +493,6 @@ public:
 
     CharPosArray&   GetCharPosArray()               { return aPositions; }
 
-//STRIP001  EditLine*       Clone() const;
 
     EditLine&   operator = ( const EditLine& rLine );
     friend BOOL operator == ( const EditLine& r1,  const EditLine& r2  );
@@ -564,7 +514,6 @@ public:
 
     void    Reset();
     void    DeleteFromLine( USHORT nDelFrom );
-//STRIP001  USHORT  FindLine( USHORT nChar, BOOL bInclEnd );
 };
 
 // -------------------------------------------------------------------------
@@ -615,7 +564,6 @@ public:
     void                MarkInvalid( USHORT nStart, short nDiff);
     void                MarkSelectionInvalid( USHORT nStart, USHORT nEnd );
 
-//STRIP001  void                SetVisible( BOOL bVisible );
     BOOL                IsVisible()                 { return bVisible; }
 
     long                GetHeight() const           { return ( bVisible ? nHeight : 0 ); }
@@ -630,7 +578,6 @@ public:
 
     void                CorrectValuesBehindLastFormattedLine( USHORT nLastFormattedLine );
 
-//STRIP001  BOOL                DbgCheckTextPortions();
 };
 
 typedef ParaPortion* ParaPortionPtr;
@@ -653,7 +600,6 @@ public:
         { return ( nPos < Count() ) ? GetObject( nPos ) : 0; }
 
     // temporaer:
-//STRIP001  void            DbgCheck( EditDoc& rDoc );
 };
 
 // -------------------------------------------------------------------------
@@ -774,7 +720,6 @@ public:
     void            InsertAttrib( const SfxPoolItem& rItem, ContentNode* pNode, USHORT nStart, USHORT nEnd );
     void            InsertAttrib( ContentNode* pNode, USHORT nStart, USHORT nEnd, const SfxPoolItem& rPoolItem );
     void            InsertAttribInSelection( ContentNode* pNode, USHORT nStart, USHORT nEnd, const SfxPoolItem& rPoolItem );
-//STRIP001  BOOL            RemoveAttribs( ContentNode* pNode, USHORT nStart, USHORT nEnd, USHORT nWhich = 0 );
     BOOL            RemoveAttribs( ContentNode* pNode, USHORT nStart, USHORT nEnd, EditCharAttrib*& rpStarting, EditCharAttrib*& rpEnding, USHORT nWhich = 0 );
     void            FindAttribs( ContentNode* pNode, USHORT nStartPos, USHORT nEndPos, SfxItemSet& rCurSet );
 
