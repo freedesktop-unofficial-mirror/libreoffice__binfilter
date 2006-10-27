@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_optsitem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2006-09-15 12:00:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:13:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,12 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _SVDMODEL_HXX //autogen
-// auto strip #include <bf_svx/svdmodel.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
 #endif
@@ -49,10 +43,8 @@
 #include <svtools/syslocale.hxx>
 #endif
 
-// auto strip #include "app.hxx"
 #include "optsitem.hxx"
 #include "cfgids.hxx"
-// auto strip #include "frmview.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -80,11 +72,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdOptionsItem::Commit()
-//STRIP001 {
-//STRIP001  if( IsModified() )
-//STRIP001      mrParent.Commit( *this );
-//STRIP001 };
 
 // -----------------------------------------------------------------------------
 
@@ -95,10 +82,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SdOptionsItem::PutProperties( const Sequence< OUString >& rNames, const Sequence< Any>& rValues )
-//STRIP001 {
-//STRIP001  return ConfigItem::PutProperties( rNames, rValues );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -157,21 +140,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdOptionsGeneric::Commit( SdOptionsItem& rCfgItem ) const
-//STRIP001 {
-//STRIP001  const Sequence< OUString >  aNames( GetPropertyNames() );
-//STRIP001  Sequence< Any >             aValues( aNames.getLength() );
-//STRIP001
-//STRIP001  if( aNames.getLength() && ( aValues.getLength() == aNames.getLength() ) )
-//STRIP001  {
-//STRIP001      if( ( (SdOptionsGeneric*) this )->WriteData( aValues.getArray() ) )
-//STRIP001          rCfgItem.PutProperties( aNames, aValues );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          DBG_ERROR( "PutProperties failed" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -193,11 +161,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdOptionsGeneric::Store()
-//STRIP001 {
-//STRIP001  if( mpCfgItem )
-//STRIP001      mpCfgItem->Commit();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -249,16 +212,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 BOOL SdOptionsLayout::operator==( const SdOptionsLayout& rOpt ) const
-//STRIP001 {
-//STRIP001  return( IsRulerVisible() == rOpt.IsRulerVisible() &&
-//STRIP001          IsMoveOutline() == rOpt.IsMoveOutline() &&
-//STRIP001          IsDragStripes() == rOpt.IsDragStripes() &&
-//STRIP001          IsHandlesBezier() == rOpt.IsHandlesBezier() &&
-//STRIP001          IsHelplines() == rOpt.IsHelplines() &&
-//STRIP001          GetMetric() == rOpt.GetMetric() &&
-//STRIP001          GetDefTab() == rOpt.GetDefTab() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -330,67 +283,19 @@ using namespace ::com::sun::star::uno;
 |*
 \************************************************************************/
 
-//STRIP001 SdOptionsLayoutItem::SdOptionsLayoutItem( USHORT nWhich ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsLayout ( 0, FALSE )
-//STRIP001 {
-//STRIP001 }
 
 // ----------------------------------------------------------------------
-
-//STRIP001 SdOptionsLayoutItem::SdOptionsLayoutItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsLayout ( 0, FALSE )
-//STRIP001 {
-//STRIP001  SetMetric( pOpts->GetMetric() );
-//STRIP001  SetDefTab( pOpts->GetDefTab() );
-//STRIP001
-//STRIP001  if( pView )
-//STRIP001  {
-//STRIP001      SetRulerVisible( pView->HasRuler() );
-//STRIP001      SetMoveOutline( !pView->IsNoDragXorPolys() );
-//STRIP001      SetDragStripes( pView->IsDragStripes() );
-//STRIP001      SetHandlesBezier( pView->IsPlusHandlesAlwaysVisible() );
-//STRIP001      SetHelplines( pView->IsHlplVisible() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SetRulerVisible( pOpts->IsRulerVisible() );
-//STRIP001      SetMoveOutline( pOpts->IsMoveOutline() );
-//STRIP001      SetDragStripes( pOpts->IsDragStripes() );
-//STRIP001      SetHandlesBezier( pOpts->IsHandlesBezier() );
-//STRIP001      SetHelplines( pOpts->IsHelplines() );
-//STRIP001  }
-//STRIP001 }
-
-// ----------------------------------------------------------------------
-
-//STRIP001 SfxPoolItem* SdOptionsLayoutItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SdOptionsLayoutItem( *this );
-//STRIP001 }
 
 
 // ----------------------------------------------------------------------
 
-//STRIP001 int SdOptionsLayoutItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rAttr ), "unterschiedliche Typen" );
-//STRIP001  return( (SdOptionsLayout&) *this == (const SdOptionsLayout&)(const SdOptionsLayoutItem&) rAttr );
-//STRIP001 }
+
+
+// ----------------------------------------------------------------------
+
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsLayoutItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  pOpts->SetRulerVisible( IsRulerVisible() );
-//STRIP001  pOpts->SetMoveOutline( IsMoveOutline() );
-//STRIP001  pOpts->SetDragStripes( IsDragStripes() );
-//STRIP001  pOpts->SetHandlesBezier( IsHandlesBezier() );
-//STRIP001  pOpts->SetHelplines( IsHelplines() );
-//STRIP001  pOpts->SetMetric( GetMetric() );
-//STRIP001  pOpts->SetDefTab( GetDefTab() );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -423,13 +328,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 BOOL SdOptionsContents::operator==( const SdOptionsContents& rOpt ) const
-//STRIP001 {
-//STRIP001  return( IsExternGraphic() == rOpt.IsExternGraphic() &&
-//STRIP001          IsOutlineMode() == rOpt.IsOutlineMode() &&
-//STRIP001          IsHairlineMode() == rOpt.IsHairlineMode() &&
-//STRIP001          IsNoText() == rOpt.IsNoText() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -477,58 +375,18 @@ using namespace ::com::sun::star::uno;
 |*
 \************************************************************************/
 
-//STRIP001 SdOptionsContentsItem::SdOptionsContentsItem( USHORT nWhich ) :
-//STRIP001  SfxPoolItem         ( nWhich ),
-//STRIP001  SdOptionsContents   ( 0, FALSE )
-//STRIP001 {
-//STRIP001 }
 
 // ----------------------------------------------------------------------
 
-//STRIP001 SdOptionsContentsItem::SdOptionsContentsItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
-//STRIP001  SfxPoolItem         ( nWhich ),
-//STRIP001  SdOptionsContents   ( 0, FALSE )
-//STRIP001 {
-//STRIP001  if( pView )
-//STRIP001  {
-//STRIP001      SetExternGraphic( pView->IsGrafDraft() );
-//STRIP001      SetOutlineMode( pView->IsFillDraft() );
-//STRIP001      SetHairlineMode( pView->IsLineDraft() );
-//STRIP001      SetNoText( pView->IsTextDraft() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SetExternGraphic( pOpts->IsExternGraphic() );
-//STRIP001      SetOutlineMode( pOpts->IsOutlineMode() );
-//STRIP001      SetHairlineMode( pOpts->IsHairlineMode() );
-//STRIP001      SetNoText( pOpts->IsNoText() );
-//STRIP001  }
-//STRIP001 }
 
 // ----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SdOptionsContentsItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SdOptionsContentsItem( *this );
-//STRIP001 }
 
 // ----------------------------------------------------------------------
 
-//STRIP001 int SdOptionsContentsItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-//STRIP001  return( (SdOptionsContents&) *this == (const SdOptionsContents&)(const SdOptionsContentsItem&) rAttr );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsContentsItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  pOpts->SetExternGraphic( IsExternGraphic() );
-//STRIP001  pOpts->SetOutlineMode( IsOutlineMode() );
-//STRIP001  pOpts->SetHairlineMode(IsHairlineMode() );
-//STRIP001  pOpts->SetNoText( IsNoText() );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -597,32 +455,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 BOOL SdOptionsMisc::operator==( const SdOptionsMisc& rOpt ) const
-//STRIP001 {
-//STRIP001  return( IsStartWithTemplate() == rOpt.IsStartWithTemplate() &&
-//STRIP001          IsMarkedHitMovesAlways() == rOpt.IsMarkedHitMovesAlways() &&
-//STRIP001          IsMoveOnlyDragging() == rOpt.IsMoveOnlyDragging() &&
-//STRIP001          IsCrookNoContortion() == rOpt.IsCrookNoContortion() &&
-//STRIP001          IsQuickEdit() == rOpt.IsQuickEdit() &&
-//STRIP001          IsMasterPagePaintCaching() == rOpt.IsMasterPagePaintCaching() &&
-//STRIP001          IsDragWithCopy() == rOpt.IsDragWithCopy() &&
-//STRIP001          IsPickThrough() == rOpt.IsPickThrough() &&
-//STRIP001          IsBigHandles() == rOpt.IsBigHandles() &&
-//STRIP001          IsDoubleClickTextEdit() == rOpt.IsDoubleClickTextEdit() &&
-//STRIP001          IsClickChangeRotation() == rOpt.IsClickChangeRotation() &&
-//STRIP001          IsStartWithActualPage() == rOpt.IsStartWithActualPage() &&
-//STRIP001          IsSummationOfParagraphs() == rOpt.IsSummationOfParagraphs() &&
-//STRIP001          GetPreviewQuality() == rOpt.GetPreviewQuality() &&
-//STRIP001          IsSolidDragging() == rOpt.IsSolidDragging() &&
-//STRIP001          IsSolidMarkHdl() == rOpt.IsSolidMarkHdl() &&
-//STRIP001          // #90356#
-//STRIP001          IsShowUndoDeleteWarning() == rOpt.IsShowUndoDeleteWarning() &&
-//STRIP001          GetPrinterIndependentLayout() == rOpt.GetPrinterIndependentLayout() &&
-//STRIP001          // #97016#
-//STRIP001          GetDefaultObjectSizeWidth() == rOpt.GetDefaultObjectSizeWidth() &&
-//STRIP001          GetDefaultObjectSizeHeight() == rOpt.GetDefaultObjectSizeHeight()
-//STRIP001      );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -740,105 +572,19 @@ using namespace ::com::sun::star::uno;
 |*
 \************************************************************************/
 
-//STRIP001 SdOptionsMiscItem::SdOptionsMiscItem( USHORT nWhich ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsMisc   ( 0, FALSE )
-//STRIP001 {
-//STRIP001 }
 
 // ----------------------------------------------------------------------
-
-//STRIP001 SdOptionsMiscItem::SdOptionsMiscItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsMisc   ( 0, FALSE )
-//STRIP001 {
-//STRIP001  SetStartWithTemplate( pOpts->IsStartWithTemplate() );
-//STRIP001  SetStartWithActualPage( pOpts->IsStartWithActualPage() );
-//STRIP001  SetSummationOfParagraphs( pOpts->IsSummationOfParagraphs() );
-//STRIP001  // #90356#
-//STRIP001  SetShowUndoDeleteWarning( pOpts->IsShowUndoDeleteWarning() );
-//STRIP001  SetPrinterIndependentLayout( pOpts->GetPrinterIndependentLayout() );
-//STRIP001  // #97016#
-//STRIP001  SetDefaultObjectSizeWidth( pOpts->GetDefaultObjectSizeWidth() );
-//STRIP001  SetDefaultObjectSizeHeight( pOpts->GetDefaultObjectSizeHeight() );
-//STRIP001
-//STRIP001  if( pView )
-//STRIP001  {
-//STRIP001      SetMarkedHitMovesAlways( pView->IsMarkedHitMovesAlways() );
-//STRIP001      SetMoveOnlyDragging( pView->IsMoveOnlyDragging() );
-//STRIP001      SetCrookNoContortion( pView->IsCrookNoContortion() );
-//STRIP001      SetQuickEdit( pView->IsQuickEdit() );
-//STRIP001      SetMasterPagePaintCaching(pView->IsMasterPagePaintCaching() );
-//STRIP001      SetDragWithCopy( pView->IsDragWithCopy() );
-//STRIP001      SetPickThrough( pView->GetModel()->IsPickThroughTransparentTextFrames() );
-//STRIP001      SetBigHandles( pView->IsBigHandles() );
-//STRIP001      SetDoubleClickTextEdit( pView->IsDoubleClickTextEdit() );
-//STRIP001      SetClickChangeRotation( pView->IsClickChangeRotation() );
-//STRIP001      SetPreviewQuality( pView->GetPreviewDrawMode() );
-//STRIP001      SetSolidDragging( pView->IsSolidDragging() );
-//STRIP001      SetSolidMarkHdl( pView->IsSolidMarkHdl() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SetMarkedHitMovesAlways( pOpts->IsMarkedHitMovesAlways() );
-//STRIP001      SetMoveOnlyDragging( pOpts->IsMoveOnlyDragging() );
-//STRIP001      SetCrookNoContortion( pOpts->IsCrookNoContortion() );
-//STRIP001      SetQuickEdit( pOpts->IsQuickEdit() );
-//STRIP001      SetMasterPagePaintCaching( pOpts->IsMasterPagePaintCaching() );
-//STRIP001      SetDragWithCopy( pOpts->IsDragWithCopy() );
-//STRIP001      SetPickThrough( pOpts->IsPickThrough() );
-//STRIP001      SetBigHandles( pOpts->IsBigHandles() );
-//STRIP001      SetDoubleClickTextEdit( pOpts->IsDoubleClickTextEdit() );
-//STRIP001      SetClickChangeRotation( pOpts->IsClickChangeRotation() );
-//STRIP001      SetPreviewQuality( pOpts->GetPreviewQuality() );
-//STRIP001      SetSolidDragging( pOpts->IsSolidDragging() );
-//STRIP001      SetSolidMarkHdl( pOpts->IsSolidMarkHdl() );
-//STRIP001  }
-//STRIP001 }
-
-// ----------------------------------------------------------------------
-
-//STRIP001 SfxPoolItem* SdOptionsMiscItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SdOptionsMiscItem( *this );
-//STRIP001 }
 
 
 // ----------------------------------------------------------------------
 
-//STRIP001 int SdOptionsMiscItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-//STRIP001  return( (SdOptionsMisc&) *this == (const SdOptionsMisc&)(const SdOptionsMiscItem&) rAttr );
-//STRIP001 }
+
+
+// ----------------------------------------------------------------------
+
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsMiscItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  pOpts->SetStartWithTemplate( IsStartWithTemplate() );
-//STRIP001  pOpts->SetMarkedHitMovesAlways( IsMarkedHitMovesAlways() );
-//STRIP001  pOpts->SetMoveOnlyDragging( IsMoveOnlyDragging() );
-//STRIP001  pOpts->SetCrookNoContortion( IsCrookNoContortion() );
-//STRIP001  pOpts->SetQuickEdit( IsQuickEdit() );
-//STRIP001  pOpts->SetMasterPagePaintCaching( IsMasterPagePaintCaching() );
-//STRIP001  pOpts->SetDragWithCopy( IsDragWithCopy() );
-//STRIP001  pOpts->SetPickThrough( IsPickThrough() );
-//STRIP001  pOpts->SetBigHandles( IsBigHandles() );
-//STRIP001  pOpts->SetDoubleClickTextEdit( IsDoubleClickTextEdit() );
-//STRIP001  pOpts->SetClickChangeRotation( IsClickChangeRotation() );
-//STRIP001  pOpts->SetStartWithActualPage( IsStartWithActualPage() );
-//STRIP001  pOpts->SetSummationOfParagraphs( IsSummationOfParagraphs() );
-//STRIP001  pOpts->SetPreviewQuality( GetPreviewQuality() );
-//STRIP001  pOpts->SetSolidDragging( IsSolidDragging() );
-//STRIP001  pOpts->SetSolidMarkHdl( IsSolidMarkHdl() );
-//STRIP001  // #90356#
-//STRIP001  pOpts->SetShowUndoDeleteWarning( IsShowUndoDeleteWarning() );
-//STRIP001  pOpts->SetPrinterIndependentLayout( GetPrinterIndependentLayout() );
-//STRIP001  // #97016#
-//STRIP001  pOpts->SetDefaultObjectSizeWidth( GetDefaultObjectSizeWidth() );
-//STRIP001  pOpts->SetDefaultObjectSizeHeight( GetDefaultObjectSizeHeight() );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -883,19 +629,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 BOOL SdOptionsSnap::operator==( const SdOptionsSnap& rOpt ) const
-//STRIP001 {
-//STRIP001  return( IsSnapHelplines() == rOpt.IsSnapHelplines() &&
-//STRIP001          IsSnapBorder() == rOpt.IsSnapBorder() &&
-//STRIP001          IsSnapFrame() == rOpt.IsSnapFrame() &&
-//STRIP001          IsSnapPoints() == rOpt.IsSnapPoints() &&
-//STRIP001          IsOrtho() == rOpt.IsOrtho() &&
-//STRIP001          IsBigOrtho() == rOpt.IsBigOrtho() &&
-//STRIP001          IsRotate() == rOpt.IsRotate() &&
-//STRIP001          GetSnapArea() == rOpt.GetSnapArea() &&
-//STRIP001          GetAngle() == rOpt.GetAngle() &&
-//STRIP001          GetEliminatePolyPointLimitAngle() == rOpt.GetEliminatePolyPointLimitAngle() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -961,77 +694,19 @@ using namespace ::com::sun::star::uno;
 |*
 \************************************************************************/
 
-//STRIP001 SdOptionsSnapItem::SdOptionsSnapItem( USHORT nWhich ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsSnap   ( 0, FALSE )
-//STRIP001 {
-//STRIP001 }
 
 // ----------------------------------------------------------------------
-
-//STRIP001 SdOptionsSnapItem::SdOptionsSnapItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsSnap   ( 0, FALSE )
-//STRIP001 {
-//STRIP001  if( pView )
-//STRIP001  {
-//STRIP001      SetSnapHelplines( pView->IsHlplSnap() );
-//STRIP001      SetSnapBorder( pView->IsBordSnap() );
-//STRIP001      SetSnapFrame( pView->IsOFrmSnap() );
-//STRIP001      SetSnapPoints( pView->IsOPntSnap() );
-//STRIP001      SetOrtho( pView->IsOrtho() );
-//STRIP001      SetBigOrtho( pView->IsBigOrtho() );
-//STRIP001      SetRotate( pView->IsAngleSnapEnabled() );
-//STRIP001      SetSnapArea( pView->GetSnapMagneticPixel() );
-//STRIP001      SetAngle( (INT16) pView->GetSnapAngle() );
-//STRIP001      SetEliminatePolyPointLimitAngle( (INT16) pView->GetEliminatePolyPointLimitAngle() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SetSnapHelplines( pOpts->IsSnapHelplines() );
-//STRIP001      SetSnapBorder( pOpts->IsSnapBorder() );
-//STRIP001      SetSnapFrame( pOpts->IsSnapFrame() );
-//STRIP001      SetSnapPoints( pOpts->IsSnapPoints() );
-//STRIP001      SetOrtho( pOpts->IsOrtho() );
-//STRIP001      SetBigOrtho( pOpts->IsBigOrtho() );
-//STRIP001      SetRotate( pOpts->IsRotate() );
-//STRIP001      SetSnapArea( pOpts->GetSnapArea() );
-//STRIP001      SetAngle( pOpts->GetAngle() );
-//STRIP001      SetEliminatePolyPointLimitAngle( pOpts->GetEliminatePolyPointLimitAngle() );
-//STRIP001  }
-//STRIP001 }
-
-// ----------------------------------------------------------------------
-
-//STRIP001 SfxPoolItem* SdOptionsSnapItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SdOptionsSnapItem( *this );
-//STRIP001 }
 
 
 // ----------------------------------------------------------------------
 
-//STRIP001 int SdOptionsSnapItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-//STRIP001  return( (SdOptionsSnap&) *this == (const SdOptionsSnap&)(const SdOptionsSnapItem&) rAttr );
-//STRIP001 }
+
+
+// ----------------------------------------------------------------------
+
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsSnapItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  pOpts->SetSnapHelplines( IsSnapHelplines() );
-//STRIP001  pOpts->SetSnapBorder( IsSnapBorder() );
-//STRIP001  pOpts->SetSnapFrame( IsSnapFrame() );
-//STRIP001  pOpts->SetSnapPoints( IsSnapPoints() );
-//STRIP001  pOpts->SetOrtho( IsOrtho() );
-//STRIP001  pOpts->SetBigOrtho( IsBigOrtho() );
-//STRIP001  pOpts->SetRotate( IsRotate() );
-//STRIP001  pOpts->SetSnapArea( GetSnapArea() );
-//STRIP001  pOpts->SetAngle( GetAngle() );
-//STRIP001  pOpts->SetEliminatePolyPointLimitAngle( GetEliminatePolyPointLimitAngle() );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1057,16 +732,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 BOOL SdOptionsZoom::operator==( const SdOptionsZoom& rOpt ) const
-//STRIP001 {
-//STRIP001  INT32 nX1, nX2, nY1, nY2;
-//STRIP001
-//STRIP001  GetScale( nX1, nY1 );
-//STRIP001  rOpt.GetScale( nX2, nY2 );
-//STRIP001
-//STRIP001  return( ( nX1 == nX2 ) &&
-//STRIP001          ( nY1 == nY2 ) );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1116,49 +781,19 @@ using namespace ::com::sun::star::uno;
 |*
 \************************************************************************/
 
-//STRIP001 SdOptionsZoomItem::SdOptionsZoomItem( USHORT nWhich ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsZoom   ( 0, FALSE )
-//STRIP001 {
-//STRIP001 }
 
 // ----------------------------------------------------------------------
-
-//STRIP001 SdOptionsZoomItem::SdOptionsZoomItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
-//STRIP001  SfxPoolItem     ( nWhich ),
-//STRIP001  SdOptionsZoom   ( 0, FALSE )
-//STRIP001 {
-//STRIP001  INT32 nX, nY;
-//STRIP001
-//STRIP001  pOpts->GetScale( nX, nY );
-//STRIP001  SetScale( nX, nY );
-//STRIP001 }
-
-// ----------------------------------------------------------------------
-
-//STRIP001 SfxPoolItem* SdOptionsZoomItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SdOptionsZoomItem( *this );
-//STRIP001 }
 
 
 // ----------------------------------------------------------------------
 
-//STRIP001 int SdOptionsZoomItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-//STRIP001  return( (SdOptionsZoom&) *this == (const SdOptionsZoom&)(const SdOptionsZoomItem&) rAttr );
-//STRIP001 }
+
+
+// ----------------------------------------------------------------------
+
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsZoomItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  INT32 nX, nY;
-//STRIP001
-//STRIP001  GetScale( nX, nY );
-//STRIP001  pOpts->SetScale( nX, nY );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1204,19 +839,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 BOOL SdOptionsGrid::operator==( const SdOptionsGrid& rOpt ) const
-//STRIP001 {
-//STRIP001  return( GetFldDrawX() == rOpt.GetFldDrawX() &&
-//STRIP001          GetFldDivisionX() == rOpt.GetFldDivisionX() &&
-//STRIP001          GetFldDrawY() == rOpt.GetFldDrawY() &&
-//STRIP001          GetFldDivisionY() == rOpt.GetFldDivisionY() &&
-//STRIP001          GetFldSnapX() == rOpt.GetFldSnapX() &&
-//STRIP001          GetFldSnapY() == rOpt.GetFldSnapY() &&
-//STRIP001          IsUseGridSnap() == rOpt.IsUseGridSnap() &&
-//STRIP001          IsSynchronize() == rOpt.IsSynchronize() &&
-//STRIP001          IsGridVisible() == rOpt.IsGridVisible() &&
-//STRIP001          IsEqualGrid() == rOpt.IsEqualGrid() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1311,58 +933,12 @@ using namespace ::com::sun::star::uno;
 |*
 \************************************************************************/
 
-//STRIP001 SdOptionsGridItem::SdOptionsGridItem( USHORT nWhich ) :
-//STRIP001  SvxGridItem( nWhich )
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 SdOptionsGridItem::SdOptionsGridItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
-//STRIP001  SvxGridItem( nWhich )
-//STRIP001 {
-//STRIP001  SetSynchronize( pOpts->IsSynchronize() );
-//STRIP001  SetEqualGrid( pOpts->IsEqualGrid() );
-//STRIP001
-//STRIP001  if( pView )
-//STRIP001  {
-//STRIP001      SetFldDrawX( pView->GetGridCoarse().Width() );
-//STRIP001      SetFldDrawY( pView->GetGridCoarse().Height() );
-//STRIP001      SetFldDivisionX( pView->GetGridFine().Width() ? ( GetFldDrawX() / pView->GetGridFine().Width() - 1 ) : 0 );
-//STRIP001      SetFldDivisionY( pView->GetGridFine().Height() ? ( GetFldDrawY() / pView->GetGridFine().Height() - 1 ) : 0 );
-//STRIP001      SetFldSnapX( pView->GetSnapGrid().Width() );
-//STRIP001      SetFldSnapY( pView->GetSnapGrid().Height() );
-//STRIP001      SetUseGridSnap( pView->IsGridSnap() );
-//STRIP001      SetGridVisible( pView->IsGridVisible() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SetFldDrawX( pOpts->GetFldDrawX() );
-//STRIP001      SetFldDrawY( pOpts->GetFldDrawY() );
-//STRIP001      SetFldDivisionX( pOpts->GetFldDivisionX() ? ( pOpts->GetFldDrawX() / pOpts->GetFldDivisionX() - 1 ) : 0 );
-//STRIP001      SetFldDivisionY( pOpts->GetFldDivisionY() ? ( pOpts->GetFldDrawY() / pOpts->GetFldDivisionY() - 1 ) : 0 );
-//STRIP001      SetFldSnapX( pOpts->GetFldSnapX() );
-//STRIP001      SetFldSnapY( pOpts->GetFldSnapY() );
-//STRIP001      SetUseGridSnap( pOpts->IsUseGridSnap() );
-//STRIP001      SetGridVisible( pOpts->IsGridVisible() );
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsGridItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  pOpts->SetFldDrawX( GetFldDrawX() );
-//STRIP001  pOpts->SetFldDivisionX( GetFldDrawX() / ( GetFldDivisionX() + 1 ) );
-//STRIP001  pOpts->SetFldDrawY( GetFldDrawY() );
-//STRIP001  pOpts->SetFldDivisionY( GetFldDrawY() / ( GetFldDivisionY() + 1 ) );
-//STRIP001  pOpts->SetFldSnapX( GetFldSnapX() );
-//STRIP001  pOpts->SetFldSnapY( GetFldSnapY() );
-//STRIP001  pOpts->SetUseGridSnap( GetUseGridSnap() );
-//STRIP001  pOpts->SetSynchronize( GetSynchronize() );
-//STRIP001  pOpts->SetGridVisible( GetGridVisible() );
-//STRIP001  pOpts->SetEqualGrid( GetEqualGrid() );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1646,28 +1222,6 @@ int SdOptionsPrintItem::operator==( const SfxPoolItem& rAttr ) const
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SdOptionsPrintItem::SetOptions( SdOptions* pOpts ) const
-//STRIP001 {
-//STRIP001  pOpts->SetDraw( IsDraw() );
-//STRIP001  pOpts->SetNotes( IsNotes() );
-//STRIP001  pOpts->SetHandout( IsHandout() );
-//STRIP001  pOpts->SetOutline( IsOutline() );
-//STRIP001  pOpts->SetDate( IsDate() );
-//STRIP001  pOpts->SetTime( IsTime() );
-//STRIP001  pOpts->SetPagename( IsPagename() );
-//STRIP001  pOpts->SetHiddenPages( IsHiddenPages() );
-//STRIP001  pOpts->SetPagesize( IsPagesize() );
-//STRIP001  pOpts->SetPagetile( IsPagetile() );
-//STRIP001  pOpts->SetWarningPrinter( IsWarningPrinter() );
-//STRIP001  pOpts->SetWarningSize( IsWarningSize() );
-//STRIP001  pOpts->SetWarningOrientation( IsWarningOrientation() );
-//STRIP001  pOpts->SetBooklet( IsBooklet() );
-//STRIP001  pOpts->SetFrontPage( IsFrontPage() );
-//STRIP001  pOpts->SetBackPage( IsBackPage() );
-//STRIP001  pOpts->SetCutPage( IsCutPage() );
-//STRIP001  pOpts->SetPaperbin( IsPaperbin() );
-//STRIP001  pOpts->SetOutputQuality( GetOutputQuality() );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1694,53 +1248,7 @@ int SdOptionsPrintItem::operator==( const SfxPoolItem& rAttr ) const
 
 // ----------------------------------------------------------------------
 
-//STRIP001 void SdOptions::SetDefaults( ULONG nOptionsRange )
-//STRIP001 {
-//STRIP001  if( nOptionsRange & SD_OPTIONS_LAYOUT )
-//STRIP001      SdOptionsLayout::SetDefaults();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_CONTENTS )
-//STRIP001      SdOptionsContents::SetDefaults();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_MISC )
-//STRIP001      SdOptionsMisc::SetDefaults();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_SNAP )
-//STRIP001      SdOptionsSnap::SetDefaults();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_ZOOM )
-//STRIP001      SdOptionsZoom::SetDefaults();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_GRID )
-//STRIP001      SdOptionsGrid::SetDefaults();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_PRINT )
-//STRIP001      SdOptionsPrint::SetDefaults();
-//STRIP001 }
 
 // ----------------------------------------------------------------------
 
-//STRIP001 void SdOptions::StoreConfig( ULONG nOptionsRange )
-//STRIP001 {
-//STRIP001  if( nOptionsRange & SD_OPTIONS_LAYOUT )
-//STRIP001      SdOptionsLayout::Store();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_CONTENTS )
-//STRIP001      SdOptionsContents::Store();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_MISC )
-//STRIP001      SdOptionsMisc::Store();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_SNAP )
-//STRIP001      SdOptionsSnap::Store();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_ZOOM )
-//STRIP001      SdOptionsZoom::Store();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_GRID )
-//STRIP001      SdOptionsGrid::Store();
-//STRIP001
-//STRIP001  if( nOptionsRange & SD_OPTIONS_PRINT )
-//STRIP001      SdOptionsPrint::Store();
-//STRIP001 }
 }
