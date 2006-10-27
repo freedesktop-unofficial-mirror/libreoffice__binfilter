@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tbxform.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:11:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:13:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,76 +39,19 @@
 #include <bf_sfx2/tbxctrl.hxx>
 #endif
 
-// auto strip #ifndef _SFXTBXMGR_HXX //autogen
-// auto strip #include <bf_sfx2/tbxmgr.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_FIELD_HXX //autogen
-// auto strip #include <vcl/field.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_DIALOG_HXX //autogen
-// auto strip #include <vcl/dialog.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_BUTTON_HXX //autogen
-// auto strip #include <vcl/button.hxx>
-// auto strip #endif
 class FixedText;
 namespace binfilter {
 
 //========================================================================
 
-//STRIP001 class FmInputRecordNoDialog : public ModalDialog
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  FixedText       m_aLabel;
-//STRIP001  NumericField    m_aRecordNo;
-//STRIP001  OKButton        m_aOk;
-//STRIP001  CancelButton    m_aCancel;
-//STRIP001
-//STRIP001 public:
-//STRIP001  FmInputRecordNoDialog(Window * pParent);
-//STRIP001
-//STRIP001  void SetValue(double dNew) { m_aRecordNo.SetValue(dNew); }
-//STRIP001  long GetValue() const { return m_aRecordNo.GetValue(); }
-//STRIP001 };
 
 //========================================================================
-//STRIP001 class SvxFmAbsRecWin : public NumericField
-//STRIP001 {
-//STRIP001  SfxToolBoxControl*  m_pController;
-//STRIP001      // for invalidating our content whe losing the focus
-//STRIP001 public:
-//STRIP001  SvxFmAbsRecWin( Window* _pParent, SfxToolBoxControl* _pController );
-//STRIP001  ~SvxFmAbsRecWin();
-//STRIP001
-//STRIP001  virtual void KeyInput( const KeyEvent& rKeyEvt );
-//STRIP001  virtual void LoseFocus();
-//STRIP001
-//STRIP001 protected:
-//STRIP001  virtual void FirePosition( sal_Bool _bForce );
-//STRIP001 };
 
 
 //========================================================================
-//STRIP001 class SvxFmConfigWin : public SfxPopupWindow
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  SfxToolBoxManager aTbx;
-//STRIP001  Link aSelectLink;
-//STRIP001
-//STRIP001  DECL_LINK( TbxSelectHdl, ToolBox* );
-//STRIP001
-//STRIP001 public:
-//STRIP001  SvxFmConfigWin( USHORT nId, ResId aRIdWin, ResId aRIdTbx, SfxBindings& rBindings );
-//STRIP001  ~SvxFmConfigWin();
-//STRIP001
-//STRIP001  void            StartSelection()
-//STRIP001                      { aTbx.GetToolBox().StartSelection(); }
-//STRIP001  void            Update();
-//STRIP001  virtual void    PopupModeEnd();
-//STRIP001 };
 
 
 //========================================================================
@@ -123,11 +66,8 @@ public:
     SvxFmTbxCtlConfig( USHORT nId, ToolBox& rTbx, SfxBindings& );
     ~SvxFmTbxCtlConfig() {}
 
-//STRIP001  virtual void                Select( USHORT nModifier );
     virtual void                StateChanged( USHORT nSID, SfxItemState eState,
                                               const SfxPoolItem* pState );
-//STRIP001  virtual SfxPopupWindowType  GetPopupWindowType() const;
-//STRIP001  virtual SfxPopupWindow*     CreatePopupWindow();
 };
 
 //========================================================================
@@ -137,12 +77,8 @@ public:
     SFX_DECL_TOOLBOX_CONTROL();
 
     SvxFmTbxCtlAbsRec( USHORT nId, ToolBox& rTbx, SfxBindings& rBindings );
-//STRIP001  ~SvxFmTbxCtlAbsRec();
 
-//STRIP001  virtual Window* CreateItemWindow( Window* pParent );
 
-//STRIP001  virtual void    StateChanged( USHORT nSID, SfxItemState eState,
-//STRIP001                                const SfxPoolItem* pState );
 };
 
 //========================================================================
@@ -152,9 +88,6 @@ public:
     SFX_DECL_TOOLBOX_CONTROL();
 
     SvxFmTbxCtlRecText( USHORT nId, ToolBox& rTbx, SfxBindings& rBindings );
-//STRIP001  ~SvxFmTbxCtlRecText();
-//STRIP001
-//STRIP001  virtual Window* CreateItemWindow( Window* pParent );
 };
 
 //========================================================================
@@ -164,9 +97,6 @@ public:
     SFX_DECL_TOOLBOX_CONTROL();
 
     SvxFmTbxCtlRecFromText( USHORT nId, ToolBox& rTbx, SfxBindings& rBindings );
-//STRIP001  ~SvxFmTbxCtlRecFromText();
-//STRIP001
-//STRIP001  virtual Window* CreateItemWindow( Window* pParent );
 };
 
 //========================================================================
@@ -178,11 +108,6 @@ public:
     SFX_DECL_TOOLBOX_CONTROL();
 
     SvxFmTbxCtlRecTotal( USHORT nId, ToolBox& rTbx, SfxBindings& rBindings );
-//STRIP001  ~SvxFmTbxCtlRecTotal();
-//STRIP001
-//STRIP001  virtual Window* CreateItemWindow( Window* pParent );
-//STRIP001  virtual void    StateChanged( USHORT nSID, SfxItemState eState,
-//STRIP001                                const SfxPoolItem* pState );
 };
 
 /*
