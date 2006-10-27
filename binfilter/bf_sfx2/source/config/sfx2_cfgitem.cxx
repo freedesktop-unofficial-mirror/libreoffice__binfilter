@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_cfgitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:40:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:07:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 
 #pragma hdrstop
 
-// auto strip #include "cfgitem.hxx"
 #include "cfgmgr.hxx"
 #include "sfx.hrc"
 #include "cfgimpl.hxx"
@@ -104,25 +103,10 @@ namespace binfilter {
 
 /*?*/ void SfxConfigItem::ReConnect( SfxConfigManager* pMgr )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if ( m_pCfgMgr )
-//STRIP001     {
-//STRIP001         if ( m_bModified )
-//STRIP001             m_pCfgMgr->StoreConfigItem( *this );
-//STRIP001         m_pCfgMgr->RemoveConfigItem( *this );
-//STRIP001     }
-//STRIP001
-//STRIP001     m_pCfgMgr = pMgr;
-//STRIP001     if ( m_pCfgMgr )
-//STRIP001     {
-//STRIP001         m_pCfgMgr->AddConfigItem( *this );
-//STRIP001         ReInitialize();
-//STRIP001     }
 /*?*/ }
 
 /*?*/ BOOL SfxConfigItem::ReInitialize()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
-//STRIP001     m_bInitialized = FALSE;
-//STRIP001     return Initialize();
 /*?*/ }
 
 /*?*/ String SfxConfigItem::GetStreamName( USHORT nType )
