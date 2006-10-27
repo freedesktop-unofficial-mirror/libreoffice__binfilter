@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txmsrt.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:30:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:50:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,22 +105,6 @@ public:
          return 0 == Compare( rTxt1, rTxtReading1, rLocale1,
                               rTxt2, rTxtReading2, rLocale2 );
     }
-//STRIP001
-//STRIP001     inline BOOL IsLess( const String& rTxt1, const String& rTxtReading1,
-//STRIP001                         const ::com::sun::star::lang::Locale& rLocale1,
-//STRIP001                         const String& rTxt2, const String& rTxtReading2,
-//STRIP001                         const ::com::sun::star::lang::Locale& rLocale2 ) const
-//STRIP001  {
-//STRIP001         return -1 == Compare( rTxt1, rTxtReading1, rLocale1,
-//STRIP001                               rTxt2, rTxtReading2, rLocale2 );
-//STRIP001  }
-//STRIP001
-//STRIP001     String GetIndexKey( const String& rTxt, const String& rTxtReading,
-//STRIP001                         const ::com::sun::star::lang::Locale& rLcl ) const;
-//STRIP001
-//STRIP001  String GetFollowingText( BOOL bMorePages ) const;
-//STRIP001
-//STRIP001  String ToUpper( const String& rStr, xub_StrLen nPos ) const;
     inline BOOL IsNumeric( const String& rStr ) const;
 };
 
@@ -190,90 +174,14 @@ inline void SwTOXSortTabBase::GetTxt( String& rSortTxt,
      Beschreibung: fuer Sortierung nach Text
  --------------------------------------------------------------------*/
 
-//STRIP001 struct SwTOXIndex : public SwTOXSortTabBase
-//STRIP001 {
-//STRIP001  SwTOXIndex( const SwTxtNode&, const SwTxtTOXMark*, USHORT nOptions, BYTE nKeyLevel,
-//STRIP001                 const SwTOXInternational& rIntl,
-//STRIP001                 const ::com::sun::star::lang::Locale& rLocale );
-//STRIP001
-//STRIP001
-//STRIP001  virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0 ) const;
-//STRIP001  virtual USHORT  GetLevel() const;
-//STRIP001  virtual BOOL    operator==( const SwTOXSortTabBase& );
-//STRIP001  virtual BOOL    operator<( const SwTOXSortTabBase& );
-//STRIP001
-//STRIP001 private:
-//STRIP001     virtual void _GetText( String&, String& );
-//STRIP001
-//STRIP001  BYTE    nKeyLevel;
-//STRIP001 };
 
-//STRIP001 struct SwTOXCustom : public SwTOXSortTabBase
-//STRIP001 {
-//STRIP001     SwTOXCustom( const String& rKey, USHORT nLevel,
-//STRIP001                  const SwTOXInternational& rIntl,
-//STRIP001                  const ::com::sun::star::lang::Locale& rLocale );
-//STRIP001
-//STRIP001  virtual USHORT GetLevel() const;
-//STRIP001  virtual BOOL   operator==( const SwTOXSortTabBase& );
-//STRIP001  virtual BOOL   operator<( const SwTOXSortTabBase& );
-//STRIP001
-//STRIP001 private:
-//STRIP001     virtual void _GetText( String&, String& );
-//STRIP001
-//STRIP001  String  aKey;
-//STRIP001  USHORT  nLev;
-//STRIP001 };
 
 /*--------------------------------------------------------------------
      Beschreibung: fuer Sortierung nach Position
  --------------------------------------------------------------------*/
 
-//STRIP001 struct SwTOXContent : public SwTOXSortTabBase
-//STRIP001 {
-//STRIP001  SwTOXContent( const SwTxtNode&, const SwTxtTOXMark*,
-//STRIP001              const SwTOXInternational& rIntl );
-//STRIP001
-//STRIP001  virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0 ) const;
-//STRIP001  virtual USHORT  GetLevel() const;
-//STRIP001 private:
-//STRIP001     virtual void _GetText( String&, String& );
-//STRIP001
-//STRIP001 };
 
-//STRIP001 struct SwTOXPara : public SwTOXSortTabBase
-//STRIP001 {
-//STRIP001  SwTOXPara( const SwCntntNode&, SwTOXElement, USHORT nLevel = FORM_ALPHA_DELIMITTER );
-//STRIP001
-//STRIP001  void    SetStartIndex( xub_StrLen nSet)     { nStartIndex = nSet;}
-//STRIP001  void    SetEndIndex( xub_StrLen nSet )      { nEndIndex = nSet;}
-//STRIP001
-//STRIP001  virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0 ) const;
-//STRIP001  virtual USHORT  GetLevel() const;
-//STRIP001
-//STRIP001  virtual String  GetURL() const;
-//STRIP001 private:
-//STRIP001     virtual void _GetText( String&, String& );
-//STRIP001
-//STRIP001  SwTOXElement eType;
-//STRIP001  USHORT m_nLevel;
-//STRIP001  xub_StrLen nStartIndex;
-//STRIP001  xub_StrLen nEndIndex;
-//STRIP001 };
 
-//STRIP001 struct SwTOXTable : public SwTOXSortTabBase
-//STRIP001 {
-//STRIP001  SwTOXTable( const SwCntntNode& rNd );
-//STRIP001  void    SetLevel(USHORT nSet){nLevel = nSet;}
-//STRIP001
-//STRIP001  virtual USHORT  GetLevel() const;
-//STRIP001
-//STRIP001  virtual String  GetURL() const;
-//STRIP001 private:
-//STRIP001     virtual void _GetText( String&, String& );
-//STRIP001
-//STRIP001  USHORT nLevel;
-//STRIP001 };
 
 struct SwTOXAuthority : public SwTOXSortTabBase
 {
