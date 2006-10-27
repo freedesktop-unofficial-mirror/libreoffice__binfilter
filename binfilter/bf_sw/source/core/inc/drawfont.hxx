@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawfont.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:33:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:44:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -175,7 +175,6 @@ public:
                            const BYTE* pLevel = 0 ) const;
     BYTE DirType( const xub_StrLen nPos ) const;
 
-//STRIP001     BYTE CompType( const xub_StrLen nPos ) const;
 
     // examines the range [ nStart, nStart + nEnd ] if there are kanas
     // returns start index of kana entry in array, otherwise USHRT_MAX
@@ -202,9 +201,6 @@ public:
                 The value which has to be added to a kashida opportunity.
     @return The number of kashida opportunities in the given range
 */
-//STRIP001     USHORT KashidaJustify( long* pKernArray ,long* pScrArray,
-//STRIP001                            xub_StrLen nIdx, xub_StrLen nLen,
-//STRIP001                            USHORT nSpace = 0 ) const;
 
 /** Checks if language is one of the 16 Arabic languages
 
@@ -213,7 +209,6 @@ public:
                 The language which has to be checked.
     @return Returns if the language is an Arabic language
 */
-//STRIP001     static BOOL IsArabicLanguage( LanguageType aLang );
 
 /** Performes a thai justification on the kerning array
 
@@ -233,9 +228,6 @@ public:
                 The value which has to be added to the cells.
     @return The number of extra spaces in the given range
 */
-//STRIP001     static USHORT ThaiJustify( const XubString& rTxt, long* pKernArray,
-//STRIP001                                long* pScrArray, xub_StrLen nIdx,
-//STRIP001                                xub_StrLen nLen, USHORT nSpace = 0 );
 
     static SwScriptInfo* GetScriptInfo( const SwTxtNode& rNode,
                                         sal_Bool bAllowInvalid = sal_False );
@@ -826,13 +818,11 @@ public:
         bPosMatchesBounds = bNew;
     }
 
-//STRIP001     void Shift( USHORT nDir );
 
     // sets a new color at the output device if necessary
     // if a font is passed as argument, the change if made to the font
     // otherwise the font at the output device is changed
     // returns if the font has been changed
-//STRIP001     sal_Bool ApplyAutoColor( Font* pFnt = 0 );
 };
 
 } //namespace binfilter
