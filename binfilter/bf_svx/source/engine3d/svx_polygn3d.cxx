@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_polygn3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:33:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:50:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include "polygn3d.hxx"
 #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
@@ -324,20 +321,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolygonObj::CreateWireframe(Polygon3D& rWirePoly,
-//STRIP001  const Matrix4D* pTf, E3dDragDetail eDetail)
-//STRIP001 {
-//STRIP001  if ( eDetail == E3DDETAIL_ALLLINES ||
-//STRIP001      (eDetail == E3DDETAIL_DEFAULT && GetDragDetail() == E3DDETAIL_ALLLINES) )
-//STRIP001  {
-//STRIP001      // Detailliert erzeugen
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // call parent
-//STRIP001      E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -387,10 +370,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject *E3dPolygonObj::DoConvertToPolyObj(BOOL bBezier) const
-//STRIP001 {
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -398,25 +377,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolygonObj::GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const
-//STRIP001 {
-//STRIP001  // add geometry describing polygons to rLinePolyPolygon
-//STRIP001  for(sal_uInt16 a(0); a < aPolyPoly3D.Count(); a++)
-//STRIP001  {
-//STRIP001      Polygon3D aNew = aPolyPoly3D[a];
-//STRIP001
-//STRIP001      if(aNew.GetPointCount() && aNew.IsClosed())
-//STRIP001      {
-//STRIP001          aNew[aNew.GetPointCount()] = aNew[0];
-//STRIP001          aNew.SetClosed(FALSE);
-//STRIP001      }
-//STRIP001
-//STRIP001      rLinePolyPolygon.Insert(aNew);
-//STRIP001  }
-//STRIP001
-//STRIP001  // don't call parent
-//STRIP001  // E3dCompoundObject::GetLineGeometry(rLinePolyPolygon);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -424,30 +384,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolygonObj::CreateGeometry()
-//STRIP001 {
-//STRIP001  // Start der Geometrieerzeugung ankuendigen
-//STRIP001  StartCreateGeometry();
-//STRIP001
-//STRIP001  if(aPolyNormals3D.Count())
-//STRIP001  {
-//STRIP001      if(aPolyTexture3D.Count())
-//STRIP001      {
-//STRIP001          AddGeometry(aPolyPoly3D, aPolyNormals3D, aPolyTexture3D, TRUE, bLineOnly);
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          AddGeometry(aPolyPoly3D, aPolyNormals3D, TRUE, bLineOnly);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      AddGeometry(aPolyPoly3D, TRUE, bLineOnly);
-//STRIP001  }
-//STRIP001
-//STRIP001  // call parent
-//STRIP001  E3dCompoundObject::CreateGeometry();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -510,19 +446,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dPolygonObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  E3dCompoundObject::operator=(rObj);
-//STRIP001
-//STRIP001  // weitere Parameter kopieren
-//STRIP001  const E3dPolygonObj& r3DObj = (const E3dPolygonObj&)rObj;
-//STRIP001
-//STRIP001  aPolyPoly3D      = r3DObj.aPolyPoly3D;
-//STRIP001  aPolyNormals3D   = r3DObj.aPolyNormals3D;
-//STRIP001  aPolyTexture3D   = r3DObj.aPolyTexture3D;
-//STRIP001  bLineOnly        = r3DObj.bLineOnly;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -532,11 +455,6 @@ namespace binfilter {
 
 /*N*/ void E3dPolygonObj::SetLineOnly(BOOL bNew)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(bNew != bLineOnly)
-//STRIP001  {
-//STRIP001      bLineOnly = bNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
 /*N*/ }
 
 }

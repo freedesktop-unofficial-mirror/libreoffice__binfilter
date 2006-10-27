@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_sphere3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:34:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:51:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
@@ -48,13 +47,7 @@
 #include "svdmodel.hxx"
 #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_GLOBL3D_HXX
-// auto strip #include "globl3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
@@ -64,17 +57,11 @@
 #include "sphere3d.hxx"
 #endif
 
-// auto strip #ifndef _POLY3D_HXX
-// auto strip #include "poly3d.hxx"
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
 #endif
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include "svx3ditems.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dSphereObj, E3dCompoundObject);
@@ -343,10 +330,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 UINT16 E3dSphereObj::GetObjIdentifier() const
-//STRIP001 {
-//STRIP001  return E3D_SPHEREOBJ_ID;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -354,20 +337,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dSphereObj::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
-//STRIP001  E3dDragDetail eDetail)
-//STRIP001 {
-//STRIP001  if ( eDetail == E3DDETAIL_ALLLINES ||
-//STRIP001      (eDetail == E3DDETAIL_DEFAULT && GetDragDetail() == E3DDETAIL_ALLLINES) )
-//STRIP001  {
-//STRIP001      // Detailliert erzeugen
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // call parent
-//STRIP001      E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -740,17 +709,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dSphereObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  E3dCompoundObject::operator=(rObj);
-//STRIP001
-//STRIP001  // weitere Parameter kopieren
-//STRIP001  const E3dSphereObj& r3DObj = (const E3dSphereObj&) rObj;
-//STRIP001
-//STRIP001  aCenter       = r3DObj.aCenter;
-//STRIP001  aSize         = r3DObj.aSize;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -760,20 +718,10 @@ namespace binfilter {
 
 /*N*/ void E3dSphereObj::SetCenter(const Vector3D& rNew)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(aCenter != rNew)
-//STRIP001  {
-//STRIP001      aCenter = rNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
 /*N*/ }
 
 /*N*/ void E3dSphereObj::SetSize(const Vector3D& rNew)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(aSize != rNew)
-//STRIP001  {
-//STRIP001      aSize = rNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
 /*N*/ }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -806,19 +754,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dSphereObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulSphere3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -826,10 +761,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dSphereObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralSphere3d);
-//STRIP001 }
 
 // EOF
 }
