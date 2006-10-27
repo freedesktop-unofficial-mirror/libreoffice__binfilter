@@ -4,9 +4,9 @@
  *
  *  $RCSfile: glosdoc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:34:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:42:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,10 +90,8 @@ class SwGlossaries
     SvStrings               *pPathArr;
     SvStrings               *pGlosArr;
     BOOL                    bError;
-//STRIP001
     SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 //STRIP001  SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const;
     SvStrings       *GetNameList();
-//STRIP001  // implementation in unoatxt.cxx
     void RemoveFileFromList( const String& rGroup );
     void InvalidateUNOOjects();
 
@@ -156,11 +154,7 @@ public:
     BOOL            RenameGroupDoc(const String& sOldGroup, String& sNewGroup, const String& rNewTitle);
     BOOL            DelGroupDoc(const String &);
     SwDocShellRef   EditGroupDoc(const String &rGrpName, const String& rShortName, BOOL bShow = TRUE );
-//STRIP001  void            SaveGroupDoc(const String &rGrpName, const String& rLongName );
     void            UpdateGlosPath(BOOL bFull);
-//STRIP001  void            ShowError();
-//STRIP001  inline ULONG    IsGlosPathErr() { return bError; }
-//STRIP001  const SvStrings*    GetPathArray() const {return pPathArr;}
 };
 
 

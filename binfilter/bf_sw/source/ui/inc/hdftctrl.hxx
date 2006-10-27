@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hdftctrl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:36:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:43:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,23 +51,12 @@ class SwDocShell;
 
 class SwHeadFootMenuControl : public SfxMenuControl
 {
-//STRIP001  Menu* pParent;
-//STRIP001  USHORT nInsPos;
-//STRIP001  PopupMenu* pDynMenu;
-//STRIP001     SvStringsSortDtor   aStyleNames;
-//STRIP001
-//STRIP001  SwDocShell* pShell;
-//STRIP001  DECL_LINK( DynMenuPageSelect, Menu* );
 
 public:
     SFX_DECL_MENU_CONTROL();
 
     SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,    //STRIP001  SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,
         SfxBindings& rBindings ){DBG_BF_ASSERT(0, "STRIP");};   //STRIP001                              SfxBindings& rBindings );
-//STRIP001  virtual ~SwHeadFootMenuControl();
-//STRIP001  virtual PopupMenu* GetPopup() const;
-//STRIP001
-//STRIP001  virtual void StateChanged( USHORT , SfxItemState , const SfxPoolItem* );
 };
 
 } //namespace binfilter

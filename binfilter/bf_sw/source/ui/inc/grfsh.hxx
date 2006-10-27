@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:36:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:42:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,6 @@ class SwGrfShell: public SwBaseShell
 public:
     SFX_DECL_INTERFACE(SW_GRFSHELL);
 
-//STRIP001  void    Execute(SfxRequest &);
     void    ExecAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecAttr(SfxRequest &);
     void    GetAttrState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    GetAttrState(SfxItemSet &);
 
