@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtscene.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:56:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:25:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,13 +36,9 @@
 #pragma hdrstop
 
 
-// auto strip #ifndef _XPOLY_HXX //autogen
-// auto strip #include <bf_svx/xpoly.hxx>
-// auto strip #endif
 
 #include "axisid.hxx"
 #include "chtscene.hxx"
-// auto strip #include "chtmodel.hxx"
 namespace binfilter {
 
 #pragma optimize ("",off)
@@ -110,12 +106,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void ChartScene::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  E3dScene::operator=(rObj);
-//STRIP001
-//STRIP001  pDoc = ((const ChartScene&) rObj).pDoc;
-//STRIP001 }
 
 
 
@@ -152,10 +142,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void ChartScene::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
-//STRIP001 {
-//STRIP001  E3dPolyScene::ReadData(rHead, rIn);
-//STRIP001 }
 
 /*************************************************************************
 |*
