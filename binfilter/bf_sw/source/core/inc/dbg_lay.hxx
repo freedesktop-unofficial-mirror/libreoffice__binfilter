@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbg_lay.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:24:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:43:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,7 +74,6 @@
 
 #ifndef PRODUCT
 
-// auto strip #include "swtypes.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {
 class SwImplProtocol;
@@ -93,8 +92,6 @@ public:
     static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam );
     static void Init();
     static void Stop();
-//STRIP001     static void SnapShot( const SwFrm* pFrm, ULONG nFlags );
-//STRIP001     static void GetVar( const USHORT nNo, long& rVar );
 };
 
 class SwEnterLeave
