@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outliner.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-23 11:52:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:32:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,40 +36,6 @@
 
 #include <outliner.hrc>
 
-//STRIP001 String RID_OUTLUNDO_HEIGHT
-//STRIP001 {
-//STRIP001      TEXT = "Verschieben" ;
-//STRIP001      TEXT [ English ] = "Move" ;
-//STRIP001      TEXT [ norwegian ] = "Flytt" ;
-//STRIP001      TEXT [ italian ] = "Sposta" ;
-//STRIP001      TEXT [ portuguese_brazilian ] = "Mover" ;
-//STRIP001      TEXT [ portuguese ] = "Mover" ;
-//STRIP001      TEXT [ finnish ] = "Siirr?" ;
-//STRIP001      TEXT [ danish ] = "Flyt" ;
-//STRIP001      TEXT [ french ] = "DÈplacer" ;
-//STRIP001      TEXT [ swedish ] = "Flytta" ;
-//STRIP001      TEXT [ dutch ] = "Verplaatsen" ;
-//STRIP001      TEXT [ spanish ] = "Desplazar" ;
-//STRIP001      TEXT [ english_us ] = "Move" ;
-//STRIP001      TEXT[ chinese_simplified ] = "ÁßªÂä®";
-//STRIP001      TEXT[ russian ] = "œÂÂÏÂÒÚËÚ?";
-//STRIP001      TEXT[ polish ] = "Przesu?";
-//STRIP001      TEXT[ japanese ] = "ÁßªÂãï";
-//STRIP001      TEXT[ chinese_traditional ] = "ÁßªÂãï";
-//STRIP001      TEXT[ arabic ] = "≈“«Õ?";
-//STRIP001      TEXT[ dutch ] = "Verplaatsen";
-//STRIP001      TEXT[ chinese_simplified ] = "ÁßªÂä®";
-//STRIP001      TEXT[ greek ] = "ÃÂÙ·ÍﬂÌÁÛÁ";
-//STRIP001      TEXT[ korean ] = "Ïù¥Îèô";
-//STRIP001      TEXT[ turkish ] = "Ta˛˝";
-//STRIP001      TEXT[ language_user1 ] = " ";
-//STRIP001      TEXT[ catalan ] = "Mou";
-//STRIP001      TEXT[ thai ] = "‡∏¢‡πâ‡∏≤‡∏¢";
-//STRIP001      TEXT[ czech ] = "P≈ôesunout";
-//STRIP001      TEXT[ hebrew ] = "‚ÄÆ◊î◊ñ◊ñ◊î‚Ä?";
-//STRIP001      TEXT[ hindi ] = "‡§∏‡•ç‡§•‡§æ‡§®‡§æ‡§®‡•ç‡§§‡§∞";
-//STRIP001      TEXT[ slovak ] = "Presun√∫≈•";
-//STRIP001 };
 
 String RID_OUTLUNDO_DEPTH
 {
