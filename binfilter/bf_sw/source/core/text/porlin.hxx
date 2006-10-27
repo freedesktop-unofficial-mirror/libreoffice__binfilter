@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porlin.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:23:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:07:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -173,16 +173,13 @@ public:
     SwLinePortion *FindPrevPortion( const SwLinePortion *pRoot );
     SwLinePortion *FindLastPortion();
 
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
     virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
     void CalcTxtSize( const SwTxtSizeInfo &rInfo );
 
     // Ausgabe
     virtual void Paint( const SwTxtPaintInfo &rInf ) const = 0;
-//STRIP001     void PrePaint( const SwTxtPaintInfo &rInf, const SwLinePortion *pLast ) const;
 
 #ifndef PRODUCT
-//STRIP001  virtual sal_Bool Check( SvStream &rOs, SwTxtSizeInfo &rInfo ); //$ ostream
 #endif
 
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
@@ -194,13 +191,11 @@ public:
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
 
     // fuer SwFldPortion, SwSoftHyphPortion
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
 
     // for text- and multi-portions
     virtual long CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };

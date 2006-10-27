@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porlay.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:22:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:06:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,7 +137,6 @@ private:
 public:
     // von SwLinePortion
     virtual SwLinePortion *Insert( SwLinePortion *pPortion );
-//STRIP001  virtual SwLinePortion *Append( SwLinePortion *pPortion );
     inline SwLinePortion *GetFirstPortion() const;
 
     // Flags
@@ -321,7 +320,6 @@ public:
     SvStream &WriteSwg( SvStream& rStream ); //$ ostream
 
     // nErgo in der QuoVadisPortion setzen
-//STRIP001  void SetErgoSumNum( const XubString &rErgo );
 
     const SwDropPortion *FindDropPortion() const;
 

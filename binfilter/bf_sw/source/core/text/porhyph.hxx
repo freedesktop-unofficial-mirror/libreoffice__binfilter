@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porhyph.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:22:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:06:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,6 @@ public:
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
@@ -64,10 +63,8 @@ class SwHyphStrPortion : public SwHyphPortion
     XubString aExpand;
 public:
     inline  SwHyphStrPortion( const XubString &rStr );
-//STRIP001  virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
@@ -86,16 +83,13 @@ public:
     SwSoftHyphPortion();
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
     virtual SwLinePortion *Compress();
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
     inline void SetExpand( const sal_Bool bNew ) { bExpand = bNew; }
     sal_Bool IsExpand() const { return bExpand; }
 
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
