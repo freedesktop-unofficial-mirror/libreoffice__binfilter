@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unocrsr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:30:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:20:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,18 +51,9 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwUnoCrsrTbl, SwUnoCrsrPtr )
@@ -219,7 +210,6 @@ SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
 /*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 while( aTblSel.GetNext() != &aTblSel )
-//STRIP001 /*?*/        delete aTblSel.GetNext();           // und loeschen
 /*N*/ }
 
 /*N*/ SwUnoTableCrsr::operator SwUnoCrsr* ()        { return this; }
@@ -236,45 +226,10 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 /*N*/ FASTBOOL SwUnoTableCrsr::IsSelOvr( int eFlags )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = SwUnoCrsr::IsSelOvr( eFlags );
-//STRIP001 /*?*/    if( !bRet )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        const SwTableNode* pTNd = GetPoint()->nNode.GetNode().FindTableNode();
-//STRIP001 /*?*/        bRet = !(pTNd == GetDoc()->GetNodes()[ GetSavePos()->nNode ]->
-//STRIP001 /*?*/                FindTableNode() && (!HasMark() ||
-//STRIP001 /*?*/                pTNd == GetMark()->nNode.GetNode().FindTableNode() ));
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    return bRet;
 /*N*/ }
 
 /*N*/ void SwUnoTableCrsr::MakeBoxSels()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  const SwCntntNode* pCNd;
-//STRIP001     bool bMakeTblCrsrs = true;
-//STRIP001  if( GetPoint()->nNode.GetIndex() && GetMark()->nNode.GetIndex() &&
-//STRIP001          0 != ( pCNd = GetCntntNode() ) && pCNd->GetFrm() &&
-//STRIP001          0 != ( pCNd = GetCntntNode(FALSE) ) && pCNd->GetFrm() )
-//STRIP001      bMakeTblCrsrs = GetDoc()->GetRootFrm()->MakeTblCrsrs( *this );
-//STRIP001
-//STRIP001     if ( !bMakeTblCrsrs )
-//STRIP001     {
-//STRIP001         SwSelBoxes& rTmpBoxes = (SwSelBoxes&)GetBoxes();
-//STRIP001         USHORT nCount = 0;
-//STRIP001         while( nCount < rTmpBoxes.Count() )
-//STRIP001             DeleteBox( nCount );
-//STRIP001     }
-//STRIP001
-//STRIP001  if( IsChgd() )
-//STRIP001  {
-//STRIP001      SwTableCursor::MakeBoxSels( &aTblSel );
-//STRIP001      if( !GetBoxesCount() )
-//STRIP001      {
-//STRIP001          const SwTableBox* pBox;
-//STRIP001          const SwNode* pBoxNd = GetPoint()->nNode.GetNode().FindTableBoxStartNode();
-//STRIP001          const SwTableNode* pTblNd = pBoxNd ? pBoxNd->FindTableNode() : 0;
-//STRIP001          if( pTblNd && 0 != ( pBox = pTblNd->GetTable().GetTblBox( pBoxNd->GetIndex() )) )
-//STRIP001              InsertBox( *pBox );
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
 /*  */

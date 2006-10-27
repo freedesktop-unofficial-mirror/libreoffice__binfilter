@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwStyleNameMapper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:31:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:20:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -875,7 +875,6 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 // Get the programmatic Name from the pool ID
 /*N*/ void SwStyleNameMapper::FillProgName ( sal_uInt16 nId, String& rFillName )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  fillNameFromId ( nId, rFillName, sal_True );
 /*N*/ }
 // Get the programmatic Name from the pool ID
 /*N*/ const String& SwStyleNameMapper::GetProgName ( sal_uInt16 nId, const String& rName )
