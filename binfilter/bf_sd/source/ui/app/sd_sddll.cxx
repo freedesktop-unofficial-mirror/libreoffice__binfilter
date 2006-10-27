@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sddll.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:41:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:14:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,36 +33,21 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _EEITEM_HXX //autogen
-// auto strip #include <bf_svx/eeitem.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/editeng.hxx>
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <svtools/moduleoptions.hxx>
 #endif
 
 #pragma hdrstop
 
-// auto strip #include "sddll.hxx"
-// auto strip #include "docshell.hxx"
 #include "grdocsh.hxx"
 #include "sdresid.hxx"
 #include "sdobjfac.hxx"
 #include "cfgids.hxx"
 
-#ifndef _SVX_ACCESSIBILITY_CHILDREN_MANAGER_HXX
-#include <bf_svx/ChildrenManager.hxx>
-#endif
-
-// auto strip #include "SdShapeTypes.hxx"
-// auto strip #include <bf_svx/SvxShapeTypes.hxx>
 namespace binfilter {
 
 /*************************************************************************
@@ -93,7 +78,6 @@ namespace binfilter {
 /*N*/
 /*N*/         // Register the Impress shape types in order to make the shapes
 /*N*/         // accessible.
-//STRIP001 /*?*/         accessibility::RegisterImpressShapeTypes ();
 /*N*/   }
 
 /*N*/   if (SvtModuleOptions().IsDraw())
