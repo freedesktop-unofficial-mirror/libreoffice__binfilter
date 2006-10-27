@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_property.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:55:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:05:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,15 +40,8 @@
 #include "property.hrc"
 #endif
 
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include <algorithm>
 namespace binfilter {
