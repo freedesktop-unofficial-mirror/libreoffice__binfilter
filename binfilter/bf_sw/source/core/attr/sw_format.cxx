@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_format.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:17:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:14:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,15 +36,9 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>            // fuer RES_..
-// auto strip #endif
 #ifndef _FRAME_HXX
 #include <frame.hxx>            // fuer AttrCache
 #endif
-// auto strip #ifndef _FORMAT_HXX
-// auto strip #include <format.hxx>
-// auto strip #endif
 
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
@@ -632,32 +626,6 @@ namespace binfilter {
 /*N*/  void SwFmt::DelDiffs( const SfxItemSet& rSet )
 /*N*/  {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( !aSet.Count() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  if ( IsInCache() )
-//STRIP001  {
-//STRIP001      SwFrm::GetCache().Delete( this );
-//STRIP001      SetInCache( FALSE );
-//STRIP001  }
-//STRIP001  SetInSwFntCache( FALSE );
-//STRIP001
-//STRIP001  // wenn Modify gelockt ist, werden keine Modifies verschickt
-//STRIP001  if( IsModifyLocked() )
-//STRIP001  {
-//STRIP001      aSet.Intersect( rSet );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  SwAttrSet aOld( *aSet.GetPool(), aSet.GetRanges() ),
-//STRIP001              aNew( *aSet.GetPool(), aSet.GetRanges() );
-//STRIP001  BOOL bRet = 0 != aSet.Intersect_BC( rSet, &aOld, &aNew );
-//STRIP001
-//STRIP001  if( bRet )
-//STRIP001  {
-//STRIP001      SwAttrSetChg aChgOld( aSet, aOld );
-//STRIP001      SwAttrSetChg aChgNew( aSet, aNew );
-//STRIP001      Modify( &aChgOld, &aChgNew );       // alle veraenderten werden verschickt
-//STRIP001  }
 }
 
 /** SwFmt::IsBackgroundTransparent - for feature #99657#
