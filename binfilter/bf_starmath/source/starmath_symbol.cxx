@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_symbol.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:05:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:58:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,34 +35,13 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
-// auto strip #ifndef _UCBHELPER_CONTENT_HXX
-// auto strip #include <ucbhelper/content.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_RESARY_HXX
-// auto strip #include <tools/resary.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXDISPATCH_HXX //autogen
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
 
-// auto strip #include "symbol.hxx"
-// auto strip #include "view.hxx"
-// auto strip #include "utility.hxx"
-// auto strip #include "dialog.hxx"
 #include "config.hxx"
-// auto strip #include "cfgitem.hxx"
-// auto strip #include "smmod.hxx"
 #include "starmath.hrc"
 namespace binfilter {
 
@@ -88,7 +67,6 @@ using namespace ::rtl;
 #define SF_IDENT     0x30334D53L
 
 
-//STRIP001 SV_IMPL_PTRARR( SymbolArray, SmSym * );
 
 /**************************************************************************/
 /*
@@ -167,62 +145,12 @@ long                SF_Ident = SF_IDENT;
 /*N*/   return *this;
 /*N*/ }
 
-//STRIP001 void SmSym::SetSymbolName(const String& rName)
-//STRIP001 {
-//STRIP001  Name    = rName;
-//STRIP001
-//STRIP001  if (pSymSetManager)
-//STRIP001      pSymSetManager->SetModified(TRUE);
-//STRIP001 }
 
-//STRIP001 SvStream& operator << (SvStream& rStream, const SmSym& rSymbol)
-//STRIP001 {
-//STRIP001  rStream.WriteByteString( ExportString(rSymbol.Name) );
-//STRIP001  rStream << rSymbol.Face;
-//STRIP001
-//STRIP001  rtl_TextEncoding eEnc = rSymbol.Face.GetCharSet();
-//STRIP001  if (RTL_TEXTENCODING_DONTKNOW == eEnc)
-//STRIP001      eEnc = RTL_TEXTENCODING_SYMBOL;
-//STRIP001  rStream << ByteString::ConvertFromUnicode( rSymbol.Character, eEnc );
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
 
-//STRIP001 SvStream& operator >> (SvStream& rStream, SmSym& rSymbol)
-//STRIP001 {
-//STRIP001     ByteString aByteStr;
-//STRIP001
-//STRIP001     rStream.ReadByteString( aByteStr );
-//STRIP001     rSymbol.Name = ImportString( aByteStr );
-//STRIP001  if (SF_Ident == SF_SM20IDENT)
-//STRIP001      ReadSM20Font(rStream, rSymbol.Face);
-//STRIP001  else
-//STRIP001      rStream >> rSymbol.Face;
-//STRIP001  sal_Char cTemp;
-//STRIP001  rStream >> cTemp;
-//STRIP001
-//STRIP001  rtl_TextEncoding eEnc = rSymbol.Face.GetCharSet();
-//STRIP001  if (RTL_TEXTENCODING_DONTKNOW == eEnc)
-//STRIP001      eEnc = RTL_TEXTENCODING_SYMBOL;
-//STRIP001  rSymbol.Character = ByteString::ConvertToUnicode( cTemp, eEnc );
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
 
 /**************************************************************************/
 
-//STRIP001 SmSymSet::SmSymSet() :
-//STRIP001  Name(C2S("unknown")),
-//STRIP001  pSymSetManager(0)
-//STRIP001 {
-//STRIP001  SymbolList.Clear();
-//STRIP001 }
 
-//STRIP001 SmSymSet::SmSymSet(const SmSymSet& rSymbolSet)
-//STRIP001 {
-//STRIP001  pSymSetManager = 0;
-//STRIP001     *this = rSymbolSet;
-//STRIP001 }
 
 /*N*/ SmSymSet::SmSymSet(const String& rName)
 /*N*/ {
@@ -232,36 +160,8 @@ long                SF_Ident = SF_IDENT;
 /*N*/   pSymSetManager = 0;
 /*N*/ }
 
-//STRIP001 SmSymSet::~SmSymSet()
-//STRIP001 {
-//STRIP001  for (int i = 0; i < GetCount(); i++)
-//STRIP001      delete SymbolList.GetObject(i);
-//STRIP001 }
 
-//STRIP001 SmSymSet& SmSymSet::operator = (const SmSymSet& rSymbolSet)
-//STRIP001 {
-//STRIP001  int i;
-//STRIP001  for (i = 0; i < GetCount(); i++)
-//STRIP001      delete SymbolList.GetObject(i);
-//STRIP001
-//STRIP001  Name = rSymbolSet.Name;
-//STRIP001  SymbolList.Clear();
-//STRIP001  for (i = 0; i < rSymbolSet.GetCount(); i++)
-//STRIP001      AddSymbol(new SmSym(rSymbolSet.GetSymbol(i)));
-//STRIP001
-//STRIP001  if (pSymSetManager)
-//STRIP001      pSymSetManager->SetModified(TRUE);
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
-//STRIP001 void SmSymSet::SetName(String& rName)
-//STRIP001 {
-//STRIP001  Name = rName;
-//STRIP001
-//STRIP001  if (pSymSetManager)
-//STRIP001      pSymSetManager->SetModified(TRUE);
-//STRIP001 }
 
 /*N*/ USHORT SmSymSet::AddSymbol(SmSym* pSymbol)
 /*N*/ {
@@ -279,66 +179,11 @@ long                SF_Ident = SF_IDENT;
 /*N*/   return (USHORT) SymbolList.Count() - 1;
 /*N*/ }
 
-//STRIP001 void SmSymSet::DeleteSymbol(USHORT SymbolNo)
-//STRIP001 {
-//STRIP001  delete RemoveSymbol(SymbolNo);
-//STRIP001 }
-
-//STRIP001 SmSym *  SmSymSet::RemoveSymbol(USHORT SymbolNo)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(SymbolList.GetObject(SymbolNo), "Symbol nicht vorhanden");
-//STRIP001
-//STRIP001  SmSym *pSym = SymbolList.GetObject(SymbolNo);
-//STRIP001  SymbolList.Remove(SymbolNo);
-//STRIP001
-//STRIP001  if (pSymSetManager)
-//STRIP001      pSymSetManager->SetModified(TRUE);
-//STRIP001
-//STRIP001  return pSym;
-//STRIP001 }
-
-//STRIP001 USHORT SmSymSet::GetSymbolPos(const String& rName)
-//STRIP001 {
-//STRIP001  for (USHORT i = 0; i < GetCount(); i++)
-//STRIP001      if (SymbolList.GetObject(i)->GetName() == rName)
-//STRIP001          return (i);
-//STRIP001
-//STRIP001  return SYMBOL_NONE;
-//STRIP001 }
-
-//STRIP001 SvStream& operator << (SvStream& rStream, const SmSymSet& rSymbolSet)
-//STRIP001 {
-//STRIP001  rStream.WriteByteString(ExportString(rSymbolSet.Name));
-//STRIP001  rStream << rSymbolSet.GetCount();
-//STRIP001
-//STRIP001  for (int i = 0; i < rSymbolSet.GetCount(); i++)
-//STRIP001      rStream << rSymbolSet.GetSymbol(i);
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
 
 
-//STRIP001 SvStream& operator >> (SvStream& rStream, SmSymSet& rSymbolSet)
-//STRIP001 {
-//STRIP001  USHORT      n;
-//STRIP001  SmSym     *pSymbol;
-//STRIP001     ByteString aByteStr;
-//STRIP001
-//STRIP001     rStream.ReadByteString( aByteStr );
-//STRIP001     rSymbolSet.Name = ImportString( aByteStr );
-//STRIP001  rStream >> n;
-//STRIP001
-//STRIP001  for (int i = 0; i < n; i++)
-//STRIP001  {
-//STRIP001      if ((pSymbol = new SmSym) == 0)
-//STRIP001          break;
-//STRIP001
-//STRIP001      rStream >> *pSymbol;
-//STRIP001      rSymbolSet.AddSymbol(pSymbol);
-//STRIP001  }
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
+
+
+
 
 /**************************************************************************/
 
@@ -355,59 +200,13 @@ long                SF_Ident = SF_IDENT;
 /*N*/ }
 
 
-//STRIP001 SmSymSetManager_Impl::~SmSymSetManager_Impl()
-//STRIP001 {
-//STRIP001     for (USHORT i = 0;  i < NoSymbolSets;  ++i)
-//STRIP001         delete SymbolSets.Get(i);
-//STRIP001     SymbolSets.Clear();
-//STRIP001
-//STRIP001     NoSymbolSets = 0;
-//STRIP001     if (HashEntries)
-//STRIP001     {
-//STRIP001         delete[] HashEntries;
-//STRIP001         HashEntries = 0;
-//STRIP001     }
-//STRIP001     NoHashEntries = 0;
-//STRIP001     Modified = FALSE;
-//STRIP001 }
 
 
-//STRIP001 SmSymSetManager_Impl & SmSymSetManager_Impl::operator = ( const SmSymSetManager_Impl &rImpl )
-//STRIP001 {
-//STRIP001     //! rMySymSetMgr remains unchanged
-//STRIP001
-//STRIP001     NoHashEntries   = rImpl.NoHashEntries;
-//STRIP001     if (HashEntries)
-//STRIP001         delete [] HashEntries;
-//STRIP001     HashEntries = new SmSym *[NoHashEntries];
-//STRIP001     memset( HashEntries, 0, sizeof(SmSym *) * NoHashEntries );
-//STRIP001
-//STRIP001     NoSymbolSets    = 0;
-//STRIP001     SymbolSets.Clear();
-//STRIP001     for (USHORT i = 0;  i < rImpl.NoSymbolSets;  ++i)
-//STRIP001     {
-//STRIP001         rSymSetMgr.AddSymbolSet( new SmSymSet( *rImpl.rSymSetMgr.GetSymbolSet(i) ) );
-//STRIP001     }
-//STRIP001     DBG_ASSERT( NoSymbolSets == rImpl.NoSymbolSets,
-//STRIP001             "incorrect number of symbolsets" );
-//STRIP001
-//STRIP001     Modified        = TRUE;
-//STRIP001     return *this;
-//STRIP001 }
 
 /**************************************************************************/
 
-//STRIP001 static osl::Mutex & lcl_GetSymSetMgrMutex()
-//STRIP001 {
-//STRIP001  static osl::Mutex   aMutex;
-//STRIP001  return aMutex;
-//STRIP001 }
 
 
-//STRIP001 void SmSymSetManager::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
-//STRIP001                            const SfxHint& rHint, const TypeId& rHintType)
-//STRIP001 {
-//STRIP001 }
 
 
 /*N*/ UINT32 SmSymSetManager::GetHashIndex(const String& rSymbolName)
@@ -453,18 +252,8 @@ long                SF_Ident = SF_IDENT;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SmSymSetManager::Init()
-//STRIP001 {
-//STRIP001  SmModule *pp = SM_MOD1();
-//STRIP001  StartListening(*pp->GetConfig());
-//STRIP001 }
 
 
-//STRIP001 void SmSymSetManager::Exit()
-//STRIP001 {
-//STRIP001  SmModule *pp = SM_MOD1();
-//STRIP001  EndListening(*pp->GetConfig());
-//STRIP001 }
 
 
 /*N*/ SmSymSetManager::SmSymSetManager(USHORT HashTableSize)
@@ -473,24 +262,9 @@ long                SF_Ident = SF_IDENT;
 /*N*/ }
 
 
-//STRIP001 SmSymSetManager::SmSymSetManager(const SmSymSetManager& rSymbolSetManager)
-//STRIP001 {
-//STRIP001     pImpl = new SmSymSetManager_Impl( *this, rSymbolSetManager.pImpl->NoHashEntries );
-//STRIP001     *pImpl = *rSymbolSetManager.pImpl;
-//STRIP001 }
 
 
-//STRIP001 SmSymSetManager::~SmSymSetManager()
-//STRIP001 {
-//STRIP001     delete pImpl;
-//STRIP001     pImpl = 0;
-//STRIP001 }
 
-//STRIP001 SmSymSetManager& SmSymSetManager::operator = (const SmSymSetManager& rSymbolSetManager)
-//STRIP001 {
-//STRIP001     *pImpl = *rSymbolSetManager.pImpl;
-//STRIP001  return *this;
-//STRIP001 }
 
 /*N*/ USHORT SmSymSetManager::AddSymbolSet(SmSymSet* pSymbolSet)
 /*N*/ {
@@ -519,18 +293,6 @@ long                SF_Ident = SF_IDENT;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SmSymSetManager::DeleteSymbolSet(USHORT SymbolSetNo)
-//STRIP001 {
-//STRIP001  delete pImpl->SymbolSets.Get(SymbolSetNo);
-//STRIP001  pImpl->NoSymbolSets--;
-//STRIP001
-//STRIP001  for (UINT32 i = SymbolSetNo; i < pImpl->NoSymbolSets; i++)
-//STRIP001      pImpl->SymbolSets.Put(i, pImpl->SymbolSets.Get(i + 1));
-//STRIP001
-//STRIP001  FillHashTable();
-//STRIP001
-//STRIP001  pImpl->Modified = TRUE;
-//STRIP001 }
 
 
 /*N*/ USHORT SmSymSetManager::GetSymbolSetPos(const String& rSymbolSetName) const
@@ -558,25 +320,6 @@ long                SF_Ident = SF_IDENT;
 
 /*N*/ void SmSymSetManager::AddReplaceSymbol( const SmSym &rSymbol )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     SmSym *pSym = GetSymbolByName( rSymbol.GetName() );
-//STRIP001     if (pSym)
-//STRIP001     {
-//STRIP001         *pSym = rSymbol;
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         USHORT nPos = GetSymbolSetPos( rSymbol.GetSetName() );
-//STRIP001         if (SYMBOLSET_NONE == nPos)
-//STRIP001         {
-//STRIP001             AddSymbolSet( new SmSymSet( rSymbol.GetSetName() ) );
-//STRIP001             nPos = GetSymbolSetPos( rSymbol.GetSetName() );
-//STRIP001         }
-//STRIP001         DBG_ASSERT( nPos != SYMBOLSET_NONE, "SymbolSet not found");
-//STRIP001         SmSym *pSym = new SmSym( rSymbol );
-//STRIP001         GetSymbolSet( nPos )->AddSymbol( pSym );
-//STRIP001         EnterHashTable( *pSym );
-//STRIP001     }
-//STRIP001     SetModified( TRUE );
 /*N*/ }
 
 
@@ -648,49 +391,8 @@ long                SF_Ident = SF_IDENT;
 /*N*/     }
 /*N*/ }
 
-//STRIP001 void SmSymSetManager::Save()
-//STRIP001 {
-//STRIP001     SmMathConfig &rCfg = *SM_MOD1()->GetConfig();
-//STRIP001
-//STRIP001     // get number of Symbols
-//STRIP001     USHORT nSymbolCount = 0;
-//STRIP001     USHORT nSetCount = GetSymbolSetCount();
-//STRIP001     USHORT i;
-//STRIP001     for (i = 0;  i < nSetCount;  ++i)
-//STRIP001         nSymbolCount += GetSymbolSet( i )->GetCount();
-//STRIP001
-//STRIP001     if (nSymbolCount)
-//STRIP001     {
-//STRIP001         USHORT nSaveSymbolCnt = 0;
-//STRIP001         const SmSym **pSymbols = new const SmSym* [ nSymbolCount ];
-//STRIP001         const SmSym **pSym = pSymbols;
-//STRIP001         for (i = 0;  i < nSetCount;  ++i)
-//STRIP001         {
-//STRIP001             const SmSymSet *pSymSet = GetSymbolSet( i );
-//STRIP001             USHORT n = pSymSet->GetCount();
-//STRIP001             for (USHORT j = 0;  j < n;  ++j)
-//STRIP001             {
-//STRIP001                 const SmSym &rSym = pSymSet->GetSymbol( j );
-//STRIP001                 if (!rSym.IsDocSymbol())
-//STRIP001                 {
-//STRIP001                     *pSym++ = &rSym;
-//STRIP001                     ++nSaveSymbolCnt;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001         DBG_ASSERT(pSym - pSymbols == nSaveSymbolCnt, "wrong number of symbols" );
-//STRIP001         rCfg.ReplaceSymbols( pSymbols, nSaveSymbolCnt );
-//STRIP001         delete [] pSymbols;
-//STRIP001     }
-//STRIP001 }
 
 
-//STRIP001 void ReadSM20SymSet(SvStream *pStream, SmSymSet *pSymbolSet)
-//STRIP001 {
-//STRIP001  SF_Ident = SF_SM20IDENT;
-//STRIP001  *pStream >> *pSymbolSet;
-//STRIP001  SF_Ident = SF_IDENT;
-//STRIP001 }
 
 
 }
