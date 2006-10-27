@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopback.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:27:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:37:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,22 +33,12 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_BITMAPMODE_HPP_
-// auto strip #include <com/sun/star/drawing/BitmapMode.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
-// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
@@ -62,13 +52,11 @@
 #ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
 #endif
-// auto strip #include <bf_svx/unoprov.hxx>
 #ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
 #endif
 
 #include "unopback.hxx"
-// auto strip #include "unohelp.hxx"
 #include "drawdoc.hxx"
 #include "unokywds.hxx"
 namespace binfilter {

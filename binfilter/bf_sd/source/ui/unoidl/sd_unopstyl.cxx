@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopstyl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:28:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:38:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,7 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _UNO_COM_SUN_STAR_BEANS_PROPERTYSTATE_H_
-// auto strip #include <com/sun/star/beans/PropertyState.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SFXSMPLHINT_HXX
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
@@ -49,15 +43,9 @@
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #ifndef _SFXSTYLE_HXX
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
 
 #include <bf_svx/unoshprp.hxx>
 
-// auto strip #ifndef _SVX_UNOTEXT_HXX
-// auto strip #include <bf_svx/unotext.hxx>
-// auto strip #endif
 
 #ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
@@ -66,7 +54,6 @@
 #include <svtools/smplhint.hxx>
 #endif
 
-// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
@@ -77,7 +64,6 @@
 #include <bf_svx/xflbmtit.hxx>
 #endif
 
-// auto strip #include <bf_svx/unoprov.hxx>
 #include <bf_svx/unoshape.hxx>
 #ifndef _SVX_XIT_HXX
 #include <bf_svx/xit.hxx>
@@ -87,11 +73,9 @@
 #include "stlpool.hxx"
 #endif
 
-// auto strip #include "unohelp.hxx"
 #include <unopsfm.hxx>
 #include <unopstyl.hxx>
 #include <unokywds.hxx>
-// auto strip #include <unomodel.hxx>
 #include <unoprnms.hxx>
 #include <glob.hxx>
 #include <helpids.h>

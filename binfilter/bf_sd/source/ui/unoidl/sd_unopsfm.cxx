@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopsfm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:28:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:38:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -49,17 +46,13 @@
 #include <unokywds.hxx>
 #endif
 
-// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
 #include <bf_svx/unoprov.hxx>
 
 #include "unohelp.hxx"
-// auto strip #include "prlayout.hxx"
 #include "glob.hrc"
-// auto strip #include "glob.hxx"
-// auto strip #include "sdresid.hxx"
 #include "drawdoc.hxx"
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
