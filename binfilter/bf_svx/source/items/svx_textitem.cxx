@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:56:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:19:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,13 +35,7 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _COM_SUN_STAR_STYLE_CASEMAP_HPP_
-// auto strip #include <com/sun/star/style/CaseMap.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SV_BITMAPEX_HXX
-// auto strip #include <vcl/bitmapex.hxx>
-// auto strip #endif
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
@@ -83,7 +77,6 @@
 #define ITEMID_CHARRELIEF       0
 
 
-// auto strip #include <svtools/sbx.hxx>
 #define GLOBALOVERFLOW3
 
 
@@ -94,16 +87,7 @@
 //#ifndef NOOLDSV //autogen
 //#include <vcl/system.hxx>
 //#endif
-// auto strip #ifndef _VCL_VCLENUM_HXX
-// auto strip #include <vcl/vclenum.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _BIGINT_HXX //autogen
-// auto strip #include <tools/bigint.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_TENCCVT_HXX //autogen
-// auto strip #include <tools/tenccvt.hxx>
-// auto strip #endif
 
 #include "rtl/ustring.hxx"
 #ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
@@ -115,55 +99,13 @@
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
-// auto strip #ifndef _SV_SETTINGS_HXX
-// auto strip #include <vcl/settings.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_STYLE_CASEMAP_HPP_
 #include <com/sun/star/style/CaseMap.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_SIMPLEFONTMETRIC_HPP_
-// auto strip #include <com/sun/star/awt/SimpleFontMetric.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWEIGHT_HPP_
-// auto strip #include <com/sun/star/awt/FontWeight.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-// auto strip #include <com/sun/star/awt/FontSlant.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_CHARSET_HPP_
-// auto strip #include <com/sun/star/awt/CharSet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/awt/FontDescriptor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-// auto strip #include <com/sun/star/awt/FontWidth.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XFONT_HPP_
 #include <com/sun/star/awt/XFont.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTTYPE_HPP_
-// auto strip #include <com/sun/star/awt/FontType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP_
-// auto strip #include <com/sun/star/awt/FontUnderline.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSTRIKEOUT_HPP_
-// auto strip #include <com/sun/star/awt/FontStrikeout.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP_
-// auto strip #include <com/sun/star/awt/FontFamily.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP_
-// auto strip #include <com/sun/star/awt/FontPitch.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_FONTEMPHASIS_HPP_
 #include <com/sun/star/text/FontEmphasis.hpp>
 #endif
@@ -171,9 +113,6 @@
 #include <com/sun/star/i18n/ScriptType.hpp>
 #endif
 
-// auto strip #ifndef _SVX_UNOMID_HXX
-// auto strip #include <unomid.hxx>
-// auto strip #endif
 
 
 #include "flstitem.hxx"
@@ -189,7 +128,6 @@
 #include "wrlmitem.hxx"
 #include "cntritem.hxx"
 #include "prszitem.hxx"
-// auto strip #include "colritem.hxx"
 #include "cscoitem.hxx"
 #include "kernitem.hxx"
 #include "cmapitem.hxx"
@@ -197,7 +135,6 @@
 #include "langitem.hxx"
 #include "nlbkitem.hxx"
 #include "nhypitem.hxx"
-// auto strip #include "lcolitem.hxx"
 #include "blnkitem.hxx"
 #include "emphitem.hxx"
 #include "twolinesitem.hxx"
@@ -206,8 +143,6 @@
 #include "charscaleitem.hxx"
 #include "charreliefitem.hxx"
 #include "itemtype.hxx"
-// auto strip #include "dialmgr.hxx"
-// auto strip #include "langtab.hxx"
 #include "dlgutil.hxx"
 
 // #90477#
@@ -237,7 +172,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxPostureItem, SfxEnumItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxWeightItem, SfxEnumItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxFontHeightItem, SfxPoolItem);
-//STRIP001 TYPEINIT1_AUTOFACTORY(SvxFontWidthItem, SfxPoolItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxUnderlineItem, SfxEnumItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxCrossedOutItem, SfxEnumItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxShadowedItem, SfxBoolItem);
@@ -253,11 +187,9 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxLanguageItem, SfxEnumItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxNoLinebreakItem, SfxBoolItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxNoHyphenItem, SfxBoolItem);
-//STRIP001 TYPEINIT1_AUTOFACTORY(SvxLineColorItem, SvxColorItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxBlinkItem, SfxBoolItem);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxEmphasisMarkItem, SfxUInt16Item);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxTwoLinesItem, SfxPoolItem);
-//STRIP001 TYPEINIT1_AUTOFACTORY(SvxScriptTypeItem, SfxUInt16Item);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxCharRotateItem, SfxUInt16Item);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxCharScaleWidthItem, SfxUInt16Item);
 /*N*/ TYPEINIT1_AUTOFACTORY(SvxCharReliefItem, SfxEnumItem);
@@ -296,23 +228,10 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*?*/ int SvxFontListItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
-//STRIP001
-//STRIP001  return( pFontList == ((SvxFontListItem&)rAttr).pFontList );
 /*?*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFontListItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxFontItem -----------------------------------------------------
 
@@ -518,26 +437,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFontItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = aFamilyName;
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxPostureItem --------------------------------------------------
 
@@ -579,48 +478,9 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxPostureItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( GetValue() );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxPostureItem::GetValueTextByPos( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos <= (USHORT)ITALIC_NORMAL, "enum overflow!" );
-//STRIP001
-//STRIP001  XubString sTxt;
-//STRIP001  FontItalic eItalic = (FontItalic)nPos;
-//STRIP001  USHORT nId = 0;
-//STRIP001
-//STRIP001  switch ( eItalic )
-//STRIP001  {
-//STRIP001      case ITALIC_NONE:       nId = RID_SVXITEMS_ITALIC_NONE;     break;
-//STRIP001      case ITALIC_OBLIQUE:    nId = RID_SVXITEMS_ITALIC_OBLIQUE;  break;
-//STRIP001      case ITALIC_NORMAL:     nId = RID_SVXITEMS_ITALIC_NORMAL;   break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nId )
-//STRIP001      sTxt = SVX_RESSTR( nId );
-//STRIP001  return sTxt;
-//STRIP001 }
 
 
 /*-----------------13.03.98 14:28-------------------
@@ -685,10 +545,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxPostureItem::SetBoolValue( sal_Bool bVal )
-//STRIP001 {
-//STRIP001  SetValue( bVal ? ITALIC_NORMAL : ITALIC_NONE );
-//STRIP001 }
 
 // class SvxWeightItem ---------------------------------------------------
 
@@ -715,10 +571,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxWeightItem::SetBoolValue( sal_Bool bVal )
-//STRIP001 {
-//STRIP001  SetValue( bVal ? WEIGHT_BOLD : WEIGHT_NORMAL );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -753,34 +605,9 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxWeightItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( GetValue() );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxWeightItem::GetValueTextByPos( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos <= (USHORT)WEIGHT_BLACK, "enum overflow!" );
-//STRIP001  return SVX_RESSTR( RID_SVXITEMS_WEIGHT_BEGIN + nPos );
-//STRIP001 }
 
 /*-----------------13.03.98 14:18-------------------
 
@@ -1063,44 +890,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFontHeightItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if( SFX_MAPUNIT_RELATIVE != ePropUnit )
-//STRIP001          {
-//STRIP001              ( rText = String::CreateFromInt32( (short)nProp ) ) +=
-//STRIP001                      SVX_RESSTR( GetMetricId( ePropUnit ) );
-//STRIP001              if( 0 <= (short)nProp )
-//STRIP001                  rText.Insert( sal_Unicode('+'), 0 );
-//STRIP001          }
-//STRIP001          else if( 100 == nProp )
-//STRIP001          {
-//STRIP001              rText = GetMetricText( (long)nHeight,
-//STRIP001                                         eCoreUnit, SFX_MAPUNIT_POINT, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(SFX_MAPUNIT_POINT));
-//STRIP001          }
-//STRIP001          else
-//STRIP001              ( rText = String::CreateFromInt32( nProp )) += sal_Unicode('%');
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1113,18 +902,9 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxFontHeightItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  nHeight = (sal_uInt32)Scale( nHeight, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxFontHeightItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 /*N*/ void SvxFontHeightItem::SetHeight( sal_uInt32 nNewHeight, const USHORT nNewProp,
 /*N*/                                   SfxMapUnit eUnit )
@@ -1146,27 +926,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   ePropUnit = eUnit;
 /*N*/ }
 
-//STRIP001 void SvxFontHeightItem::SetHeight( sal_uInt32 nNewHeight, USHORT nNewProp,
-//STRIP001                               SfxMapUnit eMetric, SfxMapUnit eCoreMetric )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( GetRefCount() == 0, "SetValue() with pooled item" );
-//STRIP001
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if( SFX_MAPUNIT_RELATIVE != eMetric )
-//STRIP001      nHeight = nNewHeight +
-//STRIP001              ::ControlToItem( ::ItemToControl((short)nNewProp, eMetric,
-//STRIP001                                      SFX_FUNIT_TWIP ), SFX_FUNIT_TWIP,
-//STRIP001                                      eCoreMetric );
-//STRIP001  else
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  if( 100 != nNewProp )
-//STRIP001      nHeight = sal_uInt32(( nNewHeight * nNewProp ) / 100 );
-//STRIP001  else
-//STRIP001      nHeight = nNewHeight;
-//STRIP001
-//STRIP001  nProp = nNewProp;
-//STRIP001  ePropUnit = eMetric;
-//STRIP001 }
 
 // class SvxFontWidthItem -----------------------------------------------
 
@@ -1179,132 +938,31 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxFontWidthItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new SvxFontWidthItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxFontWidthItem::Store( SvStream& rStrm , USHORT nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << GetWidth() << GetProp();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxFontWidthItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  nWidth = (USHORT)Scale( nWidth, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxFontWidthItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxFontWidthItem::Create( SvStream& rStrm,
-//STRIP001                                               USHORT nVersion ) const
-//STRIP001 {
-//STRIP001  USHORT nS;
-//STRIP001  USHORT nP;
-//STRIP001
-//STRIP001  rStrm >> nS;
-//STRIP001  rStrm >> nP;
-//STRIP001  SvxFontWidthItem* pItem = new SvxFontWidthItem( 0, nP, Which() );
-//STRIP001  pItem->SetWidthValue( nS );
-//STRIP001  return pItem;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxFontWidthItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return GetWidth() == ((SvxFontWidthItem&)rItem).GetWidth() &&
-//STRIP001          GetProp() == ((SvxFontWidthItem&)rItem).GetProp();
-//STRIP001 }
 
 /*-----------------13.03.98 16:03-------------------
 
 --------------------------------------------------*/
-//STRIP001 sal_Bool SvxFontWidthItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  switch(nMemberId)
-//STRIP001  {
-//STRIP001      case MID_FONTWIDTH:
-//STRIP001          rVal <<= (sal_Int16)(nWidth);
-//STRIP001      break;
-//STRIP001      case MID_FONTWIDTH_PROP:
-//STRIP001          rVal <<= (sal_Int16)(nProp);
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
 /*-----------------13.03.98 16:03-------------------
 
 --------------------------------------------------*/
-//STRIP001 sal_Bool SvxFontWidthItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  sal_Int16 nVal;
-//STRIP001  if(!(rVal >>= nVal))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  switch(nMemberId)
-//STRIP001  {
-//STRIP001      case MID_FONTWIDTH:
-//STRIP001          nProp = nVal;
-//STRIP001      break;
-//STRIP001      case MID_FONTWIDTH_PROP:
-//STRIP001          nWidth = nVal;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFontWidthItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if ( 100 == nProp )
-//STRIP001          {
-//STRIP001              rText = GetMetricText( (long)nWidth,
-//STRIP001                                         eCoreUnit, SFX_MAPUNIT_POINT, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(SFX_MAPUNIT_POINT));
-//STRIP001          }
-//STRIP001          else
-//STRIP001              ( rText = String::CreateFromInt32( nProp )) += sal_Unicode('%');
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxUnderlineItem ------------------------------------------------
 
@@ -1329,10 +987,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxUnderlineItem::SetBoolValue( sal_Bool bVal )
-//STRIP001 {
-//STRIP001  SetValue( bVal ? UNDERLINE_SINGLE : UNDERLINE_NONE );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1369,38 +1023,9 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxUnderlineItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( GetValue() );
-//STRIP001          if( !mColor.GetTransparency() )
-//STRIP001              ( rText += cpDelim ) += ::GetColorString( mColor );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxUnderlineItem::GetValueTextByPos( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos <= (USHORT)UNDERLINE_BOLDWAVE, "enum overflow!" );
-//STRIP001  return SVX_RESSTR( RID_SVXITEMS_UL_BEGIN + nPos );
-//STRIP001 }
 
 /*-----------------13.03.98 16:25-------------------
 
@@ -1487,24 +1112,12 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxCrossedOutItem::HasBoolValue() const
-//STRIP001 {
-//STRIP001  return sal_True;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxCrossedOutItem::GetBoolValue() const
-//STRIP001 {
-//STRIP001  return (FontStrikeout)GetValue() != STRIKEOUT_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxCrossedOutItem::SetBoolValue( sal_Bool bVal )
-//STRIP001 {
-//STRIP001  SetValue( bVal ? STRIKEOUT_SINGLE : STRIKEOUT_NONE );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1539,34 +1152,9 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxCrossedOutItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( GetValue() );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxCrossedOutItem::GetValueTextByPos( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos <= (USHORT)STRIKEOUT_X, "enum overflow!" );
-//STRIP001  return SVX_RESSTR( RID_SVXITEMS_STRIKEOUT_BEGIN + nPos );
-//STRIP001 }
 
 /*-----------------13.03.98 16:28-------------------
 
@@ -1642,32 +1230,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxShadowedItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nId = RID_SVXITEMS_SHADOWED_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_SHADOWED_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxAutoKernItem -------------------------------------------------
 
@@ -1702,32 +1264,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxAutoKernItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nId = RID_SVXITEMS_AUTOKERN_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_AUTOKERN_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxWordLineModeItem ---------------------------------------------
 
@@ -1763,32 +1299,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxWordLineModeItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nId = RID_SVXITEMS_WORDLINE_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_WORDLINE_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxContourItem --------------------------------------------------
 
@@ -1823,32 +1333,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxContourItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nId = RID_SVXITEMS_CONTOUR_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_CONTOUR_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxPropSizeItem -------------------------------------------------
 
@@ -1866,11 +1350,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxPropSizeItem::Store( SvStream& rStrm , USHORT nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << (USHORT) GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1883,17 +1362,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxPropSizeItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxColorItem ----------------------------------------------------
 
@@ -2002,28 +1470,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxColorItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = ::GetColorString( mColor );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2083,17 +1529,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxCharSetColorItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxKerningItem --------------------------------------------------
 
@@ -2119,18 +1554,9 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxKerningItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  SetValue( (sal_Int16)Scale( GetValue(), nMult, nDiv ) );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxKerningItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2143,44 +1569,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxKerningItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001             rText = GetMetricText( (long)GetValue(), eCoreUnit, SFX_MAPUNIT_POINT, pIntl );
-//STRIP001             rText += SVX_RESSTR(GetMetricId(SFX_MAPUNIT_POINT));
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR(RID_SVXITEMS_KERNING_COMPLETE);
-//STRIP001          USHORT nId = 0;
-//STRIP001
-//STRIP001          if ( GetValue() > 0 )
-//STRIP001              nId = RID_SVXITEMS_KERNING_EXPANDED;
-//STRIP001          else if ( GetValue() < 0 )
-//STRIP001              nId = RID_SVXITEMS_KERNING_CONDENSED;
-//STRIP001
-//STRIP001          if ( nId )
-//STRIP001              rText += SVX_RESSTR(nId);
-//STRIP001             rText += GetMetricText( (long)GetValue(), eCoreUnit, SFX_MAPUNIT_POINT, pIntl );
-//STRIP001             rText += SVX_RESSTR(GetMetricId(SFX_MAPUNIT_POINT));
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 /* -----------------------------19.02.01 12:21--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -2244,34 +1632,9 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxCaseMapItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( GetValue() );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxCaseMapItem::GetValueTextByPos( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos < (USHORT)SVX_CASEMAP_END, "enum overflow!" );
-//STRIP001  return SVX_RESSTR( RID_SVXITEMS_CASEMAP_BEGIN + nPos );
-//STRIP001 }
 
 /*-----------------13.03.98 16:29-------------------
 
@@ -2323,15 +1686,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxEscapementItem::SvxEscapementItem( const SvxEscapement eEscape,
-//STRIP001                                    const USHORT nId ) :
-//STRIP001  SfxEnumItemInterface( nId ),
-//STRIP001  nProp( 100 )
-//STRIP001 {
-//STRIP001  SetEscapement( eEscape );
-//STRIP001  if( nEsc )
-//STRIP001      nProp = 58;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2397,54 +1751,15 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxEscapementItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = GetValueTextByPos( GetEnumValue() );
-//STRIP001
-//STRIP001          if ( nEsc != 0 )
-//STRIP001          {
-//STRIP001              if( DFLT_ESC_AUTO_SUPER == nEsc || DFLT_ESC_AUTO_SUB == nEsc )
-//STRIP001                  rText += String( SVX_RESSTR(RID_SVXITEMS_ESCAPEMENT_AUTO) );
-//STRIP001              else
-//STRIP001                  ( rText += String::CreateFromInt32( nEsc )) += sal_Unicode('%');
-//STRIP001          }
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxEscapementItem::GetValueTextByPos( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos < (USHORT)SVX_ESCAPEMENT_END, "enum overflow!" );
-//STRIP001  return SVX_RESSTR(RID_SVXITEMS_ESCAPEMENT_BEGIN + nPos);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*?*/ USHORT SvxEscapementItem::GetEnumValue() const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     if ( nEsc < 0 )
-//STRIP001      return SVX_ESCAPEMENT_SUBSCRIPT;
-//STRIP001  else if ( nEsc > 0 )
-//STRIP001      return SVX_ESCAPEMENT_SUPERSCRIPT;
-//STRIP001  return SVX_ESCAPEMENT_OFF;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -2563,31 +1878,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLanguageItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          SvxLanguageTable aLangTable;
-//STRIP001          rText = aLangTable.GetString( (LanguageType)GetValue() );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*-----------------14.03.98 14:13-------------------
 
@@ -2650,41 +1940,15 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxNoLinebreakItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SvxNoLinebreakItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxNoLinebreakItem::Store( SvStream& rStrm , USHORT nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << (sal_Bool)GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxNoLinebreakItem::Create(SvStream& rStrm, USHORT) const
-//STRIP001 {
-//STRIP001  sal_Bool bValue;
-//STRIP001  rStrm >> bValue;
-//STRIP001  return new SvxNoLinebreakItem( bValue, Which() );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxNoLinebreakItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxNoHyphenItem -------------------------------------------------
 
@@ -2695,41 +1959,15 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxNoHyphenItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SvxNoHyphenItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxNoHyphenItem::Store( SvStream& rStrm , USHORT nItemVersion ) const
-//STRIP001 {
-//STRIP001  rStrm << (sal_Bool) GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxNoHyphenItem::Create( SvStream& rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  sal_Bool bValue;
-//STRIP001  rStrm >> bValue;
-//STRIP001  return new SvxNoHyphenItem( bValue, Which() );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxNoHyphenItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*
  * Dummy-Item fuer ToolBox-Controls:
@@ -2740,52 +1978,21 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 // class SvxLineColorItem (== SvxColorItem)
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineColorItem::SvxLineColorItem( const USHORT nId ) :
-//STRIP001  SvxColorItem( nId )
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineColorItem::SvxLineColorItem( const Color& rCol, const USHORT nId ) :
-//STRIP001  SvxColorItem( rCol, nId )
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineColorItem::SvxLineColorItem( SvStream &rStrm, const USHORT nId ) :
-//STRIP001  SvxColorItem( rStrm, nId )
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineColorItem::SvxLineColorItem( const SvxLineColorItem &rCopy ) :
-//STRIP001  SvxColorItem( rCopy )
-//STRIP001 {
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineColorItem::~SvxLineColorItem()
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLineColorItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001  XubString&          rText,
-//STRIP001     const IntlWrapper * pIntlWrapper
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  return SvxColorItem::GetPresentation( ePres, eCoreUnit, ePresUnit,
-//STRIP001                                           rText, pIntlWrapper );
-//STRIP001 }
 
 // class SvxBlinkItem -------------------------------------------------
 
@@ -2821,32 +2028,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxBlinkItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nId = RID_SVXITEMS_BLINK_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_BLINK_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxEmphaisMarkItem ---------------------------------------------------
 
@@ -2883,39 +2064,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxEmphasisMarkItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001  XubString&          rText,
-//STRIP001     const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          {
-//STRIP001              sal_uInt16 nVal = GetValue();
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_EMPHASIS_BEGIN_STYLE +
-//STRIP001                                      ( EMPHASISMARK_STYLE & nVal ));
-//STRIP001              USHORT nId = ( EMPHASISMARK_POS_ABOVE & nVal )
-//STRIP001                              ? RID_SVXITEMS_EMPHASIS_ABOVE_POS
-//STRIP001                              : ( EMPHASISMARK_POS_BELOW & nVal )
-//STRIP001                                  ? RID_SVXITEMS_EMPHASIS_BELOW_POS
-//STRIP001                                  : 0;
-//STRIP001              if( nId )
-//STRIP001                  rText += SVX_RESSTR( nId );
-//STRIP001              return ePres;
-//STRIP001          }
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -3323,33 +2471,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxCharScaleWidthItem::GetPresentation(
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001         String &rText, const IntlWrapper*  ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if( !GetValue() )
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_CHARSCALE_OFF );
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_CHARSCALE );
-//STRIP001              rText.SearchAndReplaceAscii( "$(ARG1)",
-//STRIP001                          String::CreateFromInt32( GetValue() ));
-//STRIP001          }
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool SvxCharScaleWidthItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
@@ -3493,14 +2614,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 |*    class SvxScriptTypeItemItem
 *************************************************************************/
 
-//STRIP001 SvxScriptTypeItem::SvxScriptTypeItem( sal_uInt16 nType )
-//STRIP001  : SfxUInt16Item( SID_ATTR_CHAR_SCRIPTTYPE, nType )
-//STRIP001 {
-//STRIP001 }
-//STRIP001 SfxPoolItem* SvxScriptTypeItem::Clone( SfxItemPool *pPool ) const
-//STRIP001 {
-//STRIP001  return new SvxScriptTypeItem( GetValue() );
-//STRIP001 }
 
 /*************************************************************************
 |*    class SvxScriptSetItem
@@ -3525,9 +2638,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*N*/ SfxPoolItem* SvxScriptSetItem::Clone( SfxItemPool *pPool ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001 /*N*/    SvxScriptSetItem* p = new SvxScriptSetItem( Which(), *GetItemSet().GetPool() );
-//STRIP001 /*N*/    p->GetItemSet().Put( GetItemSet(), FALSE );
-//STRIP001 /*N*/    return p;
 /*N*/ }
 
 /*N*/ SfxPoolItem* SvxScriptSetItem::Create( SvStream &, USHORT ) const
@@ -3599,30 +2709,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/ }
 
 
-//STRIP001 void SvxScriptSetItem::PutItemForScriptType( USHORT nScriptType,
-//STRIP001                                           const SfxPoolItem& rItem )
-//STRIP001 {
-//STRIP001  USHORT nLatin, nAsian, nComplex;
-//STRIP001  GetWhichIds( nLatin, nAsian, nComplex );
-//STRIP001
-//STRIP001  SfxPoolItem* pCpy = rItem.Clone();
-//STRIP001  if( SCRIPTTYPE_LATIN & nScriptType )
-//STRIP001  {
-//STRIP001      pCpy->SetWhich( nLatin );
-//STRIP001      GetItemSet().Put( *pCpy );
-//STRIP001  }
-//STRIP001  if( SCRIPTTYPE_ASIAN & nScriptType )
-//STRIP001  {
-//STRIP001      pCpy->SetWhich( nAsian );
-//STRIP001      GetItemSet().Put( *pCpy );
-//STRIP001  }
-//STRIP001  if( SCRIPTTYPE_COMPLEX & nScriptType )
-//STRIP001  {
-//STRIP001      pCpy->SetWhich( nComplex );
-//STRIP001      GetItemSet().Put( *pCpy );
-//STRIP001  }
-//STRIP001  delete pCpy;
-//STRIP001 }
 
 /*N*/ void SvxScriptSetItem::GetWhichIds( USHORT& rLatin, USHORT& rAsian,
 /*N*/                                   USHORT& rComplex ) const
