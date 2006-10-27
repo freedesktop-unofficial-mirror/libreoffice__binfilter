@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmltxtexp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:36:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:00:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,74 +42,29 @@
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFX_ITEMPROP_HXX
-// auto strip #include <svtools/itemprop.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXBRDCST_HXX
-// auto strip #include <svtools/brdcst.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXDOCFILE_HXX
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
-// auto strip #include <bf_xmloff/xmluconv.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include "bf_xmloff/xmlnmspe.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include "bf_xmloff/nmspmap.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLMETAE_HXX
-// auto strip #include "bf_xmloff/xmlmetae.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
 
-// auto strip #ifndef _MyEDITENG_HXX
-// auto strip #include "editeng.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "bf_xmloff/xmlexp.hxx"
 #endif
 
-// auto strip #ifndef _SVX_UNOEDSRC_HXX
-// auto strip #include "unoedsrc.hxx"
-// auto strip #endif
 
 #ifndef _SVX_UNOFORED_HXX
 #include "unofored.hxx"
