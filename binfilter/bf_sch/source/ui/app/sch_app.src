@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_app.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:10:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:37:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,95 +78,9 @@
         25; \
     };
 
-//STRIP001 ImageList RID_DEFAULTIMAGELIST_SC
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001      File = "sc_out.bmp" ;
-//STRIP001      File [ ENGLISH ] = "sc_out01.bmp" ;
-//STRIP001      File [ DANISH ] = "sc_out45.bmp" ;
-//STRIP001      File [ ENGLISH_US ] = "sc_out01.bmp" ;
-//STRIP001      File [ SPANISH ] = "sc_out34.bmp" ;
-//STRIP001      File [ FRENCH ] = "sc_out33.bmp" ;
-//STRIP001      File [ ITALIAN ] = "sc_out39.bmp" ;
-//STRIP001      File [ DUTCH ] = "sc_out31.bmp" ;
-//STRIP001      File [ SWEDISH ] = "sc_out46.bmp" ;
-//STRIP001      File [ chinese_simplified ] = "sc_out86.bmp" ;
-//STRIP001      File [ chinese_traditional ] = "sc_out88.bmp" ;
-//STRIP001      File [ japanese ] = "sc_out81.bmp" ;
-//STRIP001      File [ korean ] = "sc_out82.bmp" ;
-//STRIP001
-//STRIP001  };
-//STRIP001  MaskColor = IMAGE_STDBTN_COLOR ;
-//STRIP001  IMAGE_ID_LIST
-//STRIP001 };
 
-//STRIP001 ImageList RID_DEFAULTIMAGELIST_LC
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001      File = "lc_out.bmp" ;
-//STRIP001      File [ ENGLISH ] = "lc_out01.bmp" ;
-//STRIP001      File [ DANISH ] = "lc_out45.bmp" ;
-//STRIP001      File [ ENGLISH_US ] = "lc_out01.bmp" ;
-//STRIP001      File [ SPANISH ] = "lc_out34.bmp" ;
-//STRIP001      File [ FRENCH ] = "lc_out33.bmp" ;
-//STRIP001      File [ ITALIAN ] = "lc_out39.bmp" ;
-//STRIP001      File [ DUTCH ] = "lc_out31.bmp" ;
-//STRIP001      File [ SWEDISH ] = "lc_out46.bmp" ;
-//STRIP001      File [ chinese_simplified ] = "lc_out86.bmp" ;
-//STRIP001      File [ chinese_traditional ] = "lc_out88.bmp" ;
-//STRIP001      File [ japanese ] = "lc_out81.bmp" ;
-//STRIP001      File [ korean ] = "lc_out82.bmp" ;
-//STRIP001  };
-//STRIP001  MaskColor = IMAGE_STDBTN_COLOR ;
-//STRIP001  IMAGE_ID_LIST
-//STRIP001 };
 
-//STRIP001 ImageList RID_DEFAULTIMAGELIST_SCH
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001         File = "sch_out.bmp" ;
-//STRIP001         File [ ENGLISH ] = "sch_out01.bmp" ;
-//STRIP001         File [ DANISH ] = "sch_out45.bmp" ;
-//STRIP001         File [ ENGLISH_US ] = "sch_out01.bmp" ;
-//STRIP001         File [ SPANISH ] = "sch_out34.bmp" ;
-//STRIP001         File [ FRENCH ] = "sch_out33.bmp" ;
-//STRIP001         File [ ITALIAN ] = "sch_out39.bmp" ;
-//STRIP001         File [ DUTCH ] = "sch_out31.bmp" ;
-//STRIP001         File [ SWEDISH ] = "sch_out46.bmp" ;
-//STRIP001         File [ chinese_simplified ] = "sch_out86.bmp" ;
-//STRIP001         File [ chinese_traditional ] = "sch_out88.bmp" ;
-//STRIP001         File [ japanese ] = "sch_out81.bmp" ;
-//STRIP001         File [ korean ] = "sch_out82.bmp" ;
-//STRIP001
-//STRIP001  };
-//STRIP001  MaskColor = IMAGE_HCBTN_COLOR ;
-//STRIP001  IMAGE_ID_LIST
-//STRIP001 };
 
-//STRIP001 ImageList RID_DEFAULTIMAGELIST_LCH
-//STRIP001 {
-//STRIP001  ImageBitmap = Bitmap
-//STRIP001  {
-//STRIP001         File = "lch_out.bmp" ;
-//STRIP001         File [ ENGLISH ] = "lch_out01.bmp" ;
-//STRIP001         File [ DANISH ] = "lch_out45.bmp" ;
-//STRIP001         File [ ENGLISH_US ] = "lch_out01.bmp" ;
-//STRIP001         File [ SPANISH ] = "lch_out34.bmp" ;
-//STRIP001         File [ FRENCH ] = "lch_out33.bmp" ;
-//STRIP001         File [ ITALIAN ] = "lch_out39.bmp" ;
-//STRIP001         File [ DUTCH ] = "lch_out31.bmp" ;
-//STRIP001         File [ SWEDISH ] = "lch_out46.bmp" ;
-//STRIP001         File [ chinese_simplified ] = "lch_out86.bmp" ;
-//STRIP001         File [ chinese_traditional ] = "lch_out88.bmp" ;
-//STRIP001         File [ japanese ] = "lch_out81.bmp" ;
-//STRIP001         File [ korean ] = "lch_out82.bmp" ;
-//STRIP001  };
-//STRIP001  MaskColor = IMAGE_HCBTN_COLOR ;
-//STRIP001  IMAGE_ID_LIST
-//STRIP001 };
 String RID_DRAW_TOOLBOX
 {
     Text [ de ] = "Werkzeugleiste" ;
@@ -300,106 +214,10 @@ ToolBox RID_DRAW_TOOLBOX
 
 #include "sch_menuids.src"
 
-//STRIP001 Menu RID_FORMAT_POPUP
-//STRIP001 {
-//STRIP001  ItemList =
-//STRIP001  {
-//STRIP001      MN_CHART_TITLE
-//STRIP001      MN_LEGEND
-//STRIP001      MN_DIAGRAM_AXIS
-//STRIP001      MN_DIAGRAM_GRID
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_WALL
-//STRIP001      MN_DIAGRAM_FLOOR
-//STRIP001      MN_DIAGRAM_AREA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_DATA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_TYPE
-//STRIP001      MN_AUTOFORMAT
-//STRIP001      SEPARATOR
-//STRIP001      MN_3D_WIN
-//STRIP001      SEPARATOR
-//STRIP001      MN_ROW_POSITION;
-//STRIP001  };
-//STRIP001 };
 
-//STRIP001 Menu RID_3D_POPUP
-//STRIP001 {
-//STRIP001  ItemList =
-//STRIP001  {
-//STRIP001      MN_DIAGRAM_OBJECTS
-//STRIP001         MN_TRANSFORM;
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_WALL
-//STRIP001      MN_DIAGRAM_FLOOR
-//STRIP001      MN_DIAGRAM_AREA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_DATA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_TYPE
-//STRIP001      MN_AUTOFORMAT
-//STRIP001      SEPARATOR
-//STRIP001      MN_3D_WIN
-//STRIP001      SEPARATOR
-//STRIP001      MN_ROW_POSITION;
-//STRIP001  };
-//STRIP001 };
 
-//STRIP001 Menu RID_3D_PIE_POPUP
-//STRIP001 {
-//STRIP001  ItemList =
-//STRIP001  {
-//STRIP001      MN_DIAGRAM_OBJECTS
-//STRIP001         MN_TRANSFORM;
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_AREA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_DATA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_TYPE
-//STRIP001      MN_AUTOFORMAT
-//STRIP001      SEPARATOR
-//STRIP001      MN_3D_WIN
-//STRIP001      SEPARATOR
-//STRIP001      MN_ROW_POSITION;
-//STRIP001  };
-//STRIP001 };
 
-//STRIP001 Menu RID_2D_POPUP
-//STRIP001 {
-//STRIP001  ItemList =
-//STRIP001  {
-//STRIP001      MN_DIAGRAM_OBJECTS
-//STRIP001         MN_TRANSFORM;
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_WALL
-//STRIP001      MN_DIAGRAM_AREA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_DATA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_TYPE
-//STRIP001      MN_AUTOFORMAT
-//STRIP001      SEPARATOR
-//STRIP001      MN_ROW_POSITION;
-//STRIP001  };
-//STRIP001 };
 
-//STRIP001 Menu RID_2D_PIE_POPUP
-//STRIP001 {
-//STRIP001  ItemList =
-//STRIP001  {
-//STRIP001      MN_DIAGRAM_OBJECTS
-//STRIP001         MN_TRANSFORM;
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_AREA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_DATA
-//STRIP001      SEPARATOR
-//STRIP001      MN_DIAGRAM_TYPE
-//STRIP001      MN_AUTOFORMAT
-//STRIP001  };
-//STRIP001 };
 
 
 #undef IS_DEFAULT
