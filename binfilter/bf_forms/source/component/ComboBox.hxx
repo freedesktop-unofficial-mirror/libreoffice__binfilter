@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ComboBox.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:30:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:55:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,37 +39,13 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
 #endif
-// auto strip #ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
-// auto strip #include <cppuhelper/interfacecontainer.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATE_HXX
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_TIMER_HXX
-// auto strip #include <vcl/timer.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
-// auto strip #include <com/sun/star/util/XRefreshable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
-// auto strip #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XITEMLISTENER_HPP_
-// auto strip #include <com/sun/star/awt/XItemListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
-// auto strip #include <com/sun/star/awt/XFocusListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
-// auto strip #include <com/sun/star/form/XChangeBroadcaster.hpp>
-// auto strip #endif
 #ifndef FORMS_ERRORBROADCASTER_HXX
 #include "errorbroadcaster.hxx"
 #endif
