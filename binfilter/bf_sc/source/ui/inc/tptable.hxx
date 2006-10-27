@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tptable.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:24:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:29:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,10 +35,6 @@
 
 #ifndef SC_TPTABLE_HXX
 #define SC_TPTABLE_HXX
-
-#ifndef _SFXTABDLG_HXX //autogen
-#include <bf_sfx2/tabdlg.hxx>
-#endif
 
 #ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>

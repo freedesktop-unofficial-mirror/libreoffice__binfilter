@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tphfedit.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:22:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:29:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,10 +35,6 @@
 
 #ifndef SC_TPHFEDIT_HXX
 #define SC_TPHFEDIT_HXX
-
-#ifndef _SFXTABDLG_HXX //autogen
-#include <bf_sfx2/tabdlg.hxx>
-#endif
 
 #ifndef _SVX_PAGEITEM_HXX //autogen
 #include <bf_svx/pageitem.hxx>
