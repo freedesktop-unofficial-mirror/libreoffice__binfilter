@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:12:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:14:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 // INCLUDE ---------------------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -44,18 +43,10 @@
 #include <svtools/zforlist.hxx>
 
 #include "scitems.hxx"
-// auto strip #include "column.hxx"
 #include "cell.hxx"
 #include "document.hxx"
 #include "attarray.hxx"
-// auto strip #include "patattr.hxx"
 #include "cellform.hxx"
-// auto strip #include "collect.hxx"
-// auto strip #include "compiler.hxx"
-// auto strip #include "brdcst.hxx"
-// auto strip #include "docoptio.hxx"           // GetStdPrecision fuer GetMaxStringLen
-// auto strip #include "subtotal.hxx"
-// auto strip #include "markdata.hxx"
 #include "detfunc.hxx"          // fuer Notizen bei DeleteRange
 namespace binfilter {
 
@@ -584,188 +575,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         RemoveEditAttribs( nStartRow
 /*N*/ }
 
 
-//STRIP001 ScFormulaCell* ScColumn::CreateRefCell( ScDocument* pDestDoc, const ScAddress& rDestPos,
-//STRIP001                                          USHORT nIndex, USHORT nFlags ) const
-//STRIP001 {
-//STRIP001  USHORT nContFlags = nFlags & IDF_CONTENTS;
-//STRIP001  if (!nContFlags)
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  //  Testen, ob Zelle kopiert werden soll
-//STRIP001  //  auch bei IDF_CONTENTS komplett, wegen Notes / Broadcastern
-//STRIP001
-//STRIP001  BOOL bMatch = FALSE;
-//STRIP001  ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001  CellType eCellType = pCell->GetCellType();
-//STRIP001  switch ( eCellType )
-//STRIP001  {
-//STRIP001      case CELLTYPE_VALUE:
-//STRIP001          {
-//STRIP001              USHORT nValFlags = nFlags & (IDF_DATETIME|IDF_VALUE);
-//STRIP001
-//STRIP001              if ( nValFlags == (IDF_DATETIME|IDF_VALUE) )
-//STRIP001                  bMatch = TRUE;
-//STRIP001              else if ( nValFlags )
-//STRIP001              {
-//STRIP001                  ULONG nNumIndex = (ULONG)((SfxUInt32Item*)GetAttr(
-//STRIP001                                  pItems[nIndex].nRow, ATTR_VALUE_FORMAT ))->GetValue();
-//STRIP001                  short nTyp = pDocument->GetFormatTable()->GetType(nNumIndex);
-//STRIP001                  if ((nTyp == NUMBERFORMAT_DATE) || (nTyp == NUMBERFORMAT_TIME) || (nTyp == NUMBERFORMAT_DATETIME))
-//STRIP001                      bMatch = ((nFlags & IDF_DATETIME) != 0);
-//STRIP001                  else
-//STRIP001                      bMatch = ((nFlags & IDF_VALUE) != 0);
-//STRIP001              }
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      case CELLTYPE_STRING:
-//STRIP001      case CELLTYPE_EDIT:     bMatch = ((nFlags & IDF_STRING) != 0); break;
-//STRIP001      case CELLTYPE_FORMULA:  bMatch = ((nFlags & IDF_FORMULA) != 0); break;
-//STRIP001  }
-//STRIP001  if (!bMatch)
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001
-//STRIP001  //  Referenz einsetzen
-//STRIP001  SingleRefData aRef;
-//STRIP001  aRef.nCol = nCol;
-//STRIP001  aRef.nRow = pItems[nIndex].nRow;
-//STRIP001  aRef.nTab = nTab;
-//STRIP001  aRef.InitFlags();                           // -> alles absolut
-//STRIP001  aRef.SetFlag3D(TRUE);
-//STRIP001
-//STRIP001  //! 3D(FALSE) und TabRel(TRUE), wenn die endgueltige Position auf der selben Tabelle ist?
-//STRIP001  //! (bei TransposeClip ist die Zielposition noch nicht bekannt)
-//STRIP001
-//STRIP001  aRef.CalcRelFromAbs( rDestPos );
-//STRIP001
-//STRIP001  ScTokenArray aArr;
-//STRIP001  aArr.AddSingleReference( aRef );
-//STRIP001
-//STRIP001  return new ScFormulaCell( pDestDoc, rDestPos, &aArr );
-//STRIP001 }
 
 
 //  rColumn = Quelle
 //  nRow1, nRow2 = Zielposition
 
-//STRIP001 void ScColumn::CopyFromClip(USHORT nRow1, USHORT nRow2, short nDy,
-//STRIP001                              USHORT nInsFlag, BOOL bAsLink, BOOL bSkipAttrForEmpty,
-//STRIP001                              ScColumn& rColumn)
-//STRIP001 {
-//STRIP001  if ((nInsFlag & IDF_ATTRIB) != 0)
-//STRIP001  {
-//STRIP001      if ( bSkipAttrForEmpty )
-//STRIP001      {
-//STRIP001          //  copy only attributes for non-empty cells
-//STRIP001          //  (notes are not counted as non-empty here, to match the content behavior)
-//STRIP001
-//STRIP001          USHORT nStartIndex;
-//STRIP001          rColumn.Search( nRow1-nDy, nStartIndex );
-//STRIP001          while ( nStartIndex < rColumn.nCount && rColumn.pItems[nStartIndex].nRow <= nRow2-nDy )
-//STRIP001          {
-//STRIP001              USHORT nEndIndex = nStartIndex;
-//STRIP001              if ( rColumn.pItems[nStartIndex].pCell->GetCellType() != CELLTYPE_NOTE )
-//STRIP001              {
-//STRIP001                  USHORT nStartRow = rColumn.pItems[nStartIndex].nRow;
-//STRIP001                  USHORT nEndRow = nStartRow;
-//STRIP001
-//STRIP001                  //  find consecutive non-empty cells
-//STRIP001
-//STRIP001                  while ( nEndRow < nRow2-nDy &&
-//STRIP001                          nEndIndex+1 < rColumn.nCount &&
-//STRIP001                          rColumn.pItems[nEndIndex+1].nRow == nEndRow+1 &&
-//STRIP001                          rColumn.pItems[nEndIndex+1].pCell->GetCellType() != CELLTYPE_NOTE )
-//STRIP001                  {
-//STRIP001                      ++nEndIndex;
-//STRIP001                      ++nEndRow;
-//STRIP001                  }
-//STRIP001
-//STRIP001                  rColumn.pAttrArray->CopyAreaSafe( nStartRow+nDy, nEndRow+nDy, nDy, *pAttrArray );
-//STRIP001              }
-//STRIP001              nStartIndex = nEndIndex + 1;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rColumn.pAttrArray->CopyAreaSafe( nRow1, nRow2, nDy, *pAttrArray );
-//STRIP001  }
-//STRIP001  if ((nInsFlag & IDF_CONTENTS) == 0)
-//STRIP001      return;
-//STRIP001
-//STRIP001  if ( bAsLink && nInsFlag == IDF_ALL )
-//STRIP001  {
-//STRIP001      //  bei "alles" werden auch leere Zellen referenziert
-//STRIP001      //! IDF_ALL muss immer mehr Flags enthalten, als bei "Inhalte Einfuegen"
-//STRIP001      //! einzeln ausgewaehlt werden koennen!
-//STRIP001
-//STRIP001      Resize( nCount + (nRow2-nRow1+1) );
-//STRIP001
-//STRIP001      ScAddress aDestPos( nCol, 0, nTab );        // Row wird angepasst
-//STRIP001
-//STRIP001      //  Referenz erzeugen (Quell-Position)
-//STRIP001      SingleRefData aRef;
-//STRIP001      aRef.nCol = rColumn.nCol;
-//STRIP001      //  nRow wird angepasst
-//STRIP001      aRef.nTab = rColumn.nTab;
-//STRIP001      aRef.InitFlags();                           // -> alles absolut
-//STRIP001      aRef.SetFlag3D(TRUE);
-//STRIP001
-//STRIP001      for (USHORT nDestRow = nRow1; nDestRow <= nRow2; nDestRow++)
-//STRIP001      {
-//STRIP001          aRef.nRow = nDestRow - nDy;             // Quell-Zeile
-//STRIP001          aDestPos.SetRow( nDestRow );
-//STRIP001
-//STRIP001          aRef.CalcRelFromAbs( aDestPos );
-//STRIP001          ScTokenArray aArr;
-//STRIP001          aArr.AddSingleReference( aRef );
-//STRIP001          Insert( nDestRow, new ScFormulaCell( pDocument, aDestPos, &aArr ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT nColCount = rColumn.nCount;
-//STRIP001  if ((nInsFlag & IDF_CONTENTS) == IDF_CONTENTS && nRow2-nRow1 >= 64)
-//STRIP001  {
-//STRIP001      //! Resize immer aussen, wenn die Wiederholungen bekannt sind
-//STRIP001      //! (dann hier gar nicht mehr)
-//STRIP001
-//STRIP001      USHORT nNew = nCount + nColCount;
-//STRIP001      if ( nLimit < nNew )
-//STRIP001          Resize( nNew );
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bAtEnd = FALSE;
-//STRIP001  for (USHORT i = 0; i < nColCount && !bAtEnd; i++)
-//STRIP001  {
-//STRIP001      short nDestRow = rColumn.pItems[i].nRow + nDy;
-//STRIP001      if ( nDestRow > (short) nRow2 )
-//STRIP001          bAtEnd = TRUE;
-//STRIP001      else if ( nDestRow >= (short) nRow1 )
-//STRIP001      {
-//STRIP001          //  rows at the beginning may be skipped if filtered rows are left out,
-//STRIP001          //  nDestRow may be negative then
-//STRIP001
-//STRIP001          ScBaseCell* pOld = rColumn.pItems[i].pCell;
-//STRIP001          ScBaseCell* pNew;
-//STRIP001
-//STRIP001          if ( bAsLink )
-//STRIP001          {
-//STRIP001              pNew = rColumn.CreateRefCell( pDocument,
-//STRIP001                      ScAddress( nCol, (USHORT)nDestRow, nTab ), i, nInsFlag );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              pNew = rColumn.CloneCell( i, nInsFlag, pDocument, ScAddress(nCol,(USHORT)nDestRow,nTab) );
-//STRIP001
-//STRIP001              if ( pNew && pNew->GetNotePtr() && (nInsFlag & IDF_NOTE) == 0 )
-//STRIP001                  pNew->DeleteNote();
-//STRIP001          }
-//STRIP001
-//STRIP001          if (pNew)
-//STRIP001              Insert((USHORT)nDestRow, pNew);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
     //  Formelzellen werden jetzt schon hier kopiert,
@@ -832,8 +646,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = pForm->Cl
 /*?*/                       if ( nFlags & IDF_VALUE )
 /*?*/                       {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormulaCell* pErrCell = new ScFormulaCell( pDestDoc, rDestPos );
-//STRIP001 /*?*/                            pErrCell->SetErrCode( nErr );
-//STRIP001 /*?*/                            pNew = pErrCell;
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else if ( pForm->IsValue() )
@@ -884,238 +696,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 /*N*/ }
 
 
-//STRIP001 void ScColumn::MixMarked( const ScMarkData& rMark, USHORT nFunction,
-//STRIP001                          BOOL bSkipEmpty, ScColumn& rSrcCol )
-//STRIP001 {
-//STRIP001  USHORT nRow1, nRow2;
-//STRIP001
-//STRIP001  if (rMark.IsMultiMarked())
-//STRIP001  {
-//STRIP001      ScMarkArrayIter aIter( rMark.GetArray()+nCol );
-//STRIP001      while (aIter.Next( nRow1, nRow2 ))
-//STRIP001          MixData( nRow1, nRow2, nFunction, bSkipEmpty, rSrcCol );
-//STRIP001  }
-//STRIP001 }
 
 
 //  Ergebnis in rVal1
 
-//STRIP001 BOOL lcl_DoFunction( double& rVal1, double nVal2, USHORT nFunction )
-//STRIP001 {
-//STRIP001  BOOL bOk = FALSE;
-//STRIP001  switch (nFunction)
-//STRIP001  {
-//STRIP001      case PASTE_ADD:
-//STRIP001          bOk = SubTotal::SafePlus( rVal1, nVal2 );
-//STRIP001          break;
-//STRIP001      case PASTE_SUB:
-//STRIP001          nVal2 = -nVal2;     //! geht das immer ohne Fehler?
-//STRIP001          bOk = SubTotal::SafePlus( rVal1, nVal2 );
-//STRIP001          break;
-//STRIP001      case PASTE_MUL:
-//STRIP001          bOk = SubTotal::SafeMult( rVal1, nVal2 );
-//STRIP001          break;
-//STRIP001      case PASTE_DIV:
-//STRIP001          bOk = SubTotal::SafeDiv( rVal1, nVal2 );
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
 
 
-//STRIP001 void lcl_AddCode( ScTokenArray& rArr, ScFormulaCell* pCell )
-//STRIP001 {
-//STRIP001  rArr.AddOpCode(ocOpen);
-//STRIP001
-//STRIP001  ScTokenArray* pCode = pCell->GetCode();
-//STRIP001  if (pCode)
-//STRIP001  {
-//STRIP001      ScToken* pToken = pCode->First();
-//STRIP001      while (pToken)
-//STRIP001      {
-//STRIP001          rArr.AddToken(*pToken);
-//STRIP001          pToken = pCode->Next();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  rArr.AddOpCode(ocClose);
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::MixData( USHORT nRow1, USHORT nRow2,
-//STRIP001                          USHORT nFunction, BOOL bSkipEmpty,
-//STRIP001                          ScColumn& rSrcCol )
-//STRIP001 {
-//STRIP001  USHORT nSrcCount = rSrcCol.nCount;
-//STRIP001
-//STRIP001  USHORT nIndex;
-//STRIP001  Search( nRow1, nIndex );
-//STRIP001
-//STRIP001 //   USHORT nSrcIndex = 0;
-//STRIP001  USHORT nSrcIndex;
-//STRIP001  rSrcCol.Search( nRow1, nSrcIndex );         //! Testen, ob Daten ganz vorne
-//STRIP001
-//STRIP001  USHORT nNextThis = MAXROW+1;
-//STRIP001  if ( nIndex < nCount )
-//STRIP001      nNextThis = pItems[nIndex].nRow;
-//STRIP001  USHORT nNextSrc = MAXROW+1;
-//STRIP001  if ( nSrcIndex < nSrcCount )
-//STRIP001      nNextSrc = rSrcCol.pItems[nSrcIndex].nRow;
-//STRIP001
-//STRIP001  while ( nNextThis <= nRow2 || nNextSrc <= nRow2 )
-//STRIP001  {
-//STRIP001      USHORT nRow = Min( nNextThis, nNextSrc );
-//STRIP001
-//STRIP001      ScBaseCell* pSrc = NULL;
-//STRIP001      ScBaseCell* pDest = NULL;
-//STRIP001      ScBaseCell* pNew = NULL;
-//STRIP001      BOOL bDelete = FALSE;
-//STRIP001
-//STRIP001      if ( nSrcIndex < nSrcCount && nNextSrc == nRow )
-//STRIP001          pSrc = rSrcCol.pItems[nSrcIndex].pCell;
-//STRIP001
-//STRIP001      if ( nIndex < nCount && nNextThis == nRow )
-//STRIP001          pDest = pItems[nIndex].pCell;
-//STRIP001
-//STRIP001      DBG_ASSERT( pSrc || pDest, "Nanu ??!?" );
-//STRIP001
-//STRIP001      CellType eSrcType  = pSrc  ? pSrc->GetCellType()  : CELLTYPE_NONE;
-//STRIP001      CellType eDestType = pDest ? pDest->GetCellType() : CELLTYPE_NONE;
-//STRIP001
-//STRIP001      BOOL bSrcEmpty = ( eSrcType == CELLTYPE_NONE || eSrcType == CELLTYPE_NOTE );
-//STRIP001      BOOL bDestEmpty = ( eDestType == CELLTYPE_NONE || eDestType == CELLTYPE_NOTE );
-//STRIP001
-//STRIP001      if ( bSkipEmpty && bDestEmpty )     // Originalzelle wiederherstellen
-//STRIP001      {
-//STRIP001          if ( pSrc )                     // war da eine Zelle?
-//STRIP001          {
-//STRIP001              pNew = pSrc->Clone( pDocument );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if ( nFunction )               // wirklich Rechenfunktion angegeben
-//STRIP001      {
-//STRIP001          double nVal1;
-//STRIP001          double nVal2;
-//STRIP001          if ( eSrcType == CELLTYPE_VALUE )
-//STRIP001              nVal1 = ((ScValueCell*)pSrc)->GetValue();
-//STRIP001          else
-//STRIP001              nVal1 = 0.0;
-//STRIP001          if ( eDestType == CELLTYPE_VALUE )
-//STRIP001              nVal2 = ((ScValueCell*)pDest)->GetValue();
-//STRIP001          else
-//STRIP001              nVal2 = 0.0;
-//STRIP001
-//STRIP001          //  leere Zellen werden als Werte behandelt
-//STRIP001
-//STRIP001          BOOL bSrcVal  = ( bSrcEmpty || eSrcType == CELLTYPE_VALUE );
-//STRIP001          BOOL bDestVal  = ( bDestEmpty || eDestType == CELLTYPE_VALUE );
-//STRIP001
-//STRIP001          BOOL bSrcText = ( eSrcType == CELLTYPE_STRING ||
-//STRIP001                              eSrcType == CELLTYPE_EDIT );
-//STRIP001          BOOL bDestText = ( eDestType == CELLTYPE_STRING ||
-//STRIP001                              eDestType == CELLTYPE_EDIT );
-//STRIP001
-//STRIP001          //  sonst bleibt nur Formel...
-//STRIP001
-//STRIP001          if ( bSrcEmpty && bDestEmpty )
-//STRIP001          {
-//STRIP001              //  beide leer -> nix
-//STRIP001          }
-//STRIP001          else if ( bSrcVal && bDestVal )
-//STRIP001          {
-//STRIP001              //  neuen Wert eintragen, oder Fehler bei Ueberlauf
-//STRIP001
-//STRIP001              BOOL bOk = lcl_DoFunction( nVal1, nVal2, nFunction );
-//STRIP001
-//STRIP001              if (bOk)
-//STRIP001                  pNew = new ScValueCell( nVal1 );
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  ScFormulaCell* pFC = new ScFormulaCell( pDocument,
-//STRIP001                                              ScAddress( nCol, nRow, nTab ) );
-//STRIP001                  pFC->SetErrCode( errNoValue );
-//STRIP001                  //! oder NOVALUE, dann auch in consoli,
-//STRIP001                  //! sonst in Interpreter::GetCellValue die Abfrage auf errNoValue raus
-//STRIP001                  //! (dann geht Stringzelle+Wertzelle nicht mehr)
-//STRIP001                  pNew = pFC;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if ( bSrcText || bDestText )
-//STRIP001          {
-//STRIP001              //  mit Texten wird nicht gerechnet - immer "alte" Zelle, also pSrc
-//STRIP001
-//STRIP001              if (pSrc)
-//STRIP001                  pNew = pSrc->Clone( pDocument );
-//STRIP001              else if (pDest)
-//STRIP001                  bDelete = TRUE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              //  Kombination aus Wert und mindestens einer Formel -> Formel erzeugen
-//STRIP001
-//STRIP001              ScTokenArray aArr;
-//STRIP001
-//STRIP001              //  erste Zelle
-//STRIP001              if ( eSrcType == CELLTYPE_FORMULA )
-//STRIP001                  lcl_AddCode( aArr, (ScFormulaCell*)pSrc );
-//STRIP001              else
-//STRIP001                  aArr.AddDouble( nVal1 );
-//STRIP001
-//STRIP001              //  Operator
-//STRIP001              OpCode eOp = ocAdd;
-//STRIP001              switch ( nFunction )
-//STRIP001              {
-//STRIP001                  case PASTE_ADD: eOp = ocAdd; break;
-//STRIP001                  case PASTE_SUB: eOp = ocSub; break;
-//STRIP001                  case PASTE_MUL: eOp = ocMul; break;
-//STRIP001                  case PASTE_DIV: eOp = ocDiv; break;
-//STRIP001              }
-//STRIP001              aArr.AddOpCode(eOp);                // Funktion
-//STRIP001
-//STRIP001              //  zweite Zelle
-//STRIP001              if ( eDestType == CELLTYPE_FORMULA )
-//STRIP001                  lcl_AddCode( aArr, (ScFormulaCell*)pDest );
-//STRIP001              else
-//STRIP001                  aArr.AddDouble( nVal2 );
-//STRIP001
-//STRIP001              pNew = new ScFormulaCell( pDocument, ScAddress( nCol, nRow, nTab ), &aArr );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001
-//STRIP001      if ( pNew || bDelete )          // neues Ergebnis ?
-//STRIP001      {
-//STRIP001          if (pDest && !pNew)                     // alte Zelle da ?
-//STRIP001          {
-//STRIP001              if ( pDest->GetBroadcaster() )
-//STRIP001                  pNew = new ScNoteCell;          // Broadcaster uebernehmen
-//STRIP001              else
-//STRIP001                  Delete(nRow);                   // -> loeschen
-//STRIP001          }
-//STRIP001          if (pNew)
-//STRIP001              Insert(nRow, pNew);     // neue einfuegen
-//STRIP001
-//STRIP001          Search( nRow, nIndex );     // alles kann sich verschoben haben
-//STRIP001          if (pNew)
-//STRIP001              nNextThis = nRow;       // nIndex zeigt jetzt genau auf nRow
-//STRIP001          else
-//STRIP001              nNextThis = ( nIndex < nCount ) ? pItems[nIndex].nRow : MAXROW+1;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( nNextThis == nRow )
-//STRIP001      {
-//STRIP001          ++nIndex;
-//STRIP001          nNextThis = ( nIndex < nCount ) ? pItems[nIndex].nRow : MAXROW+1;
-//STRIP001      }
-//STRIP001      if ( nNextSrc == nRow )
-//STRIP001      {
-//STRIP001          ++nSrcIndex;
-//STRIP001          nNextSrc = ( nSrcIndex < nSrcCount ) ?
-//STRIP001                          rSrcCol.pItems[nSrcIndex].nRow :
-//STRIP001                          MAXROW+1;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ ScAttrIterator* ScColumn::CreateAttrIterator( USHORT nStartRow, USHORT nEndRow ) const
@@ -1162,43 +750,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 /*N*/ }
 
 
-//STRIP001 void ScColumn::BroadcastInArea( USHORT nRow1, USHORT nRow2 )
-//STRIP001 {
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      USHORT nIndex, nRow;
-//STRIP001      Search( nRow1, nIndex );
-//STRIP001      while ( nIndex < nCount && (nRow = pItems[nIndex].nRow) <= nRow2 )
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001          if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001              ((ScFormulaCell*)pCell)->SetDirty();
-//STRIP001          else
-//STRIP001              pDocument->Broadcast( ScHint( SC_HINT_DATACHANGED,
-//STRIP001                  ScAddress( nCol, nRow, nTab ), pCell ) );
-//STRIP001          nIndex++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScColumn::StartListeningInArea( USHORT nRow1, USHORT nRow2 )
-//STRIP001 {
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      USHORT nIndex, nRow;
-//STRIP001      Search( nRow1, nIndex );
-//STRIP001      while ( nIndex < nCount && (nRow = pItems[nIndex].nRow) <= nRow2 )
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001          if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001              ((ScFormulaCell*)pCell)->StartListeningTo( pDocument );
-//STRIP001          if ( nRow != pItems[nIndex].nRow )
-//STRIP001              Search( nRow, nIndex );     // durch Listening eingefuegt
-//STRIP001          nIndex++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 //  TRUE = Zahlformat gesetzt
@@ -1359,52 +912,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 /*N*/ }
 
 
-//STRIP001 void ScColumn::GetFilterEntries(USHORT nStartRow, USHORT nEndRow, TypedStrCollection& rStrings)
-//STRIP001 {
-//STRIP001  SvNumberFormatter* pFormatter = pDocument->GetFormatTable();
-//STRIP001  String aString;
-//STRIP001  USHORT nRow;
-//STRIP001  USHORT nIndex;
-//STRIP001
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001
-//STRIP001  while ( (nIndex < nCount) ? ((nRow=pItems[nIndex].nRow) <= nEndRow) : FALSE )
-//STRIP001  {
-//STRIP001      ScBaseCell*          pCell    = pItems[nIndex].pCell;
-//STRIP001      TypedStrData*        pData;
-//STRIP001      ULONG                nFormat  = GetNumberFormat( nRow );
-//STRIP001
-//STRIP001      ScCellFormat::GetInputString( pCell, nFormat, aString, *pFormatter );
-//STRIP001
-//STRIP001      if ( pDocument->HasStringData( nCol, nRow, nTab ) )
-//STRIP001          pData = new TypedStrData( aString );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          double nValue;
-//STRIP001
-//STRIP001          switch ( pCell->GetCellType() )
-//STRIP001          {
-//STRIP001              case CELLTYPE_VALUE:
-//STRIP001                  nValue = ((ScValueCell*)pCell)->GetValue();
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case CELLTYPE_FORMULA:
-//STRIP001                  nValue = ((ScFormulaCell*)pCell)->GetValue();
-//STRIP001                  break;
-//STRIP001
-//STRIP001              default:
-//STRIP001                  nValue = 0.0;
-//STRIP001          }
-//STRIP001
-//STRIP001          pData = new TypedStrData( aString, nValue, SC_STRTYPE_VALUE );
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( !rStrings.Insert( pData ) )
-//STRIP001          delete pData;                               // doppelt
-//STRIP001
-//STRIP001      ++nIndex;
-//STRIP001  }
-//STRIP001 }
 
 //
 //  GetDataEntries - Strings aus zusammenhaengendem Bereich um nRow
@@ -1416,124 +923,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 #define DATENT_SEARCH   2000
 
 
-//STRIP001 BOOL ScColumn::GetDataEntries(USHORT nStartRow, TypedStrCollection& rStrings, BOOL bLimit)
-//STRIP001 {
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  USHORT nThisIndex;
-//STRIP001  BOOL bThisUsed = Search( nStartRow, nThisIndex );
-//STRIP001  String aString;
-//STRIP001  USHORT nCells = 0;
-//STRIP001
-//STRIP001  //  Die Beschraenkung auf angrenzende Zellen (ohne Luecken) ist nicht mehr gewollt
-//STRIP001  //  (Featurekommission zur 5.1), stattdessen abwechselnd nach oben und unten suchen,
-//STRIP001  //  damit naheliegende Zellen wenigstens zuerst gefunden werden.
-//STRIP001  //! Abstaende der Zeilennummern vergleichen? (Performance??)
-//STRIP001
-//STRIP001  USHORT nUpIndex = nThisIndex;       // zeigt hinter die Zelle
-//STRIP001  USHORT nDownIndex = nThisIndex;     // zeigt auf die Zelle
-//STRIP001  if (bThisUsed)
-//STRIP001      ++nDownIndex;                   // Startzelle ueberspringen
-//STRIP001
-//STRIP001  while ( nUpIndex || nDownIndex < nCount )
-//STRIP001  {
-//STRIP001      if ( nUpIndex )                 // nach oben
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[nUpIndex-1].pCell;
-//STRIP001          CellType eType = pCell->GetCellType();
-//STRIP001          if (eType == CELLTYPE_STRING || eType == CELLTYPE_EDIT)     // nur Strings interessieren
-//STRIP001          {
-//STRIP001              if (eType == CELLTYPE_STRING)
-//STRIP001                  ((ScStringCell*)pCell)->GetString(aString);
-//STRIP001              else
-//STRIP001                  ((ScEditCell*)pCell)->GetString(aString);
-//STRIP001
-//STRIP001              TypedStrData* pData = new TypedStrData(aString);
-//STRIP001              if ( !rStrings.Insert( pData ) )
-//STRIP001                  delete pData;                                           // doppelt
-//STRIP001              else if ( bLimit && rStrings.GetCount() >= DATENT_MAX )
-//STRIP001                  break;                                                  // Maximum erreicht
-//STRIP001              bFound = TRUE;
-//STRIP001
-//STRIP001              if ( bLimit )
-//STRIP001                  if (++nCells >= DATENT_SEARCH)
-//STRIP001                      break;                                  // genug gesucht
-//STRIP001          }
-//STRIP001          --nUpIndex;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( nDownIndex < nCount )      // nach unten
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[nDownIndex].pCell;
-//STRIP001          CellType eType = pCell->GetCellType();
-//STRIP001          if (eType == CELLTYPE_STRING || eType == CELLTYPE_EDIT)     // nur Strings interessieren
-//STRIP001          {
-//STRIP001              if (eType == CELLTYPE_STRING)
-//STRIP001                  ((ScStringCell*)pCell)->GetString(aString);
-//STRIP001              else
-//STRIP001                  ((ScEditCell*)pCell)->GetString(aString);
-//STRIP001
-//STRIP001              TypedStrData* pData = new TypedStrData(aString);
-//STRIP001              if ( !rStrings.Insert( pData ) )
-//STRIP001                  delete pData;                                           // doppelt
-//STRIP001              else if ( bLimit && rStrings.GetCount() >= DATENT_MAX )
-//STRIP001                  break;                                                  // Maximum erreicht
-//STRIP001              bFound = TRUE;
-//STRIP001
-//STRIP001              if ( bLimit )
-//STRIP001                  if (++nCells >= DATENT_SEARCH)
-//STRIP001                      break;                                  // genug gesucht
-//STRIP001          }
-//STRIP001          ++nDownIndex;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
 
 #undef DATENT_MAX
 #undef DATENT_SEARCH
 
 
-//STRIP001 void ScColumn::RemoveProtected( USHORT nStartRow, USHORT nEndRow )
-//STRIP001 {
-//STRIP001  ScAttrIterator aAttrIter( pAttrArray, nStartRow, nEndRow );
-//STRIP001  USHORT nTop;
-//STRIP001  USHORT nBottom;
-//STRIP001  USHORT nIndex;
-//STRIP001  const ScPatternAttr* pPattern = aAttrIter.Next( nTop, nBottom );
-//STRIP001  while (pPattern)
-//STRIP001  {
-//STRIP001      const ScProtectionAttr* pAttr = (const ScProtectionAttr*)&pPattern->GetItem(ATTR_PROTECTION);
-//STRIP001      if ( pAttr->GetHideCell() )
-//STRIP001          DeleteArea( nTop, nBottom, IDF_CONTENTS );
-//STRIP001      else if ( pAttr->GetHideFormula() )
-//STRIP001      {
-//STRIP001          Search( nTop, nIndex );
-//STRIP001          while ( nIndex<nCount && pItems[nIndex].nRow<=nBottom )
-//STRIP001          {
-//STRIP001              if ( pItems[nIndex].pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001              {
-//STRIP001                  ScFormulaCell* pFormula = (ScFormulaCell*)pItems[nIndex].pCell;
-//STRIP001                  if (pFormula->IsValue())
-//STRIP001                  {
-//STRIP001                      double nVal = pFormula->GetValue();
-//STRIP001                      pItems[nIndex].pCell = new ScValueCell( nVal );
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      String aString;
-//STRIP001                      pFormula->GetString(aString);
-//STRIP001                      pItems[nIndex].pCell = new ScStringCell( aString );
-//STRIP001                  }
-//STRIP001                  delete pFormula;
-//STRIP001              }
-//STRIP001              ++nIndex;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      pPattern = aAttrIter.Next( nTop, nBottom );
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void ScColumn::SetError( USHORT nRow, const USHORT nError)
@@ -1714,109 +1108,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL ScColumn::HasStringCells( USHORT nStartRow, USHORT nEndRow ) const
-//STRIP001 {
-//STRIP001  //  TRUE, wenn String- oder Editzellen im Bereich
-//STRIP001
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      USHORT nIndex;
-//STRIP001      Search( nStartRow, nIndex );
-//STRIP001      while ( nIndex < nCount && pItems[nIndex].nRow <= nEndRow )
-//STRIP001      {
-//STRIP001          CellType eType = pItems[nIndex].pCell->GetCellType();
-//STRIP001          if ( eType == CELLTYPE_STRING || eType == CELLTYPE_EDIT )
-//STRIP001              return TRUE;
-//STRIP001          ++nIndex;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 xub_StrLen ScColumn::GetMaxStringLen( USHORT nRowStart, USHORT nRowEnd ) const
-//STRIP001 {
-//STRIP001  xub_StrLen nStringLen = 0;
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      String aString;
-//STRIP001      SvNumberFormatter* pNumFmt = pDocument->GetFormatTable();
-//STRIP001      USHORT nIndex, nRow;
-//STRIP001      Search( nRowStart, nIndex );
-//STRIP001      while ( nIndex < nCount && (nRow = pItems[nIndex].nRow) <= nRowEnd )
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001          if ( pCell->GetCellType() != CELLTYPE_NOTE )
-//STRIP001          {
-//STRIP001              Color* pColor;
-//STRIP001              ULONG nFormat = (ULONG) ((SfxUInt32Item*) GetAttr(
-//STRIP001                  nRow, ATTR_VALUE_FORMAT ))->GetValue();
-//STRIP001              ScCellFormat::GetString( pCell, nFormat, aString, &pColor,
-//STRIP001                  *pNumFmt );
-//STRIP001              if ( nStringLen < aString.Len() )
-//STRIP001                  nStringLen = aString.Len();
-//STRIP001          }
-//STRIP001          nIndex++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nStringLen;
-//STRIP001 }
 
 
-//STRIP001 xub_StrLen ScColumn::GetMaxNumberStringLen( USHORT& nPrecision,
-//STRIP001      USHORT nRowStart, USHORT nRowEnd ) const
-//STRIP001 {
-//STRIP001  xub_StrLen nStringLen = 0;
-//STRIP001  nPrecision = pDocument->GetDocOptions().GetStdPrecision();
-//STRIP001  if ( pItems )
-//STRIP001  {
-//STRIP001      String aString;
-//STRIP001      SvNumberFormatter* pNumFmt = pDocument->GetFormatTable();
-//STRIP001      USHORT nIndex, nRow;
-//STRIP001      Search( nRowStart, nIndex );
-//STRIP001      while ( nIndex < nCount && (nRow = pItems[nIndex].nRow) <= nRowEnd )
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = pItems[nIndex].pCell;
-//STRIP001          CellType eType = pCell->GetCellType();
-//STRIP001          if ( eType == CELLTYPE_VALUE || (eType == CELLTYPE_FORMULA
-//STRIP001                  && ((ScFormulaCell*)pCell)->IsValue()) )
-//STRIP001          {
-//STRIP001              ULONG nFormat = (ULONG) ((SfxUInt32Item*) GetAttr(
-//STRIP001                  nRow, ATTR_VALUE_FORMAT ))->GetValue();
-//STRIP001              ScCellFormat::GetInputString( pCell, nFormat, aString, *pNumFmt );
-//STRIP001              xub_StrLen nLen = aString.Len();
-//STRIP001              if ( nLen )
-//STRIP001              {
-//STRIP001                  if ( nFormat )
-//STRIP001                  {   // more decimals than standard?
-//STRIP001                      USHORT nPrec = pNumFmt->GetFormatPrecision( nFormat );
-//STRIP001                      if ( nPrec > nPrecision )
-//STRIP001                          nPrecision = nPrec;
-//STRIP001                  }
-//STRIP001                  if ( nPrecision )
-//STRIP001                  {   // less than nPrecision in string => widen it
-//STRIP001                      // more => shorten it
-//STRIP001                      String aSep = pNumFmt->GetFormatDecimalSep( nFormat );
-//STRIP001                      xub_StrLen nTmp = aString.Search( aSep );
-//STRIP001                      if ( nTmp == STRING_NOTFOUND )
-//STRIP001                          nLen += nPrecision + aSep.Len();
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          nTmp = aString.Len() - (nTmp + aSep.Len());
-//STRIP001                          if ( nTmp != nPrecision )
-//STRIP001                              nLen += nPrecision - nTmp;
-//STRIP001                              // nPrecision > nTmp : nLen + Diff
-//STRIP001                              // nPrecision < nTmp : nLen - Diff
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  if ( nStringLen < nLen )
-//STRIP001                      nStringLen = nLen;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          nIndex++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nStringLen;
-//STRIP001 }
 
 }
