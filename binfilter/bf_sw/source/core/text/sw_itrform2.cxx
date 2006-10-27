@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itrform2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:27:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:10:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,18 +61,6 @@
 #ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
 #endif
-// auto strip #ifndef _TXATBASE_HXX //autogen
-// auto strip #include <txatbase.hxx>
-// auto strip #endif
-// auto strip #ifndef _LAYFRM_HXX
-// auto strip #include <layfrm.hxx>     // GetFrmRstHeight, etc
-// auto strip #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>        // SwViewOptions
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>       // SwFmtDrop
 #endif
@@ -85,12 +73,6 @@
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>     // IsTox, IsRef, SetLingu
-// auto strip #endif
-// auto strip #ifndef _PORRST_HXX
-// auto strip #include <porrst.hxx>
-// auto strip #endif
 #ifndef _PORTAB_HXX
 #include <portab.hxx>       // pLastTab->
 #endif
@@ -108,33 +90,21 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _PORFLD_HXX
-// auto strip #include <porfld.hxx>     // SwNumberPortion fuer CalcAscent()
-// auto strip #endif
 #ifndef _PORFTN_HXX
 #include <porftn.hxx>       // SwFtnPortion
 #endif
-// auto strip #ifndef _POREXP_HXX
-// auto strip #include <porexp.hxx>
-// auto strip #endif
 #ifndef _PORHYPH_HXX
 #include <porhyph.hxx>
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>
 #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>     // GetFrmRstHeight, etc
-// auto strip #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>        // pBlink
 #endif
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // WhichFirstPortion() -> mal Verlagern.
 #endif
-// auto strip #ifndef _REDLNITR_HXX
-// auto strip #include <redlnitr.hxx>       // SwRedlineItr
-// auto strip #endif
 
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
@@ -159,9 +129,6 @@
 #endif
 
 #if OSL_DEBUG_LEVEL > 1
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>      // pSwpHints, Ausgabeoperator
-// auto strip #endif
 #endif
 namespace binfilter {
 
@@ -244,22 +211,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
  *                  SwTxtFormatter::GetFrmRstHeight()
  *************************************************************************/
 
-//STRIP001 KSHORT SwTxtFormatter::GetFrmRstHeight() const
-//STRIP001 {
-//STRIP001  // 8725: Uns interessiert die Resthoehe bezogen auf die Seite.
-//STRIP001  // Wenn wir in einer Tabelle stehen, dann ist pFrm->GetUpper() nicht
-//STRIP001  // die Seite. GetFrmRstHeight() wird im Zusammenhang mit den Ftn
-//STRIP001  // gerufen.
-//STRIP001  // Falsch: const SwFrm *pUpper = pFrm->GetUpper();
-//STRIP001  const SwFrm *pPage = (const SwFrm*)pFrm->FindPageFrm();
-//STRIP001  const SwTwips nHeight = pPage->Frm().Top()
-//STRIP001                        + pPage->Prt().Top()
-//STRIP001                        + pPage->Prt().Height() - Y();
-//STRIP001  if( 0 > nHeight )
-//STRIP001      return pCurr->Height();
-//STRIP001  else
-//STRIP001      return KSHORT( nHeight );
-//STRIP001 }
 
 /*************************************************************************
  *                  SwTxtFormatter::UnderFlow()
@@ -594,8 +545,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/             // insert a grid kerning portion
 /*?*/             if ( ! pGridKernPortion )
                         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pGridKernPortion = pPor->IsKernPortion() ?
-//STRIP001 /*?*/                                    (SwKernPortion*)pPor :
-//STRIP001 /*?*/                                    new SwKernPortion( *pCurr );
 /*?*/
 /*?*/             // if we have a new GridKernPortion, we initially calculate
 /*?*/             // its size so that its ends on the grid
@@ -611,8 +560,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/             if ( bVert )
 /*?*/             {
                     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 Point aPoint( nStartX, 0 );
-//STRIP001 /*?*/                 pFrm->SwitchHorizontalToVertical( aPoint );
-//STRIP001 /*?*/                 nStartX = aPoint.Y();
 /*?*/             }
 /*?*/
 /*?*/             const SwTwips nOfst = nStartX - nGridOrigin;
@@ -1234,39 +1181,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/             SwMultiCreator* pCreate = rInf.GetMultiCreator( nEnd, pMulti );
 /*M*/           if( pCreate )
 /*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                SwMultiPortion* pTmp = NULL;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 if ( SW_MC_BIDI == pCreate->nId )
-//STRIP001 /*?*/                     pTmp = new SwBidiPortion( nEnd, pCreate->nLevel );
-//STRIP001 /*?*/                 else if ( SW_MC_RUBY == pCreate->nId )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     Seek( rInf.GetIdx() );
-//STRIP001 /*?*/                     sal_Bool bRubyTop;
-//STRIP001 /*?*/                     sal_Bool* pRubyPos = 0;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     if ( rInf.SnapToGrid() )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         GETGRID( GetTxtFrm()->FindPageFrm() )
-//STRIP001 /*?*/                         if ( pGrid )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             bRubyTop = ! pGrid->GetRubyTextBelow();
-//STRIP001 /*?*/                             pRubyPos = &bRubyTop;
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     pTmp = new SwRubyPortion( *pCreate, *rInf.GetFont(),
-//STRIP001 /*?*/                                               *rInf.GetDoc(), nEnd, 0, pRubyPos );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                else if( SW_MC_ROTATE == pCreate->nId )
-//STRIP001 /*?*/                     pTmp = new SwRotatedPortion( *pCreate, nEnd,
-//STRIP001 /*?*/                                                  GetTxtFrm()->IsRightToLeft() );
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    pTmp = new SwDoubleLinePortion( *pCreate, nEnd );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 delete pCreate;
-//STRIP001 /*?*/                 CalcFlyWidth( rInf );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                return pTmp;
 /*M*/           }
 /*M*/       }
 /*M*/       // 5010: Tabs und Felder
@@ -1385,9 +1299,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/                 if ( 0 != nDir )
 /*M*/                 {
 /*?*/                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001  delete pPor;
-//STRIP001 /*?*/                     pPor = new SwRotatedPortion( rInf.GetIdx() + 1, 900 == nDir ?
-//STRIP001 /*?*/                                                     DIR_BOTTOM2TOP :
-//STRIP001 /*?*/                                                     DIR_TOP2BOTTOM );
 /*M*/                 }
 /*M*/             }
 /*M*/         }
@@ -1401,12 +1312,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/                 if ( 0 != nDir )
 /*M*/                 {
 /*?*/                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001  delete pPor;
-//STRIP001 /*?*/                     pPor = new SwRotatedPortion( 0, 900 == nDir ?
-//STRIP001 /*?*/                                                     DIR_BOTTOM2TOP :
-//STRIP001 /*?*/                                                     DIR_TOP2BOTTOM );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     rInf.SetNumDone( sal_False );
-//STRIP001 /*?*/                     rInf.SetFtnDone( sal_False );
 /*M*/                 }
 /*M*/             }
 /*M*/         }
@@ -1523,11 +1428,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/         if( GetInfo().IsStop() )
 /*M*/       {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pCurr->SetLen( 0 );
-//STRIP001 /*?*/            pCurr->Height( GetFrmRstHeight() + 1 );
-//STRIP001 /*?*/            pCurr->SetRealHeight( GetFrmRstHeight() + 1 );
-//STRIP001 /*?*/            pCurr->Width(0);
-//STRIP001 /*?*/            pCurr->Truncate();
-//STRIP001 /*?*/            return nStart;
 /*M*/       }
 /*M*/       else if( GetInfo().IsDropInit() )
 /*M*/       {
@@ -1610,10 +1510,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/     if ( GetInfo().CompressLine() )
 /*M*/     {
 /*?*/      DBG_BF_ASSERT(0, "STRIP"); //STRIP001    USHORT nRepaintOfst = CalcKanaAdj( pCurr );
-//STRIP001 /*?*/
-//STRIP001 /*?*/         // adjust repaint offset
-//STRIP001 /*?*/         if ( nRepaintOfst < GetInfo().GetPaintOfst() )
-//STRIP001 /*?*/             GetInfo().SetPaintOfst( nRepaintOfst );
 /*M*/     }
 /*M*/
 /*M*/     CalcAdjustLine( pCurr );
@@ -1800,7 +1696,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/   if( ((SwTxtFormatter*)this)->GetRedln() )
 /*N*/   {
             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       ((SwTxtFormatter*)this)->GetRedln()->Clear( ((SwTxtFormatter*)this)->GetFnt() );
-//STRIP001 /*?*/        ((SwTxtFormatter*)this)->GetRedln()->Reset();
 /*N*/   }
 /*N*/ }
 
@@ -1880,67 +1775,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
  * although the results should be good enought for most situations.
  *************************************************************************/
 
-//STRIP001 extern void SetParaPortion( SwTxtInfo *pInf, SwParaPortion *pRoot );
-//STRIP001
-//STRIP001 KSHORT SwTxtFormatter::_CalcFitToContent()
-//STRIP001 {
-//STRIP001     // Save old line and build a new temporary line.
-//STRIP001     // Note: I this really necessary? Most likely the current SwParaPortion
-//STRIP001     // can be misused for the following operations, because it will be
-//STRIP001     // deleted in the calling function.
-//STRIP001     ASSERT( pCurr->IsParaPortion(), "_CalcFitToContent expected a ParaPortion" )
-//STRIP001     SwLineLayout* pOldCurr = pCurr;
-//STRIP001     SwParaPortion aTmpPara;
-//STRIP001     pCurr = &aTmpPara;
-//STRIP001  GetInfo().SetRoot( &aTmpPara );
-//STRIP001     SetParaPortion( &GetInfo(), &aTmpPara );
-//STRIP001
-//STRIP001  GetInfo().First( KSHORT(FirstLeft()) );
-//STRIP001  GetInfo().Left( KSHORT(Left()) );
-//STRIP001
-//STRIP001     CalcAscent( GetInfo(), pCurr );
-//STRIP001  SeekAndChg( GetInfo() );
-//STRIP001  GetInfo().SetLast( GetInfo().GetRoot() );
-//STRIP001
-//STRIP001  SwLinePortion *pPor = NewPortion( GetInfo() );
-//STRIP001
-//STRIP001  long nMaxWidth = 0;
-//STRIP001  long nWidth = 0;
-//STRIP001  long nMargin = FirstLeft();
-//STRIP001  sal_Bool bFull = sal_False;
-//STRIP001  while( pPor && !IsStop() && !bFull)
-//STRIP001  {
-//STRIP001         if( pPor->IsMultiPortion() && ( !pMulti || pMulti->IsBidi() ) )
-//STRIP001             bFull = BuildMultiPortion( GetInfo(), *((SwMultiPortion*)pPor) );
-//STRIP001         else
-//STRIP001             bFull = pPor->Format( GetInfo() );
-//STRIP001
-//STRIP001      InsertPortion( GetInfo(), pPor );
-//STRIP001
-//STRIP001      while( pPor )
-//STRIP001      {
-//STRIP001          nWidth += pPor->Width();
-//STRIP001          pPor = pPor->GetPortion();
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bFull && 0 != ( pPor = GetInfo().GetLast() ) && pPor->IsBreakPortion() )
-//STRIP001      {
-//STRIP001          if ( nWidth && (nMaxWidth < nWidth+nMargin ) )
-//STRIP001              nMaxWidth = nWidth + nMargin;
-//STRIP001          nWidth = 0;
-//STRIP001          nMargin = Left();
-//STRIP001          bFull = sal_False;
-//STRIP001          GetInfo().X( KSHORT(nMargin) );
-//STRIP001      }
-//STRIP001         pPor = NewPortion( GetInfo() );
-//STRIP001  }
-//STRIP001  if ( nWidth && ( nMaxWidth < nWidth + nMargin ) )
-//STRIP001      nMaxWidth = nWidth + nMargin;
-//STRIP001
-//STRIP001     pCurr = pOldCurr;
-//STRIP001     SetParaPortion( &GetInfo(), (SwParaPortion*)pCurr );
-//STRIP001  return KSHORT(nMaxWidth);
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFormatter::AllowRepaintOpt()

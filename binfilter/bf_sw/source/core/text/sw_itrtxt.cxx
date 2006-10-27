@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itrtxt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:28:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:10:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,25 +40,16 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #include "ndtxt.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "flyfrm.hxx"
 #include "paratr.hxx"
 #include "errhdl.hxx"
 
-// auto strip #ifndef _SV_OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PARAVERTALIGNITEM_HXX //autogen
-// auto strip #include <bf_svx/paravertalignitem.hxx>
-// auto strip #endif
 
 #ifdef VERTICAL_LAYOUT
-// auto strip #include "pormulti.hxx"
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -72,8 +63,6 @@
 
 #include "txtcfg.hxx"
 #include "itrtxt.hxx"
-// auto strip #include "txtfrm.hxx"
-// auto strip #include "porfly.hxx"
 namespace binfilter {
 
 #if OSL_DEBUG_LEVEL > 1
@@ -251,31 +240,6 @@ namespace binfilter {
  *                      SwTxtIter::GetPrevLine()
  *************************************************************************/
 
-//STRIP001 const SwLineLayout *SwTxtIter::GetPrevLine()
-//STRIP001 {
-//STRIP001  const SwLineLayout *pRoot = pInf->GetParaPortion();
-//STRIP001  if( pRoot == pCurr )
-//STRIP001      return 0;
-//STRIP001  const SwLineLayout *pLay = pRoot;
-//STRIP001
-//STRIP001  while( pLay->GetNext() != pCurr )
-//STRIP001      pLay = pLay->GetNext();
-//STRIP001
-//STRIP001  if( pLay->IsDummy() )
-//STRIP001  {
-//STRIP001      const SwLineLayout *pTmp = pRoot;
-//STRIP001      pLay = pRoot->IsDummy() ? 0 : pRoot;
-//STRIP001      while( pTmp->GetNext() != pCurr )
-//STRIP001      {
-//STRIP001          if( !pTmp->IsDummy() )
-//STRIP001              pLay = pTmp;
-//STRIP001          pTmp = pTmp->GetNext();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // Wenn sich nichts getan hat, dann gibt es nur noch Dummys
-//STRIP001  return (SwLineLayout*)pLay;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtIter::PrevLine()
@@ -371,23 +335,6 @@ namespace binfilter {
 /*?*/             nOfst = ( pCurr->Height() - nPorHeight ) / 2 + nPorAscent;
 /*?*/         else
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         {
-//STRIP001 /*?*/             // We have to take care for ruby portions.
-//STRIP001 /*?*/             // The ruby portion is NOT centered
-//STRIP001 /*?*/             nOfst += nPorAscent;
-//STRIP001 /*?*/
-//STRIP001 /*?*/             if ( ! pPor || ! pPor->IsMultiPortion() ||
-//STRIP001 /*?*/                  ! ((SwMultiPortion*)pPor)->IsRuby() )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 // Portions which are bigger than on grid distance are
-//STRIP001 /*?*/                 // centered inside the whole line.
-//STRIP001 /*?*/                 const USHORT nLineNetto = ( nPorHeight > nGridWidth ) ?
-//STRIP001 /*?*/                                             rLine.Height() - nRubyHeight :
-//STRIP001 /*?*/                                             nGridWidth;
-//STRIP001 /*?*/                 nOfst += ( nLineNetto - nPorHeight ) / 2;
-//STRIP001 /*?*/                 if ( bRubyTop )
-//STRIP001 /*?*/                     nOfst += nRubyHeight;
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/         }
 /*N*/     }
 /*N*/     else
 /*N*/     {
