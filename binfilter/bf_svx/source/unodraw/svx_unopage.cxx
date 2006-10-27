@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unopage.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:27:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:56:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,45 +35,24 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef SVX_LIGHT
-// auto strip #ifndef _SFXDISPATCH_HXX //autogen
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
-// auto strip #ifndef _PERSIST_HXX
-// auto strip #include <so3/persist.hxx>
-// auto strip #endif
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
 #endif
 
 /*
-// auto strip #ifndef _SFX_BINDINGS_HXX
-// auto strip #include <bf_sfx2/bindings.hxx>
-// auto strip #endif
 */
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-// auto strip #include "svdobj.hxx"
 #include "svdoole2.hxx"
-// auto strip #include "svdpage.hxx"
-// auto strip #include "svdmodel.hxx"
 #include "svdview.hxx"
-// auto strip #include "svdpagv.hxx"
 #include "unopage.hxx"
 #include "shapeimpl.hxx"
 #include "globl3d.hxx"
 #include "polysc3d.hxx"
-// auto strip #include "unoprov.hxx"
 #include "svdopath.hxx"
-// auto strip #include "unoapi.hxx"
 #include "svdomeas.hxx"
 
 #ifndef _E3D_EXTRUD3D_HXX
