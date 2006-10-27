@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:27:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:58:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,28 +34,12 @@
  ************************************************************************/
 
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XContainer.hpp>
-// auto strip #endif
 
-// auto strip #ifndef __RSC //autogen
-// auto strip #include <tools/errinf.hxx>
-// auto strip #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _RTL_URI_HXX_
 #include <rtl/uri.hxx>
 #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
-// auto strip #include <cppuhelper/typeprovider.hxx>
 #include "namecont.hxx"
 
 #ifndef _URLOBJ_HXX
@@ -70,21 +54,9 @@
 #include <basic/basmgr.hxx>
 
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XOutputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XInputStream.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #endif
@@ -124,7 +96,6 @@ namespace SfxContainer_Impl
 /*?*/ Type NameContainer_Impl::getElementType()
 /*?*/   throw(RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");   return mType;//STRIP001
-//STRIP001  return mType;
 /*?*/ }
 
 /*N*/ sal_Bool NameContainer_Impl::hasElements()
@@ -254,49 +225,6 @@ namespace SfxContainer_Impl
 /*?*/ void NameContainer_Impl::removeByName( const OUString& Name )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  NameContainerNameMap::iterator aIt = mHashMap.find( Name );
-//STRIP001  if( aIt == mHashMap.end() )
-//STRIP001  {
-//STRIP001      throw NoSuchElementException();
-//STRIP001  }
-//STRIP001
-//STRIP001  sal_Int32 iHashResult = (*aIt).second;
-//STRIP001  Any aOldElement = mValues.getConstArray()[ iHashResult ];
-//STRIP001  mHashMap.erase( aIt );
-//STRIP001  sal_Int32 iLast = mNames.getLength() - 1;
-//STRIP001  if( iLast != iHashResult )
-//STRIP001  {
-//STRIP001      OUString* pNames = mNames.getArray();
-//STRIP001      Any* pValues = mValues.getArray();
-//STRIP001      pNames[ iHashResult ] = pNames[ iLast ];
-//STRIP001      pValues[ iHashResult ] = pValues[ iLast ];
-//STRIP001      mHashMap[ pNames[ iHashResult ] ] = iHashResult;
-//STRIP001  }
-//STRIP001  mNames.realloc( iLast );
-//STRIP001  mValues.realloc( iLast );
-//STRIP001  mnElementCount--;
-//STRIP001
-//STRIP001
-//STRIP001  // Fire event
-//STRIP001  ContainerEvent aEvent;
-//STRIP001  aEvent.Source = mpxEventSource;
-//STRIP001  aEvent.Accessor <<= Name;
-//STRIP001  aEvent.Element = aOldElement;
-//STRIP001
-//STRIP001  OInterfaceIteratorHelper aIterator( maListenerContainer );
-//STRIP001  while( aIterator.hasMoreElements() )
-//STRIP001  {
-//STRIP001      Reference< XInterface > xIface = aIterator.next();
-//STRIP001      Reference< XContainerListener > xListener( xIface, UNO_QUERY );
-//STRIP001         try
-//STRIP001         {
-//STRIP001             xListener->elementRemoved( aEvent );
-//STRIP001         }
-//STRIP001         catch(RuntimeException&)
-//STRIP001         {
-//STRIP001             aIterator.remove();
-//STRIP001         }
-//STRIP001  }
 /*?*/ }
 
 
@@ -313,10 +241,6 @@ namespace SfxContainer_Impl
 /*?*/ void SAL_CALL NameContainer_Impl::removeContainerListener( const Reference< XContainerListener >& xListener )
 /*?*/   throw (RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( !xListener.is() )
-//STRIP001      throw RuntimeException();
-//STRIP001  Reference< XInterface > xIface( xListener, UNO_QUERY );
-//STRIP001  maListenerContainer.removeInterface( xIface );
 /*?*/ }
 
 }   // namespace SfxContainer_Impl
@@ -361,20 +285,6 @@ namespace SfxContainer_Impl
 /*?*/                                 const OUString& rCheckExtension,
 /*?*/                                 Reference< XSimpleFileAccess > xSFI )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-//STRIP001  INetURLObject aTargetFolderInetObj( rTargetFolderInetObj );
-//STRIP001  aTargetFolderInetObj.insertName( rCheckFileName, sal_True, INetURLObject::LAST_SEGMENT,
-//STRIP001                                   sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001  aTargetFolderInetObj.setExtension( rCheckExtension );
-//STRIP001  OUString aTargetFile = aTargetFolderInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001  if( !xSFI->exists( aTargetFile ) )
-//STRIP001  {
-//STRIP001      INetURLObject aSourceFolderInetObj( rSourceFolderInetObj );
-//STRIP001      aSourceFolderInetObj.insertName( rCheckFileName, sal_True, INetURLObject::LAST_SEGMENT,
-//STRIP001                                       sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001      aSourceFolderInetObj.setExtension( rCheckExtension );
-//STRIP001      OUString aSourceFile = aSourceFolderInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001      xSFI->copy( aSourceFile, aTargetFile );
-//STRIP001  }
 /*?*/ }
 
 /*N*/ sal_Bool SfxLibraryContainer_Impl::init(
@@ -675,8 +585,6 @@ namespace SfxContainer_Impl
 /*N*/                   // Write new index file immediately because otherwise
 /*N*/                   // the library elements will be lost when storing into
 /*N*/                   // the new info format
-//STRIP001 /*?*/                    SotStorageRef xStorage;
-//STRIP001 /*?*/                    implStoreLibraryIndexFile( pImplLib, rLib, xStorage );
 /*N*/               }
 /*N*/
 /*N*/               implImportLibDescriptor( pImplLib, rLib );
@@ -769,111 +677,6 @@ namespace SfxContainer_Impl
 /*N*/       }
 /*N*/       if( mxSFI->isFolder( aFolder60 ) )
 /*?*/         {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001 /*?*/             SfxLibraryContainer_Impl* pCont60 = createInstanceImpl();
-//STRIP001 /*?*/             Reference< XInterface > xRef = static_cast< XInterface* >( static_cast< OWeakObject* >(pCont60) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             // Rename folder __basic_60 to make storage URLs correct during initialisation
-//STRIP001 /*?*/             String aFolderUserBasic = aUserBasicInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001 /*?*/             INetURLObject aUserBasicTmpInetObj( aUserBasicInetObj );
-//STRIP001 /*?*/             aUserBasicTmpInetObj.removeSegment();
-//STRIP001 /*?*/            aUserBasicTmpInetObj.Append( "__basic_tmp" );
-//STRIP001 /*?*/             String aFolderTmp = aUserBasicTmpInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001 /*?*/             mxSFI->move( aFolderUserBasic, aFolderTmp );
-//STRIP001 /*?*/             mxSFI->move( aFolder60, aFolderUserBasic );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             INetURLObject aUserBasic60LibInfoInetObj( aUserBasicInetObj );
-//STRIP001 /*?*/            aUserBasic60LibInfoInetObj.insertName( maInfoFileName, sal_True, INetURLObject::LAST_SEGMENT,
-//STRIP001 /*?*/                                                    sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001 /*?*/            aUserBasic60LibInfoInetObj.setExtension( OUString( RTL_CONSTASCII_USTRINGPARAM("xlc") ) );
-//STRIP001 /*?*/            OUString aLibInfoFileName = aUserBasic60LibInfoInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001 /*?*/             Sequence<Any> aInitSeq( 1 );
-//STRIP001 /*?*/            aInitSeq.getArray()[0] <<= aLibInfoFileName;
-//STRIP001 /*?*/             pCont60->initialize( aInitSeq );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             // Rename folders back
-//STRIP001 /*?*/             mxSFI->move( aFolderUserBasic, aFolder60 );
-//STRIP001 /*?*/             mxSFI->move( aFolderTmp, aFolderUserBasic );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             // Detect old share/basic folder to destinguish
-//STRIP001 /*?*/             // between own links and links to wizards
-//STRIP001 /*?*/             INetURLObject aOrgShareFolder60InetObj;
-//STRIP001 /*?*/             if( pCont60->hasByName( aStandardStr ) )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 SfxLibrary_Impl* pImplLib = pCont60->getImplLib( aStandardStr );
-//STRIP001 /*?*/                 aOrgShareFolder60InetObj = INetURLObject( pImplLib->maStorageURL );
-//STRIP001 /*?*/                 for( int i = 0 ; i < 3 ; ++ i )
-//STRIP001 /*?*/                     aOrgShareFolder60InetObj.removeSegment();
-//STRIP001 /*?*/                aOrgShareFolder60InetObj.Append( "share" );
-//STRIP001 /*?*/                aOrgShareFolder60InetObj.Append( "basic" );
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            Sequence< OUString > aNames = pCont60->getElementNames();
-//STRIP001 /*?*/            const OUString* pNames = aNames.getConstArray();
-//STRIP001 /*?*/            sal_Int32 i, nNameCount = aNames.getLength();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            for( i = 0 ; i < nNameCount ; i++ )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                 OUString aLibName = pNames[ i ];
-//STRIP001 /*?*/                 if( hasByName( aLibName ) )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     if( aLibName == aStandardStr )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         SfxLibrary_Impl* pImplLib = getImplLib( aStandardStr );
-//STRIP001 /*?*/                         INetURLObject aStandardFolderInetObj( pImplLib->maStorageURL );
-//STRIP001 /*?*/                         String aStandardFolder = pImplLib->maStorageURL;
-//STRIP001 /*?*/                        mxSFI->kill( aStandardFolder );
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                     else
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         continue;
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 SfxLibrary_Impl* pImplLib = pCont60->getImplLib( aLibName );
-//STRIP001 /*?*/                 if( pImplLib->mbLink )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     INetURLObject aLink60InetObj( pImplLib->maStorageURL );
-//STRIP001 /*?*/                     for( int i = 0 ; i < 3 ; ++ i )
-//STRIP001 /*?*/                         aLink60InetObj.removeSegment();
-//STRIP001 /*?*/                    aLink60InetObj.Append( "share" );
-//STRIP001 /*?*/                    aLink60InetObj.Append( "basic" );
-//STRIP001 /*?*/                     if( aLink60InetObj != aOrgShareFolder60InetObj )
-//STRIP001 /*?*/                         createLibraryLink( aLibName, pImplLib->maStorageURL, pImplLib->mbReadOnly );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     // Move folder if not already done
-//STRIP001 /*?*/                     INetURLObject aUserBasicLibFolderInetObj( aUserBasicInetObj );
-//STRIP001 /*?*/                    aUserBasicLibFolderInetObj.Append( aLibName );
-//STRIP001 /*?*/                     String aLibFolder = aUserBasicLibFolderInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     INetURLObject aUserBasic60LibFolderInetObj( aUserBasic60InetObj );
-//STRIP001 /*?*/                    aUserBasic60LibFolderInetObj.Append( aLibName );
-//STRIP001 /*?*/                     String aLibFolder60 = aUserBasic60LibFolderInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     if( mxSFI->isFolder( aLibFolder60 ) && !mxSFI->isFolder( aLibFolder ) )
-//STRIP001 /*?*/                         mxSFI->move( aLibFolder60, aLibFolder );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     if( aLibName == aStandardStr )
-//STRIP001 /*?*/                            maNameContainer.removeByName( aLibName );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // Create library
-//STRIP001 /*?*/                     Reference< XNameContainer > xLib = createLibrary( aLibName );
-//STRIP001 /*?*/                        SfxLibrary_Impl* pNewLib = static_cast< SfxLibrary_Impl* >( xLib.get() );
-//STRIP001 /*?*/                     pNewLib->mbLoaded = false;
-//STRIP001 /*?*/                    pNewLib->mbModified = false;
-//STRIP001 /*?*/                     checkStorageURL( aLibFolder, pNewLib->maLibInfoFileURL,
-//STRIP001 /*?*/                         pNewLib->maStorageURL, pNewLib->maUnexpandedStorageURL );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     SotStorageRef xDummyStor;
-//STRIP001 /*?*/                     ::xmlscript::LibDescriptor aLibDesc;
-//STRIP001 /*?*/                     sal_Bool bReadIndexFile = implLoadLibraryIndexFile
-//STRIP001 /*?*/                         ( pNewLib, aLibDesc, xDummyStor, pNewLib->maLibInfoFileURL );
-//STRIP001 /*?*/                     implImportLibDescriptor( pNewLib, aLibDesc );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            mxSFI->kill( aFolder60 );
 /*?*/         }
 /*N*/     }
 /*N*/
@@ -964,180 +767,8 @@ namespace SfxContainer_Impl
 /*N*/ }
 
 // Storing
-//STRIP001 void SfxLibraryContainer_Impl::implStoreLibrary( SfxLibrary_Impl* pLib,
-//STRIP001  const OUString& aName, SotStorageRef xStorage )
-//STRIP001 {
-//STRIP001  sal_Bool bLink = pLib->mbLink;
-//STRIP001  sal_Bool bStorage = xStorage.Is() && !bLink;
-//STRIP001
-//STRIP001  Sequence< OUString > aElementNames = pLib->getElementNames();
-//STRIP001  sal_Int32 nNameCount = aElementNames.getLength();
-//STRIP001  const OUString* pNames = aElementNames.getConstArray();
-//STRIP001     OUString aLibDirPath;
-//STRIP001
-//STRIP001  if( bStorage )
-//STRIP001  {
-//STRIP001      for( sal_Int32 i = 0 ; i < nNameCount ; i++ )
-//STRIP001      {
-//STRIP001          OUString aElementName = pNames[ i ];
-//STRIP001
-//STRIP001          OUString aStreamName = aElementName;
-//STRIP001          aStreamName += String( RTL_CONSTASCII_USTRINGPARAM(".xml") );
-//STRIP001
-//STRIP001          Any aElement = pLib->getByName( aElementName );
-//STRIP001          if( isLibraryElementValid( aElement ) )
-//STRIP001          {
-//STRIP001              SotStorageStreamRef xElementStream = xStorage->OpenSotStream
-//STRIP001                  ( aStreamName, STREAM_WRITE | STREAM_SHARE_DENYWRITE );
-//STRIP001
-//STRIP001              if( xElementStream->GetError() == ERRCODE_NONE )
-//STRIP001              {
-//STRIP001                  String aPropName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("MediaType") ) );
-//STRIP001                  OUString aMime( RTL_CONSTASCII_USTRINGPARAM("text/xml") );
-//STRIP001                  Any aAny;
-//STRIP001                  aAny <<= aMime;
-//STRIP001                  xElementStream->SetProperty( aPropName, aAny );
-//STRIP001
-//STRIP001                     // #87671 Allow encryption
-//STRIP001                  aPropName = String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("Encrypted") );
-//STRIP001                  aAny <<= sal_True;
-//STRIP001                  xElementStream->SetProperty( aPropName, aAny );
-//STRIP001
-//STRIP001                  Reference< XOutputStream > xOutput =
-//STRIP001                      new utl::OOutputStreamWrapper( *xElementStream );
-//STRIP001                  writeLibraryElement( aElement, aElementName, xOutput );
-//STRIP001                  xOutput->closeOutput();
-//STRIP001
-//STRIP001                  xElementStream->Commit();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      try
-//STRIP001      {
-//STRIP001          // Get Output stream
-//STRIP001             aLibDirPath = createAppLibraryFolder( pLib, aName );
-//STRIP001
-//STRIP001          for( sal_Int32 i = 0 ; i < nNameCount ; i++ )
-//STRIP001          {
-//STRIP001              OUString aElementName = pNames[ i ];
-//STRIP001
-//STRIP001              INetURLObject aElementInetObj( aLibDirPath );
-//STRIP001              aElementInetObj.insertName( aElementName, sal_False,
-//STRIP001                  INetURLObject::LAST_SEGMENT, sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001              aElementInetObj.setExtension( maLibElementFileExtension );
-//STRIP001              String aElementPath( aElementInetObj.GetMainURL( INetURLObject::NO_DECODE ) );
-//STRIP001
-//STRIP001              Any aElement = pLib->getByName( aElementName );
-//STRIP001              if( isLibraryElementValid( aElement ) )
-//STRIP001              {
-//STRIP001                  // TODO: Check modified
-//STRIP001                  try
-//STRIP001                  {
-//STRIP001                      if( mxSFI->exists( aElementPath ) )
-//STRIP001                          mxSFI->kill( aElementPath );
-//STRIP001                      Reference< XOutputStream > xOutput = mxSFI->openFileWrite( aElementPath );
-//STRIP001                      writeLibraryElement( aElement, aElementName, xOutput );
-//STRIP001                      xOutput->closeOutput();
-//STRIP001                     }
-//STRIP001                  catch( Exception& )
-//STRIP001                     {
-//STRIP001                      SfxErrorContext aEc( ERRCTX_SFX_SAVEDOC, aElementPath );
-//STRIP001                         ULONG nErrorCode = ERRCODE_IO_GENERAL;
-//STRIP001                      ErrorHandler::HandleError( nErrorCode );
-//STRIP001                     }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      catch( Exception& )
-//STRIP001      //catch( Exception& e )
-//STRIP001      {
-//STRIP001          // TODO
-//STRIP001          //throw e;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
-//STRIP001  const ::xmlscript::LibDescriptor& rLib, SotStorageRef xStorage )
-//STRIP001 {
-//STRIP001  // Create sax writer
-//STRIP001  Reference< XExtendedDocumentHandler > xHandler(
-//STRIP001      mxMSF->createInstance(
-//STRIP001          OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
-//STRIP001  if( !xHandler.is() )
-//STRIP001  {
-//STRIP001      OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  sal_Bool bLink = pLib->mbLink;
-//STRIP001  sal_Bool bStorage = xStorage.Is() && !bLink;
-//STRIP001
-//STRIP001  // Write info file
-//STRIP001  Reference< XOutputStream > xOut;
-//STRIP001  SotStorageStreamRef xInfoStream;
-//STRIP001  if( bStorage )
-//STRIP001  {
-//STRIP001      OUString aStreamName( maInfoFileName );
-//STRIP001      aStreamName += String( RTL_CONSTASCII_USTRINGPARAM("-lb.xml") );
-//STRIP001
-//STRIP001      xInfoStream = xStorage->OpenSotStream( aStreamName,
-//STRIP001          STREAM_WRITE | STREAM_SHARE_DENYWRITE );
-//STRIP001
-//STRIP001      if( xInfoStream->GetError() == ERRCODE_NONE )
-//STRIP001      {
-//STRIP001          String aPropName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("MediaType") ) );
-//STRIP001          OUString aMime( RTL_CONSTASCII_USTRINGPARAM("text/xml") );
-//STRIP001          Any aAny;
-//STRIP001          aAny <<= aMime;
-//STRIP001          xInfoStream->SetProperty( aPropName, aAny );
-//STRIP001
-//STRIP001             // #87671 Allow encryption
-//STRIP001          aPropName = String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("Encrypted") );
-//STRIP001          aAny <<= sal_True;
-//STRIP001          xInfoStream->SetProperty( aPropName, aAny );
-//STRIP001
-//STRIP001          xOut = new utl::OOutputStreamWrapper( *xInfoStream );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Create Output stream
-//STRIP001         createAppLibraryFolder( pLib, rLib.aName );
-//STRIP001         String aLibInfoPath = pLib->maLibInfoFileURL;
-//STRIP001
-//STRIP001      try
-//STRIP001      {
-//STRIP001          if( mxSFI->exists( aLibInfoPath ) )
-//STRIP001              mxSFI->kill( aLibInfoPath );
-//STRIP001          xOut = mxSFI->openFileWrite( aLibInfoPath );
-//STRIP001         }
-//STRIP001         catch( Exception& )
-//STRIP001         {
-//STRIP001          SfxErrorContext aEc( ERRCTX_SFX_SAVEDOC, aLibInfoPath );
-//STRIP001             ULONG nErrorCode = ERRCODE_IO_GENERAL;
-//STRIP001             ErrorHandler::HandleError( nErrorCode );
-//STRIP001         }
-//STRIP001
-//STRIP001  }
-//STRIP001  if( !xOut.is() )
-//STRIP001  {
-//STRIP001      OSL_ENSURE( 0, "### couln't open output stream\n" );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  Reference< XActiveDataSource > xSource( xHandler, UNO_QUERY );
-//STRIP001  xSource->setOutputStream( xOut );
-//STRIP001
-//STRIP001     xmlscript::exportLibrary( xHandler, rLib );
-//STRIP001
-//STRIP001  if( xInfoStream.Is() )
-//STRIP001      xInfoStream->Commit();
-//STRIP001 }
 
 
 /*N*/ sal_Bool SfxLibraryContainer_Impl::implLoadLibraryIndexFile(  SfxLibrary_Impl* pLib,
@@ -1351,32 +982,6 @@ namespace SfxContainer_Impl
 /*?*/             }
 /*?*/             else
 /*?*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                SotStorageRef xLibraryStor;
-//STRIP001 /*?*/                if( bStorage )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    xLibraryStor = xLibrariesStor->OpenUCBStorage( rLib.aName, STREAM_WRITE );
-//STRIP001 /*?*/                    if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        OSL_ENSURE( 0, "### couln't create sub storage for library\n" );
-//STRIP001 /*?*/                        return;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // Maybe lib is not loaded?!
-//STRIP001 /*?*/                if( bComplete )
-//STRIP001 /*?*/                    loadLibrary( rLib.aName );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( pImplLib->mbPasswordProtected )
-//STRIP001 /*?*/                    implStorePasswordLibrary( pImplLib, rLib.aName, xLibraryStor );
-//STRIP001 /*?*/                     // TODO: Check return value
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                    implStoreLibrary( pImplLib, rLib.aName, xLibraryStor );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 implStoreLibraryIndexFile( pImplLib, rLib, xLibraryStor );
-//STRIP001 /*?*/                if( bStorage )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    xLibraryStor->Commit();
-//STRIP001 /*?*/                }
 /*?*/             }
 /*?*/
 /*?*/           mbModified = sal_True;
@@ -1476,14 +1081,11 @@ namespace SfxContainer_Impl
 /*?*/ Type SfxLibraryContainer_Impl::getElementType()
 /*?*/   throw(RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001
-//STRIP001  return maNameContainer.getElementType();
 /*?*/ }
 
 /*?*/ sal_Bool SfxLibraryContainer_Impl::hasElements()
 /*?*/   throw(RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  sal_Bool bRet = maNameContainer.hasElements();
-//STRIP001  return bRet;
 /*?*/ }
 
 // Methods XNameAccess
@@ -1558,68 +1160,6 @@ namespace SfxContainer_Impl
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::removeLibrary( const OUString& Name )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     // Get and hold library before removing
-//STRIP001  Any aLibAny = maNameContainer.getByName( Name ) ;
-//STRIP001  Reference< XNameAccess > xNameAccess;
-//STRIP001  aLibAny >>= xNameAccess;
-//STRIP001  SfxLibrary_Impl* pImplLib = static_cast< SfxLibrary_Impl* >( xNameAccess.get() );
-//STRIP001  if( pImplLib->mbReadOnly && !pImplLib->mbLink )
-//STRIP001      throw IllegalArgumentException();
-//STRIP001
-//STRIP001     // Remove from container
-//STRIP001  maNameContainer.removeByName( Name );
-//STRIP001  mbModified = sal_True;
-//STRIP001
-//STRIP001     // Delete library files, but not for linked libraries
-//STRIP001     if( !pImplLib->mbLink )
-//STRIP001     {
-//STRIP001      if( mxStorage.Is() )
-//STRIP001             return;
-//STRIP001      Reference< XNameAccess > xNameAccess;
-//STRIP001      aLibAny >>= xNameAccess;
-//STRIP001      SfxLibrary_Impl* pImplLib = static_cast< SfxLibrary_Impl* >( xNameAccess.get() );
-//STRIP001      if( xNameAccess->hasElements() )
-//STRIP001      {
-//STRIP001          Sequence< OUString > aNames = pImplLib->getElementNames();
-//STRIP001          sal_Int32 nNameCount = aNames.getLength();
-//STRIP001          const OUString* pNames = aNames.getConstArray();
-//STRIP001          for( sal_Int32 i = 0 ; i < nNameCount ; i++ )
-//STRIP001          {
-//STRIP001              OUString aElementName = pNames[ i ];
-//STRIP001                 pImplLib->removeByName( aElementName );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001         // Delete index file
-//STRIP001         createAppLibraryFolder( pImplLib, Name );
-//STRIP001         String aLibInfoPath = pImplLib->maLibInfoFileURL;
-//STRIP001      try
-//STRIP001      {
-//STRIP001          if( mxSFI->exists( aLibInfoPath ) )
-//STRIP001              mxSFI->kill( aLibInfoPath );
-//STRIP001         }
-//STRIP001         catch( Exception& ) {}
-//STRIP001
-//STRIP001         // Delete folder if empty
-//STRIP001      INetURLObject aInetObj( String(maLibraryPath).GetToken(1) );
-//STRIP001      aInetObj.insertName( Name, sal_True, INetURLObject::LAST_SEGMENT,
-//STRIP001          sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001      OUString aLibDirPath = aInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001
-//STRIP001      try
-//STRIP001      {
-//STRIP001          if( mxSFI->isFolder( aLibDirPath ) )
-//STRIP001          {
-//STRIP001                 Sequence< OUString > aContentSeq = mxSFI->getFolderContents( aLibDirPath, true );
-//STRIP001              sal_Int32 nCount = aContentSeq.getLength();
-//STRIP001              if( !nCount )
-//STRIP001                  mxSFI->kill( aLibDirPath );
-//STRIP001          }
-//STRIP001         }
-//STRIP001         catch( Exception& )
-//STRIP001         {
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
 /*N*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLoaded( const OUString& Name )
@@ -1736,12 +1276,6 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLink( const OUString& Name 
 /*?*/ OUString SAL_CALL SfxLibraryContainer_Impl::getLibraryLinkURL( const OUString& Name )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); OUString aRetStr;return aRetStr;//STRIP001
-//STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
-//STRIP001  sal_Bool bLink = pImplLib->mbLink;
-//STRIP001  if( !bLink )
-//STRIP001      throw IllegalArgumentException();
-//STRIP001     OUString aRetStr = pImplLib->maLibInfoFileURL;
-//STRIP001     return aRetStr;
 /*?*/ }
 
 sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& Name )
@@ -1755,133 +1289,11 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::setLibraryReadOnly( const OUString& Name, sal_Bool bReadOnly )
 /*?*/     throw (NoSuchElementException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
-//STRIP001     if( pImplLib->mbLink )
-//STRIP001     {
-//STRIP001         if( pImplLib->mbReadOnlyLink != bReadOnly )
-//STRIP001         {
-//STRIP001             pImplLib->mbReadOnlyLink = bReadOnly;
-//STRIP001             pImplLib->mbModified = sal_True;
-//STRIP001             mbModified = sal_True;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         if( pImplLib->mbReadOnly != bReadOnly )
-//STRIP001         {
-//STRIP001          pImplLib->mbReadOnly = bReadOnly;
-//STRIP001             pImplLib->mbModified = sal_True;
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::renameLibrary( const OUString& Name, const OUString& NewName )
 /*?*/     throw (NoSuchElementException, ElementExistException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001  if( maNameContainer.hasByName( NewName ) )
-//STRIP001      throw ElementExistException();
-//STRIP001
-//STRIP001     // Get and hold library before removing
-//STRIP001  Any aLibAny = maNameContainer.getByName( Name ) ;
-//STRIP001
-//STRIP001     // Remove from container
-//STRIP001  maNameContainer.removeByName( Name );
-//STRIP001  mbModified = sal_True;
-//STRIP001
-//STRIP001     // Rename library folder, but not for linked libraries
-//STRIP001  Reference< XNameAccess > xNameAccess;
-//STRIP001  aLibAny >>= xNameAccess;
-//STRIP001  SfxLibrary_Impl* pImplLib = static_cast< SfxLibrary_Impl* >( xNameAccess.get() );
-//STRIP001     bool bMovedSuccessful = true;
-//STRIP001
-//STRIP001     // Rename files
-//STRIP001     sal_Bool bStorage = mxStorage.Is();
-//STRIP001     if( !bStorage && !pImplLib->mbLink )
-//STRIP001     {
-//STRIP001         bMovedSuccessful = false;
-//STRIP001
-//STRIP001      OUString aLibDirPath = pImplLib->maStorageURL;
-//STRIP001
-//STRIP001      INetURLObject aDestInetObj( String(maLibraryPath).GetToken(1) );
-//STRIP001      aDestInetObj.insertName( NewName, sal_True, INetURLObject::LAST_SEGMENT,
-//STRIP001          sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001      OUString aDestDirPath = aDestInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001
-//STRIP001         // Store new URL
-//STRIP001         OUString aLibInfoFileURL = pImplLib->maLibInfoFileURL;
-//STRIP001         checkStorageURL( aDestDirPath, pImplLib->maLibInfoFileURL, pImplLib->maStorageURL,
-//STRIP001             pImplLib->maUnexpandedStorageURL );
-//STRIP001
-//STRIP001      try
-//STRIP001      {
-//STRIP001          if( mxSFI->isFolder( aLibDirPath ) )
-//STRIP001          {
-//STRIP001              if( !mxSFI->isFolder( aDestDirPath ) )
-//STRIP001                  mxSFI->createFolder( aDestDirPath );
-//STRIP001
-//STRIP001                 // Move index file
-//STRIP001              try
-//STRIP001              {
-//STRIP001                  if( mxSFI->exists( pImplLib->maLibInfoFileURL ) )
-//STRIP001                      mxSFI->kill( pImplLib->maLibInfoFileURL );
-//STRIP001                  mxSFI->move( aLibInfoFileURL, pImplLib->maLibInfoFileURL );
-//STRIP001                 }
-//STRIP001              catch( Exception& )
-//STRIP001                 {
-//STRIP001                 }
-//STRIP001
-//STRIP001              Sequence< OUString > aElementNames = xNameAccess->getElementNames();
-//STRIP001              sal_Int32 nNameCount = aElementNames.getLength();
-//STRIP001              const OUString* pNames = aElementNames.getConstArray();
-//STRIP001              for( sal_Int32 i = 0 ; i < nNameCount ; i++ )
-//STRIP001              {
-//STRIP001                  OUString aElementName = pNames[ i ];
-//STRIP001
-//STRIP001                  INetURLObject aElementInetObj( aLibDirPath );
-//STRIP001                  aElementInetObj.insertName( aElementName, sal_False,
-//STRIP001                      INetURLObject::LAST_SEGMENT, sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001                  aElementInetObj.setExtension( maLibElementFileExtension );
-//STRIP001                  String aElementPath( aElementInetObj.GetMainURL( INetURLObject::NO_DECODE ) );
-//STRIP001
-//STRIP001                  INetURLObject aElementDestInetObj( aDestDirPath );
-//STRIP001                  aElementDestInetObj.insertName( aElementName, sal_False,
-//STRIP001                      INetURLObject::LAST_SEGMENT, sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001                  aElementDestInetObj.setExtension( maLibElementFileExtension );
-//STRIP001                  String aDestElementPath( aElementDestInetObj.GetMainURL( INetURLObject::NO_DECODE ) );
-//STRIP001
-//STRIP001                  try
-//STRIP001                  {
-//STRIP001                      if( mxSFI->exists( aDestElementPath ) )
-//STRIP001                          mxSFI->kill( aDestElementPath );
-//STRIP001                      mxSFI->move( aElementPath, aDestElementPath );
-//STRIP001                     }
-//STRIP001                  catch( Exception& )
-//STRIP001                     {
-//STRIP001                     }
-//STRIP001              }
-//STRIP001
-//STRIP001                 // Delete folder if empty
-//STRIP001                 Sequence< OUString > aContentSeq = mxSFI->getFolderContents( aLibDirPath, true );
-//STRIP001              sal_Int32 nCount = aContentSeq.getLength();
-//STRIP001              if( !nCount )
-//STRIP001                 {
-//STRIP001                      mxSFI->kill( aLibDirPath );
-//STRIP001                 }
-//STRIP001
-//STRIP001                 bMovedSuccessful = true;
-//STRIP001              pImplLib->mbModified = true;
-//STRIP001          }
-//STRIP001         }
-//STRIP001         catch( Exception& )
-//STRIP001         {
-//STRIP001             // Restore old library
-//STRIP001          maNameContainer.insertByName( Name, aLibAny ) ;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     if( bMovedSuccessful )
-//STRIP001          maNameContainer.insertByName( NewName, aLibAny ) ;
-//STRIP001
 /*?*/ }
 
 
@@ -1889,28 +1301,23 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordProtected( const OUString& Name )
 /*?*/     throw (NoSuchElementException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  sal_Bool bRet = sal_False;
-//STRIP001  return bRet;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordVerified( const OUString& Name )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-//STRIP001  throw IllegalArgumentException();
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::verifyLibraryPassword
 /*?*/     ( const OUString& Name, const OUString& Password )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
-//STRIP001  throw IllegalArgumentException();
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword( const OUString& Name,
 /*?*/     const OUString& OldPassword, const OUString& NewPassword )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");
-//STRIP001  throw IllegalArgumentException();
 /*?*/ }
 
 // Methods XContainer
@@ -2060,7 +1467,6 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
 /*?*/ Type SfxLibrary_Impl::getElementType()
 /*?*/   throw(RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;
-//STRIP001  return maNameContainer.getElementType();
 /*?*/ }
 
 /*N*/ sal_Bool SfxLibrary_Impl::hasElements()
@@ -2097,11 +1503,6 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*?*/ void SfxLibrary_Impl::replaceByName( const OUString& aName, const Any& aElement )
 /*?*/   throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( mbReadOnly || (mbLink && mbReadOnlyLink) )
-//STRIP001         throw RuntimeException();
-//STRIP001
-//STRIP001  maNameContainer.replaceByName( aName, aElement );
-//STRIP001  mbModified = sal_True;
 /*?*/ }
 
 
@@ -2119,109 +1520,18 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*?*/ void SfxLibrary_Impl::removeByName( const OUString& Name )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( mbReadOnly || (mbLink && mbReadOnlyLink) )
-//STRIP001         throw RuntimeException();
-//STRIP001
-//STRIP001  maNameContainer.removeByName( Name );
-//STRIP001  mbModified = sal_True;
-//STRIP001
-//STRIP001     // Remove element file
-//STRIP001  if( maStorageURL.getLength() )
-//STRIP001  {
-//STRIP001      INetURLObject aElementInetObj( maStorageURL );
-//STRIP001      aElementInetObj.insertName( Name, sal_False,
-//STRIP001          INetURLObject::LAST_SEGMENT, sal_True, INetURLObject::ENCODE_ALL );
-//STRIP001      aElementInetObj.setExtension( maLibElementFileExtension );
-//STRIP001      OUString aFile = aElementInetObj.GetMainURL( INetURLObject::NO_DECODE );
-//STRIP001
-//STRIP001      try
-//STRIP001      {
-//STRIP001          if( mxSFI->exists( aFile ) )
-//STRIP001              mxSFI->kill( aFile );
-//STRIP001         }
-//STRIP001         catch( Exception& )
-//STRIP001         {
-//STRIP001         }
-//STRIP001  }
-//STRIP001
 /*?*/ }
 
 // XTypeProvider
 /*?*/ Sequence< Type > SfxLibrary_Impl::getTypes()
 /*?*/   throw( RuntimeException )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); Sequence< Type > aSequence; return aSequence;//STRIP001
-//STRIP001  static OTypeCollection * s_pTypes_NameContainer = 0;
-//STRIP001  static OTypeCollection * s_pTypes_NameAccess = 0;
-//STRIP001     /*
-//STRIP001  if( mbReadOnly )
-//STRIP001  {
-//STRIP001      if( !s_pTypes_NameAccess )
-//STRIP001      {
-//STRIP001          MutexGuard aGuard( Mutex::getGlobalMutex() );
-//STRIP001          if( !s_pTypes_NameAccess )
-//STRIP001          {
-//STRIP001              static OTypeCollection s_aTypes_NameAccess(
-//STRIP001                  ::getCppuType( (const Reference< XNameAccess > *)0 ),
-//STRIP001                  ::getCppuType( (const Reference< XContainer > *)0 ),
-//STRIP001                  OComponentHelper::getTypes() );
-//STRIP001              s_pTypes_NameAccess = &s_aTypes_NameAccess;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      return s_pTypes_NameAccess->getTypes();
-//STRIP001  }
-//STRIP001  else
-//STRIP001     */
-//STRIP001  {
-//STRIP001      if( !s_pTypes_NameContainer )
-//STRIP001      {
-//STRIP001          MutexGuard aGuard( Mutex::getGlobalMutex() );
-//STRIP001          if( !s_pTypes_NameContainer )
-//STRIP001          {
-//STRIP001              static OTypeCollection s_aTypes_NameContainer(
-//STRIP001                  ::getCppuType( (const Reference< XNameContainer > *)0 ),
-//STRIP001                  ::getCppuType( (const Reference< XContainer > *)0 ),
-//STRIP001                  OComponentHelper::getTypes() );
-//STRIP001              s_pTypes_NameContainer = &s_aTypes_NameContainer;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      return s_pTypes_NameContainer->getTypes();
-//STRIP001  }
 /*?*/ }
 
 
 /*?*/ Sequence< sal_Int8 > SfxLibrary_Impl::getImplementationId()
 /*?*/   throw( RuntimeException )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); Sequence< sal_Int8 > aSequence;return aSequence;//STRIP001
-//STRIP001  static OImplementationId * s_pId_NameContainer = 0;
-//STRIP001  static OImplementationId * s_pId_NameAccess = 0;
-//STRIP001     /*
-//STRIP001  if( mbReadOnly )
-//STRIP001  {
-//STRIP001      if( !s_pId_NameAccess )
-//STRIP001      {
-//STRIP001          MutexGuard aGuard( Mutex::getGlobalMutex() );
-//STRIP001          if( !s_pId_NameAccess )
-//STRIP001          {
-//STRIP001              static OImplementationId s_aId_NameAccess;
-//STRIP001              s_pId_NameAccess = &s_aId_NameAccess;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      return s_pId_NameAccess->getImplementationId();
-//STRIP001  }
-//STRIP001  else
-//STRIP001     */
-//STRIP001  {
-//STRIP001      if( !s_pId_NameContainer )
-//STRIP001      {
-//STRIP001          MutexGuard aGuard( Mutex::getGlobalMutex() );
-//STRIP001          if( !s_pId_NameContainer )
-//STRIP001          {
-//STRIP001              static OImplementationId s_aId_NameContainer;
-//STRIP001              s_pId_NameContainer = &s_aId_NameContainer;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      return s_pId_NameContainer->getImplementationId();
-//STRIP001  }
 /*?*/ }
 
 
@@ -2238,7 +1548,6 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*?*/ void SAL_CALL SfxLibrary_Impl::removeContainerListener( const Reference< XContainerListener >& xListener )
 /*?*/   throw (RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  maNameContainer.removeContainerListener( xListener );
 /*?*/ }
 
 //============================================================================
