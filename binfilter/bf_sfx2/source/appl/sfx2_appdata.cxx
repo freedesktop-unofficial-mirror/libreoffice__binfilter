@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appdata.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:02:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:53:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,59 +32,20 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-// auto strip #ifndef _CACHESTR_HXX //autogen
-// auto strip #include <tools/cachestr.hxx>
-// auto strip #endif
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
 #endif
-// auto strip #ifndef _INETSTRM_HXX //autogen
-// auto strip #include <svtools/inetstrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
 
 #define _SVSTDARR_STRINGS
-// auto strip #include <svtools/svstdarr.hxx>
-// auto strip #include <vos/mutex.hxx>
 
-// auto strip #include <vcl/menu.hxx>
 
-// auto strip #ifndef _LOGINERR_HXX
-// auto strip #include <svtools/loginerr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MSGBOX_HXX
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATETIMEITEM_HXX //autogen
-// auto strip #include <svtools/dateitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MENU_HXX
-// auto strip #include <vcl/menu.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_WRKWIN_HXX
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
-// auto strip #include "comphelper/processfactory.hxx"
 
-// auto strip #include "viewfrm.hxx"
 #include "appdata.hxx"
 #include "dispatch.hxx"
-// auto strip #include "event.hxx"
-// auto strip #include "sfxtypes.hxx"
-// auto strip #include "sfxdir.hxx"
 #include "doctempl.hxx"
-// auto strip #include "dataurl.hxx"
 #include "arrdecl.hxx"
-// auto strip #include "docfac.hxx"
 #include "docfile.hxx"
-// auto strip #include "request.hxx"
-// auto strip #include "referers.hxx"
 #include "app.hrc"
-// auto strip #include "sfxresid.hxx"
-// auto strip #include "objshimp.hxx"
-// auto strip #include "appuno.hxx"
 #include "imestatuswindow.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
