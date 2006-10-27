@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outlobj.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:57:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:32:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,11 @@
  *
  ************************************************************************/
 
-// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
 
 #define _OUTLINER_CXX
-// auto strip #include <outliner.hxx>
 #include <outlobj.hxx>
 #include <outleeng.hxx>
 
@@ -48,14 +46,8 @@
 #endif
 
 
-// auto strip #ifndef _SV_BITMAP_HXX
-// auto strip #include <vcl/bitmap.hxx>
-// auto strip #endif
 
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ DBG_NAME(OutlinerParaObject)
@@ -80,16 +72,6 @@ namespace binfilter {
 /*N*/   pText = rObj.pText->Clone();
 /*N*/ }
 
-//STRIP001 OutlinerParaObject::OutlinerParaObject( const EditTextObject& rEditObj )
-//STRIP001 {
-//STRIP001  DBG_CTOR(OutlinerParaObject,0);
-//STRIP001
-//STRIP001  bIsEditDoc  = TRUE;
-//STRIP001  pText       = rEditObj.Clone();
-//STRIP001  nCount      = pText->GetParagraphCount();
-//STRIP001  pDepthArr   = new USHORT[ nCount ];
-//STRIP001  memset( pDepthArr, 0, nCount*sizeof(USHORT) );
-//STRIP001 }
 
 /*N*/ OutlinerParaObject::~OutlinerParaObject()
 /*N*/ {
@@ -126,11 +108,6 @@ namespace binfilter {
 
 /*N*/ void OutlinerParaObject::SetStyleSheets( USHORT nLevel, const XubString rNewName, const SfxStyleFamily& rNewFamily )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  for ( USHORT n = Count(); n; )
-//STRIP001  {
-//STRIP001      if ( GetDepth( --n ) == nLevel )
-//STRIP001          pText->SetStyleSheet( n, rNewName, rNewFamily );
-//STRIP001  }
 /*N*/ }
 
 /*N*/ void OutlinerParaObject::Store(SvStream& rStream ) const
@@ -254,20 +231,8 @@ namespace binfilter {
 /*N*/   pText->SetUserType( n );
 /*N*/ }
 
-//STRIP001 void OutlinerParaObject::SetLRSpaceItemFlags( BOOL bOutlineMode )
-//STRIP001 {
-//STRIP001  pText->SetLRSpaceItemFlags( bOutlineMode );
-//STRIP001 }
 
-//STRIP001 BOOL OutlinerParaObject::RemoveCharAttribs( USHORT nWhich )
-//STRIP001 {
-//STRIP001  return pText->RemoveCharAttribs( nWhich );
-//STRIP001 }
 
-//STRIP001 BOOL OutlinerParaObject::RemoveParaAttribs( USHORT nWhich )
-//STRIP001 {
-//STRIP001  return pText->RemoveParaAttribs( nWhich );
-//STRIP001 }
 
 /*N*/ void OutlinerParaObject::MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart, USHORT nEnd )
 /*N*/ {
