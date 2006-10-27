@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_vnew.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:57:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:24:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _SFX_PRINTER_HXX //autogen
-// auto strip #include <bf_sfx2/printer.hxx>
-// auto strip #endif
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
@@ -83,9 +80,6 @@
 #ifndef _DVIEW_HXX
 #include <dview.hxx>        // SdrView
 #endif
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx>
-// auto strip #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
@@ -382,10 +376,4 @@ namespace binfilter {
 /*N*/   return Imp()->GetDrawView();
 /*N*/ }
 
-//STRIP001 SdrView* ViewShell::GetDrawViewWithValidMarkList()
-//STRIP001 {
-//STRIP001  SwDrawView* pDView = Imp()->GetDrawView();
-//STRIP001  pDView->ValidateMarkList();
-//STRIP001  return pDView;
-//STRIP001 }
 }
