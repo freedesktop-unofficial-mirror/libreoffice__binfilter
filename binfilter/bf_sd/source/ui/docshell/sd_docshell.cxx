@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_docshell.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 00:06:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:19:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,48 +42,17 @@
 #define ITEMID_LINEEND_LIST             SID_LINEEND_LIST
 #define ITEMID_SEARCH                   SID_SEARCH_ITEM
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_sfx2/docfac.hxx>
 
 #ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SVX_SRCHITEM_HXX
-// auto strip #include <bf_svx/srchitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_SRCHDLG_HXX
-// auto strip #include <bf_svx/srchdlg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_SVXIFACT_HXX
-// auto strip #include <bf_svx/svxifact.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_FLSTITEM_HXX
-// auto strip #include <bf_svx/flstitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 #ifndef _SFXINTITEM_HXX
 #include <svtools/intitem.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-// auto strip #ifndef _SFX_DOCFILE_HXX //autogen
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #endif
-// auto strip #ifndef _B3D_BASE3D_HXX
-// auto strip #include "goodies/base3d.hxx"
-// auto strip #endif
-// auto strip #ifndef _SVX_DRAWITEM_HXX //autogen
-// auto strip #include <bf_svx/drawitem.hxx>
-// auto strip #endif
 #ifndef _SVX_FLSTITEM_HXX //autogen
 #include <bf_svx/flstitem.hxx>
 #endif
@@ -93,12 +62,6 @@
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 #ifndef _CTRLTOOL_HXX //autogen
 #include <svtools/ctrltool.hxx>
 #endif
@@ -108,28 +71,17 @@
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-// auto strip #ifndef _SFX_TOPFRM_HXX
-// auto strip #include <bf_sfx2/topfrm.hxx>
-// auto strip #endif
 
 #include "app.hrc"
-// auto strip #include "app.hxx"
 #include "strmname.h"
-// auto strip #include "stlpool.hxx"
 #include "strings.hrc"
 #include "docshell.hxx"
-// auto strip #include "sdview.hxx"
 #include "drawdoc.hxx"
-// auto strip #include "sdpage.hxx"
 #include "glob.hrc"
 #include "res_bmp.hrc"
-// auto strip #include "fupoor.hxx"
-// auto strip #include "fusearch.hxx"
 #include "viewshel.hxx"
 #include "sdresid.hxx"
 #include "fuslshow.hxx"
-//STRIP001 #include "preview.hxx"
-// auto strip #include "drawview.hxx"
 #include "frmview.hxx"
 #include "unomodel.hxx"
 
@@ -277,191 +229,7 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocShell::GetState(SfxItemSet &rSet)
-//STRIP001 {
-//STRIP001
-//STRIP001  SfxWhichIter aIter( rSet );
-//STRIP001  USHORT nWhich = aIter.FirstWhich();
-//STRIP001
-//STRIP001  while ( nWhich )
-//STRIP001  {
-//STRIP001      USHORT nSlotId = SfxItemPool::IsWhich(nWhich)
-//STRIP001          ? GetPool().GetSlotId(nWhich)
-//STRIP001          : nWhich;
-//STRIP001
-//STRIP001      switch ( nSlotId )
-//STRIP001      {
-//STRIP001          case SID_SEARCH_ITEM:
-//STRIP001          {
-//STRIP001              rSet.Put( *SD_MOD()->GetSearchItem() );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SID_CLOSEDOC:
-//STRIP001          {
-//STRIP001              BOOL bDisabled = FALSE;
-//STRIP001
-//STRIP001              if (pViewShell && pViewShell->GetSlideShow() &&
-//STRIP001                  pViewShell->GetSlideShow()->IsInputLocked())
-//STRIP001              {
-//STRIP001                  // Es laeuft ein Effekt in der SlideShow
-//STRIP001                  bDisabled = TRUE;
-//STRIP001              }
-//STRIP001              else if (pViewShell && pViewShell->GetView() && pViewShell->GetView()->ISA(SdDrawView) &&
-//STRIP001                       ((SdDrawView*) pViewShell->GetView())->GetSlideShow() &&
-//STRIP001                       ((SdDrawView*) pViewShell->GetView())->GetSlideShow()->IsInputLocked())
-//STRIP001              {
-//STRIP001                  // Es laeuft ein Effekt auf dem Zeichentisch
-//STRIP001                  bDisabled = TRUE;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  SfxViewFrame* pFrame = pViewShell ? pViewShell->GetFrame() : GetFrame();
-//STRIP001
-//STRIP001                  if( !pFrame )
-//STRIP001                      pFrame = SfxViewFrame::GetFirst( this );
-//STRIP001                  DBG_ASSERT( pFrame, "kein ViewFrame" );
-//STRIP001
-//STRIP001                  SfxChildWindow* pPreviewChildWindow = pFrame->GetChildWindow(SdPreviewChildWindow::GetChildWindowId());
-//STRIP001                  SdPreviewWin*   pPreviewWin = (SdPreviewWin*) ( pPreviewChildWindow ? pPreviewChildWindow->GetWindow() : NULL );
-//STRIP001                  FuSlideShow*    pShow = pPreviewWin ? pPreviewWin->GetSlideShow() : NULL;
-//STRIP001
-//STRIP001                  if (pShow && pShow->IsInputLocked())
-//STRIP001                  {
-//STRIP001                      // Es laeuft ein Effekt in der Preview
-//STRIP001                      bDisabled = TRUE;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              if (bDisabled)
-//STRIP001              {
-//STRIP001                  rSet.DisableItem(SID_CLOSEDOC);
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  GetSlotState(SID_CLOSEDOC, SfxObjectShell::GetInterface(), &rSet);
-//STRIP001              }
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SID_SEARCH_OPTIONS:
-//STRIP001          {
-//STRIP001              UINT16 nOpt = SEARCH_OPTIONS_SEARCH      |
-//STRIP001                            SEARCH_OPTIONS_WHOLE_WORDS |
-//STRIP001                            SEARCH_OPTIONS_BACKWARDS   |
-//STRIP001                            SEARCH_OPTIONS_REG_EXP     |
-//STRIP001                            SEARCH_OPTIONS_EXACT       |
-//STRIP001                            SEARCH_OPTIONS_SIMILARITY  |
-//STRIP001                            SEARCH_OPTIONS_SELECTION;
-//STRIP001
-//STRIP001              if (!IsReadOnly())
-//STRIP001              {
-//STRIP001                  nOpt |= SEARCH_OPTIONS_REPLACE;
-//STRIP001                  nOpt |= SEARCH_OPTIONS_REPLACE_ALL;
-//STRIP001              }
-//STRIP001
-//STRIP001              rSet.Put(SfxUInt16Item(nWhich, nOpt));
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SID_VERSION:
-//STRIP001          {
-//STRIP001              GetSlotState( SID_VERSION, SfxObjectShell::GetInterface(), &rSet );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          default:
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      nWhich = aIter.NextWhich();
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxViewFrame* pFrame = SFX_APP()->GetViewFrame();
-//STRIP001
-//STRIP001  if (pFrame)
-//STRIP001  {
-//STRIP001      if (rSet.GetItemState(SID_RELOAD) != SFX_ITEM_UNKNOWN)
-//STRIP001      {
-//STRIP001          pFrame->GetSlotState(SID_RELOAD,
-//STRIP001                               pFrame->GetInterface(), &rSet);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdDrawDocShell::InPlaceActivate( BOOL bActive )
-//STRIP001 {
-//STRIP001  if( !bActive )
-//STRIP001  {
-//STRIP001      FrameView* pFrameView = NULL;
-//STRIP001      List* pFrameViewList = pDoc->GetFrameViewList();
-//STRIP001
-//STRIP001      DBG_ASSERT( pFrameViewList, "No FrameViewList?" );
-//STRIP001      if( pFrameViewList )
-//STRIP001      {
-//STRIP001          sal_uInt32 i;
-//STRIP001          for ( i = 0; i < pFrameViewList->Count(); i++)
-//STRIP001          {
-//STRIP001              // Ggf. FrameViews loeschen
-//STRIP001              pFrameView = (FrameView*) pFrameViewList->GetObject(i);
-//STRIP001
-//STRIP001              if (pFrameView)
-//STRIP001                  delete pFrameView;
-//STRIP001          }
-//STRIP001
-//STRIP001          pFrameViewList->Clear();
-//STRIP001
-//STRIP001          SdViewShell* pViewSh = NULL;
-//STRIP001          SfxViewShell* pSfxViewSh = NULL;
-//STRIP001          SfxViewFrame* pSfxViewFrame = SfxViewFrame::GetFirst(this, 0, false);
-//STRIP001
-//STRIP001          while (pSfxViewFrame)
-//STRIP001          {
-//STRIP001              // Anzahl FrameViews ermitteln
-//STRIP001              pSfxViewSh = pSfxViewFrame->GetViewShell();
-//STRIP001              pViewSh = PTR_CAST( SdViewShell, pSfxViewSh );
-//STRIP001
-//STRIP001              if ( pViewSh && pViewSh->GetFrameView() )
-//STRIP001              {
-//STRIP001                  pViewSh->WriteFrameViewData();
-//STRIP001                  pFrameViewList->Insert( new FrameView( pDoc, pViewSh->GetFrameView() ) );
-//STRIP001              }
-//STRIP001
-//STRIP001              pSfxViewFrame = SfxViewFrame::GetNext(*pSfxViewFrame, this, 0, false);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxInPlaceObject::InPlaceActivate( bActive );
-//STRIP001
-//STRIP001  if( bActive )
-//STRIP001  {
-//STRIP001      FrameView* pFrameView = NULL;
-//STRIP001      List* pFrameViewList = pDoc->GetFrameViewList();
-//STRIP001
-//STRIP001      DBG_ASSERT( pFrameViewList, "No FrameViewList?" );
-//STRIP001      if( pFrameViewList )
-//STRIP001      {
-//STRIP001          SdViewShell* pViewSh = NULL;
-//STRIP001          SfxViewShell* pSfxViewSh = NULL;
-//STRIP001          SfxViewFrame* pSfxViewFrame = SfxViewFrame::GetFirst(this, 0,false);
-//STRIP001
-//STRIP001          sal_uInt32 i;
-//STRIP001          for( i = 0; pSfxViewFrame && (i < pFrameViewList->Count()); i++ )
-//STRIP001          {
-//STRIP001              // Anzahl FrameViews ermitteln
-//STRIP001              pSfxViewSh = pSfxViewFrame->GetViewShell();
-//STRIP001              pViewSh = PTR_CAST( SdViewShell, pSfxViewSh );
-//STRIP001
-//STRIP001              if ( pViewSh )
-//STRIP001              {
-//STRIP001                  pViewSh->ReadFrameViewData( (FrameView*)pFrameViewList->GetObject(i) );
-//STRIP001              }
-//STRIP001
-//STRIP001              pSfxViewFrame = SfxViewFrame::GetNext(*pSfxViewFrame, this, 0,false);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -469,14 +237,6 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocShell::Activate( BOOL bMDI)
-//STRIP001 {
-//STRIP001  if (bMDI)
-//STRIP001  {
-//STRIP001      ApplySlotFilter();
-//STRIP001      pDoc->StartOnlineSpelling();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -528,14 +288,6 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocShell::CancelSearching()
-//STRIP001 {
-//STRIP001  if ( pFuActual && pFuActual->ISA(FuSearch) )
-//STRIP001  {
-//STRIP001      delete pFuActual;
-//STRIP001      pFuActual = NULL;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -543,30 +295,6 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocShell::ApplySlotFilter() const
-//STRIP001 {
-//STRIP001     SfxViewShell* pTestViewShell = SfxViewShell::GetFirst();
-//STRIP001
-//STRIP001     while( pTestViewShell )
-//STRIP001     {
-//STRIP001         if( pTestViewShell->GetObjectShell() == const_cast< SdDrawDocShell* >( this ) &&
-//STRIP001             pTestViewShell->GetViewFrame() &&
-//STRIP001             pTestViewShell->GetViewFrame()->GetDispatcher() )
-//STRIP001         {
-//STRIP001          SfxDispatcher* pDispatcher = pTestViewShell->GetViewFrame()->GetDispatcher();
-//STRIP001
-//STRIP001          if( pFilterSIDs )
-//STRIP001              pDispatcher->SetSlotFilter( bFilterEnable, nFilterCount, pFilterSIDs );
-//STRIP001          else
-//STRIP001              pDispatcher->SetSlotFilter();
-//STRIP001
-//STRIP001             if( pDispatcher->GetBindings() )
-//STRIP001                 pDispatcher->GetBindings()->InvalidateAll( TRUE );
-//STRIP001         }
-//STRIP001
-//STRIP001         pTestViewShell = SfxViewShell::GetNext( *pTestViewShell );
-//STRIP001     }
-//STRIP001 }
 
 
 /*N*/ void SdDrawDocShell::SetModified( BOOL bSet /* = TRUE */ )
@@ -581,20 +309,6 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 /*N*/   Broadcast( SfxSimpleHint( SFX_HINT_DOCCHANGED ) );
 /*N*/ }
 
-//STRIP001 Window*  SdDrawDocShell::GetWindow() const
-//STRIP001 {
-//STRIP001  SfxViewFrame* pFrame = GetFrame();
-//STRIP001  if( pFrame == NULL )
-//STRIP001      pFrame = SfxViewFrame::GetFirst( this );
-//STRIP001
-//STRIP001  if( pFrame )
-//STRIP001      return &(pFrame->GetWindow());
-//STRIP001  else
-//STRIP001  {
-//STRIP001      DBG_ASSERT( 0, "No active window for SdDrawDocShell found! (next gpf is caused by this assertion)" );
-//STRIP001      return NULL;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -604,21 +318,5 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 
 // #91457# ExecuteSpellPopup now handled by SdDrawDocShell. This is necessary
 // to get hands on the outliner and the text object.
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 IMPL_LINK(SdDrawDocShell, OnlineSpellCallback, SpellCallbackInfo*, pInfo)
-//STRIP001 {
-//STRIP001  SdrObject* pObj = NULL;
-//STRIP001  SdrOutliner* pOutl = NULL;
-//STRIP001
-//STRIP001  if(GetViewShell())
-//STRIP001  {
-//STRIP001      pOutl = GetViewShell()->GetView()->GetTextEditOutliner();
-//STRIP001      pObj = GetViewShell()->GetView()->GetTextEditObject();
-//STRIP001  }
-//STRIP001
-//STRIP001  pDoc->ImpOnlineSpellCallback(pInfo, pObj, pOutl);
-//STRIP001  return(0);
-//STRIP001 }
-//STRIP001 #endif // !SVX_LIGHT
 
 }
