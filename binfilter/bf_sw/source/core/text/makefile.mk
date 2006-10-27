@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:28:40 $
+#   last change: $Author: rt $ $Date: 2006-10-27 23:05:24 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -61,46 +61,6 @@ LIBFLAGS=/NOI /NOE /PAGE:512
 
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-                sw_atrstck.cxx \
-                sw_frmcrsr.cxx \
-        sw_frmform.cxx \
-        sw_frminf.cxx \
-        sw_frmpaint.cxx \
-        sw_guess.cxx \
-        sw_inftxt.cxx \
-        sw_itradj.cxx \
-        sw_itratr.cxx \
-        sw_itrcrsr.cxx \
-        sw_itrform2.cxx \
-        sw_itrpaint.cxx \
-        sw_itrtxt.cxx \
-        sw_porexp.cxx \
-        sw_porfld.cxx \
-        sw_porfly.cxx \
-        sw_porglue.cxx \
-        sw_porlay.cxx \
-        sw_porlin.cxx \
-        sw_pormulti.cxx \
-        sw_porref.cxx \
-        sw_porrst.cxx \
-        sw_portox.cxx \
-        sw_portxt.cxx \
-        sw_redlnitr.cxx \
-        sw_txtcache.cxx \
-        sw_txtdrop.cxx \
-        sw_txtfld.cxx \
-        sw_txtfly.cxx \
-        sw_txtfrm.cxx \
-        sw_txtftn.cxx \
-        sw_txthyph.cxx \
-        sw_txtinit.cxx \
-        sw_txttab.cxx \
-        sw_widorp.cxx \
-        sw_blink.cxx \
-        sw_noteurl.cxx \
-        sw_wrong.cxx
-
 .IF "$(product)$(cap)" == ""
 CXXFILES += \
         sw_txtio.cxx
@@ -109,10 +69,9 @@ CXXFILES += \
 
 
 SLOFILES =  \
-                $(SLO)$/sw_atrstck.obj \
+        $(SLO)$/sw_atrstck.obj \
         $(SLO)$/sw_frmcrsr.obj \
         $(SLO)$/sw_frmform.obj \
-        $(SLO)$/sw_frminf.obj \
         $(SLO)$/sw_frmpaint.obj \
         $(SLO)$/sw_guess.obj \
         $(SLO)$/sw_inftxt.obj \
@@ -129,7 +88,6 @@ SLOFILES =  \
         $(SLO)$/sw_porlay.obj \
         $(SLO)$/sw_porlin.obj \
         $(SLO)$/sw_pormulti.obj \
-        $(SLO)$/sw_porref.obj \
         $(SLO)$/sw_porrst.obj \
         $(SLO)$/sw_portox.obj \
         $(SLO)$/sw_portxt.obj \
