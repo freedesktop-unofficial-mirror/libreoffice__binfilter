@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:44:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:17:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,66 +34,39 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <tools/string.hxx>
-// auto strip #include <bf_svx/editobj.hxx>
-// auto strip #include <bf_svx/editstat.hxx>
 #include <bf_svx/frmdiritem.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
-// auto strip #include <bf_svx/scripttypeitem.hxx>
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_sfx2/viewfrm.hxx>
 #include <bf_sfx2/viewsh.hxx>
 #include <svtools/flagitem.hxx>
-// auto strip #include <svtools/intitem.hxx>
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <bf_sfx2/misccfg.hxx>
 #include <bf_sfx2/app.hxx>
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #include <svtools/securityoptions.hxx>
 
-// auto strip #include <vcl/msgbox.hxx>
 
-// auto strip #include "global.hxx"
-// auto strip #include "table.hxx"
-// auto strip #include "column.hxx"
-// auto strip #include "cell.hxx"
 #include "poolhelp.hxx"
 #include "docpool.hxx"
 #include "stlpool.hxx"
-// auto strip #include "stlsheet.hxx"
 #include "docoptio.hxx"
 #include "viewopti.hxx"
-// auto strip #include "scextopt.hxx"
-// auto strip #include "scdebug.hxx"
 #include "rechead.hxx"
 #include "ddelink.hxx"
 #include "scmatrix.hxx"
 #include "arealink.hxx"
-// auto strip #include "dociter.hxx"
 #include "patattr.hxx"
-// auto strip #include "hints.hxx"
 #include "editutil.hxx"
-// auto strip #include "progress.hxx"
 #include "document.hxx"
-// auto strip #include "chartlis.hxx"
 #include "refupdat.hxx"
-// auto strip #include "validat.hxx"        // fuer HasMacroCalls
-// auto strip #include "markdata.hxx"
 #include "scmod.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"
@@ -171,7 +144,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   delete pDocOptions;
 /*N*/   delete pViewOptions;
-//STRIP001 /*N*/    delete pExtDocOptions;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -258,112 +230,18 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScDocument::ModifyStyleSheet( SfxStyleSheetBase& rStyleSheet,
-//STRIP001                                 const SfxItemSet&  rChanges )
-//STRIP001 {
-//STRIP001  SfxItemSet& rSet = rStyleSheet.GetItemSet();
-//STRIP001
-//STRIP001  switch ( rStyleSheet.GetFamily() )
-//STRIP001  {
-//STRIP001      case SFX_STYLE_FAMILY_PAGE:
-//STRIP001          {
-//STRIP001              const USHORT nOldScale        = GET_SCALEVALUE(rSet,ATTR_PAGE_SCALE);
-//STRIP001              const USHORT nOldScaleToPages = GET_SCALEVALUE(rSet,ATTR_PAGE_SCALETOPAGES);
-//STRIP001              rSet.Put( rChanges );
-//STRIP001              const USHORT nNewScale        = GET_SCALEVALUE(rSet,ATTR_PAGE_SCALE);
-//STRIP001              const USHORT nNewScaleToPages = GET_SCALEVALUE(rSet,ATTR_PAGE_SCALETOPAGES);
-//STRIP001
-//STRIP001              if ( (nOldScale != nNewScale) || (nOldScaleToPages != nNewScaleToPages) )
-//STRIP001                  InvalidateTextWidth( rStyleSheet.GetName() );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SFX_STYLE_FAMILY_PARA:
-//STRIP001          {
-//STRIP001              BOOL bNumFormatChanged;
-//STRIP001              if ( ScGlobal::CheckWidthInvalidate( bNumFormatChanged,
-//STRIP001                      rSet, rChanges ) )
-//STRIP001                  InvalidateTextWidth( NULL, NULL, bNumFormatChanged );
-//STRIP001              ULONG nOldFormat =
-//STRIP001                  ((const SfxUInt32Item*)&rSet.Get(
-//STRIP001                  ATTR_VALUE_FORMAT ))->GetValue();
-//STRIP001              ULONG nNewFormat =
-//STRIP001                  ((const SfxUInt32Item*)&rChanges.Get(
-//STRIP001                  ATTR_VALUE_FORMAT ))->GetValue();
-//STRIP001              LanguageType eNewLang, eOldLang;
-//STRIP001              eNewLang = eOldLang = LANGUAGE_DONTKNOW;
-//STRIP001              if ( nNewFormat != nOldFormat )
-//STRIP001              {
-//STRIP001                  SvNumberFormatter* pFormatter = GetFormatTable();
-//STRIP001                  eOldLang = pFormatter->GetEntry( nOldFormat )->GetLanguage();
-//STRIP001                  eNewLang = pFormatter->GetEntry( nNewFormat )->GetLanguage();
-//STRIP001              }
-//STRIP001
-//STRIP001              // Bedeutung der Items in rChanges:
-//STRIP001              //  Item gesetzt    - Aenderung uebernehmen
-//STRIP001              //  Dontcare        - Default setzen
-//STRIP001              //  Default         - keine Aenderung
-//STRIP001              // ("keine Aenderung" geht nicht mit PutExtended, darum Schleife)
-//STRIP001              for (USHORT nWhich = ATTR_PATTERN_START; nWhich <= ATTR_PATTERN_END; nWhich++)
-//STRIP001              {
-//STRIP001                  const SfxPoolItem* pItem;
-//STRIP001                  SfxItemState eState = rChanges.GetItemState( nWhich, FALSE, &pItem );
-//STRIP001                  if ( eState == SFX_ITEM_SET )
-//STRIP001                      rSet.Put( *pItem );
-//STRIP001                  else if ( eState == SFX_ITEM_DONTCARE )
-//STRIP001                      rSet.ClearItem( nWhich );
-//STRIP001                  // bei Default nichts
-//STRIP001              }
-//STRIP001
-//STRIP001              if ( eNewLang != eOldLang )
-//STRIP001                  rSet.Put(
-//STRIP001                      SvxLanguageItem( eNewLang, ATTR_LANGUAGE_FORMAT ) );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001  }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScDocument::CopyStdStylesFrom( ScDocument* pSrcDoc )
-//STRIP001 {
-//STRIP001  xPoolHelper->GetStylePool()->CopyStdStylesFrom( pSrcDoc->xPoolHelper->GetStylePool() );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScDocument::InvalidateTextWidth( const String& rStyleName )
-//STRIP001 {
-//STRIP001  const USHORT nCount = GetTableCount();
-//STRIP001  for ( USHORT i=0; i<nCount && pTab[i]; i++ )
-//STRIP001      if ( pTab[i]->GetPageStyle() == rStyleName )
-//STRIP001          InvalidateTextWidth( i );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScDocument::InvalidateTextWidth( USHORT nTab )
-//STRIP001 {
-//STRIP001  ScAddress aAdrFrom( 0,    0,        nTab );
-//STRIP001  ScAddress aAdrTo  ( MAXCOL, MAXROW, nTab );
-//STRIP001  InvalidateTextWidth( &aAdrFrom, &aAdrTo );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ScDocument::IsPageStyleInUse( const String& rStrPageStyle, USHORT* pInTab )
-//STRIP001 {
-//STRIP001  BOOL         bInUse = FALSE;
-//STRIP001  const USHORT nCount = GetTableCount();
-//STRIP001
-//STRIP001  for ( USHORT i=0; !bInUse && i<nCount && pTab[i]; i++ )
-//STRIP001      bInUse = ( pTab[i]->GetPageStyle() == rStrPageStyle );
-//STRIP001
-//STRIP001  if ( pInTab )
-//STRIP001      *pInTab = i-1;
-//STRIP001
-//STRIP001  return bInUse;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -382,20 +260,6 @@ namespace binfilter {
 /*N*/   return bWasInUse;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::RenamePageStyleInUse( const String& rOld, const String& rNew )
-//STRIP001 {
-//STRIP001  BOOL bWasInUse = FALSE;
-//STRIP001  const USHORT nCount = GetTableCount();
-//STRIP001
-//STRIP001  for ( USHORT i=0; i<nCount && pTab[i]; i++ )
-//STRIP001      if ( pTab[i]->GetPageStyle() == rOld )
-//STRIP001      {
-//STRIP001          bWasInUse = TRUE;
-//STRIP001          pTab[i]->SetPageStyle( rNew );
-//STRIP001      }
-//STRIP001
-//STRIP001  return bWasInUse;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -454,216 +318,10 @@ namespace binfilter {
 /*N*/ BOOL ScDocument::IdleCalcTextWidth()          // TRUE = demnaechst wieder versuchen
 {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLinkUpdate() )
-//STRIP001      return FALSE;
-//STRIP001  bIdleDisabled = TRUE;
-//STRIP001
-//STRIP001 // ULONG nMs = 0;
-//STRIP001 // USHORT nIter = 0;
-//STRIP001
-//STRIP001  const ULONG         nStart   = GetSysTicks();
-//STRIP001  double              nPPTX    = 0.0;
-//STRIP001  double              nPPTY    = 0.0;
-//STRIP001  OutputDevice*       pDev     = NULL;
-//STRIP001  MapMode             aOldMap;
-//STRIP001  ScStyleSheet*       pStyle   = NULL;
-//STRIP001  ScColumnIterator*   pColIter = NULL;
-//STRIP001  ScTable*            pTable   = NULL;
-//STRIP001  ScColumn*           pColumn  = NULL;
-//STRIP001  ScBaseCell*         pCell    = NULL;
-//STRIP001  USHORT              nTab     = aCurTextWidthCalcPos.Tab();
-//STRIP001  USHORT              nRow     = aCurTextWidthCalcPos.Row();
-//STRIP001  short               nCol     = aCurTextWidthCalcPos.Col();
-//STRIP001  USHORT              nRestart = 0;
-//STRIP001  USHORT              nZoom    = 0;
-//STRIP001  BOOL                bNeedMore= FALSE;
-//STRIP001
-//STRIP001  if ( nRow > MAXROW )
-//STRIP001      nRow = 0, nCol--;
-//STRIP001  if ( nCol < 0 )
-//STRIP001      nCol = MAXCOL, nTab++;
-//STRIP001  if ( nTab > MAXTAB || !pTab[nTab] )
-//STRIP001      nTab = 0;
-//STRIP001
-//STRIP001 //   DBG_ERROR( String("Start = ") + String(nTab) + String(',') + String(nCol) + String(',') + String(nRow)  );
-//STRIP001
-//STRIP001  //  SearchMask/Family muss gemerkt werden,
-//STRIP001  //  damit z.B. der Organizer nicht durcheinanderkommt, wenn zwischendurch eine
-//STRIP001  //  Query-Box aufgemacht wird !!!
-//STRIP001
-//STRIP001  ScStyleSheetPool* pStylePool = xPoolHelper->GetStylePool();
-//STRIP001  USHORT nOldMask = pStylePool->GetSearchMask();
-//STRIP001  SfxStyleFamily eOldFam = pStylePool->GetSearchFamily();
-//STRIP001
-//STRIP001  pTable = pTab[nTab];
-//STRIP001  pStylePool->SetSearchMask( SFX_STYLE_FAMILY_PAGE, SFXSTYLEBIT_ALL );
-//STRIP001  pStyle = (ScStyleSheet*)pStylePool->Find( pTable->aPageStyle,
-//STRIP001                                            SFX_STYLE_FAMILY_PAGE );
-//STRIP001
-//STRIP001  if ( !pStyle )
-//STRIP001      DBG_ERROR( "Missing StyleSheet :-/" );
-//STRIP001
-//STRIP001
-//STRIP001  BOOL bProgress = FALSE;
-//STRIP001  if ( pStyle && 0 == GET_SCALEVALUE(pStyle->GetItemSet(),ATTR_PAGE_SCALETOPAGES) )
-//STRIP001  {
-//STRIP001      USHORT nCount = 0;
-//STRIP001
-//STRIP001      nZoom    = GET_SCALEVALUE(pStyle->GetItemSet(),ATTR_PAGE_SCALE);
-//STRIP001      Fraction aZoomFract( nZoom, 100 );
-//STRIP001      pColumn  = &pTable->aCol[nCol];
-//STRIP001      pColIter = new ScColumnIterator( pColumn, nRow, MAXROW );
-//STRIP001
-//STRIP001      while ( (nZoom > 0) && (nCount < CALCMAX) && (nRestart < 2) )
-//STRIP001      {
-//STRIP001          if ( pColIter->Next( nRow, pCell ) )
-//STRIP001          {
-//STRIP001              if ( TEXTWIDTH_DIRTY == pCell->GetTextWidth() )
-//STRIP001              {
-//STRIP001                  if ( !pDev )
-//STRIP001                  {
-//STRIP001                      pDev = GetPrinter();
-//STRIP001                      aOldMap = pDev->GetMapMode();
-//STRIP001                      pDev->SetMapMode( MAP_PIXEL );  // wichtig fuer GetNeededSize
-//STRIP001
-//STRIP001                      Point aPix1000 = pDev->LogicToPixel( Point(1000,1000), MAP_TWIP );
-//STRIP001                      nPPTX = aPix1000.X() / 1000.0;
-//STRIP001                      nPPTY = aPix1000.Y() / 1000.0;
-//STRIP001                  }
-//STRIP001                  if ( !bProgress && pCell->GetCellType() == CELLTYPE_FORMULA
-//STRIP001                    && ((ScFormulaCell*)pCell)->GetDirty() )
-//STRIP001                  {
-//STRIP001                      ScProgress::CreateInterpretProgress( this, FALSE );
-//STRIP001                      bProgress = TRUE;
-//STRIP001                  }
-//STRIP001
-//STRIP001 //                   DBG_ERROR( String("t,c,r = ") + String(nTab) + String(',') + String(nCol) + String(',') + String(nRow)  );
-//STRIP001 //                   DBG_ERROR( String("nOldWidth = ") + String(pCell->GetTextWidth()) );
-//STRIP001
-//STRIP001                  USHORT nNewWidth = (USHORT)GetNeededSize( nCol, nRow, nTab,
-//STRIP001                                                            pDev, nPPTX, nPPTY,
-//STRIP001                                                            aZoomFract,aZoomFract, TRUE,
-//STRIP001                                                            TRUE );   // bTotalSize
-//STRIP001
-//STRIP001 //                   DBG_ERROR( String("nNewWidth = ") + String(nNewWidth) );
-//STRIP001
-//STRIP001                  pCell->SetTextWidth( nNewWidth );
-//STRIP001
-//STRIP001                  bNeedMore = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              BOOL bNewTab = FALSE;
-//STRIP001
-//STRIP001              nRow = 0;
-//STRIP001              nCol--;
-//STRIP001
-//STRIP001              if ( nCol < 0 )
-//STRIP001              {
-//STRIP001                  nCol = MAXCOL;
-//STRIP001                  nTab++;
-//STRIP001                  bNewTab = TRUE;
-//STRIP001              }
-//STRIP001
-//STRIP001              if ( nTab > MAXTAB || !pTab[nTab] )
-//STRIP001              {
-//STRIP001                  nTab = 0;
-//STRIP001                  nRestart++;
-//STRIP001                  bNewTab = TRUE;
-//STRIP001              }
-//STRIP001
-//STRIP001              if ( nRestart < 2 )
-//STRIP001              {
-//STRIP001                  if ( bNewTab )
-//STRIP001                  {
-//STRIP001                      pTable = pTab[nTab];
-//STRIP001                      pStyle = (ScStyleSheet*)pStylePool->Find( pTable->aPageStyle,
-//STRIP001                                                                SFX_STYLE_FAMILY_PAGE );
-//STRIP001
-//STRIP001                      if ( pStyle )
-//STRIP001                      {
-//STRIP001                          SfxItemSet& rSet = pStyle->GetItemSet();
-//STRIP001                          if ( GET_SCALEVALUE( rSet, ATTR_PAGE_SCALETOPAGES ) == 0 )
-//STRIP001                              nZoom = GET_SCALEVALUE(rSet, ATTR_PAGE_SCALE );
-//STRIP001                          else
-//STRIP001                              nZoom = 0;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                          DBG_ERROR( "Missing StyleSheet :-/" );
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if ( nZoom > 0 )
-//STRIP001                  {
-//STRIP001                      delete pColIter;
-//STRIP001
-//STRIP001                      pColumn  = &pTable->aCol[nCol];
-//STRIP001                      pColIter = new ScColumnIterator( pColumn, nRow, MAXROW );
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                      nTab++; // Tabelle nicht mit absolutem Zoom -> naechste
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001 // nIter = nCount;
-//STRIP001
-//STRIP001          nCount++;
-//STRIP001
-//STRIP001          // Idle Berechnung abbrechen, wenn Berechnungen laenger als
-//STRIP001          // 50ms dauern, oder nach 32 Berechnungen mal nachschauen, ob
-//STRIP001          // bestimmte Events anstehen, die Beachtung wuenschen:
-//STRIP001
-//STRIP001 // nMs = SysTicksToMs( GetSysTicks() - nStart );
-//STRIP001
-//STRIP001          if (   ( 50L < SysTicksToMs( GetSysTicks() - nStart ) )
-//STRIP001              || ( !(nCount&31) && Application::AnyInput( ABORT_EVENTS ) ) )
-//STRIP001              nCount = CALCMAX;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      nTab++; // Tabelle nicht mit absolutem Zoom -> naechste
-//STRIP001
-//STRIP001  if ( bProgress )
-//STRIP001      ScProgress::DeleteInterpretProgress();
-//STRIP001
-//STRIP001  delete pColIter;
-//STRIP001
-//STRIP001 //   DBG_ERROR( String(nCount) + String(" End = ") + String(nTab) + String(',') + String(nCol) + String(',') + String(nRow)  );
-//STRIP001
-//STRIP001  if (pDev)
-//STRIP001      pDev->SetMapMode(aOldMap);
-//STRIP001
-//STRIP001  aCurTextWidthCalcPos.SetTab( nTab );
-//STRIP001  aCurTextWidthCalcPos.SetRow( nRow );
-//STRIP001  aCurTextWidthCalcPos.SetCol( (USHORT)nCol );
-//STRIP001
-//STRIP001 // DBG_ERROR( String(nMs) + String(" ms (") + String(nIter) + String(')') );
-//STRIP001
-//STRIP001  pStylePool->SetSearchMask( eOldFam, nOldMask );
-//STRIP001  bIdleDisabled = FALSE;
-//STRIP001
-//STRIP001  return bNeedMore;
 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 class ScSpellStatus
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  BOOL    bModified;
-//STRIP001
-//STRIP001  ScSpellStatus() : bModified(FALSE) {};
-//STRIP001
-//STRIP001  DECL_LINK (EventHdl, EditStatus*);
-//STRIP001 };
-//STRIP001
-//STRIP001 IMPL_LINK( ScSpellStatus, EventHdl, EditStatus *, pStatus )
-//STRIP001 {
-//STRIP001  ULONG nStatus = pStatus->GetStatusWord();
-//STRIP001  if ( nStatus & EE_STAT_WRONGWORDCHANGED )
-//STRIP001      bModified = TRUE;
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
 //  SPELL_MAXCELLS muss mindestens 256 sein, solange am Iterator keine
 //  Start-Spalte gesetzt werden kann
@@ -676,195 +334,15 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLi
 #define SPELL_MAXTEST_ALL   3
 #define SPELL_MAXCELLS      256
 
-//STRIP001 BOOL ScDocument::OnlineSpellInRange( const ScRange& rSpellRange, ScAddress& rSpellPos,
-//STRIP001                                   USHORT nMaxTest )
-//STRIP001 {
-//STRIP001  ScEditEngineDefaulter* pEngine = NULL;              //! am Dokument speichern
-//STRIP001  SfxItemSet* pDefaults = NULL;
-//STRIP001  ScSpellStatus aStatus;
-//STRIP001
-//STRIP001  USHORT nCellCount = 0;          // Zellen insgesamt
-//STRIP001  USHORT nTestCount = 0;          // Aufrufe Spelling
-//STRIP001  BOOL bChanged = FALSE;          // Aenderungen?
-//STRIP001
-//STRIP001  USHORT nCol = rSpellRange.aStart.Col();     // iterator always starts on the left edge
-//STRIP001  USHORT nRow = rSpellPos.Row();
-//STRIP001  USHORT nTab = rSpellPos.Tab();
-//STRIP001  if ( !pTab[nTab] )                          // sheet deleted?
-//STRIP001  {
-//STRIP001      nTab = rSpellRange.aStart.Tab();
-//STRIP001      nRow = rSpellRange.aStart.Row();
-//STRIP001      if ( !pTab[nTab] )
-//STRIP001      {
-//STRIP001          //  may happen for visible range
-//STRIP001          return FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  ScHorizontalCellIterator aIter( this, nTab,
-//STRIP001                                  rSpellRange.aStart.Col(), nRow,
-//STRIP001                                  rSpellRange.aEnd.Col(), rSpellRange.aEnd.Row() );
-//STRIP001  ScBaseCell* pCell = aIter.GetNext( nCol, nRow );
-//STRIP001  //  skip everything left of rSpellPos:
-//STRIP001  while ( pCell && nRow == rSpellPos.Row() && nCol < rSpellPos.Col() )
-//STRIP001      pCell = aIter.GetNext( nCol, nRow );
-//STRIP001  while ( pCell )
-//STRIP001  {
-//STRIP001      CellType eType = pCell->GetCellType();
-//STRIP001      if ( eType == CELLTYPE_STRING || eType == CELLTYPE_EDIT )
-//STRIP001      {
-//STRIP001          if (!pEngine)
-//STRIP001          {
-//STRIP001              //  #71154# ScTabEditEngine is needed
-//STRIP001              //  because MapMode must be set for some old documents
-//STRIP001              pEngine = new ScTabEditEngine( this );
-//STRIP001              pEngine->SetControlWord( pEngine->GetControlWord() |
-//STRIP001                          ( EE_CNTRL_ONLINESPELLING | EE_CNTRL_ALLOWBIGOBJS ) );
-//STRIP001              pEngine->SetStatusEventHdl( LINK( &aStatus, ScSpellStatus, EventHdl ) );
-//STRIP001              //  Delimiters hier wie in inputhdl.cxx !!!
-//STRIP001              pEngine->SetWordDelimiters(
-//STRIP001                          ScEditUtil::ModifyDelimiters( pEngine->GetWordDelimiters() ) );
-//STRIP001              pDefaults = new SfxItemSet( pEngine->GetEmptyItemSet() );
-//STRIP001
-//STRIP001                 ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XSpellChecker1> xXSpellChecker1( LinguMgr::GetSpellChecker() );
-//STRIP001
-//STRIP001              pEngine->SetSpeller( xXSpellChecker1 );
-//STRIP001          }
-//STRIP001
-//STRIP001          const ScPatternAttr* pPattern = GetPattern( nCol, nRow, nTab );
-//STRIP001          pPattern->FillEditItemSet( pDefaults );
-//STRIP001          pEngine->SetDefaults( pDefaults, FALSE );               //! noetig ?
-//STRIP001
-//STRIP001          USHORT nCellLang = ((const SvxLanguageItem&)
-//STRIP001                                  pPattern->GetItem(ATTR_FONT_LANGUAGE)).GetValue();
-//STRIP001          if ( nCellLang == LANGUAGE_SYSTEM )
-//STRIP001                 nCellLang = Application::GetSettings().GetLanguage();   // never use SYSTEM for spelling
-//STRIP001          pEngine->SetDefaultLanguage( nCellLang );
-//STRIP001
-//STRIP001          if ( eType == CELLTYPE_STRING )
-//STRIP001          {
-//STRIP001              String aText;
-//STRIP001              ((ScStringCell*)pCell)->GetString(aText);
-//STRIP001              pEngine->SetText( aText );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pEngine->SetText( *((ScEditCell*)pCell)->GetData() );
-//STRIP001
-//STRIP001          aStatus.bModified = FALSE;
-//STRIP001          pEngine->CompleteOnlineSpelling();
-//STRIP001          if ( aStatus.bModified )                // Fehler dazu oder weggekommen?
-//STRIP001          {
-//STRIP001              BOOL bNeedEdit = TRUE;                      //  Test auf einfachen Text
-//STRIP001              if ( !pEngine->HasOnlineSpellErrors() )
-//STRIP001              {
-//STRIP001                  ScEditAttrTester aTester( pEngine );
-//STRIP001                  bNeedEdit = aTester.NeedsObject();
-//STRIP001              }
-//STRIP001
-//STRIP001              if ( bNeedEdit )
-//STRIP001              {
-//STRIP001                  EditTextObject* pNewData = pEngine->CreateTextObject();
-//STRIP001                  if ( eType == CELLTYPE_EDIT )
-//STRIP001                      ((ScEditCell*)pCell)->SetData( pNewData,
-//STRIP001                          pEngine->GetEditTextObjectPool() );
-//STRIP001                  else
-//STRIP001                      PutCell( nCol, nRow, nTab, new ScEditCell( pNewData,
-//STRIP001                          this, pEngine->GetEditTextObjectPool() ) );
-//STRIP001                  delete pNewData;
-//STRIP001              }
-//STRIP001              else                    // einfacher String
-//STRIP001                  PutCell( nCol, nRow, nTab, new ScStringCell( pEngine->GetText() ) );
-//STRIP001
-//STRIP001              //  Paint
-//STRIP001              if (pShell)
-//STRIP001              {
-//STRIP001                  //  #47751# Seitenvorschau ist davon nicht betroffen
-//STRIP001                  //  (sollte jedenfalls nicht)
-//STRIP001                  ScPaintHint aHint( ScRange( nCol, nRow, nTab ), PAINT_GRID );
-//STRIP001                  aHint.SetPrintFlag( FALSE );
-//STRIP001                  pShell->Broadcast( aHint );
-//STRIP001              }
-//STRIP001
-//STRIP001              bChanged = TRUE;
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( ++nTestCount >= nMaxTest )             // checked enough text?
-//STRIP001              break;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( ++nCellCount >= SPELL_MAXCELLS )           // seen enough cells?
-//STRIP001          break;
-//STRIP001
-//STRIP001      pCell = aIter.GetNext( nCol, nRow );
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( pCell )
-//STRIP001  {
-//STRIP001      ++nCol;                                         // continue after last cell
-//STRIP001      if ( nCol > rSpellRange.aEnd.Col() )
-//STRIP001      {
-//STRIP001          nCol = rSpellRange.aStart.Col();
-//STRIP001          ++nRow;
-//STRIP001          if ( nRow > rSpellRange.aEnd.Row() )
-//STRIP001              pCell = NULL;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (!pCell)         // end of range reached -> next sheet
-//STRIP001  {
-//STRIP001      ++nTab;
-//STRIP001      if ( nTab > rSpellRange.aEnd.Tab() || !pTab[nTab] )
-//STRIP001          nTab = rSpellRange.aStart.Tab();
-//STRIP001      nCol = rSpellRange.aStart.Col();
-//STRIP001      nRow = rSpellRange.aStart.Row();
-//STRIP001
-//STRIP001      nVisSpellState = VSPL_DONE;     //! only if this is for the visible range
-//STRIP001  }
-//STRIP001  rSpellPos.Set( nCol, nRow, nTab );
-//STRIP001
-//STRIP001  delete pDefaults;
-//STRIP001  delete pEngine;         // bevor aStatus out of scope geht
-//STRIP001
-//STRIP001  return bChanged;
-//STRIP001 }
 
 
 /*N*/ BOOL ScDocument::ContinueOnlineSpelling()
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( bIdleDisabled || !pDocOptions->IsAutoSpell() || (pShell && pShell->IsReadOnly()) )
 /*?*/       return FALSE;
-//STRIP001
-//STRIP001  //! use one EditEngine for both calls
-//STRIP001
-//STRIP001  //  #41504# first check visible range
-//STRIP001  BOOL bResult = OnlineSpellInRange( aVisSpellRange, aVisSpellPos, SPELL_MAXTEST_VIS );
-//STRIP001
-//STRIP001  //  during first pass through visible range, always continue
-//STRIP001  if ( nVisSpellState == VSPL_START )
-//STRIP001      bResult = TRUE;
-//STRIP001
-//STRIP001  if (bResult)
-//STRIP001  {
-//STRIP001      //  if errors found, continue there
-//STRIP001      OnlineSpellInRange( aVisSpellRange, aVisSpellPos, SPELL_MAXTEST_ALL );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      //  if nothing found there, continue with rest of document
-//STRIP001      ScRange aTotalRange( 0,0,0, MAXCOL,MAXROW,MAXTAB );
-//STRIP001      bResult = OnlineSpellInRange( aTotalRange, aOnlineSpellPos, SPELL_MAXTEST_ALL );
-//STRIP001  }
-//STRIP001  return bResult;
 /*N*/ }
 
 
-//STRIP001 void ScDocument::SetOnlineSpellPos( const ScAddress& rPos )
-//STRIP001 {
-//STRIP001  aOnlineSpellPos = rPos;
-//STRIP001
-//STRIP001  //  skip visible area for aOnlineSpellPos
-//STRIP001  if ( aVisSpellRange.In( aOnlineSpellPos ) )
-//STRIP001      aOnlineSpellPos = aVisSpellRange.aEnd;
-//STRIP001 }
 
 /*N*/ BOOL ScDocument::SetVisibleSpellRange( const ScRange& rNewRange )
 /*N*/ {
@@ -892,41 +370,12 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLi
 /*N*/   return bChange;
 /*N*/ }
 
-//STRIP001 void ScDocument::RemoveAutoSpellObj()
-//STRIP001 {
-//STRIP001  //  alle Spelling-Informationen entfernen
-//STRIP001
-//STRIP001  for (USHORT nTab=0; nTab<=MAXTAB && pTab[nTab]; nTab++)
-//STRIP001      pTab[nTab]->RemoveAutoSpellObj();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
 BOOL ScDocument::IdleCheckLinks()           // TRUE = demnaechst wieder versuchen
 {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     BOOL bAnyLeft = FALSE;
-//STRIP001
-//STRIP001     if (pLinkManager)
-//STRIP001     {
-//STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001         USHORT nCount = rLinks.Count();
-//STRIP001         for (USHORT i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScDdeLink))
-//STRIP001             {
-//STRIP001                 ScDdeLink* pDdeLink = (ScDdeLink*)pBase;
-//STRIP001                 if (pDdeLink->NeedsUpdate())
-//STRIP001                 {
-//STRIP001                     pDdeLink->TryUpdate();
-//STRIP001                     if (pDdeLink->NeedsUpdate())        // war nix?
-//STRIP001                         bAnyLeft = TRUE;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001  return bAnyLeft;
 }
 
 /*N*/ void ScDocument::SaveDdeLinks(SvStream& rStream) const
@@ -1004,50 +453,10 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     BOOL bAnyLeft = FALSE;
 /*N*/   bInLinkUpdate = bSet;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::IsInLinkUpdate() const
-//STRIP001 {
-//STRIP001     return bInLinkUpdate || IsInDdeLinkUpdate();
-//STRIP001 }
 
 /*N*/ void ScDocument::UpdateDdeLinks()
 /*N*/ {
 /*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
-//STRIP001     {
-//STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001         USHORT nCount = rLinks.Count();
-//STRIP001         USHORT i;
-//STRIP001
-//STRIP001         //  #49226# falls das Updaten laenger dauert, erstmal alle Werte
-//STRIP001         //  zuruecksetzen, damit nichts altes (falsches) stehen bleibt
-//STRIP001         BOOL bAny = FALSE;
-//STRIP001         for (i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScDdeLink))
-//STRIP001             {
-//STRIP001                 ((ScDdeLink*)pBase)->ResetValue();
-//STRIP001                 bAny = TRUE;
-//STRIP001             }
-//STRIP001         }
-//STRIP001         if (bAny)
-//STRIP001         {
-//STRIP001             //  Formeln berechnen und painten wie im TrackTimeHdl
-//STRIP001             TrackFormulas();
-//STRIP001             pShell->Broadcast( SfxSimpleHint( FID_DATACHANGED ) );
-//STRIP001             ResetChanged( ScRange(0,0,0,MAXCOL,MAXROW,MAXTAB) );
-//STRIP001
-//STRIP001             //  wenn FID_DATACHANGED irgendwann mal asynchron werden sollte
-//STRIP001             //  (z.B. mit Invalidate am Window), muss hier ein Update erzwungen werden.
-//STRIP001         }
-//STRIP001
-//STRIP001         //  nun wirklich updaten...
-//STRIP001         for (i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScDdeLink))
-//STRIP001                 ((ScDdeLink*)pBase)->TryUpdate();       // bei DDE-Links TryUpdate statt Update
-//STRIP001         }
-//STRIP001     }
 /*N*/ }
 
 /*N*/ BOOL ScDocument::UpdateDdeLink( const String& rAppl, const String& rTopic, const String& rItem )
@@ -1060,68 +469,11 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     BOOL bAnyLeft = FALSE;
 /*N*/     if (pLinkManager)
 /*N*/     {
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001         USHORT nCount = rLinks.Count();
-//STRIP001         for (USHORT i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScDdeLink))
-//STRIP001             {
-//STRIP001                 ScDdeLink* pDdeLink = (ScDdeLink*)pBase;
-//STRIP001                 if ( pDdeLink->GetAppl() == rAppl &&
-//STRIP001                      pDdeLink->GetTopic() == rTopic &&
-//STRIP001                      pDdeLink->GetItem() == rItem )
-//STRIP001                 {
-//STRIP001                     pDdeLink->TryUpdate();
-//STRIP001                     bFound = TRUE;          // koennen theoretisch mehrere sein (Mode), darum weitersuchen
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
 /*N*/     }
 /*N*/   return bFound;
 /*N*/ }
 
-//STRIP001 void ScDocument::DisconnectDdeLinks()
-//STRIP001 {
-//STRIP001  if (pLinkManager)
-//STRIP001  {
-//STRIP001      const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001      USHORT nCount = rLinks.Count();
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001          if (pBase->ISA(ScDdeLink))
-//STRIP001              pBase->Disconnect();            // bleibt im LinkManager eingetragen
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScDocument::CopyDdeLinks( ScDocument* pDestDoc ) const
-//STRIP001 {
-//STRIP001  if (bIsClip)        // aus Stream erzeugen
-//STRIP001  {
-//STRIP001      if (pClipData)
-//STRIP001      {
-//STRIP001          pClipData->Seek(0);
-//STRIP001          pDestDoc->LoadDdeLinks(*pClipData);
-//STRIP001      }
-//STRIP001  }
-//STRIP001     else if (pLinkManager)              // Links direkt kopieren
-//STRIP001  {
-//STRIP001      const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001      USHORT nCount = rLinks.Count();
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001          if (pBase->ISA(ScDdeLink))
-//STRIP001          {
-//STRIP001              ScDdeLink* pNew = new ScDdeLink( pDestDoc, *(ScDdeLink*)pBase );
-//STRIP001
-//STRIP001              pDestDoc->pLinkManager->InsertDDELink( pNew,
-//STRIP001                              pNew->GetAppl(), pNew->GetTopic(), pNew->GetItem() );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ USHORT ScDocument::GetDdeLinkCount() const
 /*N*/ {
@@ -1221,23 +573,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     BOOL bAnyLeft = FALSE;
 /*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix* pMatrix, USHORT nCol, USHORT nRow, String& rStrValue, double& rDoubValue, BOOL& bIsString)
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pMatrix)
-//STRIP001  {
-//STRIP001      BOOL bIsEmpty = pMatrix->IsEmpty(nCol, nRow);
-//STRIP001         if (bIsEmpty)
-//STRIP001         {
-//STRIP001             bIsString = TRUE;
-//STRIP001             rStrValue.Erase();
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             bIsString = pMatrix->IsString(nCol, nRow);
-//STRIP001             if (bIsString)
-//STRIP001                 rStrValue = pMatrix->GetString(nCol, nRow);
-//STRIP001             else
-//STRIP001                 rDoubValue = pMatrix->GetDouble(nCol, nRow);
-//STRIP001         }
-//STRIP001      return bIsEmpty;
-//STRIP001  }
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -1245,104 +580,23 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pMatrix)
 /*N*/ {
     //  DDE-Link anlegen und nicht updaten (z.B. fuer Excel-Import,
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  damit nicht ohne Nachfrage Verbindungen aufgebaut werden)
-//STRIP001  //  zuerst suchen, ob schon vorhanden
-//STRIP001  //! Dde-Links (zusaetzlich) effizienter am Dokument speichern?
-//STRIP001     if (pLinkManager)
-//STRIP001     {
-//STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001         USHORT nCount = rLinks.Count();
-//STRIP001         for (USHORT i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScDdeLink))
-//STRIP001             {
-//STRIP001                 ScDdeLink* pLink = (ScDdeLink*)pBase;
-//STRIP001                 if ( pLink->GetAppl() == rAppl &&
-//STRIP001                      pLink->GetTopic() == rTopic &&
-//STRIP001                      pLink->GetItem() == rItem &&
-//STRIP001                      pLink->GetMode() == nMode )
-//STRIP001                     return;                                     // dann nichts tun
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         //  neu anlegen, aber kein TryUpdate
-//STRIP001         ScDdeLink* pNew = new ScDdeLink( this, rAppl, rTopic, rItem, nMode );
-//STRIP001         pLinkManager->InsertDDELink( pNew, rAppl, rTopic, rItem );
-//STRIP001     }
 /*N*/ }
 
 /*N*/ BOOL ScDocument::FindDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode, USHORT& nPos )
 /*N*/ {
 /*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
-//STRIP001     {
-//STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001         USHORT nCount = rLinks.Count();
-//STRIP001         USHORT nDdeCount = 0;
-//STRIP001         for (USHORT i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScDdeLink))
-//STRIP001             {
-//STRIP001                 ScDdeLink* pLink = (ScDdeLink*)pBase;
-//STRIP001                 if ( pLink->GetAppl() == rAppl &&
-//STRIP001                      pLink->GetTopic() == rTopic &&
-//STRIP001                      pLink->GetItem() == rItem &&
-//STRIP001                      (nMode == SC_DDE_IGNOREMODE || pLink->GetMode() == nMode) )
-//STRIP001                 {
-//STRIP001                     nPos = nDdeCount;
-//STRIP001                     return TRUE;
-//STRIP001                 }
-//STRIP001                 nDdeCount++;
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
 /*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT nPos, USHORT nCols, USHORT nRows, ScMatrix*& pMatrix)
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   USHORT nDdeCount = 0;
-//STRIP001  if (pLinkManager)
-//STRIP001  {
-//STRIP001      const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001      USHORT nCount = rLinks.Count();
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001          if (pBase->ISA(ScDdeLink))
-//STRIP001          {
-//STRIP001              if ( nDdeCount == nPos )
-//STRIP001              {
-//STRIP001                  ScDdeLink* pDde = (ScDdeLink*)pBase;
-//STRIP001                  pDde->NewData(nCols, nRows);
-//STRIP001                  pMatrix = pDde->GetResult();
-//STRIP001                  if (pMatrix)
-//STRIP001                      return TRUE;
-//STRIP001                  else
-//STRIP001                      return FALSE;
-//STRIP001              }
-//STRIP001              ++nDdeCount;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
 /*N*/   return FALSE;
 /*N*/ }
 
 void ScDocument::SetDdeLinkResult(ScMatrix* pMatrix, const USHORT nCol, const USHORT nRow, const String& rStrValue, const double& rDoubValue, BOOL bString, BOOL bEmpty)
 {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix");
-//STRIP001  if (pMatrix)
-//STRIP001  {
-//STRIP001      if(bEmpty)
-//STRIP001          pMatrix->PutEmpty(nCol, nRow);
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if (bString)
-//STRIP001              pMatrix->PutString(rStrValue, nCol, nRow);
-//STRIP001          else
-//STRIP001              pMatrix->PutDouble(rDoubValue, nCol, nRow);
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -1364,16 +618,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/ void ScDocument::UpdateAreaLinks()
 /*N*/ {
 /*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
-//STRIP001     {
-//STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-//STRIP001         USHORT nCount = rLinks.Count();
-//STRIP001         for (USHORT i=0; i<nCount; i++)
-//STRIP001         {
-//STRIP001             ::so3::SvBaseLink* pBase = *rLinks[i];
-//STRIP001             if (pBase->ISA(ScAreaLink))
-//STRIP001                 pBase->Update();
-//STRIP001         }
-//STRIP001     }
 /*N*/ }
 
 /*N*/ void ScDocument::UpdateRefAreaLinks( UpdateRefMode eUpdateRefMode,
@@ -1470,23 +714,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aHdr.StartEntry();
 /*?*/
-//STRIP001 /*?*/        rStream.ReadByteString( aFile,   rStream.GetStreamCharSet() );
-//STRIP001 /*?*/        rStream.ReadByteString( aFilter, rStream.GetStreamCharSet() );
-//STRIP001 /*?*/        rStream.ReadByteString( aSource, rStream.GetStreamCharSet() );
-//STRIP001 /*?*/        rStream >> aDestArea;
-//STRIP001 /*?*/        if ( aHdr.BytesLeft() )         // Filter-Optionen ab 336
-//STRIP001 /*?*/            rStream.ReadByteString( aOptions, rStream.GetStreamCharSet() );
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            aOptions.Erase();
-//STRIP001 /*?*/        aHdr.EndEntry();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScAreaLink* pLink = new ScAreaLink( pShell, aFile, aFilter, aOptions,
-//STRIP001 /*?*/                                            aSource, aDestArea.aStart, 0 );
-//STRIP001 /*?*/        pLink->SetInCreate( TRUE );
-//STRIP001 /*?*/        pLink->SetDestArea( aDestArea );
-//STRIP001 /*?*/        pLinkManager->InsertFileLink( *pLink, OBJECT_CLIENT_FILE, aFile, &aFilter, &aSource );
-//STRIP001 /*?*/        pLink->Update();
-//STRIP001 /*?*/        pLink->SetInCreate( FALSE );
 /*N*/   }
 /*N*/ }
 
@@ -1494,11 +721,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 //------------------------------------------------------------------------
 
 // TimerDelays etc.
-//STRIP001 void ScDocument::KeyInput( const KeyEvent& rKEvt )
-//STRIP001 {
-//STRIP001  if ( pChartListenerCollection->GetCount() )
-//STRIP001      pChartListenerCollection->StartTimer();
-//STRIP001 }
 
 //  ----------------------------------------------------------------------------
 
@@ -1510,13 +732,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/   return TRUE;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::HasMacroCallsAfterLoad()
-//STRIP001 {
-//STRIP001     //  not used any longer
-//STRIP001
-//STRIP001     DBG_ERROR("obsolete method HasMacroCallsAfterLoad called");
-//STRIP001     return FALSE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -1544,149 +759,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 
 //------------------------------------------------------------------------
 
-//STRIP001 void lcl_TransliterateEditEngine( ScEditEngineDefaulter& rEngine,
-//STRIP001                              utl::TransliterationWrapper& rTranslitarationWrapper,
-//STRIP001                              BOOL bConsiderLanguage, ScDocument* pDoc )
-//STRIP001 {
-//STRIP001  //! should use TransliterateText method of EditEngine instead, when available!
-//STRIP001
-//STRIP001  sal_uInt16 nLanguage = LANGUAGE_SYSTEM;
-//STRIP001
-//STRIP001  USHORT nParCount = rEngine.GetParagraphCount();
-//STRIP001  for (USHORT nPar=0; nPar<nParCount; nPar++)
-//STRIP001  {
-//STRIP001      SvUShorts aPortions;
-//STRIP001      rEngine.GetPortions( (USHORT)nPar, aPortions );
-//STRIP001
-//STRIP001      for ( USHORT nPos = aPortions.Count(); nPos; )
-//STRIP001      {
-//STRIP001          --nPos;
-//STRIP001          USHORT nEnd = aPortions.GetObject( nPos );
-//STRIP001          USHORT nStart = nPos ? aPortions.GetObject( nPos - 1 ) : 0;
-//STRIP001
-//STRIP001          ESelection aSel( nPar, nStart, nPar, nEnd );
-//STRIP001          String aOldStr = rEngine.GetText( aSel );
-//STRIP001          SfxItemSet aAttr = rEngine.GetAttribs( aSel );
-//STRIP001
-//STRIP001          if ( aAttr.GetItemState( EE_FEATURE_FIELD ) != SFX_ITEM_ON )    // fields are not touched
-//STRIP001          {
-//STRIP001              if ( bConsiderLanguage )
-//STRIP001              {
-//STRIP001                  BYTE nScript = pDoc->GetStringScriptType( aOldStr );
-//STRIP001                  USHORT nWhich = ( nScript == SCRIPTTYPE_ASIAN ) ? EE_CHAR_LANGUAGE_CJK :
-//STRIP001                                  ( ( nScript == SCRIPTTYPE_COMPLEX ) ? EE_CHAR_LANGUAGE_CTL :
-//STRIP001                                                                          EE_CHAR_LANGUAGE );
-//STRIP001                  nLanguage = ((const SvxLanguageItem&)aAttr.Get(nWhich)).GetValue();
-//STRIP001              }
-//STRIP001
-//STRIP001              ::com::sun::star::uno::Sequence<sal_Int32> aOffsets;
-//STRIP001              String aNewStr = rTranslitarationWrapper.transliterate( aOldStr, nLanguage, 0, aOldStr.Len(), &aOffsets );
-//STRIP001
-//STRIP001              if ( aNewStr != aOldStr )
-//STRIP001              {
-//STRIP001                  // replace string, keep attributes
-//STRIP001
-//STRIP001                  rEngine.QuickInsertText( aNewStr, aSel );
-//STRIP001                  aSel.nEndPos = aSel.nStartPos + aNewStr.Len();
-//STRIP001                  rEngine.QuickSetAttribs( aAttr, aSel );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScDocument::TransliterateText( const ScMarkData& rMultiMark, sal_Int32 nType )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( rMultiMark.IsMultiMarked(), "TransliterateText: no selection" );
-//STRIP001
-//STRIP001  utl::TransliterationWrapper aTranslitarationWrapper( xServiceManager, nType );
-//STRIP001  BOOL bConsiderLanguage = aTranslitarationWrapper.needLanguageForTheMode();
-//STRIP001  sal_uInt16 nLanguage = LANGUAGE_SYSTEM;
-//STRIP001
-//STRIP001  ScEditEngineDefaulter* pEngine = NULL;      // not using pEditEngine member because of defaults
-//STRIP001
-//STRIP001  USHORT nCount = GetTableCount();
-//STRIP001  for (USHORT nTab = 0; nTab < nCount; nTab++)
-//STRIP001      if ( pTab[nTab] && rMultiMark.GetTableSelect(nTab) )
-//STRIP001      {
-//STRIP001          USHORT nCol = 0;
-//STRIP001          USHORT nRow = 0;
-//STRIP001
-//STRIP001          BOOL bFound = rMultiMark.IsCellMarked( nCol, nRow );
-//STRIP001          if (!bFound)
-//STRIP001              bFound = GetNextMarkedCell( nCol, nRow, nTab, rMultiMark );
-//STRIP001
-//STRIP001          while (bFound)
-//STRIP001          {
-//STRIP001              const ScBaseCell* pCell = GetCell( ScAddress( nCol, nRow, nTab ) );
-//STRIP001              CellType eType = pCell ? pCell->GetCellType() : CELLTYPE_NONE;
-//STRIP001
-//STRIP001              if ( eType == CELLTYPE_STRING )
-//STRIP001              {
-//STRIP001                  String aOldStr;
-//STRIP001                  ((const ScStringCell*)pCell)->GetString(aOldStr);
-//STRIP001                  xub_StrLen nOldLen = aOldStr.Len();
-//STRIP001
-//STRIP001                  if ( bConsiderLanguage )
-//STRIP001                  {
-//STRIP001                      BYTE nScript = GetStringScriptType( aOldStr );      //! cell script type?
-//STRIP001                      USHORT nWhich = ( nScript == SCRIPTTYPE_ASIAN ) ? ATTR_CJK_FONT_LANGUAGE :
-//STRIP001                                      ( ( nScript == SCRIPTTYPE_COMPLEX ) ? ATTR_CTL_FONT_LANGUAGE :
-//STRIP001                                                                              ATTR_FONT_LANGUAGE );
-//STRIP001                      nLanguage = ((const SvxLanguageItem*)GetAttr( nCol, nRow, nTab, nWhich ))->GetValue();
-//STRIP001                  }
-//STRIP001
-//STRIP001                  ::com::sun::star::uno::Sequence<sal_Int32> aOffsets;
-//STRIP001                  String aNewStr = aTranslitarationWrapper.transliterate( aOldStr, nLanguage, 0, nOldLen, &aOffsets );
-//STRIP001
-//STRIP001                  if ( aNewStr != aOldStr )
-//STRIP001                      PutCell( nCol, nRow, nTab, new ScStringCell( aNewStr ) );
-//STRIP001              }
-//STRIP001              else if ( eType == CELLTYPE_EDIT )
-//STRIP001              {
-//STRIP001                  if (!pEngine)
-//STRIP001                      pEngine = new ScFieldEditEngine( GetEnginePool(), GetEditPool() );
-//STRIP001
-//STRIP001                  // defaults from cell attributes must be set so right language is used
-//STRIP001                  const ScPatternAttr* pPattern = GetPattern( nCol, nRow, nTab );
-//STRIP001                  SfxItemSet* pDefaults = new SfxItemSet( pEngine->GetEmptyItemSet() );
-//STRIP001                  pPattern->FillEditItemSet( pDefaults );
-//STRIP001                  pEngine->SetDefaults( pDefaults, TRUE );
-//STRIP001
-//STRIP001                  const EditTextObject* pData = ((const ScEditCell*)pCell)->GetData();
-//STRIP001                  pEngine->SetText( *pData );
-//STRIP001
-//STRIP001                  pEngine->ClearModifyFlag();
-//STRIP001
-//STRIP001                  lcl_TransliterateEditEngine( *pEngine, aTranslitarationWrapper, bConsiderLanguage, this );
-//STRIP001
-//STRIP001                  if ( pEngine->IsModified() )
-//STRIP001                  {
-//STRIP001                      ScEditAttrTester aTester( pEngine );
-//STRIP001                      if ( aTester.NeedsObject() )
-//STRIP001                      {
-//STRIP001                          // remove defaults (paragraph attributes) before creating text object
-//STRIP001                          SfxItemSet* pEmpty = new SfxItemSet( pEngine->GetEmptyItemSet() );
-//STRIP001                          pEngine->SetDefaults( pEmpty, TRUE );
-//STRIP001
-//STRIP001                          EditTextObject* pNewData = pEngine->CreateTextObject();
-//STRIP001                          PutCell( nCol, nRow, nTab,
-//STRIP001                              new ScEditCell( pNewData, this, pEngine->GetEditTextObjectPool() ) );
-//STRIP001                          delete pNewData;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          String aNewStr = pEngine->GetText();
-//STRIP001                          PutCell( nCol, nRow, nTab, new ScStringCell( aNewStr ) );
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              bFound = GetNextMarkedCell( nCol, nRow, nTab, rMultiMark );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001  delete pEngine;
-//STRIP001 }
 
 }
