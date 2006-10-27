@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_portxt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:31:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:13:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,36 +41,12 @@
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>       // CH_TXTATR
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx> // ASSERT
-// auto strip #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTCFG_HXX
-// auto strip #include <txtcfg.hxx>
-// auto strip #endif
-// auto strip #ifndef _PORLAY_HXX
-// auto strip #include <porlay.hxx>
-// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>    // SwTxtGuess, Zeilenumbruch
 #endif
-// auto strip #ifndef _PORGLUE_HXX
-// auto strip #include <porglue.hxx>
-// auto strip #endif
-// auto strip #ifndef _POREXP_HXX
-// auto strip #include <porexp.hxx> // HyphPortion
-// auto strip #endif
-// auto strip #ifndef _PORRST_HXX
-// auto strip #include <porrst.hxx> // SwKernPortion
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -79,9 +55,6 @@
 #ifndef _PORFLD_HXX
 #include <porfld.hxx>       // SwFldPortion
 #endif
-// auto strip #ifndef _WRONG_HXX
-// auto strip #include <wrong.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #if OSL_DEBUG_LEVEL > 1
@@ -165,14 +138,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/         if ( LANGUAGE_THAI == aLang )
 /*N*/         {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             nCnt = SwScriptInfo::ThaiJustify( *pStr, 0, 0, nPos, nEnd - nPos );
-//STRIP001 /*?*/
-//STRIP001 /*?*/             const SwLinePortion* pPor = rPor.GetPortion();
-//STRIP001 /*?*/             if ( pPor && pPor->IsKernPortion() )
-//STRIP001 /*?*/                 pPor = pPor->GetPortion();
-//STRIP001 /*?*/
-//STRIP001 /*?*/             if ( nCnt && ( ! pPor || pPor->IsHolePortion() || pPor->InFixMargGrp() ) )
-//STRIP001 /*?*/                 --nCnt;
-//STRIP001 /*?*/
 /*?*/             return nCnt;
 /*N*/         }
 /*N*/     }
@@ -182,10 +147,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/     if ( nEnd > nPos && pSI && COMPLEX == nScript )
 /*N*/     {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         LanguageType aLang =
-//STRIP001 /*?*/             rInf.GetTxtFrm()->GetTxtNode()->GetLang( rInf.GetIdx(), 1, nScript );
-//STRIP001 /*?*/
-//STRIP001 /*?*/         if ( SwScriptInfo::IsArabicLanguage( aLang ) )
-//STRIP001 /*?*/             return pSI->KashidaJustify( 0, 0, nPos, nEnd - nPos );
 /*N*/     }
 /*N*/ #endif
 /*N*/
@@ -568,23 +529,11 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 
-//STRIP001 xub_StrLen SwTxtPortion::GetCrsrOfst( const KSHORT nOfst ) const
-//STRIP001 {
-//STRIP001  ASSERT( !this, "SwTxtPortion::GetCrsrOfst: don't use this method!" );
-//STRIP001  return SwLinePortion::GetCrsrOfst( nOfst );
-//STRIP001 }
 
 /*************************************************************************
  *               SwTxtPortion::GetCrsrOfst()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwTxtPortion::GetCrsrOfst( const KSHORT nOfst,
-//STRIP001                                SwTxtSizeInfo &rSizeInf ) const
-//STRIP001 {
-//STRIP001     rSizeInf.SetLen( rSizeInf.GetTxtBreak( nOfst, nLineLength )
-//STRIP001                    - rSizeInf.GetIdx() );
-//STRIP001     return rSizeInf.GetLen();
-//STRIP001 }
 
 /*************************************************************************
  *                virtual SwTxtPortion::GetTxtSize()
@@ -602,23 +551,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 
-//STRIP001 void SwTxtPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( GetLen() )
-//STRIP001  {
-//STRIP001      rInf.DrawBackBrush( *this );
-//STRIP001
-//STRIP001         // do we have to repaint a post it portion?
-//STRIP001         if( rInf.OnWin() && pPortion && !pPortion->Width() )
-//STRIP001             pPortion->PrePaint( rInf, this );
-//STRIP001
-//STRIP001      const SwWrongList *pWrongList = rInf.GetpWrongList();
-//STRIP001      if ( pWrongList )
-//STRIP001          rInf.DrawWrongText( *this, rInf.GetLen(), sal_False );
-//STRIP001      else
-//STRIP001          rInf.DrawText( *this, rInf.GetLen(), sal_False );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwTxtPortion::GetExpTxt()
@@ -669,62 +601,11 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   return nCnt;
 /*N*/ }
 
-//STRIP001 long SwTxtPortion::CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const
-//STRIP001 {
-//STRIP001      xub_StrLen nCnt = 0;
-//STRIP001  if ( InExpGrp() )
-//STRIP001  {
-//STRIP001      if( !IsBlankPortion() && !InNumberGrp() )
-//STRIP001      {
-//STRIP001          // Bei OnWin() wird anstatt eines Leerstrings gern mal ein Blank
-//STRIP001          // zurueckgeliefert, das koennen wir hier aber gar nicht gebrauchen
-//STRIP001          sal_Bool bOldOnWin = rInf.OnWin();
-//STRIP001          ((SwTxtSizeInfo &)rInf).SetOnWin( sal_False );
-//STRIP001
-//STRIP001          XubString aStr( aEmptyStr );
-//STRIP001          GetExpTxt( rInf, aStr );
-//STRIP001          ((SwTxtSizeInfo &)rInf).SetOnWin( bOldOnWin );
-//STRIP001          if( nSpaceAdd > 0 )
-//STRIP001                 nCnt += lcl_AddSpace( rInf, &aStr, *this );
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nSpaceAdd = -nSpaceAdd;
-//STRIP001              nCnt = aStr.Len();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if( !IsDropPortion() )
-//STRIP001  {
-//STRIP001      if( nSpaceAdd > 0 )
-//STRIP001             nCnt += lcl_AddSpace( rInf, 0, *this );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nSpaceAdd = -nSpaceAdd;
-//STRIP001          nCnt = GetLen();
-//STRIP001             SwLinePortion* pPor = GetPortion();
-//STRIP001
-//STRIP001             // we do not want an extra space in front of margin portions
-//STRIP001             if ( ! nCnt )
-//STRIP001                 return 0;
-//STRIP001
-//STRIP001             while ( pPor && !pPor->Width() && ! pPor->IsHolePortion() )
-//STRIP001                 pPor = pPor->GetPortion();
-//STRIP001
-//STRIP001             if ( !pPor || pPor->InFixMargGrp() || pPor->IsHolePortion() )
-//STRIP001                 return ( nCnt - 1 ) * nSpaceAdd;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return nCnt * nSpaceAdd;
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwTxtPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwTxtPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     rPH.Text( GetLen(), GetWhichPor() );
-//STRIP001 }
 
 /*************************************************************************
  *                      class SwHolePortion
@@ -749,9 +630,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 
-//STRIP001 void SwHolePortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwHolePortion::Format()
@@ -759,18 +637,10 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 
-//STRIP001 sal_Bool SwHolePortion::Format( SwTxtFormatInfo &rInf )
-//STRIP001 {
-//STRIP001  return rInf.IsFull() || rInf.X() >= rInf.Width();
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwHolePortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwHolePortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     rPH.Text( GetLen(), GetWhichPor() );
-//STRIP001 }
 
 }

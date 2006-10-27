@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:32:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:13:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #include "hintids.hxx"
 
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
@@ -58,20 +57,14 @@
 #include "rootfrm.hxx"  // Info ueber virt. PageNumber
 #include "pagefrm.hxx"  // NewFldPortion, GetVirtPageNum()
 #include "ndtxt.hxx"    // NewNumberPortion, pHints->GetNum()
-// auto strip #include "fldbas.hxx"      // SwField
 #include "viewopt.hxx"  // SwViewOptions
 #include "flyfrm.hxx"   //IsInBody()
 #include "viewimp.hxx"
-// auto strip #include "txtatr.hxx"   // SwTxtFld
 
 #include "txtcfg.hxx"
 
-// auto strip #include "swfont.hxx"   // NewFldPortion, new SwFont
-// auto strip #include "fntcache.hxx"   // NewFldPortion, SwFntAccess
 
-// auto strip #include "porfld.hxx"
 #include "porftn.hxx"   // NewExtraPortion
-// auto strip #include "porref.hxx"   // NewExtraPortion
 #include "portox.hxx"   // NewExtraPortion
 #include "porhyph.hxx"   // NewExtraPortion
 #include "porfly.hxx"   // NewExtraPortion
@@ -82,9 +75,6 @@
 #include "expfld.hxx"
 #include "docufld.hxx"
 #include "pagedesc.hxx"  // NewFldPortion, GetNum()
-// auto strip #ifndef _PORMULTI_HXX
-// auto strip #include <pormulti.hxx>   // SwMultiPortion
-// auto strip #endif
 namespace binfilter {
 
 
@@ -195,13 +185,11 @@ namespace binfilter {
                         /*N*/               if( !::binfilter::lcl_IsInBody( pFrame ) )
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pExpFld->ChgBodyTxtFlag( sal_False );
-//STRIP001 /*?*/                    pExpFld->ChangeExpansion( *pFrame, *((SwTxtFld*)pHint) );
 /*N*/               }
 /*N*/               else if( !pExpFld->IsInBodyTxt() )
 /*N*/               {
 /*N*/                   // war vorher anders, also erst expandieren, dann umsetzen!!
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pExpFld->ChangeExpansion( *pFrame, *((SwTxtFld*)pHint) );
-//STRIP001 /*?*/                    pExpFld->ChgBodyTxtFlag( sal_True );
 /*N*/               }
 /*N*/           }
 /*N*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
@@ -316,7 +304,6 @@ namespace binfilter {
 /*?*/       case RES_TXTATR_HARDBLANK :
 /*?*/       {
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           pRet = new SwBlankPortion( ((SwTxtHardBlank*)pHint)->GetChar() );
-//STRIP001 /*?*/            break;
 /*?*/       }
 /*N*/       case RES_TXTATR_FIELD :
 /*N*/       {
@@ -325,9 +312,6 @@ namespace binfilter {
 /*N*/       }
 /*?*/       case RES_TXTATR_REFMARK :
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       {
-//STRIP001 /*?*/            pRet = new SwIsoRefPortion;
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/        }
 /*N*/       case RES_TXTATR_TOXMARK :
 /*N*/       {
 /*N*/           pRet = new SwIsoToxPortion;

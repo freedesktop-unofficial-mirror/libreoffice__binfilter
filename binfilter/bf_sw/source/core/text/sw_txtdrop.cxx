@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtdrop.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:32:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:13:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -54,15 +51,9 @@
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>   // Format()
-// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>  // SwViewOption
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
@@ -72,21 +63,9 @@
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTPAINT_HXX
-// auto strip #include <txtpaint.hxx> // SwSaveClip
-// auto strip #endif
-// auto strip #ifndef _TXTFLY_HXX
-// auto strip #include <txtfly.hxx>   // Format()
-// auto strip #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>    // pBlink
 #endif
-// auto strip #ifndef _TXATBASE_HXX
-// auto strip #include <txatbase.hxx>
-// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
@@ -275,126 +254,16 @@ public:
 
 // Die Breite manipulieren, sonst werden die Buchstaben gestretcht
 
-//STRIP001 void SwDropPortion::PaintTxt( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001     if ( rInf.OnWin() &&
-//STRIP001         !rInf.GetOpt().IsPagePreview() && !rInf.GetOpt().IsReadonly() && SwViewOption::IsFieldShadings()    )
-//STRIP001         rInf.DrawBackground( *this );
-//STRIP001
-//STRIP001     ASSERT( nDropHeight && pPart && nLines != 1, "Drop Portion painted twice" );
-//STRIP001
-//STRIP001     const SwDropPortionPart* pCurrPart = GetPart();
-//STRIP001     const xub_StrLen nOldLen = GetLen();
-//STRIP001
-//STRIP001     const SwTwips nBasePosY  = rInf.Y();
-//STRIP001     ((SwTxtPaintInfo&)rInf).Y( nBasePosY + nY );
-//STRIP001     SwDropSave aSave( rInf );
-//STRIP001              // for text inside drop portions we let vcl handle the text directions
-//STRIP001     SwLayoutModeModifier aLayoutModeModifier( *rInf.GetOut() );
-//STRIP001     aLayoutModeModifier.SetAuto();
-//STRIP001
-//STRIP001     while ( pCurrPart )
-//STRIP001     {
-//STRIP001         ((SwDropPortion*)this)->SetLen( pCurrPart->GetLen() );
-//STRIP001         ((SwTxtPaintInfo&)rInf).SetLen( pCurrPart->GetLen() );
-//STRIP001         SwFontSave aSave( rInf, &pCurrPart->GetFont() );
-//STRIP001
-//STRIP001         SwTxtPortion::Paint( rInf );
-//STRIP001
-//STRIP001         ((SwTxtPaintInfo&)rInf).SetIdx( rInf.GetIdx() + pCurrPart->GetLen() );
-//STRIP001         ((SwTxtPaintInfo&)rInf).X( rInf.X() + pCurrPart->GetWidth() );
-//STRIP001         pCurrPart = pCurrPart->GetFollow();
-//STRIP001     }
-//STRIP001
-//STRIP001     ((SwTxtPaintInfo&)rInf).Y( nBasePosY );
-//STRIP001     ((SwDropPortion*)this)->SetLen( nOldLen );
-//STRIP001 }
 
 /*************************************************************************
  *                   SwDropPortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwDropPortion::PaintDrop( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001     // ganz normale Ausgabe wird während des normalen Paints erledigt
-//STRIP001     if( ! nDropHeight || ! pPart || nLines == 1 )
-//STRIP001      return;
-//STRIP001
-//STRIP001  // Luegenwerte einstellen!
-//STRIP001     const KSHORT nOldHeight = Height();
-//STRIP001     const KSHORT nOldWidth  = Width();
-//STRIP001     const KSHORT nOldAscent = GetAscent();
-//STRIP001     const SwTwips nOldPosY  = rInf.Y();
-//STRIP001     const KSHORT nOldPosX   = (KSHORT)rInf.X();
-//STRIP001  const SwParaPortion *pPara = rInf.GetParaPortion();
-//STRIP001  const Point aOutPos( nOldPosX + nX, nOldPosY - pPara->GetAscent()
-//STRIP001                       - pPara->GetRealHeight() + pPara->Height() );
-//STRIP001  // Retusche nachholen.
-//STRIP001
-//STRIP001     // Set baseline
-//STRIP001     ((SwTxtPaintInfo&)rInf).Y( aOutPos.Y() + nDropHeight );
-//STRIP001
-//STRIP001     // for background
-//STRIP001     ((SwDropPortion*)this)->Height( nDropHeight + nDropDescent );
-//STRIP001     ((SwDropPortion*)this)->Width( Width() - nX );
-//STRIP001     ((SwDropPortion*)this)->SetAscent( nDropHeight );
-//STRIP001
-//STRIP001  // Clipregion auf uns einstellen!
-//STRIP001  // Und zwar immer, und nie mit dem bestehenden ClipRect
-//STRIP001  // verrechnen, weil dies auf die Zeile eingestellt sein koennte.
-//STRIP001
-//STRIP001  SwRect aClipRect;
-//STRIP001  if ( rInf.OnWin() )
-//STRIP001  {
-//STRIP001      aClipRect = SwRect( aOutPos, SvLSize() );
-//STRIP001      aClipRect.Intersection( rInf.GetPaintRect() );
-//STRIP001  }
-//STRIP001  SwSaveClip aClip( (OutputDevice*)rInf.GetOut() );
-//STRIP001 #ifdef VERTICAL_LAYOUT
-//STRIP001     aClip.ChgClip( aClipRect, rInf.GetTxtFrm() );
-//STRIP001 #else
-//STRIP001  aClip.ChgClip( aClipRect );
-//STRIP001 #endif
-//STRIP001     // Das machen, was man sonst nur macht ...
-//STRIP001     PaintTxt( rInf );
-//STRIP001
-//STRIP001     // Alte Werte sichern
-//STRIP001     ((SwDropPortion*)this)->Height( nOldHeight );
-//STRIP001     ((SwDropPortion*)this)->Width( nOldWidth );
-//STRIP001     ((SwDropPortion*)this)->SetAscent( nOldAscent );
-//STRIP001     ((SwTxtPaintInfo&)rInf).Y( nOldPosY );
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwDropPortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwDropPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  // ganz normale Ausgabe wird hier erledigt.
-//STRIP001     if( ! nDropHeight || ! pPart || 1 == nLines )
-//STRIP001     {
-//STRIP001         if ( rInf.OnWin() &&
-//STRIP001             !rInf.GetOpt().IsPagePreview() && !rInf.GetOpt().IsReadonly() && SwViewOption::IsFieldShadings()       )
-//STRIP001             rInf.DrawBackground( *this );
-//STRIP001
-//STRIP001      // make sure that font is not rotated
-//STRIP001      SwFont* pTmpFont = 0;
-//STRIP001         if ( rInf.GetFont()->GetOrientation( rInf.GetTxtFrm()->IsVertical() ) )
-//STRIP001      {
-//STRIP001          pTmpFont = new SwFont( *rInf.GetFont() );
-//STRIP001          pTmpFont->SetVertical( 0, rInf.GetTxtFrm()->IsVertical() );
-//STRIP001      }
-//STRIP001
-//STRIP001      SwFontSave aSave( rInf, pTmpFont );
-//STRIP001         // for text inside drop portions we let vcl handle the text directions
-//STRIP001         SwLayoutModeModifier aLayoutModeModifier( *rInf.GetOut() );
-//STRIP001         aLayoutModeModifier.SetAuto();
-//STRIP001
-//STRIP001      SwTxtPortion::Paint( rInf );
-//STRIP001         delete pTmpFont;
-//STRIP001     }
-//STRIP001 }
 
 /*************************************************************************
  *                virtual Format()
@@ -422,46 +291,11 @@ public:
  *************************************************************************/
 
 
-//STRIP001 SwPosSize SwDropPortion::GetTxtSize( const SwTxtSizeInfo &rInf ) const
-//STRIP001 {
-//STRIP001     USHORT nX = 0;
-//STRIP001     xub_StrLen nIdx = 0;
-//STRIP001
-//STRIP001     const SwDropPortionPart* pCurrPart = GetPart();
-//STRIP001
-//STRIP001     // skip parts
-//STRIP001     while ( pCurrPart && nIdx + pCurrPart->GetLen() < rInf.GetLen() )
-//STRIP001     {
-//STRIP001         nX += pCurrPart->GetWidth();
-//STRIP001         nIdx += pCurrPart->GetLen();
-//STRIP001         pCurrPart = pCurrPart->GetFollow();
-//STRIP001     }
-//STRIP001
-//STRIP001     xub_StrLen nOldIdx = rInf.GetIdx();
-//STRIP001     xub_StrLen nOldLen = rInf.GetLen();
-//STRIP001
-//STRIP001     ((SwTxtSizeInfo&)rInf).SetIdx( nIdx );
-//STRIP001     ((SwTxtSizeInfo&)rInf).SetLen( rInf.GetLen() - nIdx );
-//STRIP001
-//STRIP001     // robust
-//STRIP001     SwFontSave aSave( rInf, pCurrPart ? &pCurrPart->GetFont() : 0 );
-//STRIP001     SwPosSize aPosSize( SwTxtPortion::GetTxtSize( rInf ) );
-//STRIP001     aPosSize.Width( aPosSize.Width() + nX );
-//STRIP001
-//STRIP001     ((SwTxtSizeInfo&)rInf).SetIdx( nOldIdx );
-//STRIP001     ((SwTxtSizeInfo&)rInf).SetLen( nOldLen );
-//STRIP001
-//STRIP001     return aPosSize;
-//STRIP001 }
 
 /*************************************************************************
  *                virtual GetCrsrOfst()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwDropPortion::GetCrsrOfst( const KSHORT nOfst ) const
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 /*************************************************************************
  *                SwTxtFormatter::CalcDropHeight()
@@ -654,59 +488,6 @@ public:
 
 
 
-//STRIP001 void SwTxtPainter::PaintDropPortion()
-//STRIP001 {
-//STRIP001  const SwDropPortion *pDrop = GetInfo().GetParaPortion()->FindDropPortion();
-//STRIP001  ASSERT( pDrop, "DrapCop-Portion not available." );
-//STRIP001  if( !pDrop )
-//STRIP001      return;
-//STRIP001
-//STRIP001  const SwTwips nOldY = GetInfo().Y();
-//STRIP001
-//STRIP001  Top();
-//STRIP001
-//STRIP001  GetInfo().SetSpaceAdd( pCurr->GetpSpaceAdd() );
-//STRIP001  GetInfo().ResetSpaceIdx();
-//STRIP001     GetInfo().SetKanaComp( pCurr->GetpKanaComp() );
-//STRIP001     GetInfo().ResetKanaIdx();
-//STRIP001
-//STRIP001  // 8047: Drops und Dummies
-//STRIP001  while( !pCurr->GetLen() && Next() )
-//STRIP001      ;
-//STRIP001
-//STRIP001  // MarginPortion und Adjustment!
-//STRIP001  const SwLinePortion *pPor = pCurr->GetFirstPortion();
-//STRIP001  KSHORT nX = 0;
-//STRIP001  while( pPor && !pPor->IsDropPortion() )
-//STRIP001  {
-//STRIP001      nX += pPor->Width();
-//STRIP001      pPor = pPor->GetPortion();
-//STRIP001  }
-//STRIP001  Point aLineOrigin( GetTopLeft() );
-//STRIP001
-//STRIP001 #ifdef NIE
-//STRIP001  // Retusche nachholen...
-//STRIP001  if( nX )
-//STRIP001  {
-//STRIP001      const Point aPoint( Left(), Y() );
-//STRIP001      const Size  aSize( nX - 1, GetDropHeight()+GetDropDescent() );
-//STRIP001      SwRect aRetouche( aPoint, aSize );
-//STRIP001      GetInfo().DrawRect( aRetouche );
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  aLineOrigin.X() += nX;
-//STRIP001  KSHORT nTmpAscent, nTmpHeight;
-//STRIP001  CalcAscentAndHeight( nTmpAscent, nTmpHeight );
-//STRIP001  aLineOrigin.Y() += nTmpAscent;
-//STRIP001  GetInfo().SetIdx( GetStart() );
-//STRIP001  GetInfo().SetPos( aLineOrigin );
-//STRIP001  GetInfo().SetLen( pDrop->GetLen() );
-//STRIP001
-//STRIP001  pDrop->PaintDrop( GetInfo() );
-//STRIP001
-//STRIP001  GetInfo().Y( nOldY );
-//STRIP001 }
 
 /*************************************************************************
  *                      clas SwDropCapCache
@@ -1009,99 +790,5 @@ public:
  *                virtual Format()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwDropPortion::Format( SwTxtFormatInfo &rInf )
-//STRIP001 {
-//STRIP001  sal_Bool bFull = sal_False;
-//STRIP001     Fix( (USHORT)rInf.X() );
-//STRIP001
-//STRIP001     SwLayoutModeModifier aLayoutModeModifier( *rInf.GetOut() );
-//STRIP001     aLayoutModeModifier.SetAuto();
-//STRIP001
-//STRIP001     if( nDropHeight && pPart && nLines!=1 )
-//STRIP001  {
-//STRIP001      if( !pDropCapCache )
-//STRIP001          pDropCapCache = new SwDropCapCache();
-//STRIP001
-//STRIP001         // adjust font sizes to fit into the rectangle
-//STRIP001         pDropCapCache->CalcFontSize( this, rInf );
-//STRIP001
-//STRIP001         const long nOldX = rInf.X();
-//STRIP001         {
-//STRIP001             SwDropSave aSave( rInf );
-//STRIP001             SwDropPortionPart* pCurrPart = pPart;
-//STRIP001
-//STRIP001             while ( pCurrPart )
-//STRIP001             {
-//STRIP001                 rInf.SetLen( pCurrPart->GetLen() );
-//STRIP001                 SwFont& rFnt = pCurrPart->GetFont();
-//STRIP001                 {
-//STRIP001                     SwFontSave aSave( rInf, &rFnt );
-//STRIP001                     bFull = FormatTxt( rInf );
-//STRIP001
-//STRIP001                     if ( bFull )
-//STRIP001                         break;
-//STRIP001                 }
-//STRIP001
-//STRIP001                 SwTwips nTmpWidth =
-//STRIP001                         ( InSpaceGrp() && rInf.GetSpaceAdd() ) ?
-//STRIP001                         Width() + CalcSpacing( rInf.GetSpaceAdd(), rInf ) :
-//STRIP001                         Width();
-//STRIP001
-//STRIP001                 // set values
-//STRIP001                 pCurrPart->SetWidth( (USHORT)nTmpWidth );
-//STRIP001
-//STRIP001                 // Move
-//STRIP001                 rInf.SetIdx( rInf.GetIdx() + pCurrPart->GetLen() );
-//STRIP001                 rInf.X( rInf.X() + nTmpWidth );
-//STRIP001                 pCurrPart = pCurrPart->GetFollow();
-//STRIP001             }
-//STRIP001
-//STRIP001             Width( (USHORT)(rInf.X() - nOldX) );
-//STRIP001         }
-//STRIP001
-//STRIP001         // reset my length
-//STRIP001         SetLen( rInf.GetLen() );
-//STRIP001
-//STRIP001         // 7631, 7633: bei Ueberlappungen mit Flys ist Schluss.
-//STRIP001         if( ! bFull )
-//STRIP001             bFull = lcl_IsDropFlyInter( rInf, Width(), nDropHeight );
-//STRIP001
-//STRIP001         if( bFull )
-//STRIP001      {
-//STRIP001          // Durch FormatTxt kann nHeight auf 0 gesetzt worden sein
-//STRIP001          if ( !Height() )
-//STRIP001              Height( rInf.GetTxtHeight() );
-//STRIP001
-//STRIP001             // Jetzt noch einmal der ganze Spass
-//STRIP001             nDropHeight = nLines = 0;
-//STRIP001             delete pPart;
-//STRIP001             pPart = NULL;
-//STRIP001
-//STRIP001             // meanwhile use normal formatting
-//STRIP001             bFull = SwTxtPortion::Format( rInf );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rInf.SetDropInit( sal_True );
-//STRIP001
-//STRIP001         Height( rInf.GetTxtHeight() );
-//STRIP001         SetAscent( rInf.GetAscent() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bFull = SwTxtPortion::Format( rInf );
-//STRIP001
-//STRIP001  if( bFull )
-//STRIP001      nDistance = 0;
-//STRIP001  else
-//STRIP001  {
-//STRIP001      const KSHORT nWant = Width() + GetDistance();
-//STRIP001         const KSHORT nRest = (USHORT)(rInf.Width() - rInf.X());
-//STRIP001         if( ( nWant > nRest ) ||
-//STRIP001             lcl_IsDropFlyInter( rInf, Width() + GetDistance(), nDropHeight ) )
-//STRIP001          nDistance = 0;
-//STRIP001
-//STRIP001      Width( Width() + nDistance );
-//STRIP001  }
-//STRIP001  return bFull;
-//STRIP001 }
 
 }
