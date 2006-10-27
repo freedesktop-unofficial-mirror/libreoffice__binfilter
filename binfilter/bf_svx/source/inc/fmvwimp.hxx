@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmvwimp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:05:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:10:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,12 +55,6 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
 #include <com/sun/star/awt/XFocusListener.hpp>
 #endif
@@ -70,9 +64,6 @@
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
@@ -196,8 +187,6 @@ class FmXFormView : public ::cppu::WeakImplHelper3<
     sal_Bool        m_bFirstActivation  : 1;
 
 
-//STRIP001  void AttachControl( const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl >& rControl, sal_Bool bDetach );
-//STRIP001  void AttachControls( const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer >&, sal_Bool bDetach );
 
     FmFormShell* GetFormShell() const;
 
@@ -236,7 +225,6 @@ public:
     virtual void SAL_CALL focusLost( const ::com::sun::star::awt::FocusEvent& e ) throw (::com::sun::star::uno::RuntimeException);
 
     FmFormView* getView() const {return m_pView;}
-//STRIP001  FmWinRecList::const_iterator findWindow( const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer >& rCC ) const;
     const FmWinRecList& getWindowList() const {return m_aWinList;}
 
 
@@ -255,18 +243,7 @@ private:
     void Activate(sal_Bool bSync = sal_False);
     void Deactivate(BOOL bDeactivateController = TRUE);
 
-//STRIP001  SdrObject* implCreateFieldControl( const ::svx::ODataAccessDescriptor& _rColumnDescriptor );
 
-//STRIP001  void createControlLabelPair(
-//STRIP001      OutputDevice* _pOutDev,
-//STRIP001      sal_Int32 _nYOffsetMM,
-//STRIP001      const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxField,
-//STRIP001      const ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats >& _rxNumberFormats,
-//STRIP001      sal_uInt16 _nObjID,
-//STRIP001      const ::rtl::OUString& _rFieldPostfix,
-//STRIP001      FmFormObj*& _rpLabel,
-//STRIP001      FmFormObj*& _rpControl
-//STRIP001  ) const;
 
     void ObjectRemovedInAliveMode(const SdrObject* pObject);
 
@@ -277,7 +254,6 @@ private:
     void cancelEvents();
 
     /// the the auto focus to the first (in terms of the tab order) control
-//STRIP001  void AutoFocus( sal_Bool _bSync = sal_False );
     DECL_LINK( OnActivate, void* );
     DECL_LINK( OnAutoFocus, void* );
     DECL_LINK( OnDelayedErrorMessage, void* );
