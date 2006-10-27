@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_frmform.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:26:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:08:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,12 +51,6 @@
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      // ChangeFtnRef
 #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>      // MakeFrm()
-// auto strip #endif
-// auto strip #ifndef _DCONTACT_HXX
-// auto strip #include <dcontact.hxx>       // SwDrawContact
-// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>      // SwVirtFlyDrawObj
 #endif
@@ -65,18 +59,9 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _FLYFRM_HXX
-// auto strip #include <flyfrm.hxx>
-// auto strip #endif
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // SwFtnFrm
 #endif
-// auto strip #ifndef _TXTFTN_HXX
-// auto strip #include <txtftn.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTFTN_HXX
-// auto strip #include <fmtftn.hxx>
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -89,55 +74,31 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
 #endif
-// auto strip #ifndef _FMTANCHR_HXX //autogen
-// auto strip #include <fmtanchr.hxx>
-// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
-// auto strip #ifndef _TXATBASE_HXX
-// auto strip #include <txatbase.hxx>
-// auto strip #endif
 #ifndef _TXTCFG_HXX
 #include <txtcfg.hxx>
 #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>     // SwTxtFormatter
 #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>     // SwTxtFrm
-// auto strip #endif
 #ifndef _WIDORP_HXX
 #include <widorp.hxx>       // Widows and Orphans
 #endif
 #ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
 #endif
-// auto strip #ifndef _PORRST_HXX
-// auto strip #include <porrst.hxx>     // SwEmptyPortion
-// auto strip #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>        // pBlink
 #endif
-// auto strip #ifndef _PORFLD_HXX
-// auto strip #include <porfld.hxx>     // SwFldPortion
-// auto strip #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectionFrm
 #endif
-// auto strip #ifndef _PORMULTI_HXX
-// auto strip #include <pormulti.hxx>   // SwMultiPortion
-// auto strip #endif
 
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>     // SwFrmFmt
-// auto strip #endif
 namespace binfilter {
 
 extern FASTBOOL IsInProgress( const SwFlyFrm *pFly );
@@ -261,33 +222,6 @@ MSHORT FormatLevel::nLevel = 0;
  *                      SwTxtFrm::FindBodyFrm()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwTxtFrm::_GetDropRect( SwRect &rRect ) const
-//STRIP001 {
-//STRIP001     SWAP_IF_NOT_SWAPPED( this )
-//STRIP001
-//STRIP001  ASSERT( HasPara(), "SwTxtFrm::_GetDropRect: try again next year." );
-//STRIP001  SwTxtSizeInfo aInf( (SwTxtFrm*)this );
-//STRIP001  SwTxtMargin aLine( (SwTxtFrm*)this, &aInf );
-//STRIP001  if( aLine.GetDropLines() )
-//STRIP001  {
-//STRIP001      rRect.Top( aLine.Y() );
-//STRIP001      rRect.Left( aLine.GetLineStart() );
-//STRIP001      rRect.Height( aLine.GetDropHeight() );
-//STRIP001      rRect.Width( aLine.GetDropLeft() );
-//STRIP001
-//STRIP001         if ( IsRightToLeft() )
-//STRIP001             SwitchLTRtoRTL( rRect );
-//STRIP001
-//STRIP001         if ( IsVertical() )
-//STRIP001             SwitchHorizontalToVertical( rRect );
-//STRIP001         UNDO_SWAP( this )
-//STRIP001      return sal_True;
-//STRIP001  }
-//STRIP001
-//STRIP001     UNDO_SWAP( this )
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFrm::FindBodyFrm()
@@ -724,18 +658,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nStart )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pHt->GetFtn().IsEndNote() )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if( !pEndBoss )
-//STRIP001 /*?*/                            pEndBoss = pFoll->FindFtnBossFrm();
-//STRIP001 /*?*/                        pEndBoss->ChangeFtnRef( pFoll, (SwTxtFtn*)pHt, this );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if( !pFtnBoss )
-//STRIP001 /*?*/                            pFtnBoss = pFoll->FindFtnBossFrm( sal_True );
-//STRIP001 /*?*/                        pFtnBoss->ChangeFtnRef( pFoll, (SwTxtFtn*)pHt, this );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    SetFtn( sal_True );
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -792,18 +714,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nTxtPos )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pHt->GetFtn().IsEndNote() )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if( !pEndBoss )
-//STRIP001 /*?*/                            pEndBoss = FindFtnBossFrm();
-//STRIP001 /*?*/                        pEndBoss->ChangeFtnRef( this, (SwTxtFtn*)pHt, pNew );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if( !pFtnBoss )
-//STRIP001 /*?*/                            pFtnBoss = FindFtnBossFrm( sal_True );
-//STRIP001 /*?*/                        pFtnBoss->ChangeFtnRef( this, (SwTxtFtn*)pHt, pNew );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    pNew->SetFtn( sal_True );
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -936,8 +846,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/                 if ( bVert )
 /*?*/                 {
                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     SwRect aRepaint( Frm().Pos() + Prt().Pos(), Prt().SSize() );
-//STRIP001 /*?*/                     SwitchVerticalToHorizontal( aRepaint );
-//STRIP001 /*?*/                     rRepaint.Chg( aRepaint.Pos(), aRepaint.SSize() );
 /*?*/                 }
 /*?*/                 else
 /*?*/                     rRepaint.Chg( Frm().Pos() + Prt().Pos(), Prt().SSize() );
@@ -1842,7 +1750,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/           SVX_ADJUST_BLOCK != aLine.GetAdjust() )
 /*N*/       {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aLine.CalcDropAdjust();
-//STRIP001 /*?*/            aLine.SetPaintDrop( sal_True );
 /*N*/       }
 /*N*/
 /*N*/       if( aLine.IsPaintDrop() )
@@ -2077,55 +1984,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                           SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
 /*M*/                           if( pFly->IsAutoPos() && !::binfilter::IsInProgress( pFly ) )
 /*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                                ++nAutoCnt;
-//STRIP001 /*?*/                                ASSERT( pFly->IsFlyAtCntFrm(), "Not at content, but autopos.?" );
-//STRIP001 /*?*/                                ((SwFlyAtCntFrm*)pFly)->CheckCharRect();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                 // we have to check if the anchor of the fly
-//STRIP001 /*?*/                                 // is inside this frame before calling
-//STRIP001 /*?*/                                 // pFly->Calc. Otherwise the master could
-//STRIP001 /*?*/                                 // be invalidated -> loop
-//STRIP001 /*?*/                                 const SwFlyFrmFmt *pFmt =
-//STRIP001 /*?*/                                         (SwFlyFrmFmt*)pFly->GetFmt();
-//STRIP001 /*?*/                                 const SwPosition* pPos = pFmt->GetAnchor().GetCntntAnchor();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                 if( !pFly->IsValid() && pPos &&
-//STRIP001 /*?*/                                      pPos->nContent.GetIndex() >= GetOfst() )
-//STRIP001 /*?*/                                {
-//STRIP001 /*?*/                                     SwTwips nOldTop = (pFly->Frm().*fnRect->fnGetTop)();
-//STRIP001 /*?*/                                     /// OD 23.07.2002 #101612#: calculation of fly
-//STRIP001 /*?*/                                     ///     frame can cause grow of the text frame
-//STRIP001 /*?*/                                     ///     and thus probably the section, the text
-//STRIP001 /*?*/                                     ///     frame is in.
-//STRIP001 /*?*/                                     ///     Thus, do *not* ColLock() the section the
-//STRIP001 /*?*/                                     ///     text frame is in, for calculating its
-//STRIP001 /*?*/                                     ///     fly frames.
-//STRIP001 /*?*/                                     ///     NOTE: This locking was introduced for
-//STRIP001 /*?*/                                     ///     fixing part of bug #99066#, which is still open.
-//STRIP001                                     /*
-//STRIP001                                     SwSectionFrm* pSect = FindSctFrm();
-//STRIP001                                      if( pSect )
-//STRIP001                                     {
-//STRIP001                                          if( pSect->IsColLocked() )
-//STRIP001                                              pSect = NULL;
-//STRIP001                                          else
-//STRIP001                                             pSect->ColLock();
-//STRIP001                                     }
-//STRIP001                                     */
-//STRIP001 /*?*/                                    pFly->Calc();
-//STRIP001 /*?*/                                     /// OD 23.07.2002 #101612#: no pSect.ColLock()
-//STRIP001 /*?*/                                     ///     performed.
-//STRIP001 /*?*/                                     ///     Thus, ColUnLock() not necessary.
-//STRIP001 /*?*/                                     ///     NOTE: Introduced for fixing part of
-//STRIP001 /*?*/                                     ///     bug #99066# - see above
-//STRIP001                                     /*
-//STRIP001                                      if( pSect )
-//STRIP001                                          pSect->ColUnlock();
-//STRIP001                                      */
-//STRIP001 /*?*/                                    bRepeat = sal_True;
-//STRIP001 /*?*/                                     if( !nRepAdd && nOldTop >= (pFly->Frm().*fnRect->fnGetTop)() )
-//STRIP001 /*?*/                                         nRepAdd = 1;
-//STRIP001 /*?*/                                }
 /*M*/                           }
 /*M*/                       }
 /*M*/                   }

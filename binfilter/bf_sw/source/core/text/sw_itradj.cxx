@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itradj.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:27:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:09:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,23 +36,14 @@
 
 #pragma hdrstop
 
-// auto strip #include "frame.hxx"       // CalcFlyAdjust()
-// auto strip #include "paratr.hxx"
 #if OSL_DEBUG_LEVEL > 1
 # include "ndtxt.hxx"        // pSwpHints, Ausgabeoperator
 #endif
 
-// auto strip #include "txtcfg.hxx"
 #include "itrtxt.hxx"
-// auto strip #include "porglue.hxx"
-// auto strip #include "porlay.hxx"
 #include "porfly.hxx"       // CalcFlyAdjust()
-// auto strip #include "pordrop.hxx"       // CalcFlyAdjust()
 #include "pormulti.hxx"
 
-// auto strip #ifndef _PORTAB_HXX
-// auto strip #include <portab.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -181,26 +172,6 @@ namespace binfilter {
 /*N*/           nGluePortion += ((SwTxtPortion*)pPos)->GetSpaceCnt( GetInfo(), nCharCnt );
 /*N*/       else if( pPos->IsMultiPortion() )
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
-//STRIP001 /*?*/            SwMultiPortion* pMulti = (SwMultiPortion*)pPos;
-//STRIP001 /*?*/            // a multiportion with a tabulator inside breaks the text adjustment
-//STRIP001 /*?*/            // a ruby portion will not be stretched by text adjustment
-//STRIP001 /*?*/            // a double line portion takes additional space for each blank
-//STRIP001 /*?*/            // in the wider line
-//STRIP001 /*?*/            if( pMulti->HasTabulator() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if ( nSpaceIdx == pCurr->GetSpaceAdd().Count() )
-//STRIP001 /*?*/                    pCurr->GetSpaceAdd().Insert( nNull, nSpaceIdx );
-//STRIP001 /*?*/                nSpaceIdx++;
-//STRIP001 /*?*/                nGluePortion = 0;
-//STRIP001 /*?*/                nCharCnt = 0;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if( pMulti->IsDouble() )
-//STRIP001 /*?*/                nGluePortion += ((SwDoubleLinePortion*)pMulti)->GetSpaceCnt();
-//STRIP001 /*?*/ #ifdef BIDI
-//STRIP001 /*?*/             else if ( pMulti->IsBidi() )
-//STRIP001 /*?*/                 nGluePortion += ((SwBidiPortion*)pMulti)->GetSpaceCnt();
-//STRIP001 /*?*/ #endif
-//STRIP001 /*N*/        }
 /*N*/
 /*N*/       if( pPos->InGlueGrp() )
 /*N*/       {
@@ -244,149 +215,6 @@ namespace binfilter {
  *                    SwTxtAdjuster::CalcKanaAdj()
  *************************************************************************/
 
-//STRIP001 USHORT SwTxtAdjuster::CalcKanaAdj( SwLineLayout* pCurr )
-//STRIP001 {
-//STRIP001     ASSERT( pCurr->Height(), "SwTxtAdjuster::CalcBlockAdjust: missing CalcLine()" );
-//STRIP001     ASSERT( !pCurr->GetpKanaComp(), "pKanaComp already exists!!" );
-//STRIP001
-//STRIP001     SvUShorts *pNewKana = new SvUShorts;
-//STRIP001     pCurr->SetKanaComp( pNewKana );
-//STRIP001
-//STRIP001     const USHORT nNull = 0;
-//STRIP001     MSHORT nKanaIdx = 0;
-//STRIP001     long nKanaDiffSum = 0;
-//STRIP001     USHORT nRepaintOfst = 0;
-//STRIP001     USHORT nX = 0;
-//STRIP001     sal_Bool bNoCompression = sal_False;
-//STRIP001
-//STRIP001     // Nicht vergessen:
-//STRIP001     // CalcRightMargin() setzt pCurr->Width() auf die Zeilenbreite !
-//STRIP001     CalcRightMargin( pCurr, 0 );
-//STRIP001
-//STRIP001     SwLinePortion* pPos = pCurr->GetPortion();
-//STRIP001
-//STRIP001     while( pPos )
-//STRIP001     {
-//STRIP001         if ( pPos->InTxtGrp() )
-//STRIP001         {
-//STRIP001             // get maximum portion width from info structure, calculated
-//STRIP001             // during text formatting
-//STRIP001             USHORT nMaxWidthDiff = GetInfo().GetMaxWidthDiff( (ULONG)pPos );
-//STRIP001
-//STRIP001             // check, if information is stored under other key
-//STRIP001             if ( !nMaxWidthDiff && pPos == pCurr->GetFirstPortion() )
-//STRIP001                 nMaxWidthDiff = GetInfo().GetMaxWidthDiff( (ULONG)pCurr );
-//STRIP001
-//STRIP001             // calculate difference between portion width and max. width
-//STRIP001             nKanaDiffSum += nMaxWidthDiff;
-//STRIP001
-//STRIP001             // we store the beginning of the first compressable portion
-//STRIP001             // for repaint
-//STRIP001             if ( nMaxWidthDiff && !nRepaintOfst )
-//STRIP001                 nRepaintOfst = nX + GetLeftMargin();
-//STRIP001         }
-//STRIP001         else if( pPos->InGlueGrp() && pPos->InFixMargGrp() )
-//STRIP001         {
-//STRIP001             if ( nKanaIdx == pCurr->GetKanaComp().Count() )
-//STRIP001                 pCurr->GetKanaComp().Insert( nNull, nKanaIdx );
-//STRIP001
-//STRIP001             USHORT nRest;
-//STRIP001
-//STRIP001             if ( pPos->InTabGrp() )
-//STRIP001             {
-//STRIP001                 nRest = ! bNoCompression &&
-//STRIP001                         ( pPos->Width() > MIN_TAB_WIDTH ) ?
-//STRIP001                         pPos->Width() - MIN_TAB_WIDTH :
-//STRIP001                         0;
-//STRIP001
-//STRIP001                 // for simplifying the handling of left, right ... tabs,
-//STRIP001                 // we do expand portions, which are lying behind
-//STRIP001                 // those special tabs
-//STRIP001                 bNoCompression = !pPos->IsTabLeftPortion();
-//STRIP001             }
-//STRIP001             else
-//STRIP001             {
-//STRIP001                 nRest = ! bNoCompression ?
-//STRIP001                         ((SwGluePortion*)pPos)->GetPrtGlue() :
-//STRIP001                         0;
-//STRIP001
-//STRIP001                 bNoCompression = sal_False;
-//STRIP001             }
-//STRIP001
-//STRIP001             if( nKanaDiffSum )
-//STRIP001             {
-//STRIP001                 ULONG nCompress = ( 10000 * nRest ) / nKanaDiffSum;
-//STRIP001
-//STRIP001                 if ( nCompress >= 10000 )
-//STRIP001                     // kanas can be expanded to 100%, and there is still
-//STRIP001                     // some space remaining
-//STRIP001                     nCompress = 0;
-//STRIP001
-//STRIP001                 else
-//STRIP001                     nCompress = 10000 - nCompress;
-//STRIP001
-//STRIP001                 ( pCurr->GetKanaComp() )[ nKanaIdx ] = (USHORT)nCompress;
-//STRIP001                 nKanaDiffSum = 0;
-//STRIP001             }
-//STRIP001
-//STRIP001             nKanaIdx++;
-//STRIP001         }
-//STRIP001
-//STRIP001         nX += pPos->Width();
-//STRIP001         pPos = pPos->GetPortion();
-//STRIP001     }
-//STRIP001
-//STRIP001     // set portion width
-//STRIP001     nKanaIdx = 0;
-//STRIP001     USHORT nCompress = ( pCurr->GetKanaComp() )[ nKanaIdx ];
-//STRIP001     pPos = pCurr->GetPortion();
-//STRIP001  long nDecompress = 0;
-//STRIP001  nKanaDiffSum = 0;
-//STRIP001
-//STRIP001     while( pPos )
-//STRIP001     {
-//STRIP001         if ( pPos->InTxtGrp() )
-//STRIP001         {
-//STRIP001             const USHORT nMinWidth = pPos->Width();
-//STRIP001
-//STRIP001             // get maximum portion width from info structure, calculated
-//STRIP001             // during text formatting
-//STRIP001             USHORT nMaxWidthDiff = GetInfo().GetMaxWidthDiff( (ULONG)pPos );
-//STRIP001
-//STRIP001             // check, if information is stored under other key
-//STRIP001             if ( !nMaxWidthDiff && pPos == pCurr->GetFirstPortion() )
-//STRIP001                 nMaxWidthDiff = GetInfo().GetMaxWidthDiff( (ULONG)pCurr );
-//STRIP001             nKanaDiffSum += nMaxWidthDiff;
-//STRIP001             pPos->Width( nMinWidth +
-//STRIP001                        ( ( 10000 - nCompress ) * nMaxWidthDiff ) / 10000 );
-//STRIP001          nDecompress += pPos->Width() - nMinWidth;
-//STRIP001         }
-//STRIP001         else if( pPos->InGlueGrp() && pPos->InFixMargGrp() )
-//STRIP001         {
-//STRIP001             if( nCompress )
-//STRIP001             {
-//STRIP001              nKanaDiffSum *= nCompress;
-//STRIP001              nKanaDiffSum /= 10000;
-//STRIP001             }
-//STRIP001
-//STRIP001             pPos->Width( pPos->Width() - nDecompress );
-//STRIP001
-//STRIP001             if ( pPos->InTabGrp() )
-//STRIP001                 // set fix width to width
-//STRIP001                 ((SwTabPortion*)pPos)->SetFixWidth( pPos->Width() );
-//STRIP001
-//STRIP001             const SvUShorts& rKanaComp = pCurr->GetKanaComp();
-//STRIP001             if ( ++nKanaIdx < rKanaComp.Count() )
-//STRIP001                 nCompress = ( pCurr->GetKanaComp() )[ nKanaIdx ];
-//STRIP001
-//STRIP001          nKanaDiffSum = 0;
-//STRIP001          nDecompress = 0;
-//STRIP001         }
-//STRIP001         pPos = pPos->GetPortion();
-//STRIP001     }
-//STRIP001
-//STRIP001     return nRepaintOfst;
-//STRIP001 }
 
 /*************************************************************************
  *                    SwTxtAdjuster::CalcRightMargin()
@@ -650,91 +478,6 @@ namespace binfilter {
 // 6721: Drops und Adjustment
 // CalcDropAdjust wird ggf. am Ende von Format() gerufen.
 
-//STRIP001 void SwTxtAdjuster::CalcDropAdjust()
-//STRIP001 {
-//STRIP001  ASSERT( 1<GetDropLines() && SVX_ADJUST_LEFT!=GetAdjust() && SVX_ADJUST_BLOCK!=GetAdjust(),
-//STRIP001          "CalcDropAdjust: No reason for DropAdjustment." )
-//STRIP001
-//STRIP001  const MSHORT nLineNr = GetLineNr();
-//STRIP001
-//STRIP001  // 1) Dummies ueberspringen
-//STRIP001  Top();
-//STRIP001
-//STRIP001  if( !pCurr->IsDummy() || NextLine() )
-//STRIP001  {
-//STRIP001      // Erst adjustieren.
-//STRIP001      GetAdjusted();
-//STRIP001
-//STRIP001      SwLinePortion *pPor = pCurr->GetFirstPortion();
-//STRIP001
-//STRIP001      // 2) Sicherstellen, dass die DropPortion dabei ist.
-//STRIP001      // 3) pLeft: Die GluePor vor der DropPor
-//STRIP001      if( pPor->InGlueGrp() && pPor->GetPortion()
-//STRIP001            && pPor->GetPortion()->IsDropPortion() )
-//STRIP001      {
-//STRIP001          const SwLinePortion *pDropPor = (SwDropPortion*) pPor->GetPortion();
-//STRIP001          SwGluePortion *pLeft = (SwGluePortion*) pPor;
-//STRIP001
-//STRIP001          // 4) pRight: Die GluePor hinter der DropPor suchen
-//STRIP001          pPor = pPor->GetPortion();
-//STRIP001          while( pPor && !pPor->InFixMargGrp() )
-//STRIP001              pPor = pPor->GetPortion();
-//STRIP001
-//STRIP001          SwGluePortion *pRight = ( pPor && pPor->InGlueGrp() ) ?
-//STRIP001                                  (SwGluePortion*) pPor : 0;
-//STRIP001          if( pRight && pRight != pLeft )
-//STRIP001          {
-//STRIP001              // 5) nMinLeft berechnen. Wer steht am weitesten links?
-//STRIP001              const KSHORT nDropLineStart =
-//STRIP001                  KSHORT(GetLineStart()) + pLeft->Width() + pDropPor->Width();
-//STRIP001              KSHORT nMinLeft = nDropLineStart;
-//STRIP001              for( MSHORT i = 1; i < GetDropLines(); ++i )
-//STRIP001              {
-//STRIP001                  if( NextLine() )
-//STRIP001                  {
-//STRIP001                      // Erst adjustieren.
-//STRIP001                      GetAdjusted();
-//STRIP001
-//STRIP001                      pPor = pCurr->GetFirstPortion();
-//STRIP001                      const SwMarginPortion *pMar = pPor->IsMarginPortion() ?
-//STRIP001                                                    (SwMarginPortion*)pPor : 0;
-//STRIP001                      if( !pMar )
-//STRIP001                          nMinLeft = 0;
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          const KSHORT nLineStart =
-//STRIP001                              KSHORT(GetLineStart()) + pMar->Width();
-//STRIP001                          if( nMinLeft > nLineStart )
-//STRIP001                              nMinLeft = nLineStart;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              // 6) Den Glue zwischen pLeft und pRight neu verteilen.
-//STRIP001              if( nMinLeft < nDropLineStart )
-//STRIP001              {
-//STRIP001                  // Glue wird immer von pLeft nach pRight abgegeben,
-//STRIP001                  // damit der Text nach links wandert.
-//STRIP001                  const short nGlue = nDropLineStart - nMinLeft;
-//STRIP001                  if( !nMinLeft )
-//STRIP001                      pLeft->MoveAllGlue( pRight );
-//STRIP001                  else
-//STRIP001                      pLeft->MoveGlue( pRight, nGlue );
-//STRIP001 #ifdef DBGTXT
-//STRIP001                  aDbstream << "Drop adjusted: " << nGlue << endl;
-//STRIP001 #endif
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( nLineNr != GetLineNr() )
-//STRIP001  {
-//STRIP001      Top();
-//STRIP001      while( nLineNr != GetLineNr() && Next() )
-//STRIP001          ;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                SwTxtAdjuster::CalcDropRepaint()
