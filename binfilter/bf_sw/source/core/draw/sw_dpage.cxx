@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dpage.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:53:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:31:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,28 +35,7 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _BASMGR_HXX
-// auto strip #include <basic/basmgr.hxx>
-// auto strip #endif
-// auto strip #ifndef _GOODIES_IMAPOBJ_HXX
-// auto strip #include <svtools/imapobj.hxx>
-// auto strip #endif
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_HELP_HXX //autogen
-// auto strip #include <vcl/help.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDVIEW_HXX //autogen
-// auto strip #include <bf_svx/svdview.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _FMTURL_HXX //autogen
-// auto strip #include <fmturl.hxx>
-// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
@@ -68,33 +47,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWIMP_HXX
-// auto strip #include <viewimp.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAGEFRM_HXX
-// auto strip #include <pagefrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
@@ -104,24 +56,12 @@
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-// auto strip #ifndef _DFLYOBJ_HXX
-// auto strip #include <dflyobj.hxx>
-// auto strip #endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-// auto strip #ifndef _USRFLD_HXX
-// auto strip #include <usrfld.hxx>
-// auto strip #endif
 #ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
 #endif
-// auto strip #ifndef _NDNOTXT_HXX
-// auto strip #include <ndnotxt.hxx>
-// auto strip #endif
-// auto strip #ifndef _GRFATR_HXX
-// auto strip #include <grfatr.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
@@ -181,56 +121,8 @@ using namespace ::com::sun::star::frame;
 |*
 *************************************************************************/
 
-//STRIP001 void InsertGridFrame( SdrPageGridFrameList *pLst, const SwFrm *pPg )
-//STRIP001 {
-//STRIP001  SwRect aPrt( pPg->Prt() );
-//STRIP001  aPrt += pPg->Frm().Pos();
-//STRIP001  const Rectangle aUser( aPrt.SVRect() );
-//STRIP001  const Rectangle aPaper( pPg->Frm().SVRect() );
-//STRIP001  pLst->Insert( SdrPageGridFrame( aPaper, aUser ) );
-//STRIP001 }
 
 
-//STRIP001 const SdrPageGridFrameList*  SwDPage::GetGridFrameList(
-//STRIP001                      const SdrPageView* pPV, const Rectangle *pRect ) const
-//STRIP001 {
-//STRIP001  ViewShell *pSh = ((SwDrawDocument*)GetModel())->GetDoc().GetRootFrm()->GetCurrShell();
-//STRIP001  if ( pSh )
-//STRIP001  {
-//STRIP001      while ( pSh->Imp()->GetPageView() != pPV )
-//STRIP001          pSh = (ViewShell*)pSh->GetNext();
-//STRIP001      if ( pSh )
-//STRIP001      {
-//STRIP001          if ( pGridLst )
-//STRIP001              ((SwDPage*)this)->pGridLst->Clear();
-//STRIP001          else
-//STRIP001              ((SwDPage*)this)->pGridLst = new SdrPageGridFrameList;
-//STRIP001
-//STRIP001          if ( pRect )
-//STRIP001          {
-//STRIP001              //Das Drawing verlang alle Seiten, die mit dem Rect ueberlappen.
-//STRIP001              const SwRect aRect( *pRect );
-//STRIP001              const SwFrm *pPg = pSh->GetLayout()->Lower();
-//STRIP001              do
-//STRIP001              {   if ( pPg->Frm().IsOver( aRect ) )
-//STRIP001                      ::InsertGridFrame( ((SwDPage*)this)->pGridLst, pPg );
-//STRIP001                  pPg = pPg->GetNext();
-//STRIP001              } while ( pPg );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              //Das Drawing verlangt alle sichbaren Seiten
-//STRIP001              const SwFrm *pPg = pSh->Imp()->GetFirstVisPage();
-//STRIP001              if ( pPg )
-//STRIP001                  do
-//STRIP001                  {   ::InsertGridFrame( ((SwDPage*)this)->pGridLst, pPg );
-//STRIP001                      pPg = pPg->GetNext();
-//STRIP001                  } while ( pPg && pPg->Frm().IsOver( pSh->VisArea() ) );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pGridLst;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -243,97 +135,12 @@ using namespace ::com::sun::star::frame;
 |*
 *************************************************************************/
 
-//STRIP001 String SwDPage::GetLinkData( const String& rLinkName )
-//STRIP001 {
-//STRIP001  SwDoc& rDoc = ((SwDrawDocument*)GetModel())->GetDoc();
-//STRIP001  SwFieldType* pFTyp = rDoc.GetFldType( RES_USERFLD, rLinkName );
-//STRIP001  if( pFTyp )
-//STRIP001      return ((SwUserFieldType*)pFTyp)->GetContent();
-//STRIP001  return aEmptyStr;
-//STRIP001 }
 
 
-//STRIP001 void  SwDPage::SetLinkData( const String& rLinkName,
-//STRIP001                                  const String& rLinkData )
-//STRIP001 {
-//STRIP001  SwDoc& rDoc = ((SwDrawDocument*)GetModel())->GetDoc();
-//STRIP001  SwFieldType* pFTyp = rDoc.GetFldType( RES_USERFLD, rLinkName );
-//STRIP001  if( pFTyp )
-//STRIP001      ((SwUserFieldType*)pFTyp)->CtrlSetContent( rLinkData );
-//STRIP001 }
 
 
-//STRIP001 void  SwDPage::RequestBasic()
-//STRIP001 {
-//STRIP001  SwDoc& rDoc = ((SwDrawDocument*)GetModel())->GetDoc();
-//STRIP001  if( rDoc.GetDocShell() )
-//STRIP001  {
-//STRIP001      BasicManager *pBasicMgr = rDoc.GetDocShell()->GetBasicManager();
-//STRIP001      ASSERT( pBasicMgr, "wo ist mein BasicManager" )
-//STRIP001      SetBasic( pBasicMgr->GetLib( 0 ) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      ASSERT( !this, "wo ist meine DocShell" )
-//STRIP001 }
 
 
-//STRIP001 BOOL SwDPage::RequestHelp( Window* pWindow, SdrView* pView,
-//STRIP001                         const HelpEvent& rEvt )
-//STRIP001 {
-//STRIP001  BOOL bWeiter = TRUE;
-//STRIP001
-//STRIP001  if( rEvt.GetMode() & ( HELPMODE_QUICK | HELPMODE_BALLOON ))
-//STRIP001  {
-//STRIP001      Point aPos( rEvt.GetMousePosPixel() );
-//STRIP001      aPos = pWindow->ScreenToOutputPixel( aPos );
-//STRIP001      aPos = pWindow->PixelToLogic( aPos );
-//STRIP001
-//STRIP001      SdrPageView* pPV;
-//STRIP001      SdrObject* pObj;
-//STRIP001      if( pView->PickObj( aPos, 0, pObj, pPV, SDRSEARCH_PICKMACRO ) &&
-//STRIP001           pObj->IsWriterFlyFrame() )
-//STRIP001      {
-//STRIP001          SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
-//STRIP001          const SwFmtURL &rURL = pFly->GetFmt()->GetURL();
-//STRIP001          String sTxt;
-//STRIP001          if( rURL.GetMap() )
-//STRIP001          {
-//STRIP001              IMapObject *pObj = pFly->GetFmt()->GetIMapObject( aPos, pFly );
-//STRIP001              if( pObj )
-//STRIP001              {
-//STRIP001                  sTxt = pObj->GetDescription();
-//STRIP001                  if ( !sTxt.Len() )
-//STRIP001                      sTxt = URIHelper::removePassword( pObj->GetURL(),
-//STRIP001                                      INetURLObject::WAS_ENCODED,
-//STRIP001                                      INetURLObject::DECODE_UNAMBIGUOUS);
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if ( rURL.GetURL().Len() )
-//STRIP001          {
-//STRIP001              sTxt = URIHelper::removePassword( rURL.GetURL(),
-//STRIP001                                      INetURLObject::WAS_ENCODED,
-//STRIP001                                      INetURLObject::DECODE_UNAMBIGUOUS);
-//STRIP001
-//STRIP001              if( rURL.IsServerMap() )
-//STRIP001              {
-//STRIP001                  // dann die rel. Pixel Position anhaengen !!
-//STRIP001                  Point aPt( aPos );
-//STRIP001                  aPt -= pFly->Frm().Pos();
-//STRIP001                  // ohne MapMode-Offset !!!!!
-//STRIP001                  // ohne MapMode-Offset, ohne Offset, o ... !!!!!
-//STRIP001                  aPt = (Point&)(Size&)pWindow->LogicToPixel(
-//STRIP001                          (Size&)aPt, MapMode( MAP_TWIP ) );
-//STRIP001                  ((( sTxt += '?' ) += String::CreateFromInt32( aPt.X() ))
-//STRIP001                           += ',' ) += String::CreateFromInt32( aPt.Y() );
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( sTxt.Len() )
-//STRIP001          {
-//STRIP001              if( rEvt.GetMode() & HELPMODE_QUICK )
-//STRIP001              {
-//STRIP001                  // dann zeige die Hilfe mal an:
-//STRIP001                  Rectangle aRect( rEvt.GetMousePosPixel(), Size(1,1) );
 /*
 Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
 
@@ -345,20 +152,6 @@ Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
                     aRect.Right()  = aPt.X();
                     aRect.Bottom() = aPt.Y();
 */
-//STRIP001                  Help::ShowQuickHelp( pWindow, aRect, sTxt );
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  Help::ShowBalloon( pWindow, rEvt.GetMousePosPixel(), sTxt );
-//STRIP001              bWeiter = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bWeiter )
-//STRIP001      bWeiter = !FmFormPage::RequestHelp( pWindow, pView, rEvt );
-//STRIP001
-//STRIP001  return bWeiter;
-//STRIP001 }
 /* -----------------------------27.11.00 07:35--------------------------------
 
  ---------------------------------------------------------------------------*/

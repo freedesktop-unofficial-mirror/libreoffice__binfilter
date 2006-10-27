@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_drawdoc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:54:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:31:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,15 +38,9 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <svtools/pathoptions.hxx>
 #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #ifndef _SFXINTITEM_HXX
 #include <svtools/intitem.hxx>
 #endif
@@ -67,9 +61,6 @@
 #include <bf_svx/drawitem.hxx>
 #endif
 
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -343,11 +334,6 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/   return pRet;
 /*N*/ }
 
-//STRIP001 SdrLayerID SwDrawDocument::GetControlExportLayerId( const SdrObject & ) const
-//STRIP001 {
-//STRIP001  //fuer Versionen < 5.0, es gab nur Hell und Heaven
-//STRIP001  return (SdrLayerID)pDoc->GetHeavenId();
-//STRIP001 }
 
 
 
