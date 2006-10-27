@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLExportDatabaseRanges.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:24:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:25:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -45,9 +44,6 @@
 #include "XMLExportDatabaseRanges.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
@@ -89,9 +85,6 @@
 #ifndef _COM_SUN_STAR_TABLE_TABLESORTFIELD_HPP_
 #include <com/sun/star/table/TableSortField.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLESORTFIELDTYPE_HPP_
-// auto strip #include <com/sun/star/table/TableSortFieldType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HPP_
 #include <com/sun/star/sheet/XSubTotalField.hpp>
 #endif
@@ -101,9 +94,6 @@
 #ifndef _COM_SUN_STAR_SHEET_XDATABASERANGE_HPP_
 #include <com/sun/star/sheet/XDatabaseRange.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
-// auto strip #include <com/sun/star/table/TableOrientation.hpp>
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
