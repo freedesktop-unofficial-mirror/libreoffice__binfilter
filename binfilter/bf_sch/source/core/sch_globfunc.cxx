@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_globfunc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:57:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:26:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,9 +67,6 @@
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
@@ -80,68 +77,29 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 
 #include <bf_svx/fhgtitem.hxx>
-// auto strip #include <bf_svx/fwdtitem.hxx>
 
-// auto strip #ifndef _SVDOPATH_HXX //autogen
-// auto strip #include <bf_svx/svdopath.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDOCIRC_HXX //autogen
-// auto strip #include <bf_svx/svdocirc.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDORECT_HXX //autogen
-// auto strip #include <bf_svx/svdorect.hxx>
-// auto strip #endif
 
 
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
 
-// auto strip #ifndef _XLNCLIT_HXX
-// auto strip #include <bf_svx/xlnclit.hxx>
-// auto strip #endif
-// auto strip #ifndef _XFLCLIT_HXX
-// auto strip #include <bf_svx/xflclit.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_DLGUTIL_HXX
-// auto strip #include <bf_svx/dlgutil.hxx>
-// auto strip #endif
 
 #ifndef _CHTMODEL_HXX
-// auto strip #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
 
-// auto strip #ifndef _E3D_POLYGON3D_HXX
-// auto strip #include <bf_svx/polygn3d.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _E3D_CUBE3D_HXX
-// auto strip #include <bf_svx/cube3d.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _E3D_DLIGHT3D_HXX
-// auto strip #include <bf_svx/dlight3d.hxx>
-// auto strip #endif
 
 #include "math.h"
 #include "float.h"
-// auto strip #include <axisid.hxx>
 
-// auto strip #include "pairs.hxx"
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
 
-// auto strip #include "chdescr.hxx"
-// auto strip #ifndef _SVX_FWDTITEM_HXX //autogen
-// auto strip #include <bf_svx/fwdtitem.hxx>
-// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -163,15 +121,9 @@
 #ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
 #endif
-// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
-// auto strip #include <bf_svx/escpitem.hxx>
-// auto strip #endif
 #ifndef _SVX_AKRNITEM_HXX //autogen
 #include <bf_svx/akrnitem.hxx>
 #endif
-// auto strip #ifndef _SVX_KERNITEM_HXX //autogen
-// auto strip #include <bf_svx/kernitem.hxx>
-// auto strip #endif
 #ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
 #endif
@@ -533,32 +485,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 double CalcFact(double fValue,
-//STRIP001              BOOL   bLogarithm,
-//STRIP001              double fMinValue,
-//STRIP001              double fMaxValue)
-//STRIP001 {
-//STRIP001  if (fValue == DBL_MIN)
-//STRIP001  {
-//STRIP001      return DBL_MIN;
-//STRIP001  }
-//STRIP001  else if (fMinValue == fMaxValue)
-//STRIP001  {
-//STRIP001      return 0.0;
-//STRIP001  }
-//STRIP001  else if (bLogarithm)
-//STRIP001  {
-//STRIP001      double fVal = (fValue > 0.0) ? log10(fValue) : log10(fMinValue);
-//STRIP001
-//STRIP001      DBG_ASSERT( fMinValue <= 0, "Chart: CalcFact: Argument for logarithm is not positive" );
-//STRIP001      DBG_ASSERT( fMaxValue <= 0, "Chart: CalcFact: Argument for logarithm is not positive" );
-//STRIP001      return (fVal - log10(fMinValue)) / (log10(fMaxValue) - log10(fMinValue));
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      return (fValue - fMinValue) / (fMaxValue - fMinValue);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -604,26 +530,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 String UnstackString( const String& aString )
-//STRIP001 {
-//STRIP001  // prerequisite: aString was stacked by StackString
-//STRIP001  // => every second letter is a '\n' (except the very end)
-//STRIP001
-//STRIP001  String aUnstackStr;
-//STRIP001  xub_StrLen nLen = aString.Len();
-//STRIP001
-//STRIP001  if( nLen )
-//STRIP001  {
-//STRIP001      aUnstackStr.Fill( nLen / 2 + 1 );
-//STRIP001
-//STRIP001      for( xub_StrLen posSrc=0, posDest=0;
-//STRIP001           posSrc < nLen;
-//STRIP001           posSrc += 2, posDest++ )
-//STRIP001          aUnstackStr.SetChar( posDest, aString.GetChar( posSrc ));
-//STRIP001  }
-//STRIP001
-//STRIP001  return aUnstackStr;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -632,20 +538,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 Color SetBrightness(const SfxItemSet &rSourceAttr,
-//STRIP001                  SfxItemSet       &rDestAttr,
-//STRIP001                  double           fLightFactor)
-//STRIP001 {
-//STRIP001  Color aOldColor(((const XFillColorItem&)rSourceAttr.Get(XATTR_FILLCOLOR)).GetValue());
-//STRIP001  Color aColor (aOldColor);
-//STRIP001
-//STRIP001  aColor.SetRed((UINT8)(fLightFactor * aColor.GetRed()));
-//STRIP001  aColor.SetGreen((UINT8)(fLightFactor * aColor.GetGreen()));
-//STRIP001  aColor.SetBlue((UINT8)(fLightFactor * aColor.GetBlue()));
-//STRIP001  rDestAttr.Put(XFillColorItem(String(), aColor));
-//STRIP001
-//STRIP001  return aOldColor;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1106,51 +998,6 @@ namespace binfilter {
 /*N*/                  double          a,
 /*N*/                  double          b)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  long nAngleDiff;
-//STRIP001  long nAngleHook;
-//STRIP001
-//STRIP001  // bestimme die Winkelhalbierenden des Segments
-//STRIP001  if (nStartAng > nEndAng)
-//STRIP001  {
-//STRIP001      nAngleDiff = (nEndAng + 36000 - nStartAng) / 2;
-//STRIP001      nAngleHook = (nStartAng + nAngleDiff) % 36000;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nAngleDiff = (nEndAng - nStartAng) / 2;
-//STRIP001      nAngleHook = nStartAng + nAngleDiff;
-//STRIP001  }
-//STRIP001
-//STRIP001  // und dementsprechend die Textausrichtung
-//STRIP001  if (nAngleHook < 2250) rDescr.eAdjust = CHADJUST_CENTER_LEFT;
-//STRIP001  else if (nAngleHook < 6750) rDescr.eAdjust = CHADJUST_BOTTOM_LEFT;
-//STRIP001       else if (nAngleHook < 11250) rDescr.eAdjust = CHADJUST_BOTTOM_CENTER;
-//STRIP001            else if (nAngleHook < 15750) rDescr.eAdjust = CHADJUST_BOTTOM_RIGHT;
-//STRIP001                 else if (nAngleHook < 20250) rDescr.eAdjust = CHADJUST_CENTER_RIGHT;
-//STRIP001                      else if (nAngleHook < 24750) rDescr.eAdjust = CHADJUST_TOP_RIGHT;
-//STRIP001                           else if (nAngleHook < 29250) rDescr.eAdjust = CHADJUST_TOP_CENTER;
-//STRIP001                                else if (nAngleHook < 33750) rDescr.eAdjust = CHADJUST_TOP_LEFT;
-//STRIP001                                     else rDescr.eAdjust = CHADJUST_CENTER_LEFT;
-//STRIP001
-//STRIP001  // die Seiten werden etwas verlaengert, um einen Offset Text<-->Segment zu erhalten
-//STRIP001  double fAng = F_PI * (double) nAngleHook / 18000;
-//STRIP001  rDescr.aTextPos2D       = rRect.Center();
-//STRIP001  rDescr.aTextPos2D.X() += long((a * 10 / 9) * cos (fAng));
-//STRIP001  rDescr.aTextPos2D.Y() -= long((b * 10 / 9) * sin (fAng));
-//STRIP001
-//STRIP001  // Winkel im Bereich der Bodenplatte -> Texte etwas tiefer setzen
-//STRIP001  if ((nAngleHook > 18000) && (nAngleHook < 36000)) rDescr.aTextPos2D.Y() += nHeight;
-//STRIP001
-//STRIP001  // TVM: vorlaeufiger Bug-Fix, pText kann bei 3DPieChart Null sein
-//STRIP001  DBG_ASSERT(rDescr.pLabelObj,"Beschriftungstext ist nicht vorhanden");
-//STRIP001  if(rDescr.pLabelObj)
-//STRIP001  {
-//STRIP001      Rectangle aObjRect = rDescr.pLabelObj->GetLogicRect();
-//STRIP001
-//STRIP001      aObjRect.SetPos(rDescr.aTextPos2D);
-//STRIP001      AdjustRect(aObjRect, rDescr.eAdjust);
-//STRIP001      rDescr.pLabelObj->SetLogicRect(aObjRect);
-//STRIP001  }
 /*N*/ }
 
 
@@ -1163,32 +1010,6 @@ namespace binfilter {
 /*N*/                  long            nEndAng,
 /*N*/                  double          fRadius)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  //  Calculate the radial line on which the desctiption will be positioned.
-//STRIP001  long nAngleHook;
-//STRIP001  if (nStartAng > nEndAng)
-//STRIP001      nAngleHook = (nStartAng + (nEndAng + 36000 - nStartAng) / 2) % 36000;
-//STRIP001  else
-//STRIP001      nAngleHook = nStartAng + (nEndAng - nStartAng) / 2;
-//STRIP001
-//STRIP001  //  Place description at the given radius.
-//STRIP001  double fAng = F_PI * (double) nAngleHook / 18000;
-//STRIP001  rDescr.aTextPos2D = rRect.Center();
-//STRIP001  rDescr.aTextPos2D.X() += long(fRadius * cos (fAng));
-//STRIP001  rDescr.aTextPos2D.Y() -= long(fRadius * sin (fAng));
-//STRIP001
-//STRIP001  //  Description will be centerd around it's reference point.
-//STRIP001  rDescr.eAdjust = CHADJUST_CENTER_CENTER;
-//STRIP001
-//STRIP001  //  Create description.
-//STRIP001  DBG_ASSERT(rDescr.pLabelObj,"Beschriftungstext ist nicht vorhanden");
-//STRIP001  if(rDescr.pLabelObj)
-//STRIP001  {
-//STRIP001      Rectangle aObjRect = rDescr.pLabelObj->GetLogicRect();
-//STRIP001
-//STRIP001      aObjRect.SetPos(rDescr.aTextPos2D);
-//STRIP001      AdjustRect(aObjRect, rDescr.eAdjust);
-//STRIP001      rDescr.pLabelObj->SetLogicRect(aObjRect);
-//STRIP001  }
 /*N*/ }
 /*************************************************************************
 |*
@@ -1196,148 +1017,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void ShowErrorLineY( BOOL              bIsVertical,
-//STRIP001                   double            fErrorUp,
-//STRIP001                   double            fErrorDown,
-//STRIP001                   SfxItemSet        &rAttr,
-//STRIP001                   const  Point&     rPos,
-//STRIP001                   SvxChartIndicate  eMyIndicate,
-//STRIP001                   SdrObjList        *pList,
-//STRIP001                      ChartModel *      pModel )
-//STRIP001 {
-//STRIP001  long              nPosX,nPosY;
-//STRIP001
-//STRIP001  XPolygon   aErrorPolygon (2);
-//STRIP001  XPolygon   aTopPolygon (2);
-//STRIP001  XPolygon   aBottomPolygon (2);
-//STRIP001 //   SfxItemSet aSolidAttr (rAttr);
-//STRIP001
-//STRIP001 //   aSolidAttr.ClearItem (XATTR_LINESTYLE);
-//STRIP001 //   aSolidAttr.Put(XLineStyleItem (XLINE_SOLID));
-//STRIP001
-//STRIP001  if(bIsVertical) //Bei Gelegenheit sollte hier mal aufgeräumt werden....
-//STRIP001  {
-//STRIP001      nPosX = rPos.Y();
-//STRIP001      nPosY = rPos.X();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nPosX = rPos.X();
-//STRIP001      nPosY = rPos.Y();
-//STRIP001  }
-//STRIP001
-//STRIP001  switch (eMyIndicate)
-//STRIP001  {
-//STRIP001      case CHINDICATE_BOTH :
-//STRIP001             {
-//STRIP001                 if (bIsVertical)
-//STRIP001                 {
-//STRIP001                     aErrorPolygon [0].Y()  =
-//STRIP001                         aErrorPolygon [1].Y()  = nPosX;
-//STRIP001                     aErrorPolygon [0].X()  =
-//STRIP001                         aTopPolygon [0].X()    =
-//STRIP001                         aTopPolygon [1].X()    = (long) fErrorUp;
-//STRIP001                     aErrorPolygon [1].X()  =
-//STRIP001                         aBottomPolygon [0].X() =
-//STRIP001                         aBottomPolygon [1].X() = (long) fErrorDown;
-//STRIP001                     aTopPolygon [0].Y()    =
-//STRIP001                         aBottomPolygon [0].Y() = nPosX - 100;
-//STRIP001                     aTopPolygon [1].Y()    =
-//STRIP001                         aBottomPolygon [1].Y() = nPosX + 100;
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     aErrorPolygon [0].X()  =
-//STRIP001                         aErrorPolygon [1].X()  = nPosX;
-//STRIP001                     aErrorPolygon [0].Y()  =
-//STRIP001                         aTopPolygon [0].Y()    =
-//STRIP001                         aTopPolygon [1].Y()    = (long) fErrorUp;
-//STRIP001                     aErrorPolygon [1].Y()  =
-//STRIP001                         aBottomPolygon [0].Y() =
-//STRIP001                         aBottomPolygon [1].Y() = (long) fErrorDown;
-//STRIP001                     aTopPolygon [0].X()    =
-//STRIP001                         aBottomPolygon [0].X() = nPosX - 100;
-//STRIP001                     aTopPolygon [1].X()    =
-//STRIP001                         aBottomPolygon [1].X() = nPosX + 100;
-//STRIP001                 }
-//STRIP001
-//STRIP001                 ::std::vector< XPolygon > aPolygons;
-//STRIP001                 aPolygons.push_back( aErrorPolygon );
-//STRIP001                 aPolygons.push_back( aTopPolygon );
-//STRIP001                 aPolygons.push_back( aBottomPolygon );
-//STRIP001                 pList->NbcInsertObject( CreateErrorGroup( pModel, aPolygons, rAttr ) );
-//STRIP001             }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHINDICATE_UP :
-//STRIP001             {
-//STRIP001                 if (bIsVertical)
-//STRIP001                 {
-//STRIP001                     aErrorPolygon [0].Y()  =
-//STRIP001                         aErrorPolygon [1].Y()  = nPosX;
-//STRIP001                     aErrorPolygon [0].X()  =
-//STRIP001                         aTopPolygon [0].X()    =
-//STRIP001                         aTopPolygon [1].X()    = (long) fErrorUp;
-//STRIP001                     aErrorPolygon [1].X()  = nPosY;
-//STRIP001                     aTopPolygon [0].Y()    = nPosX - 100;
-//STRIP001                     aTopPolygon [1].Y()    = nPosX + 100;
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     aErrorPolygon [0].X()  =
-//STRIP001                         aErrorPolygon [1].X()  = nPosX;
-//STRIP001                     aErrorPolygon [0].Y()  =
-//STRIP001                         aTopPolygon [0].Y()    =
-//STRIP001                         aTopPolygon [1].Y()    = (long) fErrorUp;
-//STRIP001                     aErrorPolygon [1].Y()  = nPosY;
-//STRIP001                     aTopPolygon [0].X()    = nPosX - 100;
-//STRIP001                     aTopPolygon [1].X()    = nPosX + 100;
-//STRIP001                 }
-//STRIP001
-//STRIP001                 ::std::vector< XPolygon > aPolygons;
-//STRIP001                 aPolygons.push_back( aErrorPolygon );
-//STRIP001                 aPolygons.push_back( aTopPolygon );
-//STRIP001                 pList->NbcInsertObject( CreateErrorGroup( pModel, aPolygons, rAttr ) );
-//STRIP001             }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHINDICATE_DOWN :
-//STRIP001             {
-//STRIP001                 if (bIsVertical)
-//STRIP001                 {
-//STRIP001                     aErrorPolygon [0].Y()  =
-//STRIP001                         aErrorPolygon [1].Y()  = nPosX;
-//STRIP001                     aErrorPolygon [0].X()  =
-//STRIP001                         aBottomPolygon [0].X() =
-//STRIP001                         aBottomPolygon [1].X() = (long) fErrorDown;
-//STRIP001                     aErrorPolygon [1].X()  = nPosY;
-//STRIP001                     aBottomPolygon [0].Y() = nPosX - 100;
-//STRIP001                     aBottomPolygon [1].Y() = nPosX + 100;
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     aErrorPolygon [0].X()  =
-//STRIP001                         aErrorPolygon [1].X()  = nPosX;
-//STRIP001                     aErrorPolygon [0].Y()  =
-//STRIP001                         aBottomPolygon [0].Y() =
-//STRIP001                         aBottomPolygon [1].Y() = (long) fErrorDown;
-//STRIP001                     aErrorPolygon [1].Y()  = nPosY;
-//STRIP001                     aBottomPolygon [0].X() = nPosX - 100;
-//STRIP001                     aBottomPolygon [1].X() = nPosX + 100;
-//STRIP001                 }
-//STRIP001
-//STRIP001                 ::std::vector< XPolygon > aPolygons;
-//STRIP001                 aPolygons.push_back( aErrorPolygon );
-//STRIP001                 aPolygons.push_back( aBottomPolygon );
-//STRIP001                 pList->NbcInsertObject( CreateErrorGroup( pModel, aPolygons, rAttr ) );
-//STRIP001             }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case CHINDICATE_NONE :
-//STRIP001      default :
-//STRIP001          ;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1345,65 +1024,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void InsertPolygon (SdrObjList *pList,
-//STRIP001                  XPolygon   &rPolygon,
-//STRIP001                  SfxItemSet &rAttr)
-//STRIP001 {
-//STRIP001  SdrObject *pObj = new SdrPathObj (OBJ_PLIN, rPolygon);
-//STRIP001
-//STRIP001  if (pObj)
-//STRIP001  {
-//STRIP001      pObj->InsertUserData (new SchObjectId (CHOBJID_DIAGRAM_ERROR));
-//STRIP001 //-/     pObj->NbcSetAttributes (rAttr, FALSE);
-//STRIP001      pObj->SetItemSet(rAttr);
-//STRIP001      pList->NbcInsertObject (pObj);
-//STRIP001  }
-//STRIP001 }
 
 // --------------------
 
-//STRIP001 namespace
-//STRIP001 {
-//STRIP001
-//STRIP001 class lcl_InsertPolygonInList : public ::std::unary_function< void, XPolygon >
-//STRIP001 {
-//STRIP001 public:
-//STRIP001     lcl_InsertPolygonInList( SdrObjList * pObjListForInsertion,
-//STRIP001                              const SfxItemSet & rItems ) :
-//STRIP001             m_pObjList( pObjListForInsertion ),
-//STRIP001             m_rItems( rItems )
-//STRIP001     {}
-//STRIP001
-//STRIP001     inline void operator() ( const XPolygon & rPoly )
-//STRIP001     {
-//STRIP001         SdrObject * pObj = new SdrPathObj( OBJ_PLIN, rPoly );
-//STRIP001         pObj->SetItemSet( m_rItems );
-//STRIP001         m_pObjList->NbcInsertObject( pObj );
-//STRIP001     }
-//STRIP001
-//STRIP001 private:
-//STRIP001     SdrObjList *        m_pObjList;
-//STRIP001     const SfxItemSet &  m_rItems;
-//STRIP001 };
-//STRIP001
-//STRIP001 }
-//STRIP001
-//STRIP001 // --------------------
-//STRIP001
-//STRIP001 SdrObject * CreateErrorGroup(
-//STRIP001     ChartModel * pModel,
-//STRIP001     const ::std::vector< XPolygon > & rPolygons,
-//STRIP001     const SfxItemSet & rItems )
-//STRIP001 {
-//STRIP001     SdrObject * pResult = new SchObjGroup( pModel );
-//STRIP001
-//STRIP001     pResult->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ERROR ));
-//STRIP001     SdrObjList * pObjList = pResult->GetSubList();
-//STRIP001     ::std::for_each( rPolygons.begin(), rPolygons.end(),
-//STRIP001                      lcl_InsertPolygonInList( pObjList, rItems ) );
-//STRIP001
-//STRIP001     return pResult;
-//STRIP001 }
 
 /*************************************************************************
 /*************************************************************************
@@ -1412,24 +1035,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObject *Create2DPolyObj (SfxItemSet &rAttr,
-//STRIP001                          Point      aLeftBottom,
-//STRIP001                          Point      aLeftTop,
-//STRIP001                          Point      aRightTop,
-//STRIP001                          Point      aRightBottom)
-//STRIP001 {
-//STRIP001  XPolygon   aSide (5);
-//STRIP001
-//STRIP001  aSide [0] =
-//STRIP001  aSide [4] = aLeftBottom;
-//STRIP001  aSide [1] = aLeftTop;
-//STRIP001  aSide [2] = aRightTop;
-//STRIP001  aSide [3] = aRightBottom;
-//STRIP001
-//STRIP001  rAttr.Put(XLineStyleItem(XLINE_NONE));
-//STRIP001
-//STRIP001  return SetObjectAttr (new SdrPathObj(OBJ_POLY, XPolyPolygon(aSide)), 0, TRUE, TRUE, &rAttr);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1437,17 +1042,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdrObjList *CreateGroupList (SdrObjList *pList,
-//STRIP001                           long       nID)
-//STRIP001 {
-//STRIP001  SchObjGroup *pGroup     = CreateSimpleGroup (USHORT(nID), TRUE, TRUE);
-//STRIP001  SdrObjList  *pGroupList = pGroup->GetSubList();
-//STRIP001
-//STRIP001  pGroup->InsertUserData(new SchDataRow(0));
-//STRIP001  pList->NbcInsertObject (pGroup);
-//STRIP001
-//STRIP001  return pGroupList;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1471,23 +1065,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void CopySetsFrom40To31(const SfxItemSet &rSourceSet,SfxItemSet &rDestSet)
-//STRIP001 {
-//STRIP001  SfxWhichIter aIter (rSourceSet);
-//STRIP001  USHORT       nWhich = aIter.FirstWhich();
-//STRIP001
-//STRIP001  while (nWhich)
-//STRIP001  {
-//STRIP001      if (((nWhich < SCHATTR_STAT_START) || (nWhich > SCHATTR_STAT_END)) &&
-//STRIP001          ((nWhich < EE_ITEMS_START) || (nWhich > EE_ITEMS_END)))
-//STRIP001      {
-//STRIP001          rDestSet.InvalidateItem (nWhich);
-//STRIP001          rDestSet.Put (rSourceSet.Get (nWhich));
-//STRIP001      }
-//STRIP001
-//STRIP001      nWhich = aIter.NextWhich();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ const long nOffX = SCHATTR_AXIS_AUTO_MIN - SCHATTR_X_AXIS_AUTO_MIN;
 /*N*/ const long nOffY = SCHATTR_AXIS_AUTO_MIN - SCHATTR_Y_AXIS_AUTO_MIN;
@@ -1704,38 +1281,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void CompareSets (const SfxItemSet &rSourceSet, SfxItemSet  &rDestSet)
-//STRIP001 {
-//STRIP001  SfxWhichIter      aIter (rSourceSet);
-//STRIP001  USHORT            nWhich     = aIter.FirstWhich ();
-//STRIP001  const SfxPoolItem *pPoolItem = NULL;
-//STRIP001
-//STRIP001  while (nWhich)
-//STRIP001  {
-//STRIP001      if ((rSourceSet.GetItemState(nWhich, TRUE, &pPoolItem) == SFX_ITEM_SET) &&
-//STRIP001          (rDestSet.GetItemState(nWhich, TRUE, &pPoolItem) == SFX_ITEM_SET))
-//STRIP001          if (rSourceSet.Get(nWhich) != rDestSet.Get(nWhich))
-//STRIP001              rDestSet.InvalidateItem(nWhich);
-//STRIP001
-//STRIP001      nWhich = aIter.NextWhich ();
-//STRIP001  }
-//STRIP001 }
-//STRIP001 void ClearDblItems(const SfxItemSet &rSourceSet, SfxItemSet  &rDestSet)
-//STRIP001 {
-//STRIP001  SfxWhichIter      aIter (rSourceSet);
-//STRIP001  USHORT            nWhich     = aIter.FirstWhich ();
-//STRIP001  const SfxPoolItem *pPoolItem = NULL;
-//STRIP001
-//STRIP001  while (nWhich)
-//STRIP001  {
-//STRIP001      if ((rSourceSet.GetItemState(nWhich, TRUE, &pPoolItem) == SFX_ITEM_SET) &&
-//STRIP001          (rDestSet.GetItemState(nWhich, TRUE, &pPoolItem) == SFX_ITEM_SET))
-//STRIP001          if (rSourceSet.Get(nWhich) != rDestSet.Get(nWhich))
-//STRIP001              rDestSet.ClearItem(nWhich);
-//STRIP001
-//STRIP001      nWhich = aIter.NextWhich ();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void IntersectSets( const SfxItemSet &  rSource, SfxItemSet &  rDest )
 /*N*/ {
@@ -1846,22 +1391,6 @@ namespace binfilter {
 /*N*/ //    rFont.SetOrientation( (short)(rDesc.Orientation*10) );
 /*N*/ }
 
-//STRIP001 void GlobalGenerate3DAttrDefaultItem( INT16 nWID, SfxItemSet& rSet )
-//STRIP001 {
-//STRIP001  E3dDefaultAttributes a3DDefaultAttr;
-//STRIP001 //-/ SfxItemSet aSet( *rSet.GetPool(), SID_ATTR_3D_START, SID_ATTR_3D_END );
-//STRIP001  SfxItemSet aSet( *rSet.GetPool(), SDRATTR_3D_FIRST, SDRATTR_3D_LAST);
-//STRIP001 //-/ a3DDefaultAttr.TakeDefaultValues( aSet );
-//STRIP001  const SfxPoolItem* pItem = 0;
-//STRIP001  SfxPoolItem *pNewItem = 0;
-//STRIP001  SfxItemState eState = aSet.GetItemState( nWID, TRUE, &pItem );
-//STRIP001  if( eState >= SFX_ITEM_DEFAULT && pItem )
-//STRIP001  {
-//STRIP001      pNewItem = pItem->Clone();
-//STRIP001      rSet.Put( *pNewItem, nWID );
-//STRIP001      delete pNewItem;
-//STRIP001  }
-//STRIP001 }
 
 } //namespace binfilter
 #ifdef DBG_UTIL
