@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:52:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:27:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,47 +42,13 @@
 
 #include <string> // HACK: prevent conflict between STLPORT and Workshop headers
 
-// auto strip #ifndef _SOT_EXCHANGE_HXX
-// auto strip #include <sot/exchange.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINMODE_HPP_
-// auto strip #include <com/sun/star/plugin/PluginMode.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
-// auto strip #include <com/sun/star/plugin/PluginDescription.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINEXCEPTION_HPP_
-// auto strip #include <com/sun/star/plugin/PluginException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINVARIABLE_HPP_
-// auto strip #include <com/sun/star/plugin/PluginVariable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGIN_HPP_
-// auto strip #include <com/sun/star/plugin/XPlugin.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGINMANAGER_HPP_
-// auto strip #include <com/sun/star/plugin/XPluginManager.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGINCONTEXT_HPP_
-// auto strip #include <com/sun/star/plugin/XPluginContext.hpp>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #pragma hdrstop
 
-// auto strip #include "docfac.hxx"
-// auto strip #include "docfilt.hxx"
 #include "fltfnc.hxx"
-// auto strip #include "app.hxx"
-// auto strip #include "sfxresid.hxx"
 #include "doc.hrc"
 #include "sfxuno.hxx"
 
-// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
-// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
-// auto strip #endif
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
@@ -208,66 +174,10 @@ namespace binfilter {
 
 /*?*/ const ::com::sun::star::plugin::PluginDescription* SfxFilter::GetPlugData()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  if( !bPlugDataSearched )
-//STRIP001  {
-//STRIP001      bPlugDataSearched = sal_True;
-//STRIP001
-//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >  xMan = ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::plugin::XPluginManager >
-//STRIP001              xPlugMgr( xMan->createInstance( DEFINE_CONST_UNICODE( "com.sun.star.plugin.PluginManager" ) ), ::com::sun::star::uno::UNO_QUERY );
-//STRIP001      DBG_ASSERT( xPlugMgr.is(), "### cannot create instance com.sun.star.plugin.PluginManager!" );
-//STRIP001      if( xPlugMgr.is() )
-//STRIP001      {
-//STRIP001          ::com::sun::star::uno::Sequence < ::com::sun::star::plugin::PluginDescription > aDescr = xPlugMgr->getPluginDescriptions();
-//STRIP001          const ::com::sun::star::plugin::PluginDescription *pArr = aDescr.getConstArray();
-//STRIP001          sal_uInt16 n;
-//STRIP001          for (n=0; n<aDescr.getLength(); n++ )
-//STRIP001          {
-//STRIP001              const ::com::sun::star::plugin::PluginDescription& rData = pArr[n];
-//STRIP001              String aTest = rData.Description;
-//STRIP001              aTest += DEFINE_CONST_UNICODE( " (PlugIn)" );
-//STRIP001              if( aTest == GetFilterName() )
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001
-//STRIP001          const ::com::sun::star::plugin::PluginDescription& rData = pArr[n];
-//STRIP001          ::com::sun::star::plugin::PluginDescription *pPlug = new ::com::sun::star::plugin::PluginDescription;
-//STRIP001          pPlug->PluginName = rData.PluginName;
-//STRIP001          pPlug->Mimetype = rData.Mimetype;
-//STRIP001          pPlug->Extension = rData.Extension;
-//STRIP001          pPlug->Description = rData.Description;
-//STRIP001
-//STRIP001          pPlugData = pPlug;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pPlugData;
 /*?*/ }
 
 /*?*/ sal_Bool SfxFilter::IsFirstPlugin() const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  const ::com::sun::star::plugin::PluginDescription* pData = GetPlugData();
-//STRIP001  if( pData )
-//STRIP001  {
-//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >  xMan = ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::plugin::XPluginManager >
-//STRIP001          xPlugMgr( xMan->createInstance( DEFINE_CONST_UNICODE( "com.sun.star.plugin.PluginManager" ) ), ::com::sun::star::uno::UNO_QUERY );
-//STRIP001      DBG_ASSERT( xPlugMgr.is(), "### cannot create instance com.sun.star.plugin.PluginManager!" );
-//STRIP001      if( xPlugMgr.is() )
-//STRIP001      {
-//STRIP001          ::com::sun::star::uno::Sequence < ::com::sun::star::plugin::PluginDescription > aDescr = xPlugMgr->getPluginDescriptions();
-//STRIP001          String aPlug;
-//STRIP001          const ::com::sun::star::plugin::PluginDescription *pArr = aDescr.getConstArray();
-//STRIP001          String aTest;
-//STRIP001          for ( sal_uInt16 n=0; n<aDescr.getLength(); n++ )
-//STRIP001          {
-//STRIP001              if( pArr[n].Description == pData->Description )
-//STRIP001                  return sal_True;
-//STRIP001              else if( pArr[n].PluginName == pData->PluginName )
-//STRIP001                      return sal_False;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
 /*?*/   return sal_False;
 /*?*/ }
 
