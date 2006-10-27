@@ -4,9 +4,9 @@
  *
  *  $RCSfile: formsmodule.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:51:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:04:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,30 +36,9 @@
 #ifndef FORMS_MODULE_HXX
 #define FORMS_MODULE_HXX
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_RESID_HXX
-// auto strip #include <tools/resid.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
-// auto strip #endif
 #ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
 #endif
-// auto strip #ifndef _RTL_STRING_HXX_
-// auto strip #include <rtl/string.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //.........................................................................

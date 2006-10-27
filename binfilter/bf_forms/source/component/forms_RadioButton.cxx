@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_RadioButton.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:48:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:04:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,28 +40,16 @@
 #ifndef _FORMS_RADIOBUTTON_HXX_
 #include "RadioButton.hxx"
 #endif
-// auto strip #ifndef _FRM_PROPERTY_HXX_
-// auto strip #include "property.hxx"
-// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
-// auto strip #include <comphelper/extract.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XVCLWINDOWPEER_HPP_
-// auto strip #include <com/sun/star/awt/XVclWindowPeer.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>

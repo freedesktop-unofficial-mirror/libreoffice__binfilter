@@ -4,9 +4,9 @@
  *
  *  $RCSfile: InterfaceContainer.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:51:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:04:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,75 +39,36 @@
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_TYPES_HXX_
-// auto strip #include <comphelper/types.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XNameReplace.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/lang/XEventListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
-// auto strip #include <com/sun/star/lang/EventObject.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
 #endif
 #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
 #include <com/sun/star/io/XPersistObject.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
-// auto strip #include <com/sun/star/form/XFormComponent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
 #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENT_HPP_
-// auto strip #include <com/sun/star/script/ScriptEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
 #include <com/sun/star/container/XContainer.hpp>
 #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
 #endif
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
-// auto strip #include <cppuhelper/interfacecontainer.hxx>
-// auto strip #endif
 #ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
 #endif
