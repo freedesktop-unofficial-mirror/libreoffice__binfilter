@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layhelp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:43:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:51:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -214,7 +214,6 @@ public:
     BYTE Peek();
 
     // Skip the current record
-//STRIP001  void SkipRec();
 
     // Open a flag record for reading. The uppermost four bits are flags,
     // while the lowermost are the flag record's size. Flag records cannot
