@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:53:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:56:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,50 +35,15 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTID_HPP_
-// auto strip #include <com/sun/star/accessibility/AccessibleEventId.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
-// auto strip #ifndef _UCBHELPER_CONTENT_HXX
-// auto strip #include <ucbhelper/content.hxx>
-// auto strip #endif
-// auto strip #ifndef _SOT_FORMATS_HXX
-// auto strip #include <sot/formats.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVTOOLS_LINGUPROPS_HXX_
-// auto strip #include <svtools/linguprops.hxx>
-// auto strip #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-// auto strip #include <svtools/pathoptions.hxx>
-// auto strip #endif
 #ifndef _SO_CLSIDS_HXX //autogen
 #include <so3/clsids.hxx>
 #endif
-// auto strip #ifndef _SOT_EXCHANGE_HXX //autogen
-// auto strip #include <sot/exchange.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
 
-// auto strip #include <vcl/mapunit.hxx>
-// auto strip #include <vcl/mapmod.hxx>
 
-// auto strip #ifndef COMPHELPER_ACCESSIBLE_TEXT_HELPER_HXX
-// auto strip #include <comphelper/accessibletexthelper.hxx>
-// auto strip #endif
 
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
@@ -92,52 +57,22 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-// auto strip #ifndef _SFXPTITEM_HXX //autogen
-// auto strip #include <svtools/ptitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNDO_HXX //autogen
-// auto strip #include <svtools/undo.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVTOOLS_FSTATHELPER_HXX
-// auto strip #include <svtools/fstathelper.hxx>
-// auto strip #endif
-// auto strip #ifndef _TRANSFER_HXX
-// auto strip #include <svtools/transfer.hxx>
-// auto strip #endif
 
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-// auto strip #ifndef _SFXDOCINF_HXX //autogen
-// auto strip #include <bf_sfx2/docinf.hxx>
-// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
 #endif
-// auto strip #ifndef _SFXVIEWFRM_HXX
-// auto strip #include <bf_sfx2/viewfrm.hxx>
-// auto strip #endif
 #ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
@@ -159,9 +94,6 @@
 #ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
 #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
 #ifndef _SFXSLSTITM_HXX
 #include <svtools/slstitm.hxx>
 #endif
@@ -169,9 +101,6 @@
 #ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 
 #ifndef STARMATH_HRC
 #include <starmath.hrc>
@@ -182,33 +111,15 @@
 #ifndef UNOMODEL_HXX
 #include <unomodel.hxx>
 #endif
-// auto strip #ifndef CONFIG_HXX
-// auto strip #include <config.hxx>
-// auto strip #endif
-// auto strip #ifndef SYMBOL_HXX
-// auto strip #include <symbol.hxx>
-// auto strip #endif
 #ifndef TOOLBOX_HXX
 #include <toolbox.hxx>
 #endif
-// auto strip #ifndef DIALOG_HXX
-// auto strip #include <dialog.hxx>
-// auto strip #endif
 #ifndef ACTION_HXX
 #include <action.hxx>
 #endif
 #ifndef VIEW_HXX
 #include <view.hxx>
 #endif
-// auto strip #ifndef UTILITY_HXX
-// auto strip #include <utility.hxx>
-// auto strip #endif
-// auto strip #ifndef FORMAT_HXX
-// auto strip #include <format.hxx>
-// auto strip #endif
-// auto strip #ifndef MATHTYPE_HXX
-// auto strip #include <mathtype.hxx>
-// auto strip #endif
 #ifndef MATHML_HXX
 #include <mathml.hxx>
 #endif
@@ -252,20 +163,12 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 /*N*/ SFX_IMPL_INTERFACE(SmDocShell, SfxObjectShell, SmResId(0))
 /*N*/ {
-//STRIP001 /*N*/    SFX_POPUPMENU_REGISTRATION(SmResId(RID_VIEWMENU));
-//STRIP001 /*N*/    SFX_POPUPMENU_REGISTRATION(SmResId(RID_COMMANDMENU));
 /*N*/ //      SFX_OBJECTBAR_REGISTRATION(
 /*N*/ //          SFX_OBJECTBAR_OBJECT|SFX_VISIBILITY_STANDARD|SFX_VISIBILITY_SERVER,
 /*N*/ //          SmResId(RID_DEFAULTTOOLBOX));
 /*N*/ }
 
 #if 0
-//STRIP001 SFX_IMPL_OBJECTFACTORY(SmDocShell, SFXOBJECTSHELL_STD_NORMAL, smath, SvGlobalName(BF_SO3_SM_CLASSID_50) )
-//STRIP001 {
-//STRIP001    SFX_SIMPLE_FILTER_REGISTRATION( C2S("StarMath 5.0"), C2S("*.smf"),
-//STRIP001                         SFX_FILTER_OWN | SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-//STRIP001                         SOT_FORMATSTR_ID_STARMATH_50,
-//STRIP001                         C2S("SVsm0.smf"), C2S("OS2"), 0, C2S("0"), String());
 
 //JP 13.06.00: das fehlt vwohl noch, oder??
 //  SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
@@ -273,31 +176,11 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //  rFactory.GetFilterContainer()->SetDetectFilter( &SmDLL::DetectFilter );
 
    // FG: Sonst gibts keine Hilfe im Math  #38447#
-//STRIP001    Factory().RegisterHelpFile (C2S("smath.svh"));
-//STRIP001 }
 #else
 /*N*/ SFX_IMPL_OBJECTFACTORY_DLL(SmDocShell, smath, SvGlobalName(BF_SO3_SM_CLASSID), Sm);
 #endif
 
-//STRIP001 void SmDocShell::SFX_NOTIFY(SfxBroadcaster&, const TypeId&,
-//STRIP001                  const SfxHint& rHint, const TypeId&)
-//STRIP001 {
-//STRIP001  switch (((SfxSimpleHint&)rHint).GetId())
-//STRIP001  {
-//STRIP001      case HINT_FORMATCHANGED:
-//STRIP001          SetFormulaArranged(FALSE);
-//STRIP001          nModifyCount++;     //! merkwuerdig...
-//STRIP001                              // ohne dies wird die Grafik letztlich
-//STRIP001                              // nicht geupdatet
-//STRIP001          Resize();
-//STRIP001          break;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SmDocShell::LoadSymbols()
-//STRIP001 {
-//STRIP001     GetSymSetManager().Load();
-//STRIP001 }
 
 
 /*N*/ SmSymSetManager & SmDocShell::GetSymSetManager()
@@ -311,17 +194,9 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-//STRIP001 const String &SmDocShell::GetTitle() const
-//STRIP001 {
-//STRIP001  return ((SmDocShell *) this)->GetDocInfo().GetTitle();
-//STRIP001 }
 
 
 
-//STRIP001 const String &SmDocShell::GetComment() const
-//STRIP001 {
-//STRIP001  return ((SmDocShell *) this)->GetDocInfo().GetComment();
-//STRIP001 }
 
 
 
@@ -351,41 +226,10 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       SetModified(TRUE);
 /*N*/
         // launch accessible event if necessary
-//STRIP001         SmGraphicAccessible *pAcc = pViewSh ? pViewSh->GetGraphicWindow().GetAccessible() : 0;
-//STRIP001         if (pAcc)
-//STRIP001         {
-//STRIP001          Any aOldValue, aNewValue;
-//STRIP001          if ( comphelper::OCommonAccessibleText::implInitTextChangedEvent( aText, rBuffer, aOldValue, aNewValue ) )
-//STRIP001          {
-//STRIP001              pAcc->LaunchEvent( AccessibleEventId::TEXT_CHANGED,
-//STRIP001                      aOldValue, aNewValue );
-//STRIP001          }
-//STRIP001         }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void SmDocShell::SetFormat(SmFormat& rFormat)
-//STRIP001 {
-//STRIP001  aFormat = rFormat;
-//STRIP001  SetFormulaArranged(FALSE);
-//STRIP001  SmViewShell *pViewSh = SmGetActiveView();
-//STRIP001  if (pViewSh)
-//STRIP001      pViewSh->GetViewFrame()->GetBindings().Invalidate(SID_GRAPHIC);
-//STRIP001  SetModified(TRUE);
-//STRIP001 }
 
-//STRIP001 String SmDocShell::GetAccessibleText()
-//STRIP001 {
-//STRIP001     if (!IsFormulaArranged())
-//STRIP001         ArrangeFormula();
-//STRIP001     if (0 == aAccText.Len())
-//STRIP001     {
-//STRIP001         DBG_ASSERT( pTree, "Tree missing" );
-//STRIP001         if (pTree)
-//STRIP001             pTree->GetAccessibleText( aAccText );
-//STRIP001     }
-//STRIP001     return aAccText;
-//STRIP001 }
 
 /*N*/ void SmDocShell::Parse()
 /*N*/ {
@@ -530,13 +374,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-//STRIP001 SfxItemPool& SmDocShell::GetEditEngineItemPool()
-//STRIP001 {
-//STRIP001  if (!pEditEngineItemPool)
-//STRIP001      GetEditEngine();
-//STRIP001  DBG_ASSERT( pEditEngineItemPool, "EditEngineItemPool missing" );
-//STRIP001  return *pEditEngineItemPool;
-//STRIP001 }
 
 
 /*N*/ void SmDocShell::Draw(OutputDevice &rDev, Point &rPosition)
@@ -727,12 +564,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 /*N*/ void SmDocShell::SetPrinter( SfxPrinter *pNew )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  delete pPrinter;
-//STRIP001  pPrinter = pNew;    //Eigentumsuebergang!
-//STRIP001  pPrinter->SetMapMode( MapMode(MAP_100TH_MM) );
-//STRIP001  SetFormulaArranged(FALSE);
-//STRIP001  SM_MOD1()->GetRectCache()->Reset();
-//STRIP001  Resize();
 /*N*/ }
 
 /*N*/ void SmDocShell::OnDocumentPrinterChanged( Printer *pPrt )
@@ -806,11 +637,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-//STRIP001 BOOL SmDocShell::SetData( const String& rData )
-//STRIP001 {
-//STRIP001  SetText( rData );
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ void SmDocShell::ConvertText( String &rText, SmConvert eConv )
 /*N*/     // adapts the text 'rText' that suits one office version to be
@@ -839,93 +665,9 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-//STRIP001 BOOL SmDocShell::ConvertFrom(SfxMedium &rMedium)
-//STRIP001 {
-//STRIP001  BOOL     bSuccess = FALSE;
-//STRIP001  const String& rFltName = rMedium.GetFilter()->GetFilterName();
-//STRIP001  if (rFltName.EqualsAscii( MATHML_XML ) ||
-//STRIP001      rFltName.EqualsAscii( STAROFFICE_XML ))
-//STRIP001  {
-//STRIP001      if (pTree)
-//STRIP001      {
-//STRIP001          delete pTree;
-//STRIP001          pTree = 0;
-//STRIP001      }
-//STRIP001         Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001      SmXMLWrapper aEquation(xModel);
-//STRIP001         bSuccess = 0 == aEquation.Import(rMedium);
-//STRIP001  }
-//STRIP001  else if( rMedium.IsStorage() && rMedium.GetStorage()->IsStream(
-//STRIP001      C2S( "Equation Native" )))
-//STRIP001  {
-//STRIP001      // is this a MathType Storage?
-//STRIP001      MathType aEquation( aText );
-//STRIP001         if (bSuccess = (1 == aEquation.Parse(rMedium.GetStorage())))
-//STRIP001          Parse();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SvStream *pStream = rMedium.GetInStream();
-//STRIP001      if (pStream)
-//STRIP001      {
-//STRIP001          bSuccess = ImportSM20File( pStream );
-//STRIP001          rMedium.CloseInStream();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  FinishedLoading( SFX_LOADED_ALL );
-//STRIP001  return bSuccess;
-//STRIP001 }
 
 
 
-//STRIP001 BOOL SmDocShell::InsertFrom(SfxMedium &rMedium)
-//STRIP001 {
-//STRIP001     BOOL        bSuccess = FALSE;
-//STRIP001     SvStream   *pStream = rMedium.GetInStream();
-//STRIP001     String      aTemp = aText;
-//STRIP001
-//STRIP001     if (pStream)
-//STRIP001     {
-//STRIP001         const String& rFltName = rMedium.GetFilter()->GetFilterName();
-//STRIP001         if ( rFltName.EqualsAscii(MATHML_XML) )
-//STRIP001         {
-//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001             SmXMLWrapper aEquation(xModel);
-//STRIP001             bSuccess = 0 == aEquation.Import(rMedium);
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             bSuccess = ImportSM20File( pStream );
-//STRIP001             rMedium.CloseInStream();
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     if( bSuccess )
-//STRIP001     {
-//STRIP001         SmViewShell *pView = SmGetActiveView();
-//STRIP001         SmEditWindow *pEditWin = pView ? pView->GetEditWindow() : 0;
-//STRIP001
-//STRIP001         if (pEditWin)
-//STRIP001             pEditWin->InsertText( aText );
-//STRIP001         else
-//STRIP001         {
-//STRIP001             DBG_ERROR( "EditWindow missing" );
-//STRIP001             aTemp += aText;
-//STRIP001             aText  = aTemp;
-//STRIP001         }
-//STRIP001
-//STRIP001         Parse();
-//STRIP001         SetModified(TRUE);
-//STRIP001         if (pView)
-//STRIP001         {
-//STRIP001             SfxBindings &rBnd = pView->GetViewFrame()->GetBindings();
-//STRIP001             rBnd.Invalidate(SID_GRAPHIC);
-//STRIP001             rBnd.Invalidate(SID_TEXT);
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return bSuccess;
-//STRIP001 }
 
 
 
@@ -962,8 +704,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       {
 /*N*/           // is this a MathType Storage?
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             MathType aEquation(aText);
-//STRIP001 /*?*/            if (bRet = (1 == aEquation.Parse(pStor)))
-//STRIP001 /*?*/                Parse();
 /*N*/       }
 /*N*/       else if( pStor->IsStream(C2S("content.xml")) ||
 /*N*/                pStor->IsStream(C2S("Content.xml")) )
@@ -1006,70 +746,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 
 
-//STRIP001 BOOL SmDocShell::Insert(SvStorage *pStor)
-//STRIP001 {
-//STRIP001  String aTemp = aText;
-//STRIP001     BOOL bRet = FALSE, bChkOldVersion = TRUE;
-//STRIP001
-//STRIP001  String aTmpStr( C2S( "Equation Native" ));
-//STRIP001  if( pStor->IsStream( aTmpStr ))
-//STRIP001  {
-//STRIP001      bChkOldVersion = FALSE;
-//STRIP001      // is this a MathType Storage?
-//STRIP001      MathType aEquation(aText);
-//STRIP001      if (bRet = (1 == aEquation.Parse(pStor)))
-//STRIP001          Parse();
-//STRIP001  }
-//STRIP001  else if( pStor->IsStream(C2S("content.xml")) ||
-//STRIP001           pStor->IsStream(C2S("Content.xml")) )
-//STRIP001  {
-//STRIP001      bChkOldVersion = FALSE;
-//STRIP001      // is this a fabulous math package ?
-//STRIP001         Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001      SmXMLWrapper aEquation(xModel);
-//STRIP001      SfxMedium aMedium(pStor);
-//STRIP001         bRet = 0 == aEquation.Import(aMedium);
-//STRIP001  }
-//STRIP001     else if (!(bRet = Try3x(pStor, STREAM_STD_READ)))
-//STRIP001  {
-//STRIP001         pStor->Remove(String::CreateFromAscii(pStarMathDoc));
-//STRIP001         bRet = Try2x(pStor, STREAM_STD_READ);
-//STRIP001      pStor->Remove(C2S("\1Ole10Native"));
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bRet )
-//STRIP001  {
-//STRIP001         SmViewShell *pView = SmGetActiveView();
-//STRIP001         SmEditWindow *pEditWin = pView ? pView->GetEditWindow() : 0;
-//STRIP001
-//STRIP001         if (pEditWin)
-//STRIP001             pEditWin->InsertText( aText );
-//STRIP001         else
-//STRIP001         {
-//STRIP001             DBG_ERROR( "EditWindow missing" );
-//STRIP001             aTemp += aText;
-//STRIP001             aText  = aTemp;
-//STRIP001         }
-//STRIP001
-//STRIP001         if( bChkOldVersion )
-//STRIP001         {
-//STRIP001             if( SOFFICE_FILEFORMAT_40 >= pStor->GetVersion() )
-//STRIP001                 ConvertText( aText, CONVERT_40_TO_50 );
-//STRIP001             if( SOFFICE_FILEFORMAT_50 >= pStor->GetVersion() )
-//STRIP001                 ConvertText( aText, CONVERT_50_TO_60 );
-//STRIP001         }
-//STRIP001
-//STRIP001      Parse();
-//STRIP001      SetModified(TRUE);
-//STRIP001         if (pView)
-//STRIP001      {
-//STRIP001             SfxBindings &rBnd = pView->GetViewFrame()->GetBindings();
-//STRIP001          rBnd.Invalidate(SID_GRAPHIC);
-//STRIP001          rBnd.Invalidate(SID_TEXT);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 //------------------------------------------------------------------
 
@@ -1182,37 +858,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 BOOL SmDocShell::ConvertTo( SfxMedium &rMedium )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  const SfxFilter* pFlt = rMedium.GetFilter();
-//STRIP001  if( pFlt )
-//STRIP001  {
-//STRIP001      if( !pTree )
-//STRIP001          Parse();
-//STRIP001      if( pTree && !IsFormulaArranged() )
-//STRIP001          ArrangeFormula();
-//STRIP001
-//STRIP001      const String& rFltName = pFlt->GetFilterName();
-//STRIP001      if(rFltName.EqualsAscii( STAROFFICE_XML ))
-//STRIP001      {
-//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001          SmXMLWrapper aEquation(xModel);
-//STRIP001          aEquation.SetFlat(sal_False);
-//STRIP001          bRet = aEquation.Export(rMedium);
-//STRIP001      }
-//STRIP001      else if(rFltName.EqualsAscii( MATHML_XML ))
-//STRIP001      {
-//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-//STRIP001          SmXMLWrapper aEquation(xModel);
-//STRIP001          aEquation.SetFlat(sal_True);
-//STRIP001          bRet = aEquation.Export(rMedium);
-//STRIP001      }
-//STRIP001      else if( pFlt->GetFilterName().EqualsAscii("MathType 3.x"))
-//STRIP001          bRet = WriteAsMathType3( rMedium );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ BOOL SmDocShell::SaveCompleted(SvStorage * pStor)
 /*N*/ {
@@ -1236,72 +881,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 
 
-//STRIP001 BOOL SmDocShell::ImportSM20File(SvStream *pStream)
-//STRIP001 {
-//STRIP001  void ReadSM20SymSet(SvStream*, SmSymSet*);
-//STRIP001
-//STRIP001  char         cTag;
-//STRIP001  ULONG        lIdent, lVersion;
-//STRIP001  long         lTime;
-//STRIP001  ULONG        lDate;
-//STRIP001  String       aBuffer;
-//STRIP001     ByteString   aByteStr;
-//STRIP001  SmSymSet    *pSymbolSet;
-//STRIP001  ULONG        FilePos = pStream->Tell();
-//STRIP001
-//STRIP001  *pStream >> lIdent >> lVersion;
-//STRIP001
-//STRIP001  if (lIdent == FRMIDENT)
-//STRIP001  {
-//STRIP001      DBG_ASSERT((lVersion == FRMVERSION), "Illegal file version");
-//STRIP001
-//STRIP001      *pStream >> cTag;
-//STRIP001         rtl_TextEncoding eEnc = RTL_TEXTENCODING_MS_1252;
-//STRIP001      while (cTag && !pStream->IsEof())
-//STRIP001      {
-//STRIP001          switch (cTag)
-//STRIP001          {
-//STRIP001              case 'T':
-//STRIP001                     pStream->ReadByteString( aByteStr );
-//STRIP001                     aText = ImportString( aByteStr );
-//STRIP001                     Parse();
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case 'D':
-//STRIP001                  {
-//STRIP001                      pStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                      pStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                      *pStream >> lDate >> lTime;
-//STRIP001                      pStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                      *pStream >> lDate >> lTime;
-//STRIP001                      pStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                  }
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case 'F':
-//STRIP001                  aFormat.ReadSM20Format(*pStream);
-//STRIP001                  aFormat.From300To304a ();
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case 'S':
-//STRIP001                  pSymbolSet = new SmSymSet();
-//STRIP001                  ReadSM20SymSet(pStream, pSymbolSet);
-//STRIP001                     delete pSymbolSet;
-//STRIP001                  break;
-//STRIP001
-//STRIP001              default:
-//STRIP001                  DBG_ASSERT((cTag != 0), "Illegal data tag");
-//STRIP001          }
-//STRIP001          *pStream >> cTag;
-//STRIP001      }
-//STRIP001
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  pStream->Seek(FilePos);
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 /*N*/ void SmDocShell::Execute(SfxRequest& rReq)
@@ -1323,15 +902,12 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/   case SID_AUTO_REDRAW :
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmModule *pp = SM_MOD1();
-//STRIP001 /*?*/            BOOL bRedraw = pp->GetConfig()->IsAutoRedraw();
-//STRIP001 /*?*/            pp->GetConfig()->SetAutoRedraw(!bRedraw);
 /*?*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case SID_SYMBOLS_CATALOGUE:
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmSymbolDialog(NULL, GetSymSetManager()).Execute();
-//STRIP001 /*?*/            RestartFocusTimer();
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -1340,8 +916,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/           SmViewShell *pView = SmGetActiveView();
 /*?*/           if (pView)
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                pView->GetViewFrame()->ToggleChildWindow(
-//STRIP001 /*?*/                        SmToolBoxWrapper::GetChildWindowId() );
 /*?*/           }
 /*?*/       }
 /*?*/       break;
@@ -1349,25 +923,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/   case SID_INSERT_FORMULA:
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SfxMedium *pMedium = SFX_APP()->
-//STRIP001 /*?*/                     InsertDocumentDialog( 0, SmDocShell::Factory() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (pMedium != NULL)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (pMedium->IsStorage())
-//STRIP001 /*?*/                    Insert(pMedium->GetStorage());
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    InsertFrom(*pMedium);
-//STRIP001 /*?*/                delete pMedium;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 UpdateText();
-//STRIP001 /*?*/                ArrangeFormula();
-//STRIP001 /*?*/                Resize();
-//STRIP001 /*?*/                // Fenster anpassen, neuzeichnen, ModifyCount erhoehen,...
-//STRIP001 /*?*/                if (pBindings)
-//STRIP001 /*?*/                    pBindings->Invalidate(SID_GRAPHIC);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            RestartFocusTimer();
-//STRIP001 /*?*/            rReq.SetReturnValue (SfxBoolItem (rReq.GetSlot(), TRUE));
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -1382,122 +937,24 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/   case SID_FONT:
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmFontTypeDialog *pFontTypeDialog = new SmFontTypeDialog(NULL);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pFontTypeDialog->ReadFrom(GetFormat());
-//STRIP001 /*?*/            if (pFontTypeDialog->Execute() == RET_OK)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SmFormat& rOldFormat  = GetFormat();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pFontTypeDialog->WriteTo(GetFormat());
-//STRIP001 /*?*/                SfxUndoManager *pUndoMgr = GetUndoManager();
-//STRIP001 /*?*/                if (pUndoMgr)
-//STRIP001 /*?*/                    pUndoMgr->AddUndoAction(
-//STRIP001 /*?*/                        new SmFormatAction(this, rOldFormat, GetFormat()));
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (aText.Len ())
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SetModified(TRUE);
-//STRIP001 /*?*/                    if (pBindings)
-//STRIP001 /*?*/                        pBindings->Invalidate(SID_GRAPHIC);
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else SetModified (FALSE);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            delete pFontTypeDialog;
-//STRIP001 /*?*/            RestartFocusTimer ();
 /*?*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case SID_FONTSIZE:
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmFontSizeDialog *pFontSizeDialog = new SmFontSizeDialog(NULL);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pFontSizeDialog->ReadFrom(GetFormat());
-//STRIP001 /*?*/            if (pFontSizeDialog->Execute() == RET_OK)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SmFormat& rOldFormat  = GetFormat();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pFontSizeDialog->WriteTo(GetFormat());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                SfxUndoManager *pUndoMgr = GetUndoManager();
-//STRIP001 /*?*/                if (pUndoMgr)
-//STRIP001 /*?*/                    pUndoMgr->AddUndoAction(
-//STRIP001 /*?*/                        new SmFormatAction(this, rOldFormat, GetFormat()));
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (aText.Len ())
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SetModified(TRUE);
-//STRIP001 /*?*/                    if (pBindings)
-//STRIP001 /*?*/                        pBindings->Invalidate(SID_GRAPHIC);
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else SetModified (FALSE);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            delete pFontSizeDialog;
-//STRIP001 /*?*/            RestartFocusTimer ();
 /*?*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case SID_DISTANCE:
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmDistanceDialog *pDistanceDialog = new SmDistanceDialog(NULL);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pDistanceDialog->ReadFrom(GetFormat());
-//STRIP001 /*?*/            if (pDistanceDialog->Execute() == RET_OK)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SmFormat& rOldFormat  = GetFormat();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDistanceDialog->WriteTo(GetFormat());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                SfxUndoManager *pUndoMgr = GetUndoManager();
-//STRIP001 /*?*/                if (pUndoMgr)
-//STRIP001 /*?*/                    pUndoMgr->AddUndoAction(
-//STRIP001 /*?*/                        new SmFormatAction(this, rOldFormat, GetFormat()));
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (aText.Len ())
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SetModified(TRUE);
-//STRIP001 /*?*/                    if (pBindings)
-//STRIP001 /*?*/                        pBindings->Invalidate(SID_GRAPHIC);
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    SetModified (FALSE);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            delete pDistanceDialog;
-//STRIP001 /*?*/            RestartFocusTimer ();
 /*?*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case SID_ALIGN:
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmAlignDialog *pAlignDialog = new SmAlignDialog(NULL);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pAlignDialog->ReadFrom(GetFormat());
-//STRIP001 /*?*/            if (pAlignDialog->Execute() == RET_OK)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                 SmFormat aOldFormat(GetFormat());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pAlignDialog->WriteTo(GetFormat());
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 SmModule *pp = SM_MOD1();
-//STRIP001 /*?*/                 SmFormat aFmt( pp->GetConfig()->GetStandardFormat() );
-//STRIP001 /*?*/                 pAlignDialog->WriteTo( aFmt );
-//STRIP001 /*?*/                 pp->GetConfig()->SetStandardFormat( aFmt );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                SfxUndoManager *pUndoMgr = GetUndoManager();
-//STRIP001 /*?*/                if (pUndoMgr)
-//STRIP001 /*?*/                    pUndoMgr->AddUndoAction(
-//STRIP001 /*?*/                         new SmFormatAction(this, aOldFormat, GetFormat()));
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (aText.Len ())
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SetModified(TRUE);
-//STRIP001 /*?*/                    if (pBindings)
-//STRIP001 /*?*/                        pBindings->Invalidate(SID_GRAPHIC);
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    SetModified (FALSE);
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            delete pAlignDialog;
-//STRIP001 /*?*/            RestartFocusTimer ();
 /*?*/       }
 /*N*/       break;
 /*N*/
@@ -1629,11 +1086,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/               SmViewShell *pView = SmGetActiveView();
 /*?*/               if (pView)
 /*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                    SfxChildWindow *pChildWnd = pView->GetViewFrame()->
-//STRIP001 /*?*/                            GetChildWindow( SmToolBoxWrapper::GetChildWindowId() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if (pChildWnd  &&  pChildWnd->GetWindow()->IsVisible())
-//STRIP001 /*?*/                        bState = TRUE;
 /*?*/               }
 /*?*/               rSet.Put(SfxBoolItem(SID_TOOLBOX, bState));
 /*?*/           }
@@ -1707,44 +1159,15 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-//STRIP001 SfxUndoManager *SmDocShell::GetUndoManager()
-//STRIP001 {
-//STRIP001  if (!pEditEngine)
-//STRIP001      GetEditEngine();
-//STRIP001  return &pEditEngine->GetUndoManager();
-//STRIP001 }
 
 
 
-//STRIP001 void SmDocShell::SaveSymbols()
-//STRIP001 {
-//STRIP001  GetSymSetManager().Save();
-//STRIP001 }
 
 
 
-//STRIP001 void SmDocShell::RestartFocusTimer ()
-//STRIP001 {
-//STRIP001  SmCmdBoxWrapper *pWrapper = NULL;
-//STRIP001  SmViewShell *pView = SmGetActiveView();
-//STRIP001  if (pView)
-//STRIP001      pWrapper = (SmCmdBoxWrapper *) pView->GetViewFrame()->
-//STRIP001              GetChildWindow( SmCmdBoxWrapper::GetChildWindowId() );
-//STRIP001
-//STRIP001  if (pWrapper)
-//STRIP001      pWrapper->RestartFocusTimer ();
-//STRIP001 }
 
 
 
-//STRIP001 void SmDocShell::Draw(OutputDevice *pDevice,
-//STRIP001                    const JobSetup &,
-//STRIP001                    USHORT nAspect)
-//STRIP001 {
-//STRIP001  pDevice->IntersectClipRegion(GetVisArea());
-//STRIP001  Point atmppoint;
-//STRIP001  Draw(*pDevice, atmppoint);
-//STRIP001 }
 
 
 
@@ -1986,34 +1409,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 }
 
 
-//STRIP001 void SmDocShell::UIActivate (BOOL bActivate)
-//STRIP001 {
-//STRIP001  if (bActivate)
-//STRIP001  {
-//STRIP001      SfxInPlaceObject::UIActivate (bActivate);
-//STRIP001      SmCmdBoxWrapper *pWrapper = NULL;
-//STRIP001      SmViewShell *pView = SmGetActiveView();
-//STRIP001      if (pView)
-//STRIP001          pWrapper = (SmCmdBoxWrapper *)pView->GetViewFrame()->
-//STRIP001                  GetChildWindow( SmCmdBoxWrapper::GetChildWindowId() );
-//STRIP001
-//STRIP001      if (pWrapper)
-//STRIP001          pWrapper->Grab ();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SmViewShell *pViewSh = SmGetActiveView();
-//STRIP001      if (pViewSh)
-//STRIP001      {
-//STRIP001          pViewSh->GetViewFrame()->GetDispatcher()->Execute(
-//STRIP001                  SID_GETEDITTEXT, SFX_CALLMODE_STANDARD,
-//STRIP001                  new SfxVoidItem (SID_GETEDITTEXT), 0L);
-//STRIP001          Resize();
-//STRIP001      }
-//STRIP001
-//STRIP001         SfxInPlaceObject::UIActivate (bActivate);
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void SmDocShell::FillClass(SvGlobalName* pClassName,
@@ -2075,12 +1470,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 /*N*/   Broadcast(SfxSimpleHint(SFX_HINT_DOCCHANGED));
 /*N*/ }
 
-//STRIP001 BOOL SmDocShell::WriteAsMathType3( SfxMedium& rMedium )
-//STRIP001 {
-//STRIP001  MathType aEquation( aText, pTree );
-//STRIP001  BOOL bRet = 0 != aEquation.ConvertFromStarMath( rMedium.GetStorage() );
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 
