@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoipset.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:24:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:55:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,31 +33,15 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 
 #include <hash_map>
 #include <vector>
 
-// auto strip #ifndef _SFX_ITEMPROP_HXX
-// auto strip #include <svtools/itemprop.hxx>
-// auto strip #endif
 
-// auto strip #include "unoipset.hxx"
-// auto strip #include "svdpool.hxx"
 #include "svxids.hrc"
-// auto strip #include "deflt3d.hxx"
 #include "unoshprp.hxx"
-// auto strip #include "editeng.hxx"
 #include "unoapi.hxx"
 #include "svdobj.hxx"
 
