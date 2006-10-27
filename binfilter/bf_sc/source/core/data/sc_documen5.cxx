@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:43:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:16:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -51,7 +50,6 @@
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/memchrt.hxx>
 #include <bf_sch/schdll0.hxx>
-// auto strip #include <so3/ipobj.hxx>
 
 #ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
 #define SO2_DECL_SVINPLACEOBJECT_DEFINED
@@ -63,9 +61,6 @@ SO2_DECL_REF(SvInPlaceObject)
 #include "chartarr.hxx"
 #include "chartlis.hxx"
 #include "refupdat.hxx"
-// auto strip #ifndef _GLOBNAME_HXX
-// auto strip #include <tools/globname.hxx>
-// auto strip #endif
 namespace binfilter {
 
 // -----------------------------------------------------------------------
@@ -144,37 +139,6 @@ namespace binfilter {
 /*?*/   pChartCollection->FreeAll();
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::HasChartAtPoint( USHORT nTab, const Point& rPos, String* pName )
-//STRIP001 {
-//STRIP001  if (pDrawLayer && pTab[nTab])
-//STRIP001  {
-//STRIP001      SdrPage* pPage = pDrawLayer->GetPage(nTab);
-//STRIP001      DBG_ASSERT(pPage,"Page ?");
-//STRIP001
-//STRIP001      SdrObjListIter aIter( *pPage, IM_DEEPNOGROUPS );
-//STRIP001      SdrObject* pObject = aIter.Next();
-//STRIP001      while (pObject)
-//STRIP001      {
-//STRIP001          if ( pObject->GetObjIdentifier() == OBJ_OLE2 &&
-//STRIP001               pObject->GetBoundRect().IsInside(rPos) )
-//STRIP001          {
-//STRIP001                      // auch Chart-Objekte die nicht in der Collection sind
-//STRIP001
-//STRIP001              if (IsChart(pObject))
-//STRIP001              {
-//STRIP001                  if (pName)
-//STRIP001                      *pName = ((SdrOle2Obj*)pObject)->GetPersistName();
-//STRIP001                  return TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          pObject = aIter.Next();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pName)
-//STRIP001      pName->Erase();
-//STRIP001  return FALSE;                   // nix gefunden
-//STRIP001 }
 
 /*N*/ void ScDocument::UpdateChartArea( const String& rChartName,
 /*N*/           const ScRange& rNewArea, BOOL bColHeaders, BOOL bRowHeaders,
@@ -363,32 +327,11 @@ namespace binfilter {
 /*?*/       if ( bChanged )
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nDz != 0 )
-//STRIP001 /*?*/            {   // #81844# sheet to be deleted or inserted or moved
-//STRIP001 /*?*/                // => no valid sheet names for references right now
-//STRIP001 /*?*/                pChartListener->ChangeListening( aNewRLR, bDataChanged );
-//STRIP001 /*?*/                pChartListener->ScheduleSeriesRanges();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SetChartRangeList( pChartListener->GetString(), aNewRLR );
-//STRIP001 /*?*/                pChartListener->ChangeListening( aNewRLR, bDataChanged );
-//STRIP001 /*?*/            }
 /*?*/       }
 /*N*/   }
 /*N*/ }
 
 
-//STRIP001 void ScDocument::SetChartRangeList( const String& rChartName,
-//STRIP001          const ScRangeListRef& rNewRangeListRef )
-//STRIP001 {
-//STRIP001  SchMemChart* pChartData = FindChartData( rChartName, TRUE );
-//STRIP001  if ( pChartData )
-//STRIP001  {
-//STRIP001      ScChartArray aArray( this, *pChartData );
-//STRIP001      aArray.SetRangeList( rNewRangeListRef );
-//STRIP001      aArray.SetExtraStrings( *pChartData );
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ BOOL ScDocument::HasData( USHORT nCol, USHORT nRow, USHORT nTab )
@@ -402,37 +345,6 @@ namespace binfilter {
 /*N*/ SchMemChart* ScDocument::FindChartData(const String& rName, BOOL bForModify)
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (!pDrawLayer)
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  //  die Seiten hier vom Draw-Layer nehmen,
-//STRIP001  //  weil sie evtl. nicht mit den Tabellen uebereinstimmen
-//STRIP001  //  (z.B. Redo von Tabelle loeschen, Draw-Redo passiert vor DeleteTab).
-//STRIP001
-//STRIP001  USHORT nCount = pDrawLayer->GetPageCount();
-//STRIP001  for (USHORT nTab=0; nTab<nCount; nTab++)
-//STRIP001  {
-//STRIP001      SdrPage* pPage = pDrawLayer->GetPage(nTab);
-//STRIP001      DBG_ASSERT(pPage,"Page ?");
-//STRIP001
-//STRIP001      SdrObjListIter aIter( *pPage, IM_DEEPNOGROUPS );
-//STRIP001      SdrObject* pObject = aIter.Next();
-//STRIP001      while (pObject)
-//STRIP001      {
-//STRIP001          if ( pObject->GetObjIdentifier() == OBJ_OLE2 &&
-//STRIP001                  ((SdrOle2Obj*)pObject)->GetPersistName() == rName )
-//STRIP001          {
-//STRIP001              SvInPlaceObjectRef aIPObj = ((SdrOle2Obj*)pObject)->GetObjRef();
-//STRIP001              if ( aIPObj.Is() )
-//STRIP001              {
-//STRIP001                  if (bForModify)
-//STRIP001                      aIPObj->SetModified( TRUE );
-//STRIP001                  return SchDLL::GetChartData( aIPObj );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          pObject = aIter.Next();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
 /*N*/   return NULL;                            // nix
 /*N*/ }
 

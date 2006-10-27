@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:42:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:16:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 
@@ -99,43 +98,29 @@
 
 #include "scitems.hxx"
 #include <bf_svx/langitem.hxx>
-// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_sfx2/bindings.hxx>
-// auto strip #include <bf_sfx2/objsh.hxx>
 #include <svtools/zforlist.hxx>
 
 #include "document.hxx"
 #include "attrib.hxx"
-// auto strip #include "cell.hxx"
-// auto strip #include "table.hxx"
 #include "rangenam.hxx"
 #include "dbcolect.hxx"
 #include "pivot.hxx"
 #include "docpool.hxx"
 #include "poolhelp.hxx"
-// auto strip #include "autoform.hxx"
-// auto strip #include "rangelst.hxx"
-// auto strip #include "chartarr.hxx"
 #include "refupdat.hxx"
 #include "docoptio.hxx"
 #include "viewopti.hxx"
 #include "scextopt.hxx"
-// auto strip #include "brdcst.hxx"
-// auto strip #include "bcaslot.hxx"
 #include "tablink.hxx"
-// auto strip #include "markdata.hxx"
 #include "conditio.hxx"
-// auto strip #include "dociter.hxx"
 #include "detdata.hxx"
-// auto strip #include "detfunc.hxx"
 #include "scmod.hxx"        // SC_MOD
 #include "inputopt.hxx"     // GetExpandRefs
-// auto strip #include "chartlis.hxx"
 #include "bf_sc.hrc"            // SID_LINK
 #include "hints.hxx"
 #include "dpobject.hxx"
-// auto strip #include "unoguard.hxx"
 
 #ifndef _SFX_SRCHITEM_HXX
 #include <bf_sfx2/srchitem.hxx>
@@ -158,83 +143,13 @@ using namespace ::com::sun::star;
 /*N*/   pRangeName = pNewRangeName;
 /*N*/ }
 
-//STRIP001 ScRangeData* ScDocument::GetRangeAtCursor(USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                                          BOOL bStartOnly) const
-//STRIP001 {
-//STRIP001  if ( pRangeName )
-//STRIP001      return pRangeName->GetRangeAtCursor( ScAddress( nCol, nRow, nTab ), bStartOnly );
-//STRIP001  else
-//STRIP001      return NULL;
-//STRIP001 }
 
-//STRIP001 ScRangeData* ScDocument::GetRangeAtBlock( const ScRange& rBlock, String* pName ) const
-//STRIP001 {
-//STRIP001  ScRangeData* pData = NULL;
-//STRIP001  if ( pRangeName )
-//STRIP001  {
-//STRIP001      pData = pRangeName->GetRangeAtBlock( rBlock );
-//STRIP001      if (pData && pName)
-//STRIP001          *pName = pData->GetName();
-//STRIP001  }
-//STRIP001  return pData;
-//STRIP001 }
 
 /*N*/ ScDBCollection* ScDocument::GetDBCollection() const
 /*N*/ {
 /*N*/   return pDBCollection;
 /*N*/ }
 
-//STRIP001 void ScDocument::SetDBCollection( ScDBCollection* pNewDBCollection, BOOL bRemoveAutoFilter )
-//STRIP001 {
-//STRIP001  if ( bRemoveAutoFilter )
-//STRIP001  {
-//STRIP001      //  remove auto filter attribute if new db data don't contain auto filter flag
-//STRIP001      //  start position is also compared, so bRemoveAutoFilter must not be set from ref-undo!
-//STRIP001
-//STRIP001      if ( pDBCollection )
-//STRIP001      {
-//STRIP001          USHORT nOldCount = pDBCollection->GetCount();
-//STRIP001          for (USHORT nOld=0; nOld<nOldCount; nOld++)
-//STRIP001          {
-//STRIP001              ScDBData* pOldData = (*pDBCollection)[nOld];
-//STRIP001              if ( pOldData->HasAutoFilter() )
-//STRIP001              {
-//STRIP001                  ScRange aOldRange;
-//STRIP001                  pOldData->GetArea( aOldRange );
-//STRIP001
-//STRIP001                  BOOL bFound = FALSE;
-//STRIP001                  USHORT nNewIndex = 0;
-//STRIP001                  if ( pNewDBCollection &&
-//STRIP001                      pNewDBCollection->SearchName( pOldData->GetName(), nNewIndex ) )
-//STRIP001                  {
-//STRIP001                      ScDBData* pNewData = (*pNewDBCollection)[nNewIndex];
-//STRIP001                      if ( pNewData->HasAutoFilter() )
-//STRIP001                      {
-//STRIP001                          ScRange aNewRange;
-//STRIP001                          pNewData->GetArea( aNewRange );
-//STRIP001                          if ( aOldRange.aStart == aNewRange.aStart )
-//STRIP001                              bFound = TRUE;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if ( !bFound )
-//STRIP001                  {
-//STRIP001                      aOldRange.aEnd.SetRow( aOldRange.aStart.Row() );
-//STRIP001                      RemoveFlagsTab( aOldRange.aStart.Col(), aOldRange.aStart.Row(),
-//STRIP001                                      aOldRange.aEnd.Col(),   aOldRange.aEnd.Row(),
-//STRIP001                                      aOldRange.aStart.Tab(), SC_MF_AUTO );
-//STRIP001                      if (pShell)
-//STRIP001                          pShell->Broadcast( ScPaintHint( aOldRange, PAINT_GRID ) );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pDBCollection)
-//STRIP001      delete pDBCollection;
-//STRIP001  pDBCollection = pNewDBCollection;
-//STRIP001 }
 
 /*N*/ ScDBData* ScDocument::GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const
 /*N*/ {
@@ -259,84 +174,12 @@ using namespace ::com::sun::star;
 /*N*/   return pDPCollection;
 /*N*/ }
 
-//STRIP001 ScDPObject* ScDocument::GetDPAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const
-//STRIP001 {
-//STRIP001  if (!pDPCollection)
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  USHORT nCount = pDPCollection->GetCount();
-//STRIP001  ScAddress aPos( nCol, nRow, nTab );
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      if ( (*pDPCollection)[i]->GetOutRange().In( aPos ) )
-//STRIP001          return (*pDPCollection)[i];
-//STRIP001
-//STRIP001  return NULL;
-//STRIP001 }
 
-//STRIP001 ScPivotCollection* ScDocument::GetPivotCollection() const
-//STRIP001 {
-//STRIP001  return pPivotCollection;
-//STRIP001 }
 
-//STRIP001 void ScDocument::SetPivotCollection(ScPivotCollection* pNewPivotCollection)
-//STRIP001 {
-//STRIP001  if ( pPivotCollection && pNewPivotCollection &&
-//STRIP001          *pPivotCollection == *pNewPivotCollection )
-//STRIP001  {
-//STRIP001      delete pNewPivotCollection;
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pPivotCollection)
-//STRIP001      delete pPivotCollection;
-//STRIP001  pPivotCollection = pNewPivotCollection;
-//STRIP001
-//STRIP001  if (pPivotCollection)
-//STRIP001  {
-//STRIP001      USHORT nCount = pPivotCollection->GetCount();
-//STRIP001      for (USHORT i=0; i<nCount; i++)
-//STRIP001      {
-//STRIP001          ScPivot* pPivot = (*pPivotCollection)[i];
-//STRIP001          if (pPivot->CreateData())
-//STRIP001              pPivot->ReleaseData();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 ScPivot* ScDocument::GetPivotAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const
-//STRIP001 {
-//STRIP001  if (pPivotCollection)
-//STRIP001      return pPivotCollection->GetPivotAtCursor(nCol, nRow, nTab);
-//STRIP001  else
-//STRIP001      return NULL;
-//STRIP001 }
 
-//STRIP001 ScChartCollection* ScDocument::GetChartCollection() const
-//STRIP001 {
-//STRIP001  return pChartCollection;
-//STRIP001 }
 
-//STRIP001 void ScDocument::SetChartCollection(ScChartCollection* pNewChartCollection)
-//STRIP001 {
-//STRIP001  if (pChartCollection)
-//STRIP001      delete pChartCollection;
-//STRIP001  pChartCollection = pNewChartCollection;
-//STRIP001 }
 
-//STRIP001 void ScDocument::SetChartListenerCollection(
-//STRIP001          ScChartListenerCollection* pNewChartListenerCollection,
-//STRIP001          BOOL bSetChartRangeLists )
-//STRIP001 {
-//STRIP001  ScChartListenerCollection* pOld = pChartListenerCollection;
-//STRIP001  pChartListenerCollection = pNewChartListenerCollection;
-//STRIP001  if ( pChartListenerCollection )
-//STRIP001  {
-//STRIP001      if ( pOld )
-//STRIP001          pChartListenerCollection->SetDiffDirty( *pOld, bSetChartRangeLists );
-//STRIP001      pChartListenerCollection->StartAllListeners();
-//STRIP001  }
-//STRIP001  delete pOld;
-//STRIP001 }
 
 /*N*/ void ScDocument::SetScenario( USHORT nTab, BOOL bFlag )
 /*N*/ {
@@ -445,44 +288,6 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::LinkEmptyTab( USHORT& rTab, const String& aDocTab,
-//STRIP001      const String& aFileName, const String& aTabName )
-//STRIP001 {
-//STRIP001  if ( IsClipboard() )
-//STRIP001  {
-//STRIP001      DBG_ERRORFILE( "LinkExternalTab in Clipboard" );
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  rTab = 0;
-//STRIP001  String  aFilterName;    // wird vom Loader gefuellt
-//STRIP001  String  aOptions;       // Filter-Optionen
-//STRIP001  ScDocumentLoader::GetFilterName( aFileName, aFilterName, aOptions );
-//STRIP001
-//STRIP001  if ( !InsertTab( SC_TAB_APPEND, aDocTab, TRUE ) )
-//STRIP001  {
-//STRIP001      DBG_ERRORFILE("can't insert external document table");
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  rTab = GetTableCount() - 1;
-//STRIP001
-//STRIP001  ULONG nRefreshDelay = 0;
-//STRIP001
-//STRIP001  BOOL bWasThere = HasLink( aFileName, aFilterName, aOptions );
-//STRIP001  SetLink( rTab, SC_LINK_VALUE, aFileName, aFilterName, aOptions, aTabName, nRefreshDelay );
-//STRIP001  if ( !bWasThere )       // Link pro Quelldokument nur einmal eintragen
-//STRIP001  {
-//STRIP001      ScTableLink* pLink = new ScTableLink( pShell, aFileName, aFilterName, aOptions, nRefreshDelay );
-//STRIP001      pLink->SetInCreate( TRUE );
-//STRIP001      pLinkManager->InsertFileLink( *pLink, OBJECT_CLIENT_FILE, aFileName,
-//STRIP001                                      &aFilterName );
-//STRIP001      pLink->Update();
-//STRIP001      pLink->SetInCreate( FALSE );
-//STRIP001      SfxBindings* pBindings = GetViewBindings();
-//STRIP001      if (pBindings)
-//STRIP001          pBindings->Invalidate( SID_LINKS );
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ BOOL ScDocument::LinkExternalTab( USHORT& rTab, const String& aDocTab,
 /*N*/       const String& aFileName, const String& aTabName )
@@ -555,137 +360,18 @@ using namespace ::com::sun::star;
 /*N*/   return pVal;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::SetOutlineTable( USHORT nTab, const ScOutlineTable* pNewOutline )
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001      if (pTab[nTab])
-//STRIP001          return pTab[nTab]->SetOutlineTable(pNewOutline);
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void ScDocument::DoAutoOutline( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                              USHORT nEndCol, USHORT nEndRow, USHORT nTab )
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001      if (pTab[nTab])
-//STRIP001          pTab[nTab]->DoAutoOutline( nStartCol, nStartRow, nEndCol, nEndRow );
-//STRIP001 }
 
-//STRIP001 BOOL ScDocument::TestRemoveSubTotals( USHORT nTab, const ScSubTotalParam& rParam )
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001      if (pTab[nTab])
-//STRIP001          return pTab[nTab]->TestRemoveSubTotals( rParam );
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 void ScDocument::RemoveSubTotals( USHORT nTab, ScSubTotalParam& rParam )
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001      if (pTab[nTab])
-//STRIP001          pTab[nTab]->RemoveSubTotals( rParam );
-//STRIP001 }
 
-//STRIP001 BOOL ScDocument::DoSubTotals( USHORT nTab, ScSubTotalParam& rParam )
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001      if (pTab[nTab])
-//STRIP001          return pTab[nTab]->DoSubTotals( rParam );
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScDocument::HasSubTotalCells( const ScRange& rRange )
-//STRIP001 {
-//STRIP001  ScCellIterator aIter( this, rRange );
-//STRIP001  ScBaseCell* pCell = aIter.GetFirst();
-//STRIP001  while (pCell)
-//STRIP001  {
-//STRIP001      if ( pCell->GetCellType() == CELLTYPE_FORMULA && ((ScFormulaCell*)pCell)->IsSubTotal() )
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001      pCell = aIter.GetNext();
-//STRIP001  }
-//STRIP001  return FALSE;   // none found
-//STRIP001 }
 
 //  kopiert aus diesem Dokument die Zellen von Positionen, an denen in pPosDoc
 //  auch Zellen stehen, nach pDestDoc
 
-//STRIP001 void ScDocument::CopyUpdated( ScDocument* pPosDoc, ScDocument* pDestDoc )
-//STRIP001 {
-//STRIP001  USHORT nCount = GetTableCount();
-//STRIP001  for (USHORT nTab=0; nTab<nCount; nTab++)
-//STRIP001      if (pTab[nTab] && pPosDoc->pTab[nTab] && pDestDoc->pTab[nTab])
-//STRIP001          pTab[nTab]->CopyUpdated( pPosDoc->pTab[nTab], pDestDoc->pTab[nTab] );
-//STRIP001 }
 
-//STRIP001 void ScDocument::CopyScenario( USHORT nSrcTab, USHORT nDestTab, BOOL bNewScenario )
-//STRIP001 {
-//STRIP001  if (nSrcTab<=MAXTAB && nDestTab<=MAXTAB && pTab[nSrcTab] && pTab[nDestTab])
-//STRIP001  {
-//STRIP001      //  Flags fuer aktive Szenarios richtig setzen
-//STRIP001      //  und aktuelle Werte in bisher aktive Szenarios zurueckschreiben
-//STRIP001
-//STRIP001      ScRangeList aRanges = *pTab[nSrcTab]->GetScenarioRanges();
-//STRIP001      USHORT nRangeCount = (USHORT)aRanges.Count();
-//STRIP001
-//STRIP001      //  nDestTab ist die Zieltabelle
-//STRIP001      for ( USHORT nTab = nDestTab+1;
-//STRIP001              nTab<=MAXTAB && pTab[nTab] && pTab[nTab]->IsScenario();
-//STRIP001              nTab++ )
-//STRIP001      {
-//STRIP001          if ( pTab[nTab]->IsActiveScenario() )       // auch wenn's dasselbe Szenario ist
-//STRIP001          {
-//STRIP001              BOOL bTouched = FALSE;
-//STRIP001              for ( USHORT nR=0; nR<nRangeCount && !bTouched; nR++)
-//STRIP001              {
-//STRIP001                  ScRange aRange = *aRanges.GetObject(nR);
-//STRIP001                  if ( pTab[nTab]->HasScenarioRange( aRange ) )
-//STRIP001                      bTouched = TRUE;
-//STRIP001              }
-//STRIP001              if (bTouched)
-//STRIP001              {
-//STRIP001                  pTab[nTab]->SetActiveScenario(FALSE);
-//STRIP001                  if ( pTab[nTab]->GetScenarioFlags() & SC_SCENARIO_TWOWAY )
-//STRIP001                      pTab[nTab]->CopyScenarioFrom( pTab[nDestTab] );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      pTab[nSrcTab]->SetActiveScenario(TRUE);     // da kommt's her...
-//STRIP001      if (!bNewScenario)                          // Daten aus dem ausgewaehlten Szenario kopieren
-//STRIP001      {
-//STRIP001          BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001          SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001          pTab[nSrcTab]->CopyScenarioTo( pTab[nDestTab] );
-//STRIP001          SetDirty();
-//STRIP001          SetAutoCalc( bOldAutoCalc );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScDocument::MarkScenario( USHORT nSrcTab, USHORT nDestTab, ScMarkData& rDestMark,
-//STRIP001                              BOOL bResetMark, USHORT nNeededBits ) const
-//STRIP001 {
-//STRIP001  if (bResetMark)
-//STRIP001      rDestMark.ResetMark();
-//STRIP001
-//STRIP001  if (nSrcTab<=MAXTAB && pTab[nSrcTab])
-//STRIP001      pTab[nSrcTab]->MarkScenarioIn( rDestMark, nNeededBits );
-//STRIP001
-//STRIP001  rDestMark.SetAreaTab( nDestTab );
-//STRIP001 }
 
-//STRIP001 BOOL ScDocument::HasScenarioRange( USHORT nTab, const ScRange& rRange ) const
-//STRIP001 {
-//STRIP001  if (nTab<=MAXTAB && pTab[nTab])
-//STRIP001      return pTab[nTab]->HasScenarioRange( rRange );
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ const ScRangeList* ScDocument::GetScenarioRanges( USHORT nTab ) const
 /*N*/ {
@@ -709,14 +395,6 @@ using namespace ::com::sun::star;
 /*N*/       pTab[nTab]->SetActiveScenario( bActive );
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::TestCopyScenario( USHORT nSrcTab, USHORT nDestTab ) const
-//STRIP001 {
-//STRIP001  if (nSrcTab<=MAXTAB && nDestTab<=MAXTAB)
-//STRIP001      return pTab[nSrcTab]->TestCopyScenarioTo( pTab[nDestTab] );
-//STRIP001
-//STRIP001  DBG_ERROR("falsche Tabelle bei TestCopyScenario");
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void ScDocument::AddUnoObject( SfxListener& rObject )
 /*N*/ {
@@ -855,94 +533,22 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScDocument::UpdateTranspose( const ScAddress& rDestPos, ScDocument* pClipDoc,
-//STRIP001                                      const ScMarkData& rMark, ScDocument* pUndoDoc )
-//STRIP001 {
-//STRIP001  DBG_ASSERT(pClipDoc->bIsClip, "UpdateTranspose: kein Clip");
-//STRIP001
-//STRIP001  ScRange aSource = pClipDoc->aClipRange;         // Tab wird noch angepasst
-//STRIP001  ScAddress aDest = rDestPos;
-//STRIP001
-//STRIP001  USHORT nClipTab = 0;
-//STRIP001  for (USHORT nDestTab=0; nDestTab<=MAXTAB && pTab[nDestTab]; nDestTab++)
-//STRIP001      if (rMark.GetTableSelect(nDestTab))
-//STRIP001      {
-//STRIP001          while (!pClipDoc->pTab[nClipTab]) nClipTab = (nClipTab+1) % (MAXTAB+1);
-//STRIP001          aSource.aStart.SetTab( nClipTab );
-//STRIP001          aSource.aEnd.SetTab( nClipTab );
-//STRIP001          aDest.SetTab( nDestTab );
-//STRIP001
-//STRIP001          //  wie UpdateReference
-//STRIP001
-//STRIP001          pRangeName->UpdateTranspose( aSource, aDest );      // vor den Zellen!
-//STRIP001          for (USHORT i=0; i<=MAXTAB; i++)
-//STRIP001              if (pTab[i])
-//STRIP001                  pTab[i]->UpdateTranspose( aSource, aDest, pUndoDoc );
-//STRIP001
-//STRIP001          nClipTab = (nClipTab+1) % (MAXTAB+1);
-//STRIP001      }
-//STRIP001 }
 
-//STRIP001 void ScDocument::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY )
-//STRIP001 {
-//STRIP001  //! pDBCollection
-//STRIP001  //! pPivotCollection
-//STRIP001  //! UpdateChartRef
-//STRIP001
-//STRIP001  pRangeName->UpdateGrow( rArea, nGrowX, nGrowY );
-//STRIP001  pPivotCollection->UpdateGrow( rArea, nGrowX, nGrowY );
-//STRIP001
-//STRIP001  for (USHORT i=0; i<=MAXTAB && pTab[i]; i++)
-//STRIP001      pTab[i]->UpdateGrow( rArea, nGrowX, nGrowY );
-//STRIP001 }
 
 /*N*/ void ScDocument::Fill(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, const ScMarkData& rMark,
 /*N*/                       USHORT nFillCount, FillDir eFillDir, FillCmd eFillCmd, FillDateCmd eFillDateCmd,
 /*N*/                       double nStepValue, double nMaxValue)
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nCol1, nCol2 );
-//STRIP001 /*?*/    PutInOrder( nRow1, nRow2 );
-//STRIP001 /*?*/    for (USHORT i=0; i <= MAXTAB; i++)
-//STRIP001 /*?*/        if (pTab[i])
-//STRIP001 /*?*/            if (rMark.GetTableSelect(i))
-//STRIP001 /*?*/                pTab[i]->Fill(nCol1, nRow1, nCol2, nRow2,
-//STRIP001 /*?*/                                nFillCount, eFillDir, eFillCmd, eFillDateCmd,
-//STRIP001 /*?*/                                nStepValue, nMaxValue);
 /*N*/ }
 
-//STRIP001 String ScDocument::GetAutoFillPreview( const ScRange& rSource, USHORT nEndX, USHORT nEndY )
-//STRIP001 {
-//STRIP001  USHORT nTab = rSource.aStart.Tab();
-//STRIP001  if (pTab[nTab])
-//STRIP001      return pTab[nTab]->GetAutoFillPreview( rSource, nEndX, nEndY );
-//STRIP001
-//STRIP001  return EMPTY_STRING;
-//STRIP001 }
 
 /*N*/ void ScDocument::AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
 /*N*/                                   USHORT nFormatNo, const ScMarkData& rMark )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nStartCol, nEndCol );
-//STRIP001 /*?*/    PutInOrder( nStartRow, nEndRow );
-//STRIP001 /*?*/    for (USHORT i=0; i <= MAXTAB; i++)
-//STRIP001 /*?*/        if (pTab[i])
-//STRIP001 /*?*/            if (rMark.GetTableSelect(i))
-//STRIP001 /*?*/                pTab[i]->AutoFormat( nStartCol, nStartRow, nEndCol, nEndRow, nFormatNo );
 /*N*/ }
 
-//STRIP001 void ScDocument::GetAutoFormatData(USHORT nTab, USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                  ScAutoFormatData& rData)
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001  {
-//STRIP001      if (pTab[nTab])
-//STRIP001      {
-//STRIP001          PutInOrder(nStartCol, nEndCol);
-//STRIP001          PutInOrder(nStartRow, nEndRow);
-//STRIP001          pTab[nTab]->GetAutoFormatData(nStartCol, nStartRow, nEndCol, nEndRow, rData);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 // static
 /*N*/ void ScDocument::GetSearchAndReplaceStart( const SvxSearchItem& rSearchItem,
@@ -1115,14 +721,6 @@ using namespace ::com::sun::star;
 /*N*/   return bFound;
 /*N*/ }
 
-//STRIP001 BOOL ScDocument::IsFiltered( USHORT nRow, USHORT nTab ) const
-//STRIP001 {
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001      if (pTab[nTab])
-//STRIP001          return pTab[nTab]->IsFiltered( nRow );
-//STRIP001  DBG_ERROR("Falsche Tabellennummer");
-//STRIP001  return 0;
-//STRIP001 }
 
 //  Outline anpassen
 
@@ -1147,41 +745,17 @@ using namespace ::com::sun::star;
 /*N*/ void ScDocument::Sort(USHORT nTab, const ScSortParam& rSortParam, BOOL bKeepQuery)
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        BOOL bOldDisableIdle = IsIdleDisabled();
-//STRIP001 /*?*/        DisableIdle( TRUE );
-//STRIP001 /*?*/        pTab[nTab]->Sort(rSortParam, bKeepQuery);
-//STRIP001 /*?*/        DisableIdle( bOldDisableIdle );
-//STRIP001 /*?*/    }
 /*N*/ }
 
 /*N*/ USHORT ScDocument::Query(USHORT nTab, const ScQueryParam& rQueryParam, BOOL bKeepSub)
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
-//STRIP001 /*?*/        return pTab[nTab]->Query((ScQueryParam&)rQueryParam, bKeepSub);
-//STRIP001 /*?*/
-//STRIP001 /*?*/    DBG_ERROR("missing tab");
 /*N*/   return 0;
 /*N*/ }
 
 
-//STRIP001 BOOL ScDocument::ValidQuery( USHORT nRow, USHORT nTab, const ScQueryParam& rQueryParam, BOOL* pSpecial )
-//STRIP001 {
-//STRIP001  if ( nTab<=MAXTAB && pTab[nTab] )
-//STRIP001      return pTab[nTab]->ValidQuery( nRow, rQueryParam, pSpecial );
-//STRIP001
-//STRIP001  DBG_ERROR("missing tab");
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 void ScDocument::GetUpperCellString(USHORT nCol, USHORT nRow, USHORT nTab, String& rStr)
-//STRIP001 {
-//STRIP001  if ( nTab<=MAXTAB && pTab[nTab] )
-//STRIP001      pTab[nTab]->GetUpperCellString( nCol, nRow, rStr );
-//STRIP001  else
-//STRIP001      rStr.Erase();
-//STRIP001 }
 
 /*N*/ BOOL ScDocument::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nTab, ScQueryParam& rQueryParam)
 /*N*/ {
@@ -1230,9 +804,6 @@ using namespace ::com::sun::star;
 /*N*/                                   USHORT nTab )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
-//STRIP001 /*?*/        if (pTab[nTab])
-//STRIP001 /*?*/            return pTab[nTab]->HasColHeader( nStartCol, nStartRow, nEndCol, nEndRow );
-//STRIP001 /*?*/
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -1240,9 +811,6 @@ using namespace ::com::sun::star;
 /*N*/                                   USHORT nTab )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
-//STRIP001 /*?*/        if (pTab[nTab])
-//STRIP001 /*?*/            return pTab[nTab]->HasRowHeader( nStartCol, nStartRow, nEndCol, nEndRow );
-//STRIP001 /*?*/
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -1250,62 +818,16 @@ using namespace ::com::sun::star;
 //  GetFilterEntries - Eintraege fuer AutoFilter-Listbox
 //
 
-//STRIP001 BOOL ScDocument::GetFilterEntries( USHORT nCol, USHORT nRow, USHORT nTab, TypedStrCollection& rStrings )
-//STRIP001 {
-//STRIP001  if ( nTab<=MAXTAB && pTab[nTab] && pDBCollection )
-//STRIP001  {
-//STRIP001      ScDBData* pDBData = pDBCollection->GetDBAtCursor(nCol, nRow, nTab, FALSE);  //!??
-//STRIP001      if (pDBData)
-//STRIP001      {
-//STRIP001          USHORT nAreaTab;
-//STRIP001          USHORT nStartCol;
-//STRIP001          USHORT nStartRow;
-//STRIP001          USHORT nEndCol;
-//STRIP001          USHORT nEndRow;
-//STRIP001          pDBData->GetArea( nAreaTab, nStartCol, nStartRow, nEndCol, nEndRow );
-//STRIP001          if (pDBData->HasHeader())
-//STRIP001              ++nStartRow;
-//STRIP001
-//STRIP001          ScQueryParam aParam;
-//STRIP001          pDBData->GetQueryParam( aParam );
-//STRIP001          rStrings.SetCaseSensitive( aParam.bCaseSens );
-//STRIP001
-//STRIP001          pTab[nTab]->GetFilterEntries( nCol, nStartRow, nEndRow, rStrings );
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //
 //  GetFilterEntriesArea - Eintraege fuer Filter-Dialog
 //
 
-//STRIP001 BOOL ScDocument::GetFilterEntriesArea( USHORT nCol, USHORT nStartRow, USHORT nEndRow,
-//STRIP001                                      USHORT nTab, TypedStrCollection& rStrings )
-//STRIP001 {
-//STRIP001  if ( nTab<=MAXTAB && pTab[nTab] )
-//STRIP001  {
-//STRIP001      pTab[nTab]->GetFilterEntries( nCol, nStartRow, nEndRow, rStrings );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //
 //  GetDataEntries - Eintraege fuer Auswahlliste-Listbox (keine Zahlen / Formeln)
 //
 
-//STRIP001 BOOL ScDocument::GetDataEntries( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                                  TypedStrCollection& rStrings, BOOL bLimit )
-//STRIP001 {
-//STRIP001  if (nTab<=MAXTAB && pTab[nTab])
-//STRIP001      return pTab[nTab]->GetDataEntries( nCol, nRow, rStrings, bLimit );
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //
 //  GetFormulaEntries - Eintraege fuer Formel-AutoEingabe
@@ -1316,76 +838,6 @@ using namespace ::com::sun::star;
 #define SC_STRTYPE_DBNAMES      3
 #define SC_STRTYPE_HEADERS      4
 
-//STRIP001 BOOL ScDocument::GetFormulaEntries( TypedStrCollection& rStrings )
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001
-//STRIP001  //
-//STRIP001  //  Bereichsnamen
-//STRIP001  //
-//STRIP001
-//STRIP001  if ( pRangeName )
-//STRIP001  {
-//STRIP001      USHORT nRangeCount = pRangeName->GetCount();
-//STRIP001      for ( i=0; i<nRangeCount; i++ )
-//STRIP001      {
-//STRIP001          ScRangeData* pData = (*pRangeName)[i];
-//STRIP001          if (pData)
-//STRIP001          {
-//STRIP001              TypedStrData* pNew = new TypedStrData( pData->GetName(), 0.0, SC_STRTYPE_NAMES );
-//STRIP001              if ( !rStrings.Insert(pNew) )
-//STRIP001                  delete pNew;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //
-//STRIP001  //  Datenbank-Bereiche
-//STRIP001  //
-//STRIP001
-//STRIP001  if ( pDBCollection )
-//STRIP001  {
-//STRIP001      USHORT nDBCount = pDBCollection->GetCount();
-//STRIP001      for ( i=0; i<nDBCount; i++ )
-//STRIP001      {
-//STRIP001          ScDBData* pData = (*pDBCollection)[i];
-//STRIP001          if (pData)
-//STRIP001          {
-//STRIP001              TypedStrData* pNew = new TypedStrData( pData->GetName(), 0.0, SC_STRTYPE_DBNAMES );
-//STRIP001              if ( !rStrings.Insert(pNew) )
-//STRIP001                  delete pNew;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //
-//STRIP001  //  Inhalte von Beschriftungsbereichen
-//STRIP001  //
-//STRIP001
-//STRIP001  ScRangePairList* pLists[2];
-//STRIP001  pLists[0] = GetColNameRanges();
-//STRIP001  pLists[1] = GetRowNameRanges();
-//STRIP001  for (USHORT nListNo=0; nListNo<2; nListNo++)
-//STRIP001  {
-//STRIP001      ScRangePairList* pList = pLists[nListNo];
-//STRIP001      if (pList)
-//STRIP001          for ( ScRangePair* pPair = pList->First(); pPair; pPair = pList->Next() )
-//STRIP001          {
-//STRIP001              ScRange aRange = pPair->GetRange(0);
-//STRIP001              ScCellIterator aIter( this, aRange );
-//STRIP001              for ( ScBaseCell* pCell = aIter.GetFirst(); pCell; pCell = aIter.GetNext() )
-//STRIP001                  if ( pCell->HasStringData() )
-//STRIP001                  {
-//STRIP001                      String aStr = pCell->GetStringData();
-//STRIP001                      TypedStrData* pNew = new TypedStrData( aStr, 0.0, SC_STRTYPE_HEADERS );
-//STRIP001                      if ( !rStrings.Insert(pNew) )
-//STRIP001                          delete pNew;
-//STRIP001                  }
-//STRIP001          }
-//STRIP001  }
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ BOOL ScDocument::IsEmbedded() const
@@ -1393,54 +845,9 @@ using namespace ::com::sun::star;
 /*N*/   return bIsEmbedded;
 /*N*/ }
 
-//STRIP001 void ScDocument::GetEmbedded( ScTripel& rStart, ScTripel& rEnd ) const
-//STRIP001 {
-//STRIP001  rStart.Put( aEmbedRange.aStart.Col(), aEmbedRange.aStart.Row(), aEmbedRange.aStart.Tab() );
-//STRIP001  rEnd.Put( aEmbedRange.aEnd.Col(), aEmbedRange.aEnd.Row(), aEmbedRange.aEnd.Tab() );
-//STRIP001 }
 
-//STRIP001 Rectangle ScDocument::GetEmbeddedRect() const                        // 1/100 mm
-//STRIP001 {
-//STRIP001  Rectangle aRect;
-//STRIP001  ScTable* pTable = pTab[aEmbedRange.aStart.Tab()];
-//STRIP001  if (!pTable)
-//STRIP001  {
-//STRIP001      DBG_ERROR("GetEmbeddedRect ohne Tabelle");
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      USHORT i;
-//STRIP001
-//STRIP001      for (i=0; i<aEmbedRange.aStart.Col(); i++)
-//STRIP001          aRect.Left() += pTable->GetColWidth(i);
-//STRIP001      for (i=0; i<aEmbedRange.aStart.Row(); i++)
-//STRIP001          aRect.Top() += pTable->GetRowHeight(i);
-//STRIP001      aRect.Right() = aRect.Left();
-//STRIP001      for (i=aEmbedRange.aStart.Col(); i<=aEmbedRange.aEnd.Col(); i++)
-//STRIP001          aRect.Right() += pTable->GetColWidth(i);
-//STRIP001      aRect.Bottom() = aRect.Top();
-//STRIP001      for (i=aEmbedRange.aStart.Row(); i<=aEmbedRange.aEnd.Row(); i++)
-//STRIP001          aRect.Bottom() += pTable->GetRowHeight(i);
-//STRIP001
-//STRIP001      aRect.Left()   = (long) ( aRect.Left()   * HMM_PER_TWIPS );
-//STRIP001      aRect.Right()  = (long) ( aRect.Right()  * HMM_PER_TWIPS );
-//STRIP001      aRect.Top()    = (long) ( aRect.Top()    * HMM_PER_TWIPS );
-//STRIP001      aRect.Bottom() = (long) ( aRect.Bottom() * HMM_PER_TWIPS );
-//STRIP001  }
-//STRIP001  return aRect;
-//STRIP001 }
 
-//STRIP001 void ScDocument::SetEmbedded( const ScTripel& rStart, const ScTripel& rEnd )
-//STRIP001 {
-//STRIP001  bIsEmbedded = TRUE;
-//STRIP001  aEmbedRange = ScRange( rStart, rEnd );
-//STRIP001 }
 
-//STRIP001 void ScDocument::ResetEmbedded()
-//STRIP001 {
-//STRIP001  bIsEmbedded = FALSE;
-//STRIP001  aEmbedRange = ScRange();
-//STRIP001 }
 
 /*N*/ ScRange ScDocument::GetRange( USHORT nTab, const Rectangle& rMMRect )
 /*N*/ {
@@ -1526,11 +933,6 @@ using namespace ::com::sun::star;
 /*N*/   return ScRange( nX1,nY1,nTab, nX2,nY2,nTab );
 /*N*/ }
 
-//STRIP001 void ScDocument::SetEmbedded( const Rectangle& rRect )           // aus VisArea (1/100 mm)
-//STRIP001 {
-//STRIP001  bIsEmbedded = TRUE;
-//STRIP001  aEmbedRange = GetRange( nVisibleTab, rRect );
-//STRIP001 }
 
 //  VisArea auf Zellgrenzen anpassen
 
@@ -1735,55 +1137,8 @@ using namespace ::com::sun::star;
 /*N*/ void ScDocument::SetExtDocOptions( ScExtDocOptions* pNewOptions )
 /*N*/ {
 /*N*/    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pExtDocOptions;
-//STRIP001 /*N*/    pExtDocOptions = pNewOptions;
 /*N*/ }
 
-//STRIP001 void ScDocument::DoMergeContents( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                  USHORT nEndCol, USHORT nEndRow )
-//STRIP001 {
-//STRIP001  String aEmpty;
-//STRIP001  String aTotal;
-//STRIP001  String aCellStr;
-//STRIP001  USHORT nCol;
-//STRIP001  USHORT nRow;
-//STRIP001  ScPostIt aCellNote;
-//STRIP001  String aNoteStr;
-//STRIP001  BOOL bDoNote = FALSE;
-//STRIP001
-//STRIP001  for (nRow=nStartRow; nRow<=nEndRow; nRow++)
-//STRIP001      for (nCol=nStartCol; nCol<=nEndCol; nCol++)
-//STRIP001      {
-//STRIP001          GetString(nCol,nRow,nTab,aCellStr);
-//STRIP001          if (aCellStr.Len())
-//STRIP001          {
-//STRIP001              if (aTotal.Len())
-//STRIP001                  aTotal += ' ';
-//STRIP001              aTotal += aCellStr;
-//STRIP001          }
-//STRIP001          if (nCol != nStartCol || nRow != nStartRow)
-//STRIP001              SetString(nCol,nRow,nTab,aEmpty);
-//STRIP001
-//STRIP001          if (GetNote(nCol,nRow,nTab,aCellNote))
-//STRIP001          {
-//STRIP001              if (aNoteStr.Len())
-//STRIP001                  aNoteStr += '\n';
-//STRIP001              aNoteStr += aCellNote.GetText();
-//STRIP001
-//STRIP001              if (nCol != nStartCol || nRow != nStartRow)
-//STRIP001              {
-//STRIP001                  if (aCellNote.IsShown())
-//STRIP001                      ScDetectiveFunc( this, nTab ).HideComment( nCol, nRow );
-//STRIP001                  SetNote(nCol,nRow,nTab,ScPostIt());
-//STRIP001                  bDoNote = TRUE;
-//STRIP001              }
-//STRIP001              //! Autor/Datum beibehalten, wenn's nur eine Notiz war??
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001  SetString(nStartCol,nStartRow,nTab,aTotal);
-//STRIP001  if (bDoNote)
-//STRIP001      SetNote(nStartCol,nStartRow,nTab,ScPostIt(aNoteStr));
-//STRIP001 }
 
 /*N*/ void ScDocument::DoMerge( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
 /*N*/                                   USHORT nEndCol, USHORT nEndRow )
@@ -1799,23 +1154,6 @@ using namespace ::com::sun::star;
 /*N*/       ApplyFlagsTab( nStartCol+1, nStartRow+1, nEndCol, nEndRow, nTab, SC_MF_HOR | SC_MF_VER );
 /*N*/ }
 
-//STRIP001 void ScDocument::RemoveMerge( USHORT nCol, USHORT nRow, USHORT nTab )
-//STRIP001 {
-//STRIP001  const ScMergeAttr* pAttr = (const ScMergeAttr*)
-//STRIP001                                  GetAttr( nCol, nRow, nTab, ATTR_MERGE );
-//STRIP001
-//STRIP001  if ( pAttr->GetColMerge() <= 1 && pAttr->GetRowMerge() <= 1 )
-//STRIP001      return;
-//STRIP001
-//STRIP001  USHORT nEndCol = nCol + pAttr->GetColMerge() - 1;
-//STRIP001  USHORT nEndRow = nRow + pAttr->GetRowMerge() - 1;
-//STRIP001
-//STRIP001  RemoveFlagsTab( nCol, nRow, nEndCol, nEndRow, nTab, SC_MF_HOR | SC_MF_VER );
-//STRIP001
-//STRIP001  const ScMergeAttr* pDefAttr = (const ScMergeAttr*)
-//STRIP001                                      &xPoolHelper->GetDocPool()->GetDefaultItem( ATTR_MERGE );
-//STRIP001  ApplyAttr( nCol, nRow, nTab, *pDefAttr );
-//STRIP001 }
 
 /*N*/ void ScDocument::ExtendPrintArea( OutputDevice* pDev, USHORT nTab,
 /*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT& rEndCol, USHORT nEndRow )
