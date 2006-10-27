@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltexte.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:44:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:57:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,27 +39,16 @@
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
-// auto strip #ifndef _IPOBJ_HXX
-// auto strip #include <so3/ipobj.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTSUPPLIER_HPP_
-// auto strip #include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include <bf_xmloff/families.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
 #include <bf_xmloff/txtprmap.hxx>
 #endif
 
-// auto strip #include <bf_svx/svdobj.hxx>
+#include <bf_sfx2/frmdescr.hxx>
+
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -98,20 +87,8 @@
 #include "xmltexte.hxx"
 #endif
 
-// auto strip #ifndef _APPLET_HXX //autogen
-// auto strip #include <so3/applet.hxx>
-// auto strip #endif
-// auto strip #ifndef _PLUGIN_HXX //autogen
-// auto strip #include <so3/plugin.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _FRAMEOBJ_HXX //autogen
-// auto strip #include <bf_sfx2/frameobj.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 
 #ifndef _SW_APPLET_IMPL_HXX
 #include <SwAppletImpl.hxx>
@@ -120,9 +97,6 @@
 #define _SVSTDARR_ULONGS
 #include <svtools/svstdarr.hxx>
 
-// auto strip #ifndef _SFX_FRMDESCRHXX
-// auto strip #include <bf_sfx2/frmdescr.hxx>
-// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
