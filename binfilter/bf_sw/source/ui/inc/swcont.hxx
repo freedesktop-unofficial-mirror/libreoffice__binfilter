@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swcont.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:52:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:54:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,7 +99,6 @@ class SwContent : public SwTypeNumber
 public:
         SwContent(const SwContentType* pCnt, const String& rName, long nYPos );
 
-//STRIP001  virtual BOOL            IsProtect() const;
     const SwContentType*    GetParent() const {return pParent;}
     const String&           GetName()   const {return sContentName;}
     int                     operator==(const SwContent& rCont) const

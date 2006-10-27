@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swstbctl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:54:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:55:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,8 +49,6 @@ class  SwHyperlinkControl : public SfxStatusBarControl
 public:
     virtual void    StateChanged( USHORT nSID, SfxItemState eState,
                                   const SfxPoolItem* pState );
-//STRIP001  virtual void    Paint( const UserDrawEvent& rEvt );
-//STRIP001  virtual void    Click();
 
     SFX_DECL_STATUSBAR_CONTROL();
 

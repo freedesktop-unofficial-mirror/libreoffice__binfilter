@@ -4,9 +4,9 @@
  *
  *  $RCSfile: syncbtn.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:54:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:55:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,16 +56,6 @@ class SwWrtShell;
     Beschreibung:
 ------------------------------------------------------------------------*/
 
-//STRIP001 class SwSyncBtnDlg : public SfxFloatingWindow
-//STRIP001 {
-//STRIP001  PushButton              aSyncBtn;
-//STRIP001
-//STRIP001  DECL_LINK( BtnHdl,      PushButton* pBtn = 0 );
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwSyncBtnDlg(SfxBindings*, SfxChildWindow*, Window *pParent);
-//STRIP001  ~SwSyncBtnDlg();
-//STRIP001 };
 } //namespace binfilter
 #endif
 
