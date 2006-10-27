@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlstyle.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:33:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:32:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,14 +35,10 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _SC_XMLSTYLE_HXX
-// auto strip #include "xmlstyle.hxx"
-// auto strip #endif
 #include "xmlexprt.hxx"
 #include "xmlimprt.hxx"
 
 /*#ifndef _PROPIMP0_HXX
-// auto strip #include "propimp0.hxx"
 #endif*/
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
@@ -50,21 +46,7 @@
 
 #include <bf_xmloff/xmlnmspe.hxx>
 #include <bf_xmloff/xmluconv.hxx>
-// auto strip #include <bf_xmloff/xmltypes.hxx>
-// auto strip #include <bf_xmloff/families.hxx>
 
-// auto strip #ifndef _XMLOFF_XMLNUMFE_HXX
-// auto strip #include <bf_xmloff/xmlnumfe.hxx>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLNUMFI_HXX
-// auto strip #include <bf_xmloff/xmlnumfi.hxx>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include <bf_xmloff/nmspmap.hxx>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include <bf_xmloff/attrlist.hxx>
-// auto strip #endif
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
@@ -100,7 +82,6 @@
 #include <comphelper/extract.hxx>
 #endif
 
-// auto strip #include <rtl/ustrbuf.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
