@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:38:30 $
+#   last change: $Author: rt $ $Date: 2006-10-28 00:13:53 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -45,56 +45,19 @@ NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_envfmt.cxx \
-    sw_envimg.cxx \
-        sw_envlop1.cxx \
-        sw_envprt.cxx \
-        sw_labelcfg.cxx \
-        sw_label1.cxx \
-        sw_labelexp.cxx \
-        sw_labfmt.cxx \
-        sw_labprt.cxx \
-        sw_labimg.cxx \
-        sw_mailmrge.cxx \
-        sw_syncbtn.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =\
-        sw_envelp.src \
-        sw_envfmt.src \
-        sw_envlop.src \
-        sw_envprt.src \
-        sw_label.src  \
-        sw_labfmt.src \
-        sw_labprt.src \
-        sw_mailmrge.src
+        sw_label.src
 
 SLOFILES =  \
-        $(SLO)$/sw_envfmt.obj  \
         $(SLO)$/sw_envimg.obj  \
-        $(SLO)$/sw_envlop1.obj \
-        $(SLO)$/sw_envprt.obj  \
-        $(SLO)$/sw_labelcfg.obj  \
-        $(SLO)$/sw_label1.obj  \
-        $(SLO)$/sw_labelexp.obj \
-        $(SLO)$/sw_labfmt.obj  \
-        $(SLO)$/sw_labprt.obj  \
-        $(SLO)$/sw_labimg.obj  \
-        $(SLO)$/sw_mailmrge.obj \
         $(SLO)$/sw_syncbtn.obj
-
-EXCEPTIONSFILES= \
-        $(SLO)$/sw_labelexp.obj      \
-        $(SLO)$/sw_mailmrge.obj
 
 # --- Targets -------------------------------------------------------
 
