@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dcontact.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:52:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:30:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 
 #include "hintids.hxx"
 
-// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
-// auto strip #include <bf_svx/protitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
-// auto strip #include <bf_svx/opaqitem.hxx>
-// auto strip #endif
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
 #endif
@@ -58,15 +52,6 @@
 #ifndef _SVDOGRP_HXX //autogen
 #include <bf_svx/svdogrp.hxx>
 #endif
-// auto strip #ifndef _SVDOTEXT_HXX //autogen
-// auto strip #include <bf_svx/svdotext.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDMODEL_HXX //autogen
-// auto strip #include <bf_svx/svdmodel.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDPAGV_HXX //autogen
-// auto strip #include <bf_svx/svdpagv.hxx>
-// auto strip #endif
 #ifndef _SVDVITER_HXX
 #include <bf_svx/svdviter.hxx>
 #endif
@@ -91,9 +76,6 @@
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
@@ -112,9 +94,6 @@
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
@@ -130,9 +109,6 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
@@ -252,14 +228,6 @@ namespace binfilter {
 /*N*/ }
 
 // liefert TRUE falls das SrdObject ein Marquee-Object (Lauftext) ist
-//STRIP001 FASTBOOL IsMarqueeTextObj( const SdrObject& rObj )
-//STRIP001 {
-//STRIP001  SdrTextAniKind eTKind;
-//STRIP001  return SdrInventor == rObj.GetObjInventor() &&
-//STRIP001      OBJ_TEXT == rObj.GetObjIdentifier() &&
-//STRIP001      ( SDRTEXTANI_SCROLL == ( eTKind = ((SdrTextObj&)rObj).GetTextAniKind())
-//STRIP001       || SDRTEXTANI_ALTERNATE == eTKind || SDRTEXTANI_SLIDE == eTKind );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1262,39 +1230,6 @@ void SwDrawContact::ChkPage()
 // corresponding superclass method <FmFormPage::ReplaceObject(..)>.
 // Note: 'master' drawing object *has* to be connected to layout (GetAnchor()
 //       returns a frame), if method is called.
-//STRIP001 void SwDrawContact::ChangeMasterObject( SdrObject *pNewMaster )
-//STRIP001 {
-//STRIP001 /*?*/     const SwFrm& rAnchorFrmOfMaster = *GetAnchor();
-//STRIP001 /*?*/
-//STRIP001 /*?*/     DisconnectFromLayout( false );
-//STRIP001 /*?*/     // OD 10.07.2003 #110742# - consider 'virtual' drawing objects
-//STRIP001 /*?*/     RemoveAllVirtObjs();
-//STRIP001 /*?*/
-//STRIP001 /*?*/     GetMaster()->SetUserCall( 0 );
-//STRIP001 /*?*/    SetMaster( pNewMaster );
-//STRIP001 /*?*/    GetMaster()->SetUserCall( this );
-//STRIP001 /*?*/
-//STRIP001 /*?*/     Point aNewAnchor( rAnchorFrmOfMaster.GetFrmAnchorPos( ::HasWrap( GetMaster() ) ) );
-//STRIP001 /*?*/    GetMaster()->NbcSetRelativePos( GetMaster()->GetSnapRect().TopLeft() -
-//STRIP001 /*?*/                                     aNewAnchor );
-//STRIP001 /*?*/     GetMaster()->NbcSetAnchorPos( aNewAnchor );
-//STRIP001 /*?*/
-//STRIP001 /*?*/     // OD 10.07.2003 #110742# - connecting to layout not needed, because the
-//STRIP001 /*?*/     // connection to the layout has to be done by the caller.
-//STRIP001 /*?*/     // In current implementation this is <SwDPage::ReplaceObject(..)>, which
-//STRIP001 /*?*/     // causes an <SDRUSERCALL_INSERTED>. This takes care of the connection to
-//STRIP001 /*?*/     // layout.
-//STRIP001     /*
-//STRIP001  //Hier wird der neue Master ggf. in die Page eingefuegt, was das Drawing
-//STRIP001  //aber gar nicht gut haben kann. Deshalb nehmen wir das Objekt hinterher
-//STRIP001  //gleich wieder aus der Seite heraus.
-//STRIP001  FASTBOOL bInserted = pNewMaster->IsInserted();
-//STRIP001  ConnectToLayout();
-//STRIP001  if ( !bInserted && pNewMaster->IsInserted() )
-//STRIP001      ((SwFrmFmt*)pRegisteredIn)->GetDoc()->GetDrawModel()->GetPage(0)->
-//STRIP001                                  RemoveObject( GetMaster()->GetOrdNum() );
-//STRIP001     */
-//STRIP001 }
 
 // =============================================================================
 /** implementation of class <SwDrawVirtObj>
@@ -1342,13 +1277,6 @@ const Point SwDrawVirtObj::GetOffset() const
 void SwDrawVirtObj::operator=( const SdrObject& rObj )
 {
 DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001  SdrVirtObj::operator=(rObj);
-//STRIP001
-//STRIP001  // copy local offset
-//STRIP001  if ( rObj.ISA(SwDrawVirtObj) )
-//STRIP001  {
-//STRIP001      maOffset = static_cast<const SwDrawVirtObj&>(rObj).maOffset;
-//STRIP001  }
 }
 
 SdrObject* SwDrawVirtObj::Clone() const
@@ -1527,19 +1455,10 @@ void SwDrawVirtObj::TakeContour(XPolyPolygon& rPoly) const
 
 SdrHdl* SwDrawVirtObj::GetHdl(USHORT nHdlNum) const
 {DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
-//STRIP001  SdrHdl* pHdl = rRefObj.GetHdl(nHdlNum);
-//STRIP001  Point aP(pHdl->GetPos() + maOffset);
-//STRIP001  pHdl->SetPos(aP);
-//STRIP001
-//STRIP001  return pHdl;
 }
 
 SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const
 {DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
-//STRIP001  SdrHdl* pHdl = rRefObj.GetPlusHdl(rHdl, nPlNum);
-//STRIP001  pHdl->SetPos(pHdl->GetPos() + maOffset);
-//STRIP001
-//STRIP001  return pHdl;
 }
 
 void SwDrawVirtObj::NbcMove(const Size& rSiz)
@@ -1604,10 +1523,6 @@ void SwDrawVirtObj::Rotate(const Point& rRef, long nWink, double sn, double cs)
 
 void SwDrawVirtObj::Mirror(const Point& rRef1, const Point& rRef2)
 {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001  Rectangle aBoundRect0; if(pUserCall) aBoundRect0 = GetBoundRect();
-//STRIP001  rRefObj.Mirror(rRef1 - maOffset, rRef2 - maOffset);
-//STRIP001  SetRectsDirty();
-//STRIP001  SendUserCall(SDRUSERCALL_RESIZE, aBoundRect0);
 }
 
 void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
@@ -1681,10 +1596,6 @@ void SwDrawVirtObj::NbcSetLogicRect(const Rectangle& rRect)
 
 Point SwDrawVirtObj::GetSnapPoint(USHORT i) const
 {DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;//STRIP001
-//STRIP001  Point aP(rRefObj.GetSnapPoint(i));
-//STRIP001  aP += maOffset;
-//STRIP001
-//STRIP001  return aP;
 }
 
 const Point& SwDrawVirtObj::GetPoint(USHORT i) const
