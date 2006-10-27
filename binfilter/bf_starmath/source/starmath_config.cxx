@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_config.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:01:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:55:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,15 +38,6 @@
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
 #endif
-// auto strip #ifndef _SFXHINT_HXX //autogen
-// auto strip #include <svtools/hint.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-// auto strip #include <svtools/pathoptions.hxx>
-// auto strip #endif
 #ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
 #endif
@@ -56,26 +47,14 @@
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
 #endif
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 
 
 #ifndef CONFIG_HXX
 #include "config.hxx"
 #endif
-// auto strip #ifndef FORMAT_HXX
-// auto strip #include "format.hxx"
-// auto strip #endif
-// auto strip #ifndef _SMMOD_HXX
-// auto strip #include "smmod.hxx"
-// auto strip #endif
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
@@ -93,48 +72,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SmConfig::ItemSetToConfig(const SfxItemSet &rSet)
-//STRIP001 {
-//STRIP001  const SfxPoolItem *pItem     = NULL;
-//STRIP001
-//STRIP001  UINT16 nU16;
-//STRIP001  BOOL bVal;
-//STRIP001  if (rSet.GetItemState(SID_PRINTSIZE, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   nU16 = ((const SfxUInt16Item *) pItem)->GetValue();
-//STRIP001         SetPrintSize( (SmPrintSize) nU16 );
-//STRIP001  }
-//STRIP001     if (rSet.GetItemState(SID_PRINTZOOM, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   nU16 = ((const SfxUInt16Item *) pItem)->GetValue();
-//STRIP001         SetPrintZoomFactor( nU16 );
-//STRIP001  }
-//STRIP001  if (rSet.GetItemState(SID_PRINTTITLE, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   bVal = ((const SfxBoolItem *) pItem)->GetValue();
-//STRIP001         SetPrintTitle( bVal );
-//STRIP001  }
-//STRIP001  if (rSet.GetItemState(SID_PRINTTEXT, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   bVal = ((const SfxBoolItem *) pItem)->GetValue();
-//STRIP001         SetPrintFormulaText( bVal );
-//STRIP001  }
-//STRIP001  if (rSet.GetItemState(SID_PRINTFRAME, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   bVal = ((const SfxBoolItem *) pItem)->GetValue();
-//STRIP001         SetPrintFrame( bVal );
-//STRIP001  }
-//STRIP001  if (rSet.GetItemState(SID_AUTOREDRAW, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   bVal = ((const SfxBoolItem *) pItem)->GetValue();
-//STRIP001         SetAutoRedraw( bVal );
-//STRIP001  }
-//STRIP001  if (rSet.GetItemState(SID_NO_RIGHT_SPACES, TRUE, &pItem) == SFX_ITEM_SET)
-//STRIP001  {   bVal = ((const SfxBoolItem *) pItem)->GetValue();
-//STRIP001         if (IsIgnoreSpacesRight() != bVal)
-//STRIP001         {
-//STRIP001             SetIgnoreSpacesRight( bVal );
-//STRIP001
-//STRIP001          // (angezeigte) Formeln muessen entsprechen neu formatiert werden.
-//STRIP001          // Das erreichen wir mit:
-//STRIP001          Broadcast(SfxSimpleHint(HINT_FORMATCHANGED));
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void SmConfig::ConfigToItemSet(SfxItemSet &rSet) const
