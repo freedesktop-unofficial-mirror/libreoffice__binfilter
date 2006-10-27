@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_section.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:51:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:30:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,9 +70,6 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
@@ -84,15 +81,9 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _FRMTOOL_HXX
-// auto strip #include <frmtool.hxx>
-// auto strip #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
@@ -105,9 +96,6 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _SECTION_HXX
-// auto strip #include <section.hxx>
-// auto strip #endif
 #ifndef _SWSERV_HXX
 #include <swserv.hxx>
 #endif
@@ -117,12 +105,6 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-// auto strip #ifndef _BOOKMRK_HXX
-// auto strip #include <bookmrk.hxx>
-// auto strip #endif
-// auto strip #ifndef _EXPFLD_HXX
-// auto strip #include <expfld.hxx>
-// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
@@ -132,9 +114,6 @@
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-// auto strip #ifndef _FMTFTNTX_HXX
-// auto strip #include <fmtftntx.hxx>
-// auto strip #endif
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
@@ -166,11 +145,9 @@ namespace binfilter {
 /*N*/       rSectFmt( rFmt )
 /*N*/   {}
 /*N*/
-//STRIP001  virtual void Closed();
 /*N*/   virtual void DataChanged( const String& rMimeType,
 /*N*/                               const ::com::sun::star::uno::Any & rValue );
 /*N*/
-//STRIP001  virtual const SwNode* GetAnchor() const;
 /*N*/   virtual BOOL IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen nStt = 0,
 /*N*/                           xub_StrLen nEnd = STRING_NOTFOUND ) const;
 /*N*/ };
@@ -181,7 +158,6 @@ namespace binfilter {
 
 /*N*/ typedef SwSection* SwSectionPtr;
 
-//STRIP001 SV_IMPL_PTRARR( SwSections, SwSection*)
 /*N*/ SV_IMPL_PTRARR(SwSectionFmts,SwSectionFmt*)
 
 
@@ -454,7 +430,6 @@ void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
 /*N*/   if( bRemake )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetFmt()->DelFrms();
-//STRIP001 /*?*/        GetFmt()->MakeFrms();
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdateFtn )
@@ -532,39 +507,7 @@ void SwSection::SetCondHidden( int bFlag )
 
 // falls es ein gelinkter Bereich war, dann muessen alle
 // Child-Verknuepfungen sichtbar bemacht werden.
-//STRIP001 void SwSection::MakeChildLinksVisible( const SwSectionNode& rSectNd )
-//STRIP001 {
-//STRIP001  const SwNode* pNd;
-//STRIP001  const ::so3::SvBaseLinks& rLnks = rSectNd.GetDoc()->GetLinkManager().GetLinks();
-//STRIP001  for( USHORT n = rLnks.Count(); n; )
-//STRIP001  {
-//STRIP001      ::so3::SvBaseLink* pBLnk = &(*rLnks[ --n ]);
-//STRIP001      if( pBLnk && !pBLnk->IsVisible() &&
-//STRIP001          pBLnk->ISA( SwBaseLink ) &&
-//STRIP001          0 != ( pNd = ((SwBaseLink*)pBLnk)->GetAnchor() ) )
-//STRIP001      {
-//STRIP001          pNd = pNd->FindStartNode(); // falls SectionNode ist!
-//STRIP001          const SwSectionNode* pParent;
-//STRIP001          while( 0 != ( pParent = pNd->FindSectionNode() ) &&
-//STRIP001                  ( CONTENT_SECTION == pParent->GetSection().GetType()
-//STRIP001                      || pNd == &rSectNd ))
-//STRIP001                  pNd = pParent->FindStartNode();
-//STRIP001
-//STRIP001          // steht nur noch in einer normalen Section, also
-//STRIP001          // wieder anzeigen
-//STRIP001          if( !pParent )
-//STRIP001              pBLnk->SetVisible( TRUE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 const SwTOXBase* SwSection::GetTOXBase() const
-//STRIP001 {
-//STRIP001  const SwTOXBase* pRet = 0;
-//STRIP001  if( TOX_CONTENT_SECTION == GetType() )
-//STRIP001      pRet = PTR_CAST( SwTOXBaseSection, this );
-//STRIP001  return pRet;
-//STRIP001 }
 
 /*N*/ SwSectionFmt::SwSectionFmt( SwSectionFmt* pDrvdFrm, SwDoc *pDoc )
 /*N*/   : SwFrmFmt( pDoc->GetAttrPool(), sSectionFmtNm, pDrvdFrm )
@@ -584,38 +527,6 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/           0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSection& rSect = pSectNd->GetSection();
-//STRIP001 /*?*/            // falls es ein gelinkter Bereich war, dann muessen alle
-//STRIP001 /*?*/            // Child-Verknuepfungen sichtbar bemacht werden.
-//STRIP001 /*?*/            if( rSect.IsConnected() )
-//STRIP001 /*?*/            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     rSect.MakeChildLinksVisible( *pSectNd );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // vorm loeschen der Nodes pruefe, ob wir uns nicht
-//STRIP001 /*?*/            // noch anzeigen muessen!
-//STRIP001 /*?*/            if( rSect.IsHiddenFlag() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwSectionPtr pParentSect = rSect.GetParent();
-//STRIP001 /*?*/                if( !pParentSect || !pParentSect->IsHiddenFlag() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // Nodes wieder anzeigen
-//STRIP001 /*?*/                    rSect.SetHidden( FALSE );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            SwClientIter aIter( *this );
-//STRIP001 /*?*/            SwClient *pLast = aIter.GoStart();
-//STRIP001 /*?*/            while ( pLast )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if ( pLast->IsA( TYPE(SwFrm) ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwSectionFrm *pFrm = (SwSectionFrm*)pLast;
-//STRIP001 /*?*/                    SwSectionFrm::MoveCntntAndDelete( pFrm, TRUE );
-//STRIP001 /*?*/                    pLast = aIter.GoStart();
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    pLast = aIter++;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            // hebe die Section doch mal auf
-//STRIP001 /*?*/            SwNodeRange aRg( *pSectNd, 0, *pSectNd->EndOfSectionNode() );
-//STRIP001 /*?*/            GetDoc()->GetNodes().SectionUp( &aRg );
 /*N*/       }
 /*N*/       LockModify();
 /*N*/       ResetAttr( RES_CNTNT );
@@ -792,8 +703,6 @@ void SwSectionFmt::MakeFrms()
 /*?*/           // mein Parent wird vernichtet, dann an den Parent vom Parent
 /*?*/           // umhaengen und wieder aktualisieren
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
-//STRIP001 /*?*/            UpdateParent();
-//STRIP001 /*?*/            return;
 /*?*/       }
 /*?*/       break;
 /*N*/
@@ -804,8 +713,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/       {
 /*?*/           // mein Parent wird veraendert, muss mich aktualisieren
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
-//STRIP001 /*?*/            UpdateParent();
-//STRIP001 /*?*/            return;
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -813,79 +720,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/ }
 
         // erfrage vom Format Informationen
-//STRIP001 BOOL SwSectionFmt::GetInfo( SfxPoolItem& rInfo ) const
-//STRIP001 {
-//STRIP001  switch( rInfo.Which() )
-//STRIP001  {
-//STRIP001  case RES_FINDNEARESTNODE:
-//STRIP001      if( ((SwFmtPageDesc&)GetAttr( RES_PAGEDESC )).GetPageDesc() )
-//STRIP001      {
-//STRIP001          const SwSectionNode* pNd = GetSectionNode();
-//STRIP001          if( pNd )
-//STRIP001              ((SwFindNearestNode&)rInfo).CheckNode( *pNd );
-//STRIP001      }
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  case RES_CONTENT_VISIBLE:
-//STRIP001      {
-//STRIP001          SwFrm* pFrm = (SwFrm*)SwClientIter( *(SwSectionFmt*)this ).First( TYPE(SwFrm) );
-//STRIP001          // if the current section has no own frame search for the children
-//STRIP001          if(!pFrm)
-//STRIP001          {
-//STRIP001              SwClientIter aFormatIter( *(SwSectionFmt*)this );
-//STRIP001              SwSectionFmt* pChild = (SwSectionFmt*)aFormatIter.
-//STRIP001                                              First( TYPE(SwSectionFmt) );
-//STRIP001              while(pChild && !pFrm)
-//STRIP001              {
-//STRIP001                  pFrm = (SwFrm*)SwClientIter( *pChild ).First( TYPE(SwFrm) );
-//STRIP001                  pChild = (SwSectionFmt*)aFormatIter.Next();
-//STRIP001              }
-//STRIP001          }
-//STRIP001          ((SwPtrMsgPoolItem&)rInfo).pObject = pFrm;
-//STRIP001      }
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  return SwModify::GetInfo( rInfo );
-//STRIP001 }
 
-//STRIP001 extern "C" {
-//STRIP001
-//STRIP001  int
-//STRIP001 #if defined( WNT )
-//STRIP001      __cdecl
-//STRIP001 #endif
-//STRIP001 #if defined( ICC )
-//STRIP001      _Optlink
-//STRIP001 #endif
-//STRIP001      lcl_SectionCmpPos( const void *pFirst, const void *pSecond)
-//STRIP001  {
-//STRIP001      const SwSectionFmt* pFSectFmt = (*(SwSectionPtr*)pFirst)->GetFmt();
-//STRIP001      const SwSectionFmt* pSSectFmt = (*(SwSectionPtr*)pSecond)->GetFmt();
-//STRIP001      ASSERT( pFSectFmt && pSSectFmt &&
-//STRIP001              pFSectFmt->GetCntnt(FALSE).GetCntntIdx() &&
-//STRIP001              pSSectFmt->GetCntnt(FALSE).GetCntntIdx(),
-//STRIP001                  "ungueltige Sections" );
-//STRIP001      return (int)((long)pFSectFmt->GetCntnt(FALSE).GetCntntIdx()->GetIndex()) -
-//STRIP001                  pSSectFmt->GetCntnt(FALSE).GetCntntIdx()->GetIndex();
-//STRIP001  }
-//STRIP001
-//STRIP001  int
-//STRIP001 #if defined( WNT )
-//STRIP001      __cdecl
-//STRIP001 #endif
-//STRIP001 #if defined( ICC )
-//STRIP001      _Optlink
-//STRIP001 #endif
-//STRIP001      lcl_SectionCmpNm( const void *pFirst, const void *pSecond)
-//STRIP001  {
-//STRIP001      const SwSectionPtr pFSect = *(SwSectionPtr*)pFirst;
-//STRIP001      const SwSectionPtr pSSect = *(SwSectionPtr*)pSecond;
-//STRIP001      ASSERT( pFSect && pSSect, "ungueltige Sections" );
-//STRIP001      StringCompare eCmp = pFSect->GetName().CompareTo( pSSect->GetName() );
-//STRIP001      return eCmp == COMPARE_EQUAL ? 0
-//STRIP001                          : eCmp == COMPARE_LESS ? 1 : -1;
-//STRIP001  }
-//STRIP001 }
 
     // alle Sections, die von dieser abgeleitet sind
 /*N*/ USHORT SwSectionFmt::GetChildSections( SwSections& rArr,
@@ -913,21 +748,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/       // noch eine Sortierung erwuenscht ?
 /*N*/       if( 1 < rArr.Count() )
 /*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     switch( eSort )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/            case SORTSECT_NAME:
-//STRIP001 /*?*/                qsort( (void*)rArr.GetData(),
-//STRIP001 /*?*/                        rArr.Count(),
-//STRIP001 /*?*/                        sizeof( SwSectionPtr ),
-//STRIP001 /*?*/                        lcl_SectionCmpNm );
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/            case SORTSECT_POS:
-//STRIP001 /*?*/                qsort( (void*)rArr.GetData(),
-//STRIP001 /*?*/                        rArr.Count(),
-//STRIP001 /*?*/                        sizeof( SwSectionPtr ),
-//STRIP001 /*?*/                        lcl_SectionCmpPos );
-//STRIP001 /*?*/                break;
-//STRIP001 /*N*/            }
 /*N*/   }
 /*N*/   return rArr.Count();
 /*N*/ }
@@ -941,67 +761,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/ }
 
 
-//STRIP001 void SwSectionFmt::UpdateParent()        // Parent wurde veraendert
-//STRIP001 {
-//STRIP001  if( !GetDepends() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  SwSectionPtr pSection = 0;
-//STRIP001  const SvxProtectItem* pProtect;
-//STRIP001  int bIsHidden = FALSE;
-//STRIP001
-//STRIP001  SwClientIter aIter( *this );
-//STRIP001  SwClient * pLast = aIter.GoStart();
-//STRIP001  if( pLast )     // konnte zum Anfang gesprungen werden ??
-//STRIP001      do {
-//STRIP001          if( pLast->IsA( TYPE(SwSectionFmt) ) )
-//STRIP001          {
-//STRIP001              if( !pSection )
-//STRIP001              {
-//STRIP001                  pSection = GetSection();
-//STRIP001                  if( GetRegisteredIn() )
-//STRIP001                  {
-//STRIP001                      const SwSectionPtr pPS = GetParentSection();
-//STRIP001                      pProtect = &pPS->GetFmt()->GetProtect();
-//STRIP001                      bIsHidden = pPS->IsHiddenFlag();
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      pProtect = &GetProtect();
-//STRIP001                      bIsHidden = pSection->IsHidden();
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if( pProtect->IsCntntProtected() !=
-//STRIP001                  pSection->IsProtectFlag() )
-//STRIP001                  pLast->Modify( (SfxPoolItem*)pProtect,
-//STRIP001                                  (SfxPoolItem*)pProtect );
-//STRIP001
-//STRIP001              if( bIsHidden == pSection->IsHiddenFlag() )
-//STRIP001              {
-//STRIP001                  SwMsgPoolItem aMsgItem( bIsHidden
-//STRIP001                              ? RES_SECTION_HIDDEN
-//STRIP001                              : RES_SECTION_NOT_HIDDEN );
-//STRIP001                  pLast->Modify( &aMsgItem, &aMsgItem );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if( !pSection &&
-//STRIP001                  pLast->IsA( TYPE(SwSection) ) )
-//STRIP001          {
-//STRIP001              pSection = (SwSectionPtr)pLast;
-//STRIP001              if( GetRegisteredIn() )
-//STRIP001              {
-//STRIP001                  const SwSectionPtr pPS = GetParentSection();
-//STRIP001                  pProtect = &pPS->GetFmt()->GetProtect();
-//STRIP001                  bIsHidden = pPS->IsHiddenFlag();
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  pProtect = &GetProtect();
-//STRIP001                  bIsHidden = pSection->IsHidden();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      } while( 0 != ( pLast = aIter++ ));
-//STRIP001 }
 
 
 /*N*/ SwSectionNode* SwSectionFmt::GetSectionNode( BOOL bAlways )
@@ -1052,24 +811,6 @@ void SwSectionFmt::MakeFrms()
 /*?*/           // liegt in dem Bereich: also updaten. Aber nur wenns nicht
 /*?*/           // im gleichen File liegt
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sFName;
-//STRIP001 /*?*/            pDoc->GetLinkManager().GetDisplayNames( pBLink, 0, &sFName, 0, 0 );
-//STRIP001 /*?*/            if( sFName != sName )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pBLink->DataChanged( sMimeType, aValue );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // ggfs. neu den Link-Pointer wieder suchen, damit nicht einer
-//STRIP001 /*?*/                // ausgelassen oder doppelt gerufen wird.
-//STRIP001 /*?*/                if( n >= rLnks.Count() && 0 != ( n = rLnks.Count() ))
-//STRIP001 /*?*/                    --n;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( n && pLnk != &(*rLnks[ n ]) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // suchen - kann nur davor liegen!!
-//STRIP001 /*?*/                    while( n )
-//STRIP001 /*?*/                        if( pLnk == &(*rLnks[ --n ] ) )
-//STRIP001 /*?*/                            break;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1379,37 +1120,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/   if( pRead && rValue.hasValue() && ( rValue >>= aSeq ) )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pESh )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pESh->Push();
-//STRIP001 /*?*/            SwPaM* pCrsr = pESh->GetCrsr();
-//STRIP001 /*?*/            *pCrsr->GetPoint() = *pPam->GetPoint();
-//STRIP001 /*?*/            delete pPam;
-//STRIP001 /*?*/            pPam = pCrsr;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        SvMemoryStream aStrm( (void*)aSeq.getConstArray(), aSeq.getLength(),
-//STRIP001 /*?*/                                STREAM_READ );
-//STRIP001 /*?*/        aStrm.Seek( 0 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/ #if OSL_DEBUG_LEVEL > 1
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SvFileStream aDeb( String::CreateFromAscii(
-//STRIP001 /*?*/                    "file:///d|/temp/update.txt" ), STREAM_WRITE );
-//STRIP001 /*?*/            aDeb << aStrm;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        aStrm.Seek( 0 );
-//STRIP001 /*?*/ #endif
-//STRIP001 /*?*/
-//STRIP001 /*?*/        SwReader aTmpReader( aStrm, aEmptyStr, *pPam );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( !IsError( aTmpReader.Read( *pRead ) ))
-//STRIP001 /*?*/            rSection.SetConnectFlag( TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( pESh )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pESh->Pop( FALSE );
-//STRIP001 /*?*/            pPam = 0;                   // pam is deleted before
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/
@@ -1430,50 +1140,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/ }
 
 
-//STRIP001 void SwIntrnlSectRefLink::Closed()
-//STRIP001 {
-//STRIP001  SwDoc* pDoc = rSectFmt.GetDoc();
-//STRIP001  if( pDoc && !pDoc->IsInDtor() )
-//STRIP001  {
-//STRIP001      // Advise verabschiedet sich, den Bereich als nicht geschuetzt
-//STRIP001      // kennzeichnen und das Flag umsetzen
-//STRIP001
-//STRIP001      const SwSectionFmts& rFmts = pDoc->GetSections();
-//STRIP001      for( USHORT n = rFmts.Count(); n; )
-//STRIP001          if( rFmts[ --n ] == &rSectFmt )
-//STRIP001          {
-//STRIP001              ViewShell* pSh;
-//STRIP001              SwEditShell* pESh = pDoc->GetEditShell( &pSh );
-//STRIP001
-//STRIP001              if( pESh )
-//STRIP001                  pESh->StartAllAction();
-//STRIP001              else
-//STRIP001                  pSh->StartAction();
-//STRIP001
-//STRIP001              SwSection aSect( CONTENT_SECTION, aEmptyStr );
-//STRIP001              aSect = *rSectFmt.GetSection();
-//STRIP001              aSect.SetType( CONTENT_SECTION );
-//STRIP001              aSect.SetLinkFileName( aEmptyStr );
-//STRIP001              aSect.SetHidden( FALSE );
-//STRIP001              aSect.SetProtect( FALSE );
-//STRIP001              aSect.SetConnectFlag( FALSE );
-//STRIP001
-//STRIP001              pDoc->ChgSection( n, aSect );
-//STRIP001
-//STRIP001              // alle in der Section liegenden Links werden sichtbar
-//STRIP001              SwSectionNode* pSectNd = rSectFmt.GetSectionNode( FALSE );
-//STRIP001              if( pSectNd )
-//STRIP001                  pSectNd->GetSection().MakeChildLinksVisible( *pSectNd );
-//STRIP001
-//STRIP001              if( pESh )
-//STRIP001                  pESh->EndAllAction();
-//STRIP001              else
-//STRIP001                  pSh->EndAction();
-//STRIP001              break;
-//STRIP001          }
-//STRIP001  }
-//STRIP001  SvBaseLink::Closed();
-//STRIP001 }
 
 
 /*N*/ void SwSection::CreateLink( LinkCreateType eCreateType )
@@ -1534,10 +1200,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/   }
 /*N*/ }
 
-//STRIP001 const SwNode* SwIntrnlSectRefLink::GetAnchor() const
-//STRIP001 {
-//STRIP001  return rSectFmt.GetSectionNode( FALSE );
-//STRIP001 }
 
 
 /*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd,

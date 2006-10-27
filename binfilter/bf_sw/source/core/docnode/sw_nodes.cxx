@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_nodes.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:51:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:30:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -65,21 +62,9 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _NDNOTXT_HXX
-// auto strip #include <ndnotxt.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>      // fuer erzuegen / loeschen der Table-Frames
-// auto strip #endif
-// auto strip #ifndef _TBLSEL_HXX
-// auto strip #include <tblsel.hxx>
-// auto strip #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
@@ -101,14 +86,12 @@ SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)//STRIP008 ;
 
 //#define JP_DEBUG
 #ifdef JP_DEBUG
-// auto strip #include "shellio.hxx"
 #endif
 namespace binfilter {
 
 
 // Funktion zum bestimmen des hoechsten Levels innerhalb des Bereiches
 
-//STRIP001 USHORT HighestLevel( SwNodes & rNodes, const SwNodeRange & rRange );
 
 //-----------------------------------------------------------------------
 
@@ -193,24 +176,6 @@ namespace binfilter {
 // des Nodes-Arrays Elemente verschoben werden, dann muessen die Indizies
 // im Outline-Array wieder in die richtige Reihenfolge sortiert werden.
 
-//STRIP001 int
-//STRIP001 #if defined( WNT )
-//STRIP001  __cdecl
-//STRIP001 #endif
-//STRIP001 #if defined( ICC )
-//STRIP001  _Optlink
-//STRIP001 #endif
-//STRIP001  lcl_nodes_CmpFuncIdx( const void* pLower, const void* pUpper )
-//STRIP001 {
-//STRIP001  int nRet;
-//STRIP001  if( *(SwNode**)pLower == *(SwNode**)pUpper )
-//STRIP001      nRet = 0;
-//STRIP001  else if( (*(SwNode**)pLower)->GetIndex() < (*(SwNode**)pUpper)->GetIndex() )
-//STRIP001      nRet = -1;
-//STRIP001  else
-//STRIP001      nRet = 1;
-//STRIP001  return nRet;
-//STRIP001 }
 
 
 /*N*/ void SwNodes::ChgNode( SwNodeIndex& rDelPos, ULONG nSize,
@@ -242,34 +207,6 @@ namespace binfilter {
 /*?*/       for( ULONG n = rDelPos.GetIndex(); nSize; n += nDiff, --nSize )
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aDelIdx( *this, n );
-//STRIP001 /*?*/            SwNode& rNd = aDelIdx.GetNode();
-//STRIP001 /*?*/            if( rNd.IsTxtNode() && NO_NUMBERING !=
-//STRIP001 /*?*/                ((SwTxtNode&)rNd).GetTxtColl()->GetOutlineLevel() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                const SwNodePtr pSrch = (SwNodePtr)&rNd;
-//STRIP001 /*?*/                pOutlineNds->Remove( pSrch );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            BigPtrArray::Move( aDelIdx.GetIndex(), rInsPos.GetIndex() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if( rNd.IsTxtNode() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwTxtNode& rTxtNd = (SwTxtNode&)rNd;
-//STRIP001 /*?*/                if( bInsOutlineIdx && NO_NUMBERING !=
-//STRIP001 /*?*/                    rTxtNd.GetTxtColl()->GetOutlineLevel() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    const SwNodePtr pSrch = (SwNodePtr)&rNd;
-//STRIP001 /*?*/                    pOutlineNds->Insert( pSrch );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                rTxtNd.InvalidateNumRule();
-//STRIP001 /*?*/
-//STRIP001 /*?*/ //FEATURE::CONDCOLL
-//STRIP001 /*?*/                if( RES_CONDTXTFMTCOLL == rTxtNd.GetTxtColl()->Which() )
-//STRIP001 /*?*/                    rTxtNd.ChkCondColl();
-//STRIP001 /*?*/ //FEATURE::CONDCOLL
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if( rNd.IsCntntNode() )
-//STRIP001 /*?*/                ((SwCntntNode&)rNd).InvalidateNumRule();
 /*?*/       }
 /*N*/   }
 /*N*/   else
@@ -437,17 +374,6 @@ namespace binfilter {
 /*?*/           while( aIdx != rInsPos )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCntntNode* pCNd = aIdx.GetNode().GetCntntNode();
-//STRIP001 /*?*/                if( pCNd )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if( pFrmNd->IsTableNode() )
-//STRIP001 /*?*/                        ((SwTableNode*)pFrmNd)->MakeFrms( aIdx );
-//STRIP001 /*?*/                    else if( pFrmNd->IsSectionNode() )
-//STRIP001 /*?*/                        ((SwSectionNode*)pFrmNd)->MakeFrms( aIdx );
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        ((SwCntntNode*)pFrmNd)->MakeFrms( *pCNd );
-//STRIP001 /*?*/                    pFrmNd = pCNd;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                aIdx++;
 /*?*/           }
 /*N*/   }
 /*N*/ }
@@ -577,29 +503,6 @@ namespace binfilter {
 /*?*/                       for( ULONG n = 0; n < nInsPos; ++n )
 /*?*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aMvIdx( aRg.aEnd, 1 );
-//STRIP001 /*?*/                            SwCntntNode* pCNd = 0;
-//STRIP001 /*?*/                            SwNode* pTmpNd = &aMvIdx.GetNode();
-//STRIP001 /*?*/                            if( pTmpNd->IsCntntNode() )
-//STRIP001 /*?*/                            {
-//STRIP001 /*?*/                                pCNd = (SwCntntNode*)pTmpNd;
-//STRIP001 /*?*/ //                             if( bNewFrms )
-//STRIP001 /*?*/ //                                 pCNd->DelFrms();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                // setze bei Start/EndNodes die richtigen Indizies
-//STRIP001 /*?*/                                // loesche die Gliederungs-Indizies aus
-//STRIP001 /*?*/                                // dem alten Nodes-Array
-//STRIP001 /*?*/                                if( pCNd->IsTxtNode() && NO_NUMBERING !=
-//STRIP001 /*?*/                                    ((SwTxtNode*)pCNd)->GetTxtColl()->GetOutlineLevel() )
-//STRIP001 /*?*/                                    pOutlineNds->Remove( pCNd );
-//STRIP001 /*?*/                                else
-//STRIP001 /*?*/                                    pCNd = 0;
-//STRIP001 /*?*/                            }
-//STRIP001 /*?*/ //                         else if( bNewFrms && pTmpNd->IsSectionNode() )
-//STRIP001 /*?*/ //                             ((SwSectionNode*)pTmpNd)->DelFrms();
-//STRIP001 /*?*/                            BigPtrArray::Move( aMvIdx.GetIndex(), aIdx.GetIndex() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            if( bInsOutlineIdx && pCNd )
-//STRIP001 /*?*/                                pOutlineNds->Insert( pCNd );
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else
@@ -654,14 +557,6 @@ namespace binfilter {
 /*?*/                       if( pTblNd->GetTable().IsA( TYPE( SwDDETable ) ))
 /*?*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwDDEFieldType* pTyp = ((SwDDETable&)pTblNd->
-//STRIP001 /*?*/                                                GetTable()).GetDDEFldType();
-//STRIP001 /*?*/                            if( pTyp )
-//STRIP001 /*?*/                            {
-//STRIP001 /*?*/                                if( rNodes.IsDocNodes() )
-//STRIP001 /*?*/                                    pTyp->IncRefCnt();
-//STRIP001 /*?*/                                else
-//STRIP001 /*?*/                                    pTyp->DecRefCnt();
-//STRIP001 /*?*/                            }
 /*?*/                       }
 /*?*/
 /*?*/                       if( GetDoc()->GetUndoNds() == &rNodes )
@@ -757,8 +652,6 @@ namespace binfilter {
 /*?*/                   if( pSctNd )
 /*?*/                   {
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSctNd->NodesArrChgd();
-//STRIP001 /*?*/                        ++nSectNdCnt;
-//STRIP001 /*?*/                        bNewFrms = FALSE;
 /*?*/                   }
 /*N*/               }
 /*N*/           }
@@ -966,15 +859,6 @@ namespace binfilter {
 /*N*/ #ifdef JP_DEBUG
 /*N*/   {
 /*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/ extern Writer* GetDebugWriter(const String&);
-//STRIP001 /*?*/
-//STRIP001 /*?*/        Writer* pWriter = GetDebugWriter(aEmptyStr);
-//STRIP001 /*?*/        if( pWriter )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            int nError;
-//STRIP001 /*?*/            SvFileStream aStrm( "c:\\$$move.db", STREAM_WRITE );
-//STRIP001 /*?*/            SwWriter aWriter( aStrm, *pMyDoc );
-//STRIP001 /*?*/            aWriter.Write( &nError, pWriter );
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -1104,64 +988,6 @@ namespace binfilter {
 |*      VER0100 vb 901214
 |*
 *******************************************************************/
-//STRIP001 void SwNodes::SectionUp(SwNodeRange *pRange)
-//STRIP001 {
-//STRIP001  if( pRange->aStart >= pRange->aEnd ||
-//STRIP001      pRange->aEnd >= Count() ||
-//STRIP001      !CheckNodesRange( pRange->aStart, pRange->aEnd ) ||
-//STRIP001      !( HighestLevel( *this, *pRange ) > 1 ))
-//STRIP001      return;
-//STRIP001
-//STRIP001  // Ist der Anfang vom Bereich vor oder auf einem StartNode, so loesche
-//STRIP001  // diesen, denn sonst wuerden leere S/E-Nodes oder E/S-Nodes enstehen.
-//STRIP001  // Bei anderen Nodes wird eine neuer EndNode eingefuegt
-//STRIP001  SwNode * pAktNode = &pRange->aStart.GetNode();
-//STRIP001  SwNodeIndex aIdx( *pAktNode->StartOfSectionNode() );
-//STRIP001  if( pAktNode->IsStartNode() )       // selbst StartNode
-//STRIP001  {
-//STRIP001      SwEndNode* pEndNd = pRange->aEnd.GetNode().GetEndNode();
-//STRIP001      if( pAktNode == pEndNd->pStartOfSection )
-//STRIP001      {
-//STRIP001          // dann wurde paarig aufgehoben, also nur die im Berich neu anpassen
-//STRIP001          SwStartNode* pTmpSttNd = pAktNode->pStartOfSection;
-//STRIP001          RemoveNode( pRange->aStart.GetIndex(), 1, TRUE );
-//STRIP001          RemoveNode( pRange->aEnd.GetIndex(), 1, TRUE );
-//STRIP001
-//STRIP001          SwNodeIndex aTmpIdx( pRange->aStart );
-//STRIP001          while( aTmpIdx < pRange->aEnd )
-//STRIP001          {
-//STRIP001              pAktNode = &aTmpIdx.GetNode();
-//STRIP001              pAktNode->pStartOfSection = pTmpSttNd;
-//STRIP001              if( pAktNode->IsStartNode() )
-//STRIP001                  aTmpIdx = pAktNode->EndOfSectionIndex() + 1;
-//STRIP001              else
-//STRIP001                  aTmpIdx++;
-//STRIP001          }
-//STRIP001          return ;
-//STRIP001      }
-//STRIP001      DelNodes( pRange->aStart, 1 );
-//STRIP001  }
-//STRIP001  else if( aIdx == pRange->aStart.GetIndex()-1 )          // vor StartNode
-//STRIP001      DelNodes( aIdx, 1 );
-//STRIP001  else
-//STRIP001      new SwEndNode( pRange->aStart, *aIdx.GetNode().GetStartNode() );
-//STRIP001
-//STRIP001  // Ist das Ende vom Bereich vor oder auf einem StartNode, so loesche
-//STRIP001  // diesen, denn sonst wuerden leere S/E-Nodes oder E/S-Nodes entstehen
-//STRIP001  // Bei anderen Nodes wird eine neuer EndNode eingefuegt
-//STRIP001  SwNodeIndex aTmpIdx( pRange->aEnd );
-//STRIP001  if( pRange->aEnd.GetNode().IsEndNode() )
-//STRIP001      DelNodes( pRange->aEnd, 1 );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pAktNode = new SwStartNode( pRange->aEnd );
-//STRIP001 /*?? welcher NodeTyp ??*/
-//STRIP001      aTmpIdx = *pRange->aEnd.GetNode().EndOfSectionNode();
-//STRIP001      pRange->aEnd--;
-//STRIP001  }
-//STRIP001
-//STRIP001  SectionUpDown( aIdx, aTmpIdx );
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1457,34 +1283,9 @@ namespace binfilter {
 |*      VER0100 vb 901214
 |*
 *******************************************************************/
-//STRIP001 USHORT SwNodes::GetSectionLevel(const SwNodeIndex &rIdx) const {
-//STRIP001  // Sonderbehandlung 1. Node
-//STRIP001  if(rIdx == 0) return 1;
-//STRIP001  /*
-//STRIP001   * Keine Rekursion! - hier wird das SwNode::GetSectionLevel
-//STRIP001   * aufgerufen
-//STRIP001   */
-//STRIP001  return (*this)[rIdx]->GetSectionLevel();
-//STRIP001
-//STRIP001 }
 
 /*N*/ void SwNodes::GoStartOfSection(SwNodeIndex *pIdx) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // hinter den naechsten Startnode
-//STRIP001  SwNodeIndex aTmp( *pIdx->GetNode().StartOfSectionNode(), +1 );
-//STRIP001
-//STRIP001  // steht der Index auf keinem ContentNode, dann gehe dahin. Ist aber
-//STRIP001  // kein weiterer vorhanden, dann lasse den Index an alter Pos stehen !!!
-//STRIP001  while( !aTmp.GetNode().IsCntntNode() )
-//STRIP001  {   // gehe vom StartNode ( es kann nur ein StartNode sein ! ) an sein
-//STRIP001      // Ende
-//STRIP001      if( *pIdx <= aTmp )
-//STRIP001          return;     // FEHLER: Steht schon hinter der Sektion
-//STRIP001      aTmp = aTmp.GetNode().EndOfSectionIndex()+1;
-//STRIP001      if( *pIdx <= aTmp )
-//STRIP001          return;     // FEHLER: Steht schon hinter der Sektion
-//STRIP001  }
-//STRIP001  (*pIdx) = aTmp;     // steht auf einem ContentNode
 /*N*/ }
 
 /*N*/ void SwNodes::GoEndOfSection(SwNodeIndex *pIdx) const
@@ -1563,41 +1364,6 @@ namespace binfilter {
 /*N*/   return pNd;
 /*N*/ }
 
-//STRIP001 SwNode* SwNodes::GoPreviousWithFrm(SwNodeIndex *pIdx) const
-//STRIP001 {
-//STRIP001  if( !pIdx->GetIndex() )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  SwNodeIndex aTmp( *pIdx, -1 );
-//STRIP001  SwNode* pNd;
-//STRIP001  while( aTmp.GetIndex() )
-//STRIP001  {
-//STRIP001      pNd = &aTmp.GetNode();
-//STRIP001      SwModify *pMod = 0;
-//STRIP001      if ( pNd->IsCntntNode() )
-//STRIP001          pMod = (SwCntntNode*)pNd;
-//STRIP001      else if ( pNd->IsTableNode() )
-//STRIP001          pMod = ((SwTableNode*)pNd)->GetTable().GetFrmFmt();
-//STRIP001      else if( pNd->IsStartNode() && !pNd->IsSectionNode() )
-//STRIP001      {
-//STRIP001          pNd = 0;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      if ( pMod && pMod->GetDepends() )
-//STRIP001      {
-//STRIP001          SwClientIter aIter( *pMod );
-//STRIP001          if( aIter.First( TYPE(SwFrm) ) )
-//STRIP001              break;
-//STRIP001      }
-//STRIP001      aTmp--;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !aTmp.GetIndex() )
-//STRIP001      pNd = 0;
-//STRIP001  else if( pNd )
-//STRIP001      (*pIdx) = aTmp;
-//STRIP001  return pNd;
-//STRIP001 }
 
 
 
@@ -1736,33 +1502,8 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 struct HighLevel
-//STRIP001 {
-//STRIP001  USHORT nLevel, nTop;
-//STRIP001  HighLevel( USHORT nLv ) : nLevel( nLv ), nTop( nLv ) {}
-//STRIP001
-//STRIP001 };
 
-//STRIP001 BOOL _HighestLevel( const SwNodePtr& rpNode, void * pPara )
-//STRIP001 {
-//STRIP001  HighLevel * pHL = (HighLevel*)pPara;
-//STRIP001  if( rpNode->GetStartNode() )
-//STRIP001      pHL->nLevel++;
-//STRIP001  else if( rpNode->GetEndNode() )
-//STRIP001      pHL->nLevel--;
-//STRIP001  if( pHL->nTop > pHL->nLevel )
-//STRIP001      pHL->nTop = pHL->nLevel;
-//STRIP001  return TRUE;
-//STRIP001
-//STRIP001 }
 
-//STRIP001 USHORT HighestLevel( SwNodes & rNodes, const SwNodeRange & rRange )
-//STRIP001 {
-//STRIP001  HighLevel aPara( rNodes.GetSectionLevel( rRange.aStart ));
-//STRIP001  rNodes.ForEach( rRange.aStart, rRange.aEnd, _HighestLevel, &aPara );
-//STRIP001  return aPara.nTop;
-//STRIP001
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1776,224 +1517,6 @@ namespace binfilter {
 |*    Letzte Aenderung  JP 09.07.92
 |*
 *************************************************************************/
-//STRIP001 void SwNodes::Move( SwPaM & rPam, SwPosition & rPos, SwNodes& rNodes,
-//STRIP001                  BOOL bSplitNd )
-//STRIP001 {
-//STRIP001  SwPosition *pStt = (SwPosition*)rPam.Start(), *pEnd = (SwPosition*)rPam.End();
-//STRIP001
-//STRIP001  if( !rPam.HasMark() || *pStt >= *pEnd )
-//STRIP001      return;
-//STRIP001
-//STRIP001  if( this == &rNodes && *pStt <= rPos && rPos < *pEnd )
-//STRIP001      return;
-//STRIP001
-//STRIP001  SwNodeIndex aEndIdx( pEnd->nNode );
-//STRIP001  SwNodeIndex aSttIdx( pStt->nNode );
-//STRIP001  SwTxtNode* pSrcNd = (*this)[ aSttIdx ]->GetTxtNode();
-//STRIP001  SwTxtNode* pDestNd = rNodes[ rPos.nNode ]->GetTxtNode();
-//STRIP001  BOOL bSplitDestNd = TRUE;
-//STRIP001  BOOL bSttTxtNd = 0 != pSrcNd;
-//STRIP001  BOOL bCopyCollFmt = pDestNd && !pDestNd->GetTxt().Len();
-//STRIP001
-//STRIP001  if( pSrcNd )
-//STRIP001  {
-//STRIP001      // ist der 1.Node ein TextNode, dann muss im NodesArray auch
-//STRIP001      // ein TextNode vorhanden sein, in den der Inhalt geschoben wird
-//STRIP001      if( !pDestNd )
-//STRIP001      {
-//STRIP001          pDestNd = rNodes.MakeTxtNode( rPos.nNode, pSrcNd->GetTxtColl() );
-//STRIP001          rPos.nNode--;
-//STRIP001          rPos.nContent.Assign( pDestNd, 0 );
-//STRIP001          bCopyCollFmt = TRUE;
-//STRIP001      }
-//STRIP001 /*!NOSPLIT       bSplitDestNd = !bSplitNd &&
-//STRIP001                      ( pDestNd->Len() > rPos.nContent.GetIndex() ||
-//STRIP001                      !aEndIdx.GetNode().IsTxtNode() );
-//STRIP001 */
-//STRIP001 //       ASSERT( bSplitNd, "Move mit bSplitNode = FALSE" );
-//STRIP001      bSplitDestNd = pDestNd->Len() > rPos.nContent.GetIndex() ||
-//STRIP001                      pEnd->nNode.GetNode().IsTxtNode();
-//STRIP001
-//STRIP001      // verschiebe jetzt noch den Inhalt in den neuen Node
-//STRIP001      BOOL bOneNd = pStt->nNode == pEnd->nNode;
-//STRIP001      xub_StrLen nLen = ( bOneNd ? pEnd->nContent.GetIndex() : pSrcNd->Len() )
-//STRIP001                      - pStt->nContent.GetIndex();
-//STRIP001
-//STRIP001      if( !pEnd->nNode.GetNode().IsCntntNode() )
-//STRIP001      {
-//STRIP001          bOneNd = TRUE;
-//STRIP001          ULONG nSttNdIdx = pStt->nNode.GetIndex() + 1,
-//STRIP001                  nEndNdIdx = pEnd->nNode.GetIndex();
-//STRIP001          for( ; nSttNdIdx < nEndNdIdx; ++nSttNdIdx )
-//STRIP001              if( (*this)[ nSttNdIdx ]->IsCntntNode() )
-//STRIP001              {
-//STRIP001                  bOneNd = FALSE;
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001      }
-//STRIP001
-//STRIP001      // das kopieren / setzen der Vorlagen darf erst nach
-//STRIP001      // dem Splitten erfolgen
-//STRIP001 //!NOSPLIT       if( !bOneNd && ( bSplitNd || bSplitDestNd ))
-//STRIP001      if( !bOneNd && bSplitDestNd )
-//STRIP001      {
-//STRIP001          if( rNodes.IsDocNodes() )
-//STRIP001          {
-//STRIP001              SwDoc* pInsDoc = pDestNd->GetDoc();
-//STRIP001              BOOL bIsUndo = pInsDoc->DoesUndo();
-//STRIP001              pInsDoc->DoUndo( FALSE );
-//STRIP001              pInsDoc->SplitNode( rPos );
-//STRIP001              pInsDoc->DoUndo( bIsUndo );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pDestNd->SplitNode( rPos );
-//STRIP001
-//STRIP001          if( rPos.nNode == aEndIdx )
-//STRIP001              aEndIdx--;
-//STRIP001          bSplitDestNd = TRUE;
-//STRIP001
-//STRIP001          pDestNd = rNodes[ rPos.nNode.GetIndex() - 1 ]->GetTxtNode();
-//STRIP001          if( nLen )
-//STRIP001              pSrcNd->Cut( pDestNd, SwIndex( pDestNd, pDestNd->Len()),
-//STRIP001                          pStt->nContent, nLen );
-//STRIP001      }
-//STRIP001      else if( nLen )
-//STRIP001          pSrcNd->Cut( pDestNd, rPos.nContent, pStt->nContent, nLen );
-//STRIP001
-//STRIP001      if( bCopyCollFmt )
-//STRIP001      {
-//STRIP001          SwDoc* pInsDoc = pDestNd->GetDoc();
-//STRIP001          BOOL bIsUndo = pInsDoc->DoesUndo();
-//STRIP001          pInsDoc->DoUndo( FALSE );
-//STRIP001          pSrcNd->CopyCollFmt( *pDestNd );
-//STRIP001          pInsDoc->DoUndo( bIsUndo );
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bOneNd )        // das wars schon
-//STRIP001      {
-//STRIP001          // der PaM wird korrigiert, denn falls ueber Nodegrenzen verschoben
-//STRIP001          // wurde, so stehen sie in unterschieden Nodes. Auch die Selektion
-//STRIP001          // wird aufgehoben !
-//STRIP001          pEnd->nContent = pStt->nContent;
-//STRIP001          rPam.DeleteMark();
-//STRIP001          return;
-//STRIP001      }
-//STRIP001
-//STRIP001      aSttIdx++;
-//STRIP001  }
-//STRIP001  else if( pDestNd )
-//STRIP001  {
-//STRIP001      if( rPos.nContent.GetIndex() )
-//STRIP001      {
-//STRIP001 //!NOSPLIT           if( !bSplitNd && rPos.nContent.GetIndex() == pDestNd->Len() )
-//STRIP001          if( rPos.nContent.GetIndex() == pDestNd->Len() )
-//STRIP001              rPos.nNode++;
-//STRIP001          else if( rPos.nContent.GetIndex() )
-//STRIP001          {
-//STRIP001              // falls im EndNode gesplittet wird, dann muss der EndIdx
-//STRIP001              // korrigiert werden !!
-//STRIP001              BOOL bCorrEnde = aEndIdx == rPos.nNode;
-//STRIP001              // es wird kein Text an den TextNode angehaengt, also splitte ihn
-//STRIP001
-//STRIP001              if( rNodes.IsDocNodes() )
-//STRIP001              {
-//STRIP001                  SwDoc* pInsDoc = pDestNd->GetDoc();
-//STRIP001                  BOOL bIsUndo = pInsDoc->DoesUndo();
-//STRIP001                  pInsDoc->DoUndo( FALSE );
-//STRIP001                  pInsDoc->SplitNode( rPos );
-//STRIP001                  pInsDoc->DoUndo( bIsUndo );
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  pDestNd->SplitNode( rPos );
-//STRIP001
-//STRIP001              pDestNd = rPos.nNode.GetNode().GetTxtNode();
-//STRIP001
-//STRIP001              if( bCorrEnde )
-//STRIP001                  aEndIdx--;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      // am Ende steht noch ein leerer Text Node herum.
-//STRIP001      bSplitDestNd = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  pSrcNd = (*this)[ aEndIdx ]->GetTxtNode();
-//STRIP001  if( pSrcNd )
-//STRIP001  {
-//STRIP001 //       if( pEnd->nContent.GetIndex() ? TRUE : aEndIdx != pStt->nNode )
-//STRIP001      {
-//STRIP001          // am Bereichsende entsteht ein neuer TextNode
-//STRIP001          if( !bSplitDestNd )
-//STRIP001          {
-//STRIP001              if( rPos.nNode < rNodes.GetEndOfContent().GetIndex() )
-//STRIP001                  rPos.nNode++;
-//STRIP001
-//STRIP001              pDestNd = rNodes.MakeTxtNode( rPos.nNode, pSrcNd->GetTxtColl() );
-//STRIP001              rPos.nNode--;
-//STRIP001              rPos.nContent.Assign( pDestNd, 0 );
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pDestNd = rNodes[ rPos.nNode ]->GetTxtNode();
-//STRIP001
-//STRIP001          if( pDestNd && pEnd->nContent.GetIndex() )
-//STRIP001          {
-//STRIP001              // verschiebe jetzt noch den Inhalt in den neuen Node
-//STRIP001              SwIndex aIdx( pSrcNd, 0 );
-//STRIP001              pSrcNd->Cut( pDestNd, rPos.nContent, aIdx,
-//STRIP001                              pEnd->nContent.GetIndex());
-//STRIP001          }
-//STRIP001
-//STRIP001          if( bCopyCollFmt )
-//STRIP001          {
-//STRIP001              SwDoc* pInsDoc = pDestNd->GetDoc();
-//STRIP001              BOOL bIsUndo = pInsDoc->DoesUndo();
-//STRIP001              pInsDoc->DoUndo( FALSE );
-//STRIP001              pSrcNd->CopyCollFmt( *pDestNd );
-//STRIP001              pInsDoc->DoUndo( bIsUndo );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if( bSttTxtNd && aEndIdx.GetNode().IsCntntNode() )
-//STRIP001          aEndIdx++;
-//STRIP001 //!NOSPLIT
-//STRIP001      if( !bSplitDestNd )
-//STRIP001      {
-//STRIP001          rPos.nNode++;
-//STRIP001          rPos.nContent.Assign( rPos.nNode.GetNode().GetCntntNode(), 0 );
-//STRIP001      }
-//STRIP001 //!NOSPLIT
-//STRIP001  }
-//STRIP001
-//STRIP001  if( aEndIdx != aSttIdx )
-//STRIP001  {
-//STRIP001      // verschiebe jetzt die Nodes in das NodesArary
-//STRIP001      SwNodeIndex aPrvIdx( rPos.nNode, -1 );
-//STRIP001      ULONG nSttDiff = aSttIdx.GetIndex() - pStt->nNode.GetIndex();
-//STRIP001      SwNodeRange aRg( aSttIdx, aEndIdx );
-//STRIP001      _MoveNodes( aRg, rNodes, rPos.nNode );
-//STRIP001      // falls ins gleiche Nodes-Array verschoben wurde, stehen die
-//STRIP001      // Indizies jetzt auch an der neuen Position !!!!
-//STRIP001      // (also alles wieder umsetzen)
-//STRIP001      if( &rNodes == this )
-//STRIP001          pStt->nNode = aRg.aEnd.GetIndex() - nSttDiff;
-//STRIP001  }
-//STRIP001
-//STRIP001  // falls der Start-Node verschoben wurde, in dem der Cursor stand, so
-//STRIP001  // muss der Content im akt. Content angemeldet werden !!!
-//STRIP001  if( &pStt->nNode.GetNode() == &GetEndOfContent() &&
-//STRIP001      !GoPrevious( &pStt->nNode ))
-//STRIP001  {
-//STRIP001      ASSERT( FALSE, "Move() - kein ContentNode mehr vorhanden" );
-//STRIP001  }
-//STRIP001  pStt->nContent.Assign( (*this)[ pStt->nNode ]->GetCntntNode(),
-//STRIP001                          pStt->nContent.GetIndex() );
-//STRIP001  // der PaM wird korrigiert, denn falls ueber Nodegrenzen verschoben
-//STRIP001  // wurde, so stehen sie in unterschielichen Nodes. Auch die Selektion
-//STRIP001  // wird aufgehoben !
-//STRIP001  *pEnd = *pStt;
-//STRIP001  rPam.DeleteMark();
-//STRIP001 }
 
 
 
@@ -2126,15 +1649,6 @@ namespace binfilter {
 /*?*/           {
 /*?*/               // also der gesamte, lege einen neuen SectionNode an
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex nStt( aInsPos, -1 );
-//STRIP001 /*?*/                SwSectionNode* pSectNd = ((SwSectionNode*)pAktNode)->
-//STRIP001 /*?*/                                    MakeCopy( pDoc, aInsPos );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                nNodeCnt -= aInsPos.GetIndex() - nStt.GetIndex() -2;
-//STRIP001 /*?*/                aRg.aStart = pAktNode->EndOfSectionIndex();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( bNewFrms && pSectNd &&
-//STRIP001 /*?*/                    !pSectNd->GetSection().IsHidden() )
-//STRIP001 /*?*/                    pSectNd->MakeFrms( &nStt );
 /*?*/           }
 /*?*/           break;
 /*?*/
@@ -2481,11 +1995,6 @@ namespace binfilter {
 /*N*/   return pFrmNd;
 /*N*/ }
 
-//STRIP001 SwCntntFrm* SwNodes::MakeFrm( const SwNodeIndex &rIndex )
-//STRIP001 {
-//STRIP001  SwCntntNode *pNode = rIndex.GetNode().GetCntntNode();
-//STRIP001  return pNode ? pNode->MakeFrm() : 0;
-//STRIP001 }
 
 /*N*/ void SwNodes::ForEach( const SwNodeIndex& rStart, const SwNodeIndex& rEnd,
 /*N*/                   FnForEach_SwNodes fnForEach, void* pArgs )
