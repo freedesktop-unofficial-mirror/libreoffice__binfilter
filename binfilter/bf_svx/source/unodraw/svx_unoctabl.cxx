@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:22:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:54:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -154,11 +154,6 @@ void SAL_CALL SvxUnoColorTable::insertByName( const OUString& aName, const uno::
 void SAL_CALL SvxUnoColorTable::removeByName( const OUString& Name )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001  long nIndex = pTable ? ((XPropertyTable*)pTable)->Get( Name ) : -1;
-//STRIP001  if( nIndex == -1 )
-//STRIP001      throw container::NoSuchElementException();
-//STRIP001
-//STRIP001  pTable->Remove( nIndex );
 }
 
 // XNameReplace
@@ -181,14 +176,6 @@ void SAL_CALL SvxUnoColorTable::replaceByName( const OUString& aName, const uno:
 uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& aName )
     throw( container::NoSuchElementException,  lang::WrappedTargetException, uno::RuntimeException)
 {DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;//STRIP001
-//STRIP001  long nIndex = pTable ? ((XPropertyTable*)pTable)->Get( aName ) : -1;
-//STRIP001  if( nIndex == -1 )
-//STRIP001      throw container::NoSuchElementException();
-//STRIP001
-//STRIP001  XColorEntry* pEntry = pTable->Get( nIndex );
-//STRIP001  uno::Any aAny;
-//STRIP001  aAny <<= (sal_Int32) pEntry->GetColor().GetRGBColor();
-//STRIP001  return aAny;
 }
 
 uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
@@ -201,8 +188,6 @@ uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
 
     for( long nIndex = 0; nIndex < nCount; nIndex++ )
     {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001      XColorEntry* pEntry = pTable->Get( nIndex );
-//STRIP001      pStrings[nIndex] = pEntry->GetName();
     }
 
     return aSeq;
@@ -244,9 +229,6 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 #include "UnoGraphicExporter.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
-// auto strip #endif
 
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
