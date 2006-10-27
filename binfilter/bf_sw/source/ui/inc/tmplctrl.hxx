@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tmplctrl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:58:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:57:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,10 +52,7 @@ namespace binfilter {
 class SwTemplateControl : public SfxStatusBarControl
 {
 protected:
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
 public:
-//STRIP001  virtual void    StateChanged( const SfxPoolItem* pState );
-//STRIP001  virtual void    Paint( const UserDrawEvent& rEvt );
 
     SFX_DECL_STATUSBAR_CONTROL();
 

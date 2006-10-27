@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uiitems.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:59:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:58:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,11 +60,6 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
@@ -76,53 +71,21 @@ public:
 
 /*******************************************************************/
 
-//STRIP001 class SwPtrItem : public SfxPoolItem
-//STRIP001 {
-//STRIP001  void* pMisc;
 
-//STRIP001 public:
-//STRIP001  SwPtrItem( const USHORT nId = FN_PARAM_GRF_DIALOG, void* pPtr = 0);
-//STRIP001  SwPtrItem( const SwPtrItem& rItem );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
 
-//STRIP001  void    SetValue(void * pPtr)   { pMisc= pPtr; }
-//STRIP001  void*   GetValue() const        { return pMisc; }
-//STRIP001 };
 
 /*******************************************************************/
 
-//STRIP001 class SwUINumRuleItem : public SfxPoolItem
-//STRIP001 {
-//STRIP001  SwNumRule* pRule;
 
-//STRIP001 public:
-//STRIP001  SwUINumRuleItem( const String& rName, const USHORT = FN_PARAM_ACT_NUMBER);
-//STRIP001  SwUINumRuleItem( const SwNumRule& rRule, const USHORT = FN_PARAM_ACT_NUMBER);
-//STRIP001  SwUINumRuleItem( const SwUINumRuleItem& rItem );
-//STRIP001  virtual ~SwUINumRuleItem();
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
 
-//STRIP001  virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  const SwNumRule* GetNumRule() const         { return pRule; }
-//STRIP001        SwNumRule* GetNumRule()               { return pRule; }
-//STRIP001 };
 
 /* -----------------17.06.98 17:40-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 class SwBackgroundDestinationItem : public SfxUInt16Item
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SwBackgroundDestinationItem(USHORT  nWhich, USHORT nValue);
 
-//STRIP001  virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001 };
 
 } //namespace binfilter
 #endif // _UIITEMS_HXX
