@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:49:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:29:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
@@ -53,15 +50,9 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-// auto strip #ifndef _FMTANCHR_HXX //autogen
-// auto strip #include <fmtanchr.hxx>
-// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
-// auto strip #ifndef _FMTCLDS_HXX //autogen
-// auto strip #include <fmtclds.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -73,51 +64,27 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _SECTION_HXX
-// auto strip #include <section.hxx>
-// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-// auto strip #ifndef _SWUNDO_HXX
-// auto strip #include <swundo.hxx>
-// auto strip #endif
-// auto strip #ifndef _CALC_HXX
-// auto strip #include <calc.hxx>
-// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-// auto strip #ifndef _SWSERV_HXX
-// auto strip #include <swserv.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _NDINDEX_HXX
-// auto strip #include <ndindex.hxx>
-// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-// auto strip #ifndef _PAGEFRM_HXX
-// auto strip #include <pagefrm.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -163,21 +130,6 @@ namespace binfilter {
 /*?*/   return TRUE;
 /*N*/ }
 
-//STRIP001 void lcl_CheckEmptyLayFrm( SwNodes& rNds, SwSection& rSect,
-//STRIP001                      const SwNode& rStt, const SwNode& rEnd )
-//STRIP001 {
-//STRIP001  SwNodeIndex aIdx( rStt );
-//STRIP001  if( !rNds.GoPrevSection( &aIdx, TRUE, FALSE ) ||
-//STRIP001      !CheckNodesRange( rStt, aIdx, TRUE ) ||
-//STRIP001      !lcl_IsInSameTblBox( rNds, rStt, aIdx ))
-//STRIP001  {
-//STRIP001      aIdx = rEnd;
-//STRIP001      if( !rNds.GoNextSection( &aIdx, TRUE, FALSE ) ||
-//STRIP001          !CheckNodesRange( rEnd, aIdx, TRUE ) ||
-//STRIP001          !lcl_IsInSameTblBox( rNds, rEnd, aIdx ))
-//STRIP001          rSect.SetHidden( FALSE );
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ SwSection* SwDoc::Insert( const SwPaM& rRange, const SwSection& rNew,
 /*N*/                           const SfxItemSet* pAttr, BOOL bUpdate )
@@ -196,13 +148,6 @@ namespace binfilter {
 /*N*/   if( rNew.IsHidden() && rRange.HasMark() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwPosition *pStt = rRange.Start(), *pEnd = rRange.End();
-//STRIP001 /*?*/        if( !pStt->nContent.GetIndex() &&
-//STRIP001 /*?*/            pEnd->nNode.GetNode().GetCntntNode()->Len() ==
-//STRIP001 /*?*/            pEnd->nContent.GetIndex() )
-//STRIP001 /*?*/
-//STRIP001 /*?*/            ::lcl_CheckEmptyLayFrm( GetNodes(), (SwSection&)rNew,
-//STRIP001 /*?*/                                    pStt->nNode.GetNode(),
-//STRIP001 /*?*/                                    pEnd->nNode.GetNode() );
 /*N*/   }
 /*N*/
 /*N*/   SwUndoInsSection* pUndoInsSect = 0;
@@ -329,10 +274,6 @@ namespace binfilter {
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pNewSectNode->EndOfSectionNode(), *pNewSectNode, 1 );
-//STRIP001 /*?*/        if( IsRedlineOn() )
-//STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            SplitRedline( aPam );
 /*N*/   }
 /*N*/
 /*N*/   // ist eine Condition gesetzt
@@ -340,10 +281,6 @@ namespace binfilter {
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
-//STRIP001 /*?*/         if( ! IsInReading() )
-//STRIP001 /*?*/             FldsToCalc( aCalc, pNewSectNode->GetIndex() );
-//STRIP001 /*?*/        SwSection& rNewSect = pNewSectNode->GetSection();
-//STRIP001 /*?*/        rNewSect.SetCondHidden( aCalc.Calculate( rNewSect.GetCondition() ).GetBool() );
 /*N*/   }
 /*N*/
 /*N*/   BOOL bUpdateFtn = FALSE;
@@ -526,19 +463,6 @@ namespace binfilter {
 /*N*/       if( DoesUndo() )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
-//STRIP001 /*?*/            if( bDelNodes && pIdx && &GetNodes() == &pIdx->GetNodes() &&
-//STRIP001 /*?*/                0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwNodeIndex aUpdIdx( *pIdx );
-//STRIP001 /*?*/                ClearRedo();
-//STRIP001 /*?*/                SwPaM aPaM( *pSectNd->EndOfSectionNode(), *pSectNd );
-//STRIP001 /*?*/                AppendUndo( new SwUndoDelete( aPaM ));
-//STRIP001 /*?*/                if( pFtnEndAtTxtEnd )
-//STRIP001 /*?*/                    GetFtnIdxs().UpdateFtn( aUpdIdx );
-//STRIP001 /*?*/                SetModified();
-//STRIP001 /*?*/                return ;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            AppendUndo( new SwUndoDelSection( *pFmt ) );
 /*N*/       }
 /*N*/       else if( bDelNodes && pIdx && &GetNodes() == &pIdx->GetNodes() &&
 /*N*/               0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
@@ -643,7 +567,6 @@ namespace binfilter {
 /*N*/           && 0 != (pSectNd = pIdx->GetNode().GetSectionNode() ) )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::lcl_CheckEmptyLayFrm( GetNodes(), (SwSection&)rSect,
-//STRIP001 /*?*/                                *pSectNd, *pSectNd->EndOfSectionNode() );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -689,24 +612,6 @@ namespace binfilter {
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
-//STRIP001 /*?*/        if( !pIdx )
-//STRIP001 /*?*/            pIdx = pFmt->GetCntnt().GetCntntIdx();
-//STRIP001 /*?*/        FldsToCalc( aCalc, pIdx->GetIndex() );
-//STRIP001 /*?*/            /// OD 04.10.2002 #102894#
-//STRIP001         /// Because on using SwSection::operator=() to set up <pSection>
-//STRIP001         /// with <rSect> and the above given note, the hidden condition flag
-//STRIP001         /// has to be set to FALSE, if hidden condition flag of <pFmt->GetSection()>
-//STRIP001         /// (SwSection before the changes) is FALSE (already saved in <bOldCondHidden>)
-//STRIP001         /// and new calculated condition is TRUE.
-//STRIP001         /// This is necessary, because otherwise the <SetCondHidden> would have
-//STRIP001         /// no effect.
-//STRIP001         bool bCalculatedCondHidden =
-//STRIP001                 aCalc.Calculate( pSection->GetCondition() ).GetBool() ? true : false;
-//STRIP001         if ( bCalculatedCondHidden && !bOldCondHidden )
-//STRIP001         {
-//STRIP001             pSection->SetCondHidden( false );
-//STRIP001         }
-//STRIP001         pSection->SetCondHidden( bCalculatedCondHidden );
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdate )
@@ -720,21 +625,6 @@ namespace binfilter {
 /*N*/   SetModified();
 /*N*/ }
 
-//STRIP001 void SwDoc::ChgSectionPasswd(
-//STRIP001      const ::com::sun::star::uno::Sequence <sal_Int8>& rNew,
-//STRIP001         const SwSection& rSection )
-//STRIP001 {
-//STRIP001  SwSectionNode* pSectNd = 0;
-//STRIP001     pSectNd = rSection.GetFmt()->GetSectionNode( TRUE );
-//STRIP001
-//STRIP001  if( DoesUndo() )
-//STRIP001      ClearRedo();
-//STRIP001
-//STRIP001  if( pSectNd )
-//STRIP001      pSectNd->GetSection().SetPasswd( rNew );
-//STRIP001
-//STRIP001  SetModified();
-//STRIP001 }
 
 /* -----------------19.02.99 09:31-------------------
  * LockFrms wurde im InsertSection genutzt, um zu verhindern, dass
@@ -965,32 +855,6 @@ namespace binfilter {
 /*N*/ }
 
 //Hier werden ueberfluessige SectionFrms entfernt
-//STRIP001 SwFrm* SwClearDummies( SwFrm* pFrm )
-//STRIP001 {
-//STRIP001  SwFrm* pTmp = pFrm;
-//STRIP001  while( pTmp )
-//STRIP001  {
-//STRIP001      ASSERT( !pTmp->GetUpper(), "SwClearDummies: No Upper allowed!" );
-//STRIP001      if( pTmp->IsSctFrm() )
-//STRIP001      {
-//STRIP001          SwSectionFrm* pSectFrm = (SwSectionFrm*)pFrm;
-//STRIP001          pTmp = pTmp->GetNext();
-//STRIP001          if( !pSectFrm->GetLower() )
-//STRIP001          {
-//STRIP001              if( pSectFrm->GetPrev() )
-//STRIP001                  pSectFrm->GetPrev()->pNext = pTmp;
-//STRIP001              else
-//STRIP001                  pFrm = pTmp;
-//STRIP001              if( pTmp )
-//STRIP001                  pTmp->pPrev = pSectFrm->GetPrev();
-//STRIP001              delete pSectFrm;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pTmp = pTmp->GetNext();
-//STRIP001  }
-//STRIP001  return pFrm;
-//STRIP001 }
 
 /*N*/ SwSectionNode::~SwSectionNode()
 /*N*/ {
@@ -1187,78 +1051,6 @@ void SwSectionNode::MakeFrms(const SwNodeIndex & rIdx )
 /*N*/   }
 /*N*/ }
 
-//STRIP001 SwSectionNode* SwSectionNode::MakeCopy( SwDoc* pDoc, const SwNodeIndex& rIdx ) const
-//STRIP001 {
-//STRIP001  // in welchen Array steht ich denn: Nodes, UndoNodes ??
-//STRIP001  const SwNodes& rNds = GetNodes();
-//STRIP001
-//STRIP001  // das SectionFrmFmt kopieren
-//STRIP001  SwSectionFmt* pSectFmt = pDoc->MakeSectionFmt( 0 );
-//STRIP001  pSectFmt->CopyAttrs( *GetSection().GetFmt() );
-//STRIP001
-//STRIP001  SwSectionNode* pSectNd = new SwSectionNode( rIdx, *pSectFmt );
-//STRIP001  SwEndNode* pEndNd = new SwEndNode( rIdx, *pSectNd );
-//STRIP001  SwNodeIndex aInsPos( *pEndNd );
-//STRIP001
-//STRIP001  // Werte uebertragen
-//STRIP001  SwSection* pNewSect = pSectNd->pSection;
-//STRIP001
-//STRIP001  switch( GetSection().GetType() )
-//STRIP001  {
-//STRIP001  case TOX_CONTENT_SECTION:
-//STRIP001      {
-//STRIP001          ASSERT( GetSection().ISA( SwTOXBaseSection ), "keine TOXBaseSection!" );
-//STRIP001          SwTOXBaseSection& rTOXSect = (SwTOXBaseSection&)GetSection();
-//STRIP001          SwTOXBase aTmp( rTOXSect, pDoc );
-//STRIP001
-//STRIP001          SwTOXBaseSection* pNew = new SwTOXBaseSection( aTmp );
-//STRIP001
-//STRIP001          pNewSect = pNew;
-//STRIP001          pSectFmt->Add( pNewSect );
-//STRIP001          pSectNd->SetNewSection( pNew );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      // beim Move den Namen beibehalten
-//STRIP001      if( rNds.GetDoc() == pDoc && pDoc->IsCopyIsMove() )
-//STRIP001          pNewSect->SetName( GetSection().GetName() );
-//STRIP001      else
-//STRIP001          pNewSect->SetName( pDoc->GetUniqueSectionName(
-//STRIP001                                      &GetSection().GetName() ) );
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  pNewSect->SetType( GetSection().GetType() );
-//STRIP001  pNewSect->SetCondition( GetSection().GetCondition() );
-//STRIP001  pNewSect->SetLinkFileName( GetSection().GetLinkFileName() );
-//STRIP001  if( !pNewSect->IsHiddenFlag() && GetSection().IsHidden() )
-//STRIP001      pNewSect->SetHidden( TRUE );
-//STRIP001  if( !pNewSect->IsProtectFlag() && GetSection().IsProtect() )
-//STRIP001      pNewSect->SetProtect( TRUE );
-//STRIP001
-//STRIP001  SwNodeRange aRg( *this, +1, *EndOfSectionNode() );  // (wo stehe in denn nun ??)
-//STRIP001  rNds._Copy( aRg, aInsPos, FALSE );
-//STRIP001
-//STRIP001  // loesche alle Frames vom kopierten Bereich, diese werden beim
-//STRIP001  // erzeugen des SectionFrames angelegt !
-//STRIP001  pSectNd->DelFrms();
-//STRIP001
-//STRIP001  // dann kopiere auch noch die Links/Server
-//STRIP001  if( pNewSect->IsLinkType() )        // den Link eintragen
-//STRIP001      pNewSect->CreateLink( pDoc->GetRootFrm() ? CREATE_CONNECT
-//STRIP001                                               : CREATE_NONE );
-//STRIP001
-//STRIP001  // falls als Server aus dem Undo kopiert wird, wieder eintragen
-//STRIP001  if( pSection->IsServer() && pDoc->GetUndoNds() == &rNds )
-//STRIP001  {
-//STRIP001      pNewSect->SetRefObject( pSection->GetObject() );
-//STRIP001      pDoc->GetLinkManager().InsertServer( pNewSect->GetObject() );
-//STRIP001  }
-//STRIP001
-//STRIP001  return pSectNd;
-//STRIP001 }
 
 BOOL SwSectionNode::IsCntntHidden() const
 {
@@ -1286,61 +1078,6 @@ BOOL SwSectionNode::IsCntntHidden() const
 }
 
 
-//STRIP001 void SwSectionNode::NodesArrChgd()
-//STRIP001 {
-//STRIP001  SwSectionFmt* pFmt = pSection->GetFmt();
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      SwNodes& rNds = GetNodes();
-//STRIP001      SwDoc* pDoc = pFmt->GetDoc();
-//STRIP001
-//STRIP001      if( !rNds.IsDocNodes() )
-//STRIP001      {
-//STRIP001          SwPtrMsgPoolItem aMsgHint( RES_REMOVE_UNO_OBJECT, pFmt );
-//STRIP001          pFmt->Modify( &aMsgHint, &aMsgHint );
-//STRIP001      }
-//STRIP001
-//STRIP001      pFmt->LockModify();
-//STRIP001      pFmt->SetAttr( SwFmtCntnt( this ));
-//STRIP001      pFmt->UnlockModify();
-//STRIP001
-//STRIP001      SwSectionNode* pSectNd = FindStartNode()->FindSectionNode();
-//STRIP001      // set the correct parent from the new section
-//STRIP001      pFmt->SetDerivedFrom( pSectNd ? pSectNd->GetSection().GetFmt()
-//STRIP001                                    : pDoc->GetDfltFrmFmt() );
-//STRIP001
-//STRIP001      // jetzt noch bei allen im Bereich den richtigen StartNode setzen
-//STRIP001      ULONG nStart = GetIndex()+1, nEnde = EndOfSectionIndex();
-//STRIP001      for( ULONG n = nStart; n < nEnde; ++n )
-//STRIP001          // die Verschachtelung der Formate herstellen!
-//STRIP001          if( 0 != ( pSectNd = rNds[ n ]->GetSectionNode() ) )
-//STRIP001          {
-//STRIP001              pSectNd->GetSection().GetFmt()->SetDerivedFrom( pFmt );
-//STRIP001              n = pSectNd->EndOfSectionIndex();
-//STRIP001          }
-//STRIP001
-//STRIP001      // verschieben vom Nodes- ins UndoNodes-Array?
-//STRIP001      if( rNds.IsDocNodes() )
-//STRIP001      {
-//STRIP001          ASSERT( pDoc == GetDoc(),
-//STRIP001                  "verschieben in unterschiedliche Documente?" );
-//STRIP001          if( pSection->IsLinkType() )        // den Link austragen
-//STRIP001              pSection->CreateLink( pDoc->GetRootFrm() ? CREATE_CONNECT
-//STRIP001                                                       : CREATE_NONE );
-//STRIP001
-//STRIP001          if( pSection->IsServer() )                  // als Server austragen
-//STRIP001              pDoc->GetLinkManager().InsertServer( pSection->GetObject() );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if( CONTENT_SECTION != pSection->GetType() )        // den Link austragen
-//STRIP001              pDoc->GetLinkManager().Remove( &pSection->GetBaseLink() );
-//STRIP001
-//STRIP001          if( pSection->IsServer() )                  // als Server austragen
-//STRIP001              pDoc->GetLinkManager().RemoveServer( pSection->GetObject() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ String SwDoc::GetUniqueSectionName( const String* pChkStr ) const
