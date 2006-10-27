@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editdoc2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:54:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:42:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,14 +33,9 @@
  *
  ************************************************************************/
 
-// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
-// auto strip #include <tools/rtti.hxx>
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
@@ -49,47 +44,22 @@
 #include "eeitemid.hxx"
 #endif
 
-// auto strip #include <lspcitem.hxx>
-// auto strip #include <adjitem.hxx>
-// auto strip #include <tstpitem.hxx>
 
 #ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
 
-// auto strip #include <editdoc.hxx>
 
-// auto strip #ifndef _VCL_POINTR_HXX
-// auto strip #include <vcl/pointr.hxx>
-// auto strip #endif
 
 #ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
 #endif
 
 #include <impedit.hxx>
-// auto strip #include <editdbg.hxx>
 
-// auto strip #include <numitem.hxx>
 
-// auto strip #include "akrnitem.hxx"
-// auto strip #include "cntritem.hxx"
-// auto strip #include "colritem.hxx"
-// auto strip #include "crsditem.hxx"
-// auto strip #include "escpitem.hxx"
-// auto strip #include "fhgtitem.hxx"
-// auto strip #include "fontitem.hxx"
 #include "kernitem.hxx"
-// auto strip #include "lrspitem.hxx"
-// auto strip #include "postitem.hxx"
-// auto strip #include "shdditem.hxx"
-// auto strip #include "udlnitem.hxx"
-// auto strip #include "ulspitem.hxx"
-// auto strip #include "wghtitem.hxx"
-// auto strip #include "wrlmitem.hxx"
-// auto strip #include <charscaleitem.hxx>
 
-// auto strip #include <vcl/svapp.hxx>  // Fuer AppWindow...
 namespace binfilter {
 
 /*N*/ DBG_NAME( EE_ParaPortion )
@@ -163,16 +133,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*?*/   return ( Count() - 1 );
 /*N*/ }
 
-//STRIP001 USHORT TextPortionList::GetStartPos( USHORT nPortion )
-//STRIP001 {
-//STRIP001     USHORT nPos = 0;
-//STRIP001  for ( USHORT n = 0; n < nPortion; n++ )
-//STRIP001  {
-//STRIP001      TextPortion* pPortion = GetObject( n );
-//STRIP001      nPos += pPortion->GetLen();
-//STRIP001  }
-//STRIP001     return nPos;
-//STRIP001 }
 
 
 // -------------------------------------------------------------------------
@@ -181,33 +141,13 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 
 /*N*/ ExtraPortionInfo::ExtraPortionInfo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     nOrgWidth = 0;
-//STRIP001     nWidthFullCompression = 0;
-//STRIP001     nMaxCompression100thPercent = 0;
-//STRIP001     nAsianCompressionTypes = 0;
-//STRIP001     nPortionOffsetX = 0;
-//STRIP001     bFirstCharIsRightPunktuation = FALSE;
-//STRIP001     bCompressed = FALSE;
-//STRIP001     pOrgDXArray = NULL;
 /*N*/ }
 
 /*N*/ ExtraPortionInfo::~ExtraPortionInfo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     delete[] pOrgDXArray;
 /*N*/ }
 
-//STRIP001 void ExtraPortionInfo::SaveOrgDXArray( const long* pDXArray, USHORT nLen )
-//STRIP001 {
-//STRIP001     delete[] pOrgDXArray;
-//STRIP001     pOrgDXArray = new long[nLen];
-//STRIP001     memcpy( pOrgDXArray, pDXArray, nLen*sizeof(long) );
-//STRIP001 }
 
-//STRIP001 void ExtraPortionInfo::DestroyOrgDXArray()
-//STRIP001 {
-//STRIP001     delete[] pOrgDXArray;
-//STRIP001     pOrgDXArray = NULL;
-//STRIP001 }
 
 
 // -------------------------------------------------------------------------
@@ -307,10 +247,6 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*?*/   return (aLineList.Count()-1);
 /*N*/ }
 
-//STRIP001 void ParaPortion::SetVisible( BOOL bMakeVisible )
-//STRIP001 {
-//STRIP001  bVisible = bMakeVisible;
-//STRIP001 }
 
 /*N*/ void ParaPortion::CorrectValuesBehindLastFormattedLine( USHORT nLastFormattedLine )
 /*N*/ {
@@ -394,24 +330,8 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   return 0xFFFF;  // solte mal ueber EE_PARA_NOT_FOUND erreicht werden!
 /*N*/ }
 
-//STRIP001 void ParaPortionList::DbgCheck( EditDoc& rDoc )
-//STRIP001 {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  DBG_ASSERT( Count() == rDoc.Count(), "ParaPortionList::DbgCheck() - Count() ungleich!" );
-//STRIP001  for ( USHORT i = 0; i < Count(); i++ )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( SaveGetObject(i), "ParaPortionList::DbgCheck() - Null-Pointer in Liste!" );
-//STRIP001      DBG_ASSERT( GetObject(i)->GetNode(), "ParaPortionList::DbgCheck() - Null-Pointer in Liste(2)!" );
-//STRIP001      DBG_ASSERT( GetObject(i)->GetNode() == rDoc.GetObject(i), "ParaPortionList::DbgCheck() - Eintraege kreuzen sich!" );
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001 }
 
 
-//STRIP001 ContentAttribsInfo::ContentAttribsInfo( const SfxItemSet& rParaAttribs ) :
-//STRIP001      aPrevParaAttribs( rParaAttribs)
-//STRIP001 {
-//STRIP001 }
 
 
 /*N*/ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit eSourceUnit, MapUnit eDestUnit )
@@ -422,98 +342,28 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   {
 /*N*/       case EE_PARA_LRSPACE:
 /*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxLRSpaceItem ) ), "ConvertItem: Ungueltiges Item!" );
-//STRIP001          SvxLRSpaceItem& rItem = (SvxLRSpaceItem&)rPoolItem;
-//STRIP001          rItem.SetTxtFirstLineOfst( OutputDevice::LogicToLogic( rItem.GetTxtFirstLineOfst(), eSourceUnit, eDestUnit ) );
-//STRIP001          rItem.SetTxtLeft( OutputDevice::LogicToLogic( rItem.GetTxtLeft(), eSourceUnit, eDestUnit ) );
-//STRIP001 //           rItem.SetLeft( OutputDevice::LogicToLogic( rItem.GetLeft(), eSourceUnit, eDestUnit ) ); // #96298# SetLeft manipulates nTxtLeft!
-//STRIP001          rItem.SetRight( OutputDevice::LogicToLogic( rItem.GetRight(), eSourceUnit, eDestUnit ) );
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_ULSPACE:
 /*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxULSpaceItem ) ), "ConvertItem: Ungueltiges Item!" );
-//STRIP001          SvxULSpaceItem& rItem = (SvxULSpaceItem&)rPoolItem;
-//STRIP001          rItem.SetUpper( OutputDevice::LogicToLogic( rItem.GetUpper(), eSourceUnit, eDestUnit ) );
-//STRIP001          rItem.SetLower( OutputDevice::LogicToLogic( rItem.GetLower(), eSourceUnit, eDestUnit ) );
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_SBL:
 /*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxLineSpacingItem ) ), "ConvertItem: Ungueltiges Item!" );
-//STRIP001          SvxLineSpacingItem& rItem = (SvxLineSpacingItem&)rPoolItem;
-//STRIP001             // #96298# SetLineHeight changes also eLineSpace!
-//STRIP001          if ( rItem.GetLineSpaceRule() == SVX_LINE_SPACE_MIN )
-//STRIP001              rItem.SetLineHeight( OutputDevice::LogicToLogic( rItem.GetLineHeight(), eSourceUnit, eDestUnit ) );
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_TABS:
 /*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxTabStopItem ) ), "ConvertItem: Ungueltiges Item!" );
-//STRIP001          SvxTabStopItem& rItem = (SvxTabStopItem&)rPoolItem;
-//STRIP001          SvxTabStopItem aNewItem( EE_PARA_TABS );
-//STRIP001          for ( USHORT i = 0; i < rItem.Count(); i++ )
-//STRIP001          {
-//STRIP001              const SvxTabStop& rTab = rItem[i];
-//STRIP001              SvxTabStop aNewStop( OutputDevice::LogicToLogic( rTab.GetTabPos(), eSourceUnit, eDestUnit ), rTab.GetAdjustment(), rTab.GetDecimal(), rTab.GetFill() );
-//STRIP001              aNewItem.Insert( aNewStop );
-//STRIP001          }
-//STRIP001          rItem = aNewItem;
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_CHAR_FONTHEIGHT:
 /*N*/       case EE_CHAR_FONTHEIGHT_CJK:
 /*N*/       case EE_CHAR_FONTHEIGHT_CTL:
 /*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxFontHeightItem ) ), "ConvertItem: Ungueltiges Item!" );
-//STRIP001          SvxFontHeightItem& rItem = (SvxFontHeightItem&)rPoolItem;
-//STRIP001          rItem.SetHeight( OutputDevice::LogicToLogic( rItem.GetHeight(), eSourceUnit, eDestUnit ) );
 /*N*/       }
 /*N*/       break;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ConvertAndPutItems( SfxItemSet& rDest, const SfxItemSet& rSource, const MapUnit* pSourceUnit, const MapUnit* pDestUnit )
-//STRIP001 {
-//STRIP001  const SfxItemPool* pSourcePool = rSource.GetPool();
-//STRIP001  const SfxItemPool* pDestPool = rDest.GetPool();
-//STRIP001
-//STRIP001  for ( USHORT nWhich = EE_PARA_START; nWhich <= EE_CHAR_END; nWhich++ )
-//STRIP001  {
-//STRIP001      // Wenn moeglich ueber SlotID gehen...
-//STRIP001
-//STRIP001      USHORT nSourceWhich = nWhich;
-//STRIP001      USHORT nSlot = pDestPool->GetTrueSlotId( nWhich );
-//STRIP001      if ( nSlot )
-//STRIP001      {
-//STRIP001          USHORT nW = pSourcePool->GetTrueWhich( nSlot );
-//STRIP001          if ( nW )
-//STRIP001              nSourceWhich = nW;
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( rSource.GetItemState( nSourceWhich, FALSE ) == SFX_ITEM_ON )
-//STRIP001      {
-//STRIP001          MapUnit eSourceUnit = pSourceUnit ? *pSourceUnit : (MapUnit)pSourcePool->GetMetric( nSourceWhich );
-//STRIP001          MapUnit eDestUnit = pDestUnit ? *pDestUnit : (MapUnit)pDestPool->GetMetric( nWhich );
-//STRIP001          if ( eSourceUnit != eDestUnit )
-//STRIP001          {
-//STRIP001              SfxPoolItem* pItem = rSource.Get( nSourceWhich ).Clone();
-//STRIP001 //               pItem->SetWhich( nWhich );
-//STRIP001              ConvertItem( *pItem, eSourceUnit, eDestUnit );
-//STRIP001              rDest.Put( *pItem, nWhich );
-//STRIP001              delete pItem;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rDest.Put( rSource.Get( nSourceWhich ), nWhich );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // MT 3.3.99: Waere so eigentlich richtig, aber schon seit Jahren nicht so...
-//STRIP001 //           rDest.ClearItem( nWhich );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 }
