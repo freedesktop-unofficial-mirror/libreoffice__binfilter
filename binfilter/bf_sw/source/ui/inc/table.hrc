@@ -4,9 +4,9 @@
  *
  *  $RCSfile: table.hrc,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:55:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:55:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,24 +35,5 @@
 
 #include "rcid.hrc"
 
-//STRIP001 #define DLG_INSERT_TABLE     RC_TABLE_BEGIN
-//STRIP001 #define DLG_FORMAT_TABLE     (RC_TABLE_BEGIN + 1)
-//STRIP001 #define DLG_CONV_TEXT_TABLE      (RC_TABLE_BEGIN + 2)
-//STRIP001 #define DLG_INS_ROW_COL          (RC_TABLE_BEGIN + 3)
-//STRIP001 #define DLG_ROW_HEIGHT           (RC_TABLE_BEGIN + 4)
-//STRIP001 #define DLG_SPLIT            (RC_TABLE_BEGIN + 5)
-//STRIP001 #define DLG_COL_WIDTH            (RC_TABLE_BEGIN + 6)
-//STRIP001 #define MSG_ERR_TABLE_MERGE      (RC_TABLE_BEGIN + 7)
-//STRIP001 #define DLG_AUTOFMT_TABLE        (RC_TABLE_BEGIN + 9)
-//STRIP001 #define DLG_SWDLG_STRINPUT       (RC_TABLE_BEGIN + 10)
-//STRIP001 #define TP_TABLE_COLUMN      (RC_TABLE_BEGIN + 11)
-//STRIP001 #define DLG_INSERT_CHART         (RC_TABLE_BEGIN + 12)
-//STRIP001 #define MSG_WRONG_TABLENAME     (RC_TABLE_BEGIN + 13)
-//STRIP001 #define DLG_SPLIT_TABLE      (RC_TABLE_BEGIN + 14)
-//STRIP001 #define DLG_MERGE_TABLE      (RC_TABLE_BEGIN + 15)
 
-//STRIP001 #define TABLE_ACT_END            DLG_MERGE_TABLE
 
-//STRIP001 #if TABLE_ACT_END > RC_TABLE_END
-//STRIP001 #error Resource-Id Ueberlauf in #file, #line
-//STRIP001 #endif
