@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_hintpost.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:42:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:44:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,25 +35,15 @@
 
 #pragma hdrstop
 
-// auto strip #include "arrdecl.hxx"
 #include "hintpost.hxx"
 #include "app.hxx"
-// auto strip #include "sfxtypes.hxx"
 namespace binfilter {
 
 //====================================================================
 
-//STRIP001 void SfxHintPoster::RegisterEvent()
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 SfxHintPoster::SfxHintPoster()
-//STRIP001 {
-//STRIP001  RegisterEvent();
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
