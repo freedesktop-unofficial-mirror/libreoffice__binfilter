@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pagechg.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:51:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:54:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,9 +58,6 @@
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-// auto strip #ifndef _FMTFORDR_HXX //autogen
-// auto strip #include <fmtfordr.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -76,19 +73,13 @@
 
 #include "viewimp.hxx"
 #include "pagefrm.hxx"
-// auto strip #include "rootfrm.hxx"
-// auto strip #include "cntfrm.hxx"
-// auto strip #include "flyfrm.hxx"
 #include "doc.hxx"
 #include "fesh.hxx"
 #include "dview.hxx"
 #include "dflyobj.hxx"
 #include "dcontact.hxx"
 #include "frmtool.hxx"
-// auto strip #include "fldbas.hxx"
 #include "hints.hxx"
-// auto strip #include "errhdl.hxx"
-// auto strip #include "swtable.hxx"
 
 #include "ftnidx.hxx"
 #include "bodyfrm.hxx"
@@ -98,15 +89,10 @@
 #include "layact.hxx"
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
-// auto strip #include "htmltbl.hxx"
 #include "pagedesc.hxx"
-// auto strip #include "poolfmt.hxx"
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
-// auto strip #ifndef _SWFNTCCH_HXX
-// auto strip #include <swfntcch.hxx>   // SwFontAccess
-// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
@@ -708,13 +694,6 @@ namespace binfilter {
 /*N*/
 /*N*/       case RES_PAGEDESC_FTNINFO:
 /*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //Die derzeit einzig sichere Methode:
-//STRIP001 /*?*/            ((SwRootFrm*)GetUpper())->SetSuperfluous();
-//STRIP001 /*?*/            SetMaxFtnHeight( pDesc->GetFtnInfo().GetHeight() );
-//STRIP001 /*?*/            if ( !GetMaxFtnHeight() )
-//STRIP001 /*?*/                SetMaxFtnHeight( LONG_MAX );
-//STRIP001 /*?*/            SetColMaxFtnHeight();
-//STRIP001 /*?*/            //Hier wird die Seite ggf. zerstoert!
-//STRIP001 /*?*/            ((SwRootFrm*)GetUpper())->RemoveFtns( 0, FALSE, TRUE );
 /*N*/           break;
 /*N*/         case RES_FRAMEDIR :
 /*?*/             CheckDirChange();
@@ -747,15 +726,6 @@ namespace binfilter {
 |*
 *************************************************************************/
     // erfrage vom Modify Informationen
-//STRIP001 BOOL SwPageFrm::GetInfo( SfxPoolItem & rInfo ) const
-//STRIP001 {
-//STRIP001  if( RES_AUTOFMT_DOCNODE == rInfo.Which() )
-//STRIP001  {
-//STRIP001      // es gibt einen PageFrm also wird er benutzt
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;        // weiter suchen
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2037,55 +2007,6 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/       } while ( pSh != GetCurrShell() );
 /*N*/ }
 
-//STRIP001 void SwRootFrm::UnoRemoveAllActions()
-//STRIP001 {
-//STRIP001  ViewShell *pSh = GetCurrShell();
-//STRIP001  if ( pSh )
-//STRIP001      do
-//STRIP001      {
-//STRIP001          DBG_ASSERT(!pSh->GetRestoreActions(), "Restore action count is already set!")
-//STRIP001          BOOL bCrsr = pSh->ISA( SwCrsrShell );
-//STRIP001          BOOL bFE = pSh->ISA( SwFEShell );
-//STRIP001          USHORT nRestore = 0;
-//STRIP001          while( pSh->ActionCount() )
-//STRIP001          {
-//STRIP001              if( bCrsr )
-//STRIP001              {
-//STRIP001                  ((SwCrsrShell*)pSh)->EndAction();
-//STRIP001                  ((SwCrsrShell*)pSh)->CallChgLnk();
-//STRIP001                  if ( bFE )
-//STRIP001                      ((SwFEShell*)pSh)->SetChainMarker();
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  pSh->EndAction();
-//STRIP001              nRestore++;
-//STRIP001          }
-//STRIP001          pSh->SetRestoreActions(nRestore);
-//STRIP001          pSh->LockView(TRUE);
-//STRIP001          pSh = (ViewShell*)pSh->GetNext();
-//STRIP001
-//STRIP001      } while ( pSh != GetCurrShell() );
-//STRIP001 }
 
-//STRIP001 void SwRootFrm::UnoRestoreAllActions()
-//STRIP001 {
-//STRIP001  ViewShell *pSh = GetCurrShell();
-//STRIP001  if ( pSh )
-//STRIP001      do
-//STRIP001      {
-//STRIP001          USHORT nActions = pSh->GetRestoreActions();
-//STRIP001          while( nActions-- )
-//STRIP001          {
-//STRIP001              if ( pSh->ISA( SwCrsrShell ) )
-//STRIP001                  ((SwCrsrShell*)pSh)->StartAction();
-//STRIP001              else
-//STRIP001                  pSh->StartAction();
-//STRIP001          }
-//STRIP001          pSh->SetRestoreActions(0);
-//STRIP001          pSh->LockView(FALSE);
-//STRIP001          pSh = (ViewShell*)pSh->GetNext();
-//STRIP001
-//STRIP001      } while ( pSh != GetCurrShell() );
-//STRIP001 }
 
 }
