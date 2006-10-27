@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:45:50 $
+#   last change: $Author: rt $ $Date: 2006-10-27 17:06:58 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -118,7 +118,6 @@ SLOFILES =  \
         $(SLO)$/sc_reffact.obj \
         $(SLO)$/sc_cellsh.obj \
         $(SLO)$/sc_cellsh2.obj\
-        $(SLO)$/sc_cellsh3.obj\
         $(SLO)$/sc_cellsh4.obj\
         $(SLO)$/sc_formatsh.obj\
         $(SLO)$/sc_pgbrksh.obj
