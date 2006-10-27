@@ -4,9 +4,9 @@
  *
  *  $RCSfile: propread.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:25:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:04:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,20 +42,7 @@
 #ifndef _SVSTOR_HXX
 #include <so3/svstor.hxx>
 #endif
-// auto strip #ifndef _SV_GEN_HXX
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
-// auto strip #ifndef _STREAM_HXX
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATETIME_HXX
-// auto strip #include <tools/datetime.hxx>
-// auto strip #endif
 
-// auto strip #include <tools/string.hxx>
 namespace binfilter {
 
 // SummaryInformation
