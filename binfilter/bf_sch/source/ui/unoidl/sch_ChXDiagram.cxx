@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXDiagram.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:12:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:58:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,9 +34,6 @@
  ************************************************************************/
 
 // header for class OGuard
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -59,11 +56,9 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #include "ChXDiagram.hxx"
-// auto strip #include "ChXChartObject.hxx"
 #include "ChXChartAxis.hxx"
 #include "ChXDataRow.hxx"
 #include "ChXDataPoint.hxx"
@@ -74,12 +69,8 @@
 
 #include "mapprov.hxx"
 
-// auto strip #include "chtmodel.hxx"
-// auto strip #include "globfunc.hxx"           // for GlobalGenerate3DAttrDefaultItem
 #include "schattr.hxx"
 #include "charttyp.hxx"
-// auto strip #include "datarow.hxx"
-// auto strip #include "datapoin.hxx"
 #include "chtscene.hxx"
 #include "docshell.hxx"
 
@@ -120,9 +111,6 @@
 #ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
-// auto strip #include <com/sun/star/drawing/HomogenMatrix.hpp>
-// auto strip #endif
 
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
