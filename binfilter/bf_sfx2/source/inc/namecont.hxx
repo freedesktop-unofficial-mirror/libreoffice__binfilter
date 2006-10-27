@@ -4,9 +4,9 @@
  *
  *  $RCSfile: namecont.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:31:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:38:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,7 +77,6 @@
 #endif
 #include <cppuhelper/typeprovider.hxx>
 #include <cppuhelper/interfacecontainer.hxx>
-// auto strip #include "sfxuno.hxx"
 
 #include <so3/svstor.hxx>
 #ifndef _XMLSCRIPT_XMLLIB_IMEXP_HXX_
@@ -245,9 +244,6 @@ protected:
 
     InitMode meInitMode;
 
-//STRIP001  void implStoreLibrary( SfxLibrary_Impl* pLib, const ::rtl::OUString& aName, SotStorageRef xStorage );
-//STRIP001     void implStoreLibraryIndexFile( SfxLibrary_Impl* pLib, const ::xmlscript::LibDescriptor& rLib,
-//STRIP001                                     SotStorageRef xStorage );
     sal_Bool implLoadLibraryIndexFile( SfxLibrary_Impl* pLib, ::xmlscript::LibDescriptor& rLib,
                                        SotStorageRef xStorage, const ::rtl::OUString& aIndexFileName );
     void implImportLibDescriptor( SfxLibrary_Impl* pLib, ::xmlscript::LibDescriptor& rLib );
