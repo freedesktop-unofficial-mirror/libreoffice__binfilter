@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdouno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:03:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:44:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,61 +45,21 @@
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-// auto strip #include <com/sun/star/io/XPersistObject.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XOutputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XInputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
-// auto strip #include <com/sun/star/io/XActiveDataSink.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
-// auto strip #include <com/sun/star/io/XActiveDataSource.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
-// auto strip #include <com/sun/star/util/XCloneable.hpp>
-// auto strip #endif
 
-// auto strip #include <comphelper/processfactory.hxx>
 
 #ifndef _SVDOUNO_HXX
 #include "svdouno.hxx"
 #endif
-// auto strip #ifndef _SVDXOUT_HXX
-// auto strip #include "svdxout.hxx"
-// auto strip #endif
 #ifndef _SVDPAGV_HXX
 #include "svdpagv.hxx"
 #endif
-// auto strip #ifndef _SVDMODEL_HXX
-// auto strip #include "svdmodel.hxx"
-// auto strip #endif
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
 #endif
-// auto strip #ifndef _SVDGLOB_HXX
-// auto strip #include "svdglob.hxx"  // Stringcache
-// auto strip #endif
 #include "svdstr.hrc"   // Objektname
-// auto strip #ifndef _SVDETC_HXX
-// auto strip #include "svdetc.hxx"
-// auto strip #endif
 #ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
 #endif
-// auto strip #ifndef _SVDORECT_HXX
-// auto strip #include "svdorect.hxx"
-// auto strip #endif
 #ifndef _SVDVITER_HXX
 #include "svdviter.hxx"
 #endif
@@ -117,9 +77,6 @@ using namespace ::com::sun::star;
 //   Hilfsklasse SdrControlEventListenerImpl
 //************************************************************
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/lang/XEventListener.hpp>
-// auto strip #endif
 
 #include <cppuhelper/implbase1.hxx>
 namespace binfilter {
@@ -277,29 +234,7 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetPage(pNewPage);
 /*N*/ }
 
-//STRIP001 void SdrUnoObj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  rInfo.bRotateFreeAllowed        =   FALSE;
-//STRIP001  rInfo.bRotate90Allowed          =   FALSE;
-//STRIP001  rInfo.bMirrorFreeAllowed        =   FALSE;
-//STRIP001  rInfo.bMirror45Allowed          =   FALSE;
-//STRIP001  rInfo.bMirror90Allowed          =   FALSE;
-//STRIP001  rInfo.bTransparenceAllowed = FALSE;
-//STRIP001  rInfo.bGradientAllowed = FALSE;
-//STRIP001  rInfo.bShearAllowed             =   FALSE;
-//STRIP001  rInfo.bEdgeRadiusAllowed        =   FALSE;
-//STRIP001  rInfo.bNoOrthoDesired           =   FALSE;
-//STRIP001  rInfo.bCanConvToPath            =   FALSE;
-//STRIP001  rInfo.bCanConvToPoly            =   FALSE;
-//STRIP001  rInfo.bCanConvToPathLineToArea  =   FALSE;
-//STRIP001  rInfo.bCanConvToPolyLineToArea  =   FALSE;
-//STRIP001  rInfo.bCanConvToContour = FALSE;
-//STRIP001 }
 
-//STRIP001 UINT16 SdrUnoObj::GetObjIdentifier() const
-//STRIP001 {
-//STRIP001  return UINT16(OBJ_UNO);
-//STRIP001 }
 
 /** helper class to restore graphics at <awt::XView> object after <SdrUnoObj::Paint>
 
@@ -326,286 +261,11 @@ namespace binfilter {
 /*?*/         }
 /*?*/ };
 
-//STRIP001 FASTBOOL SdrUnoObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
-//STRIP001 {
-//STRIP001  const SdrPageView* pPV = rInfoRec.pPV;
-//STRIP001  OutputDevice* pOut = rXOut.GetOutDev();
-//STRIP001  OutDevType eOutDevType = pOut->GetOutDevType();
-//STRIP001  const SdrUnoControlRec* pControlRec = NULL;
-//STRIP001
-//STRIP001  if (pPV && xUnoControlModel.is())
-//STRIP001  {
-//STRIP001      const SdrPageViewWinList& rWL = pPV->GetWinList();
-//STRIP001      USHORT nWinNum = rWL.Find(pOut);
-//STRIP001
-//STRIP001      if (nWinNum == SDRPAGEVIEWWIN_NOTFOUND && eOutDevType == OUTDEV_VIRDEV)
-//STRIP001      {
-//STRIP001          // Controls koennen sich z.Z. noch nicht ins VDev zeichnen,
-//STRIP001          // daher wird das korrespondierende, im ersten Window liegende
-//STRIP001          // Control invalidiert (s.u.)
-//STRIP001          if (rWL.GetCount() > 0)
-//STRIP001          {
-//STRIP001              // Liste enhaelt Windows, daher nehmen wir das erste
-//STRIP001              nWinNum = 0;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if (nWinNum != SDRPAGEVIEWWIN_NOTFOUND)
-//STRIP001      {
-//STRIP001          const SdrPageViewWinRec& rWR = rWL[nWinNum];
-//STRIP001          const SdrUnoControlList& rControlList = rWR.GetControlList();
-//STRIP001          USHORT nCtrlNum = rControlList.Find(xUnoControlModel);
-//STRIP001
-//STRIP001          if (nCtrlNum != SDRUNOCONTROL_NOTFOUND)
-//STRIP001          {
-//STRIP001              pControlRec = &rControlList[nCtrlNum];
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pControlRec && pControlRec->GetControl().is())
-//STRIP001  {
-//STRIP001         SdrUnoControlPaintGuard aLockForPaint( *const_cast< SdrUnoControlRec* >( pControlRec ) );
-//STRIP001
-//STRIP001      uno::Reference< awt::XControl > xUnoControl = pControlRec->GetControl();
-//STRIP001
-//STRIP001      uno::Reference< awt::XView > xView(xUnoControl, uno::UNO_QUERY);
-//STRIP001      if (xView.is())
-//STRIP001      {
-//STRIP001             // OD 08.05.2003 #109432# - create helper object to restore graphics
-//STRIP001             // at <awt::XView> object.
-//STRIP001             RestoreXViewGraphics aRestXViewGraph( xView );
-//STRIP001
-//STRIP001             OutputDevice* pOut = rXOut.GetOutDev();
-//STRIP001          const MapMode& rMap = pOut->GetMapMode();
-//STRIP001          xView->setZoom((float) double(rMap.GetScaleX()),
-//STRIP001                         (float) double(rMap.GetScaleY()));
-//STRIP001
-//STRIP001          BOOL bDesignMode = pPV->GetView().IsDesignMode();
-//STRIP001
-//STRIP001             uno::Reference< awt::XWindow > xWindow(xUnoControl, uno::UNO_QUERY);
-//STRIP001             if (xWindow.is())
-//STRIP001             {
-//STRIP001                 Point aPixPos(pOut->LogicToPixel(aRect.TopLeft()));
-//STRIP001                 Size aPixSize(pOut->LogicToPixel(aRect.GetSize()));
-//STRIP001                 xWindow->setPosSize(aPixPos.X(), aPixPos.Y(),
-//STRIP001                                     aPixSize.Width(), aPixSize.Height(),
-//STRIP001                                     awt::PosSize::POSSIZE);
-//STRIP001          }
-//STRIP001
-//STRIP001          BOOL bInvalidatePeer = FALSE;
-//STRIP001          if (eOutDevType == OUTDEV_WINDOW)
-//STRIP001          {
-//STRIP001              // Nicht wenn an der Stelle ein 'lebendes' Control liegt
-//STRIP001              // das sich selber zeichnet.
-//STRIP001              if (bDesignMode || pPV->GetView().IsPrintPreview())
-//STRIP001              {
-//STRIP001                  if (pPV->GetView().IsPrintPreview())
-//STRIP001                  {
-//STRIP001                      uno::Reference< awt::XGraphics > x( pOut->CreateUnoGraphics()); // UNO3
-//STRIP001                      xView->setGraphics( x );
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // don't draw if we're in print preview and the control isn't printable
-//STRIP001                  // FS - 10/06/99
-//STRIP001                  BOOL bDrawIt = TRUE;
-//STRIP001                  if (pPV->GetView().IsPrintPreview())
-//STRIP001                  {
-//STRIP001                      uno::Reference< beans::XPropertySet > xP(xUnoControl->getModel(), uno::UNO_QUERY);
-//STRIP001                      if (xP.is())
-//STRIP001                      {
-//STRIP001                          uno::Reference< beans::XPropertySetInfo > xPropInfo = xP->getPropertySetInfo();
-//STRIP001                          if( xPropInfo.is() && xPropInfo->hasPropertyByName( ::rtl::OUString::createFromAscii("Printable")) )
-//STRIP001                          {
-//STRIP001                              uno::Any aVal( xP->getPropertyValue( ::rtl::OUString::createFromAscii("Printable")) );
-//STRIP001                              if( aVal.hasValue() && aVal.getValueType() == ::getCppuBooleanType() )
-//STRIP001                                  bDrawIt = *(sal_Bool*)aVal.getValue();
-//STRIP001                          }
-//STRIP001                          else
-//STRIP001                              bDrawIt = FALSE;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                          bDrawIt = FALSE;
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if (bDrawIt)
-//STRIP001                  {
-//STRIP001                      if( pPV->GetView().IsFillDraft() )
-//STRIP001                      {
-//STRIP001                          const SfxItemSet& rSet = GetItemSet();
-//STRIP001
-//STRIP001                          // perepare ItemSet to avoid old XOut filling
-//STRIP001                          SfxItemSet aEmptySet(*rSet.GetPool());
-//STRIP001                          aEmptySet.Put(XFillStyleItem(XFILL_NONE));
-//STRIP001                          rXOut.SetFillAttr(aEmptySet);
-//STRIP001
-//STRIP001                          rXOut.SetLineAttr(rSet);
-//STRIP001
-//STRIP001                          rXOut.DrawRect( aRect );
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          Point aP = pOut->LogicToPixel(aRect.TopLeft());
-//STRIP001                          xView->draw(aP.X(), aP.Y());
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else if ( xUnoControl->isTransparent() )
-//STRIP001              {
-//STRIP001                  bInvalidatePeer = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (eOutDevType == OUTDEV_PRINTER || eOutDevType == OUTDEV_VIRDEV)
-//STRIP001          {
-//STRIP001              uno::Reference< beans::XPropertySet > xP(xUnoControl->getModel(), uno::UNO_QUERY);
-//STRIP001              if (xP.is())
-//STRIP001              {
-//STRIP001                  uno::Reference< beans::XPropertySetInfo > xPropInfo = xP->getPropertySetInfo();
-//STRIP001                  if( xPropInfo.is() && xPropInfo->hasPropertyByName( ::rtl::OUString::createFromAscii("Printable")) )
-//STRIP001                  {
-//STRIP001                      uno::Any aVal( xP->getPropertyValue( ::rtl::OUString::createFromAscii("Printable")) );
-//STRIP001                      if( aVal.hasValue() && aVal.getValueType() == ::getCppuBooleanType() && *(sal_Bool*)aVal.getValue() )
-//STRIP001                      {
-//STRIP001                          uno::Reference< awt::XGraphics > x = pOut->CreateUnoGraphics(); // UNO3
-//STRIP001                          xView->setGraphics( x );
-//STRIP001                          Point aP = pOut->LogicToPixel(aRect.TopLeft());
-//STRIP001                          xView->draw(aP.X(), aP.Y());
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001             else
-//STRIP001              DBG_ERROR( "SdrUnoObj::Paint: Ehm - what kind of device is this?" );
-//STRIP001
-//STRIP001          if ( bInvalidatePeer )
-//STRIP001          {
-//STRIP001              uno::Reference< awt::XWindowPeer > xPeer(xUnoControl->getPeer());
-//STRIP001              if (xPeer.is())
-//STRIP001              {
-//STRIP001                  xPeer->invalidate(INVALIDATE_NOTRANSPARENT |
-//STRIP001                                    INVALIDATE_CHILDREN);
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 SdrObject* SdrUnoObj::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-//STRIP001 {
-//STRIP001  return ImpCheckHit(rPnt, nTol, pVisiLayer, TRUE, TRUE);
-//STRIP001 }
 
-//STRIP001 void SdrUnoObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName = ImpGetResStr(STR_ObjNameSingulUno);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SdrUnoObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName = ImpGetResStr(STR_ObjNamePluralUno);
-//STRIP001 }
 
-//STRIP001 void SdrUnoObj::operator = (const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  SdrRectObj::operator = (rObj);
-//STRIP001
-//STRIP001  // release the reference to the current control model
-//STRIP001  SetUnoControlModel(uno::Reference< awt::XControlModel >());
-//STRIP001
-//STRIP001  aUnoControlModelTypeName = ((SdrUnoObj&) rObj).aUnoControlModelTypeName;
-//STRIP001  aUnoControlTypeName = ((SdrUnoObj&) rObj).aUnoControlTypeName;
-//STRIP001
-//STRIP001  // copy the uno control model
-//STRIP001  uno::Reference< awt::XControlModel > xCtrl( ((SdrUnoObj&) rObj).GetUnoControlModel(), uno::UNO_QUERY );
-//STRIP001  uno::Reference< util::XCloneable > xClone( xCtrl, uno::UNO_QUERY );
-//STRIP001
-//STRIP001  if ( xClone.is() )
-//STRIP001  {
-//STRIP001      // copy the model by cloning
-//STRIP001      uno::Reference< awt::XControlModel > xNewModel( xClone->createClone(), uno::UNO_QUERY );
-//STRIP001      DBG_ASSERT( xNewModel.is(), "SdrUnoObj::operator =, no control model!");
-//STRIP001      xUnoControlModel = xNewModel;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // copy the model by streaming
-//STRIP001      uno::Reference< io::XPersistObject > xObj( xCtrl, uno::UNO_QUERY );
-//STRIP001      uno::Reference< lang::XMultiServiceFactory > xFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-//STRIP001
-//STRIP001      if ( xObj.is() && xFactory.is() )
-//STRIP001      {
-//STRIP001          // creating a pipe
-//STRIP001          uno::Reference< io::XOutputStream > xOutPipe(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.Pipe")), uno::UNO_QUERY);
-//STRIP001          uno::Reference< io::XInputStream > xInPipe(xOutPipe, uno::UNO_QUERY);
-//STRIP001
-//STRIP001          // creating the mark streams
-//STRIP001          uno::Reference< io::XInputStream > xMarkIn(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.MarkableInputStream")), uno::UNO_QUERY);
-//STRIP001          uno::Reference< io::XActiveDataSink > xMarkSink(xMarkIn, uno::UNO_QUERY);
-//STRIP001
-//STRIP001          uno::Reference< io::XOutputStream > xMarkOut(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.MarkableOutputStream")), uno::UNO_QUERY);
-//STRIP001          uno::Reference< io::XActiveDataSource > xMarkSource(xMarkOut, uno::UNO_QUERY);
-//STRIP001
-//STRIP001          // connect mark and sink
-//STRIP001          uno::Reference< io::XActiveDataSink > xSink(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.ObjectInputStream")), uno::UNO_QUERY);
-//STRIP001
-//STRIP001          // connect mark and source
-//STRIP001          uno::Reference< io::XActiveDataSource > xSource(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.ObjectOutputStream")), uno::UNO_QUERY);
-//STRIP001
-//STRIP001          uno::Reference< io::XObjectOutputStream > xOutStrm(xSource, uno::UNO_QUERY);
-//STRIP001          uno::Reference< io::XObjectInputStream > xInStrm(xSink, uno::UNO_QUERY);
-//STRIP001
-//STRIP001          if (xMarkSink.is() && xMarkSource.is() && xSink.is() && xSource.is())
-//STRIP001          {
-//STRIP001              xMarkSink->setInputStream(xInPipe);
-//STRIP001              xMarkSource->setOutputStream(xOutPipe);
-//STRIP001              xSink->setInputStream(xMarkIn);
-//STRIP001              xSource->setOutputStream(xMarkOut);
-//STRIP001
-//STRIP001              // write the object to source
-//STRIP001              xOutStrm->writeObject(xObj);
-//STRIP001              xOutStrm->closeOutput();
-//STRIP001              // read the object
-//STRIP001              uno::Reference< awt::XControlModel > xModel(xInStrm->readObject(), uno::UNO_QUERY);
-//STRIP001              xInStrm->closeInput();
-//STRIP001
-//STRIP001              DBG_ASSERT(xModel.is(), "SdrUnoObj::operator =, keine Model erzeugt");
-//STRIP001
-//STRIP001              xUnoControlModel = xModel;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // get service name of the control from the control model
-//STRIP001  uno::Reference< beans::XPropertySet > xSet(xUnoControlModel, uno::UNO_QUERY);
-//STRIP001  if (xSet.is())
-//STRIP001  {
-//STRIP001      uno::Any aValue( xSet->getPropertyValue( ::rtl::OUString::createFromAscii("DefaultControl")) );
-//STRIP001      OUString aStr;
-//STRIP001
-//STRIP001      if( aValue >>= aStr )
-//STRIP001          aUnoControlTypeName = String(aStr);
-//STRIP001  }
-//STRIP001
-//STRIP001  uno::Reference< lang::XComponent > xComp(xUnoControlModel, uno::UNO_QUERY);
-//STRIP001  if (xComp.is())
-//STRIP001      pEventListener->StartListening(xComp);
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrUnoObj::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void SdrUnoObj::VisAreaChanged(const OutputDevice* pOut)
 /*N*/ {
@@ -615,13 +275,6 @@ namespace binfilter {
 /*N*/   if (pOut)
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
         // Nur dieses eine OutDev beruecksichtigen
-//STRIP001 /*?*/        uno::Reference< awt::XWindow > xWindow(GetUnoControl(pOut), uno::UNO_QUERY);
-//STRIP001 /*?*/        if (xWindow.is())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            Rectangle aPixRect(pOut->LogicToPixel(aRect));
-//STRIP001 /*?*/            xWindow->setPosSize(aPixRect.Left(), aPixRect.Top(),
-//STRIP001 /*?*/                         aPixRect.GetWidth(), aPixRect.GetHeight(), awt::PosSize::POSSIZE);
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/   else if (pModel)
 /*N*/   {
@@ -783,45 +436,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-//STRIP001 void SdrUnoObj::CreateUnoControlModel(const String& rModelName)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(!xUnoControlModel.is(), "model already exists");
-//STRIP001
-//STRIP001  aUnoControlModelTypeName = rModelName;
-//STRIP001
-//STRIP001  uno::Reference< awt::XControlModel >   xModel;
-//STRIP001  uno::Reference< lang::XMultiServiceFactory > xFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-//STRIP001  if (aUnoControlModelTypeName.Len() && xFactory.is() )
-//STRIP001  {
-//STRIP001      xModel = uno::Reference< awt::XControlModel >(xFactory->createInstance(
-//STRIP001          aUnoControlModelTypeName), uno::UNO_QUERY);
-//STRIP001
-//STRIP001      if (xModel.is())
-//STRIP001          SetChanged();
-//STRIP001  }
-//STRIP001
-//STRIP001  SetUnoControlModel(xModel);
-//STRIP001 }
 
-//STRIP001 void SdrUnoObj::CreateUnoControlModel(const String& rModelName,
-//STRIP001                                    const uno::Reference< lang::XMultiServiceFactory >& rxSFac)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(!xUnoControlModel.is(), "model already exists");
-//STRIP001
-//STRIP001  aUnoControlModelTypeName = rModelName;
-//STRIP001
-//STRIP001  uno::Reference< awt::XControlModel >   xModel;
-//STRIP001  if (aUnoControlModelTypeName.Len() && rxSFac.is() )
-//STRIP001  {
-//STRIP001      xModel = uno::Reference< awt::XControlModel >(rxSFac->createInstance(
-//STRIP001          aUnoControlModelTypeName), uno::UNO_QUERY);
-//STRIP001
-//STRIP001      if (xModel.is())
-//STRIP001          SetChanged();
-//STRIP001  }
-//STRIP001
-//STRIP001  SetUnoControlModel(xModel);
-//STRIP001 }
 
 /*N*/ void SdrUnoObj::WriteData(SvStream& rOut) const
 /*N*/ {
@@ -854,10 +469,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch lesen
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        // UNICODE: rIn >> aUnoControlModelTypeName;
-//STRIP001 /*?*/        rIn.ReadByteString(aUnoControlModelTypeName);
-//STRIP001 /*?*/
-//STRIP001 /*?*/        CreateUnoControlModel(aUnoControlModelTypeName);
 /*N*/   }
 /*N*/ }
 
@@ -906,81 +517,8 @@ namespace binfilter {
 
 /*N*/ uno::Reference< awt::XControl > SdrUnoObj::GetUnoControl(const OutputDevice* pOut) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference< awt::XControl >();//STRIP001
-//STRIP001  uno::Reference< awt::XControl > xUnoControl;
-//STRIP001
-//STRIP001  if (pModel && xUnoControlModel.is())
-//STRIP001  {
-//STRIP001      USHORT nLstCnt = pModel->GetListenerCount();
-//STRIP001
-//STRIP001      for (USHORT nLst = 0; nLst < nLstCnt && !xUnoControl.is(); nLst++ )
-//STRIP001      {
-//STRIP001          // Unter allen Listenern die PageViews suchen
-//STRIP001          SfxListener* pListener = pModel->GetListener(nLst);
-//STRIP001
-//STRIP001          if (pListener && pListener->ISA(SdrPageView))
-//STRIP001          {
-//STRIP001              // PageView gefunden
-//STRIP001              SdrPageView* pPV = (SdrPageView*) pListener;
-//STRIP001              const SdrPageViewWinList& rWL = pPV->GetWinList();
-//STRIP001              USHORT nWRCnt = rWL.GetCount();
-//STRIP001              for (USHORT nWR = 0; nWR < nWRCnt && !xUnoControl.is(); nWR++)
-//STRIP001              {
-//STRIP001                  // Alle WinRecords der PageView untersuchen
-//STRIP001                  const SdrPageViewWinRec& rWR = rWL[nWR];
-//STRIP001                  if (pOut == rWR.GetOutputDevice())
-//STRIP001                  {
-//STRIP001                      // Richtiges OutputDevice gefunden
-//STRIP001                      // Darin nun das Control suchen
-//STRIP001                      const SdrUnoControlList& rControlList = rWR.GetControlList();
-//STRIP001                      USHORT nCtrlNum = rControlList.Find(xUnoControlModel);
-//STRIP001                      if (nCtrlNum != SDRUNOCONTROL_NOTFOUND)
-//STRIP001                      {
-//STRIP001                          const SdrUnoControlRec* pControlRec = &rControlList[nCtrlNum];
-//STRIP001                          if (pControlRec && pControlRec->GetControl().is())
-//STRIP001                          {
-//STRIP001                              xUnoControl = pControlRec->GetControl();
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return xUnoControl;
 /*N*/ }
 
-//STRIP001 OutputDevice* SdrUnoObj::GetOutputDevice(uno::Reference< awt::XControl > _xControl) const
-//STRIP001 {
-//STRIP001  OutputDevice* pOut = NULL;
-//STRIP001  if (pModel && xUnoControlModel.is() && _xControl.is() && _xControl->getModel() == xUnoControlModel)
-//STRIP001  {
-//STRIP001      USHORT nLstCnt = pModel->GetListenerCount();
-//STRIP001      for (USHORT nLst = 0; nLst < nLstCnt && !pOut; nLst++ )
-//STRIP001      {
-//STRIP001          // Unter allen Listenern die PageViews suchen
-//STRIP001          SfxListener* pListener = pModel->GetListener(nLst);
-//STRIP001          if (pListener && pListener->ISA(SdrPageView))
-//STRIP001          {
-//STRIP001              // PageView gefunden
-//STRIP001              SdrPageView* pPV = (SdrPageView*) pListener;
-//STRIP001              if (pPV)
-//STRIP001              {
-//STRIP001                  const SdrPageViewWinList& rWL = pPV->GetWinList();
-//STRIP001                  USHORT nWRCnt = rWL.GetCount();
-//STRIP001                  for (USHORT nWR = 0; nWR < nWRCnt && !pOut; nWR++)
-//STRIP001                  {
-//STRIP001                      // Alle WinRecords der PageView untersuchen
-//STRIP001                      const SdrPageViewWinRec& rWR = rWL[nWR];
-//STRIP001                      const SdrUnoControlList& rControlList = rWR.GetControlList();
-//STRIP001                      if (SDRUNOCONTROL_NOTFOUND != rWR.GetControlList().Find(_xControl))
-//STRIP001                          pOut = rWR.GetOutputDevice();
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pOut;
-//STRIP001 }
 
 
 }
