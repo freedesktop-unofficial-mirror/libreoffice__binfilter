@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_inftxt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:27:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:09:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,42 +55,21 @@
 #ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
 #endif
-// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
-// auto strip #include <bf_svx/escpitem.hxx>
-// auto strip #endif
 #ifndef _SVX_HNGPNCTITEM_HXX
 #include <bf_svx/hngpnctitem.hxx>
 #endif
 #ifndef _SVX_SRIPTSPACEITEM_HXX
 #include <bf_svx/scriptspaceitem.hxx>
 #endif
-// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
-// auto strip #include <bf_svx/brshitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_SPLWRAP_HXX
-// auto strip #include <bf_svx/splwrap.hxx>
-// auto strip #endif
 #ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
 #endif
-// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
-// auto strip #include <bf_linguistic/lngprops.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
 #ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
 #endif
-// auto strip #ifndef _TXATBASE_HXX //autogen
-// auto strip #include <txatbase.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTINFMT_HXX //autogen
-// auto strip #include <fmtinfmt.hxx>
-// auto strip #endif
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
 #endif
@@ -106,12 +85,6 @@
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
-// auto strip #ifndef _VIEWOPT_HXX
-// auto strip #include <viewopt.hxx>    // SwViewOptions
-// auto strip #endif
-// auto strip #ifndef _FRMTOOL_HXX
-// auto strip #include <frmtool.hxx>    // DrawGraphic
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -123,42 +96,21 @@
 #ifndef _PARATR_HXX
 #include <paratr.hxx>   // SwFmtDrop
 #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>  // SwRootFrm
-// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtInfo
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx> // SwFont
-// auto strip #endif
-// auto strip #ifndef _TXTFLY_HXX
-// auto strip #include <txtfly.hxx> // SwTxtPaintInfo
-// auto strip #endif
-// auto strip #ifndef _BLINK_HXX
-// auto strip #include <blink.hxx>  // SwBlink
-// auto strip #endif
 #ifndef _NOTEURL_HXX
 #include <noteurl.hxx>  // SwNoteURL
 #endif
-// auto strip #ifndef _DRAWFONT_HXX
-// auto strip #include <drawfont.hxx> // SwDrawTextInfo
-// auto strip #endif
 #ifndef _PORFTN_HXX
 #include <porftn.hxx>   // SwFtnPortion
 #endif
-// auto strip #ifndef _PORRST_HXX
-// auto strip #include <porrst.hxx>     // SwHangingPortion
-// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
 #ifndef _ITRATR_HXX
 #include <itratr.hxx>
 #endif
-// auto strip #ifndef _ACCESSIBILITYOPTIONS_HXX
-// auto strip #include <accessibilityoptions.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -194,27 +146,6 @@ static sal_Bool bDbgLow = sal_False;
 
 #ifndef PRODUCT
 
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptCalm() const { return !GetOpt().IsTest3(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptLow() const { return bDbgLow; }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptDbg() const { return GetOpt().IsTest4(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest1() const { return GetOpt().IsTest1(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest2() const { return GetOpt().IsTest2(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest3() const { return GetOpt().IsTest3(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest4() const { return GetOpt().IsTest4(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest5() const { return GetOpt().IsTest5(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest6() const { return GetOpt().IsTest6(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest7() const { return GetOpt().IsTest7(); }
-//STRIP001
-//STRIP001 sal_Bool SwTxtSizeInfo::IsOptTest8() const { return GetOpt().IsTest8(); }
 
 #endif
 
@@ -455,14 +386,6 @@ static sal_Bool bDbgLow = sal_False;
  *                      SwTxtSizeInfo::NoteAnimation()
  *************************************************************************/
 
-//STRIP001 void SwTxtSizeInfo::NoteAnimation() const
-//STRIP001 {
-//STRIP001     if( OnWin() )
-//STRIP001         SwRootFrm::FlushVout();
-//STRIP001
-//STRIP001     ASSERT( pOut == pVsh->GetOut(),
-//STRIP001             "SwTxtSizeInfo::NoteAnimation() changed pOut" )
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtSizeInfo::GetTxtSize()
@@ -531,29 +454,6 @@ static sal_Bool bDbgLow = sal_False;
  *                      SwTxtSizeInfo::GetTxtBreak()
  *************************************************************************/
 
-//STRIP001 xub_StrLen SwTxtSizeInfo::GetTxtBreak( const long nLineWidth,
-//STRIP001                                        const xub_StrLen nMaxLen ) const
-//STRIP001 {
-//STRIP001     const SwScriptInfo& rSI =
-//STRIP001                      ( (SwParaPortion*)GetParaPortion() )->GetScriptInfo();
-//STRIP001
-//STRIP001     // in some cases, compression is not allowed or surpressed for
-//STRIP001     // performance reasons
-//STRIP001     USHORT nComp =( SW_CJK == GetFont()->GetActual() &&
-//STRIP001                     rSI.CountCompChg() &&
-//STRIP001                     ! IsMulti() ) ?
-//STRIP001                     GetKanaComp() :
-//STRIP001                                 0 ;
-//STRIP001
-//STRIP001     ASSERT( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" )
-//STRIP001     SwDrawTextInfo aDrawInf( pVsh, *pOut, &rSI, *pTxt, nIdx, nMaxLen );
-//STRIP001     aDrawInf.SetFrm( pFrm );
-//STRIP001     aDrawInf.SetFont( pFnt );
-//STRIP001     aDrawInf.SetSnapToGrid( SnapToGrid() );
-//STRIP001     aDrawInf.SetKanaComp( nComp );
-//STRIP001     aDrawInf.SetHyphPos( 0 );
-//STRIP001     return pFnt->GetTxtBreak( aDrawInf, nLineWidth );
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtSizeInfo::GetTxtBreak()
@@ -621,16 +521,6 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/ #endif
 /*N*/ }
 
-//STRIP001 SwTxtPaintInfo::SwTxtPaintInfo( const SwTxtPaintInfo &rInf, const XubString &rTxt )
-//STRIP001  : SwTxtSizeInfo( rInf, rTxt ),
-//STRIP001    aTxtFly( *rInf.GetTxtFly() ),
-//STRIP001    aPos( rInf.GetPos() ),
-//STRIP001    aPaintRect( rInf.GetPaintRect() ),
-//STRIP001    nSpaceIdx( rInf.GetSpaceIdx() ),
-//STRIP001    pSpaceAdd( rInf.GetpSpaceAdd() ),
-//STRIP001    pWrongList( rInf.GetpWrongList() ),
-//STRIP001       pBrushItem( rInf.GetBrushItem() )
-//STRIP001 { }
 
 /*N*/ SwTxtPaintInfo::SwTxtPaintInfo( const SwTxtPaintInfo &rInf )
 /*N*/   : SwTxtSizeInfo( rInf ),
@@ -651,261 +541,16 @@ extern Color aGlobalRetoucheColor;
  * Returns if the current background color is dark.
  *************************************************************************/
 
-//STRIP001 sal_Bool lcl_IsDarkBackground( const SwTxtPaintInfo& rInf )
-//STRIP001 {
-//STRIP001     const Color* pCol = rInf.GetFont()->GetBackColor();
-//STRIP001     if( ! pCol || COL_TRANSPARENT == pCol->GetColor() )
-//STRIP001     {
-//STRIP001         const SvxBrushItem* pItem;
-//STRIP001         SwRect aOrigBackRect;
-//STRIP001
-//STRIP001         /// OD 21.08.2002
-//STRIP001         ///     consider, that [GetBackgroundBrush(...)] can set <pCol>
-//STRIP001         ///     - see implementation in /core/layout/paintfrm.cxx
-//STRIP001         /// OD 21.08.2002 #99657#
-//STRIP001         ///     There is a background color, if there is a background brush and
-//STRIP001         ///     its color is *not* "no fill"/"auto fill".
-//STRIP001         if( rInf.GetTxtFrm()->GetBackgroundBrush( pItem, pCol, aOrigBackRect, FALSE ) )
-//STRIP001         {
-//STRIP001             if ( !pCol )
-//STRIP001                 pCol = &pItem->GetColor();
-//STRIP001
-//STRIP001             /// OD 30.08.2002 #99657#
-//STRIP001             /// determined color <pCol> can be <COL_TRANSPARENT>. Thus, check it.
-//STRIP001             if ( pCol->GetColor() == COL_TRANSPARENT)
-//STRIP001                 pCol = NULL;
-//STRIP001         }
-//STRIP001         else
-//STRIP001             pCol = NULL;
-//STRIP001     }
-//STRIP001
-//STRIP001
-//STRIP001     if( !pCol )
-//STRIP001         pCol = &aGlobalRetoucheColor;
-//STRIP001
-//STRIP001     return pCol->IsDark();
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::_DrawText()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::_DrawText( const XubString &rText, const SwLinePortion &rPor,
-//STRIP001                          const xub_StrLen nStart, const xub_StrLen nLen,
-//STRIP001                          const sal_Bool bKern, const sal_Bool bWrong )
-//STRIP001 {
-//STRIP001  if( !nLen )
-//STRIP001      return;
-//STRIP001     if( GetFont()->IsBlink() && OnWin() && rPor.Width() )
-//STRIP001  {
-//STRIP001         // check if accessibility options allow blinking portions:
-//STRIP001         const ViewShell* pSh = GetTxtFrm()->GetShell();
-//STRIP001         if ( pSh && ! pSh->GetAccessibilityOptions()->IsStopAnimatedText() &&
-//STRIP001              ! pSh->IsPreView() )
-//STRIP001         {
-//STRIP001             if( !pBlink )
-//STRIP001                 pBlink = new SwBlink();
-//STRIP001
-//STRIP001          Point aPoint( aPos );
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001             if ( GetTxtFrm()->IsRightToLeft() )
-//STRIP001                 GetTxtFrm()->SwitchLTRtoRTL( aPoint );
-//STRIP001
-//STRIP001          if ( TEXT_LAYOUT_BIDI_STRONG != GetOut()->GetLayoutMode() )
-//STRIP001                 aPoint.X() -= rPor.Width();
-//STRIP001 #endif
-//STRIP001
-//STRIP001             if ( GetTxtFrm()->IsVertical() )
-//STRIP001                 GetTxtFrm()->SwitchHorizontalToVertical( aPoint );
-//STRIP001
-//STRIP001             pBlink->Insert( aPoint, &rPor, GetTxtFrm(), pFnt->GetOrientation() );
-//STRIP001
-//STRIP001             if( !pBlink->IsVisible() )
-//STRIP001                 return;
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             delete pBlink;
-//STRIP001             pBlink = NULL;
-//STRIP001         }
-//STRIP001  }
-//STRIP001
-//STRIP001  short nSpaceAdd = ( rPor.IsBlankPortion() || rPor.IsDropPortion() ||
-//STRIP001                      rPor.InNumberGrp() ) ? 0 : GetSpaceAdd();
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001
-//STRIP001     // The SwScriptInfo is useless if we are inside a field portion
-//STRIP001     SwScriptInfo* pSI = 0;
-//STRIP001     if ( ! rPor.InFldGrp() )
-//STRIP001         pSI = &GetParaPortion()->GetScriptInfo();
-//STRIP001
-//STRIP001     // in some cases, kana compression is not allowed or surpressed for
-//STRIP001     // performance reasons
-//STRIP001     USHORT nComp = 0;
-//STRIP001     if ( ! IsMulti() )
-//STRIP001         nComp = GetKanaComp();
-//STRIP001
-//STRIP001  const sal_Bool bBullet = OnWin() && GetOpt().IsBlank() && IsNoSymbol();
-//STRIP001  sal_Bool bTmpWrong = bWrong && OnWin() && GetOpt().IsOnlineSpell()
-//STRIP001                           && !GetOpt().IsHideSpell();
-//STRIP001     SwParaPortion* pPara = GetParaPortion();
-//STRIP001     ASSERT( pPara, "No paragraph!");
-//STRIP001     SwDrawTextInfo aDrawInf( pFrm->GetShell(), *pOut, pSI, rText, nStart, nLen,
-//STRIP001                              rPor.Width(), bBullet );
-//STRIP001
-//STRIP001 #else
-//STRIP001
-//STRIP001     const SwScriptInfo& rSI =
-//STRIP001                      ( (SwParaPortion*)GetParaPortion() )->GetScriptInfo();
-//STRIP001
-//STRIP001     // in some cases, compression is not allowed or surpressed for
-//STRIP001     // performance reasons
-//STRIP001     USHORT nComp =( SW_CJK == GetFont()->GetActual() &&
-//STRIP001                     rSI.CountCompChg() &&
-//STRIP001                     ! IsMulti() &&
-//STRIP001                     ! rPor.InFldGrp() ) ?
-//STRIP001                     GetKanaComp() :
-//STRIP001                                 0 ;
-//STRIP001
-//STRIP001  const sal_Bool bBullet = OnWin() && GetOpt().IsBlank() && IsNoSymbol();
-//STRIP001  sal_Bool bTmpWrong = bWrong && OnWin() && GetOpt().IsOnlineSpell()
-//STRIP001                           && !GetOpt().IsHideSpell();
-//STRIP001     SwParaPortion* pPara = GetParaPortion();
-//STRIP001     ASSERT( pPara, "No paragraph!");
-//STRIP001     SwDrawTextInfo aDrawInf( pFrm->GetShell(), *pOut, &pPara->GetScriptInfo(),
-//STRIP001                              rText, nStart, nLen, rPor.Width(), bBullet );
-//STRIP001
-//STRIP001 #endif
-//STRIP001
-//STRIP001  aDrawInf.SetLeft( GetPaintRect().Left() );
-//STRIP001  aDrawInf.SetRight( GetPaintRect().Right() );
-//STRIP001     aDrawInf.SetUnderFnt( pUnderFnt );
-//STRIP001  aDrawInf.SetSpace( nSpaceAdd );
-//STRIP001     aDrawInf.SetKanaComp( nComp );
-//STRIP001
-//STRIP001     // the font is used to identify the current script via nActual
-//STRIP001     aDrawInf.SetFont( pFnt );
-//STRIP001     // the frame is used to identify the orientation
-//STRIP001     aDrawInf.SetFrm( GetTxtFrm() );
-//STRIP001     // we have to know if the paragraph should snap to grid
-//STRIP001     aDrawInf.SetSnapToGrid( SnapToGrid() );
-//STRIP001     // for underlining we must know when not to add extra space behind
-//STRIP001     // a character in justified mode
-//STRIP001     aDrawInf.SetSpaceStop( ! rPor.GetPortion() ||
-//STRIP001                              rPor.GetPortion()->InFixMargGrp() ||
-//STRIP001                              rPor.GetPortion()->IsHolePortion() );
-//STRIP001
-//STRIP001  if( GetTxtFly()->IsOn() )
-//STRIP001  {
-//STRIP001      // aPos muss als TopLeft vorliegen, weil die ClipRects sonst
-//STRIP001      // nicht berechnet werden koennen.
-//STRIP001      const Point aPoint( aPos.X(), aPos.Y() - rPor.GetAscent() );
-//STRIP001      const Size aSize( rPor.Width(), rPor.Height() );
-//STRIP001      aDrawInf.SetFont( pFnt );
-//STRIP001      aDrawInf.SetPos( aPoint );
-//STRIP001      aDrawInf.SetSize( aSize );
-//STRIP001      aDrawInf.SetAscent( rPor.GetAscent() );
-//STRIP001      aDrawInf.SetKern( bKern ? rPor.Width() : 0 );
-//STRIP001      aDrawInf.SetSpace( nSpaceAdd );
-//STRIP001         aDrawInf.SetKanaComp( nComp );
-//STRIP001      aDrawInf.SetWrong( bTmpWrong ? pWrongList : NULL );
-//STRIP001      GetTxtFly()->DrawTextOpaque( aDrawInf );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aDrawInf.SetPos( aPos );
-//STRIP001      if( bKern )
-//STRIP001          pFnt->_DrawStretchText( aDrawInf );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          aDrawInf.SetWrong( bTmpWrong ? pWrongList : NULL );
-//STRIP001          aDrawInf.SetSpace( nSpaceAdd );
-//STRIP001             aDrawInf.SetKanaComp( nComp );
-//STRIP001          pFnt->_DrawText( aDrawInf );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                          lcl_CalcRect()
  *************************************************************************/
 
-//STRIP001 void lcl_CalcRect( const SwTxtPaintInfo* pInf, const SwLinePortion& rPor,
-//STRIP001                    SwRect* pRect, SwRect* pIntersect )
-//STRIP001 {
-//STRIP001  Size aSize( rPor.Width(), rPor.Height() );
-//STRIP001  if( rPor.IsHangingPortion() )
-//STRIP001      aSize.Width() = ((SwHangingPortion&)rPor).GetInnerWidth();
-//STRIP001  if( rPor.InSpaceGrp() && pInf->GetSpaceAdd() )
-//STRIP001  {
-//STRIP001      SwTwips nAdd = rPor.CalcSpacing( pInf->GetSpaceAdd(), *pInf );
-//STRIP001      if( rPor.InFldGrp() && pInf->GetSpaceAdd() < 0 && nAdd )
-//STRIP001          nAdd += pInf->GetSpaceAdd();
-//STRIP001      aSize.Width() += nAdd;
-//STRIP001  }
-//STRIP001
-//STRIP001  Point aPoint;
-//STRIP001
-//STRIP001     if( pInf->IsRotated() )
-//STRIP001  {
-//STRIP001      long nTmp = aSize.Width();
-//STRIP001      aSize.Width() = aSize.Height();
-//STRIP001      aSize.Height() = nTmp;
-//STRIP001         if ( 1 == pInf->GetDirection() )
-//STRIP001         {
-//STRIP001             aPoint.A() = pInf->X() - rPor.GetAscent();
-//STRIP001             aPoint.B() = pInf->Y() - aSize.Height();
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             aPoint.A() = pInf->X() - rPor.Height() + rPor.GetAscent();
-//STRIP001             aPoint.B() = pInf->Y();
-//STRIP001         }
-//STRIP001     }
-//STRIP001  else
-//STRIP001  {
-//STRIP001         aPoint.A() = pInf->X();
-//STRIP001      aPoint.B() = pInf->Y() - rPor.GetAscent();
-//STRIP001  }
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001     // Adjust x coordinate if we are inside a bidi portion
-//STRIP001     const BOOL bFrmDir = pInf->GetTxtFrm()->IsRightToLeft();
-//STRIP001     BOOL bCounterDir = ( ! bFrmDir && DIR_RIGHT2LEFT == pInf->GetDirection() ) ||
-//STRIP001                        (   bFrmDir && DIR_LEFT2RIGHT == pInf->GetDirection() );
-//STRIP001
-//STRIP001     if ( bCounterDir )
-//STRIP001         aPoint.A() -= aSize.Width();
-//STRIP001 #endif
-//STRIP001
-//STRIP001     SwRect aRect( aPoint, aSize );
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001     if ( pInf->GetTxtFrm()->IsRightToLeft() )
-//STRIP001         pInf->GetTxtFrm()->SwitchLTRtoRTL( aRect );
-//STRIP001 #endif
-//STRIP001
-//STRIP001     if ( pInf->GetTxtFrm()->IsVertical() )
-//STRIP001         pInf->GetTxtFrm()->SwitchHorizontalToVertical( aRect );
-//STRIP001
-//STRIP001     if ( pRect )
-//STRIP001         *pRect = aRect;
-//STRIP001
-//STRIP001     if( aRect.HasArea() && pIntersect )
-//STRIP001  {
-//STRIP001      ::SwAlignRect( aRect, (ViewShell*)pInf->GetVsh() );
-//STRIP001
-//STRIP001      if ( pInf->GetOut()->IsClipRegion() )
-//STRIP001      {
-//STRIP001          SwRect aClip( pInf->GetOut()->GetClipRegion().GetBoundRect() );
-//STRIP001          aRect.Intersection( aClip );
-//STRIP001      }
-//STRIP001
-//STRIP001         *pIntersect = aRect;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                          lcl_DrawSpecial
@@ -918,444 +563,48 @@ extern Color aGlobalRetoucheColor;
  * bRotate  - Rotate the character if character rotation is set
  *************************************************************************/
 
-//STRIP001 #ifdef BIDI
-//STRIP001 void lcl_DrawSpecial( const SwTxtPaintInfo& rInf, const SwLinePortion& rPor,
-//STRIP001                       SwRect& rRect, const Color* pCol, sal_Unicode cChar,
-//STRIP001                       BYTE nOptions )
-//STRIP001 {
-//STRIP001     sal_Bool bCenter = 0 != ( nOptions & DRAW_SPECIAL_OPTIONS_CENTER );
-//STRIP001     sal_Bool bRotate = 0 != ( nOptions & DRAW_SPECIAL_OPTIONS_ROTATE );
-//STRIP001
-//STRIP001     // rRect is given in absolute coordinates
-//STRIP001     if ( rInf.GetTxtFrm()->IsRightToLeft() )
-//STRIP001         rInf.GetTxtFrm()->SwitchRTLtoLTR( rRect );
-//STRIP001 #else
-//STRIP001 void lcl_DrawSpecial( const SwTxtPaintInfo& rInf, const SwLinePortion& rPor,
-//STRIP001                       SwRect& rRect, const Color* pCol, sal_Unicode cChar,
-//STRIP001                       sal_Bool bCenter, sal_Bool bRotate )
-//STRIP001 {
-//STRIP001 #endif
-//STRIP001     if ( rInf.GetTxtFrm()->IsVertical() )
-//STRIP001         rInf.GetTxtFrm()->SwitchVerticalToHorizontal( rRect );
-//STRIP001
-//STRIP001     const SwFont* pOldFnt = rInf.GetFont();
-//STRIP001
-//STRIP001     // Font is generated only once:
-//STRIP001     static SwFont* pFnt = 0;
-//STRIP001     if ( ! pFnt )
-//STRIP001     {
-//STRIP001         pFnt = new SwFont( *pOldFnt );
-//STRIP001         pFnt->SetFamily( FAMILY_DONTKNOW, pFnt->GetActual() );
-//STRIP001         pFnt->SetName( XubString::CreateFromAscii( sBulletFntName ), pFnt->GetActual() );
-//STRIP001         pFnt->SetStyleName( aEmptyStr, pFnt->GetActual() );
-//STRIP001         pFnt->SetCharSet( RTL_TEXTENCODING_SYMBOL, pFnt->GetActual() );
-//STRIP001     }
-//STRIP001
-//STRIP001     // Some of the current values are set at the font:
-//STRIP001     if ( ! bRotate )
-//STRIP001         pFnt->SetVertical( 0, rInf.GetTxtFrm()->IsVertical() );
-//STRIP001     else
-//STRIP001         pFnt->SetVertical( pOldFnt->GetOrientation() );
-//STRIP001
-//STRIP001     if ( pCol )
-//STRIP001         pFnt->SetColor( *pCol );
-//STRIP001     else
-//STRIP001         pFnt->SetColor( pOldFnt->GetColor() );
-//STRIP001
-//STRIP001     Size aFontSize( 0, SPECIAL_FONT_HEIGHT );
-//STRIP001     pFnt->SetSize( aFontSize, pFnt->GetActual() );
-//STRIP001
-//STRIP001     ((SwTxtPaintInfo&)rInf).SetFont( pFnt );
-//STRIP001
-//STRIP001     // The maximum width depends on the current orientation
-//STRIP001     const USHORT nDir = pFnt->GetOrientation( rInf.GetTxtFrm()->IsVertical() );
-//STRIP001     SwTwips nMaxWidth;
-//STRIP001     switch ( nDir )
-//STRIP001     {
-//STRIP001     case 0 :
-//STRIP001         nMaxWidth = rRect.Width();
-//STRIP001         break;
-//STRIP001     case 900 :
-//STRIP001     case 2700 :
-//STRIP001         nMaxWidth = rRect.Height();
-//STRIP001         break;
-//STRIP001     default:
-//STRIP001         ASSERT( sal_False, "Unknown direction set at font" )
-//STRIP001         break;
-//STRIP001     }
-//STRIP001
-//STRIP001     // check if char fits into rectangle
-//STRIP001     const XubString aTmp( cChar );
-//STRIP001     aFontSize = rInf.GetTxtSize( aTmp ).SvLSize();
-//STRIP001     while ( aFontSize.Width() > nMaxWidth )
-//STRIP001     {
-//STRIP001         SwTwips nFactor = ( 100 * aFontSize.Width() ) / nMaxWidth;
-//STRIP001         const SwTwips nOldWidth = aFontSize.Width();
-//STRIP001
-//STRIP001         // new height for font
-//STRIP001         const BYTE nAct = pFnt->GetActual();
-//STRIP001         aFontSize.Height() = ( 100 * pFnt->GetSize( nAct ).Height() ) / nFactor;
-//STRIP001         aFontSize.Width() = ( 100 * pFnt->GetSize( nAct).Width() ) / nFactor;
-//STRIP001
-//STRIP001         pFnt->SetSize( aFontSize, nAct );
-//STRIP001
-//STRIP001         aFontSize = rInf.GetTxtSize( aTmp ).SvLSize();
-//STRIP001
-//STRIP001         if ( aFontSize.Width() >= nOldWidth )
-//STRIP001             break;
-//STRIP001     }
-//STRIP001
-//STRIP001     const Point aOldPos( rInf.GetPos() );
-//STRIP001
-//STRIP001     // adjust values so that tab is vertically and horizontally centered
-//STRIP001     SwTwips nX = rRect.Left();
-//STRIP001     SwTwips nY = rRect.Top();
-//STRIP001     switch ( nDir )
-//STRIP001     {
-//STRIP001     case 0 :
-//STRIP001         if ( bCenter )
-//STRIP001             nX += ( rRect.Width() - aFontSize.Width() ) / 2;
-//STRIP001         nY += ( rRect.Height() - aFontSize.Height() ) / 2 + rInf.GetAscent();
-//STRIP001         break;
-//STRIP001     case 900 :
-//STRIP001         if ( bCenter )
-//STRIP001             nX += ( rRect.Width() - aFontSize.Height() ) / 2 + rInf.GetAscent();
-//STRIP001         nY += ( rRect.Height() + aFontSize.Width() ) / 2;
-//STRIP001         break;
-//STRIP001     case 2700 :
-//STRIP001         if ( bCenter )
-//STRIP001             nX += ( rRect.Width() + aFontSize.Height() ) / 2 - rInf.GetAscent();
-//STRIP001         nY += ( rRect.Height() - aFontSize.Width() ) / 2;
-//STRIP001         break;
-//STRIP001     }
-//STRIP001
-//STRIP001     Point aTmpPos( nX, nY );
-//STRIP001     ((SwTxtPaintInfo&)rInf).SetPos( aTmpPos );
-//STRIP001 #ifdef BIDI
-//STRIP001     USHORT nOldWidth = rPor.Width();
-//STRIP001     ((SwLinePortion&)rPor).Width( (USHORT)aFontSize.Width() );
-//STRIP001     rInf.DrawText( aTmp, rPor );
-//STRIP001     ((SwLinePortion&)rPor).Width( nOldWidth );
-//STRIP001 #else
-//STRIP001     rInf.DrawText( aTmp, rPor );
-//STRIP001 #endif
-//STRIP001     ((SwTxtPaintInfo&)rInf).SetFont( (SwFont*)pOldFnt );
-//STRIP001     ((SwTxtPaintInfo&)rInf).SetPos( aOldPos );
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawRect()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::DrawRect( const SwRect &rRect, sal_Bool bNoGraphic,
-//STRIP001                             sal_Bool bRetouche ) const
-//STRIP001 {
-//STRIP001  if ( OnWin() || !bRetouche )
-//STRIP001  {
-//STRIP001      if( aTxtFly.IsOn() )
-//STRIP001          ((SwTxtPaintInfo*)this)->GetTxtFly()->
-//STRIP001              DrawFlyRect( pOut, rRect, *this, bNoGraphic );
-//STRIP001      else if ( bNoGraphic )
-//STRIP001          pOut->DrawRect( rRect.SVRect() );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          ASSERT( ((SvxBrushItem*)-1) != pBrushItem, "DrawRect: Uninitialized BrushItem!" );
-//STRIP001          ::DrawGraphic( pBrushItem, pOut, aItemRect, rRect );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawTab()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::DrawTab( const SwLinePortion &rPor ) const
-//STRIP001 {
-//STRIP001  if( OnWin() )
-//STRIP001  {
-//STRIP001         SwRect aRect;
-//STRIP001
-//STRIP001         lcl_CalcRect( this, rPor, &aRect, 0 );
-//STRIP001
-//STRIP001         if ( ! aRect.HasArea() )
-//STRIP001             return;
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001         const sal_Unicode cChar = GetTxtFrm()->IsRightToLeft() ?
-//STRIP001                                   CHAR_TAB_RTL : CHAR_TAB;
-//STRIP001         const BYTE nOptions = DRAW_SPECIAL_OPTIONS_CENTER |
-//STRIP001                               DRAW_SPECIAL_OPTIONS_ROTATE;
-//STRIP001         lcl_DrawSpecial( *this, rPor, aRect, 0, cChar, nOptions );
-//STRIP001 #else
-//STRIP001         lcl_DrawSpecial( *this, rPor, aRect, 0, CHAR_TAB, sal_True, sal_True );
-//STRIP001 #endif
-//STRIP001
-//STRIP001     }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawLineBreak()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::DrawLineBreak( const SwLinePortion &rPor ) const
-//STRIP001 {
-//STRIP001  if( OnWin() )
-//STRIP001  {
-//STRIP001      KSHORT nOldWidth = rPor.Width();
-//STRIP001         ((SwLinePortion&)rPor).Width( ((SwBreakPortion&)rPor).GetRestWidth() );
-//STRIP001
-//STRIP001         SwRect aRect;
-//STRIP001
-//STRIP001         lcl_CalcRect( this, rPor, &aRect, 0 );
-//STRIP001
-//STRIP001      if( aRect.HasArea() )
-//STRIP001         {
-//STRIP001 #ifdef BIDI
-//STRIP001             const sal_Unicode cChar = GetTxtFrm()->IsRightToLeft() ?
-//STRIP001                                       CHAR_LINEBREAK_RTL : CHAR_LINEBREAK;
-//STRIP001             const BYTE nOptions = 0;
-//STRIP001             lcl_DrawSpecial( *this, rPor, aRect, 0, cChar, nOptions );
-//STRIP001 #else
-//STRIP001             lcl_DrawSpecial( *this, rPor, aRect, 0, CHAR_LINEBREAK,
-//STRIP001                              sal_False, sal_False );
-//STRIP001 #endif
-//STRIP001         }
-//STRIP001
-//STRIP001         ((SwLinePortion&)rPor).Width( nOldWidth );
-//STRIP001  }
-//STRIP001 }
 
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawRedArrow()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::DrawRedArrow( const SwLinePortion &rPor ) const
-//STRIP001 {
-//STRIP001     Size aSize( SPECIAL_FONT_HEIGHT, SPECIAL_FONT_HEIGHT );
-//STRIP001     SwRect aRect( ((SwArrowPortion&)rPor).GetPos(), aSize );
-//STRIP001     sal_Unicode cChar;
-//STRIP001     if( ((SwArrowPortion&)rPor).IsLeft() )
-//STRIP001  {
-//STRIP001      aRect.Pos().Y() += 20 - GetAscent();
-//STRIP001      aRect.Pos().X() += 20;
-//STRIP001         if( aSize.Height() > rPor.Height() )
-//STRIP001             aRect.Height( rPor.Height() );
-//STRIP001         cChar = CHAR_LEFT_ARROW;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001         if( aSize.Height() > rPor.Height() )
-//STRIP001             aRect.Height( rPor.Height() );
-//STRIP001      aRect.Pos().Y() -= aRect.Height() + 20;
-//STRIP001      aRect.Pos().X() -= aRect.Width() + 20;
-//STRIP001         cChar = CHAR_RIGHT_ARROW;
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( GetTxtFrm()->IsVertical() )
-//STRIP001         GetTxtFrm()->SwitchHorizontalToVertical( aRect );
-//STRIP001
-//STRIP001  Color aCol( COL_LIGHTRED );
-//STRIP001
-//STRIP001     if( aRect.HasArea() )
-//STRIP001     {
-//STRIP001 #ifdef BIDI
-//STRIP001         const BYTE nOptions = 0;
-//STRIP001         lcl_DrawSpecial( *this, rPor, aRect, &aCol, cChar, nOptions );
-//STRIP001 #else
-//STRIP001         lcl_DrawSpecial( *this, rPor, aRect, &aCol, cChar, sal_False, sal_False );
-//STRIP001 #endif
-//STRIP001     }
-//STRIP001 }
 
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawPostIts()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::DrawPostIts( const SwLinePortion &rPor, sal_Bool bScript ) const
-//STRIP001 {
-//STRIP001  if( OnWin() && pOpt->IsPostIts() )
-//STRIP001  {
-//STRIP001         Size aSize;
-//STRIP001         Point aTmp;
-//STRIP001
-//STRIP001         const USHORT nPostItsWidth = pOpt->GetPostItsWidth( GetOut() );
-//STRIP001         const USHORT nFontHeight = pFnt->GetHeight( pVsh, GetOut() );
-//STRIP001         const USHORT nFontAscent = pFnt->GetAscent( pVsh, GetOut() );
-//STRIP001
-//STRIP001         switch ( pFnt->GetOrientation( GetTxtFrm()->IsVertical() ) )
-//STRIP001         {
-//STRIP001         case 0 :
-//STRIP001             aSize.Width() = nPostItsWidth;
-//STRIP001             aSize.Height() = nFontHeight;
-//STRIP001             aTmp.X() = aPos.X();
-//STRIP001             aTmp.Y() = aPos.Y() - nFontAscent;
-//STRIP001             break;
-//STRIP001         case 900 :
-//STRIP001             aSize.Height() = nPostItsWidth;
-//STRIP001             aSize.Width() = nFontHeight;
-//STRIP001             aTmp.X() = aPos.X() - nFontAscent;
-//STRIP001             aTmp.Y() = aPos.Y();
-//STRIP001             break;
-//STRIP001         case 2700 :
-//STRIP001             aSize.Height() = nPostItsWidth;
-//STRIP001             aSize.Width() = nFontHeight;
-//STRIP001             aTmp.X() = aPos.X() - nFontHeight +
-//STRIP001                                   nFontAscent;
-//STRIP001             aTmp.Y() = aPos.Y();
-//STRIP001             break;
-//STRIP001         }
-//STRIP001
-//STRIP001         SwRect aTmpRect( aTmp, aSize );
-//STRIP001
-//STRIP001 #ifdef BIDI
-//STRIP001         if ( GetTxtFrm()->IsRightToLeft() )
-//STRIP001             GetTxtFrm()->SwitchLTRtoRTL( aTmpRect );
-//STRIP001 #endif
-//STRIP001
-//STRIP001         if ( GetTxtFrm()->IsVertical() )
-//STRIP001             GetTxtFrm()->SwitchHorizontalToVertical( aTmpRect );
-//STRIP001
-//STRIP001         const Rectangle aRect( aTmpRect.SVRect() );
-//STRIP001         pOpt->PaintPostIts( (OutputDevice*)GetOut(), aRect, bScript );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawBackGround()
  *************************************************************************/
-//STRIP001 void SwTxtPaintInfo::DrawBackground( const SwLinePortion &rPor ) const
-//STRIP001 {
-//STRIP001  ASSERT( OnWin(), "SwTxtPaintInfo::DrawBackground: printer polution ?" );
-//STRIP001
-//STRIP001     SwRect aIntersect;
-//STRIP001
-//STRIP001     lcl_CalcRect( this, rPor, 0, &aIntersect );
-//STRIP001
-//STRIP001     if ( aIntersect.HasArea() )
-//STRIP001  {
-//STRIP001      OutputDevice *pOut = (OutputDevice*)GetOut();
-//STRIP001         sal_Bool bChgColor = sal_False;
-//STRIP001
-//STRIP001         // For dark background we do not want to have a filled rectangle
-//STRIP001         if ( GetVsh() && GetVsh()->GetWin() && lcl_IsDarkBackground( *this ) )
-//STRIP001         {
-//STRIP001             const StyleSettings& rS = GetVsh()->GetWin()->
-//STRIP001                                       GetSettings().GetStyleSettings();
-//STRIP001
-//STRIP001             Color aCol( SwViewOption::GetFontColor().GetColor() );
-//STRIP001             Color aOldColor( pOut->GetLineColor() );
-//STRIP001
-//STRIP001             if ( 0 != ( bChgColor = aOldColor != aCol ) )
-//STRIP001                 pOut->SetLineColor( aCol );
-//STRIP001
-//STRIP001             DrawRect( aIntersect, sal_True );
-//STRIP001
-//STRIP001             if ( bChgColor )
-//STRIP001                 pOut->SetLineColor( aOldColor );
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             Color aCol( SwViewOption::GetFieldShadingsColor() );
-//STRIP001             Color aOldColor( pOut->GetFillColor() );
-//STRIP001
-//STRIP001             if( 0 != ( bChgColor = aOldColor != aCol ) )
-//STRIP001                 pOut->SetFillColor( aCol );
-//STRIP001
-//STRIP001             DrawRect( aIntersect, sal_True );
-//STRIP001
-//STRIP001             if ( bChgColor )
-//STRIP001                 pOut->SetFillColor( aOldColor );
-//STRIP001         }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SwTxtPaintInfo::_DrawBackBrush( const SwLinePortion &rPor ) const
-//STRIP001 {
-//STRIP001  ASSERT( pFnt->GetBackColor(), "DrawBackBrush: Lost Color" );
-//STRIP001
-//STRIP001     SwRect aIntersect;
-//STRIP001
-//STRIP001     lcl_CalcRect( this, rPor, 0, &aIntersect );
-//STRIP001
-//STRIP001     if ( aIntersect.HasArea() )
-//STRIP001  {
-//STRIP001      OutputDevice *pOut = (OutputDevice*)GetOut();
-//STRIP001      const Color aOldColor( pOut->GetFillColor() );
-//STRIP001      sal_Bool bChgColor;
-//STRIP001      if( 0 != ( bChgColor = aOldColor != *pFnt->GetBackColor() ) )
-//STRIP001          pOut->SetFillColor( *pFnt->GetBackColor() );
-//STRIP001         DrawRect( aIntersect, sal_True, sal_False );
-//STRIP001      if( bChgColor )
-//STRIP001          pOut->SetFillColor( aOldColor );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::DrawViewOpt()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::DrawViewOpt( const SwLinePortion &rPor,
-//STRIP001                                const MSHORT nWhich ) const
-//STRIP001 {
-//STRIP001  if( OnWin() && !IsMulti() )
-//STRIP001  {
-//STRIP001      sal_Bool bDraw = sal_False;
-//STRIP001      switch( nWhich )
-//STRIP001      {
-//STRIP001             case POR_FTN:
-//STRIP001          case POR_QUOVADIS:
-//STRIP001          case POR_NUMBER:
-//STRIP001          case POR_FLD:
-//STRIP001          case POR_URL:
-//STRIP001             case POR_HIDDEN:
-//STRIP001             case POR_TOX:
-//STRIP001             case POR_REF :
-//STRIP001                 if ( !GetOpt().IsPagePreview() &&
-//STRIP001                             !GetOpt().IsReadonly() &&\
-//STRIP001                             SwViewOption::IsFieldShadings() )
-//STRIP001                     bDraw = sal_True;
-//STRIP001             break;
-//STRIP001          case POR_TAB:       if ( GetOpt().IsTab() )     bDraw = sal_True; break;
-//STRIP001          case POR_SOFTHYPH:  if ( GetOpt().IsSoftHyph() )bDraw = sal_True; break;
-//STRIP001             case POR_BLANK:     if ( GetOpt().IsHardBlank())bDraw = sal_True; break;
-//STRIP001          default:
-//STRIP001          {
-//STRIP001              ASSERT( !this, "SwTxtPaintInfo::DrawViewOpt: don't know how to draw this" );
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if ( bDraw )
-//STRIP001          DrawBackground( rPor );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwTxtPaintInfo::_NotifyURL()
  *************************************************************************/
 
-//STRIP001 void SwTxtPaintInfo::_NotifyURL( const SwLinePortion &rPor ) const
-//STRIP001 {
-//STRIP001  ASSERT( pNoteURL, "NotifyURL: pNoteURL gone with the wind!" );
-//STRIP001
-//STRIP001     SwRect aIntersect;
-//STRIP001
-//STRIP001     lcl_CalcRect( this, rPor, 0, &aIntersect );
-//STRIP001
-//STRIP001     if( aIntersect.HasArea() )
-//STRIP001  {
-//STRIP001      SwTxtNode *pNd = (SwTxtNode*)GetTxtFrm()->GetTxtNode();
-//STRIP001      SwIndex aIndex( pNd, GetIdx() );
-//STRIP001      SwTxtAttr *pAttr = pNd->GetTxtAttr( aIndex, RES_TXTATR_INETFMT );
-//STRIP001      if( pAttr )
-//STRIP001      {
-//STRIP001          const SwFmtINetFmt& rFmt = pAttr->GetINetFmt();
-//STRIP001          pNoteURL->InsertURLNote( rFmt.GetValue(), rFmt.GetTargetFrame(),
-//STRIP001                 aIntersect );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                  lcl_InitHyphValues()
@@ -1551,59 +800,6 @@ extern Color aGlobalRetoucheColor;
  * and the bMulti and bFirstMulti-flag has to be set correctly.
  * --------------------------------------------------*/
 
-//STRIP001 SwTxtFormatInfo::SwTxtFormatInfo( const SwTxtFormatInfo& rInf,
-//STRIP001  SwLineLayout& rLay, SwTwips nActWidth ) : SwTxtPaintInfo( rInf )
-//STRIP001 {
-//STRIP001  pRoot = &rLay;
-//STRIP001  pLast = &rLay;
-//STRIP001  pFly = NULL;
-//STRIP001  pLastFld = NULL;
-//STRIP001  pUnderFlow = NULL;
-//STRIP001  pRest = NULL;
-//STRIP001  pLastTab = NULL;
-//STRIP001
-//STRIP001  nSoftHyphPos = 0;
-//STRIP001     nUnderScorePos = STRING_LEN;
-//STRIP001     nHyphStart = 0;
-//STRIP001  nHyphWrdStart = 0;
-//STRIP001  nHyphWrdLen = 0;
-//STRIP001  nLineStart = rInf.GetIdx();
-//STRIP001  nLeft = rInf.nLeft;
-//STRIP001  nRight = rInf.nRight;
-//STRIP001  nFirst = rInf.nLeft;
-//STRIP001  nRealWidth = KSHORT(nActWidth);
-//STRIP001  nWidth = nRealWidth;
-//STRIP001  nLineHeight = 0;
-//STRIP001     nLineNettoHeight = 0;
-//STRIP001  nForcedLeftMargin = 0;
-//STRIP001
-//STRIP001  nMinLeading = 0;
-//STRIP001  nMinTrailing = 0;
-//STRIP001  nMinWordLength = 0;
-//STRIP001  bFull = FALSE;
-//STRIP001  bFtnDone = TRUE;
-//STRIP001  bErgoDone = TRUE;
-//STRIP001  bNumDone = TRUE;
-//STRIP001  bStop = FALSE;
-//STRIP001  bNewLine = TRUE;
-//STRIP001  bShift  = FALSE;
-//STRIP001  bUnderFlow = FALSE;
-//STRIP001  bInterHyph = FALSE;
-//STRIP001  bAutoHyph = FALSE;
-//STRIP001  bDropInit = FALSE;
-//STRIP001  bQuick  = rInf.bQuick;
-//STRIP001  bNoEndHyph  = FALSE;
-//STRIP001  bNoMidHyph  = FALSE;
-//STRIP001  bIgnoreFly = FALSE;
-//STRIP001     bFakeLineStart = FALSE;
-//STRIP001
-//STRIP001  cTabDecimal = 0;
-//STRIP001  cHookChar = 0;
-//STRIP001  nMaxHyph = 0;
-//STRIP001  bTestFormat = rInf.bTestFormat;
-//STRIP001  SetMulti( sal_True );
-//STRIP001     SetFirstMulti( rInf.IsFirstMulti() );
-//STRIP001 }
 
 /*************************************************************************
  *                 SwTxtFormatInfo::_CheckFtnPortion()
@@ -1854,60 +1050,11 @@ extern Color aGlobalRetoucheColor;
  *                     SwDefFontSave::SwDefFontSave()
  *************************************************************************/
 
-//STRIP001 SwDefFontSave::SwDefFontSave( const SwTxtSizeInfo &rInf )
-//STRIP001      : pFnt( ((SwTxtSizeInfo&)rInf).GetFont()  )
-//STRIP001 {
-//STRIP001  BOOL bAlter = pFnt->GetFixKerning() ||
-//STRIP001       ( RTL_TEXTENCODING_SYMBOL == pFnt->GetCharSet(pFnt->GetActual()) )
-//STRIP001      ;
-//STRIP001
-//STRIP001     const sal_Bool bFamily = bAlter && COMPARE_EQUAL !=
-//STRIP001             pFnt->GetName( pFnt->GetActual() ).CompareToAscii( sBulletFntName );
-//STRIP001     const sal_Bool bRotation = (sal_Bool)pFnt->GetOrientation() &&
-//STRIP001                                 ! rInf.GetTxtFrm()->IsVertical();
-//STRIP001
-//STRIP001     if( bFamily || bRotation )
-//STRIP001  {
-//STRIP001      pNewFnt = new SwFont( *pFnt );
-//STRIP001
-//STRIP001         if ( bFamily )
-//STRIP001         {
-//STRIP001             pNewFnt->SetFamily( FAMILY_DONTKNOW, pFnt->GetActual() );
-//STRIP001             pNewFnt->SetName( XubString::CreateFromAscii( sBulletFntName ),
-//STRIP001                               pFnt->GetActual() );
-//STRIP001             pNewFnt->SetStyleName( aEmptyStr, pFnt->GetActual() );
-//STRIP001             pNewFnt->SetCharSet( RTL_TEXTENCODING_SYMBOL, pFnt->GetActual() );
-//STRIP001             pNewFnt->SetFixKerning( 0 );
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( bRotation )
-//STRIP001             pNewFnt->SetVertical( 0, rInf.GetTxtFrm()->IsVertical() );
-//STRIP001
-//STRIP001         pInf = &((SwTxtSizeInfo&)rInf);
-//STRIP001      pNewFnt->Invalidate();
-//STRIP001      pInf->SetFont( pNewFnt );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pFnt = 0;
-//STRIP001      pNewFnt = 0;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwDefFontSave::~SwDefFontSave()
  *************************************************************************/
 
-//STRIP001 SwDefFontSave::~SwDefFontSave()
-//STRIP001 {
-//STRIP001  if( pFnt )
-//STRIP001  {
-//STRIP001      delete pNewFnt;
-//STRIP001      // SwFont zurueckstellen
-//STRIP001      pFnt->Invalidate();
-//STRIP001      pInf->SetFont( pFnt );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                  SwTxtFormatInfo::ChgHyph()
