@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotxat.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:01:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:43:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,48 +33,30 @@
  *
  ************************************************************************/
 
-// auto strip #include <svtools/style.hxx>
-// auto strip #include "svdotext.hxx"
 #include "svditext.hxx"
 #include "svdmodel.hxx" // fuer GetMaxObjSize und GetStyleSheetPool
 #include "svdoutl.hxx"
-// auto strip #include "svdorect.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
 #include "svdocapt.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
-// auto strip #include <svdetc.hxx>
 #include "writingmodeitem.hxx"
-// auto strip #include "editeng.hxx"
 #include "eeitem.hxx"
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
 #endif
 
-// auto strip #include "flditem.hxx"
 
 
-// auto strip #ifndef _MyEDITVIEW_HXX
-// auto strip #include "editview.hxx"
-// auto strip #endif
 
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif
 
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
 
 #ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
 #endif
 
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include "outliner.hxx"
-// auto strip #endif
 
 #ifndef _EEITEM_HXX //autogen
 #include "eeitem.hxx"
@@ -99,25 +81,10 @@
 #endif
 
 #define ITEMID_LRSPACE          EE_PARA_LRSPACE
-// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
-// auto strip #include <lrspitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_NUMITEM_HXX //autogen
-// auto strip #include <numitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _MyEDITENG_HXX //autogen
-// auto strip #include <editeng.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_POSTITEM_HXX //autogen
-// auto strip #include <postitem.hxx>
-// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -332,11 +299,6 @@ namespace binfilter {
 /*?*/       if(nParaCount)
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ESelection aSelection( 0, 0, EE_PARA_ALL, EE_PARA_ALL);
-//STRIP001 /*?*/            rOutliner.RemoveAttribs(aSelection, TRUE, 0);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            OutlinerParaObject* pTemp = rOutliner.CreateParaObject(0, nParaCount);
-//STRIP001 /*?*/            rOutliner.Clear();
-//STRIP001 /*?*/            NbcSetOutlinerParaObject(pTemp);
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -345,125 +307,6 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SdrTextObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-//STRIP001 {
-//STRIP001  SdrAttrObj::BurnInStyleSheetAttributes();
-//STRIP001
-//STRIP001  if ( pModel && pOutlinerParaObject && !pEdtOutl && !IsLinkedText() )
-//STRIP001  {
-//STRIP001      Outliner* pOutliner = SdrMakeOutliner( OUTLINERMODE_OUTLINEOBJECT, pModel );
-//STRIP001      pOutliner->SetText( *pOutlinerParaObject );
-//STRIP001
-//STRIP001      USHORT nParaCount = (USHORT) pOutliner->GetParagraphCount();
-//STRIP001      if ( nParaCount > 0 )
-//STRIP001      {
-//STRIP001          BOOL bBurnIn = FALSE;
-//STRIP001
-//STRIP001          for ( USHORT nPara = 0; nPara < nParaCount; nPara++ )
-//STRIP001          {
-//STRIP001              SfxStyleSheet* pSheet = pOutliner->GetStyleSheet( nPara );
-//STRIP001              if( pSheet && ( !bPseudoSheetsOnly || pSheet->GetFamily() == SFX_STYLE_FAMILY_PSEUDO ) )
-//STRIP001              {
-//STRIP001                  SfxItemSet aParaSet( pOutliner->GetParaAttribs( nPara ) );
-//STRIP001
-//STRIP001                  SfxItemSet aSet( *aParaSet.GetPool() );
-//STRIP001                  aSet.Put( pSheet->GetItemSet() );
-//STRIP001
-//STRIP001                  /** the next code handles a special case for paragraphs that contain a
-//STRIP001                      url field. The color for URL fields is either the system color for
-//STRIP001                      urls or the char color attribute that formats the portion in which the
-//STRIP001                      url field is contained.
-//STRIP001                      When we set a char color attribute to the paragraphs item set from the
-//STRIP001                      styles item set, we would have this char color attribute as an attribute
-//STRIP001                      that is spanned over the complete paragraph after xml import due to some
-//STRIP001                      problems in the xml import (using a XCursor on import so it does not know
-//STRIP001                      the paragraphs and can't set char attributes to paragraphs ).
-//STRIP001
-//STRIP001                      To avoid this, as soon as we try to set a char color attribute from the style
-//STRIP001                      we
-//STRIP001                      1. check if we have at least one url field in this paragraph
-//STRIP001                      2. if we found at least one url field, we span the char color attribute over
-//STRIP001                         all portions that are not url fields and remove the char color attribute
-//STRIP001                         from the paragraphs item set
-//STRIP001                  */
-//STRIP001
-//STRIP001                  bool bHasURL = false;
-//STRIP001                  if( SFX_ITEM_SET == aSet.GetItemState(EE_CHAR_COLOR) )
-//STRIP001                  {
-//STRIP001
-//STRIP001                      EditEngine* pEditEngine = const_cast<EditEngine*>( &(pOutliner->GetEditEngine()) );
-//STRIP001
-//STRIP001                      EECharAttribArray aAttribs;
-//STRIP001                      pEditEngine->GetCharAttribs( nPara, aAttribs );
-//STRIP001                      USHORT nAttrib;
-//STRIP001
-//STRIP001                      for( nAttrib = 0; nAttrib < aAttribs.Count(); nAttrib++ )
-//STRIP001                      {
-//STRIP001                          struct EECharAttrib aAttrib(aAttribs.GetObject( nAttrib ));
-//STRIP001                          if( aAttrib.pAttr->Which() == EE_FEATURE_FIELD )
-//STRIP001                          {
-//STRIP001                              if( aAttrib.pAttr )
-//STRIP001                              {
-//STRIP001                                  SvxFieldItem* pFieldItem = (SvxFieldItem*)aAttrib.pAttr;
-//STRIP001                                  if( pFieldItem )
-//STRIP001                                  {
-//STRIP001                                      const SvxFieldData* pData = pFieldItem->GetField();
-//STRIP001                                      if( pData && pData->ISA( SvxURLField ) )
-//STRIP001                                      {
-//STRIP001                                          bHasURL = true;
-//STRIP001                                          break;
-//STRIP001                                      }
-//STRIP001                                  }
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001
-//STRIP001
-//STRIP001                      if( bHasURL )
-//STRIP001                      {
-//STRIP001                          SfxItemSet aColorSet( *aSet.GetPool(), EE_CHAR_COLOR, EE_CHAR_COLOR );
-//STRIP001                          aColorSet.Put( aSet, FALSE );
-//STRIP001
-//STRIP001                          ESelection aSel( nPara, 0 );
-//STRIP001                          for( nAttrib = 0; nAttrib < aAttribs.Count(); nAttrib++ )
-//STRIP001                          {
-//STRIP001                              struct EECharAttrib aAttrib(aAttribs.GetObject( nAttrib ));
-//STRIP001                              if( aAttrib.pAttr->Which() == EE_FEATURE_FIELD )
-//STRIP001                              {
-//STRIP001                                  aSel.nEndPos = aAttrib.nStart;
-//STRIP001                                  if( aSel.nStartPos != aSel.nEndPos )
-//STRIP001                                      pEditEngine->QuickSetAttribs( aColorSet, aSel );
-//STRIP001
-//STRIP001                                  aSel.nStartPos = aAttrib.nEnd;
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                          aSel.nEndPos = pEditEngine->GetTextLen( nPara );
-//STRIP001                          if( aSel.nStartPos != aSel.nEndPos )
-//STRIP001                              pEditEngine->QuickSetAttribs( aColorSet, aSel );
-//STRIP001                      }
-//STRIP001
-//STRIP001                  }
-//STRIP001
-//STRIP001                  aSet.Put( aParaSet, FALSE );
-//STRIP001
-//STRIP001                  if( bHasURL )
-//STRIP001                      aSet.ClearItem( EE_CHAR_COLOR );
-//STRIP001
-//STRIP001                  pOutliner->SetParaAttribs( nPara, aSet );
-//STRIP001                  bBurnIn = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if( bBurnIn )
-//STRIP001          {
-//STRIP001              OutlinerParaObject* pTemp = pOutliner->CreateParaObject( 0, nParaCount );
-//STRIP001              NbcSetOutlinerParaObject( pTemp );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      delete pOutliner;
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrTextObj::AdjustTextFrameWidthAndHeight(Rectangle& rR, FASTBOOL bHgt, FASTBOOL bWdt) const
 /*N*/ {
@@ -605,27 +448,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrTextObj::AdjustTextFrameWidthAndHeight(FASTBOOL bHgt, FASTBOOL bWdt)
-//STRIP001 {
-//STRIP001  Rectangle aNeuRect(aRect);
-//STRIP001  FASTBOOL bRet=AdjustTextFrameWidthAndHeight(aNeuRect,bHgt,bWdt);
-//STRIP001  if (bRet) {
-//STRIP001      Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
-//STRIP001      SendRepaintBroadcast();
-//STRIP001      aRect=aNeuRect;
-//STRIP001      SetRectsDirty();
-//STRIP001      if (HAS_BASE(SdrRectObj,this)) { // mal wieder 'nen Hack
-//STRIP001          ((SdrRectObj*)this)->SetXPolyDirty();
-//STRIP001      }
-//STRIP001      if (HAS_BASE(SdrCaptionObj,this)) { // mal wieder 'nen Hack
-//STRIP001          ((SdrCaptionObj*)this)->ImpRecalcTail();
-//STRIP001      }
-//STRIP001      SetChanged();
-//STRIP001      SendRepaintBroadcast();
-//STRIP001      SendUserCall(SDRUSERCALL_RESIZE,aBoundRect0);
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ void SdrTextObj::ImpSetTextStyleSheetListeners()
 /*N*/ {
@@ -776,32 +598,4 @@ namespace binfilter {
              hard set character attributes with the which ids contained in the
              given vector
 */
-//STRIP001 void SdrTextObj::RemoveOutlinerCharacterAttribs( const std::vector<sal_uInt16>& rCharWhichIds )
-//STRIP001 {
-//STRIP001  if(pOutlinerParaObject)
-//STRIP001  {
-//STRIP001      Outliner* pOutliner = pEdtOutl;
-//STRIP001
-//STRIP001      if(!pOutliner)
-//STRIP001      {
-//STRIP001          pOutliner = &ImpGetDrawOutliner();
-//STRIP001          pOutliner->SetText(*pOutlinerParaObject);
-//STRIP001      }
-//STRIP001
-//STRIP001      ESelection aSelAll( 0, 0, 0xffff, 0xffff );
-//STRIP001      std::vector<sal_uInt16>::const_iterator aIter( rCharWhichIds.begin() );
-//STRIP001      while( aIter != rCharWhichIds.end() )
-//STRIP001      {
-//STRIP001          pOutliner->RemoveAttribs( aSelAll, false, (*aIter++) );
-//STRIP001      }
-//STRIP001
-//STRIP001      if(!pEdtOutl)
-//STRIP001      {
-//STRIP001          const sal_uInt16 nParaCount = pOutliner->GetParagraphCount();
-//STRIP001          OutlinerParaObject* pTemp = pOutliner->CreateParaObject(0, nParaCount);
-//STRIP001          pOutliner->Clear();
-//STRIP001          NbcSetOutlinerParaObject(pTemp);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 }
