@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartData.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:09:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:56:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <bf_svx/unoprov.hxx>
 #endif
 // header for class OGuard
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 // header for rtl_createUuid
 #ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
