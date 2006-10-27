@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:57:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:31:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,26 +50,14 @@
 //#endif
 
 #define _OUTLINER_CXX
-// auto strip #include <outliner.hxx>
 #include <paralist.hxx>
 #include <outlobj.hxx>
 #include <outleeng.hxx>
-// auto strip #include <outlundo.hxx>
-// auto strip #include <eeitem.hxx>
 #include <editstat.hxx>
 #include <scripttypeitem.hxx>
 
-// auto strip #ifndef _EDITOBJ_HXX //autogen
-// auto strip #include <editobj.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -79,29 +67,17 @@
 #include <numitem.hxx>
 #endif
 
-// auto strip #ifndef _SVX_ADJITEM_HXX
-// auto strip #include <adjitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_GRAPH_HXX //autogen
-// auto strip #include <vcl/graph.hxx>
-// auto strip #endif
 
 #ifndef _GRFMGR_HXX
 #include <goodies/grfmgr.hxx>
 #endif
 
-// auto strip #ifndef _SVX_SVXFONT_HXX
-// auto strip #include <svxfont.hxx>
-// auto strip #endif
 
 #ifndef _SVX_BRSHITEM_HXX
 #include <brshitem.hxx>
 #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
 // #101498# calculate if it's RTL or not
 #include <unicode/ubidi.h>
@@ -164,50 +140,6 @@ namespace binfilter {
 
 /*N*/ Paragraph* Outliner::Insert(const XubString& rText, ULONG nAbsPos, USHORT nDepth)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  DBG_ASSERT(pParaList->GetParagraphCount(),"Insert:No Paras");
-//STRIP001
-//STRIP001  Paragraph* pPara;
-//STRIP001
-//STRIP001     ImplCheckDepth( nDepth );
-//STRIP001
-//STRIP001  ULONG nParagraphCount = pParaList->GetParagraphCount();
-//STRIP001  if( nAbsPos > nParagraphCount )
-//STRIP001      nAbsPos = nParagraphCount;
-//STRIP001
-//STRIP001  if( bFirstParaIsEmpty )
-//STRIP001  {
-//STRIP001      pPara = pParaList->GetParagraph( 0 );
-//STRIP001      if( pPara->GetDepth() != nDepth )
-//STRIP001      {
-//STRIP001          nDepthChangedHdlPrevDepth = pPara->GetDepth();
-//STRIP001          pPara->SetDepth( nDepth );
-//STRIP001          pHdlParagraph = pPara;
-//STRIP001          DepthChangedHdl();
-//STRIP001      }
-//STRIP001      pPara->nFlags |= PARAFLAG_HOLDDEPTH;
-//STRIP001      SetText( rText, pPara );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      BOOL bUpdate = pEditEngine->GetUpdateMode();
-//STRIP001      pEditEngine->SetUpdateMode( FALSE );
-//STRIP001         ImplBlockInsertionCallbacks( TRUE );
-//STRIP001      pPara = new Paragraph( nDepth );
-//STRIP001      pParaList->Insert( pPara, nAbsPos );
-//STRIP001      pEditEngine->InsertParagraph( (USHORT)nAbsPos, String() );
-//STRIP001      DBG_ASSERT(pPara==pParaList->GetParagraph(nAbsPos),"Insert:Failed");
-//STRIP001      ImplInitDepth( (USHORT)nAbsPos, nDepth, FALSE );
-//STRIP001      pHdlParagraph = pPara;
-//STRIP001      ParagraphInsertedHdl();
-//STRIP001      pPara->nFlags |= PARAFLAG_HOLDDEPTH;
-//STRIP001      SetText( rText, pPara );
-//STRIP001      ImplBlockInsertionCallbacks( FALSE );
-//STRIP001      pEditEngine->SetUpdateMode( bUpdate );
-//STRIP001  }
-//STRIP001  bFirstParaIsEmpty = FALSE;
-//STRIP001  DBG_ASSERT(pEditEngine->GetParagraphCount()==pParaList->GetParagraphCount(),"SetText failed")
-//STRIP001  return pPara;
 /*N*/ }
 
 
@@ -221,14 +153,6 @@ namespace binfilter {
 /*N*/   if( bPasting || pEditEngine->IsInUndo() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Paragraph* pPara = new Paragraph( 0xffff );
-//STRIP001 /*?*/        pParaList->Insert( pPara, nPara );
-//STRIP001 /*?*/        if( pEditEngine->IsInUndo() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pPara->nFlags = PARAFLAG_SETBULLETTEXT;
-//STRIP001 /*?*/            pPara->bVisible = TRUE;
-//STRIP001 /*?*/            const SfxUInt16Item& rLevel = (const SfxUInt16Item&) pEditEngine->GetParaAttrib( nPara, EE_PARA_OUTLLEVEL );
-//STRIP001 /*?*/            pPara->SetDepth( rLevel.GetValue() );
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -510,119 +434,6 @@ namespace binfilter {
 
 // pView == 0 -> Tabulatoren nicht beachten
 
-//STRIP001 BOOL Outliner::ImpConvertEdtToOut(Paragraph* pPara,ULONG nPara,EditView* pView)
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  DBG_ASSERT(pPara,"FilterTabs:No Para");
-//STRIP001
-//STRIP001  BOOL bConverted = FALSE;
-//STRIP001  USHORT nTabs = 0;
-//STRIP001  ESelection aDelSel;
-//STRIP001
-//STRIP001  const SfxItemSet& rAttrs = pEditEngine->GetParaAttribs( (USHORT)nPara );
-//STRIP001  BOOL bAlreadyOutliner = rAttrs.GetItemState( EE_PARA_OUTLLRSPACE ) == SFX_ITEM_ON ? TRUE : FALSE;
-//STRIP001
-//STRIP001  XubString aName;
-//STRIP001  XubString aHeading_US( RTL_CONSTASCII_USTRINGPARAM( "Heading" ) );
-//STRIP001  XubString aHeading_GERM( RTL_CONSTASCII_USTRINGPARAM( "berschrift" ) );
-//STRIP001  XubString aNumber_GERM( RTL_CONSTASCII_USTRINGPARAM( "Numerierung" ) );
-//STRIP001
-//STRIP001  XubString aStr( pEditEngine->GetText( (USHORT)nPara ) );
-//STRIP001  xub_Unicode* pPtr = (xub_Unicode*)aStr.GetBuffer();
-//STRIP001
-//STRIP001  USHORT nHeadingNumberStart = 0;
-//STRIP001  USHORT nNumberingNumberStart = 0;
-//STRIP001  SfxStyleSheet* pStyle= pEditEngine->GetStyleSheet( (USHORT)nPara );
-//STRIP001  if( pStyle )
-//STRIP001  {
-//STRIP001      aName = pStyle->GetName();
-//STRIP001      USHORT nSearch;
-//STRIP001      if ( ( nSearch = aName.Search( aHeading_US ) ) != STRING_NOTFOUND )
-//STRIP001          nHeadingNumberStart = nSearch + aHeading_US.Len();
-//STRIP001      else if ( ( nSearch = aName.Search( aHeading_GERM ) ) != STRING_NOTFOUND )
-//STRIP001          nHeadingNumberStart = nSearch + aHeading_GERM.Len();
-//STRIP001      else if ( ( nSearch = aName.Search( aNumber_GERM ) ) != STRING_NOTFOUND )
-//STRIP001          nNumberingNumberStart = nSearch + aNumber_GERM.Len();
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nHeadingNumberStart || nNumberingNumberStart )
-//STRIP001  {
-//STRIP001      // PowerPoint-Import ?
-//STRIP001      if( nHeadingNumberStart && ( aStr.Len() >= 2 ) &&
-//STRIP001              ( pPtr[0] != '\t' ) && ( pPtr[1] == '\t' ) )
-//STRIP001      {
-//STRIP001          // Bullet & Tab raus
-//STRIP001          aDelSel = ESelection( (USHORT)nPara, 0, (USHORT)nPara, 2 );
-//STRIP001      }
-//STRIP001
-//STRIP001      USHORT nPos = nHeadingNumberStart ? nHeadingNumberStart : nNumberingNumberStart;
-//STRIP001      String aLevel = aName.Copy( nPos );
-//STRIP001      aLevel.EraseLeadingChars( ' ' );
-//STRIP001      nTabs = aLevel.ToInt32();
-//STRIP001      if( nTabs )
-//STRIP001          nTabs--; // ebene 0 = "heading 1"
-//STRIP001      bConverted = TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      //  Fuehrende Tabulatoren filtern
-//STRIP001      while( *pPtr == '\t' )
-//STRIP001      {
-//STRIP001          pPtr++;
-//STRIP001          nTabs++;
-//STRIP001      }
-//STRIP001      // Tabulatoren aus dem Text entfernen
-//STRIP001      if( nTabs )
-//STRIP001          aDelSel = ESelection( (USHORT)nPara, 0, (USHORT)nPara, nTabs );
-//STRIP001
-//STRIP001      //  LRSpaceItem aufaddieren
-//STRIP001      const SvxLRSpaceItem& rIndent=(const SvxLRSpaceItem&)rAttrs.Get( bAlreadyOutliner ? EE_PARA_OUTLLRSPACE : EE_PARA_LRSPACE );
-//STRIP001      USHORT nIndent = rIndent.GetTxtLeft();
-//STRIP001      if( nIndent )
-//STRIP001      {
-//STRIP001          USHORT nOffs = nIndent / (USHORT)pEditEngine->GetDefTab();
-//STRIP001          if( !nOffs )
-//STRIP001              nOffs = 1;  // immer mind. 1 Tab
-//STRIP001          nTabs += nOffs;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( aDelSel.HasRange() )
-//STRIP001  {
-//STRIP001      if ( pView )
-//STRIP001      {
-//STRIP001          pView->SetSelection( aDelSel );
-//STRIP001          pView->DeleteSelected();
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pEditEngine->QuickDelete( aDelSel );
-//STRIP001  }
-//STRIP001
-//STRIP001  // MT: OutlLevel wird beim RTF-Import von der EditEngine eingestellt,
-//STRIP001  // weil String-Vergleich vom Vorlagen-Namen unbrauchbar
-//STRIP001     // Und für das Binaer-Format gilt der Level sowieso...
-//STRIP001     // => Einiges von oben kann bestimmt entfallen, oder?
-//STRIP001     USHORT nOutlLevel = nMinDepth;
-//STRIP001     if ( nPara )
-//STRIP001     {
-//STRIP001      const SfxUInt16Item& rLevel = (const SfxUInt16Item&) pEditEngine->GetParaAttrib( nPara, EE_PARA_OUTLLEVEL );
-//STRIP001      nOutlLevel = rLevel.GetValue();
-//STRIP001     }
-//STRIP001     ImplCheckDepth( nOutlLevel );
-//STRIP001
-//STRIP001     SfxItemSet aOldAttrs( GetParaAttribs( nPara ) );
-//STRIP001  ImplInitDepth( nPara, nOutlLevel, FALSE );
-//STRIP001  if ( !ImplHasBullet( nPara ) && aOldAttrs.GetItemState( EE_PARA_LRSPACE ) == SFX_ITEM_ON )
-//STRIP001  {
-//STRIP001         // #96298# ImplInitDepth overwrite LRSpace to depth default, but we want to keep it,
-//STRIP001         // when hard set in RTF
-//STRIP001      SfxItemSet aAttrs( GetParaAttribs( nPara ) );
-//STRIP001      aAttrs.Put( aOldAttrs.Get( EE_PARA_LRSPACE ) );
-//STRIP001      SetParaAttribs( nPara, aAttrs );
-//STRIP001  }
-//STRIP001
-//STRIP001  return bConverted;
-//STRIP001 }
 
 /*N*/ void Outliner::SetText( const OutlinerParaObject& rPObj )
 /*N*/ {
@@ -660,70 +471,9 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( pEditEngine->GetParagraphCount()==rPObj.Count(),"SetText failed")
 /*N*/ }
 
-//STRIP001 void Outliner::AddText( const OutlinerParaObject& rPObj )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  Paragraph* pPara;
-//STRIP001
-//STRIP001  ULONG nCount = rPObj.Count();
-//STRIP001
-//STRIP001  BOOL bUpdate = pEditEngine->GetUpdateMode();
-//STRIP001  pEditEngine->SetUpdateMode( FALSE );
-//STRIP001
-//STRIP001  ImplBlockInsertionCallbacks( TRUE );
-//STRIP001  ULONG nPara;
-//STRIP001  if( bFirstParaIsEmpty )
-//STRIP001  {
-//STRIP001      pParaList->Clear( TRUE );
-//STRIP001      pEditEngine->SetText( *(rPObj.pText) );
-//STRIP001      nPara = 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nPara = pParaList->GetParagraphCount();
-//STRIP001      pEditEngine->InsertParagraph( EE_PARA_APPEND, *(rPObj.pText) );
-//STRIP001  }
-//STRIP001  bFirstParaIsEmpty = FALSE;
-//STRIP001
-//STRIP001  for( USHORT n = 0; n < rPObj.nCount; n++ )
-//STRIP001  {
-//STRIP001      pPara = new Paragraph( rPObj.pDepthArr[ n ] );
-//STRIP001      pParaList->Insert( pPara, LIST_APPEND );
-//STRIP001      USHORT nP = nPara+n;
-//STRIP001      DBG_ASSERT(pParaList->GetAbsPos(pPara)==nP,"AddText:Out of sync")
-//STRIP001      ImplInitDepth( nP, pPara->GetDepth(), FALSE );
-//STRIP001  }
-//STRIP001  DBG_ASSERT( pEditEngine->GetParagraphCount()==pParaList->GetParagraphCount(), "SetText: OutOfSync" );
-//STRIP001
-//STRIP001  ImplCheckParagraphs( (USHORT)nPara, (USHORT) (pParaList->GetParagraphCount()-1) );
-//STRIP001
-//STRIP001  ImplBlockInsertionCallbacks( FALSE );
-//STRIP001  pEditEngine->SetUpdateMode( bUpdate );
-//STRIP001 }
-
-//STRIP001 void __EXPORT Outliner::FieldClicked( const SvxFieldItem& rField, USHORT nPara, USHORT nPos )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  if ( aFieldClickedHdl.IsSet() )
-//STRIP001  {
-//STRIP001      EditFieldInfo aFldInfo( this, rField, nPara, nPos );
-//STRIP001      aFldInfo.SetSimpleClick( TRUE );
-//STRIP001      aFieldClickedHdl.Call( &aFldInfo );
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void __EXPORT Outliner::FieldSelected( const SvxFieldItem& rField, USHORT nPara, USHORT nPos )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  if ( !aFieldClickedHdl.IsSet() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  EditFieldInfo aFldInfo( this, rField, nPara, nPos );
-//STRIP001  aFldInfo.SetSimpleClick( FALSE );
-//STRIP001  aFieldClickedHdl.Call( &aFldInfo );
-//STRIP001 }
+
 
 
 /*N*/ XubString __EXPORT Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
@@ -761,15 +511,6 @@ namespace binfilter {
 /*N*/   ImplCheckNumBulletItem( (USHORT) nPara );
 /*N*/ }
 
-//STRIP001 void Outliner::SetVisible( Paragraph* pPara, BOOL bVisible )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  DBG_ASSERT( pPara, "SetVisible: pPara = NULL" );
-//STRIP001
-//STRIP001  pPara->bVisible = bVisible;
-//STRIP001  ULONG nPara = pParaList->GetAbsPos( pPara );
-//STRIP001  pEditEngine->ShowParagraph( (USHORT)nPara, bVisible );
-//STRIP001 }
 
 /*N*/ void Outliner::ImplCheckNumBulletItem( USHORT nPara )
 /*N*/ {
@@ -860,8 +601,6 @@ namespace binfilter {
 /*N*/       if ( bUndo )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new OutlinerUndoChangeDepth( this, nPara, nOldDepth, nDepth ) );
-//STRIP001 /*?*/            if ( bUndoAction )
-//STRIP001 /*?*/                UndoActionEnd( OLUNDO_DEPTH );
 /*N*/       }
 /*N*/ #endif
 /*N*/
@@ -909,73 +648,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL Outliner::Expand( Paragraph* pPara )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  if ( pParaList->HasHiddenChilds( pPara ) )
-//STRIP001  {
-//STRIP001      OLUndoExpand* pUndo;
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001      BOOL bUndo = IsUndoEnabled() && !IsInUndo();
-//STRIP001      if( bUndo )
-//STRIP001      {
-//STRIP001          UndoActionStart( OLUNDO_EXPAND );
-//STRIP001          pUndo = new OLUndoExpand( this, OLUNDO_EXPAND );
-//STRIP001          pUndo->pParas = 0;
-//STRIP001          pUndo->nCount = (USHORT)pParaList->GetAbsPos( pPara );
-//STRIP001      }
-//STRIP001 #else
-//STRIP001      BOOL bUndo = sal_False;
-//STRIP001 #endif
-//STRIP001      pHdlParagraph = pPara;
-//STRIP001      bIsExpanding = TRUE;
-//STRIP001      pParaList->Expand( pPara );
-//STRIP001      ExpandHdl();
-//STRIP001      InvalidateBullet( pPara, pParaList->GetAbsPos(pPara) );
-//STRIP001      if( bUndo )
-//STRIP001      {
-//STRIP001          InsertUndo( pUndo );
-//STRIP001          UndoActionEnd( OLUNDO_EXPAND );
-//STRIP001      }
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 BOOL Outliner::Collapse( Paragraph* pPara )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  if ( pParaList->HasVisibleChilds( pPara ) ) // expandiert
-//STRIP001  {
-//STRIP001      OLUndoExpand* pUndo;
-//STRIP001      BOOL bUndo = FALSE;
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001      if( !IsInUndo() && IsUndoEnabled() )
-//STRIP001          bUndo = TRUE;
-//STRIP001      if( bUndo )
-//STRIP001      {
-//STRIP001          UndoActionStart( OLUNDO_COLLAPSE );
-//STRIP001          pUndo = new OLUndoExpand( this, OLUNDO_COLLAPSE );
-//STRIP001          pUndo->pParas = 0;
-//STRIP001          pUndo->nCount = (USHORT)pParaList->GetAbsPos( pPara );
-//STRIP001      }
-//STRIP001 #endif
-//STRIP001      pHdlParagraph = pPara;
-//STRIP001      bIsExpanding = FALSE;
-//STRIP001      pParaList->Collapse( pPara );
-//STRIP001      ExpandHdl();
-//STRIP001      InvalidateBullet( pPara, pParaList->GetAbsPos(pPara) );
-//STRIP001      if( bUndo )
-//STRIP001      {
-//STRIP001          InsertUndo( pUndo );
-//STRIP001          UndoActionEnd( OLUNDO_COLLAPSE );
-//STRIP001      }
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 /*N*/ Font Outliner::ImpCalcBulletFont( USHORT nPara ) const
@@ -1041,319 +715,15 @@ namespace binfilter {
 /*N*/   if ( ImplHasBullet( nPara ) )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bVertical = IsVertical();
-//STRIP001 /*?*/
-//STRIP001 /*?*/         BOOL bRightToLeftPara = pEditEngine->IsRightToLeft( nPara );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        Rectangle aBulletArea( ImpCalcBulletArea( nPara, TRUE, FALSE ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/         Paragraph* pPara = pParaList->GetParagraph( nPara );
-//STRIP001 /*?*/        const SvxNumberFormat* pFmt = ImplGetBullet( nPara );
-//STRIP001 /*?*/        if ( pFmt && ( pFmt->GetNumberingType() != SVX_NUM_NUMBER_NONE ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if( pFmt->GetNumberingType() != SVX_NUM_BITMAP )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                Font aBulletFont( ImpCalcBulletFont( nPara ) );
-//STRIP001 /*?*/                 // #2338# Use base line
-//STRIP001 /*?*/                 BOOL bSymbol = pFmt->GetNumberingType() == SVX_NUM_CHAR_SPECIAL;
-//STRIP001 /*?*/                 aBulletFont.SetAlign( bSymbol ? ALIGN_BOTTOM : ALIGN_BASELINE );
-//STRIP001 /*?*/                Font aOldFont = pOutDev->GetFont();
-//STRIP001 /*?*/                pOutDev->SetFont( aBulletFont );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 ParagraphInfos     aParaInfos = pEditEngine->GetParagraphInfos( nPara );
-//STRIP001 /*?*/                Point aTextPos;
-//STRIP001 /*?*/                if ( !bVertical )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/ //                 aTextPos.Y() = rStartPos.Y() + aBulletArea.Bottom();
-//STRIP001 /*?*/                     aTextPos.Y() = rStartPos.Y() + ( bSymbol ? aBulletArea.Bottom() : aParaInfos.nFirstLineMaxAscent );
-//STRIP001 /*?*/                     if ( !bRightToLeftPara )
-//STRIP001 /*?*/                        aTextPos.X() = rStartPos.X() + aBulletArea.Left();
-//STRIP001 /*?*/                     else
-//STRIP001 /*?*/                         aTextPos.X() = rStartPos.X() + GetPaperSize().Width() - aBulletArea.Left();
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/ //                 aTextPos.X() = rStartPos.X() - aBulletArea.Bottom();
-//STRIP001 /*?*/                    aTextPos.X() = rStartPos.X() - ( bSymbol ? aBulletArea.Bottom() : aParaInfos.nFirstLineMaxAscent );
-//STRIP001 /*?*/                    aTextPos.Y() = rStartPos.Y() + aBulletArea.Left();
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if ( !bStrippingPortions )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if ( nOrientation )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        // Sowohl TopLeft als auch BottomLeft nicht ganz richtig, da
-//STRIP001 /*?*/                        // in EditEngine BaseLine...
-//STRIP001 /*?*/                        double nRealOrientation = nOrientation*F_PI1800;
-//STRIP001 /*?*/                        double nCos = cos( nRealOrientation );
-//STRIP001 /*?*/                        double nSin = sin( nRealOrientation );
-//STRIP001 /*?*/                        Point aRotatedPos;
-//STRIP001 /*?*/                        // Translation...
-//STRIP001 /*?*/                        aTextPos -= rOrigin;
-//STRIP001 /*?*/                        // Rotation...
-//STRIP001 /*?*/                        aRotatedPos.X()=(long)   (nCos*aTextPos.X() + nSin*aTextPos.Y());
-//STRIP001 /*?*/                        aRotatedPos.Y()=(long) - (nSin*aTextPos.X() - nCos*aTextPos.Y());
-//STRIP001 /*?*/                        aTextPos = aRotatedPos;
-//STRIP001 /*?*/                        // Translation...
-//STRIP001 /*?*/                        aTextPos += rOrigin;
-//STRIP001 /*?*/                        Font aRotatedFont( aBulletFont );
-//STRIP001 /*?*/                        aRotatedFont.SetLineOrientation( nOrientation );
-//STRIP001 /*?*/                        pOutDev->SetFont( aRotatedFont );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // #105803# VCL will care for brackets and so on...
-//STRIP001 /*?*/                     ULONG nLayoutMode = pOutDev->GetLayoutMode();
-//STRIP001 /*?*/                     nLayoutMode &= ~(TEXT_LAYOUT_BIDI_RTL|TEXT_LAYOUT_COMPLEX_DISABLED|TEXT_LAYOUT_BIDI_STRONG);
-//STRIP001 /*?*/                     if ( bRightToLeftPara )
-//STRIP001 /*?*/                         nLayoutMode |= TEXT_LAYOUT_BIDI_RTL;
-//STRIP001 /*?*/                     pOutDev->SetLayoutMode( nLayoutMode );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    pOutDev->DrawText( aTextPos, pPara->GetText() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // HACK #47227#
-//STRIP001 /*?*/                    // Seitennummer im Gliederungsmodus ausgeben...
-//STRIP001 /*?*/                    if ( (pPara->GetDepth() == 0 ) && ( pEditEngine->GetControlWord() & EE_CNTRL_OUTLINER ) )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        long nPage = nFirstPage-1;
-//STRIP001 /*?*/                        for ( USHORT n = 0; n <= nPara; n++ )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            Paragraph* p = pParaList->GetParagraph( n );
-//STRIP001 /*?*/                            if ( p->GetDepth() == 0 )
-//STRIP001 /*?*/                                nPage++;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         long nFontHeight = 0;
-//STRIP001 /*?*/                         if ( !pEditEngine->IsFlatMode() )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                            const SvxFontHeightItem& rFH = (const SvxFontHeightItem&)pEditEngine->GetParaAttrib( nPara, EE_CHAR_FONTHEIGHT );
-//STRIP001 /*?*/                             nFontHeight = rFH.GetHeight();
-//STRIP001 /*?*/                             nFontHeight /= 5;
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                         else
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                            const SvxFontHeightItem& rFH = (const SvxFontHeightItem&)pEditEngine->GetEmptyItemSet().Get( EE_CHAR_FONTHEIGHT );
-//STRIP001 /*?*/                             nFontHeight = rFH.GetHeight();
-//STRIP001 /*?*/                             nFontHeight *= 10;
-//STRIP001 /*?*/                             nFontHeight /= 25;
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                        Size aFontSz( 0, nFontHeight );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         LanguageType eLang = pEditEngine->GetDefaultLanguage();
-//STRIP001 /*?*/                         // USHORT nScriptType = GetScriptTypeOfLanguage( eLang );
-//STRIP001 /*?*/                        Font aNewFont( OutputDevice::GetDefaultFont( DEFAULTFONT_SANS_UNICODE, eLang, 0 ) );
-//STRIP001 /*?*/                        aNewFont.SetSize( aFontSz );
-//STRIP001 /*?*/                        aNewFont.SetAlign( aBulletFont.GetAlign() );
-//STRIP001 /*?*/                        aNewFont.SetVertical( bVertical );
-//STRIP001 /*?*/                        aNewFont.SetOrientation( bVertical ? 2700 : 0 );
-//STRIP001 /*?*/                         aNewFont.SetColor( aBulletFont.GetColor() );
-//STRIP001 /*?*/                        pOutDev->SetFont( aNewFont );
-//STRIP001 /*?*/                        String aPageText = String::CreateFromInt32( nPage );
-//STRIP001 /*?*/                        Size aTextSz;
-//STRIP001 /*?*/                        aTextSz.Width() = pOutDev->GetTextWidth( aPageText );
-//STRIP001 /*?*/                        aTextSz.Height() = pOutDev->GetTextHeight();
-//STRIP001 /*?*/                         long nBulletHeight = !bVertical ? aBulletArea.GetHeight() : aBulletArea.GetWidth();
-//STRIP001 /*?*/                        if ( !bVertical )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            aTextPos.Y() -= nBulletHeight / 2;
-//STRIP001 /*?*/                            aTextPos.Y() += aTextSz.Height() / 2;
-//STRIP001 /*?*/                             if ( !bRightToLeftPara )
-//STRIP001 /*?*/                             {
-//STRIP001 /*?*/                                aTextPos.X() -= aTextSz.Width();
-//STRIP001 /*?*/                                aTextPos.X() -= aTextSz.Height() / 8;
-//STRIP001 /*?*/                             }
-//STRIP001 /*?*/                             else
-//STRIP001 /*?*/                             {
-//STRIP001 /*?*/                                aTextPos.X() += aTextSz.Width();
-//STRIP001 /*?*/                                aTextPos.X() += aTextSz.Height() / 8;
-//STRIP001 /*?*/                             }
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            aTextPos.Y() -= aTextSz.Width();
-//STRIP001 /*?*/                            aTextPos.Y() -= aTextSz.Height() / 8;
-//STRIP001 /*?*/                            aTextPos.X() += nBulletHeight / 2;
-//STRIP001 /*?*/                            aTextPos.X() -= aTextSz.Height() / 2;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        pOutDev->DrawText( aTextPos, aPageText );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    Font aSvxFont( aBulletFont );
-//STRIP001 /*?*/                    long* pBuf = new long[ pPara->GetText().Len() ];
-//STRIP001 /*?*/                    pOutDev->GetTextArray( pPara->GetText(), pBuf );
-//STRIP001 /*?*/                    // aTextPos ist Bottom, jetzt die Baseline liefern:
-//STRIP001 /*?*/                    FontMetric aMetric( pOutDev->GetFontMetric() );
-//STRIP001 /*?*/                    aTextPos.Y() -= aMetric.GetDescent();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    // #101498#
-//STRIP001 /*?*/                    DrawingText( aTextPos, pPara->GetText(), 0, pPara->GetText().Len(), pBuf, aSvxFont, nPara, 0xFFFF, 0xFF);
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    delete[] pBuf;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                pOutDev->SetFont( aOldFont );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if ( !bStrippingPortions )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if ( pFmt->GetBrush()->GetGraphicObject() )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                        Point aBulletPos;
-//STRIP001 /*?*/                         if ( !bVertical )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                            aBulletPos.Y() = rStartPos.Y() + aBulletArea.Top();
-//STRIP001 /*?*/                             if ( !bRightToLeftPara )
-//STRIP001 /*?*/                                aBulletPos.X() = rStartPos.X() + aBulletArea.Left();
-//STRIP001 /*?*/                             else
-//STRIP001 /*?*/                                 aBulletPos.X() = rStartPos.X() + GetPaperSize().Width() - aBulletArea.Right();
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            aBulletPos.X() = rStartPos.X() - aBulletArea.Bottom();
-//STRIP001 /*?*/                            aBulletPos.Y() = rStartPos.Y() + aBulletArea.Left();
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                         // MT: Remove CAST when KA made the Draw-Method const
-//STRIP001 /*?*/                        ((GraphicObject*)pFmt->GetBrush()->GetGraphicObject())->Draw( pOutDev, aBulletPos, pPara->aBulSize );
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Bei zusammengeklappten Absaetzen einen Strich vor den Text malen.
-//STRIP001 /*?*/        if( pParaList->HasChilds(pPara) && !pParaList->HasVisibleChilds(pPara) &&
-//STRIP001 /*?*/                !bStrippingPortions && !nOrientation )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             long nWidth = pOutDev->PixelToLogic( Size( 10, 0 ) ).Width();
-//STRIP001 /*?*/
-//STRIP001 /*?*/             Point aStartPos, aEndPos;
-//STRIP001 /*?*/            if ( !bVertical )
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                aStartPos.Y() = rStartPos.Y() + aBulletArea.Bottom();
-//STRIP001 /*?*/                 if ( !bRightToLeftPara )
-//STRIP001 /*?*/                    aStartPos.X() = rStartPos.X() + aBulletArea.Right();
-//STRIP001 /*?*/                 else
-//STRIP001 /*?*/                     aStartPos.X() = rStartPos.X() + GetPaperSize().Width() - aBulletArea.Left();
-//STRIP001 /*?*/                 aEndPos = aStartPos;
-//STRIP001 /*?*/                 aEndPos.X() += nWidth;
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                aStartPos.X() = rStartPos.X() - aBulletArea.Bottom();
-//STRIP001 /*?*/                aStartPos.Y() = rStartPos.Y() + aBulletArea.Right();
-//STRIP001 /*?*/                 aEndPos = aStartPos;
-//STRIP001 /*?*/                 aEndPos.Y() += nWidth;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            const Color& rOldLineColor = pOutDev->GetLineColor();
-//STRIP001 /*?*/            pOutDev->SetLineColor( Color( COL_BLACK ) );
-//STRIP001 /*?*/            pOutDev->DrawLine( aStartPos, aEndPos );
-//STRIP001 /*?*/            pOutDev->SetLineColor( rOldLineColor );
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Outliner::InvalidateBullet( Paragraph* pPara, ULONG nPara )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  long nLineHeight = (long)pEditEngine->GetLineHeight((USHORT)nPara );
-//STRIP001  OutlinerView* pView = aViewList.First();
-//STRIP001  while( pView )
-//STRIP001  {
-//STRIP001      Point aPos( pView->pEditView->GetWindowPosTopLeft((USHORT)nPara ) );
-//STRIP001      Rectangle aRect( pView->GetOutputArea() );
-//STRIP001      aRect.Right() = aPos.X();
-//STRIP001      aRect.Top() = aPos.Y();
-//STRIP001      aRect.Bottom() = aPos.Y();
-//STRIP001      aRect.Bottom() += nLineHeight;
-//STRIP001
-//STRIP001      pView->GetWindow()->Invalidate( aRect );
-//STRIP001      pView = aViewList.Next();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ ULONG Outliner::Read( SvStream& rInput, USHORT eFormat, SvKeyValueIterator* pHTTPHeaderAttrs )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  BOOL bOldUndo = pEditEngine->IsUndoEnabled();
-//STRIP001  EnableUndo( FALSE );
-//STRIP001
-//STRIP001  BOOL bUpdate = pEditEngine->GetUpdateMode();
-//STRIP001  pEditEngine->SetUpdateMode( FALSE );
-//STRIP001
-//STRIP001  Clear();
-//STRIP001
-//STRIP001  ImplBlockInsertionCallbacks( TRUE );
-//STRIP001  ULONG nRet = pEditEngine->Read( rInput, (EETextFormat)eFormat, pHTTPHeaderAttrs );
-//STRIP001
-//STRIP001  bFirstParaIsEmpty = FALSE;
-//STRIP001
-//STRIP001  USHORT nParas = pEditEngine->GetParagraphCount();
-//STRIP001      pParaList->Clear( TRUE );
-//STRIP001  USHORT n;
-//STRIP001  for ( n = 0; n < nParas; n++ )
-//STRIP001  {
-//STRIP001      Paragraph* pPara = new Paragraph( 0 );
-//STRIP001      pParaList->Insert( pPara, LIST_APPEND );
-//STRIP001
-//STRIP001      if ( eFormat == EE_FORMAT_BIN )
-//STRIP001      {
-//STRIP001          USHORT nDepth = 0;
-//STRIP001          const SfxItemSet& rAttrs = pEditEngine->GetParaAttribs( n );
-//STRIP001          const SfxUInt16Item& rLevel = (const SfxUInt16Item&) rAttrs.Get( EE_PARA_OUTLLEVEL );
-//STRIP001          nDepth = rLevel.GetValue();
-//STRIP001          ImplInitDepth( n, nDepth, FALSE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( eFormat != EE_FORMAT_BIN )
-//STRIP001  {
-//STRIP001      ImpFilterIndents( 0, nParas-1 );
-//STRIP001  }
-//STRIP001
-//STRIP001  for ( n = 0; n < nParas; n++ )
-//STRIP001  {
-//STRIP001      // Handler rufen, Outliner war leer. Aber nicht fuer den ersten
-//STRIP001      pHdlParagraph = pParaList->GetParagraph( n );
-//STRIP001      ParagraphInsertedHdl();
-//STRIP001  }
-//STRIP001
-//STRIP001     ImplBlockInsertionCallbacks( FALSE );
-//STRIP001  pEditEngine->SetUpdateMode( bUpdate );
-//STRIP001  EnableUndo( bOldUndo );
-//STRIP001
-//STRIP001  return nRet;
 /*N*/ }
 
 
-//STRIP001 void Outliner::ImpFilterIndents( ULONG nFirstPara, ULONG nLastPara )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  BOOL bUpdate = pEditEngine->GetUpdateMode();
-//STRIP001  pEditEngine->SetUpdateMode( FALSE );
-//STRIP001
-//STRIP001  Paragraph* pLastConverted = NULL;
-//STRIP001  for( ULONG nPara = nFirstPara; nPara <= nLastPara; nPara++ )
-//STRIP001  {
-//STRIP001      Paragraph* pPara = pParaList->GetParagraph( nPara );
-//STRIP001      if( ImpConvertEdtToOut( pPara, nPara ) )
-//STRIP001      {
-//STRIP001          pLastConverted = pPara;
-//STRIP001      }
-//STRIP001      else if ( pLastConverted )
-//STRIP001      {
-//STRIP001          // Normale Absaetze unter der Ueberschrift anordnen...
-//STRIP001          pPara->SetDepth( pLastConverted->GetDepth() );
-//STRIP001      }
-//STRIP001
-//STRIP001      ImplInitDepth( (USHORT)nPara, pPara->GetDepth(), FALSE );
-//STRIP001  }
-//STRIP001
-//STRIP001  pEditEngine->SetUpdateMode( bUpdate );
-//STRIP001 }
 
 /*N*/ #ifndef SVX_LIGHT
 /*N*/ SfxUndoManager&   Outliner::GetUndoManager()
@@ -1363,170 +733,12 @@ namespace binfilter {
 /*N*/ }
 /*N*/ #endif
 
-//STRIP001 void Outliner::ImpTextPasted( ULONG nStartPara, USHORT nCount )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  BOOL bUpdate = pEditEngine->GetUpdateMode();
-//STRIP001  pEditEngine->SetUpdateMode( FALSE );
-//STRIP001
-//STRIP001  const ULONG nStart = nStartPara;
-//STRIP001
-//STRIP001  Paragraph* pPara = pParaList->GetParagraph( nStartPara );
-//STRIP001  Paragraph* pLastConverted = NULL;
-//STRIP001  while( nCount && pPara )
-//STRIP001  {
-//STRIP001      if( ImplGetOutlinerMode() != OUTLINERMODE_TEXTOBJECT )
-//STRIP001      {
-//STRIP001          USHORT nPrevDepth = pPara->GetDepth();
-//STRIP001          if( ImpConvertEdtToOut( pPara, nStartPara ) )
-//STRIP001              pLastConverted = pPara;
-//STRIP001          else if ( pLastConverted )
-//STRIP001          {
-//STRIP001              // Normale Absaetze unter der Ueberschrift anordnen...
-//STRIP001              pPara->SetDepth( pLastConverted->GetDepth() );
-//STRIP001          }
-//STRIP001          // Tiefe des Absatzes hat sich geaendert.
-//STRIP001          if( pPara->GetDepth() != nPrevDepth )
-//STRIP001          {
-//STRIP001              pHdlParagraph = pPara;
-//STRIP001              if( nPrevDepth == 0xffff )
-//STRIP001              {
-//STRIP001                  // neuer Absatz -> InsertedHdl rufen
-//STRIP001                  ParagraphInsertedHdl();
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  if( nStartPara == nStart )
-//STRIP001                     {
-//STRIP001                      // die Einrueckebene des Startabsatzes bleibt
-//STRIP001                      // immer erhalten (leere Absaetze bekommen
-//STRIP001                      // die Absatzattribute des eingefuegten Absatzes,
-//STRIP001                      // diese sind aber erst nach dem Paste bekannt,
-//STRIP001                      // d.h. es muesste dann ggf. der ParagraphIndenting
-//STRIP001                      // Handler gerufen werden (also u.U. vor UND nach
-//STRIP001                      // dem Paste)
-//STRIP001
-//STRIP001                         // MT 08/01: Changed the behavior a little bit: Only reset Depth when it was 0,
-//STRIP001                         // because a page would be deleted, but to late to ask the user.
-//STRIP001                         if ( nPrevDepth == 0 )
-//STRIP001                             pPara->SetDepth( 0 );
-//STRIP001                     }
-//STRIP001                  else if( (!nStartPara && pPara->GetDepth()) || (pPara->GetDepth() < nMinDepth) )
-//STRIP001                     {
-//STRIP001                      pPara->SetDepth( nMinDepth );
-//STRIP001                     }
-//STRIP001
-//STRIP001                  if( pPara->GetDepth() != nPrevDepth )
-//STRIP001                  {
-//STRIP001                      // alter Absatz -> DepthChangedHdl rufen
-//STRIP001                      nDepthChangedHdlPrevDepth = nPrevDepth;
-//STRIP001                      DepthChangedHdl();
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              ImplInitDepth( (USHORT)nStartPara, pPara->GetDepth(), FALSE );
-//STRIP001          }
-//STRIP001          else if( nStartPara == nStart )
-//STRIP001             {
-//STRIP001              ImplInitDepth( (USHORT)nStartPara, pPara->GetDepth(), FALSE );
-//STRIP001             }
-//STRIP001      }
-//STRIP001      else // EditEngine-Modus
-//STRIP001      {
-//STRIP001          USHORT nDepth = 0;
-//STRIP001          const SfxItemSet& rAttrs = pEditEngine->GetParaAttribs( (USHORT)nStartPara );
-//STRIP001          if ( rAttrs.GetItemState( EE_PARA_OUTLLEVEL ) == SFX_ITEM_ON )
-//STRIP001          {
-//STRIP001              const SfxUInt16Item& rLevel = (const SfxUInt16Item&) rAttrs.Get( EE_PARA_OUTLLEVEL );
-//STRIP001              nDepth = rLevel.GetValue();
-//STRIP001          }
-//STRIP001          if ( nDepth != GetDepth( nStartPara ) )
-//STRIP001              ImplInitDepth( (USHORT)nStartPara, nDepth, FALSE );
-//STRIP001      }
-//STRIP001
-//STRIP001      nCount--;
-//STRIP001      nStartPara++;
-//STRIP001      pPara = pParaList->GetParagraph( nStartPara );
-//STRIP001  }
-//STRIP001
-//STRIP001  pEditEngine->SetUpdateMode( bUpdate );
-//STRIP001
-//STRIP001  DBG_ASSERT(pParaList->GetParagraphCount()==pEditEngine->GetParagraphCount(),"ImpTextPasted failed");
-//STRIP001 }
 
 
 
-//STRIP001 void Outliner::ImpDropped( OutlinerView* pOutlView )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  // MT 06/00 - Was soll das hier?
-//STRIP001  // Diese Methode muss mal ueberarbeitet werden...
-//STRIP001  EditView* pView = pOutlView->pEditView;
-//STRIP001
-//STRIP001  ULONG nParas = pParaList->GetParagraphCount();
-//STRIP001  for ( ULONG nPara = 0; nPara < nParas; nPara++ )
-//STRIP001  {
-//STRIP001      Paragraph* pPara = pParaList->GetParagraph( nPara );
-//STRIP001      USHORT nCurDepth = pPara->GetDepth();
-//STRIP001      if( nCurDepth == 0xffff )
-//STRIP001      {
-//STRIP001          ImpConvertEdtToOut( pPara, nPara, pView );
-//STRIP001          pHdlParagraph = pPara;
-//STRIP001          ParagraphInsertedHdl();
-//STRIP001          ImplInitDepth( (USHORT)nPara, pPara->GetDepth(), FALSE );
-//STRIP001      }
-//STRIP001      else if( pPara->nFlags & PARAFLAG_DROPTARGET )
-//STRIP001      {
-//STRIP001          ImpConvertEdtToOut( pPara, nPara, pView );
-//STRIP001          if( pPara->nDepth != nCurDepth ||
-//STRIP001              (pPara->nFlags & PARAFLAG_DROPTARGET_EMPTY) )
-//STRIP001          {
-//STRIP001              // auf alten Wert zuruecksetzen
-//STRIP001              pPara->SetDepth( nCurDepth );
-//STRIP001
-//STRIP001              // und neu attributieren
-//STRIP001              ImplInitDepth( (USHORT)nPara, pPara->GetDepth(), FALSE );
-//STRIP001          }
-//STRIP001          pPara->nFlags &= (~PARAFLAG_DROPTARGET|PARAFLAG_DROPTARGET_EMPTY);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 long Outliner::IndentingPagesHdl( OutlinerView* pView )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  if( !aIndentingPagesHdl.IsSet() )
-//STRIP001      return 1;
-//STRIP001  return aIndentingPagesHdl.Call( pView );
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::ImpCanIndentSelectedPages( OutlinerView* pCurView )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  // Die selektierten Seiten muessen vorher durch ImpCalcSelectedPages
-//STRIP001  // schon eingestellt sein
-//STRIP001
-//STRIP001  // Wenn der erste Absatz auf Ebene 0 liegt darf er auf keinen Fall
-//STRIP001  // eingerueckt werden, evtl folgen aber weitere auf Ebene 0.
-//STRIP001  if ( ( (ULONG)pHdlParagraph == 0 ) && ( ImplGetOutlinerMode() != OUTLINERMODE_TEXTOBJECT ) )
-//STRIP001  {
-//STRIP001      if ( nDepthChangedHdlPrevDepth == 1 )   // ist die einzige Seite
-//STRIP001          return FALSE;
-//STRIP001      else
-//STRIP001          pCurView->ImpCalcSelectedPages( FALSE );    // ohne die erste
-//STRIP001  }
-//STRIP001  return (BOOL)IndentingPagesHdl( pCurView );
-//STRIP001 }
 
-//STRIP001
-//STRIP001 BOOL Outliner::ImpCanDeleteSelectedPages( OutlinerView* pCurView )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  // Die selektierten Seiten muessen vorher durch ImpCalcSelectedPages
-//STRIP001  // schon eingestellt sein
-//STRIP001  return (BOOL)RemovingPagesHdl( pCurView );
-//STRIP001 }
 
 /*N*/ Outliner::Outliner( SfxItemPool* pPool, USHORT nMode )
 /*N*/ {
@@ -1568,53 +780,11 @@ namespace binfilter {
 /*N*/   delete pEditEngine;
 /*N*/ }
 
-//STRIP001 ULONG Outliner::InsertView( OutlinerView* pView, ULONG nIndex )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  aViewList.Insert( pView, nIndex );
-//STRIP001  pEditEngine->InsertView(  pView->pEditView, (USHORT)nIndex );
-//STRIP001  return aViewList.GetPos( pView );
-//STRIP001 }
-
-//STRIP001 OutlinerView* Outliner::RemoveView( OutlinerView* pView )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  ULONG nPos = aViewList.GetPos( pView );
-//STRIP001  if ( nPos != LIST_ENTRY_NOTFOUND )
-//STRIP001  {
-//STRIP001      pView->pEditView->HideCursor(); // HACK wg. BugId 10006
-//STRIP001      pEditEngine->RemoveView(  pView->pEditView );
-//STRIP001      aViewList.Remove( nPos );
-//STRIP001  }
-//STRIP001  return NULL;    // MT: return ueberfluessig
-//STRIP001 }
-
-//STRIP001 OutlinerView* Outliner::RemoveView( ULONG nIndex )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  EditView* pEditView = pEditEngine->GetView( (USHORT)nIndex );
-//STRIP001  pEditView->HideCursor(); // HACK wg. BugId 10006
-//STRIP001
-//STRIP001  pEditEngine->RemoveView( (USHORT)nIndex );
-//STRIP001  aViewList.Remove( nIndex );
-//STRIP001  return NULL;    // MT: return ueberfluessig
-//STRIP001 }
 
 
-//STRIP001 OutlinerView* Outliner::GetView( ULONG nIndex ) const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return aViewList.GetObject( nIndex );
-//STRIP001 }
 
-//STRIP001 ULONG Outliner::GetViewCount() const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return aViewList.Count();
-//STRIP001 }
+
+
 
 /*N*/ void Outliner::ParagraphInsertedHdl()
 /*N*/ {
@@ -1662,11 +832,6 @@ namespace binfilter {
 /*N*/   return pParaList->GetParagraph( nAbsPos );
 /*N*/ }
 
-//STRIP001 BOOL Outliner::HasChilds( Paragraph* pParagraph ) const
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return pParaList->HasChilds( pParagraph );
-//STRIP001 }
 
 /*N*/ BOOL Outliner::ImplHasBullet( USHORT nPara ) const
 /*N*/ {
@@ -1815,28 +980,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Outliner::StyleSheetChanged( SfxStyleSheet* pStyle )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  // Die EditEngine ruft StyleSheetChanged auch fuer abgeleitete Styles.
-//STRIP001  // MT: Hier wurde frueher alle Absaetze durch ein ImpRecalcParaAttribs
-//STRIP001  // gejagt, die die besagte Vorlage haben, warum?
-//STRIP001  // => Eigentlich kann sich nur die Bullet-Repraesentation aendern...
-//STRIP001
-//STRIP001  USHORT nParas = (USHORT)pParaList->GetParagraphCount();
-//STRIP001  for( USHORT nPara = 0; nPara < nParas; nPara++ )
-//STRIP001  {
-//STRIP001      if ( pEditEngine->GetStyleSheet( nPara ) == pStyle )
-//STRIP001      {
-//STRIP001          ImplCheckNumBulletItem( nPara );
-//STRIP001          ImplCalcBulletText( nPara, FALSE, FALSE );
-//STRIP001             // #97333# EditEngine formats changed paragraphs before calling this method,
-//STRIP001             // so they are not reformatted now and use wrong bullet indent
-//STRIP001             pEditEngine->QuickMarkInvalid( ESelection( nPara, 0, nPara, 0 ) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ Rectangle Outliner::ImpCalcBulletArea( USHORT nPara, BOOL bAdjust, BOOL bReturnPaperPos )
 /*N*/ {
@@ -1861,13 +1004,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( bAdjust && !bOutlineMode )
 /*N*/       {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-//STRIP001 /*?*/            // Bei zentriert/rechtsbuendig anpassen
-//STRIP001 /*?*/            const SvxAdjustItem& rItem = (const SvxAdjustItem&)pEditEngine->GetParaAttrib( nPara, EE_PARA_JUST );
-//STRIP001 /*?*/            if ( ( !pEditEngine->IsRightToLeft( nPara ) && ( rItem.GetAdjust() != SVX_ADJUST_LEFT ) ) ||
-//STRIP001 /*?*/                 ( pEditEngine->IsRightToLeft( nPara ) && ( rItem.GetAdjust() != SVX_ADJUST_RIGHT ) ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 aTopLeft.X() = pEditEngine->GetFirstLineStartX( nPara ) - nBulletWidth;
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/
 /*N*/       // Vertikal:
@@ -1914,41 +1050,11 @@ namespace binfilter {
 /*N*/     if ( bReturnPaperPos )
 /*N*/     {
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aBulletSize( aBulletArea.GetSize() );
-//STRIP001 /*?*/         Point aBulletDocPos( aBulletArea.TopLeft() );
-//STRIP001 /*?*/         aBulletDocPos.Y() += pEditEngine->GetDocPosTopLeft( nPara ).Y();
-//STRIP001 /*?*/         Point aBulletPos( aBulletDocPos );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if ( IsVertical() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/             aBulletPos.Y() = aBulletDocPos.X();
-//STRIP001 /*?*/             aBulletPos.X() = GetPaperSize().Width() - aBulletDocPos.Y();
-//STRIP001 /*?*/             // Rotate:
-//STRIP001 /*?*/             aBulletPos.X() -= aBulletSize.Height();
-//STRIP001 /*?*/             Size aSz( aBulletSize );
-//STRIP001 /*?*/             aBulletSize.Width() = aSz.Height();
-//STRIP001 /*?*/             aBulletSize.Height() = aSz.Width();
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/         else if ( pEditEngine->IsRightToLeft( nPara ) )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             aBulletPos.X() = GetPaperSize().Width() - aBulletDocPos.X() - aBulletSize.Width();
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        aBulletArea = Rectangle( aBulletPos, aBulletSize );
 /*N*/     }
 /*N*/   return aBulletArea;
 /*N*/ }
 
-//STRIP001 void Outliner::ExpandHdl()
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  aExpandHdl.Call( this );
-//STRIP001 }
 
-//STRIP001 void Outliner::OverwriteLevel0Bullet( const SvxNumberFormat& rNumberFormat )
-//STRIP001 {
-//STRIP001     delete pOverwriteLevel0Bullet;
-//STRIP001     pOverwriteLevel0Bullet = new SvxNumberFormat( rNumberFormat );
-//STRIP001 }
 
 /*N*/ EBulletInfo Outliner::GetBulletInfo( USHORT nPara )
 /*N*/ {
@@ -1998,21 +1104,6 @@ namespace binfilter {
 /*N*/   return aText;
 /*N*/ }
 
-//STRIP001 void Outliner::Remove( Paragraph* pPara, ULONG nParaCount )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  ULONG nPos = pParaList->GetAbsPos( pPara );
-//STRIP001  if( !nPos && ( nParaCount >= pParaList->GetParagraphCount() ) )
-//STRIP001  {
-//STRIP001      Clear();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      for( USHORT n = 0; n < (USHORT)nParaCount; n++ )
-//STRIP001          pEditEngine->RemoveParagraph( (USHORT) nPos );
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void Outliner::StripPortions()
 /*N*/ {
@@ -2033,20 +1124,7 @@ namespace binfilter {
 /*N*/   aDrawPortionHdl.Call( &aInfo );
 /*N*/ }
 
-//STRIP001 long Outliner::RemovingPagesHdl( OutlinerView* pView )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001  return aRemovingPagesHdl.IsSet() ? aRemovingPagesHdl.Call( pView ) : TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL Outliner::ImpCanDeleteSelectedPages( OutlinerView* pCurView, USHORT nFirstPage, USHORT nPages )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  nDepthChangedHdlPrevDepth = nPages;
-//STRIP001  pHdlParagraph = (Paragraph*)nFirstPage;
-//STRIP001  return (BOOL)RemovingPagesHdl( pCurView );
-//STRIP001 }
 
 /*N*/ SfxItemSet Outliner::GetParaAttribs( ULONG nPara )
 /*N*/ {
@@ -2056,138 +1134,26 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, pPara )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  ULONG nPara = pParaList->GetAbsPos( pPara );
-//STRIP001  pEditEngine->ShowParagraph( (USHORT)nPara, pPara->IsVisible() );
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, pInfos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  GetBeginMovingHdl().Call( this );
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, pInfos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     BOOL bCheckStyles = ( ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEOBJECT ) || ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEVIEW ) );
-//STRIP001     if ( bCheckStyles )
-//STRIP001     {
-//STRIP001         UndoActionStart( EDITUNDO_DRAGANDDROP );
-//STRIP001         for ( USHORT n = GetParagraphCount(); n; )
-//STRIP001         {
-//STRIP001             if ( GetDepth( --n ) )
-//STRIP001             {
-//STRIP001                 pInfos->pLevelNStyle = GetStyleSheet( n );
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001         }
-//STRIP001         if ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEVIEW )
-//STRIP001             pInfos->pLevel0Style = GetStyleSheet( 0 );
-//STRIP001     }
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, pInfos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if ( pInfos->nAction == EE_ACTION_PASTE )
-//STRIP001     {
-//STRIP001         bPasting = FALSE;
-//STRIP001         ImpTextPasted( pInfos->nStartPara, pInfos->nEndPara - pInfos->nStartPara + 1 );
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         for ( USHORT nPara = pInfos->nStartPara; nPara <= pInfos->nEndPara; nPara++ )
-//STRIP001         {
-//STRIP001             USHORT nOutlLevel = nMinDepth;
-//STRIP001             if ( nPara )
-//STRIP001             {
-//STRIP001              const SfxUInt16Item& rLevel = (const SfxUInt16Item&) pEditEngine->GetParaAttrib( nPara, EE_PARA_OUTLLEVEL );
-//STRIP001              nOutlLevel = rLevel.GetValue();
-//STRIP001             }
-//STRIP001             ImplCheckDepth( nOutlLevel );
-//STRIP001
-//STRIP001             Paragraph* pPara = GetParagraph( nPara );
-//STRIP001             if ( nOutlLevel != pPara->GetDepth() )
-//STRIP001             {
-//STRIP001              pHdlParagraph = pPara;
-//STRIP001              nDepthChangedHdlPrevDepth = pPara->GetDepth();
-//STRIP001              ImplInitDepth( nPara, nOutlLevel, FALSE );
-//STRIP001                 pEditEngine->QuickMarkInvalid( ESelection( nPara, 0, nPara, 0 ) );
-//STRIP001              DepthChangedHdl();
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     BOOL bCheckStyles = ( ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEOBJECT ) || ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEVIEW ) );
-//STRIP001     if ( bCheckStyles )
-//STRIP001     {
-//STRIP001         BOOL bOutlineView = ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEVIEW );
-//STRIP001         for ( USHORT n = pInfos->nStartPara; n <= pInfos->nEndPara; n++ )
-//STRIP001         {
-//STRIP001             USHORT nDepth = GetDepth( n );
-//STRIP001             Paragraph* pPara = GetParagraph( n );
-//STRIP001
-//STRIP001             // Prefer depth from pasted text
-//STRIP001             // First paragraph in OutlineView cannot be on Level > 0!
-//STRIP001             const SfxUInt16Item& rLevel = (const SfxUInt16Item&) pEditEngine->GetParaAttrib( n, EE_PARA_OUTLLEVEL );
-//STRIP001             if ( ( nDepth < GetMinDepth() ) || ( rLevel.GetValue() != nDepth ) || ( bOutlineView && ( n == 0 ) && ( nDepth != 0 ) ) )
-//STRIP001             {
-//STRIP001                 nDepth = rLevel.GetValue();
-//STRIP001                 if ( bOutlineView && !n )
-//STRIP001                     nDepth = 0;
-//STRIP001                 ImplCheckDepth( nDepth );
-//STRIP001              ImplInitDepth( n, nDepth, TRUE );
-//STRIP001             }
-//STRIP001
-//STRIP001             if ( bOutlineView && ( nDepth == 0 ) )
-//STRIP001             {
-//STRIP001                 if ( pInfos->pLevel0Style && ( GetStyleSheet( n ) != pInfos->pLevel0Style ) )
-//STRIP001                 {
-//STRIP001                  SetStyleSheet( n, pInfos->pLevel0Style );
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             else
-//STRIP001             {
-//STRIP001                 // ImplSetLevelDependendStyleSheet checks if stylesheet changes...
-//STRIP001                 ImplSetLevelDependendStyleSheet( n, pInfos->pLevelNStyle );
-//STRIP001             }
-//STRIP001             ImplCheckNumBulletItem( n );
-//STRIP001         }
-//STRIP001         UndoActionEnd( EDITUNDO_DRAGANDDROP );
-//STRIP001
-//STRIP001     }
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, pInfos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  pParaList->MoveParagraphs( pInfos->nStartPara, pInfos->nDestPara, pInfos->nEndPara - pInfos->nStartPara + 1 );
-//STRIP001  USHORT nChangesStart = Min( pInfos->nStartPara, pInfos->nDestPara );
-//STRIP001  USHORT nParas = (USHORT)pParaList->GetParagraphCount();
-//STRIP001  for ( USHORT n = nChangesStart; n < nParas; n++ )
-//STRIP001      ImplCalcBulletText( n, FALSE, FALSE );
-//STRIP001
-//STRIP001     // ersten Absatz immer auf Ebene 0 stellen
-//STRIP001  Paragraph* pStartPara = pParaList->GetParagraph( 0 );
-//STRIP001  if( pStartPara->GetDepth() != GetMinDepth() )
-//STRIP001  {
-//STRIP001      SetDepth( pStartPara, GetMinDepth() );
-//STRIP001      if ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEOBJECT )
-//STRIP001          ImplSetLevelDependendStyleSheet( 0 );
-//STRIP001  }
-//STRIP001
-//STRIP001  aEndMovingHdl.Call( this );
-//STRIP001
 /*N*/     return 0;
 /*N*/ }
 
@@ -2266,18 +1232,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Outliner::SetFlatMode( BOOL bFlat )
-//STRIP001 {
-//STRIP001  DBG_CHKTHIS(Outliner,0);
-//STRIP001
-//STRIP001  if( bFlat != pEditEngine->IsFlatMode() )
-//STRIP001  {
-//STRIP001      for ( USHORT nPara = (USHORT)pParaList->GetParagraphCount(); nPara; )
-//STRIP001          pParaList->GetParagraph( --nPara )->aBulSize.Width() = -1;
-//STRIP001
-//STRIP001      pEditEngine->SetFlatMode( bFlat );
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ String Outliner::ImplGetBulletText( USHORT nPara )
 /*N*/ {
@@ -2326,16 +1280,6 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( Outliner, EditEngineNotifyHdl, EENotify*, pNotify )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     if ( !bBlockInsCallback )
-//STRIP001     {
-//STRIP001         pEditEngine->aOutlinerNotifyHdl.Call( pNotify );
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         EENotify* pNewNotify = new EENotify( *pNotify );
-//STRIP001         pEditEngine->aNotifyCache.Insert( pNewNotify, pEditEngine->aNotifyCache.Count() );
-//STRIP001     }
-//STRIP001
 /*N*/     return 0;
 /*N*/ }
 
