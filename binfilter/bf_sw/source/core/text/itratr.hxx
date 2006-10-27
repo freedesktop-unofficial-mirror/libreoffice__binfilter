@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itratr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:15:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:04:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -147,7 +147,6 @@ public:
     inline SwAttrHandler& GetAttrHandler() { return aAttrHandler; }
 
 #if OSL_DEBUG_LEVEL > 1
-//STRIP001  void Dump( SvStream &rOS ) const;
 #endif
 };
 
