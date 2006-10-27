@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ddelink.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:57:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:26:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,10 +80,8 @@ public:
                                             // von SvBaseLink ueberladen:
     virtual void    DataChanged( const String& rMimeType,
                                 const ::com::sun::star::uno::Any & rValue );
-//STRIP001  void            NewData(USHORT nCols, USHORT nRows);
 
                                             // von SfxBroadcaster ueberladen:
-//STRIP001  virtual void    ListenersGone();
 
                                             // fuer Interpreter:
 
@@ -95,12 +93,7 @@ public:
     const String&   GetItem() const     { return aItem; }
     BYTE            GetMode() const     { return nMode; }
 
-//STRIP001  void            ResetValue();           // Wert zuruecksetzen
     void            TryUpdate();
-//STRIP001
-//STRIP001  BOOL            NeedsUpdate() const { return bNeedUpdate; }
-//STRIP001
-//STRIP001  static BOOL     IsInUpdate()        { return bIsInUpdate; }
 };
 
 

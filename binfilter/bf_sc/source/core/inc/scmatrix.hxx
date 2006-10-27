@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scmatrix.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:59:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:27:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,8 +115,6 @@ public:
     ULONG GetElementCount() const       { return (ULONG) nAnzCol * nAnzRow; }
     void PutDouble(double fVal, USHORT nC, USHORT nR);
     void PutDouble(double fVal, ULONG nIndex)        { pMat[nIndex].fVal = fVal; }
-//STRIP001  void PutDoubleAndResetString( double fVal, USHORT nC, USHORT nR );
-//STRIP001  void PutDoubleAndResetString( double fVal, ULONG nIndex );
     void PutString(const String& rStr, USHORT nC, USHORT nR);
     void PutString(const String& rStr, ULONG nIndex);
     void PutEmpty(USHORT nC, USHORT nR);
@@ -162,7 +160,6 @@ public:
     void MatCopy (ScMatrix& mRes) const;
     /// Copy upper left of this matrix to mRes matrix.
     /// This matrix dimensions must be greater than mRes matrix dimensions.
-//STRIP001  void MatCopyUpperLeft(ScMatrix& mRes) const;
 
     // Convert ScInterpreter::CompareMat values (-1,0,1) to boolean values
     void CompareEqual();
