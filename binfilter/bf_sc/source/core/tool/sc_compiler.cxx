@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:14:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:31:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,12 +46,7 @@
 #include <basic/sbstar.hxx>
 #include <svtools/zforlist.hxx>
 #include <tools/rcid.h>
-// auto strip #include <tools/rc.hxx>
 #include <tools/solar.h>
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -65,7 +59,6 @@
 #include <string.h>
 #include <math.h>
 
-// auto strip #include "compiler.hxx"
 #include "rangenam.hxx"
 #include "dbcolect.hxx"
 #include "document.hxx"
