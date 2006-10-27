@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_error.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-23 11:53:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:59:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,138 +47,10 @@
     Beschreibung:   Strings
  --------------------------------------------------------------------*/
 
-//STRIP001 String STR_COMCORE_READERROR
-//STRIP001 {
-//STRIP001      TEXT = "Lesefehler" ;
-//STRIP001      TEXT [ English ] = "Read Error" ;
-//STRIP001      TEXT [ norwegian ] = "Lesefeil" ;
-//STRIP001      TEXT [ italian ] = "Errore di lettura" ;
-//STRIP001      TEXT [ portuguese_brazilian ] = "Erro de Leitura" ;
-//STRIP001      TEXT [ portuguese ] = "Erro de leitura" ;
-//STRIP001      TEXT [ finnish ] = "Lukuvirhe" ;
-//STRIP001      TEXT [ danish ] = "Læsefejl" ;
-//STRIP001      TEXT [ french ] = "Erreur de lecture" ;
-//STRIP001      TEXT [ swedish ] = "Läsfel" ;
-//STRIP001      TEXT [ dutch ] = "Leesfout" ;
-//STRIP001      TEXT [ spanish ] = "Error de lectura" ;
-//STRIP001      TEXT [ english_us ] = "Read-Error" ;
-//STRIP001      TEXT[ chinese_simplified ] = "è¯»æ–‡ä»¶æ—¶å‘ç”Ÿé”™è¯¯";
-//STRIP001      TEXT[ russian ] = "Îøèáêà ÷òåí?";
-//STRIP001      TEXT[ polish ] = "B³¹d odczytu";
-//STRIP001      TEXT[ japanese ] = "èª­ã¿å–ã‚Šã‚¨ãƒ©ãƒ?";
-//STRIP001      TEXT[ chinese_traditional ] = "è®€æª”æ¡ˆæ™‚ç™¼ç”ŸéŒ¯èª?";
-//STRIP001      TEXT[ arabic ] = "ÍÏ?ÎØ?ÃËäÇ?ÇáŞÑÇÁ?";
-//STRIP001      TEXT[ greek ] = "ÓöÜëìá áíÜãíùóç?";
-//STRIP001      TEXT[ korean ] = "ì½ê¸° ì˜¤ë¥˜";
-//STRIP001      TEXT[ turkish ] = "Okuma hatas?";
-//STRIP001      TEXT[ language_user1 ] = " ";
-//STRIP001      TEXT[ catalan ] = "Error de lectura";
-//STRIP001      TEXT[ thai ] = "à¸­à¹ˆà¸²à¸™à¸œà¸´à¸”à¸à¸¥à¸²à¸?";
-//STRIP001      TEXT[ czech ] = "Chyba pÅ™i ÄtenÃ­";
-//STRIP001      TEXT[ hebrew ] = "Lesefehler";
-//STRIP001      TEXT[ hindi ] = "à¤ªà¤¢à¤¼à¤¨à¥?à¤®à¥‡à¤?à¤—à¤²à¤¤à¥€";
-//STRIP001      TEXT[ slovak ] = "Chyba pri ÄÃ­tanÃ­";
-//STRIP001 };
-//STRIP001 String STR_COMCORE_CANT_SHOW
-//STRIP001 {
-//STRIP001      TEXT = "Grafik nicht darstellbar." ;
-//STRIP001      TEXT [ English ] = "Graphic cannot be displayed." ;
-//STRIP001      TEXT [ norwegian ] = "Graphic cannot be displayed." ;
-//STRIP001      TEXT [ italian ] = "L'immagine non ?visualizzabile" ;
-//STRIP001      TEXT [ portuguese_brazilian ] = "Não ?possível exibir a figura." ;
-//STRIP001      TEXT [ portuguese ] = "Impossível apresentar imagem." ;
-//STRIP001      TEXT [ french ] = "Impossible d'afficher l'image !" ;
-//STRIP001      TEXT [ dutch ] = "Afbeelding kan niet worden weergegeven" ;
-//STRIP001      TEXT [ spanish ] = "No es posible presentar la imagen." ;
-//STRIP001      TEXT [ danish ] = "Grafik kan ikke vises." ;
-//STRIP001      TEXT [ swedish ] = "Grafik kan inte visas." ;
-//STRIP001      TEXT [ finnish ] = "Kuvaa ei voida näyttää." ;
-//STRIP001      TEXT [ english_us ] = "Graphic cannot be displayed." ;
-//STRIP001      TEXT[ chinese_simplified ] = "æ— æ³•æ˜¾ç¤ºå›¾å½¢";
-//STRIP001      TEXT[ russian ] = "Íåâîçìîæíî ïîêàçàòü ãğàôè÷åñêè?îáúåêò.";
-//STRIP001      TEXT[ polish ] = "Nie mo¿na wyœwietli?grafiki.";
-//STRIP001      TEXT[ japanese ] = "å›³ã‚’è¡¨ç¤ºã§ãã¾ã›ã‚“ã€?";
-//STRIP001      TEXT[ chinese_traditional ] = "ç„¡æ³•é¡¯ç¤ºåœ–å½¢";
-//STRIP001      TEXT[ arabic ] = "áÇ íãßä ÚÑ?ÇáÑÓæãÇÊ.";
-//STRIP001      TEXT[ greek ] = "Äå?åßíá?äõíáôŞ ?ğáñïõóßáóç ôï?ãñáöéêïı.";
-//STRIP001      TEXT[ korean ] = "ê·¸ë˜í”½ì„ã€€ë‚˜íƒ€ë‚?ìˆ?ì—†ìŠµë‹ˆë‹¤.";
-//STRIP001      TEXT[ turkish ] = "Grafik görüntülenemiyor.";
-//STRIP001      TEXT[ language_user1 ] = " ";
-//STRIP001      TEXT[ catalan ] = "No es pot mostrar la imatge.";
-//STRIP001      TEXT[ thai ] = "à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¹à¸ªà¸”à¸‡à¸œà¸¥à¸à¸£à¸²à¸Ÿà¸´à¸„à¹„à¸”à¹‰";
-//STRIP001      TEXT[ czech ] = "ObrÃ¡zek nenÃ­ moÅ¾nÃ© zobrazit.";
-//STRIP001      TEXT[ hebrew ] = "Grafik nicht darstellbar.";
-//STRIP001      TEXT[ hindi ] = "à¤¸à¥à¤šà¤¿à¤¤à¥à¤?à¤•à¥‹ à¤¨à¤¹à¥€à¤?à¤¦à¤¿à¤–à¤¾ à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆ à¥?";
-//STRIP001      TEXT[ slovak ] = "ObrÃ¡zok nie je moÅ¾nÃ© zobraziÅ¥.";
-//STRIP001 };
 
 /*--------------------------------------------------------------------
     Beschreibung:   Boxes
  --------------------------------------------------------------------*/
-//STRIP001 InfoBox ERR_CLPBRD_WRITE
-//STRIP001 {
-//STRIP001  MESSAGE = "Fehler beim Kopieren in die Zwischenablage." ;
-//STRIP001  MESSAGE [ English ] = "Error while copying into the clipboard." ;
-//STRIP001  MESSAGE [ norwegian ] = "Feil ved kopiering  til utklippstavlen." ;
-//STRIP001  MESSAGE [ italian ] = "Errore durante la copia negli appunti" ;
-//STRIP001  MESSAGE [ portuguese_brazilian ] = "Ocorreu um erro durante a cópia para a área de transferência." ;
-//STRIP001  MESSAGE [ portuguese ] = "Erro ao copiar para a Área de Transferência." ;
-//STRIP001  MESSAGE [ finnish ] = "Virhe kopioitaessa tietoja leikepöydälle." ;
-//STRIP001  MESSAGE [ danish ] = "Fejl under kopiering til udskriftsholderen." ;
-//STRIP001  MESSAGE [ french ] = "Erreur lors de la copie vers le presse-papiers." ;
-//STRIP001  MESSAGE [ swedish ] = "Fel vid kopiering till urklippet." ;
-//STRIP001  MESSAGE [ dutch ] = "Fout bij kopiëren naar Klembord." ;
-//STRIP001  MESSAGE [ spanish ] = "Error al copiar al portapapeles." ;
-//STRIP001  MESSAGE [ english_us ] = "Error while copying to the clipboard." ;
-//STRIP001  MESSAGE[ chinese_simplified ] = "åœ¨å¤åˆ¶æ•°æ®åˆ°å‰ªè´´æ¿æ—¶å‘ç”Ÿé”™è¯¯ã€?";
-//STRIP001  MESSAGE[ russian ] = "Îøèáêà êîïèğîâàíèÿ ?áóôå?îáìåíà.";
-//STRIP001  MESSAGE[ polish ] = "B³¹d podczas kopiowania do schowka.";
-//STRIP001  MESSAGE[ japanese ] = "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹éš›ã®ã‚¨ãƒ©ãƒ¼ã€?";
-//STRIP001  MESSAGE[ chinese_traditional ] = "è¤‡è£½è³‡æ–™åˆ°å‰ªè²¼ç°¿æ™‚ç™¼ç”ŸéŒ¯èª¤ã€?";
-//STRIP001  MESSAGE[ arabic ] = "ÍÏ?ÎØ?ÃËäÇ?ÇáäÓ?Åá?ÇáÍÇİÙ?";
-//STRIP001  MESSAGE[ greek ] = "ÓöÜëìá êáôÜ ôç?áíôéãñáö?óô?ğñü÷åéñï.";
-//STRIP001  MESSAGE[ korean ] = "í´ë¦½ë³´ë“œì—?ë³µì‚¬ ì¤?ì˜¤ë¥˜";
-//STRIP001  MESSAGE[ turkish ] = "Panoya kopyalama hatas?";
-//STRIP001  MESSAGE[ language_user1 ] = " ";
-//STRIP001  MESSAGE[ catalan ] = "S'ha produït un error en copiar al porta-retalls.";
-//STRIP001  MESSAGE[ thai ] = "à¸œà¸´à¸”à¸à¸¥à¸²à¸”à¸‚à¸“à¸°à¸„à¸±à¸”à¸¥à¸­à¸à¹„à¸›à¸¢à¸±à¸‡à¸„à¸¥à¸´à¸›à¸šà¸­à¸£à¹Œà¸”";
-//STRIP001  MESSAGE[ czech ] = "Chyba pÅ™i kopÃ­rovÃ¡nÃ­ do schrÃ¡nky.";
-//STRIP001  MESSAGE[ hebrew ] = "Fehler beim Kopieren in die Zwischenablage.";
-//STRIP001  MESSAGE[ hindi ] = "à¤•à¥à¤²à¤¿à¤ªà¤¬à¥‹à¤°à¥à¤¡ à¤®à¥‡à¤?à¤ªà¥à¤°à¤¤à¤¿à¤²à¤¿à¤ªà¤?à¤¬à¤¨à¤¾à¤¨à¥?à¤•à¥‡ à¤¸à¤®à¤?à¤—à¤²à¤¤à¥€ à¥?";
-//STRIP001  MESSAGE[ slovak ] = "Chyba pri kopÃ­rovanÃ­ do schrÃ¡nky.";
-//STRIP001 };
-//STRIP001 InfoBox ERR_CLPBRD_READ
-//STRIP001 {
-//STRIP001  MESSAGE = "Fehler beim Lesen aus der Zwischenablage." ;
-//STRIP001  MESSAGE [ English ] = "Error while reading from the clipboard." ;
-//STRIP001  MESSAGE [ norwegian ] = "Feil ved lesing fra utklippstavlen." ;
-//STRIP001  MESSAGE [ italian ] = "Errore durante la lettura dagli appunti" ;
-//STRIP001  MESSAGE [ portuguese_brazilian ] = "Ocorreu um erro durante a leitura da área de transferência." ;
-//STRIP001  MESSAGE [ portuguese ] = "Erro durante a leitura da Área de Transferência." ;
-//STRIP001  MESSAGE [ finnish ] = "Virhe luettaessa tietoja leikepöydält?" ;
-//STRIP001  MESSAGE [ danish ] = "Fejl under læsning fra udskriftsholderen." ;
-//STRIP001  MESSAGE [ french ] = "Erreur lors de la lecture du presse-papiers." ;
-//STRIP001  MESSAGE [ swedish ] = "Fel vid läsning från urklippet." ;
-//STRIP001  MESSAGE [ dutch ] = "Fout bij lezen van Klembord." ;
-//STRIP001  MESSAGE [ spanish ] = "Error al leer del portapapeles." ;
-//STRIP001  MESSAGE [ english_us ] = "Error reading from the clipboard." ;
-//STRIP001  MESSAGE[ chinese_simplified ] = "åœ¨è¯»å–å‰ªè´´æ¿æ—¶å‘ç”Ÿé”™è¯¯ã€?";
-//STRIP001  MESSAGE[ russian ] = "Îøèáêà ÷òåí? èç áóôåğà îáìåíà.";
-//STRIP001  MESSAGE[ polish ] = "B³¹d odczytu ze schowka.";
-//STRIP001  MESSAGE[ japanese ] = "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰èª­ã¿å–ã‚‹éš›ã®ã‚¨ãƒ©ãƒ¼ã€?";
-//STRIP001  MESSAGE[ chinese_traditional ] = "åœ¨è®€å–å‰ªè²¼ç°¿æ™‚ç™¼ç”ŸéŒ¯èª¤ã€?";
-//STRIP001  MESSAGE[ arabic ] = "ÍÏ?ÎØ?ÃËäÇ?ÇáŞÑÇÁ?ãä ÇáÍÇİÙ?";
-//STRIP001  MESSAGE[ language_user1 ] = " ";
-//STRIP001  MESSAGE[ greek ] = "ÓöÜëìá êáôÜ ôç?áíÜãíùóç áğ?ôï ğñü÷åéñï.";
-//STRIP001  MESSAGE[ korean ] = "í´ë¦½ë³´ë“œë¡œë¶€í„?ì½ê¸° ì˜¤ë¥˜";
-//STRIP001  MESSAGE[ turkish ] = "Panodan okuma hatas?";
-//STRIP001  MESSAGE[ catalan ] = "S'ha produït un error en llegir el porta-retalls.";
-//STRIP001  MESSAGE[ thai ] = "à¸­à¹ˆà¸²à¸™à¸œà¸´à¸”à¸à¸¥à¸²à¸”à¸ˆà¸²à¸à¸„à¸¥à¸´à¸›à¸šà¸­à¸£à¹Œà¸?";
-//STRIP001  MESSAGE[ czech ] = "Chyba pÅ™i ÄtenÃ­ ze schrÃ¡nky.";
-//STRIP001  MESSAGE[ hebrew ] = "Fehler beim Lesen aus der Zwischenablage.";
-//STRIP001  MESSAGE[ hindi ] = "à¤•à¥à¤²à¤¿à¤ªà¤¬à¥‹à¤°à¥à¤¡ à¤¸à¥‡ à¤ªà¤¢à¤¼à¤¨à¥?à¤•à¥‡ à¤¸à¤®à¤?à¤—à¤²à¤¤à¥€ à¥?";
-//STRIP001  MESSAGE[ slovak ] = "Chyba pri ÄÃ­tanÃ­Â­ zo schrÃ¡nky.";
-//STRIP001 };
 
 
 #define ERR_CODE( class, err )  (class | (err - ERROR_SW_BASE))
