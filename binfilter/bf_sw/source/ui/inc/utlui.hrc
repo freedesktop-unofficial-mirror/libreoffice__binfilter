@@ -4,9 +4,9 @@
  *
  *  $RCSfile: utlui.hrc,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:01:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:59:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,6 @@
 
 
 #define RID_SW_SHELLRES             (RC_UTLUI_BEGIN + 1)
-//STRIP001 #define RID_STR_SYSTEM               (RC_UTLUI_BEGIN + 2)
 
 // ------------------------------------------------------------------------
 
@@ -97,7 +96,6 @@
 #define FLD_DOCINFO_EDIT    (FLD_DOCINFO_BEGIN + 12)
 #define FLD_DOCINFO_END     (FLD_DOCINFO_BEGIN + 13)
 
-//STRIP001 #define STR_SERVICE_UNAVAILABLE  (FLD_DOCINFO_END  + 1)
 
  #define STR_AUTH_TYPE_START    (FLD_DOCINFO_END  + 2)
  #define STR_AUTH_TYPE_ARTICLE      (STR_AUTH_TYPE_START + 0)
@@ -123,57 +121,11 @@
  #define STR_AUTH_TYPE_CUSTOM4       (STR_AUTH_TYPE_START + 20)
  #define STR_AUTH_TYPE_CUSTOM5       (STR_AUTH_TYPE_START + 21)
  #define STR_AUTH_TYPE_END          (STR_AUTH_TYPE_CUSTOM5)
-//STRIP001
-//STRIP001 #define STR_AUTH_FIELD_START         (STR_AUTH_TYPE_END + 1)
-//STRIP001 #define STR_AUTH_FIELD_IDENTIFIER        (STR_AUTH_FIELD_START + 0)
-//STRIP001 #define STR_AUTH_FIELD_AUTHORITY_TYPE   (STR_AUTH_FIELD_START + 1)
-//STRIP001 #define STR_AUTH_FIELD_ADDRESS          (STR_AUTH_FIELD_START + 2)
-//STRIP001 #define STR_AUTH_FIELD_ANNOTE           (STR_AUTH_FIELD_START + 3)
-//STRIP001 #define STR_AUTH_FIELD_AUTHOR           (STR_AUTH_FIELD_START + 4)
-//STRIP001 #define STR_AUTH_FIELD_BOOKTITLE        (STR_AUTH_FIELD_START + 5)
-//STRIP001 #define STR_AUTH_FIELD_CHAPTER          (STR_AUTH_FIELD_START + 6)
-//STRIP001 #define STR_AUTH_FIELD_EDITION          (STR_AUTH_FIELD_START + 7)
-//STRIP001 #define STR_AUTH_FIELD_EDITOR           (STR_AUTH_FIELD_START + 8)
-//STRIP001 #define STR_AUTH_FIELD_HOWPUBLISHED     (STR_AUTH_FIELD_START + 9)
-//STRIP001 #define STR_AUTH_FIELD_INSTITUTION      (STR_AUTH_FIELD_START + 10)
-//STRIP001 #define STR_AUTH_FIELD_JOURNAL          (STR_AUTH_FIELD_START + 11)
-//STRIP001 #define STR_AUTH_FIELD_MONTH            (STR_AUTH_FIELD_START + 12)
-//STRIP001 #define STR_AUTH_FIELD_NOTE             (STR_AUTH_FIELD_START + 13)
-//STRIP001 #define STR_AUTH_FIELD_NUMBER           (STR_AUTH_FIELD_START + 14)
-//STRIP001 #define STR_AUTH_FIELD_ORGANIZATIONS    (STR_AUTH_FIELD_START + 15)
-//STRIP001 #define STR_AUTH_FIELD_PAGES            (STR_AUTH_FIELD_START + 16)
-//STRIP001 #define STR_AUTH_FIELD_PUBLISHER        (STR_AUTH_FIELD_START + 17)
-//STRIP001 #define STR_AUTH_FIELD_SCHOOL           (STR_AUTH_FIELD_START + 18)
-//STRIP001 #define STR_AUTH_FIELD_SERIES           (STR_AUTH_FIELD_START + 19)
-//STRIP001 #define STR_AUTH_FIELD_TITLE            (STR_AUTH_FIELD_START + 20)
-//STRIP001 #define STR_AUTH_FIELD_TYPE             (STR_AUTH_FIELD_START + 21)
-//STRIP001 #define STR_AUTH_FIELD_VOLUME           (STR_AUTH_FIELD_START + 22)
-//STRIP001 #define STR_AUTH_FIELD_YEAR             (STR_AUTH_FIELD_START + 23)
-//STRIP001 #define STR_AUTH_FIELD_URL              (STR_AUTH_FIELD_START + 24)
-//STRIP001 #define STR_AUTH_FIELD_CUSTOM1          (STR_AUTH_FIELD_START + 25)
-//STRIP001 #define STR_AUTH_FIELD_CUSTOM2          (STR_AUTH_FIELD_START + 26)
-//STRIP001 #define STR_AUTH_FIELD_CUSTOM3          (STR_AUTH_FIELD_START + 27)
-//STRIP001 #define STR_AUTH_FIELD_CUSTOM4          (STR_AUTH_FIELD_START + 28)
-//STRIP001 #define STR_AUTH_FIELD_CUSTOM5          (STR_AUTH_FIELD_START + 29)
-//STRIP001 #define STR_AUTH_FIELD_ISBN             (STR_AUTH_FIELD_START + 30)
-//STRIP001 #define STR_AUTH_FIELD_END               (STR_AUTH_FIELD_ISBN)
 
 
-//STRIP001 #define RES_FRMEX_MENU                   (STR_AUTH_FIELD_END + 1)
 
-//STRIP001 #define  DLG_NAVIGATION_PI           (RC_UTLUI_BEGIN + 1)
-//STRIP001 #define DLG_ADDR_PI                 (RC_UTLUI_BEGIN + 2)
-//STRIP001 #define DLG_GLOSSARY_DECIDE_DLG     (RC_UTLUI_BEGIN + 3)
 
-//STRIP001 #define IMG_NAVI_ENTRYBMP            (RC_UTLUI_BEGIN + 4)
-//STRIP001 #define IMG_NAVI_ENTRYBMPH          (RC_UTLUI_BEGIN + 5)
-//STRIP001 #define ILIST_DB_DLG                (RC_UTLUI_BEGIN + 6)
-//STRIP001 #define ILIST_DB_DLG_HC             (RC_UTLUI_BEGIN + 7)
 
-//STRIP001 #define IMG_ONE_LEFT_HC              (RC_UTLUI_BEGIN + 8)
-//STRIP001 #define IMG_ONE_RIGHT_HC         (RC_UTLUI_BEGIN + 9)
-//STRIP001 #define IMG_ALL_LEFT_HC              (RC_UTLUI_BEGIN + 10)
-//STRIP001 #define IMG_ALL_RIGHT_HC         (RC_UTLUI_BEGIN + 11)
 
 //local ids of the Database ImageLists
 #define IMG_COLLAPSE        18002  /*RID_SVXIMG_COLLAPSEDNODE*/
@@ -182,10 +134,6 @@
 #define IMG_DBTABLE             2
 #define IMG_DBQUERY             3
 
-//STRIP001 #define UTLUI_ACT_END                RES_FRMEX_MENU
 
-//STRIP001 #if UTLUI_ACT_END > RC_UTLUI_END
-//STRIP001 #error Resource-Id Ueberlauf in #file, #line
-//STRIP001 #endif
 
 #endif

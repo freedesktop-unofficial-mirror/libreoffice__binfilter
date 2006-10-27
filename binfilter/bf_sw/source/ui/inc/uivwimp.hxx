@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uivwimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:00:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:58:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,7 +108,6 @@ class SwClipboardChangeListener : public ::cppu::WeakImplHelper1<
 
     // XEventListener
     virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )throw ( ::com::sun::star::uno::RuntimeException ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )
-//STRIP001      throw ( ::com::sun::star::uno::RuntimeException );
 
     // XClipboardListener
     virtual void SAL_CALL changedContents( const CLIP_NMSPC::ClipboardEvent& rEventObject )
@@ -157,8 +156,6 @@ public:
 
     ShellModes                      GetShellMode() {return eShellMode;}
 
-//STRIP001     void                            ExecuteScan(SfxRequest& rReq);
-//STRIP001  SwScannerEventListener&         GetScannerEventListener();
 
     void                            AddClipboardListener();
 

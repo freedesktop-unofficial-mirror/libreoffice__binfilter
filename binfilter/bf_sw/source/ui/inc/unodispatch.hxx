@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unodispatch.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:00:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:59:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,18 +38,12 @@
 #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
 #include <com/sun/star/frame/XDispatchProviderInterception.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
 #endif
 #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
-// auto strip #include <com/sun/star/frame/XDispatch.hpp>
-// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
