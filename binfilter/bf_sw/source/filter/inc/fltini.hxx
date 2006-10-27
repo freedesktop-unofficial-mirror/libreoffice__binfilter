@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fltini.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:16:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:39:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,27 +54,7 @@ class SwNodeIndex;
 
 // die speziellen Reader
 
-//STRIP001 class Sw6Reader: public Reader
-//STRIP001 {
-//STRIP001  virtual ULONG Read( SwDoc &,SwPaM &,const String &);
-//STRIP001 };
 
-//STRIP001 class W4WReader: public StgReader
-//STRIP001 {
-//STRIP001  String sVersion;
-//STRIP001  USHORT nFilter;
-//STRIP001  BOOL bStorageFlag;
-//STRIP001  virtual ULONG Read(SwDoc &,SwPaM &,const String &);
-//STRIP001  // wir wollen die Streams / Storages nicht geoeffnet haben
-//STRIP001  virtual int SetStrmStgPtr();
-//STRIP001 public:
-//STRIP001  W4WReader() : StgReader(), nFilter(0), bStorageFlag(FALSE) {}
-//STRIP001  virtual int GetReaderType();
-//STRIP001  virtual void SetFltName( const String& rFltName );
-//STRIP001
-//STRIP001  USHORT GetFilter() const { return nFilter; }
-//STRIP001  const String& GetVersion() const { return sVersion; }
-//STRIP001 };
 
 #ifdef DEBUG_SH
 
@@ -97,33 +77,10 @@ class LotusReader : public Reader
     CharSet eCodeSet;
     virtual ULONG Read(SwDoc &,SwPaM &,const String &);
 public:
-//STRIP001  virtual void SetFltName( const String& rFltNm );
 };
 
-//STRIP001 class HTMLReader: public Reader
-//STRIP001 {
-//STRIP001  // wir wollen die Streams / Storages nicht geoeffnet haben
-//STRIP001  virtual int SetStrmStgPtr();
-//STRIP001  virtual ULONG Read(SwDoc &,SwPaM &,const String &);
-//STRIP001  virtual String GetTemplateName() const;
-//STRIP001 public:
-//STRIP001  HTMLReader();
-//STRIP001 };
 
-//STRIP001 class WW1Reader : public Reader
-//STRIP001 {
-//STRIP001  virtual ULONG Read(SwDoc &,SwPaM &,const String &);
-//STRIP001 };
 
-//STRIP001 class WW8Reader : public StgReader
-//STRIP001 {
-//STRIP001  virtual ULONG Read(SwDoc &,SwPaM &,const String &);
-//STRIP001 public:
-//STRIP001  virtual int GetReaderType();
-//STRIP001
-//STRIP001  virtual BOOL HasGlossaries() const;
-//STRIP001  virtual BOOL ReadGlossaries( SwTextBlocks&, BOOL bSaveRelFiles ) const;
-//STRIP001 };
 
 class XMLReader : public Reader
 {
@@ -151,13 +108,9 @@ WriterRef GetWWWriter( const String& );
 /*?*/ WriterRef GetUndoWriter( const String& );
 #endif
 #else
-//STRIP001 /*?*/ void GetW4WWriter( const String&, WriterRef& );
 void GetStgWriter( const String&, WriterRef& );
 void GetWWWriter( const String&, WriterRef& );
-//STRIP001 /*?*/ void GetWW8Writer( const String&, WriterRef& );
 #if !( defined(PRODUCT) || defined(MAC) || defined(PM2) )
-//STRIP001 /*?*/ void GetDebugWriter( const String&, WriterRef& );
-//STRIP001 /*?*/ void GetUndoWriter( const String&, WriterRef& );
 #endif
 #endif
 
@@ -168,21 +121,6 @@ void GetWWWriter( const String&, WriterRef& );
 // verarbeiten jetzt aber relative Werte bezogen auf das LR-Space-Item.
 // Das hat zur Folge, das bei allen Absaetzen die EInzuege der NumRule vom
 // Absatz-Einzug abgezogen werden muss.
-//STRIP001 class SwRelNumRuleSpaces
-//STRIP001 {
-//STRIP001  SwNumRuleTbl* pNumRuleTbl;  // Liste aller benannten NumRules
-//STRIP001  BOOL bNewDoc;
-//STRIP001
-//STRIP001  void SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule );
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwRelNumRuleSpaces( SwDoc& rDoc, BOOL bNewDoc );
-//STRIP001  ~SwRelNumRuleSpaces();
-//STRIP001
-//STRIP001  void SetNumRelSpaces( SwDoc& rDoc );
-//STRIP001  void SetOultineRelSpaces( const SwNodeIndex& rStt,
-//STRIP001                              const SwNodeIndex& rEnd );
-//STRIP001 };
 
 #define SW_SV_BRUSH_25          0
 #define SW_SV_BRUSH_50          1
