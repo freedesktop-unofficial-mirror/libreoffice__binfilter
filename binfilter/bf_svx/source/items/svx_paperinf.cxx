@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_paperinf.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:18:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:17:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,15 +37,6 @@
 
 #include <limits.h>
 
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
 #ifndef _SVX_DIALOGS_HRC
 #include "dialogs.hrc"
@@ -53,9 +44,6 @@
 #ifndef _SVX_PAPERINF_HXX
 #include "paperinf.hxx"
 #endif
-// auto strip #ifndef _SVX_DIALMGR_HXX
-// auto strip #include "dialmgr.hxx"
-// auto strip #endif
 namespace binfilter {
 
 #define SVX_PAPER_OFFSET    3   // Anfang: enum Paper A3 - SvxPaper A0; Diff=3
@@ -253,10 +241,6 @@ static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
                 verglichen.
 ------------------------------------------------------------------------*/
 
-//STRIP001 SvxPaper SvxPaperInfo::GetPaper( const Size &rSize, MapUnit eUnit, BOOL bSloppy )
-//STRIP001 {
-//STRIP001  return GetPaper_Impl( rSize, eUnit, bSloppy );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -267,83 +251,12 @@ static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
 
 // -----------------------------------------------------------------------
 
-//STRIP001 Paper SvxPaperInfo::GetSvPaper( const Size &rSize, MapUnit eUnit,
-//STRIP001                              BOOL bSloppy )
-//STRIP001 {
-//STRIP001  Paper eRet = PAPER_USER;
-//STRIP001  SvxPaper ePaper = GetPaper_Impl( rSize, eUnit, bSloppy );
-//STRIP001
-//STRIP001  switch ( ePaper )
-//STRIP001  {
-//STRIP001      case SVX_PAPER_A3:      eRet = PAPER_A3;                        break;
-//STRIP001      case SVX_PAPER_A4:      eRet = PAPER_A4;                        break;
-//STRIP001      case SVX_PAPER_A5:      eRet = PAPER_A5;                        break;
-//STRIP001      case SVX_PAPER_B4:      eRet = PAPER_B4;                        break;
-//STRIP001      case SVX_PAPER_B5:      eRet = PAPER_B5;                        break;
-//STRIP001      case SVX_PAPER_LETTER:  eRet = PAPER_LETTER;                    break;
-//STRIP001      case SVX_PAPER_LEGAL:   eRet = PAPER_LEGAL;                     break;
-//STRIP001      case SVX_PAPER_TABLOID: eRet = PAPER_TABLOID;                   break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return eRet;
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  String Repr"asentation f"ur die SV-Defines f"ur
                 Papiergroessen.
 ------------------------------------------------------------------------*/
 
-//STRIP001 String SvxPaperInfo::GetName( SvxPaper ePaper )
-//STRIP001 {
-//STRIP001  USHORT  nResId = 0;
-//STRIP001
-//STRIP001  switch ( ePaper )
-//STRIP001  {
-//STRIP001      case SVX_PAPER_A0:          nResId = RID_SVXSTR_PAPER_A0;       break;
-//STRIP001      case SVX_PAPER_A1:          nResId = RID_SVXSTR_PAPER_A1;       break;
-//STRIP001      case SVX_PAPER_A2:          nResId = RID_SVXSTR_PAPER_A2;       break;
-//STRIP001      case SVX_PAPER_A3:          nResId = RID_SVXSTR_PAPER_A3;       break;
-//STRIP001      case SVX_PAPER_A4:          nResId = RID_SVXSTR_PAPER_A4;       break;
-//STRIP001      case SVX_PAPER_A5:          nResId = RID_SVXSTR_PAPER_A5;       break;
-//STRIP001      case SVX_PAPER_B4:          nResId = RID_SVXSTR_PAPER_B4;       break;
-//STRIP001      case SVX_PAPER_B5:          nResId = RID_SVXSTR_PAPER_B5;       break;
-//STRIP001      case SVX_PAPER_LETTER:      nResId = RID_SVXSTR_PAPER_LETTER;   break;
-//STRIP001      case SVX_PAPER_LEGAL:       nResId = RID_SVXSTR_PAPER_LEGAL;    break;
-//STRIP001      case SVX_PAPER_TABLOID:     nResId = RID_SVXSTR_PAPER_TABLOID;  break;
-//STRIP001      case SVX_PAPER_USER:        nResId = RID_SVXSTR_PAPER_USER;     break;
-//STRIP001      case SVX_PAPER_B6:          nResId = RID_SVXSTR_PAPER_B6;       break;
-//STRIP001      case SVX_PAPER_C4:          nResId = RID_SVXSTR_PAPER_C4;       break;
-//STRIP001      case SVX_PAPER_C5:          nResId = RID_SVXSTR_PAPER_C5;       break;
-//STRIP001      case SVX_PAPER_C6:          nResId = RID_SVXSTR_PAPER_C6;       break;
-//STRIP001      case SVX_PAPER_C65:         nResId = RID_SVXSTR_PAPER_C65;      break;
-//STRIP001      case SVX_PAPER_DL:          nResId = RID_SVXSTR_PAPER_DL;       break;
-//STRIP001      case SVX_PAPER_DIA:         nResId = RID_SVXSTR_PAPER_DIA;      break;
-//STRIP001      case SVX_PAPER_SCREEN:      nResId = RID_SVXSTR_PAPER_SCREEN;   break;
-//STRIP001      case SVX_PAPER_A:           nResId = RID_SVXSTR_PAPER_A;        break;
-//STRIP001      case SVX_PAPER_B:           nResId = RID_SVXSTR_PAPER_B;        break;
-//STRIP001      case SVX_PAPER_C:           nResId = RID_SVXSTR_PAPER_C;        break;
-//STRIP001      case SVX_PAPER_D:           nResId = RID_SVXSTR_PAPER_D;        break;
-//STRIP001      case SVX_PAPER_E:           nResId = RID_SVXSTR_PAPER_E;        break;
-//STRIP001      case SVX_PAPER_EXECUTIVE:   nResId = RID_SVXSTR_PAPER_EXECUTIVE;break;
-//STRIP001      case SVX_PAPER_LEGAL2:      nResId = RID_SVXSTR_PAPER_LEGAL2;   break;
-//STRIP001      case SVX_PAPER_MONARCH:     nResId = RID_SVXSTR_PAPER_MONARCH;  break;
-//STRIP001      case SVX_PAPER_COM675:      nResId = RID_SVXSTR_PAPER_COM675;   break;
-//STRIP001      case SVX_PAPER_COM9:        nResId = RID_SVXSTR_PAPER_COM9;     break;
-//STRIP001      case SVX_PAPER_COM10:       nResId = RID_SVXSTR_PAPER_COM10;    break;
-//STRIP001      case SVX_PAPER_COM11:       nResId = RID_SVXSTR_PAPER_COM11;    break;
-//STRIP001      case SVX_PAPER_COM12:       nResId = RID_SVXSTR_PAPER_COM12;    break;
-//STRIP001      case SVX_PAPER_KAI16:       nResId = RID_SVXSTR_PAPER_KAI16;    break;
-//STRIP001      case SVX_PAPER_KAI32:       nResId = RID_SVXSTR_PAPER_KAI32;    break;
-//STRIP001      case SVX_PAPER_KAI32BIG:    nResId = RID_SVXSTR_PAPER_KAI32BIG; break;
-//STRIP001      case SVX_PAPER_B4_JIS:      nResId = RID_SVXSTR_PAPER_B4_JIS;   break;
-//STRIP001      case SVX_PAPER_B5_JIS:      nResId = RID_SVXSTR_PAPER_B5_JIS;   break;
-//STRIP001      case SVX_PAPER_B6_JIS:      nResId = RID_SVXSTR_PAPER_B6_JIS;   break;
-//STRIP001
-//STRIP001      default: DBG_ERRORFILE( "unknown papersize" );
-//STRIP001  }
-//STRIP001
-//STRIP001  return ( nResId > 0 ) ? String( SVX_RES( nResId ) ) : String();
-//STRIP001 }
 
 
 }
