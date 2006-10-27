@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schlib.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:13:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:38:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,32 +40,22 @@
 #include <bf_sfx2/docfilt.hxx>
 #endif
 
-// auto strip #ifndef _SFXMODULE_HXX //autogen
-// auto strip #include <bf_sfx2/module.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
-// auto strip #include <bf_sfx2/docfac.hxx>
-// auto strip #endif
+#ifndef _SFXAPP_HXX
+#include <bf_sfx2/app.hxx>
+#endif
+
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
 
-
-
-#pragma hdrstop
-// auto strip #ifndef _SCHDLL0_HXX //autogen
-// auto strip #include "schdll0.hxx"
-// auto strip #endif
 #include <sot/formats.hxx>
 #include "schmod.hxx"
-// auto strip #include "schdll.hxx"
 #include "docshell.hxx"
 #include "schlib.hxx"
 
 class ValueSet;
 
 #include "res_bmp.hrc"
-#include "dlggraut.hxx"
 namespace binfilter {
 
 #define SCH_FORMAT_STR_50_FORMAT String( RTL_CONSTASCII_USTRINGPARAM( "StarChart 5.0" ))
