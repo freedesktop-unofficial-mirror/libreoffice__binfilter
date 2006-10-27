@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rdswg.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:06:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:01:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,12 +42,6 @@
 #ifndef _SVARRAY_HXX
 #include <svtools/svarray.hxx>
 #endif
-// auto strip #ifndef _SWGSTR_HXX
-// auto strip #include <swgstr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWGIDS_HXX
-// auto strip #include <swgids.hxx>
-// auto strip #endif
 class Brush;
 class Color;
 class SfxItemSet;
@@ -142,203 +136,20 @@ struct SectionInfo {            // Section-Info:
 typedef const SwTable *SwgSwTablePtr;
 SV_DECL_PTRARR(SwgTables,SwgSwTablePtr,4,4)
 
-//STRIP001 class SwSwgReader
-//STRIP001 {
-//STRIP001  friend class Sw2TextBlocks;
-//STRIP001
-//STRIP001 private:
-//STRIP001  ULONG         nErrno;       // Fehlernummer
-//STRIP001  SwPaM*        pPaM;         // WriterG-Einfuegepos
-//STRIP001  long          nDocStart;    // Beginn des Dokuments
-//STRIP001  long          nRecStart;    // Beginn der Records im Dokument
-//STRIP001  long          nNextDoc;     // Offset des naechsten Dokuments
-//STRIP001  FrmInfo*      pFrms;        // Frame-ID-Infos
-//STRIP001  FmtInfo*      pFmts;        // Format-Infos
-//STRIP001  TxtCollInfo*  pCollIdx;     // Collection Index translation table
-//STRIP001  PageDescInfo* pLayIdx;      // Layout Index translation table
-//STRIP001  PageDescLink* pPageLinks;   // Format-Seiten-Links
-//STRIP001  NumRuleInfo*  pRules;       // Num-Regelwerk
-//STRIP001  SectionInfo*  pSects;       // Sections
-//STRIP001  SectionInfo*  pLastSect;    // letzte Section
-//STRIP001  LanguageInfo* pLanguages;   // Sprachen
-//STRIP001  const ByteString* pNdOrigTxt;       // original text of the textnode
-//STRIP001
-//STRIP001  USHORT  nColl, nLay;        // Anzahl Collections, Seitenlayouts
-//STRIP001  USHORT  nRules;             // Anzahl Regeln
-//STRIP001  USHORT  nNamedFmt;          // Anzahl benannte Formate (fuer Textbausteine)
-//STRIP001  USHORT  nFrm, nFrmSize;     // Anzahl Frame-IDs, Tabellengroesse
-//STRIP001  USHORT  nSect, nSectSize;   // Anzahl Sections, Tabellengroesse
-//STRIP001  USHORT  nTbl, nTblSize;     // Anzahl Tabellen, Tabellengroesse
-//STRIP001  USHORT  nLang, nLangSize;   // Anzahl Sprachen, Tabellengroesse
-//STRIP001  USHORT  nOptions;           // Lese-Optionen
-//STRIP001  USHORT  nHelpFileId;        // Hilfe-ID fuer Vorlagen-Templates
-//STRIP001  USHORT  nFlyLevel;          // != 0: FlyFmt wird eingelesen
-//STRIP001  USHORT  nFlagBits;          // temp fuer PageDesc: Bits aus Format
-//STRIP001  USHORT  nFmtLvl;            // Rekursionstiefe fuer InFormat()
-//STRIP001  USHORT  nTblBoxLvl;         // Rekursionstiefe fuer InFormat in InTableBox()
-//STRIP001
-//STRIP001  SfxDocumentInfo* pInfo;
-//STRIP001  String  aFileName;          // Name vom Eingabe-Stream
-//STRIP001  SwgTables *pTables;
-//STRIP001
-//STRIP001  // gc25: swistream besitzt privaten Copy-CTOR
-//STRIP001  SwSwgReader( const SwSwgReader & );
-//STRIP001
-//STRIP001  BOOL    LoadDocInfo( SfxDocumentInfo& );
-//STRIP001
-//STRIP001  short   LayoutIdx( short n );
-//STRIP001  void    UpdateRuleRange( USHORT nIdx, SwTxtNode* pNd );
-//STRIP001  void    ResolvePageDescLinks();
-//STRIP001  String  ParseText();
-//STRIP001 //   void    ConvertLineTerminators( String&, GUIType );
-//STRIP001  void    LoadHeader();
-//STRIP001
-//STRIP001  void    InTxtFmtColls();
-//STRIP001  void    InTxtFmtColl( short nIdx );
 
-//STRIP001  void    InPageDescs();
-//STRIP001  void    InPageDesc( short nIdx );
-//STRIP001  void    InPageFtnInfo( SwPageFtnInfo& rFtn );
-//STRIP001
-//STRIP001  void    InTextHints( SwTxtNode& rNd, xub_StrLen nOffset );
-//STRIP001  void    InNodeBookmark( SwNodeIndex& rPos );
-//STRIP001  USHORT  GetNextSymbolFontHint( SwpHints*, USHORT, xub_StrLen&, xub_StrLen& );
-//STRIP001  USHORT  GetNextCharsetColorHint( SwpHints*, USHORT, xub_StrLen&,
-//STRIP001                                   xub_StrLen&, rtl_TextEncoding,
-//STRIP001                                   rtl_TextEncoding&);
-//STRIP001  void    ConvertText( SwTxtNode& rNd, rtl_TextEncoding eSrc );
-//STRIP001  void    SetAttrSet( SwCntntNode& rNd, USHORT nId );
-//STRIP001  void    InTxtNodeAttrs( SwTxtNode& rNd, USHORT nWhich1, USHORT nWhich2 );
-//STRIP001  void    FillTxtNode( SwTxtNode* pNd, SwNodeIndex& rPos, xub_StrLen nOffset, USHORT=0);
-//STRIP001  void    FillString( String& );
-//STRIP001  void    InGrfNode( SwNodeIndex& rPos );
-//STRIP001  void    InOleNode( SwNodeIndex& rPos );
-//STRIP001
-//STRIP001  SwTOXBase* InTOXBase();
-//STRIP001  void    InTOXContents( SwNodeIndex& rPos, SwTxtNode* );
-//STRIP001  void    InTOX( SwNodeIndex& rPos, SwTxtNode* );
-//STRIP001
-//STRIP001  void    InContents( BOOL bNode1 = TRUE, BOOL bBlock = FALSE, USHORT=0 );
-//STRIP001  String  InContentsText( BOOL = TRUE );
-//STRIP001  void    ScanContents( SwBlockNames* );
-//STRIP001
-//STRIP001  void    InFlyFrames( const SwNodeIndex* pNdIdx );
-//STRIP001  void    InFlyFrame( const SwNodeIndex* pNdIdx );
 
-//STRIP001  void    InDfltFmts();
-//STRIP001  void    InNamedFmts( USHORT );
-//STRIP001  void    ClearFmtIds();
 
-//STRIP001  void    InTableBox( SwTableBoxes&, int, SwTableLine*, SwNodeIndex&,
-//STRIP001                      const SwTable *pTable=0 );
-//STRIP001  void    InTableLine( SwTableLines&, SwTableBox*, int, SwNodeIndex&,
-//STRIP001                       const SwTable *pTable=0 );
-//STRIP001  void    InTable( SwNodeIndex& rPos );
 
-//STRIP001  void    InNumFmt( SwNumFmt& rFmt );
-//STRIP001  SwNumRule* InNumRule();
-//STRIP001  void    InOutlineRule();
-//STRIP001  void    InTxtNumRule();
-//STRIP001  void    InFtnInfo();
-//STRIP001
-//STRIP001  void    InGlobalMacroTbl();
-//STRIP001  void    InJobSetup();
-//STRIP001  void    InDocInfo();
-//STRIP001  void    InStaticDocInfo( SfxDocumentInfo& );
-//STRIP001  void    InDynamicDocInfo( SfxDocumentInfo& );
-//STRIP001  void    InComment();
-//STRIP001
-//STRIP001  void    InLayoutFrames();
-//STRIP001
-//STRIP001  USHORT  InHint( SfxItemSet& );
-//STRIP001  USHORT  InHint( SwTxtNode&, xub_StrLen, xub_StrLen );
 
-//STRIP001  void    InFieldTypes();
-//STRIP001  SwFieldType* InFieldType();
 
-//STRIP001  BOOL    CopyRecord( SvStream* );
 
-//STRIP001 public:
-//STRIP001  SwDoc*    pDoc;             // WriterG-Dokumentzugriff
-//STRIP001  BOOL      bNew;             // Darf es was neues sein?
-//STRIP001  xub_StrLen  nCntntCol;      // Spalte fuer Rahmen im Node (RES_FLY_ANCHOR)
-//STRIP001  USHORT    nPage1;           // Start-Seite bei Einfuegen (RES_FLY_ANCHOR)
-//STRIP001  swistream r;                // Input-Stream
-//STRIP001 //   SvStream r;             // Input-Stream
-//STRIP001  DocHeader aHdr;             // Dokument-Header
-//STRIP001  FileHeader aFile;           // Datei-Header
-//STRIP001  USHORT  nStatus;            // Status-Flags:
-//STRIP001
-//STRIP001 #define  SWGSTAT_SHAREDFMT       0x0001      // Shared Fmt wird eingelesen
-//STRIP001 #define  SWGSTAT_UPDATEEXPR      0x0002      // ExprFields-Update noetig
-//STRIP001 #define  SWGSTAT_NO_BOOKMARKS    0x0004      // Bookmarks ueberlesen
-//STRIP001 #define  SWGSTAT_LOCALFMTS       0x0008      // lokale Formate
-//STRIP001 #define  SWGSTAT_CONVBLOCKS      0x0010      // Konversion von Textbausteinen
-//STRIP001
-//STRIP001                              // Ablage-Variable fuer Lesen von Layout-Frames
-//STRIP001  USHORT    nFrmFlags;        // Layout-Frame-Flags
-//STRIP001  SwFrm*    pUpper;           // Upper Layout-Frame
-//STRIP001  SwFrm*    pMaster;          // Master Layout-Frame
-//STRIP001  USHORT    eStartNodeType;   // fuers erzeugen von StartNodes
-//STRIP001                              // Fly/Footer/Header!
-//STRIP001
-//STRIP001  SwSwgReader( SwDoc *pSwDoc, const SwPaM* pSwPaM, SvStream& rStream,
-//STRIP001                  const String& rFileName, BOOL bNewDoc );
-//STRIP001  ~SwSwgReader();
-//STRIP001  ULONG   GetError() { return nErrno; }
-//STRIP001
-//STRIP001  const SfxDocumentInfo& GetDocInfo() { return *pInfo; }
-//STRIP001
-//STRIP001  void    LoadFileHeader();
-//STRIP001  ULONG   Read( USHORT nOptions );
-//STRIP001  ULONG   Scan( SwBlockNames* );
-//STRIP001  BOOL    CheckPasswd( const String& );
-//STRIP001
-//STRIP001  void    RegisterFmt( SwFmt& rFmt, const SwTable *pTable=0 );
-//STRIP001  void    RegisterAttrSet( SfxItemSet* pSet, USHORT nIdx );
-//STRIP001  void    ReleaseAttrSets();
-//STRIP001  void    ReRegisterFmt( const SwFmt& rFmtOld, const SwFmt& rFmtNew,
-//STRIP001                         const SwTable *pTable=0 );
-//STRIP001  SwFmt*  FindFmt( USHORT nIdx, BYTE cType );
-//STRIP001  SfxItemSet* FindAttrSet( USHORT nIdx );
-//STRIP001  SwFmt*  InFormat( SwFmt* pFmt = NULL, USHORT* pParentId = 0 );
-//STRIP001  USHORT  InAttrSet( SwAttrSet& rSet );
-//STRIP001  USHORT  InAttrSet( SwCntntNode& rNd );
-//STRIP001  void    FillAttrSet( SwAttrSet& rSet, USHORT nId );
-//STRIP001  BOOL    TestPoolFmt( SwFmt&, int );
 
-//STRIP001  void    RegisterFrmId( SwFrm& rFrm, USHORT nId );
-//STRIP001  SwFrm*  FindFrmId( USHORT nId );
 
-//STRIP001  void    RegisterTable( USHORT nIdx, const SwTable *pTable );
-//STRIP001  const SwTable *FindTable( USHORT nIdx );
 
-//STRIP001  USHORT  RegisterSection( const SwNodeIndex& rStart, USHORT nId );
 
-//STRIP001  SwNode* InNodeId();
-//STRIP001  SwFrm*  InFrame();
-//STRIP001  void    InFrmRect( SwRect&, SwRect* );
 
-//STRIP001  SwPageDesc& FindPageDesc( USHORT nIdx );
 
             // Methoden fuer Hints:
-//STRIP001  void    Error( ULONG = 0 );
-//STRIP001  void    AddPageDescLink( const String&, USHORT nOff );
-//STRIP001  String  GetText( BOOL bReq = TRUE );
-//STRIP001  ByteString GetAsciiText( BOOL bReq = TRUE );
-//STRIP001  SwField* InField();
-//STRIP001  SwStartNode* InSection();
-//STRIP001  void    FillSection( SwNodeIndex& rPos );
-//STRIP001  void    InTextBlock( long );
-//STRIP001  Color   InColor();
-//STRIP001  void    InPen(USHORT& nWidth, Color& rCol);
-//STRIP001  Color   InBrush();
-//STRIP001
-//STRIP001  void SetReadTxt( const ByteString* pTxt )   { pNdOrigTxt = pTxt; }
-//STRIP001  const ByteString* GetReadTxt() const        { return pNdOrigTxt; }
-//STRIP001
-//STRIP001  BOOL    IsTableBoxFrmFmt() { return BOOL( nFmtLvl == (nTblBoxLvl+1) ); }
-//STRIP001 };
 
 
 } //namespace binfilter
