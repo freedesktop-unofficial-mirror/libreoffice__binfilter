@@ -4,9 +4,9 @@
  *
  *  $RCSfile: oleobjsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:02:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:18:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,11 +57,9 @@ class ScOleObjectShell: public ScDrawShell
 {
 public:
 
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_OLEOBJECT_SHELL);
 
                 ScOleObjectShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP"); }
-//STRIP001  virtual     ~ScOleObjectShell();
 
 };
 
