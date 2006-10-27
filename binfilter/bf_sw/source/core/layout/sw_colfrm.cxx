@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_colfrm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:45:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:51:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #include <hintids.hxx>
 #include "cntfrm.hxx"
 
 #ifndef _HORIORNT_HXX
@@ -63,9 +62,6 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #include "frmtool.hxx"
 #include "colfrm.hxx"
 #include "pagefrm.hxx"
