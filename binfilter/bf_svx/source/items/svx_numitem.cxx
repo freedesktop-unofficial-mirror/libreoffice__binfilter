@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_numitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:18:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:16:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -408,7 +408,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   if(rFormat.pGraphicBrush)
 /*N*/     {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pGraphicBrush = new SvxBrushItem(*rFormat.pGraphicBrush);
-//STRIP001 /*?*/         pGraphicBrush->SetDoneLink( STATIC_LINK( this, SvxNumberFormat, GraphicArrived) );
 /*N*/     }
 /*N*/   DELETEZ(pBulletFont);
 /*N*/   if(rFormat.pBulletFont)
@@ -463,8 +462,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   else if(!pGraphicBrush || pGraphicBrush && !(*pBrushItem == *pGraphicBrush))
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         delete pGraphicBrush;
-//STRIP001 /*?*/        pGraphicBrush =  (SvxBrushItem*)pBrushItem->Clone();
-//STRIP001 /*?*/         pGraphicBrush->SetDoneLink( STATIC_LINK( this, SvxNumberFormat, GraphicArrived) );
 /*N*/    }
 /*N*/
 /*N*/   if(pOrient)
@@ -479,30 +476,9 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /* -----------------28.10.98 09:59-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 void SvxNumberFormat::SetGraphic( const String& rName )
-//STRIP001 {
-//STRIP001  const String* pName;
-//STRIP001  if( pGraphicBrush &&
-//STRIP001          0 != (pName = pGraphicBrush->GetGraphicLink())
-//STRIP001              && *pName == rName )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  delete pGraphicBrush;
-//STRIP001  String sTmp;
-//STRIP001  pGraphicBrush = new SvxBrushItem( rName, sTmp, GPOS_AREA );
-//STRIP001  pGraphicBrush->SetDoneLink( STATIC_LINK( this, SvxNumberFormat, GraphicArrived) );
-//STRIP001  if( eVertOrient == SVX_VERT_NONE )
-//STRIP001      eVertOrient = SVX_VERT_TOP;
-//STRIP001
-//STRIP001  aGraphicSize.Width() = aGraphicSize.Height() = 0;
-//STRIP001 }
 /* -----------------------------22.02.01 15:55--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SvxNumberFormat::SetVertOrient(SvxFrameVertOrient eSet)
-//STRIP001 {
-//STRIP001  eVertOrient = eSet;
-//STRIP001 }
 /* -----------------------------22.02.01 15:55--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -522,45 +498,13 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /* -----------------28.10.98 10:03-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 IMPL_STATIC_LINK( SvxNumberFormat, GraphicArrived, void *, EMPTYARG )
-//STRIP001 {
-//STRIP001  // ggfs. die GrfSize setzen:
-//STRIP001  if( !pThis->aGraphicSize.Width() || !pThis->aGraphicSize.Height() )
-//STRIP001  {
-//STRIP001      const Graphic* pGrf = pThis->pGraphicBrush->GetGraphic();
-//STRIP001      if( pGrf )
-//STRIP001          pThis->aGraphicSize = SvxNumberFormat::GetGraphicSizeMM100( pGrf );
-//STRIP001  }
-//STRIP001     pThis->NotifyGraphicArrived();
-//STRIP001  return 0;
-//STRIP001 }
 /* -----------------------------02.07.01 15:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SvxNumberFormat::NotifyGraphicArrived()
-//STRIP001 {
-//STRIP001 }
 
 /* -----------------28.10.98 10:38-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 Size SvxNumberFormat::GetGraphicSizeMM100(const Graphic* pGraphic)
-//STRIP001 {
-//STRIP001  const MapMode aMapMM100( MAP_100TH_MM );
-//STRIP001  const Size& rSize = pGraphic->GetPrefSize();
-//STRIP001  Size aRetSize;
-//STRIP001  if ( pGraphic->GetPrefMapMode().GetMapUnit() == MAP_PIXEL )
-//STRIP001  {
-//STRIP001      OutputDevice* pOutDev = Application::GetDefaultDevice();
-//STRIP001      MapMode aOldMap( pOutDev->GetMapMode() );
-//STRIP001      pOutDev->SetMapMode( aMapMM100 );
-//STRIP001      aRetSize = pOutDev->PixelToLogic( rSize );
-//STRIP001      pOutDev->SetMapMode( aOldMap );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      aRetSize = OutputDevice::LogicToLogic( rSize, pGraphic->GetPrefMapMode(), aMapMM100 );
-//STRIP001  return aRetSize;
-//STRIP001 }
 /* -----------------28.10.98 15:57-------------------
  *
  * --------------------------------------------------*/
@@ -802,23 +746,6 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /* -----------------29.10.98 16:07-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 SvxNumRule& SvxNumRule::operator=( const SvxNumRule& rCopy )
-//STRIP001 {
-//STRIP001  nLevelCount          = rCopy.nLevelCount;
-//STRIP001  nFeatureFlags        = rCopy.nFeatureFlags;
-//STRIP001  bContinuousNumbering = rCopy.bContinuousNumbering;
-//STRIP001  eNumberingType       = rCopy.eNumberingType;
-//STRIP001  for(USHORT i = 0; i < SVX_MAX_NUM; i++)
-//STRIP001  {
-//STRIP001      delete aFmts[i];
-//STRIP001      if(rCopy.aFmts[i])
-//STRIP001          aFmts[i] = new SvxNumberFormat(*rCopy.aFmts[i]);
-//STRIP001      else
-//STRIP001          aFmts[i] = 0;
-//STRIP001      aFmtsSet[i] = rCopy.aFmtsSet[i];
-//STRIP001  }
-//STRIP001  return *this;
-//STRIP001 }
 /* -----------------27.10.98 10:41-------------------
  *
  * --------------------------------------------------*/
@@ -880,77 +807,9 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /* -----------------30.10.98 12:44-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 void SvxNumRule::SetLevel(USHORT nLevel, const SvxNumberFormat* pFmt)
-//STRIP001 {
-//STRIP001  aFmtsSet[nLevel] = 0 != pFmt;
-//STRIP001  if(pFmt)
-//STRIP001      SetLevel(nLevel, *pFmt);
-//STRIP001  else
-//STRIP001  {
-//STRIP001      delete aFmts[nLevel];
-//STRIP001      aFmts[nLevel] = 0;
-//STRIP001  }
-//STRIP001 }
 /* -----------------28.10.98 15:38-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 String   SvxNumRule::MakeNumString( const SvxNodeNum& rNum, BOOL bInclStrings ) const
-//STRIP001 {
-//STRIP001  String aStr;
-//STRIP001  if( SVX_NO_NUM > rNum.GetLevel() && !( SVX_NO_NUMLEVEL & rNum.GetLevel() ) )
-//STRIP001  {
-//STRIP001      const SvxNumberFormat& rMyNFmt = GetLevel( rNum.GetLevel() );
-//STRIP001      if( SVX_NUM_NUMBER_NONE != rMyNFmt.GetNumberingType() )
-//STRIP001      {
-//STRIP001          BYTE i = rNum.GetLevel();
-//STRIP001
-//STRIP001          if( !IsContinuousNumbering() &&
-//STRIP001              1 < rMyNFmt.GetIncludeUpperLevels() )       // nur der eigene Level ?
-//STRIP001          {
-//STRIP001              BYTE n = rMyNFmt.GetIncludeUpperLevels();
-//STRIP001              if( 1 < n )
-//STRIP001              {
-//STRIP001                  if( i+1 >= n )
-//STRIP001                      i -= n - 1;
-//STRIP001                  else
-//STRIP001                      i = 0;
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          for( ; i <= rNum.GetLevel(); ++i )
-//STRIP001          {
-//STRIP001              const SvxNumberFormat& rNFmt = GetLevel( i );
-//STRIP001              if( SVX_NUM_NUMBER_NONE == rNFmt.GetNumberingType() )
-//STRIP001              {
-//STRIP001  // Soll aus 1.1.1 --> 2. NoNum --> 1..1 oder 1.1 ??
-//STRIP001  //                 if( i != rNum.nMyLevel )
-//STRIP001  //                    aStr += aDotStr;
-//STRIP001                  continue;
-//STRIP001              }
-//STRIP001
-//STRIP001              sal_Bool bDot = sal_True;
-//STRIP001              if( rNum.GetLevelVal()[ i ] )
-//STRIP001              {
-//STRIP001                  if(SVX_NUM_BITMAP != rNFmt.GetNumberingType())
-//STRIP001                      aStr += rNFmt.GetNumStr( rNum.GetLevelVal()[ i ], aLocale );
-//STRIP001                  else
-//STRIP001                      bDot = sal_False;
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  aStr += sal_Unicode('0');       // alle 0-Level sind eine 0
-//STRIP001              if( i != rNum.GetLevel() && bDot)
-//STRIP001                  aStr += sal_Unicode('.');
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bInclStrings )
-//STRIP001      {
-//STRIP001          aStr.Insert( rMyNFmt.GetPrefix(), 0 );
-//STRIP001          aStr += rMyNFmt.GetSuffix();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return aStr;
-//STRIP001 }
 /* -----------------18.08.99 10:18-------------------
     Description: changes linked to embedded bitmaps
  --------------------------------------------------*/
@@ -971,11 +830,6 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/                   0 !=(pGraphic = pBrush->GetGraphic()))
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SvxBrushItem aTempItem(*pBrush);
-//STRIP001 /*?*/                aTempItem.SetGraphicLink( String());
-//STRIP001 /*?*/                aTempItem.SetGraphic(*pGraphic);
-//STRIP001 /*?*/                SvxFrameVertOrient  eOrient = aFmt.GetVertOrient();
-//STRIP001 /*?*/                aFmt.SetGraphicBrush( &aTempItem, &aFmt.GetGraphicSize(), &eOrient );
-//STRIP001 /*?*/                bRet = TRUE;
 /*N*/           }
 /*N*/       }
 /*N*/       else if((SVX_NUM_BITMAP|LINK_TOKEN) == aFmt.GetNumberingType())
@@ -1061,11 +915,6 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
  *
  * --------------------------------------------------*/
 
-//STRIP001 sal_Bool SvxNumBulletItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= SvxCreateNumRule( pNumRule );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*N*/ sal_Bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
