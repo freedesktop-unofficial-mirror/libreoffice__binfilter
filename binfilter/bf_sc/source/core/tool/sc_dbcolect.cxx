@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbcolect.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:07:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:31:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,6 @@
  *
  ************************************************************************/
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -44,8 +43,6 @@
 #endif
 
 #include "dbcolect.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "refupdat.hxx"
 #include "rechead.hxx"
 #include "document.hxx"
 #include "globstr.hrc"
@@ -562,50 +559,6 @@ namespace binfilter {
 /*N*/   return *this;
 /*N*/ }
 
-//STRIP001 BOOL ScDBData::operator== (const ScDBData& rData) const
-//STRIP001 {
-//STRIP001  //  Daten, die nicht in den Params sind
-//STRIP001
-//STRIP001  if ( nTable     != rData.nTable     ||
-//STRIP001       bDoSize    != rData.bDoSize    ||
-//STRIP001       bKeepFmt   != rData.bKeepFmt   ||
-//STRIP001       bIsAdvanced!= rData.bIsAdvanced||
-//STRIP001       bStripData != rData.bStripData ||
-//STRIP001 //       SAB: I think this should be here, but I don't want to break something
-//STRIP001 //         bAutoFilter!= rData.bAutoFilter||
-//STRIP001       ScRefreshTimer::operator!=( rData )
-//STRIP001      )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if ( bIsAdvanced && aAdvSource != rData.aAdvSource )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  ScSortParam aSort1, aSort2;
-//STRIP001  GetSortParam(aSort1);
-//STRIP001  rData.GetSortParam(aSort2);
-//STRIP001  if (!(aSort1 == aSort2))
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  ScQueryParam aQuery1, aQuery2;
-//STRIP001  GetQueryParam(aQuery1);
-//STRIP001  rData.GetQueryParam(aQuery2);
-//STRIP001  if (!(aQuery1 == aQuery2))
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  ScSubTotalParam aSubTotal1, aSubTotal2;
-//STRIP001  GetSubTotalParam(aSubTotal1);
-//STRIP001  rData.GetSubTotalParam(aSubTotal2);
-//STRIP001  if (!(aSubTotal1 == aSubTotal2))
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  ScImportParam aImport1, aImport2;
-//STRIP001  GetImportParam(aImport1);
-//STRIP001  rData.GetImportParam(aImport2);
-//STRIP001  if (!(aImport1 == aImport2))
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ ScDBData::~ScDBData()
 /*N*/ {
@@ -628,43 +581,7 @@ namespace binfilter {
 /*N*/            nQueryDestRow > nMaxRow );
 /*N*/  }
 
-//STRIP001 String ScDBData::GetSourceString() const
-//STRIP001 {
-//STRIP001  String aVal;
-//STRIP001  if (bDBImport)
-//STRIP001  {
-//STRIP001      aVal = aDBName;
-//STRIP001      aVal += '/';
-//STRIP001      aVal += aDBStatement;
-//STRIP001  }
-//STRIP001  return aVal;
-//STRIP001 }
 
-//STRIP001 String ScDBData::GetOperations() const
-//STRIP001 {
-//STRIP001  String aVal;
-//STRIP001  if (bDoQuery[0])
-//STRIP001      aVal = ScGlobal::GetRscString(STR_OPERATION_FILTER);
-//STRIP001
-//STRIP001  if (bDoSort[0])
-//STRIP001  {
-//STRIP001      if (aVal.Len())
-//STRIP001          aVal.AppendAscii( RTL_CONSTASCII_STRINGPARAM(", ") );
-//STRIP001      aVal += ScGlobal::GetRscString(STR_OPERATION_SORT);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bDoSubTotal[0] && !bSubRemoveOnly)
-//STRIP001  {
-//STRIP001      if (aVal.Len())
-//STRIP001          aVal.AppendAscii( RTL_CONSTASCII_STRINGPARAM(", ") );
-//STRIP001      aVal += ScGlobal::GetRscString(STR_OPERATION_SUBTOTAL);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (!aVal.Len())
-//STRIP001      aVal = ScGlobal::GetRscString(STR_OPERATION_NONE);
-//STRIP001
-//STRIP001  return aVal;
-//STRIP001 }
 
 /*N*/ void ScDBData::GetArea(USHORT& rTab, USHORT& rCol1, USHORT& rRow1, USHORT& rCol2, USHORT& rRow2) const
 /*N*/ {
@@ -689,45 +606,6 @@ namespace binfilter {
 /*N*/   nEndRow   = nRow2;
 /*N*/ }
 
-//STRIP001 void ScDBData::MoveTo(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2)
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  short nDifX = ((short) nCol1) - ((short) nStartCol);
-//STRIP001  short nDifY = ((short) nRow1) - ((short) nStartRow);
-//STRIP001
-//STRIP001  short nSortDif = bByRow ? nDifX : nDifY;
-//STRIP001  USHORT nSortEnd = bByRow ? nCol2 : nRow2;
-//STRIP001
-//STRIP001  for (i=0; i<MAXSORT; i++)
-//STRIP001  {
-//STRIP001      nSortField[i] += nSortDif;
-//STRIP001      if (nSortField[i] > nSortEnd)
-//STRIP001      {
-//STRIP001          nSortField[i] = 0;
-//STRIP001          bDoSort[i]    = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  for (i=0; i<MAXQUERY; i++)
-//STRIP001  {
-//STRIP001      nQueryField[i] += nDifX;
-//STRIP001      if (nQueryField[i] > nCol2)
-//STRIP001      {
-//STRIP001          nQueryField[i] = 0;
-//STRIP001          bDoQuery[i]    = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  for (i=0; i<MAXSUBTOTAL; i++)
-//STRIP001  {
-//STRIP001      nSubField[i] += nDifX;
-//STRIP001      if (nSubField[i] > nCol2)
-//STRIP001      {
-//STRIP001          nSubField[i]   = 0;
-//STRIP001          bDoSubTotal[i] = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  SetArea( nTab, nCol1, nRow1, nCol2, nRow2 );
-//STRIP001 }
 
 /*N*/ void ScDBData::GetSortParam( ScSortParam& rSortParam ) const
 /*N*/ {
@@ -957,34 +835,8 @@ namespace binfilter {
 /*N*/   nDBType         = rImportParam.nType;
 /*N*/ }
 
-//STRIP001 BOOL ScDBData::IsDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const
-//STRIP001 {
-//STRIP001  if (nTab == nTable)
-//STRIP001  {
-//STRIP001      if ( bStartOnly )
-//STRIP001          return ( nCol == nStartCol && nRow == nStartRow );
-//STRIP001      else
-//STRIP001          return ( nCol >= nStartCol && nCol <= nEndCol &&
-//STRIP001                   nRow >= nStartRow && nRow <= nEndRow );
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScDBData::IsDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const
-//STRIP001 {
-//STRIP001  return (BOOL)((nTab == nTable)
-//STRIP001                  && (nCol1 == nStartCol) && (nRow1 == nStartRow)
-//STRIP001                  && (nCol2 == nEndCol) && (nRow2 == nEndRow));
-//STRIP001 }
 
-//STRIP001 String ScDBData::GetTargetName(const String& rDocName) const
-//STRIP001 {
-//STRIP001  String aTargetName(rDocName);
-//STRIP001  aTargetName += '.';
-//STRIP001  aTargetName += aName;
-//STRIP001  return aTargetName;
-//STRIP001 }
 
 /*N*/  DataObject*  ScDBData::Clone() const
 /*N*/  {
@@ -1004,10 +856,6 @@ namespace binfilter {
 
 //  IsEqual - alles gleich
 
-//STRIP001 BOOL ScDBCollection::IsEqual(DataObject* pKey1, DataObject* pKey2) const
-//STRIP001 {
-//STRIP001  return *(ScDBData*)pKey1 == *(ScDBData*)pKey2;
-//STRIP001 }
 
 /*N*/ ScDBData* ScDBCollection::GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const
 /*N*/ {
@@ -1018,13 +866,6 @@ namespace binfilter {
 /*N*/
 /*N*/       for (USHORT i = 0; i < nCount; i++)
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (((ScDBData*)pItems[i])->IsDBAtCursor(nCol, nRow, nTab, bStartOnly))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ScDBData* pDB = (ScDBData*)pItems[i];
-//STRIP001 /*?*/                if ( pDB->GetName() == rNoName )
-//STRIP001 /*?*/                    pNoNameData = pDB;
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    return pDB;
-//STRIP001 /*?*/            }
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
@@ -1035,16 +876,6 @@ namespace binfilter {
 /*N*/   if (pItems)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const String& rNoName = ScGlobal::GetRscString( STR_DB_NONAME );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        for (USHORT i = 0; i < nCount; i++)
-//STRIP001 /*?*/            if (((ScDBData*)pItems[i])->IsDBAtArea(nTab, nCol1, nRow1, nCol2, nRow2))
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ScDBData* pDB = (ScDBData*)pItems[i];
-//STRIP001 /*?*/                if ( pDB->GetName() == rNoName )
-//STRIP001 /*?*/                    pNoNameData = pDB;
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    return pDB;
-//STRIP001 /*?*/            }
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
@@ -1117,79 +948,10 @@ namespace binfilter {
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT theCol1;
-//STRIP001 /*?*/        USHORT theRow1;
-//STRIP001 /*?*/        USHORT theTab1;
-//STRIP001 /*?*/        USHORT theCol2;
-//STRIP001 /*?*/        USHORT theRow2;
-//STRIP001 /*?*/        USHORT theTab2;
-//STRIP001 /*?*/        ((ScDBData*)pItems[i])->GetArea( theTab1, theCol1, theRow1, theCol2, theRow2 );
-//STRIP001 /*?*/        theTab2 = theTab1;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        BOOL bDoUpdate = ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001 /*?*/                                                nCol1,nRow1,nTab1, nCol2,nRow2,nTab2, nDx,nDy,nDz,
-//STRIP001 /*?*/                                                theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 );
-//STRIP001 /*?*/        if (bDoUpdate)
-//STRIP001 /*?*/            ((ScDBData*)pItems[i])->MoveTo( theTab1, theCol1, theRow1, theCol2, theRow2 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScRange aAdvSource;
-//STRIP001 /*?*/        if ( ((ScDBData*)pItems[i])->GetAdvancedQuerySource(aAdvSource) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            aAdvSource.GetVars( theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 );
-//STRIP001 /*?*/            if ( ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001 /*?*/                                        nCol1,nRow1,nTab1, nCol2,nRow2,nTab2, nDx,nDy,nDz,
-//STRIP001 /*?*/                                        theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                aAdvSource.aStart.Set( theCol1,theRow1,theTab1 );
-//STRIP001 /*?*/                aAdvSource.aEnd.Set( theCol2,theRow2,theTab2 );
-//STRIP001 /*?*/                ((ScDBData*)pItems[i])->SetAdvancedQuerySource( &aAdvSource );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                bDoUpdate = TRUE;       // DBData is modified
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ((ScDBData*)pItems[i])->SetModified(bDoUpdate);
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //!     Testen, ob mitten aus dem Bereich geloescht/eingefuegt wurde !!!
 /*N*/   }
 /*N*/ }
 
 
-//STRIP001 void ScDBCollection::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos )
-//STRIP001 {
-//STRIP001  //  wenn nOldPos vor nNewPos liegt, ist nNewPos schon angepasst
-//STRIP001
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001  {
-//STRIP001      ScRange aRange;
-//STRIP001      ScDBData* pData = (ScDBData*)pItems[i];
-//STRIP001      pData->GetArea( aRange );
-//STRIP001      USHORT nTab = aRange.aStart.Tab();              // hat nur eine Tabelle
-//STRIP001
-//STRIP001      //  anpassen wie die aktuelle Tabelle bei ScTablesHint (tabvwsh5.cxx)
-//STRIP001
-//STRIP001      if ( nTab == nOldPos )                          // verschobene Tabelle
-//STRIP001          nTab = nNewPos;
-//STRIP001      else if ( nOldPos < nNewPos )                   // nach hinten verschoben
-//STRIP001      {
-//STRIP001          if ( nTab > nOldPos && nTab <= nNewPos )    // nachrueckender Bereich
-//STRIP001              --nTab;
-//STRIP001      }
-//STRIP001      else                                            // nach vorne verschoben
-//STRIP001      {
-//STRIP001          if ( nTab >= nNewPos && nTab < nOldPos )    // nachrueckender Bereich
-//STRIP001              ++nTab;
-//STRIP001      }
-//STRIP001
-//STRIP001      BOOL bChanged = ( nTab != aRange.aStart.Tab() );
-//STRIP001      if (bChanged)
-//STRIP001          pData->SetArea( nTab, aRange.aStart.Col(), aRange.aStart.Row(),
-//STRIP001                                  aRange.aEnd.Col(),aRange.aEnd .Row() );
-//STRIP001
-//STRIP001      //  MoveTo ist nicht noetig, wenn nur die Tabelle geaendert ist
-//STRIP001
-//STRIP001      pData->SetModified(bChanged);
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ ScDBData* ScDBCollection::FindIndex(USHORT nIndex)
