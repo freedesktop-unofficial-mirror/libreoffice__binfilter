@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_paralist.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:44:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:32:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,15 +54,6 @@ namespace binfilter {
 /*N*/   bVisible = TRUE;
 /*N*/ }
 
-//STRIP001 Paragraph::Paragraph( const Paragraph& rPara )
-//STRIP001  : aBulSize( rPara.aBulSize ), aBulText( rPara.aBulText )
-//STRIP001 {
-//STRIP001  DBG_CTOR( Paragraph, 0 );
-//STRIP001
-//STRIP001  nDepth = rPara.nDepth;
-//STRIP001  nFlags = rPara.nFlags;
-//STRIP001  bVisible = rPara.bVisible;
-//STRIP001 }
 
 /*N*/ Paragraph::~Paragraph()
 /*N*/ {
@@ -82,98 +73,13 @@ namespace binfilter {
 /*N*/   List::Clear();
 /*N*/ }
 
-//STRIP001 void ParagraphList::MoveParagraphs( ULONG nStart, ULONG nDest, ULONG nCount )
-//STRIP001 {
-//STRIP001  if ( ( nDest < nStart ) || ( nDest >= ( nStart + nCount ) ) )
-//STRIP001  {
-//STRIP001      ULONG n;
-//STRIP001      ParagraphList aParas;
-//STRIP001      for ( n = 0; n < nCount; n++ )
-//STRIP001      {
-//STRIP001          Paragraph* pPara = GetParagraph( nStart );
-//STRIP001          aParas.Insert( pPara, LIST_APPEND );
-//STRIP001          Remove( nStart );
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( nDest > nStart )
-//STRIP001          nDest -= nCount;
-//STRIP001
-//STRIP001      for ( n = 0; n < nCount; n++ )
-//STRIP001      {
-//STRIP001          Paragraph* pPara = aParas.GetParagraph( n );
-//STRIP001          Insert( pPara, nDest++ );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR( "MoveParagraphs: Invalid Parameters" );
-//STRIP001 }
 
-//STRIP001 Paragraph* ParagraphList::NextVisible( Paragraph* pPara ) const
-//STRIP001 {
-//STRIP001  ULONG n = GetAbsPos( pPara );
-//STRIP001
-//STRIP001  Paragraph* p = GetParagraph( ++n );
-//STRIP001  while ( p && !p->IsVisible() )
-//STRIP001      p = GetParagraph( ++n );
-//STRIP001
-//STRIP001  return p;
-//STRIP001 }
 
-//STRIP001 Paragraph* ParagraphList::PrevVisible( Paragraph* pPara ) const
-//STRIP001 {
-//STRIP001  ULONG n = GetAbsPos( pPara );
-//STRIP001
-//STRIP001  Paragraph* p = n ? GetParagraph( --n ) : NULL;
-//STRIP001  while ( p && !p->IsVisible() )
-//STRIP001      p = n ? GetParagraph( --n ) : NULL;
-//STRIP001
-//STRIP001  return p;
-//STRIP001 }
 
-//STRIP001 Paragraph* ParagraphList::LastVisible() const
-//STRIP001 {
-//STRIP001  ULONG n = GetParagraphCount();
-//STRIP001
-//STRIP001  Paragraph* p = n ? GetParagraph( --n ) : NULL;
-//STRIP001  while ( p && !p->IsVisible() )
-//STRIP001      p = n ? GetParagraph( --n ) : NULL;
-//STRIP001
-//STRIP001  return p;
-//STRIP001 }
 
-//STRIP001 BOOL ParagraphList::HasChilds( Paragraph* pParagraph ) const
-//STRIP001 {
-//STRIP001  ULONG n = GetAbsPos( pParagraph );
-//STRIP001  Paragraph* pNext = GetParagraph( ++n );
-//STRIP001  return ( pNext && ( pNext->GetDepth() > pParagraph->GetDepth() ) ) ? TRUE : FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ParagraphList::HasHiddenChilds( Paragraph* pParagraph ) const
-//STRIP001 {
-//STRIP001  ULONG n = GetAbsPos( pParagraph );
-//STRIP001  Paragraph* pNext = GetParagraph( ++n );
-//STRIP001  return ( pNext && ( pNext->GetDepth() > pParagraph->GetDepth() ) && !pNext->IsVisible() ) ? TRUE : FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ParagraphList::HasVisibleChilds( Paragraph* pParagraph ) const
-//STRIP001 {
-//STRIP001  ULONG n = GetAbsPos( pParagraph );
-//STRIP001  Paragraph* pNext = GetParagraph( ++n );
-//STRIP001  return ( pNext && ( pNext->GetDepth() > pParagraph->GetDepth() ) && pNext->IsVisible() ) ? TRUE : FALSE;
-//STRIP001 }
 
-//STRIP001 ULONG ParagraphList::GetChildCount( Paragraph* pParent ) const
-//STRIP001 {
-//STRIP001  ULONG nChildCount = 0;
-//STRIP001  ULONG n = GetAbsPos( pParent );
-//STRIP001  Paragraph* pPara = GetParagraph( ++n );
-//STRIP001  while ( pPara && ( pPara->GetDepth() > pParent->GetDepth() ) )
-//STRIP001  {
-//STRIP001      nChildCount++;
-//STRIP001      pPara = GetParagraph( ++n );
-//STRIP001  }
-//STRIP001  return nChildCount;
-//STRIP001 }
 
 /*NBFF*/ Paragraph* ParagraphList::GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const
 /*NBFF*/ {
@@ -190,48 +96,6 @@ namespace binfilter {
 /*NBFF*/    return pPrev;
 /*NBFF*/ }
 
-//STRIP001 void ParagraphList::Expand( Paragraph* pParent )
-//STRIP001 {
-//STRIP001  ULONG nChildCount = GetChildCount( pParent );
-//STRIP001  ULONG nPos = GetAbsPos( pParent );
-//STRIP001
-//STRIP001  for ( ULONG n = 1; n <= nChildCount; n++  )
-//STRIP001  {
-//STRIP001      Paragraph* pPara = GetParagraph( nPos+n );
-//STRIP001      if ( !( pPara->IsVisible() ) )
-//STRIP001      {
-//STRIP001          pPara->bVisible = TRUE;
-//STRIP001          aVisibleStateChangedHdl.Call( pPara );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ParagraphList::Collapse( Paragraph* pParent )
-//STRIP001 {
-//STRIP001  ULONG nChildCount = GetChildCount( pParent );
-//STRIP001  ULONG nPos = GetAbsPos( pParent );
-//STRIP001
-//STRIP001  for ( ULONG n = 1; n <= nChildCount; n++  )
-//STRIP001  {
-//STRIP001      Paragraph* pPara = GetParagraph( nPos+n );
-//STRIP001      if ( pPara->IsVisible() )
-//STRIP001      {
-//STRIP001          pPara->bVisible = FALSE;
-//STRIP001          aVisibleStateChangedHdl.Call( pPara );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 ULONG ParagraphList::GetVisPos( Paragraph* pPara )
-//STRIP001 {
-//STRIP001  ULONG nVisPos = 0;
-//STRIP001  ULONG nPos = GetAbsPos( pPara );
-//STRIP001  for ( ULONG n = 0; n < nPos; n++ )
-//STRIP001  {
-//STRIP001      Paragraph* pPara = GetParagraph( n );
-//STRIP001      if ( pPara->IsVisible() )
-//STRIP001          nVisPos++;
-//STRIP001  }
-//STRIP001  return nVisPos;
-//STRIP001 }
 }
