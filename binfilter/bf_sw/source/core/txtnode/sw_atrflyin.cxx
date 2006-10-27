@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrflyin.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:37:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:16:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #include "hintids.hxx"
 #include "cntfrm.hxx"       // _GetFly
 
 #ifndef _HORIORNT_HXX
@@ -45,7 +44,6 @@
 
 #include "doc.hxx"
 #include "pam.hxx"          // fuer SwTxtFlyCnt
-// auto strip #include "flyfrm.hxx"       // fuer SwTxtFlyCnt
 #include "ndtxt.hxx"        // SwFlyFrmFmt
 #include "frmfmt.hxx"       // SwFlyFrmFmt
 
@@ -58,7 +56,6 @@
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-// auto strip #include "swfont.hxx"
 #include "txtfrm.hxx"
 #include "flyfrms.hxx"
 namespace binfilter {
@@ -73,9 +70,6 @@ namespace binfilter {
 int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 {
     DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return( pTxtAttr && ((SwFmtFlyCnt&)rAttr).pTxtAttr &&
-//STRIP001          *pTxtAttr->GetStart() == *((SwFmtFlyCnt&)rAttr).pTxtAttr->GetStart() &&
-//STRIP001          pFmt == ((SwFmtFlyCnt&)rAttr).GetFrmFmt() );
 }
 
 /*N*/ SfxPoolItem* __EXPORT SwFmtFlyCnt::Clone( SfxItemPool* ) const

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:37:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:16:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,6 @@
 #endif
 
 #include "doc.hxx"          // Update fuer UserFields
-// auto strip #include "fldbas.hxx"          // fuer FieldType
 
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
@@ -53,9 +52,7 @@
 #include "ddefld.hxx"
 #include "usrfld.hxx"
 #include "expfld.hxx"
-// auto strip #include "swfont.hxx"       // fuer GetFldsColor
 #include "ndtxt.hxx"        // SwTxtNode
-// auto strip #include "calc.hxx"         // Update fuer UserFields
 #include "hints.hxx"
 namespace binfilter {
 
@@ -132,8 +129,6 @@ namespace binfilter {
 int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 {
         DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return pField->GetTyp() == ((SwFmtFld&)rAttr).GetFld()->GetTyp() &&
-//STRIP001         pField->GetFormat() == ((SwFmtFld&)rAttr).GetFld()->GetFormat();
 }
 
 /*N*/ SfxPoolItem* SwFmtFld::Clone( SfxItemPool* ) const
@@ -193,7 +188,6 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 /*?*/       if(!pType->IsValid())
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *pTxtNd->GetDoc() );
-//STRIP001 /*?*/            pType->GetValue( aCalc );
 /*?*/       }
 /*N*/   }
 /*N*/   pTxtAttr->Expand();
@@ -219,12 +213,6 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 /*N*/           pTxtNd->GetNodes().IsDocNodes();
 /*N*/ }
 
-//STRIP001 BOOL SwFmtFld::IsProtect() const
-//STRIP001 {
-//STRIP001  const SwTxtNode* pTxtNd;
-//STRIP001  return pTxtAttr && 0 != ( pTxtNd = pTxtAttr->GetpTxtNode() ) &&
-//STRIP001          pTxtNd->IsProtect();
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -294,60 +282,6 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
  *                      SwTxtFld::CopyFld()
  *************************************************************************/
 
-//STRIP001 void SwTxtFld::CopyFld( SwTxtFld *pDest ) const
-//STRIP001 {
-//STRIP001  ASSERT( pMyTxtNd, "wo ist denn mein Node?" );
-//STRIP001  ASSERT( pDest->pMyTxtNd, "wo ist denn mein Node?" );
-//STRIP001
-//STRIP001  SwDoc *pDoc = pMyTxtNd->GetDoc();
-//STRIP001  SwDoc *pDestDoc = pDest->pMyTxtNd->GetDoc();
-//STRIP001
-//STRIP001  SwFmtFld& rFmtFld = (SwFmtFld&)pDest->GetFld();
-//STRIP001  const USHORT nFldWhich = rFmtFld.GetFld()->GetTyp()->Which();
-//STRIP001
-//STRIP001  if( pDoc != pDestDoc )
-//STRIP001  {
-//STRIP001      // Die Hints stehen in unterschiedlichen Dokumenten,
-//STRIP001      // der Feldtyp muss im neuen Dokument angemeldet werden.
-//STRIP001      // Z.B: Kopieren ins ClipBoard.
-//STRIP001      SwFieldType* pFldType;
-//STRIP001      if( nFldWhich != RES_DBFLD && nFldWhich != RES_USERFLD &&
-//STRIP001          nFldWhich != RES_SETEXPFLD && nFldWhich != RES_DDEFLD &&
-//STRIP001          RES_AUTHORITY != nFldWhich )
-//STRIP001          pFldType = pDestDoc->GetSysFldType( (const RES_FIELDS)nFldWhich );
-//STRIP001      else
-//STRIP001          pFldType = pDestDoc->InsertFldType( *rFmtFld.GetFld()->GetTyp() );
-//STRIP001
-//STRIP001      // Sonderbehandlung fuer DDE-Felder
-//STRIP001      if( RES_DDEFLD == nFldWhich )
-//STRIP001      {
-//STRIP001          if( rFmtFld.GetTxtFld() )
-//STRIP001              ((SwDDEFieldType*)rFmtFld.GetFld()->GetTyp())->DecRefCnt();
-//STRIP001          ((SwDDEFieldType*)pFldType)->IncRefCnt();
-//STRIP001      }
-//STRIP001
-//STRIP001      ASSERT( pFldType, "unbekannter FieldType" );
-//STRIP001      pFldType->Add( &rFmtFld );          // ummelden
-//STRIP001      rFmtFld.GetFld()->ChgTyp( pFldType );
-//STRIP001  }
-//STRIP001
-//STRIP001  // Expressionfelder Updaten
-//STRIP001  if( nFldWhich == RES_SETEXPFLD || nFldWhich == RES_GETEXPFLD ||
-//STRIP001      nFldWhich == RES_HIDDENTXTFLD )
-//STRIP001  {
-//STRIP001      SwTxtFld* pFld = (SwTxtFld*)this;
-//STRIP001      pDestDoc->UpdateExpFlds( pFld );
-//STRIP001  }
-//STRIP001  // Tabellenfelder auf externe Darstellung
-//STRIP001  else if( RES_TABLEFLD == nFldWhich &&
-//STRIP001      ((SwTblField*)rFmtFld.GetFld())->IsIntrnlName() )
-//STRIP001  {
-//STRIP001      // erzeuge aus der internen (fuer CORE) die externe (fuer UI) Formel
-//STRIP001      const SwTableNode* pTblNd = pMyTxtNd->FindTableNode();
-//STRIP001      if( pTblNd )        // steht in einer Tabelle
-//STRIP001          ((SwTblField*)rFmtFld.GetFld())->PtrToBoxNm( &pTblNd->GetTable() );
-//STRIP001  }
-//STRIP001 }
 
 
 }
