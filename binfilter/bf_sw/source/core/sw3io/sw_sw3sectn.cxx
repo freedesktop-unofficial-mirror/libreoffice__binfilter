@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:04:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:00:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,16 +36,12 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 #endif
 #ifndef _LINKMGR_HXX
 #include <so3/linkmgr.hxx>
@@ -54,9 +50,6 @@
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-// auto strip #ifndef _FMTCNTNT_HXX //autogen
-// auto strip #include <fmtcntnt.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>

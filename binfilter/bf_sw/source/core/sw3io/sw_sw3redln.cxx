@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3redln.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:03:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:00:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -56,15 +53,6 @@
 #include <redline.hxx>
 #endif
 
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_UDLNITEM_HXX //autogen
-// auto strip #include <bf_svx/udlnitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_CRSDITEM_HXX //autogen
-// auto strip #include <bf_svx/crsditem.hxx>
-// auto strip #endif
 
 #include "sw3marks.hxx"
 #include "sw3imp.hxx"

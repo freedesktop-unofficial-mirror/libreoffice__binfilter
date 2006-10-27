@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:04:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:00:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@
 #endif
 
 #include "doc.hxx"
-// auto strip #include "docary.hxx"
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
 #ifndef _SVX_FONTITEM_HXX //autogen
@@ -65,9 +64,6 @@
 #include <svtools/htmlkywd.hxx>
 #endif
 
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -153,7 +149,6 @@ class SwStyleSheet : public SfxStyleSheetBase {
 private:
     SwStyleSheet( const String&, SwStyleSheetPool&, SfxStyleFamily eFam,
                     USHORT nMask );
-//STRIP001  SwStyleSheet( const SwStyleSheet& );
     virtual SfxItemSet& GetItemSet();
 public:
     virtual ~SwStyleSheet();
@@ -181,7 +176,6 @@ class SwStyleSheetPool : public SfxStyleSheetBasePool {
     Sw3Fmts*     pConvToSymbolFmts;
     long         nExpFFVersion; // FF-Version fuer Export
     virtual SfxStyleSheetBase* Create( const String&, SfxStyleFamily, USHORT nMask);
-//STRIP001  virtual SfxStyleSheetBase* Create( const SfxStyleSheetBase& );
     void Add( const SwFmt& rFmt, SfxStyleFamily eFam );
     void CopyFromDoc( BOOL bUsed );
     void CopyToDoc( BOOL bOverwrite, USHORT eMask );
@@ -255,33 +249,6 @@ public:
 /*N*/          ? (SwTxtFmtColl*) pFmt : NULL;
 /*N*/ }
 
-//STRIP001 SwStyleSheet::SwStyleSheet( const SwStyleSheet& r )
-//STRIP001  : SfxStyleSheetBase( r ), rDoc( r.rDoc ), aSet( r.aSet ),
-//STRIP001  pCondColls( 0 ), pNumLRSpace( 0 )
-//STRIP001 {
-//STRIP001  nId    = r.nId;
-//STRIP001  nLevel = r.nLevel;
-//STRIP001  pFmt   = r.pFmt;
-//STRIP001  bNew   = r.bNew;
-//STRIP001  nVersion = r.nVersion;
-//STRIP001  cFlags = r.cFlags;
-//STRIP001
-//STRIP001 //FEATURE::CONDCOLL
-//STRIP001  if( r.pCondColls )
-//STRIP001  {
-//STRIP001      USHORT nCnt = r.pCondColls->Count();
-//STRIP001      pCondColls = new SwStyleCondColls( nCnt < 255 ? nCnt : 255, 5 );
-//STRIP001      for( USHORT n = 0; n < nCnt; ++n )
-//STRIP001      {
-//STRIP001          SwStyleCondCollPtr pCpy = new SwStyleCondColl( *(*r.pCondColls)[n] );
-//STRIP001          pCondColls->Insert( pCpy, n );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 //FEATURE::CONDCOLL
-//STRIP001
-//STRIP001  if( r.pNumLRSpace )
-//STRIP001      pNumLRSpace = new SvxLRSpaceItem( *r.pNumLRSpace );
-//STRIP001 }
 
 /*N*/ void __EXPORT SwStyleSheet::Load( SvStream& r, USHORT nVer )
 /*N*/ {
@@ -902,7 +869,6 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/                   pFmt->SetPoolFmtId( p->nId );
 /*N*/                   if( p->aHelpFile.Len() )
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/                      pFmt->SetPoolHlpFileId
-//STRIP001 /*?*/                            ( (BYTE) rDoc.SetDocPattern( p->aHelpFile ) );
 /*N*/                   pFmt->SetPoolHelpId( (USHORT)p->nHelpId );
 /*N*/               }
 /*N*/               else
@@ -1052,8 +1018,6 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*?*/               if( pDColl )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwConditionTxtFmtColl*)p->pFmt)->InsertCondition(
-//STRIP001 /*?*/                            SwCollCondition( pDColl,
-//STRIP001 /*?*/                                pCColl->nCondition, pCColl->nSubCondition ));
 /*?*/               }
 /*?*/               else
 /*?*/                   ASSERT( !this, "Collection nicht gefunden" );
@@ -1072,10 +1036,6 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/   return new SwStyleSheet( rName, *this, eFam, nMask);
 /*N*/ }
 
-//STRIP001 SfxStyleSheetBase* __EXPORT SwStyleSheetPool::Create( const SfxStyleSheetBase& r )
-//STRIP001 {
-//STRIP001  return new SwStyleSheet( (const SwStyleSheet&) r );
-//STRIP001 }
 
 // Umbenennen eines bestimmten Strings innerhalb einer Family
 
