@@ -4,9 +4,9 @@
  *
  *  $RCSfile: inftxt.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:35:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:04:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -323,8 +323,6 @@ public:
     //
     // GetTxtBreak
     //
-//STRIP001     xub_StrLen SwTxtSizeInfo::GetTxtBreak( const long nLineWidth,
-//STRIP001                                            const xub_StrLen nMaxLen ) const;
     xub_StrLen GetTxtBreak( const long nLineWidth,
                                            const xub_StrLen nMaxLen,
                                            const USHORT nComp ) const;
@@ -347,7 +345,6 @@ public:
     inline sal_Bool IsNoSymbol() const
     { return RTL_TEXTENCODING_SYMBOL != pFnt->GetCharSet( pFnt->GetActual() ); }
 
-//STRIP001     void NoteAnimation() const;
 
     // Home is where Your heart is...
     inline SwTxtFrm *GetTxtFrm() { return pFrm; }
@@ -396,17 +393,6 @@ public:
                    ? (*pKanaComp)[nKanaIdx] : 0; }
 
 #ifndef PRODUCT
-//STRIP001  sal_Bool IsOptCalm() const;
-//STRIP001  sal_Bool IsOptLow() const;
-//STRIP001  sal_Bool IsOptDbg() const;
-//STRIP001  sal_Bool IsOptTest1() const;
-//STRIP001  sal_Bool IsOptTest2() const;
-//STRIP001  sal_Bool IsOptTest3() const;
-//STRIP001  sal_Bool IsOptTest4() const;
-//STRIP001  sal_Bool IsOptTest5() const;
-//STRIP001  sal_Bool IsOptTest6() const;
-//STRIP001  sal_Bool IsOptTest7() const;
-//STRIP001  sal_Bool IsOptTest8() const;
 #endif
 };
 
@@ -425,13 +411,8 @@ class SwTxtPaintInfo : public SwTxtSizeInfo
     SwRect      aPaintRect; // Original Ausgaberechteck (aus Layout-Paint)
 
     MSHORT nSpaceIdx;
-//STRIP001  void _DrawText( const XubString &rText, const SwLinePortion &rPor,
-//STRIP001                 const xub_StrLen nIdx, const xub_StrLen nLen,
-//STRIP001                 const sal_Bool bKern, const sal_Bool bWrong = sal_False );
 
     SwTxtPaintInfo &operator=(const SwTxtPaintInfo&);
-//STRIP001  void _NotifyURL( const SwLinePortion &rPor ) const;
-//STRIP001  void _DrawBackBrush( const SwLinePortion &rPor ) const;
 
 protected:
 #ifdef PRODUCT
@@ -442,7 +423,6 @@ protected:
 #endif
 public:
     SwTxtPaintInfo( const SwTxtPaintInfo &rInf );
-//STRIP001  SwTxtPaintInfo( const SwTxtPaintInfo &rInf, const XubString &rTxt );
 
     void CtorInit( SwTxtFrm *pFrame, const SwRect &rPaint );
 
@@ -469,21 +449,9 @@ public:
                           const sal_Bool bKern = sal_False ) const;
     inline void DrawWrongText( const SwLinePortion &rPor, const xub_StrLen nLen,
                           const sal_Bool bKern = sal_False ) const;
-//STRIP001  void DrawRect( const SwRect &rRect, sal_Bool bNoGraphic = sal_False,
-//STRIP001                 sal_Bool bRetouche = sal_True ) const;
-//STRIP001  void DrawTab( const SwLinePortion &rPor ) const;
-//STRIP001  void DrawLineBreak( const SwLinePortion &rPor ) const;
 #ifdef VERTICAL_LAYOUT
-//STRIP001     void DrawRedArrow( const SwLinePortion &rPor ) const;
 #endif
-//STRIP001  void DrawPostIts( const SwLinePortion &rPor, sal_Bool bScript ) const;
-//STRIP001  void DrawBackground( const SwLinePortion &rPor ) const;
-//STRIP001  void DrawViewOpt( const SwLinePortion &rPor, const MSHORT nWhich ) const;
-//STRIP001  inline void DrawBackBrush( const SwLinePortion &rPor ) const
-//STRIP001      { if( pFnt->GetBackColor() ) _DrawBackBrush( rPor ); }
 
-//STRIP001  inline void NotifyURL( const SwLinePortion &rPor ) const
-//STRIP001      { if( URLNotify() ) _NotifyURL( rPor ); }
 
     inline SwTwips GetPaintOfst() const;
     inline void SetPaintOfst( const SwTwips nNew );
@@ -584,8 +552,6 @@ public:
 
     // For the formatting inside a double line in a line (multi-line portion)
     // we need a modified text-format-info:
-//STRIP001  SwTxtFormatInfo( const SwTxtFormatInfo& rInf, SwLineLayout& rLay,
-//STRIP001      SwTwips nActWidth );
 
     inline KSHORT Width() const { return nWidth; }
     inline void Width( const KSHORT nNew ) { nWidth = nNew; }
@@ -710,9 +676,6 @@ public:
     inline void SetUnderScorePos( xub_StrLen nNew ) { nUnderScorePos = nNew; }
 
     // ruft HyphenateWord() des Hyphenators
-//STRIP001  ::com::sun::star::uno::Reference<
-//STRIP001      ::com::sun::star::linguistic2::XHyphenatedWord >
-//STRIP001              HyphWord( const String &rTxt, const USHORT nMinTrail );
     const ::com::sun::star::beans::PropertyValues   &
                 GetHyphValues() const;
 
@@ -800,16 +763,6 @@ public:
  *                      class SwDefFontSave
  *************************************************************************/
 
-//STRIP001 class SwDefFontSave
-//STRIP001 {
-//STRIP001  SwTxtSizeInfo *pInf;
-//STRIP001  SwFont        *pFnt;
-//STRIP001  SwFont        *pNewFnt;
-//STRIP001  sal_Bool           bAlter;
-//STRIP001 public:
-//STRIP001  SwDefFontSave( const SwTxtSizeInfo &rInf );
-//STRIP001    ~SwDefFontSave();
-//STRIP001 };
 
 /*************************************************************************
  *                      class SwFtnSave
