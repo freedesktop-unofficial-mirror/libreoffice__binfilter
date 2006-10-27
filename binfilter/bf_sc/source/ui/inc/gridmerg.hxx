@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gridmerg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:52:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:11:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,14 +57,11 @@ private:
     BOOL            bVertical;
     BOOL            bOptimize;
 
-//STRIP001  void        AddLine( long nStart, long nEnd, long nPos );
 
 public:
                 ScGridMerger( OutputDevice* pOutDev, long nOnePixelX, long nOnePixelY );
                 ~ScGridMerger();
 
-//STRIP001  void        AddHorLine( long nX1, long nX2, long nY );
-//STRIP001  void        AddVerLine( long nX, long nY1, long nY2 );
     void        Flush();
 };
 

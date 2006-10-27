@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fusel.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:51:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:11:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,8 +63,6 @@ class FuSelection : public FuDraw
     BOOL            bVCAction;
 
  private:
-//STRIP001  BOOL TestDetective( SdrPageView* pPV, const Point& rPos );  // -> fusel2
-//STRIP001  BOOL TestComment( SdrPageView* pPV, const Point& rPos );    // -> fusel2
 
  public:
     FuSelection(ScTabViewShell* pViewSh, Window* pWin, SdrView* pView,
@@ -72,14 +70,6 @@ class FuSelection : public FuDraw
 
     virtual ~FuSelection();
                                        // Mouse- & Key-Events
-//STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual BOOL MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonDown(const MouseEvent& rMEvt);
-//STRIP001  virtual BYTE Command(const CommandEvent& rCEvt);
-//STRIP001
-//STRIP001  virtual void Activate();           // Function aktivieren
-//STRIP001  virtual void Deactivate();         // Function deaktivieren
 };
 
 

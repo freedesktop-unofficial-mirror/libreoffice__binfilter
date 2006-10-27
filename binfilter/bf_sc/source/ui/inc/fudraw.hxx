@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fudraw.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:49:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:10:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,26 +62,13 @@ class FuDraw : public FuPoor
            SdrModel* pDoc, SfxRequest& rReq);
     virtual ~FuDraw();
 
-//STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt);
 
-//STRIP001  virtual void ScrollStart();
-//STRIP001  virtual void ScrollEnd();
 
-//STRIP001  virtual void Activate();
-//STRIP001  virtual void Deactivate();
 
-//STRIP001  virtual void ForcePointer(const MouseEvent* pMEvt);
 
-//STRIP001  virtual BOOL MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual BOOL MouseButtonDown(const MouseEvent& rMEvt);
 
     // #97016# II
-//STRIP001  virtual void SelectionHasChanged();
 
-//STRIP001  private:
-//STRIP001  void    DoModifiers(const MouseEvent& rMEvt);
-//STRIP001  void    ResetModifiers();
 };
 
 
