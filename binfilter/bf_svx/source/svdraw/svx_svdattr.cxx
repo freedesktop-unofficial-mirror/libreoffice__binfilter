@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdattr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:51:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:36:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -498,602 +498,8 @@ using namespace ::com::sun::star;
 /*N*/   SetSecondaryPool(NULL);
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrItemPool::GetPresentation(
-//STRIP001            const SfxPoolItem& rItem, SfxItemPresentation ePresentation,
-//STRIP001            SfxMapUnit ePresentationMetric, XubString& rText,
-//STRIP001               const IntlWrapper * pIntlWrapper) const
-//STRIP001 {
-//STRIP001  if (!IsInvalidItem(&rItem)) {
-//STRIP001      USHORT nWhich=rItem.Which();
-//STRIP001      if (nWhich>=SDRATTR_SHADOW_FIRST && nWhich<=SDRATTR_END) {
-//STRIP001          rItem.GetPresentation(SFX_ITEM_PRESENTATION_NAMELESS,
-//STRIP001                      GetMetric(nWhich),ePresentationMetric,rText,
-//STRIP001                         pIntlWrapper);
-//STRIP001          String aStr;
-//STRIP001
-//STRIP001          TakeItemName(nWhich, aStr);
-//STRIP001          aStr += sal_Unicode(' ');
-//STRIP001          rText.Insert(aStr, 0);
-//STRIP001
-//STRIP001          return ePresentation;
-//STRIP001      }
-//STRIP001  }
-//STRIP001     return XOutdevItemPool::GetPresentation(rItem,ePresentation,ePresentationMetric,rText,pIntlWrapper);
-//STRIP001 }
 
-//STRIP001 FASTBOOL SdrItemPool::TakeItemName(USHORT nWhich, String& rItemName)
-//STRIP001 {
-//STRIP001  ResMgr* pResMgr = ImpGetResMgr();
-//STRIP001  USHORT  nResId = SIP_UNKNOWN_ATTR;
-//STRIP001
-//STRIP001  switch (nWhich)
-//STRIP001  {
-//STRIP001      case XATTR_LINESTYLE        : nResId = SIP_XA_LINESTYLE;break;
-//STRIP001      case XATTR_LINEDASH         : nResId = SIP_XA_LINEDASH;break;
-//STRIP001      case XATTR_LINEWIDTH        : nResId = SIP_XA_LINEWIDTH;break;
-//STRIP001      case XATTR_LINECOLOR        : nResId = SIP_XA_LINECOLOR;break;
-//STRIP001      case XATTR_LINESTART        : nResId = SIP_XA_LINESTART;break;
-//STRIP001      case XATTR_LINEEND          : nResId = SIP_XA_LINEEND;break;
-//STRIP001      case XATTR_LINESTARTWIDTH   : nResId = SIP_XA_LINESTARTWIDTH;break;
-//STRIP001      case XATTR_LINEENDWIDTH     : nResId = SIP_XA_LINEENDWIDTH;break;
-//STRIP001      case XATTR_LINESTARTCENTER  : nResId = SIP_XA_LINESTARTCENTER;break;
-//STRIP001      case XATTR_LINEENDCENTER    : nResId = SIP_XA_LINEENDCENTER;break;
-//STRIP001      case XATTR_LINETRANSPARENCE : nResId = SIP_XA_LINETRANSPARENCE;break;
-//STRIP001      case XATTR_LINEJOINT        : nResId = SIP_XA_LINEJOINT;break;
-//STRIP001      case XATTR_LINERESERVED2    : nResId = SIP_XA_LINERESERVED2;break;
-//STRIP001      case XATTR_LINERESERVED3    : nResId = SIP_XA_LINERESERVED3;break;
-//STRIP001      case XATTR_LINERESERVED4    : nResId = SIP_XA_LINERESERVED4;break;
-//STRIP001      case XATTR_LINERESERVED5    : nResId = SIP_XA_LINERESERVED5;break;
-//STRIP001      case XATTR_LINERESERVED_LAST: nResId = SIP_XA_LINERESERVED_LAST;break;
-//STRIP001      case XATTRSET_LINE          : nResId = SIP_XATTRSET_LINE;break;
-//STRIP001
-//STRIP001      case XATTR_FILLSTYLE            : nResId = SIP_XA_FILLSTYLE;break;
-//STRIP001      case XATTR_FILLCOLOR            : nResId = SIP_XA_FILLCOLOR;break;
-//STRIP001      case XATTR_FILLGRADIENT         : nResId = SIP_XA_FILLGRADIENT;break;
-//STRIP001      case XATTR_FILLHATCH            : nResId = SIP_XA_FILLHATCH;break;
-//STRIP001      case XATTR_FILLBITMAP           : nResId = SIP_XA_FILLBITMAP;break;
-//STRIP001      case XATTR_FILLTRANSPARENCE     : nResId = SIP_XA_FILLTRANSPARENCE;break;
-//STRIP001      case XATTR_GRADIENTSTEPCOUNT    : nResId = SIP_XA_GRADIENTSTEPCOUNT;break;
-//STRIP001      case XATTR_FILLBMP_TILE         : nResId = SIP_XA_FILLBMP_TILE;break;
-//STRIP001      case XATTR_FILLBMP_POS          : nResId = SIP_XA_FILLBMP_POS;break;
-//STRIP001      case XATTR_FILLBMP_SIZEX        : nResId = SIP_XA_FILLBMP_SIZEX;break;
-//STRIP001      case XATTR_FILLBMP_SIZEY        : nResId = SIP_XA_FILLBMP_SIZEY;break;
-//STRIP001      case XATTR_FILLFLOATTRANSPARENCE: nResId = SIP_XA_FILLFLOATTRANSPARENCE;break;
-//STRIP001      case XATTR_FILLRESERVED2        : nResId = SIP_XA_FILLRESERVED2;break;
-//STRIP001      case XATTR_FILLBMP_SIZELOG      : nResId = SIP_XA_FILLBMP_SIZELOG;break;
-//STRIP001      case XATTR_FILLBMP_TILEOFFSETX  : nResId = SIP_XA_FILLBMP_TILEOFFSETX;break;
-//STRIP001      case XATTR_FILLBMP_TILEOFFSETY  : nResId = SIP_XA_FILLBMP_TILEOFFSETY;break;
-//STRIP001      case XATTR_FILLBMP_STRETCH      : nResId = SIP_XA_FILLBMP_STRETCH;break;
-//STRIP001      case XATTR_FILLRESERVED3        : nResId = SIP_XA_FILLRESERVED3;break;
-//STRIP001      case XATTR_FILLRESERVED4        : nResId = SIP_XA_FILLRESERVED4;break;
-//STRIP001      case XATTR_FILLRESERVED5        : nResId = SIP_XA_FILLRESERVED5;break;
-//STRIP001      case XATTR_FILLRESERVED6        : nResId = SIP_XA_FILLRESERVED6;break;
-//STRIP001      case XATTR_FILLRESERVED7        : nResId = SIP_XA_FILLRESERVED7;break;
-//STRIP001      case XATTR_FILLRESERVED8        : nResId = SIP_XA_FILLRESERVED8;break;
-//STRIP001      case XATTR_FILLBMP_POSOFFSETX   : nResId = SIP_XA_FILLBMP_POSOFFSETX;break;
-//STRIP001      case XATTR_FILLBMP_POSOFFSETY   : nResId = SIP_XA_FILLBMP_POSOFFSETY;break;
-//STRIP001      case XATTR_FILLBACKGROUND       : nResId = SIP_XA_FILLBACKGROUND;break;
-//STRIP001      case XATTR_FILLRESERVED10       : nResId = SIP_XA_FILLRESERVED10;break;
-//STRIP001      case XATTR_FILLRESERVED11       : nResId = SIP_XA_FILLRESERVED11;break;
-//STRIP001      case XATTR_FILLRESERVED_LAST    : nResId = SIP_XA_FILLRESERVED_LAST;break;
-//STRIP001
-//STRIP001      case XATTRSET_FILL             : nResId = SIP_XATTRSET_FILL;break;
-//STRIP001
-//STRIP001      case XATTR_FORMTXTSTYLE     : nResId = SIP_XA_FORMTXTSTYLE;break;
-//STRIP001      case XATTR_FORMTXTADJUST    : nResId = SIP_XA_FORMTXTADJUST;break;
-//STRIP001      case XATTR_FORMTXTDISTANCE  : nResId = SIP_XA_FORMTXTDISTANCE;break;
-//STRIP001      case XATTR_FORMTXTSTART     : nResId = SIP_XA_FORMTXTSTART;break;
-//STRIP001      case XATTR_FORMTXTMIRROR    : nResId = SIP_XA_FORMTXTMIRROR;break;
-//STRIP001      case XATTR_FORMTXTOUTLINE   : nResId = SIP_XA_FORMTXTOUTLINE;break;
-//STRIP001      case XATTR_FORMTXTSHADOW    : nResId = SIP_XA_FORMTXTSHADOW;break;
-//STRIP001      case XATTR_FORMTXTSHDWCOLOR : nResId = SIP_XA_FORMTXTSHDWCOLOR;break;
-//STRIP001      case XATTR_FORMTXTSHDWXVAL  : nResId = SIP_XA_FORMTXTSHDWXVAL;break;
-//STRIP001      case XATTR_FORMTXTSHDWYVAL  : nResId = SIP_XA_FORMTXTSHDWYVAL;break;
-//STRIP001      case XATTR_FORMTXTSTDFORM   : nResId = SIP_XA_FORMTXTSTDFORM;break;
-//STRIP001      case XATTR_FORMTXTHIDEFORM  : nResId = SIP_XA_FORMTXTHIDEFORM;break;
-//STRIP001      case XATTR_FORMTXTSHDWTRANSP: nResId = SIP_XA_FORMTXTSHDWTRANSP;break;
-//STRIP001      case XATTR_FTRESERVED2      : nResId = SIP_XA_FTRESERVED2;break;
-//STRIP001      case XATTR_FTRESERVED3      : nResId = SIP_XA_FTRESERVED3;break;
-//STRIP001      case XATTR_FTRESERVED4      : nResId = SIP_XA_FTRESERVED4;break;
-//STRIP001      case XATTR_FTRESERVED5      : nResId = SIP_XA_FTRESERVED5;break;
-//STRIP001      case XATTR_FTRESERVED_LAST  : nResId = SIP_XA_FTRESERVED_LAST;break;
-//STRIP001      case XATTRSET_TEXT          : nResId = SIP_XATTRSET_TEXT;break;
-//STRIP001
-//STRIP001      case SDRATTR_SHADOW            : nResId = SIP_SA_SHADOW;break;
-//STRIP001      case SDRATTR_SHADOWCOLOR       : nResId = SIP_SA_SHADOWCOLOR;break;
-//STRIP001      case SDRATTR_SHADOWXDIST       : nResId = SIP_SA_SHADOWXDIST;break;
-//STRIP001      case SDRATTR_SHADOWYDIST       : nResId = SIP_SA_SHADOWYDIST;break;
-//STRIP001      case SDRATTR_SHADOWTRANSPARENCE: nResId = SIP_SA_SHADOWTRANSPARENCE;break;
-//STRIP001      case SDRATTR_SHADOW3D          : nResId = SIP_SA_SHADOW3D;break;
-//STRIP001      case SDRATTR_SHADOWPERSP       : nResId = SIP_SA_SHADOWPERSP;break;
-//STRIP001      case SDRATTR_SHADOWRESERVE1    : nResId = SIP_SA_SHADOWRESERVE1;break;
-//STRIP001      case SDRATTR_SHADOWRESERVE2    : nResId = SIP_SA_SHADOWRESERVE2;break;
-//STRIP001      case SDRATTR_SHADOWRESERVE3    : nResId = SIP_SA_SHADOWRESERVE3;break;
-//STRIP001      case SDRATTR_SHADOWRESERVE4    : nResId = SIP_SA_SHADOWRESERVE4;break;
-//STRIP001      case SDRATTR_SHADOWRESERVE5    : nResId = SIP_SA_SHADOWRESERVE5;break;
-//STRIP001      case SDRATTRSET_SHADOW         : nResId = SIP_SDRATTRSET_SHADOW;break;
-//STRIP001
-//STRIP001      case SDRATTR_CAPTIONTYPE      : nResId = SIP_SA_CAPTIONTYPE;break;
-//STRIP001      case SDRATTR_CAPTIONFIXEDANGLE: nResId = SIP_SA_CAPTIONFIXEDANGLE;break;
-//STRIP001      case SDRATTR_CAPTIONANGLE     : nResId = SIP_SA_CAPTIONANGLE;break;
-//STRIP001      case SDRATTR_CAPTIONGAP       : nResId = SIP_SA_CAPTIONGAP;break;
-//STRIP001      case SDRATTR_CAPTIONESCDIR    : nResId = SIP_SA_CAPTIONESCDIR;break;
-//STRIP001      case SDRATTR_CAPTIONESCISREL  : nResId = SIP_SA_CAPTIONESCISREL;break;
-//STRIP001      case SDRATTR_CAPTIONESCREL    : nResId = SIP_SA_CAPTIONESCREL;break;
-//STRIP001      case SDRATTR_CAPTIONESCABS    : nResId = SIP_SA_CAPTIONESCABS;break;
-//STRIP001      case SDRATTR_CAPTIONLINELEN   : nResId = SIP_SA_CAPTIONLINELEN;break;
-//STRIP001      case SDRATTR_CAPTIONFITLINELEN: nResId = SIP_SA_CAPTIONFITLINELEN;break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE1  : nResId = SIP_SA_CAPTIONRESERVE1;break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE2  : nResId = SIP_SA_CAPTIONRESERVE2;break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE3  : nResId = SIP_SA_CAPTIONRESERVE3;break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE4  : nResId = SIP_SA_CAPTIONRESERVE4;break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE5  : nResId = SIP_SA_CAPTIONRESERVE5;break;
-//STRIP001      case SDRATTRSET_CAPTION       : nResId = SIP_SDRATTRSET_CAPTION;break;
-//STRIP001
-//STRIP001      case SDRATTRSET_OUTLINER: nResId = SIP_SDRATTRSET_OUTLINER;break;
-//STRIP001
-//STRIP001      case SDRATTR_ECKENRADIUS            : nResId = SIP_SA_ECKENRADIUS;break;
-//STRIP001      case SDRATTR_TEXT_MINFRAMEHEIGHT    : nResId = SIP_SA_TEXT_MINFRAMEHEIGHT;break;
-//STRIP001      case SDRATTR_TEXT_AUTOGROWHEIGHT    : nResId = SIP_SA_TEXT_AUTOGROWHEIGHT;break;
-//STRIP001      case SDRATTR_TEXT_FITTOSIZE         : nResId = SIP_SA_TEXT_FITTOSIZE;break;
-//STRIP001      case SDRATTR_TEXT_LEFTDIST          : nResId = SIP_SA_TEXT_LEFTDIST;break;
-//STRIP001      case SDRATTR_TEXT_RIGHTDIST         : nResId = SIP_SA_TEXT_RIGHTDIST;break;
-//STRIP001      case SDRATTR_TEXT_UPPERDIST         : nResId = SIP_SA_TEXT_UPPERDIST;break;
-//STRIP001      case SDRATTR_TEXT_LOWERDIST         : nResId = SIP_SA_TEXT_LOWERDIST;break;
-//STRIP001      case SDRATTR_TEXT_VERTADJUST        : nResId = SIP_SA_TEXT_VERTADJUST;break;
-//STRIP001      case SDRATTR_TEXT_MAXFRAMEHEIGHT    : nResId = SIP_SA_TEXT_MAXFRAMEHEIGHT;break;
-//STRIP001      case SDRATTR_TEXT_MINFRAMEWIDTH     : nResId = SIP_SA_TEXT_MINFRAMEWIDTH;break;
-//STRIP001      case SDRATTR_TEXT_MAXFRAMEWIDTH     : nResId = SIP_SA_TEXT_MAXFRAMEWIDTH;break;
-//STRIP001      case SDRATTR_TEXT_AUTOGROWWIDTH     : nResId = SIP_SA_TEXT_AUTOGROWWIDTH;break;
-//STRIP001      case SDRATTR_TEXT_HORZADJUST        : nResId = SIP_SA_TEXT_HORZADJUST;break;
-//STRIP001      case SDRATTR_TEXT_ANIKIND           : nResId = SIP_SA_TEXT_ANIKIND;break;
-//STRIP001      case SDRATTR_TEXT_ANIDIRECTION      : nResId = SIP_SA_TEXT_ANIDIRECTION;break;
-//STRIP001      case SDRATTR_TEXT_ANISTARTINSIDE    : nResId = SIP_SA_TEXT_ANISTARTINSIDE;break;
-//STRIP001      case SDRATTR_TEXT_ANISTOPINSIDE     : nResId = SIP_SA_TEXT_ANISTOPINSIDE;break;
-//STRIP001      case SDRATTR_TEXT_ANICOUNT          : nResId = SIP_SA_TEXT_ANICOUNT;break;
-//STRIP001      case SDRATTR_TEXT_ANIDELAY          : nResId = SIP_SA_TEXT_ANIDELAY;break;
-//STRIP001      case SDRATTR_TEXT_ANIAMOUNT         : nResId = SIP_SA_TEXT_ANIAMOUNT;break;
-//STRIP001      case SDRATTR_TEXT_CONTOURFRAME      : nResId = SIP_SA_TEXT_CONTOURFRAME;break;
-//STRIP001      case SDRATTR_AUTOSHAPE_ADJUSTMENT   : nResId = SIP_SA_AUTOSHAPE_ADJUSTMENT;break;
-//STRIP001      case SDRATTR_XMLATTRIBUTES          : nResId = SIP_SA_XMLATTRIBUTES;break;
-//STRIP001      case SDRATTR_RESERVE15              : nResId = SIP_SA_RESERVE15;break;
-//STRIP001      case SDRATTR_RESERVE16              : nResId = SIP_SA_RESERVE16;break;
-//STRIP001      case SDRATTR_RESERVE17              : nResId = SIP_SA_RESERVE17;break;
-//STRIP001      case SDRATTR_RESERVE18              : nResId = SIP_SA_RESERVE18;break;
-//STRIP001      case SDRATTR_RESERVE19              : nResId = SIP_SA_RESERVE19;break;
-//STRIP001      case SDRATTRSET_MISC                : nResId = SIP_SDRATTRSET_MISC;break;
-//STRIP001
-//STRIP001      case SDRATTR_EDGEKIND           : nResId = SIP_SA_EDGEKIND;break;
-//STRIP001      case SDRATTR_EDGENODE1HORZDIST  : nResId = SIP_SA_EDGENODE1HORZDIST;break;
-//STRIP001      case SDRATTR_EDGENODE1VERTDIST  : nResId = SIP_SA_EDGENODE1VERTDIST;break;
-//STRIP001      case SDRATTR_EDGENODE2HORZDIST  : nResId = SIP_SA_EDGENODE2HORZDIST;break;
-//STRIP001      case SDRATTR_EDGENODE2VERTDIST  : nResId = SIP_SA_EDGENODE2VERTDIST;break;
-//STRIP001      case SDRATTR_EDGENODE1GLUEDIST  : nResId = SIP_SA_EDGENODE1GLUEDIST;break;
-//STRIP001      case SDRATTR_EDGENODE2GLUEDIST  : nResId = SIP_SA_EDGENODE2GLUEDIST;break;
-//STRIP001      case SDRATTR_EDGELINEDELTAANZ   : nResId = SIP_SA_EDGELINEDELTAANZ;break;
-//STRIP001      case SDRATTR_EDGELINE1DELTA     : nResId = SIP_SA_EDGELINE1DELTA;break;
-//STRIP001      case SDRATTR_EDGELINE2DELTA     : nResId = SIP_SA_EDGELINE2DELTA;break;
-//STRIP001      case SDRATTR_EDGELINE3DELTA     : nResId = SIP_SA_EDGELINE3DELTA;break;
-//STRIP001      case SDRATTR_EDGERESERVE02      : nResId = SIP_SA_EDGERESERVE02;break;
-//STRIP001      case SDRATTR_EDGERESERVE03      : nResId = SIP_SA_EDGERESERVE03;break;
-//STRIP001      case SDRATTR_EDGERESERVE04      : nResId = SIP_SA_EDGERESERVE04;break;
-//STRIP001      case SDRATTR_EDGERESERVE05      : nResId = SIP_SA_EDGERESERVE05;break;
-//STRIP001      case SDRATTR_EDGERESERVE06      : nResId = SIP_SA_EDGERESERVE06;break;
-//STRIP001      case SDRATTR_EDGERESERVE07      : nResId = SIP_SA_EDGERESERVE07;break;
-//STRIP001      case SDRATTR_EDGERESERVE08      : nResId = SIP_SA_EDGERESERVE08;break;
-//STRIP001      case SDRATTR_EDGERESERVE09      : nResId = SIP_SA_EDGERESERVE09;break;
-//STRIP001      case SDRATTRSET_EDGE            : nResId = SIP_SDRATTRSET_EDGE;break;
-//STRIP001
-//STRIP001      case SDRATTR_MEASUREKIND             : nResId = SIP_SA_MEASUREKIND;break;
-//STRIP001      case SDRATTR_MEASURETEXTHPOS         : nResId = SIP_SA_MEASURETEXTHPOS;break;
-//STRIP001      case SDRATTR_MEASURETEXTVPOS         : nResId = SIP_SA_MEASURETEXTVPOS;break;
-//STRIP001      case SDRATTR_MEASURELINEDIST         : nResId = SIP_SA_MEASURELINEDIST;break;
-//STRIP001      case SDRATTR_MEASUREHELPLINEOVERHANG : nResId = SIP_SA_MEASUREHELPLINEOVERHANG;break;
-//STRIP001      case SDRATTR_MEASUREHELPLINEDIST     : nResId = SIP_SA_MEASUREHELPLINEDIST;break;
-//STRIP001      case SDRATTR_MEASUREHELPLINE1LEN     : nResId = SIP_SA_MEASUREHELPLINE1LEN;break;
-//STRIP001      case SDRATTR_MEASUREHELPLINE2LEN     : nResId = SIP_SA_MEASUREHELPLINE2LEN;break;
-//STRIP001      case SDRATTR_MEASUREBELOWREFEDGE     : nResId = SIP_SA_MEASUREBELOWREFEDGE;break;
-//STRIP001      case SDRATTR_MEASURETEXTROTA90       : nResId = SIP_SA_MEASURETEXTROTA90;break;
-//STRIP001      case SDRATTR_MEASURETEXTUPSIDEDOWN   : nResId = SIP_SA_MEASURETEXTUPSIDEDOWN;break;
-//STRIP001      case SDRATTR_MEASUREOVERHANG         : nResId = SIP_SA_MEASUREOVERHANG;break;
-//STRIP001      case SDRATTR_MEASUREUNIT             : nResId = SIP_SA_MEASUREUNIT;break;
-//STRIP001      case SDRATTR_MEASURESCALE            : nResId = SIP_SA_MEASURESCALE;break;
-//STRIP001      case SDRATTR_MEASURESHOWUNIT         : nResId = SIP_SA_MEASURESHOWUNIT;break;
-//STRIP001      case SDRATTR_MEASUREFORMATSTRING     : nResId = SIP_SA_MEASUREFORMATSTRING;break;
-//STRIP001      case SDRATTR_MEASURETEXTAUTOANGLE    : nResId = SIP_SA_MEASURETEXTAUTOANGLE;break;
-//STRIP001      case SDRATTR_MEASURETEXTAUTOANGLEVIEW: nResId = SIP_SA_MEASURETEXTAUTOANGLEVIEW;break;
-//STRIP001      case SDRATTR_MEASURETEXTISFIXEDANGLE : nResId = SIP_SA_MEASURETEXTISFIXEDANGLE;break;
-//STRIP001      case SDRATTR_MEASURETEXTFIXEDANGLE   : nResId = SIP_SA_MEASURETEXTFIXEDANGLE;break;
-//STRIP001      case SDRATTR_MEASUREDECIMALPLACES    : nResId = SIP_SA_MEASUREDECIMALPLACES;break;
-//STRIP001      case SDRATTR_MEASURERESERVE05        : nResId = SIP_SA_MEASURERESERVE05;break;
-//STRIP001      case SDRATTR_MEASURERESERVE06        : nResId = SIP_SA_MEASURERESERVE06;break;
-//STRIP001      case SDRATTR_MEASURERESERVE07        : nResId = SIP_SA_MEASURERESERVE07;break;
-//STRIP001      case SDRATTRSET_MEASURE              : nResId = SIP_SDRATTRSET_MEASURE;break;
-//STRIP001
-//STRIP001      case SDRATTR_CIRCKIND      : nResId = SIP_SA_CIRCKIND;break;
-//STRIP001      case SDRATTR_CIRCSTARTANGLE: nResId = SIP_SA_CIRCSTARTANGLE;break;
-//STRIP001      case SDRATTR_CIRCENDANGLE  : nResId = SIP_SA_CIRCENDANGLE;break;
-//STRIP001      case SDRATTR_CIRCRESERVE0  : nResId = SIP_SA_CIRCRESERVE0;break;
-//STRIP001      case SDRATTR_CIRCRESERVE1  : nResId = SIP_SA_CIRCRESERVE1;break;
-//STRIP001      case SDRATTR_CIRCRESERVE2  : nResId = SIP_SA_CIRCRESERVE2;break;
-//STRIP001      case SDRATTR_CIRCRESERVE3  : nResId = SIP_SA_CIRCRESERVE3;break;
-//STRIP001      case SDRATTRSET_CIRC       : nResId = SIP_SDRATTRSET_CIRC;break;
-//STRIP001
-//STRIP001      case SDRATTR_OBJMOVEPROTECT : nResId = SIP_SA_OBJMOVEPROTECT;break;
-//STRIP001      case SDRATTR_OBJSIZEPROTECT : nResId = SIP_SA_OBJSIZEPROTECT;break;
-//STRIP001      case SDRATTR_OBJPRINTABLE   : nResId = SIP_SA_OBJPRINTABLE;break;
-//STRIP001      case SDRATTR_LAYERID        : nResId = SIP_SA_LAYERID;break;
-//STRIP001      case SDRATTR_LAYERNAME      : nResId = SIP_SA_LAYERNAME;break;
-//STRIP001      case SDRATTR_OBJECTNAME     : nResId = SIP_SA_OBJECTNAME;break;
-//STRIP001      case SDRATTR_ALLPOSITIONX   : nResId = SIP_SA_ALLPOSITIONX;break;
-//STRIP001      case SDRATTR_ALLPOSITIONY   : nResId = SIP_SA_ALLPOSITIONY;break;
-//STRIP001      case SDRATTR_ALLSIZEWIDTH   : nResId = SIP_SA_ALLSIZEWIDTH;break;
-//STRIP001      case SDRATTR_ALLSIZEHEIGHT  : nResId = SIP_SA_ALLSIZEHEIGHT;break;
-//STRIP001      case SDRATTR_ONEPOSITIONX   : nResId = SIP_SA_ONEPOSITIONX;break;
-//STRIP001      case SDRATTR_ONEPOSITIONY   : nResId = SIP_SA_ONEPOSITIONY;break;
-//STRIP001      case SDRATTR_ONESIZEWIDTH   : nResId = SIP_SA_ONESIZEWIDTH;break;
-//STRIP001      case SDRATTR_ONESIZEHEIGHT  : nResId = SIP_SA_ONESIZEHEIGHT;break;
-//STRIP001      case SDRATTR_LOGICSIZEWIDTH : nResId = SIP_SA_LOGICSIZEWIDTH;break;
-//STRIP001      case SDRATTR_LOGICSIZEHEIGHT: nResId = SIP_SA_LOGICSIZEHEIGHT;break;
-//STRIP001      case SDRATTR_ROTATEANGLE    : nResId = SIP_SA_ROTATEANGLE;break;
-//STRIP001      case SDRATTR_SHEARANGLE     : nResId = SIP_SA_SHEARANGLE;break;
-//STRIP001      case SDRATTR_MOVEX          : nResId = SIP_SA_MOVEX;break;
-//STRIP001      case SDRATTR_MOVEY          : nResId = SIP_SA_MOVEY;break;
-//STRIP001      case SDRATTR_RESIZEXONE     : nResId = SIP_SA_RESIZEXONE;break;
-//STRIP001      case SDRATTR_RESIZEYONE     : nResId = SIP_SA_RESIZEYONE;break;
-//STRIP001      case SDRATTR_ROTATEONE      : nResId = SIP_SA_ROTATEONE;break;
-//STRIP001      case SDRATTR_HORZSHEARONE   : nResId = SIP_SA_HORZSHEARONE;break;
-//STRIP001      case SDRATTR_VERTSHEARONE   : nResId = SIP_SA_VERTSHEARONE;break;
-//STRIP001      case SDRATTR_RESIZEXALL     : nResId = SIP_SA_RESIZEXALL;break;
-//STRIP001      case SDRATTR_RESIZEYALL     : nResId = SIP_SA_RESIZEYALL;break;
-//STRIP001      case SDRATTR_ROTATEALL      : nResId = SIP_SA_ROTATEALL;break;
-//STRIP001      case SDRATTR_HORZSHEARALL   : nResId = SIP_SA_HORZSHEARALL;break;
-//STRIP001      case SDRATTR_VERTSHEARALL   : nResId = SIP_SA_VERTSHEARALL;break;
-//STRIP001      case SDRATTR_TRANSFORMREF1X : nResId = SIP_SA_TRANSFORMREF1X;break;
-//STRIP001      case SDRATTR_TRANSFORMREF1Y : nResId = SIP_SA_TRANSFORMREF1Y;break;
-//STRIP001      case SDRATTR_TRANSFORMREF2X : nResId = SIP_SA_TRANSFORMREF2X;break;
-//STRIP001      case SDRATTR_TRANSFORMREF2Y : nResId = SIP_SA_TRANSFORMREF2Y;break;
-//STRIP001
-//STRIP001      case SDRATTR_GRAFRED            : nResId = SIP_SA_GRAFRED;break;
-//STRIP001      case SDRATTR_GRAFGREEN          : nResId = SIP_SA_GRAFGREEN;break;
-//STRIP001      case SDRATTR_GRAFBLUE           : nResId = SIP_SA_GRAFBLUE;break;
-//STRIP001      case SDRATTR_GRAFLUMINANCE      : nResId = SIP_SA_GRAFLUMINANCE;break;
-//STRIP001      case SDRATTR_GRAFCONTRAST       : nResId = SIP_SA_GRAFCONTRAST;break;
-//STRIP001      case SDRATTR_GRAFGAMMA          : nResId = SIP_SA_GRAFGAMMA;break;
-//STRIP001      case SDRATTR_GRAFTRANSPARENCE   : nResId = SIP_SA_GRAFTRANSPARENCE;break;
-//STRIP001      case SDRATTR_GRAFINVERT         : nResId = SIP_SA_GRAFINVERT;break;
-//STRIP001      case SDRATTR_GRAFMODE           : nResId = SIP_SA_GRAFMODE;break;
-//STRIP001      case SDRATTR_GRAFCROP           : nResId = SIP_SA_GRAFCROP;break;
-//STRIP001      case SDRATTR_GRAFRESERVE3       : nResId = SIP_SA_GRAFRESERVE3;break;
-//STRIP001      case SDRATTR_GRAFRESERVE4       : nResId = SIP_SA_GRAFRESERVE4;break;
-//STRIP001      case SDRATTR_GRAFRESERVE5       : nResId = SIP_SA_GRAFRESERVE5;break;
-//STRIP001      case SDRATTR_GRAFRESERVE6       : nResId = SIP_SA_GRAFRESERVE6;break;
-//STRIP001      case SDRATTRSET_GRAF            : nResId = SIP_SDRATTRSET_GRAF;break;
-//STRIP001
-//STRIP001      case EE_PARA_HYPHENATE  : nResId = SIP_EE_PARA_HYPHENATE;break;
-//STRIP001      case EE_PARA_BULLETSTATE: nResId = SIP_EE_PARA_BULLETSTATE;break;
-//STRIP001      case EE_PARA_OUTLLRSPACE: nResId = SIP_EE_PARA_OUTLLRSPACE;break;
-//STRIP001      case EE_PARA_OUTLLEVEL  : nResId = SIP_EE_PARA_OUTLLEVEL;break;
-//STRIP001      case EE_PARA_BULLET     : nResId = SIP_EE_PARA_BULLET;break;
-//STRIP001      case EE_PARA_LRSPACE    : nResId = SIP_EE_PARA_LRSPACE;break;
-//STRIP001      case EE_PARA_ULSPACE    : nResId = SIP_EE_PARA_ULSPACE;break;
-//STRIP001      case EE_PARA_SBL        : nResId = SIP_EE_PARA_SBL;break;
-//STRIP001      case EE_PARA_JUST       : nResId = SIP_EE_PARA_JUST;break;
-//STRIP001      case EE_PARA_TABS       : nResId = SIP_EE_PARA_TABS;break;
-//STRIP001
-//STRIP001      case EE_CHAR_COLOR      : nResId = SIP_EE_CHAR_COLOR;break;
-//STRIP001      case EE_CHAR_FONTINFO   : nResId = SIP_EE_CHAR_FONTINFO;break;
-//STRIP001      case EE_CHAR_FONTHEIGHT : nResId = SIP_EE_CHAR_FONTHEIGHT;break;
-//STRIP001      case EE_CHAR_FONTWIDTH  : nResId = SIP_EE_CHAR_FONTWIDTH;break;
-//STRIP001      case EE_CHAR_WEIGHT     : nResId = SIP_EE_CHAR_WEIGHT;break;
-//STRIP001      case EE_CHAR_UNDERLINE  : nResId = SIP_EE_CHAR_UNDERLINE;break;
-//STRIP001      case EE_CHAR_STRIKEOUT  : nResId = SIP_EE_CHAR_STRIKEOUT;break;
-//STRIP001      case EE_CHAR_ITALIC     : nResId = SIP_EE_CHAR_ITALIC;break;
-//STRIP001      case EE_CHAR_OUTLINE    : nResId = SIP_EE_CHAR_OUTLINE;break;
-//STRIP001      case EE_CHAR_SHADOW     : nResId = SIP_EE_CHAR_SHADOW;break;
-//STRIP001      case EE_CHAR_ESCAPEMENT : nResId = SIP_EE_CHAR_ESCAPEMENT;break;
-//STRIP001      case EE_CHAR_PAIRKERNING: nResId = SIP_EE_CHAR_PAIRKERNING;break;
-//STRIP001      case EE_CHAR_KERNING    : nResId = SIP_EE_CHAR_KERNING;break;
-//STRIP001      case EE_CHAR_WLM        : nResId = SIP_EE_CHAR_WLM;break;
-//STRIP001      case EE_FEATURE_TAB     : nResId = SIP_EE_FEATURE_TAB;break;
-//STRIP001      case EE_FEATURE_LINEBR  : nResId = SIP_EE_FEATURE_LINEBR;break;
-//STRIP001      case EE_FEATURE_NOTCONV : nResId = SIP_EE_FEATURE_NOTCONV;break;
-//STRIP001      case EE_FEATURE_FIELD   : nResId = SIP_EE_FEATURE_FIELD;break;
-//STRIP001  } // switch
-//STRIP001
-//STRIP001  rItemName = String( ResId( nResId, pResMgr ) );
-//STRIP001
-//STRIP001  return (BOOL)rItemName.Len();
-//STRIP001 }
 
-//STRIP001 BOOL SdrItemPool::TakeWhichName(USHORT nWhich, ByteString& rWhichName)
-//STRIP001 {
-//STRIP001  ByteString aStr;
-//STRIP001
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  switch(nWhich)
-//STRIP001  {
-//STRIP001      case XATTR_LINESTYLE                 : aStr="XATTR_LINESTYLE                 "; break;
-//STRIP001      case XATTR_LINEDASH                  : aStr="XATTR_LINEDASH                  "; break;
-//STRIP001      case XATTR_LINEWIDTH                 : aStr="XATTR_LINEWIDTH                 "; break;
-//STRIP001      case XATTR_LINECOLOR                 : aStr="XATTR_LINECOLOR                 "; break;
-//STRIP001      case XATTR_LINESTART                 : aStr="XATTR_LINESTART                 "; break;
-//STRIP001      case XATTR_LINEEND                   : aStr="XATTR_LINEEND                   "; break;
-//STRIP001      case XATTR_LINESTARTWIDTH            : aStr="XATTR_LINESTARTWIDTH            "; break;
-//STRIP001      case XATTR_LINEENDWIDTH              : aStr="XATTR_LINEENDWIDTH              "; break;
-//STRIP001      case XATTR_LINESTARTCENTER           : aStr="XATTR_LINESTARTCENTER           "; break;
-//STRIP001      case XATTR_LINEENDCENTER             : aStr="XATTR_LINEENDCENTER             "; break;
-//STRIP001      case XATTR_LINETRANSPARENCE          : aStr="XATTR_LINETRANSPARENCE          "; break;
-//STRIP001      case XATTR_LINEJOINT                 : aStr="XATTR_LINEJOINT                 "; break;
-//STRIP001      case XATTR_LINERESERVED2             : aStr="XATTR_LINERESERVED2             "; break;
-//STRIP001      case XATTR_LINERESERVED3             : aStr="XATTR_LINERESERVED3             "; break;
-//STRIP001      case XATTR_LINERESERVED4             : aStr="XATTR_LINERESERVED4             "; break;
-//STRIP001      case XATTR_LINERESERVED5             : aStr="XATTR_LINERESERVED5             "; break;
-//STRIP001      case XATTR_LINERESERVED_LAST         : aStr="XATTR_LINERESERVED_LAST         "; break;
-//STRIP001      case XATTRSET_LINE                   : aStr="XATTRSET_LINE                   "; break;
-//STRIP001
-//STRIP001      case XATTR_FILLSTYLE                 : aStr="XATTR_FILLSTYLE                 "; break;
-//STRIP001      case XATTR_FILLCOLOR                 : aStr="XATTR_FILLCOLOR                 "; break;
-//STRIP001      case XATTR_FILLGRADIENT              : aStr="XATTR_FILLGRADIENT              "; break;
-//STRIP001      case XATTR_FILLHATCH                 : aStr="XATTR_FILLHATCH                 "; break;
-//STRIP001      case XATTR_FILLBITMAP                : aStr="XATTR_FILLBITMAP                "; break;
-//STRIP001      case XATTR_FILLTRANSPARENCE          : aStr="XATTR_FILLTRANSPARENCE          "; break;
-//STRIP001      case XATTR_GRADIENTSTEPCOUNT         : aStr="XATTR_GRADIENTSTEPCOUNT         "; break;
-//STRIP001
-//STRIP001      case XATTR_FILLBMP_TILE              : aStr="XATTR_FILLBMP_TILE              "; break;
-//STRIP001      case XATTR_FILLBMP_POS               : aStr="XATTR_FILLBMP_POS               "; break;
-//STRIP001      case XATTR_FILLBMP_SIZEX             : aStr="XATTR_FILLBMP_SIZEX             "; break;
-//STRIP001      case XATTR_FILLBMP_SIZEY             : aStr="XATTR_FILLBMP_SIZEY             "; break;
-//STRIP001      case XATTR_FILLFLOATTRANSPARENCE     : aStr="XATTR_FILLFLOATTRANSPARENCE     "; break;
-//STRIP001      case XATTR_FILLRESERVED2             : aStr="XATTR_FILLRESERVED2             "; break;
-//STRIP001      case XATTR_FILLBMP_SIZELOG           : aStr="XATTR_FILLBMP_SIZELOG           "; break;
-//STRIP001      case XATTR_FILLBMP_TILEOFFSETX       : aStr="XATTR_FILLBMP_TILEOFFSETX       "; break;
-//STRIP001      case XATTR_FILLBMP_TILEOFFSETY       : aStr="XATTR_FILLBMP_TILEOFFSETY       "; break;
-//STRIP001
-//STRIP001      case XATTR_FILLBMP_STRETCH           : aStr="XATTR_FILLBMP_STRETCH           "; break;
-//STRIP001      case XATTR_FILLRESERVED3             : aStr="XATTR_FILLRESERVED3             "; break;
-//STRIP001      case XATTR_FILLRESERVED4             : aStr="XATTR_FILLRESERVED4             "; break;
-//STRIP001      case XATTR_FILLRESERVED5             : aStr="XATTR_FILLRESERVED5             "; break;
-//STRIP001      case XATTR_FILLRESERVED6             : aStr="XATTR_FILLRESERVED6             "; break;
-//STRIP001      case XATTR_FILLRESERVED7             : aStr="XATTR_FILLRESERVED7             "; break;
-//STRIP001      case XATTR_FILLRESERVED8             : aStr="XATTR_FILLRESERVED8             "; break;
-//STRIP001      case XATTR_FILLBMP_POSOFFSETX        : aStr="XATTR_FILLBMP_POSOFFSETX        "; break;
-//STRIP001      case XATTR_FILLBMP_POSOFFSETY        : aStr="XATTR_FILLBMP_POSOFFSETY        "; break;
-//STRIP001      case XATTR_FILLBACKGROUND            : aStr="XATTR_FILLBACKGROUND            "; break;
-//STRIP001      case XATTR_FILLRESERVED10            : aStr="XATTR_FILLRESERVED10            "; break;
-//STRIP001      case XATTR_FILLRESERVED11            : aStr="XATTR_FILLRESERVED11            "; break;
-//STRIP001      case XATTR_FILLRESERVED_LAST         : aStr="XATTR_FILLRESERVED_LAST         "; break;
-//STRIP001
-//STRIP001      case XATTRSET_FILL                   : aStr="XATTRSET_FILL                   "; break;
-//STRIP001
-//STRIP001      case XATTR_FORMTXTSTYLE              : aStr="XATTR_FORMTXTSTYLE              "; break;
-//STRIP001      case XATTR_FORMTXTADJUST             : aStr="XATTR_FORMTXTADJUST             "; break;
-//STRIP001      case XATTR_FORMTXTDISTANCE           : aStr="XATTR_FORMTXTDISTANCE           "; break;
-//STRIP001      case XATTR_FORMTXTSTART              : aStr="XATTR_FORMTXTSTART              "; break;
-//STRIP001      case XATTR_FORMTXTMIRROR             : aStr="XATTR_FORMTXTMIRROR             "; break;
-//STRIP001      case XATTR_FORMTXTOUTLINE            : aStr="XATTR_FORMTXTOUTLINE            "; break;
-//STRIP001      case XATTR_FORMTXTSHADOW             : aStr="XATTR_FORMTXTSHADOW             "; break;
-//STRIP001      case XATTR_FORMTXTSHDWCOLOR          : aStr="XATTR_FORMTXTSHDWCOLOR          "; break;
-//STRIP001      case XATTR_FORMTXTSHDWXVAL           : aStr="XATTR_FORMTXTSHDWXVAL           "; break;
-//STRIP001      case XATTR_FORMTXTSHDWYVAL           : aStr="XATTR_FORMTXTSHDWYVAL           "; break;
-//STRIP001      case XATTR_FORMTXTSTDFORM            : aStr="XATTR_FORMTXTSTDFORM            "; break;
-//STRIP001      case XATTR_FORMTXTHIDEFORM           : aStr="XATTR_FORMTXTHIDEFORM           "; break;
-//STRIP001      case XATTR_FORMTXTSHDWTRANSP         : aStr="XATTR_FORMTXTSHDWTRANSP         "; break;
-//STRIP001      case XATTR_FTRESERVED2               : aStr="XATTR_FTRESERVED2               "; break;
-//STRIP001      case XATTR_FTRESERVED3               : aStr="XATTR_FTRESERVED3               "; break;
-//STRIP001      case XATTR_FTRESERVED4               : aStr="XATTR_FTRESERVED4               "; break;
-//STRIP001      case XATTR_FTRESERVED5               : aStr="XATTR_FTRESERVED5               "; break;
-//STRIP001      case XATTR_FTRESERVED_LAST           : aStr="XATTR_FTRESERVED_LAST           "; break;
-//STRIP001      case XATTRSET_TEXT                   : aStr="XATTRSET_TEXT                   "; break;
-//STRIP001
-//STRIP001      case SDRATTR_SHADOW                  : aStr="SDRATTR_SHADOW                  "; break;
-//STRIP001      case SDRATTR_SHADOWCOLOR             : aStr="SDRATTR_SHADOWCOLOR             "; break;
-//STRIP001      case SDRATTR_SHADOWXDIST             : aStr="SDRATTR_SHADOWXDIST             "; break;
-//STRIP001      case SDRATTR_SHADOWYDIST             : aStr="SDRATTR_SHADOWYDIST             "; break;
-//STRIP001      case SDRATTR_SHADOWTRANSPARENCE      : aStr="SDRATTR_SHADOWTRANSPARENCE      "; break;
-//STRIP001      case SDRATTR_SHADOW3D                : aStr="SDRATTR_SHADOW3D                "; break;
-//STRIP001      case SDRATTR_SHADOWPERSP             : aStr="SDRATTR_SHADOWPERSP             "; break;
-//STRIP001      case SDRATTR_SHADOWRESERVE1          : aStr="SDRATTR_SHADOWRESERVE1          "; break;
-//STRIP001      case SDRATTR_SHADOWRESERVE2          : aStr="SDRATTR_SHADOWRESERVE2          "; break;
-//STRIP001      case SDRATTR_SHADOWRESERVE3          : aStr="SDRATTR_SHADOWRESERVE3          "; break;
-//STRIP001      case SDRATTR_SHADOWRESERVE4          : aStr="SDRATTR_SHADOWRESERVE4          "; break;
-//STRIP001      case SDRATTR_SHADOWRESERVE5          : aStr="SDRATTR_SHADOWRESERVE5          "; break;
-//STRIP001      case SDRATTRSET_SHADOW               : aStr="SDRATTRSET_SHADOW               "; break;
-//STRIP001
-//STRIP001      case SDRATTR_CAPTIONTYPE             : aStr="SDRATTR_CAPTIONTYPE             "; break;
-//STRIP001      case SDRATTR_CAPTIONFIXEDANGLE       : aStr="SDRATTR_CAPTIONFIXEDANGLE       "; break;
-//STRIP001      case SDRATTR_CAPTIONANGLE            : aStr="SDRATTR_CAPTIONANGLE            "; break;
-//STRIP001      case SDRATTR_CAPTIONGAP              : aStr="SDRATTR_CAPTIONGAP              "; break;
-//STRIP001      case SDRATTR_CAPTIONESCDIR           : aStr="SDRATTR_CAPTIONESCDIR           "; break;
-//STRIP001      case SDRATTR_CAPTIONESCISREL         : aStr="SDRATTR_CAPTIONESCISREL         "; break;
-//STRIP001      case SDRATTR_CAPTIONESCREL           : aStr="SDRATTR_CAPTIONESCREL           "; break;
-//STRIP001      case SDRATTR_CAPTIONESCABS           : aStr="SDRATTR_CAPTIONESCABS           "; break;
-//STRIP001      case SDRATTR_CAPTIONLINELEN          : aStr="SDRATTR_CAPTIONLINELEN          "; break;
-//STRIP001      case SDRATTR_CAPTIONFITLINELEN       : aStr="SDRATTR_CAPTIONFITLINELEN       "; break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE1         : aStr="SDRATTR_CAPTIONRESERVE1         "; break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE2         : aStr="SDRATTR_CAPTIONRESERVE2         "; break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE3         : aStr="SDRATTR_CAPTIONRESERVE3         "; break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE4         : aStr="SDRATTR_CAPTIONRESERVE4         "; break;
-//STRIP001      case SDRATTR_CAPTIONRESERVE5         : aStr="SDRATTR_CAPTIONRESERVE5         "; break;
-//STRIP001      case SDRATTRSET_CAPTION              : aStr="SDRATTRSET_CAPTION              "; break;
-//STRIP001
-//STRIP001      case SDRATTRSET_OUTLINER             : aStr="SDRATTRSET_OUTLINER             "; break;
-//STRIP001
-//STRIP001      case SDRATTR_ECKENRADIUS             : aStr="SDRATTR_ECKENRADIUS             "; break;
-//STRIP001      case SDRATTR_TEXT_MINFRAMEHEIGHT     : aStr="SDRATTR_TEXT_MINFRAMEHEIGHT     "; break;
-//STRIP001      case SDRATTR_TEXT_AUTOGROWHEIGHT     : aStr="SDRATTR_TEXT_AUTOGROWHEIGHT     "; break;
-//STRIP001      case SDRATTR_TEXT_FITTOSIZE          : aStr="SDRATTR_TEXT_FITTOSIZE          "; break;
-//STRIP001      case SDRATTR_TEXT_LEFTDIST           : aStr="SDRATTR_TEXT_LEFTDIST           "; break;
-//STRIP001      case SDRATTR_TEXT_RIGHTDIST          : aStr="SDRATTR_TEXT_RIGHTDIST          "; break;
-//STRIP001      case SDRATTR_TEXT_UPPERDIST          : aStr="SDRATTR_TEXT_UPPERDIST          "; break;
-//STRIP001      case SDRATTR_TEXT_LOWERDIST          : aStr="SDRATTR_TEXT_LOWERDIST          "; break;
-//STRIP001      case SDRATTR_TEXT_VERTADJUST         : aStr="SDRATTR_TEXT_VERTADJUST         "; break;
-//STRIP001      case SDRATTR_TEXT_MAXFRAMEHEIGHT     : aStr="SDRATTR_TEXT_MAXFRAMEHEIGHT     "; break;
-//STRIP001      case SDRATTR_TEXT_MINFRAMEWIDTH      : aStr="SDRATTR_TEXT_MINFRAMEWIDTH      "; break;
-//STRIP001      case SDRATTR_TEXT_MAXFRAMEWIDTH      : aStr="SDRATTR_TEXT_MAXFRAMEWIDTH      "; break;
-//STRIP001      case SDRATTR_TEXT_AUTOGROWWIDTH      : aStr="SDRATTR_TEXT_AUTOGROWWIDTH      "; break;
-//STRIP001      case SDRATTR_TEXT_HORZADJUST         : aStr="SDRATTR_TEXT_HORZADJUST         "; break;
-//STRIP001      case SDRATTR_TEXT_ANIKIND            : aStr="SDRATTR_TEXT_ANIKIND            "; break;
-//STRIP001      case SDRATTR_TEXT_ANIDIRECTION       : aStr="SDRATTR_TEXT_ANIDIRECTION       "; break;
-//STRIP001      case SDRATTR_TEXT_ANISTARTINSIDE     : aStr="SDRATTR_TEXT_ANISTARTINSIDE     "; break;
-//STRIP001      case SDRATTR_TEXT_ANISTOPINSIDE      : aStr="SDRATTR_TEXT_ANISTOPINSIDE      "; break;
-//STRIP001      case SDRATTR_TEXT_ANICOUNT           : aStr="SDRATTR_TEXT_ANICOUNT           "; break;
-//STRIP001      case SDRATTR_TEXT_ANIDELAY           : aStr="SDRATTR_TEXT_ANIDELAY           "; break;
-//STRIP001      case SDRATTR_TEXT_ANIAMOUNT          : aStr="SDRATTR_TEXT_ANIAMOUNT          "; break;
-//STRIP001      case SDRATTR_TEXT_CONTOURFRAME       : aStr="SDRATTR_TEXT_CONTOURFRAME       "; break;
-//STRIP001      case SDRATTR_AUTOSHAPE_ADJUSTMENT    : aStr="SDRATTR_AUTOSHAPE_ADJUSTMENT    "; break;
-//STRIP001      case SDRATTR_XMLATTRIBUTES           : aStr="SDRATTR_XMLATTRIBUTES           "; break;
-//STRIP001      case SDRATTR_RESERVE15               : aStr="SDRATTR_RESERVE15               "; break;
-//STRIP001      case SDRATTR_RESERVE16               : aStr="SDRATTR_RESERVE16               "; break;
-//STRIP001      case SDRATTR_RESERVE17               : aStr="SDRATTR_RESERVE17               "; break;
-//STRIP001      case SDRATTR_RESERVE18               : aStr="SDRATTR_RESERVE18               "; break;
-//STRIP001      case SDRATTR_RESERVE19               : aStr="SDRATTR_RESERVE19               "; break;
-//STRIP001      case SDRATTRSET_MISC                 : aStr="SDRATTRSET_MISC                 "; break;
-//STRIP001
-//STRIP001      case SDRATTR_EDGEKIND                : aStr="SDRATTR_EDGEKIND                "; break;
-//STRIP001      case SDRATTR_EDGENODE1HORZDIST       : aStr="SDRATTR_EDGENODE1HORZDIST       "; break;
-//STRIP001      case SDRATTR_EDGENODE1VERTDIST       : aStr="SDRATTR_EDGENODE1VERTDIST       "; break;
-//STRIP001      case SDRATTR_EDGENODE2HORZDIST       : aStr="SDRATTR_EDGENODE2HORZDIST       "; break;
-//STRIP001      case SDRATTR_EDGENODE2VERTDIST       : aStr="SDRATTR_EDGENODE2VERTDIST       "; break;
-//STRIP001      case SDRATTR_EDGENODE1GLUEDIST       : aStr="SDRATTR_EDGENODE1GLUEDIST       "; break;
-//STRIP001      case SDRATTR_EDGENODE2GLUEDIST       : aStr="SDRATTR_EDGENODE2GLUEDIST       "; break;
-//STRIP001      case SDRATTR_EDGELINEDELTAANZ        : aStr="SDRATTR_EDGELINEDELTAANZ        "; break;
-//STRIP001      case SDRATTR_EDGELINE1DELTA          : aStr="SDRATTR_EDGELINE1DELTA          "; break;
-//STRIP001      case SDRATTR_EDGELINE2DELTA          : aStr="SDRATTR_EDGELINE2DELTA          "; break;
-//STRIP001      case SDRATTR_EDGELINE3DELTA          : aStr="SDRATTR_EDGELINE3DELTA          "; break;
-//STRIP001      case SDRATTR_EDGERESERVE02           : aStr="SDRATTR_EDGERESERVE02           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE03           : aStr="SDRATTR_EDGERESERVE03           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE04           : aStr="SDRATTR_EDGERESERVE04           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE05           : aStr="SDRATTR_EDGERESERVE05           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE06           : aStr="SDRATTR_EDGERESERVE06           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE07           : aStr="SDRATTR_EDGERESERVE07           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE08           : aStr="SDRATTR_EDGERESERVE08           "; break;
-//STRIP001      case SDRATTR_EDGERESERVE09           : aStr="SDRATTR_EDGERESERVE09           "; break;
-//STRIP001      case SDRATTRSET_EDGE                 : aStr="SDRATTRSET_EDGE                 "; break;
-//STRIP001
-//STRIP001      case SDRATTR_MEASUREKIND             : aStr="SDRATTR_MEASUREKIND             "; break;
-//STRIP001      case SDRATTR_MEASURETEXTHPOS         : aStr="SDRATTR_MEASURETEXTHPOS         "; break;
-//STRIP001      case SDRATTR_MEASURETEXTVPOS         : aStr="SDRATTR_MEASURETEXTVPOS         "; break;
-//STRIP001      case SDRATTR_MEASURELINEDIST         : aStr="SDRATTR_MEASURELINEDIST         "; break;
-//STRIP001      case SDRATTR_MEASUREHELPLINEOVERHANG : aStr="SDRATTR_MEASUREHELPLINEOVERHANG "; break;
-//STRIP001      case SDRATTR_MEASUREHELPLINEDIST     : aStr="SDRATTR_MEASUREHELPLINEDIST     "; break;
-//STRIP001      case SDRATTR_MEASUREHELPLINE1LEN     : aStr="SDRATTR_MEASUREHELPLINE1LEN     "; break;
-//STRIP001      case SDRATTR_MEASUREHELPLINE2LEN     : aStr="SDRATTR_MEASUREHELPLINE2LEN     "; break;
-//STRIP001      case SDRATTR_MEASUREBELOWREFEDGE     : aStr="SDRATTR_MEASUREBELOWREFEDGE     "; break;
-//STRIP001      case SDRATTR_MEASURETEXTROTA90       : aStr="SDRATTR_MEASURETEXTROTA90       "; break;
-//STRIP001      case SDRATTR_MEASURETEXTUPSIDEDOWN   : aStr="SDRATTR_MEASURETEXTUPSIDEDOWN   "; break;
-//STRIP001      case SDRATTR_MEASUREOVERHANG         : aStr="SDRATTR_MEASUREOVERHANG         "; break;
-//STRIP001      case SDRATTR_MEASUREUNIT             : aStr="SDRATTR_MEASUREUNIT             "; break;
-//STRIP001      case SDRATTR_MEASURESCALE            : aStr="SDRATTR_MEASURESCALE            "; break;
-//STRIP001      case SDRATTR_MEASURESHOWUNIT         : aStr="SDRATTR_MEASURESHOWUNIT         "; break;
-//STRIP001      case SDRATTR_MEASUREFORMATSTRING     : aStr="SDRATTR_MEASUREFORMATSTRING     "; break;
-//STRIP001      case SDRATTR_MEASURETEXTAUTOANGLE    : aStr="SDRATTR_MEASURETEXTAUTOANGLE    "; break;
-//STRIP001      case SDRATTR_MEASURETEXTAUTOANGLEVIEW: aStr="SDRATTR_MEASURETEXTAUTOANGLEVIEW"; break;
-//STRIP001      case SDRATTR_MEASURETEXTISFIXEDANGLE : aStr="SDRATTR_MEASURETEXTISFIXEDANGLE "; break;
-//STRIP001      case SDRATTR_MEASURETEXTFIXEDANGLE   : aStr="SDRATTR_MEASURETEXTFIXEDANGLE   "; break;
-//STRIP001      case SDRATTR_MEASUREDECIMALPLACES    : aStr="SDRATTR_MEASUREDECIMALPLACES    "; break;
-//STRIP001      case SDRATTR_MEASURERESERVE05        : aStr="SDRATTR_MEASURERESERVE05        "; break;
-//STRIP001      case SDRATTR_MEASURERESERVE06        : aStr="SDRATTR_MEASURERESERVE06        "; break;
-//STRIP001      case SDRATTR_MEASURERESERVE07        : aStr="SDRATTR_MEASURERESERVE07        "; break;
-//STRIP001      case SDRATTRSET_MEASURE              : aStr="SDRATTRSET_MEASURE              "; break;
-//STRIP001
-//STRIP001      case SDRATTR_CIRCKIND                : aStr="SDRATTR_CIRCKIND                "; break;
-//STRIP001      case SDRATTR_CIRCSTARTANGLE          : aStr="SDRATTR_CIRCSTARTANGLE          "; break;
-//STRIP001      case SDRATTR_CIRCENDANGLE            : aStr="SDRATTR_CIRCENDANGLE            "; break;
-//STRIP001      case SDRATTR_CIRCRESERVE0            : aStr="SDRATTR_CIRCRESERVE0            "; break;
-//STRIP001      case SDRATTR_CIRCRESERVE1            : aStr="SDRATTR_CIRCRESERVE1            "; break;
-//STRIP001      case SDRATTR_CIRCRESERVE2            : aStr="SDRATTR_CIRCRESERVE2            "; break;
-//STRIP001      case SDRATTR_CIRCRESERVE3            : aStr="SDRATTR_CIRCRESERVE3            "; break;
-//STRIP001      case SDRATTRSET_CIRC                 : aStr="SDRATTRSET_CIRC                 "; break;
-//STRIP001
-//STRIP001      case SDRATTR_OBJMOVEPROTECT          : aStr="SDRATTR_OBJMOVEPROTECT          "; break;
-//STRIP001      case SDRATTR_OBJSIZEPROTECT          : aStr="SDRATTR_OBJSIZEPROTECT          "; break;
-//STRIP001      case SDRATTR_OBJPRINTABLE            : aStr="SDRATTR_OBJPRINTABLE            "; break;
-//STRIP001      case SDRATTR_LAYERID                 : aStr="SDRATTR_LAYERID                 "; break;
-//STRIP001      case SDRATTR_LAYERNAME               : aStr="SDRATTR_LAYERNAME               "; break;
-//STRIP001      case SDRATTR_OBJECTNAME              : aStr="SDRATTR_OBJECTNAME              "; break;
-//STRIP001      case SDRATTR_ALLPOSITIONX            : aStr="SDRATTR_ALLPOSITIONX            "; break;
-//STRIP001      case SDRATTR_ALLPOSITIONY            : aStr="SDRATTR_ALLPOSITIONY            "; break;
-//STRIP001      case SDRATTR_ALLSIZEWIDTH            : aStr="SDRATTR_ALLSIZEWIDTH            "; break;
-//STRIP001      case SDRATTR_ALLSIZEHEIGHT           : aStr="SDRATTR_ALLSIZEHEIGHT           "; break;
-//STRIP001      case SDRATTR_ONEPOSITIONX            : aStr="SDRATTR_ONEPOSITIONX            "; break;
-//STRIP001      case SDRATTR_ONEPOSITIONY            : aStr="SDRATTR_ONEPOSITIONY            "; break;
-//STRIP001      case SDRATTR_ONESIZEWIDTH            : aStr="SDRATTR_ONESIZEWIDTH            "; break;
-//STRIP001      case SDRATTR_ONESIZEHEIGHT           : aStr="SDRATTR_ONESIZEHEIGHT           "; break;
-//STRIP001      case SDRATTR_LOGICSIZEWIDTH          : aStr="SDRATTR_LOGICSIZEWIDTH          "; break;
-//STRIP001      case SDRATTR_LOGICSIZEHEIGHT         : aStr="SDRATTR_LOGICSIZEHEIGHT         "; break;
-//STRIP001      case SDRATTR_ROTATEANGLE             : aStr="SDRATTR_ROTATEANGLE             "; break;
-//STRIP001      case SDRATTR_SHEARANGLE              : aStr="SDRATTR_SHEARANGLE              "; break;
-//STRIP001      case SDRATTR_MOVEX                   : aStr="SDRATTR_MOVEX                   "; break;
-//STRIP001      case SDRATTR_MOVEY                   : aStr="SDRATTR_MOVEY                   "; break;
-//STRIP001      case SDRATTR_RESIZEXONE              : aStr="SDRATTR_RESIZEXONE              "; break;
-//STRIP001      case SDRATTR_RESIZEYONE              : aStr="SDRATTR_RESIZEYONE              "; break;
-//STRIP001      case SDRATTR_ROTATEONE               : aStr="SDRATTR_ROTATEONE               "; break;
-//STRIP001      case SDRATTR_HORZSHEARONE            : aStr="SDRATTR_HORZSHEARONE            "; break;
-//STRIP001      case SDRATTR_VERTSHEARONE            : aStr="SDRATTR_VERTSHEARONE            "; break;
-//STRIP001      case SDRATTR_RESIZEXALL              : aStr="SDRATTR_RESIZEXALL              "; break;
-//STRIP001      case SDRATTR_RESIZEYALL              : aStr="SDRATTR_RESIZEYALL              "; break;
-//STRIP001      case SDRATTR_ROTATEALL               : aStr="SDRATTR_ROTATEALL               "; break;
-//STRIP001      case SDRATTR_HORZSHEARALL            : aStr="SDRATTR_HORZSHEARALL            "; break;
-//STRIP001      case SDRATTR_VERTSHEARALL            : aStr="SDRATTR_VERTSHEARALL            "; break;
-//STRIP001      case SDRATTR_TRANSFORMREF1X          : aStr="SDRATTR_TRANSFORMREF1X          "; break;
-//STRIP001      case SDRATTR_TRANSFORMREF1Y          : aStr="SDRATTR_TRANSFORMREF1Y          "; break;
-//STRIP001      case SDRATTR_TRANSFORMREF2X          : aStr="SDRATTR_TRANSFORMREF2X          "; break;
-//STRIP001      case SDRATTR_TRANSFORMREF2Y          : aStr="SDRATTR_TRANSFORMREF2Y          "; break;
-//STRIP001
-//STRIP001      case SDRATTR_GRAFRED                 : aStr="SDRATTR_GRAFRED                 "; break;
-//STRIP001      case SDRATTR_GRAFGREEN               : aStr="SDRATTR_GRAFGREEN               "; break;
-//STRIP001      case SDRATTR_GRAFBLUE                : aStr="SDRATTR_GRAFBLUE                "; break;
-//STRIP001      case SDRATTR_GRAFLUMINANCE           : aStr="SDRATTR_GRAFLUMINANCE           "; break;
-//STRIP001      case SDRATTR_GRAFCONTRAST            : aStr="SDRATTR_GRAFCONTRAST            "; break;
-//STRIP001      case SDRATTR_GRAFGAMMA               : aStr="SDRATTR_GRAFGAMMA               "; break;
-//STRIP001      case SDRATTR_GRAFTRANSPARENCE        : aStr="SDRATTR_GRAFTRANSPARENCE        "; break;
-//STRIP001      case SDRATTR_GRAFINVERT              : aStr="SDRATTR_GRAFINVERT              "; break;
-//STRIP001      case SDRATTR_GRAFMODE                : aStr="SDRATTR_GRAFMODE                "; break;
-//STRIP001      case SDRATTR_GRAFCROP                : aStr="SDRATTR_GRAFCROP                "; break;
-//STRIP001      case SDRATTR_GRAFRESERVE3            : aStr="SDRATTR_GRAFRESERVE3            "; break;
-//STRIP001      case SDRATTR_GRAFRESERVE4            : aStr="SDRATTR_GRAFRESERVE4            "; break;
-//STRIP001      case SDRATTR_GRAFRESERVE5            : aStr="SDRATTR_GRAFRESERVE5            "; break;
-//STRIP001      case SDRATTR_GRAFRESERVE6            : aStr="SDRATTR_GRAFRESERVE6            "; break;
-//STRIP001      case SDRATTRSET_GRAF                 : aStr="SDRATTRSET_GRAF                 "; break;
-//STRIP001
-//STRIP001      case EE_PARA_HYPHENATE               : aStr="EE_PARA_HYPHENATE               "; break;
-//STRIP001      case EE_PARA_BULLETSTATE             : aStr="EE_PARA_BULLETSTATE             "; break;
-//STRIP001      case EE_PARA_OUTLLRSPACE             : aStr="EE_PARA_OUTLLRSPACE             "; break;
-//STRIP001      case EE_PARA_OUTLLEVEL               : aStr="EE_PARA_OUTLLEVEL               "; break;
-//STRIP001      case EE_PARA_BULLET                  : aStr="EE_PARA_BULLET                  "; break;
-//STRIP001      case EE_PARA_LRSPACE                 : aStr="EE_PARA_LRSPACE                 "; break;
-//STRIP001      case EE_PARA_ULSPACE                 : aStr="EE_PARA_ULSPACE                 "; break;
-//STRIP001      case EE_PARA_SBL                     : aStr="EE_PARA_SBL                     "; break;
-//STRIP001      case EE_PARA_JUST                    : aStr="EE_PARA_JUST                    "; break;
-//STRIP001      case EE_PARA_TABS                    : aStr="EE_PARA_TABS                    "; break;
-//STRIP001
-//STRIP001      case EE_CHAR_COLOR                   : aStr="EE_CHAR_COLOR                   "; break;
-//STRIP001      case EE_CHAR_FONTINFO                : aStr="EE_CHAR_FONTINFO                "; break;
-//STRIP001      case EE_CHAR_FONTHEIGHT              : aStr="EE_CHAR_FONTHEIGHT              "; break;
-//STRIP001      case EE_CHAR_FONTWIDTH               : aStr="EE_CHAR_FONTWIDTH               "; break;
-//STRIP001      case EE_CHAR_WEIGHT                  : aStr="EE_CHAR_WEIGHT                  "; break;
-//STRIP001      case EE_CHAR_UNDERLINE               : aStr="EE_CHAR_UNDERLINE               "; break;
-//STRIP001      case EE_CHAR_STRIKEOUT               : aStr="EE_CHAR_STRIKEOUT               "; break;
-//STRIP001      case EE_CHAR_ITALIC                  : aStr="EE_CHAR_ITALIC                  "; break;
-//STRIP001      case EE_CHAR_OUTLINE                 : aStr="EE_CHAR_OUTLINE                 "; break;
-//STRIP001      case EE_CHAR_SHADOW                  : aStr="EE_CHAR_SHADOW                  "; break;
-//STRIP001      case EE_CHAR_ESCAPEMENT              : aStr="EE_CHAR_ESCAPEMENT              "; break;
-//STRIP001      case EE_CHAR_PAIRKERNING             : aStr="EE_CHAR_PAIRKERNING             "; break;
-//STRIP001      case EE_CHAR_KERNING                 : aStr="EE_CHAR_KERNING                 "; break;
-//STRIP001      case EE_CHAR_WLM                     : aStr="EE_CHAR_WLM                     "; break;
-//STRIP001      case EE_FEATURE_TAB                  : aStr="EE_FEATURE_TAB                  "; break;
-//STRIP001      case EE_FEATURE_LINEBR               : aStr="EE_FEATURE_LINEBR               "; break;
-//STRIP001      case EE_FEATURE_NOTCONV              : aStr="EE_FEATURE_NOTCONV              "; break;
-//STRIP001      case EE_FEATURE_FIELD                : aStr="EE_FEATURE_FIELD                "; break;
-//STRIP001  } // switch
-//STRIP001
-//STRIP001  aStr.EraseTrailingChars();
-//STRIP001 #endif // if DBG_UTIL
-//STRIP001
-//STRIP001  rWhichName = aStr;
-//STRIP001  return (BOOL)aStr.Len();
-//STRIP001 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // FractionItem
@@ -1116,43 +522,7 @@ using namespace ::com::sun::star;
 /*N*/          ((SdrFractionItem&)rCmp).GetValue()==nValue;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrFractionItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePresentation, SfxMapUnit eCoreMetric,
-//STRIP001     SfxMapUnit ePresentationMetric, XubString &rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  if(nValue.IsValid())
-//STRIP001  {
-//STRIP001      INT32 nDiv = nValue.GetDenominator();
-//STRIP001      rText = UniString::CreateFromInt32(nValue.GetNumerator());
-//STRIP001
-//STRIP001      if(nDiv != 1)
-//STRIP001      {
-//STRIP001          rText += sal_Unicode('/');
-//STRIP001          rText += UniString::CreateFromInt32(nDiv);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      rText = UniString();
-//STRIP001      rText += sal_Unicode('?');
-//STRIP001  }
-//STRIP001
-//STRIP001  if(ePresentation == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePresentation;
-//STRIP001 }
 
-//STRIP001 SfxPoolItem* __EXPORT SdrFractionItem::Create(SvStream& rIn, USHORT nVer) const
-//STRIP001 {
-//STRIP001  return new SdrFractionItem(Which(),rIn);
-//STRIP001 }
 
 /*?*/ SvStream& __EXPORT SdrFractionItem::Store(SvStream& rOut, USHORT nItemVers) const
 /*?*/ {
@@ -1180,35 +550,6 @@ using namespace ::com::sun::star;
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SdrScaleItem,SdrFractionItem);
 
-//STRIP001 SfxItemPresentation __EXPORT SdrScaleItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePresentation, SfxMapUnit eCoreMetric,
-//STRIP001     SfxMapUnit ePresentationMetric, XubString &rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  if(GetValue().IsValid())
-//STRIP001  {
-//STRIP001      INT32 nDiv = GetValue().GetDenominator();
-//STRIP001
-//STRIP001      rText = UniString::CreateFromInt32(GetValue().GetNumerator());
-//STRIP001      rText += sal_Unicode(':');
-//STRIP001      rText += UniString::CreateFromInt32(nDiv);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      rText = UniString();
-//STRIP001      rText += sal_Unicode('?');
-//STRIP001  }
-//STRIP001
-//STRIP001  if(ePresentation == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePresentation;
-//STRIP001 }
 
 /*N*/ SfxPoolItem* __EXPORT SdrScaleItem::Create(SvStream& rIn, USHORT nVer) const
 /*N*/ {
@@ -1236,25 +577,7 @@ using namespace ::com::sun::star;
 /*N*/   return new SdrOnOffItem(Which(),rIn);
 /*N*/ }
 
-//STRIP001 XubString __EXPORT SdrOnOffItem::GetValueTextByVal(BOOL bVal) const
-//STRIP001 {
-//STRIP001  if (bVal) return ImpGetResStr(STR_ItemValON);
-//STRIP001  else return ImpGetResStr(STR_ItemValOFF);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrOnOffItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByVal(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 #ifdef SDR_ISPOOLABLE
 /*?*/ int __EXPORT SdrOnOffItem::IsPoolable() const
@@ -1276,25 +599,7 @@ using namespace ::com::sun::star;
 /*N*/   return new SdrYesNoItem(Which(),rIn);
 /*N*/ }
 
-//STRIP001 XubString __EXPORT SdrYesNoItem::GetValueTextByVal(BOOL bVal) const
-//STRIP001 {
-//STRIP001  if (bVal) return ImpGetResStr(STR_ItemValYES);
-//STRIP001  else return ImpGetResStr(STR_ItemValNO);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrYesNoItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByVal(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 #ifdef SDR_ISPOOLABLE
 /*?*/ int __EXPORT SdrYesNoItem::IsPoolable() const
@@ -1320,24 +625,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SdrPercentItem(Which(),rIn);
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrPercentItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePres, SfxMapUnit eCoreMetric,
-//STRIP001     SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText = UniString::CreateFromInt32(GetValue());
-//STRIP001  rText += sal_Unicode('%');
-//STRIP001
-//STRIP001  if(ePres == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 #ifdef SDR_ISPOOLABLE
 /*?*/ int __EXPORT SdrPercentItem::IsPoolable() const
@@ -1363,79 +650,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SdrAngleItem(Which(),rIn);
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrAngleItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001     XubString& rText, const IntlWrapper * pIntlWrapper) const
-//STRIP001 {
-//STRIP001  INT32 nValue(GetValue());
-//STRIP001  BOOL bNeg(nValue < 0);
-//STRIP001
-//STRIP001  if(bNeg)
-//STRIP001      nValue = -nValue;
-//STRIP001
-//STRIP001  rText = UniString::CreateFromInt32(nValue);
-//STRIP001
-//STRIP001  if(nValue)
-//STRIP001  {
-//STRIP001      sal_Unicode aUnicodeNull('0');
-//STRIP001      xub_StrLen nAnz(2);
-//STRIP001
-//STRIP001         const IntlWrapper* pMyIntlWrapper = NULL;
-//STRIP001         DBG_ASSERT( pIntlWrapper, "SdrAngleItem::GetPresentation: "
-//STRIP001             "using default App-IntlWrapper" );
-//STRIP001         if(!pIntlWrapper)
-//STRIP001             pIntlWrapper = pMyIntlWrapper = new IntlWrapper(
-//STRIP001                 ::legacy_binfilters::getLegacyProcessServiceFactory(),
-//STRIP001                 Application::GetSettings().GetLanguage() );
-//STRIP001
-//STRIP001         if(pIntlWrapper->getLocaleData()->isNumLeadingZero())
-//STRIP001          nAnz++;
-//STRIP001
-//STRIP001      while(rText.Len() < nAnz)
-//STRIP001          rText.Insert(aUnicodeNull, 0);
-//STRIP001
-//STRIP001      xub_StrLen nLen = rText.Len();
-//STRIP001      BOOL bNull1(rText.GetChar(nLen-1) == aUnicodeNull);
-//STRIP001      BOOL bNull2(bNull1 && rText.GetChar(nLen-2) == aUnicodeNull);
-//STRIP001
-//STRIP001      if(bNull2)
-//STRIP001      {
-//STRIP001          // keine Nachkommastellen
-//STRIP001          rText.Erase(nLen-2);
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001             sal_Unicode cDec =
-//STRIP001                 pIntlWrapper->getLocaleData()->getNumDecimalSep().GetChar(0);
-//STRIP001          rText.Insert(cDec, nLen-2);
-//STRIP001
-//STRIP001          if(bNull1)
-//STRIP001              rText.Erase(nLen);
-//STRIP001      }
-//STRIP001
-//STRIP001      if(bNeg)
-//STRIP001          rText.Insert(sal_Unicode('-'), 0);
-//STRIP001
-//STRIP001         if ( pMyIntlWrapper )
-//STRIP001         {
-//STRIP001             delete pMyIntlWrapper;
-//STRIP001             pIntlWrapper = NULL;
-//STRIP001         }
-//STRIP001  }
-//STRIP001
-//STRIP001  rText += sal_Unicode(DEGREE_CHAR);
-//STRIP001
-//STRIP001  if(ePres == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 #ifdef SDR_ISPOOLABLE
 /*?*/ int __EXPORT SdrAngleItem::IsPoolable() const
@@ -1461,41 +675,8 @@ using namespace ::com::sun::star;
 /*N*/   return new SdrMetricItem(Which(),rIn);
 /*N*/ }
 
-//STRIP001 FASTBOOL __EXPORT SdrMetricItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 FASTBOOL __EXPORT SdrMetricItem::ScaleMetrics(long nMul, long nDiv)
-//STRIP001 {
-//STRIP001  if (GetValue()!=0) {
-//STRIP001      BigInt aVal(GetValue());
-//STRIP001      aVal*=nMul;
-//STRIP001      aVal+=nDiv/2; // fuer korrektes Runden
-//STRIP001      aVal/=nDiv;
-//STRIP001      SetValue(long(aVal));
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrMetricItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  long nValue=GetValue();
-//STRIP001  SdrFormatter aFmt((MapUnit)eCoreMetric,(MapUnit)ePresMetric);
-//STRIP001  aFmt.TakeStr(nValue,rText);
-//STRIP001  String aStr;
-//STRIP001  aFmt.TakeUnitStr((MapUnit)ePresMetric,aStr);
-//STRIP001  rText+=aStr;
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 #ifdef SDR_ISPOOLABLE
 /*?*/ int __EXPORT SdrMetricItem::IsPoolable() const
@@ -1546,24 +727,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrCaptionTypeItem::GetValueCount() const { return 4; }
 
-//STRIP001 XubString __EXPORT SdrCaptionTypeItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValCAPTIONTYPE1+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrCaptionTypeItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SdrCaptionEscDirItem,SfxEnumItem);
 
@@ -1573,24 +737,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrCaptionEscDirItem::GetValueCount() const { return 3; }
 
-//STRIP001 XubString __EXPORT SdrCaptionEscDirItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValCAPTIONESCHORI+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrCaptionEscDirItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // CaptionSetItem
@@ -1648,30 +795,10 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrTextFitToSizeTypeItem::GetValueCount() const { return 4; }
 
-//STRIP001 XubString __EXPORT SdrTextFitToSizeTypeItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValFITTOSIZENONE+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextFitToSizeTypeItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 int  __EXPORT SdrTextFitToSizeTypeItem::HasBoolValue() const { return TRUE; }
 
-//STRIP001 BOOL __EXPORT SdrTextFitToSizeTypeItem::GetBoolValue() const { return GetValue()!=SDRTEXTFIT_NONE; }
 
-//STRIP001 void __EXPORT SdrTextFitToSizeTypeItem::SetBoolValue(BOOL bVal) { SetValue(bVal ? SDRTEXTFIT_PROPORTIONAL : SDRTEXTFIT_NONE); }
 
 /*N*/ sal_Bool SdrTextFitToSizeTypeItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1706,24 +833,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrTextVertAdjustItem::GetValueCount() const { return 5; }
 
-//STRIP001 XubString __EXPORT SdrTextVertAdjustItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValTEXTVADJTOP+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextVertAdjustItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ sal_Bool SdrTextVertAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1758,22 +868,8 @@ using namespace ::com::sun::star;
 
 /*N*/ XubString __EXPORT SdrTextHorzAdjustItem::GetValueTextByPos(USHORT nPos) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");XubString a; return a; //STRIP001
-//STRIP001  return ImpGetResStr(STR_ItemValTEXTHADJLEFT+nPos);
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextHorzAdjustItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ sal_Bool SdrTextHorzAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1806,24 +902,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrTextAniKindItem::GetValueCount() const { return 5; }
 
-//STRIP001 XubString __EXPORT SdrTextAniKindItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValTEXTANI_NONE+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextAniKindItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ sal_Bool SdrTextAniKindItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1855,24 +934,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrTextAniDirectionItem::GetValueCount() const { return 4; }
 
-//STRIP001 XubString __EXPORT SdrTextAniDirectionItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValTEXTANI_LEFT+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextAniDirectionItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ sal_Bool SdrTextAniDirectionItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1903,25 +965,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ SfxPoolItem* __EXPORT SdrTextAniDelayItem::Create(SvStream& rIn, USHORT nVer) const   { return new SdrTextAniDelayItem(rIn); }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextAniDelayItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001     XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText = UniString::CreateFromInt32(GetValue());
-//STRIP001  rText += sal_Unicode('m');
-//STRIP001  rText += sal_Unicode('s');
-//STRIP001
-//STRIP001  if(ePres == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SdrTextAniAmountItem,SfxInt16Item);
 /*N*/
@@ -1929,60 +972,8 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ SfxPoolItem* __EXPORT SdrTextAniAmountItem::Create(SvStream& rIn, USHORT nVer) const   { return new SdrTextAniAmountItem(rIn); }
 
-//STRIP001 FASTBOOL __EXPORT SdrTextAniAmountItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return GetValue()>0;
-//STRIP001 }
 
-//STRIP001 FASTBOOL __EXPORT SdrTextAniAmountItem::ScaleMetrics(long nMul, long nDiv)
-//STRIP001 {
-//STRIP001  if (GetValue()>0) {
-//STRIP001      BigInt aVal(GetValue());
-//STRIP001      aVal*=nMul;
-//STRIP001      aVal+=nDiv/2; // fuer korrektes Runden
-//STRIP001      aVal/=nDiv;
-//STRIP001      SetValue(short(aVal));
-//STRIP001      return TRUE;
-//STRIP001  } else return FALSE;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrTextAniAmountItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001     XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  INT32 nValue(GetValue());
-//STRIP001
-//STRIP001  if(!nValue)
-//STRIP001      nValue = -1L;
-//STRIP001
-//STRIP001  if(nValue < 0)
-//STRIP001  {
-//STRIP001      sal_Char aText[] = "pixel";
-//STRIP001
-//STRIP001      rText = UniString::CreateFromInt32(-nValue);
-//STRIP001      rText += UniString(aText, sizeof(aText-1));
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SdrFormatter aFmt((MapUnit)eCoreMetric, (MapUnit)ePresMetric);
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      aFmt.TakeStr(nValue, rText);
-//STRIP001      aFmt.TakeUnitStr((MapUnit)ePresMetric, aStr);
-//STRIP001      rText += aStr;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(ePres == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ TYPEINIT1_AUTOFACTORY( SdrAutoShapeAdjustmentItem, SfxPoolItem );
 
@@ -2000,8 +991,6 @@ using namespace ::com::sun::star;
 /*N*/       rIn >> nCount;
 /*N*/       for ( i = 0; i < nCount; i++ )
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            rIn >> aVal.nValue;
-//STRIP001 /*?*/            SetValue( i, aVal );
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -2024,38 +1013,12 @@ using namespace ::com::sun::star;
 /*N*/           sal_uInt32 i;
 /*N*/           for ( i = 0; i < GetCount(); i++ )
 /*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                if ( ((SdrAutoShapeAdjustmentItem&)rCmp).GetValue( i ).nValue != GetValue( i ).nValue )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    bRet = 0;
-//STRIP001 /*?*/                    break;
-//STRIP001 /*?*/                }
 /*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrAutoShapeAdjustmentItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePresentation, SfxMapUnit eCoreMetric,
-//STRIP001     SfxMapUnit ePresentationMetric, XubString &rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  sal_uInt32 i, nCount = GetCount();
-//STRIP001  rText.Append( UniString::CreateFromInt32( nCount ) );
-//STRIP001  for ( i = 0; i < nCount; i++ )
-//STRIP001  {
-//STRIP001      rText += sal_Unicode( ' ' );
-//STRIP001      rText.Append( UniString::CreateFromInt32( GetValue( i ).nValue ) );
-//STRIP001  }
-//STRIP001  if ( ePresentation == SFX_ITEM_PRESENTATION_COMPLETE )
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName( Which(), aStr );
-//STRIP001      aStr += sal_Unicode( ' ' );
-//STRIP001      rText.Insert( aStr, 0 );
-//STRIP001  }
-//STRIP001  return ePresentation;
-//STRIP001 }
 
 /*N*/ SfxPoolItem* __EXPORT SdrAutoShapeAdjustmentItem::Create( SvStream& rIn, sal_uInt16 nItemVersion ) const
 /*N*/ {
@@ -2080,8 +1043,6 @@ using namespace ::com::sun::star;
 /*N*/   SdrAutoShapeAdjustmentItem* pItem = new SdrAutoShapeAdjustmentItem;
 /*N*/   for ( i = 0; i < GetCount(); i++ )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        const SdrAutoShapeAdjustmentValue& rVal = GetValue( i );
-//STRIP001 /*?*/        pItem->SetValue( i, rVal );
 /*N*/   }
 /*N*/   return pItem;
 /*N*/ }
@@ -2094,69 +1055,14 @@ using namespace ::com::sun::star;
 /*?*/ }
 #endif
 
-//STRIP001 const SdrAutoShapeAdjustmentValue& SdrAutoShapeAdjustmentItem::GetValue( sal_uInt32 nIndex ) const
-//STRIP001 {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001  if ( aAdjustmentValueList.Count() <= nIndex )
-//STRIP001      DBG_ERROR( "SdrAutoShapeAdjustemntItem::GetValue - nIndex out of range (SJ)" );
-//STRIP001 #endif
-//STRIP001  return *(SdrAutoShapeAdjustmentValue*)aAdjustmentValueList.GetObject( nIndex );
-//STRIP001 }
 
-//STRIP001 void SdrAutoShapeAdjustmentItem::SetValue( sal_uInt32 nIndex, const SdrAutoShapeAdjustmentValue& rVal )
-//STRIP001 {
-//STRIP001  sal_uInt32 i;
-//STRIP001  for ( i = GetCount(); i <= nIndex; i++ )
-//STRIP001  {
-//STRIP001      SdrAutoShapeAdjustmentValue* pItem = new SdrAutoShapeAdjustmentValue;
-//STRIP001      aAdjustmentValueList.Insert( pItem, LIST_APPEND );
-//STRIP001  }
-//STRIP001  SdrAutoShapeAdjustmentValue& rValue = *(SdrAutoShapeAdjustmentValue*)aAdjustmentValueList.GetObject( nIndex );
-//STRIP001  rValue.nValue = rVal.nValue;
-//STRIP001 }
 
 /*N*/ sal_uInt16 SdrAutoShapeAdjustmentItem::GetVersion( sal_uInt16 nFileFormatVersion ) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
 
-//STRIP001 sal_Bool SdrAutoShapeAdjustmentItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  sal_uInt32 i, nCount = GetCount();
-//STRIP001  uno::Sequence< sal_Int32 > aSequence( nCount );
-//STRIP001  if ( nCount )
-//STRIP001  {
-//STRIP001      sal_Int32* pPtr = aSequence.getArray();
-//STRIP001      for ( i = 0; i < nCount; i++ )
-//STRIP001          *pPtr++ = GetValue( i ).nValue;
-//STRIP001  }
-//STRIP001  rVal <<= aSequence;
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrAutoShapeAdjustmentItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  uno::Sequence< sal_Int32 > aSequence;
-//STRIP001  if( !( rVal >>= aSequence ) )
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  void* pPtr;
-//STRIP001  for ( pPtr = aAdjustmentValueList.First(); pPtr; pPtr = aAdjustmentValueList.Next() )
-//STRIP001      delete (SdrAutoShapeAdjustmentValue*)pPtr;
-//STRIP001
-//STRIP001  sal_uInt32 i, nCount = aSequence.getLength();
-//STRIP001  if ( nCount )
-//STRIP001  {
-//STRIP001      const sal_Int32* pPtr = aSequence.getConstArray();
-//STRIP001      for ( i = 0; i < nCount; i++ )
-//STRIP001      {
-//STRIP001          SdrAutoShapeAdjustmentValue* pItem = new SdrAutoShapeAdjustmentValue;
-//STRIP001          pItem->nValue = *pPtr++;
-//STRIP001          aAdjustmentValueList.Insert( pItem, LIST_APPEND );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2191,24 +1097,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrEdgeKindItem::GetValueCount() const { return 4; }
 
-//STRIP001 XubString __EXPORT SdrEdgeKindItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValEDGE_ORTHOLINES+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrEdgeKindItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 /*N*/ sal_Bool SdrEdgeKindItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2257,117 +1146,19 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-//STRIP001 sal_Bool SdrEdgeNode1HorzDistItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrEdgeNode1HorzDistItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeNode1VertDistItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeNode1VertDistItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeNode2HorzDistItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeNode2HorzDistItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeNode2VertDistItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeNode2VertDistItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeLine1DeltaItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeLine1DeltaItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeLine2DeltaItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeLine2DeltaItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeLine3DeltaItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 BOOL SdrEdgeLine3DeltaItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001  if(!(rVal >>= nValue))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( nValue );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // SdrEdgeSetItem
@@ -2401,46 +1192,9 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrMeasureKindItem::GetValueCount() const { return 2; }
 
-//STRIP001 XubString __EXPORT SdrMeasureKindItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValMEASURE_STD+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrMeasureKindItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureKindItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (drawing::MeasureKind)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureKindItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  drawing::MeasureKind eKind;
-//STRIP001  if(!(rVal >>= eKind))
-//STRIP001  {
-//STRIP001      sal_Int32 nEnum;
-//STRIP001      if(!(rVal >>= nEnum))
-//STRIP001          return sal_False;
-//STRIP001
-//STRIP001      eKind = (drawing::MeasureKind)nEnum;
-//STRIP001  }
-//STRIP001
-//STRIP001  SetValue( (SdrMeasureKind)eKind );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SdrMeasureTextHPosItem,SfxEnumItem);
 
@@ -2450,46 +1204,9 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrMeasureTextHPosItem::GetValueCount() const { return 4; }
 
-//STRIP001 XubString __EXPORT SdrMeasureTextHPosItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValMEASURE_TEXTHAUTO+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrMeasureTextHPosItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureTextHPosItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (drawing::MeasureTextHorzPos)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureTextHPosItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  drawing::MeasureTextHorzPos ePos;
-//STRIP001  if(!(rVal >>= ePos))
-//STRIP001  {
-//STRIP001      sal_Int32 nEnum;
-//STRIP001      if(!(rVal >>= nEnum))
-//STRIP001          return sal_False;
-//STRIP001
-//STRIP001      ePos = (drawing::MeasureTextHorzPos)nEnum;
-//STRIP001  }
-//STRIP001
-//STRIP001  SetValue( (SdrMeasureTextHPos)ePos );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SdrMeasureTextVPosItem,SfxEnumItem);
 
@@ -2499,46 +1216,9 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrMeasureTextVPosItem::GetValueCount() const { return 5; }
 
-//STRIP001 XubString __EXPORT SdrMeasureTextVPosItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValMEASURE_TEXTVAUTO+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrMeasureTextVPosItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureTextVPosItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (drawing::MeasureTextVertPos)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureTextVPosItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  drawing::MeasureTextVertPos ePos;
-//STRIP001  if(!(rVal >>= ePos))
-//STRIP001  {
-//STRIP001      sal_Int32 nEnum;
-//STRIP001      if(!(rVal >>= nEnum))
-//STRIP001          return sal_False;
-//STRIP001
-//STRIP001      ePos = (drawing::MeasureTextVertPos)nEnum;
-//STRIP001  }
-//STRIP001
-//STRIP001  SetValue( (SdrMeasureTextHPos)ePos );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*N*/ TYPEINIT1_AUTOFACTORY(SdrMeasureUnitItem,SfxEnumItem);
 
@@ -2548,52 +1228,9 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrMeasureUnitItem::GetValueCount() const { return 14; }
 
-//STRIP001 XubString __EXPORT SdrMeasureUnitItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  XubString aRetval;
-//STRIP001
-//STRIP001  if((FieldUnit)nPos == FUNIT_NONE)
-//STRIP001  {
-//STRIP001      sal_Char aText[] = "default";
-//STRIP001      aRetval += UniString(aText, sizeof(aText-1));
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SdrFormatter::TakeUnitStr((FieldUnit)nPos, aRetval);
-//STRIP001  }
-//STRIP001
-//STRIP001  return aRetval;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrMeasureUnitItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureUnitItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (sal_Int32)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrMeasureUnitItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Int32 nMeasure;
-//STRIP001  if(!(rVal >>= nMeasure))
-//STRIP001      return sal_False;
-//STRIP001
-//STRIP001  SetValue( (FieldUnit)nMeasure );
-//STRIP001  return sal_True;
-//STRIP001 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // SdrMeasureSetItem
@@ -2627,30 +1264,8 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT __EXPORT SdrCircKindItem::GetValueCount() const { return 4; }
 
-//STRIP001 XubString __EXPORT SdrCircKindItem::GetValueTextByPos(USHORT nPos) const
-//STRIP001 {
-//STRIP001  return ImpGetResStr(STR_ItemValCIRC_FULL+nPos);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrCircKindItem::GetPresentation(SfxItemPresentation ePres,
-//STRIP001                       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText=GetValueTextByPos(GetValue());
-//STRIP001  if (ePres==SFX_ITEM_PRESENTATION_COMPLETE) {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
-//STRIP001 sal_Bool SdrCircKindItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  rVal <<= (drawing::CircleKind)GetValue();
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*N*/ sal_Bool SdrCircKindItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
@@ -2694,34 +1309,8 @@ using namespace ::com::sun::star;
 /*N*/ TYPEINIT1_AUTOFACTORY( SdrSignedPercentItem, SfxInt16Item );
 
 
-//STRIP001 SfxPoolItem* __EXPORT SdrSignedPercentItem::Clone(SfxItemPool* pPool) const
-//STRIP001 {
-//STRIP001  return new SdrSignedPercentItem( Which(), GetValue() );
-//STRIP001 }
 
-//STRIP001 SfxPoolItem* __EXPORT SdrSignedPercentItem::Create( SvStream& rIn, USHORT nVer ) const
-//STRIP001 {
-//STRIP001  return new SdrSignedPercentItem( Which(), rIn );
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrSignedPercentItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001     XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText = UniString::CreateFromInt32(GetValue());
-//STRIP001  rText += sal_Unicode('%');
-//STRIP001
-//STRIP001  if(ePres == SFX_ITEM_PRESENTATION_COMPLETE)
-//STRIP001  {
-//STRIP001      XubString aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName(Which(), aStr);
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert(aStr, 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 #ifdef SDR_ISPOOLABLE
 
@@ -2916,58 +1505,7 @@ using namespace ::com::sun::star;
 /*N*/   return 4;
 /*N*/ }
 
-//STRIP001 XubString __EXPORT SdrGrafModeItem::GetValueTextByPos(UINT16 nPos) const
-//STRIP001 {
-//STRIP001  XubString aStr;
-//STRIP001
-//STRIP001  switch(nPos)
-//STRIP001  {
-//STRIP001      case 1:
-//STRIP001      {
-//STRIP001          sal_Char aTextGreys[] = "Greys";
-//STRIP001          aStr += UniString(aTextGreys, sizeof(aTextGreys-1));
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      case 2:
-//STRIP001      {
-//STRIP001          sal_Char aTextBlackWhite[] = "Black/White";
-//STRIP001          aStr += UniString(aTextBlackWhite, sizeof(aTextBlackWhite-1));
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      case 3:
-//STRIP001      {
-//STRIP001          sal_Char aTextWatermark[] = "Watermark";
-//STRIP001          aStr += UniString(aTextWatermark, sizeof(aTextWatermark-1));
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      default:
-//STRIP001      {
-//STRIP001          sal_Char aTextStandard[] = "Standard";
-//STRIP001          aStr += UniString(aTextStandard, sizeof(aTextStandard-1));
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return aStr;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT SdrGrafModeItem::GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                                             SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001                                                                XubString& rText, const IntlWrapper *) const
-//STRIP001 {
-//STRIP001  rText = GetValueTextByPos( GetValue() );
-//STRIP001
-//STRIP001  if( ePres == SFX_ITEM_PRESENTATION_COMPLETE )
-//STRIP001  {
-//STRIP001      String aStr;
-//STRIP001
-//STRIP001      SdrItemPool::TakeItemName( Which(), aStr );
-//STRIP001      aStr += sal_Unicode(' ');
-//STRIP001      rText.Insert( aStr, 0 );
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePres;
-//STRIP001 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // SdrGrafCropItem
