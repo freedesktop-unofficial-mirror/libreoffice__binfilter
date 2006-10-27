@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:23:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:55:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,51 +35,34 @@
 #ifndef _BASMGR_HXX //autogen
 #include <basic/basmgr.hxx>
 #endif
-// auto strip #ifndef _SB_SBSTAR_HXX //autogen
-// auto strip #include <basic/sbstar.hxx>
-// auto strip #endif
 
 #ifdef WIN
 #define _TL_LANG_SPECIAL
 #endif
 
-// auto strip #ifndef _SVDDE_HXX //autogen
-// auto strip #include <svtools/svdde.hxx>
-// auto strip #endif
 #ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
 #endif
 
-// auto strip #ifndef _SFXENUMITEM_HXX
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 
-// auto strip #include <svtools/saveopt.hxx>
 
 #pragma hdrstop
 
 #include "app.hrc"
-// auto strip #include "app.hxx"
 
 #ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
 #endif
 
-// auto strip #include "unoctitm.hxx"
 #include "appdata.hxx"
-// auto strip #include "viewsh.hxx"
 #include "dispatch.hxx"
-// auto strip #include "printer.hxx"
 #include "plugobj.hxx"
 #include "arrdecl.hxx"
 #include "sfxresid.hxx"
 #include "newhdl.hxx"
-// auto strip #include "cfgmgr.hxx"
 #include "accmgr.hxx"
-// auto strip #include "event.hxx"
 #include "macrconf.hxx"
 #include "mnumgr.hxx"
-// auto strip #include "imgmgr.hxx"
 #include "templdlg.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
@@ -93,14 +76,10 @@
 #include "sfxtypes.hxx"
 #include "appimp.hxx"
 #include "sfxlocal.hrc"
-// auto strip #include "dataurl.hxx"
 #include "fcontnr.hxx"
 #include "nochaos.hxx"
-// auto strip #include "appuno.hxx"
 #include "doctempl.hxx"
 #include "viewfrm.hxx"
-// auto strip #include "bmkmenu.hxx"
-// auto strip #include "objsh.hxx"
 #include "dlgcont.hxx"
 #include "scriptcont.hxx"
 #include <misccfg.hxx>
