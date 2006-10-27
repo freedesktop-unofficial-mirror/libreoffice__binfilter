@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unomodel.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:27:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:37:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,23 +39,8 @@
 #ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
-// auto strip #include <com/sun/star/style/XStyle.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XDEVICE_HPP_
-// auto strip #include <com/sun/star/awt/XDevice.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _UTL_SEQUENCE_HXX_
-// auto strip #include <comphelper/sequence.hxx>
-// auto strip #endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -64,20 +49,8 @@
 #include <bf_svx/unofield.hxx>
 #endif
 
-// auto strip #ifndef _UNOMODEL_HXX
-// auto strip #include <unomodel.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXDISPATCH_HXX //autogen
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_BINDINGS_HXX
-// auto strip #include <bf_sfx2/bindings.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
 #ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
@@ -91,12 +64,6 @@
 #include <bf_svx/UnoNamespaceMap.hxx>
 #endif
 
-// auto strip #ifndef _SVDLAYER_HXX //autogen
-// auto strip #include <bf_svx/svdlayer.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDSOB_HXX //autogen
-// auto strip #include <bf_svx/svdsob.hxx>
-// auto strip #endif
 #ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
 #endif
@@ -105,15 +72,9 @@
 #include <bf_svx/unofill.hxx>
 #endif
 
-// auto strip #ifndef _SVX_UNOPOOL_HXX_
-// auto strip #include <bf_svx/unopool.hxx>
-// auto strip #endif
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
 #endif
-// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
 #ifndef _TOOLKIT_AWT_VCLXDEVICE_HXX_
 #include <toolkit/awt/vclxdevice.hxx>
@@ -130,7 +91,6 @@
 
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/unonrule.hxx>
-// auto strip #include <bf_svx/eeitem.hxx>
 
 // #99870# Support creation of GraphicObjectResolver and EmbeddedObjectResolver
 #ifndef _XMLEOHLP_HXX
@@ -147,14 +107,12 @@
 #include <UnoDocumentSettings.hxx>
 #endif
 
-// auto strip #include <drawdoc.hxx>
 #include <glob.hrc>
 #include <sdresid.hxx>
 #include <sdpage.hxx>
 
 #include "unohelp.hxx"
 #include <unolayer.hxx>
-// auto strip #include <unoprnms.hxx>
 #include <unopage.hxx>
 #include <unopres.hxx>
 #include <unocpres.hxx>
@@ -165,7 +123,6 @@
 #include <unogstyl.hxx>
 #include <unokywds.hxx>
 #include <frmview.hxx>
-// auto strip #include "clview.hxx"
 #include "viewshel.hxx"
 #include "app.hrc"
 
@@ -652,9 +609,6 @@ sal_Bool SAL_CALL SdXImpressDocument::hasControllersLocked(  )
     return pDoc && pDoc->isLocked();
 }
 } //namespace binfilter
-// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 namespace binfilter {//STRIP009
 uno::Reference < container::XIndexAccess > SAL_CALL SdXImpressDocument::getViewData() throw( uno::RuntimeException )
 {
@@ -1525,74 +1479,6 @@ void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& r
             if( pOut )
             {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdClientView*         pView = new SdClientView( pDocShell, pOut, NULL );
-//STRIP001                 Rectangle                aVisArea( pDocShell->GetVisArea( ASPECT_DOCPRINT ) );
-//STRIP001              Region                  aRegion( aVisArea );
-//STRIP001                 Point                    aOrigin;
-//STRIP001
-//STRIP001              SdViewShell* pOldViewSh = pDocShell->GetViewShell();
-//STRIP001              SdView* pOldSdView = pOldViewSh ? pOldViewSh->GetView() : NULL;
-//STRIP001              ImplRenderPaintProc aImplRenderPaintProc( pDoc->GetLayerAdmin(),
-//STRIP001                  pOldSdView ? pOldSdView->GetPageViewPvNum( 0 ) : NULL );
-//STRIP001              const Link aRenderPaintProc( LINK( &aImplRenderPaintProc, ImplRenderPaintProc, _ImplRenderPaintProc ) );
-//STRIP001
-//STRIP001                 pView->SetHlplVisible( sal_False );
-//STRIP001                 pView->SetGridVisible( sal_False );
-//STRIP001              pView->SetBordVisible( sal_False );
-//STRIP001              pView->SetPageVisible( sal_False );
-//STRIP001              pView->SetGlueVisible( sal_False );
-//STRIP001
-//STRIP001                 pOut->SetMapMode( MAP_100TH_MM );
-//STRIP001              pOut->IntersectClipRegion( aVisArea );
-//STRIP001
-//STRIP001                 uno::Reference< frame::XModel > xModel;
-//STRIP001                 rSelection >>= xModel;
-//STRIP001
-//STRIP001                 if( xModel == pDocShell->GetModel() )
-//STRIP001                 {
-//STRIP001                     pView->ShowPage( pDoc->GetSdPage( nPageNumber - 1, PK_STANDARD ), aOrigin );
-//STRIP001                  SdrPageView* pPV = pView->GetPageViewPvNum( 0 );
-//STRIP001                  pPV->InitRedraw( pOut, aRegion, 0, &aRenderPaintProc );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  uno::Reference< drawing::XShapes > xShapes;
-//STRIP001                  rSelection >>= xShapes;
-//STRIP001
-//STRIP001                  if( xShapes.is() && xShapes->getCount() )
-//STRIP001                  {
-//STRIP001                     SdrPageView* pPV = NULL;
-//STRIP001
-//STRIP001                      for( sal_uInt32 i = 0, nCount = xShapes->getCount(); i < nCount; i++ )
-//STRIP001                      {
-//STRIP001                          uno::Reference< drawing::XShape > xShape;
-//STRIP001                          xShapes->getByIndex( i ) >>= xShape;
-//STRIP001
-//STRIP001                          if( xShape.is() )
-//STRIP001                          {
-//STRIP001                              SvxShape* pShape = SvxShape::getImplementation( xShape );
-//STRIP001
-//STRIP001                              if( pShape )
-//STRIP001                              {
-//STRIP001                                  SdrObject* pObj = pShape->GetSdrObject();
-//STRIP001                                  if( pObj && pObj->GetPage()
-//STRIP001                                      && aImplRenderPaintProc.IsVisible( pObj )
-//STRIP001                                          && aImplRenderPaintProc.IsPrintable( pObj ) )
-//STRIP001                                  {
-//STRIP001                                      if( !pPV )
-//STRIP001                                             pPV = pView->ShowPage( pObj->GetPage(), aOrigin );
-//STRIP001
-//STRIP001                                         if( pPV )
-//STRIP001                                          pView->MarkObj( pObj, pPV );
-//STRIP001                                  }
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001
-//STRIP001                         pView->DrawAllMarked( *pOut, aOrigin );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001                 delete pView;
             }
         }
     }
