@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_patattr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:50:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:23:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -65,19 +64,15 @@
 #include <bf_svx/udlnitem.hxx>
 #include <bf_svx/wghtitem.hxx>
 #include <bf_svx/wrlmitem.hxx>
-// auto strip #include <svtools/intitem.hxx>
 #include <svtools/zforlist.hxx>
 #include <vcl/outdev.hxx>
-// auto strip #include <vcl/svapp.hxx>
 
 #include "patattr.hxx"
 #include "docpool.hxx"
 #include "stlsheet.hxx"
 #include "stlpool.hxx"
 #include "document.hxx"
-// auto strip #include "global.hxx"
 #include "globstr.hrc"
-// auto strip #include "conditio.hxx"
 #include "validat.hxx"
 #include "scmod.hxx"
 namespace binfilter {
@@ -1120,21 +1115,6 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*?*/       pStyle = NULL;
 /*N*/ }
 
-//STRIP001 void ScPatternAttr::StyleToName()
-//STRIP001 {
-//STRIP001  // Style wurde geloescht, Namen merken:
-//STRIP001
-//STRIP001  if ( pStyle )
-//STRIP001  {
-//STRIP001      if ( pName )
-//STRIP001          *pName = pStyle->GetName();
-//STRIP001      else
-//STRIP001          pName = new String( pStyle->GetName() );
-//STRIP001
-//STRIP001      pStyle = NULL;
-//STRIP001      GetItemSet().SetParent( NULL );
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ BOOL ScPatternAttr::IsSymbolFont() const
 /*N*/ {

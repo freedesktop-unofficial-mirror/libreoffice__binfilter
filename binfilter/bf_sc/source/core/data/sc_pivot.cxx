@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_pivot.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:51:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:23:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,26 +46,19 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include <svtools/zforlist.hxx>
 #include <tools/solar.h>
 #include <string.h>
 #include <math.h>
 
 
 #include "globstr.hrc"
-// auto strip #include "global.hxx"
 #include "subtotal.hxx"
-// auto strip #include "scitems.hxx"
-// auto strip #include "attrib.hxx"
-// auto strip #include "patattr.hxx"
 #include "docpool.hxx"
 #include "document.hxx"
 #include "userlist.hxx"
 #include "pivot.hxx"
 #include "cell.hxx"
 #include "rechead.hxx"
-// auto strip #include "compiler.hxx"                           // fuer errNoValue
-// auto strip #include "progress.hxx"
 namespace binfilter {
 
 
@@ -125,30 +117,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 //  24  Kreuzung von Spalte/Zeile (Gesamt-Spalte)
 //  25  wie 24 bei einzelnen "Gesamt"
 
-//STRIP001 short lcl_MaskToIndex( USHORT nFuncMask )
-//STRIP001 {
-//STRIP001  short i;
-//STRIP001  for (i=0; i<=PIVOT_MAXFUNC; i++)
-//STRIP001      if (nFuncMask == nFuncMaskArr[i])
-//STRIP001          return i;
-//STRIP001
-//STRIP001  DBG_ERROR("Falsche Maske in MaskToIndex");
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 BOOL lcl_IsEmptyLine( ScDocument* pDoc, const ScAddress& rPos, USHORT nCol2 )
-//STRIP001 {
-//STRIP001          //! ans Document verschieben !!!
-//STRIP001
-//STRIP001  ScAddress aAdr( rPos );
-//STRIP001  for (USHORT nCol=aAdr.Col(); nCol<=nCol2; nCol++)
-//STRIP001  {
-//STRIP001      aAdr.SetCol( nCol );
-//STRIP001      if ( pDoc->GetCell( aAdr ) )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ ScPivot::ScPivot(ScDocument* pDocument) :
 /*N*/   pDoc            (pDocument),
@@ -303,22 +272,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 
-//STRIP001 ScPivot* ScPivot::CreateNew() const
-//STRIP001 {
-//STRIP001  ScPivot* pNewPivot = new ScPivot( pDoc );
-//STRIP001
-//STRIP001  pNewPivot->SetQuery(aQuery);
-//STRIP001  pNewPivot->SetHeader(bHasHeader);
-//STRIP001  pNewPivot->SetIgnoreEmpty(bIgnoreEmpty);
-//STRIP001  pNewPivot->SetDetectCat(bDetectCat);
-//STRIP001  pNewPivot->SetMakeTotalCol(bMakeTotalCol);
-//STRIP001  pNewPivot->SetMakeTotalRow(bMakeTotalRow);
-//STRIP001
-//STRIP001  pNewPivot->SetSrcArea( nSrcCol1, nSrcRow1, nSrcCol2, nSrcRow2, nSrcTab );
-//STRIP001  pNewPivot->SetDestPos( nDestCol1, nDestRow1, nDestTab );
-//STRIP001
-//STRIP001  return pNewPivot;
-//STRIP001 }
 
 /*N*/ void lcl_LoadFieldArr30( SvStream& rStream, PivotField* pField, USHORT nCount )
 /*N*/ {
@@ -512,10 +465,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   bValidArea = FALSE;
 /*N*/ }
 
-//STRIP001 BOOL ScPivot::GetHeader() const
-//STRIP001 {
-//STRIP001  return bHasHeader;
-//STRIP001 }
 
 /*N*/ void ScPivot::SetIgnoreEmpty(BOOL bIgnore)
 /*N*/ {
@@ -679,15 +628,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScPivot::ExtendSrcArea( USHORT nNewEndCol, USHORT nNewEndRow )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nNewEndCol >= nSrcCol2 && nNewEndRow >= nSrcRow2, "ExtendSrcArea: zu klein" );
-//STRIP001
-//STRIP001  nSrcCol2 = nNewEndCol;
-//STRIP001  nSrcRow2 = nNewEndRow;
-//STRIP001
-//STRIP001  //  alles andere bleibt erhalten
-//STRIP001 }
 
 /*N*/ void ScPivot::MoveDestArea( USHORT nNewCol, USHORT nNewRow, USHORT nNewTab )
 /*N*/ {
@@ -981,179 +921,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 void ScPivot::DrawData()
-//STRIP001 {
-//STRIP001  ScProgress aProgress( pDoc->GetDocumentShell(), ScGlobal::GetRscString(STR_PIVOT_PROGRESS), nDestRow2-nDestRow1 );
-//STRIP001
-//STRIP001  short i;
-//STRIP001
-//STRIP001  USHORT nCol;
-//STRIP001  USHORT nRow;
-//STRIP001  String aStr;
-//STRIP001  pDoc->pTab[nDestTab]->DeleteArea(nDestCol1, nDestRow1, nDestCol2, nDestRow2, IDF_ALL);
-//STRIP001
-//STRIP001  if ( nDataStartRow > nDestRow1+nFirstLine )
-//STRIP001      SetStyle(nDestCol1, nDestRow1+nFirstLine, nDestCol2, nDataStartRow-1, PIVOT_STYLE_TOP);
-//STRIP001  SetStyle(nDataStartCol, nDataStartRow, nDestCol2, nDestRow2, PIVOT_STYLE_INNER);
-//STRIP001
-//STRIP001  pDoc->SetString(nDestCol1, nDestRow1, nDestTab, ScGlobal::GetRscString(STR_CELL_FILTER));
-//STRIP001  //  Kategorie 1
-//STRIP001  SetButton(nDestCol1, nDestRow1, nDestCol1, nDestRow1);
-//STRIP001
-//STRIP001  if (bHasHeader)                     // Spalten / Zeilennamen ausgeben
-//STRIP001  {
-//STRIP001      if (nColCount != 0)
-//STRIP001      {
-//STRIP001          nCol = nDestCol1;
-//STRIP001          nRow = nDataStartRow - 1;
-//STRIP001          for (i=0; i<nColCount; i++)
-//STRIP001          {
-//STRIP001              if (aColArr[i].nCol != PIVOT_DATA_FIELD)
-//STRIP001              {
-//STRIP001                  pDoc->GetString(aColArr[i].nCol, nSrcRow1, nSrcTab, aStr);
-//STRIP001                  if ( !aStr.Len() )
-//STRIP001                      aStr = ColToAlpha( aColArr[i].nCol );
-//STRIP001                  pDoc->SetString(nCol, nRow, nDestTab, aStr);
-//STRIP001                  //  Kategorie 2
-//STRIP001                  nCol++;
-//STRIP001              }
-//STRIP001              else if (nDataCount > 1)
-//STRIP001              {
-//STRIP001                  pDoc->SetString(nCol, nRow, nDestTab, *pLabelData);
-//STRIP001                  //  Kategorie 3
-//STRIP001                  nCol++;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          SetButton(nDestCol1, nRow, nCol-1, nRow);
-//STRIP001          SetStyle(nDestCol1, nRow, nCol-1, nRow, PIVOT_STYLE_FIELDNAME);
-//STRIP001      }
-//STRIP001      if (nRowCount != 0)
-//STRIP001      {
-//STRIP001          nCol = nDataStartCol;
-//STRIP001          nRow = nDestRow1 + nFirstLine;
-//STRIP001          for (i=0; i<nRowCount; i++)
-//STRIP001          {
-//STRIP001              if (aRowArr[i].nCol != PIVOT_DATA_FIELD)
-//STRIP001              {
-//STRIP001                  pDoc->GetString(aRowArr[i].nCol, nSrcRow1, nSrcTab, aStr);
-//STRIP001                  if ( !aStr.Len() )
-//STRIP001                      aStr = ColToAlpha( aRowArr[i].nCol );
-//STRIP001                  pDoc->SetString(nCol, nRow, nDestTab, aStr);
-//STRIP001                  //  Kategorie 4
-//STRIP001                  nCol++;
-//STRIP001              }
-//STRIP001              else if (nDataCount > 1)
-//STRIP001              {
-//STRIP001                  pDoc->SetString(nCol, nRow, nDestTab, *pLabelData);
-//STRIP001                  //  Kategorie 5
-//STRIP001                  nCol++;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          SetButton(nDataStartCol, nRow, nCol-1, nRow);
-//STRIP001          SetStyle(nDataStartCol, nRow, nCol-1, nRow, PIVOT_STYLE_FIELDNAME);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bNoRows = (nRowCount == 0) || ( nRowCount == 1 && aRowArr[0].nCol == PIVOT_DATA_FIELD );
-//STRIP001  BOOL bNoCols = (nColCount == 0) || ( nColCount == 1 && aColArr[0].nCol == PIVOT_DATA_FIELD );
-//STRIP001  if (!bMakeTotalCol) bNoRows = TRUE;
-//STRIP001  if (!bMakeTotalRow) bNoCols = TRUE;
-//STRIP001
-//STRIP001  USHORT nTotalCol = nDestCol2;
-//STRIP001  USHORT nTotalRow = nDestRow2;
-//STRIP001  if (bDataAtCol)
-//STRIP001      nTotalRow -= nDataCount - 1;
-//STRIP001  else
-//STRIP001      nTotalCol -= nDataCount - 1;
-//STRIP001
-//STRIP001                          // Spaltenkoepfe ausgeben und ColRef initialisieren
-//STRIP001                          // (String-Collections sind initialisiert)
-//STRIP001  nDataIndex = 0;
-//STRIP001  nColIndex = 0;
-//STRIP001  nCol = nDataStartCol;
-//STRIP001  nRecCount = 0;
-//STRIP001  RowToTable(0, nCol);
-//STRIP001
-//STRIP001                          // Zeilenkoepfe und Daten ausgeben
-//STRIP001                          // (ruft SetDataLine/SetFuncLine auf)
-//STRIP001  nRowIndex = 0;
-//STRIP001  nRow = nDataStartRow;
-//STRIP001  ColToTable(0, nRow, aProgress);
-//STRIP001
-//STRIP001                          // Gesamtergebnis-Zeilen
-//STRIP001
-//STRIP001  if (!bNoCols)
-//STRIP001  {
-//STRIP001      if (bDataAtCol)
-//STRIP001          for (short nTotCnt = 0; nTotCnt<nDataCount; nTotCnt++)
-//STRIP001              SetFuncLine(nDataStartCol, nRow+nTotCnt, nDestTab,
-//STRIP001                          aDataArr[nTotCnt].nFuncMask, nTotCnt, 0, nDataRowCount);
-//STRIP001      else
-//STRIP001          SetFuncLine(nDataStartCol, nRow, nDestTab, PIVOT_FUNC_AUTO, 0xffff, 0, nDataRowCount);
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  // Rahmen Spaltenergebnis
-//STRIP001
-//STRIP001  if (!bNoRows)
-//STRIP001  {
-//STRIP001      if (!bDataAtCol)
-//STRIP001      {
-//STRIP001          for (short i=0; i<nDataCount; i++)
-//STRIP001          {
-//STRIP001              String aLab = *pLabelTotal;
-//STRIP001              aLab += ' ';
-//STRIP001              aLab += *pLabel[lcl_MaskToIndex( aDataArr[i].nFuncMask )];
-//STRIP001              aLab += ' ';
-//STRIP001              aLab += pDataList->GetString(i);
-//STRIP001              pDoc->SetString(nTotalCol+i, nDestRow1 + nFirstLine, nDestTab, aLab);
-//STRIP001              //  Kategorie 6
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pDoc->SetString(nTotalCol, nDestRow1 + nFirstLine, nDestTab, *pLabelTotal);
-//STRIP001          //  Kategorie 7
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( nDataStartRow )
-//STRIP001          SetStyle(nTotalCol, nDestRow1+nFirstLine, nDestCol2, nDataStartRow-1, PIVOT_STYLE_TITLE);
-//STRIP001      SetStyle(nTotalCol, nDataStartRow, nDestCol2, nDestRow2, PIVOT_STYLE_RESULT);
-//STRIP001      SetFrame(nTotalCol, nDestRow1 + nFirstLine, nDestCol2, nDestRow2);
-//STRIP001  }
-//STRIP001
-//STRIP001  // Rahmen Zeilenergebnis
-//STRIP001
-//STRIP001  if (!bNoCols)
-//STRIP001  {
-//STRIP001      if (bDataAtCol)
-//STRIP001      {
-//STRIP001          for (short i=0; i<nDataCount; i++)
-//STRIP001          {
-//STRIP001              String aLab = *pLabelTotal;
-//STRIP001              aLab += ' ';
-//STRIP001              aLab += *pLabel[lcl_MaskToIndex( aDataArr[i].nFuncMask )];
-//STRIP001              aLab += ' ';
-//STRIP001              aLab += pDataList->GetString(i);
-//STRIP001              pDoc->SetString(nDestCol1, nTotalRow+i, nDestTab, aLab);
-//STRIP001              //  Kategorie 8
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pDoc->SetString(nDestCol1, nTotalRow, nDestTab, *pLabelTotal);
-//STRIP001          //  Kategorie 9
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( nDataStartCol )
-//STRIP001          SetStyle(nDestCol1, nTotalRow, nDataStartCol-1, nDestRow2, PIVOT_STYLE_TITLE);
-//STRIP001      SetStyle(nDataStartCol, nTotalRow, nDestCol2, nDestRow2, PIVOT_STYLE_RESULT);
-//STRIP001      SetFrame(nDestCol1, nTotalRow, nDestCol2, nDestRow2);
-//STRIP001  }
-//STRIP001
-//STRIP001  // Rahmen gesamt
-//STRIP001  SetFrame(nDestCol1, nDestRow1 + nFirstLine, nDestCol2, nDestRow2, 40);
-//STRIP001 }
 
 /*N*/ void ScPivot::ReleaseData()
 /*N*/ {
@@ -1176,61 +943,9 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   pColRef = NULL;
 /*N*/ }
 
-//STRIP001 BOOL ScPivot::IsPivotAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const
-//STRIP001 {
-//STRIP001  if (bValidArea)
-//STRIP001      return ( nTab == nDestTab
-//STRIP001                  && nCol >= nDestCol1 && nCol <= nDestCol2
-//STRIP001                  && nRow >= nDestRow1 && nRow <= nDestRow2 );
-//STRIP001  else
-//STRIP001      return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScPivot::IsFilterAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const
-//STRIP001 {
-//STRIP001  if (bValidArea)
-//STRIP001      return (nCol == nDestCol1 && nRow == nDestRow1 && nTab == nDestTab);
-//STRIP001  else
-//STRIP001      return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScPivot::GetColFieldAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, USHORT& rField) const
-//STRIP001 {
-//STRIP001  rField = 0;
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if (bValidArea)
-//STRIP001  {
-//STRIP001      bRet = ( nCol >= nDestCol1 && nCol < nDataStartCol
-//STRIP001              && nRow == nDataStartRow - 1
-//STRIP001              && nTab == nDestTab );
-//STRIP001      if (bRet)
-//STRIP001      {
-//STRIP001          rField = aColArr[nCol - nDestCol1].nCol;
-//STRIP001          if (rField == PIVOT_DATA_FIELD)
-//STRIP001              bRet = (nDataCount > 1);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 BOOL ScPivot::GetRowFieldAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, USHORT& rField) const
-//STRIP001 {
-//STRIP001  rField = 0;
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if (bValidArea)
-//STRIP001  {
-//STRIP001      bRet = ( nCol >= nDataStartCol && nCol < nDataStartCol + nRowCount
-//STRIP001              && nRow == nDestRow1 + nFirstLine
-//STRIP001              && nTab == nDestTab );
-//STRIP001      if (bRet)
-//STRIP001      {
-//STRIP001          rField = aRowArr[nCol - nDataStartCol].nCol;
-//STRIP001          if (rField == PIVOT_DATA_FIELD)
-//STRIP001              bRet = (nDataCount > 1);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 //--------------------------------------------------------------------------------------------------
@@ -1278,7 +993,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
-//STRIP001 /*?*/            bValidLine = !lcl_IsEmptyLine( pDoc, aSrcAdr, nSrcCol2 );
 /*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
@@ -1344,7 +1058,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
-//STRIP001 /*?*/            bValidLine = !lcl_IsEmptyLine( pDoc, aSrcAdr, nSrcCol2 );
 /*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
@@ -1577,428 +1290,9 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScPivot::SetDataLine(USHORT nCol, USHORT nRow, USHORT nTab, USHORT nRIndex)
-//STRIP001 {
-//STRIP001  USHORT nCIndex2;
-//STRIP001  short j;
-//STRIP001  short i;
-//STRIP001
-//STRIP001  SubTotal aGrandTotal[PIVOT_MAXFIELD];           // pro Daten-Feld
-//STRIP001
-//STRIP001  for (i=0; i < nColIndex; i++)
-//STRIP001  {
-//STRIP001      USHORT nCIndex = pColRef[i].nDataIndex;
-//STRIP001      if (nCIndex != PIVOT_FUNC_REF)
-//STRIP001      {
-//STRIP001 //           if ( ppDataArr[nRIndex][nCIndex].GetCount() )
-//STRIP001          {
-//STRIP001              USHORT nDIndex = ppDataArr[nRIndex][nCIndex].nIndex;
-//STRIP001              SetValue( nCol+i, nRow, ppDataArr[nRIndex][nCIndex], aDataArr[nDIndex].nFuncMask );
-//STRIP001              //  Kategorie 18
-//STRIP001
-//STRIP001              if (bDataAtCol)
-//STRIP001                  aGrandTotal[0].Update(ppDataArr[nRIndex][nCIndex]);
-//STRIP001              else
-//STRIP001                  aGrandTotal[nDIndex].Update(ppDataArr[nRIndex][nCIndex]);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SubTotal aTotal;
-//STRIP001          short k = i-1;
-//STRIP001          while ((pColRef[k].nDataIndex == PIVOT_FUNC_REF) && (k > 0)) k--;
-//STRIP001          for (j=k; (j>=0) && (pColRef[j].nRecCount > pColRef[i].nRecCount); j--)
-//STRIP001          {
-//STRIP001              nCIndex2 = pColRef[j].nDataIndex;
-//STRIP001              if (nCIndex2 != PIVOT_FUNC_REF)
-//STRIP001              {
-//STRIP001                  if ((pColRef[i].nIndex == ppDataArr[nRIndex][nCIndex2].nIndex) ||
-//STRIP001                      (pColRef[i].nIndex == 0xffff))
-//STRIP001                  {
-//STRIP001                      aTotal.Update( ppDataArr[nRIndex][nCIndex2] );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          USHORT nFunc = pColRef[i].nFuncMask;
-//STRIP001          if (nFunc == PIVOT_FUNC_AUTO)
-//STRIP001              nFunc = aDataArr[nRIndex/nDataMult%nDataCount].nFuncMask;
-//STRIP001          SetValue( nCol+i, nRow, aTotal, nFunc );
-//STRIP001          //  Kategorie 19
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bNoRows = (nRowCount == 0) || ( nRowCount == 1 && aRowArr[0].nCol == PIVOT_DATA_FIELD );
-//STRIP001  if (!bMakeTotalCol) bNoRows = TRUE;
-//STRIP001
-//STRIP001  if (!bNoRows)
-//STRIP001  {
-//STRIP001      if (bDataAtCol)
-//STRIP001      {
-//STRIP001          SetValue( nDestCol2, nRow, aGrandTotal[0], aDataArr[nRIndex/nDataMult%nDataCount].nFuncMask );
-//STRIP001          //  Kategorie 20
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          USHORT nTotalCol = nDestCol2 - nDataCount + 1;
-//STRIP001          for (short nTotCnt = 0; nTotCnt<nDataCount; nTotCnt++)
-//STRIP001          {
-//STRIP001              SetValue( nTotalCol+nTotCnt, nRow, aGrandTotal[nTotCnt], aDataArr[nTotCnt].nFuncMask );
-//STRIP001              //  Kategorie 21
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScPivot::SetFuncLine(USHORT nCol, USHORT nRow, USHORT nTab, USHORT nFunc, USHORT nIndex, USHORT nStartRIndex, USHORT nEndRIndex)
-//STRIP001 {
-//STRIP001  short nSubtCount = 0;
-//STRIP001  SubTotal aGrandTotal[PIVOT_MAXFIELD];
-//STRIP001  USHORT nThisFunc = nFunc;
-//STRIP001
-//STRIP001  for (short i=0; i<nColIndex; i++)
-//STRIP001  {
-//STRIP001      USHORT nCIndex = pColRef[i].nDataIndex;
-//STRIP001      if (nCIndex != PIVOT_FUNC_REF)
-//STRIP001      {
-//STRIP001          SubTotal aTotal;
-//STRIP001          for (USHORT j = nStartRIndex; j < nEndRIndex; j++)
-//STRIP001          {
-//STRIP001              USHORT nDIndex = ppDataArr[j][nCIndex].nIndex;
-//STRIP001              if ((nIndex == nDIndex) || (nIndex == 0xffff))
-//STRIP001              {
-//STRIP001                  aTotal.Update( ppDataArr[j][nCIndex] );
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (bDataAtCol)
-//STRIP001              aGrandTotal[0].Update( aTotal );
-//STRIP001          else
-//STRIP001              aGrandTotal[nCIndex/nDataMult%nDataCount].Update( aTotal );     //! immer ?
-//STRIP001
-//STRIP001          if (nFunc == PIVOT_FUNC_AUTO)
-//STRIP001          {
-//STRIP001              if (bDataAtCol)
-//STRIP001              {
-//STRIP001                  if ((short)nIndex<nDataCount)
-//STRIP001                      nThisFunc = aDataArr[nIndex].nFuncMask;
-//STRIP001                  else
-//STRIP001                      DBG_ERROR("wat fuer'n Index ???");
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  nThisFunc = aDataArr[nCIndex/nDataMult%nDataCount].nFuncMask;
-//STRIP001          }
-//STRIP001          SetValue( nCol+i, nRow, aTotal, nThisFunc );
-//STRIP001          //  Kategorie 22
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {                       //  Kreuzungspunkte kompatibel ?
-//STRIP001
-//STRIP001          if ( nFunc == pColRef[i].nFuncMask )
-//STRIP001          {
-//STRIP001              USHORT nEffIndex = nIndex;
-//STRIP001              if (nEffIndex == 0xffff)
-//STRIP001              {
-//STRIP001                  nEffIndex = nSubtCount % nDataCount;
-//STRIP001                  ++nSubtCount;
-//STRIP001              }
-//STRIP001              SubTotal aTotal;
-//STRIP001
-//STRIP001              short k = i-1;
-//STRIP001              short j;
-//STRIP001              while ((pColRef[k].nDataIndex == PIVOT_FUNC_REF) && (k > 0)) k--;
-//STRIP001              for (j=k; (j>=0) && (pColRef[j].nRecCount > pColRef[i].nRecCount); j--)
-//STRIP001              {
-//STRIP001                  nCIndex = pColRef[j].nDataIndex;
-//STRIP001                  if (nCIndex != PIVOT_FUNC_REF)
-//STRIP001                  {
-//STRIP001                      for (USHORT nRIndex = nStartRIndex; nRIndex < nEndRIndex; nRIndex++)
-//STRIP001                      {
-//STRIP001                          USHORT nDIndex = ppDataArr[nRIndex][nCIndex].nIndex;
-//STRIP001                          if (nEffIndex == nDIndex)
-//STRIP001                          {
-//STRIP001                              aTotal.Update( ppDataArr[nRIndex][nCIndex] );
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              if (nFunc == PIVOT_FUNC_AUTO)
-//STRIP001              {
-//STRIP001                  if ((short)nEffIndex<nDataCount)
-//STRIP001                      nThisFunc = aDataArr[nEffIndex].nFuncMask;
-//STRIP001                  else
-//STRIP001                      DBG_ERROR("wat fuer'n Index ???");
-//STRIP001              }
-//STRIP001              SetValue( nCol+i, nRow, aTotal, nThisFunc );
-//STRIP001              //  Kategorie 23
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  BOOL bNoRows = (nRowCount == 0) || ( nRowCount == 1 && aRowArr[0].nCol == PIVOT_DATA_FIELD );
-//STRIP001  if (!bMakeTotalCol) bNoRows = TRUE;
-//STRIP001
-//STRIP001  if (!bNoRows)
-//STRIP001  {
-//STRIP001      if (bDataAtCol)
-//STRIP001      {
-//STRIP001          if (nFunc == PIVOT_FUNC_AUTO)
-//STRIP001          {
-//STRIP001              if ((short)nIndex<nDataCount)
-//STRIP001                  nThisFunc = aDataArr[nIndex].nFuncMask;
-//STRIP001              else
-//STRIP001                  DBG_ERROR("wat fuer'n Index ???");
-//STRIP001          }
-//STRIP001          SetValue( nDestCol2, nRow, aGrandTotal[0], nThisFunc );
-//STRIP001          //  Kategorie 24
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          USHORT nTotalCol = nDestCol2 - nDataCount + 1;
-//STRIP001          for (short nTotCnt = 0; nTotCnt<nDataCount; nTotCnt++)
-//STRIP001          {
-//STRIP001              if (nFunc == PIVOT_FUNC_AUTO)
-//STRIP001                  nThisFunc = aDataArr[nTotCnt%nDataCount].nFuncMask;
-//STRIP001              SetValue( nTotalCol+nTotCnt, nRow, aGrandTotal[nTotCnt], nThisFunc );
-//STRIP001              //  Kategorie 25
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScPivot::ColToTable(short nField, USHORT& nRow, ScProgress& rProgress)
-//STRIP001 {
-//STRIP001  USHORT nCol = nDestCol1 + nField;
-//STRIP001  if (nColCount == 0)
-//STRIP001  {
-//STRIP001 //       SetDataLine(nCol + 1, nRow, nDestTab, nRowIndex);
-//STRIP001      SetDataLine(nCol, nRow, nDestTab, nRowIndex);
-//STRIP001      nRowIndex++;
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  short nDx;
-//STRIP001  if ((aColArr[nColCount -1].nCol == PIVOT_DATA_FIELD) && (nDataCount == 1))
-//STRIP001      nDx = 2;
-//STRIP001  else
-//STRIP001      nDx = 1;
-//STRIP001  if (nField < nColCount - nDx)
-//STRIP001  {
-//STRIP001      for (i = 0; i < pColList[nField]->GetCount(); i++)
-//STRIP001      {
-//STRIP001          USHORT nSaveIndex = nRowIndex;
-//STRIP001          String aStr = pColList[nField]->GetString(i);
-//STRIP001          if (!aStr.Len()) aStr = ScGlobal::GetRscString(STR_EMPTYDATA);
-//STRIP001          pDoc->SetString(nCol, nRow, nDestTab, aStr);
-//STRIP001          //  Kategorie 10
-//STRIP001          USHORT nSaveRow = nRow;
-//STRIP001          ColToTable(nField + 1, nRow, rProgress);
-//STRIP001          SetStyle(nCol, nSaveRow, nCol, nRow - 1, PIVOT_STYLE_CATEGORY);
-//STRIP001          SetFrame(nCol, nSaveRow, nCol, nRow - 1);
-//STRIP001          if (aColArr[nField].nFuncCount > 0)                 // Zwischenergebnisse eingestellt?
-//STRIP001          {
-//STRIP001              nSaveRow = nRow;
-//STRIP001              for (short j=0; j<=PIVOT_MAXFUNC; j++)                  // incl. "auto"
-//STRIP001              {
-//STRIP001                  if (aColArr[nField].nFuncMask & nFuncMaskArr[j])
-//STRIP001                  {
-//STRIP001                      String aLab;
-//STRIP001                      if (bDataAtCol)
-//STRIP001                      {
-//STRIP001                          for (short k=0; k < nDataCount; k++)
-//STRIP001                          {
-//STRIP001                              String aDataStr = pDataList->GetString(k);  // ist immer String
-//STRIP001                              aLab = aStr;
-//STRIP001                              short nFuncType;
-//STRIP001                              if ( j==PIVOT_MAXFUNC )
-//STRIP001                                  nFuncType = lcl_MaskToIndex( aDataArr[k].nFuncMask );
-//STRIP001                              else
-//STRIP001                                  nFuncType = j;
-//STRIP001                              aLab += ' ';
-//STRIP001                              aLab += *pLabel[nFuncType];
-//STRIP001                              aLab += ' ';
-//STRIP001                              aLab += aDataStr;
-//STRIP001                              pDoc->SetString(nCol, nRow, nDestTab, aLab);
-//STRIP001                              //  Kategorie 11
-//STRIP001                              SetFuncLine(nDataStartCol, nRow, nDestTab, nFuncMaskArr[j], k, nSaveIndex, nRowIndex);
-//STRIP001                              nRow++;
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          aLab = aStr;
-//STRIP001                          aLab += ' ';
-//STRIP001                          aLab += *pLabel[j];
-//STRIP001                          pDoc->SetString(nCol, nRow, nDestTab, aLab);
-//STRIP001                          //  Kategorie 12
-//STRIP001                          SetFuncLine(nDataStartCol, nRow, nDestTab, nFuncMaskArr[j], 0xffff, nSaveIndex, nRowIndex);
-//STRIP001                          nRow++;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if ( nDataStartCol )
-//STRIP001                  SetStyle(nCol, nSaveRow, nDataStartCol-1, nRow-1, PIVOT_STYLE_TITLE);
-//STRIP001              SetStyle(nDataStartCol, nSaveRow, nDestCol2, nRow-1, PIVOT_STYLE_RESULT);
-//STRIP001              SetFrameHor(nCol, nSaveRow, nDestCol2, nRow-1);
-//STRIP001          }
-//STRIP001          nSaveIndex = nRowIndex;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (nField < nColCount)
-//STRIP001  {
-//STRIP001      USHORT nCatCount = pColList[nField]->GetCount();
-//STRIP001      SetStyle(nCol, nRow, nCol, nRow+nCatCount-1, PIVOT_STYLE_CATEGORY);
-//STRIP001      SetFrame(nCol, nRow, nDestCol2, nRow+nCatCount-1);
-//STRIP001      for (i = 0; i < nCatCount; i++)
-//STRIP001      {
-//STRIP001          String aTmpStr = pColList[nField]->GetString(i);
-//STRIP001          if (!aTmpStr.Len()) aTmpStr = ScGlobal::GetRscString(STR_EMPTYDATA);
-//STRIP001
-//STRIP001          String aPutStr;
-//STRIP001          if (pColList[nField] == pDataList)
-//STRIP001          {
-//STRIP001              short nFuncType = lcl_MaskToIndex( aDataArr[i].nFuncMask );
-//STRIP001              aPutStr  = *pLabel[nFuncType];
-//STRIP001              aPutStr += ' ';
-//STRIP001              aPutStr += aTmpStr;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              aPutStr += aTmpStr;
-//STRIP001
-//STRIP001          pDoc->SetString(nCol, nRow, nDestTab, aPutStr);
-//STRIP001          //  Kategorie 13
-//STRIP001          SetDataLine(nCol + 1, nRow, nDestTab, nRowIndex);
-//STRIP001          nRowIndex++;
-//STRIP001          nRow++;
-//STRIP001
-//STRIP001          rProgress.SetState( nRow - nDestRow1 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ScPivot::RowToTable(short nField, USHORT& nCol)
-//STRIP001 {
-//STRIP001  nRecCount++;
-//STRIP001  USHORT nRow = nDestRow1 + nFirstLine + nField + 1;
-//STRIP001  USHORT i;
-//STRIP001  if (nRowCount == 0)
-//STRIP001  {
-//STRIP001      pColRef[nColIndex].nDataIndex = nDataIndex;
-//STRIP001      nColIndex++;
-//STRIP001      nDataIndex++;
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  short nDx;
-//STRIP001  if ((aRowArr[nRowCount -1].nCol == PIVOT_DATA_FIELD) && (nDataCount == 1))
-//STRIP001      nDx = 2;
-//STRIP001  else
-//STRIP001      nDx = 1;
-//STRIP001
-//STRIP001  if (nField < nRowCount - nDx)
-//STRIP001  {
-//STRIP001      for (i = 0; i < pRowList[nField]->GetCount(); i++)
-//STRIP001      {
-//STRIP001          String aStr = pRowList[nField]->GetString(i);
-//STRIP001          if (!aStr.Len()) aStr = ScGlobal::GetRscString(STR_EMPTYDATA);
-//STRIP001          pDoc->SetString(nCol, nRow, nDestTab, aStr);
-//STRIP001          //  Kategorie 14
-//STRIP001          USHORT nSaveCol = nCol;
-//STRIP001          RowToTable(nField + 1, nCol);
-//STRIP001          SetStyle(nSaveCol, nRow, nCol - 1, nRow, PIVOT_STYLE_CATEGORY);
-//STRIP001          SetFrame(nSaveCol, nRow, nCol - 1, nRow);
-//STRIP001          if (aRowArr[nField].nFuncCount > 0)
-//STRIP001          {
-//STRIP001              nSaveCol = nCol;
-//STRIP001              for (USHORT j=0; j<=PIVOT_MAXFUNC; j++)                 // incl. "auto"
-//STRIP001              {
-//STRIP001                  if (aRowArr[nField].nFuncMask & nFuncMaskArr[j])
-//STRIP001                  {
-//STRIP001                      String aLab;
-//STRIP001                      if (!bDataAtCol)
-//STRIP001                      {
-//STRIP001                          for (short k=0; k < nDataCount; k++)
-//STRIP001                          {
-//STRIP001                              aLab = aStr;
-//STRIP001                              short nFuncType;
-//STRIP001                              if ( j==PIVOT_MAXFUNC )
-//STRIP001                                  nFuncType = lcl_MaskToIndex( aDataArr[k].nFuncMask );
-//STRIP001                              else
-//STRIP001                                  nFuncType = j;
-//STRIP001                              aLab += ' ';
-//STRIP001                              aLab += *pLabel[nFuncType];
-//STRIP001                              aLab += ' ';
-//STRIP001                              aLab += pDataList->GetString(k);
-//STRIP001                              pDoc->SetString(nCol, nRow, nDestTab, aLab);
-//STRIP001                              //  Kategorie 15
-//STRIP001                              pColRef[nColIndex].nDataIndex = PIVOT_FUNC_REF;
-//STRIP001                              pColRef[nColIndex].nRecCount = nRecCount;
-//STRIP001                              pColRef[nColIndex].nIndex = k;
-//STRIP001                              pColRef[nColIndex].nFuncMask = nFuncMaskArr[j];
-//STRIP001                              nColIndex++;
-//STRIP001                              nCol++;
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          aLab = aStr;
-//STRIP001                          aLab += ' ';
-//STRIP001                          aLab += *pLabel[j];
-//STRIP001                          pDoc->SetString(nCol, nRow, nDestTab, aLab);
-//STRIP001                          //  Kategorie 16
-//STRIP001                          pColRef[nColIndex].nDataIndex = PIVOT_FUNC_REF;
-//STRIP001                          pColRef[nColIndex].nRecCount = nRecCount;
-//STRIP001                          pColRef[nColIndex].nIndex = 0xffff;
-//STRIP001                          pColRef[nColIndex].nFuncMask = nFuncMaskArr[j];
-//STRIP001                          nColIndex++;
-//STRIP001                          nCol++;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              if ( nDataStartRow )
-//STRIP001                  SetStyle(nSaveCol, nRow,
-//STRIP001                              nCol-1, nDataStartRow-1, PIVOT_STYLE_TITLE);
-//STRIP001              SetStyle(nSaveCol, nDataStartRow, nCol-1, nDestRow2, PIVOT_STYLE_RESULT);
-//STRIP001              SetFrameVer(nSaveCol, nRow, nCol-1, nDestRow2);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if (nField < nRowCount)
-//STRIP001  {
-//STRIP001      USHORT nCatCount = pRowList[nField]->GetCount();
-//STRIP001      SetStyle(nCol, nRow, nCol+nCatCount-1, nRow, PIVOT_STYLE_CATEGORY);
-//STRIP001      SetFrame(nCol, nRow, nCol+nCatCount-1, nDestRow2);
-//STRIP001      for (i = 0; i < nCatCount; i++)
-//STRIP001      {
-//STRIP001          String aTmpStr = pRowList[nField]->GetString(i);
-//STRIP001          if (!aTmpStr.Len()) aTmpStr = ScGlobal::GetRscString(STR_EMPTYDATA);
-//STRIP001
-//STRIP001          String aPutStr;
-//STRIP001          if (pRowList[nField] == pDataList)
-//STRIP001          {
-//STRIP001              short nFuncType = lcl_MaskToIndex( aDataArr[i].nFuncMask );
-//STRIP001              aPutStr  = *pLabel[nFuncType];
-//STRIP001              aPutStr += ' ';
-//STRIP001              aPutStr += aTmpStr;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              aPutStr = aTmpStr;
-//STRIP001
-//STRIP001          pDoc->SetString(nCol, nRow, nDestTab, aPutStr);
-//STRIP001          //  Kategorie 17
-//STRIP001          pColRef[nColIndex].nDataIndex = nDataIndex;
-//STRIP001          pColRef[nColIndex].nRecCount = nRecCount;
-//STRIP001          pColRef[nColIndex].nIndex = 0xffff;
-//STRIP001          pColRef[nColIndex].nFuncMask = PIVOT_FUNC_NONE;
-//STRIP001          nColIndex++;
-//STRIP001          nDataIndex++;
-//STRIP001          nCol++;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  nRecCount--;
-//STRIP001 }
 
 /*N*/ USHORT ScPivot::GetCategoryRow( USHORT nCol, USHORT nRow )
 /*N*/ {
