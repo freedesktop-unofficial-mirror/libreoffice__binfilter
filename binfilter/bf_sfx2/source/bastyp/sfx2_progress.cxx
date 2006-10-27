@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_progress.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:37:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:05:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,106 +35,32 @@
 
 #include "progress.hxx"
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
 #endif
 
-// auto strip #ifndef _SBX_HXX //autogen
-// auto strip #include <svtools/sbx.hxx>
-// auto strip #endif
 #pragma hdrstop
 
-// auto strip #include <so3/transbnd.hxx>             // SvProgressArg
 #include <svtools/eitem.hxx>
 
 #include "appdata.hxx"
 #include "request.hxx"
-// auto strip #include "frame.hxx"
-// auto strip #include "viewfrm.hxx"
 #include "ipfrm.hxx"
-// auto strip #include "viewsh.hxx"
-// auto strip #include "objsh.hxx"
-// auto strip #include "app.hxx"
-// auto strip #include "stbmgr.hxx"
 #include "dispatch.hxx"
 #include "sfxtypes.hxx"
 #include "docfile.hxx"
 #include "workwin.hxx"
-// auto strip #include "sfxresid.hxx"
 #include "bastyp.hrc"
 
 #include <time.h>
 namespace binfilter {
-// auto strip #include "sfxslots.hxx"
 
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::task;
 
-//STRIP001 void AddNumber_Impl( String& aNumber, sal_uInt32 nArg )
-//STRIP001 {
-//STRIP001  if ( nArg >= 10240 )
-//STRIP001  {
-//STRIP001      aNumber += String::CreateFromInt32( (sal_uInt16)( ( nArg + 512 ) / 1024 ) );
-//STRIP001      aNumber += ' ';
-//STRIP001      aNumber += SfxResId( STR_KB );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aNumber += String::CreateFromInt32( nArg );
-//STRIP001      aNumber += ' ';
-//STRIP001      aNumber += SfxResId( STR_BYTES );
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 String GetStatusString( const SvProgressArg* pArg )
-//STRIP001 {
-//STRIP001  String aString;
-//STRIP001  StringList_Impl aSL( SfxResId( RID_DLSTATUS2 ), (USHORT)pArg->eStatus );
-//STRIP001  USHORT nTotal = 0;
-//STRIP001
-//STRIP001  if ( pArg->eStatus == SVBINDSTATUS_ENDDOWNLOADDATA && nTotal <= 1 )
-//STRIP001      return aString;
-//STRIP001
-//STRIP001  if( aSL )
-//STRIP001  {
-//STRIP001      INetURLObject aObj( pArg->rStatus );
-//STRIP001      aString = aSL.GetString();
-//STRIP001      aString.SearchAndReplaceAscii( "$(HOST)", aObj.GetHost() );
-//STRIP001      String aTarget = aObj.GetFull();
-//STRIP001      if( aTarget.Len() <= 1 && pArg->eStatus != SVBINDSTATUS_CONNECTING )
-//STRIP001          aTarget = aObj.GetHost();
-//STRIP001      if( pArg->nMax )
-//STRIP001      {
-//STRIP001          aTarget += DEFINE_CONST_UNICODE( " (" );
-//STRIP001          AddNumber_Impl( aTarget, pArg->nMax );
-//STRIP001          aTarget += ')';
-//STRIP001      }
-//STRIP001
-//STRIP001      aString.SearchAndReplaceAscii( "$(TARGET)",aTarget );
-//STRIP001      String aNumber;
-//STRIP001      AddNumber_Impl( aNumber, pArg->nProgress );
-//STRIP001      if( pArg->nRate )
-//STRIP001      {
-//STRIP001          aNumber+= DEFINE_CONST_UNICODE( " (" );
-//STRIP001          AddNumber_Impl( aNumber, (ULONG)pArg->nRate );
-//STRIP001          aNumber+= DEFINE_CONST_UNICODE( "/s)" );
-//STRIP001      }
-//STRIP001      if( pArg->nMax && pArg->nProgress && pArg->nMax != pArg->nProgress )
-//STRIP001      {
-//STRIP001          aNumber += DEFINE_CONST_UNICODE( " [" );
-//STRIP001          float aPerc = pArg->nProgress / (float)pArg->nMax;
-//STRIP001          aNumber += String::CreateFromInt32( (USHORT)(aPerc * 100) );
-//STRIP001          aNumber += DEFINE_CONST_UNICODE( "%]" );
-//STRIP001      }
-//STRIP001      aString.SearchAndReplaceAscii( "$(BYTE)", aNumber );
-//STRIP001  }
-//STRIP001  return aString;
-//STRIP001 }
 
 
 struct SfxProgress_Impl : public SfxCancellable
@@ -378,26 +304,10 @@ extern ULONG Get10ThSec();
 */
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( pImp->pActiveProgress ) return;
-//STRIP001  if ( pImp->pMgr && pImp->pMgr->IsProgressMode() )
-//STRIP001  {
-//STRIP001      pImp->pMgr->EndProgressMode();
-//STRIP001      pImp->aText = rText;
-//STRIP001      pImp->pMgr->StartProgressMode( pImp->aText, pImp->nMax );
-//STRIP001  }
-//STRIP001     else if ( pImp->xStatusInd.is() )
-//STRIP001     {
-//STRIP001         pImp->xStatusInd->reset();
-//STRIP001         pImp->xStatusInd->start( pImp->aText, pImp->nMax );
-//STRIP001     }
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 const String& SfxProgress::GetStateText_Impl() const
-//STRIP001 {
-//STRIP001  return pImp->aStateText;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 /*
@@ -425,53 +335,16 @@ IMPL_STATIC_LINK( SfxProgress, SetStateHdl, PlugInLoadStatus*, pStatus )
 // muss in AppDaten
 static ULONG nLastTime = 0;
 
-//STRIP001 long TimeOut_Impl( void* pThis, void* pArgV )
-//STRIP001 {
-//STRIP001  Timer *pArg = (Timer*)pArgV;
-//STRIP001  if( Time::GetSystemTicks() - nLastTime > 3000 )
-//STRIP001  {
-//STRIP001      GetpApp()->HideStatusText();
-//STRIP001      nLastTime = 0;
-//STRIP001      delete pArg;
-//STRIP001  }
-//STRIP001  else pArg->Start();
-//STRIP001  return 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*N*/ IMPL_STATIC_LINK( SfxProgress, DefaultBindingProgress, SvProgressArg*, pArg )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( !nLastTime )
-//STRIP001  {
-//STRIP001      Timer *pTimer = new Timer();
-//STRIP001      pTimer->SetTimeout( 3000 );
-//STRIP001      pTimer->SetTimeoutHdl( Link( 0, TimeOut_Impl ) );
-//STRIP001      pTimer->Start();
-//STRIP001  }
-//STRIP001  if( Time::GetSystemTicks( ) - nLastTime > 100 )
-//STRIP001  {
-//STRIP001      nLastTime = Time::GetSystemTicks();
-//STRIP001         String aString = GetStatusString( pArg );
-//STRIP001      if( aString.Len() )
-//STRIP001          GetpApp()->ShowStatusText( aString );
-//STRIP001  }
 /*N*/   return 0;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 BOOL SfxProgress::SetStateText
-//STRIP001 (
-//STRIP001  ULONG           nNewVal,    /* neuer Wert f"ur die Fortschritts-Anzeige */
-//STRIP001  const String&   rNewVal,    /* Status als Text */
-//STRIP001  ULONG           nNewRange   /* neuer Maximalwert, 0 f"ur Beibehaltung des alten */
-//STRIP001 )
-//STRIP001
-//STRIP001 {
-//STRIP001  pImp->aStateText = rNewVal;
-//STRIP001  return SetState( nNewVal, nNewRange );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -783,16 +656,6 @@ static ULONG nLastTime = 0;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SfxProgress::UnLock()
-//STRIP001 {
-//STRIP001  if( pImp->pActiveProgress ) return;
-//STRIP001  if ( !pImp->bLocked )
-//STRIP001      return;
-//STRIP001
-//STRIP001  DBG( DbgOutf( "SfxProgress: unlocked" ) );
-//STRIP001  pImp->bLocked = FALSE;
-//STRIP001     pImp->Enable_Impl(TRUE);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -823,82 +686,9 @@ static ULONG nLastTime = 0;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SfxProgress::SetWaitMode
-//STRIP001 (
-//STRIP001  BOOL    bWait       /*  TRUE
-//STRIP001                          Wartecursor wird verwendet
-//STRIP001
-//STRIP001                          FALSE
-//STRIP001                          Es wird kein Wartecursor verwendet */
-//STRIP001 )
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Wartecursor-Modus umschalten.
-//STRIP001
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  if( pImp->pActiveProgress ) return;
-//STRIP001  if ( !bSuspended && pImp->bWaitMode != bWait )
-//STRIP001  {
-//STRIP001      if ( bWait )
-//STRIP001      {
-//STRIP001          if ( pImp->xObjSh.Is() && !pImp->bAllDocs )
-//STRIP001          {
-//STRIP001              for ( SfxViewFrame *pFrame =
-//STRIP001                      SfxViewFrame::GetFirst(pImp->xObjSh);
-//STRIP001                      pFrame;
-//STRIP001                      pFrame = SfxViewFrame::GetNext( *pFrame, pImp->xObjSh ) )
-//STRIP001                  pFrame->GetWindow().EnterWait();
-//STRIP001              SfxFrame* pFrm = pImp->xObjSh->GetMedium()->GetLoadTargetFrame();
-//STRIP001              if ( pFrm )
-//STRIP001                  pFrm->GetWindow().EnterWait();
-//STRIP001          }
-//STRIP001 //(mba)/task
-//STRIP001 /*
-//STRIP001          else if ( Application::GetAppWindow() )
-//STRIP001              Application::GetAppWindow()->EnterWait();
-//STRIP001  */
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if ( pImp->xObjSh.Is() && !pImp->bAllDocs )
-//STRIP001          {
-//STRIP001              for ( SfxViewFrame *pFrame =
-//STRIP001                      SfxViewFrame::GetFirst(pImp->xObjSh);
-//STRIP001                      pFrame;
-//STRIP001                      pFrame = SfxViewFrame::GetNext( *pFrame, pImp->xObjSh ) )
-//STRIP001                  pFrame->GetWindow().LeaveWait();
-//STRIP001              SfxFrame* pFrm = pImp->xObjSh->GetMedium()->GetLoadTargetFrame();
-//STRIP001              if ( pFrm )
-//STRIP001                  pFrm->GetWindow().LeaveWait();
-//STRIP001          }
-//STRIP001 //(mba)/task
-//STRIP001             /*
-//STRIP001
-//STRIP001          else if ( Application::GetAppWindow() )
-//STRIP001              Application::GetAppWindow()->LeaveWait();
-//STRIP001              */
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  pImp->bWaitMode = bWait;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 BOOL SfxProgress::GetWaitMode() const
-//STRIP001
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001  Wartecursor-Modus abfragen.
-//STRIP001
-//STRIP001 */
-//STRIP001
-//STRIP001 {
-//STRIP001  return pImp->bWaitMode;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -950,19 +740,9 @@ static ULONG nLastTime = 0;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SfxProgress::EnterLock()
-//STRIP001 {
-//STRIP001  SFX_APP()->Get_Impl()->nRescheduleLocks++;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SfxProgress::LeaveLock()
-//STRIP001 {
-//STRIP001  SfxAppData_Impl *pImp = SFX_APP()->Get_Impl();
-//STRIP001  DBG_ASSERT( 0 != pImp->nRescheduleLocks, "SFxProgress::LeaveLock but no locks" )
-//STRIP001  pImp->nRescheduleLocks--;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
