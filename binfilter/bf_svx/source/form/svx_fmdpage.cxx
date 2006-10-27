@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmdpage.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:42:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:54:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,9 +54,6 @@
 #ifndef _SVX_UNOSHAPE_HXX //autogen
 #include "unoshape.hxx"
 #endif
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 #ifndef _FM_IMPLEMENTATION_IDS_HXX_
 #include "fmimplids.hxx"
 #endif
@@ -78,7 +75,6 @@ namespace binfilter {
 
 /*N*/ ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a; //STRIP001
-//STRIP001  return ::binfilter::form::OImplementationIds::getImplementationId(getTypes()); //STRIP008 return ::form::OImplementationIds::getImplementationId(getTypes());
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL SvxFmDrawPage::queryAggregation( const ::com::sun::star::uno::Type& aType ) throw(::com::sun::star::uno::RuntimeException)
@@ -94,15 +90,6 @@ namespace binfilter {
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
-//STRIP001 ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL SvxFmDrawPage::getTypes(  ) throw(::com::sun::star::uno::RuntimeException)
-//STRIP001 {
-//STRIP001  ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > aTypes(SvxDrawPage::getTypes());
-//STRIP001  aTypes.realloc(aTypes.getLength() + 1);
-//STRIP001  ::com::sun::star::uno::Type* pTypes = aTypes.getArray();
-//STRIP001
-//STRIP001  pTypes[aTypes.getLength()-1] = ::getCppuType((const ::com::sun::star::uno::Reference< ::com::sun::star::form::XFormsSupplier>*)0);
-//STRIP001  return aTypes;
-//STRIP001 }
 
 /*N*/ SdrObject *SvxFmDrawPage::_CreateSdrObject( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > & xDescr ) throw ()
 /*N*/ {
