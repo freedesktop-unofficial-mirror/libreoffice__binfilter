@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unusedf.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:54:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:56:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,27 +36,16 @@
 
 #pragma hdrstop
 
-// auto strip #include "rootfrm.hxx"
 #include "cntfrm.hxx"
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "flyfrm.hxx"
-// auto strip #include "errhdl.hxx"
 namespace binfilter {
 
 
-//STRIP001 void SwFrm::Format( const SwBorderAttrs * )
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "Format() der Basisklasse gerufen." );
-//STRIP001 }
 
-//STRIP001 void SwFrm::Paint(const SwRect &) const
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "Paint() der Basisklasse gerufen." );
-//STRIP001 }
 
 /*N*/ BOOL SwCntntFrm::WouldFit( SwTwips &, BOOL& )
 /*N*/ {
@@ -64,30 +53,11 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 BOOL SwFrm::GetCrsrOfst( SwPosition *, Point&, const SwCrsrMoveState*  ) const
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "GetCrsrOfst der Basisklasse, hi!" );
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 #ifndef PRODUCT
 
-//STRIP001 void SwRootFrm::Cut()
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "Cut() des RootFrm gerufen." );
-//STRIP001 }
 
-//STRIP001 void SwRootFrm::Paste( SwFrm *, SwFrm * )
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "Paste() des RootFrm gerufen." );
-//STRIP001 }
 
-//STRIP001 void SwFlyFrm::Paste( SwFrm *, SwFrm * )
-//STRIP001 {
-//STRIP001  ASSERT( FALSE, "Paste() des FlyFrm gerufen." );
-//STRIP001 }
 
-//STRIP001 #endif
 
 /*N*/ BOOL SwFrm::GetCharRect( SwRect&, const SwPosition&,
 /*N*/                        SwCrsrMoveState* ) const
