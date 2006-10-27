@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chartins.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:22:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:33:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,60 +58,12 @@
 #endif
 
 #include "autoedit.hxx"
-//STRIP001 class SfxItemSet;
 namespace binfilter {
 
 
-//STRIP001 class SwWrtShell;
-//STRIP001 class SchMemChart;
 
 //========================================================================
 
-//STRIP001 class SwInsertChartDlg : public SfxModelessDialog
-//STRIP001 {
-//STRIP001     FixedLine       aFL1;
-//STRIP001     CheckBox        aFirstRow;
-//STRIP001  CheckBox        aFirstCol;
-//STRIP001     FixedText       aRangeFt;
-//STRIP001  AutoEdit        aRangeEd;
-//STRIP001
-//STRIP001     FixedInfo       aTextFt;
-//STRIP001
-//STRIP001     HelpButton      aHelp;
-//STRIP001  CancelButton    aCancel;
-//STRIP001
-//STRIP001     FixedLine       aHLine;
-//STRIP001  PushButton      aPrev;
-//STRIP001  PushButton      aNext;
-//STRIP001  PushButton      aFinish;
-//STRIP001
-//STRIP001     SchMemChart *   pChartData;
-//STRIP001  ModalDialog*    pChartDlg;
-//STRIP001  SfxItemSet*     pInItemSet;
-//STRIP001  SfxItemSet*     pOutItemSet;
-//STRIP001  SwWrtShell*     pWrtShell;
-//STRIP001  String          aAktTableName;
-//STRIP001  BOOL            bUpdateChartData;
-//STRIP001  BOOL            bChartInserted;
-//STRIP001  BOOL            bChildOpen;
-//STRIP001
-//STRIP001  void UpdateData();
-//STRIP001  virtual BOOL        Close();
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwInsertChartDlg( SfxBindings*, SfxChildWindow*,
-//STRIP001                    Window *pParent, SwWrtShell * );
-//STRIP001  ~SwInsertChartDlg();
-//STRIP001
-//STRIP001  DECL_LINK( SelTblCellsNotify, SwWrtShell * );
-//STRIP001  DECL_LINK( ModifyHdl, Edit* );
-//STRIP001  DECL_LINK( NextHdl, Button* );
-//STRIP001  DECL_LINK( FinishHdl, Button* );
-//STRIP001  DECL_LINK( CloseHdl, Button* );
-//STRIP001  DECL_LINK( ClickHdl, CheckBox* );
-//STRIP001
-//STRIP001     virtual void    Activate();
-//STRIP001 };
 }//namespace binfilter
 #endif
 namespace binfilter {//STRIP009
