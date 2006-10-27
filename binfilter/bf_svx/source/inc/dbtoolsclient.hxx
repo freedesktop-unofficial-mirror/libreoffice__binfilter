@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbtoolsclient.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:59:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:07:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #ifndef CONNECTIVITY_VIRTUAL_DBTOOLS_HXX
 #include <connectivity/virtualdbtools.hxx>
 #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _OSL_MODULE_H_
 #include <osl/module.h>
 #endif
@@ -82,11 +79,8 @@ namespace svxform
         ODbtoolsClient();
         ~ODbtoolsClient();
         //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
-//STRIP001      void create() const;
 
     private:
-//STRIP001      static void registerClient();
-//STRIP001      static void revokeClient();
     };
 
     //====================================================================
@@ -104,59 +98,11 @@ namespace svxform
     public:
         OStaticDataAccessTools();
 
-//STRIP001      const ::rtl::Reference< ::connectivity::simple::IDataAccessTools >& getDataAccessTools() const { return m_xDataAccessTools; }
-//STRIP001
-//STRIP001      // ------------------------------------------------
-//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier> getNumberFormats(
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>& _rxConn,
-//STRIP001          sal_Bool _bAllowDefault
-//STRIP001      ) const;
-//STRIP001
-//STRIP001      // ------------------------------------------------
-//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection> getConnection_withFeedback(
-//STRIP001          const ::rtl::OUString& _rDataSourceName,
-//STRIP001          const ::rtl::OUString& _rUser,
-//STRIP001          const ::rtl::OUString& _rPwd,
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory
-//STRIP001      ) const SAL_THROW ( (::com::sun::star::sdbc::SQLException) );
-//STRIP001
-//STRIP001      // ------------------------------------------------
-//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection> calcConnection(
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XRowSet>& _rxRowSet,
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory
-//STRIP001      ) const SAL_THROW ( (::com::sun::star::sdbc::SQLException, ::com::sun::star::uno::RuntimeException) );
-//STRIP001
-//STRIP001      // ------------------------------------------------
         ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection> getRowSetConnection(
                 const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XRowSet>& _rxRowSet)
                 const SAL_THROW ( (::com::sun::star::uno::RuntimeException) );
 
         // ------------------------------------------------
-//STRIP001      void TransferFormComponentProperties(
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& _rxOld,
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& _rxNew,
-//STRIP001          const ::com::sun::star::lang::Locale& _rLocale
-//STRIP001      ) const;
-//STRIP001
-//STRIP001      // ------------------------------------------------
-//STRIP001      ::rtl::OUString quoteName(
-//STRIP001          const ::rtl::OUString& _rQuote,
-//STRIP001          const ::rtl::OUString& _rName
-//STRIP001      ) const;
-//STRIP001
-//STRIP001      // ------------------------------------------------
-//STRIP001      ::rtl::OUString quoteTableName(
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDatabaseMetaData>& _rxMeta,
-//STRIP001          const ::rtl::OUString& _rName
-//STRIP001      ) const;
-//STRIP001
-//STRIP001      // ------------------------------------------------
-//STRIP001      ::com::sun::star::sdb::SQLContext prependContextInfo(
-//STRIP001          ::com::sun::star::sdbc::SQLException& _rException,
-//STRIP001          const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >& _rxContext,
-//STRIP001          const ::rtl::OUString& _rContextDescription,
-//STRIP001          const ::rtl::OUString& _rContextDetails
-//STRIP001      ) const;
 
         // ------------------------------------------------
         ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource > getDataSource(

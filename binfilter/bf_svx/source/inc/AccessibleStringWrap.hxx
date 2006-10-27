@@ -4,9 +4,9 @@
  *
  *  $RCSfile: AccessibleStringWrap.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:57:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:06:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,9 +68,6 @@ public:
 
 private:
 
-//STRIP001     OutputDevice&        mrDev;
-//STRIP001     SvxFont&         mrFont;
-//STRIP001     String               maText;
 };
 
 }//end of namespace binfilter
