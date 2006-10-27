@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:46:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:52:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,18 +43,6 @@
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
-// auto strip #ifndef _GRAPH_HXX //autogen
-// auto strip #include <vcl/graph.hxx>
-// auto strip #endif
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
-// auto strip #ifndef _CONTDLG_HXX_ //autogen
-// auto strip #include <bf_svx/contdlg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
-// auto strip #include <bf_svx/protitem.hxx>
-// auto strip #endif
 #ifndef _SVX_OPAQITEM_HXX //autogen
 #include <bf_svx/opaqitem.hxx>
 #endif
@@ -94,9 +82,6 @@
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
 #ifndef _FMTCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
@@ -104,33 +89,21 @@
 #include <layhelp.hxx>
 #endif
 // OD 16.04.2003 #i13147# - for <SwFlyFrm::GetContour(..)>
-// auto strip #ifndef _NDGRF_HXX
-// auto strip #include <ndgrf.hxx>
-// auto strip #endif
 
 #include "doc.hxx"
 #include "viewsh.hxx"
-// auto strip #include "layouter.hxx"
 #include "pagefrm.hxx"
-// auto strip #include "rootfrm.hxx"
-// auto strip #include "cntfrm.hxx"
-// auto strip #include "pam.hxx"
-// auto strip #include "frmatr.hxx"
 #include "viewimp.hxx"
-// auto strip #include "errhdl.hxx"
 #include "dcontact.hxx"
 #include "dflyobj.hxx"
 #include "dview.hxx"
-// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "hints.hxx"
-// auto strip #include "swregion.hxx"
 #include "frmsh.hxx"
 #include "tabfrm.hxx"
 #include "txtfrm.hxx"
 #include "ndnotxt.hxx"
-// auto strip #include "notxtfrm.hxx"   // GetGrfArea
 #include "flyfrms.hxx"
 #include "ndindex.hxx"   // GetGrfArea
 #include "sectfrm.hxx"
@@ -232,25 +205,6 @@ namespace binfilter {
 /*N*/   if ( rChain.GetPrev() || rChain.GetNext() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rChain.GetNext() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwFlyFrm *pFollow = FindChainNeighbour( *rChain.GetNext(), pAnch );
-//STRIP001 /*?*/            if ( pFollow )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ASSERT( !pFollow->GetPrevLink(), "wrong chain detected" );
-//STRIP001 /*?*/                if ( !pFollow->GetPrevLink() )
-//STRIP001 /*?*/                    SwFlyFrm::ChainFrames( this, pFollow );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        if ( rChain.GetPrev() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwFlyFrm *pMaster = FindChainNeighbour( *rChain.GetPrev(), pAnch );
-//STRIP001 /*?*/            if ( pMaster )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ASSERT( !pMaster->GetNextLink(), "wrong chain detected" );
-//STRIP001 /*?*/                if ( !pMaster->GetNextLink() )
-//STRIP001 /*?*/                    SwFlyFrm::ChainFrames( pMaster, this );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/   if ( !GetPrevLink() ) //Inhalt gehoert sonst immer dem Master und meiner Zaehlt nicht
@@ -296,13 +250,6 @@ namespace binfilter {
 /*N*/       SwRootFrm *pRootFrm = FindRootFrm();
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() )
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            ViewShell *pVSh = pRootFrm->GetCurrShell();
-//STRIP001 /*?*/            if( pVSh && pVSh->Imp() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                // Lowers aren't disposed already, so we have to do a recursive
-//STRIP001 /*?*/                // dispose
-//STRIP001 /*?*/                pVSh->Imp()->DisposeAccessibleFrm( this, sal_True );
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 /*N*/ #endif
@@ -465,98 +412,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void SwFlyFrm::ChainFrames( SwFlyFrm *pMaster, SwFlyFrm *pFollow )
-//STRIP001 {
-//STRIP001  ASSERT( pMaster && pFollow, "uncomplete chain" );
-//STRIP001  ASSERT( !pMaster->GetNextLink(), "link can not be changed" );
-//STRIP001  ASSERT( !pFollow->GetPrevLink(), "link can not be changed" );
-//STRIP001
-//STRIP001  pMaster->pNextLink = pFollow;
-//STRIP001  pFollow->pPrevLink = pMaster;
-//STRIP001
-//STRIP001  if ( pMaster->ContainsCntnt() )
-//STRIP001  {
-//STRIP001      //Damit ggf. ein Textfluss zustande kommt muss invalidiert werden.
-//STRIP001      SwFrm *pInva = pMaster->FindLastLower();
-//STRIP001         SWRECTFN( pMaster )
-//STRIP001         const long nBottom = (pMaster->*fnRect->fnGetPrtBottom)();
-//STRIP001      while ( pInva )
-//STRIP001      {
-//STRIP001             if( (pInva->Frm().*fnRect->fnBottomDist)( nBottom ) <= 0 )
-//STRIP001          {
-//STRIP001              pInva->InvalidateSize();
-//STRIP001              pInva->Prepare( PREP_CLEAR );
-//STRIP001              pInva = pInva->FindPrev();
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pInva = 0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( pFollow->ContainsCntnt() )
-//STRIP001  {
-//STRIP001      //Es gibt nur noch den Inhalt des Masters, der Inhalt vom Follow
-//STRIP001      //hat keine Frames mehr (sollte immer nur genau ein leerer TxtNode sein).
-//STRIP001      SwFrm *pFrm = pFollow->ContainsCntnt();
-//STRIP001      ASSERT( !pFrm->IsTabFrm() && !pFrm->FindNext(), "follow in chain contains content" );
-//STRIP001      pFrm->Cut();
-//STRIP001      delete pFrm;
-//STRIP001  }
-//STRIP001
-//STRIP001 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001     // invalidate accessible relation set (accessibility wrapper)
-//STRIP001     ViewShell* pSh = pMaster->GetShell();
-//STRIP001     if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-//STRIP001         pSh->Imp()->InvalidateAccessibleRelationSet( pMaster, pFollow );
-//STRIP001 #endif
-//STRIP001
-//STRIP001 }
 
-//STRIP001 void SwFlyFrm::UnchainFrames( SwFlyFrm *pMaster, SwFlyFrm *pFollow )
-//STRIP001 {
-//STRIP001  pMaster->pNextLink = 0;
-//STRIP001  pFollow->pPrevLink = 0;
-//STRIP001
-//STRIP001  if ( pFollow->ContainsCntnt() )
-//STRIP001  {
-//STRIP001      //Der Master saugt den Inhalt vom Follow auf
-//STRIP001      SwLayoutFrm *pUpper = pMaster;
-//STRIP001      if ( pUpper->Lower()->IsColumnFrm() )
-//STRIP001      {
-//STRIP001          pUpper = (SwLayoutFrm*)pUpper->Lower();
-//STRIP001          while ( pUpper->GetNext() ) // sucht die letzte Spalte
-//STRIP001              pUpper = (SwLayoutFrm*)pUpper->GetNext();
-//STRIP001          pUpper = (SwLayoutFrm*)((SwLayoutFrm*)pUpper)->Lower(); // der (Column)BodyFrm
-//STRIP001          ASSERT( pUpper && pUpper->IsColBodyFrm(), "Missing ColumnBody" );
-//STRIP001      }
-//STRIP001      SwFlyFrm *pFoll = pFollow;
-//STRIP001      while ( pFoll )
-//STRIP001      {
-//STRIP001          SwFrm *pTmp = ::SaveCntnt( pFoll );
-//STRIP001          if ( pTmp )
-//STRIP001              ::RestoreCntnt( pTmp, pUpper, pMaster->FindLastLower() );
-//STRIP001          pFoll->SetCompletePaint();
-//STRIP001          pFoll->InvalidateSize();
-//STRIP001          pFoll = pFoll->GetNextLink();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //Der Follow muss mit seinem eigenen Inhalt versorgt werden.
-//STRIP001  const SwFmtCntnt &rCntnt = pFollow->GetFmt()->GetCntnt();
-//STRIP001  ASSERT( rCntnt.GetCntntIdx(), ":-( Kein Inhalt vorbereitet." );
-//STRIP001  ULONG nIndex = rCntnt.GetCntntIdx()->GetIndex();
-//STRIP001  // Lower() bedeutet SwColumnFrm, dieser beinhaltet wieder einen SwBodyFrm
-//STRIP001  ::_InsertCnt( pFollow->Lower() ? (SwLayoutFrm*)((SwLayoutFrm*)pFollow->Lower())->Lower()
-//STRIP001                                 : (SwLayoutFrm*)pFollow,
-//STRIP001                pFollow->GetFmt()->GetDoc(), ++nIndex );
-//STRIP001
-//STRIP001 #ifdef ACCESSIBLE_LAYOUT
-//STRIP001     // invalidate accessible relation set (accessibility wrapper)
-//STRIP001     ViewShell* pSh = pMaster->GetShell();
-//STRIP001     if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-//STRIP001         pSh->Imp()->InvalidateAccessibleRelationSet( pMaster, pFollow );
-//STRIP001 #endif
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -567,51 +423,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 SwFlyFrm *SwFlyFrm::FindChainNeighbour( SwFrmFmt &rChain, SwFrm *pAnch )
-//STRIP001 {
-//STRIP001  //Wir suchen denjenigen Fly, der in dem selben Bereich steht.
-//STRIP001  //Bereiche koennen zunaechst nur Kopf-/Fusszeilen oder Flys sein.
-//STRIP001
-//STRIP001  if ( !pAnch )           //Wenn ein Anchor uebergeben Wurde zaehlt dieser: Ctor!
-//STRIP001      pAnch = GetAnchor();
-//STRIP001
-//STRIP001  SwLayoutFrm *pLay;
-//STRIP001  if ( pAnch->IsInFly() )
-//STRIP001      pLay = pAnch->FindFlyFrm();
-//STRIP001  else
-//STRIP001  {
-//STRIP001      //FindFooterOrHeader taugt hier nicht, weil evtl. noch keine Verbindung
-//STRIP001      //zum Anker besteht.
-//STRIP001      pLay = pAnch->GetUpper();
-//STRIP001      while ( pLay && !(pLay->GetType() & (FRM_HEADER|FRM_FOOTER)) )
-//STRIP001          pLay = pLay->GetUpper();
-//STRIP001  }
-//STRIP001
-//STRIP001  SwClientIter aIter( rChain );
-//STRIP001  SwFlyFrm *pFly = (SwFlyFrm*)aIter.First( TYPE(SwFlyFrm ) );
-//STRIP001  if ( pLay )
-//STRIP001  {
-//STRIP001      while ( pFly )
-//STRIP001      {
-//STRIP001          if ( pFly->GetAnchor() )
-//STRIP001          {
-//STRIP001              if ( pFly->GetAnchor()->IsInFly() )
-//STRIP001              {
-//STRIP001                  if ( pFly->GetAnchor()->FindFlyFrm() == pLay )
-//STRIP001                      break;
-//STRIP001              }
-//STRIP001              else if ( pLay == pFly->FindFooterOrHeader() )
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001          pFly = (SwFlyFrm*)aIter.Next();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if ( pFly )
-//STRIP001  {
-//STRIP001      ASSERT( !aIter.Next(), "chain with more than one inkarnation" );
-//STRIP001  }
-//STRIP001  return pFly;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -623,18 +434,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 SwFrm *SwFlyFrm::FindLastLower()
-//STRIP001 {
-//STRIP001  SwFrm *pRet = ContainsAny();
-//STRIP001  if ( pRet && pRet->IsInTab() )
-//STRIP001      pRet = pRet->FindTabFrm();
-//STRIP001  SwFrm *pNxt = pRet;
-//STRIP001  while ( pNxt && IsAnLower( pNxt ) )
-//STRIP001  {   pRet = pNxt;
-//STRIP001      pNxt = pNxt->FindNext();
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -788,13 +587,6 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_PROTECT:
 /*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            const SvxProtectItem *pP = (SvxProtectItem*)pNew;
-//STRIP001 /*?*/            GetVirtDrawObj()->SetMoveProtect( pP->IsPosProtected()  );
-//STRIP001 /*?*/            GetVirtDrawObj()->SetResizeProtect( pP->IsSizeProtected() );
-//STRIP001 /*M*/ #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 /*?*/            if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-//STRIP001 /*?*/                pSh->Imp()->InvalidateAccessibleEditableState( sal_True, this );
-//STRIP001 /*M*/ #endif
 /*M*/           break;
 /*M*/           }
 /*M*/
@@ -811,91 +603,6 @@ namespace binfilter {
 /*M*/       case RES_FRM_SIZE:
 /*M*/       case RES_FMT_CHG:
 /*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            const SwFmtFrmSize &rNew = GetFmt()->GetFrmSize();
-//STRIP001 /*?*/            if ( FrmSizeChg( rNew ) )
-//STRIP001 /*?*/                NotifyDrawObj();
-//STRIP001 /*?*/            rInvFlags |= 0x7F;
-//STRIP001 /*?*/            if ( RES_FMT_CHG == nWhich )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwRect aNew( AddSpacesToFrm() );
-//STRIP001 /*?*/                SwRect aOld( aFrm );
-//STRIP001 /*?*/                const SvxULSpaceItem &rUL = ((SwFmtChg*)pOld)->pChangedFmt->GetULSpace();
-//STRIP001 /*?*/                aOld.Top( Max( aOld.Top() - long(rUL.GetUpper()), 0L ) );
-//STRIP001 /*?*/                aOld.SSize().Height()+= rUL.GetLower();
-//STRIP001 /*?*/                const SvxLRSpaceItem &rLR = ((SwFmtChg*)pOld)->pChangedFmt->GetLRSpace();
-//STRIP001 /*?*/                aOld.Left  ( Max( aOld.Left() - long(rLR.GetLeft()), 0L ) );
-//STRIP001 /*?*/                aOld.SSize().Width() += rLR.GetRight();
-//STRIP001 /*?*/                aNew.Union( aOld );
-//STRIP001 /*?*/                NotifyBackground( FindPageFrm(), aNew, PREP_CLEAR );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //Dummer Fall. Bei der Zusweisung einer Vorlage k”nnen wir uns
-//STRIP001 /*?*/                //nicht auf das alte Spaltenattribut verlassen. Da diese
-//STRIP001 /*?*/                //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
-//STRIP001 /*?*/                //bleibt uns nur einen temporaeres Attribut zu basteln.
-//STRIP001 /*?*/                SwFmtCol aCol;
-//STRIP001 /*?*/                if ( Lower() && Lower()->IsColumnFrm() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    USHORT nCol = 0;
-//STRIP001 /*?*/                    SwFrm *pTmp = Lower();
-//STRIP001 /*?*/                    do
-//STRIP001 /*?*/                    {   ++nCol;
-//STRIP001 /*?*/                        pTmp = pTmp->GetNext();
-//STRIP001 /*?*/                    } while ( pTmp );
-//STRIP001 /*?*/                    aCol.Init( nCol, 0, 1000 );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                ChgColumns( aCol, GetFmt()->GetCol() );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            SwFmtURL aURL( GetFmt()->GetURL() );
-//STRIP001 /*?*/            if ( aURL.GetMap() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                const SwFmtFrmSize &rOld = nWhich == RES_FRM_SIZE ?
-//STRIP001 /*?*/                                *(SwFmtFrmSize*)pNew :
-//STRIP001 /*?*/                                ((SwFmtChg*)pOld)->pChangedFmt->GetFrmSize();
-//STRIP001 /*?*/                //#35091# Kann beim Laden von Vorlagen mal 0 sein
-//STRIP001 /*?*/                if ( rOld.GetWidth() && rOld.GetHeight() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    Fraction aScaleX( rOld.GetWidth(), rNew.GetWidth() );
-//STRIP001 /*?*/                    Fraction aScaleY( rOld.GetHeight(), rOld.GetHeight() );
-//STRIP001 /*?*/                    aURL.GetMap()->Scale( aScaleX, aScaleY );
-//STRIP001 /*?*/                    SwFrmFmt *pFmt = GetFmt();
-//STRIP001 /*?*/                    pFmt->LockModify();
-//STRIP001 /*?*/                    pFmt->SetAttr( aURL );
-//STRIP001 /*?*/                    pFmt->UnlockModify();
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            const SvxProtectItem &rP = GetFmt()->GetProtect();
-//STRIP001 /*?*/            GetVirtDrawObj()->SetMoveProtect( rP.IsPosProtected()   );
-//STRIP001 /*?*/            GetVirtDrawObj()->SetResizeProtect( rP.IsSizeProtected() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( pSh )
-//STRIP001 /*?*/                pSh->InvalidateWindows( Frm() );
-//STRIP001 /*?*/            const BYTE nId = GetFmt()->GetOpaque().GetValue() ?
-//STRIP001 /*?*/                                GetFmt()->GetDoc()->GetHeavenId() :
-//STRIP001 /*?*/                                GetFmt()->GetDoc()->GetHellId();
-//STRIP001 /*?*/            GetVirtDrawObj()->SetLayer( nId );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( Lower() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                //Ggf. die Kontur am Node loeschen.
-//STRIP001 /*?*/                if( Lower()->IsNoTxtFrm() &&
-//STRIP001 /*?*/                     !GetFmt()->GetSurround().IsContour() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwNoTxtNode *pNd = (SwNoTxtNode*)((SwCntntFrm*)Lower())->GetNode();
-//STRIP001 /*?*/                    if ( pNd->HasContour() )
-//STRIP001 /*?*/                        pNd->SetContour( 0 );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else if( !Lower()->IsColumnFrm() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwFrm* pFrm = Lower();
-//STRIP001 /*?*/                    while( pFrm->GetNext() )
-//STRIP001 /*?*/                        pFrm = pFrm->GetNext();
-//STRIP001 /*?*/                    if( pFrm->IsTxtFrm() && ((SwTxtFrm*)pFrm)->IsUndersized() )
-//STRIP001 /*?*/                        pFrm->Prepare( PREP_ADJUST_FRM );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
 /*M*/           break;
 /*M*/       }
 /*M*/       case RES_UL_SPACE:
@@ -936,19 +643,6 @@ namespace binfilter {
 /*M*/
 /*M*/         case RES_OPAQUE:
 /*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            if ( pSh )
-//STRIP001 /*?*/                pSh->InvalidateWindows( Frm() );
-//STRIP001 /*?*/            const BYTE nId = ((SvxOpaqueItem*)pNew)->GetValue() ?
-//STRIP001 /*?*/                                GetFmt()->GetDoc()->GetHeavenId() :
-//STRIP001 /*?*/                                GetFmt()->GetDoc()->GetHellId();
-//STRIP001 /*?*/            GetVirtDrawObj()->SetLayer( nId );
-//STRIP001 /*?*/ #ifdef ACCESSIBLE_LAYOUT
-//STRIP001 /*?*/            if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pSh->Imp()->DisposeAccessibleFrm( this );
-//STRIP001 /*?*/                pSh->Imp()->AddAccessibleFrm( this );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/ #endif
 /*M*/           }
 /*M*/           break;
 /*M*/
@@ -977,41 +671,6 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_CHAIN:
 /*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                SwFmtChain *pChain = (SwFmtChain*)pNew;
-//STRIP001 /*?*/                if ( pChain->GetNext() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwFlyFrm *pFollow = FindChainNeighbour( *pChain->GetNext() );
-//STRIP001 /*?*/                    if ( GetNextLink() && pFollow != GetNextLink() )
-//STRIP001 /*?*/                        SwFlyFrm::UnchainFrames( this, GetNextLink());
-//STRIP001 /*?*/                    if ( pFollow )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if ( pFollow->GetPrevLink() &&
-//STRIP001 /*?*/                             pFollow->GetPrevLink() != this )
-//STRIP001 /*?*/                            SwFlyFrm::UnchainFrames( pFollow->GetPrevLink(),
-//STRIP001 /*?*/                                                     pFollow );
-//STRIP001 /*?*/                        if ( !GetNextLink() )
-//STRIP001 /*?*/                            SwFlyFrm::ChainFrames( this, pFollow );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else if ( GetNextLink() )
-//STRIP001 /*?*/                    SwFlyFrm::UnchainFrames( this, GetNextLink() );
-//STRIP001 /*?*/                if ( pChain->GetPrev() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwFlyFrm *pMaster = FindChainNeighbour( *pChain->GetPrev() );
-//STRIP001 /*?*/                    if ( GetPrevLink() && pMaster != GetPrevLink() )
-//STRIP001 /*?*/                        SwFlyFrm::UnchainFrames( GetPrevLink(), this );
-//STRIP001 /*?*/                    if ( pMaster )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if ( pMaster->GetNextLink() &&
-//STRIP001 /*?*/                             pMaster->GetNextLink() != this )
-//STRIP001 /*?*/                            SwFlyFrm::UnchainFrames( pMaster,
-//STRIP001 /*?*/                                                     pMaster->GetNextLink() );
-//STRIP001 /*?*/                        if ( !GetPrevLink() )
-//STRIP001 /*?*/                            SwFlyFrm::ChainFrames( pMaster, this );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else if ( GetPrevLink() )
-//STRIP001 /*?*/                    SwFlyFrm::UnchainFrames( GetPrevLink(), this );
 /*M*/           }
 /*M*/
 /*M*/       default:
@@ -1085,91 +744,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-//STRIP001 void SwFlyFrm::ChgRelPos( const Point &rNewPos )
-//STRIP001 {
-//STRIP001  if ( GetCurRelPos() != rNewPos )
-//STRIP001  {
-//STRIP001      SwFrmFmt *pFmt = GetFmt();
-//STRIP001         SWRECTFN( GetAnchor() )
-//STRIP001         SwTwips nNewY = bVert ? rNewPos.X() : rNewPos.Y();
-//STRIP001         SwTwips nTmpY = nNewY == LONG_MAX ? 0 : nNewY;
-//STRIP001         if( bVert )
-//STRIP001             nTmpY = -nTmpY;
-//STRIP001      SfxItemSet aSet( pFmt->GetDoc()->GetAttrPool(),
-//STRIP001                       RES_VERT_ORIENT, RES_HORI_ORIENT);
-//STRIP001
-//STRIP001      SwFmtVertOrient aVert( pFmt->GetVertOrient() );
-//STRIP001      SwTxtFrm *pAutoFrm = NULL;
-//STRIP001      if( IsFlyAtCntFrm() || VERT_NONE != aVert.GetVertOrient() )
-//STRIP001      {
-//STRIP001          if( REL_CHAR == aVert.GetRelationOrient() && IsAutoPos() )
-//STRIP001          {
-//STRIP001                 if( LONG_MAX != nNewY )
-//STRIP001              {
-//STRIP001                  aVert.SetVertOrient( VERT_NONE );
-//STRIP001                  xub_StrLen nOfs =
-//STRIP001                      pFmt->GetAnchor().GetCntntAnchor()->nContent.GetIndex();
-//STRIP001                  ASSERT( GetAnchor()->IsTxtFrm(), "TxtFrm expected" );
-//STRIP001                  pAutoFrm = (SwTxtFrm*)GetAnchor();
-//STRIP001                  while( pAutoFrm->GetFollow() &&
-//STRIP001                         pAutoFrm->GetFollow()->GetOfst() <= nOfs )
-//STRIP001                  {
-//STRIP001                      if( pAutoFrm == GetAnchor() )
-//STRIP001                          nTmpY += pAutoFrm->GetRelPos().Y();
-//STRIP001                      nTmpY -= pAutoFrm->GetUpper()->Prt().Height();
-//STRIP001                      pAutoFrm = pAutoFrm->GetFollow();
-//STRIP001                  }
-//STRIP001                  nTmpY = ((SwFlyAtCntFrm*)this)->GetRelCharY(pAutoFrm)-nTmpY;
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  aVert.SetVertOrient( VERT_CHAR_BOTTOM );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              aVert.SetVertOrient( VERT_NONE );
-//STRIP001              aVert.SetRelationOrient( FRAME );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      aVert.SetPos( nTmpY );
-//STRIP001      aSet.Put( aVert );
-//STRIP001
-//STRIP001         //Fuer Flys im Cnt ist die horizontale Ausrichtung uninteressant,
-//STRIP001      //den sie ist stets 0.
-//STRIP001      if ( !IsFlyInCntFrm() )
-//STRIP001      {
-//STRIP001             SwTwips nNewX = bVert ? rNewPos.Y() : rNewPos.X();
-//STRIP001             SwTwips nTmpX = nNewX == LONG_MAX ? 0 : nNewX;
-//STRIP001          SwFmtHoriOrient aHori( pFmt->GetHoriOrient() );
-//STRIP001          if( IsFlyAtCntFrm() || HORI_NONE != aHori.GetHoriOrient() )
-//STRIP001          {
-//STRIP001              aHori.SetHoriOrient( HORI_NONE );
-//STRIP001              if( REL_CHAR == aHori.GetRelationOrient() && IsAutoPos() )
-//STRIP001              {
-//STRIP001                     if( LONG_MAX != nNewX )
-//STRIP001                  {
-//STRIP001                      if( !pAutoFrm )
-//STRIP001                      {
-//STRIP001                          xub_StrLen nOfs = pFmt->GetAnchor().GetCntntAnchor()
-//STRIP001                                        ->nContent.GetIndex();
-//STRIP001                          ASSERT( GetAnchor()->IsTxtFrm(), "TxtFrm expected");
-//STRIP001                          pAutoFrm = (SwTxtFrm*)GetAnchor();
-//STRIP001                          while( pAutoFrm->GetFollow() &&
-//STRIP001                                 pAutoFrm->GetFollow()->GetOfst() <= nOfs )
-//STRIP001                              pAutoFrm = pAutoFrm->GetFollow();
-//STRIP001                      }
-//STRIP001                      nTmpX -= ((SwFlyAtCntFrm*)this)->GetRelCharX(pAutoFrm);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  aHori.SetRelationOrient( FRAME );
-//STRIP001              aHori.SetPosToggle( FALSE );
-//STRIP001          }
-//STRIP001          aHori.SetPos( nTmpX );
-//STRIP001          aSet.Put( aHori );
-//STRIP001      }
-//STRIP001      pFmt->GetDoc()->SetAttr( aSet, *pFmt );
-//STRIP001  }
-//STRIP001 }
 /*************************************************************************
 |*
 |*  SwFlyFrm::Format()
@@ -1339,7 +913,6 @@ namespace binfilter {
 /*N*/       if( pSect->IsEndnAtEnd() && !bNoColl )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bCollect = TRUE;
-//STRIP001 /*?*/            SwLayouter::CollectEndnotes( pLay->GetFmt()->GetDoc(), pSect );
 /*N*/       }
 /*N*/       pSect->CalcFtnCntnt();
 /*N*/   }
@@ -1358,7 +931,6 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   if( bCollect )
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pLay->GetFmt()->GetDoc()->GetLayouter()->
-//STRIP001 /*?*/                            InsertEndnotes( pSect );
 /*?*/                   BOOL bLock = pSect->IsFtnLock();
 /*?*/                   pSect->SetFtnLock( TRUE );
 /*?*/                   pSect->CalcFtnCntnt();
@@ -1509,7 +1081,6 @@ namespace binfilter {
 /*N*/           if( bCollect )
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLay->GetFmt()->GetDoc()->GetLayouter()->InsertEndnotes(pSect);
-//STRIP001 /*?*/                pSect->CalcFtnCntnt();
 /*N*/           }
 /*N*/           if( pSect->HasFollow() )
 /*N*/           {
@@ -2516,106 +2087,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*************************************************************************/
 /// OD 16.04.2003 #i13147# - If called for paint and the <SwNoTxtFrm> contains
 /// a graphic, load of intrinsic graphic has to be avoided.
-//STRIP001 BOOL SwFlyFrm::GetContour( PolyPolygon&   rContour,
-//STRIP001                            const sal_Bool _bForPaint ) const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( GetFmt()->GetSurround().IsContour() && Lower() &&
-//STRIP001      Lower()->IsNoTxtFrm() )
-//STRIP001  {
-//STRIP001      SwNoTxtNode *pNd = (SwNoTxtNode*)((SwCntntFrm*)Lower())->GetNode();
-//STRIP001         // OD 16.04.2003 #i13147# - determine <GraphicObject> instead of <Graphic>
-//STRIP001         // in order to avoid load of graphic, if <SwNoTxtNode> contains a graphic
-//STRIP001         // node and method is called for paint.
-//STRIP001         const GraphicObject* pGrfObj = NULL;
-//STRIP001         sal_Bool bGrfObjCreated = sal_False;
-//STRIP001         const SwGrfNode* pGrfNd = pNd->GetGrfNode();
-//STRIP001         if ( pGrfNd && _bForPaint )
-//STRIP001         {
-//STRIP001             pGrfObj = &(pGrfNd->GetGrfObj());
-//STRIP001         }
-//STRIP001         else
-//STRIP001         {
-//STRIP001             pGrfObj = new GraphicObject( pNd->GetGraphic() );
-//STRIP001             bGrfObjCreated = sal_True;
-//STRIP001         }
-//STRIP001         ASSERT( pGrfObj, "SwFlyFrm::GetContour() - No Graphic/GraphicObject found at <SwNoTxtNode>." );
-//STRIP001         if ( pGrfObj && pGrfObj->GetType() != GRAPHIC_NONE )
-//STRIP001         {
-//STRIP001             if( !pNd->HasContour() )
-//STRIP001             {
-//STRIP001                 // OD 16.04.2003 #i13147# - no <CreateContour> for a graphic
-//STRIP001                 // during paint. Thus, return (value of <bRet> should be <FALSE>).
-//STRIP001                 if ( pGrfNd && _bForPaint )
-//STRIP001                 {
-//STRIP001                     ASSERT( false, "SwFlyFrm::GetContour() - No Contour found at <SwNoTxtNode> during paint." );
-//STRIP001                     return bRet;
-//STRIP001                 }
-//STRIP001                 pNd->CreateContour();
-//STRIP001             }
-//STRIP001             pNd->GetContour( rContour );
-//STRIP001          //Der Node haelt das Polygon passend zur Originalgroesse der Grafik
-//STRIP001          //hier muss die Skalierung einkalkuliert werden.
-//STRIP001          SwRect aClip;
-//STRIP001          SwRect aOrig;
-//STRIP001          Lower()->Calc();
-//STRIP001          ((SwNoTxtFrm*)Lower())->GetGrfArea( aClip, &aOrig, FALSE );
-//STRIP001             // OD 16.04.2003 #i13147# - copy method code <SvxContourDlg::ScaleContour(..)>
-//STRIP001             // in order to avoid that graphic has to be loaded for contour scale.
-//STRIP001             //SvxContourDlg::ScaleContour( rContour, aGrf, MAP_TWIP, aOrig.SSize() );
-//STRIP001             {
-//STRIP001                 OutputDevice*   pOutDev = Application::GetDefaultDevice();
-//STRIP001                 const MapMode   aDispMap( MAP_TWIP );
-//STRIP001                 const MapMode   aGrfMap( pGrfObj->GetPrefMapMode() );
-//STRIP001                 const Size      aGrfSize( pGrfObj->GetPrefSize() );
-//STRIP001                 double          fScaleX;
-//STRIP001                 double          fScaleY;
-//STRIP001                 Size            aOrgSize;
-//STRIP001                 Point           aNewPoint;
-//STRIP001                 BOOL            bPixelMap = aGrfMap.GetMapUnit() == MAP_PIXEL;
-//STRIP001
-//STRIP001                 if ( bPixelMap )
-//STRIP001                     aOrgSize = pOutDev->PixelToLogic( aGrfSize, aDispMap );
-//STRIP001                 else
-//STRIP001                     aOrgSize = pOutDev->LogicToLogic( aGrfSize, aGrfMap, aDispMap );
-//STRIP001
-//STRIP001                 if ( aOrgSize.Width() && aOrgSize.Height() )
-//STRIP001                 {
-//STRIP001                     fScaleX = (double) aOrig.Width() / aOrgSize.Width();
-//STRIP001                     fScaleY = (double) aOrig.Height() / aOrgSize.Height();
-//STRIP001
-//STRIP001                     for ( USHORT j = 0, nPolyCount = rContour.Count(); j < nPolyCount; j++ )
-//STRIP001                     {
-//STRIP001                         Polygon& rPoly = rContour[ j ];
-//STRIP001
-//STRIP001                         for ( USHORT i = 0, nCount = rPoly.GetSize(); i < nCount; i++ )
-//STRIP001                         {
-//STRIP001                             if ( bPixelMap )
-//STRIP001                                 aNewPoint = pOutDev->PixelToLogic( rPoly[ i ], aDispMap  );
-//STRIP001                             else
-//STRIP001                                 aNewPoint = pOutDev->LogicToLogic( rPoly[ i ], aGrfMap, aDispMap  );
-//STRIP001
-//STRIP001                             rPoly[ i ] = Point( FRound( aNewPoint.X() * fScaleX ), FRound( aNewPoint.Y() * fScaleY ) );
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             // OD 17.04.2003 #i13147# - destroy created <GraphicObject>.
-//STRIP001             if ( bGrfObjCreated )
-//STRIP001             {
-//STRIP001                 delete pGrfObj;
-//STRIP001             }
-//STRIP001             rContour.Move( aOrig.Left(), aOrig.Top() );
-//STRIP001             if( !aClip.Width() )
-//STRIP001                 aClip.Width( 1 );
-//STRIP001             if( !aClip.Height() )
-//STRIP001                 aClip.Height( 1 );
-//STRIP001             rContour.Clip( aClip.SVRect() );
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
                                 SwTwips &rPos ) const
