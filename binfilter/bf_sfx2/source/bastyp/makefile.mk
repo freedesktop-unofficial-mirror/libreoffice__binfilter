@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:14:24 $
+#   last change: $Author: rt $ $Date: 2006-10-27 19:01:48 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,12 +58,6 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 # --- Files --------------------------------------------------------
 
 SLOFILES =\
-        $(SLO)$/sfx2_plugwin.obj				\
-        $(SLO)$/sfx2_propset.obj				\
-        $(SLO)$/sfx2_itmfac.obj				\
-        $(SLO)$/sfx2_sfxhtml.obj				\
-        $(SLO)$/sfx2_frmhtml.obj				\
-        $(SLO)$/sfx2_frmhtmlw.obj			\
         $(SLO)$/sfx2_misc.obj				\
         $(SLO)$/sfx2_idpool.obj				\
         $(SLO)$/sfx2_progress.obj			\
@@ -72,20 +66,15 @@ SLOFILES =\
         $(SLO)$/sfx2_bitset.obj				\
         $(SLO)$/sfx2_minarray.obj			\
         $(SLO)$/sfx2_fltfnc.obj				\
-        $(SLO)$/sfx2_mieclip.obj				\
-        $(SLO)$/sfx2_fltdlg.obj				\
         $(SLO)$/sfx2_fltlst.obj				\
         $(SLO)$/sfx2_helper.obj
 
 SRS1NAME=$(TARGET)
 SRC1FILES =\
-        sfx2_fltdlg.src	\
-        sfx2_fltfnc.src	\
         sfx2_bastyp.src	\
         sfx2_newhdl.src
 
 EXCEPTIONSFILES =\
-    $(SLO)$/sfx2_propset.obj		\
     $(SLO)$/sfx2_helper.obj
 
 # --- Targets -------------------------------------------------------
