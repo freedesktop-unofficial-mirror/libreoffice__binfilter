@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdopage.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:00:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:42:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,20 +34,11 @@
  ************************************************************************/
 
 #include "svdopage.hxx"
-// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
-// auto strip #include "svdtrans.hxx"
-// auto strip #include "svdetc.hxx"
 #include "svdio.hxx"
-// auto strip #include "svdxout.hxx"
 #include "svdmodel.hxx"
 #include "svdpage.hxx"
-// auto strip #include "svdpagv.hxx"
-// auto strip #include "svdoutl.hxx"
 
-// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-// auto strip #include <svtools/colorcfg.hxx>
-// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
@@ -210,265 +201,13 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SdrPageObj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  rInfo.bRotateFreeAllowed=FALSE;
-//STRIP001  rInfo.bRotate90Allowed  =FALSE;
-//STRIP001  rInfo.bMirrorFreeAllowed=FALSE;
-//STRIP001  rInfo.bMirror45Allowed  =FALSE;
-//STRIP001  rInfo.bMirror90Allowed  =FALSE;
-//STRIP001  rInfo.bTransparenceAllowed = FALSE;
-//STRIP001  rInfo.bGradientAllowed = FALSE;
-//STRIP001  rInfo.bShearAllowed     =FALSE;
-//STRIP001  rInfo.bEdgeRadiusAllowed=FALSE;
-//STRIP001  rInfo.bNoOrthoDesired   =FALSE;
-//STRIP001  rInfo.bCanConvToPath    =FALSE;
-//STRIP001  rInfo.bCanConvToPoly    =FALSE;
-//STRIP001  rInfo.bCanConvToPathLineToArea=FALSE;
-//STRIP001  rInfo.bCanConvToPolyLineToArea=FALSE;
-//STRIP001 }
-
-//STRIP001 FASTBOOL SdrPageObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
-//STRIP001 {
-//STRIP001  // Hidden objects on masterpages, draw nothing
-//STRIP001  if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  Color aBackgroundColor( 0xffffff );
-//STRIP001
-//STRIP001  SdrPageView* pPV = NULL;
-//STRIP001  if( pModel && ( pPV = pModel->GetPaintingPageView() ) )
-//STRIP001      pPV->SetPaintingPageObj( (SdrPageObj*) this );
-//STRIP001
-//STRIP001  FASTBOOL bOk=TRUE;
-//STRIP001  SdrPage* pMainPage= pModel==NULL ? NULL : pModel->GetPage(nPageNum);
-//STRIP001  FASTBOOL bWindow    =rXOut.GetOutDev()->GetOutDevType()==OUTDEV_WINDOW;
-//STRIP001  FASTBOOL bPrinter   =rXOut.GetOutDev()->GetOutDevType()==OUTDEV_PRINTER;
-//STRIP001  FASTBOOL bPageValid =pMainPage!=NULL;
-//STRIP001  FASTBOOL bPaintArea =bPainting && bPageValid; // Grau fuellen, wenn Rekursion
-//STRIP001  FASTBOOL bPaintFrame=bPaintArea || bWindow || bPageValid; // Nur auf dem Drucker bei ungueltiter PageNum kein Rahmen Zeichnen
-//STRIP001  FASTBOOL bPaintObjs =!bPainting && bPageValid;
-//STRIP001
-//STRIP001  if(bPaintArea)
-//STRIP001  {
-//STRIP001      OutputDevice& rOut=*rXOut.GetOutDev();
-//STRIP001         svtools::ColorConfig aColorConfig;
-//STRIP001         svtools::ColorConfigValue aDocColor( aColorConfig.GetColorValue( svtools::DOCCOLOR ) );
-//STRIP001         svtools::ColorConfigValue aBorderColor( aColorConfig.GetColorValue( svtools::DOCBOUNDARIES ) );
-//STRIP001
-//STRIP001      rOut.SetFillColor( aDocColor.nColor );
-//STRIP001      rOut.SetLineColor( aBorderColor.bIsVisible ? aBorderColor.nColor: aDocColor.nColor );
-//STRIP001      rOut.DrawRect(aOutRect);
-//STRIP001  }
-//STRIP001
-//STRIP001  if(bPaintObjs)
-//STRIP001  {
-//STRIP001      // Casten auf nonconst. Flag setzen um Rekursion zu erkennen, wenn
-//STRIP001      // naemlich das PageObj auf der Seite sitzt, die es anzeigen soll
-//STRIP001      // oder auf einer MasterPage dieser Seite, ...
-//STRIP001      ((SdrPageObj*)this)->bPainting=TRUE;
-//STRIP001      if (pModel!=NULL) {
-//STRIP001          SdrPage* pMainPage=pModel->GetPage(nPageNum);
-//STRIP001
-//STRIP001          if( pPV && pMainPage )
-//STRIP001          {
-//STRIP001              SdrOutliner& rOutl=pModel->GetDrawOutliner(NULL);
-//STRIP001              aBackgroundColor = rOutl.GetBackgroundColor();
-//STRIP001
-//STRIP001              rOutl.SetBackgroundColor( pMainPage->GetBackgroundColor(pPV) );
-//STRIP001          }
-//STRIP001
-//STRIP001          if (pMainPage!=NULL) {
-//STRIP001              // Checken, ob das setzen eines Clippings erforderlich ist
-//STRIP001              Rectangle aPageRect(0,0,pMainPage->GetWdt(),pMainPage->GetHgt());
-//STRIP001              FASTBOOL bClipIt=!aPageRect.IsInside(pMainPage->GetAllObjBoundRect());
-//STRIP001              if (!bClipIt) { // MasterPages auch checken
-//STRIP001                  USHORT nMaPgAnz=pMainPage->GetMasterPageCount();
-//STRIP001                  for (USHORT i=0; i<nMaPgAnz && !bClipIt; i++) {
-//STRIP001                      SdrPage* pPg=pMainPage->GetMasterPage(i);
-//STRIP001                      bClipIt=!aPageRect.IsInside(pPg->GetAllObjBoundRect());
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              FASTBOOL bClip0=FALSE;
-//STRIP001              Region aClip0;
-//STRIP001              if (bClipIt) {
-//STRIP001                  // Hier koennte ich mal noch einbauen, dass eine eventuelle
-//STRIP001                  // Metafileaufzeichnung pausiert wird, damit keine
-//STRIP001                  // SetClipRegion-Actions erzeugt werden.
-//STRIP001                  bClip0=rXOut.GetOutDev()->IsClipRegion();
-//STRIP001                  aClip0=rXOut.GetOutDev()->GetClipRegion();
-//STRIP001              }
-//STRIP001 #ifndef NORELMAPMODE
-//STRIP001              Point aZero;
-//STRIP001              Fraction aFact1(1,1);
-//STRIP001              Point aOfs(aOutRect.TopLeft());
-//STRIP001              rXOut.GetOutDev()->SetMapMode(MapMode(MAP_RELATIVE,aOfs,aFact1,aFact1));
-//STRIP001              long nXMul=aOutRect.GetWidth();     // SJ: #99149# fixed problem with
-//STRIP001              long nYMul=aOutRect.GetHeight();    // one pixel wide preview objects
-//STRIP001              long nXDiv=pMainPage->GetWdt();
-//STRIP001              long nYDiv=pMainPage->GetHgt();
-//STRIP001              Fraction aXScl(nXMul,nXDiv);
-//STRIP001              Fraction aYScl(nYMul,nYDiv);
-//STRIP001              // nun auf 10 Binaerstellen kuerzen (ca. 3 Dezimalstellen). Joe, 01-12-1995, BugId 21483
-//STRIP001              Kuerzen(aXScl,10); // auf 7 Binaerstellen Kuerzen = ca. 2 Dezimalstellen
-//STRIP001              Kuerzen(aYScl,10); // auf 7 Binaerstellen Kuerzen = ca. 2 Dezimalstellen
-//STRIP001              nXMul=aXScl.GetNumerator();
-//STRIP001              nXDiv=aXScl.GetDenominator();
-//STRIP001              nYMul=aYScl.GetNumerator();
-//STRIP001              nYDiv=aYScl.GetDenominator();
-//STRIP001              rXOut.GetOutDev()->SetMapMode(MapMode(MAP_RELATIVE,aZero,aXScl,aYScl));
-//STRIP001 #else
-//STRIP001              MapMode aMapMerk(rXOut.GetOutDev()->GetMapMode());
-//STRIP001              MapMode aMapNeu(aMapMerk);
-//STRIP001              Point aOrg(aMapNeu.GetOrigin());
-//STRIP001              Fraction aSclx(aMapNeu.GetScaleX());
-//STRIP001              Fraction aScly(aMapNeu.GetScaleY());
-//STRIP001              Point aOfs(aOutRect.TopLeft());
-//STRIP001              aOrg+=aOfs;
-//STRIP001              ResizePoint(aOrg,Point(),Fraction(pMainPage->GetWdt(),aOutRect.GetWidth()),
-//STRIP001                                       Fraction(pMainPage->GetHgt(),aOutRect.GetHeight()));
-//STRIP001              aSclx*=Fraction(aOutRect.GetWidth(),pMainPage->GetWdt());
-//STRIP001              aScly*=Fraction(aOutRect.GetHeight(),pMainPage->GetHgt());
-//STRIP001              // nun auf 10 Binaerstellen kuerzen (ca. 3 Dezimalstellen). Joe, 01-12-1995, BugId 21483
-//STRIP001              Kuerzen(aSclx,10); // auf 7 Binaerstellen Kuerzen = ca. 2 Dezimalstellen
-//STRIP001              Kuerzen(aScly,10); // auf 7 Binaerstellen Kuerzen = ca. 2 Dezimalstellen
-//STRIP001              aMapNeu.SetOrigin(aOrg);
-//STRIP001              aMapNeu.SetScaleX(aSclx);
-//STRIP001              aMapNeu.SetScaleY(aScly);
-//STRIP001              rXOut.GetOutDev()->SetMapMode(aMapNeu);
-//STRIP001 #endif
-//STRIP001              if (bClipIt) {
-//STRIP001                  // Hier koennte ich mal noch einbauen, dass eine eventuelle
-//STRIP001                  // Metafileaufzeichnung pausiert wird, damit keine
-//STRIP001                  // SetClipRegion-Actions erzeugt werden.
-//STRIP001                  rXOut.GetOutDev()->IntersectClipRegion(aPageRect);
-//STRIP001              }
-//STRIP001              SdrPaintInfoRec aInfoRec(rInfoRec);
-//STRIP001              aInfoRec.aCheckRect=Rectangle(); // alles Malen!
-//STRIP001              USHORT nMaPgAnz=pMainPage->GetMasterPageCount();
-//STRIP001              USHORT i=0;
-//STRIP001              do {
-//STRIP001                  aInfoRec.nPaintMode=rInfoRec.nPaintMode & ~SDRPAINTMODE_MASTERPAGE;
-//STRIP001                  aInfoRec.nPaintMode&=~SDRPAINTMODE_GLUEPOINTS;
-//STRIP001                  aInfoRec.nPaintMode|=SDRPAINTMODE_ANILIKEPRN;
-//STRIP001                  SdrPage* pPg;
-//STRIP001                  const SetOfByte* pMLayers=NULL;
-//STRIP001                  if (i<nMaPgAnz) {
-//STRIP001                      pPg=pMainPage->GetMasterPage(i);
-//STRIP001                      pMLayers=&pMainPage->GetMasterPageVisibleLayers(i);
-//STRIP001                      aInfoRec.nPaintMode|=SDRPAINTMODE_MASTERPAGE;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                      pPg=pMainPage;
-//STRIP001
-//STRIP001                  i++;
-//STRIP001                  if (pPg!=NULL)
-//STRIP001                  {   // ansonsten evtl. ungueltige Masterpage
-//STRIP001                      ULONG nObjAnz=pPg->GetObjCount();
-//STRIP001                      for ( ULONG i=0; i<nObjAnz; i++ )
-//STRIP001                      {
-//STRIP001                          if( i == 0 && pPg->IsMasterPage() && pMainPage->GetBackgroundObj() )
-//STRIP001                          {
-//STRIP001                              SdrObject* pBackgroundObj = pMainPage->GetBackgroundObj();
-//STRIP001                              if( pBackgroundObj->GetLogicRect() != aPageRect )
-//STRIP001                              {
-//STRIP001                                  pBackgroundObj->SetLogicRect( aPageRect );
-//STRIP001                                  pBackgroundObj->RecalcBoundRect();
-//STRIP001                              }
-//STRIP001                              pBackgroundObj->Paint( rXOut, aInfoRec );
-//STRIP001                          }
-//STRIP001                          else
-//STRIP001                          {
-//STRIP001                              SdrObject* pObj=pPg->GetObj(i);
-//STRIP001                              const Rectangle& rBoundRect=pObj->GetBoundRect();
-//STRIP001                              if (rInfoRec.aPaintLayer.IsSet(pObj->GetLayer()) &&        // Layer des Obj nicht sichtbar
-//STRIP001                                  (pMLayers==NULL || pMLayers->IsSet(pObj->GetLayer()))) // MasterPageLayer visible
-//STRIP001                              {
-//STRIP001                                   pObj->Paint(rXOut,aInfoRec);
-//STRIP001                              }
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              } while (i<=nMaPgAnz);
-//STRIP001 #ifndef NORELMAPMODE
-//STRIP001              rXOut.GetOutDev()->SetMapMode(MapMode(MAP_RELATIVE,aZero,Fraction(nXDiv,nXMul),Fraction(nYDiv,nYMul)));
-//STRIP001              aOfs.X()=-aOfs.X();
-//STRIP001              aOfs.Y()=-aOfs.Y();
-//STRIP001              rXOut.GetOutDev()->SetMapMode(MapMode(MAP_RELATIVE,aOfs,aFact1,aFact1));
-//STRIP001 #else
-//STRIP001              rXOut.GetOutDev()->SetMapMode(aMapMerk);
-//STRIP001 #endif
-//STRIP001              if (bClipIt) {
-//STRIP001                  if (bClip0) rXOut.GetOutDev()->SetClipRegion(aClip0);
-//STRIP001                  else rXOut.GetOutDev()->SetClipRegion();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      // IsInPainting-Flag zuruecksetzen
-//STRIP001      ((SdrPageObj*)this)->bPainting=FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(bPaintFrame)
-//STRIP001  {
-//STRIP001         svtools::ColorConfig aColorConfig;
-//STRIP001         svtools::ColorConfigValue aColor( aColorConfig.GetColorValue( svtools::OBJECTBOUNDARIES ) );
-//STRIP001
-//STRIP001      if( aColor.bIsVisible )
-//STRIP001      {
-//STRIP001          OutputDevice& rOut=*rXOut.GetOutDev();
-//STRIP001          rOut.SetFillColor();
-//STRIP001          rOut.SetLineColor( aColor.nColor );
-//STRIP001          rOut.DrawRect(aOutRect);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-//STRIP001      bOk=PaintGluePoints(rXOut,rInfoRec);
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pPV )
-//STRIP001  {
-//STRIP001      pPV->SetPaintingPageObj( NULL );
-//STRIP001
-//STRIP001      SdrPage* pPage = pPV->GetPage();
-//STRIP001      if( pPage )
-//STRIP001      {
-//STRIP001          SdrOutliner& rOutl=pModel->GetDrawOutliner(NULL);
-//STRIP001          rOutl.SetBackgroundColor( aBackgroundColor );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  return bOk;
-//STRIP001 }
 
 
-//STRIP001 void SdrPageObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  SdrObject::operator=(rObj);
-//STRIP001  nPageNum=((const SdrPageObj&)rObj).nPageNum;
-//STRIP001 }
 
 
-//STRIP001 void SdrPageObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulPAGE);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void SdrPageObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralPAGE);
-//STRIP001 }
+
 
 
 /*N*/ const Rectangle& SdrPageObj::GetBoundRect() const
@@ -501,14 +240,7 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SdrPageObj::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
-//STRIP001 {
-//STRIP001  SdrObject::TakeXorPoly(rPoly,bDetail);
-//STRIP001 }
 
-//STRIP001 void SdrPageObj::TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const
-//STRIP001 {
-//STRIP001 }
 
 
 /*N*/ void SdrPageObj::WriteData(SvStream& rOut) const
