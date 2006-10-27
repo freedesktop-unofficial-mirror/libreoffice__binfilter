@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txatbase.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:41:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:19:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,10 +69,6 @@ namespace binfilter {
 /*N*/   pAttr = 0;
 /*N*/ }
 
-//STRIP001 int SwTxtAttr::operator==( const SwTxtAttr& rAttr ) const
-//STRIP001 {
-//STRIP001  return GetAttr() == rAttr.GetAttr();
-//STRIP001 }
 
 /*N*/ SwTxtAttrEnd::SwTxtAttrEnd( const SfxPoolItem& rAttr, xub_StrLen nS,
 /*N*/                           xub_StrLen nE )
