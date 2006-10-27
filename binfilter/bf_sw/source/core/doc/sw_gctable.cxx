@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_gctable.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:41:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:26:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
-// auto strip #include <bf_svx/boxitem.hxx>
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -56,318 +53,24 @@
 namespace binfilter {
 
 
-//STRIP001 inline const SvxBorderLine* GetLineTB( const SvxBoxItem* pBox, BOOL bTop )
-//STRIP001 {
-//STRIP001  return bTop ? pBox->GetTop() : pBox->GetBottom();
-//STRIP001 }
-
-
-//STRIP001 BOOL _SwGCBorder_BoxBrd::CheckLeftBorderOfFormat( const SwFrmFmt& rFmt )
-//STRIP001 {
-//STRIP001  const SvxBorderLine* pBrd;
-//STRIP001  const SfxPoolItem* pItem;
-//STRIP001  if( SFX_ITEM_SET == rFmt.GetItemState( RES_BOX, TRUE, &pItem ) &&
-//STRIP001      0 != ( pBrd = ((SvxBoxItem*)pItem)->GetLeft() ) )
-//STRIP001  {
-//STRIP001      if( *pBrdLn == *pBrd )
-//STRIP001          bAnyBorderFnd = TRUE;
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
 
-//STRIP001 BOOL lcl_GCBorder_ChkBoxBrd_L( const SwTableLine*& rpLine, void* pPara )
-//STRIP001 {
-//STRIP001  const SwTableBox* pBox = rpLine->GetTabBoxes()[ 0 ];
-//STRIP001  return lcl_GCBorder_ChkBoxBrd_B( pBox, pPara );
-//STRIP001 }
 
-//STRIP001 BOOL lcl_GCBorder_ChkBoxBrd_B( const SwTableBox*& rpBox, void* pPara )
-//STRIP001 {
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001  if( rpBox->GetTabLines().Count() )
-//STRIP001  {
-//STRIP001      for( USHORT n = 0, nLines = rpBox->GetTabLines().Count();
-//STRIP001              n < nLines && bRet; ++n )
-//STRIP001      {
-//STRIP001          const SwTableLine* pLine = rpBox->GetTabLines()[ n ];
-//STRIP001          bRet = lcl_GCBorder_ChkBoxBrd_L( pLine, pPara );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      _SwGCBorder_BoxBrd* pBPara = (_SwGCBorder_BoxBrd*)pPara;
-//STRIP001      bRet = pBPara->CheckLeftBorderOfFormat( *rpBox->GetFrmFmt() );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
-//STRIP001 BOOL lcl_GCBorder_GetLastBox_L( const SwTableLine*& rpLine, void* pPara )
-//STRIP001 {
-//STRIP001  const SwTableBoxes& rBoxes = rpLine->GetTabBoxes();
-//STRIP001  const SwTableBox* pBox = rBoxes[ rBoxes.Count()-1 ];
-//STRIP001  ::lcl_GCBorder_GetLastBox_B( pBox, pPara );
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL lcl_GCBorder_GetLastBox_B( const SwTableBox*& rpBox, void* pPara )
-//STRIP001 {
-//STRIP001  SwTableLines& rLines = (SwTableLines&)rpBox->GetTabLines();
-//STRIP001  if( rLines.Count() )
-//STRIP001      rLines.ForEach( &lcl_GCBorder_GetLastBox_L, pPara );
-//STRIP001  else
-//STRIP001      ((SwTableBoxes*)pPara)->Insert( rpBox, ((SwTableBoxes*)pPara)->Count() );
-//STRIP001  return TRUE;
-//STRIP001 }
+
+
 
 // suche das "Ende" der vorgegebene BorderLine. Returnt wird die "Layout"Pos!
-//STRIP001 USHORT lcl_FindEndPosOfBorder( const SwCollectTblLineBoxes& rCollTLB,
-//STRIP001                      const SvxBorderLine& rBrdLn, USHORT& rStt, BOOL bTop )
-//STRIP001 {
-//STRIP001  USHORT nPos, nLastPos = 0;
-//STRIP001  for( USHORT nEnd = rCollTLB.Count(); rStt < nEnd; ++rStt )
-//STRIP001  {
-//STRIP001      const SfxPoolItem* pItem;
-//STRIP001      const SvxBorderLine* pBrd;
-//STRIP001      const SwTableBox& rBox = rCollTLB.GetBox( rStt, &nPos );
-//STRIP001
-//STRIP001      if( SFX_ITEM_SET != rBox.GetFrmFmt()->GetItemState(RES_BOX,TRUE, &pItem )
-//STRIP001          || 0 == ( pBrd = GetLineTB( (SvxBoxItem*)pItem, bTop ))
-//STRIP001          || !( *pBrd == rBrdLn ))
-//STRIP001          break;
-//STRIP001      nLastPos = nPos;
-//STRIP001  }
-//STRIP001  return nLastPos;
-//STRIP001 }
-
-//STRIP001 inline const SvxBorderLine* lcl_GCBorder_GetBorder( const SwTableBox& rBox,
-//STRIP001                                              BOOL bTop,
-//STRIP001                                              const SfxPoolItem** ppItem )
-//STRIP001 {
-//STRIP001  return SFX_ITEM_SET == rBox.GetFrmFmt()->GetItemState( RES_BOX, TRUE, ppItem )
-//STRIP001          ? GetLineTB( (SvxBoxItem*)*ppItem, bTop )
-//STRIP001          : 0;
-//STRIP001 }
-
-//STRIP001 void lcl_GCBorder_DelBorder( const SwCollectTblLineBoxes& rCollTLB,
-//STRIP001                              USHORT& rStt, BOOL bTop,
-//STRIP001                              const SvxBorderLine& rLine,
-//STRIP001                              const SfxPoolItem* pItem,
-//STRIP001                              USHORT nEndPos,
-//STRIP001                              SwShareBoxFmts* pShareFmts )
-//STRIP001 {
-//STRIP001  SwTableBox* pBox = (SwTableBox*)&rCollTLB.GetBox( rStt );
-//STRIP001  USHORT nNextPos;
-//STRIP001  const SvxBorderLine* pLn = &rLine;
-//STRIP001
-//STRIP001  do {
-//STRIP001      if( pLn && *pLn == rLine )
-//STRIP001      {
-//STRIP001          SvxBoxItem aBox( *(SvxBoxItem*)pItem );
-//STRIP001          if( bTop )
-//STRIP001              aBox.SetLine( 0, BOX_LINE_TOP );
-//STRIP001          else
-//STRIP001              aBox.SetLine( 0, BOX_LINE_BOTTOM );
-//STRIP001
-//STRIP001          if( pShareFmts )
-//STRIP001              pShareFmts->SetAttr( *pBox, aBox );
-//STRIP001          else
-//STRIP001              pBox->ClaimFrmFmt()->SetAttr( aBox );
-//STRIP001      }
-//STRIP001
-//STRIP001      if( ++rStt >= rCollTLB.Count() )
-//STRIP001          break;
-//STRIP001
-//STRIP001      pBox = (SwTableBox*)&rCollTLB.GetBox( rStt, &nNextPos );
-//STRIP001      if( nNextPos > nEndPos )
-//STRIP001          break;
-//STRIP001
-//STRIP001      pLn = lcl_GCBorder_GetBorder( *pBox, bTop, &pItem );
-//STRIP001
-//STRIP001  } while( TRUE );
-//STRIP001 }
 
 
-//STRIP001 BOOL lcl_GC_Line_Border( const SwTableLine*& rpLine, void* pPara )
-//STRIP001 {
-//STRIP001  _SwGCLineBorder* pGCPara = (_SwGCLineBorder*)pPara;
-//STRIP001
-//STRIP001  // zuerst die rechte Kante mit der linken Kante der naechsten Box
-//STRIP001  // innerhalb dieser Line
-//STRIP001  {
-//STRIP001      _SwGCBorder_BoxBrd aBPara;
-//STRIP001      const SvxBorderLine* pBrd;
-//STRIP001      const SfxPoolItem* pItem;
-//STRIP001      const SwTableBoxes& rBoxes = rpLine->GetTabBoxes();
-//STRIP001      for( USHORT n = 0, nBoxes = rBoxes.Count() - 1; n < nBoxes; ++n )
-//STRIP001      {
-//STRIP001          SwTableBoxes aBoxes;
-//STRIP001          {
-//STRIP001              const SwTableBox* pBox = rBoxes[ n ];
-//STRIP001              if( pBox->GetSttNd() )
-//STRIP001                  aBoxes.Insert( pBox, 0 );
-//STRIP001              else
-//STRIP001                  lcl_GCBorder_GetLastBox_B( pBox, &aBoxes );
-//STRIP001          }
-//STRIP001
-//STRIP001          SwTableBox* pBox;
-//STRIP001          for( USHORT i = aBoxes.Count(); i; )
-//STRIP001              if( SFX_ITEM_SET == (pBox = aBoxes[ --i ])->GetFrmFmt()->
-//STRIP001                  GetItemState( RES_BOX, TRUE, &pItem ) &&
-//STRIP001                  0 != ( pBrd = ((SvxBoxItem*)pItem)->GetRight() ) )
-//STRIP001              {
-//STRIP001                  aBPara.SetBorder( *pBrd );
-//STRIP001                  const SwTableBox* pNextBox = rBoxes[n+1];
-//STRIP001                  if( lcl_GCBorder_ChkBoxBrd_B( pNextBox, &aBPara ) &&
-//STRIP001                      aBPara.IsAnyBorderFound() )
-//STRIP001                  {
-//STRIP001                      SvxBoxItem aBox( *(SvxBoxItem*)pItem );
-//STRIP001                      aBox.SetLine( 0, BOX_LINE_RIGHT );
-//STRIP001                      if( pGCPara->pShareFmts )
-//STRIP001                          pGCPara->pShareFmts->SetAttr( *pBox, aBox );
-//STRIP001                      else
-//STRIP001                          pBox->ClaimFrmFmt()->SetAttr( aBox );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001          aBoxes.Remove( 0, aBoxes.Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // und jetzt die eigene untere Kante mit der nachfolgenden oberen Kante
-//STRIP001  if( !pGCPara->IsLastLine() )
-//STRIP001  {
-//STRIP001      SwCollectTblLineBoxes aBottom( FALSE );
-//STRIP001      SwCollectTblLineBoxes aTop( TRUE );
-//STRIP001
-//STRIP001      ::lcl_Line_CollectBox( rpLine, &aBottom );
-//STRIP001
-//STRIP001      const SwTableLine* pNextLine = (*pGCPara->pLines)[ pGCPara->nLinePos+1 ];
-//STRIP001      ::lcl_Line_CollectBox( pNextLine, &aTop );
-//STRIP001
-//STRIP001      // dann entferne mal alle "doppelten" gleichen Lines
-//STRIP001      USHORT nBtmPos, nTopPos,
-//STRIP001              nSttBtm = 0, nSttTop = 0,
-//STRIP001              nEndBtm = aBottom.Count(), nEndTop = aTop.Count();
-//STRIP001
-//STRIP001      const SwTableBox *pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos ),
-//STRIP001                       *pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
-//STRIP001      const SfxPoolItem *pBtmItem, *pTopItem;
-//STRIP001      const SvxBorderLine *pBtmLine, *pTopLine;
-//STRIP001      BOOL bGetTopItem = TRUE, bGetBtmItem = TRUE;
-//STRIP001
-//STRIP001      do {
-//STRIP001          if( bGetBtmItem )
-//STRIP001              pBtmLine = lcl_GCBorder_GetBorder( *pBtmBox, FALSE, &pBtmItem );
-//STRIP001          if( bGetTopItem )
-//STRIP001              pTopLine = lcl_GCBorder_GetBorder( *pTopBox, TRUE, &pTopItem );
-//STRIP001
-//STRIP001          if( pTopLine && pBtmLine && *pTopLine == *pBtmLine )
-//STRIP001          {
-//STRIP001              // dann kann einer entfernt werden, aber welche?
-//STRIP001              USHORT nSavSttBtm = nSttBtm, nSavSttTop = nSttTop;
-//STRIP001              USHORT nBtmEndPos = ::lcl_FindEndPosOfBorder( aBottom,
-//STRIP001                                              *pTopLine, nSttBtm, FALSE );
-//STRIP001              if( !nBtmEndPos ) nBtmEndPos = nBtmPos;
-//STRIP001              USHORT nTopEndPos = ::lcl_FindEndPosOfBorder( aTop,
-//STRIP001                                              *pTopLine, nSttTop, TRUE );
-//STRIP001              if( !nTopEndPos ) nTopEndPos = nTopPos;
-//STRIP001
-//STRIP001
-//STRIP001              if( nTopEndPos <= nBtmEndPos )
-//STRIP001              {
-//STRIP001                  // dann die TopBorder bis zur BottomEndPos loeschen
-//STRIP001                  nSttTop = nSavSttTop;
-//STRIP001                  if( nTopPos <= nBtmEndPos )
-//STRIP001                      lcl_GCBorder_DelBorder( aTop, --nSttTop, TRUE,
-//STRIP001                                          *pBtmLine, pTopItem, nBtmEndPos,
-//STRIP001                                          pGCPara->pShareFmts );
-//STRIP001                  else
-//STRIP001                      nSttBtm = nSavSttBtm;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  // sonst die BottomBorder bis zur TopEndPos loeschen
-//STRIP001                  nSttBtm = nSavSttBtm;
-//STRIP001                  if( nBtmPos <= nTopEndPos )
-//STRIP001                      lcl_GCBorder_DelBorder( aBottom, --nSttBtm, FALSE,
-//STRIP001                                          *pTopLine, pBtmItem, nTopEndPos,
-//STRIP001                                          pGCPara->pShareFmts );
-//STRIP001                  else
-//STRIP001                      nSttTop = nSavSttTop;
-//STRIP001              }
-//STRIP001              nTopPos = nBtmPos;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( nTopPos == nBtmPos )
-//STRIP001          {
-//STRIP001              if( nSttBtm >= nEndBtm || nSttTop >= nEndTop )
-//STRIP001                  break;
-//STRIP001
-//STRIP001              pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos );
-//STRIP001              pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
-//STRIP001              bGetTopItem = bGetBtmItem = TRUE;
-//STRIP001          }
-//STRIP001          else if( nTopPos < nBtmPos )
-//STRIP001          {
-//STRIP001              if( nSttTop >= nEndTop )
-//STRIP001                  break;
-//STRIP001              pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
-//STRIP001              bGetTopItem = TRUE;
-//STRIP001              bGetBtmItem = FALSE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              if( nSttBtm >= nEndBtm )
-//STRIP001                  break;
-//STRIP001              pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos );
-//STRIP001              bGetTopItem = FALSE;
-//STRIP001              bGetBtmItem = TRUE;
-//STRIP001          }
-//STRIP001
-//STRIP001      } while( TRUE );
-//STRIP001  }
-//STRIP001
-//STRIP001  ((SwTableLine*)rpLine)->GetTabBoxes().ForEach( &lcl_GC_Box_Border, pPara );
-//STRIP001
-//STRIP001  ++pGCPara->nLinePos;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
-//STRIP001 BOOL lcl_GC_Box_Border( const SwTableBox*& rpBox, void* pPara )
-//STRIP001 {
-//STRIP001  if( rpBox->GetTabLines().Count() )
-//STRIP001  {
-//STRIP001      _SwGCLineBorder aPara( *rpBox );
-//STRIP001      aPara.pShareFmts = ((_SwGCLineBorder*)pPara)->pShareFmts;
-//STRIP001      ((SwTableBox*)rpBox)->GetTabLines().ForEach( &lcl_GC_Line_Border, &aPara );
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
-//STRIP001 void SwTable::GCBorderLines()
-//STRIP001 {
-//STRIP001  // alle doppleten Borderlines benachbarter Tabellen-Content-Boxen
-//STRIP001  // entfernen. Und zwar wird versucht, die Struktur unserer default
-//STRIP001  // Border wiederherzustellen, die wie folgt aussieht:
-//STRIP001  //
-//STRIP001  //   +-- +--+
-//STRIP001  //   |   |  |
-//STRIP001  //   +-- +--+
-//STRIP001  //
-//STRIP001  //   |   |  |
-//STRIP001  //   +-- +--+
-//STRIP001
-//STRIP001  SwShareBoxFmts aShareFmts;
-//STRIP001  _SwGCLineBorder aPara( *this );
-//STRIP001  aPara.pShareFmts = &aShareFmts;
-//STRIP001  GetTabLines().ForEach( &lcl_GC_Line_Border, &aPara );
-//STRIP001 }
+
+
 
 
 /*  */
@@ -454,11 +157,6 @@ struct _GCLinePara
 /*N*/           if( SFX_ITEM_SET == pLn->GetFrmFmt()->GetItemState(
 /*N*/                                   RES_BACKGROUND, TRUE, &pItem ))
 /*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                SwTableLines& rBoxLns = pBox->GetTabLines();
-//STRIP001 /*?*/                for( USHORT nLns = 0; nLns < nLen; ++nLns )
-//STRIP001 /*?*/                    if( SFX_ITEM_SET != rBoxLns[ nLns ]->GetFrmFmt()->
-//STRIP001 /*?*/                            GetItemState( RES_BACKGROUND, TRUE ))
-//STRIP001 /*?*/                        pGCPara->pShareFmts->SetAttr( *rBoxLns[ nLns ], *pItem );
 /*N*/           }
 /*N*/
 /*N*/           pBox->GetTabLines().Remove( 0, nLen );  // Lines aus Array loeschen
