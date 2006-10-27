@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlwrap.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:34:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:33:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,21 +34,14 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include <rsc/rscsfx.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/objsh.hxx>
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #include <vos/xception.hxx>
-// auto strip #include <comphelper/processfactory.hxx>
 #include <unotools/streamwrap.hxx>
 #include <bf_svx/xmlgrhlp.hxx>
 #include <svtools/sfxecode.hxx>
@@ -62,15 +55,9 @@
 #include <bf_sfx2/sfxsids.hrc>
 #endif
 
-// auto strip #include <com/sun/star/xml/sax/XErrorHandler.hpp>
-// auto strip #include <com/sun/star/xml/sax/XEntityResolver.hpp>
-// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
-// auto strip #include <com/sun/star/xml/sax/XDTDHandler.hpp>
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #include <com/sun/star/io/XActiveDataControl.hpp>
-// auto strip #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-// auto strip #include <com/sun/star/frame/XModel.hpp>
 #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
 #endif
@@ -80,15 +67,9 @@
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_PROPERTSETINFO_HXX_
-// auto strip #include <comphelper/propertysetinfo.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_DISPOSEDEXCEPTION_HPP_
 #include <com/sun/star/lang/DisposedException.hpp>
 #endif
@@ -110,9 +91,6 @@
 #include "xmlwrap.hxx"
 #include "xmlimprt.hxx"
 #include "xmlexprt.hxx"
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 #ifndef __GLOBSTR_HRC_
 #include "globstr.hrc"
 #endif
