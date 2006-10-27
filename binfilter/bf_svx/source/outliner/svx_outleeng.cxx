@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outleeng.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:57:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:31:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,23 +33,15 @@
  *
  ************************************************************************/
 
-// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
 #define _OUTLINER_CXX
-// auto strip #include <outliner.hxx>
 #include <outleeng.hxx>
 #include <paralist.hxx>
 #include <outliner.hrc>
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _EEITEM_HXX //autogen
-// auto strip #include <eeitem.hxx>
-// auto strip #endif
 
 #ifndef _EERDLL_HXX
 #include "eerdll.hxx"
@@ -67,10 +59,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 void OutlinerEditEng::PaintingFirstLine( USHORT nPara, const Point& rStartPos, long nBaseLineY, const Point& rOrigin, short nOrientation, OutputDevice* pOutDev )
-//STRIP001 {
-//STRIP001  pOwner->PaintBullet( nPara, rStartPos, rOrigin, nOrientation, pOutDev );
-//STRIP001 }
 
 /*N*/ Rectangle OutlinerEditEng::GetBulletArea( USHORT nPara )
 /*N*/ {
@@ -97,10 +85,6 @@ namespace binfilter {
 /*N*/     EditEngine::ParagraphDeleted( nDeletedParagraph );
 /*N*/ }
 
-//STRIP001 void OutlinerEditEng::StyleSheetChanged( SfxStyleSheet* pStyle )
-//STRIP001 {
-//STRIP001  pOwner->StyleSheetChanged( pStyle );
-//STRIP001 }
 
 /*N*/ void OutlinerEditEng::ParaAttribsChanged( USHORT nPara )
 /*N*/ {
@@ -114,10 +98,6 @@ namespace binfilter {
 /*N*/     EditEngine::ParagraphHeightChanged( nPara );
 /*N*/ }
 
-//STRIP001 BOOL OutlinerEditEng::SpellNextDocument()
-//STRIP001 {
-//STRIP001  return pOwner->SpellNextDocument();
-//STRIP001 }
 
 /*N*/ XubString OutlinerEditEng::GetUndoComment( USHORT nUndoId ) const
 /*N*/ {
@@ -167,16 +147,7 @@ namespace binfilter {
 /*N*/   pOwner->DrawingText(rStartPos,rText,nTextStart,nTextLen,pDXArray,rFont,nPara,nIndex,nRightToLeft);
 /*N*/ }
 
-//STRIP001 void OutlinerEditEng::FieldClicked( const SvxFieldItem& rField, USHORT nPara, USHORT nPos )
-//STRIP001 {
-//STRIP001  EditEngine::FieldClicked( rField, nPara, nPos );    // Falls URL
-//STRIP001  pOwner->FieldClicked( rField, nPara, nPos );
-//STRIP001 }
 
-//STRIP001 void OutlinerEditEng::FieldSelected( const SvxFieldItem& rField, USHORT nPara, USHORT nPos )
-//STRIP001 {
-//STRIP001  pOwner->FieldSelected( rField, nPara, nPos );
-//STRIP001 }
 
 /*N*/ XubString OutlinerEditEng::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
 /*N*/ {
