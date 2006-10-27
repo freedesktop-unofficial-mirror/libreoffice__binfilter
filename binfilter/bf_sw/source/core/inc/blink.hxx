@@ -4,9 +4,9 @@
  *
  *  $RCSfile: blink.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:23:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:42:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@ class SwTxtFrm;
 #ifndef _SVARRAY_HXX //autogen
 #include <svtools/svarray.hxx>
 #endif
-// auto strip #ifndef _TIMER_HXX //autogen
-// auto strip #include <vcl/timer.hxx>
-// auto strip #endif
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif
@@ -79,21 +76,10 @@ SV_DECL_PTRARR_SORT_DEL(SwBlinkList, SwBlinkPortionPtr, 0, 10)
 
 class SwBlink
 {
-//STRIP001  SwBlinkList     aList;
-//STRIP001  AutoTimer       aTimer;
-//STRIP001  BOOL            bVisible;
 public:
     SwBlink();
-//STRIP001  ~SwBlink();
 
-//STRIP001  DECL_LINK( Blinker, Timer * );
 
-//STRIP001     void Insert( const Point& rPoint, const SwLinePortion* pPor,
-//STRIP001                  const SwTxtFrm *pTxtFrm, USHORT nDir );
-//STRIP001  void Replace( const SwLinePortion* pOld, const SwLinePortion* pNew );
-//STRIP001  void Delete( const SwLinePortion* pPor );
-//STRIP001  void FrmDelete( const SwRootFrm* pRoot );
-//STRIP001  inline BOOL IsVisible() const { return bVisible ; }
 };
 
 // Blink-Manager, globale Variable, in Blink.Cxx angelegt
