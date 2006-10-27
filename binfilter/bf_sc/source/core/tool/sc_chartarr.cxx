@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartarr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:14:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:29:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,15 +34,12 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include "scitems.hxx"
-// auto strip #include <svtools/intitem.hxx>
 #include <svtools/zforlist.hxx>
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/memchrt.hxx>
@@ -97,7 +94,6 @@ namespace binfilter {
 /*N*/       bValid( TRUE )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRangeList( ScRange( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab ) );
-//STRIP001 /*?*/    CheckColRowHeaders();
 /*N*/ }
 /*N*/
 /*N*/ ScChartArray::ScChartArray( ScDocument* pDoc, const ScRangeListRef& rRangeList,
@@ -115,7 +111,6 @@ namespace binfilter {
 /*N*/       bValid( TRUE )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aRangeListRef.Is() )
-//STRIP001 /*?*/        CheckColRowHeaders();
 /*N*/ }
 /*N*/
 /*N*/ ScChartArray::ScChartArray( const ScChartArray& rArr ) :
@@ -256,29 +251,8 @@ namespace binfilter {
 /*N*/   delete pPositionMap;
 /*N*/ }
 
-//STRIP001 DataObject* ScChartArray::Clone() const
-//STRIP001 {
-//STRIP001  return new ScChartArray(*this);
-//STRIP001 }
 
-//STRIP001 BOOL ScChartArray::operator==(const ScChartArray& rCmp) const
-//STRIP001 {
-//STRIP001  return bColHeaders == rCmp.bColHeaders
-//STRIP001      && bRowHeaders == rCmp.bRowHeaders
-//STRIP001      && aName == rCmp.aName
-//STRIP001      && *aRangeListRef == *rCmp.aRangeListRef;
-//STRIP001 }
 
-//STRIP001 BOOL ScChartArray::IsAtCursor(const ScAddress& rPos) const
-//STRIP001 {
-//STRIP001  for ( ScRangePtr pR = aRangeListRef->First(); pR;
-//STRIP001                   pR = aRangeListRef->Next() )
-//STRIP001  {
-//STRIP001      if ( pR->In( rPos ) )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void ScChartArray::SetRangeList( const ScRange& rRange )
 /*N*/ {
@@ -498,95 +472,6 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
-//STRIP001 void ScChartArray::CheckColRowHeaders()
-//STRIP001 {
-//STRIP001  USHORT i, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-//STRIP001
-//STRIP001  BOOL bColStrings = TRUE;
-//STRIP001  BOOL bRowStrings = TRUE;
-//STRIP001  GlueState();
-//STRIP001  if ( aRangeListRef->Count() == 1 )
-//STRIP001  {
-//STRIP001      aRangeListRef->First()->GetVars( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001      // Beschriftungen auch nach hidden Cols/Rows finden
-//STRIP001      while ( nCol1 <= nCol2 && (pDocument->GetColFlags(
-//STRIP001              nCol1, nTab1) & CR_HIDDEN) != 0 )
-//STRIP001          nCol1++;
-//STRIP001      while ( nRow1 <= nRow2 && (pDocument->GetRowFlags(
-//STRIP001              nRow1, nTab1) & CR_HIDDEN) != 0 )
-//STRIP001          nRow1++;
-//STRIP001      if ( nCol1 > nCol2 || nRow1 > nRow2 )
-//STRIP001          bColStrings = bRowStrings = FALSE;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          for (i=nCol1; i<=nCol2 && bColStrings; i++)
-//STRIP001          {
-//STRIP001              if ( i==nCol1 || (pDocument->GetColFlags( i, nTab1) & CR_HIDDEN) == 0 )
-//STRIP001                  if (pDocument->HasValueData( i, nRow1, nTab1 ))
-//STRIP001                      bColStrings = FALSE;
-//STRIP001          }
-//STRIP001          for (i=nRow1; i<=nRow2 && bRowStrings; i++)
-//STRIP001          {
-//STRIP001              if ( i==nRow1 || (pDocument->GetRowFlags( i, nTab1) & CR_HIDDEN) == 0 )
-//STRIP001                  if (pDocument->HasValueData( nCol1, i, nTab1 ))
-//STRIP001                      bRowStrings = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      BOOL bVert = (eGlue == SC_CHARTGLUE_NONE || eGlue == SC_CHARTGLUE_ROWS);
-//STRIP001      for ( ScRangePtr pR = aRangeListRef->First();
-//STRIP001              pR && (bColStrings || bRowStrings);
-//STRIP001              pR = aRangeListRef->Next() )
-//STRIP001      {
-//STRIP001          pR->GetVars( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001          BOOL bTopRow = (nRow1 == nStartRow);
-//STRIP001          BOOL bHidOk;
-//STRIP001          if ( bRowStrings && (bVert || nCol1 == nStartCol) )
-//STRIP001          {   // NONE oder ROWS: RowStrings in jeder Selektion moeglich
-//STRIP001              // COLS oder BOTH: nur aus der ersten Spalte
-//STRIP001              while ( nCol1 <= nCol2 && (pDocument->GetColFlags(
-//STRIP001                      nCol1, nTab1) & CR_HIDDEN) != 0 )
-//STRIP001                  nCol1++;
-//STRIP001              while ( nRow1 <= nRow2 && (pDocument->GetRowFlags(
-//STRIP001                      nRow1, nTab1) & CR_HIDDEN) != 0 )
-//STRIP001                  nRow1++;
-//STRIP001              if ( nCol1 <= nCol2 )
-//STRIP001                  for (i=nRow1; i<=nRow2 && bRowStrings; i++)
-//STRIP001                  {
-//STRIP001                      if ( i==nRow1 || (pDocument->GetRowFlags( i, nTab1) & CR_HIDDEN) == 0 )
-//STRIP001                          if (pDocument->HasValueData( nCol1, i, nTab1 ))
-//STRIP001                              bRowStrings = FALSE;
-//STRIP001                  }
-//STRIP001              bHidOk = TRUE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              bHidOk = FALSE;
-//STRIP001          if ( bColStrings && bTopRow )
-//STRIP001          {   // ColStrings nur aus der ersten Zeile
-//STRIP001              if ( !bHidOk )
-//STRIP001              {
-//STRIP001                  while ( nCol1 <= nCol2 && (pDocument->GetColFlags(
-//STRIP001                          nCol1, nTab1) & CR_HIDDEN) != 0 )
-//STRIP001                      nCol1++;
-//STRIP001                  while ( nRow1 <= nRow2 && (pDocument->GetRowFlags(
-//STRIP001                          nRow1, nTab1) & CR_HIDDEN) != 0 )
-//STRIP001                      nRow1++;
-//STRIP001              }
-//STRIP001              if ( nRow1 <= nRow2 )
-//STRIP001                  for (i=nCol1; i<=nCol2 && bColStrings; i++)
-//STRIP001                  {
-//STRIP001                      if ( i==nCol1 || (pDocument->GetColFlags( i, nTab1) & CR_HIDDEN) == 0 )
-//STRIP001                          if (pDocument->HasValueData( i, nRow1, nTab1 ))
-//STRIP001                              bColStrings = FALSE;
-//STRIP001                  }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  bColHeaders = bColStrings;
-//STRIP001  bRowHeaders = bRowStrings;
-//STRIP001 }
 
 #ifdef WNT
 #pragma optimize("",off)
@@ -1310,59 +1195,15 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 ScRangeListRef ScChartPositionMap::GetColRanges( USHORT nChartCol ) const
-//STRIP001 {
-//STRIP001  ScRangeListRef xRangeList = new ScRangeList;
-//STRIP001  if ( nChartCol < nColCount )
-//STRIP001  {
-//STRIP001      ULONG nStop = GetIndex( nChartCol, nRowCount );
-//STRIP001      for ( ULONG nIndex = GetIndex( nChartCol, 0 ); nIndex < nStop; nIndex++ )
-//STRIP001      {
-//STRIP001          if ( ppData[ nIndex ] )
-//STRIP001              xRangeList->Join( *ppData[ nIndex ] );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return xRangeList;
-//STRIP001 }
 
 
-//STRIP001 ScRangeListRef ScChartPositionMap::GetRowRanges( USHORT nChartRow ) const
-//STRIP001 {
-//STRIP001  ScRangeListRef xRangeList = new ScRangeList;
-//STRIP001  if ( nChartRow < nRowCount )
-//STRIP001  {
-//STRIP001      ULONG nStop = GetIndex( nColCount, nChartRow );
-//STRIP001      for ( ULONG nIndex = GetIndex( 0, nChartRow ); nIndex < nStop;
-//STRIP001              nIndex += nRowCount )
-//STRIP001      {
-//STRIP001          if ( ppData[ nIndex ] )
-//STRIP001              xRangeList->Join( *ppData[ nIndex ] );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return xRangeList;
-//STRIP001 }
 
 
 //
 //              Collection
 //
 
-//STRIP001 DataObject*  ScChartCollection::Clone() const
-//STRIP001 {
-//STRIP001  return new ScChartCollection(*this);
-//STRIP001 }
 
-//STRIP001 BOOL ScChartCollection::operator==(const ScChartCollection& rCmp) const
-//STRIP001 {
-//STRIP001  if (nCount != rCmp.nCount)
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      if (!((*(const ScChartArray*)pItems[i]) == (*(const ScChartArray*)rCmp.pItems[i])))
-//STRIP001          return FALSE;
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ BOOL ScChartCollection::Load( ScDocument* pDoc, SvStream& rStream )
 /*N*/ {
