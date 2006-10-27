@@ -4,9 +4,9 @@
  *
  *  $RCSfile: EventThread.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2005-12-23 12:52:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 13:56:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _FRM_EVENT_THREAD_HXX_
 #define _FRM_EVENT_THREAD_HXX_
 
-// auto strip #include <com/sun/star/lang/XEventListener.hpp>
-// auto strip #include <com/sun/star/lang/EventObject.hpp>
-// auto strip #include <com/sun/star/lang/XComponent.hpp>
 #include <com/sun/star/awt/XControl.hpp>
 #include <vos/thread.hxx>
 
