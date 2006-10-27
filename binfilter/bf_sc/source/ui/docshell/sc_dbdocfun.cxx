@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocfun.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:06:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:46:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -45,7 +44,6 @@
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
 
-// auto strip #include <com/sun/star/sdbc/XResultSet.hpp>
 
 #include "dbdocfun.hxx"
 #include "bf_sc.hrc"
@@ -57,7 +55,6 @@
 #include "tabvwsh.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
-// auto strip #include "olinetab.hxx"
 #include "dpobject.hxx"
 #include "dociter.hxx"      // for lcl_EmptyExcept
 #include "cell.hxx"         // for lcl_EmptyExcept
@@ -128,8 +125,6 @@ namespace binfilter {
 /*N*/       if (bUndo)
 /*N*/       {
 /*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pRedoColl = new ScDBCollection( *pDocColl );
-//STRIP001 /*?*/            rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                            new ScUndoDBData( &rDocShell, pUndoColl, pRedoColl ) );
 /*N*/       }
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
@@ -166,7 +161,6 @@ namespace binfilter {
 /*N*/       if (!bInserted)                             // Fehler -> alten Zustand wiederherstellen
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pNewData;
-//STRIP001 /*?*/            pDoc->SetDBCollection( pUndoColl );     // gehoert dann dem Dokument
 /*N*/       }
 /*N*/       pDoc->CompileDBFormula( FALSE );            // CompileFormulaString
 /*N*/
@@ -175,8 +169,6 @@ namespace binfilter {
 /*N*/           if (bUndo)
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pRedoColl = new ScDBCollection( *pDocColl );
-//STRIP001 /*?*/                rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                                new ScUndoDBData( &rDocShell, pUndoColl, pRedoColl ) );
 /*N*/           }
 /*N*/           else
 /*N*/               delete pUndoColl;
@@ -297,17 +289,6 @@ namespace binfilter {
 /*N*/               if (pTable)
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoTab = new ScOutlineTable( *pTable );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    USHORT nOutStartCol;                            // Zeilen/Spaltenstatus
-//STRIP001 /*?*/                    USHORT nOutStartRow;
-//STRIP001 /*?*/                    USHORT nOutEndCol;
-//STRIP001 /*?*/                    USHORT nOutEndRow;
-//STRIP001 /*?*/                    pTable->GetColArray()->GetRange( nOutStartCol, nOutEndCol );
-//STRIP001 /*?*/                    pTable->GetRowArray()->GetRange( nOutStartRow, nOutEndRow );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    pUndoDoc->InitUndo( pDoc, nTab, nTab, TRUE, TRUE );
-//STRIP001 /*?*/                    pDoc->CopyToDocument( nOutStartCol, 0, nTab, nOutEndCol, MAXROW, nTab, IDF_NONE, FALSE, pUndoDoc );
-//STRIP001 /*?*/                    pDoc->CopyToDocument( 0, nOutStartRow, nTab, MAXCOL, nOutEndRow, nTab, IDF_NONE, FALSE, pUndoDoc );
 /*N*/               }
 /*N*/               else
 /*N*/                   pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
@@ -363,32 +344,6 @@ namespace binfilter {
 /*N*/           if (bRecord)
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nDummy;
-//STRIP001 /*?*/                USHORT nNewEndRow;
-//STRIP001 /*?*/                pDBData->GetArea( nDummy, nDummy,nDummy, nDummy,nNewEndRow );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                const ScRange* pOld = NULL;
-//STRIP001 /*?*/                const ScRange* pNew = NULL;
-//STRIP001 /*?*/                if (bQuerySize)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ScDBData* pDest = pDoc->GetDBAtCursor( aQueryParam.nDestCol, aQueryParam.nDestRow,
-//STRIP001 /*?*/                                                            aQueryParam.nDestTab, TRUE );
-//STRIP001 /*?*/                    if (pDest)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        pDest->GetArea( aNewQuery );
-//STRIP001 /*?*/                        pOld = &aOldQuery;
-//STRIP001 /*?*/                        pNew = &aNewQuery;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoRepeatDB( &rDocShell, nTab,
-//STRIP001 /*?*/                                            nStartCol, nStartRow, nEndCol, nEndRow,
-//STRIP001 /*?*/                                            nNewEndRow,
-//STRIP001 /*?*/                                            //nCurX, nCurY,
-//STRIP001 /*?*/                                            nStartCol, nStartRow,
-//STRIP001 /*?*/                                            pUndoDoc, pUndoTab,
-//STRIP001 /*?*/                                            pUndoRange, pUndoDB,
-//STRIP001 /*?*/                                            pOld, pNew ) );
 /*N*/           }
 /*N*/
 /*N*/           rDocShell.PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab,
@@ -432,11 +387,6 @@ namespace binfilter {
 /*N*/   if ( bCopy )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aLocalParam.MoveToDest();
-//STRIP001 /*?*/        nTab = rSortParam.nDestTab;
-//STRIP001 /*?*/        pDestData = pDoc->GetDBAtCursor( rSortParam.nDestCol, rSortParam.nDestRow,
-//STRIP001 /*?*/                                            rSortParam.nDestTab, TRUE );
-//STRIP001 /*?*/        if (pDestData)
-//STRIP001 /*?*/            pDestData->GetArea(aOldDest);
 /*N*/   }
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, nTab, aLocalParam.nCol1,aLocalParam.nRow1,
@@ -484,35 +434,6 @@ namespace binfilter {
 /*?*/       //  Referenzen ausserhalb des Bereichs werden nicht veraendert !
 /*?*/
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        //  Zeilenhoehen immer (wegen automatischer Anpassung)
-//STRIP001 /*?*/        //! auf ScBlockUndo umstellen
-//STRIP001 /*?*/        pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
-//STRIP001 /*?*/        pDoc->CopyToDocument( aLocalParam.nCol1, aLocalParam.nRow1, nTab,
-//STRIP001 /*?*/                                aLocalParam.nCol2, aLocalParam.nRow2, nTab,
-//STRIP001 /*?*/                                IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        const ScRange* pR = 0;
-//STRIP001 /*?*/        if (pDestData)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pDoc->CopyToDocument( aOldDest, IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/            pR = &aOldDest;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        //  Zeilenhoehen immer (wegen automatischer Anpassung)
-//STRIP001 /*?*/        //! auf ScBlockUndo umstellen
-//STRIP001 /*?*/ //     if (bRepeatQuery)
-//STRIP001 /*?*/            pDoc->CopyToDocument( 0, aLocalParam.nRow1, nTab, MAXCOL, aLocalParam.nRow2, nTab,
-//STRIP001 /*?*/                                    IDF_NONE, FALSE, pUndoDoc );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScDBCollection* pUndoDB = NULL;
-//STRIP001 /*?*/        ScDBCollection* pDocDB = pDoc->GetDBCollection();
-//STRIP001 /*?*/        if (pDocDB->GetCount())
-//STRIP001 /*?*/            pUndoDB = new ScDBCollection( *pDocDB );
-//STRIP001 /*?*/
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/            new ScUndoSort( &rDocShell, nTab,
-//STRIP001 /*?*/                            rSortParam, bRepeatQuery, pUndoDoc, pUndoDB, pR ) );
 /*N*/   }
 /*N*/
 /*N*/   if ( bCopy )
@@ -664,49 +585,6 @@ namespace binfilter {
 /*N*/   if ( bCopy )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aLocalParam.MoveToDest();
-//STRIP001 /*?*/        nDestTab = rQueryParam.nDestTab;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScEditableTester aTester( pDoc, nDestTab, aLocalParam.nCol1,aLocalParam.nRow1,
-//STRIP001 /*?*/                                                aLocalParam.nCol2,aLocalParam.nRow2);
-//STRIP001 /*?*/        if (!aTester.IsEditable())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if (!bApi)
-//STRIP001 /*?*/                rDocShell.ErrorMessage(aTester.GetMessageId());
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        pDestData = pDoc->GetDBAtCursor( rQueryParam.nDestCol, rQueryParam.nDestRow,
-//STRIP001 /*?*/                                            rQueryParam.nDestTab, TRUE );
-//STRIP001 /*?*/        if (pDestData)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pDestData->GetArea( aOldDest );
-//STRIP001 /*?*/            aDestTotal=ScRange( rQueryParam.nDestCol,
-//STRIP001 /*?*/                                rQueryParam.nDestRow,
-//STRIP001 /*?*/                                nDestTab,
-//STRIP001 /*?*/                                rQueryParam.nDestCol + rQueryParam.nCol2 - rQueryParam.nCol1,
-//STRIP001 /*?*/                                rQueryParam.nDestRow + rQueryParam.nRow2 - rQueryParam.nRow1,
-//STRIP001 /*?*/                                nDestTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            bDoSize = pDestData->IsDoSize();
-//STRIP001 /*?*/            //  Test, ob Formeln aufgefuellt werden muessen (nFormulaCols):
-//STRIP001 /*?*/            if ( bDoSize && aOldDest.aEnd.Col() == aDestTotal.aEnd.Col() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                USHORT nTestCol = aOldDest.aEnd.Col() + 1;      // neben dem Bereich
-//STRIP001 /*?*/                USHORT nTestRow = rQueryParam.nDestRow +
-//STRIP001 /*?*/                                    ( aLocalParam.bHasHeader ? 1 : 0 );
-//STRIP001 /*?*/                while ( nTestCol <= MAXCOL &&
-//STRIP001 /*?*/                        pDoc->GetCellType(ScAddress( nTestCol, nTestRow, nTab )) == CELLTYPE_FORMULA )
-//STRIP001 /*?*/                    ++nTestCol, ++nFormulaCols;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            bKeepFmt = pDestData->IsKeepFmt();
-//STRIP001 /*?*/            if ( bDoSize && !pDoc->CanFitBlock( aOldDest, aDestTotal ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if (!bApi)
-//STRIP001 /*?*/                    rDocShell.ErrorMessage(STR_MSSG_DOSUBTOTALS_2);     // kann keine Zeilen einfuegen
-//STRIP001 /*?*/                return FALSE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/   //      ausfuehren
@@ -726,36 +604,6 @@ namespace binfilter {
 /*N*/   if ( bRecord )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ScRange* pOld = 0;
-//STRIP001 /*?*/        ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/        if (bCopy)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pUndoDoc->InitUndo( pDoc, nDestTab, nDestTab, FALSE, TRUE );
-//STRIP001 /*?*/            pDoc->CopyToDocument( aLocalParam.nCol1, aLocalParam.nRow1, nDestTab,
-//STRIP001 /*?*/                                    aLocalParam.nCol2, aLocalParam.nRow2, nDestTab,
-//STRIP001 /*?*/                                    IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/            //  Attribute sichern, falls beim Filtern mitkopiert
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (pDestData)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pDoc->CopyToDocument( aOldDest, IDF_ALL, FALSE, pUndoDoc );
-//STRIP001 /*?*/                pOld = &aOldDest;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
-//STRIP001 /*?*/            pDoc->CopyToDocument( 0, rQueryParam.nRow1, nTab, MAXCOL, rQueryParam.nRow2, nTab,
-//STRIP001 /*?*/                                        IDF_NONE, FALSE, pUndoDoc );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        ScDBCollection* pUndoDB = NULL;
-//STRIP001 /*?*/        ScDBCollection* pDocDB = pDoc->GetDBCollection();
-//STRIP001 /*?*/        if (pDocDB->GetCount())
-//STRIP001 /*?*/            pUndoDB = new ScDBCollection( *pDocDB );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                    new ScUndoQuery( &rDocShell, nTab, rQueryParam, pUndoDoc, pUndoDB,
-//STRIP001 /*?*/                                        pOld, bDoSize, pAdvSource ) );
 /*N*/   }
 /*N*/
 /*N*/   ScDocument* pAttribDoc = NULL;
@@ -967,14 +815,6 @@ namespace binfilter {
 /*N*/   BOOL bDelete = FALSE;
 /*N*/   if (rParam.bReplace)
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 if (pDoc->TestRemoveSubTotals( nTab, rParam ))
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            bDelete = TRUE;
-//STRIP001 /*?*/            bOk = ( MessBox( rDocShell.GetDialogParent(), WinBits(WB_YES_NO | WB_DEF_YES),
-//STRIP001 /*?*/                // "StarCalc" "Daten loeschen?"
-//STRIP001 /*?*/                ScGlobal::GetRscString( STR_MSSG_DOSUBTOTALS_0 ),
-//STRIP001 /*?*/                ScGlobal::GetRscString( STR_MSSG_DOSUBTOTALS_1 ) ).Execute()
-//STRIP001 /*?*/                == RET_YES );
-//STRIP001 /*?*/        }
 /*N*/
 /*N*/   if (bOk)
 /*N*/   {
@@ -998,17 +838,6 @@ namespace binfilter {
 /*N*/           if (pTable)
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoTab = new ScOutlineTable( *pTable );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                USHORT nOutStartCol;                            // Zeilen/Spaltenstatus
-//STRIP001 /*?*/                USHORT nOutStartRow;
-//STRIP001 /*?*/                USHORT nOutEndCol;
-//STRIP001 /*?*/                USHORT nOutEndRow;
-//STRIP001 /*?*/                pTable->GetColArray()->GetRange( nOutStartCol, nOutEndCol );
-//STRIP001 /*?*/                pTable->GetRowArray()->GetRange( nOutStartRow, nOutEndRow );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pUndoDoc->InitUndo( pDoc, nTab, nTab, TRUE, TRUE );
-//STRIP001 /*?*/                pDoc->CopyToDocument( nOutStartCol, 0, nTab, nOutEndCol, MAXROW, nTab, IDF_NONE, FALSE, pUndoDoc );
-//STRIP001 /*?*/                pDoc->CopyToDocument( 0, nOutStartRow, nTab, MAXCOL, nOutEndRow, nTab, IDF_NONE, FALSE, pUndoDoc );
 /*N*/           }
 /*N*/           else
 /*N*/               pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, bOldFilter );
@@ -1042,19 +871,6 @@ namespace binfilter {
 /*N*/       {
 /*?*/           // Sortieren
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rParam.bDoSort || pForceNewSort )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pDBData->SetArea( nTab, aNewParam.nCol1,aNewParam.nRow1, aNewParam.nCol2,aNewParam.nRow2 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  Teilergebnis-Felder vor die Sortierung setzen
-//STRIP001 /*?*/                //  (doppelte werden weggelassen, kann darum auch wieder aufgerufen werden)
-//STRIP001 /*?*/
-//STRIP001 /*?*/                ScSortParam aOldSort;
-//STRIP001 /*?*/                pDBData->GetSortParam( aOldSort );
-//STRIP001 /*?*/                ScSortParam aSortParam( aNewParam, pForceNewSort ? *pForceNewSort : aOldSort );
-//STRIP001 /*?*/                Sort( nTab, aSortParam, FALSE, FALSE, bApi );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/            bSuccess = pDoc->DoSubTotals( nTab, aNewParam );
 /*N*/       }
 /*N*/       ScRange aDirtyRange( aNewParam.nCol1, aNewParam.nRow1, nTab,
 /*N*/           aNewParam.nCol2, aNewParam.nRow2, nTab );
@@ -1064,10 +880,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/ //            ScDBData* pUndoDBData = pDBData ? new ScDBData( *pDBData ) : NULL;
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-//STRIP001 /*?*/                new ScUndoSubTotals( &rDocShell, nTab,
-//STRIP001 /*?*/                                        rParam, aNewParam.nRow2,
-//STRIP001 /*?*/                                        pUndoDoc, pUndoTab, // pUndoDBData,
-//STRIP001 /*?*/                                        pUndoRange, pUndoDB ) );
 /*N*/       }
 /*N*/
 /*N*/       if (!bSuccess)
@@ -1204,11 +1016,6 @@ namespace binfilter {
 /*N*/               else
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pNewObj->WriteSourceDataTo( *pOldObj );       // copy source data
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    ScDPSaveData* pData = pNewObj->GetSaveData();
-//STRIP001 /*?*/                    DBG_ASSERT( pData, "no SaveData from living DPObject" );
-//STRIP001 /*?*/                    if ( pData )
-//STRIP001 /*?*/                        pOldObj->SetSaveData( *pData );     // copy SaveData
 /*N*/               }
 /*N*/
 /*N*/               pDestObj = pOldObj;
@@ -1231,77 +1038,6 @@ namespace binfilter {
 /*N*/               // (and re-read column entry collections)
 /*N*/               // so all changes take effect
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pNewObj == pOldObj && pDestObj->IsImportData() )
-//STRIP001 /*?*/                    pDestObj->InvalidateSource();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDestObj->InvalidateData();             // before getting the new output area
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  make sure the table has a name (not set by dialog)
-//STRIP001 /*?*/                if ( !pDestObj->GetName().Len() )
-//STRIP001 /*?*/                    pDestObj->SetName( pDoc->GetDPCollection()->CreateNewName() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                BOOL bOverflow = FALSE;
-//STRIP001 /*?*/                ScRange aNewOut = pDestObj->GetNewOutputRange( bOverflow );
-//STRIP001 /*?*/                if ( bOverflow )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    //  like with STR_PROTECTIONERR, use undo to reverse everything
-//STRIP001 /*?*/                    DBG_ASSERT( bRecord, "DataPilotUpdate: can't undo" );
-//STRIP001 /*?*/                    bUndoSelf = TRUE;
-//STRIP001 /*?*/                    nErrId = STR_PIVOT_ERROR;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ScEditableTester aTester( pDoc, aNewOut );
-//STRIP001 /*?*/                    if ( !aTester.IsEditable() )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        //  destination area isn't editable
-//STRIP001 /*?*/                        //! reverse everything done so far, don't proceed
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        //  quick solution: proceed to end, use undo action
-//STRIP001 /*?*/                        //  to reverse everything:
-//STRIP001 /*?*/                        DBG_ASSERT( bRecord, "DataPilotUpdate: can't undo" );
-//STRIP001 /*?*/                        bUndoSelf = TRUE;
-//STRIP001 /*?*/                        nErrId = aTester.GetMessageId();
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  test if new output area is empty except for old area
-//STRIP001 /*?*/                if ( !bApi )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    BOOL bEmpty;
-//STRIP001 /*?*/                    if ( pOldObj )  // OutRange of pOldObj (pDestObj) is still old area
-//STRIP001 /*?*/                        bEmpty = lcl_EmptyExcept( pDoc, aNewOut, pOldObj->GetOutRange() );
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        bEmpty = pDoc->IsBlockEmpty( aNewOut.aStart.Tab(),
-//STRIP001 /*?*/                                            aNewOut.aStart.Col(), aNewOut.aStart.Row(),
-//STRIP001 /*?*/                                            aNewOut.aEnd.Col(), aNewOut.aEnd.Row() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    if ( !bEmpty )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        QueryBox aBox( rDocShell.GetDialogParent(), WinBits(WB_YES_NO | WB_DEF_YES),
-//STRIP001 /*?*/                                         ScGlobal::GetRscString(STR_PIVOT_NOTEMPTY) );
-//STRIP001 /*?*/                        if (aBox.Execute() == RET_NO)
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            //! like above (not editable), use undo to reverse everything
-//STRIP001 /*?*/                            DBG_ASSERT( bRecord, "DataPilotUpdate: can't undo" );
-//STRIP001 /*?*/                            bUndoSelf = TRUE;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if ( bRecord )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    USHORT nTab = aNewOut.aStart.Tab();
-//STRIP001 /*?*/                    pNewUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-//STRIP001 /*?*/                    pNewUndoDoc->InitUndo( pDoc, nTab, nTab );
-//STRIP001 /*?*/                    pDoc->CopyToDocument( aNewOut, IDF_ALL, FALSE, pNewUndoDoc );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //! test for overlap with other data pilot tables
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pDestObj->Output();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                rDocShell.PostPaintGridAll();           //! only necessary parts
-//STRIP001 /*?*/                bDone = TRUE;
 /*N*/           }
 /*N*/       }
 /*N*/       // else nothing (no old, no new)
@@ -1310,22 +1046,6 @@ namespace binfilter {
 /*N*/   if ( bRecord && bDone )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxUndoAction* pAction = new ScUndoDataPilot( &rDocShell,
-//STRIP001 /*?*/                                    pOldUndoDoc, pNewUndoDoc, pUndoDPObj, pDestObj );
-//STRIP001 /*?*/        pOldUndoDoc = NULL;
-//STRIP001 /*?*/        pNewUndoDoc = NULL;     // pointers are used in undo action
-//STRIP001 /*?*/        // pUndoDPObj is copied
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if (bUndoSelf)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            //  use undo action to restore original state
-//STRIP001 /*?*/            //! prevent setting the document modified? (ScDocShellModificator)
-//STRIP001 /*?*/
-//STRIP001 /*?*/            pAction->Undo();
-//STRIP001 /*?*/            delete pAction;
-//STRIP001 /*?*/            bDone = FALSE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            rDocShell.GetUndoManager()->AddUndoAction( pAction );
 /*N*/   }
 /*N*/
 /*N*/   delete pOldUndoDoc;     // if not used for undo
@@ -1402,11 +1122,6 @@ namespace binfilter {
 /*M*/           //  interne Operationen, wenn welche gespeichert
 /*M*/
 /*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pData->HasQueryParam() || pData->HasSortParam() || pData->HasSubTotalParam() )
-//STRIP001 /*M*/                pViewSh->RepeatDB();
-//STRIP001 /*M*/
-//STRIP001 /*M*/            //  Pivottabellen die den Bereich als Quelldaten haben
-//STRIP001 /*M*/
-//STRIP001 /*M*/            rDocShell.RefreshPivotTables(aRange);
 /*M*/       }
 /*M*/   }
 /*M*/ }
