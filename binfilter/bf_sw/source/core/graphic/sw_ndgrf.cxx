@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:19:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:41:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -425,20 +425,6 @@ namespace binfilter {
 
 
 
-//STRIP001 BOOL SwGrfNode::ImportGraphic( SvStream& rStrm )
-//STRIP001 {
-//STRIP001  Graphic aGraphic;
-//STRIP001  if( !GetGrfFilter()->ImportGraphic( aGraphic, String(), rStrm ) )
-//STRIP001  {
-//STRIP001      const String aUserData( aGrfObj.GetUserData() );
-//STRIP001
-//STRIP001      aGrfObj.SetGraphic( aGraphic );
-//STRIP001      aGrfObj.SetUserData( aUserData );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 // Returnwert:
 // -1 : ReRead erfolgreich
@@ -527,27 +513,6 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 }
 
 
-//STRIP001 short SwGrfNode::SwapOut()
-//STRIP001 {
-//STRIP001  if( aGrfObj.GetType() != GRAPHIC_DEFAULT &&
-//STRIP001      aGrfObj.GetType() != GRAPHIC_NONE &&
-//STRIP001      !aGrfObj.IsSwappedOut() && !bInSwapIn )
-//STRIP001  {
-//STRIP001      if( !refLink.Is() )
-//STRIP001      {
-//STRIP001          // Das Swapping brauchen wir nur fuer Embedded Pictures
-//STRIP001          // Die Grafik wird in eine TempFile geschrieben, wenn
-//STRIP001          // sie frisch eingefuegt war, d.h. wenn es noch keinen
-//STRIP001          // Streamnamen im Storage gibt.
-//STRIP001          if( !HasStreamName() )
-//STRIP001              if( !aGrfObj.SwapOut() )
-//STRIP001                  return 0;
-//STRIP001      }
-//STRIP001      // Geschriebene Grafiken oder Links werden jetzt weggeschmissen
-//STRIP001      return (short) aGrfObj.SwapOut( NULL );
-//STRIP001  }
-//STRIP001  return 1;
-//STRIP001 }
 
 // Wird nach einem SaveAs aufgerufen und setzt die StreamNamen um
 
@@ -665,7 +630,6 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                   if( pRoot == pDocStg )
 /*N*/                   {
                             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       refStrm.Clear();
-//STRIP001 /*?*/                        DelStreamName();
 /*N*/                   }
 /*N*/                   aDstStrmName.Erase();
 /*N*/               }
@@ -802,38 +766,8 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 // Eine Grafik Undo-faehig machen. Falls sie sich bereits in
 // einem Storage befindet, muss sie geladen werden.
 
-//STRIP001 BOOL SwGrfNode::SavePersistentData()
-//STRIP001 {
-//STRIP001  if( refLink.Is() )
-//STRIP001  {
-//STRIP001      ASSERT( !bInSwapIn, "SavePersistentData: stehe noch im SwapIn" );
-//STRIP001      GetDoc()->GetLinkManager().Remove( refLink );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Erst mal reinswappen, falls sie im Storage ist
-//STRIP001  if( HasStreamName() && !SwapIn() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if( HasStreamName() )
-//STRIP001      DelStreamName();
-//STRIP001
-//STRIP001  // Und in TempFile rausswappen
-//STRIP001  return (BOOL) SwapOut();
-//STRIP001 }
 
 
-//STRIP001 BOOL SwGrfNode::RestorePersistentData()
-//STRIP001 {
-//STRIP001  if( refLink.Is() )
-//STRIP001  {
-//STRIP001      refLink->SetVisible( GetDoc()->IsVisibleLinks() );
-//STRIP001      GetDoc()->GetLinkManager().InsertDDELink( refLink );
-//STRIP001      if( GetDoc()->GetRootFrm() )
-//STRIP001          refLink->Update();
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 /*N*/ void SwGrfNode::InsertLink( const String& rGrfName, const String& rFltName )
@@ -868,23 +802,6 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/ }
 
 
-//STRIP001 void SwGrfNode::ReleaseLink()
-//STRIP001 {
-//STRIP001  if( refLink.Is() )
-//STRIP001  {
-//STRIP001      // erst die Grafik reinswappen!
-//STRIP001 //       if( aGraphic.IsSwapOut() || !refLink->IsSynchron() )
-//STRIP001      {
-//STRIP001          bInSwapIn = TRUE;
-//STRIP001          SwBaseLink* pLink = (SwBaseLink*)(::so3::SvBaseLink*) refLink;
-//STRIP001          pLink->SwapIn( TRUE, TRUE );
-//STRIP001          bInSwapIn = FALSE;
-//STRIP001      }
-//STRIP001      GetDoc()->GetLinkManager().Remove( refLink );
-//STRIP001      refLink.Clear();
-//STRIP001      aGrfObj.SetLink();
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void SwGrfNode::SetTwipSize( const Size& rSz )
@@ -894,106 +811,15 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   {
 /*N*/       // Image-Map an Grafik-Groesse anpassen
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScaleImageMap();
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Image-Map nicht noch einmal skalieren
-//STRIP001 /*?*/        SetScaleImageMap( FALSE );
 /*N*/   }
 /*N*/ }
 
         // Prioritaet beim Laden der Grafik setzen. Geht nur, wenn der Link
         // ein FileObject gesetzt hat
-//STRIP001 void SwGrfNode::SetTransferPriority( USHORT nPrio )
-//STRIP001 {
-//STRIP001  if( refLink.Is() && refLink->GetObj() )
-//STRIP001      SvxLinkManager::SetTransferPriority( *refLink, nPrio );
-//STRIP001 }
 
 
-//STRIP001 void SwGrfNode::ScaleImageMap()
-//STRIP001 {
-//STRIP001  if( !nGrfSize.Width() || !nGrfSize.Height() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  // dann die Image-Map skalieren
-//STRIP001  SwFrmFmt* pFmt = GetFlyFmt();
-//STRIP001
-//STRIP001  if( !pFmt )
-//STRIP001      return;
-//STRIP001
-//STRIP001  SwFmtURL aURL( pFmt->GetURL() );
-//STRIP001  if ( !aURL.GetMap() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  BOOL bScale = FALSE;
-//STRIP001  Fraction aScaleX( 1, 1 );
-//STRIP001  Fraction aScaleY( 1, 1 );
-//STRIP001
-//STRIP001  const SwFmtFrmSize& rFrmSize = pFmt->GetFrmSize();
-//STRIP001  const SvxBoxItem& rBox = pFmt->GetBox();
-//STRIP001
-//STRIP001  if( !rFrmSize.GetWidthPercent() )
-//STRIP001  {
-//STRIP001      SwTwips nWidth = rFrmSize.GetWidth();
-//STRIP001
-//STRIP001      nWidth -= rBox.CalcLineSpace(BOX_LINE_LEFT) +
-//STRIP001                rBox.CalcLineSpace(BOX_LINE_RIGHT);
-//STRIP001
-//STRIP001      ASSERT( nWidth>0, "Gibt es 0 twip breite Grafiken!?" );
-//STRIP001
-//STRIP001      if( nGrfSize.Width() != nWidth )
-//STRIP001      {
-//STRIP001          aScaleX = Fraction( nGrfSize.Width(), nWidth );
-//STRIP001          bScale = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( !rFrmSize.GetHeightPercent() )
-//STRIP001  {
-//STRIP001      SwTwips nHeight = rFrmSize.GetHeight();
-//STRIP001
-//STRIP001      nHeight -= rBox.CalcLineSpace(BOX_LINE_TOP) +
-//STRIP001                 rBox.CalcLineSpace(BOX_LINE_BOTTOM);
-//STRIP001
-//STRIP001      ASSERT( nHeight>0, "Gibt es 0 twip hohe Grafiken!?" );
-//STRIP001
-//STRIP001      if( nGrfSize.Height() != nHeight )
-//STRIP001      {
-//STRIP001          aScaleY = Fraction( nGrfSize.Height(), nHeight );
-//STRIP001          bScale = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bScale )
-//STRIP001  {
-//STRIP001      aURL.GetMap()->Scale( aScaleX, aScaleY );
-//STRIP001      pFmt->SetAttr( aURL );
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void SwGrfNode::DelStreamName()
-//STRIP001 {
-//STRIP001  if( HasStreamName() )
-//STRIP001  {
-//STRIP001      // Dann die Grafik im Storage loeschen
-//STRIP001      SvStorage* pDocStg = GetDoc()->GetDocStorage();
-//STRIP001      if( pDocStg )
-//STRIP001      {
-//STRIP001          String aPicStgName, aStrmName;
-//STRIP001          GetStreamStorageNames( aStrmName, aPicStgName );
-//STRIP001          SvStorageRef refPics = aPicStgName.Len()
-//STRIP001              ? pDocStg->OpenStorage( aPicStgName,
-//STRIP001                  STREAM_READWRITE | STREAM_SHARE_DENYALL )
-//STRIP001              : pDocStg;
-//STRIP001          if( refPics->GetError() == SVSTREAM_OK )
-//STRIP001          {
-//STRIP001              refPics->Remove( aStrmName );
-//STRIP001              refPics->Commit();
-//STRIP001              refPics->ResetError();  // Falls wir ReadOnly waren
-//STRIP001          }
-//STRIP001      }
-//STRIP001      aGrfObj.SetUserData();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ BOOL SwGrfNode::GetStreamStorageNames( String& rStrmName,
 /*N*/                                     String& rStorName ) const
@@ -1109,21 +935,6 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*M*/       pRet = GRFMGR_AUTOSWAPSTREAM_NONE;
 /*M*/   else if( refLink.Is() )
 /*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        if( pGrfObj->IsInSwapIn() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            // then make it by your self
-//STRIP001 /*?*/            if( !bInSwapIn )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                BOOL bIsModifyLocked = IsModifyLocked();
-//STRIP001 /*?*/                LockModify();
-//STRIP001 /*?*/                SwapIn( FALSE );
-//STRIP001 /*?*/                if( !bIsModifyLocked )
-//STRIP001 /*?*/                    UnlockModify();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            pRet = GRFMGR_AUTOSWAPSTREAM_NONE;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            pRet = GRFMGR_AUTOSWAPSTREAM_LINK;
 /*M*/   }
 /*M*/   else
 /*M*/   {
@@ -1177,84 +988,8 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 
 
 // alle QuickDraw-Bitmaps eines speziellen Docs loeschen
-//STRIP001 void DelAllGrfCacheEntries( SwDoc* pDoc )
-//STRIP001 {
-//STRIP001  if( pDoc )
-//STRIP001  {
-//STRIP001      // alle Graphic-Links mit dem Namen aus dem Cache loeschen
-//STRIP001      const SvxLinkManager& rLnkMgr = pDoc->GetLinkManager();
-//STRIP001      const ::so3::SvBaseLinks& rLnks = rLnkMgr.GetLinks();
-//STRIP001      SwGrfNode* pGrfNd;
-//STRIP001      String sFileNm;
-//STRIP001      for( USHORT n = rLnks.Count(); n; )
-//STRIP001      {
-//STRIP001          ::so3::SvBaseLink* pLnk = &(*rLnks[ --n ]);
-//STRIP001          if( pLnk && OBJECT_CLIENT_GRF == pLnk->GetObjType() &&
-//STRIP001              rLnkMgr.GetDisplayNames( pLnk, 0, &sFileNm ) &&
-//STRIP001              pLnk->ISA( SwBaseLink ) && 0 != ( pGrfNd =
-//STRIP001              ((SwBaseLink*)pLnk)->GetCntntNode()->GetGrfNode()) )
-//STRIP001          {
-//STRIP001              pGrfNd->GetGrfObj().ReleaseFromCache();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 // returns the with our graphic attributes filled Graphic-Attr-Structure
-//STRIP001 GraphicAttr& SwGrfNode::GetGraphicAttr( GraphicAttr& rGA,
-//STRIP001                                      const SwFrm* pFrm ) const
-//STRIP001 {
-//STRIP001  const SwAttrSet& rSet = GetSwAttrSet();
-//STRIP001
-//STRIP001  rGA.SetDrawMode( (GraphicDrawMode)rSet.GetDrawModeGrf().GetValue() );
-//STRIP001
-//STRIP001  const SwMirrorGrf & rMirror = rSet.GetMirrorGrf();
-//STRIP001  ULONG nMirror = BMP_MIRROR_NONE;
-//STRIP001  if( rMirror.IsGrfToggle() && pFrm && !pFrm->FindPageFrm()->OnRightPage() )
-//STRIP001  {
-//STRIP001      switch( rMirror.GetValue() )
-//STRIP001      {
-//STRIP001      case RES_DONT_MIRROR_GRF:   nMirror = BMP_MIRROR_HORZ; break;
-//STRIP001      case RES_MIRROR_GRF_VERT:   nMirror = BMP_MIRROR_NONE; break;
-//STRIP001      case RES_MIRROR_GRF_HOR:    nMirror = BMP_MIRROR_HORZ|BMP_MIRROR_VERT;
-//STRIP001                                  break;
-//STRIP001      default:                    nMirror = BMP_MIRROR_VERT; break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      switch( rMirror.GetValue() )
-//STRIP001      {
-//STRIP001      case RES_MIRROR_GRF_BOTH:   nMirror = BMP_MIRROR_HORZ|BMP_MIRROR_VERT;
-//STRIP001                                  break;
-//STRIP001      case RES_MIRROR_GRF_VERT:   nMirror = BMP_MIRROR_HORZ; break;
-//STRIP001      case RES_MIRROR_GRF_HOR:    nMirror = BMP_MIRROR_VERT; break;
-//STRIP001      }
-//STRIP001
-//STRIP001  rGA.SetMirrorFlags( nMirror );
-//STRIP001
-//STRIP001  const SwCropGrf& rCrop = rSet.GetCropGrf();
-//STRIP001  rGA.SetCrop( TWIP_TO_MM100( rCrop.GetLeft() ),
-//STRIP001               TWIP_TO_MM100( rCrop.GetTop() ),
-//STRIP001               TWIP_TO_MM100( rCrop.GetRight() ),
-//STRIP001               TWIP_TO_MM100( rCrop.GetBottom() ));
-//STRIP001
-//STRIP001  const SwRotationGrf& rRotation = rSet.GetRotationGrf();
-//STRIP001  rGA.SetRotation( rRotation.GetValue() );
-//STRIP001
-//STRIP001  rGA.SetLuminance( rSet.GetLuminanceGrf().GetValue() );
-//STRIP001  rGA.SetContrast( rSet.GetContrastGrf().GetValue() );
-//STRIP001  rGA.SetChannelR( rSet.GetChannelRGrf().GetValue() );
-//STRIP001  rGA.SetChannelG( rSet.GetChannelGGrf().GetValue() );
-//STRIP001  rGA.SetChannelB( rSet.GetChannelBGrf().GetValue() );
-//STRIP001  rGA.SetGamma( rSet.GetGammaGrf().GetValue() );
-//STRIP001  rGA.SetInvert( rSet.GetInvertGrf().GetValue() );
-//STRIP001
-//STRIP001  const sal_uInt16 nTrans = rSet.GetTransparencyGrf().GetValue();
-//STRIP001  rGA.SetTransparency( (BYTE) FRound(
-//STRIP001                              Min( nTrans, (USHORT) 100 )  * 2.55 ) );
-//STRIP001
-//STRIP001  return rGA;
-//STRIP001 }
 
 /*N*/ BOOL SwGrfNode::IsTransparent() const
 /*N*/ {
@@ -1275,24 +1010,4 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/ }
 
 
-//STRIP001 BOOL SwGrfNode::IsSelected() const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  const SwEditShell* pESh = GetDoc()->GetEditShell();
-//STRIP001  if( pESh )
-//STRIP001  {
-//STRIP001      const SwNode* pN = this;
-//STRIP001      const ViewShell* pV = pESh;
-//STRIP001      do {
-//STRIP001          if( pV->ISA( SwEditShell ) && pN == &((SwCrsrShell*)pV)
-//STRIP001                              ->GetCrsr()->GetPoint()->nNode.GetNode() )
-//STRIP001          {
-//STRIP001              bRet = TRUE;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      while( pESh != ( pV = (ViewShell*)pV->GetNext() ));
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 }
