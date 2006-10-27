@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit5.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:27:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:46:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,17 +33,10 @@
  *
  ************************************************************************/
 
-// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
-// auto strip #ifndef _SV_OUTDEV_HXX
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _VCL_POINTR_HXX
-// auto strip #include <vcl/pointr.hxx>
-// auto strip #endif
 
 #ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
@@ -51,14 +44,9 @@
 
 #include <impedit.hxx>
 #include <editeng.hxx>
-// auto strip #include <editdbg.hxx>
-
-// auto strip #include <svtools/smplhint.hxx>
 
 
-// auto strip #ifndef _SVX_LRSPITEM_HXX
-// auto strip #include <lrspitem.hxx>
-// auto strip #endif
+
 namespace binfilter {
 
 /*N*/ void ImpEditEngine::SetStyleSheetPool( SfxStyleSheetPool* pSPool )
@@ -83,18 +71,6 @@ namespace binfilter {
 
 /*N*/ void ImpEditEngine::SetStyleSheet( EditSelection aSel, SfxStyleSheet* pStyle )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  aSel.Adjust( aEditDoc );
-//STRIP001
-//STRIP001  USHORT nStartPara = aEditDoc.GetPos( aSel.Min().GetNode() );
-//STRIP001  USHORT nEndPara = aEditDoc.GetPos( aSel.Max().GetNode() );
-//STRIP001
-//STRIP001  BOOL bUpdate = GetUpdateMode();
-//STRIP001  SetUpdateMode( FALSE );
-//STRIP001
-//STRIP001  for ( USHORT n = nStartPara; n <= nEndPara; n++ )
-//STRIP001      SetStyleSheet( n, pStyle );
-//STRIP001
-//STRIP001  SetUpdateMode( bUpdate, 0 );
 /*N*/ }
 
 /*N*/ void ImpEditEngine::SetStyleSheet( USHORT nPara, SfxStyleSheet* pStyle )
@@ -132,159 +108,10 @@ namespace binfilter {
 /*N*/   FormatAndUpdate();
 /*N*/ }
 
-//STRIP001 void ImpEditEngine::UpdateParagraphsWithStyleSheet( SfxStyleSheet* pStyle )
-//STRIP001 {
-//STRIP001  SvxFont aFontFromStyle;
-//STRIP001  CreateFont( aFontFromStyle, pStyle->GetItemSet() );
-//STRIP001
-//STRIP001  BOOL bUsed = FALSE;
-//STRIP001  for ( USHORT nNode = 0; nNode < aEditDoc.Count(); nNode++ )
-//STRIP001  {
-//STRIP001      ContentNode* pNode = aEditDoc.GetObject( nNode );
-//STRIP001      if ( pNode->GetStyleSheet() == pStyle )
-//STRIP001      {
-//STRIP001          bUsed = TRUE;
-//STRIP001          if ( aStatus.UseCharAttribs() )
-//STRIP001              pNode->SetStyleSheet( pStyle, aFontFromStyle );
-//STRIP001          else
-//STRIP001              pNode->SetStyleSheet( pStyle, FALSE );
-//STRIP001
-//STRIP001          ParaAttribsChanged( pNode );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if ( bUsed )
-//STRIP001  {
-//STRIP001      GetEditEnginePtr()->StyleSheetChanged( pStyle );
-//STRIP001      FormatAndUpdate();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ImpEditEngine::RemoveStyleFromParagraphs( SfxStyleSheet* pStyle )
-//STRIP001 {
-//STRIP001  for ( USHORT nNode = 0; nNode < aEditDoc.Count(); nNode++ )
-//STRIP001  {
-//STRIP001      ContentNode* pNode = aEditDoc.GetObject(nNode);
-//STRIP001      if ( pNode->GetStyleSheet() == pStyle )
-//STRIP001      {
-//STRIP001          pNode->SetStyleSheet( NULL );
-//STRIP001          ParaAttribsChanged( pNode );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  FormatAndUpdate();
-//STRIP001 }
 
-//STRIP001 void ImpEditEngine::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
-//STRIP001 {
-//STRIP001  // Damit nicht beim Destruieren unnoetig formatiert wird:
-//STRIP001  if ( !bDowning )
-//STRIP001  {
-//STRIP001      DBG_CHKOBJ( GetEditEnginePtr(), EditEngine, 0 );
-//STRIP001
-//STRIP001      SfxStyleSheet* pStyle = NULL;
-//STRIP001      ULONG nId = 0;
-//STRIP001
-//STRIP001      if ( rHint.ISA( SfxStyleSheetHint ) )
-//STRIP001      {
-//STRIP001          const SfxStyleSheetHint& rH = (const SfxStyleSheetHint&) rHint;
-//STRIP001          DBG_ASSERT( rH.GetStyleSheet()->ISA( SfxStyleSheet ), "Kein SfxStyleSheet!" );
-//STRIP001          pStyle = (SfxStyleSheet*) rH.GetStyleSheet();
-//STRIP001          nId = rH.GetHint();
-//STRIP001      }
-//STRIP001      else if ( ( rHint.Type() == TYPE(SfxSimpleHint ) ) && ( rBC.ISA( SfxStyleSheet ) ) )
-//STRIP001      {
-//STRIP001          pStyle = (SfxStyleSheet*)&rBC;
-//STRIP001          nId = ((SfxSimpleHint&)rHint).GetId();
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( pStyle )
-//STRIP001      {
-//STRIP001          if ( ( nId == SFX_HINT_DYING ) ||
-//STRIP001               ( nId == SFX_STYLESHEET_INDESTRUCTION ) ||
-//STRIP001               ( nId == SFX_STYLESHEET_ERASED ) )
-//STRIP001          {
-//STRIP001              RemoveStyleFromParagraphs( pStyle );
-//STRIP001          }
-//STRIP001          else if ( ( nId == SFX_HINT_DATACHANGED ) ||
-//STRIP001                    ( nId == SFX_STYLESHEET_MODIFIED ) )
-//STRIP001          {
-//STRIP001              UpdateParagraphsWithStyleSheet( pStyle );
-//STRIP001
-//STRIP001              // Alle Absaetze mit EditStyles, die das geaenderte Style
-//STRIP001              // irgendwie als Parent haben, muessen formatiert werden.
-//STRIP001              // ULONG nStyles = pMyStylePool->GetStyles().Count();
-//STRIP001              // for ( ULONG nStyle = 0; nStyle < nStyles; nStyle++ )
-//STRIP001              // {
-//STRIP001              //  EditStyleSheet* pES = (EditStyleSheet*)pMyStylePool->GetStyles().GetObject( nStyle );
-//STRIP001              //  DBG_ASSERT( pES, "NULL-Pointer im StyleSheetPool!" );
-//STRIP001              //  if ( pES->IsUsed() && pES->HasStyleAsAnyParent( *pStyle ) )
-//STRIP001              //      UpdateParagraphsWithStyleSheet( pES );
-//STRIP001              // }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 EditUndoSetAttribs* ImpEditEngine::CreateAttribUndo( EditSelection aSel, const SfxItemSet& rSet )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  DBG_ASSERT( !aSel.DbgIsBuggy( aEditDoc ), "CreateAttribUndo: Fehlerhafte Selektion" );
-//STRIP001  aSel.Adjust( aEditDoc );
-//STRIP001
-//STRIP001  ESelection aESel( CreateESel( aSel ) );
-//STRIP001
-//STRIP001  USHORT nStartNode = aEditDoc.GetPos( aSel.Min().GetNode() );
-//STRIP001  USHORT nEndNode = aEditDoc.GetPos( aSel.Max().GetNode() );
-//STRIP001
-//STRIP001  DBG_ASSERT( nStartNode <= nEndNode, "CreateAttribUndo: Start > End ?!" );
-//STRIP001
-//STRIP001  EditUndoSetAttribs* pUndo = NULL;
-//STRIP001  if ( rSet.GetPool() != &aEditDoc.GetItemPool() )
-//STRIP001  {
-//STRIP001      SfxItemSet aTmpSet( GetEmptyItemSet() );
-//STRIP001      aTmpSet.Put( rSet );
-//STRIP001      pUndo = new EditUndoSetAttribs( this, aESel, aTmpSet );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pUndo = new EditUndoSetAttribs( this, aESel, rSet );
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxItemPool* pPool = pUndo->GetNewAttribs().GetPool();
-//STRIP001
-//STRIP001  for ( USHORT nPara = nStartNode; nPara <= nEndNode; nPara++ )
-//STRIP001  {
-//STRIP001      ContentNode* pNode = aEditDoc.GetObject( nPara );
-//STRIP001      DBG_ASSERT( aEditDoc.SaveGetObject( nPara ), "Node nicht gefunden: CreateAttribUndo" );
-//STRIP001      ContentAttribsInfo* pInf = new ContentAttribsInfo( pNode->GetContentAttribs().GetItems() );
-//STRIP001      pUndo->GetContentInfos().Insert( pInf, pUndo->GetContentInfos().Count() );
-//STRIP001
-//STRIP001      for ( USHORT nAttr = 0; nAttr < pNode->GetCharAttribs().Count(); nAttr++ )
-//STRIP001      {
-//STRIP001          EditCharAttribPtr pAttr = pNode->GetCharAttribs().GetAttribs()[ nAttr ];
-//STRIP001          if ( pAttr->GetLen() )
-//STRIP001          {
-//STRIP001              EditCharAttribPtr pNew = MakeCharAttrib( *pPool, *pAttr->GetItem(), pAttr->GetStart(), pAttr->GetEnd() );
-//STRIP001              pInf->GetPrevCharAttribs().Insert( pNew, pInf->GetPrevCharAttribs().Count() );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pUndo;
-//STRIP001 #else
-//STRIP001  return 0;
-//STRIP001 #endif
-//STRIP001 }
 
-//STRIP001 void ImpEditEngine::UndoActionStart( USHORT nId, const ESelection& aSel )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if ( IsUndoEnabled() && !IsInUndo() )
-//STRIP001  {
-//STRIP001      GetUndoManager().EnterListAction( GetEditEnginePtr()->GetUndoComment( nId ), XubString(), nId );
-//STRIP001      DBG_ASSERT( !pUndoMarkSelection, "UndoAction SelectionMarker?" );
-//STRIP001      pUndoMarkSelection = new ESelection( aSel );
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001 }
 
 /*N*/ void ImpEditEngine::UndoActionStart( USHORT nId )
 /*N*/ {
@@ -316,9 +143,6 @@ namespace binfilter {
 /*N*/   if ( pUndoMarkSelection )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoMarkSelection* pU = new EditUndoMarkSelection( this, *pUndoMarkSelection );
-//STRIP001 /*?*/        GetUndoManager().AddUndoAction( pU, FALSE );
-//STRIP001 /*?*/        delete pUndoMarkSelection;
-//STRIP001 /*?*/        pUndoMarkSelection = NULL;
 /*N*/   }
 /*N*/   GetUndoManager().AddUndoAction( pUndo, bTryMerge );
 /*N*/ #endif
@@ -343,43 +167,8 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
-//STRIP001 BOOL ImpEditEngine::Undo( EditView* pView )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if ( HasUndoManager() && GetUndoManager().GetUndoActionCount() )
-//STRIP001  {
-//STRIP001      SetActiveView( pView );
-//STRIP001      GetUndoManager().Undo( 1 );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ImpEditEngine::Redo( EditView* pView )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if ( HasUndoManager() && GetUndoManager().GetRedoActionCount() )
-//STRIP001  {
-//STRIP001      SetActiveView( pView );
-//STRIP001      GetUndoManager().Redo( 0 );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ImpEditEngine::Repeat( EditView* /* pView */ )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if ( HasUndoManager() && GetUndoManager().GetRepeatActionCount() )
-//STRIP001  {
-//STRIP001      DBG_WARNING( "Repeat nicht implementiert!" );
-//STRIP001      return TRUE;
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ SfxItemSet ImpEditEngine::GetAttribs( EditSelection aSel, BOOL bOnlyHardAttrib )
 /*N*/ {
@@ -608,8 +397,6 @@ namespace binfilter {
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() && aStatus.DoUndoAttribs() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoSetAttribs* pUndo = CreateAttribUndo( aSel, rSet );
-//STRIP001 /*?*/        pUndo->SetSpecial( nSpecial );
-//STRIP001 /*?*/        InsertUndo( pUndo );
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -703,73 +490,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ImpEditEngine::RemoveCharAttribs( EditSelection aSel, BOOL bRemoveParaAttribs, USHORT nWhich )
-//STRIP001 {
-//STRIP001  aSel.Adjust( aEditDoc );
-//STRIP001
-//STRIP001  USHORT nStartNode = aEditDoc.GetPos( aSel.Min().GetNode() );
-//STRIP001  USHORT nEndNode = aEditDoc.GetPos( aSel.Max().GetNode() );
-//STRIP001
-//STRIP001  const SfxItemSet* pEmptyItemSet = bRemoveParaAttribs ? &GetEmptyItemSet() : 0;
-//STRIP001
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  if ( IsUndoEnabled() && !IsInUndo() && aStatus.DoUndoAttribs() )
-//STRIP001  {
-//STRIP001      // Eventuel spezielles Undo, oder ItemSet*
-//STRIP001      EditUndoSetAttribs* pUndo = CreateAttribUndo( aSel, GetEmptyItemSet() );
-//STRIP001      pUndo->SetRemoveAttribs( TRUE );
-//STRIP001      pUndo->SetRemoveParaAttribs( bRemoveParaAttribs );
-//STRIP001      pUndo->SetRemoveWhich( nWhich );
-//STRIP001      InsertUndo( pUndo );
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  // ueber die Absaetze iterieren...
-//STRIP001  for ( USHORT nNode = nStartNode; nNode <= nEndNode; nNode++ )
-//STRIP001  {
-//STRIP001      ContentNode* pNode = aEditDoc.GetObject( nNode );
-//STRIP001      ParaPortion* pPortion = GetParaPortions().GetObject( nNode );
-//STRIP001
-//STRIP001      DBG_ASSERT( aEditDoc.SaveGetObject( nNode ), "Node nicht gefunden: SetAttribs" );
-//STRIP001      DBG_ASSERT( GetParaPortions().SaveGetObject( nNode ), "Portion nicht gefunden: SetAttribs" );
-//STRIP001
-//STRIP001      xub_StrLen nStartPos = 0;
-//STRIP001      xub_StrLen nEndPos = pNode->Len();
-//STRIP001      if ( nNode == nStartNode )
-//STRIP001          nStartPos = aSel.Min().GetIndex();
-//STRIP001      if ( nNode == nEndNode ) // kann auch == nStart sein!
-//STRIP001          nEndPos = aSel.Max().GetIndex();
-//STRIP001
-//STRIP001      // Optimieren: Wenn ganzer Absatz, dann RemoveCharAttribs( nPara )?!
-//STRIP001      BOOL bChanged = aEditDoc.RemoveAttribs( pNode, nStartPos, nEndPos, nWhich );
-//STRIP001      if ( bRemoveParaAttribs )
-//STRIP001         {
-//STRIP001          SetParaAttribs( nNode, *pEmptyItemSet );    // Invalidiert
-//STRIP001         }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // Bei 'Format-Standard' sollen auch die Zeichenattribute verschwinden,
-//STRIP001          // die von der DrawingEngine als Absatzattribute eingestellt wurden.
-//STRIP001          // Diese koennen sowieso nicht vom Anwender eingestellt worden sein.
-//STRIP001
-//STRIP001             // #106871# Not when nWhich
-//STRIP001             // Would have been better to offer a separate method for format/standard...
-//STRIP001             if ( !nWhich )
-//STRIP001             {
-//STRIP001              SfxItemSet aAttribs( GetParaAttribs( nNode ) );
-//STRIP001              for ( USHORT nW = EE_CHAR_START; nW <= EE_CHAR_END; nW++ )
-//STRIP001                  aAttribs.ClearItem( nW );
-//STRIP001              SetParaAttribs( nNode, aAttribs );
-//STRIP001             }
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( bChanged && !bRemoveParaAttribs )
-//STRIP001      {
-//STRIP001          bFormatted = FALSE;
-//STRIP001          pPortion->MarkSelectionInvalid( nStartPos, nEndPos-nStartPos );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ typedef EditCharAttrib* EditCharAttribPtr;
 
@@ -867,53 +587,7 @@ namespace binfilter {
 /*N*/     return pNode->GetContentAttribs().GetItem( nWhich );
 /*N*/ }
 
-//STRIP001 void ImpEditEngine::GetCharAttribs( USHORT nPara, EECharAttribArray& rLst ) const
-//STRIP001 {
-//STRIP001  rLst.Remove( 0, rLst.Count() );
-//STRIP001  ContentNode* pNode = aEditDoc.GetObject( nPara );
-//STRIP001  if ( pNode )
-//STRIP001  {
-//STRIP001      for ( USHORT nAttr = 0; nAttr < pNode->GetCharAttribs().Count(); nAttr++ )
-//STRIP001      {
-//STRIP001          EditCharAttribPtr pAttr = pNode->GetCharAttribs().GetAttribs()[ nAttr ];
-//STRIP001          EECharAttrib aEEAttr;
-//STRIP001          aEEAttr.pAttr = pAttr->GetItem();
-//STRIP001          aEEAttr.nPara = nPara;
-//STRIP001          aEEAttr.nStart = pAttr->GetStart();
-//STRIP001          aEEAttr.nEnd = pAttr->GetEnd();
-//STRIP001          rLst.Insert( aEEAttr, rLst.Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void ImpEditEngine::ParaAttribsToCharAttribs( ContentNode* pNode )
-//STRIP001 {
-//STRIP001  pNode->GetCharAttribs().DeleteEmptyAttribs( GetEditDoc().GetItemPool() );
-//STRIP001  xub_StrLen nEndPos = pNode->Len();
-//STRIP001  for ( USHORT nWhich = EE_CHAR_START; nWhich <= EE_CHAR_END; nWhich++ )
-//STRIP001  {
-//STRIP001      if ( pNode->GetContentAttribs().HasItem( nWhich ) )
-//STRIP001      {
-//STRIP001          const SfxPoolItem& rItem = pNode->GetContentAttribs().GetItem( nWhich );
-//STRIP001          // Die Luecken auffuellen:
-//STRIP001          USHORT nLastEnd = 0;
-//STRIP001          EditCharAttrib* pAttr = pNode->GetCharAttribs().FindNextAttrib( nWhich, nLastEnd );
-//STRIP001          while ( pAttr )
-//STRIP001          {
-//STRIP001              if ( pAttr->GetStart() > nLastEnd )
-//STRIP001                  aEditDoc.InsertAttrib( pNode, nLastEnd, pAttr->GetStart(), rItem );
-//STRIP001              nLastEnd = pAttr->GetEnd();
-//STRIP001              pAttr = pNode->GetCharAttribs().FindNextAttrib( nWhich, nLastEnd );
-//STRIP001          }
-//STRIP001
-//STRIP001          // Und den Rest:
-//STRIP001          if ( nLastEnd < nEndPos )
-//STRIP001              aEditDoc.InsertAttrib( pNode, nLastEnd, nEndPos, rItem );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  bFormatted = FALSE;
-//STRIP001  // Portion braucht hier nicht invalidiert werden, geschieht woanders.
-//STRIP001 }
 
 /*N*/ IdleFormattter::IdleFormattter()
 /*N*/ {
@@ -951,30 +625,11 @@ namespace binfilter {
 /*N*/ ImplIMEInfos::ImplIMEInfos( const EditPaM& rPos, const String& rOldTextAfterStartPos )
 /*N*/  : aOldTextAfterStartPos( rOldTextAfterStartPos )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  aPos = rPos;
-//STRIP001  nLen = 0;
-//STRIP001  bCursor = TRUE;
-//STRIP001  pAttribs = NULL;
-//STRIP001  bWasCursorOverwrite = FALSE;
 /*N*/ }
 
 /*N*/ ImplIMEInfos::~ImplIMEInfos()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  delete[] pAttribs;
 /*N*/ }
 
-//STRIP001 void ImplIMEInfos::CopyAttribs( const USHORT* pA, USHORT nL )
-//STRIP001 {
-//STRIP001  nLen = nL;
-//STRIP001  delete pAttribs;
-//STRIP001  pAttribs = new USHORT[ nL ];
-//STRIP001  memcpy( pAttribs, pA, nL*sizeof(USHORT) );
-//STRIP001 }
 
-//STRIP001 void ImplIMEInfos::DestroyAttribs()
-//STRIP001 {
-//STRIP001  delete[] pAttribs;
-//STRIP001  pAttribs = NULL;
-//STRIP001     nLen = 0;
-//STRIP001 }
 }
