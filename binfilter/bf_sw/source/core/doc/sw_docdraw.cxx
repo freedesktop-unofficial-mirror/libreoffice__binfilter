@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdraw.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:34:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:22:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
-// auto strip #ifndef _OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
@@ -53,9 +50,6 @@
 #include <bf_svx/eeitem.hxx>
 #endif
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
 #endif
@@ -65,7 +59,6 @@
 
 #ifndef _SVX_FLDITEM_HXX //autogen
 #define ITEMID_FIELD EE_FEATURE_FIELD
-// auto strip #include <bf_svx/flditem.hxx>
 #endif
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
@@ -73,48 +66,18 @@
 #ifndef _SVDOUTL_HXX
 #include <bf_svx/svdoutl.hxx>
 #endif
-// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
-// auto strip #include <bf_svx/colritem.hxx>
-// auto strip #endif
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
-// auto strip #ifndef _SVDOGRP_HXX //autogen
-// auto strip #include <bf_svx/svdogrp.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_LANGITEM_HXX
-// auto strip #include <bf_svx/langitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
-// auto strip #ifndef _OFF_APP_HXX //autogen
-// auto strip #include <bf_offmgr/app.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVDOMEAS_HXX
-// auto strip #include <bf_svx/svdfield.hxx>
-// auto strip #endif
 #ifndef _SVDPOOL_HXX //autogen
 #include <bf_svx/svdpool.hxx>
 #endif
 
-// auto strip #ifndef _FMTANCHR_HXX //autogen
-// auto strip #include <fmtanchr.hxx>
-// auto strip #endif
-// auto strip #ifndef _CHARATR_HXX
-// auto strip #include <charatr.hxx>
-// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-// auto strip #ifndef _CHARFMT_HXX //autogen
-// auto strip #include <charfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEWIMP_HXX //autogen
-// auto strip #include <viewimp.hxx>
-// auto strip #endif
 #ifndef _SWHINTS_HXX
 #include <swhints.hxx>
 #endif
@@ -122,9 +85,6 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
@@ -135,24 +95,12 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
 #endif
-// auto strip #ifndef _FRAME_HXX
-// auto strip #include <frame.hxx>
-// auto strip #endif
-// auto strip #ifndef _POOLFMT_HXX
-// auto strip #include <poolfmt.hxx>
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>           // fuer MakeDrawView
 #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
-// auto strip #ifndef _UNDOBJ_HXX
-// auto strip #include <undobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWUNDO_HXX
-// auto strip #include <swundo.hxx>         // fuer die UndoIds
-// auto strip #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
@@ -169,9 +117,6 @@
 #include <dflyobj.hxx>
 #endif
 
-// auto strip #ifndef _SVDETC_HXX
-// auto strip #include <bf_svx/svdetc.hxx>
-// auto strip #endif
 #ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
 #endif
@@ -202,125 +147,12 @@ using namespace ::com::sun::star::linguistic2;
     // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
     // the corresponding 'master' drawing objects.
 DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDrawVirtObjs( rDrawView );
-//STRIP001
-//STRIP001  const SdrMarkList &rMrkList = rDrawView.GetMarkList();
-//STRIP001  SwDrawFrmFmt *pFmt;
-//STRIP001  SdrObject *pObj = rMrkList.GetMark( 0 )->GetObj();
-//STRIP001  BOOL bNoGroup = ( 0 == pObj->GetUpGroup() );
-//STRIP001  if( bNoGroup )
-//STRIP001  {
-//STRIP001      //Ankerattribut aufheben.
-//STRIP001      SwDrawContact *pContact = (SwDrawContact*)GetUserCall(pObj);
-//STRIP001      const SwFmtAnchor aAnch( pContact->GetFmt()->GetAnchor() );
-//STRIP001      //Ankerpos des ersten, um die Objekte zu synchronisieren.
-//STRIP001      Point aAnchPos( pObj->GetAnchorPos() );
-//STRIP001
-//STRIP001      SwUndoDrawGroup* pUndo = !DoesUndo() ? 0 : new SwUndoDrawGroup(
-//STRIP001                                              (USHORT)rMrkList.GetMarkCount() );
-//STRIP001
-//STRIP001      //ContactObjekte und Formate vernichten.
-//STRIP001      for( USHORT i = 0; i < rMrkList.GetMarkCount(); ++i )
-//STRIP001      {
-//STRIP001          pObj = rMrkList.GetMark( i )->GetObj();
-//STRIP001          SwDrawContact *pContact = (SwDrawContact*)GetUserCall(pObj);
-//STRIP001
-//STRIP001          //Ankerpos und Relpos synchronisieren, damit die Position der
-//STRIP001          //Objekte erhalten bleibt.
-//STRIP001             const Point aAbs( pContact->GetAnchor()->GetFrmAnchorPos( ::HasWrap( pObj ) ) +
-//STRIP001                              pObj->GetRelativePos() );
-//STRIP001
-//STRIP001          pFmt = (SwDrawFrmFmt*)pContact->GetFmt();
-//STRIP001          //loescht sich selbst!
-//STRIP001          pContact->Changed(*pObj, SDRUSERCALL_DELETE, pObj->GetBoundRect() );
-//STRIP001          pObj->SetUserCall( 0 );
-//STRIP001
-//STRIP001          if( pUndo )
-//STRIP001              pUndo->AddObj( i, pFmt, pObj );
-//STRIP001          else
-//STRIP001              DelFrmFmt( pFmt );
-//STRIP001
-//STRIP001          pObj->NbcSetRelativePos( aAbs - aAnchPos );
-//STRIP001          pObj->NbcSetAnchorPos( aAnchPos );
-//STRIP001      }
-//STRIP001
-//STRIP001      pFmt = MakeDrawFrmFmt( String::CreateFromAscii(
-//STRIP001                              RTL_CONSTASCII_STRINGPARAM( "DrawObject" )),
-//STRIP001                              GetDfltFrmFmt() );
-//STRIP001      pFmt->SetAttr( aAnch );
-//STRIP001
-//STRIP001      if( pUndo )
-//STRIP001      {
-//STRIP001          pUndo->SetGroupFmt( pFmt );
-//STRIP001          ClearRedo();
-//STRIP001          AppendUndo( pUndo );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if( DoesUndo() )
-//STRIP001      ClearRedo();
-//STRIP001
-//STRIP001  rDrawView.GroupMarked();
-//STRIP001  ASSERT( rMrkList.GetMarkCount() == 1, "GroupMarked more or none groups." );
-//STRIP001  SwDrawContact *pNewContact = 0;
-//STRIP001  if( bNoGroup )
-//STRIP001  {
-//STRIP001      pNewContact = new SwDrawContact( pFmt, rMrkList.GetMark( 0 )->GetObj() );
-//STRIP001      pNewContact->ConnectToLayout();
-//STRIP001  }
-//STRIP001  return pNewContact;
 /*N*/ }
 
 
 /*N*/ void SwDoc::UnGroupSelection( SdrView& rDrawView )
 /*N*/ {
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     int bUndo = DoesUndo();
-//STRIP001  if( bUndo )
-//STRIP001      ClearRedo();
-//STRIP001
-//STRIP001     // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
-//STRIP001     // the corresponding 'master' drawing objects.
-//STRIP001     SwDrawView::ReplaceMarkedDrawVirtObjs( rDrawView );
-//STRIP001
-//STRIP001  const SdrMarkList &rMrkList = rDrawView.GetMarkList();
-//STRIP001  if( rMrkList.GetMarkCount() )
-//STRIP001  {
-//STRIP001      SdrObject *pObj = rMrkList.GetMark( 0 )->GetObj();
-//STRIP001      if( !pObj->GetUpGroup() )
-//STRIP001      {
-//STRIP001          String sDrwFmtNm( String::CreateFromAscii(
-//STRIP001                              RTL_CONSTASCII_STRINGPARAM("DrawObject" )));
-//STRIP001          for ( USHORT i = 0; i < rMrkList.GetMarkCount(); ++i )
-//STRIP001          {
-//STRIP001              SdrObject *pObj = rMrkList.GetMark( i )->GetObj();
-//STRIP001              if ( pObj->IsA( TYPE(SdrObjGroup) ) )
-//STRIP001              {
-//STRIP001                  SwDrawContact *pContact = (SwDrawContact*)GetUserCall(pObj);
-//STRIP001                  SwFmtAnchor aAnch( pContact->GetFmt()->GetAnchor() );
-//STRIP001                  SdrObjList *pLst = ((SdrObjGroup*)pObj)->GetSubList();
-//STRIP001
-//STRIP001                  SwUndoDrawUnGroup* pUndo = 0;
-//STRIP001                  if( bUndo )
-//STRIP001                  {
-//STRIP001                      pUndo = new SwUndoDrawUnGroup( (SdrObjGroup*)pObj );
-//STRIP001                      AppendUndo( pUndo );
-//STRIP001                  }
-//STRIP001
-//STRIP001                  for ( USHORT i2 = 0; i2 < pLst->GetObjCount(); ++i2 )
-//STRIP001                  {
-//STRIP001                      SdrObject *pSubObj = pLst->GetObj( i2 );
-//STRIP001                      SwDrawFrmFmt *pFmt = MakeDrawFrmFmt( sDrwFmtNm,
-//STRIP001                                                          GetDfltFrmFmt() );
-//STRIP001                      pFmt->SetAttr( aAnch );
-//STRIP001                      SwDrawContact *pContact = new SwDrawContact( pFmt, pSubObj );
-//STRIP001                      pContact->ConnectToLayout();
-//STRIP001
-//STRIP001                      if( bUndo )
-//STRIP001                          pUndo->AddObj( i2, pFmt );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  rDrawView.UnGroupMarked();
 /*N*/ }
 
 /*************************************************************************
@@ -332,116 +164,6 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 |*
 |*************************************************************************/
 
-//STRIP001 BOOL SwDoc::DeleteSelection( SwDrawView& rDrawView )
-//STRIP001 {
-//STRIP001  BOOL bCallBase = FALSE;
-//STRIP001  const SdrMarkList &rMrkList = rDrawView.GetMarkList();
-//STRIP001  if( rMrkList.GetMarkCount() )
-//STRIP001  {
-//STRIP001      StartUndo();
-//STRIP001      USHORT i;
-//STRIP001      FASTBOOL bDelMarked = TRUE;
-//STRIP001
-//STRIP001      if( 1 == rMrkList.GetMarkCount() )
-//STRIP001      {
-//STRIP001          SdrObject *pObj = rMrkList.GetMark( 0 )->GetObj();
-//STRIP001          if( pObj->IsWriterFlyFrame() )
-//STRIP001          {
-//STRIP001              SwFlyFrmFmt* pFrmFmt = (SwFlyFrmFmt*)
-//STRIP001                  ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->GetFmt();
-//STRIP001              if( pFrmFmt )
-//STRIP001              {
-//STRIP001 #if 0
-//STRIP001 // JP 28.09.98: erstmal wuerde ich NEIN sagen.
-//STRIP001 // muss das sein ????
-//STRIP001                  // ggfs. die CrsrPosition umsetzen
-//STRIP001                  SwCrsrShell* pCShell = PTR_CAST( SwCrsrShell,
-//STRIP001                                          rDrawView.Imp().GetShell() );
-//STRIP001                  if( pCShell )
-//STRIP001                  {
-//STRIP001                      SwRect& rChrRect = (SwRect&)pCShell->GetCharRect();
-//STRIP001                      SwFlyFrm* pFly = pFrmFmt->GetFrm( &rChrRect.Pos(), FALSE );
-//STRIP001
-//STRIP001                      if( pFly && pFly->IsFlyInCntFrm() )
-//STRIP001                      {
-//STRIP001                          rChrRect = pFly->Frm();
-//STRIP001                          pCShell->GetCrsrDocPos() = rChrRect.Pos();
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001 // muss das sein ????
-//STRIP001 #endif
-//STRIP001                  DelLayoutFmt( pFrmFmt );
-//STRIP001                  bDelMarked = FALSE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      for( i = 0; i < rMrkList.GetMarkCount(); ++i )
-//STRIP001      {
-//STRIP001          SdrObject *pObj = rMrkList.GetMark( i )->GetObj();
-//STRIP001          if( !pObj->IsWriterFlyFrame() )
-//STRIP001          {
-//STRIP001              SwDrawContact *pC = (SwDrawContact*)GetUserCall(pObj);
-//STRIP001              SwDrawFrmFmt *pFrmFmt = (SwDrawFrmFmt*)pC->GetFmt();
-//STRIP001              if( pFrmFmt &&
-//STRIP001                  FLY_IN_CNTNT == pFrmFmt->GetAnchor().GetAnchorId() )
-//STRIP001              {
-//STRIP001                  rDrawView.MarkObj( pObj, rDrawView.Imp().GetPageView(), TRUE );
-//STRIP001                  --i;
-//STRIP001                  DelLayoutFmt( pFrmFmt );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if( rMrkList.GetMarkCount() && bDelMarked )
-//STRIP001      {
-//STRIP001          SdrObject *pObj = rMrkList.GetMark( 0 )->GetObj();
-//STRIP001          if( !pObj->GetUpGroup() )
-//STRIP001          {
-//STRIP001              SwUndoDrawDelete* pUndo = !DoesUndo() ? 0
-//STRIP001                          : new SwUndoDrawDelete( (USHORT)rMrkList.GetMarkCount() );
-//STRIP001
-//STRIP001              //ContactObjekte vernichten, Formate sicherstellen.
-//STRIP001              for( i = 0; i < rMrkList.GetMarkCount(); ++i )
-//STRIP001              {
-//STRIP001                  const SdrMark& rMark = *rMrkList.GetMark( i );
-//STRIP001                  pObj = rMark.GetObj();
-//STRIP001                  SwDrawContact *pContact = (SwDrawContact*)pObj->GetUserCall();
-//STRIP001                  if( pContact ) // natuerlich nicht bei gruppierten Objekten
-//STRIP001                  {
-//STRIP001                      SwDrawFrmFmt *pFmt = (SwDrawFrmFmt*)pContact->GetFmt();
-//STRIP001                         // OD 18.06.2003 #108784# - before delete of selection
-//STRIP001                         // is performed, marked <SwDrawVirtObj>-objects have to
-//STRIP001                         // be replaced by its reference objects.
-//STRIP001                         // Thus, assert, if a <SwDrawVirt>-object is found in the mark list.
-//STRIP001                         if ( pObj->ISA(SwDrawVirtObj) )
-//STRIP001                         {
-//STRIP001                             ASSERT( false,
-//STRIP001                                     "<SwDrawVirtObj> is still marked for delete. application will crash!" );
-//STRIP001                         }
-//STRIP001                      //loescht sich selbst!
-//STRIP001                      pContact->Changed(*pObj, SDRUSERCALL_DELETE, pObj->GetBoundRect() );
-//STRIP001                      pObj->SetUserCall( 0 );
-//STRIP001
-//STRIP001                      if( pUndo )
-//STRIP001                          pUndo->AddObj( i, pFmt, rMark );
-//STRIP001                      else
-//STRIP001                          DelFrmFmt( pFmt );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              if( pUndo )
-//STRIP001                  AppendUndo( pUndo );
-//STRIP001          }
-//STRIP001          bCallBase = TRUE;
-//STRIP001      }
-//STRIP001      SetModified();
-//STRIP001
-//STRIP001      EndUndo();
-//STRIP001  }
-//STRIP001
-//STRIP001  return bCallBase;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -798,82 +520,6 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 
 /*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, pInfo)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (pInfo)
-//STRIP001  {
-//STRIP001      const SvxFieldItem& rField = pInfo->GetField();
-//STRIP001      const SvxFieldData* pField = rField.GetField();
-//STRIP001
-//STRIP001      if (pField && pField->ISA(SvxDateField))
-//STRIP001      {
-//STRIP001          /******************************************************************
-//STRIP001          * Date-Field
-//STRIP001          ******************************************************************/
-//STRIP001          pInfo->SetRepresentation(
-//STRIP001              ((const SvxDateField*) pField)->GetFormatted(
-//STRIP001                      *GetNumberFormatter( TRUE ), LANGUAGE_SYSTEM) );
-//STRIP001      }
-//STRIP001      else if (pField && pField->ISA(SvxURLField))
-//STRIP001      {
-//STRIP001          /******************************************************************
-//STRIP001          * URL-Field
-//STRIP001          ******************************************************************/
-//STRIP001
-//STRIP001          switch ( ((const SvxURLField*) pField)->GetFormat() )
-//STRIP001          {
-//STRIP001              case SVXURLFORMAT_APPDEFAULT: //!!! einstellbar an App???
-//STRIP001              case SVXURLFORMAT_REPR:
-//STRIP001              {
-//STRIP001                  pInfo->SetRepresentation(
-//STRIP001                      ((const SvxURLField*)pField)->GetRepresentation());
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001              case SVXURLFORMAT_URL:
-//STRIP001              {
-//STRIP001                  pInfo->SetRepresentation(
-//STRIP001                      ((const SvxURLField*)pField)->GetURL());
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          USHORT nChrFmt;
-//STRIP001
-//STRIP001          if (IsVisitedURL(((const SvxURLField*)pField)->GetURL()))
-//STRIP001              nChrFmt = RES_POOLCHR_INET_VISIT;
-//STRIP001          else
-//STRIP001              nChrFmt = RES_POOLCHR_INET_NORMAL;
-//STRIP001
-//STRIP001          SwFmt *pFmt = GetCharFmtFromPool(nChrFmt);
-//STRIP001
-//STRIP001          Color aColor(COL_LIGHTBLUE);
-//STRIP001          if (pFmt)
-//STRIP001              aColor = pFmt->GetColor().GetValue();
-//STRIP001
-//STRIP001          pInfo->SetTxtColor(aColor);
-//STRIP001      }
-//STRIP001      else if (pField && pField->ISA(SdrMeasureField))
-//STRIP001      {
-//STRIP001          /******************************************************************
-//STRIP001          * Measure-Field
-//STRIP001          ******************************************************************/
-//STRIP001          pInfo->ClearFldColor();
-//STRIP001      }
-//STRIP001         else if ( pField && pField->ISA(SvxExtTimeField))
-//STRIP001         {
-//STRIP001             /******************************************************************
-//STRIP001             * Time-Field
-//STRIP001             ******************************************************************/
-//STRIP001             pInfo->SetRepresentation(
-//STRIP001                 ((const SvxExtTimeField*) pField)->GetFormatted(
-//STRIP001                         *GetNumberFormatter( TRUE ), LANGUAGE_SYSTEM) );
-//STRIP001         }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          DBG_ERROR("unbekannter Feldbefehl");
-//STRIP001          pInfo->SetRepresentation( String( '?' ) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
 /*N*/  return(0);
 /*N*/ }
 }

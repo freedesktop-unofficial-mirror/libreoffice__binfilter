@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfly.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:35:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:23:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,25 +36,10 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _SFXITEMITER_HXX //autogen
 #include <svtools/itemiter.hxx>
 #endif
-// auto strip #ifndef _SVDOBJ_HXX //autogen
-// auto strip #include <bf_svx/svdobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDMODEL_HXX //autogen
-// auto strip #include <bf_svx/svdmodel.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDCAPT_HXX //autogen
-// auto strip #include <bf_svx/svdocapt.hxx>
-// auto strip #endif
 #ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>
 #endif
@@ -70,12 +55,6 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _FMTORNT_HXX //autogen
-// auto strip #include <fmtornt.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTSRND_HXX //autogen
-// auto strip #include <fmtsrnd.hxx>
-// auto strip #endif
 #ifndef _DCONTACT_HXX //autogen
 #include <dcontact.hxx>
 #endif
@@ -84,12 +63,6 @@
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _NDINDEX_HXX //autogen
-// auto strip #include <ndindex.hxx>
-// auto strip #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -120,9 +93,6 @@
 #ifndef _FLYFRMS_HXX //autogen
 #include <flyfrms.hxx>
 #endif
-// auto strip #ifndef _FRMTOOL_HXX //autogen
-// auto strip #include <frmtool.hxx>
-// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
@@ -132,24 +102,15 @@
 #ifndef _PAM_HXX //autogen
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _TBLSEL_HXX //autogen
-// auto strip #include <tblsel.hxx>
-// auto strip #endif
 #ifndef _SWUNDO_HXX //autogen
 #include <swundo.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX //autogen
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _CRSTATE_HXX
 #include <crstate.hxx>
 #endif
 #ifndef _UNDOBJ_HXX //autogen
 #include <undobj.hxx>
 #endif
-// auto strip #ifndef _FMTCNCT_HXX //autogen
-// auto strip #include <fmtcnct.hxx>
-// auto strip #endif
 namespace binfilter {
 
 extern USHORT GetHtmlMode( const SwDocShell* );
@@ -261,8 +222,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/           if( pFlyFmt && rAnch.GetCntntAnchor() )
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwFrm* pOld = ((SwFlyFrmFmt*)pFlyFmt)->GetFrm( &aRet, FALSE );
-//STRIP001 /*?*/                if( pOld )
-//STRIP001 /*?*/                    aRet = pOld->Frm().Pos();
 /*N*/           }
 /*N*/           break;
 /*N*/
@@ -282,10 +241,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/           if( rAnch.GetCntntAnchor() )
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwFlyFrmFmt* pFmt = (SwFlyFrmFmt*)rAnch.GetCntntAnchor()->
-//STRIP001 /*?*/                                                nNode.GetNode().GetFlyFmt();
-//STRIP001 /*?*/                const SwFrm* pOld = pFmt ? pFmt->GetFrm( &aRet, FALSE ) : 0;
-//STRIP001 /*?*/                if( pOld )
-//STRIP001 /*?*/                    aRet = pOld->Frm().Pos();
 /*?*/           }
 /*?*/           break;
 /*?*/
@@ -946,149 +901,12 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /* -----------------23.07.98 13:56-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 int SwDoc::Chainable( const SwFrmFmt &rSource, const SwFrmFmt &rDest )
-//STRIP001 {
-//STRIP001  //Die Source darf noch keinen Follow haben.
-//STRIP001  const SwFmtChain &rOldChain = rSource.GetChain();
-//STRIP001  if ( rOldChain.GetNext() )
-//STRIP001      return SW_CHAIN_SOURCE_CHAINED;
-//STRIP001
-//STRIP001  //Ziel darf natuerlich nicht gleich Source sein und es
-//STRIP001  //darf keine geschlossene Kette entstehen.
-//STRIP001  const SwFrmFmt *pFmt = &rDest;
-//STRIP001  do {
-//STRIP001      if( pFmt == &rSource )
-//STRIP001          return SW_CHAIN_SELF;
-//STRIP001      pFmt = pFmt->GetChain().GetNext();
-//STRIP001  } while ( pFmt );
-//STRIP001
-//STRIP001  //Auch eine Verkettung von Innen nach aussen oder von aussen
-//STRIP001  //nach innen ist nicht zulaessig.
-//STRIP001  if( rDest.IsLowerOf( rSource ) || rSource .IsLowerOf( rDest ) )
-//STRIP001      return SW_CHAIN_SELF;
-//STRIP001
-//STRIP001  //Das Ziel darf noch keinen Master haben.
-//STRIP001  const SwFmtChain &rChain = rDest.GetChain();
-//STRIP001  if( rChain.GetPrev() )
-//STRIP001      return SW_CHAIN_IS_IN_CHAIN;
-//STRIP001
-//STRIP001  //Das Ziel muss leer sein.
-//STRIP001  const SwNodeIndex* pCntIdx = rDest.GetCntnt().GetCntntIdx();
-//STRIP001  if( !pCntIdx )
-//STRIP001      return SW_CHAIN_NOT_FOUND;
-//STRIP001
-//STRIP001  SwNodeIndex aNxtIdx( *pCntIdx, 1 );
-//STRIP001  const SwTxtNode* pTxtNd = aNxtIdx.GetNode().GetTxtNode();
-//STRIP001  if( !pTxtNd )
-//STRIP001      return SW_CHAIN_NOT_FOUND;
-//STRIP001
-//STRIP001  ULONG nFlySttNd = pCntIdx->GetIndex(), nTstSttNd;
-//STRIP001  if( 2 != ( pCntIdx->GetNode().EndOfSectionIndex() - nFlySttNd ) ||
-//STRIP001      pTxtNd->GetTxt().Len() )
-//STRIP001      return SW_CHAIN_NOT_EMPTY;
-//STRIP001
-//STRIP001  USHORT nArrLen = GetSpzFrmFmts()->Count();
-//STRIP001  for( USHORT n = 0; n < nArrLen; ++n )
-//STRIP001  {
-//STRIP001      const SwFmtAnchor& rAnchor = (*GetSpzFrmFmts())[ n ]->GetAnchor();
-//STRIP001      if ( ( rAnchor.GetAnchorId() == FLY_AT_CNTNT ||
-//STRIP001             rAnchor.GetAnchorId() == FLY_AT_FLY ||
-//STRIP001             rAnchor.GetAnchorId() == FLY_AUTO_CNTNT ) &&
-//STRIP001           0 != rAnchor.GetCntntAnchor() &&
-//STRIP001           nFlySttNd <= ( nTstSttNd =
-//STRIP001                      rAnchor.GetCntntAnchor()->nNode.GetIndex() ) &&
-//STRIP001           nTstSttNd < nFlySttNd + 2 )
-//STRIP001      {
-//STRIP001          return SW_CHAIN_NOT_EMPTY;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //Auf die richtige Area muessen wir auch noch einen Blick werfen.
-//STRIP001  //Beide Flys muessen im selben Bereich (Body, Head/Foot, Fly) sitzen
-//STRIP001  //Wenn die Source nicht der selektierte Rahmen ist, so reicht es
-//STRIP001  //Wenn ein passender gefunden wird (Der Wunsch kann z.B. von der API
-//STRIP001  //kommen).
-//STRIP001
-//STRIP001  // both in the same fly, header, footer or on the page?
-//STRIP001  const SwFmtAnchor &rSrcAnchor = rSource.GetAnchor(),
-//STRIP001                    &rDstAnchor = rDest.GetAnchor();
-//STRIP001  ULONG nEndOfExtras = GetNodes().GetEndOfExtras().GetIndex();
-//STRIP001  BOOL bAllowed = FALSE;
-//STRIP001  if( FLY_PAGE == rSrcAnchor.GetAnchorId() )
-//STRIP001  {
-//STRIP001      if( FLY_PAGE == rDstAnchor.GetAnchorId() ||
-//STRIP001          ( rDstAnchor.GetCntntAnchor() &&
-//STRIP001            rDstAnchor.GetCntntAnchor()->nNode.GetIndex() > nEndOfExtras ))
-//STRIP001          bAllowed = TRUE;
-//STRIP001  }
-//STRIP001  else if( rSrcAnchor.GetCntntAnchor() && rDstAnchor.GetCntntAnchor() )
-//STRIP001  {
-//STRIP001      const SwNodeIndex &rSrcIdx = rSrcAnchor.GetCntntAnchor()->nNode,
-//STRIP001                          &rDstIdx = rDstAnchor.GetCntntAnchor()->nNode;
-//STRIP001      const SwStartNode* pSttNd = 0;
-//STRIP001      if( rSrcIdx == rDstIdx ||
-//STRIP001          ( !pSttNd &&
-//STRIP001              0 != ( pSttNd = rSrcIdx.GetNode().FindFlyStartNode() ) &&
-//STRIP001              pSttNd == rDstIdx.GetNode().FindFlyStartNode() ) ||
-//STRIP001          ( !pSttNd &&
-//STRIP001              0 != ( pSttNd = rSrcIdx.GetNode().FindFooterStartNode() ) &&
-//STRIP001              pSttNd == rDstIdx.GetNode().FindFooterStartNode() ) ||
-//STRIP001          ( !pSttNd &&
-//STRIP001              0 != ( pSttNd = rSrcIdx.GetNode().FindHeaderStartNode() ) &&
-//STRIP001              pSttNd == rDstIdx.GetNode().FindHeaderStartNode() ) ||
-//STRIP001          ( !pSttNd && rDstIdx.GetIndex() > nEndOfExtras &&
-//STRIP001                          rSrcIdx.GetIndex() > nEndOfExtras ))
-//STRIP001          bAllowed = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bAllowed ? SW_CHAIN_OK : SW_CHAIN_WRONG_AREA;
-//STRIP001 }
 /* -----------------23.07.98 13:56-------------------
  *
  * --------------------------------------------------*/
 /*N*/ int SwDoc::Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest )
 /*N*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 int nErr = Chainable( rSource, rDest );
-//STRIP001  if ( !nErr )
-//STRIP001  {
-//STRIP001      StartUndo( UNDO_CHAINE );
-//STRIP001
-//STRIP001      SwFlyFrmFmt& rDestFmt = (SwFlyFrmFmt&)rDest;
-//STRIP001      SwFlyFrm* pFly = rDestFmt.GetFrm();
-//STRIP001
-//STRIP001      //Follow an den Master haengen.
-//STRIP001      SwFmtChain aChain = rDestFmt.GetChain();
-//STRIP001      aChain.SetPrev( &(SwFlyFrmFmt&)rSource );
-//STRIP001      SetAttr( aChain, rDestFmt );
-//STRIP001
-//STRIP001      SfxItemSet aSet( GetAttrPool(), RES_FRM_SIZE, RES_FRM_SIZE,
-//STRIP001                                      RES_CHAIN,  RES_CHAIN, 0 );
-//STRIP001
-//STRIP001      //Follow an den Master haengen.
-//STRIP001      aChain.SetPrev( &(SwFlyFrmFmt&)rSource );
-//STRIP001      SetAttr( aChain, rDestFmt );
-//STRIP001
-//STRIP001      //Master an den Follow haengen und dafuer sorgen, dass der Master
-//STRIP001      //eine fixierte Hoehe hat.
-//STRIP001      aChain = rSource.GetChain();
-//STRIP001      aChain.SetNext( &rDestFmt );
-//STRIP001      aSet.Put( aChain );
-//STRIP001
-//STRIP001      SwFmtFrmSize aSize( rSource.GetFrmSize() );
-//STRIP001      if ( aSize.GetSizeType() != ATT_FIX_SIZE )
-//STRIP001      {
-//STRIP001          SwClientIter aIter( rSource );
-//STRIP001          SwFlyFrm *pFly = (SwFlyFrm*)aIter.First( TYPE(SwFlyFrm) );
-//STRIP001          if ( pFly )
-//STRIP001              aSize.SetHeight( pFly->Frm().Height() );
-//STRIP001          aSize.SetSizeType( ATT_FIX_SIZE );
-//STRIP001          aSet.Put( aSize );
-//STRIP001      }
-//STRIP001      SetAttr( aSet, rSource );
-//STRIP001
-//STRIP001      EndUndo( UNDO_CHAINE );
-//STRIP001  }
-//STRIP001  return nErr;
 /*N*/ }
 /* -----------------23.07.98 13:56-------------------
  *
@@ -1096,17 +914,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/ void SwDoc::Unchain( SwFrmFmt &rFmt )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rFmt.GetChain() );
-//STRIP001  if ( aChain.GetNext() )
-//STRIP001  {
-//STRIP001      StartUndo( UNDO_UNCHAIN );
-//STRIP001      SwFrmFmt *pFollow = aChain.GetNext();
-//STRIP001      aChain.SetNext( 0 );
-//STRIP001      SetAttr( aChain, rFmt );
-//STRIP001      aChain = pFollow->GetChain();
-//STRIP001      aChain.SetPrev( 0 );
-//STRIP001      SetAttr( aChain, *pFollow );
-//STRIP001      EndUndo( UNDO_UNCHAIN );
-//STRIP001  }
 /*N*/ }
 
 
