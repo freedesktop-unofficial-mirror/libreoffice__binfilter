@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_consoli.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:07:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:31:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -46,10 +45,8 @@
 #include <string.h>
 #include "consoli.hxx"
 #include "document.hxx"
-// auto strip #include "olinetab.hxx"
 #include "globstr.hrc"
 #include "subtotal.hxx"
-// auto strip #include "compiler.hxx"                   // fuer errNoValue
 #include "cell.hxx"
 namespace binfilter {
 
@@ -625,42 +622,6 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/       if (nArrX != SC_CONS_NOTFOUND)
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (nRow=nRow1; nRow<=nRow2; nRow++)
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                USHORT nArrY = nRow-nRow1;
-//STRIP001 /*?*/                if (bRowByName) nArrY = pDestRows[nArrY];
-//STRIP001 /*?*/                if ( nArrY != SC_CONS_NOTFOUND && (
-//STRIP001 /*?*/                        bAnyCell ? pSrcDoc->HasData( nCol, nRow, nTab )
-//STRIP001 /*?*/                                 : pSrcDoc->HasValueData( nCol, nRow, nTab ) ) )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    if (bReference)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        if (ppUsed[nArrX][nArrY])
-//STRIP001 /*?*/                            ppRefs[nArrX][nArrY].AddEntry( nCol, nRow, nTab );
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            ppUsed[nArrX][nArrY] = TRUE;
-//STRIP001 /*?*/                            ppRefs[nArrX][nArrY].Init();
-//STRIP001 /*?*/                            ppRefs[nArrX][nArrY].AddEntry( nCol, nRow, nTab );
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        double nVal;
-//STRIP001 /*?*/                        pSrcDoc->GetValue( nCol, nRow, nTab, nVal );
-//STRIP001 /*?*/                        if (ppUsed[nArrX][nArrY])
-//STRIP001 /*?*/                            lcl_UpdateArray( eFunction, ppCount[nArrX][nArrY],
-//STRIP001 /*?*/                                         ppSum[nArrX][nArrY], ppSumSqr[nArrX][nArrY],
-//STRIP001 /*?*/                                         nVal);
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            ppUsed[nArrX][nArrY] = TRUE;
-//STRIP001 /*?*/                            lcl_InitArray( eFunction, ppCount[nArrX][nArrY],
-//STRIP001 /*?*/                                                  ppSum[nArrX][nArrY],
-//STRIP001 /*?*/                                                  ppSumSqr[nArrX][nArrY], nVal );
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -767,89 +728,6 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/           if (nNeeded)
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDestDoc->InsertRow( 0,nTab, MAXCOL,nTab, nRow+nArrY, nNeeded );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                for (nArrX=0; nArrX<nColCount; nArrX++)
-//STRIP001 /*?*/                    if (ppUsed[nArrX][nArrY])
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        ScReferenceList& rList = ppRefs[nArrX][nArrY];
-//STRIP001 /*?*/                        nCount = rList.GetCount();
-//STRIP001 /*?*/                        if (nCount)
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            for (nPos=0; nPos<nCount; nPos++)
-//STRIP001 /*?*/                            {
-//STRIP001 /*?*/                                ScReferenceEntry aRef = rList.GetEntry(nPos);
-//STRIP001 /*?*/                                if (aRef.nTab != SC_CONS_NOTFOUND)
-//STRIP001 /*?*/                                {
-//STRIP001 /*?*/                                    //  Referenz einfuegen (absolut, 3d)
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                    aSRef.nCol = aRef.nCol;
-//STRIP001 /*?*/                                    aSRef.nRow = aRef.nRow;
-//STRIP001 /*?*/                                    aSRef.nTab = aRef.nTab;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                    ScTokenArray aRefArr;
-//STRIP001 /*?*/                                    aRefArr.AddSingleReference(aSRef);
-//STRIP001 /*?*/                                    aRefArr.AddOpCode(ocStop);
-//STRIP001 /*?*/                                    ScAddress aDest( nCol+nArrX, nRow+nArrY+nPos, nTab );
-//STRIP001 /*?*/                                    ScBaseCell* pCell = new ScFormulaCell( pDestDoc, aDest, &aRefArr );
-//STRIP001 /*?*/                                    pDestDoc->PutCell( aDest.Col(), aDest.Row(), aDest.Tab(), pCell );
-//STRIP001 /*?*/                                }
-//STRIP001 /*?*/                            }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            //  Summe einfuegen (relativ, nicht 3d)
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            ScAddress aDest( nCol+nArrX, nRow+nArrY+nNeeded, nTab );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            aCRef.Ref1.nTab = aCRef.Ref2.nTab = nTab;
-//STRIP001 /*?*/                            aCRef.Ref1.nCol = aCRef.Ref2.nCol = nCol+nArrX;
-//STRIP001 /*?*/                            aCRef.Ref1.nRow = nRow+nArrY;
-//STRIP001 /*?*/                            aCRef.Ref2.nRow = nRow+nArrY+nNeeded-1;
-//STRIP001 /*?*/                            aCRef.CalcRelFromAbs( aDest );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                            ScTokenArray aArr;
-//STRIP001 /*?*/                            aArr.AddOpCode(eOpCode);            // ausgewaehlte Funktion
-//STRIP001 /*?*/                            aArr.AddOpCode(ocOpen);
-//STRIP001 /*?*/                            aArr.AddDoubleReference(aCRef);
-//STRIP001 /*?*/                            aArr.AddOpCode(ocClose);
-//STRIP001 /*?*/                            aArr.AddOpCode(ocStop);
-//STRIP001 /*?*/                            ScBaseCell* pCell = new ScFormulaCell( pDestDoc, aDest, &aArr );
-//STRIP001 /*?*/                            pDestDoc->PutCell( aDest.Col(), aDest.Row(), aDest.Tab(), pCell );
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  Gliederung einfuegen
-//STRIP001 /*?*/
-//STRIP001 /*?*/                ScOutlineArray* pOutArr = pDestDoc->GetOutlineTable( nTab, TRUE )->GetRowArray();
-//STRIP001 /*?*/                USHORT nOutStart = nRow+nArrY;
-//STRIP001 /*?*/                USHORT nOutEnd = nRow+nArrY+nNeeded-1;
-//STRIP001 /*?*/                BOOL bSize = FALSE;
-//STRIP001 /*?*/                pOutArr->Insert( nOutStart, nOutEnd, bSize );
-//STRIP001 /*?*/                for (USHORT nOutRow=nOutStart; nOutRow<=nOutEnd; nOutRow++)
-//STRIP001 /*?*/                    pDestDoc->ShowRow( nOutRow, nTab, FALSE );
-//STRIP001 /*?*/                pDestDoc->UpdateOutlineRow( nOutStart, nOutEnd, nTab, FALSE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                //  Zwischentitel
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if (ppTitlePos && ppTitles && ppRowHeaders)
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    String aDelim( RTL_CONSTASCII_USTRINGPARAM(" / ") );
-//STRIP001 /*?*/                    for (nPos=0; nPos<nDataCount; nPos++)
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        USHORT nTPos = ppTitlePos[nArrY][nPos];
-//STRIP001 /*?*/                        BOOL bDo = TRUE;
-//STRIP001 /*?*/                        if (nPos+1<nDataCount)
-//STRIP001 /*?*/                            if (ppTitlePos[nArrY][nPos+1] == nTPos)
-//STRIP001 /*?*/                                bDo = FALSE;                                    // leer
-//STRIP001 /*?*/                        if ( bDo && nTPos < nNeeded )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            aString =  *ppRowHeaders[nArrY];
-//STRIP001 /*?*/                            aString += aDelim;
-//STRIP001 /*?*/                            aString += *ppTitles[nPos];
-//STRIP001 /*?*/                            pDestDoc->SetString( nCol-1, nRow+nArrY+nTPos, nTab, aString );
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                nRow += nNeeded;
 /*N*/           }
 /*N*/       }
 /*N*/   }
