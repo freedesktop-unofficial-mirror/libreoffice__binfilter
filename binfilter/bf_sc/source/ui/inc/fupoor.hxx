@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fupoor.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:51:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:11:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,11 +80,9 @@ class FuPoor
 
     Timer           aScrollTimer;           // fuer Autoscrolling
     DECL_LINK( ScrollHdl, Timer * );
-//STRIP001  void ForceScroll(const Point& aPixPos);
 
     Timer           aDragTimer;             // fuer Drag&Drop
     DECL_LINK( DragTimerHdl, Timer * );
-//STRIP001  DECL_LINK( DragHdl, void * );
     BOOL            bIsInDragMode;
     Point           aMDPos;                 // Position von MouseButtonDown
 
@@ -98,46 +96,8 @@ private:
            SdrModel* pDoc, SfxRequest& rReq);
     virtual ~FuPoor();
 
-//STRIP001  // #95491# see member
-//STRIP001  void SetMouseButtonCode(sal_uInt16 nNew) { if(nNew != mnCode) mnCode = nNew; }
-//STRIP001  const sal_uInt16 GetMouseButtonCode() const { return mnCode; }
-//STRIP001
-//STRIP001  virtual void Paint(const Rectangle& rRect, Window* pWin) {}
-//STRIP001
-//STRIP001  virtual void DoCut();
-//STRIP001  virtual void DoCopy();
-//STRIP001  virtual void DoPaste();
-//STRIP001
-//STRIP001  // Mouse- & Key-Events; Returnwert=TRUE: Event wurde bearbeitet
-//STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual BOOL MouseMove(const MouseEvent& rMEvt) { return FALSE; }
-//STRIP001
-//STRIP001  // #95491# moved from inline to *.cxx
-//STRIP001  virtual BOOL MouseButtonUp(const MouseEvent& rMEvt); // { return FALSE; }
-//STRIP001
-//STRIP001  // #95491# moved from inline to *.cxx
-//STRIP001  virtual BOOL MouseButtonDown(const MouseEvent& rMEvt); // { return FALSE; }
-//STRIP001
-//STRIP001  virtual BYTE Command(const CommandEvent& rCEvt);
-//STRIP001
-//STRIP001  virtual void Activate();        // Function aktivieren
-//STRIP001  virtual void Deactivate();      // Function deaktivieren
-//STRIP001
-//STRIP001  virtual void ScrollStart() {}   // diese Funktionen werden von
-//STRIP001  virtual void ScrollEnd() {}     // ForceScroll aufgerufen
-//STRIP001
-//STRIP001  void SetWindow(Window* pWin) { pWindow = pWin; }
-//STRIP001
     USHORT GetSlotID() const { DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 USHORT GetSlotID() const { return( aSfxRequest.GetSlot() );}
-//STRIP001
-//STRIP001  BOOL    IsDetectiveHit( const Point& rLogicPos );
-//STRIP001
     void    StopDragTimer();
-//STRIP001
-//STRIP001  // #98185# Create default drawing objects via keyboard
-//STRIP001  virtual SdrObject* CreateDefaultObject(const sal_uInt16 nID, const Rectangle& rRectangle);
-//STRIP001 protected:
-//STRIP001  void ImpForceQuadratic(Rectangle& rRect);
 };
 
 
