@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:16:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:30:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -510,71 +510,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*?*/       {
 /*?*/           // minimierte restoren
 /*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
-//STRIP001 /*?*/             pSfxApp->SetViewFrame( pTop->GetCurrentViewFrame() );
-//STRIP001 /*?*/             pFrame->GetFrame()->Appear();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // fragen, ob gespeichert werden soll
-//STRIP001 /*?*/            String aText( SfxResId( STR_QUERY_SAVE_DOCUMENT ) );
-//STRIP001 /*?*/            aText.SearchAndReplace( DEFINE_CONST_UNICODE( "$(DOC)" ),
-//STRIP001 /*?*/                                    GetTitle( SFX_TITLE_PICKLIST ) );
-//STRIP001 /*?*/            /*HACK for plugin::destroy()*/
-//STRIP001 /*?*/            // Don't show SAVE dialog in plugin mode! We save our document in every way.
-//STRIP001 /*?*/            short nRet = RET_YES;
-//STRIP001 /*?*/             if( SfxApplication::IsPlugin() == sal_False || bUI == 2 )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                 //initiate help agent to inform about "print modifies the document"
-//STRIP001 /*?*/                 SfxStamp aStamp = GetDocInfo().GetPrinted();
-//STRIP001 /*?*/                 SvtPrintWarningOptions aPrintOptions;
-//STRIP001 /*?*/                 if(aPrintOptions.IsModifyDocumentOnPrintingAllowed() && HasName() && aStamp.IsValid())
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     SfxHelp::OpenHelpAgent(pFirst->GetFrame(), HID_CLOSE_WARNING);
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 QueryBox aQBox( &pFrame->GetWindow(), WB_YES_NO_CANCEL | WB_DEF_YES, aText );
-//STRIP001 /*?*/                aQBox.SetButtonText( BUTTONID_NO, SfxResId( STR_NOSAVEANDCLOSE ) );
-//STRIP001 /*?*/                aQBox.SetButtonText( BUTTONID_YES, SfxResId( STR_SAVEDOC ) );
-//STRIP001 /*?*/    //(mba)/task            if ( bForBrowsing )
-//STRIP001 /*?*/    //                aQBox.AddButton( String( SfxResId( RID_STR_NEW_TASK ) ), RET_NEWTASK, BUTTONDIALOG_DEFBUTTON | BUTTONDIALOG_FOCUSBUTTON );
-//STRIP001 /*?*/                nRet = aQBox.Execute();
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            /*HACK for plugin::destroy()*/
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if ( RET_YES == nRet )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                sal_Bool bVersion = GetDocInfo().IsSaveVersionOnClose();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // per Dispatcher speichern
-//STRIP001 /*?*/                const SfxPoolItem *pPoolItem;
-//STRIP001 /*?*/                if ( bVersion )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                     SfxStringItem aItem( SID_DOCINFO_COMMENTS, String( SfxResId( STR_AUTOMATICVERSION ) ) );
-//STRIP001 /*?*/                     SfxBoolItem aWarnItem( SID_FAIL_ON_WARNING, bUI );
-//STRIP001 /*?*/                     const SfxPoolItem* ppArgs[] = { &aItem, &aWarnItem, 0 };
-//STRIP001 /*?*/                     pPoolItem = pFrame->GetBindings().ExecuteSynchron( SID_SAVEDOC, ppArgs );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     SfxBoolItem aWarnItem( SID_FAIL_ON_WARNING, bUI );
-//STRIP001 /*?*/                     const SfxPoolItem* ppArgs[] = { &aWarnItem, 0 };
-//STRIP001 /*?*/                     pPoolItem = pFrame->GetBindings().ExecuteSynchron( SID_SAVEDOC, ppArgs );
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 if ( !pPoolItem || pPoolItem->ISA(SfxVoidItem) || ( pPoolItem->ISA(SfxBoolItem) && !( (const SfxBoolItem*) pPoolItem )->GetValue() ) )
-//STRIP001 /*?*/                    return sal_False;
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    bClose = sal_True;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if ( RET_CANCEL == nRet )
-//STRIP001 /*?*/                // abgebrochen
-//STRIP001 /*?*/                return sal_False;
-//STRIP001 /*?*/            else if ( RET_NEWTASK == nRet )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                return RET_NEWTASK;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                // Bei Nein nicht noch Informationlost
-//STRIP001 /*?*/                bClose = sal_True;
-//STRIP001 /*?*/            }
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -590,11 +525,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   {
 /*N*/       // minimierte restoren
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
-//STRIP001 /*?*/         pSfxApp->SetViewFrame( pTop->GetCurrentViewFrame() );
-//STRIP001 /*?*/         pFrame->GetFrame()->Appear();
-//STRIP001 /*?*/        QueryBox aBox( &pFrame->GetWindow(), SfxResId(MSG_CONFIRM_FILTER));
-//STRIP001 /*?*/        if ( RET_NO == aBox.Execute() )
-//STRIP001 /*?*/            return sal_False;
 /*N*/   }
 /*N*/
 /*N*/   pImp->bPreparedForClose = sal_True;
@@ -620,14 +550,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 
 //--------------------------------------------------------------------
 
-//STRIP001 Reference< XLibraryContainer > SfxObjectShell::GetDialogContainer()
-//STRIP001 {
-//STRIP001     if( !pImp->pDialogLibContainer )
-//STRIP001         GetBasicManager();
-//STRIP001  Reference< XLibraryContainer > xRet
-//STRIP001      = static_cast< XLibraryContainer* >( pImp->pDialogLibContainer );
-//STRIP001  return xRet;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -793,18 +715,6 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 
 //--------------------------------------------------------------------
 #if 0 //(mba)
-//STRIP001 SotObjectRef SfxObjectShell::CreateAggObj( const SotFactory* pFact )
-//STRIP001 {
-//STRIP001  // SvDispatch?
-//STRIP001  SotFactory* pDispFact = SvDispatch::ClassFactory();
-//STRIP001  if( pFact == pDispFact )
-//STRIP001      return( (SfxShellObject*)GetSbxObject() );
-//STRIP001
-//STRIP001  // sonst unbekannte Aggregation
-//STRIP001  DBG_ERROR("unkekannte Factory");
-//STRIP001  SotObjectRef aSvObjectRef;
-//STRIP001  return aSvObjectRef;
-//STRIP001 }
 #endif
 
 //--------------------------------------------------------------------
@@ -947,8 +857,4 @@ XModel* SfxObjectShell::GetModel()
 /*N*/     }
 /*N*/ }
 
-//STRIP001 SfxObjectShell* SfxObjectShell::GetWorkingDocument()
-//STRIP001 {
-//STRIP001  return pWorkingDoc;
-//STRIP001 }
 }
