@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrtox.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:38:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:17:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,15 +46,9 @@
 #ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
 #endif
-// auto strip #ifndef _SWFONT_HXX
-// auto strip #include <swfont.hxx>
-// auto strip #endif
 #ifndef _TOX_HXX
 #include <tox.hxx>
 #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ SwTxtTOXMark::SwTxtTOXMark( const SwTOXMark& rAttr,
