@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLTableShapesContext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:27:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:27:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -50,13 +49,7 @@
 #ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
 #endif
-// auto strip #ifndef SC_DOCUMENT_HXX
-// auto strip #include "document.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
-// auto strip #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
