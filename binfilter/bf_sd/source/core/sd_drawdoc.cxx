@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:35:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:01:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -312,7 +312,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       (LANGUAGE_HEBREW == eRealCTLLanguage) )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // ... then we have to set this as a default
-//STRIP001 /*?*/        SetDefaultWritingMode( ::com::sun::star::text::WritingMode_RL_TB );
 /*N*/   }
 /*N*/
 /*N*/   // DefTab und SpellOptions setzen
@@ -540,58 +539,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 SdrModel* SdDrawDocument::AllocModel() const
-//STRIP001 {
-//STRIP001  SdDrawDocument* pNewModel = NULL;
-//STRIP001
-//STRIP001  if( pCreatingTransferable )
-//STRIP001  {
-//STRIP001      // Dokument wird fuer Drag&Drop/Clipboard erzeugt, dafuer muss dem Dokument eine DocShell (SvPersist) bekannt sein
-//STRIP001      SvEmbeddedObject*   pObj = NULL;
-//STRIP001      SdDrawDocShell*     pNewDocSh = NULL;
-//STRIP001
-//STRIP001      if( eDocType == DOCUMENT_TYPE_IMPRESS )
-//STRIP001          pCreatingTransferable->SetDocShell( new SdDrawDocShell( SFX_CREATE_MODE_EMBEDDED, TRUE, eDocType ) );
-//STRIP001      else
-//STRIP001          pCreatingTransferable->SetDocShell( new SdGraphicDocShell( SFX_CREATE_MODE_EMBEDDED, TRUE, eDocType ) );
-//STRIP001
-//STRIP001         pNewDocSh = (SdDrawDocShell*) ( pObj = pCreatingTransferable->GetDocShell() );
-//STRIP001      pNewDocSh->DoInitNew( NULL );
-//STRIP001      pNewModel = pNewDocSh->GetDoc();
-//STRIP001
-//STRIP001      // Nur fuer Clipboard notwendig,
-//STRIP001      // fuer Drag&Drop erfolgt dieses im DragServer
-//STRIP001      SdStyleSheetPool* pOldStylePool = (SdStyleSheetPool*) GetStyleSheetPool();
-//STRIP001      SdStyleSheetPool* pNewStylePool = (SdStyleSheetPool*) pNewModel->GetStyleSheetPool();
-//STRIP001
-//STRIP001      pNewStylePool->CopyGraphicSheets(*pOldStylePool);
-//STRIP001
-//STRIP001      for (USHORT i = 0; i < GetMasterSdPageCount(PK_STANDARD); i++)
-//STRIP001      {
-//STRIP001          // Alle Layouts der MasterPage mitnehmen
-//STRIP001          String aOldLayoutName(((SdDrawDocument*) this)->GetMasterSdPage(i, PK_STANDARD)->GetLayoutName());
-//STRIP001          aOldLayoutName.Erase( aOldLayoutName.SearchAscii( SD_LT_SEPARATOR ) );
-//STRIP001          pNewStylePool->CopyLayoutSheets(aOldLayoutName, *pOldStylePool);
-//STRIP001      }
-//STRIP001
-//STRIP001      pNewModel->NewOrLoadCompleted( DOC_LOADED );  // loaded from source document
-//STRIP001  }
-//STRIP001  else if( bAllocDocSh )
-//STRIP001  {
-//STRIP001      // Es wird eine DocShell erzeugt, welche mit GetAllocedDocSh() zurueckgegeben wird
-//STRIP001      SdDrawDocument* pDoc = (SdDrawDocument*) this;
-//STRIP001      pDoc->SetAllocDocSh(FALSE);
-//STRIP001      pDoc->xAllocedDocShRef = new SdDrawDocShell(SFX_CREATE_MODE_EMBEDDED, TRUE, eDocType);
-//STRIP001      pDoc->xAllocedDocShRef->DoInitNew(NULL);
-//STRIP001      pNewModel = pDoc->xAllocedDocShRef->GetDoc();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pNewModel = new SdDrawDocument(eDocType, NULL);
-//STRIP001  }
-//STRIP001
-//STRIP001  return pNewModel;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1135,10 +1082,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocument::SetPresFirstPage(ULONG nNewPresFirstPage)
-//STRIP001 {
-//STRIP001  nPresFirstPage = nNewPresFirstPage;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1667,55 +1610,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocument::SetOnlineSpell(BOOL bIn)
-//STRIP001 {
-//STRIP001  bOnlineSpell = bIn;
-//STRIP001  ULONG nCntrl = 0;
-//STRIP001
-//STRIP001  if (pOutliner)
-//STRIP001  {
-//STRIP001      nCntrl = pOutliner->GetControlWord();
-//STRIP001
-//STRIP001      if (bOnlineSpell)
-//STRIP001          nCntrl |= EE_CNTRL_ONLINESPELLING;
-//STRIP001      else
-//STRIP001          nCntrl &= ~EE_CNTRL_ONLINESPELLING;
-//STRIP001
-//STRIP001      pOutliner->SetControlWord(nCntrl);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pInternalOutliner)
-//STRIP001  {
-//STRIP001      nCntrl = pInternalOutliner->GetControlWord();
-//STRIP001
-//STRIP001      if (bOnlineSpell)
-//STRIP001          nCntrl |= EE_CNTRL_ONLINESPELLING;
-//STRIP001      else
-//STRIP001          nCntrl &= ~EE_CNTRL_ONLINESPELLING;
-//STRIP001
-//STRIP001      pInternalOutliner->SetControlWord(nCntrl);
-//STRIP001  }
-//STRIP001
-//STRIP001  Outliner& rOutliner = GetDrawOutliner();
-//STRIP001
-//STRIP001  nCntrl = rOutliner.GetControlWord();
-//STRIP001
-//STRIP001  if (bOnlineSpell)
-//STRIP001      nCntrl |= EE_CNTRL_ONLINESPELLING;
-//STRIP001  else
-//STRIP001      nCntrl &= ~EE_CNTRL_ONLINESPELLING;
-//STRIP001
-//STRIP001  rOutliner.SetControlWord(nCntrl);
-//STRIP001
-//STRIP001  if (bOnlineSpell)
-//STRIP001  {
-//STRIP001      StartOnlineSpelling();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      StopOnlineSpelling();
-//STRIP001  }
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1724,46 +1618,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 void SdDrawDocument::SetHideSpell(BOOL bIn)
-//STRIP001 {
-//STRIP001  bHideSpell = bIn;
-//STRIP001  ULONG nCntrl = 0;
-//STRIP001
-//STRIP001  if (pOutliner)
-//STRIP001  {
-//STRIP001      nCntrl = pOutliner->GetControlWord();
-//STRIP001
-//STRIP001      if (bHideSpell)
-//STRIP001          nCntrl |= EE_CNTRL_NOREDLINES;
-//STRIP001      else
-//STRIP001          nCntrl &= ~EE_CNTRL_NOREDLINES;
-//STRIP001
-//STRIP001      pOutliner->SetControlWord(nCntrl);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pInternalOutliner)
-//STRIP001  {
-//STRIP001      nCntrl = pInternalOutliner->GetControlWord();
-//STRIP001
-//STRIP001      if (bHideSpell)
-//STRIP001          nCntrl |= EE_CNTRL_NOREDLINES;
-//STRIP001      else
-//STRIP001          nCntrl &= ~EE_CNTRL_NOREDLINES;
-//STRIP001
-//STRIP001      pInternalOutliner->SetControlWord(nCntrl);
-//STRIP001  }
-//STRIP001
-//STRIP001  Outliner& rOutliner = GetDrawOutliner();
-//STRIP001
-//STRIP001  nCntrl = rOutliner.GetControlWord();
-//STRIP001
-//STRIP001  if (bHideSpell)
-//STRIP001     nCntrl |= EE_CNTRL_NOREDLINES;
-//STRIP001  else
-//STRIP001     nCntrl &= ~EE_CNTRL_NOREDLINES;
-//STRIP001
-//STRIP001  rOutliner.SetControlWord(nCntrl);
-//STRIP001 }
 
 /*N*/ uno::Reference< uno::XInterface > SdDrawDocument::createUnoModel()
 /*N*/ {
@@ -1823,14 +1677,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/     return mnPrinterIndependentLayout;
 /*N*/ }
 
-//STRIP001 bool SdDrawDocument::IsStartWithPresentation() const
-//STRIP001 {
-//STRIP001  return mbStartWithPresentation;
-//STRIP001 }
 
-//STRIP001 void SdDrawDocument::SetStartWithPresentation( bool bStartWithPresentation )
-//STRIP001 {
-//STRIP001  mbStartWithPresentation = bStartWithPresentation;
-//STRIP001 }
 
 }
