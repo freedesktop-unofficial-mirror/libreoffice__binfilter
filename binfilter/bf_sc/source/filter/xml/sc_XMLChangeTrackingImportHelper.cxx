@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLChangeTrackingImportHelper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:21:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:22:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,19 +42,7 @@
 #ifndef SC_CELL_HXX
 #include "cell.hxx"
 #endif
-// auto strip #ifndef SC_DOCUMENT_HXX
-// auto strip #include "document.hxx"
-// auto strip #endif
-// auto strip #ifndef SC_CHGVISET_HXX
-// auto strip #include "chgviset.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATETIME_HXX
-// auto strip #include <tools/datetime.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLChangeTrackingExportHelper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:21:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:22:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
 #endif
-// auto strip #ifndef SC_DOCUMENT_HXX
-// auto strip #include "document.hxx"
-// auto strip #endif
 #ifndef SC_CHGTRACK_HXX
 #include "chgtrack.hxx"
 #endif
@@ -62,22 +59,10 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include <bf_xmloff/nmspmap.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-// auto strip #include <com/sun/star/util/DateTime.hpp>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATETIME_HXX
-// auto strip #include <tools/datetime.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
