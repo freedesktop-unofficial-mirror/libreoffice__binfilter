@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:59:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:42:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@
 #ifndef SVX_LIGHT
 #include <so3/lnkbase.hxx>
 #else
-// auto strip #include <svtools/pathoptions.hxx>
 #endif
 
 #include <math.h>
@@ -49,30 +48,17 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <svtools/style.hxx>
-// auto strip #include <svtools/filter.hxx>
 #include <svtools/urihelper.hxx>
-// auto strip #include <goodies/grfmgr.hxx>
 #include "linkmgr.hxx"
-// auto strip #include "svdxout.hxx"
 #include "svdio.hxx"
-// auto strip #include "svdetc.hxx"
 #include "svdglob.hxx"
 #include "svdstr.hrc"
 #include "svdpool.hxx"
-// auto strip #include "svdmodel.hxx"
-// auto strip #include "svdpage.hxx"
-// auto strip #include "svdmrkv.hxx"
 #include "svdpagv.hxx"
 #include "svdviter.hxx"
 #include "svdview.hxx"
 #include "impgrf.hxx"
 #include "svdograf.hxx"
-// auto strip #include "svdogrp.hxx"
-// auto strip #include "xbitmap.hxx"
-// auto strip #include "xbtmpit.hxx"
-// auto strip #include "xflbmtit.hxx"
-// auto strip #include "svdundo.hxx"
-// auto strip #include "svdfmtf.hxx"
 #include "sdgcpitm.hxx"
 
 #ifndef _EEITEM_HXX
@@ -300,42 +286,6 @@ namespace binfilter {
 
 /*N*/ Graphic SdrGrafObj::GetTransformedGraphic( ULONG nTransformFlags ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); Graphic           aTransGraphic( GetGraphic() );return aTransGraphic;//STRIP001
-//STRIP001     // #107947# Refactored most of the code to GraphicObject, where
-//STRIP001     // everybody can use e.g. the cropping functionality
-//STRIP001
-//STRIP001  GraphicType     eType = GetGraphicType();
-//STRIP001     MapMode          aDestMap( pModel->GetScaleUnit(), Point(), pModel->GetScaleFraction(), pModel->GetScaleFraction() );
-//STRIP001     const Size      aDestSize( GetLogicRect().GetSize() );
-//STRIP001     const BOOL      bMirror = ( nTransformFlags & SDRGRAFOBJ_TRANSFORMATTR_MIRROR ) != 0;
-//STRIP001     const BOOL      bRotate = ( ( nTransformFlags & SDRGRAFOBJ_TRANSFORMATTR_ROTATE ) != 0 ) &&
-//STRIP001         ( aGeo.nDrehWink && aGeo.nDrehWink != 18000 ) && ( GRAPHIC_NONE != eType );
-//STRIP001
-//STRIP001     // #104115# Need cropping info earlier
-//STRIP001     ( (SdrGrafObj*) this )->ImpSetAttrToGrafInfo();
-//STRIP001     GraphicAttr aActAttr;
-//STRIP001
-//STRIP001  if( SDRGRAFOBJ_TRANSFORMATTR_NONE != nTransformFlags &&
-//STRIP001         GRAPHIC_NONE != eType )
-//STRIP001  {
-//STRIP001         // actually transform the graphic only in this case. On the
-//STRIP001         // other hand, cropping will always happen
-//STRIP001         aActAttr = aGrafInfo;
-//STRIP001
-//STRIP001         if( bMirror )
-//STRIP001      {
-//STRIP001          USHORT      nMirrorCase = ( aGeo.nDrehWink == 18000 ) ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 );
-//STRIP001          FASTBOOL    bHMirr = nMirrorCase == 2 || nMirrorCase == 4;
-//STRIP001          FASTBOOL    bVMirr = nMirrorCase == 3 || nMirrorCase == 4;
-//STRIP001
-//STRIP001          aActAttr.SetMirrorFlags( ( bHMirr ? BMP_MIRROR_HORZ : 0 ) | ( bVMirr ? BMP_MIRROR_VERT : 0 ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bRotate )
-//STRIP001          aActAttr.SetRotation( aGeo.nDrehWink / 10 );
-//STRIP001  }
-//STRIP001
-//STRIP001     // #107947# Delegate to moved code in GraphicObject
-//STRIP001     return GetGraphicObject().GetTransformedGraphic( aDestSize, aDestMap, aActAttr );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -347,38 +297,18 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrGrafObj::IsAnimated() const
-//STRIP001 {
-//STRIP001  return pGraphic->IsAnimated();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrGrafObj::IsTransparent() const
-//STRIP001 {
-//STRIP001  return pGraphic->IsTransparent();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrGrafObj::IsEPS() const
-//STRIP001 {
-//STRIP001  return pGraphic->IsEPS();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 const MapMode& SdrGrafObj::GetGrafPrefMapMode() const
-//STRIP001 {
-//STRIP001  return pGraphic->GetPrefMapMode();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 const Size& SdrGrafObj::GetGrafPrefSize() const
-//STRIP001 {
-//STRIP001  return pGraphic->GetPrefSize();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -404,31 +334,16 @@ namespace binfilter {
 
 /*N*/ String SdrGrafObj::GetGrafStreamURL() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;//STRIP001
-//STRIP001  return pGraphic->GetUserData();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::SetFileName(const String& rFileName)
-//STRIP001 {
-//STRIP001  aFileName = rFileName;
-//STRIP001  SetChanged();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::SetFilterName(const String& rFilterName)
-//STRIP001 {
-//STRIP001  aFilterName = rFilterName;
-//STRIP001  SetChanged();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrGrafObj::HasSetName() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -532,32 +447,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  FASTBOOL bTrans = pGraphic->IsTransparent();
-//STRIP001  FASTBOOL bAnim = pGraphic->IsAnimated();
-//STRIP001  FASTBOOL bNoPresGrf = ( pGraphic->GetType() != GRAPHIC_NONE ) && !bEmptyPresObj;
-//STRIP001
-//STRIP001  rInfo.bResizeFreeAllowed = aGeo.nDrehWink % 9000 == 0 ||
-//STRIP001                             aGeo.nDrehWink % 18000 == 0 ||
-//STRIP001                             aGeo.nDrehWink % 27000 == 0;
-//STRIP001
-//STRIP001  rInfo.bResizePropAllowed = TRUE;
-//STRIP001  rInfo.bRotateFreeAllowed = bNoPresGrf && !bAnim;
-//STRIP001  rInfo.bRotate90Allowed = bNoPresGrf && !bAnim;
-//STRIP001  rInfo.bMirrorFreeAllowed = bNoPresGrf && !bAnim;
-//STRIP001  rInfo.bMirror45Allowed = bNoPresGrf && !bAnim;
-//STRIP001  rInfo.bMirror90Allowed = !bEmptyPresObj;
-//STRIP001  rInfo.bTransparenceAllowed = FALSE;
-//STRIP001  rInfo.bGradientAllowed = FALSE;
-//STRIP001  rInfo.bShearAllowed = FALSE;
-//STRIP001  rInfo.bEdgeRadiusAllowed=FALSE;
-//STRIP001  rInfo.bCanConvToPath = FALSE;
-//STRIP001  rInfo.bCanConvToPathLineToArea = FALSE;
-//STRIP001  rInfo.bCanConvToPolyLineToArea = FALSE;
-//STRIP001  rInfo.bCanConvToPoly = !IsEPS();
-//STRIP001  rInfo.bCanConvToContour = (rInfo.bCanConvToPoly || LineGeometryUsageIsNecessary());
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -608,50 +497,6 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 // Liefert FALSE, wenn die Pres-Bitmap zu gross ist
-//STRIP001 FASTBOOL SdrGrafObj::ImpPaintEmptyPres( OutputDevice* pOutDev ) const
-//STRIP001 {
-//STRIP001  const MapMode   aDstMapMode( pOutDev->GetMapMode().GetMapUnit() );
-//STRIP001  Point           aPos( aRect.Center() );
-//STRIP001  Size            aSize;
-//STRIP001     FASTBOOL        bRet;
-//STRIP001
-//STRIP001  if( pGraphic->GetPrefMapMode().GetMapUnit() == MAP_PIXEL )
-//STRIP001      aSize = pOutDev->PixelToLogic( pGraphic->GetPrefSize(), aDstMapMode );
-//STRIP001  else
-//STRIP001      aSize = pOutDev->LogicToLogic( pGraphic->GetPrefSize(), pGraphic->GetPrefMapMode(), aDstMapMode );
-//STRIP001
-//STRIP001  aPos.X() -= ( aSize.Width() >> 1 );
-//STRIP001  aPos.Y() -= ( aSize.Height() >> 1 );
-//STRIP001
-//STRIP001     if( aPos.X() >= aRect.Left() && aPos.Y() >= aRect.Top() )
-//STRIP001  {
-//STRIP001      const Graphic& rGraphic = pGraphic->GetGraphic();
-//STRIP001
-//STRIP001      if( pGraphic->GetType() == GRAPHIC_BITMAP )
-//STRIP001          pGraphic->Draw( pOutDev, aPos, aSize, NULL );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          const ULONG nOldDrawMode = pOutDev->GetDrawMode();
-//STRIP001
-//STRIP001          if( ( nOldDrawMode & DRAWMODE_GRAYBITMAP ) != 0 )
-//STRIP001          {
-//STRIP001              // Falls Modus GRAYBITMAP, wollen wir auch Mtf's als Graustufen darstellen
-//STRIP001              ULONG nNewDrawMode = nOldDrawMode;
-//STRIP001              nNewDrawMode &= ~( DRAWMODE_BLACKLINE | DRAWMODE_BLACKFILL | DRAWMODE_WHITEFILL | DRAWMODE_NOFILL );
-//STRIP001              pOutDev->SetDrawMode( nNewDrawMode |= DRAWMODE_GRAYLINE | DRAWMODE_GRAYFILL  );
-//STRIP001          }
-//STRIP001
-//STRIP001          rGraphic.Draw( pOutDev, aPos, aSize );
-//STRIP001          pOutDev->SetDrawMode( nOldDrawMode );
-//STRIP001      }
-//STRIP001
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bRet = FALSE;
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -893,16 +738,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bSwappedOut && !bDraft )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        if( !ImpUpdateGraphicLink() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if( ( OUTDEV_WINDOW == pOutDev->GetOutDevType() ) && !bMtfRecording && pView && pView->IsSwapAsynchron() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ( (SdrView*) pView )->ImpAddAsyncObj( this, pOutDev );
-//STRIP001 /*?*/                bLoading = TRUE;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                ForceSwapIn();
-//STRIP001 /*?*/        }
 /*N*/   }
 
 /*N*/   if( pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE ) || ( pGraphic->GetType() == GRAPHIC_DEFAULT ) )
@@ -947,16 +782,6 @@ namespace binfilter {
 /*?*/
 /*?*/                   if( bEnable )
 /*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
-//STRIP001 /*?*/                        const SvtAccessibilityOptions& rOpt = const_cast< SdrView* >( pView )->getAccessibilityOptions();
-//STRIP001 /*?*/                        sal_Bool bIsAllowedAnimatedGraphics = rOpt.GetIsAllowAnimatedGraphics();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if( !bIsAllowedAnimatedGraphics )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            pGraphic->StopAnimation();
-//STRIP001 /*?*/                            pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
-//STRIP001 /*?*/                            bEnable = FALSE;
-//STRIP001 /*?*/                             bDidPaint = true;
-//STRIP001 /*?*/                        }
 /*?*/                   }
 /*?*/               }
 /*?*/
@@ -964,8 +789,6 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   if( eAnimMode == SDR_ANIMATION_ANIMATE )
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                        pGraphic->SetAnimationNotifyHdl( LINK( this, SdrGrafObj, ImpAnimationHdl ) );
-//STRIP001 /*?*/                        pGraphic->StartAnimation( pOutDev, aLogPos, aLogSize, 0, &aAttr );
 /*?*/                   }
 /*?*/                   else if( eAnimMode == SDR_ANIMATION_DONT_ANIMATE )
 /*?*/                       pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
@@ -1065,77 +888,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  switch( pGraphic->GetType() )
-//STRIP001  {
-//STRIP001      case GRAPHIC_BITMAP:
-//STRIP001         {
-//STRIP001             const USHORT nId = ( ( IsTransparent() || ( (const SdrGrafTransparenceItem&) GetItem( SDRATTR_GRAFTRANSPARENCE ) ).GetValue() ) ?
-//STRIP001                                  ( IsLinkedGraphic() ? STR_ObjNameSingulGRAFBMPTRANSLNK : STR_ObjNameSingulGRAFBMPTRANS ) :
-//STRIP001                                  ( IsLinkedGraphic() ? STR_ObjNameSingulGRAFBMPLNK : STR_ObjNameSingulGRAFBMP ) );
-//STRIP001
-//STRIP001             rName=ImpGetResStr( nId );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001
-//STRIP001      case GRAPHIC_GDIMETAFILE:
-//STRIP001             rName=ImpGetResStr( IsLinkedGraphic() ? STR_ObjNameSingulGRAFMTFLNK : STR_ObjNameSingulGRAFMTF );
-//STRIP001         break;
-//STRIP001
-//STRIP001         case GRAPHIC_NONE:
-//STRIP001             rName=ImpGetResStr( IsLinkedGraphic() ? STR_ObjNameSingulGRAFNONELNK : STR_ObjNameSingulGRAFNONE );
-//STRIP001         break;
-//STRIP001
-//STRIP001         default:
-//STRIP001             rName=ImpGetResStr(  IsLinkedGraphic() ? STR_ObjNameSingulGRAFLNK : STR_ObjNameSingulGRAF );
-//STRIP001         break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( aName.Len() )
-//STRIP001  {
-//STRIP001      rName.AppendAscii( " '" );
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode( '\'' );
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::TakeObjNamePlural( XubString& rName ) const
-//STRIP001 {
-//STRIP001  switch( pGraphic->GetType() )
-//STRIP001  {
-//STRIP001      case GRAPHIC_BITMAP:
-//STRIP001         {
-//STRIP001             const USHORT nId = ( ( IsTransparent() || ( (const SdrGrafTransparenceItem&) GetItem( SDRATTR_GRAFTRANSPARENCE ) ).GetValue() ) ?
-//STRIP001                                  ( IsLinkedGraphic() ? STR_ObjNamePluralGRAFBMPTRANSLNK : STR_ObjNamePluralGRAFBMPTRANS ) :
-//STRIP001                                  ( IsLinkedGraphic() ? STR_ObjNamePluralGRAFBMPLNK : STR_ObjNamePluralGRAFBMP ) );
-//STRIP001
-//STRIP001             rName=ImpGetResStr( nId );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001
-//STRIP001      case GRAPHIC_GDIMETAFILE:
-//STRIP001             rName=ImpGetResStr( IsLinkedGraphic() ? STR_ObjNamePluralGRAFMTFLNK : STR_ObjNamePluralGRAFMTF );
-//STRIP001         break;
-//STRIP001
-//STRIP001         case GRAPHIC_NONE:
-//STRIP001             rName=ImpGetResStr( IsLinkedGraphic() ? STR_ObjNamePluralGRAFNONELNK : STR_ObjNamePluralGRAFNONE );
-//STRIP001         break;
-//STRIP001
-//STRIP001         default:
-//STRIP001             rName=ImpGetResStr(  IsLinkedGraphic() ? STR_ObjNamePluralGRAFLNK : STR_ObjNamePluralGRAF );
-//STRIP001         break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( aName.Len() )
-//STRIP001  {
-//STRIP001      rName.AppendAscii( " '" );
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode( '\'' );
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1164,24 +919,12 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL SdrGrafObj::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 USHORT SdrGrafObj::GetHdlCount() const
-//STRIP001 {
-//STRIP001  return 8;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 SdrHdl* SdrGrafObj::GetHdl(USHORT nHdlNum) const
-//STRIP001 {
-//STRIP001  return SdrRectObj::GetHdl( nHdlNum + 1 );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1205,18 +948,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::NbcMirror(const Point& rRef1, const Point& rRef2)
-//STRIP001 {
-//STRIP001  SdrRectObj::NbcMirror(rRef1,rRef2);
-//STRIP001  bMirrored = !bMirrored;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
-//STRIP001 {
-//STRIP001  SdrRectObj::NbcRotate( rRef, nWink, tn, bVShear );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1251,17 +985,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::RestGeoData(const SdrObjGeoData& rGeo)
-//STRIP001 {
-//STRIP001  long        nDrehMerk = aGeo.nDrehWink;
-//STRIP001  long        nShearMerk = aGeo.nShearWink;
-//STRIP001  FASTBOOL    bMirrMerk = bMirrored;
-//STRIP001  Size        aSizMerk( aRect.GetSize() );
-//STRIP001
-//STRIP001  SdrRectObj::RestGeoData(rGeo);
-//STRIP001  SdrGrafObjGeoData& rGGeo=(SdrGrafObjGeoData&)rGeo;
-//STRIP001  bMirrored=rGGeo.bMirrored;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1314,24 +1037,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::StartAnimation( OutputDevice* pOutDev, const Point& rPoint, const Size& rSize, long nExtraData )
-//STRIP001 {
-//STRIP001  GraphicAttr     aAttr( aGrafInfo );
-//STRIP001  USHORT          nMirrorCase = ( aGeo.nDrehWink == 18000 ) ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 );
-//STRIP001  FASTBOOL        bHMirr = nMirrorCase == 2 || nMirrorCase == 4;
-//STRIP001  FASTBOOL        bVMirr = nMirrorCase == 3 || nMirrorCase == 4;
-//STRIP001
-//STRIP001  aAttr.SetMirrorFlags( ( bHMirr ? BMP_MIRROR_HORZ : 0 ) | ( bVMirr ? BMP_MIRROR_VERT : 0 ) );
-//STRIP001  pGraphic->SetAnimationNotifyHdl( LINK( this, SdrGrafObj, ImpAnimationHdl ) );
-//STRIP001  pGraphic->StartAnimation( pOutDev, rPoint, rSize, nExtraData, &aAttr );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::StopAnimation(OutputDevice* pOutDev, long nExtraData)
-//STRIP001 {
-//STRIP001  pGraphic->StopAnimation( pOutDev, nExtraData );
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1652,43 +1360,12 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 Rectangle SdrGrafObj::GetAnimationRect(const OutputDevice* pOutDev) const
-//STRIP001 {
-//STRIP001  return GetSnapRect();
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::SetAnimationSupervisor( OutputDevice* pDisplayDev, BOOL bObjSupervises )
-//STRIP001 {
-//STRIP001  ForceSwapIn();
-//STRIP001  List* pAInfoList = pGraphic->GetAnimationInfoList();
-//STRIP001
-//STRIP001  if ( pAInfoList )
-//STRIP001  {
-//STRIP001      for( AInfo* pAInfo = (AInfo*) pAInfoList->First(); pAInfo; pAInfo = (AInfo*) pAInfoList->Next() )
-//STRIP001      {
-//STRIP001          if( pAInfo->pOutDev == pDisplayDev )
-//STRIP001          {
-//STRIP001              pAInfo->nExtraData = ( bObjSupervises ? 1L : (long) this );
-//STRIP001
-//STRIP001              if ( !bObjSupervises )
-//STRIP001                  pAInfo->bPause = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrGrafObj::ResetAnimationLoopCount()
-//STRIP001 {
-//STRIP001  if( pGraphic->IsAnimated() )
-//STRIP001  {
-//STRIP001      ForceSwapIn();
-//STRIP001      pGraphic->ResetAnimationLoopCount();
-//STRIP001  }
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -1700,85 +1377,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 SdrObject* SdrGrafObj::DoConvertToPolyObj(BOOL bBezier) const
-//STRIP001 {
-//STRIP001  SdrObject* pRetval = NULL;
-//STRIP001
-//STRIP001  switch( GetGraphicType() )
-//STRIP001  {
-//STRIP001      case GRAPHIC_GDIMETAFILE:
-//STRIP001      {
-//STRIP001          // NUR die aus dem MetaFile erzeugbaren Objekte in eine Gruppe packen und zurueckliefern
-//STRIP001          SdrObjGroup*            pGrp = new SdrObjGroup();
-//STRIP001          ImpSdrGDIMetaFileImport aFilter(*GetModel());
-//STRIP001          Point                   aOutPos( aRect.TopLeft() );
-//STRIP001          const Size              aOutSiz( aRect.GetSize() );
-//STRIP001
-//STRIP001          aFilter.SetScaleRect(GetSnapRect());
-//STRIP001          aFilter.SetLayer(GetLayer());
-//STRIP001
-//STRIP001          UINT32 nInsAnz = aFilter.DoImport(GetTransformedGraphic().GetGDIMetaFile(), *pGrp->GetSubList(), 0);
-//STRIP001          if(nInsAnz)
-//STRIP001          {
-//STRIP001              pRetval = pGrp;
-//STRIP001              pGrp->NbcSetLayer(GetLayer());
-//STRIP001              pGrp->SetModel(GetModel());
-//STRIP001              pRetval = ImpConvertAddText(pRetval, bBezier);
-//STRIP001
-//STRIP001                 // convert all children
-//STRIP001                 if( pRetval )
-//STRIP001                 {
-//STRIP001                     SdrObject* pHalfDone = pRetval;
-//STRIP001                     pRetval = pHalfDone->DoConvertToPolyObj(bBezier);
-//STRIP001                     delete pHalfDone; // resulting object is newly created
-//STRIP001
-//STRIP001                     if( pRetval )
-//STRIP001                     {
-//STRIP001                         // flatten subgroups. As we call
-//STRIP001                         // DoConvertToPolyObj() on the resulting group
-//STRIP001                         // objects, subgroups can exist (e.g. text is
-//STRIP001                         // a group object for every line).
-//STRIP001                         SdrObjList* pList = pRetval->GetSubList();
-//STRIP001                         if( pList )
-//STRIP001                             pList->FlattenGroups();
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              delete pGrp;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      case GRAPHIC_BITMAP:
-//STRIP001      {
-//STRIP001          // Grundobjekt kreieren und Fuellung ergaenzen
-//STRIP001          pRetval = SdrRectObj::DoConvertToPolyObj(bBezier);
-//STRIP001
-//STRIP001          // Bitmap als Attribut retten
-//STRIP001          if(pRetval)
-//STRIP001          {
-//STRIP001              // Bitmap als Fuellung holen
-//STRIP001              SfxItemSet aSet(GetItemSet());
-//STRIP001
-//STRIP001              aSet.Put(XFillStyleItem(XFILL_BITMAP));
-//STRIP001              Bitmap aBitmap( GetTransformedGraphic().GetBitmap() );
-//STRIP001              XOBitmap aXBmp(aBitmap, XBITMAP_STRETCH);
-//STRIP001              aSet.Put(XFillBitmapItem(String(), aXBmp));
-//STRIP001              aSet.Put(XFillBmpTileItem(FALSE));
-//STRIP001
-//STRIP001              pRetval->SetItemSet(aSet);
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      case GRAPHIC_NONE:
-//STRIP001      case GRAPHIC_DEFAULT:
-//STRIP001      {
-//STRIP001          pRetval = SdrRectObj::DoConvertToPolyObj(bBezier);
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pRetval;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -2069,145 +1667,5 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 IMPL_LINK( SdrGrafObj, ImpAnimationHdl, Animation*, pAnimation )
-//STRIP001 {
-//STRIP001     // Wenn wir nicht mehr da sind, stoppen wir natuerlich alles und kehren gleich zurueck
-//STRIP001     if( !bInserted )
-//STRIP001  {
-//STRIP001         pAnimation->Stop();
-//STRIP001         return 0L;
-//STRIP001     }
-//STRIP001
-//STRIP001     List*    pAInfoList = pAnimation->GetAInfoList();
-//STRIP001     AInfo*   pAInfo = (AInfo*) pAInfoList->First();
-//STRIP001  BOOL    bExtern = FALSE;
-//STRIP001
-//STRIP001     // Alle Extra-Data auf 0 setzen, wenn keine andere ExtraData
-//STRIP001     // ausser der eigenen (1) gesetzt;
-//STRIP001     // groesser als 1 bedeutet, daß die Animation von aussen gestartet
-//STRIP001     // wurde, z.B. von der DiaShow.
-//STRIP001     while( pAInfo != NULL )
-//STRIP001  {
-//STRIP001         if( pAInfo->nExtraData == 1L )
-//STRIP001          pAInfo->nExtraData = 0;
-//STRIP001      else if( pAInfo->nExtraData > 1L )
-//STRIP001          bExtern = TRUE;
-//STRIP001
-//STRIP001      pAInfo = (AInfo*) pAInfoList->Next();
-//STRIP001     }
-//STRIP001
-//STRIP001     if( pModel!=NULL && pPage!=NULL && bInserted && pAInfoList->Count() )
-//STRIP001  {
-//STRIP001         USHORT       nPageNum=pPage->GetPageNum();
-//STRIP001         FASTBOOL    bMaster=pPage->IsMasterPage() && !bNotVisibleAsMaster;
-//STRIP001         USHORT      nLsAnz=pModel->GetListenerCount();
-//STRIP001
-//STRIP001         for( USHORT nLsNum=0; nLsNum<nLsAnz; nLsNum++ )
-//STRIP001      {
-//STRIP001             SfxListener* pLs=pModel->GetListener(nLsNum);
-//STRIP001             SdrMarkView* pView=PTR_CAST(SdrMarkView,pLs);
-//STRIP001
-//STRIP001             if( pView && ( pView->IsAnimationEnabled() || bExtern ) )
-//STRIP001          {
-//STRIP001                 FASTBOOL bMrk=pView->IsObjMarked(this);
-//STRIP001                 FASTBOOL    bPause=pView->IsAnimationPause();
-//STRIP001                 USHORT       nPvAnz=pView->GetPageViewCount();
-//STRIP001
-//STRIP001              for (USHORT nPvNum=0; nPvNum<nPvAnz; nPvNum++)
-//STRIP001              {
-//STRIP001                     SdrPageView* pPV=pView->GetPageViewPvNum(nPvNum);
-//STRIP001                     SdrPage*     pPg=pPV->GetPage();
-//STRIP001
-//STRIP001                  if (pPV->GetVisibleLayers().IsSet(nLayerID))
-//STRIP001                  {
-//STRIP001                         FASTBOOL bJa=pPg==pPage;
-//STRIP001
-//STRIP001                      if (!bJa && bMaster && !pPg->IsMasterPage())
-//STRIP001                      {
-//STRIP001                             USHORT nMasterAnz=pPg->GetMasterPageCount();
-//STRIP001
-//STRIP001                          for (USHORT nMasterNum=0; nMasterNum<nMasterAnz && !bJa; nMasterNum++)
-//STRIP001                          {
-//STRIP001                                 const SdrMasterPageDescriptor& rMPD=pPg->GetMasterPageDescriptor(nMasterNum);
-//STRIP001                                 bJa=nPageNum==rMPD.GetPageNum() && rMPD.GetVisibleLayers().IsSet(nLayerID);
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                         if (bJa)
-//STRIP001                      {
-//STRIP001                             USHORT nOutAnz=pView->GetWinCount();
-//STRIP001
-//STRIP001                          for (USHORT nOutNum=0; nOutNum<nOutAnz; nOutNum++)
-//STRIP001                          {
-//STRIP001                                 OutputDevice* pOut=pView->GetWin(nOutNum);
-//STRIP001
-//STRIP001                              if( pOut->GetOutDevType()==OUTDEV_WINDOW )
-//STRIP001                              {
-//STRIP001                                  Rectangle   aDrawRect( GetAnimationRect( pOut ) );
-//STRIP001                                  const Point aOffset( pPV->GetOffset() );
-//STRIP001                                     FASTBOOL bFound = FALSE;
-//STRIP001
-//STRIP001                                  aDrawRect.Move( aOffset.X(), aOffset.Y() );
-//STRIP001
-//STRIP001                                     // Flag am gefundenen Objekt setzen
-//STRIP001                                     pAInfo=(AInfo*)pAInfoList->First();
-//STRIP001                                     while( pAInfo!=NULL && !bFound )
-//STRIP001                                  {
-//STRIP001                                         if (pAInfo->aStartOrg==aDrawRect.TopLeft() &&
-//STRIP001                                             pAInfo->aStartSize==aDrawRect.GetSize() &&
-//STRIP001                                             pAInfo->pOutDev==pOut )
-//STRIP001                                         {
-//STRIP001                                          if( pAInfo->nExtraData==0 )
-//STRIP001                                              pAInfo->nExtraData=1L;
-//STRIP001
-//STRIP001                                             pAInfo->bPause = ( bMrk || bPause );
-//STRIP001                                             bFound = TRUE;
-//STRIP001                                         }
-//STRIP001
-//STRIP001                                      pAInfo=(AInfo*)pAInfoList->Next();
-//STRIP001                                     }
-//STRIP001
-//STRIP001                                     // Falls kein Record gefunden, wird ein neuer erzeugt
-//STRIP001                                     // Das passiert z.B., wenn das Obj auf einer MasterPage liegt
-//STRIP001                                     // und diese mittels MasterPagePaintCache angezeigt wurde.
-//STRIP001                                     if (!bFound)
-//STRIP001                                     {
-//STRIP001                                         pAInfo = new AInfo;
-//STRIP001
-//STRIP001                                         // erst einmal soviel wie moeglich bekanntes setzen
-//STRIP001                                         *pAInfo = *(AInfo*) pAInfoList->GetObject( 0L );
-//STRIP001
-//STRIP001                                         pAInfo->aStartOrg = aDrawRect.TopLeft();
-//STRIP001                                         pAInfo->aStartSize = aDrawRect.GetSize();
-//STRIP001                                         pAInfo->pOutDev = pOut;
-//STRIP001                                         pAInfo->nExtraData = 1;
-//STRIP001                                         pAInfo->bPause = ( bMrk || bPause );
-//STRIP001
-//STRIP001                                         pAInfoList->Insert(pAInfo);
-//STRIP001                                     }
-//STRIP001                                 }
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     // Alle Objekte mit nicht gesetztem Flag loeschen
-//STRIP001     pAInfo = (AInfo*) pAInfoList->First();
-//STRIP001
-//STRIP001  while( pAInfo != NULL )
-//STRIP001  {
-//STRIP001         if( pAInfo->nExtraData == 0 )
-//STRIP001      {
-//STRIP001             delete (AInfo*)pAInfoList->Remove(pAInfo);
-//STRIP001             pAInfo=(AInfo*)pAInfoList->GetCurObject();
-//STRIP001         }
-//STRIP001      else
-//STRIP001             pAInfo=(AInfo*)pAInfoList->Next();
-//STRIP001     }
-//STRIP001
-//STRIP001     return 0;
-//STRIP001 }
 
 }
