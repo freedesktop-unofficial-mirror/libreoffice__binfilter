@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swcache.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:39:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:49:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -245,7 +245,6 @@ protected:
 public:
     ~SwCacheAccess() { if ( pObj ) pObj->Unlock(); }
 
-//STRIP001  virtual BOOL IsAvailable() const;
 
     //Abkuerzung fuer diejenigen, die wissen, das die Ableitung das IsAvailable
     //nicht ueberladen haben.

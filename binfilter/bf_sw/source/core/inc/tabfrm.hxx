@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:40:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:49:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,7 +98,6 @@ public:
     SwTabFrm( SwTabFrm & ); //_Nur_ zum erzeugen von Follows
     ~SwTabFrm();
 
-//STRIP001  void JoinAndDelFollows();   //Fuer DelFrms des TableNodes!
 
     //Ruft das RegistFlys der Zeilen.
     void RegistFlys();
@@ -110,7 +109,6 @@ public:
 
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
     virtual BOOL GetInfo( SfxPoolItem &rHnt ) const;
-//STRIP001  virtual void Paint( const SwRect& ) const;
     virtual void  CheckDirection( BOOL bVert );
 
     virtual void Cut();
