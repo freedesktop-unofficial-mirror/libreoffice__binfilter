@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_adritem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:32:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:23:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,12 +35,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _SBXVAR_HXX //autogen
-// auto strip #include <svtools/sbxvar.hxx>
-// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #include <svtools/useroptions.hxx>
 #endif
@@ -131,141 +125,21 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxAddressItem::Store()
-//STRIP001 {
-//STRIP001  SvtUserOptions aUserOpt;
-//STRIP001  aUserOpt.SetCompany( GetCompany() );
-//STRIP001  aUserOpt.SetFirstName( GetFirstName() );
-//STRIP001  aUserOpt.SetLastName( GetName() );
-//STRIP001  aUserOpt.SetID( GetShortName() );
-//STRIP001  aUserOpt.SetStreet( GetStreet() );
-//STRIP001  aUserOpt.SetCity( GetCity() );
-//STRIP001  aUserOpt.SetState( GetState() );
-//STRIP001  aUserOpt.SetZip( GetPLZ() );
-//STRIP001  aUserOpt.SetCountry( GetCountry() );
-//STRIP001  aUserOpt.SetPosition( GetPosition() );
-//STRIP001  aUserOpt.SetTitle( GetTitle() );
-//STRIP001  aUserOpt.SetTelephoneHome( GetTelPriv() );
-//STRIP001  aUserOpt.SetTelephoneWork( GetTelCompany() );
-//STRIP001  aUserOpt.SetFax( GetFax() );
-//STRIP001  aUserOpt.SetEmail( GetEmail() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxAddressItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new SvxAddressItem( *this );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxAddressItem::Create( SvStream& rStream, USHORT nVersion ) const
-//STRIP001 {
-//STRIP001  DBG_ERROR( "wer will denn ein SvxAdddressItem laden?" );
-//STRIP001
-//STRIP001  String aAdr, aShortName, aFirstName, aName;
-//STRIP001  rStream.ReadByteString(aAdr);
-//STRIP001  rStream.ReadByteString(aShortName);
-//STRIP001  rStream.ReadByteString(aFirstName);
-//STRIP001  rStream.ReadByteString(aName);
-//STRIP001  return new SvxAddressItem( aAdr, aShortName, aFirstName, aName, Which() );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxAddressItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
-//STRIP001
-//STRIP001  const SvxAddressItem& rItem = (const SvxAddressItem&)rAttr;
-//STRIP001
-//STRIP001  return SfxStringItem::operator==(rAttr) &&
-//STRIP001         ( rItem.GetName() == aName ) &&
-//STRIP001         ( rItem.GetFirstName() == aFirstName ) &&
-//STRIP001         ( rItem.GetShortName() == aShortName );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxAddressItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  USHORT nPos = USHRT_MAX;
-//STRIP001     switch ( nMemberId )
-//STRIP001  {
-//STRIP001         case MID_ADR_CITY           : nPos = (USHORT)POS_CITY; break;
-//STRIP001         case MID_ADR_COMPANY        : nPos = (USHORT)POS_COMPANY; break;
-//STRIP001         case MID_ADR_COUNTRY        : nPos = (USHORT)POS_COUNTRY; break;
-//STRIP001         case MID_ADR_EMAIL          : nPos = (USHORT)POS_EMAIL; break;
-//STRIP001         case MID_ADR_FAX            : nPos = (USHORT)POS_FAX; break;
-//STRIP001         case MID_ADR_FIRSTNAME      : rVal <<= (::rtl::OUString) aFirstName; break;
-//STRIP001         case MID_ADR_ID             : rVal <<= (::rtl::OUString) aShortName; break;
-//STRIP001         case MID_ADR_LASTNAME       : rVal <<= (::rtl::OUString) aName; break;
-//STRIP001         case MID_ADR_PHONE          : nPos = (USHORT)POS_TEL_COMPANY; break;
-//STRIP001         case MID_ADR_PHONEPRIVATE   : nPos = (USHORT)POS_TEL_PRIVATE; break;
-//STRIP001         case MID_ADR_POSITION       : nPos = (USHORT)POS_POSITION; break;
-//STRIP001         case MID_ADR_STREET         : nPos = (USHORT)POS_STREET; break;
-//STRIP001         case MID_ADR_TITLE          : nPos = (USHORT)POS_TITLE; break;
-//STRIP001         case MID_ADR_ZIPCODE        : nPos = (USHORT)POS_PLZ; break;
-//STRIP001         case MID_ADR_STATE          : nPos = (USHORT)POS_STATE ; break;
-//STRIP001         case MID_ADR_FATHERSNAME    : nPos = (USHORT)POS_FATHERSNAME ; break;
-//STRIP001         case MID_ADR_APARTMENT      : nPos = (USHORT)POS_APARTMENT ; break;
-//STRIP001      default:
-//STRIP001             DBG_ERROR( "can't interprete Id" );
-//STRIP001             return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nPos != USHRT_MAX )
-//STRIP001         rVal <<= (::rtl::OUString) GetToken(nPos);
-//STRIP001     return sal_True;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxAddressItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     ::rtl::OUString aString;
-//STRIP001     rVal >>= aString;
-//STRIP001
-//STRIP001  String sOld;
-//STRIP001  USHORT nId = USHRT_MAX;
-//STRIP001     switch ( nMemberId )
-//STRIP001  {
-//STRIP001         case MID_ADR_CITY           : nId = (USHORT)POS_CITY; break;
-//STRIP001         case MID_ADR_COMPANY        : nId = (USHORT)POS_COMPANY; break;
-//STRIP001         case MID_ADR_COUNTRY        : nId = (USHORT)POS_COUNTRY; break;
-//STRIP001         case MID_ADR_EMAIL          : nId = (USHORT)POS_EMAIL; break;
-//STRIP001         case MID_ADR_FAX            : nId = (USHORT)POS_FAX; break;
-//STRIP001         case MID_ADR_FIRSTNAME      : aFirstName = aString; break;
-//STRIP001         case MID_ADR_ID             : aShortName = aString; break;
-//STRIP001         case MID_ADR_LASTNAME       : aName = aString; break;
-//STRIP001         case MID_ADR_PHONE          : nId = (USHORT)POS_TEL_COMPANY; break;
-//STRIP001         case MID_ADR_PHONEPRIVATE   : nId = (USHORT)POS_TEL_PRIVATE; break;
-//STRIP001         case MID_ADR_POSITION       : nId = (USHORT)POS_POSITION; break;
-//STRIP001         case MID_ADR_STREET         : nId = (USHORT)POS_STREET; break;
-//STRIP001         case MID_ADR_TITLE          : nId = (USHORT)POS_TITLE; break;
-//STRIP001         case MID_ADR_ZIPCODE        : nId = (USHORT)POS_PLZ; break;
-//STRIP001         case MID_ADR_STATE          : nId = (USHORT)POS_STATE ; break;
-//STRIP001         case MID_ADR_FATHERSNAME    : nId = (USHORT)POS_FATHERSNAME ; break;
-//STRIP001         case MID_ADR_APARTMENT      : nId = (USHORT)POS_APARTMENT ; break;
-//STRIP001
-//STRIP001      default:
-//STRIP001             DBG_ERROR( "can't interprete Id" );
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nId != USHRT_MAX )
-//STRIP001  {
-//STRIP001      // mache ggf. aus '#' -> "\#"
-//STRIP001         String aVal = ConvertToStore_Impl( aString );
-//STRIP001      SetToken( nId, aVal );
-//STRIP001  }
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -333,38 +207,5 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxAddressItem::IsTokenReadonly( USHORT nToken ) const
-//STRIP001 {
-//STRIP001  sal_Bool bRet = sal_False;
-//STRIP001
-//STRIP001  switch ( nToken )
-//STRIP001  {
-//STRIP001      case POS_COMPANY :      nToken = USER_OPT_COMPANY;          break;
-//STRIP001      case POS_STREET :       nToken = USER_OPT_STREET;           break;
-//STRIP001      case POS_COUNTRY :      nToken = USER_OPT_COUNTRY;          break;
-//STRIP001      case POS_PLZ :          nToken = USER_OPT_ZIP;              break;
-//STRIP001      case POS_CITY :         nToken = USER_OPT_CITY;             break;
-//STRIP001      case POS_TITLE :        nToken = USER_OPT_TITLE;            break;
-//STRIP001      case POS_POSITION :     nToken = USER_OPT_POSITION;         break;
-//STRIP001      case POS_TEL_PRIVATE :  nToken = USER_OPT_TELEPHONEHOME;    break;
-//STRIP001      case POS_TEL_COMPANY :  nToken = USER_OPT_TELEPHONEWORK;    break;
-//STRIP001      case POS_FAX :          nToken = USER_OPT_FAX;              break;
-//STRIP001      case POS_EMAIL :        nToken = USER_OPT_EMAIL;            break;
-//STRIP001      case POS_STATE :        nToken = USER_OPT_STATE;            break;
-//STRIP001      case POS_FIRSTNAME :    nToken = USER_OPT_FIRSTNAME;        break;
-//STRIP001      case POS_LASTNAME :     nToken = USER_OPT_LASTNAME;         break;
-//STRIP001      case POS_SHORTNAME :    nToken = USER_OPT_ID;               break;
-//STRIP001
-//STRIP001      case POS_FATHERSNAME :
-//STRIP001      case POS_APARTMENT :
-//STRIP001      default:
-//STRIP001      {
-//STRIP001          nToken = INVALID_TOKEN;
-//STRIP001          DBG_ERRORFILE( "SvxAddressItem::IsTokenReadonly(): invalid token" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return SvtUserOptions().IsTokenReadonly( nToken );
-//STRIP001 }
 
 }
