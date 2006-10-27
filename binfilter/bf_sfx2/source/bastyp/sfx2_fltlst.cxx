@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltlst.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:34:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:03:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,17 +38,8 @@
 //*****************************************************************************************************************
 //  includes
 //*****************************************************************************************************************
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #include "sfxuno.hxx"
 
@@ -146,111 +137,15 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/ }
 
-//STRIP001 /*-************************************************************************************************************//**
-//STRIP001     @short          dtor
-//STRIP001     @descr          These deinitialize instance. If our corresponding SfxFilterContainer will die - he release our
-//STRIP001                     reference. Normaly it should be the only one - so we can die too.
-//STRIP001
-//STRIP001     @seealso        ctor
-//STRIP001     @seealso        method diposing()
-//STRIP001
-//STRIP001     @param          -
-//STRIP001     @return         -
-//STRIP001
-//STRIP001     @onerror        -
-//STRIP001     @threadsafe     yes
-//STRIP001
-//STRIP001     @last_change    16.10.2001 14:26
-//STRIP001 *//*-*************************************************************************************************************/
 /*?*/ SfxFilterListener::~SfxFilterListener()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001     if( m_xTypeCache.is() )
-//STRIP001     {
-//STRIP001         m_xTypeCache->removeFlushListener( this );
-//STRIP001         m_xTypeCache = uno::Reference< util::XFlushable >();
-//STRIP001     }
-//STRIP001     if( m_xFilterCache.is() )
-//STRIP001     {
-//STRIP001         m_xFilterCache->removeFlushListener( this );
-//STRIP001         m_xFilterCache = uno::Reference< util::XFlushable >();
-//STRIP001     }
-//STRIP001
-//STRIP001     m_sFactory   = ::rtl::OUString();
-//STRIP001     m_pContainer = NULL;
 /*?*/ }
 
-//STRIP001 /*-************************************************************************************************************//**
-//STRIP001     @short          callback from framework FilterCache
-//STRIP001     @descr          If some filter was changed in framework cache - we are notified by FilterFactory service
-//STRIP001                     by calling this method. We have to get all neccessary informations about changes and
-//STRIP001                     sysnchronize our internal set SfxFilterContainer with it.
-//STRIP001                     In the moment we don't support selective changes - we reload ALL filters for current factory!
-//STRIP001
-//STRIP001     @seealso        interface XFlushable
-//STRIP001     @seealso        interface XFlushListener
-//STRIP001     @seealso        service ::document::FilterFactory
-//STRIP001
-//STRIP001     @param          "aEvent", describe source of event
-//STRIP001     @return         -
-//STRIP001
-//STRIP001     @onerror        We ignore call!
-//STRIP001     @threadsafe     yes
-//STRIP001
-//STRIP001     @last_change    17.10.2001 10:28
-//STRIP001 *//*-*************************************************************************************************************/
 /*?*/ void SAL_CALL SfxFilterListener::flushed( const lang::EventObject& aSource ) throw( uno::RuntimeException )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
-//STRIP001     /* SAFE AREA ----------------------------------------------------------------------------------------------- */
-//STRIP001     ::osl::ResettableMutexGuard aGuard( m_aMutex );
-//STRIP001
-//STRIP001     if( m_pContainer != NULL )
-//STRIP001     {
-//STRIP001         uno::Reference< util::XFlushable > xContainer( aSource.Source, uno::UNO_QUERY );
-//STRIP001         if(
-//STRIP001             (xContainer.is()                                       ) &&
-//STRIP001             (xContainer==m_xTypeCache || xContainer==m_xFilterCache) &&
-//STRIP001             (m_sFactory.getLength() > 0                            )
-//STRIP001           )
-//STRIP001         {
-//STRIP001             m_pContainer->ReadExternalFilters( m_sFactory );
-//STRIP001         }
-//STRIP001     }
 /*?*/ }
 
-//STRIP001 /*-************************************************************************************************************//**
-//STRIP001     @short          deinitialize object
-//STRIP001     @descr          If our framework filter cache will die BEFORE SfxFilterContainer will do that ...
-//STRIP001                     we get this disposing message. So we should cancel all further work ...
-//STRIP001
-//STRIP001     @seealso        dtor
-//STRIP001
-//STRIP001     @param          "aSource", source of event
-//STRIP001     @return         -
-//STRIP001
-//STRIP001     @onerror        -
-//STRIP001     @threadsafe     yes
-//STRIP001
-//STRIP001     @last_change    16.10.2001 14:30
-//STRIP001 *//*-*************************************************************************************************************/
 /*?*/ void SAL_CALL SfxFilterListener::disposing( const lang::EventObject& aSource ) throw( uno::RuntimeException )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
-//STRIP001     /* SAFE AREA ----------------------------------------------------------------------------------------------- */
-//STRIP001     ::osl::ResettableMutexGuard aGuard( m_aMutex );
-//STRIP001
-//STRIP001     uno::Reference< util::XFlushable > xNotifier( aSource.Source, uno::UNO_QUERY );
-//STRIP001     if (!xNotifier.is())
-//STRIP001         return;
-//STRIP001
-//STRIP001     if (xNotifier == m_xTypeCache)
-//STRIP001     {
-//STRIP001         m_xTypeCache->removeFlushListener( this );
-//STRIP001         m_xTypeCache = uno::Reference< util::XFlushable >();
-//STRIP001     }
-//STRIP001     else
-//STRIP001     if (xNotifier == m_xFilterCache)
-//STRIP001     {
-//STRIP001         m_xFilterCache->removeFlushListener( this );
-//STRIP001         m_xFilterCache = uno::Reference< util::XFlushable >();
-//STRIP001     }
 /*?*/ }
 }

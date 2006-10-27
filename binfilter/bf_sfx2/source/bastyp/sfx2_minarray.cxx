@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_minarray.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:36:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:04:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,25 +82,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPtrArr& SfxPtrArr::operator=( const SfxPtrArr& rOrig )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001
-//STRIP001  __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001
-//STRIP001  nUsed = rOrig.nUsed;
-//STRIP001  nGrow = rOrig.nGrow;
-//STRIP001  nUnused = rOrig.nUnused;
-//STRIP001
-//STRIP001  if ( rOrig.pData != 0 )
-//STRIP001  {
-//STRIP001      pData = new void*[nUsed+nUnused];
-//STRIP001      memcpy( pData, rOrig.pData, nUsed*sizeof(void*) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pData = 0;
-//STRIP001  return *this;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -207,20 +188,6 @@ namespace binfilter {
 
 /*?*/ BOOL SfxPtrArr::Replace( void* aOldElem, void* aNewElem )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // einfache Aufgaben ...
-//STRIP001  if ( nUsed == 0 )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // rueckwaerts, da meist der letzte zuerst wieder entfernt wird
-//STRIP001  void* *pIter = pData + nUsed - 1;
-//STRIP001  for ( USHORT n = 0; n < nUsed; ++n, --pIter )
-//STRIP001      if ( *pIter == aOldElem )
-//STRIP001      {
-//STRIP001          pData[nUsed-n-1] = aNewElem;
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  return FALSE;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -276,235 +243,36 @@ namespace binfilter {
 
 // class ByteArr ---------------------------------------------------------
 
-//STRIP001 ByteArr::ByteArr( BYTE nInitSize, BYTE nGrowSize ):
-//STRIP001  nUsed( 0 ),
-//STRIP001  nGrow( nGrowSize ? nGrowSize : 1 ),
-//STRIP001  nUnused( nInitSize )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  USHORT nMSCBug = nInitSize;
-//STRIP001
-//STRIP001  if ( nInitSize > 0 )
-//STRIP001      pData = new char[nMSCBug];
-//STRIP001  else
-//STRIP001      pData = 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 ByteArr::ByteArr( const ByteArr& rOrig )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  nUsed = rOrig.nUsed;
-//STRIP001  nGrow = rOrig.nGrow;
-//STRIP001  nUnused = rOrig.nUnused;
-//STRIP001
-//STRIP001  if ( rOrig.pData != 0 )
-//STRIP001  {
-//STRIP001      pData = new char[nUsed+nUnused];
-//STRIP001      memcpy( pData, rOrig.pData, nUsed*sizeof(char) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pData = 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 ByteArr::~ByteArr()
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 ByteArr& ByteArr::operator=( const ByteArr& rOrig )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001
-//STRIP001  __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001
-//STRIP001  nUsed = rOrig.nUsed;
-//STRIP001  nGrow = rOrig.nGrow;
-//STRIP001  nUnused = rOrig.nUnused;
-//STRIP001
-//STRIP001  if ( rOrig.pData != 0 )
-//STRIP001  {
-//STRIP001      pData = new char[nUsed+nUnused];
-//STRIP001      memcpy( pData, rOrig.pData, nUsed*sizeof(char) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pData = 0;
-//STRIP001  return *this;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void ByteArr::Append( char aElem )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // musz das Array umkopiert werden?
-//STRIP001  if ( nUnused == 0 )
-//STRIP001  {
-//STRIP001      USHORT nNewSize = (nUsed == 1) ? (nGrow==1 ? 2 : nGrow) : nUsed+nGrow;
-//STRIP001      char* pNewData = new char[nNewSize];
-//STRIP001      if ( pData )
-//STRIP001      {
-//STRIP001          DBG_ASSERT( nUsed <= nNewSize, "" );
-//STRIP001          memmove( pNewData, pData, sizeof(char)*nUsed );
-//STRIP001          __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001      }
-//STRIP001      nUnused = nNewSize-nUsed;
-//STRIP001      pData = pNewData;
-//STRIP001  }
-//STRIP001
-//STRIP001  // jetzt hinten in den freien Raum schreiben
-//STRIP001  pData[nUsed] = aElem;
-//STRIP001  ++nUsed;
-//STRIP001  --nUnused;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 USHORT ByteArr::Remove( USHORT nPos, USHORT nLen )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // nLen adjustieren, damit nicht ueber das Ende hinaus geloescht wird
-//STRIP001  nLen = Min( (USHORT)(nUsed-nPos), nLen );
-//STRIP001
-//STRIP001  // einfache Aufgaben erfordern einfache Loesungen!
-//STRIP001  if ( nLen == 0 )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  // bleibt vielleicht keiner uebrig
-//STRIP001  if ( (nUsed-nLen) == 0 )
-//STRIP001  {
-//STRIP001      __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001      pData = 0;
-//STRIP001      nUsed = 0;
-//STRIP001      nUnused = 0;
-//STRIP001      return nLen;
-//STRIP001  }
-//STRIP001
-//STRIP001  // feststellen, ob das Array dadurch physikalisch schrumpft...
-//STRIP001  if ( (nUnused+nLen) >= nGrow )
-//STRIP001  {
-//STRIP001      // auf die naechste Grow-Grenze aufgerundet verkleinern
-//STRIP001      USHORT nNewUsed = nUsed-nLen;
-//STRIP001      USHORT nNewSize = (nNewUsed+nGrow-1)/nGrow; nNewSize *= nGrow;
-//STRIP001      DBG_ASSERT( nNewUsed <= nNewSize && nNewUsed+nGrow > nNewSize,
-//STRIP001                  "shrink size computation failed" );
-//STRIP001      char* pNewData = new char[nNewSize];
-//STRIP001      if ( nPos > 0 )
-//STRIP001      {
-//STRIP001          DBG_ASSERT( nPos <= nNewSize, "" );
-//STRIP001          memmove( pNewData, pData, sizeof(char)*nPos );
-//STRIP001      }
-//STRIP001      if ( nNewUsed != nPos )
-//STRIP001          memmove( pNewData+nPos, pData+nPos+nLen,
-//STRIP001                   sizeof(char)*(nNewUsed-nPos) );
-//STRIP001      __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001      pData = pNewData;
-//STRIP001      nUsed = nNewUsed;
-//STRIP001      nUnused = nNewSize - nNewUsed;
-//STRIP001      return nLen;
-//STRIP001  }
-//STRIP001
-//STRIP001  // in allen anderen Faellen nur zusammenschieben
-//STRIP001  if ( nUsed-nPos-nLen > 0 )
-//STRIP001      memmove( pData+nPos, pData+nPos+nLen, (nUsed-nPos-nLen)*sizeof(char) );
-//STRIP001  nUsed -= nLen;
-//STRIP001  nUnused += nLen;
-//STRIP001  return nLen;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 BOOL ByteArr::Remove( char aElem )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // einfache Aufgaben ...
-//STRIP001  if ( nUsed == 0 )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // rueckwaerts, da meist der letzte zuerst wieder entfernt wird
-//STRIP001  char *pIter = pData + nUsed - 1;
-//STRIP001  for ( USHORT n = 0; n < nUsed; ++n, --pIter )
-//STRIP001      if ( *pIter == aElem )
-//STRIP001      {
-//STRIP001          Remove(nUsed-n-1, 1);
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 BOOL ByteArr::Contains( const char rItem ) const
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  if ( !nUsed )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  for ( USHORT n = 0; n < nUsed; ++n )
-//STRIP001  {
-//STRIP001      char p = GetObject(n);
-//STRIP001      if ( p == rItem )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void ByteArr::Insert( USHORT nPos, char rElem )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // musz das Array umkopiert werden?
-//STRIP001  if ( nUnused == 0 )
-//STRIP001  {
-//STRIP001      // auf die naechste Grow-Grenze aufgerundet vergroeszern
-//STRIP001      USHORT nNewSize = nUsed+nGrow;
-//STRIP001      char* pNewData = new char[nNewSize];
-//STRIP001
-//STRIP001      if ( pData )
-//STRIP001      {
-//STRIP001          DBG_ASSERT( nUsed < nNewSize, "" );
-//STRIP001          memmove( pNewData, pData, sizeof(char)*nUsed );
-//STRIP001          __DELETE (DEL_ARRAY (nUsed)) pData;
-//STRIP001      }
-//STRIP001      nUnused = nNewSize-nUsed;
-//STRIP001      pData = pNewData;
-//STRIP001  }
-//STRIP001
-//STRIP001  // jetzt den hinteren Teil verschieben
-//STRIP001  if ( nPos < nUsed )
-//STRIP001      memmove( pData+nPos+1, pData+nPos, (nUsed-nPos)*sizeof(char) );
-//STRIP001
-//STRIP001  // jetzt in den freien Raum schreiben
-//STRIP001  memmove( pData+nPos, &rElem, sizeof(char) );
-//STRIP001  nUsed += 1;
-//STRIP001  nUnused -= 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 char ByteArr::operator[]( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  DBG_ASSERT( nPos < nUsed, "" );
-//STRIP001  return *(pData+nPos);
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 char& ByteArr::operator [] (USHORT nPos)
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  DBG_ASSERT( nPos < nUsed, "" );
-//STRIP001  return *(pData+nPos);
-//STRIP001 }
 
 // class WordArr ---------------------------------------------------------
 
@@ -524,21 +292,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 WordArr::WordArr( const WordArr& rOrig )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001  nUsed = rOrig.nUsed;
-//STRIP001  nGrow = rOrig.nGrow;
-//STRIP001  nUnused = rOrig.nUnused;
-//STRIP001
-//STRIP001  if ( rOrig.pData != 0 )
-//STRIP001  {
-//STRIP001      pData = new short[nUsed+nUnused];
-//STRIP001      memcpy( pData, rOrig.pData, nUsed*sizeof(short) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pData = 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -550,25 +303,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-//STRIP001 WordArr& WordArr::operator=( const WordArr& rOrig )
-//STRIP001 {
-//STRIP001  DBG_MEMTEST();
-//STRIP001
-//STRIP001  __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001
-//STRIP001  nUsed = rOrig.nUsed;
-//STRIP001  nGrow = rOrig.nGrow;
-//STRIP001  nUnused = rOrig.nUnused;
-//STRIP001
-//STRIP001  if ( rOrig.pData != 0 )
-//STRIP001  {
-//STRIP001      pData = new short[nUsed+nUnused];
-//STRIP001      memcpy( pData, rOrig.pData, nUsed*sizeof(short) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pData = 0;
-//STRIP001  return *this;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -600,73 +334,12 @@ namespace binfilter {
 
 /*N*/ USHORT WordArr::Remove( USHORT nPos, USHORT nLen )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // nLen adjustieren, damit nicht ueber das Ende hinaus geloescht wird
-//STRIP001  nLen = Min( (USHORT)(nUsed-nPos), nLen );
-//STRIP001
-//STRIP001  // einfache Aufgaben erfordern einfache Loesungen!
-//STRIP001  if ( nLen == 0 )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  // bleibt vielleicht keiner uebrig
-//STRIP001  if ( (nUsed-nLen) == 0 )
-//STRIP001  {
-//STRIP001      __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001      pData = 0;
-//STRIP001      nUsed = 0;
-//STRIP001      nUnused = 0;
-//STRIP001      return nLen;
-//STRIP001  }
-//STRIP001
-//STRIP001  // feststellen, ob das Array dadurch physikalisch schrumpft...
-//STRIP001  if ( (nUnused+nLen) >= nGrow )
-//STRIP001  {
-//STRIP001      // auf die naechste Grow-Grenze aufgerundet verkleinern
-//STRIP001      USHORT nNewUsed = nUsed-nLen;
-//STRIP001      USHORT nNewSize = (nNewUsed+nGrow-1)/nGrow; nNewSize *= nGrow;
-//STRIP001      DBG_ASSERT( nNewUsed <= nNewSize && nNewUsed+nGrow > nNewSize,
-//STRIP001                  "shrink size computation failed" );
-//STRIP001      short* pNewData = new short[nNewSize];
-//STRIP001      if ( nPos > 0 )
-//STRIP001      {
-//STRIP001          DBG_ASSERT( nPos <= nNewSize, "" );
-//STRIP001          memmove( pNewData, pData, sizeof(short)*nPos );
-//STRIP001      }
-//STRIP001      if ( nNewUsed != nPos )
-//STRIP001          memmove( pNewData+nPos, pData+nPos+nLen,
-//STRIP001                   sizeof(short)*(nNewUsed-nPos) );
-//STRIP001          __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
-//STRIP001      pData = pNewData;
-//STRIP001      nUsed = nNewUsed;
-//STRIP001      nUnused = nNewSize - nNewUsed;
-//STRIP001      return nLen;
-//STRIP001  }
-//STRIP001
-//STRIP001  // in allen anderen Faellen nur zusammenschieben
-//STRIP001  if ( nUsed-nPos-nLen > 0 )
-//STRIP001      memmove( pData+nPos, pData+nPos+nLen, (nUsed-nPos-nLen)*sizeof(short) );
-//STRIP001  nUsed -= nLen;
-//STRIP001  nUnused += nLen;
-//STRIP001  return nLen;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
 /*N*/ BOOL WordArr::Remove( short aElem )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_MEMTEST();
-//STRIP001  // einfache Aufgaben ...
-//STRIP001  if ( nUsed == 0 )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // rueckwaerts, da meist der letzte zuerst wieder entfernt wird
-//STRIP001  short *pIter = pData + nUsed - 1;
-//STRIP001  for ( USHORT n = 0; n < nUsed; ++n, --pIter )
-//STRIP001      if ( *pIter == aElem )
-//STRIP001      {
-//STRIP001          Remove(nUsed-n-1, 1);
-//STRIP001          return TRUE;
-//STRIP001      }
 /*N*/   return FALSE;
 /*N*/ }
 
