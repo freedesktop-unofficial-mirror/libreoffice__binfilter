@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_ddelink.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:07:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:31:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,27 +34,18 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #ifndef _LIST_HXX //autogen
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
-// auto strip #include <bf_svx/linkmgr.hxx>
-// auto strip #include <bf_sfx2/bindings.hxx>
 #include <svtools/zforlist.hxx>
 
 #include "ddelink.hxx"
-// auto strip #include "brdcst.hxx"
 #include "document.hxx"
 #include "scmatrix.hxx"
-// auto strip #include "patattr.hxx"
 #include "rechead.hxx"
-// auto strip #include "rangeseq.hxx"
 #include "bf_sc.hrc"
 #include "hints.hxx"
 namespace binfilter {
@@ -158,131 +149,10 @@ namespace binfilter {
 /*N*/                               const ::com::sun::star::uno::Any & rValue )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //    wir koennen nur Strings...
-//STRIP001  if ( FORMAT_STRING != SotExchange::GetFormatIdFromMimeType( rMimeType ))
-//STRIP001      return;
-//STRIP001
-//STRIP001  String aLinkStr;
-//STRIP001  ScByteSequenceToString::GetString( aLinkStr, rValue, DDE_TXT_ENCODING );
-//STRIP001  aLinkStr.ConvertLineEnd(LINEEND_LF);
-//STRIP001
-//STRIP001  //  wenn String mit Zeilenende aufhoert, streichen:
-//STRIP001
-//STRIP001  xub_StrLen nLen = aLinkStr.Len();
-//STRIP001  if (nLen && aLinkStr.GetChar(nLen-1) == '\n')
-//STRIP001      aLinkStr.Erase(nLen-1);
-//STRIP001
-//STRIP001  String aLine;
-//STRIP001  USHORT nCols = 1;       // Leerstring -> eine leere Zelle
-//STRIP001  USHORT nRows = 1;
-//STRIP001  if (aLinkStr.Len())
-//STRIP001  {
-//STRIP001      nRows = (USHORT) aLinkStr.GetTokenCount( '\n' );
-//STRIP001      aLine = aLinkStr.GetToken( 0, '\n' );
-//STRIP001      if (aLine.Len())
-//STRIP001          nCols = (USHORT) aLine.GetTokenCount( '\t' );
-//STRIP001  }
-//STRIP001
-//STRIP001  if (!nRows || !nCols)               // keine Daten
-//STRIP001  {
-//STRIP001      DELETEZ(pResult);
-//STRIP001  }
-//STRIP001  else                                // Daten aufteilen
-//STRIP001  {
-//STRIP001      //  Matrix immer neu anlegen, damit bIsString nicht durcheinanderkommt
-//STRIP001      delete pResult;
-//STRIP001      pResult = new ScMatrix( nCols, nRows );
-//STRIP001
-//STRIP001      SvNumberFormatter* pFormatter = pDoc->GetFormatTable();
-//STRIP001
-//STRIP001      //  nMode bestimmt, wie der Text interpretiert wird (#44455#/#49783#):
-//STRIP001      //  SC_DDE_DEFAULT - Zahlformat aus Zellvorlage "Standard"
-//STRIP001      //  SC_DDE_ENGLISH - Standard-Zahlformat fuer English/US
-//STRIP001      //  SC_DDE_TEXT    - ohne NumberFormatter direkt als String
-//STRIP001      ULONG nStdFormat = 0;
-//STRIP001      if ( nMode == SC_DDE_DEFAULT )
-//STRIP001      {
-//STRIP001          ScPatternAttr* pDefPattern = pDoc->GetDefPattern();     // enthaelt Standard-Vorlage
-//STRIP001          if ( pDefPattern )
-//STRIP001              nStdFormat = pDefPattern->GetNumberFormat( pFormatter );
-//STRIP001      }
-//STRIP001      else if ( nMode == SC_DDE_ENGLISH )
-//STRIP001          nStdFormat = pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US);
-//STRIP001
-//STRIP001      String aEntry;
-//STRIP001      for (USHORT nR=0; nR<nRows; nR++)
-//STRIP001      {
-//STRIP001          aLine = aLinkStr.GetToken( (xub_StrLen) nR, '\n' );
-//STRIP001          for (USHORT nC=0; nC<nCols; nC++)
-//STRIP001          {
-//STRIP001              aEntry = aLine.GetToken( (xub_StrLen) nC, '\t' );
-//STRIP001              ULONG nIndex = nStdFormat;
-//STRIP001              double fVal;
-//STRIP001              if ( nMode != SC_DDE_TEXT && pFormatter->IsNumberFormat( aEntry, nIndex, fVal ) )
-//STRIP001                  pResult->PutDouble( fVal, nC, nR );
-//STRIP001              else
-//STRIP001                  pResult->PutString( aEntry, nC, nR );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  //  Es hat sich was getan...
-//STRIP001
-//STRIP001  if (HasListeners())
-//STRIP001  {
-//STRIP001      Broadcast( ScHint( SC_HINT_DATACHANGED, ScAddress( 0 ), NULL ) );
-//STRIP001      pDoc->TrackFormulas();      // muss sofort passieren
-//STRIP001      pDoc->StartTrackTimer();
-//STRIP001
-//STRIP001      //  StartTrackTimer ruft asynchron TrackFormulas, Broadcast(FID_DATACHANGED),
-//STRIP001      //  ResetChanged, SetModified und Invalidate(SID_SAVEDOC/SID_DOC_MODIFIED)
-//STRIP001      //  TrackFormulas zusaetzlich nochmal sofort, damit nicht z.B. durch IdleCalc
-//STRIP001      //  eine Formel berechnet wird, die noch im FormulaTrack steht (#61676#)
-//STRIP001
-//STRIP001      //  notify Uno objects (for XRefreshListener)
-//STRIP001      //  must be after TrackFormulas
-//STRIP001      //! do this asynchronously?
-//STRIP001      ScLinkRefreshedHint aHint;
-//STRIP001      aHint.SetDdeLink( aAppl, aTopic, aItem, nMode );
-//STRIP001      pDoc->BroadcastUno( aHint );
-//STRIP001  }
 /*N*/ }
 
-//STRIP001 void ScDdeLink::NewData(USHORT nCols, USHORT nRows)
-//STRIP001 {
-//STRIP001  delete pResult;
-//STRIP001  pResult = new ScMatrix( nCols, nRows );
-//STRIP001 }
 
-//STRIP001 void ScDdeLink::ResetValue()
-//STRIP001 {
-//STRIP001  DELETEZ(pResult);
-//STRIP001
-//STRIP001  //  Es hat sich was getan...
-//STRIP001  //  Tracking, FID_DATACHANGED etc. passiert von aussen
-//STRIP001
-//STRIP001  if (HasListeners())
-//STRIP001      Broadcast( ScHint( SC_HINT_DATACHANGED, ScAddress( 0 ), NULL ) );
-//STRIP001 }
 
-//STRIP001 void __EXPORT ScDdeLink::ListenersGone()
-//STRIP001 {
-//STRIP001  BOOL bWas = bIsInUpdate;
-//STRIP001  bIsInUpdate = TRUE;             // Remove() kann Reschedule ausloesen??!?
-//STRIP001
-//STRIP001  ScDocument* pStackDoc = pDoc;   // member pDoc can't be used after removing the link
-//STRIP001
-//STRIP001  SvxLinkManager* pLinkMgr = pDoc->GetLinkManager();
-//STRIP001  pLinkMgr->Remove( this);        // deletes this
-//STRIP001
-//STRIP001  if ( !pLinkMgr->GetLinks().Count() )            // letzten geloescht ?
-//STRIP001  {
-//STRIP001      SfxBindings* pBindings = pStackDoc->GetViewBindings();      // don't use member pDoc!
-//STRIP001      if (pBindings)
-//STRIP001          pBindings->Invalidate( SID_LINKS );
-//STRIP001  }
-//STRIP001
-//STRIP001  bIsInUpdate = bWas;
-//STRIP001 }
 
 /*N*/ void ScDdeLink::TryUpdate()
 /*N*/ {

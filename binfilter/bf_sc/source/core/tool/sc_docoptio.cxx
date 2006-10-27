@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docoptio.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:08:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:32:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,21 +34,15 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-// auto strip #include <vcl/svapp.hxx>
 #include <svtools/zforlist.hxx>
 
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
-// auto strip #include "cfgids.hxx"
 #include "docoptio.hxx"
 #include "rechead.hxx"
-// auto strip #include "scresid.hxx"
 #include "bf_sc.hrc"
 #include "miscuno.hxx"
 namespace binfilter {
@@ -61,15 +55,12 @@ using namespace ::com::sun::star::uno;
 
 #define SC_VERSION ((USHORT)251)
 
-//STRIP001 TYPEINIT1(ScTpCalcItem, SfxPoolItem);
 
 //------------------------------------------------------------------------
 
 //! these functions should be moved to some header file
-//STRIP001 inline long TwipsToHMM(long nTwips)  { return (nTwips * 127 + 36) / 72; }
 inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
-//STRIP001 inline long TwipsToEvenHMM(long nTwips)  { return ( (nTwips * 127 + 72) / 144 ) * 2; }
 
 //------------------------------------------------------------------------
 
@@ -220,56 +211,24 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 //      ScTpCalcItem - Daten fuer die CalcOptions-TabPage
 //========================================================================
 
-//STRIP001 ScTpCalcItem::ScTpCalcItem( USHORT nWhich ) : SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScTpCalcItem::ScTpCalcItem( USHORT nWhich, const ScDocOptions& rOpt )
-//STRIP001  :   SfxPoolItem ( nWhich ),
-//STRIP001      theOptions  ( rOpt )
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScTpCalcItem::ScTpCalcItem( const ScTpCalcItem& rItem )
-//STRIP001  :   SfxPoolItem ( rItem ),
-//STRIP001      theOptions  ( rItem.theOptions )
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 __EXPORT ScTpCalcItem::~ScTpCalcItem()
-//STRIP001 {
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 String __EXPORT ScTpCalcItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM("ScTpCalcItem") );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 int __EXPORT ScTpCalcItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScTpCalcItem& rPItem = (const ScTpCalcItem&)rItem;
-//STRIP001
-//STRIP001  return ( theOptions == rPItem.theOptions );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* __EXPORT ScTpCalcItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScTpCalcItem( *this );
-//STRIP001 }
 
 //==================================================================
 //  Config Item containing document options
@@ -442,94 +401,16 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ IMPL_LINK( ScDocCfg, CalcCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetCalcPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  USHORT nDateDay, nDateMonth, nDateYear;
-//STRIP001  GetDate( nDateDay, nDateMonth, nDateYear );
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCCALCOPT_ITER_ITER:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], IsIter() );
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_ITER_STEPS:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetIterCount();
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_ITER_MINCHG:
-//STRIP001              pValues[nProp] <<= (double) GetIterEps();
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_DATE_DAY:
-//STRIP001              pValues[nProp] <<= (sal_Int32) nDateDay;
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_DATE_MONTH:
-//STRIP001              pValues[nProp] <<= (sal_Int32) nDateMonth;
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_DATE_YEAR:
-//STRIP001              pValues[nProp] <<= (sal_Int32) nDateYear;
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_DECIMALS:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetStdPrecision();
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_CASESENSITIVE:
-//STRIP001              // content is reversed
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], !IsIgnoreCase() );
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_PRECISION:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], IsCalcAsShown() );
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_SEARCHCRIT:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], IsMatchWholeCell() );
-//STRIP001              break;
-//STRIP001          case SCCALCOPT_FINDLABEL:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], IsLookUpColRowNames() );
-//STRIP001              break;
-//STRIP001             case SCCALCOPT_REGEX :
-//STRIP001                 ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], IsFormulaRegexEnabled() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aCalcItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScDocCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetLayoutPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCDOCLAYOUTOPT_TABSTOP:
-//STRIP001              //  TabDistance in ScDocOptions is in twips
-//STRIP001              //  use only even numbers, so defaults don't get changed
-//STRIP001              //  by modifying other settings in the same config item
-//STRIP001              pValues[nProp] <<= (sal_Int32) TwipsToEvenHMM( GetTabDistance() );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aLayoutItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 
-//STRIP001 void ScDocCfg::SetOptions( const ScDocOptions& rNew )
-//STRIP001 {
-//STRIP001  *(ScDocOptions*)this = rNew;
-//STRIP001
-//STRIP001  aCalcItem.SetModified();
-//STRIP001  aLayoutItem.SetModified();
-//STRIP001 }
 
 
 }
