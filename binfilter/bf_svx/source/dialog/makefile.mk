@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:18:32 $
+#   last change: $Author: rt $ $Date: 2006-10-27 20:09:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,9 +74,7 @@ HXX2TARGET= drawdlgs
 HXX2EXT=    hxx
 HXX2EXCL=   -E:*include*
 HXX2DEPN=\
-        $(INC)$/dlgctrl.hxx \
         $(INC)$/dlgname.hxx \
-        $(INC)$/tabarea.hxx \
         $(INC)$/tabline.hxx \
         $(INC)$/labdlg.hxx \
         $(INC)$/transfrm.hxx
@@ -85,23 +83,6 @@ HXX2DEPN=\
 
 #IMGLST_SRS=$(SRS)$/dialogs.srs
 BMP_IN=$(BFPRJ)$/win/res
-
-CXXFILES = \
-        svx__contdlg.cxx \
-        svx__bmpmask.cxx \
-        svx_charmap.cxx \
-        svx_dlgutil.cxx \
-        svx_fontwork.cxx \
-        svx_hyperdlg.cxx \
-        svx_imapdlg.cxx \
-        svx_impgrf.cxx \
-        svx_rlrcitem.cxx \
-        svx_rulritem.cxx \
-        svx_rubydialog.cxx \
-        svx_srchdlg.cxx \
-        svx_svxruler.cxx \
-         svx_txencbox.cxx \
-       $(PROJECTPCHSOURCE).cxx
 
 SRS1NAME=svx_dialogs
 SRC1FILES =  \
@@ -122,7 +103,7 @@ SRC1FILES =  \
         svx_fontwork.src \
         svx_frmsel.src \
         svx_grfpage.src \
-    svx_hdft.src \
+        svx_hdft.src \
         svx_hyperdlg.src \
         svx_hlmarkwn.src\
         svx_hyphen.src \
@@ -149,7 +130,6 @@ SRC1FILES =  \
         svx_thesdlg.src \
         svx_txenctab.src \
         svx_zoom.src	\
-        svx_dlgctrl.src \
         svx_grfflt.src \
         svx_langbox.src \
         svx_frmdirlbox.src \
@@ -160,7 +140,6 @@ SRS2NAME=svx_drawdlgs
 SRC2FILES =  \
     svx_dlgname.src \
         svx_sdstring.src \
-        svx_tabarea.src \
         svx_tabline.src \
         svx_labdlg.src \
         svx_transfrm.src
