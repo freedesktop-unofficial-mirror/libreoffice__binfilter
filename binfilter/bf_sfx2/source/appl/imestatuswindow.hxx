@@ -4,9 +4,9 @@
  *
  *  $RCSfile: imestatuswindow.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:59:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:52:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,7 @@
 #define INCLUDED_SFX2_APPL_IMESTATUSWINDOW_HXX
 
 #include "com/sun/star/beans/XPropertyChangeListener.hpp"
-// auto strip #include "com/sun/star/uno/Reference.hxx"
 #include "cppuhelper/implbase1.hxx"
-// auto strip #include "osl/mutex.hxx"
 
 namespace com { namespace sun { namespace star {
     namespace beans { class XPropertySet; }
