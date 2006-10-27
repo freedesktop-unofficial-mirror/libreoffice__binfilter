@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_module.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:27:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:58:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@
 #include <tools/rcid.h>
 
 #include <cstdarg>
-// auto strip #include "module.hxx"
 #include "app.hxx"
 #include "arrdecl.hxx"
 #include "sfxresid.hxx"
@@ -50,7 +49,6 @@
 #include "childwin.hxx"
 #include "mnumgr.hxx"
 #include "docfac.hxx"
-// auto strip #include "accmgr.hxx"
 #include "objface.hxx"
 #include "viewfrm.hxx"
 
@@ -130,14 +128,12 @@ public:
 
 /*?*/ ModalDialog* SfxModule::CreateAboutDialog()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  return SFX_APP()->CreateAboutDialog();
 /*?*/ }
 
 //====================================================================
 
 /*?*/ BOOL SfxModule::QueryUnload()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  return TRUE;
 /*?*/ }
 
 //====================================================================
@@ -165,7 +161,6 @@ public:
     The code must be behind the invocation of SFX_...OBJECTFACTORY_LIB,
     which defines the function LoadLib...().
 */
-//STRIP001
 /*?*/ {
 /*?*/   return 0;
 /*?*/ }
@@ -308,26 +303,6 @@ SfxModule::SfxModule( ResMgr* pMgrP, BOOL bDummyP,
 
 //-------------------------------------------------------------------------
 
-//STRIP001 void SfxModule::RegisterChildWindowContext( USHORT nId,
-//STRIP001      SfxChildWinContextFactory *pFact)
-//STRIP001 {
-//STRIP001  DBG_ASSERT( pImpl, "Kein echtes Modul!" );
-//STRIP001
-//STRIP001  USHORT nCount = pImpl->pFactArr->Count();
-//STRIP001  for (USHORT nFactory=0; nFactory<nCount; ++nFactory)
-//STRIP001  {
-//STRIP001      SfxChildWinFactory *pF = (*pImpl->pFactArr)[nFactory];
-//STRIP001      if ( nId == pF->nId )
-//STRIP001      {
-//STRIP001          if ( !pF->pArr )
-//STRIP001              pF->pArr = new SfxChildWinContextArr_Impl;
-//STRIP001          pF->pArr->C40_INSERT( SfxChildWinContextFactory, pFact, pF->pArr->Count() );
-//STRIP001          return;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  DBG_ERROR( "Kein ChildWindow fuer diesen Context!" );
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 
@@ -423,10 +398,6 @@ SfxModule::SfxModule( ResMgr* pMgrP, BOOL bDummyP,
 /*N*/   return pImpl->pFactArr;
 /*N*/ }
 
-//STRIP001 ImageList* SfxModule::GetImageList_Impl( BOOL bBig )
-//STRIP001 {
-//STRIP001  return pImpl->GetImageList( pResMgr, bBig, FALSE );
-//STRIP001 }
 
 /*N*/ ImageList* SfxModule::GetImageList_Impl( BOOL bBig, BOOL bHiContrast )
 /*N*/ {
@@ -447,9 +418,6 @@ SfxModule::SfxModule( ResMgr* pMgrP, BOOL bDummyP,
 
 /*?*/ void SfxModule::Invalidate( USHORT nId )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     for( SfxViewFrame* pFrame = SfxViewFrame::GetFirst(); pFrame; pFrame = SfxViewFrame::GetNext( *pFrame ) )
-//STRIP001         if ( pFrame->GetObjectShell()->GetModule() == this )
-//STRIP001             Invalidate_Impl( pFrame->GetBindings(), nId );
 /*?*/ }
 
 }
