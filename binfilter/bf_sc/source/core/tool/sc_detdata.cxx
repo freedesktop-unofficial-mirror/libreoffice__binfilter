@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_detdata.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:08:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:32:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -96,18 +95,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScDetOpList::operator==( const ScDetOpList& r ) const
-//STRIP001 {
-//STRIP001  // fuer Ref-Undo
-//STRIP001
-//STRIP001  USHORT nCount = Count();
-//STRIP001  BOOL bEqual = ( nCount == r.Count() );
-//STRIP001  for (USHORT i=0; i<nCount && bEqual; i++)       // Reihenfolge muss auch gleich sein
-//STRIP001      if ( !(*(*this)[i] == *r[i]) )              // Eintraege unterschiedlich ?
-//STRIP001          bEqual = FALSE;
-//STRIP001
-//STRIP001  return bEqual;
-//STRIP001 }
 
 /*N*/ void ScDetOpList::Load( SvStream& rStream )
 /*N*/ {
