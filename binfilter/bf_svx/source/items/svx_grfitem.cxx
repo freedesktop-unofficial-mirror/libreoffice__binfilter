@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_grfitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:16:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:15:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #ifndef _SVX_GRFCROP_HXX
 #include <grfcrop.hxx>
 #endif
-// auto strip #ifndef _SVX_ITEMTYPE_HXX //autogen
-// auto strip #include <itemtype.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
 #include <com/sun/star/text/GraphicCrop.hpp>
 #endif
@@ -180,34 +177,6 @@ USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
 /*N*/   return  sal_True;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxGrfCrop::GetPresentation(
-//STRIP001  SfxItemPresentation ePres, SfxMapUnit eCoreUnit, SfxMapUnit ePresUnit,
-//STRIP001     String &rText, const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      if( SFX_ITEM_PRESENTATION_COMPLETE == ePres )
-//STRIP001      {
-//STRIP001          ( rText.AssignAscii( "L: " )) += ::GetMetricText( GetLeft(),
-//STRIP001                                             eCoreUnit, SFX_MAPUNIT_MM, pIntl );
-//STRIP001          ( rText.AppendAscii( " R: " )) += ::GetMetricText( GetRight(),
-//STRIP001                                             eCoreUnit, SFX_MAPUNIT_MM, pIntl );
-//STRIP001          ( rText.AppendAscii( " T: " )) += ::GetMetricText( GetTop(),
-//STRIP001                                             eCoreUnit, SFX_MAPUNIT_MM, pIntl );
-//STRIP001          ( rText.AppendAscii( " B: " )) += ::GetMetricText( GetBottom(),
-//STRIP001                                             eCoreUnit, SFX_MAPUNIT_MM, pIntl );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      ePres = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return ePres;
-//STRIP001 }
 
 
 
