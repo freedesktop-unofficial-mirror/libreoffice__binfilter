@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlsheet.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:25:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:03:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 
 #pragma hdrstop
 
-// auto strip #include "eetext.hxx"       // definiert ITEMID_... fuer frmitems und textitem
 #ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
 #endif
@@ -44,21 +43,7 @@
 #include <bf_svx/eeitem.hxx>
 #endif
 
-// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
-// auto strip #include <bf_svx/fhgtitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDOATTR_HXX //autogen
-// auto strip #include <bf_svx/svdoattr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
-// auto strip #include <bf_svx/ulspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 
-// auto strip #include <bf_svx/bulitem.hxx>
-// auto strip #include <bf_svx/lrspitem.hxx>
 
 #include "stlsheet.hxx"
 #include "sdresid.hxx"
@@ -67,23 +52,12 @@
 #include "stlpool.hxx"
 #include "glob.hrc"
 #include "app.hrc"
-// auto strip #include "glob.hxx"
 
 #ifndef SVX_LIGHT
 #ifndef MAC
-// auto strip #include "../ui/inc/viewshel.hxx"
-// auto strip #include "../ui/inc/sdview.hxx"
-// auto strip #include "../ui/inc/tabcontr.hxx"
-// auto strip #include "../ui/inc/layertab.hxx"
-// auto strip #include "../ui/inc/viewshel.hxx"
 #include "../ui/inc/drawview.hxx"
 #include "../ui/inc/drviewsh.hxx"
-// auto strip #include "../ui/inc/docshell.hxx"
-// auto strip #include "../ui/inc/outlview.hxx"
-// auto strip #include "../ui/inc/outlnvsh.hxx"
 #else
-// auto strip #include "drviewsh.hxx"
-// auto strip #include "outlnvsh.hxx"
 #endif
 #endif // !SVX_LIGHT
 namespace binfilter {
@@ -300,26 +274,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 List* SdStyleSheet::CreateChildList() const
-//STRIP001 {
-//STRIP001  List* pResult = new List;
-//STRIP001
-//STRIP001  USHORT nListenerCount = GetListenerCount();
-//STRIP001  if (nListenerCount > 0)
-//STRIP001  {
-//STRIP001      for (USHORT n = 0; n < nListenerCount; n++)
-//STRIP001      {
-//STRIP001          SfxListener* pListener = GetListener(n);
-//STRIP001          // NULL-Pointer ist im Listener-Array erlaubt
-//STRIP001          if (pListener && pListener->ISA(SdStyleSheet) &&
-//STRIP001              ((SdStyleSheet*)pListener)->GetParent() == aName)
-//STRIP001          {
-//STRIP001              pResult->Insert((SdStyleSheet*)pListener, LIST_APPEND);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pResult;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -431,51 +385,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SdStyleSheet* SdStyleSheet::GetPseudoStyleSheet() const
-//STRIP001 {
-//STRIP001  SdStyleSheet* pPseudoStyle = NULL;
-//STRIP001  String aSep( RTL_CONSTASCII_USTRINGPARAM( SD_LT_SEPARATOR ));
-//STRIP001  String aStyleName(aName);
-//STRIP001      // ohne Layoutnamen und Separator
-//STRIP001  aStyleName.Erase(0, aStyleName.Search(aSep) + aSep.Len());
-//STRIP001
-//STRIP001  if (aStyleName == String(SdResId(STR_LAYOUT_TITLE)))
-//STRIP001  {
-//STRIP001      aStyleName = String(SdResId(STR_PSEUDOSHEET_TITLE));
-//STRIP001  }
-//STRIP001  else if (aStyleName == String(SdResId(STR_LAYOUT_SUBTITLE)))
-//STRIP001  {
-//STRIP001      aStyleName = String(SdResId(STR_PSEUDOSHEET_SUBTITLE));
-//STRIP001  }
-//STRIP001  else if (aStyleName == String(SdResId(STR_LAYOUT_BACKGROUND)))
-//STRIP001  {
-//STRIP001      aStyleName = String(SdResId(STR_PSEUDOSHEET_BACKGROUND));
-//STRIP001  }
-//STRIP001  else if (aStyleName == String(SdResId(STR_LAYOUT_BACKGROUNDOBJECTS)))
-//STRIP001  {
-//STRIP001      aStyleName = String(SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS));
-//STRIP001  }
-//STRIP001  else if (aStyleName == String(SdResId(STR_LAYOUT_NOTES)))
-//STRIP001  {
-//STRIP001      aStyleName = String(SdResId(STR_PSEUDOSHEET_NOTES));
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      String aOutlineStr((SdResId(STR_LAYOUT_OUTLINE)));
-//STRIP001      USHORT nPos = aStyleName.Search(aOutlineStr);
-//STRIP001      if (nPos != STRING_NOTFOUND)
-//STRIP001      {
-//STRIP001          String aNumStr(aStyleName.Copy(aOutlineStr.Len()));
-//STRIP001          aStyleName = String(SdResId(STR_PSEUDOSHEET_OUTLINE));
-//STRIP001          aStyleName += aNumStr;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  pPseudoStyle = (SdStyleSheet*)rPool.Find(aStyleName, (SfxStyleFamily)SFX_STYLE_FAMILY_PSEUDO);
-//STRIP001  DBG_ASSERT(pPseudoStyle, "PseudoStyleSheet nicht gefunden");
-//STRIP001
-//STRIP001  return pPseudoStyle;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -513,74 +422,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void SdStyleSheet::AdjustToFontHeight(SfxItemSet& rSet, BOOL bOnlyMissingItems)
-//STRIP001 {
-//STRIP001  // Bulletbreite und Texteinzug an neue Fonthoehe
-//STRIP001  // anpassen, wenn sie nicht explizit gesetzt wurden
-//STRIP001  SfxStyleFamily eFamily = nFamily;
-//STRIP001  String aStyleName(aName);
-//STRIP001  if (eFamily == SFX_STYLE_FAMILY_PSEUDO)
-//STRIP001  {
-//STRIP001      SfxStyleSheet* pRealStyle = GetRealStyleSheet();
-//STRIP001      eFamily = pRealStyle->GetFamily();
-//STRIP001      aStyleName = pRealStyle->GetName();
-//STRIP001  }
-//STRIP001
-//STRIP001  if (eFamily == SD_LT_FAMILY &&
-//STRIP001      aStyleName.Search(String(SdResId(STR_LAYOUT_OUTLINE))) != STRING_NOTFOUND &&
-//STRIP001      rSet.GetItemState(EE_CHAR_FONTHEIGHT) == SFX_ITEM_SET)
-//STRIP001  {
-//STRIP001      const SfxItemSet* pCurSet = &GetItemSet();
-//STRIP001      UINT32 nNewHeight = ((SvxFontHeightItem&)rSet.Get(EE_CHAR_FONTHEIGHT)).GetHeight();
-//STRIP001      UINT32 nOldHeight = ((SvxFontHeightItem&)pCurSet->Get(EE_CHAR_FONTHEIGHT)).GetHeight();
-//STRIP001
-//STRIP001      if (rSet.GetItemState(EE_PARA_BULLET) != SFX_ITEM_SET || !bOnlyMissingItems)
-//STRIP001      {
-//STRIP001          const SvxBulletItem& rBItem = (const SvxBulletItem&)pCurSet->Get(EE_PARA_BULLET);
-//STRIP001          double fBulletFraction = double(rBItem.GetWidth()) / nOldHeight;
-//STRIP001          SvxBulletItem aNewBItem(rBItem);
-//STRIP001          aNewBItem.SetWidth((UINT32)(fBulletFraction * nNewHeight));
-//STRIP001          rSet.Put(aNewBItem);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (rSet.GetItemState(EE_PARA_LRSPACE) != SFX_ITEM_SET || !bOnlyMissingItems)
-//STRIP001      {
-//STRIP001          const SvxLRSpaceItem& rLRItem = (const SvxLRSpaceItem&)pCurSet->Get(EE_PARA_LRSPACE);
-//STRIP001          double fIndentFraction = double(rLRItem.GetTxtLeft()) / nOldHeight;
-//STRIP001          SvxLRSpaceItem aNewLRItem(rLRItem);
-//STRIP001          aNewLRItem.SetTxtLeft((USHORT)(fIndentFraction * nNewHeight));
-//STRIP001          double fFirstIndentFraction = double(rLRItem.GetTxtFirstLineOfst()) / nOldHeight;
-//STRIP001          aNewLRItem.SetTxtFirstLineOfst((short)(fFirstIndentFraction * nNewHeight));
-//STRIP001          rSet.Put(aNewLRItem);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (rSet.GetItemState(EE_PARA_ULSPACE) != SFX_ITEM_SET || !bOnlyMissingItems)
-//STRIP001      {
-//STRIP001          const SvxULSpaceItem& rULItem = (const SvxULSpaceItem&)pCurSet->Get(EE_PARA_ULSPACE);
-//STRIP001          SvxULSpaceItem aNewULItem(rULItem);
-//STRIP001          double fLowerFraction = double(rULItem.GetLower()) / nOldHeight;
-//STRIP001          aNewULItem.SetLower((USHORT)(fLowerFraction * nNewHeight));
-//STRIP001          double fUpperFraction = double(rULItem.GetUpper()) / nOldHeight;
-//STRIP001          aNewULItem.SetUpper((USHORT)(fUpperFraction * nNewHeight));
-//STRIP001          rSet.Put(aNewULItem);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 
-//STRIP001 BOOL SdStyleSheet::HasFollowSupport() const
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL SdStyleSheet::HasParentSupport() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
-//STRIP001 BOOL SdStyleSheet::HasClearParentSupport() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 }
