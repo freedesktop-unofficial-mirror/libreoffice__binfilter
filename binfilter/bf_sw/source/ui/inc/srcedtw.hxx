@@ -4,9 +4,9 @@
  *
  *  $RCSfile: srcedtw.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:51:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:53:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,27 +39,14 @@
 #include <vcl/window.hxx>
 #endif
 
-// auto strip #ifndef _SFXLSTNER_HXX //autogen
-// auto strip #include <svtools/lstner.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TIMER_HXX //autogen
-// auto strip #include <vcl/timer.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TABLE_HXX //autogen
-// auto strip #include <tools/table.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XTEXTEDT_HXX //autogen
-// auto strip #include <svtools/xtextedt.hxx>
-// auto strip #endif
 class ScrollBar;
 namespace binfilter {
 
 
 class SwSrcView;
-//STRIP001 class SwSrcEditWindow;
 class TextEngine;
 class ExtTextView;
 class DataChangedEvent;
@@ -87,89 +74,6 @@ public:
 
 //------------------------------------------------------------
 namespace svt{ class SourceViewConfig;}
-//STRIP001 class SwSrcEditWindow : public Window, public SfxListener
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ExtTextView*    pTextView;
-//STRIP001  ExtTextEngine*  pTextEngine;
-//STRIP001
-//STRIP001  TextViewOutWin* pOutWin;
-//STRIP001  ScrollBar       *pHScrollbar,
-//STRIP001                  *pVScrollbar;
-//STRIP001
-//STRIP001  SwSrcView*      pSrcView;
-//STRIP001     svt::SourceViewConfig* pSourceViewConfig;
-//STRIP001
-//STRIP001  long            nCurTextWidth;
-//STRIP001  USHORT          nStartLine;
-//STRIP001     rtl_TextEncoding eSourceEncoding;
-//STRIP001  BOOL            bReadonly;
-//STRIP001  BOOL            bDoSyntaxHighlight;
-//STRIP001  BOOL            bHighlighting;
-//STRIP001
-//STRIP001  Timer           aSyntaxIdleTimer;
-//STRIP001  Table           aSyntaxLineTable;
-//STRIP001
-//STRIP001  void            ImpDoHighlight( const String& rSource, USHORT nLineOff );
-//STRIP001     void            SetFont();
-//STRIP001
-//STRIP001  DECL_LINK( SyntaxTimerHdl, Timer * );
-//STRIP001  DECL_LINK( TimeoutHdl, Timer * );
-//STRIP001
-//STRIP001 protected:
-//STRIP001
-//STRIP001  virtual void    Resize();
-//STRIP001  virtual void    DataChanged( const DataChangedEvent& );
-//STRIP001  virtual void    GetFocus();
-//STRIP001 //   virtual void    LoseFocus();
-//STRIP001
-//STRIP001  void            CreateTextEngine();
-//STRIP001  void            DoSyntaxHighlight( USHORT nPara );
-//STRIP001
-//STRIP001  virtual void    Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-//STRIP001
-//STRIP001  DECL_LINK(ScrollHdl, ScrollBar*);
-//STRIP001
-//STRIP001 public:
-//STRIP001                  SwSrcEditWindow( Window* pParent, SwSrcView* pParentView );
-//STRIP001                  ~SwSrcEditWindow();
-//STRIP001
-//STRIP001  void            SetScrollBarRanges();
-//STRIP001  void            InitScrollBars();
-//STRIP001  ULONG           Read( SvStream& rInput)
-//STRIP001                      {return pTextEngine->Read(rInput);}
-//STRIP001  ULONG           Write( SvStream& rOutput)
-//STRIP001                      {return pTextEngine->Write(rOutput);}
-//STRIP001
-//STRIP001  ExtTextView*    GetTextView()
-//STRIP001                      {return pTextView;}
-//STRIP001  TextEngine*     GetTextEngine()
-//STRIP001                      {return pTextEngine;}
-//STRIP001  SwSrcView*      GetSrcView() {return pSrcView;}
-//STRIP001
-//STRIP001  TextViewOutWin* GetOutWin() {return pOutWin;}
-//STRIP001  void            Invalidate();
-//STRIP001
-//STRIP001  void            ClearModifyFlag()
-//STRIP001                      { pTextEngine->SetModified(FALSE); }
-//STRIP001  BOOL            IsModified() const
-//STRIP001                      { return pTextEngine->IsModified();}
-//STRIP001  void            CreateScrollbars();
-//STRIP001
-//STRIP001  void            SetReadonly(BOOL bSet){bReadonly = bSet;}
-//STRIP001  BOOL            IsReadonly(){return bReadonly;}
-//STRIP001
-//STRIP001  void            DoDelayedSyntaxHighlight( USHORT nPara );
-//STRIP001
-//STRIP001  void            SyntaxColorsChanged();
-//STRIP001
-//STRIP001  void            SetStartLine(USHORT nLine){nStartLine = nLine;}
-//STRIP001
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
-//STRIP001  void            HandleWheelCommand( const CommandEvent& rCEvt );
-//STRIP001
-//STRIP001     void            SetTextEncoding(rtl_TextEncoding eEncoding);
-//STRIP001 };
 
 } //namespace binfilter
 #endif
