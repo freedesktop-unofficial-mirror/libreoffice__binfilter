@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmldrani.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:30:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:29:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,20 +34,17 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #include "xmldrani.hxx"
 #include "xmlimprt.hxx"
 #include "xmlfilti.hxx"
 #include "xmlsorti.hxx"
 #include "document.hxx"
 #include "globstr.hrc"
-// auto strip #include "docuno.hxx"
 #include "dbcolect.hxx"
 #include "datauno.hxx"
 
@@ -64,30 +61,16 @@
 #include "XMLConverter.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
 #endif
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #include <com/sun/star/sheet/XDatabaseRanges.hpp>
-// auto strip #include <com/sun/star/sheet/XDatabaseRange.hpp>
-// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
-// auto strip #include <com/sun/star/uno/RuntimeException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
-// auto strip #include <com/sun/star/xml/sax/XLocator.hpp>
-// auto strip #endif
 namespace binfilter {
 
 #define SC_ENABLEUSERSORTLIST   "EnableUserSortList"

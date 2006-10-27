@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlfilti.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:31:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:30:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,7 +42,6 @@
 
 #include "xmlfilti.hxx"
 #include "xmlimprt.hxx"
-// auto strip #include "docuno.hxx"
 
 #ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
@@ -52,11 +50,7 @@
 #include "XMLConverter.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

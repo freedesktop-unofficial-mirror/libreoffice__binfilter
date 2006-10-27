@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlimprt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:31:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:30:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,11 +42,7 @@
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
-// auto strip #include <bf_xmloff/i18nmap.hxx>
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
-// auto strip #include <bf_xmloff/xmlictxt.hxx>
 #include <bf_xmloff/xmlmetai.hxx>
-// auto strip #include <bf_sfx2/objsh.hxx>
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #include <bf_xmloff/xmlnumfi.hxx>
 #endif
@@ -66,15 +61,10 @@
 #ifndef XMLOFF_NUMEHELP_HXX
 #include <bf_xmloff/numehelp.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 #ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
 #endif
 
-// auto strip #include "xmlimprt.hxx"
-// auto strip #include "document.hxx"
 #include "docuno.hxx"
 #include "xmlbodyi.hxx"
 #include "xmlstyli.hxx"
@@ -107,42 +97,9 @@
 #include <comphelper/extract.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
-// auto strip #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGE_HPP_
-// auto strip #include <com/sun/star/sheet/XSheetCellRange.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
-// auto strip #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
-// auto strip #include <com/sun/star/util/XMergeable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_CELLINSERTMODE_HPP_
-// auto strip #include <com/sun/star/sheet/CellInsertMode.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HPP_
-// auto strip #include <com/sun/star/sheet/XCellRangeMovement.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
-// auto strip #include <com/sun/star/document/XActionLockable.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
-// auto strip #include <com/sun/star/util/XNumberFormatTypes.hpp>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
