@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_stlpool.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:00:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:28:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,10 +83,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 SfxStyleSheetBase* SchStyleSheetPool::Create(const SchStyleSheet& rStyle)
-//STRIP001 {
-//STRIP001  return new SchStyleSheet(rStyle);
-//STRIP001 }
 
 
 
