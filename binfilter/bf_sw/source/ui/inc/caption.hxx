@@ -4,9 +4,9 @@
  *
  *  $RCSfile: caption.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:21:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:33:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,12 +35,6 @@
 #ifndef _CAPTION_HXX
 #define _CAPTION_HXX
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 #ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
 #endif
@@ -72,7 +66,6 @@ private:
 
 public:
     InsCaptionOpt(const SwCapObjType eType = FRAME_CAP, const SvGlobalName* pOleId = 0);
-//STRIP001  InsCaptionOpt(const InsCaptionOpt&);
     ~InsCaptionOpt();
 
     inline BOOL&            UseCaption()                    { return bUseCaption; }
@@ -108,12 +101,8 @@ public:
     inline BOOL&            CopyAttributes()                { return bCopyAttributes; }
     inline BOOL             CopyAttributes() const          { return bCopyAttributes; }
 
-//STRIP001  BOOL                    operator==( const InsCaptionOpt& rOpt ) const;
-//STRIP001  InsCaptionOpt&          operator= ( const InsCaptionOpt& rOpt );
     inline BOOL             operator< ( const InsCaptionOpt & rObj ) const
                                                 { return aOleId < rObj.aOleId; }
-//STRIP001  friend SvStream&        operator>>( SvStream& rIStream, InsCaptionOpt& rCapOpt );
-//STRIP001  friend SvStream&        operator<<( SvStream& rOStream, const InsCaptionOpt& rCapOpt );
 };
 
 } //namespace binfilter

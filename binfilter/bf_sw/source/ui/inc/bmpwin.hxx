@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bmpwin.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:20:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:32:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #ifndef _GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
 #endif
-// auto strip #ifndef _BITMAP_HXX //autogen
-// auto strip #include <vcl/bitmap.hxx>
-// auto strip #endif
 #ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
 #endif

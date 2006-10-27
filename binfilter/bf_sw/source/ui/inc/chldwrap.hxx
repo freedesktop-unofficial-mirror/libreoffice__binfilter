@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chldwrap.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:23:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:34:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,20 +48,12 @@ class SwDocShell;
 
 class SwChildWinWrapper : public SfxChildWindow
 {
-//STRIP001  Timer       aUpdateTimer;
-//STRIP001  SwDocShell* pDocSh;
 
-//STRIP001  DECL_LINK( UpdateHdl, void* );
 
     // Implementation in fldtdlg.cxx
 protected:
     SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwChildWinWrapper(Window *pParentWindow, USHORT nId);
 
-//STRIP001 public:
-//STRIP001  virtual BOOL    ReInitDlg(SwDocShell *pDocSh);
-//STRIP001
-//STRIP001  inline SwDocShell*  GetOldDocShell()                    { return pDocSh; }
-//STRIP001  inline void         SetOldDocShell(SwDocShell *pDcSh)   { pDocSh = pDcSh; }
 };
 
 
