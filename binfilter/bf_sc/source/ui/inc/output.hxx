@@ -4,9 +4,9 @@
  *
  *  $RCSfile: output.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:04:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:20:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -149,22 +149,14 @@ private:
 
                             // private Methoden
 
-//STRIP001  BOOL            GetMergeOrigin( USHORT nX, USHORT nY, USHORT nArrY,
-//STRIP001                                  USHORT& rOverX, USHORT& rOverY,
-//STRIP001                                  long& rVirtPosX, long& rVirtPosY,
-//STRIP001                                  BOOL bClipVirt, BOOL bVisRowChanged );
     BOOL            IsEmptyCellText( RowInfo* pThisRowInfo, USHORT nX, USHORT nY );
     void            GetVisibleCell( USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell*& rpCell );
 
     BOOL            IsAvailable( USHORT nX, USHORT nY );
     long            GetAvailableWidth( USHORT nX, USHORT nY, long nNeeded );
 
-//STRIP001  void            SetSyntaxColor( Font* pFont, ScBaseCell* pCell );
-//STRIP001  void            SetEditSyntaxColor( EditEngine& rEngine, ScBaseCell* pCell );
 
-//STRIP001  void            ConnectObject( const SvInPlaceObjectRef& rRef, SdrOle2Obj* pOleObj );
 
-//STRIP001  double          GetStretch();
 
     void            DrawRotatedFrame( const Color* pForceColor ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void            DrawRotatedFrame( const Color* pForceColor );       // pixel
 
@@ -188,9 +180,7 @@ public:
     void    SetSolidBackground( BOOL bSet )     { bSolidBackground = bSet; }
     void    SetUseStyleColor( BOOL bSet )       { bUseStyleColor = bSet; }
 
-//STRIP001  void    SetEditCell( USHORT nCol, USHORT nRow );
     void    SetSyntaxMode( BOOL bNewMode );
-//STRIP001  void    SetMetaFileMode( BOOL bNewMode );
     void    SetSingleGrid( BOOL bNewMode );
     void    SetGridColor( const Color& rColor );
     void    SetMarkClipped( BOOL bSet );
@@ -200,48 +190,31 @@ public:
     long    GetScrW() const     { return nScrW; }
     long    GetScrH() const     { return nScrH; }
 
-//STRIP001  void    SetSnapPixel( BOOL bSet = TRUE );
 
     void    DrawGrid( BOOL bGrid, BOOL bPage );
     void    DrawStrings( BOOL bPixelToLogic = FALSE );
     void    DrawBackground();
     void    DrawShadow();
-//STRIP001  void    DrawExtraShadow(BOOL bLeft, BOOL bTop, BOOL bRight, BOOL bBottom);
     void    DrawFrame();
 
                     // with logic MapMode set!
     void    DrawEdit(BOOL bPixelToLogic);
 
     void    FindRotated();
-//STRIP001  void    DrawRotated(BOOL bPixelToLogic);        // logisch
 
-//STRIP001  void    DrawClear();
-//STRIP001  void    DrawPageBorder( USHORT nStartX, USHORT nStartY, USHORT nEndX, USHORT nEndY );
-//STRIP001  void    DrawingLayer( USHORT nLayer, USHORT nObjectFlags, long nLogStX, long nLogStY );
 
                                                     // nur Bildschirm:
 
     void    DrawingSingle( USHORT nLayer, USHORT nObjectFlags, USHORT nDummyFlags );
 
-//STRIP001  void    DrawSelectiveObjects( USHORT nLayer, const Rectangle& rRect,
-//STRIP001                                  USHORT nObjectFlags, USHORT nDummyFlags = 0 );
 
     BOOL    SetChangedClip();       // FALSE = nix
 
     void    FindChanged();
-//STRIP001  void    SetPagebreakMode( ScPageBreakData* pPageData );
     void    DrawMark( Window* pWin );
-//STRIP001  void    DrawRefMark( USHORT nRefStartX, USHORT nRefStartY,
-//STRIP001                       USHORT nRefEndX, USHORT nRefEndY,
-//STRIP001                       const Color& rColor, BOOL bHandle );
-//STRIP001  void    DrawOneChange( USHORT nRefStartX, USHORT nRefStartY,
-//STRIP001                          USHORT nRefEndX, USHORT nRefEndY,
-//STRIP001                          const Color& rColor, USHORT nType );
-//STRIP001  void    DrawChangeTrack();
     void    DrawClipMarks();
 
     void    DrawNoteMarks();
-//STRIP001  void    PrintNoteMarks( const List& rPosList );     // Liste von ScTripeln
 };
 
 

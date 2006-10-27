@@ -4,9 +4,9 @@
  *
  *  $RCSfile: popmenu.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:07:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:21:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,24 +36,8 @@
 #ifndef SC_POPMENU_HXX
 #define SC_POPMENU_HXX
 
-// auto strip #ifndef _MENU_HXX //autogen
-// auto strip #include <vcl/menu.hxx>
-// auto strip #endif
 namespace binfilter {
 
-//STRIP001 class ScPopupMenu : public PopupMenu
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  USHORT  nSel;
-//STRIP001  BOOL    bHit;
-//STRIP001 protected:
-//STRIP001  virtual void Select();
-//STRIP001 public:
-//STRIP001  ScPopupMenu() : nSel(0),bHit(FALSE) {}
-//STRIP001  ScPopupMenu(const ResId& rRes) : PopupMenu(rRes),nSel(0),bHit(FALSE) {}
-//STRIP001  USHORT  GetSelected() const { return nSel; }
-//STRIP001  BOOL    WasHit() const      { return bHit; }
-//STRIP001 };
 
 
 
