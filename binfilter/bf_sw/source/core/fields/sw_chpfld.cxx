@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_chpfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:08:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:36:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,9 +50,6 @@
 #ifndef _FRAME_HXX
 #include <frame.hxx>        // SwChapterFieldType::ChangeExpansion()
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>            // fuer GetBodyTxtNode
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif

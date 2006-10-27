@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ddefld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:09:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:37:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,36 +47,15 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _EDITSH_HXX
-// auto strip #include <editsh.hxx>
-// auto strip #endif
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTFLD_HXX //autogen
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTFLD_HXX //autogen
-// auto strip #include <txtfld.hxx>
-// auto strip #endif
 #ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
-// auto strip #ifndef _SWDDETBL_HXX
-// auto strip #include <swddetbl.hxx>
-// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
@@ -105,189 +84,13 @@ using namespace rtl;
 /*N*/       rFldType( rType )
 /*N*/   {}
 /*N*/
-//STRIP001  virtual void Closed();
-//STRIP001  virtual void DataChanged( const String& rMimeType,
-//STRIP001                              const ::com::sun::star::uno::Any & rValue );
 
-//STRIP001  virtual const SwNode* GetAnchor() const;
-//STRIP001  virtual BOOL IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen nStt = 0,
-//STRIP001                          xub_StrLen nEnd = STRING_NOTFOUND ) const;
 /*N*/ };
 
 
-//STRIP001 void SwIntrnlRefLink::DataChanged( const String& rMimeType,
-//STRIP001                              const ::com::sun::star::uno::Any & rValue )
-//STRIP001 {
-//STRIP001  switch( SotExchange::GetFormatIdFromMimeType( rMimeType ) )
-//STRIP001  {
-//STRIP001  case FORMAT_STRING:
-//STRIP001      if( !IsNoDataFlag() )
-//STRIP001      {
-//STRIP001          ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
-//STRIP001          rValue >>= aSeq;
-//STRIP001          String sStr( (sal_Char*)aSeq.getConstArray(), aSeq.getLength(),
-//STRIP001                             DDE_TXT_ENCODING  );
-//STRIP001
-//STRIP001          // CR-LF am Ende entfernen, ist ueberfluessig!
-//STRIP001          xub_StrLen n = sStr.Len();
-//STRIP001          while( n && 0 == sStr.GetChar( n-1 ) )
-//STRIP001              --n;
-//STRIP001          if( n && 0x0a == sStr.GetChar( n-1 ) )
-//STRIP001              --n;
-//STRIP001          if( n && 0x0d == sStr.GetChar( n-1 ) )
-//STRIP001              --n;
-//STRIP001
-//STRIP001          BOOL bDel = n != sStr.Len();
-//STRIP001          if( bDel )
-//STRIP001              sStr.Erase( n );
-//STRIP001
-//STRIP001          rFldType.SetExpansion( sStr );
-//STRIP001          // erst Expansion setzen! (sonst wird das Flag geloescht!)
-//STRIP001          rFldType.SetCRLFDelFlag( bDel );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  // weitere Formate ...
-//STRIP001  default:
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  ASSERT( rFldType.GetDoc(), "Kein pDoc" );
-//STRIP001
-//STRIP001  // keine Abhaengigen mehr?
-//STRIP001  if( rFldType.GetDepends() && !rFldType.IsModifyLocked() && !ChkNoDataFlag() )
-//STRIP001  {
-//STRIP001      ViewShell* pSh;
-//STRIP001      SwEditShell* pESh = rFldType.GetDoc()->GetEditShell( &pSh );
-//STRIP001
-//STRIP001      // dann suchen wir uns mal alle Felder. Wird kein gueltiges
-//STRIP001      // gefunden, dann Disconnecten wir uns!
-//STRIP001      SwMsgPoolItem aUpdateDDE( RES_UPDATEDDETBL );
-//STRIP001      int bCallModify = FALSE;
-//STRIP001      rFldType.LockModify();
-//STRIP001
-//STRIP001      SwClientIter aIter( rFldType );
-//STRIP001      SwClient * pLast = aIter.GoStart();
-//STRIP001      if( pLast )     // konnte zum Anfang gesprungen werden ??
-//STRIP001          do {
-//STRIP001              // eine DDE-Tabelle oder ein DDE-FeldAttribut im Text
-//STRIP001              if( !pLast->IsA( TYPE( SwFmtFld ) ) ||
-//STRIP001                  ((SwFmtFld*)pLast)->GetTxtFld() )
-//STRIP001              {
-//STRIP001                  if( !bCallModify )
-//STRIP001                  {
-//STRIP001                      if( pESh )
-//STRIP001                          pESh->StartAllAction();
-//STRIP001                      else if( pSh )
-//STRIP001                          pSh->StartAction();
-//STRIP001                  }
-//STRIP001                  pLast->Modify( 0, &aUpdateDDE );
-//STRIP001                  bCallModify = TRUE;
-//STRIP001              }
-//STRIP001          } while( 0 != ( pLast = aIter++ ));
-//STRIP001
-//STRIP001      rFldType.UnlockModify();
-//STRIP001
-//STRIP001      if( bCallModify )
-//STRIP001      {
-//STRIP001          if( pESh )
-//STRIP001              pESh->EndAllAction();
-//STRIP001          else if( pSh )
-//STRIP001              pSh->EndAction();
-//STRIP001
-//STRIP001          if( pSh )
-//STRIP001              pSh->GetDoc()->SetModified();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SwIntrnlRefLink::Closed()
-//STRIP001 {
-//STRIP001  if( rFldType.GetDoc() && !rFldType.GetDoc()->IsInDtor() )
-//STRIP001  {
-//STRIP001      // Advise verabschiedet sich, alle Felder in Text umwandeln ?
-//STRIP001      ViewShell* pSh;
-//STRIP001      SwEditShell* pESh = rFldType.GetDoc()->GetEditShell( &pSh );
-//STRIP001      if( pESh )
-//STRIP001      {
-//STRIP001          pESh->StartAllAction();
-//STRIP001          pESh->FieldToText( &rFldType );
-//STRIP001          pESh->EndAllAction();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pSh->StartAction();
-//STRIP001          // am Doc aufrufen ??
-//STRIP001          pSh->EndAction();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  SvBaseLink::Closed();
-//STRIP001 }
 
-//STRIP001 const SwNode* SwIntrnlRefLink::GetAnchor() const
-//STRIP001 {
-//STRIP001  // hier sollte irgend ein Anchor aus dem normalen Nodes-Array reichen
-//STRIP001  const SwNode* pNd = 0;
-//STRIP001  SwClientIter aIter( rFldType );
-//STRIP001  SwClient * pLast = aIter.GoStart();
-//STRIP001  if( pLast )     // konnte zum Anfang gesprungen werden ??
-//STRIP001      do {
-//STRIP001          // eine DDE-Tabelle oder ein DDE-FeldAttribut im Text
-//STRIP001          if( !pLast->IsA( TYPE( SwFmtFld ) ))
-//STRIP001          {
-//STRIP001              SwDepend* pDep = (SwDepend*)pLast;
-//STRIP001              SwDDETable* pDDETbl = (SwDDETable*)pDep->GetToTell();
-//STRIP001              pNd = pDDETbl->GetTabSortBoxes()[0]->GetSttNd();
-//STRIP001          }
-//STRIP001          else if( ((SwFmtFld*)pLast)->GetTxtFld() )
-//STRIP001              pNd = ((SwFmtFld*)pLast)->GetTxtFld()->GetpTxtNode();
-//STRIP001
-//STRIP001          if( pNd && &rFldType.GetDoc()->GetNodes() == &pNd->GetNodes() )
-//STRIP001              break;
-//STRIP001          pNd = 0;
-//STRIP001      } while( 0 != ( pLast = aIter++ ));
-//STRIP001
-//STRIP001  return pNd;
-//STRIP001 }
 
-//STRIP001 BOOL SwIntrnlRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd,
-//STRIP001                              xub_StrLen nStt, xub_StrLen nEnd ) const
-//STRIP001 {
-//STRIP001  // hier sollte irgend ein Anchor aus dem normalen Nodes-Array reichen
-//STRIP001  SwNodes* pNds = &rFldType.GetDoc()->GetNodes();
-//STRIP001  SwClientIter aIter( rFldType );
-//STRIP001  SwClient * pLast = aIter.GoStart();
-//STRIP001  if( pLast )     // konnte zum Anfang gesprungen werden ??
-//STRIP001      do {
-//STRIP001          // eine DDE-Tabelle oder ein DDE-FeldAttribut im Text
-//STRIP001          if( !pLast->IsA( TYPE( SwFmtFld ) ))
-//STRIP001          {
-//STRIP001              SwDepend* pDep = (SwDepend*)pLast;
-//STRIP001              SwDDETable* pDDETbl = (SwDDETable*)pDep->GetToTell();
-//STRIP001              const SwTableNode* pTblNd = pDDETbl->GetTabSortBoxes()[0]->
-//STRIP001                              GetSttNd()->FindTableNode();
-//STRIP001              if( pTblNd->GetNodes().IsDocNodes() &&
-//STRIP001                  nSttNd < pTblNd->EndOfSectionIndex() &&
-//STRIP001                  nEndNd > pTblNd->GetIndex() )
-//STRIP001                  return TRUE;
-//STRIP001          }
-//STRIP001          else if( ((SwFmtFld*)pLast)->GetTxtFld() )
-//STRIP001          {
-//STRIP001              const SwTxtFld* pTFld = ((SwFmtFld*)pLast)->GetTxtFld();
-//STRIP001              const SwTxtNode* pNd = pTFld->GetpTxtNode();
-//STRIP001              if( pNd && pNds == &pNd->GetNodes() )
-//STRIP001              {
-//STRIP001                  ULONG nNdPos = pNd->GetIndex();
-//STRIP001                  if( nSttNd <= nNdPos && nNdPos <= nEndNd &&
-//STRIP001                      ( nNdPos != nSttNd || *pTFld->GetStart() >= nStt ) &&
-//STRIP001                      ( nNdPos != nEndNd || *pTFld->GetStart() < nEnd ))
-//STRIP001                      return TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      } while( 0 != ( pLast = aIter++ ));
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ SwDDEFieldType::SwDDEFieldType(const String& rName,
 /*N*/                               const String& rCmd, USHORT nUpdateType )
