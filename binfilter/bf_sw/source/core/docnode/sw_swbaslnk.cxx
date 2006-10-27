@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swbaslnk.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:51:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:30:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,15 +47,6 @@
 #include <vcl/outdev.hxx>
 #endif
 
-// auto strip #ifndef _LNKBASE_HXX //autogen
-// auto strip #include <so3/lnkbase.hxx>
-// auto strip #endif
-// auto strip #ifndef _LINKMGR_HXX
-// auto strip #include <so3/linkmgr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_OBJSH_HXX //autogen
-// auto strip #include <bf_sfx2/objsh.hxx>
-// auto strip #endif
 #ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
 #endif
@@ -65,9 +56,6 @@
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
-// auto strip #ifndef _SOERR_HXX
-// auto strip #include <so3/soerr.hxx>
-// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -100,15 +88,6 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWEVENT_HXX
-// auto strip #include <swevent.hxx>
-// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
@@ -118,21 +97,12 @@
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
-// auto strip #ifndef _NDOLE_HXX
-// auto strip #include <ndole.hxx>
-// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _TABFRM_HXX
-// auto strip #include <tabfrm.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-// auto strip #ifndef _HTMLTBL_HXX
-// auto strip #include <htmltbl.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ BOOL SetGrfFlySize( const Size& rGrfSz, const Size& rFrmSz, SwGrfNode* pGrfNd );
@@ -206,8 +176,6 @@ namespace binfilter {
 /*?*/           if( nEvent && 0 != ( pFmt = pCntntNode->GetFlyFmt() ))
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCallMouseEvent aCallEvent;
-//STRIP001 /*?*/                aCallEvent.Set( EVENT_OBJECT_IMAGE, pFmt );
-//STRIP001 /*?*/                pDoc->CallEvent( nEvent, aCallEvent );
 /*?*/           }
 /*?*/       }
 /*?*/       return;         // das wars!
@@ -449,11 +417,6 @@ namespace binfilter {
 /*?*/                   if( pLayout )
 /*?*/                   {
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nBrowseWidth =
-//STRIP001 /*?*/                            pLayout->GetBrowseWidthByTable( *pDoc );
-//STRIP001 /*?*/                        if( nBrowseWidth )
-//STRIP001 /*?*/                            pLayout->Resize( nBrowseWidth, TRUE, TRUE,
-//STRIP001 /*?*/                                             bLastGrf ? HTMLTABLE_RESIZE_NOW
-//STRIP001 /*?*/                                                      : 500 );
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -528,36 +491,7 @@ namespace binfilter {
 /*N*/   return bRes;
 /*N*/ }
 
-//STRIP001 void SwBaseLink::Closed()
-//STRIP001 {
-//STRIP001  if( pCntntNode && !pCntntNode->GetDoc()->IsInDtor() )
-//STRIP001  {
-//STRIP001      // wir heben die Verbindung auf
-//STRIP001      if( pCntntNode->IsGrfNode() )
-//STRIP001          ((SwGrfNode*)pCntntNode)->ReleaseLink();
-//STRIP001  }
-//STRIP001  SvBaseLink::Closed();
-//STRIP001 }
 
-//STRIP001 const SwNode* SwBaseLink::GetAnchor() const
-//STRIP001 {
-//STRIP001  SwFrmFmt* pFmt;
-//STRIP001  if( pCntntNode && 0 != ( pFmt = pCntntNode->GetFlyFmt()) )
-//STRIP001  {
-//STRIP001      const SwFmtAnchor& rAnchor = pFmt->GetAnchor();
-//STRIP001      const SwPosition* pAPos;
-//STRIP001      if( 0 != ( pAPos = rAnchor.GetCntntAnchor()) &&
-//STRIP001          ( FLY_IN_CNTNT == rAnchor.GetAnchorId() ||
-//STRIP001          FLY_AUTO_CNTNT == rAnchor.GetAnchorId() ||
-//STRIP001          FLY_AT_FLY == rAnchor.GetAnchorId() ||
-//STRIP001          FLY_AT_CNTNT == rAnchor.GetAnchorId() ))
-//STRIP001              return &pAPos->nNode.GetNode();
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  ASSERT( !this, "GetAnchor nicht ueberlagert" );
-//STRIP001  return 0;
-//STRIP001 }
 
 /*N*/ BOOL SwBaseLink::IsRecursion( const SwBaseLink* pChkLnk ) const
 /*N*/ {
