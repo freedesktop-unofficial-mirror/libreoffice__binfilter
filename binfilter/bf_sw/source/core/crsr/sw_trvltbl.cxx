@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_trvltbl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:29:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:20:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,20 +40,11 @@
 #include <hintids.hxx>
 #endif
 
-// auto strip #ifndef _APP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
-// auto strip #include <bf_svx/protitem.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _CRSRSH_HXX
-// auto strip #include <crsrsh.hxx>
-// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -63,263 +54,34 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>       //EndAllAction gibts nur an der EditShell
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-// auto strip #ifndef _CALLNK_HXX
-// auto strip #include <callnk.hxx>
-// auto strip #endif
-// auto strip #ifndef _TABFRM_HXX
-// auto strip #include <tabfrm.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-// auto strip #ifndef _CELLATR_HXX
-// auto strip #include <cellatr.hxx>
-// auto strip #endif
 #ifndef _CELLFRM_HXX //autogen
 #include <cellfrm.hxx>
 #endif
 namespace binfilter {
 
 // setze Crsr in die naechsten/vorherigen Celle
-//STRIP001 FASTBOOL SwCrsrShell::GoNextCell( BOOL bAppendLine )
-//STRIP001 {
-//STRIP001  FASTBOOL bRet = FALSE;
-//STRIP001  const SwTableNode* pTblNd;
-//STRIP001  if( IsTableMode() || 0 != ( pTblNd = IsCrsrInTbl() ))
-//STRIP001  {
-//STRIP001      SwCursor* pCrsr = pTblCrsr ? pTblCrsr : pCurCrsr;
-//STRIP001      SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-//STRIP001      bRet = TRUE;
-//STRIP001
-//STRIP001      // folgt nach dem EndNode der Cell ein weiterer StartNode, dann
-//STRIP001      // gibt es auch eine naechste Celle
-//STRIP001      SwNodeIndex aCellStt( *pCrsr->GetNode()->FindTableBoxStartNode()->
-//STRIP001                              EndOfSectionNode(), 1 );
-//STRIP001      if( !aCellStt.GetNode().IsStartNode() )
-//STRIP001      {
-//STRIP001          if( pCrsr->HasMark() ||
-//STRIP001              (!bAppendLine /*&& IsCrsrReadonly()*/ ))
-//STRIP001              bRet = FALSE;
-//STRIP001          else
-//STRIP001          {
-//STRIP001              // auf besonderen Wunsch: keine Line mehr vorhanden, dann
-//STRIP001              // mache doch eine neue:
-//STRIP001              const SwTableBox* pBox = pTblNd->GetTable().GetTblBox(
-//STRIP001                                  pCrsr->GetPoint()->nNode.GetNode().
-//STRIP001                                  StartOfSectionIndex() );
-//STRIP001              ASSERT( pBox, "Box steht nicht in dieser Tabelle" );
-//STRIP001              SwSelBoxes aBoxes;
-//STRIP001
-//STRIP001              //Das Dokument veraendert sich evtl. ohne Action wuerden die Sichten
-//STRIP001              //nichts mitbekommen.
-//STRIP001              ((SwEditShell*)this)->StartAllAction();
-//STRIP001              bRet = pDoc->InsertRow( pTblNd->GetTable().
-//STRIP001                                  SelLineFromBox( pBox, aBoxes, FALSE ));
-//STRIP001              ((SwEditShell*)this)->EndAllAction();
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if( bRet && 0 != ( bRet = pCrsr->GoNextCell() ))
-//STRIP001          UpdateCrsr();                 // und den akt. Updaten
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::GoPrevCell()
-//STRIP001 {
-//STRIP001  FASTBOOL bRet = FALSE;
-//STRIP001  const SwTableNode* pTblNd;
-//STRIP001  if( IsTableMode() || 0 != ( pTblNd = IsCrsrInTbl() ))
-//STRIP001  {
-//STRIP001      SwCursor* pCrsr = pTblCrsr ? pTblCrsr : pCurCrsr;
-//STRIP001      SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-//STRIP001      bRet = pCrsr->GoPrevCell();
-//STRIP001      if( bRet )
-//STRIP001          UpdateCrsr();                 // und den akt. Updaten
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::GotoTblBox( const String& rName )
-//STRIP001 {
-//STRIP001  SwShellCrsr* pCrsr = pTblCrsr ? pTblCrsr : pCurCrsr;
-//STRIP001  SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-//STRIP001
-//STRIP001  FASTBOOL bRet = pCrsr->GotoTblBox( rName );
-//STRIP001  if( bRet )
-//STRIP001  {
-//STRIP001      //JP 28.10.97: Bug 45028 - die "oberste" Position setzen fuer
-//STRIP001      //              wiederholte Kopfzeilen
-//STRIP001      pCrsr->GetPtPos() = Point();
-//STRIP001      UpdateCrsr( SwCrsrShell::SCROLLWIN | SwCrsrShell::CHKRANGE |
-//STRIP001                  SwCrsrShell::READONLY ); // und den akt. Updaten
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::SelTblRow()
-//STRIP001 {
-//STRIP001  // pruefe ob vom aktuellen Crsr der SPoint/Mark in einer Tabelle stehen
-//STRIP001  SwFrm *pFrm = GetCurrFrm();
-//STRIP001  if( !pFrm->IsInTab() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const SwTabFrm *pTblFrm = pFrm->ImplFindTabFrm();
-//STRIP001
-//STRIP001  SET_CURR_SHELL( this );
-//STRIP001
-//STRIP001  // lasse ueber das Layout die Boxen suchen
-//STRIP001  SwSelBoxes aBoxes;
-//STRIP001
-//STRIP001  SwTblSearchType eType = TBLSEARCH_ROW;
-//STRIP001  if( !IsReadOnlyAvailable() )
-//STRIP001      eType = (SwTblSearchType)(eType | TBLSEARCH_PROTECT);
-//STRIP001  GetTblSel( *this, aBoxes, eType );
-//STRIP001
-//STRIP001  if( !aBoxes.Count() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // noch kein Tabellen-Cursor vorhanden, dann erzeuge einen
-//STRIP001  if( !pTblCrsr )
-//STRIP001  {
-//STRIP001      pTblCrsr = new SwShellTableCrsr( *this, *pCurCrsr->GetPoint() );
-//STRIP001      pCurCrsr->DeleteMark();
-//STRIP001      pCurCrsr->SwSelPaintRects::Hide();
-//STRIP001  }
-//STRIP001
-//STRIP001 //   SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-//STRIP001  pTblCrsr->DeleteMark();
-//STRIP001  // dann setze mal Anfang und Ende der Spalte
-//STRIP001  pTblCrsr->GetPoint()->nNode = *aBoxes[0]->GetSttNd();
-//STRIP001  pTblCrsr->Move( fnMoveForward, fnGoCntnt );
-//STRIP001  pTblCrsr->SetMark();
-//STRIP001  pTblCrsr->GetPoint()->nNode = *aBoxes[aBoxes.Count()-1]->GetSttNd();
-//STRIP001  pTblCrsr->Move( fnMoveForward, fnGoCntnt );
-//STRIP001  UpdateCrsr();                 // und den akt. Updaten
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::SelTblCol()
-//STRIP001 {
-//STRIP001  SwFrm *pFrm = GetCurrFrm();
-//STRIP001  if( !pFrm->IsInTab() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const SwTabFrm *pTblFrm = pFrm->ImplFindTabFrm();
-//STRIP001
-//STRIP001  SET_CURR_SHELL( this );
-//STRIP001
-//STRIP001  // lasse ueber das Layout die Boxen suchen
-//STRIP001  SwSelBoxes aBoxes;
-//STRIP001  SwTblSearchType eType = TBLSEARCH_COL;
-//STRIP001  if( !IsReadOnlyAvailable() )
-//STRIP001      eType = (SwTblSearchType)(eType | TBLSEARCH_PROTECT);
-//STRIP001  GetTblSel( *this, aBoxes, eType );
-//STRIP001
-//STRIP001  if( !aBoxes.Count() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  // noch kein Tabellen-Cursor vorhanden, dann erzeuge einen
-//STRIP001  if( !pTblCrsr )
-//STRIP001  {
-//STRIP001      pTblCrsr = new SwShellTableCrsr( *this, *pCurCrsr->GetPoint() );
-//STRIP001      pCurCrsr->DeleteMark();
-//STRIP001      pCurCrsr->SwSelPaintRects::Hide();
-//STRIP001  }
-//STRIP001
-//STRIP001 //   SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-//STRIP001  pTblCrsr->DeleteMark();
-//STRIP001  // dann setze mal Anfang und Ende der Spalte
-//STRIP001  pTblCrsr->GetPoint()->nNode = *aBoxes[0]->GetSttNd();
-//STRIP001  pTblCrsr->Move( fnMoveForward, fnGoCntnt );
-//STRIP001  pTblCrsr->SetMark();
-//STRIP001  pTblCrsr->GetPoint()->nNode = *aBoxes[aBoxes.Count()-1]->GetSttNd();
-//STRIP001  pTblCrsr->Move( fnMoveForward, fnGoCntnt );
-//STRIP001  UpdateCrsr();                 // und den akt. Updaten
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::SelTblBox()
-//STRIP001 {
-//STRIP001     // if we're in a table, create a table cursor, and select the cell
-//STRIP001     // that the current cursor's point resides in
-//STRIP001
-//STRIP001     // search for start node of our table box. If not found, exit realy
-//STRIP001     const SwStartNode* pStartNode =
-//STRIP001         pCurCrsr->GetPoint()->nNode.GetNode().FindTableBoxStartNode();
-//STRIP001
-//STRIP001 #ifndef PRODUCT
-//STRIP001     // the old code checks whether we're in a table by asking the
-//STRIP001     // frame. This should yield the same result as searching for the
-//STRIP001     // table box start node, right?
-//STRIP001  SwFrm *pFrm = GetCurrFrm();
-//STRIP001  DBG_ASSERT( !pFrm->IsInTab() == !(pStartNode != NULL),
-//STRIP001                 "Schroedinger's table: We're in a box, and also we aren't." )
-//STRIP001 #endif
-//STRIP001
-//STRIP001     if( pStartNode == NULL )
-//STRIP001         return FALSE;
-//STRIP001
-//STRIP001
-//STRIP001  SET_CURR_SHELL( this );
-//STRIP001
-//STRIP001     // create a table cursor, if there isn't one already
-//STRIP001  if( !pTblCrsr )
-//STRIP001  {
-//STRIP001      pTblCrsr = new SwShellTableCrsr( *this, *pCurCrsr->GetPoint() );
-//STRIP001      pCurCrsr->DeleteMark();
-//STRIP001      pCurCrsr->SwSelPaintRects::Hide();
-//STRIP001  }
-//STRIP001
-//STRIP001     // select the complete box with our shiny new pTblCrsr
-//STRIP001     // 1. delete mark, and move point to first content node in box
-//STRIP001     // 2. set mark, and move point to last content node in box
-//STRIP001     // 3. exchange
-//STRIP001
-//STRIP001  pTblCrsr->DeleteMark();
-//STRIP001     *(pTblCrsr->GetPoint()) = SwPosition( *pStartNode );
-//STRIP001     pTblCrsr->Move( fnMoveForward, fnGoNode );
-//STRIP001
-//STRIP001     pTblCrsr->SetMark();
-//STRIP001     *(pTblCrsr->GetPoint()) = SwPosition( *(pStartNode->EndOfSectionNode()) );
-//STRIP001     pTblCrsr->Move( fnMoveBackward, fnGoNode );
-//STRIP001
-//STRIP001     pTblCrsr->Exchange();
-//STRIP001
-//STRIP001     // with some luck, UpdateCrsr() will now update everything that
-//STRIP001     // needs updateing
-//STRIP001  UpdateCrsr();
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 // suche die naechste nicht geschuetzte Zelle innerhalb der Tabelle
@@ -331,40 +93,6 @@ namespace binfilter {
 //      !0  - Node hinter der Tabelle
 
 
-//STRIP001 SwNode* lcl_FindNextCell( SwNodeIndex& rIdx, FASTBOOL bInReadOnly )
-//STRIP001 {
-//STRIP001  // ueberpruefe geschuetzte Zellen
-//STRIP001  SwCntntFrm* pFrm;
-//STRIP001  SwNodeIndex aTmp( rIdx, 2 );        // TableNode + StartNode
-//STRIP001  SwNodes& rNds = aTmp.GetNode().GetNodes();
-//STRIP001  SwCntntNode* pCNd = aTmp.GetNode().GetCntntNode();
-//STRIP001  if( !pCNd )
-//STRIP001      pCNd = rNds.GoNext( &aTmp );
-//STRIP001
-//STRIP001  if( 0 == ( pFrm = pCNd->GetFrm()) ||
-//STRIP001      (!bInReadOnly && pFrm->IsProtected() ))
-//STRIP001  {
-//STRIP001      aTmp.Assign( *pCNd->EndOfSectionNode(), 1 );
-//STRIP001      SwNode* pNd;
-//STRIP001      for( ;; )
-//STRIP001      {
-//STRIP001          if( !( pNd = &aTmp.GetNode())->IsStartNode() )
-//STRIP001              return pNd;
-//STRIP001          aTmp++;
-//STRIP001          if( 0 == (pCNd = aTmp.GetNode().GetCntntNode()) )
-//STRIP001              pCNd = rNds.GoNext( &aTmp );
-//STRIP001
-//STRIP001          if( 0 != ( pFrm = pCNd->GetFrm()) &&
-//STRIP001              (bInReadOnly || !pFrm->IsProtected() ))
-//STRIP001          {
-//STRIP001              rIdx = *pNd;
-//STRIP001              return 0;       // Ok, nicht geschuetzt
-//STRIP001          }
-//STRIP001          aTmp.Assign( *pCNd->EndOfSectionNode(), +1 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
 
 // suche die vorherige nicht geschuetzte Zelle innerhalb der Tabelle
 // Parameter:
@@ -375,84 +103,12 @@ namespace binfilter {
 //      !0  - Node hinter der Tabelle
 
 
-//STRIP001 SwNode* lcl_FindPrevCell( SwNodeIndex& rIdx, FASTBOOL bInReadOnly  )
-//STRIP001 {
-//STRIP001  // ueberpruefe geschuetzte Zellen
-//STRIP001  SwCntntFrm* pFrm;
-//STRIP001  SwNodeIndex aTmp( rIdx, -2 );       // TableNode + EndNode
-//STRIP001  SwNodes& rNds = aTmp.GetNode().GetNodes();
-//STRIP001  SwCntntNode* pCNd = aTmp.GetNode().GetCntntNode();
-//STRIP001  if( !pCNd )
-//STRIP001      pCNd = rNds.GoNext( &aTmp );
-//STRIP001
-//STRIP001  if( 0 == ( pFrm = pCNd->GetFrm()) ||
-//STRIP001      (!bInReadOnly && pFrm->IsProtected() ))
-//STRIP001  {
-//STRIP001      aTmp.Assign( *pCNd->StartOfSectionNode(), -1 );
-//STRIP001      SwNode* pNd;
-//STRIP001      for( ;; )
-//STRIP001      {
-//STRIP001          if( !( pNd = &aTmp.GetNode())->IsEndNode() )
-//STRIP001              return pNd;
-//STRIP001          aTmp--;
-//STRIP001          if( 0 == (pCNd = aTmp.GetNode().GetCntntNode()) )
-//STRIP001              pCNd = rNds.GoPrevious( &aTmp );
-//STRIP001
-//STRIP001          if( 0 != ( pFrm = pCNd->GetFrm()) &&
-//STRIP001              (bInReadOnly || !pFrm->IsProtected() ))
-//STRIP001          {
-//STRIP001              rIdx = *pNd;
-//STRIP001              return 0;       // Ok, nicht geschuetzt
-//STRIP001          }
-//STRIP001          aTmp.Assign( *pCNd->StartOfSectionNode(), - 1 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return 0;
-//STRIP001 }
 
 
 
 /*N*/ FASTBOOL GotoPrevTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
 /*N*/                       FASTBOOL bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwNodeIndex aIdx( rCurCrsr.GetPoint()->nNode );
-//STRIP001  SwTableNode* pTblNd = aIdx.GetNode().FindTableNode();
-//STRIP001  if( pTblNd )
-//STRIP001      aIdx.Assign( *pTblNd, - 1 );
-//STRIP001
-//STRIP001  do {
-//STRIP001      while( aIdx.GetIndex() &&
-//STRIP001          0 == ( pTblNd = aIdx.GetNode().FindStartNode()->GetTableNode()) )
-//STRIP001          aIdx--;
-//STRIP001
-//STRIP001      if( pTblNd )        // gibt einen weiteren TableNode ?
-//STRIP001      {
-//STRIP001          if( fnPosTbl == fnMoveForward )         // an Anfang ?
-//STRIP001          {
-//STRIP001              aIdx = *aIdx.GetNode().StartOfSectionNode();
-//STRIP001              if( lcl_FindNextCell( aIdx, bInReadOnly ))
-//STRIP001              {
-//STRIP001                  // Tabelle ueberspringen
-//STRIP001                  aIdx.Assign( *pTblNd, -1 );
-//STRIP001                  continue;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              // ueberpruefe geschuetzte Zellen
-//STRIP001              if( lcl_FindNextCell( aIdx, bInReadOnly ))
-//STRIP001              {
-//STRIP001                  // Tabelle ueberspringen
-//STRIP001                  aIdx.Assign( *pTblNd, -1 );
-//STRIP001                  continue;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          rCurCrsr.GetPoint()->nNode = aIdx;
-//STRIP001          rCurCrsr.Move( fnPosTbl, fnGoCntnt );
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  } while( pTblNd );
-//STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -460,44 +116,6 @@ namespace binfilter {
 /*N*/ FASTBOOL GotoNextTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
 /*N*/                       FASTBOOL bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwNodeIndex aIdx( rCurCrsr.GetPoint()->nNode );
-//STRIP001  SwTableNode* pTblNd = aIdx.GetNode().FindTableNode();
-//STRIP001  if( pTblNd )
-//STRIP001      aIdx.Assign( *pTblNd->EndOfSectionNode(), 1 );
-//STRIP001
-//STRIP001  ULONG nLastNd = rCurCrsr.GetDoc()->GetNodes().Count() - 1;
-//STRIP001  do {
-//STRIP001      while( aIdx.GetIndex() < nLastNd &&
-//STRIP001              0 == ( pTblNd = aIdx.GetNode().GetTableNode()) )
-//STRIP001          aIdx++;
-//STRIP001      if( pTblNd )        // gibt einen weiteren TableNode ?
-//STRIP001      {
-//STRIP001          if( fnPosTbl == fnMoveForward )         // an Anfang ?
-//STRIP001          {
-//STRIP001              if( lcl_FindNextCell( aIdx, bInReadOnly ))
-//STRIP001              {
-//STRIP001                  // Tabelle ueberspringen
-//STRIP001                  aIdx.Assign( *pTblNd->EndOfSectionNode(), + 1 );
-//STRIP001                  continue;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              aIdx = *aIdx.GetNode().EndOfSectionNode();
-//STRIP001              // ueberpruefe geschuetzte Zellen
-//STRIP001              if( lcl_FindNextCell( aIdx, bInReadOnly ))
-//STRIP001              {
-//STRIP001                  // Tabelle ueberspringen
-//STRIP001                  aIdx.Assign( *pTblNd->EndOfSectionNode(), + 1 );
-//STRIP001                  continue;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          rCurCrsr.GetPoint()->nNode = aIdx;
-//STRIP001          rCurCrsr.Move( fnPosTbl, fnGoCntnt );
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  } while( pTblNd );
-//STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -505,25 +123,6 @@ namespace binfilter {
 /*N*/ FASTBOOL GotoCurrTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
 /*N*/                       FASTBOOL bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwTableNode* pTblNd = rCurCrsr.GetPoint()->nNode.GetNode().FindTableNode();
-//STRIP001  if( !pTblNd )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if( fnPosTbl == fnMoveBackward )    // ans Ende der Tabelle
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *pTblNd->EndOfSectionNode() );
-//STRIP001      if( lcl_FindPrevCell( aIdx, bInReadOnly ))
-//STRIP001          return FALSE;
-//STRIP001      rCurCrsr.GetPoint()->nNode = aIdx;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *pTblNd );
-//STRIP001      if( lcl_FindNextCell( aIdx, bInReadOnly ))
-//STRIP001          return FALSE;
-//STRIP001      rCurCrsr.GetPoint()->nNode = aIdx;
-//STRIP001  }
-//STRIP001  rCurCrsr.Move( fnPosTbl, fnGoCntnt );
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -531,93 +130,13 @@ namespace binfilter {
 /*N*/ FASTBOOL SwCursor::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
 /*N*/ {
 /*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
-//STRIP001
-//STRIP001  if( pTblCrsr || !HasMark() )    // nur wenn kein Mark oder ein TblCrsr
-//STRIP001  {
-//STRIP001      SwCrsrSaveState aSaveState( *this );
-//STRIP001      bRet = (*fnWhichTbl)( *this, fnPosTbl, IsReadOnlyAvailable() ) &&
-//STRIP001                      !IsSelOvr( SELOVER_CHECKNODESSECTION | SELOVER_TOGGLE );
-//STRIP001  }
 /*N*/   return bRet;
 /*N*/ }
 
-//STRIP001 FASTBOOL SwCrsrShell::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
-//STRIP001 {
-//STRIP001  SwCallLink aLk( *this );        // Crsr-Moves ueberwachen, evt. Link callen
-//STRIP001
-//STRIP001  SwShellCrsr* pCrsr = pTblCrsr ? pTblCrsr : pCurCrsr;
-//STRIP001  FASTBOOL bCheckPos, bRet;
-//STRIP001  ULONG nPtNd;
-//STRIP001  xub_StrLen nPtCnt;
-//STRIP001
-//STRIP001  if( !pTblCrsr && pCurCrsr->HasMark() )      // wenn Mark und kein TblCrsr,
-//STRIP001  {
-//STRIP001      // dann auf jedenfall in den Tabellen-Modus schalten
-//STRIP001      pTblCrsr = new SwShellTableCrsr( *this, *pCurCrsr->GetPoint() );
-//STRIP001      pCurCrsr->DeleteMark();
-//STRIP001      pCurCrsr->SwSelPaintRects::Hide();
-//STRIP001      pTblCrsr->SetMark();
-//STRIP001      pCrsr = pTblCrsr;
-//STRIP001      bCheckPos = FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      bCheckPos = TRUE;
-//STRIP001      nPtNd = pCrsr->GetPoint()->nNode.GetIndex();
-//STRIP001      nPtCnt = pCrsr->GetPoint()->nContent.GetIndex();
-//STRIP001  }
-//STRIP001
-//STRIP001  bRet = pCrsr->MoveTable( fnWhichTbl, fnPosTbl );
-//STRIP001
-//STRIP001  if( bRet )
-//STRIP001  {
-//STRIP001      //JP 28.10.97: Bug 45028 - die "oberste" Position setzen fuer
-//STRIP001      //              wiederholte Kopfzeilen
-//STRIP001      pCrsr->GetPtPos() = Point();
-//STRIP001
-//STRIP001      UpdateCrsr(SwCrsrShell::SCROLLWIN|SwCrsrShell::CHKRANGE|SwCrsrShell::READONLY);
-//STRIP001
-//STRIP001      if( bCheckPos &&
-//STRIP001          pCrsr->GetPoint()->nNode.GetIndex() == nPtNd &&
-//STRIP001          pCrsr->GetPoint()->nContent.GetIndex() == nPtCnt )
-//STRIP001          bRet = FALSE;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::IsTblComplex() const
-//STRIP001 {
-//STRIP001  SwFrm *pFrm = GetCurrFrm( FALSE );
-//STRIP001  if ( pFrm && pFrm->IsInTab() )
-//STRIP001      return pFrm->FindTabFrm()->GetTable()->IsTblComplex();
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwCrsrShell::IsTblComplexForChart()
-//STRIP001 {
-//STRIP001  FASTBOOL bRet = FALSE;
-//STRIP001
-//STRIP001     StartAction();   // IsTblComplexForChart() may trigger table formatting
-//STRIP001                     // we better do that inside an action
-//STRIP001
-//STRIP001  const SwTableNode* pTNd = pCurCrsr->GetPoint()->nNode.GetNode().FindTableNode();
-//STRIP001  if( pTNd )
-//STRIP001  {
-//STRIP001      // wir stehen in der Tabelle, dann teste mal, ob die Tabelle oder die
-//STRIP001      // Selektion ausgeglichen ist.
-//STRIP001      String sSel;
-//STRIP001      if( pTblCrsr )
-//STRIP001          sSel = GetBoxNms();
-//STRIP001      bRet = pTNd->GetTable().IsTblComplexForChart( sSel );
-//STRIP001  }
-//STRIP001
-//STRIP001  EndAction();
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ String SwCrsrShell::GetBoxNms() const
 /*N*/ {
@@ -662,14 +181,6 @@ namespace binfilter {
 /*N*/ FASTBOOL SwCrsrShell::GotoTable( const String& rName )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-//STRIP001 /*?*/    FASTBOOL bRet = !pTblCrsr && pCurCrsr->GotoTable( rName );
-//STRIP001 /*?*/    if( bRet )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        pCurCrsr->GetPtPos() = Point();
-//STRIP001 /*?*/        UpdateCrsr( SwCrsrShell::SCROLLWIN | SwCrsrShell::CHKRANGE |
-//STRIP001 /*?*/                    SwCrsrShell::READONLY ); // und den akt. Updaten
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    return bRet;
 /*N*/ }
 
 
@@ -733,9 +244,6 @@ namespace binfilter {
 /*?*/       // jetzt sollten wir mal die Pointer zerstoeren, bevor ein weiterer
 /*?*/       // aufruf kommt.
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearTblBoxCntnt();
-//STRIP001 /*?*/        StartAction();
-//STRIP001 /*?*/        GetDoc()->ChkBoxNumFmt( *pChkBox, TRUE );
-//STRIP001 /*?*/        EndAction();
 /*?*/   }
 /*?*/
 /*?*/   return 0 != pChkBox;
@@ -745,40 +253,6 @@ namespace binfilter {
 /*N*/ void SwCrsrShell::SaveTblBoxCntnt( const SwPosition* pPos )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( IsSelTblCells() || !IsAutoUpdateCells() )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  if( !pPos )
-//STRIP001      pPos = pCurCrsr->GetPoint();
-//STRIP001
-//STRIP001  SwStartNode* pSttNd = pPos->nNode.GetNode().FindSttNodeByType( SwTableBoxStartNode );
-//STRIP001
-//STRIP001  BOOL bCheckBox = FALSE;
-//STRIP001  if( pSttNd && pBoxIdx )
-//STRIP001  {
-//STRIP001      if( pSttNd == &pBoxIdx->GetNode() )
-//STRIP001          pSttNd = 0;     // die haben wir schon
-//STRIP001      else
-//STRIP001          bCheckBox = TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      bCheckBox = 0 != pBoxIdx;
-//STRIP001
-//STRIP001  if( bCheckBox )
-//STRIP001  {
-//STRIP001      // pBoxIdx Checken
-//STRIP001      SwPosition aPos( *pBoxIdx );
-//STRIP001      CheckTblBoxCntnt( &aPos );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pSttNd )
-//STRIP001  {
-//STRIP001      pBoxPtr = pSttNd->FindTableNode()->GetTable().GetTblBox( pSttNd->GetIndex() );
-//STRIP001
-//STRIP001      if( pBoxIdx )
-//STRIP001          *pBoxIdx = *pSttNd;
-//STRIP001      else
-//STRIP001          pBoxIdx = new SwNodeIndex( *pSttNd );
-//STRIP001  }
 /*N*/ }
 
 
