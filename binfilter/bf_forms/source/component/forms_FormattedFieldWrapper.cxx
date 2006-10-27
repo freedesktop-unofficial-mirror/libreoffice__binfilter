@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_FormattedFieldWrapper.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:44:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:01:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,12 +65,6 @@
 #ifndef _FORMS_FORMATTEDFIELD_HXX_
 #include "FormattedField.hxx"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _FORMS_EDITBASE_HXX_
-// auto strip #include "EditBase.hxx"
-// auto strip #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
@@ -78,15 +72,9 @@
 #include <connectivity/dbtools.hxx>
 #endif
 
-// auto strip #ifndef _ISOLANG_HXX
-// auto strip #include <tools/isolang.hxx>
-// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _TOOLS_INTN_HXX
-// auto strip #include <tools/intn.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
