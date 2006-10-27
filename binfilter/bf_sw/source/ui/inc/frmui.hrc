@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmui.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:33:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:41:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,24 +42,16 @@
 #define DLG_FRMOPT              (RC_FRMDLG_BEGIN +  1)
 #define DLG_PATTERN             (RC_FRMDLG_BEGIN +  2)
 #define DLG_BORDER              (RC_FRMDLG_BEGIN +  3)
-//STRIP001 #define DLG_COLUMN              (RC_FRMDLG_BEGIN +  4)
 #define DLG_FOOTNOTE            (RC_FRMDLG_BEGIN +  5)
 #define DLG_INSERT_FOOTNOTE     (RC_FRMDLG_BEGIN +  6)
 
 #define DLG_VIEW_HEADER         (RC_FRMDLG_BEGIN +  8)
 #define DLG_FORMAT_COLUMN       (RC_FRMDLG_BEGIN + 10)
-//STRIP001 #define DLG_CAPTION             (RC_FRMDLG_BEGIN + 11)
-//STRIP001 #define DLG_SEQUENCE_OPTION      (RC_FRMDLG_BEGIN + 12)
 
-//STRIP001 #define TP_FOOTNOTEOPTION        (RC_FRMDLG_BEGIN + 12)
-//STRIP001 #define TP_ENDNOTEOPTION     (RC_FRMDLG_BEGIN + 13)
 
 #define STR_PATTERN_BRD         (RC_FRMDLG_BEGIN + 13)
 #define STR_SHPATTERN           (RC_FRMDLG_BEGIN + 14)
 #define STR_LNPATTERN           (RC_FRMDLG_BEGIN + 15)
-//STRIP001 #define STR_FRMUI_BORDER        (RC_FRMDLG_BEGIN + 16)
-//STRIP001 #define STR_FRMUI_PATTERN       (RC_FRMDLG_BEGIN + 17)
-//STRIP001 #define STR_FRMUI_WRAP           (RC_FRMDLG_BEGIN + 18)
 
 #define BMP_PORTRAIT            (RC_FRMDLG_BEGIN + 16)
 #define BMP_LANDSCAPE           (RC_FRMDLG_BEGIN + 17)
@@ -83,17 +75,7 @@
 
 #define STR_FRMDLG_BEGIN        (MN_FOOTNOTE + 1)
 
-//STRIP001 #define STR_TOPPRT              (STR_FRMDLG_BEGIN + 1)
-//STRIP001 #define STR_FROMBOTTOM          (STR_FRMDLG_BEGIN + 2)
-//STRIP001 #define STR_FROMTOP             (STR_FRMDLG_BEGIN + 3)
-//STRIP001 #define STR_BELOW                (STR_FRMDLG_BEGIN + 4)
 
-//STRIP001 #define STR_LEFT                (STR_FRMDLG_BEGIN + 5)
-//STRIP001 #define STR_RIGHT               (STR_FRMDLG_BEGIN + 6)
-//STRIP001 #define STR_FROMLEFT            (STR_FRMDLG_BEGIN + 7)
-//STRIP001 #define STR_MIR_LEFT            (STR_FRMDLG_BEGIN + 8)
-//STRIP001 #define STR_MIR_RIGHT           (STR_FRMDLG_BEGIN + 9)
-//STRIP001 #define STR_MIR_FROMLEFT     (STR_FRMDLG_BEGIN + 10)
 
 #define STR_BORDER              (STR_FRMDLG_BEGIN + 16)
 #define STR_COLUMN              (STR_FRMDLG_BEGIN + 17)
@@ -101,56 +83,15 @@
 #define STR_CHAR                (STR_FRMDLG_BEGIN + 19)
 
 #define STR_FRAME               (STR_FRMDLG_BEGIN + 20)
-//STRIP001 #define STR_PRTAREA              (STR_FRMDLG_BEGIN + 21)
-//STRIP001 #define STR_REL_PG_LEFT          (STR_FRMDLG_BEGIN + 22)
-//STRIP001 #define STR_REL_PG_RIGHT     (STR_FRMDLG_BEGIN + 23)
-//STRIP001 #define STR_REL_FRM_LEFT     (STR_FRMDLG_BEGIN + 24)
-//STRIP001 #define STR_REL_FRM_RIGHT        (STR_FRMDLG_BEGIN + 25)
-//STRIP001 #define STR_MIR_REL_PG_LEFT      (STR_FRMDLG_BEGIN + 26)
-//STRIP001 #define STR_MIR_REL_PG_RIGHT (STR_FRMDLG_BEGIN + 27)
-//STRIP001 #define STR_MIR_REL_FRM_LEFT (STR_FRMDLG_BEGIN + 28)
-//STRIP001 #define STR_MIR_REL_FRM_RIGHT    (STR_FRMDLG_BEGIN + 29)
-//STRIP001 #define STR_REL_PG_FRAME     (STR_FRMDLG_BEGIN + 30)
-//STRIP001 #define STR_REL_PG_PRTAREA       (STR_FRMDLG_BEGIN + 31)
-//STRIP001 #define STR_REL_BASE         (STR_FRMDLG_BEGIN + 32)
-//STRIP001 #define STR_REL_CHAR         (STR_FRMDLG_BEGIN + 33)
-//STRIP001 #define STR_REL_ROW              (STR_FRMDLG_BEGIN + 34)
 #define STR_REL_BORDER          (STR_FRMDLG_BEGIN + 35)
-//STRIP001 #define STR_REL_PRTAREA          (STR_FRMDLG_BEGIN + 36)
-//STRIP001 #define STR_FLY_REL_PG_LEFT      (STR_FRMDLG_BEGIN + 37)
-//STRIP001 #define STR_FLY_REL_PG_RIGHT (STR_FRMDLG_BEGIN + 38)
-//STRIP001 #define STR_FLY_REL_PG_FRAME (STR_FRMDLG_BEGIN + 39)
-//STRIP001 #define STR_FLY_REL_PG_PRTAREA   (STR_FRMDLG_BEGIN + 40)
-//STRIP001 #define STR_FLY_MIR_REL_PG_LEFT      (STR_FRMDLG_BEGIN + 41)
-//STRIP001 #define STR_FLY_MIR_REL_PG_RIGHT (STR_FRMDLG_BEGIN + 42)
 #define STR_FLY_MIR_REL_PG_FRAME    (STR_FRMDLG_BEGIN + 43)
 #define STR_FLY_MIR_REL_PG_PRTAREA  (STR_FRMDLG_BEGIN + 44)
 
-//STRIP001 #define STR_OLE_INSERT           (STR_FRMDLG_BEGIN + 45)
-//STRIP001 #define STR_OLE_EDIT            (STR_FRMDLG_BEGIN + 46)
-//STRIP001 #define STR_COLL_HEADER         (STR_FRMDLG_BEGIN + 47)
 
-//STRIP001 #define MSG_COLUMN_ERR_BOUNDWIDTH  (STR_FRMDLG_BEGIN + 48)
-//STRIP001 #define STR_EDIT_GRF             (STR_FRMDLG_BEGIN + 49)
 
-//STRIP001 #define STR_LINE_TOP         (STR_FRMDLG_BEGIN + 50)
-//STRIP001 #define STR_LINE_BOTTOM          (STR_FRMDLG_BEGIN + 51)
-//STRIP001 #define STR_LINE_CENTER          (STR_FRMDLG_BEGIN + 52)
-//STRIP001 #define STR_CHAR_TOP         (STR_FRMDLG_BEGIN + 53)
-//STRIP001 #define STR_CHAR_BOTTOM          (STR_FRMDLG_BEGIN + 54)
-//STRIP001 #define STR_CHAR_CENTER          (STR_FRMDLG_BEGIN + 55)
 
-//STRIP001 #define STR_REL_PG_TOP         (STR_FRMDLG_BEGIN + 56)
-//STRIP001 #define STR_REL_PG_BOTTOM      (STR_FRMDLG_BEGIN + 57)
-//STRIP001 #define STR_REL_FRM_TOP        (STR_FRMDLG_BEGIN + 58)
-//STRIP001 #define STR_REL_FRM_BOTTOM     (STR_FRMDLG_BEGIN + 59)
-//STRIP001 #define STR_FROMRIGHT          (STR_FRMDLG_BEGIN + 60)
 
-//STRIP001 #define FRMDLG_ACT_END          STR_FROMBOTTOM
 
-//STRIP001 #if FRMDLG_ACT_END > RC_FRMDLG_END
-//STRIP001 #error Resource-Id Ueberlauf in #file, #line
-//STRIP001 #endif
 
 
 #endif // FRMUI_HRC

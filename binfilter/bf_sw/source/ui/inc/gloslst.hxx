@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gloslst.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:35:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:42:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,25 +75,14 @@ class SwGlossaryList : public AutoTimer
     String          sPath;
     BOOL            bFilled;
 
-//STRIP001  AutoTextGroup*  FindGroup(const String& rGroupName);
-//STRIP001  void            FillGroup(AutoTextGroup* pGroup, SwGlossaries* pGloss);
 
 public:
         SwGlossaryList();
         ~SwGlossaryList();
 
-//STRIP001  BOOL            HasLongName(const String& rBegin, SvStringsISortDtor* pLongNames );
-//STRIP001  BOOL            GetShortName(const String& rLongName,
-//STRIP001                                      String& rShortName, String& rGroupName );
 
-//STRIP001  USHORT          GetGroupCount();
-//STRIP001  String          GetGroupName(USHORT nPos, BOOL bNoPath = TRUE, String* pTitle = 0);
-//STRIP001  USHORT          GetBlockCount(USHORT nGroup);
-//STRIP001  String          GetBlockName(USHORT nGroup, USHORT nBlock, String& rShortName);
 
-//STRIP001  void            Update();
 
-//STRIP001  virtual void    Timeout();
 
     void            ClearGroups();
 };
