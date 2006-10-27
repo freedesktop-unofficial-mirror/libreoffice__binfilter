@@ -4,9 +4,9 @@
  *
  *  $RCSfile: adiasync.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:56:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:26:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ public:
                     ScAddInAsync();
     virtual         ~ScAddInAsync();
     static ScAddInAsync*    Get( ULONG nHandle );
-//STRIP001  static void     CallBack( ULONG nHandle, void* pData );
     static void     RemoveDocument( ScDocument* pDocument );
     BOOL            IsValid() const         { return bValid; }
     ParamType       GetType() const         { return eType; }
