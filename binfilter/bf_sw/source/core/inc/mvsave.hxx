@@ -4,9 +4,9 @@
  *
  *  $RCSfile: mvsave.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:33:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:46:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,8 +79,6 @@ class SaveBookmark
 public:
     SaveBookmark( int, const SwBookmark&, const SwNodeIndex&,
                                     const SwIndex* pIdx = 0 );
-//STRIP001  void SetInDoc( SwDoc* pDoc, const SwNodeIndex&, const SwIndex* pIdx = 0);
-//STRIP001  BOOKMARK_TYPE   GetOriginalBkmType() const {return eOrigBkmType;}
 };
 
 SV_DECL_PTRARR_DEL( SaveBookmarks, SaveBookmark*, 0, 10 )
@@ -119,11 +117,6 @@ struct _SaveFly
 
 SV_DECL_VARARR( _SaveFlyArr, _SaveFly, 0, 10 )
 
-//STRIP001 void _RestFlyInRange( _SaveFlyArr& rArr, const SwNodeIndex& rSttIdx,
-//STRIP001                       const SwNodeIndex* pInsPos );
-//STRIP001 void _SaveFlyInRange( const SwNodeRange& rRg, _SaveFlyArr& rArr );
-//STRIP001 void _SaveFlyInRange( const SwPaM& rPam, const SwNodeIndex& rInsPos,
-//STRIP001                     _SaveFlyArr& rArr, sal_Bool bMoveAllFlys );
 
 void DelFlyInRange( const SwNodeIndex& rMkNdIdx,
                     const SwNodeIndex& rPtNdIdx );

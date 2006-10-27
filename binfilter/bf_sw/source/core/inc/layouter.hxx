@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layouter.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:33:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:46:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,6 @@
 #include "swtypes.hxx"
 namespace binfilter {
 
-//STRIP001 class SwEndnoter;
 class SwDoc;
 class SwSectionFrm;
 class SwFtnFrm;
@@ -49,22 +48,15 @@ class SwLooping;
 
 class SwLayouter
 {
-//STRIP001  SwEndnoter* pEndnoter;
     SwLooping* pLooping;
-//STRIP001  void _CollectEndnotes( SwSectionFrm* pSect );
     BOOL StartLooping( SwPageFrm* pPage );
 public:
     SwLayouter();
     ~SwLayouter();
-//STRIP001  void InsertEndnotes( SwSectionFrm* pSect );
-//STRIP001  void CollectEndnote( SwFtnFrm* pFtn );
-//STRIP001  BOOL HasEndnotes() const;
 
     void LoopControl( SwPageFrm* pPage, BYTE nLoop );
     void EndLoopControl();
 
-//STRIP001  static void CollectEndnotes( SwDoc* pDoc, SwSectionFrm* pSect );
-//STRIP001  static BOOL Collecting( SwDoc* pDoc, SwSectionFrm* pSect, SwFtnFrm* pFtn );
     static BOOL StartLoopControl( SwDoc* pDoc, SwPageFrm *pPage );
 };
 

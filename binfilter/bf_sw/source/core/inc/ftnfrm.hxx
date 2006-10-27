@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ftnfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:31:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:45:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,17 +54,12 @@ class SwFtnContFrm: public SwLayoutFrm
 public:
     SwFtnContFrm( SwFrmFmt* );
 
-//STRIP001  const SwFtnFrm* FindFootNote() const;
-//STRIP001  const SwFtnFrm* FindEndNote() const;
 
     virtual SwTwips ShrinkFrm( SwTwips, SZPTR
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
     virtual SwTwips GrowFrm( SwTwips, SZPTR
                              BOOL bTst = FALSE, BOOL bInfo = FALSE );
     virtual void    Format( const SwBorderAttrs *pAttrs = 0 );
-//STRIP001  virtual void    PaintBorder( const SwRect &, const SwPageFrm *pPage,
-//STRIP001                               const SwBorderAttrs & ) const;
-//STRIP001          void    PaintLine( const SwRect &, const SwPageFrm * ) const;
 };
 
 class SwFtnFrm: public SwLayoutFrm
@@ -95,7 +90,6 @@ public:
     virtual void Cut();
     virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
 
-//STRIP001  BOOL operator<( const SwTxtFtn* pTxtFtn ) const;
 
 #ifdef PRODUCT
     const SwCntntFrm *GetRef() const    { return pRef; }

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:32:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:46:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,8 +76,6 @@ protected:
 
 public:
     void PaintSubsidiaryLines( const SwPageFrm*, const SwRect& ) const;
-//STRIP001  void RefreshLaySubsidiary( const SwPageFrm*, const SwRect& ) const;
-//STRIP001  void RefreshExtraData( const SwRect & ) const;
 
         //Proportionale Groessenanpassung der untergeordneten.
     void ChgLowersProp( const Size& rOldSize );
@@ -90,11 +88,7 @@ public:
 
 
         //Painted die Column-Trennlinien fuer die innenliegenden Columns.
-//STRIP001  void PaintColLines( const SwRect &, const SwFmtCol &,
-//STRIP001                      const SwPageFrm * ) const;
 
-//STRIP001  virtual BOOL  GetCrsrOfst( SwPosition *, Point&,
-//STRIP001                              const SwCrsrMoveState* = 0 ) const;
 
     virtual void Cut();
     virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
@@ -110,7 +104,6 @@ public:
     SwLayoutFrm( SwFrmFmt* );
     ~SwLayoutFrm();
 
-//STRIP001  virtual void Paint( const SwRect& ) const;
     const SwFrm *Lower() const { return pLower; }
           SwFrm *Lower()       { return pLower; }
     const SwCntntFrm *ContainsCntnt() const;

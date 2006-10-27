@@ -4,9 +4,9 @@
  *
  *  $RCSfile: noteurl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:34:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:47:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,11 +77,8 @@ class SwNoteURL
 public:
     SwNoteURL() {}
     USHORT Count() const { return aList.Count(); }
-//STRIP001  void InsertURLNote( const String& rURL, const String& rTarget,
-//STRIP001               const SwRect& rRect );
     const SwURLNote& GetURLNote( USHORT nPos ) const
         { return *aList.GetObject( nPos ); }
-//STRIP001  void FillImageMap( ImageMap* pMap, const Point& rPos, const MapMode& rMap );
 };
 
 // globale Variable, in NoteURL.Cxx angelegt
