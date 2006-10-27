@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmctrler.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:00:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:07:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,160 +35,49 @@
 #ifndef _SVX_FMCTRLER_HXX
 #define _SVX_FMCTRLER_HXX
 
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
 #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLERRORLISTENER_HPP_
-// auto strip #include <com/sun/star/sdb/XSQLErrorListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
-// auto strip #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVEBROADCASTER_HPP_
 #include <com/sun/star/sdb/XRowSetApproveBroadcaster.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVELISTENER_HPP_
-// auto strip #include <com/sun/star/sdb/XRowSetApproveListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
-// auto strip #include <com/sun/star/sdbc/XRowSetListener.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XRESETLISTENER_HPP_
 #include <com/sun/star/form/XResetListener.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
-// auto strip #endif
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XContainer.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
 #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
-// auto strip #include <com/sun/star/awt/XFocusListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FOCUSEVENT_HPP_
-// auto strip #include <com/sun/star/awt/FocusEvent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XCONFIRMDELETEBROADCASTER_HPP_
 #include <com/sun/star/form/XConfirmDeleteBroadcaster.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_DATABASEPARAMETEREVENT_HPP_
-// auto strip #include <com/sun/star/form/DatabaseParameterEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_DATABASEDELETEEVENT_HPP_
-// auto strip #include <com/sun/star/form/DatabaseDeleteEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XDATABASEPARAMETERLISTENER_HPP_
-// auto strip #include <com/sun/star/form/XDatabaseParameterListener.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
 #include <com/sun/star/form/XLoadListener.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XCONFIRMDELETELISTENER_HPP_
-// auto strip #include <com/sun/star/form/XConfirmDeleteListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_ERROREVENT_HPP_
-// auto strip #include <com/sun/star/form/ErrorEvent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XDATABASEPARAMETERBROADCASTER_HPP_
 #include <com/sun/star/form/XDatabaseParameterBroadcaster.hpp>
 #endif
 #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
-// auto strip #include <com/sun/star/form/XFormControllerListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
-// auto strip #include <com/sun/star/frame/XDispatch.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDER_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProvider.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProviderInterception.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_DISPATCHDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/frame/DispatchDescriptor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XMODESELECTOR_HPP_
 #include <com/sun/star/util/XModeSelector.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
-// auto strip #include <com/sun/star/util/XModifyListener.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XMODIFYBROADCASTER_HPP_
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XTEXTLISTENER_HPP_
-// auto strip #include <com/sun/star/awt/XTextListener.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XITEMLISTENER_HPP_
 #include <com/sun/star/awt/XItemListener.hpp>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HPP_
-// auto strip #include <com/sun/star/awt/XTabControllerModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
-// auto strip #include <com/sun/star/awt/XControlModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
-// auto strip #include <com/sun/star/awt/XControlContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XTABCONTROLLER_HPP_
-// auto strip #include <com/sun/star/awt/XTabController.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
-// auto strip #include <com/sun/star/awt/XControl.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
-// auto strip #endif
 
 #ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
@@ -201,30 +90,12 @@
 #include "sqlparserclient.hxx"
 #endif
 
-// auto strip #ifndef _CPPUHELPER_IMPLBASE1_HXX_
-// auto strip #include <cppuhelper/implbase2.hxx>
-// auto strip #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE12_HXX_
-// auto strip #include <cppuhelper/implbase12.hxx>
-// auto strip #endif
 #ifndef _CPPUHELPER_COMPBASE12_HXX_
 #include <cppuhelper/compbase12.hxx>
 #endif
-// auto strip #ifndef _CPPUHELPER_PROPSHLP_HXX
-// auto strip #include <cppuhelper/propshlp.hxx>
-// auto strip #endif
-// auto strip #ifndef _FM_IMPLEMENTATION_IDS_HXX_
-// auto strip #include <fmimplids.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
-// auto strip #ifndef _CONNECTIVITY_SQLPARSE_HXX
-// auto strip #include <connectivity/sqlparse.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_BROADCASTHELPER_HXX_
 #include <comphelper/broadcasthelper.hxx>
 #endif
@@ -534,7 +405,6 @@ public:
         --m_nCurrentFilterPosition;
     }
 
-//STRIP001  void setCurrentFilterPosition(sal_Int32 nPos);
     sal_Int32 getCurrentFilterPosition() const {return m_nCurrentFilterPosition;}
 
 protected:
@@ -546,19 +416,9 @@ protected:
 
     virtual ::osl::Mutex* getInterceptorMutex() { return &m_aMutex; }
 
-//STRIP001  void startFiltering();
     void stopFiltering();
-//STRIP001  void setFilter(vector<FmFieldInfo>&);
-//STRIP001  void startListening();
-//STRIP001  void stopListening();
-//STRIP001  void startControlListening(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
-//STRIP001  void stopControlListening(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
-//STRIP001  void setLocks();
-//STRIP001  void setControlLock(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
     void addToEventAttacher(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
     void removeFromEventAttacher(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
-//STRIP001  void toggleAutoFields(sal_Bool bAutoFields);
-//STRIP001  void unload() throw( ::com::sun::star::uno::RuntimeException );
     void removeBoundFieldListener();
 
     void startFormListening( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxForm, sal_Bool _bPropertiesOnly  );
@@ -566,28 +426,18 @@ protected:
 
     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl> findControl(::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl> >& rCtrls, const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel>& rxCtrlModel ,sal_Bool _bRemove = sal_True,sal_Bool _bOverWrite=sal_True) const;
 
-//STRIP001  void insertControl(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
-//STRIP001  void removeControl(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl>& xControl);
 
-//STRIP001  void onModify( const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >& _rxControl );
-//STRIP001  void onActivate();
 
     sal_Bool isLocked() const {return m_bLocked;}
-//STRIP001  sal_Bool determineLockState() const;
 
-//STRIP001  Window* getDialogParentWindow();
         // returns m_pWindow or - if m_pWindow is NULL - the window of the currently set container
 
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchProviderInterceptor>    createInterceptor(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchProviderInterception>& _xInterception);
         // create a new interceptor, register it on the given object
-//STRIP001  void                            deleteInterceptor(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchProviderInterception>& _xInterception);
         // if createInterceptor was called for the given object the according interceptor will be removed
         // from the objects interceptor chain and released
 
     // in filter mode we do not listen for changes
     sal_Bool isListeningForChanges() const {return m_bDBConnection && !m_bFiltering && !isLocked();}
-//STRIP001  void addChild(FmXFormController* pChild);
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl> isInList(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XWindowPeer>& xPeer) const;
 
     DECL_LINK( OnTimeout, void* );
     DECL_LINK( OnLoad, void* );
