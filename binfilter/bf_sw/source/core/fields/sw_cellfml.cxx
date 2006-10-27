@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_cellfml.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:32:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:36:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #pragma hdrstop
 
 #include <float.h>
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
@@ -50,9 +47,6 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-// auto strip #ifndef _LAYFRM_HXX
-// auto strip #include <layfrm.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -67,21 +61,12 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
 #ifndef _TBLSEL_HXX
 #include <tblsel.hxx>
 #endif
-// auto strip #ifndef _CELLFML_HXX
-// auto strip #include <cellfml.hxx>
-// auto strip #endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
@@ -100,9 +85,6 @@
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>
-// auto strip #endif
 namespace binfilter {
 
 const sal_Unicode cRelTrenner = ',';
@@ -111,10 +93,6 @@ const sal_Unicode cRelKennung = '';        // CTRL-R
 const USHORT cMAXSTACKSIZE = 50;
 
 /*N*/ const SwFrm* lcl_GetBoxFrm( const SwTableBox& rBox );
-//STRIP001 long lcl_GetLongBoxNum( String& rStr );
-//STRIP001 const SwTableBox* lcl_RelToBox( const SwTable&, const SwTableBox*, const String& );
-//STRIP001 String lcl_BoxNmToRel( const SwTable&, const SwTableNode&,
-//STRIP001                      const String& , const String& , BOOL );
 
 
 /*************************************************************************
@@ -171,20 +149,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/           {
 /*?*/               // dann berechnen
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pTmp = rCalcPara.pTbl;
-//STRIP001 /*?*/                rCalcPara.pTbl = &pBox->GetSttNd()->FindTableNode()->GetTable();
-//STRIP001 /*?*/                ((SwTblBoxFormula*)pItem)->Calc( rCalcPara, nRet );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( !rCalcPara.IsStackOverFlow() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwFrmFmt* pFmt = pBox->ClaimFrmFmt();
-//STRIP001 /*?*/                    SfxItemSet aTmp( pDoc->GetAttrPool(),
-//STRIP001 /*?*/                                        RES_BOXATR_BEGIN,RES_BOXATR_END-1 );
-//STRIP001 /*?*/                    aTmp.Put( SwTblBoxValue( nRet ) );
-//STRIP001 /*?*/                    if( SFX_ITEM_SET != pFmt->GetItemState( RES_BOXATR_FORMAT ))
-//STRIP001 /*?*/                        aTmp.Put( SwTblBoxNumFormat( 0 ));
-//STRIP001 /*?*/                    pFmt->SetAttr( aTmp );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                rCalcPara.pTbl = pTmp;
 /*?*/           }
 /*?*/           else
 /*?*/               nRet = GetFrmFmt()->GetTblBoxValue().GetValue();
@@ -319,44 +283,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   delete pBoxStk;
 /*N*/ }
 
-//STRIP001 BOOL SwTblCalcPara::CalcWithStackOverflow()
-//STRIP001 {
-//STRIP001  // falls ein StackUeberlauf erkannt wurde, sollte mit
-//STRIP001  // der letzten Box noch mal aufgesetzt werden. Irgend
-//STRIP001  // ein Weg sollte dann
-//STRIP001  USHORT nSaveMaxSize = nMaxSize;
-//STRIP001
-//STRIP001  nMaxSize = cMAXSTACKSIZE - 5;
-//STRIP001  USHORT nCnt = 0;
-//STRIP001  SwTableBoxes aStackOverFlows;
-//STRIP001  do {
-//STRIP001      SwTableBox* pBox = (SwTableBox*)pLastTblBox;
-//STRIP001      nStackCnt = 0;
-//STRIP001      rCalc.SetCalcError( CALC_NOERR );
-//STRIP001      aStackOverFlows.C40_INSERT( SwTableBox, pBox, nCnt++ );
-//STRIP001
-//STRIP001      pBoxStk->Remove( pBox );
-//STRIP001      pBox->GetValue( *this );
-//STRIP001  } while( IsStackOverFlow() );
-//STRIP001
-//STRIP001  nMaxSize = cMAXSTACKSIZE - 3;       // es muss mind. 1 Stufe tiefer gehen!
-//STRIP001
-//STRIP001  // falls Rekursionen erkannt wurden
-//STRIP001  nStackCnt = 0;
-//STRIP001  rCalc.SetCalcError( CALC_NOERR );
-//STRIP001  pBoxStk->Remove( USHORT(0), pBoxStk->Count() );
-//STRIP001
-//STRIP001  while( !rCalc.IsCalcError() && nCnt )
-//STRIP001  {
-//STRIP001      aStackOverFlows[ --nCnt ]->GetValue( *this );
-//STRIP001      if( IsStackOverFlow() && !CalcWithStackOverflow() )
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  nMaxSize = nSaveMaxSize;
-//STRIP001  aStackOverFlows.Remove( 0, aStackOverFlows.Count() );
-//STRIP001  return !rCalc.IsCalcError();
-//STRIP001 }
 
 /*  */
 
@@ -425,100 +351,9 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   rNewStr += ' ';
 /*N*/ }
 
-//STRIP001 void SwTableFormula::RelNmsToBoxNms( const SwTable& rTbl, String& rNewStr,
-//STRIP001          String& rFirstBox, String* pLastBox, void* pPara ) const
-//STRIP001 {
-//STRIP001  // relativen Namen zu Box-Namen (externe Darstellung)
-//STRIP001  SwNode* pNd = (SwNode*)pPara;
-//STRIP001  ASSERT( pNd, "Feld steht in keinem TextNode" );
-//STRIP001  const SwTableBox *pRelBox, *pBox = (SwTableBox *)rTbl.GetTblBox(
-//STRIP001                  pNd->FindTableBoxStartNode()->GetIndex() );
-//STRIP001
-//STRIP001  rNewStr += rFirstBox.Copy(0,1);     // Kennung fuer Box erhalten
-//STRIP001  rFirstBox.Erase(0,1);
-//STRIP001  if( pLastBox )
-//STRIP001  {
-//STRIP001      if( 0 != ( pRelBox = lcl_RelToBox( rTbl, pBox, *pLastBox )) )
-//STRIP001          rNewStr += pRelBox->GetName();
-//STRIP001      else
-//STRIP001          rNewStr.AppendAscii("A1");
-//STRIP001      rNewStr += ':';
-//STRIP001      rFirstBox.Erase( 0, pLastBox->Len()+1 );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( 0 != ( pRelBox = lcl_RelToBox( rTbl, pBox, rFirstBox )) )
-//STRIP001      rNewStr += pRelBox->GetName();
-//STRIP001  else
-//STRIP001      rNewStr.AppendAscii("A1");
-//STRIP001
-//STRIP001  // Kennung fuer Box erhalten
-//STRIP001  rNewStr += rFirstBox.GetChar( rFirstBox.Len() - 1 );
-//STRIP001 }
-
-//STRIP001 void SwTableFormula::RelBoxNmsToPtr( const SwTable& rTbl, String& rNewStr,
-//STRIP001          String& rFirstBox, String* pLastBox, void* pPara ) const
-//STRIP001 {
-//STRIP001  // relativen Namen zu Box-Pointern (interne Darstellung)
-//STRIP001  SwNode* pNd = (SwNode*)pPara;
-//STRIP001  ASSERT( pNd, "Feld steht in keinem Node" );
-//STRIP001  const SwTableBox *pRelBox, *pBox = (SwTableBox*)rTbl.GetTblBox(
-//STRIP001                  pNd->FindTableBoxStartNode()->GetIndex() );
-//STRIP001
-//STRIP001  rNewStr += rFirstBox.Copy(0,1);     // Kennung fuer Box erhalten
-//STRIP001  rFirstBox.Erase(0,1);
-//STRIP001  if( pLastBox )
-//STRIP001  {
-//STRIP001      if( 0 != ( pRelBox = lcl_RelToBox( rTbl, pBox, *pLastBox )) )
-//STRIP001          rNewStr += String::CreateFromInt32( (long)pRelBox );
-//STRIP001      else
-//STRIP001          rNewStr += '0';
-//STRIP001      rNewStr += ':';
-//STRIP001      rFirstBox.Erase( 0, pLastBox->Len()+1 );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( 0 != ( pRelBox = lcl_RelToBox( rTbl, pBox, rFirstBox )) )
-//STRIP001      rNewStr += String::CreateFromInt32( (long)pRelBox );
-//STRIP001  else
-//STRIP001      rNewStr += '0';
-//STRIP001
-//STRIP001  // Kennung fuer Box erhalten
-//STRIP001  rNewStr += rFirstBox.GetChar( rFirstBox.Len() - 1 );
-//STRIP001 }
 
 
-//STRIP001 void SwTableFormula::BoxNmsToRelNm( const SwTable& rTbl, String& rNewStr,
-//STRIP001                  String& rFirstBox, String* pLastBox, void* pPara ) const
-//STRIP001 {
-//STRIP001  // Box-Namen (externe Darstellung) zu relativen Namen
-//STRIP001  SwNode* pNd = (SwNode*)pPara;
-//STRIP001  ASSERT( pNd, "Feld steht in keinem Node" );
-//STRIP001  const SwTableNode* pTblNd = pNd->FindTableNode();
-//STRIP001
-//STRIP001  String sRefBoxNm;
-//STRIP001  if( &pTblNd->GetTable() == &rTbl )
-//STRIP001  {
-//STRIP001      const SwTableBox *pBox = rTbl.GetTblBox(
-//STRIP001              pNd->FindTableBoxStartNode()->GetIndex() );
-//STRIP001      ASSERT( pBox, "Feld steht in keiner Tabelle" );
-//STRIP001      sRefBoxNm = pBox->GetName();
-//STRIP001  }
-//STRIP001
-//STRIP001  rNewStr += rFirstBox.Copy(0,1);     // Kennung fuer Box erhalten
-//STRIP001  rFirstBox.Erase(0,1);
-//STRIP001  if( pLastBox )
-//STRIP001  {
-//STRIP001      rNewStr += lcl_BoxNmToRel( rTbl, *pTblNd, sRefBoxNm, *pLastBox,
-//STRIP001                              eNmType == EXTRNL_NAME );
-//STRIP001      rNewStr += ':';
-//STRIP001      rFirstBox.Erase( 0, pLastBox->Len()+1 );
-//STRIP001  }
-//STRIP001
-//STRIP001  rNewStr += lcl_BoxNmToRel( rTbl, *pTblNd, sRefBoxNm, rFirstBox,
-//STRIP001                          eNmType == EXTRNL_NAME );
-//STRIP001
-//STRIP001  // Kennung fuer Box erhalten
-//STRIP001  rNewStr += rFirstBox.GetChar( rFirstBox.Len() - 1 );
-//STRIP001 }
+
 
 
 /*N*/ void SwTableFormula::PtrToBoxNms( const SwTable& rTbl, String& rNewStr,
@@ -593,7 +428,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/       if( pTbl )
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelNmsToBoxNms;
-//STRIP001 /*?*/            pNd = GetNodeOfFormula();
 /*?*/       }
 /*?*/       break;
 /*N*/   case EXTRNL_NAME:
@@ -618,7 +452,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/       if( pTbl )
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelBoxNmsToPtr;
-//STRIP001 /*?*/            pNd = GetNodeOfFormula();
 /*?*/       }
 /*?*/       break;
 /*?*/   case INTRNL_NAME:
@@ -629,26 +462,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/ }
 
     // erzeuge die relative (fuers Kopieren) Formel
-//STRIP001 void SwTableFormula::ToRelBoxNm( const SwTable* pTbl )
-//STRIP001 {
-//STRIP001  const SwNode* pNd = 0;
-//STRIP001  FnScanFormel fnFormel = 0;
-//STRIP001  switch( eNmType)
-//STRIP001  {
-//STRIP001  case INTRNL_NAME:
-//STRIP001  case EXTRNL_NAME:
-//STRIP001      if( pTbl )
-//STRIP001      {
-//STRIP001          fnFormel = &SwTableFormula::BoxNmsToRelNm;
-//STRIP001          pNd = GetNodeOfFormula();
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case REL_NAME:
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  sFormel = ScanString( fnFormel, *pTbl, (void*)pNd );
-//STRIP001  eNmType = REL_NAME;
-//STRIP001 }
 
 
 /*N*/ String SwTableFormula::ScanString( FnScanFormel fnFormel, const SwTable& rTbl,
@@ -711,12 +524,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/                   {
 /*?*/                       // dann suchen wir uns mal unsere Tabelle:
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pFnd = FindTable(
-//STRIP001 /*?*/                                                *rTbl.GetFrmFmt()->GetDoc(),
-//STRIP001 /*?*/                                                sTblNm );
-//STRIP001 /*?*/                        if( pFnd )
-//STRIP001 /*?*/                            pTbl = pFnd;
-//STRIP001 /*?*/                        // ??
-//STRIP001 /*?*/                        ASSERT( pFnd, "Tabelle nicht gefunden, was nun?" );
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -739,30 +546,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   return aStr;
 /*N*/ }
 
-//STRIP001 const SwTable* SwTableFormula::FindTable( SwDoc& rDoc, const String& rNm ) const
-//STRIP001 {
-//STRIP001  const SwFrmFmts& rTblFmts = *rDoc.GetTblFrmFmts();
-//STRIP001  const SwTable* pTmpTbl, *pRet = 0;
-//STRIP001  for( USHORT nFmtCnt = rTblFmts.Count(); nFmtCnt; )
-//STRIP001  {
-//STRIP001      SwFrmFmt* pFmt = rTblFmts[ --nFmtCnt ];
-//STRIP001      // falls wir von Sw3Writer gerufen werden, dann ist dem
-//STRIP001      // FormatNamen eine Nummer anhaengig
-//STRIP001      SwTableBox* pFBox;
-//STRIP001      if( COMPARE_EQUAL == rNm.CompareTo( pFmt->GetName(),
-//STRIP001                                      pFmt->GetName().Search( 0x0a ) ) &&
-//STRIP001          0 != ( pTmpTbl = SwTable::FindTable( pFmt ) ) &&
-//STRIP001          0 != (pFBox = pTmpTbl->GetTabSortBoxes()[0] ) &&
-//STRIP001          pFBox->GetSttNd() &&
-//STRIP001          pFBox->GetSttNd()->GetNodes().IsDocNodes() )
-//STRIP001      {
-//STRIP001          // eine Tabelle im normalen NodesArr
-//STRIP001          pRet = pTmpTbl;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
 
 /*  */
 
@@ -789,201 +572,10 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   return pCNd->GetFrm( &aPt, NULL, FALSE );
 /*N*/ }
 
-//STRIP001 long lcl_GetLongBoxNum( String& rStr )
-//STRIP001 {
-//STRIP001  USHORT nPos;
-//STRIP001  long nRet;
-//STRIP001  if( STRING_NOTFOUND == ( nPos = rStr.Search( cRelTrenner ) ))
-//STRIP001  {
-//STRIP001      nRet = rStr.ToInt32();
-//STRIP001      rStr.Erase();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      nRet = rStr.Copy( 0, nPos ).ToInt32();
-//STRIP001      rStr.Erase( 0, nPos+1 );
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 const SwTableBox* lcl_RelToBox( const SwTable& rTbl,
-//STRIP001                                  const SwTableBox* pRefBox,
-//STRIP001                                  const String& rGetName )
-//STRIP001 {
-//STRIP001  // hole die Line
-//STRIP001  const SwTableBox* pBox = 0;
-//STRIP001  String sGetName( rGetName );
-//STRIP001
-//STRIP001  // ist es denn wirklich eine relative Angabe??
-//STRIP001  if( cRelKennung == sGetName.GetChar(0) )            // ja, ...
-//STRIP001  {
-//STRIP001      if( !pRefBox )
-//STRIP001          return 0;
-//STRIP001
-//STRIP001      sGetName.Erase( 0, 1 );
-//STRIP001
-//STRIP001      const SwTableLines* pLines = (SwTableLines*)&rTbl.GetTabLines();
-//STRIP001      const SwTableBoxes* pBoxes;
-//STRIP001      const SwTableLine* pLine;
-//STRIP001
-//STRIP001      // bestimme erst mal die Start-Werte der Box:
-//STRIP001      pBox = (SwTableBox*)pRefBox;
-//STRIP001      pLine = pBox->GetUpper();
-//STRIP001      while( pLine->GetUpper() )
-//STRIP001      {
-//STRIP001          pBox = pLine->GetUpper();
-//STRIP001          pLine = pBox->GetUpper();
-//STRIP001      }
-//STRIP001      USHORT nSttBox = pLine->GetTabBoxes().GetPos( pBox );
-//STRIP001      USHORT nSttLine = rTbl.GetTabLines().GetPos( pLine );
-//STRIP001
-//STRIP001      long nBoxOffset = lcl_GetLongBoxNum( sGetName ) + nSttBox;
-//STRIP001      long nLineOffset = lcl_GetLongBoxNum( sGetName ) + nSttLine;
-//STRIP001
-//STRIP001      if( nBoxOffset < 0 || nBoxOffset >= USHRT_MAX ||
-//STRIP001          nLineOffset < 0 || nLineOffset >= USHRT_MAX )
-//STRIP001          return 0;
-//STRIP001
-//STRIP001      if( nLineOffset >= long(pLines->Count()) )
-//STRIP001          return 0;
-//STRIP001
-//STRIP001      pLine = (*pLines)[ USHORT(nLineOffset) ];
-//STRIP001
-//STRIP001      // dann suche die Box
-//STRIP001      pBoxes = &pLine->GetTabBoxes();
-//STRIP001      if( nBoxOffset >= long(pBoxes->Count()) )
-//STRIP001          return 0;
-//STRIP001      pBox = (*pBoxes)[ USHORT(nBoxOffset) ];
-//STRIP001
-//STRIP001      while( sGetName.Len() )
-//STRIP001      {
-//STRIP001          nSttBox = SwTable::_GetBoxNum( sGetName );
-//STRIP001          pLines = &pBox->GetTabLines();
-//STRIP001          if( nSttBox )
-//STRIP001              --nSttBox;
-//STRIP001
-//STRIP001          nSttLine = SwTable::_GetBoxNum( sGetName );
-//STRIP001
-//STRIP001          // bestimme die Line
-//STRIP001          if( !nSttLine || nSttLine > pLines->Count() )
-//STRIP001              break;
-//STRIP001          pLine = (*pLines)[ nSttLine-1 ];
-//STRIP001
-//STRIP001          // bestimme die Box
-//STRIP001          pBoxes = &pLine->GetTabBoxes();
-//STRIP001          if( nSttBox >= pBoxes->Count() )
-//STRIP001              break;
-//STRIP001          pBox = (*pBoxes)[ nSttBox ];
-//STRIP001      }
-//STRIP001
-//STRIP001      if( pBox )
-//STRIP001      {
-//STRIP001          if( !pBox->GetSttNd() )
-//STRIP001              // "herunterfallen lassen" bis zur ersten Box
-//STRIP001              while( pBox->GetTabLines().Count() )
-//STRIP001                  pBox = pBox->GetTabLines()[0]->GetTabBoxes()[0];
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // sonst ist es eine absolute externe Darstellung:
-//STRIP001      pBox = rTbl.GetTblBox( sGetName );
-//STRIP001  }
-//STRIP001  return pBox;
-//STRIP001 }
 
-//STRIP001 String lcl_BoxNmToRel( const SwTable& rTbl, const SwTableNode& rTblNd,
-//STRIP001                          const String& rRefBoxNm, const String& rGetStr,
-//STRIP001                          BOOL bExtrnlNm )
-//STRIP001 {
-//STRIP001  String sCpy( rRefBoxNm );
-//STRIP001  String sTmp( rGetStr );
-//STRIP001  if( !bExtrnlNm )
-//STRIP001  {
-//STRIP001      // in die Externe Darstellung umwandeln.
-//STRIP001 //       SwTableBox* pBox = (SwTableBox*)(long)sTmp;
-//STRIP001      SwTableBox* pBox = (SwTableBox*)sTmp.ToInt32();
-//STRIP001      if( !rTbl.GetTabSortBoxes().Seek_Entry( pBox ))
-//STRIP001          return '?';
-//STRIP001      sTmp = pBox->GetName();
-//STRIP001  }
-//STRIP001
-//STRIP001  // sollte die es eine Tabellen uebergreifende Formel sein, dann behalte
-//STRIP001  // die externe Darstellung bei:
-//STRIP001  if( &rTbl == &rTblNd.GetTable() )
-//STRIP001  {
-//STRIP001      long nBox = SwTable::_GetBoxNum( sTmp, TRUE );
-//STRIP001      nBox -= SwTable::_GetBoxNum( sCpy, TRUE );
-//STRIP001      long nLine = SwTable::_GetBoxNum( sTmp );
-//STRIP001      nLine -= SwTable::_GetBoxNum( sCpy );
-//STRIP001
-//STRIP001      sCpy = sTmp;        //JP 01.11.95: den Rest aus dem BoxNamen anhaengen
-//STRIP001
-//STRIP001      sTmp = cRelKennung;
-//STRIP001      sTmp += String::CreateFromInt32( nBox );
-//STRIP001      sTmp += cRelTrenner;
-//STRIP001      sTmp += String::CreateFromInt32( nLine );
-//STRIP001
-//STRIP001      if( sCpy.Len() )
-//STRIP001      {
-//STRIP001          sTmp += cRelTrenner;
-//STRIP001          sTmp += sCpy;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( sTmp.Len() && '>' == sTmp.GetChar( sTmp.Len() - 1 ))
-//STRIP001      sTmp.Erase( sTmp.Len()-1 );
-//STRIP001
-//STRIP001  return sTmp;
-//STRIP001 }
 
-//STRIP001 USHORT SwTableFormula::GetBoxesOfFormula( const SwTable& rTbl,
-//STRIP001                                      SwSelBoxes& rBoxes )
-//STRIP001 {
-//STRIP001  if( rBoxes.Count() )
-//STRIP001      rBoxes.Remove( USHORT(0), rBoxes.Count() );
-//STRIP001
-//STRIP001  BoxNmToPtr( &rTbl );
-//STRIP001  ScanString( &SwTableFormula::_GetFmlBoxes, rTbl, &rBoxes );
-//STRIP001  return rBoxes.Count();
-//STRIP001 }
 
-//STRIP001 void SwTableFormula::_GetFmlBoxes( const SwTable& rTbl, String& rNewStr,
-//STRIP001                  String& rFirstBox, String* pLastBox, void* pPara ) const
-//STRIP001 {
-//STRIP001  SwSelBoxes* pBoxes = (SwSelBoxes*)pPara;
-//STRIP001  SwTableBox* pSttBox, *pEndBox = 0;
-//STRIP001
-//STRIP001  rFirstBox.Erase(0,1);       // Kennung fuer Box loeschen
-//STRIP001  // ein Bereich in dieser Klammer ?
-//STRIP001  if( pLastBox )
-//STRIP001  {
-//STRIP001 //       pEndBox = (SwTableBox*)(long)(*pLastBox);
-//STRIP001      pEndBox = (SwTableBox*)pLastBox->ToInt32();
-//STRIP001
-//STRIP001      // ist das ueberhaupt ein gueltiger Pointer ??
-//STRIP001      if( !rTbl.GetTabSortBoxes().Seek_Entry( pEndBox ))
-//STRIP001          pEndBox = 0;
-//STRIP001      rFirstBox.Erase( 0, pLastBox->Len()+1 );
-//STRIP001  }
-//STRIP001
-//STRIP001 //   pSttBox = (SwTableBox*)(long)rFirstBox;
-//STRIP001  pSttBox = (SwTableBox*)rFirstBox.ToInt32();
-//STRIP001  // ist das ueberhaupt ein gueltiger Pointer ??
-//STRIP001  if( !rTbl.GetTabSortBoxes().Seek_Entry( pSttBox ))
-//STRIP001      pSttBox = 0;
-//STRIP001
-//STRIP001  if( pEndBox && pSttBox )    // Bereich ?
-//STRIP001  {
-//STRIP001      // ueber das Layout alle "selectierten" Boxen und berechne
-//STRIP001      // deren Werte
-//STRIP001      SwSelBoxes aBoxes;
-//STRIP001      GetBoxes( *pSttBox, *pEndBox, aBoxes );
-//STRIP001      pBoxes->Insert( &aBoxes );
-//STRIP001  }
-//STRIP001  else if( pSttBox )          // nur die StartBox ?
-//STRIP001      pBoxes->Insert( pSttBox );
-//STRIP001 }
 
 /*N*/ void SwTableFormula::GetBoxes( const SwTableBox& rSttBox,
 /*N*/                               const SwTableBox& rEndBox,
@@ -1036,248 +628,13 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/ }
 
     // sind alle Boxen gueltig, auf die sich die Formel bezieht?
-//STRIP001 void SwTableFormula::_HasValidBoxes( const SwTable& rTbl, String& rNewStr,
-//STRIP001                  String& rFirstBox, String* pLastBox, void* pPara ) const
-//STRIP001 {
-//STRIP001  BOOL* pBValid = (BOOL*)pPara;
-//STRIP001  if( *pBValid )      // einmal falsch, immer falsch
-//STRIP001  {
-//STRIP001      SwTableBox* pSttBox, *pEndBox = 0;
-//STRIP001      rFirstBox.Erase(0,1);       // Kennung fuer Box loeschen
-//STRIP001
-//STRIP001      // ein Bereich in dieser Klammer ?
-//STRIP001      if( pLastBox )
-//STRIP001          rFirstBox.Erase( 0, pLastBox->Len()+1 );
-//STRIP001
-//STRIP001      switch( eNmType)
-//STRIP001      {
-//STRIP001      case INTRNL_NAME:
-//STRIP001          if( pLastBox )
-//STRIP001          {
-//STRIP001 //               pEndBox = (SwTableBox*)(long)(*pLastBox);
-//STRIP001              pEndBox = (SwTableBox*)pLastBox->ToInt32();
-//STRIP001          }
-//STRIP001 //           pSttBox = (SwTableBox*)(long)rFirstBox;
-//STRIP001          pSttBox = (SwTableBox*)rFirstBox.ToInt32();
-//STRIP001          break;
-//STRIP001
-//STRIP001      case REL_NAME:
-//STRIP001          {
-//STRIP001              const SwNode* pNd = GetNodeOfFormula();
-//STRIP001              const SwTableBox* pBox = !pNd ? 0
-//STRIP001                                             : (SwTableBox *)rTbl.GetTblBox(
-//STRIP001                                  pNd->FindTableBoxStartNode()->GetIndex() );
-//STRIP001              if( pLastBox )
-//STRIP001                  pEndBox = (SwTableBox*)lcl_RelToBox( rTbl, pBox, *pLastBox );
-//STRIP001              pSttBox = (SwTableBox*)lcl_RelToBox( rTbl, pBox, rFirstBox );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case EXTRNL_NAME:
-//STRIP001          if( pLastBox )
-//STRIP001              pEndBox = (SwTableBox*)rTbl.GetTblBox( *pLastBox );
-//STRIP001          pSttBox = (SwTableBox*)rTbl.GetTblBox( rFirstBox );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      // sind das gueltige Pointer ?
-//STRIP001      if( ( pLastBox &&
-//STRIP001            ( !pEndBox || !rTbl.GetTabSortBoxes().Seek_Entry( pEndBox ) ) ) ||
-//STRIP001          ( !pSttBox || !rTbl.GetTabSortBoxes().Seek_Entry( pSttBox ) ) )
-//STRIP001              *pBValid = FALSE;
-//STRIP001  }
-//STRIP001 }
-
-//STRIP001 BOOL SwTableFormula::HasValidBoxes() const
-//STRIP001 {
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001  const SwNode* pNd = GetNodeOfFormula();
-//STRIP001  if( pNd && 0 != ( pNd = pNd->FindTableNode() ) )
-//STRIP001      ScanString( &SwTableFormula::_HasValidBoxes,
-//STRIP001                      ((SwTableNode*)pNd)->GetTable(), &bRet );
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 USHORT SwTableFormula::GetLnPosInTbl( const SwTable& rTbl, const SwTableBox* pBox )
-//STRIP001 {
-//STRIP001  USHORT nRet = USHRT_MAX;
-//STRIP001  if( pBox )
-//STRIP001  {
-//STRIP001      const SwTableLine* pLn = pBox->GetUpper();
-//STRIP001      while( pLn->GetUpper() )
-//STRIP001          pLn = pLn->GetUpper()->GetUpper();
-//STRIP001      nRet = rTbl.GetTabLines().GetPos( pLn );
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
-//STRIP001 void SwTableFormula::_SplitMergeBoxNm( const SwTable& rTbl, String& rNewStr,
-//STRIP001                  String& rFirstBox, String* pLastBox, void* pPara ) const
-//STRIP001 {
-//STRIP001  SwTableFmlUpdate& rTblUpd = *(SwTableFmlUpdate*)pPara;
-//STRIP001
-//STRIP001  rNewStr += rFirstBox.Copy(0,1);     // Kennung fuer Box erhalten
-//STRIP001  rFirstBox.Erase(0,1);
-//STRIP001
-//STRIP001  String sTblNm;
-//STRIP001  const SwTable* pTbl = &rTbl;
-//STRIP001
-//STRIP001  String* pTblNmBox = pLastBox ? pLastBox : &rFirstBox;
-//STRIP001
-//STRIP001  USHORT nLastBoxLen = pTblNmBox->Len();
-//STRIP001  USHORT nTrenner = pTblNmBox->Search( '.' );
-//STRIP001  if( STRING_NOTFOUND != nTrenner &&
-//STRIP001      // falls im Namen schon die Punkte enthalten sind,
-//STRIP001      // treten diese immer paarig auf!!! (A1.1.1 !!)
-//STRIP001      (pTblNmBox->GetTokenCount( '.' ) - 1 ) & 1 )
-//STRIP001  {
-//STRIP001      sTblNm = pTblNmBox->Copy( 0, nTrenner );
-//STRIP001      pTblNmBox->Erase( 0, nTrenner + 1);// den Punkt entfernen
-//STRIP001      const SwTable* pFnd = FindTable( *rTbl.GetFrmFmt()->GetDoc(), sTblNm );
-//STRIP001      if( pFnd )
-//STRIP001          pTbl = pFnd;
-//STRIP001
-//STRIP001      if( TBL_MERGETBL == rTblUpd.eFlags )
-//STRIP001      {
-//STRIP001          if( pFnd )
-//STRIP001          {
-//STRIP001              if( pFnd == rTblUpd.DATA.pDelTbl )
-//STRIP001              {
-//STRIP001                  if( rTblUpd.pTbl != &rTbl )         // es ist nicht die akt.
-//STRIP001                      (rNewStr += rTblUpd.pTbl->GetFrmFmt()->GetName() )
-//STRIP001                          += '.'; // den neuen Tabellen Namen setzen
-//STRIP001                  rTblUpd.bModified = TRUE;
-//STRIP001              }
-//STRIP001              else if( pFnd != rTblUpd.pTbl ||
-//STRIP001                  ( rTblUpd.pTbl != &rTbl && &rTbl != rTblUpd.DATA.pDelTbl))
-//STRIP001                  (rNewStr += sTblNm ) += '.';    // den Tabellen Namen behalten
-//STRIP001              else
-//STRIP001                  rTblUpd.bModified = TRUE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              (rNewStr += sTblNm ) += '.';    // den Tabellen Namen behalten
-//STRIP001
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( pTblNmBox == pLastBox )
-//STRIP001      rFirstBox.Erase( 0, nLastBoxLen + 1 );
-//STRIP001
-//STRIP001  SwTableBox* pSttBox, *pEndBox = 0;
-//STRIP001  switch( eNmType )
-//STRIP001  {
-//STRIP001  case INTRNL_NAME:
-//STRIP001      if( pLastBox )
-//STRIP001      {
-//STRIP001 //           pEndBox = (SwTableBox*)(long)(*pLastBox);
-//STRIP001          pEndBox = (SwTableBox*)pLastBox->ToInt32();
-//STRIP001      }
-//STRIP001 //       pSttBox = (SwTableBox*)(long)rFirstBox;
-//STRIP001      pSttBox = (SwTableBox*)rFirstBox.ToInt32();
-//STRIP001      break;
-//STRIP001
-//STRIP001  case REL_NAME:
-//STRIP001      {
-//STRIP001          const SwNode* pNd = GetNodeOfFormula();
-//STRIP001          const SwTableBox* pBox = pNd ? pTbl->GetTblBox(
-//STRIP001                          pNd->FindTableBoxStartNode()->GetIndex() ) : 0;
-//STRIP001          if( pLastBox )
-//STRIP001              pEndBox = (SwTableBox*)lcl_RelToBox( *pTbl, pBox, *pLastBox );
-//STRIP001          pSttBox = (SwTableBox*)lcl_RelToBox( *pTbl, pBox, rFirstBox );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case EXTRNL_NAME:
-//STRIP001      if( pLastBox )
-//STRIP001          pEndBox = (SwTableBox*)pTbl->GetTblBox( *pLastBox );
-//STRIP001      pSttBox = (SwTableBox*)pTbl->GetTblBox( rFirstBox );
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pLastBox && !pTbl->GetTabSortBoxes().Seek_Entry( pEndBox ))
-//STRIP001      pEndBox = 0;
-//STRIP001  if( !pTbl->GetTabSortBoxes().Seek_Entry( pSttBox ))
-//STRIP001      pSttBox = 0;
-//STRIP001
-//STRIP001  if( TBL_SPLITTBL == rTblUpd.eFlags )
-//STRIP001  {
-//STRIP001      // wo liegen die Boxen, in der "alten" oder in der neuen Tabelle?
-//STRIP001      BOOL bInNewTbl = FALSE;
-//STRIP001      if( pLastBox )
-//STRIP001      {
-//STRIP001          // das ist die "erste" Box in der Selektion. Die bestimmt ob die
-//STRIP001          // Formel in der alten oder neuen Tabelle steht.
-//STRIP001          USHORT nEndLnPos = SwTableFormula::GetLnPosInTbl( *pTbl, pEndBox ),
-//STRIP001                  nSttLnPos = SwTableFormula::GetLnPosInTbl( *pTbl, pSttBox );
-//STRIP001
-//STRIP001          if( USHRT_MAX != nSttLnPos && USHRT_MAX != nEndLnPos &&
-//STRIP001              rTblUpd.nSplitLine <= nSttLnPos ==
-//STRIP001              rTblUpd.nSplitLine <= nEndLnPos )
-//STRIP001          {
-//STRIP001              // bleiben in der gleichen Tabelle
-//STRIP001              bInNewTbl = rTblUpd.nSplitLine <= nEndLnPos &&
-//STRIP001                                  pTbl == rTblUpd.pTbl;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              // das ist aufjedenfall eine ungueltige Formel, also fuers
-//STRIP001              // Undo auf Modified setzen
-//STRIP001              rTblUpd.bModified = TRUE;
-//STRIP001              if( pEndBox )
-//STRIP001                  bInNewTbl = USHRT_MAX != nEndLnPos &&
-//STRIP001                                  rTblUpd.nSplitLine <= nEndLnPos &&
-//STRIP001                                  pTbl == rTblUpd.pTbl;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          USHORT nSttLnPos = SwTableFormula::GetLnPosInTbl( *pTbl, pSttBox );
-//STRIP001          // dann landet das Teil in der neuen Tabelle?
-//STRIP001          bInNewTbl = USHRT_MAX != nSttLnPos &&
-//STRIP001                          rTblUpd.nSplitLine <= nSttLnPos &&
-//STRIP001                          pTbl == rTblUpd.pTbl;
-//STRIP001      }
-//STRIP001
-//STRIP001      // wenn die Formel selbst in der neuen Tabellen landet
-//STRIP001      if( rTblUpd.bBehindSplitLine )
-//STRIP001      {
-//STRIP001          if( !bInNewTbl )
-//STRIP001          {
-//STRIP001              rTblUpd.bModified = TRUE;
-//STRIP001              ( rNewStr += rTblUpd.pTbl->GetFrmFmt()->GetName() ) += '.';
-//STRIP001          }
-//STRIP001          else if( sTblNm.Len() )
-//STRIP001              ( rNewStr += sTblNm ) += '.';
-//STRIP001      }
-//STRIP001      else if( bInNewTbl )
-//STRIP001      {
-//STRIP001          rTblUpd.bModified = TRUE;
-//STRIP001          ( rNewStr += *rTblUpd.DATA.pNewTblNm ) += '.';
-//STRIP001      }
-//STRIP001      else if( sTblNm.Len() )
-//STRIP001          ( rNewStr += sTblNm ) += '.';
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pLastBox )
-//STRIP001      ( rNewStr += String::CreateFromInt32((long)pEndBox )) += ':';
-//STRIP001  ( rNewStr += String::CreateFromInt32((long)pSttBox ))
-//STRIP001            += rFirstBox.GetChar( rFirstBox.Len() - 1 );
-//STRIP001 }
+
 
     // erzeuge die externe Formel, beachte aber das die Formel
     // in einer gesplitteten/gemergten Tabelle landet
-//STRIP001 void SwTableFormula::ToSplitMergeBoxNm( SwTableFmlUpdate& rTblUpd )
-//STRIP001 {
-//STRIP001  const SwTable* pTbl;
-//STRIP001  const SwNode* pNd = GetNodeOfFormula();
-//STRIP001  if( pNd && 0 != ( pNd = pNd->FindTableNode() ))
-//STRIP001      pTbl = &((SwTableNode*)pNd)->GetTable();
-//STRIP001  else
-//STRIP001      pTbl = rTblUpd.pTbl;
-//STRIP001
-//STRIP001  sFormel = ScanString( &SwTableFormula::_SplitMergeBoxNm, *pTbl, (void*)&rTblUpd );
-//STRIP001  eNmType = INTRNL_NAME;
-//STRIP001 }
 
 
 }
