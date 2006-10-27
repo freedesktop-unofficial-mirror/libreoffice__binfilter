@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtasc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:59:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:25:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
@@ -209,10 +206,6 @@ namespace binfilter {
 /*?*/                   if( pIdx )
 /*?*/                   {
 /*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pCurPam;
-//STRIP001 /*?*/                        pCurPam = NewSwPaM( *pDoc, pIdx->GetIndex(),
-//STRIP001 /*?*/                                    pIdx->GetNode().EndOfSectionIndex() );
-//STRIP001 /*?*/                        pCurPam->Exchange();
-//STRIP001 /*?*/                        continue;       // while-Schleife neu aufsetzen !!
 /*N*/                   }
 /*N*/               }
 /*N*/               else
