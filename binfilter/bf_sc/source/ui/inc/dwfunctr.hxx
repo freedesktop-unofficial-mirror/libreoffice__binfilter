@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dwfunctr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2006-08-14 13:34:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:08:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,10 +63,6 @@
 #include <vcl/combobox.hxx>
 #endif
 
-#ifndef SC_ANYREFDG_HXX
-#include "anyrefdg.hxx"
-#endif
-
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScAddress
 #endif
@@ -86,97 +82,9 @@ class ScFunctionChildWindow : public SfxChildWindow
 {
  public:
      ScFunctionChildWindow( Window* pParent, USHORT nId, SfxBindings* pBindings,SfxChildWinInfo* pInfo):SfxChildWindow( pParent, nId ){DBG_ASSERT(0, "STRIP")}; //STRIP001 ScFunctionChildWindow( Window*, USHORT, SfxBindings*,
-//STRIP001      SfxChildWinInfo* );
 
     SFX_DECL_CHILDWINDOW(ScFunctionChildWindow);
 };
-
-/*************************************************************************
-|*
-|* ScFuncDockWin
-|*
-\************************************************************************/
-
-//STRIP001 class ScFunctionDockWin : public SfxDockingWindow, public SfxListener
-//STRIP001 {
-//STRIP001
-//STRIP001 private:
-//STRIP001  Timer               aTimer;
-//STRIP001  ScPrivatSplit       aPrivatSplit;
-//STRIP001  ListBox             aCatBox;
-//STRIP001  ListBox             aFuncList;
-//STRIP001  ListBox             aDDFuncList;
-//STRIP001  ListBox*            pAllFuncList;
-//STRIP001
-//STRIP001  SfxChildAlignment   eSfxNewAlignment;
-//STRIP001  SfxChildAlignment   eSfxOldAlignment;
-//STRIP001  ImageButton         aInsertButton;
-//STRIP001  FixedText           aFiFuncDesc;
-//STRIP001  USHORT              nLeftSlot;
-//STRIP001  USHORT              nRightSlot;
-//STRIP001  ULONG               nMinWidth;
-//STRIP001  ULONG               nMinHeight;
-//STRIP001  Size                aOldSize;
-//STRIP001  BOOL                bSizeFlag;
-//STRIP001  BOOL                bInit;
-//STRIP001  short               nDockMode;
-//STRIP001  Point               aSplitterInitPos;
-//STRIP001  ScFuncDesc*         pFuncDesc;
-//STRIP001  USHORT              nArgs;
-//STRIP001  String**            pArgArr;
-//STRIP001
-//STRIP001
-//STRIP001  ScFuncDesc*     aLRUList[LRU_MAX];
-
-//STRIP001  void            UpdateFunctionList();
-//STRIP001  void            UpdateLRUList();
-//STRIP001  void            DoEnter(BOOL bOk); //@@ ???
-//STRIP001  void            SetDescription();
-//STRIP001  void            SetLeftRightSize();
-//STRIP001  void            SetTopBottonSize();
-//STRIP001  void            SetMyWidthLeRi(Size &aNewSize);
-//STRIP001  void            SetMyHeightLeRi(Size &aNewSize);
-//STRIP001  void            SetMyWidthToBo(Size &aNewSize);
-//STRIP001  void            SetMyHeightToBo(Size &aNewSize);
-//STRIP001  void            UseSplitterInitPos();
-//STRIP001
-//STRIP001                  DECL_LINK( SetSelectionHdl, void* );
-//STRIP001                  DECL_LINK( SelHdl, ListBox* );
-//STRIP001                  DECL_LINK(SetSplitHdl,ScPrivatSplit*);
-//STRIP001                  DECL_LINK( TimerHdl, Timer*);
-
-//STRIP001 protected:
-
-//STRIP001  virtual BOOL    Close();
-//STRIP001  virtual void    Resize();
-//STRIP001  virtual void    Resizing( Size& rSize );
-//STRIP001  virtual void    SetSize();
-//STRIP001  virtual void    ToggleFloatingMode();
-//STRIP001  virtual void    StateChanged( StateChangedType nStateChange );
-//STRIP001
-//STRIP001
-//STRIP001  virtual SfxChildAlignment CheckAlignment(SfxChildAlignment,
-//STRIP001                              SfxChildAlignment eAlign);
-
-//STRIP001 public:
-//STRIP001                  ScFunctionDockWin(  SfxBindings* pBindings,
-//STRIP001                                      SfxChildWindow *pCW,
-//STRIP001                                      Window* pParent,
-//STRIP001                                      const ResId& rResId );
-
-//STRIP001                  ~ScFunctionDockWin();
-//STRIP001
-//STRIP001  virtual void    SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
-//STRIP001                          const SfxHint& rHint, const TypeId& rHintType );
-//STRIP001
-//STRIP001  void            SetSlotIDs( USHORT nLeft, USHORT nRight )
-//STRIP001                      { nLeftSlot = nLeft; nRightSlot = nRight; }
-//STRIP001
-//STRIP001  void            InitLRUList();
-//STRIP001
-//STRIP001  void            Initialize (SfxChildWinInfo* pInfo);
-//STRIP001  virtual void    FillInfo(SfxChildWinInfo&) const;
-//STRIP001 };
 
 } //namespace binfilter
 #endif
