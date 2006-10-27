@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_noteurl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:28:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:11:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,47 +54,6 @@
 /*N*/  namespace binfilter {
 /*N*/  // globale Variable, wird in noteurl.Hxx bekanntgegeben
 /*N*/  SwNoteURL *pNoteURL = NULL;
-//STRIP001
-//STRIP001 SV_IMPL_PTRARR( SwURLNoteList, SwURLNotePtr )
-//STRIP001
-//STRIP001
-//STRIP001 void SwNoteURL::InsertURLNote( const XubString& rURL, const XubString& rTarget,
-//STRIP001  const SwRect& rRect )
-//STRIP001 {
-//STRIP001  MSHORT i;
-//STRIP001  MSHORT nCount = aList.Count();
-//STRIP001  for( i = 0; i < nCount; i++ )
-//STRIP001      if( rRect == aList.GetObject(i)->GetRect() )
-//STRIP001          break;
-//STRIP001  if( i == nCount )
-//STRIP001  {
-//STRIP001      SwURLNote *pNew = new SwURLNote( rURL, rTarget, rRect );
-//STRIP001      aList.Insert( pNew, nCount );
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001 void SwNoteURL::FillImageMap( ImageMap *pMap, const Point &rPos,
-//STRIP001  const MapMode& rMap )
-//STRIP001 {
-//STRIP001  ASSERT( pMap, "FillImageMap: No ImageMap, no cookies!" );
-//STRIP001  MSHORT nCount = Count();
-//STRIP001  if( nCount )
-//STRIP001  {
-//STRIP001      MapMode aMap( MAP_100TH_MM );
-//STRIP001      for( MSHORT i = 0; i < nCount; ++i )
-//STRIP001      {
-//STRIP001          const SwURLNote &rNote = GetURLNote( i );
-//STRIP001          SwRect aSwRect( rNote.GetRect() );
-//STRIP001          aSwRect -= rPos;
-//STRIP001          Rectangle aRect( OutputDevice::LogicToLogic( aSwRect.SVRect(),
-//STRIP001                                                       rMap, aMap ) );
-//STRIP001          IMapRectangleObject aObj( aRect, rNote.GetURL(), aEmptyStr,
-//STRIP001                                    rNote.GetTarget(), sal_True, sal_False );
-//STRIP001          pMap->InsertIMapObject( aObj );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 
