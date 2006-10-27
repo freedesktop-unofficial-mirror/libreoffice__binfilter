@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unolingu.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:25:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:47:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -438,13 +438,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/         ThesDummy_Impl::getLocales()
 /*N*/             throw(uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa; //STRIP001
-//STRIP001     if (SvxLinguConfigUpdate::IsUpdated())
-//STRIP001         GetThes_Impl();
-//STRIP001     if (xThes.is())
-//STRIP001         return xThes->getLocales();
-//STRIP001     else if (!pLocaleSeq)
-//STRIP001         GetCfgLocales();
-//STRIP001     return *pLocaleSeq;
 /*N*/ }
 
 
@@ -480,12 +473,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/             throw(lang::IllegalArgumentException,
 /*N*/                   uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes; //STRIP001
-//STRIP001 /*?*/     GetThes_Impl();
-//STRIP001 /*?*/     uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;
-//STRIP001 /*?*/     DBG_ASSERT( xThes.is(), "Thesaurus missing" );
-//STRIP001 /*?*/     if (xThes.is())
-//STRIP001 /*?*/         aRes = xThes->queryMeanings( rTerm, rLocale, rProperties );
-//STRIP001 /*?*/     return aRes;
 /*N*/ }
 
 
@@ -529,16 +516,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ void SpellDummy_Impl::GetSpell_Impl()
 /*N*/ { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     // update configuration before accessing the service
-//STRIP001     if (!SvxLinguConfigUpdate::IsUpdated())
-//STRIP001         SvxLinguConfigUpdate::UpdateAll();
-//STRIP001
-//STRIP001     if (!xSpell.is())
-//STRIP001     {
-//STRIP001         Reference< XLinguServiceManager > xLngSvcMgr( GetLngSvcMgr_Impl() );
-//STRIP001         if (xLngSvcMgr.is())
-//STRIP001             xSpell = Reference< XSpellChecker1 >( xLngSvcMgr->getSpellChecker(), UNO_QUERY );
-//STRIP001     }
 /*N*/ }
 
 
@@ -546,11 +523,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/     SpellDummy_Impl::getLanguages()
 /*N*/         throw(uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >(); //STRIP001
-//STRIP001     GetSpell_Impl();
-//STRIP001     if (xSpell.is())
-//STRIP001         return xSpell->getLanguages();
-//STRIP001     else
-//STRIP001         return uno::Sequence< sal_Int16 >();
 /*N*/ }
 
 
@@ -558,11 +530,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 nLanguage )
 /*N*/         throw(uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
-//STRIP001     GetSpell_Impl();
-//STRIP001     BOOL bRes = FALSE;
-//STRIP001     if (xSpell.is())
-//STRIP001         bRes = xSpell->hasLanguage( nLanguage );
-//STRIP001     return bRes;
 /*N*/ }
 
 
@@ -586,11 +553,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes; //STRIP001
-//STRIP001     GetSpell_Impl();
-//STRIP001     uno::Reference< linguistic2::XSpellAlternatives > xRes;
-//STRIP001     if (xSpell.is())
-//STRIP001         xRes = xSpell->spell( rWord, nLanguage, rProperties );
-//STRIP001     return xRes;
 /*N*/ }
 
 
@@ -665,11 +627,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/     HyphDummy_Impl::getLocales()
 /*N*/         throw(uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();//STRIP001
-//STRIP001     GetHyph_Impl();
-//STRIP001     if (xHyph.is())
-//STRIP001         return xHyph->getLocales();
-//STRIP001     else
-//STRIP001         return uno::Sequence< lang::Locale >();
 /*N*/ }
 
 
@@ -837,19 +794,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ Reference< XDictionary1 >         LinguMgr::xChangeAll    = 0;
 
 
-//STRIP001 Reference< XLinguServiceManager > LinguMgr::GetLngSvcMgr()
-//STRIP001 {
-//STRIP001  if (bExiting)
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  if (!pExitLstnr)
-//STRIP001      pExitLstnr = new LinguMgrExitLstnr;
-//STRIP001
-//STRIP001  if (!xLngSvcMgr.is())
-//STRIP001      xLngSvcMgr = GetLngSvcMgr_Impl();
-//STRIP001
-//STRIP001  return xLngSvcMgr;
-//STRIP001 }
 
 
 /*N*/ Reference< XSpellChecker1 > LinguMgr::GetSpellChecker()
@@ -872,28 +816,9 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/   return xDicList.is() ? xDicList : GetDicList();
 /*N*/ }
 
-//STRIP001 Reference< XPropertySet > LinguMgr::GetLinguPropertySet()
-//STRIP001 {
-//STRIP001  return xProp.is() ? xProp : GetProp();
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 > LinguMgr::GetStandardDic()
-//STRIP001 {
-//STRIP001  //! don't hold reference to this
-//STRIP001  //! (it may be removed from dictionary list and needs to be
-//STRIP001  //! created empty if accessed again)
-//STRIP001  return GetStandard();
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 > LinguMgr::GetIgnoreAllList()
-//STRIP001 {
-//STRIP001  return xIgnoreAll.is() ? xIgnoreAll : GetIgnoreAll();
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 > LinguMgr::GetChangeAllList()
-//STRIP001 {
-//STRIP001  return xChangeAll.is() ? xChangeAll : GetChangeAll();
-//STRIP001 }
 
 /*N*/ Reference< XSpellChecker1 > LinguMgr::GetSpell()
 /*N*/ {
@@ -967,9 +892,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ }
 
 
-//STRIP001 void LinguMgr::UpdateAll()
-//STRIP001 {
-//STRIP001 }
 
 
 /*N*/ Reference< XDictionaryList > LinguMgr::GetDicList()
@@ -989,151 +911,20 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/   return xDicList;
 /*N*/ }
 
-//STRIP001 Reference< XPropertySet > LinguMgr::GetProp()
-//STRIP001 {
-//STRIP001  if (bExiting)
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  if (!pExitLstnr)
-//STRIP001      pExitLstnr = new LinguMgrExitLstnr;
-//STRIP001
-//STRIP001  Reference< XMultiServiceFactory >  xMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-//STRIP001  if (xMgr.is())
-//STRIP001  {
-//STRIP001      xProp = Reference< XPropertySet > ( xMgr->createInstance(
-//STRIP001                     A2OU("com.sun.star.linguistic2.LinguProperties") ), UNO_QUERY );
-//STRIP001  }
-//STRIP001  return xProp;
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 > LinguMgr::GetIgnoreAll()
-//STRIP001 {
-//STRIP001  if (bExiting)
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  if (!pExitLstnr)
-//STRIP001      pExitLstnr = new LinguMgrExitLstnr;
-//STRIP001
-//STRIP001  Reference< XDictionaryList >  xTmpDicList( GetDictionaryList() );
-//STRIP001  if (xTmpDicList.is())
-//STRIP001  {
-//STRIP001      xIgnoreAll = Reference< XDictionary1 > ( xTmpDicList->getDictionaryByName(
-//STRIP001                     A2OU("IgnoreAllList") ), UNO_QUERY );
-//STRIP001  }
-//STRIP001  return xIgnoreAll;
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 > LinguMgr::GetChangeAll()
-//STRIP001 {
-//STRIP001  if (bExiting)
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  if (!pExitLstnr)
-//STRIP001      pExitLstnr = new LinguMgrExitLstnr;
-//STRIP001
-//STRIP001  Reference< XDictionaryList >  xDicList( GetDictionaryList() , UNO_QUERY );
-//STRIP001  if (xDicList.is())
-//STRIP001  {
-//STRIP001      xChangeAll = Reference< XDictionary1 > (
-//STRIP001                      xDicList->createDictionary(
-//STRIP001                             A2OU("ChangeAllList"),
-//STRIP001                          SvxCreateLocale( LANGUAGE_NONE ),
-//STRIP001                          DictionaryType_NEGATIVE, String() ), UNO_QUERY );
-//STRIP001  }
-//STRIP001  return xChangeAll;
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 > LinguMgr::GetStandard()
-//STRIP001 {
-//STRIP001  // Tries to return a dictionary which may hold positive entries is
-//STRIP001  // persistent and not read-only.
-//STRIP001
-//STRIP001  if (bExiting)
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  Reference< XDictionaryList >  xTmpDicList( GetDictionaryList() );
-//STRIP001  if (!xTmpDicList.is())
-//STRIP001      return NULL;
-//STRIP001
-//STRIP001  const OUString aDicName( RTL_CONSTASCII_USTRINGPARAM( "standard.dic" ) );
-//STRIP001  Reference< XDictionary1 >   xDic( xTmpDicList->getDictionaryByName( aDicName ),
-//STRIP001                                    UNO_QUERY );
-//STRIP001     if (!xDic.is())
-//STRIP001     {
-//STRIP001         // try to create standard dictionary
-//STRIP001         Reference< XDictionary >    xTmp;
-//STRIP001         try
-//STRIP001         {
-//STRIP001             xTmp =  xTmpDicList->createDictionary( aDicName,
-//STRIP001                         SvxCreateLocale( LANGUAGE_NONE ),
-//STRIP001                         DictionaryType_POSITIVE,
-//STRIP001                         SvxGetDictionaryURL( aDicName, sal_True ) );
-//STRIP001         }
-//STRIP001         catch(::com::sun::star::uno::Exception &)
-//STRIP001         {
-//STRIP001         }
-//STRIP001
-//STRIP001         // add new dictionary to list
-//STRIP001         if (xTmp.is())
-//STRIP001             xTmpDicList->addDictionary( xTmp );
-//STRIP001         xDic = Reference< XDictionary1 > ( xTmp, UNO_QUERY );
-//STRIP001     }
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001     Reference< XStorable >      xStor( xDic, UNO_QUERY );
-//STRIP001     DBG_ASSERT( xDic.is() && xDic->getDictionaryType() == DictionaryType_POSITIVE,
-//STRIP001             "wrong dictionary type");
-//STRIP001     DBG_ASSERT( xDic.is() && xDic->getLanguage() == LANGUAGE_NONE,
-//STRIP001             "wrong dictionary language");
-//STRIP001     DBG_ASSERT( !xStor.is() || (xStor->hasLocation() && !xStor->isReadonly()),
-//STRIP001             "dictionary not editable" );
-//STRIP001 #endif
-//STRIP001
-//STRIP001  return xDic;
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-//STRIP001 Reference< XSpellChecker1 >  SvxGetSpellChecker()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetSpellChecker();
-//STRIP001 }
 
-//STRIP001 Reference< XHyphenator >  SvxGetHyphenator()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetHyphenator();
-//STRIP001 }
 
-//STRIP001 Reference< XThesaurus >  SvxGetThesaurus()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetThesaurus();
-//STRIP001 }
 
-//STRIP001 Reference< XDictionaryList >  SvxGetDictionaryList()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetDictionaryList();
-//STRIP001 }
 
-//STRIP001 Reference< XPropertySet >    SvxGetLinguPropertySet()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetLinguPropertySet();
-//STRIP001 }
 
 //TL:TODO: remove argument or provide SvxGetIgnoreAllList with the same one
-//STRIP001 Reference< XDictionary1 >  SvxGetOrCreatePosDic(
-//STRIP001      Reference< XDictionaryList >  xDicList )
-//STRIP001 {
-//STRIP001  return LinguMgr::GetStandardDic();
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 >  SvxGetIgnoreAllList()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetIgnoreAllList();
-//STRIP001 }
 
-//STRIP001 Reference< XDictionary1 >  SvxGetChangeAllList()
-//STRIP001 {
-//STRIP001  return LinguMgr::GetChangeAllList();
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -1142,175 +933,18 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 #endif
 
-//STRIP001 SvxAlternativeSpelling SvxGetAltSpelling(
-//STRIP001      const ::com::sun::star::uno::Reference<
-//STRIP001          ::com::sun::star::linguistic2::XHyphenatedWord > & rHyphWord )
-//STRIP001 {
-//STRIP001  SvxAlternativeSpelling aRes;
-//STRIP001  if (rHyphWord.is() && rHyphWord->isAlternativeSpelling())
-//STRIP001  {
-//STRIP001      OUString aWord( rHyphWord->getWord() ),
-//STRIP001                  aAltWord( rHyphWord->getHyphenatedWord() );
-//STRIP001      INT16   nHyphenationPos     = rHyphWord->getHyphenationPos(),
-//STRIP001              nHyphenPos          = rHyphWord->getHyphenPos();
-//STRIP001         INT16   nLen    = (INT16)aWord.getLength();
-//STRIP001         INT16   nAltLen = (INT16)aAltWord.getLength();
-//STRIP001      const sal_Unicode *pWord    = aWord.getStr(),
-//STRIP001                           *pAltWord = aAltWord.getStr();
-//STRIP001
-//STRIP001         // count number of chars from the left to the
-//STRIP001         // hyphenation pos / hyphen pos that are equal
-//STRIP001         INT16 nL = 0;
-//STRIP001         while (nL <= nHyphenationPos && nL <= nHyphenPos
-//STRIP001                && pWord[ nL ] == pAltWord[ nL ])
-//STRIP001             ++nL;
-//STRIP001         // count number of chars from the right to the
-//STRIP001         // hyphenation pos / hyphen pos that are equal
-//STRIP001         INT16 nR = 0;
-//STRIP001         INT32 nIdx    = nLen - 1;
-//STRIP001         INT32 nAltIdx = nAltLen - 1;
-//STRIP001         while (nIdx > nHyphenationPos && nAltIdx > nHyphenPos
-//STRIP001                && pWord[ nIdx-- ] == pAltWord[ nAltIdx-- ])
-//STRIP001             ++nR;
-//STRIP001
-//STRIP001         aRes.aReplacement       = OUString( aAltWord.copy( nL, nAltLen - nL - nR ) );
-//STRIP001         aRes.nChangedPos        = (INT16) nL;
-//STRIP001         aRes.nChangedLength     = nLen - nL - nR;
-//STRIP001      aRes.bIsAltSpelling     = TRUE;
-//STRIP001      aRes.xHyphWord          = rHyphWord;
-//STRIP001  }
-//STRIP001  return aRes;
-//STRIP001 }
 
 
 ///////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SvxDicListChgClamp::SvxDicListChgClamp( Reference< XDictionaryList >  &rxDicList ) :
-//STRIP001  xDicList    ( rxDicList )
-//STRIP001 {
-//STRIP001  if (xDicList.is())
-//STRIP001  {
-//STRIP001      xDicList->beginCollectEvents();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 SvxDicListChgClamp::~SvxDicListChgClamp()
-//STRIP001 {
-//STRIP001  if (xDicList.is())
-//STRIP001  {
-//STRIP001      xDicList->endCollectEvents();
-//STRIP001  }
-//STRIP001 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-//STRIP001 String SvxGetDictionaryURL(const String &rDicName, sal_Bool bIsUserDic)
-//STRIP001 {
-//STRIP001  // build URL to use for new (persistent) dictionaries
-//STRIP001
-//STRIP001  SvtPathOptions aPathOpt;
-//STRIP001  String aDirName( bIsUserDic ?
-//STRIP001          aPathOpt.GetUserDictionaryPath() : aPathOpt.GetDictionaryPath() );
-//STRIP001
-//STRIP001  INetURLObject aURLObj;
-//STRIP001  aURLObj.SetSmartProtocol( INET_PROT_FILE );
-//STRIP001  aURLObj.SetSmartURL( aDirName );
-//STRIP001  DBG_ASSERT(!aURLObj.HasError(), "lng : invalid URL");
-//STRIP001  aURLObj.Append( rDicName, INetURLObject::ENCODE_ALL );
-//STRIP001  DBG_ASSERT(!aURLObj.HasError(), "lng : invalid URL");
-//STRIP001
-//STRIP001  return aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
-//STRIP001 }
 
 //TL:TODO: soll mal den rictigen Rückgabetyp bekommen!
-//STRIP001 sal_Bool SvxAddEntryToDic(
-//STRIP001      Reference< XDictionary >  &rxDic,
-//STRIP001      const OUString &rWord, sal_Bool bIsNeg,
-//STRIP001      const OUString &rRplcTxt, sal_Int16 nRplcLang,
-//STRIP001      sal_Bool bStripDot )
-//STRIP001 {
-//STRIP001  if (!rxDic.is())
-//STRIP001      return DIC_ERR_NOT_EXISTS;
-//STRIP001
-//STRIP001  OUString aTmp( rWord );
-//STRIP001  if (bStripDot)
-//STRIP001  {
-//STRIP001      sal_Int32 nLen = rWord.getLength();
-//STRIP001      if (nLen > 0  &&  '.' == rWord[ nLen - 1])
-//STRIP001      {
-//STRIP001          // remove trailing '.'
-//STRIP001          // (this is the official way to do this :-( )
-//STRIP001          aTmp = aTmp.copy( 0, nLen - 1 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  sal_Bool bAddOk = rxDic->add( aTmp, bIsNeg, rRplcTxt );
-//STRIP001
-//STRIP001  sal_Int16 nRes = DIC_ERR_NONE;
-//STRIP001  if (!bAddOk)
-//STRIP001  {
-//STRIP001      if (rxDic->isFull())
-//STRIP001          nRes = DIC_ERR_FULL;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          Reference< XStorable >  xStor( rxDic, UNO_QUERY );
-//STRIP001          if (xStor.is() && xStor->isReadonly())
-//STRIP001              nRes = DIC_ERR_READONLY;
-//STRIP001          else
-//STRIP001              nRes = DIC_ERR_UNKNOWN;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return (sal_Bool)nRes;
-//STRIP001 }
 
-//STRIP001 short SvxDicError( Window *pParent, sal_Int16 nError )
-//STRIP001 {
-//STRIP001  short nRes = 0;
-//STRIP001  if (DIC_ERR_NONE != nError)
-//STRIP001  {
-//STRIP001      int nRid;
-//STRIP001      switch (nError)
-//STRIP001      {
-//STRIP001          case DIC_ERR_FULL     : nRid = RID_SVXSTR_DIC_ERR_FULL;  break;
-//STRIP001          case DIC_ERR_READONLY : nRid = RID_SVXSTR_DIC_ERR_READONLY;  break;
-//STRIP001          default:
-//STRIP001              nRid = RID_SVXSTR_DIC_ERR_UNKNOWN;
-//STRIP001              DBG_ASSERT(0, "unexpected case");
-//STRIP001      }
-//STRIP001      nRes = InfoBox( pParent, SVX_RESSTR( nRid ) ).Execute();
-//STRIP001  }
-//STRIP001  return nRes;
-//STRIP001 }
 
-//STRIP001 sal_Bool SvxSaveDictionaries( const Reference< XDictionaryList >  &xDicList )
-//STRIP001 {
-//STRIP001  if (!xDicList.is())
-//STRIP001      return sal_True;
-//STRIP001
-//STRIP001  sal_Bool bRet = sal_True;
-//STRIP001
-//STRIP001  Sequence< Reference< XDictionary >  > aDics( xDicList->getDictionaries() );
-//STRIP001  const Reference< XDictionary >  *pDic = aDics.getConstArray();
-//STRIP001  INT32 nCount = aDics.getLength();
-//STRIP001  for (INT32 i = 0;  i < nCount;  i++)
-//STRIP001  {
-//STRIP001      try
-//STRIP001      {
-//STRIP001          Reference< XStorable >  xStor( pDic[i], UNO_QUERY );
-//STRIP001          if (xStor.is())
-//STRIP001          {
-//STRIP001              if (!xStor->isReadonly() && xStor->hasLocation())
-//STRIP001                  xStor->store();
-//STRIP001          }
-//STRIP001      }
-//STRIP001         catch(::com::sun::star::uno::Exception &)
-//STRIP001      {
-//STRIP001          bRet = sal_False;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ LanguageType SvxLocaleToLanguage( const Locale& rLocale )
 /*N*/ {
