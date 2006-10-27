@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartAxis.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:09:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:56:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #include "schattr.hxx"
 
 // header for class OGuard
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -66,13 +63,9 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #include "charttyp.hxx"
 // header for SvxUnoTextRangeBase
-// auto strip #ifndef _SVX_UNOTEXT_HXX
-// auto strip #include <bf_svx/unotext.hxx>
-// auto strip #endif
 // for OWN_ATTR_...
 #ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
@@ -89,7 +82,6 @@
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
 #endif
 
-// auto strip #include "chtmodel.hxx"
 #include "chaxis.hxx"
 #include "mapprov.hxx"
 #include "pairs.hxx"

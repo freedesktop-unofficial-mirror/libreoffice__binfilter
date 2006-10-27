@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartDrawPage.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:10:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:57:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,13 +35,7 @@
 #include "ChXChartDrawPage.hxx"
 #include "chtmodel.hxx"
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 // header for class OGuard
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
