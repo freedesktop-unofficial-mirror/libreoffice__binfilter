@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabdash.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:30:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:04:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 
 #ifndef SVX_LIGHT
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 #ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
 #endif
@@ -47,7 +44,6 @@
 #include <unotools/ucbstreamhelper.hxx>
 #endif
 
-// auto strip #include "xmlxtexp.hxx"
 #include "xmlxtimp.hxx"
 
 #endif
@@ -57,7 +53,6 @@
 
 #include <tools/urlobj.hxx>
 #include <vcl/virdev.hxx>
-// auto strip #include <vcl/window.hxx>
 #include <svtools/itemset.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include "dialogs.hrc"
@@ -383,22 +378,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ BOOL XDashList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  INetURLObject aURL( aPath );
-//STRIP001
-//STRIP001  if( INET_PROT_NOT_VALID == aURL.GetProtocol() )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( !aPath.Len(), "invalid URL" );
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  aURL.Append( aName );
-//STRIP001
-//STRIP001  if( !aURL.getExtension().Len() )
-//STRIP001      aURL.setExtension( String( pszExtDash, 3 ) );
-//STRIP001
-//STRIP001  uno::Reference< container::XNameContainer > xTable( SvxUnoXDashTable_createInstance( this ), uno::UNO_QUERY );
-//STRIP001  return SvxXMLXTableExportComponent::save( aURL.GetMainURL( INetURLObject::NO_DECODE ), xTable );
 
 
 /*
@@ -421,9 +400,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
     return( aMedium.GetError() == 0 );
 */
-//STRIP001 #else
-//STRIP001  return FALSE;
-//STRIP001 #endif
 /*N*/ }
 
 /************************************************************************/
