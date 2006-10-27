@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotxtr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:03:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:44:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,20 +33,11 @@
  *
  ************************************************************************/
 
-// auto strip #include "svdotext.hxx"
 #include "xoutx.hxx"     // fuer XOutCreatePolygon
-// auto strip #include "svditext.hxx"
-// auto strip #include "svdtrans.hxx"
-// auto strip #include "svdogrp.hxx"
 #include "svdopath.hxx"
-// auto strip #include "svdoutl.hxx"
 #include "svdtxhdl.hxx"  // DrawTextToPath fuer Convert
-// auto strip #include "svdpage.hxx"   // fuer Convert
 #include "svdmodel.hxx"  // fuer Convert
 
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include "outliner.hxx"
-// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,7 +77,6 @@ namespace binfilter {
 /*N*/           if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/           if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
 /*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
 /*N*/           }
 /*N*/           NbcAdjustTextFrameWidthAndHeight();
 /*N*/       }
@@ -114,7 +104,6 @@ namespace binfilter {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
 /*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
 /*N*/       }
 /*N*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
@@ -284,90 +273,8 @@ namespace binfilter {
 /*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
-//STRIP001 void SdrTextObj::NbcMirror(const Point& rRef1, const Point& rRef2)
-//STRIP001 {
-//STRIP001  SetGlueReallyAbsolute(TRUE);
-//STRIP001  FASTBOOL bNoShearMerk=aGeo.nShearWink==0;
-//STRIP001  FASTBOOL bRota90Merk=FALSE;
-//STRIP001  if (bNoShearMerk &&
-//STRIP001      (rRef1.X()==rRef2.X() || rRef1.Y()==rRef2.Y() ||
-//STRIP001       Abs(rRef1.X()-rRef2.X())==Abs(rRef1.Y()-rRef2.Y()))) {
-//STRIP001      bRota90Merk=aGeo.nDrehWink % 9000 ==0;
-//STRIP001  }
-//STRIP001  Polygon aPol(Rect2Poly(aRect,aGeo));
-//STRIP001  USHORT i;
-//STRIP001  USHORT nPntAnz=aPol.GetSize();
-//STRIP001  for (i=0; i<nPntAnz; i++) {
-//STRIP001       MirrorPoint(aPol[i],rRef1,rRef2);
-//STRIP001  }
-//STRIP001  // Polygon wenden und etwas schieben
-//STRIP001  Polygon aPol0(aPol);
-//STRIP001  aPol[0]=aPol0[1];
-//STRIP001  aPol[1]=aPol0[0];
-//STRIP001  aPol[2]=aPol0[3];
-//STRIP001  aPol[3]=aPol0[2];
-//STRIP001  aPol[4]=aPol0[1];
-//STRIP001  Poly2Rect(aPol,aRect,aGeo);
-//STRIP001
-//STRIP001  if (bRota90Merk) {
-//STRIP001      FASTBOOL bRota90=aGeo.nDrehWink % 9000 ==0;
-//STRIP001      if (bRota90Merk && !bRota90) { // Scheinbar Rundungsfehler: Korregieren
-//STRIP001          long a=NormAngle360(aGeo.nDrehWink);
-//STRIP001          if (a<4500) a=0;
-//STRIP001          else if (a<13500) a=9000;
-//STRIP001          else if (a<22500) a=18000;
-//STRIP001          else if (a<31500) a=27000;
-//STRIP001          else a=0;
-//STRIP001          aGeo.nDrehWink=a;
-//STRIP001          aGeo.RecalcSinCos();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (bNoShearMerk!=(aGeo.nShearWink==0)) { // Shear ggf. korregieren wg. Rundungsfehler
-//STRIP001      aGeo.nShearWink=0;
-//STRIP001      aGeo.RecalcTan();
-//STRIP001  }
-//STRIP001
-//STRIP001  ImpJustifyRect(aRect);
-//STRIP001  if (bTextFrame) {
-//STRIP001      NbcAdjustTextFrameWidthAndHeight();
-//STRIP001  }
-//STRIP001  ImpCheckShear();
-//STRIP001  SetRectsDirty();
-//STRIP001  NbcMirrorGluePoints(rRef1,rRef2);
-//STRIP001  SetGlueReallyAbsolute(FALSE);
-//STRIP001 }
 
-//STRIP001 SdrObject* SdrTextObj::ImpConvertObj(FASTBOOL bToPoly) const
-//STRIP001 {
-//STRIP001  if (!ImpCanConvTextToCurve()) return NULL;
-//STRIP001  SdrObjGroup* pGroup=new SdrObjGroup();
-//STRIP001  SdrOutliner& rOutl=ImpGetDrawOutliner();
-//STRIP001  rOutl.SetUpdateMode(TRUE);
-//STRIP001  ImpTextPortionHandler aConverter(rOutl,*this);
-//STRIP001
-//STRIP001  aConverter.ConvertToPathObj(*pGroup,bToPoly);
-//STRIP001
-//STRIP001  // Nachsehen, ob ueberhaupt was drin ist:
-//STRIP001  SdrObjList* pOL=pGroup->GetSubList();
-//STRIP001
-//STRIP001  if (pOL->GetObjCount()==0) {
-//STRIP001      delete pGroup;
-//STRIP001      return NULL;
-//STRIP001  }
-//STRIP001  // Ein einzelnes Objekt muss nicht gruppiert werden:
-//STRIP001  if (pOL->GetObjCount()==1) {
-//STRIP001      SdrObject* pObj=pOL->RemoveObject(0);
-//STRIP001      delete pGroup;
-//STRIP001      return pObj;
-//STRIP001  }
-//STRIP001  // Ansonsten die Gruppe zurueckgeben
-//STRIP001  return pGroup;
-//STRIP001 }
 
-//STRIP001 SdrObject* SdrTextObj::DoConvertToPolyObj(BOOL bBezier) const
-//STRIP001 {
-//STRIP001  return ImpConvertObj(!bBezier);
-//STRIP001 }
 
 /*N*/ void SdrTextObj::ImpConvertSetAttrAndLayer(SdrObject* pObj, FASTBOOL bNoSetAttr) const
 /*N*/ {
@@ -401,8 +308,6 @@ namespace binfilter {
 /*N*/               USHORT nMax=USHORT(nAnz-1);
 /*N*/               Point aPnt(rXP[0]);
 /*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                    aXPP[i].SetPointCount(nAnz+1);
-//STRIP001 /*?*/                    aXPP[i][nAnz]=aPnt;
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -425,7 +330,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   SdrPathObj* pPathObj=new SdrPathObj(ePathKind,aXPP);
 /*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        pPathObj->ConvertAllSegments(SDRPATH_CURVE);
 /*N*/   }
 /*N*/   ImpConvertSetAttrAndLayer(pPathObj,bNoSetAttr);
 /*N*/   return pPathObj;
@@ -435,19 +339,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (!ImpCanConvTextToCurve()) return pObj;
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;//STRIP001 SdrObject* pText=ImpConvertObj(!bBezier);
-//STRIP001 /*?*/    if (pText==NULL) return pObj;
-//STRIP001 /*?*/    if (pObj==NULL) return pText;
-//STRIP001 /*?*/    if (pText->IsGroupObject()) {
-//STRIP001 /*?*/        SdrObjList* pOL=pText->GetSubList();
-//STRIP001 /*?*/        pOL->InsertObject(pObj,0);
-//STRIP001 /*?*/        return pText;
-//STRIP001 /*?*/    } else {
-//STRIP001 /*?*/        SdrObjGroup* pGrp=new SdrObjGroup;
-//STRIP001 /*?*/        SdrObjList* pOL=pGrp->GetSubList();
-//STRIP001 /*?*/        pOL->InsertObject(pObj);
-//STRIP001 /*?*/        pOL->InsertObject(pText);
-//STRIP001 /*?*/        return pGrp;
-//STRIP001 /*N*/    }
 /*N*/ }
 
 }
