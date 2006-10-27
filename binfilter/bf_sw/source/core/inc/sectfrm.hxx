@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sectfrm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:37:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:48:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,11 +66,6 @@ class SwSectionFrm: public SwLayoutFrm, public SwFlowFrm
     BOOL IsSuperfluous() const { return !ContainsAny() && !ContainsFtnCont(); }
     void CalcFtnAtEndFlag();
     void CalcEndAtEndFlag();
-//STRIP001  BOOL IsAncestorOf( const SwSection* pSect ) const;
-//STRIP001  BOOL IsAncestorOf( const SwSectionFrm* pSct ) const
-//STRIP001      { return IsAncestorOf( pSct->pSection ); }
-//STRIP001  const SwSectionFmt* _GetEndSectFmt() const;
-//STRIP001  BOOL IsEndnoteAtMyEnd() const;
 protected:
     virtual void MakeAll();
     virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat );
@@ -84,7 +79,6 @@ public:
     virtual void  CheckDirection( BOOL bVert );
 
     virtual void Cut();
-//STRIP001  virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
 
     inline const SwSectionFrm *GetFollow() const;
@@ -100,17 +94,13 @@ public:
 
     void CalcFtnCntnt();
     void SimpleFormat();
-//STRIP001  BOOL IsDescendantFrom( const SwSectionFmt* pSect ) const;
-//STRIP001  BOOL HasToBreak( const SwFrm* pFrm ) const;
     void MergeNext( SwSectionFrm* pNxt );
     //Zerlegt den pFrm umgebenden SectionFrm in zwei Teile,
     //pFrm an den Anfang des 2. Teils
-//STRIP001  BOOL SplitSect( SwFrm* pFrm, BOOL bApres );
     void DelEmpty( BOOL bRemove );  // wie Cut(), Follow-Verkettung wird aber mitgepflegt
     BOOL IsToIgnore() const         // Keine Groesse, kein Inhalt, muss ignoriert werden
     { return !Frm().Height() && !ContainsCntnt(); }
     SwSectionFrm *FindSectionMaster();
-//STRIP001  SwSectionFrm *FindFirstSectionMaster();
     SwFtnContFrm* ContainsFtnCont( const SwFtnContFrm* pCont = NULL ) const;
     BOOL Growable() const;
     SwTwips _Shrink( SwTwips, SZPTR BOOL bTst );
@@ -135,9 +125,6 @@ public:
     void _CheckClipping( BOOL bGrow, BOOL bMaximize );
 
     void InvalidateFtnPos();
-//STRIP001  void CollectEndnotes( SwLayouter* pLayouter );
-//STRIP001  const SwSectionFmt* GetEndSectFmt() const
-//STRIP001      { if( IsEndnAtEnd() ) return _GetEndSectFmt(); return NULL; }
 
     static void MoveCntntAndDelete( SwSectionFrm* pDel, BOOL bSave );
     DECL_FIXEDMEMPOOL_NEWDEL(SwSectionFrm)
