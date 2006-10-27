@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_addincol.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:20:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:28:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -196,43 +196,6 @@ public:
 /*N*/     delete[] pArgDescs;
 /*N*/ }
 
-//STRIP001 const uno::Sequence<sheet::LocalizedName>& ScUnoAddInFuncData::GetCompNames() const
-//STRIP001 {
-//STRIP001     if ( !bCompInitialized )
-//STRIP001     {
-//STRIP001         //  read sequence of compatibility names on demand
-//STRIP001
-//STRIP001         uno::Reference<sheet::XAddIn> xAddIn;
-//STRIP001         if ( aObject >>= xAddIn )
-//STRIP001         {
-//STRIP001             uno::Reference<sheet::XCompatibilityNames> xComp( xAddIn, uno::UNO_QUERY );
-//STRIP001             if ( xComp.is() && xFunction.is() )
-//STRIP001             {
-//STRIP001                 ::rtl::OUString aMethodName = xFunction->getName();
-//STRIP001                 aCompNames = xComp->getCompatibilityNames( aMethodName );
-//STRIP001
-//STRIP001                 //  change all locale entries to default case
-//STRIP001                 //  (language in lower case, country in upper case)
-//STRIP001                 //  for easier searching
-//STRIP001
-//STRIP001                 long nSeqLen = aCompNames.getLength();
-//STRIP001                 if ( nSeqLen )
-//STRIP001                 {
-//STRIP001                     sheet::LocalizedName* pArray = aCompNames.getArray();
-//STRIP001                     for (long i=0; i<nSeqLen; i++)
-//STRIP001                     {
-//STRIP001                         lang::Locale& rLocale = pArray[i].Locale;
-//STRIP001                         rLocale.Language = rLocale.Language.toAsciiLowerCase();
-//STRIP001                         rLocale.Country  = rLocale.Country.toAsciiUpperCase();
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         bCompInitialized = TRUE;        // also if not successful
-//STRIP001     }
-//STRIP001     return aCompNames;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -325,84 +288,7 @@ public:
 /*N*/     bInitialized = TRUE;        // with or without functions
 /*N*/ }
 
-//STRIP001 BOOL ScUnoAddInCollection::GetExcelName( const String& rCalcName,
-//STRIP001                                         LanguageType eDestLang, String& rRetExcelName )
-//STRIP001 {
-//STRIP001     const ScUnoAddInFuncData* pFuncData = GetFuncData( rCalcName );
-//STRIP001     if ( pFuncData )
-//STRIP001     {
-//STRIP001         const uno::Sequence<sheet::LocalizedName>& rSequence = pFuncData->GetCompNames();
-//STRIP001         long nSeqLen = rSequence.getLength();
-//STRIP001         if ( nSeqLen )
-//STRIP001         {
-//STRIP001             const sheet::LocalizedName* pArray = rSequence.getConstArray();
-//STRIP001             long i;
-//STRIP001
-//STRIP001             String aLangStr, aCountryStr;
-//STRIP001             ConvertLanguageToIsoNames( eDestLang, aLangStr, aCountryStr );
-//STRIP001             ::rtl::OUString aUserLang = aLangStr.ToLowerAscii();
-//STRIP001             ::rtl::OUString aUserCountry = aCountryStr.ToUpperAscii();
-//STRIP001
-//STRIP001             //  first check for match of both language and country
-//STRIP001
-//STRIP001             for ( i=0; i<nSeqLen; i++)
-//STRIP001                 if ( pArray[i].Locale.Language == aUserLang &&
-//STRIP001                      pArray[i].Locale.Country  == aUserCountry )
-//STRIP001                 {
-//STRIP001                     rRetExcelName = pArray[i].Name;
-//STRIP001                     return TRUE;
-//STRIP001                 }
-//STRIP001
-//STRIP001             //  second: check only language
-//STRIP001
-//STRIP001             for ( i=0; i<nSeqLen; i++)
-//STRIP001                 if ( pArray[i].Locale.Language == aUserLang )
-//STRIP001                 {
-//STRIP001                     rRetExcelName = pArray[i].Name;
-//STRIP001                     return TRUE;
-//STRIP001                 }
-//STRIP001
-//STRIP001             //  third: use first (default) entry
-//STRIP001
-//STRIP001             rRetExcelName = pArray[0].Name;
-//STRIP001             return TRUE;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL ScUnoAddInCollection::GetCalcName( const String& rExcelName, String& rRetCalcName )
-//STRIP001 {
-//STRIP001     if (!bInitialized)
-//STRIP001         Initialize();
-//STRIP001
-//STRIP001     String aUpperCmp = rExcelName;
-//STRIP001     ScGlobal::pCharClass->toUpper(aUpperCmp);
-//STRIP001
-//STRIP001     for (long i=0; i<nFuncCount; i++)
-//STRIP001     {
-//STRIP001         ScUnoAddInFuncData* pFuncData = ppFuncData[i];
-//STRIP001         if ( pFuncData )
-//STRIP001         {
-//STRIP001             const uno::Sequence<sheet::LocalizedName>& rSequence = pFuncData->GetCompNames();
-//STRIP001             long nSeqLen = rSequence.getLength();
-//STRIP001             if ( nSeqLen )
-//STRIP001             {
-//STRIP001                 const sheet::LocalizedName* pArray = rSequence.getConstArray();
-//STRIP001                 for ( long i=0; i<nSeqLen; i++)
-//STRIP001                     if ( ScGlobal::pCharClass->upper( pArray[i].Name ) == aUpperCmp )
-//STRIP001                     {
-//STRIP001                         //! store upper case for comparing?
-//STRIP001
-//STRIP001                         //  use the first function that has this name for any language
-//STRIP001                         rRetCalcName = pFuncData->GetOriginalName();
-//STRIP001                         return TRUE;
-//STRIP001                     }
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001     return FALSE;
-//STRIP001 }
 
 /*N*/ USHORT lcl_GetCategory( const String& rName )
 /*N*/ {
@@ -812,91 +698,9 @@ public:
 /*N*/     return NULL;
 /*N*/ }
 
-//STRIP001 void ScUnoAddInCollection::LocalizeString( String& rName )
-//STRIP001 {
-//STRIP001     if (!bInitialized)
-//STRIP001         Initialize();
-//STRIP001
-//STRIP001     //  modify rName - input: exact name
-//STRIP001
-//STRIP001     ScAddInHashMap::const_iterator iLook( pExactHashMap->find( rName ) );
-//STRIP001     if ( iLook != pExactHashMap->end() )
-//STRIP001         rName = iLook->second->GetUpperLocal();         //! upper?
-//STRIP001 }
 
 
-//STRIP001 long ScUnoAddInCollection::GetFuncCount()
-//STRIP001 {
-//STRIP001     if (!bInitialized)
-//STRIP001         Initialize();
-//STRIP001
-//STRIP001     return nFuncCount;
-//STRIP001 }
 
-//STRIP001 BOOL ScUnoAddInCollection::FillFunctionDesc( long nFunc, ScFuncDesc& rDesc )
-//STRIP001 {
-//STRIP001     //  rDesc must me freshly allocated (no arguments set)
-//STRIP001     DBG_ASSERT( !rDesc.aDefArgNames, "FuncDesc is not empty" );
-//STRIP001
-//STRIP001     if (!bInitialized)
-//STRIP001         Initialize();
-//STRIP001
-//STRIP001     if (nFunc >= nFuncCount || !ppFuncData[nFunc])
-//STRIP001         return FALSE;
-//STRIP001
-//STRIP001     const ScUnoAddInFuncData& rFuncData = *ppFuncData[nFunc];
-//STRIP001
-//STRIP001     long nArgCount = rFuncData.GetArgumentCount();
-//STRIP001     if ( nArgCount > USHRT_MAX )
-//STRIP001         return FALSE;
-//STRIP001
-//STRIP001     // nFIndex is set from outside
-//STRIP001
-//STRIP001     rDesc.pFuncName = new String( rFuncData.GetUpperLocal() );     //! upper?
-//STRIP001     rDesc.nCategory = rFuncData.GetCategory();
-//STRIP001     rDesc.nHelpId = rFuncData.GetHelpId();
-//STRIP001
-//STRIP001     String aDesc = rFuncData.GetDescription();
-//STRIP001     if (!aDesc.Len())
-//STRIP001         aDesc = rFuncData.GetLocalName();      // use name if no description is available
-//STRIP001     rDesc.pFuncDesc = new String( aDesc );
-//STRIP001
-//STRIP001     // AddInArgumentType_CALLER is already left out in FuncData
-//STRIP001
-//STRIP001     rDesc.nArgCount = (USHORT)nArgCount;
-//STRIP001     if ( nArgCount )
-//STRIP001     {
-//STRIP001         BOOL bMultiple = FALSE;
-//STRIP001         const ScAddInArgDesc* pArgs = rFuncData.GetArguments();
-//STRIP001
-//STRIP001         rDesc.aDefArgNames = new String*[nArgCount];
-//STRIP001         rDesc.aDefArgDescs = new String*[nArgCount];
-//STRIP001         rDesc.aDefArgOpt   = new BOOL[nArgCount];
-//STRIP001         for ( long nArg=0; nArg<nArgCount; nArg++ )
-//STRIP001         {
-//STRIP001             rDesc.aDefArgNames[nArg] = new String( pArgs[nArg].aName );
-//STRIP001             rDesc.aDefArgDescs[nArg] = new String( pArgs[nArg].aDescription );
-//STRIP001             rDesc.aDefArgOpt[nArg] = pArgs[nArg].bOptional;
-//STRIP001
-//STRIP001             // no empty names...
-//STRIP001             if ( rDesc.aDefArgNames[nArg]->Len() == 0 )
-//STRIP001             {
-//STRIP001                 String aDefName( RTL_CONSTASCII_USTRINGPARAM("arg") );
-//STRIP001                 aDefName += String::CreateFromInt32( nArg+1 );
-//STRIP001                 *rDesc.aDefArgNames[nArg] = aDefName;
-//STRIP001             }
-//STRIP001
-//STRIP001             //  last argument repeated?
-//STRIP001             if ( nArg+1 == nArgCount && ( pArgs[nArg].eType == SC_ADDINARG_VARARGS ) )
-//STRIP001                 bMultiple = TRUE;
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( bMultiple )
-//STRIP001             rDesc.nArgCount += VAR_ARGS - 1;    // VAR_ARGS means just one repeated arg
-//STRIP001     }
-//STRIP001
-//STRIP001     return TRUE;
-//STRIP001 }
 
 
 //------------------------------------------------------------------------
@@ -922,8 +726,6 @@ public:
 /*N*/              pArgs[nDescCount-1].eType == SC_ADDINARG_VARARGS )
 /*N*/         {
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001             long nVarCount = nParamCount - ( nDescCount - 1 );  // size of last argument
-//STRIP001             aVarArg.realloc( nVarCount );
-//STRIP001             bValidCount = TRUE;
 /*N*/         }
 /*N*/         else if ( nParamCount <= nDescCount )
 /*N*/         {
@@ -1327,11 +1129,5 @@ public:
 /*N*/                 nErrCode = errNoValue;          //! code for error in return type???
 /*N*/     }
 /*N*/ }
-
-
-
-//------------------------------------------------------------------------
-
-
 
 }
