@@ -4,9 +4,9 @@
  *
  *  $RCSfile: listsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:40:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:46:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,8 +46,6 @@ public:
 
             SwListShell(SwView &rView);
 
-//STRIP001  void    Execute(SfxRequest &);
-//STRIP001  void    GetState(SfxItemSet &);
 };
 
 } //namespace binfilter
