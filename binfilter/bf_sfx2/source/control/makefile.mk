@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:15:05 $
+#   last change: $Author: rt $ $Date: 2006-10-27 19:08:27 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,24 +60,6 @@ CFLAGS+=-Od
 
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-    sfx2_unoctitm.cxx \
-    sfx2_macro.cxx \
-    sfx2_request.cxx \
-    sfx2_dispatch.cxx \
-        sfx2_ctrlitem.cxx \
-    sfx2_statcach.cxx \
-    sfx2_msgpool.cxx \
-    sfx2_shell.cxx \
-    sfx2_objface.cxx \
-    sfx2_msg.cxx \
-    sfx2_bindings.cxx \
-    sfx2_macrconf.cxx \
-        sfx2_macro.cxx \
-    sfx2_minfitem.cxx \
-    sfx2_srchitem.cxx \
-    $(PROJECTPCHSOURCE).cxx
-
 SLOFILES = \
     $(SLO)$/sfx2_unoctitm.obj \
     $(SLO)$/sfx2_request.obj \
@@ -89,9 +71,7 @@ SLOFILES = \
     $(SLO)$/sfx2_shell.obj \
     $(SLO)$/sfx2_msg.obj \
     $(SLO)$/sfx2_bindings.obj \
-    $(SLO)$/sfx2_minfitem.obj \
     $(SLO)$/sfx2_srchitem.obj \
-        $(SLO)$/sfx2_macro.obj \
     $(SLO)$/sfx2_macrconf.obj
 
 # --- Targets -------------------------------------------------------
