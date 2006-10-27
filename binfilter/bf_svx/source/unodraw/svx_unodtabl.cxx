@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unodtabl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:23:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:54:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,13 +37,7 @@
 #include <com/sun/star/drawing/LineDash.hpp>
 #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
 #include <vector>
 
@@ -55,8 +49,6 @@
 #include "xlndsit.hxx"
 #endif
 
-// auto strip #include "xdash.hxx"
-// auto strip #include "svdmodel.hxx"
 
 #ifndef _XDEF_HXX
 #include "xdef.hxx"

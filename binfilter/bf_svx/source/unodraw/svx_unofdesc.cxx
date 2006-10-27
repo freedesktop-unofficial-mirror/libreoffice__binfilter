@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unofdesc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:23:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:55:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 #include "eeitem.hxx"
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
 #ifndef _TOOLKIT_HELPRE_VCLUNOHELPER_HXX_
 #include <toolkit/helper/vclunohelper.hxx>
@@ -78,9 +75,6 @@
 #include <wrlmitem.hxx>
 #endif
 
-// auto strip #ifndef _SVX_UNOMID_HXX //autogen
-// auto strip #include <unomid.hxx>
-// auto strip #endif
 
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>

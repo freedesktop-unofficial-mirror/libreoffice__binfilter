@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unohtabl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:24:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:55:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,20 +37,12 @@
 #include <com/sun/star/drawing/Hatch.hpp>
 #endif
 
-// auto strip #ifndef _SFXITEMPOOL_HXX
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 
 #ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
 #endif
 
-// auto strip #include "xhatch.hxx"
-// auto strip #include "svdmodel.hxx"
 #include "xdef.hxx"
 #include "xflhtit.hxx"
 namespace binfilter {
