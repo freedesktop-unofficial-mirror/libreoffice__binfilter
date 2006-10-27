@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmmodel.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:43:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:55:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
 #ifndef SVX_LIGHT
 #ifndef _SFX_OBJSH_HXX //autogen
@@ -61,9 +58,6 @@ class SfxObjectShell;
 #ifndef _SVX_FMUNDO_HXX
 #include "fmundo.hxx"
 #endif
-// auto strip #ifndef _SVX_SVDOBJ_HXX
-// auto strip #include "svdobj.hxx"
-// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(FmFormModel, SdrModel);
@@ -88,21 +82,6 @@ struct FmFormModelImplData
 |* Ctor
 |*
 \************************************************************************/
-//STRIP001 FmFormModel::FmFormModel(SfxItemPool* pPool, SvPersist* pPers)
-//STRIP001          :SdrModel(pPool, pPers, LOADREFCOUNTS)
-//STRIP001          ,pObjShell(0)
-//STRIP001          ,bStreamingOldVersion(sal_False)
-//STRIP001          ,m_pImpl(NULL)
-//STRIP001          ,m_bOpenInDesignMode(sal_False)
-//STRIP001          ,m_bAutoControlFocus(sal_False)
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  m_pImpl = new FmFormModelImplData;
-//STRIP001  m_pImpl->pUndoEnv = new FmXUndoEnvironment(*this);
-//STRIP001  m_pImpl->pUndoEnv->acquire();
-//STRIP001  m_pImpl->sNextPageId = '0';
-//STRIP001 #endif
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -130,21 +109,6 @@ struct FmFormModelImplData
 |* Ctor
 |*
 \************************************************************************/
-//STRIP001 FmFormModel::FmFormModel(SfxItemPool* pPool, SvPersist* pPers,
-//STRIP001                       FASTBOOL bUseExtColorTable
-//STRIP001                       )
-//STRIP001          :SdrModel(pPool, pPers, bUseExtColorTable, LOADREFCOUNTS)
-//STRIP001          ,pObjShell(0)
-//STRIP001          ,bStreamingOldVersion(sal_False)
-//STRIP001          ,m_pImpl(NULL)
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  m_pImpl = new FmFormModelImplData;
-//STRIP001  m_pImpl->pUndoEnv = new FmXUndoEnvironment(*this);
-//STRIP001  m_pImpl->pUndoEnv->acquire();
-//STRIP001  m_pImpl->sNextPageId = '0';
-//STRIP001 #endif
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -193,31 +157,18 @@ struct FmFormModelImplData
 |* Copy-Ctor
 |*
 \************************************************************************/
-//STRIP001 FmFormModel::FmFormModel(const FmFormModel&)
-//STRIP001 {
-//STRIP001  DBG_ERROR("FmFormModel: CopyCtor not implemented");
-//STRIP001 }
 
 /*************************************************************************
 |*
 |* Operator=
 |*
 \************************************************************************/
-//STRIP001 void FmFormModel::operator=(const FmFormModel&)
-//STRIP001 {
-//STRIP001  DBG_ERROR("FmFormModel: operator= not implemented");
-//STRIP001 }
 
 /*************************************************************************
 |*
 |* Operator==
 |*
 \************************************************************************/
-//STRIP001 FASTBOOL FmFormModel::operator==(const FmFormModel&) const
-//STRIP001 {
-//STRIP001  DBG_ERROR("FmFormModel: operator== not implemented");
-//STRIP001  return sal_False;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -225,10 +176,6 @@ struct FmFormModelImplData
 |* Erzeugt eine neue Seite
 |*
 \************************************************************************/
-//STRIP001 SdrPage* FmFormModel::AllocPage(FASTBOOL bMasterPage)
-//STRIP001 {
-//STRIP001  return new FmFormPage(*this, NULL, bMasterPage);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -349,16 +296,6 @@ struct FmFormModelImplData
 \************************************************************************/
 /*?*/ void FmFormModel::MovePage( USHORT nPgNum, USHORT nNewPos )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  m_pImpl->bMovingPage = sal_True;
-//STRIP001      // see InsertPage for this
-//STRIP001 #endif
-//STRIP001
-//STRIP001  SdrModel::MovePage( nPgNum, nNewPos );
-//STRIP001
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  m_pImpl->bMovingPage = sal_False;
-//STRIP001 #endif
 /*?*/ }
 
 /*************************************************************************
