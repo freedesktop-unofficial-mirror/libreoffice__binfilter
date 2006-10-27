@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode6.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:54:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:24:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,14 +55,8 @@
 #endif
 
 #ifndef _SV_MENU_HXX //autogen
-// auto strip #include <vcl/menu.hxx>
-// auto strip #include <bf_svx/svdattr.hxx>
 #endif
 
-// auto strip #include <bf_svx/svdattr.hxx>
-// auto strip #ifndef _XTABLE_HXX
-// auto strip #include <bf_svx/xtable.hxx>
-// auto strip #endif
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
@@ -78,15 +72,11 @@
 #include <svtools/eitem.hxx>
 #endif
 
-// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-// auto strip #include <bf_svx/fontitem.hxx>
-// auto strip #include <bf_svx/fhgtitem.hxx>
-// auto strip #include <bf_svx/colritem.hxx>
 
 #include <string.h>             // memset
 
@@ -95,20 +85,14 @@
 #endif
 
 #ifndef _CHTMODEL_HXX
-// auto strip #include <chtmodel.hxx>
-// auto strip #include <globfunc.hxx>
 #endif
 
 #include "docshell.hxx"
 
-// auto strip #include <bf_svx/svdpage.hxx>
 
 
 
 
-// auto strip #ifndef _SFX_WHITER_HXX //autogen
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
 
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
