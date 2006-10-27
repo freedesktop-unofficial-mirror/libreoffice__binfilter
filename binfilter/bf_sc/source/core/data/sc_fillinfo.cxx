@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_fillinfo.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:48:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:21:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,10 +46,7 @@
 
 #include "document.hxx"
 #include "cell.hxx"
-// auto strip #include "table.hxx"
-// auto strip #include "attrib.hxx"
 #include "attarray.hxx"
-// auto strip #include "markarr.hxx"
 #include "markdata.hxx"
 #include "patattr.hxx"
 #include "poolhelp.hxx"
