@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shapeimpl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:20:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:53:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,9 +134,6 @@ public:
 
 #ifndef SVX_LIGHT
 
-// auto strip #ifndef _FRAMEOBJ_HXX
-// auto strip #include <bf_sfx2/frameobj.hxx>
-// auto strip #endif
 namespace binfilter {
 class SvxFrameShape : public SvxOle2Shape
 {
