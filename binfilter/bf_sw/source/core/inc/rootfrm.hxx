@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rootfrm.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:30:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:47:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -166,9 +166,7 @@ public:
     static void RemoveMasterObjs( SdrPage *pPg );
 
     //Virtuelles Device ausgeben (z.B. wenn Animationen ins Spiel kommen)
-//STRIP001  static BOOL FlushVout();
     //Clipping sparen, wenn im Vout eh genau das Cliprechteck ausgegeben wird
-//STRIP001  static BOOL HasSameRect( const SwRect& rRect );
 
     SwRootFrm( SwFrmFmt*, ViewShell* );
     ~SwRootFrm();
@@ -194,22 +192,16 @@ public:
           SdrPage* GetDrawPage()       { return pDrawPage; }
           void     SetDrawPage( SdrPage* pNew ){ pDrawPage = pNew; }
 
-//STRIP001  virtual BOOL  GetCrsrOfst( SwPosition *, Point&,
-//STRIP001                             const SwCrsrMoveState* = 0 ) const;
-//STRIP001  virtual void  Paint( const SwRect& ) const;
     virtual SwTwips ShrinkFrm( SwTwips, SZPTR
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
     virtual SwTwips GrowFrm  ( SwTwips, SZPTR
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
 #ifndef PRODUCT
-//STRIP001  virtual void Cut();
-//STRIP001  virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
 #endif
 
 #ifndef VERTICAL_LAYOUT
     void   SetFixSize( SzPtr );
 #endif
-//STRIP001  Point  GetNextPrevCntntPos( const Point &rPoint, BOOL bNext ) const;
     virtual void ChgSize( const Size& aNewSize );
 
     inline void SetIdleFlags();
@@ -235,25 +227,18 @@ public:
 
     //abfragen/setzen der aktuellen Seite und der Gesamtzahl der Seiten.
     //Es wird soweit wie notwendig Formatiert.
-//STRIP001  USHORT  GetCurrPage( const SwPaM* ) const;
-//STRIP001  USHORT  SetCurrPage( SwCursor*, USHORT nPageNum );
-//STRIP001  Point   GetPagePos( USHORT nPageNum ) const;
     USHORT  GetPageNum() const      { return nPhyPageNums; }
     void    DecrPhyPageNums()       { --nPhyPageNums; }
     void    IncrPhyPageNums()       { ++nPhyPageNums; }
     BOOL    IsVirtPageNum() const   { return bIsVirtPageNum; }
     inline  void SetVirtPageNum( const BOOL bOf ) const;
-//STRIP001     BOOL    IsDummyPage( USHORT nPageNum ) const;
 
-//STRIP001     BOOL    IsPageAtPos( const Point &rPt ) const;
 
     //Der Crsr moechte die zu selektierenden Bereiche wissen.
-//STRIP001  void CalcFrmRects( SwShellCrsr&, BOOL bIsTblSel );
 
     // Calculates the cells included from the current selection
     // false: There was no result because of an invalid layout
     // true: Everything worked fine.
-//STRIP001     bool MakeTblCrsrs( SwTableCursor& );
 
     void DisallowTurbo()  const { ((SwRootFrm*)this)->bTurboAllowed = FALSE; }
     void ResetTurboFlag() const { ((SwRootFrm*)this)->bTurboAllowed = TRUE; }
@@ -263,12 +248,10 @@ public:
     const SwCntntFrm *GetTurbo() { return pTurbo; }
 
     //Fussnotennummern aller Seiten auf den neuesten Stand bringen.
-//STRIP001  void UpdateFtnNums();           //nur bei Seitenweiser Nummerierung!
 
     //Alle Fussnoten (nicht etwa die Referenzen) entfernen.
     void RemoveFtns( SwPageFrm *pPage = 0, BOOL bPageOnly = FALSE,
                      BOOL bEndNotes = FALSE );
-//STRIP001  void CheckFtnPageDescs( BOOL bEndNote );
 
     const SwPageFrm *GetLastPage() const { return pLastPage; }
           SwPageFrm *GetLastPage()       { return pLastPage; }
@@ -281,7 +264,6 @@ public:
     void SetBrowseWidth( long n ) { bBrowseWidthValid = TRUE; nBrowseWidth = n;}
     inline void InvalidateBrowseWidth();
 
-//STRIP001  void HackPrepareLongTblPaint( int nMode );
 
     BOOL IsNewLayout() const { return bIsNewLayout; }
     void ResetNewLayout()    { bIsNewLayout = FALSE;}

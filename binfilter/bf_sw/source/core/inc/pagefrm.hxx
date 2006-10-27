@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pagefrm.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:29:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:47:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -112,7 +112,6 @@ class SwPageFrm: public SwFtnBossFrm
                       SwAttrSetChg *pa = 0, SwAttrSetChg *pb = 0 );
 
     // Anpassen der max. Fussnotenhoehen in den einzelnen Spalten
-//STRIP001  void SetColMaxFtnHeight();
 
     /** determine rectangle for page border
 
@@ -240,26 +239,20 @@ public:
     //fuer SwFEShell und Modify der Flys.
     SwFrm *PlaceFly( SwFlyFrm *, SwFrmFmt *, const SwFmtAnchor * );
 
-//STRIP001  virtual BOOL GetCrsrOfst( SwPosition *, Point&,
-//STRIP001                            const SwCrsrMoveState* = 0 ) const;
     virtual void Modify( SfxPoolItem*, SfxPoolItem* );
         // erfrage vom Client Informationen
-//STRIP001  virtual BOOL GetInfo( SfxPoolItem& ) const;
 
     virtual void Cut();
     virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
 #ifdef VERTICAL_LAYOUT
     virtual void  CheckDirection( BOOL bVert );
     void CheckGrid( BOOL bInvalidate );
-//STRIP001     void PaintGrid( OutputDevice* pOut, SwRect &rRect ) const;
     BOOL HasGrid() const { return bHasGrid; }
 #endif
 
     //Zeilennummern usw malen
-//STRIP001  void RefreshExtraData( const SwRect & ) const;
 
     //Hilfslinien malen.
-//STRIP001  void RefreshSubsidiary( const SwRect& ) const;
 
     //Fussnotenschnittstelle
     BOOL IsFtnPage() const                                  { return bFtnPage; }
