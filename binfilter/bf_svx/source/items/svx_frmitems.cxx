@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:56:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:15:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -269,41 +269,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxPaperBinItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText = String::CreateFromInt32( GetValue() );
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          sal_Int8 nValue = GetValue();
-//STRIP001
-//STRIP001          if ( PAPERBIN_PRINTER_SETTINGS == nValue )
-//STRIP001              rText = SVX_RESSTR(RID_SVXSTR_PAPERBIN_SETTINGS);
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR(RID_SVXSTR_PAPERBIN);
-//STRIP001              rText += sal_Unicode(' ');
-//STRIP001              rText += String::CreateFromInt32( nValue );
-//STRIP001          }
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxSizeItem -----------------------------------------------------
 
@@ -414,40 +379,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxSizeItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001             rText = GetMetricText( aSize.Width(), eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001             rText += GetMetricText( aSize.Height(), eCoreUnit, ePresUnit, pIntl );
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = SVX_RESSTR(RID_SVXITEMS_SIZE_WIDTH);
-//STRIP001             rText += GetMetricText( aSize.Width(), eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_SIZE_HEIGHT);
-//STRIP001             rText += GetMetricText( aSize.Height(), eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -460,19 +391,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxSizeItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  aSize.Width() = Scale( aSize.Width(), nMult, nDiv );
-//STRIP001  aSize.Height() = Scale( aSize.Height(), nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxSizeItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -662,82 +583,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLRSpaceItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper* pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          if ( 100 != nPropLeftMargin )
-//STRIP001              ( rText = String::CreateFromInt32( nPropLeftMargin )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001              rText = GetMetricText( (long)nLeftMargin,
-//STRIP001                                        eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001          if ( 100 != nPropFirstLineOfst )
-//STRIP001              ( rText += String::CreateFromInt32( nPropFirstLineOfst )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001              rText += GetMetricText( (long)nFirstLineOfst,
-//STRIP001                                         eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001          if ( 100 != nRightMargin )
-//STRIP001              ( rText += String::CreateFromInt32( nRightMargin )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001              rText += GetMetricText( (long)nRightMargin,
-//STRIP001                                         eCoreUnit, ePresUnit, pIntl );
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR(RID_SVXITEMS_LRSPACE_LEFT);
-//STRIP001          if ( 100 != nPropLeftMargin )
-//STRIP001              ( rText += String::CreateFromInt32( nPropLeftMargin )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText += GetMetricText( (long)nLeftMargin,
-//STRIP001                                        eCoreUnit, ePresUnit, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          }
-//STRIP001          rText += cpDelim;
-//STRIP001          if ( 100 != nPropFirstLineOfst || nFirstLineOfst )
-//STRIP001          {
-//STRIP001              rText += SVX_RESSTR(RID_SVXITEMS_LRSPACE_FLINE);
-//STRIP001              if ( 100 != nPropFirstLineOfst )
-//STRIP001                  ( rText += String::CreateFromInt32( nPropFirstLineOfst ))
-//STRIP001                          += sal_Unicode('%');
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  rText += GetMetricText( (long)nFirstLineOfst,
-//STRIP001                                             eCoreUnit, ePresUnit, pIntl );
-//STRIP001                  rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001              }
-//STRIP001              rText += cpDelim;
-//STRIP001          }
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_LRSPACE_RIGHT);
-//STRIP001          if ( 100 != nPropRightMargin )
-//STRIP001              ( rText += String::CreateFromInt32( nPropRightMargin )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText += GetMetricText( (long)nRightMargin,
-//STRIP001                                         eCoreUnit, ePresUnit, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          }
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -876,21 +721,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxLRSpaceItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  nFirstLineOfst = (short)Scale( nFirstLineOfst, nMult, nDiv );
-//STRIP001  nTxtLeft = Scale( nTxtLeft, nMult, nDiv );
-//STRIP001  nLeftMargin = Scale( nLeftMargin, nMult, nDiv );
-//STRIP001  nRightMargin = Scale( nRightMargin, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxLRSpaceItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // class SvxULSpaceItem --------------------------------------------------
 
@@ -994,58 +827,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxULSpaceItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          if ( 100 != nPropUpper )
-//STRIP001              ( rText = String::CreateFromInt32( nPropUpper )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001                 rText = GetMetricText( (long)nUpper, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001          if ( 100 != nPropLower )
-//STRIP001              ( rText += String::CreateFromInt32( nPropLower )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001                 rText += GetMetricText( (long)nLower, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR(RID_SVXITEMS_ULSPACE_UPPER);
-//STRIP001          if ( 100 != nPropUpper )
-//STRIP001              ( rText += String::CreateFromInt32( nPropUpper )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001          {
-//STRIP001                 rText += GetMetricText( (long)nUpper, eCoreUnit, ePresUnit, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          }
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_ULSPACE_LOWER);
-//STRIP001          if ( 100 != nPropLower )
-//STRIP001              ( rText += String::CreateFromInt32( nPropLower )) += sal_Unicode('%');
-//STRIP001          else
-//STRIP001          {
-//STRIP001                 rText += GetMetricText( (long)nLower, eCoreUnit, ePresUnit, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          }
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1091,19 +872,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxULSpaceItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  nUpper = (sal_uInt16)Scale( nUpper, nMult, nDiv );
-//STRIP001  nLower = (sal_uInt16)Scale( nLower, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxULSpaceItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 
 // class SvxPrintItem ----------------------------------------------------
@@ -1132,35 +903,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxPrintItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_PRINT_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_PRINT_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxOpaqueItem ---------------------------------------------------
 
@@ -1188,35 +930,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxOpaqueItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_OPAQUE_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_OPAQUE_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxProtectItem --------------------------------------------------
 
@@ -1278,47 +991,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxProtectItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_PROT_CONTENT_FALSE;
-//STRIP001
-//STRIP001          if ( bCntnt )
-//STRIP001              nId = RID_SVXITEMS_PROT_CONTENT_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001          nId = RID_SVXITEMS_PROT_SIZE_FALSE;
-//STRIP001
-//STRIP001          if ( bSize )
-//STRIP001              nId = RID_SVXITEMS_PROT_SIZE_TRUE;
-//STRIP001          rText += SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001          nId = RID_SVXITEMS_PROT_POS_FALSE;
-//STRIP001
-//STRIP001          if ( bPos )
-//STRIP001              nId = RID_SVXITEMS_PROT_POS_TRUE;
-//STRIP001          rText += SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1500,57 +1172,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxShadowItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          rText = ::GetColorString( aShadowColor );
-//STRIP001          rText += cpDelim;
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_TRANSPARENT_FALSE;
-//STRIP001
-//STRIP001          if ( aShadowColor.GetTransparency() )
-//STRIP001              nId = RID_SVXITEMS_TRANSPARENT_TRUE;
-//STRIP001          rText += SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001             rText += GetMetricText( (long)nWidth, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_SHADOW_BEGIN + eLocation);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          rText = SVX_RESSTR(RID_SVXITEMS_SHADOW_COMPLETE);
-//STRIP001          rText += ::GetColorString( aShadowColor );
-//STRIP001          rText += cpDelim;
-//STRIP001
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_TRANSPARENT_FALSE;
-//STRIP001          if ( aShadowColor.GetTransparency() )
-//STRIP001              nId = RID_SVXITEMS_TRANSPARENT_TRUE;
-//STRIP001          rText += SVX_RESSTR(nId);
-//STRIP001          rText += cpDelim;
-//STRIP001             rText += GetMetricText( (long)nWidth, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          rText += cpDelim;
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_SHADOW_BEGIN + eLocation);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1567,18 +1188,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxShadowItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  nWidth = (sal_uInt16)Scale( nWidth, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxShadowItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1605,11 +1217,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxShadowItem::GetValueTextByPos( sal_uInt16 nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos < SVX_SHADOW_END, "enum overflow!" );
-//STRIP001  return XubString( SVX_RES( RID_SVXITEMS_SHADOW_BEGIN + nPos ) );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1641,12 +1248,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxBorderLine::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  nOutWidth = (sal_uInt16)Scale( nOutWidth, nMult, nDiv );
-//STRIP001  nInWidth = (sal_uInt16)Scale( nInWidth, nMult, nDiv );
-//STRIP001  nDistance = (sal_uInt16)Scale( nDistance, nMult, nDiv );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -1660,95 +1261,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxBorderLine::GetValueString( SfxMapUnit eSrcUnit,
-//STRIP001                                    SfxMapUnit eDestUnit,
-//STRIP001                                       const IntlWrapper* pIntl,
-//STRIP001                                    sal_Bool bMetricStr) const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  sal_uInt16 nResId = 0;
-//STRIP001
-//STRIP001  if ( 0 == nDistance )
-//STRIP001  {
-//STRIP001      // einfach Linie
-//STRIP001      if ( DEF_LINE_WIDTH_0 == nOutWidth )
-//STRIP001          nResId = RID_SINGLE_LINE0;
-//STRIP001      else if ( DEF_LINE_WIDTH_1 == nOutWidth )
-//STRIP001          nResId = RID_SINGLE_LINE1;
-//STRIP001      else if ( DEF_LINE_WIDTH_2 == nOutWidth )
-//STRIP001          nResId = RID_SINGLE_LINE2;
-//STRIP001      else if ( DEF_LINE_WIDTH_3 == nOutWidth )
-//STRIP001          nResId = RID_SINGLE_LINE3;
-//STRIP001      else if ( DEF_LINE_WIDTH_4 == nOutWidth )
-//STRIP001          nResId = RID_SINGLE_LINE4;
-//STRIP001  }
-//STRIP001  else if ( DEF_LINE_WIDTH_1 == nDistance )
-//STRIP001  {
-//STRIP001      // doppelte Linie, kleiner Abstand
-//STRIP001      if ( DEF_LINE_WIDTH_0 == nOutWidth && DEF_LINE_WIDTH_0 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE0;
-//STRIP001      else if ( DEF_LINE_WIDTH_1 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_1 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE2;
-//STRIP001      else if ( DEF_LINE_WIDTH_1 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_2 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE8;
-//STRIP001  }
-//STRIP001  else if ( DEF_LINE_WIDTH_2 == nDistance )
-//STRIP001  {
-//STRIP001      // doppelte Linie, gro\ser Abstand
-//STRIP001      if ( DEF_LINE_WIDTH_0 == nOutWidth && DEF_LINE_WIDTH_0 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE1;
-//STRIP001      else if ( DEF_LINE_WIDTH_2 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_2 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE3;
-//STRIP001      else if ( DEF_LINE_WIDTH_1 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_0 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE4;
-//STRIP001      else if ( DEF_LINE_WIDTH_2 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_0 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE5;
-//STRIP001      else if ( DEF_LINE_WIDTH_3 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_0 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE6;
-//STRIP001      else if ( DEF_LINE_WIDTH_2 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_1 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE7;
-//STRIP001      else if ( DEF_LINE_WIDTH_3 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_2 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE9;
-//STRIP001      else if ( DEF_LINE_WIDTH_2 == nOutWidth &&
-//STRIP001                DEF_LINE_WIDTH_3 == nInWidth )
-//STRIP001          nResId = RID_DOUBLE_LINE10;
-//STRIP001  }
-//STRIP001  String aStr;
-//STRIP001  aStr += sal_Unicode('(');
-//STRIP001  aStr += ::GetColorString( aColor );
-//STRIP001  aStr += cpDelim;
-//STRIP001
-//STRIP001  if ( nResId )
-//STRIP001      aStr += SVX_RESSTR(nResId);
-//STRIP001  else
-//STRIP001  {
-//STRIP001      String sMetric = SVX_RESSTR(GetMetricId( eDestUnit ));
-//STRIP001         aStr += GetMetricText( (long)nInWidth, eSrcUnit, eDestUnit, pIntl );
-//STRIP001      if ( bMetricStr )
-//STRIP001          aStr += sMetric;
-//STRIP001      aStr += cpDelim;
-//STRIP001         aStr += GetMetricText( (long)nOutWidth, eSrcUnit, eDestUnit, pIntl );
-//STRIP001      if ( bMetricStr )
-//STRIP001          aStr += sMetric;
-//STRIP001      aStr += cpDelim;
-//STRIP001         aStr += GetMetricText( (long)nDistance, eSrcUnit, eDestUnit, pIntl );
-//STRIP001      if ( bMetricStr )
-//STRIP001          aStr += sMetric;
-//STRIP001  }
-//STRIP001  aStr += sal_Unicode(')');
-//STRIP001  return aStr;
-//STRIP001 #else
-//STRIP001  return UniString();
-//STRIP001 #endif
-//STRIP001 }
 
 // class SvxBoxItem ------------------------------------------------------
 
@@ -1798,15 +1310,6 @@ using namespace ::com::sun::star;
 
 /*N*/ SvxBoxItem& SvxBoxItem::operator=( const SvxBoxItem& rBox )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return *this;//STRIP001
-//STRIP001  nTopDist = rBox.nTopDist;
-//STRIP001  nBottomDist = rBox.nBottomDist;
-//STRIP001  nLeftDist = rBox.nLeftDist;
-//STRIP001  nRightDist = rBox.nRightDist;
-//STRIP001  SetLine( rBox.GetTop(), BOX_LINE_TOP );
-//STRIP001  SetLine( rBox.GetBottom(), BOX_LINE_BOTTOM );
-//STRIP001  SetLine( rBox.GetLeft(), BOX_LINE_LEFT );
-//STRIP001  SetLine( rBox.GetRight(), BOX_LINE_RIGHT );
-//STRIP001  return *this;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -2051,145 +1554,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxBoxItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          rText.Erase();
-//STRIP001
-//STRIP001          if ( pTop )
-//STRIP001          {
-//STRIP001                 rText = pTop->GetValueString( eCoreUnit, ePresUnit, pIntl );
-//STRIP001              rText += cpDelim;
-//STRIP001          }
-//STRIP001          if( !(pTop && pBottom && pLeft && pRight &&
-//STRIP001                *pTop == *pBottom && *pTop == *pLeft && *pTop == *pRight) )
-//STRIP001          {
-//STRIP001              if ( pBottom )
-//STRIP001              {
-//STRIP001                     rText += pBottom->GetValueString( eCoreUnit, ePresUnit, pIntl );
-//STRIP001                  rText += cpDelim;
-//STRIP001              }
-//STRIP001              if ( pLeft )
-//STRIP001              {
-//STRIP001                     rText += pLeft->GetValueString( eCoreUnit, ePresUnit, pIntl );
-//STRIP001                  rText += cpDelim;
-//STRIP001              }
-//STRIP001              if ( pRight )
-//STRIP001              {
-//STRIP001                     rText += pRight->GetValueString( eCoreUnit, ePresUnit, pIntl );
-//STRIP001                  rText += cpDelim;
-//STRIP001              }
-//STRIP001          }
-//STRIP001             rText += GetMetricText( (long)nTopDist, eCoreUnit, ePresUnit, pIntl );
-//STRIP001          if( nTopDist != nBottomDist || nTopDist != nLeftDist ||
-//STRIP001              nTopDist != nRightDist )
-//STRIP001          {
-//STRIP001              (((((rText += cpDelim)
-//STRIP001                    += GetMetricText( (long)nBottomDist, eCoreUnit,
-//STRIP001                                         ePresUnit, pIntl ))
-//STRIP001                    += cpDelim)
-//STRIP001                       += GetMetricText( (long)nLeftDist, eCoreUnit, ePresUnit, pIntl ))
-//STRIP001                    += cpDelim)
-//STRIP001                    += GetMetricText( (long)nRightDist, eCoreUnit,
-//STRIP001                                         ePresUnit, pIntl );
-//STRIP001          }
-//STRIP001          return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001      }
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if( !(pTop || pBottom || pLeft || pRight) )
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR(RID_SVXITEMS_BORDER_NONE);
-//STRIP001              rText += cpDelim;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR(RID_SVXITEMS_BORDER_COMPLETE);
-//STRIP001              if( pTop && pBottom && pLeft && pRight &&
-//STRIP001                  *pTop == *pBottom && *pTop == *pLeft && *pTop == *pRight )
-//STRIP001              {
-//STRIP001                     rText += pTop->GetValueString( eCoreUnit, ePresUnit, pIntl, sal_True );
-//STRIP001                  rText += cpDelim;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  if ( pTop )
-//STRIP001                  {
-//STRIP001                      rText += SVX_RESSTR(RID_SVXITEMS_BORDER_TOP);
-//STRIP001                         rText += pTop->GetValueString( eCoreUnit, ePresUnit, pIntl, sal_True );
-//STRIP001                      rText += cpDelim;
-//STRIP001                  }
-//STRIP001                  if ( pBottom )
-//STRIP001                  {
-//STRIP001                      rText += SVX_RESSTR(RID_SVXITEMS_BORDER_BOTTOM);
-//STRIP001                         rText += pBottom->GetValueString( eCoreUnit, ePresUnit, pIntl, sal_True );
-//STRIP001                      rText += cpDelim;
-//STRIP001                  }
-//STRIP001                  if ( pLeft )
-//STRIP001                  {
-//STRIP001                      rText += SVX_RESSTR(RID_SVXITEMS_BORDER_LEFT);
-//STRIP001                         rText += pLeft->GetValueString( eCoreUnit, ePresUnit, pIntl, sal_True );
-//STRIP001                      rText += cpDelim;
-//STRIP001                  }
-//STRIP001                  if ( pRight )
-//STRIP001                  {
-//STRIP001                      rText += SVX_RESSTR(RID_SVXITEMS_BORDER_RIGHT);
-//STRIP001                         rText += pRight->GetValueString( eCoreUnit, ePresUnit, pIntl, sal_True );
-//STRIP001                      rText += cpDelim;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          rText += SVX_RESSTR(RID_SVXITEMS_BORDER_DISTANCE);
-//STRIP001          if( nTopDist == nBottomDist && nTopDist == nLeftDist &&
-//STRIP001              nTopDist == nRightDist )
-//STRIP001          {
-//STRIP001              rText += GetMetricText( (long)nTopDist, eCoreUnit,
-//STRIP001                                             ePresUnit, pIntl );
-//STRIP001              rText += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              (((rText += SVX_RESSTR(RID_SVXITEMS_BORDER_TOP))
-//STRIP001                    += GetMetricText( (long)nTopDist, eCoreUnit,
-//STRIP001                                         ePresUnit, pIntl ))
-//STRIP001                    += SVX_RESSTR(GetMetricId(ePresUnit)))
-//STRIP001                    += cpDelim;
-//STRIP001              (((rText += SVX_RESSTR(RID_SVXITEMS_BORDER_BOTTOM))
-//STRIP001                    += GetMetricText( (long)nBottomDist, eCoreUnit,
-//STRIP001                                         ePresUnit, pIntl ))
-//STRIP001                    += SVX_RESSTR(GetMetricId(ePresUnit)))
-//STRIP001                    += cpDelim;
-//STRIP001              (((rText += SVX_RESSTR(RID_SVXITEMS_BORDER_LEFT))
-//STRIP001                    += GetMetricText( (long)nLeftDist, eCoreUnit,
-//STRIP001                                         ePresUnit, pIntl ))
-//STRIP001                    += SVX_RESSTR(GetMetricId(ePresUnit)))
-//STRIP001                    += cpDelim;
-//STRIP001              ((rText += SVX_RESSTR(RID_SVXITEMS_BORDER_RIGHT))
-//STRIP001                    += GetMetricText( (long)nRightDist, eCoreUnit,
-//STRIP001                                         ePresUnit, pIntl ))
-//STRIP001                    += SVX_RESSTR(GetMetricId(ePresUnit));
-//STRIP001          }
-//STRIP001          return SFX_ITEM_PRESENTATION_COMPLETE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2250,25 +1614,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxBoxItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  if ( pTop )     pTop->ScaleMetrics( nMult, nDiv );
-//STRIP001  if ( pBottom )  pBottom->ScaleMetrics( nMult, nDiv );
-//STRIP001  if ( pLeft )    pLeft->ScaleMetrics( nMult, nDiv );
-//STRIP001  if ( pRight )   pBottom->ScaleMetrics( nMult, nDiv );
-//STRIP001  nTopDist = (sal_uInt16)Scale( nTopDist, nMult, nDiv );
-//STRIP001  nBottomDist = (sal_uInt16)Scale( nBottomDist, nMult, nDiv );
-//STRIP001  nLeftDist = (sal_uInt16)Scale( nLeftDist, nMult, nDiv );
-//STRIP001  nRightDist = (sal_uInt16)Scale( nRightDist, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxBoxItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2315,31 +1663,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 const SvxBorderLine *SvxBoxItem::GetLine( sal_uInt16 nLine ) const
-//STRIP001 {
-//STRIP001  const SvxBorderLine *pRet = 0;
-//STRIP001
-//STRIP001  switch ( nLine )
-//STRIP001  {
-//STRIP001      case BOX_LINE_TOP:
-//STRIP001          pRet = pTop;
-//STRIP001          break;
-//STRIP001      case BOX_LINE_BOTTOM:
-//STRIP001          pRet = pBottom;
-//STRIP001          break;
-//STRIP001      case BOX_LINE_LEFT:
-//STRIP001          pRet = pLeft;
-//STRIP001          break;
-//STRIP001      case BOX_LINE_RIGHT:
-//STRIP001          pRet = pRight;
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          DBG_ERROR( "wrong line" );
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return pRet;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2515,19 +1838,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxBoxInfoItem &SvxBoxInfoItem::operator=( const SvxBoxInfoItem& rCpy )
-//STRIP001 {
-//STRIP001  delete pHori;
-//STRIP001  delete pVert;
-//STRIP001  pHori       = rCpy.GetHori() ? new SvxBorderLine( *rCpy.GetHori() ) : 0;
-//STRIP001  pVert       = rCpy.GetVert() ? new SvxBorderLine( *rCpy.GetVert() ) : 0;
-//STRIP001  bTable      = rCpy.IsTable();
-//STRIP001  bDist       = rCpy.IsDist();
-//STRIP001  bMinDist    = rCpy.IsMinDist();
-//STRIP001  nValidFlags = rCpy.nValidFlags;
-//STRIP001  nDefDist    = rCpy.GetDefDist();
-//STRIP001  return *this;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2577,49 +1887,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxBoxInfoItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 /*!!!
-//STRIP001  ResMgr* pMgr = DIALOG_MGR();
-//STRIP001  if ( pHori )
-//STRIP001  {
-//STRIP001      rText += pHori->GetValueString();
-//STRIP001      rText += cpDelim;
-//STRIP001  }
-//STRIP001  if ( pVert )
-//STRIP001  {
-//STRIP001      rText += pVert->GetValueString();
-//STRIP001      rText += cpDelim;
-//STRIP001  }
-//STRIP001  if ( bTable )
-//STRIP001      rText += String( ResId( RID_SVXITEMS_BOXINF_TABLE_TRUE, pMgr ) );
-//STRIP001  else
-//STRIP001      rText += String( ResId( RID_SVXITEMS_BOXINF_TABLE_FALSE, pMgr ) );
-//STRIP001  rText += cpDelim;
-//STRIP001  if ( bDist )
-//STRIP001      rText += String( ResId( RID_SVXITEMS_BOXINF_DIST_TRUE, pMgr ) );
-//STRIP001  else
-//STRIP001      rText += String( ResId( RID_SVXITEMS_BOXINF_DIST_FALSE, pMgr ) );
-//STRIP001  rText += cpDelim;
-//STRIP001  if ( bMinDist )
-//STRIP001      rText += String( ResId( RID_SVXITEMS_BOXINF_MDIST_TRUE, pMgr ) );
-//STRIP001  else
-//STRIP001      rText += String( ResId( RID_SVXITEMS_BOXINF_MDIST_FALSE, pMgr ) );
-//STRIP001  rText += cpDelim;
-//STRIP001  rText += nDefDist;
-//STRIP001  return SFX_ITEM_PRESENTATION_NAMELESS;
-//STRIP001 */
-//STRIP001  rText.Erase();
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2657,20 +1924,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxBoxInfoItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  if ( pHori ) pHori->ScaleMetrics( nMult, nDiv );
-//STRIP001  if ( pVert ) pVert->ScaleMetrics( nMult, nDiv );
-//STRIP001  nDefDist = (sal_uInt16)Scale( nDefDist, nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxBoxInfoItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -2715,176 +1971,9 @@ using namespace ::com::sun::star;
 /*N*/   nValidFlags = 0x7F; // alles g"ultig au/ser Disable
 /*N*/ }
 
-//STRIP001 sal_Bool SvxBoxInfoItem::QueryValue( uno::Any& rVal, BYTE nMemberId  ) const
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  table::BorderLine aRetLine;
-//STRIP001     sal_Int16 nVal=0;
-//STRIP001     sal_Bool bIntMember = sal_False;
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Bool bSerialize = sal_False;
-//STRIP001  switch(nMemberId)
-//STRIP001  {
-//STRIP001         case MID_HORIZONTAL:
-//STRIP001             bSerialize = sal_True;
-//STRIP001             aRetLine = lcl_SvxLineToLine( pHori, bConvert);
-//STRIP001          break;
-//STRIP001         case MID_VERTICAL:
-//STRIP001             bSerialize = sal_True;
-//STRIP001             aRetLine = lcl_SvxLineToLine( pVert, bConvert);
-//STRIP001          break;
-//STRIP001         case MID_FLAGS:
-//STRIP001             bIntMember = sal_True;
-//STRIP001             if ( IsTable() )
-//STRIP001                 nVal |= 0x01;
-//STRIP001             if ( IsDist() )
-//STRIP001                 nVal |= 0x02;
-//STRIP001             if ( IsMinDist() )
-//STRIP001                 nVal |= 0x04;
-//STRIP001             rVal <<= nVal;
-//STRIP001             break;
-//STRIP001         case MID_VALIDFLAGS:
-//STRIP001             bIntMember = sal_True;
-//STRIP001             nVal = nValidFlags;
-//STRIP001             rVal <<= nVal;
-//STRIP001             break;
-//STRIP001         case MID_DISTANCE:
-//STRIP001             bIntMember = sal_True;
-//STRIP001             rVal <<= (sal_Int32)(bConvert ? TWIP_TO_MM100(GetDefDist()) : GetDefDist());
-//STRIP001             break;
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001     if( !bIntMember )
-//STRIP001     {
-//STRIP001 /*
-//STRIP001         if ( bSerialize )
-//STRIP001         {
-//STRIP001             ::com::sun::star::uno::Sequence < ::com::sun::star::uno::Any > aSeq(4);
-//STRIP001             aSeq[0] <<= aRetLine.Color;
-//STRIP001             aSeq[1] <<= aRetLine.InnerLineWidth;
-//STRIP001             aSeq[2] <<= aRetLine.OuterLineWidth;
-//STRIP001             aSeq[3] <<= aRetLine.LineDistance;
-//STRIP001             rVal <<= aSeq;
-//STRIP001         }
-//STRIP001         else
-//STRIP001  */
-//STRIP001             rVal <<= aRetLine;
-//STRIP001     }
-//STRIP001
-//STRIP001  return sal_True;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxBoxInfoItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001  sal_uInt16 nLine = BOX_LINE_TOP;
-//STRIP001  sal_Bool bDistMember = sal_False;
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Bool bRet;
-//STRIP001  switch(nMemberId)
-//STRIP001  {
-//STRIP001         case MID_HORIZONTAL:
-//STRIP001         case MID_VERTICAL:
-//STRIP001         {
-//STRIP001             if( !rVal.hasValue() )
-//STRIP001                 return sal_False;
-//STRIP001
-//STRIP001             table::BorderLine aBorderLine;
-//STRIP001             if( rVal >>= aBorderLine )
-//STRIP001             {
-//STRIP001                 // usual struct
-//STRIP001             }
-//STRIP001             else if (rVal.getValueTypeClass() == uno::TypeClass_SEQUENCE )
-//STRIP001             {
-//STRIP001                 // serialization for basic macro recording
-//STRIP001                 uno::Reference < script::XTypeConverter > xConverter
-//STRIP001                         ( ::legacy_binfilters::getLegacyProcessServiceFactory())->createInstance(::rtl::OUString::createFromAscii("com.sun.star.script.Converter")),
-//STRIP001                         uno::UNO_QUERY );
-//STRIP001                 uno::Any aNew;
-//STRIP001                 uno::Sequence < uno::Any > aSeq;
-//STRIP001                 try { aNew = xConverter->convertTo( rVal, ::getCppuType((const uno::Sequence < uno::Any >*)0) ); }
-//STRIP001                 catch (uno::Exception&) {}
-//STRIP001
-//STRIP001                 if( (aNew >>= aSeq) && aSeq.getLength() == 4 )
-//STRIP001                 {
-//STRIP001                     sal_Int32 nVal;
-//STRIP001                     if ( aSeq[0] >>= nVal )
-//STRIP001                         aBorderLine.Color = nVal;
-//STRIP001                     if ( aSeq[1] >>= nVal )
-//STRIP001                         aBorderLine.InnerLineWidth = (sal_Int16) nVal;
-//STRIP001                     if ( aSeq[2] >>= nVal )
-//STRIP001                         aBorderLine.OuterLineWidth = (sal_Int16) nVal;
-//STRIP001                     if ( aSeq[3] >>= nVal )
-//STRIP001                         aBorderLine.LineDistance = (sal_Int16) nVal;
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                     return sal_False;
-//STRIP001             }
-//STRIP001             else if (rVal.getValueType() == ::getCppuType((const ::com::sun::star::uno::Sequence < sal_Int16 >*)0) )
-//STRIP001             {
-//STRIP001                 // serialization for basic macro recording
-//STRIP001                 ::com::sun::star::uno::Sequence < sal_Int16 > aSeq;
-//STRIP001                 rVal >>= aSeq;
-//STRIP001                 if ( aSeq.getLength() == 4 )
-//STRIP001                 {
-//STRIP001                     aBorderLine.Color = aSeq[0];
-//STRIP001                     aBorderLine.InnerLineWidth = aSeq[1];
-//STRIP001                     aBorderLine.OuterLineWidth = aSeq[2];
-//STRIP001                     aBorderLine.LineDistance = aSeq[3];
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                     return sal_False;
-//STRIP001             }
-//STRIP001             else
-//STRIP001                 return sal_False;
-//STRIP001
-//STRIP001             SvxBorderLine aLine;
-//STRIP001             sal_Bool bSet = lcl_LineToSvxLine(aBorderLine, aLine, bConvert);
-//STRIP001             if ( bSet )
-//STRIP001                 SetLine( &aLine, nMemberId == MID_HORIZONTAL ? BOXINFO_LINE_HORI : BOXINFO_LINE_VERT );
-//STRIP001             break;
-//STRIP001         }
-//STRIP001         case MID_FLAGS:
-//STRIP001         {
-//STRIP001             sal_Int16 nFlags;
-//STRIP001             bRet = (rVal >>= nFlags);
-//STRIP001             if ( bRet )
-//STRIP001             {
-//STRIP001                 SetTable  ( ( nFlags & 0x01 ) != 0 );
-//STRIP001                 SetDist   ( ( nFlags & 0x02 ) != 0 );
-//STRIP001                 SetMinDist( ( nFlags & 0x04 ) != 0 );
-//STRIP001             }
-//STRIP001
-//STRIP001             break;
-//STRIP001         }
-//STRIP001         case MID_VALIDFLAGS:
-//STRIP001         {
-//STRIP001             sal_Int16 nFlags;
-//STRIP001             bRet = (rVal >>= nFlags);
-//STRIP001             if ( bRet )
-//STRIP001                 nValidFlags = nFlags;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001         case MID_DISTANCE:
-//STRIP001         {
-//STRIP001             sal_Int32 nVal;
-//STRIP001             bRet = (rVal >>= nVal);
-//STRIP001             if ( bRet && nVal>=0 )
-//STRIP001             {
-//STRIP001                 if( bConvert )
-//STRIP001                     nVal = MM100_TO_TWIP(nVal);
-//STRIP001                 SetDist( nVal );
-//STRIP001             }
-//STRIP001             break;
-//STRIP001         }
-//STRIP001         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  return sal_True;
-//STRIP001 }
 
 // class SvxFmtBreakItem -------------------------------------------------
 
@@ -2897,38 +1986,9 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFmtBreakItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetValueTextByPos( GetValue() );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 XubString SvxFmtBreakItem::GetValueTextByPos( sal_uInt16 nPos ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( nPos < SVX_BREAK_END, "enum overflow!" );
-//STRIP001  XubString aStr( SVX_RES( RID_SVXITEMS_BREAK_BEGIN + nPos ) );
-//STRIP001  return aStr;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 /*N*/ sal_Bool SvxFmtBreakItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
@@ -3048,35 +2108,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxFmtKeepItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          sal_uInt16 nId = RID_SVXITEMS_FMTKEEP_FALSE;
-//STRIP001
-//STRIP001          if ( GetValue() )
-//STRIP001              nId = RID_SVXITEMS_FMTKEEP_TRUE;
-//STRIP001          rText = SVX_RESSTR(nId);
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // class SvxLineItem ------------------------------------------------------
 
@@ -3090,29 +2121,13 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineItem::SvxLineItem( const SvxLineItem& rCpy ) :
-//STRIP001
-//STRIP001  SfxPoolItem ( rCpy )
-//STRIP001 {
-//STRIP001  pLine = rCpy.GetLine() ? new SvxBorderLine( *rCpy.GetLine() ) : 0;
-//STRIP001 }
 
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineItem::~SvxLineItem()
-//STRIP001 {
-//STRIP001  delete pLine;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxLineItem& SvxLineItem::operator=( const SvxLineItem& rLine )
-//STRIP001 {
-//STRIP001  SetLine( rLine.GetLine() );
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -3120,7 +2135,6 @@ using namespace ::com::sun::star;
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
 /*?*/
-//STRIP001  return CmpBrdLn( pLine, ((SvxLineItem&)rAttr).GetLine() );
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -3130,136 +2144,29 @@ using namespace ::com::sun::star;
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxLineItem( *this );
 /*?*/ }
 
-//STRIP001 sal_Bool SvxLineItem::QueryValue( uno::Any& rVal, BYTE nMemId ) const
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemId&CONVERT_TWIPS);
-//STRIP001     nMemId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Int32 nVal = 0;
-//STRIP001     if( pLine )
-//STRIP001  {
-//STRIP001      switch ( nMemId )
-//STRIP001      {
-//STRIP001             case MID_FG_COLOR:      nVal = pLine->GetColor().GetColor(); break;
-//STRIP001          case MID_OUTER_WIDTH:   nVal = pLine->GetOutWidth();    break;
-//STRIP001          case MID_INNER_WIDTH:   nVal = pLine->GetInWidth( );    break;
-//STRIP001          case MID_DISTANCE:      nVal = pLine->GetDistance();    break;
-//STRIP001          default:
-//STRIP001                 DBG_ERROR( "Wrong MemberId" );
-//STRIP001                 return sal_False;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     rVal <<= nVal;
-//STRIP001     return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxLineItem::PutValue( const uno::Any& rVal, BYTE nMemId )
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemId&CONVERT_TWIPS);
-//STRIP001     nMemId &= ~CONVERT_TWIPS;
-//STRIP001     sal_Int32 nVal;
-//STRIP001     if ( rVal >>= nVal )
-//STRIP001     {
-//STRIP001         if ( !pLine )
-//STRIP001             pLine = new SvxBorderLine;
-//STRIP001         switch ( nMemId )
-//STRIP001         {
-//STRIP001             case MID_FG_COLOR:      pLine->SetColor( Color(nVal) ); break;
-//STRIP001             case MID_OUTER_WIDTH:   pLine->SetOutWidth(nVal);   break;
-//STRIP001             case MID_INNER_WIDTH:   pLine->SetInWidth( nVal);   break;
-//STRIP001             case MID_DISTANCE:      pLine->SetDistance(nVal);   break;
-//STRIP001             default:
-//STRIP001                 DBG_ERROR( "Wrong MemberId" );
-//STRIP001                 return sal_False;
-//STRIP001         }
-//STRIP001
-//STRIP001         return sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     return sal_False;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLineItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if ( pLine )
-//STRIP001                 rText = pLine->GetValueString( eCoreUnit, ePresUnit, pIntl,
-//STRIP001                  (SFX_ITEM_PRESENTATION_COMPLETE == ePres) );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvStream& SvxLineItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
-//STRIP001 {
-//STRIP001  if( pLine )
-//STRIP001  {
-//STRIP001      rStrm << pLine->GetColor()
-//STRIP001            << (short)pLine->GetOutWidth()
-//STRIP001            << (short)pLine->GetInWidth()
-//STRIP001            << (short)pLine->GetDistance();
-//STRIP001  }
-//STRIP001  return rStrm;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxLineItem::ScaleMetrics( long nMult, long nDiv )
-//STRIP001 {
-//STRIP001  if ( pLine ) pLine->ScaleMetrics( nMult, nDiv );
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 int SvxLineItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return 1;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxPoolItem* SvxLineItem::Create( SvStream& rStrm, sal_uInt16 ) const
-//STRIP001 {
-//STRIP001  SvxLineItem* pLine = new SvxLineItem( Which() );
-//STRIP001  short        nOutline, nInline, nDistance;
-//STRIP001  Color        aColor;
-//STRIP001
-//STRIP001  rStrm >> aColor >> nOutline >> nInline >> nDistance;
-//STRIP001  SvxBorderLine aLine( &aColor, nOutline, nInline, nDistance );
-//STRIP001  pLine->SetLine( &aLine );
-//STRIP001  return pLine;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxLineItem::SetLine( const SvxBorderLine* pNew )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  delete pLine;
-//STRIP001  pLine = pNew ? new SvxBorderLine( *pNew ) : 0;
 /*N*/ }
 
 #ifdef WNT
@@ -3302,11 +2209,6 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*?*/ Graphic SvxBrushItemLink_Impl::GetGraphic( const String& rLink, const String& rFilter)
 /*?*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); Graphic aResult; return aResult;//STRIP001 Graphic aResult;
-//STRIP001  SvxBrushItem aItem( rLink, rFilter, GPOS_TILED );
-//STRIP001  const Graphic* pGraph = aItem.GetGraphic();
-//STRIP001  if( pGraph )
-//STRIP001      aResult = *pGraph;
-//STRIP001  return aResult;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -3314,10 +2216,6 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*?*/ CreateSvxBrushTabPage SvxBrushItemLink_Impl::GetBackgroundTabpageCreateFunc()
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  return (CreateSvxBrushTabPage)SvxBackgroundTabPage::Create;
-//STRIP001 #else
-//STRIP001  return CreateSvxBrushTabPage();
-//STRIP001 #endif
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -3325,25 +2223,16 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*?*/ GetSvxBrushTabPageRanges SvxBrushItemLink_Impl::GetBackgroundTabpageRanges()
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  return (GetSvxBrushTabPageRanges)SvxBackgroundTabPage::GetRanges;
-//STRIP001 #else
-//STRIP001  return GetSvxBrushTabPageRanges();
-//STRIP001 #endif
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxBrushItem::InitSfxLink()
 /*N*/ {
-//STRIP001 SfxBrushItemLink::Set( new SvxBrushItemLink_Impl );
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxBrushItem::SetDoneLink( const Link& rLink )
-//STRIP001 {
-//STRIP001  pImpl->aDoneLink = rLink;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -3773,45 +2662,6 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxBrushItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if ( GPOS_NONE  == eGraphicPos )
-//STRIP001          {
-//STRIP001              rText = ::GetColorString( aColor );
-//STRIP001              rText += cpDelim;
-//STRIP001              sal_uInt16 nId = RID_SVXITEMS_TRANSPARENT_FALSE;
-//STRIP001
-//STRIP001              if ( aColor.GetTransparency() )
-//STRIP001                  nId = RID_SVXITEMS_TRANSPARENT_TRUE;
-//STRIP001              rText += SVX_RESSTR(nId);
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR(RID_SVXITEMS_GRAPHIC);
-//STRIP001          }
-//STRIP001
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -3937,62 +2787,12 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 GraphicFilter* GetGrfFilter();
 
-//STRIP001 IMPL_STATIC_LINK( SvxBrushItem, DoneHdl_Impl, void*, EMPTYARG )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  pThis->pImpl->pGraphicObject = new GraphicObject;
-//STRIP001  SvStream* pStream = pThis->pImpl->xMedium->GetInStream();
-//STRIP001  if( pStream && !pStream->GetError() )
-//STRIP001  {
-//STRIP001      Graphic aGraphic;
-//STRIP001      int nRes;
-//STRIP001      pStream->Seek( STREAM_SEEK_TO_BEGIN );
-//STRIP001      nRes = GetGrfFilter()->
-//STRIP001          ImportGraphic( aGraphic, *pThis->pStrLink, *pStream,
-//STRIP001                         GRFILTER_FORMAT_DONTKNOW, NULL, GRFILTER_I_FLAGS_DONT_SET_LOGSIZE_FOR_JPEG );
-//STRIP001
-//STRIP001      if( nRes != GRFILTER_OK )
-//STRIP001      {
-//STRIP001          DELETEZ( pThis->pImpl->pGraphicObject );
-//STRIP001          pThis->bLoadAgain = sal_False;
-//STRIP001      }
-//STRIP001      else
-//STRIP001         {
-//STRIP001          pThis->pImpl->pGraphicObject->SetGraphic( aGraphic );
-//STRIP001             pThis->ApplyGraphicTransparency_Impl();
-//STRIP001         }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      DELETEZ( pThis->pImpl->pGraphicObject );
-//STRIP001      pThis->bLoadAgain = sal_False;
-//STRIP001  }
-//STRIP001
-//STRIP001  pThis->pImpl->xMedium.Clear();
-//STRIP001  pThis->pImpl->aDoneLink.Call( pThis );
-//STRIP001 #endif
-//STRIP001  return 0;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxBrushItem::PurgeGraphic() const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  PurgeMedium();
-//STRIP001  DELETEZ( pImpl->pGraphicObject );
-//STRIP001  ((SvxBrushItem*)this)->bLoadAgain = sal_True;
-//STRIP001 #endif
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxBrushItem::PurgeMedium() const
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  pImpl->xMedium.Clear();
-//STRIP001 #endif
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -4032,16 +2832,10 @@ GraphicFilter* GetGrfFilter();
 /*?*/               // behandelt. Der Callback erfolgt nur bei asynchronem Eintreffen
 /*?*/               // der Daten
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/
-//STRIP001 /*?*/                Link aTmp = pImpl->aDoneLink;
-//STRIP001 /*?*/                pImpl->aDoneLink = Link();
-//STRIP001 /*?*/                pImpl->xMedium->DownLoad(
-//STRIP001 /*?*/                    STATIC_LINK( this, SvxBrushItem, DoneHdl_Impl ) );
-//STRIP001 /*?*/                pImpl->aDoneLink = aTmp;
 /*?*/           }
 /*?*/           else
 /*?*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pImpl->xMedium->DownLoad( );
-//STRIP001 /*?*/                DoneHdl_Impl( (SvxBrushItem*)this, 0 );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -4100,23 +2894,6 @@ GraphicFilter* GetGrfFilter();
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SvxBrushItem::SetGraphicObject( const GraphicObject& rNewObj )
-//STRIP001 {
-//STRIP001  if ( !pStrLink )
-//STRIP001  {
-//STRIP001      if ( pImpl->pGraphicObject )
-//STRIP001          *pImpl->pGraphicObject = rNewObj;
-//STRIP001      else
-//STRIP001          pImpl->pGraphicObject = new GraphicObject( rNewObj );
-//STRIP001
-//STRIP001         ApplyGraphicTransparency_Impl();
-//STRIP001
-//STRIP001         if ( GPOS_NONE == eGraphicPos )
-//STRIP001          eGraphicPos = GPOS_MM; // None waere Brush, also Default: Mitte
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR( "SetGraphic() on linked graphic! :-/" );
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -4151,51 +2928,8 @@ GraphicFilter* GetGrfFilter();
 /*N*/ }
 
 //static
-//STRIP001 SvxGraphicPosition SvxBrushItem::WallpaperStyle2GraphicPos( WallpaperStyle eStyle )
-//STRIP001 {
-//STRIP001  SvxGraphicPosition eResult;
-//STRIP001  // der Switch ist nicht der schnellste, dafuer aber am sichersten
-//STRIP001  switch( eStyle )
-//STRIP001  {
-//STRIP001      case WALLPAPER_NULL: eResult = GPOS_NONE; break;
-//STRIP001      case WALLPAPER_TILE: eResult = GPOS_TILED; break;
-//STRIP001      case WALLPAPER_CENTER: eResult = GPOS_MM; break;
-//STRIP001      case WALLPAPER_SCALE: eResult = GPOS_AREA; break;
-//STRIP001      case WALLPAPER_TOPLEFT: eResult = GPOS_LT; break;
-//STRIP001      case WALLPAPER_TOP: eResult = GPOS_MT; break;
-//STRIP001      case WALLPAPER_TOPRIGHT: eResult = GPOS_RT; break;
-//STRIP001      case WALLPAPER_LEFT: eResult = GPOS_LM; break;
-//STRIP001      case WALLPAPER_RIGHT: eResult = GPOS_RM; break;
-//STRIP001      case WALLPAPER_BOTTOMLEFT: eResult = GPOS_LB; break;
-//STRIP001      case WALLPAPER_BOTTOM: eResult = GPOS_MB; break;
-//STRIP001      case WALLPAPER_BOTTOMRIGHT: eResult = GPOS_RB; break;
-//STRIP001      default: eResult = GPOS_NONE;
-//STRIP001  }
-//STRIP001  return eResult;
-//STRIP001 };
 
 //static
-//STRIP001 WallpaperStyle SvxBrushItem::GraphicPos2WallpaperStyle( SvxGraphicPosition ePos )
-//STRIP001 {
-//STRIP001  WallpaperStyle eResult;
-//STRIP001  switch( ePos )
-//STRIP001  {
-//STRIP001      case GPOS_NONE: eResult = WALLPAPER_NULL; break;
-//STRIP001      case GPOS_TILED: eResult = WALLPAPER_TILE; break;
-//STRIP001      case GPOS_MM: eResult = WALLPAPER_CENTER; break;
-//STRIP001      case GPOS_AREA: eResult = WALLPAPER_SCALE; break;
-//STRIP001      case GPOS_LT: eResult = WALLPAPER_TOPLEFT; break;
-//STRIP001      case GPOS_MT: eResult = WALLPAPER_TOP; break;
-//STRIP001      case GPOS_RT: eResult = WALLPAPER_TOPRIGHT; break;
-//STRIP001      case GPOS_LM: eResult = WALLPAPER_LEFT; break;
-//STRIP001      case GPOS_RM: eResult = WALLPAPER_RIGHT; break;
-//STRIP001      case GPOS_LB: eResult = WALLPAPER_BOTTOMLEFT; break;
-//STRIP001      case GPOS_MB: eResult = WALLPAPER_BOTTOM; break;
-//STRIP001      case GPOS_RB: eResult = WALLPAPER_BOTTOMRIGHT; break;
-//STRIP001      default: eResult = WALLPAPER_NULL;
-//STRIP001  }
-//STRIP001  return eResult;
-//STRIP001 }
 
 
 /*N*/ SvxBrushItem::SvxBrushItem( const CntWallpaperItem& rItem, sal_uInt16 nWhich ) :
@@ -4205,32 +2939,8 @@ GraphicFilter* GetGrfFilter();
 /*N*/   pStrLink(0),
 /*N*/   pStrFilter(0)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  aColor = rItem.GetColor();
-//STRIP001
-//STRIP001  if( rItem.GetBitmapURL().Len() )
-//STRIP001  {
-//STRIP001      pStrLink    = new String( rItem.GetBitmapURL() );
-//STRIP001      SetGraphicPos( WallpaperStyle2GraphicPos((WallpaperStyle)rItem.GetStyle() ) );
-//STRIP001  }
 /*N*/ }
 
-//STRIP001 CntWallpaperItem* SvxBrushItem::CreateCntWallpaperItem() const
-//STRIP001 {
-//STRIP001  CntWallpaperItem* pItem = new CntWallpaperItem( 0 );
-//STRIP001  pItem->SetColor( aColor.GetColor() );
-//STRIP001  pItem->SetStyle( GraphicPos2WallpaperStyle( GetGraphicPos() ) );
-//STRIP001  sal_Bool bLink = (pStrLink != 0);
-//STRIP001  if( bLink )
-//STRIP001  {
-//STRIP001      String aURL = *pStrLink;
-//STRIP001      pItem->SetBitmapURL( aURL );
-//STRIP001  }
-//STRIP001  if( pImpl->pGraphicObject )
-//STRIP001      DBG_ERRORFILE( "Don't know what to do with a graphic" );
-//STRIP001 //       pItem->SetGraphic( *pImpl->pGraphic, bLink );
-//STRIP001
-//STRIP001  return pItem;
-//STRIP001 }
 
 #ifdef WNT
 #pragma optimize ( "", on )
@@ -4273,12 +2983,6 @@ GraphicFilter* GetGrfFilter();
 /*N*/   return new SvxFrameDirectionItem( *this );
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT nVer ) const
-//STRIP001 {
-//STRIP001  sal_uInt16 nValue;
-//STRIP001  rStrm >> nValue;
-//STRIP001  return new SvxFrameDirectionItem( (SvxFrameDirection)nValue, Which() );
-//STRIP001 }
 
 /*N*/ SvStream& SvxFrameDirectionItem::Store( SvStream & rStrm, USHORT nIVer ) const
 /*N*/ {
@@ -4292,30 +2996,6 @@ GraphicFilter* GetGrfFilter();
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxFrameDirectionItem::GetPresentation(
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit eCoreMetric,
-//STRIP001  SfxMapUnit ePresMetric,
-//STRIP001  String &rText,
-//STRIP001     const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  SfxItemPresentation eRet = ePres;
-//STRIP001     switch( ePres )
-//STRIP001     {
-//STRIP001     case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001         rText.Erase();
-//STRIP001      break;
-//STRIP001
-//STRIP001     case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001     case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      rText = SVX_RESSTR( RID_SVXITEMS_FRMDIR_BEGIN + GetValue() );
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      eRet = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001     }
-//STRIP001     return eRet;
-//STRIP001 }
 
 /*N*/ sal_Bool SvxFrameDirectionItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE )
