@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_cube3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:29:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:47:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
 #ifndef _E3D_CUBE3D_HXX
 #include "cube3d.hxx"
@@ -44,13 +43,7 @@
 #include "globl3d.hxx"
 #endif
 
-// auto strip #ifndef _POLY3D_HXX
-// auto strip #include "poly3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_VECTOR3D_HXX
-// auto strip #include <goodies/vector3d.hxx>
-// auto strip #endif
 
 #ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
@@ -125,45 +118,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCubeObj::GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const
-//STRIP001 {
-//STRIP001  // add geometry describing polygons to rLinePolyPolygon
-//STRIP001  Polygon3D aNewUpper(5);
-//STRIP001  aNewUpper[0] = Vector3D(aCubePos.X(), aCubePos.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  aNewUpper[1] = Vector3D(aCubePos.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  aNewUpper[2] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  aNewUpper[3] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  aNewUpper[4] = aNewUpper[0];
-//STRIP001  rLinePolyPolygon.Insert(aNewUpper);
-//STRIP001
-//STRIP001  Polygon3D aNewLower(5);
-//STRIP001  aNewLower[0] = Vector3D(aCubePos.X(), aCubePos.Y(), aCubePos.Z());
-//STRIP001  aNewLower[1] = Vector3D(aCubePos.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z());
-//STRIP001  aNewLower[2] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z());
-//STRIP001  aNewLower[3] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y(), aCubePos.Z());
-//STRIP001  aNewLower[4] = aNewLower[0];
-//STRIP001  rLinePolyPolygon.Insert(aNewLower);
-//STRIP001
-//STRIP001  Polygon3D aNewVertical(2);
-//STRIP001  aNewVertical[0] = Vector3D(aCubePos.X(), aCubePos.Y(), aCubePos.Z());
-//STRIP001  aNewVertical[1] = Vector3D(aCubePos.X(), aCubePos.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  rLinePolyPolygon.Insert(aNewVertical);
-//STRIP001
-//STRIP001  aNewVertical[0] = Vector3D(aCubePos.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z());
-//STRIP001  aNewVertical[1] = Vector3D(aCubePos.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  rLinePolyPolygon.Insert(aNewVertical);
-//STRIP001
-//STRIP001  aNewVertical[0] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z());
-//STRIP001  aNewVertical[1] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y() + aCubeSize.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  rLinePolyPolygon.Insert(aNewVertical);
-//STRIP001
-//STRIP001  aNewVertical[0] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y(), aCubePos.Z());
-//STRIP001  aNewVertical[1] = Vector3D(aCubePos.X() + aCubeSize.X(), aCubePos.Y(), aCubePos.Z() + aCubeSize.Z());
-//STRIP001  rLinePolyPolygon.Insert(aNewVertical);
-//STRIP001
-//STRIP001  // don't call parent
-//STRIP001  // E3dCompoundObject::GetLineGeometry(rLinePolyPolygon);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -367,19 +321,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCubeObj::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  E3dCompoundObject::operator=(rObj);
-//STRIP001
-//STRIP001  // weitere Parameter kopieren
-//STRIP001  const E3dCubeObj& r3DObj = (const E3dCubeObj&)rObj;
-//STRIP001
-//STRIP001  aCubePos = r3DObj.aCubePos;
-//STRIP001  aCubeSize = r3DObj.aCubeSize;
-//STRIP001  bPosIsCenter = r3DObj.bPosIsCenter;
-//STRIP001  nSideFlags = r3DObj.nSideFlags;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -407,21 +348,8 @@ namespace binfilter {
 
 /*N*/ void E3dCubeObj::SetPosIsCenter(BOOL bNew)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(bPosIsCenter != bNew)
-//STRIP001  {
-//STRIP001      bPosIsCenter = bNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
 /*N*/ }
 
-//STRIP001 void E3dCubeObj::SetSideFlags(UINT16 nNew)
-//STRIP001 {
-//STRIP001  if(nSideFlags != nNew)
-//STRIP001  {
-//STRIP001      nSideFlags = nNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -429,19 +357,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCubeObj::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulCube3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -449,10 +364,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCubeObj::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralCube3d);
-//STRIP001 }
 
 
 }
