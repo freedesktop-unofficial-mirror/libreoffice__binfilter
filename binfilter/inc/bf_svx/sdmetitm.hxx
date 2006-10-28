@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdmetitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:20:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:58:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,13 +57,7 @@ public:
     SdrMetricItem(USHORT nId, SvStream& rIn): SfxInt32Item(nId,rIn) {}
     virtual SfxPoolItem* Clone(SfxItemPool* pPool=NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
-//STRIP001  virtual FASTBOOL HasMetrics() const;
-//STRIP001  virtual FASTBOOL ScaleMetrics(long nMul, long nDiv);
 
-//STRIP001  virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePres,
-//STRIP001                                              SfxMapUnit eCoreMetric,
-//STRIP001                                              SfxMapUnit ePresMetric,
-//STRIP001                                                 String& rText, const IntlWrapper * = 0) const;
 
 #ifdef SDR_ISPOOLABLE
     virtual int IsPoolable() const;

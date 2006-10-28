@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scripttypeitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:17:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:57:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,15 +60,6 @@ USHORT GetI18NScriptTypeOfLanguage( USHORT nLang );
 USHORT GetItemScriptType( short nI18NType );
 short  GetI18NScriptType( USHORT nItemType );
 
-//STRIP001 class SvxScriptTypeItem : public SfxUInt16Item
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  TYPEINFO();
-//STRIP001
-//STRIP001  SvxScriptTypeItem( sal_uInt16 nType = SCRIPTTYPE_LATIN );
-//STRIP001  virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001 };
 
 class SvxScriptSetItem : public SfxSetItem
 {
@@ -87,7 +78,6 @@ public:
 
     const SfxPoolItem* GetItemOfScript( USHORT nScript ) const;
 
-//STRIP001  void PutItemForScriptType( USHORT nScriptType, const SfxPoolItem& rItem );
 
     void GetWhichIds( USHORT& rLatin, USHORT& rAsian, USHORT& rComplex) const;
 

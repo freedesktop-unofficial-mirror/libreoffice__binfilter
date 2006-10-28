@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdasaitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:17:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:57:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,25 +69,17 @@ class SdrAutoShapeAdjustmentItem : public SfxPoolItem
             ~SdrAutoShapeAdjustmentItem();
 
             virtual int                 operator==( const SfxPoolItem& ) const;
-//STRIP001          virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePresentation,
-//STRIP001                                          SfxMapUnit eCoreMetric, SfxMapUnit ePresentationMetric,
-//STRIP001                                                 String &rText, const IntlWrapper * = 0) const;
             virtual SfxPoolItem*        Create( SvStream&, sal_uInt16 nItem ) const;
             virtual SvStream&           Store( SvStream&, sal_uInt16 nVersion ) const;
             virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
             virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
-//STRIP001          virtual sal_Bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001          virtual sal_Bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 #ifdef SDR_ISPOOLABLE
             virtual int IsPoolable() const;
 #endif
 
             sal_uInt32                          GetCount() const { return aAdjustmentValueList.Count(); };
-//STRIP001          const SdrAutoShapeAdjustmentValue&  GetValue( sal_uInt32 nIndex ) const;
-//STRIP001          void                                SetValue( sal_uInt32 nIndex,
-//STRIP001                                                      const SdrAutoShapeAdjustmentValue& rVal );
 };
 
 }//end of namespace binfilter
