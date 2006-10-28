@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtclds.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:01:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:42:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,12 +38,6 @@
 #ifndef _COLOR_HXX
 #include <tools/color.hxx>
 #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
@@ -127,11 +121,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
@@ -168,11 +157,9 @@ public:
     //Wenn das Flag bOrtho gesetzt ist, werden die Spalten neu optisch
     //verteilt. Ist das Flag nicht gesetzt werden die Spaltenbreiten nicht
     //veraendert und die Raender werden einfach eingestellt.
-//STRIP001  void SetGutterWidth( USHORT nNew, USHORT nAct );
 
     //Verteilt ebenfalls automatisch neu wenn das Flag gesetzt wird;
     //nur dann wird auch der zweite Param. benoetigt und beachtet.
-//STRIP001  void SetOrtho( BOOL bNew, USHORT nGutterWidth, USHORT nAct );
 
     //Fuer den Reader
     void _SetOrtho( BOOL bNew ) { bOrtho = bNew; }
@@ -184,7 +171,6 @@ public:
 
     //Wie oben, aber es wir die Breite der PrtArea - also das was fuer
     //den Anwender die Spalte ist - geliefert.
-//STRIP001  USHORT CalcPrtColWidth( USHORT nCol, USHORT nAct ) const;
 };
 
 #if !(defined(MACOSX) && ( __GNUC__ < 3 ))
