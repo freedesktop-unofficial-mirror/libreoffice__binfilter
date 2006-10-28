@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:15:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:29:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -135,7 +135,6 @@ public:
     const SfxItemSet&   GetEmptyItemSet();
 
     void            SetDefTab( USHORT nDefTab );
-//STRIP001  USHORT          GetDefTab() const;
 
     void            SetRefDevice( OutputDevice* pRefDef );
     OutputDevice*   GetRefDevice() const;
@@ -147,21 +146,13 @@ public:
     BOOL            GetUpdateMode() const;
 
     void            SetBackgroundColor( const Color& rColor );
-//STRIP001  Color           GetBackgroundColor() const;
     Color           GetAutoColor() const;
     void            EnableAutoColor( BOOL b );
-//STRIP001     BOOL            IsAutoColorEnabled() const;
-//STRIP001     void            ForceAutoColor( BOOL b );
     BOOL            IsForceAutoColor() const;
 
     void            InsertView( EditView* pEditView, USHORT nIndex = EE_APPEND );
     EditView*       RemoveView( EditView* pEditView );
-//STRIP001  EditView*       RemoveView( USHORT nIndex = EE_APPEND );
-//STRIP001  EditView*       GetView( USHORT nIndex = 0 ) const;
-//STRIP001  USHORT          GetViewCount() const;
     BOOL            HasView( EditView* pView ) const;
-//STRIP001  EditView*       GetActiveView() const;
-//STRIP001  void            SetActiveView( EditView* pView );
 
     void            SetPaperSize( const Size& rSize );
     const Size&     GetPaperSize() const;
@@ -169,29 +160,19 @@ public:
     void            SetVertical( BOOL bVertical );
     BOOL            IsVertical() const;
 
-//STRIP001     void                        SetDefaultHorizontalTextDirection( EEHorizontalTextDirection eHTextDir );
-//STRIP001     EEHorizontalTextDirection   GetDefaultHorizontalTextDirection() const;
 
     USHORT          GetScriptType( const ESelection& rSelection ) const;
     LanguageType    GetLanguage( USHORT nPara, USHORT nPos ) const;
 
-//STRIP001  void            TransliterateText( const ESelection& rSelection, sal_Int32 nTransliterationMode );
 
     void            SetAsianCompressionMode( USHORT nCompression );
-//STRIP001  USHORT          GetAsianCompressionMode() const;
 
     void            SetKernAsianPunctuation( BOOL bEnabled );
-//STRIP001     BOOL            IsKernAsianPunctuation() const;
 
-//STRIP001  void                SetPolygon( const XPolyPolygon& rPoly );
-//STRIP001  void                SetPolygon( const XPolyPolygon& rPoly, const XPolyPolygon* pXorPoly );
     void                ClearPolygon();
-//STRIP001  const PolyPolygon*  GetPolygon();
 
-//STRIP001  const Size&     GetMinAutoPaperSize() const;
     void            SetMinAutoPaperSize( const Size& rSz );
 
-//STRIP001  const Size&     GetMaxAutoPaperSize() const;
     void            SetMaxAutoPaperSize( const Size& rSz );
 
     String          GetText( LineEnd eEnd = LINEEND_LF ) const;
@@ -215,27 +196,18 @@ public:
     EPosition       FindDocPosition( const Point& rDocPos ) const;
     Rectangle       GetCharacterBounds( const EPosition& rPos ) const;
 
-//STRIP001  String          GetWord( USHORT nPara, xub_StrLen nIndex );
 
     ESelection      GetWord( const ESelection& rSelection, USHORT nWordType ) const;
-//STRIP001     ESelection      WordLeft( const ESelection& rSelection, USHORT nWordType  ) const;
-//STRIP001     ESelection      WordRight( const ESelection& rSelection, USHORT nWordType  ) const;
-//STRIP001     ESelection      CursorLeft( const ESelection& rSelection, USHORT nCharacterIteratorMode ) const;
-//STRIP001     ESelection      CursorRight( const ESelection& rSelection, USHORT nCharacterIteratorMode ) const;
 
     void            Clear();
     void            SetText( const String& rStr );
 
     EditTextObject* CreateTextObject();
     EditTextObject* CreateTextObject( USHORT nPara, USHORT nParas = 1 );
-//STRIP001  EditTextObject* CreateTextObject( const ESelection& rESelection );
     void            SetText( const EditTextObject& rTextObject );
 
-//STRIP001  void            RemoveParagraph( USHORT nPara );
-//STRIP001  void            InsertParagraph( USHORT nPara, const EditTextObject& rTxtObj );
     void            InsertParagraph( USHORT nPara, const String& rText);
 
-//STRIP001  void            SetText( USHORT nPara, const EditTextObject& rTxtObj );
     void            SetText( USHORT nPara, const String& rText);
 
     void                SetParaAttribs( USHORT nPara, const SfxItemSet& rSet );
@@ -249,13 +221,8 @@ public:
     BOOL                HasParaAttrib( USHORT nPara, USHORT nWhich ) const;
     const SfxPoolItem&  GetParaAttrib( USHORT nPara, USHORT nWhich );
 
-//STRIP001  Font            GetStandardFont( USHORT nPara );
-//STRIP001  SvxFont         GetStandardSvxFont( USHORT nPara );
 
-//STRIP001     void            RemoveAttribs( const ESelection& rSelection, sal_Bool bRemoveParaAttribs, sal_uInt16 nWhich );
 
-//STRIP001  void            ShowParagraph( USHORT nParagraph, BOOL bShow = TRUE );
-//STRIP001  BOOL            IsParagraphVisible( USHORT nParagraph );
 
     SfxUndoManager& GetUndoManager();
     void            UndoActionStart( USHORT nId );
@@ -272,55 +239,41 @@ public:
     void            SetModifyHdl( const Link& rLink );
     Link            GetModifyHdl() const;
 
-//STRIP001  BOOL            IsInSelectionMode() const;
-//STRIP001  void            StopSelectionMode();
 
     void            StripPortions();
     void            GetPortions( USHORT nPara, SvUShorts& rList );
 
-//STRIP001  long            GetFirstLineStartX( USHORT nParagraph );
     Point           GetDocPosTopLeft( USHORT nParagraph );
     Point           GetDocPos( const Point& rPaperPos ) const;
     BOOL            IsTextPos( const Point& rPaperPos, USHORT nBorder = 0 );
 
     // StartDocPos entspr. VisArea.TopLeft().
-//STRIP001  void            Draw( OutputDevice* pOutDev, const Rectangle& rOutRect );
-//STRIP001  void            Draw( OutputDevice* pOutDev, const Rectangle& rOutRect, const Point& rStartDocPos );
-//STRIP001  void            Draw( OutputDevice* pOutDev, const Rectangle& rOutRect, const Point& rStartDocPos, BOOL bClip );
-//STRIP001  void            Draw( OutputDevice* pOutDev, const Point& rStartPos, short nOrientation = 0 );
 
 //  ULONG: Fehlercode des Streams.
     ULONG           Read( SvStream& rInput, EETextFormat, SvKeyValueIterator* pHTTPHeaderAttrs = NULL );
     ULONG           Write( SvStream& rOutput, EETextFormat );
 
     void            SetStatusEventHdl( const Link& rLink );
-//STRIP001  Link            GetStatusEventHdl() const;
 
     void            SetNotifyHdl( const Link& rLink );
     Link            GetNotifyHdl() const;
 
-//STRIP001  void            SetImportHdl( const Link& rLink );
-//STRIP001  Link            GetImportHdl() const;
 
     // Flat-Mode: Keine Zeichenformatierung auswerten => Fuer Outliner
     BOOL            IsFlatMode() const;
-//STRIP001  void            SetFlatMode( BOOL bFlat );
 
     void            SetControlWord( sal_uInt32 nWord );
     sal_uInt32      GetControlWord() const;
 
     void            QuickSetAttribs( const SfxItemSet& rSet, const ESelection& rSel );
     void            QuickRemoveCharAttribs( USHORT nPara, USHORT nWhich = 0 );
-//STRIP001  void            QuickMarkInvalid( const ESelection& rSel );
     void            QuickFormatDoc( BOOL bFull = FALSE );
     void            QuickInsertField( const SvxFieldItem& rFld, const ESelection& rSel );
     void            QuickInsertLineBreak( const ESelection& rSel );
     void            QuickInsertText( const String& rText, const ESelection& rSel );
     void            QuickDelete( const ESelection& rSel );
-//STRIP001  void            QuickMarkToBeRepainted( USHORT nPara );
 
     void            SetGlobalCharStretching( USHORT nX = 100, USHORT nY = 100 );
-//STRIP001  void            GetGlobalCharStretching( USHORT& rX, USHORT& rY );
     void            DoStretchChars( USHORT nX, USHORT nY );
 
     void            SetEditTextObjectPool( SfxItemPool* pPool );
@@ -335,53 +288,32 @@ public:
     void            SetWordDelimiters( const String& rDelimiters );
     String          GetWordDelimiters() const;
 
-//STRIP001  void            SetGroupChars( const String& rChars );
-//STRIP001  String          GetGroupChars() const;
 
-//STRIP001  void            EnablePasteSpecial( BOOL bEnable );
-//STRIP001  BOOL            IsPasteSpecialEnabled() const;
 
-//STRIP001  void            EnableIdleFormatter( BOOL bEnable );
-//STRIP001  BOOL            IsIdleFormatterEnabled() const;
 
     void            EraseVirtualDevice();
 
     void            SetSpeller( ::com::sun::star::uno::Reference<
                             ::com::sun::star::linguistic2::XSpellChecker1 > &xSpeller );
-//STRIP001  ::com::sun::star::uno::Reference<
-//STRIP001      ::com::sun::star::linguistic2::XSpellChecker1 >
-//STRIP001                  GetSpeller();
-//STRIP001  ::com::sun::star::uno::Reference<
-//STRIP001      ::com::sun::star::linguistic2::XHyphenator >
-//STRIP001                  GetHyphenator() const;
     void            SetHyphenator( ::com::sun::star::uno::Reference<
                             ::com::sun::star::linguistic2::XHyphenator >& xHyph );
 
     void            SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
-//STRIP001  vos::ORef<SvxForbiddenCharactersTable>  GetForbiddenCharsTable() const;
 
     void            SetDefaultLanguage( LanguageType eLang );
-//STRIP001  LanguageType    GetDefaultLanguage() const;
 
     BOOL            HasOnlineSpellErrors() const;
     void            CompleteOnlineSpelling();
 
-//STRIP001  void            SetBigTextObjectStart( USHORT nStartAtPortionCount );
-//STRIP001  USHORT          GetBigTextObjectStart() const;
     BOOL            ShouldCreateBigTextObject() const;
 
     // Zum schnellen Vorab-Pruefen ohne View:
-//STRIP001  EESpellState    HasSpellErrors( LanguageType eLang );
-//STRIP001  EESpellState    HasSpellErrors();
-//STRIP001  BOOL            HasText( const SvxSearchItem& rSearchItem );
 
     BOOL            UpdateFields();
-//STRIP001  void            RemoveFields( BOOL bKeepFieldText, TypeId aType = NULL );
 
     USHORT          GetFieldCount( USHORT nPara ) const;
     EFieldInfo      GetFieldInfo( USHORT nPara, USHORT nField ) const;
 
-//STRIP001     BOOL            IsRightToLeft( USHORT nPara ) const;
 
     ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::XTransferable >
                     CreateTransferable( const ESelection& rSelection ) const;
@@ -396,7 +328,6 @@ public:
     virtual void    ParagraphInserted( USHORT nNewParagraph );
     virtual void    ParagraphDeleted( USHORT nDeletedParagraph );
     virtual void    ParaAttribsChanged( USHORT nParagraph );
-//STRIP001  virtual void    StyleSheetChanged( SfxStyleSheet* pStyle );
     virtual void    ParagraphHeightChanged( USHORT nPara );
 
     // #101498#
@@ -404,27 +335,16 @@ public:
 
     virtual String  GetUndoComment( USHORT nUndoId ) const;
     virtual BOOL    FormattingParagraph( USHORT nPara );
-//STRIP001  virtual BOOL    SpellNextDocument();
-//STRIP001  virtual void    FieldClicked( const SvxFieldItem& rField, USHORT nPara, xub_StrLen nPos );
-//STRIP001  virtual void    FieldSelected( const SvxFieldItem& rField, USHORT nPara, xub_StrLen nPos );
     virtual String  CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, xub_StrLen nPos, Color*& rTxtColor, Color*& rFldColor );
     virtual Rectangle GetBulletArea( USHORT nPara );
 
     static void     SetGetAutoCorrectHdl( const Link& rHdl );
     static SfxItemPool* CreatePool( BOOL bLoadRefCounts = TRUE );
-//STRIP001  static ULONG    RegisterClipboardFormatName();
-//STRIP001  static BOOL     DoesKeyChangeText( const KeyEvent& rKeyEvent );
-//STRIP001  static BOOL     DoesKeyMoveCursor( const KeyEvent& rKeyEvent );
     static BOOL     IsSimpleCharInput( const KeyEvent& rKeyEvent );
-//STRIP001  static USHORT   GetAvailableSearchOptions();
-//STRIP001  static void     SetFontInfoInItemSet( SfxItemSet& rItemSet, const Font& rFont );
-//STRIP001  static void     SetFontInfoInItemSet( SfxItemSet& rItemSet, const SvxFont& rFont );
-//STRIP001  static Font     CreateFontFromItemSet( const SfxItemSet& rItemSet );
     static Font     CreateFontFromItemSet( const SfxItemSet& rItemSet, USHORT nScriptType );
     static SvxFont  CreateSvxFontFromItemSet( const SfxItemSet& rItemSet );
     static void     ImportBulletItem( SvxNumBulletItem& rNumBullet, USHORT nLevel, const SvxBulletItem* pOldBullet, const SvxLRSpaceItem* pOldLRSpace );
     static BOOL     IsPrintable( sal_Unicode c ) { return ( ( c >= 32 ) && ( c != 127 ) ); }
-//STRIP001     static BOOL     HasValidData( ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::XTransferable >& rTransferable );
 };
 
 }//end of namespace binfilter
