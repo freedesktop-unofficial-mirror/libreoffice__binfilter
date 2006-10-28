@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdoutl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:04:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:54:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,7 +115,6 @@ class SdDrawDocument;
 class SdOutliner : public SdrOutliner
 {
 public:
-//STRIP001     friend class ::binfilter::sd::outliner::OutlinerContainer;
 
     /** Create a new sd outliner object.
         @param pDoc
@@ -137,11 +136,9 @@ public:
         search mode, may be restored after finishing searching/spell
         checking.
     */
-//STRIP001  void PrepareSpelling (void);
 
     /** Initiate a spell check.
     */
-//STRIP001  void StartSpelling (void);
 
     /** Initiate a find and/or replace on the next relevant text object.
         @return
@@ -149,7 +146,6 @@ public:
             indicated by user input to the search dialog).  A </FALSE> value
             indicates that another call to this method is required.
     */
-//STRIP001  BOOL StartSearchAndReplace (const SvxSearchItem* pSearchItem);
 
     /** Initiate the spell check of the next relevant text object.
         @return
@@ -157,13 +153,10 @@ public:
             required.  When all text objects have been processed then
             <FALSE/> is returned.
     */
-//STRIP001  virtual BOOL SpellNextDocument (void);
 
     /** Release all resources that have been created during the find&replace
         or spell check.
     */
-//STRIP001  void EndSpelling (void);
-//STRIP001  DECL_LINK( SpellError, void * );
 
 private:
     /// Specifies whether to search and replace or to spell check.
@@ -443,7 +436,6 @@ private:
             The position mentioned above in form of a selection with start
             equals end.
     */
-//STRIP001     ESelection GetSearchStartPosition (void);
 
     /** Detect whether there exists a previous match.  Note that only the
         absence of such a match can be detected reliably.  An existing match
@@ -454,7 +446,6 @@ private:
             Returns </True> when there is no previous match and </False>
             when there may be one.
     */
-//STRIP001     bool HasNoPreviousMatch (void);
 
     /** Handle a failed search (with or without replace) for the outline
         mode.  Show message boxes when the search failed completely,
@@ -465,7 +456,6 @@ private:
             search shall take place.  If that is so, then it is the caller's
             responsibility to set the cursor position accordingly.
     */
-//STRIP001     bool HandleFailedSearch (void);
 
     /** Return a parent window for a dialog.  The returned window depends on
         the search mode.
