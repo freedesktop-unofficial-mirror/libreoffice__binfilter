@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xflftrit.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:29:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:27:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,15 +70,11 @@ public:
     virtual SvStream&       Store( SvStream& rOut, USHORT nItemVersion ) const;
     virtual USHORT          GetVersion( USHORT nFileFormatVersion ) const;
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres, SfxMapUnit eCoreMetric,
-//STRIP001                                     SfxMapUnit ePresMetric, String &rText, const IntlWrapper * pIntlWrapper = 0 ) const;
 
     BOOL                    IsEnabled() const { return bEnabled; }
     void                    SetEnabled( BOOL bEnable ) { bEnabled = bEnable; }
 
-//STRIP001  static BOOL CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 );
     XFillFloatTransparenceItem* checkForUniqueItem( SdrModel* pModel ) const;
 };
 
