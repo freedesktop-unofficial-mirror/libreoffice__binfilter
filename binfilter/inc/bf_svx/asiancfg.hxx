@@ -4,9 +4,9 @@
  *
  *  $RCSfile: asiancfg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:04:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:20:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,11 +62,8 @@ public:
     virtual ~SvxAsianConfig();
 
     void            Load();
-//STRIP001  virtual void    Commit();
-//STRIP001  virtual void    Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
 
     sal_Bool    IsKerningWesternTextOnly() const;
-//STRIP001  void        SetKerningWesternTextOnly(sal_Bool bSet);
 
     sal_Int16   GetCharDistanceCompression() const;
     void        SetCharDistanceCompression(sal_Int16 nSet);
@@ -74,12 +71,6 @@ public:
     ::com::sun::star::uno::Sequence< ::com::sun::star::lang::Locale>
                 GetStartEndCharLocales();
 
-//STRIP001  sal_Bool    GetStartEndChars( const ::com::sun::star::lang::Locale& rLocale,
-//STRIP001                                  ::rtl::OUString& rStartChars,
-//STRIP001                                  ::rtl::OUString& rEndChars );
-//STRIP001  void        SetStartEndChars( const ::com::sun::star::lang::Locale& rLocale,
-//STRIP001                                  const ::rtl::OUString* pStartChars,
-//STRIP001                                  const ::rtl::OUString* pEndChars );
 };
 
 }//end of namespace binfilter
