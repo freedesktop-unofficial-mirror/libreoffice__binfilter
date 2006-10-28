@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfac.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:13:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:57:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -117,18 +117,13 @@ public:
     void            RegisterMenuBar( const ResId &rId );
     void            RegisterPluginMenuBar( const ResId &rId );
     void            RegisterAccel( const ResId &rId );
-//STRIP001  void            SetDocumentTypeNameResource( const ResId& rId );
-//STRIP001  String          GetDocumentTypeName() const;
     const ResId*    GetMenuBarId() const;
     const ResId*    GetPluginMenuBarId() const;
     const ResId*    GetAccelId() const;
     void            RegisterHelpFile( const String& );
-//STRIP001  const String&   GetHelpFile() const;
     void            SetExplorerImageId( USHORT nImageId );
-//STRIP001  USHORT          GetExplorerImageId() const;
 
     void            RegisterHelpPIFile( const String& );
-//STRIP001  const String&   GetHelpPIFile() const;
     SfxFactoryFilterContainer *GetFilterContainer( BOOL bForceLoad = TRUE) const;
 
     void            SetCreateNewSlotId( USHORT nId );
