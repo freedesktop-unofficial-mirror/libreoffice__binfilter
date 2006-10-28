@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdogrp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:16:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:08:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -148,67 +148,45 @@ public:
     // von selbst (SfxLinkManager). Die Methode LoadGroup() kann ausserdem
     // verwendet werden, um eine benannte Gruppe aus einem fremden Dokument zu
     // laden (ohne Verknuepfung).
-//STRIP001  void SetGroupLink(const String& rFileName, const String& rObjName);
     void ReleaseGroupLink();
     FASTBOOL IsLinkedGroup() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
-//STRIP001  FASTBOOL ReloadLinkedGroup(FASTBOOL bForceLoad=FALSE);
 
     // pnPgNum, etc. ist zum schnelleren wiederauffinden gedacht
-//STRIP001  FASTBOOL LoadGroup(const String& rFileName, const String& rObjName, USHORT* pnPgNum=NULL, FASTBOOL* pbMasterPg=NULL, ULONG* pnObjNum=NULL);
 
     virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual SdrLayerID GetLayer() const;
     virtual void NbcSetLayer(SdrLayerID nLayer);
     virtual void SetObjList(SdrObjList* pNewObjList);
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pNewModel);
-//STRIP001  virtual FASTBOOL HasRefPoint() const;
-//STRIP001  virtual Point GetRefPoint() const;
-//STRIP001  virtual void SetRefPoint(const Point& rPnt);
     virtual SdrObjList* GetSubList() const;
 
     virtual const Rectangle& GetBoundRect() const;
     virtual const Rectangle& GetSnapRect() const;
     virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
     virtual void operator=(const SdrObject& rObj);
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
-//STRIP001  virtual FASTBOOL HasSetName() const;
 
     virtual void SetName(const String& rStr);
     virtual String GetName() const;
 
     virtual void RecalcSnapRect();
     virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
 
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag)  const;
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
 
     virtual long GetRotateAngle() const;
     virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
 
     virtual void Move(const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void Mirror(const Point& rRef1, const Point& rRef2);
-//STRIP001  virtual void Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
     virtual void SetAnchorPos(const Point& rPnt);
     virtual void SetRelativePos(const Point& rPnt);
     virtual void SetSnapRect(const Rectangle& rRect);
-//STRIP001  virtual void SetLogicRect(const Rectangle& rRect);
 
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-//STRIP001  virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
     virtual void NbcSetAnchorPos(const Point& rPnt);
-//STRIP001  virtual void NbcSetRelativePos(const Point& rPnt);
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
 
@@ -228,20 +206,16 @@ public:
     virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 
-//STRIP001  virtual void NbcReformatText();
     virtual void ReformatText();
-//STRIP001  virtual void BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly=FALSE );
 
     virtual void RestartAnimation(SdrPageView* pPageView) const;
 
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 
     // ItemPool fuer dieses Objekt wechseln
-//STRIP001  virtual void MigrateItemPool(SfxItemPool* pSrcPool, SfxItemPool* pDestPool, SdrModel* pNewModel = NULL );
 };
 
 }//end of namespace binfilter
