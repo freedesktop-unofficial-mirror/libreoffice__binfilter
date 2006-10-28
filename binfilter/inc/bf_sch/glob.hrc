@@ -4,9 +4,9 @@
  *
  *  $RCSfile: glob.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:46:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:48:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,4 +63,3 @@
 #define STR_ONLY_ABS_VALUES             (RID_APP_START + 542)
 // #define STR_EQUIVALATE_AXIS             (RID_APP_START + 543)    // unused
 
-//STRIP001 #define STR_TRANSLATED                   (RID_APP_START + 544)

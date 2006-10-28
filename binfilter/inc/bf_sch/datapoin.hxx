@@ -4,9 +4,9 @@
  *
  *  $RCSfile: datapoin.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:45:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:47:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ class SchDataPoint : public SdrObjUserData
 public:
     SchDataPoint();
     SchDataPoint(short nC, short nR);
-//STRIP001  SchDataPoint(const SchDataPoint& rDataPoint);
 
         virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: datalog.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:44:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:47:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,51 +72,12 @@ public:
      SchDataLogBook(const SchMemChart& aMemChart);
     ~SchDataLogBook();
 
-//STRIP001  BOOL IsValid() const;
-
-//STRIP001  BOOL IsChanged()    const;
-//STRIP001  BOOL IsRowChanged() const;
-//STRIP001  BOOL IsColChanged() const;
 
 
-//STRIP001  void SetValid(BOOL bValid)  {mbValid=bValid;}
-//STRIP001
-//STRIP001  long GetColCount()          {return mnCols;}
-//STRIP001  long GetRowCount()          {return mnRows;}
-//STRIP001
-//STRIP001  long GetColsAdded()         {return mnColsAdded;}
-//STRIP001  long GetRowsAdded()         {return mnRowsAdded;}
-//STRIP001
-//STRIP001  long GetColsInitial()       {return mnColsInitial;}
-//STRIP001  long GetRowsInitial()       {return mnRowsInitial;}
-//STRIP001
-//STRIP001  long GetCount()             {if(mbGetCol)return mnCols;return mnRows;}
-//STRIP001  long GetAdded()             {if(mbGetCol)return mnColsAdded;return mnRowsAdded;}
-//STRIP001  long GetInitial()           {if(mbGetCol)return mnColsInitial;return mnRowsInitial;}
-//STRIP001
-//STRIP001
-//STRIP001  void DeleteRow(const long nRow);
-//STRIP001  void DeleteCol(const long nCol);
-//STRIP001  void InsertRow(const long nRow);
-//STRIP001  void InsertCol(const long nCol);
-//STRIP001  void SwapCols(long nCol1,long nCol2);
-//STRIP001  void SwapRows(long nRow1,long nRow2);
-//STRIP001
-//STRIP001  void SetColMode(const BOOL bCol){mbGetCol =  bCol;};
-//STRIP001  void SetRowMode(const BOOL bCol){mbGetCol = !bCol;};
+
 
 
     //Get*Id MUSS ..._ANY fuer nicht existierende Elemente zurueckgeben:
-//STRIP001  long GetColId(const long nCol) const
-//STRIP001          {if(nCol<mnCols)return mpColCoordinates[nCol];return SCH_DATALOG_ANY;}
-//STRIP001  long GetRowId(const long nRow) const
-//STRIP001          {if(nRow<mnRows)return mpRowCoordinates[nRow];return SCH_DATALOG_ANY;}
-//STRIP001
-//STRIP001  long GetId(const long n)
-//STRIP001  {
-//STRIP001      if(mbGetCol)return GetColId(n);
-//STRIP001      return GetRowId(n);
-//STRIP001  }
 };
 
 } //namespace binfilter

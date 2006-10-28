@@ -4,9 +4,9 @@
  *
  *  $RCSfile: globfunc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:47:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:48:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,20 +145,12 @@ void DecValue(double& rValue,
               double  fInc,
               BOOL    bLogarithm);
 
-//STRIP001 double CalcFact(double fValue,
-//STRIP001              BOOL   bLogarithm,
-//STRIP001              double fMinValue,
-//STRIP001              double fMaxValue);
 
 Color RGBColor(ColorData nColorName);
 
 String StackString(const String& aString);
 
-//STRIP001 String UnstackString(const String& aString);
 
-//STRIP001 Color SetBrightness(const SfxItemSet &rSourceAttr,
-//STRIP001                  SfxItemSet       &rDestAttr,
-//STRIP001                  double           fLightFactor);
 
 void AdjustRect (Rectangle          &rRect,
                  ChartAdjust        eAdjust);
@@ -210,18 +202,7 @@ void SegmentDescr (DataDescription &rDescr,
                    long            nEndAng,
                    double          fRadius);
 
-//STRIP001 void ShowErrorLineY (BOOL              bIsVertical,
-//STRIP001                   double            fErrorUp,
-//STRIP001                   double            fErrorDown,
-//STRIP001                   SfxItemSet        &rAttr,
-//STRIP001                   const  Point&     rPos,
-//STRIP001                   SvxChartIndicate  eMyIndicate,
-//STRIP001                   SdrObjList        *pList,
-//STRIP001                      ChartModel *      pModel);
 
-//STRIP001 void InsertPolygon (SdrObjList *pList,
-//STRIP001                  XPolygon   &rPolygon,
-//STRIP001                  SfxItemSet &rAttr);
 
 /** Creates an SchObjGroup containing SdrPathObjects, which are created from the
     XPolygons given in the vector rPolygons.  The items in rItems are applied to
@@ -234,21 +215,12 @@ SdrObject * CreateErrorGroup(
     const ::std::vector< XPolygon > & rPolygons,
     const SfxItemSet & rItems );
 
-//STRIP001 SdrObject *Create2DPolyObj (SfxItemSet &rAttr,
-//STRIP001                          Point      aLeftBottom,
-//STRIP001                          Point      aLeftTop,
-//STRIP001                          Point      aRightTop,
-//STRIP001                          Point      aRightBottom);
 
-//STRIP001 SdrObjList *CreateGroupList (SdrObjList *pList,long nID);
 
 void CreateChartGroup( SchObjGroup* &, SdrObjList* & );
 
-//STRIP001 void CopySetsFrom40To31 (const SfxItemSet &rSourceSet,SfxItemSet &rDestSet);
 
-//STRIP001 void CompareSets (const SfxItemSet &rSourceSet,SfxItemSet &rDestSet);
 
-//STRIP001 void ClearDblItems(const SfxItemSet &rSourceSet,SfxItemSet &rDestSet);
 
 /** Intersect two SfxItemSets in the following way: Modify rDestSet such that
     after this function completes there are only items left that are contained
@@ -275,7 +247,6 @@ void ItemsToFont(const SfxItemSet& rSet,Font& rFont);
 
 BOOL ChIsPointInsideRectangle( const Point& rPoint, const Rectangle& rRect );
 
-//STRIP001 void GlobalGenerate3DAttrDefaultItem( INT16 nWID, SfxItemSet& rSet );
 
 namespace   sch {
         /** @descr  Extract an item for a given which id from one of two item
