@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flditem.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:15:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:32:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,21 +38,12 @@
 #ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
 #endif
-// auto strip #ifndef _SVX_ITEMDATA_HXX
-// auto strip #include <bf_svx/itemdata.hxx>
-// auto strip #endif
 #ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
 #endif
 #ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
 #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 class SvNumberFormatter;
 class MetaAction;
 class SfxItemPool;
@@ -176,7 +167,6 @@ public:
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 
-//STRIP001  virtual MetaAction* createBeginComment() const;
 };
 
 enum SvxURLFormat   {   SVXURLFORMAT_APPDEFAULT,    // Wie in App eingestellt
@@ -213,7 +203,6 @@ public:
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 
-//STRIP001  virtual MetaAction* createBeginComment() const;
 };
 
 class SvxPageField : public SvxFieldData
@@ -224,7 +213,6 @@ public:
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 
-//STRIP001  virtual MetaAction* createBeginComment() const;
 };
 
 class SvxPagesField : public SvxFieldData
@@ -244,7 +232,6 @@ public:
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 
-//STRIP001  virtual MetaAction* createBeginComment() const;
 };
 
 class SvxFileField : public SvxFieldData
@@ -314,7 +301,6 @@ public:
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 
-//STRIP001  virtual MetaAction* createBeginComment() const;
 };
 
 enum SvxFileType { SVXFILETYPE_FIX, SVXFILETYPE_VAR };
