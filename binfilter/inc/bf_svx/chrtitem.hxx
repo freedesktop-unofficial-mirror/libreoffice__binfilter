@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chrtitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:09:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:23:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _SFXENUMITEM_HXX //autogen
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //------------------------------------------------------------------------
@@ -203,10 +200,8 @@ public:
     TYPEINFO();
     SvxChartStyleItem(SvxChartStyle eStyle = CHSTYLE_2D_LINE,
                       USHORT nId = ITEMID_CHARTSTYLE);
-//STRIP001  SvxChartStyleItem(SvStream& rIn, USHORT nId = ITEMID_CHARTSTYLE);
 
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = 0) const;
-//STRIP001  virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
 
     USHORT GetValueCount() const { return CHSTYLE_COUNT; }
     SvxChartStyle GetValue() const
@@ -219,22 +214,6 @@ public:
 
 #ifdef ITEMID_CHARTREGRESS
 
-//STRIP001 class SvxChartRegressItem : public SfxEnumItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  TYPEINFO();
-//STRIP001  SvxChartRegressItem(SvxChartRegress eRegress = CHREGRESS_LINEAR,
-//STRIP001                      USHORT nId = ITEMID_CHARTREGRESS);
-//STRIP001  SvxChartRegressItem(SvStream& rIn, USHORT nId = ITEMID_CHARTREGRESS);
-//STRIP001
-//STRIP001  virtual SfxPoolItem* Clone(SfxItemPool* pPool = 0) const;
-//STRIP001  virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
-//STRIP001
-//STRIP001  USHORT GetValueCount() const { return CHREGRESS_COUNT; }
-//STRIP001  SvxChartRegress GetValue() const
-//STRIP001      { return (SvxChartRegress)SfxEnumItem::GetValue(); }
-//STRIP001  USHORT GetVersion (USHORT nFileFormatVersion) const;
-//STRIP001 };
 
 #endif
 
@@ -334,24 +313,6 @@ public:
 
 #ifdef ITEMID_CHARTKINDERROR
 
-//STRIP001 class SvxChartKindErrorItem : public SfxEnumItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  TYPEINFO();
-//STRIP001  SvxChartKindErrorItem(SvxChartKindError eOrient = CHERROR_NONE,
-//STRIP001                         USHORT nId = ITEMID_CHARTKINDERROR);
-//STRIP001  SvxChartKindErrorItem(SvStream& rIn,
-//STRIP001                         USHORT nId = ITEMID_CHARTKINDERROR);
-//STRIP001
-//STRIP001  virtual SfxPoolItem* Clone(SfxItemPool* pPool = 0) const;
-//STRIP001  virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
-//STRIP001
-//STRIP001  USHORT GetValueCount() const { return CHERROR_COUNT; }
-//STRIP001  SvxChartKindError GetValue() const
-//STRIP001      { return (SvxChartKindError)SfxEnumItem::GetValue(); }
-//STRIP001
-//STRIP001  USHORT GetVersion (USHORT nFileFormatVersion) const;
-//STRIP001 };
 
 #endif
 
@@ -359,24 +320,6 @@ public:
 
 #ifdef ITEMID_CHARTINDICATE
 
-//STRIP001 class SvxChartIndicateItem : public SfxEnumItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  TYPEINFO();
-//STRIP001  SvxChartIndicateItem(SvxChartIndicate eOrient = CHINDICATE_NONE,
-//STRIP001                         USHORT nId = ITEMID_CHARTINDICATE);
-//STRIP001  SvxChartIndicateItem(SvStream& rIn,
-//STRIP001                         USHORT nId = ITEMID_CHARTINDICATE);
-//STRIP001
-//STRIP001  virtual SfxPoolItem* Clone(SfxItemPool* pPool = 0) const;
-//STRIP001  virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
-//STRIP001
-//STRIP001  USHORT GetValueCount() const { return CHINDICATE_COUNT; }
-//STRIP001  SvxChartIndicate GetValue() const
-//STRIP001      { return (SvxChartIndicate)SfxEnumItem::GetValue(); }
-//STRIP001
-//STRIP001  USHORT GetVersion (USHORT nFileFormatVersion) const;
-//STRIP001 };
 
 #endif
 
@@ -391,27 +334,18 @@ class SvxDoubleItem : public SfxPoolItem
 public:
     TYPEINFO();
     SvxDoubleItem(double fValue = 0.0, USHORT nId = ITEMID_DOUBLE);
-//STRIP001  SvxDoubleItem(SvStream& rIn, USHORT nId = ITEMID_DOUBLE);
     SvxDoubleItem(const SvxDoubleItem& rItem);
 
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual String GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0) const;
 
     virtual int              operator == (const SfxPoolItem&) const;
     virtual SfxPoolItem* Clone(SfxItemPool *pPool = NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVersion) const;
     virtual SvStream& Store(SvStream& rOut, USHORT nItemVersion ) const;
 
-//STRIP001  virtual double GetMin() const;
-//STRIP001  virtual double GetMax() const;
 
-//STRIP001  virtual SfxFieldUnit GetUnit() const;
 
     double GetValue() const { return fVal; }
     void SetValue(double fNewVal) { fVal = fNewVal; }

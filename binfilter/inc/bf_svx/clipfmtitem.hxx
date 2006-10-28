@@ -4,9 +4,9 @@
  *
  *  $RCSfile: clipfmtitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:09:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:23:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _GEN_HXX
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
 #endif
@@ -67,8 +64,6 @@ public:
                             USHORT nPos = USHRT_MAX );
      USHORT Count() const;
 
-//STRIP001  ULONG GetClipbrdFormatId( USHORT nPos ) const;
-//STRIP001  const String& GetClipbrdFormatName( USHORT nPos ) const;
 };
 
 }//end of namespace binfilter
