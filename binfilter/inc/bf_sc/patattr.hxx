@@ -4,9 +4,9 @@
  *
  *  $RCSfile: patattr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:22:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:38:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_SCPATATR_HXX
 #define SC_SCPATATR_HXX
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
@@ -136,7 +133,6 @@ public:
     const ScStyleSheet*     GetStyleSheet() const  { return pStyle; }
     const String*           GetStyleName() const;
     void                    UpdateStyleSheet();
-//STRIP001  void                    StyleToName();
 
     BOOL                    IsVisible() const;
     BOOL                    IsVisibleEqual( const ScPatternAttr& rOther ) const;
