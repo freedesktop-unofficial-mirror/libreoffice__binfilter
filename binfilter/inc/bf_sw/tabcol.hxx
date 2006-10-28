@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabcol.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:35:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:58:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,8 +62,6 @@ class SwTabCols : public SvLongs
 public:
         SwTabCols( USHORT nSize = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   SwTabCols( USHORT nSize = 0 );
         SwTabCols( const SwTabCols& ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   SwTabCols( const SwTabCols& );
-//STRIP001  SwTabCols &operator=( const SwTabCols& );
-//STRIP001  BOOL operator==( const SwTabCols& rCmp ) const;
 
     BOOL IsHidden( USHORT nPos ) const         { return aHidden[nPos]; }
     void SetHidden( USHORT nPos, BOOL bValue ) { aHidden[nPos] = bValue; }
