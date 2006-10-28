@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:14:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:48:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,7 +99,6 @@ class SwGrfNode: public SwNoTxtNode
     BOOL ImportGraphic( SvStream& rStrm ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001  BOOL ImportGraphic( SvStream& rStrm );
     BOOL HasStreamName() const { return aGrfObj.HasUserData(); }
     BOOL GetStreamStorageNames( String& rStrmName, String& rStgName ) const;
-//STRIP001  void DelStreamName();
 
     DECL_LINK( SwapGraphic, GraphicObject* );
 
@@ -151,7 +150,6 @@ public:
         // Laden der Grafik unmittelbar vor der Anzeige
     short SwapIn( BOOL bWaitForData = FALSE );
         // Entfernen der Grafik, um Speicher freizugeben
-//STRIP001  short SwapOut();
         // Schreiben der Grafik
     BOOL StoreGraphics( SvStorage* pDocStg = NULL );
         // Zugriff auf den Storage-Streamnamen
@@ -164,8 +162,6 @@ public:
 #endif
 
         // Der Grafik sagen, dass sich der Node im Undobereich befindet
-//STRIP001  virtual BOOL SavePersistentData();
-//STRIP001  virtual BOOL RestorePersistentData();
 
 #ifndef _FESHVIEW_ONLY_INLINE_NEEDED
         // Abfrage der Link-Daten
@@ -174,18 +170,14 @@ public:
     inline BOOL IsLinkedDDE() const;
     ::so3::SvBaseLinkRef GetLink() const    { return refLink; }
     BOOL GetFileFilterNms( String* pFileNm, String* pFilterNm ) const;
-//STRIP001  void ReleaseLink();
 
         // Prioritaet beim Laden der Grafik setzen. Geht nur, wenn der Link
         // ein FileObject gesetzt hat
-//STRIP001  void SetTransferPriority( USHORT nPrio );
 
     // Skalieren einer Image-Map: Die Image-Map wird um den Faktor
     // zwischen Grafik-Groesse und Rahmen-Groesse vergroessert/verkleinert
-//STRIP001  void ScaleImageMap();
 
     // returns the with our graphic attributes filled Graphic-Attr-Structure
-//STRIP001  GraphicAttr& GetGraphicAttr( GraphicAttr&, const SwFrm* pFrm ) const;
 
 #endif
 };
