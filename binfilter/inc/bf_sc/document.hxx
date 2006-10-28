@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:13:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:33:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,17 +37,11 @@
 #define SC_DOCUMENT_HXX
 
 
-// auto strip #ifndef _SV_PRNTYPES_HXX //autogen
-// auto strip #include <vcl/prntypes.hxx>
-// auto strip #endif
 
 #ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 #ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
@@ -329,7 +323,6 @@ friend class ScQueryValueIterator;
 friend class ScCellIterator;
 friend class ScQueryCellIterator;
 friend class ScHorizontalCellIterator;
-//STRIP001 friend class ScHorizontalAttrIterator;
 friend class ScDocAttrIterator;
 friend class ScAttrRectIterator;
 friend class ScPivot;
@@ -496,13 +489,11 @@ public:
     const String&   GetName() const { return aDocName; }
     void            SetName( const String& r ) { aDocName = r; }
 
-//STRIP001  void            GetDocStat( ScDocStat& rDocStat );
 
     void            InitDrawLayer( SfxObjectShell* pDocShell = NULL );
     XColorTable*    GetColorTable();
 
     SvxLinkManager*     GetLinkManager() { return pLinkManager; }
-//STRIP001  void                SetLinkManager( SvxLinkManager* pNew );
 
     const ScDocOptions&     GetDocOptions() const;
     void                    SetDocOptions( const ScDocOptions& rOpt );
@@ -535,30 +526,16 @@ public:
     ScRangePairListRef& GetRowNameRangesRef() { return xRowNameRanges; }
 
     ScDBCollection* GetDBCollection() const;
-//STRIP001  void            SetDBCollection( ScDBCollection* pNewDBCollection,
-//STRIP001                                      BOOL bRemoveAutoFilter = FALSE );
     ScDBData*       GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab,
                                         BOOL bStartOnly = FALSE) const;
     ScDBData*       GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
 
-//STRIP001  ScRangeData*    GetRangeAtCursor(USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                                      BOOL bStartOnly = FALSE) const;
-//STRIP001  ScRangeData*    GetRangeAtBlock( const ScRange& rBlock, String* pName=NULL ) const;
 
     ScDPCollection*     GetDPCollection();
-//STRIP001  ScDPObject*         GetDPAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const;
 
-//STRIP001  ScPivotCollection*  GetPivotCollection() const;
-//STRIP001  void                SetPivotCollection(ScPivotCollection* pNewPivotCollection);
-//STRIP001  ScPivot*            GetPivotAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const;
 
-//STRIP001  ScChartCollection*  GetChartCollection() const;
-//STRIP001  void                SetChartCollection(ScChartCollection* pNewChartCollection);
 
-//STRIP001  void            EnsureGraphicNames();
 
-//STRIP001  SdrObject*      GetObjectAtPoint( USHORT nTab, const Point& rPos );
-//STRIP001  BOOL            HasChartAtPoint( USHORT nTab, const Point& rPos, String* pName = NULL );
     void            UpdateChartArea( const String& rChartName, const ScRange& rNewArea,
                                         BOOL bColHeaders, BOOL bRowHeaders, BOOL bAdd,
                                         Window* pWindow );
@@ -598,25 +575,11 @@ public:
                                             const ScMarkData& rMark ) const;
     BOOL            IsSelectionEditable( const ScMarkData& rMark,
                                         BOOL* pOnlyNotBecauseOfMatrix = NULL ) const;
-//STRIP001  BOOL            IsSelectionOrBlockEditable( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                      USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                      const ScMarkData& rMark ) const;
-//STRIP001  BOOL            IsSelectedOrBlockEditable( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                          USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                          const ScMarkData& rMark ) const;
 
-//STRIP001  BOOL            HasSelectedBlockMatrixFragment( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                          USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                          const ScMarkData& rMark ) const;
 
     BOOL            GetMatrixFormulaRange( const ScAddress& rCellPos, ScRange& rMatrix );
 
     BOOL            IsEmbedded() const;
-//STRIP001  void            GetEmbedded( ScTripel& rStart, ScTripel& rEnd ) const;
-//STRIP001  void            SetEmbedded( const ScTripel& rStart, const ScTripel& rEnd );
-//STRIP001  void            ResetEmbedded();
-//STRIP001  Rectangle       GetEmbeddedRect() const;                        // 1/100 mm
-//STRIP001  void            SetEmbedded( const Rectangle& rRect );          // aus VisArea (1/100 mm)
     void            SnapVisArea( Rectangle& rRect ) const;          // 1/100 mm
 
     BOOL            ValidTabName( const String& rName ) const;
@@ -628,14 +591,10 @@ public:
     BOOL            RenameTab( USHORT nTab, const String& rName,
                                 BOOL bUpdateRef = TRUE,
                                 BOOL bExternalDocument = FALSE );
-//STRIP001  BOOL            MoveTab( USHORT nOldPos, USHORT nNewPos );
-//STRIP001  BOOL            CopyTab( USHORT nOldPos, USHORT nNewPos,
-//STRIP001                              const ScMarkData* pOnlyMarked = NULL );
     ULONG           TransferTab(ScDocument* pSrcDoc, USHORT nSrcPos, USHORT nDestPos,
                                     BOOL bInsertNew = TRUE,
                                     BOOL bResultsOnly = FALSE );
     void            TransferDrawPage(ScDocument* pSrcDoc, USHORT nSrcPos, USHORT nDestPos);
-//STRIP001  void            ClearDrawPage(USHORT nTab);
     void            SetVisible( USHORT nTab, BOOL bVisible );
     BOOL            IsVisible( USHORT nTab ) const;
     void            SetScenario( USHORT nTab, BOOL bFlag );
@@ -658,9 +617,6 @@ public:
                             const String& rTabName, ULONG nRefreshDelay );
     BOOL            HasLink( const String& rDoc,
                              const String& rFilter, const String& rOptions ) const;
-//STRIP001  BOOL            LinkEmptyTab( USHORT& nTab, const String& aDocTab,
-//STRIP001                                  const String& aFileName,
-//STRIP001                                  const String& aTabName );   // insert empty tab & link
     BOOL            LinkExternalTab( USHORT& nTab, const String& aDocTab,
                                     const String& aFileName,
                                     const String& aTabName );
@@ -675,8 +631,6 @@ public:
     void            DecInDdeLinkUpdate() { if ( nInDdeLinkUpdate ) --nInDdeLinkUpdate; }
     BOOL            IsInDdeLinkUpdate() const   { return nInDdeLinkUpdate != 0; }
 
-//STRIP001  void            CopyDdeLinks( ScDocument* pDestDoc ) const;
-//STRIP001  void            DisconnectDdeLinks();
 
                     // Fuer StarOne Api:
     USHORT          GetDdeLinkCount() const;
@@ -698,7 +652,6 @@ public:
     SfxBindings*    GetViewBindings();
     SfxObjectShell* GetDocumentShell() const    { return pShell; }
     ScDrawLayer*    GetDrawLayer()              { return pDrawLayer; }
-//STRIP001  SfxBroadcaster* GetDrawBroadcaster();       // zwecks Header-Vermeidung
     void            BeginDrawUndo();
 
     BOOL            IsChart( SdrObject* pObject );
@@ -708,28 +661,15 @@ public:
                                     USHORT nCol2, USHORT nRow2, USHORT nTab2,
                                     short nDx, short nDy, short nDz );
                     //! setzt nur die neue RangeList, keine ChartListener o.ae.
-//STRIP001  void            SetChartRangeList( const String& rChartName,
-//STRIP001                      const ScRangeListRef& rNewRangeListRef );
 
     BOOL            HasControl( USHORT nTab, const Rectangle& rMMRect );
-//STRIP001  void            InvalidateControls( Window* pWin, USHORT nTab, const Rectangle& rMMRect );
 
-//STRIP001  void            StopAnimations( USHORT nTab, Window* pWin );
-//STRIP001  void            StartAnimations( USHORT nTab, Window* pWin );
 
     BOOL            HasBackgroundDraw( USHORT nTab, const Rectangle& rMMRect );
-//STRIP001  BOOL            HasAnyDraw( USHORT nTab, const Rectangle& rMMRect );
 
     ScOutlineTable* GetOutlineTable( USHORT nTab, BOOL bCreate = FALSE );
-//STRIP001  BOOL            SetOutlineTable( USHORT nTab, const ScOutlineTable* pNewOutline );
 
-//STRIP001  void            DoAutoOutline( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                  USHORT nEndCol, USHORT nEndRow, USHORT nTab );
 
-//STRIP001  BOOL            DoSubTotals( USHORT nTab, ScSubTotalParam& rParam );
-//STRIP001  void            RemoveSubTotals( USHORT nTab, ScSubTotalParam& rParam );
-//STRIP001  BOOL            TestRemoveSubTotals( USHORT nTab, const ScSubTotalParam& rParam );
-//STRIP001  BOOL            HasSubTotalCells( const ScRange& rRange );
 
     void            PutCell( const ScAddress&, ScBaseCell* pCell, BOOL bForceTab = FALSE );
     void            PutCell( const ScAddress&, ScBaseCell* pCell,
@@ -749,9 +689,6 @@ public:
                                         const ScMarkData& rMark,
                                         const String& rFormula,
                                         const ScTokenArray* p = NULL );
-//STRIP001  void            InsertTableOp(const ScTabOpParam& rParam,   // Mehrfachoperation
-//STRIP001                                USHORT nCol1, USHORT nRow1,
-//STRIP001                                USHORT nCol2, USHORT nRow2, const ScMarkData& rMark);
 
     void            GetString( USHORT nCol, USHORT nRow, USHORT nTab, String& rString );
     void            GetInputString( USHORT nCol, USHORT nRow, USHORT nTab, String& rString );
@@ -779,27 +716,19 @@ public:
     BOOL            HasData( USHORT nCol, USHORT nRow, USHORT nTab );
     BOOL            HasStringData( USHORT nCol, USHORT nRow, USHORT nTab ) const;
     BOOL            HasValueData( USHORT nCol, USHORT nRow, USHORT nTab ) const;
-//STRIP001  USHORT          GetErrorData(USHORT nCol, USHORT nRow, USHORT nTab) const;
-//STRIP001  BOOL            HasStringCells( const ScRange& rRange ) const;
 
     BOOL            ExtendMerge( USHORT nStartCol, USHORT nStartRow,
                                 USHORT& rEndCol, USHORT& rEndRow, USHORT nTab,
                                 BOOL bRefresh = FALSE, BOOL bAttrs = FALSE );
     BOOL            ExtendMerge( ScRange& rRange, BOOL bRefresh = FALSE, BOOL bAttrs = FALSE );
-//STRIP001  BOOL            ExtendTotalMerge( ScRange& rRange );
     BOOL            ExtendOverlapped( USHORT& rStartCol, USHORT& rStartRow,
                                 USHORT nEndCol, USHORT nEndRow, USHORT nTab );
     BOOL            ExtendOverlapped( ScRange& rRange );
 
-//STRIP001  BOOL            RefreshAutoFilter( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                              USHORT nEndCol, USHORT nEndRow, USHORT nTab );
 
-//STRIP001  void            DoMergeContents( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                  USHORT nEndCol, USHORT nEndRow );
                     //  ohne Ueberpruefung:
     void            DoMerge( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
                                     USHORT nEndCol, USHORT nEndRow );
-//STRIP001  void            RemoveMerge( USHORT nCol, USHORT nRow, USHORT nTab );
 
     BOOL            IsBlockEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
                                                 USHORT nEndCol, USHORT nEndRow ) const;
@@ -809,31 +738,20 @@ public:
                                                 ScRange* pLastRange = NULL,
                                                 Rectangle* pLastMM = NULL ) const;
 
-//STRIP001  BOOL            IsOverlapped( USHORT nCol, USHORT nRow, USHORT nTab ) const;
-//STRIP001  BOOL            IsHorOverlapped( USHORT nCol, USHORT nRow, USHORT nTab ) const;
-//STRIP001  BOOL            IsVerOverlapped( USHORT nCol, USHORT nRow, USHORT nTab ) const;
 
     BOOL            HasAttrib( USHORT nCol1, USHORT nRow1, USHORT nTab1,
                             USHORT nCol2, USHORT nRow2, USHORT nTab2, USHORT nMask );
     BOOL            HasAttrib( const ScRange& rRange, USHORT nMask );
 
-//STRIP001  BOOL            HasLines( const ScRange& rRange, Rectangle& rSizes ) const;
 
-//STRIP001  void            GetBorderLines( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                                  const SvxBorderLine** ppLeft,
-//STRIP001                                  const SvxBorderLine** ppTop,
-//STRIP001                                  const SvxBorderLine** ppRight,
-//STRIP001                                  const SvxBorderLine** ppBottom ) const;
 
     void            ResetChanged( const ScRange& rRange );
 
     void            SetDirty();
      void           SetDirty( const ScRange& );
-//STRIP001  void            SetDirtyVar();
      void           SetTableOpDirty( const ScRange& );  // for Interpreter TableOp
     void            CalcAll();
     void            CalcAfterLoad();
-//STRIP001  void            CompileAll();
     void            CompileXML();
 
                     // Automatisch Berechnen
@@ -857,10 +775,6 @@ public:
     BOOL            GetTableArea( USHORT nTab, USHORT& rEndCol, USHORT& rEndRow ) const;
     BOOL            GetPrintArea( USHORT nTab, USHORT& rEndCol, USHORT& rEndRow,
                                     BOOL bNotes = TRUE ) const;
-//STRIP001  BOOL            GetPrintAreaHor( USHORT nTab, USHORT nStartRow, USHORT nEndRow,
-//STRIP001                                      USHORT& rEndCol, BOOL bNotes = TRUE ) const;
-//STRIP001  BOOL            GetPrintAreaVer( USHORT nTab, USHORT nStartCol, USHORT nEndCol,
-//STRIP001                                      USHORT& rEndRow, BOOL bNotes = TRUE ) const;
     void            InvalidateTableArea();
 
     BOOL            GetDataStart( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow ) const;
@@ -869,20 +783,13 @@ public:
                                     USHORT nStartCol, USHORT nStartRow,
                                     USHORT& rEndCol, USHORT nEndRow );
 
-//STRIP001  USHORT          GetEmptyLinesInBlock( USHORT nStartCol, USHORT nStartRow, USHORT nStartTab,
-//STRIP001                                          USHORT nEndCol, USHORT nEndRow, USHORT nEndTab,
-//STRIP001                                          ScDirection eDir );
 
-//STRIP001  void            FindAreaPos( USHORT& rCol, USHORT& rRow, USHORT nTab, short nMovX, short nMovY );
     void            GetNextPos( USHORT& rCol, USHORT& rRow, USHORT nTab, short nMovX, short nMovY,
                                 BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark );
 
     BOOL            GetNextMarkedCell( USHORT& rCol, USHORT& rRow, USHORT nTab,
                                         const ScMarkData& rMark );
 
-//STRIP001  void            LimitChartArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
-//STRIP001                                                  USHORT& rEndCol, USHORT& rEndRow );
-//STRIP001  void            LimitChartIfAll( ScRangeListRef& rRangeList );
 
 /*N*/   BOOL            InsertRow( USHORT nStartCol, USHORT nStartTab,
 /*N*/                              USHORT nEndCol,   USHORT nEndTab,
@@ -917,16 +824,8 @@ public:
     BOOL            IsUndoEnabled() const                       { return !bImportingXML; }
     void            ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks );
     void            ResetClip( ScDocument* pSourceDoc, USHORT nTab );
-//STRIP001  void            SetCutMode( BOOL bCut );
-//STRIP001  BOOL            IsCutMode();
-//STRIP001  void            SetClipArea( const ScRange& rArea, BOOL bCut = FALSE );
 
-//STRIP001  BOOL            HasOLEObjectsInArea( const ScRange& rRange, const ScMarkData* pTabMark = NULL );
 
-//STRIP001  void            DeleteObjectsInArea( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                                      const ScMarkData& rMark );
-//STRIP001  void            DeleteObjectsInSelection( const ScMarkData& rMark );
-//STRIP001  void            DeleteObjects( USHORT nTab );
 
     void            DeleteArea(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                             const ScMarkData& rMark, USHORT nDelFlag);
@@ -937,8 +836,6 @@ public:
                                 BOOL bCut, ScDocument* pClipDoc, BOOL bAllTabs,
                                 const ScMarkData* pMarks = NULL,
                                 BOOL bKeepScenarioFlags = FALSE, BOOL bIncludeObjects = FALSE);
-//STRIP001  void            CopyTabToClip(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                              USHORT nTab, ScDocument* pClipDoc = NULL);
     void            CopyBlockFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                     const ScMarkData& rMark, short nDx, short nDy,
                                     const ScCopyBlockFromClipParams* pCBFCP );
@@ -961,25 +858,13 @@ public:
                                     BOOL bSkipAttrForEmpty = FALSE );
 
     void            GetClipArea(USHORT& nClipX, USHORT& nClipY, BOOL bIncludeFiltered);
-//STRIP001  void            GetClipStart(USHORT& nClipX, USHORT& nClipY);
 
-//STRIP001  BOOL            HasClipFilteredRows();
 
 /*N*/   BOOL            IsClipboardSource() const;
 
-//STRIP001  void            TransposeClip( ScDocument* pTransClip, USHORT nFlags, BOOL bAsLink );
 
-//STRIP001  void            MixDocument( const ScRange& rRange, USHORT nFunction, BOOL bSkipEmpty,
-//STRIP001                                  ScDocument* pSrcDoc );
 
-//STRIP001  void            FillTab( const ScRange& rSrcArea, const ScMarkData& rMark,
-//STRIP001                              USHORT nFlags, USHORT nFunction,
-//STRIP001                              BOOL bSkipEmpty, BOOL bAsLink );
-//STRIP001  void            FillTabMarked( USHORT nSrcTab, const ScMarkData& rMark,
-//STRIP001                              USHORT nFlags, USHORT nFunction,
-//STRIP001                              BOOL bSkipEmpty, BOOL bAsLink );
 
-//STRIP001  void            TransliterateText( const ScMarkData& rMultiMark, sal_Int32 nType );
 
     void            InitUndo( ScDocument* pSrcDoc, USHORT nTab1, USHORT nTab2,
                                 BOOL bColInfo = FALSE, BOOL bRowInfo = FALSE );
@@ -991,44 +876,26 @@ public:
                                 USHORT nCol2, USHORT nRow2, USHORT nTab2,
                                 USHORT nFlags, BOOL bMarked, ScDocument* pDestDoc,
                                 const ScMarkData* pMarks = NULL, BOOL bColRowFlags = TRUE);
-//STRIP001  void            UndoToDocument(USHORT nCol1, USHORT nRow1, USHORT nTab1,
-//STRIP001                              USHORT nCol2, USHORT nRow2, USHORT nTab2,
-//STRIP001                              USHORT nFlags, BOOL bMarked, ScDocument* pDestDoc,
-//STRIP001                              const ScMarkData* pMarks = NULL);
 
     void            CopyToDocument(const ScRange& rRange,
                                 USHORT nFlags, BOOL bMarked, ScDocument* pDestDoc,
                                 const ScMarkData* pMarks = NULL, BOOL bColRowFlags = TRUE);
-//STRIP001  void            UndoToDocument(const ScRange& rRange,
-//STRIP001                              USHORT nFlags, BOOL bMarked, ScDocument* pDestDoc,
-//STRIP001                              const ScMarkData* pMarks = NULL);
 
-//STRIP001  void            CopyScenario( USHORT nSrcTab, USHORT nDestTab, BOOL bNewScenario = FALSE );
-//STRIP001  BOOL            TestCopyScenario( USHORT nSrcTab, USHORT nDestTab ) const;
-//STRIP001  void            MarkScenario( USHORT nSrcTab, USHORT nDestTab,
-//STRIP001                                  ScMarkData& rDestMark, BOOL bResetMark = TRUE,
-//STRIP001                                  USHORT nNeededBits = 0 ) const;
-//STRIP001  BOOL            HasScenarioRange( USHORT nTab, const ScRange& rRange ) const;
     const ScRangeList* GetScenarioRanges( USHORT nTab ) const;
 
-//STRIP001  void            CopyUpdated( ScDocument* pPosDoc, ScDocument* pDestDoc );
 
 /*N*/   void            UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                                    USHORT nCol2, USHORT nRow2, USHORT nTab2,
 /*N*/                                    short nDx, short nDy, short nDz,
 /*N*/                                    ScDocument* pUndoDoc = NULL, BOOL bIncludeDraw = TRUE );
 
-//STRIP001  void            UpdateTranspose( const ScAddress& rDestPos, ScDocument* pClipDoc,
-//STRIP001                                      const ScMarkData& rMark, ScDocument* pUndoDoc = NULL );
 
-//STRIP001  void            UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
 
     void            Fill(   USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                             const ScMarkData& rMark,
                             USHORT nFillCount, FillDir eFillDir = FILL_TO_BOTTOM,
                             FillCmd eFillCmd = FILL_LINEAR, FillDateCmd eFillDateCmd = FILL_DAY,
                             double nStepValue = 1.0, double nMaxValue = 1E307);
-//STRIP001  String          GetAutoFillPreview( const ScRange& rSource, USHORT nEndX, USHORT nEndY );
 
     BOOL            GetSelectionFunction( ScSubTotalFunc eFunc,
                                             const ScAddress& rCursor, const ScMarkData& rMark,
@@ -1041,19 +908,15 @@ public:
 
     const ScConditionalFormat* GetCondFormat( USHORT nCol, USHORT nRow, USHORT nTab ) const;
     const SfxItemSet*   GetCondResult( USHORT nCol, USHORT nRow, USHORT nTab ) const;
-//STRIP001  const SfxPoolItem*  GetEffItem( USHORT nCol, USHORT nRow, USHORT nTab, USHORT nWhich ) const;
 
     const ::com::sun::star::uno::Reference< ::com::sun::star::i18n::XBreakIterator >& GetBreakIterator();
-//STRIP001  BOOL            HasStringWeakCharacters( const String& rString );
     BYTE            GetStringScriptType( const String& rString );
     BYTE            GetCellScriptType( ScBaseCell* pCell, ULONG nNumberFormat );
     BYTE            GetScriptType( USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell* pCell = NULL );
 
-//STRIP001  BOOL            HasDetectiveOperations() const;
     void            AddDetectiveOperation( const ScDetOpData& rData );
     void            ClearDetectiveOperations();
     ScDetOpList*    GetDetOpList() const                { return pDetOpList; }
-//STRIP001  void            SetDetOpList(ScDetOpList* pNew);
 
     BOOL            HasDetectiveObjects(USHORT nTab) const;
 
@@ -1063,9 +926,6 @@ public:
     void            ApplySelectionFrame( const ScMarkData& rMark,
                                          const SvxBoxItem* pLineOuter,
                                          const SvxBoxInfoItem* pLineInner );
-//STRIP001  void            ApplyFrameAreaTab( const ScRange& rRange,
-//STRIP001                                       const SvxBoxItem* pLineOuter,
-//STRIP001                                       const SvxBoxInfoItem* pLineInner );
 
     void            ClearSelectionItems( const USHORT* pWhich, const ScMarkData& rMark );
     void            ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark );
@@ -1083,27 +943,19 @@ public:
 
     ScConditionalFormatList* GetCondFormList() const        // Ref-Undo
                     { return pCondFormList; }
-//STRIP001  void            SetCondFormList(ScConditionalFormatList* pNew);
 
     ScValidationDataList* GetValidationList() const
                     { return pValidationList; }
 
     void            ApplyAttr( USHORT nCol, USHORT nRow, USHORT nTab,
                                 const SfxPoolItem& rAttr );
-//STRIP001  void            ApplyPattern( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                                  const ScPatternAttr& rAttr );
     void            ApplyPatternArea( USHORT nStartCol, USHORT nStartRow,
                                         USHORT nEndCol, USHORT nEndRow,
                                         const ScMarkData& rMark, const ScPatternAttr& rAttr );
     void            ApplyPatternAreaTab( USHORT nStartCol, USHORT nStartRow,
                                             USHORT nEndCol, USHORT nEndRow, USHORT nTab,
                                             const ScPatternAttr& rAttr );
-//STRIP001  void            ApplyPatternIfNumberformatIncompatible(
-//STRIP001                          const ScRange& rRange, const ScMarkData& rMark,
-//STRIP001                          const ScPatternAttr& rPattern, short nNewType );
 
-//STRIP001  void            ApplyStyle( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              const ScStyleSheet& rStyle);
     void            ApplyStyleArea( USHORT nStartCol, USHORT nStartRow,
                                     USHORT nEndCol, USHORT nEndRow,
                                     const ScMarkData& rMark, const ScStyleSheet& rStyle);
@@ -1112,8 +964,6 @@ public:
                                         const ScStyleSheet& rStyle);
 
     void            ApplySelectionStyle( const ScStyleSheet& rStyle, const ScMarkData& rMark );
-//STRIP001  void            ApplySelectionLineStyle( const ScMarkData& rMark,
-//STRIP001                                          const SvxBorderLine* pLine, BOOL bColorOnly );
 
     const ScStyleSheet* GetStyle( USHORT nCol, USHORT nRow, USHORT nTab ) const;
     const ScStyleSheet* GetSelectionStyle( const ScMarkData& rMark ) const;
@@ -1126,27 +976,16 @@ public:
     BOOL            IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
 
                     // Rueckgabe TRUE bei ApplyFlags: Wert geaendert
-//STRIP001  BOOL            ApplyFlags( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                  const ScMarkData& rMark, INT16 nFlags );
     BOOL            ApplyFlagsTab( USHORT nStartCol, USHORT nStartRow,
                                             USHORT nEndCol, USHORT nEndRow,
                                             USHORT nTab, INT16 nFlags );
-//STRIP001  BOOL            RemoveFlags( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                  const ScMarkData& rMark, INT16 nFlags );
     BOOL            RemoveFlagsTab( USHORT nStartCol, USHORT nStartRow,
                                             USHORT nEndCol, USHORT nEndRow,
                                             USHORT nTab, INT16 nFlags );
 
-//STRIP001  void            SetPattern( const ScAddress&, const ScPatternAttr& rAttr,
-//STRIP001                                  BOOL bPutToPool = FALSE );
-//STRIP001  void            SetPattern( USHORT nCol, USHORT nRow, USHORT nTab, const ScPatternAttr& rAttr,
-//STRIP001                                  BOOL bPutToPool = FALSE );
-//STRIP001  void            DeleteNumberFormat( const ULONG* pDelKeys, ULONG nCount );
 
     void            AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                                     USHORT nFormatNo, const ScMarkData& rMark );
-//STRIP001  void            GetAutoFormatData( USHORT nTab, USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                      ScAutoFormatData& rData );
     BOOL            SearchAndReplace( const SvxSearchItem& rSearchItem,
                                         USHORT& rCol, USHORT& rRow, USHORT& rTab,
                                         ScMarkData& rMark,
@@ -1162,26 +1001,20 @@ public:
                             const String& sValStr, double& nX);
 
     void            ApplySelectionPattern( const ScPatternAttr& rAttr, const ScMarkData& rMark );
-//STRIP001  void            DeleteSelection( USHORT nDelFlag, const ScMarkData& rMark );
-//STRIP001  void            DeleteSelectionTab( USHORT nTab, USHORT nDelFlag, const ScMarkData& rMark );
 
                     //
 
     void            SetColWidth( USHORT nCol, USHORT nTab, USHORT nNewWidth );
-//STRIP001  void            SetRowHeight( USHORT nRow, USHORT nTab, USHORT nNewHeight );
     void            SetRowHeightRange( USHORT nStartRow, USHORT nEndRow, USHORT nTab,
                                             USHORT nNewHeight );
     void            SetManualHeight( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bManual );
 
     USHORT          GetColWidth( USHORT nCol, USHORT nTab ) const;
     USHORT          GetRowHeight( USHORT nRow, USHORT nTab ) const;
-//STRIP001  ULONG           GetColOffset( USHORT nCol, USHORT nTab ) const;
-//STRIP001  ULONG           GetRowOffset( USHORT nRow, USHORT nTab ) const;
 
     USHORT          GetOriginalWidth( USHORT nCol, USHORT nTab ) const;
     USHORT          GetOriginalHeight( USHORT nRow, USHORT nTab ) const;
 
-//STRIP001  USHORT          GetCommonWidth( USHORT nEndCol, USHORT nTab ) const;
 
     inline USHORT   FastGetRowHeight( USHORT nRow, USHORT nTab ) const;     // ohne Ueberpruefungen!
 
@@ -1198,25 +1031,17 @@ public:
                                         double nPPTX, double nPPTY,
                                         const Fraction& rZoomX, const Fraction& rZoomY,
                                         BOOL bShrink );
-//STRIP001  long            GetNeededSize( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                                  OutputDevice* pDev,
-//STRIP001                                  double nPPTX, double nPPTY,
-//STRIP001                                  const Fraction& rZoomX, const Fraction& rZoomY,
-//STRIP001                                  BOOL bWidth, BOOL bTotalSize = FALSE );
 
     void            ShowCol(USHORT nCol, USHORT nTab, BOOL bShow);
     void            ShowRow(USHORT nRow, USHORT nTab, BOOL bShow);
     void            ShowRows(USHORT nRow1, USHORT nRow2, USHORT nTab, BOOL bShow);
-//STRIP001  void            SetColFlags( USHORT nCol, USHORT nTab, BYTE nNewFlags );
     void            SetRowFlags( USHORT nRow, USHORT nTab, BYTE nNewFlags );
 
     BYTE            GetColFlags( USHORT nCol, USHORT nTab ) const;
     BYTE            GetRowFlags( USHORT nRow, USHORT nTab ) const;
 
                     /// @return  the index of the last column with any set flags (auto-pagebreak is ignored).
-//STRIP001     USHORT          GetLastFlaggedCol( USHORT nTab ) const;
                     /// @return  the index of the last row with any set flags (auto-pagebreak is ignored).
-//STRIP001  USHORT          GetLastFlaggedRow( USHORT nTab ) const;
 
                     /// @return  the index of the last changed column (flags and column width, auto pagebreak is ignored).
     USHORT          GetLastChangedCol( USHORT nTab ) const;
@@ -1236,7 +1061,6 @@ public:
     BOOL            GetColDefault( USHORT nTab, USHORT nCol, USHORT nLastRow, USHORT& nDefault);
     BOOL            GetRowDefault( USHORT nTab, USHORT nRow, USHORT nLastCol, USHORT& nDefault);
 
-//STRIP001  BOOL            IsFiltered( USHORT nRow, USHORT nTab ) const;
 
     BOOL            UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow );
     BOOL            UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bShow );
@@ -1257,17 +1081,10 @@ public:
     void            UpdatePageBreaks();
     void            UpdatePageBreaks( USHORT nTab, const ScRange* pUserArea = NULL );
     void            RemoveManualBreaks( USHORT nTab );
-//STRIP001  BOOL            HasManualBreaks( USHORT nTab ) const;
 
-//STRIP001  BOOL            IsPageStyleInUse( const String& rStrPageStyle, USHORT* pInTab = NULL );
     BOOL            RemovePageStyleInUse( const String& rStrPageStyle );
-//STRIP001  BOOL            RenamePageStyleInUse( const String& rOld, const String& rNew );
-//STRIP001  void            ModifyStyleSheet( SfxStyleSheetBase& rPageStyle,
-//STRIP001                                    const SfxItemSet&  rChanges );
 
-//STRIP001  void            PageStyleModified( USHORT nTab, const String& rNewName );
 
-//STRIP001  BOOL            NeedPageResetAfterTab( USHORT nTab ) const;
 
     // war vorher im PageStyle untergracht. Jetzt an jeder Tabelle:
     BOOL            HasPrintRange();
@@ -1280,7 +1097,6 @@ public:
     void            SetRepeatColRange( USHORT nTab, const ScRange* pNew );
     void            SetRepeatRowRange( USHORT nTab, const ScRange* pNew );
     ScPrintRangeSaver* CreatePrintRangeSaver() const;
-//STRIP001  void            RestorePrintRanges( const ScPrintRangeSaver& rSaver );
 
     Rectangle       GetMMRect( USHORT nStartCol, USHORT nStartRow,
                                 USHORT nEndCol, USHORT nEndRow, USHORT nTab );
@@ -1293,9 +1109,7 @@ public:
     BOOL            Save( SvStream& rStream, ScProgress* pProgress ) const;
 
     void            UpdStlShtPtrsFrmNms();
-//STRIP001  void            StylesToNames();
 
-//STRIP001  void            CopyStdStylesFrom( ScDocument* pSrcDoc );
 
     CharSet         GetSrcCharSet() const   { return eSrcSet; }
     ULONG           GetSrcVersion() const   { return nSrcVer; }
@@ -1319,18 +1133,9 @@ public:
 
     void            Sort( USHORT nTab, const ScSortParam& rSortParam, BOOL bKeepQuery );
     USHORT          Query( USHORT nTab, const ScQueryParam& rQueryParam, BOOL bKeepSub );
-//STRIP001  BOOL            ValidQuery( USHORT nRow, USHORT nTab, const ScQueryParam& rQueryParam, BOOL* pSpecial = NULL );
     BOOL            CreateQueryParam( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                         USHORT nTab, ScQueryParam& rQueryParam );
-//STRIP001  void            GetUpperCellString(USHORT nCol, USHORT nRow, USHORT nTab, String& rStr);
 
-//STRIP001  BOOL            GetFilterEntries( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              TypedStrCollection& rStrings );
-//STRIP001  BOOL            GetFilterEntriesArea( USHORT nCol, USHORT nStartRow, USHORT nEndRow,
-//STRIP001                              USHORT nTab, TypedStrCollection& rStrings );
-//STRIP001  BOOL            GetDataEntries( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              TypedStrCollection& rStrings, BOOL bLimit = FALSE );
-//STRIP001  BOOL            GetFormulaEntries( TypedStrCollection& rStrings );
 
     BOOL            HasAutoFilter( USHORT nCol, USHORT nRow, USHORT nTab );
 
@@ -1341,20 +1146,12 @@ public:
 
     SfxPrinter*     GetPrinter();
     void            SetPrinter( SfxPrinter* pNewPrinter );
-//STRIP001  void            EraseNonUsedSharedNames(USHORT nLevel);
-//STRIP001  BOOL            GetNextSpellingCell(USHORT& nCol, USHORT& nRow, USHORT nTab,
-//STRIP001                                      BOOL bInSel, const ScMarkData& rMark) const;
 
-//STRIP001  BOOL            ReplaceStyle(const SvxSearchItem& rSearchItem,
-//STRIP001                               USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                               ScMarkData& rMark, BOOL bIsUndo);
 
     void            DoColResize( USHORT nTab, USHORT nCol1, USHORT nCol2, USHORT nAdd );
 
     // Idleberechnung der OutputDevice-Zelltextbreite
     BOOL            IsLoadingDone() const { return bLoadingDone; }
-//STRIP001  void            InvalidateTextWidth( const String& rStyleName );
-//STRIP001  void            InvalidateTextWidth( USHORT nTab );
     void            InvalidateTextWidth( const ScAddress* pAdrFrom = NULL,
                                          const ScAddress* pAdrTo   = NULL,
                                          BOOL bBroadcast = FALSE );
@@ -1370,8 +1167,6 @@ public:
     BOOL            IsDetectiveDirty() const     { return bDetectiveDirty; }
     void            SetDetectiveDirty(BOOL bSet) { bDetectiveDirty = bSet; }
 
-//STRIP001  void            RemoveAutoSpellObj();
-//STRIP001  void            SetOnlineSpellPos( const ScAddress& rPos );
     BOOL            SetVisibleSpellRange( const ScRange& rRange );  // TRUE = changed
 
     BYTE            GetMacroCallMode() const     { return nMacroCallMode; }
@@ -1380,7 +1175,6 @@ public:
     BOOL            GetHasMacroFunc() const      { return bHasMacroFunc; }
     void            SetHasMacroFunc(BOOL bSet)   { bHasMacroFunc = bSet; }
 
-//STRIP001  BOOL            HasMacroCallsAfterLoad();
     BOOL            CheckMacroWarn();
 
     // fuer Broadcasting/Listening
@@ -1397,8 +1191,6 @@ public:
 
     ScChartListenerCollection* GetChartListenerCollection() const
                         { return pChartListenerCollection; }
-//STRIP001  void            SetChartListenerCollection( ScChartListenerCollection*,
-//STRIP001                      BOOL bSetChartRangeLists = FALSE );
     void            UpdateChart( const String& rName, Window* pWin );
     void            UpdateChartListenerCollection();
     BOOL            IsChartListenerCollectionNeedsUpdate() const
@@ -1432,21 +1224,6 @@ private:
     void                FindMaxRotCol( USHORT nTab, RowInfo* pRowInfo, USHORT nArrCount,
                                         USHORT nX1, USHORT nX2 ) const;
 
-//STRIP001  USHORT              RowDifferences( USHORT nThisRow, USHORT nThisTab,
-//STRIP001                                      ScDocument& rOtherDoc,
-//STRIP001                                      USHORT nOtherRow, USHORT nOtherTab,
-//STRIP001                                      USHORT nMaxCol, USHORT* pOtherCols );
-//STRIP001  USHORT              ColDifferences( USHORT nThisCol, USHORT nThisTab,
-//STRIP001                                      ScDocument& rOtherDoc,
-//STRIP001                                      USHORT nOtherCol, USHORT nOtherTab,
-//STRIP001                                      USHORT nMaxRow, USHORT* pOtherRows );
-//STRIP001  void                FindOrder( USHORT* pOtherRows, USHORT nThisEndRow, USHORT nOtherEndRow,
-//STRIP001                                      BOOL bColumns,
-//STRIP001                                      ScDocument& rOtherDoc, USHORT nThisTab, USHORT nOtherTab,
-//STRIP001                                      USHORT nEndCol, USHORT* pTranslate,
-//STRIP001                                      ScProgress* pProgress, ULONG nProAdd );
-//STRIP001  BOOL                OnlineSpellInRange( const ScRange& rSpellRange, ScAddress& rSpellPos,
-//STRIP001                                      USHORT nMaxTest );
 
     DECL_LINK( TrackTimeHdl, Timer* );
 
@@ -1482,8 +1259,6 @@ public:
                                             SfxListener* pListener );
     void                PutInFormulaTree( ScFormulaCell* pCell );
     void                RemoveFromFormulaTree( ScFormulaCell* pCell );
-//STRIP001  void                CalcFormulaTree( BOOL bOnlyForced = FALSE,
-//STRIP001                                      BOOL bNoProgressBar = FALSE );
     void                ClearFormulaTree();
     void                AppendToFormulaTrack( ScFormulaCell* pCell );
     void                RemoveFromFormulaTrack( ScFormulaCell* pCell );
@@ -1558,7 +1333,6 @@ public:
                                     nXMLImportedFormulaCount = 0;
                             }
 
-//STRIP001  void                StartTrackTimer();
 
     void            CompileDBFormula();
     void            CompileDBFormula( BOOL bCreateFormulaString );
@@ -1566,13 +1340,7 @@ public:
     void            CompileColRowNameFormula();
 
     // maximale Stringlaengen einer Column, fuer z.B. dBase Export
-//STRIP001  xub_StrLen      GetMaxStringLen( USHORT nTab, USHORT nCol,
-//STRIP001                                  USHORT nRowStart, USHORT nRowEnd ) const;
-//STRIP001  xub_StrLen      GetMaxNumberStringLen( USHORT& nPrecision,
-//STRIP001                                  USHORT nTab, USHORT nCol,
-//STRIP001                                  USHORT nRowStart, USHORT nRowEnd ) const;
 
-//STRIP001  void    KeyInput( const KeyEvent& rKEvt );      // TimerDelays etc.
 
     ScChangeTrack*      GetChangeTrack() const { return pChangeTrack; }
 
@@ -1583,21 +1351,17 @@ public:
 /*N*/   void            StartChangeTracking();
 /*N*/   void            EndChangeTracking();
 
-//STRIP001  void            CompareDocument( ScDocument& rOtherDoc );
 
     void            AddUnoObject( SfxListener& rObject );
     void            RemoveUnoObject( SfxListener& rObject );
     void            BroadcastUno( const SfxHint &rHint );
 
     void            SetInLinkUpdate(BOOL bSet);             // TableLink or AreaLink
-//STRIP001  BOOL            IsInLinkUpdate() const;                 // including DdeLink
 
     SfxItemPool*        GetEditPool() const;
     SfxItemPool*        GetEnginePool() const;
     ScFieldEditEngine&  GetEditEngine();
 
-//STRIP001  void            AddToImpExpLog( const ScImpExpLogMsg& rMsg );
-//STRIP001  void            AddToImpExpLog( ScImpExpLogMsg* pMsg );
 
     ScRefreshTimerControl*  GetRefreshTimerControl() const
         { return pRefreshTimerControl; }
@@ -1615,7 +1379,6 @@ public:
                         { return bPastingDrawFromOtherDoc; }
 
                     /// an ID unique to each document instance
-//STRIP001     sal_uInt32      GetDocumentID() const;
 
     void            InvalidateStyleSheetUsage()
                         { bStyleSheetUsageInvalid = TRUE; }
@@ -1633,12 +1396,9 @@ private: // CLOOK-Impl-Methoden
     void    LoadDrawLayer(SvStream& rStream);
     void    StoreDrawLayer(SvStream& rStream) const;
     BOOL    DrawGetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const;
-//STRIP001  void    DrawMovePage( USHORT nOldPos, USHORT nNewPos );
-//STRIP001  void    DrawCopyPage( USHORT nOldPos, USHORT nNewPos );
 
     void    UpdateDrawPrinter();
     void    UpdateDrawLanguages();
-//STRIP001  void    InitClipPtrs( ScDocument* pSourceDoc );
 
     void    LoadDdeLinks(SvStream& rStream);
     void    SaveDdeLinks(SvStream& rStream) const;
@@ -1648,7 +1408,6 @@ private: // CLOOK-Impl-Methoden
     void    UpdateRefAreaLinks( UpdateRefMode eUpdateRefMode,
                              const ScRange& r, short nDx, short nDy, short nDz );
 
-//STRIP001  BOOL    HasPartOfMerged( const ScRange& rRange );
 
 };
 
