@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:37:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:06:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -348,7 +348,6 @@ protected:
     // and destroyed when destroying the SdrModel.
     SvNumberFormatter* mpNumberFormatter;
 public:
-//STRIP001  const SvNumberFormatter& GetNumberFormatter() const;
 protected:
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoModel();
@@ -356,13 +355,10 @@ protected:
 private:
     // Nicht implementiert:
     SdrModel(const SdrModel& rSrcModel);
-//STRIP001  void operator=(const SdrModel& rSrcModel);
-//STRIP001  FASTBOOL operator==(const SdrModel& rCmpModel) const;
 #if _SOLAR__PRIVATE
     // Zaehlt alle rauszustreamenden Objekte
     ULONG ImpCountAllSteamComponents() const;
 
-//STRIP001  void ImpPostUndoAction(SdrUndoAction* pUndo);
     void ImpSetUIUnit();
     void ImpSetOutlinerDefaults( SdrOutliner* pOutliner, BOOL bInit = FALSE );
     void ImpReformatAllTextObjects();
@@ -422,12 +418,10 @@ public:
     // bzw. in den es zuletzt gespeichert wurde.
     virtual SvStream* GetDocumentStream( SdrDocumentStreamInfo& rStreamInfo ) const;
     // Die Vorlagenattribute der Zeichenobjekte in harte Attribute verwandeln.
-//STRIP001  void     BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly=FALSE );
     // Nichtpersistente Objekte aus dem Model entfernen. Dies sind einerseits
     // Objekte die bei SdrObject::IsNotPersistent() ein FALSE liefert. Wurde
     // zuvor SetStreamingSdrModel(TRUE) gerufen, so werden auch OLE-Objekte
     // entfernt. Fuer #44515#.
-//STRIP001  void     RemoveNotPersistentObjects(FASTBOOL bNoBroadcast);
     // Wer sich von SdrPage ableitet muss sich auch von SdrModel ableiten
     // und diese beiden VM AllocPage() und AllocModel() ueberladen...
     virtual SdrPage*  AllocPage(FASTBOOL bMasterPage);
@@ -436,7 +430,6 @@ public:
     // Gruppenobjekt verwendet diesen Aufruf z.B. um sich zu aktuallisieren.
     // Die Methode muss ein neues Model alloziieren und aus der uebergebenen
     // Datei laden. Bei Misserfolg kann die Methode NULL liefern.
-//STRIP001  virtual const SdrModel* LoadModel(const String& rFileName);
     virtual void            DisposeLoadedModels();
 
     // Aenderungen an den Layern setzen das Modified-Flag und broadcasten am Model!
@@ -451,7 +444,6 @@ public:
 
     SdrOutliner&         GetDrawOutliner(const SdrTextObj* pObj=NULL) const;
     SdrOutliner&         GetHitTestOutliner() const { return *pHitTestOutliner; }
-//STRIP001  const SdrTextObj*    GetFormattingTextObj() const;
     // Die TextDefaults (Font,Hoehe,Farbe) in ein Set putten
     void                 SetTextDefaults() const;
     static void          SetTextDefaults( SfxItemPool* pItemPool, ULONG nDefTextHgt );
@@ -522,8 +514,6 @@ public:
 
     void             TakeUnitStr(FieldUnit eUnit, String& rStr) const;
     void             TakeMetricStr(long nVal, String& rStr, FASTBOOL bNoUnitChars=FALSE, sal_Int32 nNumDigits = -1) const;
-//STRIP001  void             TakeWinkStr(long nWink, String& rStr, FASTBOOL bNoDegChar=FALSE) const;
-//STRIP001  void             TakePercentStr(const Fraction& rVal, String& rStr, FASTBOOL bNoPercentChar=FALSE) const;
 
     // RecalcPageNums wird idR. nur von der Page gerufen.
     FASTBOOL         IsPagNumsDirty() const                     { return bPagNumsDirty; };
@@ -534,7 +524,6 @@ public:
     virtual void     DeletePage(USHORT nPgNum);
     // Remove bedeutet Eigentumsuebereignung an den Aufrufer (Gegenteil von Insert)
     virtual SdrPage* RemovePage(USHORT nPgNum);
-//STRIP001  virtual void     MovePage(USHORT nPgNum, USHORT nNewPos);
     const SdrPage*   GetPage(USHORT nPgNum) const               { return (SdrPage*)(aPages.GetObject(nPgNum)); }
     SdrPage*         GetPage(USHORT nPgNum)                     { return (SdrPage*)(aPages.GetObject(nPgNum)); }
     //USHORT           GetPageNum(const SdrPage* pPage) const;
@@ -645,16 +634,8 @@ public:
     //                             rSourceModel.
     // bTreadSourceAsConst.......: TRUE=Das SourceModel wird nicht veraendert,.
     //                             d.h die Seiten werden kopiert.
-//STRIP001  virtual void Merge(SdrModel& rSourceModel,
-//STRIP001             USHORT nFirstPageNum=0, USHORT nLastPageNum=0xFFFF,
-//STRIP001             USHORT nDestPos=0xFFFF,
-//STRIP001             FASTBOOL bMergeMasterPages=FALSE, FASTBOOL bAllMasterPages=FALSE,
-//STRIP001             FASTBOOL bUndo=TRUE, FASTBOOL bTreadSourceAsConst=FALSE);
 
     // Ist wie Merge(SourceModel=DestModel,nFirst,nLast,nDest,FALSE,FALSE,bUndo,!bMoveNoCopy);
-//STRIP001  void CopyPages(USHORT nFirstPageNum, USHORT nLastPageNum,
-//STRIP001                 USHORT nDestPos,
-//STRIP001                 FASTBOOL bUndo=TRUE, FASTBOOL bMoveNoCopy=FALSE);
 
     // Mit BegUndo() / EndUndo() ist es moeglich beliebig viele UndoActions
     // beliebig tief zu klammern. Als Kommentar der
@@ -664,17 +645,10 @@ public:
     // generiert.
     // Alle direkten Aktionen am SdrModel erzeugen keine UndoActions, die
     // Aktionen an der SdrView dagegen generieren solche.
-//STRIP001  void BegUndo();                       // Undo-Klammerung auf
-//STRIP001  void BegUndo(const String& rComment); // Undo-Klammerung auf
-//STRIP001  void BegUndo(const String& rComment, const String& rObjDescr, SdrRepeatFunc eFunc=SDRREPFUNC_OBJ_NONE); // Undo-Klammerung auf
-//STRIP001  void BegUndo(SdrUndoGroup* pUndoGrp); // Undo-Klammerung auf
-//STRIP001  void EndUndo();                       // Undo-Klammerung zu
     void AddUndo(SdrUndoAction* pUndo);
     USHORT GetUndoBracketLevel() const                       { return nUndoLevel; }
     const SdrUndoGroup* GetAktUndoGroup() const              { return pAktUndoGroup; }
     // nur nach dem 1. BegUndo oder vor dem letzten EndUndo:
-//STRIP001  void SetUndoComment(const String& rComment);
-//STRIP001  void SetUndoComment(const String& rComment, const String& rObjDescr);
 
     // Das Undo-Managment findet nur statt, wenn kein NotifyUndoAction-Handler
     // gesetzt ist.
@@ -689,9 +663,6 @@ public:
     ULONG GetRedoActionCount() const                      { return pRedoStack!=NULL ? pRedoStack->Count() : 0; }
     const SfxUndoAction* GetRedoAction(ULONG nNum) const  { return (SfxUndoAction*)(pRedoStack!=NULL ? pRedoStack->GetObject(nNum) : NULL); }
 
-//STRIP001  FASTBOOL Undo();
-//STRIP001  FASTBOOL Redo();
-//STRIP001  FASTBOOL Repeat(SfxRepeatTarget&);
 
     // Hier kann die Applikation einen Handler setzen, der die auflaufenden
     // UndoActions einsammelt. Der Handler hat folgendes Aussehen:
@@ -750,7 +721,6 @@ public:
     // Stream muss am Anfang des SdrModel stehen. Die FileVersion des im
     // Stream befindlichen Models muss >=11 sein, ansonsten wird die
     // ModelInfo nicht geschrieben.
-//STRIP001  FASTBOOL WriteModelInfo(SvStream& rOut) const;
 
     // Abgeleitete Klassen ueberladen lediglich die Methoden ReadData() und
     // WriteData(). Diese werden von den Streamoperatoren des Model gerufen.
@@ -774,7 +744,6 @@ public:
     // Methode TRUE, andernfalls FALSE.
     // Dieser Check steht nur zur Verfuegung, wenn die Engine mit DBG_UTIL
     // uebersetzt wurde. Andernfalls liefert die Methode immer TRUE. (ni)
-//STRIP001  FASTBOOL CheckConsistence() const;
 
     void    SetStarDrawPreviewMode(BOOL bPreview);
     BOOL    IsStarDrawPreviewMode() { return bStarDrawPreviewMode; }
@@ -782,7 +751,6 @@ public:
     SotStorage* GetModelStorage() const { return pModelStorage; }
     void        SetModelStorage( SotStorage* pStor ) { pModelStorage = pStor; }
 
-//STRIP001  void    PrepareStore();
     // pre- and postprocessing for objects for saving
     void PreSave();
     void PostSave();
@@ -806,7 +774,6 @@ public:
 
     void ReformatAllTextObjects();
 
-//STRIP001  FASTBOOL HasTransparentObjects( BOOL bCheckForAlphaChannel = FALSE ) const;
 
     SdrOutliner* createOutliner( USHORT nOutlinerMode );
     void disposeOutliner( SdrOutliner* pOutliner );

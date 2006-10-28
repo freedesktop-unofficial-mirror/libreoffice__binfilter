@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdobj.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:38:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:07:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -276,11 +276,6 @@ public:
     virtual void AfterRead();
 
     virtual FASTBOOL HasMacro (const SdrObject* pObj) const;
-//STRIP001  virtual SdrObject* CheckMacroHit (const SdrObjMacroHitRec& rRec, const SdrObject* pObj) const;
-//STRIP001  virtual Pointer GetMacroPointer (const SdrObjMacroHitRec& rRec, const SdrObject* pObj) const;
-//STRIP001  virtual void PaintMacro (ExtOutputDevice& rXOut, const Rectangle& rDirtyRect, const SdrObjMacroHitRec& rRec, const SdrObject* pObj) const;
-//STRIP001  virtual FASTBOOL DoMacro (const SdrObjMacroHitRec& rRec, SdrObject* pObj);
-//STRIP001  virtual XubString GetMacroPopupComment(const SdrObjMacroHitRec& rRec, const SdrObject* pObj) const;
 };
 
 //************************************************************
@@ -355,7 +350,6 @@ public:
     TYPEINFO();
     SdrObjPlusData();
     virtual ~SdrObjPlusData();
-//STRIP001  virtual SdrObjPlusData* Clone(SdrObject* pObj1) const;
     // Keine Streamoperatoren. Jede Obj streamt seinen Teil in Obj::WriteData().
 };
 
@@ -542,22 +536,16 @@ private:
 public:
     static SdrItemPool* GetGlobalDrawObjectItemPool();
 private:
-//STRIP001  static void FreeGlobalDrawObjectItemPool();
 
 protected:
     void ImpDeleteUserData();
     SdrObjUserData* ImpGetMacroUserData() const;
-//STRIP001  Rectangle ImpDragCalcRect(const SdrDragStat& rDrag) const;
 
     // Fuer GetDragComment
-//STRIP001  void ImpTakeDescriptionStr(USHORT nStrCacheID, String& rStr, USHORT nVal=0) const;
 
     void ImpForcePlusData() { if (pPlusData==NULL) pPlusData=NewPlusData(); }
 //  ImpSdrMtfAnimator* ImpGetMtfAnimator() const { return pPlusData!=NULL ? pPlusData->pAnimator : NULL; }
-//STRIP001  ImpSdrMtfAnimator* ImpForceMtfAnimator();
 
-//STRIP001  String GetWinkStr(long nWink, FASTBOOL bNoDegChar=FALSE) const;
-//STRIP001  String GetMetrStr(long nVal, MapUnit eWantMap=MAP_MM, FASTBOOL bNoUnitChars=FALSE) const;
 
     // bNotMyself=TRUE bedeutet: Nur die ObjList auf Dirty setzen, nicht mich.
     // Wird z.B. benoetigt fuer NbcMove, denn da movt man SnapRect und aOutRect
@@ -602,7 +590,6 @@ public:
     virtual void DelReference(SdrVirtObj& rVrtObj);
     virtual UINT32 GetObjInventor() const;
     virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual SdrLayerID GetLayer() const;
 
     // Layer muss vorher leer sein!
@@ -616,19 +603,13 @@ public:
     // Ein solcher Referenzpunkt ist z.B. der Punkt eines Symbols, der
     // der beim Einfuegen des Symbols auf das Raster gefangen werden soll
     // oder der Fixpunkt eines Bildes innerhalb eines Animationsobjektes.
-//STRIP001  virtual FASTBOOL HasRefPoint() const;
-//STRIP001  virtual Point GetRefPoint() const;
-//STRIP001  virtual void SetRefPoint(const Point& rPnt);
 
     // Ein Objekt kann auch einen individuellen (vom Anwender zu vergebenden)
     // Namen tragen (z.B. Symbol oder Gruppenobjekt, OLE2, ... )
-//STRIP001  virtual FASTBOOL HasSetName() const;
     virtual void SetName(const String& rStr);
     virtual String GetName() const;
 
     // support for HTMLName
-//STRIP001  void SetHTMLName(const String& rStr);
-//STRIP001  String GetHTMLName() const;
 
     // Fuer Gruppenobjekte
     FASTBOOL IsGroupObject() const { return GetSubList()!=NULL; }
@@ -653,7 +634,6 @@ public:
 
     const AutoTimer* GetAutoTimer() const { return pPlusData!=NULL ? pPlusData->pAutoTimer : NULL; }
     AutoTimer* GetAutoTimer() { return pPlusData!=NULL ? pPlusData->pAutoTimer : NULL; }
-//STRIP001  AutoTimer* ForceAutoTimer();
 
     // Das BoundRect wird benoetigt fuer:
     //    Redraw: Nur noetig, wenn Obj im sichtbaren Bereich
@@ -678,7 +658,6 @@ public:
     // Wird ein leeres Rectangle uebergeben, so soll stattdessen ein unendlich
     // grosses Rechteck gelten.
     virtual FASTBOOL Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual FASTBOOL PaintGluePoints(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const;
 
     /** Line geometry creation and output (used during Paint())
 
@@ -707,7 +686,6 @@ public:
                                 SdrLineGeometry&    rLineGeometry,
                                 sal_Int32           nDX=0,
                                 sal_Int32           nDY=0           ) const;
-//STRIP001  void ImpDrawShadowLineGeometry(ExtOutputDevice& rXOut, const SfxItemSet& rSet, SdrLineGeometry& rLineGeometry) const;
     void ImpDrawColorLineGeometry(ExtOutputDevice& rXOut, const SfxItemSet& rSet, SdrLineGeometry& rLineGeometry) const;
     /** Line geometry creation and output (used during Paint())
 
@@ -735,7 +713,6 @@ public:
                                                                BOOL             bForceOnePixel,
                                                                BOOL             bForceTwoPixel,
                                                                BOOL             bIsLineDraft    ) const;
-//STRIP001  BOOL LineGeometryUsageIsNecessary() const;
 
     // HitTest, 2. Stufe. nTol ist die zulaessige Toleranz in logischen Einheiten.
     // rVisiLayer ist hauptsaechlich fuer Gruppenobjekte gedacht, die ja Objekte
@@ -751,8 +728,6 @@ public:
     virtual void operator=(const SdrObject& rObj);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     // Das Xor-Polygon wird von der View zu Draggen des Objektes benoetigt.
     // Alle XPolygone innerhalb des XPolyPolygon werden als PolyLine interpretiert.
@@ -774,11 +749,6 @@ public:
     // GetHdl() und GetPlusHdl() muessen Handleinstanzen mit new erzeugen!
     // Ein Objekt, das bei HasSpacialDrag() TRUE liefert muss diese Methoden
     // zur Verfuegung stellen (inkl. FillHdlList).
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual USHORT GetPlusHdlCount(const SdrHdl& rHdl) const;
-//STRIP001  virtual SdrHdl* GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const;
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
 
     // Die Standardtransformationen (Move,Resize,Rotate,Mirror,Shear) werden von der
     // View uebernommen (TakeXorPoly(),...).
@@ -790,13 +760,6 @@ public:
     // FALSE kann zurueckgegeben werden, wenn das Dragging das Objekt nicht
     // veraendert hat, wobei dir evtl. Tatsache das die Maus nicht bewegt wurde
     // bereits von der View abgefangen wird.
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const; // True=Xor muss repainted werden
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
     // Jedes Objekt muss in der Lage sein sich selbst interaktiv zu erzeugen.
     // Beim MausDown wird zunaechst ein neues Objekt erzeugt und dann seine
@@ -811,17 +774,11 @@ public:
     // BckCreate() -> Letztes EndCreate() rueckgaengig machen (z.B. letzten
     // Polygonpunkt wieder loeschen).
     // RetrunCode: TRUE=Weiter gehts, FALSE=Create dadurch abgebrochen.
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat); // TRUE=Xor muss repainted werden
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
 
     // damit holt man sich den Pointer, der das Createn dieses Objekts symbolisiert
     virtual Pointer GetCreatePointer() const;
 
     // Polygon das waehrend des Erzeugens aufgezogen wird
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
     // Die Methoden Move, Resize, Rotate, Mirror, Shear, SetSnapRect und
     // SetLogicRect rufen jeweils die entsprechenden Nbc-Methoden, versenden einen
@@ -837,7 +794,6 @@ public:
     virtual void Move  (const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void Mirror(const Point& rRef1, const Point& rRef2);
     virtual void Shear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
 
     // Die relative Position eines Zeichenobjektes ist die Entfernung der
@@ -871,8 +827,6 @@ public:
 
     // Zum Fangen von/auf ausgezeichneten Punkten eines Obj (Polygonpunkte,
     // Kreismittelpunkt, ...)
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
     // Fuer Objekte, bei denen jeder einzelne Punkt verschoben werden kann,
     // z.B. Polygone, Polylines, Linien, ... . Bei diesen Objekten werden
@@ -905,16 +859,10 @@ public:
     // entspricht genau der Handlenummer, die im letzten Aufruf zurueckgegeben
     // wurde). Der Parameter bInsAfter enthaelt genau den Wert, den der 1.
     // Aufruf (InsPoint ohne Indexparameter) zurueckgab.
-//STRIP001  virtual USHORT InsPoint(const Point& rPos, FASTBOOL bNewObj, FASTBOOL& rInsNextAfter);
-//STRIP001  virtual USHORT NbcInsPoint(const Point& rPos, FASTBOOL bNewObj, FASTBOOL bHideHim, FASTBOOL& rInsNextAfter);
 
     // Neuen Punkt an (bInsAfter?nach:vor) einem bestimmten Index einfuegen.
-//STRIP001  virtual USHORT InsPoint(USHORT i, const Point& rPos, FASTBOOL bInsAfter, FASTBOOL bNewObj);
-//STRIP001  virtual USHORT NbcInsPoint(USHORT i, const Point& rPos, FASTBOOL bInsAfter, FASTBOOL bNewObj, FASTBOOL bHideHim);
 
     // Loeschen eines Punktes. Ret=FALSE -> Obj besser loeschen
-//STRIP001  virtual FASTBOOL DelPoint(USHORT i);
-//STRIP001  virtual FASTBOOL NbcDelPoint(USHORT i);
 
     // Wenn Objektspaltung, dann Ret=NeuesObj, sonst Ret=NULL.
     // Bei Objektspaltung das Ursprungsobjekt die Punkte mit den niedrigen
@@ -927,16 +875,11 @@ public:
     // Index 0 ansprechbar war, nun erreichbar ist.
     // Das ist zwingend notwendig, wenn an der View Auftrennen bei
     // Mehrfachpunktselektion vollzogen wird.
-//STRIP001  virtual SdrObject* RipPoint(USHORT i, USHORT& rNewPt0Index);
-//STRIP001  virtual SdrObject* NbcRipPoint(USHORT i, USHORT& rNewPt0Index);
 
     // Objekt schliessen (z.B. Polyline->Polygon)
-//STRIP001  virtual void Shut();
-//STRIP001  virtual void NbcShut();
 
     // Alle geometrischen Daten holen fuer's Undo/Redo
     virtual SdrObjGeoData* GetGeoData() const;
-//STRIP001  virtual void SetGeoData(const SdrObjGeoData& rGeo);
 
     // ItemSet access
     virtual const SfxItemSet& GetItemSet() const;
@@ -948,8 +891,6 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // syntactical sugar for ItemSet accesses
-//STRIP001  void SetItemAndBroadcast(const SfxPoolItem& rItem);
-//STRIP001  void ClearItemAndBroadcast(const sal_uInt16 nWhich = 0);
     void SetItemSetAndBroadcast(const SfxItemSet& rSet);
     const SfxPoolItem& GetItem(const sal_uInt16 nWhich) const;
 
@@ -965,7 +906,6 @@ public:
     // NotPersistAttr fuer Layer, ObjName, geometrische Transformationen, ...
     void TakeNotPersistAttr(SfxItemSet& rAttr, FASTBOOL bMerge) const;
     void ApplyNotPersistAttr(const SfxItemSet& rAttr);
-//STRIP001  void NbcApplyNotPersistAttr(const SfxItemSet& rAttr);
 
     // bDontRemoveHardAttr=FALSE: alle in der Vorlage gesetzten Attribute werden am
     // Zeichenobjekt auf Default gesetzt; TRUE: alle harten Attribute bleiben erhalten.
@@ -991,7 +931,6 @@ public:
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
     virtual void NbcReformatText();
     virtual void ReformatText();
-//STRIP001  virtual void BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly=FALSE );
 
     // Animations-Iterationscounter Resetten. Neustart der Animation
     // beim naechsten Paint. pPageView=NULL: Alle PageViews.
@@ -999,12 +938,6 @@ public:
 
     // Macrofaehigkeit, z.B. ein Rechteck als PushButton.
     virtual FASTBOOL HasMacro() const;
-//STRIP001  virtual SdrObject* CheckMacroHit (const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual Pointer GetMacroPointer (const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual void PaintMacro (ExtOutputDevice& rXOut, const Rectangle& rDirtyRect, const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual FASTBOOL DoMacro (const SdrObjMacroHitRec& rRec);
-//STRIP001  virtual XubString GetMacroPopupComment(const SdrObjMacroHitRec& rRec) const;
-//STRIP001  FASTBOOL IsMacroHit(const SdrObjMacroHitRec& rRec) const { return CheckMacroHit(rRec)!=NULL; }
 
     // Konnektoren. (siehe auch Dokumentation in SvdoEdge.HXX, SdrEdgeObj
     //               sowie SvdGlue.HXX und SvdGlEV.HXX)
@@ -1031,10 +964,8 @@ public:
     virtual SdrGluePoint GetVertexGluePoint(USHORT nNum) const;
 
     // i.d.R. 0=linksoben, 1=rechtsoben, 2=rechtsunten, 3=linksunten
-//STRIP001  virtual SdrGluePoint GetCornerGluePoint(USHORT nNum) const;
 
     // Liste aller Klebepunkte. Kann NULL sein.
-//STRIP001  virtual const SdrGluePointList* GetGluePointList() const;
     virtual SdrGluePointList* GetGluePointList();
 
     // Nach veraendern der GluePointList muss man am Obj SendRepaintBroadcast rufen!
@@ -1047,17 +978,13 @@ public:
     void NbcShearGluePoints (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
 
     // Objekt ist eine Kante?
-//STRIP001  virtual FASTBOOL IsEdge() const;
 
     // Xor-Darstellung der Kante beim Draggen einer der beiden Knoten
-//STRIP001  virtual void ToggleEdgeXor(const SdrDragStat& rDrag, ExtOutputDevice& rXOut, FASTBOOL bTail1, FASTBOOL bTail2, FASTBOOL bDetail) const;
-//STRIP001  virtual void NspToggleEdgeXor(const SdrDragStat& rDrag, ExtOutputDevice& rXOut, FASTBOOL bTail1, FASTBOOL bTail2, FASTBOOL bDetail) const;
 
     // bTail1=TRUE: Linienanfang, sonst LinienEnde
     // pObj=NULL: Disconnect
     virtual void ConnectToNode(FASTBOOL bTail1, SdrObject* pObj);
     virtual void DisconnectFromNode(FASTBOOL bTail1);
-//STRIP001  virtual SdrObject* GetConnectedNode(FASTBOOL bTail1) const;
 
     // Wenn ein Objekt in der Lage ist, sich in ein Polygon oder in eine
     // Bezierkurve (oder beides) zu verwandeln, dann sollten die folgenden
@@ -1085,8 +1012,6 @@ public:
     // convert this path object to contour object; bForceLineDash converts even
     // when there is no filled new polygon created from line-to-polygon conversion,
     // specially used for XLINE_DASH and 3D conversion
-//STRIP001  SdrObject* ConvertToContourObj(SdrObject* pRet, BOOL bForceLineDash = FALSE) const;
-//STRIP001  SdrObject* ImpConvertToContourObj(SdrObject* pRet, BOOL bForceLineDash = FALSE) const;
 
     // Schreiben in einen Stream: Der Operator << schreibt zunaest den 28 Bytes
     //   langen SdrObjIOHeader in den Stream und ruft anschliessend die vMethode
@@ -1156,7 +1081,6 @@ public:
 
     // Delete entfernt den Record aus der Liste und ruft
     // ein delete (FreeMem+Dtor).
-//STRIP001  void DeleteUserData(USHORT nNum);
 
     // ItemPool fuer dieses Objekt wechseln
     virtual void MigrateItemPool(SfxItemPool* pSrcPool, SfxItemPool* pDestPool, SdrModel* pNewModel = NULL );
@@ -1198,7 +1122,6 @@ public:
     // to use (0,0) as upper left and will be scaled to the given size in the matrix.
     virtual void TRSetBaseGeometry(const Matrix3D& rMat, const XPolyPolygon& rPolyPolygon);
 
-//STRIP001  FASTBOOL IsTransparent( BOOL bCheckForAlphaChannel = FALSE ) const;
 };
 
 //************************************************************
