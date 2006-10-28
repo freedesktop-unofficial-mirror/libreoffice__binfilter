@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_ximppage.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:02:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:46:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,37 +35,19 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLSTYLE_HXX
-// auto strip #include "xmlstyle.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XIMPPAGE_HXX
-// auto strip #include "ximppage.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XIMPSHAPE_HXX
-// auto strip #include "ximpshap.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_ANIMIMP_HXX
 #include "animimp.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_FORMSIMP_HXX
-// auto strip #include "formsimp.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
-// auto strip #include "xmlictxt.hxx"
-// auto strip #endif
 
 #ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_ximpbody.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:01:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:46:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,17 +47,11 @@
 #include "ximpnote.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
-// auto strip #include <com/sun/star/drawing/XDrawPage.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGES_HPP_
 #include <com/sun/star/drawing/XDrawPages.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
 #include <com/sun/star/presentation/XPresentationPage.hpp>
@@ -71,21 +65,12 @@
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-// auto strip #include "xmlprmap.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XIMPSHOW_HXX
 #include "ximpshow.hxx"

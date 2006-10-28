@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_ximp3dobject.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:00:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:45:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,53 +35,23 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
-// auto strip #include <comphelper/extract.hxx>
-// auto strip #endif
 
 #ifndef _XIMP3DOBJECT_HXX
 #include "ximp3dobject.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
-// auto strip #include "XMLShapeStyleContext.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HPP_
-// auto strip #include <com/sun/star/drawing/PointSequenceSequence.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
-// auto strip #include <com/sun/star/drawing/PointSequence.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _XEXPTRANSFORM_HXX
-// auto strip #include "xexptran.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
-// auto strip #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XIMPSTYLE_HXX
-// auto strip #include "ximpstyl.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
