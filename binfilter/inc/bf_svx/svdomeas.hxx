@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdomeas.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:40:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:08:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -84,13 +84,9 @@ protected:
     void ImpTakeAttr(ImpMeasureRec& rRec) const;
     void ImpCalcGeometrics(const ImpMeasureRec& rRec, ImpMeasurePoly& rPol) const;
     void ImpCalcXPoly(const ImpMeasurePoly& rPol, XPolyPolygon& rXPP) const;
-//STRIP001  void ImpEvalDrag(ImpMeasureRec& rRec, const SdrDragStat& rDrag) const;
     void SetTextDirty() { bTextDirty=TRUE; SetTextSizeDirty(); if (!bBoundRectDirty) { bBoundRectDirty=TRUE; SetRectsDirty(TRUE); } }
     void UndirtyText() const;
 
-//STRIP001  virtual SdrObjGeoData* NewGeoData() const;
-//STRIP001  virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
-//STRIP001  virtual void RestGeoData(const SdrObjGeoData& rGeo);
 
 public:
     TYPEINFO();
@@ -98,63 +94,24 @@ public:
     SdrMeasureObj(const Point& rPt1, const Point& rPt2);
     virtual ~SdrMeasureObj();
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual void operator=(const SdrObject& rObj);
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
-//STRIP001  virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
 
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
 
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual Pointer GetCreatePointer() const;
 
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-//STRIP001  virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
-//STRIP001  virtual const Rectangle& GetLogicRect() const;
-//STRIP001  virtual void NbcSetLogicRect(const Rectangle& rRect);
     virtual long GetRotateAngle() const;
     virtual void RecalcBoundRect();
     virtual void RecalcSnapRect();
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
-//STRIP001  virtual FASTBOOL IsPolyObj() const;
-//STRIP001  virtual USHORT GetPointCount() const;
     virtual const Point& GetPoint(USHORT i) const;
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
-//STRIP001     virtual ::std::auto_ptr< SdrLineGeometry > CreateLinePoly( OutputDevice&     rOut,
-//STRIP001                                                                BOOL          bForceOnePixel,
-//STRIP001                                                                BOOL          bForceTwoPixel,
-//STRIP001                                                                BOOL          bIsLineDraft    ) const;
 
     virtual FASTBOOL BegTextEdit(SdrOutliner& rOutl);
     virtual void EndTextEdit(SdrOutliner& rOutl);
@@ -162,9 +119,6 @@ public:
     virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText=FALSE,
         Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
-//STRIP001  virtual void TakeTextEditArea(Size* pPaperMin, Size* pPaperMax, Rectangle* pViewInit, Rectangle* pViewMin) const;
-//STRIP001  virtual SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual USHORT GetOutlinerViewAnchorMode() const;
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
 

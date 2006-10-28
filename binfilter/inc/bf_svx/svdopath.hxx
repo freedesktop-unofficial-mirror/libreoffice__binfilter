@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdopath.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:41:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:09:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,11 +95,8 @@ protected:
 protected:
     // Hilfsfunktion fuer GET/SET/INS/etc. PNT
     FASTBOOL FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum, USHORT& rPointNum, FASTBOOL bAllPoints=TRUE) const;
-//STRIP001  void ImpSetClosed(FASTBOOL bClose);
     void ImpForceKind();
     void ImpForceLineWink();
-//STRIP001  void ImpConvertSegment(USHORT nPolyNum, USHORT nPointNum, SdrPathType ePathType, FASTBOOL bIgnoreSmooth);
-//STRIP001  void ImpSetSmoothFlag(USHORT nPolyNum, USHORT nPointNum, XPolyFlags eFlag);
 
     // fuer friend class SdrPolyEditView auf einigen Compilern:
     void SetRectsDirty(FASTBOOL bNotMyself=FALSE) { SdrTextObj::SetRectsDirty(bNotMyself); }
@@ -111,7 +108,6 @@ public:
     SdrPathObj(const Point& rPt1, const Point& rPt2);
     virtual ~SdrPathObj();
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
@@ -119,45 +115,20 @@ public:
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
     virtual void operator=(const SdrObject& rObj);
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
     virtual void TakeXorPoly(XPolyPolygon& rXPolyPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void TakeContour(XPolyPolygon& rPoly) const;
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual USHORT GetPlusHdlCount(const SdrHdl& rHdl) const;
-//STRIP001  virtual SdrHdl* GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const;
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
 
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
 
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
 
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  Pointer GetCreatePointer() const;
 
     virtual void NbcMove(const Size& aSize);
     virtual void NbcResize(const Point& rRefPnt, const Fraction& aXFact, const Fraction& aYFact);
     virtual void NbcRotate(const Point& rRefPnt, long nAngle, double fSin, double fCos);
-//STRIP001  virtual void NbcMirror(const Point& rRefPnt1, const Point& rRefPnt2);
     virtual void NbcShear(const Point& rRefPnt, long nAngle, double fTan, FASTBOOL bVShear);
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
     virtual FASTBOOL IsPolyObj() const;
     virtual USHORT GetPointCount() const;
@@ -165,25 +136,18 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT nHdlNum);
 
     // Punkt einfuegen
-//STRIP001  virtual USHORT NbcInsPoint(const Point& rPos, FASTBOOL bNewObj, FASTBOOL bHideHim, FASTBOOL& rInsNextAfter);
-//STRIP001  virtual USHORT NbcInsPoint(USHORT i, const Point& rPos, FASTBOOL bInsAfter, FASTBOOL bNewObj, FASTBOOL bHideHim);
 
     // Punkt loeschen
-//STRIP001  virtual FASTBOOL NbcDelPoint(USHORT nHdlNum);
 
     // An diesem Punkt auftrennen
-//STRIP001  virtual SdrObject* NbcRipPoint(USHORT nHdlNum, USHORT& rNewPt0Index);
 
     // Objekt schliessen
-//STRIP001  virtual void NbcShut();
 
 protected:
     virtual SdrObjGeoData* NewGeoData() const;
     virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
-//STRIP001  virtual void RestGeoData(const SdrObjGeoData& rGeo);
 
 public:
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
@@ -211,28 +175,18 @@ public:
 
     // Pfad schliessen bzw. oeffnen; im letzteren Fall den Endpunkt um
     // "nOpenDistance" verschieben
-//STRIP001  void ToggleClosed(long nOpenDistance);
 
     // Pfadabschnitt in Kurve bzw. Linie umwandeln. Toggle!
-//STRIP001  void ConvertSegment(const SdrHdl* pHdl);
 
     // Flag fuer Uebergang zwischen zwei Pfadsegmenten setzen
-//STRIP001  void SetSmoothFlag(const SdrHdl* pHdl, XPolyFlags eFlag);
-//STRIP001  void NbcSetSmoothFlag(const SdrHdl* pHdl, XPolyFlags eFlag);
-//STRIP001  XPolyFlags GetSmoothFlag(const SdrHdl* pHdl) const;
 
     // Welche Umwandlung eines Pfadabschnitts ist moeglich?
-//STRIP001  SdrPathType CanConvertSegment(const SdrHdl* pHdl) const;
 
     // Feststellen von welcher Art das Segment ist
-//STRIP001  SdrPathType GetSegmentType(const SdrHdl* pHdl) const;
 
     // eType=SDRPATH_NONE bedeutet Toggle
-//STRIP001  void ConvertSegment(const SdrHdl* pHdl, SdrPathType eType, FASTBOOL bIgnoreSmooth=FALSE);
-//STRIP001  void NbcConvertSegment(const SdrHdl* pHdl, SdrPathType eType, FASTBOOL bIgnoreSmooth=FALSE);
 
     // Alle Segmente konvertieren, eType=SDRPATH_NONE bedeutet Toggle
-//STRIP001  void ConvertAllSegments(SdrPathType ePathType);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //

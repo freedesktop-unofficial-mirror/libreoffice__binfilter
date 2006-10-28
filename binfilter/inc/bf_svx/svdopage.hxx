@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdopage.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:40:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:09:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,20 +66,13 @@ public:
     void NbcSetPageNum(USHORT nNewPageNum) { nPageNum=nNewPageNum; }
 
     virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual void operator=(const SdrObject& rObj);
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     virtual const Rectangle& GetBoundRect() const;
     virtual const Rectangle& GetSnapRect() const;
     virtual const Rectangle& GetLogicRect() const;
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
-//STRIP001  virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
