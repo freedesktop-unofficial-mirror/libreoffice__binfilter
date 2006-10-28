@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tstpitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:10:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:19:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,7 +93,6 @@ public:
     sal_Unicode&  GetFill() { return cFill; }
     sal_Unicode   GetFill() const { return cFill; }
 
-//STRIP001  String          GetValueString() const;
 
     // das "alte" operator==()
     BOOL            IsEqual( const SvxTabStop& rTS ) const
@@ -151,20 +150,16 @@ public:
     USHORT          GetPos( const SvxTabStop& rTab ) const;
 
     // Liefert Index-Position des Tabs an nPos zurueck oder TAB_NOTFOUND
-//STRIP001  USHORT          GetPos( const long nPos ) const;
 
     // entprivatisiert:
     USHORT          Count() const { return SvxTabStopArr::Count(); }
     BOOL            Insert( const SvxTabStop& rTab );
-//STRIP001  void            Insert( const SvxTabStopItem* pTabs, USHORT nStart = 0,
-//STRIP001                          USHORT nEnd = USHRT_MAX );
     void            Remove( SvxTabStop& rTab )
                         { SvxTabStopArr::Remove( rTab ); }
     void            Remove( const USHORT nPos, const USHORT nLen = 1 )
                         { SvxTabStopArr::Remove( nPos, nLen ); }
 
     // Zuweisungsoperator, Gleichheitsoperator (vorsicht: teuer!)
-//STRIP001  SvxTabStopItem& operator=( const SvxTabStopItem& rTSI );
 
     int             operator!=( const SvxTabStopItem& rTSI ) const
                         { return !( operator==( rTSI ) ); }
@@ -184,10 +179,6 @@ public:
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create( SvStream&, USHORT ) const;
