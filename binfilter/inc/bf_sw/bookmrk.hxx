@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bookmrk.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:47:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:34:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 #ifndef _BOOKMRK_HXX
 #define _BOOKMRK_HXX
 
-// auto strip #include "hintids.hxx"        //die Ids der Attribute, vor macitem damit die
                             //die Attribut richtig angezogen werden.
 #ifndef _SFXMACITEM_HXX
 #include <svtools/macitem.hxx>
@@ -81,7 +80,6 @@ protected:
     BOOKMARK_TYPE eMarkType;
 
 public:
-//STRIP001  TYPEINFO();
 
     SwBookmark(const SwPosition& aPos);
     SwBookmark(const SwPosition& aPos,
@@ -107,7 +105,6 @@ public:
     BOOL operator < (const SwBookmark &) const;
     BOOL operator ==(const SwBookmark &) const;
     // falls man wirklich auf gleiche Position abfragen will.
-//STRIP001  BOOL IsEqualPos( const SwBookmark &rBM ) const;
 
     BOOL IsBookMark() const     { return BOOKMARK == eMarkType; }
     BOOL IsMark() const         { return MARK == eMarkType; }
@@ -125,7 +122,6 @@ public:
     void SetRefObject( SwServerObject* pObj );
     const SwServerObject* GetObject() const     {  return &refObj; }
           SwServerObject* GetObject()           {  return &refObj; }
-//STRIP001  BOOL IsServer() const                       {  return refObj.Is(); }
 
 private:
     // fuer METWARE:
@@ -134,13 +130,6 @@ private:
     SwBookmark &operator=(const SwBookmark &);
 };
 
-//STRIP001 class SwMark: public SwBookmark
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SwMark(const SwPosition& aPos,
-//STRIP001      const KeyCode& rCode,
-//STRIP001      const String& rName, const String& rShortName);
-//STRIP001 };
 
 class SwUNOMark: public SwBookmark
 {
