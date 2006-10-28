@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:45:00 $
+#   last change: $Author: rt $ $Date: 2006-10-28 01:14:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,16 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_shells
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
@@ -63,20 +59,16 @@ SRC1FILES =  \
 SLOFILES =  \
         $(SLO)$/sw_basesh.obj \
         $(SLO)$/sw_beziersh.obj \
-        $(SLO)$/sw_drawdlg.obj \
         $(SLO)$/sw_drawsh.obj \
         $(SLO)$/sw_drformsh.obj \
         $(SLO)$/sw_drwbassh.obj \
-        $(SLO)$/sw_drwtxtex.obj \
         $(SLO)$/sw_drwtxtsh.obj \
         $(SLO)$/sw_frmsh.obj \
         $(SLO)$/sw_grfsh.obj \
-        $(SLO)$/sw_grfshex.obj \
         $(SLO)$/sw_listsh.obj \
         $(SLO)$/sw_olesh.obj \
         $(SLO)$/sw_slotadd.obj \
         $(SLO)$/sw_tabsh.obj \
-        $(SLO)$/sw_textdrw.obj \
         $(SLO)$/sw_textfld.obj \
         $(SLO)$/sw_textglos.obj \
         $(SLO)$/sw_textidx.obj \
@@ -85,7 +77,6 @@ SLOFILES =  \
         $(SLO)$/sw_txtattr.obj
 
 EXCEPTIONSFILES =  \
-        $(SLO)$/sw_grfshex.obj	\
         $(SLO)$/sw_textsh1.obj
 
 # --- Tagets -------------------------------------------------------
