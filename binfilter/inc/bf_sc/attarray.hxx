@@ -4,9 +4,9 @@
  *
  *  $RCSfile: attarray.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:57:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:27:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_ATRARR_HXX
 #define SC_ATRARR_HXX
 
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 
 #ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
@@ -97,14 +94,10 @@ private:
 friend class ScDocument;                // fuer FillInfo
 friend class ScDocumentIterator;
 friend class ScAttrIterator;
-//STRIP001 friend class ScHorizontalAttrIterator;
 friend void lcl_IterGetNumberFormat( ULONG& nFormat,
         const ScAttrArray*& rpArr, USHORT& nAttrEndRow,
         const ScAttrArray* pNewArr, USHORT nRow, ScDocument* pDoc );
 
-//STRIP001  BOOL    ApplyFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
-//STRIP001                          USHORT nStartRow, USHORT nEndRow,
-//STRIP001                          BOOL bLeft, USHORT nDistRight, BOOL bTop, USHORT nDistBottom );
 
 public:
             ScAttrArray( USHORT nNewCol, USHORT nNewTab, ScDocument* pDoc );
@@ -118,38 +111,23 @@ public:
     BOOL    Concat(USHORT nPos);
 
     const ScPatternAttr* GetPattern( USHORT nRow ) const;
-//STRIP001  const ScPatternAttr* GetPatternRange( USHORT& rStartRow, USHORT& rEndRow, USHORT nRow ) const;
     void    MergePatternArea( USHORT nStartRow, USHORT nEndRow, SfxItemSet** ppSet, BOOL bDeep ) const;
 
-//STRIP001  void    MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner, ScLineFlags& rFlags,
-//STRIP001                          USHORT nStartRow, USHORT nEndRow, BOOL bLeft, USHORT nDistRight ) const;
-//STRIP001  void    ApplyBlockFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
-//STRIP001                          USHORT nStartRow, USHORT nEndRow, BOOL bLeft, USHORT nDistRight );
 
     void    SetPattern( USHORT nRow, const ScPatternAttr* pPattern, BOOL bPutToPool = FALSE );
     void    SetPatternArea( USHORT nStartRow, USHORT nEndRow, const ScPatternAttr* pPattern, BOOL bPutToPool = FALSE);
     void    ApplyStyleArea( USHORT nStartRow, USHORT nEndRow, ScStyleSheet* pStyle );
     void    ApplyCacheArea( USHORT nStartRow, USHORT nEndRow, SfxItemPoolCache* pCache );
-//STRIP001  void    ApplyLineStyleArea( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                              const SvxBorderLine* pLine, BOOL bColorOnly );
 
 /*N*/   void    ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich );
-//STRIP001  void    ChangeIndent( USHORT nStartRow, USHORT nEndRow, BOOL bIncrement );
 
-//STRIP001  short   GetNextUnprotected( short nRow, BOOL bUp ) const;   // inkl. aktuelle
 
-//STRIP001  short   SearchStyle( short nRow, const ScStyleSheet* pSearchStyle,
-//STRIP001                          BOOL bUp, ScMarkArray* pMarkArray = NULL );
-//STRIP001  BOOL    SearchStyleRange( short& rRow, short& rEndRow, const ScStyleSheet* pSearchStyle,
-//STRIP001                          BOOL bUp, ScMarkArray* pMarkArray = NULL );
 
     BOOL    ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
 /*N*/   BOOL    RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
 
     BOOL    Search( USHORT nRow, short& nIndex ) const;
 
-//STRIP001  BOOL    HasLines( USHORT nRow1, USHORT nRow2, Rectangle& rSizes,
-//STRIP001                      BOOL bLeft, BOOL bRight ) const;
     BOOL    HasAttrib( USHORT nRow1, USHORT nRow2, USHORT nMask ) const;
     BOOL    ExtendMerge( USHORT nThisCol, USHORT nStartRow, USHORT nEndRow,
                                 USHORT& rPaintCol, USHORT& rPaintRow,
@@ -160,17 +138,11 @@ public:
     BOOL    IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
 
     void    DeleteAreaSafe(USHORT nStartRow, USHORT nEndRow);
-//STRIP001  void    SetPatternAreaSafe( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                                  const ScPatternAttr* pWantedPattern, BOOL bDefault );
-//STRIP001  void    CopyAreaSafe( USHORT nStartRow, USHORT nEndRow, short nDy, ScAttrArray& rAttrArray );
 
     BOOL    IsEmpty() const;
 
-//STRIP001  USHORT  GetFirstEntryPos() const;
-//STRIP001  USHORT  GetLastEntryPos( BOOL bIncludeBottom ) const;
 
     BOOL    HasVisibleAttr( USHORT& rFirstRow, USHORT& rLastRow, BOOL bSkipFirst ) const;
-//STRIP001  BOOL    HasVisibleAttrIn( USHORT nStartRow, USHORT nEndRow ) const;
     BOOL    IsVisibleEqual( const ScAttrArray& rOther,
                             USHORT nStartRow, USHORT nEndRow ) const;
     BOOL    IsAllEqual( const ScAttrArray& rOther, USHORT nStartRow, USHORT nEndRow ) const;
