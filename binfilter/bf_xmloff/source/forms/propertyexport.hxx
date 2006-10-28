@@ -4,9 +4,9 @@
  *
  *  $RCSfile: propertyexport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:09:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:47:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,9 +48,6 @@
 #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include <callbacks.hxx>
 #endif
-// auto strip #ifndef _XMLOFF_XMLEXP_HXX
-// auto strip #include "xmlexp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
 #endif

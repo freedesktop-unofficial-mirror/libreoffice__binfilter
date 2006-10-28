@@ -4,9 +4,9 @@
  *
  *  $RCSfile: formcellbinding.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:06:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:47:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,9 +54,6 @@
 #ifndef _DRAFTS_COM_SUN_STAR_FORM_XLISTENTRYSOURCE_HPP_
 #include <drafts/com/sun/star/form/XListEntrySource.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
