@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rulritem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:16:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:56:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,14 +55,7 @@ class SvxLongLRSpaceItem : public SfxPoolItem
   protected:
 
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual String           GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
 
@@ -90,14 +83,7 @@ class SvxLongULSpaceItem : public SfxPoolItem
   protected:
 
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual String           GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
 
@@ -124,14 +110,7 @@ class SvxPagePosSizeItem : public SfxPoolItem
     long lHeight;
 protected:
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual String           GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
 
@@ -190,26 +169,16 @@ class SvxColumnItem : public SfxPoolItem
 protected:
     virtual int              operator==( const SfxPoolItem& ) const;
 
-//STRIP001  virtual String           GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 public:
     TYPEINFO();
     // rechter Rand des umgebenden Rahmens
     // nLeft, nRight jeweils der Abstand zum umgebenden Rahmen
     SvxColumnItem(USHORT nAct = 0); // Spalten
-//STRIP001  SvxColumnItem(USHORT nActCol,
-//STRIP001                USHORT nLeft, USHORT nRight = 0); // Tabelle mit Raendern
     SvxColumnItem(const SvxColumnItem &);
     ~SvxColumnItem();
 
-//STRIP001  const SvxColumnItem &operator=(const SvxColumnItem &);
 
     USHORT Count() const { return aColumns.Count(); }
     SvxColumnDescription &operator[](USHORT i)
@@ -238,7 +207,6 @@ public:
     BOOL   IsOrtho () const { return FALSE ; }
 
     BOOL IsConsistent() const  { return nActColumn < aColumns.Count(); }
-//STRIP001  long   GetVisibleRight() const;// rechter sichtbare Rand der aktuellen Spalte
 };
 
 // class SvxObjectItem ---------------------------------------------------
@@ -252,37 +220,17 @@ private:
     long   nEndY;                      /* Ende in Y-Richtung */
     BOOL   bLimits;                    /* Grenzwertkontrolle durch die Applikation */
 protected:
-//STRIP001  virtual int              operator==( const SfxPoolItem& ) const;
 
-//STRIP001  virtual String           GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
-//STRIP001  virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 private:
-//STRIP001  const SvxObjectItem &operator=(const SvxObjectItem &); // n.i.
 public:
     TYPEINFO();
     SvxObjectItem(long nStartX, long nEndX,
                   long nStartY, long nEndY,
                   BOOL bLimits = FALSE);
-//STRIP001  SvxObjectItem(const SvxObjectItem &);
 
-//STRIP001  BOOL   HasLimits() const { return bLimits; }
 
-//STRIP001  long   GetStartX() const { return nStartX; }
-//STRIP001  long   GetEndX() const { return nEndX; }
-//STRIP001  long   GetStartY() const { return nStartY; }
-//STRIP001  long   GetEndY() const { return nEndY; }
 
-//STRIP001  void   SetStartX(long l) { nStartX = l; }
-//STRIP001  void   SetEndX(long l) { nEndX = l; }
-//STRIP001  void   SetStartY(long l) { nStartY = l; }
-//STRIP001  void   SetEndY(long l) { nEndY = l; }
 };
 
 }//end of namespace binfilter
