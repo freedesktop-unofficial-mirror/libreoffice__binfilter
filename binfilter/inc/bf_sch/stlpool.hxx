@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlpool.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:53:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:50:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,12 +39,6 @@
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
-// auto strip #ifndef _RSCSFX_HXX //autogen
-// auto strip #include <rsc/rscsfx.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
-// auto strip #include <svtools/itempool.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -60,7 +54,6 @@ protected:
     virtual SfxStyleSheetBase* Create(const String& rName,
                                       SfxStyleFamily eFamily,
                                       USHORT nMask);
-//STRIP001  virtual SfxStyleSheetBase* Create(const SchStyleSheet& rStyle);
 
 public:
                         SchStyleSheetPool(SfxItemPool& rPool);
