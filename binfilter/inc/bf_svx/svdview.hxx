@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdview.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:48:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:12:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -227,27 +227,17 @@ public:
     void EnableTextEditOnObjectsWithoutTextIfTextTool(BOOL bOn) { bTextEditOnObjectsWithoutTextIfTextTool=bOn; }
     BOOL IsEnableTextEditOnObjectsWithoutTextIfTextToolEnabled() const { return bTextEditOnObjectsWithoutTextIfTextTool; }
 
-//STRIP001  BOOL KeyInput(const KeyEvent& rKEvt, Window* pWin);
-//STRIP001  BOOL MouseButtonDown(const MouseEvent& rMEvt, Window* pWin);
-//STRIP001  BOOL MouseButtonUp(const MouseEvent& rMEvt, Window* pWin);
-//STRIP001  BOOL MouseMove(const MouseEvent& rMEvt, Window* pWin);
-//STRIP001  BOOL Command(const CommandEvent& rCEvt, Window* pWin);
 
-//STRIP001  BOOL SetAttributes(const SfxItemSet& rSet, BOOL bReplaceAll=FALSE) { return SdrCreateView::SetAttributes(rSet,bReplaceAll); }
     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr=FALSE) { return SdrCreateView::SetStyleSheet(pStyleSheet,bDontRemoveHardAttr); }
 
     /* new interface src537 */
-//STRIP001  BOOL GetAttributes(SfxItemSet& rTargetSet, BOOL bOnlyHardAttr=FALSE) const;
 
-//STRIP001  SfxStyleSheet* GetStyleSheet() const;
 
     // unvollstaendige Implementation:
     // Das OutputDevice ist notwendig, damit ich die HandleSize ermitteln kann.
     // Bei NULL wird das 1. angemeldete Win verwendet.
     Pointer GetPreferedPointer(const Point& rMousePos, const OutputDevice* pOut, USHORT nModifier=0, BOOL bLeftDown=FALSE) const;
-//STRIP001  SdrHitKind PickAnything(const MouseEvent& rMEvt, USHORT nMouseDownOrMoveOrUp, SdrViewEvent& rVEvt) const;
     SdrHitKind PickAnything(const Point& rLogicPos, SdrViewEvent& rVEvt) const;
-//STRIP001  BOOL DoMouseEvent(const SdrViewEvent& rVEvt);
     SdrViewContext GetContext() const;
 
     // Die Methoden beruecksichtigen den jeweiligen Kontex:
@@ -256,28 +246,17 @@ public:
     // - Klebepunkt-Editmode
     // - TextEdit
     // - ... to be continued
-//STRIP001  BOOL IsMarkPossible() const;
     BOOL HasMarked() const { return HasMarkedObj(); }
-//STRIP001  void MarkAll();
     void UnmarkAll();
-//STRIP001  BOOL IsAllMarked() const;
-//STRIP001  BOOL IsAllMarkPrevNextPossible() const; // das geht naemlich nicht bei TextEdit!
-//STRIP001  BOOL MarkNext(BOOL bPrev=FALSE);
-//STRIP001  BOOL MarkNext(const Point& rPnt, BOOL bPrev=FALSE);
 
-//STRIP001  const Rectangle& GetMarkedRect() const;
-//STRIP001  void SetMarkedRect(const Rectangle& rRect);
 
     virtual void DeleteMarked();
-//STRIP001  BOOL IsDeleteMarkedPossible() const;
-//STRIP001  BOOL IsDeletePossible() const { return IsDeleteMarkedPossible(); }
 
     // Markieren von Objekten, Polygonpunkten oder Klebepunkten (je nach View-
     // Kontext) durch Aufziehen eines Selektionsrahmens.
     //   bAddMark=TRUE: zur bestehenden Selektion hinzumarkieren (->Shift)
     //   bUnmark=TRUE: Bereits selektierte Objekte/Punkte/Klebepunkte die innerhalb
     //                 des aufgezogenen Rahmens liegen werden deselektiert.
-//STRIP001  BOOL BegMark(const Point& rPnt, BOOL bAddMark=FALSE, BOOL bUnmark=FALSE);
 
     // Folgende Actions sind moeglich:
     //   - ObjectCreating
@@ -299,7 +278,6 @@ public:
     // die virtuellen Methoden ReadData() und WriteData().
     friend SvStream& operator>>(SvStream& rIn, SdrView& rView);
 
-//STRIP001  SvtAccessibilityOptions& getAccessibilityOptions();
 
     virtual void onAccessibilityOptionsChanged();
 };
