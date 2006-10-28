@@ -4,9 +4,9 @@
  *
  *  $RCSfile: polysc3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:12:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:53:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,23 +68,12 @@ public:
     virtual FASTBOOL Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
 
     // Die Kontur fuer TextToContour
-//STRIP001  virtual void TakeContour(XPolyPolygon& rPoly) const;
-//STRIP001  virtual void TakeContour3D(XPolyPolygon& rPoly);
 
-//STRIP001  virtual void Paint3D(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001      const SdrPaintInfoRec& rInfoRec, UINT16 nDrawFlags=0);
 
 protected:
-//STRIP001  void DrawAllShadows(Base3D *pBase3D, ExtOutputDevice& rXOut,
-//STRIP001      const Rectangle& rBound, const Volume3D& rVolume,
-//STRIP001      const SdrPaintInfoRec& rInfoRec);
 
-//STRIP001  BOOL LocalPaint3D(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec);
 
-//STRIP001  void DrawPolySceneClip(ExtOutputDevice& rOut, const E3dObject *p3DObj,
-//STRIP001      Base3D *pBase3D, const SdrPaintInfoRec& rInfoRec);
 
-//STRIP001  void DrawWireframe(Base3D *pBase3D, ExtOutputDevice& rXOut);
 };
 
 }//end of namespace binfilter
