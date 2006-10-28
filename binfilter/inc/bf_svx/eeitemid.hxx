@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eeitemid.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:22:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:30:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 #ifndef _EEITEMID_HXX
 #define _EEITEMID_HXX
 
-// auto strip #include <bf_svx/eeitem.hxx>
 namespace binfilter {
 
 #ifdef ITEMID_FONT
