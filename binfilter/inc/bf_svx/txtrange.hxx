@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtrange.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:11:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:20:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,7 +83,6 @@ class TextRanger
     BOOL bFlag6 :1;
     BOOL bFlag7 :1;
     TextRanger( const TextRanger& ); // not implemented
-//STRIP001  const Rectangle& _GetBoundRect();
 public:
     TextRanger( const XPolyPolygon& rXPoly, const XPolyPolygon* pXLine,
                 USHORT nCacheSize, USHORT nLeft, USHORT nRight,
@@ -101,11 +100,8 @@ public:
     BOOL HasBorder() const { return nRight || nLeft; }
     const PolyPolygon& GetPolyPolygon() const { return *pPoly; }
     const PolyPolygon* GetLinePolygon() const { return pLine; }
-//STRIP001  const Rectangle& GetBoundRect()
-//STRIP001      { return pBound ? *pBound : _GetBoundRect(); }
     void SetUpper( USHORT nNew ){ nUpper = nNew; }
     void SetLower( USHORT nNew ){ nLower = nNew; }
-//STRIP001  void SetVertical( BOOL bNew );
     BOOL IsFlag3() const { return bFlag3; }
     void SetFlag3( BOOL bNew ) { bFlag3 = bNew; }
     BOOL IsFlag4() const { return bFlag4; }
