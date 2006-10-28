@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objid.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:49:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:49:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ class SchObjectId : public SdrObjUserData
 public:
     SchObjectId();
     SchObjectId(UINT16 nId);
-//STRIP001  SchObjectId(const SchObjectId& rObjectId);
 
         virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
@@ -79,9 +78,6 @@ public:
 \************************************************************************/
 
 extern SchObjectId* GetObjectId(const SdrObject& rObj);
-//STRIP001 extern UINT16 GetObjectIdNum( const SdrObject& rObj );
-//STRIP001 extern void SetAttrWithId(UINT16 nObjId, const SdrObjList& rObjList,const SfxItemSet& rAttr,
-//STRIP001                                                         SdrIterMode eMode = IM_FLAT);
 
 extern SdrObject* GetObjWithId(UINT16 nObjId, const SdrObjList& rObjList,
                                                            ULONG* pIndex = NULL,

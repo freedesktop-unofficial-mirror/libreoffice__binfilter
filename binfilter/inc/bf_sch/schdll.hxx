@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schdll.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:50:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:49:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -162,7 +162,6 @@ extern_c SchMemChart* __LOADONCALLAPI SchGetChartData( SvInPlaceObjectRef aIPObj
 extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartNone();
 extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartXY( short nCols, short nRows );
 extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartCopy( const SchMemChart &rMemChart );
-//STRIP001 extern_c ChartModel*  __LOADONCALLAPI SchGetModel( SvInPlaceObjectRef aIPObj );
 extern_c void __LOADONCALLAPI SetTransparentBackground( SvInPlaceObjectRef aIPObj, BOOL bTransp = TRUE );
 extern_c void __LOADONCALLAPI SchGetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult );
 extern_c void __LOADONCALLAPI SchGetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult );
