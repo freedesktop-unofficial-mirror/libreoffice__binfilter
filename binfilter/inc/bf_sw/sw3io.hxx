@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3io.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:25:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:53:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,14 +78,11 @@ public:
     void  HandsOff();
     BOOL  SaveCompleted( SvStorage* );
 
-//STRIP001  ULONG LoadStyles( SvStorage* );
      ULONG SaveStyles();
     // Erzeugen eines eindeutigen Streamnamens im gegebenen Storage
     static UniString UniqueName( SvStorage*, const sal_Char* pPrefix );
 
     // Ermitteln aller Sections eines Dokuments
-//STRIP001  ULONG GetSectionList( SvStorage*, SvStrings& rSectionList );
-//STRIP001  ULONG GetMacroTable( SvStorage*, SvxMacroTableDtor& rMacroTbl );
 };
 
 } //namespace binfilter
