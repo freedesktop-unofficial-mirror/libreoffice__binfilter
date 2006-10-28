@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:45:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:11:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,16 +92,8 @@ public:
     SdrItemPool(const SdrItemPool& rPool);
     virtual ~SdrItemPool();
     virtual SfxItemPool* Clone() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation(const SfxPoolItem& rItem,
-//STRIP001      SfxItemPresentation ePresentation,
-//STRIP001      SfxMapUnit          ePresentationMetric,
-//STRIP001      String&             rText,
-//STRIP001         const IntlWrapper * pIntlWrapper
-//STRIP001      = 0) const;
 
-//STRIP001  static FASTBOOL TakeItemName(USHORT nWhich, String& rItemName);
     // liefert nur einen String, wenn die DLL mit DBG_UTIL uebersetzt ist
-//STRIP001  static BOOL TakeWhichName(USHORT nWhich, ByteString& rItemName);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

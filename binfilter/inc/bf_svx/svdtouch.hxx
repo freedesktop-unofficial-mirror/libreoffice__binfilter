@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdtouch.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:46:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:12:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,20 +52,10 @@ class XPolygon;
 class XPolyPolygon;
 
 FASTBOOL IsPointInsidePoly(const Polygon& rPoly, const Point& rHit);
-//STRIP001 FASTBOOL IsPointInsidePoly(const PolyPolygon& rPoly, const Point& rHit);
-//STRIP001 FASTBOOL IsPointInsidePoly(const XPolygon& rPoly, const Point& rHit, OutputDevice* pOut=NULL);
-//STRIP001 FASTBOOL IsPointInsidePoly(const XPolyPolygon& rPoly, const Point& rHit, OutputDevice* pOut=NULL);
 
-//STRIP001 FASTBOOL IsRectTouchesPoly(const Polygon& rPoly, const Rectangle& rHit);
 FASTBOOL IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit);
-//STRIP001 FASTBOOL IsRectTouchesPoly(const XPolygon& rPoly, const Rectangle& rHit, OutputDevice* pOut=NULL);
-//STRIP001 FASTBOOL IsRectTouchesPoly(const XPolyPolygon& rPoly, const Rectangle& rHit, OutputDevice* pOut=NULL);
 
-//STRIP001 FASTBOOL IsRectTouchesLine(const Point& rPt1, const Point& rPt2, const Rectangle& rHit);
 FASTBOOL IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit);
-//STRIP001 FASTBOOL IsRectTouchesLine(const PolyPolygon& rLine, const Rectangle& rHit);
-//STRIP001 FASTBOOL IsRectTouchesLine(const XPolygon& rLine, const Rectangle& rHit, OutputDevice* pOut=NULL);
-//STRIP001 FASTBOOL IsRectTouchesLine(const XPolyPolygon& rLine, const Rectangle& rHit, OutputDevice* pOut=NULL);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

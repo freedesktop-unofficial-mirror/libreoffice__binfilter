@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdsnpv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:45:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:11:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,12 +123,6 @@ private:
 
 protected:
     // Alles togglen was als Xor im Win, nix merken! NULL=alle OutDev
-//STRIP001  void ShowSetPageOrg(OutputDevice* pOut);
-//STRIP001  void HideSetPageOrg(OutputDevice* pOut);
-//STRIP001  void DrawSetPageOrg(OutputDevice* pOut) const;
-//STRIP001  void ShowDragHelpLine(OutputDevice* pOut);
-//STRIP001  void HideDragHelpLine(OutputDevice* pOut);
-//STRIP001  void DrawDragHelpLine(OutputDevice* pOut) const;
     virtual void WriteRecords(SvStream& rOut) const;
     virtual BOOL ReadRecord(const SdrIOHeader& rViewHead, const SdrNamedSubRecord& rSubHead,SvStream& rIn);
 public:
@@ -137,11 +131,7 @@ public:
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
     virtual BOOL IsAction() const;
-//STRIP001  virtual void MovAction(const Point& rPnt);
-//STRIP001  virtual void EndAction();
-//STRIP001  virtual void BckAction();
     virtual void BrkAction(); // f.abg.Klassen Actions z,B, Draggen abbrechen.
-//STRIP001  virtual void TakeActionRect(Rectangle& rRect) const;
 
     // Alle Fangeinstellungen sind Persistent.
     /*alt*/void SetSnapGrid(const Size& rSiz) { aSnapSiz=rSiz; SetSnapGridWidth(Fraction(rSiz.Width(),1),Fraction(rSiz.Height(),1)); }
@@ -164,11 +154,6 @@ public:
     // Auf die View bezogene Koordinaten!
     // Rueckgabewerte sind SDRSNAP_NOTSNAPPED,SDRSNAP_XSNAPPED,
     // SDRSNAP_YSNAPPED oder SDRSNAP_XYSNAPPED
-//STRIP001  USHORT SnapPos(Point& rPnt, const SdrPageView* pPV) const;
-//STRIP001  Point GetSnapPos(const Point& rPnt, const SdrPageView* pPV) const;
-//STRIP001  USHORT SnapRect(const Rectangle& rRect, const SdrPageView* pPV, long& rDX, long& rDY) const;
-//STRIP001  void CheckSnap(const Point& rPt, const SdrPageView* pPV,
-//STRIP001      long& nBestXSnap, long& nBestYSnap, BOOL& bXSnapped, BOOL& bYSnapped) const;
     void SnapMove();
 
     // Alle Fangeinstellungen sind Persistent.
@@ -209,9 +194,6 @@ public:
     void SetMoveOPntSnap(BOOL bOn) { bMoveOPntSnap=bOn; SnapMove(); }
     void SetMoveOConSnap(BOOL bOn) { bMoveOConSnap=bOn; SnapMove(); }
 
-//STRIP001  BOOL BegSetPageOrg(const Point& rPnt, OutputDevice* pOut=NULL, short nMinMov=0);
-//STRIP001  void MovSetPageOrg(const Point& rPnt);
-//STRIP001  BOOL EndSetPageOrg();
     void BrkSetPageOrg();
     BOOL IsSetPageOrg() const { return bSetPageOrg; }
 
@@ -221,10 +203,8 @@ public:
     BOOL PickHelpLine(const Point& rPnt, const OutputDevice& rOut, USHORT& rnHelpLineNum, SdrPageView*& rpPV) const { return PickHelpLine(rPnt,-2,rOut,rnHelpLineNum,rpPV); }
 
     // Verschieben einer vorhandenen Hilfslinie. nHelpLineNum und pPV von PickHelpLine verwenden.
-//STRIP001  BOOL BegDragHelpLine(USHORT nHelpLineNum, SdrPageView* pPV, OutputDevice* pOut=NULL, short nMinMov=-3);
 
     // Interaktives einfuegen einer neuen Hilfslinie
-//STRIP001  BOOL BegDragHelpLine(const Point& rPnt, SdrHelpLineKind eNewKind, OutputDevice* pOut=NULL, short nMinMov=0);
     const SdrHelpLine& GetDraggedHelpLine() const { return aDragHelpLine; }
     SdrHelpLineKind GetDraggedHelpLineKind() const { return aDragHelpLine.GetKind(); }
 
@@ -234,9 +214,6 @@ public:
     SdrPageView* GetDraggedHelpLinePageView() const { return pDragHelpLinePV; }
 
     // Aendern des Hilfslinientyps waerend des draggens
-//STRIP001  void SetDraggedHelpLineKind(SdrHelpLineKind eNewKind);
-//STRIP001  void MovDragHelpLine(const Point& rPnt);
-//STRIP001  BOOL EndDragHelpLine();
     void BrkDragHelpLine();
     BOOL IsDragHelpLine() const { return bDragHelpLine; }
 
