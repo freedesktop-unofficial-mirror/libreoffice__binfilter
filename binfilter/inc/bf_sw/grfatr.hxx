@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfatr.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:32:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:47:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,11 +96,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
@@ -128,8 +123,6 @@ class SwCropGrf : public SvxGrfCrop
 public:
     TYPEINFO();
     SwCropGrf();
-//STRIP001  SwCropGrf(  sal_Int32 nLeft,    sal_Int32 nRight,
-//STRIP001              sal_Int32 nTop,     sal_Int32 nBottom );
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
@@ -153,11 +146,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
                                             BYTE nMemberId = 0 ) const;
     virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal,
@@ -177,11 +165,6 @@ public:
     // pure virtual-Methiden from SfxInt16Item
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 };
 
 class SwContrastGrf : public SfxInt16Item
@@ -194,11 +177,6 @@ public:
     // pure virtual-Methiden from SfxInt16Item
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 };
 
 class SwChannelGrf : public SfxInt16Item
@@ -211,11 +189,6 @@ protected:
 public:
     // pure virtual-Methiden from SfxInt16Item
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 };
 
 class SwChannelRGrf : public SwChannelGrf
@@ -267,11 +240,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
                                             BYTE nMemberId = 0 ) const;
@@ -293,11 +261,6 @@ public:
     // pure virtual-Methiden from SfxInt16Item
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 };
 
 class SwTransparencyGrf : public SfxByteItem
@@ -310,11 +273,6 @@ public:
     // pure virtual-Methiden from SfxInt16Item
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
     virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
     virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal,
@@ -334,11 +292,6 @@ public:
     // pure virtual-Methiden von SfxEnumItem
     virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001  virtual USHORT          GetValueCount() const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
     virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
