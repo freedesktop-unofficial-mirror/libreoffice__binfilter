@@ -4,9 +4,9 @@
  *
  *  $RCSfile: algitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:03:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:20:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,16 +65,11 @@ public:
         const SvxCellHorJustify eJustify = SVX_HOR_JUSTIFY_STANDARD,
         const USHORT nId = ITEMID_HORJUSTIFY );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
-//STRIP001  virtual String          GetValueText( USHORT nVal ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
 
@@ -100,16 +95,11 @@ public:
         const SvxCellVerJustify eJustify = SVX_VER_JUSTIFY_STANDARD,
         const USHORT nId = ITEMID_VERJUSTIFY );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
-//STRIP001  virtual String          GetValueText( USHORT nVal ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
 
@@ -135,16 +125,11 @@ public:
         const SvxCellOrientation eOrientation = SVX_ORIENTATION_STANDARD,
         const USHORT nId = ITEMID_ORIENTATION );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
-//STRIP001  virtual String          GetValueText( USHORT nVal ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
 
@@ -175,10 +160,6 @@ public:
                    const USHORT nId = ITEMID_MARGIN );
     SvxMarginItem( const SvxMarginItem& );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual int              operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
@@ -189,13 +170,9 @@ public:
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
             INT16           GetLeftMargin() const {return nLeftMargin; }
-//STRIP001          BOOL            SetLeftMargin(INT16 nLeft);
             INT16           GetTopMargin() const {return nTopMargin; }
-//STRIP001          BOOL            SetTopMargin(INT16 nTop);
             INT16           GetRightMargin() const {return nRightMargin; }
-//STRIP001          BOOL            SetRightMargin(INT16 nRight);
             INT16           GetBottomMargin() const {return nBottomMargin; }
-//STRIP001          BOOL            SetBottomMargin(INT16 nBottom);
 
     inline  SvxMarginItem& operator=(const SvxMarginItem& rMargin)
             {

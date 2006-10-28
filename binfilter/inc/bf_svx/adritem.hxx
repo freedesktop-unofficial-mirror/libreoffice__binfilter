@@ -4,9 +4,9 @@
  *
  *  $RCSfile: adritem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:02:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:19:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,13 +90,7 @@ public:
     SvxAddressItem( const SvxAddressItem& );
     ~SvxAddressItem() {}
 
-//STRIP001  void                    Store();
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create( SvStream&, USHORT nVersion ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& rAttr ) const;
-//STRIP001  virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     BOOL                    SetToken( USHORT nPos, const String &rVal );
     String                  GetToken( USHORT nPos ) const;
