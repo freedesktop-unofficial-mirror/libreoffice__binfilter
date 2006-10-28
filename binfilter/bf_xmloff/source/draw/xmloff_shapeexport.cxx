@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_shapeexport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 08:58:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:44:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,9 +45,6 @@
 #include <com/sun/star/text/XText.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
@@ -67,23 +64,11 @@
 #ifndef _COM_SUN_STAR_DRAWING_GLUEPOINT2_HPP_
 #include <com/sun/star/drawing/GluePoint2.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_ALIGNMENT_HPP_
-// auto strip #include <com/sun/star/drawing/Alignment.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_ESCAPEDIRECTION_HPP_
-// auto strip #include <com/sun/star/drawing/EscapeDirection.hpp>
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
-// auto strip #include "PropertySetMerger.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_SHAPEEXPORT_HXX
-// auto strip #include "shapeexport.hxx"
-// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
@@ -93,9 +78,6 @@
 #include "sdxmlexp_impl.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -105,13 +87,7 @@
 #include "contextid.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>

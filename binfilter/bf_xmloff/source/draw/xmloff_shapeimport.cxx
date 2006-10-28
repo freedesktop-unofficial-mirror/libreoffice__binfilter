@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_shapeimport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 08:59:32 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:45:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,43 +37,25 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
-// auto strip #endif
 
 #include <list>
 
-// auto strip #ifndef _XMLOFF_SHAPEIMPORT_HXX
-// auto strip #include "shapeimport.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
-// auto strip #include "xmltkmap.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
 #endif
 
-// auto strip #ifndef _XIMPSHAPE_HXX
-// auto strip #include "ximpshap.hxx"
-// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-// auto strip #include "xmlprmap.hxx"
-// auto strip #endif
 
 #ifndef _XIMP3DSCENE_HXX
 #include "ximp3dscene.hxx"
