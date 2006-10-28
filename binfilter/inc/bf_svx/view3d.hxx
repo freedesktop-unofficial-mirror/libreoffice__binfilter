@@ -4,9 +4,9 @@
  *
  *  $RCSfile: view3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:21:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:23:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -103,14 +103,7 @@ protected:
 
     void InitView();
 
-//STRIP001  void ImpCreate3DObject(E3dScene* pScene, SdrObject* pObj, BOOL bExtrude, double fDepth, Matrix4D& rLatheMat);
-//STRIP001  void ImpCreateSingle3DObjectFlat(E3dScene* pScene, SdrObject* pObj, BOOL bExtrude, double fDepth, Matrix4D& rLatheMat);
-//STRIP001  void ImpChangeSomeAttributesFor3DConversion(SdrObject* pObj);
-//STRIP001  void ImpChangeSomeAttributesFor3DConversion2(SdrObject* pObj);
 
-//STRIP001  void InitScene(E3dScene* pScene, double fW, double fH, double fCamZ);
-//STRIP001  void ImpIsConvertTo3DPossible(SdrObject* pObj, BOOL& rAny3D, BOOL& rGroupSelected) const;
-//STRIP001  void BreakSingle3DObj(E3dObject* pObj);
 
 public:
     TYPEINFO();
@@ -121,11 +114,9 @@ public:
     virtual ~E3dView();
 
     // Alle markierten Objekte auf dem angegebenen OutputDevice ausgeben.
-//STRIP001  virtual void DrawMarkedObj(OutputDevice& rOut, const Point& rOfs) const;
 
     // Zugriff auf die Default-Attribute
     E3dDefaultAttributes& Get3DDefaultAttributes() { return a3DDefaultAttr; }
-//STRIP001  virtual BOOL BegDragObj(const Point& rPnt, OutputDevice* pOut = NULL, SdrHdl* pHdl = NULL, short nMinMov = -3, SdrDragMethod* pForcedMeth = NULL);
     virtual void CheckPossibilities();
 
     // Event setzen/rausruecken
@@ -134,38 +125,25 @@ public:
 
     // Model holen ueberladen, da bei einzelnen 3D Objekten noch eine Szene
     // untergeschoben werden muss
-//STRIP001  virtual SdrModel* GetMarkedObjModel() const;
 
     // Bei Paste muss - falls in eine Scene eingefuegt wird - die
     // Objekte der Szene eingefuegt werden, die Szene selbst aber nicht
-//STRIP001  virtual BOOL Paste(const SdrModel& rMod, const Point& rPos, SdrObjList* pLst=NULL, UINT32 nOptions=0);
 
     // #83403# Service routine used from local Clone() and from SdrCreateView::EndCreateObj(...)
-//STRIP001  BOOL ImpCloneAll3DObjectsToDestScene(E3dScene* pSrcScene, E3dScene* pDstScene, Point aOffset);
 
-//STRIP001  BOOL HasMarkedScene();
-//STRIP001  E3dScene* GetMarkedScene();
 
     BOOL IsConvertTo3DObjPossible() const;
-//STRIP001  void ConvertMarkedObjTo3D(BOOL bExtrude=TRUE, Vector3D aPnt1 = Vector3D(), Vector3D aPnt2 = Vector3D(0.0, 1.0, 0.0));
 
     // Nachtraeglichhe Korrekturmoeglichkeit um alle Extrudes in einer
     // bestimmten Tiefensortierung anzulegen
     void DoDepthArrange(E3dScene* pScene, double fDepth);
-//STRIP001  void ConvertMarkedToPolyObj(BOOL bLineToArea);
     void Set3DDragConstraint(E3dDragConstraint eConstr) { eDragConstraint = eConstr; }
     E3dDragConstraint Get3DDragConstraint() { return eDragConstraint; }
     void Set3DDragDetail(E3dDragDetail eDetail) { eDragDetail = eDetail; }
     E3dDragDetail Get3DDragDetail() { return eDragDetail; }
-//STRIP001  void SetCurrent3DObj(E3dObject* p3DObj);
-//STRIP001  void Start3DCreation();
     BOOL IsCreationActive() const { return b3dCreationActive; }
-//STRIP001  virtual void MovAction(const Point& rPnt);
-//STRIP001  void End3DCreation(BOOL bUseDefaultValuesForMirrorAxes=FALSE);
     void ResetCreationActive();
     void ShowMirrored();
-//STRIP001  void CreateMirrorPolygons();
-//STRIP001  void ShowMirrorPolygons(Point aMirrorPoint1, Point aMirrorPoint2);
 
     const Vector3D &DefaultTranslation () const
     {
@@ -187,7 +165,6 @@ public:
         return aDefaultLightPos;
     }
 
-//STRIP001  double GetDefaultCamPosZ();
 //-/    const Vector3D &DefaultCamPos () const
 //-/    {
 //-/        return aDefaultCamPos;
@@ -268,7 +245,6 @@ public:
         return fDefaultExtrusionDeepth;
     }
 
-//STRIP001  double GetDefaultCamFocal();
 //-/    double &DefaultCamFocal ()
 //-/    {
 //-/        return fDefaultCamFocal;
@@ -325,12 +301,7 @@ public:
     long GetVDefaultSegments() const { return nVDefaultSegments; }
     void SetVDefaultSegments(long nSegs) { nVDefaultSegments = nSegs; }
 
-//STRIP001  virtual void ShowDragObj(OutputDevice* pOut);
-//STRIP001  virtual void HideDragObj(OutputDevice* pOut);
-//STRIP001  virtual void DrawDragObj(OutputDevice* pOut, BOOL bFull) const;
 
-//STRIP001  BOOL IsBreak3DObjPossible() const;
-//STRIP001  void Break3DObj();
 
     BOOL DoubleSided () const
     {
@@ -342,9 +313,6 @@ public:
         return bDoubleSided;
     }
 
-//STRIP001  void MergeScenes();
-//STRIP001  SfxItemSet Get3DAttributes(E3dScene* pInScene = NULL, BOOL bOnly3DAttr=FALSE) const;
-//STRIP001  void Set3DAttributes(const SfxItemSet& rAttr, E3dScene* pInScene = NULL, BOOL bOnly3DAttr=FALSE);
 };
 
 }//end of namespace binfilter
