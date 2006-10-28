@@ -4,9 +4,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:16:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:50:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -124,7 +124,6 @@ protected:
 public:
     virtual ~SwNode();
 
-//STRIP001  USHORT GetSectionLevel() const;
     inline ULONG StartOfSectionIndex() const;
     inline const SwStartNode* StartOfSectionNode() const;
     inline       SwStartNode* StartOfSectionNode();
@@ -223,7 +222,6 @@ public:
     inline const    SwDoc* GetDoc() const;
 
     // liegt der Node im Sichtbarenbereich der Shell ?
-//STRIP001  BOOL IsVisible( ViewShell* pSh = 0 ) const;
     // befindet sich der Node in einem geschuetzten Bereich?
     BOOL IsInProtectSect() const;
     // befindet sich der Node in irgendetwas geschuetzten ?
@@ -234,7 +232,6 @@ public:
     // Layout vorhanden ist wird ueber das gesucht, ansonsten gibt es nur
     // die harte Tour ueber die Nodes nach vorne suchen!!
     // OD 18.03.2003 #106326#
-//STRIP001     const SwPageDesc* FindPageDesc( BOOL bCalcLay, sal_uInt32* pPgDescNdIdx = 0 ) const;
 
     // falls der Node in einem Fly steht, dann wird das entsprechende Format
     // returnt
@@ -242,7 +239,6 @@ public:
 
     // liefert das Format, an dem die LayoutFrames des StartNodes registriert sind,
     // wird von SwSectionNode::MakeFrms benutzt
-//STRIP001  const SwFrmFmt* GetFrmFmt() const;
 
     // falls der Node in einer Tabelle steht, dann wird die entsprechende
     // TabellenBox returnt
@@ -252,11 +248,6 @@ public:
 
     const SwTxtNode* FindOutlineNodeOfLevel( BYTE nLvl ) const;
 
-//STRIP001  BYTE HasPrevNextLayNode() const;
-//STRIP001  BOOL HasPrevLayNode() const
-//STRIP001      { return 0 != (ND_HAS_PREV_LAYNODE & HasPrevNextLayNode()); }
-//STRIP001  BOOL HasNextLayNode() const
-//STRIP001      { return 0 != (ND_HAS_NEXT_LAYNODE & HasPrevNextLayNode()); }
 
 private:
     // privater Constructor, weil nie kopiert werden darf !!
@@ -350,8 +341,6 @@ public:
 
     virtual SwCntntFrm *MakeFrm() = 0;
      virtual SwCntntNode *SplitNode(const SwPosition & ) = 0;
-//STRIP001  virtual SwCntntNode *JoinNext();
-//STRIP001  virtual SwCntntNode *JoinPrev();
     // koennen 2 Nodes zusammengefasst werden ?
     // in pIdx kann die 2. Position returnt werden.
     int CanJoinNext( SwNodeIndex* pIdx =0 ) const;
@@ -369,12 +358,6 @@ public:
     // Gibt die tatsaechlcheGroesse des Frames zurueck bzw. ein leeres
     // Rechteck, wenn kein Layout existiert.
     // Wird fuer die Export Filter benoetigt.
-//STRIP001  SwRect FindLayoutRect( const BOOL bPrtArea = FALSE,
-//STRIP001                          const Point* pPoint = 0,
-//STRIP001                          const BOOL bCalcFrm = FALSE  ) const;
-//STRIP001  SwRect FindPageFrmRect( const BOOL bPrtArea = FALSE,
-//STRIP001                          const Point* pPoint = 0,
-//STRIP001                          const BOOL bCalcFrm = FALSE  ) const;
     /*
      * Methode erzeugt fuer den angegebenen Node alle Ansichten vom
      * Dokument. Die erzeugten Contentframes werden in das entsprechende
@@ -407,7 +390,6 @@ public:
     BOOL SetAttr( const SfxPoolItem& );
     BOOL SetAttr( const SfxItemSet& rSet );
     BOOL ResetAttr( USHORT nWhich1, USHORT nWhich2 = 0 );
-//STRIP001  BOOL ResetAttr( const SvUShorts& rWhichArr );
     USHORT ResetAllAttr();
     // liefert das Attribut, das nicht ueber die bedingte Vorlage kommt!
     const SfxPoolItem* GetNoCondAttr( USHORT nWhich, BOOL bInParents ) const;
@@ -520,10 +502,8 @@ public:
     //Layout gehaengt.
     void MakeFrms( const SwNodeIndex & rIdx );
 
-//STRIP001  SwSectionNode* MakeCopy( SwDoc*, const SwNodeIndex& ) const;
 
     // setze den Verweis im Format der Section auf sich selbst
-//STRIP001  void NodesArrChgd();
 
     // ueberprueft bei _nicht_ versteckten Bereichen, ob es Inhalt gibt, der
     // _nicht_ in einem versteckten (Unter-)Bereich liegt
