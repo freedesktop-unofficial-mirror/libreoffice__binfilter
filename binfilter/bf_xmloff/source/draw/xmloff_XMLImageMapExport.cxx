@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLImageMapExport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:55:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:42:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,13 +37,7 @@
 #include "XMLImageMapExport.hxx"
 #endif
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -57,13 +51,7 @@
 #include <com/sun/star/uno/Sequence.h>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
@@ -73,21 +61,9 @@
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
-// auto strip #include <com/sun/star/awt/Rectangle.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_POINT_HPP_
-// auto strip #include <com/sun/star/awt/Point.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
-// auto strip #include <com/sun/star/awt/Size.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
-// auto strip #include <com/sun/star/drawing/PointSequence.hpp>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -97,9 +73,6 @@
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
