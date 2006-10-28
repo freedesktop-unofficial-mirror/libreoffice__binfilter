@@ -4,9 +4,9 @@
  *
  *  $RCSfile: calculat.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:41:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:45:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,7 +75,6 @@ public:
         @param  rRectangle  The clipping area.
         @return TRUE is returned if the line lies completely or partly inside the clipping area.
      */
-//STRIP001  static BOOL ClipLineAtRectangle( Line& aLine, const Rectangle& rRectangle );
 
     /** @descr  The intersection between an open polygon and a rectangle is
             calculated and the resulting lines are placed into the poly-polygon aResult.
@@ -97,9 +96,6 @@ public:
         @param rOutResult    The resulting lines representing rPolyPolygon clipped
                              at rRectangle.
      */
-//STRIP001     static void IntersectPolyPolygonWithRectangle( const XPolyPolygon & rPolyPolygon,
-//STRIP001                                                    const Rectangle & rRectangle,
-//STRIP001                                                    XPolyPolygon & rOutResult );
 
     /** @descr calculates natural cubic splines for the given set of points.
 
@@ -119,10 +115,6 @@ public:
         @param nDPIY resolution in y-direction to reduce the number of points.
                A value of 0 (default) means do not take into account.
      */
-//STRIP001     static void CalculateCubicSplines( const ::std::vector< ::std::pair< double, double > > & rPoints,
-//STRIP001                                        sal_Int32 nGranularity,
-//STRIP001                                        XPolyPolygon & rOutResult,
-//STRIP001                                        long nDPIX = 0, long nDPIY = 0 );
 
 private:
     /** @descr  The line given by it's two endpoints rP0 and rP1 is clipped at the rectangle

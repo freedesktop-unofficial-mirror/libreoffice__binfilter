@@ -4,9 +4,9 @@
  *
  *  $RCSfile: axisid.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:41:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:45:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@ class SchAxisId : public SdrObjUserData
 public:
     SchAxisId ();
     SchAxisId (long nId);
-//STRIP001  SchAxisId (const SchAxisId &rAxisId);
 
     virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
@@ -86,11 +85,6 @@ public:
 |*
 \************************************************************************/
 
-//STRIP001 SchAxisId *GetAxisId (const SdrObject& rObj);
-//STRIP001 SdrObject *GetObjWithAxisId (long             nObjId,
-//STRIP001                           const SdrObjList &rObjList,
-//STRIP001                           long             *pIndex,
-//STRIP001                           SdrIterMode      eMode);
 
 } //namespace binfilter
 #endif  // _SCH_OBJID_HXX
