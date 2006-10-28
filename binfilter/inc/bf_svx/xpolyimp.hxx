@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xpolyimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:40:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:33:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,8 +113,6 @@ public:
                 ImpXPolyPolygon( const ImpXPolyPolygon& rImpXPolyPoly );
                 ~ImpXPolyPolygon();
 
-//STRIP001  FASTBOOL operator==(const ImpXPolyPolygon& rImpXPolyPoly) const;
-//STRIP001  FASTBOOL operator!=(const ImpXPolyPolygon& rImpXPolyPoly) const { return !operator==(rImpXPolyPoly); }
 };
 
 

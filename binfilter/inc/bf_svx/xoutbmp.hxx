@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xoutbmp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:40:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:32:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,29 +78,13 @@ public:
 
     static GraphicFilter* pGrfFilter;
 
-//STRIP001  static BitmapEx     CreateQuickDrawBitmapEx( const Graphic& rGraphic, const OutputDevice& rCompDev,
-//STRIP001                                               const MapMode& rMapMode, const Size& rLogSize,
-//STRIP001                                               const Point& rPoint, const Size& rSize );
-//STRIP001  static Graphic      MirrorGraphic( const Graphic& rGraphic, const ULONG nMirrorFlags );
-//STRIP001  static Animation    MirrorAnimation( const Animation& rAnimation, BOOL bHMirr, BOOL bVMirr );
-//STRIP001  static USHORT       WriteGraphic( const Graphic& rGraphic, String& rFileName,
-//STRIP001                                    const String& rFilterName, const ULONG nFlags = 0L,
-//STRIP001                                    const Size* pMtfSize_100TH_MM = NULL );
-//STRIP001  static void         DrawQuickDrawBitmapEx( OutputDevice* pOutDev, const Point& rPt,
-//STRIP001                                             const Size& rSize, const BitmapEx& rBmpEx );
-//STRIP001  static void         DrawTiledBitmapEx( OutputDevice* pOutDev, const Point& rStartPt, const Size& rGrfSize,
-//STRIP001                                         const Rectangle& rTileRect, const BitmapEx& rBmpEx );
 
     static USHORT       ExportGraphic( const Graphic& rGraphic, const INetURLObject& rURL,
                                        GraphicFilter& rFilter, const USHORT nFormat,
                                        BOOL bIgnoreOptions,
                                        const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData = NULL );
 
-//STRIP001  static Bitmap       DetectEdges( const Bitmap& rBmp, const BYTE cThreshold );
 
-//STRIP001  static Polygon      GetCountour( const Bitmap& rBmp, const ULONG nContourFlags,
-//STRIP001                                   const BYTE cEdgeDetectThreshold = 50,
-//STRIP001                                   const Rectangle* pWorkRect = NULL );
 };
 
 // ----------------
