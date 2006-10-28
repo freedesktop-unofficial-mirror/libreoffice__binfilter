@@ -4,9 +4,9 @@
  *
  *  $RCSfile: postattr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:12:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:54:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
 namespace binfilter {
 
 // class SvxPostItAuthorItem ---------------------------------------------
@@ -56,21 +53,6 @@ class SvxPostItAuthorItem: public SfxStringItem
 public:
     TYPEINFO();
 
-//STRIP001  SvxPostItAuthorItem( USHORT nWhich = ITEMID_AUTHOR );
-//STRIP001
-//STRIP001  SvxPostItAuthorItem( const String& rAuthor, USHORT nWhich = ITEMID_AUTHOR );
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  inline SvxPostItAuthorItem& operator=( const SvxPostItAuthorItem& rAuthor )
-//STRIP001  {
-//STRIP001      SetValue( rAuthor.GetValue() );
-//STRIP001      return *this;
-//STRIP001  }
 };
 #endif
 
@@ -88,20 +70,6 @@ class SvxPostItDateItem: public SfxStringItem
 public:
     TYPEINFO();
 
-//STRIP001  SvxPostItDateItem( USHORT nWhich = ITEMID_DATE );
-//STRIP001
-//STRIP001  SvxPostItDateItem( const String& rDate, USHORT nWhich = ITEMID_DATE );
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  inline SvxPostItDateItem& operator=( const SvxPostItDateItem& rDate )
-//STRIP001  {
-//STRIP001      SetValue( rDate.GetValue() );
-//STRIP001      return *this;
-//STRIP001  }
 };
 #endif
 
@@ -119,22 +87,6 @@ class SvxPostItTextItem: public SfxStringItem
 public:
     TYPEINFO();
 
-//STRIP001  SvxPostItTextItem( USHORT nWhich = ITEMID_TEXT );
-//STRIP001
-//STRIP001  SvxPostItTextItem( const String& rText, USHORT nWhich = ITEMID_TEXT );
-//STRIP001  // "pure virtual Methoden" vom SfxPoolItem
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  inline SvxPostItTextItem& operator=( const SvxPostItTextItem& rText )
-//STRIP001  {
-//STRIP001      SetValue( rText.GetValue() );
-//STRIP001      return *this;
-//STRIP001  }
 };
 #endif
 
