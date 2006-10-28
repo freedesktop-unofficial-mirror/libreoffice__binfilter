@@ -4,9 +4,9 @@
  *
  *  $RCSfile: conditio.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:13:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:31:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,7 +111,6 @@ class ScConditionEntry
     void    Interpret( const ScAddress& rPos );
 
     BOOL    IsValid( double nArg ) const;
-//STRIP001  BOOL    IsValidStr( const String& rArg ) const;
 
 protected:
             ScConditionEntry( SvStream& rStream, ScMultipleReadHeader& rHdr,
@@ -144,13 +143,10 @@ public:
                                     BOOL bEnglish = FALSE, BOOL bCompileXML = FALSE,
                                     BOOL bTextToReal = FALSE ) const;
 
-//STRIP001  ScTokenArray*   CreateTokenArry( USHORT nPos ) const;
 
-//STRIP001  void            CompileAll();
     void            CompileXML();
     void            UpdateReference( UpdateRefMode eUpdateRefMode,
                                 const ScRange& rRange, short nDx, short nDy, short nDz );
-//STRIP001  void            UpdateMoveTab( USHORT nOldPos, USHORT nNewPos );
 
     void            SourceChanged( const ScAddress& rChanged );
 
@@ -228,11 +224,9 @@ public:
     BOOL            IsEmpty() const         { return (nEntryCount == 0); }
     USHORT          Count() const           { return nEntryCount; }
 
-//STRIP001  void            CompileAll();
     void            CompileXML();
     void            UpdateReference( UpdateRefMode eUpdateRefMode,
                                 const ScRange& rRange, short nDx, short nDy, short nDz );
-//STRIP001  void            UpdateMoveTab( USHORT nOldPos, USHORT nNewPos );
 
     void            SourceChanged( const ScAddress& rAddr );
 
@@ -283,15 +277,12 @@ public:
     void    Store( SvStream& rStream ) const;
     void    ResetUsed();
 
-//STRIP001  void    CompileAll();
     void    CompileXML();
     void    UpdateReference( UpdateRefMode eUpdateRefMode,
                                 const ScRange& rRange, short nDx, short nDy, short nDz );
-//STRIP001  void    UpdateMoveTab( USHORT nOldPos, USHORT nNewPos );
 
     void    SourceChanged( const ScAddress& rAddr );
 
-//STRIP001  BOOL    operator==( const ScConditionalFormatList& r ) const;       // fuer Ref-Undo
 };
 
 } //namespace binfilter
