@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_shapeexport3.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 08:59:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:45:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include <goodies/hmatrix.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
-// auto strip #include <com/sun/star/drawing/HomogenMatrix.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
@@ -53,13 +50,7 @@
 #include <com/sun/star/drawing/ShadeMode.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
-// auto strip #include <com/sun/star/drawing/Direction3D.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_POSITION3D_HPP_
-// auto strip #include <com/sun/star/drawing/Position3D.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HPP_
 #include <com/sun/star/drawing/CameraGeometry.hpp>
@@ -69,21 +60,12 @@
 #include <com/sun/star/drawing/DoubleSequence.hpp>
 #endif
 
-// auto strip #ifndef _XMLOFF_SHAPEEXPORT_HXX
-// auto strip #include "shapeexport.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SDPROPLS_HXX
-// auto strip #include "sdpropls.hxx"
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -97,9 +79,6 @@
 #include "xexptran.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #include "xmlnmspe.hxx"
 namespace binfilter {
