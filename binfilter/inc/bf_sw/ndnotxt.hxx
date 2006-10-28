@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndnotxt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:15:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:49:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,8 +79,6 @@ public:
 
     virtual Size GetTwipSize() const = 0;
 
-//STRIP001  virtual BOOL SavePersistentData();
-//STRIP001  virtual BOOL RestorePersistentData();
 
     // alternativen Text abfragen/setzen
     const String& GetAlternateText() const      { return aAlternateText; }
@@ -90,8 +88,6 @@ public:
                                    BOOL bAutomatic = FALSE );
     const PolyPolygon *HasContour() const;
     const BOOL         _HasContour() const { return pContour!=0; };
-//STRIP001  void               GetContour( PolyPolygon &rPoly ) const;
-//STRIP001  void               CreateContour();
 
     void               SetAutomaticContour( BOOL bSet ) { bAutomaticContour = bSet; }
     const BOOL         HasAutomaticContour() const { return bAutomaticContour; }
