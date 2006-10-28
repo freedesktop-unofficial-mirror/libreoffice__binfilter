@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_ImageStyle.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:12:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:54:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,29 +37,17 @@
 #include "ImageStyle.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
-// auto strip #include <com/sun/star/awt/XBitmap.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include"attrlist.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
-// auto strip #include"xmluconv.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include"xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -69,9 +57,6 @@
 #include "xmlimp.hxx"
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #include "rtl/ustring.hxx"
 
@@ -79,9 +64,6 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
-// auto strip #include "xmltkmap.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

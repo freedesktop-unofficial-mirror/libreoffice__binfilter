@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_HatchStyle.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:11:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:54:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,9 +53,6 @@
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -65,9 +62,6 @@
 #include "xmlimp.hxx"
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #include "rtl/ustring.hxx"
 
@@ -75,9 +69,6 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
-// auto strip #include "xmltkmap.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
