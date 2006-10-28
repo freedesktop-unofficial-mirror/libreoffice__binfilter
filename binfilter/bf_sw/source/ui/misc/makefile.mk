@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:41:27 $
+#   last change: $Author: rt $ $Date: 2006-10-28 01:07:17 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -51,57 +51,15 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_bookmark.cxx \
-        sw_docfnote.cxx \
-        sw_glosbib.cxx \
-        sw_glosdoc.cxx \
-        sw_glossary.cxx \
-        sw_glshell.cxx \
-        sw_hdftctrl.cxx \
-        sw_insfnote.cxx \
-        sw_insrule.cxx \
-        sw_linenum.cxx \
-        sw_num.cxx \
-        sw_outline.cxx \
-        sw_pgfnote.cxx \
-        sw_pggrid.cxx \
-        sw_redlndlg.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES=\
-    sw_bookmark.src \
-    sw_docfnote.src \
-    sw_glossary.src \
-    sw_glosbib.src \
-    sw_insfnote.src \
-    sw_insrule.src \
-    sw_linenum.src \
-    sw_num.src \
-    sw_outline.src \
-    sw_pgfnote.src \
-    sw_pggrid.src \
     sw_redlndlg.src
 
 SLOFILES =	\
-        $(SLO)$/sw_bookmark.obj \
-        $(SLO)$/sw_docfnote.obj \
-        $(SLO)$/sw_glosbib.obj \
         $(SLO)$/sw_glosdoc.obj \
-        $(SLO)$/sw_glossary.obj \
         $(SLO)$/sw_glshell.obj \
         $(SLO)$/sw_hdftctrl.obj \
-        $(SLO)$/sw_insfnote.obj \
-        $(SLO)$/sw_insrule.obj \
-        $(SLO)$/sw_linenum.obj \
-        $(SLO)$/sw_num.obj \
-        $(SLO)$/sw_outline.obj \
-        $(SLO)$/sw_pgfnote.obj \
-        $(SLO)$/sw_pggrid.obj \
         $(SLO)$/sw_redlndlg.obj
-
-EXCEPTIONSFILES = \
-        $(SLO)$/sw_glossary.obj
 
 # --- Tagets -------------------------------------------------------
 
