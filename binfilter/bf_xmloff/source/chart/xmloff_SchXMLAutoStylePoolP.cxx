@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLAutoStylePoolP.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:36:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:37:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,6 @@
 #ifndef SCH_XMLEXPORT_HXX_
 #include "SchXMLExport.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
-// auto strip #include "XMLChartPropertySetMapper.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include "nmspmap.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using ::binfilter::xmloff::token::GetXMLToken;
