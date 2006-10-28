@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scextopt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:26:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:41:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,17 +40,10 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
 
-//STRIP001 class ColRowSettings;
 
 // ACHTUNG1: einzelne Einstellungen sollten stimmen
 //              -> Absicherung nur ueber Assertions
@@ -100,12 +93,6 @@ public:
     virtual                     ~CodenameList();
 
     inline void                 Append( const String& );
-//STRIP001
-//STRIP001  inline const String*        First( void );
-//STRIP001  inline const String*        Next( void );
-//STRIP001  inline const String*        Act( void ) const;
-//STRIP001
-//STRIP001  List::Count;
 };
 
 
@@ -115,7 +102,6 @@ class ScExtDocOptions
 {
 // Code: colrowst.cxx
 private:
-//STRIP001  friend ColRowSettings;
     // Window -Info
     ScExtTabOptions**       ppExtTabOpts;
 
@@ -140,29 +126,11 @@ public:
                             ScExtDocOptions( void );
                             ~ScExtDocOptions();
 
-//STRIP001  ScExtDocOptions&        operator =( const ScExtDocOptions& rCpy );
-//STRIP001
-//STRIP001  void                    SetExtTabOptions( UINT16 nTabNum, ScExtTabOptions* pTabOpt );
-//STRIP001
-//STRIP001  void                    SetGridCol( const Color& rColor );
-//STRIP001  void                    SetActTab( UINT16 nTab );
-//STRIP001     void                    SetOleSize( USHORT nFirstCol, USHORT nFirstRow, USHORT nLastCol, USHORT nLastRow );
-//STRIP001  void                    SetCursor( UINT16 nCol, UINT16 nRow );
-//STRIP001  void                    SetZoom( UINT16 nZaehler, UINT16 nNenner );
-//STRIP001     inline void             SetChanged( BOOL bChg )     { bChanged = bChg; }
-//STRIP001     inline BOOL             IsChanged() const           { return bChanged; }
-//STRIP001
-//STRIP001  void                    Add( const ColRowSettings& rCRS );
-//STRIP001
     inline const ScExtTabOptions*   GetExtTabOptions( const UINT16 nTabNum ) const;
     inline ScExtTabOptions* GetExtTabOptions( const UINT16 nTabNum );
-//STRIP001     inline const ScRange*   GetOleSize() const  { return pOleSize; }
-//STRIP001
     inline const String*    GetCodename( void ) const;      // for Workbook globals
     inline CodenameList*    GetCodenames( void );           // for tables
 
-//STRIP001  void                    SetCodename( const String& );   // -> Workbook globals
-//STRIP001  void                    AddCodename( const String& );   // -> tables
     inline void             SetWinProtection(bool bImportWinProtection) {bWinProtection = bImportWinProtection; }
     inline bool             IsWinProtected()         { return bWinProtection; }
 };
@@ -181,22 +149,10 @@ inline void CodenameList::Append( const String& r )
 }
 
 
-//STRIP001 inline const String* CodenameList::First( void )
-//STRIP001 {
-//STRIP001  return ( const String* ) List::First();
-//STRIP001 }
 
 
-//STRIP001 inline const String* CodenameList::Next( void )
-//STRIP001 {
-//STRIP001  return ( const String* ) List::Next();
-//STRIP001 }
 
 
-//STRIP001 inline const String* CodenameList::Act( void ) const
-//STRIP001 {
-//STRIP001  return ( const String* ) List::GetCurObject();
-//STRIP001 }
 
 
 
