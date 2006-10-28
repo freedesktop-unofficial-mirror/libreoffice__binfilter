@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdvmark.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:48:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:13:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <vcl/outdev.hxx>
 #endif
 
-// auto strip #ifndef _VCL_POINTR_HXX
-// auto strip #include <vcl/pointr.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //************************************************************
@@ -112,8 +109,6 @@ class SdrViewUserMarker
 
 protected:
     void ImpDelGeometrics();
-//STRIP001  void ImpDraw(FASTBOOL bHiding, FASTBOOL bNoSaveDC);
-//STRIP001  virtual void Draw(OutputDevice* pOut, FASTBOOL bHiding, FASTBOOL bNoSaveDC);
 
 public:
     SdrViewUserMarker(SdrPaintView* pView);
@@ -129,31 +124,11 @@ public:
 
     // Der Marker kann durchaus auch in einen andere View gesteckt werden.
     // (Beim Destruieren der View wird die View am Marker automatisch auf NULL gesetzt.)
-//STRIP001  void SetView(SdrPaintView* pView_);
-//STRIP001  SdrPaintView* GetView() const { return pView; }
 
     void SetPoint(const Point& rPoint); // fuer CROSS
-//STRIP001  void SetRectangle(const Rectangle& rRect); // fuer RECT, ELLIPSE und STRIPES
-//STRIP001  void SetRectangle(const SdrObject* pObj, const SdrPageView* pPV=NULL);
-//STRIP001  void SetPolygon(const Polygon& rPoly);
-//STRIP001  void SetPolyPolygon(const PolyPolygon& rPolyPoly);
-//STRIP001  void SetXPolygon(const XPolygon& rXPoly);
-//STRIP001  void SetXPolyPolygon(const XPolyPolygon& rXPolyPoly);
-//STRIP001  void SetXPolyPolygon(const SdrObject* pObj, const SdrPageView* pPV=NULL);
 
-//STRIP001  void SetCrossHair(FASTBOOL bOn);
-//STRIP001  void SetStripes(FASTBOOL bOn);
-//STRIP001  void SetEllipse(FASTBOOL bOn);
-//STRIP001  void SetPolyLine(FASTBOOL bOn);
-//STRIP001  void SetSolidArea(FASTBOOL bOn);
-//STRIP001  void SetDashed(FASTBOOL bOn);
-//STRIP001  void SetPixelDistance(USHORT nDistance);
     void SetLineWidth(USHORT nWdt);
-//STRIP001  void SetLineWidthIsLogic(FASTBOOL bOn);
-//STRIP001  void SetCrossHairSize(USHORT nSize);
-//STRIP001  void SetCrossSizeIsLogic(FASTBOOL bOn);
 
-//STRIP001  void SetAnimate(FASTBOOL bOn); // Animate noch nicht vollstaendig unterstuetzt
     void SetAnimateDelay(USHORT nTime) { nAnimateDelay=(nTime+25)/50; }
     void SetAnimateSpeed(USHORT nTime) { nAnimateSpeed=(nTime+25)/50; if (nAnimateSpeed>0) nAnimateSpeed--; }
     void SetAnimateCount(USHORT nAnz) { nAnimateAnz=nAnz; }
@@ -189,16 +164,11 @@ public:
     FASTBOOL IsAnimateBackward() const { return bAnimateBwd; }
     FASTBOOL IsAnimateToggle() const { return bAnimateToggle; }
 
-//STRIP001  virtual void Move(long nXMove, long nYMove);
     void Show();
     void Hide();
     FASTBOOL IsVisible() const { return bVisible; }
-//STRIP001  virtual void DoAnimateOneStep();
-//STRIP001  FASTBOOL IncAnimateCounters();
 
-//STRIP001  virtual FASTBOOL IsHit(const Point& rPnt, short nTol=-2) const;
     FASTBOOL HasPointer() const { return bHasPointer; }
-//STRIP001  virtual Pointer  GetPointer() const;
     FASTBOOL IsMouseMovable() const { return bMouseMovable; }
 };
 
