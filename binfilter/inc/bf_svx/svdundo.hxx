@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdundo.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:47:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:12:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,15 +93,8 @@ protected:
     {}
 
 public:
-//STRIP001  TYPEINFO();
-//STRIP001  virtual BOOL CanRepeat(SfxRepeatTarget& rView) const;
-//STRIP001  virtual void Repeat(SfxRepeatTarget& rView);
 
-//STRIP001  virtual String GetRepeatComment(SfxRepeatTarget& rView) const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
 
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
 };
 
 //************************************************************
@@ -136,17 +129,8 @@ public:
     void AddAction(SdrUndoAction* pAct);
 
     void SetComment(const String& rStr) { aComment=rStr; }
-//STRIP001  void SetObjDescription(const String& rStr) { aObjDescription=rStr; }
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
 
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
 
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  void SetRepeatFunction(SdrRepeatFunc eFunc) { eFunction=eFunc; }
-//STRIP001  SdrRepeatFunc GetRepeatFunction() const { return eFunction; }
 };
 
 //************************************************************
@@ -163,11 +147,6 @@ protected:
 
 protected:
     SdrUndoObj(SdrObject& rNewObj);
-//STRIP001
-//STRIP001  void ImpTakeDescriptionStr(USHORT nStrCacheID, String& rStr, FASTBOOL bRepeat=FALSE) const;
-//STRIP001
-//STRIP001  // #94278# new method for evtl. PageChange at UNDO/REDO
-//STRIP001  void ImpShowPageOfThisObject();
 };
 
 //************************************************************
@@ -179,42 +158,6 @@ protected:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoAttrObj : public SdrUndoObj
-//STRIP001 {
-//STRIP001 protected:
-//STRIP001  SfxItemSet*                 pUndoSet;
-//STRIP001  SfxItemSet*                 pRedoSet;
-//STRIP001  SfxItemSet*                 pRepeatSet;
-//STRIP001
-//STRIP001  // oder besser den StyleSheetNamen merken?
-//STRIP001  SfxStyleSheet*              pUndoStyleSheet;
-//STRIP001  SfxStyleSheet*              pRedoStyleSheet;
-//STRIP001  SfxStyleSheet*              pRepeatStyleSheet;
-//STRIP001  FASTBOOL                    bStyleSheet;
-//STRIP001  FASTBOOL                    bHaveToTakeRedoSet;
-//STRIP001
-//STRIP001  // Bei Zuweisung von TextItems auf ein Zeichenobjekt mit Text:
-//STRIP001  OutlinerParaObject*         pTextUndo;
-//STRIP001  // #i8508#
-//STRIP001  // The text rescue mechanism needs also to be implemented for redo actions.
-//STRIP001  OutlinerParaObject*         pTextRedo;
-//STRIP001
-//STRIP001  // Wenn sich um ein Gruppenobjekt handelt:
-//STRIP001  SdrUndoGroup*               pUndoGroup;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoAttrObj(SdrObject& rNewObj, FASTBOOL bStyleSheet1=FALSE, FASTBOOL bSaveText=FALSE);
-//STRIP001  virtual ~SdrUndoAttrObj();
-//STRIP001  void SetRepeatAttr(const SfxItemSet& rSet);
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
-//STRIP001
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoMoveObj
@@ -230,20 +173,7 @@ protected:
     Size                        aDistance;     // Entfernung, um die verschoben wird
 
 public:
-//STRIP001  SdrUndoMoveObj(SdrObject& rNewObj): SdrUndoObj(rNewObj) {}
     SdrUndoMoveObj(SdrObject& rNewObj, const Size& rDist): SdrUndoObj(rNewObj),aDistance(rDist) {}
-//STRIP001
-//STRIP001  void SetDistance(const Size& rDist) { aDistance=rDist; }
-//STRIP001  const Size& GetDistance() const { return aDistance; }
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
-//STRIP001
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
 };
 
 //************************************************************
@@ -266,10 +196,7 @@ public:
     SdrUndoGeoObj(SdrObject& rNewObj);
     virtual ~SdrUndoGeoObj();
 
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
 
-//STRIP001  virtual String GetComment() const;
 };
 
 //************************************************************
@@ -297,7 +224,6 @@ protected:
 
     void SetView(SdrView* pView1, SdrPageView* pPageView1) { pView=pView1; pPageView=pPageView1; }
     BOOL IsOwner() { return bOwner; }
-//STRIP001  void SetOwner(BOOL bNew);
 };
 
 //************************************************************
@@ -315,8 +241,6 @@ public:
     SdrUndoRemoveObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
     : SdrUndoObjList(rNewObj,bOrdNumDirect) {}
 
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
 };
 
 //************************************************************
@@ -333,9 +257,6 @@ class SdrUndoInsertObj : public SdrUndoObjList
 public:
     SdrUndoInsertObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
     :   SdrUndoObjList(rNewObj,bOrdNumDirect) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
 };
 
 //************************************************************
@@ -352,14 +273,6 @@ public:
     SdrUndoDelObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
     :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) {DBG_ASSERT(0, "STRIP")}//STRIP001      :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) { SetOwner(TRUE); }
 
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
-//STRIP001
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
 };
 
 //************************************************************
@@ -370,17 +283,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoNewObj : public SdrUndoInsertObj
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoNewObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
-//STRIP001  :   SdrUndoInsertObj(rNewObj,bOrdNumDirect) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoReplaceObj
@@ -390,29 +292,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoReplaceObj : public SdrUndoObj
-//STRIP001 {
-//STRIP001  FASTBOOL                    bOldOwner;
-//STRIP001  FASTBOOL                    bNewOwner;
-//STRIP001
-//STRIP001 protected:
-//STRIP001  SdrObjList*                 pObjList;
-//STRIP001  UINT32                      nOrdNum;
-//STRIP001  SdrObject*                  pNewObj;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoReplaceObj(SdrObject& rOldObj1, SdrObject& rNewObj1, FASTBOOL bOrdNumDirect=FALSE);
-//STRIP001  virtual ~SdrUndoReplaceObj();
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  BOOL IsNewOwner() { return bNewOwner; }
-//STRIP001  void SetNewOwner(BOOL bNew);
-//STRIP001
-//STRIP001  BOOL IsOldOwner() { return bOldOwner; }
-//STRIP001  void SetOldOwner(BOOL bNew);
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoCopyObj
@@ -422,33 +301,11 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoCopyObj : public SdrUndoNewObj
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoCopyObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
-//STRIP001  :   SdrUndoNewObj(rNewObj,bOrdNumDirect) {}
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoObjOrdNum
 //************************************************************
 
-//STRIP001 class SdrUndoObjOrdNum : public SdrUndoObj
-//STRIP001 {
-//STRIP001 protected:
-//STRIP001  UINT32                      nOldOrdNum;
-//STRIP001  UINT32                      nNewOrdNum;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoObjOrdNum(SdrObject& rNewObj, UINT32 nOldOrdNum1, UINT32 nNewOrdNum1);
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String   GetComment() const;
-//STRIP001 };
 
 //////////////////////////////////////////////////////////////////////////////
 // #i11702#
@@ -470,30 +327,6 @@ public:
 //   SdrUndoObjSetText
 //************************************************************
 
-//STRIP001 class SdrUndoObjSetText : public SdrUndoObj
-//STRIP001 {
-//STRIP001 protected:
-//STRIP001  OutlinerParaObject*         pOldText;
-//STRIP001  OutlinerParaObject*         pNewText;
-//STRIP001  FASTBOOL                    bNewTextAvailable;
-//STRIP001  BOOL                        bEmptyPresObj;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoObjSetText(SdrObject& rNewObj);
-//STRIP001  virtual ~SdrUndoObjSetText();
-//STRIP001
-//STRIP001  FASTBOOL IsDifferent() const { return pOldText!=pNewText; }
-//STRIP001  void AfterSetText();
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
-//STRIP001
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
-//STRIP001 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -514,18 +347,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoLayer : public SdrUndoAction
-//STRIP001 {
-//STRIP001 protected:
-//STRIP001  SdrLayer*                   pLayer;
-//STRIP001  SdrLayerAdmin*              pLayerAdmin;
-//STRIP001  USHORT                      nNum;
-//STRIP001  FASTBOOL                    bItsMine;
-//STRIP001
-//STRIP001 protected:
-//STRIP001  SdrUndoLayer(USHORT nLayerNum, SdrLayerAdmin& rNewLayerAdmin, SdrModel& rNewModel);
-//STRIP001  virtual ~SdrUndoLayer();
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoNewLayer
@@ -534,17 +355,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoNewLayer : public SdrUndoLayer
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoNewLayer(USHORT nLayerNum, SdrLayerAdmin& rNewLayerAdmin, SdrModel& rNewModel)
-//STRIP001  : SdrUndoLayer(nLayerNum,rNewLayerAdmin,rNewModel) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoDelLayer
@@ -553,17 +363,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoDelLayer : public SdrUndoLayer
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoDelLayer(USHORT nLayerNum, SdrLayerAdmin& rNewLayerAdmin, SdrModel& rNewModel)
-//STRIP001  : SdrUndoLayer(nLayerNum,rNewLayerAdmin,rNewModel) { bItsMine=TRUE; }
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoMoveLayer
@@ -572,19 +371,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoMoveLayer : public SdrUndoLayer
-//STRIP001 {
-//STRIP001  USHORT                      nNeuPos;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoMoveLayer(USHORT nLayerNum, SdrLayerAdmin& rNewLayerAdmin, SdrModel& rNewModel, USHORT nNeuPos1)
-//STRIP001  :   SdrUndoLayer(nLayerNum,rNewLayerAdmin,rNewModel), nNeuPos(nNeuPos1) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -611,14 +397,8 @@ protected:
     SdrPage*                    pPage;
 
 protected:
-//STRIP001  void ImpInsertPage(USHORT nNum);
-//STRIP001  void ImpRemovePage(USHORT nNum);
-//STRIP001  void ImpMovePage(USHORT nOldNum, USHORT nNewNum);
-//STRIP001
 protected:
     SdrUndoPage(SdrPage& rNewPg);
-//STRIP001
-//STRIP001  void ImpTakeDescriptionStr(USHORT nStrCacheID, String& rStr, USHORT n=0, FASTBOOL bRepeat=FALSE) const;
 };
 
 //************************************************************
@@ -651,25 +431,6 @@ protected:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoDelPage : public SdrUndoPageList
-//STRIP001 {
-//STRIP001  // Beim loeschen einer MasterPage merke ich mir in dieser UndoGroup
-//STRIP001  // alle Beziehungen der Zeichenseiten zu der geloeschten MasterPage
-//STRIP001  SdrUndoGroup*               pUndoGroup;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoDelPage(SdrPage& rNewPg);
-//STRIP001  virtual ~SdrUndoDelPage();
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
-//STRIP001
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoNewPage
@@ -683,11 +444,6 @@ class SdrUndoNewPage : public SdrUndoPageList
 {
 public:
     SdrUndoNewPage(SdrPage& rNewPg): SdrUndoPageList(rNewPg) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
 };
 
 //************************************************************
@@ -698,17 +454,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoCopyPage : public SdrUndoNewPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoCopyPage(SdrPage& rNewPg): SdrUndoNewPage(rNewPg) {}
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001  virtual String GetSdrRepeatComment(SdrView& rView) const;
-//STRIP001
-//STRIP001  virtual void SdrRepeat(SdrView& rView);
-//STRIP001  virtual FASTBOOL CanSdrRepeat(SdrView& rView) const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoSetPageNum
@@ -718,21 +463,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoSetPageNum : public SdrUndoPage
-//STRIP001 {
-//STRIP001 protected:
-//STRIP001  USHORT                      nOldPageNum;
-//STRIP001  USHORT                      nNewPageNum;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrUndoSetPageNum(SdrPage& rNewPg, USHORT nOldPageNum1, USHORT nNewPageNum1)
-//STRIP001  :   SdrUndoPage(rNewPg),nOldPageNum(nOldPageNum1),nNewPageNum(nNewPageNum1) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -754,24 +484,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoPageMasterPage : public SdrUndoPage
-//STRIP001 {
-//STRIP001 protected:
-//STRIP001  SdrMasterPageDescriptor*    pMasterDescriptor;
-//STRIP001  SdrMasterPageDescriptor*    pNewMasterDescriptor;
-//STRIP001  USHORT                      nMasterNum;
-//STRIP001  USHORT                      nNewMasterNum;
-//STRIP001
-//STRIP001 protected:
-//STRIP001  // Achtung! nMasterDescriptorNum ist nicht die Seitennummer
-//STRIP001  // der MasterPage sondern die Position des MasterPage-Verweises
-//STRIP001  // an der Page // (eine Page kann auf beliebig viele MasterPages
-//STRIP001  // verweisen)
-//STRIP001  SdrUndoPageMasterPage(SdrPage& rNewPg, USHORT nMasterDescriptorNum);
-//STRIP001
-//STRIP001 public:
-//STRIP001  virtual ~SdrUndoPageMasterPage();
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoPageInsertMasterPage
@@ -781,17 +493,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoPageInsertMasterPage : public SdrUndoPageMasterPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoPageInsertMasterPage(SdrPage& rNewPg, USHORT nMasterDescriptorNum)
-//STRIP001  :   SdrUndoPageMasterPage(rNewPg,nMasterDescriptorNum) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoPageRemoveMasterPage
@@ -801,17 +502,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoPageRemoveMasterPage : public SdrUndoPageMasterPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoPageRemoveMasterPage(SdrPage& rNewPg, USHORT nMasterDescriptorNum)
-//STRIP001  :   SdrUndoPageMasterPage(rNewPg,nMasterDescriptorNum) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoPageMoveMasterPage
@@ -822,17 +512,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoPageMoveMasterPage : public SdrUndoPageMasterPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoPageMoveMasterPage(SdrPage& rNewPg, USHORT nMasterDescriptorNum, USHORT nNewPos)
-//STRIP001  :   SdrUndoPageMasterPage(rNewPg,nMasterDescriptorNum) { nNewMasterNum=nNewPos; }
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 //************************************************************
 //   SdrUndoPageChangeMasterPage
@@ -842,17 +521,6 @@ public:
 //
 //************************************************************
 
-//STRIP001 class SdrUndoPageChangeMasterPage : public SdrUndoPageMasterPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrUndoPageChangeMasterPage(SdrPage& rNewPg, USHORT nMasterDescriptorNum)
-//STRIP001  :   SdrUndoPageMasterPage(rNewPg,nMasterDescriptorNum) {}
-//STRIP001
-//STRIP001  virtual void Undo();
-//STRIP001  virtual void Redo();
-//STRIP001
-//STRIP001  virtual String GetComment() const;
-//STRIP001 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
