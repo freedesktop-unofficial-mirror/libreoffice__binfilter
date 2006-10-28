@@ -4,9 +4,9 @@
  *
  *  $RCSfile: e3ditem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:19:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:29:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,7 +59,6 @@ public:
                             TYPEINFO();
                             SvxVector3DItem();
                             SvxVector3DItem( USHORT nWhich, const Vector3D& rVal );
-//STRIP001                          SvxVector3DItem( USHORT nWhich, SvStream & );
                             SvxVector3DItem( const SvxVector3DItem& );
                             ~SvxVector3DItem() {
                                  DBG_DTOR(SvxVector3DItem, 0); }
