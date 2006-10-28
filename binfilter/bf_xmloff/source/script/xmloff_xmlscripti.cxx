@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlscripti.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:21:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:53:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,21 +34,15 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-// auto strip #include <tools/isolang.hxx>
-// auto strip #include <tools/time.hxx>
 
 #include "xmlscripti.hxx"
 #include "xmlnmspe.hxx"
-// auto strip #include "xmltoken.hxx"
 #include "xmlimp.hxx"
 #include "nmspmap.hxx"
 #include "XMLEventsImportContext.hxx"
 #include "xmlbasici.hxx"
 
 #include <com/sun/star/script/XStarBasicAccess.hpp>
-// auto strip #include <com/sun/star/script/XStarBasicModuleInfo.hpp>
-// auto strip #include <com/sun/star/script/XStarBasicDialogInfo.hpp>
-// auto strip #include <com/sun/star/script/XStarBasicLibraryInfo.hpp>
 #include <com/sun/star/document/XEventsSupplier.hpp>
 namespace binfilter {
 
