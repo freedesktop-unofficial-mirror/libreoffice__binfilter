@@ -4,9 +4,9 @@
  *
  *  $RCSfile: table.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:32:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:43:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -182,11 +182,7 @@ public:
     BOOL        SetOutlineTable( const ScOutlineTable* pNewOutline );
     void        StartOutlineTable();
 
-//STRIP001  void        DoAutoOutline( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow );
 
-//STRIP001  BOOL        TestRemoveSubTotals( const ScSubTotalParam& rParam );
-//STRIP001  void        RemoveSubTotals( ScSubTotalParam& rParam );
-//STRIP001  BOOL        DoSubTotals( ScSubTotalParam& rParam );
 
     BOOL        IsVisible() const                            { return bVisible; }
     void        SetVisible( BOOL bVis );
@@ -218,7 +214,6 @@ public:
 
     const String&   GetPageStyle() const                    { return aPageStyle; }
     void            SetPageStyle( const String& rName );
-//STRIP001  void            PageStyleModified( const String& rNewName );
 
     BOOL            IsProtected() const                     { return bProtected; }
     const ::com::sun::star::uno::Sequence<sal_Int8>&    GetPassword() const                     { return aProtectPass; }
@@ -229,7 +224,6 @@ public:
     void            SetPageSize( const Size& rSize );
     void            SetRepeatArea( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nEndRow );
 
-//STRIP001  void        RemoveAutoSpellObj();
 
     void        LockTable();
     void        UnlockTable();
@@ -242,7 +236,6 @@ public:
     BOOL        HasBlockMatrixFragment( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 ) const;
     BOOL        HasSelectionMatrixFragment( const ScMarkData& rMark ) const;
 
-//STRIP001  BOOL        IsBlockEmpty( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 ) const;
 
     void        PutCell( const ScAddress&, ScBaseCell* pCell );
     void        PutCell( const ScAddress&, ULONG nFormatIndex, ScBaseCell* pCell);
@@ -270,7 +263,6 @@ public:
                     { return aCol[rPos.Col()].GetCell( rPos.Row() ); }
     ScBaseCell* GetCell( USHORT nCol, USHORT nRow ) const;
 
-//STRIP001  void        GetLastDataPos(USHORT& rCol, USHORT& rRow) const;
 
 /*N*/   BOOL        TestInsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nSize );
 /*N*/   void        InsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize );
@@ -283,54 +275,26 @@ public:
 /*N*/                           BOOL* pUndoOutline = NULL );
 
     void        DeleteArea(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nDelFlag);
-//STRIP001  void        CopyToClip(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScTable* pTable,
-//STRIP001                          BOOL bKeepScenarioFlags);
-//STRIP001  void        CopyFromClip(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, short nDx, short nDy,
-//STRIP001                              USHORT nInsFlag, BOOL bAsLink, BOOL bSkipAttrForEmpty, ScTable* pTable);
-//STRIP001  void        StartListeningInArea( USHORT nCol1, USHORT nRow1,
-//STRIP001                                      USHORT nCol2, USHORT nRow2 );
-//STRIP001  void        BroadcastInArea( USHORT nCol1, USHORT nRow1,
-//STRIP001                                  USHORT nCol2, USHORT nRow2 );
 
     void        CopyToTable(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                             USHORT nFlags, BOOL bMarked, ScTable* pDestTab,
                             const ScMarkData* pMarkData = NULL,
                             BOOL bAsLink = FALSE, BOOL bColRowFlags = TRUE);
-//STRIP001  void        UndoToTable(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                          USHORT nFlags, BOOL bMarked, ScTable* pDestTab,
-//STRIP001                          const ScMarkData* pMarkData = NULL);
 
-//STRIP001  void        TransposeClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                              ScTable* pTransClip, USHORT nFlags, BOOL bAsLink );
 
                 //  Markierung von diesem Dokument
-//STRIP001  void        MixMarked( const ScMarkData& rMark, USHORT nFunction,
-//STRIP001                          BOOL bSkipEmpty, ScTable* pSrcTab );
-//STRIP001  void        MixData( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                          USHORT nFunction, BOOL bSkipEmpty, ScTable* pSrcTab );
 
-//STRIP001  void        CopyData( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                          USHORT nDestCol, USHORT nDestRow, USHORT nDestTab );
 
-//STRIP001  void        CopyScenarioFrom( const ScTable* pSrcTab );
-//STRIP001  void        CopyScenarioTo( ScTable* pDestTab ) const;
-//STRIP001  BOOL        TestCopyScenarioTo( const ScTable* pDestTab ) const;
     void        MarkScenarioIn( ScMarkData& rMark, USHORT nNeededBits ) const;
-//STRIP001  BOOL        HasScenarioRange( const ScRange& rRange ) const;
     void        InvalidateScenarioRanges();
     const ScRangeList* GetScenarioRanges() const;
 
-//STRIP001  void        CopyUpdated( const ScTable* pPosTab, ScTable* pDestTab ) const;
 
     void        InvalidateTableArea()                       { bTableAreaValid = FALSE; }
 
     BOOL        GetCellArea( USHORT& rEndCol, USHORT& rEndRow ) const;          // FALSE = leer
     BOOL        GetTableArea( USHORT& rEndCol, USHORT& rEndRow ) const;
     BOOL        GetPrintArea( USHORT& rEndCol, USHORT& rEndRow, BOOL bNotes ) const;
-//STRIP001  BOOL        GetPrintAreaHor( USHORT nStartRow, USHORT nEndRow,
-//STRIP001                              USHORT& rEndCol, BOOL bNotes ) const;
-//STRIP001  BOOL        GetPrintAreaVer( USHORT nStartCol, USHORT nEndCol,
-//STRIP001                              USHORT& rEndRow, BOOL bNotes ) const;
 
     BOOL        GetDataStart( USHORT& rStartCol, USHORT& rStartRow ) const;
 
@@ -340,21 +304,14 @@ public:
     void        GetDataArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rEndCol, USHORT& rEndRow,
                                 BOOL bIncludeOld );
 
-//STRIP001  USHORT      GetEmptyLinesInBlock( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                      USHORT nEndCol, USHORT nEndRow, ScDirection eDir );
 
-//STRIP001  void        FindAreaPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY );
     void        GetNextPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY,
                                 BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark );
 
-//STRIP001  void        LimitChartArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rEndCol, USHORT& rEndRow );
 
     BOOL        HasData( USHORT nCol, USHORT nRow );
     BOOL        HasStringData( USHORT nCol, USHORT nRow );
     BOOL        HasValueData( USHORT nCol, USHORT nRow );
-//STRIP001  USHORT      GetErrorData(USHORT nCol, USHORT nRow) const;
-//STRIP001  BOOL        HasStringCells( USHORT nStartCol, USHORT nStartRow,
-//STRIP001                              USHORT nEndCol, USHORT nEndRow ) const;
 
     USHORT      GetErrCode( const ScAddress& rPos ) const
                     { return aCol[rPos.Col()].GetErrCode( rPos.Row() ); }
@@ -381,13 +338,9 @@ public:
                                     USHORT nCol2, USHORT nRow2, USHORT nTab2,
                                     short nDx, short nDy, short nDz );
 
-//STRIP001  void        UpdateTranspose( const ScRange& rSource, const ScAddress& rDest,
-//STRIP001                                  ScDocument* pUndoDoc );
 
-//STRIP001  void        UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
 
     void        UpdateInsertTab(USHORT nTable);
-//STRIP001  void        UpdateInsertTabOnlyCells(USHORT nTable);
     void        UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo = NULL );
      void       UpdateMoveTab(USHORT nOldPos, USHORT nNewPos, USHORT nTabNo, ScProgress& );
     void        UpdateCompile( BOOL bForceIfNameInUse = FALSE );
@@ -396,19 +349,11 @@ public:
                                   USHORT nIndex) const;
     void        ReplaceRangeNamesInUse(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                       const ScIndexMap& rMap );
-//STRIP001  void        Fill( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                      USHORT nFillCount, FillDir eFillDir, FillCmd eFillCmd, FillDateCmd eFillDateCmd,
-//STRIP001                      double nStepValue, double nMaxValue);
-//STRIP001  String      GetAutoFillPreview( const ScRange& rSource, USHORT nEndX, USHORT nEndY );
 
     void        UpdateSelectionFunction( ScFunctionData& rData,
                         USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                         const ScMarkData& rMark );
 
-//STRIP001  void        AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                                  USHORT nFormatNo );
-//STRIP001  void        GetAutoFormatData(USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, ScAutoFormatData& rData);
-//STRIP001  void        ScReplaceTabsStr( String& rStr, const String& rSrch, const String& rRepl ); // aus sw
     BOOL        SearchAndReplace(const SvxSearchItem& rSearchItem,
                                 USHORT& rCol, USHORT& rRow, ScMarkData& rMark,
                                 String& rUndoStr, ScDocument* pUndoDoc);
@@ -419,9 +364,7 @@ public:
                                 const SvxBorderLine** ppLeft, const SvxBorderLine** ppTop,
                                 const SvxBorderLine** ppRight, const SvxBorderLine** ppBottom ) const;
 
-//STRIP001  BOOL        HasLines( const ScRange& rRange, Rectangle& rSizes ) const;
     BOOL        HasAttrib( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nMask ) const;
-//STRIP001  BOOL        HasAttribSelection( const ScMarkData& rMark, USHORT nMask ) const;
     BOOL        ExtendMerge( USHORT nStartCol, USHORT nStartRow,
                                 USHORT& rEndCol, USHORT& rEndRow,
                                 BOOL bRefresh, BOOL bAttrs );
@@ -445,19 +388,12 @@ public:
                                             USHORT nEndCol, USHORT nEndRow );
 
     void        ApplyAttr( USHORT nCol, USHORT nRow, const SfxPoolItem& rAttr );
-//STRIP001  void        ApplyPattern( USHORT nCol, USHORT nRow, const ScPatternAttr& rAttr );
     void        ApplyPatternArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, const ScPatternAttr& rAttr );
     void        SetPattern( const ScAddress& rPos, const ScPatternAttr& rAttr, BOOL bPutToPool = FALSE )
                     { aCol[rPos.Col()].SetPattern( rPos.Row(), rAttr, bPutToPool ); }
-//STRIP001  void        SetPattern( USHORT nCol, USHORT nRow, const ScPatternAttr& rAttr, BOOL bPutToPool = FALSE );
-//STRIP001  void        ApplyPatternIfNumberformatIncompatible( const ScRange& rRange,
-//STRIP001                          const ScPatternAttr& rPattern, short nNewType );
 
-//STRIP001  void        ApplyStyle( USHORT nCol, USHORT nRow, const ScStyleSheet& rStyle );
     void        ApplyStyleArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, const ScStyleSheet& rStyle );
     void        ApplySelectionStyle(const ScStyleSheet& rStyle, const ScMarkData& rMark);
-//STRIP001  void        ApplySelectionLineStyle( const ScMarkData& rMark,
-//STRIP001                                  const SvxBorderLine* pLine, BOOL bColorOnly );
 
     const ScStyleSheet* GetStyle( USHORT nCol, USHORT nRow ) const;
     const ScStyleSheet* GetSelectionStyle( const ScMarkData& rMark, BOOL& rFound ) const;
@@ -472,13 +408,9 @@ public:
     BOOL        IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
 
     BOOL        ApplyFlags( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, INT16 nFlags );
-//STRIP001  BOOL        RemoveFlags( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, INT16 nFlags );
 
     void        ApplySelectionCache( SfxItemPoolCache* pCache, const ScMarkData& rMark );
-//STRIP001  void        DeleteSelection( USHORT nDelFlag, const ScMarkData& rMark );
 
-//STRIP001  void        ClearSelectionItems( const USHORT* pWhich, const ScMarkData& rMark );
-//STRIP001  void        ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark );
 
     const ScRange*  GetRepeatColRange() const   { return pRepeatColRange; }
     const ScRange*  GetRepeatRowRange() const   { return pRepeatRowRange; }
@@ -490,7 +422,6 @@ public:
     void            SetPrintRangeCount( USHORT nNew );
     void            SetPrintRange( USHORT nPos, const ScRange& rNew );
     void            FillPrintSaver( ScPrintSaverTab& rSaveTab ) const;
-//STRIP001  void            RestorePrintRanges( const ScPrintSaverTab& rSaveTab );
 
     USHORT      GetOptimalColWidth( USHORT nCol, OutputDevice* pDev,
                                     double nPPTX, double nPPTY,
@@ -502,11 +433,6 @@ public:
                                     double nPPTX, double nPPTY,
                                     const Fraction& rZoomX, const Fraction& rZoomY,
                                     BOOL bForce );
-//STRIP001  long        GetNeededSize( USHORT nCol, USHORT nRow,
-//STRIP001                                  OutputDevice* pDev,
-//STRIP001                                  double nPPTX, double nPPTY,
-//STRIP001                                  const Fraction& rZoomX, const Fraction& rZoomY,
-//STRIP001                                  BOOL bWidth, BOOL bTotalSize );
     void        SetColWidth( USHORT nCol, USHORT nNewWidth );
     void        SetRowHeight( USHORT nRow, USHORT nNewHeight );
     BOOL        SetRowHeightRange( USHORT nStartRow, USHORT nEndRow, USHORT nNewHeight,
@@ -522,24 +448,18 @@ public:
     USHORT      GetOriginalWidth( USHORT nCol ) const;
     USHORT      GetOriginalHeight( USHORT nRow ) const;
 
-//STRIP001  USHORT      GetCommonWidth( USHORT nEndCol ) const;
 
     USHORT      GetHiddenRowCount( USHORT nRow ) const;
 
     void        ShowCol(USHORT nCol, BOOL bShow);
     void        ShowRow(USHORT nRow, BOOL bShow);
-//STRIP001  void        DBShowRow(USHORT nRow, BOOL bShow);
 
     void        ShowRows(USHORT nRow1, USHORT nRow2, BOOL bShow);
-//STRIP001  void        DBShowRows(USHORT nRow1, USHORT nRow2, BOOL bShow);
 
-//STRIP001  void        SetColFlags( USHORT nCol, BYTE nNewFlags );
     void        SetRowFlags( USHORT nRow, BYTE nNewFlags );
 
                 /// @return  the index of the last column with any set flags (auto-pagebreak is ignored).
-//STRIP001     USHORT      GetLastFlaggedCol() const;
                 /// @return  the index of the last row with any set flags (auto-pagebreak is ignored).
-//STRIP001     USHORT      GetLastFlaggedRow() const;
 
                 /// @return  the index of the last changed column (flags and column width, auto pagebreak is ignored).
     USHORT      GetLastChangedCol() const;
@@ -556,7 +476,6 @@ public:
 
     void        UpdatePageBreaks( const ScRange* pUserArea );
     void        RemoveManualBreaks();
-//STRIP001  BOOL        HasManualBreaks() const;
 
     void        StripHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2 );
     void        ExtendHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2 );
@@ -564,109 +483,34 @@ public:
     BOOL        Load( SvStream& rStream, USHORT nVersion, ScProgress* pProgress );
     BOOL        Save( SvStream& rStream, long& rSavedDocCells, ScProgress* pProgress ) const;
 
-//STRIP001  void        Sort(const ScSortParam& rSortParam, BOOL bKeepQuery);
     BOOL        ValidQuery(USHORT nRow, const ScQueryParam& rQueryParam,
                     BOOL* pSpecial = NULL, ScBaseCell* pCell = NULL,
                     BOOL* pbTestEqualCondition = NULL );
-//STRIP001  void        TopTenQuery( ScQueryParam& );
-//STRIP001  USHORT      Query(ScQueryParam& rQueryParam, BOOL bKeepSub);
     BOOL        CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam);
 
-//STRIP001  void        GetFilterEntries(USHORT nCol, USHORT nRow1, USHORT nRow2, TypedStrCollection& rStrings);
-//STRIP001  BOOL        GetDataEntries(USHORT nCol, USHORT nRow, TypedStrCollection& rStrings, BOOL bLimit);
 
-//STRIP001  BOOL        HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow );
-//STRIP001  BOOL        HasRowHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow );
 
     void        DoColResize( USHORT nCol1, USHORT nCol2, USHORT nAdd );
 
     // maximale Stringlaengen einer Column, fuer z.B. dBase Export
-//STRIP001  xub_StrLen  GetMaxStringLen( USHORT nCol,
-//STRIP001                                  USHORT nRowStart, USHORT nRowEnd ) const;
-//STRIP001  xub_StrLen  GetMaxNumberStringLen( USHORT& nPrecision,
-//STRIP001                                  USHORT nCol,
-//STRIP001                                  USHORT nRowStart, USHORT nRowEnd ) const;
 
     void        FindConditionalFormat( ULONG nKey, ScRangeList& rRanges );
 
     void        IncRecalcLevel()        { ++nRecalcLvl; }
     void        DecRecalcLevel()        { if (!--nRecalcLvl) SetDrawPageSize(); }
 
-//STRIP001  BOOL        IsSortCollatorGlobal() const;
-//STRIP001  void        InitSortCollator( const ScSortParam& rPar );
     void        DestroySortCollator();
 
 private:
-//STRIP001  void        FillSeries( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                              USHORT nFillCount, FillDir eFillDir, FillCmd eFillCmd,
-//STRIP001                              FillDateCmd eFillDateCmd,
-//STRIP001                              double nStepValue, double nMaxValue, USHORT nMinDigits,
-//STRIP001                              BOOL bAttribs, ScProgress& rProgress );
-//STRIP001  void        FillAnalyse( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                              FillCmd& rCmd, FillDateCmd& rDateCmd,
-//STRIP001                              double& rInc, USHORT& rMinDigits,
-//STRIP001                              ScUserListData*& rListData, USHORT& rListIndex);
-//STRIP001  void        FillAuto( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
-//STRIP001                      USHORT nFillCount, FillDir eFillDir, ScProgress& rProgress );
-//STRIP001
-//STRIP001  BOOL        ValidNextPos( USHORT nCol, USHORT nRow, const ScMarkData& rMark,
-//STRIP001                              BOOL bMarked, BOOL bUnprotected );
-//STRIP001
-//STRIP001  void        AutoFormatArea(USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-//STRIP001                              const ScPatternAttr& rAttr, USHORT nFormatNo);
-//STRIP001  void        GetAutoFormatAttr(USHORT nCol, USHORT nRow, USHORT nIndex, ScAutoFormatData& rData);
-//STRIP001  void        GetAutoFormatFrame(USHORT nCol, USHORT nRow, USHORT nFlags, USHORT nIndex, ScAutoFormatData& rData);
-//STRIP001  BOOL        SearchCell(const SvxSearchItem& rSearchItem, USHORT nCol, USHORT nRow,
-//STRIP001                          const ScMarkData& rMark, String& rUndoStr, ScDocument* pUndoDoc);
-//STRIP001  BOOL        Search(const SvxSearchItem& rSearchItem, USHORT& rCol, USHORT& rRow,
-//STRIP001                      const ScMarkData& rMark, String& rUndoStr, ScDocument* pUndoDoc);
-//STRIP001  BOOL        SearchAll(const SvxSearchItem& rSearchItem, ScMarkData& rMark,
-//STRIP001                      String& rUndoStr, ScDocument* pUndoDoc);
-//STRIP001  BOOL        Replace(const SvxSearchItem& rSearchItem, USHORT& rCol, USHORT& rRow,
-//STRIP001                      const ScMarkData& rMark, String& rUndoStr, ScDocument* pUndoDoc);
-//STRIP001  BOOL        ReplaceAll(const SvxSearchItem& rSearchItem, ScMarkData& rMark,
-//STRIP001                          String& rUndoStr, ScDocument* pUndoDoc);
-//STRIP001
-//STRIP001  BOOL        SearchStyle(const SvxSearchItem& rSearchItem, USHORT& rCol, USHORT& rRow,
-//STRIP001                              ScMarkData& rMark);
-//STRIP001  BOOL        ReplaceStyle(const SvxSearchItem& rSearchItem, USHORT& rCol, USHORT& rRow,
-//STRIP001                              ScMarkData& rMark, BOOL bIsUndo);
-//STRIP001  BOOL        SearchAllStyle(const SvxSearchItem& rSearchItem, ScMarkData& rMark);
-//STRIP001  BOOL        ReplaceAllStyle(const SvxSearchItem& rSearchItem, ScMarkData& rMark,
-//STRIP001                              ScDocument* pUndoDoc);
 
                                 // benutzen globalen SortParam:
-//STRIP001  BOOL        IsSorted(USHORT nStart, USHORT nEnd);
-//STRIP001  void        DecoladeRow( ScSortInfoArray*, USHORT nRow1, USHORT nRow2 );
-//STRIP001  void        SwapCol(USHORT nCol1, USHORT nCol2);
-//STRIP001  void        SwapRow(USHORT nRow1, USHORT nRow2);
-//STRIP001  short       CompareCell( USHORT nSort,
-//STRIP001                  ScBaseCell* pCell1, USHORT nCell1Col, USHORT nCell1Row,
-//STRIP001                  ScBaseCell* pCell2, USHORT nCell2Col, USHORT nCell2Row );
-//STRIP001  short       Compare(USHORT nIndex1, USHORT nIndex2);
-//STRIP001  short       Compare( ScSortInfoArray*, USHORT nIndex1, USHORT nIndex2);
-//STRIP001  ScSortInfoArray*    CreateSortInfoArray( USHORT nInd1, USHORT nInd2 );
-//STRIP001  void        QuickSort( ScSortInfoArray*, short nLo, short nHi);
-//STRIP001  void        SortReorder( ScSortInfoArray*, ScProgress& );
 
-//STRIP001  BOOL        CreateExcelQuery(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam);
-//STRIP001  BOOL        CreateStarQuery(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam);
-//STRIP001  void        GetUpperCellString(USHORT nCol, USHORT nRow, String& rStr);
 
-//STRIP001  BOOL        RefVisible(ScFormulaCell* pCell);
 
-//STRIP001  BOOL        IsEmptyLine(USHORT nRow, USHORT nStartCol, USHORT nEndCol);
 
-//STRIP001  void        IncDate(double& rVal, USHORT& nDayOfMonth, double nStep, FillDateCmd eCmd);
-//STRIP001  void        FillFormula(USHORT& nFormulaCounter, BOOL bFirst, ScFormulaCell* pSrcCell,
-//STRIP001                          USHORT nDestCol, USHORT nDestRow, BOOL bLast );
-//STRIP001  void        UpdateInsertTabAbs(USHORT nNewPos);
-//STRIP001  BOOL        GetNextSpellingCell(USHORT& rCol, USHORT& rRow, BOOL bInSel,
-//STRIP001                                  const ScMarkData& rMark) const;
     BOOL        GetNextMarkedCell( USHORT& rCol, USHORT& rRow, const ScMarkData& rMark );
     void        SetDrawPageSize();
     BOOL        TestTabRefAbs(USHORT nTable);
-//STRIP001  void        CompileDBFormula();
     void        CompileDBFormula( BOOL bCreateFormulaString );
     void        CompileNameFormula( BOOL bCreateFormulaString );
     void        CompileColRowNameFormula();
