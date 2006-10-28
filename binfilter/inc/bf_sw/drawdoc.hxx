@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:56:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:39:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ public:
     virtual SvStream* GetDocumentStream( SdrDocumentStreamInfo& rInfo ) const;
 
     // fuers Speicher von Rechtecken als Control-Ersatz fuker Versionen < 5.0
-//STRIP001  virtual SdrLayerID GetControlExportLayerId( const SdrObject & ) const;
 };
 
 
