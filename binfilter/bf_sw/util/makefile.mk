@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:07:37 $
+#   last change: $Author: rt $ $Date: 2006-10-28 01:36:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,6 @@ sw_res_files= \
     $(SRS)$/sw_dialog.srs       \
     $(SRS)$/sw_config.srs       \
     $(SRS)$/sw_dochdl.srs       \
-    $(SRS)$/sw_docvw.srs        \
     $(SRS)$/sw_envelp.srs       \
     $(SRS)$/sw_fldui.srs        \
     $(SRS)$/sw_globdoc.srs      \
@@ -77,7 +76,6 @@ sw_res_files= \
     $(SRS)$/sw_ribbar.srs       \
     $(SRS)$/sw_shells.srs       \
     $(SRS)$/sw_swslots.srs     \
-    $(SRS)$/sw_table.srs        \
     $(SRS)$/sw_uiview.srs       \
     $(SRS)$/sw_utlui.srs        \
     $(SRS)$/sw_web.srs          \
