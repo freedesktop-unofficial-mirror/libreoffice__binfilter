@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_hidother.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:32:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:36:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -208,7 +208,6 @@ hidspecial HID_SOURCE_EDITWIN   { HelpId = HID_SOURCE_EDITWIN   ;};
 hidspecial HID_REDLINE_CTRL     { HelpId = HID_REDLINE_CTRL ;};
 
 // File-Dialoge
-//STRIP001 hidspecial HID_FILEDLG_CHARDLG   { HelpId = HID_FILEDLG_CHARDLG  ;};
 hidspecial HID_FILEDLG_LOADTEMPLATE { HelpId = HID_FILEDLG_LOADTEMPLATE ;};
 hidspecial HID_FILEDLG_MAILMRGE1    { HelpId = HID_FILEDLG_MAILMRGE1    ;};
 hidspecial HID_FILEDLG_MAILMRGE2    { HelpId = HID_FILEDLG_MAILMRGE2    ;};

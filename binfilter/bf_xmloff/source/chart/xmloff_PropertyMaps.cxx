@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_PropertyMaps.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:36:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:36:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,30 +46,15 @@
 #ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include "EnumPropertyHdl.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
-// auto strip #include "XMLConstantsPropertyHandler.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include "attrlist.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_SHAPEIMPORT_HXX_
-// auto strip #include "shapeimport.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
-// auto strip #include "NamedBoolPropertyHdl.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLERRORINDICATORPROPERTYHDL_HXX_
 #include "XMLErrorIndicatorPropertyHdl.hxx"
@@ -84,29 +69,8 @@
 #ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTSYMBOLTYPE_HPP_
-// auto strip #include <com/sun/star/chart/ChartSymbolType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_LINESTYLE_HPP_
-// auto strip #include <com/sun/star/drawing/LineStyle.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
-// auto strip #include <com/sun/star/drawing/FillStyle.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
-// auto strip #include <com/sun/star/drawing/LineJoint.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
-// auto strip #include <com/sun/star/chart/ChartDataRowSource.hpp>
-// auto strip #endif
 
 // header for any2enum
-// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
-// auto strip #include <comphelper/extract.hxx>
-// auto strip #endif
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #define SCH_XML_SETFLAG( status, flag )     (status)|= (flag)
