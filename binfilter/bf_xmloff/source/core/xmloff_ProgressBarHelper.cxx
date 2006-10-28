@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_ProgressBarHelper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:42:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:39:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
