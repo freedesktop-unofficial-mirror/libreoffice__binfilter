@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docshell.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:45:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:47:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -121,7 +121,6 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
      // #61907# bei deaktivierung des InPlaceEdit evtl. gebufferte neue Daten
     // übernehmen
  protected:
-//STRIP001   virtual void        InPlaceActivate( BOOL b ) throw();
 
  public:
     TYPEINFO();
@@ -129,17 +128,11 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
     SFX_DECL_OBJECTFACTORY_DLL(SchChartDocShell,SCH_MOD());
 
     SchChartDocShell(SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED) throw();
-//STRIP001  SchChartDocShell(ChartModel* pDoc, SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED) throw();
     ~SchChartDocShell() throw();
 
-//STRIP001  virtual void Activate() throw();
-//STRIP001  virtual void Deactivate() throw();
 
     virtual BOOL InitNew(SvStorage*) throw();
     virtual BOOL Load(SvStorage*) throw();
-//STRIP001  virtual sal_Bool ConvertFrom( SfxMedium &rMedium );
-//STRIP001  virtual sal_Bool ConvertTo( SfxMedium &rMedium );
-//STRIP001  virtual void HandsOff() throw();
     virtual BOOL Save() throw();
     virtual BOOL SaveAs(SvStorage* pNewStor) throw();
     virtual BOOL SaveCompleted(SvStorage* pNewStor) throw();
@@ -147,15 +140,12 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
     virtual Rectangle GetVisArea(USHORT nAspect) const throw();
     virtual void SetVisArea(const Rectangle& rRect) throw();
 
-//STRIP001  virtual void Draw(OutputDevice*, const JobSetup& rSetup,
-//STRIP001                    USHORT nAspect = ASPECT_CONTENT) throw();
 
     virtual SfxUndoManager* GetUndoManager() throw();
 
     SfxPrinter* GetPrinter() throw();
     void SetPrinter( SfxPrinter *pNewPrinter, BOOL bIsDeletedHere = FALSE ) throw();
 
-//STRIP001  virtual Printer* GetDocumentPrinter() throw();
     virtual void     OnDocumentPrinterChanged(Printer* pNewPrinter) throw();
 
     /** @return if the chart is embedded in a document, this may be a virtual
@@ -173,15 +163,8 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
 
     virtual SfxStyleSheetBasePool* GetStyleSheetPool() throw();
 
-//STRIP001  virtual BOOL Insert(SfxObjectShell &rSource, USHORT nSourceIdx1,
-//STRIP001                      USHORT nSourceIdx2, USHORT nSourceIdx3,
-//STRIP001                      USHORT& nIdx1, USHORT& nIdx2, USHORT& nIdx3,
-//STRIP001                      USHORT& nDeleted) throw();
 
-//STRIP001  virtual BOOL Remove(USHORT nIdx1, USHORT nIdx2 = INDEX_IGNORE,
-//STRIP001                      USHORT nIdx3 = INDEX_IGNORE) throw();
 
-//STRIP001  void UpdateChart(OutputDevice* pOut) throw();
     void UpdateTablePointers() throw();
 
     virtual void FillClass(SvGlobalName* pClassName,
