@@ -4,9 +4,9 @@
  *
  *  $RCSfile: numitem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-09-25 12:44:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:46:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -169,10 +169,8 @@ class SvxNumberFormat : public SvxNumberType
 
     BitmapEx*           pScaledImageCache;  // Image scaled to aGraphicSize, only cached for WINDOW/VDEV
 
-//STRIP001  DECL_STATIC_LINK( SvxNumberFormat, GraphicArrived, void * );
 //  void GetCharStr( ULONG nNo, String& rStr ) const;
 //  void GetCharStrN( ULONG nNo, String& rStr ) const;
-//STRIP001     virtual void NotifyGraphicArrived();
 public:
     SvxNumberFormat(sal_Int16 nNumberingType);
     SvxNumberFormat(const SvxNumberFormat& rFormat);
@@ -211,8 +209,6 @@ public:
 
     virtual void    SetGraphicBrush( const SvxBrushItem* pBrushItem, const Size* pSize = 0, const SvxFrameVertOrient* pOrient = 0);
     const SvxBrushItem*         GetBrush() const {return pGraphicBrush;}
-//STRIP001  void            SetGraphic( const String& rName );
-//STRIP001  virtual void                SetVertOrient(SvxFrameVertOrient eSet);
     virtual SvxFrameVertOrient  GetVertOrient() const;
     void            SetGraphicSize(const Size& rSet) {aGraphicSize = rSet;}
     const Size&     GetGraphicSize() const {return aGraphicSize;}
@@ -226,7 +222,6 @@ public:
     void            SetCharTextDistance(short nSet) { nCharTextDistance = nSet; }
     short           GetCharTextDistance() const {return nCharTextDistance;}
 
-//STRIP001  static Size     GetGraphicSizeMM100(const Graphic* pGraphic);
     static String   CreateRomanString( ULONG nNo, BOOL bUpper );
 };
 
@@ -259,14 +254,12 @@ public:
     int                     operator==( const SvxNumRule& ) const;
     int                     operator!=( const SvxNumRule& rRule ) const {return !(*this == rRule);}
 
-//STRIP001  SvxNumRule&             operator=( const SvxNumRule&  );
 
     SvStream&               Store(SvStream &rStream);
 
     const SvxNumberFormat*  Get(USHORT nLevel)const;
     const SvxNumberFormat&  GetLevel(USHORT nLevel)const;
     void                    SetLevel(USHORT nLevel, const SvxNumberFormat& rFmt, BOOL bIsValid = TRUE);
-//STRIP001  void                    SetLevel(USHORT nLevel, const SvxNumberFormat* pFmt);
 
     BOOL                    IsContinuousNumbering()const
                                             {return bContinuousNumbering;}
@@ -279,7 +272,6 @@ public:
     ULONG                   GetFeatureFlags() const {return nFeatureFlags;}
     void                    SetFeatureFlag( ULONG nFlag, BOOL bSet = TRUE ) { if(bSet) nFeatureFlags |= nFlag; else nFeatureFlags &= ~nFlag; }
 
-//STRIP001  String                  MakeNumString( const SvxNodeNum&, BOOL bInclStrings = TRUE ) const;
 
     SvxNumRuleType          GetNumRuleType() const { return eNumberingType; }
     void                    SetNumRuleType( const SvxNumRuleType& rType ) { eNumberingType = rType; }
@@ -306,7 +298,6 @@ public:
 
     SvxNumRule*             GetNumRule() const {return pNumRule;}
 
-//STRIP001  virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
 /* -----------------28.10.98 15:21-------------------
