@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlmetae.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:17:39 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:51:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,21 +33,14 @@
  *
  ************************************************************************/
 
-// auto strip #include <tools/debug.hxx>
 #include <tools/inetdef.hxx>
-// auto strip #include <tools/isolang.hxx>
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
 #include <unotools/configmgr.hxx>
 
 #include "xmlmetae.hxx"
-// auto strip #include "attrlist.hxx"
-// auto strip #include "nmspmap.hxx"
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
