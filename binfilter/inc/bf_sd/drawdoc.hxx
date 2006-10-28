@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:14:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:52:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -199,8 +199,6 @@ private:
 
                         DECL_LINK(NotifyUndoActionHdl, SfxUndoAction*);
                         DECL_LINK(WorkStartupHdl, Timer*);
-//STRIP001                      DECL_LINK(OnlineSpellingHdl, Timer*);
-//STRIP001                      DECL_LINK(OnlineSpellEventHdl, EditStatus*);
 
 protected:
 
@@ -215,11 +213,8 @@ public:
                         SdDrawDocument(DocumentType eType, SfxObjectShell* pDocSh);
                         ~SdDrawDocument();
 
-//STRIP001  virtual SdrModel*   AllocModel() const;
     virtual SdrPage*    AllocPage(FASTBOOL bMasterPage);
-//STRIP001  virtual const SdrModel* LoadModel(const String& rFileName);
     virtual void        DisposeLoadedModels();
-//STRIP001  virtual FASTBOOL    IsReadOnly() const;
     virtual void        SetChanged(FASTBOOL bFlag = TRUE);
     virtual SvStream*   GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const;
     virtual void        HandsOff();
@@ -245,25 +240,12 @@ public:
     void                CreatingDataObj( SdTransferable* pTransferable ) { pCreatingTransferable = pTransferable; }
 
     void                CreateFirstPages();
-//STRIP001  BOOL                CreateMissingNotesAndHandoutPages();
 
-//STRIP001  void                MovePage(USHORT nPgNum, USHORT nNewPos);
     void                InsertPage(SdrPage* pPage, USHORT nPos=0xFFFF);
     void                DeletePage(USHORT nPgNum);
     SdrPage*            RemovePage(USHORT nPgNum);
     void                RemoveUnnessesaryMasterPages( SdPage* pMaster=NULL, BOOL bOnlyDuplicatePages=FALSE, BOOL bUndo=TRUE );
-//STRIP001  void                SetMasterPage(USHORT nSdPageNum, const String& rLayoutName,
-//STRIP001                                    SdDrawDocument* pSourceDoc, BOOL bMaster, BOOL bCheckMasters);
-//STRIP001
-//STRIP001  SdDrawDocument*     OpenBookmarkDoc(const String& rBookmarkFile);
-//STRIP001  SdDrawDocument*     OpenBookmarkDoc(SfxMedium& rMedium);
-//STRIP001  BOOL                InsertBookmark(List* pBookmarkList, List* pExchangeList, BOOL bLink,
-//STRIP001                                      BOOL bReplace, USHORT nPgPos, BOOL bNoDialogs,
-//STRIP001                                      SdDrawDocShell* pBookmarkDocSh, BOOL bCopy,
-//STRIP001                                      Point* pObjPos);
 
-//STRIP001  bool IsStartWithPresentation() const;
-//STRIP001  void SetStartWithPresentation( bool bStartWithPresentation );
 
     /** Insert pages into this document
 
@@ -310,26 +292,13 @@ public:
         Whether the replace operation should take the name from the new
         page, or preserve the old name
      */
-//STRIP001  BOOL                InsertBookmarkAsPage(List* pBookmarkList, List* pExchangeList,
-//STRIP001                                            BOOL bLink, BOOL bReplace, USHORT nPgPos,
-//STRIP001                                            BOOL bNoDialogs, SdDrawDocShell* pBookmarkDocSh,
-//STRIP001                                            BOOL bCopy, BOOL bMergeMasterPages,
-//STRIP001                                               BOOL bPreservePageNames);
-//STRIP001  BOOL                InsertBookmarkAsObject(List* pBookmarkList, List* pExchangeListL,
-//STRIP001                                              BOOL bLink, SdDrawDocShell* pBookmarkDocSh,
-//STRIP001                                              Point* pObjPos);
-//STRIP001     void                 IterateBookmarkPages( SdDrawDocument* pBookmarkDoc, List* pBookmarkList,
-//STRIP001                                               USHORT nBMSdPageCount,
-//STRIP001                                               InsertBookmarkAsPage_PageFunctorBase& rPageIterator );
     void                CloseBookmarkDoc();
 
-//STRIP001  SdrObject*          GetObj(const String& rObjName) const;
 
     USHORT              GetPageByName(const String& rPgName, BOOL& rbIsMasterPage ) const;
     SdPage*             GetSdPage(USHORT nPgNum, PageKind ePgKind) const;
     USHORT              GetSdPageCount(PageKind ePgKind) const;
     void                SetSelected(SdPage* pPage, BOOL bSelect);
-//STRIP001  BOOL                MovePages(USHORT nTargetPage);
 
     SdPage*             GetMasterSdPage(USHORT nPgNum, PageKind ePgKind);
     USHORT              GetMasterSdPageCount(PageKind ePgKind) const;
@@ -354,7 +323,6 @@ public:
     void                SetPresMouseAsPen(BOOL bNewPresMouseAsPen);
     BOOL                GetPresMouseAsPen() const    { return bPresMouseAsPen; }
 
-//STRIP001  void                SetPresFirstPage (ULONG nNewFirstPage);
     ULONG               GetPresFirstPage() const { return nPresFirstPage; }
 
     void                SetStartPresWithNavigator (BOOL bStart);
@@ -413,10 +381,8 @@ public:
     void                InsertObject(SdrObject* pObj, SdPage* pPage);
     void                RemoveObject(SdrObject* pObj, SdPage* pPage);
 
-//STRIP001  void                SetHideSpell( BOOL bIn );
     BOOL                GetHideSpell() const { return bHideSpell; }
 
-//STRIP001  ULONG               GetLinkCount();
 
     List*               GetFrameViewList() const { return pFrameViewList; }
     List*               GetCustomShowList(BOOL bCreate = FALSE);
@@ -441,11 +407,8 @@ public:
     SdAnimationInfo*    GetAnimationInfo(SdrObject* pObject) const;
 
     SdIMapInfo*         GetIMapInfo( SdrObject* pObject ) const;
-//STRIP001  IMapObject*         GetHitIMapObject( SdrObject* pObject, const Point& rWinPoint, const Window& rCmpWnd );
 
-//STRIP001  Graphic             GetGraphicFromOle2Obj( const SdrOle2Obj* pOle2Obj );
 
-//STRIP001  List*               GetDeletedPresObjList();
 
     CharClass*          GetCharClass() const { return mpCharClass; }
 
@@ -456,14 +419,8 @@ public:
 
     void                CheckMasterPages();
 
-//STRIP001  void                Merge(SdrModel& rSourceModel,
-//STRIP001                              USHORT nFirstPageNum=0, USHORT nLastPageNum=0xFFFF,
-//STRIP001                              USHORT nDestPos=0xFFFF,
-//STRIP001                              FASTBOOL bMergeMasterPages=FALSE, FASTBOOL bAllMasterPages=FALSE,
-//STRIP001                              FASTBOOL bUndo=TRUE, FASTBOOL bTreadSourceAsConst=FALSE);
 
     ::com::sun::star::text::WritingMode GetDefaultWritingMode() const;
-//STRIP001     void SetDefaultWritingMode( ::com::sun::star::text::WritingMode eMode );
 
 public:
 
