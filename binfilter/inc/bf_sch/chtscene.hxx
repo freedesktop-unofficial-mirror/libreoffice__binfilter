@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chtscene.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:44:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:47:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,13 +65,11 @@ class ChartScene : public E3dPolyScene
     void Initialize();
 
     virtual Volume3D FitInSnapRect();
-//STRIP001  virtual void operator=(const SdrObject& rObj);
 
     BOOL GetAskForLogicRect() {return bAskForLogicRect;}
     void SetAskForLogicRect(BOOL value) {bAskForLogicRect = value;}
 
     virtual void WriteData(SvStream& rOut) const;
-//STRIP001  virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     void InsertAllTitleText (DescrList         &rList,
                              E3dObject         *pGroup,
