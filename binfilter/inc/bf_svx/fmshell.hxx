@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmshell.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:29:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:33:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -128,8 +128,6 @@ public:
     virtual void GetState( SfxItemSet& );
     virtual sal_Bool HasUIFeature( sal_uInt32 nFeature );
 
-//STRIP001  sal_Bool GetY2KState(sal_uInt16& nReturn);
-//STRIP001  void SetY2KState(sal_uInt16 n);
 
     void SetView(FmFormView* pView);
 
@@ -145,7 +143,6 @@ public:
     virtual void    Deactivate(sal_Bool bMDI);
 
 protected:
-//STRIP001  void GetFormState(SfxItemSet &rSet, sal_uInt16 nWhich);
 
     // gibt es ein Formular auf der aktuellen Seite?
     void DetermineForms(sal_Bool bInvalidate);

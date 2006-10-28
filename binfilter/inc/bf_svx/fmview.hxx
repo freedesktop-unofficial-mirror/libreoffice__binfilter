@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmview.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:29:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:33:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,8 +85,6 @@ public:
     TYPEINFO();
 
     FmFormView(FmFormModel* pModel, OutputDevice* pOut);
-//STRIP001  FmFormView(FmFormModel* pModel, ExtOutputDevice* pOut);
-//STRIP001  FmFormView(FmFormModel* pModel);
     virtual ~FmFormView();
 
     /** create a control pair (label/bound control) for the database field description given.
@@ -95,28 +93,22 @@ public:
         @deprecated
             This method is deprecated. Use the version with a ODataAccessDescriptor instead.
     */
-//STRIP001  SdrObject*   CreateFieldControl(const UniString& rFieldDesc) const;
 
     /** create a control pair (label/bound control) for the database field description given.
     */
-//STRIP001  SdrObject*   CreateFieldControl( const ::svx::ODataAccessDescriptor& _rColumnDescriptor );
 
     virtual void MarkListHasChanged();
-//STRIP001  virtual void AddWin(OutputDevice* pWin1);
     virtual void DelWin(OutputDevice* pWin1);
 
     virtual SdrPageView* ShowPage(SdrPage* pPage, const Point& rOffs);
     virtual void HidePage(SdrPageView* pPV);
 
     // for copying complete form structures, not only control models
-//STRIP001  virtual SdrModel* GetMarkedObjModel() const;
-//STRIP001  virtual sal_Bool Paste(const SdrModel& rMod, const Point& rPos, SdrObjList* pLst=NULL, sal_uInt32 nOptions=0);
 
     /** grab the focus to the first form control on the view
         @param _bForceSync
             <TRUE/> if the handling should be done synchronously.
     */
-//STRIP001  void    GrabFirstControlFocus( sal_Bool _bForceSync = sal_False );
 
     // SdrView
     BOOL KeyInput(const KeyEvent& rKEvt, Window* pWin);
@@ -126,14 +118,11 @@ protected:
     void DeactivateControls(SdrPageView*);
 
     // Hinweis an die UI, da?ein Control erzeugt worden ist
-//STRIP001  void ObjectCreated(FmFormObj* pObj);
     void ChangeDesignMode(sal_Bool bDesign);
 
 public:
     FmXFormView* GetImpl() const {return pImpl;}
 
-//STRIP001  virtual void InsertControlContainer(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer >& xCC);
-//STRIP001  virtual void RemoveControlContainer(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer >& xCC);
 private:
     const OutputDevice* GetActualOutDev() const {return pActualOutDev;}
     void AdjustMarks(const SdrMarkList& rMarkList);
