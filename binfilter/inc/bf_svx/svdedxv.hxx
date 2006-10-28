@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdedxv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:33:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:04:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -118,27 +118,17 @@ private:
     void ImpClearVars();
 
 protected:
-//STRIP001  OutlinerView* ImpFindOutlinerView(Window* pWin) const;
 
     // Eine neue OutlinerView auf dem Heap anlegen und alle erforderlichen Parameter setzen.
     // pTextEditObj, pTextEditPV und pTextEditOutliner muessen initiallisiert sein.
-//STRIP001  OutlinerView* ImpMakeOutlinerView(Window* pWin, BOOL bNoPaint, OutlinerView* pGivenView) const;
-//STRIP001  void ImpPaintOutlinerView(OutlinerView& rOutlView, const Rectangle* pRect=NULL, BOOL bDrawButPaint=FALSE) const;
 
     // Hintergrundfarbe fuer die Outlinerviews bestimmen
-//STRIP001  Color ImpGetTextEditBackgroundColor() const;
 
     // Feststellen, ob der gesamte Text markiert ist. Liefert auch TRUE wenn
     // kein Text vorhanden ist.
-//STRIP001  BOOL ImpIsTextEditAllSelected() const;
-//STRIP001  void ImpMakeTextCursorAreaVisible();
 
     // Handler fuer AutoGrowing Text bei aktivem Outliner
-//STRIP001  DECL_LINK(ImpOutlinerStatusEventHdl,EditStatus*);
-//STRIP001  DECL_LINK(ImpOutlinerCalcFieldValueHdl,EditFieldInfo*);
 
-//STRIP001  void ImpMacroUp(const Point& rUpPos);
-//STRIP001  void ImpMacroDown(const Point& rDownPos);
 
 public:
     SdrObjEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
@@ -147,11 +137,7 @@ public:
 
     // Actionhandling fuer Macromodus
     virtual BOOL IsAction() const;
-//STRIP001  virtual void MovAction(const Point& rPnt);
-//STRIP001  virtual void EndAction();
     virtual void BrkAction();
-//STRIP001  virtual void BckAction();
-//STRIP001  virtual void TakeActionRect(Rectangle& rRect) const;
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     virtual void ModelHasChanged();
@@ -194,7 +180,6 @@ public:
     // TRUE=Es wird ein Textrahmen (OBJ_TEXT,OBJ_OUTLINETEXT,...) editiert
     // ansonsten handelt es sich um ein beschriftetes Zeichenobjekt, an dem
     // der Text ja bekanntlich hor. und vert. zentriert wird.
-//STRIP001  BOOL IsTextEditFrame() const;
 
     // Diese Methode liefert TRUE, wenn der Punkt rHit innerhalb der
     // des Objektbereichs oder der OutlinerView liegt.
@@ -211,7 +196,6 @@ public:
 
     // Folgende Methode addiert einen passenden Offset zum MouseEvent
     // um diesen an den Outliner weiterzureichen.
-//STRIP001  void AddTextEditOfs(MouseEvent& rMEvt) const;
 
     // Wer das z.Zt. im TextEdit befindliche Objekt braucht:
     SdrObject* GetTextEditObject() const { return pTextEditObj; }
@@ -219,7 +203,6 @@ public:
 
     // Das aktuelle Win des Outliners
     Window* GetTextEditWin() const { return pTextEditWin; }
-//STRIP001  void SetTextEditWin(Window* pWin);
 
     // An den hier abgeholten Outliner kann man schliesslich
     // Events versenden, Attribute setzen, Cut/Copy/Paste rufen,
@@ -229,27 +212,14 @@ public:
     const OutlinerView* GetTextEditOutlinerView() const { return pTextEditOutlinerView; }
     OutlinerView* GetTextEditOutlinerView() { return pTextEditOutlinerView; }
 
-//STRIP001  BOOL KeyInput(const KeyEvent& rKEvt, Window* pWin);
-//STRIP001  BOOL MouseButtonDown(const MouseEvent& rMEvt, Window* pWin);
-//STRIP001  BOOL MouseButtonUp(const MouseEvent& rMEvt, Window* pWin);
-//STRIP001  BOOL MouseMove(const MouseEvent& rMEvt, Window* pWin);
-//STRIP001  BOOL Command(const CommandEvent& rCEvt, Window* pWin);
-//STRIP001  BOOL Cut(ULONG nFormat=SDR_ANYFORMAT);
-//STRIP001  BOOL Yank(ULONG nFormat=SDR_ANYFORMAT);
-//STRIP001  BOOL Paste(Window* pWin=NULL, ULONG nFormat=SDR_ANYFORMAT);
 
     // #97766# make virtual to change implementation e.g. for SdOutlineView
-//STRIP001  virtual sal_uInt16 GetScriptType() const;
 
     /* new interface src537 */
-//STRIP001  BOOL GetAttributes(SfxItemSet& rTargetSet, BOOL bOnlyHardAttr=FALSE) const;
 
-//STRIP001  BOOL SetAttributes(const SfxItemSet& rSet, BOOL bReplaceAll);
-//STRIP001  SfxStyleSheet* GetStyleSheet(BOOL& rOk) const;
     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 
     // Intern: Beim Splitteraufziehen neue OutlinerView...
-//STRIP001  virtual void AddWin(OutputDevice* pWin1);
     virtual void DelWin(OutputDevice* pWin1);
 
     //************************************************************************
@@ -260,11 +230,7 @@ public:
     // Draw-Objekte mit Macrofunktionalitaet hat (SdrObject::HasMacro()==TRUE).
     void SetMacroMode(BOOL bOn) { bMacroMode=bOn; }
     BOOL IsMacroMode() const { return bMacroMode; }
-//STRIP001  BOOL BegMacroObj(const Point& rPnt, short nTol, SdrObject* pObj, SdrPageView* pPV, Window* pWin);
-//STRIP001  BOOL BegMacroObj(const Point& rPnt, SdrObject* pObj, SdrPageView* pPV, Window* pWin) { return BegMacroObj(rPnt,-2,pObj,pPV,pWin); }
-//STRIP001  void MovMacroObj(const Point& rPnt);
     void BrkMacroObj();
-//STRIP001  BOOL EndMacroObj();
     BOOL IsMacroObj() const { return pMacroObj!=NULL; }
     BOOL IsMacroObjDown() const { return bMacroDown; }
 };
