@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdtrans.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:47:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:12:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,25 +36,10 @@
 #ifndef _SVDTRANS_HXX
 #define _SVDTRANS_HXX
 
-// auto strip #ifndef _GEN_HXX //autogen
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _FRACT_HXX //autogen
-// auto strip #include <tools/fract.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _MAPMOD_HXX //autogen
-// auto strip #include <vcl/mapmod.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #include <vcl/field.hxx>
 namespace binfilter {
@@ -102,12 +87,6 @@ void RotateXPoly(XPolyPolygon& rPoly, const Point& rRef, double sn, double cs);
 
 // MirrorRect macht nur Sinn bei Spiegelachsen
 // mit einem durch 45 Degree teilbaren Winkel!
-//STRIP001 void MirrorRect(Rectangle& rRect, const Point& rRef1, const Point& rRef2, FASTBOOL bNoJustify); // ni.
-//STRIP001 void MirrorPoint(Point& rPnt, const Point& rRef1, const Point& rRef2);
-//STRIP001 void MirrorPoly(Polygon& rPoly, const Point& rRef1, const Point& rRef2);
-//STRIP001 void MirrorXPoly(XPolygon& rPoly, const Point& rRef1, const Point& rRef2);
-//STRIP001 void MirrorPoly(PolyPolygon& rPoly, const Point& rRef1, const Point& rRef2);
-//STRIP001 void MirrorXPoly(XPolyPolygon& rPoly, const Point& rRef1, const Point& rRef2);
 
 inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
 void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
@@ -124,21 +103,8 @@ inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad
 // uebergeben werden. Ueber rSin/rCos wird gleichzeitig sin(nWink) und cos(nWink)
 // zurueckgegeben.
 // Der Rueckgabewinkel ist hier ebenfalls in Rad.
-//STRIP001 double CrookRotateXPoint(Point& rPnt, Point* pC1, Point* pC2, const Point& rCenter,
-//STRIP001                       const Point& rRad, double& rSin, double& rCos, FASTBOOL bVert);
-//STRIP001 double CrookSlantXPoint(Point& rPnt, Point* pC1, Point* pC2, const Point& rCenter,
-//STRIP001                      const Point& rRad, double& rSin, double& rCos, FASTBOOL bVert);
-//STRIP001 double CrookStretchXPoint(Point& rPnt, Point* pC1, Point* pC2, const Point& rCenter,
-//STRIP001                        const Point& rRad, double& rSin, double& rCos, FASTBOOL bVert,
-//STRIP001                        const Rectangle rRefRect);
 
-//STRIP001 void CrookRotatePoly(XPolygon& rPoly, const Point& rCenter, const Point& rRad, FASTBOOL bVert);
-//STRIP001 void CrookSlantPoly(XPolygon& rPoly, const Point& rCenter, const Point& rRad, FASTBOOL bVert);
-//STRIP001 void CrookStretchPoly(XPolygon& rPoly, const Point& rCenter, const Point& rRad, FASTBOOL bVert, const Rectangle rRefRect);
 
-//STRIP001 void CrookRotatePoly(XPolyPolygon& rPoly, const Point& rCenter, const Point& rRad, FASTBOOL bVert);
-//STRIP001 void CrookSlantPoly(XPolyPolygon& rPoly, const Point& rCenter, const Point& rRad, FASTBOOL bVert);
-//STRIP001 void CrookStretchPoly(XPolyPolygon& rPoly, const Point& rCenter, const Point& rRad, FASTBOOL bVert, const Rectangle rRefRect);
 
 /**************************************************************************************************/
 /*  Inline                                                                                        */
@@ -284,9 +250,6 @@ public:
 };
 
 // Fuer die Umrechnung von Masseinheiten
-//STRIP001 FrPair GetMapFactor(MapUnit eS, MapUnit eD);
-//STRIP001 FrPair GetMapFactor(MapUnit eS, FieldUnit eD);
-//STRIP001 FrPair GetMapFactor(FieldUnit eS, MapUnit eD);
 FrPair GetMapFactor(FieldUnit eS, FieldUnit eD);
 
 inline FASTBOOL IsMetric(MapUnit eU) {
@@ -320,8 +283,6 @@ class SdrFormatter {
     FieldUnit eSrcFU;
     FieldUnit eDstFU;
 private:
-//STRIP001  void Undirty();
-//STRIP001  void ForceUndirty() const { if (bDirty) ((SdrFormatter*)this)->Undirty(); }
 public:
     SdrFormatter(MapUnit eSrc, MapUnit eDst)     { eSrcMU=eSrc; bSrcFU=FALSE; eDstMU=eDst; bDstFU=FALSE; bDirty=TRUE; }
     SdrFormatter(MapUnit eSrc, FieldUnit eDst)   { eSrcMU=eSrc; bSrcFU=FALSE; eDstFU=eDst; bDstFU=TRUE;  bDirty=TRUE; }
@@ -331,11 +292,6 @@ public:
     void SetSourceUnit(FieldUnit eSrc)      { eSrcFU=eSrc; bSrcFU=TRUE;  bDirty=TRUE; }
     void SetDestinationUnit(MapUnit eDst)   { eDstMU=eDst; bDstFU=FALSE; bDirty=TRUE; }
     void SetDestinationUnit(FieldUnit eDst) { eDstFU=eDst; bDstFU=TRUE;  bDirty=TRUE; }
-//STRIP001  void TakeStr(long nVal, XubString& rStr) const;
-//STRIP001  static void TakeUnitStr(MapUnit eUnit, XubString& rStr);
-//STRIP001  static void TakeUnitStr(FieldUnit eUnit, XubString& rStr);
-//STRIP001  static XubString GetUnitStr(MapUnit eUnit)   { XubString aStr; TakeUnitStr(eUnit,aStr); return aStr; }
-//STRIP001  static XubString GetUnitStr(FieldUnit eUnit) { XubString aStr; TakeUnitStr(eUnit,aStr); return aStr; }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
