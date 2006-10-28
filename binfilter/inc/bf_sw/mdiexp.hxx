@@ -4,9 +4,9 @@
  *
  *  $RCSfile: mdiexp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:13:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:48:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,6 @@ extern void FrameNotify( ViewShell* pVwSh, FlyMode eMode = FLY_DRAG );
 void StartProgress     ( USHORT nMessId, long nStartVal, long nEndVal, SwDocShell *pDocSh = 0 );
 void EndProgress       ( SwDocShell *pDocSh = 0 );
 void SetProgressState  ( long nPosition, SwDocShell *pDocShell );
-//STRIP001 void SetProgressText   ( USHORT nMessId, SwDocShell *pDocShell );
 void RescheduleProgress( SwDocShell *pDocShell );
 
 void EnableCmdInterface(BOOL bEnable = TRUE);
