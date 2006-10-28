@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlsheet.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:07:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:54:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,17 +61,10 @@ public:
     virtual BOOL        SetParent (const String& rParentName);
     virtual SfxItemSet& GetItemSet();
     virtual BOOL        IsUsed() const;
-//STRIP001  virtual BOOL        HasFollowSupport() const;
-//STRIP001  virtual BOOL        HasParentSupport() const;
-//STRIP001  virtual BOOL        HasClearParentSupport() const;
 
-//STRIP001          List*       CreateChildList() const;
 
-//STRIP001          void        AdjustToFontHeight(SfxItemSet& rSet,
-//STRIP001                                         BOOL bOnlyMissingItems = TRUE);
 
     SdStyleSheet* GetRealStyleSheet() const;
-//STRIP001  SdStyleSheet* GetPseudoStyleSheet() const;
 };
 
 } //namespace binfilter
