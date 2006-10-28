@@ -4,9 +4,9 @@
  *
  *  $RCSfile: polyob3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:11:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:53:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,7 +85,6 @@ public:
     virtual ~E3dPolyObj();
 
     virtual UINT16  GetObjIdentifier() const;
-//STRIP001  virtual USHORT  GetPointCount () const;
     void SetPolyPolygon3D(const PolyPolygon3D& rNewPolyPoly3D);
     const PolyPolygon3D& GetPolyPolygon3D() const { return aPolyPoly3D; }
 
@@ -96,20 +95,13 @@ public:
     const PolyPolygon3D& GetPolyTexture3D() const { return aPolyTexture3D; }
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     virtual const   Rectangle& GetBoundRect() const;
-//STRIP001  virtual void CreateWireframe(Polygon3D& rWirePoly,
-//STRIP001      const Matrix4D* pTf = NULL,
-//STRIP001      E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void operator=(const SdrObject&);
 
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
     virtual SdrObjGeoData *NewGeoData() const;
     virtual void          SaveGeoData(SdrObjGeoData &rGeo) const;
@@ -118,8 +110,6 @@ public:
     virtual void          SetModel(SdrModel *pNewModel);
     virtual SdrLayerID    GetLayer() const;
     virtual void          NbcSetLayer(SdrLayerID nLayer);
-//STRIP001  virtual void          NbcSetStyleSheet(SfxStyleSheet *pNewStyleSheet,
-//STRIP001                                         FASTBOOL      bDontRemoveHardAttr);
     virtual SfxStyleSheet *GetStyleSheet() const;
 
     BOOL OwnAttrs() const { return bOwnAttrs; }

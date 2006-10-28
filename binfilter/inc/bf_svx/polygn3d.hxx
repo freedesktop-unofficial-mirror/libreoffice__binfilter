@@ -4,9 +4,9 @@
  *
  *  $RCSfile: polygn3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:11:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:53:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,19 +81,13 @@ public:
     const PolyPolygon3D& GetPolyTexture3D() const { return aPolyTexture3D; }
 
     virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual void CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf = NULL,
-//STRIP001      E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-//STRIP001  virtual void operator=(const SdrObject&);
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // Geometrieerzeugung
-//STRIP001  virtual void CreateGeometry();
 
     // Give out simple line geometry
-//STRIP001  virtual void GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const;
 
     // LineOnly?
     BOOL GetLineOnly() { return bLineOnly; }
