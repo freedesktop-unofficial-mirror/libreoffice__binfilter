@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdio.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:36:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:06:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -375,8 +375,6 @@ public:
 // Folgende Methoden schauen nach, ob sich im Stream an der aktuellen Position
 // ein SdrModel bzw. eine SdrView befindet. Hat der Stream einen Fehlerstatus
 // oder Eof(), so wird FALSE returniert.
-//STRIP001 BOOL SdrIsModel(SvStream& rIn);
-//STRIP001 BOOL SdrIsView(SvStream& rIn);
 
 }//end of namespace binfilter
 #endif //_SVDIO_HXX
