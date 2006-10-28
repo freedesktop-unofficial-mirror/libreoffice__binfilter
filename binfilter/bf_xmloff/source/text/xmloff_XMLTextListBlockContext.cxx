@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextListBlockContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:32:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:18:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,18 +37,9 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
@@ -59,12 +50,6 @@
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include "xmlnmspe.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLTEXTLISTITEMCONTEXT_HXX
 #include "XMLTextListItemContext.hxx"

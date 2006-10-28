@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextHeaderFooterContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:31:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:17:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,24 +33,12 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTREMOVE_HPP_
 #include <com/sun/star/text/XRelativeTextContentRemove.hpp>
 #endif
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include "nmspmap.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include "xmlnmspe.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_TEXTHEADERFOOTERCONTEXT_HXX_
 #include "XMLTextHeaderFooterContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_TEXTTABLECONTEXT_HXX_
-// auto strip #include "XMLTextTableContext.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
