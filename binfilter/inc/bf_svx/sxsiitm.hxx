@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sxsiitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:06:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:17:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@ public:
     SdrScaleItem(USHORT nId=0): SdrFractionItem(nId,Fraction(1,1)) {}
     SdrScaleItem(USHORT nId, const Fraction& rVal): SdrFractionItem(nId,rVal) {}
     SdrScaleItem(USHORT nId, SvStream& rIn): SdrFractionItem(nId,rIn) {}
-//STRIP001     virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePresentation, SfxMapUnit eCoreMetric, SfxMapUnit ePresentationMetric, String &rText, const IntlWrapper * = 0) const;
     virtual SfxPoolItem*     Create(SvStream&, USHORT nVer) const;
     virtual SfxPoolItem*     Clone(SfxItemPool *pPool=NULL) const;
 };

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sxfiitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:58:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:16:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,8 +56,6 @@ public:
     SdrFractionItem(USHORT nId, const Fraction& rVal): SfxPoolItem(nId), nValue(rVal) {}
     SdrFractionItem(USHORT nId, SvStream& rIn);
     virtual int              operator==(const SfxPoolItem&) const;
-//STRIP001     virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePresentation, SfxMapUnit eCoreMetric, SfxMapUnit ePresentationMetric, String &rText, const IntlWrapper * = 0) const;
-//STRIP001  virtual SfxPoolItem*     Create(SvStream&, USHORT nVer) const;
 #if SUPD <= 345
     virtual SvStream&        Store(SvStream&) const;
 #else
