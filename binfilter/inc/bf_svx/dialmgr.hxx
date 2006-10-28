@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dialmgr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:15:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:26:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _TOOLS_RESID_HXX
-// auto strip #include <tools/resid.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHL_HXX
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
 class ResMgr;
 class GraphicFilter;
 class GraphicFilter;
