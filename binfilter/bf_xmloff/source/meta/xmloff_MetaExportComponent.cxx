@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_MetaExportComponent.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:17:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:50:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,38 +37,17 @@
 #include "MetaExportComponent.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_EXCEPTION_HPP
-// auto strip #include <com/sun/star/uno/Exception.hpp>
-// auto strip #endif
 
 // #110680#
 //#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 //#include <comphelper/processfactory.hxx>
 //#endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -78,17 +57,11 @@
 #include "nmspmap.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
