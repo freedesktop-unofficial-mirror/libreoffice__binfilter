@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cube3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:13:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:25:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-//STRIP001  virtual void operator=(const SdrObject&);
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
@@ -90,7 +89,6 @@ public:
     virtual void CreateGeometry();
 
     // Give out simple line geometry
-//STRIP001  virtual void GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const;
 
     // Lokale Parameter setzen mit Geometrieneuerzeugung
     void SetCubePos(const Vector3D& rNew);
@@ -102,12 +100,9 @@ public:
     void SetPosIsCenter(BOOL bNew);
     BOOL GetPosIsCenter() { return (BOOL)bPosIsCenter; }
 
-//STRIP001  void SetSideFlags(UINT16 nNew);
     UINT16 GetSideFlags() { return nSideFlags; }
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 };
 
 }//end of namespace binfilter
