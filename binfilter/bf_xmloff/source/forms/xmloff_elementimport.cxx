@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_elementimport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:11:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:48:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #ifndef _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 #include "elementimport.hxx"
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
-// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
@@ -53,18 +50,12 @@
 #ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
-// auto strip #include "callbacks.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
 #include "attriblistmerge.hxx"
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
-// auto strip #include "eventimport.hxx"
-// auto strip #endif
 #ifndef XMLOFF_FORMSTYLES_HXX
 #include "formstyles.hxx"
 #endif
