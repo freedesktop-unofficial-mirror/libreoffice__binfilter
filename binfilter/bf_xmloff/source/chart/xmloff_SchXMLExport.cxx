@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLExport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-20 11:39:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:37:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,30 +52,9 @@
 #include <sot/clsids.hxx>
 #endif
 
-// auto strip #ifndef _SVTOOLS_NMSPMAP_HXX
-// auto strip #include "nmspmap.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include "xmlnmspe.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
-// auto strip #include "xmlaustp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLMETAE_HXX
-// auto strip #include "xmlmetae.hxx"
-// auto strip #endif
-// auto strip #ifndef _XEXPTRANSFORM_HXX
-// auto strip #include "xexptran.hxx"
-// auto strip #endif
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
@@ -86,25 +65,7 @@
 
 #include <list>
 
-// auto strip #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
-// auto strip #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
-// auto strip #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
 #endif
@@ -120,15 +81,9 @@
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
-// auto strip #include <com/sun/star/chart/ChartDataRowSource.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_CHARTAXISASSIGN_HPP_
 #include <com/sun/star/chart/ChartAxisAssign.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
-// auto strip #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_X3DDISPLAY_HPP_
 #include <com/sun/star/chart/X3DDisplay.hpp>
 #endif
@@ -136,18 +91,9 @@
 #include <com/sun/star/chart/XStatisticDisplay.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
-// auto strip #include <com/sun/star/util/XStringMapping.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
-// auto strip #include <com/sun/star/drawing/HomogenMatrix.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-// auto strip #include <com/sun/star/drawing/XShapes.hpp>
-// auto strip #endif
 
 #include    "MultiPropertySetHandler.hxx"
 #include    "PropertyMap.hxx"
