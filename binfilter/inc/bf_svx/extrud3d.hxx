@@ -4,9 +4,9 @@
  *
  *  $RCSfile: extrud3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:24:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:31:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -118,26 +118,20 @@ public:
     virtual void CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf = NULL,
         E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
-//STRIP001  virtual void operator=(const SdrObject&);
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     // Geometrieerzeugung
     virtual void CreateGeometry();
 
     // Give out simple line geometry
-//STRIP001  virtual void GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const;
 
     // Lokale Parameter setzen/lesen mit Geometrieneuerzeugung
     void SetExtrudePolygon(const PolyPolygon3D &rNew);
     const PolyPolygon3D &GetExtrudePolygon() { return aExtrudePolygon; }
 
-//STRIP001  void SetExtrudeScale(double fNew);
-//STRIP001  double GetExtrudeScale() const { return fExtrudeScale; }
 
     // #107245#
     // void SetExtrudeSmoothed(BOOL bNew);
@@ -155,8 +149,6 @@ public:
     virtual void PostItemChange(const sal_uInt16 nWhich);
 
     // Aufbrechen
-//STRIP001  virtual BOOL IsBreakObjPossible();
-//STRIP001  virtual SdrAttrObj* GetBreakObj();
 };
 
 }//end of namespace binfilter
