@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_PageMasterPropHdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:39:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:56:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,26 +37,17 @@
 #include "PageMasterPropHdl.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLNUME_HXX
-// auto strip #include "xmlnume.hxx"
-// auto strip #endif
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
 #endif

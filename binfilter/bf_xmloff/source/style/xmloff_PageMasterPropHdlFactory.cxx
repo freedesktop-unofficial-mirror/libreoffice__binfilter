@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_PageMasterPropHdlFactory.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:40:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:56:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 #include "PageMasterPropHdlFactory.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
-// auto strip #include "xmltypes.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 #include "xmlbahdl.hxx"
 #endif
