@@ -4,9 +4,9 @@
  *
  *  $RCSfile: compiler.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:03:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:31:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,6 @@
 #include <tools/mempool.hxx>
 #endif
 
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 
 #ifndef SC_TOKEN_HXX
 #include "token.hxx"
@@ -57,7 +54,6 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-// auto strip #include <tools/debug.hxx>
 #include <hash_map>
 
 namespace binfilter {
