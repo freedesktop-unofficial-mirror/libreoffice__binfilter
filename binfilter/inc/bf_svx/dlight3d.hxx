@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dlight3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:17:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:27:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -84,7 +84,6 @@ class E3dDistantLight : public E3dLight
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void operator=(const SdrObject&);
 };
 
 }//end of namespace binfilter
