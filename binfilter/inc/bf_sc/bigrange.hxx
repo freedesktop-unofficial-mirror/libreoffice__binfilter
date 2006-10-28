@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bigrange.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:58:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:28:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #define SC_BIGRANGE_HXX
 
 
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 #ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
 #endif

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cellsuno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:00:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:28:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_CELLSUNO_HXX
 #define SC_CELLSUNO_HXX
 
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"         // ScRange, ScAddress
-// auto strip #endif
 
 #ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"         // ScRangeList
@@ -64,9 +61,6 @@
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGE_HPP_
-// auto strip #include <com/sun/star/sheet/XSheetCellRange.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XFORMULAQUERY_HPP_
 #include <com/sun/star/sheet/XFormulaQuery.hpp>
 #endif
@@ -157,9 +151,6 @@
 #ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
-// auto strip #include <com/sun/star/table/BorderLine.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
 #include <com/sun/star/table/TableBorder.hpp>
 #endif

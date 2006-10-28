@@ -4,9 +4,9 @@
  *
  *  $RCSfile: autoform.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:58:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:27:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -279,16 +279,6 @@ public:
 
     const SfxPoolItem*          GetItem( USHORT nIndex, USHORT nWhich ) const;
     void                        PutItem( USHORT nIndex, const SfxPoolItem& rItem );
-//STRIP001     void                        CopyItem( USHORT nToIndex, USHORT nFromIndex, USHORT nWhich );
-//STRIP001
-//STRIP001     const ScNumFormatAbbrev&    GetNumFormat( USHORT nIndex ) const;
-//STRIP001     void                        SetNumFormat( USHORT nIndex, const ScNumFormatAbbrev& rNumFormat );
-//STRIP001
-//STRIP001     BOOL                        IsEqualData( USHORT nIndex1, USHORT nIndex2 ) const;
-//STRIP001
-//STRIP001     void                        FillToItemSet( USHORT nIndex, SfxItemSet& rItemSet, ScDocument& rDoc ) const;
-//STRIP001     void                        GetFromItemSet( USHORT nIndex, const SfxItemSet& rItemSet, const ScNumFormatAbbrev& rNumFormat );
-//STRIP001
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions );
     BOOL                        Save( SvStream& rStream );
 
@@ -311,7 +301,6 @@ public:
     virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const;
     BOOL                        Load();
     BOOL                        Save();
-//STRIP001     USHORT                      FindIndexPerName( const String& rName ) const;
     void                        SetSaveLater( BOOL bSet );
     BOOL                        IsSaveLater() const         { return bSaveLater; }
 };
