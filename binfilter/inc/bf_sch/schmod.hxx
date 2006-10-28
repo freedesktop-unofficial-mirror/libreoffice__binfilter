@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schmod.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:51:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:49:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SCHMOD_HXX
 #define _SCHMOD_HXX
 
-#ifndef _SFXTABDLG_HXX
-#include <bf_sfx2/tabdlg.hxx>
-#endif
 #ifndef _SFXLSTNER_HXX
 #include <svtools/lstner.hxx>
 #endif
@@ -95,7 +92,6 @@ public:
 
     void Execute(SfxRequest& rReq);
     void GetState(SfxItemSet&);
-//STRIP001  XOutdevItemPool *GetXOutDevPool();
 
     SchDragServer *GetDragData()                            { return pDragData; }
     void SetDragData(SchDragServer* pData)                  { pDragData = pData; }
@@ -113,16 +109,11 @@ public:
     SchTransferable* GetSelectionClipboardTransferable()    { return mpTransferSelectionClipbd; }
     void SetSelectionClipboardTransferable( SchTransferable* pTrans) { mpTransferSelectionClipbd = pTrans; }
 
-//STRIP001  virtual SfxModule *Load ();
 
-//STRIP001  virtual void Free ();
 
     SchOptions*          GetSchOptions();
 
     // virtual methods for options dialog (impl. see appopt.cxx)
-//STRIP001  virtual SfxItemSet*  CreateItemSet( USHORT nId );
-//STRIP001  virtual void         ApplyItemSet(  USHORT nId, const SfxItemSet& rSet );
-//STRIP001  virtual SfxTabPage*  CreateTabPage( USHORT nId, Window* pParent, const SfxItemSet& rSet );
 
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 };
