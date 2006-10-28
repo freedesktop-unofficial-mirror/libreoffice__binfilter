@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:55:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:38:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,33 +107,15 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
     virtual BOOL            InitNew(SvStorage* pNewStor);
     virtual BOOL            Load(SvStorage* pStor);
     virtual BOOL            LoadFrom(SvStorage* pStor);
-//STRIP001  virtual BOOL            ConvertFrom( SfxMedium &rMedium );
     virtual void            HandsOff();
     virtual BOOL            SaveAs(SvStorage * pNewStor );
-//STRIP001  virtual BOOL            ConvertTo(SfxMedium &rMedium );
     virtual BOOL            SaveCompleted(SvStorage * pNewStor );
-//STRIP001  virtual USHORT          PrepareClose( BOOL bUI = TRUE, BOOL bForBrowsing = FALSE );
 
     // DocInfo dem Doc melden
     //
-//STRIP001  virtual SfxDocumentInfoDialog* CreateDocumentInfoDialog(
-//STRIP001                                  Window *pParent, const SfxItemSet &);
     // OLE-Geraffel
-//STRIP001  virtual void            Draw( OutputDevice*, const JobSetup&, USHORT);
 
     // Methoden fuer StyleSheets
-//STRIP001  USHORT                  Edit( const String &rName, const String& rParent, USHORT nFamily,
-//STRIP001                                  USHORT nMask, BOOL bNew,
-//STRIP001                                  BOOL bColumn = FALSE,
-//STRIP001                                  SwWrtShell* pActShell = 0,
-//STRIP001                                  BOOL bBasic = FALSE );
-//STRIP001  USHORT                  Delete(const String &rName, USHORT nFamily);
-//STRIP001  USHORT                  ApplyStyles(const String &rName, USHORT nFamily, SwWrtShell* pShell = 0,
-//STRIP001                                      USHORT nMode = 0 );
-//STRIP001  USHORT                  DoWaterCan( const String &rName, USHORT nFamily);
-//STRIP001  USHORT                  UpdateStyle(const String &rName, USHORT nFamily, SwWrtShell* pShell = 0);
-//STRIP001  USHORT                  MakeByExample(const String &rName,
-//STRIP001                                          USHORT nFamily, USHORT nMask, SwWrtShell* pShell = 0);
 
     void                    InitDraw();
     void                    SubInitNew();   // fuer InitNew und HtmlSourceModus
@@ -171,7 +153,6 @@ public:
     virtual void      OnDocumentPrinterChanged( Printer * pNewPrinter );
     virtual ULONG     GetMiscStatus() const;
 
-//STRIP001  virtual void            PrepareReload();
     virtual void            SetModified( BOOL = TRUE );
 
     // Dispatcher
@@ -189,7 +170,6 @@ public:
     void                    UpdateChildWindows();
 
     // DocumentInfo neu setzen
-//STRIP001  BOOL                    SetDocumentInfo(const SfxDocumentInfo& rInfo);
 
     // globaler IO
     virtual BOOL            Save();
@@ -200,20 +180,8 @@ public:
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
 
     // Fuer Organizer
-//STRIP001  virtual BOOL Insert(SfxObjectShell &rSource,
-//STRIP001                      USHORT  nSourceIdx1,
-//STRIP001                      USHORT  nSourceIdx2,
-//STRIP001                      USHORT  nSourceIdx3,
-//STRIP001                      USHORT& nIdx1,
-//STRIP001                      USHORT& nIdx2,
-//STRIP001                      USHORT& nIdx3,
-//STRIP001                      USHORT& nRemovedIdx);
 
-//STRIP001  virtual BOOL Remove(USHORT nIdx1,
-//STRIP001                      USHORT nIdx2 = INDEX_IGNORE,
-//STRIP001                      USHORT nIdx3 = INDEX_IGNORE);
 
-//STRIP001      virtual Bitmap      GetStyleFamilyBitmap( SfxStyleFamily eFamily, BmpColorMode eColorMode );
 
     // View setzen fuer Aktionen ueber Shell
     void          SetView(SwView* pVw);
@@ -225,7 +193,6 @@ public:
     const SwWrtShell *GetWrtShell() const { return pWrtShell; }
 
     // fuer die Core - die kennt die DocShell aber keine WrtShell!
-//STRIP001        SwFEShell *GetFEShell();
     const SwFEShell *GetFEShell() const
                 { return ((SwDocShell*)this)->GetFEShell(); }
 
@@ -238,11 +205,6 @@ public:
     // und Streams
     Sw3Io* GetIoSystem() { return pIo; }
 
-//STRIP001  virtual long DdeGetData( const String& rItem, const String& rMimeType,
-//STRIP001                           ::com::sun::star::uno::Any & rValue );
-//STRIP001  virtual long DdeSetData( const String& rItem, const String& rMimeType,
-//STRIP001                              const ::com::sun::star::uno::Any & rValue );
-//STRIP001  virtual ::so3::SvLinkSource* DdeCreateLinkSource( const String& rItem );
     virtual void FillClass( SvGlobalName * pClassName,
                                    ULONG * pClipFormat,
                                    String * pAppName,
@@ -250,13 +212,8 @@ public:
                                    String * pUserName,
                                    long nVersion = SOFFICE_FILEFORMAT_CURRENT ) const;
 
-//STRIP001  virtual void LoadStyles( SfxObjectShell& rSource );
-//STRIP001     void _LoadStyles( SfxObjectShell& rSource, BOOL bPreserveCurrentDocument );
 
     // Seitenvorlagedialog anzeigen, ggf. auf Spaltenpage
-//STRIP001  void FormatPage( const String& rPage,
-//STRIP001                      BOOL bColumn = FALSE,
-//STRIP001                      SwWrtShell*     pActShell = 0 );
 
     // Timer starten fuers ueberpruefen der Grafik-Links. Sind alle
     // vollstaendig geladen, dann ist das Doc fertig
@@ -266,10 +223,8 @@ public:
     virtual void CancelTransfers();
 
     // Doc aus Html-Source neu laden
-//STRIP001  void    ReloadFromHtml( const String& rStreamName, SwSrcView* pSrcView );
 
     // embedded alle lokalen Links (Bereiche/Grafiken)
-//STRIP001  BOOL EmbedAllLinks();
     sal_Int16   GetUpdateDocMode() const {return nUpdateDocMode;}
 
     //Activate wait cursor for all windows of this document
@@ -282,8 +237,6 @@ public:
 
     ULONG LoadStylesFromFile( const String& rURL, SwgReaderOption& rOpt,
                                 BOOL bUnoCall );
-//STRIP001  void InvalidateModel();
-//STRIP001  void ReactivateModel();
 
 #if SUPD>620
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
