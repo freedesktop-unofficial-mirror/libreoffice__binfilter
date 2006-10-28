@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eetext.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:57:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:52:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -84,8 +84,5 @@
 #define ITEMID_BOX              0
 #define ITEMID_BOXINFO          0
 
-// auto strip #ifndef _OUTLINER_HXX
-// auto strip #include <bf_svx/outliner.hxx>
-// auto strip #endif
 #endif  // EETEXT_HXX
 
