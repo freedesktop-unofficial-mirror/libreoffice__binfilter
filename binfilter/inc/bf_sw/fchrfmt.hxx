@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fchrfmt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:58:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:40:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,12 +36,6 @@
 #define _FCHRFMT_HXX
 
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _CALBCK_HXX //autogen
-// auto strip #include <calbck.hxx>
-// auto strip #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
@@ -77,10 +71,8 @@ public:
                                     const IntlWrapper*    pIntl = 0 ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     // an das SwTxtCharFmt weiterleiten (vom SwClient)
-//STRIP001  virtual void    Modify( SfxPoolItem*, SfxPoolItem* );
     virtual BOOL    GetInfo( SfxPoolItem& rInfo ) const;
 
     void SetCharFmt( SwFmt* pFmt ) { pFmt->Add(this); }
