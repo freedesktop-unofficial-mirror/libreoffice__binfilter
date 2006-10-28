@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtimp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:37:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:21:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,32 +36,17 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _SVSTDARR_STRINGSDTOR_DECL
 #define _SVSTDARR_STRINGSDTOR
 #include <svtools/svstdarr.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
-// auto strip #include <com/sun/star/text/XTextCursor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XCHAPTERNUMBERINGSUPPLIER_HPP_
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
 #endif
@@ -74,44 +59,17 @@
 #ifndef _COM_SUN_STAR_TEXT_XTEXTEMBEDDEDOBJECTSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextEmbeddedObjectsSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
-// auto strip #include <com/sun/star/text/TextContentAnchorType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
-// auto strip #include <com/sun/star/text/XTextFrame.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-// auto strip #include <com/sun/star/drawing/XShapes.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-// auto strip #include <com/sun/star/util/DateTime.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UCB_XANYCOMPAREFACTORY_HPP_
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 #ifndef _XMLOFF_TXTSTYLI_HXX_
 #include "txtstyli.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLNUMFI_HXX
-// auto strip #include "xmlnumfi.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
 #endif
@@ -119,9 +77,6 @@
 #ifndef _XMLOFF_TXTPARAI_HXX
 #include "txtparai.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_TXTIMP_HXX
-// auto strip #include "txtimp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
 #endif
@@ -146,9 +101,6 @@
 #ifndef _XMLTEXTFRAMECONTEXT_HXX
 #include "XMLTextFrameContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLPROPERTYBACKPATCHTER_HXX
-// auto strip #include "XMLPropertyBackpatcher.hxx"
-// auto strip #endif
 #ifndef _XMLTEXTFRAMEHYPERLINKCONTEXT_HXX
 #include "XMLTextFrameHyperlinkContext.hxx"
 #endif
@@ -161,9 +113,6 @@
 #ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX
 #include "XMLFontStylesContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-// auto strip #include "ProgressBarHelper.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
@@ -183,9 +132,6 @@
 #ifndef _XMLOFF_XMLCALCULATION_SETTINGS_CONTEXT_HXX
 #include "XMLCalculationSettingsContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FORMSIMP_HXX
-// auto strip #include "formsimp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_NUMBERSTYLESIMPORT_HXX
 #include "XMLNumberStylesImport.hxx"
 #endif

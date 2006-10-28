@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparai.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:38:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:21:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,66 +33,30 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _TOOLS_STRINGS_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _SVARRAY_HXX
 #include <svtools/svarray.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
-// auto strip #include <com/sun/star/text/XTextFrame.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
-// auto strip #include <com/sun/star/text/XTextCursor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
 #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-// auto strip #include <com/sun/star/drawing/XShapes.hpp>
-// auto strip #endif
 
 
-// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
-// auto strip #include "xmlictxt.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_TXTIMP_HXX
-// auto strip #include "txtimp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_TXTPARAI_HXX
 #include "txtparai.hxx"
 #endif
