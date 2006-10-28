@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_TransGradientStyle.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:12:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:56:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #include <com/sun/star/awt/Gradient.hpp>
 #endif
 
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include "attrlist.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -57,9 +54,6 @@
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #include "rtl/ustring.hxx"
 
@@ -67,9 +61,6 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
-// auto strip #include "xmltkmap.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
