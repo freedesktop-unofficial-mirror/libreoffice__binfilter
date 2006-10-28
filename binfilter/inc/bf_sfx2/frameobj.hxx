@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frameobj.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:18:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:59:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@
 #ifndef _IPOBJ_HXX //autogen
 #include <so3/ipobj.hxx>
 #endif
-// auto strip #include <bf_sfx2/app.hxx>
 namespace binfilter {
 
 //=========================================================================
@@ -62,46 +61,23 @@ class SfxFrameObject : public SvInPlaceObject
     SfxFrameObject_Impl*    pImpl;
 
 #if _SOLAR__PRIVATE
-//STRIP001  void                    DataChanged_Impl( BOOL bOnlyEmbedSource );
     DECL_LINK(              NewObjectHdl_Impl, Timer* );
 #endif
 
 protected:
     BOOL                    ConstructFrame();
 #if SUPD<=628
-//STRIP001  virtual void            FillClass( SvGlobalName * pClassName,
-//STRIP001                             ULONG * pFormat,
-//STRIP001                             String * pAppName,
-//STRIP001                             String * pFullTypeName,
-//STRIP001                             String * pShortTypeName ) const;
  #else
-//STRIP001     virtual void            FillClass( SvGlobalName * pClassName,
-//STRIP001                             ULONG * pFormat,
-//STRIP001                             String * pAppName,
-//STRIP001                             String * pFullTypeName,
-//STRIP001                             String * pShortTypeName,
-//STRIP001                                long nFileFormat = SOFFICE_FILEFORMAT_CURRENT ) const;
 #endif
 
                             // Protokoll
-//STRIP001  virtual void            Open( BOOL bOpen );
-//STRIP001  virtual void            InPlaceActivate( BOOL );
-//STRIP001  virtual ErrCode         Verb( long, SvEmbeddedClient * pCallerClient,
-//STRIP001                              Window * pWin, const Rectangle * pWorkRectPixel );
 
                             // Datenaustausch
-//STRIP001  virtual void            SetVisArea( const Rectangle & rVisArea );
-//STRIP001  virtual Rectangle       GetVisArea( USHORT nAspect ) const;
-//STRIP001  virtual void            Draw( OutputDevice *,
-//STRIP001                              const JobSetup & rSetup,
-//STRIP001                              USHORT nAspect = ASPECT_CONTENT );
 
                             // Laden speichern
-//STRIP001  virtual BOOL            InitNew( SvStorage * );
     virtual BOOL            Load( SvStorage * );
     virtual BOOL            Save();
     virtual BOOL            SaveAs( SvStorage * );
-//STRIP001  virtual void            HandsOff();
     virtual BOOL            SaveCompleted( SvStorage * );
 
                             ~SfxFrameObject();
@@ -121,15 +97,11 @@ public:
 
                             SfxFrameObject();
 
-//STRIP001  virtual ULONG           GetMiscStatus() const;
-//STRIP001  virtual BOOL            IsLink() const;
     void                    SetFrameDescriptor( const SfxFrameDescriptor*);
     const SfxFrameDescriptor*
                             GetFrameDescriptor() const;
-//STRIP001  SfxFrame*               GetFrame() const;
 
 #if _SOLAR__PRIVATE
-//STRIP001  void                    ReleaseFrame_Impl();
 #endif
 };
 
@@ -142,13 +114,6 @@ inline SfxFrameObjectFactoryPtr::SfxFrameObjectFactoryPtr()
 
 SO2_DECL_IMPL_REF(SfxFrameObject)
 
-//STRIP001 class SfxInsertFloatingFrameDialog
-//STRIP001 {
-//STRIP001  Window*             pParentWindow;
-//STRIP001 public://STRIP001
-//STRIP001                      SfxInsertFloatingFrameDialog( Window *pParent );
-//STRIP001  SvInPlaceObjectRef  Execute( SvStorage* pStor );
-//STRIP001 };
 
 }//end of namespace binfilter
 #endif
