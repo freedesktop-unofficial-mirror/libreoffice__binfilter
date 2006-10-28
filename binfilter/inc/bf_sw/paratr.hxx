@@ -4,9 +4,9 @@
  *
  *  $RCSfile: paratr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:18:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:51:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,15 +41,6 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWATRSET_HXX
-// auto strip #include <swatrset.hxx>
-// auto strip #endif
 #ifndef _FORMAT_HXX
 #include <format.hxx>
 #endif
@@ -94,11 +85,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0) const;
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
@@ -144,11 +130,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT ) const;
     virtual SvStream&       Store( SvStream&, USHORT nIVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 };
 
@@ -184,15 +165,9 @@ public:
     { SetValue( rCpy.GetValue() ); pDefinedIn=0; return *this; }
 
     // "pure virtual Methoden" vom SfxPoolItem
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT ) const;
     virtual SvStream&       Store( SvStream&, USHORT nIVer ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const;
