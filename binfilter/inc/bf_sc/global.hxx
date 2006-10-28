@@ -4,9 +4,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:36:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:36:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -487,8 +487,6 @@ struct ScImportParam
     ~ScImportParam();
 
     ScImportParam&  operator=   ( const ScImportParam& r );
-//STRIP001  BOOL            operator==  ( const ScImportParam& r ) const;
-//STRIP001  void            Clear       ();
 };
 } //namespace binfilter
 // -----------------------------------------------------------------------
@@ -570,18 +568,12 @@ public:
     static IntlWrapper*         pScIntlWrapper;
     static LanguageType         eLnge;
     static sal_Unicode          cListDelimiter;
-//STRIP001  static const String&        GetClipDocName();
-//STRIP001  static void                 SetClipDocName( const String& rNew );
-//STRIP001  static const SvxSearchItem& GetSearchItem();
-//STRIP001  static void                 SetSearchItem( const SvxSearchItem& rNew );
     static ScAutoFormat*        GetAutoFormat();
-//STRIP001  static void                 ClearAutoFormat(); //BugId 54209
     static FuncCollection*      GetFuncCollection();
     static ScUnoAddInCollection* GetAddInCollection();
     static ScUserList*          GetUserList();
     static void                 SetUserList( const ScUserList* pNewList );
     static const String&        GetRscString( USHORT nIndex );
-//STRIP001  static void                 OpenURL( const String& rURL, const String& rTarget );
     static String               GetAbsDocName( const String& rFileName,
                                                 SfxObjectShell* pShell );
     static String               GetDocTabName( const String& rFileName,
@@ -618,16 +610,13 @@ public:
 
     /** Returns the specified image list with outline symbols.
         @param bHC  false = standard symbols; true = high contrast symbols. */
-//STRIP001     static ImageList*       GetOutlineSymbols( bool bHC );
 
 //  static const Bitmap&    GetAnchorBitmap();
 //  static const Bitmap&    GetGrayAnchorBitmap();
 
     static ScFunctionList*  GetStarCalcFunctionList();
-//STRIP001  static ScFunctionMgr*   GetStarCalcFunctionMgr();
 
     static String           GetErrorString(USHORT nErrNumber);
-//STRIP001  static String           GetLongErrorString(USHORT nErrNumber);
     static BOOL             EETextObjEqual( const EditTextObject* pObj1,
                                             const EditTextObject* pObj2 );
     static BOOL             CheckWidthInvalidate( BOOL& bNumFormatChanged,
@@ -824,7 +813,6 @@ public:
     USHORT Parse( const String&, ScDocument* = NULL );
     void Format( String&, USHORT = 0, ScDocument* = NULL ) const;
     // Das Doc fuer die maximal defineirte Tabelle
-//STRIP001  BOOL Move( short dx, short dy, short dz, ScDocument* =NULL );
     inline int operator==( const ScAddress& r ) const;
     inline int operator!=( const ScAddress& r ) const;
     inline int operator<( const ScAddress& r ) const;
@@ -968,9 +956,7 @@ public:
         USHORT& nCol2, USHORT& nRow2, USHORT& nTab2 ) const;
     void Format( String&, USHORT = 0, ScDocument* = NULL ) const;
     // Das Doc fuer die maximal definierte Tabelle
-//STRIP001  BOOL Move( short dx, short dy, short dz, ScDocument* =NULL );
     void Justify();
-//STRIP001  void ExtendOne();
     BOOL Intersects( const ScRange& ) const;    // ueberschneiden sich zwei Ranges?
     inline int operator==( const ScRange& r ) const;
     inline int operator!=( const ScRange& r ) const;
@@ -1135,8 +1121,6 @@ public:
                 ScFuncDesc();
                 ~ScFuncDesc();
 
-//STRIP001  String  GetSignature        () const;
-//STRIP001  String  GetFormulaString    ( String** aArgArr ) const;
 
     USHORT      nFIndex;        // eindeutiger Funktionsindex
     USHORT      nCategory;      // Kategorie
@@ -1157,11 +1141,6 @@ public:
                 ScFunctionMgr();
                 ~ScFunctionMgr();
 
-//STRIP001  ScFuncDesc*     Get( const String& rFName );
-//STRIP001  ScFuncDesc*     Get( USHORT nFIndex );
-//STRIP001  ScFuncDesc*     First( USHORT nCategory = 0 );
-//STRIP001  ScFuncDesc*     Next();
-//STRIP001
 private:
     ScFunctionList* pFuncList;
      List*          aCatLists[MAX_FUNCCAT];
@@ -1181,9 +1160,6 @@ public:
 
     ScFuncDesc*     GetFunction( ULONG nIndex ) const
                     { return (ScFuncDesc*)aFunctionList.GetObject( nIndex ); }
-//STRIP001
-//STRIP001  xub_StrLen      GetMaxFuncNameLen() const
-//STRIP001                  { return nMaxFuncNameLen; }
 
 private:
     List        aFunctionList;
@@ -1194,35 +1170,9 @@ private:
 
 #define FUNC_NOTFOUND 0xffff
 
-//STRIP001 class ScFormulaUtil
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  static BOOL                 GetNextFunc( const String&  rFormula,
-//STRIP001                                           BOOL           bBack,
-//STRIP001                                           xub_StrLen&    rFStart, // Ein- und Ausgabe
-//STRIP001                                           xub_StrLen*    pFEnd = NULL,
-//STRIP001                                           ScFuncDesc**   ppFDesc = NULL,
-//STRIP001                                           String***      pppArgs = NULL );
 
-//STRIP001  static const ScFuncDesc*    GetDefaultFuncDesc();
 
-//STRIP001  static xub_StrLen           GetFunctionStart( const String& rFormula, xub_StrLen nStart,
-//STRIP001                                                  BOOL bBack, String* pFuncName = NULL );
-//STRIP001
-//STRIP001  static xub_StrLen           GetFunctionEnd  ( const String& rFormula, xub_StrLen nStart );
-//STRIP001
-//STRIP001  static xub_StrLen           GetArgStart     ( const String& rFormula, xub_StrLen nStart,
-//STRIP001                                                USHORT nArg );
-//STRIP001
-//STRIP001  static String**             GetArgStrings   ( const String& rFormula,
-//STRIP001                                                xub_StrLen    nFuncPos,
-//STRIP001                                                USHORT        nArgs );
 
-//STRIP001  static void                 FillArgStrings  ( const String& rFormula,
-//STRIP001                                                xub_StrLen    nFuncPos,
-//STRIP001                                                USHORT        nArgs,
-//STRIP001                                                String**      pArgs );
-//STRIP001 };
 
 //==================================================================
 // Notiz
@@ -1445,9 +1395,7 @@ public:
     ScQueryParam&   operator=   ( const ScQueryParam& r );
     BOOL            operator==  ( const ScQueryParam& rOther ) const;
     void            Clear       ();
-//STRIP001  void            DeleteQuery( USHORT nPos );
 
-//STRIP001  void            MoveToDest();
      void           FillInExcelSyntax(String& aCellStr, USHORT nIndex);
 
     void            Load(SvStream& rStream);
@@ -1481,12 +1429,7 @@ struct ScSubTotalParam
     ScSubTotalParam( const ScSubTotalParam& r );
 
     ScSubTotalParam&    operator=       ( const ScSubTotalParam& r );
-//STRIP001  BOOL                operator==      ( const ScSubTotalParam& r ) const;
     void                Clear           ();
-//STRIP001  void                SetSubTotals    ( USHORT                nGroup,
-//STRIP001                                        const USHORT*         ptrSubTotals,
-//STRIP001                                        const ScSubTotalFunc* ptrFuncions,
-//STRIP001                                        USHORT                nCount );
 };
 
 // -----------------------------------------------------------------------
@@ -1509,7 +1452,6 @@ struct ScConsolidateParam
     ~ScConsolidateParam();
 
     ScConsolidateParam& operator=       ( const ScConsolidateParam& r );
-//STRIP001  BOOL                operator==      ( const ScConsolidateParam& r ) const;
     void                Clear           (); // = ClearDataAreas()+Members
     void                ClearDataAreas  ();
     void                SetAreas        ( ScArea* const* ppAreas, USHORT nCount );
@@ -1574,10 +1516,7 @@ struct ScPivotParam
     ~ScPivotParam();
 
     ScPivotParam&   operator=       ( const ScPivotParam& r );
-//STRIP001  BOOL            operator==      ( const ScPivotParam& r ) const;
-//STRIP001  void            Clear           ();
     void            ClearLabelData  ();
-//STRIP001  void            ClearPivotArrays();
     void            SetLabelData    ( LabelData**   ppLabArr,
                                       USHORT        nLab );
     void            SetPivotArrays  ( const PivotField* pColArr,
@@ -1604,8 +1543,6 @@ struct ScSolveParam
                   const String& rTargetValStr );
     ~ScSolveParam();
 
-//STRIP001  ScSolveParam&   operator=   ( const ScSolveParam& r );
-//STRIP001  BOOL            operator==  ( const ScSolveParam& r ) const;
 };
 
 struct ScTabOpParam
@@ -1624,9 +1561,6 @@ struct ScTabOpParam
                   const ScRefTripel& rColCell,
                         BYTE         nMd);
     ~ScTabOpParam() {};
-//STRIP001
-//STRIP001  ScTabOpParam&   operator=       ( const ScTabOpParam& r );
-//STRIP001  BOOL            operator==      ( const ScTabOpParam& r ) const;
 };
 
 } //namespace binfilter
