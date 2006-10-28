@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chwindow.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:44:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:47:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,9 +46,6 @@
 #ifndef _SV_EVENT_HXX //autogen
 #include <vcl/event.hxx>
 #endif
-// auto strip #ifndef _SVDOBJ_HXX //autogen wg. SdrObject
-// auto strip #include <bf_svx/svdobj.hxx>
-// auto strip #endif
 #ifndef _TRANSFER_HXX //autogen
 #include <svtools/transfer.hxx>
 #endif
@@ -88,15 +85,8 @@ protected:
 
     SchViewShell* pViewShell;
 
-//STRIP001  virtual void Paint(const Rectangle& rRect);
-//STRIP001  virtual void KeyInput(const KeyEvent& rKEvt);
-//STRIP001  virtual void MouseMove(const MouseEvent& rMEvt);
-//STRIP001  virtual void MouseButtonUp(const MouseEvent& rMEvt);
-//STRIP001  virtual void MouseButtonDown(const MouseEvent& rMEvt);
-//STRIP001  virtual void Command(const CommandEvent& rCEvt);
 
     // for quick help
-//STRIP001  virtual void RequestHelp( const HelpEvent& );
 
     /** Create an accessibility object that makes this window accessible.
 
@@ -104,14 +94,9 @@ protected:
             The returned reference is empty if no accessible object could be
             created.
     */
-//STRIP001     virtual ::com::sun::star::uno::Reference<
-//STRIP001         ::com::sun::star::accessibility::XAccessible >
-//STRIP001         CreateAccessible( void );
 
 private:
     // for quick help
-//STRIP001  SdrObject *GetHitObject( SdrObjList*, Point& );
-//STRIP001  String GetQuickHelpText( SdrObject*, ChartModel*, BOOL bVerbose=FALSE );
 
     /// attention: this pointer is only valid, if the weak reference below is valid
     ::binfilter::accessibility::AccessibleDocumentView * m_pAccDocumentView;
@@ -124,10 +109,8 @@ public:
 
     void SetViewShell(SchViewShell* pViewSh) { pViewShell=pViewSh; };
 
-//STRIP001  void ShareViewArea(const SchWindow* pOtherWin);
 
     void SetZoom(long nZoom);
-//STRIP001  long SetZoomRect(const Rectangle& rZoomRect);
     long SetZoomFactor(long nZoom);
 
     long GetZoom() const
@@ -141,19 +124,11 @@ public:
     void SetViewSize(const Size& rSize) { aViewSize = rSize; }
     const Size& GetViewSize() { return aViewSize; }
 
-//STRIP001  void UpdateMapOrigin();
-//STRIP001  virtual void DataChanged( const DataChangedEvent& rDCEvt );
 
     // DropTargetHelper
-//STRIP001  virtual sal_Int8 AcceptDrop( const AcceptDropEvent& rEvt );
-//STRIP001  virtual sal_Int8 ExecuteDrop( const ExecuteDropEvent& rEvt );
 
-//STRIP001     String GetQuickHelpText( UINT16 nObjId, ChartModel* pModel, BOOL bVerbose,
-//STRIP001                              UINT16 nSeriesIndex = 0, UINT16 nDataPointIndex = 0 );
 
-//STRIP001     SchViewShell * GetViewShell();
 
-//STRIP001     ::accessibility::AccessibleDocumentView * GetAccessibleDocumentView() const;
 };
 
 } //namespace binfilter
