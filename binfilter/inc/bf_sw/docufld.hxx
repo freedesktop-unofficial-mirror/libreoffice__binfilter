@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docufld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:25:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:39:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -391,8 +391,6 @@ public:
     inline BOOL         GetValue() const        { return bIsHidden;    }
     inline BOOL         IsConditional() const   { return bCanToggle;   }
     inline BOOL         IsValid() const         { return bValid;       }
-//STRIP001  String              GetColumnName(const String& rName);
-//STRIP001  String              GetDBName(const String& rName, SwDoc *pDoc);
 
     // Condition
     virtual void        SetPar1(const String& rStr);
@@ -528,8 +526,6 @@ public:
     virtual SwField*        Copy() const;
 
     inline const Date&      GetDate() const                 { return aDate; }
-//STRIP001  inline void             SetDate( const Date& rDate )    { aDate = rDate;}
-//STRIP001
     // Author
     virtual const String&   GetPar1() const;
     virtual void            SetPar1(const String& rStr);
@@ -537,7 +533,6 @@ public:
     // Text
     virtual String          GetPar2() const;
     virtual void            SetPar2(const String& rStr);
-//STRIP001  const String&           GetTxt() const { return sTxt; }
 
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
@@ -627,7 +622,6 @@ public:
 
     virtual SwFieldType*    Copy() const;
     // ueberlagert, weil es nichts zum Updaten gibt!
-//STRIP001  virtual void            Modify( SfxPoolItem *, SfxPoolItem * );
 };
 
 /*--------------------------------------------------------------------
@@ -650,8 +644,6 @@ public:
     virtual void    SetPar2(const String& rStr);
 
     BOOL IsOn() const               { return bOn; }
-//STRIP001  void SetOn( BOOL bFlag )        { bOn = bFlag; }
-//STRIP001
     short GetOffset() const         { return nOffset; }
     void SetOffset( short nOff )    { nOffset = nOff; }
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
@@ -667,7 +659,6 @@ class SwRefPageGetFieldType : public SwFieldType
     SwDoc*          pDoc;
     sal_Int16       nNumberingType;
 
-//STRIP001  void UpdateField( SwTxtFld* pTxtFld, _SetGetExpFlds& rSetList );
 
 public:
     SwRefPageGetFieldType( SwDoc* pDoc );
@@ -675,7 +666,6 @@ public:
 
     // ueberlagert, um alle RefPageGet-Felder zu updaten
     virtual void Modify( SfxPoolItem *, SfxPoolItem * );
-//STRIP001  USHORT MakeSetList( _SetGetExpFlds& rTmpLst );
 
     sal_Int16       GetNumFormat() const            { return nNumberingType; }
     void            SetNumFormat( sal_Int16 eFmt )  { nNumberingType = eFmt; }
@@ -787,7 +777,6 @@ public:
     const String&           GetCode() const { return sCode; }
 
     BOOL                    IsCodeURL() const { return bCodeURL; }
-//STRIP001  void                    SetCodeURL( BOOL bURL ) { bCodeURL = bURL; }
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
