@@ -4,9 +4,9 @@
  *
  *  $RCSfile: label3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:43:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:40:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,19 +92,14 @@ class E3dLabelObj : public E3dPointObj
 
     virtual UINT16 GetObjIdentifier() const;
 
-//STRIP001  virtual USHORT  GetHdlCount() const;
-//STRIP001  virtual void    AddToHdlList(SdrHdlList& rHdlList) const;
 
     const SdrObject* Get2DLabelObj() const { return p2DLabelObj; }
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void operator=(const SdrObject&);
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 };
 
 }//end of namespace binfilter
