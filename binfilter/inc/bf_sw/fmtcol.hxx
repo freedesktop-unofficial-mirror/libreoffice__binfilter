@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtcol.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:02:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:42:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _FMTCOL_HXX
 #define _FMTCOL_HXX
 
-// auto strip #ifndef _SVARRAY_HXX //autogen
-// auto strip #include <svtools/svarray.hxx>
-// auto strip #endif
 
 #ifndef _FORMAT_HXX
 #include <format.hxx>
@@ -202,9 +199,6 @@ public:
 
     SwCollCondition( SwTxtFmtColl* pColl, ULONG nMasterCond,
                     ULONG nSubCond = 0 );
-//STRIP001  SwCollCondition( SwTxtFmtColl* pColl, ULONG nMasterCond,
-//STRIP001                  const String& rSubExp );
-//STRIP001  SwCollCondition( const SwCollCondition& rCpy );
 
     virtual ~SwCollCondition();
 
@@ -251,9 +245,7 @@ public:
     const SwCollCondition* HasCondition( const SwCollCondition& rCond ) const;
     const SwFmtCollConditions& GetCondColls() const     { return aCondColls; }
     void InsertCondition( const SwCollCondition& rCond );
-//STRIP001  BOOL RemoveCondition( const SwCollCondition& rCond );
 
-//STRIP001  void SetConditions( const SwFmtCollConditions& );
 };
 
 //FEATURE::CONDCOLL
