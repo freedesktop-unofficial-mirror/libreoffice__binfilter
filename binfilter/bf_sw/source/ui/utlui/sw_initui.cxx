@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_initui.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:03:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:30:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,24 +36,15 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-// auto strip #include <unotools/localedatawrapper.hxx>
-// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
-// auto strip #ifndef _INITUI_HXX
-// auto strip #include <initui.hxx>
-// auto strip #endif
 #ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
 #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
 #ifndef _GLOSDOC_HXX
 #include <glosdoc.hxx>
 #endif
@@ -192,14 +183,6 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /*?*/       delete pAutoFmtNameLst, pAutoFmtNameLst = 0;
 /*N*/ }
 
-//STRIP001 String ShellResource::GetPageDescName( USHORT nNo, BOOL bIsFirst, BOOL bFollow )
-//STRIP001 {
-//STRIP001  String sRet( bIsFirst ? sPageDescFirstName
-//STRIP001                        : bFollow ? sPageDescFollowName
-//STRIP001                                  : sPageDescName );
-//STRIP001  sRet.SearchAndReplaceAscii( "$(ARG1)", String::CreateFromInt32( nNo ));
-//STRIP001  return sRet;
-//STRIP001 }
 
 
 /*N*/ SwGlossaries* GetGlossaries()
@@ -222,57 +205,11 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /*N*/   return pGlossaryList;
 /*N*/ }
 
-//STRIP001 struct ImpAutoFmtNameListLoader : public Resource
-//STRIP001 {
-//STRIP001  ImpAutoFmtNameListLoader( SvStringsDtor& rLst );
-//STRIP001 };
 
-//STRIP001 void ShellResource::_GetAutoFmtNameLst() const
-//STRIP001 {
-//STRIP001  SvStringsDtor** ppLst = (SvStringsDtor**)&pAutoFmtNameLst;
-//STRIP001  *ppLst = new SvStringsDtor( STR_AUTOFMTREDL_END );
-//STRIP001  ImpAutoFmtNameListLoader aTmp( **ppLst );
-//STRIP001 }
 
-//STRIP001 ImpAutoFmtNameListLoader::ImpAutoFmtNameListLoader( SvStringsDtor& rLst )
-//STRIP001  : Resource( ResId(RID_SHELLRES_AUTOFMTSTRS, pSwResMgr) )
-//STRIP001 {
-//STRIP001  for( USHORT n = 0; n < STR_AUTOFMTREDL_END; ++n )
-//STRIP001  {
-//STRIP001      String* p = new String( ResId( n + 1, pSwResMgr) );
-//STRIP001      if(STR_AUTOFMTREDL_TYPO == n)
-//STRIP001      {
-//STRIP001          LocaleDataWrapper& rLclD = GetAppLocaleData();
-//STRIP001 #ifdef WNT
-//STRIP001          //fuer Windows Sonderbehandlung, da MS hier ein paar Zeichen im Dialogfont vergessen hat
-//STRIP001          p->SearchAndReplace(C2S("%1"), C2S(",,"));
-//STRIP001          p->SearchAndReplace(C2S("%2"), C2S("''"));
-//STRIP001 #else
-//STRIP001          //unter richtigen Betriebssystemen funktioniert es auch so
-//STRIP001          p->SearchAndReplace(C2S("%1"), rLclD.getDoubleQuotationMarkStart());
-//STRIP001          p->SearchAndReplace(C2S("%2"), rLclD.getDoubleQuotationMarkEnd());
-//STRIP001 #endif
-//STRIP001      }
-//STRIP001      rLst.Insert( p, n );
-//STRIP001  }
-//STRIP001  FreeResource();
-//STRIP001 }
 /* -----------------16.09.99 12:28-------------------
 
  --------------------------------------------------*/
-//STRIP001 const String&    SwAuthorityFieldType::GetAuthFieldName(ToxAuthorityField eType)
-//STRIP001 {
-//STRIP001  if(!pAuthFieldNameList)
-//STRIP001  {
-//STRIP001      pAuthFieldNameList = new SvStringsDtor(AUTH_FIELD_END, 1);
-//STRIP001      for(USHORT i = 0; i < AUTH_FIELD_END; i++)
-//STRIP001      {
-//STRIP001          String*  pTmp = new String(SW_RES(STR_AUTH_FIELD_START + i));
-//STRIP001          pAuthFieldNameList->Insert(pTmp, pAuthFieldNameList->Count());
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return *pAuthFieldNameList->GetObject(eType);
-//STRIP001 }
 /* -----------------16.09.99 12:29-------------------
 
  --------------------------------------------------*/
