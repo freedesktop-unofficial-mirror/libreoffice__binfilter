@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hints.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:10:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:47:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,12 +144,6 @@ public:
 // SwRefMarkFldUpdate wird verschickt, wenn sich die ReferenzMarkierungen
 // Updaten sollen. Um Seiten-/KapitelNummer feststellen zu koennen, muss
 // der akt. Frame befragt werden. Dafuer wird das akt. OutputDevice benoetigt.
-//STRIP001 class SwRefMarkFldUpdate : public SwMsgPoolItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  const OutputDevice* pOut;       // Pointer auf das aktuelle Output-Device
-//STRIP001  SwRefMarkFldUpdate( const OutputDevice* );
-//STRIP001 };
 
 // SwDocPosUpdate wird verschickt, um zu signalisieren, dass nur die
 // Frames ab oder bis zu einer bestimmten dokument-globalen Position
@@ -279,26 +273,7 @@ public:
     SwTxtNodeTable& GetList() const { return (SwTxtNodeTable&)aList; }
 };
 
-//STRIP001 class SwNRuleLowerLevel : public SwMsgPoolItem
-//STRIP001 {
-//STRIP001  const String& rName;
-//STRIP001  BYTE nLvl;
-//STRIP001 public:
-//STRIP001  SwNRuleLowerLevel( const String& rRuleName, BYTE nLevel );
-//STRIP001
-//STRIP001  const String& GetName() const { return rName; }
-//STRIP001  BYTE GetLevel() const { return nLvl; }
-//STRIP001 };
 
-//STRIP001 class SwFindNearestNode : public SwMsgPoolItem
-//STRIP001 {
-//STRIP001  const SwNode *pNd, *pFnd;
-//STRIP001 public:
-//STRIP001  SwFindNearestNode( const SwNode& rNd );
-//STRIP001  void CheckNode( const SwNode& rNd );
-//STRIP001
-//STRIP001  const SwNode* GetFoundNode() const      { return pFnd; }
-//STRIP001 };
 
 class SwStringMsgPoolItem : public SwMsgPoolItem
 {
