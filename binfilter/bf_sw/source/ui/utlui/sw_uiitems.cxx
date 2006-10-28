@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_uiitems.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:07:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:32:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,17 +36,8 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _SVX_ITEMTYPE_HXX
-// auto strip #include <bf_svx/itemtype.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOSETT_HXX
-// auto strip #include <unosett.hxx>
-// auto strip #endif
 
-// auto strip #include "uiparam.hxx"
-// auto strip #include "swtypes.hxx"
 #include "cmdid.h"
-// auto strip #include "pagedesc.hxx"
 #include "uiitems.hxx"
 
 #include "utlui.hrc"
@@ -104,36 +95,6 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 /*N*/ }
 
 
-//STRIP001 SfxItemPresentation  SwPageFtnInfoItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001  String&             rText,
-//STRIP001     const IntlWrapper*    pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nHght = (USHORT) GetPageFtnInfo().GetHeight();
-//STRIP001          if ( nHght )
-//STRIP001          {
-//STRIP001              rText = SW_RESSTR( STR_MAX_FTN_HEIGHT );
-//STRIP001              rText += ' ';
-//STRIP001              rText += ::GetMetricText( nHght, eCoreUnit, ePresUnit, pIntl );
-//STRIP001              rText += ::GetSvxString( ::GetMetricId( ePresUnit ) );
-//STRIP001          }
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 /* -----------------------------26.04.01 12:25--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -223,116 +184,42 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 /*N*/     return bRet;
 /*N*/ }
 
-//STRIP001 SwPtrItem::SwPtrItem( const USHORT nId, void* pPtr ) :
-//STRIP001  SfxPoolItem( nId ),
-//STRIP001  pMisc(pPtr)
-//STRIP001 {
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Copy-Konstruktor
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwPtrItem::SwPtrItem( const SwPtrItem& rItem ) : SfxPoolItem( rItem )
-//STRIP001 {
-//STRIP001  pMisc = rItem.pMisc;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Clonen
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SfxPoolItem* SwPtrItem::Clone( SfxItemPool *pPool ) const
-//STRIP001 {
-//STRIP001  return new SwPtrItem( *this );
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
 
-//STRIP001 int SwPtrItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
-//STRIP001  const SwPtrItem& rItem = (SwPtrItem&)rAttr;
-//STRIP001  return ( pMisc == rItem.pMisc );
-//STRIP001 }
 
 
 /*-----------------12.11.97 12:55-------------------------------
  SwUINumRuleItem fuer die NumTabPages der FormatNumRule/Stylisten
 ---------------------------------------------------------------*/
-//STRIP001 SwUINumRuleItem::SwUINumRuleItem( const SwNumRule& rRul, const USHORT nId )
-//STRIP001  : SfxPoolItem( nId ), pRule( new SwNumRule( rRul ) )
-//STRIP001 {
-//STRIP001 }
-
-//STRIP001 SwUINumRuleItem::SwUINumRuleItem( const String& rName, const USHORT nId )
-//STRIP001  : SfxPoolItem( nId ), pRule( new SwNumRule( rName ) )
-//STRIP001 {
-//STRIP001 }
-
-//STRIP001 SwUINumRuleItem::SwUINumRuleItem( const SwUINumRuleItem& rItem )
-//STRIP001  : SfxPoolItem( rItem ),
-//STRIP001  pRule( new SwNumRule( *rItem.pRule ))
-//STRIP001 {
-//STRIP001 }
-
-//STRIP001  SwUINumRuleItem::~SwUINumRuleItem()
-//STRIP001 {
-//STRIP001  delete pRule;
-//STRIP001 }
 
 
-//STRIP001 SfxPoolItem*  SwUINumRuleItem::Clone( SfxItemPool *pPool ) const
-//STRIP001 {
-//STRIP001  return new SwUINumRuleItem( *this );
-//STRIP001 }
 
-//STRIP001 int  SwUINumRuleItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
-//STRIP001  return *pRule == *((SwUINumRuleItem&)rAttr).pRule;
-//STRIP001 }
 
-//STRIP001 BOOL SwUINumRuleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  uno::Reference< container::XIndexReplace >xRules = new SwXNumberingRules(*pRule);
-//STRIP001  rVal.setValue(&xRules, ::getCppuType((uno::Reference< container::XIndexReplace>*)0));
-//STRIP001  return TRUE;
-//STRIP001 }
-//STRIP001 BOOL SwUINumRuleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001     uno::Reference< container::XIndexReplace> xRulesRef;
-//STRIP001     if(rVal >>= xRulesRef)
-//STRIP001  {
-//STRIP001         uno::Reference< lang::XUnoTunnel > xTunnel(xRulesRef, uno::UNO_QUERY);
-//STRIP001      SwXNumberingRules* pSwXRules = xTunnel.is() ? (SwXNumberingRules*)
-//STRIP001                  xTunnel->getSomething(SwXNumberingRules::getUnoTunnelId()) : 0;
-//STRIP001      if(pSwXRules)
-//STRIP001      {
-//STRIP001          *pRule = *pSwXRules->GetNumRule();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+
+
+
 /* -----------------17.06.98 17:43-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 SwBackgroundDestinationItem::SwBackgroundDestinationItem(USHORT  nWhich, USHORT nValue) :
-//STRIP001  SfxUInt16Item(nWhich, nValue)
-//STRIP001 {
-//STRIP001 }
 /* -----------------17.06.98 17:44-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 SfxPoolItem*     SwBackgroundDestinationItem::Clone( SfxItemPool *pPool ) const
-//STRIP001 {
-//STRIP001  return new SwBackgroundDestinationItem(Which(), GetValue());
-//STRIP001 }
 
 
 
