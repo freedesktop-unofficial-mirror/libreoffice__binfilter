@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdfilter.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:15:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:53:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,15 +36,11 @@
 #ifndef _SD_SDFILTER_HXX
 #define _SD_SDFILTER_HXX
 
-// auto strip #include <tools/gen.hxx>
 #include "rtl/ustring.hxx"
 
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATOR_HPP_
-// auto strip #include <com/sun/star/task/XStatusIndicator.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
 #endif
