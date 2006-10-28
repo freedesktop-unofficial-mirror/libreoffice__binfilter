@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ruler.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:16:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:56:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _SVX_RULER_HXX
 #define _SVX_RULER_HXX
 
-// auto strip #ifndef _SV_MENU_HXX //autogen
-// auto strip #include <vcl/menu.hxx>
-// auto strip #endif
 
 #ifndef _RULER_HXX //autogen
 #include <svtools/ruler.hxx>
@@ -115,9 +112,6 @@ friend class SvxRulerItem;
     BOOL bActive;
 #if _SOLAR__PRIVATE
     void StartListening_Impl();
-//STRIP001  long GetCorrectedDragPos( BOOL bLeft = TRUE, BOOL bRight = TRUE );
-//STRIP001  void DrawLine_Impl(long &lTabPos, int, BOOL Hori=TRUE);
-//STRIP001  USHORT GetObjectBordersOff(USHORT nIdx) const;
 
     // Seitenr"ander oder umgebender Rahmen
     void UpdateFrame(const SvxLongLRSpaceItem *);
@@ -134,7 +128,6 @@ friend class SvxRulerItem;
     // Spalten
     void Update(const SvxColumnItem *);
     // Object Selektion
-//STRIP001  void Update(const SvxObjectItem *);
     // Protect
     void Update( const SvxProtectItem* );
     // left-to-right text
@@ -145,11 +138,7 @@ friend class SvxRulerItem;
     void UpdatePage();
     void UpdateFrame();
     void UpdateColumns();
-//STRIP001  void UpdateObject();
 
-//STRIP001  long PixelHAdjust(long lPos, long lPos2) const;
-//STRIP001  long PixelVAdjust(long lPos, long lPos2) const;
-//STRIP001  long PixelAdjust(long lPos, long lPos2) const;
 
     long ConvertHPosPixel(long lPos) const;
     long ConvertVPosPixel(long lPos) const;
@@ -159,53 +148,20 @@ friend class SvxRulerItem;
     long ConvertPosPixel(long lPos) const;
     long ConvertSizePixel(long lSize) const;
 
-//STRIP001  long ConvertHPosLogic(long lPos) const;
-//STRIP001  long ConvertVPosLogic(long lPos) const;
-//STRIP001  long ConvertHSizeLogic(long lSize) const;
-//STRIP001  long ConvertVSizeLogic(long lSize) const;
 
-//STRIP001  long ConvertPosLogic(long lPos) const;
-//STRIP001  long ConvertSizeLogic(long lSize) const;
 
-//STRIP001  long GetFirstLineIndent() const;
 //  long GetLogicFirstLineIndent() const;
-//STRIP001  long GetLeftIndent() const;
 //  long GetLogicLeftIndent() const;
-//STRIP001  long GetRightIndent() const;
-//STRIP001  long GetLogicRightIndent() const;
-//STRIP001  long GetPageWidth() const;
 
     inline long GetLeftFrameMargin() const;
     long GetRightFrameMargin() const;
 
-//STRIP001  void CalcMinMax();
 
-//STRIP001  void EvalModifier();
-//STRIP001  void DragMargin1();
-//STRIP001  void DragMargin2();
-//STRIP001  void DragIndents();
-//STRIP001  void DragTabs();
-//STRIP001  void DragBorders();
-//STRIP001  void DragObjectBorder();
 
-//STRIP001  void ApplyMargins();
-//STRIP001  void ApplyIndents();
-//STRIP001  void ApplyTabs();
-//STRIP001  void ApplyBorders();
-//STRIP001  void ApplyObject();
 
-//STRIP001  long GetFrameLeft() const;
-//STRIP001  void SetFrameLeft(long);
 
-//STRIP001  long GetLeftMin() const;
-//STRIP001  long GetRightMax() const;
 
-//STRIP001  DECL_LINK( TabMenuSelect, Menu * );
-//STRIP001  DECL_LINK( MenuSelect, Menu * );
-//STRIP001  void PrepareProportional_Impl(RulerType);
 
-//STRIP001  USHORT GetNextVisible(USHORT nColumn);
-//STRIP001  USHORT GetPrevVisible(USHORT nColumn);
 #endif
 
     void Update();
@@ -215,14 +171,7 @@ enum UpdateType {
     MOVE_LEFT,
     MOVE_RIGHT
     };
-//STRIP001  void UpdateParaContents_Impl(long lDiff, UpdateType = MOVE_ALL);
 protected:
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
-//STRIP001  virtual void    Click();
-//STRIP001  virtual long    StartDrag();
-//STRIP001  virtual void    Drag();
-//STRIP001  virtual void    EndDrag();
-//STRIP001  virtual void    ExtraDown();
     virtual void    MouseMove( const MouseEvent& rMEvt );
 
     virtual void SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
@@ -230,16 +179,8 @@ protected:
 
     // Berechnung der Grenzwerte fuer Objectgrenzen
     // Werte sind bezogen auf die Seite
-//STRIP001  virtual BOOL    CalcLimits(long &nMax1, long &nMax2, BOOL bFirst) const;
     BOOL IsActLastColumn(
         BOOL bForceDontConsiderHidden = FALSE, USHORT nAct=USHRT_MAX) const ;
-//STRIP001  BOOL IsActFirstColumn(
-//STRIP001      BOOL bForceDontConsiderHidden = FALSE, USHORT nAct=USHRT_MAX) const;
-//STRIP001  USHORT GetActLeftColumn(
-//STRIP001      BOOL bForceDontConsiderHidden = FALSE, USHORT nAct=USHRT_MAX ) const;
-//STRIP001  USHORT GetActRightColumn (
-//STRIP001      BOOL bForceDontConsiderHidden = FALSE, USHORT nAct=USHRT_MAX ) const;
-//STRIP001  long CalcPropMaxRight(USHORT nCol=USHRT_MAX) const;
 
 public:
 #define     SVXRULER_SUPPORT_TABS                       0x0001
@@ -257,20 +198,13 @@ public:
              WinBits nWinStyle = WB_STDRULER);
     ~SvxRuler();
 
-//STRIP001  void SetMinFrameSize(long lSize);
-//STRIP001  long GetMinFrameSize() const ;
 
-//STRIP001  USHORT GetRulerFlags() const { return nFlags; }
 
     void SetDefTabDist(long);
-//STRIP001  long GetDefTabDist() const;
 
     // Setzen / Erfragen NullOffset in logischen Einheiten
-//STRIP001  void SetNullOffsetLogic(long lOff = 0);
-//STRIP001  long GetNullOffsetLogic() const { return lAppNullOffset; }
 
     void SetActive(BOOL bOn = TRUE);
-//STRIP001  BOOL IsActive() const { return bActive; }
 
     void ForceUpdate() { Update(); }
 };
