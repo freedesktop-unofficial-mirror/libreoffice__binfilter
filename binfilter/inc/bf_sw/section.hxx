@@ -4,9 +4,9 @@
  *
  *  $RCSfile: section.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:22:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:52:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,15 +43,6 @@
 #ifndef _LNKBASE_HXX
 #include <so3/lnkbase.hxx>
 #endif
-// auto strip #ifndef _RTTI_HXX
-// auto strip #include <tools/rtti.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_REF_HXX
-// auto strip #include <tools/ref.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVARRAY_HXX
-// auto strip #include <svtools/svarray.hxx>
-// auto strip #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
@@ -188,7 +179,6 @@ public:
     void SetRefObject( SwServerObject* pObj );
     const SwServerObject* GetObject() const     {  return &refObj; }
           SwServerObject* GetObject()           {  return &refObj; }
-//STRIP001  BOOL IsServer() const                       {  return refObj.Is(); }
 
     // Methoden fuer gelinkte Bereiche
     USHORT GetUpdateType() const        { return refLink->GetUpdateMode();  }
@@ -203,7 +193,6 @@ public:
 
     void CreateLink( LinkCreateType eType );
 
-//STRIP001  void MakeChildLinksVisible( const SwSectionNode& rSectNd );
 
     BOOL IsLinkType() const
         { return DDE_LINK_SECTION == eType || FILE_LINK_SECTION == eType; }
@@ -213,7 +202,6 @@ public:
     void SetConnectFlag( BOOL bFlag = TRUE )    { bConnectFlag = bFlag; }
 
     // return the TOX base class if the section is a TOX section
-//STRIP001  const SwTOXBase* GetTOXBase() const;
 
 private:
     // privater Constructor, weil nie kopiert werden darf !!
@@ -227,7 +215,6 @@ class SwSectionFmt : public SwFrmFmt
 {
     friend class SwDoc;
     SwSection* _GetSection() const;
-//STRIP001  void UpdateParent();        // Parent wurde veraendert
 
 protected:
     SwSectionFmt( SwSectionFmt* pDrvdFrm, SwDoc *pDoc );
@@ -244,7 +231,6 @@ public:
 
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
         // erfrage vom Format Informationen
-//STRIP001  virtual BOOL GetInfo( SfxPoolItem& ) const;
 
     SwSection* GetSection() const { return (SwSection*)_GetSection(); }
     inline SwSectionFmt* GetParent() const;
