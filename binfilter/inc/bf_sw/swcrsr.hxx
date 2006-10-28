@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swcrsr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:27:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:54:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,10 +102,8 @@ protected:
 
 public:
     SwCursor( const SwPosition &rPos, SwPaM* pRing = 0 );
-//STRIP001  SwCursor( SwCursor& );
     virtual ~SwCursor();
 
-//STRIP001  virtual SwCursor* Create( SwPaM* pRing = 0 ) const;
 
     virtual operator SwShellCrsr* ();
     virtual operator SwShellTableCrsr* ();
@@ -119,12 +117,8 @@ public:
     inline operator const SwUnoCrsr* () const;
     inline operator const SwUnoTableCrsr* () const;
 
-//STRIP001     virtual short MaxReplaceArived(); //returns RET_YES/RET_CANCEL/RET_NO
     virtual void SaveTblBoxCntnt( const SwPosition* pPos = 0 );
 
-//STRIP001  void FillFindPos( SwDocPositions ePos, SwPosition& rPos ) const;
-//STRIP001  SwMoveFnCollection* MakeFindRange( SwDocPositions, SwDocPositions,
-//STRIP001                                      SwPaM* ) const;
 
     ULONG Find( const ::com::sun::star::util::SearchOptions& rSearchOpt,
                 SwDocPositions nStart, SwDocPositions nEnde,
@@ -147,12 +141,10 @@ public:
 
     FASTBOOL IsStartWord()const;
     FASTBOOL IsEndWord() const;
-//STRIP001  FASTBOOL IsInWord() const;
     FASTBOOL GoStartWord();
     FASTBOOL GoEndWord();
     FASTBOOL GoNextWord();
     FASTBOOL GoPrevWord();
-//STRIP001  FASTBOOL SelectWord( const Point* pPt = 0 );
 
     enum SentenceMoveType
     {
@@ -169,10 +161,7 @@ public:
                         BOOL bInsertCrsr );
     FASTBOOL UpDown( BOOL bUp, USHORT nCnt = 1,
                     Point* pPt = 0, long nUpDownX = 0 );
-//STRIP001  FASTBOOL LeftRightMargin( BOOL bLeftMargin, BOOL bAPI = FALSE );
     FASTBOOL IsAtLeftRightMargin( BOOL bLeftMargin, BOOL bAPI = FALSE ) const;
-//STRIP001  FASTBOOL SttEndDoc( BOOL bSttDoc );
-//STRIP001  FASTBOOL GoPrevNextCell( BOOL bNext, USHORT nCnt );
 
     FASTBOOL Left( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
                                     { return LeftRight( TRUE, nCnt, nMode, bAllowVisual, FALSE ); }
@@ -186,15 +175,7 @@ public:
     FASTBOOL EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( FALSE ); }
     FASTBOOL GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( TRUE, nCnt ); }
     FASTBOOL GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( FALSE, nCnt ); }
-//STRIP001  FASTBOOL GotoTable( const String& rName );
     FASTBOOL GotoTblBox( const String& rName );
-//STRIP001  FASTBOOL GotoRegion( const String& rName );
-//STRIP001  FASTBOOL GotoFtnAnchor();
-//STRIP001  FASTBOOL GotoFtnTxt();
-//STRIP001  FASTBOOL GotoNextFtnAnchor();
-//STRIP001  FASTBOOL GotoPrevFtnAnchor();
-//STRIP001  FASTBOOL GotoNextFtnCntnt();
-//STRIP001  FASTBOOL GotoPrevFtnCntnt();
 
     FASTBOOL MovePara( SwWhichPara, SwPosPara );
     FASTBOOL MoveSection( SwWhichSection, SwPosSection );
@@ -209,9 +190,7 @@ public:
                                   SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
     virtual FASTBOOL IsInProtectTable( FASTBOOL bMove = FALSE,
                                         FASTBOOL bChgCrsr = TRUE );
-//STRIP001  FASTBOOL IsNoCntnt() const;
 
-//STRIP001  void RestoreSavePos();      // Point auf die SavePos setzen
 
     // TRUE: an die Position kann der Cursor gesetzt werden
     virtual FASTBOOL IsAtValidPos( BOOL bPoint = TRUE ) const;
@@ -277,24 +256,13 @@ public:
         // Baut fuer alle Boxen die Cursor auf
     SwCursor* MakeBoxSels( SwCursor* pAktCrsr );
         // sind irgendwelche Boxen mit einem Schutz versehen?
-//STRIP001  FASTBOOL HasReadOnlyBoxSel() const;
 
         // wurde der TabelleCursor veraendert ? Wenn ja speicher gleich
         // die neuen Werte.
-//STRIP001  FASTBOOL IsCrsrMovedUpdt();
         // wurde der TabelleCursor veraendert ?
-//STRIP001  FASTBOOL IsCrsrMoved() const
-//STRIP001  {
-//STRIP001      return  nTblMkNd != GetMark()->nNode.GetIndex() ||
-//STRIP001              nTblPtNd != GetPoint()->nNode.GetIndex() ||
-//STRIP001              nTblMkCnt != GetMark()->nContent.GetIndex() ||
-//STRIP001              nTblPtCnt != GetPoint()->nContent.GetIndex();
-//STRIP001  }
 
-//STRIP001  FASTBOOL IsChgd() const { return bChg; }
 
     // Parke den Tabellen-Cursor auf dem StartNode der Boxen.
-//STRIP001  void ParkCrsr();
 
 };
 
