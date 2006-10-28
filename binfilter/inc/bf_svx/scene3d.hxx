@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scene3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:16:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:56:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -143,7 +143,6 @@ protected:
                             const SfxHint  &rHint,
                             const TypeId   &rHintType);
 
-//STRIP001  BOOL AreThereTransparentParts() const;
 
 protected:
     void SetDefaultAttributes(E3dDefaultAttributes& rDefault);
@@ -244,14 +243,9 @@ public:
 
     virtual Volume3D FitInSnapRect();
 
-//STRIP001  virtual UINT16 GetObjIdentifier() const;
 
-//STRIP001  virtual USHORT  GetHdlCount() const;
-//STRIP001  virtual void    AddToHdlList(SdrHdlList& rHdlList) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
 
     virtual void    NbcSetSnapRect(const Rectangle& rRect);
-//STRIP001  virtual void    NbcMove(const Size& rSize);
     virtual void    NbcResize(const Point& rRef, const Fraction& rXFact,
                                                  const Fraction& rYFact);
     virtual void    RecalcSnapRect();
@@ -273,15 +267,12 @@ public:
     void SetCamera(const Camera3D& rNewCamera);
     const Camera3D& GetCamera() const { return aCamera; }
 
-//STRIP001  void SetDoubleBuffered(FASTBOOL bBuff = TRUE);
     FASTBOOL IsDoubleBuffered() const { return bDoubleBuffered; }
 
     // Clipping auf umschliessendes Rechteck der Szene
     // (Double Buffering ist immer geclipt!)
-//STRIP001  void SetClipping(FASTBOOL bClip = TRUE);
     FASTBOOL IsClipping() const { return bClipping; }
 
-//STRIP001  void SetFitInSnapRect(FASTBOOL bFit = TRUE);
     void CorrectSceneDimensions();
     FASTBOOL IsFitInSnapRect() const { return bFitInSnapRect; }
 
@@ -289,7 +280,6 @@ public:
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void operator=(const SdrObject&);
 
     virtual SdrObjGeoData *NewGeoData() const;
     virtual void          SaveGeoData(SdrObjGeoData& rGeo) const;
@@ -310,12 +300,8 @@ public:
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 
-//STRIP001  virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  void RotateScene(const Point& rRef, long nWink, double sn, double cs);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     void   SetSortingMode(UINT32 nMode) {nSortingMode = nMode;}
     UINT32 GetSortingMode() {return nSortingMode;}
@@ -348,7 +334,6 @@ public:
     void SetWasSelectedWhenCopy(BOOL bNew) { bWasSelectedWhenCopy = bNew; }
 
     // Aufbrechen
-//STRIP001  virtual BOOL IsBreakObjPossible();
 
     // ItemPool fuer dieses Objekt wechseln
     virtual void MigrateItemPool(SfxItemPool* pSrcPool, SfxItemPool* pDestPool, SdrModel* pNewModel = NULL );
