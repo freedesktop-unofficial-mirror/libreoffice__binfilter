@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svddrag.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:32:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:03:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #include <tools/gen.hxx>
 #endif
 
-// auto strip #ifndef _FRACT_HXX //autogen
-// auto strip #include <tools/fract.hxx>
-// auto strip #endif
 namespace binfilter {
 // Statushalter fuer objektspeziefisches Draggen. Damit das Model
 // Statusfrei bleibt werden die Statusdaten an der View gehalten
@@ -176,16 +173,8 @@ public:
     FASTBOOL     IsMouseDown() const                  { return !bMouseIsUp; }
     void         SetMouseDown(FASTBOOL bDown)         { bMouseIsUp=!bDown; }
 
-//STRIP001  Point KorregPos(const Point& rNow, const Point& rPrev) const;
-//STRIP001  void  Reset(const Point& rPnt);
-//STRIP001  void  NextMove(const Point& rPnt);
-//STRIP001  void  NextPoint(FASTBOOL bSaveReal=FALSE);
-//STRIP001  void  PrevPoint();
-//STRIP001  FASTBOOL CheckMinMoved(const Point& rPnt);
     long  GetDX() const                     { return GetNow().X()-GetPrev().X(); }
     long  GetDY() const                     { return GetNow().Y()-GetPrev().Y(); }
-//STRIP001  Fraction GetXFact() const;
-//STRIP001  Fraction GetYFact() const;
 
     SdrDragMethod* GetDragMethod() const               { return pDragMethod; }
     void           SetDragMethod(SdrDragMethod* pMth)  { pDragMethod=pMth; }
@@ -194,7 +183,6 @@ public:
     void             SetActionRect(const Rectangle& rR) { aActionRect=rR; }
 
     // Unter Beruecksichtigung von 1stPointAsCenter
-//STRIP001  void TakeCreateRect(Rectangle& rRect) const;
 };
 
 }//end of namespace binfilter
