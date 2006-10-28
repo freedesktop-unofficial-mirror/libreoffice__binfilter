@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_propertyimport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:15:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:50:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,27 +54,9 @@
 #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include "xmlnmspe.hxx"
-// auto strip #endif
-// auto strip #ifndef _DATE_HXX
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_TIME_HXX
-// auto strip #include <tools/time.hxx>
-// auto strip #endif
 #ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
-// auto strip #include <com/sun/star/util/Date.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_TIME_HPP_
-// auto strip #include <com/sun/star/util/Time.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-// auto strip #include <com/sun/star/util/DateTime.hpp>
-// auto strip #endif
 #ifndef _UNOTOOLS_DATETIME_HXX_
 #include <unotools/datetime.hxx>
 #endif

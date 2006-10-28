@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_layerimport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:14:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:50:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,36 +51,15 @@
 #ifndef XMLOFF_FORMSTYLES_HXX
 #include "formstyles.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
-// auto strip #include "xmlictxt.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLSTYLE_HXX
-// auto strip #include "xmlstyle.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-// auto strip #include "xmlprmap.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_PRSTYLEI_HXX_
-// auto strip #include "prstylei.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 #ifndef _XMLOFF_EVENTIMPORTHELPER_HXX
 #include "XMLEventImportHelper.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLIMPPR_HXX
-// auto strip #include "xmlimppr.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
-// auto strip #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_FORMSUBMITENCODING_HPP_
 #include <com/sun/star/form/FormSubmitEncoding.hpp>
 #endif
@@ -114,9 +93,6 @@
 #ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #include "controlpropertyhdl.hxx"
 #endif
