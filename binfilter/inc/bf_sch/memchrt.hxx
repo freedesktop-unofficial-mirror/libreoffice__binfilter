@@ -4,9 +4,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:13:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:48:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -179,18 +179,6 @@ protected :
     String          *pRowText;
     ChartDataId     myID;
 
-//STRIP001  void QuickSortTableCols (long l,
-//STRIP001                           long r,
-//STRIP001                           long nRow);
-//STRIP001  void QuickSortTableRows (long l,
-//STRIP001                           long r,
-//STRIP001                           long nCol);
-//STRIP001  void QuickSortCols (long l,
-//STRIP001                      long r,
-//STRIP001                      long nRow);
-//STRIP001  void QuickSortRows (long l,
-//STRIP001                      long r,
-//STRIP001                      long nCol);
 
     // number formatter and format id
     SvNumberFormatter*  mpNumFormatter;
@@ -230,7 +218,6 @@ public:
     inline void SetReadOnly( BOOL bNewValue );
     BOOL IsReadOnly() { return bReadOnly; }
 
-//STRIP001  SchMemChart();
     SchMemChart(ChartDataId myID);
     SchMemChart(short nCols, short nRows);
     SchMemChart(const SchMemChart& rMemChart);
@@ -261,8 +248,6 @@ public:
     long SubmitSelection(const ChartSelectionInfo& aInfo);
 
     // methods for translation of data
-//STRIP001  BOOL TransCol(long nCol,BOOL bUp=TRUE);
-//STRIP001  BOOL TransRow(long nRow,BOOL bUp=TRUE);
     inline void ResetTranslation(sal_Int32 *pTable,long nCnt);
     BOOL VerifyTranslation();
     long GetTranslation() const { return nTranslated; }
@@ -313,11 +298,7 @@ public:
     // ********************
 #endif
 
-//STRIP001  long GetTableIndexCol(long nCol) const;
-//STRIP001  long GetTableIndexRow(long nRow) const;
 
-//STRIP001  BOOL SwapRowTranslation(long n1, long n2);
-//STRIP001  BOOL SwapColTranslation(long n1, long n2);
 
     // number format
 
@@ -388,29 +369,9 @@ public:
     void SetColText(short nCol, const String& rText) { pColText[nCol] = rText; }
     void SetRowText(short nRow, const String& rText) { pRowText[nRow] = rText; }
 
-//STRIP001  void SortTableCols (long nRow = 0)
-//STRIP001  {
-//STRIP001      QuickSortTableCols (0, nColCnt - 1, nRow);
-//STRIP001      ResetTranslation(pColTable, nColCnt);
-//STRIP001  }
 
-//STRIP001  void SortTableRows (long nCol = 0)
-//STRIP001  {
-//STRIP001      QuickSortTableRows (0, nRowCnt - 1, nCol);
-//STRIP001      ResetTranslation(pRowTable, nRowCnt);
-//STRIP001  }
 
-//STRIP001  void SortCols (long nRow = 0)
-//STRIP001  {
-//STRIP001      QuickSortCols (0, nColCnt - 1, nRow);
-//STRIP001      ResetTranslation(pColTable, nColCnt);
-//STRIP001  }
 
-//STRIP001  void SortRows (long nCol = 0)
-//STRIP001  {
-//STRIP001      QuickSortRows (0, nRowCnt - 1, nCol);
-//STRIP001      ResetTranslation(pRowTable, nRowCnt);
-//STRIP001  }
 
     friend class ChartModel;
 
