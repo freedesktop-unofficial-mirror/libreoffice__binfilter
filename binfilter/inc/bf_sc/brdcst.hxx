@@ -4,9 +4,9 @@
  *
  *  $RCSfile: brdcst.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:59:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:28:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,12 +39,6 @@
 #include "global.hxx"
 #endif
 
-// auto strip #ifndef _RTTI_HXX //autogen
-// auto strip #include <tools/rtti.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXHINT_HXX //autogen
-// auto strip #include <svtools/hint.hxx>
-// auto strip #endif
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif

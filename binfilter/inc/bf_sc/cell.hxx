@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cell.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:59:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:28:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,22 +38,13 @@
 
 #include <stddef.h>
 
-// auto strip #ifndef _SVMEMPOOL_HXX //autogen
-// auto strip #include <tools/mempool.hxx>
-// auto strip #endif
 #ifndef _SFXLSTNER_HXX //autogen
 #include <svtools/lstner.hxx>
 #endif
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 #ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef _SV_FONTCVT_HXX
 #include <vcl/fontcvt.hxx>
@@ -227,10 +218,7 @@ public:
                     ScEditCell( SvStream& rStream, USHORT nVer, ScDocument* );
                     // fuer Zeilenumbrueche
                     ScEditCell( const String& rString, ScDocument* );
-//STRIP001  ScBaseCell*     Clone( ScDocument* ) const;
 
-//STRIP001  void            SetData( const EditTextObject* pObject,
-//STRIP001                          const SfxItemPool* pFromPool /* = NULL */ );
     void            GetData( const EditTextObject*& rpObject ) const;
     void            GetString( String& rString ) const;
 
