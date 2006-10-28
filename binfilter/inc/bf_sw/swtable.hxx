@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swtable.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:33:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:57:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,15 +47,9 @@
 #ifndef _TBLENUM_HXX
 #include <tblenum.hxx>
 #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _CALBCK_HXX
 #include <calbck.hxx>
 #endif
-// auto strip #ifndef _SWRECT_HXX
-// auto strip #include <swrect.hxx>
-// auto strip #endif
 
 #ifdef PRODUCT
 #ifndef _NODE_HXX
@@ -135,7 +129,6 @@ public:
 
     SwHTMLTableLayout *GetHTMLTableLayout() { return pHTMLLayout; }
     const SwHTMLTableLayout *GetHTMLTableLayout() const { return pHTMLLayout; }
-//STRIP001  void SetHTMLTableLayout( SwHTMLTableLayout *p );    //Eigentumsuebergang!
 
     USHORT IncGrfsThatResize() { return ++nGrfsThatResize; }
     USHORT DecGrfsThatResize() { return nGrfsThatResize ? --nGrfsThatResize : 0; }
@@ -156,22 +149,7 @@ public:
 
     void GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
                      FASTBOOL bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
-//STRIP001  void SetTabCols( const SwTabCols &rNew, SwTabCols &rOld,
-//STRIP001                   const SwTableBox *pStart, BOOL bCurRowOnly );
 
-//STRIP001  BOOL InsertCol( SwDoc*, const SwSelBoxes& rBoxes,
-//STRIP001                  USHORT nCnt = 1, BOOL bBehind = TRUE );
-//STRIP001  BOOL InsertRow( SwDoc*, const SwSelBoxes& rBoxes,
-//STRIP001                  USHORT nCnt = 1, BOOL bBehind = TRUE );
-//STRIP001  BOOL AppendRow( SwDoc* pDoc, USHORT nCnt = 1 );
-//STRIP001  BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes, SwUndo* pUndo = 0,
-//STRIP001                          const BOOL bDelMakeFrms = TRUE,
-//STRIP001                          const BOOL bCorrBorder = TRUE );
-//STRIP001     BOOL SplitRow( SwDoc* pDoc, const SwSelBoxes& rBoxes, USHORT nCnt=1,
-//STRIP001                    BOOL bSameHeight = FALSE );
-//STRIP001  BOOL SplitCol( SwDoc* pDoc, const SwSelBoxes& rBoxes, USHORT nCnt=1 );
-//STRIP001  BOOL Merge( SwDoc* pDoc, const SwSelBoxes& rBoxes,
-//STRIP001              SwTableBox* pMergeBox, SwUndoTblMerge* = 0 );
 
           SwTableSortBoxes& GetTabSortBoxes()       { return aSortCntBoxes; }
     const SwTableSortBoxes& GetTabSortBoxes() const { return aSortCntBoxes; }
@@ -179,22 +157,14 @@ public:
         // gebe den Zellnamen zu der angebenen Row/Col zurueck. Das ist
         // nur fuer ausgeglichene Tabellen interessant, weil diese keine
         // "Sub"Boxen kennen. Es wird z.B. aus (0,0) ein "A1".
-//STRIP001  static String GetBoxName( USHORT nRow, USHORT nCol );
         // lese die 1. Nummer und loesche sie aus dem String
         // (wird von GetTblBox und SwTblFld benutzt)
     static USHORT _GetBoxNum( String& rStr, BOOL bFirst = FALSE );
         // suche die Inhaltstragende Box mit dem Namen
     const SwTableBox* GetTblBox( const String& rName ) const;
         // kopiere die selektierten Boxen in ein anderes Dokument.
-//STRIP001  BOOL MakeCopy( SwDoc*, const SwPosition&, const SwSelBoxes&,
-//STRIP001                  BOOL bCpyNds = TRUE, BOOL bCpyName = FALSE ) const;
         // kopiere die Tabelle in diese. (die Logik steht im TBLRWCL.CXX)
-//STRIP001  BOOL InsTable( const SwTable& rCpyTbl, const SwNodeIndex&,
-//STRIP001                  SwUndoTblCpyTbl* pUndo = 0 );
-//STRIP001  BOOL InsTable( const SwTable& rCpyTbl, const SwSelBoxes&,
-//STRIP001                  SwUndoTblCpyTbl* pUndo = 0 );
         // kopiere die Headline (mit Inhalt!) der Tabelle in eine andere
-//STRIP001  BOOL CopyHeadlineIntoTable( SwTableNode& rTblNd );
 
         // erfrage die Box, dessen Start-Index auf nBoxStt steht
           SwTableBox* GetTblBox( ULONG nSttIdx );
@@ -212,8 +182,6 @@ public:
     // steht. rBoxes auch als Return-Wert, um es gleich weiter zu benutzen
     //JP 31.01.97: bToTop = TRUE -> hoch bis zur Grundline,
     //                      FALSE-> sonst nur die Line der Box
-//STRIP001  SwSelBoxes& SelLineFromBox( const SwTableBox* pBox,
-//STRIP001                          SwSelBoxes& rBoxes, BOOL bToTop = TRUE ) const;
         // erfrage vom Client Informationen
     virtual BOOL GetInfo( SfxPoolItem& ) const;
 
@@ -231,7 +199,6 @@ public:
      void SetRefObject( SwServerObject* );
     const SwServerObject* GetObject() const     {  return &refObj; }
       SwServerObject* GetObject()           {  return &refObj; }
-//STRIP001  BOOL IsServer() const                       {  return refObj.Is(); }
 
     //Daten fuer das Chart fuellen.
     SchMemChart *UpdateData( SchMemChart *pData,
@@ -240,10 +207,6 @@ public:
     TblChgMode GetTblChgMode() const        { return eTblChgMode; }
     void SetTblChgMode( TblChgMode eMode )  { eTblChgMode = eMode; }
 
-//STRIP001  BOOL SetColWidth( SwTableBox& rAktBox, USHORT eType,
-//STRIP001                      SwTwips nAbsDiff, SwTwips nRelDiff, SwUndo** ppUndo );
-//STRIP001  BOOL SetRowHeight( SwTableBox& rAktBox, USHORT eType,
-//STRIP001                      SwTwips nAbsDiff, SwTwips nRelDiff, SwUndo** ppUndo );
 };
 
 class SwTableLine: public SwClient      // Client vom FrmFmt
@@ -270,15 +233,9 @@ public:
 
     //Macht ein eingenes FrmFmt wenn noch mehr Lines von ihm abhaengen.
     SwFrmFmt* ClaimFrmFmt();
-//STRIP001  void ChgFrmFmt( SwTableLineFmt* pNewFmt );
 
     // suche nach der naechsten/vorherigen Box mit Inhalt
-//STRIP001  SwTableBox* FindNextBox( const SwTable&, const SwTableBox* =0,
-//STRIP001                          BOOL bOvrTblLns=TRUE ) const;
-//STRIP001  SwTableBox* FindPreviousBox( const SwTable&, const SwTableBox* =0,
-//STRIP001                          BOOL bOvrTblLns=TRUE ) const;
 
-//STRIP001  SwRect GetLineRect( const BOOL bPrtArea = FALSE ) const;
 };
 
 class SwTableBox: public SwClient       //Client vom FrmFmt
@@ -331,10 +288,6 @@ public:
 #endif
 
     // suche nach der naechsten/vorherigen Box mit Inhalt
-//STRIP001  SwTableBox* FindNextBox( const SwTable&, const SwTableBox* =0,
-//STRIP001                          BOOL bOvrTblLns=TRUE ) const;
-//STRIP001  SwTableBox* FindPreviousBox( const SwTable&, const SwTableBox* =0,
-//STRIP001                          BOOL bOvrTblLns=TRUE ) const;
     // gebe den Namen dieser Box zurueck. Dieser wird dynamisch bestimmt
     // und ergibt sich aus der Position in den Lines/Boxen/Tabelle
     String GetName() const;
@@ -344,17 +297,13 @@ public:
     BOOL IsInHeadline( const SwTable* pTbl = 0 ) const;
 
     // enthaelt die Box Inhalt, der als Nummer formatiert werden kann?
-//STRIP001  BOOL HasNumCntnt( double& rNum, ULONG& rFmtIndex,
-//STRIP001                  BOOL& rIsEmptyTxtNd ) const;
     ULONG IsValidNumTxtNd( BOOL bCheckAttr = TRUE ) const;
     // teste ob der BoxInhalt mit der Nummer uebereinstimmt, wenn eine
     // Tabellenformel gesetzt ist. (fuers Redo des Change vom NumFormat!)
-//STRIP001  BOOL IsNumberChanged() const;
 
     // ist das eine FormelBox oder eine Box mit numerischen Inhalt (AutoSum)
     // Was es ist, besagt der ReturnWert - die WhichId des Attributes
     // Leere Boxen haben den ReturnWert USHRT_MAX !!
-//STRIP001  USHORT IsFormulaOrValueBox() const;
 
     // fuers Laden - tauscht bei Value Zellen den Inhalt aus, falls sie
     // fuer die Sprache System formatiert sind.
@@ -363,10 +312,6 @@ public:
     DECL_FIXEDMEMPOOL_NEWDEL(SwTableBox)
 
     // zugriff auf interne Daten - z.Z. benutzt fuer den NumFormatter
-//STRIP001  inline const Color* GetSaveUserColor()  const;
-//STRIP001  inline const Color* GetSaveNumFmtColor() const;
-//STRIP001  inline void SetSaveUserColor(const Color* p );
-//STRIP001  inline void SetSaveNumFmtColor( const Color* p );
 };
 
 } //namespace binfilter
