@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hlnkitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:38:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:38:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,62 +64,10 @@ enum SvxLinkInsertMode
 
 class SvxHyperlinkItem : public SfxPoolItem
 {
-//STRIP001  String sName;
-//STRIP001  String sURL;
-//STRIP001  String sTarget;
-//STRIP001  SvxLinkInsertMode eType;
-//STRIP001
-//STRIP001  String sIntName;
-//STRIP001  SvxMacroTableDtor*  pMacroTable;
-//STRIP001
-//STRIP001  USHORT nMacroEvents;
-//STRIP001
 public:
     TYPEINFO();
-//STRIP001
-//STRIP001  SvxHyperlinkItem( USHORT nWhich = SID_HYPERLINK_GETLINK ):
-//STRIP001              SfxPoolItem(nWhich), pMacroTable(NULL)  { eType = HLINK_DEFAULT; nMacroEvents=0; };
-//STRIP001  SvxHyperlinkItem( const SvxHyperlinkItem& rHyperlinkItem );
-//STRIP001  SvxHyperlinkItem( USHORT nWhich, String& rName, String& rURL,
-//STRIP001                                  String& rTarget, String& rIntName,
-//STRIP001                                  SvxLinkInsertMode eTyp = HLINK_FIELD,
-//STRIP001                                  USHORT nEvents = 0,
-//STRIP001                                  SvxMacroTableDtor *pMacroTbl =NULL );
-//STRIP001  virtual ~SvxHyperlinkItem () { delete pMacroTable; }
-//STRIP001
-//STRIP001  inline SvxHyperlinkItem& operator=( const SvxHyperlinkItem &rItem );
-//STRIP001
     virtual int              operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
-//STRIP001
-//STRIP001  const   String& GetName() const { return sName; }
-//STRIP001  void    SetName(const String& rName) { sName = rName; }
-//STRIP001
-//STRIP001  const   String& GetURL() const { return sURL; }
-//STRIP001  void    SetURL(const String& rURL) { sURL = rURL; }
-//STRIP001
-//STRIP001  const   String& GetIntName () const { return sIntName; }
-//STRIP001  void    SetIntName(const String& rIntName) { sIntName = rIntName; }
-//STRIP001
-//STRIP001  const   String& GetTargetFrame() const { return sTarget; }
-//STRIP001  void    SetTargetFrame(const String& rTarget) { sTarget = rTarget; }
-//STRIP001
-//STRIP001  SvxLinkInsertMode GetInsertMode() const { return eType; }
-//STRIP001  void    SetInsertMode( SvxLinkInsertMode eNew ) { eType = eNew; }
-//STRIP001
-//STRIP001  void SetMacro( USHORT nEvent, const SvxMacro& rMacro );
-//STRIP001
-//STRIP001  void SetMacroTable( const SvxMacroTableDtor& rTbl );
-//STRIP001  const SvxMacroTableDtor* GetMacroTbl() const    { return pMacroTable; }
-//STRIP001
-//STRIP001  void SetMacroEvents (const USHORT nEvents) { nMacroEvents = nEvents; }
-//STRIP001  const   USHORT GetMacroEvents() const { return nMacroEvents; }
-//STRIP001
-//STRIP001  virtual SvStream&           Store( SvStream &, USHORT nItemVersion ) const;
-//STRIP001  virtual SfxPoolItem*        Create( SvStream &, USHORT nVer ) const;
-//STRIP001
 };
 
 }//end of namespace binfilter

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hngpnctitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:38:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:38:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,11 +64,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper * = 0 ) const;
 
     inline SvxHangingPunctuationItem& operator=(
                                     const SvxHangingPunctuationItem& rItem )
