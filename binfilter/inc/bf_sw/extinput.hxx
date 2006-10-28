@@ -4,9 +4,9 @@
  *
  *  $RCSfile: extinput.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:58:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:40:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,17 +56,11 @@ class SwExtTextInput : public SwPaM
     BOOL bIsOverwriteCursor : 1;
 public:
             SwExtTextInput(){};
-//STRIP001  SwExtTextInput( const SwPaM& rPam, Ring* pRing = 0 );
-//STRIP001  virtual ~SwExtTextInput();
 
-//STRIP001  void SetInputData( const CommandExtTextInputData& rData );
-//STRIP001  void InvalidateRange();
-//STRIP001  void SetFontForPos( USHORT nPos, Font& rFont );
     const SvUShorts& GetAttrs() const   { return aAttrs; }
     BOOL IsInsText() const              { return bInsText; }
     void SetInsText( BOOL bFlag )       { bInsText = bFlag; }
     BOOL IsOverwriteCursor() const      { return bIsOverwriteCursor; }
-//STRIP001  void SetOverwriteCursor( BOOL bFlag );
 };
 
 } //namespace binfilter
