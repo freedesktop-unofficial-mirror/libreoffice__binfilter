@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdglue.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:35:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:05:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,26 +107,13 @@ public:
     void         SetPercent(FASTBOOL bOn)                   { bNoPercent=!bOn; }
     // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
     FASTBOOL     IsReallyAbsolute() const                   { return bReallyAbsolute; }
-//STRIP001  void         SetReallyAbsolute(FASTBOOL bOn, const SdrObject& rObj);
     USHORT       GetAlign() const                           { return nAlign; }
     void         SetAlign(USHORT nAlg)                      { nAlign=nAlg; }
     USHORT       GetHorzAlign() const                       { return nAlign&0x00FF; }
     void         SetHorzAlign(USHORT nAlg)                  { nAlign=(nAlign&0xFF00)|(nAlg&0x00FF); }
     USHORT       GetVertAlign() const                       { return nAlign&0xFF00; }
     void         SetVertAlign(USHORT nAlg)                  { nAlign=(nAlign&0x00FF)|(nAlg&0xFF00); }
-//STRIP001  void         Draw(OutputDevice& rOut, const SdrObject* pObj) const;
-//STRIP001  FASTBOOL     IsHit(const Point& rPnt, const OutputDevice& rOut, const SdrObject* pObj) const;
-//STRIP001  void         Invalidate(Window& rWin, const SdrObject* pObj) const;
     Point        GetAbsolutePos(const SdrObject& rObj) const;
-//STRIP001  void         SetAbsolutePos(const Point& rNewPos, const SdrObject& rObj);
-//STRIP001  long         GetAlignAngle() const;
-//STRIP001  void         SetAlignAngle(long nWink);
-//STRIP001  long         EscDirToAngle(USHORT nEsc) const;
-//STRIP001  USHORT       EscAngleToDir(long nWink) const;
-//STRIP001  void         Rotate(const Point& rRef, long nWink, double sn, double cs, const SdrObject* pObj);
-//STRIP001  void         Mirror(const Point& rRef1, const Point& rRef2, const SdrObject* pObj);
-//STRIP001  void         Mirror(const Point& rRef1, const Point& rRef2, long nWink, const SdrObject* pObj);
-//STRIP001  void         Shear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear, const SdrObject* pObj);
     friend SvStream& operator<<(SvStream& rOut, const SdrGluePoint& rGP);
     friend SvStream& operator>>(SvStream& rIn, SdrGluePoint& rGP);
 };
@@ -147,7 +134,6 @@ public:
     SdrGluePointList(const SdrGluePointList& rSrcList): aList(1024,4,4)     { *this=rSrcList; }
     ~SdrGluePointList()                                                     { Clear(); }
     void                Clear();
-//STRIP001  void                operator=(const SdrGluePointList& rSrcList);
     USHORT              GetCount() const                                    { return USHORT(aList.Count()); }
     // Beim Insert wird dem Objekt (also dem GluePoint) automatisch eine Id zugewiesen.
     // ReturnCode ist der Index des neuen GluePoints in der Liste
@@ -156,15 +142,7 @@ public:
     SdrGluePoint&       operator[](USHORT nPos)                             { return *GetObject(nPos); }
     const SdrGluePoint& operator[](USHORT nPos) const                       { return *GetObject(nPos); }
     USHORT              FindGluePoint(USHORT nId) const;
-//STRIP001  USHORT              HitTest(const Point& rPnt, const OutputDevice& rOut, const SdrObject* pObj, FASTBOOL bBack=FALSE, FASTBOOL bNext=FALSE, USHORT nId0=0) const;
-//STRIP001  void                DrawAll(OutputDevice& rOut, const SdrObject* pObj) const;
-//STRIP001  void                Invalidate(Window& rWin, const SdrObject* pObj) const;
     // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
-//STRIP001  void                SetReallyAbsolute(FASTBOOL bOn, const SdrObject& rObj);
-//STRIP001  void                Rotate(const Point& rRef, long nWink, double sn, double cs, const SdrObject* pObj);
-//STRIP001  void                Mirror(const Point& rRef1, const Point& rRef2, const SdrObject* pObj);
-//STRIP001  void                Mirror(const Point& rRef1, const Point& rRef2, long nWink, const SdrObject* pObj);
-//STRIP001  void                Shear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear, const SdrObject* pObj);
     friend SvStream& operator<<(SvStream& rOut, const SdrGluePointList& rGPL);
     friend SvStream& operator>>(SvStream& rIn, SdrGluePointList& rGPL);
 };
