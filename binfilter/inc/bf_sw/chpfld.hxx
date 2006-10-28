@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chpfld.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:16:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:36:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 #ifndef _CHPFLD_HXX
 #define _CHPFLD_HXX
 
-// auto strip #include "fldbas.hxx"
 
 class SwFrm;
 class SwTxtNode;
