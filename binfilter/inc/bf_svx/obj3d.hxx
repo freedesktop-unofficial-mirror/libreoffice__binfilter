@@ -4,9 +4,9 @@
  *
  *  $RCSfile: obj3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:59:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:47:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -151,7 +151,6 @@ public:
 
     virtual void NbcInsertObject(SdrObject* pObj, ULONG nPos=CONTAINER_APPEND,
         const SdrInsertReason* pReason=NULL);
-//STRIP001  virtual SdrObject* NbcRemoveObject(ULONG nObjNum);
     virtual SdrObject* RemoveObject(ULONG nObjNum);
 };
 
@@ -200,8 +199,6 @@ class E3dObject : public SdrAttrObj
     BOOL    ImpCheckSubRecords (const SdrObjIOHeader& rHead,
                                 SvStream&             rIn);
     void    SetObjTreeLevel(USHORT nNewLevel);
-//STRIP001  void    ImpCreateWireframePoly(XPolyPolygon& rXPP,
-//STRIP001                                 E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
     // Wie in SdrAttrObj:
     SfxItemPool* ImpGetItemPool(const SfxPoolItem* pAlternateItem1,
@@ -225,7 +222,6 @@ class E3dObject : public SdrAttrObj
     virtual UINT32  GetObjInventor() const;
     virtual UINT16  GetObjIdentifier() const;
 
-//STRIP001  virtual void    TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
 
     virtual SdrLayerID  GetLayer() const;
     virtual void        NbcSetLayer(SdrLayerID nLayer);
@@ -233,27 +229,16 @@ class E3dObject : public SdrAttrObj
     virtual void        SetObjList(SdrObjList* pNewObjList);
     virtual void        SetPage(SdrPage* pNewPage);
     virtual void        SetModel(SdrModel* pNewModel);
-//STRIP001  virtual void        NbcMove(const Size& rSize);
 /*N*/   virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 
     virtual SdrObjList* GetSubList() const;
 
-//STRIP001  virtual void    TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual USHORT  GetHdlCount() const;
-//STRIP001  virtual void    AddToHdlList(SdrHdlList& rHdlList) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
 
     // 3D-Zeichenmethode
-//STRIP001  virtual void Paint3D(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001      const SdrPaintInfoRec& rInfoRec, UINT16 nDrawFlags=0);
 
     // Objekt als Kontur in das Polygon einfuegen
-//STRIP001  virtual void TakeContour3D(XPolyPolygon& rPoly);
 
     // Schatten fuer 3D-Objekte zeichnen
-//STRIP001  virtual void DrawShadows(Base3D *pBase3D, ExtOutputDevice& rXOut,
-//STRIP001      const Rectangle& rBound, const Volume3D& rVolume,
-//STRIP001      const SdrPaintInfoRec& rInfoRec);
 
     // 3D-Objekt in die Gruppe einfuegen; Eigentumsuebergang!
     virtual void Insert3DObj(E3dObject* p3DObj);
@@ -267,7 +252,6 @@ class E3dObject : public SdrAttrObj
     Vector3D GetCenter();
 
     // komplette Transformation inklusive aller Parents berechnen
-//STRIP001  virtual void GetFullTransform(Matrix4D& rMatrix) const;
     virtual const Matrix4D& GetFullTransform();
 
     // Transformationsmatrix abfragen bzw. (zurueck)setzen
@@ -275,55 +259,30 @@ class E3dObject : public SdrAttrObj
     virtual void NbcSetTransform(const Matrix4D& rMatrix);
     virtual void NbcResetTransform();
     virtual void SetTransform(const Matrix4D& rMatrix);
-//STRIP001  virtual void ResetTransform();
 
     // Translation
-//STRIP001  virtual void NbcTranslate(const Vector3D& rTrans);
-//STRIP001  virtual void Translate(const Vector3D& rTrans);
     // Skalierung
-//STRIP001  virtual void NbcScaleX  (double fSx);
-//STRIP001  virtual void NbcScaleY  (double fSy);
-//STRIP001  virtual void NbcScaleZ  (double fSz);
-//STRIP001  virtual void NbcScale   (double fSx, double fSy, double fSz);
-//STRIP001  virtual void NbcScale   (double fS);
 
-//STRIP001  virtual void ScaleX (double fSx);
-//STRIP001  virtual void ScaleY (double fSy);
-//STRIP001  virtual void ScaleZ (double fSz);
-//STRIP001  virtual void Scale  (double fSx, double fSy, double fSz);
-//STRIP001  virtual void Scale  (double fS);
 
     // Rotation mit Winkel in Radiant
-//STRIP001  virtual void NbcRotateX(double fAng);
-//STRIP001  virtual void NbcRotateY(double fAng);
-//STRIP001  virtual void NbcRotateZ(double fAng);
 
-//STRIP001  virtual void RotateX(double fAng);
-//STRIP001  virtual void RotateY(double fAng);
-//STRIP001  virtual void RotateZ(double fAng);
 
     // [FG] 2D-Rotationen, werden hier als Rotationen um die Z-Achse, die in den Bildschirm zeigt,
     //      implementiert plus eine Verschiebung der Scene. Dies bedeutet auch die Scene (E3dScene)
     //      muss diese Routine in der Klasse als virtual definieren.
-//STRIP001  virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
 
     // Transformation auf die Koordinaten (nicht auf die lokale Matrix)
     // eines Objekts und seiner Childs anwenden; Objekte, die eigene
     // Koordinaten speichern, muessen diese Methode implementieren
     // Wireframe-Darstellung des Objekts erzeugen und die Linien als
     // Punkt-Paare in rPoly3D ablegen
-//STRIP001  virtual void CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf = NULL,
-//STRIP001      E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     USHORT GetObjTreeLevel() const { return nObjTreeLevel; }
 
     FASTBOOL HasLogicalGroup() { return ( nLogicalGroup > 0 ); }
     USHORT GetLogicalGroup() { return nLogicalGroup; }
-//STRIP001  void SetLogicalGroup(USHORT nGroup);
 
     void SetDragDetail(E3dDragDetail eDetail)   { eDragDetail = eDetail; }
     E3dDragDetail GetDragDetail()               { return eDragDetail; }
@@ -332,7 +291,6 @@ class E3dObject : public SdrAttrObj
     UINT16  GetPartCode()   { return nPartOfParent; }
     FASTBOOL IsPartOfParent() const { return (nPartOfParent != 0); }
 
-//STRIP001  virtual void operator=(const SdrObject&);
 
     // ItemSet access
     virtual const SfxItemSet& GetItemSet() const;
@@ -366,10 +324,8 @@ class E3dObject : public SdrAttrObj
 
     // Selektion Setzen/Lesen
     BOOL GetSelected() { return bIsSelected; }
-//STRIP001  void SetSelected(BOOL bNew);
 
     // Aufbrechen
-//STRIP001  virtual BOOL IsBreakObjPossible();
     virtual SdrAttrObj* GetBreakObj();
 };
 
@@ -427,9 +383,6 @@ protected:
         PolyPolygon3D& rPolyPolyScale,
         double fFactor);
 
-//STRIP001  void AddNormals(
-//STRIP001      PolyPolygon3D& rPolyPolyDest,
-//STRIP001      const PolyPolygon3D& rPolyPolySource);
 
     void CreateFront(
         const PolyPolygon3D& rPolyPoly3D,
@@ -513,7 +466,6 @@ protected:
     void SetDefaultAttributes(E3dDefaultAttributes& rDefault);
 
     // convert given PolyPolygon3D to screen coor
-//STRIP001  XPolyPolygon TransformToScreenCoor(const PolyPolygon3D &rExtrudePoly);
 
 public :
     TYPEINFO();
@@ -590,25 +542,14 @@ public :
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // 3D-Zeichenmethode
-//STRIP001  virtual void Paint3D(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001      const SdrPaintInfoRec& rInfoRec, UINT16 nDrawFlags=0);
 
     // Objekt als Kontur in das Polygon einfuegen
-//STRIP001  virtual void TakeContour3D(XPolyPolygon& rPoly);
 
     // Schatten fuer 3D-Objekte zeichnen
-//STRIP001  virtual void DrawShadows(Base3D *pBase3D, ExtOutputDevice& rXOut,
-//STRIP001      const Rectangle& rBound, const Volume3D& rVolume,
-//STRIP001      const SdrPaintInfoRec& rInfoRec);
 
     // #78972#
-//STRIP001  void ImpGetShadowPolygon(PolyPolygon3D& rPoly);
-//STRIP001  void ImpDrawShadowPolygon(PolyPolygon3D& rPoly, ExtOutputDevice& rXOut);
 
     // Bitmaps fuer 3D-Darstellung von Gradients und Hatches holen
-//STRIP001  AlphaMask GetAlphaMask(const SfxItemSet& rSet, const Size& rSizePixel);
-//STRIP001  Bitmap GetGradientBitmap(const SfxItemSet&);
-//STRIP001  Bitmap GetHatchBitmap(const SfxItemSet&);
 
     // Geometrieerzeugung
     void DestroyGeometry();
@@ -616,48 +557,30 @@ public :
     void ReCreateGeometry(BOOL bCreateOldGeometry=FALSE);
 
     // Give out simple line geometry
-//STRIP001  virtual void GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const;
 
     // Parameter Geometrieerzeugung setzen/lesen
     BOOL GetCreateNormals() const { return bCreateNormals; }
-//STRIP001  void SetCreateNormals(BOOL bNew);
 
     BOOL GetCreateTexture() const { return bCreateTexture; }
-//STRIP001  void SetCreateTexture(BOOL bNew);
 
     // Unterstuetzung Objekte lesen
     BOOL AreBytesLeft() const { return bBytesLeft; }
 
     // Copy-Operator
-//STRIP001  virtual void operator=(const SdrObject&);
 
     // Ausgabeparameter an 3D-Kontext setzen
-//STRIP001  void SetBase3DParams(ExtOutputDevice& rOut, Base3D*,
-//STRIP001      BOOL& bDrawObject, BOOL& bDrawOutline, UINT16 nDrawFlags, BOOL bGhosted,
-//STRIP001      BOOL bIsLineDraft = FALSE, BOOL bIsFillDraft = FALSE);
 private:
-//STRIP001  void ImpSet3DParForFill(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001      BOOL& bDrawObject, UINT16 nDrawFlags, BOOL bGhosted, BOOL bIsFillDraft);
-//STRIP001  void ImpSet3DParForLine(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001      BOOL& bDrawOutline, UINT16 nDrawFlags, BOOL bGhosted, BOOL bIsLineDraft);
 public:
 
     // DisplayGeometry rausruecken
     B3dGeometry& GetDisplayGeometry();
 
     // Transformation auf die Geometrie anwenden
-//STRIP001  void CenterObject(const Vector3D& rCenter = Vector3D());
 
     // Schattenattribute holen
-//STRIP001  Color GetShadowColor();
-//STRIP001  BOOL DrawShadowAsOutline();
-//STRIP001  INT32 GetShadowXDistance();
-//STRIP001  INT32 GetShadowYDistance();
-//STRIP001  UINT16 GetShadowTransparence();
     BOOL DoDrawShadow();
 
     // WireFrame Darstellung eines Objektes
-//STRIP001  void DrawObjectWireframe(ExtOutputDevice& rOut);
 
     // Nromalen invertiert benutzen
 private:
@@ -669,9 +592,7 @@ public:
     void SetMaterialAmbientColor(const Color& rColor);
 
     const B3dMaterial& GetBackMaterial() const { return aBackMaterial; }
-//STRIP001  void SetBackMaterial(const B3dMaterial& rNew);
     BOOL GetUseDifferentBackMaterial() const { return bUseDifferentBackMaterial; }
-//STRIP001  void SetUseDifferentBackMaterial(BOOL bNew);
 };
 
 }//end of namespace binfilter
