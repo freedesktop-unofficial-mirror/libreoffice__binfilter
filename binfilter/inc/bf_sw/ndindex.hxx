@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndindex.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:15:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:49:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,7 +107,6 @@ public:
     inline ULONG GetIndex() const;
 
     // ermoeglicht Zuweisungen ohne Erzeugen eines temporaeren Objektes
-//STRIP001  SwNodeIndex& Assign( SwNodes& rNds, ULONG );
     SwNodeIndex& Assign( const SwNode& rNd, long nOffset = 0 );
 
         // Herausgabe des Pointers auf das NodesArray,
