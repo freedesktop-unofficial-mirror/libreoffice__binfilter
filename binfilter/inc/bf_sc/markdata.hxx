@@ -4,9 +4,9 @@
  *
  *  $RCSfile: markdata.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:18:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:37:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ public:
                 ScMarkData(const ScMarkData& rData);
                 ~ScMarkData();
 
-//STRIP001  ScMarkData& operator=(const ScMarkData& rData);
 
     void        ResetMark();
     void        SetMarkArea( const ScRange& rRange );
@@ -83,7 +82,6 @@ public:
     void        GetMarkArea( ScRange& rRange ) const;
     void        GetMultiMarkArea( ScRange& rRange ) const;
 
-//STRIP001  void        SetAreaTab( USHORT nTab );
 
     void        SelectTable( USHORT nTab, BOOL bNew )       { bTabMarked[nTab] = bNew; }
     BOOL        GetTableSelect( USHORT nTab ) const         { return bTabMarked[nTab]; }
@@ -106,20 +104,14 @@ public:
 
     void        MarkFromRangeList( const ScRangeList& rList, BOOL bReset );
 
-//STRIP001  USHORT      GetMarkColumnRanges( USHORT* pRanges );
-//STRIP001  USHORT      GetMarkRowRanges( USHORT* pRanges );
 
-//STRIP001  BOOL        IsColumnMarked( USHORT nCol ) const;
-//STRIP001  BOOL        IsRowMarked( USHORT nRow ) const;
     BOOL        IsAllMarked( const ScRange& rRange ) const;     // Multi
 
-//STRIP001  short       GetNextMarked( USHORT nCol, short nRow, BOOL bUp ) const;
     BOOL        HasMultiMarks( USHORT nCol ) const;
     BOOL        HasAnyMultiMarks() const;
 
     //  Tabellen-Markierungen anpassen:
     void        InsertTab( USHORT nTab );
-//STRIP001  void        DeleteTab( USHORT nTab );
 };
 
 

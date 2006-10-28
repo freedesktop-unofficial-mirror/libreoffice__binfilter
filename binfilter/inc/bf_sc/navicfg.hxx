@@ -4,9 +4,9 @@
  *
  *  $RCSfile: navicfg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:19:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:38:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,9 +58,7 @@ public:
 
     void    SetListMode(USHORT nNew);
     USHORT  GetListMode() const         { return nListMode; }
-//STRIP001  void    SetDragMode(USHORT nNew);
     USHORT  GetDragMode() const         { return nDragMode; }
-//STRIP001  void    SetRootType(USHORT nNew);
     USHORT  GetRootType() const         { return nRootType; }
 };
 

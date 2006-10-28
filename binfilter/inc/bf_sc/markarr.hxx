@@ -4,9 +4,9 @@
  *
  *  $RCSfile: markarr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:18:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:37:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,7 +63,6 @@ public:
             ~ScMarkArray();
     void    Reset( BOOL bMarked = FALSE );
     BOOL    GetMark( USHORT nRow ) const;
-//STRIP001  void    SetMark( USHORT nRow, BOOL bMarked );
     void    SetMarkArea( USHORT nStartRow, USHORT nEndRow, BOOL bMarked );
     BOOL    IsAllMarked( USHORT nStartRow, USHORT nEndRow ) const;
     BOOL    HasOneMark( USHORT& rStartRow, USHORT& rEndRow ) const;
@@ -71,9 +70,6 @@ public:
     void    CopyMarksTo( ScMarkArray& rDestMarkArray ) const;
 
     BOOL    Search( USHORT nRow, short& nIndex ) const;
-//STRIP001  void    DeleteArea(USHORT nStartRow, USHORT nEndRow);
-//STRIP001  void    SwapCol(ScMarkArray& rMarkArray);
-//STRIP001  void    MoveTo(USHORT nStartRow, USHORT nEndRow, ScMarkArray& rMarkArray);
 
     short   GetNextMarked( short nRow, BOOL bUp ) const;        // inkl. aktuelle
     USHORT  GetMarkEnd( USHORT nRow, BOOL bUp ) const;
