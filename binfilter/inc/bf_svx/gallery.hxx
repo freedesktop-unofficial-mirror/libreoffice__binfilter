@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gallery.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:33:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:36:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,12 +39,6 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 class List;
 class Graphic;
 class Bitmap;
@@ -112,67 +106,6 @@ class VCDrawModel;
 class FmFormModel;
 class FmFormModel;
 
-//STRIP001 class GalleryExplorer
-//STRIP001 {
-//STRIP001 private:
-//STRIP001
-//STRIP001  static Gallery*             ImplGetGallery();
-//STRIP001
-//STRIP001 public:
-//STRIP001
-//STRIP001  static GalleryExplorer*     GetGallery();
-//STRIP001
-//STRIP001 public:
-//STRIP001
-//STRIP001  INetURLObject               GetURL() const;
-//STRIP001  String                      GetFilterName() const;
-//STRIP001  Graphic                     GetGraphic() const;
-//STRIP001  BOOL                        GetVCDrawModel( FmFormModel& rModel ) const;
-//STRIP001  BOOL                        IsLinkage() const;
-//STRIP001
-//STRIP001  static BOOL                 FillThemeList( List& rThemeList );
-//STRIP001
-//STRIP001  static BOOL                 FillObjList( const String& rThemeName, List& rObjList );
-//STRIP001  static BOOL                 FillObjList( ULONG nThemeId, List& rObjList );
-//STRIP001
-//STRIP001  static BOOL                 InsertURL( const String& rThemeName, const String& rURL );
-//STRIP001  static BOOL                 InsertURL( ULONG nThemeId, const String& rURL );
-//STRIP001
-//STRIP001  static BOOL                 InsertURL( const String& rThemeName, const String& rURL,
-//STRIP001                                         const ULONG nSgaFormat /* = SGA_FORMAT_ALL */ );
-//STRIP001  static BOOL                 InsertURL( ULONG nThemeId, const String& rURL,
-//STRIP001                                         const ULONG nSgaFormat /* = SGA_FORMAT_ALL */ );
-//STRIP001
-//STRIP001  static ULONG                GetObjCount( const String& rThemeName );
-//STRIP001  static ULONG                GetObjCount( ULONG nThemeId );
-//STRIP001
-//STRIP001  static BOOL                 GetGraphicObj( const String& rThemeName, ULONG nPos,
-//STRIP001                                             Graphic* pGraphic = NULL, Bitmap* pThumb = NULL,
-//STRIP001                                             BOOL bProgess = FALSE );
-//STRIP001  static BOOL                 GetGraphicObj( ULONG nThemeId, ULONG nPos,
-//STRIP001                                             Graphic* pGraphic = NULL, Bitmap* pThumb = NULL,
-//STRIP001                                             BOOL bProgess = FALSE );
-//STRIP001
-//STRIP001  static BOOL                 InsertGraphicObj( const String& rThemeName, const Graphic& rGraphic );
-//STRIP001  static BOOL                 InsertGraphicObj( ULONG nThemeId, const Graphic& rGraphic );
-//STRIP001
-//STRIP001  static ULONG                GetSdrObjCount( const String& rThemeName );
-//STRIP001  static ULONG                GetSdrObjCount( ULONG nThemeId );
-//STRIP001
-//STRIP001  static BOOL                 GetSdrObj( const String& rThemeName, ULONG nSdrModelPos,
-//STRIP001                                         FmFormModel* pModel = NULL, Bitmap* pThumb = NULL );
-//STRIP001  static BOOL                 GetSdrObj( ULONG nThemeId, ULONG nSdrModelPos,
-//STRIP001                                         FmFormModel* pModel = NULL, Bitmap* pThumb = NULL );
-//STRIP001
-//STRIP001  static BOOL                 InsertSdrObj( const String& rThemeName, FmFormModel& rModel );
-//STRIP001  static BOOL                 InsertSdrObj( ULONG nThemeId, FmFormModel& rModel );
-//STRIP001
-//STRIP001  static BOOL                 BeginLocking( const String& rThemeName );
-//STRIP001  static BOOL                 BeginLocking( ULONG nThemeId );
-//STRIP001
-//STRIP001  static BOOL                 EndLocking( const String& rThemeName );
-//STRIP001  static BOOL                 EndLocking( ULONG nThemeId );
-//STRIP001 };
 
 }//end of namespace binfilter
 #endif // _GALLERY_HXX_
