@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sxctitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:57:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:15:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,8 +58,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream& rIn, USHORT nVer) const;
     virtual USHORT          GetValueCount() const; // { return 4; }
             SdrCaptionType  GetValue() const      { return (SdrCaptionType)SfxEnumItem::GetValue(); }
-//STRIP001  virtual String  GetValueTextByPos(USHORT nPos) const;
-//STRIP001     virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, String& rText, const IntlWrapper * = 0) const;
 };
 
 }//end of namespace binfilter
