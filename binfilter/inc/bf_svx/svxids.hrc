@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svxids.hrc,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:52:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:14:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -288,8 +288,6 @@
 #define SID_BROWSER_DLG                     (SID_SVX_START + 572)
 
 // Redlining-Control
-//STRIP001 #define SID_REDLIN_FILTER_PAGE               (SID_SVX_START + 642)
-//STRIP001 #define  SID_REDLIN_VIEW_PAGE                (SID_SVX_START + 643)
 
 //Numerierungsdialog
 #define SID_ATTR_NUMBERING_RULE             (SID_SVX_START + 855)
@@ -773,7 +771,6 @@
 #define SID_SET_SUB_SCRIPT                  (SID_SVX_START + 295)
 
 // Ids f"ur Raster-Tabpage --------------------------------------------------
-//STRIP001 #define SID_ATTR_GRID_OPTIONS               (SID_SVX_START + 298)
 
 // Ids f"ur TabStops-Object -------------------------------------------------
 
