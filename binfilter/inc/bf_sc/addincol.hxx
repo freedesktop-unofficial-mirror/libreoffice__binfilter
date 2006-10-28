@@ -4,9 +4,9 @@
  *
  *  $RCSfile: addincol.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:36:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:26:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,9 +57,6 @@
 #include <com/sun/star/container/XNameAccess.hpp>
 #endif
 
-//STRIP001 #ifndef _LANG_HXX
-//STRIP001 #include <tools/lang.hxx>
-//STRIP001 #endif
 
 #ifndef _RTL_USTRING_H_
 #include <rtl/ustring.h>
@@ -126,13 +123,8 @@ public:
     String              FindFunction( const String& rUpperName, BOOL bLocalFirst );
     const ScUnoAddInFuncData*   GetFuncData( const String& rName );             // exact name
 
-//STRIP001  void                LocalizeString( String& rName );    // modify rName - input: exact name
 
-//STRIP001  long                GetFuncCount();
-//STRIP001  BOOL                FillFunctionDesc( long nFunc, ScFuncDesc& rDesc );
 
-//STRIP001  BOOL                GetExcelName( const String& rCalcName, LanguageType eDestLang, String& rRetExcelName );
-//STRIP001  BOOL                GetCalcName( const String& rExcelName, String& rRetCalcName );
                                 // both leave rRet... unchanged, if no matching name is found
 };
 
