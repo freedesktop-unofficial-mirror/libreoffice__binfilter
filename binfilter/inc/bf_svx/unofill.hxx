@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unofill.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:14:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:22:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,5 +51,4 @@ class SdrModel;
 ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL SvxUnoDashTable_createInstance( SdrModel* pModel );
 
 }//end of namespace binfilter
-#endif _SVX_UNOFILL_HXX_
-
+#endif // _SVX_UNOFILL_HXX_
