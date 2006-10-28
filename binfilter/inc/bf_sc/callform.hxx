@@ -4,9 +4,9 @@
  *
  *  $RCSfile: callform.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:59:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:28:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,17 +88,9 @@ friend class FuncCollection;
 private:
     FuncData(const String& rIName);
 public:
-//STRIP001  FuncData(const ModuleData*pModule,
-//STRIP001           const String&    rIName,
-//STRIP001           const String&    rFName,
-//STRIP001                 USHORT     nNo,
-//STRIP001                 USHORT     nCount,
-//STRIP001           const ParamType* peType,
-//STRIP001                 ParamType  eType);
     FuncData(const FuncData& rData);
     virtual DataObject* Clone() const { return new FuncData(*this); }
 
-//STRIP001  const   String&     GetModuleName() const;
     const   String&     GetInternalName() const { return aInternalName; }
     const   String&     GetFuncName() const { return aFuncName; }
             USHORT      GetParamCount() const { return nParamCount; }
@@ -106,13 +98,10 @@ public:
             ParamType   GetReturnType() const { return eParamType[0]; }
             ParamType   GetAsyncType() const { return eAsyncType; }
             BOOL        Call(void** ppParam);
-//STRIP001          BOOL        Advice(AdvData pfCallback);
-//STRIP001          BOOL        Unadvice(double nHandle);
 
                         // Name und Beschreibung des Parameters nParam.
                         // nParam==0 => Desc := Funktions-Beschreibung,
                         // Name := n/a
-//STRIP001          BOOL        GetParamDesc( String& aName, String& aDesc, USHORT nParam );
 };
 
 
@@ -124,13 +113,11 @@ public:
     FuncCollection(const FuncCollection& rFuncCollection) : SortedCollection ( rFuncCollection ) {}
 
     virtual DataObject* Clone() const { return new FuncCollection(*this); }
-//STRIP001          FuncData*   operator[]( const USHORT nIndex) const {return (FuncData*)At(nIndex);}
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
             BOOL        SearchFunc( const String& rName, USHORT& rIndex ) const;
 };
 
 
-//STRIP001 BOOL InitExternalFunc(const ::rtl::OUString& rModuleName);
 void ExitExternalFunc();
 
 } //namespace binfilter
