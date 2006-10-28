@@ -4,9 +4,9 @@
  *
  *  $RCSfile: optgrid.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:03:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:48:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,18 +37,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _SFXTABDLG_HXX //autogen
-// auto strip #include <bf_sfx2/tabdlg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXENUMITEM_HXX //autogen
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_GROUP_HXX //autogen
-// auto strip #include <vcl/group.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_FIXED_HXX //autogen
-// auto strip #include <vcl/fixed.hxx>
-// auto strip #endif
 #ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
 #endif
@@ -101,94 +89,9 @@ public:
 
 // class SvxGridItem -----------------------------------------------------
 
-//STRIP001 class SvxGridItem : public SvxOptionsGrid, public SfxPoolItem
-//STRIP001 {
-//STRIP001  // #i9076#
-//STRIP001  friend class SvxGridTabPage;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SvxGridItem( USHORT nWhich) : SfxPoolItem(nWhich){};
-//STRIP001  SvxGridItem( const SvxGridItem& pTestItem );
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001
-//STRIP001 };
 
 // class SvxGridTabPage --------------------------------------------------
 
-//STRIP001 class SvxGridTabPage : public SfxTabPage
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SvxGridTabPage( Window* pParent, const SfxItemSet& rSet );
-//STRIP001
-//STRIP001  static SfxTabPage*  Create( Window* pParent, const SfxItemSet& rAttrSet );
-//STRIP001
-//STRIP001  virtual BOOL        FillItemSet( SfxItemSet& rSet );
-//STRIP001  virtual void        Reset( const SfxItemSet& rSet );
-//STRIP001
-//STRIP001  virtual void        ActivatePage( const SfxItemSet& rSet );
-//STRIP001  virtual int         DeactivatePage( SfxItemSet* pSet );
-//STRIP001
-//STRIP001 private:
-//STRIP001  CheckBox            aCbxUseGridsnap;
-//STRIP001  CheckBox            aCbxGridVisible;
-//STRIP001
-//STRIP001     FixedLine           aFlResolution;
-//STRIP001  FixedText           aFtDrawX;
-//STRIP001  MetricField         aMtrFldDrawX;
-//STRIP001  FixedText           aFtDrawY;
-//STRIP001  MetricField         aMtrFldDrawY;
-//STRIP001
-//STRIP001     FixedLine           aFlDivision;
-//STRIP001     FixedText           aFtDivisionX;
-//STRIP001     NumericField        aNumFldDivisionX;
-//STRIP001     FixedText           aDivisionPointX;
-//STRIP001
-//STRIP001     FixedText           aFtDivisionY;
-//STRIP001     NumericField        aNumFldDivisionY;
-//STRIP001     FixedText           aDivisionPointY;
-//STRIP001
-//STRIP001     CheckBox            aCbxSynchronize;
-//STRIP001     FixedLine           aGrpDrawGrid; // Neu
-//STRIP001
-//STRIP001 protected:
-//STRIP001     //these controls are used in draw and impress
-//STRIP001     FixedLine       aGrpSnap;
-//STRIP001     CheckBox        aCbxSnapHelplines;
-//STRIP001  CheckBox        aCbxSnapBorder;
-//STRIP001  CheckBox        aCbxSnapFrame;
-//STRIP001  CheckBox        aCbxSnapPoints;
-//STRIP001  FixedText       aFtSnapArea;
-//STRIP001  MetricField     aMtrFldSnapArea;
-//STRIP001
-//STRIP001     FixedLine       aSeparatorFL;
-//STRIP001
-//STRIP001     FixedLine       aGrpOrtho;
-//STRIP001     CheckBox        aCbxOrtho;
-//STRIP001  CheckBox        aCbxBigOrtho;
-//STRIP001  CheckBox        aCbxRotate;
-//STRIP001  MetricField     aMtrFldAngle;
-//STRIP001  FixedText       aFtBezAngle;
-//STRIP001  MetricField     aMtrFldBezAngle;
-//STRIP001
-//STRIP001 private:
-//STRIP001     BOOL                bAttrModified;
-//STRIP001  BOOL                bEqualGrid; // Neu
-//STRIP001
-//STRIP001 #ifdef _SVX_OPTGRID_CXX
-//STRIP001     DECL_LINK( ClickRotateHdl_Impl, void * );
-//STRIP001     DECL_LINK( ChangeDrawHdl_Impl, MetricField * );
-//STRIP001     DECL_LINK( ChangeGridsnapHdl_Impl, void * );
-//STRIP001     DECL_LINK( ChangeDivisionHdl_Impl, NumericField * );
-//STRIP001
-//STRIP001 #endif
-//STRIP001 };
 
 }//end of namespace binfilter
 #endif
