@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formcellbinding.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:12:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:48:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,27 +43,9 @@
 #ifndef _DRAFTS_COM_SUN_STAR_FORM_XLISTENTRYSINK_HPP_
 #include <drafts/com/sun/star/form/XListEntrySink.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XGRIDCOLUMNFACTORY_HPP_
-// auto strip #include <com/sun/star/form/XGridColumnFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
-// auto strip #include <com/sun/star/container/XChild.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
-// auto strip #include <com/sun/star/table/XCellRange.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
-// auto strip #include <com/sun/star/form/XFormsSupplier.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
 #endif
