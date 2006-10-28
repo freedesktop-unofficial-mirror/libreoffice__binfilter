@@ -4,9 +4,9 @@
  *
  *  $RCSfile: light3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:46:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:42:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,10 +97,8 @@ class E3dLight : public E3dPointObj
     virtual void SetColor(const Color& rNewColor);
 
     FASTBOOL IsOn() const { return bOn; }
-//STRIP001  void SetOn(FASTBOOL bNewOn = TRUE);
 
     FASTBOOL IsLightObjVisible() const { return bVisible; }
-//STRIP001  void SetLightObjVisible(FASTBOOL bNewVisible = TRUE);
 
     double GetRed() const   { return fRed; }
     double GetGreen() const { return fGreen; }
@@ -109,7 +107,6 @@ class E3dLight : public E3dPointObj
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void operator=(const SdrObject& rObj);
 
 //-/    virtual void           SetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
 //-/    virtual void           NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
@@ -117,7 +114,6 @@ class E3dLight : public E3dPointObj
 //-/    virtual void Collect3DAttributes(SfxItemSet& rAttr) const;
 //-/    virtual void Distribute3DAttributes(const SfxItemSet& rAttr);
 
-//STRIP001  virtual void           NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
     virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 };

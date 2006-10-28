@@ -4,9 +4,9 @@
  *
  *  $RCSfile: lathe3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:45:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:41:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -133,29 +133,22 @@ class E3dLatheObj : public E3dCompoundObject
         E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
     const   PolyPolygon3D& GetPolyPolygon() const { return aPolyPoly3D; }
-//STRIP001  void    ReSegment(long nHSegs, long nVSegs);
 
-//STRIP001  virtual void operator=(const SdrObject&);
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
     // Geometrieerzeugung
     virtual void CreateGeometry();
 
     // Give out simple line geometry
-//STRIP001  virtual void GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const;
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     // Lokale Parameter setzen/lesen mit Geometrieneuerzeugung
     void SetPolyPoly3D(const PolyPolygon3D& rNew);
     const PolyPolygon3D& GetPolyPoly3D() { return aPolyPoly3D; }
 
-//STRIP001  void SetLatheScale(double fNew);
     double GetLatheScale() const { return fLatheScale; }
 
     // #107245#
@@ -174,8 +167,6 @@ class E3dLatheObj : public E3dCompoundObject
     virtual void PostItemChange(const sal_uInt16 nWhich);
 
     // Aufbrechen
-//STRIP001  virtual BOOL IsBreakObjPossible();
-//STRIP001  virtual SdrAttrObj* GetBreakObj();
 };
 
 }//end of namespace binfilter
