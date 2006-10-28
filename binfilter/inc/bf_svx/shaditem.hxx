@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shaditem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-06-02 12:28:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:00:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,16 +87,10 @@ public:
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
     virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
-//STRIP001  virtual int              ScaleMetrics( long nMult, long nDiv );
-//STRIP001  virtual int              HasMetrics() const;
 
     const Color& GetColor() const { return aShadowColor;}
     void SetColor( const Color &rNew ) { aShadowColor = rNew; }
@@ -111,7 +105,6 @@ public:
     USHORT CalcShadowSpace( USHORT nShadow ) const;
 
     virtual USHORT          GetValueCount() const;
-//STRIP001  virtual String          GetValueTextByPos( USHORT nPos ) const;
     virtual USHORT          GetEnumValue() const;
     virtual void            SetEnumValue( USHORT nNewVal );
 };
