@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hints.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:16:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:36:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,7 +137,6 @@ public:
                     ~ScLinkRefreshedHint();
 
     void            SetSheetLink( const String& rSourceUrl );
-//STRIP001  void            SetDdeLink( const String& rA, const String& rT, const String& rI, BYTE nM );
     void            SetAreaLink( const ScAddress& rPos );
 
     USHORT              GetLinkType() const { return nLinkType; }
@@ -154,21 +153,11 @@ public:
 
 class ScAutoStyleHint : public SfxHint
 {
-//STRIP001  ScRange     aRange;
-//STRIP001  String      aStyle1;
-//STRIP001  String      aStyle2;
-//STRIP001  ULONG       nTimeout;
-//STRIP001
 public:
                     TYPEINFO();
                     ScAutoStyleHint( const ScRange& rR, const String& rSt1,
                                         ULONG nT, const String& rSt2 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ULONG nT, const String& rSt2 );
-//STRIP001                  ~ScAutoStyleHint();
 
-//STRIP001  const ScRange&  GetRange() const    { return aRange; }
-//STRIP001  const String&   GetStyle1() const   { return aStyle1; }
-//STRIP001  UINT32          GetTimeout() const  { return nTimeout; }
-//STRIP001  const String&   GetStyle2() const   { return aStyle2; }
 };
 
 
