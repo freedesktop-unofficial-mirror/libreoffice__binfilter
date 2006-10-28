@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewpt3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:21:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:23:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,8 +99,6 @@ class Viewport3D
     void SetVUV(const Vector3D& rNewVUV);
     void SetPRP(const Vector3D& rNewPRP);
     void SetVPD(double fNewVPD);
-//STRIP001  void SetNearClipDist(double fNewNCD);
-//STRIP001  void SetFarClipDist(double fNewFCD);
 
     const Vector3D& GetVRP() const  { return aVRP; }
     const Vector3D& GetVPN() const  { return aVPN; }
@@ -119,7 +117,6 @@ class Viewport3D
     AspectMapType GetAspectMapping() { return eAspectMapping; }
 
     void SetViewWindow(double fX, double fY, double fW, double fH);
-//STRIP001  void GetViewWindow(double& rX, double& rY, double& rW, double& rH) const;
 
     // View-Window genau um das mit rTransform transformierte Volumen legen
     void FitViewToVolume(const Volume3D& rVolume, Matrix4D aTransform);
@@ -132,15 +129,11 @@ class Viewport3D
 
     // View-Transformationen
     const Matrix4D& GetViewTransform();
-//STRIP001  Vector3D&       Transform(Vector3D&);
-//STRIP001  Vector3D        Transformed(const Vector3D&);
 
     // Projektion und Mapping
     Vector3D&   DoProjection(Vector3D&) const;
     Vector3D    MapToDevice(const Vector3D&) const;
-//STRIP001  Vector3D    ProjectAndMap(Vector3D) const;
 
-//STRIP001  Vector3D MapSizeToView(const Vector3D& rVec);
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
