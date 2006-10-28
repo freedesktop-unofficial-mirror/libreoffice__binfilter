@@ -4,9 +4,9 @@
  *
  *  $RCSfile: interno.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:22:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:01:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,8 +67,6 @@ class SfxInPlaceObject : public SvInPlaceObject
 
 #if _SOLAR__PRIVATE
 private:
-//STRIP001  SfxInPlaceFrame*    GetIPFrame_Impl() const {
-//STRIP001                          return PTR_CAST(SfxInPlaceFrame,pFrame); }
 
 public:
     SfxViewFrame*       GetViewFrame_Impl() const
@@ -91,8 +89,6 @@ protected:
                                    long nVersion = SOFFICE_FILEFORMAT_CURRENT
     ) const;
 
-//STRIP001  virtual void        TopWinActivate( BOOL bActivate );
-//STRIP001  virtual void        DocWinActivate( BOOL bActivate );
     virtual BOOL        InitNew( SvStorage * );         // Rekursiv
     virtual BOOL        Load( SvStorage * );            // Rekursiv
     virtual BOOL        Save();                         // Rekursiv
@@ -108,7 +104,6 @@ protected:
     virtual void        Embed( BOOL bEmbedded );
     virtual void        Open( BOOL bOpen );
     virtual void        InPlaceActivate( BOOL );
-//STRIP001  virtual void        UIActivate( BOOL );
     virtual void        DocumentNameChanged( const String & rDocName );
 
     virtual             ~SfxInPlaceObject();
