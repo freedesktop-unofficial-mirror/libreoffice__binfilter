@@ -4,9 +4,9 @@
  *
  *  $RCSfile: zforauto.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:37:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:44:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,8 +46,6 @@
 namespace binfilter {
 
 
-//STRIP001 } class SvStream; namespace binfilter {//STRIP009
-//STRIP001 class SvNumberFormatter;
 
 
 class ScNumFormatAbbrev
@@ -62,22 +60,6 @@ public:
     ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter) {DBG_BF_ASSERT(0, "STRIP"); } //STRIP001    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter);
     void Load( SvStream& rStream );         // Laden der Zahlenformate
     void Save( SvStream& rStream ) const;   // Speichern der Zahlenformate
-//STRIP001  void PutFormatIndex(ULONG nFormat, SvNumberFormatter& rFormatter);
-//STRIP001     ULONG GetFormatIndex( SvNumberFormatter& rFormatter);
-//STRIP001     inline int operator==(const ScNumFormatAbbrev& rNumFormat) const
-//STRIP001  {
-//STRIP001      return ((sFormatstring == rNumFormat.sFormatstring)
-//STRIP001          && (eLnge == rNumFormat.eLnge)
-//STRIP001          && (eSysLnge == rNumFormat.eSysLnge));
-//STRIP001  }
-//STRIP001  inline ScNumFormatAbbrev& operator=(const ScNumFormatAbbrev& rNumFormat)
-//STRIP001  {
-//STRIP001      sFormatstring = rNumFormat.sFormatstring;
-//STRIP001      eLnge = rNumFormat.eLnge;
-//STRIP001      eSysLnge = rNumFormat.eSysLnge;
-//STRIP001      return *this;
-//STRIP001  }
-//STRIP001  inline LanguageType GetLanguage() const { return eLnge; }
 };
 
 
