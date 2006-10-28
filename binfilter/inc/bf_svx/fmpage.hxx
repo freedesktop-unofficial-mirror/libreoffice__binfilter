@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmpage.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:28:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:33:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,6 @@ public:
     TYPEINFO();
 
     FmFormPage(FmFormModel& rModel,StarBASIC*, FASTBOOL bMasterPage=sal_False);
-//STRIP001  FmFormPage(const FmFormPage& rPage);
     ~FmFormPage();
 
     virtual void    WriteData(SvStream& rOut) const;
@@ -84,10 +83,8 @@ public:
     virtual void    InsertObject(SdrObject* pObj, sal_uInt32 nPos=CONTAINER_APPEND,
                                     const SdrInsertReason* pReason=NULL);
 
-//STRIP001  virtual SdrObject* NbcRemoveObject(sal_uInt32 nObjNum);
     virtual SdrObject* RemoveObject(sal_uInt32 nObjNum);
 
-//STRIP001  virtual SdrObject* NbcReplaceObject(SdrObject* pNewObj, sal_uInt32 nObjNum);
     virtual SdrObject* ReplaceObject(SdrObject* pNewObj, sal_uInt32 nObjNum);
 
 #ifndef SVX_LIGHT
@@ -99,8 +96,6 @@ public:
         If bTryPreserveName is sal_True, the property value for "Name" will be restored after calling the InsertObject (which otherwise
         may alter the name to ensure uniqueness).
     */
-//STRIP001  void InsertFormObjectEnsureEnv(const SdrObject* _pSourceObject, SdrObject* _pClone = NULL, sal_Bool bTryPreserveName = sal_True, sal_uInt32 _nPos = CONTAINER_APPEND,
-//STRIP001          const SdrInsertReason* _pReason = NULL);
 
     /** Create an environment (within the forms hierarchy of the page) for inserting a form object which is a clone
         of the given form object (which has to belong to a foreign page).
@@ -108,7 +103,6 @@ public:
         without (to much) structure loss.
         If _pObj isn't a form object, nothing happens.
     */
-//STRIP001  sal_Bool EnsureFormObjectEnv(const SdrObject* _pObj);
 #endif
 
     // Zugriff auf alle Formulare
@@ -122,17 +116,7 @@ public:
 
     const String&       GetName() const { return aPageName; }
     void                SetName( const String& rName ) { aPageName = rName; }
-//STRIP001  void                SetBasic( StarBASIC* pBas );
     StarBASIC*          GetBasic() const { return pBasic; }
-//STRIP001  sal_Bool            RequestHelp(
-//STRIP001                          Window* pWin,
-//STRIP001                          SdrView* pView,
-//STRIP001                          const HelpEvent& rEvt );
-//STRIP001  virtual void        RequestBasic();
-//STRIP001  virtual XubString   GetLinkData( const XubString& rLinkName );
-//STRIP001  virtual void        SetLinkData( const XubString& rLinkName, const XubString& rLinkData );
-//STRIP001  virtual void        UpdateLinkData( const XubString& rLinkName, const XubString& rLinkData );
-//STRIP001  SfxJSArray*         GetFormsArray() const;
 };
 
 }//end of namespace binfilter

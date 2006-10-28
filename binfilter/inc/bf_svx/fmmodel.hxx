@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmmodel.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:28:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:33:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,23 +70,17 @@ private:
     sal_Bool            m_bOpenInDesignMode : 1;
     sal_Bool            m_bAutoControlFocus : 1;
 
-//STRIP001  FmFormModel( const FmFormModel& );
-//STRIP001  void operator=(const FmFormModel& rSrcModel);
-//STRIP001  FASTBOOL operator==(const FmFormModel& rCmpModel) const;
 
 public:
     TYPEINFO();
 
-//STRIP001  FmFormModel(SfxItemPool* pPool=NULL, SvPersist* pPers=NULL );
     FmFormModel(const XubString& rPath, SfxItemPool* pPool=NULL,
                 SvPersist* pPers=NULL );
-//STRIP001  FmFormModel(SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable);
     FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers,
                 FASTBOOL bUseExtColorTable);
 
     virtual ~FmFormModel();
 
-//STRIP001  virtual SdrPage* AllocPage(FASTBOOL bMasterPage);
     virtual void     InsertPage(SdrPage* pPage, sal_uInt16 nPos=0xFFFF);
     virtual SdrPage* RemovePage(sal_uInt16 nPgNum);
     virtual void     MovePage(USHORT nPgNum, USHORT nNewPos);
