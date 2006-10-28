@@ -4,9 +4,9 @@
  *
  *  $RCSfile: optutil.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:21:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:38:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,8 +63,6 @@ public:
             ScLinkConfigItem( const ::rtl::OUString rSubTree );
     void    SetCommitLink( const Link& rLink );
 
-//STRIP001  virtual void    Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames );
-//STRIP001  virtual void    Commit();
 
     void    SetModified()   { ConfigItem::SetModified(); }
     ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>

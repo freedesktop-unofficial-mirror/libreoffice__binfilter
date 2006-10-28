@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pagepar.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:21:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:38:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,8 +67,6 @@ struct ScPageTableParam
     ScPageTableParam( const ScPageTableParam& r );
     ~ScPageTableParam();
 
-//STRIP001  ScPageTableParam&   operator=   ( const ScPageTableParam& r );
-//STRIP001  BOOL                operator==  ( const ScPageTableParam& r ) const;
     void                Reset       ();
 };
 
@@ -85,8 +83,6 @@ struct ScPageAreaParam
     ScPageAreaParam( const ScPageAreaParam& r );
     ~ScPageAreaParam();
 
-//STRIP001  ScPageAreaParam&    operator=   ( const ScPageAreaParam& r );
-//STRIP001  BOOL                operator==  ( const ScPageAreaParam& r ) const;
     void                Reset       ();
 };
 

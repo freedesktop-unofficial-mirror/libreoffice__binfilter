@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pivot.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:22:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:39:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,7 +108,6 @@ public:
                         StrCollection   ( rPivotStrCollection ),
                         pUserData       ( rPivotStrCollection.pUserData) {}
 
-//STRIP001  virtual DataObject* Clone() const;
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
 
     TypedStrData*       operator[]( const USHORT nIndex) const
@@ -183,7 +182,6 @@ public:
 
     virtual DataObject* Clone() const;
 
-//STRIP001  ScPivot*    CreateNew() const;
 
     BOOL        Load(SvStream& rStream, ScMultipleReadHeader& rHdr );
     BOOL        Store(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
@@ -192,7 +190,6 @@ public:
     void        GetQuery(ScQueryParam& rQuery) const;
 
     void        SetHeader(BOOL bHeader);
-//STRIP001  BOOL        GetHeader() const;
     void        SetIgnoreEmpty(BOOL bIgnore);
     BOOL        GetIgnoreEmpty() const;
     void        SetDetectCat(BOOL bDetect);
@@ -231,38 +228,19 @@ public:
                             const ScArea& rSrcArea );
 
     BOOL        CreateData(BOOL bKeepDest = FALSE);
-//STRIP001  void        DrawData();
     void        ReleaseData();
 
-//STRIP001  BOOL        IsPivotAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const;
-//STRIP001  BOOL        IsFilterAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const;
-//STRIP001  BOOL        GetColFieldAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, USHORT& rField) const;
-//STRIP001  BOOL        GetRowFieldAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, USHORT& rField) const;
 
                 //  Referenz-Anpassung:
 
     void        MoveSrcArea( USHORT nNewCol, USHORT nNewRow, USHORT nNewTab );
     void        MoveDestArea( USHORT nNewCol, USHORT nNewRow, USHORT nNewTab );
-//STRIP001  void        ExtendSrcArea( USHORT nNewEndCol, USHORT nNewEndRow );
 
 private:
     BOOL    CreateFields();
     void    CreateFieldData();
     void    CalcArea();
 
-//STRIP001  void    SetDataLine(USHORT nCol, USHORT nRow, USHORT nTab, USHORT nRIndex);
-//STRIP001  void    SetFuncLine(USHORT nCol, USHORT nRow, USHORT nTab, USHORT nFunc, USHORT nIndex, USHORT nStartRIndex, USHORT nEndRIndex);
-//STRIP001  void    ColToTable(short nField, USHORT& nRow, ScProgress& rProgress);
-//STRIP001  void    RowToTable(short nField, USHORT& nCol);
-//STRIP001  void    SetFrame(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nWidth = 20);
-//STRIP001  void    SetFrameHor(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001  void    SetFrameVer(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001  void    SetFontBold(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001  void    SetJustifyLeft(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001  void    SetJustifyRight(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001  void    SetStyle(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nId);
-//STRIP001  void    SetButton(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001  void    SetValue(USHORT nCol, USHORT nRow, const SubTotal& rTotal, USHORT nFunc);
     USHORT  GetCategoryRow( USHORT nCol, USHORT nRow );
 };
 
@@ -280,9 +258,7 @@ public:
                     Collection  ( rScPivotCollection ),
                     pDoc        ( rScPivotCollection.pDoc ) {}
 
-//STRIP001  virtual DataObject* Clone() const;
             ScPivot*    operator[]( const USHORT nIndex) const {return (ScPivot*)At(nIndex);}
-//STRIP001          ScPivot*    GetPivotAtCursor(USHORT nCol, USHORT nRow, USHORT nTab) const;
 
     BOOL    Load( SvStream& rStream );
     BOOL    Store( SvStream& rStream ) const;
@@ -291,9 +267,7 @@ public:
                                 USHORT nCol1, USHORT nRow1, USHORT nTab1,
                                 USHORT nCol2, USHORT nRow2, USHORT nTab2,
                                 short nDx, short nDy, short nDz );
-//STRIP001  void    UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
 
-//STRIP001  BOOL    operator==(const ScPivotCollection& rCmp) const;
 
     String  CreateNewName( USHORT nMin = 1 ) const;
 };

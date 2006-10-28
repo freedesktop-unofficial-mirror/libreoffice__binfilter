@@ -4,9 +4,9 @@
  *
  *  $RCSfile: prnsave.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:22:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:39:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@ public:
     const ScRange*  GetRepeatCol() const    { return pRepeatCol; }
     const ScRange*  GetRepeatRow() const    { return pRepeatRow; }
 
-//STRIP001  BOOL    operator==( const ScPrintSaverTab& rCmp ) const;
 };
 
 class ScPrintRangeSaver
@@ -76,9 +75,7 @@ public:
 
     USHORT                  GetTabCount() const     { return nTabCount; }
     ScPrintSaverTab&        GetTabData(USHORT nTab);
-//STRIP001  const ScPrintSaverTab&  GetTabData(USHORT nTab) const;
 
-//STRIP001  BOOL    operator==( const ScPrintRangeSaver& rCmp ) const;
 };
 
 
