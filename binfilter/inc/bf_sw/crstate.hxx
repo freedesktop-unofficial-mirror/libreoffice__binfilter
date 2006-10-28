@@ -4,9 +4,9 @@
  *
  *  $RCSfile: crstate.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:51:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:37:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _CRSTATE_HXX
 #define _CRSTATE_HXX
 
-// auto strip #ifndef _GEN_HXX //autogen
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
 
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
