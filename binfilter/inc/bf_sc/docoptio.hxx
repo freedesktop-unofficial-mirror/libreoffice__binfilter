@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docoptio.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:08:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:33:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #define SC_DOCOPTIO_HXX
 
 
-// auto strip #ifndef _UTL_CONFIGITEM_HXX_
-// auto strip #include <unotools/configitem.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
@@ -190,25 +187,6 @@ inline int ScDocOptions::operator!=( const ScDocOptions& rOpt ) const
 // Item fuer Einstellungsdialog - Berechnen
 //==================================================================
 
-//STRIP001 class ScTpCalcItem : public SfxPoolItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001              TYPEINFO();
-//STRIP001              ScTpCalcItem( USHORT nWhich );
-//STRIP001              ScTpCalcItem( USHORT nWhich,
-//STRIP001                            const ScDocOptions& rOpt );
-//STRIP001              ScTpCalcItem( const ScTpCalcItem& rItem );
-//STRIP001              ~ScTpCalcItem();
-//STRIP001
-//STRIP001  virtual String          GetValueText() const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  const ScDocOptions& GetDocOptions() const { return theOptions; }
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScDocOptions theOptions;
-//STRIP001 };
 
 //==================================================================
 //  Config Item containing document options
@@ -228,7 +206,6 @@ class ScDocCfg : public ScDocOptions
 public:
             ScDocCfg();
 
-//STRIP001  void    SetOptions( const ScDocOptions& rNew );
 };
 
 
