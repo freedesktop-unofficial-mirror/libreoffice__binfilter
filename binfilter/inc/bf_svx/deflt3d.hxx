@@ -4,9 +4,9 @@
  *
  *  $RCSfile: deflt3d.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:15:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:26:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,17 +36,8 @@
 #ifndef _E3D_DEFLT3D_HXX
 #define _E3D_DEFLT3D_HXX
 
-// auto strip #ifndef _B3D_MATRIL3D_HXX
-// auto strip #include <goodies/matril3d.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _B3D_B3DLIGHT_HXX
-// auto strip #include <goodies/b3dlight.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _B3D_B3DTEX_HXX
-// auto strip #include <goodies/b3dtex.hxx>
-// auto strip #endif
 
 #ifndef _B3D_BASE3D_HXX
 #include <goodies/base3d.hxx>
