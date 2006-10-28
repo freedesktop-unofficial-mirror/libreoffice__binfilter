@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlerror.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:46:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:41:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,25 +41,13 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
 #include <com/sun/star/xml/sax/XLocator.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
-// auto strip #include <com/sun/star/xml/sax/SAXParseException.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
