@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xoutx.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:40:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:32:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -195,13 +195,8 @@ protected:
     OutputDevice*       pOut;
     Point               aOfs;
 
-//STRIP001  void                CalcFatLineJoin(const Point& rEnd, const Point& rNext, XLineParam& rParam);
     void                DrawFillPolyPolygon( const PolyPolygon& rPoly, BOOL bRect = FALSE );
     void                DrawLinePolygon( const Polygon& rPoly, BOOL bClosePoly );
-//STRIP001  void                DrawStartEndPoly(const Point& rPos, const XPolygon& rXPoly, const XLineParam& rParam);
-//STRIP001  void                DrawLineStartEnd(const Polygon& rPoly);
-//STRIP001  void                DrawFatLine(const Point& rStart, const Point& rEnd, const Point* pNext, XLineParam& rParam);
-//STRIP001  void                DrawPatternLine(const Point& rStart, const Point& rEnd, XLineParam& rParam);
 
     // #101498# changed interface due to bidi requirements
     sal_Int32 ImpDrawFormText(DrawPortionInfo* pInfo, const Polygon& rPoly, sal_Int32 nAbsStart,
@@ -217,8 +212,6 @@ protected:
     //                                     BOOL bToLastPoint, BOOL bDraw,
     //                                     const long* pDXArray = NULL);
 
-//STRIP001  void                ImpDrawBitmapFill( const Rectangle& rRect, BOOL bPrinter );
-//STRIP001  void                ImpCalcBmpFillStartValues( const Rectangle& rRect, BOOL bPrinter );
 /*N*/   void                ImpDrawTiledBitmap( OutputDevice* pOut, const Rectangle& rRect,
 /*N*/                                           const Point& rStartPoint, const Rectangle& rClipRect,
 /*N*/                                             BOOL bPrinter );
@@ -333,7 +326,6 @@ long            XOutCalcBezierStepCount( const XPolygon& rXPoly, USHORT nIndex, 
 void            XOutCalcBezier( const XPolygon& rXPoly, USHORT nBezIndex, Polygon& rPoly, USHORT nPolyIndex, long nSteps );
 Polygon         XOutCreatePolygon( const XPolygon& rXPoly, OutputDevice* pOut, USHORT nRough = 0 );
 Polygon         XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* pOut );
-//STRIP001 PolyPolygon      XOutCreatePolyPolygonBezier( const XPolyPolygon& rXPoly, OutputDevice* pOut );
 // #102382# Remove XOutGetCharOutline
 //XPolyPolygon  XOutGetCharOutline( USHORT nChar, OutputDevice& rOut, BOOL bOptimizeSize = TRUE );
 
