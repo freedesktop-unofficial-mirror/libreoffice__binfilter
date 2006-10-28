@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:41:00 $
+#   last change: $Author: rt $ $Date: 2006-10-28 01:01:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,28 +52,13 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_cnttab.cxx \
-        sw_cntex.cxx \
-        sw_idxmrk.cxx \
-        sw_multmrk.cxx \
-        sw_toxmgr.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_cnttab.src \
-        sw_idxmrk.src \
-        sw_multmrk.src
+        sw_cnttab.src
 
 SLOFILES =  \
-        $(SLO)$/sw_cnttab.obj \
-        $(SLO)$/sw_cntex.obj \
         $(SLO)$/sw_idxmrk.obj \
-        $(SLO)$/sw_multmrk.obj \
         $(SLO)$/sw_toxmgr.obj
-
-EXCEPTIONSFILES =  \
-        $(SLO)$/sw_cntex.obj
 
 # --- Tagets -------------------------------------------------------
 
