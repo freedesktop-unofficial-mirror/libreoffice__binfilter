@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLTextNumRuleInfo.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:12:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:08:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _XMLOFF_XMLTEXTNUMRULEINFO_HXX
 #define _XMLOFF_XMLTEXTNUMRULEINFO_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
 #endif

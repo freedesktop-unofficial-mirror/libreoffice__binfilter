@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLTextCharStyleNamesElementExport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:10:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:08:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 #define _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
 #endif
