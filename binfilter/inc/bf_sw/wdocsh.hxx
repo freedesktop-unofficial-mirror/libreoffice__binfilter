@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wdocsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:08:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:02:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,16 +54,6 @@ public:
     SwWebDocShell(SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED);
     ~SwWebDocShell();
 
-//STRIP001  virtual void        FillClass( SvGlobalName * pClassName,
-//STRIP001                                 ULONG * pClipFormat,
-//STRIP001                                 String * pAppName,
-//STRIP001                                 String * pLongUserName,
-//STRIP001                                 String * pUserName,
-//STRIP001                                 long nVersion = SOFFICE_FILEFORMAT_CURRENT ) const;
-//STRIP001  USHORT      GetSourcePara()const
-//STRIP001                          {return nSourcePara;}
-//STRIP001  void        SetSourcePara(USHORT nSet)
-//STRIP001                          {nSourcePara = nSet;}
 };
 
 } //namespace binfilter
