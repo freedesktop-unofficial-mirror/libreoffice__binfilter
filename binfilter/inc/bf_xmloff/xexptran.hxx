@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xexptran.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:17:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:06:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,9 +68,6 @@
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
 #endif
 
-// auto strip #ifndef _VCL_MAPUNIT_HXX
-// auto strip #include <vcl/mapunit.hxx>
-// auto strip #endif
 class Vector3D;
 class Matrix4D;
 class Matrix3D;
