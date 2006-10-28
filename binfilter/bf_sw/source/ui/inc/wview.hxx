@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wview.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:05:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:00:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@ namespace binfilter {
 class SwWebView: public SwView
 {
 protected:
-//STRIP001  virtual void    SelectShell();
 public:
 
     SFX_DECL_VIEWFACTORY(SwWebView);
