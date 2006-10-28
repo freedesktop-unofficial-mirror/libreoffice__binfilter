@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtstyle.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:39:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:22:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,20 +40,11 @@
 #ifndef _COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HPP_
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
 
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 //#include "xmlprmap.hxx"
@@ -61,15 +52,9 @@
 #ifndef _XMLOFF_XMLSMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX
-// auto strip #include "families.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
 //#include "txtprmap.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_TXTPARAE_HXX
-// auto strip #include "txtparae.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
 #endif
