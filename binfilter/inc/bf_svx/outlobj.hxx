@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outlobj.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:16:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:50:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,6 @@ class OutlinerParaObject
 
 public:
                                 OutlinerParaObject( const OutlinerParaObject& );
-//STRIP001                              OutlinerParaObject( const EditTextObject& rTObj );
                                 ~OutlinerParaObject();
 
     OutlinerParaObject*         Clone() const;
@@ -97,10 +96,7 @@ public:
     void                        ChangeStyleSheetName( SfxStyleFamily eFamily, const XubString& rOldName, const XubString& rNewName );
     void                        SetStyleSheets( USHORT nLevel, const XubString rNewName, const SfxStyleFamily& rNewFamily );
 
-//STRIP001  BOOL                        RemoveCharAttribs( USHORT nWhich = 0 );
-//STRIP001  BOOL                        RemoveParaAttribs( USHORT nWhich = 0 );
 
-//STRIP001  void                        SetLRSpaceItemFlags( BOOL bOutlineMode );
     void                        MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart = EE_CHAR_START, USHORT nEnd = EE_CHAR_END );
 
     void                        PrepareStore( SfxStyleSheetPool* pStyleSheetPool );
