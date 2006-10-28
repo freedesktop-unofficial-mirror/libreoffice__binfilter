@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwXFilterOptions.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:54:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:28:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,6 @@
 #endif
 #ifndef _UNOPRNMS_HXX
 #include <unoprnms.hxx>
-#endif
-#ifndef _ASCFLDLG_HXX
-#include <ascfldlg.hxx>
 #endif
 
 #ifndef _VOS_MUTEX_HXX_ //autogen
@@ -180,16 +177,6 @@ sal_Int16 SwXFilterOptions::execute() throw (uno::RuntimeException)
     }
     if(pDocShell)
     {
-//STRIP001         SwAsciiFilterDlg aAsciiDlg( NULL, *pDocShell, pInStream );
-//STRIP001         if(RET_OK == aAsciiDlg.Execute())
-//STRIP001         {
-//STRIP001             SwAsciiOptions aOptions;
-//STRIP001             aAsciiDlg.FillOptions( aOptions );
-//STRIP001             String sTmp;
-//STRIP001             aOptions.WriteUserData(sTmp);
-//STRIP001             sFilterOptions = sTmp;
-//STRIP001             nRet = ui::dialogs::ExecutableDialogResults::OK;
-//STRIP001         }
     }
 
     if( pInStream )
