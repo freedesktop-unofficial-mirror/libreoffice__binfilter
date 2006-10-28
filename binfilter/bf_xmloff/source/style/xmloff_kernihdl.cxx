@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_kernihdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:51:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:03:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include "kernihdl.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
@@ -47,9 +44,6 @@
 
 // --
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <xmltoken.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"

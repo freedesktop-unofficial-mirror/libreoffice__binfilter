@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_numehelp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:51:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:03:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,24 +36,14 @@
 #include "numehelp.hxx"
 
 #include "nmspmap.hxx"
-// auto strip #include "xmlnmspe.hxx"
 #include "xmluconv.hxx"
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOOLS_INTN_HXX
-// auto strip #include <tools/intn.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
@@ -66,9 +56,6 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
