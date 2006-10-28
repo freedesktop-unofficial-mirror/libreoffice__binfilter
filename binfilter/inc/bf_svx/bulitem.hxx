@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bulitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:07:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:22:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,10 +105,6 @@ public:
     TYPEINFO();
 
     SvxBulletItem( USHORT nWhich = 0 );
-//STRIP001  SvxBulletItem( BYTE nStyle, const Font& rFont, USHORT nStart = 0, USHORT nWhich = 0 );
-//STRIP001  SvxBulletItem( const Font& rFont, sal_Unicode cSymbol, USHORT nWhich=0 );
-//STRIP001  SvxBulletItem( const Bitmap&, USHORT nWhich = 0 );
-//STRIP001  SvxBulletItem( const GraphicObject&, USHORT nWhich = 0 );
     SvxBulletItem( SvStream& rStrm, USHORT nWhich = 0 );
     SvxBulletItem( const SvxBulletItem& );
     ~SvxBulletItem();
@@ -117,7 +113,6 @@ public:
     virtual SfxPoolItem*    Create( SvStream&, USHORT nVersion ) const;
     virtual SvStream&       Store( SvStream & , USHORT nItemVersion ) const;
 
-//STRIP001  String              GetFullText() const;
     sal_Unicode         GetSymbol() const { return cSymbol; }
     String              GetPrevText() const { return aPrevText; }
     String              GetFollowText() const { return aFollowText; }
@@ -129,11 +124,7 @@ public:
     Font                GetFont() const { return aFont; }
     USHORT              GetScale() const { return nScale; }
 
-//STRIP001  Bitmap              GetBitmap() const;
-//STRIP001  void                SetBitmap( const Bitmap& rBmp );
 
-//STRIP001  const GraphicObject& GetGraphicObject() const;
-//STRIP001  void                 SetGraphicObject( const GraphicObject& rGraphicObject );
 
     void                SetSymbol( sal_Unicode c) { cSymbol = c; }
     void                SetPrevText( const String& rStr) { aPrevText = rStr;}
@@ -148,10 +139,6 @@ public:
 
     virtual USHORT      GetVersion(USHORT nFileVersion) const;
     virtual int         operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     static void         StoreFont( SvStream&, const Font& );
     static Font         CreateFont( SvStream&, USHORT nVer );
@@ -166,7 +153,6 @@ public:
                             else
                                 nValidMask &= ~nFlag;
                         }
-//STRIP001  void                CopyValidProperties( const SvxBulletItem& rCopyFrom );
 };
 
 }//end of namespace binfilter
