@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:34:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:28:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-// auto strip #ifndef _XDEF_HXX
-// auto strip #include <bf_svx/xdef.hxx>
-// auto strip #endif
 class SfxItemPool;
 namespace binfilter {
 
@@ -83,8 +80,6 @@ public:
            ~NameOrIndex() {};
 
     virtual int          operator==(const SfxPoolItem& rItem) const;
-//STRIP001  virtual SfxPoolItem* Clone(SfxItemPool* pPool = 0) const;
-//STRIP001  virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
     virtual SvStream&    Store(SvStream& rOut, USHORT nItemVersion ) const;
 
             String       GetName() const              { return GetValue();   }
