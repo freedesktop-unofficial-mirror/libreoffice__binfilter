@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextShapeImportHelper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:34:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:19:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,16 +36,10 @@
 #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
-// auto strip #include <com/sun/star/text/TextContentAnchorType.hpp>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLTIMP_HXX_
 #include "xmlimp.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
-// auto strip #include "txtimp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
@@ -58,9 +52,6 @@
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-// auto strip #include <com/sun/star/drawing/XShapes.hpp>
-// auto strip #endif
 
 #ifndef _XMLTEXTSHAPEIMPORTHELPER_HXX
 #include "XMLTextShapeImportHelper.hxx"
