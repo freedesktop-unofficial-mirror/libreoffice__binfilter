@@ -4,9 +4,9 @@
  *
  *  $RCSfile: zoomctrl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:05:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:01:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,8 @@ class SwZoomControl : public SvxZoomStatusBarControl
 private:
     String  sPreviewZoom;
 public:
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
     virtual void    StateChanged( USHORT nSID, SfxItemState eState,
                                   const SfxPoolItem* pState );
-//STRIP001  virtual void    Paint( const UserDrawEvent& rEvt );
 
     SFX_DECL_STATUSBAR_CONTROL();
 

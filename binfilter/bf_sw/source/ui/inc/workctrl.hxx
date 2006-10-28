@@ -4,9 +4,9 @@
  *
  *  $RCSfile: workctrl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:03:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:00:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -89,7 +89,6 @@ class SwTbxInsertCtrl : public SfxToolBoxControl
 {
     USHORT                  nLastSlotId;
 
-//STRIP001  virtual void            Select( BOOL bMod1 = FALSE );
 
 public:
     SFX_DECL_TOOLBOX_CONTROL();
@@ -97,8 +96,6 @@ public:
     SwTbxInsertCtrl( USHORT nId, ToolBox& rTbx, SfxBindings& rBind );
     ~SwTbxInsertCtrl();
 
-//STRIP001  virtual SfxPopupWindowType  GetPopupWindowType() const;
-//STRIP001  virtual SfxPopupWindow*     CreatePopupWindow();
     virtual void                StateChanged( USHORT nSID,
                                               SfxItemState eState,
                                               const SfxPoolItem* pState );
@@ -122,13 +119,10 @@ public:
     SwTbxAutoTextCtrl( USHORT nId, ToolBox& rTbx, SfxBindings& rBind );
     ~SwTbxAutoTextCtrl();
 
-//STRIP001  virtual SfxPopupWindowType  GetPopupWindowType() const;
-//STRIP001  virtual SfxPopupWindow*     CreatePopupWindow();
     virtual void                StateChanged( USHORT nSID,
                                               SfxItemState eState,
                                               const SfxPoolItem* pState );
 
-//STRIP001  DECL_LINK(PopupHdl, PopupMenu*);
 };
 
 
@@ -161,35 +155,17 @@ class SwScrollNaviPopup : public SfxPopupWindow
 
     void            ApplyImageList();
     protected:
-//STRIP001         DECL_LINK(SelectHdl, ToolBox*);
-//STRIP001         virtual void        DataChanged( const DataChangedEvent& rDCEvt );
 
     public:
         SwScrollNaviPopup( USHORT nId, SfxBindings & );
         ~SwScrollNaviPopup();
 
-//STRIP001  static String           GetQuickHelpText(BOOL bNext);
-//STRIP001  virtual SfxPopupWindow* Clone() const;
-//STRIP001     void                GrabFocus(){aToolBox.GrabFocus();}
 };
 
 //----------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------
 
-//STRIP001 class SwNaviImageButton : public ImageButton
-//STRIP001 {
-//STRIP001      SwScrollNaviPopup*  pPopup;
-//STRIP001      Image               aImage;
-//STRIP001         Image               aImageH;
-//STRIP001         String              sQuickText;
-//STRIP001
-//STRIP001  protected:
-//STRIP001         virtual void    Click();
-//STRIP001         virtual void    DataChanged( const DataChangedEvent& rDCEvt );
-//STRIP001     public:
-//STRIP001      SwNaviImageButton(Window* pParent);
-//STRIP001 };
 
 //----------------------------------------------------------------------------
 //  Die ImageButtons muessen sich bei Bedarf den HelpText selbst setzen
@@ -202,7 +178,6 @@ public:
          SwHlpImageButton(Window* pParent, const ResId& rResId, BOOL bUpBtn) :
             ImageButton(pParent, rResId), bUp(bUpBtn){}
 
-//STRIP001  virtual void    RequestHelp( const HelpEvent& rHEvt );
 
 };
 /* -----------------26.11.2002 09:25-----------------
@@ -216,11 +191,7 @@ public:
     SwPreviewZoomControl( USHORT nId, ToolBox& rTbx, SfxBindings& rBind );
     ~SwPreviewZoomControl();
 
-//STRIP001     virtual void            StateChanged( USHORT nSID,
-//STRIP001                                               SfxItemState eState,
-//STRIP001                                               const SfxPoolItem* pState );
 
-//STRIP001     virtual Window*         CreateItemWindow( Window *pParent );
 };
 } //namespace binfilter
 #endif
