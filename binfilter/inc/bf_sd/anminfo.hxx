@@ -4,9 +4,9 @@
  *
  *  $RCSfile: anminfo.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:55:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:51:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -118,8 +118,6 @@ public:
     virtual void            ReadData(SvStream& rIn);
 
             // NULL loest die Verbindung zum Pfadobjekt
-//STRIP001          void            SetPath(SdrPathObj* pPath = NULL);
-//STRIP001  virtual void            SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     virtual void            AfterRead();
 };
 
