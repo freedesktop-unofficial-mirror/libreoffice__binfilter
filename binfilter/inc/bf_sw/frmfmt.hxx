@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmfmt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:08:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:46:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ public:
     //Erzeugt die Ansichten
     virtual void MakeFrms();
 
-//STRIP001  virtual Graphic MakeGraphic( ImageMap* pMap = NULL );
 
     virtual void Modify( SfxPoolItem* pOldValue, SfxPoolItem* pNewValue );
 
@@ -90,8 +89,6 @@ public:
     // an der Point Position definiert ist.
     //  rPoint - teste auf der DocPosition
     //  pFly - optionaler FlyFrame, falls der schon bekannt ist.
-//STRIP001  IMapObject* GetIMapObject( const Point& rPoint,
-//STRIP001                              const SwFlyFrm *pFly = 0 ) const;
 
     // Gibt die tatsaechlche Groesse des Frames zurueck bzw. ein leeres
     // Rechteck, wenn kein Layout existiert. Wird pPoint angegeben, dann
@@ -118,7 +115,6 @@ public:
     const SdrObject *FindRealSdrObject() const
         { return ((SwFrmFmt*)this)->FindRealSdrObject(); }
 
-//STRIP001  BOOL IsLowerOf( const SwFrmFmt& rFmt ) const;
 
     DECL_FIXEDMEMPOOL_NEWDEL(SwFrmFmt)
 };
@@ -153,7 +149,6 @@ public:
     SwFlyFrm* GetFrm( const Point* pDocPos = 0,
                         const BOOL bCalcFrm = FALSE ) const;
 
-//STRIP001  virtual Graphic MakeGraphic( ImageMap* pMap = NULL );
 
     virtual BOOL GetInfo( SfxPoolItem& rInfo ) const;
 
@@ -218,7 +213,6 @@ public:
     //werden zurueckgesetzt.
     virtual void MakeFrms();
 
-//STRIP001  virtual Graphic MakeGraphic( ImageMap* pMap = NULL );
 
 
     DECL_FIXEDMEMPOOL_NEWDEL(SwDrawFrmFmt);
