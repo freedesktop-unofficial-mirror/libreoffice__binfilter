@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_styleexp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:53:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:05:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,53 +41,20 @@
 #include <svtools/svstdarr.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include "nmspmap.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLITMAP_HXX
 //#include "xmlitmap.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
-// auto strip #include "xmluconv.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLKYWD_HXX
-// auto strip #include "xmlkywd.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include "attrlist.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-// auto strip #include "xmlprmap.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLEXPPR_HXX
-// auto strip #include "xmlexppr.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
@@ -98,9 +65,6 @@
 #ifndef _XMLOFF_XMLASTPLP_HXX
 #include "xmlaustp.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_STYLEEXP_HXX
-// auto strip #include "styleexp.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
