@@ -4,9 +4,9 @@
  *
  *  $RCSfile: applicat.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:46:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:12:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 
 class SvxErrorHandler;
 
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /**************************************************************************/
