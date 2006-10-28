@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtftn.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:04:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:43:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #define _FMTFTN_HXX
 
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
 #endif
@@ -78,7 +75,6 @@ public:
 
     void SetNumStr( const String& rStr )    { aNumber = rStr; }
     void SetNumber( USHORT nNo )            { nNumber = nNo; }
-//STRIP001  void SetEndNote( BOOL b );
 
     void SetNumber( const SwFmtFtn& rFtn )
         { nNumber = rFtn.nNumber; aNumber = rFtn.aNumber; }
@@ -86,7 +82,6 @@ public:
     const SwTxtFtn *GetTxtFtn() const   { return pTxtAttr; }
           SwTxtFtn *GetTxtFtn()         { return pTxtAttr; }
 
-//STRIP001  void GetFtnText( String& rStr ) const;
 
     // returnt den anzuzeigenden String der Fuss-/Endnote
     String GetViewNumStr( const SwDoc& rDoc, BOOL bInclStrs = FALSE ) const;

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtftntx.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:04:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:43:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,11 +94,6 @@ public:
 //  virtual SfxArgumentError SetVariable( const SbxVariable &rVal,
 //                                        SfxMapUnit eCoreMetric,
 //                                        SfxMapUnit eUserMetric );
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
     inline BOOL IsAtEnd() const { return FTNEND_ATPGORDOCEND != GetValue(); }
 
