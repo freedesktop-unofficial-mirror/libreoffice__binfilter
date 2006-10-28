@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoevent.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:43:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:01:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #include <svtools/unoevent.hxx>
 #endif
 
-// auto strip #ifndef _SFXMACITEM_HXX
-// auto strip #include <svtools/macitem.hxx>
-// auto strip #endif
 class SvxMacroItem;
 class SvxMacro;
 

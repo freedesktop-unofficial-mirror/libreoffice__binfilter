@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unocoll.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:42:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:00:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #ifndef _FLYENUM_HXX //autogen
 #include <flyenum.hxx>
 #endif
-// auto strip #ifndef _SV_TIMER_HXX
-// auto strip #include <vcl/timer.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
@@ -53,9 +50,6 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx> // helper for implementations
@@ -63,9 +57,6 @@
 #ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
 #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE4_HXX_
-// auto strip #include <cppuhelper/implbase4.hxx>   // helper for implementations
-// auto strip #endif
 namespace com{namespace sun {namespace star {namespace text
 {
     class XTextTable;

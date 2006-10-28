@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoatxt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:42:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:00:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,21 +35,9 @@
 #ifndef _UNOATXT_HXX
 #define _UNOATXT_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTGROUP_HPP_
-// auto strip #include <com/sun/star/text/XAutoTextGroup.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTENTRY_HPP_
-// auto strip #include <com/sun/star/text/XAutoTextEntry.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTCONTAINER_HPP_
 #include <com/sun/star/text/XAutoTextContainer.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
@@ -62,9 +50,6 @@
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
@@ -77,9 +62,6 @@
 #ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
 #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE4_HXX_
-// auto strip #include <cppuhelper/implbase4.hxx>   // helper for implementations
-// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // helper for implementations
 #endif

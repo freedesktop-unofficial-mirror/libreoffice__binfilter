@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoport.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:46:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:01:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,21 +41,12 @@
 #ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
 #endif
-// auto strip #ifndef _CPPUHELPER_IMPLBASE6_HXX_
-// auto strip #include <cppuhelper/implbase6.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
-// auto strip #include <com/sun/star/text/XTextRange.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTENTENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
-// auto strip #include <com/sun/star/container/XEnumerationAccess.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
