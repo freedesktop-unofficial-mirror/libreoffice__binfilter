@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbmgr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:52:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:37:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <tools/string.hxx>
 #endif
 
-// auto strip #ifndef _LINK_HXX
-// auto strip #include <tools/link.hxx>
-// auto strip #endif
 #ifndef _SVARRAY_HXX
 #include <svtools/svarray.hxx>
 #endif
@@ -50,7 +47,6 @@
 #include <com/sun/star/util/Date.hpp>
 #endif
 
-// auto strip #include "swtypes.hxx"    // fuer aEmptyStr
 #ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
 #endif
@@ -201,18 +197,13 @@ friend class SwConnectionDisposedListener_Impl;
     SwDSParam*          FindDSConnection(const ::rtl::OUString& rSource, BOOL bCreate);
 
 
-//STRIP001  DECL_LINK( PrtCancelHdl, Button * );
 
     // Datensaetze als Text ins Dokument einfuegen
-//STRIP001  void ImportFromConnection( SwWrtShell* pSh);
 
     // Einzelnen Datensatz als Text ins Dokument einfuegen
-//STRIP001  void ImportDBEntry(SwWrtShell* pSh);
 
     // Mischen von Datensaetzen in Felder, dann per email versenden
-//STRIP001  BOOL            MergeMailing(SwWrtShell* pSh);
     // Mischen von Datensaetzen in Felder, dann als Datei abspeichern
-//STRIP001  BOOL            MergeMailFiles(SwWrtShell* pSh);
     BOOL            ToNextRecord(SwDSParam* pParam);
 
 public:
@@ -233,10 +224,7 @@ public:
     // Mischen von Datensaetzen in Felder
     BOOL            MergeNew(USHORT nOpt, SwWrtShell& rSh,
            const ::binfilter::svx::ODataAccessDescriptor& _rDescriptor);
-//STRIP001     BOOL            Merge(SwWrtShell* pSh);
     // Mischen von Datensaetzen in Felder, dann drucken
-//STRIP001  BOOL            MergePrint( SwView& rView,
-//STRIP001                              SwPrtOptions& rOpt, SfxProgress& rProgress );
     // Datenbankfelder mit fehlendem Datenbankname initialisieren
     inline BOOL     IsInitDBFields() const  { return bInitDBFields; }
     inline void     SetInitDBFields(BOOL b) { bInitDBFields = b;    }
@@ -253,29 +241,10 @@ public:
 
 
     // Listbox mit allen Tabellennamen einer Datenbank fuellen
-//STRIP001  BOOL            GetTableNames(ListBox* pListBox, const String& rDBName );
 
     // Listbox mit allen Spaltennamen einer Datenbanktabelle fuellen
-//STRIP001  BOOL            GetColumnNames(ListBox* pListBox,
-//STRIP001                      const String& rDBName, const String& rTableName, BOOL bAppend = FALSE);
-//STRIP001     BOOL            GetColumnNames(ListBox* pListBox,
-//STRIP001                         ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection> xConnection,
-//STRIP001                         const String& rTableName, BOOL bAppend = FALSE);
 
-//STRIP001     ULONG GetColumnFmt( ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource> xSource,
-//STRIP001                         ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection> xConnection,
-//STRIP001                         ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet> xColumn,
-//STRIP001                      SvNumberFormatter* pNFmtr,
-//STRIP001                      long nLanguage );
 
-//STRIP001     ULONG GetColumnFmt( const String& rDBName,
-//STRIP001                      const String& rTableName,
-//STRIP001                      const String& rColNm,
-//STRIP001                      SvNumberFormatter* pNFmtr,
-//STRIP001                      long nLanguage );
-//STRIP001  sal_Int32 GetColumnType( const String& rDBName,
-//STRIP001                        const String& rTableName,
-//STRIP001                        const String& rColNm );
 
     inline BOOL     IsInMerge() const   { return bInMerge; }
     void            EndMerge();
@@ -314,32 +283,19 @@ public:
     //close all data sources - after fields were updated
     void            CloseAll(BOOL bIncludingMerge = TRUE);
 
-//STRIP001  BOOL            GetMergeColumnCnt(const String& rColumnName, USHORT nLanguage,
-//STRIP001                              String &rResult, double *pNumber, sal_uInt32 *pFormat);
-//STRIP001  BOOL            ToNextMergeRecord();
     BOOL            ToNextRecord(const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType = -1);
 
-//STRIP001  BOOL            ExistsNextRecord()const;
     sal_uInt32      GetSelectedRecordId();
     sal_Bool        ToRecordId(sal_Int32 nSet);
 
     const SwDBData& GetAddressDBName();
 
-//STRIP001  static String GetDBField(
-//STRIP001                  ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > xColumnProp,
-//STRIP001                  const SwDBFormatData& rDBFormatData,
-//STRIP001                  double *pNumber = NULL);
 
     static ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>
             GetConnection(const String& rDataSource,
                 ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource>& rxSource);
 
-//STRIP001  static ::com::sun::star::uno::Reference< ::com::sun::star::sdbcx::XColumnsSupplier>
-//STRIP001          GetColumnSupplier(::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>,
-//STRIP001                                  const String& rTableOrQuery,
-//STRIP001                                  BYTE    eTableOrQuery = SW_DB_SELECT_UNKNOWN);
 
-//STRIP001  static ::com::sun::star::uno::Sequence<rtl::OUString> GetExistingDatabaseNames();
 
         static SwDbtoolsClient&    GetDbtoolsClient();
             // has to be called from _FinitUI()

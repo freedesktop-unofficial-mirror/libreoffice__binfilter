@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbfld.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:52:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:37:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -103,7 +103,6 @@ public:
     virtual void        SetSubType(USHORT nType);
 
     // Name oder Inhalt
-//STRIP001  virtual String      GetCntnt(BOOL bName = FALSE) const;
 
     // fuer Berechnungen in Ausdruecken
     void                ChgValue( double d, BOOL bVal );
@@ -169,7 +168,6 @@ public:
     inline void             SetDBData(const SwDBData& rDBData) { aDBData = rDBData; }
 
     // Name oder Inhalt
-//STRIP001  virtual String          GetCntnt(BOOL bName = FALSE) const;
     virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
     virtual USHORT          GetSubType() const;
