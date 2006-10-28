@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:30:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:35:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #include <so3/outplace.hxx>
 
 #if STLPORT_VERSION>=321
 #include <math.h>   // prevent conflict between exception and std::exception
@@ -49,97 +48,13 @@
 #ifndef _SVDVIEW_HXX //autogen
 #include <bf_svx/svdview.hxx>
 #endif
-// auto strip #ifndef _SOT_FACTORY_HXX
-// auto strip #include <sot/factory.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXITEMITER_HXX //autogen
-// auto strip #include <svtools/itemiter.hxx>
-// auto strip #endif
-// auto strip #ifndef _SOUND_HXX //autogen
-// auto strip #include <vcl/sound.hxx>
-// auto strip #endif
-// auto strip #ifndef _BIGINT_HXX //autogen
-// auto strip #include <tools/bigint.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _INSDLG_HXX //autogen
-// auto strip #include <so3/insdlg.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRAMEOBJ_HXX //autogen
-// auto strip #include <bf_sfx2/frameobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _EHDL_HXX //autogen
-// auto strip #include <svtools/ehdl.hxx>
-// auto strip #endif
 #ifndef _IPENV_HXX //autogen
 #include <so3/ipenv.hxx>
 #endif
-// auto strip #ifndef _SOERR_HXX //autogen
-// auto strip #include <so3/soerr.hxx>
-// auto strip #endif
-// auto strip #ifndef _CACHESTR_HXX //autogen
-// auto strip #include <tools/cachestr.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-// auto strip #include <svtools/moduleoptions.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
-// auto strip #include <bf_svx/brkitem.hxx>
-// auto strip #endif
-// auto strip #ifndef SMDLL0_HXX //autogen
-// auto strip #include <bf_starmath/smdll0.hxx>
-// auto strip #endif
-// auto strip #ifndef _SCHDLL0_HXX
-// auto strip #include <bf_sch/schdll0.hxx>
-// auto strip #endif
-// auto strip #ifndef _SCH_DLL_HXX
-// auto strip #include <bf_sch/schdll.hxx>
-// auto strip #endif
-// auto strip #ifndef _SCH_MEMCHRT_HXX
-// auto strip #include <bf_sch/memchrt.hxx>
-// auto strip #endif
-// auto strip #ifndef _OFF_APP_HXX //autogen
-// auto strip #include <bf_offmgr/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _OFAACCFG_HXX //autogen
-// auto strip #include <bf_offmgr/ofaaccfg.hxx>
-// auto strip #endif
-// auto strip #ifndef _MySVXACORR_HXX
-// auto strip #include <bf_svx/svxacorr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_GRAPH_HXX //autogen
-// auto strip #include <vcl/graph.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_IMPGRF_HXX
-// auto strip #include <bf_svx/impgrf.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_PRINTER_HXX //autogen
-// auto strip #include <bf_sfx2/printer.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _FMTFTN_HXX //autogen
-// auto strip #include <fmtftn.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTHBSH_HXX //autogen
-// auto strip #include <fmthbsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
-// auto strip #ifndef _BASESH_HXX
-// auto strip #include <basesh.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWMODULE_HXX
-// auto strip #include <swmodule.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -148,72 +63,33 @@
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
-// auto strip #ifndef _VIEW_HXX
-// auto strip #include <view.hxx>
-// auto strip #endif
-// auto strip #ifndef _UITOOL_HXX
-// auto strip #include <uitool.hxx>
-// auto strip #endif
 #ifndef _CMDID_H
 #include <cmdid.h>
 #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-// auto strip #ifndef _FRMMGR_HXX
-// auto strip #include <frmmgr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHELLIO_HXX
-// auto strip #include <shellio.hxx>
-// auto strip #endif
-// auto strip #ifndef _UINUMS_HXX
-// auto strip #include <uinums.hxx>  // fuer Anwenden einer
-// auto strip #endif
-// auto strip #ifndef _SWUNDO_HXX
-// auto strip #include <swundo.hxx>  // fuer Undo-Ids
-// auto strip #endif
 #ifndef _SWCLI_HXX
 #include <swcli.hxx>
 #endif
-// auto strip #ifndef _POOLFMT_HXX
-// auto strip #include <poolfmt.hxx>
-// auto strip #endif
 #ifndef _WVIEW_HXX
 #include <wview.hxx>
 #endif
 #ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
 #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTABLE_HXX
-// auto strip #include <swtable.hxx>
-// auto strip #endif
-// auto strip #ifndef _CAPTION_HXX
-// auto strip #include <caption.hxx>
-// auto strip #endif
 #ifndef _VISCRS_HXX //autogen wg. SwSelPaintRects
 #include <viscrs.hxx>
 #endif
 #ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
 #endif
-// auto strip #ifndef _CRSSKIP_HXX
-// auto strip #include <crsskip.hxx>
-// auto strip #endif
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _SWERROR_H
 #include <swerror.h>
 #endif
 #ifndef _WRTSH_HRC
 #include <wrtsh.hrc>
 #endif
-// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
-// auto strip #include <SwStyleNameMapper.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #define COMMON_INI_LIST \
@@ -242,449 +118,12 @@ namespace binfilter {
         bIsInClickToEdit = FALSE;
 
 
-//STRIP001 SvxAutoCorrect* lcl_IsAutoCorr()
-//STRIP001 {
-//STRIP001      SvxAutoCorrect* pACorr = OFF_APP()->GetAutoCorrConfig()->GetAutoCorrect();
-//STRIP001     if( pACorr && !pACorr->IsAutoCorrFlag( CptlSttSntnc | CptlSttWrd |
-//STRIP001                          ChgFractionSymbol | ChgOrdinalNumber |
-//STRIP001                             ChgToEnEmDash | SetINetAttr | Autocorrect ))
-//STRIP001      pACorr = 0;
-//STRIP001  return pACorr;
-//STRIP001 }
-//STRIP001
-//STRIP001 void SwWrtShell::NoEdit(BOOL bHideCrsr)
-//STRIP001 {
-//STRIP001  if(bHideCrsr)
-//STRIP001      HideCrsr();
-//STRIP001  bNoEdit = TRUE;
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001
-//STRIP001 void SwWrtShell::Edit()
-//STRIP001 {
-//STRIP001  if (CanInsert())
-//STRIP001  {
-//STRIP001      ShowCrsr();
-//STRIP001      bNoEdit = FALSE;
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001
-//STRIP001 BOOL SwWrtShell::IsEndWrd()
-//STRIP001 {
-//STRIP001  MV_KONTEXT(this);
-//STRIP001  if(IsEndPara() && !IsSttPara())
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  return IsEndWord();
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001 /*------------------------------------------------------------------------
-//STRIP001  Beschreibung:   Abfrage, ob Einfuegen moeglich ist; gfs. Beep
-//STRIP001 ------------------------------------------------------------------------*/
-//STRIP001
-//STRIP001
-//STRIP001
-//STRIP001 BOOL SwWrtShell::_CanInsert()
-//STRIP001 {
-//STRIP001  if(!CanInsert())
-//STRIP001  {
-//STRIP001      Sound::Beep();
-//STRIP001      return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
-//STRIP001 /*------------------------------------------------------------------------
-//STRIP001  Beschreibung:   String einfuegen
-//STRIP001 ------------------------------------------------------------------------*/
-//STRIP001
-//STRIP001 void SwWrtShell::InsertByWord( const String & rStr)
-//STRIP001 {
-//STRIP001  if( rStr.Len() )
-//STRIP001  {
-//STRIP001      BOOL bDelim = GetAppCharClass().isLetterNumeric( rStr, 0 );
-//STRIP001      xub_StrLen nPos = 0, nStt = 0;
-//STRIP001      for( ; nPos < rStr.Len(); nPos++ )
-//STRIP001          {
-//STRIP001          BOOL bTmpDelim = GetAppCharClass().isLetterNumeric( rStr, nPos );
-//STRIP001          if( bTmpDelim != bDelim )
-//STRIP001          {
-//STRIP001              Insert( rStr.Copy( nStt, nPos - nStt ));
-//STRIP001              nStt = nPos;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if( nStt != nPos )
-//STRIP001          Insert( rStr.Copy( nStt, nPos - nStt ));
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001 void SwWrtShell::Insert( const String &rStr )
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if( !_CanInsert() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  BOOL bStarted = FALSE, bHasSel = HasSelection(),
-//STRIP001      bCallIns = bIns /*|| bHasSel*/;
-//STRIP001
-//STRIP001  // Notify abschalten
-//STRIP001     // FME: This seems to be an optimisation: CallChgLink should not be called
-//STRIP001     // for an insert event. This cannot hold any longer, since inserting
-//STRIP001     // characters from a different script type has to call CallChgLink.
-//STRIP001 //    SwChgLinkFlag *pChgFlg = bCallIns ? new SwChgLinkFlag( *this ) : 0;
-//STRIP001
-//STRIP001  if( bHasSel )
-//STRIP001  {
-//STRIP001          // nur hier klammern, da das normale Insert schon an der
-//STRIP001          // Editshell geklammert ist
-//STRIP001      StartAllAction();
-//STRIP001      StartUndo(UNDO_INSERT);
-//STRIP001      bStarted = TRUE;
-//STRIP001      DelRight();
-//STRIP001  }
-//STRIP001 /*
-//STRIP001 JP 21.01.98: Ueberschreiben ueberschreibt nur die Selektion, nicht das
-//STRIP001          naechste Zeichen.
-//STRIP001  if( bHasSel && !bIns && 1 < rStr.Len() )
-//STRIP001  {
-//STRIP001      // falls mehrere Zeichen anstehen, nur das erste einfuegen,
-//STRIP001      // der Rest muss dann aber Ueberschrieben werden.
-//STRIP001      SwEditShell::Insert( rStr.GetChar( 0 ) );
-//STRIP001      SwEditShell::Overwrite( rStr.Copy( 1 ) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001 */
-//STRIP001      bCallIns ? SwEditShell::Insert( rStr ) : SwEditShell::Overwrite( rStr );
-//STRIP001
-//STRIP001
-//STRIP001  if( bStarted )
-//STRIP001  {
-//STRIP001      EndAllAction();
-//STRIP001      EndUndo(UNDO_INSERT);
-//STRIP001  }
-//STRIP001 //    delete pChgFlg;
-//STRIP001 }
-//STRIP001
-//STRIP001 /* Begrenzung auf maximale Hoehe geht nicht, da die maximale Hoehe
-//STRIP001  * des aktuellen Frames nicht erfragt werden kann. */
-//STRIP001
-//STRIP001
-//STRIP001
-//STRIP001 void SwWrtShell::Insert( const String &rPath, const String &rFilter,
-//STRIP001                       const Graphic &rGrf, SwFlyFrmAttrMgr *pFrmMgr,
-//STRIP001                       BOOL bRule )
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if ( !_CanInsert() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  StartAllAction();
-//STRIP001  StartUndo(UNDO_INSERT);
-//STRIP001
-//STRIP001  if ( HasSelection() )
-//STRIP001      DelRight();
-//STRIP001      // eingefuegte Grafik in eigenen Absatz, falls am Ende
-//STRIP001      // eines nichtleeren Absatzes
-//STRIP001  if ( IsEndPara() && !IsSttPara() )
-//STRIP001      SwFEShell::SplitNode();
-//STRIP001
-//STRIP001  EnterSelFrmMode();
-//STRIP001
-//STRIP001  BOOL bSetGrfSize = TRUE;
-//STRIP001  BOOL bOwnMgr     = FALSE;
-//STRIP001
-//STRIP001  if ( !pFrmMgr )
-//STRIP001  {
-//STRIP001      bOwnMgr = TRUE;
-//STRIP001      pFrmMgr = new SwFlyFrmAttrMgr( TRUE, this, FRMMGR_TYPE_GRF );
-//STRIP001
-//STRIP001      // VORSICHT
-//STRIP001      // GetAttrSet nimmt einen Abgleich vor
-//STRIP001      // Beim Einfuegen ist eine SwFrmSize vorhanden wegen der
-//STRIP001      // DEF-Rahmengroesse
-//STRIP001      // Diese muss fuer die optimale Groesse explizit entfernt werden
-//STRIP001      pFrmMgr->DelAttr(RES_FRM_SIZE);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      Size aSz( pFrmMgr->GetSize() );
-//STRIP001      if ( !aSz.Width() || !aSz.Height() )
-//STRIP001      {
-//STRIP001          aSz.Width() = aSz.Height() = 567;
-//STRIP001          pFrmMgr->SetSize( aSz );
-//STRIP001      }
-//STRIP001      else if ( aSz.Width() != DFLT_WIDTH && aSz.Height() != DFLT_HEIGHT )
-//STRIP001          bSetGrfSize = FALSE;
-//STRIP001
-//STRIP001      pFrmMgr->SetSizeType(ATT_FIX_SIZE);
-//STRIP001
-//STRIP001  }
-//STRIP001
-//STRIP001  // Einfuegen der Grafik
-//STRIP001  SwFEShell::Insert(rPath, rFilter, &rGrf, &pFrmMgr->GetAttrSet());
-//STRIP001  if ( bOwnMgr )
-//STRIP001      pFrmMgr->UpdateAttrMgr();
-//STRIP001
-//STRIP001  if( bSetGrfSize && !bRule )
-//STRIP001  {
-//STRIP001      Size aGrfSize, aBound = GetGraphicDefaultSize();
-//STRIP001      GetGrfSize( aGrfSize );
-//STRIP001
-//STRIP001      //Die GrafikSize noch um die Randattribute vergroessern, denn die
-//STRIP001      //Zaehlen beim Rahmen mit.
-//STRIP001      aGrfSize.Width() += pFrmMgr->CalcWidthBorder();
-//STRIP001      aGrfSize.Height()+= pFrmMgr->CalcHeightBorder();
-//STRIP001
-//STRIP001      const BigInt aTempWidth( aGrfSize.Width() );
-//STRIP001      const BigInt aTempHeight( aGrfSize.Height());
-//STRIP001
-//STRIP001      // ggf. Breite anpassen, Hoehe dann proportional verkleinern
-//STRIP001      if( aGrfSize.Width() > aBound.Width() )
-//STRIP001      {
-//STRIP001          aGrfSize.Width()  = aBound.Width();
-//STRIP001          aGrfSize.Height() = ((BigInt)aBound.Width()) * aTempHeight / aTempWidth;
-//STRIP001      }
-//STRIP001      // ggf. Hoehe anpassen, Breite dann proportional verkleinern
-//STRIP001      if( aGrfSize.Height() > aBound.Height() )
-//STRIP001      {
-//STRIP001          aGrfSize.Height() = aBound.Height();
-//STRIP001          aGrfSize.Width() =  ((BigInt)aBound.Height()) * aTempWidth / aTempHeight;
-//STRIP001      }
-//STRIP001      pFrmMgr->SetSize( aGrfSize );
-//STRIP001      pFrmMgr->UpdateFlyFrm();
-//STRIP001  }
-//STRIP001  if ( bOwnMgr )
-//STRIP001      delete pFrmMgr;
-//STRIP001
-//STRIP001  EndUndo(UNDO_INSERT);
-//STRIP001  EndAllAction();
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001 /*------------------------------------------------------------------------
-//STRIP001    Beschreibung: Fuegt ein OLE-Objekt in die CORE ein.
-//STRIP001               Wenn kein Object uebergeben wird, so wird eins erzeugt.
-//STRIP001 ------------------------------------------------------------------------*/
-//STRIP001
-//STRIP001
-//STRIP001 void SwWrtShell::Insert( SvInPlaceObjectRef *pRef, SvGlobalName *pName, BOOL bActivate, USHORT nSlotId)
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if( !_CanInsert() )
-//STRIP001  {
-//STRIP001      delete pRef;
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !pRef )
-//STRIP001  {
-//STRIP001      //Wir bauen uns ein neues OLE-Objekt, entweder per Dialog oder direkt
-//STRIP001      //ueber den Namen.
-//STRIP001      SvInPlaceObjectRef xIPObj;
-//STRIP001      BOOL bDoVerb = TRUE;
-//STRIP001      if ( pName )
-//STRIP001      {
-//STRIP001          const SotFactory* pFact = SvFactory::Find( *pName );
-//STRIP001          if ( pFact )
-//STRIP001          {
-//STRIP001              SvStorageRef aStor = new SvStorage( aEmptyStr );
-//STRIP001              xIPObj = &((SvFactory*)SvInPlaceObject::ClassFactory())->CreateAndInit( *pName,aStor );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              SvStorageRef aStor = new SvStorage( FALSE, aEmptyStr );
-//STRIP001              String aFileName;
-//STRIP001              BOOL bOk;
-//STRIP001              xIPObj = SvOutPlaceObject::InsertObject( NULL, &aStor, bOk, *pName, aFileName );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SvStorageRef aStor = new SvStorage( aEmptyStr, STREAM_STD_READWRITE);
-//STRIP001
-//STRIP001          switch (nSlotId)
-//STRIP001          {
-//STRIP001              case SID_INSERT_OBJECT:
-//STRIP001              {
-//STRIP001                  SvInsertOleObjectDialog aDlg;
-//STRIP001                  aDlg.SetHelpId(nSlotId);
-//STRIP001
-//STRIP001                  //Wir wollen uns nicht selbst servieren.
-//STRIP001                  SvObjectServerList aServerList;
-//STRIP001                  aDlg.FillObjectServerList( &aServerList );
-//STRIP001                  aServerList.Remove( *SwDocShell::ClassFactory() );
-//STRIP001
-//STRIP001                  xIPObj = aDlg.Execute( GetWin(), aStor, &aServerList);
-//STRIP001
-//STRIP001                  bDoVerb = aDlg.IsCreateNew();
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001              case SID_INSERT_PLUGIN:
-//STRIP001              {
-//STRIP001                  SvInsertPlugInDialog aDlg;
-//STRIP001                  aDlg.SetHelpId(nSlotId);
-//STRIP001
-//STRIP001                  xIPObj = aDlg.Execute( GetWin(), aStor);
-//STRIP001                  bDoVerb = FALSE;
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001              case SID_INSERT_APPLET:
-//STRIP001              {
-//STRIP001                  SvInsertAppletDialog aDlg;
-//STRIP001                  aDlg.SetHelpId(nSlotId);
-//STRIP001
-//STRIP001                  xIPObj = aDlg.Execute( GetWin(), aStor);
-//STRIP001                  bDoVerb = FALSE;
-//STRIP001              }
-//STRIP001              break;
-//STRIP001
-//STRIP001              case SID_INSERT_FLOATINGFRAME:
-//STRIP001              {
-//STRIP001                  SfxInsertFloatingFrameDialog aDlg( GetWin() );
-//STRIP001                  xIPObj = aDlg.Execute( aStor );
-//STRIP001                  bDoVerb = FALSE;
-//STRIP001              }
-//STRIP001
-//STRIP001              default:
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( xIPObj.Is() )
-//STRIP001      {
-//STRIP001          if( SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE &
-//STRIP001              xIPObj->GetMiscStatus() && GetPrt() )
-//STRIP001              xIPObj->OnDocumentPrinterChanged( GetPrt() );
-//STRIP001
-//STRIP001          if( InsertOle( xIPObj ) && bActivate && bDoVerb )
-//STRIP001          {
-//STRIP001              SfxInPlaceClientRef xCli = GetView().FindIPClient( xIPObj,
-//STRIP001                                                  &GetView().GetEditWin());
-//STRIP001              if ( !xCli.Is() )
-//STRIP001              {
-//STRIP001                  xCli = new SwOleClient( &GetView(), &GetView().GetEditWin() );
-//STRIP001                  SetCheckForOLEInCaption( TRUE );
-//STRIP001              }
-//STRIP001
-//STRIP001              ErrCode nErr = xIPObj->DoConnect( xCli );
-//STRIP001              ErrorHandler::HandleError( nErr );
-//STRIP001              if ( !ERRCODE_TOERROR(nErr) )
-//STRIP001              {
-//STRIP001
-//STRIP001                  SvEmbeddedObjectRef xObj = &xIPObj;
-//STRIP001                  CalcAndSetScale( xObj );
-//STRIP001                  //#50270# Error brauchen wir nicht handeln, das erledigt das
-//STRIP001                  //DoVerb in der SfxViewShell
-//STRIP001                  nErr = GetView().SfxViewShell::DoVerb( xCli, SVVERB_SHOW );
-//STRIP001                  if ( !ERRCODE_TOERROR( nErr ) )
-//STRIP001                      xIPObj->SetDocumentName( GetView().GetDocShell()->GetTitle() );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if( HasSelection() )
-//STRIP001          DelRight();
-//STRIP001      InsertOle( *pRef );
-//STRIP001  }
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:   Object in die Core einfuegen.
                  Vom ClipBoard oder Insert
 ------------------------------------------------------------------------*/
 
-//STRIP001 BOOL SwWrtShell::InsertOle( SvInPlaceObjectRef aRef )
-//STRIP001 {
-//STRIP001  if ( aRef.Is() )
-//STRIP001  {
-//STRIP001      ResetCursorStack();
-//STRIP001      StartAllAction();
-//STRIP001      StartUndo(UNDO_INSERT);
-//STRIP001
-//STRIP001      //Some differences between StarMath and any other objects:
-//STRIP001      //1. Selections should be deleted. For StarMath the Text should be
-//STRIP001      //   passed to the Object
-//STRIP001      //2. If the cursor is at the end of an non empty paragraph a paragraph
-//STRIP001      //   break should be insertet. StarMath objects are character bound and
-//STRIP001      //   no break should be inserted.
-//STRIP001      //3. If an selektion is passed to a StarMath object, this object should
-//STRIP001      //   not be activated. FALSE should be returned then.
-//STRIP001      BOOL bStarMath,
-//STRIP001           bActivate = TRUE;
-//STRIP001
-//STRIP001      SvGlobalName aCLSID;
-//STRIP001      ULONG lDummy;
-//STRIP001      String aDummy;
-//STRIP001      // determine source CLSID
-//STRIP001      aRef->SvPseudoObject::FillClass( &aCLSID, &lDummy, &aDummy, &aDummy, &aDummy);
-//STRIP001      bStarMath = SmModuleDummy::HasID( *aRef->GetSvFactory() );
-//STRIP001
-//STRIP001      if( IsSelection() )
-//STRIP001      {
-//STRIP001          if( bStarMath )
-//STRIP001          {
-//STRIP001              String aMathData;
-//STRIP001              GetSelectedText( aMathData, GETSELTXT_PARABRK_TO_ONLYCR );
-//STRIP001              if( aMathData.Len() && aRef->SetData( aMathData ) )
-//STRIP001              {
-//STRIP001                  bActivate = FALSE;
-//STRIP001                  //StarMath size depends on the Printer, which is
-//STRIP001                  //passed here direct for avoiding time consuming
-//STRIP001                  //connections between StarWriter and StarMath
-//STRIP001                  aRef->OnDocumentPrinterChanged( GetPrt() );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          DelRight();
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( !bStarMath )
-//STRIP001          SwFEShell::SplitNode( FALSE, FALSE );
-//STRIP001
-//STRIP001      EnterSelFrmMode();
-//STRIP001
-//STRIP001      SwFlyFrmAttrMgr aFrmMgr( TRUE, this, FRMMGR_TYPE_OLE );
-//STRIP001      aFrmMgr.SetSizeType(ATT_FIX_SIZE);
-//STRIP001
-//STRIP001      SwRect aBound;
-//STRIP001      CalcBoundRect( aBound, aFrmMgr.GetAnchor() );
-//STRIP001
-//STRIP001      //The Size should be suggested by the OLE server
-//STRIP001      MapMode aRefMap( aRef->GetMapUnit() );
-//STRIP001      Size aSz( aRef->GetVisArea().GetSize() );
-//STRIP001      if ( !aSz.Width() || !aSz.Height() )
-//STRIP001      {
-//STRIP001          aSz.Width() = aSz.Height() = 5000;
-//STRIP001          aSz = OutputDevice::LogicToLogic
-//STRIP001                                  ( aSz, MapMode( MAP_100TH_MM ), aRefMap );
-//STRIP001      }
-//STRIP001      MapMode aMyMap( MAP_TWIP );
-//STRIP001      aSz = OutputDevice::LogicToLogic( aSz, aRefMap, aMyMap );
-//STRIP001      //Object size can be limited
-//STRIP001      if ( aSz.Width() > aBound.Width() )
-//STRIP001      {
-//STRIP001          //Immer proportional begrenzen.
-//STRIP001          aSz.Height() = aSz.Height() * aBound.Width() / aSz.Width();
-//STRIP001          aSz.Width() = aBound.Width();
-//STRIP001      }
-//STRIP001      aFrmMgr.SetSize( aSz );
-//STRIP001      SwFEShell::Insert( &aRef, &aFrmMgr.GetAttrSet() );
-//STRIP001
-//STRIP001      EndAllAction();
-//STRIP001      GetView().AutoCaption(OLE_CAP, &aCLSID);
-//STRIP001      EndUndo(UNDO_INSERT);
-//STRIP001
-//STRIP001      return bActivate;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*------------------------------------------------------------------------
     Beschreibung: Das aktuelle selektierte OLE-Objekt wird mit dem
@@ -693,55 +132,6 @@ namespace binfilter {
 
 
 
-//STRIP001 void SwWrtShell::LaunchOLEObj( long nVerb )
-//STRIP001 {
-//STRIP001  if ( GetCntType() == CNT_OLE &&
-//STRIP001       !GetView().GetDocShell()->GetProtocol().IsInPlaceActive() )
-//STRIP001  {
-//STRIP001      SvInPlaceObjectRef xRef = GetOLEObj();
-//STRIP001      ASSERT( xRef.Is(), "OLE not found" );
-//STRIP001      SfxInPlaceClientRef xCli;
-//STRIP001
-//STRIP001         //  Link fuer Daten-Highlighting im Chart zuruecksetzen
-//STRIP001         SvtModuleOptions aMOpt;
-//STRIP001         if( aMOpt.IsChart() )
-//STRIP001         {
-//STRIP001             SvGlobalName aObjClsId( *xRef->GetSvFactory() );
-//STRIP001             SchMemChart* pMemChart;
-//STRIP001             if( SchModuleDummy::HasID( aObjClsId ) &&
-//STRIP001                 0 != (pMemChart = SchDLL::GetChartData( xRef ) ))
-//STRIP001             {
-//STRIP001                 pMemChart->SetSelectionHdl( LINK( this, SwWrtShell,
-//STRIP001                                             ChartSelectionHdl ) );
-//STRIP001                 //#60043# Damit die DataBrowseBox nicht erscheint wird das
-//STRIP001                 //Chart auf Readonly gesetzt wenn es eine Verbindung
-//STRIP001                 //zu einer Tabelle hat.
-//STRIP001                 if ( GetChartName( xRef ).Len() )
-//STRIP001                 {
-//STRIP001                     pMemChart->SetReadOnly( TRUE );
-//STRIP001                     pMemChart->SetNumberFormatter(GetDoc()->GetNumberFormatter( sal_True ));
-//STRIP001                     SchDLL::Update(xRef, pMemChart);
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         xCli = GetView().FindIPClient( xRef, &GetView().GetEditWin() );
-//STRIP001         if ( !xCli.Is() )
-//STRIP001             xCli = new SwOleClient( &GetView(), &GetView().GetEditWin() );
-//STRIP001
-//STRIP001         ((SwOleClient*)&xCli)->SetInDoVerb( TRUE );
-//STRIP001
-//STRIP001         xRef->DoConnect( xCli );
-//STRIP001         SvEmbeddedObjectRef xObj = &xRef;
-//STRIP001         CalcAndSetScale( xObj );
-//STRIP001         //#50270# Error brauchen wir nicht handeln, das erledigt das
-//STRIP001         //DoVerb in der SfxViewShell
-//STRIP001         GetView().SfxViewShell::DoVerb( xCli, nVerb );
-//STRIP001
-//STRIP001         ((SwOleClient*)&xCli)->SetInDoVerb( FALSE );
-//STRIP001         CalcAndSetScale( xObj );
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef xObj,
@@ -865,104 +255,8 @@ namespace binfilter {
 /*N*/ void SwWrtShell::ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
 /*N*/                           const SwRect &rFrm )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     SfxInPlaceClientRef xCli = GetView().FindIPClient( xIPObj,
-//STRIP001                                                         &GetView().GetEditWin());
-//STRIP001     if ( !xCli.Is() )
-//STRIP001         xCli = new SwOleClient( &GetView(), &GetView().GetEditWin() );
-//STRIP001     xIPObj->DoConnect( xCli );
-//STRIP001     SvEmbeddedObjectRef xObj = &xIPObj;
-//STRIP001     CalcAndSetScale( xObj, &rPrt, &rFrm );
 /*N*/ }
 
-//STRIP001 IMPL_LINK( SwWrtShell, ChartSelectionHdl, ChartSelectionInfo *, pInfo )
-//STRIP001 {
-//STRIP001  long nRet = 0;
-//STRIP001
-//STRIP001 #ifdef USED
-//STRIP001 // JP 03.11.98: mit der Selektion kann es nicht gehen, da dann der Cursor
-//STRIP001 //               immer sichtbar gemacht wird. Das fuehrt dann aber zu
-//STRIP001 //               unbeabsichtigten scrollen. Ausserdem sind 2 Selektionen
-//STRIP001 //               vorhanden - TabellenSelektion und die OLE-Rahmenselektion.
-//STRIP001
-//STRIP001  if( pInfo )
-//STRIP001  {
-//STRIP001      if( CHART_SEL_QUERYSUPPORT & pInfo->nSelection )
-//STRIP001          nRet = CHART_SEL_NONE | CHART_SEL_ALL | CHART_SEL_ROW |
-//STRIP001                  CHART_SEL_COL | CHART_SEL_POINT;
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // dann suche mal die Tabelle zu diesem StarChart-Object
-//STRIP001          SfxInPlaceClient* pIPClient = GetView().GetIPClient();
-//STRIP001          SvInPlaceObject* pObj = pIPClient &&
-//STRIP001                                  pIPClient->IsInPlaceActive()
-//STRIP001                                  ? pIPClient->GetIPObj() : 0;
-//STRIP001          String sTable;
-//STRIP001          if( pObj )
-//STRIP001              sTable = GetChartName( pObj );
-//STRIP001
-//STRIP001          if( sTable.Len() )
-//STRIP001          {
-//STRIP001              LockView( TRUE );   //Scrollen im EndAction verhindern
-//STRIP001              StartAction();
-//STRIP001
-//STRIP001              ClearMark();
-//STRIP001              if( GotoTable( sTable ) )
-//STRIP001              {
-//STRIP001                  // !!!!!!!!!!!!!!!
-//STRIP001                  //      im nSelection sind Flags gesetzt, koennen also
-//STRIP001                  //      auch gemischt auftauchen, darum das nICol, nIRow
-//STRIP001                  // !!!!!!!!!!!!!!!!
-//STRIP001                  USHORT nIRow = pInfo->nRow, nICol = pInfo->nCol,
-//STRIP001                          nRow = 0, nCol = 0;
-//STRIP001
-//STRIP001                  SchMemChart* pMemChart = SchDLL::GetChartData( pObj );
-//STRIP001                  if( pMemChart && 2 == pMemChart->SomeData2().Len() )
-//STRIP001                  {
-//STRIP001                      if( '1' == pMemChart->SomeData2().GetChar( 0 ) )
-//STRIP001                          ++nIRow;
-//STRIP001                      if( '1' == pMemChart->SomeData2().GetChar( 1 ))
-//STRIP001                          ++nICol;
-//STRIP001                  }
-//STRIP001
-//STRIP001 // ist das default   if( (CHART_SEL_NONE | CHART_SEL_ALL) & pInfo->nSelection )
-//STRIP001                  if( CHART_SEL_ROW & pInfo->nSelection )
-//STRIP001                      nRow = nIRow, nCol = 0;
-//STRIP001                  if( CHART_SEL_COL & pInfo->nSelection )
-//STRIP001                      nCol = nICol, nRow = 0;
-//STRIP001                  if( CHART_SEL_POINT & pInfo->nSelection )
-//STRIP001                      nCol = nICol, nRow = nIRow;
-//STRIP001
-//STRIP001                  if( GotoTblBox( SwTable::GetBoxName( nRow, nCol ) ) )
-//STRIP001                  {
-//STRIP001                      nRet = pInfo->nSelection;
-//STRIP001                      if( ( CHART_SEL_ROW & pInfo->nSelection && !SelTblRow() ) ||
-//STRIP001                          ( CHART_SEL_COL & pInfo->nSelection && !SelTblCol() ) ||
-//STRIP001                          ( CHART_SEL_ALL & pInfo->nSelection &&
-//STRIP001                              ( SetMark(),
-//STRIP001                                  !MoveTable( fnTableCurr, fnTableEnd ))) )
-//STRIP001                              nRet = 0;
-//STRIP001                      else if( CHART_SEL_POINT & pInfo->nSelection )
-//STRIP001                      {
-//STRIP001                          // Selektion der einen Box
-//STRIP001                          SetMark();
-//STRIP001                          if( GoPrevCell() )
-//STRIP001                              GoNextCell( FALSE );
-//STRIP001                          else if( GoNextCell( FALSE ) )
-//STRIP001                              GoPrevCell();
-//STRIP001                          else
-//STRIP001                              ClearMark();
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              EndAction();
-//STRIP001              LockView( FALSE );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001  return nRet;
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  Einfuegen harter Seitenumbruch;
@@ -971,81 +265,18 @@ namespace binfilter {
 
 
 
-//STRIP001 void SwWrtShell::InsertPageBreak(const String *pPageDesc, USHORT nPgNum )
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if( _CanInsert() )
-//STRIP001  {
-//STRIP001      ACT_KONTEXT(this);
-//STRIP001      StartUndo(UIUNDO_INSERT_PAGE_BREAK);
-//STRIP001
-//STRIP001      if ( !IsCrsrInTbl() )
-//STRIP001      {
-//STRIP001          if(HasSelection())
-//STRIP001              DelRight();
-//STRIP001          SwFEShell::SplitNode();
-//STRIP001      }
-//STRIP001
-//STRIP001      const SwPageDesc *pDesc = pPageDesc
-//STRIP001                              ? FindPageDescByName( *pPageDesc, TRUE ) : 0;
-//STRIP001      if( pDesc )
-//STRIP001      {
-//STRIP001          SwFmtPageDesc aDesc( pDesc );
-//STRIP001          aDesc.SetNumOffset( nPgNum );
-//STRIP001          SetAttr( aDesc );
-//STRIP001      }
-//STRIP001      else
-//STRIP001          SetAttr( SvxFmtBreakItem(SVX_BREAK_PAGE_BEFORE) );
-//STRIP001      EndUndo(UIUNDO_INSERT_PAGE_BREAK);
-//STRIP001  }
-//STRIP001 }
 /*------------------------------------------------------------------------
  Beschreibung:  Einfuegen harter Zeilenumbruch;
                 Selektionen werden ueberschrieben
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 void SwWrtShell::InsertLineBreak()
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if( _CanInsert() )
-//STRIP001  {
-//STRIP001      if(HasSelection())
-//STRIP001          DelRight();
-//STRIP001
-//STRIP001      const sal_Unicode cIns = 0x0A;
-//STRIP001      SvxAutoCorrect* pACorr = lcl_IsAutoCorr();
-//STRIP001      if( pACorr )
-//STRIP001          AutoCorrect( *pACorr, cIns );
-//STRIP001      else
-//STRIP001          SwWrtShell::Insert( String( cIns ) );
-//STRIP001  }
-//STRIP001 }
 /*------------------------------------------------------------------------
  Beschreibung:  Einfuegen harter Spaltenumbruch;
                 Selektionen werden ueberschrieben
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 void SwWrtShell::InsertColumnBreak()
-//STRIP001 {
-//STRIP001  ACT_KONTEXT(this);
-//STRIP001  ResetCursorStack();
-//STRIP001  if( _CanInsert() )
-//STRIP001  {
-//STRIP001      StartUndo(UIUNDO_INSERT_COLUMN_BREAK);
-//STRIP001
-//STRIP001      if ( !IsCrsrInTbl() )
-//STRIP001      {
-//STRIP001          if(HasSelection())
-//STRIP001              DelRight();
-//STRIP001          SwFEShell::SplitNode( FALSE, FALSE );
-//STRIP001      }
-//STRIP001      SetAttr(SvxFmtBreakItem(SVX_BREAK_COLUMN_BEFORE));
-//STRIP001
-//STRIP001      EndUndo(UIUNDO_INSERT_COLUMN_BREAK);
-//STRIP001  }
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  Einfuegen Fussnote
@@ -1053,28 +284,6 @@ namespace binfilter {
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 void SwWrtShell::InsertFootnote(const String &rStr, BOOL bEndNote, BOOL bEdit )
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if( _CanInsert() )
-//STRIP001  {
-//STRIP001      if(HasSelection())
-//STRIP001          DelRight();
-//STRIP001
-//STRIP001      SwFmtFtn aFootNote( bEndNote );
-//STRIP001      if(rStr.Len())
-//STRIP001          aFootNote.SetNumStr( rStr );
-//STRIP001
-//STRIP001      SetAttr(aFootNote);
-//STRIP001
-//STRIP001      if( bEdit )
-//STRIP001      {
-//STRIP001          // zur Bearbeiung des Fussnotentextes
-//STRIP001          Left(CRSR_SKIP_CHARS, FALSE, 1, FALSE );
-//STRIP001          GotoFtnTxt();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 /*------------------------------------------------------------------------
  Beschreibung:  SplitNode; hier auch, da
                     - selektierter Inhalt geloescht wird;
@@ -1082,26 +291,6 @@ namespace binfilter {
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 void SwWrtShell::SplitNode( BOOL bAutoFmt, BOOL bCheckTableStart )
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if( _CanInsert() )
-//STRIP001  {
-//STRIP001      ACT_KONTEXT(this);
-//STRIP001
-//STRIP001      rView.GetEditWin().FlushInBuffer( this );
-//STRIP001      BOOL bHasSel = HasSelection();
-//STRIP001      if( bHasSel )
-//STRIP001      {
-//STRIP001          StartUndo( UNDO_INSERT );
-//STRIP001          DelRight();
-//STRIP001      }
-//STRIP001
-//STRIP001      SwFEShell::SplitNode( bAutoFmt, bCheckTableStart );
-//STRIP001      if( bHasSel )
-//STRIP001          EndUndo( UNDO_INSERT );
-//STRIP001  }
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  Numerierung anschalten
@@ -1114,63 +303,11 @@ namespace binfilter {
 // zum Testen der CharFormate an der Numerierung
 // extern void SetNumChrFmt( SwWrtShell*, SwNumRules& );
 
-//STRIP001 void SwWrtShell::NumOn()
-//STRIP001 {
-//STRIP001  SwNumRule aNumRule( GetUniqueNumRuleName() );
-//STRIP001
-//STRIP001  const SwNumRule* pCurRule = GetCurNumRule();
-//STRIP001  if( !pCurRule )
-//STRIP001  {
-//STRIP001      // Zeichenvorlage an die Numerierung haengen
-//STRIP001      SwCharFmt* pChrFmt = GetCharFmtFromPool( RES_POOLCHR_NUM_LEVEL );
-//STRIP001      SwDocShell* pDocSh = GetView().GetDocShell();
-//STRIP001      BOOL bHtml = 0 != PTR_CAST(SwWebDocShell, pDocSh);
-//STRIP001      for( BYTE nLvl = 0; nLvl < MAXLEVEL; ++nLvl )
-//STRIP001      {
-//STRIP001          SwNumFmt aFmt( aNumRule.Get( nLvl ) );
-//STRIP001          aFmt.SetCharFmt( pChrFmt );
-//STRIP001          if(bHtml && nLvl)
-//STRIP001          {
-//STRIP001              // 1/2" fuer HTML
-//STRIP001              aFmt.SetLSpace(720);
-//STRIP001              aFmt.SetAbsLSpace(nLvl * 720);
-//STRIP001          }
-//STRIP001          aNumRule.Set( nLvl, aFmt );
-//STRIP001      }
-//STRIP001      SetCurNumRule( aNumRule );
-//STRIP001  }
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  Default-Bulletliste erfragen
 ------------------------------------------------------------------------*/
 
-//STRIP001 void SwWrtShell::BulletOn()
-//STRIP001 {
-//STRIP001  SwNumRule aRule( GetUniqueNumRuleName() );
-//STRIP001
-//STRIP001  SwCharFmt* pChrFmt = GetCharFmtFromPool( RES_POOLCHR_BUL_LEVEL );
-//STRIP001  const Font* pFnt = &SwNumRule::GetDefBulletFont();
-//STRIP001
-//STRIP001  SwDocShell* pDocSh = GetView().GetDocShell();
-//STRIP001  BOOL bHtml = 0 != PTR_CAST(SwWebDocShell, pDocSh);
-//STRIP001  for( BYTE n = 0; n < MAXLEVEL; ++n )
-//STRIP001  {
-//STRIP001      SwNumFmt aFmt( aRule.Get( n ) );
-//STRIP001      aFmt.SetBulletFont( pFnt );
-//STRIP001      aFmt.SetBulletChar( cBulletChar );
-//STRIP001      aFmt.SetNumberingType(SVX_NUM_CHAR_SPECIAL);
-//STRIP001      aFmt.SetCharFmt( pChrFmt );
-//STRIP001      if(bHtml && n)
-//STRIP001      {
-//STRIP001          // 1/2" fuer HTML
-//STRIP001          aFmt.SetLSpace(720);
-//STRIP001          aFmt.SetAbsLSpace(n * 720);
-//STRIP001      }
-//STRIP001      aRule.Set( n, aFmt );
-//STRIP001  }
-//STRIP001  SetCurNumRule( aRule );
-//STRIP001 }
 
 /*--------------------------------------------------
 
@@ -1200,12 +337,6 @@ namespace binfilter {
 /*?*/       else
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (GetView().IsFormMode())   // Nur Forms selektiert
-//STRIP001 /*?*/                nCnt = SEL_DRW_FORM;
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                nCnt = SEL_DRW;         // Irgendein Draw-Objekt
-//STRIP001 /*?*/
-//STRIP001 /*?*/            if (rView.IsBezierEditMode())
-//STRIP001 /*?*/                nCnt |= SEL_BEZ;
 /*?*/       }
 /*?*/
 /*?*/       return nCnt;
@@ -1241,17 +372,6 @@ namespace binfilter {
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 SwTxtFmtColl *SwWrtShell::GetParaStyle(const String &rCollName, GetStyle eCreate )
-//STRIP001 {
-//STRIP001  SwTxtFmtColl* pColl = FindTxtFmtCollByName( rCollName );
-//STRIP001  if( !pColl && GETSTYLE_NOCREATE != eCreate )
-//STRIP001  {
-//STRIP001      USHORT nId = SwStyleNameMapper::GetPoolIdFromUIName( rCollName, GET_POOLID_TXTCOLL );
-//STRIP001      if( USHRT_MAX != nId || GETSTYLE_CREATEANY == eCreate )
-//STRIP001          pColl = GetTxtCollFromPool( nId );
-//STRIP001  }
-//STRIP001  return pColl;
-//STRIP001 }
 /*------------------------------------------------------------------------
  Beschreibung:  Finden der Zeichenvorlage mit dem Name rCollname
  Return:                Pointer auf die Collection oder 0, wenn keine
@@ -1261,17 +381,6 @@ namespace binfilter {
 
 
 
-//STRIP001 SwCharFmt *SwWrtShell::GetCharStyle(const String &rFmtName, GetStyle eCreate )
-//STRIP001 {
-//STRIP001  SwCharFmt* pFmt = FindCharFmtByName( rFmtName );
-//STRIP001  if( !pFmt && GETSTYLE_NOCREATE != eCreate )
-//STRIP001  {
-//STRIP001      USHORT nId = SwStyleNameMapper::GetPoolIdFromUIName( rFmtName, GET_POOLID_CHRFMT );
-//STRIP001      if( USHRT_MAX != nId || GETSTYLE_CREATEANY == eCreate )
-//STRIP001          pFmt = (SwCharFmt*)GetFmtFromPool( nId );
-//STRIP001  }
-//STRIP001  return pFmt;
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  Finden des Tabellenformates mit dem Name rFmtname
@@ -1282,15 +391,6 @@ namespace binfilter {
 
 
 
-//STRIP001 SwFrmFmt *SwWrtShell::GetTblStyle(const String &rFmtName)
-//STRIP001 {
-//STRIP001  SwFrmFmt *pFmt = 0;
-//STRIP001  for( USHORT i = GetTblFrmFmtCount(); i; )
-//STRIP001      if( !( pFmt = &GetTblFrmFmt( --i ) )->IsDefault() &&
-//STRIP001          pFmt->GetName() == rFmtName && IsUsed( *pFmt ) )
-//STRIP001          return pFmt;
-//STRIP001  return 0;
-//STRIP001 }
 
 
 /*------------------------------------------------------------------------
@@ -1299,15 +399,6 @@ namespace binfilter {
 
 
 
-//STRIP001 void SwWrtShell::SetPageStyle(const String &rCollName)
-//STRIP001 {
-//STRIP001  if( !SwCrsrShell::HasSelection() && !IsSelFrmMode() && !IsObjSelected() )
-//STRIP001  {
-//STRIP001      SwPageDesc* pDesc = FindPageDescByName( rCollName, TRUE );
-//STRIP001      if( pDesc )
-//STRIP001          ChgCurPageDesc( *pDesc );
-//STRIP001  }
-//STRIP001 }
 
 /*------------------------------------------------------------------------
  Beschreibung:  Zugriff Vorlagen
@@ -1325,101 +416,15 @@ namespace binfilter {
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 void SwWrtShell::QuickUpdateStyle()
-//STRIP001 {
-//STRIP001  SwTxtFmtColl *pColl = GetCurTxtFmtColl();
-//STRIP001
-//STRIP001  // Standard kann nicht geaendert werden
-//STRIP001  if(pColl && !pColl->IsDefault())
-//STRIP001  {
-//STRIP001      FillByEx(pColl);
-//STRIP001          // Vorlage auch anwenden, um harte Attributierung
-//STRIP001          // zu entfernen
-//STRIP001      SetTxtFmtColl(pColl);
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void SwWrtShell::AutoUpdatePara(SwTxtFmtColl* pColl, const SfxItemSet& rStyleSet)
-//STRIP001 {
-//STRIP001  SfxItemSet aCoreSet( GetAttrPool(),
-//STRIP001          RES_CHRATR_BEGIN,           RES_CHRATR_END - 1,
-//STRIP001          RES_PARATR_BEGIN,           RES_PARATR_END - 1,
-//STRIP001          RES_FRMATR_BEGIN,           RES_FRMATR_END - 1,
-//STRIP001          SID_ATTR_TABSTOP_POS,       SID_ATTR_TABSTOP_POS,
-//STRIP001          SID_ATTR_TABSTOP_DEFAULTS,  SID_ATTR_TABSTOP_DEFAULTS,
-//STRIP001          SID_ATTR_TABSTOP_OFFSET,    SID_ATTR_TABSTOP_OFFSET,
-//STRIP001          SID_ATTR_BORDER_INNER,      SID_ATTR_BORDER_INNER,
-//STRIP001          SID_ATTR_PARA_MODEL,        SID_ATTR_PARA_KEEP,
-//STRIP001          SID_ATTR_PARA_PAGENUM,      SID_ATTR_PARA_PAGENUM,
-//STRIP001          0   );
-//STRIP001  GetAttr( aCoreSet );
-//STRIP001  BOOL bReset = FALSE;
-//STRIP001  SfxItemIter aParaIter( aCoreSet );
-//STRIP001  const SfxPoolItem* pParaItem = aParaIter.FirstItem();
-//STRIP001  while( pParaItem )
-//STRIP001  {
-//STRIP001      if(!IsInvalidItem(pParaItem))
-//STRIP001      {
-//STRIP001          USHORT nWhich = pParaItem->Which();
-//STRIP001          if(SFX_ITEM_SET == aCoreSet.GetItemState(nWhich) &&
-//STRIP001             SFX_ITEM_SET == rStyleSet.GetItemState(nWhich))
-//STRIP001          {
-//STRIP001              aCoreSet.ClearItem(nWhich);
-//STRIP001              bReset = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      pParaItem = aParaIter.NextItem();
-//STRIP001  }
-//STRIP001  StartAction();
-//STRIP001  if(bReset)
-//STRIP001  {
-//STRIP001      ResetAttr();
-//STRIP001      SetAttr(aCoreSet);
-//STRIP001  }
-//STRIP001  pColl->SetAttr( rStyleSet );
-//STRIP001  EndAction();
-//STRIP001 }
 
 /*-----------------12.03.97 12.24-------------------
 
 --------------------------------------------------*/
 
-//STRIP001 void SwWrtShell::AutoUpdateFrame( SwFrmFmt* pFmt, const SfxItemSet& rStyleSet )
-//STRIP001 {
-//STRIP001  StartAction();
-//STRIP001
-//STRIP001  ResetFlyFrmAttr( 0, &rStyleSet );
-//STRIP001  pFmt->SetAttr( rStyleSet );
-//STRIP001
-//STRIP001  EndAction();
-//STRIP001 }
 
 
-//STRIP001 void SwWrtShell::AutoCorrect( SvxAutoCorrect& rACorr, sal_Unicode cChar )
-//STRIP001 {
-//STRIP001  ResetCursorStack();
-//STRIP001  if(_CanInsert())
-//STRIP001  {
-//STRIP001      BOOL bStarted = FALSE;
-//STRIP001      if(HasSelection())
-//STRIP001      {
-//STRIP001              // nur hier klammern, da das normale Insert schon an der
-//STRIP001              // Editshell geklammert ist
-//STRIP001          StartAllAction();
-//STRIP001          StartUndo(UNDO_INSERT);
-//STRIP001          bStarted = TRUE;
-//STRIP001          DelRight();
-//STRIP001      }
-//STRIP001      SwEditShell::AutoCorrect( rACorr, IsInsMode(), cChar );
-//STRIP001
-//STRIP001      if(bStarted)
-//STRIP001      {
-//STRIP001          EndAllAction();
-//STRIP001          EndUndo(UNDO_INSERT);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 
 /*
@@ -1467,61 +472,18 @@ namespace binfilter {
 
 
 
-//STRIP001 void SwWrtShell::StartBasicAction()
-//STRIP001 {
-//STRIP001  IncBasicAction();
-//STRIP001  StartAllAction();
-//STRIP001 }
 
 
 
-//STRIP001 void SwWrtShell::SetBasicActionCount(USHORT nSet)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(!GetBasicActionCnt(), "Es sind schon Actions offen!")
-//STRIP001  while( nSet )
-//STRIP001  {
-//STRIP001      IncBasicAction();
-//STRIP001      StartAllAction();
-//STRIP001      nSet--;
-//STRIP001  }
-//STRIP001 }
 
 
 
-//STRIP001 void SwWrtShell::EndBasicAction()
-//STRIP001 {
-//STRIP001  if(GetBasicActionCnt())
-//STRIP001  {
-//STRIP001      DecBasicAction();
-//STRIP001      EndAllAction();
-//STRIP001  }
-//STRIP001 }
 
 
 
-//STRIP001 USHORT SwWrtShell::EndAllBasicActions()
-//STRIP001 {
-//STRIP001  USHORT nRet = GetBasicActionCnt();
-//STRIP001  while( GetBasicActionCnt() )
-//STRIP001  {
-//STRIP001      DecBasicAction();
-//STRIP001      EndAllAction();
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 
 
-//STRIP001 FASTBOOL SwWrtShell::Pop( BOOL bOldCrsr )
-//STRIP001 {
-//STRIP001  FASTBOOL bRet = SwCrsrShell::Pop( bOldCrsr );
-//STRIP001  if( bRet && IsSelection() )
-//STRIP001  {
-//STRIP001      fnSetCrsr = &SwWrtShell::SetCrsrKillSel;
-//STRIP001      fnKillSel = &SwWrtShell::ResetSelect;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
@@ -1529,25 +491,14 @@ namespace binfilter {
 
 
 
-//STRIP001 BOOL SwWrtShell::CanInsert()
-//STRIP001 {
-//STRIP001  return (!(IsSelFrmMode() | IsObjSelected() | (GetView().GetDrawFuncPtr() != NULL)));
-//STRIP001 }
 
 
 
     // die Core erzeugt eine Selektion, das SttSelect muss gerufen werden
-//STRIP001 void SwWrtShell::NewCoreSelection()
-//STRIP001 {
-//STRIP001  SttSelect();
-//STRIP001 }
 
 // --------------
 /*N*/ void SwWrtShell::ChgDBData(const SwDBData& aDBData)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     SwEditShell::ChgDBData(aDBData);
-//STRIP001     //notify the db-beamer if available
-//STRIP001     GetView().NotifyDBChanged();
 /*N*/ }
 
 

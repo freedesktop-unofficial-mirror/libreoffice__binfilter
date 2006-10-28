@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh3.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:31:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:36:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,42 +39,9 @@
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_CHILDWIN_HXX //autogen
-// auto strip #include <bf_sfx2/childwin.hxx>
-// auto strip #endif
 #ifndef _SFX_BINDINGS_HXX //autogen
 #include <bf_sfx2/bindings.hxx>
 #endif
-// auto strip #ifndef _SVDMARK_HXX //autogen
-// auto strip #include <bf_svx/svdmark.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDVIEW_HXX //autogen
-// auto strip #include <bf_svx/svdview.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_FMGLOB_HXX
-// auto strip #include <bf_svx/fmglob.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDOUNO_HXX //autogen
-// auto strip #include <bf_svx/svdouno.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
-// auto strip #include <com/sun/star/form/FormButtonType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _SVX_HTMLMODE_HXX
-// auto strip #include <bf_svx/htmlmode.hxx>
-// auto strip #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
 #ifndef _SFXVIEWFRM_HXX
 #include <bf_sfx2/viewfrm.hxx>
 #endif
@@ -86,8 +53,6 @@
 
 #include "wrtsh.hxx"
 #include "view.hxx"
-// auto strip #include "bookmrk.hxx"
-// auto strip #include "doc.hxx"
 #include "wrtsh.hrc"
 namespace binfilter {
 
@@ -98,34 +63,6 @@ using namespace ::rtl;
 
 extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 
-//STRIP001 FASTBOOL SwWrtShell::MoveBookMark(  BookMarkMove eFuncId,
-//STRIP001                                     sal_uInt16 nPos,
-//STRIP001                                     sal_Bool bStart )
-//STRIP001 {
-//STRIP001 //JP 08.03.96: die Wizards brauchen die Selektion !!
-//STRIP001 //  EndSelect();
-//STRIP001     (this->*fnKillSel)( 0, sal_False );
-//STRIP001
-//STRIP001     FASTBOOL bRet = sal_True;
-//STRIP001     switch(eFuncId)
-//STRIP001     {
-//STRIP001         case BOOKMARK_INDEX:bRet = SwCrsrShell::GotoBookmark( nPos );break;
-//STRIP001         case BOOKMARK_NEXT: bRet = SwCrsrShell::GoNextBookmark();break;
-//STRIP001         case BOOKMARK_PREV: bRet = SwCrsrShell::GoPrevBookmark();break;
-//STRIP001     }
-//STRIP001
-//STRIP001     if( bRet && IsSelFrmMode() )
-//STRIP001     {
-//STRIP001         UnSelectFrm();
-//STRIP001         LeaveSelFrmMode();
-//STRIP001     }
-//STRIP001     if( IsSelection() )
-//STRIP001     {
-//STRIP001         fnKillSel = &SwWrtShell::ResetSelect;
-//STRIP001         fnSetCrsr = &SwWrtShell::SetCrsrKillSel;
-//STRIP001     }
-//STRIP001     return bRet;
-//STRIP001 }
 
 
 /*--------------------------------------------------------------------
@@ -149,14 +86,6 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 /*N*/     bNoInterrupt = bOldVal;
 /*N*/ }
 
-//STRIP001 FASTBOOL SwWrtShell::GotoBookmark( const String& rName )
-//STRIP001 {
-//STRIP001     sal_uInt16 nPos = FindBookmark( rName );
-//STRIP001     if( USHRT_MAX == nPos )
-//STRIP001         return sal_False;
-//STRIP001
-//STRIP001     return MoveBookMark( BOOKMARK_INDEX, nPos );
-//STRIP001 }
 
 
 /*N*/ FASTBOOL SwWrtShell::GotoBookmark( sal_uInt16 nPos )
@@ -165,144 +94,20 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 /*N*/ }
 
 
-//STRIP001 FASTBOOL SwWrtShell::GoNextBookmark()
-//STRIP001 {
-//STRIP001     return MoveBookMark( BOOKMARK_NEXT );
-//STRIP001 }
 
 
-//STRIP001 FASTBOOL SwWrtShell::GoPrevBookmark()
-//STRIP001 {
-//STRIP001     return MoveBookMark( BOOKMARK_PREV );
-//STRIP001 }
 
 
-//STRIP001 void SwWrtShell::ExecMacro( const SvxMacro& rMacro, String* pRet, SbxArray* pArgs )
-//STRIP001 {
-//STRIP001     // OD 11.02.2003 #100556# - execute macro, if it is allowed.
-//STRIP001     if ( IsMacroExecAllowed() )
-//STRIP001     {
-//STRIP001         GetDoc()->ExecMacro( rMacro, pRet, pArgs );
-//STRIP001     }
-//STRIP001 }
 
 
-//STRIP001 sal_uInt16 SwWrtShell::CallEvent( sal_uInt16 nEvent, const SwCallMouseEvent& rCallEvent,
-//STRIP001                                 sal_Bool bChkPtr, SbxArray* pArgs,
-//STRIP001                                 const Link* pCallBack )
-//STRIP001 {
-//STRIP001     return GetDoc()->CallEvent( nEvent, rCallEvent, bChkPtr, pArgs, pCallBack );
-//STRIP001 }
 
 
     // fall ein util::URL-Button selektiert ist, dessen util::URL returnen, ansonsten
     // einen LeerString
-//STRIP001 sal_Bool SwWrtShell::GetURLFromButton( String& rURL, String& rDescr ) const
-//STRIP001 {
-//STRIP001     sal_Bool bRet = sal_False;
-//STRIP001     const SdrView *pDView = GetDrawView();
-//STRIP001     if( pDView )
-//STRIP001     {
-//STRIP001         // Ein Fly ist genau dann erreichbar, wenn er selektiert ist.
-//STRIP001         const SdrMarkList &rMarkList = pDView->GetMarkList();
-//STRIP001
-//STRIP001         if (rMarkList.GetMark(0))
-//STRIP001         {
-//STRIP001             SdrUnoObj* pUnoCtrl = PTR_CAST(SdrUnoObj, rMarkList.GetMark(0)->GetObj());
-//STRIP001             if (pUnoCtrl && FmFormInventor == pUnoCtrl->GetObjInventor())
-//STRIP001             {
-//STRIP001                 uno::Reference< awt::XControlModel >  xControlModel = pUnoCtrl->GetUnoControlModel();
-//STRIP001
-//STRIP001                 ASSERT( xControlModel.is(), "UNO-Control ohne Model" );
-//STRIP001                 if( !xControlModel.is() )
-//STRIP001                     return bRet;
-//STRIP001
-//STRIP001                 uno::Reference< beans::XPropertySet >  xPropSet(xControlModel, uno::UNO_QUERY);
-//STRIP001
-//STRIP001                 uno::Any aTmp;
-//STRIP001
-//STRIP001                 form::FormButtonType eButtonType = form::FormButtonType_URL;
-//STRIP001                 uno::Reference< beans::XPropertySetInfo >   xInfo = xPropSet->getPropertySetInfo();
-//STRIP001                 if(xInfo->hasPropertyByName( C2U("ButtonType") ))
-//STRIP001                 {
-//STRIP001                     aTmp = xPropSet->getPropertyValue( C2U("ButtonType") );
-//STRIP001                     form::FormButtonType eTmpButtonType;
-//STRIP001                     aTmp >>= eTmpButtonType;
-//STRIP001                     if( eButtonType == eTmpButtonType)
-//STRIP001                     {
-//STRIP001                         // Label
-//STRIP001                         aTmp = xPropSet->getPropertyValue( C2U("Label") );
-//STRIP001                         OUString uTmp;
-//STRIP001                         if( (aTmp >>= uTmp) && uTmp.getLength())
-//STRIP001                         {
-//STRIP001                             rDescr = String(uTmp);
-//STRIP001                         }
-//STRIP001
-//STRIP001                         // util::URL
-//STRIP001                         aTmp = xPropSet->getPropertyValue( C2U("TargetURL") );
-//STRIP001                         if( (aTmp >>= uTmp) && uTmp.getLength())
-//STRIP001                         {
-//STRIP001                             rURL = String(uTmp);
-//STRIP001                         }
-//STRIP001                         bRet = sal_True;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
 
 
     // falls ein util::URL-Button selektiert ist, dessen util::URL returnen, ansonsten
     // einen LeerString
-//STRIP001 sal_Bool SwWrtShell::SetURLToButton( const String& rURL, const String& rDescr )
-//STRIP001 {
-//STRIP001     sal_Bool bRet = sal_False;
-//STRIP001     const SdrView *pDView = GetDrawView();
-//STRIP001     if( pDView )
-//STRIP001     {
-//STRIP001         // Ein Fly ist genau dann erreichbar, wenn er selektiert ist.
-//STRIP001         const SdrMarkList &rMarkList = pDView->GetMarkList();
-//STRIP001         if (rMarkList.GetMark(0))
-//STRIP001         {
-//STRIP001             SdrUnoObj* pUnoCtrl = PTR_CAST(SdrUnoObj, rMarkList.GetMark(0)->GetObj());
-//STRIP001             if (pUnoCtrl && FmFormInventor == pUnoCtrl->GetObjInventor())
-//STRIP001             {
-//STRIP001                 uno::Reference< awt::XControlModel >  xControlModel = pUnoCtrl->GetUnoControlModel();
-//STRIP001
-//STRIP001                 ASSERT( xControlModel.is(), "UNO-Control ohne Model" );
-//STRIP001                 if( !xControlModel.is() )
-//STRIP001                     return bRet;
-//STRIP001
-//STRIP001                 uno::Reference< beans::XPropertySet >  xPropSet(xControlModel, uno::UNO_QUERY);
-//STRIP001
-//STRIP001                 uno::Any aTmp;
-//STRIP001
-//STRIP001                 // Darf man eine util::URL an dem Objekt setzen?
-//STRIP001                 uno::Reference< beans::XPropertySetInfo >  xPropInfoSet = xPropSet->getPropertySetInfo();
-//STRIP001                 beans::Property aProp = xPropInfoSet->getPropertyByName( C2U("TargetURL") );
-//STRIP001                 if (aProp.Name.getLength())
-//STRIP001                 {
-//STRIP001                     // Ja!
-//STRIP001                     aTmp <<= OUString(rDescr);
-//STRIP001                     xPropSet->setPropertyValue( C2U("Label"), aTmp );
-//STRIP001
-//STRIP001                     aTmp <<= OUString(rURL);
-//STRIP001                     xPropSet->setPropertyValue( C2U("TargetURL"), aTmp );
-//STRIP001
-//STRIP001
-//STRIP001                     form::FormButtonType eButtonType = form::FormButtonType_URL;
-//STRIP001                     aTmp.setValue( &eButtonType, ::getCppuType((form::FormButtonType*)0));
-//STRIP001                     xPropSet->setPropertyValue( C2U("ButtonType"), aTmp );
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
 
 
 
