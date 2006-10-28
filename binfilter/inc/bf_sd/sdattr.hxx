@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdattr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:01:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:53:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -322,14 +322,6 @@ class DiaEffectItem : public SfxEnumItem
 {
 public:
             TYPEINFO();
-//STRIP001          DiaEffectItem( ::com::sun::star::presentation::FadeEffect eFade = ::com::sun::star::presentation::FadeEffect_NONE );
-//STRIP001          DiaEffectItem( SvStream& rIn );
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
-//STRIP001          USHORT          GetValueCount() const { return FADE_EFFECT_COUNT; }
-//STRIP001          ::com::sun::star::presentation::FadeEffect      GetValue() const
-//STRIP001                          { return (::com::sun::star::presentation::FadeEffect) SfxEnumItem::GetValue(); }
 };
 
 //------------------------------------------------------------------
@@ -338,14 +330,6 @@ class DiaSpeedItem : public SfxEnumItem
 {
 public:
             TYPEINFO();
-//STRIP001          DiaSpeedItem( FadeSpeed = FADE_SPEED_MEDIUM );
-//STRIP001          DiaSpeedItem( SvStream& rIn );
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
-//STRIP001          USHORT          GetValueCount() const { return FADE_SPEED_COUNT; }
-//STRIP001          FadeSpeed       GetValue() const
-//STRIP001                          { return (FadeSpeed) SfxEnumItem::GetValue(); }
 };
 
 //------------------------------------------------------------------
@@ -354,13 +338,6 @@ class DiaAutoItem : public SfxEnumItem
 {
 public:
             TYPEINFO();
-//STRIP001          DiaAutoItem( PresChange = PRESCHANGE_MANUAL );
-//STRIP001          DiaAutoItem( SvStream& rIn );
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
-//STRIP001          USHORT          GetValueCount() const { return PRESCHANGE_COUNT; }
-//STRIP001          PresChange      GetValue() const { return (PresChange) SfxEnumItem::GetValue(); }
 };
 
 //------------------------------------------------------------------
@@ -369,10 +346,7 @@ class DiaTimeItem : public SfxUInt32Item
 {
 public:
             TYPEINFO();
-//STRIP001          DiaTimeItem( UINT32 nValue = 0L );
 
-//STRIP001  virtual SfxPoolItem* Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual int          operator==( const SfxPoolItem& ) const;
 };
 
 } //namespace binfilter
