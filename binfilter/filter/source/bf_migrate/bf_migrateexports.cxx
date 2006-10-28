@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_migrateexports.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:41:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:22:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,13 +34,8 @@
  ************************************************************************/
 #include <stdio.h>
 
-// auto strip #include <osl/mutex.hxx>
 #include <osl/thread.h>
-// auto strip #include <cppuhelper/factory.hxx>
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-// auto strip #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
