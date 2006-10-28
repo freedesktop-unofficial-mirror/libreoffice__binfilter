@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewopti.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:36:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:44:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -132,7 +132,6 @@ public:
 
     const ScGridOptions&    GetGridOptions() const                      { return aGridOpt; }
     void                    SetGridOptions( const ScGridOptions& rNew ) { aGridOpt = rNew; }
-//STRIP001  SvxGridItem*            CreateGridItem( USHORT nId = SID_ATTR_GRID_OPTIONS ) const;
 
     BOOL                    IsHideAutoSpell() const             { return bHideAutoSpell; }
     void                    SetHideAutoSpell( BOOL bSet )       { bHideAutoSpell = bSet; }
@@ -164,24 +163,6 @@ inline SvStream& operator<<( SvStream& rStream, const ScViewOptions& rOpt )
 // Item fuer Einstellungsdialog - Ansicht
 //==================================================================
 
-//STRIP001 class ScTpViewItem : public SfxPoolItem
-//STRIP001 {
-//STRIP001 public:
-//STRIP001              TYPEINFO();
-//STRIP001              ScTpViewItem( USHORT nWhich );
-//STRIP001              ScTpViewItem( USHORT nWhich, const ScViewOptions& rOpt );
-//STRIP001              ScTpViewItem( const ScTpViewItem&  rItem );
-//STRIP001              ~ScTpViewItem();
-//STRIP001
-//STRIP001  virtual String          GetValueText() const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001
-//STRIP001  const ScViewOptions&    GetViewOptions() const { return theOptions; }
-//STRIP001
-//STRIP001 private:
-//STRIP001  ScViewOptions   theOptions;
-//STRIP001 };
 
 
 //==================================================================
@@ -205,7 +186,6 @@ class ScViewCfg : public ScViewOptions
 public:
             ScViewCfg();
 
-//STRIP001  void            SetOptions( const ScViewOptions& rNew );
 };
 
 
