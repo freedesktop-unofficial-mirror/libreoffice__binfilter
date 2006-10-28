@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtinet.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:40:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:00:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ class SwTxtINetFmt : public SwTxtAttrEnd, public SwClient
 public:
     SwTxtINetFmt( const SwFmtINetFmt& rAttr, xub_StrLen nStart, xub_StrLen nEnd );
     virtual ~SwTxtINetFmt();
-//STRIP001  TYPEINFO();
 
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
     virtual BOOL GetInfo( SfxPoolItem& rInfo ) const;
@@ -81,7 +80,6 @@ public:
     const BOOL IsValidVis() const { return bValidVis; }
     void SetValidVis( BOOL bNew ) { bValidVis = bNew; }
 
-//STRIP001  BOOL IsProtect() const;
 };
 inline const SwTxtNode& SwTxtINetFmt::GetTxtNode() const
 {
