@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtsrnd.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:07:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:45:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _FMTSRND_HXX
 #define _FMTSRND_HXX
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
@@ -79,11 +76,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
