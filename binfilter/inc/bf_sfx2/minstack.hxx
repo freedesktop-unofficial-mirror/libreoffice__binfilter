@@ -4,9 +4,9 @@
  *
  *  $RCSfile: minstack.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:25:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:03:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #define _SFXMINSTACK_HXX
 
 //ASDBG #ifndef _SFXMINARRAY_HXX
-// auto strip #ifndef _SFXVARARR_HXX
-// auto strip #include <bf_sfx2/minarray.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #define DECL_OBJSTACK( ARR, T, nI, nG ) \
