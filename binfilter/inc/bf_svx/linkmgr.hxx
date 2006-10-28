@@ -4,9 +4,9 @@
  *
  *  $RCSfile: linkmgr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:48:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:42:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,6 @@ public:
                         const String* pRange = 0 );
 
             // falls am Link schon alles eingestellt ist !
-//STRIP001  BOOL InsertFileLink( ::so3::SvBaseLink& );
 
         // erfrage die Strings fuer den Dialog
     virtual BOOL GetDisplayNames( const ::so3::SvBaseLink*,
@@ -85,7 +84,6 @@ public:
     // (ist zur Zeit nur fuer die FileLinks interressant!)
     void CancelTransfers();
 
-//STRIP001  static void SetTransferPriority( ::so3::SvBaseLink& rLink, USHORT nPrio );
 
     // um Status Informationen aus dem FileObject an den BaseLink zu
     // senden, gibt es eine eigene ClipBoardId. Das SvData-Object hat
