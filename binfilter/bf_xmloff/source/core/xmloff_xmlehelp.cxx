@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlehelp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:04:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:40:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 #include <limits.h>
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _BIGINT_HXX //autogen wg. BigInt
 #include <tools/bigint.hxx>
 #endif
