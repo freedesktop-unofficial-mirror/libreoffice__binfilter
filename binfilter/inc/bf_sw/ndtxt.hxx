@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndtxt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:15:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:49:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -117,7 +117,6 @@ class SwTxtNode: public SwCntntNode
                             BOOL bPool = TRUE );
 
     // Verlagere alles umfassende harte Attribute in den AttrSet des Absatzes
-//STRIP001  void MoveTxtAttr_To_AttrSet();  // wird von SplitNode gerufen.
 
     // lege den spz. AttrSet an
     virtual void NewAttrSet( SwAttrPool& );
@@ -144,8 +143,6 @@ public:
     virtual xub_StrLen Len() const;
 
     // steht in itratr
-//STRIP001  void GetMinMaxSize( ULONG nIndex, ULONG& rMin, ULONG &rMax, ULONG &rAbs,
-//STRIP001                      OutputDevice* pOut = 0 ) const;
 
     /*
      * Einfuegen anderer Datentypen durch Erzeugen eines
@@ -164,13 +161,11 @@ public:
     // oder wenn Which = 0, alle.
     void    RstAttr( const SwIndex &rIdx, xub_StrLen nLen, USHORT nWhich = 0,
                     const SfxItemSet* pSet = 0, BOOL bInclRefToxMark = FALSE );
-//STRIP001  void    GCAttr();
 
     // loesche das Text-Attribut (muss beim Pool abgemeldet werden!)
     void    DestroyAttr( SwTxtAttr* pAttr );
 
     // loesche alle Attribute aus dem SwpHintsArray.
-//STRIP001  void    ClearSwpHintsArr( int bDelAll = TRUE, int bDelFields = TRUE );
 
     // uebernehme den Pointer auf das Text-Attribut
     BOOL    Insert( SwTxtAttr *pAttr, USHORT nMode = 0 );
@@ -207,9 +202,6 @@ public:
                     const SwIndex &rStart, xub_StrLen nLen);
     // ersetze im String an Position nIdx das Zeichen
     void Replace( const SwIndex& rStart, xub_Unicode cCh );
-//STRIP001  void Replace( const SwIndex& rStart, xub_StrLen nLen, const XubString& rText );
-//STRIP001  void ReplaceTextOnly( xub_StrLen nPos, xub_StrLen nLen, const XubString& rText,
-//STRIP001                  const ::com::sun::star::uno::Sequence<long>& rOffsets );
 
     // virtuelle Methoden aus dem CntntNode
     virtual SwCntntFrm *MakeFrm();
@@ -220,8 +212,6 @@ public:
     SwCntntNode *AppendNode( const SwPosition & );
 
     // setze ggf. das DontExpand-Flag an INet bzw. Zeichenvorlagen
-//STRIP001  BOOL DontExpandFmt( const SwIndex& rIdx, BOOL bFlag = TRUE,
-//STRIP001                      BOOL bFmtToTxtAttributes = TRUE );
 
     // gebe das vorgegebene Attribut, welches an der TextPosition (rIdx)
     // gesetzt ist zurueck. Gibt es keines, returne 0-Pointer
@@ -240,8 +230,6 @@ public:
         { return (SwTxtFld *)GetTxtAttr( rIdx, RES_TXTATR_FIELD ); }
 
     // Aktuelles Wort zurueckliefern
-//STRIP001  XubString GetCurWord(xub_StrLen);
-//STRIP001  USHORT Spell(SwSpellArgs*);
     USHORT Convert( SwConversionArgs & );
 
     inline SwTxtFmtColl *GetTxtColl() const;
@@ -252,7 +240,6 @@ public:
     // kopiere die Collection mit allen Autoformaten zum Dest-Node
     // dieser kann auch in einem anderen Dokument stehen!
     // (Methode steht im ndcopy.cxx!!)
-//STRIP001  void CopyCollFmt( SwTxtNode& rDestNd );
 
     // Numerierung
     const SwNodeNum* UpdateNum( const SwNodeNum& );
@@ -273,26 +260,15 @@ public:
     USHORT GetLang( const xub_StrLen nBegin, const xub_StrLen nLen = 0) const;
 #endif
         // steht in ndcopy.cxx
-//STRIP001  BOOL IsSymbol( const xub_StrLen nBegin ) const; // steht in itratr.cxx
     virtual SwCntntNode* MakeCopy( SwDoc*, const SwNodeIndex& ) const;
 
     // interaktive Trennung: wir finden den TxtFrm und rufen sein CalcHyph
-//STRIP001  BOOL Hyphenate( SwInterHyphInfo &rHyphInf );
-//STRIP001  void DelSoftHyph( const xub_StrLen nStart, const xub_StrLen nEnd );
 
     // Liefert einen String mit expandierten Feldern zurueck
     //   opt. die Kapitel/Nummer-String zurueck
     XubString GetExpandTxt( const xub_StrLen nIdx = 0,
                          const xub_StrLen nLen = STRING_LEN,
                          const BOOL bWithNum = FALSE ) const;
-//STRIP001  BOOL GetExpandTxt( SwTxtNode& rDestNd, const SwIndex* pDestIdx = 0,
-//STRIP001                      xub_StrLen nIdx = 0, xub_StrLen nLen = STRING_LEN,
-//STRIP001                        BOOL bWithNum = FALSE, BOOL bWithFtn = TRUE,
-//STRIP001                        BOOL bReplaceTabsWithSpaces = FALSE ) const;
-//STRIP001  XubString GetRedlineTxt( xub_StrLen nIdx = 0,
-//STRIP001                        xub_StrLen nLen = STRING_LEN,
-//STRIP001                        BOOL bExpandFlds = FALSE,
-//STRIP001                        BOOL bWithNum = FALSE ) const;
     //Liefert fuer die Initalfunktion tatsaechliche Anzahl der Initialzeichen
     //bei nWishLen == 0 die des ersten Wortes
     USHORT GetDropLen( USHORT nWishLen) const;
@@ -323,14 +299,9 @@ public:
     virtual void Update( const SwIndex & aPos, USHORT xub_StrLen,
                         BOOL bNegativ = FALSE );
 
-//STRIP001  FASTBOOL IsInSymbolFont( USHORT xub_StrLen ) const;
 
     // change text to Upper/Lower/Hiragana/Katagana/...
-//STRIP001  void TransliterateText( utl::TransliterationWrapper& rTrans,
-//STRIP001                          xub_StrLen nStart, xub_StrLen nEnd,
-//STRIP001                          SwUndoTransliterate* pUndo = 0 );
 
-//STRIP001  USHORT GetScalingOfSelectedText( xub_StrLen nStt, xub_StrLen nEnd ) const;
 
     DECL_FIXEDMEMPOOL_NEWDEL(SwTxtNode)
 };
