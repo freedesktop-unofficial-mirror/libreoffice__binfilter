@@ -4,9 +4,9 @@
  *
  *  $RCSfile: iodetect.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:12:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:48:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #define _IODETECT_HXX
 
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 
 #ifdef IS_SW_DLL
@@ -127,10 +124,8 @@ struct SwIoDetect
 
 const USHORT MAXFILTER =
 #if !( defined(PRODUCT) || defined(MAC) || defined(PM2))
-//STRIP001      2 +
 #endif
 #ifdef DEBUG_SH
-//STRIP001      1 +
 #endif
     9;//STRIP001    21;
 
