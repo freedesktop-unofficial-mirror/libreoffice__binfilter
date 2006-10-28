@@ -4,9 +4,9 @@
  *
  *  $RCSfile: nhypitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:56:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:45:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,21 +60,6 @@ public:
     SvxNoHyphenItem( const BOOL bHyphen = TRUE,
                      const USHORT nId = ITEMID_NOHYPHENHERE );
 
-//STRIP001  // "pure virtual Methoden" vom SfxPoolItem
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nItemVersion) const;
-//STRIP001
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001
-//STRIP001  inline SvxNoHyphenItem& operator=(const SvxNoHyphenItem& rNHH)
-//STRIP001      {
-//STRIP001          SetValue( rNHH.GetValue() );
-//STRIP001          return *this;
-//STRIP001      }
 };
 
 }//end of namespace binfilter
