@@ -4,9 +4,9 @@
  *
  *  $RCSfile: usrfld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:25:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:01:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,12 +66,10 @@ public:
 
     String                  GetContent( sal_uInt32 nFmt = 0 );
            void             SetContent( const String& rStr, sal_uInt32 nFmt = 0 );
-//STRIP001         void             CtrlSetContent( const String& rStr );
 
     inline BOOL             IsValid() const;
     inline void             ChgValid( BOOL bNew );
 
-//STRIP001  virtual void            Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
 
            double           GetValue(SwCalc& rCalc);    // Member nValue neu berrechnen
     inline double           GetValue() const;
