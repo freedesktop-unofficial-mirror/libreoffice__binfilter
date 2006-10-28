@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itempool.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:47:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:48:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SCH_ITEMPOOL_HXX
 #define _SCH_ITEMPOOL_HXX
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
@@ -59,11 +56,8 @@ private:
 
 public:
     SchItemPool();
-//STRIP001  SchItemPool(const SchItemPool& rPool);
     virtual ~SchItemPool();
 
-//STRIP001  virtual SfxItemPool* Clone() const;
-//STRIP001  SfxMapUnit GetMetric(USHORT nWhich) const;
 };
 
 } //namespace binfilter
