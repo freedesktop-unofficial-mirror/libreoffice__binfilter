@@ -74,10 +74,8 @@ bf	binfilter\bf_offmgr\source\offapp\app				nmake	-	all	bf_of_app bf_of_sdi NULL
 bf	binfilter\bf_offmgr\source\offapp\dialog			nmake	-	all	bf_of_odlg bf_of_sdi NULL
 bf	binfilter\bf_offmgr\util							nmake	-	all	bf_of_util bf_of_app  bf_of_odlg bf_legacy bf_sv_util NULL
 bf	binfilter\bf_sc\source\core\inc						get		-	all	bf_sc_coinc NULL
-bf	binfilter\bf_sc\source\ui\inc						get		-	all	bf_sc_uiinc NULL
 bf	binfilter\bf_sc\source\filter\inc					get		-	all	bf_sc_fiinc NULL
 bf	binfilter\bf_sc\sdi									nmake	-	all	bf_sc_sdi bf_of_sdi NULL
-bf	binfilter\bf_sc\source\ui\pch						get		-	all	bf_sc_upch NULL
 bf	binfilter\bf_sc\source\ui\view						nmake	-	all	bf_sc_view bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\ui\app						nmake	-	all	bf_sc_app bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\ui\cctrl						nmake	-	all	bf_sc_cctrl bf_sc_sdi NULL
@@ -89,11 +87,9 @@ bf	binfilter\bf_sc\source\ui\navipi					nmake	-	all	bf_sc_nvipi bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\ui\src						nmake	-	all	bf_sc_uisrc bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\ui\undo						nmake	-	all	bf_sc_undo bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\ui\unoobj					nmake	-	all	bf_sc_unobj bf_sc_sdi NULL
-bf	binfilter\bf_sc\source\core\pch						get		-	all	bf_sc_cpch NULL
 bf	binfilter\bf_sc\source\core\data					nmake	-	all	bf_sc_data bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\core\src						nmake	-	all	bf_sc_cosrc bf_sc_sdi NULL
 bf	binfilter\bf_sc\source\core\tool					nmake	-	all	bf_sc_tool bf_sc_sdi NULL
-bf	binfilter\bf_sc\source\filter\pch					get		-	all	bf_sc_fpch NULL
 bf	binfilter\bf_sc\source\filter\xml					nmake	-	all	bf_sc_xml bf_sc_sdi NULL
 bf	binfilter\bf_sc\util								nmake	-	all	bf_sc_util    bf_sc_app bf_sc_cctrl bf_sc_cosrc bf_sc_data bf_sc_dbgui bf_sc_docsh bf_sc_drfnc bf_sc_form bf_sc_nvipi bf_sc_tool bf_sc_uisrc bf_sc_undo bf_sc_unobj bf_sc_view bf_sc_xml bf_of_util bf_sh_util NULL
 bf	binfilter\bf_sd\source\ui\inc						get		-	all	bf_sd_sinc NULL
