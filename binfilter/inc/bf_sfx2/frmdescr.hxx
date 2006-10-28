@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmdescr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:18:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:59:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -116,82 +116,7 @@ friend class SfxFrameDescriptor;
 
 public:
                             SfxFrameSetDescriptor(SfxFrameDescriptor *pFrame=NULL);
-//STRIP001                          ~SfxFrameSetDescriptor();
-//STRIP001
-//STRIP001                          // Title
-//STRIP001  void                    SetDocumentTitle( const String& rName )
-//STRIP001                          { aDocumentTitle = rName; }
-//STRIP001  const String&           GetDocumentTitle() const
-//STRIP001                          { return aDocumentTitle; }
-//STRIP001
-//STRIP001                          // FrameBorder
-//STRIP001  void                    ResetBorder()
-//STRIP001                          { nHasBorder = 0; }
     BOOL                    HasFrameBorder() const;
-//STRIP001
-//STRIP001  BOOL                    IsFrameBorderOn() const
-//STRIP001                          { return ( nHasBorder & BORDER_YES ) != 0; }
-//STRIP001
-//STRIP001  void                    SetFrameBorder( BOOL bBorder )
-//STRIP001                          {
-//STRIP001                              nHasBorder = bBorder ?
-//STRIP001                                          BORDER_YES | BORDER_SET :
-//STRIP001                                          BORDER_NO | BORDER_SET;
-//STRIP001                          }
-//STRIP001  BOOL                    IsFrameBorderSet() const
-//STRIP001                          { return (nHasBorder & BORDER_SET) != 0; }
-//STRIP001
-//STRIP001                          // FrameSpacing
-//STRIP001  void                    SetNetscapeCompatibility( BOOL bCompat = TRUE );
-//STRIP001  BOOL                    GetNetscapeCompatibility() const;
-//STRIP001  void                    SetFrameSpacing( long nSpacing )
-//STRIP001                          { nFrameSpacing = nSpacing; }
-//STRIP001  long                    GetFrameSpacing() const;
-//STRIP001  BOOL                    IsFrameSpacingSet() const
-//STRIP001                          { return nFrameSpacing != SPACING_NOT_SET; }
-//STRIP001  void                    SetWallpaper( const Wallpaper& rWallpaper );
-//STRIP001  const Wallpaper*        GetWallpaper() const;
-//STRIP001
-//STRIP001                          // Alignment des FrameSets
-//STRIP001  BOOL                    IsColSet() const
-//STRIP001                          { return !bRowSet; }
-//STRIP001  void                    SetColSet( BOOL bOn )
-//STRIP001                          { bRowSet = !bOn; }
-//STRIP001
-//STRIP001                          // Identifizierung
-//STRIP001  USHORT                  MakeItemId();
-//STRIP001  SfxFrameDescriptor*     SearchFrame( USHORT nId );
-//STRIP001  SfxFrameDescriptor*     SearchFrame( const String& rName );
-//STRIP001
-//STRIP001  void                    CutRootSet();
-//STRIP001  BOOL                    IsRootFrameSet() const
-//STRIP001                          { return bIsRoot; }
-//STRIP001  void                    SetRootFrameSet( BOOL bOn )
-//STRIP001                          { bIsRoot = bOn; }
-//STRIP001
-//STRIP001                          // Methoden f"ur Frames im FrameSet
-//STRIP001  SfxFrameDescriptor*     GetParentFrame() const
-//STRIP001                          { return pParentFrame; }
-//STRIP001  void                    InsertFrame( SfxFrameDescriptor*, USHORT nPos=0xFFFF );
-//STRIP001  void                    RemoveFrame( SfxFrameDescriptor* );
-//STRIP001  USHORT                  GetFrameCount() const
-//STRIP001                          { return aFrames.Count(); }
-//STRIP001  SfxFrameDescriptor*     GetFrame( USHORT nPos ) const
-//STRIP001                          {
-//STRIP001                              DBG_ASSERT( nPos< aFrames.Count(), "Falscher Index!" );
-//STRIP001                              return aFrames[nPos];
-//STRIP001                          }
-//STRIP001
-//STRIP001                          // Kopie z.B. f"ur die Views
-//STRIP001  SfxFrameSetDescriptor*  Clone(SfxFrameDescriptor *pFrame=NULL, BOOL bWithIds = TRUE) const;
-//STRIP001  BOOL                    CheckContent() const;
-//STRIP001  BOOL                    CompareOriginal( SfxFrameSetDescriptor& rSet ) const;
-//STRIP001  void                    UnifyContent( BOOL );
-//STRIP001
-//STRIP001                          // Persistenz
-//STRIP001  BOOL                    Store( SvStream& rStream ) const;
-//STRIP001  BOOL                    Load( SvStream& rStream, USHORT nVersion );
-//STRIP001  BOOL                    Load( SvStream& rStream );
 };
 
 struct SfxFrameProperties;
@@ -225,21 +150,16 @@ public:
                             ~SfxFrameDescriptor();
 
                             // Eigenschaften
-//STRIP001  void                    TakeProperties( const SfxFrameProperties& rProp );
 
                             // FileName/URL
     SfxItemSet*             GetArgs();
     const INetURLObject&    GetURL() const
                             { return aURL; }
-//STRIP001  void                    SetURL( const INetURLObject& rURL );
     void                    SetURL( const String& rURL );
     const INetURLObject&    GetActualURL() const
                             { return aActualURL; }
     void                    SetActualURL( const INetURLObject& rURL );
     void                    SetActualURL( const String& rURL );
-//STRIP001  BOOL                    CheckContent() const;
-//STRIP001  BOOL                    CompareOriginal( SfxFrameDescriptor& rSet ) const;
-//STRIP001  void                    UnifyContent( BOOL );
     void                    SetReadOnly( BOOL bSet ) { bReadOnly = bSet;}
     BOOL                    IsReadOnly(  ) const { return bReadOnly;}
     void                    SetEditable( BOOL bSet );
@@ -280,8 +200,6 @@ public:
                             { eScroll = eMode; }
 
                             // FrameBorder
-//STRIP001  void                    SetWallpaper( const Wallpaper& rWallpaper );
-//STRIP001  const Wallpaper*        GetWallpaper() const;
     BOOL                    HasFrameBorder() const;
 
     BOOL                    IsFrameBorderOn() const
@@ -308,14 +226,8 @@ public:
                             { return nItemId; }
     void                    SetItemId( USHORT nId )
                             { nItemId = nId; }
-//STRIP001  USHORT                  GetWinBits() const;
-//STRIP001  long                    GetSize() const;
-//STRIP001  USHORT                  GetParentSetId() const;
-//STRIP001  USHORT                  GetItemPos() const;
 
                             // Rekursion, Iteration
-//STRIP001  SfxFrameDescriptor*     Prev() const;
-//STRIP001  SfxFrameDescriptor*     Next() const;
     SfxFrameSetDescriptor*  GetParent() const
                             { return pParentFrameSet; }
     SfxFrameSetDescriptor*  GetFrameSet() const
@@ -333,8 +245,6 @@ public:
     SfxFrameDescriptor*     Clone(SfxFrameSetDescriptor *pFrame=NULL, BOOL bWithIds = TRUE ) const;
 
                             // Aufsplitten eines Frames
-//STRIP001  SfxFrameDescriptor*     Split( BOOL, BOOL );
-//STRIP001  BOOL                    CanSplit( BOOL, BOOL ) const;
 
                             // Persistenz
     BOOL                    Store( SvStream& rStream ) const;
