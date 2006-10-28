@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumi.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:12:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:06:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@
 #include <vcl/vclenum.hxx>
 #endif
 
-// auto strip #include "xmltkmap.hxx"
 #include "nmspmap.hxx"
 #include "xmlnmspe.hxx"
 #include "xmlimp.hxx"
@@ -54,15 +53,6 @@
 #include "XMLBase64ImportContext.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
-// auto strip #include <com/sun/star/awt/Size.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
 #include <com/sun/star/awt/FontDescriptor.hpp>
 #endif
@@ -72,22 +62,10 @@
 #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XOutputStream.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #include "i18nmap.hxx"
 #include "xmluconv.hxx"
@@ -97,9 +75,6 @@
 #ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX
 #include "XMLFontStylesContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX
-// auto strip #include "families.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include "maptype.hxx"
 #endif
