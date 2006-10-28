@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLEventImportHelper.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:19:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:03:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _XMLOFF_EVENTIMPORTHELPER_HXX
 #define _XMLOFF_EVENTIMPORTHELPER_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
