@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfcrop.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:35:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:36:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,11 +62,6 @@ public:
 //  virtual USHORT              GetVersion( USHORT nFileVersion ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT nVer) const;
     virtual SvStream&           Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
     virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal,
