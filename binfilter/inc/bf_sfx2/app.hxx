@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:08:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:55:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -238,8 +238,6 @@ class SfxLoadEnvironment : public SvRefBase
 public:
     SfxLoadEnvironment( LoadEnvironment_Impl* pImpl );
     ~SfxLoadEnvironment();
-//STRIP001     void     SetDataAvailableLink( const Link& rLink );
-//STRIP001     ErrCode  DocumentDetected( SfxObjectShell* pObjSh, ErrCode nError );
 };
 
 // class SfxSysChangeHint --------------------------------------------
@@ -359,20 +357,14 @@ class SfxApplication: public SfxShell
 #if _SOLAR__PRIVATE
     DECL_LINK(                  AutoStart_Impl, void* );
     DECL_LINK(                  SpecialService_Impl, void* );
-//STRIP001     void                        HandleConfigError_Impl(USHORT nErrId) const;
     DECL_LINK(                  AutoSaveHdl_Impl, Timer* );
-//STRIP001     BOOL                        SaveAll_Impl(BOOL bPrompt = FALSE, BOOL bAutoSave = FALSE);
-//STRIP001     void                        UpdateAutoSave_Impl();
-//STRIP001     short                       QuerySave_Impl(SfxObjectShell &, BOOL bAutoSave = FALSE);
     void                        TestFreeResources_Impl();
-//STRIP001  void                        InitializeDisplayName_Impl();
 #endif
 
     static SfxApplication*      Create();
 
 protected:
     void                        SettingsChange( USHORT, const AppSettings & );
-//STRIP001     FASTBOOL                 IsDemo();
 
     virtual void                Init();
     virtual void                Exit();
@@ -380,7 +372,6 @@ protected:
     static void                 SetApp( SfxApplication *pDerived );
 
 public:
-//STRIP001     void                     OpenClients();
                                 TYPEINFO();
                                 SFX_DECL_INTERFACE(SFX_INTERFACE_SFXAPP);
 
@@ -394,7 +385,6 @@ public:
     void                        Quit();
     void                        InitLabelResMgr( const char* );
     void                        HandleAppEvent( const ApplicationEvent& rAppEvent );
-//STRIP001  void                        FocusChanged();
 
     BOOL                        HasFeature( ULONG nFeature ) const;
     void                        SetFeatures( ULONG nFeatures )
@@ -402,7 +392,6 @@ public:
                                     _nFeatures = nFeatures;
                                 }
 
-//STRIP001     ULONG                       LoadTemplate( SfxObjectShellLock& xDoc, const String& rFileName, BOOL bCopy=TRUE, SfxItemSet* pArgs = 0 );
 
     String&                     GetSaveAsTargetURLHack();
     SfxFilterMatcher&           GetFilterMatcher();
@@ -411,44 +400,22 @@ public:
                                                  USHORT nViewId=0,
                                                  BOOL bHidden=FALSE );
 
-//STRIP001     ULONG                       DetectFilter( const String &rFileName,
-//STRIP001                                               const SfxFilter **pFilter,
-//STRIP001                                               USHORT nFilterClass=USHRT_MAX );
 
     virtual void                FillStatusBar( StatusBar& );
 
-//STRIP001     PrinterDialog*           CreatePrinterDialog();
-//STRIP001     ModalDialog*             CreateAboutDialog();
-//STRIP001     SfxNewFileDialog*        CreateNewDialog();
 
-//STRIP001     ULONG                    DetectFilter( SfxMedium& rMedium,
-//STRIP001                                                const SfxFilter **pFilter,
-//STRIP001                                                USHORT nFilterClass=USHRT_MAX );
 
-//STRIP001     SfxMedium*               InsertDocumentDialog( ULONG nFlags, const SfxObjectFactory& rFact);
     SfxMedium*                  InsertDocumentDialog( ULONG nFlags, const SfxObjectFactory& rFact, ULONG nHelpId);
     SfxMediumList*              InsertDocumentsDialog( ULONG nFlags, const SfxObjectFactory& rFact);
     SfxMediumList*              InsertDocumentsDialog( ULONG nFlags, const SfxObjectFactory& rFact, ULONG nHelpId);
-//STRIP001     long                     DdeExecute( const String& rCmd );
-//STRIP001  long                        DdeGetData( const String& rItem,
-//STRIP001                                          const String& rMimeType,
-//STRIP001                                      ::com::sun::star::uno::Any & rValue );
-//STRIP001  long                        DdeSetData( const String& rItem,
-//STRIP001                                          const String& rMimeType,
-//STRIP001                              const ::com::sun::star::uno::Any & rValue );
-//STRIP001     ::so3::SvLinkSource*        DdeCreateLinkSource( const String& rItem );
 
     BOOL                        InitializeDde();
-//STRIP001     const DdeService*           GetDdeService() const;
     DdeService*                 GetDdeService();
-//STRIP001     void                        AddDdeTopic( SfxObjectShell* );
     void                        RemoveDdeTopic( SfxObjectShell* );
     BOOL                        RestoreWorkingSet();
 
-//STRIP001     ISfxTemplateCommon*         GetCurrentTemplateCommon();
     ISfxTemplateCommon*         GetCurrentTemplateCommon( SfxBindings& );
 
-//STRIP001     void                        LockDispatcher( BOOL bLock );
     BOOL                        IsDispatcherLocked() const
                                 { return bDispatcherLocked; }
     void                        SetViewFrame(SfxViewFrame *pViewFrame);
@@ -458,11 +425,8 @@ public:
     SfxResourceManager&         GetResourceManager() const
                                 { return *pResMgr; }
 
-//STRIP001     BOOL                        IsInException() const;
 
     BasicManager*               GetBasicManager();
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
-//STRIP001                              GetDialogContainer();
     ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
                                 GetBasicContainer();
     StarBASIC*                  GetBasic();
@@ -470,34 +434,23 @@ public:
     USHORT                      SaveBasicContainer() const;
     USHORT                      SaveDialogContainer() const;
     void                        EnterBasicCall();
-//STRIP001     FASTBOOL                    IsInBasicCall() const;
     void                        LeaveBasicCall();
-//STRIP001     void                        RegisterBasicConstants( const char *pPrefix,
-//STRIP001                                                         const SfxConstant *pConsts,
-//STRIP001                                                         USHORT nCount );
     SfxCancelManager*           GetCancelManager() const;
 
-//STRIP001     void                        IntroSlide();
     BOOL                        IsInInit() const { return bInInit; }
     BOOL                        IsInExit() const { return bInExit; }
     BOOL                        IsDowning() const { return bDowning; }
 
-//STRIP001     SfxObjectShell*             GetActiveObjectShell() const;
     SfxModule*                  GetActiveModule( SfxViewFrame* pFrame=NULL ) const;
     Window*                     GetWindowAtScreenPosPixel( const Point& rPos ) const;
 
     SfxStatusBarManager*        GetStatusBarManager() const;
-//STRIP001     SfxMenuBarManager*          GetMenuBarManager() const;
-//STRIP001     SfxAcceleratorManager*      GetAcceleratorManager() const;
     SfxAcceleratorManager*      GetGlobalAcceleratorManager() const;
 
     SfxMacroConfig*             GetMacroConfig() const;
 
     ResMgr*                     CreateResManager( const char *pPrefix );
     ResMgr*                     GetSfxResManager();
-//STRIP001     ResMgr*                     GetLabelResManager() const;
-//STRIP001  SimpleResMgr*               CreateSimpleResManager();
-//STRIP001  SimpleResMgr*               GetSimpleResManager();
 
     void                        RegisterToolBoxControl( SfxModule*, SfxTbxCtrlFactory*);
     void                        RegisterChildWindow(SfxModule*, SfxChildWinFactory*);
@@ -508,12 +461,8 @@ public:
     const SfxFilter*            GetFilter(const SfxObjectFactory &rFact, const String &rFilterName) const;
 
     SfxProgress*                GetProgress() const;
-//STRIP001     BOOL                        IsStandalone() const;
-//STRIP001     BOOL                        IsSecureURL( const INetURLObject &rURL, const String *pReferer ) const;
 
-//STRIP001     SfxTemplateDialog*          GetTemplateDialog();
     SfxHelpPI*                  GetHelpPI();
-//STRIP001     const String&               GetLastSaveDirectory() const;
 
     SfxInterface*               GetInterfaceByIdImpl( SfxInterfaceId eId ) const
                                 { return pInterfaces[ USHORT(eId) ]; }
@@ -524,39 +473,23 @@ public:
     BOOL                        GetOptions(SfxItemSet &);
     void                        SetOptions(const SfxItemSet &);
 
-//STRIP001     ResId                       GetCurrentObjectBar( USHORT nPosId ) const;
 
-//STRIP001     void                        SetDefFocusWindow( Window *pWin );
-//STRIP001     void                        GrabFocus( Window *pAlternate );
 
     Window*                     GetTopWindow() const;
-//STRIP001     void                        SetTopWindow(WorkWindow *);
     USHORT                      GetFreeIndex();
     void                        ReleaseIndex(USHORT i);
 
-//STRIP001     static SfxObjectShellRef    DocAlreadyLoaded( const String &rName,
-//STRIP001                                                   BOOL bSilent,
-//STRIP001                                                   BOOL bActivate,
-//STRIP001                                                   BOOL bForbidVisible = FALSE,
-//STRIP001                                                   const String* pPostStr = 0);
 
     void                        NotifyEvent(const SfxEventHint& rEvent, FASTBOOL bSynchron = TRUE );
     SfxEventConfiguration*      GetEventConfig() const;
 
     void                        SaveConfiguration() const;
-//STRIP001     USHORT                      GetDemoKind() const;
-//STRIP001     void                        SpoilDemoOutput(OutputDevice &, const Rectangle &) const;
     void                        InsertLateInitHdl(const Link&);
-//STRIP001     String                      LocalizeDBName( SfxDBNameConvert eConvert, const String& rList, char aDel=';' ) const;
-//STRIP001  void                        SetUserEMailAddress( const String &rEMail );
 
     static sal_Bool             IsPlugin();
-//STRIP001     Config*                     GetFilterIni();
     SfxMiscCfg*                 GetMiscConfig();
-//STRIP001     USHORT                       Exception( USHORT nError );
     void                        StartupScreen( const char* );
     void                        Deinitialize();
-//STRIP001     const SfxObjectFactory&     GetDefaultFactory() const;
 
     virtual void                Invalidate(USHORT nId = 0);
 
@@ -565,9 +498,7 @@ public:
     SfxConfigManager*           GetConfigManager_Impl() const { return pCfgMgr; }
     SfxDispatcher*              GetAppDispatcher_Impl()
                                 { return pAppDispat; }
-//STRIP001     SfxDispatcher*              GetDispatcher_Impl();
     USHORT                      ParseCommandLine_Impl();
-//STRIP001  UniqueIndex*                GetEventHandler_Impl();
     DECL_LINK(                  StartWelcomeScreenHdl_Impl, void* );
 
     SfxAcceleratorManager*      GetAppAccel_Impl() const
@@ -577,12 +508,10 @@ public:
     BOOL                        QueryExit_Impl();
     SfxFrame*                   GetTargetFrame_Impl( const SfxItemSet* pSet, BOOL& rOwnsFrame );
 
-//STRIP001     void                        SetOptions_Impl(const SfxItemSet &);
     BOOL                        CheckTryBuy_Impl();
     void                        ForcePendingInitFactories();
 
     Timer*                      GetAutoSaveTimer_Impl();
-//STRIP001     void                        LoadEa_Impl(SfxMedium &, SfxObjectShell &rObj);
 
     BOOL                        IsReadOnly_Impl(const String &rFile) const;
     FASTBOOL                    Initialize_Impl();
@@ -598,25 +527,18 @@ public:
     SfxViewFrameArr_Impl&       GetViewFrames_Impl() const;
     SfxViewShellArr_Impl&       GetViewShells_Impl() const;
     SfxObjectShellArr_Impl&     GetObjectShells_Impl() const;
-//STRIP001     void                        SetProgress_Impl(SfxProgress *);
     const String&               GetLastDir_Impl() const;
     void                        SetLastDir_Impl( const String & );
-//STRIP001     const String&               GetLastFilter_Impl() const;
     void                        SetLastFilter_Impl( const String & );
     void                        BuildBasicData_Impl();
-//STRIP001     void                        PlayMacro_Impl( SfxRequest &rReq,
-//STRIP001                                                 StarBASIC *pBas );
     StarBASIC*                  GetBasic_Impl() const;
     void                        MiscExec_Impl(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 void                        MiscExec_Impl(SfxRequest &);
     void                        MiscState_Impl(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 void                        MiscState_Impl(SfxItemSet &);
-//STRIP001     void                        MailExec_Impl(SfxRequest &);
-//STRIP001     void                        MailState_Impl(SfxItemSet &);
     void                        PropExec_Impl(SfxRequest &);
     void                        PropState_Impl(SfxItemSet &);
     void                        MacroExec_Impl(SfxRequest &);
     void                        MacroState_Impl(SfxItemSet &);
     void                        NewDocExec_Impl(SfxRequest &);
-//STRIP001     void                        NewFramesetExec_Impl(SfxRequest &);
     void                        NewDocDirectExec_Impl(SfxRequest &);
     void                        OpenDocExec_Impl(SfxRequest &);
     void                        DocManagerExec_Impl(SfxRequest &);
@@ -625,28 +547,14 @@ public:
     void                        ExplorerExec_Impl(SfxRequest & );
     void                        ExplorerState_Impl(SfxItemSet & );
 
-//STRIP001     SfxViewFrame*               CreateView_Impl( SfxRequest&,
-//STRIP001                                                  SfxObjectShell *pDoc,
-//STRIP001                                                  FASTBOOL bForceNewView = FALSE,
-//STRIP001                                                  FASTBOOL bHidden = FALSE );
-//STRIP001     SfxViewFrame*               CreateView_Impl( const SfxItemSet* pArgs,
-//STRIP001                                                  SfxObjectShell *pDoc,
-//STRIP001                                                  FASTBOOL bForceNewView = FALSE,
-//STRIP001                                                  FASTBOOL bHidden = FALSE );
     void                        CreateDocState_Impl(SfxItemSet &);
 
     void                        BasicExec_Impl(SfxRequest &);
     void                        BasicState_Impl(SfxItemSet &);
 
-//STRIP001     void                        ToolboxExec_Impl(SfxRequest &);
-//STRIP001     void                        ToolboxState_Impl(SfxItemSet &);
 
-//STRIP001     void                        EventExec_Impl(SfxRequest &, SfxObjectShell*);
-//STRIP001     void                        EventState_Impl(USHORT,SfxItemSet &, SfxObjectShell*);
 
-//STRIP001     void                        EnterAsynchronCall_Impl();
     FASTBOOL                    IsInAsynchronCall_Impl() const;
-//STRIP001     void                        LeaveAsynchronCall_Impl();
     void                        Registrations_Impl();
     void                        InvalidateWinSlots_Impl();
     SvVerbList*                 GetVerbList_Impl() const;
@@ -663,8 +571,6 @@ public:
     SfxSlotPool&                GetAppSlotPool_Impl() const
                                 { return *pSlotPool; }
     DECL_STATIC_LINK(           SfxApplication, CookieAlertHdl_Impl, void* );
-//STRIP001  void                        BasicLibExec_Impl( SfxRequest& rReq, BasicManager* pMgr );
-//STRIP001     SfxModule*                  GetModule_Impl();
 #endif
 };
 
