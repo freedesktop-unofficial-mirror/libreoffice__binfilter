@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fcontnr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:16:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:59:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -150,8 +150,6 @@ public:
         SfxMedium& rMedium, const SfxFilter**, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const ;
     virtual const SfxFilter* GetFilter4Protocol(
         SfxMedium& rMed, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
-//STRIP001  const SfxFilter* GetFilter4UIName(
-//STRIP001      const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     virtual const SfxFilter* GetFilter(
         const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
 
@@ -159,16 +157,12 @@ public:
     virtual const SfxFilter* GetFilter( USHORT ) const;
     virtual ULONG            Execute( SfxMedium& rMedium, SfxFrame*& rpFrame ) const ;
 
-//STRIP001  BOOL                     IsUsableForRedirects() const;
 
     const String             GetName() const;
 
     void                     AddFilter( SfxFilter* pFilter, USHORT nPos );
-//STRIP001  void                     DeleteFilter( const SfxFilter* pFilter );
     void                     LoadFilters(
         const String& rGroup, BOOL bInstallIni = TRUE, SfxFilterFlags nAddMask = 0, SfxFilterFlags nDelMask = 0);
-//STRIP001  void                     SaveFilters(
-//STRIP001      const String& rGroup, SfxFilterFlags nMask = 0 ) const;
 /*AS    static String            ConvertToOldFilterName( const String& rNew );
     static String            ConvertToNewFilterName( const String& rNew ); */
     void                     ReadExternalFilters( const String& rDocServiceName );
@@ -229,8 +223,6 @@ public:
     virtual ULONG            Execute( SfxMedium& rMedium, SfxFrame*& ) const ;
 
     static const SfxFilter*  CheckForFolder( SfxMedium& rMed, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED );
-//STRIP001  static const SfxFilter*  GetDownloadFilter();
-//STRIP001  static const SfxFilter*  GetChooserFilter();
     static const SfxFilter*  GetComponentFilter();
     static const SfxFilter*  GetExplorerFilter();
 };
@@ -282,14 +274,10 @@ class SfxFilterMatcher
     SfxFilterMatcher_Impl *pImpl;
 public:
     SfxFilterMatcher( SfxFilterContainer* pCont );
-//STRIP001  SfxFilterMatcher();
     SfxFilterMatcher(BOOL bDeleteContainers);
     ~SfxFilterMatcher();
 
-//STRIP001  static BOOL               IsFilterInstalled( const SfxFilter* pFilter );
     void                      AddContainer( SfxFilterContainer* );
-//STRIP001  USHORT                    GetContainerCount() const;
-//STRIP001  SfxFilterContainer*       GetContainer( USHORT nPos ) const;
     SfxFilterContainer*       GetContainer( const String& rName ) const;
     ULONG                     GuessFilterIgnoringContent(
         SfxMedium& rMedium, const SfxFilter **,
@@ -297,11 +285,6 @@ public:
     ULONG                     GuessFilter(
         SfxMedium& rMedium, const SfxFilter **,
         SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
-//STRIP001  ULONG                     DetectFilter(
-//STRIP001      SfxMedium& rMedium, const SfxFilter **, BOOL bPlugIn,
-//STRIP001      BOOL bAPI = FALSE ) const;
-//STRIP001  const SfxFilter*          GetFilter4Mime(
-//STRIP001      const String& rMime, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED) const;
     const SfxFilter*          GetFilter4ClipBoardId(
         ULONG nId, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     const SfxFilter*          GetFilter4EA(
@@ -317,18 +300,12 @@ public:
         const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     const SfxFilter*          GetFilter4FilterName(
         const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
-//STRIP001  const SfxFilter*          GetFilter4UIName(
-//STRIP001      const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
 
-//STRIP001  const SfxFilter*          GetDefaultFilter( ) const;
 
     const SfxFilter*          ResolveRedirection( const SfxFilter*, SfxMedium& rMedium ) const;
     const SfxFilter*          ResolveRedirection( const SfxFilter*, const String& rURLPath ) const;
     const SfxFilter*          ResolveAppPlug( const SfxFilter* ) const;
 
-//STRIP001  static ULONG              AppDetectFilter(
-//STRIP001      SfxMedium& rMedium, const SfxFilter**,
-//STRIP001      SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) ;
 
     friend class SfxFilterMatcherIter;
     DECL_STATIC_LINK( SfxFilterMatcher, MaybeFileHdl_Impl, String* );

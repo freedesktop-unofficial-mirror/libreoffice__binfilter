@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doctempl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:15:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:58:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,8 +67,6 @@ class SfxDocumentTemplates
 private:
     SfxDocTemplate_ImplRef  pImp;
 
-//STRIP001  BOOL                CopyOrMove( USHORT nTargetRegion, USHORT nTargetIdx,
-//STRIP001                                  USHORT nSourceRegion, USHORT nSourceIdx, BOOL bMove );
 public:
                         SfxDocumentTemplates();
                         SfxDocumentTemplates(const SfxDocumentTemplates &);
@@ -80,8 +78,6 @@ public:
     static BOOL         SaveDir( /*SfxTemplateDir &rEntry */ ) ;
     const SfxDocumentTemplates &operator=(const SfxDocumentTemplates &);
 
-//STRIP001  BOOL                Rescan( );      // Aktualisieren
-//STRIP001     void                ReInitFromComponent();
 
     BOOL                IsRegionLoaded( USHORT nIdx ) const;
     USHORT              GetRegionCount() const;
@@ -107,25 +103,9 @@ public:
                                 const String &rLongName,
                                 const String &rFileName);
 
-//STRIP001  BOOL            Copy(USHORT nTargetRegion,
-//STRIP001                       USHORT nTargetIdx,
-//STRIP001                       USHORT nSourceRegion,
-//STRIP001                       USHORT nSourceIdx);
-//STRIP001  BOOL            Move(USHORT nTargetRegion,
-//STRIP001                       USHORT nTargetIdx,
-//STRIP001                       USHORT nSourceRegion,
-//STRIP001                       USHORT nSourceIdx);
-//STRIP001  BOOL            Delete(USHORT nRegion, USHORT nIdx);
-//STRIP001  BOOL            InsertDir(const String &rText, USHORT nRegion);
-//STRIP001  BOOL            SetName(const String &rName, USHORT nRegion, USHORT nIdx);
 
-//STRIP001  BOOL            CopyTo(USHORT nRegion, USHORT nIdx, const String &rName) const;
-//STRIP001  BOOL            CopyFrom(USHORT nRegion, USHORT nIdx, String &rName);
 
-//STRIP001  SfxObjectShellRef CreateObjectShell(USHORT nRegion, USHORT nIdx);
-//STRIP001  BOOL            DeleteObjectShell(USHORT, USHORT);
 
-//STRIP001  BOOL            GetFull( const String& rRegion, const String& rName, String& rPath );
     BOOL            GetLogicNames( const String& rPath, String& rRegion, String& rName ) const;
 
     /** updates the configuration where the document templates structure is stored.
@@ -143,7 +123,6 @@ public:
         <br/>
         So set <arg>_bSmart</arg> to <TRUE/> to do a check for necessity first.
     */
-//STRIP001  void            Update( sal_Bool _bSmart = sal_True );
 };
 
 }//end of namespace binfilter
