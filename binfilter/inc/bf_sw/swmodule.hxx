@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swmodule.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:31:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:56:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,6 @@ class SwPrintOptions;
 class SwAutoFmtOpt;
 class SwChapterNumRules;
 class SwStdFontConfig;
-//STRIP001 class SwNavigationConfig;
 class SwTransferable;
 class SwToolbarConfigItem;
 class SwAttrPool;
@@ -114,7 +113,6 @@ class SwModule: public SwModuleDummy , public SfxListener
     SwPrintOptions*     pWebPrtOpt;
     SwChapterNumRules*  pChapterNumRules;
     SwStdFontConfig*    pStdFontConfig;
-//STRIP001  SwNavigationConfig* pNavigationConfig;
     SwToolbarConfigItem*pToolbarConfig;     //fuer gestackte Toolbars, welche
     SwToolbarConfigItem*pWebToolbarConfig;  //war sichtbar?
     SwDBConfig*         pDBConfig;
@@ -151,8 +149,6 @@ class SwModule: public SwModuleDummy , public SfxListener
 
 protected:
     // Briefumschlaege, Etiketten
-//STRIP001     void                InsertEnv(SfxRequest&);
-//STRIP001  void                InsertLab(SfxRequest&, sal_Bool bLabel);
 
 public:
     // public Data - used for internal Clipboard / Drag & Drop / XSelection
@@ -182,7 +178,6 @@ public:
     //Die Handler fuer die Slots
     void                StateOther(SfxItemSet &);   // andere
     void                StateViewOptions(SfxItemSet &);
-//STRIP001  void                StateIsView(SfxItemSet &);
 
     void                ExecOther(SfxRequest &);    // Felder, Formel ..
     void                ExecViewOptions(SfxRequest &);
@@ -191,19 +186,13 @@ public:
     // Benutzereinstellungen modifizieren
     const SwMasterUsrPref *GetUsrPref(sal_Bool bWeb) const;
     const SwViewOption* GetViewOption(sal_Bool bWeb);
-//STRIP001  void                MakeUsrPref( SwViewOption &rToFill, sal_Bool bWeb ) const;
     void                ApplyUsrPref(const SwViewOption &, SwView*,
                                      sal_uInt16 nDest = VIEWOPT_DEST_VIEW );
-//STRIP001  void ApplyUserMetric( FieldUnit eMetric, BOOL bWeb );
-//STRIP001  void ApplyFldUpdateFlags(sal_Int32 nFldFlags);
-//STRIP001  void ApplyLinkMode(sal_Int32 nNewLinkMode);
 
     // ConfigItems erzeugen
     SwModuleOptions*    GetModuleConfig()       { return pModuleConfig;}
     SwPrintOptions*     GetPrtOptions(sal_Bool bWeb);
-//STRIP001  SwChapterNumRules*  GetChapterNumRules();
     SwStdFontConfig*    GetStdFontConfig()      { return pStdFontConfig; }
-//STRIP001  SwNavigationConfig* GetNavigationConfig();
     SwToolbarConfigItem*GetToolbarConfig()      { return pToolbarConfig;    }
     SwToolbarConfigItem*GetWebToolbarConfig()   { return pWebToolbarConfig; }
     SwDBConfig*         GetDBConfig();
@@ -218,29 +207,17 @@ public:
     sal_Bool IsEmbeddedLoadSave() const         { return bEmbeddedLoadSave; }
     void SetEmbeddedLoadSave( sal_Bool bFlag )  { bEmbeddedLoadSave = bFlag; }
 
-//STRIP001     void ShowDBObj( SwView& rView, const SwDBData& rData, BOOL bOnlyIfAvailable = FALSE);
 
     // Tabellenmodi
-//STRIP001  sal_Bool            IsInsTblFormatNum(sal_Bool bHTML) const;
-//STRIP001  sal_Bool            IsInsTblChangeNumFormat(sal_Bool bHTML) const;
-//STRIP001  sal_Bool            IsInsTblAlignNum(sal_Bool bHTML) const;
 
     // Redlining
      sal_uInt16         GetRedlineAuthor();
-//STRIP001  sal_uInt16          GetRedlineAuthorCount();
      const String&      GetRedlineAuthor(sal_uInt16 nPos);
 /*N*/   sal_uInt16          InsertRedlineAuthor(const String& rAuthor); //SW50.SDW
 
-//STRIP001  void                GetInsertAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet);
-//STRIP001  void                GetDeletedAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet);
-//STRIP001  void                GetFormatAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet);
 
-//STRIP001  const AuthorCharAttr&   GetInsertAuthorAttr() const;
-//STRIP001  const AuthorCharAttr&   GetDeletedAuthorAttr() const;
-//STRIP001  const AuthorCharAttr&   GetFormatAuthorAttr() const;
 
     sal_uInt16              GetRedlineMarkPos();
-//STRIP001  const Color&            GetRedlineMarkColor();
 
     // returne den definierten DocStat - WordDelimiter
     const String&       GetDocStatWordDelim() const;
@@ -253,9 +230,6 @@ public:
     sal_uInt16 GetFldUpdateFlags( sal_Bool bWeb ) const;
 
     //virtuelle Methoden fuer den Optionendialog
-//STRIP001  virtual SfxItemSet*  CreateItemSet( sal_uInt16 nId );
-//STRIP001  virtual void         ApplyItemSet( sal_uInt16 nId, const SfxItemSet& rSet );
-//STRIP001  virtual SfxTabPage*  CreateTabPage( sal_uInt16 nId, Window* pParent, const SfxItemSet& rSet );
 
     //hier wird der Pool angelegt und an der SfxShell gesetzt
     void    InitAttrPool();
@@ -300,7 +274,6 @@ inline void SwModule::SetLngSvcEvtListener(
 
 #define SW_MOD() ( *(SwModule**) GetAppData(BF_SHL_WRITER))
 SwView*     GetActiveView();
-//STRIP001 SwWrtShell* GetActiveWrtShell();
 
 
 
