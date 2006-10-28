@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtvfldi.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:15:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:22:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,13 +42,7 @@
 #include "txtvfldi.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
-// auto strip #include "txtimp.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
@@ -74,17 +68,11 @@
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
-// auto strip #include "xmlement.hxx"
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
 #include <com/sun/star/text/SetVariableType.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
-// auto strip #include <com/sun/star/text/XTextField.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
 #include <com/sun/star/text/XDependentTextField.hpp>
@@ -94,27 +82,12 @@
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
-// auto strip #endif
 
 #include "rtl/ustring.hxx"
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
