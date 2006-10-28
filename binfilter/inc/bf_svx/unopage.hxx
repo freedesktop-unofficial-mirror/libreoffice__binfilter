@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unopage.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:17:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:22:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,7 +74,6 @@
 #include <cppuhelper/implbase4.hxx>
 #include <unotools/servicehelper.hxx>
 
-// auto strip #include <bf_svx/unoprov.hxx>
 class List;
 namespace binfilter {
 

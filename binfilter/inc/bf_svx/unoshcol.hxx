@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshcol.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:18:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:23:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>
 #endif
