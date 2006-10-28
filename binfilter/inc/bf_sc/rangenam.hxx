@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rangenam.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:23:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:40:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -124,7 +124,6 @@ public:
 
     BOOL            Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
 
-//STRIP001  BOOL            operator== (const ScRangeData& rData) const;
 
     void            GetName( String& rName ) const  { rName = aName; }
     const String&   GetName( void ) const           { return aName; }
@@ -154,18 +153,11 @@ public:
 /*N*/                            short nDx, short nDy, short nDz );
     BOOL            IsModified() const              { return bModified; }
 
-//STRIP001  void            GuessPosition();
 
-//STRIP001  void            UpdateTranspose( const ScRange& rSource, const ScAddress& rDest );
-//STRIP001  void            UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
 
     BOOL            IsReference( ScRange& rRef ) const;
 
-//STRIP001  BOOL            IsRangeAtCursor( const ScAddress&, BOOL bStartOnly ) const;
-//STRIP001  BOOL            IsRangeAtBlock( const ScRange& ) const;
 
-//STRIP001  void            UpdateTabRef(USHORT nOldTable, USHORT nFlag, USHORT nNewTable);
-//STRIP001  void            TransferTabRef( USHORT nOldTab, USHORT nNewTab );
 
     void            ValidateTabRefs();
 
@@ -174,7 +166,6 @@ public:
     BOOL            IsBeyond( USHORT nMaxRow ) const;
 
     static void     MakeValidName( String& rName );
-//STRIP001  static BOOL     IsNameValid( const String& rName, ScDocument* pDoc );
 #ifdef WNT
     static int __cdecl  QsortNameCompare( const void*, const void* );
 #else
@@ -213,10 +204,6 @@ public:
     ScRangeData*            operator[]( const USHORT nIndex) const
                              { return (ScRangeData*)At(nIndex); }
     virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const;
-//STRIP001  virtual BOOL            IsEqual(DataObject* pKey1, DataObject* pKey2) const;
-//STRIP001
-//STRIP001  ScRangeData*            GetRangeAtCursor( const ScAddress&, BOOL bStartOnly ) const;
-//STRIP001  ScRangeData*            GetRangeAtBlock( const ScRange& ) const;
 
     BOOL                    Load( SvStream& rStream, USHORT nVer );
     BOOL                    Store( SvStream& rStream ) const;
