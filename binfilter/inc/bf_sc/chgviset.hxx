@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chgviset.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-27 12:34:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:29:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #include <tools/datetime.hxx>
 #endif
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
@@ -95,22 +92,17 @@ public:
                             bShowRejected=FALSE;
                         }
 
-//STRIP001                      ScChangeViewSettings( const ScChangeViewSettings& r );
 
                         ~ScChangeViewSettings();
 
      BOOL               ShowChanges() const {return bShowIt;}
     void                SetShowChanges(BOOL nFlag=TRUE){bShowIt=nFlag;}
-//STRIP001
     BOOL                HasDate() const {return bIsDate;}
     void                SetHasDate(BOOL nFlag=TRUE) {bIsDate=nFlag;}
-//STRIP001
     void                SetTheDateMode(ScChgsDateMode eDatMod){ eDateMode=eDatMod; }
      ScChgsDateMode     GetTheDateMode() const { return eDateMode; }
-//STRIP001
     void                SetTheFirstDateTime(const DateTime& aDateTime) {aFirstDateTime=aDateTime;}
     const DateTime&     GetTheFirstDateTime()const {return aFirstDateTime;}
-//STRIP001
     void                SetTheLastDateTime(const DateTime& aDateTime) {aLastDateTime=aDateTime;}
     const DateTime&     GetTheLastDateTime()const {return aLastDateTime;}
 
@@ -127,10 +119,7 @@ public:
     String              GetTheComment()const {return aComment;}
     void                SetTheComment(const String& aString);
 
-//STRIP001  BOOL                IsValidComment(const String* pCommentStr) const;
 
-//STRIP001  BOOL                IsEveryoneButMe() const {return bEveryoneButMe;}
-//STRIP001  void                SetEveryoneButMe(BOOL nFlag=TRUE) {bEveryoneButMe=nFlag;}
 
 
     BOOL                HasRange() const {return bIsRange;}
