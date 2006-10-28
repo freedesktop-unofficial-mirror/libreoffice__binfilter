@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schgroup.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:51:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:49:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,20 +74,13 @@ public:
     virtual UINT32 GetObjInventor() const;
     virtual UINT16 GetObjIdentifier() const;
 
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
 
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
 
     // FG: Damit soll ermöglicht werden dass man Objektgruppen im Chart resizen kann
-//STRIP001  virtual void    TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     void    SetObjInfo(SdrObjTransformInfoRec aMyInfo);
 
     // FG: Um das Verhalten bei einem Resize zu aendern muessen beide Routinen
     //     überladen werden.
-//STRIP001  virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 
     // FG: 9.3.1997 Methode von Joe, die Überladen wird um zu Kennzeichnen
     //              ob die Gruppe jemals verschoben worden ist.
@@ -98,7 +91,6 @@ public:
     void SetGroupIsChart() {eChartGroupType = DIAGRAM;}
     BOOL GetGroupIsChart() {return (eChartGroupType == DIAGRAM);}
 
-//STRIP001  void SetGroupMoved(BOOL value);
 
     void SetModel (ChartModel *pChModel) {pChartmodel = pChModel; SdrObjGroup::SetModel( (SdrModel*) pChModel ); }
 

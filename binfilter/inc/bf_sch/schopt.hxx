@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schopt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:52:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:50:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,18 +69,14 @@ class SchColorTable : private Table
 {
 public:
     SchColorTable();
-//STRIP001  SchColorTable( const SchColorTable& );
     virtual ~SchColorTable() {}
 
-//STRIP001  virtual void    UseDefault();
 
     // make public
     Table::Count;
 
     // specialized methods from Table
     void            ClearAndDestroy();
-//STRIP001  BOOL            RemoveAndDestroy( ULONG nKey );
-//STRIP001  BOOL            ReplaceAndDestroy( ULONG nKey, XColorEntry* );
 
     BOOL            Insert( ULONG nKey, XColorEntry* );
     XColorEntry*    Get( ULONG nKey ) const;
@@ -113,25 +109,12 @@ public:
     virtual ~SchOptions();
 
     const SchColorTable& GetDefaultColors();
-//STRIP001  void                SetDefaultColors( const SchColorTable& aCol );
 
-//STRIP001  virtual void        Commit();
 };
 
 // ====================
 // items
 // ====================
-//STRIP001 class SchColorTableItem : public SfxPoolItem, public SchColorTable
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  TYPEINFO();
-//STRIP001  SchColorTableItem( USHORT nWhich, const SchColorTable& );
-//STRIP001  SchColorTableItem( const SchColorTableItem& );
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001  void                    SetOptions( SchOptions* pOpts ) const;
-//STRIP001 };
 
 } //namespace binfilter
 #endif  // _SCH_SCHOPT_HXX
