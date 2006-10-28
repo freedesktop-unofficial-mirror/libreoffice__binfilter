@@ -4,9 +4,9 @@
  *
  *  $RCSfile: index.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:11:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:48:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>               // for RTTI of SwIndexReg
 #endif
-// auto strip #ifndef _STRING_HXX
-// auto strip #include <tools/string.hxx>               // for xub_StrLen
-// auto strip #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 namespace binfilter {
 #define INVALID_INDEX STRING_NOTFOUND
@@ -80,20 +77,16 @@ class SwIndex
 public:
     SwIndex( SwIndexReg * pReg, xub_StrLen nIdx = 0 );
     SwIndex( const SwIndex & );
-//STRIP001  SwIndex( const SwIndex &, short nDiff );
     ~SwIndex() { Remove(); }
 
     INLINE xub_StrLen operator++();
-//STRIP001  INLINE xub_StrLen operator--();
 #ifndef CFRONT
     INLINE xub_StrLen operator++(int);
     INLINE xub_StrLen operator--(int);
 #endif
 
     INLINE xub_StrLen operator+=( xub_StrLen );
-//STRIP001  INLINE xub_StrLen operator-=( xub_StrLen );
     INLINE xub_StrLen operator+=( const SwIndex& );
-//STRIP001  INLINE xub_StrLen operator-=( const SwIndex& );
 
     INLINE BOOL operator<( const SwIndex& ) const;
     INLINE BOOL operator<=( const SwIndex& ) const;
@@ -145,12 +138,10 @@ protected:
     virtual void Update( const SwIndex & aPos, xub_StrLen nLen,
                         BOOL bNegativ = FALSE );
 
-//STRIP001  void ChkArr();
 
     BOOL HasAnyIndex() const { return 0 != pFirst; }
 
     // fuer das Move am RegArray:
-//STRIP001  void MoveIdx( const SwIndex& rOldPos, const SwIndex& rNewPos );
 
 public:
     SwIndexReg();
@@ -170,20 +161,8 @@ public:
 #ifdef PRODUCT
 
 inline xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
-//STRIP001{
-//STRIP001  return ChgValue( *this, nIndex+1 ).nIndex;
-//STRIP001}
-//STRIP001inline xub_StrLen ::binfilter::SwIndex::operator--()
-//STRIP001{
-//STRIP001  return ChgValue( *this, nIndex-1 ).nIndex;
-//STRIP001}
 #ifndef CFRONT
 inline xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
-//STRIP001{
-//STRIP001  xub_StrLen nOldIndex = nIndex;
-//STRIP001  ChgValue( *this, nIndex+1 );
-//STRIP001  return nOldIndex;
-//STRIP001}
  inline xub_StrLen SwIndex::operator--(int)
  {
      xub_StrLen nOldIndex = nIndex;
@@ -196,18 +175,10 @@ inline xub_StrLen SwIndex::operator+=( xub_StrLen nWert )
 {
     return ChgValue( *this, nIndex + nWert ).nIndex;
 }
-//STRIP001inline xub_StrLen SwIndex::operator-=( xub_StrLen nWert )
-//STRIP001{
-//STRIP001  return ChgValue( *this, nIndex - nWert ).nIndex;
-//STRIP001}
 inline xub_StrLen SwIndex::operator+=( const  SwIndex& rIndex )
 {
     return ChgValue( *this, nIndex + rIndex.nIndex ).nIndex;
 }
-//STRIP001inline xub_StrLen SwIndex::operator-=( const SwIndex& rIndex )
-//STRIP001{
-//STRIP001  return ChgValue( *this, nIndex - rIndex.nIndex ).nIndex;
-//STRIP001}
 
   inline BOOL SwIndex::operator<( const SwIndex& rIndex ) const
   {
