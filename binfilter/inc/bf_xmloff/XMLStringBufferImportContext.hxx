@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLStringBufferImportContext.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:25:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:04:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include "xmlictxt.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLIMP_HXX_
-// auto strip #include "xmlimp.hxx"
-// auto strip #endif
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
