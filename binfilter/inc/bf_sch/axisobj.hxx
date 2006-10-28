@@ -4,9 +4,9 @@
  *
  *  $RCSfile: axisobj.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:41:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:45:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,6 @@ public:
 
     SchAxisObj( ChartModel* = NULL );
 
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl( USHORT ) const;
 };
 
 class Sch3dAxisObj : public SchE3dObject
@@ -61,7 +58,6 @@ public:
 
     Sch3dAxisObj();
 
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
 };
 
 } //namespace binfilter
