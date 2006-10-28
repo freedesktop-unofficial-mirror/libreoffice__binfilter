@@ -4,9 +4,9 @@
  *
  *  $RCSfile: userlist.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:35:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:44:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_USERLIST_HXX
 #define SC_USERLIST_HXX
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 
 #ifndef SC_COLLECT_HXX
 #include "collect.hxx"
@@ -65,12 +62,7 @@ public:
     virtual DataObject*     Clone() const { return new ScUserListData(*this); }
 /*N*/           BOOL            Store( SvStream& rStream ) const;
     const   String&         GetString() const { return aStr; }
-//STRIP001          void            SetString( const String& rStr);
-//STRIP001          USHORT          GetSubCount() const;
             BOOL            GetSubIndex(const String& rSubStr, USHORT& rIndex) const;
-//STRIP001          String          GetSubStr(USHORT nIndex) const;
-//STRIP001          StringCompare   Compare(const String& rSubStr1, const String& rSubStr2) const;
-//STRIP001          StringCompare   ICompare(const String& rSubStr1, const String& rSubStr2) const;
 };
 
 //------------------------------------------------------------------------
@@ -90,8 +82,6 @@ public:
 
     inline  ScUserListData* operator[]( const USHORT nIndex) const;
     inline  ScUserList&     operator= ( const ScUserList& r );
-//STRIP001          BOOL            operator==( const ScUserList& r ) const;
-//STRIP001  inline  BOOL            operator!=( const ScUserList& r ) const;
 };
 
 inline  ScUserList& ScUserList::operator=( const ScUserList& r )
@@ -100,8 +90,6 @@ inline  ScUserList& ScUserList::operator=( const ScUserList& r )
 inline ScUserListData* ScUserList::operator[]( const USHORT nIndex) const
     { return (ScUserListData*)At(nIndex); }
 
-//STRIP001 inline BOOL ScUserList::operator!=( const ScUserList& r ) const
-//STRIP001  { return !operator==( r ); }
 
 } //namespace binfilter
 #endif
