@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docinf.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:14:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:57:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,15 +35,6 @@
 #ifndef _SFXDOCINF_HXX
 #define _SFXDOCINF_HXX
 
-// auto strip #ifndef _ERRCODE_HXX //autogen wg. ErrCode
-// auto strip #include <tools/errcode.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATETIME_HXX //autogen
-// auto strip #include <tools/datetime.hxx>
-// auto strip #endif
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 #ifndef _SFXHINT_HXX //autogen
 #include <svtools/hint.hxx>
 #endif
