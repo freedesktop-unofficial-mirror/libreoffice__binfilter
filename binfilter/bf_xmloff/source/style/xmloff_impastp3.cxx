@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_impastp3.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:50:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:02:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-// auto strip #include "xmlprmap.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using namespace std;
