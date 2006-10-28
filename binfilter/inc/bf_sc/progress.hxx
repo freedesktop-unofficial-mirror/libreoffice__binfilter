@@ -4,9 +4,9 @@
  *
  *  $RCSfile: progress.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:23:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:39:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,11 +72,7 @@ private:
 public:
     static  SfxProgress*    GetGlobalSfxProgress() { return pGlobalProgress; }
     static  BOOL            IsUserBreak() { return !bGlobalNoUserBreak; }
-//STRIP001  static  void            CreateInterpretProgress( ScDocument* pDoc,
-//STRIP001                                                  BOOL bWait = TRUE );
     static  ScProgress*     GetInterpretProgress() { return pInterpretProgress; }
-//STRIP001  static  void            DeleteInterpretProgress();
-//STRIP001  static  void            SetAllowInterpret( BOOL bVal );
     static  BOOL            GetAllowInterpret() { return bAllowInterpretProgress; }
     static  ULONG           GetInterpretCount() { return nInterpretProgress; }
     static  ULONG           GetGlobalRange()    { return nGlobalRange; }
@@ -95,19 +91,6 @@ public:
                             // kann NULL sein!
             SfxProgress*    GetSfxProgress() const { return pProgress; }
 
-//STRIP001          BOOL            SetStateText( ULONG nVal, const String &rVal, ULONG nNewRange = 0 )
-//STRIP001                              {
-//STRIP001                                  if ( pProgress )
-//STRIP001                                  {
-//STRIP001                                      if ( nNewRange )
-//STRIP001                                          nGlobalRange = nNewRange;
-//STRIP001                                      CalcGlobalPercent( nVal );
-//STRIP001                                      if ( !pProgress->SetStateText( nVal, rVal, nNewRange ) )
-//STRIP001                                          bGlobalNoUserBreak = FALSE;
-//STRIP001                                      return bGlobalNoUserBreak;
-//STRIP001                                  }
-//STRIP001                                  return TRUE;
-//STRIP001                              }
             BOOL            SetState( ULONG nVal, ULONG nNewRange = 0 )
                                 {
                                     if ( pProgress )

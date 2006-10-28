@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rangeseq.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:23:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:40:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,14 +73,6 @@ public:
 };
 
 
-//STRIP001 class ScByteSequenceToString
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  //  rAny must contain Sequence<sal_Int8>,
-//STRIP001  //  may or may not contain 0-bytes at the end
-//STRIP001  static BOOL GetString( String& rString, const ::com::sun::star::uno::Any& rAny,
-//STRIP001                          sal_uInt16 nEncoding );
-//STRIP001 };
 
 } //namespace binfilter
 #endif
