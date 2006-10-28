@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sclnlnk.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:27:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:42:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,14 +44,6 @@ struct ScLineStruct
     short nRight;   // Breite der rechten Linie
 };
 
-//STRIP001 void ScLinkLine(const ScLineStruct& dLine,
-//STRIP001              const ScLineStruct& ltLine,
-//STRIP001              const ScLineStruct& lLine,
-//STRIP001              const ScLineStruct& lbLine,
-//STRIP001              const ScLineStruct& rtLine,
-//STRIP001              const ScLineStruct& rLine,
-//STRIP001              const ScLineStruct& rbLine,
-//STRIP001              short* dxArr);
 
 } //namespace binfilter
 #endif
