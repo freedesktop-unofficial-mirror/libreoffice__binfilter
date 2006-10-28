@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdlayer.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:37:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:06:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,8 +69,6 @@ protected:
     void SetID(SdrLayerID nNewID)                             { nID=nNewID; }
 public:
     SdrLayer(): pModel(NULL),nType(0),nID(0)                  {}
-//STRIP001  FASTBOOL      operator==(const SdrLayer& rCmpLayer) const;
-//STRIP001  FASTBOOL      operator!=(const SdrLayer& rCmpLayer) const { return !operator==(rCmpLayer); }
     void          SetName(const String& rNewName);
     const String& GetName() const                             { return aName; }
     SdrLayerID    GetID() const                               { return nID; }
@@ -79,7 +77,6 @@ public:
     // Einem SdrLayer kann man sagen dass er ein (der) Standardlayer sein soll.
     // Es wird dann laenderspeziefisch der passende Name gesetzt. SetName()
     // setzt das Flag "StandardLayer" ggf. zurueck auf "Userdefined".
-//STRIP001  void          SetStandardLayer(FASTBOOL bStd=TRUE);
     FASTBOOL      IsStandardLayer() const                     { return nType==1; }
     friend SvStream& operator>>(SvStream& rIn, SdrLayer& rLayer);
     friend SvStream& operator<<(SvStream& rOut, const SdrLayer& rLayer);
@@ -104,30 +101,12 @@ protected:
     SdrModel* pModel; // zum Broadcasten
 protected:
     // Broadcasting ueber's Model und setzen des Modified-Flags
-//STRIP001  void            Broadcast() const;
 public:
     SdrLayerSet(): pModel(NULL) {}
     SdrLayerSet(const String& rNewName): aName(rNewName), pModel(NULL) {}
-//STRIP001  FASTBOOL        operator==(const SdrLayerSet& rCmpLayerSet) const;
-//STRIP001  FASTBOOL        operator!=(const SdrLayerSet& rCmpLayerSet) const { return !operator==(rCmpLayerSet); }
-//STRIP001  void            SetName(const String& rNewName)        { aName=rNewName; Broadcast(); }
-//STRIP001  const String&   GetName() const                        { return aName; }
     void            SetModel(SdrModel* pNewModel)          { pModel=pNewModel; }
-//STRIP001  SdrModel*       GetModel() const                       { return pModel; }
-//STRIP001  FASTBOOL        IsMember(SdrLayerID nLayID) const      { return aMember.IsSet(nLayID); }
-//STRIP001  void            AddMember(SdrLayerID nLayID)           { if (nLayID!=SDRLAYER_NOTFOUND) aMember.Set(nLayID); Broadcast(); }
-//STRIP001  void            DelMember(SdrLayerID nLayID)           { aMember.Clear(nLayID); Broadcast(); }
 //    void            AddAll()                               { aMember.SetAll(); }
-//STRIP001  void            DelAll()                               { aMember.ClearAll(); Broadcast(); }
-//STRIP001  USHORT          GetMemberCount() const                 { return aMember.GetSetCount(); }
-//STRIP001  SdrLayerID      GetMemberID(USHORT i) const            { return aMember.GetSetBit(i); }
-//STRIP001  FASTBOOL        IsExcluded(SdrLayerID nLayID) const    { return aExclude.IsSet(nLayID); }
-//STRIP001  void            AddExcluded(SdrLayerID nLayID)         { if (nLayID!=SDRLAYER_NOTFOUND) aExclude.Set(nLayID); Broadcast(); }
-//STRIP001  void            DelExcluded(SdrLayerID nLayID)         { aExclude.Clear(nLayID); Broadcast(); }
 //    void            ExcludeAll()                           { aExclude.SetAll(); }
-//STRIP001  void            UnExcludeAll()                         { aExclude.ClearAll(); Broadcast(); }
-//STRIP001  USHORT          GetExcludedCount() const               { return aExclude.GetSetCount(); }
-//STRIP001  SdrLayerID      GetExcludedID(USHORT i) const          { return aExclude.GetSetBit(i); }
     friend SvStream& operator>>(SvStream& rIn, SdrLayerSet& rSet);
     friend SvStream& operator<<(SvStream& rOut, const SdrLayerSet& rSet);
 };
@@ -158,9 +137,6 @@ public:
     SdrLayerAdmin(SdrLayerAdmin* pNewParent=NULL);
     SdrLayerAdmin(const SdrLayerAdmin& rSrcLayerAdmin);
     ~SdrLayerAdmin();
-//STRIP001  const SdrLayerAdmin& operator=(const SdrLayerAdmin& rSrcLayerAdmin);
-//STRIP001  FASTBOOL             operator==(const SdrLayerAdmin& rCmpLayerAdmin) const;
-//STRIP001  FASTBOOL             operator!=(const SdrLayerAdmin& rCmpLayerAdmin) const       { return !operator==(rCmpLayerAdmin); }
     SdrLayerAdmin*       GetParent() const                                           { return pParent; }
     void                 SetParent(SdrLayerAdmin* pNewParent)                        { pParent=pNewParent; }
     void                 SetModel(SdrModel* pNewModel);
@@ -172,17 +148,13 @@ public:
     // Neuer Layer wird angelegt und eingefuegt
     SdrLayer*          NewLayer(const String& rName, USHORT nPos=0xFFFF);
     void               DeleteLayer(SdrLayer* pLayer)                                 { aLayer.Remove(pLayer); delete pLayer; Broadcast(FALSE); }
-//STRIP001  void               MoveLayer(SdrLayer* pLayer, USHORT nNewPos=0xFFFF);
-//STRIP001  SdrLayer*          MoveLayer(USHORT nPos, USHORT nNewPos);
     // Neuer Layer, Name wird aus der Resource geholt
-//STRIP001  SdrLayer*          NewStandardLayer(USHORT nPos=0xFFFF);
 
     // Iterieren ueber alle Layer
     USHORT             GetLayerCount() const                                         { return USHORT(aLayer.Count()); }
     SdrLayer*          GetLayer(USHORT i)                                            { return (SdrLayer*)(aLayer.GetObject(i)); }
     const SdrLayer*    GetLayer(USHORT i) const                                      { return (SdrLayer*)(aLayer.GetObject(i)); }
 
-//STRIP001  USHORT             GetLayerPos(SdrLayer* pLayer) const;
 
     SdrLayer*          GetLayer(const String& rName, FASTBOOL bInherited)            { return (SdrLayer*)(((const SdrLayerAdmin*)this)->GetLayer(rName,bInherited)); }
     const SdrLayer*    GetLayer(const String& rName, FASTBOOL bInherited) const;
@@ -194,17 +166,12 @@ public:
     // Alle LayerSets loeschen
     void               ClearLayerSets();
     // Neuer Layerset wird angelegt und eingefuegt
-//STRIP001  SdrLayerSet*       NewLayerSet(const String& rName, USHORT nPos=0xFFFF);
-//STRIP001  SdrLayerSet*       RemoveLayerSet(SdrLayerSet* pSet);
     void               DeleteLayerSet(SdrLayerSet* pSet)                             { aLSets.Remove(pSet); delete pSet; Broadcast(TRUE); }
-//STRIP001  void               MoveLayerSet(SdrLayerSet* pSet, USHORT nNewPos=0xFFFF);
     // Iterieren ueber alle LayerSets
     USHORT             GetLayerSetCount() const                                      { return USHORT(aLSets.Count()); }
     SdrLayerSet*       GetLayerSet(USHORT i)                                         { return (SdrLayerSet*)(aLSets.GetObject(i)); }
     const SdrLayerSet* GetLayerSet(USHORT i) const                                   { return (SdrLayerSet*)(aLSets.GetObject(i)); }
 
-//STRIP001  SdrLayerSet*       GetLayerSet(const String& rName, FASTBOOL bInherited)         { return (SdrLayerSet*)(((const SdrLayerAdmin*)this)->GetLayerSet(rName,bInherited)); }
-//STRIP001  const SdrLayerSet* GetLayerSet(const String& rName, FASTBOOL bInherited) const;
 
     void               SetControlLayerName(const String& rNewName) { aControlLayerName=rNewName; }
     const String&      GetControlLayerName() const                 { return aControlLayerName; }

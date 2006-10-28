@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmark.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:37:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:06:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,6 @@ class SdrUShortCont {
     FASTBOOL bSorted;
     FASTBOOL bDelDups;
 private:
-//STRIP001  void CheckSort(ULONG nPos);
 public:
     SdrUShortCont(USHORT nBlock, USHORT nInit, USHORT nResize): aArr(nBlock,nInit,nResize), bSorted(TRUE), bDelDups(TRUE) {}
     SdrUShortCont(const SdrUShortCont& rCont): aArr(rCont.aArr), bSorted(rCont.bSorted), bDelDups(rCont.bDelDups) {}
@@ -65,11 +64,7 @@ public:
     FASTBOOL       operator==(const SdrUShortCont& rCont) const { return aArr==rCont.aArr; }
     FASTBOOL       operator!=(const SdrUShortCont& rCont) const { return aArr!=rCont.aArr; }
     void     Clear()                                           { aArr.Clear(); bSorted=TRUE; }
-//STRIP001  void     Sort();
-//STRIP001  void     ForceSort()                                       { if (!bSorted) Sort(); }
-//STRIP001  void     Insert(USHORT nElem, ULONG nPos=CONTAINER_APPEND) { aArr.Insert((void*)ULONG(nElem),nPos); if (bSorted) CheckSort(nPos); }
     void     Remove(ULONG nPos)                                { aArr.Remove(nPos); }
-//STRIP001  void     Replace(USHORT nElem, ULONG nPos)                 { aArr.Replace((void*)ULONG(nElem),nPos); if (bSorted) CheckSort(nPos); }
     USHORT   GetObject(ULONG nPos) const                       { return USHORT(ULONG(aArr.GetObject(nPos))); }
     ULONG    GetPos(USHORT nElem) const                        { return aArr.GetPos((void*)(ULONG)nElem); }
     ULONG    GetCount() const                                  { return aArr.Count(); }
@@ -90,12 +85,7 @@ public:
     SdrMark(SdrObject* pNewObj=NULL, SdrPageView* pNewPageView=NULL): pObj(pNewObj), pPageView(pNewPageView), pPoints(NULL), pLines(NULL), pGluePoints(NULL), bCon1(FALSE), bCon2(FALSE), nUser(0) {}
     SdrMark(const SdrMark& rMark): pObj(NULL), pPageView(NULL), pPoints(NULL), pLines(NULL), pGluePoints(NULL), bCon1(FALSE), bCon2(FALSE), nUser(0) { *this=rMark; }
     ~SdrMark()                                          { if (pPoints!=NULL) delete pPoints; if (pLines!=NULL) delete pLines; if (pGluePoints!=NULL) delete pGluePoints; }
-//STRIP001  SdrMark&     operator=(const SdrMark& rMark);
-//STRIP001  FASTBOOL     operator==(const SdrMark& rMark) const;
-//STRIP001  FASTBOOL     operator!=(const SdrMark& rMark) const { return !operator==(rMark); }
     SdrObject*   GetObj() const                         { return pObj; }
-//STRIP001  SdrPage*     GetPage() const;
-//STRIP001  SdrObjList*  GetObjList() const;
     SdrPageView* GetPageView() const                    { return pPageView; }
     void         SetObj(SdrObject* pNewObj)             { pObj =pNewObj; }
     void         SetPageView(SdrPageView* pNewPageView) { pPageView=pNewPageView; }
@@ -150,31 +140,22 @@ public:
     ULONG FindObject(const SdrObject* pObj);
 
     void  InsertEntry(const SdrMark& rMark, FASTBOOL bChkSort=TRUE);
-//STRIP001  void  DeleteMark(ULONG nNum);
-//STRIP001  void  DeleteMarkNum(ULONG nNum) /* nur uebergangsweise */        { DeleteMark(nNum); }
-//STRIP001  void  ReplaceMark(const SdrMark& rNewMark, ULONG nNum);
 
     // bReverse kann einen Performancevorteil bringen, wenn sicher ist,
     // dass die SrcList genau verkehrt herum ist.
-//STRIP001  void  Merge(const SdrMarkList& rSrcList, FASTBOOL bReverse=FALSE);
 
     // Alle Entrys einer bestimmten PageView rauswerfen inkl delete
     FASTBOOL  DeletePageView (const SdrPageView& rPV);
     // Alle Objekte einer Seiteansicht markieren
-//STRIP001  FASTBOOL  InsertPageView(const SdrPageView& rPV);
 
     void SetNameDirty()                                              { bNameOk=FALSE; bPointNameOk=FALSE; bGluePointNameOk=FALSE; }
 
     // Eine verbale Beschreibung der markierten Objekte z.B.:
     // "27 Linien", "12 Objekte", "Polygon" oder auch "Kein Objekt"
-//STRIP001  const String& GetMarkDescription() const;
-//STRIP001  const String& GetPointMarkDescription() const                    { return GetPointMarkDescription(FALSE); }
     const String& GetGluePointMarkDescription() const                { return GetPointMarkDescription(TRUE); }
 
     // Schliesslich kann sich eine Mehrfach-Markierung
     // ueber mehrere Seiten erstrecken ...
-//STRIP001  USHORT GetPageViewAnz() const;
-//STRIP001  SdrPageView* GetPageView(USHORT nNum) const;
     // pPage=NULL: Die Markierungen aller! Seiten beruecksichtigen
     FASTBOOL TakeBoundRect(SdrPageView* pPageView, Rectangle& rRect) const;
     FASTBOOL TakeSnapRect(SdrPageView* pPageView, Rectangle& rRect) const;
