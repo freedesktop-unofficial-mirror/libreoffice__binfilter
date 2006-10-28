@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:44:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:24:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,13 +115,11 @@ private:
     void                        CreateDataImpl();
     void                        DeleteDataImpl();
 
-//STRIP001  BOOL                        EnableSSO( void );
     void *                      GetSSOCreator( void );
 
 public:
     void                        WriterExec_Impl( SfxRequest &rReq );
     void                        DrawExec_Impl( SfxRequest &rReq );
-//STRIP001  void                        CalcExec_Impl( SfxRequest &rReq );
     void                        BaseExec_Impl( SfxRequest &rReq );
     void                        ModuleState_Impl( SfxItemSet &rState );
     void                        Execute_Impl( SfxRequest &rReq );
@@ -152,8 +150,6 @@ public:
 
     ResMgr*                     GetOffResManager();
 
-//STRIP001  SimpleResMgr*               GetOffSimpleResManager();
-//STRIP001  void                        SetSbxCreatedLink( const Link &rLink );
     OfaHtmlOptions*             GetHtmlOptions();
     OfaFilterOptions*           GetFilterOptions();
     //BasicIDE*                 GetBasicIDE();
@@ -168,24 +164,17 @@ public:
 
     // ColorTable
     XColorTable*                GetStdColorTable();
-//STRIP001  XOutdevItemPool*            GetXOutdevItemPool();
 
     static void                 InitMailServer( MailServer* pServer );
     static BOOL                 GetEmailNames( SvStringsDtor& rNameList );
 
-//STRIP001  void                        SystemSettingsChanging( AllSettings& rSettings, Window* pFrame );
 
     //TreeOptionsDialog
-//STRIP001  virtual SfxItemSet*         CreateItemSet( USHORT nId );
-//STRIP001  virtual void                ApplyItemSet( USHORT nId, const SfxItemSet& rSet );
-//STRIP001  SfxTabPage*                 CreateTabPage( USHORT nId, Window* pParent, const SfxItemSet& rSet );
-//STRIP001  void                        ExecuteGeneralOptionsDialog(USHORT nSlotId);
 
 #if _SOLAR__PRIVATE
     OfficeAppl_Impl*            Get_Impl() { return pImpl; }
 #endif
 
-//STRIP001     static ::rtl::OUString       ChooseMacro( BOOL bExecute = TRUE, BOOL bChooseOnly = FALSE, const ::rtl::OUString& rMacroDesc = ::rtl::OUString() );
 };
 
 #define OFF_APP()   ( (OfficeApplication*)SfxGetpApp() )
