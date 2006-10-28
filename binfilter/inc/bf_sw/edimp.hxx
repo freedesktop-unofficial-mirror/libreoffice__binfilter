@@ -4,9 +4,9 @@
  *
  *  $RCSfile: edimp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:57:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:40:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,8 +37,6 @@
 #define _EDIMP_HXX
 
 #include "crsrsh.hxx"
-// auto strip #include "doc.hxx"
-// auto strip #include "viscrs.hxx"
 namespace binfilter {
 
 /*
@@ -86,13 +84,10 @@ class SwPamRanges : private _SwPamRanges
 public:
     SwPamRanges( const SwPaM& rRing ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwPamRanges( const SwPaM& rRing );
 
-//STRIP001  void Insert( const SwNodeIndex& rIdx1, const SwNodeIndex& rIdx2 );
     SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return rPam;} //STRIP001 SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam );
 
     USHORT Count() const
                 {   return _SwPamRanges::Count(); }
-//STRIP001  SwPamRange operator[]( USHORT nPos ) const
-//STRIP001              { return _SwPamRanges::operator[](nPos); }
 };
 
 

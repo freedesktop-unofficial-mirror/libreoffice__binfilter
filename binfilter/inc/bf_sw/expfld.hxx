@@ -4,9 +4,9 @@
  *
  *  $RCSfile: expfld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:58:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:40:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -132,7 +132,6 @@ public:
     inline void                 ChgBodyTxtFlag( BOOL bIsInBody );
     // fuer Felder in Header/Footer/Footnotes/Flys:
     // (wird nur von der Formatierung aufgerufen!!)
-//STRIP001  void                        ChangeExpansion( const SwFrm&, const SwTxtFld& );
 
     virtual String              GetCntnt(BOOL bName = FALSE) const;
 
@@ -208,7 +207,6 @@ public:
     void SetDelimiter( sal_Unicode c )      { cDelim = c; }
     BYTE GetOutlineLvl() const              { return nLevel; }
     void SetOutlineLvl( BYTE n )            { nLevel = n; }
-//STRIP001  void SetChapter( SwSetExpField& rFld, const SwNode& rNd );
     // Member nur fuers SwDoc::UpdateExpFld - wird nur waehrend der Laufzeit
     // von SequencefeldTypen benoetigt!!!
     const SwNode* GetOutlineChgNd() const   { return pOutlChgNd; }
@@ -364,32 +362,15 @@ public:
     Description: Sorted list of input fields and DropDown fields
  --------------------------------------------------------------------*/
 
-//STRIP001 class SwInputFieldList
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE );
-//STRIP001  ~SwInputFieldList();
 
-//STRIP001  USHORT      Count() const;
-//STRIP001  SwField*    GetField(USHORT nId);
 
-//STRIP001  void        GotoFieldPos(USHORT nId);
-//STRIP001  void        PushCrsr();
-//STRIP001  void        PopCrsr();
 
     // vergleiche TmpLst mit akt Feldern. Alle neue kommen in die SortLst
     // damit sie geupdatet werden koennen. Returnt die Anzahl.
     // (Fuer Textbausteine: nur seine Input-Felder aktualisieren)
-//STRIP001  USHORT      BuildSortLst();
 
     // Alle unselektierten Felder aus Liste entfernen
-//STRIP001  void        RemoveUnselectedFlds();
 
-//STRIP001 private:
-//STRIP001  SwEditShell*    pSh;
-//STRIP001  _SetGetExpFlds* pSrtLst;
-//STRIP001  SvPtrarr        aTmpLst;
-//STRIP001 };
 
 /*--------------------------------------------------------------------
     Beschreibung: Tabellen-Formelfeld
