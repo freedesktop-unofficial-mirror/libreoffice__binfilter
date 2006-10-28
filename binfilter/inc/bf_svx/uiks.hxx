@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uiks.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:12:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:20:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _SVX_UIKS_HXX
 #define _SVX_UIKS_HXX
 
-// auto strip #ifndef _USR_UIKS_HXX
-// auto strip #include <usr/uiks.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //  DBENGINE

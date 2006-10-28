@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedacc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:13:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:21:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,21 +42,9 @@
 #include <tools/gen.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
-// auto strip #include <com/sun/star/accessibility/XAccessible.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HPP_
-// auto strip #include <com/sun/star/accessibility/XAccessibleContext.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECOMPONENT_HPP_
 #include <com/sun/star/accessibility/XAccessibleComponent.hpp>
