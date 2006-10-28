@@ -4,9 +4,9 @@
  *
  *  $RCSfile: attrib.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:57:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:27:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_SCATTR_HXX
 #define SC_SCATTR_HXX
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
@@ -84,7 +81,6 @@ public:
                 ScMergeAttr( const ScMergeAttr& );
                 ~ScMergeAttr();
 
-//STRIP001  virtual String              GetValueText() const;
 
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
@@ -140,13 +136,6 @@ public:
                             ScProtectionAttr( const ScProtectionAttr& );
                             ~ScProtectionAttr();
 
-//STRIP001  virtual String              GetValueText() const;
-//STRIP001  virtual SfxItemPresentation GetPresentation(
-//STRIP001                                  SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String& rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
@@ -157,13 +146,9 @@ public:
     virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
             BOOL            GetProtection() const { return bProtection; }
-//STRIP001          BOOL            SetProtection( BOOL bProtect);
             BOOL            GetHideFormula() const { return bHideFormula; }
-//STRIP001          BOOL            SetHideFormula( BOOL bHFormula);
             BOOL            GetHideCell() const { return bHideCell; }
-//STRIP001          BOOL            SetHideCell( BOOL bHCell);
             BOOL            GetHidePrint() const { return bHidePrint; }
-//STRIP001          BOOL            SetHidePrint( BOOL bHPrint);
     inline  ScProtectionAttr& operator=(const ScProtectionAttr& rProtection)
             {
                 bProtection = rProtection.bProtection;
@@ -197,13 +182,6 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int                 operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual void                Record( SfxArguments &rArgs ) const;
-//STRIP001  virtual SfxArgumentError    Construct( USHORT nId, const SfxArguments &rArgs );
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                               SfxMapUnit eCoreMetric,
-//STRIP001                                               SfxMapUnit ePresMetric,
-//STRIP001                                               String &rText,
-//STRIP001                                                  const IntlWrapper* pIntl = 0 ) const;
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT              GetVersion( USHORT nFileVersion ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT) const;
@@ -255,22 +233,13 @@ public:
             ScTableListItem( const USHORT nWhich, const List& rList );
             ~ScTableListItem();
 
-//STRIP001  ScTableListItem& operator=( const ScTableListItem &rCpy );
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int                 operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual void                Record( SfxArguments &rArgs ) const;
-//STRIP001  virtual SfxArgumentError    Construct( USHORT nId, const SfxArguments &rArgs );
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                               SfxMapUnit eCoreMetric,
-//STRIP001                                               SfxMapUnit ePresMetric,
-//STRIP001                                               String &rText,
-//STRIP001                                                  const IntlWrapper* pIntl = 0 ) const;
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT) const;
     virtual SvStream&           Store( SvStream& rStream, USHORT nVer ) const;
 
-//STRIP001  BOOL    GetTableList( List& aList ) const;
     void    SetTableList( const List& aList );
 
 public:
@@ -339,15 +308,9 @@ public:
                 ~ScViewObjectModeItem();
 
     virtual USHORT              GetValueCount() const;
-//STRIP001  virtual String              GetValueText( USHORT nVal ) const;
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT) const;
     virtual USHORT              GetVersion( USHORT nFileVersion ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                               SfxMapUnit eCoreMetric,
-//STRIP001                                               SfxMapUnit ePresMetric,
-//STRIP001                                               String& rText,
-//STRIP001                                                  const IntlWrapper* pIntl = 0 ) const;
 };
 
 //----------------------------------------------------------------------------
