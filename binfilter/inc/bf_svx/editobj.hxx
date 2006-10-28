@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editobj.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:21:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:29:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ class EditTextObject
 {
 private:
     USHORT              nWhich;
-//STRIP001  EditTextObject&     operator=( const EditTextObject& );
 
 protected:
                         EditTextObject( USHORT nWhich );
@@ -84,8 +83,6 @@ public:
     virtual USHORT      GetUserType() const;    // Fuer OutlinerMode, der kann das aber nicht kompatibel speichern
     virtual void        SetUserType( USHORT n );
 
-//STRIP001  virtual ULONG       GetObjectSettings() const;
-//STRIP001  virtual void        SetObjectSettings( ULONG n );
 
     virtual BOOL        IsVertical() const;
 #if SUPD >= 615
@@ -94,9 +91,7 @@ public:
     void                SetVertical( BOOL bVertical );
 
 #if SUPD >= 615
-//STRIP001  virtual
 #endif
-//STRIP001  USHORT              GetScriptType() const;
 
     virtual USHORT      GetVersion() const; // Solange der Outliner keine Recordlaenge speichert
 
@@ -105,10 +100,8 @@ public:
     BOOL                    Store( SvStream& rOStream ) const;
     static EditTextObject*  Create( SvStream& rIStream,
                                 SfxItemPool* pGlobalTextObjectPool = 0 );
-//STRIP001  void                    Skip( SvStream& rIStream );
 
     // Zur 5.1 hat sich die Bedeutung des LRSpaceItems fuer den Outliner geaendert...
-//STRIP001  virtual void            SetLRSpaceItemFlags( BOOL bOutlineMode );
     virtual void            AdjustImportedLRSpaceItems( BOOL bTurnOfBullets );
     virtual void            PrepareStore( SfxStyleSheetPool* pStyleSheetPool );
     virtual void            FinishStore();
@@ -118,30 +111,18 @@ public:
 
     virtual XubString   GetText( USHORT nParagraph ) const;
     virtual void        Insert( const EditTextObject& rObj, USHORT nPara );
-//STRIP001  virtual void        RemoveParagraph( USHORT nPara );
-//STRIP001  virtual EditTextObject* CreateTextObject( USHORT nPara, USHORT nParas = 1 ) const;
 
-//STRIP001  virtual BOOL        HasPortionInfo() const;
     virtual void        ClearPortionInfo();
 
-//STRIP001  virtual BOOL        HasOnlineSpellErrors() const;
 
-//STRIP001  virtual BOOL        HasCharAttribs( USHORT nWhich = 0 ) const;
-//STRIP001  virtual void        GetCharAttribs( USHORT nPara, EECharAttribArray& rLst ) const;
 
-//STRIP001  virtual BOOL        RemoveCharAttribs( USHORT nWhich = 0 );
-//STRIP001  virtual BOOL        RemoveParaAttribs( USHORT nWhich = 0 );
 
     virtual void        MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart = EE_CHAR_START, USHORT nEnd = EE_CHAR_END );
 
-//STRIP001  virtual BOOL        IsFieldObject() const;
-//STRIP001  virtual const SvxFieldItem* GetField() const;
     virtual BOOL        HasField( TypeId aType = NULL ) const;
 
     virtual SfxItemSet  GetParaAttribs( USHORT nPara ) const;
-//STRIP001  virtual void        SetParaAttribs( USHORT nPara, const SfxItemSet& rAttribs );
 
-//STRIP001  virtual BOOL        HasStyleSheet( const XubString& rName, SfxStyleFamily eFamily ) const;
     virtual void        GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& eFamily ) const;
     virtual void        SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& eFamily );
     virtual BOOL        ChangeStyleSheets(  const XubString& rOldName, SfxStyleFamily eOldFamily,
