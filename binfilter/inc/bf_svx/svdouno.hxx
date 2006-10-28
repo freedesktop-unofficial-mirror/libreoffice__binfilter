@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdouno.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:42:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:09:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,9 +77,6 @@ protected:
     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > xUnoControlModel; // kann auch von aussen gesetzt werden
 
 private:
-//STRIP001  void CreateUnoControlModel(const String& rModelName);
-//STRIP001  void CreateUnoControlModel(const String& rModelName,
-//STRIP001      const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& rxSFac );
 
 public:
     TYPEINFO();
@@ -94,13 +91,7 @@ public:
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pModel);
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
-//STRIP001  virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
-//STRIP001  virtual void operator = (const SdrObject& rObj);
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
 
     virtual void NbcMove(const Size& rSize);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
@@ -111,12 +102,9 @@ public:
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void TakeObjNameSingul(XubString& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(XubString& rName) const;
 
     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > GetUnoControlModel() const {return xUnoControlModel;}
     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > GetUnoControl(const OutputDevice* pOut) const;
-//STRIP001  OutputDevice* GetOutputDevice(::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > _xControl) const;
 
     const String& GetUnoControlModelTypeName() const { return aUnoControlTypeName; }
     const String& GetUnoControlTypeName() const { return aUnoControlTypeName; }

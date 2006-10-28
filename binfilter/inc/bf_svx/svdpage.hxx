@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpage.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:43:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:10:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -184,7 +184,6 @@ public:
     // Vorhandenes Objekt durch ein anderes ersetzen.
     // Wie Remove&Insert jedoch performanter, da die Ordnungsnummern
     // nicht Dirty gesetzt werden muessen.
-//STRIP001  virtual SdrObject* NbcReplaceObject(SdrObject* pNewObj, ULONG nObjNum);
     virtual SdrObject* ReplaceObject(SdrObject* pNewObj, ULONG nObjNum);
     // Die Z-Order eines Objekts veraendern
     virtual SdrObject* NbcSetObjectOrdNum(ULONG nOldObjNum, ULONG nNewObjNum);
@@ -203,26 +202,19 @@ public:
     FASTBOOL Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors=FALSE) const;
     FASTBOOL Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors, USHORT nImpMode) const;
     // HitTest auf alle Objekte der Liste
-//STRIP001  SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer, FASTBOOL bBackward=FALSE) const;
-//STRIP001  SdrObject* CheckHit(const Point& rPnt, USHORT nTol, FASTBOOL bBackward=FALSE) const { return CheckHit(rPnt,nTol,NULL,bBackward); }
-//STRIP001  FASTBOOL IsHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckHit(rPnt,nTol,pVisiLayer)!=NULL; }
-//STRIP001  FASTBOOL IsHit(const Point& rPnt, USHORT nTol) const                              { return CheckHit(rPnt,nTol,NULL)!=NULL; }
 
     // Alle Textobjekte neu formatieren, z.B. bei Druckerwechsel
-//STRIP001  void NbcReformatAllTextObjects();
     void ReformatAllTextObjects();
 
     /** #103122# reformats all edge objects that are connected to other objects */
     void ReformatAllEdgeObjects();
 
     // Die Vorlagenattribute der Zeichenobjekte in harte Attribute verwandeln.
-//STRIP001  void BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly=FALSE );
 
     // Nichtpersistente Objekte aus der Liste entfernen. Dies sind einerseits
     // Objekte die bei SdrObject::IsNotPersistent() ein FALSE liefern. Wurde
     // zuvor SdrModel::SetStreamingSdrModel(TRUE) gerufen, so werden auch
     // OLE-Objekte entfernt.
-//STRIP001  void RemoveNotPersistentObjects(FASTBOOL bNoBroadcast);
 
     // Animations-Iterationscounter Resetten. Neustart der Animation
     // beim naechsten Paint. pPageView=NULL: Alle PageViews.
@@ -233,25 +225,18 @@ public:
     // rVisLayers gibt die zu durchsuchenden Layer an.
     // bLayerSorted: TRUE=Es wird in der Reihenfolge der Layer gesucht (ni)
     // rCol: Hier wird die gefundene Farbe zurueckgegeben
-//STRIP001  FASTBOOL GetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
-//STRIP001                        FASTBOOL bLayerSorted, Color& rCol) const;
 
     ULONG      GetObjCount() const           { return aList.Count(); }
     SdrObject* GetObj(ULONG nNum) const      { return (SdrObject*)aList.GetObject(nNum); }
 
     // Gelinkte Seite oder gelinktes Gruppenobjekt
-//STRIP001  virtual FASTBOOL IsReadOnly() const;
 
     // Zaehlt alle Objekte inkl. Objekte in Objektgruppen, ...
     ULONG   CountAllObjects() const;
 
     // Alle aufgelagerten Teile (z.B. Grafiken) der Liste in den
     // Speicher laden.
-//STRIP001  void    ForceSwapInObjects() const;
-//STRIP001     void    ForceSwapOutObjects() const;
 
-//STRIP001     void SwapInAll() const { ForceSwapInObjects(); }
-//STRIP001     void SwapOutAll() const { ForceSwapOutObjects(); }
 
     void    Save(SvStream& rOut) const;
     void    Load(SvStream& rIn, SdrPage& rPage);
@@ -317,7 +302,6 @@ public:
     SdrMasterPageDescriptorList(const SdrMasterPageDescriptorList& rSrcList): aList(1024,4,4) { *this=rSrcList; }
     ~SdrMasterPageDescriptorList()                                         { Clear(); }
     void     Clear();
-//STRIP001  void     operator=(const SdrMasterPageDescriptorList& rSrcList);
     FASTBOOL operator==(const SdrMasterPageDescriptorList& rCmpList) const;
     FASTBOOL operator!=(const SdrMasterPageDescriptorList& rCmpList) const   { return !operator==(rCmpList); }
     USHORT   GetCount() const                                                { return USHORT(aList.Count()); }
@@ -410,7 +394,6 @@ protected:
 #if _SOLAR__PRIVATE
 protected:
     void ImpMasterPageRemoved(USHORT nMasterPageNum);
-//STRIP001  void ImpMasterPageInserted(USHORT nMasterPageNum);
     void ImpMasterPageMoved(USHORT nMasterPageNum, USHORT nNewMasterPageNum);
 #endif // __PRIVATE
 public:
@@ -420,10 +403,6 @@ public:
     SdrPage(const SdrPage& rSrcPage);
     virtual ~SdrPage();
     // pModel, pPage, pUpList, pOwnerObj und bInserted werden Zuweisungeoperator nicht veraendert!
-//STRIP001  virtual void operator=(const SdrPage& rSrcPage);
-//STRIP001  virtual SdrPage* Clone() const;
-//STRIP001  virtual SdrPage* Clone(SdrModel* pNewModel) const;
-//STRIP001  SfxItemPool& GetItemPool() const;
             FASTBOOL IsMasterPage() const       { return bMaster; }
             void SetInserted(FASTBOOL bJa=TRUE);
             FASTBOOL IsInserted() const         { return bInserted; }
@@ -436,7 +415,6 @@ public:
     virtual void SetSize(const Size& aSiz);
     virtual Size GetSize() const;
     virtual void SetOrientation(Orientation eOri);
-//STRIP001  virtual Orientation GetOrientation() const;
     virtual INT32 GetWdt() const;
     virtual INT32 GetHgt() const;
     virtual void  SetBorder(INT32 nLft, INT32 nUpp, INT32 nRgt, INT32 Lwr);
@@ -466,8 +444,6 @@ public:
     // ihrer Posistion in der MasterPageliste der Seite identifiziert (ausser
     // GetMasterPagePos()). Masterpages die in am Anfang der Liste stehen,
     // werden auch zuerst gepainted.
-//STRIP001          USHORT           GetMasterPagePos(const SdrPage& rPage) const     { return GetMasterPagePos(rPage.GetPageNum()); }
-//STRIP001          USHORT           GetMasterPagePos(USHORT nPgNum) const;
     virtual void             InsertMasterPage(USHORT nPgNum, USHORT nPos=0xFFFF);
     virtual void             RemoveMasterPage(USHORT nPos);
     virtual void             MoveMasterPage(USHORT nPos, USHORT nNewPos);
@@ -481,10 +457,7 @@ public:
     SdrMasterPageDescriptor& GetMasterPageDescriptor(USHORT nPos)             { return aMasters[nPos]; }
     const SdrMasterPageDescriptor& GetMasterPageDescriptor(USHORT nPos) const { return aMasters[nPos]; }
     const SdrMasterPageDescriptorList& GetMasterPageDescriptorList() const    { return aMasters; }
-//STRIP001  virtual void             SetMasterPageNum(USHORT nPgNum, USHORT nPos);
     virtual void             SetMasterPageVisibleLayers(const SetOfByte& rVL, USHORT nPos);
-//STRIP001  virtual void             SetMasterPageDescriptor(const SdrMasterPageDescriptor& rMPD, USHORT nPos);
-//STRIP001  virtual void             SetMasterPageDescriptorList(const SdrMasterPageDescriptorList& rMPDL);
 
     // Aenderungen an den Layern setzen nicht das Modified-Flag !
     const         SdrLayerAdmin& GetLayerAdmin() const                  { return *pLayerAdmin; }
@@ -496,8 +469,6 @@ public:
     // bLayerSorted: TRUE=Es wird in der Reihenfolge der Layer gesucht (ni)
     // rCol: Hier wird die gefundene Farbe zurueckgegeben
     // Auch MasterPages werden durchsucht.
-//STRIP001  FASTBOOL GetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
-//STRIP001                        FASTBOOL bLayerSorted, Color& rCol) const;
 
     // GetBitmap und GetMetafile sind noch nicht implementiert.
     // Bitmap in Bildschirmaufloesung und -farbtiefe aus den Objekten der
@@ -513,7 +484,6 @@ public:
     // fuer's Raster im Writer, auch fuer AlignObjects wenn 1 Objekt markiert ist
     // wenn pRect!=NULL, dann die Seiten, die von diesem Rect intersected werden
     // ansonsten die sichtbaren Seiten.
-//STRIP001  virtual const SdrPageGridFrameList* GetGridFrameList(const SdrPageView* pPV, const Rectangle* pRect) const;
 #if SUPD>=361
     FASTBOOL IsObjectsNotPersistent() const          { return bObjectsNotPersistent; }
     void     SetObjectsNotPersistent(FASTBOOL b)     { bObjectsNotPersistent=b; }
@@ -544,7 +514,6 @@ public:
 
     virtual SfxStyleSheet* GetTextStyleSheetForObject( SdrObject* pObj ) const;
 
-//STRIP001  FASTBOOL HasTransparentObjects( BOOL bCheckForAlphaChannel = FALSE ) const;
 
     /** *deprecated* returns an averaged background color of this page */
     Color GetBackgroundColor() const;

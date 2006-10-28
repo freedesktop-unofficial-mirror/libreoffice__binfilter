@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdovirt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:43:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:10:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,115 +72,47 @@ public:
     virtual ~SdrVirtObj();
     virtual SdrObject& ReferencedObj();
     virtual const SdrObject& GetReferencedObj() const;
-//STRIP001  virtual void NbcSetAnchorPos(const Point& rAnchorPos);
     virtual void SetModel(SdrModel* pNewModel);
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT32 GetObjInventor() const;
     virtual UINT16 GetObjIdentifier() const;
     virtual SdrObjList* GetSubList() const;
 
-//STRIP001  virtual const Rectangle& GetBoundRect() const;
-//STRIP001  virtual void RecalcBoundRect();
     virtual void SetChanged();
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual SdrObject* Clone() const;
-//STRIP001  virtual void operator=(const SdrObject& rObj);
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
-//STRIP001  virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
 
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual USHORT GetPlusHdlCount(const SdrHdl& rHdl) const;
-//STRIP001  virtual SdrHdl* GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const;
-//STRIP001  virtual void AddToHdlList(SdrHdlList& rHdlList) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
 
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
-//STRIP001  virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-//STRIP001  virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
 
-//STRIP001  virtual void Move(const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void Mirror(const Point& rRef1, const Point& rRef2);
-//STRIP001  virtual void Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
 
     virtual void RecalcSnapRect();
-//STRIP001  virtual const Rectangle& GetSnapRect() const;
-//STRIP001  virtual void SetSnapRect(const Rectangle& rRect);
-//STRIP001  virtual void NbcSetSnapRect(const Rectangle& rRect);
 
-//STRIP001  virtual const Rectangle& GetLogicRect() const;
-//STRIP001  virtual void SetLogicRect(const Rectangle& rRect);
-//STRIP001  virtual void NbcSetLogicRect(const Rectangle& rRect);
 
     virtual long GetRotateAngle() const;
     virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
-//STRIP001  virtual FASTBOOL IsPolyObj() const;
-//STRIP001  virtual USHORT GetPointCount() const;
-//STRIP001  virtual const Point& GetPoint(USHORT i) const;
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
-//STRIP001  virtual SdrObjGeoData* GetGeoData() const;
-//STRIP001  virtual void SetGeoData(const SdrObjGeoData& rGeo);
 
     // ItemSet access
     virtual const SfxItemSet& GetItemSet() const;
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
-//STRIP001  virtual void SetItem(const SfxPoolItem& rItem);
-//STRIP001  virtual void ClearItem(const sal_uInt16 nWhich = 0);
-//STRIP001  virtual void SetItemSet(const SfxItemSet& rSet);
-//STRIP001  virtual void BroadcastItemChange(const SdrBroadcastItemChange& rChange);
 
     // private support routines for ItemSet access. NULL pointer means clear item.
-//STRIP001  virtual BOOL AllowItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0) const;
-//STRIP001  virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
-//STRIP001  virtual void PostItemChange(const sal_uInt16 nWhich);
-//STRIP001  virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
     virtual void PreSave();
     virtual void PostSave();
 
-//STRIP001  virtual SfxStyleSheet* GetStyleSheet() const;
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
     virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
 
-//STRIP001  virtual void NbcReformatText();
-//STRIP001  virtual void ReformatText();
 
-//STRIP001  virtual FASTBOOL HasMacro() const;
-//STRIP001  virtual SdrObject* CheckMacroHit (const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual Pointer GetMacroPointer (const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual void PaintMacro (ExtOutputDevice& rXOut, const Rectangle& rDirtyRect, const SdrObjMacroHitRec& rRec) const;
-//STRIP001  virtual FASTBOOL DoMacro (const SdrObjMacroHitRec& rRec);
-//STRIP001  virtual XubString GetMacroPopupComment(const SdrObjMacroHitRec& rRec) const;
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
