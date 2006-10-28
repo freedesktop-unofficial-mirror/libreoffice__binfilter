@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdhlpln.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:36:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:05:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <tools/gen.hxx>
 #endif
 
-// auto strip #ifndef _POINTR_HXX //autogen
-// auto strip #include <vcl/pointr.hxx>
-// auto strip #endif
 
 #ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
@@ -72,16 +69,12 @@ public:
     void            SetPos(const Point& rPnt)         { aPos=rPnt; }
     const Point&    GetPos() const                    { return aPos; }
 
-//STRIP001  Pointer         GetPointer() const;
-//STRIP001  void            Draw(OutputDevice& rOut, const Point& rOfs) const;
     FASTBOOL        IsHit(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const;
     // OutputDevice wird benoetigt, da Fangpunkte eine feste Pixelgroesse haben
-//STRIP001  Rectangle       GetBoundRect(const OutputDevice& rOut) const;
 
     /* returns true if this and the given help line would be rendered at the same pixel position
         of the given OutputDevice. This can be used to avoid drawing multiple help lines with xor
         on same position which could render them invisible */
-//STRIP001  bool            IsVisibleEqual( const SdrHelpLine& rHelpLine, const OutputDevice& rOut ) const;
 
     friend SvStream& operator<<(SvStream& rOut, const SdrHelpLine& rHL);
     friend SvStream& operator>>(SvStream& rIn, SdrHelpLine& rHL);
@@ -99,15 +92,12 @@ public:
     ~SdrHelpLineList()                                                     { Clear(); }
     void               Clear();
     void               operator=(const SdrHelpLineList& rSrcList);
-//STRIP001  FASTBOOL operator==(const SdrHelpLineList& rCmp) const;
-//STRIP001  FASTBOOL operator!=(const SdrHelpLineList& rCmp) const                 { return !operator==(rCmp); }
     USHORT             GetCount() const                                    { return USHORT(aList.Count()); }
     void               Insert(const SdrHelpLine& rHL, USHORT nPos=0xFFFF)  { aList.Insert(new SdrHelpLine(rHL),nPos); }
     void               Delete(USHORT nPos)                                 { delete (SdrHelpLine*)aList.Remove(nPos); }
     void               Move(USHORT nPos, USHORT nNewPos)                   { aList.Insert(aList.Remove(nPos),nNewPos); }
     SdrHelpLine&       operator[](USHORT nPos)                             { return *GetObject(nPos); }
     const SdrHelpLine& operator[](USHORT nPos) const                       { return *GetObject(nPos); }
-//STRIP001  void               DrawAll(OutputDevice& rOut, const Point& rOfs) const;
     USHORT             HitTest(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const;
     friend SvStream& operator<<(SvStream& rOut, const SdrHelpLineList& rHLL);
     friend SvStream& operator>>(SvStream& rIn, SdrHelpLineList& rHLL);

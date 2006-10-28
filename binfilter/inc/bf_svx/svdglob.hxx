@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdglob.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:35:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:05:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SVDGLOB_HXX
 #define _SVDGLOB_HXX
 
-// auto strip #ifndef _CONTNR_HXX //autogen
-// auto strip #include <tools/contnr.hxx>
-// auto strip #endif
 
 #ifndef _RESID_HXX //autogen
 #include <tools/resid.hxx>
