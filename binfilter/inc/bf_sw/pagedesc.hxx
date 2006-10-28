@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pagedesc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:17:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:50:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -245,11 +245,7 @@ public:
         SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, String &rText ) const;
 
         // erfrage vom Client Informationen
-//STRIP001  virtual BOOL GetInfo( SfxPoolItem& ) const;
 
-//STRIP001  const SwFrmFmt* GetPageFmtOfNode( const SwNode& rNd,
-//STRIP001                                  BOOL bCheckForThisPgDc = TRUE ) const;
-//STRIP001  BOOL IsFollowNextPageOfNode( const SwNode& rNd ) const;
 
     //Given a SwNode return the pagedesc in use at that location.
     static const SwPageDesc* GetPageDescOfNode(const SwNode& rNd);

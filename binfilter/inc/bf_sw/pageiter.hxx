@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pageiter.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:17:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:50:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,24 +40,7 @@
 #endif
 namespace binfilter {
 
-//STRIP001 class SwDoc;
-//STRIP001 class SwPageFrm;
-//STRIP001 struct SwPosition;
-//STRIP001 class SwPageDesc;
 
-//STRIP001 class SwPageIter {
-//STRIP001  const SwDoc &rPDoc;
-//STRIP001  const SwPageFrm *pPage;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwPageIter( const SwDoc &rDoc, const SwPosition &rStartPos );
-//STRIP001
-//STRIP001  BOOL IsEnd() const { return 0 == pPage; }
-//STRIP001  BOOL NextPage();
-//STRIP001  const SwPageDesc* GetPageDesc() const;
-//STRIP001  BOOL Seek( const SwPosition &rPos );
-//STRIP001  BOOL GetPosition( SwPosition &rPos ) const;
-//STRIP001 };
 
 
 } //namespace binfilter
