@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellres.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:24:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:52:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #define _SHELLRES_HXX
 
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
@@ -97,8 +94,6 @@ struct ShellResource : public Resource
     // returns for the specific filter the new names of pagedescs
     // This method is for the old code of the specific filters with
     // now localized names
-//STRIP001  String GetPageDescName( USHORT nNo, BOOL bFirst = FALSE,
-//STRIP001                                      BOOL bFollow = FALSE );
 
     ShellResource();
     ~ShellResource();

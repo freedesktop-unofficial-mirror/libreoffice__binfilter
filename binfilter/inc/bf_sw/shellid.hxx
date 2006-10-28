@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellid.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:23:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:52:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _SHELLID_HXX
 #define _SHELLID_HXX
 
-// auto strip #ifndef _SFX_SHELL_HXX //autogen
-// auto strip #include <bf_sfx2/shell.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*--------------------------------------------------------------------
