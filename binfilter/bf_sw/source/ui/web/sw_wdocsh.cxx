@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wdocsh.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:10:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:32:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #pragma hdrstop
 
 
-// auto strip #ifndef _SVX_SRCHITEM_HXX
-// auto strip #include <bf_svx/srchitem.hxx>
-// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
@@ -56,7 +53,6 @@
 #include "cmdid.h"
 #include "swtypes.hxx"
 
-// auto strip #include "shellio.hxx"
 // nur wegen des Itemtypes
 #include "wdocsh.hxx"
 #include "web.hrc"
@@ -109,36 +105,6 @@ SFX_IMPL_OBJECTFACTORY_LOD(SwWebDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHE
 
 
 
-//STRIP001 void SwWebDocShell::FillClass( SvGlobalName * pClassName,
-//STRIP001                                 ULONG * pClipFormat,
-//STRIP001                                 String * pAppName,
-//STRIP001                                 String * pLongUserName,
-//STRIP001                                 String * pUserName,
-//STRIP001                                 long nVersion ) const
-//STRIP001 {
-//STRIP001  SfxInPlaceObject::FillClass(pClassName, pClipFormat, pAppName, pLongUserName,
-//STRIP001                              pUserName, nVersion);
-//STRIP001
-//STRIP001  if (nVersion == SOFFICE_FILEFORMAT_40)
-//STRIP001  {
-//STRIP001      *pClassName = SvGlobalName( BF_SO3_SWWEB_CLASSID_40 );
-//STRIP001      *pClipFormat = SOT_FORMATSTR_ID_STARWRITERWEB_40;
-//STRIP001      *pAppName = C2S("StarWriter/Web 4.0");
-//STRIP001
-//STRIP001      *pLongUserName = SW_RESSTR(STR_WRITER_WEBDOC_FULLTYPE_40);
-//STRIP001  }
-//STRIP001  else if ( nVersion == SOFFICE_FILEFORMAT_50)
-//STRIP001  {
-//STRIP001      *pClassName = SvGlobalName( BF_SO3_SWWEB_CLASSID_50 );
-//STRIP001      *pClipFormat = SOT_FORMATSTR_ID_STARWRITERWEB_50;
-//STRIP001      *pLongUserName = SW_RESSTR(STR_WRITER_WEBDOC_FULLTYPE_50);
-//STRIP001  }
-//STRIP001  else if (nVersion == SOFFICE_FILEFORMAT_60)
-//STRIP001  {
-//STRIP001      *pLongUserName = SW_RESSTR(STR_WRITER_WEBDOC_FULLTYPE);
-//STRIP001  }
-//STRIP001  *pUserName = SW_RESSTR(STR_HUMAN_SWWEBDOC_NAME);
-//STRIP001 }
 
 
 
