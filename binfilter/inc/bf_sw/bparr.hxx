@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bparr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:47:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:35:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,11 +110,9 @@ public:
     void Insert( const ElementPtr& r, ULONG pos );
 //  void Insert( const ElementPtr* p, ULONG n, ULONG pos );
     void Remove( ULONG pos, ULONG n = 1 );
-//STRIP001  void Move( ULONG from, ULONG to );
     void Replace( ULONG pos, const ElementPtr& r);
 
     ElementPtr operator[]( ULONG ) const;
-//STRIP001  ULONG GetIndex( const ElementPtr, ULONG, ULONG ) const;
     void ForEach( FnForEach fn, void* pArgs = NULL )
     {
         ForEach( 0, nSize, fn, pArgs );
