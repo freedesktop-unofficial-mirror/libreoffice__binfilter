@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_gloslst.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:03:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:30:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,110 +34,7 @@
  ************************************************************************/
 #define NO_LOCALIZE_EXPORT
 
-//STRIP001 #include "globals.hrc"
-//STRIP001 #include "utlui.hrc"
-//STRIP001 #include "helpid.h"
-//STRIP001 #include "gloslst.hrc"
 
-//STRIP001 ModalDialog DLG_GLOSSARY_DECIDE_DLG
-//STRIP001 {
-//STRIP001  HelpID = HID_DLG_GLOSS_DECIDE ;
-//STRIP001  OutputSize = TRUE ;
-//STRIP001  SVLook = TRUE ;
-//STRIP001  Size = MAP_APPFONT ( 161 , 67 ) ;
-//STRIP001  /* ### ACHTUNG: Neuer Text in Resource? Textbaustein ausw‰hlen:  : Textbaustein auswıhlen:  */
-//STRIP001  Text = "Textbaustein ausw‰hlen: " ;
-//STRIP001  Text [ ENGLISH ] = "Select glossary: " ;
-//STRIP001  Moveable = TRUE ;
-//STRIP001     FixedLine FL_GLOSS
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 6 , 3 ) ;
-//STRIP001         Size = MAP_APPFONT ( 93 , 8 ) ;
-//STRIP001      Text = "AutoText - Gruppe" ;
-//STRIP001      Text [ ENGLISH ] = "Glossary group" ;
-//STRIP001      Text [ english_us ] = "AutoText - Group" ;
-//STRIP001      Text [ portuguese_brazilian ] = "AutoTexto - Grupo" ;
-//STRIP001      Text [ swedish ] = "AutoText - grupp" ;
-//STRIP001      Text [ danish ] = "AutoTekst - gruppe" ;
-//STRIP001      Text [ italian ] = "Testo automatico - Gruppo" ;
-//STRIP001      Text [ spanish ] = "Texto autom·tico - Grupo" ;
-//STRIP001      Text [ french ] = "AutoTexte - Groupe" ;
-//STRIP001      Text [ dutch ] = "AutoTekst - groep" ;
-//STRIP001      Text [ portuguese ] = "AutoTexto - Grupo" ;
-//STRIP001      Text[ chinese_simplified ] = "Ëá™Âä®ÂõæÊñáÈõÜÂ∞èÁª?";
-//STRIP001      Text[ russian ] = "¿‚ÚÓÚÂÍÒ?- √ÛÔÔ‡";
-//STRIP001      Text[ polish ] = "Autotekst - Grupa";
-//STRIP001      Text[ japanese ] = "ÂÖ•ÂäõÊîØÊè¥ „Ç∞„É´„Éº„Éó";
-//STRIP001      Text[ chinese_traditional ] = "Ëá™ÂãïÂúñÊñáÈõÜÁæ§Áµ?";
-//STRIP001      Text[ arabic ] = "„Ã„Ê⁄… ‰’  ·ﬁ«∆Ì";
-//STRIP001      Text[ greek ] = "¡ıÙ¸Ï·ÙÔ ÍÂﬂÏÂÌ?- œÏ‹‰?";
-//STRIP001      Text[ korean ] = "ÏûêÎèô ÌÖçÏä§Ìä?Í∑∏Î£π";
-//STRIP001      Text[ turkish ] = "OtomatikMetin - Grup";
-//STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Grup AutoText";
-//STRIP001      Text[ finnish ] = "Automaattinen teksti - ryhm?";
-//STRIP001      Text[ thai ] = "‡∏Ç‡πâ‡∏≠‡∏Ñ‡∏ß‡∏≤‡∏°‡∏≠‡∏±‡∏ï‡πÇ‡∏ô‡∏°‡∏±‡∏ï‡∏¥ - ‡∏à‡∏±‡∏î‡∏Å‡∏•‡∏∏‡πà‡∏°";
-//STRIP001      Text[ czech ] = "Automatick√Ω text - skupina";
-//STRIP001      Text[ hebrew ] = "AutoText - Gruppe";
-//STRIP001      Text[ hindi ] = "‡§∏‡•ç‡§µ‡§ö‡§æ‡§≤‡§ø‡§§ ‡§ü‡•á‡§ï‡•ç‡§∏‡•ç‡§ü‡•ç - ‡§∏‡§Æ‡•Ç‡§π";
-//STRIP001      Text[ slovak ] = "Automatick√Ω text - skupina";
-//STRIP001  };
-//STRIP001  OKButton PB_OK
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 105 , 6 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001      Group = TRUE ;
-//STRIP001      DefButton = TRUE ;
-//STRIP001  };
-//STRIP001  CancelButton PB_CANCEL
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 105 , 23 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001      Group = TRUE ;
-//STRIP001  };
-//STRIP001  HelpButton PB_HELP
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 105 , 43 ) ;
-//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001      Group = TRUE ;
-//STRIP001  };
-//STRIP001  ListBox LB_LIST
-//STRIP001  {
-//STRIP001      Pos = MAP_APPFONT ( 12 , 15 ) ;
-//STRIP001      Size = MAP_APPFONT ( 81 , 40 ) ;
-//STRIP001      TabStop = TRUE ;
-//STRIP001      Border = TRUE ;
-//STRIP001  };
-//STRIP001  Text [ english_us ] = "Select AutoText: " ;
-//STRIP001  Text [ portuguese_brazilian ] = "Selecionar AutoTexto:" ;
-//STRIP001  Text [ swedish ] = "V‰lj ut textblock:  " ;
-//STRIP001  Text [ danish ] = "VÊlg tekstelementer: " ;
-//STRIP001  Text [ italian ] = "Seleziona modulo di testo:  " ;
-//STRIP001  Text [ spanish ] = "Seleccionar mÛdulo de texto:  " ;
-//STRIP001  Text [ french ] = "SÈlection de l'AutoTexte : " ;
-//STRIP001  Text [ dutch ] = "Tekstbouwsteen selecteren:" ;
-//STRIP001  Text [ portuguese ] = "Seleccionar mÛdulo de texto:  " ;
-//STRIP001  Text[ chinese_simplified ] = "ÈÄâÊã©Ëá™Âä®ÂõæÊñáÈõÜÊù°ÁõÆÔºö ";
-//STRIP001  Text[ russian ] = "¬˚·‡Ú?‡‚ÚÓÚÂÍÒ? ";
-//STRIP001  Text[ polish ] = "Wybierz Autotekst:  ";
-//STRIP001  Text[ japanese ] = "„ÉÜ„Ç≠„Çπ„Éà„Éñ„É≠„ÉÉ„ÇØ„ÅÆÈÅ∏Êä? ";
-//STRIP001  Text[ chinese_traditional ] = "ÈÅ∏ÊìáËá™ÂãïÂúñÊñáÈõÜÔºö ";
-//STRIP001  Text[ arabic ] = "«Œ Ì«— ⁄‰’— «·‰’: ";
-//STRIP001  Text[ greek ] = "≈ÈÎÔ„?·ıÙ¸Ï·ÙÔ?ÍÂÈÏ›ÌÔı: ";
-//STRIP001  Text[ korean ] = "ÏûêÎèô ÌÖçÏä§Ìä?ÏÑ†ÌÉù: ";
-//STRIP001  Text[ turkish ] = "Otomatik Metin bile˛eni se? ";
-//STRIP001  Text[ language_user1 ] = " ";
-//STRIP001  Text[ catalan ] = "Selecciona el mÛdulo de text:  ";
-//STRIP001  Text[ finnish ] = "Valitse automaattinen teksti: ";
-//STRIP001  Text[ thai ] = "‡πÄ‡∏•‡∏∑‡∏≠‡∏Å‡∏Ç‡πâ‡∏≠‡∏Ñ‡∏ß‡∏≤‡∏°‡∏≠‡∏±‡∏ï‡πÇ‡∏ô‡∏°‡∏±‡∏ï‡∏¥: ";
-//STRIP001  Text[ czech ] = "Vybrat automatick√Ω text:";
-//STRIP001  Text[ hebrew ] = "Textbaustein ausw√§hlen:";
-//STRIP001  Text[ hindi ] = "‡§∏‡•ç‡§µ‡§ö‡§æ‡§≤‡§ø‡§§ ‡§ü‡•á‡§ï‡•ç‡§∏‡•ç‡§ü‡•ç ‡§ö‡•Å‡§®‡•ã: ";
-//STRIP001  Text[ slovak ] = "Vybra≈• automatick√Ω text:";
-//STRIP001 };
 
 
 
