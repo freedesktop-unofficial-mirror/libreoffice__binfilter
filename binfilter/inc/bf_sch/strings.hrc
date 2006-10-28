@@ -4,9 +4,9 @@
  *
  *  $RCSfile: strings.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:53:53 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:50:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,202 +35,63 @@
 #include <bf_sfx2/sfx.hrc>
 
 //#define RID_APP_START 30000
-//STRIP001 #define STR_NULL                            (RID_APP_START +  1)
-//STRIP001 #define STR_BASIC_IDE                        (RID_APP_START +  2)
 #define STR_LINES                           (RID_APP_START +  3)
 #define STR_COLUMNS                         (RID_APP_START +  4)
 #define STR_BARS                            (RID_APP_START +  5)
 #define STR_AREAS                           (RID_APP_START +  6)
 #define STR_CIRCLES                         (RID_APP_START +  7)
-//STRIP001 #define STR_DONUT1                           (RID_APP_START +  8)
-//STRIP001 #define STR_DONUT2                           (RID_APP_START +  9)
 
 #define STR_NORMAL                          (RID_APP_START + 10)
 #define STR_STACKED                         (RID_APP_START + 11)
 #define STR_PERCENT                         (RID_APP_START + 12)
 #define STR_DEEP                            (RID_APP_START + 13)
-//STRIP001 #define STR_OFS                             (RID_APP_START + 14)
 
-//STRIP001 #define STR_LINESYMB                     (RID_APP_START + 15)
 #define STR_XY                              (RID_APP_START + 16)
 #define STR_XYZ                             (RID_APP_START + 17)
-//STRIP001 #define STR_NORMAL_LINES                 (RID_APP_START + 18)
-//STRIP001 #define STR_SURFACE                         (RID_APP_START + 19)
 
 #define STR_2D                              (RID_APP_START + 20)
 #define STR_3D                              (RID_APP_START + 21)
-//STRIP001 #define STR_LINE_COLUMN                     (RID_APP_START + 22)
-//STRIP001 #define STR_LINE_STACKEDCOLUMN              (RID_APP_START + 23)
 
-//STRIP001 #define STR_DIAGRAM_AREA                 (RID_APP_START + 30)
 #define STR_DIAGRAM                         (RID_APP_START + 31)
-//STRIP001 #define  STR_DIAGRAM_WALL                    (RID_APP_START + 32)
-//STRIP001 #define STR_DIAGRAM_FLOOR                    (RID_APP_START + 33)
-//STRIP001 #define STR_DIAGRAM_X_AXIS                   (RID_APP_START + 34)
-//STRIP001 #define STR_DIAGRAM_Y_AXIS                   (RID_APP_START + 35)
-//STRIP001 #define STR_DIAGRAM_Z_AXIS                   (RID_APP_START + 36)
-//STRIP001 #define STR_DIAGRAM_X_GRID_MAIN             (RID_APP_START + 37)
-//STRIP001 #define STR_DIAGRAM_Y_GRID_MAIN             (RID_APP_START + 38)
-//STRIP001 #define STR_DIAGRAM_Z_GRID_MAIN             (RID_APP_START + 39)
-//STRIP001 #define STR_DIAGRAM_X_GRID_HELP             (RID_APP_START + 40)
-//STRIP001 #define STR_DIAGRAM_Y_GRID_HELP             (RID_APP_START + 41)
-//STRIP001 #define STR_DIAGRAM_Z_GRID_HELP             (RID_APP_START + 42)
 #define STR_DIAGRAM_ROW                     (RID_APP_START + 43)
 
-//STRIP001 #define STR_STATUS_DATAPOINT_MARKED          (RID_APP_START + 44)
 
-//STRIP001 #define STR_DIAGRAM_DESCRGROUP              (RID_APP_START + 45)
-//STRIP001 #define STR_DIAGRAM_DESCR_ROW               (RID_APP_START + 46)
-//STRIP001 #define STR_DIAGRAM_DESCR_COL               (RID_APP_START + 47)
-//STRIP001 #define STR_LEGEND                          (RID_APP_START + 48)
-//STRIP001 #define STR_LEGEND_SYMBOL_ROW               (RID_APP_START + 49)
-//STRIP001 #define STR_LEGEND_SYMBOL_COL               (RID_APP_START + 50)
-//STRIP001 #define STR_MARKED                          (RID_APP_START + 51)
-//STRIP001 #define STR_NET                             (RID_APP_START + 52)
-//STRIP001 #define STR_SYMBOL                          (RID_APP_START + 53)
-//STRIP001 #define STR_SYMBOL_STACK                    (RID_APP_START + 54)
-//STRIP001 #define STR_SYMBOL_PERCENT                  (RID_APP_START + 55)
-//STRIP001 #define STR_SPLINE_CUBIC                    (RID_APP_START + 56)
-//STRIP001 #define STR_SPLINE_CUBIC_SYMBOL             (RID_APP_START + 57)
-//STRIP001 #define STR_SPLINE_B                        (RID_APP_START + 58)
-//STRIP001 #define STR_SPLINE_B_SYMBOL                 (RID_APP_START + 59)
 
-//STRIP001 #define STR_UNDO_CUT                     (RID_APP_START + 60)
-//STRIP001 #define STR_UNDO_DELETE                      (RID_APP_START + 61)
-//STRIP001 #define STR_UNDO_DRAGDROP                    (RID_APP_START + 62)
-//STRIP001 #define STR_UNDO_DIAGRAM_DATA               (RID_APP_START + 63)
-//STRIP001 #define STR_UNDO_EDIT_TITLE                 (RID_APP_START + 64)
-//STRIP001 #define STR_UNDO_INSERT_TITLE               (RID_APP_START + 65)
-//STRIP001 #define STR_UNDO_INSERT_LEGEND              (RID_APP_START + 66)
-//STRIP001 #define STR_UNDO_INSERT_DESCR               (RID_APP_START + 67)
-//STRIP001 #define STR_UNDO_INSERT_AXIS                (RID_APP_START + 68)
-//STRIP001 #define STR_UNDO_DATA_ROW                    (RID_APP_START + 69)
-//STRIP001 #define STR_UNDO_DATA_POINT                  (RID_APP_START + 70)
-//STRIP001 #define STR_UNDO_TITLE                       (RID_APP_START + 71)
-//STRIP001 #define STR_UNDO_LEGEND                      (RID_APP_START + 72)
-//STRIP001 #define STR_UNDO_DIAGRAM_AXIS               (RID_APP_START + 73)
-//STRIP001 #define STR_UNDO_DIAGRAM_GRID               (RID_APP_START + 74)
-//STRIP001 #define STR_UNDO_DIAGRAM_WALL               (RID_APP_START + 75)
-//STRIP001 #define STR_UNDO_DIAGRAM_FLOOR              (RID_APP_START + 76)
-//STRIP001 #define STR_UNDO_DIAGRAM_AREA               (RID_APP_START + 77)
-//STRIP001 #define STR_UNDO_DIAGRAM_TYPE               (RID_APP_START + 78)
-//STRIP001 #define STR_UNDO_AUTOFORMAT                  (RID_APP_START + 79)
-//STRIP001 #define STR_UNDO_3D_VIEW                 (RID_APP_START + 80)
-//STRIP001 #define STR_UNDO_LIGHTING                    (RID_APP_START + 81)
-//STRIP001 #define STR_UNDO_TOGGLE_TITLE               (RID_APP_START + 82)
-//STRIP001 #define STR_UNDO_TOGGLE_LEGEND              (RID_APP_START + 83)
-//STRIP001 #define STR_UNDO_TOGGLE_AXIS_TITLE          (RID_APP_START + 84)
-//STRIP001 #define STR_UNDO_TOGGLE_AXIS_DESCR          (RID_APP_START + 85)
-//STRIP001 #define STR_UNDO_TOGGLE_GRID_HORZ           (RID_APP_START + 86)
-//STRIP001 #define STR_UNDO_TOGGLE_GRID_VERT           (RID_APP_START + 87)
-//STRIP001 #define STR_UNDO_DATA_IN_ROWS               (RID_APP_START + 88)
-//STRIP001 #define STR_UNDO_DATA_IN_COLUMNS            (RID_APP_START + 89)
 #define STR_DEFAULTVIEW                     (RID_APP_START + 90)
-//STRIP001 #define STR_UNDO_STATISTICS                 (RID_APP_START + 91)
-//STRIP001 #define STR_UNDO_DIAGRAM_LINE               (RID_APP_START + 92)
-//STRIP001 #define STR_UNDO_SCALE                      (RID_APP_START + 93)
-//STRIP001 #define STR_UNDO_REMOVEPOINTATTRS           (RID_APP_START + 94)
 
-//STRIP001 #define STR_UNDO_MOREFRONT                   (RID_APP_START + 95)
-//STRIP001 #define STR_UNDO_MOREBACK                    (RID_APP_START + 96)
 
-//STRIP001 #define STR_INVALID_NUMBER                   (RID_APP_START + 100)
-//STRIP001 #define STR_MINVALUE_LT_MAXVALUE            (RID_APP_START + 101)
-//STRIP001 #define STR_STEP_GT_ZERO                 (RID_APP_START + 102)
-//STRIP001 #define STR_STEPMAIN_LT_MAXVALUE            (RID_APP_START + 103)
-//STRIP001 #define STR_STEPHELP_LT_STEPMAIN            (RID_APP_START + 104)
 #define STR_OPEN_DOCUMENT                   (RID_APP_START + 105)
 #define STR_SAVE_DOCUMENT                   (RID_APP_START + 106)
-//STRIP001 #define STR_ACTION_NOTPOSSIBLE              (RID_APP_START + 107)
 #define STR_GRAPHIC                         (RID_APP_START + 108)
 #define STR_CHART_DOCUMENT                  (RID_APP_START + 109)
 #define STR_BAD_PASSWORD_OR_FILE_CORRUPTED  (RID_APP_START + 110)
-//STRIP001 #define STR_BAD_LOGARITHM                   (RID_APP_START + 111)
-//STRIP001 #define STR_WRONG_ORIGIN                    (RID_APP_START + 112)
-//STRIP001 #define STR_QUERY_SORT                      (RID_APP_START + 113)
 #define STR_CHART_DOCUMENT_FULLTYPE_40      (RID_APP_START + 114)
 
-//STRIP001 #define STR_ONLY_SYMBOLS                    (RID_APP_START + 115)
-//STRIP001 #define STR_ONLY_LINES                      (RID_APP_START + 116)
-//STRIP001 #define STR_LINE_SYMBOLS                    (RID_APP_START + 117)
 #define STR_CHART_DOCUMENT_FULLTYPE_31      (RID_APP_START + 118)
 #define STR_CHART_DOCUMENT_FULLTYPE_50      (RID_APP_START + 119)
 
 // Folgende Strings muessen raus, wenn allg. Controls
 // vom Svx verwendet werden
-//STRIP001 #define STR_INVISIBLE                        (RID_APP_START + 120)
-//STRIP001 #define STR_SOLID                           (RID_APP_START + 121)
 #define STR_AREA                            (RID_APP_START + 122)
 #define STR_LINE                            (RID_APP_START + 123)
 
-//STRIP001 #define STR_INDICATE_NONE                   (RID_APP_START + 130)
-//STRIP001 #define STR_INDICATE_BOTH                   (RID_APP_START + 131)
-//STRIP001 #define STR_INDICATE_UP                     (RID_APP_START + 132)
-//STRIP001 #define STR_INDICATE_DOWN                   (RID_APP_START + 133)
 
-//STRIP001 #define STR_REGRESSION_NONE                 (RID_APP_START + 134)
 #define STR_REGRESSION_LINEAR               (RID_APP_START + 135)
 #define STR_REGRESSION_LOG                  (RID_APP_START + 136)
 #define STR_REGRESSION_EXP                  (RID_APP_START + 137)
 #define STR_REGRESSION_POWER                (RID_APP_START + 138)
-//STRIP001 #define STR_APPNAME                         (RID_APP_START + 139)
 
-//STRIP001 #define STR_QUICKHELP_DATAPOINT              (RID_APP_START + 140)
-//STRIP001 #define STR_BALLOONHELP_DATAPOINT            (RID_APP_START + 141)
 
-//STRIP001 #define STR_STOCK                            (RID_APP_START + 142)
-//STRIP001 #define STR_STOCK_1                          (RID_APP_START + 143)
-//STRIP001 #define STR_STOCK_2                          (RID_APP_START + 144)
-//STRIP001 #define STR_STOCK_3                          (RID_APP_START + 145)
-//STRIP001 #define STR_STOCK_4                          (RID_APP_START + 146)
-//STRIP001 #define STR_UNDO_DIAGRAM_STOCK_LOSS          (RID_APP_START + 147)
-//STRIP001 #define STR_UNDO_DIAGRAM_STOCK_PLUS          (RID_APP_START + 148)
 
-//STRIP001 #define STR_SAEULE_3D_1                      (RID_APP_START + 149)
-//STRIP001 #define STR_SAEULE_3D_2                      (RID_APP_START + 150)
-//STRIP001 #define STR_SAEULE_3D_3                      (RID_APP_START + 151)
-//STRIP001 #define STR_SAEULE_3D_4                      (RID_APP_START + 152)
-//STRIP001 #define STR_ROEHRE_3D_1                      (RID_APP_START + 153)
-//STRIP001 #define STR_ROEHRE_3D_2                      (RID_APP_START + 154)
-//STRIP001 #define STR_ROEHRE_3D_3                      (RID_APP_START + 155)
-//STRIP001 #define STR_ROEHRE_3D_4                      (RID_APP_START + 156)
-//STRIP001 #define STR_PYRAMID_3D_1                 (RID_APP_START + 157)
-//STRIP001 #define STR_PYRAMID_3D_2                 (RID_APP_START + 158)
-//STRIP001 #define STR_PYRAMID_3D_3                 (RID_APP_START + 159)
-//STRIP001 #define STR_PYRAMID_3D_4                 (RID_APP_START + 160)
-//STRIP001 #define STR_PYRAMIDQ_3D_1                    (RID_APP_START + 161)
-//STRIP001 #define STR_PYRAMIDQ_3D_2                    (RID_APP_START + 162)
-//STRIP001 #define STR_PYRAMIDQ_3D_3                    (RID_APP_START + 163)
-//STRIP001 #define STR_PYRAMIDQ_3D_4                    (RID_APP_START + 164)
-//STRIP001 #define STR_KEGEL_3D_1                       (RID_APP_START + 165)
-//STRIP001 #define STR_KEGEL_3D_2                       (RID_APP_START + 166)
-//STRIP001 #define STR_KEGEL_3D_3                       (RID_APP_START + 167)
-//STRIP001 #define STR_KEGEL_3D_4                       (RID_APP_START + 168)
-//STRIP001 #define STR_KEGELQ_3D_1                  (RID_APP_START + 169)
-//STRIP001 #define STR_KEGELQ_3D_2                  (RID_APP_START + 170)
-//STRIP001 #define STR_KEGELQ_3D_3                      (RID_APP_START + 171)
-//STRIP001 #define STR_KEGELQ_3D_4                      (RID_APP_START + 172)
 
-//STRIP001 #define STR_UNDO_INSERT_SPECCHAR         (RID_APP_START + 173)
 
-//STRIP001 #define STR_AVERAGEVALUE                 (RID_APP_START + 174)
-//STRIP001 #define STR_DIAGRAM_ERROR                    (RID_APP_START + 175)
-//STRIP001 #define STR_DIAGRAM_REGRESSION               (RID_APP_START + 176)
 
-//STRIP001 #define STR_CFG_DEFAULT_COLORS               (RID_APP_START + 177)
 
-//STRIP001 #define STR_UNDO_INSERT_GRID             (RID_APP_START + 178)
 
-//STRIP001 #define STR_PIE_SEGMENT_EXPLODED         (RID_APP_START + 179)
 #define STR_STATISTICS_IN_LEGEND            (RID_APP_START + 180)
 
-//STRIP001 #define STR_DIAGRAM_DATA_SAFETY_QUERY        (RID_APP_START + 181)
 #define STR_CHART_DOCUMENT_FULLTYPE_60      (RID_APP_START + 182)
 
-//STRIP001 #define STR_UNDO_TRANSFORM                  (RID_APP_START + 183)
-//STRIP001 #define STR_UNDO_MOVE                       (RID_APP_START + 184)
-//STRIP001 #define STR_UNDO_RESIZE                     (RID_APP_START + 185)
-//STRIP001 #define STR_UNDO_ROTATE                     (RID_APP_START + 186)
 
 // ids must not exceed RID_APP_START + 499
 // ids >= RID_APP_START + 500 are defined in glob.hrc
