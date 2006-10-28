@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_AttributeContainerHandler.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:35:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:53:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,17 +40,8 @@
 #include <com/sun/star/xml/AttributeData.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
-// auto strip #include <com/sun/star/text/GraphicCrop.hpp>
-// auto strip #endif
 
 #include "AttributeContainerHandler.hxx"
 namespace binfilter {
