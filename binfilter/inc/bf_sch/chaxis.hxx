@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chaxis.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:34:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:46:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -195,8 +195,6 @@ protected:
 
     void CalcMinMaxValue();
     void SetDefaults();
-//STRIP001  void UpdateRowMinMax(const long nRow,const long nColCnt,const BOOL bPercent,
-//STRIP001                          double & inout_fMin, double & inout_fMax);
 
     long GetLength() const;
 
@@ -257,20 +255,16 @@ public:
     long GetLower(double fData,BOOL bConstrained=TRUE);
 
     long GetPos(double fData);
-//STRIP001  long GetPosConstrained(double fData);
     long GetPosOrigin()                             { return GetPos(mfOrigin); }
     BOOL SetArea(const Rectangle& rRect);
-//STRIP001  void ReadMembers(const ChartAxis& other);
     void LoadMemberCompat(SvStream& rIn);
     void StoreMemberCompat(SvStream& rOut) const;
 
     ChartAxis(ChartModel* pModel,long nId,long nUid);
     virtual ~ChartAxis();
 
-//STRIP001  void AdjustOrigin();
     BOOL IsOriginInRange() const;
 
-//STRIP001  BOOL IsValueInRange( double fValue ) const;
 
     double NumStepsMain();
 
@@ -348,8 +342,6 @@ public:
     void InsertMark(long nPos,long nLen,long nWhichTicks);
     UINT32 GetNumFormat()                           { return GetNumFormat( mbPercent ); }
     UINT32 GetNumFormat(BOOL bPercent);
-//STRIP001  void SetNumFormat(long nId)                     { SetNumFormat( mbPercent, nId ); }
-//STRIP001  void SetNumFormat(BOOL bPercent,long nId);
 
     void GridLine(XPolygon& aLine,long nPos);
 
