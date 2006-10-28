@@ -4,9 +4,9 @@
  *
  *  $RCSfile: charfmt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:49:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:36:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,6 @@ class SwCharFmt : public SwFmt
 
 
 public:
-//STRIP001  TYPEINFO();    //Bereits in Basisklasse Client drin.
 };
 
 } //namespace binfilter
