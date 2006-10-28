@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdviter.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:48:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:12:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,22 +65,11 @@ class SdrViewIter {
 private:
     void          ImpInitVars();
     SdrView*      ImpFindView();
-//STRIP001  SdrPageView*  ImpFindPageView();
-//STRIP001  OutputDevice* ImpFindOutDev();
-//STRIP001  Window*       ImpFindWindow();
     FASTBOOL      ImpCheckPageView(SdrPageView* pPV) const;
 public:
-//STRIP001  SdrViewIter(const SdrModel*  pModel);
-//STRIP001  SdrViewIter(const SdrPage*   pPage, FASTBOOL bNoMasterPage=FALSE);
     SdrViewIter(const SdrObject* pObject, FASTBOOL bNoMasterPage=FALSE);
     SdrView*      FirstView();
     SdrView*      NextView();
-//STRIP001  SdrPageView*  FirstPageView();
-//STRIP001  SdrPageView*  NextPageView();
-//STRIP001  OutputDevice* FirstOutDev();
-//STRIP001  OutputDevice* NextOutDev();
-//STRIP001  Window*       FirstWindow();
-//STRIP001  Window*       NextWindow();
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

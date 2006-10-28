@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdxcgv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:49:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:13:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,12 +70,8 @@ class SdrExchangeView: public SdrObjEditView
 protected:
 
  //STRIP001    void                ImpGetPasteObjList(Point& rPos, SdrObjList*& rpLst);
-//STRIP001  void                ImpPasteObject(SdrObject* pObj, SdrObjList& rLst, const Point& rCenter, const Size& rSiz, const MapMode& rMap, UINT32 nOptions);
-//STRIP001  BOOL                ImpGetPasteLayer(const SdrObjList* pObjList, SdrLayerID& rLayer) const;
-//STRIP001  Point               GetPastePos(SdrObjList* pLst, OutputDevice* pOut=NULL);
 
     // liefert True, wenn rPt geaendert wurde
-//STRIP001  BOOL                ImpLimitToWorkArea(Point& rPt, const SdrPageView* pPV=NULL) const;
 
 public:
 
@@ -83,7 +79,6 @@ public:
     SdrExchangeView(SdrModel* pModel1, ExtOutputDevice* pXOut);
 
     // Alle markierten Objekte auf dem angegebenen OutputDevice ausgeben.
-//STRIP001  virtual void        DrawMarkedObj(OutputDevice& rOut, const Point& rOfs) const;
 
     // Z.B. fuer's Clipboard, Drag&Drop, ...
     // Alle markierten Objekte in ein Metafile stecken. Z.Zt. noch etwas
@@ -93,7 +88,6 @@ public:
 
     // Alle markierten Objekte auf eine Bitmap malen. Diese hat die Farbtiefe
     // und Aufloesung des Bildschirms.
-//STRIP001  virtual Bitmap      GetMarkedObjBitmap(BOOL bNoVDevIfOneBmpMarked=FALSE) const;
 
     // Alle markierten Objekte in ein neues Model kopieren. Dieses neue Model
     // hat dann genau eine Page. Das Flag PageNotValid an diesem Model ist
@@ -105,18 +99,11 @@ public:
     // findet ein Merging der seitenlokalen Layer statt. Sollte kein Platz mehr
     // fuer weitere seitenlokale Layer sein, wird den entsprechenden Objekten
     // der Default-Layer zugewiesen (Layer 0, (dokumentglobaler Standardlayer).
-//STRIP001  virtual SdrModel*   GetMarkedObjModel() const;
 
-//STRIP001     void            DrawAllMarked(OutputDevice& rOut, const Point& rOfs) const { DrawMarkedObj(rOut,rOfs); }
     GDIMetaFile     GetAllMarkedMetaFile(BOOL bNoVDevIfOneMtfMarked=FALSE) const { return GetMarkedObjMetaFile(bNoVDevIfOneMtfMarked); }
-//STRIP001  Bitmap          GetAllMarkedBitmap(BOOL bNoVDevIfOneBmpMarked=FALSE) const { return GetMarkedObjBitmap(bNoVDevIfOneBmpMarked); }
-//STRIP001  Graphic         GetAllMarkedGraphic() const;
-//STRIP001  SdrModel*       GetAllMarkedModel() const { return GetMarkedObjModel(); }
 
-//STRIP001     static Graphic  GetObjGraphic( SdrModel* pModel, SdrObject* pObj );
 
     // Bestimmung des View-Mittelpunktes, z.B. zum Pasten
-//STRIP001  Point           GetViewCenter(const OutputDevice* pOut=NULL) const;
 
     // Bei allen Paste-Methoden werden die neuen Draw-Objekte markiert.
     // Wird der Parameter bAddMark auf TRUE gesetzt, so werden die neuen
@@ -135,30 +122,6 @@ public:
     // View angezeigt wird.
     // Gueltige Werte fuer nOptions sind SDRINSERT_DONTMARK und
     // SDRINSERT_ADDMARK (siehe svdedtv.hxx).
-//STRIP001  BOOL            Paste(const GDIMetaFile& rMtf, SdrObjList* pLst=NULL, OutputDevice* pOut=NULL, UINT32 nOptions=0) { return Paste(rMtf,GetPastePos(pLst,pOut),pLst,nOptions); }
-//STRIP001  BOOL            Paste(const GDIMetaFile& rMtf, const Point& rPos, SdrObjList* pLst=NULL, UINT32 nOptions=0);
-//STRIP001  BOOL            Paste(const Bitmap& rBmp, SdrObjList* pLst=NULL, OutputDevice* pOut=NULL, UINT32 nOptions=0) { return Paste(rBmp,GetPastePos(pLst,pOut),pLst,nOptions); }
-//STRIP001  BOOL            Paste(const Bitmap& rBmp, const Point& rPos, SdrObjList* pLst=NULL, UINT32 nOptions=0);
-//STRIP001  BOOL            Paste(const SdrModel& rMod, SdrObjList* pLst=NULL, OutputDevice* pOut=NULL, UINT32 nOptions=0) { return Paste(rMod,GetPastePos(pLst,pOut),pLst,nOptions); }
-//STRIP001  virtual BOOL    Paste(const SdrModel& rMod, const Point& rPos, SdrObjList* pLst=NULL, UINT32 nOptions=0);
-//STRIP001  BOOL            Paste(const String& rStr, SdrObjList* pLst=NULL, OutputDevice* pOut=NULL, UINT32 nOptions=0) { return Paste(rStr,GetPastePos(pLst,pOut),pLst,nOptions); }
-//STRIP001  BOOL            Paste(const String& rStr, const Point& rPos, SdrObjList* pLst=NULL, UINT32 nOptions=0);
-//STRIP001  // der USHORT eFormat nimmt Werte des enum EETextFormat entgegen
-//STRIP001  BOOL            Paste(SvStream& rInput, USHORT eFormat, SdrObjList* pLst=NULL, OutputDevice* pOut=NULL, UINT32 nOptions=0) { return Paste(rInput,eFormat,GetPastePos(pLst,pOut),pLst,nOptions); }
-//STRIP001  BOOL            Paste(SvStream& rInput, USHORT eFormat, const Point& rPos, SdrObjList* pLst=NULL, UINT32 nOptions=0);
-//STRIP001
-//STRIP001  // Feststellen, ob ein bestimmtes Format ueber Drag&Drop bzw. ueber's
-//STRIP001  // Clipboard angenommen werden kann.
-//STRIP001  BOOL            IsExchangeFormatSupported(ULONG nFormat) const;
-//STRIP001
-//STRIP001  BOOL            Cut( ULONG nFormat = SDR_ANYFORMAT );
-//STRIP001  void            CutMarked( ULONG nFormat=SDR_ANYFORMAT );
-//STRIP001
-//STRIP001  BOOL            Yank( ULONG nFormat = SDR_ANYFORMAT );
-//STRIP001  void            YankMarked( ULONG nFormat=SDR_ANYFORMAT );
-//STRIP001
-//STRIP001     BOOL            Paste( Window* pWin = NULL, ULONG nFormat = SDR_ANYFORMAT );
-//STRIP001  BOOL            PasteClipboard( OutputDevice* pOut = NULL, ULONG nFormat = SDR_ANYFORMAT, UINT32 nOptions = 0 );
 };
 
 }//end of namespace binfilter
