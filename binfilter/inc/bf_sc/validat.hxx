@@ -4,9 +4,9 @@
  *
  *  $RCSfile: validat.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:13:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:44:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,8 +83,6 @@ class ScValidationData : public ScConditionEntry
 
     BOOL                bIsUsed;            // temporaer beim Speichern
 
-//STRIP001  BOOL            DoMacro( const ScAddress& rPos, const String& rInput,
-//STRIP001                              ScFormulaCell* pCell, Window* pParent ) const;
 
 public:
             ScValidationData( ScValidationMode eMode, ScConditionMode eOper,
@@ -128,8 +126,6 @@ public:
     BOOL            IsDataValid( ScBaseCell* pCell, const ScAddress& rPos ) const;
 
                     // TRUE -> Abbruch
-//STRIP001  BOOL            DoError( Window* pParent, const String& rInput, const ScAddress& rPos ) const;
-//STRIP001  void            DoCalcError( ScFormulaCell* pCell ) const;
 
     BOOL            IsEmpty() const;
     sal_uInt32      GetKey() const          { return nKey; }
@@ -173,10 +169,7 @@ public:
     void    ResetUsed();
 
     void    CompileXML();
-//STRIP001  void    UpdateReference( UpdateRefMode eUpdateRefMode,
-//STRIP001                              const ScRange& rRange, short nDx, short nDy, short nDz );
 
-//STRIP001  BOOL    operator==( const ScValidationDataList& r ) const;      // fuer Ref-Undo
 };
 
 } //namespace binfilter
