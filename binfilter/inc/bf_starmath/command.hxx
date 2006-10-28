@@ -4,9 +4,9 @@
  *
  *  $RCSfile: command.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:47:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:12:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #define MATH_COMMAND_HXX
 
 
-// auto strip #ifndef _RC_HXX //autogen
-// auto strip #include <tools/rc.hxx>
-// auto strip #endif
 
 #ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
