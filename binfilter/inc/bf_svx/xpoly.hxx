@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xpoly.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:40:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:32:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,14 +105,11 @@ public:
     ~XPolygon();
 
     void        SetSize( USHORT nSize );
-//STRIP001  USHORT      GetSize() const;
 
     void        SetPointCount( USHORT nPoints );
     USHORT      GetPointCount() const;
 
     void        Insert( USHORT nPos, const Point& rPt, XPolyFlags eFlags );
-//STRIP001  void        Insert( USHORT nPos, const XPolygon& rXPoly );
-//STRIP001  void        Insert( USHORT nPos, const Polygon& rPoly );
     void        Remove( USHORT nPos, USHORT nCount );
     void        Move( long nHorzMove, long nVertMove );
     Rectangle   GetBoundRect(OutputDevice* pOut = NULL) const;
@@ -126,15 +123,10 @@ public:
     XPolyFlags  GetFlags( USHORT nPos ) const;
     void        SetFlags( USHORT nPos, XPolyFlags eFlags );
     BOOL        IsControl(USHORT nPos) const;
-//STRIP001  BOOL        IsSmooth(USHORT nPos) const;
 
     // Abstand zwischen zwei Punkten
-//STRIP001  double  CalcDistance(USHORT nP1, USHORT nP2);
 
     // Bezierkonvertierungen
-//STRIP001  void CalcSmoothJoin(USHORT nCenter, USHORT nDrag, USHORT nPnt);
-//STRIP001  void CalcTangent(USHORT nCenter, USHORT nPrev, USHORT nNext);
-//STRIP001  void PointsToBezier(USHORT nFirst);
 
     // Transformationen
     void Translate(const Point& rTrans);
@@ -142,9 +134,6 @@ public:
     void Rotate(const Point& rCenter, USHORT nAngle);
     void Scale(double fSx, double fSy);
     void SlantX(long nYRef, double fSin, double fCos);
-//STRIP001  void SlantY(long nXRef, double fSin, double fCos);
-//STRIP001  void Distort(const Rectangle& rRefRect, const XPolygon& rDistortedRect);
-//STRIP001  void Rotate20 ();
 
     friend SvStream& operator>>( SvStream& rIStream, XPolygon& rXPoly );
     friend SvStream& operator<<( SvStream& rOStream, const XPolygon& rXPoly );
@@ -177,10 +166,6 @@ public:
 
     void            Insert( const XPolygon& rXPoly,
                             USHORT nPos = XPOLYPOLY_APPEND );
-//STRIP001  void            Insert( const XPolyPolygon& rXPoly,
-//STRIP001                          USHORT nPos=XPOLYPOLY_APPEND );
-//STRIP001  XPolygon        Remove( USHORT nPos );
-//STRIP001  XPolygon        Replace( const XPolygon& rXPoly, USHORT nPos );
     const XPolygon& GetObject( USHORT nPos ) const;
 
     void            Clear();
@@ -194,18 +179,12 @@ public:
     XPolygon&       operator[]( USHORT nPos );
 
     XPolyPolygon&   operator=( const XPolyPolygon& rXPolyPoly );
-//STRIP001  BOOL            operator==( const XPolyPolygon& rXPolyPoly ) const;
-//STRIP001  BOOL            operator!=( const XPolyPolygon& rXPolyPoly ) const;
 
     // Transformationen
     void Translate(const Point& rTrans);
     void Rotate(const Point& rCenter, double fSin, double fCos);
-//STRIP001  void Rotate(const Point& rCenter, USHORT nAngle);
     void Scale(double fSx, double fSy);
     void SlantX(long nYRef, double fSin, double fCos);
-//STRIP001  void SlantY(long nXRef, double fSin, double fCos);
-//STRIP001  void Distort(const Rectangle& rRefRect, const XPolygon& rDistortedRect);
-//STRIP001  void Rotate20 ();
 
     friend SvStream& operator>>( SvStream& rIStream, XPolyPolygon& rXPolyPoly );
     friend SvStream& operator<<( SvStream& rOStream, const XPolyPolygon& rXPolyPoly );
