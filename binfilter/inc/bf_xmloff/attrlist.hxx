@@ -4,9 +4,9 @@
  *
  *  $RCSfile: attrlist.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:29:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:05:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,24 +39,9 @@
 #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
-// auto strip #include <com/sun/star/xml/sax/SAXParseException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXEXCEPTION_HPP_
-// auto strip #include <com/sun/star/xml/sax/SAXException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
-// auto strip #include <com/sun/star/xml/sax/XLocator.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
