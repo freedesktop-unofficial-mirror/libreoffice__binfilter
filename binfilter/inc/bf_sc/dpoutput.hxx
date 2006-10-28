@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dpoutput.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:10:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:34:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #include <com/sun/star/sheet/DataResult.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SHEET_MEMBERRESULT_HPP_
-// auto strip #include <com/sun/star/sheet/MemberResult.hpp>
-// auto strip #endif
 
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
@@ -114,13 +111,6 @@ private:
     USHORT                  nTabEndCol;
     USHORT                  nTabEndRow;
 
-//STRIP001  void            DataCell( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              const ::com::sun::star::sheet::DataResult& rData );
-//STRIP001  void            HeaderCell( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              const ::com::sun::star::sheet::MemberResult& rData,
-//STRIP001                              BOOL bColHeader, long nLevel );
-//STRIP001  void            FieldCell( USHORT nCol, USHORT nRow, USHORT nTab, const String& rCaption );
-//STRIP001  void            CalcSizes();
 
 public:
                      ScDPOutput( ScDocument* pD,
@@ -131,16 +121,7 @@ public:
 
     void            SetPosition( const ScAddress& rPos );
 
-//STRIP001  void            Output();           //! Refresh?
-//STRIP001  ScRange         GetOutputRange();
-//STRIP001  BOOL            HasError();         // range overflow or exception from source
 
-//STRIP001  void            GetPositionData( ScDPPositionData& rData, const ScAddress& rPos );
-//STRIP001  long            GetHeaderDim( const ScAddress& rPos );
-//STRIP001  BOOL            GetHeaderDrag( const ScAddress& rPos, BOOL bMouseLeft, BOOL bMouseTop,
-//STRIP001                                  long nDragDim,
-//STRIP001                                  Rectangle& rPosRect, USHORT& rOrient, long& rDimPos );
-//STRIP001  BOOL            IsFilterButton( const ScAddress& rPos );
 };
 
 

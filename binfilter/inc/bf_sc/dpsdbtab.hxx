@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dpsdbtab.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:10:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:34:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_DPSDBTAB_HXX
 #define SC_DPSDBTAB_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 namespace com { namespace sun { namespace star {
     namespace lang {
@@ -70,34 +67,7 @@ struct ScImportSourceDesc
                  bNative == rOther.bNative; }
 };
 
-//STRIP001 class ScDatabaseDPData_Impl;
 
-//STRIP001 class ScDatabaseDPData : public ScDPTableData
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ScDatabaseDPData_Impl* pImpl;
-//STRIP001
-//STRIP001  BOOL            OpenDatabase();
-//STRIP001  void            InitAllColumnEntries();
-//STRIP001
-//STRIP001 public:
-//STRIP001                  ScDatabaseDPData(
-//STRIP001                      ::com::sun::star::uno::Reference<
-//STRIP001                          ::com::sun::star::lang::XMultiServiceFactory > xSMgr,
-//STRIP001                      const ScImportSourceDesc& rImport );
-//STRIP001  virtual         ~ScDatabaseDPData();
-//STRIP001
-//STRIP001  virtual long                    GetColumnCount();
-//STRIP001  virtual const TypedStrCollection&   GetColumnEntries(long nColumn);
-//STRIP001  virtual String                  getDimensionName(long nColumn);
-//STRIP001  virtual BOOL                    getIsDataLayoutDimension(long nColumn);
-//STRIP001  virtual BOOL                    IsDateDimension(long nDim);
-//STRIP001  virtual void                    DisposeData();
-//STRIP001  virtual void                    SetEmptyFlags( BOOL bIgnoreEmptyRows, BOOL bRepeatIfEmpty );
-//STRIP001
-//STRIP001  virtual void                    ResetIterator();
-//STRIP001  virtual BOOL                    GetNextRow( const ScDPTableIteratorParam& rParam );
-//STRIP001 };
 
 
 
