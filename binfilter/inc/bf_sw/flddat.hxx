@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flddat.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:59:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:41:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _FLDDAT_HXX
 #define _FLDDAT_HXX
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #include "fldbas.hxx"
 class DateTime;
@@ -134,8 +131,6 @@ public:
 
         virtual double          GetValue() const;
 
-//STRIP001      virtual void            SetPar2(const String& rStr);
-//STRIP001      virtual String          GetPar2() const;
 
         inline BOOL             IsDate() const
                                 { return (nSubType & DATEFLD) != 0; }

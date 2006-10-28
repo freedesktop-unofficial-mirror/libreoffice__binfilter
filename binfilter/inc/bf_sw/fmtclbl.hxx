@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtclbl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:01:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:41:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
