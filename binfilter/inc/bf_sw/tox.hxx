@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tox.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:37:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:58:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,13 +35,7 @@
 #ifndef _TOX_HXX
 #define _TOX_HXX
 
-// auto strip #ifndef _SVARRAY_HXX //autogen
-// auto strip #include <svtools/svarray.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
@@ -112,7 +106,6 @@ public:
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     SwTOXMark&              operator=( const SwTOXMark& rCopy );
-//STRIP001  String                  GetText() const;
 
     inline BOOL             IsAlternativeText() const;
     inline const String&    GetAlternativeText() const;
@@ -248,13 +241,7 @@ public:
         { return nCurPatternPos + nCurPatternLen < sPattern.Len(); }
 
     SwFormToken     GetNextToken();
-//STRIP001  SwFormToken     GetCurToken() const;
 
-//STRIP001  FormTokenType   GetCurTokenType();
-//STRIP001  FormTokenType   GetNextTokenType();
-//STRIP001  FormTokenType   GetPrevTokenType();
-//STRIP001  void            RemoveCurToken();
-//STRIP001  void            InsertToken( const SwFormToken& rToken );
     const String&   GetPattern() const      { return sPattern; }
 };
 
@@ -298,7 +285,6 @@ public:
     void SetFirstTabPos( USHORT n );    //{ nFirstTabPos = n; }
 
     BOOL IsFirstTabPosFlag() const  ;   //{ return bHasFirstTabPos; }
-//STRIP001  void SetFirstTabPosFlag( BOOL b );  //{ bHasFirstTabPos = b; }
 
     BOOL IsGenerateTabPos() const       { return bGenerateTabPos; }
     void SetGenerateTabPos( BOOL b )    { bGenerateTabPos = b; }
@@ -421,7 +407,6 @@ public:
     SwTOXBase( const SwTOXBase& rCopy, SwDoc* pDoc = 0 );
     virtual ~SwTOXBase();
 
-//STRIP001  virtual BOOL GetInfo( SfxPoolItem& rInfo ) const;
 
     // a kind of CopyCtor - check if the TOXBase is at TOXType of the doc.
     // If not, so create it an copy all other used things. The return is this
@@ -475,7 +460,6 @@ public:
                                 DBG_ASSERT( nLevel < MAXLEVEL, "Which level?");
                                 aStyleNames[nLevel] = rSet;
                                 }
-//STRIP001  BOOL                    HasAnyStyleNames() const;
 
     BOOL                    IsFromChapter() const { return bFromChapter;}
     void                    SetFromChapter(BOOL bSet) { bFromChapter = bSet;}
@@ -497,8 +481,6 @@ public:
 
     BOOL                    IsTOXBaseInReadonly() const;
 
-//STRIP001  const SfxItemSet*       GetAttrSet() const;
-//STRIP001  void                    SetAttrSet( const SfxItemSet& );
 
     static const String&    GetTOXName(TOXTypes eType);           // toxmgr.cxx
 
