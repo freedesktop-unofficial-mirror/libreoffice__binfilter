@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlpool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:06:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:54:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,6 @@ protected:
     virtual SfxStyleSheetBase* Create(const String& rName,
                                       SfxStyleFamily eFamily,
                                       USHORT nMask);
-//STRIP001  virtual SfxStyleSheetBase* Create(const SdStyleSheet& rStyle);
 
 public:
                         SdStyleSheetPool(SfxItemPool& rPool, SdDrawDocument* pDocument);
@@ -67,7 +66,6 @@ public:
     SfxStyleSheetBase*  GetActualStyleSheet()    { return pActualStyleSheet; }
 
     SfxStyleSheetBase*  GetTitleSheet(const String& rLayoutName);
-//STRIP001  String              GetLayoutName() const;
 
                             // Caller muss Liste loeschen
     List*               CreateOutlineSheetList(const String& rLayoutName);
@@ -81,13 +79,6 @@ public:
                             when styles are missing.
     */
     void                CreateLayoutStyleSheets(const String& rLayoutName, sal_Bool bCheck = sal_False );
-//STRIP001  void                EraseLayoutStyleSheets(const String& rLayoutName);
-//STRIP001  List*               CreateLayoutSheetNames(const String& rLayoutName) const;
-//STRIP001  List*               CreateLayoutSheetList(const String& rLayoutName);
-//STRIP001  void                CopyLayoutSheets(const String& rLayoutName,
-//STRIP001                                       SdStyleSheetPool& rSourcePool,
-//STRIP001                                       List* pCreatedSheets = NULL);
-//STRIP001  void                CopyGraphicSheets(SdStyleSheetPool& rSourcePool);
 
     void                CreatePseudosIfNecessary();
     void                UpdateStdNames();
