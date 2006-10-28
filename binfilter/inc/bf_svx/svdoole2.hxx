@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdoole2.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:40:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:08:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,17 +96,13 @@ protected:
 protected:
 
 /*NBFF*/    void ImpSetVisAreaSize();
-//STRIP001     void ImpAssign( const SdrObject& rObj, SdrPage* pNewPage = NULL, SdrModel* pNewModel = NULL );
-//STRIP001     void ImpCopyObject( SvPersist& rSrcPersist, SvPersist& rDstPersist, String& rPersistName );
 
-//STRIP001  void CreatePersistName( SvPersist* pPers );
     void Init();
 
 public:
     TYPEINFO();
 
     SdrOle2Obj(FASTBOOL bFrame_=FALSE);
-//STRIP001  SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, FASTBOOL bFrame_=FALSE);
     SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, FASTBOOL bFrame_=FALSE);
     SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_=FALSE);
     virtual ~SdrOle2Obj();
@@ -121,9 +117,7 @@ public:
     String      GetPersistName() const;
     void        SetPersistName( const String& rPersistName );
 
-//STRIP001  virtual FASTBOOL HasSetName() const;
 
-//STRIP001  virtual void    SetName(const String& rStr);
     virtual String  GetName() const;
 
     // Einem SdrOle2Obj kann man ein Applikationsnamen verpassen, den man
@@ -144,24 +138,16 @@ public:
      */
     void SetClosedObj( bool bIsClosed );
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
-//STRIP001     virtual SdrObject* Clone(SdrPage* pPage, SdrModel* pModel) const;
 
-//STRIP001     virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
-//STRIP001  virtual void operator=(const SdrObject& rObj);
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
 
     virtual void NbcMove(const Size& rSize);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
-//STRIP001  virtual void SetGeoData(const SdrObjGeoData& rGeo);
 
     // fuer Import:
     FASTBOOL HasGDIMetaFile() const;
