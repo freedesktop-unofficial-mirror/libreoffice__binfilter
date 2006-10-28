@@ -4,9 +4,9 @@
  *
  *  $RCSfile: calc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:48:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:35:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,7 +137,6 @@ public:
 
 
     // Strings sonderbehandeln
-//STRIP001  BOOL GetBool() const;
     // Strings sonderbehandeln BOOLs sonderbehandeln
     double GetDouble() const;
     SwSbxValue& MakeDouble();
@@ -215,7 +214,6 @@ public:
         ~SwCalc();
 
     SwSbxValue  Calculate( const String &rStr );
-//STRIP001  String      GetStrResult( const SwSbxValue& rValue, BOOL bRound = TRUE );
     String      GetStrResult( double, BOOL bRound = TRUE );
 
     SwCalcExp*  VarInsert( const String& r );
@@ -236,8 +234,6 @@ public:
     static FASTBOOL Str2Double( const String& rStr, xub_StrLen& rPos,
                                 double& rVal, SwDoc* pDoc );
 
-//STRIP001  static FASTBOOL IsValidVarName( const String& rStr,
-//STRIP001                                  String* pValidName = 0 );
 };
 
 } //namespace binfilter

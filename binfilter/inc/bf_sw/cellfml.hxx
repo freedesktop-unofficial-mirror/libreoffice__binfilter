@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cellfml.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:49:09 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:36:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@ public:
     SwTblCalcPara( SwCalc& rCalculator, const SwTable& rTable );
     ~SwTblCalcPara();
 
-//STRIP001  BOOL CalcWithStackOverflow();
     BOOL IsStackOverFlow() const        { return nMaxSize == nStackCnt; }
     BOOL IncStackCnt()                  { return nMaxSize == ++nStackCnt; }
     void DecStackCnt()                  { if( nStackCnt ) --nStackCnt; }
@@ -80,18 +79,8 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
                         void* pPara = 0 ) const;
     void PtrToBoxNms( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
-//STRIP001  void RelNmsToBoxNms( const SwTable&, String&, String&, String* = 0,
-//STRIP001                      void* pPara = 0 ) const;
-//STRIP001  void RelBoxNmsToPtr( const SwTable&, String&, String&, String* = 0,
-//STRIP001                      void* pPara = 0 ) const;
-//STRIP001  void BoxNmsToRelNm( const SwTable&, String&, String&, String* = 0,
-//STRIP001                      void* pPara = 0 ) const;
     void _MakeFormel( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
-//STRIP001  void _GetFmlBoxes( const SwTable&, String&, String&, String* = 0,
-//STRIP001                      void* pPara = 0 ) const;
-//STRIP001  void _HasValidBoxes( const SwTable&, String&, String&, String* = 0,
-//STRIP001                      void* pPara = 0 ) const;
     void _SplitMergeBoxNm( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void* pPara = 0 ) const;
 
@@ -100,7 +89,6 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
     String ScanString( FnScanFormel fnFormel, const SwTable& rTbl,
                         void* = 0 ) const;
 
-//STRIP001  const SwTable* FindTable( SwDoc& rDoc, const String& rNm ) const;
 
 protected:
     enum NameType { EXTRNL_NAME, INTRNL_NAME, REL_NAME };
@@ -123,7 +111,6 @@ protected:
                             *rCalcPara.pTbl, &rCalcPara );
     }
 
-//STRIP001  static USHORT GetLnPosInTbl( const SwTable& rTbl, const SwTableBox* pBox );
 
 public:
 
@@ -141,9 +128,7 @@ public:
     // erzeuge aus der externen (fuer UI) die interne (fuer CORE) Formel
     void BoxNmToPtr( const SwTable* pTbl );
     // erzeuge aus der externen/internen Formel die relative Formel
-//STRIP001  void ToRelBoxNm( const SwTable* pTbl );
     // wird vorm/nach dem mergen/splitten von Tabellen rerufen
-//STRIP001  void ToSplitMergeBoxNm( SwTableFmlUpdate& rTblUpd );
 
     // ist gerade eine intern Darstellung aktiv
     BOOL IsIntrnlName() const           { return eNmType == INTRNL_NAME; }
@@ -162,9 +147,7 @@ public:
             eNmType = EXTRNL_NAME;
         }
 
-//STRIP001  USHORT GetBoxesOfFormula( const SwTable& rTbl, SwSelBoxes& rBoxes );
     // sind alle Boxen gueltig, auf die sich die Formel bezieht?
-//STRIP001  BOOL HasValidBoxes() const;
 };
 
 
