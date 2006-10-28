@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlpool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:31:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:42:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,6 @@ public:
     void                SetDocument( ScDocument* pDocument );
     ScDocument*         GetDocument() const { return pDoc; }
 
-//STRIP001  virtual void        Erase( ::SfxStyleSheetBase* pStyle );
 
     void                SetActualStyleSheet ( ::SfxStyleSheetBase* pActStyleSheet )
                                 { pActualStyleSheet = pActStyleSheet; }
@@ -64,13 +63,9 @@ public:
                                 { return pActualStyleSheet; }
 
     void                CreateStandardStyles();
-//STRIP001  void                CopyStdStylesFrom( ScStyleSheetPool* pSrcPool );
     void                UpdateStdNames();
 
-//STRIP001  void                CopyStyleFrom( ScStyleSheetPool* pSrcPool,
-//STRIP001                                      const String& rName, SfxStyleFamily eFamily );
 
-//STRIP001  ScStyleSheet*       FindCaseIns( const String& rName, SfxStyleFamily eFam );
 
     void                SetForceStdName( const String* pSet );
     const String*       GetForceStdName() const { return pForceStdName; }

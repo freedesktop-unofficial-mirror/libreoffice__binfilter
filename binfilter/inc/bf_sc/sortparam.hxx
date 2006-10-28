@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sortparam.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:30:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:42:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,15 +79,10 @@ struct ScSortParam
     ScSortParam();
     ScSortParam( const ScSortParam& r );
     /// SubTotals sort
-//STRIP001  ScSortParam( const ScSubTotalParam& rSub, const ScSortParam& rOld );
     /// TopTen sort
-//STRIP001  ScSortParam( const ScQueryParam&, USHORT nCol );
 
-//STRIP001  ScSortParam&    operator=   ( const ScSortParam& r );
-//STRIP001  BOOL            operator==  ( const ScSortParam& rOther ) const;
     void            Clear       ();
 
-//STRIP001  void            MoveToDest();
 };
 
 
