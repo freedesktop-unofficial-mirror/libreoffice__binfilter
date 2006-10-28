@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swhints.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:30:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:55:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef SW_HINTS_HXX
 #define SW_HINTS_HXX
 
-// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #define SW_BROADCASTID_START            SFX_HINT_USER00

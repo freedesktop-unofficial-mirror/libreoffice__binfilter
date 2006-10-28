@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swgstr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:30:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:55:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SWGSTR_HXX
 #define _SWGSTR_HXX
 
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 namespace binfilter {
 
 typedef long long3;                     // Zur Dokumentation: 3-byte-Longs
@@ -50,116 +47,16 @@ typedef long long3;                     // Zur Dokumentation: 3-byte-Longs
 
 // Passwort- und Codierungs-Funktionalitaet
 
-//STRIP001 class swcrypter {
-//STRIP001 protected:
-//STRIP001  sal_Char   cPasswd[ PASSWDLEN ];    // Passwort-Puffer
-//STRIP001  BOOL   bPasswd;                     // TRUE wenn mit Passwort
-//STRIP001  void   encode( sal_Char*, USHORT ); // Puffer codieren/decodieren
-//STRIP001 public:
-//STRIP001  swcrypter();
-//STRIP001  BOOL setpasswd( const String& );    // Passwort setzen
-//STRIP001  void copypasswd( const sal_Char* ); // Passwort direkt setzen
-//STRIP001  const sal_Char* getpasswd() { return cPasswd; }
-//STRIP001 };
 
 // Reader/Writer-Stream-Basisklasse mit Pufferverwaltung fuer Texte
 // und Spezial-I/O fuer 3-Byte-Longs
 
-//STRIP001 class swstreambase : public swcrypter {
-//STRIP001 protected:
-//STRIP001  SvStream* pStrm;                    // eigentlicher Stream
-//STRIP001  sal_Char*  pBuf;                        // Zwischenpuffer
-//STRIP001  USHORT nBuflen;                     // Laenge des Zwischenpuffers
-//STRIP001  short  nLong;                       // Long-Laenge (3 oder 4)
-//STRIP001  BOOL   bTempStrm;                   // TRUE: Stream loeschen
-//STRIP001  void   checkbuf( USHORT );          // Testen der Pufferlaenge
-//STRIP001
-//STRIP001  swstreambase( SvStream& );
-//STRIP001
-//STRIP001  swstreambase( const swstreambase& );
-//STRIP001  int operator=( const swstreambase& );
-//STRIP001 public:
-//STRIP001  ~swstreambase();
-//STRIP001  SvStream& Strm()                    { return *pStrm; }
-//STRIP001  void clear();                       // Puffer loeschen
-//STRIP001  sal_Char* GetBuf()                  { return pBuf; }
-//STRIP001
-//STRIP001  // Zusatzfunktionen zur I/O von LONGs als 3-Byte-Zahlen
-//STRIP001
-//STRIP001  void long3()                        { nLong = 3; }
-//STRIP001  void long4()                        { nLong = 4; }
-//STRIP001
-//STRIP001  void sync( swstreambase& r )        { pStrm->Seek( r.tell() ); }
-//STRIP001
-//STRIP001  // Alias- und Hilfsfunktionen
-//STRIP001
-//STRIP001  void seek( long nPos )              { pStrm->Seek( nPos );  }
-//STRIP001  long tell()                         { return pStrm->Tell(); }
-//STRIP001  long filesize();                    // Dateigroesse
-//STRIP001  void flush()                        { pStrm->Flush(); }
-//STRIP001
-//STRIP001  void setbad();
-//STRIP001  int good()                          { return ( pStrm->GetError() == SVSTREAM_OK ); }
-//STRIP001  int bad()                           { return ( pStrm->GetError() != SVSTREAM_OK ); }
-//STRIP001  int operator!()                     { return ( pStrm->GetError() != SVSTREAM_OK ); }
-//STRIP001  int eof()                           { return pStrm->IsEof(); }
-//STRIP001
-//STRIP001  BYTE get();
-//STRIP001  void get( void* p, USHORT n )       { pStrm->Read( (sal_Char*) p, n ); }
-//STRIP001
-//STRIP001  inline swstreambase& operator>>( sal_Char& );
-//STRIP001  inline swstreambase& operator>>( BYTE& );
-//STRIP001  inline swstreambase& operator>>( short& );
-//STRIP001  inline swstreambase& operator>>( USHORT& );
-//STRIP001         swstreambase& operator>>( long& );
-//STRIP001  inline swstreambase& operator>>( ULONG& );
-//STRIP001 };
 
-//STRIP001 inline swstreambase& swstreambase::operator>>( sal_Char& c )
-//STRIP001 {
-//STRIP001  *pStrm >> c; return *this;
-//STRIP001 }
 
-//STRIP001 inline swstreambase& swstreambase::operator>>( BYTE& c )
-//STRIP001 {
-//STRIP001  *pStrm >> c; return *this;
-//STRIP001 }
 
-//STRIP001 inline swstreambase& swstreambase::operator>>( short& c )
-//STRIP001 {
-//STRIP001  *pStrm >> c; return *this;
-//STRIP001 }
 
-//STRIP001 inline swstreambase& swstreambase::operator>>( USHORT& c )
-//STRIP001 {
-//STRIP001  *pStrm >> c; return *this;
-//STRIP001 }
 
-//STRIP001 inline swstreambase& swstreambase::operator>>( ULONG& c )
-//STRIP001 {
-//STRIP001  return *this >> (long&) c;
-//STRIP001 }
 
-//STRIP001 class swistream : public swstreambase {
-//STRIP001  BYTE   cType;                       // Record-Typ
-//STRIP001  ULONG  nOffset;                     // Record-Offset-Portion
-//STRIP001 public:
-//STRIP001  swistream( SvStream& );
-//STRIP001
-//STRIP001  BYTE peek();                        // 1 Byte testen
-//STRIP001  BYTE next();                        // Blockstart
-//STRIP001  BYTE cur() { return cType; }        // aktueller Block
-//STRIP001  BYTE skipnext();                    // Record ueberspringen
-//STRIP001  void undonext();                    // next() rueckgaengig machen
-//STRIP001  long getskip()                      { return nOffset; }
-//STRIP001  void skip( long = -1L );            // Block ueberspringen
-//STRIP001  sal_Char* text();                   // Textstring lesen (nach BEGIN)
-//STRIP001  long size();                        // aktuelle Record-Laenge
-//STRIP001
-//STRIP001 private:
-//STRIP001  swistream( const swistream& );
-//STRIP001  int operator=( const swistream& );
-//STRIP001 };
 
 
 } //namespace binfilter
