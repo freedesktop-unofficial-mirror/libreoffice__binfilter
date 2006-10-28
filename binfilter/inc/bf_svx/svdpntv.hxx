@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpntv.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:44:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:10:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -165,8 +165,6 @@ class RollingRect
 public:
     RollingRect(USHORT nNewLen=8) { Reset(nNewLen); }
     void Reset(USHORT nNewLen=8) { nIdx=0; nLen=nNewLen; bStripes=FALSE; bCrossHair=FALSE; }
-//STRIP001  void Invert(OutputDevice& rOut) const { DrawRect(rOut,FALSE); }
-//STRIP001  void RollIt(OutputDevice& rOut, BOOL bIncIdx=TRUE) { DrawRect(rOut,TRUE); if (bIncIdx) IncRollIdx(); }
     void IncRollIdx() { nIdx++; if (nIdx>=2*nLen) nIdx=0; }
     const Point& GetP1() const { return aP1; }
     const Point& GetP2() const { return aP2; }
@@ -178,9 +176,6 @@ public:
     void SetStripes(BOOL bOn) { bStripes=bOn; }
 
 protected:
-//STRIP001  void DrawRect(OutputDevice& rOut, BOOL bMov) const;
-//STRIP001  void DrawHor(OutputDevice& rOut, long x1, long x2, long y, BOOL bMov) const;
-//STRIP001  void DrawVer(OutputDevice& rOut, long x, long y1, long y2, BOOL bMov) const;
 };
 
 //************************************************************
@@ -196,9 +191,6 @@ class FrameAnimator: public RollingRect
 public:
     FrameAnimator(SdrView& rNewView);
     DECL_LINK(Hdl,AutoTimer*);
-//STRIP001  void Invert(OutputDevice* pOut) const;
-//STRIP001  void Start() const;
-//STRIP001  void Stop() const;
 };
 
 //************************************************************
@@ -395,11 +387,9 @@ private:
     void ImpCheckMarkerAnimator();
     USHORT ImpGetUserMarkerCount() const { return (USHORT)aUserMarkers.Count(); }
     SdrViewUserMarker* ImpGetUserMarker(USHORT nNum) const { return (SdrViewUserMarker*)aUserMarkers.GetObject(nNum); }
-//STRIP001  void ImpAddAsyncObj( const SdrObject* pObj, const OutputDevice* pOut );
     void ImpAsyncPaintDone( const SdrObject* pObj );
 
 protected:
-//STRIP001  USHORT ImpGetMinMovLogic(short nMinMov, const OutputDevice* pOut) const;
     USHORT ImpGetHitTolLogic(short nHitTol, const OutputDevice* pOut) const;
 
     // Wenn man den IdleStatus des Systems nicht abwarten will (auf const geschummelt):
@@ -419,9 +409,6 @@ protected:
     USHORT GetHiddenPV(const SdrPage* pPage) const;
     void GlueInvalidate() const;
 
-//STRIP001  void ShowEncirclement(OutputDevice* pOut);
-//STRIP001  void HideEncirclement(OutputDevice* pOut);
-//STRIP001  void DrawEncirclement(OutputDevice* pOut) const;
 
     virtual void WriteRecords(SvStream& rOut) const;
     virtual BOOL ReadRecord(const SdrIOHeader& rViewHead, const SdrNamedSubRecord& rSubHead, SvStream& rIn);
@@ -443,11 +430,7 @@ public:
     SdrModel* GetModel() const { return pMod; }
 
     virtual BOOL IsAction() const;
-//STRIP001  virtual void MovAction(const Point& rPnt);
-//STRIP001  virtual void EndAction();
-//STRIP001  virtual void BckAction();
     virtual void BrkAction(); // Alle Actions z.B. Draggen abbrechen.
-//STRIP001  virtual void TakeActionRect(Rectangle& rRect) const;
 
     // Muss dann bei jedem Fensterwechsel (wenn die SdrView in mehreren
     // Fenstern gleichzeitig dargestellt wird (->z.B. Splitter)) und bei
@@ -486,16 +469,10 @@ public:
     // SdrView (Iterieren ueber alle angemeldeten Pages).
     virtual SdrPageView* ShowPage(SdrPage* pPage, const Point& rOffs);
     SdrPageView* ShowPagePgNum(USHORT nPgNum, const Point& rOffs);
-//STRIP001  SdrPageView* ShowMasterPagePgNum(USHORT nPgNum, const Point& rOffs);
     virtual void HidePage(SdrPageView* pPV);
     void HidePage(const SdrPage* pPage) { HidePage(GetPageView(pPage)); }
-//STRIP001  void HidePagePgNum(USHORT nPgNum);
     void HidePagePvNum(USHORT nPvNum) { HidePage(GetPageViewPvNum(nPvNum)); }
     virtual void HideAllPages();
-//STRIP001  virtual void SetPagePos(SdrPageView* pPV, const Point& rOffs);
-//STRIP001  void SetPagePos(SdrPage* pPage, const Point& rOffs) { SetPagePos(GetPageView(pPage),rOffs); }
-//STRIP001  void SetPagePosPgNum(USHORT nPgNum, const Point& rOffs);
-//STRIP001  void SetPagePosPvNum(USHORT nPvNum, const Point& rOffs) { SetPagePos(GetPageViewPvNum(nPvNum),rOffs); }
 
     // Iterieren ueber alle angemeldeten PageViews
     USHORT GetPageViewCount() const { return USHORT(aPagV.Count()); }
@@ -503,21 +480,16 @@ public:
 
     // Pageview einer bestimmten Seite ermitteln
     SdrPageView* GetPageView(const SdrPage* pPage) const;
-//STRIP001  SdrPageView* GetPageViewPgNum(USHORT nPgNum) const;
-//STRIP001  USHORT GetPageViewNum(const SdrPageView* pPV) const;
 
     // Test, ob eine Seite getroffen
-//STRIP001  SdrPageView* HitPage(const Point& rPnt) const;
 
     // Die Seite, die dem Punkt am naechsten ist. Liefert nur NULL,
     // wenn absolut keine Seite angemeldet ist.
-//STRIP001  SdrPageView* GetPageView(const Point& rPnt) const;
 
     // Falls noetig kann man sich auch die nicht angezeigten Seiten rausholen
     USHORT GetPageHideCount() const { return USHORT(aPagHide.Count()); }
     SdrPageView* GetPageHidePvNum(USHORT nPvNum) const { return ((SdrPageView*)aPagHide.GetObject(nPvNum)); }
     SdrPageView* GetPageHide(const SdrPage* pPage) const { return ((SdrPageView*)aPagHide.GetObject(GetHiddenPV(pPage))); }
-//STRIP001  USHORT GetPageHideNum(const SdrPageView* pPV) const;
 
     // Eine SdrView kann auf mehreren Fenstern gleichzeitig abgebiltet sein:
     virtual void AddWin(OutputDevice* pWin1);
@@ -545,29 +517,15 @@ public:
     // Layer des Sets ausgeblendet.
     // Die View hat anschliessend keine Kenntnis von dem LayerSet,
     // sie merkt sich nur den Sichtbarkeitsstatus der einzeknen Layer.
-//STRIP001  void ShowLayerSet(const String& rName, BOOL bShow=TRUE);
 
     // TRUE, wenn alle MemberLayer des Set sichtbar und alle Excluded-Layer
     // des Set unsichtbar.
-//STRIP001  TRISTATE IsLayerSetVisible(const String& rName) const;
 
-//STRIP001  void SetLayerVisible(const String& rName, BOOL bShow=TRUE);
-//STRIP001  TRISTATE IsLayerVisible(const String& rName) const;
-//STRIP001  void SetAllLayersVisible(BOOL bShow=TRUE);
 
     void SetLayerLocked(const String& rName, BOOL bLock=TRUE);
-//STRIP001  TRISTATE IsLayerLocked(const String& rName) const;
-//STRIP001  void SetAllLayersLocked(BOOL bLock=TRUE);
 
-//STRIP001  void SetLayerPrintable(const String& rName, BOOL bPrn=TRUE);
-//STRIP001  TRISTATE IsLayerPrintable(const String& rName) const;
-//STRIP001  void SetAllLayersPrintable(BOOL bPrn=TRUE);
 
     virtual void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0);
-//STRIP001  virtual void InitRedraw(USHORT nWinNum, const Region& rReg, USHORT nPaintMode=0);
-//STRIP001  BOOL IsRedrawReady() const;
-//STRIP001  BOOL RedrawOne(USHORT nBrkEvent=INPUT_MOUSEANDKEYBOARD);
-//STRIP001  BOOL RedrawUntilInput(USHORT nBrkEvent=INPUT_MOUSEANDKEYBOARD);
 
     BOOL IsPageVisible() const { return bPageVisible; }             // Seite (weisse Flaeche) malen oder nicht
     BOOL IsPageBorderVisible() const { return bPageBorderVisible; } // Seite (weisse Flaeche) malen oder nicht
@@ -577,7 +535,6 @@ public:
     BOOL IsHlplVisible() const { return bHlplVisible; }             // Hilfslinien der Seiten malen oder nicht
     BOOL IsHlplFront() const { return bHlplFront  ; }               // Hilfslinie ueber die Objekte druebermalen oder dahinter
     BOOL IsGlueVisible() const { return bGlueVisible; }             // Konnektoren der objekte sichtbar oder nicht
-//STRIP001  Color GetGridColor() const;
     void SetPageVisible(BOOL bOn=TRUE) { bPageVisible=bOn; InvalidateAllWin(); }
     void SetPageBorderVisible(BOOL bOn=TRUE) { bPageBorderVisible=bOn; InvalidateAllWin(); }
     void SetBordVisible(BOOL bOn=TRUE) { bBordVisible=bOn; InvalidateAllWin(); }
@@ -668,7 +625,6 @@ public:
 
     // Verlassen einer betretenen Objektgruppe aller sichtbaren Seiten.
     // (wie MsDos chdir ..)
-//STRIP001  void LeaveOneGroup();
 
     // Verlassen aller betretenen Objektgruppen aller sichtbaren Seiten.
     // (wie MsDos chdir \)
@@ -680,26 +636,19 @@ public:
     // Wird mit EnterGroup an einer PageView oder an der MarkView eine
     // Gruppe betreten, werden alle zu dieser Zeit nicht erreichbaren
     // Objekte mit diesen Attributen dargestellt. NULL=normale Darstellung.
-//STRIP001  void SetDisabledAttr(const SfxItemSet* pNewDisabledAttr);
 
     // DefaultAttribute an der View: Neu erzeugte Objekte bekommen diese
     // Attribute direkt nach dem Erzeugen erstmal zugewiesen.
-//STRIP001  void SetDefaultAttr(const SfxItemSet& rAttr, BOOL bReplaceAll);
     const SfxItemSet& GetDefaultAttr() const { return aDefaultAttr; }
     void SetDefaultStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
     SfxStyleSheet* GetDefaultStyleSheet() const { return pDefaultStyleSheet; }
 
-//STRIP001  void SetNotPersistDefaultAttr(const SfxItemSet& rAttr, BOOL bReplaceAll);
-//STRIP001  void MergeNotPersistDefaultAttr(SfxItemSet& rAttr, BOOL bOnlyHardAttr) const;
 
     // Aufziehen eines animierten Rechtecks fuer Applikationsspeziefische
     // Verwendung. Alle Positionsangaben in logischen View-Koordinaten.
     // pOut bezeichnet das OutputDevice, in das animierte Rechteck dargestellt
     // werden soll. Wird NULL uebergeben, wird es in allen an der View
     // angemeldeten OutputDevices gleichzeitig dargestellt.
-//STRIP001  void BegEncirclement(const Point& rPnt, OutputDevice* pOut=NULL, short nMinMov=-2);
-//STRIP001  void MovEncirclement(const Point& rPnt);
-//STRIP001  Rectangle EndEncirclement(BOOL bNoJustify=FALSE);
     void BrkEncirclement();
     BOOL IsEncirclement() const { return bEncircle; }
 
@@ -723,10 +672,7 @@ public:
     void SetSwapAsynchron(BOOL bJa=TRUE) { bSwapAsynchron=bJa; }
 
     // get the InteractionObjectManager for a specified window
-//STRIP001  B2dIAOManager* GetIAOManager(OutputDevice* pOut);
-//STRIP001  B2dIAOManager* GetFirstIAOManager();
 //STRIP012  void RefreshAllIAOManagers();
-//STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt, Window* pWin);
 
     BOOL MouseButtonDown(const MouseEvent& rMEvt, Window* pWin) { return FALSE; }
     BOOL MouseButtonUp(const MouseEvent& rMEvt, Window* pWin) { return FALSE; }
@@ -737,16 +683,11 @@ public:
     BOOL Paste(Window* pWin=NULL, ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
 
     /* new interface src537 */
-//STRIP001  BOOL GetAttributes(SfxItemSet& rTargetSet, BOOL bOnlyHardAttr=FALSE) const;
 
-//STRIP001  BOOL SetAttributes(const SfxItemSet& rSet, BOOL bReplaceAll);
-//STRIP001  SfxStyleSheet* GetStyleSheet(BOOL& rOk) const;
     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 
-//STRIP001  virtual void MakeVisible(const Rectangle& rRect, Window& rWin);
 
     // Fuer PlugIn. Wird vom Paint des OLE-Obj gerufen.
-//STRIP001  virtual void DoConnect(SdrOle2Obj* pOleObj);
 
     // Animation aktivieren/deaktivieren fuer ::Paint
     // wird z.Zt. ausgewertet von SdrGrafObj, wenn in dem eine Animation steckt
@@ -766,7 +707,6 @@ public:
     SdrAnimationMode GetAnimationMode() const { return eAnimationMode; }
 
     // bei bShow=FALSE wird der Browser destruiert
-//STRIP001  void ShowItemBrowser(BOOL bShow=TRUE);
     BOOL IsItemBrowserVisible() const { return pItemBrowser!=NULL && ((Window*)pItemBrowser)->IsVisible(); }
     Window* GetItemBrowser() const { return (Window*)pItemBrowser; }
 
@@ -781,7 +721,6 @@ public:
     BOOL IsPrintPreview() const { return bPrintPreview; }
     void SetPrintPreview(BOOL bOn=TRUE) { bPrintPreview=bOn; }
 
-//STRIP001     const svtools::ColorConfig& getColorConfig() const;
 
     virtual void onChangeColorConfig();
 

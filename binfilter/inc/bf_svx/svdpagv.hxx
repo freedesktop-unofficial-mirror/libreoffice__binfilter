@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpagv.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-09-07 16:42:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:10:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -158,7 +158,6 @@ public:
     SdrUnoObj*         GetUnoObj() const { return pObj; }
 
     // Setzen eines neuen Controls
-//STRIP001  void ReplaceControl( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > _xControl);
     void Clear(BOOL bDispose);
 
     struct AccessControl { friend class SdrUnoControlPaintGuard; private: AccessControl() { } };
@@ -236,7 +235,6 @@ class SdrUnoControlList
 
 protected:
     SdrUnoControlRec* GetObject(USHORT i) const;
-//STRIP001  void              Disposing(SdrUnoControlRec* pRec);
 
 public:
     SdrUnoControlList( SdrPageView& _rPageView )
@@ -250,8 +248,6 @@ public:
     void              Delete(USHORT nPos, BOOL bDispose);
     SdrUnoControlRec&       operator[](USHORT nPos)                    { return *GetObject(nPos); }
     const SdrUnoControlRec& operator[](USHORT nPos) const              { return *GetObject(nPos); }
-//STRIP001  USHORT            Find(SdrUnoControlRec* pUCR) const;
-//STRIP001  USHORT            Find(::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > rUnoControl) const;
     USHORT            Find(::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > rUnoControlModel) const;
 };
 
@@ -349,13 +345,10 @@ protected:
 
 #if _SOLAR__PRIVATE
 private:
-//STRIP001  void        ImpPaintOutlinerView(OutputDevice* pOut, const Rectangle& rRect) const;
     SdrPageViewWinRec* ImpMakePageViewWinRec(OutputDevice* pOutDev1);
     void        ImpInsertControl(const SdrUnoObj* pObj, SdrPageViewWinRec* pRec);
     void        ImpUnoInserted(const SdrObject* pObj);
-//STRIP001  void        ImpUnoRemoved(const SdrObject* pObj);
 protected:
-//STRIP001  void        ImpInvalidateHelpLineArea(USHORT nNum) const;
 #endif // __PRIVATE
 protected:
     //USHORT      GetWinCount() const       { return USHORT(aRedraw.Count()); }
@@ -371,7 +364,6 @@ protected:
 
     void SetLayer(const String& rName, SetOfByte& rBS, FASTBOOL bJa);
     FASTBOOL IsLayer(const String& rName, const SetOfByte& rBS) const;
-//STRIP001  void SetAllLayers(SetOfByte& rB, FASTBOOL bJa);
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     void Show();
@@ -408,33 +400,14 @@ public:
     // rReg bezieht sich auf's OutDev, nicht auf die Page
     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL){DBG_BF_ASSERT(0, "STRIP");}//STRIP001     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
-//STRIP001  void InitRedraw(USHORT nWinNum, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
-//STRIP001  FASTBOOL IsReady() const;
-//STRIP001  FASTBOOL RedrawOne(USHORT nBrkEvent=INPUT_MOUSEANDKEYBOARD);         // n.i.
-//STRIP001  FASTBOOL RedrawUntilInput(USHORT nBrkEvent=INPUT_MOUSEANDKEYBOARD);  // n.i.
     // Painten aller Objekte eines Layer der Page ohne MasterPage
     // pOut==NULL -> alle OutputDevices
     // Der Handler in pPaintProc hat folgendes aussehen:
     // void __EXPORT class::PaintProcHdl(const SdrPaintProcRec& rPaintProcRec);
-//STRIP001  void RedrawOneLayer(SdrLayerID nID, const Rectangle& rRect,
-//STRIP001                      OutputDevice* pOut=NULL, USHORT nPaintMode=0,
-//STRIP001                      const Link* pPaintProc=NULL) const;
 
-//STRIP001  void DrawPaper(OutputDevice& rOut);
-//STRIP001     void DrawPaperBorder(OutputDevice& rOut);
-//STRIP001  void DrawBorder(OutputDevice& rOut);
-//STRIP001  void DrawGrid(OutputDevice& rOut, const Rectangle& rRect, Color aColor = Color( COL_BLACK ) );
-//STRIP001  void DrawGrid(OutputDevice& rOut, Color aColor = Color( COL_BLACK ))                     { DrawGrid(rOut,Rectangle(), aColor); }
-//STRIP001  void DrawHelplines(OutputDevice& rOut);
 
     // MasterPage ueber VirtualDevice Painten
-//STRIP001  FASTBOOL DoCachedMasterPaint(const SdrPage* pMasterPage, ExtOutputDevice& rXOut,
-//STRIP001                               const SdrPaintInfoRec& InfoRec) const;
-//STRIP001  FASTBOOL DoCachedMasterPaint(const SdrPage* pMasterPage, ExtOutputDevice& rXOut,
-//STRIP001                               const SdrPaintInfoRec& InfoRec, ULONG nCacheMode) const;
-//STRIP001  FASTBOOL MasterShouldBeCached(const SdrPage* pMasterPage) const;
 
-//STRIP001  void SetOffset(const Point& rPnt);
     const Point& GetOffset() const                              { return aOfs; }
     Rectangle GetPageRect() const;
     SdrPage* GetPage() const                                    { return pPage; }
@@ -454,27 +427,20 @@ public:
     Rectangle&       MarkBound()                                { return aMarkBound; }
     Rectangle&       MarkSnap()                                 { return aMarkSnap; }
 
-//STRIP001  void ShowLayerSet(const String& rName, FASTBOOL bShow=TRUE);
-//STRIP001  FASTBOOL IsLayerSetVisible(const String& rName) const;
 
     void SetLayerVisible(const String& rName, FASTBOOL bShow=TRUE)  { SetLayer(rName,aLayerVisi,bShow); if (!bShow) AdjHdl(); InvalidateAllWin(); }
     FASTBOOL IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
-//STRIP001  void SetAllLayersVisible(FASTBOOL bShow=TRUE)                   { SetAllLayers(aLayerVisi,bShow);   if (!bShow) AdjHdl(); InvalidateAllWin(); }
 
     void SetLayerLocked(const String& rName, FASTBOOL bLock=TRUE)   { SetLayer(rName,aLayerLock,bLock); if (bLock) AdjHdl(); }
     FASTBOOL IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
-//STRIP001  void SetAllLayersLocked(FASTBOOL bLock=TRUE)                    { SetAllLayers(aLayerLock,bLock);   if (bLock) AdjHdl(); }
 
     void SetLayerPrintable(const String& rName, FASTBOOL bPrn=TRUE) { SetLayer(rName,aLayerPrn,bPrn); }
     FASTBOOL IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
-//STRIP001  void SetAllLayersPrintable(FASTBOOL bPrn=TRUE)                  { SetAllLayers(aLayerPrn,bPrn); }
 
     // PV stellt eine RefPage oder eine SubList eines RefObj dar oder Model ist ReadOnly
-//STRIP001  FASTBOOL IsReadOnly() const;
 
     // der Origin bezieht sich immer auf die obere linke Ecke der Page
     const Point& GetPageOrigin() const                          { return aPgOrg; }
-//STRIP001  void         SetPageOrigin(const Point& rOrg);
     void LogicToPagePos(Point& rPnt) const                      { rPnt-=aPgOrg; }
     void LogicToPagePos(Rectangle& rRect) const                 { rRect.Move(-aPgOrg.X(),-aPgOrg.Y()); }
     void PagePosToLogic(Point& rPnt) const                      { rPnt+=aPgOrg; }
@@ -491,8 +457,6 @@ public:
     void SetHelpLines(const SdrHelpLineList& rHLL);
     //void SetHelpLinePos(USHORT nNum, const Point& rNewPos);
     void SetHelpLine(USHORT nNum, const SdrHelpLine& rNewHelpLine);
-//STRIP001  void DeleteHelpLine(USHORT nNum);
-//STRIP001  void InsertHelpLine(const SdrHelpLine& rHL, USHORT nNum=0xFFFF);
     void MoveHelpLine(USHORT nNum, USHORT nNewNum)              { aHelpLines.Move(nNum,nNewNum); }
 
     // Liefert TRUE, wenn Layer des Obj sichtbar und nicht gesperrt.
@@ -504,17 +468,13 @@ public:
     // Memberobjekte der Gruppe im direkten Zugriff. Alle anderen Objekte
     // koennen waerendessen nicht bearbeitet werden (bis zum naechsten
     // LeaveGroup()). (wie MsDos chdir bla).
-//STRIP001  FASTBOOL EnterGroup(SdrObject* pObj);
     // Verlassen einer betretenen Objektgruppe. (wie MsDos chdir ..)
-//STRIP001  void LeaveOneGroup();
     // Verlassen aller betretenen Objektgruppen. (wie MsDos chdir \)
     void LeaveAllGroup();
     // Feststellen, wie weit hinabgestiegen wurde (0=Root(Page))
     USHORT GetEnteredLevel() const;
     // Name der aktuellen Objektgruppe
-//STRIP001  String GetActualGroupName() const;
     // Die Namen aller z.Zt. betretenen Gruppen
-//STRIP001  String GetActualPathName(sal_Unicode cSep = sal_Unicode('|')) const;
 
     const XPolyPolygon& DragPoly0() const { return *pDragPoly0; }
     const XPolyPolygon& DragPoly () const { return *pDragPoly;  }

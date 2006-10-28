@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdotext.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:42:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:09:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -208,14 +208,7 @@ private:
     // #101029#: Extracted from ImpGetDrawOutliner()
     void ImpInitDrawOutliner( SdrOutliner& rOutl ) const;
     // #101029#: Extracted from Paint()
-//STRIP001     void ImpSetupDrawOutlinerForPaint( FASTBOOL      bContourFrame,
-//STRIP001                                        SdrOutliner&  rOutliner,
-//STRIP001                                        Rectangle&        rTextRect,
-//STRIP001                                        Rectangle&        rAnchorRect,
-//STRIP001                                        Rectangle&        rPaintRect,
-//STRIP001                                        Fraction&         aFitXKorreg ) const;
     SdrOutliner& ImpGetDrawOutliner() const;
-//STRIP001  SdrObject* ImpConvertObj(FASTBOOL bToPoly) const;
     void ImpLinkAnmeldung();
     void ImpLinkAbmeldung();
     ImpSdrObjTextLinkUserData* GetLinkUserData() const;
@@ -227,32 +220,20 @@ protected:
     SdrObject* ImpConvertMakeObj(const XPolyPolygon& rXPP, FASTBOOL bClosed, FASTBOOL bBezier, FASTBOOL bNoSetAttr=FALSE) const;
     SdrObject* ImpConvertAddText(SdrObject* pObj, FASTBOOL bBezier) const;
     void ImpSetTextStyleSheetListeners();
-//STRIP001  void ImpSetCharStretching(SdrOutliner& rOutliner, const Rectangle& rTextRect, const Rectangle& rAnchorRect, Fraction& rFitXKorreg) const;
     void ImpAddTextToBoundRect();
     void ImpJustifyRect(Rectangle& rRect) const;
     void ImpCheckShear();
-//STRIP001  Rectangle ImpDragCalcRect(const SdrDragStat& rDrag) const;
-//STRIP001  void ImpSetTextEditParams() const;
     void SetTextSizeDirty() { bTextSizeDirty=TRUE; }
-//STRIP001  FASTBOOL ImpPaintAnimatedText(OutputDevice& rOut, const Point& rOfs, SdrOutliner& rOutliner,
-//STRIP001      const Rectangle& rAnchorRect, const Rectangle& rPaintRect, const SdrPaintInfoRec& rInfoRec) const;
 
     // rAnchorRect ist InOut-Parameter!
-//STRIP001  void ImpSetContourPolygon( SdrOutliner& rOutliner, Rectangle& rAnchorRect, BOOL bLineWidth ) const;
 
-//STRIP001  DECL_LINK(ImpAnimationHdl,ImpSdrMtfAnimator*);
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
-//STRIP001  virtual SdrObjGeoData* NewGeoData() const;
     virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
     virtual void RestGeoData(const SdrObjGeoData& rGeo);
     FASTBOOL NbcSetEckenradius(long nRad);
     FASTBOOL NbcSetAutoGrowHeight(FASTBOOL bAuto);
     FASTBOOL NbcSetMinTextFrameHeight(long nHgt);
-//STRIP001  FASTBOOL NbcSetMaxTextFrameHeight(long nHgt);
-//STRIP001  FASTBOOL NbcSetAutoGrowWidth(FASTBOOL bAuto);
     FASTBOOL NbcSetMinTextFrameWidth(long nWdt);
-//STRIP001  FASTBOOL NbcSetMaxTextFrameWidth(long nWdt);
-//STRIP001  FASTBOOL NbcSetFitToSize(SdrFitToSizeType eFit);
 
     // Konstruktoren fuer beschriftete Zeichenobjekte
     SdrTextObj();
@@ -282,11 +263,7 @@ public:
     // werden, um eine Datei in ein Textobjekt zu laden (ohne Verknuepfung).
     // TextLinks koennen nicht editiert werden (allenfalls spaeter mal ReadOnly).
     // Eine Attributierung kann nur am Textrahmen vollzogen werden.
-//STRIP001  void SetTextLink(const String& rFileName, const String& rFilterName, rtl_TextEncoding eCharSet);
-//STRIP001  void ReleaseTextLink();
     FASTBOOL IsLinkedText() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
-//STRIP001  FASTBOOL ReloadLinkedText(FASTBOOL bForceLoad=FALSE);
-//STRIP001  FASTBOOL LoadText(const String& rFileName, const String& rFilterName, rtl_TextEncoding eCharSet);
 
     FASTBOOL AdjustTextFrameWidthAndHeight(Rectangle& rR, FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE) const;
     FASTBOOL NbcAdjustTextFrameWidthAndHeight(FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE);
@@ -305,13 +282,10 @@ public:
     void SetDisableAutoWidthOnDragging(FASTBOOL bOn) { bDisableAutoWidthOnDragging=bOn; }
     FASTBOOL IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }
     void NbcSetText(const String& rStr);
-//STRIP001  void SetText(const String& rStr);
     void NbcSetText(SvStream& rInput, USHORT eFormat);
-//STRIP001  void SetText(SvStream& rInput, USHORT eFormat);
 
     // FitToSize und Fontwork wird bei GetTextSize() nicht berueksichtigt!
     virtual const Size& GetTextSize() const;
-//STRIP001  void FitFrameToTextSize();
 
     // Gleichzeitig wird der Text in den Outliner gesetzt (ggf.
     // der des EditOutliners) und die PaperSize gesetzt.
@@ -353,20 +327,12 @@ public:
 
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pNewModel);
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
-//STRIP001  virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual void RecalcBoundRect();
 
     // Wird zur Bestimmung des Textankerbereichs benoetigt
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
     virtual void operator=(const SdrObject& rObj);
-//STRIP001  virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
     virtual void TakeContour(XPolyPolygon& rPoly) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
@@ -374,44 +340,20 @@ public:
     virtual long GetRotateAngle() const;
     virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
 
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual Pointer GetCreatePointer() const;
 
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
     virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
 
     virtual FASTBOOL HasTextEdit() const;
     virtual FASTBOOL BegTextEdit(SdrOutliner& rOutl);
-//STRIP001  virtual void TakeTextEditArea(Size* pPaperMin, Size* pPaperMax, Rectangle* pViewInit, Rectangle* pViewMin) const;
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual USHORT GetOutlinerViewAnchorMode() const;
 
     FASTBOOL IsTextAnimated() const { return GetTextAniKind()!=SDRTEXTANI_NONE; }
-//STRIP001  void StartTextAnimation(OutputDevice* pOutDev, const Point& rOffset, long nExtraData=0L);
-//STRIP001  void StopTextAnimation(OutputDevice* pOutDev=NULL, long nExtraData=0L);
-//STRIP001  void SetTextAnimationSupervisor(OutputDevice* pDisplayDev, BOOL bObjSupervises);
 
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
@@ -424,7 +366,6 @@ public:
     virtual FASTBOOL CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
         FASTBOOL bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
 
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
 
@@ -432,7 +373,6 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
     virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
 
-//STRIP001  virtual void BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly=FALSE );
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
