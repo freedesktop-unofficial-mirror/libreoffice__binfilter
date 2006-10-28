@@ -4,9 +4,9 @@
  *
  *  $RCSfile: paperinf.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:07:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:51:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,14 +64,9 @@ public:
     static Size         GetPaperSize( SvxPaper ePaper,
                                       MapUnit eUnit = MAP_TWIP );
     // entfaellt demnaechst
-//STRIP001  static SvxPaper     GetPaper( const Size&, MapUnit eUnit = MAP_TWIP,
-//STRIP001                                BOOL bSloppy = FALSE );
     // dann nur noch diese beiden
     static SvxPaper     GetSvxPaper( const Size&, MapUnit eUnit = MAP_TWIP,
                                      BOOL bSloppy = FALSE );
-//STRIP001  static Paper        GetSvPaper( const Size&, MapUnit eUnit = MAP_TWIP,
-//STRIP001                                  BOOL bSloppy = FALSE );
-//STRIP001  static String       GetName( SvxPaper ePaper );
 };
 
 // INLINE -----------------------------------------------------------------
