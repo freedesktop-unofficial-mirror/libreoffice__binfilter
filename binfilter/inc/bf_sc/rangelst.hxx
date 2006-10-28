@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rangelst.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:23:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:39:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ public:
     virtual         ~ScRangeList();
     ScRangeList&    operator=(const ScRangeList& rList);
     void            RemoveAll();
-//STRIP001  ScRangeList*    Clone() const;
     void            Append( const ScRange& rRange )
                     {
                         ScRangePtr pR = new ScRange( rRange );
@@ -66,14 +65,8 @@ public:
     BOOL            UpdateReference( UpdateRefMode, ScDocument*,
                                     const ScRange& rWhere,
                                     short nDx, short nDy, short nDz );
-//STRIP001  ScRange*        Find( const ScAddress& ) const;
-//STRIP001  ScRange*        Find( const ScRange& ) const;
 /*N*/   BOOL            Load( SvStream&, USHORT nVer );
 /*N*/   BOOL            Store( SvStream& ) const;
-//STRIP001  BOOL            operator==( const ScRangeList& ) const;
-//STRIP001  BOOL            Intersects( const ScRange& ) const;
-//STRIP001  BOOL            In( const ScRange& ) const;
-//STRIP001  ULONG           GetCellCount() const;
 };
 SV_DECL_IMPL_REF( ScRangeList );
 
@@ -84,14 +77,8 @@ DECLARE_LIST( ScRangePairListBase, ScRangePair* )
 class ScRangePairList : public ScRangePairListBase, public SvRefBase
 {
 #if defined( ICC ) && defined( OS2 )
-//STRIP001  friend static int _Optlink ICCQsortRPairCompare( const void*, const void*);
 #endif
 private:
-//STRIP001  static int
-//STRIP001 #ifdef WNT
-//STRIP001      __cdecl
-//STRIP001 #endif
-//STRIP001                  QsortNameCompare( const void*, const void* );
 
 public:
     virtual         ~ScRangePairList();
@@ -109,14 +96,10 @@ public:
     ScRangePair*    Find( const ScRange& ) const;
 /*N*/   BOOL            Load( SvStream&, USHORT nVer );
 /*N*/   BOOL            Store( SvStream& ) const;
-//STRIP001  ScRangePair**   CreateNameSortedArray( ULONG& nCount, ScDocument* ) const;
-//STRIP001  BOOL            operator==( const ScRangePairList& ) const;
 };
 SV_DECL_IMPL_REF( ScRangePairList );
 
 #if defined( ICC ) && defined( SC_RANGELST_CXX ) && defined( OS2 )
-//STRIP001  static int _Optlink ICCQsortRPairCompare( const void* a, const void* b)
-//STRIP001                  { ScRangePairList::QsortNameCompare(a,b); }
 #endif
 
 
