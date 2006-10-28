@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:01:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:29:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #define SC_CHGTRACK_HXX
 
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif
@@ -55,16 +52,10 @@
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
 #endif
-// auto strip #ifndef _LINK_HXX //autogen
-// auto strip #include <tools/link.hxx>
-// auto strip #endif
 #ifndef _SFXLSTNER_HXX //autogen
 #include <svtools/lstner.hxx>
 #endif
 
-// auto strip #ifndef SC_SCGLOB_HXX
-// auto strip #include "global.hxx"
-// auto strip #endif
 #ifndef SC_BIGRANGE_HXX
 #include "bigrange.hxx"
 #endif
@@ -74,9 +65,6 @@
 
 #ifdef SC_CHGTRACK_CXX
 // core/inc
-// auto strip #ifndef SC_REFUPDAT_HXX
-// auto strip #include "refupdat.hxx"
-// auto strip #endif
 #endif
 /*N*/#include <tools/debug.hxx>
 /*N*/
