@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewopt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:08:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:02:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,6 @@
 #ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
 #endif
-// auto strip #include "authratr.hxx"
 namespace svtools{ class ColorConfig;}
 class Window;
 class OutputDevice;
@@ -225,7 +224,6 @@ public:
 
 #ifdef VERTICAL_LAYOUT
 #else
-//STRIP001            void PaintTab( OutputDevice *pOut, const SwRect &rRect ) const;
 #endif
 
     inline BOOL IsBlank(BOOL bHard = FALSE) const
@@ -255,9 +253,7 @@ public:
         { (b != 0) ? (nCoreOptions |= VIEWOPT_1_LINEBREAK ) : ( nCoreOptions &= ~VIEWOPT_1_LINEBREAK); }
 #ifdef VERTICAL_LAYOUT
 #else
-//STRIP001         void PaintLineBreak( OutputDevice *pOut, const SwRect &rRect ) const;
 #endif
-//STRIP001  USHORT GetLineBreakWidth( const OutputDevice *pOut = 0 ) const;
 
     inline BOOL IsPageBreak() const     { return !bReadonly && (nCoreOptions & VIEWOPT_1_PAGEBREAK) ? TRUE : FALSE; }
     inline void SetPageBreak( BOOL b )
@@ -280,9 +276,6 @@ public:
         { return !bReadonly && (nCoreOptions & VIEWOPT_1_POSTITS) ? TRUE : FALSE; }
     inline void SetPostIts( BOOL b )
         { (b != 0) ? (nCoreOptions |= VIEWOPT_1_POSTITS ) : ( nCoreOptions &= ~VIEWOPT_1_POSTITS); }
-//STRIP001         void PaintPostIts( OutputDevice *pOut, const SwRect &rRect,
-//STRIP001                               sal_Bool bIsScript ) const;
-//STRIP001         USHORT GetPostItsWidth( const OutputDevice *pOut = 0 ) const;
 
     inline BOOL IsHidden() const
         { return !bReadonly && (nCoreOptions & VIEWOPT_1_HIDDEN) ? TRUE : FALSE; }
@@ -445,13 +438,9 @@ public:
     inline USHORT GetZoom() const    { return nZoom; }
     inline void   SetZoom( USHORT n ){ nZoom = n; }
 
-//STRIP001  void DrawRect( OutputDevice* pOut, const SwRect &rRect, long nCol ) const;
-//STRIP001  void DrawRectPrinter( OutputDevice* pOut, const SwRect& rRect ) const;
 
     SwViewOption& operator=( const SwViewOption &rOpt );
     // Vergleichsmethoden
-//STRIP001  BOOL IsEqualFlags ( const SwViewOption &rOpt ) const;
-//STRIP001  inline BOOL operator==( const SwViewOption &rOpt ) const;
 
 
 /*---------------------------------------------------------------------------
@@ -552,23 +541,7 @@ public:
     BYTE            GetShdwCrsrFillMode() const { return nShdwCrsrFillMode; }
     void            SetShdwCrsrFillMode( BYTE nMode ) { nShdwCrsrFillMode = nMode; };
 
-//STRIP001     static Color&   GetDocColor();
-//STRIP001     static Color&   GetDocBoundariesColor();
-//STRIP001     static Color&   GetAppBackgroundColor();
-//STRIP001     static Color&   GetObjectBoundariesColor();
-//STRIP001     static Color&   GetTableBoundariesColor();
-//STRIP001     static Color&   GetIndexShadingsColor();
-//STRIP001     static Color&   GetLinksColor();
-//STRIP001     static Color&   GetVisitedLinksColor();
-//STRIP001     static Color&   GetDirectCursorColor();
-//STRIP001     static Color&   GetTextGridColor();
-//STRIP001     static Color&   GetSpellColor();
-//STRIP001     static Color&   GetFontColor();
-//STRIP001     static Color&   GetFieldShadingsColor();
-//STRIP001     static Color&   GetSectionBoundColor();
     static Color&   GetPageBreakColor();
-//STRIP001     static Color&   GetNotesIndicatorColor();
-//STRIP001     static Color&   GetScriptIndicatorColor();
 
     static BOOL     IsAppearanceFlag(sal_Int32 nFlag);
 
@@ -589,10 +562,6 @@ public:
 };
 
 
-//STRIP001 inline BOOL SwViewOption::operator==( const SwViewOption &rOpt ) const
-//STRIP001 {
-//STRIP001  return IsEqualFlags( rOpt ) && nZoom == rOpt.GetZoom();
-//STRIP001 }
 
 inline void SwViewOption::SetUIOptions( const SwViewOption& rVOpt )
 {
