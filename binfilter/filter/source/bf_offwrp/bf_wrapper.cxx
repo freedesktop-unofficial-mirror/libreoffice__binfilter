@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_wrapper.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:42:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:23:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,17 +45,8 @@
 #include <bf_starmath/smdll.hxx>
 #include <bf_svx/svdetc.hxx>
 #include <bf_svx/itemdata.hxx> //STRIP002
-// auto strip #include <osl/mutex.hxx>
-// auto strip #include <cppuhelper/factory.hxx>
-// auto strip #include <bf_sfx2/docfac.hxx>
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #include <bf_sfx2/fcontnr.hxx>
-// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/imagemgr.hxx>
 #include <framework/imageproducer.hxx>
-// auto strip #include <unotools/processfactory.hxx>
-// auto strip #include <sot/clsids.hxx> //STRIP002
-// auto strip #include <sot/sotdata.hxx> //SRTIP002
 
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <svtools/moduleoptions.hxx>
