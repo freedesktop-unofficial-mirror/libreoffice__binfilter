@@ -4,9 +4,9 @@
  *
  *  $RCSfile: collect.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:02:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:29:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,14 +105,10 @@ public:
                             Collection(rSortedCollection),
                             bDuplicates(rSortedCollection.bDuplicates) {}
 
-//STRIP001  virtual USHORT      IndexOf(DataObject* pDataObject) const;
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const = 0;
-//STRIP001  virtual BOOL        IsEqual(DataObject* pKey1, DataObject* pKey2) const;
             BOOL        Search(DataObject* pDataObject, USHORT& rIndex) const;
     virtual BOOL        Insert(DataObject* pDataObject);
-//STRIP001  virtual BOOL        InsertPos(DataObject* pDataObject, USHORT& nIndex);
 
-//STRIP001          BOOL        operator==(const SortedCollection& rCmp) const;
 };
 
 
@@ -174,9 +170,7 @@ public:
 
     virtual DataObject* Clone() const;
 
-//STRIP001  BOOL                IsStrData() const { return nStrType != 0; }
     const String&       GetString() const { return aStrValue; }
-//STRIP001  double              GetValue () const { return nValue; }
 
 private:
     friend class TypedStrCollection;
@@ -199,16 +193,10 @@ public:
             TypedStrCollection( const TypedStrCollection& rCpy )
                 : SortedCollection( rCpy ) { bCaseSensitive = rCpy.bCaseSensitive; }
 
-//STRIP001  virtual DataObject*     Clone() const;
     virtual short           Compare( DataObject* pKey1, DataObject* pKey2 ) const;
 
-//STRIP001  TypedStrData*   operator[]( const USHORT nIndex) const
-//STRIP001                      { return (TypedStrData*)At(nIndex); }
 
-//STRIP001  void    SetCaseSensitive( BOOL bSet )       { bCaseSensitive = bSet; }
 
-//STRIP001  BOOL    FindText( const String& rStart, String& rResult, USHORT& rPos, BOOL bBack ) const;
-//STRIP001  BOOL    GetExactMatch( String& rString ) const;
 };
 
 } //namespace binfilter

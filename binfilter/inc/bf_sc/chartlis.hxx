@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chartlis.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:01:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:29:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,9 +57,6 @@
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
 #include <com/sun/star/chart/XChartData.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDATACHANGEEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/chart/XChartDataChangeEventListener.hpp>
-// auto strip #endif
 namespace binfilter {
 class ScDocument;
 class ScChartUnoData;
@@ -109,13 +106,7 @@ public:
 
     // if chart series ranges are to be updated later on (e.g. DeleteTab, InsertTab)
     void            ScheduleSeriesRanges()      { bSeriesRangesScheduled = TRUE; }
-//STRIP001  void            UpdateScheduledSeriesRanges();
-//STRIP001  void            UpdateSeriesRangesIntersecting( const ScRange& rRange );
-//STRIP001  void            UpdateSeriesRanges();
 
-//STRIP001  BOOL            operator==( const ScChartListener& );
-//STRIP001  BOOL            operator!=( const ScChartListener& r )
-//STRIP001                      { return !operator==( r ); }
 };
 
 class ScChartListenerCollection : public StrCollection
@@ -137,7 +128,6 @@ public:
     virtual         ~ScChartListenerCollection();
 
                     // nur nach copy-ctor noetig, wenn neu ins Dok gehaengt
-//STRIP001  void            StartAllListeners();
 
     void            ChangeListening( const String& rName,
                                     const ScRangeListRef& rRangeListRef,
@@ -149,15 +139,11 @@ public:
     void            StartTimer();
     void            UpdateDirtyCharts();
     void            SetDirty();
-//STRIP001  void            SetDiffDirty( const ScChartListenerCollection&,
-//STRIP001                      BOOL bSetChartRangeLists = FALSE );
 
-//STRIP001  void            SetRangeDirty( const ScRange& rRange );     // z.B. Zeilen/Spalten
 
     void            UpdateScheduledSeriesRanges();
     void            UpdateSeriesRangesContainingTab( USHORT nTab );
 
-//STRIP001  BOOL            operator==( const ScChartListenerCollection& );
 };
 
 

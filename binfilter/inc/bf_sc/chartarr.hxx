@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chartarr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:00:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:29:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,8 +110,6 @@ public:
                                             return ppRowHeader[ nChartRow ];
                                         return NULL;
                                     }
-//STRIP001          ScRangeListRef      GetColRanges( USHORT nChartCol ) const;
-//STRIP001          ScRangeListRef      GetRowRanges( USHORT nChartRow ) const;
 };
 
 
@@ -142,7 +140,6 @@ class ScChartArray : public DataObject              // nur noch Parameter-Struct
     BOOL        bValid;             // fuer Erzeugung aus SchMemChart
 
 private:
-//STRIP001  void        CheckColRowHeaders();
     SchMemChart* CreateMemChartSingle();
     SchMemChart* CreateMemChartMulti();
 
@@ -176,9 +173,7 @@ public:
     void    SetName(const String& rNew)      { aName = rNew; }
     const String& GetName() const            { return aName; }
 
-//STRIP001  BOOL    IsAtCursor(const ScAddress& rPos) const;
 
-//STRIP001  BOOL    operator==(const ScChartArray& rCmp) const;
 
     SchMemChart* CreateMemChart();
     void        SetExtraStrings( SchMemChart& rMem );
@@ -208,7 +203,6 @@ public:
     ScChartArray*       operator[](USHORT nIndex) const
                         { return (ScChartArray*)At(nIndex); }
 
-//STRIP001  BOOL    operator==(const ScChartCollection& rCmp) const;
 
     BOOL    Load( ScDocument* pDoc, SvStream& rStream );
 };
