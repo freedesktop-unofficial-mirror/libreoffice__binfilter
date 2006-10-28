@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLChangeImportContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:19:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:10:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include "XMLChangeImportContext.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
-// auto strip #include <com/sun/star/text/XTextRange.hpp>
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -57,9 +54,6 @@
 #include "nmspmap.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using ::rtl::OUString;
