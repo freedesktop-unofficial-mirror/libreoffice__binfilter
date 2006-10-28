@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_impastp4.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:11:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:02:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,33 +37,15 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
-// auto strip #include "xmlaustp.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include "nmspmap.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include "attrlist.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLEXPPR_HXX
-// auto strip #include "xmlexppr.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
 #endif
