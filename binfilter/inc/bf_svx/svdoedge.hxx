@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdoedge.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:39:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:08:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -152,19 +152,6 @@ public:
 //   Hilfsklasse SdrEdgeObjGeoData
 //************************************************************
 
-//STRIP001 class SdrEdgeObjGeoData : public SdrTextObjGeoData
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SdrObjConnection            aCon1;  // Verbindungszustand des Linienanfangs
-//STRIP001  SdrObjConnection            aCon2;  // Verbindungszustand des Linienendes
-//STRIP001  XPolygon*                   pEdgeTrack;
-//STRIP001  FASTBOOL                    bEdgeTrackDirty;// TRUE=Verbindungsverlauf muss neu berechnet werden.
-//STRIP001  SdrEdgeInfoRec              aEdgeInfo;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SdrEdgeObjGeoData();
-//STRIP001  virtual ~SdrEdgeObjGeoData();
-//STRIP001 };
 
 //************************************************************
 //   Hilfsklasse SdrEdgeObj
@@ -204,11 +191,8 @@ protected:
     XPolygon ImpCalcEdgeTrack(const Point& rPt1, long nAngle1, const Rectangle& rBoundRect1, const Rectangle& rBewareRect1,
         const Point& rPt2, long nAngle2, const Rectangle& rBoundRect2, const Rectangle& rBewareRect2,
         ULONG* pnQuality, SdrEdgeInfoRec* pInfo) const;
-//STRIP001  static FASTBOOL ImpFindConnector(const Point& rPt, const SdrPageView& rPV, SdrObjConnection& rCon, const SdrEdgeObj* pThis, OutputDevice* pOut=NULL);
     USHORT ImpCalcEscAngle(SdrObject* pObj, const Point& aPt2) const;
-//STRIP001  FASTBOOL ImpStripPolyPoints(XPolygon& rXP) const; // entfernen ueberfluessiger Punkte
     void ImpSetTailPoint(FASTBOOL bTail1, const Point& rPt);
-//STRIP001  void ImpUndirtyEdgeTrack();  // eventuelle Neuberechnung des Verbindungsverlaufs
     void ImpSetAttrToEdgeInfo(); // Werte vom Pool nach aEdgeInfo kopieren
     void ImpSetEdgeInfoToAttr(); // Werte vom aEdgeInfo in den Pool kopieren
 
@@ -219,16 +203,11 @@ public:
     virtual ~SdrEdgeObj();
 
     SdrObjConnection& GetConnection(FASTBOOL bTail1) { return *(bTail1 ? &aCon1 : &aCon2); }
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16 GetObjIdentifier() const;
     virtual const Rectangle& GetBoundRect() const;
     virtual const Rectangle& GetSnapRect() const;
     virtual FASTBOOL IsNode() const;
     virtual SdrGluePoint GetVertexGluePoint(USHORT nNum) const;
-//STRIP001  virtual SdrGluePoint GetCornerGluePoint(USHORT nNum) const;
-//STRIP001  virtual const SdrGluePointList* GetGluePointList() const;
-//STRIP001  virtual SdrGluePointList* ForceGluePointList();
-//STRIP001  virtual FASTBOOL IsEdge() const;
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
@@ -249,32 +228,14 @@ public:
     void DisconnectFromNode(FASTBOOL bTail1);
     SdrObject* GetConnectedNode(FASTBOOL bTail1) const;
     const SdrObjConnection& GetConnection(FASTBOOL bTail1) const { return *(bTail1 ? &aCon1 : &aCon2); }
-//STRIP001  FASTBOOL CheckNodeConnection(FASTBOOL bTail1) const;
-//STRIP001  void NspToggleEdgeXor(const SdrDragStat& rDrag, ExtOutputDevice& rOut, FASTBOOL bTail1, FASTBOOL bTail2, FASTBOOL bDetail) const;
 
     virtual void RecalcBoundRect();
     virtual void RecalcSnapRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual void operator=(const SdrObject& rObj);
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
-//STRIP001  virtual void TakeContour(XPolyPolygon& rPoly) const;
-//STRIP001  virtual void TakeXorPoly(XPolyPolygon& rXPolyPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
 
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
 
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcMove(const Size& aSize);
     virtual void NbcResize(const Point& rRefPnt, const Fraction& aXFact, const Fraction& aYFact);
@@ -282,25 +243,9 @@ public:
     // #102344# Added missing implementation
     virtual void NbcSetAnchorPos(const Point& rPnt);
 
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual Pointer GetCreatePointer() const;
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
-//STRIP001  virtual FASTBOOL IsPolyObj() const;
-//STRIP001  virtual USHORT GetPointCount() const;
-//STRIP001  virtual const Point& GetPoint(USHORT i) const;
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
-//STRIP001  virtual SdrObjGeoData* NewGeoData() const;
-//STRIP001  virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
-//STRIP001  virtual void RestGeoData(const SdrObjGeoData& rGeo);
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);

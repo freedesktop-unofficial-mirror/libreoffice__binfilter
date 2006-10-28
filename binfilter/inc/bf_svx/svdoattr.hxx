@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdoattr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:38:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:07:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,7 +97,6 @@ protected:
 
     // HitTest auf's Linienende
     // ueber nSin/nCos wird der Winkel vorgegeben
-//STRIP001  FASTBOOL ImpLineEndHitTest(const Point& rEndPt, double nSin, double nCos, FASTBOOL bStart, const Point& rHit, USHORT nTol) const;
 
     // Schattenabstand ermitteln. FALSE=Kein Schatten.
     FASTBOOL ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const;
@@ -153,7 +152,6 @@ public:
     virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
 
-//STRIP001  virtual void BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly=FALSE );
 
     // ItemPool fuer dieses Objekt wechseln
     virtual void MigrateItemPool(SfxItemPool* pSrcPool, SfxItemPool* pDestPool, SdrModel* pNewModel = NULL );

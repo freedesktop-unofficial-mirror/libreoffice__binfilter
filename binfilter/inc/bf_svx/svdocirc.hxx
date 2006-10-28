@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdocirc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:38:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:07:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,6 @@ protected:
 
 private:
     XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, FASTBOOL bContour=FALSE) const;
-//STRIP001  void ImpSetCreateParams(SdrDragStat& rStat) const;
     void ImpSetAttrToCircInfo(); // Werte vom Pool kopieren
     void ImpSetCircInfoToAttr(); // Werte in den Pool kopieren
 
@@ -99,54 +98,27 @@ public:
     SdrCircObj(SdrObjKind eNewKind, const Rectangle& rRect, long nNewStartWink, long nNewEndWink);
     virtual ~SdrCircObj();
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
     virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
     virtual void operator=(const SdrObject& rObj);
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void TakeXorPoly(XPolyPolygon& rXPoly, FASTBOOL bDetail) const;
     virtual void TakeContour(XPolyPolygon& rXPoly) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rXPoly, SdrContourType eType) const;
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag)  const;
 
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
 
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual Pointer GetCreatePointer() const;
     virtual void NbcMove(const Size& aSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-//STRIP001  virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
     virtual void NbcShear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
 protected:
-//STRIP001  virtual SdrObjGeoData* NewGeoData() const;
-//STRIP001  virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
-//STRIP001  virtual void RestGeoData(const SdrObjGeoData& rGeo);
 public:
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);

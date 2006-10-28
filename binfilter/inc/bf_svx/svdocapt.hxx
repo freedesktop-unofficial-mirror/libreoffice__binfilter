@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdocapt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:38:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:07:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,10 +74,7 @@ protected:
 
 private:
     void ImpGetCaptParams(ImpCaptParams& rPara) const;
-//STRIP001  void ImpCalcTail1(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const;
-//STRIP001  void ImpCalcTail2(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const;
     void ImpCalcTail3(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const;
-//STRIP001  void ImpCalcTail4(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const;
     void ImpCalcTail (const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const;
     void ImpRecalcTail();
 
@@ -88,23 +85,14 @@ public:
     SdrCaptionObj(const Rectangle& rRect, const Point& rTail);
     virtual ~SdrCaptionObj();
 
-//STRIP001  virtual void TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
-//STRIP001  virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-//STRIP001  virtual void operator=(const SdrObject& rObj);
 
     // for calc: special shadow only for text box
     void SetSpecialTextBoxShadow() { mbSpecialTextBoxShadow = TRUE; }
-//STRIP001  virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
 
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 
-//STRIP001  virtual void TakeXorPoly(XPolyPolygon& rXPoly, FASTBOOL bDetail) const;
-//STRIP001  virtual void TakeContour(XPolyPolygon& rPoly, SdrContourType eType) const;
     virtual void SetModel(SdrModel* pNewModel);
-//STRIP001  virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
@@ -118,49 +106,23 @@ public:
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
 
-//STRIP001  virtual USHORT GetHdlCount() const;
-//STRIP001  virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
-//STRIP001  virtual FASTBOOL HasSpecialDrag() const;
-//STRIP001  virtual FASTBOOL BegDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL MovDrag(SdrDragStat& rDrag) const;
-//STRIP001  virtual FASTBOOL EndDrag(SdrDragStat& rDrag);
-//STRIP001  virtual void BrkDrag(SdrDragStat& rDrag) const;
 
-//STRIP001  virtual String GetDragComment(const SdrDragStat& rDrag, FASTBOOL bUndoDragComment, FASTBOOL bCreateComment) const;
 
-//STRIP001  virtual void TakeDragPoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual FASTBOOL BegCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL MovCreate(SdrDragStat& rStat);
-//STRIP001  virtual FASTBOOL EndCreate(SdrDragStat& rStat, SdrCreateCmd eCmd);
-//STRIP001  virtual FASTBOOL BckCreate(SdrDragStat& rStat);
-//STRIP001  virtual void BrkCreate(SdrDragStat& rStat);
-//STRIP001  virtual void TakeCreatePoly(const SdrDragStat& rDrag, XPolyPolygon& rXPP) const;
-//STRIP001  virtual Pointer GetCreatePointer() const;
 
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 
-//STRIP001  virtual void NbcSetRelativePos(const Point& rPnt);
-//STRIP001  virtual Point GetRelativePos() const;
     virtual void NbcSetAnchorPos(const Point& rPnt);
     virtual const Point& GetAnchorPos() const;
 
     virtual void RecalcSnapRect();
     virtual const Rectangle& GetSnapRect() const;
     virtual void NbcSetSnapRect(const Rectangle& rRect);
-//STRIP001  virtual const Rectangle& GetLogicRect() const;
-//STRIP001  virtual void NbcSetLogicRect(const Rectangle& rRect);
 
-//STRIP001  virtual USHORT GetSnapPointCount() const;
-//STRIP001  virtual Point GetSnapPoint(USHORT i) const;
 
 protected:
-//STRIP001  virtual SdrObjGeoData* NewGeoData() const;
-//STRIP001  virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
-//STRIP001  virtual void RestGeoData(const SdrObjGeoData& rGeo);
 
 public:
-//STRIP001  virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);

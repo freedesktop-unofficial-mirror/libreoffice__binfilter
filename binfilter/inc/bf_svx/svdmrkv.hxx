@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmrkv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:37:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:07:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -180,16 +180,12 @@ protected:
 
 private:
     void ImpClearVars();
-//STRIP001     void ImpSetPointsRects() const;
     void UndirtyMrkPnt() const;
 
 protected:
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     virtual void ModelHasChanged(); // Wird von der PaintView gerufen
 
-//STRIP001     void ShowMarkObjOrPoints(OutputDevice* pOut);
-//STRIP001     void HideMarkObjOrPoints(OutputDevice* pOut);
-//STRIP001     void DrawMarkObjOrPoints(OutputDevice* pOut) const;
 
     virtual void SetMarkHandles();                                           // aHdl (Liste der Handles) fuellen
 //    virtual void DrawMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl) const;  // Togglen der Handles
@@ -201,8 +197,6 @@ protected:
     // add custom handles (used by other apps, e.g. AnchorPos)
     virtual void AddCustomHdl();
 
-//STRIP001     void ForceRefToMarked();
-//STRIP001     void ForceEdgesOfMarkedNodes();
     void ForceUndirtyMrkPnt() const                                       { if (bMrkPntDirty) UndirtyMrkPnt(); }
 
     void ImpShowMarkHdl(OutputDevice* pOut, const Region* pRegion, BOOL bNoRefHdl);
@@ -211,11 +205,8 @@ protected:
     BOOL ImpIsObjHit(const Point& rPnt, USHORT nTol, SdrObject* pObj, SdrPageView* pPV, ULONG nOptions) const { return ImpCheckObjHit(rPnt,nTol,pObj,pPV,nOptions,NULL)!=NULL; }
     BOOL ImpIsFrameHandles() const;
 
-//STRIP001     void ImpTakeDescriptionStr(const SdrMarkList& rML, USHORT nStrCacheID, String& rStr, USHORT nVal=0, USHORT nOpt=0) const;
-//STRIP001     void ImpTakeDescriptionStr(USHORT nStrCacheID, String& rStr, USHORT nVal=0, USHORT nOpt=0) const;
 
     // Macht aus einer Winkelangabe in 1/100deg einen String inkl. Grad-Zeichen
-//STRIP001     BOOL ImpMarkPoint(SdrHdl* pHdl, SdrMark* pMark, BOOL bUnmark);
     BOOL MarkPoints(const Rectangle* pRect, BOOL bUnmark);
     BOOL MarkGluePoints(const Rectangle* pRect, BOOL bUnmark);
 
@@ -226,23 +217,16 @@ protected:
     BOOL IsMoveOutside() const;
 
 public:
-//STRIP001     void ImpAfterPaint(); // Wird vom AfterPaintHandler der PaintView gerufen
-//STRIP001  void AfterInitRedraw(USHORT nWinNum); // Wird von InitRedraw der PaintView gerufen
 
     SdrMarkView(SdrModel* pModel1, OutputDevice* pOut=NULL);
     SdrMarkView(SdrModel* pModel1, ExtOutputDevice* pXOut);
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
     virtual BOOL IsAction() const;
-//STRIP001     virtual void MovAction(const Point& rPnt);
-//STRIP001     virtual void EndAction();
-//STRIP001     virtual void BckAction();
     virtual void BrkAction();
-//STRIP001     virtual void TakeActionRect(Rectangle& rRect) const;
 
     virtual void ClearPageViews();
     virtual void HidePage(SdrPageView* pPV);
-//STRIP001     virtual void SetPagePos(SdrPageView* pPV, const Point& rOffs);
 
     virtual BOOL IsObjMarkable(SdrObject* pObj, SdrPageView* pPV) const;
 
@@ -260,10 +244,6 @@ public:
     void SetUnmarking(BOOL bOn) { bUnmarking=bOn; }
 
     // Objekte durch Aufziehen eines Selektionsrahmens markieren
-//STRIP001     BOOL BegMarkObj(const Point& rPnt, OutputDevice* pOut);
-//STRIP001     BOOL BegMarkObj(const Point& rPnt, BOOL bUnmark=FALSE);
-//STRIP001     void MovMarkObj(const Point& rPnt);
-//STRIP001     BOOL EndMarkObj();
     void BrkMarkObj();
     BOOL IsMarkObj() const { return bMarking; }
 
@@ -298,9 +278,6 @@ public:
 
     // Feststellen, ob und wo ein Objekt bzw. ob ein Referenzpunkt
     // (Rotationsmittelpunkt,Spiegelachse) getroffen wird (SW special).
-//STRIP001     SdrHitKind PickSomething(const Point& rPnt, short nTol=-2) const;
-//STRIP001     BOOL HasMarkableObj() const;
-//STRIP001     ULONG GetMarkableObjCount() const;
     BOOL HasMarkedObj() const { return aMark.GetMarkCount()!=0; }
     ULONG GetMarkedObjCount() const { return aMark.GetMarkCount(); }
     virtual void ShowMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl=FALSE);
@@ -316,8 +293,6 @@ public:
     BOOL IsMarkHdlHidden() const { return bHdlHidden; }
 //    void SetMarkHdlBackgroundInvalid(BOOL bOn) { bSolidHdlBackgroundInvalid=bOn; }
 //    BOOL IsMarkHdlBackgroundInvalid() const { return bSolidHdlBackgroundInvalid && bHdlShown && !bHdlHidden && aHdl.IsSolidHdl(); }
-//STRIP001     BOOL IsMarkedHit(const Point& rPnt, short nTol=-2) const { return IsMarkedObjHit(rPnt,nTol); }
-//STRIP001     BOOL IsMarkedObjHit(const Point& rPnt, short nTol=-2) const;
     SdrHdl* HitHandle(const Point& rPnt, const OutputDevice& rOut) const { return PickHandle(rPnt,rOut,0,NULL); }
 
     // Pick: Unterstuetzte Optionen fuer nOptions sind SEARCH_NEXT, SEARCH_BACKWARD (ni)
@@ -331,46 +306,36 @@ public:
     BOOL PickObj(const Point& rPnt, short nTol, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions, SdrObject** ppRootObj, ULONG* pnMarkNum=NULL, USHORT* pnPassNum=NULL) const;
     BOOL PickObj(const Point& rPnt, short nTol, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions=0) const;
     BOOL PickObj(const Point& rPnt, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions=0) const { return PickObj(rPnt,nHitTolLog,rpObj,rpPV,nOptions); }
-//STRIP001     BOOL MarkObj(const Point& rPnt, short nTol=-2, BOOL bToggle=FALSE, BOOL bDeep=FALSE);
 
     // Pick: Unterstuetzte Optionen fuer nOptions sind SDRSEARCH_PASS2BOUND und SDRSEARCH_PASS3NEAREST
-//STRIP001     BOOL PickMarkedObj(const Point& rPnt, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG* pnMarkNum=NULL, ULONG nOptions=0) const;
 
     // Sucht sich das Oberste der markierten Objekte (O1) und sucht von dort
     // aus in Richtung nach Unten dann das erste nichtmarkierte Objekt (O2).
     // Bei Erfolg wird die Markierung von O1 entfernt, an O2 gesetzt und TRUE
     // returniert. Mit dem Parameter bPrev=TRUE geht die Suche genau in die
     // andere Richtung.
-//STRIP001     BOOL MarkNextObj(BOOL bPrev=FALSE);
 
     // Sucht sich das Oberste der markierten Objekte (O1) das von rPnt/nTol
     // getroffen wird und sucht von dort aus in Richtung nach Unten dann das
     // erste nichtmarkierte Objekt (O2). Bei Erfolg wird die Markierung von
     // O1 entfernt, an O2 gesetzt und TRUE returniert.
     // Mit dem Parameter bPrev=TRUE geht die Suche genau in die andere Richtung.
-//STRIP001     BOOL MarkNextObj(const Point& rPnt, short nTol=-2, BOOL bPrev=FALSE);
 
     // Alle Objekte innerhalb eines rechteckigen Bereichs markieren
     // Markiert werden nur Objekte, die vollstaendig eingeschlossen sind.
-//STRIP001     BOOL MarkObj(const Rectangle& rRect, BOOL bUnmark=FALSE);
     void MarkObj(SdrObject* pObj, SdrPageView* pPV, BOOL bUnmark=FALSE, BOOL bImpNoSetMarkHdl=FALSE);
-//STRIP001     void MarkAllObj(SdrPageView* pPV=NULL); // pPage=NULL => alle angezeigten Seiten
     void UnmarkAllObj(SdrPageView* pPV=NULL); // pPage=NULL => alle angezeigten Seiten
 
     // Diese Funktion kostet etwas Zeit, da die MarkList durchsucht werden muss.
-//STRIP001     BOOL IsObjMarked(SdrObject* pObj) const;
-//STRIP001     void MarkAll(SdrPageView* pPV=NULL) { MarkAllObj(pPV); }
     void UnMarkAll(SdrPageView* pPV=NULL) { UnmarkAllObj(pPV); }
     const SdrMarkList& GetMarkList() const { return aMark; }
     void SortMarkList() { aMark.ForceSort(); }
 
     // Eine Liste aller an markierten Knoten gebundenen Kanten holen,
     // die selbst jedoch nicht markiert sind.
-//STRIP001     const SdrMarkList& GetEdgesOfMarkedNodes() { ForceEdgesOfMarkedNodes(); return aEdgesOfMarkedNodes; }
 
     // Eine Beschreibung der z.Zt. markierten Objekte abholen.
     // Z.B. "3 Rechtecke" oder "252 Objekte" oder "Bitmap", ...
-//STRIP001     String GetMarkDescription() const { return aMark.GetMarkDescription(); }
 
     // Groesse der Markierungs-Handles abfragen/setzen. Angabe in Pixel.
     // Der Wert ist als Kantenlaenge zu betrachten. Gerade Werte werden
@@ -389,20 +354,13 @@ public:
     void SetSolidMarkHdl(BOOL bOn);
 
     BOOL HasMarkablePoints() const;
-//STRIP001     ULONG GetMarkablePointCount() const;
     BOOL HasMarkedPoints() const;
-//STRIP001     ULONG GetMarkedPointCount() const;
 
     // Nicht alle Punkte lassen sich markieren:
-//STRIP001     BOOL IsPointMarkable(const SdrHdl& rHdl) const;
     BOOL MarkPoint(SdrHdl& rHdl, BOOL bUnmark=FALSE);
 
     // alle Punkte innerhalb dieses Rechtecks markieren (Viewkoordinaten)
     BOOL MarkPoints(const Rectangle& rRect, BOOL bUnmark=FALSE) { return MarkPoints(&rRect,bUnmark); }
-//STRIP001     BOOL UnmarkPoint(SdrHdl& rHdl) { return MarkPoint(rHdl,TRUE); }
-//STRIP001     BOOL UnMarkPoint(SdrHdl& rHdl) { return MarkPoint(rHdl,TRUE); }
-//STRIP001     BOOL IsPointMarked(const SdrHdl& rHdl) const { ForceUndirtyMrkPnt(); return &rHdl!=NULL && rHdl.IsSelected(); }
-//STRIP001     BOOL MarkAllPoints() { return MarkPoints(NULL,FALSE); }
     BOOL UnmarkAllPoints() { return MarkPoints(NULL,TRUE); }
     BOOL UnMarkAllPoints() { return MarkPoints(NULL,TRUE); }
 
@@ -411,27 +369,20 @@ public:
     // Bei Erfolg wird die Markierung von P1 entfernt, an P2 gesetzt und TRUE
     // returniert. Mit dem Parameter bPrev=TRUE geht die Suche genau in die
     // andere Richtung.
-//STRIP001     BOOL MarkNextPoint(BOOL bPrev=FALSE);
 
     // Sucht sich den ersten markierten Punkt (P1) das von rPnt
     // getroffen wird und sucht von dort aus den
     // ersten nichtmarkierten Punkt (P2). Bei Erfolg wird die Markierung von
     // P1 entfernt, an P2 gesetzt und TRUE returniert.
     // Mit dem Parameter bPrev=TRUE geht die Suche genau in die andere Richtung.
-//STRIP001     BOOL MarkNextPoint(const Point& rPnt, BOOL bPrev=FALSE);
 
     // Die Nummer des passenden Handles raussuchen. Nicht gefunden
     // liefert CONTAINER_ENTRY_NOTFOUND.
-//STRIP001     ULONG GetHdlNum(SdrHdl* pHdl) const { return aHdl.GetHdlNum(pHdl); }
     SdrHdl* GetHdl(ULONG nHdlNum)  const { return aHdl.GetHdl(nHdlNum); }
     const SdrHdlList& GetHdlList() const { return aHdl; }
 
     // Selektionsrahmen fuer Punktmarkierung aufziehen.
     // Wird nur gestartet, wenn HasMarkablePoints() TRUE liefert.
-//STRIP001     BOOL BegMarkPoints(const Point& rPnt, OutputDevice* pOut);
-//STRIP001     BOOL BegMarkPoints(const Point& rPnt, BOOL bUnmark=FALSE);
-//STRIP001     void MovMarkPoints(const Point& rPnt);
-//STRIP001     BOOL EndMarkPoints();
     void BrkMarkPoints();
     BOOL IsMarkPoints() const { return bMarkingPoints; }
 
@@ -444,10 +395,7 @@ public:
     void SetMarkHdlWhenTextEdit(BOOL bOn) { bMarkHdlWhenTextEdit=bOn; }
     BOOL IsMarkHdlWhenTextEdit() const { return bMarkHdlWhenTextEdit; }
 
-//STRIP001     BOOL HasMarkableGluePoints() const;
-//STRIP001     ULONG GetMarkableGluePointCount() const;
     BOOL HasMarkedGluePoints() const;
-//STRIP001     ULONG GetMarkedGluePointCount() const;
 
     // Ein Klebepunkt wird eindeutig identifiziert durch das SdrObject
     // (dem er zugehoert) sowie einem USHORT nId (da jedes SdrObject je
@@ -462,20 +410,11 @@ public:
     // damit ungueltig, ebenso die Punkt-Id's!
     // Pick: Unterstuetzte Optionen fuer nOptions sind SEARCH_NEXT, SEARCH_BACKWARD
     BOOL PickGluePoint(const Point& rPnt, SdrObject*& rpObj, USHORT& rnId, SdrPageView*& rpPV, ULONG nOptions=0) const;
-//STRIP001     BOOL MarkGluePoint(const SdrObject* pObj, USHORT nId, const SdrPageView* pPV, BOOL bUnmark=FALSE);
-//STRIP001     BOOL UnmarkGluePoint(const SdrObject* pObj, USHORT nId, const SdrPageView* pPV) { return MarkGluePoint(pObj,nId,pPV,TRUE); }
-//STRIP001     BOOL IsGluePointMarked(const SdrObject* pObj, USHORT nId) const;
-//STRIP001     BOOL UnmarkGluePoint(const SdrHdl& rHdl);
 
     // Hdl eines markierten GluePoints holen. Nicht markierte
     // GluePoints haben keine Handles
-//STRIP001     SdrHdl* GetGluePointHdl(const SdrObject* pObj, USHORT nId) const;
-//STRIP001     BOOL IsGluePoint(const SdrHdl& rHdl) const { return &rHdl!=NULL && rHdl.GetKind()==HDL_GLUE; }
 
     // alle Punkte innerhalb dieses Rechtecks markieren (Viewkoordinaten)
-//STRIP001     BOOL MarkGluePoints(const Rectangle& rRect) { return MarkGluePoints(&rRect,FALSE); }
-//STRIP001     BOOL UnmarkGluePoints(const Rectangle& rRect) { return MarkGluePoints(&rRect,TRUE); }
-//STRIP001     BOOL MarkAllGluePoints() { return MarkGluePoints(NULL,FALSE); }
     BOOL UnmarkAllGluePoints() { return MarkGluePoints(NULL,TRUE); }
 
     // Sucht sich den ersten markierten Klebepunkt (P1) und sucht von dort
@@ -483,22 +422,16 @@ public:
     // Bei Erfolg wird die Markierung von P1 entfernt, an P2 gesetzt und TRUE
     // returniert. Mit dem Parameter bPrev=TRUE geht die Suche genau in die
     // andere Richtung.
-//STRIP001     BOOL MarkNextGluePoint(BOOL bPrev=FALSE);
 
     // Sucht sich den ersten markierten Klebepunkt (P1) das von rPnt
     // getroffen wird und sucht von dort aus den
     // ersten nichtmarkierten Klebepunkt (P2). Bei Erfolg wird die Markierung
     // von P1 entfernt, an P2 gesetzt und TRUE returniert.
     // Mit dem Parameter bPrev=TRUE geht die Suche genau in die andere Richtung.
-//STRIP001     BOOL MarkNextGluePoint(const Point& rPnt, BOOL bPrev=FALSE);
 
     // Selektionsrahmen fuer Klebepunktmarkierung aufziehen.
     // Wird nur gestartet, wenn HasMarkableGluePoints() TRUE liefert.
     // Der GlueEditMode TRUE wird nicht abgefragt.
-//STRIP001     BOOL BegMarkGluePoints(const Point& rPnt, OutputDevice* pOut);
-//STRIP001     BOOL BegMarkGluePoints(const Point& rPnt, BOOL bUnmark=FALSE);
-//STRIP001     void MovMarkGluePoints(const Point& rPnt);
-//STRIP001     BOOL EndMarkGluePoints();
     void BrkMarkGluePoints();
     BOOL IsMarkGluePoints() const { return bMarkingGluePoints; }
 
@@ -509,12 +442,6 @@ public:
     void AdjustMarkHdl(BOOL bRestraintPaint=TRUE);
 
     const Rectangle& GetMarkedObjRect() const; // SnapRects der Objekte, ohne Strichstaerke
-//STRIP001     Rectangle GetMarkedObjBoundRect() const;   // inkl. Strichstaerke, ueberstehende Fetzen, ...
-//STRIP001     const Rectangle& GetMarkedPointsRect() const;     // Umschliessendes Rechteck aller markierten Punkte
-//STRIP001     const Rectangle& GetMarkedGluePointsRect() const; // Umschliessendes Rechteck aller markierten Klebepunkte
-//STRIP001     const Rectangle& GetAllMarkedRect() const { return GetMarkedObjRect(); }
-//STRIP001     Rectangle GetAllMarkedBoundRect() const { return GetMarkedObjBoundRect(); }
-//STRIP001     const Rectangle& GetAllMarkedPointsRect() const  { return GetMarkedPointsRect(); }
 
     // Wird immer dann gerufen, wenn sich die Liste der markierten Objekte
     // moeglicherweise geaendert hat. Wer ueberlaed muss unbedingt auch die
@@ -528,7 +455,6 @@ public:
     // LeaveGroup()). Bei einer seitenuebergreifenden Markierung wird jede Page
     // separat abgearbeitet. Die Methode liefert TRUE, wenn wenigstens eine
     // Gruppe betreten wurde.
-//STRIP001     BOOL EnterMarkedGroup();
 
     // Den Mittelpunkt des letzten Crook-Dragging abholen. Den kann man
     // bei einem anschliessenden Rotate sinnvoll als Drehmittelpunkt setzen.
@@ -539,7 +465,6 @@ public:
 
     // Rotationsmittelpunkt bzw. Startpunkt der Spiegelachse
     const Point& GetRef1() const { return aRef1; }
-//STRIP001     void SetRef1(const Point& rPt);
 
     // Endpunkt der Spiegelachse
     const Point& GetRef2() const { return aRef1; }
