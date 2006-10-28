@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_sdpropls.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 08:57:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:44:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -139,9 +139,6 @@
 #include "ControlBorderHandler.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <xmltoken.hxx>
-// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
