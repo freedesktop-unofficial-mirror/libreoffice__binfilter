@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtanchr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:01:14 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:41:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,18 +35,12 @@
 #ifndef _FMTANCHR_HXX
 #define _FMTANCHR_HXX
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
 #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 class IntlWrapper;
 namespace binfilter {
 
@@ -77,11 +71,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
