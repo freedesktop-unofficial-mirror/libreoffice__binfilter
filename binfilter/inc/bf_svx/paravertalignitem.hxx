@@ -4,9 +4,9 @@
  *
  *  $RCSfile: paravertalignitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:08:51 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:52:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,21 +63,9 @@ public:
     SvxParaVertAlignItem( sal_uInt16 nValue = 0,
                        const sal_uInt16 nId = ITEMID_PARAVERTALIGN );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-//STRIP001  virtual SvStream&       Store(SvStream & rStrm, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper * = 0 ) const;
 
-//STRIP001  virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                  BYTE nMemberId );
-//STRIP001  virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                              BYTE nMemberId ) const;
 
     inline SvxParaVertAlignItem& operator=( const SvxParaVertAlignItem& rItem )
     {
@@ -85,7 +73,6 @@ public:
         return *this;
     }
 
-//STRIP001  virtual int              operator==( const SfxPoolItem& ) const;
 
 };
 
