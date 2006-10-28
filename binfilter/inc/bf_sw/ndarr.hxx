@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndarr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:14:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:48:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -186,18 +186,15 @@ public:
     // Implementierung steht im doc.hxx (weil man dazu Doc kennen muss) !
     inline BOOL IsDocNodes() const;
 
-//STRIP001  USHORT GetSectionLevel(const SwNodeIndex &rIndex) const;
     void Delete(const SwNodeIndex &rPos, ULONG nNodes = 1);
 
     BOOL _MoveNodes( const SwNodeRange&, SwNodes& rNodes, const SwNodeIndex&,
                 BOOL bNewFrms = TRUE );
-//STRIP001  void Move( SwPaM&, SwPosition&, SwNodes& rNodes, BOOL bSplitNd=TRUE );
 
     void _Copy( const SwNodeRange& rRg, const SwNodeIndex& rInsPos,
                 BOOL bNewFrms = TRUE ) const
         {   _CopyNodes( rRg, rInsPos, bNewFrms ); }
 
-//STRIP001  void SectionUp( SwNodeRange *);
     void SectionDown( SwNodeRange *pRange, SwStartNodeType = SwNormalStartNode );
 
     BOOL CheckNodesRange( const SwNodeIndex& rStt, const SwNodeIndex& rEnd ) const;
@@ -211,7 +208,6 @@ public:
     //Gehe zum naechsten/vorherigen Cntnt/Tabellennode, fuer den
     //es LayoutFrames gibt, dabei Kopf-/Fusszeilen/Rahmen etc. nicht verlassen
     SwNode* GoNextWithFrm(SwNodeIndex *) const;
-//STRIP001  SwNode* GoPreviousWithFrm(SwNodeIndex *) const;
 
     // zum naechsten Content-Node, der nicht geschuetzt oder versteckt ist
     // (beides auf FALSE ==> GoNext/GoPrevious!!!)
@@ -226,7 +222,6 @@ public:
     SwStartNode* MakeEmptySection( const SwNodeIndex& rIdx,
                                     SwStartNodeType = SwNormalStartNode );
 
-//STRIP001  SwCntntFrm *MakeFrm(const SwNodeIndex &rIndex);
 
     // die Impl. von "Make...Node" stehen in den angegebenen .ccx-Files
     SwTxtNode *MakeTxtNode( const SwNodeIndex & rWhere,
@@ -282,15 +277,7 @@ public:
                         USHORT nLines=0, SwTxtFmtColl* pHeadlineTxtColl=0,
                               const SwAttrSet * pAttrSet = 0);
         // erzeuge aus dem makierten Bereich eine ausgeglichene Tabelle
-//STRIP001  SwTableNode* TextToTable( const SwNodeRange& rRange, sal_Unicode cCh,
-//STRIP001                              SwTableFmt* pTblFmt,
-//STRIP001                              SwTableLineFmt* pLineFmt,
-//STRIP001                              SwTableBoxFmt* pBoxFmt,
-//STRIP001                              SwTxtFmtColl* pTxtColl,
-//STRIP001                              SwUndoTxtToTbl* pUndo = 0 );
         // erzeuge aus der Tabelle wieder normalen Text
-//STRIP001  BOOL TableToText( const SwNodeRange& rRange, sal_Unicode cCh,
-//STRIP001                      SwUndoTblToTxt* = 0 );
         // steht im untbl.cxx und darf nur vom Undoobject gerufen werden
     SwTableNode* UndoTableToText( ULONG nStt, ULONG nEnd,
                         const SwTblToTxtSaves& rSavedData );
@@ -298,21 +285,13 @@ public:
         // fuege in der Line, vor der InsPos eine neue Box ein. Das Format
         // wird von der nachfolgenden (vorhergenden;wenn an Ende) genommen
         // in der Line muss schon eine Box vorhanden sein !
-//STRIP001  BOOL InsBoxen( SwTableNode*, SwTableLine*, SwTableBoxFmt*,
-//STRIP001                      // Formate fuer den TextNode der Box
-//STRIP001                      SwTxtFmtColl*, SwAttrSet* pAutoAttr,
-//STRIP001                      USHORT nInsPos, USHORT nCnt = 1 );
         // Splittet eine Tabelle in der Grund-Zeile, in der der Index steht.
         // Alle GrundZeilen dahinter wandern in eine neue Tabelle/-Node.
         // Ist das Flag bCalcNewSize auf TRUE, wird fuer beide neuen Tabellen
         // die neue SSize aus dem Max der Boxen errechnet; vorrausgesetzt,
         // die SSize ist "absolut" gesetzt (LONG_MAX)
         // (Wird zur Zeit nur fuer den RTF-Parser benoetigt)
-//STRIP001  SwTableNode* SplitTable( const SwNodeIndex& rPos, BOOL bAfter = TRUE,
-//STRIP001                              BOOL bCalcNewSize = FALSE );
         // fuegt 2 Tabellen, die hintereinander stehen, wieder zusammen
-//STRIP001  BOOL MergeTable( const SwNodeIndex& rPos, BOOL bWithPrev = TRUE,
-//STRIP001                  USHORT nMode = 0, SwHistory* pHistory = 0 );
 
         // fuege eine neue SwSection ein
     SwSectionNode* InsertSection( const SwNodeIndex& rNdIdx,
