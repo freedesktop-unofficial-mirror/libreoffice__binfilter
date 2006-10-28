@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfile.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:13:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:57:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -174,11 +174,9 @@ public:
                             ~SfxVersionTableDtor()
                             { DelDtor(); }
 
-//STRIP001  SfxVersionTableDtor&    operator=( const SfxVersionTableDtor &rCpy );
     void                    DelDtor();
     SvStream&               Read( SvStream & );
     SvStream&               Write( SvStream & ) const;
-//STRIP001  SvStringsDtor*          GetVersions() const;
 };
 
 class SfxMedium : public SvRefBase
@@ -232,9 +230,7 @@ public:
     void                CancelTransfers();
 
     void                SetReferer( const String& rRefer );
-//STRIP001  const String&       GetReferer( ) const;
     void                SetTransferPriority( sal_uInt16 nPrio );
-//STRIP001  sal_uInt16          GetTransferPriority() const;
     sal_Bool            Exists( sal_Bool bForceSession = sal_True );
     void                SetFilter( const SfxObjectFactory &rFact, const String & rFilter );
     void                SetFilter(const SfxFilter *pFlt, sal_Bool bResetOrig = sal_False);
@@ -242,7 +238,6 @@ public:
     const SfxFilter *   GetOrigFilter( sal_Bool bNotCurrent = sal_False ) const;
     const String&       GetOrigURL() const;
     SfxItemSet  *       GetItemSet() const;
-//STRIP001  void                SetItemSet(SfxItemSet *pSet);
     void                Close();
     void                ReOpen();
     const String&       GetName() const {return aLogicName;}
@@ -253,7 +248,6 @@ public:
 #endif
     ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XContent > GetContent() const;
     const String&       GetPhysicalName() const;
-//STRIP001  void                SetTemporary( sal_Bool bTemp );
     sal_Bool            IsTemporary() const;
     sal_Bool            IsRemote();
     sal_Bool            IsOpen() const { return aStorage.Is() || pInStream; }
@@ -291,7 +285,6 @@ public:
 
     sal_Bool            Commit();
     sal_Bool            TryStorage();
-//STRIP001  ErrCode             Unpack_Impl( const String& );
     sal_Bool            IsStorage();
     SvStorage*          GetStorage();
     SvStorage*          GetOutputStorage( BOOL bUCBStorage = FALSE );
@@ -299,8 +292,6 @@ public:
     void                ResetError();
     sal_Bool            UsesCache() const;
     void                SetUsesCache( sal_Bool );
-//STRIP001  sal_Bool            IsExpired() const;
-//STRIP001  void                SetName( const String& rName, sal_Bool bSetOrigURL = sal_False );
     void                SetDontCreateCancellable();
     sal_Bool            IsAllowedForExternalBrowser() const;
     long                GetFileVersion() const;
@@ -318,23 +309,15 @@ public:
     SfxLoadEnvironment* GetLoadEnvironment() const;
 
     ::rtl::OUString     GetCharset();
-//STRIP001  void                SetCharset( ::rtl::OUString );
     const String&       GetBaseURL();
 
 #if _SOLAR__PRIVATE
     ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream > GetInputStream_Impl();
     SvStorage*          GetStorage_Impl( BOOL bUCBStorage );
-//STRIP001  void                RefreshName_Impl();
-//STRIP001  sal_uInt16          AddVersion_Impl( SfxVersionInfo& rVersion );
-//STRIP001  sal_Bool            TransferVersionList_Impl( SfxMedium& rMedium );
-//STRIP001  sal_Bool            SaveVersionList_Impl( sal_Bool bUseXML );
-//STRIP001  sal_Bool            RemoveVersion_Impl( const SfxVersionInfo& rVersion );
     SfxPoolCancelManager*   GetCancelManager_Impl() const;
     void                SetCancelManager_Impl( SfxPoolCancelManager* pMgr );
 
-//STRIP001  void                SetExpired_Impl( const DateTime& rDateTime );
     SvKeyValueIterator* GetHeaderAttributes_Impl();
-//STRIP001  const String&       GetPreRedirectedURL() const;
     void                SetOrigFilter_Impl( const SfxFilter* pFilter );
     void                SetLoadEnvironment_Impl( LoadEnvironment_Impl* pEnv );
     LoadEnvironment_Impl* GetLoadEnvironment_Impl() const;
@@ -357,15 +340,12 @@ public:
     const String &      GetLongName() const { return aLongName; }
     ErrCode             CheckOpenMode_Impl( sal_Bool bSilent, sal_Bool bAllowRO = sal_True );
     sal_Bool            IsDownloadDone_Impl();
-//STRIP001     sal_Bool            IsPreview_Impl();
     void                ClearBackup_Impl();
     void                Done_Impl( ErrCode );
     void                DataAvailable_Impl();
     void                Cancel_Impl();
     void                SetPhysicalName_Impl(const String& rName);
-//STRIP001  void                MoveTempTo_Impl( SfxMedium* pMedium );
 
-//STRIP001  void                DoBackup_Impl();
     void                DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent );
     void                DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent,
                                                 const String& aPrefix,
