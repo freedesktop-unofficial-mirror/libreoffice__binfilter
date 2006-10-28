@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_backhdl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:11:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:00:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,25 +41,16 @@
 #include <backhdl.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
-// auto strip #include "xmlelement.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
