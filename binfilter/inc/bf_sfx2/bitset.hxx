@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bitset.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:10:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:56:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,17 +51,12 @@ private:
     ULONG* pBitmap;
 public:
     BitSet operator<<( USHORT nOffset ) const;
-//STRIP001  BitSet operator>>( USHORT nOffset ) const;
     static USHORT CountBits( ULONG nBits );
     BOOL operator!() const;
     BitSet();
     BitSet( const BitSet& rOrig );
-//STRIP001  BitSet( USHORT* pArray, USHORT nSize );
     ~BitSet();
-//STRIP001  BitSet( const Range& rRange );
     USHORT Count() const;
-//STRIP001  BitSet& operator=( const BitSet& rOrig );
-//STRIP001  BitSet& operator=( USHORT nBit );
     BitSet operator|( const BitSet& rSet ) const;
     BitSet operator|( USHORT nBit ) const;
     BitSet& operator|=( const BitSet& rSet );
@@ -81,9 +76,7 @@ public:
     BOOL IsRealSuperSet( const BitSet& rSet ) const;
     BOOL Contains( USHORT nBit ) const;
     BOOL IsSuperSet( const BitSet& rSet ) const;
-//STRIP001  BOOL operator==( const BitSet& rSet ) const;
     BOOL operator==( USHORT nBit ) const;
-//STRIP001  BOOL operator!=( const BitSet& rSet ) const;
     BOOL operator!=( USHORT nBit ) const;
 
 };
@@ -242,10 +235,6 @@ inline BOOL BitSet::operator==( USHORT nBit ) const
 
 // determines if the bitsets aren't equal
 
-//STRIP001 inline BOOL BitSet::operator!=( const BitSet& rSet ) const
-//STRIP001 {
-//STRIP001  return !( *this == rSet );
-//STRIP001 }
 //--------------------------------------------------------------------
 
 // determines if the bitset doesn't contain only this bit
