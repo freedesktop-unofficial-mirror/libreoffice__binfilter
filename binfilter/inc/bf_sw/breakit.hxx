@@ -4,9 +4,9 @@
  *
  *  $RCSfile: breakit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:42:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:35:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,6 @@ public:
     }
 
     USHORT GetRealScriptOfText( const String& rTxt, xub_StrLen nPos ) const;
-//STRIP001      USHORT GetAllScriptsOfText( const String& rTxt ) const;
 };
 
 extern SwBreakIt* pBreakIt;
