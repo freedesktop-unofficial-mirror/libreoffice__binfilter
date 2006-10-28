@@ -4,9 +4,9 @@
  *
  *  $RCSfile: minarray.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:25:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:03:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -337,7 +337,6 @@ public:
     SfxPtrArr( BYTE nInitSize = 0, BYTE nGrowSize = 8 );
     SfxPtrArr( const SfxPtrArr& rOrig );
     ~SfxPtrArr();
-//STRIP001  SfxPtrArr& operator= ( const SfxPtrArr& rOrig );
     void* GetObject( USHORT nPos ) const { return operator[](nPos); }
     void*& GetObject( USHORT nPos ) { return operator[](nPos); }
     void Insert( USHORT nPos, void* rElem );
@@ -407,36 +406,7 @@ public:\
    void Clear() { Remove( 0, Count() ); }\
 };
 
-//STRIP001 class ByteArr
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  char* pData;
-//STRIP001  USHORT nUsed;
-//STRIP001  BYTE nGrow;
-//STRIP001  BYTE nUnused;
-//STRIP001 public:
-//STRIP001  ByteArr( BYTE nInitSize = 0, BYTE nGrowSize = 8 );
-//STRIP001  ByteArr( const ByteArr& rOrig );
-//STRIP001  ~ByteArr();
-//STRIP001  ByteArr& operator= ( const ByteArr& rOrig );
-//STRIP001  char GetObject( USHORT nPos ) const { return operator[](nPos); }
-//STRIP001  char& GetObject( USHORT nPos ) { return operator[](nPos); }
-//STRIP001  void Insert( USHORT nPos, char rElem );
-//STRIP001  void Append( char rElem );
-//STRIP001  BOOL Remove( char rElem );
-//STRIP001  USHORT Remove( USHORT nPos, USHORT nLen );
-//STRIP001  USHORT Count() const { return nUsed; }
-//STRIP001  char* operator*();
-//STRIP001  char operator[]( USHORT nPos ) const;
-//STRIP001  char& operator[]( USHORT nPos );
-//STRIP001  BOOL Contains( const char rItem ) const;
-//STRIP001  void Clear() { Remove( 0, Count() ); }
-//STRIP001 };
 
-//STRIP001 inline char* ByteArr::operator*()
-//STRIP001 {
-//STRIP001  return ( nUsed==0 ? 0 : pData );
-//STRIP001 }
 
 #define DECL_1BYTEARRAY(ARR, T, nI, nG)\
 class ARR: public ByteArr\
@@ -481,9 +451,7 @@ private:
     BYTE nUnused;
 public:
     WordArr( BYTE nInitSize = 0, BYTE nGrowSize = 8 );
-//STRIP001  WordArr( const WordArr& rOrig );
     ~WordArr();
-//STRIP001  WordArr& operator= ( const WordArr& rOrig );
     short GetObject( USHORT nPos ) const { return operator[](nPos); }
     short& GetObject( USHORT nPos ) { return operator[](nPos); }
     void Insert( USHORT nPos, short rElem );
@@ -495,7 +463,6 @@ public:
     short operator[]( USHORT nPos ) const;
     short& operator[]( USHORT nPos );
     BOOL Contains( const short rItem ) const;
-//STRIP001  void Clear() { Remove( 0, Count() ); }
 };
 
 inline short* WordArr::operator*()
