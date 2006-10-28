@@ -4,9 +4,9 @@
  *
  *  $RCSfile: progress.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:33:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:06:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,6 @@ public:
     virtual                 ~SfxProgress();
 
     virtual void            SetText( const String& rText );
-//STRIP001  BOOL                    SetStateText( ULONG nVal, const String &rVal, ULONG nNewRange = 0 );
     virtual BOOL            SetState( ULONG nVal, ULONG nNewRange = 0 );
     ULONG                   GetState() const { return nVal; }
 
@@ -82,23 +81,17 @@ public:
     BOOL                    IsSuspended() const { return bSuspended; }
 
     void                    Lock();
-//STRIP001  void                    UnLock();
     void                    Reschedule();
 
     void                    Stop();
 
-//STRIP001  void                    SetWaitMode( BOOL bWait );
-//STRIP001  BOOL                    GetWaitMode() const;
 
     static SfxProgress*     GetActiveProgress( SfxObjectShell *pDocSh = 0 );
-//STRIP001  static void             EnterLock();
-//STRIP001  static void             LeaveLock();
 
 #if _SOLAR__PRIVATE
     DECL_STATIC_LINK( SfxProgress, SetStateHdl, PlugInLoadStatus* );
     DECL_STATIC_LINK( SfxProgress, DefaultBindingProgress, SvProgressArg* );
     FASTBOOL                StatusBarManagerGone_Impl(SfxStatusBarManager*pStb);
-//STRIP001  const String&           GetStateText_Impl() const;
 #endif
 };
 
