@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editutil.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:13:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:35:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,7 +95,6 @@ public:
                     aScrPos(rScrPosPixel),pDev(pDevice),
                     nPPTX(nScaleX),nPPTY(nScaleY),aZoomX(rX),aZoomY(rY) {}
 
-//STRIP001  Rectangle   GetEditArea( const ScPatternAttr* pPattern, BOOL bForceToTop );
 };
 
 
@@ -153,7 +152,6 @@ public:
                     /// Set the item in the default ItemSet which is created
                     /// if it doesn't exist yet.
                     /// The default ItemSet is then applied to each paragraph.
-//STRIP001  void            SetDefaultItem( const SfxPoolItem& rItem );
 
                     /// Overwritten method to be able to apply defaults already set
     void            SetText( const EditTextObject& rTextObject );
@@ -175,7 +173,6 @@ public:
 
                     /// Paragraph attributes that are not defaults are copied to
                     /// character attributes and all paragraph attributes reset
-//STRIP001  void            RemoveParaAttribs();
 
                     /// Re-apply existing defaults if set, same as in SetText,
                     /// but without EnableUndo/SetUpdateMode.
@@ -184,18 +181,6 @@ public:
 
 
 // 1/100 mm
-//STRIP001 class ScTabEditEngine : public ScEditEngineDefaulter
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  void    Init(const ScPatternAttr& rPattern);
-//STRIP001 public:
-//STRIP001  ScTabEditEngine( ScDocument* pDoc );            // Default
-//STRIP001  // pEnginePool = ScDocument.GetEnginePool()
-//STRIP001  // pTextObjectPool = ScDocument.GetEditPool()
-//STRIP001  ScTabEditEngine( const ScPatternAttr& rPattern,
-//STRIP001                  SfxItemPool* pEnginePool,
-//STRIP001                  SfxItemPool* pTextObjectPool = NULL );
-//STRIP001 };
 
 
 struct ScHeaderFieldData
@@ -229,7 +214,6 @@ public:
 
     void    SetExecuteURL(BOOL bSet)    { bExecuteURL = bSet; }
 
-//STRIP001  virtual void    FieldClicked( const SvxFieldItem& rField, USHORT, USHORT );
     virtual String  CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rTxtColor, Color*& rFldColor );
 };
 
