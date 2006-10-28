@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chmod3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:43:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:46:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ public:
 
 //-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
     virtual void SetItem(const SfxPoolItem& rItem);
-//STRIP001  virtual void ClearItem(USHORT nWhich = 0);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 
@@ -100,7 +99,6 @@ public:
 
 //-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
     virtual void SetItem(const SfxPoolItem& rItem);
-//STRIP001  virtual void ClearItem(USHORT nWhich = 0);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 
@@ -127,7 +125,6 @@ public:
 
 //-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
     virtual void SetItem(const SfxPoolItem& rItem);
-//STRIP001  virtual void ClearItem(USHORT nWhich = 0);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 
@@ -140,8 +137,6 @@ class SchE3dObject : public E3dObject
          :E3dObject(){};
 
 //-/     virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
-//STRIP001  virtual void SetItem(const SfxPoolItem& rItem);
-//STRIP001  virtual void ClearItem(USHORT nWhich = 0);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 class SchRectObj : public SdrRectObj
@@ -153,8 +148,6 @@ public:
 
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
 //-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
-//STRIP001  virtual void SetItem(const SfxPoolItem& rItem);
-//STRIP001  virtual void ClearItem(USHORT nWhich = 0);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: charttyp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:42:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:46:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,6 @@ public:
     virtual ~ChartType(){};
 
 
-//STRIP001  BOOL CleanUp();
     SvxChartStyle GetChartStyle() const;
 
     void SetType(const SvxChartStyle eChartStyle);
@@ -95,7 +94,6 @@ public:
 
     void GetAttrSet(SfxItemSet *pAttr);
 
-//STRIP001  BOOL SetDefaultBaseType(long nDefault=-1);
     void SetBaseType(const long nBase) {nBaseType=nBase;};
     long GetBaseType() const           {return nBaseType;};
     long GetBaseType(const SvxChartStyle eChartStyle) const;
