@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tablink.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:32:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:43:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,11 +76,9 @@ public:
     ScTableLink( SfxObjectShell* pShell, const String& rFile,
                     const String& rFilter, const String& rOpt, ULONG nRefresh );
     virtual ~ScTableLink();
-//STRIP001  virtual void Closed();
     virtual void DataChanged( const String& rMimeType,
                               const ::com::sun::star::uno::Any & rValue );
 
-//STRIP001  virtual BOOL Edit(Window* pParent);
 
     BOOL    Refresh(const String& rNewFile, const String& rNewFilter,
                     const String* pNewOptions /* = NULL */, ULONG nNewRefresh );
@@ -92,7 +90,6 @@ public:
     const String& GetFilterName() const { return aFilterName; }
     const String& GetOptions() const    { return aOptions; }
 
-//STRIP001  BOOL    IsUsed() const;
 
     DECL_LINK( RefreshHdl, ScTableLink* );
 

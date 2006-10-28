@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlsheet.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:31:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:43:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,8 +74,6 @@ public:
     virtual BOOL        SetParent        ( const String& rParentName );
     virtual SfxItemSet& GetItemSet       ();
     virtual BOOL        IsUsed           () const;
-//STRIP001  virtual BOOL        HasFollowSupport () const;
-//STRIP001  virtual BOOL        HasParentSupport () const;
 
     virtual const String& GetName() const;
     virtual const String& GetParent() const;
