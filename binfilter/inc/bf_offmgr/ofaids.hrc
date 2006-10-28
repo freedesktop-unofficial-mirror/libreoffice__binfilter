@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ofaids.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:49:46 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:25:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 // class OfficeApplication
 //
 // (C) 1996 StarDivision GmbH, Hamburg, Germany
-// $Author: rt $ $Date: 2005-09-09 10:49:46 $ $Revision: 1.3 $
+// $Author: rt $ $Date: 2006-10-28 02:25:31 $ $Revision: 1.4 $
 // $Logfile:   T:/offmgr/inc/ofaids.hrv  $ $Workfile:   OFAIDS.HRC  $
 //------------------------------------------------------------------------
 #ifndef _OFF_OFAIDS_HRC
@@ -103,8 +103,6 @@
 #define RID_OFA_TP_INTERNATIONAL_SD     (RID_OFA_START + 253)       // 4 SD
 #define RID_OFA_TP_INTERNATIONAL_IMPR   (RID_OFA_START + 254)       // 4 impress
 
-//STRIP001 #define STR_SD_STAROFFICE_XML_DRAW       (RID_OFA_START + 245)
-//STRIP001 #define STR_SD_STAROFFICE_XML_IMPRESS    (RID_OFA_START + 246)
 
 #define SID_SB_POOLING_ENABLED          (RID_OFA_START + 247)
 #define SID_SB_DRIVER_TIMEOUTS          (RID_OFA_START + 248)
