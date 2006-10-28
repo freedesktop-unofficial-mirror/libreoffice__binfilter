@@ -4,9 +4,9 @@
  *
  *  $RCSfile: request.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:34:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:07:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
 #endif
-// auto strip #ifndef _SFXHINT_HXX //autogen
-// auto strip #include <svtools/hint.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FRAME_XDISPATCHRECORDER_HPP_
 #include <com/sun/star/frame/XDispatchRecorder.hpp>
@@ -113,10 +110,8 @@ public:
     const SfxPoolItem*  GetReturnValue() const;
 
     static SfxMacro*    GetRecordingMacro();
-//STRIP001     static ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > GetMacroRecorder( SfxViewFrame* pFrame=NULL );
     static BOOL         HasMacroRecorder( SfxViewFrame* pFrame=NULL );
     USHORT              GetCallMode() const;
-//STRIP001  FASTBOOL            IsRecording() const;
     void                AllowRecording( BOOL );
     BOOL                AllowsRecording() const;
     BOOL                IsAPI() const;
