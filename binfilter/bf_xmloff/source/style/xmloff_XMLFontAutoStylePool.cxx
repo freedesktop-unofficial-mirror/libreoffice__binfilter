@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLFontAutoStylePool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:11:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:58:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,25 +33,13 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _CNTRSRT_HXX
 #include <svtools/cntnrsrt.hxx>
 #endif
-// auto strip #ifndef _VCL_VCLENUM_HXX
-// auto strip #include <vcl/vclenum.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
-// auto strip #include "xmluconv.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
 #endif
@@ -59,9 +47,6 @@
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
-// auto strip #include "XMLFontAutoStylePool.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
