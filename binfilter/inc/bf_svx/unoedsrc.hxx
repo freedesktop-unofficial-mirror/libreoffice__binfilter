@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedsrc.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:42:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:22:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,25 +42,10 @@
 #ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
 #endif
-// auto strip #ifndef _LINK_HXX
-// auto strip #include <tools/link.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_GEN_HXX
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
 #ifndef _SV_MAPMOD_HXX
 #include <vcl/mapmod.hxx>
 #endif
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _COLOR_HXX //autogen
-// auto strip #include <tools/color.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
