@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chtmodel.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:35:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:46:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -227,7 +227,6 @@ public:
     virtual void        SetChanged( FASTBOOL bFlag = TRUE );
     virtual SdrModel *  AllocModel() const;
     virtual SdrPage  *  AllocPage( FASTBOOL bMasterPage );
-//STRIP001  virtual FASTBOOL    IsReadOnly() const;
 
     void                NewOrLoadCompleted( USHORT eMode );
     void                AdjustPrinter();
@@ -253,7 +252,6 @@ public:
     /// @descr avoid BuildChart invocation during edit. remember changes in data for later change (SP2) #61907#
     void                SetChartDataBuffered( SchMemChart &  rData,
                                               BOOL           bNewTitles = TRUE );
-//STRIP001     void                CatchUpBufferedData();
 
     double              GetData( long   nCol,
                                  long   nRow,
@@ -262,7 +260,6 @@ public:
     long                GetColCount() const;
     long                GetRowCount() const;
 
-//STRIP001  void                SetSwitchData( BOOL b );
     BOOL                ChangeSwitchData(BOOL bSwitch);
     inline BOOL         IsSwitchData() const;
     /// dependent of chart type (donut => toggle result)
@@ -272,14 +269,6 @@ public:
     void                PrepareOld3DStorage();
     void                CleanupOld3DStorage();
 
-//STRIP001  void                Segment3DDescr( DataDescription &rDescr,
-//STRIP001                                         const Rectangle &rRect,
-//STRIP001                                         long            nStartAng,
-//STRIP001                                         long            nEndAng,
-//STRIP001                                         long            nHeight,
-//STRIP001                                         double          a,
-//STRIP001                                         double          b,
-//STRIP001                                         double           fZ);
 
 
     BOOL                IsReal3D()const
@@ -294,7 +283,6 @@ public:
     /// return TRUE if the current chart type supports a given axis type
     BOOL                CanAxis( long nAxisId ) const;
 
-//STRIP001  SdrObject*          CreateDefaultSymbol(long nRow);
     SdrObject*          CreateSymbol( Point      aPoint,
                                       int        nRow,
                                       int        nColumn,
@@ -305,7 +293,6 @@ public:
     void                GenerateSymbolAttr( SfxItemSet&  rSymbolAttr,             // #63904#
                                             const long   nRow,
                                             const long   nMode = SYMBOLMODE_LEGEND );
-//STRIP001  SdrObjList*         GetSdrObjList();
     ChartAxis*          GetAxisByUID( long nUId );
     void                PrepareAxisStorage();
     ChartAxis*          GetAxis( long nId );
@@ -324,16 +311,11 @@ public:
     void                UnlockBuild();
     BOOL                IsLockedBuild();
 
-//STRIP001  void                SwapRowAttr( long nRow1, long nRow2 );
-//STRIP001  BOOL                MoveRow( long nRow, BOOL bUp = TRUE );
     long                GetChartShapeType();
-//STRIP001  long                GetChartShapeType( long nRow );
 
     void                SetAttributes( const long         nId,
                                        const SfxItemSet&  rAttr,
                                        BOOL               bMerge = TRUE );
-//STRIP001  void                CopyAxisAttributes( const ChartModel* pModel, BOOL bMerge = TRUE );
-//STRIP001  void                CopyAxisMembers( const ChartModel* pModel);
     void                SetAutoPilot( Window *pWindow )    { pAutoPilot = pWindow; }            // #46895#
 
     void                Create2DXYTitles( Rectangle& rRect, BOOL bSwitchColRow );
@@ -369,7 +351,6 @@ public:
 
     void                GetAttr( const long nObjId, SfxItemSet& rAttr, const long nIndex1 = -1 );
     SfxItemSet&         GetAttr( const long nObjId, const long nIndex1 = -1) const;
-//STRIP001  SfxItemSet&         GetAttr( const SdrObject* pObj );
     BOOL                ChangeAttr( const SfxItemSet& rAttr, const long nId, const long nIndex1 = -1 );
 
     /// after binary load restore non-persistent 3d items from scene (is stored completely)
@@ -386,7 +367,6 @@ public:
     inline void         SetBarPercentWidth( const long nWidth );
     long                GetBarPercentWidth() const     { return nBarPercentWidth; }    // #50116#
 
-//STRIP001  void                SetDefaultColorSet( long nSet );                               // #50037#
     long                GetDefaultColorSet() const     { return m_nDefaultColorSet; }  // #50037#
 
     /** set an item to the given item set
@@ -424,35 +404,15 @@ public:
                                           const long             MaximumWidth  = -1,
                                           Pair*                  pFirstAndLast = NULL );
 
-//STRIP001  long                GetLineHeight( const SfxItemSet &rAttr );
-//STRIP001  void                CreateDataDescr( DataDescription & rDescr,
-//STRIP001                                          long              nCol,
-//STRIP001                                          long              nRow,
-//STRIP001                                          ChartAxis *       pAxis,
-//STRIP001                                          BOOL              bRowDescr,
-//STRIP001                                          BOOL              bIsPercent = FALSE );
 
     double              GetVariantY( long nRow );
     double              GetSigmaY( long nRow );
     double              GetBigErrorY( long nRow, double fError );
-//STRIP001     void                AverageErrorY( long          nRow,
-//STRIP001                                        double        fData,
-//STRIP001                                        const Point & aPos,
-//STRIP001                                        BOOL          bVertical,
-//STRIP001                                        SfxItemSet &  rAttr,
-//STRIP001                                        SdrObjList *  pList,
-//STRIP001                                        ChartAxis  *  pAxis);
 
-//STRIP001  void                RegressionYX( long            nRow,
-//STRIP001                                       double &        fAverageX,
-//STRIP001                                       double &        fAverageY,
-//STRIP001                                       double &        fBetaYX,
-//STRIP001                                       SvxChartRegress eMyRegress );
 
     /// returns TRUE, if change requires BuildChart - currently always TRUE !
     BOOL                IsAttrChangeNeedsBuildChart( const SfxItemSet& rAttr );
 
-//STRIP001     SdrObject*          GetDataRowGroup( const long nRow );
 
     BOOL                SetBaseType( long nBaseType );
 
@@ -463,7 +423,6 @@ public:
     BOOL                IsStacked()                       const;
     BOOL                IsBar()                           const;
     BOOL                IsPieChart()                      const;
-//STRIP001     BOOL                IsPieOrDonutChart()               const;
     BOOL                Is3DChart()                       const;
     BOOL                IsStatisticChart()                const;
     BOOL                IsNetChart()                      const;
@@ -483,9 +442,7 @@ public:
     BOOL                IsXYChart( SvxChartStyle* pStyle = NULL )       const;
 
 
-//STRIP001  SvxChartStyle       GetRowChartStyle( const long nRow );
 
-//STRIP001  void                SetDataLogBook( SchDataLogBook* pLog );
 
     SfxItemPool&        GetPool()                 { return *pItemPool; }
     SfxObjectShell*     GetObjectShell()          { return pDocShell;  }
@@ -494,144 +451,43 @@ public:
 
 
 
-//STRIP001  SdrObject*          GetChartObj( UINT16 nId );
     SdrObject*          GetDataRowObj( long nRow );
     SdrObject*          GetDataPointObj( long nCol, long nRow );
-//STRIP001  SdrObject*          GetPieDataRowObj( const long nRow );
 
-//STRIP001  BOOL                ChangeTitle( BOOL             bShowMain,
-//STRIP001                                      const String &   rMainTitle,
-//STRIP001                                      BOOL             bShowSub,
-//STRIP001                                      const String &   rSubTitle,
-//STRIP001                                      BOOL             bShowX,
-//STRIP001                                      const String &   rXAxisTitle,
-//STRIP001                                      BOOL             bShowY,
-//STRIP001                                      const String &   rYAxisTitle,
-//STRIP001                                      BOOL             bShowZ,
-//STRIP001                                      const String &   rZAxisTitle );
 
     BOOL                HasTitle() const;
     BOOL                HasAxis( long nObjectId = CHOBJID_ANY ) const;
-//STRIP001     bool                HasGrid( UINT16 nObjectId ) const;
     BOOL                HasGrid() const;
 
-//STRIP001  BOOL                ChangeAxis( BOOL bXAxis,
-//STRIP001                                     BOOL bXDescr,
-//STRIP001                                     BOOL bYAxis,
-//STRIP001                                     BOOL bYDescr,
-//STRIP001                                     BOOL bZAxis,
-//STRIP001                                     BOOL bZDescr,
-//STRIP001                                     BOOL b2YAxis,
-//STRIP001                                     BOOL b2YDescr,
-//STRIP001                                     BOOL b2XAxis,
-//STRIP001                                     BOOL b2XDescr,
-//STRIP001                                     BOOL bAllowBuildChart = TRUE );
-//STRIP001  BOOL                ChangeGrid( BOOL bXMain,
-//STRIP001                                     BOOL bXHelp,
-//STRIP001                                     BOOL bYMain,
-//STRIP001                                     BOOL bYHelp,
-//STRIP001                                     BOOL bZMain,
-//STRIP001                                     BOOL bZHelp,
-//STRIP001                                     BOOL bAllowBuildChart = TRUE );
 
-//STRIP001  void                PutTitleAttr( const SfxItemSet &  rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetTitleAttr() const;
 
-//STRIP001  const SfxItemSet &  GetTitleAttr( const SdrTextObj* pTitleObj ) const;
-//STRIP001  const SfxItemSet &  GetTitleAttr( UINT16 nChobjID ) const;
-//STRIP001  SfxItemSet          GetFullTitleAttr( const SdrTextObj* pTitleObj ) const;
-//STRIP001  BOOL                ChangeTitleAttr( const SfxItemSet &  rAttr,
-//STRIP001                                          SdrTextObj       *  pTitleObj,
-//STRIP001                                          BOOL                bMerge = TRUE );
 
-//STRIP001  BOOL                ChangeTitleAttr( const SfxItemSet &  rMainTitleAttr,
-//STRIP001                                          const SfxItemSet &  rSubTitleAttr,
-//STRIP001                                          const SfxItemSet &  rXAxisTitleAttr,
-//STRIP001                                          const SfxItemSet &  rYAxisTitleAttr,
-//STRIP001                                          const SfxItemSet &  rZAxisTitleAttr,
-//STRIP001                                          BOOL                bMerge = TRUE );
 
-//STRIP001  void                PutMainTitleAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetMainTitleAttr() const;
 
-//STRIP001  void                PutSubTitleAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetSubTitleAttr() const;
 
-//STRIP001  void                PutXAxisTitleAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetXAxisTitleAttr() const;
 
-//STRIP001  void                PutYAxisTitleAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetYAxisTitleAttr() const;
 
-//STRIP001  void                PutZAxisTitleAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetZAxisTitleAttr() const;
 
-//STRIP001  void                PutLegendAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
     const SfxItemSet &  GetLegendAttr() const;
 
-//STRIP001  void                PutChartAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetChartAttr() const;
-//STRIP001  void                ChangeChartAttr( const SfxItemSet & rAttr, BOOL bMerge );
 
     SfxItemSet          GetFullLegendAttr() const;
-//STRIP001  void                ChangeLegendAttr( const SfxItemSet & rAttr, BOOL  bMerge = TRUE );
-//STRIP001  void                PutAxisAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetAxisAttr() const;
 
-//STRIP001  const SfxItemSet &  GetAxisAttr( const SdrObjGroup * pAxisObj ) const;
     SfxItemSet          GetFullAxisAttr( const SdrObjGroup * pAxisObj, bool bOnlyInserted = false ) const;
 
     BOOL                ChangeAxisAttr( const SfxItemSet &  rAttr,
                                        SdrObjGroup       *  pAxisObj,
                                         BOOL                bMerge = TRUE );
-//STRIP001  BOOL                ChangeAxisAttr( const SfxItemSet &  rXAxisAttr,
-//STRIP001                                         const SfxItemSet &  rYAxisAttr,
-//STRIP001                                         const SfxItemSet &  rZAxisAttr,
-//STRIP001                                         BOOL                bMerge = TRUE );
 
-//STRIP001  void                PutGridAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetGridAttr() const;
-//STRIP001     const SfxItemSet &  GetGridAttr( const SdrObject * pGridObj ) const;
-//STRIP001     const SfxItemSet&   GetGridAttr( UINT16 nObjId ) const;
-//STRIP001  BOOL                ChangeGridAttr( const SfxItemSet &  rAttr,
-//STRIP001                                         SdrObject        *  pGridObj,
-//STRIP001                                         BOOL                bMerge = TRUE );
 
-//STRIP001  void                PutXGridMainAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetXGridMainAttr() const;
 
-//STRIP001  void                PutYGridMainAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetYGridMainAttr() const;
 
-//STRIP001  void                PutZGridMainAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetZGridMainAttr() const;
 
-//STRIP001  void                PutXGridHelpAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetXGridHelpAttr() const;
 
-//STRIP001  void                PutYGridHelpAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetYGridHelpAttr() const;
 
-//STRIP001  void                PutZGridHelpAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetZGridHelpAttr() const;
 
-//STRIP001  void                PutDiagramAreaAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetDiagramAreaAttr() const;
-//STRIP001  void                ChangeDiagramAreaAttr( const SfxItemSet &  rAttr,
-//STRIP001                                                SdrRectObj       *  pDiagramAreaObj = NULL,
-//STRIP001                                                BOOL                bMerge = TRUE );
 
-//STRIP001  void                PutDiagramWallAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetDiagramWallAttr() const;
-//STRIP001  void                ChangeDiagramWallAttr(const SfxItemSet& rAttr,
-//STRIP001                             SdrObject*        pDiagramWallObj=NULL,
-//STRIP001                             BOOL              bMerge = TRUE);
 
-//STRIP001  void                PutDiagramFloorAttr( const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetDiagramFloorAttr() const;
-//STRIP001  void                ChangeDiagramFloorAttr( const SfxItemSet &  rAttr,
-//STRIP001                                                 E3dExtrudeObj    *  pDiagramFloorObj = NULL,
-//STRIP001                                                 BOOL                bMerge = TRUE );
 
     void                PutDataRowAttrAll( const SfxItemSet &  rAttr,
                                            BOOL                bMerge = TRUE,
@@ -643,21 +499,9 @@ public:
 
     const SfxItemSet &  GetDataRowAttr( long nRow ) const;
 
-//STRIP001  BOOL ChangeDataRowAttr( const SfxItemSet &  rAttr,
-//STRIP001                             long                nRow,
-//STRIP001                             BOOL                bMerge = TRUE );
 
-//STRIP001  void                PutRegressAttr( long nRow, const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetRegressAttr( long nRow ) const;
-//STRIP001  void                ChangeRegressAttr( const SfxItemSet & rAttr, long nRow, BOOL bMerge = TRUE );
 
-//STRIP001  void                PutAverageAttr(long nRow, const SfxItemSet& rAttr,BOOL bMerge=TRUE);
-//STRIP001  const SfxItemSet &  GetAverageAttr( long nRow ) const;
-//STRIP001  void                ChangeAverageAttr( const SfxItemSet & rAttr, long nRow, BOOL bMerge = TRUE );
 
-//STRIP001  void                PutErrorAttr( long nRow, const SfxItemSet & rAttr, BOOL bMerge = TRUE );
-//STRIP001  const SfxItemSet &  GetErrorAttr( long nRow ) const;
-//STRIP001  void                ChangeErrorAttr(const SfxItemSet& rAttr, long nRow,BOOL bMerge = TRUE);
 
     void                PutDataPointAttr( long                nCol,
                                           long                nRow,
@@ -666,7 +510,6 @@ public:
 
     /** @descr this method exists in analogy to GetFullDataPointAttr
                it is necessary for API (=>XML) and pie charts */
-//STRIP001  void                PutFullDataPointAttr( long nCol, long nRow, const SfxItemSet & rAttr );
 
     const SfxItemSet &  GetDataPointAttr( long nCol,long nRow ) const;
     void                ClearDataPointAttr( long nCol, long nRow, const SfxItemSet & rAttr );
@@ -694,10 +537,6 @@ public:
     */
     BOOL                IsDataPointAttrSet( long nCol, long nRow )  const;
 
-//STRIP001     BOOL                ChangeDataPointAttr( const SfxItemSet &  rAttr,
-//STRIP001                                              SdrObject        &  rObj,
-//STRIP001                                              BOOL                bMerge = TRUE,
-//STRIP001                                              BOOL                bBuildChart = TRUE );
 
     void                ChangeDataDescr( SvxChartDataDescr eDescr,
                                          BOOL              bSym,
@@ -710,27 +549,14 @@ public:
 
     SdrOutliner *       GetOutliner() const;
 
-//STRIP001  void                PrepareEdit( SdrTextObj & rTextObj );
-//STRIP001  void                CommitEdit( SdrTextObj  & rTextObj );
 
     void                GetAttr( SfxItemSet & rAttr );
     void                PutAttr( const SfxItemSet & rAttr );
-//STRIP001  BOOL                ChangeAttr( const SfxItemSet & rAttr );
 
     ChartScene *        GetScene();
 
-//STRIP001  const Rectangle &   GetChartRect () const;
 
-//STRIP001  void                CanRebuild( BOOL bNewRebuild );
 
-//STRIP001  void                GetStatistics( BOOL              &  GetShowAverage,
-//STRIP001                                        SvxChartKindError &  GetErrorKind,
-//STRIP001                                        SvxChartIndicate  &  GetIndicate,
-//STRIP001                                        double            &  GetIndicatePercent,
-//STRIP001                                        double            &  GetIndicateBigError,
-//STRIP001                                        double            &  GetIndicatePlus,
-//STRIP001                                        double            &  GetIndicateMinus,
-//STRIP001                                        SvxChartRegress   &  GetRegression ) const;
     BOOL                ChangeStatistics( const SfxItemSet &  rNewAttr );
 
     BOOL                GetShowLegend() const;
@@ -746,122 +572,69 @@ public:
     inline BOOL &       IsCopied ();
     inline BOOL         IsCopied() const;
 
-//STRIP001  SvxChartKindError & ChartKindError();
-//STRIP001     SvxChartKindError   ChartKindError() const;
 
-//STRIP001  SvxChartIndicate &  ChartIndicate();
-//STRIP001  SvxChartIndicate    ChartIndicate() const;
 
-//STRIP001  SvxChartRegress &   ChartRegress();
-//STRIP001  SvxChartRegress     ChartRegress() const;
 
-//STRIP001  double &            IndicatePercent();
-//STRIP001  double              IndicatePercent() const;
 
-//STRIP001  double &            IndicateBigError();
-//STRIP001  double              IndicateBigError() const;
 
-//STRIP001  double &            IndicatePlus();
-//STRIP001  double              IndicatePlus() const;
 
-//STRIP001  double &            IndicateMinus();
-//STRIP001  double              IndicateMinus() const;
 
     int &               Granularity();
-//STRIP001  int                 Granularity() const;
 
     SvxChartStyle &     ChartStyle();
     SvxChartStyle       ChartStyle() const;
 
-//STRIP001  SvxChartStyle &     OldChartStyle();
-//STRIP001  SvxChartStyle       OldChartStyle() const;
 
     long                PieSegOfs( long nCol ) const;
 
     BOOL &              ShowMainTitle();
-//STRIP001     BOOL                ShowMainTitle() const;
 
     String &            MainTitle ();
-//STRIP001  const String &      MainTitle () const;
 
     BOOL &              ShowSubTitle();
-//STRIP001  BOOL                ShowSubTitle() const;
 
     String &            SubTitle();
-//STRIP001  const String &      SubTitle() const;
 
     BOOL &              ShowXAxisTitle();
-//STRIP001  BOOL                ShowXAxisTitle() const;
 
     String &            XAxisTitle();
-//STRIP001  const String &      XAxisTitle() const;
 
     BOOL &              ShowYAxisTitle();
-//STRIP001  BOOL                ShowYAxisTitle() const;
 
     String &            YAxisTitle();
-//STRIP001  const String &      YAxisTitle() const;
 
     BOOL &              ShowZAxisTitle();
-//STRIP001  BOOL                ShowZAxisTitle() const;
 
     String &            ZAxisTitle();
-//STRIP001  const String &      ZAxisTitle() const;
 
     BOOL &              ShowXGridMain();
-//STRIP001     BOOL                ShowXGridMain() const;
 
     BOOL &              ShowXGridHelp();
-//STRIP001  BOOL                ShowXGridHelp() const;
 
     BOOL &              ShowYGridMain();
-//STRIP001  BOOL                ShowYGridMain() const;
 
     BOOL &              ShowYGridHelp();
-//STRIP001  BOOL                ShowYGridHelp() const;
 
     BOOL &              ShowZGridMain();
-//STRIP001     BOOL                ShowZGridMain() const;
 
     BOOL &              ShowZGridHelp();
-//STRIP001  BOOL                ShowZGridHelp() const;
 
-//STRIP001  SvxChartDataDescr & DataDescr();
-//STRIP001  SvxChartDataDescr   DataDescr() const;
 
-//STRIP001  BOOL &              ShowSym();
-//STRIP001  BOOL                ShowSym() const;
 
     BOOL &              ReadError ();
-//STRIP001  BOOL                ReadError() const;
 
-//STRIP001  double &            SpotIntensity();
-//STRIP001     double              SpotIntensity() const;
 
     Size &              InitialSize();
-//STRIP001  const Size &        InitialSize() const;
 
-//STRIP001  Vector3D &          LightVec();
-//STRIP001  const Vector3D &    LightVec() const;
 
-//STRIP001  long &              PieHeight();
-//STRIP001  long                PieHeight() const;
 
-//STRIP001  short &             PieSegCount();
-//STRIP001  short               PieSegCount() const;
 
     int &               SplineDepth()                   { return nSplineDepth; }
 
     String &            ColText( long nCol );
-//STRIP001  const String &      ColText( long nCol ) const;
 
     String &            RowText( long nRow );
-//STRIP001  const String &      RowText( long nRow ) const;
 
-//STRIP001  void                SetOverlap( long nPercent, long nRow );
-//STRIP001  void                SetGap( long nPercent, long nRow );
-//STRIP001  long                GetOverlap( long nRow );
-//STRIP001  long                GetGap( long nRow );
 
     long                GetAxisUID( long nRow );
 
@@ -884,7 +657,6 @@ public:
     void                SetNumFmt( long nObjId, UINT32 nFmt, BOOL bPercent );
 
     BOOL                CheckForNewAxisNumFormat();
-//STRIP001     void                ResetLastAxisNumFmt( INT32 nFmt = -2 );
     BOOL                UsesOwnNumberFormatter()             { return ( pNumFormatter == pOwnNumFormatter ); }
 
     void                SetSpotColor( const Color & rCol )   { aSpotColor = rCol; }
@@ -895,20 +667,11 @@ public:
     /// @descr FG: Is called from ChartScene::FitInSnapRect only. bSwitch3DRowCol has to be TRUE (?)
     void                Position3DAxisTitles( const Rectangle & rXDescrOutRect );
 
-//STRIP001  void                SetAngles( short nNewXAngle,
-//STRIP001                                    short nNewYAngle,
-//STRIP001                                    short nNewZAngle);
-//STRIP001     void                GetAngles( short &  rNewXAngle,
-//STRIP001                                    short &  rNewYAngle,
-//STRIP001                                    short &  rNewZAngle );
     void                SetPieSegOfs( long  nCol,
                                       long  nOfs );
 
     void                ClearItemSetLists();
-//STRIP001  void                SetItemSetLists( const ChartModel & rSource );
-//STRIP001  void                CopyDefaultColors( List * pOtherColors );
 
-//STRIP001  void                AllocPieSegOfs( long nPieSegCount );
 
     // FG: Diese Abfrage soll ermoeglichen, dass man den linken und den rechten Rand
     //     Notfalls nachregeln kann, wenn die Beschriftung unter den Datenpunkten zentriert ist,
@@ -996,7 +759,6 @@ public:
     LanguageType        GetLanguage( const USHORT nId ) const;
     void                SetLanguage( const LanguageType eLang, const USHORT nId );
 
-//STRIP001  virtual SvStream*   GetDocumentStream( SdrDocumentStreamInfo& rStreamInfo ) const;
     virtual void        HandsOff();
 
     /** The outer sequence contains a sequence for each series.  The inner sequence may be empty
@@ -1029,9 +791,7 @@ public:
 
         @returns the chart internal number formatter
      */
-//STRIP001     SvNumberFormatter * GetOwnNumberFormatter() const;
 
-//STRIP001     bool IsFlat3DChart() const;
 
     Rectangle   GetDiagramRectangle() { return aDiagramRectangle; }
 
@@ -1312,7 +1072,6 @@ private:
     // methods
     // -------
 
-//STRIP001  void                SwapDataPointAttr( long n1, long n2 = -1 );       // n2 == -1 => clear
     bool                UsesSourceFormat( long nAxisUID, SfxItemSet** pItemSetPointer = NULL );
 
     USHORT              GetRegressStrId( long nRow );
@@ -1320,10 +1079,6 @@ private:
 
     void                DeleteObject( SdrObject* pObj );
 
-//STRIP001  void                SetTextString( SdrTextObj         &rTextObj,
-//STRIP001                                        const String       &rText,
-//STRIP001                                        SvxChartTextOrient eOrient = CHTXTORIENT_AUTOMATIC,
-//STRIP001                                        const long         nMaximumWidth = -1 );
 
     void                               SetTextAttr( SdrTextObj       &rTextObj,
                                                     const SfxItemSet &rAttr,
@@ -1432,14 +1187,8 @@ private:
     void                SetAxisAttributes( const SfxItemSet *  pAttr,
                                            const SdrObjGroup * pAxisObj );
 
-//STRIP001  BOOL                SetAllAxisAttributes();
 
-//STRIP001  BOOL                TitleOrientChanged( const SdrTextObj *  pTitleObj,
-//STRIP001                                             const SfxItemSet *  pAttr,
-//STRIP001                                             SvxChartTextOrient  eOldOrient,
-//STRIP001                                             SvxChartTextOrient  eNewOrient );
 
-//STRIP001  BOOL                SetAllTitleAttributes( const SfxItemSet &  rAttr );
 
     void                Dirty2D( long               nRowCnt,
                                  long               nCol,
@@ -1447,44 +1196,21 @@ private:
                                  BOOL               bRowDescr,
                                  DataDescription *  pDescription );
 
-//STRIP001  double              GetAverageValueY( long nRow );
 
     /// this method shouldn't be used because it is not axis-oriented (why does it exist then?)
-//STRIP001  SdrObject *         AverageValueY( long        nRow,
-//STRIP001                                        BOOL        bIsVertical,
-//STRIP001                                        Rectangle & rRect,
-//STRIP001                                        double      fAverageValue );
 
     /// this one is axis-oriented (whatever that means)
-//STRIP001  SdrObject *         AverageValueY( long         nRow,
-//STRIP001                                        BOOL         bIsVertical,
-//STRIP001                                        ChartAxis *  pAxis,
-//STRIP001                                        double       fAverageValue );
 
     void                CreateDefaultColors();
     void                DestroyDefaultColors();
 
-//STRIP001  long                GetHeightOfnRows( const SfxItemSet &rAttr, int n );
 
-//STRIP001     void                CopyPointAttrToPage( long nRow );
 
-//STRIP001  void                ClearDataDescription( DataDescription * pDescription, long nElements );
 
     // ChangeDataRowAttr sub methods
-//STRIP001  SdrObject*          CDRAGetDataRowObj( const long nDataRow );
-//STRIP001  void                CDRAAttrGroup( SdrObject *         pDataRowObj,
-//STRIP001                                        const long          nDataRow,
-//STRIP001                                        const SfxItemSet &   rDataRowAttr);
-//STRIP001  void                ChangeRowDescrSymbolAttr( const long           nDataRow,
-//STRIP001                                                   const SfxItemSet &   rDataRowAttr );
 
     // ChangeDataPointAttr sub methods
-//STRIP001  SdrObject*          CDPAGetDataPointObj( const long nDatacol, const long nDataRow );
-//STRIP001  void                ChangePointDescrSymbolAttr( const long nDataCol, const long nDataRow,
-//STRIP001                                                     const SfxItemSet & rDataPointAttr );
 
-//STRIP001  void                ChangeLegendPointAttr( const long nDataCol, const SfxItemSet & rDataPointAttr );
-//STRIP001  void                ChangeLegendRowAttr(   const long nDataRow, const SfxItemSet & rDataRowAttr );
 
     // BuildChart sub methods
     void                CreateRectsAndTitles( long whatTitle );
@@ -1502,7 +1228,6 @@ private:
                                       USHORT &          rIndex );
 
 
-//STRIP001  void                CopySpecialPointAttrToPage( long nRow );
     void                LogBookAttrData();
     void                SetDefAttrRow( SfxItemSet* pDataRowAttr, const long i );
 
