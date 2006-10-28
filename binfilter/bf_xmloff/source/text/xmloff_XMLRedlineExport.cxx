@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLRedlineExport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:27:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:15:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,41 +41,20 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_UNKNOWNPROPERTYEXCEPTION_HPP_
-// auto strip #include <com/sun/star/beans/UnknownPropertyException.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATION_HPP_
-// auto strip #include <com/sun/star/beans/XEnumeration.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DOCUMENT_XREDLINESSUPPLIER_HPP_
 #include <com/sun/star/document/XRedlinesSupplier.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-// auto strip #include <com/sun/star/text/XTextContent.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
@@ -85,9 +64,6 @@
 #include <com/sun/star/util/DateTime.hpp>
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"

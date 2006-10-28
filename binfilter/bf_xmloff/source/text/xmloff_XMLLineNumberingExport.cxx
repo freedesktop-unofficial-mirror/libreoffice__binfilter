@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLLineNumberingExport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:26:11 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:14:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,6 @@
 #include "XMLLineNumberingExport.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include "com/sun/star/beans/XPropertySet.hpp"
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XLINENUMBERINGPROPERTIES_HPP_
 #include "com/sun/star/text/XLineNumberingProperties.hpp"
@@ -61,13 +58,7 @@
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLNUME_HXX
-// auto strip #include "xmlnume.hxx"
-// auto strip #endif
 namespace binfilter {
 
 
