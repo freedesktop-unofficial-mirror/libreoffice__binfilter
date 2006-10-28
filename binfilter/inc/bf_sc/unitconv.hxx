@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unitconv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:36:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:44:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,8 +44,6 @@ class ScUnitConverterData : public StrData
 {
             double          fValue;
 
-//STRIP001                          // not implemented
-//STRIP001  ScUnitConverterData&    operator=( const ScUnitConverterData& );
 
 public:
                             ScUnitConverterData( const String& rFromUnit,
@@ -66,8 +64,6 @@ public:
 class ScUnitConverter : public StrCollection
 {
                             // not implemented
-//STRIP001                          ScUnitConverter( const ScUnitConverter& );
-//STRIP001      ScUnitConverter&    operator=( const ScUnitConverter& );
 
 public:
     ScUnitConverter( USHORT nInit = 16, USHORT nDelta = 4 );
