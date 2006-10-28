@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtfld.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:40:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:59:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 namespace binfilter {
 
 class SwTxtNode;
@@ -55,7 +52,6 @@ public:
     SwTxtFld( const SwFmtFld& rAttr, xub_StrLen nStart );
     ~SwTxtFld();
 
-//STRIP001  void CopyFld( SwTxtFld *pDest ) const;
     void Expand();
     inline void ExpandAlways();
 

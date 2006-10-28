@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtftn.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:40:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:59:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,6 @@ public:
     inline SwNodeIndex *GetStartNode() const { return pStartNode; }
     void SetStartNode( const SwNodeIndex *pNode, BOOL bDelNodes = TRUE );
     void SetNumber( const USHORT nNumber, const String* = 0 );
-//STRIP001  void CopyFtn( SwTxtFtn *pDest );
 
     // erfrage und setze den TxtNode Pointer
     inline const SwTxtNode& GetTxtNode() const;
@@ -76,7 +75,6 @@ public:
         // loesche die FtnFrame aus der Seite
     void DelFrms();
         // bedingten Absatzvorlagen checken
-//STRIP001  void CheckCondColl();
 
         // fuer die Querverweise auf Fussnoten
     USHORT SetSeqRefNo();
