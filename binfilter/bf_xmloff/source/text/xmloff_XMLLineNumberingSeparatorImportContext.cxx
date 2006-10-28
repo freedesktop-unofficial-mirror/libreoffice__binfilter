@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLLineNumberingSeparatorImportContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:26:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:15:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,9 +53,6 @@
 #include "xmlnmspe.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
