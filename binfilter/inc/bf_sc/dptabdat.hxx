@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dptabdat.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:11:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:34:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,7 +80,6 @@ struct ScDPItemData
 
     void        SetString( const String& rS ) { aString = rS; bHasValue = FALSE; }
 
-//STRIP001  BOOL        IsCaseInsEqual( const ScDPItemData& r ) const;
 };
 
 #define SC_VALTYPE_EMPTY    0
@@ -111,9 +110,6 @@ struct ScDPTableIteratorParam
     const long*     pDats;
     ScDPValueData*  pValues;
 
-//STRIP001  ScDPTableIteratorParam( long nCCount, const long* pC, ScDPItemData* pCDat,
-//STRIP001                          long nRCount, const long* pR, ScDPItemData* pRDat,
-//STRIP001                          long nDCount, const long* pD, ScDPValueData* pV );
 };
 
 class ScDPTableData
@@ -128,7 +124,6 @@ public:
                 ScDPTableData();
     virtual     ~ScDPTableData();
 
-//STRIP001  long        GetDatePart( long nDateVal, long nHierarchy, long nLevel );
 
                 //! use (new) typed collection instead of StrCollection
                 //! or separate Str and ValueCollection
@@ -138,7 +133,6 @@ public:
     virtual String                  getDimensionName(long nColumn) = 0;
     virtual BOOL                    getIsDataLayoutDimension(long nColumn) = 0;
     virtual BOOL                    IsDateDimension(long nDim) = 0;
-//STRIP001  virtual UINT32                  GetNumberFormat(long nDim);
     virtual void                    DisposeData() = 0;
     virtual void                    SetEmptyFlags( BOOL bIgnoreEmptyRows, BOOL bRepeatIfEmpty ) = 0;
 
