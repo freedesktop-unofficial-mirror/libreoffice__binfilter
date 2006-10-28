@@ -4,9 +4,9 @@
  *
  *  $RCSfile: arealink.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:57:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:27:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,11 +73,9 @@ public:
                     const String& rArea, const ScRange& rDest, ULONG nRefresh );
     virtual ~ScAreaLink();
 
-//STRIP001  virtual void Closed();
     virtual void DataChanged( const String& rMimeType,
                               const ::com::sun::star::uno::Any & rValue );
 
-//STRIP001  virtual BOOL Edit(Window* pParent);
 
     BOOL    Refresh( const String& rNewFile, const String& rNewFilter,
                     const String& rNewArea, ULONG nNewRefresh );
@@ -85,11 +83,7 @@ public:
     void    SetInCreate(BOOL bSet)                  { bInCreate = bSet; }
     void    SetDoInsert(BOOL bSet)                  { bDoInsert = bSet; }
     void    SetDestArea(const ScRange& rNew);
-//STRIP001  void    SetSource(const String& rDoc, const String& rFlt, const String& rOpt,
-//STRIP001                      const String& rArea);
 
-//STRIP001  BOOL    IsEqual( const String& rFile, const String& rFilter, const String& rOpt,
-//STRIP001                      const String& rSource, const ScRange& rDest ) const;
 
     const String&   GetFile() const         { return aFileName;     }
     const String&   GetFilter() const       { return aFilterName;   }
