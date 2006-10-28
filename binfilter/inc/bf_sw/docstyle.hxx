@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docstyle.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:55:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:39:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -125,8 +125,6 @@ public:
     virtual const String&   GetParent() const;
     virtual const String&   GetFollow() const;
 
-//STRIP001  virtual ULONG GetHelpId( String& rFile );
-//STRIP001  virtual void SetHelpId( const String& r, ULONG nId );
 
     // Vorbelegen der member ohne physikalischen Zugriff
     // wird vom StyleSheetPool benutzt
@@ -136,15 +134,9 @@ public:
     void                    PresetParent(const String& rName){ aParent = rName; }
     void                    PresetFollow(const String& rName){ aFollow = rName; }
 
-//STRIP001  virtual BOOL            SetName( const String& rStr);
     virtual BOOL            SetParent( const String& rStr);
     virtual BOOL            SetFollow( const String& rStr);
 
-//STRIP001  virtual BOOL            HasFollowSupport() const;
-//STRIP001  virtual BOOL            HasParentSupport() const;
-//STRIP001  virtual BOOL            HasClearParentSupport() const;
-//STRIP001  virtual String          GetDescription();
-//STRIP001  virtual String          GetDescription(SfxMapUnit eUnit);
 
     SwCharFmt*              GetCharFmt();
     SwTxtFmtColl*           GetCollection();
@@ -153,7 +145,6 @@ public:
     const SwNumRule*        GetNumRule();
     void                    SetNumRule(const SwNumRule& rRule);
 
-//STRIP001  virtual BOOL            IsUsed() const;
 };
 
 /*--------------------------------------------------------------------
@@ -178,11 +169,8 @@ public:
                           SfxStyleFamily eFam, USHORT n=0xFFFF );
     virtual ~SwStyleSheetIterator();
 
-//STRIP001  virtual USHORT Count();
-//STRIP001  virtual SfxStyleSheetBase *operator[](USHORT nIdx);
     virtual SfxStyleSheetBase* First();
     virtual SfxStyleSheetBase* Next();
-//STRIP001  virtual SfxStyleSheetBase* Find(const UniString& rStr);
 
     virtual void Notify( SfxBroadcaster&, const SfxHint& );
 };
@@ -198,21 +186,16 @@ class SwDocStyleSheetPool : public SfxStyleSheetBasePool
     BOOL                bOrganizer : 1;     // TRUE: fuer den Organizer
 
 
-//STRIP001  virtual SfxStyleSheetBase* Create( const String&, SfxStyleFamily, USHORT nMask);
-//STRIP001  virtual SfxStyleSheetBase* Create( const SfxStyleSheetBase& );
 public:
     SwDocStyleSheetPool( SwDoc&, BOOL bOrganizer = FALSE );
     virtual ~SwDocStyleSheetPool();
 
-//STRIP001  virtual void Replace( SfxStyleSheetBase& rSource,
-//STRIP001                        SfxStyleSheetBase& rTarget );
     virtual SfxStyleSheetBase& Make(const String&, SfxStyleFamily, USHORT nMask, USHORT nPos = 0xffff);
     virtual SfxStyleSheetBase* Find( const String&, SfxStyleFamily eFam,
                                     USHORT n=0xFFFF );
     virtual BOOL SetParent( SfxStyleFamily eFam, const String &rStyle,
                             const String &rParent );
 
-//STRIP001  virtual void Erase( SfxStyleSheetBase* pStyle);
     void    SetItemSet(const SfxItemSet& rSet) { aStyleSheet.SetItemSet(rSet); }
 
     void    SetOrganizerMode( BOOL bMode )  { bOrganizer = bMode; }

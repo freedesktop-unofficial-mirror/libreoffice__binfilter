@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dpage.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:56:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:39:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,15 +62,9 @@ public:
     // virtual Point GetOffset() const;
     virtual SdrObject* ReplaceObject( SdrObject* pNewObj, ULONG nObjNum );
 
-//STRIP001  virtual void    RequestBasic();
 
-//STRIP001  virtual const SdrPageGridFrameList* GetGridFrameList(const SdrPageView* pPV,
-//STRIP001                                  const Rectangle *pRect) const;
 
-//STRIP001  virtual String GetLinkData( const String& rLinkName );
-//STRIP001  virtual void SetLinkData( const String& rLinkName, const String& rLinkData );
 
-//STRIP001  BOOL RequestHelp( Window* pWindow, SdrView* pView, const HelpEvent& rEvt );
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoPage();
 };
