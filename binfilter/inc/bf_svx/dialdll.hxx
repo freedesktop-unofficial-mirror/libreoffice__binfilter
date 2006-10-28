@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dialdll.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:15:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:26:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,6 @@ public:
     SvxDialogDll();
     ~SvxDialogDll();
 
-//STRIP001  static void     ResetResMgr();
 };
 
 }//end of namespace binfilter
