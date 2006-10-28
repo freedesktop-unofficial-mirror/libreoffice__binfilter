@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swserv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:32:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:56:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,15 +78,8 @@ public:
     }
     virtual ~SwServerObject();
 
-//STRIP001  virtual BOOL GetData( ::com::sun::star::uno::Any & rData,
-//STRIP001                              const String & rMimeType,
-//STRIP001                              BOOL bSynchron = FALSE );
 
-//STRIP001  BOOL SetData( const String & rMimeType,
-//STRIP001                  const ::com::sun::star::uno::Any& rData );
 
-//STRIP001  virtual void SendDataChanged( const SwPosition& rPos );
-//STRIP001  virtual void SendDataChanged( const SwPaM& rRange );
 
     BOOL IsLinkInServer( const SwBaseLink* ) const;
 

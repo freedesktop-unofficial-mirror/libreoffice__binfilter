@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swprtopt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:31:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:56:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ public:
         bJobStartet(FALSE)
     {}
 
-//STRIP001  const String& MakeNextJobName();        // steht in vprint.cxx
     const String& GetJobName() const    { return sJobName; }
 
 #if defined(TCPP)

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swrect.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:32:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:56:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,7 +102,6 @@ public:
     inline SwRect  GetIntersection( const SwRect& rRect ) const;
 
            BOOL IsInside( const Point& rPOINT ) const;
-//STRIP001         BOOL IsNear(const Point& rPoint, long nTolerance ) const;
            BOOL IsInside( const SwRect& rRect ) const;
            BOOL IsOver( const SwRect& rRect ) const;
     inline BOOL HasArea() const;
@@ -128,7 +127,6 @@ public:
 //  inline operator Rectangle() const { return Rectangle( aPos, aSize ); }
 
     // Ausgabeoperator fuer die Debugging-Gemeinde
-//STRIP001  friend SvStream &operator<<( SvStream &rStream, const SwRect &rRect );
 
 
 #ifdef VERTICAL_LAYOUT
@@ -159,14 +157,11 @@ public:
     void SetUpperLeftCorner(  const Point& rNew );
     void SetUpperRightCorner(  const Point& rNew );
     void SetLowerLeftCorner(  const Point& rNew );
-//STRIP001     void SetLowerRightCorner(  const Point& rNew );
-//STRIP001     const Point _Pos()  const;
     const Size  _Size() const;
     const Point TopLeft()  const;
     const Point TopRight()  const;
     const Point BottomLeft()  const;
     const Point BottomRight()  const;
-//STRIP001     const Point SwappedPos()  const;
     const Size  SwappedSize() const;
     long GetLeftDistance( long ) const;
     long GetBottomDistance( long ) const;

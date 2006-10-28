@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swregion.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:32:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:56:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,9 +57,7 @@ public:
     void operator-=( const SwRect& rRect );
 
     // Aus Loechern werden Flaechen, aus Flaechen werden Loecher.
-//STRIP001  void Invert();
     // Benachbarte Rechtecke zusammenfassen.
-//STRIP001  void Compress( BOOL bFuzzy = TRUE );
 
     inline const SwRect &GetOrigin() const { return aOrigin; }
     inline void ChangeOrigin( const SwRect &rRect ) { aOrigin = rRect; }
