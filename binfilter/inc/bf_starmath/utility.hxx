@@ -4,9 +4,9 @@
  *
  *  $RCSfile: utility.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:52:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:14:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,8 +144,6 @@ public:
 
         Key(const XubString &rText, const Font &rFont);
 
-//STRIP001      BOOL operator <  (const Key &rKey) const;
-//STRIP001      BOOL operator == (const Key &rKey) const;
     };
 
     SmRectCache();
@@ -253,24 +251,16 @@ public:
     SmPickList(USHORT nInitSize = 0, USHORT nMaxSize = 5);
     ~SmPickList();
 
-//STRIP001  SmPickList&   operator = (const SmPickList& rList);
 
     void       *Get(USHORT nPos = 0) const { return GetPtr(nPos); }
-//STRIP001  void        Insert(const void* pItem);
-//STRIP001  void        Update(const void* pItem, const void *pNewItem);
-//STRIP001  void        Remove(const void* pItem);
 
     void       *operator [] (USHORT nPos) const { return GetPtr(nPos); }
 
-//STRIP001  void        SetSize(USHORT nNewSize);
     USHORT      GetSize() const { return nSize; }
     USHORT      Count() const { return SfxPtrArr::Count(); }
 
-//STRIP001  BOOL        Contains(const void *pItem) const;
     void        Clear();
 
-//STRIP001  friend SvStream&   operator << (SvStream& rStream, const SmPickList& rPickList);
-//STRIP001  friend SvStream&   operator >> (SvStream& rStream, SmPickList& rPickList);
 };
 
 
@@ -364,9 +354,6 @@ public:
         : SmPickList(rOrig) {}
     ~SmFontPickList() { Clear(); }
 
-//STRIP001  virtual void    Insert(const Font &rFont);
-//STRIP001  virtual void    Update(const Font &rFont, const Font &rNewFont);
-//STRIP001  virtual void    Remove(const Font &rFont);
 
     inline BOOL     Contains(const Font &rFont) const;
     inline Font     Get(USHORT nPos = 0) const;
@@ -374,8 +361,6 @@ public:
     inline SmFontPickList&  operator = (const SmFontPickList& rList);
     inline Font             operator [] (USHORT nPos) const;
 
-//STRIP001  void            ReadFrom(const SmFontDialog& rDialog);
-//STRIP001  void            WriteTo(SmFontDialog& rDialog) const;
 };
 
 inline SmFontPickList& SmFontPickList::operator = (const SmFontPickList& rList)
@@ -430,21 +415,6 @@ public:
 //  SmFontPickListBox
 //
 
-//STRIP001class SmFontPickListBox : public SmFontPickList, public ListBox
-//STRIP001{
-//STRIP001protected:
-//STRIP001  DECL_LINK(SelectHdl, ListBox *);
-//STRIP001
-//STRIP001public:
-//STRIP001  SmFontPickListBox(Window* pParent, WinBits nWinStyle = 0, USHORT nMax = 4);
-//STRIP001  SmFontPickListBox(Window* pParent, const ResId& rResId, USHORT nMax = 4);
-//STRIP001
-//STRIP001  SmFontPickListBox& operator = (const SmFontPickList& rList);
-//STRIP001
-//STRIP001  virtual void    Insert(const Font &rFont);
-//STRIP001  virtual void    Update(const Font &rFont, const Font &rNewFont);
-//STRIP001  virtual void    Remove(const Font &rFont);
-//STRIP001};
 
 } //namespace binfilter
 #endif

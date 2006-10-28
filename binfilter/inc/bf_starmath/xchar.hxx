@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xchar.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:53:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:15:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,8 +55,6 @@
 namespace binfilter {
 
 
-//STRIP001 PolyPolygon  SmGetPolyPolygon(const XPolyPolygon &rPoly, OutputDevice *pDev);
-//STRIP001 void          SmDrawPolyPolygon(OutputDevice &rDev, const PolyPolygon &rPPoly);
 
 
 ////////////////////////////////////////
@@ -109,10 +107,8 @@ public:
     void            MoveTo(const Point &rPoint) { Move(rPoint - aPos); }
 
     const sal_Unicode       GetChar() const { return cChar; }
-//STRIP001  const XPolyPolygon &    GetXPolyPolygon() const;
     const Rectangle &       GetBoundRect(const OutputDevice &rDev) const;
 
-//STRIP001  void            Draw(OutputDevice &rDev, const Point &rPoint) const;
 
     // default assignment-operator verwenden
 

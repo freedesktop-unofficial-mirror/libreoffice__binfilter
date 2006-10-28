@@ -4,9 +4,9 @@
  *
  *  $RCSfile: symbol.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:51:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:14:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,10 +74,6 @@ class SmSymSetManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 inline const String GetExportSymbolName( const String &rUiSymbolName )
-//STRIP001 {
-//STRIP001     return SM_MOD1()->GetLocSymbolData().GetExportSymbolName( rUiSymbolName );
-//STRIP001 }
 
 
 /*N*/ inline const String GetUiSymbolName( const String &rExportSymbolName )
@@ -85,10 +81,6 @@ class SmSymSetManager;
 /*N*/     return SM_MOD1()->GetLocSymbolData().GetUiSymbolName( rExportSymbolName );
 /*N*/ }
 
-//STRIP001 inline const String GetExportSymbolSetName( const String &rUiSymbolSetName )
-//STRIP001 {
-//STRIP001     return SM_MOD1()->GetLocSymbolData().GetExportSymbolSetName( rUiSymbolSetName );
-//STRIP001 }
 
 
 /*N*/ inline const String GetUiSymbolSetName( const String &rExportSymbolSetName )
@@ -102,8 +94,6 @@ class SmSym
 {
     friend class SmSymSetManager;
 
-//STRIP001     friend SvStream& operator << (SvStream& rStream, const SmSym& rSymbol);
-//STRIP001     friend SvStream& operator >> (SvStream& rStream, SmSym& rSymbol);
 
     SmFace               Face;
     String               Name;
@@ -124,7 +114,6 @@ public:
 
     SmSym&      operator = (const SmSym& rSymbol);
 
-//STRIP001     void            SetSymbolName(const String& rName);
 
     const Font&     GetFace() const { return Face; }
     sal_Unicode     GetCharacter() const { return Character; }
@@ -153,23 +142,16 @@ class SmSymSet
 {
     friend class SmSymSetManager;
 
-//STRIP001     friend SvStream& operator << (SvStream& rStream, const SmSymSet& rSymbolSet);
-//STRIP001     friend SvStream& operator >> (SvStream& rStream, SmSymSet& rSymbolSet);
 
     SmListSym            SymbolList;
     String               Name;
     SmSymSetManager     *pSymSetManager;
 
 public:
-//STRIP001     SmSymSet();
-//STRIP001     SmSymSet(const SmSymSet& rSymbolSet);
     SmSymSet(const String& rName);
-//STRIP001     ~SmSymSet();
 
-//STRIP001  SmSymSet&   operator = (const SmSymSet& rSymbolSet);
 
     const String&   GetName() const { return Name; }
-//STRIP001  void            SetName(String& rName);
     USHORT          GetCount() const { return (USHORT) SymbolList.Count(); }
 
     const SmSym&    GetSymbol(USHORT SymbolNo) const
@@ -179,16 +161,12 @@ public:
     }
 
     USHORT      AddSymbol(SmSym* pSymbol);
-//STRIP001     void        DeleteSymbol(USHORT SymbolNo);
-//STRIP001     SmSym *     RemoveSymbol(USHORT SymbolNo);
-//STRIP001     USHORT      GetSymbolPos(const String& rName);
 };
 
 DECLARE_DYNARRAY(SmArraySymSet, SmSymSet *)
 
 /**************************************************************************/
 
-//STRIP001 class SmSymbolDialog;
 
 
 struct SmSymSetManager_Impl
@@ -201,9 +179,7 @@ struct SmSymSetManager_Impl
     BOOL                Modified;
 
     SmSymSetManager_Impl( SmSymSetManager &rMgr, USHORT HashTableSize );
-//STRIP001     ~SmSymSetManager_Impl();
 
-//STRIP001     SmSymSetManager_Impl & operator = ( const SmSymSetManager_Impl &rImpl );
 };
 
 
@@ -213,27 +189,19 @@ class SmSymSetManager : public SfxListener
 
     SmSymSetManager_Impl *pImpl;
 
-//STRIP001  virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
-//STRIP001                      const SfxHint& rHint, const TypeId& rHintType);
 
     UINT32      GetHashIndex(const String& rSymbolName);
     void        EnterHashTable(SmSym& rSymbol);
     void        EnterHashTable(SmSymSet& rSymbolSet);
     void        FillHashTable();
-//STRIP001  void        Init();
-//STRIP001  void        Exit();
 
 public:
     SmSymSetManager(USHORT HashTableSize = 137);
-//STRIP001     SmSymSetManager(const SmSymSetManager& rSymbolSetManager);
-//STRIP001     ~SmSymSetManager();
 
-//STRIP001  SmSymSetManager&   operator = (const SmSymSetManager& rSymbolSetManager);
 
 
     USHORT      AddSymbolSet(SmSymSet* pSymbolSet);
     void        ChangeSymbolSet(SmSymSet* pSymbolSet);
-//STRIP001  void        DeleteSymbolSet(USHORT SymbolSetNo);
     USHORT      GetSymbolSetPos(const String& rSymbolSetName) const;
         USHORT      GetSymbolSetCount() const { return pImpl->NoSymbolSets; }
     SmSymSet   *GetSymbolSet(USHORT SymbolSetNo) const
@@ -255,7 +223,6 @@ public:
     void        SetModified(BOOL Modify) { pImpl->Modified = Modify; }
 
         void            Load();
-//STRIP001  void            Save();
 };
 
 } //namespace binfilter
