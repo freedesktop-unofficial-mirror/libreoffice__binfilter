@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedhlp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:13:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:21:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,6 @@
 #ifndef _TEXTDATA_HXX
 #include <svtools/textdata.hxx>
 #endif
-// auto strip #ifndef _SFXHINT_HXX
-// auto strip #include <svtools/hint.hxx>
-// auto strip #endif
 #ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
 #endif
