@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdograf.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:39:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:08:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,13 +115,11 @@ protected:
 
     void                    ImpLinkAnmeldung();
     void                    ImpLinkAbmeldung();
-//STRIP001  FASTBOOL                ImpPaintEmptyPres(OutputDevice* pOutDev) const;
     void                    ImpPaintReplacement(OutputDevice* pOutDev, const XubString& rText, const Bitmap* pBmp, FASTBOOL bFill) const;
 
     sal_Bool                ImpUpdateGraphicLink() const;
 
                             DECL_LINK( ImpSwapHdl, GraphicObject* );
-//STRIP001                          DECL_LINK( ImpAnimationHdl, Animation* );
 
 #endif // __PRIVATE
 
@@ -143,11 +141,6 @@ public:
     Graphic                 GetTransformedGraphic( ULONG nTransformFlags = SDRGRAFOBJ_TRANSFORMATTR_ALL ) const;
 
     GraphicType             GetGraphicType() const;
-//STRIP001  FASTBOOL                IsAnimated() const;
-//STRIP001  FASTBOOL                IsTransparent() const;
-//STRIP001  FASTBOOL                IsEPS() const;
-//STRIP001  const MapMode&          GetGrafPrefMapMode() const;
-//STRIP001  const Size&             GetGrafPrefSize() const;
 
     void                    SetGrafStreamURL( const String& rGraphicStreamURL );
     String                  GetGrafStreamURL() const;
@@ -159,44 +152,27 @@ public:
     void                    ReleaseGraphicLink();
     FASTBOOL                IsLinkedGraphic() const { return (BOOL)aFileName.Len(); }
 
-//STRIP001  void                    SetFileName(const String& rFileName);
     const String&           GetFileName() const { return aFileName; }
-//STRIP001  void                    SetFilterName(const String& rFilterName);
     const String&           GetFilterName() const { return aFilterName; }
 
-//STRIP001  void                    StartAnimation(OutputDevice* pOutDev, const Point& rPoint, const Size& rSize, long nExtraData=0L);
-//STRIP001  void                    StopAnimation(OutputDevice* pOutDev=NULL, long nExtraData=0L);
-//STRIP001  void                    SetAnimationSupervisor(OutputDevice* pDisplayDev, BOOL bObjSupervises);
-//STRIP001  void                    ResetAnimationLoopCount();
-//STRIP001  Rectangle               GetAnimationRect(const OutputDevice* pOutDev) const;
 
-//STRIP001  virtual FASTBOOL        HasSetName() const;
 
     virtual void            SetName(const String& rStr);
     virtual String          GetName() const;
 
-//STRIP001  virtual void            TakeObjInfo(SdrObjTransformInfoRec& rInfo) const;
     virtual UINT16          GetObjIdentifier() const;
     virtual FASTBOOL        Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject*      CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
-//STRIP001  virtual void            TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void            TakeObjNamePlural(String& rName) const;
 
     virtual void            operator=(const SdrObject& rObj);
-//STRIP001  virtual FASTBOOL        HasSpecialDrag() const;
-//STRIP001  virtual USHORT          GetHdlCount() const;
-//STRIP001  virtual SdrHdl*         GetHdl(USHORT nHdlNum) const;
 
     virtual void            NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void            NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-//STRIP001  virtual void            NbcMirror(const Point& rRef1, const Point& rRef2);
-//STRIP001  virtual void            NbcShear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
     virtual void            NbcSetSnapRect(const Rectangle& rRect);
     virtual void            NbcSetLogicRect(const Rectangle& rRect);
     virtual SdrObjGeoData*  NewGeoData() const;
     virtual void            SaveGeoData(SdrObjGeoData& rGeo) const;
-//STRIP001  virtual void            RestGeoData(const SdrObjGeoData& rGeo);
     virtual void            RestartAnimation(SdrPageView* pPageView) const;
 
     FASTBOOL                HasGDIMetaFile() const;
@@ -208,7 +184,6 @@ public:
     virtual void            ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     void                    ReadDataTilV10(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual SdrObject*      DoConvertToPolyObj(BOOL bBezier) const;
 
     void                    AdjustToMaxRect( const Rectangle& rMaxRect, BOOL bShrinkOnly );
 
