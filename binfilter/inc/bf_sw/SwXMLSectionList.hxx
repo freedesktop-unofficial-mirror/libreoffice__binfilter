@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwXMLSectionList.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:45:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:33:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,13 +48,6 @@ namespace binfilter {
 
 class SwXMLSectionList : public SvXMLImport
 {
-//STRIP001 protected:
-//STRIP001  // This method is called after the namespace map has been updated, but
-//STRIP001  // before a context for the current element has been pushed.
-//STRIP001  virtual SvXMLImportContext *CreateContext( sal_uInt16 nPrefix,
-//STRIP001                const ::rtl::OUString& rLocalName,
-//STRIP001                const ::com::sun::star::uno::Reference<
-//STRIP001                  ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 public:
      SvStrings & rSectionList;
 
@@ -63,42 +56,8 @@ public:
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
         SvStrings & rNewSectionList );
 
-//STRIP001  virtual ~SwXMLSectionList ( )
-//STRIP001      throw();
 };
 
-//STRIP001 class SvXMLSectionListContext : public SvXMLImportContext
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  SwXMLSectionList & rLocalRef;
-//STRIP001 public:
-//STRIP001  SvXMLSectionListContext ( SwXMLSectionList& rImport,
-//STRIP001                         sal_uInt16 nPrefix,
-//STRIP001                         const ::rtl::OUString& rLocalName,
-//STRIP001                         const ::com::sun::star::uno::Reference<
-//STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
-//STRIP001  virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
-//STRIP001                         const ::rtl::OUString& rLocalName,
-//STRIP001                         const ::com::sun::star::uno::Reference<
-//STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
-//STRIP001  ~SvXMLSectionListContext ( void );
-//STRIP001 };
 
-//STRIP001 class SvXMLIgnoreSectionListContext : public SvXMLImportContext
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  SwXMLSectionList & rLocalRef;
-//STRIP001 public:
-//STRIP001  SvXMLIgnoreSectionListContext ( SwXMLSectionList& rImport,
-//STRIP001                         sal_uInt16 nPrefix,
-//STRIP001                         const ::rtl::OUString& rLocalName,
-//STRIP001                         const ::com::sun::star::uno::Reference<
-//STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
-//STRIP001  virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
-//STRIP001                         const ::rtl::OUString& rLocalName,
-//STRIP001                         const ::com::sun::star::uno::Reference<
-//STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
-//STRIP001  ~SvXMLIgnoreSectionListContext ( void );
-//STRIP001 };
 } //namespace binfilter
 #endif
