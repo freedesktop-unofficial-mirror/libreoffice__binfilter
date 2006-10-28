@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwXPrintPreviewSettings.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:53:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:28:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,16 +37,12 @@
 #define _SW_XPRINTPREVIEWSETTINGS_HXX_
 
 #ifdef PRECOMPILED
-// auto strip #include "ui_pch.hxx"
 #endif
 #pragma hdrstop
 
 #ifndef _COMPHELPER_CHAINABLEPROPERTYSET_HXX_
 #include <comphelper/ChainablePropertySet.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP
-// auto strip #include <com/sun/star/text/XTextDocument.hpp>
-// auto strip #endif
 #ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
 #endif
