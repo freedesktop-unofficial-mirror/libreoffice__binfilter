@@ -4,9 +4,9 @@
  *
  *  $RCSfile: usrpref.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:01:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:59:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,6 @@ class SwContentViewConfig : public ::utl::ConfigItem
         SwContentViewConfig(BOOL bWeb, SwMasterUsrPref& rParent);
         ~SwContentViewConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -81,7 +80,6 @@ class SwLayoutViewConfig : public ::utl::ConfigItem
         SwLayoutViewConfig(BOOL bWeb, SwMasterUsrPref& rParent);
         ~SwLayoutViewConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -98,7 +96,6 @@ class SwGridConfig : public ::utl::ConfigItem
         SwGridConfig(BOOL bWeb, SwMasterUsrPref& rParent);
         ~SwGridConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -114,7 +111,6 @@ class SwCursorConfig : public ::utl::ConfigItem
         SwCursorConfig(SwMasterUsrPref& rParent);
         ~SwCursorConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -130,7 +126,6 @@ class SwWebColorConfig : public ::utl::ConfigItem
         SwWebColorConfig(SwMasterUsrPref& rParent);
         ~SwWebColorConfig();
 
-//STRIP001  virtual void            Commit();
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
 };
@@ -166,17 +161,7 @@ public:
     SwMasterUsrPref(BOOL bWeb);
     ~SwMasterUsrPref();
 
-//STRIP001  void SetUsrPref(const SwViewOption &rCopy);
 
-//STRIP001  void Commit()
-//STRIP001      {
-//STRIP001          aContentConfig.Commit();
-//STRIP001          aLayoutConfig.Commit();
-//STRIP001          aGridConfig.Commit();
-//STRIP001          aCursorConfig.Commit();
-//STRIP001          if(pWebColorConfig)
-//STRIP001              pWebColorConfig->Commit();
-//STRIP001      }
     void SetModified()
         {
             aContentConfig.SetModified();
