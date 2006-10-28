@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:25:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:41:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -362,8 +362,6 @@ public:
 #endif
 
     // TYP_ID
-//STRIP001          USHORT      GetTypeId() const;
-//STRIP001  static  USHORT      GetResId(USHORT nTypeId, BOOL& bAmbigous);
     virtual USHORT      GetSubType() const;
     virtual void        SetSubType(USHORT);
 
@@ -385,7 +383,6 @@ public:
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
     // hat das Feld eine Action auf dem ClickHandler ? (z.B. INetFelder,..)
-//STRIP001  FASTBOOL            HasClickHdl() const;
     // ist es ein Fix-Feld?
     FASTBOOL            IsFixed() const;
 
@@ -414,7 +411,6 @@ class SwValueFieldType : public SwFieldType
 
 protected:
     SwValueFieldType( SwDoc* pDocPtr, USHORT nWhichId );
-//STRIP001  SwValueFieldType( const SwValueFieldType& rTyp );
 
 public:
     inline SwDoc*   GetDoc() const                      { return pDoc; }
@@ -425,7 +421,6 @@ public:
 
     String          ExpandValue(const double& rVal, sal_uInt32 nFmt, USHORT nLng=0) const;
     void            DoubleToString(String &rValue, const double &rVal, LanguageType eLng) const;
-//STRIP001  void            DoubleToString(String &rValue, const double &rVal, ULONG nFmt) const;
 };
 
 class SwValueField : public SwField
@@ -435,7 +430,6 @@ class SwValueField : public SwField
 
 protected:
     SwValueField( SwValueFieldType* pFldType, sal_uInt32 nFmt = 0, USHORT nLang = LANGUAGE_SYSTEM, const double fVal = 0.0 );
-//STRIP001  SwValueField( const SwValueField& rFld );
 
 public:
     virtual                 ~SwValueField();
@@ -453,7 +447,6 @@ public:
     inline String   ExpandValue(const double& rVal, sal_uInt32 nFmt, USHORT nLng=0) const
         { return ((SwValueFieldType*)GetTyp())->ExpandValue(rVal, nFmt, nLng); }
 
-//STRIP001  static ULONG            GetSystemFormat(SvNumberFormatter* pFormatter, ULONG nFmt);
 };
 
 class SwFormulaField : public SwValueField
@@ -462,7 +455,6 @@ class SwFormulaField : public SwValueField
 
 protected:
     SwFormulaField( SwValueFieldType* pFldType, sal_uInt32 nFmt = 0, const double fVal = 0.0 );
-//STRIP001  SwFormulaField( const SwFormulaField& rFld );
 
 public:
     virtual String          GetFormula() const;
@@ -477,24 +469,6 @@ public:
 /*--------------------------------------------------------------------
     Beschreibung:   Sortierung von Felder nach der Position
  --------------------------------------------------------------------*/
-//STRIP001 class SwFieldList
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SwFieldList(SwEditShell* pShell);
-//STRIP001  ~SwFieldList();
-//STRIP001
-//STRIP001  // Felder eines bestimmten Typen aufnehmen
-//STRIP001  void        InsertFields(USHORT nTypeId, const String* pName=0);
-//STRIP001
-//STRIP001  USHORT      Count() const;
-//STRIP001
-//STRIP001  SwField*    GetLastField() const;
-//STRIP001  SwField*    GetNextField() const;
-//STRIP001
-//STRIP001 private:
-//STRIP001  SwEditShell*    pSh;
-//STRIP001  _SetGetExpFlds* pSrtLst;
-//STRIP001 };
 
 inline SvStringsDtor* SwFieldType::GetFldNames()
 {
