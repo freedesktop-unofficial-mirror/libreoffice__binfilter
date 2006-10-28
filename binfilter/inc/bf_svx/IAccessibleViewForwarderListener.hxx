@@ -4,9 +4,9 @@
  *
  *  $RCSfile: IAccessibleViewForwarderListener.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:59:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:18:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #include <sal/types.h>
 #endif
 
-// auto strip #ifndef _SV_GEN_HXX
-// auto strip #include <tools/gen.hxx>
-// auto strip #endif
 namespace binfilter {
 
 namespace accessibility {
