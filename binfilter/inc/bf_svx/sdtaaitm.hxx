@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdtaaitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:23:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:58:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,10 +51,7 @@ public:
     SdrTextAniAmountItem(SvStream& rIn): SfxInt16Item(SDRATTR_TEXT_ANIAMOUNT,rIn) {}
     virtual SfxPoolItem* Clone(SfxItemPool* pPool=NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
-//STRIP001  virtual FASTBOOL HasMetrics() const;
-//STRIP001  virtual FASTBOOL ScaleMetrics(long nMul, long nDiv);
 
-//STRIP001     virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, String& rText, const IntlWrapper * = 0) const;
 };
 
 }//end of namespace binfilter
