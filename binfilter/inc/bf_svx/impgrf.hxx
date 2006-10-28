@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impgrf.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:40:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:39:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #include <svtools/filter.hxx>
 #endif
 
-// auto strip #ifndef _BUTTON_HXX //autogen
-// auto strip #include <vcl/button.hxx>
-// auto strip #endif
 namespace binfilter {
 
 // Funktionen ------------------------------------------------------------
@@ -52,10 +49,6 @@ namespace binfilter {
 // steht immer zur Verfuegung, DARF NIE geloescht werden!!!!
 GraphicFilter* GetGrfFilter();
 USHORT  FillFilter( GraphicFilter& rFilter );
-//STRIP001 int  LoadGraphic( const String& rPath, const String& rFilter,
-//STRIP001                   Graphic& rGraphic,
-//STRIP001                   GraphicFilter* pFilter = NULL,
-//STRIP001                   USHORT* pDeterminedFormat = NULL );
 
 // class SvxImportGraphicDialog ------------------------------------------
 #ifndef SV_NODIALOG
