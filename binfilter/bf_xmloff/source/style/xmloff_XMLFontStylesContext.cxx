@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLFontStylesContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:45:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:59:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,15 +40,9 @@
 #include <com/sun/star/awt/FontPitch.hpp>
 #endif
 
-// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
-// auto strip #include "nmspmap.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
 #endif
