@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docary.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:54:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:38:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 #ifndef _DOCARY_HXX
 #define _DOCARY_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
-// auto strip #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
-// auto strip #endif
 namespace binfilter {//STRIP009
 class SwFieldType;
 class SwFrmFmt;
@@ -60,9 +57,6 @@ namespace com { namespace sun { namespace star { namespace i18n {
     struct ForbiddenCharacters;    // comes from the I18N UNO interface
 }}}};
 
-// auto strip #ifndef _TABLE_HXX //autogen
-// auto strip #include <tools/table.hxx>
-// auto strip #endif
 
 #ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
@@ -125,21 +119,13 @@ public:
     BOOL SavePtrInArr( SwRedlinePtr p ) { return _SwRedlineTbl::Insert( p ); }
 
 /*N*/   BOOL Insert( SwRedlinePtr& p, BOOL bIns = TRUE ); //SW50.SDW
-//STRIP001  BOOL Insert( SwRedlinePtr& p, USHORT& rInsPos, BOOL bIns = TRUE );
 /*N*/   BOOL InsertWithValidRanges( SwRedlinePtr& p, USHORT* pInsPos = 0 ); //SW50.SDW
 
 /*N*/   void Remove( USHORT nP, USHORT nL = 1 ); //SW50.SDW
-//STRIP001  void DeleteAndDestroy( USHORT nP, USHORT nL=1 );
 
     // suche den naechsten oder vorherigen Redline mit dergleichen Seq.No
     // Mit dem Lookahead kann die Suche eingeschraenkt werden. 0 oder
     // USHRT_MAX suchen im gesamten Array.
-//STRIP001  USHORT FindNextOfSeqNo( USHORT nSttPos, USHORT nLookahead = 20 ) const;
-//STRIP001  USHORT FindPrevOfSeqNo( USHORT nSttPos, USHORT nLookahead = 20 ) const;
-//STRIP001  USHORT FindNextSeqNo( USHORT nSeqNo, USHORT nSttPos,
-//STRIP001                          USHORT nLookahead = 20 ) const;
-//STRIP001  USHORT FindPrevSeqNo( USHORT nSeqNo, USHORT nSttPos,
-//STRIP001                          USHORT nLookahead = 20 ) const;
 
     _SwRedlineTbl::Count;
     _SwRedlineTbl::operator[];
