@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlreg.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:43:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:06:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _XMLOFF_XMLREG_HXX
 #define _XMLOFF_XMLREG_HXX
 
-// auto strip #ifndef _RTL_REF_HXX_
-// auto strip #include <rtl/ref.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
