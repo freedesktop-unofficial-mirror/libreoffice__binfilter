@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmthdft.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:05:15 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:44:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,18 +35,9 @@
 #ifndef _FMTHDFT_HXX
 #define _FMTHDFT_HXX
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _CALBCK_HXX //autogen
-// auto strip #include <calbck.hxx>
-// auto strip #endif
 class IntlWrapper;
 namespace binfilter {
 
@@ -75,11 +66,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
     const SwFrmFmt *GetHeaderFmt() const { return (SwFrmFmt*)pRegisteredIn; }
           SwFrmFmt *GetHeaderFmt()       { return (SwFrmFmt*)pRegisteredIn; }
@@ -109,11 +95,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
     const SwFrmFmt *GetFooterFmt() const { return (SwFrmFmt*)pRegisteredIn; }
           SwFrmFmt *GetFooterFmt()       { return (SwFrmFmt*)pRegisteredIn; }
