@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sphere3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:29:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:01:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,13 +69,9 @@ public:
     sal_Int32 GetVerticalSegments() const
         { return ((const Svx3DVerticalSegmentsItem&)GetUnmergedItemSet().Get(SDRATTR_3DOBJ_VERT_SEGS)).GetValue(); }
 
-//STRIP001  virtual UINT16 GetObjIdentifier() const;
-//STRIP001  virtual void CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf = NULL,
-//STRIP001      E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-//STRIP001  virtual void operator=(const SdrObject&);
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
@@ -106,8 +102,6 @@ public:
     virtual void PostItemChange(const sal_uInt16 nWhich);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
-//STRIP001  virtual void TakeObjNameSingul(String& rName) const;
-//STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 };
 
 }//end of namespace binfilter

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdynitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:26:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:00:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,8 +57,6 @@ public:
     SdrYesNoItem(USHORT nId, SvStream& rIn):  SfxBoolItem(nId,rIn) {}
     virtual SfxPoolItem* Clone(SfxItemPool* pPool=NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVer) const;
-//STRIP001  virtual String  GetValueTextByVal(BOOL bVal) const;
-//STRIP001     virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, String& rText, const IntlWrapper * = 0) const;
 #ifdef SDR_ISPOOLABLE
     virtual int IsPoolable() const;
 #endif
