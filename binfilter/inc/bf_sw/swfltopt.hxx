@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swfltopt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:29:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:54:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,12 +43,9 @@ namespace binfilter {
 class SwFilterOptions : public ::utl::ConfigItem
 {
 public:
-//STRIP001  SwFilterOptions();
     SwFilterOptions( sal_uInt16 nCnt, const sal_Char** ppNames,
                       sal_uInt32* pValues );
 
-//STRIP001  sal_Bool CheckNodeContentExist( const sal_Char* pNode,
-//STRIP001                               const sal_Char* pCntnt );
 
     void GetValues( sal_uInt16 nCnt, const sal_Char** ppNames,
                      sal_uInt32* pValues );
