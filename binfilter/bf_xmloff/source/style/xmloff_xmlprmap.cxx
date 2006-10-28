@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlprmap.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:58:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:07:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,37 +37,16 @@
 #include <tools/debug.hxx>
 #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
-// auto strip #include "xmlprhdl.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
-// auto strip #include "xmlbahdl.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
-// auto strip #include "xmltypes.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
-// auto strip #include <com/sun/star/beans/XPropertyState.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 namespace binfilter {
 
 
