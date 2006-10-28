@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:15:06 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:13:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -156,18 +156,11 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
 
 
 
-//STRIP001  virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
-//STRIP001                      const SfxHint& rHint, const TypeId& rHintType);
 
-//STRIP001  void        RestartFocusTimer ();
 
     BOOL        Try3x( SvStorage *pStor, StreamMode eMode);
     BOOL        Try2x( SvStorage *pStor, StreamMode eMode);
-//STRIP001  BOOL        WriteAsMathType3( SfxMedium& );
 
-//STRIP001  virtual void        Draw(OutputDevice *pDevice,
-//STRIP001                           const JobSetup & rSetup,
-//STRIP001                           USHORT nAspect = ASPECT_CONTENT);
 
     virtual void        FillClass(SvGlobalName* pClassName,
                                   ULONG*  pFormat,
@@ -176,16 +169,13 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
                                   String* pShortTypeName,
                                   long    nFileFormat = SOFFICE_FILEFORMAT_CURRENT) const;
 
-//STRIP001  virtual BOOL        SetData( const String& rData );
     virtual ULONG       GetMiscStatus() const;
     virtual void        OnDocumentPrinterChanged( Printer * );
     virtual BOOL        InitNew(SvStorage *);
     virtual BOOL        Load(SvStorage *);
-//STRIP001  virtual BOOL        Insert(SvStorage *);
             void        ImplSave(  SvStorageStreamRef xStrm  );
     virtual BOOL        Save();
     virtual BOOL        SaveAs( SvStorage *pNewStor );
-//STRIP001  virtual BOOL        ConvertTo( SfxMedium &rMedium );
     virtual BOOL        SaveCompleted( SvStorage *pNewStor );
     virtual void        HandsOff();
 
@@ -199,10 +189,7 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
     void                SetFormulaArranged(BOOL bVal) { bIsFormulaArranged = bVal; }
     void                ArrangeFormula();
 
-//STRIP001  virtual BOOL        ConvertFrom(SfxMedium &rMedium);
-//STRIP001          BOOL        InsertFrom(SfxMedium &rMedium);
 
-//STRIP001     BOOL                ImportSM20File(SvStream *pStream);
 
     void                UpdateText();
 
@@ -214,8 +201,6 @@ public:
                 SmDocShell(SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED);
     virtual     ~SmDocShell();
 
-//STRIP001  void        LoadSymbols();
-//STRIP001  void        SaveSymbols();
 
     //Zugriff fuer die View. Diese Zugriffe sind nur fuer den nicht OLE-Fall!
     //und fuer die Kommunikation mit dem SFX!
@@ -225,12 +210,9 @@ public:
     SfxPrinter *GetPrinter()    { GetPrt(); return pPrinter; }
     void        SetPrinter( SfxPrinter * );
 
-//STRIP001  const String &GetTitle() const;
-//STRIP001  const String &GetComment() const;
 
     void        SetText(const String& rBuffer);
     String&     GetText() { return (aText); }
-//STRIP001  void        SetFormat(SmFormat& rFormat);
     SmFormat&   GetFormat() { return (aFormat); }
 
     void            Parse();
@@ -238,10 +220,8 @@ public:
     const SmNode *  GetFormulaTree() const  { return pTree; }
     void            SetFormulaTree(SmNode *&rTree) { pTree = rTree; }
 
-//STRIP001     String          GetAccessibleText();
 
     EditEngine &    GetEditEngine();
-//STRIP001  SfxItemPool &   GetEditEngineItemPool();
 
     SmSymSetManager &       GetSymSetManager();
     const SmSymSetManager & GetSymSetManager() const
@@ -254,7 +234,6 @@ public:
 
     void        Resize();
 
-//STRIP001  virtual     SfxUndoManager *GetUndoManager ();
 
     virtual     SfxItemPool& GetPool();
 
@@ -262,7 +241,6 @@ public:
     void        GetState(SfxItemSet &);
 
     virtual void SetVisArea (const Rectangle & rVisArea);
-//STRIP001  virtual void UIActivate (BOOL bActivate);
 
     virtual void SetModified(BOOL bModified);
 };
