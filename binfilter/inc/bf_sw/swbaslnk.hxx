@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swbaslnk.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:26:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:53:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,9 +73,7 @@ public:
     virtual void DataChanged( const String& rMimeType,
                                 const ::com::sun::star::uno::Any & rValue );
 
-//STRIP001  virtual void Closed();
 
-//STRIP001  virtual const SwNode* GetAnchor() const;
 
     SwCntntNode *GetCntntNode() { return pCntntNode; }
 
