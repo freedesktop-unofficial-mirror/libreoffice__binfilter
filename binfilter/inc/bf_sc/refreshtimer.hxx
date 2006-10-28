@@ -4,9 +4,9 @@
  *
  *  $RCSfile: refreshtimer.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:25:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:40:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_REFRESHTIMER_HXX
 #define SC_REFRESHTIMER_HXX
 
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 #ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
 #endif
@@ -164,7 +161,6 @@ public:
                                     { Stop(); }
 
     virtual void                SetRefreshDelay( ULONG nSeconds );
-//STRIP001  virtual void                Timeout();
 };
 
 

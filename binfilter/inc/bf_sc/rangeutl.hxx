@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rangeutl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:24:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:40:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,19 +64,10 @@ public:
                 ~ScRangeUtil() {}
 
 
-//STRIP001  BOOL    MakeArea            ( const String&     rAreaStr,
-//STRIP001                                ScArea&           rArea,
-//STRIP001                                ScDocument*       pDoc,
-//STRIP001                                USHORT            nTab ) const;
 
     void    CutPosString        ( const String&     theAreaStr,
                                   String&           thePosStr ) const;
 
-//STRIP001  BOOL    IsAbsTabArea        ( const String&     rAreaStr,
-//STRIP001                                ScDocument*       pDoc,
-//STRIP001                                ScArea***         pppAreas    = 0,
-//STRIP001                                USHORT*           pAreaCount  = 0,
-//STRIP001                                BOOL              bAcceptCellRef = FALSE ) const;
 
     BOOL    IsAbsArea           ( const String& rAreaStr,
                                   ScDocument*   pDoc,
@@ -85,18 +76,6 @@ public:
                                   ScRefTripel*  pStartPos    = 0,
                                   ScRefTripel*  pEndPos      = 0 ) const;
 
-//STRIP001  BOOL    IsRefArea           ( const String& rAreaStr,
-//STRIP001                                ScDocument*   pDoc,
-//STRIP001                                USHORT        nTab,
-//STRIP001                                String*       pCompleteStr = 0,
-//STRIP001                                ScRefTripel*  pPosTripel   = 0 ) const
-//STRIP001                                    { return FALSE; }
-//STRIP001
-//STRIP001  BOOL    IsAbsPos            ( const String& rPosStr,
-//STRIP001                                ScDocument*   pDoc,
-//STRIP001                                USHORT        nTab,
-//STRIP001                                String*       pCompleteStr = 0,
-//STRIP001                                ScRefTripel*  pPosTripel   = 0 ) const;
 
     BOOL    MakeRangeFromName   ( const String& rName,
                                     ScDocument*     pDoc,
@@ -119,12 +98,7 @@ public:
 
             ScArea( const ScArea& r );
 
-//STRIP001  void    Clear       ();
     ScArea& operator=   ( const ScArea& r );
-//STRIP001  BOOL    operator==  ( const ScArea& r ) const;
-//STRIP001  BOOL    operator!=  ( const ScArea& r ) const  { return !( operator==(r) ); }
-//STRIP001  void    GetString   ( String& rStr,
-//STRIP001                        BOOL bAbsolute = TRUE, ScDocument* pDoc = NULL ) const;
 
 public:
     USHORT nTab;
@@ -143,22 +117,6 @@ public:
 //  gibt Bereiche mit Referenz und alle DB-Bereiche zurueck
 //
 
-//STRIP001 class ScAreaNameIterator
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ScRangeName*    pRangeName;
-//STRIP001  ScDBCollection* pDBCollection;
-//STRIP001  BOOL            bFirstPass;
-//STRIP001  USHORT          nPos;
-//STRIP001  String          aStrNoName;
-//STRIP001
-//STRIP001 public:
-//STRIP001          ScAreaNameIterator( ScDocument* pDoc );
-//STRIP001          ~ScAreaNameIterator() {}
-//STRIP001
-//STRIP001  BOOL    Next( String& rName, ScRange& rRange );
-//STRIP001  BOOL    WasDBName() const   { return !bFirstPass; }
-//STRIP001 };
 
 
 } //namespace binfilter
