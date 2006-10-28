@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:41:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:22:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,13 +41,7 @@
 #include <com/sun/star/util/XCloseable.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XOutputStream.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XInputStream.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
@@ -65,9 +59,6 @@
 #include <com/sun/star/io/XSeekable.hpp>
 #endif
 
-// auto strip #ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
-// auto strip #include <unotools/ucbstreamhelper.hxx>
-// auto strip #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
