@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdmod.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:03:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:53:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,10 +134,8 @@ public:
     virtual SfxModule*      Load();
     virtual void            Free();
 
-//STRIP001  virtual void            FillStatusBar(StatusBar& rBar);
 
     SdOptions*              GetSdOptions(DocumentType eDocType);
-//STRIP001  SvStorageStreamRef      GetOptionStream( const String& rOptionName, SdOptionStreamMode eMode );
 
     BOOL                    GetWaterCan() const { return bWaterCan; }
     void                    SetWaterCan( BOOL bWC ) { bWaterCan = bWC; }
@@ -164,9 +162,6 @@ public:
     ::com::sun::star::text::WritingMode GetDefaultWritingMode() const;
 
     //virtuelle Methoden fuer den Optionendialog
-//STRIP001  virtual SfxItemSet*  CreateItemSet( USHORT nId );
-//STRIP001  virtual void         ApplyItemSet( USHORT nId, const SfxItemSet& rSet );
-//STRIP001  virtual SfxTabPage*  CreateTabPage( USHORT nId, Window* pParent, const SfxItemSet& rSet );
 
 private:
 

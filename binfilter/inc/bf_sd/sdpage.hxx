@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdpage.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:04:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:54:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -142,7 +142,6 @@ public:
     virtual void    SetUppBorder(INT32 nBorder);
     virtual void    SetLwrBorder(INT32 nBorder);
     virtual void    SetModel(SdrModel* pNewModel);
-//STRIP001  virtual FASTBOOL IsReadOnly() const;
 
     List*           GetPresObjList() { return &aPresObjList; }
     SdrObject*      CreatePresObj(PresObjKind eObjKind, BOOL bVertical, const Rectangle& rRect, BOOL bInsert=FALSE);
@@ -156,15 +155,11 @@ public:
 
     virtual void       NbcInsertObject(SdrObject* pObj, ULONG nPos=CONTAINER_APPEND,
                                        const SdrInsertReason* pReason=NULL);
-//STRIP001  virtual SdrObject* NbcRemoveObject(ULONG nObjNum);
     virtual SdrObject* RemoveObject(ULONG nObjNum);
 
     // #95876# Also overload ReplaceObject methods to realize when
     // objects are removed with this mechanism instead of RemoveObject
-//STRIP001  virtual SdrObject* NbcReplaceObject(SdrObject* pNewObj, ULONG nObjNum);
-//STRIP001  virtual SdrObject* ReplaceObject(SdrObject* pNewObj, ULONG nObjNum);
 
-//STRIP001  virtual void SetLinkData(const String& rLinkName, const String& rLinkData);
 
     void        SetObjText(SdrTextObj* pObj, SdrOutliner* pOutliner, PresObjKind eObjKind, const String& rStr );
 
@@ -192,7 +187,6 @@ public:
     void        SetExcluded(BOOL bNewExcluded)      { bExcluded = bNewExcluded; }
     BOOL        IsExcluded() const                  { return bExcluded; }
 
-//STRIP001  void        SetScaleObjects(BOOL bScale)        { bScaleObjects = bScale; }
     BOOL        IsScaleObjects() const              { return bScaleObjects; }
 
     void        SetSoundFile(const String& rStr)    { aSoundFile = rStr; }
@@ -203,7 +197,6 @@ public:
     virtual void Changed(const SdrObject& rObj, SdrUserCallType eType,
                          const Rectangle& rOldBoundRect);
 
-//STRIP001  virtual void RequestBasic();
 
     virtual void WriteData(SvStream& rOut) const;
 #endif
@@ -229,10 +222,6 @@ public:
     const String&   GetName();
     String          GetRealName() const { return aPageName; };
 
-//STRIP001  void    SetPresentationLayout(const String& rLayoutName,
-//STRIP001                                BOOL bReplaceStyleSheets = TRUE,
-//STRIP001                                BOOL bSetMasterPage = TRUE,
-//STRIP001                                BOOL bReverseOrder = FALSE);
     void    EndListenOutlineText();
 
     void    SetBackgroundFullSize( BOOL bIn );
