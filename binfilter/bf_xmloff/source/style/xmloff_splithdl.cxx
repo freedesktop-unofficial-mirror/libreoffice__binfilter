@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_splithdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:53:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:04:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #include <com/sun/star/uno/Any.hxx>
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 // --
 

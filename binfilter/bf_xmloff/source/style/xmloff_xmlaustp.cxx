@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlaustp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:55:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:05:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,18 +44,9 @@
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
-// auto strip #include "xmlaustp.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
@@ -67,12 +58,6 @@
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
-// auto strip #include "PageMasterExportPropMapper.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLBACKGROUNDIMAGEEXPORT_HXX
-// auto strip #include "XMLBackgroundImageExport.hxx"
-// auto strip #endif
 namespace binfilter {
 
 
