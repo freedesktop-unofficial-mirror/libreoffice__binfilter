@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtfldi.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:15:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:20:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
  *  (variable related text fields and database display fields)
  */
 
-// auto strip #ifndef _XMLOFF_TXTFLDI_HXX
-// auto strip #include "txtfldi.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_TXTVFLDI_HXX
 #include "txtvfldi.hxx"
@@ -55,9 +52,6 @@
 #include "xmlnumi.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
-// auto strip #include "txtimp.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -67,17 +61,11 @@
 #include "nmspmap.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
-// auto strip #include "xmlement.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLSTRINGBUFFERIMPORTCONTEXT_HXX
 #include "XMLStringBufferImportContext.hxx"
@@ -87,17 +75,11 @@
 #include "XMLEventsImportContext.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_USERDATAPART_HPP_
 #include <com/sun/star/text/UserDataPart.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
-// auto strip #include <com/sun/star/style/NumberingType.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HPP_
 #include <com/sun/star/text/PlaceholderType.hpp>
@@ -111,25 +93,10 @@
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
-// auto strip #include <com/sun/star/text/XTextField.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-// auto strip #include <com/sun/star/text/XTextContent.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
@@ -139,9 +106,6 @@
 #include <com/sun/star/text/XDependentTextField.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
-// auto strip #include <com/sun/star/text/SetVariableType.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_FILENAMEDISPLAYFORMAT_HPP_
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
@@ -159,21 +123,12 @@
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
-// auto strip #include <com/sun/star/document/XDocumentInfo.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATATYPE_HPP_
 #include <com/sun/star/text/BibliographyDataType.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HPP_
-// auto strip #include <com/sun/star/text/BibliographyDataField.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UTIL_XUPDATABLE_HPP_
 #include <com/sun/star/util/XUpdatable.hpp>
@@ -185,17 +140,11 @@
 
 #include "rtl/ustring.hxx"
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
