@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfxbasemodel.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:35:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:07:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,21 +48,9 @@
 #include <com/sun/star/container/XChild.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 
-// auto strip #ifndef    _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XNameReplace.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XCONTROLLER_HPP_
-// auto strip #include <com/sun/star/frame/XController.hpp>
-// auto strip #endif
 
-// auto strip #ifndef  _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
-// auto strip #include <com/sun/star/document/XDocumentInfo.hpp>
-// auto strip #endif
 
 #ifndef  _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
@@ -72,53 +60,29 @@
 #include <com/sun/star/document/XEventBroadcaster.hpp>
 #endif
 
-// auto strip #ifndef  _COM_SUN_STAR_DOCUMENT_XEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/document/XEventListener.hpp>
-// auto strip #endif
 
 #ifndef  _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
 
-// auto strip #ifndef  _COM_SUN_STAR_DOCUMENT_EVENTOBJECT_HPP_
-// auto strip #include <com/sun/star/document/EventObject.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/lang/XEventListener.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_DOUBLEINITIALIZATIONEXCEPTION_HPP_
-// auto strip #include <com/sun/star/frame/DoubleInitializationException.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UTIL_XMODIFIABLE_HPP_
 #include <com/sun/star/util/XModifiable.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
-// auto strip #include <com/sun/star/util/XModifyListener.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UTIL_XCLOSEABLE_HPP_
 #include <com/sun/star/util/XCloseable.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLOSEBROADCASTER_HPP_
-// auto strip #include <com/sun/star/util/XCloseBroadcaster.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLOSELISTENER_HPP_
-// auto strip #include <com/sun/star/util/XCloseListener.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_CLOSEVETOEXCEPTION_HPP_
-// auto strip #include <com/sun/star/util/CloseVetoException.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_VIEW_XPRINTABLE_HPP_
 #include <com/sun/star/view/XPrintable.hpp>
@@ -136,45 +100,24 @@
 #include <com/sun/star/frame/XLoadable.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
-// auto strip #include <com/sun/star/lang/EventObject.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DATATRANSFER_XTRANSFERABLE_HPP_
 #include <com/sun/star/datatransfer/XTransferable.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
 #ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
 #endif
 
-// auto strip #ifndef _CPPUHELPER_TYPEPROVIDER_HXX_
-// auto strip #include <cppuhelper/typeprovider.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_SCRIPT_XSTARBASICACCESS_HPP_
 #include <com/sun/star/script/XStarBasicAccess.hpp>
 #endif
 
-// auto strip #ifndef   _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 
 #ifndef _LINK_HXX_
 #include <tools/link.hxx>
