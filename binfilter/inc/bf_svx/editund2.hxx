@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editund2.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:21:40 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:30:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,8 +52,6 @@ private:
 public:
                     EditUndoManager( ImpEditEngine* pImpEE );
 
-//STRIP001  virtual BOOL    Undo( USHORT nCount=1 );
-//STRIP001  virtual BOOL    Redo( USHORT nCount=1 );
 };
 
 // -----------------------------------------------------------------------
@@ -66,7 +64,6 @@ private:
     ImpEditEngine*  pImpEE;
 
 public:
-//STRIP001                  TYPEINFO();
                     EditUndo( USHORT nI, ImpEditEngine* pImpEE );
     virtual         ~EditUndo();
 
@@ -76,7 +73,6 @@ public:
     virtual void    Redo()      = 0;
     virtual void    Repeat()    = 0;
 
-//STRIP001  virtual BOOL    CanRepeat(SfxRepeatTarget&) const;
     virtual String  GetComment() const;
     virtual USHORT  GetId() const;
 };
