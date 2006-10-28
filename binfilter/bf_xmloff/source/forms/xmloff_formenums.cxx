@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formenums.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 09:13:59 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:49:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,9 +64,6 @@
 #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-// auto strip #include <com/sun/star/awt/FontWidth.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
 #endif
@@ -76,9 +73,6 @@
 #ifndef _SV_WINTYPES_HXX
 #include <vcl/wintypes.hxx>     // for check states
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 namespace binfilter {
 
 //.........................................................................

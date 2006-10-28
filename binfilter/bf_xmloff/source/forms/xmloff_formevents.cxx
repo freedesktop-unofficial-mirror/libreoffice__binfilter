@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formevents.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 09:14:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:49:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _XMLOFF_FORMS_FORMEVENTS_HXX_
-// auto strip #include "formevents.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
 #endif
