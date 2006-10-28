@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_uitool.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:07:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:32:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,31 +44,7 @@
 #endif
 
 
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-// auto strip #include <unotools/collatorwrapper.hxx>
-// auto strip #endif
 
-// auto strip #ifndef SVTOOLS_URIHELPER_HXX
-// auto strip #include <svtools/urihelper.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTRITEM_HXX //autogen
-// auto strip #include <svtools/stritem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXDOCFILE_HXX //autogen
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
-// auto strip #include <bf_sfx2/docfilt.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_PMDLITEM_HXX //autogen
-// auto strip #include <bf_svx/pmdlitem.hxx>
-// auto strip #endif
 #ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
 #endif
@@ -81,29 +57,11 @@
 #ifndef _SVX_PAGEITEM_HXX //autogen
 #include <bf_svx/pageitem.hxx>
 #endif
-// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
-// auto strip #include <bf_svx/lrspitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXSTYLE_HXX //autogen
-// auto strip #include <svtools/style.hxx>
-// auto strip #endif
-// auto strip #ifndef _VCL_LSTBOX_HXX //autogen
-// auto strip #include <vcl/lstbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-// auto strip #include <unotools/localedatawrapper.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _FMTORNT_HXX //autogen
-// auto strip #include <fmtornt.hxx>
-// auto strip #endif
-// auto strip #ifndef _TABCOL_HXX //autogen
-// auto strip #include <tabcol.hxx>
-// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -111,56 +69,20 @@
 #ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWWVIEW_HXX //autogen
-// auto strip #include <wview.hxx>
-// auto strip #endif
 #ifndef _UIITEMS_HXX
 #include <uiitems.hxx>
 #endif
-// auto strip #ifndef _DOCSH_HXX
-// auto strip #include <docsh.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _WRTSH_HXX
-// auto strip #include <wrtsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
-// auto strip #ifndef _SWMODULE_HXX
-// auto strip #include <swmodule.hxx>
-// auto strip #endif
-// auto strip #ifndef _VIEW_HXX
-// auto strip #include <view.hxx>
-// auto strip #endif
-// auto strip #ifndef _UITOOL_HXX
-// auto strip #include <uitool.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAGEDESC_HXX
-// auto strip #include <pagedesc.hxx>
-// auto strip #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
 #ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
 #endif
-// auto strip #ifndef _POOLFMT_HXX
-// auto strip #include <poolfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _USRPREF_HXX
-// auto strip #include "usrpref.hxx"
-// auto strip #endif
 
 #ifndef _ERROR_H
 #include <error.h>
@@ -177,12 +99,6 @@
 #ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _DOCARY_HXX
-// auto strip #include <docary.hxx>
-// auto strip #endif
-// auto strip #ifndef _CHARFMT_HXX //autogen wg. SwCharFmt
-// auto strip #include <charfmt.hxx>
-// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
@@ -203,44 +119,12 @@ namespace binfilter {
  --------------------------------------------------------------------*/
 
 
-//STRIP001 void SetMetric(MetricFormatter& rCtrl, FieldUnit eUnit)
-//STRIP001 {
-//STRIP001  SwTwips nMin = rCtrl.GetMin(FUNIT_TWIP);
-//STRIP001  SwTwips nMax = rCtrl.GetMax(FUNIT_TWIP);
-//STRIP001
-//STRIP001  rCtrl.SetUnit(eUnit);
-//STRIP001
-//STRIP001  rCtrl.SetMin(nMin, FUNIT_TWIP);
-//STRIP001  rCtrl.SetMax(nMax, FUNIT_TWIP);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Boxinfo-Attribut setzen
  --------------------------------------------------------------------*/
 
 
-//STRIP001 void PrepareBoxInfo(SfxItemSet& rSet, const SwWrtShell& rSh)
-//STRIP001 {
-//STRIP001  SvxBoxInfoItem aBoxInfo;
-//STRIP001  const SfxPoolItem *pBoxInfo;
-//STRIP001  if ( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_BORDER_INNER,
-//STRIP001                                      TRUE, &pBoxInfo))
-//STRIP001      aBoxInfo = *(SvxBoxInfoItem*)pBoxInfo;
-//STRIP001
-//STRIP001      // Tabellenvariante, wenn mehrere Tabellenzellen selektiert
-//STRIP001  rSh.GetCrsr();                  //Damit GetCrsrCnt() auch das Richtige liefert
-//STRIP001  aBoxInfo.SetTable          (rSh.IsTableMode() && rSh.GetCrsrCnt() > 1);
-//STRIP001      // Abstandsfeld immer anzeigen
-//STRIP001  aBoxInfo.SetDist           ((BOOL) TRUE);
-//STRIP001      // Minimalgroesse in Tabellen und Absaetzen setzen
-//STRIP001  aBoxInfo.SetMinDist        (rSh.IsTableMode() || rSh.GetSelectionType() & (SwWrtShell::SEL_TXT | SwWrtShell::SEL_TBL));
-//STRIP001      // Default-Abstand immer setzen
-//STRIP001  aBoxInfo.SetDefDist        (MIN_BORDER_DIST);
-//STRIP001      // Einzelne Linien koennen nur in Tabellen DontCare-Status haben
-//STRIP001  aBoxInfo.SetValid(VALID_DISABLE, !rSh.IsTableMode());
-//STRIP001
-//STRIP001  rSet.Put(aBoxInfo);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Header Footer fuellen
@@ -585,15 +469,6 @@ namespace binfilter {
  --------------------------------------------------------------------*/
 
 
-//STRIP001 void MakeDefTabs(SwTwips nDefDist, SvxTabStopItem& rTabs)
-//STRIP001 {
-//STRIP001  if( rTabs.Count() )
-//STRIP001      return;
-//STRIP001  {
-//STRIP001      SvxTabStop aSwTabStop( nDefDist, SVX_TAB_ADJUST_DEFAULT );
-//STRIP001      rTabs.Insert( aSwTabStop );
-//STRIP001  }
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Abstand zwischen zwei Tabs
@@ -612,274 +487,37 @@ namespace binfilter {
 
 
 // erfrage ob im Set eine Sfx-PageDesc-Kombination vorliegt und returne diese
-//STRIP001 void SfxToSwPageDescAttr( const SwWrtShell& rShell, SfxItemSet& rSet )
-//STRIP001 {
-//STRIP001  const SfxPoolItem* pItem;
-//STRIP001  SwFmtPageDesc aPgDesc;
-//STRIP001
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001  // Seitennummer
-//STRIP001  if(SFX_ITEM_SET == rSet.GetItemState(SID_ATTR_PARA_PAGENUM, FALSE, &pItem))
-//STRIP001  {
-//STRIP001      aPgDesc.SetNumOffset(((SfxUInt16Item*)pItem)->GetValue());
-//STRIP001      bChanged = TRUE;
-//STRIP001  }
-//STRIP001  if( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_PARA_MODEL, FALSE, &pItem ))
-//STRIP001  {
-//STRIP001      const String& rDescName = ((SvxPageModelItem*)pItem)->GetValue();
-//STRIP001      if( rDescName.Len() )   // kein Name -> PageDesc ausschalten!
-//STRIP001      {
-//STRIP001          // nur loeschen, wenn PageDesc eingschaltet wird!
-//STRIP001          rSet.ClearItem( RES_BREAK );
-//STRIP001          SwPageDesc* pDesc = ((SwWrtShell&)rShell).FindPageDescByName(
-//STRIP001                                                  rDescName, TRUE );
-//STRIP001          if( pDesc )
-//STRIP001              pDesc->Add( &aPgDesc );
-//STRIP001      }
-//STRIP001      rSet.ClearItem( SID_ATTR_PARA_MODEL );
-//STRIP001      bChanged = TRUE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SfxItemSet aCoreSet(rShell.GetView().GetPool(), RES_PAGEDESC, RES_PAGEDESC );
-//STRIP001      rShell.GetAttr( aCoreSet );
-//STRIP001      if(SFX_ITEM_SET == aCoreSet.GetItemState( RES_PAGEDESC, TRUE, &pItem ) )
-//STRIP001      {
-//STRIP001          if( ((SwFmtPageDesc*)pItem)->GetPageDesc() )
-//STRIP001          {
-//STRIP001              ((SwFmtPageDesc*)pItem)->GetPageDesc()->Add(&aPgDesc);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  if(bChanged)
-//STRIP001      rSet.Put( aPgDesc );
-//STRIP001 }
 
 
 // erfrage ob im Set eine Sfx-PageDesc-Kombination vorliegt und returne diese
-//STRIP001 void SwToSfxPageDescAttr( SfxItemSet& rCoreSet )
-//STRIP001 {
-//STRIP001  const SfxPoolItem* pItem = 0;
-//STRIP001  String aName;
-//STRIP001  USHORT nPageNum = 0;
-//STRIP001  BOOL bPut = TRUE;
-//STRIP001  switch( rCoreSet.GetItemState( RES_PAGEDESC, TRUE, &pItem ) )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_SET:
-//STRIP001      {
-//STRIP001          if( ((SwFmtPageDesc*)pItem)->GetPageDesc() )
-//STRIP001          {
-//STRIP001              aName = ((SwFmtPageDesc*)pItem)->GetPageDesc()->GetName();
-//STRIP001              nPageNum = ((SwFmtPageDesc*)pItem)->GetNumOffset();
-//STRIP001          }
-//STRIP001          rCoreSet.ClearItem( RES_PAGEDESC );
-//STRIP001          // Seitennummer
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SFX_ITEM_AVAILABLE:
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      bPut = FALSE;
-//STRIP001  }
-//STRIP001  SfxUInt16Item aPageNum( SID_ATTR_PARA_PAGENUM, nPageNum );
-//STRIP001  rCoreSet.Put( aPageNum );
-//STRIP001
-//STRIP001  if(bPut)
-//STRIP001      rCoreSet.Put( SvxPageModelItem( aName, TRUE, SID_ATTR_PARA_MODEL ) );
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Metric ermitteln
  --------------------------------------------------------------------*/
 
 
-//STRIP001 FieldUnit    GetDfltMetric(BOOL bWeb)
-//STRIP001 {
-//STRIP001  return SW_MOD()->GetUsrPref(bWeb)->GetMetric();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Metric ermitteln
  --------------------------------------------------------------------*/
 
 
-//STRIP001 void SetDfltMetric( FieldUnit eMetric, BOOL bWeb )
-//STRIP001 {
-//STRIP001  SW_MOD()->ApplyUserMetric(eMetric, bWeb);
-//STRIP001 }
 
 /*-----------------15.07.97 10:49-------------------
 
 --------------------------------------------------*/
 // Umwandlung:  Sub(LibName.ModulName) -> LibName.ModulName.Sub
-//STRIP001 String ConvertMacroFormat(const String& rInput )
-//STRIP001 {
-//STRIP001  String sTemp(rInput);
-//STRIP001  USHORT nFound = sTemp.Search('(');
-//STRIP001  USHORT nTokenCount = sTemp.GetTokenCount('.');
-//STRIP001  String sMac(rInput);
-//STRIP001  if( STRING_NOTFOUND != nFound || nTokenCount < 2)
-//STRIP001  {
-//STRIP001      if(nTokenCount < 2)
-//STRIP001          nFound = sTemp.Len();
-//STRIP001      // anderes Format: "Macro(Bibliothek.Modul)"
-//STRIP001      sMac = sTemp.Copy(0, nFound);
-//STRIP001      sTemp.Erase(0, nFound);
-//STRIP001      if(sTemp.Len() > 2)
-//STRIP001      {
-//STRIP001          sMac.Insert('.', 0);
-//STRIP001          sMac.Insert(sTemp.Copy(1, sTemp.Len() - 2), 0);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return sMac;
-//STRIP001 }
 
 
-//STRIP001 BOOL GetFileFilterNameDlg( Window& rParent, String& rFileName,
-//STRIP001                          String* pPassword, String* pFilterName,
-//STRIP001                          SfxMedium** ppMedium )
-//STRIP001 {
-//STRIP001  Window* pDefDlgParent = Application::GetDefDialogParent();
-//STRIP001  Application::SetDefDialogParent( &rParent );
-//STRIP001  SfxMedium* pMed = SFX_APP()->InsertDocumentDialog( 0, SwDocShell::Factory() );
-//STRIP001  if( pMed )
-//STRIP001  {
-//STRIP001      if( pFilterName )
-//STRIP001          *pFilterName = pMed->GetFilter()->GetFilterName();
-//STRIP001
-//STRIP001      rFileName = so3::StaticBaseUrl::SmartRelToAbs( pMed->GetName() );
-//STRIP001      if( pPassword )
-//STRIP001      {
-//STRIP001          const SfxPoolItem* pItem;
-//STRIP001          if( SFX_ITEM_SET == pMed->GetItemSet()->GetItemState(
-//STRIP001                                  SID_PASSWORD, FALSE, &pItem ) )
-//STRIP001              *pPassword = ((SfxStringItem*)pItem)->GetValue();
-//STRIP001      }
-//STRIP001
-//STRIP001      if( ppMedium )
-//STRIP001          *ppMedium = pMed;
-//STRIP001      else
-//STRIP001          delete pMed;        // das brauchen wir nicht mehr !
-//STRIP001  }
-//STRIP001  Application::SetDefDialogParent( pDefDlgParent );
-//STRIP001  return 0 != pMed;
-//STRIP001 }
 
 /*-----------------09.04.98 16:58-------------------
 
 --------------------------------------------------*/
-//STRIP001 USHORT InsertStringSorted(const String& rEntry, ListBox& rToFill, USHORT nOffset )
-//STRIP001 {
-//STRIP001     USHORT i = nOffset;
-//STRIP001  CollatorWrapper& rCaseColl = ::GetAppCaseCollator();
-//STRIP001
-//STRIP001  for( ; i < rToFill.GetEntryCount(); i++ )
-//STRIP001  {
-//STRIP001      if( 0 < rCaseColl.compareString( rToFill.GetEntry(i), rEntry ))
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  return rToFill.InsertEntry(rEntry, i);
-//STRIP001 }
-//STRIP001 void FillCharStyleListBox(ListBox& rToFill, SwDocShell* pDocSh, BOOL bSorted, BOOL bWithDefault)
-//STRIP001 {
-//STRIP001  BOOL bHasOffset = rToFill.GetEntryCount() > 0;
-//STRIP001  SfxStyleSheetBasePool* pPool = pDocSh->GetStyleSheetPool();
-//STRIP001  pPool->SetSearchMask(SFX_STYLE_FAMILY_CHAR, SFXSTYLEBIT_ALL);
-//STRIP001  SwDoc* pDoc = pDocSh->GetDoc();
-//STRIP001  const SfxStyleSheetBase* pBase = pPool->First();
-//STRIP001  String sStandard;
-//STRIP001  SwStyleNameMapper::FillUIName( RES_POOLCOLL_STANDARD, sStandard );
-//STRIP001  while(pBase)
-//STRIP001  {
-//STRIP001         if(bWithDefault || pBase->GetName() !=  sStandard)
-//STRIP001      {
-//STRIP001          USHORT nPos;
-//STRIP001          if(bSorted)
-//STRIP001              nPos = InsertStringSorted(pBase->GetName(), rToFill, bHasOffset );
-//STRIP001          else
-//STRIP001              nPos = rToFill.InsertEntry(pBase->GetName());
-//STRIP001          long nPoolId = SwStyleNameMapper::GetPoolIdFromUIName( pBase->GetName(), GET_POOLID_CHRFMT );
-//STRIP001          rToFill.SetEntryData( nPos, (void*) (nPoolId));
-//STRIP001      }
-//STRIP001      pBase = pPool->Next();
-//STRIP001  }
-//STRIP001  // non-pool styles
-//STRIP001  const SwCharFmts* pFmts = pDoc->GetCharFmts();
-//STRIP001  for(USHORT i = 0; i < pFmts->Count(); i++)
-//STRIP001  {
-//STRIP001      const SwCharFmt* pFmt = (*pFmts)[i];
-//STRIP001      if(pFmt->IsDefault())
-//STRIP001          continue;
-//STRIP001      const String& rName = pFmt->GetName();
-//STRIP001      if(rToFill.GetEntryPos(rName) == LISTBOX_ENTRY_NOTFOUND)
-//STRIP001      {
-//STRIP001          USHORT nPos;
-//STRIP001          if(bSorted)
-//STRIP001              nPos = InsertStringSorted(rName, rToFill, bHasOffset );
-//STRIP001          else
-//STRIP001              nPos = rToFill.InsertEntry(rName);
-//STRIP001          long nPoolId = USHRT_MAX;
-//STRIP001          rToFill.SetEntryData( nPos, (void*) (nPoolId));
-//STRIP001      }
-//STRIP001  }
-//STRIP001 };
 
 /* -----------------27.04.98 08:26-------------------
  *
  * --------------------------------------------------*/
-//STRIP001 SwTwips GetTableWidth( SwFrmFmt* pFmt, SwTabCols& rCols, USHORT *pPercent,
-//STRIP001          SwWrtShell* pSh )
-//STRIP001 {
-//STRIP001  //Die Breite zu besorgen ist etwas komplizierter.
-//STRIP001  SwTwips nWidth;
-//STRIP001  const SwHoriOrient eOri = pFmt->GetHoriOrient().GetHoriOrient();
-//STRIP001  switch(eOri)
-//STRIP001  {
-//STRIP001      case HORI_FULL: nWidth = rCols.GetRight(); break;
-//STRIP001      case HORI_LEFT_AND_WIDTH:
-//STRIP001      case HORI_LEFT:
-//STRIP001      case HORI_RIGHT:
-//STRIP001      case HORI_CENTER:
-//STRIP001          nWidth = pFmt->GetFrmSize().GetWidth();
-//STRIP001      break;
-//STRIP001      default:
-//STRIP001      {
-//STRIP001          if(pSh)
-//STRIP001          {
-//STRIP001              const SwFrmFmt *pFlyFmt;
-//STRIP001              if ( 0 == (pFlyFmt = pSh->GetFlyFrmFmt()) )
-//STRIP001              {
-//STRIP001                  nWidth = pSh->GetAnyCurRect(RECT_PAGE_PRT).Width();
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  nWidth = pSh->GetAnyCurRect(RECT_FLY_PRT_EMBEDDED).Width();
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              DBG_ERROR("wo soll die Breite denn herkommen?")
-//STRIP001          }
-//STRIP001          const SvxLRSpaceItem& rLRSpace = pFmt->GetLRSpace();
-//STRIP001          nWidth -= (rLRSpace.GetRight() + rLRSpace.GetLeft());
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (pPercent)
-//STRIP001      *pPercent = pFmt->GetFrmSize().GetWidthPercent();
-//STRIP001  return nWidth;
-//STRIP001 }
 
 /*------------------------------------------------------------------------*/
 
-//STRIP001 String GetAppLangDateTimeString( const DateTime& rDT )
-//STRIP001 {
-//STRIP001  LocaleDataWrapper& rAppLclData = GetAppLocaleData();
-//STRIP001  String sRet( rAppLclData.getDate( rDT ));
-//STRIP001  ( sRet += ' ' ) += rAppLclData.getTime( rDT, FALSE, FALSE );
-//STRIP001  return sRet;
-//STRIP001 }
 }
