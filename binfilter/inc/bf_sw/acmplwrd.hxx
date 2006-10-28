@@ -4,9 +4,9 @@
  *
  *  $RCSfile: acmplwrd.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:46:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:34:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,12 +61,8 @@ public:
     ~SwAutoCompleteWord();
 
     BOOL InsertWord( const String& rWord, SwDoc& rDoc );
-//STRIP001  BOOL RemoveWord( const String& rWord );
-//STRIP001  BOOL SearchWord( const String& rWord, USHORT* pFndPos = 0 ) const;
 
-//STRIP001  BOOL GetRange( const String& rWord, USHORT& rStt, USHORT& rEnd ) const;
 
-//STRIP001  BOOL SetToTop( const String& rWord );
 
     USHORT Count() const { return aWordLst.Count(); }
 
@@ -76,13 +72,10 @@ public:
     void SetLockWordLstLocked( BOOL bFlag ) { bLockWordLst = bFlag; }
 
     USHORT GetMaxCount() const              { return nMaxCount; }
-//STRIP001  void SetMaxCount( USHORT n );
 
     USHORT GetMinWordLen() const                { return nMinWrdLen; }
-//STRIP001  void SetMinWordLen( USHORT n );
 
     const SvStringsISortDtor& GetWordList() const { return aWordLst; }
-//STRIP001  void CheckChangedList( const SvStringsISortDtor& rNewLst );
 };
 
 
