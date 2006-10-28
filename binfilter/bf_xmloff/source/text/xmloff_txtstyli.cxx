@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtstyli.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:39:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:22:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,43 +33,19 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
-// auto strip #include <com/sun/star/style/XStyle.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HPP_
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
 #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
-// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX
-// auto strip #include "families.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
 #include "XMLTextPropertySetContext.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
-// auto strip #include "xmltkmap.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
@@ -83,9 +59,6 @@
 #ifndef _XMLOFF_TXTSTYLI_HXX
 #include "txtstyli.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
-// auto strip #include "attrlist.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
