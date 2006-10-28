@@ -4,9 +4,9 @@
  *
  *  $RCSfile: plight3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:10:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:52:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@ class E3dPointLight : public E3dLight
 
     virtual ~E3dPointLight();
 
-//STRIP001  virtual UINT16 GetObjIdentifier() const;
 
     virtual FASTBOOL CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,

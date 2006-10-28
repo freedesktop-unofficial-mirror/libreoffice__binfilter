@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pntobj3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:11:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:53:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@ class E3dPointObj : public E3dObject
     E3dPointObj(const Vector3D& rPos);
     E3dPointObj();
 
-//STRIP001  virtual UINT16 GetObjIdentifier() const;
 
     virtual void SetPosition(const Vector3D& rNewPos);
     const Vector3D& GetPosition() const { return aPosition; }
@@ -71,7 +70,6 @@ class E3dPointObj : public E3dObject
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-//STRIP001  virtual void operator=(const SdrObject&);
 };
 
 }//end of namespace binfilter

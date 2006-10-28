@@ -4,9 +4,9 @@
  *
  *  $RCSfile: poly3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:11:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:53:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,6 @@ public:
 
     void CheckPointDelete();
     void Resize(UINT16 nNewSize, BOOL bDeletePoints = TRUE);
-//STRIP001  void InsertSpace(UINT16 nPos, UINT16 nCount);
     void Remove(UINT16 nPos, UINT16 nCount);
 };
 #endif
@@ -148,19 +147,15 @@ public:
     // Korrigiert das closed-Flag und entfernt den doppelten Punkt
     void CheckClosed();
 
-//STRIP001  void SetSize(UINT16 nSize);
-//STRIP001  UINT16 GetSize() const;
 
     void SetPointCount(UINT16 nPoints);
     UINT16 GetPointCount() const;
 
-//STRIP001  void Remove(UINT16 nPos, UINT16 nCount);
 
     const Vector3D& operator[](UINT16 nPos) const;
     Vector3D& operator[](UINT16 nPos);
     Polygon3D& operator= (const Polygon3D& rPoly3D);
     BOOL operator==(const Polygon3D& rPoly3D) const;
-//STRIP001  BOOL operator!=(const Polygon3D& rPoly3D) const;
 
     // Drehrichtung feststellen (fuer Polygone in der XY-Ebene) bzw. umkehren
     BOOL IsClockwise(const Vector3D &rNormal) const;
@@ -176,11 +171,8 @@ public:
     void RemoveDoublePoints();
 
     // Ueberlappen sich das aktuelle und das angegebene Polygon ?
-//STRIP001  BOOL DoesBoundVolumeOverlap(const Polygon3D& rOrig, UINT16 nDegreeFlag=DEGREE_FLAG_ALL) const;
-//STRIP001  BOOL DoesOverlap(const Polygon3D& rOrig, UINT16 nDegreeFlag=DEGREE_FLAG_ALL) const;
 
     // Existiert ein Schnitt zwischen den Polys?
-//STRIP001  BOOL DoesCut(const Polygon3D& rOrig, UINT16 nDegreeFlag=DEGREE_FLAG_ALL) const;
 
     void Transform(const Matrix4D& rTfMatrix);
 
@@ -193,7 +185,6 @@ public:
 
     Volume3D GetPolySize() const;
     double GetPolyArea(const Vector3D& rNormal) const;
-//STRIP001  double GetPolyArea() const;
 
     // Laenge des Polygons liefern
     double GetLength() const;
@@ -205,30 +196,16 @@ public:
     // Dabei ist der Rueckgabewert != 0.0, wenn der Schnitt innerhalb
     // der Parameterbereiche der Kanten liegt und gibt den Wert ]0.0, 1.0]
     // innerhalb der ersten Kante an.
-//STRIP001  UINT16 FindCut(UINT16 nEdge1, UINT16 nEdge2,
-//STRIP001      UINT16 nCutFlags = CUTFLAG_DEFAULT,
-//STRIP001      double* pCut1 = 0L, double* pCut2 = 0L) const;
 
     // Diese Version arbeitet mit der Kante nEdge1 aus dem lokalen
     // Polygon und nEdge2 aus dem uebergebenen
-//STRIP001  UINT16 FindCut(UINT16 nEdge1, const Polygon3D& rPoly3D, UINT16 nEdge2,
-//STRIP001      UINT16 nCutFlags = CUTFLAG_DEFAULT,
-//STRIP001      double* pCut1 = 0L, double* pCut2 = 0L) const;
 
     // Diese Version nimmt die Startpunkte und Vektoren (relative Angabe
     // des Endpunktes) zweier Kanten
-//STRIP001  static UINT16 FindCut(
-//STRIP001      const Vector3D& rEdge1Start, const Vector3D& rEdge1Delta,
-//STRIP001      const Vector3D& rEdge2Start, const Vector3D& rEdge2Delta,
-//STRIP001      UINT16 nCutFlags = CUTFLAG_DEFAULT,
-//STRIP001      double* pCut1 = 0L, double* pCut2 = 0L);
 
     // test if point is on line in range ]0.0..1.0[ without
     // the points. If so, return TRUE and put the parameter
     // value in pCut (if provided)
-//STRIP001  static BOOL FindPointInLine(const Vector3D& rPoint,
-//STRIP001      const Vector3D& rEdgeStart, const Vector3D& rEdgeDelta,
-//STRIP001      double* pCut = 0L);
 
     // Orientierung im Punkt nIndex liefern
     BOOL GetPointOrientation(UINT16 nIndex) const;
@@ -267,27 +244,20 @@ public:
     ~PolyPolygon3D();
 
     // Korrigiert das closed-Flag und entfernt den doppelten Punkt
-//STRIP001  void CheckClosed();
 
     void Insert(const Polygon3D& rPoly3D, UINT16 nPos = POLYPOLY3D_APPEND);
     void Insert(const PolyPolygon3D& rPoly3D, UINT16 nPos = POLYPOLY3D_APPEND);
 
-//STRIP001  Polygon3D Remove(UINT16 nPos);
-//STRIP001  Polygon3D Replace(const Polygon3D& rPoly3D, UINT16 nPos);
 
     const Polygon3D& GetObject(UINT16 nPos) const;
 
     void Clear();
     UINT16 Count() const;
-//STRIP001  BOOL IsInside(const Vector3D& rPnt, BOOL bWithBorder=FALSE) const;
-//STRIP001  BOOL IsInside(const Polygon3D& rPoly, BOOL bWithBorder=TRUE) const;
-//STRIP001  BOOL GetCutPoint(Vector3D &rCut, const Vector3D &rLeft, const Vector3D &rRight) const;
 
     const Polygon3D& operator[](UINT16 nPos) const { return GetObject(nPos); }
     Polygon3D& operator[](UINT16 nPos);
 
     PolyPolygon3D& operator=(const PolyPolygon3D& rPolyPoly3D);
-//STRIP001  BOOL operator==(const PolyPolygon3D& rPolyPoly3D) const;
     BOOL operator!=(const PolyPolygon3D& rPolyPoly3D) const;
 
     void Transform(const Matrix4D& rTfMatrix);
@@ -304,15 +274,12 @@ public:
     void RemoveDoublePoints();
 
     // Remove all completely overlapping polygons
-//STRIP001  UINT16 RemoveContainedPolygons(BOOL bRemoveHoles=FALSE, BOOL bWithBorder=TRUE);
 
     // evtl. entstandene Selbstueberschneidungen in Eckpunkten
     // ohne Punktreduzierung korrigieren
     void CorrectGrownPoly(const PolyPolygon3D& rOrig);
 
     // Ueberlappen sich das aktuelle und das angegebene PolyPolygon ?
-//STRIP001  BOOL DoesBoundVolumeOverlap(const PolyPolygon3D& rOrig, UINT16 nDegreeFlag=DEGREE_FLAG_ALL) const;
-//STRIP001  BOOL DoesOverlap(const PolyPolygon3D& rOrig, UINT16 nDegreeFlag=DEGREE_FLAG_ALL) const;
 
     friend SvStream& operator>>(SvStream& rIStream, PolyPolygon3D& rPolyPoly3D);
     friend SvStream& operator<<(SvStream& rOStream, const PolyPolygon3D& rPolyPoly3D);
@@ -338,7 +305,6 @@ public:
     // merge the contents of the whole PolyPolygon to contain no more
     // cuts or overlaps. Makes all necessary merges between all
     // contained polygons. Preserves Holes.
-//STRIP001  void Merge(BOOL bForceClockwise = TRUE, BOOL bInvertRemove = FALSE);
 };
 
 }//end of namespace binfilter
