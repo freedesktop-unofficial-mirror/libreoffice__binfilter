@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_ximpnote.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:01:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:46:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #include "ximpnote.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
-// auto strip #include <com/sun/star/presentation/XPresentationPage.hpp>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
