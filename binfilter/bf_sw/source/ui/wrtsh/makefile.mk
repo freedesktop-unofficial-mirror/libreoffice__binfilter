@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:07:09 $
+#   last change: $Author: rt $ $Date: 2006-10-28 01:34:59 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,15 +52,6 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_move.cxx \
-        sw_select.cxx \
-        sw_wrtsh1.cxx \
-        sw_wrtsh2.cxx \
-        sw_wrtsh3.cxx \
-        sw_delete.cxx \
-        sw_wrtundo.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
         sw_wrtsh.src
@@ -69,9 +60,7 @@ SLOFILES =  \
         $(SLO)$/sw_move.obj \
         $(SLO)$/sw_select.obj \
         $(SLO)$/sw_wrtsh1.obj \
-        $(SLO)$/sw_wrtsh2.obj \
         $(SLO)$/sw_wrtsh3.obj \
-        $(SLO)$/sw_delete.obj \
         $(SLO)$/sw_wrtundo.obj
 
 # --- Tagets -------------------------------------------------------
