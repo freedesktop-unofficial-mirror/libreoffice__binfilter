@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextListAutoStylePool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:12:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:17:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,17 +44,11 @@
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
 #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
