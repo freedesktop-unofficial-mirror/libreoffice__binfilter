@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bolnitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:05:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:21:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,29 +55,10 @@ class SvxLineItem : public SfxPoolItem
 {
 public:
     TYPEINFO();
-//STRIP001
     SvxLineItem( const USHORT nId = ITEMID_LINE );
-//STRIP001  SvxLineItem( const SvxLineItem& rCpy );
-//STRIP001  ~SvxLineItem();
-//STRIP001  SvxLineItem &operator=( const SvxLineItem& rLine );
-//STRIP001
-//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-//STRIP001  virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
-//STRIP001  virtual int              ScaleMetrics( long nMult, long nDiv );
-//STRIP001  virtual int              HasMetrics() const;
-//STRIP001
-//STRIP001  const   SvxBorderLine*  GetLine     () const { return pLine; }
     void                    SetLine     ( const SvxBorderLine *pNew );
-//STRIP001
 private:
     SvxBorderLine*  pLine;
 };
