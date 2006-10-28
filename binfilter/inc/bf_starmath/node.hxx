@@ -4,9 +4,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:48:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:13:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -150,7 +150,6 @@ public:
     virtual void Prepare(const SmFormat &rFormat, const SmDocShell &rDocShell);
     virtual void PrepareAttributes();
 
-//STRIP001          void ToggleDebug() const;
 
     void         SetRectHorAlign(RectHorAlign eHorAlign, BOOL bApplyToSubTree = TRUE );
     RectHorAlign GetRectHorAlign() const { return eRectHorAlign; }
@@ -165,9 +164,6 @@ public:
 
     virtual void Draw(OutputDevice &rDev, const Point &rPosition) const;
 
-//STRIP001     virtual void    GetAccessibleText( String &rText ) const;
-//STRIP001     sal_Int32       GetAccessibleIndex() const { return nAccIndex; }
-//STRIP001     const SmNode *  FindNodeWithAccessibleIndex(xub_StrLen nAccIndex) const;
 
     USHORT  GetRow() const    { return (USHORT)aNodeToken.nRow; }
     USHORT  GetColumn() const { return (USHORT)aNodeToken.nCol; }
@@ -182,7 +178,6 @@ public:
     const SmToken & GetToken() const { return aNodeToken; }
 
     const SmNode *  FindTokenAt(USHORT nRow, USHORT nCol) const;
-//STRIP001  const SmNode *  FindRectClosestTo(const Point &rPoint) const;
 };
 
 
@@ -217,7 +212,6 @@ public:
 
      virtual SmStructureNode & operator = ( const SmStructureNode &rNode );
 
-//STRIP001     virtual void  GetAccessibleText( String &rText ) const;
 };
 
 
@@ -251,7 +245,6 @@ protected:
 
 public:
 
-//STRIP001     virtual void  GetAccessibleText( String &rText ) const;
 };
 
 
@@ -272,7 +265,6 @@ public:
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
     virtual void Draw(OutputDevice &rDev, const Point &rPosition) const;
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -327,11 +319,9 @@ public:
 
     virtual void Prepare(const SmFormat &rFormat, const SmDocShell &rDocShell);
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  virtual void CreateTextFromNode(String &rText);
 
     virtual void Draw(OutputDevice &rDev, const Point &rPosition) const;
 
-//STRIP001     virtual void  GetAccessibleText( String &rText ) const;
 };
 
 
@@ -392,7 +382,6 @@ public:
 
     virtual void Prepare(const SmFormat &rFormat, const SmDocShell &rDocShell);
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -496,7 +485,6 @@ public:
     {}
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -534,7 +522,6 @@ public:
     }
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -569,7 +556,6 @@ public:
     virtual SmNode * GetLeftMost();
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -643,7 +629,6 @@ public:
     SmNode * GetSubSup(SmSubSup eSubSup) { return GetSubNode(1 + eSubSup); };
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 
 };
 
@@ -661,7 +646,6 @@ public:
     }
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -755,7 +739,6 @@ public:
     {}
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -781,7 +764,6 @@ public:
 
     virtual void Prepare(const SmFormat &rFormat, const SmDocShell &rDocShell);
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
@@ -807,7 +789,6 @@ public:
     virtual SmNode * GetLeftMost();
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001  void CreateTextFromNode(String &rText);
 };
 
 
