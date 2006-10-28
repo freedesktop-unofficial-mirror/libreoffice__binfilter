@@ -4,9 +4,9 @@
  *
  *  $RCSfile: brshitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-06-02 12:24:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:22:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,6 @@ class SvxBrushItem : public SfxPoolItem
     BOOL                bLoadAgain;
 
     void        ApplyGraphicTransparency_Impl();
-//STRIP001     DECL_STATIC_LINK( SvxBrushItem, DoneHdl_Impl, void *);
     // wird nur von Create benutzt
     SvxBrushItem( SvStream& rStrm,
                   USHORT nVersion, USHORT nWhich = ITEMID_BRUSH );
@@ -116,10 +115,6 @@ public:
 
 public:
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual int              operator==( const SfxPoolItem& ) const;
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
@@ -134,12 +129,9 @@ public:
     Color&          GetColor()                      { return aColor; }
     void            SetColor( const Color& rCol)    { aColor = rCol; }
 
-//STRIP001  void                SetDoneLink( const Link& rLink );
 
     SvxGraphicPosition  GetGraphicPos() const       { return eGraphicPos; }
 
-//STRIP001  void                PurgeGraphic() const;
-//STRIP001  void                PurgeMedium() const;
 
     const Graphic*          GetGraphic( SfxObjectShell* pSh = 0) const;
     const GraphicObject*    GetGraphicObject( SfxObjectShell* pSh = 0) const;
@@ -148,16 +140,12 @@ public:
 
     void                SetGraphicPos( SvxGraphicPosition eNew );
     void                SetGraphic( const Graphic& rNew );
-//STRIP001  void                SetGraphicObject( const GraphicObject& rNewObj );
     void                SetGraphicLink( const String& rNew );
     void                SetGraphicFilter( const String& rNew );
 
     SvxBrushItem&       operator=( const SvxBrushItem& rItem);
 
     static void                 InitSfxLink();
-//STRIP001  static SvxGraphicPosition   WallpaperStyle2GraphicPos( WallpaperStyle eStyle );
-//STRIP001  static WallpaperStyle       GraphicPos2WallpaperStyle( SvxGraphicPosition ePos );
-//STRIP001  CntWallpaperItem*           CreateCntWallpaperItem() const;
 };
 
 }//end of namespace binfilter
