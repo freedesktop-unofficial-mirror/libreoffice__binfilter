@@ -4,9 +4,9 @@
  *
  *  $RCSfile: module.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:27:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:04:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -112,7 +112,6 @@ public:
 
     void                        RegisterToolBoxControl(SfxTbxCtrlFactory*);
     void                        RegisterChildWindow(SfxChildWinFactory*);
-//STRIP001  void                        RegisterChildWindowContext( sal_uInt16, SfxChildWinContextFactory* );
     void                        RegisterStatusBarControl(SfxStbCtrlFactory*);
     void                        RegisterMenuControl(SfxMenuCtrlFactory*);
 
@@ -127,7 +126,6 @@ public:
     SfxStbCtrlFactArr_Impl*     GetStbCtrlFactories_Impl() const;
     SfxMenuCtrlFactArr_Impl*    GetMenuCtrlFactories_Impl() const;
     SfxChildWinFactArr_Impl*    GetChildWinFactories_Impl() const;
-//STRIP001     ImageList*                  GetImageList_Impl( BOOL bBig );
     ImageList*                  GetImageList_Impl( BOOL bBig, BOOL bHiContrast );
 #endif
 };
