@@ -4,9 +4,9 @@
  *
  *  $RCSfile: smmod.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:50:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:13:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -124,7 +124,6 @@ public:
     const ResStringArray& GetUiSymbolSetNamesArray() const     { return aUiSymbolSetNamesAry; }
     const ResStringArray& GetExportSymbolSetNamesArray() const { return aExportSymbolSetNamesAry; }
     const String          GetUiSymbolSetName( const String &rExportName ) const;
-//STRIP001     const String          GetExportSymbolSetName( const String &rUiName ) const;
 
     const ResStringArray* Get50NamesArray( LanguageType nLang );
     const ResStringArray* Get60NamesArray( LanguageType nLang );
@@ -154,8 +153,6 @@ public:
     SmModule(SvFactory* pObjFact);
     virtual ~SmModule();
 
-//STRIP001  virtual SfxModule * Load();
-//STRIP001  virtual void        Free();
 
     // SfxListener
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
@@ -184,9 +181,6 @@ public:
     }
 
     //virtuelle Methoden fuer den Optionendialog
-//STRIP001  virtual SfxItemSet*  CreateItemSet( USHORT nId );
-//STRIP001  virtual void         ApplyItemSet( USHORT nId, const SfxItemSet& rSet );
-//STRIP001  virtual SfxTabPage*  CreateTabPage( USHORT nId, Window* pParent, const SfxItemSet& rSet );
 };
 
 #define SM_MOD1() ( *(SmModule**) GetAppData(BF_SHL_SM) )
