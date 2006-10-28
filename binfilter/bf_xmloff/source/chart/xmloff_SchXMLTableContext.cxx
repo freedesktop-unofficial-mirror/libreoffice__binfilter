@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLTableContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:38:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:38:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,8 +35,6 @@
 
 #include "SchXMLTableContext.hxx"
 #include "SchXMLParagraphContext.hxx"
-// auto strip #include "SchXMLImport.hxx"
-// auto strip #include "transporttypes.hxx"
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -48,9 +46,6 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
@@ -58,18 +53,9 @@
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
-// auto strip #include <com/sun/star/chart/ChartDataRowSource.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
 #endif
