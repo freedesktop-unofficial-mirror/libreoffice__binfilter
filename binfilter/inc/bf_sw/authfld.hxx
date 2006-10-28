@@ -4,9 +4,9 @@
  *
  *  $RCSfile: authfld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:46:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:34:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -169,9 +169,6 @@ public:
     USHORT              GetSortKeyCount() const ;
     const SwTOXSortKey* GetSortKey(USHORT nIdx) const ;
     void                SetSortKeys(USHORT nKeyCount, SwTOXSortKey nKeys[]);
-//STRIP001
-//STRIP001  //initui.cxx
-//STRIP001  static const String&    GetAuthFieldName(ToxAuthorityField eType);
     static const String&    GetAuthTypeName(ToxAuthorityType eType);
 
     LanguageType    GetLanguage() const {return m_eLanguage;}
