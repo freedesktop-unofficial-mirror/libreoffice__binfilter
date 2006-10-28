@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SchAddInCollection.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:38:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:45:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,6 @@
 #define _SCH_ADDINCOLLECTION_HXX_
 
 #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #include <com/sun/star/uno/Reference.hxx>
 #include <com/sun/star/util/XRefreshable.hpp>
 namespace rtl {
     class OUString;
