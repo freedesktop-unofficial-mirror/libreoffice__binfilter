@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dpobject.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:09:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:34:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -109,7 +109,6 @@ private:
 
 
     void                CreateObjects();
-//STRIP001  void                CreateOutput();
 
 public:
                 ScDPObject( ScDocument* pD );
@@ -123,8 +122,6 @@ public:
     void                InvalidateData();
     void                InvalidateSource();
 
-//STRIP001  void                Output();
-//STRIP001  ScRange             GetNewOutputRange( BOOL& rOverflow );
 
     void                SetSaveData(const ScDPSaveData& rData);
     ScDPSaveData*       GetSaveData() const     { return pSaveData; }
@@ -136,13 +133,11 @@ public:
     void                SetImportDesc(const ScImportSourceDesc& rDesc);
     void                SetServiceData(const ScDPServiceDesc& rDesc);
 
-//STRIP001  void                WriteSourceDataTo( ScDPObject& rDest ) const;
 
     const ScSheetSourceDesc* GetSheetDesc() const   { return pSheetDesc; }
     const ScImportSourceDesc* GetImportSourceDesc() const   { return pImpDesc; }
     const ScDPServiceDesc* GetDPServiceDesc() const { return pServDesc; }
 
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XDimensionsSupplier> GetSource();
 
     BOOL                IsSheetData() const;
     BOOL                IsImportData() const { return(pImpDesc != NULL); }
@@ -153,21 +148,12 @@ public:
     void                SetTag(const String& rNew);
     const String&       GetTag() const                  { return aTableTag; }
 
-//STRIP001  String              GetDimName( long nDim, BOOL& rIsDataLayout );
-//STRIP001  void                GetPositionData( ScDPPositionData& rData, const ScAddress& rPos );
-//STRIP001  long                GetHeaderDim( const ScAddress& rPos );
-//STRIP001  BOOL                GetHeaderDrag( const ScAddress& rPos, BOOL bMouseLeft, BOOL bMouseTop,
-//STRIP001                                      long nDragDim,
-//STRIP001                                      Rectangle& rPosRect, USHORT& rOrient, long& rDimPos );
-//STRIP001  BOOL                IsFilterButton( const ScAddress& rPos );
 
-//STRIP001  void                ToggleDetails( ScDPPositionData& rElemDesc, ScDPObject* pDestObj );
 
     BOOL                StoreOld(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
     BOOL                StoreNew(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
     BOOL                LoadNew(SvStream& rStream, ScMultipleReadHeader& rHdr );
     BOOL                FillOldParam(ScPivotParam& rParam, BOOL bForFile) const;
-//STRIP001  BOOL                FillLabelData(ScPivotParam& rParam, BOOL* pShowAll, USHORT nShowAllMax) const;
     void                InitFromOldPivot(const ScPivot& rOld, ScDocument* pDoc, BOOL bSetSource);
 
     void                UpdateReference( UpdateRefMode eUpdateRefMode,
@@ -175,10 +161,6 @@ public:
     BOOL                RefsEqual( const ScDPObject& r ) const;
     void                WriteRefsTo( ScDPObject& r ) const;
 
-//STRIP001  static BOOL         HasRegisteredSources();
-//STRIP001  static ::com::sun::star::uno::Sequence<rtl::OUString> GetRegisteredSources();
-//STRIP001  static ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XDimensionsSupplier>
-//STRIP001                      CreateSource( const ScDPServiceDesc& rDesc );
 
     static void         ConvertOrientation( ScDPSaveData& rSaveData,
                             PivotField* pFields, USHORT nCount, USHORT nOrient,

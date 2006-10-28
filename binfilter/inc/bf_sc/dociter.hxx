@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dociter.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:07:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:33:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -356,71 +356,11 @@ private:
 //  gibt alle Bereiche mit nicht-Default-Formatierung zurueck (horizontal)
 //
 
-//STRIP001 class ScHorizontalAttrIterator
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ScDocument*             pDoc;
-//STRIP001  USHORT                  nTab;
-//STRIP001  USHORT                  nStartCol;
-//STRIP001  USHORT                  nStartRow;
-//STRIP001  USHORT                  nEndCol;
-//STRIP001  USHORT                  nEndRow;
-//STRIP001
-//STRIP001  USHORT*                 pNextEnd;
-//STRIP001  USHORT*                 pIndices;
-//STRIP001  const ScPatternAttr**   ppPatterns;
-//STRIP001  USHORT                  nCol;
-//STRIP001  USHORT                  nRow;
-//STRIP001  BOOL                    bRowEmpty;
-//STRIP001
-//STRIP001 public:
-//STRIP001          ScHorizontalAttrIterator( ScDocument* pDocument, USHORT nTable,
-//STRIP001                                  USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 );
-//STRIP001          ~ScHorizontalAttrIterator();
-//STRIP001
-//STRIP001  const ScPatternAttr*    GetNext( USHORT& rCol1, USHORT& rCol2, USHORT& rRow );
-//STRIP001 };
 
 //
 //  gibt nichtleere Zellen und Bereiche mit Formatierung zurueck (horizontal)
 //
 
-//STRIP001 class ScUsedAreaIterator
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ScHorizontalCellIterator    aCellIter;
-//STRIP001  ScHorizontalAttrIterator    aAttrIter;
-//STRIP001
-//STRIP001  USHORT                  nNextCol;
-//STRIP001  USHORT                  nNextRow;
-//STRIP001
-//STRIP001  USHORT                  nCellCol;
-//STRIP001  USHORT                  nCellRow;
-//STRIP001  const ScBaseCell*       pCell;
-//STRIP001  USHORT                  nAttrCol1;
-//STRIP001  USHORT                  nAttrCol2;
-//STRIP001  USHORT                  nAttrRow;
-//STRIP001  const ScPatternAttr*    pPattern;
-//STRIP001
-//STRIP001  USHORT                  nFoundStartCol;         // Ergebnisse nach GetNext
-//STRIP001  USHORT                  nFoundEndCol;
-//STRIP001  USHORT                  nFoundRow;
-//STRIP001  const ScPatternAttr*    pFoundPattern;
-//STRIP001  const ScBaseCell*       pFoundCell;
-//STRIP001
-//STRIP001 public:
-//STRIP001          ScUsedAreaIterator( ScDocument* pDocument, USHORT nTable,
-//STRIP001                              USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 );
-//STRIP001          ~ScUsedAreaIterator();
-//STRIP001
-//STRIP001  BOOL    GetNext();
-//STRIP001
-//STRIP001  USHORT                  GetStartCol() const     { return nFoundStartCol; }
-//STRIP001  USHORT                  GetEndCol() const       { return nFoundEndCol; }
-//STRIP001  USHORT                  GetRow() const          { return nFoundRow; }
-//STRIP001  const ScPatternAttr*    GetPattern() const      { return pFoundPattern; }
-//STRIP001  const ScBaseCell*       GetCell() const         { return pFoundCell; }
-//STRIP001 };
 
 } //namespace binfilter
 #endif

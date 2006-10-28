@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docpool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:08:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:33:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,21 +63,12 @@ public:
             ScDocumentPool( SfxItemPool* pSecPool = NULL, BOOL bLoadRefCounts = FALSE );
             ~ScDocumentPool();
 
-//STRIP001  virtual SfxItemPool*        Clone() const;
-//STRIP001  virtual SfxMapUnit          GetMetric( USHORT nWhich ) const;
 
     virtual const SfxPoolItem&  Put( const SfxPoolItem&, USHORT nWhich = 0 );
     virtual void                Remove( const SfxPoolItem& );
     static void                 CheckRef( const SfxPoolItem& );
     void                        MyLoadCompleted();
 
-//STRIP001  void StyleDeleted( ScStyleSheet* pStyle );      // Loeschen von Vorlagen im Organizer
-//STRIP001  virtual SfxItemPresentation     GetPresentation(
-//STRIP001                                      const SfxPoolItem&  rItem,
-//STRIP001                                      SfxItemPresentation ePresentation,
-//STRIP001                                      SfxMapUnit          ePresentationMetric,
-//STRIP001                                      String&             rText,
-//STRIP001                                         const IntlWrapper* pIntl = 0 ) const;
 
     static void InitVersionMaps();
     static void DeleteVersionMaps();
