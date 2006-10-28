@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmleohlp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:39:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:32:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
 #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _SVSTOR_HXX
 #include <so3/svstor.hxx>
 #endif
@@ -50,9 +47,6 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTRESOLVER_HPP_
 #include <com/sun/star/document/XEmbeddedObjectResolver.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-// auto strip #include <com/sun/star/container/XNameAccess.hpp>
-// auto strip #endif
 class SvPersist;
 class SvGlobalName;
 namespace binfilter {
