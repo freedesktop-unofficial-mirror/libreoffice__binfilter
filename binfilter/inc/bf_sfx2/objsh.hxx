@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:30:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:05:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -214,7 +214,6 @@ private:
 #if _SOLAR__PRIVATE
     void                        Construct_Impl();
     SfxDocumentInfo&            UpdateTime_Impl(SfxDocumentInfo &);
-//STRIP001  void                        DocInfoDlg_Impl( SfxDocumentInfo & );
     sal_Bool                    MakeBackup_Impl(const String &rName,
                                                 sal_Bool bCopyAllways = sal_False);
     void                        SetEAs_Impl( SfxMedium &rMedium );
@@ -278,7 +277,6 @@ public:
     void                        SetHasName( sal_Bool bSet = sal_True ) { bHasName = bSet; }
     sal_Bool                    IsReadOnly() const;
     sal_Bool                    IsReadOnlyMedium() const;
-//STRIP001  void                        SetReadOnlyUI( sal_Bool bReadOnly = sal_True );
     sal_Bool                    IsReadOnlyUI() const;
     void                        SetNoName();
     sal_Bool                    IsInModalMode() const;
@@ -286,7 +284,6 @@ public:
     sal_Bool                    IsInPrepareClose() const;
     sal_Bool                    IsHelpDocument() const;
 #if _SOLAR__PRIVATE
-//STRIP001  void                        SetModalMode_Impl(sal_Bool bModal=sal_True);
     void                        SetMacroMode_Impl(sal_Bool bModal=sal_True);
 #endif
 
@@ -321,8 +318,6 @@ public:
 
     virtual String              QueryTitle( SfxTitleQuery ) const;
 
-//STRIP001  virtual SfxDocumentInfoDialog* CreateDocumentInfoDialog(
-//STRIP001                                      Window *pParent, const SfxItemSet& );
     sal_Bool                    IsBasic( const String & rCode, SbxObject * pVCtrl = NULL );
 
     ErrCode                     CallBasic( const String& rMacro, const String& rBasicName,
@@ -365,9 +360,7 @@ public:
 
     SfxConfigManager*           GetConfigManager( BOOL bCreate = FALSE );
     void                        SetConfigManager(SfxConfigManager *pMgr);
-//STRIP001  void                        SetTemplateConfig(sal_Bool);
     sal_Bool                    HasTemplateConfig() const;
-//STRIP001  void                        TransferConfig( SfxObjectShell& rObjSh );
 
     sal_Bool                    IsTemplate() const;
     void                        SetTemplate(sal_Bool bIs);
@@ -438,8 +431,6 @@ public:
     BasicManager*               GetBasicManager() const;
     ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
                                 GetBasicContainer();
-//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
-//STRIP001                              GetDialogContainer();
     StarBASIC*                  GetBasic() const;
 
     // Interface Dok-Inhalte, Organizer
@@ -450,15 +441,10 @@ public:
 #define CONTENT_MACRO 2
 #define DEF_CONTENT_COUNT 1
 
-//STRIP001  virtual void                SetOrganizerSearchMask(
-//STRIP001                                  SfxStyleSheetBasePool* ) const;
 
     virtual sal_uInt16          GetContentCount(
                                         sal_uInt16 nIdx1 = INDEX_IGNORE,
                                         sal_uInt16 nIdx2 = INDEX_IGNORE );
-//STRIP001  virtual sal_Bool            CanHaveChilds(
-//STRIP001                                      sal_uInt16 nIdx1,
-//STRIP001                                          sal_uInt16 nIdx2 = INDEX_IGNORE );
     virtual void                GetContent( String &,
                                         Bitmap &rClosedBitmap,
                                         Bitmap &rOpenedBitmap,
@@ -476,31 +462,10 @@ public:
                                         sal_uInt16 nIdx1,
                                         sal_uInt16 nIdx2 = INDEX_IGNORE );
 
-//STRIP001  virtual void                TriggerHelpPI(
-//STRIP001                                  sal_uInt16 nIdx1, sal_uInt16 nIdx2, sal_uInt16 nIdx3);
 
-//STRIP001  virtual Bitmap              GetStyleFamilyBitmap(SfxStyleFamily eFamily );
-//STRIP001
-//STRIP001  virtual Bitmap              GetStyleFamilyBitmap(SfxStyleFamily eFamily, BmpColorMode eColorMode );
 
-//STRIP001  virtual sal_Bool            Insert( SfxObjectShell &rSource,
-//STRIP001                                      sal_uInt16 nSourceIdx1,
-//STRIP001                                      sal_uInt16 nSourceIdx2,
-//STRIP001                                      sal_uInt16 nSourceIdx3,
-//STRIP001                                      sal_uInt16 &nIdx1,
-//STRIP001                                      sal_uInt16 &nIdx2,
-//STRIP001                                      sal_uInt16 &nIdx3,
-//STRIP001                                      sal_uInt16 &rIdxDeleted);
 
-//STRIP001  virtual sal_Bool            Remove( sal_uInt16 nIdx1,
-//STRIP001                                      sal_uInt16 nIdx2 = INDEX_IGNORE,
-//STRIP001                                      sal_uInt16 nIdx3 = INDEX_IGNORE);
 
-//STRIP001  virtual sal_Bool            Print( Printer &rPrt,
-//STRIP001                                     sal_uInt16 nIdx1,
-//STRIP001                                     sal_uInt16 nIdx2 = INDEX_IGNORE,
-//STRIP001                                     sal_uInt16 nIdx3 = INDEX_IGNORE,
-//STRIP001                                     const String *pObjectName = 0 );
 
     virtual void                LoadStyles( SfxObjectShell &rSource );
     void                        ReadNote( INote * );
@@ -529,7 +494,6 @@ public:
     SotStorageStreamRef         GetConfigurationStream( const String& rName, BOOL bCreate=FALSE );
     SvStorageRef                GetConfigurationStorage( SotStorage* pStor=NULL );
 
-//STRIP001     Window*                     GetDialogParent( SfxMedium* pMedium=0 );
     String                      UpdateTitle( SfxMedium* pMed=NULL, USHORT nDocViewNo=0 );
 
 #if _SOLAR__PRIVATE
@@ -538,7 +502,6 @@ public:
     SfxObjectShell_Impl*        Get_Impl() { return pImp; }
     const SfxObjectShell_Impl*  Get_Impl() const { return pImp; }
 
-//STRIP001  void                        SetCreateMode_Impl( SfxObjectCreateMode nMode );
 
     // Shell Interface
     void                        ExecFile_Impl(SfxRequest &);
@@ -560,7 +523,6 @@ public:
     sal_Bool                    Save_Impl( const SfxItemSet* pSet=0 );
     void                        UpdatePickList_Impl();
     sal_Bool                    PreDoSaveAs_Impl(const String &rFileName, const String &rFiltName, SfxItemSet *);
-//STRIP001  sal_Bool                    GUISaveAs_Impl( sal_Bool bUrl, SfxRequest *pRequest = 0);
     sal_Bool                    APISaveAs_Impl ( const String& aFileName, SfxItemSet* aParams );
     sal_Bool                    CommonSaveAs_Impl ( const INetURLObject& aURL, const String& aFilterName, SfxItemSet* aParams );
 
