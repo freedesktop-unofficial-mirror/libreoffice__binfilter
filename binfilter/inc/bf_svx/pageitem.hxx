@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pageitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:07:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:51:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 
 // include ---------------------------------------------------------------
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 namespace binfilter {
 
 /*--------------------------------------------------------------------
@@ -104,10 +98,6 @@ public:
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual int              operator==( const SfxPoolItem& ) const;
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
@@ -147,14 +137,9 @@ class SvxSetItem: public SfxSetItem
 public:
     SvxSetItem( const USHORT nId, const SfxItemSet& rSet );
     SvxSetItem( const SvxSetItem& rItem );
-//STRIP001  SvxSetItem( const USHORT nId, SfxItemSet* pSet );
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*    Create( SvStream&, USHORT nVersion ) const;
     virtual SvStream&       Store( SvStream&, USHORT nItemVersion ) const;
