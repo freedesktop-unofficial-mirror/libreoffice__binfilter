@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpoev.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:44:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:11:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,9 +96,7 @@ private:
 
     // Markierte Punkte kopieren und anstelle der alten markieren
     // ist noch nicht implementiert!
-//STRIP001  void ImpCopyMarkedPoints();
     typedef void (*PPolyTrFunc)(Point&, Point*, Point*, const void*, const void*, const void*, const void*, const void*);
-//STRIP001  void ImpTransformMarkedPoints(PPolyTrFunc pTrFunc, const void* p1=NULL, const void* p2=NULL, const void* p3=NULL, const void* p4=NULL, const void* p5=NULL);
 
 public:
     SdrPolyEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
@@ -107,32 +105,19 @@ public:
 
     BOOL IsSetMarkedPointsSmoothPossible() const { ForcePossibilities(); return bSetMarkedPointsSmoothPossible; }
     SdrPathSmoothKind GetMarkedPointsSmooth() const { ForcePossibilities(); return eMarkedPointsSmooth; }
-//STRIP001  void SetMarkedPointsSmooth(SdrPathSmoothKind eKind);
 
     // Ein PolySegment kann eine Strecke oder eine Bezierkurve sein.
     BOOL IsSetMarkedSegmentsKindPossible() const { ForcePossibilities(); return bSetMarkedSegmentsKindPossible; }
     SdrPathSegmentKind GetMarkedSegmentsKind() const { ForcePossibilities(); return eMarkedSegmentsKind; }
-//STRIP001  void SetMarkedSegmentsKind(SdrPathSegmentKind eKind);
 
     // Moeglicherweise ist das Obj hinterher geloescht:
-//STRIP001  void DeleteMarkedPoints();
     BOOL IsDeleteMarkedPointsPossible() const { return HasMarkedPoints(); }
 
-//STRIP001  void MoveMarkedPoints(const Size& rSiz, BOOL bCopy=FALSE);
-//STRIP001  void ResizeMarkedPoints(const Point& rRef, const Fraction& xFact, const Fraction& yFact, BOOL bCopy=FALSE);
-//STRIP001  void RotateMarkedPoints(const Point& rRef, long nWink, BOOL bCopy=FALSE);
 
     // Hierbei entstehen eventuell beliebig viele neue Objekte:
-//STRIP001  void RipUpAtMarkedPoints();
-//STRIP001  BOOL IsRipUpAtMarkedPointsPossible() const;
 
     // Alle markierten Polylines werden zu Polygonen, alle offenen
     // Bezierkurven zu geschlossenen.
-//STRIP001  void ShutMarkedObjects();
-//STRIP001  void CloseMarkedObjects(BOOL bToggle=FALSE, BOOL bOpen=FALSE, long nOpenDistance=0);
-//STRIP001  void OpenMarkedObjects(long nOpenDistance=0) { CloseMarkedObjects(FALSE,TRUE,nOpenDistance); }
-//STRIP001  BOOL IsOpenCloseMarkedObjectsPossible() const;
-//STRIP001  SdrObjClosedKind GetMarkedObjectsClosedState() const;
 };
 
 }//end of namespace binfilter
