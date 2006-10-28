@@ -4,9 +4,9 @@
  *
  *  $RCSfile: parse.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-03-07 10:13:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:13:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,14 +42,7 @@
 #ifndef _STACK_HXX //autogen
 #include <tools/stack.hxx>
 #endif
-// auto strip #ifndef _LIST_HXX //autogen
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 
-// auto strip #include "types.hxx"
 namespace binfilter {
 
 class SmNode;
@@ -272,9 +265,6 @@ public:
 
     USHORT       AddError(SmParseError Type, SmNode *pNode);
 
-//STRIP001  const SmErrorDesc * NextError();
-//STRIP001  const SmErrorDesc * PrevError();
-//STRIP001  const SmErrorDesc * GetError(USHORT i = 0xFFFF);
 };
 
 
