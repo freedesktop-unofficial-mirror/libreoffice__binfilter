@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gridctrl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:36:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:37:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,16 +35,10 @@
 #ifndef _SVX_GRIDCTRL_HXX
 #define _SVX_GRIDCTRL_HXX
 
-// auto strip #ifndef _LIST_HXX //autogen
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
 #include <com/sun/star/sdbc/XRowSet.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
 #endif
@@ -62,33 +56,18 @@
 #include <vcl/field.hxx>
 #endif
 
-// auto strip #ifndef _SV_BUTTON_HXX //autogen
-// auto strip #include <vcl/button.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _DATE_HXX
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _REF_HXX //autogen
-// auto strip #include <tools/ref.hxx>
-// auto strip #endif
 
 #ifndef _SVTOOLS_EDITBROWSEBOX_HXX_
 #include <svtools/editbrowsebox.hxx>
 #endif
 
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
 #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
 #endif
 
-// auto strip #ifndef _TRANSFER_HXX
-// auto strip #include <svtools/transfer.hxx>
-// auto strip #endif
 namespace binfilter {
 
 extern XubString INVALIDTEXT;
