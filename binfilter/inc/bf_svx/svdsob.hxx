@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdsob.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:45:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:11:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,6 @@
 #endif
 
 #ifndef _STRING_H
-// auto strip #include <tools/string.hxx> //wg. memset
 #define _STRING_H
 #endif
 namespace binfilter {
@@ -71,13 +70,7 @@ public:
     void     SetAll()                                   { memset(aData,0xFF,sizeof(aData)); }
     void     ClearAll()                                 { memset(aData,0x00,sizeof(aData)); }
     FASTBOOL IsEmpty() const;
-//STRIP001  FASTBOOL IsFull() const;
-//STRIP001  USHORT   GetSetCount() const;
-//STRIP001  BYTE     GetSetBit(USHORT nNum) const;
-//STRIP001  USHORT   GetClearCount() const;
-//STRIP001  BYTE     GetClearBit(USHORT nNum) const;
     void     operator&=(const SetOfByte& r2ndSet);
-//STRIP001  void     operator|=(const SetOfByte& r2ndSet);
     friend inline SvStream& operator<<(SvStream& rOut, const SetOfByte& rSet);
     friend inline SvStream& operator>>(SvStream& rIn, SetOfByte& rSet);
 
