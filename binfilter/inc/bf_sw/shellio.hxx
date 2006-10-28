@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellio.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:24:16 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:52:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,15 +35,6 @@
 #ifndef _SHELLIO_HXX
 #define _SHELLIO_HXX
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATE_HXX //autogen
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
-// auto strip #ifndef _TIME_HXX //autogen
-// auto strip #include <tools/time.hxx>
-// auto strip #endif
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif
@@ -54,9 +45,6 @@
 #include <sot/formats.hxx>
 #endif
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _DOCFAC_HXX
 #include <docfac.hxx>   // SwDocFac
 #endif
@@ -121,7 +109,6 @@ public:
         nLanguage = 0;
     }
     // for the automatic conversion (mail/news/...)
-//STRIP001  void ReadUserData( const String& );
     void WriteUserData( String& );
 
     SwAsciiOptions() { Reset(); }
@@ -194,27 +181,18 @@ public:
      * JP 25.04.95: oder falls es mitgegeben wird, in dieses.
      *              Sonderfall fuer Load mit Sw3Reader
      */
-//STRIP001  SwReader( SvStream&, const String& rFilename, SwDoc *pDoc = 0 );
     SwReader( SvStorage&, const String& rFilename, SwDoc *pDoc = 0 );
-//STRIP001  SwReader( SfxMedium&, const String& rFilename, SwDoc *pDoc = 0 );
     /*
      * In ein existierendes Dokument einlesen, Dokument und
      * Position im Dokument werden aus dem SwPaM uebernommen.
      */
-//STRIP001  SwReader( SvStream&, const String& rFilename, SwPaM& );
-//STRIP001  SwReader( SvStorage&, const String& rFilename, SwPaM& );
-//STRIP001  SwReader( SfxMedium&, const String& rFilename, SwPaM& );
 
     /*
      * Nur SwReader::Read(...) ist die Export-Schnittstelle!!!
      */
-//STRIP001  BOOL NeedsPasswd( const Reader& );
-//STRIP001  BOOL CheckPasswd( const String&, const Reader& );
     ULONG Read( const Reader& );
 
     // ask for glossaries
-//STRIP001  BOOL HasGlossaries( const Reader& );
-//STRIP001  BOOL ReadGlossaries( const Reader&, SwTextBlocks&, BOOL bSaveRelFiles );
 };
 
 
@@ -255,25 +233,19 @@ public:
     Reader();
     virtual ~Reader();
 
-//STRIP001  virtual int GetReaderType();
     SwgReaderOption& GetReaderOpt() { return aOpt; }
 
-//STRIP001  virtual void SetFltName( const String& rFltNm );
-//STRIP001  static void SetNoOutlineNum( SwDoc& rDoc );
 
     // den Item-Set eines Frm-Formats an das alte Format anpassen
-//STRIP001  static void ResetFrmFmtAttrs( SfxItemSet &rFrmSet );
 
     // die Rahmen-/Grafik-/OLE-Vorlagen an das alte Format (ohne
     // Umrandung etc.) anpassen
-//STRIP001  static void ResetFrmFmts( SwDoc& rDoc );
 
     // Die Filter-Vorlage laden, setzen und wieder freigeben
     SwDoc* GetTemplateDoc();
     BOOL SetTemplate( SwDoc& rDoc );
     void ClearTemplate();
     void SetTemplateName( const String& rDir );
-//STRIP001  void MakeHTMLDummyTemplateDoc();
 
     BOOL IsReadUTF8() const { return bReadUTF8; }
     void SetReadUTF8( BOOL bSet ) { bReadUTF8 = bSet; }
@@ -287,25 +259,16 @@ public:
     BOOL IsIgnoreHTMLComments() const { return bIgnoreHTMLComments; }
     void SetIgnoreHTMLComments( BOOL bSet ) { bIgnoreHTMLComments = bSet; }
 
-//STRIP001  virtual BOOL HasGlossaries() const;
-//STRIP001  virtual BOOL ReadGlossaries( SwTextBlocks&, BOOL bSaveRelFiles ) const;
 
     // read the sections of the document, which is equal to the medium.
     // returns the count of it
-//STRIP001  virtual USHORT GetSectionList( SfxMedium& rMedium,
-//STRIP001                                  SvStrings& rStrings ) const;
 private:
     virtual ULONG Read(SwDoc &,SwPaM &,const String &)=0;
 
     // alle die die Streams / Storages nicht geoeffnet brauchen,
     // muessen die Methode ueberladen (W4W!!)
-//STRIP001  virtual int SetStrmStgPtr();
 };
 
-//STRIP001 class RtfReader: public Reader
-//STRIP001 {
-//STRIP001  virtual ULONG Read( SwDoc &,SwPaM &,const String &);
-//STRIP001 };
 
 
 class AsciiReader: public Reader
@@ -326,12 +289,9 @@ class StgReader : public Reader
     String aFltName;
 
 protected:
-//STRIP001  ULONG OpenMainStream( SvStorageStreamRef& rRef, USHORT& rBuffSize );
 
 public:
-//STRIP001  virtual int GetReaderType();
     const String& GetFltName() { return aFltName; }
-//STRIP001  virtual void SetFltName( const String& r );
 };
 
 
@@ -348,8 +308,6 @@ public:
 
     // read the sections of the document, which is equal to the medium.
     // returns the count of it
-//STRIP001  virtual USHORT GetSectionList( SfxMedium& rMedium,
-//STRIP001                              SvStrings& rStrings ) const;
 };
 
 /*  */
@@ -392,32 +350,20 @@ public:
 
     BOOL   Delete( USHORT );            // Loeschen
     USHORT Rename( USHORT, const String*, const String* ); // Umbenennen
-//STRIP001  ULONG  CopyBlock( SwTextBlocks& rSource, String& rSrcShort,
-//STRIP001                                  const String& rLong ); // Block kopieren
 
-//STRIP001  BOOL   BeginGetDoc( USHORT );           // Textbaustein einlesen
-//STRIP001  void   EndGetDoc();                     // Textbaustein wieder loslassen
 
     BOOL   BeginPutDoc( const String&, const String& ); // Speichern Beginn
     USHORT PutDoc();                                // Speichern Ende
 
-//STRIP001  const String& GetText( USHORT );                // Textinhalt einlesen
     USHORT PutText( const String&, const String&, const String& ); // Speichern( Kurzn., Text)
 
-//STRIP001  BOOL IsOnlyTextBlock( USHORT ) const;
-//STRIP001  BOOL IsOnlyTextBlock( const String& rShort ) const;
 
     const String& GetFileName() const;      // Dateiname von pImp
-//STRIP001  BOOL IsReadOnly() const;                // ReadOnly-Flag von pImp
 
     BOOL GetMacroTable( USHORT nIdx, SvxMacroTableDtor& rMacroTbl );
     BOOL SetMacroTable( USHORT nIdx, const SvxMacroTableDtor& rMacroTbl );
 
-//STRIP001  String GetValidShortCut( const String& rLong,
-//STRIP001                           BOOL bCheckInBlock = FALSE ) const;
 
-//STRIP001  BOOL StartPutMuchBlockEntries();
-//STRIP001  void EndPutMuchBlockEntries();
 };
 
 
@@ -457,7 +403,6 @@ protected:
 
     void PutNumFmtFontsInAttrPool();
     void PutEditEngFontsInAttrPool( BOOL bIncl_CJK_CTL = TRUE );
-//STRIP001  void PutCJKandCTLFontsInAttrPool();
 
     virtual ULONG WriteStream() = 0;
 
@@ -479,12 +424,9 @@ public:
     Writer();
     virtual ~Writer();
 
-//STRIP001  virtual ULONG Write( SwPaM&, SfxMedium&, const String* = 0 );
             ULONG Write( SwPaM&, SvStream&,  const String* = 0 );
     virtual ULONG Write( SwPaM&, SvStorage&, const String* = 0 );
 
-//STRIP001  virtual void SetPasswd( const String& );
-//STRIP001  virtual void SetVersion( const String&, long );
     virtual BOOL IsStgWriter() const;
     virtual BOOL IsSw3Writer() const;
 
@@ -497,42 +439,21 @@ public:
     void SetAsciiOptions( const SwAsciiOptions& rOpt ) { aAscOpts = rOpt; }
 
     // suche die naechste Bookmark-Position aus der Bookmark-Tabelle
-//STRIP001  USHORT FindPos_Bkmk( const SwPosition& rPos ) const;
     // build a bookmark table, which is sort by the node position. The
     // OtherPos of the bookmarks also inserted.
-//STRIP001  void CreateBookmarkTbl();
     // search alle Bookmarks in the range and return it in the Array
-//STRIP001  USHORT GetBookmarks( const SwCntntNode& rNd,
-//STRIP001                      xub_StrLen nStt, xub_StrLen nEnd,
-//STRIP001                      SvPtrarr& rArr );
-//STRIP001
     // lege einen neuen PaM an der Position an
-//STRIP001  SwPaM* NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx,
-//STRIP001                                  BOOL bNodesArray = TRUE ) const;
 
     // kopiere ggfs. eine lokale Datei ins Internet
-//STRIP001  BOOL CopyLocalFileToINet( String& rFileNm );
 
     // Stream-spezifische Routinen, im Storage-Writer NICHT VERWENDEN!
 
     // Optimierung der Ausgabe auf den Stream.
-//STRIP001  SvStream& OutLong( SvStream& rStrm, long nVal );
-//STRIP001  SvStream& OutULong( SvStream& rStrm, ULONG nVal );
 
     // Hex-Zahl ausgeben, default ist 2.stellige Zahl
-//STRIP001  SvStream& OutHex( SvStream& rStrm, ULONG nHex, BYTE nLen = 2 );
     // 4-st. Hex-Zahl ausgeben
-//STRIP001  inline SvStream& OutHex4( SvStream& rStrm, USHORT nHex )
-//STRIP001      {   return OutHex( rStrm, nHex, 4 ); }
     // 8-st. Hex-Zahl ausgeben
-//STRIP001  inline SvStream& OutHex8( SvStream& rStrm, ULONG nHex )
-//STRIP001      {   return OutHex( rStrm, nHex, 8 ); }
 
-//STRIP001  inline SvStream& OutHex( USHORT nHex, BYTE nLen = 2 )      { return OutHex( Strm(), nHex, nLen ); }
-//STRIP001  inline SvStream& OutHex4( USHORT nHex )     { return OutHex( Strm(), nHex, 4 ); }
-//STRIP001  inline SvStream& OutHex8( ULONG nHex )      { return OutHex( Strm(), nHex, 8 ); }
-//STRIP001  inline SvStream& OutLong( long nVal )       { return OutLong( Strm(), nVal ); }
-//STRIP001  inline SvStream& OutULong( ULONG nVal )     { return OutULong( Strm(), nVal ); }
 
     void SetStrm( SvStream& rStrm ) { pStrm = &rStrm; }
 #ifdef PRODUCT
@@ -566,7 +487,6 @@ protected:
 public:
     StgWriter() : Writer(), pStg( 0 ) {}
 
-//STRIP001  virtual BOOL IsStgWriter() const;
     virtual ULONG Write( SwPaM&, SvStorage&, const String* = 0 );
 
     SvStorage& GetStorage() const       { return *pStg; }
@@ -589,7 +509,6 @@ public:
     void SetSw3Io( Sw3Io* pIo, BOOL bSvAs = FALSE )
         { pIO = pIo; bSaveAs = bSvAs; }
 
-//STRIP001  virtual BOOL IsSw3Writer() const;
 };
 
 
@@ -611,16 +530,12 @@ class SwWriter
 public:
     ULONG Write( WriterRef& rxWriter, const String* = 0);
 
-//STRIP001  SwWriter( SvStream&, SwCrsrShell &,BOOL bWriteAll = FALSE );
-//STRIP001  SwWriter( SvStream&, SwDoc & );
     SwWriter( SvStream&, SwPaM &, BOOL bWriteAll = FALSE );
 
 //  SwWriter( SvStorage&, SwCrsrShell &,BOOL bWriteAll = FALSE );
     SwWriter( SvStorage&, SwDoc & );
 //  SwWriter( SvStorage&, SwPaM&, BOOL bWriteAll = FALSE );
 
-//STRIP001  SwWriter( SfxMedium&, SwCrsrShell &,BOOL bWriteAll = FALSE );
-//STRIP001  SwWriter( SfxMedium&, SwDoc & );
 //  SwWriter( SfxMedium&, SwPaM&, BOOL bWriteAll = FALSE );
 };
 
@@ -631,7 +546,6 @@ public:
 void GetRTFWriter( const String&, WriterRef& );
 void GetASCWriter( const String&, WriterRef& );
 void GetSw3Writer( const String&, WriterRef& );
-//STRIP001 void GetHTMLWriter( const String&, WriterRef& );
 void GetXMLWriter( const String&, WriterRef& );
 
 // Die folgende Klasse ist ein Wrappe fuer die Basic-I/O-Funktionen
@@ -669,7 +583,6 @@ public:
 
     static const SfxFilter* GetTextFilter(const sal_Char* pBuf, ULONG nLen);
     // gebe einen bestimmten Reader zurueck
-//STRIP001  static Reader* GetReader( const String& rFltName );
     // gebe einen bestimmten Writer zurueck
     static void GetWriter( const String& rFltName, WriterRef& xWrt );
 
