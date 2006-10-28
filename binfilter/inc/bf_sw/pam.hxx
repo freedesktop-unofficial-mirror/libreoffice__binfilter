@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pam.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:18:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:51:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -117,9 +117,6 @@ SwComparePosition ComparePosition(
             const SwPosition& rStt1, const SwPosition& rEnd1,
             const SwPosition& rStt2, const SwPosition& rEnd2 );
 
-//STRIP001 SwComparePosition ComparePosition(
-//STRIP001          const unsigned long nStt1, const unsigned long nEnd1,
-//STRIP001          const unsigned long nStt2, const unsigned long nEnd2 );
 
 
 // SwPointAndMark / SwPaM
@@ -139,19 +136,14 @@ class SwPaM : public Ring
     SwPosition *pPoint;
     SwPosition *pMark;
 
-//STRIP001  SwPaM* MakeRegion( SwMoveFn fnMove, const SwPaM * pOrigRg = 0 );
 
 public:
     SwPaM(){};
     SwPaM( const SwPosition& rPos, SwPaM* pRing = 0 );
     SwPaM( const SwPosition& rMk, const SwPosition& rPt, SwPaM* pRing = 0 );
     SwPaM( SwPaM & );
-//STRIP001  SwPaM( const SwNodeIndex& rMk, const SwNodeIndex& rPt,
-//STRIP001         long nMkOffset = 0, long nPtOffset = 0, SwPaM* pRing = 0 );
     SwPaM( const SwNode& rMk, const SwNode& rPt,
            long nMkOffset = 0, long nPtOffset = 0, SwPaM* pRing = 0 );
-//STRIP001  SwPaM(  const SwNodeIndex& rMk, xub_StrLen nMkCntnt,
-//STRIP001          const SwNodeIndex& rPt, xub_StrLen nPtCntnt, SwPaM* pRing = 0 );
     SwPaM(  const SwNode& rMk, xub_StrLen nMkCntnt,
             const SwNode& rPt, xub_StrLen nPtCntnt, SwPaM* pRing = 0 );
     SwPaM( const SwNode& rNd, xub_StrLen nCntnt = 0, SwPaM* pRing = 0 );
@@ -163,19 +155,6 @@ public:
                     SwGoInDoc fnGo = fnGoCntnt );
 
     // Suchen
-//STRIP001  BYTE Find(  const ::com::sun::star::util::SearchOptions& rSearchOpt,
-//STRIP001              utl::TextSearch& rSTxt,
-//STRIP001              SwMoveFn fnMove = fnMoveForward,
-//STRIP001              const SwPaM *pPam =0, FASTBOOL bInReadOnly = FALSE);
-//STRIP001  FASTBOOL Find(  const SwFmt& rFmt,
-//STRIP001              SwMoveFn fnMove = fnMoveForward,
-//STRIP001              const SwPaM *pPam =0, FASTBOOL bInReadOnly = FALSE);
-//STRIP001  FASTBOOL Find(  const SfxPoolItem& rAttr, FASTBOOL bValue = TRUE,
-//STRIP001              SwMoveFn fnMove = fnMoveForward,
-//STRIP001              const SwPaM *pPam =0, FASTBOOL bInReadOnly = FALSE );
-//STRIP001  FASTBOOL Find(  const SfxItemSet& rAttr, FASTBOOL bNoColls = FALSE,
-//STRIP001              SwMoveFn fnMove = fnMoveForward,
-//STRIP001              const SwPaM *pPam =0, FASTBOOL bInReadOnly = FALSE );
 
     virtual void SetMark();
     void DeleteMark() { pMark = pPoint; }

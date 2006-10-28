@@ -4,9 +4,9 @@
  *
  *  $RCSfile: redline.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:21:00 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:51:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,40 +68,11 @@ public:
     virtual ~SwRedlineExtraData();
      virtual SwRedlineExtraData* CreateNew() const = 0;
 
-//STRIP001  virtual void Accept( SwPaM& rPam ) const;
-//STRIP001  virtual void Reject( SwPaM& rPam ) const;
     virtual int operator == ( const SwRedlineExtraData& ) const;
 };
 
-//STRIP001 class SwRedlineExtraData_FmtColl : public SwRedlineExtraData
-//STRIP001 {
-//STRIP001  String sFmtNm;
-//STRIP001  SfxItemSet* pSet;
-//STRIP001  USHORT nPoolId;
-//STRIP001 public:
-//STRIP001  SwRedlineExtraData_FmtColl( const String& rColl, USHORT nPoolFmtId,
-//STRIP001                              const SfxItemSet* pSet = 0 );
-//STRIP001  virtual ~SwRedlineExtraData_FmtColl();
-//STRIP001  virtual SwRedlineExtraData* CreateNew() const;
-//STRIP001  virtual void Reject( SwPaM& rPam ) const;
-//STRIP001  virtual int operator == ( const SwRedlineExtraData& ) const;
 
-//STRIP001  void SetItemSet( const SfxItemSet& rSet );
-//STRIP001 };
 
-//STRIP001 class SwRedlineExtraData_Format : public SwRedlineExtraData
-//STRIP001 {
-//STRIP001  SvUShorts aWhichIds;
-//STRIP001
-//STRIP001  SwRedlineExtraData_Format( const SwRedlineExtraData_Format& rCpy );
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwRedlineExtraData_Format( const SfxItemSet& rSet );
-//STRIP001  virtual ~SwRedlineExtraData_Format();
-//STRIP001  virtual SwRedlineExtraData* CreateNew() const;
-//STRIP001  virtual void Reject( SwPaM& rPam ) const;
-//STRIP001  virtual int operator == ( const SwRedlineExtraData& ) const;
-//STRIP001 };
 
 
 class SwRedlineData
@@ -188,10 +159,6 @@ class SwRedline : public SwPaM
     BOOL bIsLastParaDelete : 1;
     BOOL bIsVisible : 1;
 
-//STRIP001  void MoveToSection();
-//STRIP001  void CopyToSection();
-//STRIP001  void DelCopyOfSection();
-//STRIP001  void MoveFromSection();
 
 public:
     SwRedline( SwRedlineType eType, const SwPaM& rPam );
@@ -242,7 +209,6 @@ public:
     void SetAutoFmtFlag()               { pRedlineData->SetAutoFmtFlag(); }
 
     USHORT GetStackCount() const;
-//STRIP001  USHORT GetAuthor( USHORT nPos ) const;
     const String& GetAuthorString( USHORT nPos = 0 ) const;
     const DateTime& GetTimeStamp( USHORT nPos ) const;
     SwRedlineType GetRealType( USHORT nPos ) const;
@@ -270,22 +236,16 @@ public:
     //  die Del-Redlines per Copy und Delete versteckt werden. Beim Move
     //  wird sonst die Attributierung falsch behandelt.
     // Alle anderen Aufrufer muessen immer 0 angeben.
-//STRIP001  void CallDisplayFunc( USHORT nLoop = 0 );
     void Show( USHORT nLoop = 0 );
     void Hide( USHORT nLoop = 0 );
-//STRIP001  void ShowOriginal( USHORT nLoop = 0 );
 
     // calculates the intersection with text node number nNdIdx
-//STRIP001     void CalcStartEnd( USHORT nNdIdx, USHORT& nStart, USHORT& nEnd ) const;
 
-//STRIP001     void InvalidateRange();     // das Layout anstossen
 
     BOOL IsOwnRedline( const SwRedline& rRedl ) const
         { return GetAuthor() == rRedl.GetAuthor(); }
     BOOL CanCombine( const SwRedline& rRedl ) const;
 
-//STRIP001  void PushData( const SwRedline& rRedl, BOOL bOwnAsNext = TRUE );
-//STRIP001  BOOL PopData();
 
      int operator==( const SwRedline& ) const;
     int operator<( const SwRedline& ) const;
