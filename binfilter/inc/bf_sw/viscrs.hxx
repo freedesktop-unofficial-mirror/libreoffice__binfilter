@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viscrs.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:08:35 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:02:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,6 @@ class SwVisCrsr
     const SwCrsrShell* pCrsrShell;
 
 #ifdef SW_CRSR_TIMER
-//STRIP001  virtual void Timeout();
 #endif
     void _SetPosAndShow();
 
@@ -86,7 +85,6 @@ public:
     void SetDragCrsr( BOOL bFlag = TRUE ) { bIsDragCrsr = bFlag; }
 
 #ifdef SW_CRSR_TIMER
-//STRIP001  FASTBOOL ChgTimerFlag( BOOL bTimerOn = TRUE );
 #endif
 };
 
@@ -104,9 +102,7 @@ class SwSelPaintRects : public SwRects
     // die Shell
     const SwCrsrShell* pCShell;
 
-//STRIP001  void Paint( const SwRect& rRect );
 
-//STRIP001  virtual void Paint( const Rectangle& rRect );
     virtual void FillRects() = 0;
 
 public:
@@ -115,7 +111,6 @@ public:
 
     void Show();
     void Hide();
-//STRIP001  void Invalidate( const SwRect& rRect );
 
     const SwCrsrShell* GetShell() const { return pCShell; }
     // check current MapMode of the shell and set possibly the static members.
@@ -135,16 +130,11 @@ class SwShellCrsr : public virtual SwCursor, public SwSelPaintRects
 
 public:
     SwShellCrsr( const SwCrsrShell& rCrsrSh, const SwPosition &rPos );
-//STRIP001  SwShellCrsr( const SwCrsrShell& rCrsrSh, const SwPosition &rPos,
-//STRIP001                  const Point& rPtPos, SwPaM* pRing = 0 );
-//STRIP001  SwShellCrsr( SwShellCrsr& );
     virtual ~SwShellCrsr();
 
     virtual operator SwShellCrsr* ();
 
     void Show();            // Update und zeige alle Selektionen an
-//STRIP001  void Hide();            // verstecke alle Selektionen
-//STRIP001  void Invalidate( const SwRect& rRect );
 
     const Point& GetPtPos() const   { return( SwPaM::GetPoint() == pPt ? aPtPt : aMkPt ); }
           Point& GetPtPos()         { return( SwPaM::GetPoint() == pPt ? aPtPt : aMkPt ); }
@@ -155,24 +145,16 @@ public:
     const Point& GetEndPos() const  { return( SwPaM::End() == pPt ? aPtPt : aMkPt ); }
           Point& GetEndPos()        { return( SwPaM::End() == pPt ? aPtPt : aMkPt ); }
 
-//STRIP001  virtual void SetMark();
 
-//STRIP001  virtual SwCursor* Create( SwPaM* pRing = 0 ) const;
 
-//STRIP001     virtual short MaxReplaceArived(); //returns RET_YES/RET_CANCEL/RET_NO
-//STRIP001  virtual void SaveTblBoxCntnt( const SwPosition* pPos = 0 );
 
     FASTBOOL UpDown( BOOL bUp, USHORT nCnt = 1 );
 
     // TRUE: an die Position kann der Cursor gesetzt werden
-//STRIP001  virtual FASTBOOL IsAtValidPos( BOOL bPoint = TRUE ) const;
 
 #ifndef PRODUCT
 // JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
 //              am sichtbaren Cursor
-//STRIP001  virtual FASTBOOL IsSelOvr( int eFlags =
-//STRIP001                              ( SELOVER_CHECKNODESSECTION |
-//STRIP001                                SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
 #endif
 
     DECL_FIXEDMEMPOOL_NEWDEL( SwShellCrsr )
@@ -196,28 +178,17 @@ public:
 
      virtual operator SwShellTableCrsr* ();
 
-//STRIP001  virtual void FillRects();   // fuer Table- und normalen Crsr
 
     // Pruefe, ob sich der SPoint innerhalb der Tabellen-SSelection befindet
-//STRIP001  FASTBOOL IsInside( const Point& rPt ) const;
 
     virtual void SetMark();
-//STRIP001  virtual SwCursor* Create( SwPaM* pRing = 0 ) const;
     virtual operator SwShellCrsr* ();
     virtual operator SwTableCursor* ();
-//STRIP001     virtual short MaxReplaceArived(); //returns RET_YES/RET_CANCEL/RET_NO
-//STRIP001     virtual void SaveTblBoxCntnt( const SwPosition* pPos = 0 );
 
     // TRUE: an die Position kann der Cursor gesetzt werden
-//STRIP001  virtual FASTBOOL IsAtValidPos( BOOL bPoint = TRUE ) const;
 
-//STRIP001 #ifndef PRODUCT
 // JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
 //              am sichtbaren Cursor
-//STRIP001  virtual FASTBOOL IsSelOvr( int eFlags =
-//STRIP001                              ( SELOVER_CHECKNODESSECTION |
-//STRIP001                                SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
-//STRIP001 #endif
 };
 
 
