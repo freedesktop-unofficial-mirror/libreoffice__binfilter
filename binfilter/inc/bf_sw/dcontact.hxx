@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dcontact.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:53:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:37:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -346,7 +346,6 @@ class SwDrawContact : public SwContact
         void _Changed(const SdrObject& rObj, SdrUserCallType eType, const Rectangle* pOldBoundRect);
 
         //Moved alle SW-Verbindungen zu dem neuen Master.
-//STRIP001         void ChangeMasterObject( SdrObject *pNewMaster );
 
         // OD 19.06.2003 #108784#
         SwDrawVirtObj* AddVirtObj();
