@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlbahdl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:55:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:05:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,13 +44,7 @@
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
