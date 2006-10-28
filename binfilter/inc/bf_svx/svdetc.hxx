@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:32:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:04:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,9 +52,6 @@
 #include <tools/shl.hxx>
 #endif
 
-// auto strip #ifndef _OUTLINER_HXX //autogen
-// auto strip #include <bf_svx/outliner.hxx>
-// auto strip #endif
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;
 }}}}
@@ -129,7 +126,6 @@ public:
     // ihre sprachabhaengigen Resourcen neu zu initiallisieren.
     // Bereits bestehende Undotexte, etc. bleiben jedoch in der
     // sprache erhalten, in der sie erzeugt wurden.
-//STRIP001  static void       LanguageHasChanged();
 
     // Einen Outliner mit den engineglobalen
     // Defaulteinstellungen auf dem Heap erzeugen.
@@ -188,13 +184,6 @@ public:
 #endif
     virtual int Compare(const void* pElem1, const void* pElem2) const = 0;
 private: // damit keiner vergessen wird
-//STRIP001 virtual
-//STRIP001 #if SUPD <= 355
-//STRIP001      FASTBOOL
-//STRIP001 #else
-//STRIP001      void
-//STRIP001 #endif
-//STRIP001               Is1stLessThan2nd(const void* pElem1, const void* pElem2) const;
 //  virtual FASTBOOL Is1stLessThan2nd(const void* pElem1, const void* pElem2) const=NULL;
 };
 
@@ -221,7 +210,6 @@ public:
     ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode=SDRHDC_SAVEALL, FASTBOOL bAutoMerk=TRUE);
     ~ImpSdrHdcMerk();
     void Save(const OutputDevice& rOut);
-//STRIP001  FASTBOOL IsSaved() const                 { return pFarbMerk!=NULL || pClipMerk!=NULL || pLineColorMerk!=NULL; }
     void Restore(OutputDevice& rOut, USHORT nMask=SDRHDC_SAVEALL) const;
 };
 #endif // __PRIVATE
@@ -230,11 +218,9 @@ public:
 
 // Ein ItemSet auf Outliner- bzw. EditEngine-Items durchsuchen
 // Liefert TRUE, wenn der Set solchen Items enthaelt.
-//STRIP001 BOOL SearchOutlinerItems(const SfxItemSet& rSet, BOOL bInklDefaults, BOOL* pbOnlyEE=NULL);
 
 // zurueck erhaelt man einen neuen WhichTable den
 // man dann irgendwann mit delete platthauen muss.
-//STRIP001 USHORT* RemoveWhichRange(const USHORT* pOldWhichTable, USHORT nRangeBeg, USHORT nRangeEnd);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -245,50 +231,6 @@ public:
 // zum aufbrechen von Metafiles (sd/source/ui/dlg/brkdlg.cxx),
 // SdrEditView::DoImportMarkedMtf() und
 // ImpSdrGDIMetaFileImport::DoImport()
-//STRIP001 class SvdProgressInfo
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  ULONG nSumActionCount;  // Summe aller Actions
-//STRIP001  ULONG nSumCurAction;    // Summe aller bearbeiteten Actions
-//STRIP001
-//STRIP001  ULONG nActionCount;     // Anzahl der Actions im akt. Obj.
-//STRIP001  ULONG nCurAction;       // Anzahl bearbeiteter Act. im akt. Obj.
-//STRIP001
-//STRIP001  ULONG nInsertCount;     // Anzahl einzufuegender Act. im akt. Obj.
-//STRIP001  ULONG nCurInsert;       // Anzahl bereits eingefuegter Actions
-//STRIP001
-//STRIP001  ULONG nObjCount;        // Anzahl der selektierten Objekte
-//STRIP001  ULONG nCurObj;          // Aktuelles Objekt
-//STRIP001
-//STRIP001  Link *pLink;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SvdProgressInfo( Link *_pLink );
-//STRIP001
-//STRIP001  void Init( ULONG _nSumActionCount, ULONG _nObjCount );
-//STRIP001
-//STRIP001  BOOL SetNextObject();
-//STRIP001
-//STRIP001  void SetActionCount( ULONG _nActionCount );
-//STRIP001  void SetInsertCount( ULONG _nInsertCount );
-//STRIP001
-//STRIP001  BOOL ReportActions( ULONG nAnzActions );
-//STRIP001  BOOL ReportInserts( ULONG nAnzInserts );
-//STRIP001
-//STRIP001  ULONG GetSumActionCount() const { return nSumActionCount; };
-//STRIP001  ULONG GetSumCurAction() const { return nSumCurAction; };
-//STRIP001  ULONG GetObjCount() const { return nObjCount; };
-//STRIP001  ULONG GetCurObj() const { return nCurObj; };
-//STRIP001
-//STRIP001  ULONG GetActionCount() const { return nActionCount; };
-//STRIP001  ULONG GetCurAction() const { return nCurAction; };
-//STRIP001
-//STRIP001  ULONG GetInsertCount() const { return nInsertCount; };
-//STRIP001  ULONG GetCurInsert() const { return nCurInsert; };
-//STRIP001
-//STRIP001  void ReportError();
-//STRIP001  BOOL ReportRescales( ULONG nAnzRescales );
-//STRIP001 };
 
 class SdrLinkList
 {
@@ -325,7 +267,6 @@ public:
     OLEObjCache();
     ~OLEObjCache();
 
-//STRIP001  void SetSize(ULONG nNewSize);
     void InsertObj(SdrOle2Obj* pObj);
     void RemoveObj(SdrOle2Obj* pObj);
 };
