@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparae.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:37:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:21:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,42 +33,21 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _SVSTDARR_LONGS_DECL
 #define _SVSTDARR_LONGS
 #include <svtools/svstdarr.hxx>
 #endif
-// auto strip #ifndef _SVARRAY_HXX
-// auto strip #include <svtools/svarray.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _RTL_USTRBUF_HXX_
-// auto strip #include <rtl/ustrbuf.hxx>
-// auto strip #endif
 
 #include <vector>
 
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATION_HPP_
-// auto strip #include <com/sun/star/container/XEnumeration.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
 #endif
@@ -76,36 +55,15 @@
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
-// auto strip #include <com/sun/star/text/XTextDocument.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-// auto strip #include <com/sun/star/text/XText.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-// auto strip #include <com/sun/star/text/XTextContent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
-// auto strip #include <com/sun/star/text/XTextRange.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
 #include <com/sun/star/text/XTextField.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
-// auto strip #include <com/sun/star/text/XFootnote.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTENTENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
 #include <com/sun/star/text/XTextFrame.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
 #include <com/sun/star/text/SizeType.hpp>
 #endif
@@ -115,9 +73,6 @@
 #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
-// auto strip #include <com/sun/star/text/TextContentAnchorType.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAMESSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFramesSupplier.hpp>
 #endif
@@ -140,41 +95,14 @@
 #ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_SECTIONFILELINK_HPP_
-// auto strip #include <com/sun/star/text/SectionFileLink.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
-// auto strip #include <com/sun/star/drawing/XShape.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTSHAPESSUPPLIER_HPP_
-// auto strip #include <com/sun/star/text/XTextShapesSupplier.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-// auto strip #include <com/sun/star/util/DateTime.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _XMLOFF_XMLKYWD_HXX
-// auto strip #include "xmlkywd.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
-// auto strip #include "xmlnmspe.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
-// auto strip #include "xmlaustp.hxx"
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
-// auto strip #include "families.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_TXTEXPPR_HXX
 #include "txtexppr.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLNUMFE_HXX
-// auto strip #include "xmlnumfe.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
@@ -184,9 +112,6 @@
 #ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-// auto strip #include "ProgressBarHelper.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -210,9 +135,6 @@
 #ifndef _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 #include "XMLTextListAutoStylePool.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_TXTPARAE_HXX
-// auto strip #include "txtparae.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLSECTIONEXPORT_HXX_
 #include "XMLSectionExport.hxx"
 #endif
@@ -228,9 +150,6 @@
 #ifndef _XMLOFF_MULTIPROPERTYSETHELPER_HXX
 #include "MultiPropertySetHelper.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_FORMLAYEREXPORT_HXX_
-// auto strip #include "formlayerexport.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 #include "XMLTextCharStyleNamesElementExport.hxx"
 #endif
