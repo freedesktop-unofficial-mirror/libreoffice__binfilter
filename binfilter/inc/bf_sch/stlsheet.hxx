@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlsheet.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:53:37 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:50:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,15 +36,9 @@
 #ifndef _SCH_STLSHEET_HXX
 #define _SCH_STLSHEET_HXX
 
-// auto strip #ifndef _SFXITEMSET_HXX //autogen
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #endif
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -64,9 +58,6 @@ public:
 
     virtual BOOL SetParent (const String& rParentName);
     virtual SfxItemSet& GetItemSet();
-//STRIP001  virtual BOOL IsUsed() const;
-//STRIP001  virtual BOOL HasFollowSupport() const;
-//STRIP001  virtual BOOL HasParentSupport() const;
 };
 
 } //namespace binfilter
