@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dataaccessdescriptor.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:14:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:25:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,9 +79,6 @@ namespace svx
     */
     class ODataAccessDescriptor
     {
-//STRIP001  protected:
-//STRIP001      ODADescriptorImpl*      m_pImpl;
-//STRIP001
     public:
         ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
         ODataAccessDescriptor( const ODataAccessDescriptor& _rSource ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
@@ -91,63 +88,10 @@ namespace svx
         // allows to construct a descriptor from an Any containing either an XPropertySet or a property value sequence
         ODataAccessDescriptor( const ::com::sun::star::uno::Any& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
 
-//STRIP001      const ODataAccessDescriptor& operator=(const ODataAccessDescriptor& _rSource);
 
         ~ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001
-//STRIP001
-//STRIP001      /** returns the descriptor as property set
-//STRIP001          <p>If you call this method more than once, without writing any values between both calls, the same object
-//STRIP001          is returned. If you wrote values, a new object is returned.</p>
-//STRIP001      */
-//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >
-//STRIP001                  createPropertySet();
-//STRIP001      /** returns the descriptor as property value sequence
-//STRIP001          <p>If you call this method more than once, without writing any values between both calls, the same object
-//STRIP001          is returned. If you wrote values, a new object is returned.</p>
-//STRIP001      */
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >
             createPropertyValueSequence(){DBG_BF_ASSERT(0, "STRIP");return ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >();} //STRIP001 ;
-//STRIP001
-//STRIP001      /** returns the descriptor as Any sequence
-//STRIP001          <p>If you call this method more than once, without writing any values between both calls, the same object
-//STRIP001          is returned. If you wrote values, a new object is returned.</p>
-//STRIP001      */
-//STRIP001      ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >
-//STRIP001                  createAnySequence();
-//STRIP001
-//STRIP001      /** initialized the descriptor from the property set given
-//STRIP001          <p>If <arg>_bClear</arg> is <TRUE/>, the descriptor will clear all it's current settings before
-//STRIP001          initializing with the new ones.</p>
-//STRIP001      */
-//STRIP001      void        initializeFrom(
-//STRIP001                      const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxValues,
-//STRIP001                      sal_Bool _bClear = sal_True);
-//STRIP001
-//STRIP001      /** initialized the descriptor from the property values given
-//STRIP001          <p>If <arg>_bClear</arg> is <TRUE/>, the descriptor will clear all it's current settings before
-//STRIP001          initializing with the new ones.</p>
-//STRIP001      */
-//STRIP001      void        initializeFrom(
-//STRIP001                      const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& _rValues,
-//STRIP001                      sal_Bool _bClear = sal_True);
-//STRIP001
-//STRIP001      /// checks whether or not a given property is present in the descriptor
-//STRIP001      sal_Bool    has(DataAccessDescriptorProperty _eWhich) const;
-//STRIP001
-//STRIP001      /** erases the given property from the descriptor
-//STRIP001      */
-//STRIP001      void        erase(DataAccessDescriptorProperty _eWhich);
-//STRIP001
-//STRIP001      /** empties the descriptor
-//STRIP001      */
-//STRIP001      void        clear();
-//STRIP001
-//STRIP001      /// return the value of a given property
-//STRIP001      const   ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty _eWhich ) const;
-//STRIP001
-//STRIP001      /** return the (modifiable) value of a given property
-//STRIP001          <p>This operator is not allowed to be called if the descriptor is readonly.</p>
-//STRIP001      */
         ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty _eWhich ){DBG_BF_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}//STRIP001 ;
     };
 

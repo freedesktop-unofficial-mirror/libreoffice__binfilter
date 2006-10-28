@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbaexchange.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:14:22 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 03:26:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,12 +48,6 @@
 #ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
 #endif
-// auto strip #ifndef _SVX_DATACCESSDESCRIPTOR_HXX_
-// auto strip #include <bf_svx/dataaccessdescriptor.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 namespace binfilter {
 
 //........................................................................
@@ -72,7 +66,6 @@ namespace svx
     class OColumnTransferable : public TransferableHelper
     {
     protected:
-//STRIP001      ODataAccessDescriptor   m_aDescriptor;
         ::rtl::OUString         m_sCompatibleFormat;
         sal_Int32               m_nFormatFlags;
 
@@ -136,8 +129,6 @@ namespace svx
 
         /** extracts a column descriptor from the transferable given
         */
-//STRIP001      static ODataAccessDescriptor
-//STRIP001                      extractColumnDescriptor(const TransferableDataHelper& _rData);
 
         /** adds the data contained in the object to the given data container
             <p>This method helps you treating this class as simple container class:<br/>
@@ -174,7 +165,6 @@ namespace svx
     */
     class ODataAccessObjectTransferable : public TransferableHelper
     {
-//STRIP001      ODataAccessDescriptor   m_aDescriptor;
         ::rtl::OUString         m_sCompatibleObjectDescription;
             // needed to provide a SOT_FORMATSTR_ID_SBA_DATAEXCHANGE format
 
@@ -224,8 +214,6 @@ namespace svx
 
         /** extracts a object descriptor from the transferable given
         */
-//STRIP001      static ODataAccessDescriptor
-//STRIP001                      extractObjectDescriptor(const TransferableDataHelper& _rData);
 
     protected:
         virtual void        AddSupportedFormats();
@@ -233,8 +221,6 @@ namespace svx
         virtual void        ObjectReleased();
 
     protected:
-//STRIP001      const   ODataAccessDescriptor&  getDescriptor() const   { return m_aDescriptor; }
-//STRIP001              ODataAccessDescriptor&  getDescriptor()         { return m_aDescriptor; }
     protected:
         void    addCompatibleSelectionDescription(
             const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& _rSelRows
