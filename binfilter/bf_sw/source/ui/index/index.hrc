@@ -4,9 +4,9 @@
  *
  *  $RCSfile: index.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:06:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:01:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,30 +45,12 @@
 #define  DLG_FORMEDT            (RC_INDEX_BEGIN + 0)
 #define  DLG_IDX                (RC_INDEX_BEGIN + 1)
 #define  DLG_USRIDX             (RC_INDEX_BEGIN + 2)
-//STRIP001 #define  DLG_INSIDXMARK         (RC_INDEX_BEGIN + 3)
 #define  DLG_CNTTABLE           (RC_INDEX_BEGIN + 4)
-//STRIP001 #define  DLG_MULTMRK            (RC_INDEX_BEGIN + 5)
 
 #define  STR_TITLE              (RC_INDEX_BEGIN + 6)
-//STRIP001 #define  STR_ALPHA               (RC_INDEX_BEGIN + 7)
-//STRIP001 #define  STR_LEVEL               (RC_INDEX_BEGIN + 8)
 
-//STRIP001 #define  DLG_INSAUTHMARK        (RC_INDEX_BEGIN + 9)
-//STRIP001 #define  DLG_CREATE_AUTH_ENTRY  (RC_INDEX_BEGIN + 10)
-//STRIP001 #define  DLG_EDIT_IDXMARK        (RC_INDEX_BEGIN + 11)
-//STRIP001 #define  DLG_EDIT_AUTHMARK      (RC_INDEX_BEGIN + 12)
 
-//STRIP001 #define  STR_IDXMRK_INSERT       (RC_INDEX_BEGIN + 13)
-//STRIP001 #define  STR_IDXMRK_EDIT         (RC_INDEX_BEGIN + 14)
-//STRIP001 #define  STR_AUTHMRK_EDIT       (RC_INDEX_BEGIN + 15)
-//STRIP001 #define  STR_AUTHMRK_INSERT     (RC_INDEX_BEGIN + 16)
 
-//STRIP001 #define  DLG_NEW_USER_IDX       (RC_INDEX_BEGIN + 17)
 
-//STRIP001 #define  STR_FILE_NOT_FOUND     (RC_INDEX_BEGIN + 18)
-//STRIP001 #define  DLG_CHANGE_AUTH_ENTRY  (RC_INDEX_BEGIN + 19)
-//STRIP001 #define  DLG_CREATE_AUTOMARK    (RC_INDEX_BEGIN + 20)
 
-//STRIP001 #define  DLG_EDIT_IDXMARK_CJK   (RC_INDEX_BEGIN + 21)
-//STRIP001 #define  DLG_INSIDXMARK_CJK     (RC_INDEX_BEGIN + 22)
 #endif  // _INDEX_HRC
