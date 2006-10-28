@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotxdoc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:57:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 01:28:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -3032,13 +3032,6 @@ Any lcl_GetDisplayBitmap(String sLinkSuffix)
         nImgId = CONTENT_TYPE_BOOKMARK;
     if(USHRT_MAX != nImgId)
     {
-//STRIP001      nImgId += 20000;
-//STRIP001         BOOL bHighContrast = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
-//STRIP001         ImageList aEntryImages( SW_RES(bHighContrast ? IMG_NAVI_ENTRYBMPH : IMG_NAVI_ENTRYBMP) );
-//STRIP001      const Image& rImage = aEntryImages.GetImage( nImgId );
-//STRIP001         Bitmap aBitmap = rImage.GetBitmap();
-//STRIP001      Reference<awt::XBitmap> xBmp = VCLUnoHelper::CreateBitmap( aBitmap );
-//STRIP001      aRet.setValue( &xBmp, ::getCppuType((Reference<awt::XBitmap>*)0) );
     }
     return aRet;
 }
