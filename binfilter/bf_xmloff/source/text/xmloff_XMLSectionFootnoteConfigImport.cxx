@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionFootnoteConfigImport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:15:04 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:16:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,28 +43,16 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
-// auto strip #include <com/sun/star/style/NumberingType.hpp>
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-// auto strip #include "xmlprmap.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -74,9 +62,6 @@
 #include "nmspmap.hxx"
 #endif
 
-// auto strip #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-// auto strip #include "maptype.hxx"
-// auto strip #endif
 
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
