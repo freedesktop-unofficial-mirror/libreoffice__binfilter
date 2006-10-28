@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdcrtv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:32:08 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:03:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,16 +100,9 @@ protected:
 private:
     void ImpClearVars();
     void ImpMakeCreateAttr();
-//STRIP001  void ImpDelCreateAttr();
 
 protected:
-//STRIP001  BOOL ImpBegCreateObj(UINT32 nInvent, UINT16 nIdent, const Point& rPnt, OutputDevice* pOut,
-//STRIP001      short nMinMov, SdrPageView* pPV, const Rectangle& rLogRect);
 
-//STRIP001  void ShowCreateObj(OutputDevice* pOut, BOOL bFull);
-//STRIP001  void HideCreateObj(OutputDevice* pOut, BOOL bFull);
-//STRIP001  void DrawCreateObj(OutputDevice* pOut, BOOL bFull) const;
-//STRIP001  void DrawCreateObjDiff(XPolyPolygon& rXPP0, XPolyPolygon& rXPP1);
     virtual void WriteRecords(SvStream& rOut) const;
     virtual BOOL ReadRecord(const SdrIOHeader& rViewHead, const SdrNamedSubRecord& rSubHead, SvStream& rIn);
     BOOL CheckEdgeMode();
@@ -121,13 +114,8 @@ public:
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
     virtual BOOL IsAction() const;
-//STRIP001  virtual void MovAction(const Point& rPnt);
-//STRIP001  virtual void EndAction();
-//STRIP001  virtual void BckAction();
     virtual void BrkAction();
-//STRIP001  virtual void TakeActionRect(Rectangle& rRect) const;
 
-//STRIP001  BOOL MouseMove(const MouseEvent& rMEvt, Window* pWin);
 
     void SetActiveLayer(const String& rName) { aAktLayer=rName; }
     const String& GetActiveLayer() const { return aAktLayer; }
@@ -148,7 +136,6 @@ public:
     BOOL IsEdgeTool() const;
 
     // Feststellen, ob Bemassungswerkzeug aktiviert
-//STRIP001  BOOL IsMeasureTool() const;
 
     void SetCurrentObj(UINT16 nIdent, UINT32 nInvent=SdrInventor);
     void TakeCurrentObj(UINT16& nIdent, UINT32& nInvent) const  { nInvent=nAktInvent; nIdent=nAktIdent; }
@@ -165,14 +152,9 @@ public:
     // wird. Wenn bMoveNoResize=FALSE, wird das Objekt dann via Resize
     // "aufgezogen". Andernfalls wird es nur gemoved.
     // Als Mauszeiger wird POINTER_CROSS verwendet.
-//STRIP001  void SetCurrentLibObj(SdrObject* pObj, BOOL bMoveNoResize=FALSE, BOOL bSetDefAttr=TRUE, BOOL bSetDefLayer=TRUE);
     const SdrObject* GetCurrentLibObj() const { return pCurrentLibObj; }
 
     // Starten des normalen Create
-//STRIP001  BOOL BegCreateObj(const Point& rPnt, OutputDevice* pOut=NULL, short nMinMov=-3, SdrPageView* pPV=NULL);
-//STRIP001  void MovCreateObj(const Point& rPnt);
-//STRIP001  BOOL EndCreateObj(SdrCreateCmd eCmd);
-//STRIP001  void BckCreateObj();  // z.B. wieder 1 Polygonpunkt zurueck.
     void BrkCreateObj();
     BOOL IsCreateObj() const { return pAktCreate!=NULL; }
     SdrObject* GetCreateObj() const { return pAktCreate; }
@@ -180,15 +162,12 @@ public:
     // BegCreateCaptionObj() erzeugt ein SdrCaptionObj (Legendenobjekt).
     // rObjSiz ist die anfaengliche Groesse des Legenden-Textrahmens.
     // gedraggd wird lediglich die Laenge des Zipfel.
-//STRIP001  BOOL BegCreateCaptionObj(const Point& rPnt, const Size& rObjSiz, OutputDevice* pOut=NULL, short nMinMov=-3, SdrPageView* pPV=NULL);
 
     // Einfuegen eines vorgefertigten Objekts. pObj wird dabei uebereignet.
     // Die Einstellung des CurrentObj bleibt hierbei unbeeinflusst!
     // Diese Funktion eignet sich dafuer, um via eigenem "Drag&Drop" von
     // einer Symbolbibliothek ein Symbol per Maus zu greifen und dieses auf
     // das Dokument zu ziehen.
-//STRIP001  BOOL BegCreateLibObj(const Point& rPnt, SdrObject* pObj, BOOL bMoveNoResize=TRUE, BOOL bSetDefAttr=FALSE,
-//STRIP001      BOOL bSetDefLayer=FALSE, OutputDevice* pOut=NULL, short nMinMov=-3, SdrPageView* pPV=NULL);
 
     // Wenn TextEditAfterCreate auf TRUE steht (das ist der Default),
     // dann wird nach dem erzeugen eines Textrahmenobjekts (OBJ_TEXT,
@@ -231,15 +210,10 @@ public:
     // Default=FALSE;
     BOOL IsUseIncompatiblePathCreateInterface() const { return bUseIncompatiblePathCreateInterface; }
     void SetUseIncompatiblePathCreateInterface(BOOL bOn) { bUseIncompatiblePathCreateInterface = bOn; }
-//STRIP001  void SetConnectMarker(const SdrObjConnection& rCon, const SdrPageView& rPV);
-//STRIP001  void HideConnectMarker();
 
     // Attribute des ggf. gerade in der Erzeugung befindlichen Objekts
     /* new interface src537 */
-//STRIP001  BOOL GetAttributes(SfxItemSet& rTargetSet, BOOL bOnlyHardAttr=FALSE) const;
 
-//STRIP001  BOOL SetAttributes(const SfxItemSet& rSet, BOOL bReplaceAll);
-//STRIP001  SfxStyleSheet* GetStyleSheet(BOOL& rOk) const;
     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 };
 

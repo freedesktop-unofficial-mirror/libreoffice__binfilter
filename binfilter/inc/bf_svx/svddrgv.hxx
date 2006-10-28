@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svddrgv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:33:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:03:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -118,11 +118,6 @@ private:
 
 protected:
     // aDragPoly0 an den PageViews setzen
-//STRIP001  void ImpDrawEdgeXor(ExtOutputDevice& rXOut, BOOL bFull) const;
-//STRIP001  void SetDragPolys(BOOL bReset=FALSE, BOOL bSeparate=FALSE);
-//STRIP001  virtual void ShowDragObj(OutputDevice* pOut);
-//STRIP001  virtual void HideDragObj(OutputDevice* pOut);
-//STRIP001  virtual void DrawDragObj(OutputDevice* pOut, BOOL bFull) const;
     BOOL BegInsObjPoint(BOOL bIdxZwang, USHORT nIdx, const Point& rPnt, BOOL bNewObj, OutputDevice* pOut, short nMinMov);
     virtual void WriteRecords(SvStream& rOut) const;
     virtual BOOL ReadRecord(const SdrIOHeader& rViewHead, const SdrNamedSubRecord& rSubHead, SvStream& rIn);
@@ -134,11 +129,7 @@ public:
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
     virtual BOOL IsAction() const;
-//STRIP001  virtual void MovAction(const Point& rPnt);
-//STRIP001  virtual void EndAction();
-//STRIP001  virtual void BckAction();
     virtual void BrkAction();
-//STRIP001  virtual void TakeActionRect(Rectangle& rRect) const;
 
     // Spezialimplementation fuer den Writer:
     // TakeDragObjAnchorPos() liefert die Position an der ein Objekt
@@ -150,19 +141,14 @@ public:
     // Bei Returncode FALSE konnte ich die Position nicht bestimmen
     // (z.B. Punktverschiebung, Mehrfachselektion, Schieben der
     // Spiegelschse, ...)
-//STRIP001     BOOL TakeDragObjAnchorPos(Point& rPos, BOOL bTopRight = FALSE ) const;
 
     // Wird pForcedMeth uebergeben, so wird pHdl, ... nicht ausgewerten, sondern diese
     // Drag-Methode verwendet. Die Instanz geht dabei ins Eigentum der View ueber und
     // wird zum Ende des Draggings destruiert.
-//STRIP001  virtual BOOL BegDragObj(const Point& rPnt, OutputDevice* pOut=NULL, SdrHdl* pHdl=NULL, short nMinMov=-3, SdrDragMethod* pForcedMeth=NULL);
-//STRIP001  void MovDragObj(const Point& rPnt);
-//STRIP001  BOOL EndDragObj(BOOL bCopy=FALSE);
     void BrkDragObj();
     BOOL IsDragObj() const { return pDragBla!=NULL && !bInsPolyPoint && !bInsGluePoint; }
     SdrHdl* GetDragHdl() const { return pDragHdl; }
     SdrDragMethod* GetDragMethod() const { return pDragBla; }
-//STRIP001  BOOL IsMoveOnlyDragObj(BOOL bAskRTTI=FALSE) const;
     BOOL IsDraggingPoints() const { return eDragHdl==HDL_POLY; }
     BOOL IsDraggingGluePoints() const { return eDragHdl==HDL_GLUE; }
 
@@ -183,8 +169,6 @@ public:
     BOOL IsInsPointPossible() const { return IsInsObjPointPossible(); }
     BOOL BegInsObjPoint(USHORT nIdx, const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(TRUE,nIdx,rPnt,bNewObj,pOut,nMinMov); }
     BOOL BegInsObjPoint(const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(FALSE,0,rPnt,bNewObj,pOut,nMinMov); }
-//STRIP001  void MovInsObjPoint(const Point& rPnt) { MovDragObj(rPnt); }
-//STRIP001  BOOL EndInsObjPoint(SdrCreateCmd eCmd);
     void BrkInsObjPoint() { BrkDragObj(); }
     BOOL IsInsObjPoint() const { return pDragBla!=NULL && bInsPolyPoint; }
 
@@ -194,9 +178,6 @@ public:
     BOOL IsInsObjPointMode() const { return bInsObjPointMode; }
 
     BOOL IsInsGluePointPossible() const;
-//STRIP001  BOOL BegInsGluePoint(const Point& rPnt);
-//STRIP001  void MovInsGluePoint(const Point& rPnt) { MovDragObj(rPnt); }
-//STRIP001  BOOL EndInsGluePoint() { return EndDragObj(); }
     void BrkInsGluePoint() { BrkDragObj(); }
     BOOL IsInsGluePoint() const { return pDragBla!=NULL && bInsGluePoint; }
 
@@ -211,7 +192,6 @@ public:
     BOOL IsDragStripes() const { return bDragStripes; }
 
     // Handles waehrend des Draggens verstecken
-//STRIP001  void SetDragHdlHide(BOOL bOn);
     BOOL IsDragHdlHide() const { return bNoDragHdl; }
 
     // Beim Draggen von Polygonpunkten und Klebepunkten
@@ -271,10 +251,8 @@ public:
     // Gummibaender sondern komplette Neuberechnunen sind beim Draggen sichtbar.
     // Diese detalierte Darstellung ist eh nur beim MoveDrag moeglich.
     // Defaultwert ist 10
-//STRIP001  void SetDetailedEdgeDragging(BOOL bOn); // Default an
     BOOL IsDetailedEdgeDragging() const { return bDetailedEdgeDragging; }
 
-//STRIP001  void SetDetailedEdgeDraggingLimit(USHORT nEdgeObjAnz);
     USHORT GetDetailedEdgeDraggingLimit() const { return nDetailedEdgeDraggingLimit; }
 
     // EdgeDraggingLimit: Sind mehr als nEdgeObjAnz Kanten betroffen, werden
@@ -282,10 +260,8 @@ public:
     // Gemeint sind hier die "Gummibaender", die weniger Rechenzeit benoetigen
     // als die kompletten Neuberechnungen beim DetailedEdgeDragging.
     // Defaultwert ist 100
-//STRIP001  void SetRubberEdgeDragging(BOOL bOn);  // Default an
     BOOL IsRubberEdgeDragging() const { return bRubberEdgeDragging; }
 
-//STRIP001  void SetRubberEdgeDraggingLimit(USHORT nEdgeObjAnz);
     USHORT GetRubberEdgeDraggingLimit() const { return nRubberEdgeDraggingLimit; }
 
     // Verbinderhandling also zu deutsch wie folgt (bei Defaulteinstellungen):
@@ -310,7 +286,6 @@ public:
     void SetMirrRefDragObj(BOOL bOn) { bMirrRefDragObj = bOn; }
     BOOL IsMirrRefDragObj() const { return bMirrRefDragObj; }
 
-//STRIP001  BOOL IsOrthoDesired() const;
 
     // Beim Resize die Mitte als Referenz
     // Default=FALSE.
@@ -347,7 +322,6 @@ public:
     // Rundungsfehler auftreten koennen, wodurch das LimitRect minnimal
     // ueberschritten werden koennte...
     // Implementiert fuer Move und Resize.
-//STRIP001  virtual BOOL TakeDragLimit(SdrDragMode eMode, Rectangle& rRect) const;
 };
 
 }//end of namespace binfilter
