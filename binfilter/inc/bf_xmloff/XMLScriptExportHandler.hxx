@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLScriptExportHandler.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:16:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:03:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,13 +36,7 @@
 #ifndef _XMLOFF_XMLSCRIPTEXPORTHANDLER_HXX
 #define _XMLOFF_XMLSCRIPTEXPORTHANDLER_HXX
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-// auto strip #include <com/sun/star/uno/Reference.hxx>
-// auto strip #endif
 
 #ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
