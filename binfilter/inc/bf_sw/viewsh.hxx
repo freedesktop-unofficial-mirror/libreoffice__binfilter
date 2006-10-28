@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:08:17 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 05:02:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,22 +38,13 @@
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif
-// auto strip #ifndef _SVARRAY_HXX //autogen
-// auto strip #include <svtools/svarray.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _RING_HXX
 #include <ring.hxx>
 #endif
 #ifndef _SWRECT_HXX
 #include <swrect.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 #ifdef ACCESSIBLE_LAYOUT
 namespace com { namespace sun { namespace star { namespace accessibility {
@@ -162,14 +153,11 @@ class ViewShell : public Ring
 
     inline void ResetInvalidRect();
 
-//STRIP001  void SetSubsLines();
 
     void Reformat();            //Invalidert das ges. Layout (ApplyViewOption)
 
-//STRIP001  void PaintDesktop( const SwRect & );        // sammeln der Werte fuers
                                                 // Malen der Wiese und rufen
     // PaintDesktop gesplittet, dieser Teil wird auch von PreViewPage benutzt
-//STRIP001  void _PaintDesktop( const SwRegionRects &rRegion );
 
     sal_Bool CheckInvalidForPaint( const SwRect & );//Direkt Paint oder lieber
                                                 //eine Aktion ausloesen.
@@ -177,9 +165,7 @@ class ViewShell : public Ring
     void Scroll();  //Scrollen wenn sich aus der LayAction Scrollmoeglichkeiten
                     //ergaben.
 
-//STRIP001     void PrepareForPrint( const SwPrtOptions &rOptions );
 
-//STRIP001  void ImplApplyViewOptions( const SwViewOption &rOpt );
 
 protected:
     static ShellResource*   pShellRes;      // Resourcen fuer die Shell
@@ -220,8 +206,6 @@ public:
 
     //  Per UNO wird am RootFrame fuer alle shells der ActionCount kurzfristig
     //  auf Null gesetzt und wieder restauriert
-//STRIP001  void    SetRestoreActions(sal_uInt16 nSet);
-//STRIP001  sal_uInt16  GetRestoreActions() const;
 
     inline sal_Bool HasInvalidRect() const { return aInvalidRect.HasArea(); }
     void ChgHyphenation() { Reformat(); }
@@ -234,15 +218,12 @@ public:
     void SetNoNextScroll();
 
     void InvalidateWindows( const SwRect &rRect );
-//STRIP001  virtual void Paint(const Rectangle &rRect);
     sal_Bool IsPaintInProgress() const { return bPaintInProgress; }
 
     //Benachrichtung, dass sich der sichtbare Bereich geaendert hat.
     //VisArea wird neu gesetzt, anschliessend wird gescrollt.
     //Das uebergebene Rect liegt auf Pixelgrenzen,
     //um Pixelfehler beim Scrollen zu vermeiden.
-//STRIP001  virtual void VisPortChgd( const SwRect & );
-//STRIP001  sal_Bool SmoothScroll( long lXDiff, long lYDiff, const Rectangle* );//Browser
     void EnableSmooth( sal_Bool b ) { bEnableSmooth = b; }
 
     const SwRect &VisArea() const { return aVisArea; }
@@ -254,16 +235,12 @@ public:
     void SizeChgNotify(const Size &);
     void UISizeNotify();            //Das weiterreichen der aktuellen groesse.
 
-//STRIP001  Point GetPagePos( sal_uInt16 nPageNum ) const;
 
-//STRIP001  sal_uInt16 GetNumPages();   //Anzahl der aktuellen Seiten Layout erfragen.
-//STRIP001     sal_Bool   IsDummyPage( USHORT nPageNum ) const;  // An empty page?
 
     //Invalidierung der ersten Sichtbaren Seite fuer alle Shells im Ring.
     void SetFirstVisPageInvalid();
 
     SwRootFrm   *GetLayout() const;
-//STRIP001  sal_Bool         IsNewLayout() const; //Wurde das Layout geladen oder neu
                                       //erzeugt?
 
      Size GetDocSize() const;// erfrage die Groesse des Dokuments
@@ -285,44 +262,28 @@ public:
     static inline sal_Bool IsLstEndAction() { return ViewShell::bLstAct; }
 
     // Setzt Drucker fuer ALLE Sichten im Ring; einschl. Invalidierungen
-//STRIP001     void SetPrt( SfxPrinter* );
     void SetVirDev( VirtualDevice* );
 
     //Andern alle PageDescriptoren
-//STRIP001  void   ChgAllPageOrientation( sal_uInt16 eOri );
-//STRIP001  void   ChgAllPageSize( Size &rSz );
 
     //Druckauftrag abwickeln.
     // pPDFOut != Null is: do PDF Export (no printing!)
     sal_Bool Prt( SwPrtOptions& rOptions, SfxProgress& rProgress,
                   OutputDevice *pPDFOut = NULL );
     //"Drucken" fuer OLE 2.0
-//STRIP001     static void PrtOle2( SwDoc *pDoc, const SwViewOption *pOpt, SwPrtOptions& rOptions,
-//STRIP001                       OutputDevice* pOleOut, const Rectangle& rRect );
 
     // creates temporary doc with selected text for PDF export
     SwDoc * CreatePrtDoc( SfxPrinter* pPrt, SvEmbeddedObjectRef &rDocShellRef );
     SwDoc * FillPrtDoc( SwDoc* pPrtDoc, const SfxPrinter* pPrt );
 
     //Wird intern fuer die Shell gerufen die Druckt. Formatiert die Seiten.
-//STRIP001  void CalcPagesForPrint( sal_uInt16 nMax, SfxProgress* pProgress = 0,
-//STRIP001      const String* pStr = NULL, sal_uInt32 nMergeAct = 0, sal_uInt32 nMergeCnt = 0 );
 
     //All about fields.
-//STRIP001  void UpdateFlds(sal_Bool bCloseDB = sal_False);
-//STRIP001  sal_Bool IsAnyFieldInDoc() const;
     // update all charts, for that exists any table
-//STRIP001  void UpdateAllCharts();
-//STRIP001  sal_Bool HasCharts() const;
 
     // Sollen Absatzabstaende addiert oder maximiert werden?
-//STRIP001  sal_Bool IsParaSpaceMax() const;
-//STRIP001  sal_Bool IsParaSpaceMaxAtPages() const;
-//STRIP001  void SetParaSpaceMax( sal_Bool bNew, sal_Bool bAtPages );
 
     // compatible behaviour of tabs
-//STRIP001     sal_Bool IsTabCompat() const;
-//STRIP001     void SetTabCompat( sal_Bool bNew );
 
     //formatting by virtual device or printer
     sal_Bool IsUseVirtualDevice()const;
@@ -334,8 +295,6 @@ public:
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
     void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         void  ApplyViewOptions( const SwViewOption &rOpt );
            void  SetUIOptions( const SwViewOption &rOpt );
-//STRIP001         void  SetReadonlyOption(sal_Bool bSet);   // Readonly-Bit d. ViewOptions setzen
-//STRIP001         void  SetPrtFormatOption(sal_Bool bSet);  // PrtFormat-Bit d. ViewOptions setzen
            void  SetReadonlySelectionOption(sal_Bool bSet);//change the selection mode in readonly docs
 
     const SwAccessibilityOptions* GetAccessibilityOptions() const { return pAccOptions;}
@@ -376,15 +335,10 @@ public:
                            const SwPagePreViewPrtData* = 0 );
 
     // Prospekt-Format drucken
-//STRIP001  void PrintProspect( SwPrtOptions&, SfxProgress& );
 
     sal_Bool IsViewLocked() const { return bViewLocked; }
     void LockView( sal_Bool b )   { bViewLocked = b;    }
 
-//STRIP001  inline void LockPaint();
-//STRIP001         void ImplLockPaint();
-//STRIP001  inline void UnlockPaint( sal_Bool bVirDev = sal_False );
-//STRIP001         void ImplUnlockPaint( sal_Bool bVirDev );
            sal_Bool IsPaintLocked() const { return nLockPaint != 0; }
 
     // Abfragen/Erzeugen DrawView + PageView
@@ -396,7 +350,6 @@ public:
     const SdrView *GetDrawView() const { return ((ViewShell*)this)->GetDrawView(); }
 
     //sorge dafuer, das auf jedenfall die MarkListe aktuell ist (Bug 57153)
-//STRIP001  SdrView *GetDrawViewWithValidMarkList();
 
     // erfrage den Attribut Pool
     inline const SfxItemPool& GetAttrPool() const;
@@ -417,24 +370,14 @@ public:
     //Damit in der UI nicht ueberall das dochxx includet werden muss
     sal_Bool IsBrowseMode() const;
 
-//STRIP001  sal_Bool IsHeadInBrowse() const;
-//STRIP001  void SetHeadInBrowse( sal_Bool bOn = sal_True );
-//STRIP001  sal_Bool IsFootInBrowse() const;
-//STRIP001  void SetFootInBrowse( sal_Bool bOn = sal_True );
 
     const Size& GetBrowseBorder() const{ return aBrowseBorder; }
     void SetBrowseBorder( const Size& rNew );
 
-//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::accessibility::XAccessible > CreateAccessible();
 
     // OD 15.01.2003 #103492# - change method signature due to new page preview
     // functionality.
-//STRIP001     ::com::sun::star::uno::Reference<
-//STRIP001         ::com::sun::star::accessibility::XAccessible >
-//STRIP001             CreateAccessiblePreview();
 
-//STRIP001  void ShowPreViewSelection( sal_uInt16 nSelPage );
-//STRIP001  void InvalidateAccessibleFocus();
 
     //apply Accessiblity options
     void ApplyAccessiblityOptions(SvtAccessibilityOptions& rAccessibilityOptions);
@@ -476,16 +419,6 @@ inline void ViewShell::EndAction( const sal_Bool bIdleEnd )
     --nStartAction;
 }
 
-//STRIP001 inline void ViewShell::LockPaint()
-//STRIP001 {
-//STRIP001  if ( !nLockPaint++ )
-//STRIP001      ImplLockPaint();
-//STRIP001 }
-//STRIP001 inline void ViewShell::UnlockPaint( sal_Bool bVirDev )
-//STRIP001 {
-//STRIP001  if ( 0 == --nLockPaint )
-//STRIP001      ImplUnlockPaint( bVirDev );
-//STRIP001 }
 inline const SfxItemPool& ViewShell::GetAttrPool() const
 {
     return ((ViewShell*)this)->GetAttrPool();
