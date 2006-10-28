@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoapi.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:13:13 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:21:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SVX_UNOAPI_HXX_
 #define _SVX_UNOAPI_HXX_
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
@@ -119,5 +116,4 @@ void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, ::com::sun::star::uno::
 void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, ::com::sun::star::uno::Any & rMetric ) throw();
 
 }//end of namespace binfilter
-#endif _SVX_UNOAPI_HXX_
-
+#endif // _SVX_UNOAPI_HXX_
