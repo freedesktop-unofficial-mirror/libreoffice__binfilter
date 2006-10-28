@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbcolect.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:06:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:32:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,9 +51,6 @@
 #ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX //STRIP001
-// auto strip #include <tools/debug.hxx>//STRIP001 //------------------------------------------------------------------------
-// auto strip #endif//STRIP001
 namespace binfilter {
 class ScDocument;
 class ScMultipleReadHeader;
@@ -150,7 +147,6 @@ public:
 
             ScDBData&   operator= (const ScDBData& rData);
 
-//STRIP001          BOOL        operator== (const ScDBData& rData) const;
 
             BOOL        Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
 
@@ -160,7 +156,6 @@ public:
             void        GetArea(USHORT& rTab, USHORT& rCol1, USHORT& rRow1, USHORT& rCol2, USHORT& rRow2) const;
             void        GetArea(ScRange& rRange) const;
             void        SetArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
-//STRIP001          void        MoveTo(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2);
             BOOL        IsByRow() const                 { return bByRow; }
             void        SetByRow(BOOL bByR)             { bByRow = bByR; }
             BOOL        HasHeader() const               { return bHasHeader; }
@@ -176,8 +171,6 @@ public:
 
             BOOL        IsBeyond(USHORT nMaxRow) const;
 
-//STRIP001          String      GetSourceString() const;
-//STRIP001          String      GetOperations() const;
 
             void        GetSortParam(ScSortParam& rSortParam) const;
             void        SetSortParam(const ScSortParam& rSortParam);
@@ -193,10 +186,7 @@ public:
             void        GetImportParam(ScImportParam& rImportParam) const;
             void        SetImportParam(const ScImportParam& rImportParam);
 
-//STRIP001          BOOL        IsDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const;
-//STRIP001          BOOL        IsDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
 
-//STRIP001          String      GetTargetName(const String& rDocName) const;
 
             BOOL        HasImportParam() const   { return bDBImport; }
             BOOL        HasQueryParam() const    { return bDoQuery[0]; }
@@ -242,7 +232,6 @@ public:
     virtual DataObject* Clone() const { return new ScDBCollection(*this); }
             ScDBData*   operator[]( const USHORT nIndex) const {return (ScDBData*)At(nIndex);}
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
-//STRIP001  virtual BOOL        IsEqual(DataObject* pKey1, DataObject* pKey2) const;
             ScDBData*   GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const;
             ScDBData*   GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
 
@@ -255,7 +244,6 @@ public:
                                 USHORT nCol1, USHORT nRow1, USHORT nTab1,
                                 USHORT nCol2, USHORT nRow2, USHORT nTab2,
                                 short nDx, short nDy, short nDz );
-//STRIP001  void    UpdateMoveTab( USHORT nOldPos, USHORT nNewPos );
 
     ScDBData* FindIndex(USHORT nIndex);
     USHORT  GetEntryIndex()                 { return nEntryIndex; }

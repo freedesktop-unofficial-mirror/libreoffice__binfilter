@@ -4,9 +4,9 @@
  *
  *  $RCSfile: datauno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:05:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:32:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,18 +48,9 @@
 #include <svtools/lstner.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SHEET_TABLEFILTERFIELD_HPP_
-// auto strip #include <com/sun/star/sheet/TableFilterField.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_GENERALFUNCTION_HPP_
-// auto strip #include <com/sun/star/sheet/GeneralFunction.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEREFERRER_HPP_
 #include <com/sun/star/sheet/XCellRangeReferrer.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETFILTERDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/sheet/XSheetFilterDescriptor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XCONSOLIDATIONDESCRIPTOR_HPP_
 #include <com/sun/star/sheet/XConsolidationDescriptor.hpp>
 #endif
@@ -69,9 +60,6 @@
 #ifndef _COM_SUN_STAR_SHEET_XDATABASERANGE_HPP_
 #include <com/sun/star/sheet/XDatabaseRange.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSUBTOTALDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/sheet/XSubTotalDescriptor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HPP_
 #include <com/sun/star/sheet/XSubTotalField.hpp>
 #endif

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: convuno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:04:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:31:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef SC_CONVUNO_HXX
 #define SC_CONVUNO_HXX
 
-// auto strip #ifndef _LANG_HXX
-// auto strip #include <tools/lang.hxx>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
@@ -47,9 +44,6 @@
 #include <com/sun/star/table/CellRangeAddress.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-// auto strip #include <com/sun/star/lang/Locale.hpp>
-// auto strip #endif
 
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
