@@ -4,9 +4,9 @@
  *
  *  $RCSfile: subtotal.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:32:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:43:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,16 +79,9 @@ public:
             SubTotal();
             ~SubTotal();
 
-//STRIP001  void    UpdateNoVal();
     void    Update( double nVal );
-//STRIP001  void    Update( const SubTotal& rVal );
-//STRIP001
-//STRIP001  short   Valid( USHORT nFunction ) const;
-//STRIP001                          // return 0 => Fehler, -1 => kein Wert, 1 => ok
-//STRIP001  double  Result( USHORT nFunction ) const;
     static  BOOL SafePlus( double& fVal1, double fVal2);
     static  BOOL SafeMult( double& fVal1, double fVal2);
-//STRIP001  static  BOOL SafeDiv( double& fVal1, double fVal2);
 };
 
 
