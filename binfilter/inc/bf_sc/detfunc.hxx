@@ -4,9 +4,9 @@
  *
  *  $RCSfile: detfunc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:07:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 02:32:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,10 +108,6 @@ class ScDetectiveFunc
 
     void        DrawCircle( USHORT nCol, USHORT nRow, ScDetectiveData& rData );
 
-//STRIP001  SdrObject*  DrawCaption( USHORT nCol, USHORT nRow, const String& rText,
-//STRIP001                              ScCommentData& rData, SdrPage* pDestPage,
-//STRIP001                              BOOL bHasUserText, BOOL bLeft,
-//STRIP001                              const Rectangle& rVisible );
 
     USHORT      InsertPredLevel( USHORT nCol, USHORT nRow, ScDetectiveData& rData, USHORT nLevel );
     USHORT      InsertPredLevelArea( const ScTripel& rRefStart, const ScTripel& rRefEnd,
@@ -152,7 +148,6 @@ public:
     void        UpdateAllComments();        // on all tables
 /*N*/   void        UpdateAllArrowColors();     // on all tables
 
-//STRIP001  static BOOL IsNonAlienArrow( SdrObject* pObject );
 
     ScDetectiveObjType GetDetectiveObjectType( SdrObject* pObject,
                                 ScAddress& rPosition, ScRange& rSource, BOOL& rRedLine );
@@ -163,7 +158,6 @@ public:
     static ColorData GetErrorColor();
     static ColorData GetCommentColor();
     static void InitializeColors();
-//STRIP001  static BOOL IsColorsInitialized();
 };
 
 
