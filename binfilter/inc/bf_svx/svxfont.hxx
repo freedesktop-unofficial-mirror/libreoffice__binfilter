@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svxfont.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:16:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 04:14:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,27 +97,14 @@ public:
 // ausgeklammert werden.
 #ifndef REDUCEDSVXFONT
     // Kapitaelchenbearbeitung
-//STRIP001  void DoOnCapitals( SvxDoCapitals &rDo,
-//STRIP001                     const USHORT nPartLen = USHRT_MAX ) const;
 
     void SetPhysFont( OutputDevice *pOut ) const;
-//STRIP001  Font ChgPhysFont( OutputDevice *pOut ) const;
 
-//STRIP001  Size GetCapitalSize( const OutputDevice *pOut, const String &rTxt,
-//STRIP001                        const USHORT nIdx, const USHORT nLen) const;
-//STRIP001  void DrawCapital( OutputDevice *pOut, const Point &rPos, const String &rTxt,
-//STRIP001                    const USHORT nIdx, const USHORT nLen ) const;
 
-//STRIP001  Size GetPhysTxtSize( const OutputDevice *pOut, const String &rTxt,
-//STRIP001                       const USHORT nIdx, const USHORT nLen ) const;
 
     Size GetPhysTxtSize( const OutputDevice *pOut, const String &rTxt );
 
-//STRIP001  Size GetTxtSize( const OutputDevice *pOut, const String &rTxt,
-//STRIP001                    const USHORT nIdx = 0, const USHORT nLen = STRING_LEN );
 
-//STRIP001  void DrawText( OutputDevice *pOut, const Point &rPos, const String &rTxt,
-//STRIP001             const USHORT nIdx = 0, const USHORT nLen = STRING_LEN ) const;
 
     void QuickDrawText( OutputDevice *pOut, const Point &rPos, const String &rTxt,
                const USHORT nIdx = 0, const USHORT nLen = STRING_LEN, const sal_Int32* pDXArray = NULL ) const;
@@ -125,13 +112,8 @@ public:
     Size QuickGetTextSize( const OutputDevice *pOut, const String &rTxt,
                          const USHORT nIdx, const USHORT nLen, sal_Int32* pDXArray = NULL ) const;
 
-//STRIP001  void DrawPrev( OutputDevice* pOut, Printer* pPrinter,
-//STRIP001                 const Point &rPos, const String &rTxt,
-//STRIP001                 const USHORT nIdx = 0, const USHORT nLen = STRING_LEN ) const;
 
 #endif // !REDUCEDSVXFONT
-//STRIP001  static void DrawArrow( OutputDevice &rOut, const Rectangle& rRect,
-//STRIP001      const Size& rSize, const Color& rCol, BOOL bLeft );
     SvxFont&    operator=( const SvxFont& rFont );
     SvxFont&    operator=( const Font& rFont );
 };
