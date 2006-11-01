@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:54:40 $
+ *  last change: $Author: vg $ $Date: 2006-11-01 16:08:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -140,7 +140,7 @@ void SAL_CALL SvxUnoColorTable::insertByName( const OUString& aName, const uno::
     if( hasByName( aName ) )
         throw container::ElementExistException();
 
-    INT32 nColor;
+    INT32 nColor = 0;
     if( aElement >>= nColor )
         throw lang::IllegalArgumentException();
 
@@ -160,7 +160,7 @@ void SAL_CALL SvxUnoColorTable::removeByName( const OUString& Name )
 void SAL_CALL SvxUnoColorTable::replaceByName( const OUString& aName, const uno::Any& aElement )
     throw( lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    INT32 nColor;
+    INT32 nColor = 0;
     if( aElement >>= nColor )
         throw lang::IllegalArgumentException();
 
