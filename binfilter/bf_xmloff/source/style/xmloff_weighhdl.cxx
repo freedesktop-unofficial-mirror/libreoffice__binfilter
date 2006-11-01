@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_weighhdl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:05:23 $
+ *  last change: $Author: vg $ $Date: 2006-11-01 16:09:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -151,7 +151,7 @@ sal_Bool XMLFontWeightPropHdl::exportXML( OUString& rStrExpValue, const Any& rVa
     sal_Bool bRet = sal_False;
     FontWeight eWeight;
 
-    float fValue;
+    float fValue = float();
     if( !( rValue >>= fValue ) )
     {
         sal_Int32 nValue;
