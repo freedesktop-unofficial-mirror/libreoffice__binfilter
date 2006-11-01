@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_PropertySetMerger.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:42:36 $
+ *  last change: $Author: vg $ $Date: 2006-11-01 16:08:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -242,7 +242,7 @@ Sequence< Property > SAL_CALL PropertySetMergerImpl::getProperties() throw(Runti
 
     sal_Int32 nIndex;
 
-    Property* pProperties;
+    Property* pProperties = aProperties.getArray();
 
     for( nIndex = 0; nIndex < nCount1; nIndex++ )
         *pProperties++ = *pProps1++;
