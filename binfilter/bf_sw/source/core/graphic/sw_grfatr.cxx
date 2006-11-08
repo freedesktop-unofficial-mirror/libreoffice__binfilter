@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_grfatr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:40:54 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:31:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -220,6 +220,9 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/   : SvxGrfCrop( RES_GRFATR_CROPGRF )
 /*N*/ {}
 
+SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
+        : SvxGrfCrop( nL, nR, nT, nB, RES_GRFATR_CROPGRF )
+{}
 
 /*N*/ SfxPoolItem* SwCropGrf::Clone( SfxItemPool* ) const
 /*N*/ {
