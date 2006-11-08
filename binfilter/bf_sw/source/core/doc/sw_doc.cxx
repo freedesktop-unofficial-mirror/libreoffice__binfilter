@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:21:21 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:27:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -274,7 +274,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // verschiebe noch alle Bookmarks/TOXMarks/FlyAtCnt
 /*N*/       if( aBkmkArr.Count() )
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  _RestoreCntntIdx( this, aBkmkArr, rPos.nNode.GetIndex()-1, 0, TRUE );
+/*?*/   {   _RestoreCntntIdx( this, aBkmkArr, rPos.nNode.GetIndex()-1, 0, TRUE );}
 /*N*/
 /*N*/       if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/       {
@@ -330,7 +330,7 @@ namespace binfilter {
 /*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
 /*N*/   {
 /*?*/       if( 1 == rStr.Len() && pACEWord->IsDeleted() )
-/*?*/        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    pACEWord->CheckChar( *pPos, rStr.GetChar( 0 ) );
+/*?*/        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001   pACEWord->CheckChar( *pPos, rStr.GetChar( 0 ) );
 /*?*/       delete pACEWord, pACEWord = 0;
 /*N*/   }
 /*N*/
