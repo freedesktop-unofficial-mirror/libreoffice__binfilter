@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fldmgr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:23:00 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:46:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,10 +43,6 @@
 #include <hintids.hxx>
 #endif
 
-
-
-
-
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
@@ -63,7 +59,6 @@
 #ifndef _FLDMGR_HXX
 #include <fldmgr.hxx>
 #endif
-
 #ifndef _FLDUI_HRC
 #include <fldui.hrc>
 #endif
@@ -232,12 +227,6 @@ static const SwFldPack __FAR_DATA aSwFlds[] =
 String* SwFldMgr::pDate = 0;
 String* SwFldMgr::pTime = 0;
 
-
-/*--------------------------------------------------------------------
-    Beschreibung: Zugriff auf die Shell
- --------------------------------------------------------------------*/
-
-
 /*N*/ void SwFieldType::_GetFldName()
 /*N*/ {
 /*N*/   static const USHORT coFldCnt = STR_TYPE_END - STR_TYPE_BEGIN;
@@ -297,6 +286,4 @@ String* SwFldMgr::pTime = 0;
 /*N*/       SwFieldType::pFldNames->Insert(pTmp, nIdx );
 /*N*/   }
 /*N*/ }
-
-
 }
