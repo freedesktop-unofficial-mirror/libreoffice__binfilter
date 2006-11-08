@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotbl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:55:37 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:36:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -236,8 +236,18 @@ using namespace ::com::sun::star::table;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::chart;
 using namespace ::rtl;
-//collectn.cxx
-BOOL lcl_IsNumeric(const String&);
+
+BOOL lcl_IsNumeric(const String& rStr)
+{
+          DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+    for(xub_StrLen i = 0; i < rStr.Len(); i++)
+    {
+        sal_Unicode c = rStr.GetChar(i);
+        if((c < '0') || (c > '9'))
+            return FALSE;
+    }
+    return TRUE;
+}
 
 //-----------------------------------------------------------------------------
 //aus unoobj.cxx
