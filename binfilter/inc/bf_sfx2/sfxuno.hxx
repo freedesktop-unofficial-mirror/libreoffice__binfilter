@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfxuno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:08:53 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:08:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,11 +36,6 @@
 #ifndef _SFX_SFXUNO_HXX
 #define _SFX_SFXUNO_HXX
 
-//________________________________________________________________________________________________________________________
-//  generated header
-//________________________________________________________________________________________________________________________
-
-
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
 #endif
@@ -48,9 +43,6 @@
 #ifndef _COM_SUN_STAR_UTIL_URL_HPP_
 #include <com/sun/star/util/URL.hpp>
 #endif
-
-
-
 
 //________________________________________________________________________________________________________________________
 //  fix uno header
@@ -68,20 +60,10 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-
-
-
 #ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
 #endif
 
-//________________________________________________________________________________________________________________________
-//  something else ... header
-//________________________________________________________________________________________________________________________
-
-
-class SfxAllItemSet;
-class SfxItemSet;
 namespace binfilter {
 
 //________________________________________________________________________________________________________________________
@@ -115,18 +97,6 @@ inline sal_Bool operator==( const UNOURL& aURL1, const UNOURL& aURL2 )
 {
     return aURL1.Complete == aURL2.Complete;
 }
-
-class SfxSlot       ;
-
-void TransformParameters(           sal_uInt16                          nSlotId     ,
-                            const   UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs     ,
-                                    SfxAllItemSet&                      aSet        ,
-                            const   SfxSlot*                            pSlot = 0   );
-
-void TransformItems     (           sal_uInt16                          nSlotId     ,
-                            const   SfxItemSet&                         aSet        ,
-                                    UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs     ,
-                            const   SfxSlot*                            pSlot = 0   );
 
 #define FrameSearchFlags            sal_Int32
 
