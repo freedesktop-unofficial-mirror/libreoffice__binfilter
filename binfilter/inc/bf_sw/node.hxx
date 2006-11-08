@@ -4,9 +4,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:50:15 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:11:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -341,6 +341,8 @@ public:
 
     virtual SwCntntFrm *MakeFrm() = 0;
      virtual SwCntntNode *SplitNode(const SwPosition & ) = 0;
+    virtual SwCntntNode *JoinNext();
+    virtual SwCntntNode *JoinPrev();
     // koennen 2 Nodes zusammengefasst werden ?
     // in pIdx kann die 2. Position returnt werden.
     int CanJoinNext( SwNodeIndex* pIdx =0 ) const;
