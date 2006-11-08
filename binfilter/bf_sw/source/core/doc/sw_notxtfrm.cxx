@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_notxtfrm.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:26:51 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:28:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -431,7 +431,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/               if( pSh->IsPreView() )
 /*N*/               {
 /*?*/                   if( pSh->GetWin() )
-/*?*/                       ::binfilter::RepaintPagePreview( pSh, aRect );
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::binfilter::RepaintPagePreview( pSh, aRect );
 /*?*/               }
 /*?*/               else if ( pSh->VisArea().IsOver( aRect ) &&
 /*?*/                    OUTDEV_WINDOW == pSh->GetOut()->GetOutDevType() )
