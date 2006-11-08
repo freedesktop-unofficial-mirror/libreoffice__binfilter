@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfatr.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:47:12 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:10:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,6 +123,8 @@ class SwCropGrf : public SvxGrfCrop
 public:
     TYPEINFO();
     SwCropGrf();
+    SwCropGrf(  sal_Int32 nLeft,    sal_Int32 nRight,
+                sal_Int32 nTop,     sal_Int32 nBottom );
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
