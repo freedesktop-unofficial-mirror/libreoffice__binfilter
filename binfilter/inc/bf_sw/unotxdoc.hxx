@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotxdoc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:49:03 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:13:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -466,8 +466,7 @@ class SwXTextDocument : public SwXTextDocumentBaseClass,
     void                    GetNumberFormatter();
 
     // used for XRenderable implementation
-    SfxViewShell *  GuessViewShell();
-    SwDoc *         GetRenderDoc( SfxViewShell *&rpView, const ::com::sun::star::uno::Any& rSelection );
+    SwDoc *         GetRenderDoc( const ::com::sun::star::uno::Any& rSelection );
 
 protected:
     virtual ~SwXTextDocument();
