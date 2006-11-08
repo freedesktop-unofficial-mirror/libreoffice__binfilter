@@ -4,9 +4,9 @@
  *
  *  $RCSfile: iodetect.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:48:15 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:10:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@ struct SwIoDetect
     FnGetWriter fnGetWriter;
     BOOL bDelReader;
 
-    inline Reader* GetReader() const { return pReader; }
+   inline Reader* GetReader() const { return pReader; }
     inline void GetWriter( const String& rNm, WriterRef& xWrt ) const
         { if( fnGetWriter ) (*fnGetWriter)(rNm,xWrt); else xWrt = WriterRef(0); }
 #endif
@@ -127,7 +127,7 @@ const USHORT MAXFILTER =
 #endif
 #ifdef DEBUG_SH
 #endif
-    9;//STRIP001    21;
+    14;//STRIP001     21;
 
 #define FORAMTNAME_SW4      "StarWriter 4.0"
 #define FORAMTNAME_SW3      "StarWriter 3.0"
@@ -177,20 +177,20 @@ SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
 /*  3*/ SwIoEntry(FILTER_SWG,       STRING_LEN, 0,                  TRUE),  \
 /*  4*/ SwIoEntry(FILTER_SWGV,      4,          0,                  FALSE), \
 /*  5 SwIoEntry(FILTER_RTF,         STRING_LEN, &::GetRTFWriter,    TRUE),  */\
-/*  6 SwIoEntry(sSwDos,           STRING_LEN,   0,                  TRUE),  */\
+/*  6*/ SwIoEntry(sSwDos,           STRING_LEN,  0,                  TRUE),  \
 /*  7*/ SwIoEntry(FILTER_BAS,       STRING_LEN, &::binfilter::GetASCWriter,     FALSE), \
 /*  8 SwIoEntry(sWW6,               STRING_LEN, &::GetWW8Writer,    TRUE),  */\
 /*  9 SwIoEntry(FILTER_WW8,     STRING_LEN, &::GetWW8Writer,    FALSE), */\
-/* 10 SwIoEntry(FILTER_W4W,         3,          &::GetW4WWriter,    TRUE),  */\
+/* 10*/ SwIoEntry(FILTER_W4W,        3,          &::binfilter::GetW4WWriter,    TRUE),  \
 /* 11 SwIoEntry(sRtfWH,             STRING_LEN, &::GetRTFWriter,    FALSE), */\
-/* 12 SwIoEntry(sCExcel,            5,          0,                  TRUE),  */\
-/* 13 SwIoEntry(sExcel,         4,          0,                  FALSE), */\
-/* 14 SwIoEntry(sLotusD,            5,          0,                  TRUE),  */\
+/* 12*/ SwIoEntry(sCExcel,           5,          0,                  TRUE),  \
+/* 13*/ SwIoEntry(sExcel,            4,          0,                  FALSE), \
+/* 14*/ SwIoEntry(sLotusD,           5,          0,                  TRUE),  \
 /* 15 SwIoEntry(sHTML,          4,          &::GetHTMLWriter,   TRUE),  */\
 /* 16 SwIoEntry(sWW1,           STRING_LEN, 0,                  TRUE),  */\
 /* 17 SwIoEntry(sWW5,               STRING_LEN, 0,                  FALSE), */\
 /* 18*/ SwIoEntry(sSwg1,            4,          0,                  FALSE), \
-/* 19*/ SwIoEntry(FILTER_XML,       4,          &::binfilter::GetXMLWriter, TRUE)   \
+/* 19*/ SwIoEntry(FILTER_XML,       4,          &::binfilter::GetXMLWriter, TRUE)  \
                                                                             \
 /* opt DEB_SH_SwIoEntry(sW4W_Int, STRING_LEN, 0,                    TRUE)   */\
 /* opt DEB_DBWRT_SwIoEntry(sDebug,STRING_LEN, &::GetDebugWriter,    FALSE)  */\
