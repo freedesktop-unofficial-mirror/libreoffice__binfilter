@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:09:11 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:44:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,7 +100,6 @@
 
 // #108584#
 
-// #109590#
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
 #endif
@@ -156,20 +155,6 @@ using namespace ::com::sun::star::datatransfer;
 #endif
 
 // helper class for Action and Undo enclosing
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/  void SwTransferable::InitOle( SvEmbeddedObjectRef rRef, SwDoc& rDoc )
@@ -194,24 +179,6 @@ using namespace ::com::sun::star::datatransfer;
     // 1) we have data for this format
     // 2) we have either a clipboard document (pClpDocFac), or
     //    we have a SwWrtShell (so we can generate a new clipboard document)
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 /*N*/ static inline Reference < XTransferable > * lcl_getTransferPointer ( Reference < XTransferable > &xRef )
 /*N*/ {
@@ -263,9 +230,6 @@ using namespace ::com::sun::star::datatransfer;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/  USHORT SwTransferable::GetSotDestination( const SwWrtShell& rSh,
 /*N*/                                           const Point* pPt )
 /*N*/  {
@@ -288,9 +252,10 @@ using namespace ::com::sun::star::datatransfer;
 /*N*/       break;
 /*N*/
 /*N*/   case OBJCNT_FLY:
-/*N*/       if( rSh.GetView().GetDocShell()->ISA(SwWebDocShell) )
-/*N*/           nRet = EXCHG_DEST_DOC_TEXTFRAME_WEB;
-/*N*/       else
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
+///*N*/       if( rSh.GetView().GetDocShell()->ISA(SwWebDocShell) )
+///*N*/           nRet = EXCHG_DEST_DOC_TEXTFRAME_WEB;
+///*N*/       else
 /*N*/           nRet = EXCHG_DEST_DOC_TEXTFRAME;
 /*N*/       break;
 /*N*/   case OBJCNT_OLE:        nRet = EXCHG_DEST_DOC_OLEOBJ;       break;
@@ -316,55 +281,13 @@ using namespace ::com::sun::star::datatransfer;
                  nRet = EXCHG_DEST_DOC_URLFIELD;
              else
 */
-/*N*/           if( rSh.GetView().GetDocShell()->ISA(SwWebDocShell) )
-/*N*/               nRet = EXCHG_DEST_SWDOC_FREE_AREA_WEB;
-/*N*/           else
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/               nRet = EXCHG_DEST_SWDOC_FREE_AREA;
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   return nRet;
 /*N*/  }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
