@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-28 01:14:57 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:50:22 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,27 +57,7 @@ SRC1FILES =  \
         sw_pseudo.src
 
 SLOFILES =  \
-        $(SLO)$/sw_basesh.obj \
-        $(SLO)$/sw_beziersh.obj \
-        $(SLO)$/sw_drawsh.obj \
-        $(SLO)$/sw_drformsh.obj \
-        $(SLO)$/sw_drwbassh.obj \
-        $(SLO)$/sw_drwtxtsh.obj \
-        $(SLO)$/sw_frmsh.obj \
-        $(SLO)$/sw_grfsh.obj \
-        $(SLO)$/sw_listsh.obj \
-        $(SLO)$/sw_olesh.obj \
         $(SLO)$/sw_slotadd.obj \
-        $(SLO)$/sw_tabsh.obj \
-        $(SLO)$/sw_textfld.obj \
-        $(SLO)$/sw_textglos.obj \
-        $(SLO)$/sw_textidx.obj \
-        $(SLO)$/sw_textsh.obj \
-        $(SLO)$/sw_textsh1.obj \
-        $(SLO)$/sw_txtattr.obj
-
-EXCEPTIONSFILES =  \
-        $(SLO)$/sw_textsh1.obj
 
 # --- Tagets -------------------------------------------------------
 
