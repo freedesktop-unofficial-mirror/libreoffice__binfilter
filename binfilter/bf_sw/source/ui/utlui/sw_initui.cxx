@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_initui.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:30:41 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:02:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,44 +97,6 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
     Beschreibung:   UI beenden
  --------------------------------------------------------------------*/
 
-/*N*/ void _FinitUI()
-/*N*/ {
-/*N*/   SwNewDBMgr::RemoveDbtoolsClient();
-/*N*/   delete ViewShell::GetShellRes();
-/*N*/   ViewShell::SetShellRes( 0 );
-/*N*/
-/*N*/   SwEditWin::_FinitStaticData();
-/*N*/
-/*N*/   DELETEZ(pGlossaries);
-/*N*/
-/*N*/   delete SwFieldType::pFldNames;
-/*N*/
-/*N*/   delete pOldGrfCat;
-/*N*/   delete pOldTabCat;
-/*N*/   delete pOldFrmCat;
-/*N*/   delete pOldDrwCat;
-/*N*/   delete pCurrGlosGroup;
-/*N*/   delete pDBNameList;
-/*N*/   delete pGlossaryList;
-/*N*/   delete pAuthFieldNameList;
-/*N*/   delete pAuthFieldTypeList;
-/*N*/
-/*N*/
-/*N*/ }
-/*--------------------------------------------------------------------
-    Beschreibung:   Initialisierung
- --------------------------------------------------------------------*/
-
-
-/*N*/ void _InitUI()
-/*N*/ {
-/*N*/   // ShellResource gibt der CORE die Moeglichkeit mit Resourcen zu arbeiten
-/*N*/   ViewShell::SetShellRes( new ShellResource );
-/*N*/   pDBNameList = new SvStringsDtor( 5, 5 );
-/*N*/   SwEditWin::_InitStaticData();
-/*N*/ }
-
-
 /*N*/ ShellResource::ShellResource()
 /*N*/   : Resource( SW_RES(RID_SW_SHELLRES) ),
 /*N*/   aPostItPage( SW_RES( STR_POSTIT_PAGE ) ),
@@ -183,6 +145,14 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /*?*/       delete pAutoFmtNameLst, pAutoFmtNameLst = 0;
 /*N*/ }
 
+ String ShellResource::GetPageDescName( USHORT nNo, BOOL bIsFirst, BOOL bFollow )
+ {
+    String sRet( bIsFirst ? sPageDescFirstName
+                          : bFollow ? sPageDescFollowName
+                                    : sPageDescName );
+    sRet.SearchAndReplaceAscii( "$(ARG1)", String::CreateFromInt32( nNo ));
+    return sRet;
+ }
 
 
 /*N*/ SwGlossaries* GetGlossaries()
