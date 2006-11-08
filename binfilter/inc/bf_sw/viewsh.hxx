@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:02:23 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:14:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -270,7 +270,6 @@ public:
     // pPDFOut != Null is: do PDF Export (no printing!)
     sal_Bool Prt( SwPrtOptions& rOptions, SfxProgress& rProgress,
                   OutputDevice *pPDFOut = NULL );
-    //"Drucken" fuer OLE 2.0
 
     // creates temporary doc with selected text for PDF export
     SwDoc * CreatePrtDoc( SfxPrinter* pPrt, SvEmbeddedObjectRef &rDocShellRef );
@@ -299,8 +298,8 @@ public:
 
     const SwAccessibilityOptions* GetAccessibilityOptions() const { return pAccOptions;}
 
-    static void           SetShellRes( ShellResource* pRes ) { pShellRes = pRes; }
-    static ShellResource* GetShellRes() { return pShellRes; }
+    //static void           SetShellRes( ShellResource* pRes ) { pShellRes = pRes; }
+    static ShellResource* GetShellRes();
 
     static void           SetCareWin( Window* pNew ) { pCareWindow = pNew; }
     static Window*        GetCareWin(ViewShell& rVSh)
