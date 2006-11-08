@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:33:57 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:43:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,17 +52,12 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_dbmgr.cxx \
-        sw_dbtree.cxx
 
 SLOFILES =  \
-        $(SLO)$/sw_dbmgr.obj \
-        $(SLO)$/sw_dbtree.obj
+                $(SLO)$/sw_dbmgr.obj
 
 EXCEPTIONSFILES= \
-        $(SLO)$/sw_dbmgr.obj \
-        $(SLO)$/sw_dbtree.obj
+                $(SLO)$/sw_dbmgr.obj
 
 # --- Tagets -------------------------------------------------------
 
