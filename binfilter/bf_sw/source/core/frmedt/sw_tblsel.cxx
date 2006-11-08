@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tblsel.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:40:43 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:31:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,6 +44,12 @@
 #ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
 #endif
+#ifndef _SCH_DLL_HXX //autogen
+#include <bf_sch/schdll.hxx>
+#endif
+#ifndef _SCH_MEMCHRT_HXX
+#include <bf_sch/memchrt.hxx>
+#endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -61,6 +67,9 @@
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
+#endif
+#ifndef _NDOLE_HXX
+#include <ndole.hxx>
 #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
@@ -182,7 +191,7 @@ namespace binfilter {
 /*N*/   if( rBoxes.Count() )
 /*?*/       rBoxes.Remove( USHORT(0), rBoxes.Count() );
 /*N*/   if( rShell.IsTableMode() && 1 ) //STRIP001 ((SwCrsrShell&)rShell).UpdateTblSelBoxes())
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     rBoxes.Insert( &rShell.GetTableCrsr()->GetBoxes() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    rBoxes.Insert( &rShell.GetTableCrsr()->GetBoxes() );
 /*N*/ }
 
 /*N*/ void GetTblSelCrs( const SwTableCursor& rTblCrsr, SwSelBoxes& rBoxes )
@@ -674,17 +683,67 @@ namespace binfilter {
 /*N*/ }
 
 
+BOOL lcl_CheckCol( const _FndBox*& rpFndBox, void* pPara );
 
+BOOL lcl_CheckRow( const _FndLine*& rpFndLine, void* pPara )
+{
+    ((_FndLine*)rpFndLine)->GetBoxes().ForEach( &::binfilter::lcl_CheckCol, pPara );
+    return *(BOOL*)pPara;
+}
 
+BOOL lcl_CheckCol( const _FndBox*& rpFndBox, void* pPara )
+{
+    if( !rpFndBox->GetBox()->GetSttNd() )
+    {
+        if( rpFndBox->GetLines().Count() !=
+            rpFndBox->GetBox()->GetTabLines().Count() )
+            *((BOOL*)pPara) = FALSE;
+        else
+            ((_FndBox*)rpFndBox)->GetLines().ForEach( &lcl_CheckRow, pPara );
+    }
+    // Box geschuetzt ??
+    else if( rpFndBox->GetBox()->GetFrmFmt()->GetProtect().IsCntntProtected() )
+        *((BOOL*)pPara) = FALSE;
+    return *(BOOL*)pPara;
+}
 
+USHORT CheckMergeSel( const SwSelBoxes& rBoxes )
+{
+    USHORT eRet = TBLMERGE_NOSELECTION;
+    if( rBoxes.Count() )
+    {
+        eRet = TBLMERGE_OK;
 
-
-
-
-
-
-
-
+        _FndBox aFndBox( 0, 0 );
+        _FndPara aPara( rBoxes, &aFndBox );
+        const SwTableNode* pTblNd = aPara.rBoxes[0]->GetSttNd()->FindTableNode();
+        ((SwTable&)pTblNd->GetTable()).GetTabLines().ForEach(
+                    &_FndLineCopyCol, &aPara );
+        if( aFndBox.GetLines().Count() )
+        {
+            BOOL bMergeSelOk = TRUE;
+            _FndBox* pFndBox = &aFndBox;
+            _FndLine* pFndLine = 0;
+            while( pFndBox && 1 == pFndBox->GetLines().Count() )
+            {
+                pFndLine = pFndBox->GetLines()[0];
+                if( 1 == pFndLine->GetBoxes().Count() )
+                    pFndBox = pFndLine->GetBoxes()[0];
+                else
+                    pFndBox = 0;
+            }
+            if( pFndBox )
+                pFndBox->GetLines().ForEach( &::binfilter::lcl_CheckRow, &bMergeSelOk );
+            else if( pFndLine )
+                pFndLine->GetBoxes().ForEach( &::binfilter::lcl_CheckCol, &bMergeSelOk );
+            if( !bMergeSelOk )
+                eRet = TBLMERGE_TOOCOMPLEX;
+        }
+        else
+            eRet = TBLMERGE_NOSELECTION;
+    }
+    return eRet;
+}
 
 //Ermittelt die von einer Tabellenselektion betroffenen Tabellen und die
 //Union-Rechteckte der Selektionen - auch fuer aufgespaltene Tabellen.
@@ -1153,22 +1212,360 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 // unter Beibehaltung der Tabellen-Struktur in eine eigene Struktur
 // neu: SS zum gezielten Loeschen/Retaurieren des Layouts.
 
+ void lcl_InsertRow( SwTableLine &rLine, SwLayoutFrm *pUpper, SwFrm *pSibling )
+ {
+    SwRowFrm *pRow = new SwRowFrm( rLine );
+    if ( pUpper->IsTabFrm() && ((SwTabFrm*)pUpper)->IsFollow() )
+    {
+        ((SwTabFrm*)pUpper)->FindMaster()->InvalidatePos(); //kann die Zeile vielleicht aufnehmen
+        if ( ((SwTabFrm*)pUpper)->GetTable()->IsHeadlineRepeat() &&
+             pSibling && !pSibling->GetPrev() )
+        {
+            //Nicht vor die Headline-Wiederholung pasten.
+            pSibling = pSibling->GetNext();
+        }
+    }
+    pRow->Paste( pUpper, pSibling );
+    pRow->RegistFlys();
+ }
 
 
+ BOOL _FndBoxCopyCol( const SwTableBox*& rpBox, void* pPara )
+ {
+    _FndPara* pFndPara = (_FndPara*)pPara;
+    _FndBox* pFndBox = new _FndBox( (SwTableBox*)rpBox, pFndPara->pFndLine );
+    if( rpBox->GetTabLines().Count() )
+    {
+        _FndPara aPara( *pFndPara, pFndBox );
+        pFndBox->GetBox()->GetTabLines().ForEach( &_FndLineCopyCol, &aPara );
+        if( !pFndBox->GetLines().Count() )
+        {
+            delete pFndBox;
+            return TRUE;
+        }
+    }
+    else
+    {
+        SwTableBoxPtr pSrch = (SwTableBoxPtr)rpBox;
+        USHORT nFndPos;
+        if( !pFndPara->rBoxes.Seek_Entry( pSrch, &nFndPos ))
+        {
+            delete pFndBox;
+            return TRUE;
+        }
+    }
+    pFndPara->pFndLine->GetBoxes().C40_INSERT( _FndBox, pFndBox,
+                    pFndPara->pFndLine->GetBoxes().Count() );
+    return TRUE;
+ }
 
 /*N*/ BOOL _FndLineCopyCol( const SwTableLine*& rpLine, void* pPara )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {
+     _FndPara* pFndPara = (_FndPara*)pPara;
+     _FndLine* pFndLine = new _FndLine( (SwTableLine*)rpLine, pFndPara->pFndBox );
+     _FndPara aPara( *pFndPara, pFndLine );
+     pFndLine->GetLine()->GetTabBoxes().ForEach( &_FndBoxCopyCol, &aPara );
+     if( pFndLine->GetBoxes().Count() )
+     {
+         pFndPara->pFndBox->GetLines().C40_INSERT( _FndLine, pFndLine,
+                 pFndPara->pFndBox->GetLines().Count() );
+     }
+     else
+         delete pFndLine;
 /*N*/   return TRUE;
 /*N*/ }
 
+void _FndBox::SetTableLines( const SwSelBoxes &rBoxes, const SwTable &rTable )
+{
+    //Pointer auf die Lines vor und hinter den zu verarbeitenden Bereich
+    //setzen. Wenn die erste/letzte Zeile in den Bereich eingeschlossen
+    //sind, so bleiben die Pointer eben einfach 0.
+    //Gesucht werden zunachst die Positionen der ersten/letzten betroffenen
+    //Line im Array der SwTable. Damit die 0 fuer 'keine Line' verwand werden
+    //kann werden die Positionen um 1 nach oben versetzt!
 
+    USHORT nStPos = USHRT_MAX;
+    USHORT nEndPos= 0;
 
+    for ( USHORT i = 0; i < rBoxes.Count(); ++i )
+    {
+        SwTableLine *pLine = rBoxes[i]->GetUpper();
+        while ( pLine->GetUpper() )
+            pLine = pLine->GetUpper()->GetUpper();
+        const USHORT nPos = rTable.GetTabLines().GetPos(
+                    (const SwTableLine*&)pLine ) + 1;
 
+        ASSERT( nPos != USHRT_MAX, "TableLine not found." );
 
+        if( nStPos > nPos )
+            nStPos = nPos;
 
+        if( nEndPos < nPos )
+            nEndPos = nPos;
+    }
+    if ( nStPos > 1 )
+        pLineBefore = rTable.GetTabLines()[nStPos - 2];
+    if ( nEndPos < rTable.GetTabLines().Count() )
+        pLineBehind = rTable.GetTabLines()[nEndPos];
+}
 
+void _FndBox::SetTableLines( const SwTable &rTable )
+{
+    // Pointer auf die Lines vor und hinter den zu verarbeitenden Bereich
+    // setzen. Wenn die erste/letzte Zeile in den Bereich eingeschlossen
+    // sind, so bleiben die Pointer eben einfach 0.
+    // Die Positionen der ersten/letzten betroffenen Line im Array der
+    // SwTable steht in der FndBox. Damit die 0 fuer 'keine Line' verwand
+    // werdenkann werden die Positionen um 1 nach oben versetzt!
 
+    if( !GetLines().Count() )
+        return;
 
+    SwTableLine* pTmpLine = GetLines()[0]->GetLine();
+    USHORT nPos = rTable.GetTabLines().C40_GETPOS( SwTableLine, pTmpLine );
+    ASSERT( USHRT_MAX != nPos, "Line steht nicht in der Tabelle" );
+    if( nPos )
+        pLineBefore = rTable.GetTabLines()[ nPos - 1 ];
+
+    pTmpLine = GetLines()[GetLines().Count()-1]->GetLine();
+    nPos = rTable.GetTabLines().C40_GETPOS( SwTableLine, pTmpLine );
+    ASSERT( USHRT_MAX != nPos, "Line steht nicht in der Tabelle" );
+    if( ++nPos < rTable.GetTabLines().Count() )
+        pLineBehind = rTable.GetTabLines()[nPos];
+}
+
+inline void UnsetFollow( SwFlowFrm *pTab )
+{
+    pTab->bIsFollow = FALSE;
+}
+
+void _FndBox::DelFrms( SwTable &rTable )
+{
+    //Alle Lines zwischen pLineBefore und pLineBehind muessen aus dem
+    //Layout ausgeschnitten und geloescht werden.
+    //Entstehen dabei leere Follows so muessen diese vernichtet werden.
+    //Wird ein Master vernichtet, so muss der Follow Master werden.
+    //Ein TabFrm muss immer uebrigbleiben.
+
+    USHORT nStPos = 0;
+    USHORT nEndPos= rTable.GetTabLines().Count() - 1;
+    if ( pLineBefore )
+    {
+        nStPos = rTable.GetTabLines().GetPos(
+                        (const SwTableLine*&)pLineBefore );
+        ASSERT( nStPos != USHRT_MAX, "Fuchs Du hast die Line gestohlen!" );
+        ++nStPos;
+    }
+    if ( pLineBehind )
+    {
+        nEndPos = rTable.GetTabLines().GetPos(
+                        (const SwTableLine*&)pLineBehind );
+        ASSERT( nEndPos != USHRT_MAX, "Fuchs Du hast die Line gestohlen!" );
+        --nEndPos;
+    }
+    for ( USHORT i = nStPos; i <= nEndPos; ++i)
+    {
+        SwFrmFmt *pFmt = rTable.GetTabLines()[i]->GetFrmFmt();
+        SwClientIter aIter( *pFmt );
+        SwClient* pLast = aIter.GoStart();
+        if( pLast )
+        {
+            do {
+                SwFrm *pFrm = PTR_CAST( SwFrm, pLast );
+                if ( pFrm &&
+                     ((SwRowFrm*)pFrm)->GetTabLine() == rTable.GetTabLines()[i] )
+                {
+                    BOOL bDel = TRUE;
+                    SwTabFrm *pUp = !pFrm->GetPrev() && !pFrm->GetNext() ?
+                                            (SwTabFrm*)pFrm->GetUpper() : 0;
+                    if ( !pUp )
+                    {
+                        if ( ((SwTabFrm*)pFrm->GetUpper())->GetTable()->IsHeadlineRepeat() &&
+                             ((SwTabFrm*)pFrm->GetUpper())->IsFollow() )
+                        {
+                            if ( !pFrm->GetNext() && pFrm->GetPrev() &&
+                                 !pFrm->GetPrev()->GetPrev() )
+                            {
+                                pUp = (SwTabFrm*)pFrm->GetUpper();
+                            }
+                        }
+                    }
+                    if ( pUp )
+                    {
+                        SwTabFrm *pFollow = pUp->GetFollow();
+                        SwTabFrm *pPrev   = pUp->IsFollow() ? pUp : 0;
+                        if ( pPrev )
+                        {
+                            SwFrm *pTmp = pPrev->FindPrev();
+                            ASSERT( pTmp->IsTabFrm(),
+                                    "Vorgaenger vom Follow kein Master.");
+                            pPrev = (SwTabFrm*)pTmp;
+                        }
+                        if ( pPrev )
+                            pPrev->SetFollow( pFollow );
+                        else if ( pFollow )
+                            ::binfilter::UnsetFollow( pFollow );
+
+                        //Ein TabellenFrm muss immer stehenbleiben!
+                        if ( pPrev || pFollow )
+                        {
+                            pUp->Cut();
+                            delete pUp;
+                            bDel = FALSE;//Die Row wird mit in den Abgrund
+                                         //gerissen.
+                        }
+                    }
+                    if ( bDel )
+                    {
+                        pFrm->Cut();
+                        delete pFrm;
+                    }
+                }
+            } while( 0 != ( pLast = aIter++ ));
+        }
+    }
+}
+
+BOOL lcl_IsLineOfTblFrm( const SwTabFrm& rTable, const SwFrm& rChk )
+{
+    const SwTabFrm* pTblFrm = rChk.FindTabFrm();
+    while( pTblFrm->IsFollow() )
+        pTblFrm = pTblFrm->FindMaster();
+    return &rTable == pTblFrm;
+}
+
+ void _FndBox::MakeFrms( SwTable &rTable )
+ {
+    //Alle Lines zwischen pLineBefore und pLineBehind muessen im Layout
+    //wieder neu erzeugt werden.
+    //Und Zwar fuer alle Auspraegungen der Tabelle (mehrere z.B. im Kopf/Fuss).
+
+    USHORT nStPos = 0;
+    USHORT nEndPos= rTable.GetTabLines().Count() - 1;
+    if ( pLineBefore )
+    {
+        nStPos = rTable.GetTabLines().GetPos(
+                        (const SwTableLine*&)pLineBefore );
+        ASSERT( nStPos != USHRT_MAX, "Fuchs Du hast die Line gestohlen!" );
+        ++nStPos;
+
+    }
+    if ( pLineBehind )
+    {
+        nEndPos = rTable.GetTabLines().GetPos(
+                        (const SwTableLine*&)pLineBehind );
+        ASSERT( nEndPos != USHRT_MAX, "Fuchs Du hast die Line gestohlen!" );
+        --nEndPos;
+    }
+    //Jetzt die grosse Einfuegeoperation fuer alle Tabllen.
+    SwClientIter aTabIter( *rTable.GetFrmFmt() );
+    for ( SwTabFrm *pTable = (SwTabFrm*)aTabIter.First( TYPE(SwFrm) ); pTable;
+          pTable = (SwTabFrm*)aTabIter.Next() )
+    {
+        if ( !pTable->IsFollow() )
+        {
+            SwFrm  *pSibling = 0;
+            SwFrm  *pUpper   = 0;
+            int i;
+            for ( i = rTable.GetTabLines().Count()-1;
+                    i >= 0 && !pSibling; --i )
+            {
+                SwTableLine *pLine = pLineBehind ? pLineBehind :
+                                                    rTable.GetTabLines()[i];
+                SwClientIter aIter( *pLine->GetFrmFmt() );
+                for ( pSibling = (SwFrm*)aIter.First( TYPE(SwFrm) );
+                      pSibling && (
+                        ((SwRowFrm*)pSibling)->GetTabLine() != pLine ||
+                        !lcl_IsLineOfTblFrm( *pTable, *pSibling ) );
+                      pSibling = (SwFrm*)aIter.Next() )
+                    /* do nothing */;
+            }
+            if ( pSibling )
+            {
+                pUpper = pSibling->GetUpper();
+                if ( !pLineBehind )
+                    pSibling = 0;
+            }
+            else
+ // ???? oder das der Letzte Follow der Tabelle ????
+                pUpper = pTable;
+
+            for ( i = nStPos; (USHORT)i <= nEndPos; ++i )
+                lcl_InsertRow( *rTable.GetTabLines()[i],
+                                (SwLayoutFrm*)pUpper, pSibling );
+            if ( pUpper->IsTabFrm() )
+                ((SwTabFrm*)pUpper)->SetCalcLowers();
+        }
+        else if ( nStPos == 0 && rTable.IsHeadlineRepeat() )
+        {
+            //Headline in den Follow einsetzen
+            SwRowFrm *pRow = new SwRowFrm( *rTable.GetTabLines()[0] );
+            pRow->Paste( pTable, pTable->Lower() );
+            pRow->RegistFlys();
+            pTable->SetCalcLowers();
+        }
+    }
+ }
+
+ BOOL _FndBox::AreLinesToRestore( const SwTable &rTable ) const
+ {
+    //Lohnt es sich MakeFrms zu rufen?
+
+    if ( !pLineBefore && !pLineBehind && rTable.GetTabLines().Count() )
+        return TRUE;
+
+    USHORT nBfPos;
+    if(pLineBefore)
+    {
+        const SwTableLine* rLBefore = (const SwTableLine*)pLineBefore;
+        nBfPos = rTable.GetTabLines().GetPos( rLBefore );
+    }
+    else
+        nBfPos = USHRT_MAX;
+
+    USHORT nBhPos;
+    if(pLineBehind)
+    {
+        const SwTableLine* rLBehind = (const SwTableLine*)pLineBehind;
+        nBhPos = rTable.GetTabLines().GetPos( rLBehind );
+    }
+    else
+        nBhPos = USHRT_MAX;
+
+    if ( nBfPos == nBhPos ) //Duerfte eigentlich nie vorkommen.
+    {
+        ASSERT( FALSE, "Table, Loeschen auf keinem Bereich !?!" );
+        return FALSE;
+    }
+
+    if ( nBfPos == USHRT_MAX && nBhPos == 0 )
+    {
+        // ups. sollte unsere zu wiederholende Kopfzeile geloescht worden
+        // sein??
+        if( rTable.IsHeadlineRepeat() )
+        {
+            SwClientIter aIter( *rTable.GetFrmFmt() );
+            for( SwTabFrm* pTable = (SwTabFrm*)aIter.First( TYPE( SwFrm ));
+                    pTable; pTable = (SwTabFrm*)aIter.Next() )
+                if( pTable->IsFollow() )
+                {
+                    //Headline in den Follow einsetzen
+                    SwRowFrm *pRow = new SwRowFrm( *rTable.GetTabLines()[0] );
+                    pRow->Paste( pTable, pTable->Lower() );
+                    pRow->RegistFlys();
+                }
+        }
+        return FALSE;
+    }
+
+    if ( nBhPos == USHRT_MAX && nBfPos == (rTable.GetTabLines().Count() - 1) )
+        return FALSE;
+
+    if ( nBfPos != USHRT_MAX && nBhPos != USHRT_MAX && (nBfPos + 1) == nBhPos )
+        return FALSE;
+
+    return TRUE;
+ }
 
 //Save- und RestoreChartData:
 //Zu der Tabelle werden alle Charts gesucht. Die Namentliche Addressierung der
@@ -1178,12 +1575,135 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 //wieder in das Chart geschrieben. Wenn sie nicht gefunden werden gibt es
 //einen FallBack auf die erste/letzte Box.
 
+ const SwTableBox *lcl_FindFirstBox( const SwTable &rTable )
+ {
+    const SwTableLines *pLines = &rTable.GetTabLines();
+    const SwTableBox *pBox;
+    do
+    {   pBox = (*pLines)[0]->GetTabBoxes()[0];
+        if ( pBox->GetSttNd() )
+            pLines = 0;
+        else
+            pLines = &pBox->GetTabLines();
 
+    } while ( pLines );
+    return pBox;
+ }
+
+ const SwTableBox *lcl_FindLastBox( const SwTable &rTable )
+ {
+    const SwTableLines *pLines = &rTable.GetTabLines();
+    const SwTableBox *pBox;
+    do
+    {   const SwTableBoxes &rBoxes = (*pLines)[pLines->Count()-1]->GetTabBoxes();
+        pBox = rBoxes[rBoxes.Count()-1];
+        if ( pBox->GetSttNd() )
+            pLines = 0;
+        else
+            pLines = &pBox->GetTabLines();
+
+    } while ( pLines );
+
+    return pBox;
+ }
 
 
 //GPF bei Tab in letzer Zelle mit MSC4
 
+void _FndBox::SaveChartData( const SwTable &rTable )
+{
+    SwDoc *pDoc = rTable.GetFrmFmt()->GetDoc();
+    SwClientIter aIter( *(SwModify*)pDoc->GetDfltGrfFmtColl() );
+    SwClient *pCli;
+    if ( 0 != (pCli = aIter.First( TYPE(SwCntntNode) )) )
+        do
+        {   if ( !((SwCntntNode*)pCli)->GetOLENode() )
+                continue;
+            SwOLENode *pONd = (SwOLENode*)pCli;
+            if ( rTable.GetFrmFmt()->GetName() == pONd->GetChartTblName() )
+            {
+                SwOLEObj& rOObj = pONd->GetOLEObj();
+                SchMemChart *pData = SchDLL::GetChartData( rOObj.GetOleRef() );
+                if ( pData )
+                {
+                    String &rStr = pData->SomeData1();
+                    xub_StrLen nTmp = rStr.Search( ':' );
+                    String aBox( rStr.Copy( 1, nTmp - 1 ) );
+                    //const this, weil Borland so dumm ist!
+                    const SwTableBox *pSttBox = rTable.GetTblBox( aBox );
+                    if ( !pSttBox )
+                        pSttBox = rTable.GetTabLines()[0]->GetTabBoxes()[0];
+                    aBox = rStr.Copy( nTmp + 1, rStr.Len()-2 - nTmp);
+                    const SwTableBox *pEndBox = rTable.GetTblBox( aBox );
+                    if ( !pEndBox )
+                    {
+                        SwTableLine *pLine =
+                            rTable.GetTabLines()[rTable.GetTabLines().Count()-1];
+                        pEndBox = pLine->GetTabBoxes()[pLine->GetTabBoxes().Count()-1];
+                    }
+                    pData->SomeData3() = String::CreateFromInt32(
+                                        pSttBox != ::binfilter::lcl_FindFirstBox(rTable)
+                                            ? long(pSttBox)
+                                            : LONG_MAX );
+                    pData->SomeData4() = String::CreateFromInt32(
+                                        pEndBox != ::binfilter::lcl_FindLastBox(rTable)
+                                            ? long(pEndBox)
+                                            : LONG_MAX );
+                }
+            }
+        } while ( 0 != (pCli = aIter.Next()) );
+}
 
-
+ void _FndBox::RestoreChartData( const SwTable &rTable )
+ {
+    SwDoc *pDoc = rTable.GetFrmFmt()->GetDoc();
+    SwClientIter aIter( *(SwModify*)pDoc->GetDfltGrfFmtColl() );
+    SwClient *pCli;
+    if ( 0 != (pCli = aIter.First( TYPE(SwCntntNode) )) )
+        do
+        {   if ( !((SwCntntNode*)pCli)->GetOLENode() )
+                continue;
+            SwOLENode *pONd = (SwOLENode*)pCli;
+            if ( rTable.GetFrmFmt()->GetName() == pONd->GetChartTblName() )
+            {
+                SwOLEObj& rOObj = pONd->GetOLEObj();
+                SchMemChart *pData = SchDLL::GetChartData( rOObj.GetOleRef() );
+                if ( pData )
+                {
+                    const SwTableBox *pSttBox = (SwTableBox*)
+                                                pData->SomeData3().ToInt32();
+                    if ( long(pSttBox) == LONG_MAX )
+                        pSttBox = ::binfilter::lcl_FindFirstBox( rTable );
+                    const SwTableBox *pEndBox = (SwTableBox*)
+                                                pData->SomeData4().ToInt32();
+                    if ( long(pEndBox) == LONG_MAX )
+                        pEndBox = ::binfilter::lcl_FindLastBox( rTable );
+                    FASTBOOL bSttFound = FALSE, bEndFound = FALSE;
+                    const SwTableSortBoxes &rBoxes = rTable.GetTabSortBoxes();
+                    for ( USHORT i = 0; i < rBoxes.Count(); ++i )
+                    {
+                        const SwTableBox *pTmp = rBoxes[i];
+                        if ( pTmp == pSttBox )
+                            bSttFound = TRUE;
+                        if ( pTmp == pEndBox )
+                            bEndFound = TRUE;
+                    }
+                    if ( !bSttFound )
+                        pSttBox = rTable.GetTabLines()[0]->GetTabBoxes()[0];
+                    if ( !bEndFound )
+                    {
+                        SwTableLine *pLine =
+                            rTable.GetTabLines()[rTable.GetTabLines().Count()-1];
+                        pEndBox = pLine->GetTabBoxes()[pLine->GetTabBoxes().Count()-1];
+                    }
+                    String &rStr = pData->SomeData1();
+                    rStr = '<'; rStr += pSttBox->GetName(); rStr += ':';
+                    rStr += pEndBox->GetName(); rStr += '>';
+                    pData->SomeData3().Erase(); pData->SomeData4().Erase();
+                    SchDLL::Update( rOObj.GetOleRef(), pData );
+                }
+            }
+        } while ( 0 != (pCli = aIter.Next()) );
+ }
 
 }
