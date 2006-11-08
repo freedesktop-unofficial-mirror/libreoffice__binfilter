@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:58:14 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:40:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -156,11 +156,6 @@ namespace binfilter {
 #include "swslots.hxx"
 /*N*/ SFX_IMPL_INTERFACE( SwModule, SfxModule, SW_RES(RID_SW_NAME) )
 /*N*/ {
-/*N*/   SFX_CHILDWINDOW_REGISTRATION(SvxHyperlinkDlgWrapper::GetChildWindowId());
-/*N*/   SFX_STATUSBAR_REGISTRATION(SW_RES(CFG_STATUSBAR));
-/*N*/     SFX_OBJECTBAR_REGISTRATION( SFX_OBJECTBAR_APPLICATION |
-/*N*/             SFX_VISIBILITY_DESKTOP | SFX_VISIBILITY_STANDARD | SFX_VISIBILITY_CLIENT | SFX_VISIBILITY_VIEWER,
-/*N*/             SW_RES(RID_MODULE_TOOLBOX) );
 /*N*/ }
 
 /*------------------------------------------------------------------------
@@ -183,36 +178,7 @@ namespace binfilter {
 
 /*M*/ void SwModule::StateViewOptions(SfxItemSet &rSet)
 /*M*/ {
-/*M*/   SfxWhichIter aIter(rSet);
-/*M*/   sal_uInt16 nWhich = aIter.FirstWhich();
-/*M*/   SfxBoolItem aBool;
-/*M*/   const SwViewOption* pOpt = 0;
-    /*M*/   SwView* pActView = ::binfilter::GetActiveView();
-/*M*/   SwDoc *pDoc = 0;
-/*M*/   if(pActView)
-/*M*/   {
-/*M*/       pOpt = pActView->GetWrtShell().GetViewOptions();
-/*M*/       pDoc = pActView->GetDocShell()->GetDoc();
-/*M*/   }
-/*M*/
-/*M*/   while(nWhich)
-/*M*/   {
-/*M*/       if(pActView)
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*M*/       }
-/*M*/       else
-/*M*/       {
-/*M*/           rSet.DisableItem( nWhich );
-/*M*/           nWhich = 0;
-/*M*/       }
-/*M*/
-/*M*/       if( nWhich )
-/*M*/       {
-/*M*/           aBool.SetWhich( nWhich );
-/*M*/           rSet.Put( aBool );
-/*M*/       }
-/*M*/       nWhich = aIter.NextWhich();
-/*M*/   }
+/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*M*/ }
 
 /*--------------------------------------------------------------------
@@ -342,8 +308,6 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/             DELETEZ(pWebPrtOpt)   ;
 /*M*/             DELETEZ(pChapterNumRules);
 /*M*/             DELETEZ(pStdFontConfig)     ;
-/*M*/             DELETEZ(pToolbarConfig)     ;
-/*M*/             DELETEZ(pWebToolbarConfig)  ;
 /*M*/             DELETEZ(pAuthorNames)       ;
 /*M*/             DELETEZ(pDBConfig);
 /*M*/             EndListening(*pColorConfig);
@@ -357,52 +321,7 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/ }
 /*N*/ void SwModule::FillStatusBar( StatusBar& rStatusBar )
 /*N*/ {
-/*N*/   // Hier den StatusBar initialisieren
-/*N*/   // und Elemente reinschieben
-/*N*/
-/*N*/   // Anzeige Seite
-/*N*/   String aTmp; aTmp.Fill( 10, 'X' );
-/*N*/   rStatusBar.InsertItem( FN_STAT_PAGE, rStatusBar.GetTextWidth(
-/*N*/                                   aTmp ), SIB_AUTOSIZE | SIB_LEFT);
-/*N*/   rStatusBar.SetHelpId(FN_STAT_PAGE, FN_STAT_PAGE);
-/*N*/
-/*N*/   // Seitenvorlage
-/*N*/   aTmp.Fill( 15, 'X' );
-/*N*/   rStatusBar.InsertItem( FN_STAT_TEMPLATE, rStatusBar.GetTextWidth(
-/*N*/                                   aTmp ), SIB_AUTOSIZE | SIB_LEFT );
-/*N*/   rStatusBar.SetHelpId(FN_STAT_TEMPLATE, FN_STAT_TEMPLATE);
-/*N*/
-/*N*/   // Zoomeinstellungen
-/*N*/   rStatusBar.InsertItem( SID_ATTR_ZOOM, rStatusBar.GetTextWidth(
-/*N*/                                                           C2S("1000%")) );
-/*N*/   rStatusBar.SetHelpId(SID_ATTR_ZOOM, SID_ATTR_ZOOM);
-/*N*/
-/*N*/   // Insert/Overwrite
-/*N*/   rStatusBar.InsertItem( SID_ATTR_INSERT,
-/*N*/       SvxInsertStatusBarControl::GetDefItemWidth(rStatusBar));
-/*N*/   rStatusBar.SetHelpId(SID_ATTR_INSERT, SID_ATTR_INSERT);
-/*N*/
-/*N*/   // awt::Selection-Modus
-/*N*/   rStatusBar.InsertItem( FN_STAT_SELMODE,
-/*N*/           SvxSelectionModeControl::GetDefItemWidth(rStatusBar));
-/*N*/
-/*N*/   rStatusBar.SetHelpId(FN_STAT_SELMODE, FN_STAT_SELMODE);
-/*N*/
-/*N*/   // Hyperlink ausfuehren/bearbeiten
-/*N*/   rStatusBar.InsertItem( FN_STAT_HYPERLINKS, rStatusBar.GetTextWidth(
-/*N*/                                                           C2S("HYP")) );
-/*N*/   rStatusBar.SetHelpId(FN_STAT_HYPERLINKS, FN_STAT_HYPERLINKS);
-/*N*/
-/*N*/   // Dokument geaendert
-/*N*/   rStatusBar.InsertItem( SID_DOC_MODIFIED, rStatusBar.GetTextWidth(
-/*N*/                                                               C2S("*")));
-/*N*/   rStatusBar.SetHelpId(SID_DOC_MODIFIED, SID_DOC_MODIFIED);
-/*N*/
-/*N*/   // den aktuellen Context anzeigen Uhrzeit / FrmPos / TabellenInfo
-/*N*/   aTmp.Fill( 25, sal_Unicode('X') );
-/*N*/   rStatusBar.InsertItem( SID_ATTR_SIZE, rStatusBar.GetTextWidth(
-/*N*/                   aTmp ), SIB_AUTOSIZE | SIB_LEFT | SIB_USERDRAW);
-/*N*/   rStatusBar.SetHelpId(SID_ATTR_SIZE, SID_ATTR_SIZE);
+/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 /* -----------------------------20.02.01 12:43--------------------------------
