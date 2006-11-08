@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fltini.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:39:01 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:38:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,27 @@ class SwNodeIndex;
 
 // die speziellen Reader
 
+class Sw6Reader: public Reader
+{
+    virtual ULONG Read( SwDoc &,SwPaM &,const String &);
+};
 
+ class W4WReader: public StgReader
+ {
+    String sVersion;
+    USHORT nFilter;
+    BOOL bStorageFlag;
+    virtual ULONG Read(SwDoc &,SwPaM &,const String &);
+    // wir wollen die Streams / Storages nicht geoeffnet haben
+    virtual int SetStrmStgPtr();
+ public:
+    W4WReader() : StgReader(), nFilter(0), bStorageFlag(FALSE) {}
+    virtual int GetReaderType();
+    virtual void SetFltName( const String& rFltName );
+
+    USHORT GetFilter() const { return nFilter; }
+    const String& GetVersion() const { return sVersion; }
+ };
 
 #ifdef DEBUG_SH
 
@@ -108,6 +128,7 @@ WriterRef GetWWWriter( const String& );
 /*?*/ WriterRef GetUndoWriter( const String& );
 #endif
 #else
+/*?*/ void GetW4WWriter( const String&, WriterRef& );
 void GetStgWriter( const String&, WriterRef& );
 void GetWWWriter( const String&, WriterRef& );
 #if !( defined(PRODUCT) || defined(MAC) || defined(PM2) )
@@ -121,6 +142,21 @@ void GetWWWriter( const String&, WriterRef& );
 // verarbeiten jetzt aber relative Werte bezogen auf das LR-Space-Item.
 // Das hat zur Folge, das bei allen Absaetzen die EInzuege der NumRule vom
 // Absatz-Einzug abgezogen werden muss.
+class SwRelNumRuleSpaces
+{
+    SwNumRuleTbl* pNumRuleTbl;  // Liste aller benannten NumRules
+    BOOL bNewDoc;
+
+    void SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule );
+
+public:
+    SwRelNumRuleSpaces( SwDoc& rDoc, BOOL bNewDoc );
+    ~SwRelNumRuleSpaces();
+
+    void SetNumRelSpaces( SwDoc& rDoc );
+    void SetOultineRelSpaces( const SwNodeIndex& rStt,
+                                const SwNodeIndex& rEnd );
+};
 
 #define SW_SV_BRUSH_25          0
 #define SW_SV_BRUSH_50          1
