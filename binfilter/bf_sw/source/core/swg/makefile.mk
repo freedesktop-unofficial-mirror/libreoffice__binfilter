@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:27:35 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:32:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,12 +41,19 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_swg
 
+#GEN_HID=TRUE
+#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
+
+AUTOSEG=true
+#ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
+#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
+#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 .IF "$(GUI)$(COM)" == "WINMSC"
@@ -58,12 +65,16 @@ LIBFLAGS=/NOI /NOE /PAGE:512
 SLOFILES =  \
         $(SLO)$/sw_rdcont.obj \
         $(SLO)$/sw_rdflds.obj \
+        $(SLO)$/sw_rdfmts.obj \
         $(SLO)$/sw_rdhnt.obj \
         $(SLO)$/sw_rdmisc.obj \
         $(SLO)$/sw_rdnds.obj \
         $(SLO)$/sw_rdnum.obj \
+        $(SLO)$/sw_rdpage.obj \
         $(SLO)$/sw_rdswg.obj \
         $(SLO)$/sw_rdtox.obj \
+        $(SLO)$/sw_swgpar.obj \
+        $(SLO)$/sw_swgstr.obj \
         $(SLO)$/sw_sw2block.obj \
         $(SLO)$/sw_swblocks.obj	\
         $(SLO)$/sw_SwXMLBlockImport.obj	\
