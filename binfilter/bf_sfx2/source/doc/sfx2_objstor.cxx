@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:30:30 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:26:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -176,6 +176,7 @@
 #include "helper.hxx"
 #include "dlgcont.hxx"
 #include "filedlghelper.hxx"
+#include "appuno.hxx"
 
 #ifndef _BASMGR_HXX
 #include <basic/basmgr.hxx>
@@ -606,54 +607,46 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/                   SetError( ERRCODE_ABORT );
 /*N*/           }
 /*N*/       }
-/*N*/       else
+/*N*/      else
 /*?*/           SetError( pMed->GetLastStorageCreationState() );
-/*N*/   } else /*STRIP003 IsStorage() IS required, else file is corrupt */ { SetError(ERRCODE_IO_WRONGFORMAT); bOk = sal_False; }
-//STRIP003/*N*/     else if ( GetError() == ERRCODE_NONE && InitNew(0) )
-//STRIP003/*?*/ /*N*/   {
-//STRIP003/*?*/         // Name vor ConvertFrom setzen, damit GetSbxObject() schon funktioniert
-//STRIP003/*?*/         bHasName = sal_True;
-//STRIP003/*?*/         SetName( SfxResId( STR_NONAME ) );
-//STRIP003/*?*/
-//STRIP003/*?*/         // Importieren
-//STRIP003/*?*/         const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
-//STRIP003/*?*/         if( aBaseURL.Len() ) so3::StaticBaseUrl::SetBaseURL( aBaseURL );
-//STRIP003/*?*/         if( !pMedium->GetFilter()->UsesStorage() )
-//STRIP003/*?*/             pMedium->GetInStream();
-//STRIP003/*?*/         else
-//STRIP003/*?*/             pMedium->GetStorage();
-//STRIP003/*?*/
-//STRIP003/*?*/         pImp->nLoadedFlags = 0;
-//STRIP003/*?*/         if ( pMedium->GetFilter() &&  ( pMedium->GetFilter()->GetFilterFlags() & SFX_FILTER_STARONEFILTER ) )
-//STRIP003/*?*/         {
-//STRIP003/*?*/             bOk = ImportFrom(*pMedium);
-//STRIP003/*?*/             FinishedLoading( SFX_LOADED_ALL );
-//STRIP003/*?*/         }
-//STRIP003/*?*/         else
-//STRIP003/*?*/         {
-//STRIP003/*?*/             bOk = ConvertFrom(*pMedium);
-//STRIP003/*?*/         }
-//STRIP003/*?*/
-//STRIP003/*?*/         so3::StaticBaseUrl::SetBaseURL( aOldURL );
-//STRIP003/*?*/
-//STRIP003/*?*/         if( bOk && pMedium->GetOpenMode() & STREAM_WRITE )
-//STRIP003/*?*/         //Medium offen halten um andere Zugriffe zu verhindern
-//STRIP003/*?*/         {
-//STRIP003/*?*/             if(pMedium->GetFilter() && pMedium->GetFilter()->UsesStorage())
-//STRIP003/*?*/             {
-//STRIP003/*?*/                 pMedium->GetStorage();
-//STRIP003/*?*/                 if( pMedium->GetLastStorageCreationState() != ERRCODE_NONE )
-//STRIP003/*?*/                     pMedium->SetError( pMedium->GetLastStorageCreationState() );
-//STRIP003/*?*/             }
-//STRIP003/*?*/             else
-//STRIP003/*?*/                 pMedium->GetInStream();
-//STRIP003/*?*/             if(pMedium->GetError())
-//STRIP003/*?*/                 bOk = sal_False;
-//STRIP003/*?*/         }
-//STRIP003/*?*/     }
+/*N*/    }
+         else if ( GetError() == ERRCODE_NONE && InitNew(0) )
+/*?*/    {
+/*?*/        // Name vor ConvertFrom setzen, damit GetSbxObject() schon funktioniert
+/*?*/        bHasName = sal_True;
+/*?*/        SetName( SfxResId( STR_NONAME ) );
+/*?*/
+/*?*/        // Importieren
+/*?*/        const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
+/*?*/        if( aBaseURL.Len() ) so3::StaticBaseUrl::SetBaseURL( aBaseURL );
+/*?*/         if( !pMedium->GetFilter()->UsesStorage() )
+/*?*/            pMedium->GetInStream();
+/*?*/         else
+/*?*/             pMedium->GetStorage();
+/*?*/
+/*?*/        pImp->nLoadedFlags = 0;
+/*?*/        bOk = ConvertFrom(*pMedium);
+/*?*/
+/*?*/        so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*?*/
+/*?*/         if( bOk && pMedium->GetOpenMode() & STREAM_WRITE )
+/*?*/        //Medium offen halten um andere Zugriffe zu verhindern
+/*?*/        {
+/*?*/            if(pMedium->GetFilter() && pMedium->GetFilter()->UsesStorage())
+/*?*/            {
+/*?*/                pMedium->GetStorage();
+/*?*/                if( pMedium->GetLastStorageCreationState() != ERRCODE_NONE )
+/*?*/                    pMedium->SetError( pMedium->GetLastStorageCreationState() );
+/*?*/            }
+/*?*/            else
+/*?*/                pMedium->GetInStream();
+/*?*/            if(pMedium->GetError())
+/*?*/                bOk = sal_False;
+/*?*/        }
+/*?*/    }
 /*N*/
-/*N*/   if ( bOk )
-/*N*/   {
+/*N*/  if ( bOk )
+/*N*/  {
 /*N*/         try
 /*?*/ /*N*/         {
 /*?*/             ::ucb::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
@@ -1385,7 +1378,74 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/ }
 
 /*?*/ sal_Bool SfxObjectShell::ImportFrom( SfxMedium& rMedium )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
+/*?*/     ::rtl::OUString aTypeName( rMedium.GetFilter()->GetTypeName() );
+/*?*/     ::rtl::OUString aFilterName( rMedium.GetFilter()->GetFilterName() );
+/*?*/
+/*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >  xMan = ::legacy_binfilters::getLegacyProcessServiceFactory();
+/*?*/     ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory > xFilterFact (
+/*?*/                 xMan->createInstance( DEFINE_CONST_UNICODE( "com.sun.star.document.FilterFactory" ) ), ::com::sun::star::uno::UNO_QUERY );
+/*?*/
+/*?*/     ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aProps;
+/*?*/     ::com::sun::star::uno::Reference < ::com::sun::star::container::XNameAccess > xFilters ( xFilterFact, ::com::sun::star::uno::UNO_QUERY );
+/*?*/     if ( xFilters->hasByName( aFilterName ) )
+/*?*/         xFilters->getByName( aFilterName ) >>= aProps;
+/*?*/
+/*?*/     ::rtl::OUString aFilterImplName;
+/*?*/     sal_Int32 nFilterProps = aProps.getLength();
+/*?*/     for ( sal_Int32 nFilterProp = 0; nFilterProp<nFilterProps; nFilterProp++ )
+/*?*/     {
+/*?*/         const ::com::sun::star::beans::PropertyValue& rFilterProp = aProps[nFilterProp];
+/*?*/         if ( rFilterProp.Name.compareToAscii("FilterService") == COMPARE_EQUAL )
+/*?*/         {
+/*?*/             rFilterProp.Value >>= aFilterImplName;
+/*?*/             break;
+/*?*/         }
+/*?*/     }
+/*?*/
+/*?*/     ::com::sun::star::uno::Sequence < ::com::sun::star::uno::Any > aArgs(1);
+/*?*/     ::com::sun::star::beans::PropertyValue aFilterProp;
+/*?*/     aFilterProp.Name = DEFINE_CONST_UNICODE("FilterName");
+/*?*/     aFilterProp.Value <<= aFilterName;
+/*?*/     aArgs[0] <<= aFilterProp;
+/*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::document::XFilter > xLoader;
+/*?*/     if ( aFilterImplName.getLength() )
+/*?*/         xLoader = ::com::sun::star::uno::Reference< ::com::sun::star::document::XFilter >
+/*?*/             ( xFilterFact->createInstanceWithArguments( aTypeName, aArgs ), ::com::sun::star::uno::UNO_QUERY );
+/*?*/   if ( xLoader.is() )
+/*?*/   {
+/*?*/       ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >  xComp( GetModel(), ::com::sun::star::uno::UNO_QUERY );
+/*?*/         ::com::sun::star::uno::Reference< ::com::sun::star::document::XImporter > xImporter( xLoader, ::com::sun::star::uno::UNO_QUERY );
+/*?*/         xImporter->setTargetDocument( xComp );
+/*?*/
+/*?*/         ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > lDescriptor;
+/*?*/         rMedium.GetItemSet()->Put( SfxStringItem( SID_FILE_NAME, rMedium.GetName() ) );
+/*?*/         TransformItems( SID_OPENDOC, *rMedium.GetItemSet(), lDescriptor );
+/*?*/
+/*?*/       ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs ( lDescriptor.getLength() + 1);
+/*?*/       ::com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
+/*?*/       const ::com::sun::star::beans::PropertyValue * pOldValue = lDescriptor.getConstArray();
+/*?*/       const OUString sInputStream ( RTL_CONSTASCII_USTRINGPARAM ( "InputStream" ) );
+/*?*/
+/*?*/       sal_Bool bHasInputStream = sal_False;
+/*?*/       sal_Int32 i = 0;
+            for ( sal_Int32 nEnd = lDescriptor.getLength(); i < nEnd; i++ )
+/*?*/       {
+/*?*/           pNewValue[i] = pOldValue[i];
+/*?*/           if ( pOldValue [i].Name == sInputStream )
+/*?*/               bHasInputStream = sal_True;
+/*?*/       }
+/*?*/       if ( !bHasInputStream )
+/*?*/       {
+/*?*/           pNewValue[i].Name = sInputStream;
+/*?*/           pNewValue[i].Value <<= ::com::sun::star::uno::Reference < ::com::sun::star::io::XInputStream > ( new utl::OSeekableInputStreamWrapper ( *rMedium.GetInStream() ) );
+/*?*/       }
+/*?*/       else
+/*?*/           aArgs.realloc ( i-1 );
+/*?*/
+/*?*/         return xLoader->filter( aArgs );
+/*?*/   }
+/*?*/
 /*?*/   return sal_False;
 /*?*/ }
 
@@ -1526,8 +1586,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 
 //-------------------------------------------------------------------------
 
-
-//-------------------------------------------------------------------------
 
 /*?*/ sal_Bool SfxObjectShell::DoSave_Impl( const SfxItemSet* pArgs )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False; //STRIP001
