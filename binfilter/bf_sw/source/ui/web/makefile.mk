@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:53:29 $
+#   last change: $Author: kz $ $Date: 2006-11-08 13:04:16 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -56,34 +56,13 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_wdrwbase.cxx	\
-        sw_wformsh.cxx	\
-        sw_wgrfsh.cxx	\
-        sw_wlistsh.cxx	\
-        sw_wolesh.cxx	\
-        sw_wtabsh.cxx	\
-        sw_wfrmsh.cxx	\
-        sw_wtextsh.cxx	\
-        sw_wdocsh.cxx	\
-        sw_wview.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
         sw_web.src	\
         sw_webport.src
 
 SLOFILES =  \
-        $(SLO)$/sw_wdrwbase.obj	\
-        $(SLO)$/sw_wformsh.obj	\
-        $(SLO)$/sw_wgrfsh.obj	\
-        $(SLO)$/sw_wlistsh.obj	\
-        $(SLO)$/sw_wolesh.obj	\
-        $(SLO)$/sw_wtabsh.obj	\
-        $(SLO)$/sw_wfrmsh.obj \
-        $(SLO)$/sw_wtextsh.obj \
-        $(SLO)$/sw_wdocsh.obj \
-        $(SLO)$/sw_wview.obj
+                $(SLO)$/sw_wdocsh.obj
 
 # --- Tagets -------------------------------------------------------
 
