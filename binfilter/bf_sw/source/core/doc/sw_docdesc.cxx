@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:22:39 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:28:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,6 +79,12 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
+#ifndef _FMTPDSC_HXX //autogen
+#include <fmtpdsc.hxx>
+#endif
+#ifndef _FTNINFO_HXX //autogen
+#include <ftninfo.hxx>
+#endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -103,6 +109,9 @@
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
+#endif
+#ifndef _PAGEFRM_HXX
+#include <pagefrm.hxx>  //Fuer DelPageDesc
 #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Fuer DelPageDesc
@@ -139,9 +148,6 @@
 #endif
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
 #endif
 #ifndef _GETMETRICVAL_HXX
 #include <GetMetricVal.hxx>
@@ -542,8 +548,102 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
+void lcl_RemoveFrms( SwFrmFmt& rFmt, FASTBOOL& rbFtnsRemoved )
+{
+    SwClientIter aIter( rFmt );
+    SwFrm *pFrm;
+    for( pFrm = (SwFrm*)aIter.First(TYPE(SwFrm)); pFrm;
+            pFrm = (SwFrm*)aIter.Next() )
+        if ( !rbFtnsRemoved && pFrm->IsPageFrm() &&
+                ((SwPageFrm*)pFrm)->IsFtnPage() )
+        {
+            rFmt.GetDoc()->GetRootFrm()->RemoveFtns( 0, FALSE, TRUE );
+            rbFtnsRemoved = TRUE;
+        }
+        else
+        {
+            pFrm->Cut();
+            delete pFrm;
+        }
+}
 
 
+void SwDoc::DelPageDesc( USHORT i )
+{
+    ASSERT( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
+    ASSERT( i != 0, "Default Pagedesc loeschen is nicht." );
+    if ( i == 0 )
+        return;
+
+    SwPageDesc *pDel = aPageDescs[i];
+
+    SwFmtPageDesc aDfltDesc( aPageDescs[0] );
+    SwClientIter aIter( *pDel );
+    SwClient* pLast;
+    while( 0 != ( pLast = aIter.GoRoot() ))
+    {
+        if( pLast->ISA( SwFmtPageDesc ) )
+        {
+            const SwModify* pMod = ((SwFmtPageDesc*)pLast)->GetDefinedIn();
+            if ( pMod )
+            {
+                if( pMod->ISA( SwCntntNode ) )
+                    ((SwCntntNode*)pMod)->SetAttr( aDfltDesc );
+                else if( pMod->ISA( SwFmt ))
+                    ((SwFmt*)pMod)->SetAttr( aDfltDesc );
+                else
+                {
+                    ASSERT( !this, "was ist das fuer ein Mofify-Obj?" );
+                    aPageDescs[0]->Add( pLast );
+                }
+            }
+            else    //Es kann noch eine Undo-Kopie existieren
+                aPageDescs[0]->Add( pLast );
+        }
+
+        BOOL bFtnInf = FALSE;
+        if ( TRUE == (bFtnInf = pLast == pFtnInfo->GetPageDescDep()) ||
+             pLast == pEndNoteInfo->GetPageDescDep() )
+        {
+            aPageDescs[0]->Add( pLast );
+            if ( GetRootFrm() )
+                GetRootFrm()->CheckFtnPageDescs( !bFtnInf );
+        }
+    }
+
+    for ( USHORT j = 0; j < aPageDescs.Count(); ++j )
+    {
+        if ( aPageDescs[j]->GetFollow() == pDel )
+        {
+            aPageDescs[j]->SetFollow( 0 );
+            //Clients des PageDesc sind die Attribute, denen sagen wir bescheid.
+            //die Attribute wiederum reichen die Meldung an die Absaetze weiter.
+
+            //Layot benachrichtigen!
+            if( GetRootFrm() )  // ist nicht immer vorhanden!! (Orginizer)
+                GetRootFrm()->CheckPageDescs( (SwPageFrm*)GetRootFrm()->Lower() );
+        }
+    }
+
+    if( GetRootFrm() )        // ist nicht immer vorhanden!! (Orginizer)
+    {
+        //Wenn jetzt noch irgendwelche Seiten auf die FrmFmt'e (Master und Left)
+        //Zeigen (z.B. irgendwelche Fussnotenseiten), so muessen die Seiten
+        //vernichtet werden.
+
+        // Wenn wir auf Endnotenseiten stossen, schmeissen wir alle Fussnoten weg,
+        // anders kann die Reihenfolge der Seiten (FollowsPageDescs usw.)
+        // nicht garantiert werden.
+        FASTBOOL bFtnsRemoved = FALSE;
+
+        ::binfilter::lcl_RemoveFrms( pDel->GetMaster(), bFtnsRemoved );
+        ::binfilter::lcl_RemoveFrms( pDel->GetLeft(), bFtnsRemoved );
+    }
+
+    aPageDescs.Remove( i );
+    delete pDel;
+    SetModified();
+}
 
 
 
@@ -621,7 +721,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ //!!!!!!!! Bei Aenderungen hier bitte ggf. InJobSetup im Sw3io mitpflegen
 /*N*/
-/*N*/   SwWait *pWait = 0;
 /*N*/   BOOL bEndAction = FALSE;
 /*N*/
 /*N*/   if( GetDocShell() )
@@ -633,9 +732,6 @@ namespace binfilter {
 /*?*/       ViewShell *pSh = GetRootFrm()->GetCurrShell();
 /*?*/       if( !IsBrowseMode() || ( pSh && pSh->GetViewOptions()->IsPrtFormat() ) )
 /*?*/       {
-/*?*/           if ( GetDocShell() )
-/*?*/               pWait = new SwWait( *GetDocShell(), TRUE );
-/*?*/
 /*?*/           GetRootFrm()->StartAllAction();
 /*?*/           bEndAction = TRUE;
 /*?*/
@@ -665,7 +761,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bEndAction )
 /*?*/       GetRootFrm()->EndAllAction();
-/*N*/   delete pWait;
 /*N*/ }
 
 //Zur Laufzeit sammeln wir die GlobalNames der Server, die keine
