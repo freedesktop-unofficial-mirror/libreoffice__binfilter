@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:38:50 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:09:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,6 +107,7 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
     virtual BOOL            InitNew(SvStorage* pNewStor);
     virtual BOOL            Load(SvStorage* pStor);
     virtual BOOL            LoadFrom(SvStorage* pStor);
+    virtual BOOL            ConvertFrom( SfxMedium &rMedium );
     virtual void            HandsOff();
     virtual BOOL            SaveAs(SvStorage * pNewStor );
     virtual BOOL            SaveCompleted(SvStorage * pNewStor );
