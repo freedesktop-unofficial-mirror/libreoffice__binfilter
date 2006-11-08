@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swgpar.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:54:55 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:12:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,6 +63,22 @@ enum SwgReadOptions {
     SWGRD_NORMAL        = 0x00FF        // alles (Normalfall)
 };
 
+class SwSwgParser
+{
+private:
+    SwSwgReader* pRdr;
+public:
+    ULONG  CallParser( USHORT = SWGRD_NORMAL );
+    BOOL NeedsPasswd();
+    BOOL CheckPasswd( const UniString& );
+    const SfxDocumentInfo& GetDocInfo();
+
+    SwSwgParser( SwDoc *pSwDoc, const SwPaM* pSwPaM,
+                 SvStream *pIstream, const UniString& rFileName, //$ istream
+                 BOOL bNewDoc=TRUE );
+    SwSwgParser( SvStream *pIstream ); //$ istream
+    ~SwSwgParser();
+};
 
 } //namespace binfilter
 #endif // _SWGPAR_HXX
