@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:58:48 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:40:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -124,6 +124,9 @@
 #ifndef _SW3IO_HXX
 #include <sw3io.hxx>        // I/O, Hausformat
 #endif
+#ifndef _DOCSTYLE_HXX
+#include <docstyle.hxx>
+#endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -232,13 +235,161 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/                                   SwCrsrShell *pCrsrShell,
 /*N*/                                   SwPaM* pPaM )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001 BOOL bAPICall = FALSE;
+/*N*/   BOOL bAPICall = FALSE;
+    const SfxPoolItem* pApiItem;
+    const SfxItemSet* pMedSet;
+    if( 0 != ( pMedSet = rMedium.GetItemSet() ) && SFX_ITEM_SET ==
+            pMedSet->GetItemState( FN_API_CALL, TRUE, &pApiItem ) )
+            bAPICall = ((const SfxBoolItem*)pApiItem)->GetValue();
+
+    const SfxFilter* pFlt = rMedium.GetFilter();
+    if( !pFlt )
+    {
+        if(!bAPICall)
+        {
+        }
+        return 0;
+    }
+    String aFileName( rMedium.GetName() );
+    SwRead pRead = SwIoSystem::GetReader( pFlt->GetUserData() );
+    if( !pRead )
+        return 0;
+
+    if( rMedium.IsStorage()
+        ? SW_STORAGE_READER & pRead->GetReaderType()
+        : SW_STREAM_READER & pRead->GetReaderType() )
+    {
+        *ppRdr = pPaM ? new SwReader( rMedium, aFileName, *pPaM ) :
+            pCrsrShell ?
+                new SwReader( rMedium, aFileName, *pCrsrShell->GetCrsr() )
+                    : new SwReader( rMedium, aFileName, pDoc );
+    }
+    else
+        return 0;
+
+    // PassWord Checken
+    String aPasswd;
+    if ((*ppRdr)->NeedsPasswd( *pRead ))
+    {
+        {
+            const SfxItemSet* pSet = rMedium.GetItemSet();
+            const SfxPoolItem *pPassItem;
+            if(pSet && SFX_ITEM_SET == pSet->GetItemState(SID_PASSWORD, TRUE, &pPassItem))
+                aPasswd = ((const SfxStringItem *)pPassItem)->GetValue();
+        }
+
+        if (!(*ppRdr)->CheckPasswd( aPasswd, *pRead ))
+        {
+                delete *ppRdr;
+ //JP: SFX-Aenderung - kein close rufen
+ //            if( !rMedium.IsStorage() )
+ //                rMedium.CloseInStream();
+            return 0;
+        }
+    }
+    if(rMedium.IsStorage())
+    {
+        SvStorageRef aStor( rMedium.GetStorage() );
+        const SfxItemSet* pSet = rMedium.GetItemSet();
+        const SfxPoolItem *pItem;
+        if(pSet && SFX_ITEM_SET == pSet->GetItemState(SID_PASSWORD, TRUE, &pItem))
+        {
+            DBG_ASSERT(pItem->IsA( TYPE(SfxStringItem) ), "Fehler Parametertype");
+            ByteString aPasswd( ((const SfxStringItem *)pItem)->GetValue(),
+                                gsl_getSystemTextEncoding() );
+            aStor->SetKey( aPasswd );
+        }
+        // Fuer's Dokument-Einfuegen noch die FF-Version, wenn's der
+        // eigene Filter ist.
+        ASSERT( pRead != ReadSw3 || pRead != ReadXML || pFlt->GetVersion(),
+                "Am Filter ist keine FF-Version gesetzt" );
+        if( (pRead == ReadSw3 || pRead == ReadXML) && pFlt->GetVersion() )
+            aStor->SetVersion( (long)pFlt->GetVersion() );
+    }
+    // beim Sw3-Reader noch den pIo-Pointer setzen
+    if( pRead == ReadSw3 )
+        ((Sw3Reader*)pRead)->SetSw3Io( pIo );
+
+    if( pFlt->GetDefaultTemplate().Len() )
+        pRead->SetTemplateName( pFlt->GetDefaultTemplate() );
+
+    if( pRead == ReadAscii && 0 != rMedium.GetInStream() &&
+        pFlt->GetUserData().EqualsAscii( FILTER_TEXT_DLG ) )
+    {
+        SwAsciiOptions aOpt;
+        const SfxItemSet* pSet;
+        const SfxPoolItem* pItem;
+        if( 0 != ( pSet = rMedium.GetItemSet() ) && SFX_ITEM_SET ==
+            pSet->GetItemState( SID_FILE_FILTEROPTIONS, TRUE, &pItem ) )
+            aOpt.ReadUserData( ((const SfxStringItem*)pItem)->GetValue() );
+
+        if( pRead )
+            pRead->GetReaderOpt().SetASCIIOpts( aOpt );
+    }
+
+    return pRead;
 /*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Laden
  --------------------------------------------------------------------*/
 
+ BOOL SwDocShell::ConvertFrom( SfxMedium& rMedium )
+ {
+    RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::ConvertFrom" );
+
+    SwReader* pRdr;
+    SwRead pRead = StartConvertFrom(rMedium, &pRdr);
+    if (!pRead)
+        return FALSE;
+
+        // SfxProgress unterdruecken, wenn man Embedded ist
+    SW_MOD()->SetEmbeddedLoadSave(
+                            SFX_CREATE_MODE_EMBEDDED == GetCreateMode() );
+
+    pRdr->GetDoc()->SetHTMLMode( ISA(SwWebDocShell) );
+
+     /* #106748# Restore the pool default if reading a saved document. */
+     pDoc->RemoveAllFmtLanguageDependencies();
+
+    ULONG nErr = pRdr->Read( *pRead );
+
+    // Evtl. ein altes Doc weg
+    if( pDoc )
+        RemoveLink();
+    pDoc = pRdr->GetDoc();
+
+    // die DocInfo vom Doc am DocShell-Medium setzen
+    if( GetMedium()->GetFilter() &&
+        GetMedium()->GetFilter()->UsesStorage() )
+    {
+        SvStorageRef aRef = GetMedium()->GetStorage();
+        if( aRef.Is() )
+            pDoc->GetInfo()->Save(aRef);
+    }
+
+    AddLink();
+
+    ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+    pBasePool = new SwDocStyleSheetPool( *pDoc,
+                        SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
+    UpdateFontList();
+    InitDraw();
+
+    delete pRdr;
+
+    SW_MOD()->SetEmbeddedLoadSave( FALSE );
+
+    SetError( nErr );
+    BOOL bOk = !IsError( nErr );
+
+    // StartFinishedLoading rufen. Nicht bei asynchronen Filtern!
+    // Diese muessen das selbst rufen!
+    if( bOk && !pDoc->IsInLoadAsynchron() )
+        StartLoadFinishedTimer();
+
+    return bOk;
+ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Sichern des Default-Formats, Stg vorhanden
@@ -249,10 +400,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*?*/ {
 /*?*/    RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::Save" );
  /*?*/  sal_Bool bXML = pIo->GetStorage()->GetVersion() >= SOFFICE_FILEFORMAT_60;
-    //#i3370# remove quick help to prevent saving of autocorrection suggestions
- /*?*/     if(pView)
- /*?*/         pView->GetEditWin().StopQuickHelp();
- /*?*/     SwWait aWait( *this, TRUE );
  /*?*/
  /*?*/  CalcLayoutForOLEObjects();  // format for OLE objets
 
@@ -348,11 +495,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SaveAs" );
 /*N*/   sal_Bool bXML = pStor->GetVersion() >= SOFFICE_FILEFORMAT_60;
-/*N*/
-/*N*/   SwWait aWait( *this, TRUE );
-/*N*/     //#i3370# remove quick help to prevent saving of autocorrection suggestions
-/*N*/     if(pView)
-/*N*/         pView->GetEditWin().StopQuickHelp();
 /*N*/
 /*N*/   if( pDoc->IsGlobalDoc() && !pDoc->IsGlblDocSaveLinks() )
 /*N*/       RemoveOLEObjects();
@@ -607,129 +749,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
 /*N*/ void SwDocShell::GetState(SfxItemSet& rSet)
 /*N*/ {
-/*N*/   SfxWhichIter aIter(rSet);
-/*N*/   USHORT  nWhich  = aIter.FirstWhich();
-/*N*/
-/*N*/   while (nWhich)
-/*N*/   {
-/*N*/       switch (nWhich)
-/*N*/       {
-        // MT: MakroChosser immer enablen, weil Neu moeglich
-        // case SID_BASICCHOOSER:
-        // {
-        //  StarBASIC* pBasic = GetBasic();
-        //  StarBASIC* pAppBasic = SFX_APP()->GetBasic();
-        //  if ( !(pBasic->GetModules()->Count() ||
-        //      pAppBasic->GetModules()->Count()) )
-        //          rSet.DisableItem(nWhich);
-        // }
-        // break;
-/*N*/       case SID_PRINTPREVIEW:
-/*N*/       {
-/*?*/           FASTBOOL bDisable = GetProtocol().IsInPlaceActive();
-/*?*/           if ( !bDisable )
-/*?*/           {
-/*?*/               SfxViewFrame *pTmpFrm = SfxViewFrame::GetFirst(this);
-/*?*/               while (pTmpFrm)     // Preview suchen
-/*?*/               {
-/*?*/                   if ( PTR_CAST(SwView, pTmpFrm->GetViewShell()) &&
-/*?*/                        ((SwView*)pTmpFrm->GetViewShell())->GetWrtShell().
-/*?*/                                                   GetDoc()->IsBrowseMode())
-/*?*/                   {
-/*?*/                       bDisable = TRUE;
-/*?*/                       break;
-/*?*/                   }
-/*?*/                   pTmpFrm = pTmpFrm->GetNext(*pTmpFrm, this);
-/*?*/               }
-/*?*/           }
-/*?*/           if ( bDisable )
-/*?*/               rSet.DisableItem( SID_PRINTPREVIEW );
-/*?*/           else
-/*?*/           {
-/*?*/               SfxBoolItem aBool( SID_PRINTPREVIEW, FALSE );
-/*?*/               if( PTR_CAST( SwPagePreView, SfxViewShell::Current()) )
-/*?*/                   aBool.SetValue( TRUE );
-/*?*/               rSet.Put( aBool );
-/*?*/           }
-/*?*/       }
-/*?*/       break;
-/*N*/       case SID_SOURCEVIEW:
-/*N*/       {
-/*?*/           if(IsLoading())
-/*?*/               rSet.DisableItem(nWhich);
-/*?*/           else
-/*?*/           {
-/*?*/               SfxViewShell* pView = GetView() ? (SfxViewShell*)GetView()
-/*?*/                                           : SfxViewShell::Current();
-/*?*/               BOOL bSourceView = 0 != PTR_CAST(SwSrcView, pView);
-/*?*/               rSet.Put(SfxBoolItem(SID_SOURCEVIEW, bSourceView));
-/*?*/           }
-/*?*/       }
-/*?*/       break;
-/*?*/       case SID_HTML_MODE:
-/*?*/           rSet.Put(SfxUInt16Item(SID_HTML_MODE, ::binfilter::GetHtmlMode(this)));
-/*?*/       break;
-/*?*/
-/*?*/       case FN_ABSTRACT_STARIMPRESS:
-/*?*/       case FN_OUTLINE_TO_IMPRESS:
-/*?*/           {
-/*?*/               SvtModuleOptions aMOpt;
-/*?*/               if ( !aMOpt.IsImpress() )
-/*?*/                   rSet.DisableItem( nWhich );
-/*?*/           }
-/*?*/           /* no break here */
-/*?*/       case FN_ABSTRACT_NEWDOC:
-/*?*/       case FN_OUTLINE_TO_CLIPBOARD:
-/*?*/           {
-/*?*/               if ( !GetDoc()->GetNodes().GetOutLineNds().Count() )
-/*?*/                   rSet.DisableItem( nWhich );
-/*?*/           }
-/*?*/           break;
-/*?*/
-/*?*/       case SID_BROWSER_MODE:
-/*?*/           {
-/*N*/               SfxViewShell* pViewShell = SfxViewShell::Current();
-/*N*/               BOOL bDisable = PTR_CAST(SwPagePreView, pViewShell) != 0;
-/*N*/
-/*N*/               if (bDisable)
-/*?*/                   rSet.DisableItem( nWhich );
-/*N*/               else
-/*N*/                   rSet.Put( SfxBoolItem( nWhich, GetDoc()->IsBrowseMode()));
-/*N*/               break;
-/*?*/           }
-/*?*/       case FN_PRINT_LAYOUT:
-/*?*/           {
-/*?*/               SfxViewShell* pViewShell = SfxViewShell::Current();
-/*?*/               BOOL bDisable = 0 != PTR_CAST(SwPagePreView, pViewShell) ||
-/*?*/                               0 != PTR_CAST(SwSrcView, pViewShell);
-/*?*/               if (bDisable)
-/*?*/                   rSet.DisableItem( nWhich );
-/*?*/               else
-/*?*/                   rSet.Put( SfxBoolItem( nWhich, !GetDoc()->IsBrowseMode()));
-/*?*/           }
-/*?*/           break;
-/*?*/
-/*?*/       case FN_NEW_GLOBAL_DOC:
-/*?*/           if ( ISA(SwGlobalDocShell) )
-/*?*/               rSet.DisableItem( nWhich );
-/*?*/           break;
-/*?*/
-/*?*/       case FN_NEW_HTML_DOC:
-/*?*/           if( ISA( SwWebDocShell ) )
-/*?*/               rSet.DisableItem( nWhich );
-/*?*/           break;
-/*?*/
-/*?*/       case SID_ATTR_YEAR2000:
-/*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SvNumberFormatter* pFmtr = pDoc->GetNumberFormatter(FALSE);
-/*?*/           }
-/*?*/           break;
-/*?*/
-/*?*/       default: DBG_ASSERT(!this,"Hier darfst Du nicht hinein!");
-/*?*/
-/*?*/       }
-/*N*/       nWhich = aIter.NextWhich();
-/*N*/   }
+/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -761,10 +781,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
 /*N*/ void SwDocShell::SetView(SwView* pVw)
 /*N*/ {
-/*N*/   if ( 0 != (pView = pVw) )
-/*N*/       pWrtShell = &pView->GetWrtShell();
-/*N*/   else
-/*N*/       pWrtShell = 0;
+/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 
