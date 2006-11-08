@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrftn.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:17:00 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:35:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -119,6 +119,15 @@ int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   return pNew;
 /*N*/ }
 
+void SwFmtFtn::SetEndNote( BOOL b )
+{
+    if ( b != bEndNote )
+    {
+        if ( GetTxtFtn() )
+            GetTxtFtn()->DelFrms();
+        bEndNote = b;
+    }
+}
 
 /*N*/ SwFmtFtn::~SwFmtFtn()
 /*N*/ {
