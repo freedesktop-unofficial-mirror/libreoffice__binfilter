@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:58:35 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 11:51:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -275,7 +275,7 @@ namespace SfxContainer_Impl
 /*N*/ SfxLibraryContainer_Impl::~SfxLibraryContainer_Impl()
 /*N*/ {
 /*N*/     if( mbOwnBasMgr )
-/*?*/         delete mpBasMgr;
+/*?*/         BasicManager::LegacyDeleteBasicManager( mpBasMgr );
 /*N*/ }
 
 
