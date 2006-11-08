@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swdll.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:00:29 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:41:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,19 +120,13 @@ namespace binfilter {
 /*N*/   //Initialisierung der Statics
 /*N*/   ::binfilter::_InitCore();
 /*N*/   ::binfilter::_InitFilter();
-/*N*/   ::binfilter::_InitUI();
+///*N*/   ::binfilter::_InitUI();
 /*N*/
 /*N*/   pModule->InitAttrPool();
 /*N*/   //jetzt darf das SwModule seinen Pool anlegen
 /*N*/
-/*N*/   // register your view-factories here
-/*N*/   RegisterFactories();
-/*N*/
 /*N*/   // register your shell-interfaces here
 /*N*/   RegisterInterfaces();
-/*N*/
-/*N*/   // register your controllers here
-/*N*/   RegisterControls();
 /*N*/ }
 
 
@@ -151,7 +145,7 @@ namespace binfilter {
 /*N*/   // der Pool muss vor den statics geloescht werden
 /*N*/   SW_MOD()->RemoveAttrPool();
 /*N*/
-/*N*/   ::binfilter::_FinitUI();
+///*N*/   ::binfilter::_FinitUI();
 /*N*/   ::binfilter::_FinitFilter();
 /*N*/   ::binfilter::_FinitCore();
 /*N*/   // Objekt-Factory austragen
