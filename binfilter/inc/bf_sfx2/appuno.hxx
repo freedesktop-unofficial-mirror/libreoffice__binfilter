@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appuno.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:08:45 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:08:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -138,7 +138,21 @@
 #define _SVSTDARR_STRINGSDTOR
 #include <svtools/svstdarr.hxx>
 #include <bf_sfx2/sfxuno.hxx>
+
+class SfxAllItemSet;
+class SfxItemSet;
 namespace binfilter {
+
+class SfxSlot;
+void TransformParameters(           sal_uInt16                          nSlotId     ,
+                            const   UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs     ,
+                                    SfxAllItemSet&                      aSet        ,
+                            const   SfxSlot*                            pSlot = 0   );
+
+void TransformItems(        sal_uInt16                          nSlotId     ,
+                            const   SfxItemSet&                         aSet        ,
+                                    UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs     ,
+                            const   SfxSlot*                            pSlot = 0   );
 
 //____________________________________________________________________________________________________________________________________
 //  forwards
