@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:27:12 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:29:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2153,6 +2153,28 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 
     // Suche die Position vom Vorlagen-Namen. Ist nicht vorhanden
     // dann fuege neu ein
+USHORT SwDoc::SetDocPattern( const String& rPatternName )
+{
+    ASSERT( rPatternName.Len(), "kein Dokument-Vorlagenname" );
+
+    USHORT nNewPos = aPatternNms.Count();
+    for( USHORT n = 0; n < aPatternNms.Count(); ++n )
+        if( !aPatternNms[n] )
+        {
+            if( nNewPos == aPatternNms.Count() )
+                nNewPos = n;
+        }
+        else if( rPatternName == *aPatternNms[n] )
+            return n;
+
+    if( nNewPos < aPatternNms.Count() )
+        aPatternNms.Remove( nNewPos );      // Platz wieder frei machen
+
+    String* pNewNm = new String( rPatternName );
+    aPatternNms.Insert( pNewNm, nNewPos );
+    SetModified();
+    return nNewPos;
+}
 
 /*N*/ USHORT GetPoolParent( USHORT nId )
 /*N*/ {
