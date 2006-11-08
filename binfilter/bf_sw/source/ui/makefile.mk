@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 23:57:40 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:39:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,7 @@ LIBFLAGS=/NOI /NOE /PAGE:256
 .ENDIF
 .ENDIF
 
-# --- Files --------------------------------------------------------
+################################################################
 
 # andere Label als Verzeichnisnamen fuer VC++/NT
 
@@ -73,33 +73,18 @@ SUBLIBS1= \
         $(SLB)$/sw_config.lib   \
         $(SLB)$/sw_dbui.lib     \
         $(SLB)$/sw_dochdl.lib   \
-        $(SLB)$/sw_docvw.lib    \
-        $(SLB)$/sw_envelp.lib   \
+                $(SLB)$/sw_utlui.lib    \
+                $(SLB)$/sw_shells.lib   \
+                $(SLB)$/sw_envelp.lib   \
         $(SLB)$/sw_fldui.lib    \
         $(SLB)$/sw_globdoc.lib
-        
+
 SUBLIBS2= \
         $(SLB)$/sw_index.lib    \
         $(SLB)$/sw_misc.lib     \
-        $(SLB)$/sw_ribbar.lib   \
-        $(SLB)$/sw_shells.lib   \
-        $(SLB)$/sw_table.lib    \
         $(SLB)$/sw_unoidl.lib   \
-        $(SLB)$/sw_utlui.lib    \
-        $(SLB)$/sw_web.lib   \
-        $(SLB)$/sw_uiview.lib   \
+                $(SLB)$/sw_web.lib      \
         $(SLB)$/sw_wrtsh.lib
-# -----------------------------------------------------------
-
-################################################################
-
-LIB1TARGET=$(SLB)$/sw_ui1.lib
-LIB1FILES= \
-        $(SUBLIBS1)
-
-LIB2TARGET=$(SLB)$/sw_ui2.lib
-LIB2FILES= \
-        $(SUBLIBS2)
 
 .INCLUDE :  target.mk
 
@@ -108,5 +93,4 @@ LIB2FILES= \
 kill:
     @+$(RM) $(SLB)$/ui.lst
     @+$(RM) $(SLB)$/ui.lib
-
 
