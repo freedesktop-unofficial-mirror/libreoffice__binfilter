@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_cellfml.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:36:35 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:30:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,6 +67,9 @@
 #ifndef _TBLSEL_HXX
 #include <tblsel.hxx>
 #endif
+#ifndef _CELLFML_HXX
+#include <cellfml.hxx>
+#endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
@@ -85,6 +88,9 @@
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
+#ifndef _HINTS_HXX
+#include <hints.hxx>
+#endif
 namespace binfilter {
 
 const sal_Unicode cRelTrenner = ',';
@@ -93,6 +99,8 @@ const sal_Unicode cRelKennung = '';        // CTRL-R
 const USHORT cMAXSTACKSIZE = 50;
 
 /*N*/ const SwFrm* lcl_GetBoxFrm( const SwTableBox& rBox );
+String lcl_BoxNmToRel( const SwTable&, const SwTableNode&,
+                        const String& , const String& , BOOL );
 
 
 /*************************************************************************
@@ -351,9 +359,39 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   rNewStr += ' ';
 /*N*/ }
 
+void SwTableFormula::BoxNmsToRelNm( const SwTable& rTbl, String& rNewStr,
+                    String& rFirstBox, String* pLastBox, void* pPara ) const
+{
+    // Box-Namen (externe Darstellung) zu relativen Namen
+    SwNode* pNd = (SwNode*)pPara;
+    ASSERT( pNd, "Feld steht in keinem Node" );
+    const SwTableNode* pTblNd = pNd->FindTableNode();
 
+    String sRefBoxNm;
+    if( &pTblNd->GetTable() == &rTbl )
+    {
+        const SwTableBox *pBox = rTbl.GetTblBox(
+                pNd->FindTableBoxStartNode()->GetIndex() );
+        ASSERT( pBox, "Feld steht in keiner Tabelle" );
+        sRefBoxNm = pBox->GetName();
+    }
 
+    rNewStr += rFirstBox.Copy(0,1);     // Kennung fuer Box erhalten
+    rFirstBox.Erase(0,1);
+    if( pLastBox )
+    {
+        rNewStr += lcl_BoxNmToRel( rTbl, *pTblNd, sRefBoxNm, *pLastBox,
+                                eNmType == EXTRNL_NAME );
+        rNewStr += ':';
+        rFirstBox.Erase( 0, pLastBox->Len()+1 );
+    }
 
+    rNewStr += lcl_BoxNmToRel( rTbl, *pTblNd, sRefBoxNm, rFirstBox,
+                            eNmType == EXTRNL_NAME );
+
+    // Kennung fuer Box erhalten
+    rNewStr += rFirstBox.GetChar( rFirstBox.Len() - 1 );
+}
 
 
 /*N*/ void SwTableFormula::PtrToBoxNms( const SwTable& rTbl, String& rNewStr,
@@ -462,6 +500,26 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/ }
 
     // erzeuge die relative (fuers Kopieren) Formel
+ void SwTableFormula::ToRelBoxNm( const SwTable* pTbl )
+ {
+    const SwNode* pNd = 0;
+    FnScanFormel fnFormel = 0;
+    switch( eNmType)
+    {
+    case INTRNL_NAME:
+    case EXTRNL_NAME:
+        if( pTbl )
+        {
+            fnFormel = &SwTableFormula::BoxNmsToRelNm;
+            pNd = GetNodeOfFormula();
+        }
+        break;
+    case REL_NAME:
+        return;
+    }
+    sFormel = ScanString( fnFormel, *pTbl, (void*)pNd );
+    eNmType = REL_NAME;
+ }
 
 
 /*N*/ String SwTableFormula::ScanString( FnScanFormel fnFormel, const SwTable& rTbl,
@@ -572,10 +630,50 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   return pCNd->GetFrm( &aPt, NULL, FALSE );
 /*N*/ }
 
+String lcl_BoxNmToRel( const SwTable& rTbl, const SwTableNode& rTblNd,
+                            const String& rRefBoxNm, const String& rGetStr,
+                            BOOL bExtrnlNm )
+{
+    String sCpy( rRefBoxNm );
+    String sTmp( rGetStr );
+    if( !bExtrnlNm )
+    {
+        // in die Externe Darstellung umwandeln.
+//      SwTableBox* pBox = (SwTableBox*)(long)sTmp;
+        SwTableBox* pBox = (SwTableBox*)sTmp.ToInt32();
+        if( !rTbl.GetTabSortBoxes().Seek_Entry( pBox ))
+            return '?';
+        sTmp = pBox->GetName();
+    }
 
+    // sollte die es eine Tabellen uebergreifende Formel sein, dann behalte
+    // die externe Darstellung bei:
+    if( &rTbl == &rTblNd.GetTable() )
+    {
+        long nBox = SwTable::_GetBoxNum( sTmp, TRUE );
+        nBox -= SwTable::_GetBoxNum( sCpy, TRUE );
+        long nLine = SwTable::_GetBoxNum( sTmp );
+        nLine -= SwTable::_GetBoxNum( sCpy );
 
+        sCpy = sTmp;        //JP 01.11.95: den Rest aus dem BoxNamen anhaengen
 
+        sTmp = cRelKennung;
+        sTmp += String::CreateFromInt32( nBox );
+        sTmp += cRelTrenner;
+        sTmp += String::CreateFromInt32( nLine );
 
+        if( sCpy.Len() )
+        {
+            sTmp += cRelTrenner;
+            sTmp += sCpy;
+        }
+    }
+
+    if( sTmp.Len() && '>' == sTmp.GetChar( sTmp.Len() - 1 ))
+        sTmp.Erase( sTmp.Len()-1 );
+
+    return sTmp;
+}
 
 /*N*/ void SwTableFormula::GetBoxes( const SwTableBox& rSttBox,
 /*N*/                               const SwTableBox& rEndBox,
@@ -629,12 +727,33 @@ const USHORT cMAXSTACKSIZE = 50;
 
     // sind alle Boxen gueltig, auf die sich die Formel bezieht?
 
-
-
+USHORT SwTableFormula::GetLnPosInTbl( const SwTable& rTbl, const SwTableBox* pBox )
+{
+    USHORT nRet = USHRT_MAX;
+    if( pBox )
+    {
+        const SwTableLine* pLn = pBox->GetUpper();
+        while( pLn->GetUpper() )
+            pLn = pLn->GetUpper()->GetUpper();
+        nRet = rTbl.GetTabLines().GetPos( pLn );
+    }
+    return nRet;
+}
 
 
     // erzeuge die externe Formel, beachte aber das die Formel
     // in einer gesplitteten/gemergten Tabelle landet
+void SwTableFormula::ToSplitMergeBoxNm( SwTableFmlUpdate& rTblUpd )
+{
+    const SwTable* pTbl;
+    const SwNode* pNd = GetNodeOfFormula();
+    if( pNd && 0 != ( pNd = pNd->FindTableNode() ))
+        pTbl = &((SwTableNode*)pNd)->GetTable();
+    else
+        pTbl = rTblUpd.pTbl;
 
+    sFormel = ScanString( &SwTableFormula::_SplitMergeBoxNm, *pTbl, (void*)&rTblUpd );
+    eNmType = INTRNL_NAME;
+}
 
 }
