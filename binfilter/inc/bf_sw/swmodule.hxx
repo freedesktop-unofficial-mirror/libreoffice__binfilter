@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swmodule.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:56:02 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:13:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,7 +87,6 @@ class SwAutoFmtOpt;
 class SwChapterNumRules;
 class SwStdFontConfig;
 class SwTransferable;
-class SwToolbarConfigItem;
 class SwAttrPool;
 //STRIP008 namespace svtools{ class ColorConfig;}
 
@@ -96,10 +95,6 @@ struct SwDBData;
 #define VIEWOPT_DEST_TEXT       1
 #define VIEWOPT_DEST_WEB        2
 #define VIEWOPT_DEST_VIEW_ONLY  3 //ViewOptions werden nur an der ::com::sun::star::sdbcx::View, nicht an der Appl. gesetzt
-
-//STRIP008 namespace com{ namespace sun{ namespace star{ namespace scanner{
-//STRIP008  class XScannerManager;
-//STRIP008 }}}}
 
 class SwModule: public SwModuleDummy , public SfxListener
 {
@@ -113,8 +108,6 @@ class SwModule: public SwModuleDummy , public SfxListener
     SwPrintOptions*     pWebPrtOpt;
     SwChapterNumRules*  pChapterNumRules;
     SwStdFontConfig*    pStdFontConfig;
-    SwToolbarConfigItem*pToolbarConfig;     //fuer gestackte Toolbars, welche
-    SwToolbarConfigItem*pWebToolbarConfig;  //war sichtbar?
     SwDBConfig*         pDBConfig;
     ::svtools::ColorConfig*   pColorConfig;
     SvtAccessibilityOptions* pAccessibilityOptions;
@@ -146,9 +139,6 @@ class SwModule: public SwModuleDummy , public SfxListener
 
     // Hint abfangen fuer DocInfo
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-
-protected:
-    // Briefumschlaege, Etiketten
 
 public:
     // public Data - used for internal Clipboard / Drag & Drop / XSelection
@@ -193,8 +183,6 @@ public:
     SwModuleOptions*    GetModuleConfig()       { return pModuleConfig;}
     SwPrintOptions*     GetPrtOptions(sal_Bool bWeb);
     SwStdFontConfig*    GetStdFontConfig()      { return pStdFontConfig; }
-    SwToolbarConfigItem*GetToolbarConfig()      { return pToolbarConfig;    }
-    SwToolbarConfigItem*GetWebToolbarConfig()   { return pWebToolbarConfig; }
     SwDBConfig*         GetDBConfig();
     ::svtools::ColorConfig&   GetColorConfig();
     SvtAccessibilityOptions&    GetAccessibilityOptions();
@@ -207,15 +195,10 @@ public:
     sal_Bool IsEmbeddedLoadSave() const         { return bEmbeddedLoadSave; }
     void SetEmbeddedLoadSave( sal_Bool bFlag )  { bEmbeddedLoadSave = bFlag; }
 
-
-    // Tabellenmodi
-
     // Redlining
      sal_uInt16         GetRedlineAuthor();
      const String&      GetRedlineAuthor(sal_uInt16 nPos);
 /*N*/   sal_uInt16          InsertRedlineAuthor(const String& rAuthor); //SW50.SDW
-
-
 
     sal_uInt16              GetRedlineMarkPos();
 
@@ -228,8 +211,6 @@ public:
     // Update-Stati durchreichen
     sal_uInt16 GetLinkUpdMode( sal_Bool bWeb ) const;
     sal_uInt16 GetFldUpdateFlags( sal_Bool bWeb ) const;
-
-    //virtuelle Methoden fuer den Optionendialog
 
     //hier wird der Pool angelegt und an der SfxShell gesetzt
     void    InitAttrPool();
