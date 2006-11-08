@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bindetect.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:40:21 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:08:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,37 +39,18 @@
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
 #endif
-
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_DOCUMENT_XEXTENDEDFILTERDETECTION_HPP_
-#include <com/sun/star/document/XExtendedFilterDetection.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_EXCEPTION_HPP_
-#include <com/sun/star/uno/Exception.hpp>
-#endif
-
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
-
+#ifndef _COM_SUN_STAR_DOCUMENT_XEXTENDEDFILTERDETECTION_HPP_
+#include <com/sun/star/document/XExtendedFilterDetection.hpp>
+#endif
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
 
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#include <cppuhelper/factory.hxx>
-#include <tools/link.hxx>
-#include <tools/string.hxx>
-
-class SfxObjectFactory;
-class SfxFilterMatcher;
-class LoadEnvironment_Impl;
-class SfxMedium;
+#include <bf_sfx2/sfxuno.hxx>
 
 namespace com
 {
@@ -77,17 +58,9 @@ namespace com
     {
         namespace star
         {
-            namespace uno
-            {
-                class Any;
-            }
             namespace lang
             {
                 class XMultiServiceFactory;
-            }
-            namespace frame
-            {
-                class XFrame;
             }
             namespace beans
             {
@@ -97,14 +70,17 @@ namespace com
     }
 }
 
-#include <sfx2/sfxuno.hxx>
-
 #define REFERENCE ::com::sun::star::uno::Reference
 #define SEQUENCE ::com::sun::star::uno::Sequence
 #define RUNTIME_EXCEPTION ::com::sun::star::uno::RuntimeException
+
 namespace binfilter {
+
 class BinFilterDetect : public ::cppu::WeakImplHelper2< ::com::sun::star::document::XExtendedFilterDetection, ::com::sun::star::lang::XServiceInfo >
 {
+    com::sun::star::uno::Reference < com::sun::star::lang::XMultiServiceFactory > m_xFact;
+
+
 public:
                             BinFilterDetect( const REFERENCE < ::com::sun::star::lang::XMultiServiceFactory >& xFactory );
     virtual                 ~BinFilterDetect();
@@ -116,6 +92,7 @@ public:
     //----------------------------------------------------------------------------------
     virtual ::rtl::OUString SAL_CALL detect( SEQUENCE< ::com::sun::star::beans::PropertyValue >& lDescriptor ) throw( RUNTIME_EXCEPTION );
 };
+
 }//end of namespace binfilter
 
 #endif
