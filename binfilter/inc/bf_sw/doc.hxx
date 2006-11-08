@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:38:10 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:09:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,7 +71,9 @@
 #ifndef _CHCMPRSE_HXX
 #include <chcmprse.hxx>
 #endif
-
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
 #endif
@@ -1094,6 +1096,8 @@ public:
         {   return (SwFrmFmt*)FindFmtByName( (SvPtrarr&)*pSpzFrmFmtTbl, rName ); }
 
     SwCharFmt *MakeCharFmt(const String &rFmtName, SwCharFmt *pDerivedFrom);
+    void       DelCharFmt(sal_uInt16 nFmt);
+    void       DelCharFmt(SwCharFmt* pFmt);
     SwCharFmt* FindCharFmtByName( const String& rName ) const
         {   return (SwCharFmt*)FindFmtByName( (SvPtrarr&)*pCharFmtTbl, rName ); }
 
@@ -1193,6 +1197,7 @@ public:
     sal_Bool IsUsed( const SwNumRule& ) const;
 
         // setze den Namen der neu geladenen Dokument-Vorlage
+    sal_uInt16 SetDocPattern( const String& rPatternName );
         // gebe die Anzahl von geladenen Dok-VorlagenNamen zurueck.
         // !! Die nicht mehr benutzten sind 0-Pointer !!
     sal_uInt16 GetDocPatternCnt() const { return aPatternNms.Count(); }
