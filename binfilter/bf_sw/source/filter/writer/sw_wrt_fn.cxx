@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrt_fn.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:46:39 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:38:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,6 +36,12 @@
 
 #pragma hdrstop
 
+#ifndef _SFXITEMITER_HXX //autogen
+#include <svtools/itemiter.hxx>
+#endif
+#ifndef _SFX_WHITER_HXX //autogen
+#include <svtools/whiter.hxx>
+#endif
 
 
 #include "shellio.hxx"
@@ -50,9 +56,63 @@ namespace binfilter {
 
 
 
+Writer& Out( const SwAttrFnTab pTab, const SfxPoolItem& rHt, Writer & rWrt )
+{
+    USHORT nId = rHt.Which();
+    ASSERT(  nId < POOLATTR_END && nId >= POOLATTR_BEGIN, "SwAttrFnTab::Out()" );
+    FnAttrOut pOut;
+    if( 0 != ( pOut = pTab[ nId - RES_CHRATR_BEGIN] ))
+        (*pOut)( rWrt, rHt );
+    return rWrt;
 
+}
 
-
+Writer& Out_SfxItemSet( const SwAttrFnTab pTab, Writer& rWrt,
+                        const SfxItemSet& rSet, BOOL bDeep,
+                        BOOL bTstForDefault )
+{
+    // erst die eigenen Attribute ausgeben
+    const SfxItemPool& rPool = *rSet.GetPool();
+    const SfxItemSet* pSet = &rSet;
+    if( !pSet->Count() )        // Optimierung - leere Sets
+    {
+        if( !bDeep )
+            return rWrt;
+        while( 0 != ( pSet = pSet->GetParent() ) && !pSet->Count() )
+            ;
+        if( !pSet )
+            return rWrt;
+    }
+    const SfxPoolItem* pItem;
+    FnAttrOut pOut;
+    if( !bDeep || !pSet->GetParent() )
+    {
+        ASSERT( rSet.Count(), "Wurde doch schon behandelt oder?" );
+        SfxItemIter aIter( *pSet );
+        pItem = aIter.GetCurItem();
+        do {
+            if( 0 != ( pOut = pTab[ pItem->Which() - RES_CHRATR_BEGIN] ))
+                    (*pOut)( rWrt, *pItem );
+        } while( !aIter.IsAtEnd() && 0 != ( pItem = aIter.NextItem() ) );
+    }
+    else
+    {
+        SfxWhichIter aIter( *pSet );
+        register USHORT nWhich = aIter.FirstWhich();
+        while( nWhich )
+        {
+            if( SFX_ITEM_SET == pSet->GetItemState( nWhich, bDeep, &pItem ) &&
+                ( !bTstForDefault || (
+                    *pItem != rPool.GetDefaultItem( nWhich )
+                    || ( pSet->GetParent() &&
+                        *pItem != pSet->GetParent()->Get( nWhich ))
+                )) && 0 != ( pOut = pTab[ nWhich - RES_CHRATR_BEGIN] ))
+                    (*pOut)( rWrt, *pItem );
+            nWhich = aIter.NextWhich();
+        }
+    }
+    return rWrt;
+}
 
 /*N*/ Writer& Out( const SwNodeFnTab pTab, SwNode& rNode, Writer & rWrt )
 /*N*/ {
