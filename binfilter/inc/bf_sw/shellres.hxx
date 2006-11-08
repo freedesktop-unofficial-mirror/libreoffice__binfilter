@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellres.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:52:50 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:12:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,6 +94,8 @@ struct ShellResource : public Resource
     // returns for the specific filter the new names of pagedescs
     // This method is for the old code of the specific filters with
     // now localized names
+    String GetPageDescName( USHORT nNo, BOOL bFirst = FALSE,
+                                        BOOL bFollow = FALSE );
 
     ShellResource();
     ~ShellResource();
