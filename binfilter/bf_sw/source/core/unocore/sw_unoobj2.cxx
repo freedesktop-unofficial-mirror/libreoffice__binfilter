@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:36:33 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:36:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -337,7 +337,7 @@ using namespace ::com::sun::star::drawing;
 using namespace ::rtl;
 
 //collectn.cxx
-BOOL lcl_IsNumeric(const String&);
+//BOOL lcl_IsNumeric(const String&);
 
 void CollectFrameAtNode( SwClient& rClnt, const SwNodeIndex& rIdx,
                             SwDependArr& rFrameArr, BOOL bSort )
