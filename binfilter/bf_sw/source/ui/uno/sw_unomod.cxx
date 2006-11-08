@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unomod.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:57:15 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:01:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -743,8 +743,7 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
         break;
         case HANDLE_VIEWSET_ONLINE_LAYOUT :
         {
-            if( pView && bVal != pView->GetWrtShell().IsBrowseMode() )
-                pView->GetDocShell()->ToggleBrowserMode(bVal, pView );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
         }
         break;
         case HANDLE_VIEWSET_HELP_URL :
@@ -775,10 +774,6 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
 void SwXViewSettings::_postSetValues ()
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException )
 {
-    if(mbApplyZoom && pView)
-        pView->SetZoom( (SvxZoomType)mpViewOption->GetZoomType(),
-                        mpViewOption->GetZoom(), sal_True );
-
     SW_MOD()->ApplyUsrPref( *mpViewOption, pView, pView ? VIEWOPT_DEST_VIEW_ONLY
                                                   : bWeb ? VIEWOPT_DEST_WEB
                                                           : VIEWOPT_DEST_TEXT );
@@ -789,15 +784,9 @@ void SwXViewSettings::_postSetValues ()
 void SwXViewSettings::_preGetValues ()
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException )
 {
-    if(pView)
-    {
-        if(!IsValid())
-            return;
-        mpConstViewOption = pView->GetWrtShell().GetViewOptions();
-    }
-    else
-        mpConstViewOption = SW_MOD()->GetViewOption(bWeb);
+    mpConstViewOption = SW_MOD()->GetViewOption(bWeb);
 }
+
 void SwXViewSettings::_getSingleValue( const comphelper::PropertyInfo & rInfo, ::com::sun::star::uno::Any & rValue )
     throw(UnknownPropertyException, WrappedTargetException )
 {
@@ -859,22 +848,11 @@ void SwXViewSettings::_getSingleValue( const comphelper::PropertyInfo & rInfo, :
         }
         break;
         case HANDLE_VIEWSET_ONLINE_LAYOUT:
-            if(pView)
-                bBoolVal = pView->GetWrtShell().GetDoc()->IsBrowseMode();
+            DBG_BF_ASSERT(0, "STRIP");
         break;
         case HANDLE_VIEWSET_HELP_URL :
         {
-            if ( pView )
-            {
-                bBool = sal_False;
-                OUStringBuffer sHelpURL;
-                sHelpURL.appendAscii ( "HID:" );
-                SwEditWin &rEditWin = pView->GetEditWin();
-                sHelpURL.append ( static_cast < sal_Int32 > ( rEditWin.GetHelpId() ) );
-                rValue <<= sHelpURL.makeStringAndClear();
-            }
-            else
-                throw UnknownPropertyException();
+            DBG_BF_ASSERT(0, "STRIP");
         }
         break;
         default: DBG_ERROR("Diese Id gibt's nicht!");
