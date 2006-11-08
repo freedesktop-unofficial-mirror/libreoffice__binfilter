@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:35:44 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:06:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -159,7 +159,7 @@ namespace binfilter {
 /*N*/       if ( SVOBJ_MISCSTATUS_ALWAYSACTIVATE & xObj->GetMiscStatus() ||
 /*N*/            SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE & xObj->GetMiscStatus() )
 /*N*/       {
-/*N*/           xCli = new SwOleClient( &GetView(), &GetView().GetEditWin() );
+/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xCli = new SwOleClient( &GetView(), &GetView().GetEditWin() );
 /*N*/       }
 /*N*/       else
 /*N*/           return;
