@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-28 00:02:24 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:42:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,6 @@ SRC1FILES =	\
         sw_optload.src
 
 SLOFILES =	\
-        $(SLO)$/sw_barcfg.obj \
         $(SLO)$/sw_caption.obj \
         $(SLO)$/sw_dbconfig.obj \
         $(SLO)$/sw_fontcfg.obj \
