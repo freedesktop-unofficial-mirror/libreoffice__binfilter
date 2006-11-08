@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:31:06 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:26:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -148,9 +148,7 @@
 //  includes of my own project
 //________________________________________________________________________________________________________
 
-#ifndef _SFX_SFXUNO_HXX
-#include <sfxuno.hxx>
-#endif
+#include "appuno.hxx"
 
 #ifndef _SFX_OBJSHIMP_HXX
 #include <objshimp.hxx>
