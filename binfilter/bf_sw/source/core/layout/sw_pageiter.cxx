@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pageiter.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:55:05 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:32:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,43 +40,79 @@
 #include <horiornt.hxx>
 #endif
 
+#include "doc.hxx"
+#include "pagefrm.hxx"
 #include "cntfrm.hxx"
+#include "pam.hxx"
 
+#ifndef _NODE_HXX //autogen
+#include <node.hxx>
+#endif
+#include "pageiter.hxx"
+#include "txtfrm.hxx"
 namespace binfilter {
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-#ifdef NIE
+SwPageIter::SwPageIter( const SwDoc &rDoc, const SwPosition &rStartPos )
+    : rPDoc( rDoc ), pPage(0)
 {
-    SwPageIter aIter( MyDoc );
-
-    while( !aIter.IsEnd() )
-    {
-        SwPosition MyPos( aIter.GetPos() );
-        (...)
-        aIter.NextPage();
-    }
+    Seek( rStartPos );
 }
 
-#endif // NIE
-*/
 
 
+BOOL SwPageIter::NextPage()
+{
+    if( IsEnd() )
+        return FALSE;
+    pPage = (SwPageFrm*)pPage->GetNext();
+    return TRUE;
+}
+
+
+
+const SwPageDesc* SwPageIter::GetPageDesc() const
+{
+    return  ( IsEnd() )? 0 : pPage->GetPageDesc();
+}
+
+
+
+BOOL SwPageIter::Seek( const SwPosition &rPos )
+{
+    const SwTxtFrm *pTxt = (SwTxtFrm*)rPDoc.GetNodes()[rPos.nNode.GetIndex()]->
+                                                GetCntntNode()->GetFrm();
+    if ( !pTxt )
+        return FALSE;
+
+    pTxt = pTxt->GetFrmAtPos( rPos );
+    pPage = pTxt->FindPageFrm();
+    return TRUE;
+}
+
+
+
+BOOL SwPageIter::GetPosition( SwPosition &rPos ) const
+{
+    if( IsEnd() )
+        return FALSE;
+
+    const SwCntntFrm *pCnt = pPage->FindFirstBodyCntnt();
+    if ( !pCnt )
+        return FALSE;
+
+    pCnt = ((SwTxtFrm*)pCnt)->GetFrmAtPos( rPos );
+    if ( !pCnt )
+        return FALSE;
+
+    rPos.nNode = *pCnt->GetNode();
+    rPos.nContent.Assign( rPos.nNode.GetNode().GetCntntNode(),
+                            ((SwTxtFrm*)pCnt)->GetOfst() );
+
+    return TRUE;
+}
 
 
 }
