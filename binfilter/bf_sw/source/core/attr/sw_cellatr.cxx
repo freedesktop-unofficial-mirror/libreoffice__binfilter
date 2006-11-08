@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_cellatr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:14:25 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:27:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,6 +46,9 @@
 #include <horiornt.hxx>
 #endif
 
+#ifndef _DOC_HXX
+#include <doc.hxx>
+#endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
@@ -56,6 +59,12 @@
 
 #ifndef _NODE_HXX
 #include <node.hxx>
+#endif
+#ifndef _HINTS_HXX
+#include <hints.hxx>
+#endif
+#ifndef _ROLBCK_HXX
+#include <rolbck.hxx>
 #endif
 namespace binfilter {
 
@@ -147,8 +156,90 @@ SwTableBox* SwTblBoxFormula::GetTableBox()
 }
 
 
+void SwTblBoxFormula::ChangeState( const SfxPoolItem* pItem )
+{
+    if( !pDefinedIn )
+        return ;
 
+    SwTableFmlUpdate* pUpdtFld;
+    if( !pItem || RES_TABLEFML_UPDATE != pItem->Which() )
+    {
+        // setze bei allen das Value-Flag zurueck
+        ChgValid( FALSE );
+        return ;
+    }
 
+    pUpdtFld = (SwTableFmlUpdate*)pItem;
+
+    // bestimme die Tabelle, in der das Attribut steht
+    const SwTableNode* pTblNd;
+    const SwNode* pNd = GetNodeOfFormula();
+    if( pNd && &pNd->GetNodes() == &pNd->GetDoc()->GetNodes() &&
+        0 != ( pTblNd = pNd->FindTableNode() ))
+    {
+        switch( pUpdtFld->eFlags )
+        {
+        case TBL_CALC:
+            // setze das Value-Flag zurueck
+            // JP 17.06.96: interne Darstellung auf alle Formeln
+            //              (Referenzen auf andere Tabellen!!!)
+//          if( VF_CMD & pFld->GetFormat() )
+//              pFld->PtrToBoxNm( pUpdtFld->pTbl );
+//          else
+                ChgValid( FALSE );
+            break;
+        case TBL_BOXNAME:
+            // ist es die gesuchte Tabelle ??
+            if( &pTblNd->GetTable() == pUpdtFld->pTbl )
+                // zur externen Darstellung
+                PtrToBoxNm( pUpdtFld->pTbl );
+            break;
+        case TBL_BOXPTR:
+            // zur internen Darstellung
+            // JP 17.06.96: interne Darstellung auf alle Formeln
+            //              (Referenzen auf andere Tabellen!!!)
+            BoxNmToPtr( &pTblNd->GetTable() );
+            break;
+        case TBL_RELBOXNAME:
+            // ist es die gesuchte Tabelle ??
+            if( &pTblNd->GetTable() == pUpdtFld->pTbl )
+                // zur relativen Darstellung
+                ToRelBoxNm( pUpdtFld->pTbl );
+            break;
+
+        case TBL_SPLITTBL:
+            if( &pTblNd->GetTable() == pUpdtFld->pTbl )
+            {
+                USHORT nLnPos = SwTableFormula::GetLnPosInTbl(
+                                        pTblNd->GetTable(), GetTableBox() );
+                pUpdtFld->bBehindSplitLine = USHRT_MAX != nLnPos &&
+                                            pUpdtFld->nSplitLine <= nLnPos;
+            }
+            else
+                pUpdtFld->bBehindSplitLine = FALSE;
+            // kein break
+        case TBL_MERGETBL:
+            if( pUpdtFld->pHistory )
+            {
+                // fuer die History brauche ich aber die unveraenderte Formel
+                SwTblBoxFormula aCopy( *this );
+                pUpdtFld->bModified = FALSE;
+                ToSplitMergeBoxNm( *pUpdtFld );
+
+                if( pUpdtFld->bModified )
+                {
+                    // und dann in der externen Darstellung
+                    aCopy.PtrToBoxNm( &pTblNd->GetTable() );
+                    pUpdtFld->pHistory->Add( &aCopy, &aCopy,
+                                pNd->FindTableBoxStartNode()->GetIndex() );
+                }
+            }
+            else
+                ToSplitMergeBoxNm( *pUpdtFld );
+            break;
+        }
+    }
+}
 
 /*************************************************************************
 |*
