@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:03:09 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:25:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1148,17 +1148,142 @@ static const sal_Char* sFilterNamesForGlobalDocument[SFILTERNAMESFORGLOBALDOCUME
     "StarWriter 5.0 (StarWriter/GlobalDocument)",
     "StarWriter 5.0/GlobalDocument"
 };
-
+// com.sun.star.text.WebDocument
+#define SFILTERNAMESFORWEBDOCUMENT 5
+static const sal_Char* sFilterNamesForWebDocument[SFILTERNAMESFORWEBDOCUMENT] =
+{
+    "StarWriter 3.0 (StarWriter/Web)",
+    "StarWriter/Web 4.0 Vorlage/Template",
+    "StarWriter 4.0 (StarWriter/Web)",
+    "StarWriter/Web 5.0 Vorlage/Template",
+    "StarWriter 5.0 (StarWriter/Web)"
+};
 // com.sun.star.text.TextDocument
-#define SFILTERNAMESFORTEXTDOCUMENT (6)
+#define SFILTERNAMESFORTEXTDOCUMENT (122)
 static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] =
 {
+    "StarWriter DOS",
+    "Lotus 1-2-3 1.0 (DOS) (StarWriter)",
+    "Lotus 1-2-3 1.0 (WIN) (StarWriter)",
+    "MS Excel 4.0 (StarWriter)",
+    "MS Excel 5.0 (StarWriter)",
+    "MS Excel 95 (StarWriter)",
+    "StarWriter 1.0",
+    "StarWriter 2.0",
     "StarWriter 3.0",
     "StarWriter 3.0 Vorlage/Template",
     "StarWriter 4.0",
     "StarWriter 4.0 Vorlage/Template",
     "StarWriter 5.0",
-    "StarWriter 5.0 Vorlage/Template"
+    "StarWriter 5.0 Vorlage/Template",
+    "Ami Pro 1.x-3.1 (W4W)",
+    "CTOS DEF (W4W)",
+    "Claris Works (W4W)",
+    "DCA Revisable Form Text (W4W)",
+    "DCA with Display Write 5 (W4W)",
+    "DCA/FFT-Final Form Text (W4W)",
+    "DEC DX (W4W)",
+    "DEC WPS-PLUS (W4W)",
+    "DataGeneral CEO Write (W4W)",
+    "DisplayWrite 2.0-4.x (W4W)",
+    "DisplayWrite 5.x (W4W)",
+    "EBCDIC (W4W)",
+    "Enable (W4W)",
+    "Frame Maker MIF 3.0 (W4W)",
+    "Frame Maker MIF 4.0 (W4W)",
+    "Frame Maker MIF 5.0 (W4W)",
+    "Frame Work III (W4W)",
+    "Frame Work IV  (W4W)",
+    "HP AdvanceWrite Plus (W4W)",
+    "ICL Office Power 6 (W4W)",
+    "ICL Office Power 7 (W4W)",
+    "Interleaf (W4W)",
+    "Interleaf 5 - 6 (W4W)",
+    "Legacy Winstar onGO (W4W)",
+    "Lotus Manuscript (W4W)",
+    "MASS 11 Rel. 8.0-8.3 (W4W)",
+    "MASS 11 Rel. 8.5-9.0 (W4W)",
+    "MS MacWord 3.0 (W4W)",
+    "MS MacWord 4.0 (W4W)",
+    "MS MacWord 5.x (W4W)",
+    "MS WinWord 1.x (W4W)",
+    "MS WinWord 2.x (W4W)",
+    "MS Word 3.x (W4W)",
+    "MS Word 4.x (W4W)",
+    "MS Word 5.x (W4W)",
+    "MS Word 6.x (W4W)",
+    "MS Works 2.0 DOS (W4W)",
+    "MS Works 3.0 Win (W4W)",
+    "MS Works 4.0 Mac (W4W)",
+    "Mac Write 4.x 5.0 (W4W)",
+    "Mac Write II (W4W)",
+    "Mac Write Pro (W4W)",
+    "MultiMate 3.3 (W4W)",
+    "MultiMate 4 (W4W)",
+    "MultiMate Adv. 3.6 (W4W)",
+    "MultiMate Adv. II 3.7 (W4W)",
+    "NAVY DIF (W4W)",
+    "OfficeWriter 4.0 (W4W)",
+    "OfficeWriter 5.0 (W4W)",
+    "OfficeWriter 6.x (W4W)",
+    "PFS First Choice 1.0 (W4W)",
+    "PFS First Choice 2.0 (W4W)",
+    "PFS First Choice 3.0 (W4W)",
+    "PFS Write (W4W)",
+    "Peach Text (W4W)",
+    "Professional Write 1.0 (W4W)",
+    "Professional Write 2.x (W4W)",
+    "Professional Write Plus (W4W)",
+    "Q&A Write 1.0-3.0 (W4W)",
+    "Q&A Write 4.0 (W4W)",
+    "Rapid File 1.0 (W4W)",
+    "Rapid File 1.2 (W4W)",
+    "Samna Word IV-IV Plus (W4W)",
+    "Total Word (W4W)",
+    "Uniplex V7-V8 (W4W)",
+    "Uniplex onGO (W4W)",
+    "VolksWriter 3 and 4 (W4W)",
+    "VolksWriter Deluxe (W4W)",
+    "WITA (W4W)",
+    "Wang II SWP (W4W)",
+    "Wang PC (W4W)",
+    "Wang WP Plus (W4W)",
+    "Win Write 3.x (W4W)",
+    "WiziWord 3.0 (W4W)",
+    "WordPerfect (Win) 5.1-5.2 (W4W)",
+    "WordPerfect (Win) 6.0 (W4W)",
+    "WordPerfect (Win) 6.1 (W4W)",
+    "WordPerfect (Win) 7.0 (W4W)",
+    "WordPerfect 4.1 (W4W)",
+    "WordPerfect 4.2 (W4W)",
+    "WordPerfect 5.0 (W4W)",
+    "WordPerfect 5.1 (W4W)",
+    "WordPerfect 6.0 (W4W)",
+    "WordPerfect 6.1 (W4W)",
+    "WordPerfect Mac 1 (W4W)",
+    "WordPerfect Mac 2 (W4W)",
+    "WordPerfect Mac 3 (W4W)",
+    "WordStar (Win) 1.x-2.0 (W4W)",
+    "WordStar 2000 Rel. 3.0 (W4W)",
+    "WordStar 2000 Rel. 3.5 (W4W)",
+    "WordStar 3.3x (W4W)",
+    "WordStar 3.45 (W4W)",
+    "WordStar 4.0  (W4W)",
+    "WordStar 5.0  (W4W)",
+    "WordStar 5.5  (W4W)",
+    "WordStar 6.0  (W4W)",
+    "WordStar 7.0  (W4W)",
+    "WriteNow 3.0 (Macintosh) (W4W)",
+    "Writing Assistant (W4W)",
+    "XEROX XIF 5.0 (Illustrator) (W4W)",
+    "XEROX XIF 5.0 (W4W)",
+    "XEROX XIF 6.0 (Color Bitmap) (W4W)",
+    "XEROX XIF 6.0 (Res Graphic) (W4W)",
+    "XyWrite (Win) 1.0 (W4W)",
+    "XyWrite III ( W4W)",
+    "XyWrite III+ ( W4W)",
+    "XyWrite IV (W4W)",
+    "XyWrite Sig. (Win) (W4W)"
 };
 
 /*N*/ void SfxFilterContainer::ReadExternalFilters( const String& rDocServiceName )
@@ -1205,6 +1330,8 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
                 }
                 else if(rDocServiceName.EqualsAscii("com.sun.star.text.WebDocument") == TRUE)
                 {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORWEBDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForWebDocument[a] ));
                 }
                 else if(rDocServiceName.EqualsAscii("com.sun.star.text.GlobalDocument") == TRUE)
                 {
