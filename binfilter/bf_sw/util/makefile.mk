@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-28 01:36:31 $
+#   last change: $Author: kz $ $Date: 2006-11-08 13:07:43 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@ LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=40
 
 sw_res_files= \
     $(SRS)$/sw_app.srs          \
-    $(SRS)$/sw_dialog.srs       \
     $(SRS)$/sw_config.srs       \
     $(SRS)$/sw_dochdl.srs       \
     $(SRS)$/sw_envelp.srs       \
@@ -73,10 +72,8 @@ sw_res_files= \
     $(SRS)$/sw_globdoc.srs      \
     $(SRS)$/sw_index.srs        \
     $(SRS)$/sw_misc.srs         \
-    $(SRS)$/sw_ribbar.srs       \
     $(SRS)$/sw_shells.srs       \
     $(SRS)$/sw_swslots.srs     \
-    $(SRS)$/sw_uiview.srs       \
     $(SRS)$/sw_utlui.srs        \
     $(SRS)$/sw_web.srs          \
     $(SRS)$/sw_wrtsh.srs        \
@@ -88,9 +85,9 @@ RESLIB1SRSFILES= \
 LIB1TARGET=$(LB)$/bf_swlib.lib
 LIB1ARCHIV=$(LB)$/libbf_swlib.a
 LIB1OBJFILES= \
+        $(SLO)$/sw_w4wflt.obj \
         $(SLO)$/sw_swlib.obj \
-        $(SLO)$/sw_swcomlib.obj \
-        $(SLO)$/sw_w4wflt.obj
+        $(SLO)$/sw_swcomlib.obj
 
 SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL2VERSIONMAP= $(TARGET).map
@@ -99,8 +96,7 @@ SHL2LIBS= \
     $(SLB)$/sw_core1.lib\
     $(SLB)$/sw_core2.lib\
     $(SLB)$/sw_filter.lib\
-    $(SLB)$/sw_ui1.lib\
-    $(SLB)$/sw_ui2.lib
+        $(SLB)$/sw_ui.lib
 
 .IF "$(OS)" != "MACOSX"
 # static libraries
@@ -134,7 +130,7 @@ SHL2STDLIBS+= \
 .IF "$(GUI)" == "UNX"
 SHL2STDLIBS+= \
                         $(BFSFXLIB)
-.ENDIF     
+.ENDIF
 
 .IF "$(OS)" == "MACOSX"
 # static libraries
@@ -149,13 +145,12 @@ SHL2DEPN=   \
     $(SLB)$/sw_core1.lib\
     $(SLB)$/sw_core2.lib\
     $(SLB)$/sw_filter.lib\
-    $(SLB)$/sw_ui1.lib\
-    $(SLB)$/sw_ui2.lib
+        $(SLB)$/sw_ui.lib
 
 
-SHL2OBJS= \
-    $(OUT)$/slo$/sw_swmodule.obj \
-    $(OUT)$/slo$/sw_swdll.obj
+#SHL2OBJS= \
+#	$(OUT)$/slo$/sw_swmodule.obj \
+#	$(OUT)$/slo$/sw_swdll.obj
 #	$(SLO)$/sw_.obj		  ^ \ nicht vergessen!
 
 
