@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh3.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:36:08 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:07:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,18 +72,18 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 
 /*N*/ void SwWrtShell::DrawSelChanged(SdrView* pView)
 /*N*/ {
-/*N*/     static sal_uInt16 __READONLY_DATA aInval[] =
-/*N*/     {
-/*N*/         SID_ATTR_FILL_STYLE, SID_ATTR_FILL_COLOR, SID_ATTR_LINE_STYLE,
-/*N*/         SID_ATTR_LINE_WIDTH, SID_ATTR_LINE_COLOR, 0
-/*N*/     };
-/*N*/
-/*N*/     GetView().GetViewFrame()->GetBindings().Invalidate(aInval);
-/*N*/
-/*N*/     sal_Bool bOldVal = bNoInterrupt;
-/*N*/     bNoInterrupt = sal_True;    // Trick, um AttrChangedNotify ueber Timer auszufuehren
-/*N*/     GetView().AttrChangedNotify(this);
-/*N*/     bNoInterrupt = bOldVal;
+//STRIP001  static sal_uInt16 __READONLY_DATA aInval[] =
+//STRIP001 /*N*/     {
+//STRIP001 /*N*/         SID_ATTR_FILL_STYLE, SID_ATTR_FILL_COLOR, SID_ATTR_LINE_STYLE,
+//STRIP001 /*N*/         SID_ATTR_LINE_WIDTH, SID_ATTR_LINE_COLOR, 0
+//STRIP001 /*N*/     };
+//STRIP001 /*N*/
+//STRIP001 /*N*/     GetView().GetViewFrame()->GetBindings().Invalidate(aInval);
+//STRIP001 /*N*/
+//STRIP001 /*N*/     sal_Bool bOldVal = bNoInterrupt;
+//STRIP001 /*N*/ /*N*/     bNoInterrupt = sal_True;    // Trick, um AttrChangedNotify ueber Timer auszufuehren
+//STRIP001 /*N*/ /*N*/     GetView().AttrChangedNotify(this);
+//STRIP001 /*N*/ /*N*/     bNoInterrupt = bOldVal;
 /*N*/ }
 
 
