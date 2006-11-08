@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellio.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:52:40 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:11:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -109,6 +109,7 @@ public:
         nLanguage = 0;
     }
     // for the automatic conversion (mail/news/...)
+    void ReadUserData( const String& );
     void WriteUserData( String& );
 
     SwAsciiOptions() { Reset(); }
@@ -181,15 +182,20 @@ public:
      * JP 25.04.95: oder falls es mitgegeben wird, in dieses.
      *              Sonderfall fuer Load mit Sw3Reader
      */
+    SwReader( SvStream&, const String& rFilename, SwDoc *pDoc = 0 );
     SwReader( SvStorage&, const String& rFilename, SwDoc *pDoc = 0 );
+    SwReader( SfxMedium&, const String& rFilename, SwDoc *pDoc = 0 );
     /*
      * In ein existierendes Dokument einlesen, Dokument und
      * Position im Dokument werden aus dem SwPaM uebernommen.
      */
+    SwReader( SfxMedium&, const String& rFilename, SwPaM& );
 
     /*
      * Nur SwReader::Read(...) ist die Export-Schnittstelle!!!
      */
+    BOOL NeedsPasswd( const Reader& );
+    BOOL CheckPasswd( const String&, const Reader& );
     ULONG Read( const Reader& );
 
     // ask for glossaries
@@ -233,13 +239,18 @@ public:
     Reader();
     virtual ~Reader();
 
+    virtual int GetReaderType();
     SwgReaderOption& GetReaderOpt() { return aOpt; }
 
+    virtual void SetFltName( const String& rFltNm );
+    static void SetNoOutlineNum( SwDoc& rDoc );
 
     // den Item-Set eines Frm-Formats an das alte Format anpassen
+    static void ResetFrmFmtAttrs( SfxItemSet &rFrmSet );
 
     // die Rahmen-/Grafik-/OLE-Vorlagen an das alte Format (ohne
     // Umrandung etc.) anpassen
+    static void ResetFrmFmts( SwDoc& rDoc );
 
     // Die Filter-Vorlage laden, setzen und wieder freigeben
     SwDoc* GetTemplateDoc();
@@ -267,6 +278,7 @@ private:
 
     // alle die die Streams / Storages nicht geoeffnet brauchen,
     // muessen die Methode ueberladen (W4W!!)
+    virtual int SetStrmStgPtr();
 };
 
 
@@ -281,7 +293,7 @@ public:
 
 class SwgReader: public Reader
 {
-    virtual ULONG Read( SwDoc &,SwPaM &,const String &){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual ULONG Read( SwDoc &,SwPaM &,const String &);
+    virtual ULONG Read( SwDoc &,SwPaM &,const String &);
 };
 
 class StgReader : public Reader
@@ -289,6 +301,7 @@ class StgReader : public Reader
     String aFltName;
 
 protected:
+    ULONG OpenMainStream( SvStorageStreamRef& rRef, USHORT& rBuffSize );
 
 public:
     const String& GetFltName() { return aFltName; }
@@ -443,17 +456,27 @@ public:
     // OtherPos of the bookmarks also inserted.
     // search alle Bookmarks in the range and return it in the Array
     // lege einen neuen PaM an der Position an
+    SwPaM* NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx,
+                                    BOOL bNodesArray = TRUE ) const;
 
     // kopiere ggfs. eine lokale Datei ins Internet
 
     // Stream-spezifische Routinen, im Storage-Writer NICHT VERWENDEN!
 
     // Optimierung der Ausgabe auf den Stream.
+SvStream& OutLong( SvStream& rStrm, long nVal );
+SvStream& OutULong( SvStream& rStrm, ULONG nVal );
 
     // Hex-Zahl ausgeben, default ist 2.stellige Zahl
+SvStream& OutHex( SvStream& rStrm, ULONG nHex, BYTE nLen = 2 );
     // 4-st. Hex-Zahl ausgeben
     // 8-st. Hex-Zahl ausgeben
 
+inline SvStream& OutHex( USHORT nHex, BYTE nLen = 2 )      { return OutHex( Strm(), nHex, nLen ); }
+inline SvStream& OutHex4( USHORT nHex )     { return OutHex( Strm(), nHex, 4 ); }
+//STRIP001  inline SvStream& OutHex8( ULONG nHex )      { return OutHex( Strm(), nHex, 8 ); }
+inline SvStream& OutLong( long nVal )       { return OutLong( Strm(), nVal ); }
+inline SvStream& OutULong( ULONG nVal )     { return OutULong( Strm(), nVal ); }
 
     void SetStrm( SvStream& rStrm ) { pStrm = &rStrm; }
 #ifdef PRODUCT
@@ -583,6 +606,7 @@ public:
 
     static const SfxFilter* GetTextFilter(const sal_Char* pBuf, ULONG nLen);
     // gebe einen bestimmten Reader zurueck
+     static Reader* GetReader( const String& rFltName );
     // gebe einen bestimmten Writer zurueck
     static void GetWriter( const String& rFltName, WriterRef& xWrt );
 
