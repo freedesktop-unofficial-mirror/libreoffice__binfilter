@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:59:22 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:41:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -169,9 +169,6 @@
 #endif
 #ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
 #endif
 
 #ifndef _SWSWERROR_H
@@ -582,7 +579,6 @@ using namespace ::rtl;
 /*?*/
 /*N*/       }
 /*N*/
-/*N*/       SwWait aWait( *this, sal_True );
 /*N*/       sal_uInt32 nErr = ERR_SWG_READ_ERROR;
 /*N*/       switch( GetCreateMode() )
 /*N*/       {
@@ -758,7 +754,6 @@ using namespace ::rtl;
 /*?*/       if( pStor->IsStream( aStreamName ) )
 /*?*/       {
 /*?*/           // Das Laden
-/*?*/           SwWait aWait( *this, sal_True );
 /*?*/           if( bXML )
 /*?*/           {
 /*?*/               ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
