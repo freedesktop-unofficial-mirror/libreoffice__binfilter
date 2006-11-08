@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 12:39:21 $
+#   last change: $Author: kz $ $Date: 2006-11-08 17:00:56 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,8 @@ LIBFLAGS=/NOI /NOE /PAGE:256
 
 # andere Label als Verzeichnisnamen fuer VC++/NT
 
-SUBLIBS1= \
+LIB1TARGET=$(SLB)$/sw_ui.lib
+LIB1FILES= \
         $(SLB)$/sw_app.lib      \
         $(SLB)$/sw_config.lib   \
         $(SLB)$/sw_dbui.lib     \
@@ -89,6 +90,7 @@ SUBLIBS2= \
 .INCLUDE :  target.mk
 
 ################################################################
+
 
 kill:
     @+$(RM) $(SLB)$/ui.lst
