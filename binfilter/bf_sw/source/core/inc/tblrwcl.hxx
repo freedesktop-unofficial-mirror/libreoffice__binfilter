@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tblrwcl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:49:45 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:31:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,11 +100,49 @@ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox, SwUndo* pUndo = 0,
 // in einem Array. Zusaetzlich werden die Positionen vermerkt.
 // ( die Implementierung steht im ndtbl.cxx)
 
+ class SwCollectTblLineBoxes
+ {
+    SvUShorts aPosArr;
+    SwSelBoxes_SAR aBoxes;
+    SwHistory* pHst;
+    USHORT nMode, nWidth;
+    BOOL bGetFromTop : 1;
+    BOOL bGetValues : 1;
 
+ public:
+    SwCollectTblLineBoxes( BOOL bTop, USHORT nMd = 0, SwHistory* pHist=0 )
+        : aPosArr( 16, 16 ), aBoxes( 16, 16 ),
+        bGetFromTop( bTop ), bGetValues( TRUE ), nMode( nMd ),
+        nWidth( 0 ), pHst( pHist )
+    {}
 
+    void AddBox( const SwTableBox& rBox );
+    const SwTableBox* GetBoxOfPos( const SwTableBox& rBox );
+    void AddToUndoHistory( const SwCntntNode& rNd );
 
+    USHORT Count() const                { return aBoxes.Count(); }
+    const SwTableBox& GetBox( USHORT nPos, USHORT* pWidth = 0 ) const
+        {
+            // hier wird die EndPos der Spalte benoetigt!
+            if( pWidth )
+                *pWidth = nPos+1 == aPosArr.Count() ? nWidth
+                                                    : aPosArr[ nPos+1 ];
+            return *aBoxes[ nPos ];
+        }
 
+    BOOL IsGetFromTop() const           { return bGetFromTop; }
+    BOOL IsGetValues() const            { return bGetValues; }
 
+    USHORT GetMode() const              { return nMode; }
+    void SetValues( BOOL bFlag )        { bGetValues = FALSE; nWidth = 0;
+                                          bGetFromTop = bFlag; }
+    FASTBOOL Resize( USHORT nOffset, USHORT nWidth );
+ };
+
+BOOL lcl_Box_CollectBox( const SwTableBox*& rpBox, void* pPara );
+BOOL lcl_Line_CollectBox( const SwTableLine*& rpLine, void* pPara );
+
+BOOL lcl_BoxSetSplitBoxFmts( const SwTableBox*& rpBox, void* pPara );
 
 struct _SwGCLineBorder
 {
@@ -159,6 +197,11 @@ public:
 
     const SwFrmFmt& GetOldFormat() const { return *pOldFmt; }
 
+    SwFrmFmt* GetFormat( long nWidth ) const;
+    SwFrmFmt* GetFormat( const SfxPoolItem& rItem ) const;
+    void AddFormat( const SwFrmFmt& rFmt );
+//STRIP001  // returnt TRUE, wenn geloescht werden kann
+    FASTBOOL RemoveFormat( const SwFrmFmt& rFmt );
 };
 
 
@@ -169,10 +212,17 @@ class SwShareBoxFmts
     _SwShareBoxFmts aShareArr;
     BOOL Seek_Entry( const SwFrmFmt& rFmt, USHORT* pPos ) const;
 
+    void ChangeFrmFmt( SwTableBox* pBox, SwTableLine* pLn, SwFrmFmt& rFmt );
 public:
     SwShareBoxFmts() {}
     ~SwShareBoxFmts();
 
+    SwFrmFmt* GetFormat( const SwFrmFmt& rFmt, long nWidth ) const;
+    SwFrmFmt* GetFormat( const SwFrmFmt& rFmt, const SfxPoolItem& ) const;
+    void AddFormat( const SwFrmFmt& rOld, const SwFrmFmt& rNew );
+    void SetSize( SwTableBox& rBox, const SwFmtFrmSize& rSz );
+    void SetAttr( SwTableBox& rBox, const SfxPoolItem& rItem );
+    void RemoveFormat( const SwFrmFmt& rFmt );
 };
 
 
