@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cellfml.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:36:00 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:09:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,6 +79,8 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
                         void* pPara = 0 ) const;
     void PtrToBoxNms( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
+    void BoxNmsToRelNm( const SwTable&, String&, String&, String* = 0,
+                        void* pPara = 0 ) const;
     void _MakeFormel( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
     void _SplitMergeBoxNm( const SwTable&, String&, String&, String* = 0,
@@ -111,6 +113,7 @@ protected:
                             *rCalcPara.pTbl, &rCalcPara );
     }
 
+    static USHORT GetLnPosInTbl( const SwTable& rTbl, const SwTableBox* pBox );
 
 public:
 
@@ -128,7 +131,9 @@ public:
     // erzeuge aus der externen (fuer UI) die interne (fuer CORE) Formel
     void BoxNmToPtr( const SwTable* pTbl );
     // erzeuge aus der externen/internen Formel die relative Formel
+    void ToRelBoxNm( const SwTable* pTbl );
     // wird vorm/nach dem mergen/splitten von Tabellen rerufen
+    void ToSplitMergeBoxNm( SwTableFmlUpdate& rTblUpd );
 
     // ist gerade eine intern Darstellung aktiv
     BOOL IsIntrnlName() const           { return eNmType == INTRNL_NAME; }
