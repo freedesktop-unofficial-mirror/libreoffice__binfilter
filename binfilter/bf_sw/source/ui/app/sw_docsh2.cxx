@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:58:59 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:41:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -350,7 +350,6 @@ using namespace sfx2;
 /*N*/   }
 /*N*/ }
 
-
 /*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& rInfo )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
@@ -434,36 +433,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/
 /*N*/       EnableSetModified( TRUE );
 /*N*/   }
-/*N*/   UpdateChildWindows();
 /*N*/   Broadcast(SfxSimpleHint(SFX_HINT_DOCCHANGED));
 /*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-/*N*/ void SwDocShell::UpdateChildWindows()
-/*N*/ {
-/*N*/   // Flddlg ggf neu initialisieren (z.B. fuer TYP_SETVAR)
-/*N*/   if(!GetView())
-/*N*/       return;
-/*N*/   SfxViewFrame* pVFrame = GetView()->GetViewFrame();
-/*N*/   SwFldDlgWrapper *pWrp = (SwFldDlgWrapper*)pVFrame->
-/*N*/           GetChildWindow( SwFldDlgWrapper::GetChildWindowId() );
-/*N*/   if( pWrp )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pWrp->ReInitDlg( this );
-
-    // RedlineDlg ggf neu initialisieren
-/*N*/   SwRedlineAcceptChild *pRed = (SwRedlineAcceptChild*)pVFrame->
-/*N*/           GetChildWindow( SwRedlineAcceptChild::GetChildWindowId() );
-/*N*/   if( pRed )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pRed->ReInitDlg( this );
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
 
 /* -----------------------------14.12.99 16:52--------------------------------
 
