@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndarr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:48:39 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:11:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -285,6 +285,10 @@ public:
         // fuege in der Line, vor der InsPos eine neue Box ein. Das Format
         // wird von der nachfolgenden (vorhergenden;wenn an Ende) genommen
         // in der Line muss schon eine Box vorhanden sein !
+    BOOL InsBoxen( SwTableNode*, SwTableLine*, SwTableBoxFmt*,
+                // Formate fuer den TextNode der Box
+                        SwTxtFmtColl*, SwAttrSet* pAutoAttr,
+                        USHORT nInsPos, USHORT nCnt = 1 );
         // Splittet eine Tabelle in der Grund-Zeile, in der der Index steht.
         // Alle GrundZeilen dahinter wandern in eine neue Tabelle/-Node.
         // Ist das Flag bCalcNewSize auf TRUE, wird fuer beide neuen Tabellen
