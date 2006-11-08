@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:51:07 $
+#   last change: $Author: kz $ $Date: 2006-11-08 13:00:15 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -44,6 +44,7 @@ TARGET=sw_unoidl
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
+ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
@@ -56,35 +57,17 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 SLOFILES =  \
-        $(SLO)$/sw_unodefaults.obj\
-        $(SLO)$/sw_unodispatch.obj\
-        $(SLO)$/sw_unotxdoc.obj\
-        $(SLO)$/sw_unoatxt.obj \
-        $(SLO)$/sw_unomailmerge.obj \
-        $(SLO)$/sw_unomod.obj \
-        $(SLO)$/sw_unotxvw.obj \
         $(SLO)$/sw_dlelstnr.obj \
-        $(SLO)$/sw_unofreg.obj \
-        $(SLO)$/sw_SwXDocumentSettings.obj \
-        $(SLO)$/sw_SwXPrintPreviewSettings.obj \
-        $(SLO)$/sw_SwXFilterOptions.obj\
         $(SLO)$/sw_RefreshListenerContainer.obj \
-        $(SLO)$/sw_unodoc.obj
-
-EXCEPTIONSFILES= \
-        $(SLO)$/sw_unodispatch.obj\
-        $(SLO)$/sw_dlelstnr.obj \
-        $(SLO)$/sw_unotxdoc.obj \
-        $(SLO)$/sw_unoatxt.obj \
-        $(SLO)$/sw_unomailmerge.obj \
-        $(SLO)$/sw_unomod.obj \
-        $(SLO)$/sw_unotxvw.obj \
-        $(SLO)$/sw_unofreg.obj \
-        $(SLO)$/sw_SwXPrintPreviewSettings.obj \
-        $(SLO)$/sw_SwXFilterOptions.obj\
         $(SLO)$/sw_SwXDocumentSettings.obj \
-        $(SLO)$/sw_unodoc.obj
-
+        $(SLO)$/sw_SwXFilterOptions.obj\
+        $(SLO)$/sw_SwXPrintPreviewSettings.obj \
+        $(SLO)$/sw_unoatxt.obj \
+        $(SLO)$/sw_unodefaults.obj\
+        $(SLO)$/sw_unodoc.obj     \
+        $(SLO)$/sw_unofreg.obj \
+        $(SLO)$/sw_unomod.obj \
+        $(SLO)$/sw_unotxdoc.obj
 
 # --- Targets -------------------------------------------------------
 
