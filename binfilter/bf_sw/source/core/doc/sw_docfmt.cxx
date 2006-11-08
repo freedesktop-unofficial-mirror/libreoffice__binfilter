@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:23:36 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:28:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1047,7 +1047,18 @@ struct ParaRstFmt
 /*
  * Loeschen der Formate
  */
+void SwDoc::DelCharFmt(USHORT nFmt)
+{
+    pCharFmtTbl->DeleteAndDestroy(nFmt);
+    SetModified();
+}
 
+void SwDoc::DelCharFmt( SwCharFmt *pFmt )
+{
+    USHORT nFmt = pCharFmtTbl->GetPos( pFmt );
+    ASSERT( USHRT_MAX != nFmt, "Fmt not found," );
+    DelCharFmt( nFmt );
+}
 
 /*N*/ void SwDoc::DelFrmFmt( SwFrmFmt *pFmt )
 /*N*/ {
