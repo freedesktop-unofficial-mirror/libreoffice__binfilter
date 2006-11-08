@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodule.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:01:03 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:42:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -364,8 +364,6 @@ using namespace ::rtl;
 /*N*/   pWebPrtOpt(0),
 /*N*/   pWebUsrPref(0),
 /*N*/   pUsrPref(0),
-/*N*/   pToolbarConfig(0),
-/*N*/   pWebToolbarConfig(0),
 /*N*/   pDBConfig(0),
 /*N*/     pColorConfig(0),
 /*N*/     pAccessibilityOptions(0),
@@ -388,10 +386,6 @@ using namespace ::rtl;
 /*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_MAIL_MERGE_END, SW_RES(STR_PRINT_MERGE_MACRO), String::CreateFromAscii("OnMailMergeFinished"));
 /*N*/   SfxEventConfiguration::RegisterEvent(SW_EVENT_PAGE_COUNT, SW_RES(STR_PAGE_COUNT_MACRO), String::CreateFromAscii("OnPageCountChange"));
 /*N*/   pModuleConfig = new SwModuleOptions;
-/*N*/
-/*N*/   //Die brauchen wie sowieso
-/*N*/   pToolbarConfig = new SwToolbarConfigItem( sal_False );
-/*N*/   pWebToolbarConfig = new SwToolbarConfigItem( sal_True );
 /*N*/
 /*N*/   pStdFontConfig = new SwStdFontConfig;
 /*N*/
@@ -447,25 +441,6 @@ using namespace ::rtl;
 
 //************************************************************************
 
-/*N*/ void SwDLL::RegisterFactories()
-/*N*/ {
-/*N*/   //Diese Id's duerfen nicht geaendert werden. Mittels der Id's wird vom
-/*N*/   //Sfx die sdbcx::View (Dokumentansicht wiederherstellen) erzeugt.
-/*N*/     if ( SvtModuleOptions().IsWriter() )
-/*N*/         SwView::RegisterFactory         ( 2 );
-/*N*/
-/*N*/   SwWebView::RegisterFactory      ( 5 );
-/*N*/
-/*N*/     if ( SvtModuleOptions().IsWriter() )
-/*N*/     {
-/*N*/         SwSrcView::RegisterFactory      ( 6 );
-/*N*/         SwPagePreView::RegisterFactory  ( 7 );
-/*N*/     }
-/*N*/ }
-
-//************************************************************************
-
-
 /*N*/ void SwDLL::RegisterInterfaces()
 /*N*/ {
 /*N*/   SwModule* pMod = SW_MOD();
@@ -474,127 +449,7 @@ using namespace ::rtl;
 /*N*/   SwWebDocShell::RegisterInterface( pMod );
 /*N*/   SwGlosDocShell::RegisterInterface( pMod );
 /*N*/   SwWebGlosDocShell::RegisterInterface( pMod );
-/*N*/   SwView::RegisterInterface( pMod );
-/*N*/   SwWebView::RegisterInterface( pMod );
-/*N*/   SwPagePreView::RegisterInterface( pMod );
-/*N*/   SwSrcView::RegisterInterface( pMod );
-/*N*/
-/*N*/
-/*N*/   SwBaseShell::RegisterInterface(pMod);
-/*N*/   SwTextShell::RegisterInterface(pMod);
-/*N*/   SwTableShell::RegisterInterface(pMod);
-/*N*/   SwListShell::RegisterInterface(pMod);
-/*N*/   SwFrameShell::RegisterInterface(pMod);
-/*N*/   SwDrawBaseShell::RegisterInterface(pMod);
-/*N*/   SwDrawShell::RegisterInterface(pMod);
-/*N*/   SwDrawFormShell::RegisterInterface(pMod);
-/*N*/   SwDrawTextShell::RegisterInterface(pMod);
-/*N*/   SwBezierShell::RegisterInterface(pMod);
-/*N*/   SwGrfShell::RegisterInterface(pMod);
-/*N*/   SwOleShell::RegisterInterface(pMod);
-/*N*/   SwWebTextShell::RegisterInterface(pMod);
-/*N*/   SwWebFrameShell::RegisterInterface(pMod);
-/*N*/   SwWebGrfShell::RegisterInterface(pMod);
-/*N*/   SwWebListShell::RegisterInterface(pMod);
-/*N*/   SwWebTableShell::RegisterInterface(pMod);
-/*N*/   SwWebDrawBaseShell::RegisterInterface(pMod);
-/*N*/   SwWebDrawFormShell::RegisterInterface(pMod);
-/*N*/   SwWebOleShell::RegisterInterface(pMod);
 /*N*/ }
-
-//************************************************************************
-
-/*N*/ void SwDLL::RegisterControls()
-/*N*/ {
-/*N*/   SwModule* pMod = SW_MOD();
-/*N*/   SvxTbxCtlDraw::RegisterControl(SID_INSERT_DRAW, pMod );
-/*N*/   SvxTbxCtlAlign::RegisterControl(SID_OBJECT_ALIGN, pMod );
-/*N*/   SwTbxAnchor::RegisterControl(FN_TOOL_ANKER, pMod );
-/*N*/   SwTbxInsertCtrl::RegisterControl(FN_INSERT_CTRL, pMod );
-/*N*/   SwTbxInsertCtrl::RegisterControl(FN_INSERT_OBJ_CTRL, pMod );
-/*N*/   SwTbxAutoTextCtrl::RegisterControl(FN_INSERT_FIELD_CTRL, pMod );
-/*N*/   SwTbxAutoTextCtrl::RegisterControl(FN_GLOSSARY_DLG, pMod );
-/*N*/
-/*N*/   SvxClipBoardControl::RegisterControl(SID_PASTE, pMod );
-/*N*/   SvxUndoRedoControl::RegisterControl(SID_UNDO, pMod );
-/*N*/   SvxUndoRedoControl::RegisterControl(SID_REDO, pMod );
-/*N*/
-/*N*/   SvxFillToolBoxControl::RegisterControl(SID_ATTR_FILL_STYLE, pMod );
-/*N*/   SvxLineStyleToolBoxControl::RegisterControl(SID_ATTR_LINE_STYLE, pMod );
-/*N*/   SvxLineWidthToolBoxControl::RegisterControl(SID_ATTR_LINE_WIDTH, pMod );
-/*N*/   SvxLineColorToolBoxControl::RegisterControl(SID_ATTR_LINE_COLOR, pMod );
-/*N*/   SvxLineEndToolBoxControl::RegisterControl(SID_ATTR_LINEEND_STYLE, pMod );
-/*N*/
-/*N*/   SvxFontNameToolBoxControl::RegisterControl(SID_ATTR_CHAR_FONT, pMod );
-/*N*/   SvxFontHeightToolBoxControl::RegisterControl(SID_ATTR_CHAR_FONTHEIGHT, pMod );
-/*N*/   SvxFontColorToolBoxControl::RegisterControl(SID_ATTR_CHAR_COLOR, pMod );
-/*N*/   SvxFontColorExtToolBoxControl::RegisterControl(SID_ATTR_CHAR_COLOR2, pMod );
-/*N*/   SvxFontColorExtToolBoxControl::RegisterControl(SID_ATTR_CHAR_COLOR_BACKGROUND, pMod );
-/*N*/   SvxStyleToolBoxControl::RegisterControl(SID_STYLE_APPLY, pMod );
-/*N*/   SvxColorToolBoxControl::RegisterControl(SID_BACKGROUND_COLOR, pMod );
-/*N*/   SvxFrameToolBoxControl::RegisterControl(SID_ATTR_BORDER, pMod );
-/*N*/   SvxFrameLineStyleToolBoxControl::RegisterControl(SID_FRAME_LINESTYLE, pMod );
-/*N*/   SvxFrameLineColorToolBoxControl::RegisterControl(SID_FRAME_LINECOLOR, pMod );
-/*N*/
-/*N*/   SvxColumnsToolBoxControl::RegisterControl(FN_INSERT_FRAME_INTERACT, pMod );
-/*N*/   SvxColumnsToolBoxControl::RegisterControl(FN_INSERT_FRAME, pMod );
-/*N*/     SvxColumnsToolBoxControl::RegisterControl(FN_INSERT_REGION, pMod );
-/*N*/   SvxTableToolBoxControl::RegisterControl(FN_INSERT_TABLE, pMod );
-/*N*/   SvxTableToolBoxControl::RegisterControl(FN_SHOW_MULTIPLE_PAGES, pMod );
-/*N*/
-/*N*/
-/*N*/   SwZoomControl::RegisterControl(SID_ATTR_ZOOM, pMod );
-/*N*/     SwPreviewZoomControl::RegisterControl(FN_PREVIEW_ZOOM, pMod);
-/*N*/   SwHyperlinkControl::RegisterControl(FN_STAT_HYPERLINKS, pMod );
-/*N*/   SvxPosSizeStatusBarControl::RegisterControl(0, pMod );
-/*N*/   SvxInsertStatusBarControl::RegisterControl(0, pMod );
-/*N*/   SvxSelectionModeControl::RegisterControl(FN_STAT_SELMODE, pMod );
-/*N*/
-/*N*/   SwBookmarkControl::RegisterControl(FN_STAT_PAGE, pMod );
-/*N*/   SwTemplateControl::RegisterControl(FN_STAT_TEMPLATE, pMod );
-/*N*/
-/*N*/   SwTableOptimizeCtrl::RegisterControl(FN_OPTIMIZE_TABLE, pMod);
-/*N*/
-/*N*/   SfxMenuControl::RegisterControl(FN_FRAME_ALIGN_VERT_TOP, pMod );
-/*N*/   SfxMenuControl::RegisterControl(FN_FRAME_ALIGN_VERT_BOTTOM, pMod );
-/*N*/   SfxMenuControl::RegisterControl(FN_FRAME_ALIGN_VERT_CENTER, pMod );
-/*N*/
-/*N*/   SwHeadFootMenuControl::RegisterControl( FN_INSERT_PAGEHEADER, pMod );
-/*N*/   SwHeadFootMenuControl::RegisterControl( FN_INSERT_PAGEFOOTER, pMod );
-/*N*/
-/*N*/   SvxHyperlinkDlgWrapper::RegisterChildWindow( sal_False, pMod );
-/*N*/   SvxFontWorkChildWindow::RegisterChildWindow( sal_False, pMod );
-/*N*/   SwFldDlgWrapper::RegisterChildWindow( sal_False, pMod );
-/*N*/   SvxContourDlgChildWindow::RegisterChildWindow( sal_False, pMod );
-/*N*/   SwInsertChartChild::RegisterChildWindow( sal_False, pMod );
-/*N*/   SwNavigationChild::RegisterChildWindowContext( pMod );
-/*N*/   SwInputChild::RegisterChildWindow( sal_False, pMod );
-/*N*/   SwRedlineAcceptChild::RegisterChildWindow( sal_False, pMod );
-/*N*/   SwSyncChildWin::RegisterChildWindow( sal_True, pMod );
-/*N*/   SwInsertIdxMarkWrapper::RegisterChildWindow( sal_False, pMod );
-/*N*/   SwInsertAuthMarkWrapper::RegisterChildWindow( sal_False, pMod );
-/*N*/   SvxRubyChildWindow::RegisterChildWindow( sal_False, pMod);
-/*N*/
-/*N*/   SvxGrafRedToolBoxControl::RegisterControl( SID_ATTR_GRAF_RED, pMod );
-/*N*/   SvxGrafGreenToolBoxControl::RegisterControl( SID_ATTR_GRAF_GREEN, pMod );
-/*N*/   SvxGrafBlueToolBoxControl::RegisterControl( SID_ATTR_GRAF_BLUE, pMod );
-/*N*/   SvxGrafLuminanceToolBoxControl::RegisterControl( SID_ATTR_GRAF_LUMINANCE, pMod );
-/*N*/   SvxGrafContrastToolBoxControl::RegisterControl( SID_ATTR_GRAF_CONTRAST, pMod );
-/*N*/   SvxGrafGammaToolBoxControl::RegisterControl( SID_ATTR_GRAF_GAMMA, pMod );
-/*N*/   SvxGrafTransparenceToolBoxControl::RegisterControl( SID_ATTR_GRAF_TRANSPARENCE, pMod );
-/*N*/   SvxGrafModeToolBoxControl::RegisterControl( SID_ATTR_GRAF_MODE, pMod );
-/*N*/     SvxGrafFilterToolBoxControl::RegisterControl( SID_GRFFILTER, pMod );
-/*N*/     SvxVertTextTbxCtrl::RegisterControl(SID_TEXTDIRECTION_LEFT_TO_RIGHT, pMod);
-/*N*/     SvxVertTextTbxCtrl::RegisterControl(SID_TEXTDIRECTION_TOP_TO_BOTTOM, pMod);
-/*N*/     SvxVertTextTbxCtrl::RegisterControl(SID_DRAW_CAPTION_VERTICAL, pMod);
-/*N*/     SvxVertTextTbxCtrl::RegisterControl(SID_DRAW_TEXT_VERTICAL, pMod);
-
-/*M*/     SvxCTLTextTbxCtrl::RegisterControl(SID_ATTR_PARA_LEFT_TO_RIGHT, pMod);
-/*M*/     SvxCTLTextTbxCtrl::RegisterControl(SID_ATTR_PARA_RIGHT_TO_LEFT, pMod);
-/*M*/
-/*N*/   GalleryChildWindow::RegisterChildWindow(0, pMod);
-/*N*/ }
-
 
 /*************************************************************************
 |*
