@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:26:23 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:38:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,6 +49,15 @@
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
+#ifndef _SVX_LRSPITEM_HXX //autogen
+#include <bf_svx/lrspitem.hxx>
+#endif
+#ifndef _SVX_ULSPITEM_HXX //autogen
+#include <bf_svx/ulspitem.hxx>
+#endif
+#ifndef _SVX_BOXITEM_HXX //autogen
+#include <bf_svx/boxitem.hxx>
+#endif
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
@@ -89,6 +98,9 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
+#ifndef _POOLFMT_HXX
+#include <poolfmt.hxx>
+#endif
 #ifndef _FLTINI_HXX
 #include <fltini.hxx>
 #endif
@@ -123,10 +135,10 @@ using namespace ::com::sun::star;
 /*N*/   po->bInsertMode = 0 != pCrsr;
 /*N*/
 /*N*/   // ist ein Medium angegeben, dann aus diesem die Streams besorgen
-/*N*/   if( 0 != (po->pMedium = pMedium ) &&
-/*?*/       1 ) //STRIP001 !po->SetStrmStgPtr() )
+/*N*/   if( 0 != (po->pMedium = pMedium ) && !po->SetStrmStgPtr() )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 po->SetReadUTF8( FALSE );
+/*?*/      return ERR_SWG_FILE_FORMAT_ERROR;
 /*N*/   }
 /*N*/
 /*N*/   ULONG nError = 0L;
@@ -394,6 +406,15 @@ using namespace ::com::sun::star;
 // Initiales Einlesben
 
 
+ SwReader::SwReader( SvStream& rStrm, const String& rFileName, SwDoc *pDoc )
+    : SwDocFac( pDoc ),
+    pStrm( &rStrm ),
+    pStg( 0 ),
+    pMedium( 0 ),
+    aFileName( rFileName ),
+    pCrsr( 0 )
+ {
+ }
 
 
 /*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pDoc )
@@ -407,14 +428,27 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
+ SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwDoc *pDoc )
+    : SwDocFac( pDoc ),
+    pStrm( 0 ),
+    pStg( 0 ),
+    pMedium( &rMedium ),
+    aFileName( rFileName ),
+    pCrsr( 0 )
+ {
+ }
 
 // In ein existierendes Dokument einlesen
 
-
-
-
-
-
+ SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwPaM& rPam )
+    : SwDocFac( rPam.GetDoc() ),
+    aFileName( rFileName ),
+    pStg( 0 ),
+    pStrm( 0 ),
+    pMedium( &rMedium ),
+    pCrsr( &rPam )
+ {
+ }
 /*N*/ Reader::Reader()
 /*N*/   : pStrm(0), pStg(0), pMedium(0), pTemplate(0),
 /*N*/   bTmplBrowseMode( FALSE ), bInsertMode( FALSE ),
@@ -576,16 +610,70 @@ using namespace ::com::sun::star;
 
 // alle die die Streams / Storages nicht geoeffnet brauchen,
 // muessen die Methode ueberladen
+int Reader::SetStrmStgPtr()
+{
+   ASSERT( pMedium, "Wo ist das Medium??" );
+
+   if( pMedium->IsStorage() )
+   {
+       if( SW_STORAGE_READER & GetReaderType() )
+       {
+           pStg = pMedium->GetStorage();
+           return TRUE;
+       }
+   }
+   else if( SW_STREAM_READER & GetReaderType() )
+   {
+       pStrm = pMedium->GetInStream();
+       return TRUE;
+   }
+   return FALSE;
+}
 
 
+ int Reader::GetReaderType()
+ {
+    return SW_STREAM_READER;
+ }
 
 
+ void Reader::SetFltName( const String& )
+ {
+ }
 
 
+void Reader::SetNoOutlineNum( SwDoc& rDoc )
+{
+}
 
 
+void Reader::ResetFrmFmtAttrs( SfxItemSet &rFrmSet )
+{
+    rFrmSet.Put( SvxLRSpaceItem() );
+    rFrmSet.Put( SvxULSpaceItem() );
+    rFrmSet.Put( SvxBoxItem() );
+}
 
 
+void Reader::ResetFrmFmts( SwDoc& rDoc )
+{
+    for( USHORT i=0; i<3; i++ )
+    {
+        USHORT nPoolId;
+        switch( i )
+        {
+        case 0: nPoolId = RES_POOLFRM_FRAME;    break;
+        case 1: nPoolId = RES_POOLFRM_GRAPHIC;  break;
+        case 2: nPoolId = RES_POOLFRM_OLE;      break;
+        }
+
+        SwFrmFmt *pFrmFmt = rDoc.GetFrmFmtFromPool( nPoolId );
+
+        pFrmFmt->ResetAttr( RES_LR_SPACE );
+        pFrmFmt->ResetAttr( RES_UL_SPACE );
+        pFrmFmt->ResetAttr( RES_BOX );
+    }
+}
 
     // read the sections of the document, which is equal to the medium.
     // returns the count of it
