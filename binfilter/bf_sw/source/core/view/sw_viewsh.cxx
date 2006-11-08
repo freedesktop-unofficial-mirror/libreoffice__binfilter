@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewsh.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:24:23 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:37:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SHL_HXX
-//#include <tools/shl.hxx>
 #endif
 #ifndef _SWWAIT_HXX
 #include <swwait.hxx>
@@ -101,15 +98,13 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifdef ACCESSIBLE_LAYOUT
-#endif
 #ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
 #endif
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>
 #endif
-// OD 14.01.2003 #103492#
+#include <shellres.hxx>
 namespace binfilter {
 
 BOOL ViewShell::bLstAct = FALSE;
@@ -289,19 +284,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   Imp()->StartAction();
 /*N*/ }
 
-
-/******************************************************************************
-|*
-|*  ViewShell::ImplLockPaint(), ImplUnlockPaint()
-|*
-|*  Ersterstellung      MA 11. Jun. 96
-|*  Letzte Aenderung    MA 11. Jun. 96
-|*
-******************************************************************************/
-
-
-
-
 /******************************************************************************
 |*
 |*  ViewShell::AddPaintRect()
@@ -319,7 +301,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   {
 /*N*/       if ( pSh->IsPreView() && pSh->GetWin() )
 /*N*/ //            pSh->GetWin()->Invalidate();
-/*?*/           ::binfilter::RepaintPagePreview( pSh, rRect );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");//::binfilter::RepaintPagePreview( pSh, rRect );
 /*N*/       else
 /*N*/           bRet |= pSh->Imp()->AddPaintRect( rRect );
 /*N*/       pSh = (ViewShell*)pSh->GetNext();
@@ -348,7 +330,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/           {
 /*N*/               if ( pSh->IsPreView() )
 /*N*/ //                    pSh->GetWin()->Invalidate();
-/*?*/                   ::binfilter::RepaintPagePreview( pSh, rRect );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");//::binfilter::RepaintPagePreview( pSh, rRect );
 /*N*/               else if ( pSh->VisArea().IsOver( rRect ) )
 /*N*/                   pSh->GetWin()->Invalidate( rRect.SVRect() );
 /*N*/           }
@@ -369,7 +351,7 @@ FASTBOOL bInSizeNotify = FALSE;
 
 /*N*/ void ViewShell::MakeVisible( const SwRect &rRect )
 /*N*/ {
-/*N*/   if ( !VisArea().IsInside( rRect ) || IsScrollMDI( this, rRect ) || GetCareWin(*this) )
+/*N*/   if ( !VisArea().IsInside( rRect ) || /*IsScrollMDI( this, rRect ) ||*/ GetCareWin(*this) )
 /*N*/   {
 /*N*/       if ( !IsViewLocked() )
 /*N*/       {
@@ -381,7 +363,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/               do{
 /*N*/                   nOldH = pRoot->Frm().Height();
 /*N*/                   StartAction();
-/*N*/                   ScrollMDI( this, rRect, USHRT_MAX, USHRT_MAX );
+/*N*/                   DBG_BF_ASSERT(0, "STRIP");//ScrollMDI( this, rRect, USHRT_MAX, USHRT_MAX );
 /*N*/                   EndAction();
 /*N*/               } while( nOldH != pRoot->Frm().Height() && nLoopCnt-- );
 /*N*/           }
@@ -416,32 +398,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 ******************************************************************************/
 
-
-/******************************************************************************
-|*
-|*  ViewShell::GetNumPages()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 20. Apr. 94
-|*
-******************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*                  ViewShell::UpdateFlds()
-|*
-|*    Ersterstellung    BP 04.05.92
-|*    Beschreibung      erzwingt ein Update fuer jedes Feld
-|*
-|*  UpdateFlds benachrichtigt alle Felder mit pNewHt.
-|*  Wenn pNewHt == 0 ist (default), wird der Feldtyp verschickt.
-|*
-*************************************************************************/
-
-
-// update all charts, for that exists any table
 
 /*************************************************************************
 |*
@@ -493,9 +449,6 @@ FASTBOOL bInSizeNotify = FALSE;
 // Absatzabstaende koennen wahlweise addiert oder maximiert werden
 
 
-
-
-
 /******************************************************************************
 |*
 |*  ViewShell::Reformat
@@ -507,8 +460,6 @@ FASTBOOL bInSizeNotify = FALSE;
 
 /*N*/ void ViewShell::Reformat()
 /*N*/ {
-/*N*/   SwWait aWait( *GetDoc()->GetDocShell(), TRUE );
-/*N*/
 /*N*/   // Wir gehen auf Nummer sicher:
 /*N*/   // Wir muessen die alten Fontinformationen wegschmeissen,
 /*N*/   // wenn die Druckeraufloesung oder der Zoomfaktor sich aendert.
@@ -541,7 +492,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/ void ViewShell::CalcLayout()
 /*N*/ {
 /*N*/   SET_CURR_SHELL( this );
-/*N*/   SwWait aWait( *GetDoc()->GetDocShell(), TRUE );
 /*N*/
 /*N*/   //Cache vorbereiten und restaurieren, damit er nicht versaut wird.
 /*N*/   SwSaveSetLRUOfst aSaveLRU( *SwTxtFrm::GetTxtCache(),
@@ -632,68 +582,16 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/               USHORT nVirtNum = pPage->GetVirtPageNum();
 /*N*/               const SvxNumberType& rNum = pPage->GetPageDesc()->GetNumType();
 /*N*/               String sDisplay = rNum.GetNumStr( nVirtNum );
-/*N*/               PageNumNotify( this, pCnt->GetPhyPageNum(), nVirtNum, sDisplay );
+/*N*/               DBG_BF_ASSERT(0, "STRIP");//PageNumNotify( this, pCnt->GetPhyPageNum(), nVirtNum, sDisplay );
 /*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       bDocSizeChgd = FALSE;
-/*N*/       ::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
+/*N*/       DBG_BF_ASSERT(0, "STRIP");//::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
 /*N*/   }
 /*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::VisPortChgd()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 22. Jul. 96
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  ViewShell::SmoothScroll()
-|*
-|*  Ersterstellung      MA 04. Jul. 96
-|*  Letzte Aenderung    MA 25. Mar. 97
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  ViewShell::PaintDesktop()
-|*
-|*  Ersterstellung      MA 16. Dec. 93
-|*  Letzte Aenderung    MA 30. Nov. 95
-|*
-******************************************************************************/
-
-
-
-// PaintDesktop gesplittet, dieser Teil wird auch von PreViewPage benutzt
-
-/******************************************************************************
-|*
-|*  ViewShell::CheckInvalidForPaint()
-|*
-|*  Ersterstellung      MA 19. May. 94
-|*  Letzte Aenderung    MA 09. Jun. 94
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  ViewShell::Paint()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 17. Sep. 96
-|*
-******************************************************************************/
 
 
 /******************************************************************************
@@ -728,21 +626,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc()->IsBrowseMode() )
 /*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::Is/Set[Head|Foot]InBrowse()
-|*
-|*  Ersterstellung      MA 10. Feb. 97
-|*  Letzte Aenderung    MA 10. Feb. 97
-|*
-******************************************************************************/
-
-
-
-
-
-
 
 /*************************************************************************
 |*
@@ -814,27 +697,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/   return GetDoc()->GetAttrPool();
 /*N*/ }
 
-/*************************************************************************
-|*
-|*    ViewShell::SetSubsLines()
-|*
-|*    Beschreibung      Hilfslinien An-/Abschalten
-|*    Ersterstellung    MA 26. May. 92
-|*    Letzte Aenderung  MA 03. May. 95
-|*
-*************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  ViewShell::ApplyViewOptions(), ImplApplyViewOptions()
-|*
-|*  Ersterstellung      ??
-|*  Letzte Aenderung    MA 03. Mar. 98
-|*
-******************************************************************************/
-
-
 
 /******************************************************************************
 |*
@@ -855,15 +717,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/
 /*N*/   pOpt->SetSymbolFont(rOpt.GetSymbolFont());
 /*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::SetReadonly()
-|*
-|*  Ersterstellung      OS 05.09.96
-|*  Letzte Aenderung    MA 12. Feb. 97
-|*
-******************************************************************************/
 
 /* -----------------------------2002/07/31 17:06------------------------------
 
@@ -902,7 +755,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/       bDocSizeChgd = FALSE;
 /*N*/       FASTBOOL bOld = bInSizeNotify;
 /*N*/       bInSizeNotify = TRUE;
-/*N*/       ::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
+/*N*/       DBG_BF_ASSERT(0, "STRIP");//::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
 /*N*/       bInSizeNotify = bOld;
 /*N*/   }
 /*N*/ }
@@ -912,10 +765,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/ {
 /*N*/   return GetDoc()->IsBrowseMode();
 /*N*/ }
-
-
-
-
 
 /* -----------------------------06.05.2002 13:23------------------------------
 
@@ -945,4 +794,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
  *
  * --------------------------------------------------*/
 
+ShellResource* ViewShell::GetShellRes()
+{
+    if ( !pShellRes )
+        pShellRes = new ShellResource();
+    return pShellRes;
+}
 }
