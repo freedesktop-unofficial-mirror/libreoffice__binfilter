@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:29:35 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:29:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,6 +100,12 @@
 #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
+#endif
+#ifndef _ROLBCK_HXX
+#include <rolbck.hxx>
+#endif
+#ifndef _TBLRWCL_HXX
+#include <tblrwcl.hxx>
 #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
@@ -222,6 +228,93 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 
     // fuege in der Line, vor der InsPos eine neue Box ein.
 
+ BOOL SwNodes::InsBoxen( SwTableNode* pTblNd,
+                        SwTableLine* pLine,
+                        SwTableBoxFmt* pBoxFmt,
+                        SwTxtFmtColl* pTxtColl,
+                        SwAttrSet* pAutoAttr,
+                        USHORT nInsPos,
+                        USHORT nCnt )
+ {
+    if( !nCnt )
+        return FALSE;
+    ASSERT( pLine, "keine gueltige Zeile" );
+
+    // Index hinter die letzte Box der Line
+    ULONG nIdxPos;
+    SwTableBox *pPrvBox = 0, *pNxtBox = 0;
+    if( pLine->GetTabBoxes().Count() )
+    {
+        if( nInsPos < pLine->GetTabBoxes().Count() )
+        {
+            if( 0 == (pPrvBox = pLine->FindPreviousBox( pTblNd->GetTable(),
+                            pLine->GetTabBoxes()[ nInsPos ] )))
+                pPrvBox = pLine->FindPreviousBox( pTblNd->GetTable() );
+        }
+        else if( 0 == ( pNxtBox = pLine->FindNextBox( pTblNd->GetTable(),
+                            pLine->GetTabBoxes()[ nInsPos-1 ] )))
+                pNxtBox = pLine->FindNextBox( pTblNd->GetTable() );
+    }
+    else if( 0 == ( pNxtBox = pLine->FindNextBox( pTblNd->GetTable() )))
+        pPrvBox = pLine->FindPreviousBox( pTblNd->GetTable() );
+
+    if( !pPrvBox && !pNxtBox )
+    {
+        BOOL bSetIdxPos = TRUE;
+        if( pTblNd->GetTable().GetTabLines().Count() && !nInsPos )
+        {
+            const SwTableLine* pTblLn = pLine;
+            while( pTblLn->GetUpper() )
+                pTblLn = pTblLn->GetUpper()->GetUpper();
+
+            if( pTblNd->GetTable().GetTabLines()[ 0 ] == pTblLn )
+            {
+                // also vor die erste Box der Tabelle
+                while( ( pNxtBox = pLine->GetTabBoxes()[0])->GetTabLines().Count() )
+                    pLine = pNxtBox->GetTabLines()[0];
+                nIdxPos = pNxtBox->GetSttIdx();
+                bSetIdxPos = FALSE;
+            }
+        }
+        if( bSetIdxPos )
+            // Tabelle ohne irgendeinen Inhalt oder am Ende, also vors Ende
+            nIdxPos = pTblNd->EndOfSectionIndex();
+    }
+    else if( pNxtBox )          // es gibt einen Nachfolger
+        nIdxPos = pNxtBox->GetSttIdx();
+    else                        // es gibt einen Vorgaenger
+        nIdxPos = pPrvBox->GetSttNd()->EndOfSectionIndex() + 1;
+
+    SwNodeIndex aEndIdx( *this, nIdxPos );
+    for( USHORT n = 0; n < nCnt; ++n )
+    {
+        SwStartNode* pSttNd = new SwStartNode( aEndIdx, ND_STARTNODE,
+                                                SwTableBoxStartNode );
+        pSttNd->pStartOfSection = pTblNd;
+        SwEndNode* pEndNd = new SwEndNode( aEndIdx, *pSttNd );
+
+        pPrvBox = new SwTableBox( pBoxFmt, *pSttNd, pLine );
+        pLine->GetTabBoxes().C40_INSERT( SwTableBox, pPrvBox, nInsPos + n );
+
+        if( NO_NUMBERING == pTxtColl->GetOutlineLevel()
+ //FEATURE::CONDCOLL
+            && RES_CONDTXTFMTCOLL != pTxtColl->Which()
+ //FEATURE::CONDCOLL
+        )
+            new SwTxtNode( SwNodeIndex( *pSttNd->EndOfSectionNode() ),
+                                pTxtColl, pAutoAttr );
+        else
+        {
+            // Outline-Numerierung richtig behandeln !!!
+            SwTxtNode* pTNd = new SwTxtNode(
+                            SwNodeIndex( *pSttNd->EndOfSectionNode() ),
+                            (SwTxtFmtColl*)GetDoc()->GetDfltTxtFmtColl(),
+                            pAutoAttr );
+            pTNd->ChgFmtColl( pTxtColl );
+        }
+    }
+    return TRUE;
+ }
 
 // --------------- einfuegen einer neuen Tabelle --------------
 
@@ -649,19 +742,145 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
 // die neue Size aus dem Max der Boxen errechnet; vorrausgesetzt,
 // die Size ist "absolut" gesetzt (USHRT_MAX)
 
+void SwCollectTblLineBoxes::AddToUndoHistory( const SwCntntNode& rNd )
+{
+    if( pHst )
+        pHst->Add( rNd.GetFmtColl(), rNd.GetIndex(), ND_TEXTNODE );
+}
 
+void SwCollectTblLineBoxes::AddBox( const SwTableBox& rBox )
+{
+    aPosArr.Insert( nWidth, aPosArr.Count() );
+    SwTableBox* p = (SwTableBox*)&rBox;
+    aBoxes.Insert( p, aBoxes.Count() );
+    nWidth += (USHORT)rBox.GetFrmFmt()->GetFrmSize().GetWidth();
+}
 
+const SwTableBox* SwCollectTblLineBoxes::GetBoxOfPos( const SwTableBox& rBox )
+{
+    const SwTableBox* pRet = 0;
+    if( aPosArr.Count() )
+    {
+        USHORT n;
+        for( n = 0; n < aPosArr.Count(); ++n )
+            if( aPosArr[ n ] == nWidth )
+                break;
+            else if( aPosArr[ n ] > nWidth )
+            {
+                if( n )
+                    --n;
+                break;
+            }
 
+        if( n >= aPosArr.Count() )
+            --n;
 
+        nWidth += (USHORT)rBox.GetFrmFmt()->GetFrmSize().GetWidth();
+        pRet = aBoxes[ n ];
+    }
+    return pRet;
+}
 
+BOOL lcl_Line_CollectBox( const SwTableLine*& rpLine, void* pPara )
+{
+    SwCollectTblLineBoxes* pSplPara = (SwCollectTblLineBoxes*)pPara;
+    if( pSplPara->IsGetValues() )
+        ((SwTableLine*)rpLine)->GetTabBoxes().ForEach( &::binfilter::lcl_Box_CollectBox, pPara );
+    else
+        ((SwTableLine*)rpLine)->GetTabBoxes().ForEach( &::binfilter::lcl_BoxSetSplitBoxFmts, pPara );
+    return TRUE;
+}
 
+BOOL lcl_Box_CollectBox( const SwTableBox*& rpBox, void* pPara )
+{
+    SwCollectTblLineBoxes* pSplPara = (SwCollectTblLineBoxes*)pPara;
+    USHORT nLen = rpBox->GetTabLines().Count();
+    if( nLen )
+    {
+        // dann mit der richtigen Line weitermachen
+        if( pSplPara->IsGetFromTop() )
+            nLen = 0;
+        else
+            --nLen;
 
+        const SwTableLine* pLn = rpBox->GetTabLines()[ nLen ];
+        lcl_Line_CollectBox( pLn, pPara );
+    }
+    else
+        pSplPara->AddBox( *rpBox );
+    return TRUE;
+}
 
+BOOL lcl_BoxSetSplitBoxFmts( const SwTableBox*& rpBox, void* pPara )
+{
+    SwCollectTblLineBoxes* pSplPara = (SwCollectTblLineBoxes*)pPara;
+    USHORT nLen = rpBox->GetTabLines().Count();
+    if( nLen )
+    {
+        // dann mit der richtigen Line weitermachen
+        if( pSplPara->IsGetFromTop() )
+            nLen = 0;
+        else
+            --nLen;
 
+        const SwTableLine* pLn = rpBox->GetTabLines()[ nLen ];
+        lcl_Line_CollectBox( pLn, pPara );
+    }
+    else
+    {
+        const SwTableBox* pSrcBox = pSplPara->GetBoxOfPos( *rpBox );
+        SwFrmFmt* pFmt = pSrcBox->GetFrmFmt();
+        SwTableBox* pBox = (SwTableBox*)rpBox;
 
+        if( HEADLINE_BORDERCOPY == pSplPara->GetMode() )
+        {
+            const SvxBoxItem& rBoxItem = pBox->GetFrmFmt()->GetBox();
+            if( !rBoxItem.GetTop() )
+            {
+                SvxBoxItem aNew( rBoxItem );
+                aNew.SetLine( pFmt->GetBox().GetBottom(), BOX_LINE_TOP );
+                if( aNew != rBoxItem )
+                    pBox->ClaimFrmFmt()->SetAttr( aNew );
+            }
+        }
+        else
+        {
+USHORT __FAR_DATA aTableSplitBoxSetRange[] = {
+    RES_LR_SPACE,       RES_UL_SPACE,
+    RES_BACKGROUND,     RES_SHADOW,
+    RES_PROTECT,        RES_PROTECT,
+    RES_VERT_ORIENT,    RES_VERT_ORIENT,
+    0 };
+            SfxItemSet aTmpSet( pFmt->GetDoc()->GetAttrPool(),
+                                aTableSplitBoxSetRange );
+            aTmpSet.Put( pFmt->GetAttrSet() );
+            if( aTmpSet.Count() )
+                pBox->ClaimFrmFmt()->SetAttr( aTmpSet );
 
+            if( HEADLINE_BOXATRCOLLCOPY == pSplPara->GetMode() )
+            {
+                SwNodeIndex aIdx( *pSrcBox->GetSttNd(), 1 );
+                SwCntntNode* pCNd = aIdx.GetNode().GetCntntNode();
+                if( !pCNd )
+                    pCNd = aIdx.GetNodes().GoNext( &aIdx );
+                aIdx = *pBox->GetSttNd();
+                SwCntntNode* pDNd = aIdx.GetNodes().GoNext( &aIdx );
 
+                // nur wenn der Node alleine in der Section steht
+                if( 2 == pDNd->EndOfSectionIndex() -
+                        pDNd->StartOfSectionIndex() )
+                {
+                    pSplPara->AddToUndoHistory( *pDNd );
+                    pDNd->ChgFmtColl( pCNd->GetFmtColl() );
+                }
+            }
 
+            // bedingte Vorlage beachten
+            pBox->GetSttNd()->CheckSectionCondColl();
+        }
+    }
+    return TRUE;
+}
 
 
 
