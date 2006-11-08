@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swtable.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:57:17 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:13:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -129,6 +129,7 @@ public:
 
     SwHTMLTableLayout *GetHTMLTableLayout() { return pHTMLLayout; }
     const SwHTMLTableLayout *GetHTMLTableLayout() const { return pHTMLLayout; }
+    void SetHTMLTableLayout( SwHTMLTableLayout *p );    //Eigentumsuebergang!
 
     USHORT IncGrfsThatResize() { return ++nGrfsThatResize; }
     USHORT DecGrfsThatResize() { return nGrfsThatResize ? --nGrfsThatResize : 0; }
@@ -150,6 +151,11 @@ public:
     void GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
                      FASTBOOL bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
 
+    BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes, SwUndo* pUndo = 0,
+                            const BOOL bDelMakeFrms = TRUE,
+                            const BOOL bCorrBorder = TRUE );
+            BOOL Merge( SwDoc* pDoc, const SwSelBoxes& rBoxes,
+                SwTableBox* pMergeBox, SwUndoTblMerge* = 0 );
 
           SwTableSortBoxes& GetTabSortBoxes()       { return aSortCntBoxes; }
     const SwTableSortBoxes& GetTabSortBoxes() const { return aSortCntBoxes; }
@@ -233,8 +239,13 @@ public:
 
     //Macht ein eingenes FrmFmt wenn noch mehr Lines von ihm abhaengen.
     SwFrmFmt* ClaimFrmFmt();
+    void ChgFrmFmt( SwTableLineFmt* pNewFmt );
 
     // suche nach der naechsten/vorherigen Box mit Inhalt
+    SwTableBox* FindNextBox( const SwTable&, const SwTableBox* =0,
+                            BOOL bOvrTblLns=TRUE ) const;
+    SwTableBox* FindPreviousBox( const SwTable&, const SwTableBox* =0,
+                            BOOL bOvrTblLns=TRUE ) const;
 
 };
 
