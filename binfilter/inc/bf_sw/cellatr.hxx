@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cellatr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:35:47 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:09:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,6 +101,7 @@ public:
         { return ((SwTblBoxFormula*)this)->GetTableBox(); }
 
     // Status aendern
+    void ChangeState( const SfxPoolItem* pItem );
     // berechne die Formel
 };
 
