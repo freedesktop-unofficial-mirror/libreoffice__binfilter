@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undobj.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:00:21 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:13:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,6 +101,7 @@ class SdrObject;
 class SdrObjGroup;
 class SdrUndoAction;
 class SwDrawFrmFmt;
+class _SaveTable;
 class SwTableAutoFmt;
 class SwSelBoxes;
 class SwTableSortBoxes;
@@ -475,17 +476,72 @@ public:
 
 };
 
+class SwUndoTblNdsChg : public SwUndo
+{
+    _SaveTable* pSaveTbl;
+    SvULongs aBoxes;
+
+    union {
+        SvULongs* pNewSttNds;
+        SwUndoSaveSections* pDelSects;
+    } Ptrs;
+    SvBools aMvBoxes;       // fuers SplitRow (aufgeteilte Nodes einer Box)
+
+    ULONG nSttNode, nCurrBox;
+    USHORT nCount, nRelDiff, nAbsDiff, nSetColType;
+    BOOL bFlag;
+    BOOL bSameHeight;                   // only used for SplitRow
+public:
+    SwUndoTblNdsChg( USHORT UndoId,
+                    const SwSelBoxes& rBoxes,
+                    const SwTableNode& rTblNd,
+                    USHORT nCnt, BOOL bFlg, BOOL bSameHeight = FALSE );
+
+    // fuer SetColWidth
+    SwUndoTblNdsChg( USHORT UndoId, const SwSelBoxes& rBoxes,
+                    const SwTableNode& rTblNd );
+
+    virtual ~SwUndoTblNdsChg();
+//STRIP001     virtual void Undo( SwUndoIter& );
+//STRIP001     virtual void Redo( SwUndoIter& );
+
+    void SaveNewBoxes( const SwTableNode& rTblNd, const SwTableSortBoxes& rOld );
+    void SaveNewBoxes( const SwTableNode& rTblNd, const SwTableSortBoxes& rOld,
+                       const SwSelBoxes& rBoxes, const SvULongs& rNodeCnts );
+    void SaveSection( SwStartNode* pSttNd );
+
+    void SetColWidthParam( ULONG nBoxIdx, USHORT nMode, USHORT nType,
+                            SwTwips nAbsDif, SwTwips nRelDif )
+    {
+        nCurrBox = nBoxIdx;
+        nCount = nMode;
+        nSetColType = nType;
+        nAbsDiff = (USHORT)nAbsDif;
+        nRelDiff = (USHORT)nRelDif;
+    }
+    OUT_UNDOBJ( TblNodesChg )
+};
+=======
+};
 
 
 
+
+>>>>>>> 1.5
 
  class SwUndoTblMerge : public SwUndo, private SwUndRng
  {
+    ULONG nTblNode;
+            SvULongs aBoxes;
+            SvULongs  aNewSttNds;
     SwHistory* pHistory;
 
 public:
     SwUndoTblMerge( const SwPaM& rTblSel );
     virtual ~SwUndoTblMerge();
+    void SetSelBoxes( const SwSelBoxes& rBoxes );
+    void AddNewBox( ULONG nSttNdIdx )
+        { aNewSttNds.Insert( nSttNdIdx, aNewSttNds.Count() ); }
 };
 
 
