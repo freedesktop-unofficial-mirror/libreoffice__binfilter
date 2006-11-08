@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:37:19 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:43:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 CXXFILES = \
-        sw_gloshdl.cxx \
         sw_swdtflvr.cxx
 
 #        dataex.cxx \
@@ -63,7 +62,6 @@ SRC1FILES =  \
         sw_dochdl.src
 
 SLOFILES =  \
-        $(SLO)$/sw_gloshdl.obj \
         $(SLO)$/sw_swdtflvr.obj
 
 #        $(SLO)$/sw_dataex.obj \
