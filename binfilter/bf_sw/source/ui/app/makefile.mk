@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: kz $ $Date: 2006-10-05 10:26:10 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:39:40 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,6 @@ TARGET=sw_app
 
 NO_HIDS=TRUE
 
-LIBTARGET=NO
 
 # --- Settings -----------------------------------------------------
 
@@ -67,16 +66,8 @@ SRC1FILES =\
         sw_mnport.src      \
         sw_error.src
 
-
-#OBJFILES = \
-#		$(OBJ)$/sw_swlib.obj   \
-#		$(OBJ)$/sw_swcomlib.obj
-
 SLOFILES = \
-        $(SLO)$/sw_appenv.obj   \
         $(SLO)$/sw_apphdl.obj   \
-        $(SLO)$/sw_applab.obj   \
-        $(SLO)$/sw_appopt.obj   \
         $(SLO)$/sw_docsh.obj    \
         $(SLO)$/sw_docsh2.obj   \
         $(SLO)$/sw_docshdrw.obj \
@@ -87,38 +78,19 @@ SLOFILES = \
         $(SLO)$/sw_version.obj  \
         $(SLO)$/sw_swmodule.obj \
         $(SLO)$/sw_swmodul1.obj \
-        $(SLO)$/sw_swdll.obj	 \
-        $(SLO)$/sw_swwait.obj
+        $(SLO)$/sw_swdll.obj	 
+
 
 EXCEPTIONSFILES= \
         $(SLO)$/sw_swmodule.obj \
         $(SLO)$/sw_swmodul1.obj \
         $(SLO)$/sw_docsh2.obj
 
-LIB1TARGET= $(SLB)$/sw_app.lib
-
-LIB1OBJFILES= \
-        $(SLO)$/sw_appenv.obj   \
-        $(SLO)$/sw_apphdl.obj   \
-        $(SLO)$/sw_applab.obj   \
-        $(SLO)$/sw_appopt.obj   \
-        $(SLO)$/sw_docsh.obj    \
-        $(SLO)$/sw_docsh2.obj   \
-        $(SLO)$/sw_docshdrw.obj \
-        $(SLO)$/sw_docshini.obj \
-        $(SLO)$/sw_docst.obj    \
-        $(SLO)$/sw_docstyle.obj \
-        $(SLO)$/sw_mainwn.obj   \
-        $(SLO)$/sw_swmodul1.obj \
-        $(SLO)$/sw_version.obj	 \
-        $(SLO)$/sw_swwait.obj
-
-#LIB3TARGET=$(SLB)$/bf_yswlib.lib
-#LIB3OBJFILES=
 
 DEPOBJFILES= \
     $(SLO)$/sw_swlib.obj \
     $(SLO)$/sw_swcomlib.obj
+
 
 # --- Targets ------------------------------------------------------
 
@@ -140,4 +112,4 @@ $(INCCOM)$/swdll0.hxx: makefile.mk
 
 
 $(SRS)$/sw_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
-
+  
