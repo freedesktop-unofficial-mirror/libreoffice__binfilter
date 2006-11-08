@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edtab.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:34:59 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:30:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,7 +101,7 @@ namespace binfilter {
 /*N*/   if( pTblNd )
 /*N*/       nMode = pTblNd->GetTable().GetTblChgMode();
 /*N*/   else
-/*?*/       nMode = GetTblChgDefaultMode();
+/*?*/       nMode = 0;//STRIP001GetTblChgDefaultMode();
 /*N*/   return nMode;
 /*N*/ }
 
