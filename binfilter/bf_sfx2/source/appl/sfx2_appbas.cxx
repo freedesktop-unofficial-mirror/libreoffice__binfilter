@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:53:15 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 11:50:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,6 +88,7 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 #include "so3/staticbaseurl.hxx"
+#include <basic/basicmanagerrepository.hxx>
 namespace binfilter {
 #include "sfxslots.hxx"
 
@@ -168,7 +169,7 @@ const SfxConstant __FAR_DATA aConstants[] =
 
 StarBASIC* SfxApplication::GetBasic_Impl() const
 {
-    BasicManager* pBasMgr = GetAppBasicManager();
+    BasicManager* pBasMgr = ::basic::BasicManagerRepository::getApplicationBasicManager( false );
     return pBasMgr ? pBasMgr->GetLib(0) : NULL;
 }
 
@@ -486,7 +487,7 @@ BasicManager* SfxApplication::GetBasicManager()
     // #i22747# XML filter adaptors and macros
     // The Application BasicManager must be initialized by the
     // non-binfilter office.
-    BasicManager* pBasMgr = GetAppBasicManager();
+    BasicManager* pBasMgr = ::basic::BasicManagerRepository::getApplicationBasicManager( false );
     DBG_ASSERT( pBasMgr, "SfxApplication::GetBasicManager: no BasicManager!" );
     if ( !pBasMgr )
         pBasMgr = new BasicManager( new StarBASIC );
