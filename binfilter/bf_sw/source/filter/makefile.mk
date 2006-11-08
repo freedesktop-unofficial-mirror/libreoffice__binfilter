@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 23:25:04 $
+#   last change: $Author: kz $ $Date: 2006-11-08 12:37:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,8 +60,12 @@ SUBLIBS= \
     $(SLB)$/sw_ascii.lib \
     $(SLB)$/sw_basflt.lib \
     $(SLB)$/sw_writer.lib \
-    $(SLB)$/sw_xml.lib
-    
+    $(SLB)$/sw_excel.lib \
+    $(SLB)$/sw_lotus.lib \
+    $(SLB)$/sw_w4w.lib \
+    $(SLB)$/sw_xml.lib \
+    $(SLB)$/sw_sw6.lib
+
 ################################################################
 
 LIB1TARGET=$(SLB)$/sw_filter.lib
