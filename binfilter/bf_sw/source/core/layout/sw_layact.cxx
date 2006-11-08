@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:53:57 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:32:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -167,11 +167,6 @@ namespace binfilter {
 /*N*/ void SwLayAction::CheckWaitCrsr()
 /*N*/ {
 /*N*/   RESCHEDULE
-/*N*/   if ( !IsWait() && IsWaitAllowed() && IsPaint() &&
-/*N*/        ((Ticks() - GetStartTicks()) >= CLOCKS_PER_SEC/2) )
-/*N*/   {
-/*N*/       pWait = new SwWait( *pRoot->GetFmt()->GetDoc()->GetDocShell(), TRUE );
-/*N*/   }
 /*N*/ }
 
 /*************************************************************************
@@ -553,7 +548,6 @@ namespace binfilter {
 /*N*/   //TurboMode? Disqualifiziert fuer Idle-Format.
 /*N*/   if ( IsPaint() && !IsIdle() && TurboAction() )
 /*N*/   {
-/*N*/       delete pWait, pWait = 0;
 /*N*/       pRoot->ResetTurboFlag();
 /*N*/       bActionInProgress = FALSE;
 /*N*/       pRoot->DeleteEmptySct();
@@ -580,8 +574,6 @@ namespace binfilter {
 /*N*/       bAgain |= RemoveEmptyBrowserPages();
 /*N*/   }
 /*N*/   pRoot->DeleteEmptySct();
-/*N*/
-/*N*/   delete pWait, pWait = 0;
 /*N*/
 /*N*/   //Turbo-Action ist auf jedenfall wieder erlaubt.
 /*N*/   pRoot->ResetTurboFlag();
