@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:55:26 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:25:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -164,7 +164,7 @@
 #include "app.hrc"
 #include "topfrm.hxx"
 #include "appimp.hxx"
-#include "sfxuno.hxx"
+#include "appuno.hxx"
 #include "objface.hxx"
 #include "filedlghelper.hxx"
 
@@ -491,6 +491,5 @@ using namespace sfx2;
 /*?*/ }
 
 //--------------------------------------------------------------------
-
 
 }
