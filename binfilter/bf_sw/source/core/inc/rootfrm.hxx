@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rootfrm.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:47:41 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:31:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -252,6 +252,7 @@ public:
     //Alle Fussnoten (nicht etwa die Referenzen) entfernen.
     void RemoveFtns( SwPageFrm *pPage = 0, BOOL bPageOnly = FALSE,
                      BOOL bEndNotes = FALSE );
+    void CheckFtnPageDescs( BOOL bEndNote );
 
     const SwPageFrm *GetLastPage() const { return pLastPage; }
           SwPageFrm *GetLastPage()       { return pLastPage; }
