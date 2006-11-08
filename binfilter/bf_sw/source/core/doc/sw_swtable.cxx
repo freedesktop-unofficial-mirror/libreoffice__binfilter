@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swtable.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:27:34 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:29:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -163,7 +163,7 @@ namespace binfilter {
 /*N*/   bHeadlineRepeat = TRUE;
 /*N*/
 /*N*/   // default Wert aus den Optionen setzen
-/*N*/   eTblChgMode = (TblChgMode)GetTblChgDefaultMode();
+/*N*/   eTblChgMode = (TblChgMode)0;//STRIP001 GetTblChgDefaultMode();
 /*N*/ }
 
 /*N*/ SwTable::SwTable( const SwTable& rTable )
@@ -556,7 +556,32 @@ namespace binfilter {
 /*N*/   return pOld;
 /*N*/ }
 
+ void SwTableLine::ChgFrmFmt( SwTableLineFmt *pNewFmt )
+ {
+    SwFrmFmt *pOld = GetFrmFmt();
+    SwClientIter aIter( *pOld );
+    SwClient* pLast;
 
+    //Erstmal die Frms ummelden.
+    for( pLast = aIter.First( TYPE( SwFrm ) ); pLast; pLast = aIter.Next() )
+    {
+        SwRowFrm *pRow = (SwRowFrm*)pLast;
+        if( pRow->GetTabLine() == this )
+        {
+            pNewFmt->Add( pLast );
+            pRow->InvalidateSize();
+            pRow->_InvalidatePrt();
+            pRow->SetCompletePaint();
+            pRow->ReinitializeFrmSizeAttrFlags();
+        }
+    }
+
+    //Jetzt noch mich selbst ummelden.
+    pNewFmt->Add( this );
+
+    if ( !aIter.GoStart() )
+        delete pOld;
+ }
 
 /*************************************************************************
 |*
@@ -878,9 +903,11 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
+ void SwTable::SetHTMLTableLayout( SwHTMLTableLayout *p )
+ {
+    delete pHTMLLayout;
+    pHTMLLayout = p;
+ }
 
 // zum Erkennen von Veraenderungen (haupts. TableBoxAttribute)
 /*N*/ void SwTableBoxFmt::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
