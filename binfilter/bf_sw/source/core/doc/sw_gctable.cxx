@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_gctable.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:26:18 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:28:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,6 +40,9 @@
 #include <hintids.hxx>
 #endif
 
+#ifndef _SVX_BOXITEM_HXX //autogen
+#include <bf_svx/boxitem.hxx>
+#endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
@@ -53,25 +56,318 @@
 namespace binfilter {
 
 
+ inline const SvxBorderLine* GetLineTB( const SvxBoxItem* pBox, BOOL bTop )
+ {
+    return bTop ? pBox->GetTop() : pBox->GetBottom();
+ }
+
+
+BOOL _SwGCBorder_BoxBrd::CheckLeftBorderOfFormat( const SwFrmFmt& rFmt )
+{
+    const SvxBorderLine* pBrd;
+    const SfxPoolItem* pItem;
+    if( SFX_ITEM_SET == rFmt.GetItemState( RES_BOX, TRUE, &pItem ) &&
+        0 != ( pBrd = ((SvxBoxItem*)pItem)->GetLeft() ) )
+    {
+        if( *pBrdLn == *pBrd )
+            bAnyBorderFnd = TRUE;
+        return TRUE;
+    }
+    return FALSE;
+}
 
 
 
+BOOL lcl_GCBorder_ChkBoxBrd_L( const SwTableLine*& rpLine, void* pPara )
+{
+    const SwTableBox* pBox = rpLine->GetTabBoxes()[ 0 ];
+    return lcl_GCBorder_ChkBoxBrd_B( pBox, pPara );
+}
 
+BOOL lcl_GCBorder_ChkBoxBrd_B( const SwTableBox*& rpBox, void* pPara )
+{
+    BOOL bRet = TRUE;
+    if( rpBox->GetTabLines().Count() )
+    {
+        for( USHORT n = 0, nLines = rpBox->GetTabLines().Count();
+                n < nLines && bRet; ++n )
+        {
+            const SwTableLine* pLine = rpBox->GetTabLines()[ n ];
+            bRet = lcl_GCBorder_ChkBoxBrd_L( pLine, pPara );
+        }
+    }
+    else
+    {
+        _SwGCBorder_BoxBrd* pBPara = (_SwGCBorder_BoxBrd*)pPara;
+        bRet = pBPara->CheckLeftBorderOfFormat( *rpBox->GetFrmFmt() );
+    }
+    return bRet;
+}
 
+BOOL lcl_GCBorder_GetLastBox_L( const SwTableLine*& rpLine, void* pPara )
+{
+    const SwTableBoxes& rBoxes = rpLine->GetTabBoxes();
+    const SwTableBox* pBox = rBoxes[ rBoxes.Count()-1 ];
+    lcl_GCBorder_GetLastBox_B( pBox, pPara );
+    return TRUE;
+}
 
-
-
+BOOL lcl_GCBorder_GetLastBox_B( const SwTableBox*& rpBox, void* pPara )
+{
+    SwTableLines& rLines = (SwTableLines&)rpBox->GetTabLines();
+    if( rLines.Count() )
+        rLines.ForEach( &lcl_GCBorder_GetLastBox_L, pPara );
+    else
+        ((SwTableBoxes*)pPara)->Insert( rpBox, ((SwTableBoxes*)pPara)->Count() );
+    return TRUE;
+}
 
 // suche das "Ende" der vorgegebene BorderLine. Returnt wird die "Layout"Pos!
+USHORT lcl_FindEndPosOfBorder( const SwCollectTblLineBoxes& rCollTLB,
+                        const SvxBorderLine& rBrdLn, USHORT& rStt, BOOL bTop )
+{
+    USHORT nPos, nLastPos = 0;
+    for( USHORT nEnd = rCollTLB.Count(); rStt < nEnd; ++rStt )
+    {
+        const SfxPoolItem* pItem;
+        const SvxBorderLine* pBrd;
+        const SwTableBox& rBox = rCollTLB.GetBox( rStt, &nPos );
+
+        if( SFX_ITEM_SET != rBox.GetFrmFmt()->GetItemState(RES_BOX,TRUE, &pItem )
+            || 0 == ( pBrd = ::binfilter::GetLineTB( (SvxBoxItem*)pItem, bTop ))
+            || !( *pBrd == rBrdLn ))
+            break;
+        nLastPos = nPos;
+    }
+    return nLastPos;
+}
+
+ inline const SvxBorderLine* lcl_GCBorder_GetBorder( const SwTableBox& rBox,
+                                                BOOL bTop,
+                                                const SfxPoolItem** ppItem )
+ {
+    return SFX_ITEM_SET == rBox.GetFrmFmt()->GetItemState( RES_BOX, TRUE, ppItem )
+            ? ::binfilter::GetLineTB( (SvxBoxItem*)*ppItem, bTop )
+            : 0;
+ }
+
+void lcl_GCBorder_DelBorder( const SwCollectTblLineBoxes& rCollTLB,
+                                USHORT& rStt, BOOL bTop,
+                                const SvxBorderLine& rLine,
+                                const SfxPoolItem* pItem,
+                                USHORT nEndPos,
+                                SwShareBoxFmts* pShareFmts )
+{
+    SwTableBox* pBox = (SwTableBox*)&rCollTLB.GetBox( rStt );
+    USHORT nNextPos;
+    const SvxBorderLine* pLn = &rLine;
+
+    do {
+        if( pLn && *pLn == rLine )
+        {
+            SvxBoxItem aBox( *(SvxBoxItem*)pItem );
+            if( bTop )
+                aBox.SetLine( 0, BOX_LINE_TOP );
+            else
+                aBox.SetLine( 0, BOX_LINE_BOTTOM );
+
+            if( pShareFmts )
+                pShareFmts->SetAttr( *pBox, aBox );
+            else
+                pBox->ClaimFrmFmt()->SetAttr( aBox );
+        }
+
+        if( ++rStt >= rCollTLB.Count() )
+            break;
+
+        pBox = (SwTableBox*)&rCollTLB.GetBox( rStt, &nNextPos );
+        if( nNextPos > nEndPos )
+            break;
+
+        pLn = ::binfilter::lcl_GCBorder_GetBorder( *pBox, bTop, &pItem );
+
+    } while( TRUE );
+}
 
 
+BOOL lcl_GC_Line_Border( const SwTableLine*& rpLine, void* pPara )
+{
+    _SwGCLineBorder* pGCPara = (_SwGCLineBorder*)pPara;
+
+    // zuerst die rechte Kante mit der linken Kante der naechsten Box
+    // innerhalb dieser Line
+    {
+        _SwGCBorder_BoxBrd aBPara;
+        const SvxBorderLine* pBrd;
+        const SfxPoolItem* pItem;
+        const SwTableBoxes& rBoxes = rpLine->GetTabBoxes();
+        for( USHORT n = 0, nBoxes = rBoxes.Count() - 1; n < nBoxes; ++n )
+        {
+            SwTableBoxes aBoxes;
+            {
+                const SwTableBox* pBox = rBoxes[ n ];
+                if( pBox->GetSttNd() )
+                    aBoxes.Insert( pBox, 0 );
+                else
+                    ::binfilter::lcl_GCBorder_GetLastBox_B( pBox, &aBoxes );
+            }
+
+            SwTableBox* pBox;
+            for( USHORT i = aBoxes.Count(); i; )
+                if( SFX_ITEM_SET == (pBox = aBoxes[ --i ])->GetFrmFmt()->
+                    GetItemState( RES_BOX, TRUE, &pItem ) &&
+                    0 != ( pBrd = ((SvxBoxItem*)pItem)->GetRight() ) )
+                {
+                    aBPara.SetBorder( *pBrd );
+                    const SwTableBox* pNextBox = rBoxes[n+1];
+                    if( lcl_GCBorder_ChkBoxBrd_B( pNextBox, &aBPara ) &&
+                        aBPara.IsAnyBorderFound() )
+                    {
+                        SvxBoxItem aBox( *(SvxBoxItem*)pItem );
+                        aBox.SetLine( 0, BOX_LINE_RIGHT );
+                        if( pGCPara->pShareFmts )
+                            pGCPara->pShareFmts->SetAttr( *pBox, aBox );
+                        else
+                            pBox->ClaimFrmFmt()->SetAttr( aBox );
+                    }
+                }
+
+            aBoxes.Remove( 0, aBoxes.Count() );
+        }
+    }
+
+    // und jetzt die eigene untere Kante mit der nachfolgenden oberen Kante
+    if( !pGCPara->IsLastLine() )
+    {
+        SwCollectTblLineBoxes aBottom( FALSE );
+        SwCollectTblLineBoxes aTop( TRUE );
+
+        ::binfilter::lcl_Line_CollectBox( rpLine, &aBottom );
+
+        const SwTableLine* pNextLine = (*pGCPara->pLines)[ pGCPara->nLinePos+1 ];
+        ::binfilter::lcl_Line_CollectBox( pNextLine, &aTop );
+
+        // dann entferne mal alle "doppelten" gleichen Lines
+        USHORT nBtmPos, nTopPos,
+                nSttBtm = 0, nSttTop = 0,
+                nEndBtm = aBottom.Count(), nEndTop = aTop.Count();
+
+        const SwTableBox *pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos ),
+                         *pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
+        const SfxPoolItem *pBtmItem, *pTopItem;
+        const SvxBorderLine *pBtmLine, *pTopLine;
+        BOOL bGetTopItem = TRUE, bGetBtmItem = TRUE;
+
+        do {
+            if( bGetBtmItem )
+                pBtmLine = ::binfilter::lcl_GCBorder_GetBorder( *pBtmBox, FALSE, &pBtmItem );
+            if( bGetTopItem )
+                pTopLine = ::binfilter::lcl_GCBorder_GetBorder( *pTopBox, TRUE, &pTopItem );
+
+            if( pTopLine && pBtmLine && *pTopLine == *pBtmLine )
+            {
+                // dann kann einer entfernt werden, aber welche?
+                USHORT nSavSttBtm = nSttBtm, nSavSttTop = nSttTop;
+                USHORT nBtmEndPos = ::binfilter::lcl_FindEndPosOfBorder( aBottom,
+                                                *pTopLine, nSttBtm, FALSE );
+                if( !nBtmEndPos ) nBtmEndPos = nBtmPos;
+                USHORT nTopEndPos = ::binfilter::lcl_FindEndPosOfBorder( aTop,
+                                                *pTopLine, nSttTop, TRUE );
+                if( !nTopEndPos ) nTopEndPos = nTopPos;
 
 
+                if( nTopEndPos <= nBtmEndPos )
+                {
+                    // dann die TopBorder bis zur BottomEndPos loeschen
+                    nSttTop = nSavSttTop;
+                    if( nTopPos <= nBtmEndPos )
+                        ::binfilter::lcl_GCBorder_DelBorder( aTop, --nSttTop, TRUE,
+                                            *pBtmLine, pTopItem, nBtmEndPos,
+                                            pGCPara->pShareFmts );
+                    else
+                        nSttBtm = nSavSttBtm;
+                }
+                else
+                {
+                    // sonst die BottomBorder bis zur TopEndPos loeschen
+                    nSttBtm = nSavSttBtm;
+                    if( nBtmPos <= nTopEndPos )
+                        ::binfilter::lcl_GCBorder_DelBorder( aBottom, --nSttBtm, FALSE,
+                                            *pTopLine, pBtmItem, nTopEndPos,
+                                            pGCPara->pShareFmts );
+                    else
+                        nSttTop = nSavSttTop;
+                }
+                nTopPos = nBtmPos;
+            }
+
+            if( nTopPos == nBtmPos )
+            {
+                if( nSttBtm >= nEndBtm || nSttTop >= nEndTop )
+                    break;
+
+                pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos );
+                pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
+                bGetTopItem = bGetBtmItem = TRUE;
+            }
+            else if( nTopPos < nBtmPos )
+            {
+                if( nSttTop >= nEndTop )
+                    break;
+                pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
+                bGetTopItem = TRUE;
+                bGetBtmItem = FALSE;
+            }
+            else
+            {
+                if( nSttBtm >= nEndBtm )
+                    break;
+                pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos );
+                bGetTopItem = FALSE;
+                bGetBtmItem = TRUE;
+            }
+
+        } while( TRUE );
+    }
+
+    ((SwTableLine*)rpLine)->GetTabBoxes().ForEach( &lcl_GC_Box_Border, pPara );
+
+    ++pGCPara->nLinePos;
+
+    return TRUE;
+}
 
 
+BOOL lcl_GC_Box_Border( const SwTableBox*& rpBox, void* pPara )
+{
+    if( rpBox->GetTabLines().Count() )
+    {
+        _SwGCLineBorder aPara( *rpBox );
+        aPara.pShareFmts = ((_SwGCLineBorder*)pPara)->pShareFmts;
+        ((SwTableBox*)rpBox)->GetTabLines().ForEach( &lcl_GC_Line_Border, &aPara );
+    }
+    return TRUE;
+}
 
 
+void SwTable::GCBorderLines()
+{
+    // alle doppleten Borderlines benachbarter Tabellen-Content-Boxen
+    // entfernen. Und zwar wird versucht, die Struktur unserer default
+    // Border wiederherzustellen, die wie folgt aussieht:
+    //
+    //   +-- +--+
+    //   |   |  |
+    //   +-- +--+
+    //
+    //   |   |  |
+    //   +-- +--+
 
+    SwShareBoxFmts aShareFmts;
+    _SwGCLineBorder aPara( *this );
+    aPara.pShareFmts = &aShareFmts;
+    GetTabLines().ForEach( &::binfilter::lcl_GC_Line_Border, &aPara );
+}
 
 /*  */
 
