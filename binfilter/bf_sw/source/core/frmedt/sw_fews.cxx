@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fews.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:40:31 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 12:30:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -341,7 +341,7 @@ bool SwFEShell::IsDirectlyInSection() const
 /*N*/   {
 /*N*/       Imp()->GetDrawView()->SetMarkHdlHidden( FALSE );
 /*N*/       if ( Imp()->GetDrawView()->HasMarkedObj() )
-/*?*/           FrameNotify( this, FLY_DRAG_START );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FrameNotify( this, FLY_DRAG_START );
 /*N*/   }
 /*N*/ }
 
