@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unofreg.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:56:41 $
+ *  last change: $Author: kz $ $Date: 2006-11-08 13:00:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,14 +110,6 @@ extern uno::Sequence< OUString > SAL_CALL SwXModule_getSupportedServiceNames() t
 extern OUString SAL_CALL SwXModule_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL SwXModule_createInstance(const uno::Reference< XMultiServiceFactory > & rSMgr) throw( uno::Exception );
 
-extern uno::Sequence< OUString > SAL_CALL SwXMailMerge_getSupportedServiceNames() throw();
-extern OUString SAL_CALL SwXMailMerge_getImplementationName() throw();
-extern uno::Reference< uno::XInterface > SAL_CALL SwXMailMerge_createInstance(const uno::Reference< XMultiServiceFactory > & rSMgr) throw( uno::Exception );
-
-extern uno::Sequence< OUString > SAL_CALL SwXMailMerge_getSupportedServiceNames() throw();
-extern OUString SAL_CALL SwXMailMerge_getImplementationName() throw();
-extern uno::Reference< uno::XInterface > SAL_CALL SwXMailMerge_createInstance(const uno::Reference< XMultiServiceFactory > & rSMgr) throw( uno::Exception );
-
 //
 #ifdef __cplusplus
 extern "C"
@@ -182,8 +174,6 @@ sal_Bool SAL_CALL component_writeInfo(
                                SwXAutoTextContainer_getSupportedServiceNames() );
             lcl_uno_writeInfo( pKey, SwXModule_getImplementationName(),
                                SwXModule_getSupportedServiceNames() );
-            lcl_uno_writeInfo( pKey, SwXMailMerge_getImplementationName(),
-                               SwXMailMerge_getSupportedServiceNames() );
             //Filter options
             lcl_uno_writeInfo( pKey, SwXFilterOptions::getImplementationName_Static(),
                                SwXFilterOptions::getSupportedServiceNames_Static() );
@@ -313,14 +303,6 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName,
                 SwXModule_getImplementationName(),
                 SwXModule_createInstance,
                 SwXModule_getSupportedServiceNames() );
-        }
-        else if( SwXMailMerge_getImplementationName().equalsAsciiL(
-                                                    pImplName, nImplNameLen ) )
-        {
-            xFactory = ::cppu::createSingleFactory( xMSF,
-                SwXMailMerge_getImplementationName(),
-                SwXMailMerge_createInstance,
-                SwXMailMerge_getSupportedServiceNames() );
         }
         else if( SwXFilterOptions::getImplementationName_Static().equalsAsciiL(
                                                     pImplName, nImplNameLen ) )
