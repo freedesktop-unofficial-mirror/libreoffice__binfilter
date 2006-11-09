@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wflt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:38:13 $
+ *  last change: $Author: vg $ $Date: 2006-11-09 12:29:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,6 +61,25 @@ typedef int(**CHand)( void*, void*, void*, void*, void* );
 #endif
 
 // -------------------------------------------------------------------
+#if defined( WIN ) || defined( WNT )
+
+// Typen fuer die Funktion der W4W-DLL
+#include <tools/svwin.h>
+typedef int ( FAR PASCAL *FNDisplay)( int );
+
+#ifdef WIN
+#define FNDisp _loadds FAR PASCAL
+#else
+#define FNDisp FAR PASCAL
+#endif // WIN
+
+typedef int (FAR PASCAL *FNautorec)( LPSTR, int, LPINT );
+typedef int (FAR PASCAL *FNw4wt)( LPSTR, LPSTR, LPSTR, LPSTR, FNDisplay );
+typedef int (FAR PASCAL *FNw4wf)( LPSTR, LPSTR, LPSTR, LPSTR, FNDisplay );
+
+#endif      // defined( WIN ) || defined( WNT )
+
+// ---------------------------------------------------------------------
 
 #ifdef UNX
 #include <stdlib.h>
