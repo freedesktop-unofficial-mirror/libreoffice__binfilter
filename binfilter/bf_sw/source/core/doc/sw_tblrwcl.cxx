@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tblrwcl.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:29:40 $
+ *  last change: $Author: kz $ $Date: 2006-11-09 15:50:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,7 +99,30 @@ typedef SwTableLine* SwTableLinePtr;
 
 #if !defined( PRODUCT ) || defined( JP_DEBUG )
 
- void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize );
+void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
+{
+    const SwTableBoxes& rBoxes = rLine.GetTabBoxes();
+
+    SwTwips nAktSize = 0;
+    // checke doch mal ob die Tabellen korrekte Breiten haben
+    for( USHORT n = 0; n < rBoxes.Count(); ++n  )
+    {
+        const SwTableBox* pBox = rBoxes[ n ];
+        SwTwips nBoxW = pBox->GetFrmFmt()->GetFrmSize().GetWidth();
+        nAktSize += nBoxW;
+
+        for( USHORT i = 0; i < pBox->GetTabLines().Count(); ++i )
+            _CheckBoxWidth( *pBox->GetTabLines()[ i ], nBoxW );
+    }
+
+    if( Abs( nAktSize - nSize ) > ( COLFUZZY * rBoxes.Count() ) )
+    {
+        DBG_ERROR( "Boxen der Line zu klein/gross" );
+#if defined( WNT ) && defined( JP_DEBUG )
+        __asm int 3;
+#endif
+    }
+}
 
  #define CHECKBOXWIDTH                                          \
     {                                                           \
