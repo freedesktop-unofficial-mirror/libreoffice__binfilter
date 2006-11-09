@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 17:00:56 $
+#   last change: $Author: kz $ $Date: 2006-11-09 11:46:18 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -78,9 +78,7 @@ LIB1FILES= \
                 $(SLB)$/sw_shells.lib   \
                 $(SLB)$/sw_envelp.lib   \
         $(SLB)$/sw_fldui.lib    \
-        $(SLB)$/sw_globdoc.lib
-
-SUBLIBS2= \
+        $(SLB)$/sw_globdoc.lib  \
         $(SLB)$/sw_index.lib    \
         $(SLB)$/sw_misc.lib     \
         $(SLB)$/sw_unoidl.lib   \
