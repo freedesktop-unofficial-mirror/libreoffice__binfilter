@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:24:03 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -106,7 +106,6 @@ private:
 
 #if _SOLAR__PRIVATE
                                  DECL_LINK( ImplGetAutoCorrect, void* );
-                                DECL_LINK( ImplInitFilterHdl, ConvertData* );
                                 DECL_LINK( ChangeUserDataHdl_Impl, void* );
                                 DECL_LINK( GlobalBasicErrorHdl, StarBASIC* );
 #endif
