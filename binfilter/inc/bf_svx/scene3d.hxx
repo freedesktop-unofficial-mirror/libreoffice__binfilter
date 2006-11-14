@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scene3d.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:56:37 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,11 +49,11 @@
 #endif
 
 #ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
+#include <bf_goodies/base3d.hxx>
 #endif
 
 #ifndef _B3D_B3DTRANS_HXX
-#include <goodies/b3dtrans.hxx>
+#include <bf_goodies/b3dtrans.hxx>
 #endif
 
 #ifndef _TOOLS_TIME_HXX
