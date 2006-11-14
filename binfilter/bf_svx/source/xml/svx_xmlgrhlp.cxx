@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmlgrhlp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:00:31 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -91,7 +91,7 @@ public:
 /*N*/ SvXMLGraphicInputStream::SvXMLGraphicInputStream( const OUString& rGraphicId )
 /*N*/ {
 /*N*/   String          aGraphicId( rGraphicId );
-/*N*/   GraphicObject   aGrfObject( ByteString( aGraphicId, RTL_TEXTENCODING_ASCII_US ) );
+/*N*/   BfGraphicObject aGrfObject( ByteString( aGraphicId, RTL_TEXTENCODING_ASCII_US ) );
 /*N*/
 /*N*/     maTmp.EnableKillingFile();
 /*N*/
@@ -207,7 +207,7 @@ private:
     ::utl::TempFile*                mpTmp;
     SvStream*                       mpOStm;
     Reference< XOutputStream >      mxStmWrapper;
-    GraphicObject                   maGrfObj;
+    BfGraphicObject maGrfObj;
     sal_Bool                        mbClosed;
 
                                     // not available
@@ -220,7 +220,7 @@ public:
     virtual                         ~SvXMLGraphicOutputStream();
 
     sal_Bool                        Exists() const { return mxStmWrapper.is(); }
-    const GraphicObject&            GetGraphicObject();
+    const BfGraphicObject&            GetGraphicObject();
 };
 
 // -----------------------------------------------------------------------------
@@ -280,7 +280,7 @@ public:
 
 // ------------------------------------------------------------------------------
 
-/*N*/ const GraphicObject& SvXMLGraphicOutputStream::GetGraphicObject()
+/*N*/ const BfGraphicObject& SvXMLGraphicOutputStream::GetGraphicObject()
 /*N*/ {
 /*N*/     if( mbClosed && ( maGrfObj.GetType() == GRAPHIC_NONE ) && mpOStm )
 /*N*/     {
@@ -289,7 +289,7 @@ public:
 /*N*/         mpOStm->Seek( 0 );
 /*N*/         GetGrfFilter()->ImportGraphic( aGraphic, String(), *mpOStm );
 /*N*/
-/*N*/         maGrfObj = aGraphic;
+/*N*/         maGrfObj = BfGraphicObject(aGraphic);
 /*N*/
 /*N*/         if( maGrfObj.GetType() != GRAPHIC_NONE )
 /*N*/         {
@@ -468,7 +468,7 @@ public:
 /*N*/                                              const ::rtl::OUString& rGraphicId )
 /*N*/ {
 /*N*/   String          aGraphicId( rGraphicId );
-/*N*/   GraphicObject   aGrfObject( ByteString( aGraphicId, RTL_TEXTENCODING_ASCII_US ) );
+/*N*/   BfGraphicObject aGrfObject( ByteString( aGraphicId, RTL_TEXTENCODING_ASCII_US ) );
 /*N*/   sal_Bool        bRet = sal_False;
 /*N*/
 /*N*/   if( aGrfObject.GetType() != GRAPHIC_NONE )
@@ -551,7 +551,7 @@ public:
 /*N*/
 /*N*/       if( GRAPHICHELPER_MODE_READ == meCreateMode )
 /*N*/       {
-/*N*/           const GraphicObject aObj( ImplReadGraphic( aPictureStorageName, aPictureStreamName ) );
+/*N*/           const BfGraphicObject aObj( ImplReadGraphic( aPictureStorageName, aPictureStreamName ) );
 /*N*/
 /*N*/           if( aObj.GetType() != GRAPHIC_NONE )
 /*N*/           {
@@ -567,7 +567,7 @@ public:
 /*N*/       else
 /*N*/       {
 /*N*/           const String        aGraphicObjectId( aPictureStreamName );
-/*N*/           const GraphicObject aGrfObject( ByteString( aGraphicObjectId, RTL_TEXTENCODING_ASCII_US ) );
+/*N*/           const BfGraphicObject aGrfObject( ByteString( aGraphicObjectId, RTL_TEXTENCODING_ASCII_US ) );
 /*N*/
 /*N*/           if( aGrfObject.GetType() != GRAPHIC_NONE )
 /*N*/           {
@@ -784,7 +784,7 @@ public:
 /*N*/
 /*N*/             if( pOStm )
 /*N*/             {
-/*N*/                 const GraphicObject&    rGrfObj = pOStm->GetGraphicObject();
+/*N*/                 const BfGraphicObject&    rGrfObj = pOStm->GetGraphicObject();
 /*N*/                 const OUString          aId( OUString::createFromAscii( rGrfObj.GetUniqueID().GetBuffer() ) );
 /*N*/
 /*N*/                 if( aId.getLength() )
