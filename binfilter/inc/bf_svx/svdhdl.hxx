@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdhdl.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:05:33 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,17 +52,17 @@
 #include <svtools/solar.hrc>
 #endif
 
-#ifndef _B2D_MPNT_HXX
-#include <goodies/b2dmpnt.hxx>
-#endif
+//#ifndef _B2D_MPNT_HXX
+//#include <bf_goodies/b2dmpnt.hxx>
+//#endif
 
-#ifndef _B2D_MLINE_HXX
-#include <goodies/b2dmline.hxx>
-#endif
+//#ifndef _B2D_MLINE_HXX
+//#include <bf_goodies/b2dmline.hxx>
+//#endif
 
-#ifndef _B2D_MBMP_HXX
-#include <goodies/b2dmbmp.hxx>
-#endif
+//#ifndef _B2D_MBMP_HXX
+//#include <bf_goodies/b2dmbmp.hxx>
+//#endif
 
 #include <bf_svx/xpoly.hxx>
 #include <bf_svx/svdoedge.hxx>
