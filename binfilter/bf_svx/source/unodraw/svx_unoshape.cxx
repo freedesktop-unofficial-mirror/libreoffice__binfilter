@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:57:30 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,6 +37,10 @@
 
 #ifndef _CPPUHELPER_TYPEPROVIDER_HXX_
 #include <cppuhelper/typeprovider.hxx>
+#endif
+
+#ifndef _B2D_MATRIX3D_HXX
+#include <bf_goodies/matrix3d.hxx>
 #endif
 
 #ifndef _FLTCALL_HXX
@@ -174,9 +178,7 @@ const SfxItemPropertyMap* ImplGetSvxTextPortionPropertyMap()
 } class GDIMetaFile; namespace binfilter {//STRIP009
 } class SvStream; namespace binfilter {//STRIP009
 } //namespace binfilter
-sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream,
-                              PFilterCallback pCallback=NULL, void * pCallerData=NULL,
-                              sal_Bool bPlaceable=sal_True);
+sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream, FilterConfigItem* pConfigItem = NULL, sal_Bool bPlaceable = sal_True );
 namespace binfilter {//STRIP009
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance( SdrObject* pObject );
 
@@ -584,7 +586,7 @@ uno::Any SvxShape::GetBitmap( sal_Bool bMetaFile /* = sal_False */ ) const throw
     if( bMetaFile )
     {
         SvMemoryStream aDestStrm( 65535, 65535 );
-        ConvertGDIMetaFileToWMF( aMtf, aDestStrm, NULL, NULL, sal_False );
+        ConvertGDIMetaFileToWMF( aMtf, aDestStrm, NULL, sal_False );
         uno::Sequence<sal_Int8> aSeq((sal_Int8*)aDestStrm.GetData(), aDestStrm.GetSize());
         aAny.setValue( &aSeq, ::getCppuType((const uno::Sequence< sal_Int8 >*)0) );
     }
@@ -2322,7 +2324,7 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
                     {
                         SvMemoryStream aDestStrm( 65535, 65535 );
 
-                        ConvertGDIMetaFileToWMF( *aObj.GetGDIMetaFile(), aDestStrm, NULL, NULL, sal_False );
+                        ConvertGDIMetaFileToWMF( *aObj.GetGDIMetaFile(), aDestStrm, NULL, sal_False );
                         uno::Sequence<sal_Int8> aSeq((sal_Int8*)aDestStrm.GetData(), aDestStrm.GetSize());
                         aAny <<= aSeq;
                     }
