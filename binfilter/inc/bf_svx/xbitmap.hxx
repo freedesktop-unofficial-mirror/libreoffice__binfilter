@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xbitmap.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:23:50 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,8 +42,8 @@
 #ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
 #endif
-#ifndef _GRFMGR_HXX //autogen
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
+#include <bf_goodies/graphicobject.hxx>
 #endif
 #include <bf_svx/xenum.hxx>
 namespace binfilter {
@@ -61,7 +61,7 @@ class XOBitmap
 protected:
     XBitmapType     eType;
     XBitmapStyle    eStyle;
-    GraphicObject   aGraphicObject;
+    BfGraphicObject aGraphicObject;
     USHORT*         pPixelArray;
     Size            aArraySize;
     Color           aPixelColor;
@@ -70,7 +70,7 @@ protected:
 
 public:
     XOBitmap();
-    XOBitmap( const GraphicObject& rGraphicObject, XBitmapStyle eStyle = XBITMAP_TILE );
+    XOBitmap( const BfGraphicObject& rGraphicObject, XBitmapStyle eStyle = XBITMAP_TILE );
     XOBitmap( const Bitmap& rBitmap, XBitmapStyle eStyle = XBITMAP_TILE );
 #if defined HP9000 || defined SINIX
     XOBitmap( const USHORT* pArray, const Color& aPixelColor,
@@ -90,8 +90,8 @@ public:
     void Bitmap2Array();
     void Array2Bitmap();
 
-    void SetGraphicObject( const GraphicObject& rObj )  { aGraphicObject = rObj; bGraphicDirty = FALSE; }
-    void SetBitmap( const Bitmap& rBmp )                { aGraphicObject = GraphicObject( Graphic( rBmp ) ); bGraphicDirty = FALSE; }
+    void SetGraphicObject( const BfGraphicObject& rObj )    { aGraphicObject = rObj; bGraphicDirty = FALSE; }
+    void SetBitmap( const Bitmap& rBmp )                { aGraphicObject = BfGraphicObject( Graphic( rBmp ) ); bGraphicDirty = FALSE; }
     void SetBitmapType( XBitmapType eNewType )          { eType = eNewType; }
     void SetBitmapStyle( XBitmapStyle eNewStyle )       { eStyle = eNewStyle; }
     void SetPixelArray( const USHORT* pArray );
@@ -101,7 +101,7 @@ public:
 
     XBitmapType             GetBitmapType() const               { return eType; }
     XBitmapStyle            GetBitmapStyle() const              { return eStyle; }
-    const GraphicObject&    GetGraphicObject() const;
+    const BfGraphicObject&  GetGraphicObject() const;
     Bitmap                  GetBitmap() const;
     USHORT*                 GetPixelArray() const               { return pPixelArray; }
     Color                   GetPixelColor() const               { return aPixelColor; }
