@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdopath.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:42:58 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,6 +56,11 @@
 #ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
 #endif
+
+#ifndef _B2D_MATRIX3D_HXX
+#include <bf_goodies/matrix3d.hxx>
+#endif
+
 namespace binfilter {
 
 // #104018# replace macros above with type-safe methods
