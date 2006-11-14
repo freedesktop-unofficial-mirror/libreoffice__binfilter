@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xoutx.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:32:41 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,8 +58,8 @@
 #include <vcl/bitmap.hxx>
 #endif
 class SfxItemSet;
-class GraphicObject;
 namespace binfilter {
+class BfGraphicObject;
 
 class FormattedText;
 class XPolygon;
@@ -127,7 +127,7 @@ private:
     USHORT              nFillTransparence;
 
     Bitmap              maFillBitmap;
-    GraphicObject*      mpFillGraphicObject;
+    BfGraphicObject*      mpFillGraphicObject;
     void*               mpDummy1;
     void*               mpDummy2;
     void*               mpDummy3;
