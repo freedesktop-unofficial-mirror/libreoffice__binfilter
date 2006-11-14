@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unobtabl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:54:29 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:04:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -122,7 +122,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
 
 namespace binfilter {//STRIP009
 /** returns a GraphicObject for this URL */
-GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
+BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 {
     const String aURL( rURL ), aPrefix( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX) );
 
@@ -130,7 +130,7 @@ GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
     {
         // graphic manager url
         ByteString aUniqueID( String(rURL.copy( sizeof( UNO_NAME_GRAPHOBJ_URLPREFIX ) - 1 )), RTL_TEXTENCODING_UTF8 );
-        return GraphicObject( aUniqueID );
+        return BfGraphicObject( aUniqueID );
     }
     else
     {
@@ -150,7 +150,7 @@ GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 #endif
 
 
-        return GraphicObject( aGraphic );
+        return BfGraphicObject( aGraphic );
     }
 }
 }
