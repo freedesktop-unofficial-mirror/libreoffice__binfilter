@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swbaslnk.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:30:42 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:06:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -189,7 +189,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( pCntntNode->IsGrfNode() )
 /*N*/   {
-/*N*/       GraphicObject& rGrfObj = ((SwGrfNode*)pCntntNode)->GetGrfObj();
+/*N*/       BfGraphicObject& rGrfObj = ((SwGrfNode*)pCntntNode)->GetGrfObj();
 /*N*/
 /*N*/       bDontNotify = ((SwGrfNode*)pCntntNode)->IsFrameInPaint();
 /*N*/
