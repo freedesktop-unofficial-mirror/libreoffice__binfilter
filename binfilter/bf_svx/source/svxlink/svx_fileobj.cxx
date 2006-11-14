@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fileobj.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:49:33 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:04:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,17 +68,6 @@ using namespace ::com::sun::star::uno;
 /*N*/ #define FILETYPE_TEXT     1
 /*N*/ #define FILETYPE_GRF      2
 
-/*N*/ class SvxFileObjProgress_Impl : public SfxProgress
-/*N*/ {
-/*N*/ public:
-/*N*/   SvxFileObjProgress_Impl( const String& rStr )
-/*N*/       : SfxProgress( 0, rStr, 100, TRUE, FALSE )
-/*N*/   {}
-/*N*/
-/*N*/   DECL_STATIC_LINK( SvxFileObjProgress_Impl, UpdatePercentHdl, GraphicFilter* );
-/*N*/ };
-
-
 /*N*/ struct Impl_DownLoadData
 /*N*/ {
 /*N*/   Graphic aGrf;
@@ -104,7 +93,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ {
 /*N*/   bLoadAgain = bMedUseCache = TRUE;
 /*N*/   bSynchron = bLoadError = bWaitForData = bDataReady = bNativFormat =
-/*N*/   bClearMedium = bProgress = bStateChangeCalled = bInCallDownLoad = FALSE;
+/*N*/   bClearMedium = bStateChangeCalled = bInCallDownLoad = FALSE;
 /*N*/ }
 
 
@@ -328,9 +317,7 @@ JP 28.02.96: noch eine Baustelle:
 /*N*/   SetUpdateTimeout( 0 );
 /*N*/
 /*N*/   // und jetzt bei diesem oder gefundenem Pseudo-Object anmelden
-/*N*/   AddDataAdvise( pLink,
-/*N*/                   SotExchange::GetFormatMimeType( pLink->GetContentType()),
-/*N*/                   (bProgress ? ADVISEMODE_ONLYONCE : 0 ));
+/*N*/   AddDataAdvise( pLink, SotExchange::GetFormatMimeType( pLink->GetContentType() ), 0 );
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -384,19 +371,7 @@ JP 28.02.96: noch eine Baustelle:
 
 /*?*/ BOOL SvFileObject::GetGraphic_Impl( Graphic& rGrf, SvStream* pStream )
 /*?*/ {
-/*?*/   Link aPercentLnk;
 /*?*/   GraphicFilter* pGF = GetGrfFilter();
-/*?*/   SvxFileObjProgress_Impl* pProgress = 0;
-/*?*/   if( bProgress && !SfxGetpApp()->GetProgress() )
-/*?*/   {
-/*?*/       pProgress = new SvxFileObjProgress_Impl(
-/*?*/           String( ResId( RID_SVXSTR_GRFLINKPROGRESS, DIALOG_MGR() ) ) );
-/*?*/
-/*?*/       aPercentLnk = pGF->GetUpdatePercentHdl();
-/*?*/       pGF->SetUpdatePercentHdl(
-/*?*/           STATIC_LINK( pProgress, SvxFileObjProgress_Impl, UpdatePercentHdl ));
-/*?*/   }
-/*?*/
 /*?*/   const int nFilter = sFilter.Len() && pGF->GetImportFormatCount()
 /*?*/                           ? pGF->GetImportFormatNumber( sFilter )
 /*?*/                           : GRFILTER_FORMAT_DONTKNOW;
@@ -466,27 +441,10 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/   }
 /*?*/ #endif
 /*?*/
-/*?*/   if( pProgress )
-/*?*/   {
-/*?*/       pGF->SetUpdatePercentHdl( aPercentLnk );
-/*?*/       delete pProgress;
-/*?*/
-/*?*/       // Statusaederung schicken:
-/*?*/       SendStateChg_Impl( GRFILTER_OK == nRes ? STATE_LOAD_OK : STATE_LOAD_ERROR );
-/*?*/   }
-/*?*/
 /*?*/   return GRFILTER_OK == nRes;
 /*?*/ }
 
 
-
-
-/*?*/ IMPL_STATIC_LINK( SvxFileObjProgress_Impl, UpdatePercentHdl,
-/*?*/               GraphicFilter *, pFilter )
-/*?*/ {
-/*?*/   pThis->SetState( pFilter->GetPercent() );
-/*?*/   return 0;
-/*?*/ }
 
 
 /*?*/ IMPL_STATIC_LINK( SvFileObject, LoadGrfReady_Impl, void*, EMPTYARG )
