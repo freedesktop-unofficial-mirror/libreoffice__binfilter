@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unonrule.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:56:10 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -255,7 +255,7 @@ uno::Sequence<beans::PropertyValue> SvxUnoNumberingRules::getNumberingRuleByInde
         const SvxBrushItem* pBrush = rFmt.GetBrush();
         if(pBrush && pBrush->GetGraphicObject())
         {
-            const GraphicObject* pGrafObj = pBrush->GetGraphicObject();
+            const BfGraphicObject* pGrafObj = pBrush->GetGraphicObject();
             OUString aURL( RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX));
             aURL += OUString::createFromAscii( pGrafObj->GetUniqueID().GetBuffer() );
 
@@ -409,7 +409,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
             OUString aURL;
             if( aVal >>= aURL )
             {
-                GraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
+                BfGraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
                 SvxBrushItem aBrushItem( aGrafObj, GPOS_AREA );
                 aFmt.SetGraphicBrush( &aBrushItem );
                 continue;
@@ -491,7 +491,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
     {
         if( NULL == aFmt.GetBrush() )
         {
-            GraphicObject aGrafObj;
+            BfGraphicObject aGrafObj;
             SvxBrushItem aBrushItem( aGrafObj, GPOS_AREA );
             aFmt.SetGraphicBrush( &aBrushItem );
         }
