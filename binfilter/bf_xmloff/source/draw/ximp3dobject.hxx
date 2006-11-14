@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ximp3dobject.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:51:17 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:16:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@
 #endif
 
 #ifndef _SVX_VECTOR3D_HXX
-#include <goodies/vector3d.hxx>
+#include <bf_goodies/vector3d.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
