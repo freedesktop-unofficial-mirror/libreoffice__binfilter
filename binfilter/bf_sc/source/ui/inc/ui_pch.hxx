@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:30:27 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 11:59:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -334,7 +334,7 @@
 #include <drawview.hxx>
 #include <bf_svx/view3d.hxx>
 #include <bf_svx/def3d.hxx>
-#include <goodies/vector3d.hxx>
+#include <bf_goodies/vector3d.hxx>
 #include <vcl/floatwin.hxx>
 #include <basic/sbxobj.hxx>
 #include <bf_svx/svxenum.hxx>
