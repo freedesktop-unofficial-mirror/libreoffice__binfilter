@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:09:41 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,8 +120,9 @@ class SvUShorts;
 class SvUShortsSort;
 class SvxMacro;
 class SvxMacroTableDtor;
-class GraphicObject;
+
 namespace binfilter {
+class BfGraphicObject;
 
 class SvxForbiddenCharactersTable;
 class SwExtTextInput;
@@ -978,13 +979,13 @@ public:
                         const SfxItemSet* pGrfAttrSet = 0,
                         SwFrmFmt* = 0 );
     SwFlyFrmFmt* Insert(const SwPaM &rRg,
-                        const GraphicObject& rGrfObj,
+                        const BfGraphicObject& rGrfObj,
                         const SfxItemSet* pFlyAttrSet = 0,
                         const SfxItemSet* pGrfAttrSet = 0,
                         SwFrmFmt* = 0 );
         // austauschen einer Grafik (mit Undo)
     void ReRead( SwPaM&, const String& rGrfName, const String& rFltName,
-                const Graphic* pGraphic, const GraphicObject* pGrfObj );
+                const Graphic* pGraphic, const BfGraphicObject* pGrfObj );
 
         //Einfuegen eines DrawObjectes. Das Object muss bereits im DrawModel
         // angemeldet sein.
