@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_obj3d.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:49:46 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:01:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1377,7 +1377,7 @@ namespace binfilter {
 /*N*/   // Defaults setzen
 /*N*/   aMaterialAmbientColor = rDefault.GetDefaultAmbientColor();
 /*N*/
-/*N*/   aBackMaterial = rDefault.GetDefaultBackMaterial();
+//is always default, so it needs not to be set /*N*/    aBackMaterial = rDefault.GetDefaultBackMaterial();
 /*N*/   bCreateNormals = rDefault.GetDefaultCreateNormals();
 /*N*/   bCreateTexture = rDefault.GetDefaultCreateTexture();
 /*N*/   bUseDifferentBackMaterial = rDefault.GetDefaultUseDifferentBackMaterial();
