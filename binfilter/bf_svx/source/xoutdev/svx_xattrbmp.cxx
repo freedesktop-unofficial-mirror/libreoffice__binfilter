@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattrbmp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:02:51 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:06:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,7 +111,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ XOBitmap::XOBitmap( const GraphicObject& rGraphicObject, XBitmapStyle eInStyle ) :
+/*N*/ XOBitmap::XOBitmap( const BfGraphicObject& rGraphicObject, XBitmapStyle eInStyle ) :
 /*N*/   eType           ( XBITMAP_IMPORT ),
 /*N*/   eStyle          ( eInStyle ),
 /*N*/   aGraphicObject  ( rGraphicObject ),
@@ -251,7 +251,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( eType != rXOBitmap.eType      ||
 /*N*/       eStyle != rXOBitmap.eStyle         ||
-/*N*/       aGraphicObject != rXOBitmap.aGraphicObject ||
+/*N*/       !(aGraphicObject == rXOBitmap.aGraphicObject) ||
 /*N*/       aArraySize != rXOBitmap.aArraySize     ||
 /*N*/       aPixelColor != rXOBitmap.aPixelColor ||
 /*N*/       aBckgrColor != rXOBitmap.aBckgrColor ||
@@ -325,7 +325,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ const GraphicObject& XOBitmap::GetGraphicObject() const
+/*N*/ const BfGraphicObject& XOBitmap::GetGraphicObject() const
 /*N*/ {
 /*N*/   if( bGraphicDirty )
 /*N*/       ( (XOBitmap*) this )->Array2Bitmap();
@@ -413,7 +413,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   aGraphicObject = GraphicObject( aVD.GetBitmap( Point(), Size( nLines, nLines ) ) );
+/*N*/   aGraphicObject = BfGraphicObject( aVD.GetBitmap( Point(), Size( nLines, nLines ) ) );
 /*N*/   bGraphicDirty = FALSE;
 /*N*/ }
 
@@ -750,7 +750,7 @@ namespace binfilter {
 /*N*/       ::rtl::OUString aURL;
 /*N*/       if(rVal >>= aURL)
 /*N*/       {
-/*N*/           GraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
+/*N*/           BfGraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
 /*N*/           XOBitmap aBMP( aGrafObj );
 /*N*/           SetValue( aBMP );
 /*N*/           return sal_True;
