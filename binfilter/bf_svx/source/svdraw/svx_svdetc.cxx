@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:38:15 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,6 +95,11 @@
 #ifndef _SVX_XFLBCKIT_HXX
 #include "xflbckit.hxx"
 #endif
+
+#ifndef _B3D_B3DCOLOR_HXX
+#include <bf_goodies/b3dcolor.hxx>
+#endif
+
 namespace binfilter {
 
 /******************************************************************************
