@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoframe.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:50:43 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:07:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1260,7 +1260,7 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                 FN_UNO_GRAPHIC_FILTER == pCur->nWID)
         {
             String sGrfName, sFltName;
-            GraphicObject *pGrfObj = 0;
+            BfGraphicObject* pGrfObj = 0;
             pFmt->GetDoc()->GetGrfNms( *(SwFlyFrmFmt*)pFmt, &sGrfName, &sFltName );
             OUString uTemp;
             aValue >>= uTemp;
@@ -1271,7 +1271,7 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                 if( sTmp.EqualsAscii( sPackageProtocol,
                                       0, sizeof( sPackageProtocol )-1 ) )
                 {
-                    pGrfObj = new GraphicObject;
+                    pGrfObj = new BfGraphicObject;
                     pGrfObj->SetUserData( sTmp );
                     pGrfObj->SetSwapState();
                     sGrfName.Erase();
@@ -1281,7 +1281,7 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                 {
                     ByteString sId( sTmp.Copy(sizeof(sGraphicObjectProtocol)-1),
                                     RTL_TEXTENCODING_ASCII_US );
-                    pGrfObj = new GraphicObject( sId );
+                    pGrfObj = new BfGraphicObject( sId );
                     sGrfName.Erase();
                 }
                 else
@@ -2085,7 +2085,7 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
             UnoActionContext aCont(pDoc);
             uno::Any* pGraphicURL;
             String sGraphicURL;
-            GraphicObject *pGrfObj = 0;
+            BfGraphicObject* pGrfObj = 0;
             if(pProps->GetProperty(FN_UNO_GRAPHIC_U_R_L, 0, pGraphicURL))
             {
                 OUString uTemp;
@@ -2094,7 +2094,7 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                 if( sGraphicURL.EqualsAscii( sPackageProtocol,
                                                0, sizeof( sPackageProtocol )-1 ) )
                 {
-                    pGrfObj = new GraphicObject;
+                    pGrfObj = new BfGraphicObject;
                     pGrfObj->SetUserData( sGraphicURL );
                     pGrfObj->SetSwapState();
                     sGraphicURL.Erase();
@@ -2104,7 +2104,7 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                 {
                     ByteString sId( sGraphicURL.Copy( sizeof(sGraphicObjectProtocol)-1 ),
                                     RTL_TEXTENCODING_ASCII_US );
-                    pGrfObj = new GraphicObject( sId );
+                    pGrfObj = new BfGraphicObject( sId );
                     sGraphicURL.Erase();
                 }
             }
