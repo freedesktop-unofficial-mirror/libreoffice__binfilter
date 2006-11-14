@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmluconv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:26:34 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:26:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,6 @@
 #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #endif
-class Vector3D;
 
 namespace rtl
 {
@@ -86,6 +85,7 @@ namespace com { namespace sun { namespace star {
     namespace text { class XNumberingTypeInfo; }
 }}}
 namespace binfilter {
+class Vector3D;
 
 class SvXMLTokenEnumerator
 {
