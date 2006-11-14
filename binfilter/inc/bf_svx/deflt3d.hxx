@@ -4,9 +4,9 @@
  *
  *  $RCSfile: deflt3d.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:26:20 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 
 
 #ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
+#include <bf_goodies/base3d.hxx>
 #endif
 class SfxItemSet;
 namespace binfilter {
@@ -59,7 +59,7 @@ private:
 //-/    B3dMaterial         aDefaultFrontMaterial;
     Color               aDefaultAmbientColor;
 
-    B3dMaterial         aDefaultBackMaterial;
+//  B3dMaterial         aDefaultBackMaterial;
 //-/    Base3DTextureKind   eDefaultTextureKind;
 //-/    Base3DTextureMode   eDefaultTextureMode;
 //-/    BOOL                bDefaultDoubleSided                     ;
@@ -129,8 +129,8 @@ public:
     const Color& GetDefaultAmbientColor() { return aDefaultAmbientColor; }
     void SetDefaultAmbientColor(const Color& rNew) { aDefaultAmbientColor = rNew; }
 
-    const B3dMaterial& GetDefaultBackMaterial() { return aDefaultBackMaterial; }
-    void SetDefaultBackMaterial(const B3dMaterial& rNew) { aDefaultBackMaterial = rNew; }
+//  const B3dMaterial& GetDefaultBackMaterial() { return aDefaultBackMaterial; }
+//  void SetDefaultBackMaterial(const B3dMaterial& rNew) { aDefaultBackMaterial = rNew; }
 //-/    const Base3DTextureKind GetDefaultTextureKind() { return eDefaultTextureKind; }
 //-/    void SetDefaultTextureKind(const Base3DTextureKind eNew) { eDefaultTextureKind = eNew; }
 //-/    const Base3DTextureMode GetDefaultTextureMode() { return eDefaultTextureMode; }
