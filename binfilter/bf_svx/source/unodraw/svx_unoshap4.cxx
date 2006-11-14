@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:57:18 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -174,7 +174,7 @@ void SAL_CALL SvxOle2Shape::setPropertyValue( const OUString& aPropertyName, con
             SdrOle2Obj* pOle = PTR_CAST( SdrOle2Obj, pObj );
             if( pOle )
             {
-                GraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
+                BfGraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
                 pOle->SetGraphic( &aGrafObj.GetGraphic() );
             }
             return;
@@ -231,7 +231,7 @@ Any SAL_CALL SvxOle2Shape::getPropertyValue( const OUString& PropertyName ) thro
 
             if( pGraphic )
             {
-                GraphicObject aObj( *pGraphic );
+                BfGraphicObject aObj( *pGraphic );
                 aURL = OUString(RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX));
                 aURL += OUString::createFromAscii( aObj.GetUniqueID().GetBuffer() );
             }
