@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:51:17 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:07:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -193,8 +193,8 @@
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
 #endif
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 
 #ifndef _CMDID_H
@@ -2770,8 +2770,8 @@ void SwFlyFrmFmt::MakeFrms()
 /*M*/     }
 /*M*/     else
 /*M*/     {
-/*N*/         const GraphicObject *pTmpGrf =
-/*N*/                 static_cast<const GraphicObject*>(GetBackground().GetGraphicObject());
+/*N*/         const BfGraphicObject* pTmpGrf =
+/*N*/                 static_cast<const BfGraphicObject*>(GetBackground().GetGraphicObject());
 /*M*/         if ( (pTmpGrf) &&
 /*M*/              (pTmpGrf->GetAttr().GetTransparency() != 0)
 /*M*/            )
