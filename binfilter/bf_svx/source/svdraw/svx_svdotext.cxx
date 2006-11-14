@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:43:20 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,6 +88,10 @@
 
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
+#endif
+
+#ifndef _B2D_MATRIX3D_HXX
+#include <bf_goodies/matrix3d.hxx>
 #endif
 
 namespace binfilter {
