@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:08:01 $
+#   last change: $Author: ihi $ $Date: 2006-11-14 12:26:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@ RDBNAMES=		\
     bf_wrapper
 
 RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(UPD)$(DLLPOSTFIX)$(DLLPOST))
-#RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(DLLPRE)$i$(UPD)$(DLLPOSTFIX)$(DLLPOST))
 
 # --- Targets ----------------------------------
 
@@ -77,10 +76,3 @@ $(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
     @+-$(RM) $@ >& $(NULLDEV)
     +cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) $(foreach,i,$(RDBLIBS:f) -c $i)
 
-#$(BIN)$/legacy_binfilters.rdb .SETDIR=$(LOCALLIBDIR) : $(RDBLIBS)
-#    @+-$(RM) $@ >& $(NULLDEV)
-#    $(REGCOMP) -register -r ../$@ $(foreach,i,$(RDBLIBS) -c $(subst,$/,/ $i))
-
-#$(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
-#    @+-$(RM) $@ >& $(NULLDEV)
-#    $(REGCOMP) -register -r $@ $(foreach,i,$(RDBLIBS) -c $(subst,$/,/ $i))
