@@ -4,9 +4,9 @@
  *
  *  $RCSfile: brshitem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:22:06 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,8 +54,8 @@ namespace rtl
     class OUString;
 }
 class Graphic;
-class GraphicObject;
 namespace binfilter {
+class BfGraphicObject;
 
 // class SvxBrushItem ----------------------------------------------------
 
@@ -104,7 +104,7 @@ public:
 
     SvxBrushItem( const Graphic& rGraphic,
                   SvxGraphicPosition ePos, USHORT nWhich = ITEMID_BRUSH );
-    SvxBrushItem( const GraphicObject& rGraphicObj,
+    SvxBrushItem( const BfGraphicObject& rGraphicObj,
                   SvxGraphicPosition ePos, USHORT nWhich = ITEMID_BRUSH );
     SvxBrushItem( const String& rLink, const String& rFilter,
                   SvxGraphicPosition ePos, USHORT nWhich = ITEMID_BRUSH );
@@ -134,7 +134,7 @@ public:
 
 
     const Graphic*          GetGraphic( SfxObjectShell* pSh = 0) const;
-    const GraphicObject*    GetGraphicObject( SfxObjectShell* pSh = 0) const;
+    const BfGraphicObject*  GetGraphicObject( SfxObjectShell* pSh = 0) const;
     const String*           GetGraphicLink() const      { return pStrLink; }
     const String*           GetGraphicFilter() const    { return pStrFilter; }
 
