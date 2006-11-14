@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_grfatr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:31:13 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:07:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,8 +76,8 @@
 #include <com/sun/star/drawing/ColorMode.hpp>
 #endif
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
