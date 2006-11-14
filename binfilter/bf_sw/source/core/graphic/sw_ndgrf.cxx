@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:41:06 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:07:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -156,7 +156,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SwGrfNode::SwGrfNode( const SwNodeIndex & rWhere,
-/*N*/                       const GraphicObject& rGrfObj,
+/*N*/                       const BfGraphicObject& rGrfObj,
 /*N*/                       SwGrfFmtColl *pGrfColl, SwAttrSet* pAutoAttr )
 /*N*/   : SwNoTxtNode( rWhere, ND_GRFNODE, pGrfColl, pAutoAttr )
 /*N*/ {
@@ -206,7 +206,7 @@ namespace binfilter {
 // aktuelle wird durch die neue ersetzt.
 
 /*N*/ BOOL SwGrfNode::ReRead( const String& rGrfName, const String& rFltName,
-/*N*/                       const Graphic* pGraphic, const GraphicObject* pGrfObj,
+/*N*/                       const Graphic* pGraphic, const BfGraphicObject* pGrfObj,
 /*N*/                       BOOL bNewGrf )
 /*N*/ {
 /*N*/   BOOL bReadGrf = FALSE, bSetTwipSize = TRUE;
@@ -409,7 +409,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SwGrfNode * SwNodes::MakeGrfNode( const SwNodeIndex & rWhere,
-/*N*/                               const GraphicObject& rGrfObj,
+/*N*/                               const BfGraphicObject& rGrfObj,
 /*N*/                               SwGrfFmtColl* pGrfColl,
 /*N*/                               SwAttrSet* pAutoAttr )
 /*N*/ {
@@ -924,7 +924,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   return pGrfNd;
 /*N*/ }
 
-/*M*/ IMPL_LINK( SwGrfNode, SwapGraphic, GraphicObject*, pGrfObj )
+/*M*/ IMPL_LINK( SwGrfNode, SwapGraphic, BfGraphicObject*, pGrfObj )
 /*M*/ {
 /*M*/   SvStream* pRet;
 /*M*/
