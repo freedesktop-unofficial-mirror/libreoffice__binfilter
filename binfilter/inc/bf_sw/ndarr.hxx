@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndarr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:11:09 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,12 +46,13 @@
 #ifndef _NDTYP_HXX
 #include <ndtyp.hxx>
 #endif
+
 class Graphic;
-class GraphicObject;
 class UniString;
 class SvInPlaceObject;
 
 namespace binfilter {
+class BfGraphicObject;
 
 class SwAttrSet;
 class SwCntntFrm;
@@ -241,7 +242,7 @@ public:
                             BOOL bDelayed = FALSE );    // in ndgrf.cxx
 
     SwGrfNode *MakeGrfNode( const SwNodeIndex & rWhere,
-                            const GraphicObject& rGrfObj,
+                            const BfGraphicObject& rGrfObj,
                             SwGrfFmtColl *pColl,
                             SwAttrSet* pAutoAttr = 0 ); // in ndgrf.cxx
 
