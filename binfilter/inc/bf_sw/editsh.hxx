@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:40:20 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,11 +71,11 @@ class SfxPoolItem;
 class SfxItemSet;
 class SvStringsDtor;
 class Graphic;          // fuer GetGraphic
-class GraphicObject; // fuer GetGraphicObj
 class SvInPlaceObjectRef;
 class SvInPlaceObject;
 class Font;
 namespace binfilter {
+class BfGraphicObject; // fuer GetGraphicObj
 
 
 class SwDoc;
