@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:39:50 $
+#   last change: $Author: ihi $ $Date: 2006-11-14 12:06:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -69,7 +69,7 @@ SHL1BASE  = 0x1d800000
 
 SHL1STDLIBS= \
     $(BFXMLOFFLIB) \
-            $(GOODIESLIB) \
+            $(BFGOODIESLIB) \
             $(BASICLIB) \
             $(SO2LIB) \
             $(SVTOOLLIB) \
