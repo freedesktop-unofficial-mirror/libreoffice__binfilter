@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fileobj.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:49:22 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,6 @@ class SvFileObject : public ::so3::SvLinkSource
 
     BYTE nType;
 
-    BOOL bProgress : 1;
     BOOL bLoadAgain : 1;
     BOOL bSynchron : 1;
     BOOL bLoadError : 1;
