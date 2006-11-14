@@ -4,9 +4,9 @@
  *
  *  $RCSfile: poly3d.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:53:18 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:21:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,14 +45,14 @@
 #endif
 
 #ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
+#include <bf_goodies/base3d.hxx>
 #endif
 class SvStream;
-class Vector3D;
-class Matrix4D;
 class Polygon;
 class PolyPolygon;
 namespace binfilter {
+class Vector3D;
+class Matrix4D;
 
 
 class XPolygon;
@@ -219,10 +219,10 @@ public:
 
 /************************************************************************/
 
-#define TEST_MERGE
-#ifdef TEST_MERGE
-extern OutputDevice* pThisIsTheActualOutDev;
-#endif
+//#define   TEST_MERGE
+//#ifdef TEST_MERGE
+//extern OutputDevice* pThisIsTheActualOutDev;
+//#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 
