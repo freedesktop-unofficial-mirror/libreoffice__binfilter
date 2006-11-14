@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_XPropertyTable.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:21:52 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:04:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -750,7 +750,7 @@ XPropertyEntry* SvxUnoXBitmapTable::getEntry( const OUString& rName, const Any& 
     if(!(rAny >>= aURL))
         return NULL;
 
-    GraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
+    BfGraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
     XOBitmap aBMP( aGrafObj );
 
     const String aName( rName );
