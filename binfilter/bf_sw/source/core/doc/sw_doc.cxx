@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:27:55 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:06:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -421,7 +421,7 @@ namespace binfilter {
 /*N*/                           pDfltGrfFmtColl ),
 /*N*/                           pFlyAttrSet, pGrfAttrSet, pFrmFmt );
 /*N*/ }
-/*N*/ SwFlyFrmFmt* SwDoc::Insert( const SwPaM &rRg, const GraphicObject& rGrfObj,
+/*N*/ SwFlyFrmFmt* SwDoc::Insert( const SwPaM &rRg, const BfGraphicObject& rGrfObj,
 /*N*/                           const SfxItemSet* pFlyAttrSet,
 /*N*/                           const SfxItemSet* pGrfAttrSet,
 /*N*/                           SwFrmFmt* pFrmFmt )
@@ -671,7 +671,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 
 /*N*/ void SwDoc::ReRead( SwPaM& rPam, const String& rGrfName,
 /*N*/                   const String& rFltName, const Graphic* pGraphic,
-/*N*/                   const GraphicObject* pGrafObj )
+/*N*/                   const BfGraphicObject* pGrafObj )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 /*N*/ }
