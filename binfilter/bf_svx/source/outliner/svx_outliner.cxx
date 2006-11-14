@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:31:58 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,8 +69,8 @@
 
 
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 
 
