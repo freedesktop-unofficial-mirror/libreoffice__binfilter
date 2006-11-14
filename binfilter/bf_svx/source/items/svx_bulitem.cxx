@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_bulitem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:14:27 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -181,7 +181,7 @@ namespace binfilter {
 /*?*/           nStyle = BS_NONE;
 /*?*/       }
 /*?*/       else
-/*?*/             pGraphicObject = new GraphicObject( aBmp );
+/*?*/             pGraphicObject = new BfGraphicObject( aBmp );
 /*N*/   }
 /*N*/
 /*N*/     rStrm >> nWidth;
@@ -208,7 +208,7 @@ namespace binfilter {
 /*N*/ SvxBulletItem::SvxBulletItem( const SvxBulletItem& rItem) : SfxPoolItem( rItem )
 /*N*/ {
 /*N*/   aFont           = rItem.aFont;
-/*N*/     pGraphicObject    = ( rItem.pGraphicObject ? new GraphicObject( *rItem.pGraphicObject ) : NULL );
+/*N*/     pGraphicObject    = ( rItem.pGraphicObject ? new BfGraphicObject( *rItem.pGraphicObject ) : NULL );
 /*N*/   aPrevText       = rItem.aPrevText;
 /*N*/   aFollowText     = rItem.aFollowText;
 /*N*/   nStart          = rItem.nStart;
@@ -303,7 +303,7 @@ namespace binfilter {
 /*?*/             return 0;
 /*?*/
 /*?*/         if( ( pGraphicObject && rBullet.pGraphicObject ) &&
-/*?*/             ( ( *pGraphicObject != *rBullet.pGraphicObject ) ||
+/*?*/             ( ( !(*pGraphicObject == *rBullet.pGraphicObject) ) ||
 /*?*/               ( pGraphicObject->GetPrefSize() != rBullet.pGraphicObject->GetPrefSize() ) ) )
 /*?*/         {
 /*?*/             return 0;
