@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXDataRow.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:58:04 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:00:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -329,7 +329,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                         {
                             ::rtl::OUString aURL;
                             aValue >>= aURL;
-                            GraphicObject aGraphObj = CreateGraphicObjectFromURL( aURL );
+                            BfGraphicObject aGraphObj = CreateGraphicObjectFromURL( aURL );
                             SvxBrushItem aItem( SCHATTR_SYMBOL_BRUSH );
                             aItem.SetGraphic( aGraphObj.GetGraphic() );
                             pSet->Put( aItem );
@@ -562,7 +562,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                 else if( nWID == SCHATTR_SYMBOL_BRUSH )
                 {
                     ::rtl::OUString aURL;
-                    const GraphicObject* pGraphObj =
+                    const BfGraphicObject* pGraphObj =
                         ((const SvxBrushItem &)(pSet->Get( nWID ))).GetGraphicObject();
                     if( pGraphObj )
                     {
