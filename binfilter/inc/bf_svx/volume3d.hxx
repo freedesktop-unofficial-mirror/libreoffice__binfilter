@@ -4,9 +4,9 @@
  *
  *  $RCSfile: volume3d.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:23:39 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:23:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,10 +37,10 @@
 #define _VOLUME3D_HXX
 
 #ifndef _B3D_VOLUM_HXX
-#include <goodies/b3dvolum.hxx>
+#include <bf_goodies/b3dvolum.hxx>
 #endif
-class Matrix4D;
 namespace binfilter {
+class Matrix4D;
 
 //************************************************************
 //   Vorausdeklarationen
