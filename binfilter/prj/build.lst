@@ -1,5 +1,8 @@
 bf      binfilter :     idl basic goodies xmlscript connectivity framework stoc uui offuh shell svtools so3 NULL
 bf	binfilter											usr1	-	all	bf_mkout NULL
+bf	binfilter\bf_goodies\source\base2d					nmake	-	all	bf_go_base2d NULL
+bf	binfilter\bf_goodies\source\base3d					nmake	-	all	bf_go_base3d NULL
+bf	binfilter\bf_goodies\util							nmake	-	all	bf_go_util bf_go_base3d bf_go_base2d NULL
 bf	binfilter\bf_xmloff\source\core						nmake	-	all	bf_xo_core NULL
 bf	binfilter\bf_xmloff\source\meta						nmake	-	all	bf_xo_meta NULL
 bf	binfilter\bf_xmloff\source\style					nmake	-	all	bf_xo_style NULL
@@ -8,7 +11,7 @@ bf	binfilter\bf_xmloff\source\draw						nmake	-	all	bf_xo_draw NULL
 bf	binfilter\bf_xmloff\source\chart					nmake	-	all	bf_xo_chart NULL
 bf	binfilter\bf_xmloff\source\forms					nmake	-	all	bf_xo_forms NULL
 bf	binfilter\bf_xmloff\source\script					nmake	-	all	bf_xo_script NULL
-bf	binfilter\bf_xmloff\util							nmake	-	all	bf_xo_util bf_xo_chart bf_xo_core bf_xo_draw bf_xo_forms bf_xo_meta bf_xo_script bf_xo_style bf_xo_text NULL
+bf	binfilter\bf_xmloff\util							nmake	-	all	bf_xo_util bf_go_util bf_xo_chart bf_xo_core bf_xo_draw bf_xo_forms bf_xo_meta bf_xo_script bf_xo_style bf_xo_text NULL
 bf	binfilter\legacysmgr\source\legacy					nmake	-	all	bf_legacy	NULL
 bf	binfilter\bf_sfx2\source\inc						get		-	all	bf_sf_sinc NULL
 bf	binfilter\bf_sfx2\sdi								nmake	-	all	bf_sf_sdi NULL
@@ -47,7 +50,7 @@ bf	binfilter\bf_svx\source\unoedit						nmake	-	all	bf_sv_unedt NULL
 bf	binfilter\bf_svx\source\gallery2					nmake	-	all	bf_sv_gall NULL
 bf	binfilter\bf_svx\source\msfilter					nmake	-	all	bf_sv_msfilt NULL
 bf	binfilter\bf_svx\source\xml							nmake	-	all	bf_sv_xml NULL
-bf	binfilter\bf_svx\util								nmake	-	all	bf_sv_util bf_sv_3deng bf_sv_dlg bf_sv_draw bf_sv_eeng bf_sv_form bf_sv_gall bf_sv_items bf_sv_link bf_sv_mnuc bf_sv_msfilt bf_sv_opt bf_sv_outl bf_sv_sdi bf_sv_stbc bf_sv_tbxc bf_sv_undrw bf_sv_unedt bf_sv_xml bf_sv_xout bf_sf_util NULL
+bf	binfilter\bf_svx\util								nmake	-	all	bf_sv_util bf_go_util bf_sv_3deng bf_sv_dlg bf_sv_draw bf_sv_eeng bf_sv_form bf_sv_gall bf_sv_items bf_sv_link bf_sv_mnuc bf_sv_msfilt bf_sv_opt bf_sv_outl bf_sv_sdi bf_sv_stbc bf_sv_tbxc bf_sv_undrw bf_sv_unedt bf_sv_xml bf_sv_xout bf_sf_util NULL
 bf  binfilter\binfilterdetect\source		            nmake	-	all	bf_sf_detect	bf_sv_util	NULL
 bf	binfilter\bf_linguistic\source						nmake	-	all	bf_lg_src bf_sv_util NULL
 bf	binfilter\bf_forms\source\inc						get		-	all	bf_fm_inc NULL
