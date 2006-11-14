@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdgmoitm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:58:06 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,8 +36,8 @@
 #ifndef _SDGMOITM_HXX
 #define _SDGMOITM_HXX
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX
 #include <svtools/eitem.hxx>
