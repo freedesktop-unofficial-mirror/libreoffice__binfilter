@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdograf.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:08:15 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:23:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,11 +42,11 @@
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
 #endif
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
-class GraphicObject;
 namespace binfilter {
+class BfGraphicObject;
 
 // -----------
 // - Defines -
@@ -90,7 +90,7 @@ protected:
 
     void                    ImpSetAttrToGrafInfo(); // Werte vom Pool kopieren
     void                    ImpSetGrafInfoToAttr(); // Werte in den Pool kopieren
-    GraphicAttr             aGrafInfo;
+    BfGraphicAttr           aGrafInfo;
     FASTBOOL                bCopyToPoolOnAfterRead;
 
     String                  aName;
@@ -99,7 +99,7 @@ protected:
                                                 // Ausschnitt der Grafik in logischen Eingeiten der Grafik! Also Bitmap->=Pixel
     String                  aFileName;          // Wenn es sich um einen Link handelt, steht hier der Dateiname drin.
     String                  aFilterName;
-    GraphicObject*          pGraphic;           // Zur Beschleunigung von Bitmapausgaben, besonders von gedrehten.
+    BfGraphicObject*            pGraphic;           // Zur Beschleunigung von Bitmapausgaben, besonders von gedrehten.
     void*                   pReserve1;
     void*                   pReserve2;
     void*                   pReserve3;
@@ -119,7 +119,7 @@ protected:
 
     sal_Bool                ImpUpdateGraphicLink() const;
 
-                            DECL_LINK( ImpSwapHdl, GraphicObject* );
+                            DECL_LINK( ImpSwapHdl, BfGraphicObject* );
 
 #endif // __PRIVATE
 
@@ -132,8 +132,8 @@ public:
                             SdrGrafObj(const Graphic& rGrf, const Rectangle& rRect);
     virtual                 ~SdrGrafObj();
 
-    void                    SetGraphicObject( const GraphicObject& rGrfObj );
-    const GraphicObject&    GetGraphicObject() const;
+    void                    SetGraphicObject( const BfGraphicObject& rGrfObj );
+    const BfGraphicObject&  GetGraphicObject() const;
 
     void                    SetGraphic(const Graphic& rGrf);
     const Graphic&          GetGraphic() const;
