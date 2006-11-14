@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdobj.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-07 14:48:22 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,6 +81,11 @@
 #ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
 #endif
+
+#ifndef _TOOLS_COLOR_HXX
+#include <tools/color.hxx>
+#endif
+
 class SfxBroadcaster;
 class Pointer;
 class AutoTimer;
