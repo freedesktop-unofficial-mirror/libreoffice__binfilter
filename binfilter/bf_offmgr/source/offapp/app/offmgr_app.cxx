@@ -4,9 +4,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:08:33 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 11:59:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -374,11 +374,6 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/
 /*N*/   SvxIMapDlgChildWindow::RegisterChildWindow();
 /*N*/
-/*N*/   // Handler fuer Grafikfilter setzen; im Handler wird ggf.
-/*N*/   // der Graphicfilter init., wenn das erste Mal auf einen
-/*N*/   // Filter zugegriffen wird (KA 04.08.98)
-/*N*/   Application::SetFilterHdl( LINK( this, OfficeApplication, ImplInitFilterHdl ) );
-/*N*/
 /*N*/     // set basic error handler
 /*N*/   StarBASIC::SetGlobalErrorHdl( LINK( this, OfficeApplication, GlobalBasicErrorHdl ) );
 /*N*/
@@ -508,20 +503,6 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/void OfficeApplication::WriterExec_Impl( SfxRequest &rReq )
 /*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-// ------------------------------------------------------------------------
-
-
-
-// ------------------------------------------------------------------------
-
-/*N*/ IMPL_LINK( OfficeApplication, ImplInitFilterHdl, ConvertData*, pData )
-/*N*/ {
-/*N*/   return GetGrfFilter()->GetFilterCallback().Call( pData );
-/*N*/ }
-
-// ------------------------------------------------------------------------
-
 
 // ------------------------------------------------------------------------
 
