@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shapeexport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:33:49 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,9 +76,9 @@
 #ifndef _XMLOFF_FAMILIES_HXX_
 #include <bf_xmloff/families.hxx>
 #endif
-class Matrix3D;
 class Vector2D;
 namespace binfilter {
+class Matrix3D;
 
 // shape export features are bits used for the nFeature
 // parameter of XMLShapeExport::exportShape
