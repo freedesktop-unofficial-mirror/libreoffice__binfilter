@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xexptran.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:45:48 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:16:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #endif
 
 #ifndef _B3D_HMATRIX_HXX
-#include <goodies/hmatrix.hxx>
+#include <bf_goodies/hmatrix.hxx>
 #endif
 
 // #100617# FRound
