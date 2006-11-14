@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:48:50 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,8 +39,8 @@
 #ifndef _LNKBASE_HXX //autogen
 #include <so3/lnkbase.hxx>
 #endif
-#ifndef _GRFMGR_HXX //autogen
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
+#include <bf_goodies/graphicobject.hxx>
 #endif
 #ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
@@ -50,7 +50,7 @@ namespace binfilter {
 
 class SwGrfFmtColl;
 class SwDoc;
-class GraphicAttr;
+class BfGraphicAttr;
 
 
 // --------------------
@@ -61,7 +61,7 @@ class SwGrfNode: public SwNoTxtNode
     friend class SwNodes;
     friend class SwGrfFrm;
 
-    GraphicObject aGrfObj;
+    BfGraphicObject aGrfObj;
     ::so3::SvBaseLinkRef refLink;       // falls Grafik nur als Link, dann Pointer gesetzt
     Size nGrfSize;
 //  String aStrmName;           // SW3: Name des Storage-Streams fuer Embedded
@@ -91,7 +91,7 @@ class SwGrfNode: public SwNoTxtNode
                SwGrfFmtColl* pGrfColl,
                SwAttrSet* pAutoAttr = 0 );
     SwGrfNode( const SwNodeIndex& rWhere,
-               const GraphicObject& rGrfObj,
+               const BfGraphicObject& rGrfObj,
                SwGrfFmtColl* pGrfColl,
                SwAttrSet* pAutoAttr = 0 );
 
@@ -100,14 +100,14 @@ class SwGrfNode: public SwNoTxtNode
     BOOL HasStreamName() const { return aGrfObj.HasUserData(); }
     BOOL GetStreamStorageNames( String& rStrmName, String& rStgName ) const;
 
-    DECL_LINK( SwapGraphic, GraphicObject* );
+    DECL_LINK( SwapGraphic, BfGraphicObject* );
 
 public:
     virtual ~SwGrfNode();
 
     const Graphic&          GetGrf() const      { return aGrfObj.GetGraphic(); }
-    const GraphicObject&    GetGrfObj() const   { return aGrfObj; }
-          GraphicObject&    GetGrfObj()         { return aGrfObj; }
+    const BfGraphicObject&  GetGrfObj() const   { return aGrfObj; }
+          BfGraphicObject&  GetGrfObj()         { return aGrfObj; }
 
     virtual SwCntntNode *SplitNode( const SwPosition & );
 
@@ -145,7 +145,7 @@ public:
         // aktuelle wird durch die neue ersetzt.
     BOOL ReRead( const String& rGrfName, const String& rFltName,
                   const Graphic* pGraphic = 0,
-                  const GraphicObject* pGrfObj = 0,
+                  const BfGraphicObject* pGrfObj = 0,
                   BOOL bModify = TRUE );
         // Laden der Grafik unmittelbar vor der Anzeige
     short SwapIn( BOOL bWaitForData = FALSE );
