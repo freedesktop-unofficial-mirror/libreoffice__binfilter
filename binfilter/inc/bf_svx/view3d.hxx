@@ -4,9 +4,9 @@
  *
  *  $RCSfile: view3d.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:23:14 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:23:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef _SVX_VECTOR3D_HXX
-#include <goodies/vector3d.hxx>
+#include <bf_goodies/vector3d.hxx>
 #endif
 namespace binfilter {
 
