@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bulitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:22:19 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,8 +76,8 @@ namespace binfilter {
 #ifndef _VCL_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif
-#ifndef _GRFMGR_HXX //autogen
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
+#include <bf_goodies/graphicobject.hxx>
 #endif
 
 // class SvxBulletItem ---------------------------------------------------
@@ -85,7 +85,7 @@ namespace binfilter {
 class SvxBulletItem : public SfxPoolItem
 {
     Font            aFont;
-    GraphicObject*  pGraphicObject;
+    BfGraphicObject*  pGraphicObject;
     String          aPrevText;
     String          aFollowText;
     USHORT          nStart;
