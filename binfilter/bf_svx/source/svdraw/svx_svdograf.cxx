@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:42:02 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -201,7 +201,7 @@ namespace binfilter {
 /*N*/   bMirrored       ( FALSE ),
 /*N*/   pGraphicLink    ( NULL )
 /*N*/ {
-/*N*/   pGraphic = new GraphicObject;
+/*N*/   pGraphic = new BfGraphicObject;
 /*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*N*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*N*/   bNoShear = TRUE;
@@ -215,7 +215,7 @@ namespace binfilter {
 /*?*/   bMirrored       ( FALSE ),
 /*?*/   pGraphicLink    ( NULL )
 /*?*/ {
-/*?*/   pGraphic = new GraphicObject( rGrf );
+/*?*/   pGraphic = new BfGraphicObject( rGrf );
 /*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*?*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*?*/   bNoShear = TRUE;
@@ -228,7 +228,7 @@ namespace binfilter {
 /*?*/   bMirrored       ( FALSE ),
 /*?*/   pGraphicLink    ( NULL )
 /*?*/ {
-/*?*/   pGraphic = new GraphicObject( rGrf );
+/*?*/   pGraphic = new BfGraphicObject( rGrf );
 /*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*?*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*?*/   bNoShear = TRUE;
@@ -245,7 +245,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void SdrGrafObj::SetGraphicObject( const GraphicObject& rGrfObj )
+/*N*/ void SdrGrafObj::SetGraphicObject( const BfGraphicObject& rGrfObj )
 /*N*/ {
 /*N*/   *pGraphic = rGrfObj;
 /*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
@@ -257,7 +257,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ const GraphicObject& SdrGrafObj::GetGraphicObject() const
+/*N*/ const BfGraphicObject& SdrGrafObj::GetGraphicObject() const
 /*N*/ {
 /*N*/   ForceSwapIn();
 /*N*/   return *pGraphic;
@@ -755,7 +755,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       Point       aLogPos( aRect.TopLeft() );
 /*?*/       Size        aLogSize( pOutDev->PixelToLogic( pOutDev->LogicToPixel( aRect ).GetSize() ) );
-/*?*/       GraphicAttr aAttr( aGrafInfo );
+/*?*/       BfGraphicAttr aAttr( aGrafInfo );
 /*?*/       const ULONG nGraphicManagerDrawMode = ( pView ? pView->GetGraphicManagerDrawMode() : GRFMGR_DRAW_STANDARD );
 /*?*/
 /*?*/       aAttr.SetMirrorFlags( ( bHMirr ? BMP_MIRROR_HORZ : 0 ) | ( bVMirr ? BMP_MIRROR_VERT : 0 ) );
@@ -1557,7 +1557,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ IMPL_LINK( SdrGrafObj, ImpSwapHdl, GraphicObject*, pO )
+/*N*/ IMPL_LINK( SdrGrafObj, ImpSwapHdl, BfGraphicObject*, pO )
 /*N*/ {
 /*N*/   SvStream* pRet = GRFMGR_AUTOSWAPSTREAM_NONE;
 /*N*/
