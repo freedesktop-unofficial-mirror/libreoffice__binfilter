@@ -4,9 +4,9 @@
  *
  *  $RCSfile: basesh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:32:08 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:15:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,7 +85,6 @@ class SwBaseShell: public SfxShell
     SvUShortsSort aGrfUpdateSlots;
 
     DECL_LINK( GraphicArrivedHdl, SwCrsrShell* );
-    DECL_LINK( UpdatePercentHdl, GraphicFilter* );
 
 protected:
 
