@@ -4,9 +4,9 @@
  *
  *  $RCSfile: e3ditem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:29:00 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:21:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <svtools/poolitem.hxx>
 #endif
 #ifndef _VECTOR3D_HXX
-#include <goodies/vector3d.hxx>
+#include <bf_goodies/vector3d.hxx>
 #endif
 class SvStream;
 namespace binfilter {
