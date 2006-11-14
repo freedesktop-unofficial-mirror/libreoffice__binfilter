@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlgrhlp.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:32:17 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,8 +42,8 @@
 
 #include <so3/svstor.hxx>
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 #include <vector>
 #include <set>
@@ -80,7 +80,7 @@ private:
 
     typedef ::std::pair< ::rtl::OUString, ::rtl::OUString >                                             URLPair;
     typedef ::std::vector< URLPair >                                                                    URLPairVector;
-    typedef ::std::vector< GraphicObject >                                                              GraphicObjectVector;
+    typedef ::std::vector< BfGraphicObject >                                                                GraphicObjectVector;
     typedef ::std::set< ::rtl::OUString >                                                               URLSet;
     typedef ::std::vector< ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream > >    GraphicOutputStreamVector;
 
