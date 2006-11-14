@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoapi.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:21:25 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:23:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,8 +45,8 @@
 #include <sal/types.h>
 #endif
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 
 #ifndef _SFXPOOLITEM_HXX
@@ -72,7 +72,7 @@ SvxShape* CreateSvxShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt32 nInvento
 SdrObject* GetSdrObjectFromXShape( ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > xShape ) throw() ;
 
 /** returns a GraphicObject for this URL */
-GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw() ;
+BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw() ;
 
 /** returns the SvxNumBulletItem with the given name from the pool or a null if there is no item
     with that name
