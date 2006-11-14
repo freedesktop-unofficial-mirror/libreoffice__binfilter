@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:42:36 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,7 +76,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/ public:
 /*N*/   GDIMetaFile*    pMetaFile;          // Metafile fuer GetMtf kopieren und merken
-/*N*/   GraphicObject*  pGraphicObject;
+/*N*/   BfGraphicObject*    pGraphicObject;
 /*N*/   String          aPersistName;       // name of object in persist
 /*N*/
 /*N*/   // #107645#
@@ -215,7 +215,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/   if (pGrf!=NULL)
 /*N*/   {
 /*?*/       pGraphic = new Graphic(*pGrf);
-/*?*/       mpImpl->pGraphicObject = new GraphicObject( *pGraphic );
+/*?*/       mpImpl->pGraphicObject = new BfGraphicObject( *pGraphic );
 /*N*/   }
 /*N*/
 /*N*/   if ( ppObjRef->Is() && pGrf )
@@ -717,7 +717,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/       if( mpImpl->pGraphicObject )
 /*?*/           delete mpImpl->pGraphicObject;
 /*?*/
-/*?*/       mpImpl->pGraphicObject = new GraphicObject( *pGraphic );
+/*?*/       mpImpl->pGraphicObject = new BfGraphicObject( *pGraphic );
 /*N*/   }
 /*N*/ }
 
