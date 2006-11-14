@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:56:56 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #include <com/sun/star/drawing/PointSequence.hpp>
 #endif
 #ifndef _B2D_MATRIX3D_HXX
-#include <goodies/matrix3d.hxx>
+#include <bf_goodies/matrix3d.hxx>
 #endif
 #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
@@ -92,9 +92,9 @@ using namespace ::com::sun::star::container;
 } class GDIMetaFile; namespace binfilter {//STRIP009
 } class SvStream; namespace binfilter {//STRIP009
 } //namespace binfilter
-sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream,
-                              PFilterCallback pCallback=NULL, void * pCallerData=NULL,
-                              sal_Bool bPlaceable=sal_True);
+
+sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream, FilterConfigItem* pConfigItem = NULL, sal_Bool bPlaceable=sal_True);
+
 namespace binfilter {//STRIP009
 /***********************************************************************
 * class SvxShapeGroup                                                  *
@@ -1619,7 +1619,7 @@ void SAL_CALL SvxGraphicObject::setPropertyValue( const OUString& aPropertyName,
             aURL = aURL.copy( sizeof( UNO_NAME_GRAPHOBJ_URLPREFIX ) - 1 );
             String aTmpStr(aURL);
             ByteString aUniqueID( aTmpStr, RTL_TEXTENCODING_UTF8 );
-            GraphicObject aGrafObj( aUniqueID );
+            BfGraphicObject aGrafObj( aUniqueID );
 
             // #101808# since loading a graphic can cause a reschedule of the office
             //          it is possible that our shape is removed while where in this
@@ -1715,7 +1715,7 @@ uno::Any SAL_CALL SvxGraphicObject::getPropertyValue( const OUString& aPropertyN
         {
             SvMemoryStream aDestStrm( 65535, 65535 );
 
-            ConvertGDIMetaFileToWMF( rGraphic.GetGDIMetaFile(), aDestStrm, NULL, NULL, sal_False );
+            ConvertGDIMetaFileToWMF( rGraphic.GetGDIMetaFile(), aDestStrm, NULL, sal_False );
             uno::Sequence<sal_Int8> aSeq((sal_Int8*)aDestStrm.GetData(), aDestStrm.GetSize());
             return uno::Any( &aSeq, ::getCppuType(( uno::Sequence< sal_Int8 >*)0) );
         }
@@ -1729,7 +1729,7 @@ uno::Any SAL_CALL SvxGraphicObject::getPropertyValue( const OUString& aPropertyN
         }
         else
         {
-            const GraphicObject& rGrafObj = ((SdrGrafObj*)pObj)->GetGraphicObject();
+            const BfGraphicObject& rGrafObj = ((SdrGrafObj*)pObj)->GetGraphicObject();
             OUString aURL( RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX));
             aURL += OUString::createFromAscii( rGrafObj.GetUniqueID().GetBuffer() );
             aAny <<= aURL;
