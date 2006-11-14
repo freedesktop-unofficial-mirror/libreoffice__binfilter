@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xexptran.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:06:06 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:26:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #ifndef _B2D_MATRIX3D_HXX
-#include <goodies/matrix3d.hxx>
+#include <bf_goodies/matrix3d.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HPP_
@@ -68,10 +68,10 @@
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
 #endif
 
+namespace binfilter {
 class Vector3D;
 class Matrix4D;
 class Matrix3D;
-namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
