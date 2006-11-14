@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:15:34 $
+ *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,8 +64,11 @@
 #define ITEMID_BRUSH    0
 #define ITEMID_FRAMEDIR 0
 
-#ifndef _GRFMGR_HXX //autogen
-#include <goodies/grfmgr.hxx>
+//#ifndef _ARGS_HXX //autogen
+//#include <svtools/args.hxx>
+//#endif
+#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
+#include <bf_goodies/graphicobject.hxx>
 #endif
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
@@ -2184,7 +2187,7 @@ using namespace ::com::sun::star;
 class SvxBrushItem_Impl
 {
 public:
-    GraphicObject*  pGraphicObject;
+    BfGraphicObject*    pGraphicObject;
     sal_Int8        nGraphicTransparency; //contains a percentage value which is
                                           //copied to the GraphicObject when necessary
 #ifndef SVX_LIGHT
@@ -2192,7 +2195,7 @@ public:
 #endif
     Link            aDoneLink;
 
-    SvxBrushItem_Impl( GraphicObject* p ) : pGraphicObject( p ), nGraphicTransparency(0) {}
+    SvxBrushItem_Impl( BfGraphicObject* p ) : pGraphicObject( p ), nGraphicTransparency(0) {}
 };
 
 // class SvxBrushItemLink_Impl -------------------------------------------
@@ -2274,7 +2277,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/   SfxPoolItem( nWhich ),
 /*N*/
 /*N*/   aColor      ( COL_TRANSPARENT ),
-/*N*/   pImpl       ( new SvxBrushItem_Impl( new GraphicObject( rGraphic ) ) ),
+/*N*/   pImpl       ( new SvxBrushItem_Impl( new BfGraphicObject( rGraphic ) ) ),
 /*N*/   pStrLink    ( NULL ),
 /*N*/   pStrFilter  ( NULL ),
 /*N*/   eGraphicPos ( ( GPOS_NONE != ePos ) ? ePos : GPOS_MM ),
@@ -2286,13 +2289,13 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvxBrushItem::SvxBrushItem( const GraphicObject& rGraphicObj,
+/*N*/ SvxBrushItem::SvxBrushItem( const BfGraphicObject& rGraphicObj,
 /*N*/                           SvxGraphicPosition ePos, sal_uInt16 nWhich ) :
 /*N*/
 /*N*/   SfxPoolItem( nWhich ),
 /*N*/
 /*N*/   aColor      ( COL_TRANSPARENT ),
-/*N*/   pImpl       ( new SvxBrushItem_Impl( new GraphicObject( rGraphicObj ) ) ),
+/*N*/   pImpl       ( new SvxBrushItem_Impl( new BfGraphicObject( rGraphicObj ) ) ),
 /*N*/   pStrLink    ( NULL ),
 /*N*/   pStrFilter  ( NULL ),
 /*N*/   eGraphicPos ( ( GPOS_NONE != ePos ) ? ePos : GPOS_MM ),
@@ -2403,7 +2406,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/           Graphic aGraphic;
 /*N*/
 /*N*/           rStream >> aGraphic;
-/*N*/           pImpl->pGraphicObject = new GraphicObject( aGraphic );
+/*N*/           pImpl->pGraphicObject = new BfGraphicObject( aGraphic );
 /*N*/
 /*N*/           if( SVSTREAM_FILEFORMAT_ERROR == rStream.GetError() )
 /*N*/           {
@@ -2616,8 +2619,8 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/                   ByteString sId( sTmp.Copy(
 /*N*/                                       sizeof(UNO_NAME_GRAPHOBJ_URLPREFIX)-1),
 /*N*/                                   RTL_TEXTENCODING_ASCII_US );
-/*N*/                   GraphicObject *pOldGrfObj = pImpl->pGraphicObject;
-/*N*/                   pImpl->pGraphicObject = new GraphicObject( sId );
+/*N*/                   BfGraphicObject *pOldGrfObj = pImpl->pGraphicObject;
+/*N*/                   pImpl->pGraphicObject = new BfGraphicObject( sId );
 /*N*/                     ApplyGraphicTransparency_Impl();
 /*N*/                     delete pOldGrfObj;
 /*N*/               }
@@ -2682,7 +2685,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/           pStrFilter = new String( *rItem.pStrFilter );
 /*N*/       if ( rItem.pImpl->pGraphicObject )
 /*N*/         {
-/*N*/           pImpl->pGraphicObject = new GraphicObject( *rItem.pImpl->pGraphicObject );
+/*N*/           pImpl->pGraphicObject = new BfGraphicObject( *rItem.pImpl->pGraphicObject );
 /*N*/         }
 /*N*/   }
 /*N*/     pImpl->nGraphicTransparency = rItem.pImpl->nGraphicTransparency;
@@ -2796,7 +2799,7 @@ GraphicFilter* GetGrfFilter();
 
 // -----------------------------------------------------------------------
 
-/*N*/ const GraphicObject* SvxBrushItem::GetGraphicObject( SfxObjectShell* pSh ) const
+/*N*/ const BfGraphicObject* SvxBrushItem::GetGraphicObject( SfxObjectShell* pSh ) const
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( bLoadAgain && pStrLink && !pImpl->pGraphicObject && !pImpl->xMedium.Is() )
@@ -2847,7 +2850,7 @@ GraphicFilter* GetGrfFilter();
 
 /*N*/ const Graphic* SvxBrushItem::GetGraphic( SfxObjectShell* pSh ) const
 /*N*/ {
-/*N*/   const GraphicObject* pGrafObj = GetGraphicObject( pSh );
+/*N*/   const BfGraphicObject* pGrafObj = GetGraphicObject( pSh );
 /*N*/   return( pGrafObj ? &( pGrafObj->GetGraphic() ) : NULL );
 /*N*/ }
 
@@ -2867,7 +2870,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/   {
 /*N*/       if ( !pImpl->pGraphicObject && !pStrLink )
 /*N*/       {
-/*N*/           pImpl->pGraphicObject = new GraphicObject; // dummy anlegen
+/*N*/           pImpl->pGraphicObject = new BfGraphicObject; // dummy anlegen
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -2881,7 +2884,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/       if ( pImpl->pGraphicObject )
 /*N*/           pImpl->pGraphicObject->SetGraphic( rNew );
 /*N*/       else
-/*N*/           pImpl->pGraphicObject = new GraphicObject( rNew );
+/*N*/           pImpl->pGraphicObject = new BfGraphicObject( rNew );
 /*N*/
 /*N*/         ApplyGraphicTransparency_Impl();
 /*N*/
@@ -2953,7 +2956,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/     DBG_ASSERT(pImpl->pGraphicObject, "no GraphicObject available" )
 /*N*/     if(pImpl->pGraphicObject)
 /*N*/     {
-/*N*/         GraphicAttr aAttr(pImpl->pGraphicObject->GetAttr());
+/*N*/         BfGraphicAttr aAttr(pImpl->pGraphicObject->GetAttr());
 /*N*/         aAttr.SetTransparency(lcl_PercentToTransparency(
 /*N*/                             pImpl->nGraphicTransparency));
 /*N*/         pImpl->pGraphicObject->SetAttr(aAttr);
