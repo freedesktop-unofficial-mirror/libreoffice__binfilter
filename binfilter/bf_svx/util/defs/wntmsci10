@@ -29431,3 +29431,11 @@ _TI3?AVNotConnectedException@io@star@sun@com@@
 ?deallocate@?$allocator@VBfGraphicObject@binfilter@@@_STL@@QBEXPAVBfGraphicObject@binfilter@@I@Z
 ?push_back@?$vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QAEXABVBfGraphicObject@binfilter@@@Z
 ?size@?$vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QBEIXZ
+??0?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QAE@ABV?$allocator@VBfGraphicObject@binfilter@@@1@@Z
+??1?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QAE@XZ
+?_M_clear@?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@IAEXXZ
+?_M_insert_overflow@?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@IAEXPAVBfGraphicObject@binfilter@@ABV34@ABU__false_type@2@I_N@Z
+?_M_set@?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@IAEXPAVBfGraphicObject@binfilter@@00@Z
+?capacity@?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QBEIXZ
+?push_back@?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QAEXABVBfGraphicObject@binfilter@@@Z
+?size@?$__vector@VBfGraphicObject@binfilter@@V?$allocator@VBfGraphicObject@binfilter@@@_STL@@@_STL@@QBEIXZ
