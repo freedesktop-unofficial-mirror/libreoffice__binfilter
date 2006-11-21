@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdobj.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:59 $
+ *  last change: $Author: vg $ $Date: 2006-11-21 16:46:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -270,7 +270,7 @@ public:
     {}
     virtual ~SdrObjUserData();
 
-    virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0;
+    virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0; // #i71039# NULL -> 0
     UINT32  GetInventor() const { return nInventor; }
     UINT16  GetId() const { return nIdentifier; }
     virtual void WriteData(SvStream& rOut);
