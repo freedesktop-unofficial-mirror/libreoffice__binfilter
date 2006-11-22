@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ImageControl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:03:21 $
+ *  last change: $Author: vg $ $Date: 2006-11-22 10:17:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,9 +52,6 @@
 #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FILEDLGHELPER_HXX
-#include <bf_sfx2/filedlghelper.hxx>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XPOPUPMENU_HPP_
 #include <com/sun/star/awt/XPopupMenu.hpp>
@@ -653,38 +650,38 @@ void OImageControlControl::implClearGraphics()
 //------------------------------------------------------------------------------
 void OImageControlControl::implInsertGraphics()
 {
-    Reference< XPropertySet > xSet( getModel(), UNO_QUERY );
-    if ( !xSet.is() )
-        return;
+//  Reference< XPropertySet > xSet( getModel(), UNO_QUERY );
+//  if ( !xSet.is() )
+//      return;
 
-    ::rtl::OUString sTitle = FRM_RES_STRING(RID_STR_IMPORT_GRAPHIC);
-    // build some arguments for the upcoming dialog
-    try
-    {
-        ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );//STRIP008       ::sfx2::FileDialogHelper aDialog( ::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
-        aDialog.SetTitle( sTitle );
+//  ::rtl::OUString sTitle = FRM_RES_STRING(RID_STR_IMPORT_GRAPHIC);
+//  // build some arguments for the upcoming dialog
+//  try
+//  {
+//      ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );//STRIP008       ::sfx2::FileDialogHelper aDialog( ::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
+//      aDialog.SetTitle( sTitle );
 
-        Reference< XFilePickerControlAccess > xController(aDialog.GetFilePicker(), UNO_QUERY);
-        DBG_ASSERT( xController.is(), "OImageControlControl::implInsertGraphics: invalid file picker!" );
-        if ( xController.is() )
-        {
-            xController->setValue(ExtendedFilePickerElementIds::CHECKBOX_PREVIEW, 0, ::cppu::bool2any(sal_True));
-            xController->enableControl(ExtendedFilePickerElementIds::CHECKBOX_LINK, sal_False);
-        }
+//      Reference< XFilePickerControlAccess > xController(aDialog.GetFilePicker(), UNO_QUERY);
+//      DBG_ASSERT( xController.is(), "OImageControlControl::implInsertGraphics: invalid file picker!" );
+//      if ( xController.is() )
+//      {
+//          xController->setValue(ExtendedFilePickerElementIds::CHECKBOX_PREVIEW, 0, ::cppu::bool2any(sal_True));
+//          xController->enableControl(ExtendedFilePickerElementIds::CHECKBOX_LINK, sal_False);
+//      }
 
-        if ( ERRCODE_NONE == aDialog.Execute() )
-        {
-            // reset the url property in case it already has the value we're about to set - in this case
-            // our propertyChanged would not get called without this.
-            implClearGraphics();
+//      if ( ERRCODE_NONE == aDialog.Execute() )
+//      {
+//          // reset the url property in case it already has the value we're about to set - in this case
+//          // our propertyChanged would not get called without this.
+//          implClearGraphics();
 
-            xSet->setPropertyValue( PROPERTY_IMAGE_URL, makeAny( ::rtl::OUString( aDialog.GetPath() ) ) );
-        }
-    }
-    catch(Exception&)
-    {
-        DBG_ERROR("OImageControlControl::implInsertGraphics: caught an exception while attempting to execute the FilePicker!");
-    }
+//          xSet->setPropertyValue( PROPERTY_IMAGE_URL, makeAny( ::rtl::OUString( aDialog.GetPath() ) ) );
+//      }
+//  }
+//  catch(Exception&)
+//  {
+//      DBG_ERROR("OImageControlControl::implInsertGraphics: caught an exception while attempting to execute the FilePicker!");
+//  }
 }
 
 // MouseListener
