@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:41:04 $
+ *  last change: $Author: vg $ $Date: 2006-11-22 10:21:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,9 +88,9 @@
 #ifndef _SFXNEW_HXX //autogen
 #include <bf_sfx2/new.hxx>
 #endif
-#ifndef _FILEDLGHELPER_HXX
-#include <bf_sfx2/filedlghelper.hxx>
-#endif
+//#ifndef _FILEDLGHELPER_HXX
+//#include <bf_sfx2/filedlghelper.hxx>
+//#endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
@@ -254,27 +254,27 @@
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
 #endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
-#include <com/sun/star/ui/dialogs/XFilePicker.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILTERMANAGER_HPP_
-#include <com/sun/star/ui/dialogs/XFilterManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
-#include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
-#include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_LISTBOXCONTROLACTIONS_HPP_
-#include <com/sun/star/ui/dialogs/ListboxControlActions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HPP_
-#include <com/sun/star/ui/dialogs/CommonFilePickerElementIds.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
-#include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
-#endif
+//#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
+//#include <com/sun/star/ui/dialogs/XFilePicker.hpp>
+//#endif
+//#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILTERMANAGER_HPP_
+//#include <com/sun/star/ui/dialogs/XFilterManager.hpp>
+//#endif
+//#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
+//#include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
+//#endif
+//#ifndef _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
+//#include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
+//#endif
+//#ifndef _COM_SUN_STAR_UI_DIALOGS_LISTBOXCONTROLACTIONS_HPP_
+//#include <com/sun/star/ui/dialogs/ListboxControlActions.hpp>
+//#endif
+//#ifndef _COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HPP_
+//#include <com/sun/star/ui/dialogs/CommonFilePickerElementIds.hpp>
+//#endif
+//#ifndef  _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
+//#include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
+//#endif
 
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
@@ -284,12 +284,12 @@
 #include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
-using namespace ::com::sun::star::ui::dialogs;
+//using namespace ::com::sun::star::ui::dialogs;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
-using namespace sfx2;
+//using namespace sfx2;
 
 
 /*--------------------------------------------------------------------
