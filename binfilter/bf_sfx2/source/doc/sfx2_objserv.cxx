@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:30:19 $
+ *  last change: $Author: vg $ $Date: 2006-11-22 10:18:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,7 +74,6 @@
 #include "doc.hrc"
 #include "docfac.hxx"
 #include "fcontnr.hxx"
-#include "filedlghelper.hxx"
 
 #ifndef _SFX_HELPID_HRC
 #include "helpid.hrc"
@@ -85,7 +84,7 @@ namespace binfilter {
 
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
-using namespace ::com::sun::star::ui::dialogs;
+//using namespace ::com::sun::star::ui::dialogs;
 using namespace ::com::sun::star::awt;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
@@ -221,9 +220,6 @@ svtools::AsynchronLink* pPendingCloser = 0;
 /*N*/
 /*N*/   return bOk;
 /*N*/ }
-
-//-------------------------------------------------------------------------
-
 
 //--------------------------------------------------------------------
 
