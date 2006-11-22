@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:25:35 $
+ *  last change: $Author: vg $ $Date: 2006-11-22 10:17:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -166,7 +166,7 @@
 #include "appimp.hxx"
 #include "appuno.hxx"
 #include "objface.hxx"
-#include "filedlghelper.hxx"
+//#include "filedlghelper.hxx"
 
 #define _SVSTDARR_STRINGSDTOR
 #include <svtools/svstdarr.hxx>
@@ -184,7 +184,7 @@ using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::system;
 using namespace ::com::sun::star::task;
 using namespace ::cppu;
-using namespace sfx2;
+//using namespace sfx2;
 
 //--------------------------------------------------------------------
 
