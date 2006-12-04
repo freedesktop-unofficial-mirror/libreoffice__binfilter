@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmdiritem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:35:22 $
+ *  last change: $Author: rt $ $Date: 2006-12-04 08:08:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,6 +67,7 @@ public:
     virtual ~SvxFrameDirectionItem();
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
     virtual SvStream&       Store(SvStream & rStrm, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
     virtual int             operator==( const SfxPoolItem& ) const;
