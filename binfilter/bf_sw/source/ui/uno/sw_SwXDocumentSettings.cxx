@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwXDocumentSettings.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:54:30 $
+ *  last change: $Author: rt $ $Date: 2006-12-04 08:08:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -493,12 +493,7 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         {
             sal_Int16 nTmp;
             rValue >>= nTmp;
-            if( (nTmp == document::PrinterIndependentLayout::ENABLED ) ||
-                (nTmp == document::PrinterIndependentLayout::DISABLED ) )
-                mpDoc->SetUseVirtualDevice(
-                    nTmp == document::PrinterIndependentLayout::ENABLED  );
-            else
-                throw IllegalArgumentException();
+            mpDoc->SetUseVirtualDevice( nTmp != document::PrinterIndependentLayout::DISABLED  );
         }
         break;
         case HANDLE_IS_LABEL_DOC :
