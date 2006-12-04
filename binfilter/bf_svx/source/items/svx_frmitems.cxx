@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:18 $
+ *  last change: $Author: rt $ $Date: 2006-12-04 08:19:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2986,6 +2986,12 @@ GraphicFilter* GetGrfFilter();
 /*N*/   return new SvxFrameDirectionItem( *this );
 /*N*/ }
 
+SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT /*nVer*/ ) const
+{
+    sal_uInt16 nValue;
+    rStrm >> nValue;
+    return new SvxFrameDirectionItem( (SvxFrameDirection)nValue, Which() );
+}
 
 /*N*/ SvStream& SvxFrameDirectionItem::Store( SvStream & rStrm, USHORT nIVer ) const
 /*N*/ {
