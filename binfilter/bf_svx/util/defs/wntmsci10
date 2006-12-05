@@ -29443,3 +29443,4 @@ _TI3?AVNotConnectedException@io@star@sun@com@@
 ??0E3dLight@binfilter@@QAE@ABVVector3D@1@ABVColor@@N@Z
 ?CalcLighting@E3dLight@binfilter@@UAEHAAVColor@@ABVVector3D@2@1ABV3@@Z
 ?SetPosition@E3dLight@binfilter@@UAEXABVVector3D@2@@Z
+?Create@SvxFrameDirectionItem@binfilter@@UBEPAVSfxPoolItem@@AAVSvStream@@G@Z
