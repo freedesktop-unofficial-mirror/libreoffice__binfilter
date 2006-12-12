@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wflt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-09 12:29:06 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 15:55:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,14 +123,14 @@ namespace binfilter {//STRIP009
 
 #if defined( WIN ) || defined( WNT ) || defined( PM2 )
 
-FNDisp W4WReadDisplayHandler( int nPercent )
+int FNDisp W4WReadDisplayHandler( int nPercent )
 {
 // no progress display in binfilter!
 //    ::binfilter::SetProgressState( nPercent  / 3, 0 );
     return 0;       // -1 fuehrt zu Abbruch
 }
 
-FNDisp W4WWriteDisplayHandler( int nPercent )
+int FNDisp W4WWriteDisplayHandler( int nPercent )
 {
 // no progress display in binfilter!
 //    ::binfilter::SetProgressState( 67 + nPercent  / 3, 0 );
