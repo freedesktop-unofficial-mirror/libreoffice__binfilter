@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw6par.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:58 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 16:00:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -5001,7 +5001,7 @@ void Sw6Layout::InsertTOX(SwDoc &rDoc,SwPaM &rPaM,
 }
 
 extern void sw3io_ConvertFromOldField( SwDoc& rDoc, USHORT& rWhich,
-                                        USHORT& rSubType, ULONG &rFmt,
+                                        USHORT& rSubType, UINT32 &rFmt,
                                         USHORT nVersion );
 
 BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
@@ -5329,7 +5329,7 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                     case 'U':
                     {
                         USHORT nSubType = TIMEFLD, nWhich = RES_DATETIMEFLD;
-                        ULONG nFormat = (ULONG)TF_SSMM_24;
+                        UINT32 nFormat = (UINT32)TF_SSMM_24;
                         sw3io_ConvertFromOldField( rDoc, nWhich, nSubType,
                                                     nFormat, 0x0110 );
 
@@ -5351,7 +5351,7 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                                 case 'M':eDat=DF_LMONTH; break;
                             }
                             USHORT nSubType = DATEFLD, nWhich = RES_DATETIMEFLD;
-                            ULONG nFormat = (ULONG)eDat;
+                            UINT32 nFormat = (UINT32)eDat;
 
                             sw3io_ConvertFromOldField( rDoc, nWhich, nSubType,
                                                     nFormat, 0x0110 );
