@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_exctools.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:56 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 15:59:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1167,7 +1167,7 @@ void XF_Buffer::SetItemSets( UINT16 nCol, UINT16 nStartRow, UINT16 nEndRow,
     }
 
 // --------------------------------------------- XF_Buffer::GetNumFormat -
-UINT32 XF_Buffer::GetNumFormat( UINT16 nIndex )
+sal_uInt32 XF_Buffer::GetNumFormat( UINT16 nIndex )
     {
 //  DBG_ASSERT( nIndex < nCount ,
 //      "+XF_Buffer::GetNumFormat(): das ist zuviel des Guten!" );
