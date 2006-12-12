@@ -4,9 +4,9 @@
  *
  *  $RCSfile: excvfbff.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:55 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 15:56:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@ class ValueFormBuffer;
 #if defined(BLC) || defined(MAC)
 // BLC will es auf jeden Fall hier
 typedef void                ( ValueFormBuffer::*Fkt_rString )( String & );
-typedef ULONG               ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
+typedef sal_uInt32          ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
 #endif
 
 class ValueFormBuffer
@@ -57,13 +57,13 @@ class ValueFormBuffer
 #if !defined(BLC) && !defined(MAC)
 // MSC will es auf jeden Fall hier
         typedef void        ( ValueFormBuffer::*Fkt_rString )( String & );
-        typedef ULONG       ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
+        typedef sal_uInt32  ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
 #endif
 
-        ULONG               *pHandles;      // Array mit Handles...
+        sal_uInt32          *pHandles;      // Array mit Handles...
         USHORT              nMax;           // Groesse des Arrays
         USHORT              nCount;         // Index des naechsten freien Eintrags
-        ULONG               nDefaultHandle;
+        sal_uInt32          nDefaultHandle;
 
         // nur fuer Excel5
         static const USHORT nAnzBuiltin;    // bekannte Formate
@@ -76,11 +76,11 @@ class ValueFormBuffer
         void                Init( void );
                             // fuer 1. Nutzung
         void                __NewValueFormat( String &rFormString );
-        ULONG               __GetValueFormat( USHORT nExcIndex );
+        sal_uInt32          __GetValueFormat( USHORT nExcIndex );
                             // fuer n-te Nutzung
         void                _NewValueFormatX( String &rFormString );
         void                _NewValueFormat5( String &rFormString );
-        ULONG               _GetValueFormatX5( USHORT nExcIndex );
+        sal_uInt32          _GetValueFormatX5( USHORT nExcIndex );
     public:
         ValueFormBuffer( const USHORT nSize = 2048 );
         ~ValueFormBuffer();

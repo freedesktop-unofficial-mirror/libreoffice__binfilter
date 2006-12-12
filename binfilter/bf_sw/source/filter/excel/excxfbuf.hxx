@@ -4,9 +4,9 @@
  *
  *  $RCSfile: excxfbuf.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:55 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 15:57:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -208,7 +208,7 @@ class XF_Buffer
         inline void     GetItemSets( USHORT nIndex, const SfxItemSet *pTxtAttr,
                             const SfxItemSet *pBoxAttr );
 
-        ULONG           GetNumFormat( USHORT nIndex );
+        sal_uInt32      GetNumFormat( USHORT nIndex );
         void            SetItemSets( USHORT nCol, USHORT nSR, USHORT nER,
                             USHORT nXF );
 #ifdef USED
