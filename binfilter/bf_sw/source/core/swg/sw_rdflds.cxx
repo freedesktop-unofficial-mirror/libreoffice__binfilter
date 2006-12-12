@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdflds.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:33:26 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 15:55:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,7 +59,7 @@
 #include "numrule.hxx"
 namespace binfilter {
 
-static ULONG  nNewFldFmt;                       // Aktueller Format-Wert
+static UINT32  nNewFldFmt;                       // Aktueller Format-Wert
 
 
 static SwDBFieldType* In_SwDBFieldType( SwSwgReader& rPar )
@@ -597,7 +597,7 @@ static SwField* In_SwExtUserField( SwSwgReader& rPar, SwExtUserFieldType* pType 
 /////////////////////////////////////////////////////////////////////////////
 
 extern void sw3io_ConvertFromOldField( SwDoc& rDoc, USHORT& rWhich,
-                                       USHORT& rSubType, ULONG &rFmt,
+                                       USHORT& rSubType, UINT32 &rFmt,
                                        USHORT nVersion );
 
 SwField* SwSwgReader::InField()
