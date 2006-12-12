@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wpar1.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:59 $
+ *  last change: $Author: kz $ $Date: 2006-12-12 16:02:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1918,7 +1918,7 @@ void SwW4WParser::Read_DateTime()           // (DTF)
         // tell the Formatter about the new entry
         UINT16 nCheckPos = 0;
         INT16  nType = NUMBERFORMAT_DEFINED;
-        ULONG  nKey;
+        sal_uInt32  nKey;
 
         pFormatter->PutandConvertEntry( *pFirst, nCheckPos, nType, nKey,
                                         LANGUAGE_GERMAN,
