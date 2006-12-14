@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Filter.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:00:42 $
+ *  last change: $Author: kz $ $Date: 2006-12-14 12:48:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -606,96 +606,8 @@ namespace frm
     //---------------------------------------------------------------------
     sal_Bool SAL_CALL OFilterControl::commit() throw(RuntimeException)
     {
-        if ( !ensureInitialized( ) )
-            // already asserted in ensureInitialized
-            return sal_True;
-
-        ::rtl::OUString aText;
-        switch (m_nControlClass)
-        {
-            case FormComponentType::TEXTFIELD:
-            case FormComponentType::COMBOBOX:
-            {
-                Reference< XTextComponent >  xText( getPeer(), UNO_QUERY );
-                if (xText.is())
-                    aText = xText->getText();
-            }   break;
-            default:
-                return sal_True;
-        }
-        if (m_aText.compareTo(aText))
-        {
-            // check the text with the SQL-Parser
-            ::rtl::OUString aNewText(aText);
-            aNewText.trim();
-            if (aNewText.getLength())
-            {
-                ::rtl::OUString  aErrorMsg;
-                Locale aAppLocale = Application::GetSettings().GetUILocale();
-                OSQLParseNode* pParseNode = m_aParser.predicateTree(aErrorMsg, aNewText, m_xFormatter, m_xField);
-
-                if ( !pParseNode )
-                {   // is it a text field ?
-
-                    // get the type
-                    sal_Int32 nType = DataType::OTHER;
-                    m_xField->getPropertyValue( PROPERTY_FIELDTYPE ) >>= nType;
-
-                    if  (   ( DataType::CHAR        == nType )
-                        ||  ( DataType::VARCHAR     == nType )
-                        ||  ( DataType::LONGVARCHAR == nType )
-                        )
-                    {   // yes -> force a quoted text and try again
-                        String sQuoted(aNewText);
-                        if  (   sQuoted.Len()
-                            &&  (   ( sQuoted.GetChar( 0 ) != '\'' )
-                                ||  ( sQuoted.GetChar( sQuoted.Len() - 1 ) != '\'' )
-                                )
-                            )
-                        {
-                            sQuoted.SearchAndReplaceAll( '\'', String::CreateFromAscii( "''" ) );
-                            String sTemp( '\'' );
-                            ( sTemp += sQuoted ) += '\'';
-                            sQuoted = sTemp;
-                        }
-                        pParseNode = m_aParser.predicateTree( aErrorMsg, sQuoted, m_xFormatter, m_xField );
-                    }
-                }
-
-                if ( pParseNode )
-                {
-                    ::rtl::OUString aPreparedText;
-                    LocaleDataWrapper aLocaleWrapper(m_xORB,aAppLocale);
-                    pParseNode->parseNodeToPredicateStr(aPreparedText,
-                                               m_xMetaData,
-                                               m_xFormatter,
-                                               m_xField,
-                                               aAppLocale,
-                                               (sal_Char)aLocaleWrapper.getNumDecimalSep().GetChar(0),
-                                               getParseContext());
-                    aNewText = aPreparedText;
-                }
-                else
-                {
-                    // display the error and return sal_False
-
-                    SQLContext aError;
-                    aError.Message = String( FRM_RES_STRING( RID_STR_SYNTAXERROR ) );
-                    aError.Details = aErrorMsg;
-                    displayException( aError );
-
-                    return sal_False;
-                }
-            }
-
-            setText(aNewText);
-            TextEvent aEvt;
-            aEvt.Source = *this;
-            ::cppu::OInterfaceIteratorHelper aIt( m_aTextListeners );
-            while( aIt.hasMoreElements() )
-                static_cast< XTextListener* >( aIt.next() )->textChanged( aEvt );
-        }
-        return sal_True;
+            OSL_ENSURE( false, "OFilterControl::commit: dead code!" );
+            return sal_False;
     }
 
     // XTextComponent
