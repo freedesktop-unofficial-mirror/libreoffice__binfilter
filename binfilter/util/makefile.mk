@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 12:26:50 $
+#   last change: $Author: ihi $ $Date: 2006-12-20 12:18:53 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,5 +74,6 @@ ALLTAR : $(BIN)$/legacy_binfilters.rdb
 
 $(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
     @+-$(RM) $@ >& $(NULLDEV)
-    +cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) $(foreach,i,$(RDBLIBS:f) -c $i)
+    $(REGCOMP) -register -r $@ -wop $(foreach,i,$(RDBLIBS) -c $i)
+#    +cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) $(foreach,i,$(RDBLIBS:f) -c $i)
 
