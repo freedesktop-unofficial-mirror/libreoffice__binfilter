@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xoutx.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:41:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -232,9 +232,6 @@ protected:
     void                DrawEllipse( const Rectangle& rRect );
     void                DrawArc( const Rectangle& rRect, const Point& rStart, const Point& rEnd );
     void                DrawPie( const Rectangle& rRect, const Point& rStart, const Point& rEnd );
-    void                DrawPolyLine( const Polygon& rPoly );
-    void                DrawPolygon( const Polygon& rPoly );
-    void                DrawPolyPolygon( const PolyPolygon& rPolyPoly );
     void                DrawXPolyLine( const XPolygon& rXPoly );
     void                DrawXPolygon( const XPolygon& rXPoly );
     void                DrawXPolyPolygon( const XPolyPolygon& rXPoly );
@@ -297,9 +294,6 @@ protected:
     // Allgemeine Einstellungen
     const Point&        GetOffset() const { return aOfs; }
     void                SetOffset( const Point& rOfs );
-
-    MapMode             GetMapMode() const;
-    void                SetMapMode( const MapMode& rMap );
 
     // Initialisierung der Linienenden statisch, damit auch ohne XOutDev
     // von SvDraw verwendbar
