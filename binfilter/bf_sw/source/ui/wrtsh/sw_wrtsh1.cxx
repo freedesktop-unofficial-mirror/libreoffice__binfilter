@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:06:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:12:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -250,213 +250,21 @@ namespace binfilter {
 /*?*/   }
 /*N*/ }
 
-
+/*N*/ SwWrtShell::SwWrtShell( SwDoc& rDoc, Window *pWin, SwView &rShell,
+/*N*/                                          SwRootFrm *pRoot, const SwViewOption *pViewOpt )
+/*N*/  : SwFEShell( rDoc, pWin, pRoot, pViewOpt),
+/*N*/    COMMON_INI_LIST
+/*N*/ {
+/*N*/  BITFLD_INI_LIST
+/*N*/  SET_CURR_SHELL( this );
+/*N*/  SetSfxViewShell( (SfxViewShell *)&rShell );
+/*N*/  SetFlyMacroLnk( LINK(this, SwWrtShell, ExecFlyMac) );
+/*N*/ }
 
 /*N*/ void SwWrtShell::ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
 /*N*/                           const SwRect &rFrm )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Einfuegen harter Seitenumbruch;
-                Selektionen werden ueberschrieben
-------------------------------------------------------------------------*/
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Einfuegen harter Zeilenumbruch;
-                Selektionen werden ueberschrieben
-------------------------------------------------------------------------*/
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Einfuegen harter Spaltenumbruch;
-                Selektionen werden ueberschrieben
-------------------------------------------------------------------------*/
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Einfuegen Fussnote
- Parameter:     rStr -- optionales Fussnotenzeichen
-------------------------------------------------------------------------*/
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  SplitNode; hier auch, da
-                    - selektierter Inhalt geloescht wird;
-                    - der Cursorstack gfs. zurueckgesetzt wird.
-------------------------------------------------------------------------*/
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Numerierung anschalten
- Parameter:     Optionale Angabe eines Namens fuer die benannte Liste;
-                dieser bezeichnet eine Position, wenn er in eine
-                Zahl konvertierbar ist und kleiner ist als nMaxRules.
--------------------------------------------------------------------------*/
-
-
-// zum Testen der CharFormate an der Numerierung
-// extern void SetNumChrFmt( SwWrtShell*, SwNumRules& );
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Default-Bulletliste erfragen
-------------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------
-
---------------------------------------------------*/
-/*N*/ int SwWrtShell::GetSelectionType() const
-/*N*/ {
-/*N*/   // ContentType kann nicht ermittelt werden innerhalb einer
-/*N*/   // Start-/Endactionklammerung.
-/*N*/   // Da es keinen ungueltigen Wert gibt, wird TEXT geliefert.
-/*N*/   // Der Wert ist egal, da in EndAction ohnehin aktualisiert wird.
-/*N*/
-/*N*/   if ( BasicActionPend() )
-/*N*/       return IsSelFrmMode() ? SEL_FRM : SEL_TXT;
-/*N*/
-/*N*/ //    if ( IsTableMode() )
-/*N*/ //        return SEL_TBL | SEL_TBL_CELLS;
-/*N*/
-/*N*/   SwView &rView = ((SwView&)GetView());
-/*N*/   USHORT nCnt;
-/*N*/
-/*N*/   // Rahmen einfuegen ist kein DrawMode
-/*N*/   if ( !rView.GetEditWin().IsFrmAction() &&
-/*N*/           (IsObjSelected() || (rView.IsDrawMode() && !IsFrmSelected()) ))
-/*N*/   {
-/*?*/       if (GetDrawView()->IsTextEdit())
-/*?*/           nCnt = SEL_DRW_TXT;
-/*?*/       else
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (GetView().IsFormMode())   // Nur Forms selektiert
-/*?*/       }
-/*?*/
-/*?*/       return nCnt;
-/*N*/   }
-/*N*/
-/*N*/   nCnt = GetCntType();
-/*N*/
-/*N*/   if ( IsFrmSelected() )
-/*N*/   {
-/*?*/       if (rView.IsDrawMode())
-/*?*/           rView.LeaveDrawCreate();    // Aufraeumen (Bug #45639)
-/*?*/       if ( !(nCnt & (CNT_GRF | CNT_OLE)) )
-/*?*/           return SEL_FRM;
-/*N*/   }
-/*N*/
-/*N*/   if ( IsCrsrInTbl() )
-/*N*/       nCnt |= SEL_TBL;
-/*N*/
-/*N*/   if ( IsTableMode() )
-/*N*/       nCnt |= (SEL_TBL | SEL_TBL_CELLS);
-/*N*/
-/*N*/   if ( GetCurNumRule() )
-/*N*/       nCnt |= SEL_NUM;
-/*N*/
-/*N*/   return nCnt;
-/*N*/ }
-
-/*------------------------------------------------------------------------
- Beschreibung:  Finden der TextCollection mit dem Name rCollname
- Return:                Pointer auf die Collection oder 0, wenn keine
-                                TextCollection mit diesem Namen existiert oder
-                                diese eine Defaultvorlage ist.
-------------------------------------------------------------------------*/
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Finden der Zeichenvorlage mit dem Name rCollname
- Return:                Pointer auf die Collection oder 0, wenn keine
-                                Zeichenvorlage mit diesem Namen existiert oder
-                                diese eine Defaultvorlage oder automatische Vorlage ist.
-------------------------------------------------------------------------*/
-
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Finden des Tabellenformates mit dem Name rFmtname
- Return:                Pointer auf das Format oder 0, wenn kein
-                                Rahmenformat mit diesem Namen existiert oder
-                                dieses eine Defaultformat oder automatisches Format ist.
-------------------------------------------------------------------------*/
-
-
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Anwenden der Vorlagen
-------------------------------------------------------------------------*/
-
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Zugriff Vorlagen
-------------------------------------------------------------------------*/
-
-
-
-/*N*/ String SwWrtShell::GetCurPageStyle( const BOOL bCalcFrm ) const
-/*N*/ {
-/*N*/   return GetPageDesc(GetCurPageDesc( bCalcFrm )).GetName();
-/*N*/ }
-
-/*------------------------------------------------------------------------
- Beschreibung:  Aktuelle Vorlage anhand der geltenden Attribute aendern
-------------------------------------------------------------------------*/
-
-
-
-
-
-/*-----------------12.03.97 12.24-------------------
-
---------------------------------------------------*/
-
-
-
-
-
-/*
- * eine Art kontrollierter copy ctor
- */
-
-/*?*/ SwWrtShell::SwWrtShell( SwWrtShell& rSh, Window *pWin, SwView &rShell )
-/*?*/   : SwFEShell( rSh, pWin ),
-/*?*/    COMMON_INI_LIST
-/*?*/ {
-/*?*/   BITFLD_INI_LIST
-/*?*/   SET_CURR_SHELL( this );
-/*?*/   SetSfxViewShell( (SfxViewShell *)&rShell );
-/*?*/   SetFlyMacroLnk( LINK(this, SwWrtShell, ExecFlyMac) );
-/*?*/ }
-
-
-/*N*/ SwWrtShell::SwWrtShell( SwDoc& rDoc, Window *pWin, SwView &rShell,
-/*N*/                       SwRootFrm *pRoot, const SwViewOption *pViewOpt )
-/*N*/   : SwFEShell( rDoc, pWin, pRoot, pViewOpt),
-/*N*/     COMMON_INI_LIST
-/*N*/ {
-/*N*/   BITFLD_INI_LIST
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   SetSfxViewShell( (SfxViewShell *)&rShell );
-/*N*/   SetFlyMacroLnk( LINK(this, SwWrtShell, ExecFlyMac) );
-/*N*/ }
-
-/*
- * ctor
- */
-
 
 
 /*N*/ SwWrtShell::~SwWrtShell()
@@ -468,40 +276,4 @@ namespace binfilter {
 /*N*/       ;
 /*N*/   SwTransferable::ClearSelection( *this );
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-
-
-
-
-    // die Core erzeugt eine Selektion, das SttSelect muss gerufen werden
-
-// --------------
-/*N*/ void SwWrtShell::ChgDBData(const SwDBData& aDBData)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-
-
 }

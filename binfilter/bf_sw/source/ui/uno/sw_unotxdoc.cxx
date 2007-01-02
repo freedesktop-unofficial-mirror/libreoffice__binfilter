@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotxdoc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:01:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:11:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1482,17 +1482,6 @@ Reference< drawing::XDrawPage >  SwXTextDocument::getDrawPage(void) throw( Runti
         *pxXDrawPage = Reference< drawing::XDrawPage>(xTmp, UNO_QUERY);
     }
     return *pxXDrawPage;
-}
-/* -----------------07.04.99 10:11-------------------
- *
- * --------------------------------------------------*/
-SwXDrawPage* SwXTextDocument::GetDrawPage()
-{
-    if(!IsValid())
-        return 0;
-    if(!pDrawPage)
-        getDrawPage();
-    return pDrawPage;
 }
 /*-- 18.12.98 11:55:26---------------------------------------------------
 

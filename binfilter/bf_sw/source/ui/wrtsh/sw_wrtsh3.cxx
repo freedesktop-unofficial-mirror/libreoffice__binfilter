@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:07:16 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:12:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,30 +85,5 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 //STRIP001 /*N*/ /*N*/     GetView().AttrChangedNotify(this);
 //STRIP001 /*N*/ /*N*/     bNoInterrupt = bOldVal;
 /*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::GotoBookmark( sal_uInt16 nPos )
-/*N*/ {
-/*?*/    DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  return MoveBookMark( BOOKMARK_INDEX, nPos );
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-    // fall ein util::URL-Button selektiert ist, dessen util::URL returnen, ansonsten
-    // einen LeerString
-
-
-    // falls ein util::URL-Button selektiert ist, dessen util::URL returnen, ansonsten
-    // einen LeerString
-
-
 
 }
