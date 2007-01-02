@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dpsave.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:10:18 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:26:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -119,7 +119,6 @@ public:
     BOOL                    IsDataLayout() const    { return bIsDataLayout; }
 
     void                    SetOrientation(USHORT nNew);
-    void                    SetSubTotals(BOOL bSet);        // to be removed!
     void                    SetSubTotals(long nCount, const USHORT* pFuncs);
     long                    GetSubTotalsCount() { return nSubTotalCount; }
     USHORT                  GetSubTotalFunc(long nIndex) { return pSubTotalFuncs[nIndex]; }
@@ -136,7 +135,6 @@ public:
 
     USHORT                  GetOrientation() const  { return nOrientation; }
 
-    ScDPSaveMember*         GetMemberByName(const String& rName);
 
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::uno::XInterface>& xDim );
@@ -172,9 +170,7 @@ public:
     ScDPSaveDimension*      DuplicateDimension(const String& rName);
 
     ScDPSaveDimension*      GetExistingDimensionByName(const String& rName);
-    ScDPSaveDimension*      GetNewDimensionByName(const String& rName);
 
-    void                    SetPosition( ScDPSaveDimension* pDim, long nNew );
     void                    SetColumnGrand( BOOL bSet );
     BOOL                    GetColumnGrand() const { return BOOL(nColumnGrandMode); }
     void                    SetRowGrand( BOOL bSet );
@@ -190,7 +186,6 @@ public:
     void                    Store( SvStream& rStream ) const;
     void                    Load( SvStream& rStream );
 
-    BOOL                    IsEmpty() const;
 };
 
 
