@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wgraf.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:59 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:07:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1083,12 +1083,6 @@ short SwW4WGraf::ReadGrafFile( long nTyp, long nWidth, long nHeight )   // Grafi
 }
 
 
-
-short SwW4WGraf::ReadWMFGraf( long nTyp, long nWidth, long nHeight )    // Windows Metafile
-{
-    return ReadGrafFile( nTyp, nWidth, nHeight );               // Windows Metafile into File
-}
-
 short SwW4WGraf::Read( long nTyp, long nWidth, long nHeight )
 {
     if( pGraph ) DELETEZ( pGraph );
@@ -1103,11 +1097,6 @@ short SwW4WGraf::Read( long nTyp, long nWidth, long nHeight )
                 return ReadW4WGrafBMap( nTyp, nWidth, nHeight ); // Mastersoft internal Format Bitmap
             }
         }
-/*
-        case 1:   return ReadGrafFile( nTyp, nWidth, nHeight );
-    //  case 1:   return ReadWMFGraf(  nTyp, nWidth, nHeight );
-        case 606: return ReadGrafFile( nTyp, nWidth, nHeight );
-*/
         default:
         {
             // erweitert um viele Formate (khz, April 1998)
