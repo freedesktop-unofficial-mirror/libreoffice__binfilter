@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtinit.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:14:37 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:02:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,6 @@
 #endif
 
 #include "pordrop.hxx"
-#include "blink.hxx"    // Blink-Manager
 #include "txtfly.hxx"   // SwContourCache
 #include "dbg_lay.hxx"  // Layout Debug Fileausgabe
 namespace binfilter {
@@ -55,7 +54,6 @@ namespace binfilter {
 /*N*/ SwCache *SwTxtFrm::pTxtCache = 0;
 /*N*/ long SwTxtFrm::nMinPrtLine = 0;
 /*N*/ SwContourCache *pContourCache = 0;
-/*N*/ SwDropCapCache *pDropCapCache = 0;
 
 #ifndef PROFILE
 // Code zum Initialisieren von Statics im eigenen Code-Segment
@@ -101,10 +99,8 @@ namespace binfilter {
 /*N*/   delete SwTxtFrm::GetTxtCache();
 /*N*/   delete pSwFontCache;
 /*N*/   delete pFntCache;
-/*N*/   delete pBlink;
 /*N*/   delete pWaveCol;
 /*N*/   delete pContourCache;
-/*N*/   SwDropPortion::DeleteDropCapCache();
 /*N*/ }
 
 
