@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartlis.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:30:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:57:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -204,17 +204,6 @@ using namespace ::com::sun::star;
 /*N*/           else
 /*N*/               pDoc->EndListeningArea( *pR, this );
 /*N*/       }
-/*N*/ }
-
-
-/*N*/ void ScChartListener::ChangeListening( const ScRangeListRef& rRangeListRef,
-/*N*/           BOOL bDirtyP  )
-/*N*/ {
-/*N*/   EndListeningTo();
-/*N*/   SetRangeList( rRangeListRef );
-/*N*/   StartListeningTo();
-/*N*/   if ( bDirtyP )
-/*N*/       SetDirty( TRUE );
 /*N*/ }
 
 
