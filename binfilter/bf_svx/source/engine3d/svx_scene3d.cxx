@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_scene3d.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:51:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:22:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1586,14 +1586,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ Vector3D E3dScene::GetShadowPlaneDirection() const
-/*N*/ {
-/*N*/   double fWink = (double)GetShadowSlant() * F_PI180;
-/*N*/   Vector3D aShadowPlaneDir(0.0, sin(fWink), cos(fWink));
-/*N*/   aShadowPlaneDir.Normalize();
-/*N*/   return aShadowPlaneDir;
 /*N*/ }
 
 /*N*/ void E3dScene::SetShadowPlaneDirection(const Vector3D& rVec)
