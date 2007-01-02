@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLExport.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:37:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:12:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2312,24 +2312,6 @@ void SchXMLExportHelper::addSize( uno::Reference< drawing::XShape > xShape )
     }
 }
 
-void SchXMLExportHelper::swapDataArray( ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Sequence< double > >& rSequence )
-{
-    sal_Int32 nOuterSize = rSequence.getLength();
-    sal_Int32 nInnerSize = rSequence[0].getLength();    // assume that all subsequences have same length
-    sal_Int32 i, o;
-
-    uno::Sequence< uno::Sequence< double > > aResult( nInnerSize );
-    uno::Sequence< double >* pArray = aResult.getArray();
-    for( i = 0; i < nInnerSize; i++ )
-    {
-        pArray[ i ].realloc( nOuterSize );
-        for( o = 0 ; o < nOuterSize ; o++ )
-            aResult[ i ][ o ] = rSequence[ o ][ i ];
-    }
-
-    rSequence = aResult;
-}
-
 void SchXMLExportHelper::CollectAutoStyle( const ::std::vector< XMLPropertyState >& aStates )
 {
     if( aStates.size())
@@ -2524,13 +2506,6 @@ void SchXMLExport::_ExportContent()
     {
         DBG_ERROR( "Couldn't export chart due to wrong XModel" );
     }
-}
-
-void SchXMLExport::SetProgress( sal_Int32 nPercentage )
-{
-    // set progress view
-    if( mxStatusIndicator.is())
-        mxStatusIndicator->setValue( nPercentage );
 }
 
 // export components ========================================
