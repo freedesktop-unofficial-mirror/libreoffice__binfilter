@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_asciiopt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:43:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:02:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -219,119 +219,4 @@ static const sal_Char __FAR_DATA pStrMrg[] = "MRG";
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-
-/*N*/ String ScAsciiOptions::WriteToString() const
-/*N*/ {
-/*N*/   String aOutStr;
-/*N*/
-/*N*/       //
-/*N*/       //  Feld-Trenner
-/*N*/       //
-/*N*/
-/*N*/   if ( bFixedLen )
-/*N*/       aOutStr.AppendAscii(pStrFix);
-/*N*/   else if ( !aFieldSeps.Len() )
-/*N*/       aOutStr += '0';
-/*N*/   else
-/*N*/   {
-/*N*/       xub_StrLen nLen = aFieldSeps.Len();
-/*N*/       for (xub_StrLen i=0; i<nLen; i++)
-/*N*/       {
-/*N*/           if (i)
-/*N*/               aOutStr += '/';
-/*N*/           aOutStr += String::CreateFromInt32(aFieldSeps.GetChar(i));
-/*N*/       }
-/*N*/       if ( bMergeFieldSeps )
-/*N*/       {
-/*N*/           aOutStr += '/';
-/*N*/           aOutStr.AppendAscii(pStrMrg);
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   aOutStr += ',';                 // Token-Ende
-/*N*/
-/*N*/       //
-/*N*/       //  Text-Trenner
-/*N*/       //
-/*N*/
-/*N*/   aOutStr += String::CreateFromInt32(cTextSep);
-/*N*/   aOutStr += ',';                 // Token-Ende
-/*N*/
-/*N*/       //
-/*N*/       //  Zeichensatz
-/*N*/       //
-/*N*/
-/*N*/   if ( bCharSetSystem )           // force "SYSTEM"
-/*N*/       aOutStr += ScGlobal::GetCharsetString( RTL_TEXTENCODING_DONTKNOW );
-/*N*/   else
-/*N*/       aOutStr += ScGlobal::GetCharsetString( eCharSet );
-/*N*/   aOutStr += ',';                 // Token-Ende
-/*N*/
-/*N*/       //
-/*N*/       //  Startzeile
-/*N*/       //
-/*N*/
-/*N*/   aOutStr += String::CreateFromInt32(nStartRow);
-/*N*/   aOutStr += ',';                 // Token-Ende
-/*N*/
-/*N*/       //
-/*N*/       //  Spalten-Infos
-/*N*/       //
-/*N*/
-/*N*/   DBG_ASSERT( !nInfoCount || (pColStart && pColFormat), "0-Zeiger in ScAsciiOptions" );
-/*N*/   for (USHORT nInfo=0; nInfo<nInfoCount; nInfo++)
-/*N*/   {
-/*N*/       if (nInfo)
-/*N*/           aOutStr += '/';
-/*N*/       aOutStr += String::CreateFromInt32(pColStart[nInfo]);
-/*N*/       aOutStr += '/';
-/*N*/       aOutStr += String::CreateFromInt32(pColFormat[nInfo]);
-/*N*/   }
-/*N*/
-/*N*/   return aOutStr;
-/*N*/ }
-
-#if 0
-//  Code, um die Spalten-Liste aus einem Excel-kompatiblen String zu erzeugen:
-//  (im Moment nicht benutzt)
-
-#endif
-
-
-// ============================================================================
-
-void lcl_FillCombo( ComboBox& rCombo, const String& rList, sal_Unicode cSelect )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen i;
-}
-
-sal_Unicode lcl_CharFromCombo( ComboBox& rCombo, const String& rList )
-{
-    sal_Unicode c = 0;
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aStr = rCombo.GetText();
-    return c;
-}
-
-
-// ----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-// ----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
 }
