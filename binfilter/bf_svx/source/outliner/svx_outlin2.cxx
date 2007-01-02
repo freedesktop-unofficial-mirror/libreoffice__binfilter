@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:31:48 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:29:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -435,21 +435,11 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pEditEngine->SetGlobalCharStretching( nX, nY );
 /*N*/ }
 
-
-
-/*N*/ void Outliner::DoStretchChars( USHORT nX, USHORT nY )
-/*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   pEditEngine->DoStretchChars( nX, nY );
-/*N*/ }
-
 /*N*/ void Outliner::EraseVirtualDevice()
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   pEditEngine->EraseVirtualDevice();
 /*N*/ }
-
-
 
 /*N*/ BOOL Outliner::ShouldCreateBigTextObject() const
 /*N*/ {

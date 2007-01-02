@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outlvw.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:32:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:29:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -166,26 +166,6 @@ namespace binfilter {
 
 
 
-/*N*/ void OutlinerView::SetStyleSheet( SfxStyleSheet* pStyle )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // =====================================================================
 // ======================   Einfache Durchreicher =======================
 // ======================================================================
@@ -199,15 +179,6 @@ namespace binfilter {
 /*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   pEditView->SetSelection( rSel );
 /*N*/ }
-
-
-
-
-
-
-
-
-
 
 
 /*N*/ Window* OutlinerView::GetWindow() const
@@ -224,26 +195,6 @@ namespace binfilter {
 /*N*/   DBG_CHKTHIS(OutlinerView,0);
 /*N*/   return pEditView->GetOutputArea();
 /*N*/ }
-
-
-/*N*/ XubString OutlinerView::GetSelected() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return XubString(); //STRIP001
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ ESelection OutlinerView::GetSelection()
 /*N*/ {
