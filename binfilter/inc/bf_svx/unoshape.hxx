@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2006-09-28 07:25:16 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:38:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -184,11 +184,6 @@ class SvxShape : public cppu::WeakAggImplHelper11<
 
     sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
 
-    // call this in your derivated getTypes() after you call SvxShape::getTypes() but
-    // only if maTypeSequence.getLength() is equal 0. See implementation of
-    // SvxShape::getTypes() for more information
-    static void addStaticTypes( sal_Int16 nNewTypes, /* uno::Type* */ ... ) throw();
-
     sal_Bool SAL_CALL SetFillAttribute( sal_Int32 nWID, const ::rtl::OUString& rName );
 
     /** called from the XActionLockable interface methods on initial locking */
@@ -219,7 +214,6 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     SdrObject* GetSdrObject() const {return pObj;}
     void SetShapeType( const ::rtl::OUString& ShapeType ) { aShapeType = ShapeType; }
     ::com::sun::star::uno::Any GetBitmap( BOOL bMetaFile = FALSE ) const throw ();
-    static SvxShape* GetShapeForSdrObj( SdrObject* pObj ) throw ();
 
     void setShapeKind( sal_uInt32 nKind );
     sal_uInt32 getShapeKind() const;
@@ -244,8 +238,6 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL _getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
 
     void setMaster( SvxShapeMaster* pMaster );
-    const SvxShapeMaster* getMaster() const;
-    SvxShapeMaster* getMaster();
 
     // SfxListener
     virtual void Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw ();
