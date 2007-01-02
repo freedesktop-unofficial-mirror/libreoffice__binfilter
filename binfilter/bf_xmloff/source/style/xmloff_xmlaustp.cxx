@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlaustp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:05:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:18:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -291,12 +291,6 @@ void SvXMLAutoStylePoolP::exportStyleContent(
     }
 }
 
-SvXMLAutoStylePoolP::SvXMLAutoStylePoolP()
-{
-    DBG_ERROR("This constuctor is obsoleted and should not be used!");
-    pImpl = NULL;
-}
-
 SvXMLAutoStylePoolP::SvXMLAutoStylePoolP( SvXMLExport& rExport )
 {
     pImpl = new SvXMLAutoStylePoolP_Impl( rExport );
@@ -358,46 +352,9 @@ OUString SvXMLAutoStylePoolP::Add( sal_Int32 nFamily,
     return sName;
 }
 
-sal_Bool SvXMLAutoStylePoolP::Add(OUString& rName, sal_Int32 nFamily, const ::std::vector< XMLPropertyState >& rProperties )
-{
-    OUString sEmpty;
-    return pImpl->Add(rName, nFamily, sEmpty, rProperties);
-}
-
 sal_Bool SvXMLAutoStylePoolP::Add(OUString& rName, sal_Int32 nFamily, const OUString& rParent, const ::std::vector< XMLPropertyState >& rProperties )
 {
     return pImpl->Add(rName, nFamily, rParent, rProperties);
-}
-
-OUString SvXMLAutoStylePoolP::AddAndCache( sal_Int32 nFamily,
-                                  const vector< XMLPropertyState >& rProperties )
-{
-    OUString sEmpty;
-    OUString sName;
-    pImpl->Add(sName, nFamily, sEmpty, rProperties, sal_True );
-    return sName;
-}
-
-OUString SvXMLAutoStylePoolP::AddAndCache( sal_Int32 nFamily,
-                                  const OUString& rParent,
-                                  const vector< XMLPropertyState >& rProperties )
-{
-    OUString sName;
-    pImpl->Add(sName, nFamily, rParent, rProperties, sal_True );
-    return sName;
-}
-
-OUString SvXMLAutoStylePoolP::AddAndCache( sal_Int32 nFamily,
-                                  const OUString& rParent )
-{
-    return pImpl->AddToCache( nFamily, rParent );
-}
-
-OUString SvXMLAutoStylePoolP::Find( sal_Int32 nFamily,
-                                   const vector< XMLPropertyState >& rProperties ) const
-{
-    OUString sEmpty;
-    return pImpl->Find( nFamily, sEmpty, rProperties );
 }
 
 OUString SvXMLAutoStylePoolP::Find( sal_Int32 nFamily,
@@ -406,12 +363,6 @@ OUString SvXMLAutoStylePoolP::Find( sal_Int32 nFamily,
 {
     return pImpl->Find( nFamily, rParent, rProperties );
 }
-
-OUString SvXMLAutoStylePoolP::FindAndRemoveCached( sal_Int32 nFamily ) const
-{
-    return pImpl->FindAndRemoveCached( nFamily );
-}
-
 
 void SvXMLAutoStylePoolP::exportXML( sal_Int32 nFamily,
     const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
