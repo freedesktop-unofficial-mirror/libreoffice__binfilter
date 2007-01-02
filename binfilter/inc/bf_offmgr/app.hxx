@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:23:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -125,8 +125,6 @@ public:
      void                       GetState_Impl( SfxItemSet &rState );
      void                       ExecuteApp_Impl( SfxRequest &rReq );
     void                        GetStateApp_Impl( SfxItemSet &rState );
-    void                        ExecAPI_Impl( SfxRequest &rReq );
-    void                        StateAPI_Impl( SfxItemSet &rState );
 #endif
 
 protected:
@@ -158,7 +156,9 @@ public:
     SvxAutoCorrect*             GetAutoCorrect();
 
     // Config
-    OfaTabAppearanceCfg*        GetTabAppearanceConfig();
+#ifdef WNT
+       OfaTabAppearanceCfg*            GetTabAppearanceConfig();
+#endif
     void                        UseFontSubst();
 
     // ColorTable
