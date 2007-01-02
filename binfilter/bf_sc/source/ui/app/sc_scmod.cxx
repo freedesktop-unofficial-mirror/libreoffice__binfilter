@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:40:15 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:02:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -552,14 +552,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 /*N*/   return *pPrintCfg;
 /*N*/ }
 
-/*N*/ ScNavipiCfg& ScModule::GetNavipiCfg()
-/*N*/ {
-/*N*/   if ( !pNavipiCfg )
-/*N*/       pNavipiCfg = new ScNavipiCfg;
-/*N*/
-/*N*/   return *pNavipiCfg;
-/*N*/ }
-
 /*N*/ svtools::ColorConfig& ScModule::GetColorConfig()
 /*N*/ {
 /*N*/   if ( !pColorConfig )
@@ -703,11 +695,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 /*N*/
 /*N*/   nIdleCount = 0;
 /*N*/ }
-
-void lcl_CheckNeedsRepaint( ScDocShell* pDocShell )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxViewFrame* pFrame = SfxViewFrame::GetFirst( pDocShell );
-}
 
 /*N*/ IMPL_LINK( ScModule, IdleHandler, Timer*, pTimer )
 /*N*/ {
