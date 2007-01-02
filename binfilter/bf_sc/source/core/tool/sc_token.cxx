@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_token.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:39:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:59:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -172,22 +172,6 @@ namespace binfilter {
 /*N*/   nRefCnt = 0;
 /*N*/ }
 
-/*N*/  void ScRawToken::SetReference( ComplRefData& rRef )
-/*N*/  {
-/*N*/   DBG_ASSERT( lcl_IsReference( eOp, GetType() ), "SetReference: no Ref" );
-/*N*/   aRef = rRef;
-/*N*/   if( GetType() == svSingleRef )
-/*N*/       aRef.Ref2 = aRef.Ref1;
-/*N*/  }
-
-/*N*/  void ScRawToken::SetByte( BYTE c )
-/*N*/  {
-/*N*/   eOp   = ocPush;
-/*N*/   eType = svByte;
-/*N*/   cByte = c;
-/*N*/   nRefCnt = 0;
-/*N*/  }
-
 /*N*/ void ScRawToken::SetDouble(double rVal)
 /*N*/ {
 /*N*/   eOp   = ocPush;
@@ -196,14 +180,6 @@ namespace binfilter {
 /*N*/   nRefCnt = 0;
 /*N*/ }
 
-/*N*/  void ScRawToken::SetInt(int rVal)
-/*N*/  {
-/*N*/   eOp   = ocPush;
-/*N*/   eType = svDouble;
-/*N*/   nValue = (double)rVal;
-/*N*/   nRefCnt = 0;
-/*N*/  }
-
 /*N*/ void ScRawToken::SetName( USHORT n )
 /*N*/ {
 /*N*/   eOp    = ocName;
@@ -211,12 +187,6 @@ namespace binfilter {
 /*N*/   nIndex = n;
 /*N*/   nRefCnt = 0;
 /*N*/ }
-
-/*N*/  ComplRefData& ScRawToken::GetReference()
-/*N*/  {
-/*N*/   DBG_ASSERT( lcl_IsReference( eOp, GetType() ), "GetReference: no Ref" );
-/*N*/   return aRef;
-/*N*/  }
 
 /*N*/ void ScRawToken::SetExternal( const sal_Unicode* pStr )
 /*N*/ {
@@ -230,14 +200,6 @@ namespace binfilter {
 /*N*/   cStr[ nLen+1 ] = 0;
 /*N*/   nRefCnt = 0;
 /*N*/ }
-
-/*N*/  void ScRawToken::SetMatrix( ScMatrix* p )
-/*N*/  {
-/*N*/   eOp   = ocPush;
-/*N*/   eType = svMatrix;
-/*N*/   pMat  = p;
-/*N*/   nRefCnt = 0;
-/*N*/  }
 
 /*N*/ ScRawToken* ScRawToken::Clone() const
 /*N*/ {
@@ -366,24 +328,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  BOOL ScToken::IsFunction() const
-/*N*/  {
-/*N*/   return (eOp != ocPush && eOp != ocBad && eOp != ocColRowName &&
-/*N*/           eOp != ocColRowNameAuto && eOp != ocName && eOp != ocDBArea &&
-/*N*/          (GetByte() != 0                          // x parameters
-/*N*/       || (ocEndUnOp < eOp && eOp <= ocEndNoPar)   // no parameter
-/*N*/       || (ocIf == eOp ||  ocChose ==  eOp     )   // @ jump commands
-/*N*/       || (ocEndNoPar < eOp && eOp <= ocEnd1Par)   // one parameter
-/*N*/       || (ocEnd1Par < eOp && eOp <= ocEnd2Par)    // x parameters (cByte==0 in
-/*N*/                                                   // FuncAutoPilot)
-/*N*/       || eOp == ocMacro || eOp == ocExternal      // macros, AddIns
-/*N*/       || eOp == ocAnd || eOp == ocOr              // former binary, now x parameters
-/*N*/       || eOp == ocNot || eOp == ocNeg             // unary but function
-/*N*/       || (eOp >= ocInternalBegin && eOp <= ocInternalEnd)     // internal
-/*N*/       ));
-/*N*/  }
-
-
 /*N*/ BYTE ScToken::GetParamCount() const
 /*N*/ {
 /*N*/   if ( eOp <= ocEndDiv && eOp != ocExternal && eOp != ocMacro &&
@@ -405,27 +349,6 @@ namespace binfilter {
 /*N*/       return 0;           // all the rest, no Parameter, or
 /*N*/                           // if so then it should be in cByte
 /*N*/ }
-
-
-/*N*/  BOOL ScToken::IsMatrixFunction() const
-/*N*/  {
-/*N*/   switch ( eOp )
-/*N*/   {
-/*N*/       case ocDde :
-/*N*/       case ocGrowth :
-/*N*/       case ocTrend :
-/*N*/       case ocRKP :
-/*N*/       case ocRGP :
-/*N*/       case ocFrequency :
-/*N*/       case ocMatTrans :
-/*N*/       case ocMatMult :
-/*N*/       case ocMatInv :
-/*N*/       case ocMatrixUnit :
-/*N*/           return TRUE;
-/*N*/       break;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/  }
 
 
 /*N*/ ScToken* ScToken::Clone() const
@@ -528,42 +451,6 @@ namespace binfilter {
 /*N*/       return *this == rToken;     // else normal operator==
 /*N*/ }
 
-
-/*N*/  BOOL ScToken::Is3DRef() const
-/*N*/  {
-/*N*/      switch ( eType )
-/*N*/      {
-/*N*/          case svDoubleRef :
-/*N*/              if ( GetSingleRef2().IsFlag3D() )
-/*N*/                  return TRUE;
-/*N*/          //! fallthru
-/*N*/          case svSingleRef :
-/*N*/              if ( GetSingleRef().IsFlag3D() )
-/*N*/                  return TRUE;
-/*N*/      }
-/*N*/      return FALSE;
-/*N*/  }
-
-
-/*N*/  BOOL ScToken::IsRPNReferenceAbsName() const
-/*N*/  {
-/*N*/      if ( GetRef() == 1 && GetOpCode() == ocPush )
-/*N*/      {   // only in RPN and not ocColRowNameAuto or similar
-/*N*/          switch ( GetType() )
-/*N*/          {
-/*N*/              case svDoubleRef :
-/*N*/                  if ( !GetSingleRef2().IsRelName() )
-/*N*/                      return TRUE;
-/*N*/              //! fallthru
-/*N*/              case svSingleRef :
-/*N*/                  if ( !GetSingleRef().IsRelName() )
-/*N*/                      return TRUE;
-/*N*/          }
-/*N*/      }
-/*N*/      return FALSE;
-/*N*/  }
-
-
 // --- virtual dummy methods -------------------------------------------------
 
 /*N*/ BYTE ScToken::GetByte() const
@@ -574,7 +461,7 @@ namespace binfilter {
 
 /*N*/ void ScToken::SetByte( BYTE n )
 /*N*/ {
-/*N*/   DBG_ERRORFILE( "ScToken::SetByte: virtual dummy called" );
+/*N*/  DBG_ERRORFILE( "ScToken::SetByte: virtual dummy called" );
 /*N*/ }
 
 /*N*/ double ScToken::GetDouble() const
@@ -816,17 +703,6 @@ namespace binfilter {
 /*N*/   return NULL;
 /*N*/ }
 
-/*N*/  ScToken* ScTokenArray::GetNextColRowName()
-/*N*/  {
-/*N*/   while( nIndex < nLen )
-/*N*/   {
-/*N*/       ScToken* t = pCode[ nIndex++ ];
-/*N*/       if ( t->GetOpCode() == ocColRowName )
-/*N*/           return t;
-/*N*/   }
-/*N*/   return NULL;
-/*N*/  }
-
 /*N*/ ScToken* ScTokenArray::GetNextReferenceRPN()
 /*N*/ {
 /*N*/   while( nIndex < nRPN )
@@ -857,26 +733,6 @@ namespace binfilter {
 /*N*/   return NULL;
 /*N*/ }
 
-/*N*/ ScToken* ScTokenArray::GetNextName()
-/*N*/ {
-/*N*/   for( ScToken* t = Next(); t; t = Next() )
-/*N*/   {
-/*N*/       if( t->GetType() == svIndex )
-/*N*/           return t;
-/*N*/   }
-/*N*/   return NULL;
-/*N*/ }
-
-/*N*/  ScToken* ScTokenArray::GetNextDBArea()
-/*N*/  {
-/*N*/   for( ScToken* t = Next(); t; t = Next() )
-/*N*/   {
-/*N*/       if ( t->GetOpCode() == ocDBArea )
-/*N*/           return t;
-/*N*/   }
-/*N*/   return NULL;
-/*N*/  }
-
 /*N*/ ScToken* ScTokenArray::GetNextOpCodeRPN( OpCode eOp )
 /*N*/ {
 /*N*/   while( nIndex < nRPN )
@@ -903,14 +759,6 @@ namespace binfilter {
 /*N*/   else
 /*N*/       return NULL;
 /*N*/ }
-
-/*N*/  ScToken* ScTokenArray::PrevRPN()
-/*N*/  {
-/*N*/   if( pRPN && nIndex )
-/*N*/       return pRPN[ --nIndex ];
-/*N*/   else
-/*N*/       return NULL;
-/*N*/  }
 
 /*N*/ void ScTokenArray::DelRPN()
 /*N*/ {
@@ -977,16 +825,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/  BOOL ScTokenArray::HasName() const
-/*N*/  {
-/*N*/   for ( USHORT j=0; j < nLen; j++ )
-/*N*/   {
-/*N*/       if( pCode[j]->GetType() == svIndex )
-/*N*/           return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/  }
-
 /*N*/  BOOL ScTokenArray::HasNameOrColRowName() const
 /*N*/  {
 /*N*/   for ( USHORT j=0; j < nLen; j++ )
@@ -1030,11 +868,6 @@ namespace binfilter {
 /*N*/     return ImplGetReference( rRange, FALSE );
 /*N*/ }
 
-/*N*/  BOOL ScTokenArray::IsValidReference( ScRange& rRange ) const
-/*N*/  {
-/*N*/      return ImplGetReference( rRange, TRUE );
-/*N*/  }
-
 /*N*/  inline void lcl_GetAddress( ScAddress& rAddress, const ScToken& rToken )
 /*N*/  {
 /*N*/   if ( rToken.GetType() == svSingleRef )
@@ -1042,102 +875,6 @@ namespace binfilter {
 /*N*/       const SingleRefData& rRef = ((const ScSingleRefToken&)rToken).GetSingleRef();
 /*N*/       rAddress.Set( rRef.nCol, rRef.nRow, rRef.nTab );
 /*N*/   }
-/*N*/  }
-
-/*N*/  BOOL ScTokenArray::GetTableOpRefs(
-/*N*/       ScAddress& rFormula,
-/*N*/       ScAddress& rColFirstPos, ScAddress& rColRelPos,
-/*N*/       ScAddress& rRowFirstPos, ScAddress& rRowRelPos,
-/*N*/       BOOL& rbIsMode2 ) const
-/*N*/  {
-/*N*/   ScToken* pToken;
-/*N*/   BOOL bRet = FALSE;
-/*N*/   rbIsMode2 = FALSE;
-/*N*/   if( pCode && nLen )
-/*N*/   {
-/*N*/       enum
-/*N*/       {
-/*N*/           stBegin, stTableOp, stOpen, stFormula, stFormulaSep,
-/*N*/           stColFirst, stColFirstSep, stColRel, stColRelSep,
-/*N*/           stRowFirst, stRowFirstSep, stRowRel, stClose, stError
-/*N*/       } eState = stBegin;     // last read token
-/*N*/
-/*N*/       USHORT nIndex = 0;
-/*N*/       while( (eState != stError) && (nIndex < nLen) )
-/*N*/       {
-/*N*/           pToken = pCode[ nIndex ];
-/*N*/           if( pToken )
-/*N*/           {
-/*N*/               OpCode eOpCode = pToken->GetOpCode();
-/*N*/               BOOL bIsSingleRef = (eOpCode == ocPush) && (pToken->GetType() == svSingleRef);
-/*N*/               BOOL bIsSep = (eOpCode == ocSep);
-/*N*/
-/*N*/               if( eOpCode != ocSpaces )
-/*N*/               {
-/*N*/                   switch( eState )
-/*N*/                   {
-/*N*/                       case stBegin:
-/*N*/                           eState = (eOpCode == ocTableOp) ? stTableOp : stError;
-/*N*/                       break;
-/*N*/                       case stTableOp:
-/*N*/                           eState = (eOpCode == ocOpen) ? stOpen : stError;
-/*N*/                       break;
-/*N*/                       case stOpen:
-/*N*/                           eState = bIsSingleRef ? stFormula : stError;
-/*N*/                           if( bIsSingleRef )
-/*N*/                               lcl_GetAddress( rFormula, *pToken );
-/*N*/                       break;
-/*N*/                       case stFormula:
-/*N*/                           eState = bIsSep ? stFormulaSep : stError;
-/*N*/                       break;
-/*N*/                       case stFormulaSep:
-/*N*/                           eState = bIsSingleRef ? stColFirst : stError;
-/*N*/                           if( bIsSingleRef )
-/*N*/                               lcl_GetAddress( rColFirstPos, *pToken );
-/*N*/                       break;
-/*N*/                       case stColFirst:
-/*N*/                           eState = bIsSep ? stColFirstSep : stError;
-/*N*/                       break;
-/*N*/                       case stColFirstSep:
-/*N*/                           eState = bIsSingleRef ? stColRel : stError;
-/*N*/                           if( bIsSingleRef )
-/*N*/                               lcl_GetAddress( rColRelPos, *pToken );
-/*N*/                       break;
-/*N*/                       case stColRel:
-/*N*/                           eState = bIsSep ? stColRelSep : ((eOpCode == ocClose) ? stClose : stError);
-/*N*/                       break;
-/*N*/                       case stColRelSep:
-/*N*/                           eState = bIsSingleRef ? stRowFirst : stError;
-/*N*/                           if( bIsSingleRef )
-/*N*/                           {
-/*N*/                               lcl_GetAddress( rRowFirstPos, *pToken );
-/*N*/                               rbIsMode2 = TRUE;
-/*N*/                           }
-/*N*/                       break;
-/*N*/                       case stRowFirst:
-/*N*/                           eState = bIsSep ? stRowFirstSep : stError;
-/*N*/                       break;
-/*N*/                       case stRowFirstSep:
-/*N*/                           eState = bIsSingleRef ? stRowRel : stError;
-/*N*/                           if( bIsSingleRef )
-/*N*/                               lcl_GetAddress( rRowRelPos, *pToken );
-/*N*/                       break;
-/*N*/                       case stRowRel:
-/*N*/                           eState = (eOpCode == ocClose) ? stClose : stError;
-/*N*/                       break;
-/*N*/                       default:
-/*N*/                           eState = stError;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/           else
-/*N*/               eState = stError;
-/*N*/
-/*N*/           nIndex++;
-/*N*/       }
-/*N*/       bRet = (eState == stClose);
-/*N*/   }
-/*N*/   return bRet;
 /*N*/  }
 
 /*N*/ void ScTokenArray::Load30( SvStream& rStream, const ScAddress& rPos )
@@ -1534,11 +1271,6 @@ namespace binfilter {
 /*N*/   return Add( new ScDoubleRefToken( rRef ) );
 /*N*/ }
 
-/*N*/  ScToken* ScTokenArray::AddName( USHORT n )
-/*N*/  {
-/*N*/   return Add( new ScIndexToken( ocName, n ) );
-/*N*/  }
-
 /*N*/ ScToken* ScTokenArray::AddExternal( const sal_Unicode* pStr )
 /*N*/ {
 /*N*/   return AddExternal( String( pStr ) );
@@ -1549,167 +1281,10 @@ namespace binfilter {
 /*N*/   return Add( new ScExternalToken( ocExternal, rStr ) );
 /*N*/ }
 
-/*N*/  ScToken* ScTokenArray::AddMatrix( ScMatrix* p )
-/*N*/  {
-/*N*/   return Add( new ScMatrixToken( p ) );
-/*N*/  }
-
-/*N*/  ScToken* ScTokenArray::AddColRowName( const SingleRefData& rRef )
-/*N*/  {
-/*N*/   return Add( new ScSingleRefToken( ocColRowName, rRef ) );
-/*N*/  }
-
-/*N*/  ScToken* ScTokenArray::AddBad( const sal_Unicode* pStr )
-/*N*/  {
-/*N*/   return AddBad( String( pStr ) );
-/*N*/  }
-
 /*N*/ ScToken* ScTokenArray::AddBad( const String& rStr )
 /*N*/ {
 /*N*/   return Add( new ScStringToken( ocBad, rStr ) );
 /*N*/ }
-
-
-/*N*/  BOOL ScTokenArray::GetAdjacentExtendOfOuterFuncRefs( USHORT& nExtend,
-/*N*/       const ScAddress& rPos, ScDirection eDir )
-/*N*/  {
-/*N*/   USHORT nCol, nRow;
-/*N*/   switch ( eDir )
-/*N*/   {
-/*N*/       case DIR_BOTTOM :
-/*N*/           if ( rPos.Row() < MAXROW )
-/*N*/               nRow = (nExtend = rPos.Row()) + 1;
-/*N*/           else
-/*N*/               return FALSE;
-/*N*/       break;
-/*N*/       case DIR_RIGHT :
-/*N*/           if ( rPos.Col() < MAXCOL )
-/*N*/               nCol = (nExtend = rPos.Col()) + 1;
-/*N*/           else
-/*N*/               return FALSE;
-/*N*/       break;
-/*N*/       case DIR_TOP :
-/*N*/           if ( rPos.Row() > 0 )
-/*N*/               nRow = (nExtend = rPos.Row()) - 1;
-/*N*/           else
-/*N*/               return FALSE;
-/*N*/       break;
-/*N*/       case DIR_LEFT :
-/*N*/           if ( rPos.Col() > 0 )
-/*N*/               nCol = (nExtend = rPos.Col()) - 1;
-/*N*/           else
-/*N*/               return FALSE;
-/*N*/       break;
-/*N*/       default:
-/*N*/           DBG_ERRORFILE( "unknown Direction" );
-/*N*/           return FALSE;
-/*N*/   }
-/*N*/   if ( pRPN && nRPN )
-/*N*/   {
-/*N*/       ScToken* t = pRPN[nRPN-1];
-/*N*/       if ( t->GetType() == svByte )
-/*N*/       {
-/*N*/           BYTE nParamCount = t->GetByte();
-/*N*/           if ( nParamCount && nRPN > nParamCount )
-/*N*/           {
-/*N*/               BOOL bRet = FALSE;
-/*N*/               USHORT nParam = nRPN - nParamCount - 1;
-/*N*/               for ( ; nParam < nRPN-1; nParam++ )
-/*N*/               {
-/*N*/                   ScToken* p = pRPN[nParam];
-/*N*/                   switch ( p->GetType() )
-/*N*/                   {
-/*N*/                       case svSingleRef :
-/*N*/                       {
-/*N*/                           SingleRefData& rRef = p->GetSingleRef();
-/*N*/                           rRef.CalcAbsIfRel( rPos );
-/*N*/                           switch ( eDir )
-/*N*/                           {
-/*N*/                               case DIR_BOTTOM :
-/*N*/                                   if ( rRef.nRow == nRow
-/*N*/                                           && rRef.nRow > nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.nRow;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                               case DIR_RIGHT :
-/*N*/                                   if ( rRef.nCol == nCol
-/*N*/                                           && rRef.nCol > nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.nCol;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                               case DIR_TOP :
-/*N*/                                   if ( rRef.nRow == nRow
-/*N*/                                           && rRef.nRow < nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.nRow;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                               case DIR_LEFT :
-/*N*/                                   if ( rRef.nCol == nCol
-/*N*/                                           && rRef.nCol < nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.nCol;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                           }
-/*N*/                       }
-/*N*/                       break;
-/*N*/                       case svDoubleRef :
-/*N*/                       {
-/*N*/                           ComplRefData& rRef = p->GetDoubleRef();
-/*N*/                           rRef.CalcAbsIfRel( rPos );
-/*N*/                           switch ( eDir )
-/*N*/                           {
-/*N*/                               case DIR_BOTTOM :
-/*N*/                                   if ( rRef.Ref1.nRow == nRow
-/*N*/                                           && rRef.Ref2.nRow > nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.Ref2.nRow;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                               case DIR_RIGHT :
-/*N*/                                   if ( rRef.Ref1.nCol == nCol
-/*N*/                                           && rRef.Ref2.nCol > nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.Ref2.nCol;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                               case DIR_TOP :
-/*N*/                                   if ( rRef.Ref2.nRow == nRow
-/*N*/                                           && rRef.Ref1.nRow < nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.Ref1.nRow;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                               case DIR_LEFT :
-/*N*/                                   if ( rRef.Ref2.nCol == nCol
-/*N*/                                           && rRef.Ref1.nCol < nExtend )
-/*N*/                                   {
-/*N*/                                       nExtend = rRef.Ref1.nCol;
-/*N*/                                       bRet = TRUE;
-/*N*/                                   }
-/*N*/                               break;
-/*N*/                           }
-/*N*/                       }
-/*N*/                       break;
-/*N*/                   } // switch
-/*N*/               } // for
-/*N*/               return bRet;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/  }
-
 
 /*N*/ void ScTokenArray::ImportRecalcMode40( ScRecalcMode40 eMode )
 /*N*/ {
@@ -1841,38 +1416,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return FALSE;
 /*N*/ }
-
-
-/*N*/  void ScTokenArray::ReadjustRelative3DReferences( const ScAddress& rOldPos,
-/*N*/          const ScAddress& rNewPos )
-/*N*/  {
-/*N*/      for ( USHORT j=0; j<nLen; ++j )
-/*N*/      {
-/*N*/          switch ( pCode[j]->GetType() )
-/*N*/          {
-/*N*/              case svDoubleRef :
-/*N*/              {
-/*N*/                  SingleRefData& rRef2 = pCode[j]->GetSingleRef2();
-/*N*/                  if ( rRef2.IsFlag3D() )
-/*N*/                  {
-/*N*/                      rRef2.CalcAbsIfRel( rOldPos );
-/*N*/                      rRef2.CalcRelFromAbs( rNewPos );
-/*N*/                  }
-/*N*/              }
-/*N*/              //! fallthru
-/*N*/              case svSingleRef :
-/*N*/              {
-/*N*/                  SingleRefData& rRef1 = pCode[j]->GetSingleRef();
-/*N*/                  if ( rRef1.IsFlag3D() )
-/*N*/                  {
-/*N*/                      rRef1.CalcAbsIfRel( rOldPos );
-/*N*/                      rRef1.CalcRelFromAbs( rNewPos );
-/*N*/                  }
-/*N*/              }
-/*N*/          }
-/*N*/      }
-/*N*/  }
-
 
 ///////////////////////////////////////////////////////////////////////////
 
