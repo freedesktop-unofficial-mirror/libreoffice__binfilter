@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dcontact.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:30:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:47:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1119,17 +1119,6 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
     }
 }
 
-// OD 27.06.2003 #108784# - insert 'master' drawing object into drawing page
-void SwDrawContact::InsertMasterIntoDrawPage()
-{
-    if ( !GetMaster()->IsInserted() )
-    {
-        GetFmt()->GetDoc()->GetDrawModel()->GetPage(0)
-                ->InsertObject( GetMaster(), GetMaster()->GetOrdNumDirect() );
-    }
-    GetMaster()->SetUserCall( this );
-}
-
 // OD 20.06.2003 #108784# - method in order to correct relative positioning of
 // 'virtual' drawing objects, e.g. caused by a <NbcSetAnchorPos(..)> at the
 // 'master' drawing object.
@@ -1246,15 +1235,6 @@ TYPEINIT1(SwDrawVirtObj,SdrVirtObj);
 SwDrawVirtObj::SwDrawVirtObj( SdrObject&        _rNewObj,
                               SwDrawContact&    _rDrawContact )
     : SdrVirtObj( _rNewObj ),
-      mpAnchorFrm( 0 ),
-      mpPageFrm( 0 ),
-      mrDrawContact( _rDrawContact )
-{}
-
-SwDrawVirtObj::SwDrawVirtObj( SdrObject&        _rNewObj,
-                              const Point&      _rAnchorPos,
-                              SwDrawContact&    _rDrawContact )
-    : SdrVirtObj( _rNewObj, _rAnchorPos ),
       mpAnchorFrm( 0 ),
       mpPageFrm( 0 ),
       mrDrawContact( _rDrawContact )

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndtbl1.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:29:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:47:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,29 +102,6 @@ extern void ClearFEShellTabCols();
 /*N*/   prEnd   = rCrsr.GetCntntNode(FALSE)->GetFrm( &aMkPos )->GetUpper();
 /*N*/ }
 
-/*N*/ BOOL lcl_GetBoxSel( const SwCursor& rCursor, SwSelBoxes& rBoxes,
-/*N*/                   BOOL bAllCrsr = FALSE )
-/*N*/ {
-/*N*/   const SwTableCursor* pTblCrsr = rCursor;
-/*N*/   if( pTblCrsr )
-/*?*/       ::binfilter::GetTblSelCrs( *pTblCrsr, rBoxes );
-/*N*/   else
-/*N*/   {
-/*N*/       const SwPaM *pCurPam = &rCursor, *pSttPam = pCurPam;
-/*N*/       do {
-/*N*/           const SwNode* pNd = pCurPam->GetNode()->FindTableBoxStartNode();
-/*N*/           if( pNd )
-/*N*/           {
-/*N*/               SwTableBox* pBox = (SwTableBox*)pNd->FindTableNode()->GetTable().
-/*N*/                                           GetTblBox( pNd->GetIndex() );
-/*N*/               rBoxes.Insert( pBox );
-/*N*/           }
-/*N*/       } while( bAllCrsr &&
-/*N*/               pSttPam != ( pCurPam = (SwPaM*)pCurPam->GetNext()) );
-/*N*/   }
-/*N*/   return 0 != rBoxes.Count();
-/*N*/ }
-
 /***********************************************************************
 #*  Class      :  SwDoc
 #*  Methoden   :  SetRowHeight(), GetRowHeight()
@@ -196,81 +173,6 @@ extern void ClearFEShellTabCols();
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ void lcl_CollectLines( SvPtrarr &rArr, const SwCursor& rCursor )
-/*N*/ {
-/*N*/   //Zuerst die selektierten Boxen einsammeln.
-/*N*/   SwSelBoxes aBoxes;
-/*N*/   if( !::binfilter::lcl_GetBoxSel( rCursor, aBoxes ))
-/*?*/       return ;
-/*N*/
-/*N*/   //Die selektierte Struktur kopieren.
-/*N*/   const SwTable &rTable = aBoxes[0]->GetSttNd()->FindTableNode()->GetTable();
-/*N*/   LinesAndTable aPara( rArr, rTable );
-/*N*/   _FndBox aFndBox( 0, 0 );
-/*N*/   {
-/*N*/       _FndPara aPara( aBoxes, &aFndBox );
-/*N*/       ((SwTableLines&)rTable.GetTabLines()).ForEach( &_FndLineCopyCol, &aPara );
-/*N*/   }
-/*N*/
-/*N*/   //Diejenigen Lines einsammeln, die nur selektierte Boxen enthalten.
-/*N*/   const _FndBox *pTmp = &aFndBox;
-/*N*/   ::binfilter::_FindBox( pTmp, &aPara );
-/*N*/
-/*N*/   //Jetzt die Lines entfernen, die von einer gemeinsamen uebergeordneten Line
-/*N*/   //erfasst werden.
-/*N*/   for ( USHORT i = 0; i < rArr.Count(); ++i )
-/*N*/   {
-/*N*/       SwTableLine *pUpLine = (SwTableLine*)rArr[i];
-/*N*/       for ( USHORT k = 0; k < rArr.Count(); ++k )
-/*N*/       {
-/*N*/           if ( k != i && 1) //STRIP001 ::lcl_IsAnLower( pUpLine, (SwTableLine*)rArr[k] ) )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rArr.Remove( k );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-//-----------------------------------------------------------------------------
-
-
-
-//-----------------------------------------------------------------------------
-
-
-/******************************************************************************
- *              void SwDoc::SetRowHeight( SwTwips nNew )
- ******************************************************************************/
-
-
-/******************************************************************************
- *               SwTwips SwDoc::GetRowHeight() const
- ******************************************************************************/
-
-/*N*/ BOOL SwDoc::BalanceRowHeight( const SwCursor& rCursor, BOOL bTstOnly )
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/   SwTableNode* pTblNd = rCursor.GetPoint()->nNode.GetNode().FindTableNode();
-/*N*/   if( pTblNd )
-/*N*/   {
-/*N*/       SvPtrarr aRowArr( 25, 50 ); //Zum sammeln der Lines.
-/*N*/       ::binfilter::lcl_CollectLines( aRowArr, rCursor );
-/*N*/
-/*N*/       if( 1 < aRowArr.Count() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bTstOnly )
-/*N*/       }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
-/******************************************************************************
- *              void SwDoc::SetRowBackground()
- ******************************************************************************/
-
-/******************************************************************************
- *               SwTwips SwDoc::GetRowBackground() const
- ******************************************************************************/
 
 /***********************************************************************
 #*  Class      :  SwDoc
@@ -518,88 +420,5 @@ extern void ClearFEShellTabCols();
 /*N*/       rSet.Put( aSetBoxInfo );
 /*N*/   }
 /*N*/ }
-
-/***********************************************************************
-#*  Class      :  SwDoc
-#*  Methoden   :  SetBoxAttr
-#*  Datum      :  MA 18. Dec. 96
-#*  Update     :  JP 29.04.98
-#***********************************************************************/
-
-/***********************************************************************
-#*  Class      :  SwDoc
-#*  Methoden   :  GetBoxBackground()
-#*  Datum      :  MA 01. Jun. 93
-#*  Update     :  JP 29.04.98
-#***********************************************************************/
-
-
-/***********************************************************************
-#*  Class      :  SwDoc
-#*  Methoden   :  SetBoxAlign, SetBoxAlign
-#*  Datum      :  MA 18. Dec. 96
-#*  Update     :  JP 29.04.98
-#***********************************************************************/
-
-/*N*/ USHORT SwDoc::GetBoxAlign( const SwCursor& rCursor ) const
-/*N*/ {
-/*N*/   USHORT nAlign = USHRT_MAX;
-/*N*/   SwTableNode* pTblNd = rCursor.GetPoint()->nNode.GetNode().FindTableNode();
-/*N*/   SwSelBoxes aBoxes;
-/*N*/   if( pTblNd && ::binfilter::lcl_GetBoxSel( rCursor, aBoxes ))
-/*N*/       for( USHORT i = 0; i < aBoxes.Count(); ++i )
-/*N*/       {
-/*N*/           const SwFmtVertOrient &rOri =
-/*N*/                           aBoxes[i]->GetFrmFmt()->GetVertOrient();
-/*N*/           if( USHRT_MAX == nAlign )
-/*N*/               nAlign = rOri.GetVertOrient();
-/*N*/           else if( rOri.GetVertOrient() != nAlign )
-/*N*/           {
-/*?*/               nAlign = USHRT_MAX;
-/*?*/               break;
-/*N*/           }
-/*N*/       }
-/*N*/   return nAlign;
-/*N*/ }
-
-
-/***********************************************************************
-#*  Class      :  SwDoc
-#*  Methoden   :  AdjustCellWidth()
-#*  Datum      :  MA 20. Feb. 95
-#*  Update     :  JP 29.04.98
-#***********************************************************************/
-
-/*Die Zelle ist in der Selektion, wird aber nicht von den TabCols beschrieben.
- *Das bedeutet, dass die Zelle aufgrund der zweidimensionalen Darstellung von
- *anderen Zellen "geteilt" wurde. Wir muessen also den Wunsch- bzw. Minimalwert
- *der Zelle auf die Spalten, durch die sie geteilt wurde verteilen.
- *
- *Dazu sammeln wir zuerst die Spalten - nicht die Spaltentrenner! - ein, die
- *sich mit der Zelle ueberschneiden. Den Wunschwert der Zelle verteilen wir
- *dann anhand des Betrages der Ueberschneidung auf die Zellen.
- *Wenn eine Zelle bereits einen groesseren Wunschwert angemeldet hat, so bleibt
- *dieser erhalten, kleinere Wuensche werden ueberschrieben.
- */
-
-
-/*Besorgt neue Werte zu Einstellung der TabCols.
- *Es wird nicht ueber die Eintrage in den TabCols itereriert, sondern
- *quasi ueber die Zwischenraeume, die ja die Zellen beschreiben.
- *
- *bWishValues == TRUE:  Es werden zur aktuellen Selektion bzw. zur aktuellen
- *                      Zelle die Wunschwerte aller betroffen Zellen ermittelt.
- *                      Sind mehrere Zellen in einer Spalte, so wird der
- *                      groesste Wunschwert als Ergebnis geliefert.
- *                      Fuer die TabCol-Eintraege, zu denen keine Zellen
- *                      ermittelt wurden, werden 0-en eingetragen.
- *
- *bWishValues == FALSE: Die Selektion wird senkrecht ausgedehnt. Zu jeder
- *                      Spalte in den TabCols, die sich mit der Selektion
- *                      schneidet wird der Minimalwert ermittelt.
- */
-
-
-
 
 }
