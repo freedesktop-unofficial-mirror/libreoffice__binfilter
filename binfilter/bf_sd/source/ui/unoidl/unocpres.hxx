@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unocpres.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:30:03 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:13:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -152,7 +152,6 @@ private:
 
     // intern
     inline List* GetCustomShowList() const throw();
-    sal_Int32 getSdCustomShowIdx( const ::rtl::OUString& Name ) const throw();
     SdCustomShow * getSdCustomShow( const ::rtl::OUString& Name ) const throw();
 
 public:

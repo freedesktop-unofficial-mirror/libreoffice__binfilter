@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unowcntr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:29:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:13:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,31 +83,6 @@ void SvUnoWeakContainer::insert( uno::WeakReference< uno::XInterface > xRef ) th
     }
 
     mpList->Insert( new uno::WeakReference< uno::XInterface >( xRef ) );
-}
-
-/** removes the given ref from this container */
-void SvUnoWeakContainer::remove( uno::WeakReference< uno::XInterface > xRef ) throw()
-{
-    uno::WeakReference< uno::XInterface >* pRef = mpList->First();
-    while( pRef )
-    {
-        uno::Reference< uno::XInterface > xTestRef( *pRef );
-        if(!xTestRef.is())
-        {
-            delete mpList->Remove();
-            pRef = mpList->GetCurObject();
-        }
-        else
-        {
-            if( *pRef == xRef )
-            {
-                delete mpList->Remove();
-                break;
-            }
-
-            pRef = mpList->Next();
-        }
-    }
 }
 
 /** searches the container for a ref that returns true on the given
