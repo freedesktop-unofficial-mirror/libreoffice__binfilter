@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tox.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:58:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:48:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -478,9 +478,6 @@ public:
 
     SwCaptionDisplay        GetCaptionDisplay() const { return eCaptionDisplay;}
     void                    SetCaptionDisplay(SwCaptionDisplay eSet) {eCaptionDisplay = eSet;}
-
-    BOOL                    IsTOXBaseInReadonly() const;
-
 
     static const String&    GetTOXName(TOXTypes eType);           // toxmgr.cxx
 
