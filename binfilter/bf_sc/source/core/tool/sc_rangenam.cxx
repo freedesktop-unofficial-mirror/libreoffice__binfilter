@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rangenam.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:37:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:59:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,65 +102,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ ScRangeData::ScRangeData( ScDocument* pDok,
-/*N*/                         const String& rName,
-/*N*/                         const ScTokenArray& rArr,
-/*N*/                           const ScAddress& rAddress,
-/*N*/                         RangeType nType ) :
-/*N*/               aName       ( rName ),
-/*N*/               aPos        ( rAddress ),
-/*N*/               eType       ( nType ),
-/*N*/               pDoc        ( pDok ),
-/*N*/               nIndex      ( 0 ),
-/*N*/               nExportIndex( 0 ),
-/*N*/               pCode       ( new ScTokenArray( rArr ) ),
-/*N*/               bModified   ( FALSE )
-/*N*/ {
-/*N*/   if( !pCode->GetError() )
-/*N*/   {
-/*N*/       pCode->Reset();
-/*N*/       ScToken* p = pCode->GetNextReference();
-/*N*/       if( p )// genau eine Referenz als erstes
-/*N*/       {
-/*N*/           if( p->GetType() == svSingleRef )
-/*N*/               eType = eType | RT_ABSPOS;
-/*N*/           else
-/*N*/               eType = eType | RT_ABSAREA;
-/*N*/       }
-/*N*/       // Die Importfilter haben diesen Test nicht,
-/*N*/       // da die benannten Bereiche z.T. noch unvollstaendig sind.
-/*N*/ //        if( !pCode->GetCodeLen() )
-/*N*/ //        {
-/*N*/ //            // ggf. den Fehlercode wg. unvollstaendiger Formel setzen!
-/*N*/ //            ScCompiler aComp( pDok, aPos, *pCode );
-/*N*/ //            aComp.CompileTokenArray();
-/*N*/ //            pCode->DelRPN();
-/*N*/ //        }
-/*N*/   }
-/*N*/ }
-
-/*?*/ ScRangeData::ScRangeData( ScDocument* pDok,
-/*?*/                         const String& rName,
-/*?*/                         const ScAddress& rTarget ) :
-/*?*/               aName       ( rName ),
-/*?*/               aPos        ( rTarget ),
-/*?*/               eType       ( RT_NAME ),
-/*?*/               pDoc        ( pDok ),
-/*?*/               nIndex      ( 0 ),
-/*?*/               nExportIndex( 0 ),
-/*?*/               pCode       ( new ScTokenArray ),
-/*?*/               bModified   ( FALSE )
-/*?*/ {
-/*?*/   SingleRefData aRefData;
-/*?*/   aRefData.InitAddress( rTarget );
-/*?*/   aRefData.SetFlag3D( TRUE );
-/*?*/   pCode->AddSingleReference( aRefData );
-/*?*/   ScCompiler aComp( pDoc, aPos, *pCode );
-/*?*/   aComp.CompileTokenArray();
-/*?*/   if ( !pCode->GetError() )
-/*?*/       eType |= RT_ABSPOS;
-/*?*/ }
 
 /*N*/ ScRangeData::ScRangeData(const ScRangeData& rScRangeData) :
 /*N*/   aName   (rScRangeData.aName),

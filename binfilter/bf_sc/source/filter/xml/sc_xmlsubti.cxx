@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlsubti.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:32:30 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:01:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,14 +123,6 @@ void ScMyTableData::AddColumn()
         nRealCols.resize(nColsPerCol.size() + nDefaultColCount + 1, 0);
     }
     nRealCols[aTableCellPos.Column + 1] = nRealCols[aTableCellPos.Column] + nColsPerCol[aTableCellPos.Column];
-}
-
-sal_Int32 ScMyTableData::FindNextCol(const sal_Int32 nIndex) const
-{
-    sal_Int32 i = nIndex;
-    while(nRealCols[i] < 0)
-        i++;
-    return nRealCols[i];
 }
 
 sal_Int32 ScMyTableData::GetRealCols(const sal_Int32 nIndex, const sal_Bool bIsNormal) const
@@ -439,22 +431,6 @@ void ScMyTables::SetRowStyle(const ::rtl::OUString& rCellStyleName)
 {
     rImport.GetStylesImportHelper()->SetRowStyle(rCellStyleName);
 }
-
-void ScMyTables::CloseRow()
-{
-    sal_Int32 nToMerge;
-    sal_Int32 nSpannedCols = aTableVec[nTableCount - 1]->GetSpannedCols();
-    sal_Int32 nColCount = aTableVec[nTableCount - 1]->GetColCount();
-    sal_Int32 nCol = aTableVec[nTableCount - 1]->GetColumn();
-    sal_Int32 nColsPerCol = aTableVec[nTableCount - 1]->GetColsPerCol(nCol);
-    if (nSpannedCols > nColCount)
-        nToMerge = aTableVec[nTableCount - 1]->GetChangedCols(nCol, nCol + nColsPerCol + nSpannedCols - nColCount);
-    else
-        nToMerge = aTableVec[nTableCount - 1]->GetChangedCols(nCol, nCol + nColsPerCol);
-    if ((nToMerge > nCol) && (aTableVec[nTableCount - 1]->GetSubTableSpanned() == 1))
-        DoMerge(nColsPerCol + aTableVec[nTableCount - 1]->GetColsPerCol(nToMerge) - 1);
-}
-
 
 void ScMyTables::InsertColumn()
 {
