@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:24:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:45:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1232,77 +1232,4 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*N*/           0 != pNd->FindFooterStartNode();
 /*N*/ }
 
-#ifdef BIDI
-
-/*N*/ short SwDoc::GetTextDirection( const SwPosition& rPos,
-/*N*/                                const Point* pPt ) const
-/*N*/ {
-/*N*/     short nRet;
-/*N*/   Point aPt;
-/*N*/   if( pPt )
-/*N*/       aPt = *pPt;
-/*N*/
-/*N*/   SwCntntNode *pNd = rPos.nNode.GetNode().GetCntntNode();
-/*N*/   SwCntntFrm *pFrm;
-/*N*/
-/*N*/   if( pNd && 0 != (pFrm = pNd->GetFrm( &aPt, &rPos )) )
-/*N*/     {
-/*N*/         if ( pFrm->IsVertical() )
-/*N*/         {
-/*?*/             if ( pFrm->IsRightToLeft() )
-/*?*/                 nRet = FRMDIR_VERT_TOP_LEFT;
-/*?*/             else
-/*?*/                 nRet = FRMDIR_VERT_TOP_RIGHT;
-/*N*/         }
-/*N*/         else
-/*N*/         {
-/*N*/             if ( pFrm->IsRightToLeft() )
-/*?*/                 nRet = FRMDIR_HORI_RIGHT_TOP;
-/*N*/             else
-/*?*/                 nRet = FRMDIR_HORI_LEFT_TOP;
-/*N*/         }
-/*N*/     }
-/*N*/     else
-/*N*/   {
-/*?*/       const SvxFrameDirectionItem* pItem = 0;
-/*?*/       if( pNd )
-/*?*/       {
-/*?*/           // in a flyframe? Then look at that for the correct attribute
-/*?*/           const SwFrmFmt* pFlyFmt = pNd->GetFlyFmt();
-/*?*/           while( pFlyFmt )
-/*?*/           {
-/*?*/               pItem = &pFlyFmt->GetFrmDir();
-/*?*/               if( FRMDIR_ENVIRONMENT == pItem->GetValue() )
-/*?*/               {
-/*?*/                   pItem = 0;
-/*?*/                   const SwFmtAnchor* pAnchor = &pFlyFmt->GetAnchor();
-/*?*/                   if( FLY_PAGE != pAnchor->GetAnchorId() &&
-/*?*/                       pAnchor->GetCntntAnchor() )
-/*?*/                       pFlyFmt = pAnchor->GetCntntAnchor()->nNode.
-/*?*/                                           GetNode().GetFlyFmt();
-/*?*/                   else
-/*?*/                       pFlyFmt = 0;
-/*?*/               }
-/*?*/               else
-/*?*/                   pFlyFmt = 0;
-/*?*/           }
-/*?*/
-/*?*/           if( !pItem )
-/*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwPageDesc* pPgDsc = pNd->FindPageDesc( FALSE );
-/*?*/           }
-/*?*/       }
-/*?*/       if( !pItem )
-/*?*/           pItem = (SvxFrameDirectionItem*)&GetAttrPool().GetDefaultItem(
-/*?*/                                                           RES_FRAMEDIR );
-/*?*/         nRet = pItem->GetValue();
-/*?*/   }
-/*N*/     return nRet;
-/*N*/ }
-
-
-#else
-
-
-#endif
 }
