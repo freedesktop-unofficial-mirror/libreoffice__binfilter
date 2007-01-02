@@ -4,9 +4,9 @@
  *
  *  $RCSfile: validat.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:44:26 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:29:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,9 +120,6 @@ public:
     ScValidationMode GetDataMode() const    { return eDataMode; }
 
 
-                    //  mit String: bei Eingabe, mit Zelle: fuer Detektiv / RC_FORCED
-    BOOL            IsDataValid( const String& rTest, const ScPatternAttr& rPattern,
-                                    const ScAddress& rPos ) const;
     BOOL            IsDataValid( ScBaseCell* pCell, const ScAddress& rPos ) const;
 
                     // TRUE -> Abbruch
