@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swtypes.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:57:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:47:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -205,8 +205,6 @@ com::sun::star::lang::Locale    CreateLocale( LanguageType eLanguage );
     ::com::sun::star::linguistic2::XSpellChecker1 > GetSpellChecker();
 ::com::sun::star::uno::Reference<
     ::com::sun::star::linguistic2::XHyphenator >    GetHyphenator();
-::com::sun::star::uno::Reference<
-    ::com::sun::star::linguistic2::XThesaurus >     GetThesaurus();
 ::com::sun::star::uno::Reference<
     ::com::sun::star::linguistic2::XDictionaryList >    GetDictionaryList();
 ::com::sun::star::uno::Reference<
