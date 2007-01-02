@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pormulti.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:12:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:01:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,20 +120,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-#ifdef BIDI
-
-/*---------------------------------------------------
- * SwBidiPortion::SwBidiPortion(..)
- * --------------------------------------------------*/
-
-/*N*/ SwBidiPortion::SwBidiPortion( xub_StrLen nEnd, BYTE nLv )
-/*N*/     : SwMultiPortion( nEnd ), nLevel( nLv )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-
-#endif
 
 /*-----------------01.11.00 14:22-------------------
  * SwDoubleLinePortion::SwDoubleLinePortion(..)
