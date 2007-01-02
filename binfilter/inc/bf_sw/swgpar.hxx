@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swgpar.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:12:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:46:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,7 +71,6 @@ public:
     ULONG  CallParser( USHORT = SWGRD_NORMAL );
     BOOL NeedsPasswd();
     BOOL CheckPasswd( const UniString& );
-    const SfxDocumentInfo& GetDocInfo();
 
     SwSwgParser( SwDoc *pSwDoc, const SwPaM* pSwPaM,
                  SvStream *pIstream, const UniString& rFileName, //$ istream
