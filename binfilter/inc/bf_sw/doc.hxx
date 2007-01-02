@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:42:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -559,9 +559,6 @@ class SwDoc
     // Charts der angegebenen Tabelle updaten
     void _UpdateCharts( const SwTable& rTbl, ViewShell& rVSh ) const;
 
-    BOOL _SelectNextRubyChars( SwPaM& rPam, SwRubyListEntry& rRubyEntry,
-                                USHORT nMode );
-
     // unser eigener 'IdlTimer' ruft folgende Methode
     DECL_LINK( DoIdleJobs, Timer * );
     // der CharTimer ruft diese Methode
@@ -805,10 +802,6 @@ public:
                             sal_Bool bDelRedlines = sal_True,
                             sal_Bool bCopyFlyAtFly = sal_False ) const;
     sal_Bool IsInHeaderFooter( const SwNodeIndex& rIdx ) const;
-#ifdef BIDI
-    short GetTextDirection( const SwPosition& rPos,
-                            const Point* pPt = 0 ) const;
-#endif
 
     sal_Bool SetFlyFrmAttr( SwFrmFmt& rFlyFmt, SfxItemSet& rSet );
     sal_Bool SetFrmFmtToFly( SwFrmFmt& rFlyFmt, SwFrmFmt& rNewFmt,
@@ -844,10 +837,7 @@ public:
         // loescht die gesamten UndoObjecte ( fuer Methoden die am Nodes
         // Array drehen ohne entsprechendes Undo !!)
     void DelAllUndoObj();
-        // liefert die Id der letzten undofaehigen Aktion zurueck
-        // oder USHRT_MAX
-        // fuellt ggf. VARARR mit ::com::sun::star::sdbcx::User-UndoIds
-    sal_uInt16 GetUndoIds( String* pStr = 0, SwUndoIds *pUndoIds = 0) const;
+
         // gibt es Klammerung mit der Id?
         // die drei folgenden Methoden werden beim Undo und nur dort
         // benoetigt. Sollten sonst nicht aufgerufen werden.
@@ -864,21 +854,6 @@ public:
         // abfragen/setzen der Anzahl von wiederherstellbaren Undo-Actions
     static sal_uInt16 GetUndoActionCount()              { return nUndoActions; }
     static void SetUndoActionCount( sal_uInt16 nNew )   { nUndoActions = nNew; }
-
-        // 2002-05-31 dvo, #95884#: To prevent an undo array overflow when
-        // doing nested undos, undo may have to be disabled. Undo-intensive
-        // actions (like auto-format) should check this manually.
-
-        // Redo
-        // wiederholt
-        // liefert die Id der letzten Redofaehigen Aktion zurueck
-        // fuellt ggf. VARARR mit RedoIds
-    sal_uInt16 GetRedoIds( String* pStr = 0, SwUndoIds *pRedoIds = 0) const;
-
-        // Repeat
-        // wiederholt
-        // liefert die Id der letzten Repeatfaehigen Aktion zurueck
-        // fuellt ggf. VARARR mit RedoIds
 
     /* Felder */
     const SwFldTypes *GetFldTypes() const { return pFldTypes; }
@@ -899,9 +874,6 @@ public:
     sal_Bool IsExpFldsLocked() const        { return 0 != nLockExpFld; }
     SwDocUpdtFld& GetUpdtFlds() const   { return *pUpdtFlds; }
     sal_Bool SetFieldsDirty( sal_Bool b, const SwNode* pChk = 0, ULONG nLen = 0 );
-
-    void SetFixFields( sal_Bool bOnlyTimeDate = sal_False,
-                        const DateTime* pNewDateTime = 0 );
 
     sal_uInt16 GetFldUpdateFlags() const;
     void SetFldUpdateFlags( sal_uInt16 eMode )          { nFldUpdMode = eMode; }
@@ -1243,7 +1215,6 @@ public:
     // sets the flag at the document and invalidates the layout if flag has changed
     void SetUseVirtualDevice( sal_Bool bFlag );
 
-    const JobSetup* GetJobsetup() const;
     void        SetJobsetup( const JobSetup& rJobSetup );
 
     SwPrintData*    GetPrintData() const;
@@ -1278,11 +1249,6 @@ public:
     SwPageDesc* FindPageDescByName( const String& rName,
                                     sal_uInt16* pPos = 0 ) const;
 
-        // kopiere den gesamten PageDesc - ueber Dokumentgrenzen und "tief"!
-        // optional kann das kopieren der PoolFmtId, -HlpId verhindert werden
-    void CopyPageDesc( const SwPageDesc& rSrcDesc, SwPageDesc& rDstDesc,
-                        sal_Bool bCopyPoolIds = sal_True );
-
         // kopiere die Kopzeile (mit dem Inhalt!) aus dem SrcFmt
         // ins DestFmt ( auch ueber Doc grenzen hinaus!)
     void CopyHeader( const SwFrmFmt& rSrcFmt, SwFrmFmt& rDestFmt )
@@ -1301,7 +1267,6 @@ public:
 
         // Methoden fuer die Verzeichnisse:
         // - Verzeichnismarke einfuegen loeschen travel
-    sal_uInt16 GetCurTOXMark( const SwPosition& rPos, SwTOXMarks& ) const;
      void Delete( SwTOXMark* pTOXMark );
 
         // - Verzeichnis einfuegen, und bei Bedarf erneuern
@@ -1667,12 +1632,10 @@ public:
     sal_Bool ChgAnchor( const SdrMarkList &rMrkList, int eAnchorId,
                         sal_Bool bSameOnly, sal_Bool bPosCorr );
 
-    sal_Bool BalanceRowHeight( const SwCursor& rCursor, sal_Bool bTstOnly = sal_True );
     void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet );
     void GetTabBorders( const SwCursor& rCursor, SfxItemSet& rSet ) const;
     void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew );
     sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const;
-    sal_uInt16 GetBoxAlign( const SwCursor& rCursor ) const;
 
     int Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest );
     void Unchain( SwFrmFmt &rFmt );
@@ -1703,12 +1666,6 @@ public:
     const vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl() const
             { return xForbiddenCharsTable; }
     vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl();
-
-    // Interface for the list of Ruby - texts/attributes
-    USHORT FillRubyList( const SwPaM& rPam, SwRubyList& rList,
-                        USHORT nMode );
-    USHORT SetRubyList( const SwPaM& rPam, const SwRubyList& rList,
-                        USHORT nMode );
 
     // ------------------- Zugriff auf Dummy-Member --------------------
 
