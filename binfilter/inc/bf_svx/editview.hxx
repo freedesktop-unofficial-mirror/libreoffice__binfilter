@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editview.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:30:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:31:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,15 +111,9 @@ public:
 
     void            SetSelectionMode( EESelectionMode eMode );
 
-    BOOL            IsReadOnly() const;
-
     BOOL            HasSelection() const;
     ESelection      GetSelection() const;
     void            SetSelection( const ESelection& rNewSel );
-
-
-    BOOL            IsInsertMode() const;
-
 
 
                         // Position der VisArea im Ausgabefenster.
@@ -132,36 +126,9 @@ public:
     void                SetVisArea( const Rectangle& rRec );
     const Rectangle&    GetVisArea() const;
 
-    const Pointer&  GetPointer() const;
-
-
-
-    BOOL            PostKeyEvent( const KeyEvent& rKeyEvent );
-
-
-
     void            Cut();
     void            Copy();
     void            Paste();
-
-
-
-    // speziell fuer Olli
-
-
-
-
-
-
-    // An EditView, damit bei TRUE flackerfreies Update:
-
-    void            SetStyleSheet( SfxStyleSheet* pStyle );
-
-
-
-
-
-
 
     const SvxFieldItem* GetField( const Point& rPos, USHORT* pnPara = NULL, xub_StrLen* pnPos = NULL ) const;
 
