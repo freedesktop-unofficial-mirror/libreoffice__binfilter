@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoviwou.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:59:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:37:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,11 +40,6 @@
 #include "svdotext.hxx"
 namespace binfilter {
 
-
-SvxDrawOutlinerViewForwarder::SvxDrawOutlinerViewForwarder( OutlinerView& rOutl ) :
-    mrOutlinerView ( rOutl ), maTextShapeTopLeft()
-{
-}
 
 SvxDrawOutlinerViewForwarder::SvxDrawOutlinerViewForwarder( OutlinerView& rOutl, const Point& rShapePosTopLeft ) :
     mrOutlinerView ( rOutl ), maTextShapeTopLeft( rShapePosTopLeft )
@@ -174,8 +169,4 @@ sal_Bool SvxDrawOutlinerViewForwarder::Paste()
     return sal_True;
 }
 
-void SvxDrawOutlinerViewForwarder::SetShapePos( const Point& rShapePosTopLeft )
-{
-    maTextShapeTopLeft = rShapePosTopLeft;
-}
 }
