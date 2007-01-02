@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:45:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:20:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -3213,156 +3213,6 @@ struct TabInfo
 /*?*/       FormatFullDoc();
 /*?*/       UpdateViews( GetActiveView() );
 /*N*/   }
-/*N*/ }
-
-/*N*/ void ImpEditEngine::DoStretchChars( sal_uInt16 nX, sal_uInt16 nY )
-/*N*/ {
-/*N*/   UndoActionStart( EDITUNDO_STRETCH );
-/*N*/   sal_uInt16 nParas = GetEditDoc().Count();
-/*N*/   for ( sal_uInt16 nPara = 0; nPara < nParas; nPara++ )
-/*N*/   {
-/*N*/       ContentNode* pNode = GetEditDoc()[nPara];
-/*N*/       SfxItemSet aTmpSet( pNode->GetContentAttribs().GetItems() );
-/*N*/
-/*N*/       if ( nX != 100 )
-/*N*/       {
-/*N*/           // Fontbreite
-/*N*/           SvxCharScaleWidthItem* pNewWidth = (SvxCharScaleWidthItem*) pNode->GetContentAttribs().GetItem( EE_CHAR_FONTWIDTH ).Clone();
-/*N*/           sal_uInt32 nProp = pNewWidth->GetValue();   // sal_uInt32, kann temporaer gross werden
-/*N*/           nProp *= nX;
-/*N*/           nProp /= 100;
-/*N*/           pNewWidth->SetValue( (sal_uInt16)nProp );
-/*N*/           aTmpSet.Put( *pNewWidth );
-/*N*/           delete pNewWidth;
-/*N*/
-/*N*/           // Kerning:
-/*N*/           const SvxKerningItem& rKerningItem =
-/*N*/               (const SvxKerningItem&)pNode->GetContentAttribs().GetItem( EE_CHAR_KERNING );
-/*N*/           SvxKerningItem* pNewKerning = (SvxKerningItem*)rKerningItem.Clone();
-/*N*/           long nKerning = pNewKerning->GetValue();
-/*N*/           if ( nKerning > 0 )
-/*N*/           {
-/*N*/               nKerning *= nX;
-/*N*/               nKerning /= 100;
-/*N*/           }
-/*N*/           else if ( nKerning < 0 )
-/*N*/           {
-/*N*/               // Bei Negativen Werten:
-/*N*/               // Bei Stretching > 100 muessen die Werte kleiner werden und umgekehrt.
-/*N*/               nKerning *= 100;
-/*N*/               nKerning /= nX;
-/*N*/           }
-/*N*/           pNewKerning->SetValue( (short)nKerning );
-/*N*/           aTmpSet.Put( *pNewKerning);
-/*N*/           delete pNewKerning;
-/*N*/       }
-/*N*/       else
-/*N*/           aTmpSet.ClearItem( EE_CHAR_FONTWIDTH );
-/*N*/
-/*N*/       if ( nY != 100 )
-/*N*/       {
-/*N*/           // Fonthoehe
-/*N*/           for ( int nItem = 0; nItem < 3; nItem++ )
-/*N*/           {
-/*N*/               USHORT nItemId = EE_CHAR_FONTHEIGHT;
-/*N*/               if ( nItem == 1 )
-/*N*/                   nItemId = EE_CHAR_FONTHEIGHT_CJK;
-/*N*/               else if ( nItem == 2 )
-/*N*/                   nItemId = EE_CHAR_FONTHEIGHT_CTL;
-/*N*/
-/*N*/               const SvxFontHeightItem& rHeightItem =
-/*N*/                   (const SvxFontHeightItem&)pNode->GetContentAttribs().GetItem( nItemId );
-/*N*/               SvxFontHeightItem* pNewHeight = (SvxFontHeightItem*)rHeightItem.Clone();
-/*N*/               sal_uInt32 nHeight = pNewHeight->GetHeight();
-/*N*/               nHeight *= nY;
-/*N*/               nHeight /= 100;
-/*N*/               pNewHeight->SetHeightValue( nHeight );
-/*N*/               aTmpSet.Put( *pNewHeight );
-/*N*/               delete pNewHeight;
-/*N*/           }
-/*N*/
-/*N*/           // Absatzabstaende
-/*N*/           const SvxULSpaceItem& rULSpaceItem =
-/*N*/               (const SvxULSpaceItem&)pNode->GetContentAttribs().GetItem( EE_PARA_ULSPACE );
-/*N*/           SvxULSpaceItem* pNewUL = (SvxULSpaceItem*)rULSpaceItem.Clone();
-/*N*/           sal_uInt32 nUpper = pNewUL->GetUpper();
-/*N*/           nUpper *= nY;
-/*N*/           nUpper /= 100;
-/*N*/           pNewUL->SetUpper( (sal_uInt16)nUpper );
-/*N*/           sal_uInt32 nLower = pNewUL->GetLower();
-/*N*/           nLower *= nY;
-/*N*/           nLower /= 100;
-/*N*/           pNewUL->SetLower( (sal_uInt16)nLower );
-/*N*/           aTmpSet.Put( *pNewUL );
-/*N*/           delete pNewUL;
-/*N*/       }
-/*N*/       else
-/*N*/           aTmpSet.ClearItem( EE_CHAR_FONTHEIGHT );
-/*N*/
-/*N*/       SetParaAttribs( nPara, aTmpSet );
-/*N*/
-/*N*/       // harte Attribute:
-/*N*/       sal_uInt16 nLastEnd = 0;    // damit nach entfernen und neu nicht nochmal
-/*N*/       CharAttribArray& rAttribs = pNode->GetCharAttribs().GetAttribs();
-/*N*/       sal_uInt16 nAttribs = rAttribs.Count();
-/*N*/       for ( sal_uInt16 nAttr = 0; nAttr < nAttribs; nAttr++ )
-/*N*/       {
-/*N*/           EditCharAttrib* pAttr = rAttribs[nAttr];
-/*N*/           if ( pAttr->GetStart() >= nLastEnd )
-/*N*/           {
-/*N*/               sal_uInt16 nWhich = pAttr->Which();
-/*N*/               SfxPoolItem* pNew = 0;
-/*N*/               if ( nWhich == EE_CHAR_FONTHEIGHT )
-/*N*/               {
-/*N*/                   SvxFontHeightItem* pNewHeight = (SvxFontHeightItem*)pAttr->GetItem()->Clone();
-/*N*/                   sal_uInt32 nHeight = pNewHeight->GetHeight();
-/*N*/                   nHeight *= nY;
-/*N*/                   nHeight /= 100;
-/*N*/                   pNewHeight->SetHeightValue( nHeight );
-/*N*/                   pNew = pNewHeight;
-/*N*/               }
-/*N*/               else if ( nWhich == EE_CHAR_FONTWIDTH )
-/*N*/               {
-/*N*/                   SvxCharScaleWidthItem* pNewWidth = (SvxCharScaleWidthItem*)pAttr->GetItem()->Clone();
-/*N*/                   sal_uInt32 nProp = pNewWidth->GetValue();
-/*N*/                   nProp *= nX;
-/*N*/                   nProp /= 100;
-/*N*/                   pNewWidth->SetValue( (sal_uInt16)nProp );
-/*N*/                   pNew = pNewWidth;
-/*N*/               }
-/*N*/               else if ( nWhich == EE_CHAR_KERNING )
-/*N*/               {
-/*N*/                   SvxKerningItem* pNewKerning = (SvxKerningItem*)pAttr->GetItem()->Clone();
-/*N*/                   long nKerning = pNewKerning->GetValue();
-/*N*/                   if ( nKerning > 0 )
-/*N*/                   {
-/*N*/                       nKerning *= nX;
-/*N*/                       nKerning /= 100;
-/*N*/                   }
-/*N*/                   else if ( nKerning < 0 )
-/*N*/                   {
-/*N*/                       // Bei Negativen Werten:
-/*N*/                       // Bei Stretching > 100 muessen die Werte kleiner werden und umgekehrt.
-/*N*/                       nKerning *= 100;
-/*N*/                       nKerning /= nX;
-/*N*/                   }
-/*N*/                   pNewKerning->SetValue( (short)nKerning );
-/*N*/                   pNew = pNewKerning;
-/*N*/               }
-/*N*/               if ( pNew )
-/*N*/               {
-/*N*/                   SfxItemSet aTmpSet( GetEmptyItemSet() );
-/*N*/                   aTmpSet.Put( *pNew );
-/*N*/                   SetAttribs( EditSelection( EditPaM( pNode, pAttr->GetStart() ),
-/*N*/                       EditPaM( pNode, pAttr->GetEnd() ) ), aTmpSet );
-/*N*/
-/*N*/                   nLastEnd = pAttr->GetEnd();
-/*N*/                   delete pNew;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   UndoActionEnd( EDITUNDO_STRETCH );
 /*N*/ }
 
 /*N*/ const SvxLRSpaceItem& ImpEditEngine::GetLRSpaceItem( ContentNode* pNode )
