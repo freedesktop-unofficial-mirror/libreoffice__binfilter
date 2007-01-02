@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_shapeuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:05:15 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:06:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -223,17 +223,6 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScShapeObj::getPropertySetInfo(
         xRet = new SfxExtItemPropertySetInfo( lcl_GetShapeMap(), aPropSeq );
     }
     return xRet;
-}
-
-ScDocument* lcl_GetDocument( SdrObject* pObj )
-{
-    if( pObj )
-    {
-        ScDrawLayer* pModel = (ScDrawLayer*)pObj->GetModel();
-        if ( pModel )
-            return pModel->GetDocument();
-    }
-    return NULL;
 }
 
 void SAL_CALL ScShapeObj::setPropertyValue(
