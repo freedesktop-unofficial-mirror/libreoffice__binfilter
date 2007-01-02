@@ -4,9 +4,9 @@
  *
  *  $RCSfile: b3dlight.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:17:46 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:21:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -118,17 +118,14 @@ public:
         { aPosition=rNew; }
     const Vector3D& GetPosition()
         { return aPosition; }
-    void SetSpotDirection(const Vector3D& rNew);
     const Vector3D& GetSpotDirection()
         { return aSpotDirection; }
-    void SetSpotDirectionEye(const Vector3D& rNew);
     const Vector3D& GetSpotDirectionEye()
         { return aSpotDirectionEye; }
     void SetSpotExponent(UINT16 nNew)
         { nSpotExponent=nNew; }
     UINT16 GetSpotExponent()
         { return nSpotExponent; }
-    void SetSpotCutoff(double fNew) ;
     double GetSpotCutoff()
         { return fSpotCutoff; }
     double GetCosSpotCutoff()
@@ -137,10 +134,8 @@ public:
         { fConstantAttenuation=fNew; }
     double GetConstantAttenuation()
         { return fConstantAttenuation; }
-    void SetLinearAttenuation(double fNew);
     double GetLinearAttenuation()
         { return fLinearAttenuation; }
-    void SetQuadraticAttenuation(double fNew);
     double GetQuadraticAttenuation()
         { return fQuadraticAttenuation; }
 
@@ -204,7 +199,6 @@ public:
     virtual void SetGlobalAmbientLight(const Color rNew);
     const Color GetGlobalAmbientLight();
     virtual void SetLocalViewer(BOOL bNew=TRUE);
-    BOOL GetLocalViewer();
     virtual void SetModelTwoSide(BOOL bNew=FALSE);
     BOOL GetModelTwoSide();
 
@@ -222,30 +216,10 @@ public:
         Base3DLightNumber=Base3DLight0);
     void SetDirection(const Vector3D& rNew,
         Base3DLightNumber=Base3DLight0);
-    const Vector3D& GetPosition(Base3DLightNumber=Base3DLight0);
     const Vector3D& GetDirection(Base3DLightNumber=Base3DLight0);
-    void SetSpotDirection(const Vector3D& rNew,
-        Base3DLightNumber=Base3DLight0);
-    const Vector3D& GetSpotDirection(Base3DLightNumber=Base3DLight0);
-    void SetSpotExponent(UINT16 nNew,
-        Base3DLightNumber=Base3DLight0);
-    UINT16 GetSpotExponent(Base3DLightNumber=Base3DLight0);
-    void SetSpotCutoff(double fNew,
-        Base3DLightNumber=Base3DLight0);
-    double GetSpotCutoff(Base3DLightNumber=Base3DLight0);
-    void SetConstantAttenuation(double fNew,
-        Base3DLightNumber=Base3DLight0);
-    double GetConstantAttenuation(Base3DLightNumber=Base3DLight0);
-    void SetLinearAttenuation(double fNew,
-        Base3DLightNumber=Base3DLight0);
-    double GetLinearAttenuation(Base3DLightNumber=Base3DLight0);
-    void SetQuadraticAttenuation(double fNew,
-        Base3DLightNumber=Base3DLight0);
-    double GetQuadraticAttenuation(Base3DLightNumber=Base3DLight0);
     void Enable(BOOL bNew=TRUE,
         Base3DLightNumber=Base3DLight0);
     BOOL IsEnabled(Base3DLightNumber=Base3DLight0);
-    BOOL IsDirectionalSource(Base3DLightNumber=Base3DLight0);
 
     // Direkter Zugriff auf B3dLight
     B3dLight& GetLightObject(Base3DLightNumber=Base3DLight0);

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: b3dgeom.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:17:37 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:21:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -151,8 +151,6 @@ public:
 
     // Inhalte loeschen
     void Erase();
-    // Inhalte loeschen und Speicher freigeben
-    void Empty();
 
     // Copy-Operator
     void operator=(const B3dGeometry& rObj);
@@ -160,9 +158,6 @@ public:
     // Zugriff auf beide Buckets um die Geometrie zu lesen
     B3dEntityBucket& GetEntityBucket() { return aEntityBucket; }
     GeometryIndexValueBucket& GetIndexBucket() { return aIndexBucket; }
-
-    // Eine beliebige Transformation auf die Geometrie anwenden
-    void Transform(const Matrix4D&);
 
     // Hittest auf Geometrie
     sal_Bool CheckHit(const Vector3D &rFront, const Vector3D &rBack, sal_uInt16 nTol);
@@ -175,23 +170,13 @@ public:
 
     // Standard - Normalen generieren
     void CreateDefaultNormalsSphere();
-    void RemoveNormals();
 
     // Standard - Texturkoordinaten generieren
     void CreateDefaultTexture(UINT16 nCreateWhat=B3D_CREATE_DEFAULT_ALL,
         BOOL bUseSphere=TRUE);
-    void RemoveTexture();
-
-    // Default-Geometrien erstellen
-    void CreateCube(const B3dVolume& rVolume);
-    void CreateSphere(const B3dVolume& rVolume, double nX, double nY);
 
     // Normalen invertieren
     void InvertNormals();
-
-    // #110988# get all cuts of the geometry with the given vector defined by the two positions
-    void GetAllCuts(Vector3DVector& rVector, const Vector3D& rFront, const Vector3D& rBack) const;
-
 protected:
     // Callbacks bei komplexen Primitiven
     friend class B3dComplexPolygon;

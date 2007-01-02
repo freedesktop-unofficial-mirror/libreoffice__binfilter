@@ -4,9 +4,9 @@
  *
  *  $RCSfile: b3dcolor.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:17:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:21:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,8 +62,6 @@ public:
 
     void CalcInBetween(Color& rOld1, Color& rOld2, double t);
     void CalcMiddle(Color& rOld1, Color& rOld2);
-    void CalcMiddle(Color& rOld1, Color& rOld2, Color& rOld3);
-    ULONG GetDistance(Color& rOld);
 
     // Addition, Subtraktion mit clamping
     B3dColor&   operator+=  (const B3dColor&);

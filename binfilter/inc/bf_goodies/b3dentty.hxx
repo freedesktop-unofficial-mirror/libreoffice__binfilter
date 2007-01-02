@@ -4,9 +4,9 @@
  *
  *  $RCSfile: b3dentty.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:17:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:21:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -125,28 +125,13 @@ public:
 
     void Reset();
 
-    void Copy(B3dEntity& rEnt);
-    void ToDeviceCoor(B3dTransformationSet* pSet)
-        { if(!IsDeviceCoor()) ImplToDeviceCoor(pSet); }
-    void To3DCoor(B3dTransformationSet* pSet)
-        { if(IsDeviceCoor()) ImplTo3DCoor(pSet); }
-
-    void ForceEqualBase(B3dTransformationSet* pSet, B3dEntity& rOld);
-    void ForceEqualBase(B3dTransformationSet* pSet, B3dEntity& rOld1,
-        B3dEntity& rOld2);
     void CalcInBetween(B3dEntity& rOld1,
         B3dEntity& rOld2, double t);
     void CalcMiddle(B3dEntity& rOld1,
         B3dEntity& rOld2);
-    void CalcMiddle(B3dEntity& rOld1,
-        B3dEntity& rOld2, B3dEntity& rOld3);
 
     // Eine beliebige Transformation auf die Geometrie anwenden
     void Transform(const Matrix4D&);
-
-protected:
-    void ImplToDeviceCoor(B3dTransformationSet* pSet);
-    void ImplTo3DCoor(B3dTransformationSet* pSet);
 };
 
 /*************************************************************************
