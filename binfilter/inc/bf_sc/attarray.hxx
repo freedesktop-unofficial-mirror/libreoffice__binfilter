@@ -4,9 +4,9 @@
  *
  *  $RCSfile: attarray.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:27:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:24:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,6 @@ private:
     ScAttrEntry*    pData;
 
 friend class ScDocument;                // fuer FillInfo
-friend class ScDocumentIterator;
 friend class ScAttrIterator;
 friend void lcl_IterGetNumberFormat( ULONG& nFormat,
         const ScAttrArray*& rpArr, USHORT& nAttrEndRow,
@@ -105,8 +104,9 @@ public:
 
     void    SetTab(USHORT nNewTab)  { nTab = nNewTab; }
     void    SetCol(USHORT nNewCol)  { nCol = nNewCol; }
-
+#ifdef DBG_UTIL
     void    TestData() const;
+#endif
     void    Reset( const ScPatternAttr* pPattern, BOOL bAlloc = TRUE );
     BOOL    Concat(USHORT nPos);
 
@@ -135,7 +135,6 @@ public:
     BOOL    RemoveAreaMerge( USHORT nStartRow, USHORT nEndRow );
 
     void    FindStyleSheet( const SfxStyleSheetBase* pStyleSheet, BOOL* pUsed, BOOL bReset );
-    BOOL    IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
 
     void    DeleteAreaSafe(USHORT nStartRow, USHORT nEndRow);
 
