@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:02:28 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:05:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -274,22 +274,6 @@ ScDocument* ScModelObj::GetDocument() const
 SvEmbeddedObject* ScModelObj::GetEmbeddedObject() const
 {
     return pDocShell;
-}
-
-BOOL ScModelObj::IsEmbedded() const
-{
-    if (pDocShell)
-    {
-        return pDocShell->IsOle();
-    }
-    return FALSE;
-}
-
-double ScModelObj::GetOutputFactor() const
-{
-    if (pDocShell)
-        return pDocShell->GetOutputFactor();
-    return 1.0;
 }
 
 BOOL ScModelObj::AdjustRowHeight( USHORT nStartRow, USHORT nEndRow, USHORT nTab )
