@@ -4,9 +4,9 @@
  *
  *  $RCSfile: token.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:34:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:29:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,8 +107,6 @@ public:
     inline  void                Delete()                { delete this; }
     inline  const StackVar      GetType() const         { return eType; }
     inline  OpCode              GetOpCode() const       { return eOp;   }
-            BOOL                IsFunction() const; // pure functions, no operators
-             BOOL               IsMatrixFunction() const;   // if a function _always_ returns a Matrix
             BYTE                GetParamCount() const;
     inline  void                NewOpCode( OpCode e )   { eOp = e; }
     inline  void                IncRef()                { nRefCnt++;       }
@@ -147,12 +145,6 @@ public:
 
     virtual BOOL                operator==( const ScToken& rToken ) const;
             BOOL                TextEqual( const ScToken& rToken ) const;
-             BOOL                Is3DRef() const;    // reference with 3D flag set
-
-    // If token in RPN resulted from resolving a name and contains an absolute
-    // reference. Token must be obtained through ScTokenArray::GetNextReferenceRPN()
-    // or similar.
-             BOOL                IsRPNReferenceAbsName() const;
 
     static  size_t              GetStrLenBytes( xub_StrLen nLen )
                                     { return nLen * sizeof(sal_Unicode); }
