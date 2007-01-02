@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itrcrsr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:10:15 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:00:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -338,7 +338,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       SwTwips nX = 0;
 /*N*/       SwTwips nFirst = 0;
 /*N*/       SwLinePortion *pPor = pCurr->GetFirstPortion();
-/*N*/         SwBidiPortion* pLastBidiPor = 0;
 /*N*/         SvShorts* pSpaceAdd = pCurr->GetpSpaceAdd();
 /*N*/         SvUShorts* pKanaComp = pCurr->GetpKanaComp();
 /*N*/         MSHORT nSpaceIdx = 0;
@@ -479,13 +478,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/                             ++nKanaIdx;
 /*N*/                   }
 /*N*/
-/*N*/                                                   // if we are right behind a BidiPortion, we have to
-/*N*/                         // hold a pointer to the BidiPortion in order to
-/*N*/                         // find the correct cursor position, depending on the
-/*N*/                         // cursor level
-/*N*/                         if ( ((SwMultiPortion*)pPor)->IsBidi() &&
-/*N*/                              aInf.GetIdx() + pPor->GetLen() == nOfst )
-/*N*/                              pLastBidiPor = (SwBidiPortion*)pPor;
 /*N*/                     }
 /*N*/
 /*N*/                   aInf.SetIdx( aInf.GetIdx() + pPor->GetLen() );
@@ -689,58 +681,6 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/                 {
 /*N*/                     // apply attributes to font
                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     Seek( nOfst );
-/*N*/                 }
-/*N*/             }
-/*N*/         }
-/*N*/
-/*N*/         // special case: We are at the beginning of a BidiPortion or
-/*N*/         // directly behind a BidiPortion
-/*N*/         if ( pCMS &&
-/*N*/                 ( pLastBidiPor ||
-/*N*/                 ( pPor &&
-/*N*/                   pPor->IsMultiPortion() &&
-/*N*/                   ((SwMultiPortion*)pPor)->IsBidi() ) ) )
-/*N*/         {
-/*N*/             // we determine if the cursor has to blink before or behind
-/*N*/             // the bidi portion
-/*N*/             if ( pLastBidiPor )
-/*N*/             {
-/*N*/                 const BYTE nPortionLevel = pLastBidiPor->GetLevel();
-/*N*/
-/*N*/                 if ( pCMS->nCursorBidiLevel >= nPortionLevel )
-/*N*/                 {
-/*N*/                     // we came from inside the bidi portion, we want to blink
-/*N*/                     // behind the portion
-/*N*/                     pOrig->Pos().X() -= pLastBidiPor->Width() +
-/*N*/                                         pLastBidiPor->CalcSpacing( nSpaceAdd, aInf );
-/*N*/
-/*N*/                     // Again, there is a special case: logically behind
-/*N*/                     // the portion can actually mean that the cursor is inside
-/*N*/                     // the portion. This can happen is the last portion
-/*N*/                     // inside the bidi portion is a nested bidi portion
-/*N*/                     SwLineLayout& rLineLayout =
-/*N*/                             ((SwMultiPortion*)pLastBidiPor)->GetRoot();
-/*N*/
-/*N*/                     const SwLinePortion *pLast = rLineLayout.FindLastPortion();
-/*N*/                     if ( pLast->IsMultiPortion() )
-/*N*/                     {
-/*N*/                         ASSERT( ((SwMultiPortion*)pLast)->IsBidi(),
-/*N*/                                  "Non-BidiPortion inside BidiPortion" )
-/*N*/                         pOrig->Pos().X() += pLast->Width() +
-/*N*/                                             pLast->CalcSpacing( nSpaceAdd, aInf );
-/*N*/                     }
-/*N*/                 }
-/*N*/             }
-/*N*/             else
-/*N*/             {
-/*N*/                 const BYTE nPortionLevel = ((SwBidiPortion*)pPor)->GetLevel();
-/*N*/
-/*N*/                 if ( pCMS->nCursorBidiLevel >= nPortionLevel )
-/*N*/                 {
-/*N*/                     // we came from inside the bidi portion, we want to blink
-/*N*/                     // behind the portion
-/*N*/                     pOrig->Pos().X() += pPor->Width() +
-/*N*/                                         pPor->CalcSpacing( nSpaceAdd, aInf );
 /*N*/                 }
 /*N*/             }
 /*N*/         }
