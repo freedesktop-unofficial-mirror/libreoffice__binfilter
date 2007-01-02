@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_olinefun.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:49:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:03:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,56 +52,6 @@ namespace binfilter {
 
 //========================================================================
 
-/*N*/ void lcl_InvalidateOutliner( SfxBindings* pBindings )
-/*N*/ {
-/*N*/   if ( pBindings )
-/*N*/   {
-/*N*/       pBindings->Invalidate( SID_OUTLINE_SHOW );
-/*N*/       pBindings->Invalidate( SID_OUTLINE_HIDE );
-/*N*/       pBindings->Invalidate( SID_OUTLINE_REMOVE );
-/*N*/
-/*N*/       pBindings->Invalidate( SID_STATUS_SUM );            // wegen ein-/ausblenden
-/*N*/       pBindings->Invalidate( SID_ATTR_SIZE );
-/*N*/   }
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-//! PaintWidthHeight zur DocShell verschieben?
-
-/*N*/ void lcl_PaintWidthHeight( ScDocShell& rDocShell, USHORT nTab,
-/*N*/                                   BOOL bColumns, USHORT nStart, USHORT nEnd )
-/*N*/ {
-/*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/
-/*N*/   USHORT nParts = PAINT_GRID;
-/*N*/   USHORT nStartCol = 0;
-/*N*/   USHORT nStartRow = 0;
-/*N*/   USHORT nEndCol = MAXCOL;            // fuer Test auf Merge
-/*N*/   USHORT nEndRow = MAXROW;
-/*N*/   if ( bColumns )
-/*N*/   {
-/*N*/       nParts |= PAINT_TOP;
-/*N*/       nStartCol = nStart;
-/*N*/       nEndCol = nEnd;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       nParts |= PAINT_LEFT;
-/*N*/       nStartRow = nStart;
-/*N*/       nEndRow = nEnd;
-/*N*/   }
-/*N*/   if (pDoc->HasAttrib( nStartCol,nStartRow,nTab, nEndCol,nEndRow,nTab,
-/*N*/                           HASATTR_MERGED | HASATTR_OVERLAPPED ))
-/*N*/   {
-/*N*/       nStartCol = 0;
-/*N*/       nStartRow = 0;
-/*N*/   }
-/*N*/   rDocShell.PostPaint( nStartCol,nStartRow,nTab, MAXCOL,MAXROW,nTab, nParts );
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
@@ -145,19 +95,4 @@ namespace binfilter {
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-/*N*/ BOOL ScOutlineDocFunc::HideOutline( USHORT nTab, BOOL bColumns, USHORT nLevel, USHORT nEntry,
-/*N*/                                   BOOL bRecord, BOOL bPaint, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   return TRUE;        //! immer ???
-/*N*/ }
-
-
-
-
-
 }
