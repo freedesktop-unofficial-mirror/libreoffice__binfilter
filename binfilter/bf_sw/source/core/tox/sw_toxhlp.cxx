@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_toxhlp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:36:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:02:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -91,42 +91,6 @@ namespace binfilter {
  {
  }
 
- String IndexEntrySupplierWrapper::GetIndexKey( const String& rTxt,
-                                                const String& rTxtReading,
-                                                const STAR_NMSPC::lang::Locale& rLocale ) const
- {
-    String sRet;
-    try {
-         sRet = xIES->getIndexKey( rTxt, rTxtReading, rLocale );
-    }
-    catch ( UNO_NMSPC::Exception& e )
-    {
- #ifndef PRODUCT
-         ByteString aMsg( "getIndexKey: Exception caught\n" );
-        aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-        DBG_ERRORFILE( aMsg.GetBuffer() );
- #endif
-    }
-    return sRet;
- }
-
- String IndexEntrySupplierWrapper::GetFollowingText( BOOL bMorePages ) const
- {
-    String sRet;
-    try {
-        sRet = xIES->getIndexFollowPageWord( bMorePages, aLcl );
-    }
-    catch ( UNO_NMSPC::Exception& e )
-    {
- #ifndef PRODUCT
-         ByteString aMsg( "getIndexFollowPageWord: Exception caught\n" );
-        aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-        DBG_ERRORFILE( aMsg.GetBuffer() );
- #endif
-    }
-    return sRet;
- }
-
  STAR_NMSPC::uno::Sequence< ::rtl::OUString >
  IndexEntrySupplierWrapper::GetAlgorithmList( const STAR_NMSPC::lang::Locale& rLcl ) const
  {
@@ -144,25 +108,6 @@ namespace binfilter {
  #endif
     }
     return sRet;
- }
-
- STAR_NMSPC::uno::Sequence < ::com::sun::star::lang::Locale >
- IndexEntrySupplierWrapper::GetLocaleList() const
- {
-     ::com::sun::star::uno::Sequence< ::com::sun::star::lang::Locale > sRet;
-
-     try {
-         sRet = xIES->getLocaleList();
-     }
-     catch ( UNO_NMSPC::Exception& e )
-     {
- #ifndef PRODUCT
-         ByteString aMsg( "getLocaleList: Exception caught\n" );
-         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
-         DBG_ERRORFILE( aMsg.GetBuffer() );
- #endif
-     }
-     return sRet;
  }
 
  sal_Bool IndexEntrySupplierWrapper::LoadAlgorithm(
