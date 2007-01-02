@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedprx.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:13:41 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:26:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,16 +96,7 @@ public:
     virtual sal_Bool        SetDepth( USHORT nPara, USHORT nNewDepth );
 
     void                    SetForwarder( SvxTextForwarder& );
-    sal_Bool                HaveImageBullet( USHORT nPara ) const;
     sal_Bool                HaveTextBullet( USHORT nPara ) const;
-
-    /** Query whether all text in given selection is editable
-
-        @return sal_True if every character in the given selection can
-        be changed, and sal_False if e.g. a field or a bullet is
-        contained therein.
-     */
-    sal_Bool                IsEditable( const ESelection& rSelection );
 
 private:
     SvxTextForwarder* mrTextForwarder;
@@ -153,7 +144,6 @@ public:
     virtual SfxBroadcaster&                     GetBroadcaster() const;
 
     void        SetEditSource( ::std::auto_ptr< SvxEditSource > pAdaptee );
-    sal_Bool    IsValid() const;
 
 private:
     // declared, but not defined
