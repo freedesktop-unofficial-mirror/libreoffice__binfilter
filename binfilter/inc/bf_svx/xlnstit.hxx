@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xlnstit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:30:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:41:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ public:
             XLineStartItem(long nIndex = -1);
             XLineStartItem(const String& rName, const XPolygon& rXPolygon);
             XLineStartItem(SfxItemPool* pPool, const XPolygon& rXPolygon);
-            XLineStartItem(SfxItemPool* pPool );
             XLineStartItem(const XLineStartItem& rItem);
             XLineStartItem(SvStream& rIn);
 
