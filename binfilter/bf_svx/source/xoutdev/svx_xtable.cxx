@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtable.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:43:38 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:40:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,17 +85,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* XPropertyTable::XPropertyTable( SvStraem& )
-|*
-*************************************************************************/
-
-/*N*/ XPropertyTable::XPropertyTable( SvStream& rIn ) :
-/*N*/           pBmpTable   ( NULL )
-/*N*/ {
-/*N*/ }
-
-/*************************************************************************
-|*
 |* XPropertyTable::~XPropertyTable()
 |*
 *************************************************************************/
@@ -127,19 +116,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       delete pXPool;
 /*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|* XPropertyTable::Clear()
-|*
-*************************************************************************/
-
-/*N*/ void XPropertyTable::Clear()
-/*N*/ {
-/*N*/   aTable.Clear();
-/*N*/   if( pBmpTable )
-/*N*/       pBmpTable->Clear();
 /*N*/ }
 
 /************************************************************************/
@@ -195,28 +171,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (!pEntry) nPos = -1;
 /*N*/   return nPos;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Bitmap* XPropertyTable::GetBitmap()
-|*
-*************************************************************************/
-
-/*N*/ Bitmap* XPropertyTable::GetBitmap( long nIndex ) const
-/*N*/ {
-/*N*/   if( pBmpTable )
-/*N*/   {
-/*N*/       if( bBitmapsDirty )
-/*N*/       {
-/*N*/           ( (XPropertyTable*) this )->bBitmapsDirty = FALSE;
-/*N*/           ( (XPropertyTable*) this )->CreateBitmapsForUI();
-/*N*/       }
-/*N*/
-/*N*/       if( pBmpTable->Count() >= (ULONG) nIndex )
-/*N*/           return (Bitmap*) pBmpTable->GetObject( (ULONG) nIndex );
-/*N*/   }
-/*N*/   return( NULL );
 /*N*/ }
 
 /*************************************************************************
@@ -317,17 +271,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* XPropertyList::XPropertyList( SvStraem& )
-|*
-*************************************************************************/
-
-/*N*/ XPropertyList::XPropertyList( SvStream& rIn ) :
-/*N*/           pBmpList    ( NULL )
-/*N*/ {
-/*N*/ }
-
-/*************************************************************************
-|*
 |* XPropertyList::~XPropertyList()
 |*
 *************************************************************************/
@@ -359,19 +302,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       delete pXPool;
 /*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|* XPropertyList::Clear()
-|*
-*************************************************************************/
-
-/*N*/ void XPropertyList::Clear()
-/*N*/ {
-/*N*/   aList.Clear();
-/*N*/   if( pBmpList )
-/*N*/       pBmpList->Clear();
 /*N*/ }
 
 /************************************************************************/
@@ -427,27 +357,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (!pEntry) nPos = -1;
 /*N*/   return nPos;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Bitmap* XPropertyList::GetBitmap()
-|*
-*************************************************************************/
-
-/*N*/ Bitmap* XPropertyList::GetBitmap( long nIndex ) const
-/*N*/ {
-/*N*/   if( pBmpList )
-/*N*/   {
-/*N*/       if( bBitmapsDirty )
-/*N*/       {
-/*N*/           ( (XPropertyList*) this )->bBitmapsDirty = FALSE;
-/*N*/           ( (XPropertyList*) this )->CreateBitmapsForUI();
-/*N*/       }
-/*N*/       if( pBmpList->Count() >= (ULONG) nIndex )
-/*N*/           return (Bitmap*) pBmpList->GetObject( (ULONG) nIndex );
-/*N*/   }
-/*N*/   return( NULL );
 /*N*/ }
 
 /*************************************************************************
