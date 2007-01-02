@@ -4,9 +4,9 @@
  *
  *  $RCSfile: poly3d.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:21:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:32:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -177,10 +177,8 @@ public:
     void Transform(const Matrix4D& rTfMatrix);
 
     BOOL IsInside(const Vector3D& rPnt, BOOL bWithBorder=FALSE) const;
-    BOOL IsInside(const Polygon3D& rPoly, BOOL bWithBorder=TRUE) const;
 
     // different export formats
-    XPolygon GetXPolygon() const;
     Polygon GetPolygon() const;
 
     Volume3D GetPolySize() const;
@@ -237,7 +235,6 @@ public:
     PolyPolygon3D(UINT16 nInitSize = 4, UINT16 nResize = 4);
     PolyPolygon3D(const Polygon3D& r3DPoly);
     PolyPolygon3D(const PolyPolygon3D& r3DPolyPoly);
-    PolyPolygon3D(const Polygon& rPoly, double fScale = 1.0);
     PolyPolygon3D(const PolyPolygon& rPolyPoly, double fScale = 1.0);
     PolyPolygon3D(const XPolygon& rXPoly, double fScale = 1.0);
     PolyPolygon3D(const XPolyPolygon& rXPolyPoly, double fScale = 1.0);
@@ -262,7 +259,6 @@ public:
 
     void Transform(const Matrix4D& rTfMatrix);
 
-    void FlipDirection(UINT16 nInd=0);
     void FlipDirections();
 
     // Die Umlaufrichtungen ineinanderliegender Polygone anpassen
@@ -285,12 +281,10 @@ public:
     friend SvStream& operator<<(SvStream& rOStream, const PolyPolygon3D& rPolyPoly3D);
 
     // Drehrichtung feststellen (fuer Polygone in der XY-Ebene) bzw. umkehren
-    BOOL IsClockwise(UINT16 nInd=0) const;
     Vector3D GetNormal() const;
     Vector3D GetMiddle() const;
     BOOL IsClosed() const;
 
-    XPolyPolygon GetXPolyPolygon() const;
     PolyPolygon GetPolyPolygon() const;
 
     Volume3D GetPolySize() const;
@@ -298,9 +292,6 @@ public:
 
     // Laenge des Polygons liefern
     double GetLength() const;
-
-    // Umschliessenden Kugelradius feststellen
-    double GetEnclosingRadius() const;
 
     // merge the contents of the whole PolyPolygon to contain no more
     // cuts or overlaps. Makes all necessary merges between all
