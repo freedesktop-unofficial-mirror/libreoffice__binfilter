@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_printfun.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:13:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:06:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -703,15 +703,6 @@ namespace binfilter {
         pDev->SetMapMode(aLogicMode);
     }
 */
-
-
-BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
-{
-    SvxPageUsage eUsage = (SvxPageUsage) ( nPageUsage & 0x000f );
-    return ( eUsage == SVX_PAGE_MIRROR && (nPageNo & 1) );
-}
-
-
 
 
 /*N*/ void ScPrintFunc::MakeEditEngine()
