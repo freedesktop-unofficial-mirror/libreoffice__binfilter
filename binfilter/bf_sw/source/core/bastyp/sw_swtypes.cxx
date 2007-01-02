@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swtypes.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:27:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:41:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -188,12 +188,6 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 /*N*/ Reference< XHyphenator >  GetHyphenator()
 /*N*/ {
 /*N*/   return LinguMgr::GetHyphenator();
-/*N*/ }
-
-
-/*N*/ Reference< XThesaurus >  GetThesaurus()
-/*N*/ {
-/*N*/   return LinguMgr::GetThesaurus();
 /*N*/ }
 
 
