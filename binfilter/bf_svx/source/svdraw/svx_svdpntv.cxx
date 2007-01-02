@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:45:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:33:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1012,18 +1012,6 @@ using namespace ::com::sun::star;
 /*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
 #endif
 /*N*/ }
-
-/* new interface src537 */
-
-
-
-/*N*/ BOOL SdrPaintView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*N*/ }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
