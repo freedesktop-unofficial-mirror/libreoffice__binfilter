@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlimppr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:06:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:19:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -128,15 +128,6 @@ void SvXMLImportPropertyMapper::ChainImportMapper(
         xNext = xNext->mxNextMapper;
         xNext->maPropMapper = maPropMapper;
     }
-}
-
-void SvXMLImportPropertyMapper::importXML(
-        vector< XMLPropertyState >& rProperties,
-           Reference< XAttributeList > xAttrList,
-           const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap ) const
-{
-    importXML( rProperties, xAttrList, rUnitConverter, rNamespaceMap, -1, -1 );
 }
 
 /** fills the given itemset with the attributes in the given list */

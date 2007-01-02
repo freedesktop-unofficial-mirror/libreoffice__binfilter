@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumfi.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:06:46 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:19:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1093,33 +1093,15 @@ void SvXMLNumFmtElementContext::EndElement()
 
         case XML_TOK_STYLE_DAY:
             rParent.UpdateCalendar( sCalendar );
-#if 0
-//! I18N doesn't provide SYSTEM or extended date information yet
-            if ( rParent.IsFromSystem() )
-                bEffLong = SvXMLNumFmtDefaults::IsSystemLongDay( rParent.GetInternational(), bLong );
-#endif
             rParent.AddNfKeyword( bEffLong ? NF_KEY_DD : NF_KEY_D );
             break;
         case XML_TOK_STYLE_MONTH:
             rParent.UpdateCalendar( sCalendar );
-#if 0
-//! I18N doesn't provide SYSTEM or extended date information yet
-            if ( rParent.IsFromSystem() )
-            {
-                bEffLong = SvXMLNumFmtDefaults::IsSystemLongMonth( rParent.GetInternational(), bLong );
-                bTextual = SvXMLNumFmtDefaults::IsSystemTextualMonth( rParent.GetInternational(), bLong );
-            }
-#endif
             rParent.AddNfKeyword( bTextual ? ( bEffLong ? NF_KEY_MMMM : NF_KEY_MMM ) :
                                              ( bEffLong ? NF_KEY_MM : NF_KEY_M ) );
             break;
         case XML_TOK_STYLE_YEAR:
             rParent.UpdateCalendar( sCalendar );
-#if 0
-//! I18N doesn't provide SYSTEM or extended date information yet
-            if ( rParent.IsFromSystem() )
-                bEffLong = SvXMLNumFmtDefaults::IsSystemLongYear( rParent.GetInternational(), bLong );
-#endif
             // Y after G (era) is replaced by E
             if ( rParent.HasEra() )
                 rParent.AddNfKeyword( bEffLong ? NF_KEY_EEC : NF_KEY_EC );
@@ -1138,11 +1120,6 @@ void SvXMLNumFmtElementContext::EndElement()
             break;
         case XML_TOK_STYLE_DAY_OF_WEEK:
             rParent.UpdateCalendar( sCalendar );
-#if 0
-//! I18N doesn't provide SYSTEM or extended date information yet
-            if ( rParent.IsFromSystem() )
-                bEffLong = SvXMLNumFmtDefaults::IsSystemLongDayOfWeek( rParent.GetInternational(), bLong );
-#endif
             rParent.AddNfKeyword( bEffLong ? NF_KEY_NNNN : NF_KEY_NN );
             break;
         case XML_TOK_STYLE_WEEK_OF_YEAR:
@@ -1211,74 +1188,6 @@ void SvXMLNumFmtElementContext::EndElement()
 }
 
 //-------------------------------------------------------------------------
-
-sal_Bool SvXMLNumFmtDefaults::IsSystemLongDay( const SvtSysLocale& rSysLoc, BOOL bLong )
-{
-    // TODO: merge system information and defaults into i18n locale data
-#if 0
-    return bLong ? rIntn.IsLongDateDayLeadingZero() : rIntn.IsDateDayLeadingZero();
-#else
-    return !bLong;
-#endif
-}
-
-sal_Bool SvXMLNumFmtDefaults::IsSystemLongMonth( const SvtSysLocale& rSysLoc, BOOL bLong )
-{
-    // TODO: merge system information and defaults into i18n locale data
-#if 0
-    if (bLong)
-    {
-        MonthFormat eMonth = rIntn.GetLongDateMonthFormat();
-        return ( eMonth == MONTH_ZERO || eMonth == MONTH_LONG );
-    }
-    else
-        return rIntn.IsDateMonthLeadingZero();
-#else
-    return !bLong;
-#endif
-}
-
-sal_Bool SvXMLNumFmtDefaults::IsSystemTextualMonth( const SvtSysLocale& rSysLoc, BOOL bLong )
-{
-    // TODO: merge system information and defaults into i18n locale data
-#if 0
-    if (bLong)
-    {
-        MonthFormat eMonth = rIntn.GetLongDateMonthFormat();
-        return ( eMonth == MONTH_SHORT || eMonth == MONTH_LONG );
-    }
-    else
-        return sal_False;
-#else
-    return bLong;
-#endif
-}
-
-sal_Bool SvXMLNumFmtDefaults::IsSystemLongYear( const SvtSysLocale& rSysLoc, BOOL bLong )
-{
-    // TODO: merge system information and defaults into i18n locale data
-#if 0
-    return bLong ? rIntn.IsLongDateCentury() : rIntn.IsDateCentury();
-#else
-    return bLong;
-#endif
-}
-
-sal_Bool SvXMLNumFmtDefaults::IsSystemLongEra( const SvtSysLocale& rSysLoc, BOOL bLong )
-{
-    // TODO: merge system information and defaults into i18n locale data
-    return IsSystemLongYear( rSysLoc, bLong );      // no separate setting
-}
-
-sal_Bool SvXMLNumFmtDefaults::IsSystemLongDayOfWeek( const SvtSysLocale& rSysLoc, BOOL bLong )
-{
-    // TODO: merge system information and defaults into i18n locale data
-#if 0
-    return ( bLong && rIntn.GetLongDateDayOfWeekFormat() == DAYOFWEEK_LONG );
-#else
-    return bLong && true;
-#endif
-}
 
 sal_uInt16 SvXMLNumFmtDefaults::GetDefaultDateFormat( SvXMLDateElementAttributes eDOW,
                 SvXMLDateElementAttributes eDay, SvXMLDateElementAttributes eMonth,

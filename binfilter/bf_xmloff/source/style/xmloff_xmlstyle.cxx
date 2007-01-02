@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlstyle.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:07:25 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:19:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -999,16 +999,6 @@ void SvXMLStylesContext::FinishStyles( sal_Bool bOverwrite )
     }
 }
 
-
-const OUString& SvXMLStylesContext::GetId() const
-{
-    return pImpl->GetId();
-}
-
-const OUString& SvXMLStylesContext::GetParentHRef() const
-{
-    return pImpl->GetParentHRef();
-}
 
 const SvXMLStyleContext *SvXMLStylesContext::FindStyleChildContext(
                                   sal_uInt16 nFamily,
