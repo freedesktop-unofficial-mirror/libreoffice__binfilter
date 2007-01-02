@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_optsitem.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:13:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:10:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -196,25 +196,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void SdOptionsLayout::SetDefaults()
-/*N*/ {
-/*N*/   SetRulerVisible( TRUE );
-/*N*/   SetHelplines( TRUE );
-/*N*/   SetHandlesBezier( FALSE );
-/*N*/   SetMoveOutline( TRUE );
-/*N*/   SetDragStripes( FALSE );
-/*N*/   if ( isMetricSystem() )
-/*N*/       SetMetric( FUNIT_CM );              // default for countries with metric system
-/*N*/   else
-/*N*/       SetMetric( FUNIT_INCH );            // default for others
-/*N*/   SetDefTab( 1250 );
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdOptionsLayout::GetPropNameArray( const char**& ppNames, ULONG& rCount ) const
 /*N*/ {
 /*N*/   static const char* aPropNamesMetric[] =
@@ -318,19 +299,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void SdOptionsContents::SetDefaults()
-/*N*/ {
-/*N*/   SetExternGraphic( FALSE );
-/*N*/   SetOutlineMode( FALSE );
-/*N*/   SetHairlineMode( FALSE);
-/*N*/   SetNoText( FALSE );
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdOptionsContents::GetPropNameArray( const char**& ppNames, ULONG& rCount ) const
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -422,39 +390,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   mnPrinterIndependentLayout( 1 )
 /*N*/ {
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ void SdOptionsMisc::SetDefaults()
-/*N*/ {
-/*N*/   SetStartWithTemplate( TRUE );
-/*N*/   SetMarkedHitMovesAlways( TRUE );
-/*N*/   SetMoveOnlyDragging( FALSE );
-/*N*/   SetCrookNoContortion( FALSE );
-/*N*/   SetQuickEdit( GetConfigId() != SDCFG_DRAW );
-/*N*/   SetMasterPagePaintCaching( TRUE );
-/*N*/   SetDragWithCopy( FALSE );
-/*N*/   SetPickThrough( TRUE );
-/*N*/   SetBigHandles( FALSE );
-/*N*/   SetDoubleClickTextEdit( TRUE );
-/*N*/   SetClickChangeRotation( FALSE );
-/*N*/   SetStartWithActualPage( FALSE );
-/*N*/   SetSummationOfParagraphs( FALSE );
-/*N*/   SetPreviewQuality( DRAWMODE_DEFAULT );
-/*N*/   SetSolidDragging( FALSE );
-/*N*/   SetSolidMarkHdl( TRUE );
-/*N*/   // #90356#
-/*N*/   SetShowUndoDeleteWarning( TRUE );
-    // The default for 6.1-and-above documents is to use printer-independent
-    // formatting.
-/*N*/   SetPrinterIndependentLayout (1);
-/*N*/   // #97016#
-/*N*/   SetDefaultObjectSizeWidth(8000);
-/*N*/   SetDefaultObjectSizeHeight(5000);
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 
@@ -613,25 +548,6 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void SdOptionsSnap::SetDefaults()
-/*N*/ {
-/*N*/   SetSnapHelplines( TRUE );
-/*N*/   SetSnapBorder( TRUE );
-/*N*/   SetSnapFrame( FALSE );
-/*N*/   SetSnapPoints( FALSE );
-/*N*/   SetOrtho( FALSE );
-/*N*/   SetBigOrtho( TRUE );
-/*N*/   SetRotate( FALSE );
-/*N*/   SetSnapArea( 5 );
-/*N*/   SetAngle( 1500 );
-/*N*/   SetEliminatePolyPointLimitAngle( 1500 );
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 /*N*/ void SdOptionsSnap::GetPropNameArray( const char**& ppNames, ULONG& rCount ) const
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -722,16 +638,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   nY( 1 )
 /*N*/ {
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ void SdOptionsZoom::SetDefaults()
-/*N*/ {
-/*N*/   SetScale( 1, 1 );
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 
@@ -972,31 +878,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   bPaperbin( FALSE ),
 /*N*/   nQuality( 0 )
 /*N*/ {
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ void SdOptionsPrint::SetDefaults()
-/*N*/ {
-/*N*/   SetDraw( TRUE );
-/*N*/   SetNotes( FALSE );
-/*N*/   SetHandout( FALSE );
-/*N*/   SetOutline( FALSE );
-/*N*/   SetDate( FALSE );
-/*N*/   SetTime( FALSE );
-/*N*/   SetPagename( FALSE );
-/*N*/   SetHiddenPages( TRUE );
-/*N*/   SetPagesize( FALSE );
-/*N*/   SetPagetile( FALSE );
-/*N*/   SetWarningPrinter( TRUE );
-/*N*/   SetWarningSize( FALSE );
-/*N*/   SetWarningOrientation( FALSE );
-/*N*/   SetBooklet( FALSE );
-/*N*/   SetFrontPage( TRUE );
-/*N*/   SetBackPage( TRUE );
-/*N*/   SetCutPage( FALSE );
-/*N*/   SetPaperbin( FALSE );
-/*N*/   SetOutputQuality( 0 );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
