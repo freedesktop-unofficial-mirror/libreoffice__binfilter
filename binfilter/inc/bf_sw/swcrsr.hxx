@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swcrsr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:54:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:46:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -161,7 +161,6 @@ public:
                         BOOL bInsertCrsr );
     FASTBOOL UpDown( BOOL bUp, USHORT nCnt = 1,
                     Point* pPt = 0, long nUpDownX = 0 );
-    FASTBOOL IsAtLeftRightMargin( BOOL bLeftMargin, BOOL bAPI = FALSE ) const;
 
     FASTBOOL Left( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
                                     { return LeftRight( TRUE, nCnt, nMode, bAllowVisual, FALSE ); }
@@ -180,7 +179,6 @@ public:
     FASTBOOL MovePara( SwWhichPara, SwPosPara );
     FASTBOOL MoveSection( SwWhichSection, SwPosSection );
     FASTBOOL MoveTable( SwWhichTable, SwPosTable );
-    FASTBOOL MoveRegion( SwWhichRegion, SwPosRegion );
 
 
     // gibt es eine Selection vom Content in die Tabelle
@@ -248,22 +246,9 @@ public:
 
     virtual operator SwTableCursor* ();
 
-     void InsertBox( const SwTableBox& rTblBox );
     void DeleteBox( USHORT nPos ) { aSelBoxes.Remove( nPos ); bChg = TRUE; }
      USHORT GetBoxesCount() const { return aSelBoxes.Count(); }
      const SwSelBoxes& GetBoxes() const { return aSelBoxes; }
-
-        // Baut fuer alle Boxen die Cursor auf
-    SwCursor* MakeBoxSels( SwCursor* pAktCrsr );
-        // sind irgendwelche Boxen mit einem Schutz versehen?
-
-        // wurde der TabelleCursor veraendert ? Wenn ja speicher gleich
-        // die neuen Werte.
-        // wurde der TabelleCursor veraendert ?
-
-
-    // Parke den Tabellen-Cursor auf dem StartNode der Boxen.
-
 };
 
 
