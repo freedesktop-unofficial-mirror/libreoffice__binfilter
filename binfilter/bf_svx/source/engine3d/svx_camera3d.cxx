@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_camera3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:47:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:21:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -229,28 +229,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Um die Kameraposition drehen, LookAt wird dabei veraendert
-|*
-\************************************************************************/
-
-/*N*/ void Camera3D::Rotate(double fHAngle, double fVAngle)
-/*N*/ {
-/*N*/   Matrix4D aTf;
-/*N*/   Vector3D aDiff = aLookAt - aPosition;
-/*N*/   double fV = sqrt(aDiff.X() * aDiff.X() + aDiff.Z() * aDiff.Z());
-/*N*/
-/*N*/   if ( fV != 0 )  aTf.RotateY(aDiff.Z() / fV, aDiff.X() / fV);
-/*N*/   aTf.RotateZ(fVAngle);
-/*N*/   if ( fV != 0 )  aTf.RotateY(-aDiff.Z() / fV, aDiff.X() / fV);
-/*N*/   aTf.RotateY(fHAngle);
-/*N*/
-/*N*/   aDiff *= aTf;
-/*N*/   SetLookAt(aPosition + aDiff);
-/*N*/ }
-
-
-/*************************************************************************
-|*
 |* Um den Blickpunkt drehen, Position wird dabei veraendert
 |*
 \************************************************************************/
@@ -421,21 +399,4 @@ namespace binfilter {
 /*N*/   rCam.ReadData31(rIStream);
 /*N*/   return rIStream;
 /*N*/ }
-
-
-/*************************************************************************
-|*
-|* FG: ??? Setzt wohl die Projektionsebene in eine bestimmte Tiefe
-|*
-\************************************************************************/
-
-/*N*/ void Camera3D::SetFocalLengthWithCorrect(double fLen)
-/*N*/ {
-/*N*/   if ( fLen < 5 )
-/*N*/       fLen = 5;
-/*N*/   SetPRP(Vector3D(0, 0, aPRP.Z () * fLen / fFocalLength));
-/*N*/   fFocalLength = fLen;
-/*N*/ }
-
-
 }
