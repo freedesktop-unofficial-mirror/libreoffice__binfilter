@@ -4,9 +4,9 @@
  *
  *  $RCSfile: imoptdlg.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:13:57 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:04:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -116,8 +116,6 @@ public:
                                 && aStrFont      == rCmp.aStrFont
                                 && bFixedWidth   == rCmp.bFixedWidth;
                         }
-    String  BuildString() const;
-
     void    SetTextEncoding( rtl_TextEncoding nEnc );
 
     sal_Unicode nFieldSepCode;
