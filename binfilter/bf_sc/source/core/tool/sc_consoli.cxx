@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_consoli.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:31:16 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:58:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,29 +85,6 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/       ocVarP };
 
 // -----------------------------------------------------------------------
-
-/*N*/ void ScReferenceList::AddEntry( USHORT nCol, USHORT nRow, USHORT nTab )
-/*N*/ {
-/*N*/   ScReferenceEntry* pOldData = pData;
-/*N*/   pData = new ScReferenceEntry[ nFullSize+1 ];
-/*N*/   if (pOldData)
-/*N*/   {
-/*N*/       memmove( pData, pOldData, nCount * sizeof(ScReferenceEntry) );
-/*N*/       delete[] pOldData;
-/*N*/   }
-/*N*/   while (nCount < nFullSize)
-/*N*/   {
-/*N*/       pData[nCount].nCol = SC_CONS_NOTFOUND;
-/*N*/       pData[nCount].nRow = SC_CONS_NOTFOUND;
-/*N*/       pData[nCount].nTab = SC_CONS_NOTFOUND;
-/*N*/       ++nCount;
-/*N*/   }
-/*N*/   pData[nCount].nCol = nCol;
-/*N*/   pData[nCount].nRow = nRow;
-/*N*/   pData[nCount].nTab = nTab;
-/*N*/   ++nCount;
-/*N*/   nFullSize = nCount;
-/*N*/ }
 
 /*N*/ void lcl_AddString( String**& pData, USHORT& nCount, const String& rInsert )
 /*N*/ {
@@ -372,89 +349,6 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/   }
 /*N*/ }
 
-/*N*/                               // rCount < 0 <=> Fehler aufgetreten
-
-/*N*/ void lcl_UpdateArray( ScSubTotalFunc eFunc,
-/*N*/                        double& rCount, double& rSum, double& rSumSqr, double nVal )
-/*N*/ {
-/*N*/   if (rCount < 0.0)
-/*N*/       return;
-/*N*/   switch (eFunc)
-/*N*/   {
-/*N*/       case SUBTOTAL_FUNC_SUM:
-/*N*/           if (!SubTotal::SafePlus(rSum, nVal))
-/*N*/               rCount = -MAXDOUBLE;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_PROD:
-/*N*/           if (!SubTotal::SafeMult(rSum, nVal))
-/*N*/               rCount = -MAXDOUBLE;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_CNT:
-/*N*/       case SUBTOTAL_FUNC_CNT2:
-/*N*/           rCount += 1.0;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_AVE:
-/*N*/           if (!SubTotal::SafePlus(rSum, nVal))
-/*N*/               rCount = -MAXDOUBLE;
-/*N*/           else
-/*N*/               rCount += 1.0;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_MAX:
-/*N*/           if (nVal > rSum)
-/*N*/               rSum = nVal;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_MIN:
-/*N*/           if (nVal < rSum)
-/*N*/               rSum = nVal;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_STD:
-/*N*/       case SUBTOTAL_FUNC_STDP:
-/*N*/       case SUBTOTAL_FUNC_VAR:
-/*N*/       case SUBTOTAL_FUNC_VARP:
-/*N*/       {
-/*N*/           BOOL bOk = SubTotal::SafePlus(rSum, nVal);
-/*N*/           bOk = bOk && SubTotal::SafeMult(nVal, nVal);
-/*N*/           bOk = bOk && SubTotal::SafePlus(rSumSqr, nVal);
-/*N*/           if (!bOk)
-/*N*/               rCount = -MAXDOUBLE;
-/*N*/           else
-/*N*/               rCount += 1.0;
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ void lcl_InitArray( ScSubTotalFunc eFunc,
-/*N*/                      double& rCount, double& rSum, double& rSumSqr, double nVal )
-/*N*/ {
-/*N*/   rCount = 1.0;
-/*N*/   switch (eFunc)
-/*N*/   {
-/*N*/       case SUBTOTAL_FUNC_SUM:
-/*N*/       case SUBTOTAL_FUNC_MAX:
-/*N*/       case SUBTOTAL_FUNC_MIN:
-/*N*/       case SUBTOTAL_FUNC_PROD:
-/*N*/       case SUBTOTAL_FUNC_AVE:
-/*N*/           rSum = nVal;
-/*N*/           break;
-/*N*/       case SUBTOTAL_FUNC_STD:
-/*N*/       case SUBTOTAL_FUNC_STDP:
-/*N*/       case SUBTOTAL_FUNC_VAR:
-/*N*/       case SUBTOTAL_FUNC_VARP:
-/*N*/       {
-/*N*/           rSum = nVal;
-/*N*/           BOOL bOk = SubTotal::SafeMult(nVal, nVal);
-/*N*/           if (bOk)
-/*N*/               rSumSqr = nVal;
-/*N*/           else
-/*N*/               rCount = -MAXDOUBLE;
-/*N*/       }
-/*N*/           break;
-/*N*/       default:
-/*N*/           break;
-/*N*/   }
-/*N*/ }
-
 /*N*/ double lcl_CalcData( ScSubTotalFunc eFunc,
 /*N*/                       double fCount, double fSum, double fSumSqr)
 /*N*/ {
@@ -627,28 +521,6 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/   delete[] pDestCols;
 /*N*/   delete[] pDestRows;
-/*N*/ }
-
-//  vorher testen, wieviele Zeilen eingefuegt werden (fuer Undo)
-
-/*N*/ USHORT ScConsData::GetInsertCount() const
-/*N*/ {
-/*N*/   USHORT nInsert = 0;
-/*N*/   USHORT nArrX;
-/*N*/   USHORT nArrY;
-/*N*/   if ( ppRefs && ppUsed )
-/*N*/   {
-/*N*/       for (nArrY=0; nArrY<nRowCount; nArrY++)
-/*N*/       {
-/*N*/           USHORT nNeeded = 0;
-/*N*/           for (nArrX=0; nArrX<nColCount; nArrX++)
-/*N*/               if (ppUsed[nArrX][nArrY])
-/*N*/                   nNeeded = Max( nNeeded, ppRefs[nArrX][nArrY].GetCount() );
-/*N*/
-/*N*/           nInsert += nNeeded;
-/*N*/       }
-/*N*/   }
-/*N*/   return nInsert;
 /*N*/ }
 
 //  fertige Daten ins Dokument schreiben
