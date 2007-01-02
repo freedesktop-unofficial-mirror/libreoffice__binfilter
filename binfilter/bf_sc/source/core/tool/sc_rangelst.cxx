@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rangelst.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:36:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:58:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -517,19 +517,6 @@ namespace binfilter {
 /*?*/       }
 /*N*/   }
 /*N*/   return bChanged;
-/*N*/ }
-
-
-/*N*/ ScRangePair* ScRangePairList::Find( const ScAddress& rAdr ) const
-/*N*/ {
-/*N*/   ULONG nCount = Count();
-/*N*/   for ( ULONG j = 0; j < nCount; j++ )
-/*N*/   {
-/*N*/       ScRangePair* pR = GetObject( j );
-/*N*/       if ( pR->GetRange(0).In( rAdr ) )
-/*N*/           return pR;
-/*N*/   }
-/*N*/   return NULL;
 /*N*/ }
 
 
