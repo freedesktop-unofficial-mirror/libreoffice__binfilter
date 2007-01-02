@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewsh.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:37:18 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:06:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -593,40 +593,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   }
 /*N*/ }
 
-
-/******************************************************************************
-|*
-|*  ViewShell::SetBrowseBorder()
-|*
-|*  Ersterstellung      AMA 20. Aug. 96
-|*  Letzte Aenderung    AMA 20. Aug. 96
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::SetBrowseBorder( const Size& rNew )
-/*N*/ {
-/*N*/   if( rNew != GetBrowseBorder() )
-/*N*/   {
-/*N*/       aBrowseBorder = rNew;
-/*N*/       if ( aVisArea.HasArea() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           CheckBrowseView( FALSE );
-/*N*/   }
-/*N*/ }
-
-/******************************************************************************
-|*
-|*  ViewShell::CheckBrowseView()
-|*
-|*  Ersterstellung      MA 04. Mar. 96
-|*  Letzte Aenderung    MA 04. Jul. 96
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::CheckBrowseView( FASTBOOL bBrowseChgd )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc()->IsBrowseMode() )
-/*N*/ }
-
 /*************************************************************************
 |*
 |*    ViewShell::GetLayout()
@@ -662,15 +628,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/     return *pTmpOut;
 /*N*/ }
 
-/*N*/ SwPrintData*    ViewShell::GetPrintData() const
-/*N*/ {
-/*?*/     return GetDoc()->GetPrintData();
-/*N*/ }
-/*N*/ void            ViewShell::SetPrintData(SwPrintData& rPrtData)
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetDoc()->SetPrintData(rPrtData);
-/*N*/ }
-
 /*N*/ const SwNodes& ViewShell::GetNodes() const
 /*N*/ {
 /*N*/     return pDoc->GetNodes();
@@ -680,62 +637,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/ void ViewShell::DrawSelChanged(SdrView*)
 /*N*/ {
 /*N*/ }
-
-
-/*N*/ Size ViewShell::GetDocSize() const
-/*N*/ {
-/*N*/   Size aSz;
-/*N*/   const SwRootFrm* pRoot = GetLayout();
-/*N*/   if( pRoot )
-/*N*/       aSz = pRoot->Frm().SSize();
-/*N*/   return aSz;
-/*N*/ }
-
-
-/*N*/ SfxItemPool& ViewShell::GetAttrPool()
-/*N*/ {
-/*N*/   return GetDoc()->GetAttrPool();
-/*N*/ }
-
-
-/******************************************************************************
-|*
-|*  ViewShell::SetUIOptions()
-|*
-|*  Ersterstellung      OS 29.07.96
-|*  Letzte Aenderung    OS 29.07.96
-|*
-******************************************************************************/
-
-/*N*/ void ViewShell::SetUIOptions( const SwViewOption &rOpt )
-/*N*/ {
-/*N*/   pOpt->SetUIOptions(rOpt);
-/*N*/   //the API-Flag of the view options is set but never reset
-/*N*/   //it is required to set scroll bars in readonly documents
-/*N*/   if(rOpt.IsStarOneSetting())
-/*N*/       pOpt->SetStarOneSetting(TRUE);
-/*N*/
-/*N*/   pOpt->SetSymbolFont(rOpt.GetSymbolFont());
-/*N*/ }
-
-/* -----------------------------2002/07/31 17:06------------------------------
-
- ---------------------------------------------------------------------------*/
-/*M*/ void  ViewShell::SetReadonlySelectionOption(sal_Bool bSet)
-/*M*/ {
-/*M*/     if( bSet != pOpt->IsSelectionInReadonly() )
-/*M*/     {
-/*M*/         pOpt->SetSelectionInReadonly(bSet);
-/*M*/     }
-/*M*/ }
-/******************************************************************************
-|*
-|*  ViewShell::SetPrtFormatOption()
-|*
-|*  Ersterstellung      AMA 10. Sep. 97
-|*  Letzte Aenderung    AMA 10. Sep. 97
-|*
-******************************************************************************/
 
 
 /******************************************************************************
@@ -765,34 +666,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc
 /*N*/ {
 /*N*/   return GetDoc()->IsBrowseMode();
 /*N*/ }
-
-/* -----------------------------06.05.2002 13:23------------------------------
-
- ---------------------------------------------------------------------------*/
-/*N*/ void ViewShell::ApplyAccessiblityOptions(SvtAccessibilityOptions& rAccessibilityOptions)
-/*N*/ {
-/*N*/     if(pOpt->IsPagePreview() && !rAccessibilityOptions.GetIsForPagePreviews())
-/*N*/     {
-/*?*/         pAccOptions->SetAlwaysAutoColor(sal_False);
-/*?*/         pAccOptions->SetStopAnimatedGraphics(sal_False);
-/*?*/         pAccOptions->SetStopAnimatedText(sal_False);
-/*N*/     }
-/*N*/     else
-/*N*/     {
-/*N*/         pAccOptions->SetAlwaysAutoColor(rAccessibilityOptions.GetIsAutomaticFontColor());
-/*N*/         pAccOptions->SetStopAnimatedGraphics(! rAccessibilityOptions.GetIsAllowAnimatedGraphics());
-/*N*/         pAccOptions->SetStopAnimatedText(! rAccessibilityOptions.GetIsAllowAnimatedText());
-/*N*/
-/*N*/         if(pOpt->IsReadonly())
-/*N*/             pOpt->SetSelectionInReadonly(rAccessibilityOptions.IsSelectionInReadonly());
-/*N*/     }
-/*N*/ }
-/*-----------------07.03.2003 12:38-----------------
- *
- * --------------------------------------------------*/
-/*-----------------07.03.2003 12:38-----------------
- *
- * --------------------------------------------------*/
 
 ShellResource* ViewShell::GetShellRes()
 {
