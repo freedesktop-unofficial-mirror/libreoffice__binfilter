@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlstyle.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:44:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:55:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -243,9 +243,6 @@ public:
 
     // This allows to add an SvXMLStyleContext to this context from extern
     void AddStyle(SvXMLStyleContext& rNew);
-
-    const ::rtl::OUString& GetId() const;
-    const ::rtl::OUString& GetParentHRef() const;
 
     const SvXMLStyleContext *FindStyleChildContext(
                                       sal_uInt16 nFamily,
