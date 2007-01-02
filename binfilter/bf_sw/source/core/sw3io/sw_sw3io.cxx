@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:58:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:55:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -317,24 +317,10 @@ namespace binfilter {
 /*N*/  }
 
 
-void Sw3Io::SetDoc( SwDoc& r )
-{
-    pImp->SetDoc( r );
-}
-
-
 /*N*/ void Sw3Io::SetReadOptions( const SwgReaderOption& rOpt, BOOL bOverwrite )
 /*N*/ {
 /*N*/   pImp->SetReadOptions( rOpt, bOverwrite );
 /*N*/ }
-
-
-void Sw3Io::SetSw31Export( BOOL b31 )
-{
-    pImp->SetSw31Export( b31 );
-}
-
-
 
 
 /*N*/  ULONG Sw3Io::SaveStyles()
