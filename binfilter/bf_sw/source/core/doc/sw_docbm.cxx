@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:21:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:44:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -859,12 +859,5 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ void _RestoreCntntIdx( SvULongs& rSaveArr, const SwNode& rNd,
-/*N*/                       xub_StrLen nLen, xub_StrLen nChkLen )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    const SwDoc* pDoc = rNd.GetDoc();
-/*N*/ }
-
 
 }
