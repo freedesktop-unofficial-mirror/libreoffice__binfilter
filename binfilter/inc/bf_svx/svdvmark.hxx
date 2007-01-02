@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdvmark.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:13:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:36:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -124,8 +124,6 @@ public:
 
     // Der Marker kann durchaus auch in einen andere View gesteckt werden.
     // (Beim Destruieren der View wird die View am Marker automatisch auf NULL gesetzt.)
-
-    void SetPoint(const Point& rPoint); // fuer CROSS
 
     void SetLineWidth(USHORT nWdt);
 
