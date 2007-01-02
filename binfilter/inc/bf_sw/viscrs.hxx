@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viscrs.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:02:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:50:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -171,9 +171,6 @@ class SwShellTableCrsr : public virtual SwShellCrsr, public virtual SwTableCurso
 
 public:
     SwShellTableCrsr( const SwCrsrShell& rCrsrSh, const SwPosition& rPos );
-    SwShellTableCrsr( const SwCrsrShell& rCrsrSh,
-                    const SwPosition &rMkPos, const Point& rMkPt,
-                    const SwPosition &rPtPos, const Point& rPtPt );
     virtual ~SwShellTableCrsr();
 
      virtual operator SwShellTableCrsr* ();
