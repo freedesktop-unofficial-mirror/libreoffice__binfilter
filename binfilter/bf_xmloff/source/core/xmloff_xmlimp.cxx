@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlimp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:41:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:13:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1295,11 +1295,6 @@ SvXMLStylesContext *SvXMLImport::GetAutoStyles()
     return (SvXMLStylesContext *)&xAutoStyles;
 }
 
-SvXMLStylesContext *SvXMLImport::GetMasterStyles()
-{
-    return (SvXMLStylesContext *)&xMasterStyles;
-}
-
 const XMLFontStylesContext *SvXMLImport::GetFontDecls() const
 {
     return (const XMLFontStylesContext *)&xFontDecls;
@@ -1313,11 +1308,6 @@ const SvXMLStylesContext *SvXMLImport::GetStyles() const
 const SvXMLStylesContext *SvXMLImport::GetAutoStyles() const
 {
     return (const SvXMLStylesContext *)&xAutoStyles;
-}
-
-const SvXMLStylesContext *SvXMLImport::GetMasterStyles() const
-{
-    return (const SvXMLStylesContext *)&xMasterStyles;
 }
 
 OUString SvXMLImport::GetAbsoluteReference(const OUString& rValue)
@@ -1415,11 +1405,6 @@ void SvXMLImport::SetError(
 {
     OUString sEmpty;
     SetError( nId, rMsgParams, sEmpty, NULL );
-}
-
-XMLErrors* SvXMLImport::GetErrors()
-{
-    return pXMLErrors;
 }
 
 void SvXMLImport::DisposingModel()
