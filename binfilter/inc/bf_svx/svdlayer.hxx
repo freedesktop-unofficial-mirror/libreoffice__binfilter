@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdlayer.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:06:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:34:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -142,7 +142,6 @@ public:
     void                 SetModel(SdrModel* pNewModel);
     SdrModel*            GetModel() const                                            { return pModel; }
     void                 InsertLayer(SdrLayer* pLayer, USHORT nPos=0xFFFF)           { aLayer.Insert(pLayer,nPos); pLayer->SetModel(pModel); Broadcast(FALSE); }
-    SdrLayer*            RemoveLayer(USHORT nPos);
     // Alle Layer loeschen
     void               ClearLayer();
     // Neuer Layer wird angelegt und eingefuegt

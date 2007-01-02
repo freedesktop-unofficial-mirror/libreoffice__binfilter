@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdcrtv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:03:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:34:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -210,11 +210,6 @@ public:
     // Default=FALSE;
     BOOL IsUseIncompatiblePathCreateInterface() const { return bUseIncompatiblePathCreateInterface; }
     void SetUseIncompatiblePathCreateInterface(BOOL bOn) { bUseIncompatiblePathCreateInterface = bOn; }
-
-    // Attribute des ggf. gerade in der Erzeugung befindlichen Objekts
-    /* new interface src537 */
-
-    BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 };
 
 }//end of namespace binfilter

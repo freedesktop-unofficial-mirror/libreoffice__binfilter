@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmrkv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:07:03 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:34:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -229,10 +229,6 @@ public:
     virtual void HidePage(SdrPageView* pPV);
 
     virtual BOOL IsObjMarkable(SdrObject* pObj, SdrPageView* pPV) const;
-
-    // for SW and their rearranged painting; this method forces the
-    // actual IAO-Handles to throw away saved contents
-    void ForceInvalidateMarkHandles();
 
     // Liefert TRUE wenn Objekte, Punkte oder Klebepunkte durch Rahmenaufziehen
     // selektiert werden (solange wie der Rahmen aufgezogen wird).
