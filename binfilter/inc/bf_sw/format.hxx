@@ -4,9 +4,9 @@
  *
  *  $RCSfile: format.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:46:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:44:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,10 +101,6 @@ public:
 
     // kopiere Attribute; auch ueber Dokumentgrenzen hinweg
     void CopyAttrs( const SwFmt&, BOOL bReplace=TRUE );
-
-    // loesche alle Attribute, die nicht in rFmt stehen
-    void DelDiffs( const SfxItemSet& rSet );
-    void DelDiffs( const SwFmt& rFmt ) { DelDiffs( rFmt.GetAttrSet() ); }
 
     // Umhaengen des Formats (0 = Default)
     BOOL SetDerivedFrom(SwFmt *pDerivedFrom = 0);
