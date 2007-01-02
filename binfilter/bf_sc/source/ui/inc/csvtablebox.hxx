@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvtablebox.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:05:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:04:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,74 +58,6 @@ class ListBox;
 namespace binfilter {
 
 class ScAsciiOptions;
-
-
-/* ============================================================================
-Position: Positions between the characters (the dots in the ruler).
-Character: The characters (the range from one position to the next).
-Split: Positions which contain a split to divide characters into groups (columns).
-Column: The range between two splits.
-============================================================================ */
-
-/** The control in the CSV import dialog that contains a ruler and a data grid
-    to visualize and modify the current import settings. */
-class ScCsvTableBox : public ScCsvControl
-{
-private:
-    ScCsvLayoutData             maData;             /// Current layout data of the controls.
-
-    ScCsvRuler                  maRuler;            /// The ruler for fixed width mode.
-    ScCsvGrid                   maGrid;             /// Calc-like data table for fixed width mode.
-    ScrollBar                   maHScroll;          /// Horizontal scroll bar.
-    ScrollBar                   maVScroll;          /// Vertical scroll bar.
-    ScrollBarBox                maScrollBox;        /// For the bottom right edge.
-
-    Link                        maUpdateTextHdl;    /// Updates all cell texts.
-    Link                        maColTypeHdl;       /// Handler for exporting the column type.
-
-    ScCsvColStateVec            maFixColStates;     /// Column states in fixed width mode.
-    ScCsvColStateVec            maSepColStates;     /// Column states in separators mode.
-
-    sal_Int32                   mnFixedWidth;       /// Cached total width for fixed width mode.
-
-    bool                        mbFixedMode;        /// false = Separators, true = Fixed width.
-
-    // ------------------------------------------------------------------------
-public:
-    explicit                    ScCsvTableBox( Window* pParent );
-    explicit                    ScCsvTableBox( Window* pParent, const ResId& rResId );
-
-    // common table box handling ----------------------------------------------
-
-
-
-    // cell contents ----------------------------------------------------------
-
-    // column settings --------------------------------------------------------
-public:
-    /** Reads UI strings for data types from the list box. */
-    void                        InitTypes( const ListBox& rListBox );
-
-    /** Fills the options object with current column data. */
-    void                        FillColumnData( ScAsciiOptions& rOptions ) const;
-
-    // event handling ---------------------------------------------------------
-public:
-    /** Sets a new handler for "update cell texts" requests. */
-    inline void                 SetUpdateTextHdl( const Link& rHdl ) { maUpdateTextHdl = rHdl; }
-    /** Returns the handler for "update cell texts" requests. */
-    /** Sets a new handler for "column selection changed" events. */
-    inline void                 SetColTypeHdl( const Link& rHdl ) { maColTypeHdl = rHdl; }
-    /** Returns the handler for "column selection changed" events. */
-    inline const Link&          GetColTypeHdl() const { return maColTypeHdl; }
-
-
-
-    // accessibility ----------------------------------------------------------
-};
-
-
-// ============================================================================
 
 } //namespace binfilter
 #endif

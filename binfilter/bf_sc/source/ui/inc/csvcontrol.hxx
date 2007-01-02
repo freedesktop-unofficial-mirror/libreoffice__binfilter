@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvcontrol.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:04:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:04:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -293,18 +293,6 @@ public:
 
     /** Sends a GetFocus or LoseFocus event to the accessibility object. */
     void                        AccSendFocusEvent( bool bFocused );
-    /** Sends a caret changed event to the accessibility object. */
-    void                        AccSendCaretEvent();
-    /** Sends a visible area changed event to the accessibility object. */
-    void                        AccSendVisibleEvent();
-    /** Sends a selection changed event to the accessibility object. */
-    void                        AccSendSelectionEvent();
-    /** Sends a table model changed event for changed cell contents to the accessibility object. */
-    void                        AccSendTableUpdateEvent( sal_uInt32 nFirstColumn, sal_uInt32 nLastColumn, bool bAllRows = true );
-    /** Sends a table model changed event for an inserted column to the accessibility object. */
-    void                        AccSendInsertColumnEvent( sal_uInt32 nFirstColumn, sal_uInt32 nLastColumn );
-    /** Sends a table model changed event for a removed column to the accessibility object. */
-    void                        AccSendRemoveColumnEvent( sal_uInt32 nFirstColumn, sal_uInt32 nLastColumn );
 
     // repaint helpers --------------------------------------------------------
 
@@ -317,12 +305,6 @@ public:
     inline const Link&          GetCmdHdl() const { return maCmdHdl; }
     /** Returns data of the last command. */
     inline const ScCsvCmd&      GetCmd() const { return maCmd; }
-
-    /** Executes a command by calling command handler. */
-    void                        Execute(
-                                    ScCsvCmdType eType,
-                                    sal_Int32 nParam1 = CSV_POS_INVALID,
-                                    sal_Int32 nParam2 = CSV_POS_INVALID );
 
     // layout helpers ---------------------------------------------------------
 
