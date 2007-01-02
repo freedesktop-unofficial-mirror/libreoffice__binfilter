@@ -4,9 +4,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:48:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:30:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -249,7 +249,9 @@ public:
 
     // methods for translation of data
     inline void ResetTranslation(sal_Int32 *pTable,long nCnt);
+#if OSL_DEBUG_LEVEL > 0
     BOOL VerifyTranslation();
+#endif
     long GetTranslation() const { return nTranslated; }
     inline void UpdateTranslation(sal_Int32 *pTable,long nCnt);
     // for acces always use these Get-methods !
