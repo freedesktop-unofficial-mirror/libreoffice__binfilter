@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_callnk.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:17:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:42:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,15 +76,6 @@
 #include <breakit.hxx>
 #endif
 namespace binfilter {
-
-
-/*N*/ SwCallLink::SwCallLink( SwCrsrShell & rSh, ULONG nAktNode, xub_StrLen nAktCntnt,
-/*N*/                       BYTE nAktNdTyp, long nLRPos, bool bAktSelection )
-/*N*/   : rShell( rSh ), nNode( nAktNode ), nCntnt( nAktCntnt ),
-/*N*/       nNdTyp( nAktNdTyp ), nLeftFrmPos( nLRPos ),
-/*N*/       bHasSelection( bAktSelection )
-/*N*/ {
-/*N*/ }
 
 
 /*N*/ SwCallLink::SwCallLink( SwCrsrShell & rSh )

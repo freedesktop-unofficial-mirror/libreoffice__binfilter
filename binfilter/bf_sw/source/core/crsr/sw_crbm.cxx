@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_crbm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:17:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:42:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,44 +44,5 @@
 #include "crsrsh.hxx"
 
 namespace binfilter {
-
-
-/*
- * Methoden der SwCrsrShell fuer Bookmark
- */
-
-
-// am CurCrsr.SPoint
-// setzt CurCrsr.SPoint
-
-
-
-
-// TRUE, wenn's noch eine gab
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*N*/ USHORT SwCrsrShell::FindBookmark( const String& rName )
-/*N*/ {
-/*N*/   return pDoc->FindBookmark( rName );
-/*N*/ }
-
-
-        // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
-        // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-
-
 
 }
