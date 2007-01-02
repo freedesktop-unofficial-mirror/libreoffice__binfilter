@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_FormattedField.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:01:21 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:45:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -740,27 +740,6 @@ Reference<XNumberFormatsSupplier>  OFormattedModel::calcDefaultFormatsSupplier()
         s_xDefaultFormatter = *new StandardFormatsSupplier(m_xServiceFactory,eSysLanguage);
     }
     return s_xDefaultFormatter;
-}
-
-//------------------------------------------------------------------------------
-sal_Int32 OFormattedModel::calcFormatKey() const
-{
-    DBG_ASSERT(m_xAggregateSet.is(), "OFormattedModel::calcFormatKey : have no aggregate !");
-    // hat mein aggregiertes Model einen FormatSupplier ?
-    Any aFormatKey = m_xAggregateSet.is() ? m_xAggregateSet->getPropertyValue(PROPERTY_FORMATKEY): Any();
-    if (aFormatKey.hasValue())
-        return getINT32(aFormatKey);
-
-    Reference<XPropertySet> xField = getField();
-    if (xField.is())
-        return getINT32(xField->getPropertyValue(PROPERTY_FORMATKEY));
-
-    return 0;
-}
-
-//------------------------------------------------------------------------------
-void OFormattedModel::getFormatDescription(::rtl::OUString& sFormat, LanguageType& eLanguage)
-{
 }
 
 // XBoundComponent
