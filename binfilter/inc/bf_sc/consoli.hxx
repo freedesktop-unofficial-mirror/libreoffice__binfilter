@@ -4,9 +4,9 @@
  *
  *  $RCSfile: consoli.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:04:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:25:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,8 +69,6 @@ public:
     USHORT                  GetCount()                  { return nCount; }
     const ScReferenceEntry& GetEntry( USHORT nPos )     { return pData[nPos]; }
     void                    SetFullSize( USHORT nNew )  { nFullSize = nNew; }
-
-    void                    AddEntry( USHORT nCol, USHORT nRow, USHORT nTab );
 };
 
 // -----------------------------------------------------------------------
@@ -135,7 +133,6 @@ public:
     void        OutputToDocument( ScDocument* pDestDoc, USHORT nCol, USHORT nRow, USHORT nTab );
 
     void        GetSize( USHORT& rCols, USHORT& rRows ) const;
-    USHORT      GetInsertCount() const;
 };
 
 
