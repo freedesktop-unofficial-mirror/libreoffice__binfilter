@@ -4,9 +4,9 @@
  *
  *  $RCSfile: Columns.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 13:55:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:44:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,7 +96,6 @@ protected:
 
 public:
     OGridColumn(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory, const ::rtl::OUString& _sModelName = ::rtl::OUString());
-    OGridColumn(const OGridColumn* _pOriginal, const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory );
     virtual ~OGridColumn();
 
     // UNO Anbindung
