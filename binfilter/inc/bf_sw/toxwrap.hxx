@@ -4,9 +4,9 @@
  *
  *  $RCSfile: toxwrap.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:38:53 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:48:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,16 +83,8 @@ public:
 
     void SetLocale( const STAR_NMSPC::lang::Locale& rLocale ) { aLcl = rLocale; }
 
-    String GetIndexKey( const String& rTxt, const String& rTxtReading,
-                        const STAR_NMSPC::lang::Locale& rLocale ) const;
-
-    String GetFollowingText( BOOL bMorePages ) const;
-
     STAR_NMSPC::uno::Sequence< ::rtl::OUString >
     GetAlgorithmList( const STAR_NMSPC::lang::Locale& rLcl ) const;
-
-    STAR_NMSPC::uno::Sequence < ::com::sun::star::lang::Locale >
-    GetLocaleList() const;
 
     sal_Bool LoadAlgorithm( const STAR_NMSPC::lang::Locale& rLcl,
                             const String& sSortAlgorithm, long nOptions ) const;
