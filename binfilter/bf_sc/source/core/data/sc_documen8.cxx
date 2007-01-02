@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:17:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:54:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -315,11 +315,6 @@ namespace binfilter {
 #define CALCMAX                 1000    // Berechnungen
 #define ABORT_EVENTS            (INPUT_ANY & ~INPUT_TIMER & ~INPUT_OTHER)
 
-/*N*/ BOOL ScDocument::IdleCalcTextWidth()          // TRUE = demnaechst wieder versuchen
-{
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLinkUpdate() )
-}
-
 //------------------------------------------------------------------------
 
 
@@ -333,14 +328,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLi
 #define SPELL_MAXTEST_VIS   1
 #define SPELL_MAXTEST_ALL   3
 #define SPELL_MAXCELLS      256
-
-
-
-/*N*/ BOOL ScDocument::ContinueOnlineSpelling()
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( bIdleDisabled || !pDocOptions->IsAutoSpell() || (pShell && pShell->IsReadOnly()) )
-/*?*/       return FALSE;
-/*N*/ }
 
 
 
@@ -373,10 +360,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLi
 
 //------------------------------------------------------------------------
 
-BOOL ScDocument::IdleCheckLinks()           // TRUE = demnaechst wieder versuchen
-{
-DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     BOOL bAnyLeft = FALSE;
-}
 
 /*N*/ void ScDocument::SaveDdeLinks(SvStream& rStream) const
 /*N*/ {
