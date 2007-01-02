@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdmrkv.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:40:40 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:31:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -570,12 +570,6 @@ namespace binfilter {
     // #97995# at least reset the remembered BoundRect to prevent handle
     // generation if bForceFrameHandles is TRUE.
 /*N*/   bMarkedObjRectDirty = TRUE;
-/*N*/ }
-
-// for SW and their rearranged painting; this method forces the
-// actual IAO-Handles to throw away saved contents
-/*N*/ void SdrMarkView::ForceInvalidateMarkHandles()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 /*N*/ void SdrMarkView::SetMarkRects()
