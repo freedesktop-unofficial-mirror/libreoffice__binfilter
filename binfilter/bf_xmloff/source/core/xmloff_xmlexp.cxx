@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlexp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:41:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:13:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -424,50 +424,6 @@ SvXMLExport::SvXMLExport(
         pNumExport = new SvXMLNumFmtExport(*this, xNumberFormatsSupplier);
 }
 
-// #110680#
-SvXMLExport::SvXMLExport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-    const OUString &rFileName,
-    const uno::Reference< xml::sax::XDocumentHandler > & rHandler,
-    const Reference< XModel >& rModel,
-    const Reference< document::XGraphicObjectResolver >& rEmbeddedGraphicObjects,
-    sal_Int16 eDfltUnit )
-:   pImpl( 0 ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    meClass( XML_TOKEN_INVALID ),
-    sWS( GetXMLToken(XML_WS) ),
-    sOrigFileName( rFileName ),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, SvXMLUnitConverter::GetMapUnit(eDfltUnit) ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, SvXMLUnitConverter::GetMapUnit(eDfltUnit), getServiceFactory() ) ),
-
-    pAttrList( new SvXMLAttributeList ),
-    bExtended( sal_False ),
-    xHandler( rHandler ),
-    xExtHandler( rHandler, uno::UNO_QUERY ),
-    xGraphicResolver( rEmbeddedGraphicObjects ),
-    xModel( rModel ),
-    pNumExport(0L),
-    xNumberFormatsSupplier (rModel, uno::UNO_QUERY),
-    pProgressBarHelper( NULL ),
-    pEventExport( NULL ),
-    pImageMapExport( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    bSaveLinkedSections(sal_True),
-    mnExportFlags( EXPORT_ALL ),
-    mnErrorFlags( ERROR_NO )
-{
-    DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
-    _InitCtor();
-
-    if (xNumberFormatsSupplier.is())
-        pNumExport = new SvXMLNumFmtExport(*this, xNumberFormatsSupplier);
-}
-
 SvXMLExport::~SvXMLExport()
 {
     delete pXMLErrors;
@@ -833,12 +789,6 @@ void SvXMLExport::AddAttribute( const ::rtl::OUString& rQName,
       pAttrList->AddAttribute(
         rQName,
         GetXMLToken(eValue) );
-}
-
-void SvXMLExport::AddAttributeList( const uno::Reference< xml::sax::XAttributeList >& xAttrList )
-{
-    if( xAttrList.is())
-        pAttrList->AppendAttributeList( xAttrList );
 }
 
 void SvXMLExport::ClearAttrList()
@@ -1884,11 +1834,6 @@ void SvXMLExport::SetError(
     SetError( nId, rMsgParams, sEmpty, NULL );
 }
 
-
-XMLErrors* SvXMLExport::GetErrors()
-{
-    return pXMLErrors;
-}
 
 void SvXMLExport::DisposingModel()
 {
