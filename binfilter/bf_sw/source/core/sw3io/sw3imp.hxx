@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:57:26 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:54:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -501,7 +501,6 @@ public:
 
     Sw3IoImp( Sw3Io& );
    ~Sw3IoImp();
-    void SetDoc( SwDoc& r );
     static Sw3IoImp* GetCurrentIo();
     void Reset();
     void Reset2();
@@ -628,7 +627,6 @@ public:
                                             // SW3DOC.CXX
     void   LoadDocContents( SwPaM* );       // I: Dokumentinhalt
     void   SaveDocContents( SwPaM&, const String* = NULL );
-    void   LoadDocText( String& );          // I: nur Text eines Docs lesen
     USHORT GetStreamFlags();                // I: Stream-Flags laden
     void   InHeader( BOOL bReadRecSizes=FALSE); // I: Dateikopf
     void   OutHeader( ULONG nRecSzPos=0UL );    // O: Dateikopf
@@ -693,7 +691,6 @@ public:
     void   ConvertText( SwTxtNode& rNd, const ByteString& rText8,
                         xub_StrLen, SvUShorts*, SvXub_StrLens* );   // I: Zeichensatz-Konversion
     void   InTxtNode( SwTxtNode*, SwNodeIndex&, xub_StrLen, BYTE = 0 );
-    void   InTxtNodeText( String& rText );  // I: Nur Text eines TxtNodes lesen
     void   OutTxtNode( SwCntntNode&, xub_StrLen, xub_StrLen, ULONG );
     void   OutEmptyTxtNode( ULONG nNodeIdx=0, BOOL bNodeMarks=FALSE );
                                             // I: hartes Attribut
@@ -757,7 +754,6 @@ public:
                                             // SW3SECTN.CXX
     void   InContents( SwNodeIndex&, xub_StrLen=0, BOOL=TRUE, BYTE=0, BOOL=FALSE );
     SwStartNode& InContents();              // I: neue Section anlegen
-    String InContentsText();                // I: Section als String einlesen
     void   OutContents( SwPaM* );           // O: per PaM definierter Bereich
     void   OutContents( const SwNodeIndex& );   // O: abgeschlossener Bereich
                                             // O: contents
