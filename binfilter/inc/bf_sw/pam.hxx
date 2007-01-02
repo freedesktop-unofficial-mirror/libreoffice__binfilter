@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pam.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:51:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:45:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -222,10 +222,6 @@ public:
 
     // erfrage die Seitennummer auf der der Cursor steht
     USHORT GetPageNum( BOOL bAtPoint = TRUE, const Point* pLayPos = 0 );
-
-    // steht in etwas geschuetztem oder in die Selektion umspannt
-    // etwas geschuetztes.
-    FASTBOOL HasReadonlySel() const;
 
     DECL_FIXEDMEMPOOL_NEWDEL(SwPaM)
 };

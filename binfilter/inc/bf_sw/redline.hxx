@@ -4,9 +4,9 @@
  *
  *  $RCSfile: redline.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:51:26 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:45:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,7 +87,6 @@ class SwRedlineData
     USHORT nAuthor, nSeqNo;
 
 public:
-    SwRedlineData( SwRedlineType eT, USHORT nAut );
     SwRedlineData( const SwRedlineData& rCpy, BOOL bCpyNext = TRUE );
 
     // fuer sw3io: pNext/pExtraData gehen in eigenen Besitz ueber!
@@ -140,7 +139,6 @@ public:
 
     // ExtraData wird kopiert, der Pointer geht also NICHT in den Besitz
     // des RedlineObjectes!
-    void SetExtraData( const SwRedlineExtraData* pData );
     const SwRedlineExtraData* GetExtraData() const { return pExtraData; }
 
     // fuers UI-seitige zusammenfassen von Redline-Actionen. Wird z.Z. nur
@@ -161,9 +159,6 @@ class SwRedline : public SwPaM
 
 
 public:
-    SwRedline( SwRedlineType eType, const SwPaM& rPam );
-    SwRedline( SwRedlineType eTyp, const SwPosition& rPos );
-    SwRedline( const SwRedlineData& rData, const SwPaM& rPam );
     SwRedline( const SwRedlineData& rData, const SwPosition& rPos );
     // fuer sw3io: pData geht in eigenen Besitz ueber!
     SwRedline(SwRedlineData* pData, const SwPosition& rPos, BOOL bVsbl,
@@ -221,8 +216,6 @@ public:
 
     // ExtraData wird kopiert, der Pointer geht also NICHT in den Besitz
     // des RedlineObjectes!
-    void SetExtraData( const SwRedlineExtraData* pData )
-        { pRedlineData->SetExtraData( pData ); }
     const SwRedlineExtraData* GetExtraData() const
         { return pRedlineData->GetExtraData(); }
 
