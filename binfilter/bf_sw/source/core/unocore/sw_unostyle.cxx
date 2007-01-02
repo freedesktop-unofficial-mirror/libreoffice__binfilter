@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unostyle.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:55:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:05:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -3386,53 +3386,7 @@ void SwXPageStyle::setPropertyValue(const OUString& rPropertyName, const Any& rV
     const Sequence<Any> aValues(&rValue, 1);
     setPropertyValues(aProperties, aValues);
 }
-/* -----------------12.01.99 15:31-------------------
- * Liefert den StartNode des Headers oder Footers der
- * linken oder rechten Seite zurueck
- * Kann auch Null liefern, wenn es keinen gibt
- * --------------------------------------------------*/
-const SwStartNode* SwXPageStyle::GetStartNode(sal_Bool bHeader, sal_Bool bLeft)
-{
-    const SwStartNode* pRet = 0;
-    if(GetBasePool())
-    {
-        sal_uInt16 nRes = bHeader ? RES_HEADER : RES_FOOTER;
-        SwDoc* pDoc = pDocShell->GetDoc();
-        sal_uInt16 nPDescCount = pDoc->GetPageDescCnt();
-        for(sal_uInt16 i = 0; i < nPDescCount; i++)
-        {
-            const SwPageDesc& rDesc = pDoc->GetPageDesc( i );
-            if(rDesc.GetName() == GetStyleName())
-            {
-                const SwFrmFmt* pFrmFmt = 0;
-                sal_Bool bShare = bHeader && rDesc.IsHeaderShared()||
-                                        !bHeader && rDesc.IsFooterShared();
-                UseOnPage eUse = rDesc.GetUseOn();
-                if(bShare || !bLeft && PD_RIGHT == eUse && PD_LEFT != eUse)
-                    pFrmFmt = &rDesc.GetMaster();
-                else if(bLeft && PD_RIGHT != eUse)
-                        pFrmFmt = &rDesc.GetLeft();
-                if(pFrmFmt)
-                {
-                    const SfxItemSet& rSet = pFrmFmt->GetAttrSet();
-                    const SfxPoolItem* pItem;
-                    SwFrmFmt* pHeadFootFmt;
-                    if(SFX_ITEM_SET == rSet.GetItemState(nRes, sal_True, &pItem) &&
-                     0 != (pHeadFootFmt = bHeader ?
-                            ((SwFmtHeader*)pItem)->GetHeaderFmt() :
-                                ((SwFmtFooter*)pItem)->GetFooterFmt()))
-                    {
-                        const SwFmtCntnt& rFlyCntnt = pHeadFootFmt->GetCntnt();
-                        const SwNode& rNode = rFlyCntnt.GetCntntIdx()->GetNode();
-                        pRet = rNode.FindStartNode();
-                    }
-                }
-                break;
-            }
-        }
-    }
-    return pRet;
-}
+
 SwXFrameStyle::SwXFrameStyle ( SwDoc *pDoc )
 : SwXStyle ( pDoc, SFX_STYLE_FAMILY_FRAME, FALSE)
 {
