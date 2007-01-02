@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewuno.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:36:48 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:29:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -221,7 +221,6 @@ private:
     void                    SetZoomType(INT16 ZoomType);
 
 public:
-                            ScTabViewObj();
                             ScTabViewObj(ScTabViewShell* pViewSh);
     virtual                 ~ScTabViewObj();
 
@@ -233,10 +232,6 @@ public:
 
     void                    SelectionChanged();
     void                    VisAreaChanged();
-
-    void                    RangeSelDone( const String& rText );
-    void                    RangeSelAborted( const String& rText );
-    void                    RangeSelChanged( const String& rText );
 
                             // XSelectionSupplier
     virtual sal_Bool SAL_CALL select( const ::com::sun::star::uno::Any& aSelection )
