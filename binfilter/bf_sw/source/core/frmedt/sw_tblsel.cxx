@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tblsel.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:31:01 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:51:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -184,96 +184,6 @@ namespace binfilter {
 /*N*/   while( pTmp && !pTmp->IsCellFrm() )
 /*N*/       pTmp = pTmp->GetUpper();
 /*N*/   return pTmp;
-/*N*/ }
-
-/*N*/ void GetTblSelCrs( const SwCrsrShell &rShell, SwSelBoxes& rBoxes )
-/*N*/ {
-/*N*/   if( rBoxes.Count() )
-/*?*/       rBoxes.Remove( USHORT(0), rBoxes.Count() );
-/*N*/   if( rShell.IsTableMode() && 1 ) //STRIP001 ((SwCrsrShell&)rShell).UpdateTblSelBoxes())
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    rBoxes.Insert( &rShell.GetTableCrsr()->GetBoxes() );
-/*N*/ }
-
-/*N*/ void GetTblSelCrs( const SwTableCursor& rTblCrsr, SwSelBoxes& rBoxes )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ void GetTblSel( const SwCrsrShell& rShell, SwSelBoxes& rBoxes,
-/*N*/               const SwTblSearchType eSearchType )
-/*N*/ {
-/*N*/   //Start- und Endzelle besorgen und den naechsten fragen.
-/*N*/   if ( !rShell.IsTableMode() )
-/*N*/       rShell.GetCrsr();
-/*N*/
-/*N*/   const SwShellCrsr *pCrsr = rShell.GetTableCrsr();
-/*N*/   if( !pCrsr )
-/*N*/       pCrsr = (SwShellCrsr*)*rShell.GetSwCrsr( FALSE );
-/*N*/
-/*N*/   GetTblSel( *pCrsr, rBoxes, eSearchType );
-/*N*/ }
-
-/*N*/ void GetTblSel( const SwCursor& rCrsr, SwSelBoxes& rBoxes,
-/*N*/               const SwTblSearchType eSearchType )
-/*N*/ {
-/*N*/   //Start- und Endzelle besorgen und den naechsten fragen.
-/*N*/   ASSERT( rCrsr.GetCntntNode() && rCrsr.GetCntntNode( FALSE ),
-/*N*/           "Tabselection nicht auf Cnt." );
-/*N*/
-/*N*/   // Zeilen-Selektion:
-/*N*/   // teste ob Tabelle komplex ist. Wenn ja, dann immer uebers Layout
-/*N*/   // die selektierten Boxen zusammen suchen. Andernfalls ueber die
-/*N*/   // Tabellen-Struktur (fuer Makros !!)
-/*N*/   const SwTableNode* pTblNd;
-/*N*/   if( TBLSEARCH_ROW == ((~TBLSEARCH_PROTECT ) & eSearchType ) &&
-/*N*/       0 != ( pTblNd = rCrsr.GetNode()->FindTableNode() ) &&
-/*N*/       !pTblNd->GetTable().IsTblComplex() )
-/*N*/   {
-/*N*/       const SwTable& rTbl = pTblNd->GetTable();
-/*N*/       const SwTableLines& rLines = rTbl.GetTabLines();
-/*N*/       const SwTableLine* pLine = rTbl.GetTblBox(  rCrsr.GetNode(
-/*N*/                   FALSE )->StartOfSectionIndex() )->GetUpper();
-/*N*/       USHORT nSttPos = rLines.GetPos( pLine );
-/*N*/       ASSERT( USHRT_MAX != nSttPos, "Wo ist meine Zeile in der Tabelle?" );
-/*N*/
-/*N*/       pLine = rTbl.GetTblBox( rCrsr.GetNode( TRUE )->StartOfSectionIndex() )
-/*N*/                               ->GetUpper();
-/*N*/       USHORT nEndPos = rLines.GetPos( pLine );
-/*N*/       ASSERT( USHRT_MAX != nEndPos, "Wo ist meine Zeile in der Tabelle?" );
-/*N*/
-/*N*/       if( nEndPos < nSttPos )     // vertauschen
-/*N*/       {
-/*?*/           USHORT nTmp = nSttPos; nSttPos = nEndPos; nEndPos = nTmp;
-/*N*/       }
-/*N*/
-/*N*/       int bChkProtected = TBLSEARCH_PROTECT & eSearchType;
-/*N*/       for( ; nSttPos <= nEndPos; ++nSttPos )
-/*N*/       {
-/*N*/           pLine = rLines[ nSttPos ];
-/*N*/           for( USHORT n = pLine->GetTabBoxes().Count(); n ; )
-/*N*/           {
-/*N*/               SwTableBox* pBox = pLine->GetTabBoxes()[ --n ];
-/*N*/               // Zellenschutzt beachten ??
-/*N*/               if( !bChkProtected ||
-/*N*/                   !pBox->GetFrmFmt()->GetProtect().IsCntntProtected() )
-/*N*/                   rBoxes.Insert( pBox );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       Point aPtPos, aMkPos;
-/*N*/       const SwShellCrsr* pShCrsr = rCrsr;
-/*N*/       if( pShCrsr )
-/*N*/       {
-/*N*/           aPtPos = pShCrsr->GetPtPos();
-/*N*/           aMkPos = pShCrsr->GetMkPos();
-/*N*/       }
-/*N*/       const SwLayoutFrm *pStart = rCrsr.GetCntntNode()->GetFrm(
-/*N*/                                   &aPtPos )->GetUpper(),
-/*N*/                         *pEnd   = rCrsr.GetCntntNode(FALSE)->GetFrm(
-/*N*/                                   &aMkPos )->GetUpper();
-/*N*/       GetTblSel( pStart, pEnd, rBoxes, eSearchType );
-/*N*/   }
 /*N*/ }
 
 /*N*/ void GetTblSel( const SwLayoutFrm* pStart, const SwLayoutFrm* pEnd,
@@ -667,19 +577,6 @@ namespace binfilter {
 /*N*/
 /*N*/        ( rUnion.Left() >= pCell->Frm().Left() &&
 /*N*/          rUnion.Right() < pCell->Frm().Right() )) ? TRUE : FALSE );
-/*N*/ }
-
-
-/*N*/ BOOL HasProtectedCells( const SwSelBoxes& rBoxes )
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/   for( USHORT n = 0, nCnt = rBoxes.Count(); n < nCnt; ++n )
-/*N*/       if( rBoxes[ n ]->GetFrmFmt()->GetProtect().IsCntntProtected() )
-/*N*/       {
-/*?*/           bRet = TRUE;
-/*?*/           break;
-/*N*/       }
-/*N*/   return bRet;
 /*N*/ }
 
 
