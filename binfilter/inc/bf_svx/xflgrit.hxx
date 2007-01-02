@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xflgrit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:28:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:39:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,6 @@ public:
             XFillGradientItem(long nIndex, const XGradient& rTheGradient);
             XFillGradientItem(const UniString& rName, const XGradient& rTheGradient);
             XFillGradientItem(SfxItemPool* pPool, const XGradient& rTheGradient);
-            XFillGradientItem(SfxItemPool* pPool );
             XFillGradientItem(const XFillGradientItem& rItem);
             XFillGradientItem(SvStream& rIn, USHORT nVer = 0);
 

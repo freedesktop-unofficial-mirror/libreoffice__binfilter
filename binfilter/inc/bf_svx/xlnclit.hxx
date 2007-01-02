@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xlnclit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:29:37 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:40:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,6 @@ class XLineColorItem : public XColorItem
 public:
             TYPEINFO();
             XLineColorItem() {}
-            XLineColorItem(long nIndex, const Color& rTheColor);
             XLineColorItem(const String& rName, const Color& rTheColor);
             XLineColorItem(SvStream& rIn);
 

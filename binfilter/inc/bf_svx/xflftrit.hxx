@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xflftrit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:27:57 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:39:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,10 +57,8 @@ public:
                             TYPEINFO();
 
                             XFillFloatTransparenceItem();
-                            XFillFloatTransparenceItem( long nIndex, const XGradient& rGradient, BOOL bEnable = TRUE );
                             XFillFloatTransparenceItem(const String& rName, const XGradient& rGradient, BOOL bEnable = TRUE );
                             XFillFloatTransparenceItem(SfxItemPool* pPool, const XGradient& rTheGradient, BOOL bEnable = TRUE );
-                            XFillFloatTransparenceItem(SfxItemPool* pPool );
                             XFillFloatTransparenceItem( const XFillFloatTransparenceItem& rItem );
                             XFillFloatTransparenceItem( SvStream& rIn, USHORT nVer = 0 );
 

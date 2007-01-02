@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xbtmpit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:24:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:39:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,10 +51,8 @@ class XFillBitmapItem : public NameOrIndex
 public:
             TYPEINFO();
             XFillBitmapItem() : NameOrIndex(XATTR_FILLBITMAP, -1 ) {}
-            XFillBitmapItem( long nIndex, const XOBitmap& rTheBitmap );
             XFillBitmapItem( const String& rName, const XOBitmap& rTheBitmap );
             XFillBitmapItem( SfxItemPool* pPool, const XOBitmap& rTheBitmap );
-            XFillBitmapItem( SfxItemPool* pPool );
             XFillBitmapItem( const XFillBitmapItem& rItem );
             XFillBitmapItem( SvStream& rIn, USHORT nVer = 0 );
 

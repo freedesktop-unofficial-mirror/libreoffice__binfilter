@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xflhtit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:28:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:40:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,10 +57,8 @@ class XFillHatchItem : public NameOrIndex
 public:
                             TYPEINFO();
                             XFillHatchItem() : NameOrIndex(XATTR_FILLHATCH, -1) {}
-                            XFillHatchItem(long nIndex, const XHatch& rTheHatch);
                             XFillHatchItem(const String& rName, const XHatch& rTheHatch);
                             XFillHatchItem(SfxItemPool* pPool, const XHatch& rTheHatch);
-                            XFillHatchItem(SfxItemPool* pPool );
                             XFillHatchItem(const XFillHatchItem& rItem);
                             XFillHatchItem(SvStream& rIn);
 
