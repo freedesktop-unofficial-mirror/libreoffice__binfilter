@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndarr.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:44:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,6 @@ class SwTxtFmtColl;
 class SwTxtNode;
 class SwUndoInsNum;
 class SwUndoTblToTxt;
-class SwUndoTxtToTbl;
 struct SwPosition;
 
 
