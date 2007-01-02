@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:40:07 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:08:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,19 +157,6 @@ namespace binfilter {
 /*N*/ SFX_IMPL_INTERFACE( SwModule, SfxModule, SW_RES(RID_SW_NAME) )
 /*N*/ {
 /*N*/ }
-
-/*------------------------------------------------------------------------
- Beschreibung:  Funktionen Ansicht
-------------------------------------------------------------------------*/
-
-
-
-/*N*/sal_Bool lcl_IsViewMarks( const SwViewOption& rVOpt )
-/*N*/{
-/*N*/   return  rVOpt.IsHardBlank() &&
-/*N*/           rVOpt.IsSoftHyph() &&
-/*N*/            SwViewOption::IsFieldShadings();
-/*N*/}
 
 /*--------------------------------------------------------------------
     Beschreibung:   State mit CheckMark fuer ViewOptions
