@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlehelp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:40:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:13:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -308,12 +308,6 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
     rOut.append( GetXMLToken(eUnit) );
 #endif
 
-}
-
-void SvXMLExportHelper::AddPercentage( sal_Int32 nValue, OUStringBuffer& rOut )
-{
-    rOut.append( nValue );
-    rOut.append( sal_Unicode('%' ) );
 }
 
 double SvXMLExportHelper::GetConversionFactor(::rtl::OUStringBuffer& rUnit,

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_attrlist.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:40:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:13:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -192,13 +192,6 @@ void SvXMLAttributeList::RemoveAttribute( const OUString sName )
             break;
         }
     }
-}
-
-
-void SvXMLAttributeList::SetAttributeList( const uno::Reference< ::com::sun::star::xml::sax::XAttributeList >  &r )
-{
-    Clear();
-    AppendAttributeList( r );
 }
 
 void SvXMLAttributeList::AppendAttributeList( const uno::Reference< ::com::sun::star::xml::sax::XAttributeList >  &r )
