@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xout.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:06:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:39:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -154,21 +154,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XOutputDevice::DrawPolyLine()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
-*************************************************************************/
-
-/*N*/ void XOutputDevice::DrawPolyLine( const Polygon& rPoly )
-/*N*/ {
-/*N*/   DrawLinePolygon( rPoly, FALSE );
-/*N*/ }
-
-/*************************************************************************
-|*
 |*    XOutputDevice::DrawXPolyLine()
 |*
 |*    Beschreibung
@@ -266,21 +251,6 @@ namespace binfilter {
 /*N*/   DrawLinePolygon( aPoly, TRUE );
 /*N*/ }
 
-/*************************************************************************
-|*
-|*    XOutputDevice::DrawPolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
-*************************************************************************/
-
-/*N*/ void XOutputDevice::DrawPolygon( const Polygon& rPoly )
-/*N*/ {
-/*N*/   DrawFillPolyPolygon( rPoly );
-/*N*/   DrawLinePolygon( rPoly, TRUE );
-/*N*/ }
 
 /*************************************************************************
 |*
@@ -302,30 +272,6 @@ namespace binfilter {
 /*N*/
 /*N*/       DrawFillPolyPolygon( aPoly );
 /*N*/       DrawLinePolygon(aPoly, TRUE);
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    XOutputDevice::DrawPolyPolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
-*************************************************************************/
-
-/*N*/ void XOutputDevice::DrawPolyPolygon( const PolyPolygon& rPolyPoly )
-/*N*/ {
-/*N*/   DrawFillPolyPolygon( rPolyPoly );
-/*N*/
-/*N*/   if( eLineStyle != XLINE_NONE )
-/*N*/   {
-/*N*/       const USHORT nCount = rPolyPoly.Count();
-/*N*/       USHORT i;
-/*N*/
-/*N*/       for( i = 0; i < nCount; i++ )
-/*N*/           DrawLinePolygon( rPolyPoly.GetObject(i), TRUE );
 /*N*/   }
 /*N*/ }
 
