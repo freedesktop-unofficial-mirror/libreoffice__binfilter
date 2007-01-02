@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoobj.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:32:57 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:48:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -763,7 +763,6 @@ class SwXTextRange : public cppu::WeakImplHelper7
 protected:
     virtual ~SwXTextRange();
 public:
-    SwXTextRange();
     SwXTextRange(SwPaM& rPam, const ::com::sun::star::uno::Reference< ::com::sun::star::text::XText > & rxParent);
     SwXTextRange(SwFrmFmt& rFmt, SwPaM& rPam);
     SwXTextRange(SwFrmFmt& rTblFmt, SwTableBox& rTblBox, SwPaM& rPam);
@@ -852,7 +851,6 @@ protected:
     virtual ~SwXTextRanges();
 public:
     SwXTextRanges();
-    SwXTextRanges( SwUnoCrsr* pCrsr, ::com::sun::star::uno::Reference< ::com::sun::star::text::XText >  xParent);
     SwXTextRanges(SwPaM* pCrsr);
 
 
