@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table1.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:24:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:56:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -696,17 +696,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pD
 /*N*/       for (i=0; i <= MAXCOL; i++) aCol[i].UpdateDeleteTab(nTable, bIsMove, &pRefUndo->aCol[i]);
 /*N*/   else
 /*N*/       for (i=0; i <= MAXCOL; i++) aCol[i].UpdateDeleteTab(nTable, bIsMove, NULL);
-/*N*/  }
-
-/*N*/  void ScTable::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos, USHORT nTabNo,
-/*N*/       ScProgress& rProgress )
-/*N*/  {
-/*N*/   nTab = nTabNo;
-/*N*/   for ( USHORT i=0; i <= MAXCOL; i++ )
-/*N*/   {
-/*N*/       aCol[i].UpdateMoveTab( nOldPos, nNewPos, nTabNo );
-/*N*/       rProgress.SetState( rProgress.GetState() + aCol[i].GetCodeCount() );
-/*N*/   }
 /*N*/  }
 
 /*N*/ void ScTable::UpdateCompile( BOOL bForceIfNameInUse )
