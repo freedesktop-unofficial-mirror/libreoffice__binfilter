@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txencbox.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:19:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:36:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,16 +43,4 @@
 #ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
 #endif
-namespace binfilter {
-
-
-class SvxTextEncodingBox : public ListBox
-{
-public:
-     SvxTextEncodingBox( Window* pParent, const ResId& rResId );
-    ~SvxTextEncodingBox(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
-};
-
-}//end of namespace binfilter
 #endif
-
