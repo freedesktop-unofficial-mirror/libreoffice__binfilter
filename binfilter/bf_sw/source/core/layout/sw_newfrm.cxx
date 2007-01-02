@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_newfrm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:54:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:54:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -584,8 +584,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   bTurboAllowed = FALSE;
 /*N*/   pTurbo = 0;
-/*N*/   if(pBlink)
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pBlink->FrmDelete( this );
 /*N*/   ((SwFrmFmt*)pRegisteredIn)->GetDoc()->DelFrmFmt( (SwFrmFmt*)pRegisteredIn );
 /*N*/   delete pDestroy;
 /*N*/

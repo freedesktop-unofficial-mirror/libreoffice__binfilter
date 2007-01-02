@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndole.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:57:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:54:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -455,12 +455,6 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   return *pOLERef;
 /*N*/ }
 
-
-/*N*/ void SwOLEObj::Unload()
-/*N*/ {
-/*N*/   if( pOLERef && pOLELRU_Cache )
-/*N*/       pOLELRU_Cache->Remove( *this );
-/*N*/ }
 
 /*N*/ BOOL SwOLEObj::RemovedFromLRU()
 /*N*/ {

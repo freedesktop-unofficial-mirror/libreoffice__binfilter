@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawfont.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:44:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:52:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,7 +137,6 @@ public:
 
     // determines script changes
     void InitScriptInfo( const SwTxtNode& rNode, sal_Bool bRTL );
-    void InitScriptInfo( const SwTxtNode& rNode );
 
     // set/get position from which data is invalid
     inline void SetInvalidity( const xub_StrLen nPos );
@@ -184,53 +183,6 @@ public:
     long Compress( sal_Int32* pKernArray, xub_StrLen nIdx, xub_StrLen nLen,
                    const USHORT nCompress, const USHORT nFontHeight,
                    Point* pPoint = NULL ) const;
-
-/** Performes a kashida justification on the kerning array
-
-    @descr  Add some extra space for kashida justification to the
-            positions in the kerning array.
-    @param  pKernArray
-                The printers kerning array. Optional.
-    @param  pScrArray
-                The screen kerning array. Optional.
-    @param  nIdx
-                Start referring to the paragraph.
-    @param  nLen
-                The number of characters to be considered.
-    @param  nSpace
-                The value which has to be added to a kashida opportunity.
-    @return The number of kashida opportunities in the given range
-*/
-
-/** Checks if language is one of the 16 Arabic languages
-
-    @descr  Checks if language is one of the 16 Arabic languages
-    @param  aLang
-                The language which has to be checked.
-    @return Returns if the language is an Arabic language
-*/
-
-/** Performes a thai justification on the kerning array
-
-    @descr  Add some extra space for thai justification to the
-            positions in the kerning array.
-    @param  rTxt
-                The String
-    @param  pKernArray
-                The printers kerning array. Optional.
-    @param  pScrArray
-                The screen kerning array. Optional.
-    @param  nIdx
-                Start referring to the paragraph.
-    @param  nLen
-                The number of characters to be considered.
-    @param  nSpace
-                The value which has to be added to the cells.
-    @return The number of extra spaces in the given range
-*/
-
-    static SwScriptInfo* GetScriptInfo( const SwTxtNode& rNode,
-                                        sal_Bool bAllowInvalid = sal_False );
 };
 
 inline void SwScriptInfo::SetInvalidity( const xub_StrLen nPos )
