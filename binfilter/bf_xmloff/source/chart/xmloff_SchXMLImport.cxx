@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLImport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:37:38 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:12:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -172,13 +172,6 @@ static __FAR_DATA SvXMLTokenMapEntry aLegendAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aAutoStyleAttrTokenMap[] =
-{
-    { XML_NAMESPACE_STYLE,  XML_FAMILY,                 XML_TOK_AS_FAMILY           },
-    { XML_NAMESPACE_STYLE,  XML_NAME,                   XML_TOK_AS_NAME             },
-    XML_TOKEN_MAP_END
-};
-
 static __FAR_DATA SvXMLTokenMapEntry aCellAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE,  XML_VALUE_TYPE,             XML_TOK_CELL_VAL_TYPE       },
@@ -339,13 +332,6 @@ const SvXMLTokenMap& SchXMLImportHelper::GetLegendAttrTokenMap()
     return *mpLegendAttrTokenMap;
 }
 
-const SvXMLTokenMap& SchXMLImportHelper::GetAutoStyleAttrTokenMap()
-{
-    if( ! mpAutoStyleAttrTokenMap )
-        mpAutoStyleAttrTokenMap = new SvXMLTokenMap( aAutoStyleAttrTokenMap );
-    return *mpAutoStyleAttrTokenMap;
-}
-
 const SvXMLTokenMap& SchXMLImportHelper::GetCellAttrTokenMap()
 {
     if( ! mpCellAttrTokenMap )
@@ -358,41 +344,6 @@ const SvXMLTokenMap& SchXMLImportHelper::GetSeriesAttrTokenMap()
     if( ! mpSeriesAttrTokenMap )
         mpSeriesAttrTokenMap = new SvXMLTokenMap( aSeriesAttrTokenMap );
     return *mpSeriesAttrTokenMap;
-}
-
-// ----------------------------------------
-
-sal_Int32 SchXMLImportHelper::GetNumberOfSeries()
-{
-    if( mxChartDoc.is())
-    {
-        uno::Reference< chart::XChartDataArray > xData( mxChartDoc->getData(), uno::UNO_QUERY );
-        if( xData.is())
-        {
-            uno::Sequence< uno::Sequence< double > > xArray = xData->getData();
-
-            if( xArray.getLength())
-                return xArray[ 0 ].getLength();
-        }
-    }
-
-    return 0;
-}
-
-sal_Int32 SchXMLImportHelper::GetLengthOfSeries()
-{
-    if( mxChartDoc.is())
-    {
-        uno::Reference< chart::XChartDataArray > xData( mxChartDoc->getData(), uno::UNO_QUERY );
-        if( xData.is())
-        {
-            uno::Sequence< uno::Sequence< double > > xArray = xData->getData();
-
-            return xArray.getLength();
-        }
-    }
-
-    return 0;
 }
 
 // -1 means don't change
