@@ -4,9 +4,9 @@
  *
  *  $RCSfile: legacy_binfilters_smgr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:07:08 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:55:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -273,28 +273,6 @@ static Sequence< OUString > retrieveAsciiValueList(
     return seq;
 }
 
-
-/*****************************************************************************
-    helper functions
-*****************************************************************************/
-OUString Point2Slash(const OUString& s)
-{
-    OUStringBuffer ret;
-
-    sal_Int32 nIndex = 0;
-    do
-    {
-        OUString token( s.getToken(0, '.', nIndex) );
-
-        if (token.getLength())
-        {
-            ret.append( (sal_Unicode)'/' );
-            ret.append( token );
-        }
-    } while( nIndex != -1 );
-
-    return ret.makeStringAndClear();
-}
 
 /*****************************************************************************
     Enumeration by ServiceName
