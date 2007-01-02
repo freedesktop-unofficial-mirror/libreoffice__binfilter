@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unopage.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:22:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:38:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,7 +115,6 @@ class SvxDrawPage : public ::cppu::WeakAggImplHelper4< ::com::sun::star::drawing
 
  public:
     SvxDrawPage( SdrPage* pPage ) throw();
-    SvxDrawPage() throw();
     virtual ~SvxDrawPage() throw();
 
     // Internals
@@ -138,8 +137,6 @@ class SvxDrawPage : public ::cppu::WeakAggImplHelper4< ::com::sun::star::drawing
     // werden soll. abgeleitete Klassen koennen hier eine Ableitung oder
     // ein ein SvxShape aggregierenden Objekt anlegen.
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > _CreateShape( SdrObject *pObj ) const throw();
-
-    static SvxDrawPage* GetPageForSdrPage( SdrPage* pPage ) throw();
 
     UNO3_GETIMPLEMENTATION_DECL( SvxDrawPage )
 
