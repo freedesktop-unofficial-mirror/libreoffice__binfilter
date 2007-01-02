@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_obj3d.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:01:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:22:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1318,28 +1318,6 @@ namespace binfilter {
 /*N*/ void E3dObject::ForceDefaultAttr()
 /*N*/ {
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Falls doch noch DefaultAttrs benoetigt werden
-|*
-\************************************************************************/
-
-/*N*/ void E3dObject::ForceDefaultAttrAgain()
-/*N*/ {
-/*N*/   SdrAttrObj::ForceDefaultAttr();
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Rotation eines 3d-Koerpers
-|*
-\************************************************************************/
-// 2D-rotation eines 3D-Koerpers, normalerweise macht das die Szene selbst
-// Ist aber eine korrekte Implementierung, denn alles was passiert ist eine
-// Rotation um die Achse die senkrecht auf dem Bildschirm steht und zwar
-// unabhaengig davon, wie die Szene bisher gedreht worden ist.
-
 
 /*************************************************************************/
 
