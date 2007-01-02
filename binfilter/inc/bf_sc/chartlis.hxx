@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chartlis.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:29:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:24:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,8 +93,6 @@ public:
     virtual void    Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
     void            StartListeningTo();
     void            EndListeningTo();
-    void            ChangeListening( const ScRangeListRef& rRangeListRef,
-                                    BOOL bDirty = FALSE );
     void            Update();
     const ScRangeListRef&   GetRangeList() const { return aRangeListRef; }
     void            SetRangeList( const ScRangeListRef& rNew ) { aRangeListRef = rNew; }

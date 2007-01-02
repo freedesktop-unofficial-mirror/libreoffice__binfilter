@@ -4,9 +4,9 @@
  *
  *  $RCSfile: datauno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:32:21 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:25:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -539,10 +539,6 @@ public:
                             // nField[] hier innerhalb des Bereichs:
     void                    GetQueryParam(ScQueryParam& rQueryParam) const;
     void                    SetQueryParam(const ScQueryParam& rQueryParam);
-    void                    GetSortParam(ScSortParam& rSortParam) const;
-    void                    SetSortParam(const ScSortParam& rSortParam);
-    void                    GetImportParam(ScImportParam& rImportParam) const;
-    void                    SetImportParam(const ScImportParam& rImportParam);
     void                    GetSubTotalParam(ScSubTotalParam& rSubTotalParam) const;
     void                    SetSubTotalParam(const ScSubTotalParam& rSubTotalParam);
 
