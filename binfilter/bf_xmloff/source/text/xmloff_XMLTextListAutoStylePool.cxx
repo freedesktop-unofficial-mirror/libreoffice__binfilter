@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextListAutoStylePool.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:17:53 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:20:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -211,11 +211,6 @@ void XMLTextListAutoStylePool::RegisterName( const OUString& rName )
     OUString *pName = new OUString( rName );
     if( !pNames->Insert( pName ) )
         delete pName;
-}
-
-sal_Bool XMLTextListAutoStylePool::HasName( const OUString& rName ) const
-{
-    return pNames->Seek_Entry( &rName, 0 );
 }
 
 sal_uInt32 XMLTextListAutoStylePool::Find( XMLTextListAutoStylePoolEntry_Impl* pEntry ) const

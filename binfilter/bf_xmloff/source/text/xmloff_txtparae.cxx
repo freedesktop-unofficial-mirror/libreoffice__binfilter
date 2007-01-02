@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparae.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:21:18 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:20:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -946,11 +946,6 @@ SvXMLExportPropertyMapper *XMLTextParagraphExport::CreateParaExtPropMapper(
     XMLPropertySetMapper *pPropMapper =
         new XMLTextPropertySetMapper( TEXT_PROP_MAP_SHAPE_PARA );
     return new XMLTextExportPropertySetMapper( pPropMapper, rExport );
-}
-
-void XMLTextParagraphExport::collectFrames()
-{
-    collectFrames( sal_False );
 }
 
 void XMLTextParagraphExport::collectFrames( sal_Bool bBoundToFrameOnly )
