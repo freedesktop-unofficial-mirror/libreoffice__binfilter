@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:38:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:06:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -404,17 +404,6 @@ using namespace ::com::sun::star;
  */
 
 // Initiales Einlesben
-
-
- SwReader::SwReader( SvStream& rStrm, const String& rFileName, SwDoc *pDoc )
-    : SwDocFac( pDoc ),
-    pStrm( &rStrm ),
-    pStg( 0 ),
-    pMedium( 0 ),
-    aFileName( rFileName ),
-    pCrsr( 0 )
- {
- }
 
 
 /*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pDoc )
