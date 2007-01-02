@@ -4,9 +4,9 @@
  *
  *  $RCSfile: column.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:30:12 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:25:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -119,7 +119,6 @@ private:
     ScDocument*     pDocument;
 
 friend class ScDocument;                    // fuer FillInfo
-friend class ScDocumentIterator;
 friend class ScValueIterator;
 friend class ScQueryValueIterator;
 friend class ScColumnIterator;
@@ -142,7 +141,6 @@ public:
     void        Insert( USHORT nRow, ScBaseCell* pCell );
     void        Insert( USHORT nRow, ULONG nFormatIndex, ScBaseCell* pCell );
     void        Append( USHORT nRow, ScBaseCell* pCell );
-    void        Delete( USHORT nRow );
     void        DeleteAtIndex( USHORT nIndex );
     void        FreeAll();
     void        Resize( USHORT nSize );
@@ -223,7 +221,6 @@ public:
     CellType    GetCellType( USHORT nRow ) const;
     USHORT      GetCellCount() const { return nCount; }
     long        GetWeightedCount() const;
-    ULONG       GetCodeCount() const;       // RPN-Code in Formeln
     USHORT      GetErrCode( USHORT nRow ) const;
 
     BOOL        HasStringData( USHORT nRow ) const;
@@ -247,7 +244,6 @@ public:
     void        UpdateInsertTab( USHORT nTable);
     void        UpdateInsertTabOnlyCells( USHORT nTable);
      void       UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScColumn* pRefUndo = NULL );
-     void       UpdateMoveTab(USHORT nOldPos, USHORT nNewPos, USHORT nTabNo);
     void        UpdateCompile( BOOL bForceIfNameInUse = FALSE );
 
     void        SetTabNo(USHORT nNewTab);
@@ -262,7 +258,6 @@ public:
 
     void        ApplyAttr( USHORT nRow, const SfxPoolItem& rAttr );
     void        ApplyPatternArea( USHORT nStartRow, USHORT nEndRow, const ScPatternAttr& rPatAttr );
-    void        SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPutToPool = FALSE );
 
     void        ApplyStyleArea( USHORT nStartRow, USHORT nEndRow, const ScStyleSheet& rStyle );
     void        ApplySelectionStyle(const ScStyleSheet& rStyle, const ScMarkData& rMark);
@@ -272,7 +267,6 @@ public:
     const ScStyleSheet* GetAreaStyle( BOOL& rFound, USHORT nRow1, USHORT nRow2 ) const;
 
     void        FindStyleSheet( const SfxStyleSheetBase* pStyleSheet, BOOL* pUsed, BOOL bReset );
-    BOOL        IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
 
 
     BOOL        ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
@@ -348,7 +342,6 @@ public:
                 ~ScColumnIterator();
 
     BOOL        Next( USHORT& rRow, ScBaseCell*& rpCell );
-    USHORT      GetIndex() const;
 };
 
 
