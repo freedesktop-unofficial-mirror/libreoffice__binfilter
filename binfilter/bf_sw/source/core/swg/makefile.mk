@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 12:32:38 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:56:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -75,21 +75,11 @@ SLOFILES =  \
         $(SLO)$/sw_rdtox.obj \
         $(SLO)$/sw_swgpar.obj \
         $(SLO)$/sw_swgstr.obj \
-        $(SLO)$/sw_sw2block.obj \
         $(SLO)$/sw_swblocks.obj	\
-        $(SLO)$/sw_SwXMLBlockImport.obj	\
-        $(SLO)$/sw_SwXMLSectionList.obj	\
-        $(SLO)$/sw_SwXMLBlockExport.obj	\
-        $(SLO)$/sw_SwXMLBlockListContext.obj	\
-        $(SLO)$/sw_SwXMLTextBlocks.obj \
-        $(SLO)$/sw_SwXMLTextBlocks1.obj
+        $(SLO)$/sw_SwXMLSectionList.obj
 
 EXCEPTIONSFILES = \
-        $(SLO)$/sw_SwXMLBlockImport.obj	\
-        $(SLO)$/sw_SwXMLSectionList.obj	\
-        $(SLO)$/sw_SwXMLBlockExport.obj	\
-        $(SLO)$/sw_SwXMLBlockListContext.obj	\
-        $(SLO)$/sw_SwXMLTextBlocks1.obj
+        $(SLO)$/sw_SwXMLSectionList.obj
 
 # --- Tagets -------------------------------------------------------
 
