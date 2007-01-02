@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpobject.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:18:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:55:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -336,24 +336,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Output area
 }
-
-/*N*/ BOOL ScDPObject::RefsEqual( const ScDPObject& r ) const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( aOutRange != r.aOutRange )
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ void ScDPObject::WriteRefsTo( ScDPObject& r ) const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   r.SetOutRange( aOutRange );
-/*N*/ }
-
-
-
-
-
-
-
 
 /*N*/ USHORT lcl_FirstSubTotal( const uno::Reference<beans::XPropertySet>& xDimProp )       // PIVOT_FUNC mask
 /*N*/ {
@@ -1069,30 +1051,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   r.SetOutRange( aOutRange );
 /*N*/ {
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/       ((ScDPObject*)At(i))->UpdateReference( eUpdateRefMode, r, nDx, nDy, nDz );
-/*N*/ }
-
-/*N*/ BOOL ScDPCollection::RefsEqual( const ScDPCollection& r ) const
-/*N*/ {
-/*N*/   if ( nCount != r.nCount )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/       if ( ! ((const ScDPObject*)At(i))->RefsEqual( *((const ScDPObject*)r.At(i)) ) )
-/*N*/           return FALSE;
-/*N*/
-/*N*/   return TRUE;    // all equal
-/*N*/ }
-/*N*/
-/*N*/ void ScDPCollection::WriteRefsTo( ScDPCollection& r ) const
-/*N*/ {
-/*N*/   if ( nCount == r.nCount )
-/*N*/   {
-/*N*/       //! assert equal names?
-/*N*/       for (USHORT i=0; i<nCount; i++)
-/*N*/           ((const ScDPObject*)At(i))->WriteRefsTo( *((ScDPObject*)r.At(i)) );
-/*N*/   }
-/*N*/   else
-/*N*/       DBG_ERROR("WriteRefsTo: different count");
 /*N*/ }
 
 /*N*/ String ScDPCollection::CreateNewName( USHORT nMin ) const
