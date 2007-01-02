@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xexptran.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:16:40 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:15:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -155,25 +155,6 @@ void Imp_SkipDoubleAndSpacesAndCommas(const OUString& rStr, sal_Int32& rPos,
 {
     Imp_SkipDouble(rStr, rPos, nLen);
     Imp_SkipSpacesAndCommas(rStr, rPos, nLen);
-}
-
-sal_Int32 Imp_GetNumberChar(const OUString& rStr, sal_Int32& rPos, const sal_Int32 nLen,
-    const SvXMLUnitConverter& rConv, sal_Int32 nRetval)
-{
-    OUStringBuffer sNumberString;
-    BOOL bCharValid(TRUE);
-    BOOL bSignAllowed(TRUE);
-
-    while(rPos < nLen && Imp_IsOnNumberChar(rStr, rPos, bSignAllowed))
-    {
-        bSignAllowed = FALSE;
-        sNumberString.append(rStr[rPos++]);
-    }
-
-    if(sNumberString.getLength())
-        rConv.convertNumber(nRetval, sNumberString.makeStringAndClear());
-
-    return nRetval;
 }
 
 void Imp_PutNumberChar(OUString& rStr, const SvXMLUnitConverter& rConv, sal_Int32 nValue)
@@ -383,12 +364,6 @@ void SdXMLImExTransform2D::AddRotate(double fNew)
         maList.Insert(new ImpSdXMLExpTransObj2DRotate(fNew), LIST_APPEND);
 }
 
-void SdXMLImExTransform2D::AddScale(const Vector2D& rNew)
-{
-    if(rNew.X() != 0.0 || rNew.Y() != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DScale(rNew), LIST_APPEND);
-}
-
 void SdXMLImExTransform2D::AddTranslate(const Vector2D& rNew)
 {
     if(rNew.X() != 0.0 || rNew.Y() != 0.0)
@@ -399,20 +374,6 @@ void SdXMLImExTransform2D::AddSkewX(double fNew)
 {
     if(fNew != 0.0)
         maList.Insert(new ImpSdXMLExpTransObj2DSkewX(fNew), LIST_APPEND);
-}
-
-void SdXMLImExTransform2D::AddSkewY(double fNew)
-{
-    if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DSkewY(fNew), LIST_APPEND);
-}
-
-void SdXMLImExTransform2D::AddMatrix(const Matrix3D& rNew)
-{
-    if(rNew[0][0] != 1.0 || rNew[1][1] != 1.0 || rNew[2][2] != 1.0
-        || rNew[0][1] != 0.0 || rNew[0][2] != 0.0 || rNew[1][2] != 0.0
-        || rNew[1][0] != 0.0 || rNew[2][0] != 0.0 || rNew[2][1] != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DMatrix(rNew), LIST_APPEND);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -511,12 +472,6 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
     return msString;
 }
 
-//////////////////////////////////////////////////////////////////////////////
-// for Import: constructor with string, parses it and generates entries
-SdXMLImExTransform2D::SdXMLImExTransform2D(const OUString& rNew, const SvXMLUnitConverter& rConv)
-{
-    SetString(rNew, rConv);
-}
 
 //////////////////////////////////////////////////////////////////////////////
 // sets new string, parses it and generates entries
@@ -768,36 +723,6 @@ void SdXMLImExTransform3D::EmptyList()
 
 //////////////////////////////////////////////////////////////////////////////
 // add members
-
-void SdXMLImExTransform3D::AddRotateX(double fNew)
-{
-    if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DRotateX(fNew), LIST_APPEND);
-}
-
-void SdXMLImExTransform3D::AddRotateY(double fNew)
-{
-    if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DRotateY(fNew), LIST_APPEND);
-}
-
-void SdXMLImExTransform3D::AddRotateZ(double fNew)
-{
-    if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DRotateZ(fNew), LIST_APPEND);
-}
-
-void SdXMLImExTransform3D::AddScale(const Vector3D& rNew)
-{
-    if(rNew.X() != 1.0 || rNew.Y() != 1.0 || rNew.Z() != 1.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DScale(rNew), LIST_APPEND);
-}
-
-void SdXMLImExTransform3D::AddTranslate(const Vector3D& rNew)
-{
-    if(rNew.X() != 0.0 || rNew.Y() != 0.0 || rNew.Z() != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DTranslate(rNew), LIST_APPEND);
-}
 
 void SdXMLImExTransform3D::AddMatrix(const Matrix4D& rNew)
 {
