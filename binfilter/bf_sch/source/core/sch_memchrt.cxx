@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:27:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:08:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -342,6 +342,7 @@ namespace binfilter {
 //      keine Umordnung (mehr) vorhanden (FALSE,TRANS_NONE)
 // sonst wird TRUE zurückgegeben
 
+#if OSL_DEBUG_LEVEL > 0
 /*N*/ BOOL SchMemChart::VerifyTranslation()
 /*N*/ {
 /*N*/   //Fehler ?
@@ -412,6 +413,7 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/
 /*N*/ }
+#endif
 
 /*N*/ double SchMemChart::GetTransData(long nCol,long nRow)
 /*N*/ {
