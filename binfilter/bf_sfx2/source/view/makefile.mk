@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:17:54 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:16:42 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -75,12 +75,10 @@ SLOFILES =	\
         $(SLO)$/sfx2_ipenv.obj \
         $(SLO)$/sfx2_contenv.obj \
         $(SLO)$/sfx2_printer.obj \
-        $(SLO)$/sfx2_prnmon.obj \
         $(SLO)$/sfx2_viewsh.obj \
         $(SLO)$/sfx2_viewprn.obj \
         $(SLO)$/sfx2_ipfrm.obj \
         $(SLO)$/sfx2_viewfac.obj \
-        $(SLO)$/sfx2_orgmgr.obj \
         $(SLO)$/sfx2_intfrm.obj \
         $(SLO)$/sfx2_viewfrm.obj \
         $(SLO)$/sfx2_tbedctrl.obj \
