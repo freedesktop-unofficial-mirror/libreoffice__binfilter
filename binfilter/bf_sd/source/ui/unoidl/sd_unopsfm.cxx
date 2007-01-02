@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopsfm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:38:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:12:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -139,32 +139,6 @@ OUString SdUnoPseudoStyleFamily::getExternalStyleName( const String& rStyleName 
     }
 
     return aExtName;
-}
-
-String SdUnoPseudoStyleFamily::getInternalStyleName( const OUString& rStyleName, SdPage* pPage ) throw()
-{
-    String aLayoutName;
-
-    sal_uInt16 nIndex;
-    for( nIndex = 0; nIndex < nPseudoStyleCount; nIndex++ )
-    {
-        if( rStyleName.compareToAscii( StyleNameMapping[nIndex].mpName ) == 0 )
-        {
-            aLayoutName = pPage->GetLayoutName();
-            aLayoutName.Erase(aLayoutName.Search( String( RTL_CONSTASCII_USTRINGPARAM(SD_LT_SEPARATOR))) + 4);
-
-            sal_uInt16 nRID = StyleNameMapping[nIndex].mnRID;
-            SdResId aRID(nRID);
-            aLayoutName += String(aRID);
-
-            if( STR_LAYOUT_OUTLINE == nRID )
-                aLayoutName += sal_Unicode('1' + nIndex );
-
-            break;
-        }
-    }
-
-    return aLayoutName;
 }
 
 // XServiceInfo

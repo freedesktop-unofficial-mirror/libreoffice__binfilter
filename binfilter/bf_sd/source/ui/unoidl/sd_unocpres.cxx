@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unocpres.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:36:16 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:12:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -479,25 +479,5 @@ SdCustomShow * SdXCustomPresentationAccess::getSdCustomShow( const OUString& Nam
     }
     return NULL;
 }
-
-sal_Int32 SdXCustomPresentationAccess::getSdCustomShowIdx( const OUString& Name ) const throw()
-{
-    sal_Int32 nIdx = 0;
-
-    List* pList = GetCustomShowList();
-    const sal_Int32 nCount = pList?pList->Count():0;
-
-    const String aName( Name );
-
-    while( nIdx < nCount )
-    {
-        SdCustomShow* pShow = (SdCustomShow*)pList->GetObject(nIdx);
-        if( pShow->GetName() == aName )
-            return nIdx;
-        nIdx++;
-    }
-    return -1;
-}
-
 
 }
