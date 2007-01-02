@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fltini.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:37:46 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:06:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1087,11 +1087,6 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
     } while( STRING_NOTFOUND != nToken );
  }
 
-/*N*/ void SwAsciiOptions::WriteUserData( String& rStr )
-/*N*/ {
-/*?*/   // 1. charset
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rStr = NameFromCharSet(eCharSet);
-/*N*/ }
 /* -----------------------------02.03.00 17:33--------------------------------
 
  ---------------------------------------------------------------------------*/
