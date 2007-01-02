@@ -4,9 +4,9 @@
  *
  *  $RCSfile: toxhlp.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:49:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:53:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,11 +69,6 @@ namespace binfilter {
             const STAR_NMSPC::lang::Locale& rLcl,
             STAR_REFERENCE( lang::XMultiServiceFactory )& rxMSF );
     ~IndexEntrySupplierWrapper();
-
-     String GetIndexKey( const String& rTxt, const String& rTxtReading,
-                         const STAR_NMSPC::lang::Locale& rLocale ) const;
-
-     String GetFollowingText( BOOL bMorePages ) const;
 
      STAR_NMSPC::uno::Sequence< ::rtl::OUString >
     GetAlgorithmList( const STAR_NMSPC::lang::Locale& rLcl ) const;
