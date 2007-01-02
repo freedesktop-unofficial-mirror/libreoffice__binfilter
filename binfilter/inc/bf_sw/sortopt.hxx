@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sortopt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:24:53 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:46:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ enum SwSortDirection    { SRT_COLUMNS, SRT_ROWS         };
 struct SwSortKey
 {
     SwSortKey();
-    SwSortKey( USHORT nId, const String& rSrtType, SwSortOrder eOrder );
     SwSortKey( const SwSortKey& rOld );
 
     String          sSortType;
