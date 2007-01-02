@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formcellbinding.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:48:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:16:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -112,12 +112,6 @@ namespace xmloff
         }
 
         //....................................................................
-        Reference< XDrawPage > getDrawPage( const Reference< XInterface >& _rxModelNode )
-        {
-            return getTypedModelNode< XDrawPage >( _rxModelNode );
-        }
-
-        //....................................................................
         struct StringCompare : public ::std::unary_function< ::rtl::OUString, bool >
         {
         private:
@@ -131,21 +125,6 @@ namespace xmloff
                 return ( _rCompare == m_sReference ) ? true : false;
             }
         };
-        //....................................................................
-        bool isAsciiLetter( sal_Unicode _c )
-        {
-            return  ( _c >= 'A' && _c <= 'Z' )
-                ||  ( _c >= 'a' && _c <= 'z' );
-        }
-
-        //....................................................................
-        sal_Unicode toUpperAscii( sal_Unicode _c )
-        {
-            sal_Unicode nUpper( _c );
-            if ( _c >= 'a' && _c <= 'z' )
-                nUpper += 'A' - 'a';
-            return nUpper;
-        }
     }
 
     //========================================================================
