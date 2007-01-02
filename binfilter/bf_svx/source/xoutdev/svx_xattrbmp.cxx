@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattrbmp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:06:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:38:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -424,24 +424,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XFillBitmapItem::XFillBitmapItem(long nIndex,
-|*                                   const Bitmap& rTheBitmap)
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
-*************************************************************************/
-
-/*?*/ XFillBitmapItem::XFillBitmapItem(long nIndex,
-/*?*/                              const XOBitmap& rTheBitmap) :
-/*?*/   NameOrIndex( XATTR_FILLBITMAP, nIndex ),
-/*?*/   aXOBitmap( rTheBitmap )
-/*?*/ {
-/*?*/ }
-
-/*************************************************************************
-|*
 |*    XFillBitmapItem::XFillBitmapItem(const XubString& rName,
 |*                                 const Bitmap& rTheBitmap)
 |*
@@ -553,13 +535,6 @@ namespace binfilter {
 /*N*/   aXOBitmap( rTheBitmap )
 /*N*/ {
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XFillBitmapItem::XFillBitmapItem( SfxItemPool* pPool )
-/*?*/ : NameOrIndex(XATTR_FILLBITMAP, -1 )
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
