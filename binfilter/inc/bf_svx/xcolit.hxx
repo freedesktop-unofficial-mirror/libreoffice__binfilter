@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xcolit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:24:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:39:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,8 +55,6 @@ class XColorItem : public NameOrIndex
 public:
             TYPEINFO();
             XColorItem() {}
-            XColorItem(USHORT nWhich, long nIndex, const Color& rTheColor);
-
     virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
