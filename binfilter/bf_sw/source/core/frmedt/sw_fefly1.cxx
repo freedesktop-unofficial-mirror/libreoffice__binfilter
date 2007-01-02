@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fefly1.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:39:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:50:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -363,64 +363,6 @@ using namespace ::com::sun::star;
 /*N*/   return pRet;
 /*N*/ }
 
-/******************************************************************************
- *  Methode     :   void SwFEShell::SetFrmFmt(SwFrmFmt *pNewFmt)
- *  Beschreibung:
- *  Erstellt    :   OK 14.04.94 15:40
- *  Aenderung   :   MA 23. Apr. 97
- ******************************************************************************/
-
-
-/*************************************************************************
-|*
-|*  SwFEShell::GetFlyFrmFmt()
-|*
-|*  Ersterstellung      OK 23.06.93 13:15
-|*  Letzte Aenderung    OK 23.06.93 13:15
-|*
-*************************************************************************/
-
-/*N*/ const SwFrmFmt* SwFEShell::GetFlyFrmFmt() const
-/*N*/ {
-/*N*/   const SwFlyFrm* pFly = FindFlyFrm();
-/*N*/   if ( !pFly )
-/*N*/       pFly = GetCurrFrm()->FindFlyFrm();
-/*N*/   if( pFly )
-/*N*/       return pFly->GetFmt();
-/*N*/   return 0;
-/*N*/ }
-
-/*M*/ SwFrmFmt* SwFEShell::GetFlyFrmFmt()
-/*M*/ {
-/*M*/   SwFlyFrm* pFly = FindFlyFrm();
-/*M*/   if ( !pFly )
-/*M*/       pFly = GetCurrFrm()->FindFlyFrm();
-/*M*/   if( pFly )
-/*M*/       return pFly->GetFmt();
-/*M*/   return 0;
-/*M*/ }
-
-/*************************************************************************
-|*
-|*  SwFEShell::GetFlyRect()
-|*
-|*  Ersterstellung      AMA 6. Mae. 97
-|*  Letzte Aenderung    AMA 6. Mae. 97
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*  SwFEShell::GetObjRect()
-|*
-|*  Ersterstellung      MA 22. Aug. 93
-|*  Letzte Aenderung    MA 11. Jan. 95
-|*
-*************************************************************************/
-
-
-
 /***********************************************************************
 #*  Class       :  SwFEShell
 #*  Methode     :  RequestObjectResize()
@@ -491,51 +433,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   EndAllAction();
 /*N*/ }
-
-/***********************************************************************
-#*  Class       :  SwFEShell
-#*  Methode     :  DeleteCurrFrmFmt
-#*  Datum       :  JP 28.07.95
-#*  Update      :  JP 28.07.95
-#***********************************************************************/
-
-
-/***********************************************************************
-#*  Class       :  SwFEShell
-#*  Methode     :  WizzardFindCurFrmFmt
-#*  Datum       :  JP 31.07.95
-#*  Update      :  JP 31.07.95
-#***********************************************************************/
-
-
-
-
-
-
-
-
-
-
-// returns a format too, if the point is over the text of any fly
-
-
-
-/*N*/ ObjCntType SwFEShell::GetObjCntTypeOfSelection( SdrObject** ppObj ) const
-/*N*/ {
-/*N*/   ObjCntType eType = OBJCNT_NONE;
-/*N*/
-/*N*/   if( Imp()->HasDrawView() )
-/*N*/   {
-/*N*/       const SdrMarkList &rMrkList = Imp()->GetDrawView()->GetMarkList();
-/*N*/       for( sal_uInt32 i = 0, nE = rMrkList.GetMarkCount(); i < nE; ++i )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrObject* pObj = rMrkList.GetMark( i )->GetObj();
-/*N*/       }
-/*N*/   }
-/*N*/   return eType;
-/*N*/ }
-
-
 
 /*M*/ static USHORT SwFmtGetPageNum(const SwFlyFrmFmt * pFmt)
 /*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
@@ -617,137 +514,4 @@ using namespace ::com::sun::star;
 /*M*/ }
 #endif
 
-namespace binfilter {//STRIP009
-/*M*/ void SwFEShell::GetConnectableFrmFmts(SwFrmFmt & rFmt,
-/*M*/                                       const String & rReference,
-/*M*/                                       BOOL bSuccessors,
-/*M*/                                       ::std::vector< String > & aPrevPageVec,
-/*M*/                                       ::std::vector< String > & aThisPageVec,
-/*M*/                                       ::std::vector< String > & aNextPageVec,
-/*M*/                                       ::std::vector< String > & aRestVec)
-/*M*/ {
-/*M*/ #if 0
-/*M*/     ::std::clog << "Connectables:" << rFmt.GetName() << ","
-/*M*/                 << (bSuccessors ? "succ" : "pred") << "," << rReference
-/*M*/                 << ::std::endl;
-/*M*/     lcl_PrintFrameChain(rFmt);
-/*M*/     ::std::vector< String > aResult;
-/*M*/ #endif
-/*M*/
-/*M*/     StartAction();
-/*M*/
-/*M*/     SwFmtChain rChain = rFmt.GetChain();
-/*M*/     SwFrmFmt * pOldChainNext = (SwFrmFmt *) rChain.GetNext();
-/*M*/     SwFrmFmt * pOldChainPrev = (SwFrmFmt *) rChain.GetPrev();
-/*M*/
-/*M*/     if (pOldChainNext)
-/*M*/         pDoc->Unchain(rFmt);
-/*M*/
-/*M*/     if (pOldChainPrev)
-/*M*/         pDoc->Unchain(*pOldChainPrev);
-/*M*/
-/*M*/     sal_uInt16 nCnt = pDoc->GetFlyCount(FLYCNTTYPE_FRM);
-/*M*/
-/*M*/     /* potential successors resp. predecessors */
-/*M*/     ::std::vector< const SwFrmFmt * > aTmpSpzArray;
-/*M*/
-/*M*/     SwFrmFmt * pNext = (SwFrmFmt *) pDoc->FindFlyByName(rReference);
-/*M*/
-/*M*/     for (sal_uInt16 n = 0; n < nCnt; n++)
-/*M*/     {
-/*M*/         const SwFrmFmt & rFmt1 = *(pDoc->GetFlyNum(n, FLYCNTTYPE_FRM));
-/*M*/
-        /*
-           pFmt is a potential successor of rFmt if it is chainable after
-           rFmt.
 
-           pFmt is a potential predecessor of rFmt if rFmt is chainable
-           after pFmt.
-        */
-/*M*/
-/*M*/ #if 0
-/*M*/         if (bSuccessors)
-/*M*/             ::std::clog << rFmt.GetName() << "->" << rFmt1.GetName() << "?:";
-/*M*/         else
-/*M*/             ::std::clog << rFmt1.GetName() << "->" << rFmt.GetName() << "?:";
-/*M*/ #endif
-/*M*/
-/*M*/         int nChainState;
-/*M*/
-/*M*/         if (bSuccessors)
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");nChainState=0; }//STRIP001 nChainState = pDoc->Chainable(rFmt, rFmt1);
-/*M*/         else
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");nChainState=0; }//STRIP001 nChainState = pDoc->Chainable(rFmt1, rFmt);
-/*M*/
-/*M*/ #if 0
-/*M*/             ::std::clog << lcl_GetChainableString(nChainState) << ::std::endl;
-/*M*/ #endif
-/*M*/
-/*M*/         if (nChainState == SW_CHAIN_OK)
-/*M*/         {
-/*M*/             aTmpSpzArray.push_back(&rFmt1);
-/*M*/
-/*M*/         }
-/*M*/
-/*M*/     }
-/*M*/
-/*M*/     if  (aTmpSpzArray.size() > 0)
-/*M*/     {
-/*M*/         aPrevPageVec.clear();
-/*M*/         aThisPageVec.clear();
-/*M*/         aNextPageVec.clear();
-/*M*/         aRestVec.clear();
-/*M*/
-/*M*/         /* number of page rFmt resides on */
-/*M*/         USHORT nPageNum = SwFmtGetPageNum((SwFlyFrmFmt *) &rFmt);
-/*M*/
-/*M*/         ::std::vector< const SwFrmFmt * >::const_iterator aIt;
-/*M*/
-/*M*/         for (aIt = aTmpSpzArray.begin(); aIt != aTmpSpzArray.end(); aIt++)
-/*M*/         {
-/*M*/             String  aString = (*aIt)->GetName();
-/*M*/
-            /* rFmt is not a vaild successor or predecessor of
-               itself */
-/*M*/             if (aString != rReference && aString != rFmt.GetName())
-/*M*/             {
-/*M*/                 USHORT nNum1 =
-/*M*/                     SwFmtGetPageNum((SwFlyFrmFmt *) *aIt);
-/*M*/
-/*M*/                 if (nNum1 == nPageNum -1)
-/*M*/                     aPrevPageVec.push_back(aString);
-/*M*/                 else if (nNum1 == nPageNum)
-/*M*/                     aThisPageVec.push_back(aString);
-/*M*/                 else if (nNum1 == nPageNum + 1)
-/*M*/                     aNextPageVec.push_back(aString);
-/*M*/                 else
-/*M*/                     aRestVec.push_back(aString);
-/*M*/             }
-/*M*/         }
-/*M*/
-/*M*/     }
-/*M*/
-/*M*/     if (pOldChainNext)
-/*M*/         pDoc->Chain(rFmt, *pOldChainNext);
-/*M*/
-/*M*/     if (pOldChainPrev)
-/*M*/         pDoc->Chain(*pOldChainPrev, rFmt);
-/*M*/
-/*M*/     EndAction();
-/*M*/
-/*M*/ #if 0
-/*M*/     ::std::copy(aPrevPageVec.begin(), aPrevPageVec.end(),
-/*M*/                 ::std::ostream_iterator<String>(::std::clog, "\n"));
-/*M*/     ::std::clog << "-------------------------" << ::std::endl;
-/*M*/     ::std::copy(aThisPageVec.begin(), aThisPageVec.end(),
-/*M*/                 ::std::ostream_iterator<String>(::std::clog, "\n"));
-/*M*/     ::std::clog << "-------------------------" << ::std::endl;
-/*M*/     ::std::copy(aNextPageVec.begin(), aNextPageVec.end(),
-/*M*/                 ::std::ostream_iterator<String>(::std::clog, "\n"));
-/*M*/     ::std::clog << "-------------------------" << ::std::endl;
-/*M*/     ::std::copy(aRestVec.begin(), aRestVec.end(),
-/*M*/                 ::std::ostream_iterator<String>(::std::clog, "\n"));
-/*M*/     ::std::clog << "-------------------------" << ::std::endl;
-/*M*/ #endif
-/*M*/ }
-}
