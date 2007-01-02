@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLStylesImportHelper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:26:01 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:00:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -539,19 +539,6 @@ void ScMyStylesImportHelper::AddRange(const ScRange& rRange)
         ResetAttributes();
         bPrevRangeAdded = sal_False;
     }
-}
-
-void ScMyStylesImportHelper::AddRange(const ::com::sun::star::table::CellRangeAddress& rRange)
-{
-    ScRange aScRange( static_cast<USHORT>(rRange.StartColumn), static_cast<USHORT>(rRange.StartRow), rRange.Sheet,
-        static_cast<USHORT>(rRange.EndColumn), static_cast<USHORT>(rRange.EndRow), rRange.Sheet );
-    AddRange(aScRange);
-}
-
-void ScMyStylesImportHelper::AddCell(const ScAddress& rAddress)
-{
-    ScRange aScRange( rAddress, rAddress );
-    AddRange(aScRange);
 }
 
 void ScMyStylesImportHelper::AddCell(const ::com::sun::star::table::CellAddress& rAddress)
