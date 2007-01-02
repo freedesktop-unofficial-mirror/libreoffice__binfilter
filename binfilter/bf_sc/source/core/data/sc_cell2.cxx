@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:14:18 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:52:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -547,26 +547,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/   return pCode->GetError();
 /*N*/ }
 
-/*N*/  BOOL ScFormulaCell::HasOneReference( ScRange& r ) const
-/*N*/  {
-/*N*/   pCode->Reset();
-/*N*/   ScToken* p = pCode->GetNextReferenceRPN();
-/*N*/   if( p && !pCode->GetNextReferenceRPN() )        // nur eine!
-/*N*/   {
-/*N*/       p->CalcAbsIfRel( aPos );
-/*N*/       SingleDoubleRefProvider aProv( *p );
-/*N*/       r.aStart.Set( aProv.Ref1.nCol,
-/*N*/                     aProv.Ref1.nRow,
-/*N*/                     aProv.Ref1.nTab );
-/*N*/       r.aEnd.Set( aProv.Ref2.nCol,
-/*N*/                   aProv.Ref2.nRow,
-/*N*/                   aProv.Ref2.nTab );
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   else
-/*N*/       return FALSE;
-/*N*/  }
-
 /*N*/  BOOL ScFormulaCell::HasRelNameReference() const
 /*N*/  {
 /*N*/   pCode->Reset();
@@ -579,18 +559,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/           return TRUE;
 /*N*/   }
 /*N*/   return FALSE;
-/*N*/  }
-
-/*N*/  BOOL ScFormulaCell::HasDBArea() const
-/*N*/  {
-/*N*/   pCode->Reset();
-/*N*/   return (pCode->GetNextDBArea() != NULL);
-/*N*/  }
-
-/*N*/  BOOL ScFormulaCell::HasColRowName() const
-/*N*/  {
-/*N*/   pCode->Reset();
-/*N*/   return (pCode->GetNextColRowName() != NULL);
 /*N*/  }
 
 /*N*/  void ScFormulaCell::UpdateReference(UpdateRefMode eUpdateRefMode,
@@ -673,57 +641,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/   return bChanged;
 /*N*/  }
 
-/*N*/  void ScFormulaCell::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos, USHORT nTabNo )
-/*N*/  {
-/*N*/   pCode->Reset();
-/*N*/   if( pCode->GetNextReferenceRPN() && !pDocument->IsClipOrUndo() )
-/*N*/   {
-/*N*/       EndListeningTo( pDocument );
-/*N*/       // SetTab _nach_ EndListeningTo und _vor_ Compiler UpdateMoveTab !
-/*N*/       aPos.SetTab( nTabNo );
-/*N*/       ScRangeData* pRangeData;
-/*N*/       ScCompiler aComp(pDocument, aPos, *pCode);
-/*N*/       pRangeData = aComp.UpdateMoveTab( nOldPos, nNewPos, FALSE );
-/*N*/       if (pRangeData)                     // Shared Formula gegen echte Formel
-/*N*/       {                                   // austauschen
-/*N*/           pDocument->RemoveFromFormulaTree( this );   // update formula count
-/*N*/           delete pCode;
-/*N*/           pCode = pRangeData->GetCode()->Clone();
-/*N*/              pCode->SetReplacedSharedFormula( TRUE );
-/*N*/           ScCompiler aComp2(pDocument, aPos, *pCode);
-/*N*/           aComp2.CompileTokenArray();
-/*N*/           aComp2.MoveRelWrap();
-/*N*/           aComp2.UpdateMoveTab( nOldPos, nNewPos, TRUE );
-/*N*/           bCompile = TRUE;
-/*N*/       }
-/*N*/       // kein StartListeningTo weil pTab[nTab] noch nicht korrekt!
-/*N*/   }
-/*N*/   else
-/*N*/       aPos.SetTab( nTabNo );
-/*N*/  }
-
-/*N*/  void ScFormulaCell::UpdateInsertTabAbs(USHORT nTable)
-/*N*/  {
-/*N*/   if( !pDocument->IsClipOrUndo() )
-/*N*/   {
-/*N*/       pCode->Reset();
-/*N*/       ScToken* p = pCode->GetNextReferenceRPN();
-/*N*/       while( p )
-/*N*/       {
-/*N*/           SingleRefData& rRef1 = p->GetSingleRef();
-/*N*/           if( !rRef1.IsTabRel() && (short) nTable <= rRef1.nTab )
-/*N*/               rRef1.nTab++;
-/*N*/           if( p->GetType() == svDoubleRef )
-/*N*/           {
-/*N*/               SingleRefData& rRef2 = p->GetDoubleRef().Ref2;
-/*N*/               if( !rRef2.IsTabRel() && (short) nTable <= rRef2.nTab )
-/*N*/                   rRef2.nTab++;
-/*N*/           }
-/*N*/           p = pCode->GetNextReferenceRPN();
-/*N*/       }
-/*N*/   }
-/*N*/  }
-
 /*N*/ BOOL ScFormulaCell::TestTabRefAbs(USHORT nTable)
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
@@ -767,223 +684,6 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/   CompileTokenArray();
 /*N*/ }
 
-//  Referenzen transponieren - wird nur in Clipboard-Dokumenten aufgerufen
-
-/*N*/  void ScFormulaCell::TransposeReference()
-/*N*/  {
-/*N*/   BOOL bFound = FALSE;
-/*N*/   pCode->Reset();
-/*N*/   for( ScToken* t = pCode->GetNextReference(); t;
-/*N*/                 t = pCode->GetNextReference() )
-/*N*/   {
-/*N*/       SingleRefData& rRef1 = t->GetSingleRef();
-/*N*/       if ( rRef1.IsColRel() && rRef1.IsRowRel() )
-/*N*/       {
-/*N*/           BOOL bDouble = (t->GetType() == svDoubleRef);
-/*N*/           SingleRefData& rRef2 = (bDouble ? t->GetDoubleRef().Ref2 : rRef1);
-/*N*/           if ( !bDouble || (rRef2.IsColRel() && rRef2.IsRowRel()) )
-/*N*/           {
-/*N*/               INT16 nTemp;
-/*N*/
-/*N*/               nTemp = rRef1.nRelCol;
-/*N*/               rRef1.nRelCol = rRef1.nRelRow;
-/*N*/               rRef1.nRelRow = nTemp;
-/*N*/
-/*N*/               if ( bDouble )
-/*N*/               {
-/*N*/                   nTemp = rRef2.nRelCol;
-/*N*/                   rRef2.nRelCol = rRef2.nRelRow;
-/*N*/                   rRef2.nRelRow = nTemp;
-/*N*/               }
-/*N*/
-/*N*/               bFound = TRUE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (bFound)
-/*N*/       bCompile = TRUE;
-/*N*/  }
-
-/*N*/  void ScFormulaCell::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest,
-/*N*/                                       ScDocument* pUndoDoc )
-/*N*/  {
-/*N*/   EndListeningTo( pDocument );
-/*N*/
-/*N*/   ScAddress aOldPos = aPos;
-/*N*/   BOOL bPosChanged = FALSE;           // ob diese Zelle bewegt wurde
-/*N*/
-/*N*/   ScRange aDestRange( rDest, ScAddress(
-/*N*/               rDest.Col() + rSource.aEnd.Row() - rSource.aStart.Row(),
-/*N*/               rDest.Row() + rSource.aEnd.Col() - rSource.aStart.Col(),
-/*N*/               rDest.Tab() + rSource.aEnd.Tab() - rSource.aStart.Tab() ) );
-/*N*/   if ( aDestRange.In( aOldPos ) )
-/*N*/   {
-/*N*/       //  Position zurueckrechnen
-/*N*/       short nRelPosX = aOldPos.Col();
-/*N*/       short nRelPosY = aOldPos.Row();
-/*N*/       short nRelPosZ = aOldPos.Tab();
-/*N*/       ScRefUpdate::DoTranspose( nRelPosX, nRelPosY, nRelPosZ, pDocument, aDestRange, rSource.aStart );
-/*N*/       aOldPos.Set( nRelPosX, nRelPosY, nRelPosZ );
-/*N*/       bPosChanged = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   ScTokenArray* pOld = pUndoDoc ? pCode->Clone() : NULL;
-/*N*/   BOOL bChanged = FALSE;
-/*N*/   ScToken* t;
-/*N*/
-/*N*/   ScRangeData* pShared = NULL;
-/*N*/   pCode->Reset();
-/*N*/   for( t = pCode->GetNextReferenceOrName(); t; t = pCode->GetNextReferenceOrName() )
-/*N*/   {
-/*N*/       if( t->GetOpCode() == ocName )
-/*N*/       {
-/*N*/           ScRangeData* pName = pDocument->GetRangeName()->FindIndex( t->GetIndex() );
-/*N*/           if (pName)
-/*N*/           {
-/*N*/               if (pName->IsModified())
-/*N*/                   bChanged = TRUE;
-/*N*/               if (pName->HasType(RT_SHAREDMOD))
-/*N*/                   pShared = pName;
-/*N*/           }
-/*N*/       }
-/*N*/       else if( t->GetType() != svIndex )
-/*N*/       {
-/*N*/           t->CalcAbsIfRel( aOldPos );
-/*N*/           BOOL bMod;
-/*N*/           {   // own scope for SingleDoubleRefModifier dtor if SingleRef
-/*N*/                 SingleDoubleRefModifier aMod( *t );
-/*N*/                 ComplRefData& rRef = aMod.Ref();
-/*N*/               bMod = (ScRefUpdate::UpdateTranspose( pDocument, rSource,
-/*N*/                   rDest, rRef ) != UR_NOTHING || bPosChanged);
-/*N*/           }
-/*N*/           if ( bMod )
-/*N*/           {
-/*N*/               t->CalcRelFromAbs( aPos );
-/*N*/               bChanged = TRUE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (pShared)            // Shared Formula gegen echte Formel austauschen
-/*N*/   {
-/*N*/       pDocument->RemoveFromFormulaTree( this );   // update formula count
-/*N*/       delete pCode;
-/*N*/       pCode = new ScTokenArray( *pShared->GetCode() );
-/*N*/       bChanged = TRUE;
-/*N*/       pCode->Reset();
-/*N*/       for( t = pCode->GetNextReference(); t; t = pCode->GetNextReference() )
-/*N*/       {
-/*N*/           if( t->GetType() != svIndex )
-/*N*/           {
-/*N*/               t->CalcAbsIfRel( aOldPos );
-/*N*/               BOOL bMod;
-/*N*/               {   // own scope for SingleDoubleRefModifier dtor if SingleRef
-/*N*/                     SingleDoubleRefModifier aMod( *t );
-/*N*/                     ComplRefData& rRef = aMod.Ref();
-/*N*/                   bMod = (ScRefUpdate::UpdateTranspose( pDocument, rSource,
-/*N*/                       rDest, rRef ) != UR_NOTHING || bPosChanged);
-/*N*/               }
-/*N*/               if ( bMod )
-/*N*/                   t->CalcRelFromAbs( aPos );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (bChanged)
-/*N*/   {
-/*N*/       if (pUndoDoc)
-/*N*/       {
-/*N*/           ScFormulaCell* pFCell = new ScFormulaCell( pUndoDoc, aPos, pOld, cMatrixFlag );
-/*N*/           pFCell->nErgValue = MINDOUBLE;      // damit spaeter changed (Cut/Paste!)
-/*N*/           pUndoDoc->PutCell( aPos.Col(), aPos.Row(), aPos.Tab(), pFCell );
-/*N*/       }
-/*N*/
-/*N*/       bCompile = TRUE;
-/*N*/       CompileTokenArray();                // ruft auch StartListeningTo
-/*N*/       SetDirty();
-/*N*/   }
-/*N*/   else
-/*N*/       StartListeningTo( pDocument );      // Listener wie vorher
-/*N*/
-/*N*/   delete pOld;
-/*N*/  }
-
-/*N*/  void ScFormulaCell::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY )
-/*N*/  {
-/*N*/   EndListeningTo( pDocument );
-/*N*/
-/*N*/   BOOL bChanged = FALSE;
-/*N*/   ScToken* t;
-/*N*/   ScRangeData* pShared = NULL;
-/*N*/
-/*N*/   pCode->Reset();
-/*N*/   for( t = pCode->GetNextReferenceOrName(); t; t = pCode->GetNextReferenceOrName() )
-/*N*/   {
-/*N*/       if( t->GetOpCode() == ocName )
-/*N*/       {
-/*N*/           ScRangeData* pName = pDocument->GetRangeName()->FindIndex( t->GetIndex() );
-/*N*/           if (pName)
-/*N*/           {
-/*N*/               if (pName->IsModified())
-/*N*/                   bChanged = TRUE;
-/*N*/               if (pName->HasType(RT_SHAREDMOD))
-/*N*/                   pShared = pName;
-/*N*/           }
-/*N*/       }
-/*N*/       else if( t->GetType() != svIndex )
-/*N*/       {
-/*N*/           t->CalcAbsIfRel( aPos );
-/*N*/           BOOL bMod;
-/*N*/           {   // own scope for SingleDoubleRefModifier dtor if SingleRef
-/*N*/                 SingleDoubleRefModifier aMod( *t );
-/*N*/                 ComplRefData& rRef = aMod.Ref();
-/*N*/               bMod = (ScRefUpdate::UpdateGrow( rArea,nGrowX,nGrowY,
-/*N*/                   rRef ) != UR_NOTHING);
-/*N*/           }
-/*N*/           if ( bMod )
-/*N*/           {
-/*N*/               t->CalcRelFromAbs( aPos );
-/*N*/               bChanged = TRUE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (pShared)            // Shared Formula gegen echte Formel austauschen
-/*N*/   {
-/*N*/       pDocument->RemoveFromFormulaTree( this );   // update formula count
-/*N*/       delete pCode;
-/*N*/       pCode = new ScTokenArray( *pShared->GetCode() );
-/*N*/       bChanged = TRUE;
-/*N*/       pCode->Reset();
-/*N*/       for( t = pCode->GetNextReference(); t; t = pCode->GetNextReference() )
-/*N*/       {
-/*N*/           if( t->GetType() != svIndex )
-/*N*/           {
-/*N*/               t->CalcAbsIfRel( aPos );
-/*N*/               BOOL bMod;
-/*N*/               {   // own scope for SingleDoubleRefModifier dtor if SingleRef
-/*N*/                     SingleDoubleRefModifier aMod( *t );
-/*N*/                     ComplRefData& rRef = aMod.Ref();
-/*N*/                   bMod = (ScRefUpdate::UpdateGrow( rArea,nGrowX,nGrowY,
-/*N*/                       rRef ) != UR_NOTHING);
-/*N*/               }
-/*N*/               if ( bMod )
-/*N*/                   t->CalcRelFromAbs( aPos );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (bChanged)
-/*N*/   {
-/*N*/       bCompile = TRUE;
-/*N*/       CompileTokenArray();                // ruft auch StartListeningTo
-/*N*/       SetDirty();
-/*N*/   }
-/*N*/   else
-/*N*/       StartListeningTo( pDocument );      // Listener wie vorher
-/*N*/  }
-
 /*N*/ BOOL lcl_IsRangeNameInUse(USHORT nIndex, ScTokenArray* pCode, ScRangeName* pNames)
 /*N*/ {
 /*N*/   for (ScToken* p = pCode->First(); p; p = pCode->Next())
@@ -1009,40 +709,6 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/ {
 /*N*/   return lcl_IsRangeNameInUse( nIndex, pCode, pDocument->GetRangeName() );
 /*N*/ }
-
-/*N*/  void ScFormulaCell::ReplaceRangeNamesInUse( const ScIndexMap& rMap )
-/*N*/  {
-/*N*/   for( ScToken* p = pCode->First(); p; p = pCode->Next() )
-/*N*/   {
-/*N*/       if( p->GetOpCode() == ocName )
-/*N*/       {
-/*N*/           USHORT nIndex = p->GetIndex();
-/*N*/           USHORT nNewIndex = rMap.Find( nIndex );
-/*N*/           if ( nIndex != nNewIndex )
-/*N*/           {
-/*N*/               p->SetIndex( nNewIndex );
-/*N*/               bCompile = TRUE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   if( bCompile )
-/*N*/       CompileTokenArray();
-/*N*/  }
-
-/*N*/  void ScFormulaCell::CompileDBFormula()
-/*N*/  {
-/*N*/   for( ScToken* p = pCode->First(); p; p = pCode->Next() )
-/*N*/   {
-/*N*/       if ( p->GetOpCode() == ocDBArea
-/*N*/           || (p->GetOpCode() == ocName && p->GetIndex() >= SC_START_INDEX_DB_COLL) )
-/*N*/       {
-/*N*/           bCompile = TRUE;
-/*N*/           CompileTokenArray();
-/*N*/           SetDirty();
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/  }
 
 /*N*/ void ScFormulaCell::CompileDBFormula( BOOL bCreateFormulaString )
 /*N*/ {
