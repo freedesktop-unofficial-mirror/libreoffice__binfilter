@@ -4,9 +4,9 @@
  *
  *  $RCSfile: b3dvolum.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:18:15 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:22:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,8 +85,6 @@ class B3dVolume
     double GetWidth()  const { return aMaxVec.X() - aMinVec.X(); }
     double GetHeight() const { return aMaxVec.Y() - aMinVec.Y(); }
     double GetDepth()  const { return aMaxVec.Z() - aMinVec.Z(); }
-    Vector3D GetSize() const;
-    BOOL IsInside(const Vector3D& rVec);
 
     friend SvStream& operator>>(SvStream& rIStream, B3dVolume&);
     friend SvStream& operator<<(SvStream& rOStream, const B3dVolume&);

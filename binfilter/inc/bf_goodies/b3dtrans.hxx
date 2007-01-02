@@ -4,9 +4,9 @@
  *
  *  $RCSfile: b3dtrans.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:18:05 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:21:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -168,7 +168,6 @@ public:
         Vector3D aVPN = Vector3D(0.0,0.0,1.0),
         Vector3D aVUP = Vector3D(0.0,1.0,0.0));
 #endif
-    void SetOrientation(Matrix4D& mOrient);
     const Matrix4D& GetOrientation() { return aOrientation; }
     const Matrix4D& GetInvOrientation() { return aInvOrientation; }
 
@@ -178,21 +177,17 @@ public:
     const Matrix4D& GetInvProjection();
 
     // Texture
-    void SetTexture(Matrix4D& rTxt);
     const Matrix4D& GetTexture() { return aTexture; }
 
     // Seitenverhaeltnis und Modus zu dessen Aufrechterhaltung
     double GetRatio() { return fRatio; }
     void SetRatio(double fNew=1.0);
     Base3DRatio GetRatioMode() { return eRatio; }
-    void SetRatioMode(Base3DRatio eNew=Base3DRatioGrow);
 
     // Parameter der ViewportTransformation
     void SetDeviceRectangle(double fL=-1.0, double fR=1.0, double fB=-1.0, double fT=1.0,
         BOOL bBroadCastChange=TRUE);
     void SetDeviceVolume(const B3dVolume& rVol, BOOL bBroadCastChange=TRUE);
-    void GetDeviceRectangle(double &fL, double &fR, double& fB, double& fT);
-    B3dVolume GetDeviceVolume();
     double GetDeviceRectangleWidth() const { return fRightBound - fLeftBound; }
     double GetDeviceRectangleHeight() const { return fTopBound - fBottomBound; }
     void SetFrontClippingPlane(double fF=0.0);
@@ -206,55 +201,29 @@ public:
     const Rectangle& GetViewportRectangle() { return aViewportRectangle; }
     void CalcViewport();
 
-    // Spezielle Matritzen anfordern
-    Matrix4D GetMatFromObjectToView();
-
-    // Transponierte Inverse fuer Vectortransformationen
-    const Matrix4D& GetInvTransObjectToEye();
-
-    // Speziell zum Umwandeln von Punkten Objekt -> Device
-    const Matrix4D& GetObjectToDevice();
-
     // Speziell zum Umwandeln von Punkten World -> View
     const Matrix4D& GetMatFromWorldToView();
     const Matrix4D& GetInvMatFromWorldToView();
 
     // Bounds des Viewports lesen
-    const Rectangle& GetLogicalViewportBounds();
     const Vector3D& GetScale();
     const Vector3D& GetTranslate();
 
     // Direkter Zugriff auf verschiedene Transformationen
     const Vector3D WorldToEyeCoor(const Vector3D& rVec);
     const Vector3D EyeToWorldCoor(const Vector3D& rVec);
-    const Vector3D EyeToViewCoor(const Vector3D& rVec);
     const Vector3D ViewToEyeCoor(const Vector3D& rVec);
     const Vector3D WorldToViewCoor(const Vector3D& rVec);
-    const Vector3D ViewToWorldCoor(const Vector3D& rVec);
-    const Vector3D DeviceToViewCoor(const Vector3D& rVec);
-    const Vector3D ViewToDeviceCoor(const Vector3D& rVec);
     const Vector3D ObjectToWorldCoor(const Vector3D& rVec);
-    const Vector3D WorldToObjectCoor(const Vector3D& rVec);
-    const Vector3D ObjectToViewCoor(const Vector3D& rVec);
     const Vector3D ViewToObjectCoor(const Vector3D& rVec);
     const Vector3D ObjectToEyeCoor(const Vector3D& rVec);
-    const Vector3D EyeToObjectCoor(const Vector3D& rVec);
-    const Vector3D DeviceToEyeCoor(const Vector3D& rVec);
-    const Vector3D EyeToDeviceCoor(const Vector3D& rVec);
-
-    const Vector3D InvTransObjectToEye(const Vector3D& rVec);
-    const Vector3D TransTextureCoor(const Vector3D& rVec);
-
 protected:
     void PostSetObjectTrans();
     void PostSetOrientation();
     void PostSetProjection();
-    void PostSetTexture();
     void PostSetViewport();
 
-    void CalcMatObjectToDevice();
     void CalcMatFromWorldToView();
-    void CalcMatInvTransObjectToEye();
 
     virtual void DeviceRectangleChange();
 };
@@ -278,8 +247,6 @@ private:
 public:
     B3dViewport();
 
-    void SetVRP(const Vector3D& rNewVRP);
-    void SetVPN(const Vector3D& rNewVPN);
     void SetVUV(const Vector3D& rNewVUV);
     void SetViewportValues(
         const Vector3D& rNewVRP,
@@ -318,22 +285,16 @@ public:
         BOOL bUseFocLen = FALSE);
 
     // Positionen
-    void SetPosition(const Vector3D& rNewPos);
     const Vector3D& GetPosition() const { return aPosition; }
-    void SetLookAt(const Vector3D& rNewLookAt);
     const Vector3D& GetLookAt() const { return aLookAt; }
-    void SetPositionAndLookAt(const Vector3D& rNewPos, const Vector3D& rNewLookAt);
 
     // Brennweite in mm
-    void SetFocalLength(double fLen);
     double GetFocalLength() const { return fFocalLength; }
 
     // Neigung links/rechts
-    void SetBankAngle(double fAngle);
     double GetBankAngle() const { return fBankAngle; }
 
     // FocalLength Flag
-    void SetUseFocalLength(BOOL bNew);
     BOOL GetUseFocalLength() const { return (BOOL)bUseFocalLength; }
 
 protected:

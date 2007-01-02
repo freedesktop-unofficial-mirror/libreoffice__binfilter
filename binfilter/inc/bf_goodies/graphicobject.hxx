@@ -4,9 +4,9 @@
  *
  *  $RCSfile: graphicobject.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:18:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:22:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ namespace binfilter {
         TYPEINFO();
         BfGraphicObject( const GraphicManager* pMgr = NULL );
         BfGraphicObject( const Graphic& rGraphic, const GraphicManager* pMgr = NULL );
-        BfGraphicObject( const Graphic& rGraphic, const String& rLink, const GraphicManager* pMgr = NULL );
         BfGraphicObject( const BfGraphicObject& rCacheObj, const GraphicManager* pMgr = NULL );
         BfGraphicObject( const ByteString& rUniqueID, const GraphicManager* pMgr = NULL );
         ~BfGraphicObject();
@@ -89,11 +88,9 @@ namespace binfilter {
         BOOL                    Draw( OutputDevice* pOut, const Point& rPt, const Size& rSz,
                                     const BfGraphicAttr* pAttr = NULL, ULONG nFlags = GRFMGR_DRAW_STANDARD );
         String                  GetUserData() const;
-        void                    SetSwapStreamHdl();
         void                    SetSwapStreamHdl( const Link& rHdl, const ULONG nSwapOutTimeout = 0UL );
         void                    ReleaseFromCache();
         String                  GetLink() const;
-        void                    SetLink();
         void                    SetLink( const String& rLink );
         BOOL                    SwapOut();
         BOOL                    SwapOut( SvStream* pOStm );

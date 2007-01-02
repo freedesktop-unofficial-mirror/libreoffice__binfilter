@@ -4,9 +4,9 @@
  *
  *  $RCSfile: matril3d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:19:12 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:22:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,13 +94,6 @@ private:
 
 public:
     B3dMaterial();
-
-    // Zugriffsfunktionen
-    void SetMaterial(Color rNew,
-        Base3DMaterialValue=Base3DMaterialAmbient);
-    Color GetMaterial(Base3DMaterialValue=Base3DMaterialAmbient) const;
-    void SetShininess(UINT16 nNew);
-    UINT16 GetShininess() const;
 
     // Laden/Speichern in StarView
     virtual void WriteData(SvStream& rOut) const;

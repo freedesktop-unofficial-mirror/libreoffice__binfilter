@@ -4,9 +4,9 @@
  *
  *  $RCSfile: matrix3d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:19:21 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:22:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,11 +49,6 @@
 namespace binfilter {
 class Matrix3D
 {
-private:
-    // Hilfsfunktionen fuer Matrixinvertierung und Determinantenbestimmung
-    BOOL Ludcmp(UINT16 nIndex[], INT16& nParity);
-    void Lubksb(UINT16 nIndex[], Point3D& aVec);
-
 protected:
     Point3D                     M[3];
 
@@ -74,25 +69,6 @@ public:
     // Auf Einheitsmatrix zuruecksetzen
     void Identity(void);
 
-    // Invertierung
-    BOOL Invert();
-    BOOL IsInvertible();
-
-    // Korrektur
-    void Correct();
-
-    // Normalisierung
-    void Normalize();
-
-    // Determinante
-    double Determinant();
-
-    // Trace
-    double Trace();
-
-    // Transpose
-    void Transpose();
-
     // Rotation
     void Rotate(double fAngle);
     void Rotate(double fSin, double fCos );
@@ -100,14 +76,10 @@ public:
     // Translation
     void Translate(double fX, double fY);
     void Translate(const Vector2D& aTrans);
-    void TranslateX(double fValue);
-    void TranslateY(double fValue);
 
     // Skalierung
     void Scale(double fX, double fY);
     void Scale(const Vector2D& aScale);
-    void ScaleX(double fFactor);
-    void ScaleY(double fFactor);
 
     // Shearing-Matrices
     void ShearX(double fSx);
@@ -142,9 +114,6 @@ public:
     friend Vector2D     operator*   (const Matrix3D&, const Vector2D&);
     friend Vector2D&    operator*=  (Vector2D& rVec, const Matrix3D& rMat)
         { return (rVec = rMat * rVec); }
-
-    // NUR die Rotation und Skalierung auf den Vektor anwenden!
-    void RotateAndNormalize(Vector2D& rVec) const;
 
     // Streamoperatoren
     friend SvStream& operator>>(SvStream& rIStream, Matrix3D&);

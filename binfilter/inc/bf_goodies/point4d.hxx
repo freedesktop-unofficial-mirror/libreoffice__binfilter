@@ -4,9 +4,9 @@
  *
  *  $RCSfile: point4d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:19:39 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:23:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ protected:
 public:
     Point4D(double fX = 0.0, double fY = 0.0, double fZ = 0.0, double fW = 1.0)
         { V[0] = fX; V[1] = fY; V[2] = fZ; V[3] = fW; }
-    Point4D(const Point& rPnt, double fZ = 0.0, double fW = 1.0);
     Point4D(const Vector3D& rVec, double fW = 1.0);
 
     const double& X() const { return V[0]; }
@@ -84,14 +83,10 @@ public:
     double& operator[] (int nPos) { return V[nPos]; }
 
     void    Homogenize() { if(V[3] != 1.0) ImplHomogenize(); }
-    void    Min(const Point4D& rVec);
-    void    Max(const Point4D& rVec);
-    void    Abs();
     const Vector3D& GetVector3D() const;
 
     void CalcInBetween(Point4D& rOld1, Point4D& rOld2, double t);
     void CalcMiddle(Point4D& rOld1, Point4D& rOld2);
-    void CalcMiddle(Point4D& rOld1, Point4D& rOld2, Point4D& rOld3);
 
     // Rechnen untereinander
     Point4D&    operator+=  (const Point4D&);

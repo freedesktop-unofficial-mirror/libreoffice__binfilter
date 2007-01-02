@@ -4,9 +4,9 @@
  *
  *  $RCSfile: point3d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:19:30 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:23:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,13 +61,9 @@ protected:
     // 3 Dimensinen, X,Y und W
     double                      V[3];
 
-    void ImplHomogenize();
-
 public:
     Point3D(double fX = 0.0, double fY = 0.0, double fW = 1.0)
         { V[0] = fX; V[1] = fY; V[2] = fW; }
-    Point3D(const Point& rPnt, double fW = 1.0);
-    Point3D(const Vector2D& rVec, double fW = 1.0);
 
     const double& X() const { return V[0]; }
     const double& Y() const { return V[1]; }
@@ -79,16 +75,6 @@ public:
 
     const double& operator[] (int nPos) const { return V[nPos]; }
     double& operator[] (int nPos) { return V[nPos]; }
-
-    void    Homogenize() { if(V[2] != 1.0) ImplHomogenize(); }
-    void    Min(const Point3D& rVec);
-    void    Max(const Point3D& rVec);
-    void    Abs();
-    const Vector2D& GetVector2D() const;
-
-    void CalcInBetween(Point3D& rOld1, Point3D& rOld2, double t);
-    void CalcMiddle(Point3D& rOld1, Point3D& rOld2);
-    void CalcMiddle(Point3D& rOld1, Point3D& rOld2, Point3D& rOld3);
 
     // Rechnen untereinander
     Point3D&    operator+=  (const Point3D&);

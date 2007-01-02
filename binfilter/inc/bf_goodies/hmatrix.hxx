@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hmatrix.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:18:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:22:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,22 +87,12 @@ public:
 
     // Invertierung
     BOOL Invert();
-    BOOL IsInvertible();
-
-    // Korrektur
-    void Correct();
-
-    // Normalisierung
-    void Normalize();
 
     // Zerlegung
     BOOL Decompose(Vector3D& rScale, Vector3D& rTranslate, Vector3D& rRotate, Vector3D& rShear) const;
 
     // Determinante
     double Determinant();
-
-    // Trace
-    double Trace();
 
     // Transpose
     void Transpose();
@@ -111,7 +101,6 @@ public:
     void RotateX(double fAngle);
     void RotateY(double fAngle);
     void RotateZ(double fAngle);
-    void Rotate(double fAngleX,double fAngleY,double fAngleZ);
     void RotateX(double fSin, double fCos );
     void RotateY(double fSin, double fCos );
     void RotateZ(double fSin, double fCos );
@@ -119,21 +108,11 @@ public:
     // Translation
     void Translate(double fX, double fY, double fZ );
     void Translate(const Vector3D& aTrans);
-    void TranslateX(double fValue);
-    void TranslateY(double fValue);
     void TranslateZ(double fValue);
 
     // Skalierung
     void Scale(double fX, double fY, double fZ);
     void Scale(const Vector3D& aScale);
-    void ScaleX(double fFactor);
-    void ScaleY(double fFactor);
-    void ScaleZ(double fFactor);
-
-    // Shearing-Matrix
-    void ShearXY(double fSx, double fSy);
-    void ShearYZ(double fSy, double fSz);
-    void ShearXZ(double fSx, double fSz);
 
     // ModelViewMatrix (ViewOrientationMatrix) fuer die Umwandlung
     // ObjectCoordinates in EyeCoordinates
