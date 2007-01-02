@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtio.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:14:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:02:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -371,7 +371,6 @@ namespace binfilter {//STRIP009
 /*N*/ IMPL_OUTOP( SwParaPortion )
 /*N*/ IMPL_OUTOP( SwFtnPortion )
 /*N*/ IMPL_OUTOP( SwFtnNumPortion )
-/*N*/ IMPL_OUTOP( SwTmpEndPortion )
 /*N*/ IMPL_OUTOP( SwHyphStrPortion )
 /*N*/ IMPL_OUTOP( SwExpandPortion )
 /*N*/ IMPL_OUTOP( SwBlankPortion )
@@ -394,7 +393,6 @@ namespace binfilter {//STRIP009
 /*N*/ IMPL_OUTOP( SwKernPortion )
 /*N*/ IMPL_OUTOP( SwArrowPortion )
 /*N*/ IMPL_OUTOP( SwMultiPortion )
-/*N*/ IMPL_OUTOP( SwCombinedPortion )
 
 /*N*/ const char *GetPortionName( const MSHORT nType )
 /*N*/ {
@@ -698,17 +696,6 @@ namespace binfilter {//STRIP009
 /*N*/   return rOs;
 /*N*/ }
 /*N*/
-/*N*/ SvStream &SwTmpEndPortion::operator<<( SvStream &rOs ) const //$ ostream
-/*N*/ {
-/*N*/   CONSTCHAR( pTxt, " {END:" );
-/*N*/   rOs << pTxt;
-/*N*/   SwLinePortion::operator<<( rOs );
-/*N*/   if( PrtWidth() )
-/*N*/       rOs << "(view)";
-/*N*/   rOs << pClose;
-/*N*/   return rOs;
-/*N*/ }
-/*N*/
 /*N*/ SvStream &SwBreakPortion::operator<<( SvStream &rOs ) const //$ ostream
 /*N*/ {
 /*N*/   CONSTCHAR( pTxt, " {BREAK:" );
@@ -739,15 +726,6 @@ namespace binfilter {//STRIP009
 /*N*/ SvStream &SwMultiPortion::operator<<( SvStream &rOs ) const //$ ostream
 /*N*/ {
 /*N*/   CONSTCHAR( pTxt, " {MULTI:" );
-/*N*/   rOs << pTxt;
-/*N*/   SwLinePortion::operator<<( rOs );
-/*N*/   rOs << pClose;
-/*N*/   return rOs;
-/*N*/ }
-/*N*/
-/*N*/ SvStream &SwCombinedPortion::operator<<( SvStream &rOs ) const //$ ostream
-/*N*/ {
-/*N*/   CONSTCHAR( pTxt, " {COMBINED:" );
 /*N*/   rOs << pTxt;
 /*N*/   SwLinePortion::operator<<( rOs );
 /*N*/   rOs << pClose;
