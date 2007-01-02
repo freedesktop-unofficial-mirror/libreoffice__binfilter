@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schview.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:50:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:30:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,13 +101,6 @@ class SchView : public E3dView
 
     SchView(SchChartDocShell* pDocSh, OutputDevice* pOutDev, SchViewShell* pShell);
     virtual ~SchView();
-
-
-
-    long GetSelectedRow() const;
-
-    String GetContext();
-    String GetContextType();
 
     ChartModel& GetDoc() const { return *pDoc; }
 
