@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unopage.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:56:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:35:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,16 +110,6 @@ SvxDrawPage::SvxDrawPage( SdrPage* pInPage ) throw() :
 }
 
 //----------------------------------------------------------------------
-// Ctor fuer SvxDrawPage_NewInstance()
-//----------------------------------------------------------------------
-SvxDrawPage::SvxDrawPage() throw() :
-        pPage   ( NULL ),
-        pModel  ( NULL ),
-        pView   ( NULL )
-{
-}
-
-//----------------------------------------------------------------------
 SvxDrawPage::~SvxDrawPage() throw()
 {
     // Am Broadcaster abmelden
@@ -127,11 +117,6 @@ SvxDrawPage::~SvxDrawPage() throw()
         EndListening( *pModel );
 
     delete pView;
-}
-
-SvxDrawPage* SvxDrawPage::GetPageForSdrPage( SdrPage* pPage ) throw()
-{
-    return getImplementation( pPage->getUnoPage() );
 }
 
 // SfxListener
