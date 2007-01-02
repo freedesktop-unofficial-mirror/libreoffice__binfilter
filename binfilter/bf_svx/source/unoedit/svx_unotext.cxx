@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unotext.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:59:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:37:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -206,6 +206,12 @@ void CheckSelection( struct ESelection& rSel, SvxTextForwarder* pForwarder ) thr
 // ====================================================================
 
 UNO3_GETIMPLEMENTATION_IMPL( SvxUnoTextRangeBase );
+
+SvxUnoTextBase::SvxUnoTextBase() throw()
+: SvxUnoTextRangeBase(NULL, aEmptyPropMap )
+{
+
+}
 
 SvxUnoTextRangeBase::SvxUnoTextRangeBase( const SfxItemPropertyMap* _pMap ) throw()
 : aPropSet(_pMap), pEditSource(NULL)
@@ -1494,12 +1500,6 @@ OUString SAL_CALL SvxUnoTextRange::getImplementationName()
 
 uno::Sequence< uno::Type > SvxUnoTextBase::maTypeSequence;
 
-SvxUnoTextBase::SvxUnoTextBase() throw()
-: SvxUnoTextRangeBase(NULL, aEmptyPropMap )
-{
-
-}
-
 SvxUnoTextBase::SvxUnoTextBase( const SfxItemPropertyMap* _pMap  ) throw()
 : SvxUnoTextRangeBase( _pMap )
 {
@@ -1530,26 +1530,6 @@ SvxUnoTextBase::SvxUnoTextBase( const SvxUnoTextBase& rText ) throw()
 
 SvxUnoTextBase::~SvxUnoTextBase() throw()
 {
-}
-
-// Internal
-ESelection SvxUnoTextBase::InsertField( const SvxFieldItem& rField ) throw()
-{
-    SvxTextForwarder* pForwarder = GetEditSource() ? GetEditSource()->GetTextForwarder() : NULL;
-    if( pForwarder )
-    {
-        pForwarder->QuickInsertField( rField, GetSelection() );
-        GetEditSource()->UpdateData();
-
-        //  Selektion anpassen
-        //! Wenn die EditEngine bei QuickInsertText die Selektion zurueckgeben wuerde,
-        //! waer's einfacher...
-
-        CollapseToStart();
-        GoRight( 1, sal_True );     // Feld ist immer 1 Zeichen
-    }
-
-    return GetSelection();  // Selektion mit dem Feld
 }
 
 sal_Bool SvxUnoTextBase::queryAggregation( const uno::Type & rType, uno::Any& aAny )
