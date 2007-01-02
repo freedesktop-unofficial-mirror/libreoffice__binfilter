@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotext.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:19:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:38:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -451,7 +451,7 @@ protected:
     static ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:
-    SvxUnoTextBase( ) throw();
+        SvxUnoTextBase( ) throw();
     SvxUnoTextBase( const SfxItemPropertyMap* _pMap ) throw();
     SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap ) throw();
     SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap, ::com::sun::star::uno::Reference < ::com::sun::star::text::XText > xParent ) throw();
@@ -460,7 +460,6 @@ public:
 
     UNO3_GETIMPLEMENTATION_DECL( SvxUnoTextBase )
 
-    ESelection InsertField( const SvxFieldItem& rField ) throw();
     static ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getStaticTypes() throw();
 
     sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );

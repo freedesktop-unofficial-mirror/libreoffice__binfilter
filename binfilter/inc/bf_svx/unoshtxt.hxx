@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshtxt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:19:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:38:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,13 +54,6 @@ class SvxTextEditSource : public SvxEditSource, public SvxViewForwarder
 public:
     SvxTextEditSource( SdrObject* pObj );
 
-    /** Since the views don't broadcast their dying, make sure that
-        this object gets destroyed if the view becomes invalid
-
-        The window is necessary, since our views can display on multiple windows
-     */
-    SvxTextEditSource( SdrObject& rObj, SdrView& rView, const Window& rViewWindow );
-
     virtual ~SvxTextEditSource();
 
     virtual SvxEditSource*          Clone() const;
@@ -70,8 +63,6 @@ public:
     virtual void                    UpdateData();
 
     virtual SfxBroadcaster&         GetBroadcaster() const;
-
-    SdrObject* GetSdrObject() const;
 
     void lock();
     void unlock();

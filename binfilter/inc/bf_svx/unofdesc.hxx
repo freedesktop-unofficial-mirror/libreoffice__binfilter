@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unofdesc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:14:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:37:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ public:
     static void FillItemSet( const ::com::sun::star::awt::FontDescriptor& rDesc, SfxItemSet& rSet );
     static void FillFromItemSet( const SfxItemSet& rSet, ::com::sun::star::awt::FontDescriptor& rDesc );
 
-    static ::com::sun::star::beans::PropertyState getPropertyState( const SfxItemSet& rSet );
     static void setPropertyToDefault( SfxItemSet& rSet );
     static ::com::sun::star::uno::Any getPropertyDefault( SfxItemPool* pPool );
 
