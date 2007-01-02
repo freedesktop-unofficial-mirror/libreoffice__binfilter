@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw6par.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-12-12 16:00:48 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:07:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -248,17 +248,10 @@ namespace binfilter {
 
 
 
-USHORT GetLineTypeCount()
-{
- return (sizeof(aLineTypeArr) / sizeof(SwLineType));
-}
-
  const SwLineType& GetLineType(USHORT nIdx)
  {
-  ASSERT(nIdx < GetLineTypeCount(), "Ungueltiger LineTypeIndex");
   return aLineTypeArr[nIdx];
  }
-
 
 
 
