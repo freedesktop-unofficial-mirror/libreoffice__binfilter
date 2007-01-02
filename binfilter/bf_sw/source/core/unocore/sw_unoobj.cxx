@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:36:30 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:04:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -462,18 +462,6 @@ void SwXTextCursor::SelectPam(SwPaM& rCrsr, sal_Bool bExpand)
     else if(rCrsr.HasMark())
         rCrsr.DeleteMark();
 
-}
-/* -----------------20.05.98 14:59-------------------
- *
- * --------------------------------------------------*/
-void lcl_Append(sal_Unicode*& pCurrent, const SVBT16* pStr, sal_uInt32 nLen)
-{
-    for(sal_uInt32 i = 0; i < nLen; i++)
-    {
-         sal_uInt16 nVal = SVBT16ToShort( *pStr );
-        pStr += 1;
-        *pCurrent++ = nVal;
-    }
 }
 /* -----------------20.05.98 14:59-------------------
  *
