@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotbl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:48:41 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:49:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -247,8 +247,6 @@ protected:
     virtual ~SwXTextTableCursor();
 public:
     SwXTextTableCursor(SwFrmFmt* pFmt, SwTableBox* pBox);
-    SwXTextTableCursor(SwFrmFmt& rTableFmt,
-                        const SwTableCursor* pTableSelection);
 
 
     DECLARE_XINTERFACE();
@@ -456,7 +454,6 @@ class SwXCellRange : public cppu::WeakImplHelper7
     sal_Bool                        bFirstColumnAsLabel :1;
 
 public:
-    SwXCellRange();
     SwXCellRange(SwUnoCrsr* pCrsr, SwFrmFmt& rFrmFmt, SwRangeDescriptor& rDesc);
     ~SwXCellRange();
 
@@ -515,8 +512,6 @@ public:
     SwFrmFmt*   GetFrmFmt() const { return (SwFrmFmt*)GetRegisteredIn(); }
     sal_uInt16      getRowCount(void);
     sal_uInt16      getColumnCount(void);
-
-    const SwUnoCrsr* GetTblCrsr() const;
 };
 /* -----------------03.02.99 07:31-------------------
  *

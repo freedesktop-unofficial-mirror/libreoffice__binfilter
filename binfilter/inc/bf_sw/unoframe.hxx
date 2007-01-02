@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoframe.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:44:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:48:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,7 +100,6 @@ protected:
 
     virtual ~SwXFrame();
 public:
-    SwXFrame( );
     SwXFrame(FlyCntType eSet,
                 const SfxItemPropertyMap*   pMap,
                 SwDoc *pDoc ); //Descriptor-If
