@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoprov.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:56:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:36:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -864,29 +864,6 @@ sal_Bool SAL_CALL SvxServiceInfoHelper::supportsService( const ::rtl::OUString& 
     return aSeq;
 }
 
-/** this method concatenates the given sequences and returns the result
- */
-::com::sun::star::uno::Sequence< ::rtl::OUString > SvxServiceInfoHelper::concatSequences( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rSeq1, const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rSeq2 ) throw()
-{
-    const sal_Int32 nLen1 = rSeq1.getLength();
-    const sal_Int32 nLen2 = rSeq2.getLength();
-
-    ::com::sun::star::uno::Sequence< ::rtl::OUString > aSeq( nLen1 + nLen2 );
-
-    ::rtl::OUString* pStrings = aSeq.getArray();
-
-    sal_Int32 nIdx;
-    const ::rtl::OUString* pStringSrc = rSeq1.getConstArray();
-    for( nIdx = 0; nIdx < nLen1; nIdx++ )
-        *pStrings++ = *pStringSrc++;
-
-    pStringSrc = rSeq2.getConstArray();
-    for( nIdx = 0; nIdx < nLen2; nIdx++ )
-        *pStrings++ = *pStringSrc++;
-
-    return aSeq;
-}
-
 /** this method adds a variable number of char pointer to a given Sequence
  */
 void SvxServiceInfoHelper::addToSequence( ::com::sun::star::uno::Sequence< ::rtl::OUString >& rSeq, UINT16 nServices, /* char * */ ... ) throw()
@@ -901,33 +878,6 @@ void SvxServiceInfoHelper::addToSequence( ::com::sun::star::uno::Sequence< ::rtl
     for( UINT16 i = 0 ; i < nServices; i++ )
         pStrings[nCount++] = OUString::createFromAscii(va_arg( marker, char*));
     va_end( marker );
-}
-
-
-
-/** maps the API constant MeasureUnit to a vcl MapUnit enum.
-    Returns false if conversion is not supported.
-*/
-sal_Bool SvxMeasureUnitToMapUnit( const short eApi, int& eVcl ) throw()
-{
-    switch( eVcl )
-    {
-    case util::MeasureUnit::MM_100TH:       eVcl = MAP_100TH_MM;    break;
-    case util::MeasureUnit::MM_10TH:        eVcl = MAP_10TH_MM;     break;
-    case util::MeasureUnit::MM:             eVcl = MAP_MM;          break;
-    case util::MeasureUnit::CM:             eVcl = MAP_CM;          break;
-    case util::MeasureUnit::INCH_1000TH:    eVcl = MAP_1000TH_INCH; break;
-    case util::MeasureUnit::INCH_100TH:     eVcl = MAP_100TH_INCH;  break;
-    case util::MeasureUnit::INCH_10TH:      eVcl = MAP_10TH_INCH;   break;
-    case util::MeasureUnit::INCH:           eVcl = MAP_INCH;        break;
-    case util::MeasureUnit::POINT:          eVcl = MAP_POINT;       break;
-    case util::MeasureUnit::TWIP:           eVcl = MAP_TWIP;        break;
-    case util::MeasureUnit::PERCENT:        eVcl = MAP_RELATIVE;    break;
-    default:
-        return false;
-    }
-
-    return true;
 }
 
 /** maps the vcl MapUnit enum to a API constant MeasureUnit.

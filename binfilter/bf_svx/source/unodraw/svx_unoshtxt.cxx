@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshtxt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:57:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:36:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -135,7 +135,6 @@ private:
     SvxDrawOutlinerViewForwarder*   CreateViewForwarder();
 
     void                            SetupOutliner();
-    void                            UpdateOutliner();
 
     sal_Bool                        HasView() const { return mpView ? sal_True : sal_False; }
     sal_Bool                        IsEditMode() const
@@ -303,7 +302,6 @@ void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
                     // #105196#, #105203#: Cannot call that // here,
                     // since TakeTextRect() (called from there) //
                     // changes outliner content.
-                    // UpdateOutliner();
 
                     // #101029# Broadcast object changes, as they might change visible attributes
                     SvxViewHint aHint(SVX_HINT_VIEWCHANGED);
@@ -459,31 +457,6 @@ void SvxTextEditSourceImpl::SetupOutliner()
 }
 
 //------------------------------------------------------------------------
-
-void SvxTextEditSourceImpl::UpdateOutliner()
-{
-    // #104157#
-    // only for UAA edit source: update outliner equivalently as in
-    // SdrTextObj::Paint(), such that formatting equals screen
-    // layout
-    if( mpObject && mpOutliner )
-    {
-        SdrTextObj* pTextObj = PTR_CAST( SdrTextObj, mpObject );
-        Rectangle aPaintRect;
-        if( pTextObj )
-        {
-            Rectangle aBoundRect( pTextObj->GetBoundRect() );
-            pTextObj->UpdateOutlinerFormatting( *mpOutliner, aPaintRect );
-
-            // #101029# calc text offset from shape anchor
-            maTextOffset = aPaintRect.TopLeft() - aBoundRect.TopLeft();
-        }
-    }
-}
-
-//------------------------------------------------------------------------
-
-
 
 SvxTextForwarder* SvxTextEditSourceImpl::GetBackgroundTextForwarder()
 {
@@ -951,13 +924,6 @@ SvxTextEditSource::SvxTextEditSource( SdrObject* pObject )
 }
 
 // --------------------------------------------------------------------
-SvxTextEditSource::SvxTextEditSource( SdrObject& rObj, SdrView& rView, const Window& rWindow )
-{
-    mpImpl = new SvxTextEditSourceImpl( rObj, rView, rWindow );
-    mpImpl->acquire();
-}
-
-// --------------------------------------------------------------------
 
 SvxTextEditSource::SvxTextEditSource( SvxTextEditSourceImpl* pImpl )
 {
@@ -1006,11 +972,6 @@ void SvxTextEditSource::UpdateData()
 SfxBroadcaster& SvxTextEditSource::GetBroadcaster() const
 {
     return *mpImpl;
-}
-
-SdrObject* SvxTextEditSource::GetSdrObject() const
-{
-    return mpImpl->GetSdrObject();
 }
 
 void SvxTextEditSource::lock()

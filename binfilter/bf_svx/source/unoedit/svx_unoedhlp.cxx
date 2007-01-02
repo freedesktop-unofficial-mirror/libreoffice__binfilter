@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoedhlp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:58:03 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:36:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,36 +59,6 @@ SvxEditSourceHint::SvxEditSourceHint( ULONG _nId, ULONG nValue, ULONG nStart, UL
     mnStart( nStart),
     mnEnd( nEnd )
 {
-}
-
-ULONG SvxEditSourceHint::GetValue() const
-{
-    return TextHint::GetValue();
-}
-
-ULONG SvxEditSourceHint::GetStartValue() const
-{
-    return mnStart;
-}
-
-ULONG SvxEditSourceHint::GetEndValue() const
-{
-    return mnEnd;
-}
-
-void SvxEditSourceHint::SetValue( ULONG n )
-{
-    TextHint::SetValue( n );
-}
-
-void SvxEditSourceHint::SetStartValue( ULONG n )
-{
-    mnStart = n;
-}
-
-void SvxEditSourceHint::SetEndValue( ULONG n )
-{
-    mnEnd = n;
 }
 
 //------------------------------------------------------------------------
@@ -199,10 +169,5 @@ Rectangle SvxEditSourceHelper::EEToUserSpace( const Rectangle& rRect, const Size
                                     EEToUserSpace(rRect.TopRight(), rEESize, bIsVertical) ) : rRect;
 }
 
-Rectangle SvxEditSourceHelper::UserSpaceToEE( const Rectangle& rRect, const Size& rEESize, bool bIsVertical )
-{
-    // #106775# Don't touch rect if not vertical
-    return bIsVertical ? Rectangle( UserSpaceToEE(rRect.TopRight(), rEESize, bIsVertical),
-                                    UserSpaceToEE(rRect.BottomLeft(), rEESize, bIsVertical) ) : rRect;
-}
+
 }
