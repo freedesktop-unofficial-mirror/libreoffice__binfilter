@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:36:07 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:23:20 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -71,13 +71,9 @@ SRC1FILES= \
 
 
 SLOFILES = \
-    $(SLO)$/svx_dbcharsethelper.obj			\
     $(SLO)$/svx_ParseContext.obj			\
-    $(SLO)$/svx_typeconversionclient.obj    \
-    $(SLO)$/svx_confirmdelete.obj      \
     $(SLO)$/svx_dbtoolsclient.obj      \
     $(SLO)$/svx_sqlparserclient.obj      \
-    $(SLO)$/svx_dataaccessdescriptor.obj      \
     $(SLO)$/svx_fmpage.obj      \
     $(SLO)$/svx_fmPropBrw.obj			\
     $(SLO)$/svx_fmundo.obj  	\
@@ -91,12 +87,10 @@ SLOFILES = \
     $(SLO)$/svx_fmvwimp.obj     \
     $(SLO)$/svx_taborder.obj    \
     $(SLO)$/svx_fmdpage.obj		\
-    $(SLO)$/svx_fmitems.obj  	\
     $(SLO)$/svx_tbxform.obj     \
     $(SLO)$/svx_fmobj.obj      	\
     $(SLO)$/svx_fmdmod.obj		\
     $(SLO)$/svx_fmobjfac.obj	\
-    $(SLO)$/svx_fmsrccfg.obj	\
     $(SLO)$/svx_fmservs.obj     \
     $(SLO)$/svx_typemap.obj		\
     $(SLO)$/svx_fmexch.obj      \
@@ -109,7 +103,6 @@ SLOFILES = \
     $(SLO)$/svx_fmshimp.obj     \
     $(SLO)$/svx_fmshell.obj     \
     $(SLO)$/svx_fmsearch.obj	\
-    $(SLO)$/svx_fmsrcimp.obj	\
     $(SLO)$/svx_fmview.obj		\
     $(SLO)$/svx_siimport.obj	\
     $(SLO)$/svx_sdbdatacolumn.obj
