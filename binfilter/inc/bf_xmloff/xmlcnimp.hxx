@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlcnimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:37:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:53:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,8 +85,6 @@ public:
     const ::rtl::OUString& GetAttrLName( sal_uInt16 i ) const;
     const ::rtl::OUString& GetAttrValue( sal_uInt16 i ) const;
 
-    sal_uInt16 GetFirstNamespaceIndex() const { return aNamespaceMap.GetFirstIndex(); }
-    sal_uInt16 GetNextNamespaceIndex( sal_uInt16 nIdx ) const { return aNamespaceMap.GetNextIndex( nIdx ); }
     inline const ::rtl::OUString& GetNamespace( sal_uInt16 i ) const;
     inline const ::rtl::OUString& GetPrefix( sal_uInt16 i ) const;
 
