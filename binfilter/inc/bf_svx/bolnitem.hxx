@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bolnitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:21:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:30:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ public:
     SvxLineItem( const USHORT nId = ITEMID_LINE );
     virtual int              operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-    void                    SetLine     ( const SvxBorderLine *pNew );
 private:
     SvxBorderLine*  pLine;
 };
