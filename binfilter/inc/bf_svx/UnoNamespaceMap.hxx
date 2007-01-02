@@ -4,9 +4,9 @@
  *
  *  $RCSfile: UnoNamespaceMap.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:01:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:30:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,9 +46,6 @@ namespace binfilter {
 namespace svx {
 
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL NamespaceMap_createInstance( sal_uInt16* pWhichIds, SfxItemPool* pPool );
-
-/** deprecated */
-    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL NamespaceMap_createInstance( sal_uInt16* pWhichIds, SfxItemPool* pPool1, SfxItemPool* pPool2 );
 
 }
 
