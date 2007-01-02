@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swatrset.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:26:31 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:46:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -208,8 +208,6 @@ public:
                         SwAttrSet* pOld = 0, SwAttrSet* pNew = 0 );
 
     int Intersect_BC( const SfxItemSet& rSet, SwAttrSet* pOld, SwAttrSet* pNew );
-    int Differentiate_BC( const SfxItemSet& rSet, SwAttrSet* pOld, SwAttrSet* pNew );
-    int MergeValues_BC( const SfxItemSet& rSet, SwAttrSet* pOld, SwAttrSet* pNew );
 
      void GetPresentation( SfxItemPresentation ePres,
          SfxMapUnit eCoreMetric,    SfxMapUnit ePresMetric, String &rText ) const;
