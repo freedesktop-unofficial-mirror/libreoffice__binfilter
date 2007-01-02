@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmltxtexp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:00:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:37:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -440,69 +440,6 @@ class SvxEditEngineSourceImpl;
 /*N*/
 /*N*/ SvxXMLTextExportComponent::~SvxXMLTextExportComponent()
 /*N*/ {
-/*N*/ }
-/*N*/
-/*N*/ void SvxWriteXML( EditEngine& rEditEngine, SvStream& rStream, const ESelection& rSel )
-/*N*/ {
-/*N*/   try
-/*N*/   {
-/*N*/       do
-/*N*/       {
-/*N*/           // create service factory
-/*N*/
-/*N*/           uno::Reference< lang::XMultiServiceFactory> xServiceFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-/*N*/
-/*N*/           if( !xServiceFactory.is() )
-/*N*/           {
-/*N*/               DBG_ERROR( "got no service manager" );
-/*N*/               break;
-/*N*/           }
-/*N*/
-/*N*/           // create document handler
-/*N*/
-/*N*/           uno::Reference< uno::XInterface > xWriter( xServiceFactory->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Writer" ) ) ) );
-/*N*/
-/*N*/           if( !xWriter.is() )
-/*N*/           {
-/*N*/               DBG_ERROR( "com.sun.star.xml.sax.Writer service missing" );
-/*N*/               break;
-/*N*/           }
-/*N*/
-/*N*/           uno::Reference<xml::sax::XDocumentHandler>  xHandler( xWriter, uno::UNO_QUERY );
-/*N*/
-/*N*/           // create output stream and active data source
-/*N*/           uno::Reference<io::XOutputStream> xOut( new ::utl::OOutputStreamWrapper( rStream ) );
-/*N*/
-/* testcode
-            const OUString aURL( RTL_CONSTASCII_USTRINGPARAM( "file:///e:/test.xml" ) );
-            SfxMedium aMedium( aURL, STREAM_WRITE | STREAM_TRUNC, TRUE );
-            aMedium.IsRemote();
-            uno::Reference<io::XOutputStream> xOut( new ::utl::OOutputStreamWrapper( *aMedium.GetOutStream() ) );
-*/
-/*N*/
-/*N*/
-/*N*/           uno::Reference<io::XActiveDataSource> xMetaSrc( xWriter, uno::UNO_QUERY );
-/*N*/           xMetaSrc->setOutputStream( xOut );
-/*N*/
-/*N*/           // export text
-/*N*/           const OUString aName;
-/*N*/           // #110680#
-/*N*/           // SvxXMLTextExportComponent aExporter( &rEditEngine, rSel, aName, xHandler );
-/*N*/           SvxXMLTextExportComponent aExporter( xServiceFactory, &rEditEngine, rSel, aName, xHandler );
-/*N*/
-/*N*/           aExporter.exportDoc();
-/*N*/
-/* testcode
-            aMedium.Commit();
-*/
-/*N*/
-/*N*/       }
-/*N*/       while( 0 );
-/*N*/   }
-/*N*/   catch( uno::Exception& e )
-/*N*/   {
-/*N*/       DBG_ERROR("exception during xml export");
-/*N*/   }
 /*N*/ }
 /*N*/
 /*N*/ // methods without content:

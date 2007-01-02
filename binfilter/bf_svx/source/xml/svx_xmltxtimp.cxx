@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmltxtimp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:01:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:37:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -164,100 +164,6 @@ using namespace xmloff::token;
 /*N*/
 /*N*/ SvxXMLXTextImportComponent::~SvxXMLXTextImportComponent() throw ()
 /*N*/ {
-/*N*/ }
-/*N*/
-/*N*/ void SvxReadXML( EditEngine& rEditEngine, SvStream& rStream, const ESelection& rSel )
-/*N*/ {
-/*N*/   SvxEditEngineSource aEditSource( &rEditEngine );
-/*N*/
-/*N*/   static const SfxItemPropertyMap SvxXMLTextImportComponentPropertyMap[] =
-/*N*/   {
-/*N*/       SVX_UNOEDIT_CHAR_PROPERTIES,
-/*N*/       SVX_UNOEDIT_FONT_PROPERTIES,
-/*N*/ //        SVX_UNOEDIT_OUTLINER_PROPERTIES,
-/*N*/       SVX_UNOEDIT_PARA_PROPERTIES,
-/*N*/       {0,0}
-/*N*/   };
-/*N*/
-/*N*/   uno::Reference<text::XText > xParent;
-/*N*/   SvxUnoText* pUnoText = new SvxUnoText( &aEditSource, SvxXMLTextImportComponentPropertyMap, xParent );
-/*N*/   pUnoText->SetSelection( rSel );
-/*N*/   uno::Reference<text::XText > xText( pUnoText );
-/*N*/
-/*N*/   try
-/*N*/   {
-/*N*/       do
-/*N*/       {
-/*N*/           uno::Reference<lang::XMultiServiceFactory> xServiceFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-/*N*/           if( !xServiceFactory.is() )
-/*N*/           {
-/*N*/               DBG_ERROR( "SvxXMLXTableImport::load: got no service manager" );
-/*N*/               break;
-/*N*/           }
-/*N*/
-/*N*/           uno::Reference< xml::sax::XParser > xParser( xServiceFactory->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Parser" ) ) ), uno::UNO_QUERY );
-/*N*/           if( !xParser.is() )
-/*N*/           {
-/*N*/               DBG_ERROR( "com.sun.star.xml.sax.Parser service missing" );
-/*N*/               break;
-/*N*/           }
-/*N*/
-/*N*/           Reference<io::XInputStream> xInputStream = new ::utl::OInputStreamWrapper( rStream );
-/*N*/
- /* testcode
-             const OUString aURL( RTL_CONSTASCII_USTRINGPARAM( "file:///e:/test.xml" ) );
-             SfxMedium aMedium( aURL, STREAM_READ | STREAM_NOCREATE, TRUE );
-             aMedium.IsRemote();
-             uno::Reference<io::XOutputStream> xOut( new ::utl::OOutputStreamWrapper( *aMedium.GetOutStream() ) );
-
-             aMedium.GetInStream()->Seek( 0 );
-             uno::Reference< io::XActiveDataSource > xSource( aMedium.GetDataSource() );
-
-             if( !xSource.is() )
-             {
-                 DBG_ERROR( "got no data source from medium" );
-                 break;
-             }
-
-             Reference< XInterface > xPipe( xServiceFactory->createInstance(OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.io.Pipe") ) ) );
-             if( !xPipe.is() )
-             {
-                 DBG_ERROR( "XMLReader::Read: com.sun.star.io.Pipe service missing" );
-                 break;
-             }
-
-             // connect pipe's output stream to the data source
-             xSource->setOutputStream( Reference< io::XOutputStream >::query( xPipe ) );
-
-             xml::sax::InputSource aParserInput;
-             aParserInput.aInputStream =    uno::Reference< io::XInputStream >::query( xPipe );
-             aParserInput.sSystemId = aMedium.GetName();
-
-
-             if( xSource.is() )
-             {
-                 Reference< io::XActiveDataControl > xSourceControl( xSource, UNO_QUERY );
-                 xSourceControl->start();
-             }
-
- */
-/*N*/
-/*N*/           // #110680#
-/*N*/           // Reference< XDocumentHandler > xHandler( new SvxXMLXTextImportComponent( xText ) );
-/*N*/           Reference< XDocumentHandler > xHandler( new SvxXMLXTextImportComponent( xServiceFactory, xText ) );
-/*N*/
-/*N*/           xParser->setDocumentHandler( xHandler );
-/*N*/
-/*N*/           xml::sax::InputSource aParserInput;
-/*N*/           aParserInput.aInputStream = xInputStream;
-/*N*/ //            aParserInput.sSystemId = aMedium.GetName();
-/*N*/           xParser->parseStream( aParserInput );
-/*N*/       }
-/*N*/       while(0);
-/*N*/   }
-/*N*/   catch( uno::Exception& e )
-/*N*/   {
-/*N*/   }
 /*N*/ }
 /*N*/
 /*N*/ SvXMLImportContext *SvxXMLXTextImportComponent::CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
