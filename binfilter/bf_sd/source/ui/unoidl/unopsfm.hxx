@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unopsfm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:39:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:13:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,7 +85,6 @@ public:
     ~SdUnoPseudoStyleFamily() throw();
 
     static ::rtl::OUString getExternalStyleName( const String& rStyleName ) throw();
-    static String getInternalStyleName( const ::rtl::OUString& rStyleName, SdPage* pPage ) throw();
 
     void createStyle( sal_uInt16 nIndex, ::com::sun::star::uno::Any& rAny ) throw();
     void createStyle( SfxStyleSheetBase* pStyleSheet, ::com::sun::star::uno::Reference< ::com::sun::star::style::XStyle > & rxRef ) throw();
