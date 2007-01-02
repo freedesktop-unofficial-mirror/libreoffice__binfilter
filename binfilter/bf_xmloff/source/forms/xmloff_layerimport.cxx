@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_layerimport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:50:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:17:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -574,14 +574,6 @@ namespace xmloff
         sal_uInt16 _nFamily, sal_Bool _bDefaultStyle )
     {
         return new OControlStyleContext( m_rImporter, _nPrefix, _rLocalName, _rxAttrList, _rParentStyles, _nFamily, _bDefaultStyle );
-    }
-
-    //---------------------------------------------------------------------
-    void OFormLayerXMLImport_Impl::seekPage(const Reference< XDrawPage >& _rxDrawPage)
-    {
-        OSL_ENSURE(m_aCurrentPageIds == m_aControlIds.end(), "OFormLayerXMLImport_Impl::seekPage: importing another page currently! This will smash your import!");
-        m_aCurrentPageIds = m_aControlIds.find(_rxDrawPage);
-        OSL_ENSURE(m_aCurrentPageIds != m_aControlIds.end(), "OFormLayerXMLImport_Impl::seekPage: did not find the given page (perhaps it has not been imported, yet?)!");
     }
 
     //---------------------------------------------------------------------
