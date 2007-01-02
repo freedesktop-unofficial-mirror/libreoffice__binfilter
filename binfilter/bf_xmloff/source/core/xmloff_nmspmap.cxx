@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_nmspmap.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:40:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:13:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -330,24 +330,9 @@ sal_uInt16 SvXMLNamespaceMap::GetNextKey( sal_uInt16 nLastKey ) const
 
 // All methods after this are deprecated...
 
-sal_uInt16 SvXMLNamespaceMap::GetKeyByIndex( sal_uInt16 nIdx ) const
-{
-    return nIdx;
-}
-
 sal_uInt16 SvXMLNamespaceMap::GetIndexByKey( sal_uInt16 nKey ) const
 {
-    return nKey;
-}
-sal_uInt16 SvXMLNamespaceMap::GetFirstIndex() const
-{
-    return aNameMap.empty() ? USHRT_MAX : (*aNameMap.begin()).second->nKey;
-}
-
-sal_uInt16 SvXMLNamespaceMap::GetNextIndex( sal_uInt16 nOldIdx ) const
-{
-    NameSpaceMap::const_iterator aIter = aNameMap.find ( nOldIdx );
-    return (++aIter == aNameMap.end()) ? USHRT_MAX : (*aIter).second->nKey;
+       return nKey;
 }
 
 sal_Bool SvXMLNamespaceMap::AddAtIndex( sal_uInt16 nIdx, const OUString& rPrefix,
