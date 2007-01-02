@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porfld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:11:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:00:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,6 @@
 
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef _BLINK_HXX
-#include <blink.hxx>    // pBlink
 #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
@@ -118,8 +115,6 @@ using namespace ::com::sun::star;
 /*N*/ SwFldPortion::~SwFldPortion()
 /*N*/ {
 /*N*/   delete pFnt;
-/*N*/   if( pBlink )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( this );
 /*N*/ }
 
 /*************************************************************************
@@ -544,43 +539,5 @@ public:
 /*N*/ {
 /*N*/   SetWhichPor( POR_BULLET );
 /*N*/ }
-
-/*************************************************************************
- *                      class SwGrfNumPortion
- *************************************************************************/
-
-#define GRFNUM_SECURE 10
-
-
-
-
-
-
-
-
-/*************************************************************************
- * SwCombinedPortion::SwCombinedPortion(..)
- * initializes the script array and clears the width array
- *************************************************************************/
-
-/*N*/ SwCombinedPortion::SwCombinedPortion( const XubString &rTxt )
-/*N*/    : SwFldPortion( rTxt )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SetLen(1);
-/*N*/ }
-
-/*************************************************************************
- * SwCombinedPortion::Paint(..)
- *************************************************************************/
-
-
-/*************************************************************************
- * SwCombinedPortion::Format(..)
- *************************************************************************/
-
-
-/*************************************************************************
- * SwCombinedPortion::GetViewWidth(..)
- *************************************************************************/
 
 }

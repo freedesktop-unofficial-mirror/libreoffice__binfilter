@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_blink.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:08:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:59:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,40 +40,4 @@
 #include "blink.hxx"
 #include "porlay.hxx"   // SwLineLayout
 namespace binfilter {
-
-// Sichtbare Zeit:
-#define BLINK_ON_TIME       2400L
-// Nihct sichtbare Zeit:
-#define BLINK_OFF_TIME      800L
-
-/*************************************************************************
- * pBlink zeigt auf die Instanz, bei der sich blinkende Portions anmelden
- * muessen, ggf. muss pBlink erst per new SwBlink angelegt werden.
- * Diese werden dann rhythmisch zum Repaint angeregt und koennen abfragen,
- * ob sie zur Zeit sichtbar oder unsichtbar sein sollen ( IsVisible() ).
- *************************************************************************/
-/*N*/ SwBlink *pBlink = NULL;
-
-
-// Liste von blinkenden Portions
-
-/*N*/ SwBlink::SwBlink()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*************************************************************************
- * SwBlink::Blinker (Timerablauf):
- * Sichtbar/unsichtbar-Flag toggeln.
- * Repaint-Rechtecke der Blinkportions ermitteln und an ihren OleShells
- * invalidieren.
- *************************************************************************/
-
-
-
-
-
-
-
-
 }

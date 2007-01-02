@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itratr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:10:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:59:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -371,101 +371,4 @@ public:
     void Minimum( long nNew ) { if( nNew > nMinWidth ) nMinWidth = nNew; }
 };
 
-
-#define FLYINCNT_MIN_WIDTH 284
-
-// changing this method very likely requires changing of
-// "GetScalingOfSelectedText"
-/*-----------------24.01.97 14:09----------------------------------------------
- * Hier ein HACK fuer folgende Situation: In dem Absatz befindet sich
- * ein Textrahmen mit relativer Groesse. Dann nehmen wir mal als minimale
- * Breite 0,5 cm und als maximale KSHRT_MAX.
- * Sauberer und vielleicht spaeter notwendig waere es, ueber den Inhalt
- * des Textrahmens zu iterieren und GetMinMaxSize rekursiv zu rufen.
- * --------------------------------------------------------------------------*/
-
-/*************************************************************************
- *                      SwTxtNode::GetScalingOfSelectedText()
- *
- * Calculates the width of the text part specified by nStt and nEnd,
- * the height of the line containing nStt is devided by this width,
- * indicating the scaling factor, if the text part is rotated.
- * Having CH_BREAKs in the text part, this method returns the scaling
- * factor for the longest of the text parts separated by the CH_BREAKs.
- *
- * changing this method very likely requires changing of "GetMinMaxSize"
- *************************************************************************/
-
-
-/*N*/ SwFontIter::SwFontIter( const SwTxtNode& rNode, SwAttrHandler& rAH,
-/*N*/                         xub_StrLen nStt, xub_StrLen nEnd )
-/*N*/     : aFnt( *rAH.GetFont() ), rAttrHandler( rAH ), pHints( rNode.GetpSwpHints() ),
-/*N*/       nStartIndex( 0 ), nEndIndex( 0 ), nCurrPos( nStt ), nEndPos( nEnd )
-/*N*/ {
-/*N*/     ASSERT( pHints,
-/*N*/             "I think SwFontIter is too expensive if we do not have hints" )
-/*N*/ }
-
-/*N*/ SwFontIter::~SwFontIter()
-/*N*/ {
-/*N*/     rAttrHandler.Reset();
-/*N*/ }
-
-/*N*/ xub_StrLen SwFontIter::NextFontChg() const
-/*N*/ {
-/*N*/    xub_StrLen nNextPos = STRING_LEN;
-/*N*/
-/*N*/     if (pHints->GetStartCount() > nStartIndex) // Gibt es noch Starts?
-/*N*/        nNextPos = (*pHints->GetStart(nStartIndex)->GetStart());
-/*N*/     if (pHints->GetEndCount() > nEndIndex) // Gibt es noch Enden?
-/*N*/     {
-/*N*/         xub_StrLen nNextEnd = (*pHints->GetEnd(nEndIndex)->GetAnyEnd());
-/*N*/         if ( nNextEnd < nNextPos ) nNextPos = nNextEnd; // Wer ist naeher?
-/*N*/     }
-/*N*/
-/*N*/     return Min( nEndPos, nNextPos );
-/*N*/ }
-
-/*N*/ const SwFont& SwFontIter::GetCurrFont( xub_StrLen nNewPos )
-/*N*/ {
-/*N*/     ASSERT( nNewPos >= nCurrPos, "Do not use me (SwFontIter) like this" )
-/*N*/
-/*N*/     // change font for position nPos:
-/*N*/     const SwTxtAttr *pTxtAttr;
-/*N*/
-/*N*/     if ( nStartIndex )
-/*N*/   {
-/*N*/       while ( ( nEndIndex < pHints->GetEndCount() ) &&
-/*N*/                 (*(pTxtAttr = pHints->GetEnd(nEndIndex))->GetAnyEnd() <= nNewPos))
-/*N*/       {
-/*N*/             // close attributes in front of old position
-/*N*/             if ( *pTxtAttr->GetStart() <= nCurrPos )
-/*N*/                 rAttrHandler.PopAndChg( *pTxtAttr, aFnt );
-/*N*/
-/*N*/             nEndIndex++;
-/*N*/       }
-/*N*/   }
-/*N*/     else // skip non open attributes
-/*N*/   {
-/*N*/       while ( ( nEndIndex < pHints->GetEndCount() ) &&
-/*N*/                 (*(pTxtAttr = pHints->GetEnd(nEndIndex))->GetAnyEnd() <= nNewPos))
-/*N*/       {
-/*N*/           nEndIndex++;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   while ( ( nStartIndex < pHints->GetStartCount() ) &&
-/*N*/            (*(pTxtAttr = pHints->GetStart(nStartIndex))->GetStart() <= nNewPos))
-/*N*/   {
-/*N*/         // open attributes behind new position
-/*N*/         if ( *pTxtAttr->GetAnyEnd() > nNewPos )
-/*N*/             rAttrHandler.PushAndChg( *pTxtAttr, aFnt );
-/*N*/
-/*N*/         nStartIndex++;
-/*N*/   }
-/*N*/
-/*N*/     nCurrPos = nNewPos;
-/*N*/
-/*N*/     return aFnt;
-/*N*/ }
 }
