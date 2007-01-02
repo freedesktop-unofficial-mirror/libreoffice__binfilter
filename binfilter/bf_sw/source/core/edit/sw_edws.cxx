@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edws.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:35:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:50:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,13 +59,6 @@ namespace binfilter {
 /********************************************************
  * Ctor/Dtor
  ********************************************************/
-// verkleideter Copy-Constructor
-
-
-/*N*/ SwEditShell::SwEditShell( SwEditShell& rEdSH, Window *pWin )
-/*N*/   : SwCrsrShell( rEdSH, pWin )
-/*N*/ {
-/*N*/ }
 
 // ctor/dtor
 
@@ -81,37 +74,6 @@ namespace binfilter {
 /*N*/ SwEditShell::~SwEditShell() // USED
 /*N*/ {
 /*N*/ }
-
-/******************************************************************************
- *                  sal_Bool SwEditShell::IsModified() const
- ******************************************************************************/
-
-
-/******************************************************************************
- *                    void SwEditShell::SetModified()
- ******************************************************************************/
-
-
-/******************************************************************************
- *                   void SwEditShell::ResetModified()
- ******************************************************************************/
-
-
-/*N*/ void SwEditShell::ResetModified()
-/*N*/ {
-/*N*/   GetDoc()->ResetModified();
-/*N*/ }
-
-
-/******************************************************************************
- *                    void SwEditShell::StartAction()
- ******************************************************************************/
-
-
-/******************************************************************************
- *                    void SwEditShell::EndAction()
- ******************************************************************************/
-
 
 /******************************************************************************
  *                 void SwEditShell::StartAllAction()
@@ -167,121 +129,5 @@ namespace binfilter {
 /*N*/
 /*N*/   EndAllAction();
 /*N*/ }
-
-/******************************************************************************
- *                      Inhaltsform bestimmen, holen
- ******************************************************************************/
-// OPT: wird fuer jedes Attribut gerufen?
-
-
-/*N*/ sal_uInt16 SwEditShell::GetCntType() const
-/*N*/ {
-/*N*/   // nur noch am SPoint ist der Inhalt interessant
-/*N*/   sal_uInt16 nRet = 0;
-/*N*/   if( IsTableMode() )
-/*?*/       nRet = CNT_TXT;
-/*N*/   else
-/*N*/       switch( GetCrsr()->GetNode()->GetNodeType() )
-/*N*/       {
-/*N*/       case ND_TEXTNODE:   nRet = CNT_TXT; break;
-/*?*/       case ND_GRFNODE:    nRet = CNT_GRF; break;
-/*?*/       case ND_OLENODE:    nRet = CNT_OLE; break;
-/*N*/       }
-/*N*/
-/*N*/   ASSERT( nRet, ERR_OUTOFSCOPE );
-/*N*/   return nRet;
-/*N*/ }
-
-//------------------------------------------------------------------------------
-
-
-
-/******************************************************************************
- *              Zugriffsfunktionen fuer Filename-Behandlung
- ******************************************************************************/
-
-
-
-
-
-/******************************************************************************
- *          Klasse fuer den automatisierten Aufruf von Start- und
- *                              EndCrsrMove();
- ******************************************************************************/
-
-
-
-
-
-
-/*N*/ SwFrmFmt *SwEditShell::GetTableFmt()  // OPT: schnellster Test auf Tabelle?
-/*N*/ {
-/*N*/   const SwTableNode* pTblNd = IsCrsrInTbl();
-/*N*/   return pTblNd ? (SwFrmFmt*)pTblNd->GetTable().GetFrmFmt() : 0;
-/*N*/ }
-
-// OPT: wieso 3x beim neuen Dokument
-
-
-
-
-
-
-
-/*N*/ void SwEditShell::DoUndo( sal_Bool bOn )
-/*N*/ { GetDoc()->DoUndo( bOn ); }
-
-
-
-
-
-
-
-
-
-// Zusammenfassen von Kontinuierlichen Insert/Delete/Overwrite von
-// Charaktern. Default ist sdbcx::Group-Undo.
-
-// setzt Undoklammerung auf, liefert nUndoId der Klammerung
-
-
-/*N*/ sal_uInt16 SwEditShell::StartUndo( sal_uInt16 nUndoId )
-/*N*/ { return GetDoc()->StartUndo( nUndoId ); }
-
-// schliesst Klammerung der nUndoId, nicht vom UI benutzt
-
-
-/*N*/ sal_uInt16 SwEditShell::EndUndo(sal_uInt16 nUndoId)
-/*N*/ { return GetDoc()->EndUndo(nUndoId); }
-
-// liefert die Id der letzten undofaehigen Aktion zurueck
-// fuellt ggf. VARARR mit sdbcx::User-UndoIds
-
-
-/*N*/ sal_uInt16 SwEditShell::GetUndoIds(String* pStr,SwUndoIds *pUndoIds) const
-/*N*/ { return GetDoc()->GetUndoIds(pStr,pUndoIds); }
-
-// liefert die Id der letzten Redofaehigen Aktion zurueck
-// fuellt ggf. VARARR mit RedoIds
-
-
-/*N*/ sal_uInt16 SwEditShell::GetRedoIds(String* pStr,SwUndoIds *pRedoIds) const
-/*N*/ { return GetDoc()->GetRedoIds(pStr,pRedoIds); }
-
-// liefert die Id der letzten Repeatfaehigen Aktion zurueck
-// fuellt ggf. VARARR mit RedoIds
-
-
-
-
-
-// AutoKorrektur - JP 27.01.94
-
-
-
-
-
-
-
 
 }

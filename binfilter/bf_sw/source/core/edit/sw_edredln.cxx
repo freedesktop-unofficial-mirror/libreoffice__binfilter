@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edredln.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:34:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:48:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,29 +49,5 @@
 #include "doc.hxx"
 #include "editsh.hxx"
 namespace binfilter {
-
-
-
-
-/*N*/ BOOL SwEditShell::IsRedlineOn() const
-/*N*/ {
-/*N*/   return GetDoc()->IsRedlineOn();
-/*N*/ }
-
-
-
-
-
-
-
-
-// Kommentar am Redline setzen
-
-
-
-    // suche das Redline zu diesem Data und returne die Pos im Array
-    // USHRT_MAX wird returnt, falls nicht vorhanden
-
-
 
 }

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edundo.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:35:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:49:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,25 +48,4 @@
 #include <doc.hxx>
 #endif
 namespace binfilter {
-
-
-/** helper function to select all objects in an SdrMarkList;
- * implementation: see below */
-
-        // abfragen/setzen der Anzahl von wiederherstellbaren Undo-Actions
-
-/*N*/ USHORT SwEditShell::GetUndoActionCount()
-/*N*/ {
-/*N*/   return SwDoc::GetUndoActionCount();
-/*N*/ }
-
-
-/*N*/ void SwEditShell::SetUndoActionCount( USHORT nNew )
-/*N*/ {
-/*N*/   SwDoc::SetUndoActionCount( nNew );
-/*N*/ }
-
-
-
-
 }
