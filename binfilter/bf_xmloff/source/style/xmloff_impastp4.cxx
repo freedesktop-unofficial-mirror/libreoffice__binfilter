@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_impastp4.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:02:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:18:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -185,30 +185,6 @@ sal_Bool SvXMLAutoStylePoolP_Impl::Add(OUString& rName, sal_Int32 nFamily,
     return bRet;
 }
 
-OUString SvXMLAutoStylePoolP_Impl::AddToCache( sal_Int32 nFamily,
-                                         const OUString& rParent )
-{
-    ULONG nPos;
-
-    XMLFamilyData_Impl *pFamily = 0;
-    XMLFamilyData_Impl aTmp( nFamily );
-    if( maFamilyList.Seek_Entry( &aTmp, &nPos ) )
-    {
-        pFamily = maFamilyList.GetObject( nPos );
-    }
-
-    DBG_ASSERT( pFamily, "SvXMLAutoStylePool_Impl::Add: unknown family" );
-    if( pFamily )
-    {
-        if( !pFamily->pCache )
-            pFamily->pCache = new SvXMLAutoStylePoolCache_Impl( 256, 256 );
-        if( pFamily->pCache->Count() < MAX_CACHE_SIZE )
-            pFamily->pCache->Insert( new OUString( rParent ),
-                                     pFamily->pCache->Count() );
-    }
-
-    return rParent;
-}
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Search for a array of XMLPropertyState ( vector< XMLPropertyState > ) in list
@@ -238,37 +214,6 @@ OUString SvXMLAutoStylePoolP_Impl::Find( sal_Int32 nFamily,
             pFamily->mpParentList;
         if( pParents->Seek_Entry( &aTmp, &nPos ) )
             sName = pParents->GetObject( nPos )->Find( pFamily, rProperties );
-    }
-
-    return sName;
-}
-
-OUString SvXMLAutoStylePoolP_Impl::FindAndRemoveCached( sal_Int32 nFamily ) const
-{
-    OUString sName;
-
-    ULONG nPos;
-    XMLFamilyData_Impl aTmp( nFamily );
-    XMLFamilyData_Impl *pFamily = 0;
-    if( maFamilyList.Seek_Entry( &aTmp, &nPos ) )
-    {
-        pFamily = maFamilyList.GetObject( nPos );
-    }
-
-    DBG_ASSERT( pFamily, "SvXMLAutoStylePool_Impl::Find: unknown family" );
-
-    if( pFamily )
-    {
-        DBG_ASSERT( pFamily->pCache, "family doesn't have a cache" );
-
-        // The cache may be empty already. This happens if it was filled
-        // completly.
-        if( pFamily->pCache && pFamily->pCache->Count() )
-        {
-            OUString *pName = pFamily->pCache->Remove( 0UL );
-            sName = *pName;
-            delete pName;
-        }
     }
 
     return sName;
