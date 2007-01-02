@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabdash.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:04:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:39:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -168,93 +168,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XDashTable::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   rOut << (long)0;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XDashEntry* pEntry = (XDashEntry*)aTable.First();
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       rOut << (long)aTable.GetCurKey();
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XDash& rDash = pEntry->GetDash();
-/*N*/       rOut << (long)rDash.GetDashStyle();
-/*N*/       rOut << (long)rDash.GetDots();
-/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDotLen());
-/*N*/       rOut << (long)rDash.GetDashes();
-/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDashLen());
-/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDistance());
-/*N*/       pEntry = (XDashEntry*)aTable.Next();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XDashTable::ImpRead( SvStream& rIn )
-/*N*/ {
-/*N*/   // Lesen
-/*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
-/*N*/
-/*N*/   delete pBmpTable;
-/*N*/   pBmpTable = new Table( 16, 16 );
-/*N*/
-/*N*/   XDashEntry* pEntry = NULL;
-/*N*/   long        nType;
-/*N*/   long        nCount;
-/*N*/   long        nIndex;
-/*N*/   XubString       aName;
-/*N*/
-/*N*/   long        nStyle;
-/*N*/   long        nDots;
-/*N*/   sal_uInt32  nDotLen;
-/*N*/   long        nDashes;
-/*N*/   sal_uInt32  nDashLen;
-/*N*/   sal_uInt32  nDistance;
-/*N*/
-/*N*/   rIn >> nType;
-/*N*/
-/*N*/   // gesamte Tabelle?
-/*N*/   if (nType == 0)
-/*N*/   {
-/*N*/       rIn >> nCount;
-/*N*/       for (long nI = 0; nI < nCount; nI++)
-/*N*/       {
-/*N*/           rIn >> nIndex;
-/*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/
-/*N*/           rIn >> nStyle;
-/*N*/           rIn >> nDots;
-/*N*/           rIn >> nDotLen;
-/*N*/           rIn >> nDashes;
-/*N*/           rIn >> nDashLen;
-/*N*/           rIn >> nDistance;
-/*N*/           XDash aDash((XDashStyle)nStyle, (BYTE)nDots, nDotLen,
-/*N*/                       (BYTE)nDashes, nDashLen, nDistance);
-/*N*/           pEntry = new XDashEntry (aDash, aName);
-/*N*/           Insert (nIndex, pEntry);
-/*N*/       }
-/*N*/   }
-/*N*/   return( rIn );
-/*N*/ }
-
 
 // ----------------
 // class XDashList
@@ -492,42 +405,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       if( pXLSet ){ delete pXLSet; pXLSet = NULL; }
 /*N*/   }
 /*N*/   return( pBitmap );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XDashList::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Version statt Anzahl, um auch alte Tabellen zu lesen
-/*N*/   rOut << (long) -1;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XDashEntry* pEntry = NULL;
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // Versionsverwaltung: Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       pEntry = Get(nIndex);
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XDash& rDash = pEntry->GetDash();
-/*N*/       rOut << (long)rDash.GetDashStyle();
-/*N*/       rOut << (long)rDash.GetDots();
-/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDotLen());
-/*N*/       rOut << (long)rDash.GetDashes();
-/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDashLen());
-/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDistance());
-/*N*/   }
-/*N*/   return rOut;
 /*N*/ }
 
 /************************************************************************/

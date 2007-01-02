@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabgrdt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:04:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:40:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,117 +157,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ Bitmap* XGradientTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
 /*N*/ {
 /*N*/   return( NULL );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XGradientTable::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   rOut << (long)0;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XGradientEntry* pEntry = (XGradientEntry*)aTable.First();
-/*N*/
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       rOut << (long)aTable.GetCurKey();
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XGradient& rGradient = pEntry->GetGradient();
-/*N*/       rOut << (long)rGradient.GetGradientStyle();
-/*N*/       rOut << rGradient.GetStartColor().GetRed();
-/*N*/       rOut << rGradient.GetStartColor().GetGreen();
-/*N*/       rOut << rGradient.GetStartColor().GetBlue();
-/*N*/       rOut << rGradient.GetEndColor().GetRed();
-/*N*/       rOut << rGradient.GetEndColor().GetGreen();
-/*N*/       rOut << rGradient.GetEndColor().GetBlue();
-/*N*/       rOut << rGradient.GetAngle();
-/*N*/       rOut << (sal_uInt32)rGradient.GetBorder();
-/*N*/       rOut << (sal_uInt32)rGradient.GetXOffset();
-/*N*/       rOut << (sal_uInt32)rGradient.GetYOffset();
-/*N*/       pEntry = (XGradientEntry*)aTable.Next();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XGradientTable::ImpRead( SvStream& rIn )
-/*N*/ {
-/*N*/   // Lesen
-/*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
-/*N*/
-/*N*/   delete pBmpTable;
-/*N*/   pBmpTable = new Table( 16, 16 );
-/*N*/
-/*N*/   XGradientEntry* pEntry = NULL;
-/*N*/   long        nType;
-/*N*/   long        nCount;
-/*N*/   long        nIndex;
-/*N*/   XubString       aName;
-/*N*/
-/*N*/   long    nStyle;
-/*N*/   USHORT  nRed;
-/*N*/   USHORT  nGreen;
-/*N*/   USHORT  nBlue;
-/*N*/   Color   aStart;
-/*N*/   Color   aEnd;
-/*N*/   long    nAngle;
-/*N*/   sal_uInt32 nBorder;
-/*N*/   sal_uInt32 nXOfs;
-/*N*/   sal_uInt32 nYOfs;
-/*N*/
-/*N*/   rIn >> nType;
-/*N*/
-/*N*/   // gesamte Tabelle?
-/*N*/   if (nType == 0)
-/*N*/   {
-/*N*/       rIn >> nCount;
-/*N*/       for (long nI = 0; nI < nCount; nI++)
-/*N*/       {
-/*N*/           rIn >> nIndex;
-/*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/
-/*N*/           rIn >> nStyle;
-/*N*/           rIn >> nRed;
-/*N*/           rIn >> nGreen;
-/*N*/           rIn >> nBlue;
-/*N*/
-/*N*/           aStart = Color( (BYTE) ( nRed   >> 8 ),
-/*N*/                           (BYTE) ( nGreen >> 8 ),
-/*N*/                           (BYTE) ( nBlue  >> 8 ) );
-/*N*/           rIn >> nRed;
-/*N*/           rIn >> nGreen;
-/*N*/           rIn >> nBlue;
-/*N*/
-/*N*/           aEnd = Color( (BYTE) ( nRed   >> 8 ),
-/*N*/                           (BYTE) ( nGreen >> 8 ),
-/*N*/                           (BYTE) ( nBlue  >> 8 ) );
-/*N*/
-/*N*/           rIn >> nAngle;
-/*N*/           rIn >> nBorder;
-/*N*/           rIn >> nXOfs;
-/*N*/           rIn >> nYOfs;
-/*N*/
-/*N*/           XGradient aGradient(aStart, aEnd, (XGradientStyle)nStyle, nAngle,
-/*N*/                               (USHORT)nXOfs, (USHORT)nYOfs, (USHORT)nBorder);
-/*N*/           pEntry = new XGradientEntry (aGradient, aName);
-/*N*/           Insert (nIndex, pEntry);
-/*N*/       }
-/*N*/   }
-/*N*/   return( rIn );
 /*N*/ }
 
 // --------------------
@@ -494,64 +383,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       if( pXFSet ){ delete pXFSet; pXFSet = NULL; }
 /*N*/   }
 /*N*/   return( pBitmap );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XGradientList::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   XGradientEntry* pEntry = NULL;
-/*N*/
-/*N*/   // Kennung
-/*N*/   rOut << (long) -2;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // Versionsverwaltung: Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       pEntry = Get(nIndex);
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XGradient& rGradient = pEntry->GetGradient();
-/*N*/       rOut << (long)rGradient.GetGradientStyle();
-/*N*/
-/*N*/       USHORT nCol = rGradient.GetStartColor().GetRed();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       nCol = rGradient.GetStartColor().GetGreen();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       nCol = rGradient.GetStartColor().GetBlue();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/
-/*N*/       nCol = rGradient.GetEndColor().GetRed();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       nCol = rGradient.GetEndColor().GetGreen();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       nCol = rGradient.GetEndColor().GetBlue();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       rOut << rGradient.GetAngle();
-/*N*/       rOut << (sal_uInt32)rGradient.GetBorder();
-/*N*/       rOut << (sal_uInt32)rGradient.GetXOffset();
-/*N*/       rOut << (sal_uInt32)rGradient.GetYOffset();
-/*N*/       rOut << (sal_uInt32)rGradient.GetStartIntens();
-/*N*/       rOut << (sal_uInt32)rGradient.GetEndIntens();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
 /*N*/ }
 
 /************************************************************************/
