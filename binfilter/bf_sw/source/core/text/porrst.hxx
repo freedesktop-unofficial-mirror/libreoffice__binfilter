@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porrst.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:07:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:59:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,17 +49,6 @@ namespace binfilter {
 #endif
 
 class SwTxtFormatInfo;
-
-/*************************************************************************
- *                      class SwTmpEndPortion
- *************************************************************************/
-
-class SwTmpEndPortion : public SwLinePortion
-{
-public:
-            SwTmpEndPortion( const SwLinePortion &rPortion );
-    OUTPUT_OPERATOR
-};
 
 /*************************************************************************
  *                      class SwBreakPortion
@@ -137,7 +126,6 @@ class SwArrowPortion : public SwLinePortion
     sal_Bool bLeft;
 public:
             SwArrowPortion( const SwLinePortion &rPortion );
-            SwArrowPortion( const SwTxtPaintInfo &rInf );
     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual SwLinePortion *Compress();
 #ifndef VERTICAL_LAYOUT
