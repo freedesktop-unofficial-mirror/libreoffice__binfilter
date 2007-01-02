@@ -4,9 +4,9 @@
  *
  *  $RCSfile: nmspmap.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:32:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:52:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,10 +157,7 @@ public:
 /* deprecated */ sal_Bool AddAtIndex( sal_uInt16 nIdx, const sal_Char *pPrefix,
                      const sal_Char *pName, sal_uInt16 nKey = XML_NAMESPACE_UNKNOWN );
 /* deprecated */ sal_uInt16 GetIndexByKey( sal_uInt16 nKey ) const;
-/* deprecated */ sal_uInt16 GetKeyByIndex( sal_uInt16 nIdx ) const;
 /* deprecated */ sal_uInt16 GetIndexByPrefix( const ::rtl::OUString& rPrefix ) const;
-/* deprecated */ sal_uInt16 GetFirstIndex() const;
-/* deprecated */ sal_uInt16 GetNextIndex( sal_uInt16 nOldIdx ) const;
 /* deprecated */ const ::rtl::OUString& GetPrefixByIndex( sal_uInt16 nIdx ) const;
 /* deprecated */ const ::rtl::OUString& GetNameByIndex( sal_uInt16 nIdx ) const;
 /* deprecated */ ::rtl::OUString GetAttrNameByIndex( sal_uInt16 nIdx ) const;
