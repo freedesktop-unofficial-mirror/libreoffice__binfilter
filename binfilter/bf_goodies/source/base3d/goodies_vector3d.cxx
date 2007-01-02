@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_vector3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:58:31 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:49:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,20 +72,6 @@ Vector3D::Vector3D(const Point& rPnt, double fZ)
 double Vector3D::GetLength(void) const
 {
     double fSum = V[0] * V[0] + V[1] * V[1] + V[2] * V[2];
-    if(fSum == 0.0 || fSum == 1.0)
-        return fSum;
-    return sqrt(fSum);
-}
-
-/*************************************************************************
-|*
-|* Laenge der Projektion des Vektors auf die XY-Ebene berechnen
-|*
-\************************************************************************/
-
-double Vector3D::GetXYLength(void) const
-{
-    double fSum = V[0] * V[0] + V[1] * V[1];
     if(fSum == 0.0 || fSum == 1.0)
         return fSum;
     return sqrt(fSum);
@@ -245,54 +231,6 @@ void Vector3D::CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2, Vector3D
             V[i] = (rOld1[i] + rOld2[i] + rOld3[i]) / 3.0;
         }
     }
-}
-
-/*************************************************************************
-|*
-|* get perpendicular vector (2D)
-|*
-\************************************************************************/
-
-Vector3D Vector3D::GetPerpendicular2D() const
-{
-    Vector3D aNew(-V[1], V[0], V[2]);
-    aNew.Normalize();
-    return aNew;
-}
-
-/*************************************************************************
-|*
-|* get perpendicular vector (3D)
-|*
-\************************************************************************/
-
-Vector3D Vector3D::GetPerpendicular(const Vector3D& rNormalizedVec) const
-{
-    Vector3D aNew(V[0], V[1], V[2]);
-
-    aNew |= rNormalizedVec;
-    aNew.Normalize();
-
-    return aNew;
-}
-
-/*************************************************************************
-|*
-|* get projection of this vector onto plane given by plane normal
-|*
-\************************************************************************/
-
-Vector3D Vector3D::GetProjectionOnPlane(const Vector3D& rNormalizedPlane) const
-{
-    Vector3D aNew(V[0], V[1], V[2]);
-
-    aNew |= rNormalizedPlane;
-    aNew |= rNormalizedPlane;
-    aNew.X() = V[0] - aNew.X();
-    aNew.Y() = V[1] - aNew.Y();
-    aNew.Z() = V[2] - aNew.Z();
-
-    return aNew;
 }
 
 /*************************************************************************
