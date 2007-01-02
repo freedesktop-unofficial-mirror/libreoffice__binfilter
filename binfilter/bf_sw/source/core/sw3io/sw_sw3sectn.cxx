@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:00:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:55:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -403,62 +403,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return *pSttNd;
 /*N*/ }
-
-// Einlesen des puren Textes eines Content-Bereichs
-
-String Sw3IoImp::InContentsText()
-{
-    String aText;
-    OpenRec( SWG_CONTENTS );
-    if( IsVersion(SWG_LAYFRAMES) )
-        OpenFlagRec();
-    if( IsVersion(SWG_LONGIDX) )
-    {
-        UINT32 nNodes;
-        *pStrm >> nNodes;
-    }
-    else
-    {
-        UINT16 nNodes16, nSectIdDummy;
-        if( IsVersion(SWG_LAYFRAMES) )
-            *pStrm >> nSectIdDummy;
-        *pStrm >> nNodes16;
-    }
-    if( IsVersion(SWG_LAYFRAMES) )
-        CloseFlagRec();
-
-    xub_StrLen nLastPos;
-    while( BytesLeft() )
-    {
-        switch( Peek() )
-        {
-            case SWG_TEXTNODE:
-                nLastPos = aText.Len();
-                InTxtNodeText( aText );
-                break;
-            case SWG_REPTEXTNODE:
-                {
-                    UINT32 nRepetitions;
-                    OpenRec( SWG_REPTEXTNODE );
-                    *pStrm >> nRepetitions;
-                    CloseRec( SWG_REPTEXTNODE );
-
-                    String aRepString;
-                    if( nLastPos==0 )
-                        aRepString += ' ';
-
-                    aRepString += aText.Copy( nLastPos, aText.Len()-nLastPos );
-                    while( nRepetitions--  )
-                        aText += aRepString;
-                }
-                break;
-            default:
-                SkipRec();
-        }
-    }
-    CloseRec( SWG_CONTENTS );
-    return aText;
-}
 
 // Einen Basis-Contents-Bereich des Dokuments ausgeben
 
