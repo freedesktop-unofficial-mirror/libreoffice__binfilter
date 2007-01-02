@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmluconv.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:16:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:14:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -104,15 +104,6 @@ const sal_Int8 XML_MAXDIGITSCOUNT_DATETIME = 6;
 OUString SvXMLUnitConverter::msXML_true;
 OUString SvXMLUnitConverter::msXML_false;
 
-void SvXMLUnitConverter::initXMLStrings()
-{
-    if( msXML_true.getLength() == 0 )
-    {
-        msXML_true = GetXMLToken(XML_TRUE);
-        msXML_false = GetXMLToken(XML_FALSE);
-    }
-}
-
 void SvXMLUnitConverter::createNumTypeInfo() const
 {
     // #110680#
@@ -203,16 +194,6 @@ void SvXMLUnitConverter::convertMeasure( OUStringBuffer& rString,
 {
     SvXMLUnitConverter::convertMeasure( rString, nMeasure,
                                         meCoreMeasureUnit,
-                                        meXMLMeasureUnit );
-}
-
-/** convert measure with given unit to string */
-void SvXMLUnitConverter::convertMeasure( OUStringBuffer& rString,
-                                         sal_Int32 nMeasure,
-                                         MapUnit eSrcUnit ) const
-{
-    SvXMLUnitConverter::convertMeasure( rString, nMeasure,
-                                        eSrcUnit,
                                         meXMLMeasureUnit );
 }
 
@@ -550,37 +531,6 @@ sal_Bool SvXMLUnitConverter::convertEnum(
         pMap++;
     }
     return sal_False;
-}
-
-/** convert enum to string using given enum map with optional
-    default string. If the enum is not found in the map,
-    this method will either use the given default or return
-    false if not default is set
-*/
-sal_Bool SvXMLUnitConverter::convertEnum( OUStringBuffer& rBuffer,
-                                      sal_uInt16 nValue,
-                                      const SvXMLEnumStringMapEntry *pMap,
-                                      sal_Char * pDefault /* = NULL */ )
-{
-    const sal_Char *pStr = pDefault;
-
-    while( pMap->pName )
-    {
-        if( pMap->nValue == nValue )
-        {
-            pStr = pMap->pName;
-            break;
-        }
-        pMap++;
-    }
-
-    if( NULL == pStr )
-        pStr = pDefault;
-
-    if( NULL != pStr )
-        rBuffer.appendAscii( pStr );
-
-    return NULL != pStr;
 }
 
 /** convert enum to string using given token map with an optional
@@ -1887,22 +1837,6 @@ void SvXMLUnitConverter::convertPropertySet(uno::Reference<beans::XPropertySet>&
             }
         }
     }
-}
-
-void SvXMLUnitConverter::clearUndefinedChars( ::rtl::OUString& rTarget, const ::rtl::OUString& rSource)
-{
-    sal_uInt32 nLength(rSource.getLength());
-    ::rtl::OUStringBuffer sBuffer(nLength);
-    for (sal_uInt32 i = 0; i < nLength; i++)
-    {
-        sal_Unicode cChar = rSource[i];
-        if (!(cChar < 0x0020) ||
-            (cChar == 0x0009) ||        // TAB
-            (cChar == 0x000A) ||        // LF
-            (cChar == 0x000D))          // legal character
-            sBuffer.append(cChar);
-    }
-    rTarget = sBuffer.makeStringAndClear();
 }
 
 }//end of namespace binfilter
