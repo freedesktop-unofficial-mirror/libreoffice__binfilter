@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:20:33 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:29:41 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -54,25 +54,20 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 SLOFILES=\
          $(SLO)$/svx_svdoutlinercache.obj \
          $(SLO)$/svx_dialdll.obj         \
-         $(SLO)$/svx_gradtrns.obj         \
          $(SLO)$/svx_svdattr.obj         \
-         $(SLO)$/svx_svdcrtmt.obj        \
          $(SLO)$/svx_svdcrtv.obj         \
          $(SLO)$/svx_svddrag.obj         \
-         $(SLO)$/svx_svddrgmt.obj        \
          $(SLO)$/svx_svddrgv.obj         \
          $(SLO)$/svx_svdedtv.obj         \
          $(SLO)$/svx_svdedtv1.obj        \
          $(SLO)$/svx_svdedtv2.obj        \
          $(SLO)$/svx_svdedxv.obj         \
          $(SLO)$/svx_svdetc.obj          \
-         $(SLO)$/svx_svdfmtf.obj		\
          $(SLO)$/svx_svdfppt.obj         \
          $(SLO)$/svx_svdglev.obj         \
          $(SLO)$/svx_svdglue.obj         \
          $(SLO)$/svx_svdhdl.obj          \
          $(SLO)$/svx_svdhlpln.obj        \
-         $(SLO)$/svx_svdibrow.obj        \
          $(SLO)$/svx_svdio.obj           \
          $(SLO)$/svx_svditer.obj         \
          $(SLO)$/svx_svdlayer.obj        \
@@ -95,7 +90,6 @@ SLOFILES=\
          $(SLO)$/svx_svdorect.obj        \
          $(SLO)$/svx_svdotext.obj        \
          $(SLO)$/svx_svdotxat.obj        \
-         $(SLO)$/svx_svdotxdr.obj        \
          $(SLO)$/svx_svdotxed.obj        \
          $(SLO)$/svx_svdotxfl.obj        \
          $(SLO)$/svx_svdotxln.obj        \
@@ -107,7 +101,6 @@ SLOFILES=\
          $(SLO)$/svx_svdpagv.obj         \
          $(SLO)$/svx_svdpntv.obj         \
          $(SLO)$/svx_svdpoev.obj         \
-         $(SLO)$/svx_svdscrol.obj        \
          $(SLO)$/svx_svdsnpv.obj         \
          $(SLO)$/svx_svdsuro.obj         \
          $(SLO)$/svx_svdtouch.obj        \
@@ -127,19 +120,15 @@ NOOPTFILES=$(SLO)$/svx_svdattr.obj
 SVXLIGHTOBJFILES=\
          $(OBJ)$/svx_svdoutlinercache.obj \
          $(OBJ)$/svx_dialdll.obj        \
-         $(OBJ)$/svx_gradtrns.obj        \
          $(OBJ)$/svx_svdattr.obj         \
-         $(OBJ)$/svx_svdcrtmt.obj        \
          $(OBJ)$/svx_svdcrtv.obj         \
          $(OBJ)$/svx_svddrag.obj         \
-         $(OBJ)$/svx_svddrgmt.obj        \
          $(OBJ)$/svx_svddrgv.obj         \
          $(OBJ)$/svx_svdedtv.obj         \
          $(OBJ)$/svx_svdedtv1.obj        \
          $(OBJ)$/svx_svdedtv2.obj        \
          $(OBJ)$/svx_svdedxv.obj         \
          $(OBJ)$/svx_svdetc.obj          \
-         $(OBJ)$/svx_svdfmtf.obj		\
          $(OBJ)$/svx_svdfppt.obj         \
          $(OBJ)$/svx_svdglev.obj         \
          $(OBJ)$/svx_svdglue.obj         \
@@ -167,7 +156,6 @@ SVXLIGHTOBJFILES=\
          $(OBJ)$/svx_svdorect.obj        \
          $(OBJ)$/svx_svdotext.obj        \
          $(OBJ)$/svx_svdotxat.obj        \
-         $(OBJ)$/svx_svdotxdr.obj        \
          $(OBJ)$/svx_svdotxed.obj        \
          $(OBJ)$/svx_svdotxfl.obj        \
          $(OBJ)$/svx_svdotxln.obj        \
@@ -179,7 +167,6 @@ SVXLIGHTOBJFILES=\
          $(OBJ)$/svx_svdpagv.obj         \
          $(OBJ)$/svx_svdpntv.obj         \
          $(OBJ)$/svx_svdpoev.obj         \
-         $(OBJ)$/svx_svdscrol.obj        \
          $(OBJ)$/svx_svdsnpv.obj         \
          $(OBJ)$/svx_svdsuro.obj         \
          $(OBJ)$/svx_svdtouch.obj        \
