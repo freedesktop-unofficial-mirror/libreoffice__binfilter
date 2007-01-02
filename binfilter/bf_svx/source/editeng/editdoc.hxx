@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editdoc.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:39:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:19:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -237,7 +237,6 @@ public:
     void            CopyAndCutAttribs( ContentNode* pPrevNode, SfxItemPool& rPool, BOOL bKeepEndingAttribs );
 
     void            SetStyleSheet( SfxStyleSheet* pS, BOOL bRecalcFont = TRUE );
-    void            SetStyleSheet( SfxStyleSheet* pS, const SvxFont& rFontFromStyle );
     SfxStyleSheet*  GetStyleSheet() { return aContentAttribs.GetStyleSheet(); }
 
     void            CreateDefFont();
@@ -292,8 +291,6 @@ public:
 
     BOOL            IsParaStart() const             { return nIndex == 0; }
     BOOL            IsParaEnd() const               { return nIndex == pNode->Len(); }
-
-    BOOL            DbgIsBuggy( EditDoc& rDoc );
 
     EditPaM&    operator = ( const EditPaM& rPaM );
     friend BOOL operator == ( const EditPaM& r1,  const EditPaM& r2  );
@@ -623,8 +620,6 @@ public:
     const EditPaM&  Max() const         { return aEndPaM; }
 
     BOOL            HasRange() const    { return aStartPaM != aEndPaM; }
-    BOOL            IsInvalid();
-    BOOL            DbgIsBuggy( EditDoc& rDoc );
 
     BOOL            Adjust( const ContentList& rNodes );
 
@@ -697,7 +692,6 @@ public:
     EditPaM         Clear();
     EditPaM         RemoveText();
     EditPaM         RemoveChars( EditPaM aPaM, USHORT nChars );
-    void            InsertText( const EditPaM& rPaM, xub_Unicode c );
     EditPaM         InsertText( EditPaM aPaM, const XubString& rStr );
     EditPaM         InsertParaBreak( EditPaM aPaM, BOOL bKeepEndingAttribs );
     EditPaM         InsertFeature( EditPaM aPaM, const SfxPoolItem& rItem );
