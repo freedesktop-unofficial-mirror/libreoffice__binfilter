@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unocoll.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:00:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:48:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -277,12 +277,6 @@ class SwXFrames : public SwCollectionBaseClass,
 {
     const FlyCntType    eType;
 protected:
-
-    SwXFrame*           GetFrmByName( const String& rName );
-    SwXFrame*           GetFrmByIndex( sal_Int32 nIndex );
-
-    void                RemoveFrame(const ::rtl::OUString& rName, FlyCntType eType);
-
     virtual ~SwXFrames();
 public:
         SwXFrames(SwDoc* pDoc, FlyCntType eSet);
