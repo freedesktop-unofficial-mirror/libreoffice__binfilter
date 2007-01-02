@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:23:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:44:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -557,18 +557,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       nCntnt = 0;
 /*N*/ }
 
-/*N*/ _SetGetExpFld::_SetGetExpFld( const SwNodeIndex& rNdIdx,
-/*N*/                           const SwTxtINetFmt& rINet, const SwIndex* pIdx )
-/*N*/ {
-/*N*/   eSetGetExpFldType = TEXTINET;
-/*N*/   CNTNT.pTxtINet = &rINet;
-/*N*/   nNode = rNdIdx.GetIndex();
-/*N*/   if( pIdx )
-/*N*/       nCntnt = pIdx->GetIndex();
-/*N*/   else
-/*N*/       nCntnt = *rINet.GetStart();
-/*N*/ }
-
     //Erweiterung fuer Sections:
     //  diese haben immer als Content-Position 0xffff !!
     //  Auf dieser steht nie ein Feld, maximal bis STRING_MAXLEN moeglich
@@ -589,72 +577,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       nCntnt = 0;
 /*N*/   }
 /*N*/ }
-
-/*N*/ _SetGetExpFld::_SetGetExpFld( const SwTableBox& rTBox, const SwPosition* pPos )
-/*N*/ {
-/*N*/   eSetGetExpFldType = TABLEBOX;
-/*N*/   CNTNT.pTBox = &rTBox;
-/*N*/
-/*N*/   if( pPos )
-/*N*/   {
-/*N*/       nNode = pPos->nNode.GetIndex();
-/*N*/       nCntnt = pPos->nContent.GetIndex();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       nNode = 0;
-/*N*/       nCntnt = 0;
-/*N*/       if( rTBox.GetSttNd() )
-/*N*/       {
-/*N*/           SwNodeIndex aIdx( *rTBox.GetSttNd() );
-/*N*/           const SwCntntNode* pNd = aIdx.GetNode().GetNodes().GoNext( &aIdx );
-/*N*/           if( pNd )
-/*N*/               nNode = pNd->GetIndex();
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ _SetGetExpFld::_SetGetExpFld( const SwNodeIndex& rNdIdx,
-/*N*/                               const SwTxtTOXMark& rTOX,
-/*N*/                               const SwIndex* pIdx )
-/*N*/ {
-/*N*/   eSetGetExpFldType = TEXTTOXMARK;
-/*N*/   CNTNT.pTxtTOX = &rTOX;
-/*N*/   nNode = rNdIdx.GetIndex();
-/*N*/   if( pIdx )
-/*N*/       nCntnt = pIdx->GetIndex();
-/*N*/   else
-/*N*/       nCntnt = *rTOX.GetStart();
-/*N*/ }
-
-/*N*/ _SetGetExpFld::_SetGetExpFld( const SwPosition& rPos )
-/*N*/ {
-/*N*/   eSetGetExpFldType = CRSRPOS;
-/*N*/   CNTNT.pPos = &rPos;
-/*N*/   nNode = rPos.nNode.GetIndex();
-/*N*/   nCntnt = rPos.nContent.GetIndex();
-/*N*/ }
-
-/*N*/ _SetGetExpFld::_SetGetExpFld( const SwFlyFrmFmt& rFlyFmt,
-/*N*/                               const SwPosition* pPos  )
-/*N*/ {
-/*N*/   eSetGetExpFldType = FLYFRAME;
-/*N*/   CNTNT.pFlyFmt = &rFlyFmt;
-/*N*/   if( pPos )
-/*N*/   {
-/*N*/       nNode = pPos->nNode.GetIndex();
-/*N*/       nCntnt = pPos->nContent.GetIndex();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       const SwFmtCntnt& rCntnt = rFlyFmt.GetCntnt();
-/*N*/       nNode = rCntnt.GetCntntIdx()->GetIndex() + 1;
-/*N*/       nCntnt = 0;
-/*N*/   }
-/*N*/ }
-
-
-
 
 /*N*/ BOOL _SetGetExpFld::operator<( const _SetGetExpFld& rFld ) const
 /*N*/ {
@@ -1474,36 +1396,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/     const SwDSParam* pParam = GetNewDBMgr()->CreateDSData(aData);
 /*N*/   String* pNew = new String( rDBName );
 /*N*/   rDBNameList.Insert( pNew, rDBNameList.Count() );
-/*N*/ }
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*N*/ void SwDoc::SetFixFields( BOOL bOnlyTimeDate, const DateTime* pNewDateTime )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   BOOL bIsModified = IsModified();
 /*N*/ }
 
 /*N*/ BOOL SwDoc::SetFieldsDirty( BOOL b, const SwNode* pChk, ULONG nLen )
