@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedhlp.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:21:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:37:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,13 +70,6 @@ public:
             TYPEINFO();
             SvxEditSourceHint( ULONG nId );
             SvxEditSourceHint( ULONG nId, ULONG nValue, ULONG nStart=0, ULONG nEnd=0 );
-
-    ULONG   GetValue() const;
-    ULONG   GetStartValue() const;
-    ULONG   GetEndValue() const;
-    void    SetValue( ULONG n );
-    void    SetStartValue( ULONG n );
-    void    SetEndValue( ULONG n );
 };
 
 /** Helper class for common functionality in edit sources
@@ -176,27 +169,6 @@ public:
         @return the possibly transformed rect
      */
     static Rectangle EEToUserSpace( const Rectangle& rRect, const Size& rEESize, bool bIsVertical );
-
-    /** Convert rect from user to edit engine coordinate space
-
-        As the edit engine internally keeps vertical text unrotated,
-        all internal edit engine methods return their stuff unrotated,
-        too. This method rotates and shifts given rect appropriately,
-        if vertical writing is on.
-
-        @param rRect
-        Rectangle to transform
-
-        @param rEESize
-        Paper size of the edit engine
-
-        @param  bIsVertical
-        Whether output text is vertical or not
-
-        @return the possibly transformed rect
-     */
-    static Rectangle UserSpaceToEE( const Rectangle& rRect, const Size& rEESize, bool bIsVertical );
-
 };
 
 }//end of namespace binfilter
