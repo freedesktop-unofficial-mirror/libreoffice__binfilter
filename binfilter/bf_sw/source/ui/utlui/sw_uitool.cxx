@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_uitool.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:32:14 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:11:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -462,62 +462,4 @@ namespace binfilter {
 /*N*/       rSet.Put(SfxStringItem(SID_SWREGISTER_COLLECTION, pCol->GetName()));
 /*N*/
 /*N*/ }
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   DefaultTabs setzen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Abstand zwischen zwei Tabs
- --------------------------------------------------------------------*/
-
-
-/*N*/ USHORT GetTabDist(const SvxTabStopItem& rTabs)
-/*N*/ {
-/*N*/   USHORT nDefDist;
-/*N*/   if( rTabs.Count() )
-/*N*/       nDefDist = (USHORT)( rTabs[0].GetTabPos() );
-/*N*/   else
-/*N*/       nDefDist = 1134;     // 2cm
-/*N*/   return nDefDist;
-/*N*/ }
-
-
-// erfrage ob im Set eine Sfx-PageDesc-Kombination vorliegt und returne diese
-
-
-// erfrage ob im Set eine Sfx-PageDesc-Kombination vorliegt und returne diese
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Metric ermitteln
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Metric ermitteln
- --------------------------------------------------------------------*/
-
-
-
-/*-----------------15.07.97 10:49-------------------
-
---------------------------------------------------*/
-// Umwandlung:  Sub(LibName.ModulName) -> LibName.ModulName.Sub
-
-
-
-/*-----------------09.04.98 16:58-------------------
-
---------------------------------------------------*/
-
-/* -----------------27.04.98 08:26-------------------
- *
- * --------------------------------------------------*/
-
-/*------------------------------------------------------------------------*/
-
 }
