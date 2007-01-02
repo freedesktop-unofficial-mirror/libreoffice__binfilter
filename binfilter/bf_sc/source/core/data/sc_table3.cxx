@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:25:14 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:56:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -370,19 +370,6 @@ return FALSE;//STRIP001     return bValid;
 /*N*/
 /*N*/   return nCellCount;
 /*N*/ }
-
-/*N*/  ULONG ScTable::GetCodeCount() const
-/*N*/  {
-/*N*/   ULONG nCodeCount = 0;
-/*N*/
-/*N*/   for ( USHORT nCol=0; nCol<=MAXCOL; nCol++ )
-/*N*/       if ( aCol[nCol].GetCellCount() )                    // GetCellCount ist inline
-/*N*/           nCodeCount += aCol[nCol].GetCodeCount();
-/*N*/
-/*N*/   return nCodeCount;
-/*N*/  }
-
-
 
 /*N*/ void ScTable::UpdateSelectionFunction( ScFunctionData& rData,
 /*N*/                       USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
