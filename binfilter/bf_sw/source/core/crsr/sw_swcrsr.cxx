@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swcrsr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:19:26 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:43:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -457,15 +457,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::IsAtLeftRightMargin( BOOL bLeft, BOOL bAPI ) const
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = FALSE;
-/*N*/ }
-
-
-
-
 /*N*/ FASTBOOL SwCursor::GotoTblBox( const String& rName )
 /*N*/ {
 /*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
@@ -500,13 +491,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (Sw
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
 
-/*
-    FASTBOOL MoveTable( SwWhichTable, SwPosTable );
-    FASTBOOL MoveColumn( SwWhichColumn, SwPosColumn );
-    FASTBOOL MoveRegion( SwWhichRegion, SwPosRegion );
-*/
-
-
 
 /*  */
 
@@ -522,25 +506,5 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (Sw
 /*N*/ SwTableCursor::~SwTableCursor() {}
 
 /*N*/ SwTableCursor::operator SwTableCursor* () { return this; }
-
-
-
-/*N*/  SwCursor* SwTableCursor::MakeBoxSels( SwCursor* pAktCrsr )
-/*N*/  {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   if( bChg )      // ???
-/*N*/ }
-
-
-/*N*/ void SwTableCursor::InsertBox( const SwTableBox& rTblBox )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTableBox* pBox = (SwTableBox*)&rTblBox;
-/*N*/ }
-
-
-
-// Parke den Tabellen-Cursor auf dem StartNode der Boxen.
-
-
-
 
 }

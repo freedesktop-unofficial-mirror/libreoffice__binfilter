@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_trvlreg.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:20:01 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:43:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,18 +75,4 @@ namespace binfilter {
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
-
-
-
-/*N*/ FASTBOOL SwCursor::MoveRegion( SwWhichRegion fnWhichRegion, SwPosRegion fnPosRegion )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");  return FALSE;//STRIP001 SwCrsrSaveState aSaveState( *this );
-/*N*/ }
-
-
-
-
-
-
-
 }

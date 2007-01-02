@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_trvltbl.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:20:12 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:44:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,56 +134,6 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
-
-/*N*/ String SwCrsrShell::GetBoxNms() const
-/*N*/ {
-/*N*/   String sNm;
-/*N*/   const SwPosition* pPos;
-/*N*/   SwFrm* pFrm;
-/*N*/
-/*N*/   if( IsTableMode() )
-/*N*/   {
-/*?*/       pFrm = pTblCrsr->Start()->nNode.GetNode().GetCntntNode()->GetFrm();
-/*?*/
-/*?*/       do {
-/*?*/           pFrm = pFrm->GetUpper();
-/*?*/       } while ( pFrm && !pFrm->IsCellFrm() );
-/*?*/
-/*?*/       ASSERT( pFrm, "kein Frame zur Box" );
-/*?*/       sNm = ((SwCellFrm*)pFrm)->GetTabBox()->GetName();
-/*?*/       sNm += ':';
-/*?*/       pPos = pTblCrsr->End();
-/*?*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       const SwTableNode* pTblNd = IsCrsrInTbl();
-/*N*/       if( !pTblNd )
-/*?*/           return sNm;
-/*N*/       pPos = GetCrsr()->GetPoint();
-/*N*/   }
-/*N*/
-/*N*/   pFrm = pPos->nNode.GetNode().GetCntntNode()->GetFrm();
-/*N*/
-/*N*/   do {
-/*N*/       pFrm = pFrm->GetUpper();
-/*N*/   } while ( pFrm && !pFrm->IsCellFrm() );
-/*N*/
-/*N*/   if( pFrm )
-/*N*/       sNm += ((SwCellFrm*)pFrm)->GetTabBox()->GetName();
-/*N*/
-/*N*/   return sNm;
-/*N*/ }
-
-
-/*N*/ FASTBOOL SwCrsrShell::GotoTable( const String& rName )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
-/*N*/ }
-
-
 /*N*/ FASTBOOL SwCrsrShell::CheckTblBoxCntnt( const SwPosition* pPos )
 /*N*/ {
 /*N*/   if( !pBoxIdx || !pBoxPtr || IsSelTblCells() || !IsAutoUpdateCells() )
@@ -247,12 +197,6 @@ namespace binfilter {
 /*?*/   }
 /*?*/
 /*?*/   return 0 != pChkBox;
-/*N*/ }
-
-
-/*N*/ void SwCrsrShell::SaveTblBoxCntnt( const SwPosition* pPos )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( IsSelTblCells() || !IsAutoUpdateCells() )
 /*N*/ }
 
 

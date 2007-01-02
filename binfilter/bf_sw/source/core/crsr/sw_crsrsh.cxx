@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_crsrsh.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:17:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:42:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -153,15 +153,6 @@ using namespace ::com::sun::star::util;
 
 // -------------- Methoden von der SwCrsrShell -------------
 
-/*N*/SwPaM * SwCrsrShell::CreateCrsr()
-/*N*/{
-DBG_BF_ASSERT(0, "STRIP");  return NULL;//STRIP001  // Innerhalb der Tabellen-SSelection keinen neuen Crsr anlegen
-/*N*/ }
-
-// loesche den aktuellen Cursor und der folgende wird zum Aktuellen
-
-
-
 
 // gebe den aktuellen zurueck
 
@@ -305,118 +296,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*?*/ }
 /*?*/
 /*?*/ #endif
-
-
-
-
-
-
-
-/*N*/ FASTBOOL SwCrsrShell::IsAtLRMargin( BOOL bLeft, BOOL bAPI ) const
-/*N*/ {
-/*N*/   SwShellCrsr* pTmpCrsr = IsTableMode() ? pTblCrsr : pCurCrsr;
-/*N*/   return pTmpCrsr->IsAtLeftRightMargin( bLeft, bAPI );
-/*N*/ }
-
-
-/*N*/ FASTBOOL SwCrsrShell::SttEndDoc( BOOL bStt )
-/*N*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   SwCallLink aLk( *this );        // Crsr-Moves ueberwachen, evt. Link callen
-/*N*/ }
-
-
-
-
-
-
-
-
-
-// Positionieren des Cursors
-
-
-
-
-/*N*/ int SwCrsrShell::SetCrsr( const Point &rLPt, BOOL bOnlyText )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      SET_CURR_SHELL( this );
-/*N*/ }
-
-
-
-
-
-
-
-
-
-// suche innerhalb der Selektierten-Bereiche nach einer Selektion, die
-// den angebenen SPoint umschliesst
-// Ist das Flag bTstOnly gesetzt, dann wird nur getestet, ob dort eine
-// SSelection besteht; des akt. Cursr wird nicht umgesetzt!
-// Ansonsten wird er auf die gewaehlte SSelection gesetzt.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*N*/ void SwCrsrShell::GetPageNum( USHORT &rnPhyNum, USHORT &rnVirtNum,
-/*N*/                             BOOL bAtCrsrPos, const BOOL bCalcFrm )
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   // Seitennummer: die erste sichtbare Seite oder die am Cursor
-/*N*/   const SwCntntFrm* pCFrm;
-/*N*/   const SwPageFrm *pPg = 0;
-/*N*/
-/*N*/   if( !bAtCrsrPos || 0 == (pCFrm = GetCurrFrm( bCalcFrm )) ||
-/*N*/                      0 == (pPg   = pCFrm->FindPageFrm()) )
-/*N*/   {
-/*?*/       pPg = Imp()->GetFirstVisPage();
-/*?*/       while( pPg && pPg->IsEmptyPage() )
-/*?*/           pPg = (const SwPageFrm *)pPg->GetNext();
-/*N*/   }
-/*N*/   // Abfrage auf pPg muss fuer den Sonderfall Writerstart mit
-/*N*/   // standard.vor sein.
-/*N*/   rnPhyNum  = pPg? pPg->GetPhyPageNum() : 1;
-/*N*/   rnVirtNum = pPg? pPg->GetVirtPageNum() : 1;
-/*N*/ }
-
-
-
-
-/*N*/ USHORT SwCrsrShell::GetPageCnt()
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   // gebe die Anzahl der Seiten zurueck
-/*N*/   return GetLayout()->GetPageNum();
-/*N*/ }
-
-// Gehe zur naechsten SSelection
-
-
-
-// gehe zur vorherigen SSelection
-
-
-
-
-
-
-
-
-// aktualisiere den Crsrs, d.H. setze ihn wieder in den Content.
-// Das sollte nur aufgerufen werden, wenn der Cursor z.B. beim
-// Loeschen von Rahmen irgendwohin gesetzt wurde. Die Position
-// ergibt sich aus seiner aktuellen Position im Layout !!
 
 
 /*N*/ void SwCrsrShell::UpdateCrsrPos()
@@ -757,55 +636,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      SET_CURR_SHELL( this );
 /*N*/       pVisCrsr->Show();
 /*N*/ }
 
-// Methoden zum Anzeigen bzw. Verstecken des sichtbaren Text-Cursors
-
-
-/*N*/ void SwCrsrShell::ShowCrsr()
-/*N*/ {
-/*N*/   if( !bBasicHideCrsr )
-/*N*/   {
-/*N*/       bSVCrsrVis = TRUE;
-/*N*/       UpdateCrsr();
-/*N*/   }
-/*N*/ }
-
-
-/*N*/ void SwCrsrShell::HideCrsr()
-/*N*/ {
-/*N*/   if( !bBasicHideCrsr )
-/*N*/   {
-/*N*/       bSVCrsrVis = FALSE;
-/*N*/       // evt. die sel. Bereiche aufheben !!
-/*N*/       SET_CURR_SHELL( this );
-/*N*/       pVisCrsr->Hide();
-/*N*/   }
-/*N*/ }
-
-
-
-
-/*N*/ void SwCrsrShell::ShGetFcs( BOOL bUpdate )
-/*N*/ {
-/*N*/   bHasFocus = TRUE;
-/*N*/   if( !bBasicHideCrsr && VisArea().Width() )
-/*N*/   {
-/*?*/       UpdateCrsr( bUpdate ? SwCrsrShell::CHKRANGE|SwCrsrShell::SCROLLWIN
-/*?*/                           : SwCrsrShell::CHKRANGE );
-/*?*/       ShowCrsrs( bSVCrsrVis ? TRUE : FALSE );
-/*N*/   }
-/*N*/ }
-
-// gebe den aktuellen Frame, in dem der Cursor steht, zurueck
-
-#if 0
-
-//MA 03. Nov. 95: Die letzten Anwender habe ich gerade aus wrtsh1.cxx entfernt.
-//                Weil's so kunstvoll aussieht lass ich die Funktion vorlauefig
-//                hier.
-
-
-#endif
-
 
 /*N*/ SwCntntFrm *SwCrsrShell::GetCurrFrm( const BOOL bCalcFrm ) const
 /*N*/ {
@@ -944,48 +774,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      SET_CURR_SHELL( this );
 #*  Datum       :  MA 05. Nov. 92
 #*  Update      :  JP 19.09.97
 #***********************************************************************/
-
-
-
-//=========================================================================
-
-/*
- * der Copy-Constructor
- * Cursor-Position kopieren, in den Ring eingetragen.
- * Alle Ansichten eines Dokumentes stehen im Ring der Shells.
- */
-
-/*N*/ SwCrsrShell::SwCrsrShell( SwCrsrShell& rShell, Window *pWin )
-/*N*/   : ViewShell( rShell, pWin ),
-/*N*/   SwModify( 0 )
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   // Nur die Position vom aktuellen Cursor aus der Copy-Shell uebernehmen
-/*N*/   pCurCrsr = new SwShellCrsr( *this, *(rShell.pCurCrsr->GetPoint()) );
-/*N*/   pCurCrsr->GetCntntNode()->Add( this );
-/*N*/   pCrsrStk = 0;
-/*N*/   pTblCrsr = 0;
-/*N*/
-/*N*/   nBasicActionCnt = 0;
-/*N*/
-/*N*/   pBoxIdx = 0;
-/*N*/   pBoxPtr = 0;
-/*N*/
-    /*
-     * setze die initiale Spalten-Position fuer Up / Down
-     */
-/*N*/   nCrsrMove = 0;
-/*N*/   bAllProtect = bVisPortChgd = bChgCallFlag = bInCMvVisportChgd =
-/*N*/   bGCAttr = bIgnoreReadonly = bSelTblCells = bBasicHideCrsr =
-/*N*/   bOverwriteCrsr = FALSE;
-/*N*/   bCallChgLnk = bHasFocus = bSVCrsrVis = bAutoUpdateCells = TRUE;
-/*N*/   bSetCrsrInReadOnly = TRUE;
-/*N*/   eMvState = MV_NONE;     // Status fuers Crsr-Travelling - GetCrsrOfst
-/*N*/   pVisCrsr = new SwVisCrsr( this );
-/*N*/ //    UpdateCrsr( 0 );
-/*N*/     // OD 11.02.2003 #100556#
-/*N*/     mbMacroExecAllowed = rShell.IsMacroExecAllowed();
-/*N*/ }
 
 
 /*
@@ -1145,42 +933,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      SET_CURR_SHELL( this );
 /*N*/   return FALSE;
 /*N*/ }
 
-
-// darf der Cursor in ReadOnlyBereiche?
-/*N*/ void SwCrsrShell::SetReadOnlyAvailable( BOOL bFlag )
-/*N*/ {
-/*N*/   // im GlobalDoc darf NIE umgeschaltet werden
-/*N*/   if( (!GetDoc()->GetDocShell() ||
-/*N*/        !GetDoc()->GetDocShell()->IsA( SwGlobalDocShell::StaticType() )) &&
-/*N*/       bFlag != bSetCrsrInReadOnly )
-/*N*/   {
-/*?*/       // wenn das Flag ausgeschaltet wird, dann muessen erstmal alle
-/*?*/       // Selektionen aufgehoben werden. Denn sonst wird sich darauf
-/*?*/       // verlassen, das nichts geschuetztes selektiert ist!
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if( !bFlag )
-/*N*/   }
-/*N*/ }
-
-/*N*/ FASTBOOL SwCrsrShell::HasReadonlySel() const
-/*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;
-/*N*/   if( IsReadOnlyAvailable() )
-/*N*/   {
-/*N*/       if( pTblCrsr )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001         bRet = pTblCrsr->HasReadOnlyBoxSel() ||
-/*N*/       else
-/*N*/       {
-/*N*/           const SwPaM* pCrsr = pCurCrsr;
-/*N*/
-/*N*/           do {
-/*N*/               if( pCrsr->HasReadonlySel() )
-/*N*/                   bRet = TRUE;
-/*N*/           } while( !bRet && pCurCrsr != ( pCrsr = (SwPaM*)pCrsr->GetNext() ));
-/*N*/       }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
 // SwCursor - Methode !!!!
 /*N*/ FASTBOOL SwCursor::IsReadOnlyAvailable() const
 /*N*/ {
@@ -1190,92 +942,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if( !bFlag )
 /*N*/       pUnoCrsr ? TRUE : FALSE;
 /*N*/ }
 
-
-
-#ifdef BIDI
-
-/*N*/ short SwCrsrShell::GetTextDirection( const Point* pPt ) const
-/*N*/ {
-/*N*/   SwPosition aPos( *pCurCrsr->GetPoint() );
-/*N*/   Point aPt( pPt ? *pPt : pCurCrsr->GetPtPos() );
-/*N*/   if( pPt )
-/*N*/   {
-/*?*/       SwCrsrMoveState aTmpState( MV_NONE );
-/*?*/       aTmpState.bSetInReadOnly = IsReadOnlyAvailable();
-/*?*/
-/*?*/       GetLayout()->GetCrsrOfst( &aPos, aPt, &aTmpState );
-/*N*/   }
-
-/*N*/     return pDoc->GetTextDirection( aPos, &aPt );
-/*N*/ }
-
-/*N*/ FASTBOOL SwCrsrShell::IsInVerticalText( const Point* pPt ) const
-/*N*/ {
-/*N*/     const short nDir = GetTextDirection( pPt );
-/*N*/     return FRMDIR_VERT_TOP_RIGHT == nDir || FRMDIR_VERT_TOP_LEFT == nDir;
-/*N*/ }
-
-/*N*/ FASTBOOL SwCrsrShell::IsInRightToLeftText( const Point* pPt ) const
-/*N*/ {
-/*N*/     const short nDir = GetTextDirection( pPt );
-/*N*/     // GetTextDirection uses FRMDIR_VERT_TOP_LEFT to indicate RTL in
-/*N*/     // vertical environment
-/*N*/     return FRMDIR_VERT_TOP_LEFT == nDir || FRMDIR_HORI_RIGHT_TOP == nDir;
-/*N*/ }
-
-#else
-
-/*?*/ FASTBOOL SwCrsrShell::IsInVerticalText( const Point* pPt ) const
-/*?*/ {
-/*?*/   SwPosition aPos( *pCurCrsr->GetPoint() );
-/*?*/   Point aPt( pPt ? *pPt : pCurCrsr->GetPtPos() );
-/*?*/   if( pPt )
-/*?*/   {
-/*?*/       SwCrsrMoveState aTmpState( MV_NONE );
-/*?*/       aTmpState.bSetInReadOnly = IsReadOnlyAvailable();
-/*?*/
-/*?*/       GetLayout()->GetCrsrOfst( &aPos, aPt, &aTmpState );
-/*?*/   }
-/*?*/   return pDoc->IsInVerticalText( aPos, &aPt );
-/*?*/ }
-
-#endif
-
-/*  */
-
-    // die Suchfunktionen
-
-
-
-/*N*/ void SwCrsrShell::SetSelection( const SwPaM& rCrsr )
-/*N*/ {
-/*N*/   StartAction();
-/*N*/   BOOL bFirst = TRUE;
-/*N*/   SwPaM* pCrsr = GetCrsr();
-/*N*/   *pCrsr->GetPoint() = *rCrsr.GetPoint();
-/*N*/   if(rCrsr.HasMark())
-/*N*/   {
-/*N*/       pCrsr->SetMark();
-/*N*/       *pCrsr->GetMark() = *rCrsr.GetMark();
-/*N*/   }
-/*N*/   if((SwPaM*)rCrsr.GetNext() != &rCrsr)
-/*N*/   {
-/*N*/       const SwPaM *_pStartCrsr = (SwPaM*)rCrsr.GetNext(), *__pStartCrsr = _pStartCrsr;
-/*N*/       do
-/*N*/       {
-/*N*/           SwPaM* pCurCrsr = CreateCrsr();
-/*N*/           *pCurCrsr->GetPoint() = *_pStartCrsr->GetPoint();
-/*N*/           if(_pStartCrsr->HasMark())
-/*N*/           {
-/*N*/               pCurCrsr->SetMark();
-/*N*/               *pCurCrsr->GetMark() = *_pStartCrsr->GetMark();
-/*N*/           }
-/*N*/       } while( (_pStartCrsr=(SwPaM *)_pStartCrsr->GetNext()) != &rCrsr );
-/*N*/   }
-/*N*/   EndAction();
-/*N*/ }
-
-/*  */
 
 #if !defined(PRODUCT) || defined(WIN)
 

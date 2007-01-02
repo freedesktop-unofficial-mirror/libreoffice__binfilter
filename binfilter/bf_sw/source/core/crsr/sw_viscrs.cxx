@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viscrs.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:20:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:44:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -335,20 +335,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   }
 /*N*/ }
 
-
-
-/*
- * Rectangle ist in Dokument-Koordianten !!
- * pWin != 0 ->  auch wirklich malen
- *      == 0 ->  nur testen, ob es gemalt werden kann
- */
-
-
-
-/*N*/void SwSelPaintRects::FillRects()
-/*N*/{
-/*N*/}
-
 // check current MapMode of the shell and set possibly the static members.
 // Optional set the parameters pX, pY
 /*N*/ void SwSelPaintRects::Get1PixelInLogic( const ViewShell& rSh,
@@ -444,18 +430,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   : SwTableCursor( rPos ), SwShellCrsr( rCrsrSh, rPos ),
 /*N*/       SwCursor( rPos )
 /*N*/ {
-/*N*/ }
-
-/*N*/ SwShellTableCrsr::SwShellTableCrsr( const SwCrsrShell& rCrsrSh,
-/*N*/                   const SwPosition& rMkPos, const Point& rMkPt,
-/*N*/                   const SwPosition& rPtPos, const Point& rPtPt )
-/*N*/   : SwTableCursor( rPtPos ), SwShellCrsr( rCrsrSh, rPtPos ),
-/*N*/       SwCursor( rPtPos )
-/*N*/ {
-/*N*/   SetMark();
-/*N*/   *GetMark() = rMkPos;
-/*N*/   GetMkPos() = rMkPt;
-/*N*/   GetPtPos() = rPtPt;
 /*N*/ }
 
 /*N*/ SwShellTableCrsr::~SwShellTableCrsr() {}
