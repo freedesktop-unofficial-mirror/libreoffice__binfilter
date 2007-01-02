@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:14:05 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:49:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -189,9 +189,6 @@ public:
     //pPDFOut != NULL is used for PDF export.
     void            InitPrt( SfxPrinter * , OutputDevice *pPDFOut = NULL );
 
-    SwPrintData*    GetPrintData() const;
-    void            SetPrintData(SwPrintData& rPrtData);
-
     //Klammerung von zusammengehoerenden Aktionen.
     inline void StartAction();
            void ImplStartAction();
@@ -243,8 +240,6 @@ public:
     SwRootFrm   *GetLayout() const;
                                       //erzeugt?
 
-     Size GetDocSize() const;// erfrage die Groesse des Dokuments
-
     void CalcLayout();  //Durchformatierung des Layouts erzwingen.
 
     inline SwDoc *GetDoc()  const { return pDoc; }  //niemals 0.
@@ -266,14 +261,8 @@ public:
 
     //Andern alle PageDescriptoren
 
-    //Druckauftrag abwickeln.
-    // pPDFOut != Null is: do PDF Export (no printing!)
-    sal_Bool Prt( SwPrtOptions& rOptions, SfxProgress& rProgress,
-                  OutputDevice *pPDFOut = NULL );
-
     // creates temporary doc with selected text for PDF export
     SwDoc * CreatePrtDoc( SfxPrinter* pPrt, SvEmbeddedObjectRef &rDocShellRef );
-    SwDoc * FillPrtDoc( SwDoc* pPrtDoc, const SfxPrinter* pPrt );
 
     //Wird intern fuer die Shell gerufen die Druckt. Formatiert die Seiten.
 
@@ -293,8 +282,6 @@ public:
 
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
     void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         void  ApplyViewOptions( const SwViewOption &rOpt );
-           void  SetUIOptions( const SwViewOption &rOpt );
-           void  SetReadonlySelectionOption(sal_Bool bSet);//change the selection mode in readonly docs
 
     const SwAccessibilityOptions* GetAccessibilityOptions() const { return pAccOptions;}
 
@@ -350,36 +337,18 @@ public:
 
     //sorge dafuer, das auf jedenfall die MarkListe aktuell ist (Bug 57153)
 
-    // erfrage den Attribut Pool
-    inline const SfxItemPool& GetAttrPool() const;
-                 SfxItemPool& GetAttrPool();
-
     sal_Bool IsPreView() const { return bPreView; }
 
     sal_Bool IsFrameView()  const { return bFrameView; }
     void SetFrameView( const Size& rBrowseBorder )
         { bFrameView = sal_True; aBrowseBorder = rBrowseBorder; }
 
-    //Nimmt die notwendigen Invalidierungen vor,
-    //wenn sich der BrowdseModus aendert, bBrowseChgd == sal_True
-    //oder, im BrowseModus, wenn sich die Groessenverhaeltnisse
-    //aendern (bBrowseChgd == sal_False)
-     void CheckBrowseView( FASTBOOL bBrowseChgd );
-
     //Damit in der UI nicht ueberall das dochxx includet werden muss
     sal_Bool IsBrowseMode() const;
 
 
     const Size& GetBrowseBorder() const{ return aBrowseBorder; }
-    void SetBrowseBorder( const Size& rNew );
 
-
-    // OD 15.01.2003 #103492# - change method signature due to new page preview
-    // functionality.
-
-
-    //apply Accessiblity options
-    void ApplyAccessiblityOptions(SvtAccessibilityOptions& rAccessibilityOptions);
 
     ViewShell( ViewShell&, Window *pWin = 0, OutputDevice *pOut = 0,
                 long nFlags = 0 );
@@ -417,13 +386,6 @@ inline void ViewShell::EndAction( const sal_Bool bIdleEnd )
         ImplEndAction( bIdleEnd );
     --nStartAction;
 }
-
-inline const SfxItemPool& ViewShell::GetAttrPool() const
-{
-    return ((ViewShell*)this)->GetAttrPool();
-}
-
-
 
 } //namespace binfilter
 #endif //_VIEWSH_HXX
