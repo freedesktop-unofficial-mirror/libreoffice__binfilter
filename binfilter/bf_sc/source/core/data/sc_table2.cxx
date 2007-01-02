@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:25:01 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:56:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -471,15 +471,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/ }
 
 
-/*N*/ void ScTable::PutCell( const ScAddress& rPos, ULONG nFormatIndex, ScBaseCell* pCell )
-/*N*/ {
-/*N*/   if (pCell)
-/*N*/       aCol[rPos.Col()].Insert( rPos.Row(), nFormatIndex, pCell );
-/*N*/   else
-/*N*/       aCol[rPos.Col()].Delete( rPos.Row() );
-/*N*/ }
-
-
 /*N*/ BOOL ScTable::SetString( USHORT nCol, USHORT nRow, USHORT nTab, const String& rString )
 /*N*/ {
 /*N*/   if (ValidColRow(nCol,nRow))
@@ -595,17 +586,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }
-
-
-
-
-/*N*/ USHORT ScTable::GetErrCode( USHORT nCol, USHORT nRow ) const
-/*N*/ {
-/*N*/   if (ValidColRow( nCol, nRow ))
-/*N*/       return aCol[nCol].GetErrCode( nRow );
-/*N*/   return 0;
-/*N*/ }
-
 
 /*N*/ void ScTable::SetDirtyVar()
 /*N*/ {
@@ -1190,19 +1170,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const
-/*N*/ {
-/*N*/   BOOL bIsUsed = FALSE;
-/*N*/
-/*N*/   for ( USHORT i=0; i<=MAXCOL; i++ )
-/*N*/     {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aCol[i].IsStyleSheetUsed( rStyle, bGatherAllStyles ) )
-/*N*/     }
-/*N*/
-/*N*/   return bIsUsed;
-/*N*/ }
-
-
 /*N*/ void ScTable::StyleSheetChanged( const SfxStyleSheetBase* pStyleSheet, BOOL bRemoved,
 /*N*/                               OutputDevice* pDev,
 /*N*/                               double nPPTX, double nPPTY,
@@ -1528,16 +1495,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   else
 /*N*/       DBG_ERROR("Falsche Spaltennummer oder keine Flags");
 /*N*/ }
-
-
-/*N*/ void ScTable::ShowRow(USHORT nRow, BOOL bShow)
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (VALIDROW(nRow) && pRowFlags)
-/*N*/ }
-
-
-
-
 
 
 /*N*/ void ScTable::ShowRows(USHORT nRow1, USHORT nRow2, BOOL bShow)
