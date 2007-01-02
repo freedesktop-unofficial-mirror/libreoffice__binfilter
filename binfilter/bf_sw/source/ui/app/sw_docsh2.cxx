@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-22 10:21:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:09:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -435,13 +435,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/   }
 /*N*/   Broadcast(SfxSimpleHint(SFX_HINT_DOCCHANGED));
 /*N*/ }
-
-/* -----------------------------14.12.99 16:52--------------------------------
-
- ---------------------------------------------------------------------------*/
-/*?*/ void  SwDocShell::ToggleBrowserMode(BOOL bSet, SwView* pView )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
 
 /*N*/ULONG SwDocShell::LoadStylesFromFile( const String& rURL,
 /*N*/                   SwgReaderOption& rOpt, BOOL bUnoCall )
