@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:28:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:44:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1419,15 +1419,6 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*?*/   pNewColl->SetPoolHlpFileId( UCHAR_MAX );
 /*?*/
 /*?*/   return pNewColl;
-/*N*/ }
-
-
-
-
-/*N*/ void SwDoc::CopyPageDesc( const SwPageDesc& rSrcDesc, SwPageDesc& rDstDesc,
-/*N*/                           BOOL bCopyPoolIds )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   FASTBOOL bNotifyLayout = FALSE;
 /*N*/ }
 
 
