@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xftshcit.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:31:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:40:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,6 @@ class XFormTextShadowColorItem : public XColorItem
 public:
             TYPEINFO();
             XFormTextShadowColorItem() {}
-            XFormTextShadowColorItem(long nIndex, const Color& rTheColor);
             XFormTextShadowColorItem(const String& rName, const Color& rTheColor);
             XFormTextShadowColorItem(SvStream& rIn);
 
