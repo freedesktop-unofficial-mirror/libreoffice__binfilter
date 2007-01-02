@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:36:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -294,16 +294,6 @@ void SvxShape::setMaster( SvxShapeMaster* pMaster )
     mpImpl->mpMaster = pMaster;
 }
 
-SvxShapeMaster* SvxShape::getMaster()
-{
-    return mpImpl ? mpImpl->mpMaster : NULL;
-}
-
-const SvxShapeMaster* SvxShape::getMaster() const
-{
-    return mpImpl ? mpImpl->mpMaster : NULL;
-}
-
 //----------------------------------------------------------------------
 sal_Bool SvxShape::queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& aAny )
 {
@@ -389,12 +379,6 @@ sal_Int64 SAL_CALL SvxShape::getSomething( const ::com::sun::star::uno::Sequence
     {
         return NULL;
     }
-}
-
-//----------------------------------------------------------------------
-SvxShape* SvxShape::GetShapeForSdrObj( SdrObject* pObj ) throw()
-{
-    return getImplementation( pObj->getUnoShape() );
 }
 
 //----------------------------------------------------------------------
@@ -604,26 +588,6 @@ uno::Any SvxShape::GetBitmap( sal_Bool bMetaFile /* = sal_False */ ) const throw
     delete pView;
 
     return aAny;
-}
-
-//----------------------------------------------------------------------
-
-void SvxShape::addStaticTypes( sal_Int16 nNewTypes, /* uno::Type* */ ... ) throw()
-{
-    DBG_ERROR("SvxShape::addStaticTypes() : obsolete function called");
-/*
-    const sal_Int32 nOldCount = maTypeSequence.getLength();
-    DBG_ASSERT( nOldCount, "illegal call of addStaticType() before SvxShape::getStaticTypes()!" );
-
-    maTypeSequence.realloc( nOldCount + nNewTypes );
-    uno::Type* pTypes = &maTypeSequence.getArray()[nOldCount];
-
-    va_list marker;
-    va_start( marker, nNewTypes );
-    for( sal_Int32 i = 0 ; i < nNewTypes; i++ )
-        *pTypes++ = *va_arg( marker, uno::Type*);
-    va_end( marker );
-*/
 }
 
 //----------------------------------------------------------------------
