@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmtool.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:45:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:52:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,10 +79,6 @@ class SwTxtFrm;
 void MA_FASTCALL DrawGraphic( const SvxBrushItem *, OutputDevice *,
       const SwRect &rOrg, const SwRect &rOut, const BYTE nGrfNum = GRFNUM_NO,
       const sal_Bool bConsiderBackgroundTransparency = sal_False );
-
-// OD 24.01.2003 #106593# - method to align rectangle
-// Created declaration here to avoid <extern> declarations
-void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
 
 // OD 24.01.2003 #106593# - method to align graphic rectangle
 // Created declaration here to avoid <extern> declarations
