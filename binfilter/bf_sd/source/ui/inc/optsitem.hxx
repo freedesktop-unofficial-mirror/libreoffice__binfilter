@@ -4,9 +4,9 @@
  *
  *  $RCSfile: optsitem.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:29:18 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:11:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -178,8 +178,6 @@ public:
             SdOptionsLayout( USHORT nConfigId, BOOL bUseConfig );
             ~SdOptionsLayout() {}
 
-    void    SetDefaults();
-
     BOOL    IsRulerVisible() const { Init(); return (BOOL) bRuler; }
     BOOL    IsMoveOutline() const { Init(); return (BOOL) bMoveOutline; }
     BOOL    IsDragStripes() const { Init(); return (BOOL) bDragStripes; }
@@ -225,8 +223,6 @@ public:
 
             SdOptionsContents( USHORT nConfigId, BOOL bUseConfig );
             ~SdOptionsContents() {}
-
-    void    SetDefaults();
 
     BOOL    IsExternGraphic() const { Init(); return (BOOL) bExternGraphic; }
     BOOL    IsOutlineMode() const { Init(); return (BOOL) bOutlineMode; }
@@ -294,8 +290,6 @@ public:
 
             SdOptionsMisc( USHORT nConfigId, BOOL bUseConfig );
             ~SdOptionsMisc() {}
-
-    void    SetDefaults();
 
     BOOL    IsStartWithTemplate() const { Init(); return (BOOL) bStartWithTemplate; }
     BOOL    IsMarkedHitMovesAlways() const { Init(); return (BOOL) bMarkedHitMovesAlways; }
@@ -390,8 +384,6 @@ public:
             SdOptionsSnap( USHORT nConfigId, BOOL bUseConfig );
             ~SdOptionsSnap() {}
 
-    void    SetDefaults();
-
     BOOL    IsSnapHelplines() const { Init(); return (BOOL) bSnapHelplines; }
     BOOL    IsSnapBorder() const { Init(); return (BOOL) bSnapBorder; }
     BOOL    IsSnapFrame() const { Init(); return (BOOL) bSnapFrame; }
@@ -442,8 +434,6 @@ public:
 
             SdOptionsZoom( USHORT nConfigId, BOOL bUseConfig );
             ~SdOptionsZoom() {}
-
-    void    SetDefaults();
 
     void    GetScale( INT32& rX, INT32& rY ) const { Init(); rX = nX; rY = nY; }
     void    SetScale( INT32 nInX, INT32 nInY ) { if( nX != nInX || nY != nInY ) { OptionsChanged(); nX = nInX; nY = nInY; } }
@@ -539,7 +529,6 @@ public:
 
     void    SetPrinterOptions( const SdOptionsPrint* pOptions );
 
-    void    SetDefaults();
     BOOL    operator==( const SdOptionsPrint& rOpt ) const;
 
     BOOL    IsDraw() const { Init(); return (BOOL) bDraw; }
