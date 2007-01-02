@@ -4,9 +4,9 @@
  *
  *  $RCSfile: FormattedField.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:15:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:44:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,9 +93,6 @@ namespace frm
         ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier>  calcDefaultFormatsSupplier() const;
         ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier>  calcFormFormatsSupplier() const;
         ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier>  calcFormatsSupplier() const;
-        sal_Int32 calcFormatKey() const;
-        void getFormatDescription(::rtl::OUString& sFormat, LanguageType& eLanguage);
-
         DECLARE_DEFAULT_LEAF_XTOR( OFormattedModel );
 
         friend InterfaceRef SAL_CALL OFormattedModel_CreateInstance(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory);
