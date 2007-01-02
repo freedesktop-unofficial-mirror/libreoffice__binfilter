@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dociter.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:33:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:26:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,40 +50,6 @@ class ScBaseCell;
 class ScPatternAttr;
 class ScAttrArray;
 class ScAttrIterator;
-
-class ScDocumentIterator                // alle nichtleeren Zellen durchgehen
-{
-private:
-    ScDocument*             pDoc;
-    USHORT                  nStartTab;
-    USHORT                  nEndTab;
-
-    const ScPatternAttr*    pDefPattern;
-
-    USHORT                  nCol;
-    USHORT                  nRow;
-    USHORT                  nTab;
-    ScBaseCell*             pCell;
-    const ScPatternAttr*    pPattern;
-
-
-    USHORT                  nColPos;
-    USHORT                  nAttrPos;
-
-    BOOL                    GetThis();
-    BOOL                    GetThisCol();
-
-public:
-            ScDocumentIterator( ScDocument* pDocument, USHORT nStartTable, USHORT nEndTable );
-            ~ScDocumentIterator();
-
-    BOOL                    GetFirst();
-    BOOL                    GetNext();
-
-    ScBaseCell*             GetCell();
-    const ScPatternAttr*    GetPattern();
-    void                    GetPos( USHORT& rCol, USHORT& rRow, USHORT& rTab );
-};
 
 class ScValueIterator            // alle Zahlenwerte in einem Bereich durchgehen
 {
