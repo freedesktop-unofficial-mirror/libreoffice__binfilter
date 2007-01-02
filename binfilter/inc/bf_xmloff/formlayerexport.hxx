@@ -4,9 +4,9 @@
  *
  *  $RCSfile: formlayerexport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:30:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:52:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,15 +92,6 @@ namespace xmloff
     public:
         OFormLayerXMLExport(SvXMLExport& _rContext);
 
-        /** initial the object
-
-            <p>To be called if you want to reuse the same object for exportin different documents.</p>
-
-            <p>You don't need to call this if you just constructed the object, in this case it is already
-            initialized..</p>
-        */
-        void initialize();
-
         /** initializes some internal structures for fast access to the given page
 
             <p>This method has to be called before you use getControlId for controls on the given page.
@@ -173,13 +164,6 @@ namespace xmloff
                 interface to obtain the forms container.
         */
         void exportForms(const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage >& _rxDrawPage);
-
-        /// retrieves the property mapper for control styles
-        ::vos::ORef< SvXMLExportPropertyMapper > getStylePropertyMapper();
-
-        /** exports the controls number styles
-        */
-        void exportControlNumberStyles();
 
         /** exports the automatic controls number styles
         */
