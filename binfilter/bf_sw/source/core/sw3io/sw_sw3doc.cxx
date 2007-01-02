@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3doc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:57:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:54:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -568,40 +568,6 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/       OutDocStat( FALSE );
 /*N*/   }
 /*N*/ }
-
-// Laden des Textes eines Dokuments. Der Text wird an den uebergebenen
-// String angefuegt.
-
-
-void Sw3IoImp::LoadDocText( String& rText )
-{
-    rText.Erase();
-    Reset2();
-    pStrm->Seek( 0 );
-    OutputMode( FALSE );
-    InHeader( TRUE );
-    if( ( nFileFlags & SWGF_BAD_FILE )
-     || ( nVersion < SWG_DDESEP ) )
-        Error( ERR_SWG_READ_ERROR );
-
-    BOOL bDone = BOOL( !Good() );
-    while( !bDone )
-    {
-        BYTE cType = Peek();
-        if( !Good() || pStrm->IsEof() )
-            bDone = TRUE;
-        else switch( cType )
-        {
-            case SWG_EOF:
-                bDone = TRUE; break;
-            case SWG_CONTENTS:
-                rText += InContentsText();
-                break;
-            default:
-                SkipRec();
-        }
-    }
-}
 
 //////////////////////////////////////////////////////////////////////////////
 
