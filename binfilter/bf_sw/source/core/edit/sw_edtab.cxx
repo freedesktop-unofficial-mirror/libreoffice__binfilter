@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edtab.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:30:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:49:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,56 +65,4 @@
 #include <mdiexp.hxx>
 #endif
 namespace binfilter {
-
-
-
-
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Tabellenfelder einer Tabelle updaten
- --------------------------------------------------------------------*/
-/*N*/ void SwEditShell::UpdateTable()
-/*N*/ {
-/*N*/   const SwTableNode* pTblNd = IsCrsrInTbl();
-/*N*/
-/*N*/   // Keine Arme keine Kekse
-/*N*/   if( pTblNd )
-/*N*/   {
-/*N*/       StartAllAction();
-/*N*/       StartUndo();
-/*N*/       EndAllTblBoxEdit();
-/*N*/       SwTableFmlUpdate aTblUpdate( (SwTable*)&pTblNd->GetTable() );
-/*N*/       GetDoc()->UpdateTblFlds( &aTblUpdate );
-/*N*/       EndUndo();
-/*N*/       EndAllAction();
-/*N*/   }
-/*N*/ }
-
-    // Change Modus erfragen/setzen
-/*N*/ USHORT SwEditShell::GetTblChgMode() const
-/*N*/ {
-/*N*/   USHORT nMode;
-/*N*/   const SwTableNode* pTblNd = IsCrsrInTbl();
-/*N*/   if( pTblNd )
-/*N*/       nMode = pTblNd->GetTable().GetTblChgMode();
-/*N*/   else
-/*?*/       nMode = 0;//STRIP001GetTblChgDefaultMode();
-/*N*/   return nMode;
-/*N*/ }
-
-
-
-
-    // Zellenbreiten ueber Min/Max Berechnung an Tabellenbreite anpassen
-
-
-
-
-
-
-        // setze das InsertDB als Tabelle Undo auf:
-
 }
