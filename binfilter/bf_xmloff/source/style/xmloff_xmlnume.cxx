@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnume.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:06:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:19:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -586,47 +586,6 @@ SvxXMLNumRuleExport::SvxXMLNumRuleExport( SvXMLExport& rExp ) :
 
 SvxXMLNumRuleExport::~SvxXMLNumRuleExport()
 {
-}
-
-void SvxXMLNumRuleExport::Export( const OUString& rName,
-                                  sal_Bool bContNumbering )
-{
-    GetExport().CheckAttrList();
-
-    // style:name="..."
-    if( rName.getLength() )
-        GetExport().AddAttribute( XML_NAMESPACE_STYLE, XML_NAME, rName );
-
-    // text:consecutive-numbering="..."
-    if( bContNumbering )
-        GetExport().AddAttribute( XML_NAMESPACE_TEXT, XML_CONSECUTIVE_NUMBERING,
-                             XML_TRUE );
-
-    // other application specific attributes
-    AddListStyleAttributes();
-
-    OUString sElem = GetExport().GetNamespaceMap().GetQNameByKey( XML_NAMESPACE_TEXT,
-                                   GetXMLToken(XML_LIST_STYLE) );
-    GetExport().IgnorableWhitespace();
-    GetExport().StartElement( XML_NAMESPACE_TEXT, XML_LIST_STYLE, sal_False );
-
-    uno::Reference< ::com::sun::star::container::XIndexReplace >  xNumRule = GetUNONumRule();
-    if( xNumRule.is() )
-        exportLevelStyles( xNumRule );
-
-    GetExport().EndElement( XML_NAMESPACE_TEXT, XML_LIST_STYLE, sal_True );
-}
-
-void SvxXMLNumRuleExport::ExportOutline()
-{
-    GetExport().IgnorableWhitespace( );
-    GetExport().StartElement( XML_NAMESPACE_TEXT, XML_OUTLINE_STYLE, sal_False );
-
-    uno::Reference< ::com::sun::star::container::XIndexReplace >  xNumRule = GetUNONumRule();
-    if( xNumRule.is() )
-        exportLevelStyles( xNumRule, sal_True );
-
-    GetExport().EndElement( XML_NAMESPACE_TEXT, XML_OUTLINE_STYLE, sal_True );
 }
 
 void SvxXMLNumRuleExport::exportNumberingRule(
