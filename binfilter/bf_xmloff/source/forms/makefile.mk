@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:06:00 $
+#   last change: $Author: hr $ $Date: 2007-01-02 18:16:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_formlayerimport.obj \
         $(SLO)$/xmloff_formattributes.obj \
         $(SLO)$/xmloff_formenums.obj \
-        $(SLO)$/xmloff_formsimp.obj \
         $(SLO)$/xmloff_strings.obj \
         $(SLO)$/xmloff_logging.obj \
         $(SLO)$/xmloff_formcellbinding.obj \
