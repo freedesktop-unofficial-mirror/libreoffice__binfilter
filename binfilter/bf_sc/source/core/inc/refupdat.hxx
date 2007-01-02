@@ -4,9 +4,9 @@
  *
  *  $RCSfile: refupdat.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:59:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:57:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,19 +75,6 @@ public:
                                  ComplRefData& rRef, BOOL bWrap, BOOL bAbsolute );
     static void MoveRelWrap( ScDocument* pDoc, const ScAddress& rPos,
                                 ComplRefData& rRef );
-
-     static ScRefUpdateRes UpdateTranspose( ScDocument* pDoc,
-                                 const ScRange& rSource, const ScAddress& rDest,
-                                 ComplRefData& rRef );
-     static void DoTranspose( short& rCol, short& rRow, short& rTab, ScDocument* pDoc,
-                                 const ScRange& rSource, const ScAddress& rDest );
-
-     static ScRefUpdateRes UpdateGrow(
-                                 const ScRange& rArea, USHORT nGrowX, USHORT nGrowY,
-                                 ComplRefData& rRef );
-
-     static ScRefUpdateRes DoGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY,
-                                 ScRange& rRef );
 };
 
 
