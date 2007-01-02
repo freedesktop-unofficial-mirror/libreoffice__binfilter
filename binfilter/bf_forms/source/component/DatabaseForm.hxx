@@ -4,9 +4,9 @@
  *
  *  $RCSfile: DatabaseForm.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 13:55:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:44:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -488,12 +488,6 @@ private:
     sal_Bool    implEnsureConnection();
 
     // connection sharing
-
-    /// checks if we can re-use (aka share) the connection of the given parent
-    sal_Bool    canShareConnection( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxParentProps );
-
-    /// starts sharing the connection with the parent
-    void        doShareConnection( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxParentProps );
 
     /// stops sharing the connection with the parent
     void        stopSharingConnection( );

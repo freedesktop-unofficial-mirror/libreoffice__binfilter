@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Columns.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 13:58:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:45:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -279,34 +279,6 @@ OGridColumn::OGridColumn(const Reference<XMultiServiceFactory>& _rxFactory, cons
         if ( xPropInfo.is() && xPropInfo->hasPropertyByName( PROPERTY_TRISTATE ) )
             m_xAggregateSet->setPropertyValue( PROPERTY_TRISTATE, makeAny( sal_True ) );
     }
-}
-
-//------------------------------------------------------------------------------
-OGridColumn::OGridColumn( const OGridColumn* _pOriginal, const Reference< XMultiServiceFactory>& _rxFactory )
-    :OGridColumn_BASE( m_aMutex )
-    ,OPropertySetAggregationHelper( OGridColumn_BASE::rBHelper )
-{
-    DBG_CTOR(OGridColumn,NULL);
-
-    m_aWidth = _pOriginal->m_aWidth;
-    m_aAlign = _pOriginal->m_aAlign;
-    m_aHidden = _pOriginal->m_aHidden;
-    m_aModelName = _pOriginal->m_aModelName;
-    m_aLabel = _pOriginal->m_aLabel;
-
-    increment( m_refCount );
-    {
-        {
-            m_xAggregate = createAggregateClone( _pOriginal );
-            setAggregation( m_xAggregate );
-        }
-
-        if ( m_xAggregate.is() )
-        {   // don't omit this brackets - they ensure that the following temporary is properly deleted
-            m_xAggregate->setDelegator( static_cast< ::cppu::OWeakObject* >( this ) );
-        }
-    }
-    decrement( m_refCount );
 }
 
 //------------------------------------------------------------------------------
