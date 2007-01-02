@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdedxv.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:38:05 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:31:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -175,11 +175,6 @@ namespace binfilter {
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
-/*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject* pObj, SdrPageView* pPV, Window* pWin, BOOL bIsNewObj,
-/*N*/   SdrOutliner* pGivenOutliner, OutlinerView* pGivenOutlinerView,
-/*N*/   BOOL bDontDeleteOutliner, BOOL bOnlyOneView)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*N*/ }
 
 /*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL bDontDeleteReally)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet; //STRIP001
@@ -211,32 +206,6 @@ namespace binfilter {
 /*N*/     }
 /*N*/     return bOk;
 /*N*/ }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-/* new interface src537 */
-
-
-
-/*N*/ BOOL SdrObjEditView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /*N*/ void SdrObjEditView::DelWin(OutputDevice* pWin1)
