@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:29:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:46:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -634,36 +634,6 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/ {
 /*N*/   return new SwTabFrm( *pTable );
 /*N*/ }
-
-//Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
-//Dokument. Die erzeugten Contentframes werden in das entsprechende
-//Layout gehaengt.
-void SwTableNode::MakeFrms(const SwNodeIndex & rIdx )
-{
-    if( !GetTable().GetFrmFmt()->GetDepends())//gibt es ueberhaupt Frames ??
-        return;
-
-    SwFrm *pFrm, *pNew;
-    SwCntntNode * pNode = rIdx.GetNode().GetCntntNode();
-
-    ASSERT( pNode, "Kein Contentnode oder Copy-Node und neuer Node identisch.");
-
-    BOOL bBefore = rIdx < GetIndex();
-
-    SwNode2Layout aNode2Layout( *this, rIdx.GetIndex() );
-
-    while( 0 != (pFrm = aNode2Layout.NextFrm()) )
-    {
-        pNew = pNode->MakeFrm();
-        // wird ein Node vorher oder nachher mit Frames versehen
-        if ( bBefore )
-            // der neue liegt vor mir
-            pNew->Paste( pFrm->GetUpper(), pFrm );
-        else
-            // der neue liegt hinter mir
-            pNew->Paste( pFrm->GetUpper(), pFrm->GetNext() );
-    }
-}
 
 //Fuer jede Shell einen TblFrm anlegen und vor den entsprechenden
 //CntntFrm pasten.
