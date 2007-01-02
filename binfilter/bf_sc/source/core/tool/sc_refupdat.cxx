@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_refupdat.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:38:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:59:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -771,117 +771,4 @@ namespace binfilter {
 /*N*/   rRef.PutInOrder();
 /*N*/   rRef.CalcRelFromAbs( rPos );
 /*N*/ }
-
-//------------------------------------------------------------------
-
-/*N*/  void ScRefUpdate::DoTranspose( short& rCol, short& rRow, short& rTab,
-/*N*/                       ScDocument* pDoc, const ScRange& rSource, const ScAddress& rDest )
-/*N*/  {
-/*N*/   short nDz = ((short)rDest.Tab())-(short)rSource.aStart.Tab();
-/*N*/   if (nDz)
-/*N*/   {
-/*N*/       short nNewTab = rTab+nDz;
-/*N*/       short nCount = pDoc->GetTableCount();
-/*N*/       while (nNewTab<0) nNewTab += nCount;
-/*N*/       while (nNewTab>=nCount) nNewTab -= nCount;
-/*N*/       rTab = nNewTab;
-/*N*/   }
-/*N*/   DBG_ASSERT( rCol>=rSource.aStart.Col() && rRow>=rSource.aStart.Row(),
-/*N*/               "UpdateTranspose: Pos. falsch" );
-/*N*/
-/*N*/   short nRelX = rCol - (short)rSource.aStart.Col();
-/*N*/   short nRelY = rRow - (short)rSource.aStart.Row();
-/*N*/
-/*N*/   rCol = (short)rDest.Col() + nRelY;
-/*N*/   rRow = (short)rDest.Row() + nRelX;
-/*N*/  }
-
-// vor dem Aufruf muessen die Abs-Refs aktualisiert werden!
-/*N*/  ScRefUpdateRes ScRefUpdate::UpdateTranspose( ScDocument* pDoc,
-/*N*/                               const ScRange& rSource, const ScAddress& rDest,
-/*N*/                               ComplRefData& rRef )
-/*N*/  {
-/*N*/   ScRefUpdateRes eRet = UR_NOTHING;
-/*N*/   if ( rRef.Ref1.nCol >= rSource.aStart.Col() && rRef.Ref2.nCol <= rSource.aEnd.Col() &&
-/*N*/        rRef.Ref1.nRow >= rSource.aStart.Row() && rRef.Ref2.nRow <= rSource.aEnd.Row() &&
-/*N*/        rRef.Ref1.nTab >= rSource.aStart.Tab() && rRef.Ref2.nTab <= rSource.aEnd.Tab() )
-/*N*/   {
-/*N*/       DoTranspose( rRef.Ref1.nCol, rRef.Ref1.nRow, rRef.Ref1.nTab, pDoc, rSource, rDest );
-/*N*/       DoTranspose( rRef.Ref2.nCol, rRef.Ref2.nRow, rRef.Ref2.nTab, pDoc, rSource, rDest );
-/*N*/       eRet = UR_UPDATED;
-/*N*/   }
-/*N*/   return eRet;
-/*N*/  }
-
-//------------------------------------------------------------------
-
-//  UpdateGrow - erweitert Referenzen, die genau auf den Bereich zeigen
-//  kommt ohne Dokument aus
-
-// vor dem Aufruf muessen die Abs-Refs aktualisiert werden!
-/*N*/  ScRefUpdateRes ScRefUpdate::UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY,
-/*N*/                                       ComplRefData& rRef )
-/*N*/  {
-/*N*/   ScRefUpdateRes eRet = UR_NOTHING;
-/*N*/
-/*N*/   //  in Y-Richtung darf die Ref auch eine Zeile weiter unten anfangen,
-/*N*/   //  falls ein Bereich Spaltenkoepfe enthaelt
-/*N*/
-/*N*/   BOOL bUpdateX = ( nGrowX &&
-/*N*/           rRef.Ref1.nCol == rArea.aStart.Col() && rRef.Ref2.nCol == rArea.aEnd.Col() &&
-/*N*/           rRef.Ref1.nRow >= rArea.aStart.Row() && rRef.Ref2.nRow <= rArea.aEnd.Row() &&
-/*N*/           rRef.Ref1.nTab >= rArea.aStart.Tab() && rRef.Ref2.nTab <= rArea.aEnd.Tab() );
-/*N*/   BOOL bUpdateY = ( nGrowY &&
-/*N*/           rRef.Ref1.nCol >= rArea.aStart.Col() && rRef.Ref2.nCol <= rArea.aEnd.Col() &&
-/*N*/           ( rRef.Ref1.nRow == rArea.aStart.Row() || rRef.Ref1.nRow == rArea.aStart.Row()+1 ) &&
-/*N*/               rRef.Ref2.nRow == rArea.aEnd.Row() &&
-/*N*/           rRef.Ref1.nTab >= rArea.aStart.Tab() && rRef.Ref2.nTab <= rArea.aEnd.Tab() );
-/*N*/
-/*N*/   if ( bUpdateX )
-/*N*/   {
-/*N*/       rRef.Ref2.nCol += nGrowX;
-/*N*/       eRet = UR_UPDATED;
-/*N*/   }
-/*N*/   if ( bUpdateY )
-/*N*/   {
-/*N*/       rRef.Ref2.nRow += nGrowY;
-/*N*/       eRet = UR_UPDATED;
-/*N*/   }
-/*N*/
-/*N*/   return eRet;
-/*N*/  }
-
-/*N*/  ScRefUpdateRes ScRefUpdate::DoGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY,
-/*N*/                                   ScRange& rRef )
-/*N*/  {
-/*N*/   //  wie UpdateGrow, nur mit Range statt RefData
-/*N*/
-/*N*/   ScRefUpdateRes eRet = UR_NOTHING;
-/*N*/
-/*N*/   BOOL bUpdateX = ( nGrowX &&
-/*N*/           rRef.aStart.Col() == rArea.aStart.Col() && rRef.aEnd.Col() == rArea.aEnd.Col() &&
-/*N*/           rRef.aStart.Row() >= rArea.aStart.Row() && rRef.aEnd.Row() <= rArea.aEnd.Row() &&
-/*N*/           rRef.aStart.Tab() >= rArea.aStart.Tab() && rRef.aEnd.Tab() <= rArea.aEnd.Tab() );
-/*N*/   BOOL bUpdateY = ( nGrowY &&
-/*N*/           rRef.aStart.Col() >= rArea.aStart.Col() && rRef.aEnd.Col() <= rArea.aEnd.Col() &&
-/*N*/           ( rRef.aStart.Row() == rArea.aStart.Row() || rRef.aStart.Row() == rArea.aStart.Row()+1 ) &&
-/*N*/               rRef.aEnd.Row() == rArea.aEnd.Row() &&
-/*N*/           rRef.aStart.Tab() >= rArea.aStart.Tab() && rRef.aEnd.Tab() <= rArea.aEnd.Tab() );
-/*N*/
-/*N*/   if ( bUpdateX )
-/*N*/   {
-/*N*/       rRef.aEnd.SetCol( rRef.aEnd.Col() + nGrowX );
-/*N*/       eRet = UR_UPDATED;
-/*N*/   }
-/*N*/   if ( bUpdateY )
-/*N*/   {
-/*N*/       rRef.aEnd.SetRow( rRef.aEnd.Row() + nGrowY );
-/*N*/       eRet = UR_UPDATED;
-/*N*/   }
-/*N*/
-/*N*/   return eRet;
-/*N*/  }
-
-
-
 }
