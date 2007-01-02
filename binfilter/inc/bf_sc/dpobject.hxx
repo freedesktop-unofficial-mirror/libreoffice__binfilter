@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dpobject.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:34:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:26:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -158,9 +158,6 @@ public:
 
     void                UpdateReference( UpdateRefMode eUpdateRefMode,
                                           const ScRange& r, short nDx, short nDy, short nDz );
-    BOOL                RefsEqual( const ScDPObject& r ) const;
-    void                WriteRefsTo( ScDPObject& r ) const;
-
 
     static void         ConvertOrientation( ScDPSaveData& rSaveData,
                             PivotField* pFields, USHORT nCount, USHORT nOrient,
@@ -195,9 +192,6 @@ public:
 
     void        UpdateReference( UpdateRefMode eUpdateRefMode,
                                  const ScRange& r, short nDx, short nDy, short nDz );
-
-    BOOL        RefsEqual( const ScDPCollection& r ) const;
-    void        WriteRefsTo( ScDPCollection& r ) const;
 
     String      CreateNewName( USHORT nMin = 1 ) const;
     void        EnsureNames();
