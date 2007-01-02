@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uitool.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:58:40 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:10:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,30 +68,6 @@ class SwTabCols;
 // SfxItemSets <-> PageDesc
 void ItemSetToPageDesc( const SfxItemSet& rSet, SwPageDesc& rPageDesc );
 void PageDescToItemSet( const SwPageDesc& rPageDesc, SfxItemSet& rSet);
-
-// Auffuellen der Tabs mit DefaultTabs
-
-// DefaultTabs loeschen aus dem TabStopArray
-//void  EraseDefTabs(SvxTabStopItem& rTabs);
-
-// Abstand zwischen dem 1. und zweitem Element ermitteln
- USHORT     GetTabDist(const SvxTabStopItem& rTabs);
-
-// erfrage ob im Set eine Sfx-PageDesc-Kombination vorliegt
-// und setze diesen im Set und loesche die Transport Items
-// (PageBreak & PageModel) aus dem Set
-
-
-// Umwandlung:  Sub(LibName.ModulName) -> LibName.ModulName.Sub
-
-// besorge einen Filenamen/Filternamen. Wird ppMed uebergeben, wird das
-// erzeugte Medium returnt. Auch das FilePassword kann returnt werden.
-
-// ListBox mit allen Zeichenvorlagen fuellen - ausser Standard!
-//inserts a string sorted into a ListBox,
-
-// Tabellenbreite und Ausrichtung ermitteln
-
 
 } //namespace binfilter
 #endif // _UITOOL_HXX
