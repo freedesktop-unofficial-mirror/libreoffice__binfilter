@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:15:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:54:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -539,11 +539,6 @@ namespace binfilter {
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ }
-
-/*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, USHORT nTab )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
-}
 
 /*N*/ void lcl_RefreshPivotData( ScPivotCollection* pColl )
 /*N*/ {
@@ -1189,22 +1184,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDocument::PutCell( const ScAddress& rPos, ScBaseCell* pCell,
-/*N*/                           ULONG nFormatIndex, BOOL bForceTab )
-/*N*/ {
-/*N*/   USHORT nTab = rPos.Tab();
-/*N*/   if ( bForceTab && !pTab[nTab] )
-/*N*/   {
-/*N*/       BOOL bExtras = !bIsUndo;        // Spaltenbreiten, Zeilenhoehen, Flags
-/*N*/
-/*N*/       pTab[nTab] = new ScTable(this, nTab,
-/*N*/                           String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("temp")),
-/*N*/                           bExtras, bExtras);
-/*N*/   }
-/*N*/
-/*N*/   if (pTab[nTab])
-/*N*/       pTab[nTab]->PutCell( rPos, nFormatIndex, pCell );
-/*N*/ }
 
 /*N*/ BOOL ScDocument::GetPrintArea( USHORT nTab, USHORT& rEndCol, USHORT& rEndRow,
 /*N*/                               BOOL bNotes ) const
