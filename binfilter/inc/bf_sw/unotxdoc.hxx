@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotxdoc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:13:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:49:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -638,7 +638,6 @@ public:
                                             sal_Int32& nResult,
                                             ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xLastResult);
 
-    SwXDrawPage*                GetDrawPage();
     SwDocShell*                 GetDocShell() {return pDocShell;}
 
     void * SAL_CALL operator new( size_t ) throw();
