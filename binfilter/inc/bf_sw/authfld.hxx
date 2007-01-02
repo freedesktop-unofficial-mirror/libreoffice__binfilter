@@ -4,9 +4,9 @@
  *
  *  $RCSfile: authfld.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:34:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:41:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -128,14 +128,8 @@ public:
 
     const SwAuthEntry*  GetEntryByHandle(long nHandle) const;
 
-    void                GetAllEntryIdentifiers( SvStringsDtor& rToFill )const;
-    const SwAuthEntry*  GetEntryByIdentifier(const String& rIdentifier)const;
-
-    void                ChangeEntryContent(const SwAuthEntry* pNewEntry);
     // import interface
     USHORT              AppendField(const SwAuthEntry& rInsert);
-    void                MergeFieldType(const SwAuthorityFieldType& rNew, SvUShorts& rMap);
-    void                RemoveUnusedFields();
     long                GetHandle(USHORT nPos);
     USHORT              GetPosition(long nHandle);
 
