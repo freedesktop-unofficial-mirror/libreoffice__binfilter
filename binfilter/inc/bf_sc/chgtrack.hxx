@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:29:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:24:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -337,10 +337,7 @@ protected:
 /*N*/                                       pLnk->SetLink( pL );
 /*N*/                                       return pLnk;
 /*N*/                                   }
-/*N*/           void                RemoveLink( ScChangeAction* p );
 /*N*/           void                RemoveAllAnyLinks();
-/*N*/                               // zeigt ein AnyLink auf p?
-/*N*/           BOOL                DependsOn( ScChangeAction* p ) const;
 /*N*/
      virtual    ScChangeActionLinkEntry*    GetDeletedIn() const
                                              { return pLinkDeletedIn; }
@@ -360,7 +357,6 @@ protected:
 /*N*/                                       return new ScChangeActionLinkEntry(
 /*N*/                                           &pLinkDeleted, p );
 /*N*/                                   }
-/*N*/           BOOL                RemoveDeleted( const ScChangeAction* p );
 /*N*/           void                RemoveAllDeleted();
 /*N*/
             ScChangeActionLinkEntry*    AddDependent( ScChangeAction* p )
@@ -368,7 +364,6 @@ protected:
                                         return new ScChangeActionLinkEntry(
                                             &pLinkDependent, p );
                                     }
-/*N*/           void                RemoveDependent( ScChangeAction* p );
 /*N*/           void                RemoveAllDependent();
 /*N*/
             void                RemoveAllLinks();
@@ -417,31 +412,14 @@ public:
              BOOL               IsRejecting() const
                                      { return nRejectAction != 0; }
 /*N*/
-/*N*/                               // ob Action im Dokument sichtbar ist
-/*N*/           BOOL                IsVisible() const;
-/*N*/
 /*N*/                               // ob Action anfassbar ist
 /*N*/           BOOL                IsTouchable() const;
-/*N*/
-/*N*/                               // ob Action ein Eintrag in Dialog-Root ist
-/*N*/           BOOL                IsDialogRoot() const;
-/*N*/
-/*N*/                               // ob ein Eintrag im Dialog aufklappbar sein soll
-/*N*/           BOOL                IsDialogParent() const;
-/*N*/
-/*N*/                               // ob Action ein Delete ist, unter dem
-/*N*/                               // aufgeklappt mehrere einzelne Deletes sind
-/*N*/           BOOL                IsMasterDelete() const;
 /*N*/
 /*N*/                               // ob Action akzeptiert/selektiert/abgelehnt
 /*N*/                               // werden kann
 /*N*/           BOOL                IsClickable() const;
 /*N*/
-/*N*/                               // ob Action abgelehnt werden kann
-/*N*/           BOOL                IsRejectable() const;
-/*N*/
             const ScBigRange&   GetBigRange() const { return aBigRange; }
-/*N*/           DateTime            GetDateTime() const;        // local time
              const DateTime&        GetDateTimeUTC() const      // UTC time
                                      { return aDateTime; }
             const String&       GetUser() const { return aUser; }
@@ -645,8 +623,6 @@ public:
                                 // ob dieses ein Teil einer Reihe ist
 /*N*/           BOOL                IsMultiDelete() const;
 
-                                // ob es eine Col ist, die zu einem TabDelete gehoert
-/*N*/           BOOL                IsTabDeleteCol() const;
 
             short               GetDx() const { return nDx; }
             short               GetDy() const { return nDy; }
@@ -796,16 +772,6 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/
 /*N*/           void                ClearTrack();
 /*N*/
-/*N*/   static  void                GetStringOfCell( String& rStr,
-/*N*/                                   const ScBaseCell* pCell,
-/*N*/                                   const ScDocument* pDoc,
-/*N*/                                   const ScAddress& rPos );
-/*N*/
-/*N*/   static  void                GetStringOfCell( String& rStr,
-/*N*/                                   const ScBaseCell* pCell,
-/*N*/                                   const ScDocument* pDoc,
-/*N*/                                   ULONG nFormat );
-/*N*/
 /*N*/   static  void                SetValue( String& rStr, ScBaseCell*& pCell,
 /*N*/                                   const ScAddress& rPos,
 /*N*/                                   const ScBaseCell* pOrgCell,
@@ -823,10 +789,6 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/
 /*N*/   static  BOOL                NeedsNumberFormat( const ScBaseCell* );
 /*N*/
-/*N*/           void                SetValueString( String& rValue,
-/*N*/                                   ScBaseCell*& pCell, const String& rStr,
-/*N*/                                   ScDocument* pDoc );
-/*N*/
 /*N*/           void                GetValueString( String& rStr,
 /*N*/                                   const String& rValue,
 /*N*/                                   const ScBaseCell* pCell ) const;
@@ -842,11 +804,6 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/                                   INT32 nDx, INT32 nDy, INT32 nDz );
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
-/*N*/
-/*N*/                               // pRejectActions!=NULL: reject actions get
-/*N*/                               // stacked, no SetNewValue, no Append
-/*N*/           BOOL                Select( ScDocument*, ScChangeTrack*,
-/*N*/                                   BOOL bOldest, Stack* pRejectActions );
 /*N*/
 /*N*/           void                PutValueToDoc( ScBaseCell*, const String&,
 /*N*/                                   ScDocument*, short nDx, short nDy ) const;
@@ -900,18 +857,8 @@ public:
 /*N*/
 /*N*/           void                SetOldValue( const ScBaseCell*,
 /*N*/                                   const ScDocument* pFromDoc,
-/*N*/                                   ScDocument* pToDoc,
-/*N*/                                   ULONG nFormat );
-/*N*/           void                SetOldValue( const ScBaseCell*,
-/*N*/                                   const ScDocument* pFromDoc,
 /*N*/                                   ScDocument* pToDoc );
 /*N*/           void                SetNewValue( const ScBaseCell*, ScDocument* );
-/*N*/
-/*N*/                               // Used in import filter AppendContentOnTheFly,
-/*N*/                               // takes ownership of cells.
-/*N*/           void                SetOldNewCells( ScBaseCell* pOldCell,
-/*N*/                                   ULONG nOldFormat, ScBaseCell* pNewCell,
-/*N*/                                   ULONG nNewFormat, ScDocument* pDoc );
 /*N*/
 /*N*/                               // Use this only in the XML import,
 /*N*/                               // takes ownership of cell.
@@ -923,11 +870,6 @@ public:
                                     { pNextContent = p; }
             void                SetPrevContent( ScChangeActionContent* p )
                                     { pPrevContent = p; }
-/*N*/
-/*N*/                               // moeglichst nicht verwenden,
-/*N*/                               // setzt nur String bzw. generiert Formelzelle
-/*N*/           void                SetOldValue( const String& rOld, ScDocument* );
-/*N*/           void                SetNewValue( const String& rNew, ScDocument* );
 /*N*/
 /*N*/           void                GetOldString( String& ) const;
 /*N*/           void                GetNewString( String& ) const;
@@ -1099,12 +1041,6 @@ class ScChangeTrack : public SfxListener
 
 #ifdef SC_CHGTRACK_CXX
     static  USHORT              InitContentRowsPerSlot();
-
-                                // TRUE if one is MM_FORMULA and the other is
-                                // not, or if both are and range differs
-/*N*/   static  BOOL                IsMatrixFormulaRangeDifferent(
-/*N*/                                   const ScBaseCell* pOldCell,
-/*N*/                                   const ScBaseCell* pNewCell );
 /*N*/
 /*N*/   virtual void                Notify( SfxBroadcaster&, const SfxHint& );
 /*N*/           void                Init();
@@ -1125,8 +1061,6 @@ class ScChangeTrack : public SfxListener
 /*N*/       ScChangeTrackMergeState GetMergeState() const { return eMergeState; }
 /*N*/           void                SetLastMerge( ULONG nVal ) { nLastMerge = nVal; }
 /*N*/           ULONG               GetLastMerge() const { return nLastMerge; }
-/*N*/
-/*N*/           void                SetLastCutMoveRange( const ScRange&, ScDocument* );
 /*N*/
 /*N*/                               // ModifyMsg blockweise und nicht einzeln erzeugen
 /*N*/           void                StartBlockModify( ScChangeTrackMsgType,
@@ -1153,16 +1087,13 @@ class ScChangeTrack : public SfxListener
 /*N*/                                   short nDx, short nDy, short nDz );
 /*N*/           void                Remove( ScChangeAction* );
 /*N*/           void                MasterLinks( ScChangeAction* );
+/*N*/                                                          // Content on top an Position
+/*N*/          ScChangeActionContent*  SearchContentAt( const ScBigAddress&,
+/*N*/                                                                  ScChangeAction* pButNotThis ) const;
 /*N*/
-/*N*/                               // Content on top an Position
-/*N*/       ScChangeActionContent*  SearchContentAt( const ScBigAddress&,
-/*N*/                                   ScChangeAction* pButNotThis ) const;
 /*N*/                               // das gleiche fuer generierte Del-Eintraege,
 /*N*/                               // wobei der Content nicht in der angegebenen
 /*N*/                               // Richtung geloescht sein darf
-/*N*/       ScChangeActionContent*  SearchGeneratedDelContentAt(
-/*N*/                                   const ScBigAddress&,
-/*N*/                                   ScChangeActionType eNotInDelType ) const;
 /*N*/           void                DeleteGeneratedDelContent(
 /*N*/                                   ScChangeActionContent* );
 /*N*/       ScChangeActionContent*  GenerateDelContent( const ScAddress&,
@@ -1252,80 +1183,6 @@ public:
 /*N*/
 /*N*/           void                Append( ScChangeAction* );
 /*N*/
-/*N*/                               // pRefDoc may be NULL => no lookup of contents
-/*N*/                               // => no generation of deleted contents
-/*N*/           void                AppendDeleteRange( const ScRange&,
-/*N*/                                   ScDocument* pRefDoc,
-/*N*/                                   ULONG& nStartAction, ULONG& nEndAction,
-/*N*/                                   short nDz = 0 );
-/*N*/                                   // nDz: Multi-TabDel, LookUpContent ist
-/*N*/                                   // um -nDz verschoben zu suchen
-/*N*/
-/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
-/*N*/                               // alter Wert aus RefDoc/UndoDoc
-/*N*/           void                AppendContent( const ScAddress& rPos,
-/*N*/                                   ScDocument* pRefDoc );
-/*N*/                               // nachdem neue Werte im Dokument gesetzt wurden,
-/*N*/                               // alte Werte aus RefDoc/UndoDoc
-/*N*/           void                AppendContentRange( const ScRange& rRange,
-/*N*/                                   ScDocument* pRefDoc,
-/*N*/                                   ULONG& nStartAction, ULONG& nEndAction,
-/*N*/                                   ScChangeActionClipMode eMode = SC_CACM_NONE );
-/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
-/*N*/                               // alter Wert aus pOldCell, nOldFormat,
-/*N*/                               // RefDoc==NULL => Doc
-/*N*/           void                AppendContent( const ScAddress& rPos,
-/*N*/                                   const ScBaseCell* pOldCell,
-/*N*/                                   ULONG nOldFormat, ScDocument* pRefDoc = NULL );
-/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
-/*N*/                               // alter Wert aus pOldCell, Format aus Doc
-/*N*/           void                AppendContent( const ScAddress& rPos,
-/*N*/                                   const ScBaseCell* pOldCell );
-/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
-/*N*/                               // alter Wert aus pOldCell, Format aus RefDoc
-/*N*/           void                AppendContent( const ScAddress& rPos,
-/*N*/                                   const ScBaseCell* pOldCell,
-/*N*/                                   ScDocument* pRefDoc );
-/*N*/                               // nachdem neue Werte im Dokument gesetzt wurden,
-/*N*/                               // alte Werte aus RefDoc/UndoDoc.
-/*N*/                               // Alle Contents, wo im RefDoc eine Zelle steht.
-/*N*/           void                AppendContentsIfInRefDoc( ScDocument* pRefDoc,
-/*N*/                                   ULONG& nStartAction, ULONG& nEndAction );
-/*N*/
-/*N*/                               // Meant for import filter, creates and inserts
-/*N*/                               // an unconditional content action of the two
-/*N*/                               // cells without querying the document, not
-/*N*/                               // even for number formats (though the number
-/*N*/                               // formatter of the document may be used).
-/*N*/                               // The action is returned and may be used to
-/*N*/                               // set user name, description, date/time et al.
-/*N*/                               // Takes ownership of the cells!
-/*N*/       ScChangeActionContent*  AppendContentOnTheFly( const ScAddress& rPos,
-/*N*/                                   ScBaseCell* pOldCell,
-/*N*/                                   ScBaseCell* pNewCell,
-/*N*/                                   ULONG nOldFormat = 0,
-/*N*/                                   ULONG nNewFormat = 0 );
-/*N*/
-/*N*/                               // die folgenden beiden nur benutzen wenn's
-/*N*/                               // nicht anders geht (setzen nur String fuer
-/*N*/                               // NewValue bzw. Formelerzeugung)
-/*N*/
-/*N*/                               // bevor neuer Wert im Dokument gesetzt wird
-/*N*/           void                AppendContent( const ScAddress& rPos,
-/*N*/                                   const String& rNewValue );
-/*N*/                               // bevor neuer Wert im Dokument gesetzt wird
-/*N*/           void                AppendContent( const ScAddress& rPos,
-/*N*/                                   const String& rNewValue,
-/*N*/                                   ScBaseCell* pOldCell );
-/*N*/
-/*N*/           void                AppendInsert( const ScRange& );
-/*N*/
-/*N*/                               // pRefDoc may be NULL => no lookup of contents
-/*N*/                               // => no generation of deleted contents
-/*N*/           void                AppendMove( const ScRange& rFromRange,
-/*N*/                                   const ScRange& rToRange,
-/*N*/                                   ScDocument* pRefDoc );
-/*N*/
 /*N*/                               // Cut to Clipboard
 /*N*/           void                ResetLastCut()
 /*N*/                                   {
@@ -1343,50 +1200,6 @@ public:
 /*N*/                                           pLastCutMove;
 /*N*/                                   }
 /*N*/
-/*N*/           void                Undo( ULONG nStartAction, ULONG nEndAction );
-/*N*/
-/*N*/                               // fuer MergeDocument, Referenzen anpassen,
-/*N*/                               //! darf nur in einem temporaer geoeffneten
-/*N*/                               //! Dokument verwendet werden, der Track
-/*N*/                               //! ist danach verhunzt
-/*N*/           void                MergePrepare( ScChangeAction* pFirstMerge );
-/*N*/           void                MergeOwn( ScChangeAction* pAct, ULONG nFirstMerge );
-/*N*/   static  BOOL                MergeIgnore( const ScChangeAction&, ULONG nFirstMerge );
-/*N*/
-/*N*/                               // Abhaengige in Table einfuegen.
-/*N*/                               // Bei Insert sind es echte Abhaengige,
-/*N*/                               // bei Move abhaengige Contents im FromRange
-/*N*/                               // und geloeschte im ToRange bzw. Inserts in
-/*N*/                               // FromRange oder ToRange,
-/*N*/                               // bei Delete eine Liste der geloeschten,
-/*N*/                               // bei Content andere Contents an gleicher
-/*N*/                               // Position oder MatrixReferences zu MatrixOrigin.
-/*N*/                               // Mit bListMasterDelete werden unter einem
-/*N*/                               // MasterDelete alle zu diesem Delete gehoerenden
-/*N*/                               // Deletes einer Reihe gelistet.
-/*N*/                               // Mit bAllFlat werden auch alle Abhaengigen
-/*N*/                               // der Abhaengigen flach eingefuegt.
-/*N*/           void                GetDependents( ScChangeAction*,
-/*N*/                                   ScChangeActionTable&,
-/*N*/                                   BOOL bListMasterDelete = FALSE,
-/*N*/                                   BOOL bAllFlat = FALSE );
-/*N*/
-/*N*/                               // Reject visible Action (und abhaengige)
-/*N*/           BOOL                Reject( ScChangeAction* );
-/*N*/
-/*N*/                               // Accept visible Action (und abhaengige)
-/*N*/           BOOL                Accept( ScChangeAction* );
-/*N*/
-/*N*/           void                AcceptAll();    // alle Virgins
-/*N*/           BOOL                RejectAll();    // alle Virgins
-/*N*/
-/*N*/                               // Selektiert einen Content von mehreren an
-/*N*/                               // gleicher Position und akzeptiert diesen und
-/*N*/                               // die aelteren, rejected die neueren.
-/*N*/                               // Mit bOldest==TRUE wird der erste OldValue
-/*N*/                               // einer Virgin-Content-Kette restauriert.
-/*N*/           BOOL                SelectContent( ScChangeAction*,
-/*N*/                                   BOOL bOldest = FALSE );
 /*N*/
 /*N*/                               // wenn ModifiedLink gesetzt, landen
 /*N*/                               // Aenderungen in ScChangeTrackMsgQueue
