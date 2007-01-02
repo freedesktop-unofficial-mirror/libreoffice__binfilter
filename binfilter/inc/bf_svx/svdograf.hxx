@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdograf.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:23:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:35:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -174,9 +174,6 @@ public:
     virtual SdrObjGeoData*  NewGeoData() const;
     virtual void            SaveGeoData(SdrObjGeoData& rGeo) const;
     virtual void            RestartAnimation(SdrPageView* pPageView) const;
-
-    FASTBOOL                HasGDIMetaFile() const;
-    const GDIMetaFile*      GetGDIMetaFile() const;
 
     virtual void            SetPage(SdrPage* pNewPage);
     virtual void            SetModel(SdrModel* pNewModel);
