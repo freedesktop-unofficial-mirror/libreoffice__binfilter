@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SchXMLExportHelper.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:33:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:50:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,8 +134,6 @@ private:
     void addSize( ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > xShape );
     /// fills the member msString with the appropriate String (i.e. "A3")
     void getCellAddress( sal_Int32 nCol, sal_Int32 nRow );
-    /// interchanges rows and columns of the sequence given
-    void swapDataArray( ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Sequence< double > >& rSequence );
     /// exports a string as a paragraph element
     void exportText( const ::rtl::OUString& rText, bool bConvertTabsLFs = false );
 
