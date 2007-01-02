@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:15:59 $
+#   last change: $Author: hr $ $Date: 2007-01-02 18:17:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -135,7 +135,6 @@ CXXFILES = \
         xmloff_XMLFillBitmapSizePropertyHandler.cxx \
         xmloff_XMLBitmapLogicalSizePropertyHandler.cxx \
         xmloff_durationhdl.cxx \
-        xmloff_VisAreaExport.cxx \
         xmloff_VisAreaContext.cxx \
         xmloff_DrawAspectHdl.cxx
 
@@ -222,7 +221,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLFillBitmapSizePropertyHandler.obj	\
         $(SLO)$/xmloff_XMLBitmapLogicalSizePropertyHandler.obj	\
         $(SLO)$/xmloff_durationhdl.obj	\
-        $(SLO)$/xmloff_VisAreaExport.obj \
         $(SLO)$/xmloff_VisAreaContext.obj \
         $(SLO)$/xmloff_DrawAspectHdl.obj
 
