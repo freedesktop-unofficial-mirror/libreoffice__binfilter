@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlaustp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:37:35 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:53:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,6 @@ public:
 
     SvXMLAutoStylePoolP( SvXMLExport& rExport);
 
-    SvXMLAutoStylePoolP();
     virtual ~SvXMLAutoStylePoolP();
 
     SvXMLExport& GetExport() const;
@@ -107,19 +106,11 @@ public:
     /// Add an item set to the pool and return its generated name.
     ::rtl::OUString Add( sal_Int32 nFamily, const ::std::vector< XMLPropertyState >& rProperties );
     ::rtl::OUString Add( sal_Int32 nFamily, const ::rtl::OUString& rParent, const ::std::vector< XMLPropertyState >& rProperties );
-    sal_Bool        Add( ::rtl::OUString& rName, sal_Int32 nFamily, const ::std::vector< XMLPropertyState >& rProperties );
-    sal_Bool        Add( ::rtl::OUString& rName, sal_Int32 nFamily, const ::rtl::OUString& rParent, const ::std::vector< XMLPropertyState >& rProperties );
+    sal_Bool Add(::rtl::OUString& rName, sal_Int32 nFamily, const ::rtl::OUString& rParent, const ::std::vector< XMLPropertyState >& rProperties );
+
 
     /// Find an item set's name.
-    ::rtl::OUString Find( sal_Int32 nFamily, const ::std::vector< XMLPropertyState >& rProperties ) const;
     ::rtl::OUString Find( sal_Int32 nFamily, const ::rtl::OUString& rParent, const ::std::vector< XMLPropertyState >& rProperties ) const;
-
-    // Add a property set to the pool and cache its name.
-    ::rtl::OUString AddAndCache( sal_Int32 nFamily, const ::std::vector< XMLPropertyState >& rProperties );
-    ::rtl::OUString AddAndCache( sal_Int32 nFamily, const ::rtl::OUString& rParent, const ::std::vector< XMLPropertyState >& rProperties );
-    ::rtl::OUString AddAndCache( sal_Int32 nFamily, const ::rtl::OUString& rParent );
-
-    ::rtl::OUString FindAndRemoveCached( sal_Int32 nFamily ) const;
 
     /** Export all item sets ofs a certain class in the order in that they have been added. */
     void exportXML( sal_Int32 nFamily
