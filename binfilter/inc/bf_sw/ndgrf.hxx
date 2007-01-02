@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:37 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:44:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -114,8 +114,6 @@ public:
     virtual Size GetTwipSize() const;
 #ifndef _FESHVIEW_ONLY_INLINE_NEEDED
     void SetTwipSize( const Size& rSz );
-
-    BOOL IsTransparent() const;
 
     inline BOOL IsAnimated() const              { return aGrfObj.IsAnimated(); }
 
