@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shapeimport.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:26:01 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:53:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -340,10 +340,7 @@ public:
     const SvXMLTokenMap& Get3DPolygonBasedAttrTokenMap();
     const SvXMLTokenMap& Get3DCubeObjectAttrTokenMap();
     const SvXMLTokenMap& Get3DSphereObjectAttrTokenMap();
-    const SvXMLTokenMap& Get3DSceneShapeAttrTokenMap();
     const SvXMLTokenMap& Get3DLightAttrTokenMap();
-    const SvXMLTokenMap& GetPathShapeAttrTokenMap();
-    const SvXMLTokenMap& GetPolygonShapeAttrTokenMap();
 
     // Styles and AutoStyles contexts
     SvXMLStylesContext* GetStylesContext() const { return mpStylesContext; }
@@ -407,10 +404,6 @@ public:
 
     /** creates a property mapper for external chaining */
     static SvXMLImportPropertyMapper* CreateShapePropMapper(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel>& rModel, SvXMLImport& rImport );
-
-    /** creates a shape property set mapper that can be used for non shape elements */
-    static SvXMLImportPropertyMapper* CreateExternalShapePropMapper(
         const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel>& rModel, SvXMLImport& rImport );
 
     // #88546#
