@@ -4,9 +4,9 @@
  *
  *  $RCSfile: table.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:43:41 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:28:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,7 +157,6 @@ private:
     BOOL            bActiveScenario;
 
 friend class ScDocument;                    // fuer FillInfo
-friend class ScDocumentIterator;
 friend class ScValueIterator;
 friend class ScQueryValueIterator;
 friend class ScCellIterator;
@@ -177,7 +176,6 @@ public:
 
     long        GetCellCount() const;
     long        GetWeightedCount() const;
-    ULONG       GetCodeCount() const;       // RPN-Code in Formeln
 
     BOOL        SetOutlineTable( const ScOutlineTable* pNewOutline );
     void        StartOutlineTable();
@@ -238,7 +236,6 @@ public:
 
 
     void        PutCell( const ScAddress&, ScBaseCell* pCell );
-    void        PutCell( const ScAddress&, ULONG nFormatIndex, ScBaseCell* pCell);
     void        PutCell( USHORT nCol, USHORT nRow, ScBaseCell* pCell );
     void        PutCell(USHORT nCol, USHORT nRow, ULONG nFormatIndex, ScBaseCell* pCell);
                 //  TRUE = Zahlformat gesetzt
@@ -315,7 +312,6 @@ public:
 
     USHORT      GetErrCode( const ScAddress& rPos ) const
                     { return aCol[rPos.Col()].GetErrCode( rPos.Row() ); }
-    USHORT      GetErrCode( USHORT nCol, USHORT nRow ) const;
 
     void        ResetChanged( const ScRange& rRange );
 
@@ -342,7 +338,6 @@ public:
 
     void        UpdateInsertTab(USHORT nTable);
     void        UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo = NULL );
-     void       UpdateMoveTab(USHORT nOldPos, USHORT nNewPos, USHORT nTabNo, ScProgress& );
     void        UpdateCompile( BOOL bForceIfNameInUse = FALSE );
     void        SetTabNo(USHORT nNewTab);
     BOOL        IsRangeNameInUse(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
@@ -389,9 +384,6 @@ public:
 
     void        ApplyAttr( USHORT nCol, USHORT nRow, const SfxPoolItem& rAttr );
     void        ApplyPatternArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, const ScPatternAttr& rAttr );
-    void        SetPattern( const ScAddress& rPos, const ScPatternAttr& rAttr, BOOL bPutToPool = FALSE )
-                    { aCol[rPos.Col()].SetPattern( rPos.Row(), rAttr, bPutToPool ); }
-
     void        ApplyStyleArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, const ScStyleSheet& rStyle );
     void        ApplySelectionStyle(const ScStyleSheet& rStyle, const ScMarkData& rMark);
 
@@ -404,8 +396,6 @@ public:
                                     OutputDevice* pDev,
                                     double nPPTX, double nPPTY,
                                     const Fraction& rZoomX, const Fraction& rZoomY );
-
-    BOOL        IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const;
 
     BOOL        ApplyFlags( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, INT16 nFlags );
 
@@ -452,7 +442,6 @@ public:
     USHORT      GetHiddenRowCount( USHORT nRow ) const;
 
     void        ShowCol(USHORT nCol, BOOL bShow);
-    void        ShowRow(USHORT nRow, BOOL bShow);
 
     void        ShowRows(USHORT nRow1, USHORT nRow2, BOOL bShow);
 
