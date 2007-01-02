@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbconfig.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:03:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:09:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -141,16 +141,4 @@ using namespace ::com::sun::star::uno;
 /*N*/       Load();
 /*N*/     return *pAdrImpl;
 /*N*/ }
-/* -----------------29.11.2002 11:43-----------------
- *
- * --------------------------------------------------*/
-/*N*/ const SwDBData& SwDBConfig::GetBibliographySource()
-/*N*/ {
-/*N*/     if(!pBibImpl)
-/*N*/         Load();
-/*N*/     return *pBibImpl;
-/*N*/ }
-
-
-
 }
