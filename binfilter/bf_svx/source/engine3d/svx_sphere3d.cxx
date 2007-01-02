@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_sphere3d.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:51:31 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:22:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,34 +65,6 @@
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dSphereObj, E3dCompoundObject);
-
-/*************************************************************************
-|*
-|* Kugel aus Polygonfacetten nach Laengen und Breitengrad aufbauen
-|*
-\************************************************************************/
-
-/*N*/ E3dSphereObj::E3dSphereObj(E3dDefaultAttributes& rDefault, const Vector3D& rCenter, const Vector3D& r3DSize)
-/*N*/ : E3dCompoundObject(rDefault)
-/*N*/ {
-/*N*/   // Defaults setzen
-/*N*/   SetDefaultAttributes(rDefault);
-/*N*/
-/*N*/   // Uebergebene drueberbuegeln
-/*N*/   aCenter = rCenter;
-/*N*/   aSize = r3DSize;
-/*N*/
-/*N*/   // Geometrie erzeugen
-/*N*/   CreateGeometry();
-/*N*/ }
-
-/*N*/ E3dSphereObj::E3dSphereObj()
-/*N*/ : E3dCompoundObject()
-/*N*/ {
-/*N*/   // Defaults setzen
-/*N*/   E3dDefaultAttributes aDefault;
-/*N*/   SetDefaultAttributes(aDefault);
-/*N*/ }
 
 /*************************************************************************
 |*
@@ -347,24 +319,6 @@ namespace binfilter {
 /*N*/ SdrObject *E3dSphereObj::DoConvertToPolyObj(BOOL bBezier) const
 /*N*/ {
 /*N*/   return NULL;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Leer-Konstruktor
-|*
-\************************************************************************/
-
-/*N*/ void E3dSphereObj::ReSegment(long nHSegs, long nVSegs)
-/*N*/ {
-/*N*/   if((nHSegs != GetHorizontalSegments() || nVSegs != GetVerticalSegments()) &&
-/*N*/       (nHSegs != 0 || nVSegs != 0))
-/*N*/   {
-/*N*/       mpObjectItemSet->Put(Svx3DHorizontalSegmentsItem(nHSegs));
-/*N*/       mpObjectItemSet->Put(Svx3DVerticalSegmentsItem(nVSegs));
-/*N*/
-/*N*/       bGeometryValid = FALSE;
-/*N*/   }
 /*N*/ }
 
 /*************************************************************************
