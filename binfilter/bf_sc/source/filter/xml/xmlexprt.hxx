@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlexprt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2006-07-10 12:26:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:01:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -175,14 +175,9 @@ class ScXMLExport : public SvXMLExport
     void FillFieldGroup(ScOutlineArray* pFields, ScMyOpenCloseColumnRowGroup* pGroups);
     void FillColumnRowGroups();
 
-    sal_Bool GetMerge (const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable,
-        sal_Int32 nCol, sal_Int32 nRow,
-        ::com::sun::star::table::CellRangeAddress& aCellAddress);
     sal_Bool GetMerged (const ::com::sun::star::table::CellRangeAddress* pCellRange,
         const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable);
 
-    sal_Bool GetCellText (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell,
-        ::rtl::OUString& sOUTemp) const;
     sal_Bool GetCellText (ScMyCell& rMyCell) const;
 
     ::rtl::OUString GetPrintRanges();
@@ -229,10 +224,6 @@ public:
     static sal_Int16 GetFieldUnit();
     inline ScDocument*          GetDocument()           { return pDoc; }
     inline const ScDocument*    GetDocument() const     { return pDoc; }
-    sal_Bool IsMatrix (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCellRange>& xCellRange,
-        const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable,
-        const sal_Int32 nCol, const sal_Int32 nRow,
-        ::com::sun::star::table::CellRangeAddress& aCellAddress, sal_Bool& bIsFirst) const;
     sal_Bool IsMatrix (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell,
         const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable,
         const sal_Int32 nCol, const sal_Int32 nRow,
