@@ -4,9 +4,9 @@
  *
  *  $RCSfile: numehelp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:05:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:52:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,15 +100,6 @@ public :
     void SetExport(SvXMLExport* pExport) { this->pExport = pExport; }
 
     sal_Int16 GetCellType(const sal_Int32 nNumberFormat, ::rtl::OUString& sCurrency, sal_Bool& bIsStandard);
-    void SetNumberFormatAttributes(const sal_Int32 nNumberFormat,
-                                      const double& rValue,
-                                      sal_uInt16 nNamespace,
-                                      sal_Bool bExportValue = sal_True);
-    void SetNumberFormatAttributes(const ::rtl::OUString& rValue,
-                                          const ::rtl::OUString& rCharacters,
-                                          sal_uInt16 nNamespace,
-                                          sal_Bool bExportValue = sal_True,
-                                          sal_Bool bExportTypeAttribute = sal_True);
 
     static void WriteAttributes(SvXMLExport& rXMLExport,
                                 const sal_Int16 nTypeKey,

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLTextListAutoStylePool.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:04:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:51:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@ public:
     ~XMLTextListAutoStylePool();
 
     void RegisterName( const ::rtl::OUString& rName );
-    sal_Bool HasName( const ::rtl::OUString& rName ) const;
 
     ::rtl::OUString Add(
             const ::com::sun::star::uno::Reference <
