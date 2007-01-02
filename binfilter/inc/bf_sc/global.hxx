@@ -4,9 +4,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:36:30 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:27:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -680,7 +680,6 @@ public:
         inline  int operator == ( const ScTripel& rTripel ) const;
                 int operator != ( const ScTripel& rTripel ) const { return !(operator==(rTripel)); }
 
-        String  GetText() const;                                // "(1,2,3)"
         String  GetColRowString( BOOL bAbolute = FALSE ) const; // "A1"||"$A$1"
 };
 
