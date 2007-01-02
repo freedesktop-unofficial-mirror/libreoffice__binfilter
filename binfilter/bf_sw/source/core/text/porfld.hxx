@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porfld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:05:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:58:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -179,30 +179,6 @@ void SetBase( long nLnAscent, long nLnDescent,//STRIP001    void SetBase( long n
 long nFlyAscent, long nFlyDescent ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         long nFlyAscent, long nFlyDescent );
     OUTPUT_OPERATOR
 };
-
-/*************************************************************************
- *                      class SwCombinedPortion
- * Used in for asian layout specialities to display up to six characters
- * in 2 rows and 2-3 columns.
- * e.g.
- *
- *       A..  A..  A.B  A.B   A.B.C   A.B.C
- *       ...  ..B  .C.  C.D   .D.E.   D.E.F
- *************************************************************************/
-
-class SwCombinedPortion : public SwFldPortion
-{
-    USHORT aPos[6];     // up to six X positions
-    USHORT aWidth[3];   // one width for every scripttype
-    BYTE aScrType[6];   // scripttype of every character
-    USHORT nUpPos;      // the Y position of the upper baseline
-    USHORT nLowPos;     // the Y position of the lower baseline
-    BYTE nProportion;   // relative font height
-public:
-    SwCombinedPortion( const XubString &rExpand );
-    OUTPUT_OPERATOR
-};
-
 
 CLASSIO( SwHiddenPortion )
 CLASSIO( SwNumberPortion )
