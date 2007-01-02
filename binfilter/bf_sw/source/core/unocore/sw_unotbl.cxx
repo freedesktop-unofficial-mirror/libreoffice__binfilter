@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotbl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:36:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:05:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1544,29 +1544,6 @@ SwXTextTableCursor::SwXTextTableCursor(SwFrmFmt* pFmt, SwTableBox* pBox) :
     SwPosition aPos(*pSttNd);
     SwUnoCrsr* pUnoCrsr = pDoc->CreateUnoCrsr(aPos, sal_True);
     pUnoCrsr->Move( fnMoveForward, fnGoNode );
-    pUnoCrsr->Add(&aCrsrDepend);
-    SwUnoTableCrsr* pTblCrsr = *pUnoCrsr;
-    pTblCrsr->MakeBoxSels();
-}
-/*-- 11.12.98 12:16:14---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-SwXTextTableCursor::SwXTextTableCursor(SwFrmFmt& rTableFmt, const SwTableCursor* pTableSelection) :
-    SwClient(&rTableFmt),
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_TABLE_CURSOR)),
-    aCrsrDepend(this, 0)
-{
-    SwUnoCrsr* pUnoCrsr = pTableSelection->GetDoc()->CreateUnoCrsr(*pTableSelection->GetPoint(), sal_True);
-    if(pTableSelection->HasMark())
-    {
-        pUnoCrsr->SetMark();
-        *pUnoCrsr->GetMark() = *pTableSelection->GetMark();
-    }
-    const SwSelBoxes& rBoxes = pTableSelection->GetBoxes();
-    SwTableCursor* pTableCrsr = (SwTableCursor*) *pUnoCrsr;
-    for(sal_uInt16 i = 0; i < rBoxes.Count(); i++)
-        pTableCrsr->InsertBox( *rBoxes.GetObject(i) );
-
     pUnoCrsr->Add(&aCrsrDepend);
     SwUnoTableCrsr* pTblCrsr = *pUnoCrsr;
     pTblCrsr->MakeBoxSels();
@@ -3165,23 +3142,6 @@ void SwXTextTable::autoFormat(const OUString& aName) throw( IllegalArgumentExcep
         if(!pTable->IsTblComplex())
         {
 
-            String sAutoFmtName(aName);
-            SwTableAutoFmtTbl aAutoFmtTbl;
-            aAutoFmtTbl.Load();
-            for( sal_uInt16 i = aAutoFmtTbl.Count(); i; )
-                if( sAutoFmtName == aAutoFmtTbl[ --i ]->GetName() )
-                {
-                    SwSelBoxes aBoxes;
-                    const SwTableSortBoxes& rTBoxes = pTable->GetTabSortBoxes();
-                    for( sal_uInt16 n = 0; n < rTBoxes.Count(); ++n )
-                    {
-                        SwTableBox* pBox = rTBoxes[ n ];
-                        aBoxes.Insert( pBox );
-                    }
-                    UnoActionContext aContext( pFmt->GetDoc() );
-                    pFmt->GetDoc()->SetTableAutoFmt( aBoxes, *aAutoFmtTbl[i] );
-                    break;
-                }
         }
     }
     else
@@ -3793,20 +3753,7 @@ Sequence< OUString > SwXCellRange::getSupportedServiceNames(void) throw( Runtime
     pArray[6] = C2U("com.sun.star.style.ParagraphPropertiesComplex");
     return aRet;
 }
-/*-- 11.12.98 14:27:32---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-SwXCellRange::SwXCellRange() :
-    aCursorDepend(this, 0),
-    aChartLstnrCntnr((cppu::OWeakObject*)this),
-    pTblCrsr(0),
-    aPropSet(0),
-    bFirstRowAsLabel(sal_False),
-    bFirstColumnAsLabel(sal_False),
-    _pMap(0)
-{
-
-}
 /*-- 11.12.98 14:27:33---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -4607,18 +4554,6 @@ sal_uInt16 SwXCellRange::getRowCount(void)
 {
     return aRgDesc.nBottom - aRgDesc.nTop + 1;
 }
-/* -----------------------------05.06.01 09:19--------------------------------
-
- ---------------------------------------------------------------------------*/
-const SwUnoCrsr* SwXCellRange::GetTblCrsr() const
-{
-    const SwUnoCrsr* pRet = 0;
-    SwFrmFmt* pFmt = GetFrmFmt();
-    if(pFmt)
-        pRet = pTblCrsr;
-    return pRet;
-}
-
 /*-- 11.12.98 14:27:39---------------------------------------------------
 
   -----------------------------------------------------------------------*/
