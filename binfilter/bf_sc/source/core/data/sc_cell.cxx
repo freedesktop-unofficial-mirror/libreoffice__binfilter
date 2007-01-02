@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:14:05 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:52:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -533,38 +533,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 
 //-----------------------------------------------------------------------------------
 
-//
-//      ScFormulaCell
-//
-
-/*N*/ ScFormulaCell::ScFormulaCell() :
-/*N*/   ScBaseCell( CELLTYPE_FORMULA ),
-/*N*/   pCode( NULL ),
-/*N*/   nErgValue( 0.0 ),
-/*N*/   bIsValue( TRUE ),
-/*N*/   bDirty( FALSE ),
-/*N*/   bChanged( FALSE ),
-/*N*/   bRunning( FALSE ),
-/*N*/   bCompile( FALSE ),
-/*N*/   bSubTotal( FALSE ),
-/*N*/   pDocument( NULL ),
-/*N*/   nFormatType( NUMBERFORMAT_NUMBER ),
-/*N*/   nFormatIndex(0),
-/*N*/   cMatrixFlag ( MM_NONE ),
-/*N*/   pMatrix     ( NULL ),
-/*N*/   bIsIterCell (FALSE),
-/*N*/   bInChangeTrack( FALSE ),
-/*N*/   bTableOpDirty( FALSE ),
-/*N*/   pPrevious(0),
-/*N*/   pNext(0),
-/*N*/   pPreviousTrack(0),
-/*N*/   pNextTrack(0),
-/*N*/   aPos(0),
-/*N*/   nMatCols(0),
-/*N*/   nMatRows(0)
-/*N*/ {
-/*N*/ }
-
 /*N*/ ScFormulaCell::ScFormulaCell( ScDocument* pDoc, const ScAddress& rPos,
 /*N*/                             const String& rFormula, BYTE cMatInd ) :
 /*N*/   ScBaseCell( CELLTYPE_FORMULA ),
@@ -974,17 +942,6 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       rFormula += '}';
 /*N*/   }
 /*N*/ }
-
-/*N*/  void ScFormulaCell::GetResultDimensions( USHORT& rCols, USHORT& rRows )
-/*N*/  {
-/*N*/   if (IsDirtyOrInTableOpDirty() && pDocument->GetAutoCalc())
-/*N*/       Interpret();
-/*N*/
-/*N*/   if ( !pCode->GetError() && pMatrix )
-/*N*/       pMatrix->GetDimensions( rCols, rRows );
-/*N*/   else
-/*N*/       rCols = rRows = 0;
-/*N*/  }
 
 /*N*/ void ScFormulaCell::Compile( const String& rFormula, BOOL bNoListening )
 /*N*/ {
@@ -1559,17 +1516,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((co
 /*N*/   pCode->SetError( n );
 /*N*/   bIsValue = FALSE;
 /*N*/ }
-
-/*N*/  void ScFormulaCell::AddRecalcMode( ScRecalcMode nBits )
-/*N*/  {
-/*N*/   if ( (nBits & RECALCMODE_EMASK) != RECALCMODE_NORMAL )
-/*N*/       bDirty = TRUE;
-/*N*/   if ( nBits & RECALCMODE_ONLOAD_ONCE )
-/*N*/   {   // OnLoadOnce nur zum Dirty setzen nach Filter-Import
-/*N*/       nBits = (nBits & ~RECALCMODE_EMASK) | RECALCMODE_NORMAL;
-/*N*/   }
-/*N*/   pCode->AddRecalcMode( nBits );
-/*N*/  }
 
 //------------------------------------------------------------------------
 
