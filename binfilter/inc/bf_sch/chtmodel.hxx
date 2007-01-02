@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chtmodel.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:46:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:30:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -424,7 +424,6 @@ public:
     BOOL                IsBar()                           const;
     BOOL                IsPieChart()                      const;
     BOOL                Is3DChart()                       const;
-    BOOL                IsStatisticChart()                const;
     BOOL                IsNetChart()                      const;
     BOOL                IsStackedChart()                  const;
     BOOL                IsPercentChart()                  const;
@@ -455,17 +454,7 @@ public:
     SdrObject*          GetDataPointObj( long nCol, long nRow );
 
 
-    BOOL                HasTitle() const;
     BOOL                HasAxis( long nObjectId = CHOBJID_ANY ) const;
-    BOOL                HasGrid() const;
-
-
-
-
-
-
-
-
 
 
     const SfxItemSet &  GetLegendAttr() const;
@@ -559,7 +548,6 @@ public:
 
     BOOL                ChangeStatistics( const SfxItemSet &  rNewAttr );
 
-    BOOL                GetShowLegend() const;
     void                SetShowLegend( BOOL bNewShow );
 
     // ToDo: Remove duplicate method declaration where possible
