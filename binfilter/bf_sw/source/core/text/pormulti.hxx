@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pormulti.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:07:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:59:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,30 +144,6 @@ public:
     inline sal_Bool HasRotation() const { return 0 != (1 & nDirection); }
     OUTPUT_OPERATOR
 };
-
-
-
-
-#ifdef BIDI
-class SwBidiPortion : public SwMultiPortion
-{
-    BYTE nLevel;
-    xub_StrLen nBlanks;     // Number of blanks
-
-public:
-   SwBidiPortion( xub_StrLen nEnd, BYTE nLv );
-
-   inline BYTE GetLevel() const { return nLevel; }
-    // Set/Get number of blanks for justified alignment
-   inline void SetSpaceCnt( xub_StrLen nNew ) { nBlanks = nNew; }
-   inline xub_StrLen GetSpaceCnt() const { return nBlanks; }
-   // Calculates extra spacing based on number of blanks
- // Manipulate the spacing array at pCurr
-};
-#endif
-
-// For cursor travelling in multiportions
-
 
 /*************************************************************************
  *                  inline - Implementations
