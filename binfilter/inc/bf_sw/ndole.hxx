@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndole.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:49:38 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:45:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,8 +73,6 @@ public:
     SwOLEObj( const String &rName );
     ~SwOLEObj();
 
-    // OLE-Object aus dem "Speicher" entfernen
-    void Unload();
      BOOL RemovedFromLRU();
 
 #ifndef _FESHVIEW_ONLY_INLINE_NEEDED
@@ -131,9 +129,6 @@ public:
 
     BOOL IsOLESizeInvalid() const   { return bOLESizeInvalid; }
     void SetOLESizeInvalid( BOOL b ){ bOLESizeInvalid = b; }
-
-    // OLE-Object aus dem "Speicher" entfernen
-     inline void Unload() { aOLEObj.Unload(); }
 
 #ifndef _FESHVIEW_ONLY_INLINE_NEEDED
     const String& GetChartTblName() const       { return sChartTblName; }

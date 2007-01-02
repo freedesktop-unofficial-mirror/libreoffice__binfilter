@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fesh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:41:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:43:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -189,53 +189,11 @@ class SwFEShell : public SwEditShell
     SwFlyFrm *FindFlyFrm() const;
     SwFlyFrm *FindFlyFrm( const SvEmbeddedObject *pObj ) const;
 
-    //Actions fuer alle Shells beenden und ChangeLink rufen.
-
-
-
-
-
-    //0 == in keiner Spalte
-    USHORT _GetCurColNum( const SwFrm *pFrm,
-                          SwGetCurColNumPara* pPara ) const;
-
-
-
-
-    // Methoden fuers kopieren von DrawObjecten
-
-        // get list of marked SdrObjects;
-    // helper method for GetSelFrmType, IsSelContainsControl
-    const SdrMarkList* _GetMarkList() const;
-
-
 public:
     TYPEINFO();
     SwFEShell( SwDoc& rDoc, Window *pWin,
                SwRootFrm *pMaster = 0, const SwViewOption *pOpt = 0 );
-    SwFEShell( SwEditShell& rShell, Window *pWin );
     virtual ~SwFEShell();
-
-    // Copy und Paste Methoden fuer das interne Clipboard
-    // Copy-Methode fuer Drag&Drop
-
-
-    // befindet sich der selektierte Rahmen innerhalb eines anderen?
-    // Innerhalb eines des sichtbaren Ankers?
-
-//SS fuer DrawObjekte und Rahmen-----------------------------
-
-    //Wenn ein Objekt angegeben wurde, so wird genau diese Markiert (anstatt
-    //ueber die Position zu suchen.
-    BOOL SelectObj( const Point& rSelPt, BYTE nFlag = 0, SdrObject *pObj = 0 );
-
-    //Selektion nach oben unten bewegen (Z-Order).
-    //TRUE  == ganz nach oben/unten
-    //FALSE == einen ueberholen
-
-
-    // folgende zwei Methoden returnen den enum SdrHdlKind, um sich ein
-    // includen von SVDRAW.HXX zu ersparen als int deklariert.
 
     // #107513#
     // Test if there is a draw object at that position and if it should be selected.
@@ -243,24 +201,11 @@ public:
     // the draw object.
     sal_Bool ShouldObjectBeSelected(const Point& rPt);
 
-    // Returns if Upper of frame at current position is section frame
-    // Currently only used by the rules. To be replaced by something more
-    // sophisticated one day.
-    bool IsDirectlyInSection() const;
-
     //Returnwerte siehe oben FrmType.
     //pPt: Crsr bzw. DocPos; bStopAtFly: Bei Flys anhalten oder ueber den Anchor weitergehen
     // Obgleich (0,TRUE) eine Art Standard ist, sind die Parameter nicht defaultet, damit
     // bei jeder Benutzung insbesondere das bStopAtFly bewusst genutzt wird.
     USHORT GetFrmType( const Point *pPt, BOOL bStopAtFly ) const;
-    USHORT GetSelFrmType() const;               //Selektion (Drawing)
-
-    /** #108784# check whether selected frame contains a control;
-     * companion method to GetSelFrmType, used for preventing
-     * drag&drop of controls into header */
-    bool IsSelContainsControl() const;
-
-    ObjCntType GetObjCntTypeOfSelection( SdrObject** ppObj = 0 ) const;
 
     //Zum Anpassen der PosAttr bei Ankerwechseln.
     //Zum Verschieben von Flys mit der Tastatur
@@ -276,38 +221,17 @@ public:
     // zeige die aktuelle Selektion an ( ggfs. den Rahmen/DrawObject)
     virtual void MakeSelVisible();
 
-    // returne das FrmFmt von dem evt. unter dem Point stehenden Object.
-    // Das Object wird nicht selektiert!
-    // returns a format too, if the point is over the text of any fly
-
-    //Welcher Schutz ist am selektierten Objekt gesetzt?
-    BYTE IsSelObjProtected( FlyProtectType eType ) const;
-
     //Liefert neben der Grafik in rName bei gelinkten Grafiken den Namen mit
     //Pfad und sonst den Grafiknamen. rbLink ist TRU bei gelinkten Grafiken.
 
 //SS fuer Rahmen --------------------------------------------
 
     BOOL IsFrmSelected() const;
-    // determines whether a frame or its environment is vertically formatted and right-to-left
-    BOOL IsFrmVertical(BOOL bEnvironment, BOOL& bRightToLeft) const;
 
     SwFrmFmt* GetCurFrmFmt() const; //Wenn Rahmen, dann Rahmenvorlage, sonst 0
 #ifdef ACCESSIBLE_LAYOUT
     const SwFlyFrm *GetCurrFlyFrm() const { return FindFlyFrm(); }
 #endif
-
-    // finde/loeschen den Fly, in dem der Cursor steht
-
-    //Selebstaendiges selektieren von Flys
-
-    //iterieren ueber Flys - fuer Basic-Collections
-
-    //Wenn ein fly selectiert ist, zieht er den Crsr in den ersten CntntFrm
-
-    //Get FlyFrameFormat; fuer UI Macro Anbindung an Flys
-    const SwFrmFmt* GetFlyFrmFmt() const;
-          SwFrmFmt* GetFlyFrmFmt();
 
     //OLE, Server fordert neue Groesse an, die gewuenschten Werte werden
     //als Rahmenattribute eingestellt. Wenn die Werte nicht erlaubt sind,
@@ -335,19 +259,9 @@ public:
     BOOL IsCheckForOLEInCaption() const         { return bCheckForOLEInCaption; }
     void SetCheckForOLEInCaption( BOOL bFlag )  { bCheckForOLEInCaption = bFlag; }
 
-    // setze am selektierten FlyFrame einen Namen
-
-    // erezeuge eindeutige Namen fuer Rahmen
-
-    // springe zum benannten Rahmen (Grafik/OLE)
-    BOOL GotoFly( const String& rName, FlyCntType eType = FLYCNTTYPE_ALL,
-                    BOOL bSelFrame = TRUE );
-    // steht an der Position eine Grafik mit einer URL ?
-
     //Fuer das Chain wird immer der durch das Format spezifizierte Fly
     //mit dem durch den Point getroffenen verbunden.
     //In rRect wird das Rect des Flys geliefert (fuer Highlight desselben)
-        int Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest );
     void HideChainMarker();
     void SetChainMarker();
 
@@ -362,8 +276,6 @@ public:
 
     //Setzen vom DragMode (z.B. Rotate), tut nix bei Rahmenselektion.
 
-    USHORT IsObjSelected() const;   //Liefert gleich die Anzahl der Objekte,
-                                    //zaehlt aber nicht die Objekte in Gruppen.
 #ifdef ACCESSIBLE_LAYOUT
 #endif
 
@@ -408,12 +320,8 @@ public:
     //convert document position into position relative to the current page
     Point GetRelativePagePosition(const Point& rDocPos);
 
-    //Layout-Selektion Hiden/Zeigen und aufruf an die CrsrSh weiterreichen.
-    void ShGetFcs( BOOL bUpdate = TRUE );
-
     //PageDescriptor-Schnittstelle
     USHORT GetCurPageDesc( const BOOL bCalcFrm = TRUE ) const;
-    USHORT GetMousePageDesc( const Point &rPt ) const;
     USHORT GetPageDescCnt() const;
 
     const SwPageDesc& GetPageDesc( USHORT i ) const;
@@ -424,93 +332,13 @@ public:
                                  const Point* pPt = 0,
                                  const SvEmbeddedObject *pObj = 0 ) const;
 
-    //Seitennummer der Seite in der der Point liegt, 0 wenn keine
-    //getroffen ist.
-    BOOL GetPageNumber( long nYPos, BOOL bAtCrsrPos, USHORT& rPhyNum, USHORT& rVirtNum, String &rDisplay ) const;
-
-
-
-    BOOL    FinishOLEObj();                             // Server wird beendet
-
-    //Attribute der Tabelle besorgen/setzen.
-
-    //Tabelle vollstaendig selektiert?
-    //Ist der Inhalt einer Tabellenzelle oder mindestens eine Tabellenzelle
-    //vollstaendig selektiert ist
-
-
-
-                                //Fehler ueber enum zurueck
-    // Zelle Vertikal oder Horizontal splitten.
-
-    //Der Pointer muss vom Aufrufer zerstoert werden wenn != 0
-
-    USHORT GetBoxAlign() const;         //USHRT_MAX fuer uneindeutig!
-
-    //Ausgleichen der Zeilenhoehen. Mit bTstOnly festellen ob mehr als eine
-    //Zeile markiert ist.
-    BOOL BalanceRowHeight( BOOL bTstOnly );
-
-    void GetTabBorders(       SfxItemSet& rSet) const;
-
-
-
-
-
-                            // nichtet, wenn der Cursor nicht in Readonly darf
-
-    BOOL IsInRepeatedHeadline() const;
-
-    //Stellt die Breiten der Zellen so ein, dass der Inhalt moeglichst
-    //nicht umgebrochen werden muss.
-    //bBalance sorgt fuer einen Ausgleich der markierten Spalten.
-    //Nicht erlaubt, wenn nur  leere Zellen selektiert sind.
-    BOOL IsAdjustCellWidthAllowed( BOOL bBalance = FALSE ) const;
 
     //Ausgleich der Zellenbreiten, mit bTstOnly feststellen, ob mehr als
     //eine Zelle markiert ist.
     BOOL BalanceCellWidth( BOOL bTstOnly );
 
-        // AutoFormat fuer die Tabelle/TabellenSelection
-        // Erfrage wie attributiert ist
-        // aender eine  Zellenbreite/-Hoehe/Spaltenbreite/Zeilenhoehe
-        // Autosumme
-
-    //Phy:  Tatsaechliche Seitenanzahl.
-    //Virt: Vom User evtl. gesetzten Offset mit einbeziehen.
-
-    // Setzt an der aktuellen Postion einen neuen Page Offset
-
-    //SS fuer Beschriftungen
-
-    //Das Lineal will auch noch etwas von uns wissen.
-    USHORT GetCurColNum( SwGetCurColNumPara* pPara = 0 ) const; //0 == in keiner Spalte
-    BOOL IsTableRightToLeft()const;
     BOOL IsLastCellInRow() const;
-    BOOL IsMouseTableRightToLeft(const Point &rPt) const;
     // Die Breite des aktuellen Bereichs fuer Spaltendialog
-
-    void GetConnectableFrmFmts
-    (SwFrmFmt & rFmt, const String & rReference, BOOL bSuccessors,
-     ::std::vector< String > & aPrevPageVec,
-     ::std::vector< String > & aThisPageVec,
-     ::std::vector< String > & aNextPageVec,
-     ::std::vector< String > & aRestVec);
-
-    /** SwFEShell::GetShapeBackgrd
-
-        OD 02.09.2002 for #102450#:
-        method determines background color of the page the selected drawing
-        object is on and returns this color.
-        If no color is found, because no drawing object is selected or ...,
-        color COL_BLACK (default color on constructing object of class Color)
-        is returned.
-
-        @author OD
-
-        @returns an object of class Color
-    */
-    const Color GetShapeBackgrd() const;
 
     /** Is default horizontal text direction for selected drawing object right-to-left
 

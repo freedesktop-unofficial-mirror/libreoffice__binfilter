@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndindex.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:49:14 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:44:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -128,7 +128,6 @@ public:
     SwNodeRange( const SwNodeIndex &rS, const SwNodeIndex &rE );
     SwNodeRange( const SwNodeRange &rRange );
 
-    SwNodeRange( SwNodes& rArr, ULONG nSttIdx = 0, ULONG nEndIdx = 0 );
     SwNodeRange( const SwNodeIndex& rS, long nSttDiff,
                  const SwNodeIndex& rE, long nEndDiff = 0 );
     SwNodeRange( const SwNode& rS, long nSttDiff,
