@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdocapt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:07:38 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:34:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,8 +81,6 @@ private:
 public:
     TYPEINFO();
     SdrCaptionObj();
-    SdrCaptionObj(const Rectangle& rRect);
-    SdrCaptionObj(const Rectangle& rRect, const Point& rTail);
     virtual ~SdrCaptionObj();
 
     virtual UINT16 GetObjIdentifier() const;
