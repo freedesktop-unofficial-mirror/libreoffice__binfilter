@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlnumfi.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:43:59 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:54:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -136,13 +136,6 @@ public:
 class SvXMLNumFmtDefaults
 {
 public:
-    static sal_Bool IsSystemLongDay( const SvtSysLocale& rSysLoc, BOOL bLong );
-    static sal_Bool IsSystemLongMonth( const SvtSysLocale& rSysLoc, BOOL bLong );
-    static sal_Bool IsSystemTextualMonth( const SvtSysLocale& rSysLoc, BOOL bLong );
-    static sal_Bool IsSystemLongYear( const SvtSysLocale& rSysLoc, BOOL bLong );
-    static sal_Bool IsSystemLongEra( const SvtSysLocale& rSysLoc, BOOL bLong );
-    static sal_Bool IsSystemLongDayOfWeek( const SvtSysLocale& rSysLoc, BOOL bLong );
-
     // return value is NfIndexTableOffset
     static sal_uInt16 GetDefaultDateFormat( SvXMLDateElementAttributes eDOW,
                 SvXMLDateElementAttributes eDay, SvXMLDateElementAttributes eMonth,
