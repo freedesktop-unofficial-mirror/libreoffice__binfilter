@@ -4,9 +4,9 @@
  *
  *  $RCSfile: attrlist.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:05:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:52:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,6 @@ public:
     void AddAttribute( const ::rtl::OUString &sName , const ::rtl::OUString &sValue );
     void Clear();
     void RemoveAttribute( const ::rtl::OUString sName );
-    void SetAttributeList( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & );
     void AppendAttributeList( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & );
 
  private:
