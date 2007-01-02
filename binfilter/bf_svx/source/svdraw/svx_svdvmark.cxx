@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdvmark.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:48:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:33:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,21 +97,6 @@ namespace binfilter {
 /*N*/   if (pPolyPoly !=NULL) { delete pPolyPoly ; pPolyPoly =NULL; }
 /*N*/   if (pXPoly    !=NULL) { delete pXPoly    ; pXPoly    =NULL; }
 /*N*/   if (pXPolyPoly!=NULL) { delete pXPolyPoly; pXPolyPoly=NULL; }
-/*N*/ }
-
-
-/*N*/ void SdrViewUserMarker::SetPoint(const Point& rPoint)
-/*N*/ {
-/*N*/   if (pPoint!=NULL && rPoint==*pPoint) return;
-/*N*/   FASTBOOL bVis=bVisible;
-/*N*/   if (bVis) Hide();
-/*N*/   if (pPoint==NULL) {
-/*N*/       ImpDelGeometrics();
-/*N*/       pPoint=new Point(rPoint);
-/*N*/   } else {
-/*N*/       *pPoint=rPoint;
-/*N*/   }
-/*N*/   if (bVis) Show();
 /*N*/ }
 
 /*N*/ void SdrViewUserMarker::SetLineWidth(USHORT nWdt)
