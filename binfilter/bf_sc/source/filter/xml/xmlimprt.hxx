@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimprt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:37:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:01:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -822,9 +822,6 @@ public:
 //  SvXMLImportContextRef           GetStyles() const { return xStyles; }
 
     const SvXMLTokenMap& GetDocElemTokenMap();
-    const SvXMLTokenMap& GetStylesElemTokenMap();
-    const SvXMLTokenMap& GetStylesAttrTokenMap();
-    const SvXMLTokenMap& GetStyleElemTokenMap();
     const SvXMLTokenMap& GetBodyElemTokenMap();
     const SvXMLTokenMap& GetContentValidationsElemTokenMap();
     const SvXMLTokenMap& GetContentValidationElemTokenMap();
@@ -844,7 +841,6 @@ public:
     const SvXMLTokenMap& GetTableRowElemTokenMap();
     const SvXMLTokenMap& GetTableRowAttrTokenMap();
     const SvXMLTokenMap& GetTableRowCellElemTokenMap();
-    const SvXMLTokenMap& GetTableRowCellAttrTokenMap();
     const SvXMLTokenMap& GetTableAnnotationAttrTokenMap();
     const SvXMLTokenMap& GetDetectiveElemTokenMap();
     const SvXMLTokenMap& GetDetectiveHighlightedAttrTokenMap();
