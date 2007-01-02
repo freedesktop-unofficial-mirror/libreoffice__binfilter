@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLConverter.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:14:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:59:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,10 +111,6 @@ public:
                             const ::rtl::OUString& rString,
                             sal_Int32& nOffset,
                             sal_Unicode cQuote = '\'' );
-
-    static void         AppendString(
-                            ::rtl::OUString& rString,
-                            const ::rtl::OUString& rNewStr );
 
     static ScDocument*  GetScDocument(
                             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > xModel );
@@ -252,8 +248,6 @@ public:
                             const sal_Bool bIsFormula = sal_True);
 // EXPORT: Core Date Time
     static void         ConvertDateTimeToString(const DateTime& aDateTime, ::rtl::OUStringBuffer& sDate);
-// IMPORT: Core Date Time
-    static void         ConvertStringToDateTime(const ::rtl::OUString& sDate, DateTime& aDateTime, SvXMLUnitConverter* pUnitConverter);
 
     static void         ConvertCoreToAPIDateTime(const DateTime& aDateTime, ::com::sun::star::util::DateTime& rDateTime);
 
