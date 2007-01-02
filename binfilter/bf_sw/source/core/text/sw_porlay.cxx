@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:11:57 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:00:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@
 
 #include "txtcfg.hxx"
 #include "itrform2.hxx"
-#include "blink.hxx"    // pBlink
 #include "redlnitr.hxx" // SwRedlineItr
 #include "porfly.hxx"   // SwFlyCntPortion
 #ifndef _PORRST_HXX
@@ -118,8 +117,6 @@ namespace binfilter {
 /*N*/   Truncate();
 /*N*/   if( GetNext() )
 /*N*/       delete GetNext();
-/*N*/   if( pBlink )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( this );
 /*N*/   delete pSpaceAdd;
 /*N*/     if ( pKanaComp )
 /*?*/         delete pKanaComp;
@@ -138,10 +135,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/       if( GetLen() )
 /*N*/       {
 /*N*/           pPortion = new SwTxtPortion( *(SwLinePortion*)this );
-/*N*/           if( IsBlinking() && pBlink )
-/*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SetBlinking( sal_False );
-/*N*/           }
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -498,11 +491,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
  * searches for script changes in rTxt and stores them
  *************************************************************************/
 
-/*N*/ void SwScriptInfo::InitScriptInfo( const SwTxtNode& rNode )
-/*N*/ {
-/*N*/     InitScriptInfo( rNode, nDefaultDir == UBIDI_RTL );
-/*N*/ }
-
 /*N*/ void SwScriptInfo::InitScriptInfo( const SwTxtNode& rNode, sal_Bool bRTL )
 /*N*/ {
 /*N*/     if( !pBreakIt->xBreak.is() )
@@ -675,80 +663,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/                 i18n::ScriptType::ASIAN == nScript ||
 /*N*/                 i18n::ScriptType::COMPLEX == nScript, "Wrong default language" );
 /*N*/
-/*
- * This code has been disabled since the glyph fallback should work now
- *
-
-        // map scripts to font indices, CTL font is always the last one
-        const BYTE nScripts[3] = {
-                 nScript - 1,
-                 i18n::ScriptType::LATIN == nScript ? 1 : 0,
-                 2 };
-
-        xub_StrLen nOldChg = nChg;
-        const SwFont* pCurrFont = rAH.GetFont();
-
-        SwFontIter* pIter = 0;
-
-        if ( rNode.GetpSwpHints() )
-        {
-            // this is only necessary if there are font changes within the
-            // weak region
-            pIter = new SwFontIter( rNode, rAH, 0, nEnd );
-            pCurrFont = &pIter->GetCurrFont( nChg );
-            // the next end is the next font change
-            nEnd = pIter->NextFontChg();
-        }
-
-        ASSERT( pCurrFont, "I told you not to use an AttrHandler without a font" )
-
-        while ( nChg < nEnd )
-        {
-            for ( BYTE i = 0; i < 3; ++i )
-            {
-                nChg = rOut.HasGlyphs(
-                         pCurrFont->GetFnt( nScripts[i] ), rTxt, nChg, nEnd - nChg );
-
-                if ( nChg > nOldChg )
-                {
-                    // add new group
-                    aScriptChg.Insert( nChg, nCnt );
-                    aScriptType.Insert( nScripts[i] + 1, nCnt++ );
-                    nOldChg = nChg;
-
-                    // specials: continue with font[0] font
-                    if ( 1 == i )
-                        break;
-                }
-                else if ( 2 == i )
-                {
-                    // if we did not make any progress with the font[2]: default
-                    ++nChg;
-                    aScriptChg.Insert( nChg, nCnt );
-                    aScriptType.Insert( nScripts[0] + 1, nCnt++ );
-                    nOldChg = nChg;
-                }
-
-                // check if already finished
-                if ( nChg == nEnd )
-                    break;
-            }
-
-            if ( pIter )
-            {
-                pCurrFont = &pIter->GetCurrFont( nChg );
-                // advance to the next font change
-                nEnd = pIter->NextFontChg();
-            }
-        }
-
-        delete pIter;
-
-        // Get next script type or set to weak in order to exit
-        nScript = ( nEnd < rTxt.Len() ) ?
-                  (BYTE)pBreakIt->xBreak->getScriptType( rTxt, nEnd ) :
-                  (BYTE)WEAK;
- */
 /*N*/         nChg = nEnd;
 /*N*/         aScriptChg.Insert( nEnd, nCnt );
 /*N*/         aScriptType.Insert( nScript, nCnt++ );
@@ -1179,56 +1093,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   } while( nIdx < nLen );
 /*N*/   return nSub;
 /*N*/ }
-
-#ifdef BIDI
-
-/*************************************************************************
- *                      SwScriptInfo::KashidaJustify()
- *************************************************************************/
-
-
-/*************************************************************************
- *                      SwScriptInfo::IsArabicLanguage()
- *************************************************************************/
-
-
-#endif
-
-/*************************************************************************
- *                      SwScriptInfo::ThaiJustify()
- *************************************************************************/
-
-
-/*************************************************************************
- *                      SwScriptInfo::GetScriptInfo()
- *************************************************************************/
-
-/*N*/ SwScriptInfo* SwScriptInfo::GetScriptInfo( const SwTxtNode& rTNd,
-/*N*/                                            sal_Bool bAllowInvalid )
-/*N*/ {
-/*N*/     SwClientIter aClientIter( (SwTxtNode&)rTNd );
-/*N*/     SwClient* pLast = aClientIter.GoStart();
-/*N*/     SwScriptInfo* pScriptInfo = 0;
-/*N*/
-/*N*/     while( pLast )
-/*N*/     {
-/*N*/         if ( pLast->ISA( SwTxtFrm ) )
-/*N*/         {
-/*N*/             pScriptInfo = (SwScriptInfo*)((SwTxtFrm*)pLast)->GetScriptInfo();
-/*N*/             if ( pScriptInfo )
-/*N*/             {
-/*?*/                 if ( ! bAllowInvalid && STRING_LEN != pScriptInfo->GetInvalidity() )
-/*?*/                     pScriptInfo = 0;
-/*?*/                 else break;
-/*N*/             }
-/*N*/         }
-/*N*/         pLast = ++aClientIter;
-/*N*/     }
-/*N*/
-/*N*/     return pScriptInfo;
-/*N*/ }
-
-
 
 /*************************************************************************
  *                      class SwParaPortion
