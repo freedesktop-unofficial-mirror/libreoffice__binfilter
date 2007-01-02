@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbmgr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:37:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:42:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -221,9 +221,6 @@ public:
     inline BOOL     IsMergeSilent() const           { return bMergeSilent != 0; }
     inline void     SetMergeSilent( BOOL bVal )     { bMergeSilent = bVal; }
 
-    // Mischen von Datensaetzen in Felder
-    BOOL            MergeNew(USHORT nOpt, SwWrtShell& rSh,
-           const ::binfilter::svx::ODataAccessDescriptor& _rDescriptor);
     // Mischen von Datensaetzen in Felder, dann drucken
     // Datenbankfelder mit fehlendem Datenbankname initialisieren
     inline BOOL     IsInitDBFields() const  { return bInitDBFields; }
@@ -247,14 +244,6 @@ public:
 
 
     inline BOOL     IsInMerge() const   { return bInMerge; }
-    void            EndMerge();
-
-    void            ExecuteFormLetter(SwWrtShell& rSh,
-                        const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rProperties,
-                        BOOL bWithDataSourceBrowser = FALSE);
-
-    void            InsertText(SwWrtShell& rSh,
-                        const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rProperties);
 
     // check if a data source is open
     BOOL            IsDataSourceOpen(const String& rDataSource,
@@ -294,45 +283,6 @@ public:
     static ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>
             GetConnection(const String& rDataSource,
                 ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource>& rxSource);
-
-
-
-        static SwDbtoolsClient&    GetDbtoolsClient();
-            // has to be called from _FinitUI()
-        static void                RemoveDbtoolsClient();
-
-
-    /** try to get the data source from the given connection through the XChild interface.
-        If this is not possible, the data source will be created through its name.
-        @param _xConnection
-            The connection which should support the XChild interface. (not a must)
-        @param _sDataSourceName
-            The data source name will be used to create the data source when the connection can not be used for it.
-        @return
-            The data source.
-    */
-    static ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource>
-            getDataSourceAsParent(const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>& _xConnection,const ::rtl::OUString& _sDataSourceName);
-
-    /** creates a RowSet, which must be disposed after use.
-        @param  _sDataSourceName
-            The data source name
-        @param  _sCommand
-            The command.
-        @param  _nCommandType
-            The type of the command.
-        @param  _xConnection
-            The active connection which may be <NULL/>.
-        @return
-            The new created RowSet.
-
-    */
-    static ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet>
-            createCursor(   const ::rtl::OUString& _sDataSourceName,
-                            const ::rtl::OUString& _sCommand,
-                            sal_Int32 _nCommandType,
-                            const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>& _xConnection
-                            );
 };
 
 } //namespace binfilter
