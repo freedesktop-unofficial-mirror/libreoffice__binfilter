@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtfrm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:14:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:01:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -227,15 +227,6 @@ namespace binfilter {
 /*N*/     rPoint.Y() = Frm().Top() + nOfstX;
 /*N*/ }
 /*N*/
-/*N*/ // Calculates the a limit value when switching from
-/*N*/ // vertical to horizontal layout.
-/*N*/ long SwTxtFrm::SwitchVerticalToHorizontal( long nLimit ) const
-/*N*/ {
-/*N*/     Point aTmp( nLimit, 0 );
-/*N*/     SwitchVerticalToHorizontal( aTmp );
-/*N*/     return aTmp.Y();
-/*N*/ }
-
 /*N*/ SwFrmSwapper::SwFrmSwapper( const SwTxtFrm* pTxtFrm, sal_Bool bSwapIfNotSwapped )
 /*N*/     : pFrm( pTxtFrm ), bUndo( sal_False )
 /*N*/ {
@@ -255,19 +246,6 @@ namespace binfilter {
 /*N*/ }
 
 #ifdef BIDI
-
-/*N*/ void SwTxtFrm::SwitchLTRtoRTL( SwRect& rRect ) const
-/*N*/ {
-/*N*/     SWAP_IF_NOT_SWAPPED( this )
-/*N*/
-/*N*/     long nWidth = rRect.Width();
-/*N*/     rRect.Left( 2 * ( Frm().Left() + Prt().Left() ) +
-/*N*/                 Prt().Width() - rRect.Right() - 1 );
-/*N*/
-/*N*/     rRect.Width( nWidth );
-/*N*/
-/*N*/     UNDO_SWAP( this )
-/*N*/ }
 
 /*N*/ void SwTxtFrm::SwitchLTRtoRTL( Point& rPoint ) const
 /*N*/ {
