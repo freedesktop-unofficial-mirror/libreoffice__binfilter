@@ -4,9 +4,9 @@
  *
  *  $RCSfile: obj3d.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:21:44 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:32:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -314,8 +314,6 @@ class E3dObject : public SdrAttrObj
     virtual SdrObjGeoData *NewGeoData() const;
     virtual void          SaveGeoData(SdrObjGeoData& rGeo) const;
     virtual void          RestGeoData(const SdrObjGeoData& rGeo);
-
-    void ForceDefaultAttrAgain ();
 
     // diese Funktionen schreiben nur die Member von E3dObject wird auch von E3dSphere
     // gerufen.
