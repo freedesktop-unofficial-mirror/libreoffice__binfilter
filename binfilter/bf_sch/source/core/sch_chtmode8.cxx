@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode8.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:25:12 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:08:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -482,36 +482,6 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/       case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY :
 /*N*/       case CHSTYLE_2D_B_SPLINE_XY :
 /*N*/       case CHSTYLE_2D_B_SPLINE_SYMBOL_XY :
-/*N*/           return TRUE;
-/*N*/
-/*N*/       default :
-/*N*/           return FALSE;
-/*N*/   }
-/*N*/ }
-
-/*N*/ BOOL ChartModel::IsStatisticChart() const
-/*N*/ {
-/*N*/   switch( eChartStyle )
-/*N*/   {
-/*N*/       case CHSTYLE_2D_BAR :
-/*N*/       case CHSTYLE_2D_B_SPLINE :
-/*N*/       case CHSTYLE_2D_B_SPLINE_SYMBOL :
-/*N*/       case CHSTYLE_2D_B_SPLINE_SYMBOL_XY :
-/*N*/       case CHSTYLE_2D_B_SPLINE_XY :
-/*N*/       case CHSTYLE_2D_COLUMN :
-/*N*/       case CHSTYLE_2D_CUBIC_SPLINE :
-/*N*/       case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL :
-/*N*/       case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY :
-/*N*/       case CHSTYLE_2D_CUBIC_SPLINE_XY :
-/*N*/       case CHSTYLE_2D_LINE :
-/*N*/       case CHSTYLE_2D_LINESYMBOLS :
-/*N*/       case CHSTYLE_2D_STOCK_1:
-/*N*/       case CHSTYLE_2D_STOCK_2:
-/*N*/       case CHSTYLE_2D_STOCK_3:
-/*N*/       case CHSTYLE_2D_STOCK_4:
-/*N*/       case CHSTYLE_2D_XY :
-/*N*/       case CHSTYLE_2D_XYSYMBOLS :
-/*N*/       case CHSTYLE_2D_XY_LINE :
 /*N*/           return TRUE;
 /*N*/
 /*N*/       default :
