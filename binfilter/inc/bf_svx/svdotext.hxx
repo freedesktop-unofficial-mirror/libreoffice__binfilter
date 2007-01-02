@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdotext.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:09:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:35:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -268,7 +268,6 @@ public:
     FASTBOOL AdjustTextFrameWidthAndHeight(Rectangle& rR, FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE) const;
     FASTBOOL NbcAdjustTextFrameWidthAndHeight(FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE);
     FASTBOOL AdjustTextFrameWidthAndHeight(FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE);
-    void NbcResizeTextAttributes(const Fraction& xFact, const Fraction& yFact);
     FASTBOOL IsTextFrame() const { return bTextFrame; }
     FASTBOOL IsOutlText() const { return bTextFrame && (eTextKind==OBJ_OUTLINETEXT || eTextKind==OBJ_TITLETEXT); }
     BOOL GetTextKind() const { return eTextKind; }
@@ -281,7 +280,6 @@ public:
 
     void SetDisableAutoWidthOnDragging(FASTBOOL bOn) { bDisableAutoWidthOnDragging=bOn; }
     FASTBOOL IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }
-    void NbcSetText(const String& rStr);
     void NbcSetText(SvStream& rInput, USHORT eFormat);
 
     // FitToSize und Fontwork wird bei GetTextSize() nicht berueksichtigt!

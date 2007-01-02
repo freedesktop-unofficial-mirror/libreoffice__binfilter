@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpntv.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:10:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:35:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -681,11 +681,6 @@ public:
     BOOL Cut(ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
     BOOL Yank(ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
     BOOL Paste(Window* pWin=NULL, ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
-
-    /* new interface src537 */
-
-    BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
-
 
     // Fuer PlugIn. Wird vom Paint des OLE-Obj gerufen.
 
