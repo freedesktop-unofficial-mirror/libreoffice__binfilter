@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:45:46 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:20:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1054,62 +1054,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-
-
-/*N*/ EditPaM ImpEditEngine::InsertText( const EditSelection& rCurSel, xub_Unicode c, BOOL bOverwrite )
-/*N*/ {
-/*N*/   DBG_ASSERT( c != '\t', "Tab bei InsertText ?" );
-/*N*/   DBG_ASSERT( c != '\n', "Zeilenumbruch bei InsertText ?" );
-/*N*/
-/*N*/   EditPaM aPaM( rCurSel.Min() );
-/*N*/
-/*N*/   BOOL bDoOverwrite = ( bOverwrite &&
-/*N*/           ( aPaM.GetIndex() < aPaM.GetNode()->Len() ) ) ? TRUE : FALSE;
-/*N*/
-/*N*/   BOOL bUndoAction = ( rCurSel.HasRange() || bDoOverwrite );
-/*N*/
-/*N*/   if ( bUndoAction )
-/*?*/       UndoActionStart( EDITUNDO_INSERT );
-/*N*/
-/*N*/   if ( rCurSel.HasRange() )
-/*N*/   {
-/*?*/       aPaM = ImpDeleteSelection( rCurSel );
-/*N*/   }
-/*N*/   else if ( bDoOverwrite )
-/*N*/   {
-/*?*/       // Wenn Selektion, dann nicht auch noch ein Zeichen ueberschreiben!
-/*?*/       EditSelection aTmpSel( aPaM );
-/*?*/       aTmpSel.Max().GetIndex()++;
-/*?*/       DBG_ASSERT( !aTmpSel.DbgIsBuggy( aEditDoc ), "Overwrite: Fehlerhafte Selektion!" );
-/*?*/       ImpDeleteSelection( aTmpSel );
-/*N*/   }
-/*N*/
-/*N*/   if ( aPaM.GetNode()->Len() < MAXCHARSINPARA )
-/*N*/   {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/       if ( IsUndoEnabled() && !IsInUndo() )
-/*N*/       {
-/*N*/               EditUndoInsertChars* pNewUndo = new EditUndoInsertChars( this, CreateEPaM( aPaM ), c );
-/*N*/               BOOL bTryMerge = ( !bDoOverwrite && ( c != ' ' ) ) ? TRUE : FALSE;
-/*N*/               InsertUndo( pNewUndo, bTryMerge );
-/*N*/       }
-/*N*/ #endif
-/*N*/
-/*N*/       aEditDoc.InsertText( (const EditPaM&)aPaM, c );
-/*N*/       ParaPortion* pPortion = FindParaPortion( aPaM.GetNode() );
-/*N*/       DBG_ASSERT( pPortion, "Blinde Portion in InsertText" );
-/*N*/       pPortion->MarkInvalid( aPaM.GetIndex(), 1 );
-/*N*/       aPaM.GetIndex()++;  // macht EditDoc-Methode nicht mehr
-/*N*/   }
-/*N*/
-/*N*/   TextModified();
-/*N*/
-/*N*/   if ( bUndoAction )
-/*?*/       UndoActionEnd( EDITUNDO_INSERT );
-/*N*/
-/*N*/   return aPaM;
-/*N*/ }
-
 /*N*/ EditPaM ImpEditEngine::ImpInsertText( EditSelection aCurSel, const XubString& rStr )
 /*N*/ {
 /*N*/   EditPaM aPaM;
@@ -1233,17 +1177,6 @@ using namespace ::com::sun::star;
 /*N*/   return aPaM;
 /*N*/ }
 
-/*N*/ EditPaM ImpEditEngine::ImpInsertParaBreak( const EditSelection& rCurSel, BOOL bKeepEndingAttribs )
-/*N*/ {
-/*N*/   EditPaM aPaM;
-/*N*/   if ( rCurSel.HasRange() )
-/*?*/       aPaM = ImpDeleteSelection( rCurSel );
-/*N*/   else
-/*N*/       aPaM = rCurSel.Max();
-/*N*/
-/*N*/   return ImpInsertParaBreak( aPaM, bKeepEndingAttribs );
-/*N*/ }
-
 /*N*/ EditPaM ImpEditEngine::ImpInsertParaBreak( const EditPaM& rPaM, BOOL bKeepEndingAttribs )
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
@@ -1306,36 +1239,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return EditPaM( pNode, 0 );
 /*N*/ }
-
-/*N*/ EditPaM ImpEditEngine::InsertParaBreak( EditSelection aCurSel )
-/*N*/ {
-/*N*/   EditPaM aPaM( ImpInsertParaBreak( aCurSel ) );
-/*N*/   if ( aStatus.DoAutoIndenting() )
-/*N*/   {
-/*N*/       USHORT nPara = aEditDoc.GetPos( aPaM.GetNode() );
-/*N*/       DBG_ASSERT( nPara > 0, "AutoIndenting: Fehler!" );
-/*N*/       XubString aPrevParaText( GetEditDoc().GetParaAsString( nPara-1 ) );
-/*N*/       USHORT n = 0;
-/*N*/       while ( ( n < aPrevParaText.Len() ) &&
-/*N*/               ( ( aPrevParaText.GetChar(n) == ' ' ) || ( aPrevParaText.GetChar(n) == '\t' ) ) )
-/*N*/       {
-/*?*/           if ( aPrevParaText.GetChar(n) == '\t' )
-/*?*/               aPaM = ImpInsertFeature( aPaM, SfxVoidItem( EE_FEATURE_TAB ) );
-/*?*/           else
-/*?*/               aPaM = ImpInsertText( aPaM, aPrevParaText.GetChar(n) );
-/*?*/           n++;
-/*N*/       }
-/*N*/
-/*N*/   }
-/*N*/   return aPaM;
-/*N*/ }
-
-/*N*/ EditPaM ImpEditEngine::InsertTab( EditSelection aCurSel )
-/*N*/ {
-/*N*/   EditPaM aPaM( ImpInsertFeature( aCurSel, SfxVoidItem( EE_FEATURE_TAB ) ) );
-/*N*/   return aPaM;
-/*N*/ }
-
 
 /*N*/ BOOL ImpEditEngine::UpdateFields()
 /*N*/ {

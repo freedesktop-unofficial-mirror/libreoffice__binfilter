@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:46:12 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:20:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -324,7 +324,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   // Optimieren:
 /*N*/   // Kein GetPos undFindParaportion, sondern Index berechnen!
 /*N*/   EditSelection aSel( aPaM, aPaM );
-/*N*/   DBG_ASSERT( !aSel.DbgIsBuggy( aEditDoc ), "InsertBibTextObject: Selektion kaput!(1)" );
 /*N*/
 /*N*/   sal_Bool bUsePortionInfo = sal_False;
 /*N*/   sal_Bool bFields = sal_False;
@@ -498,7 +497,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   }
 /*N*/
 /*N*/   aSel.Max() = aPaM;
-/*N*/   DBG_ASSERT( !aSel.DbgIsBuggy( aEditDoc ), "InsertBibTextObject: Selektion kaput!(1)" );
 /*N*/   return aSel;
 /*N*/ }
 

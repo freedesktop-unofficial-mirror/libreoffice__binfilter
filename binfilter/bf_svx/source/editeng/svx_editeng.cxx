@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:43:08 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:19:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -224,27 +224,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pImpEditEngine->GetEmptyItemSet();
 /*N*/ }
 
-
-
-
-
-/*N*/ void EditEngine::InsertView( EditView* pEditView, sal_uInt16 nIndex )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   DBG_CHKOBJ( pEditView, EditView, 0 );
-/*N*/
-/*N*/   if ( nIndex > pImpEditEngine->GetEditViews().Count() )
-/*N*/       nIndex = pImpEditEngine->GetEditViews().Count();
-/*N*/
-/*N*/   pImpEditEngine->GetEditViews().Insert( pEditView, nIndex );
-/*N*/   EditSelection aStartSel;
-/*N*/   aStartSel = pImpEditEngine->GetEditDoc().GetStartPaM();
-/*N*/   pEditView->pImpEditView->SetEditSelection( aStartSel );
-/*N*/   if ( !pImpEditEngine->GetActiveView() )
-/*N*/       pImpEditEngine->SetActiveView( pEditView );
-/*N*/
-/*N*/     pEditView->pImpEditView->AddDragAndDropListeners();
-/*N*/ }
 
 /*N*/ EditView* EditEngine::RemoveView( EditView* pView )
 /*N*/ {
@@ -466,14 +445,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pE->pImpEditEngine->CreateESel( aSel );
 /*N*/ }
 
-
-
-
-
-/*?*/ sal_Bool EditEngine::PostKeyEvent( const KeyEvent& rKeyEvent, EditView* pEditView )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); } return sal_False;//STRIP001
-/*?*/ }
-
 /*N*/ sal_uInt32 EditEngine::GetTextHeight() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -523,16 +494,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   if ( rText.Len() )
 /*N*/       pImpEditEngine->FormatAndUpdate();
 /*N*/ }
-
-/*N*/ ULONG EditEngine::Read( SvStream& rInput, EETextFormat eFormat, SvKeyValueIterator* pHTTPHeaderAttrs /* = NULL */ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return 0; //STRIP001
-/*N*/ }
-
-#ifndef SVX_LIGHT
-/*N*/ ULONG EditEngine::Write( SvStream& rOutput, EETextFormat eFormat )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*N*/ }
-#endif
 
 /*N*/ EditTextObject*   EditEngine::CreateTextObject()
 /*N*/ {
@@ -1107,14 +1068,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 
-/*N*/ void EditEngine::DoStretchChars( sal_uInt16 nX, sal_uInt16 nY )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   pImpEditEngine->DoStretchChars( nX, nY );
-/*N*/ }
-
-
-
 /*N*/ sal_Bool EditEngine::ShouldCreateBigTextObject() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -1425,22 +1378,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return aFont;
 /*N*/ }
 
-
-
-/*N*/ sal_Bool EditEngine::IsSimpleCharInput( const KeyEvent& rKeyEvent )
-/*N*/ {
-/*N*/   if( EditEngine::IsPrintable( rKeyEvent.GetCharCode() ) &&
-/*N*/ #ifndef MAC
-/*N*/       ( KEY_MOD2 != (rKeyEvent.GetKeyCode().GetModifier() & ~KEY_SHIFT ) ) &&
-/*N*/       ( KEY_MOD1 != (rKeyEvent.GetKeyCode().GetModifier() & ~KEY_SHIFT ) ) )
-/*N*/ #else
-/*N*/       KEY_MOD1 != rKeyEvent.GetKeyCode().GetModifier() )
-/*N*/ #endif
-/*N*/   {
-/*N*/       return sal_True;
-/*N*/   }
-/*N*/   return sal_False;
-/*N*/ }
 
 // Mal in den Outliner schieben...
 /*N*/ void EditEngine::ImportBulletItem( SvxNumBulletItem& rNumBullet, sal_uInt16 nLevel,
