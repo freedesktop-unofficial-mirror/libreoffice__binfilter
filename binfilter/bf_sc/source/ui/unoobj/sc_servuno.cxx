@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_servuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:05:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:06:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,14 +157,6 @@ static const sal_Char* __FAR_DATA aOldNames[SC_SERVICE_COUNT] =
 //------------------------------------------------------------------------
 
 //  alles static
-
-String ScServiceProvider::GetProviderName(sal_uInt16 nObjectType)
-{
-    String sRet;
-    if (nObjectType < SC_SERVICE_COUNT)
-        sRet = String::CreateFromAscii( aProvNames[nObjectType] );
-    return sRet;
-}
 
 sal_uInt16 ScServiceProvider::GetProviderType(const String& rServiceName)
 {

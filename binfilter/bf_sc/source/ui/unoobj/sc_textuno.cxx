@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:06:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:06:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -952,15 +952,6 @@ ScEditEngineTextObj::ScEditEngineTextObj() :
 
 ScEditEngineTextObj::~ScEditEngineTextObj() throw()
 {
-}
-
-void ScEditEngineTextObj::SetText( const String& rStr )
-{
-    GetEditEngine()->SetText( rStr );
-
-    ESelection aSel;
-    ::binfilter::GetSelection( aSel, GetEditSource()->GetTextForwarder() );
-    SetSelection( aSel );
 }
 
 void ScEditEngineTextObj::SetText( const EditTextObject& rTextObject )
