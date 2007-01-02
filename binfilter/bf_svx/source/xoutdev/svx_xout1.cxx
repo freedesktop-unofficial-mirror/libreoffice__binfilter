@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xout1.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:03:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:39:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -91,53 +91,5 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|*    XOutputDevice::GetMapMode()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
-*************************************************************************/
-
-/*N*/ MapMode XOutputDevice::GetMapMode() const
-/*N*/ {
-/*N*/   MapMode aMap = pOut->GetMapMode();
-/*N*/   Point   aPos = aMap.GetOrigin();
-/*N*/
-/*N*/   aPos.X() -= aOfs.X();
-/*N*/   aPos.Y() -= aOfs.Y();
-/*N*/
-/*N*/   aMap.SetOrigin( aPos );
-/*N*/
-/*N*/   return aMap;
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|*    XOutputDevice::SetMapMode()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
-*************************************************************************/
-
-/*N*/ void XOutputDevice::SetMapMode( const MapMode& rMap )
-/*N*/ {
-/*N*/   Point aPos = rMap.GetOrigin();
-/*N*/   aPos.X() += aOfs.X();
-/*N*/   aPos.Y() += aOfs.Y();
-/*N*/
-/*N*/   MapMode aMap( rMap );
-/*N*/   aMap.SetOrigin( aPos );
-/*N*/
-/*N*/   pOut->SetMapMode( aMap );
-/*N*/ }
-
-
 
 }
