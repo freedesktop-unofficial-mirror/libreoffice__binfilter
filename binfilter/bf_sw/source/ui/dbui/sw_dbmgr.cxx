@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:06:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:10:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -346,20 +346,6 @@ namespace
 /*N*/        ,xDisposeListener(new SwConnectionDisposedListener_Impl(rDBMgr))
 /*N*/         {}
 /*N*/ };
-/* -----------------------------17.07.00 17:23--------------------------------
-
- ---------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------
-    Beschreibung: Daten importieren
- --------------------------------------------------------------------*/
-/*N*/ BOOL SwNewDBMgr::MergeNew(USHORT nOpt, SwWrtShell& rSh,
-/*N*/                         const ODataAccessDescriptor& _rDescriptor)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*N*/ }
-
-/* -----------------------------08.06.01 15:11--------------------------------
-
- ---------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------
     Beschreibung: CTOR
@@ -433,16 +419,6 @@ namespace
 /*?*/   }
 /*?*/   return xConnection;
 /*?*/ }
-/* -----------------------------06.07.00 14:28--------------------------------
-    releases the merge data source table or query after merge is completed
- ---------------------------------------------------------------------------*/
-/*N*/ void  SwNewDBMgr::EndMerge()
-/*N*/ {
-/*N*/   DBG_ASSERT(bInMerge, "merge is not active")
-/*N*/   bInMerge = FALSE;
-/*N*/     delete pImpl->pMergeData;
-/*N*/     pImpl->pMergeData = 0;
-/*N*/ }
 /* -----------------------------06.07.00 14:28--------------------------------
     checks if a desired data source table or query is open
  ---------------------------------------------------------------------------*/
@@ -821,97 +797,11 @@ namespace
 /*N*/ {
 /*N*/   return SW_MOD()->GetDBConfig()->GetAddressSource();
 /*N*/ }
-/* -----------------------------10.11.00 17:10--------------------------------
-
- ---------------------------------------------------------------------------*/
-/*N*/ void SwNewDBMgr::ExecuteFormLetter(   SwWrtShell& rSh,
-/*N*/                         const Sequence<PropertyValue>& rProperties,
-/*N*/                         BOOL bWithDataSourceBrowser)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-/* -----------------------------13.11.00 08:20--------------------------------
-
- ---------------------------------------------------------------------------*/
-/*N*/ void SwNewDBMgr::InsertText(SwWrtShell& rSh,
-/*N*/                       const Sequence< PropertyValue>& rProperties)
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::rtl::OUString sDataSource, sDataTableOrQuery;
-/*N*/ }
 /* -----------------------------30.08.2001 12:00------------------------------
 
  ---------------------------------------------------------------------------*/
 SwDbtoolsClient* SwNewDBMgr::pDbtoolsClient = NULL;
 
-SwDbtoolsClient& SwNewDBMgr::GetDbtoolsClient()
-{
-    if ( !pDbtoolsClient )
-        pDbtoolsClient = new SwDbtoolsClient;
-    return *pDbtoolsClient;
-}
-/* -----------------13.05.2003 15:34-----------------
-
- --------------------------------------------------*/
-void SwNewDBMgr::RemoveDbtoolsClient()
-{
-    delete pDbtoolsClient;
-    pDbtoolsClient = 0;
-}
-/* -----------------------------20.08.2002 12:00------------------------------
-
- ---------------------------------------------------------------------------*/
-/*M*/ Reference<XDataSource> SwNewDBMgr::getDataSourceAsParent(const Reference< XConnection>& _xConnection,const ::rtl::OUString& _sDataSourceName)
-/*M*/ {
-/*M*/   Reference<XDataSource> xSource;
-/*M*/   Reference<XChild> xChild(_xConnection, UNO_QUERY);
-/*M*/   if ( xChild.is() )
-/*M*/       xSource = Reference<XDataSource>(xChild->getParent(), UNO_QUERY);
-/*M*/   if ( !xSource.is() )
-/*M*/       xSource = SwNewDBMgr::GetDbtoolsClient().getDataSource(_sDataSourceName, ::legacy_binfilters::getLegacyProcessServiceFactory());
-/*M*/
-/*M*/   return xSource;
-/*M*/ }
-/* -----------------------------20.08.2002 12:00------------------------------
-
- ---------------------------------------------------------------------------*/
-/*M*/ Reference<XResultSet> SwNewDBMgr::createCursor(const ::rtl::OUString& _sDataSourceName,
-/*M*/                                      const ::rtl::OUString& _sCommand,
-/*M*/                                      sal_Int32 _nCommandType,
-/*M*/                                      const Reference<XConnection>& _xConnection
-/*M*/                                     )
-/*M*/ {
-/*M*/   Reference<XResultSet> xResultSet;
-/*M*/   try
-/*M*/   {
-/*M*/       Reference< XMultiServiceFactory > xMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-/*M*/       if( xMgr.is() )
-/*M*/       {
-/*M*/           Reference<XInterface> xInstance = xMgr->createInstance(
-/*M*/               C2U( "com.sun.star.sdb.RowSet" ));
-/*M*/           Reference <XPropertySet> xRowSetPropSet(xInstance, UNO_QUERY);
-/*M*/           if(xRowSetPropSet.is())
-/*M*/           {
-/*M*/               xRowSetPropSet->setPropertyValue(C2U("DataSourceName"), makeAny(_sDataSourceName));
-/*M*/               xRowSetPropSet->setPropertyValue(C2U("ActiveConnection"), makeAny(_xConnection));
-/*M*/               xRowSetPropSet->setPropertyValue(C2U("Command"), makeAny(_sCommand));
-/*M*/               xRowSetPropSet->setPropertyValue(C2U("CommandType"), makeAny(_nCommandType));
-/*M*/
-/*M*/               Reference< XCompletedExecution > xRowSet(xInstance, UNO_QUERY);
-/*M*/
-/*M*/               if ( xRowSet.is() )
-/*M*/               {
-/*M*/                   Reference< XInteractionHandler > xHandler(xMgr->createInstance(C2U("com.sun.star.sdb.InteractionHandler")), UNO_QUERY);
-/*M*/                   xRowSet->executeWithCompletion(xHandler);
-/*M*/               }
-/*M*/               xResultSet = Reference<XResultSet>(xRowSet, UNO_QUERY);
-/*M*/           }
-/*M*/       }
-/*M*/   }
-/*M*/   catch(const Exception&)
-/*M*/   {
-/*M*/       DBG_ASSERT(0,"Catched exception while creating a new RowSet!");
-/*M*/   }
-/*M*/   return xResultSet;
-/*M*/ }
 /* -----------------09.12.2002 12:38-----------------
  *
  * --------------------------------------------------*/
