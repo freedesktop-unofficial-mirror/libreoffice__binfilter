@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_sdxmlimp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:44:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:14:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -649,15 +649,6 @@ SdXMLImport::~SdXMLImport() throw ()
 
 //////////////////////////////////////////////////////////////////////////////
 
-void SdXMLImport::SetProgress(sal_Int32 nProg)
-{
-    // set progress view
-    if(mxStatusIndicator.is())
-        mxStatusIndicator->setValue(nProg);
-}
-
-//////////////////////////////////////////////////////////////////////////////
-
 const SvXMLTokenMap& SdXMLImport::GetDocElemTokenMap()
 {
     if(!mpDocElemTokenMap)
@@ -851,14 +842,6 @@ SvXMLImportContext* SdXMLImport::CreateMasterStylesContext(const OUString& rLoca
 }
 
 //////////////////////////////////////////////////////////////////////////////
-// import pool defaults. Parameter contains pool defaults read
-// from input data. These data needs to be set at the model.
-//
-void SdXMLImport::ImportPoolDefaults(const XMLPropStyleContext* pPool)
-{
-}
-
-//////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext *SdXMLImport::CreateScriptContext(
                                        const OUString& rLocalName )
@@ -876,17 +859,6 @@ SvXMLImportContext *SdXMLImport::CreateScriptContext(
 void SdXMLImport::setDrawPageId( sal_Int32 nId, uno::Reference< drawing::XDrawPage > xPage )
 {
     maDrawPageIds[nId] = xPage;
-}
-
-uno::Reference< drawing::XDrawPage > SdXMLImport::getDrawPageForId( sal_Int32 nId )
-{
-    uno::Reference< drawing::XDrawPage > xPage;
-
-    DrawPageIdMap::iterator aFound( maDrawPageIds.find( nId ) );
-    if( aFound != maDrawPageIds.end() )
-        xPage = (*aFound).second;
-
-    return xPage;
 }
 
 //////////////////////////////////////////////////////////////////////////////
