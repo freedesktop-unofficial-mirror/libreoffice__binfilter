@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swgstr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:35:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:58:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -136,16 +136,6 @@ void swstreambase::checkbuf( USHORT n )
         delete pBuf;
         pBuf = new sal_Char[ n ];
         nBuflen = n;
-    }
-}
-
-void swstreambase::clear()
-{
-    if( nBuflen > 128 )
-    {
-        delete pBuf;
-        pBuf = new sal_Char [128];
-        nBuflen = 128;
     }
 }
 
