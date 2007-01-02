@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpsave.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:46:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:55:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -353,17 +353,6 @@ using namespace ::com::sun::star;
 /*N*/   nOrientation = nNew;
 /*N*/ }
 /*N*/
-/*N*/ void ScDPSaveDimension::SetSubTotals(BOOL bSet)
-/*N*/ {
-/*N*/   if (bSet)
-/*N*/   {
-/*N*/       USHORT nFunc = sheet::GeneralFunction_AUTO;
-/*N*/       SetSubTotals( 1, &nFunc );
-/*N*/   }
-/*N*/   else
-/*N*/       SetSubTotals( 0, NULL );
-/*N*/ }
-/*N*/
 /*N*/ void ScDPSaveDimension::SetSubTotals(long nCount, const USHORT* pFuncs)
 /*N*/ {
 /*N*/   if (pSubTotalFuncs)
@@ -424,20 +413,6 @@ using namespace ::com::sun::star;
 /*N*/   return aName;
 /*N*/ }
 
-/*N*/ ScDPSaveMember* ScDPSaveDimension::GetMemberByName(const String& rName)
-/*N*/ {
-/*N*/   long nCount = aMemberList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ScDPSaveMember* pMember = (ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/       if ( pMember->GetName() == rName )
-/*N*/           return pMember;
-/*N*/   }
-/*N*/   ScDPSaveMember* pNew = new ScDPSaveMember( rName );
-/*N*/   aMemberList.Insert( pNew, LIST_APPEND );
-/*N*/   return pNew;
-/*N*/ }
-/*N*/
 /*N*/ void ScDPSaveDimension::WriteToSource( const uno::Reference<uno::XInterface>& xDim )
 /*N*/ {
 /*N*/   uno::Reference<beans::XPropertySet> xDimProp( xDim, uno::UNO_QUERY );
@@ -653,20 +628,6 @@ using namespace ::com::sun::star;
 /*N*/   return NULL;        // don't create new
 /*N*/ }
 
-/*N*/ ScDPSaveDimension* ScDPSaveData::GetNewDimensionByName(const String& rName)
-/*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/       if ( pDim->GetName() == rName && !pDim->IsDataLayout() )
-/*N*/           return DuplicateDimension(rName);
-/*N*/   }
-/*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( rName, FALSE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
-/*N*/   return pNew;
-/*N*/ }
-/*N*/
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetDataLayoutDimension()
 /*N*/ {
 /*N*/   long nCount = aDimList.Count();
@@ -691,26 +652,6 @@ using namespace ::com::sun::star;
 /*N*/   pNew->SetDupFlag( TRUE );
 /*N*/   aDimList.Insert( pNew, LIST_APPEND );
 /*N*/   return pNew;
-/*N*/ }
-/*N*/
-/*N*/ void ScDPSaveData::SetPosition( ScDPSaveDimension* pDim, long nNew )
-/*N*/ {
-/*N*/   //  position (nNew) is counted within dimensions of the same orientation
-/*N*/
-/*N*/   USHORT nOrient = pDim->GetOrientation();
-/*N*/
-/*N*/   aDimList.Remove( pDim );
-/*N*/   ULONG nCount = aDimList.Count();        // after remove
-/*N*/
-/*N*/   ULONG nInsPos = 0;
-/*N*/   while ( nNew > 0 && nInsPos < nCount )
-/*N*/   {
-/*N*/       if ( ((ScDPSaveDimension*)aDimList.GetObject(nInsPos))->GetOrientation() == nOrient )
-/*N*/           --nNew;
-/*N*/       ++nInsPos;
-/*N*/   }
-/*N*/
-/*N*/   aDimList.Insert( pDim, nInsPos );
 /*N*/ }
 /*N*/
 /*N*/ void ScDPSaveData::SetColumnGrand(BOOL bSet)
@@ -911,19 +852,4 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   lcl_SkipExtra( rStream );       // reads at least 1 USHORT
 /*N*/ }
-/*N*/
-/*N*/ BOOL ScDPSaveData::IsEmpty() const
-/*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/       if ( pDim->GetOrientation() != sheet::DataPilotFieldOrientation_HIDDEN && !pDim->IsDataLayout() )
-/*N*/           return FALSE;
-/*N*/   }
-/*N*/   return TRUE;    // no entries that are not hidden
-/*N*/ }
-
-
-
 }
