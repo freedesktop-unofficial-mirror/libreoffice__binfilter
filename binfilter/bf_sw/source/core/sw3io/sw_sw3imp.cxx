@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:58:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:55:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -295,14 +295,6 @@ public:
 /*N*/   if( pDoc && !pDoc->RemoveLink() )
 /*N*/       delete pDoc;
 /*N*/ }
-
-void Sw3IoImp::SetDoc( SwDoc& r )
-{
-    if( pDoc && !pDoc->RemoveLink() )
-        delete pDoc;
-    pDoc = &r;
-    r.AddLink();
-}
 
 /*N*/ Sw3IoImp* Sw3IoImp::GetCurrentIo()
 /*N*/ {
