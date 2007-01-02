@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndindex.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:28:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:46:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,11 +53,6 @@ int SwNodeIndex::nSerial = 0;
 /*N*/ SwNodeRange::SwNodeRange( const SwNodeRange &rRange )
 /*N*/   : aStart( rRange.aStart ), aEnd( rRange.aEnd )
 /*N*/ {}
-
-/*N*/ SwNodeRange::SwNodeRange( SwNodes& rNds, ULONG nSttIdx, ULONG nEndIdx )
-/*N*/   : aStart( rNds, nSttIdx ), aEnd( rNds, nEndIdx )
-/*N*/ {}
-
 
 /*N*/ SwNodeRange::SwNodeRange( const SwNodeIndex& rS, long nSttDiff,
 /*N*/                         const SwNodeIndex& rE, long nEndDiff )
