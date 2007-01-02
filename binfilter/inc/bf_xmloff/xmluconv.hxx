@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmluconv.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:26:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:55:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -122,8 +122,6 @@ private:
     static ::rtl::OUString msXML_false;
     static ::rtl::OUString msXML_true;
 
-    static void initXMLStrings();
-
     void createNumTypeInfo() const;
 
 public:
@@ -172,10 +170,6 @@ public:
     void convertMeasure( ::rtl::OUStringBuffer& rBuffer,
                          sal_Int32 nMeasure ) const;
 
-    /** convert measure with given unit to string */
-    void convertMeasure( ::rtl::OUStringBuffer&,
-                         sal_Int32 nMeasure,
-                         MapUnit eSrcUnit ) const;
 
     /** convert string to measure in given unit
         using optional min and max values */
@@ -236,15 +230,6 @@ public:
                                  const SvXMLEnumMapEntry *pMap,
                                  enum ::binfilter::xmloff::token::XMLTokenEnum eDefault =
                                          ::binfilter::xmloff::token::XML_TOKEN_INVALID );
-
-    /** convert enum to string using given token map with an optional
-        default token. If the enum is not found in the map,
-        this method will either use the given default or return
-        false if not default is set */
-    static sal_Bool convertEnum( ::rtl::OUStringBuffer& rBuffer,
-                                 USHORT nValue,
-                                 const SvXMLEnumStringMapEntry *pMap,
-                                 sal_Char* pDefault = NULL );
 
     /** convert string to color */
     static sal_Bool convertColor( Color& rColor,
@@ -376,9 +361,6 @@ public:
                         const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& aProperties);
     static void convertPropertySet( ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& rProperties,
                         const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);
-
-    static void clearUndefinedChars( ::rtl::OUString& rTarget, const ::rtl::OUString& rSource);
-
 };
 
 inline void SvXMLUnitConverter::setCoreMeasureUnit( MapUnit eCoreMeasureUnit )
