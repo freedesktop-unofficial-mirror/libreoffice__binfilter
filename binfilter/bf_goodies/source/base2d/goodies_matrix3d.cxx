@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_matrix3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:56:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:47:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,131 +56,6 @@
 \************************************************************************/
 
 namespace binfilter {
-BOOL Matrix3D::Ludcmp(UINT16 nIndex[], INT16& nParity)
-{
-    double fBig;
-    double fTemp;
-    double fStorage[3];
-    double fSum;
-    double fDum;
-    UINT16 i,j,k,imax = 0;
-
-    nParity = 1;
-
-    // Ermittle das Maximum jeder Zeile. Falls eine Zeile
-    // leer ist, breche ab. Matrix ist dann nicht invertierbar.
-    for(i=0;i<3;i++)
-    {
-        fBig = 0.0;
-        for(j=0;j<3;j++)
-        {
-            fTemp = fabs(M[i][j]);
-            if(fTemp > fBig)
-                fBig = fTemp;
-        }
-        if(fBig == 0.0)
-            return FALSE;
-        fStorage[i] = 1.0 / fBig;
-    }
-    // beginne mit dem normalisieren
-    for(j=0;j<3;j++)
-    {
-        for(i=0;i<j;i++)
-        {
-            fSum = M[i][j];
-            for(k=0;k<i;k++)
-            {
-                fSum -= M[i][k] * M[k][j];
-            }
-            M[i][j] = fSum;
-        }
-        fBig = 0.0;
-        for(i=j;i<3;i++)
-        {
-            fSum = M[i][j];
-            for(k=0L;k<j;k++)
-            {
-                fSum -= M[i][k] * M[k][j];
-            }
-            M[i][j] = fSum;
-            fDum = fStorage[i] * fabs(fSum);
-            if(fDum >= fBig)
-            {
-                fBig = fDum;
-                imax = i;
-            }
-        }
-        if(j != imax)
-        {
-            for(k=0;k<3;k++)
-            {
-                fDum = M[imax][k];
-                M[imax][k] = M[j][k];
-                M[j][k] = fDum;
-            }
-            nParity = -nParity;
-            fStorage[imax] = fStorage[j];
-        }
-        nIndex[j] = imax;
-
-        // here the failure of precision occurs
-        if(fabs(M[j][j]) == 0.0)
-            return FALSE;
-
-        if(j != 2)
-        {
-            fDum = 1.0 / M[j][j];
-            for(i=j+1;i<3;i++)
-            {
-                M[i][j] *= fDum;
-            }
-        }
-    }
-    return TRUE;
-}
-
-/*************************************************************************
-|*
-|* Hilfsfunktionen fuer Matrixinvertierung und Determinantenbestimmung
-|*
-\************************************************************************/
-
-void Matrix3D::Lubksb(UINT16 nIndex[], Point3D& rPnt)
-{
-    UINT16 j,ip;
-    INT16 i,ii = -1;
-    double fSum;
-
-    for(i=0;i<3;i++)
-    {
-        ip = nIndex[i];
-        fSum = rPnt[ip];
-        rPnt[ip] = rPnt[i];
-        if(ii >= 0)
-        {
-            for(j=ii;j<i;j++)
-            {
-                fSum -= M[i][j] * rPnt[j];
-            }
-        }
-        else if(fSum != 0.0)
-        {
-            ii = i;
-        }
-        rPnt[i] = fSum;
-    }
-    for(i=2;i>=0;i--)
-    {
-        fSum = rPnt[i];
-        for(j=i+1;j<3;j++)
-        {
-            fSum -= M[i][j] * rPnt[j];
-        }
-        if(M[i][i] != 0.0)
-            rPnt[i] = fSum / M[i][i];
-    }
-}
-
 /*************************************************************************
 |*
 |* Einheitsmatrix herstellen
@@ -199,129 +74,6 @@ void Matrix3D::Identity(void)
                 M[i][j] = 0.0;
             else
                 M[i][j] = 1.0;
-        }
-    }
-}
-
-/*************************************************************************
-|*
-|* Inverse Matrix bilden
-|*
-\************************************************************************/
-
-BOOL Matrix3D::Invert()
-{
-    Matrix3D aWork = *this;
-    UINT16 nIndex[3];
-    INT16 nParity;
-    UINT16 i;
-
-    if(!aWork.Ludcmp(nIndex, nParity))
-        return FALSE;
-
-    Matrix3D aInverse;
-    for(i=0;i<3;i++)
-    {
-        // Zeile expandieren
-        aWork.Lubksb(nIndex, aInverse[i]);
-    }
-    // transponieren
-    aInverse.Transpose();
-
-    // kopieren
-    *this = aInverse;
-
-    return TRUE;
-}
-
-/*************************************************************************
-|*
-|* Testet, ob diese Matrix invertierbar ist
-|*
-\************************************************************************/
-
-BOOL Matrix3D::IsInvertible()
-{
-    Matrix3D aWork = *this;
-    UINT16 nIndex[3];
-    INT16 nParity;
-    return aWork.Ludcmp(nIndex, nParity);
-}
-
-/*************************************************************************
-|*
-|* Korrigiert die Matrix zu einer homogenen Matrix. Dazu werden
-|* Nullen in die letzte Zeile und Spalte eingetragen und in die untere
-|* rechte Ecke eine 1.0 gesetzt
-|*
-\************************************************************************/
-
-void Matrix3D::Correct()
-{
-    M[0][2] = M[1][2] = 0.0;
-    M[2][0] = M[2][1] = 0.0;
-    M[2][2] = 1.0;
-}
-
-/*************************************************************************
-|*
-|* Liefert die Determinante dieser Matrix
-|*
-\************************************************************************/
-
-double Matrix3D::Determinant()
-{
-    Matrix3D aWork = *this;
-    UINT16 nIndex[3];
-    INT16 nParity;
-    UINT16 i;
-    double fRetval = 0.0;
-
-    if(aWork.Ludcmp(nIndex, nParity))
-    {
-        fRetval = (double)nParity;
-        for(i=0;i<3;i++)
-            fRetval *= aWork[i][i];
-    }
-    return fRetval;
-}
-
-/*************************************************************************
-|*
-|* Liefert den Trace dieser Matrix
-|*
-\************************************************************************/
-
-double Matrix3D::Trace()
-{
-    double fTrace = 0.0;
-    UINT16 i;
-
-    for(i=0;i<3;i++)
-    {
-        fTrace += M[i][i];
-    }
-    return fTrace;
-}
-
-/*************************************************************************
-|*
-|* Transponiert diese Matrix
-|*
-\************************************************************************/
-
-void Matrix3D::Transpose()
-{
-    UINT16 i,j;
-    double fTemp;
-
-    for(i=0;i<2;i++)
-    {
-        for(j=i+1;j<3;j++)
-        {
-            fTemp = M[i][j];
-            M[i][j] = M[j][i];
-            M[j][i] = fTemp;
         }
     }
 }
@@ -379,32 +131,6 @@ void Matrix3D::Translate(const Vector2D& rVec)
 
 /*************************************************************************
 |*
-|* Translationsmatrix nur in X
-|*
-\************************************************************************/
-
-void Matrix3D::TranslateX(double fValue)
-{
-    Matrix3D aTemp;
-    aTemp.M[0][2] = fValue;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Translationsmatrix nur in Y
-|*
-\************************************************************************/
-
-void Matrix3D::TranslateY(double fValue)
-{
-    Matrix3D aTemp;
-    aTemp.M[1][2] = fValue;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
 |* Skalierungsmatrix aufbauen
 |*
 \************************************************************************/
@@ -426,32 +152,6 @@ void Matrix3D::Scale(double fX, double fY)
 void Matrix3D::Scale(const Vector2D& rVec)
 {
     Scale(rVec.X(), rVec.Y());
-}
-
-/*************************************************************************
-|*
-|* Skalierungsmatrix nur in X
-|*
-\************************************************************************/
-
-void Matrix3D::ScaleX(double fFactor)
-{
-    Matrix3D aTemp;
-    aTemp.M[0][0] = fFactor;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Skalierungsmatrix nur in Y
-|*
-\************************************************************************/
-
-void Matrix3D::ScaleY(double fFactor)
-{
-    Matrix3D aTemp;
-    aTemp.M[1][1] = fFactor;
-    *this *= aTemp;
 }
 
 /*************************************************************************
@@ -478,20 +178,6 @@ void Matrix3D::ShearY(double fSy)
     Matrix3D aTemp;
     aTemp.M[1][0] = fSy;
     *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Matrix normalisieren
-|*
-\************************************************************************/
-
-void Matrix3D::Normalize()
-{
-    if(M[2][2] != 0.0 && M[2][2] != 1.0)
-        for(UINT16 i=0;i<3;i++)
-            for(UINT16 j=0;j<3;j++)
-                M[i][j] /= M[2][2];
 }
 
 /*************************************************************************
@@ -719,31 +405,6 @@ Vector2D operator* (const Matrix3D& rMatrix, const Vector2D& rVec)
         aNewVec[1] /= fZwi;
     }
     return aNewVec;
-}
-
-/*************************************************************************
-|*
-|* NUR die Rotation und Skalierung auf den Vektor anwenden!
-|*
-\************************************************************************/
-
-void Matrix3D::RotateAndNormalize(Vector2D& rVec) const
-{
-    Vector2D aNewVec;
-    UINT16 i,j;
-    double fZwi;
-
-    for(i=0;i<2;i++)
-    {
-        fZwi = 0.0;
-        for(j=0;j<2;j++)
-        {
-            fZwi += M[i][j] * rVec[j];
-        }
-        aNewVec[i] = fZwi;
-    }
-    aNewVec.Normalize();
-    rVec = aNewVec;
 }
 
 /*************************************************************************

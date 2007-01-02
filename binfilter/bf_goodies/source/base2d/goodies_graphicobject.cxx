@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_graphicobject.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:56:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:46:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ namespace binfilter {
     void BfGraphicObject::Assign( const SvDataCopyStream& rSt ) { GraphicObject::Assign(rSt); }
     BfGraphicObject::BfGraphicObject( const GraphicManager* pMgr ) : GraphicObject(pMgr) {}
     BfGraphicObject::BfGraphicObject( const Graphic& rGraphic, const GraphicManager* pMgr ) : GraphicObject(rGraphic, pMgr) {}
-    BfGraphicObject::BfGraphicObject( const Graphic& rGraphic, const String& rLink, const GraphicManager* pMgr ) : GraphicObject(rGraphic, rLink, pMgr) {}
     BfGraphicObject::BfGraphicObject( const BfGraphicObject& rCacheObj, const GraphicManager* pMgr ) : GraphicObject(rCacheObj, pMgr) {}
     BfGraphicObject::BfGraphicObject( const ByteString& rUniqueID, const GraphicManager* pMgr ) : GraphicObject(rUniqueID, pMgr) {}
     BfGraphicObject::~BfGraphicObject() {}
@@ -74,11 +73,9 @@ namespace binfilter {
     void                    BfGraphicObject::StopAnimation( OutputDevice* pOut, long nExtraData) { GraphicObject::StopAnimation( pOut, nExtraData); }
     BOOL                    BfGraphicObject::Draw( OutputDevice* pOut, const Point& rPt, const Size& rSz, const BfGraphicAttr* pAttr, ULONG nFlags) { return GraphicObject::Draw( pOut, rPt, rSz, pAttr, nFlags); }
     String                  BfGraphicObject::GetUserData() const { return GraphicObject::GetUserData(); }
-    void                    BfGraphicObject::SetSwapStreamHdl() { GraphicObject::SetSwapStreamHdl(); }
     void                    BfGraphicObject::SetSwapStreamHdl( const Link& rHdl, const ULONG nSwapOutTimeout) { GraphicObject::SetSwapStreamHdl( rHdl, nSwapOutTimeout); }
     void                    BfGraphicObject::ReleaseFromCache() { GraphicObject::ReleaseFromCache(); }
     String                  BfGraphicObject::GetLink() const { return GraphicObject::GetLink(); }
-    void                    BfGraphicObject::SetLink() { GraphicObject::SetLink(); }
     void                    BfGraphicObject::SetLink( const String& rLink ) { GraphicObject::SetLink( rLink ); }
     BOOL                    BfGraphicObject::SwapOut() { return GraphicObject::SwapOut(); }
     BOOL                    BfGraphicObject::SwapOut( SvStream* pOStm ) { return GraphicObject::SwapOut( pOStm ); }
