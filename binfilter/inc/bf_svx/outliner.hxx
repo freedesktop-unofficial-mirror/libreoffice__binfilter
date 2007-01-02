@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outliner.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:50:26 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:32:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -266,41 +266,16 @@ public:
 
     Rectangle   GetVisArea() const;
 
-
-    // gibt Anzahl selektierter Absaetze zurueck
-    // MT 07/00: Who needs this?
-
-    String      GetSelected() const;
-
-
-
-
-
-
     void        Cut();
     void        Copy();
     void        Paste();
 
-
-    void            SetStyleSheet( SfxStyleSheet* );
-
-
-
-
-
     // Depricated
-
-
 
     ESelection  GetSelection();
 
 
     void        SetSelection( const ESelection& );
-
-
-
-
-
 };
 
 #if _SOLAR__PRIVATE
@@ -733,7 +708,6 @@ public:
     BOOL            IsTextPos( const Point& rPaperPos, USHORT nBorder, BOOL* pbBuuletPos );
 
     void            SetGlobalCharStretching( USHORT nX = 100, USHORT nY = 100 );
-    void            DoStretchChars( USHORT nX, USHORT nY );
     void            EraseVirtualDevice();
 
     void            SetBigTextObjectStart( USHORT nStartAtPortionCount );

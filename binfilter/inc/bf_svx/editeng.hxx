@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:29:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:31:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -150,7 +150,6 @@ public:
     void            EnableAutoColor( BOOL b );
     BOOL            IsForceAutoColor() const;
 
-    void            InsertView( EditView* pEditView, USHORT nIndex = EE_APPEND );
     EditView*       RemoveView( EditView* pEditView );
     BOOL            HasView( EditView* pView ) const;
 
@@ -249,10 +248,6 @@ public:
 
     // StartDocPos entspr. VisArea.TopLeft().
 
-//  ULONG: Fehlercode des Streams.
-    ULONG           Read( SvStream& rInput, EETextFormat, SvKeyValueIterator* pHTTPHeaderAttrs = NULL );
-    ULONG           Write( SvStream& rOutput, EETextFormat );
-
     void            SetStatusEventHdl( const Link& rLink );
 
     void            SetNotifyHdl( const Link& rLink );
@@ -274,7 +269,6 @@ public:
     void            QuickDelete( const ESelection& rSel );
 
     void            SetGlobalCharStretching( USHORT nX = 100, USHORT nY = 100 );
-    void            DoStretchChars( USHORT nX, USHORT nY );
 
     void            SetEditTextObjectPool( SfxItemPool* pPool );
     SfxItemPool*    GetEditTextObjectPool() const;
@@ -340,7 +334,6 @@ public:
 
     static void     SetGetAutoCorrectHdl( const Link& rHdl );
     static SfxItemPool* CreatePool( BOOL bLoadRefCounts = TRUE );
-    static BOOL     IsSimpleCharInput( const KeyEvent& rKeyEvent );
     static Font     CreateFontFromItemSet( const SfxItemSet& rItemSet, USHORT nScriptType );
     static SvxFont  CreateSvxFontFromItemSet( const SfxItemSet& rItemSet );
     static void     ImportBulletItem( SvxNumBulletItem& rNumBullet, USHORT nLevel, const SvxBulletItem* pOldBullet, const SvxLRSpaceItem* pOldLRSpace );
