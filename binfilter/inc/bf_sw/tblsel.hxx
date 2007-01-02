@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tblsel.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:58:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:47:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,26 +78,13 @@ enum SwTblSearchType
     TBLSEARCH_NO_UNION_CORRECT  = 0x10      // die zusammenges. Union nicht korrigieren
 };
 
-void GetTblSel( const SwCrsrShell& rShell, SwSelBoxes& rBoxes,
-                const SwTblSearchType = TBLSEARCH_NONE );
-
-void GetTblSel( const SwCursor& rCrsr, SwSelBoxes& rBoxes,
-                const SwTblSearchType = TBLSEARCH_NONE );
-
 //wie vor, jedoch wird nicht von der Selektion sondern von den
 //Start- EndFrms ausgegangen.
 void GetTblSel( const SwLayoutFrm* pStart, const SwLayoutFrm* pEnd,
                 SwSelBoxes& rBoxes, const SwTblSearchType = TBLSEARCH_NONE );
 
-// Desgleichen nocheinmal direkt per PaM's
-void GetTblSelCrs( const SwCrsrShell& rShell, SwSelBoxes& rBoxes );
-void GetTblSelCrs( const SwTableCursor& rTblCrsr, SwSelBoxes& rBoxes );
-
 // suche fuer eine AutoSumme die beteiligten Boxen zusammen
 BOOL GetAutoSumSel( const SwCrsrShell&, SwCellFrms& );
-
-// check if the SelBoxes contains protected Boxes
-BOOL HasProtectedCells( const SwSelBoxes& rBoxes );
 
 // teste, ob die Selektion ausgeglichen ist
 SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)//STRIP008 ;
