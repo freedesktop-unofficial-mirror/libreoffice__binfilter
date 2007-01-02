@@ -4,9 +4,9 @@
  *
  *  $RCSfile: camera3d.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:07:28 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:31:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,15 +83,11 @@ class Camera3D : public Viewport3D
 
     // Brennweite in mm
     void    SetFocalLength(double fLen);
-    void    SetFocalLengthWithCorrect(double fLen);
     double  GetFocalLength() const { return fFocalLength; }
 
     // Neigung links/rechts
     void    SetBankAngle(double fAngle);
     double  GetBankAngle() const { return fBankAngle; }
-
-    // Um die Kameraposition drehen, LookAt wird dabei veraendert
-    void Rotate(double fHAngle, double fVAngle);
 
     // Um den Blickpunkt drehen, Position wird dabei veraendert
     void RotateAroundLookAt(double fHAngle, double fVAngle);

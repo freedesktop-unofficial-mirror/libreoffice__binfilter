@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ChXChartDocument.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:38:08 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:29:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -153,7 +153,6 @@ public:
     ::osl::Mutex& GetMutex()    { return maMutex; }
 
     void setDiagramType( const ::rtl::OUString&, sal_Bool bKeepAddin = sal_False ) throw();
-    ::rtl::OUString getDiagramType() const throw();
     sal_Bool setBaseDiagramType( sal_Bool bSet ) throw();
 
     void SetChartModel( ChartModel* ) throw();
