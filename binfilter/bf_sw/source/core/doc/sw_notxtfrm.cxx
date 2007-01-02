@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_notxtfrm.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:28:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:46:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -456,29 +456,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/       SetCompletePaint();
 /*N*/   }
 /*N*/ }
-
-// Ausgabe der Grafik. Hier wird entweder eine QuickDraw-Bmp oder
-// eine Grafik vorausgesetzt. Ist nichts davon vorhanden, wird
-// eine Ersatzdarstellung ausgegeben.
-/// OD 25.09.2002 #99739# - delete unused 3rd parameter.
-/// OD 25.09.2002 #99739# - use aligned rectangle for drawing graphic.
-/// OD 25.09.2002 #99739# - pixel-align coordinations for drawing graphic.
-
-
-/*N*/ BOOL SwNoTxtFrm::IsTransparent() const
-/*N*/ {
-/*N*/   const ViewShell* pSh = GetShell();
-/*N*/   if ( !pSh || !pSh->GetViewOptions()->IsGraphic() )
-/*N*/       return TRUE;
-/*N*/
-/*N*/   const SwGrfNode *pNd;
-/*N*/   if( 0 != (pNd = GetNode()->GetGrfNode()) )
-/*N*/       return pNd->IsTransparent();
-/*N*/
-/*N*/   //#29381# OLE sind immer Transparent.
-/*N*/   return TRUE;
-/*N*/ }
-
 
 /*N*/ void SwNoTxtFrm::StopAnimation( OutputDevice* pOut ) const
 /*N*/ {
