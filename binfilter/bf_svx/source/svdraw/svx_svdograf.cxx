@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:32:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1033,27 +1033,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bChg && aFileName.Len() )
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-/*N*/ FASTBOOL SdrGrafObj::HasGDIMetaFile() const
-/*N*/ {
-/*N*/   return( pGraphic->GetType() == GRAPHIC_GDIMETAFILE );
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ const GDIMetaFile* SdrGrafObj::GetGDIMetaFile() const
-/*N*/ {
-/*N*/   DBG_ERROR( "Invalid return value! Don't use it! (KA)" );
-/*N*/   return &GetGraphic().GetGDIMetaFile();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
