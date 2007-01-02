@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlexp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:39:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:54:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -336,23 +336,6 @@ public:
         const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > &,
         sal_Int16 eDfltUnit );
 
-    // #110680#
-    //SvXMLExport( const ::rtl::OUString& rFileName,
-    //           const ::com::sun::star::uno::Reference<
-    //              ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-    //           const ::com::sun::star::uno::Reference<
-    //              ::com::sun::star::frame::XModel > &,
-    //           const ::com::sun::star::uno::Reference<
-    //              ::com::sun::star::document::XGraphicObjectResolver > &,
-    //           sal_Int16 eDfltUnit );
-    SvXMLExport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-        const ::rtl::OUString& rFileName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > &,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver > &,
-        sal_Int16 eDfltUnit );
-
     virtual ~SvXMLExport();
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
@@ -407,9 +390,6 @@ public:
                        const ::rtl::OUString& rValue );
     void AddAttribute( const ::rtl::OUString& rQName,
                        enum ::binfilter::xmloff::token::XMLTokenEnum eValue );
-    // add several attributes to the common attribute list
-    void AddAttributeList( const ::com::sun::star::uno::Reference<
-                                  ::com::sun::star::xml::sax::XAttributeList >& xAttrList );
 
     // Get common attribute list as implementation or interface.
     SvXMLAttributeList &GetAttrList() { return *pAttrList; }
@@ -546,9 +526,6 @@ public:
     void SetError(
         sal_Int32 nId,
         const ::com::sun::star::uno::Sequence< ::rtl::OUString> & rMsgParams);
-
-    /** return list of errors */
-    XMLErrors* GetErrors();
 
     /** return current error flags (logical 'or' of all error flags so far) */
     sal_uInt16 GetErrorFlags()  { return mnErrorFlags; }
