@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoredline.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:53:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:05:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -301,19 +301,6 @@ util::DateTime lcl_DateTimeToUno(const DateTime& rDT)
     return aRetDT;
 }
 // ---------------------------------------------------------------------------
-DateTime lcl_DateTimeFromUno(const util::DateTime& rDT)
-{
-    DateTime aRetDT;
-    aRetDT.SetYear(rDT.Year);
-    aRetDT.SetMonth(rDT.Month);
-    aRetDT.SetDay(rDT.Day);
-    aRetDT.SetHour(rDT.Hours);
-    aRetDT.SetMin(rDT.Minutes);
-    aRetDT.SetSec(rDT.Seconds);
-    aRetDT.Set100Sec(rDT.HundredthSeconds);
-    return aRetDT;
-}
-// ---------------------------------------------------------------------------
 OUString lcl_RedlineTypeToOUString(SwRedlineType eType)
 {
     OUString sRet;
@@ -326,21 +313,6 @@ OUString lcl_RedlineTypeToOUString(SwRedlineType eType)
         case REDLINE_FMTCOLL:sRet = C2U("Style"); break;
     }
     return sRet;
-}
-// ---------------------------------------------------------------------------
-SwRedlineType  lcl_OUStringToRedlineType(const OUString& rType)
-{
-    SwRedlineType eType = REDLINE_INSERT;
-    if(!rType.compareToAscii("Delete"))
-        eType = REDLINE_DELETE;
-    else if(!rType.compareToAscii("Format"))
-        eType = REDLINE_FORMAT;
-    else if(!rType.compareToAscii("TextTable"))
-        eType = REDLINE_TABLE;
-    else if(!rType.compareToAscii("Style"))
-        eType = REDLINE_FMTCOLL;
-//  else if(!rType.compareToAscii("Insert"))
-    return eType;
 }
 // ---------------------------------------------------------------------------
 Sequence<PropertyValue> lcl_GetSuccessorProperties(const SwRedline& rRedline)
@@ -567,9 +539,6 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_DATE_TIME)))
     {
         DBG_ERROR("currently not available")
-//      util::DateTime aDT;
-//      if(aValue >>= aDT)
-//              pRedline->SetTimeStamp(lcl_DateTimeFromUno(aDT));
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_COMMENT)))
     {
@@ -582,41 +551,11 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
         OUString sTmp; aValue >>= sTmp;
         if(!sTmp.getLength())
             throw IllegalArgumentException();
-//      pRedline->SetType(lcl_OUStringToRedlineType(sTmp));
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_SUCCESSOR_DATA)))
     {
         DBG_ERROR("currently not available")
-/*      SwRedlineData* pNext = pRedline->GetRedlineData().Next();
-        Sequence<PropertyValue> aValues;
-        if(!(aValue =>> aValues) || !pNext)
-            throw IllegalArgumentException();
-
-        const PropertyValue* pValues = aValues.getConstArray();
-        for(sal_Int32 nValue = 0; nValue < aValues.getLength(); nValue++)
-        {
-            if(pValues[nValue].Name.equalsAscii(UNO_NAME_REDLINE_AUTHOR.pName)
-            {
-                DBG_ERROR("currently not available")
-            }
-            else if(pValues[nValue].Name.equalsAscii(UNO_NAME_REDLINE_DATE_TIME.pName))
-            {
-                util::DateTime aDT;
-                if(pValues[nValue].Value >>= aDT)
-                    pNext->SetTimeStamp(lcl_DateTimeFromUno(aDT));
-            }
-            else if(pValues[nValue].Name.equalsAscii(UNO_NAME_REDLINE_COMMENT.pName))
-            {
-                OUString sTmp; pValues[nValue].Value >>= sTmp;
-                pNext->SetComment(sTmp);
-            }
-            else if(pValues[nValue].Name.equalsAscii(UNO_NAME_REDLINE_TYPE.pName))
-            {
-                OUString sTmp; pValues[nValue].Value >>= sTmp;
-                pNext->SetType(lcl_OUStringToRedlineType(sTmp);
-            }
-        }
-*/  }
+    }
     else
     {
         throw IllegalArgumentException();
