@@ -4,9 +4,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:11:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:45:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -452,11 +452,6 @@ public:
     //Layout ausgehaengt.
     void DelFrms();
 
-    //Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
-    //Dokument. Die erzeugten Contentframes werden in das entsprechende
-    //Layout gehaengt.
-    void MakeFrms( const SwNodeIndex & rIdx );
-
     SwTableNode* MakeCopy( SwDoc*, const SwNodeIndex& ) const;
      void SetNewTable( SwTable* , BOOL bNewFrames=TRUE );
 
@@ -498,18 +493,6 @@ public:
     //Dokument. Die Contentframes werden aus dem entsprechenden
     //Layout ausgehaengt.
     void DelFrms();
-
-    //Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
-    //Dokument. Die erzeugten Contentframes werden in das entsprechende
-    //Layout gehaengt.
-    void MakeFrms( const SwNodeIndex & rIdx );
-
-
-    // setze den Verweis im Format der Section auf sich selbst
-
-    // ueberprueft bei _nicht_ versteckten Bereichen, ob es Inhalt gibt, der
-    // _nicht_ in einem versteckten (Unter-)Bereich liegt
-    BOOL IsCntntHidden() const;
 
 private:
     // privater Constructor, weil nie kopiert werden darf !!
