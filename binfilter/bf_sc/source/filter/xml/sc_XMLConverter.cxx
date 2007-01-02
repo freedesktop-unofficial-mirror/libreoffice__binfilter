@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLConverter.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:23:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:00:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -172,11 +172,6 @@ sal_Int32 ScXMLConverter::GetTokenCount( const OUString& rString )
             nCount++;
     }
     return nCount;
-}
-
-void ScXMLConverter::AppendString( OUString& rString, const OUString& rNewStr )
-{
-    AssignString( rString, rNewStr, sal_True );
 }
 
 ScDocument* ScXMLConverter::GetScDocument( uno::Reference< frame::XModel > xModel )
@@ -720,13 +715,6 @@ void ScXMLConverter::ConvertDateTimeToString(const DateTime& aDateTime, ::rtl::O
     util::DateTime aAPIDateTime;
     ConvertCoreToAPIDateTime(aDateTime, aAPIDateTime);
     SvXMLUnitConverter::convertDateTime(sDate, aAPIDateTime);
-}
-
-void ScXMLConverter::ConvertStringToDateTime(const ::rtl::OUString& sDate, DateTime& aDateTime, SvXMLUnitConverter* pUnitConverter)
-{
-    ::com::sun::star::util::DateTime aAPIDateTime;
-    pUnitConverter->convertDateTime(aAPIDateTime, sDate);
-    ConvertAPIToCoreDateTime(aAPIDateTime, aDateTime);
 }
 
 void ScXMLConverter::ConvertCoreToAPIDateTime(const DateTime& aDateTime, util::DateTime& rDateTime)
