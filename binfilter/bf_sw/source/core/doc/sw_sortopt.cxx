@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sortopt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:29:03 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:46:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,15 +61,6 @@ namespace binfilter {
 /*N*/   bIsNumeric( TRUE )
 /*N*/ {
 /*N*/ }
-
-/*N*/ SwSortKey::SwSortKey(USHORT nId, const String& rSrtType, SwSortOrder eOrder) :
-/*N*/   eSortOrder( eOrder ),
-/*N*/   sSortType( rSrtType ),
-/*N*/   nColumnId( nId ),
-/*N*/   bIsNumeric( 0 == rSrtType.Len() )
-/*N*/ {
-/*N*/ }
-
 
 /*N*/ SwSortKey::SwSortKey(const SwSortKey& rOld) :
 /*N*/   eSortOrder( rOld.eSortOrder ),
