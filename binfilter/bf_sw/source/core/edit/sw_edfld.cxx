@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:33:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:48:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,14 +113,6 @@ static const USHORT nMaxLookup = 40;
 |*
 *************************************************************************/
 
-/*************************************************************************
-|*
-|*                  SwEditShell::GetCurFld()
-|*
-|*    Beschreibung  Stehen die PaMs auf Feldern ?
-|*    Quelle:       edtfrm.cxx:
-|*
-*************************************************************************/
 
 /*N*/ inline SwTxtFld *GetDocTxtFld( const SwPosition* pPos )
 /*N*/ {
@@ -130,98 +122,5 @@ static const USHORT nMaxLookup = 40;
 /*N*/   else
 /*N*/       return 0;
 /*N*/ }
-
-/*N*/ SwField* SwEditShell::GetCurFld() const
-/*N*/ {
-/*N*/   // Wenn es keine Selektionen gibt, gilt der Wert der aktuellen
-/*N*/   // Cursor-Position.
-/*N*/
-/*N*/   SwPaM* pCrsr = GetCrsr();
-/*N*/   SwTxtFld *pTxtFld = GetDocTxtFld( pCrsr->Start() );
-/*N*/   SwField *pCurFld = NULL;
-/*N*/
-    /* #108536# Field was only recognized if no selection was
-        present. Now it is recognized if either the cursor is in the
-        field or the selection spans exactly over the field. */
-/*N*/   if( pTxtFld &&
-/*N*/         pCrsr->GetNext() == pCrsr &&
-/*N*/         pCrsr->Start()->nNode == pCrsr->End()->nNode &&
-/*N*/         (pCrsr->End()->nContent.GetIndex() -
-/*N*/          pCrsr->Start()->nContent.GetIndex()) <= 1)
-/*N*/   {
-/*?*/       pCurFld = (SwField*)pTxtFld->GetFld().GetFld();
-/*?*/       // TabellenFormel ? wandel internen in externen Namen um
-/*?*/       if( RES_TABLEFLD == pCurFld->GetTyp()->Which() )
-/*?*/       {
-/*?*/           const SwTableNode* pTblNd = IsCrsrInTbl();
-/*?*/           ((SwTblField*)pCurFld)->PtrToBoxNm( pTblNd ? &pTblNd->GetTable() : 0 );
-/*?*/       }
-/*?*/
-/*N*/   }
-
-    /* #108536# removed handling of multi-selections */
-
-/*N*/   return pCurFld;
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|*                  SwEditShell::UpdateFlds()
-|*
-|*    Beschreibung  Stehen die PaMs auf Feldern ?
-|*                  BP 12.05.92
-|*
-*************************************************************************/
-
-
-/*-----------------13.05.92 10:54-------------------
- Liefert den logischen fuer die Datenbank zurueck
- --------------------------------------------------*/
-
-
-/*N*/ const SwDBData& SwEditShell::GetDBDesc() const
-/*N*/ {
-/*N*/   return GetDoc()->GetDBDesc();
-/*N*/ }
-
-
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:  Alle Expression-Felder erneuern
- --------------------------------------------------------------------*/
-
-/*N*/ SwNewDBMgr* SwEditShell::GetNewDBMgr() const
-/*N*/ {
-/*N*/   return GetDoc()->GetNewDBMgr();
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Feldtypen einfuegen
- --------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-/*N*/ BOOL SwEditShell::IsLabelDoc() const
-/*N*/ {
-/*N*/   return GetDoc()->IsLabelDoc();
-/*N*/ }
-/* -----------------------------21.12.99 12:53--------------------------------
-
- ---------------------------------------------------------------------------*/
-/* -----------------------------03.08.2001 12:04------------------------------
-
- ---------------------------------------------------------------------------*/
-/* -----------------28.11.2002 17:53-----------------
- *
- * --------------------------------------------------*/
 
 }

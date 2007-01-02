@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_edatmisc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:32:25 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:47:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,18 +75,6 @@ void SwEditShell::SetDefault( const SfxItemSet& rSet )
 */
 
 // Erfrage das Default Attribut in diesem Dokument.
-
-/*N*/ const SfxPoolItem& SwEditShell::GetDefault( USHORT nFmtHint ) const
-/*N*/ {
-/*N*/   return GetDoc()->GetDefault( nFmtHint );
-/*N*/
-/*N*/ }
-
-
-
-
-
-
 
 
 }
