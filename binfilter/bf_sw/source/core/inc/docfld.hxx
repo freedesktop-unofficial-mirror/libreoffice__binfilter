@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:43:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:52:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,21 +80,8 @@ public:
     _SetGetExpFld( const SwNodeIndex& rNdIdx, const SwTxtFld* pFld = 0,
                     const SwIndex* pIdx = 0 );
 
-    _SetGetExpFld( const SwNodeIndex& rNdIdx, const SwTxtINetFmt& rINet,
-                    const SwIndex* pIdx = 0 );
-
     _SetGetExpFld( const SwSectionNode& rSectNode,
                     const SwPosition* pPos = 0  );
-
-    _SetGetExpFld( const SwTableBox& rTableBox,
-                    const SwPosition* pPos = 0  );
-
-    _SetGetExpFld( const SwNodeIndex& rNdIdx, const SwTxtTOXMark& rTOX,
-                    const SwIndex* pIdx );
-
-    _SetGetExpFld( const SwPosition& rPos );
-
-    _SetGetExpFld( const SwFlyFrmFmt& rFlyFmt, const SwPosition* pPos = 0 );
 
     BOOL operator==( const _SetGetExpFld& rFld ) const
     {   return nNode == rFld.nNode && nCntnt == rFld.nCntnt &&
