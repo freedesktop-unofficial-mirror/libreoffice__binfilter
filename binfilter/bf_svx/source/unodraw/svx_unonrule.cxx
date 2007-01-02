@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unonrule.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:35:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -508,43 +508,6 @@ const SvxNumRule& SvxGetNumRule( uno::Reference< container::XIndexReplace > xRul
         throw lang::IllegalArgumentException();
 
     return pRule->getNumRule();
-}
-
-bool SvxGetNumRule( uno::Reference< container::XIndexReplace > xRule, SvxNumRule& rNumRule )
-{
-    SvxUnoNumberingRules* pRule = SvxUnoNumberingRules::getImplementation( xRule );
-    if( pRule )
-    {
-        rNumRule = pRule->getNumRule();
-    }
-    else if( xRule.is() )
-    {
-        try
-        {
-            pRule = new SvxUnoNumberingRules( rNumRule );
-
-            uno::Reference< container::XIndexReplace > xDestRule( pRule );
-
-            const sal_Int32 nCount = min( xRule->getCount(), xDestRule->getCount() );
-            sal_Int32 nLevel;
-            for( nLevel = 0; nLevel < nCount; nLevel++ )
-            {
-                xDestRule->replaceByIndex( nLevel, xRule->getByIndex( nLevel ) );
-            }
-
-            rNumRule = pRule->getNumRule();
-        }
-        catch( uno::Exception& )
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
-
-    return true;
 }
 
 ///////////////////////////////////////////////////////////////////////
