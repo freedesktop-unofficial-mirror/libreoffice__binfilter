@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_imoptdlg.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:44:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:03:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,9 +59,6 @@ public:
                 nIter     ( 0 )
             {}
 
-    USHORT  GetCode( const String& rDelimiter ) const;
-     String GetDelimiter( sal_Unicode nCode ) const;
-
     String  FirstDel()  { nIter = 0; return theDelTab.GetToken( nIter, cSep ); }
     String  NextDel()   { nIter +=2; return theDelTab.GetToken( nIter, cSep ); }
 
@@ -73,75 +70,6 @@ private:
 };
 
 //------------------------------------------------------------------------
-
-/*N*/ USHORT ScDelimiterTable::GetCode( const String& rDel ) const
-/*N*/ {
-/*N*/   sal_Unicode nCode = 0;
-/*N*/   xub_StrLen i = 0;
-/*N*/
-/*N*/   if ( nCount >= 2 )
-/*N*/   {
-/*N*/       while ( i<nCount )
-/*N*/       {
-/*N*/           if ( rDel == theDelTab.GetToken( i, cSep ) )
-/*N*/           {
-/*N*/               nCode = (sal_Unicode) theDelTab.GetToken( i+1, cSep ).ToInt32();
-/*N*/               i     = nCount;
-/*N*/           }
-/*N*/           else
-/*N*/               i += 2;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return nCode;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-/*N*/ String ScDelimiterTable::GetDelimiter( sal_Unicode nCode ) const
-/*N*/ {
-/*N*/   String aStrDel;
-/*N*/   xub_StrLen i = 0;
-/*N*/
-/*N*/   if ( nCount >= 2 )
-/*N*/   {
-/*N*/       while ( i<nCount )
-/*N*/       {
-/*N*/           if ( nCode == (sal_Unicode) theDelTab.GetToken( i+1, cSep ).ToInt32() )
-/*N*/           {
-/*N*/               aStrDel = theDelTab.GetToken( i, cSep );
-/*N*/               i       = nCount;
-/*N*/           }
-/*N*/           else
-/*N*/               i += 2;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return aStrDel;
-/*N*/ }
-
-//========================================================================
-// ScImportOptionsDlg
-//========================================================================
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-
-//------------------------------------------------------------------------
-//  Der Options-String darf kein Semikolon mehr enthalten (wegen Pickliste)
-//  darum ab Version 336 Komma stattdessen
-
 
 /*N*/ ScImportOptions::ScImportOptions( const String& rStr )
 /*N*/ {
@@ -160,24 +88,6 @@ private:
 /*N*/   }
 /*N*/ }
 /*N*/
-//------------------------------------------------------------------------
-
-/*N*/ String ScImportOptions::BuildString() const
-/*N*/ {
-/*N*/   String  aResult;
-/*N*/
-/*N*/     if( bFixedWidth )
-/*N*/         aResult.AppendAscii( pStrFix );
-/*N*/     else
-/*N*/         aResult += String::CreateFromInt32(nFieldSepCode);
-/*N*/   aResult += ',';
-/*N*/   aResult += String::CreateFromInt32(nTextSepCode);
-/*N*/   aResult += ',';
-/*N*/   aResult += aStrFont;
-/*N*/
-/*N*/   return aResult;
-/*N*/ }
-
 //------------------------------------------------------------------------
 
 /*N*/ void ScImportOptions::SetTextEncoding( rtl_TextEncoding nEnc )
