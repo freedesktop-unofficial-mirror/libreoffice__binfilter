@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xtable.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:41:41 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:41:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -237,9 +237,6 @@ protected:
                                         XOutdevItemPool* pXPool = NULL,
                                         USHORT nInitSize = 16,
                                         USHORT nReSize = 16 );
-                        XPropertyTable( SvStream& rIn );
-    void                Clear();
-
 public:
     virtual             ~XPropertyTable();
 
@@ -251,7 +248,6 @@ public:
     XPropertyEntry*     Get( long nIndex, USHORT nDummy ) const;
 
     long                Get(const String& rName);
-    Bitmap*             GetBitmap( long nIndex ) const;
 
     const String&       GetName() const { return aName; }
     void                SetName( const String& rString );
@@ -290,9 +286,6 @@ protected:
                                         XOutdevItemPool* pXPool = NULL,
                                         USHORT nInitSize = 16,
                                         USHORT nReSize = 16 );
-                        XPropertyList( SvStream& rIn );
-    void                Clear();
-
 public:
     virtual             ~XPropertyList();
 
@@ -304,7 +297,6 @@ public:
     XPropertyEntry*     Get( long nIndex, USHORT nDummy ) const;
 
     long                Get(const String& rName);
-    Bitmap*             GetBitmap( long nIndex ) const;
 
     const String&       GetName() const { return aName; }
     void                SetName( const String& rString );
@@ -328,7 +320,6 @@ public:
 class XColorTable : public XPropertyTable
 {
 protected:
-    SvStream&       ImpStore( SvStream& rOut );
     SvStream&       ImpRead( SvStream& rIn );
 
     XubString&      ConvertName( XubString& rStrName );
@@ -357,10 +348,6 @@ public:
 
 class XColorList : public XPropertyList
 {
-protected:
-    SvStream&       ImpStore( SvStream& rOut );
-    SvStream&       ImpRead( SvStream& rIn );
-
 public:
                     XColorList( const String& rPath,
                                 XOutdevItemPool* pXPool = NULL,
@@ -370,7 +357,6 @@ public:
 
     XColorEntry*    Replace(XColorEntry* pEntry, long nIndex );
     XColorEntry*    Remove(long nIndex);
-    XColorEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
     virtual BOOL    Save();
@@ -385,10 +371,6 @@ public:
 
 class XLineEndTable : public XPropertyTable
 {
-protected:
-    SvStream&       ImpStore( SvStream& rOut );
-    SvStream&       ImpRead( SvStream& rIn );
-
 public:
                     XLineEndTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
@@ -419,7 +401,6 @@ protected:
     XFillAttrSetItem*   pXFSet;
     XLineAttrSetItem*   pXLSet;
 
-    SvStream&       ImpStore( SvStream& rOut );
     SvStream&       ImpRead( SvStream& rIn );
 
     XubString&      ConvertName( XubString& rStrName );
@@ -448,10 +429,6 @@ public:
 
 class XDashTable : public XPropertyTable
 {
-protected:
-    SvStream&       ImpStore( SvStream& rOut );
-    SvStream&       ImpRead( SvStream& rIn );
-
 public:
                     XDashTable( const String& rPath,
                                 XOutdevItemPool* pXPool = NULL,
@@ -482,7 +459,6 @@ protected:
     XFillAttrSetItem*   pXFSet;
     XLineAttrSetItem*   pXLSet;
 
-    SvStream&       ImpStore( SvStream& rOut );
     SvStream&       ImpRead( SvStream& rIn );
 
     XubString&      ConvertName( XubString& rStrName );
@@ -511,10 +487,6 @@ public:
 
 class XHatchTable : public XPropertyTable
 {
-protected:
-    SvStream&       ImpStore( SvStream& rOut );
-    SvStream&       ImpRead( SvStream& rIn );
-
 public:
                     XHatchTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
@@ -544,7 +516,6 @@ protected:
     XOutputDevice*      pXOut;
     XFillAttrSetItem*   pXFSet;
 
-    SvStream&       ImpStore( SvStream& rOut );
     SvStream&       ImpRead( SvStream& rIn );
 
     XubString&      ConvertName( XubString& rStrName );
@@ -573,10 +544,6 @@ public:
 
 class XGradientTable : public XPropertyTable
 {
-protected:
-    SvStream&       ImpStore( SvStream& rOut );
-    SvStream&       ImpRead( SvStream& rIn );
-
 public:
                     XGradientTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
@@ -606,7 +573,6 @@ protected:
     XOutputDevice*      pXOut;
     XFillAttrSetItem*   pXFSet;
 
-    SvStream&       ImpStore( SvStream& rOut );
     SvStream&       ImpRead( SvStream& rIn );
 
     XubString&      ConvertName( XubString& rStrName );
@@ -635,10 +601,6 @@ public:
 
 class XBitmapTable : public XPropertyTable
 {
-protected:
-    SvStream&       ImpStore( SvStream& rOut );
-    SvStream&       ImpRead( SvStream& rIn );
-
 public:
                     XBitmapTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
@@ -664,7 +626,6 @@ public:
 class XBitmapList : public XPropertyList
 {
 protected:
-    SvStream&       ImpStore( SvStream& rOut );
     SvStream&       ImpRead( SvStream& rIn );
 
     XubString&      ConvertName( XubString& rStrName );
