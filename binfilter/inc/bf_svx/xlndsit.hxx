@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xlndsit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:29:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:40:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,10 +57,8 @@ class XLineDashItem : public NameOrIndex
 public:
                             TYPEINFO();
                             XLineDashItem() {}
-                            XLineDashItem(long nIndex, const XDash& rTheDash);
                             XLineDashItem(const String& rName, const XDash& rTheDash);
                             XLineDashItem(SfxItemPool* pPool, const XDash& rTheDash);
-                            XLineDashItem(SfxItemPool* pPool );
                             XLineDashItem(const XLineDashItem& rItem);
                             XLineDashItem(SvStream& rIn);
 
