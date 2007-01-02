@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_select.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:35:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:11:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,16 +145,6 @@ BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
 
 
 
-
-
-/*N*/ void SwWrtShell::UnSelectFrm()
-/*N*/ {
-/*N*/     // Rahmenselektion aufheben mit garantiert ungueltiger Position
-/*N*/   Point aPt(LONG_MIN, LONG_MIN);
-/*N*/     SelectObj(aPt, 0);
-/*N*/   SwTransferable::ClearSelection( *this );
-/*N*/ }
-
 /*
  * Aufheben aller Selektionen
  */
@@ -171,46 +161,6 @@ BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
 /*N*/   return 1;
 /*N*/ }
 
-/*
- * Start eines Selektionsvorganges.
- */
-
-
-
-/*
- * Ende eines Selektionsvorganges.
- */
-
-
-
-/* Methode, um eine bestehende wortweise oder zeilenweise Selektion
- * zu erweitern.
- */
-
-
-
-
-
-
-
-
-/*
- * zurueck in den Standard Mode: kein Mode, keine Selektionen.
- */
-
-/*N*/ void SwWrtShell::EnterStdMode()
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(bAddMode)
-/*N*/ }
-
-/*
- * Extended Mode
- */
-
-
-
-
-
 
 /*
  * Ende einer Selektion; falls die Selektion leer ist,
@@ -224,51 +174,10 @@ BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if(SwCrsrShell::HasSelection() && !IsSelTblCells() && bClearMark) {
 /*N*/   return 1;
 /*N*/ }
-/*
- * Verlassen des Selektionsmodus in Additional Mode
- */
 
-
-
-/*
- * Additional Mode
- */
-
-
-
-
-
-
-
-// Einfuegemodus
-
-
-
-
-/*
- * Rahmen bearbeiten
- */
-
-
-
-
-
-/*N*/ void SwWrtShell::EnterSelFrmMode(const Point *pPos)
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if(pPos)
-/*N*/ }
-
-
-
-/*N*/ void SwWrtShell::LeaveSelFrmMode()
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     fnDrag          = &SwWrtShell::BeginDrag;
-/*N*/ }
 /*------------------------------------------------------------------------
  Beschreibung:  Rahmengebundenes Macro ausfuehren
 ------------------------------------------------------------------------*/
-
-
 
 /*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, pFlyFmt )
 /*N*/ {

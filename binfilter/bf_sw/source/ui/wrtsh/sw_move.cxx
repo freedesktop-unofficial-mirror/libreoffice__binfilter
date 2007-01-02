@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_move.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:35:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:11:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,139 +60,11 @@ namespace binfilter {
 
 const long nReadOnlyScrollOfst = 10;
 
-
-
-
-
-/*N*/ FASTBOOL SwWrtShell::Left( USHORT nMode, FASTBOOL bSelect,
-/*N*/                             USHORT nCount, BOOL bBasicCall, BOOL bVisual )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly()  && !GetViewOptions()->IsSelectionInReadonly())
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::Right( USHORT nMode, FASTBOOL bSelect,
-/*N*/                             USHORT nCount, BOOL bBasicCall, BOOL bVisual )
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly() && !GetViewOptions()->IsSelectionInReadonly() )
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::Up( FASTBOOL bSelect, USHORT nCount, BOOL bBasicCall )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly()  && !GetViewOptions()->IsSelectionInReadonly())
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::Down( FASTBOOL bSelect, USHORT nCount, BOOL bBasicCall )
-/*N*/  {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001      if ( !bSelect && !bBasicCall && IsCrsrReadonly() && !GetViewOptions()->IsSelectionInReadonly())
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::LeftMargin( FASTBOOL bSelect, FASTBOOL bBasicCall )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 if ( !bSelect && !bBasicCall && IsCrsrReadonly() )
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::RightMargin( FASTBOOL bSelect, FASTBOOL bBasicCall  )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 if ( !bSelect && !bBasicCall && IsCrsrReadonly() )
-/*N*/ }
-
-
-
-
-
-
-
-
-
-/*N*/ FASTBOOL SwWrtShell::SttDoc( FASTBOOL bSelect )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::EndDoc( FASTBOOL bSelect)
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
-/*N*/ }
-
-
-/*N*/ FASTBOOL SwWrtShell::SttNxtPg( FASTBOOL bSelect )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
-/*N*/ }
-
-
-
-
-
-
-
-
-
-/*N*/ FASTBOOL SwWrtShell::EndPrvPg( FASTBOOL bSelect )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::SttPg( FASTBOOL bSelect )
-/*N*/ {
-/*?*/DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     ShellMoveCrsr aTmp( this, bSelect );
-/*N*/ }
-
-
-
-/*N*/ FASTBOOL SwWrtShell::EndPg( FASTBOOL bSelect )
-/*N*/ {
-/*?*/DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     ShellMoveCrsr aTmp( this, bSelect );
-/*N*/ }
-
-
-
-
-
-
-
-
 /*------------------------------------------------------------------------
  Beschreibung:  Spaltenweises Springen
  Parameter:     mit oder ohne SSelection
  Return:        Erfolg oder Misserfolg
 ------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*N*/ BOOL SwWrtShell::PopCrsr(BOOL bUpdate, BOOL bSelect)
@@ -230,42 +102,5 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001      if ( !bSelect && !bBasic
 /*?*/   }
 /*?*/   return bValidPos;
 /*N*/ }
-
-/*
- * Zuruecksetzen aller gepushten Cursorpositionen; dieser werden nicht
- * zur Anzeige gebracht ( --> Kein Start-/EndAction!!)
- */
-
-
-
-/**************
-
-    falls kein Stack existiert --> Selektionen aufheben
-    falls Stack && Richtungswechsel
-        --> Cursor poppen und return
-    sonst
-        --> Cursor pushen
-             Cursor umsetzen
-
-***************/
-
-
-
-
-
-
-/*N*/ BOOL SwWrtShell::GotoPage(USHORT nPage, BOOL bRecord)
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ShellMoveCrsr aTmp( this, FALSE);
-/*N*/   return FALSE;
-/*N*/ }
-
-
-
-
-
-
-
-
 
 }
