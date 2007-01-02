@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layerexport.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 09:11:25 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:15:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -221,10 +221,6 @@ namespace xmloff
         */
         void exportForms(
             const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage >& _rxDrawPage);
-
-        /** exports the controls number styles
-        */
-        void    exportControlNumberStyles();
 
         /** exports the automatic control number styles
         */

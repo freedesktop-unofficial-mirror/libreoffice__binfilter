@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formlayerexport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 09:14:39 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:16:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,18 +100,6 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    ::vos::ORef< SvXMLExportPropertyMapper > OFormLayerXMLExport::getStylePropertyMapper()
-    {
-        return m_pImpl->getStylePropertyMapper();
-    }
-
-    //---------------------------------------------------------------------
-    void OFormLayerXMLExport::initialize()
-    {
-        m_pImpl->clear();
-    }
-
-    //---------------------------------------------------------------------
     void OFormLayerXMLExport::examineForms(const Reference< XDrawPage >& _rxDrawPage)
     {
         try
@@ -128,12 +116,6 @@ namespace xmloff
     void OFormLayerXMLExport::exportForms(const Reference< XDrawPage >& _rxDrawPage)
     {
         m_pImpl->exportForms(_rxDrawPage);
-    }
-
-    //---------------------------------------------------------------------
-    void OFormLayerXMLExport::exportControlNumberStyles()
-    {
-        m_pImpl->exportControlNumberStyles();
     }
 
     //---------------------------------------------------------------------
