@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_vprint.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:24:46 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:06:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -215,103 +215,4 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 /*M*/   if ( !pWin )
 /*M*/         pOut = pTmpDev;    //Oder was sonst?
 /*M*/ }
-
-
-/******************************************************************************
- *  Methode     :   void ViewShell::ChgAllPageOrientation
- *  Erstellt    :   MA 08. Aug. 95
- *  Aenderung   :
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void ViewShell::ChgAllPageOrientation
- *  Erstellt    :   MA 08. Aug. 95
- *  Aenderung   :
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void ViewShell::CalcPagesForPrint( short nMax, BOOL ...
- *  Beschreibung:
- *  Erstellt    :   OK 04.11.94 15:33
- *  Aenderung   :   MA 07. Jun. 95
- ******************************************************************************/
-
-
-
-
-
-
-
-/******************************************************************************/
-
-/*N*/ SwDoc * ViewShell::FillPrtDoc( SwDoc *pPrtDoc, const SfxPrinter* pPrt)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*N*/ }
-
-/******************************************************************************
- *  Methode     :   void ViewShell::Prt( const SwPrtOptions& rOptions, SfxProgress& rProgress,
- *                                       OutputDevice *pPDFOut )
- *  Beschreibung:
- *  Erstellt    :   OK 04.11.94 15:33
- *  Aenderung   :   MA 10. May. 95
- ******************************************************************************/
-
-
-/*N*/ BOOL ViewShell::Prt( SwPrtOptions& rOptions, SfxProgress& rProgress,
-/*N*/                      OutputDevice *pPDFOut )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*N*/ }
-
-/******************************************************************************
- *  Methode     :   PrtOle2()
- *  Beschreibung:
- *  Erstellt    :   PK 07.12.94
- *  Aenderung   :   MA 16. Feb. 95
- ******************************************************************************/
-
-
-
-
-/******************************************************************************
- *  Methode     :   IsAnyFieldInDoc()
- *  Beschreibung:   Stellt fest, ob im DocNodesArray Felder verankert sind
- *  Erstellt    :   JP 27.07.95
- *  Aenderung   :   JP 10.12.97
- ******************************************************************************/
-
-
-
-
-
-
-/******************************************************************************
- *  Klasse      :   SwPrtOptSave
- *  Erstellt    :   AMA 12.07.95
- *  Aenderung   :   AMA 12.07.95
- *  Holt sich im Ctor folgende Einstellungen des Druckers, die im Dtor dann
- *  wieder im Drucker gesetzt werden (falls sie sich ueberhaupt geaendert haben)
- *  - PaperBin - Orientation - PaperSize -
- ******************************************************************************/
-
-
-
-
-
-
-
-
-/******************************************************************************
- *  SwDrawViewSave
- *
- *  Saves some settings at the draw view
- ******************************************************************************/
-
-
-
-
-// OD 09.01.2003 #i6467# - method also called for page preview
 }
