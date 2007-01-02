@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtparae.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:35:28 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:53:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -288,7 +288,6 @@ protected:
         const ::com::sun::star::uno::Reference<
                 ::com::sun::star::style::XStyle > & rStyle );
 
-    void collectFrames();
     void collectFrames( sal_Bool bBoundToFrameOnly );
     void exportPageFrames( sal_Bool bAutoStyles, sal_Bool bProgress );
     void exportFrameFrames( sal_Bool bAutoStyles, sal_Bool bProgress,
@@ -599,13 +598,6 @@ public:
         exportText( rText, rBaseSection, sal_True, bProgress, bExportParagraph );
     }
 
-    // This method collects all automatic styles that are bound to a page
-    void collectFrameBoundToPageAutoStyles( sal_Bool bProgress = sal_False )
-    {
-        collectFrames();
-        exportPageFrames( sal_True, bProgress );
-        exportFrameFrames( sal_True, bProgress );
-    }
     // This method prepares the collection of auto styles for frames
     // that are bound to a frame.
     void collectFramesBoundToFrameAutoStyles( sal_Bool bProgress = sal_False )
