@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:36:44 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:04:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1332,18 +1332,7 @@ Sequence< OUString > SwXTextRange::getSupportedServiceNames(void) throw( Runtime
     pArray[6] = C2U("com.sun.star.style.ParagraphPropertiesComplex");
     return aRet;
 }
-/*-- 10.12.98 12:54:42---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-SwXTextRange::SwXTextRange() :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
-    pDoc(0),
-    aObjectDepend(this, 0),
-    pBox(0),
-    pBoxStartNode(0),
-    eRangePosition(RANGE_INVALID)
-{
-}
 /*-- 10.12.98 12:54:43---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -2282,16 +2271,6 @@ Sequence< OUString > SwXTextRanges::getSupportedServiceNames(void) throw( Runtim
 
   -----------------------------------------------------------------------*/
 SwXTextRanges::SwXTextRanges() :
-    pRangeArr(0)
-{
-
-}
-/*-- 10.12.98 13:57:21---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-SwXTextRanges::SwXTextRanges( SwUnoCrsr* pCrsr, uno::Reference< XText >  xParent) :
-    SwClient(pCrsr),
-    xParentText(xParent),
     pRangeArr(0)
 {
 
