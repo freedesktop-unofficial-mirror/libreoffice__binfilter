@@ -4,9 +4,9 @@
  *
  *  $RCSfile: mvsave.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:46:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:53:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,8 +98,6 @@ void _SaveCntntIdx( SwDoc* pDoc, ULONG nNode, xub_StrLen nCntnt,
 void _RestoreCntntIdx( SwDoc* pDoc, SvULongs& rSaveArr,
 ULONG nNode, xub_StrLen nOffset = 0,
 BOOL bAuto = FALSE );
-void _RestoreCntntIdx( SvULongs& rSaveArr, const SwNode& rNd,
-                        xub_StrLen nLen, xub_StrLen nCorrLen );
 
 
 /** data structure to temporarily hold fly anchor positions relative to some
