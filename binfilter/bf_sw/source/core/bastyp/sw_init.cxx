@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:16:05 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:41:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -920,9 +920,6 @@ public:
 /*N*/   delete pCalendarWrapper;
 /*N*/   delete pCollator;
 /*N*/   delete pCaseCollator;
-/*N*/
-/*N*/   // das default TableAutoFormat zerstoeren
-/*N*/   delete SwTableAutoFmt::pDfltBoxAutoFmt;
 /*N*/
 /*N*/   delete SwSelPaintRects::pMapMode;
 /*N*/   delete SwFntObj::pPixMap;

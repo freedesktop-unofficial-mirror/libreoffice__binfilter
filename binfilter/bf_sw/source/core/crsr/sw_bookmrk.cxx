@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_bookmrk.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:17:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:42:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,19 +62,6 @@
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
-
-
-
-/*N*/ SwBookmark::SwBookmark(const SwPosition& aPos)
-/*N*/   : SwModify( 0 ),
-/*N*/   aStartMacro( aEmptyStr, aEmptyStr ),
-/*N*/   aEndMacro  ( aEmptyStr, aEmptyStr ),
-/*N*/   pPos2( 0 ),
-/*N*/   eMarkType( BOOKMARK )
-/*N*/ {
-/*N*/   pPos1 = new SwPosition( aPos );
-/*N*/ }
-
 
 /*N*/ SwBookmark::SwBookmark(const SwPosition& aPos, const KeyCode& rCode,
 /*N*/                       const String& rName, const String& rShortName )
