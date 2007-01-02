@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtablend.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:04:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:40:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -198,120 +198,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/ BOOL XLineEndTable::CreateBitmapsForUI()
 /*N*/ {
 /*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XLineEndTable::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // 2. Version
-/*N*/   rOut << (long)-1;
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   rOut << (long)0;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Polygone
-/*N*/   XLineEndEntry* pEntry = (XLineEndEntry*)aTable.First();
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       rOut << (long)aTable.GetCurKey();
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XPolygon& rXPoly = pEntry->GetLineEnd();
-/*N*/       rOut << rXPoly;
-/*N*/
-/*N*/       pEntry = (XLineEndEntry*)aTable.Next();
-/*N*/   }
-/*N*/   return rOut;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XLineEndTable::ImpRead( SvStream& rIn )
-/*N*/ {
-/*N*/   // Lesen
-/*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
-/*N*/
-/*N*/   delete pBmpTable;
-/*N*/   pBmpTable = new Table( 16, 16 );
-/*N*/
-/*N*/   XLineEndEntry* pEntry = NULL;
-/*N*/   long    nVersion;
-/*N*/   long    nType;
-/*N*/   long    nCount;
-/*N*/   long    nIndex;
-/*N*/   XubString   aName;
-/*N*/   long    nFlags;
-/*N*/
-/*N*/   rIn >> nVersion;
-/*N*/
-/*N*/   if( nVersion == -1L ) // 2. Version
-/*N*/   {
-/*N*/       rIn >> nType;
-/*N*/
-/*N*/       // gesamte Tabelle?
-/*N*/       if (nType == 0)
-/*N*/       {
-/*N*/           rIn >> nCount;
-/*N*/           for (long nI = 0; nI < nCount; nI++)
-/*N*/           {
-/*N*/               rIn >> nIndex;
-/*N*/
-/*N*/               // UNICODE: rIn >> aName;
-/*N*/               rIn.ReadByteString(aName);
-/*N*/
-/*N*/               USHORT nPoints;
-/*N*/               sal_uInt32 nTemp;
-/*N*/               Point  aPoint;
-/*N*/               rIn >> nTemp; nPoints = (USHORT)nTemp;
-/*N*/               XPolygon* pXPoly = new XPolygon(nPoints);
-/*N*/               for (USHORT nPoint = 0; nPoint < nPoints; nPoint++)
-/*N*/               {
-/*N*/                   rIn >> aPoint.X();
-/*N*/                   rIn >> aPoint.Y();
-/*N*/                   rIn >> nFlags;
-/*N*/                   pXPoly->Insert(nPoint, aPoint, (XPolyFlags)nFlags);
-/*N*/               }
-/*N*/
-/*N*/               pEntry = new XLineEndEntry (*pXPoly, aName);
-/*N*/               Insert (nIndex, pEntry);
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   else // 1. Version
-/*N*/   {
-/*N*/       nType = nVersion;
-/*N*/
-/*N*/       // gesamte Tabelle?
-/*N*/       if (nType == 0)
-/*N*/       {
-/*N*/           XPolygon aXPoly;
-/*N*/
-/*N*/           rIn >> nCount;
-/*N*/           for (long nI = 0; nI < nCount; nI++)
-/*N*/           {
-/*N*/               rIn >> nIndex;
-/*N*/
-/*N*/               // UNICODE: rIn >> aName;
-/*N*/               rIn.ReadByteString(aName);
-/*N*/
-/*N*/               rIn >> aXPoly;
-/*N*/               XPolygon* pXPoly = new XPolygon( aXPoly );
-/*N*/
-/*N*/               pEntry = new XLineEndEntry( *pXPoly, aName );
-/*N*/               Insert( nIndex, pEntry );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   return( rIn );
 /*N*/ }
 
 // --------------------
@@ -569,36 +455,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/   }
 /*N*/
 /*N*/   return( pBitmap );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XLineEndList::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // 3. Version
-/*N*/   rOut << (long) -2;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Polygone
-/*N*/   XLineEndEntry* pEntry = NULL;
-/*N*/   for( long nIndex = 0; nIndex < Count(); nIndex++ )
-/*N*/   {
-/*N*/       // Versionsverwaltung (auch abwaertskompatibel): Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       pEntry = Get( nIndex );
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XPolygon& rXPoly = pEntry->GetLineEnd();
-/*N*/       rOut << rXPoly;
-/*N*/   }
-/*N*/   return rOut;
 /*N*/ }
 
 /************************************************************************/
