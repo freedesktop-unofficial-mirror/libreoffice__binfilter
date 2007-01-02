@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_sdpropls.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:44:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:14:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1363,17 +1363,6 @@ void XMLShapeExportPropertyMapper::handleElementItem(
             SvXMLExportPropertyMapper::handleElementItem( rExport, rProperty, nFlags, pProperties, nIdx );
             break;
     }
-}
-
-//////////////////////////////////////////////////////////////////////////////
-
-XMLPagePropertySetMapper::XMLPagePropertySetMapper(const UniReference< XMLPropertyHandlerFactory >& rFactoryRef)
-: XMLPropertySetMapper( aXMLSDPresPageProps, rFactoryRef )
-{
-}
-
-XMLPagePropertySetMapper::~XMLPagePropertySetMapper()
-{
 }
 
 // ----------------------------------------
