@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:25:10 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:47:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -63,7 +63,6 @@ CXXFILES = \
         sw_edglbldc.cxx \
         sw_edglss.cxx \
         sw_editsh.cxx \
-        sw_edlingu.cxx \
         sw_ednumber.cxx \
         sw_edredln.cxx \
         sw_edtab.cxx \
@@ -86,7 +85,6 @@ SLOFILES =	\
         $(SLO)$/sw_edglbldc.obj \
         $(SLO)$/sw_edglss.obj \
         $(SLO)$/sw_editsh.obj \
-        $(SLO)$/sw_edlingu.obj \
         $(SLO)$/sw_ednumber.obj \
         $(SLO)$/sw_edredln.obj \
         $(SLO)$/sw_edtab.obj \
