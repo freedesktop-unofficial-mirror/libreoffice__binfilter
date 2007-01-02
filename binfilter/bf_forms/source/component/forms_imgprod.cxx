@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_imgprod.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:12:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:46:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -299,19 +299,6 @@ void ImageProducer::SetImage( SvStream& rStm )
 
     delete mpStm;
     mpStm = new SvStream( new ImgProdLockBytes( &rStm, sal_False ) );
-}
-
-// ------------------------------------------------------------
-
-void ImageProducer::SetImage( const Graphic& rGraphic )
-{
-    maURL = ::rtl::OUString();
-    *mpGraphic = rGraphic;
-    mbConsInit = sal_False;
-    mbAsync = sal_False;
-
-    delete mpStm;
-    mpStm = NULL;
 }
 
 // ------------------------------------------------------------
