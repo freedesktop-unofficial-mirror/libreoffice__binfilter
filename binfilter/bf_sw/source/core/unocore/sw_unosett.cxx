@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unosett.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:47:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:05:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1354,23 +1354,7 @@ Sequence< OUString > SwXNumberingRules::getSupportedServiceNames(void) throw( Ru
     pArray[0] = C2U("com.sun.star.text.NumberingRules");
     return aRet;
 }
-/*-- 14.12.98 14:57:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-SwXNumberingRules::SwXNumberingRules() :
-    pNumRule(0),
-    pDoc(0),
-    pDocShell(0),
-    bOwnNumRuleCreated(FALSE),
-    _pMap(GetNumberingRulesMap())
-{
-    for(sal_uInt16 i = 0; i < MAXLEVEL; i++)
-    {
-        sNewCharStyleNames[i] = SwXNumberingRules::GetInvalidStyle();
-        sNewBulletFontNames[i] = SwXNumberingRules::GetInvalidStyle();
-    }
-
-}
 /*-- 14.12.98 14:57:57---------------------------------------------------
 
   -----------------------------------------------------------------------*/
