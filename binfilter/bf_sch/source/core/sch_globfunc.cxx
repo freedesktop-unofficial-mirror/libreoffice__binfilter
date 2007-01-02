@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_globfunc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:26:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:08:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -983,65 +983,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return (rTextObj.GetBoundRect().GetSize());
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Haenge die Beschriftungen an die Segmente
-|*
-\************************************************************************/
-
-/*N*/ void SegmentDescr (DataDescription &rDescr,
-/*N*/                  const Rectangle &rRect,
-/*N*/                  long            nStartAng,
-/*N*/                  long            nEndAng,
-/*N*/                  long            nHeight,
-/*N*/                  double          a,
-/*N*/                  double          b)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/** Draw a donut segment's description centered into that segment.
-    Please see the header for a detailed documentation.
-*/
-/*N*/ void SegmentDescr (DataDescription &rDescr,
-/*N*/                  const Rectangle &rRect,
-/*N*/                  long            nStartAng,
-/*N*/                  long            nEndAng,
-/*N*/                  double          fRadius)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-/*************************************************************************
-|*
-|* zeichne Fehlerbalken
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* bestimme lineare regression
-|*
-\************************************************************************/
-
-
-// --------------------
-
-
-/*************************************************************************
-/*************************************************************************
-|*
-|* Erstelle Polygone fuer die Scheiben in den Pie-Charts
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Erstelle Sublist fuer Elemente eines 3D-PieCharts
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
