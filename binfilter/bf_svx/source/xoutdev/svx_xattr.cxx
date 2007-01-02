@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:02:28 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:38:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -370,18 +370,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    XColorItem::XColorItem(USHORT nWhich, long nIndex, const Color& rTheColor)
-|*
-\************************************************************************/
-
-/*?*/ XColorItem::XColorItem(USHORT nWhich, long nIndex, const Color& rTheColor) :
-/*?*/   NameOrIndex(nWhich, nIndex),
-/*?*/   aColor(rTheColor)
-/*?*/ {
-/*?*/ }
-
-/*************************************************************************
-|*
 |*    XColorItem::XColorItem(USHORT nWhich, const String& rName, const Color& rTheColor)
 |*
 \************************************************************************/
@@ -657,22 +645,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    XLineDashItem::XLineDashItem(long nIndex, const XDash& rTheDash)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
-*************************************************************************/
-
-/*?*/ XLineDashItem::XLineDashItem(long nIndex, const XDash& rTheDash) :
-/*?*/   NameOrIndex(XATTR_LINEDASH, nIndex),
-/*?*/   aDash(rTheDash)
-/*?*/ {
-/*?*/ }
-
-/*************************************************************************
-|*
 |*    XLineDashItem::XLineDashItem(const String& rName, const XDash& rTheDash)
 |*
 |*    Beschreibung
@@ -738,13 +710,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   aDash(rTheDash)
 /*N*/ {
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XLineDashItem::XLineDashItem(SfxItemPool* pPool )
-/*?*/ : NameOrIndex(XATTR_LINEDASH, -1 )
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -1145,21 +1110,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    XLineColorItem::XLineColorItem(long nIndex, const Color& rTheColor)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
-*************************************************************************/
-
-/*?*/ XLineColorItem::XLineColorItem(long nIndex, const Color& rTheColor) :
-/*?*/   XColorItem(XATTR_LINECOLOR, nIndex, rTheColor)
-/*?*/ {
-/*?*/ }
-
-/*************************************************************************
-|*
 |*    XLineColorItem::XLineColorItem(const XubString& rName, const Color& rTheColor)
 |*
 |*    Beschreibung
@@ -1326,13 +1276,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   aXPolygon(rXPolygon)
 /*N*/ {
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XLineStartItem::XLineStartItem(SfxItemPool* pPool )
-/*?*/ : NameOrIndex(XATTR_LINESTART, -1 )
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -1784,13 +1727,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   aXPolygon(rXPolygon)
 /*N*/ {
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XLineEndItem::XLineEndItem(SfxItemPool* pPool )
-/*?*/ : NameOrIndex(XATTR_LINEEND, -1 )
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -2611,21 +2547,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    XFillColorItem::XFillColorItem(long nIndex, const Color& rTheColor)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
-*************************************************************************/
-
-/*?*/ XFillColorItem::XFillColorItem(long nIndex, const Color& rTheColor) :
-/*?*/   XColorItem(XATTR_FILLCOLOR, nIndex, rTheColor)
-/*?*/ {
-/*?*/ }
-
-/*************************************************************************
-|*
 |*    XFillColorItem::XFillColorItem(const XubString& rName, const Color& rTheColor)
 |*
 |*    Beschreibung
@@ -2884,13 +2805,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   aGradient(rTheGradient)
 /*N*/ {
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XFillGradientItem::XFillGradientItem(SfxItemPool* pPool )
-/*?*/ : NameOrIndex(XATTR_FILLGRADIENT, -1 )
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -3213,15 +3127,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-/*?*/ XFillFloatTransparenceItem::XFillFloatTransparenceItem( long nIndex, const XGradient& rGradient, BOOL bEnable ) :
-/*?*/   XFillGradientItem   ( nIndex, rGradient ),
-/*?*/   bEnabled            ( bEnable )
-/*?*/ {
-/*?*/   SetWhich( XATTR_FILLFLOATTRANSPARENCE );
-/*?*/ }
-
-//------------------------------------------------------------------------
-
 /*?*/ XFillFloatTransparenceItem::XFillFloatTransparenceItem(const XubString& rName, const XGradient& rGradient, BOOL bEnable ) :
 /*?*/   XFillGradientItem   ( rName, rGradient ),
 /*?*/   bEnabled            ( bEnable )
@@ -3255,13 +3160,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/ {
 /*N*/   SetWhich( XATTR_FILLFLOATTRANSPARENCE );
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XFillFloatTransparenceItem::XFillFloatTransparenceItem(SfxItemPool* pPool )
-/*?*/ {
-/*?*/   SetWhich( XATTR_FILLFLOATTRANSPARENCE );
-/*?*/ }
 
 //------------------------------------------------------------------------
 
@@ -3401,24 +3299,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    XFillHatchItem::XFillHatchItem(long nIndex,
-|*                                 const XHatch& rTheHatch)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
-*************************************************************************/
-
-/*?*/ XFillHatchItem::XFillHatchItem(long nIndex,
-/*?*/                            const XHatch& rTheHatch) :
-/*?*/   NameOrIndex(XATTR_FILLHATCH, nIndex),
-/*?*/   aHatch(rTheHatch)
-/*?*/ {
-/*?*/ }
-
-/*************************************************************************
-|*
 |*    XFillHatchItem::XFillHatchItem(const XubString& rName,
 |*                                 const XHatch& rTheHatch)
 |*
@@ -3493,13 +3373,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   aHatch(rTheHatch)
 /*N*/ {
 /*N*/ }
-
-//*************************************************************************
-
-/*?*/ XFillHatchItem::XFillHatchItem(SfxItemPool* pPool )
-/*?*/ : NameOrIndex(XATTR_FILLHATCH, -1 )
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -4315,22 +4188,6 @@ XubString aNameOrIndexEmptyString;
 // class XFormTextShadowColorItem
 // -------------------------------
 /*N*/ TYPEINIT1_AUTOFACTORY(XFormTextShadowColorItem, XColorItem);
-
-/*************************************************************************
-|*
-|*    XFormTextShadowColorItem::XFormTextShadowColorItem()
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
-*************************************************************************/
-
-/*?*/ XFormTextShadowColorItem::XFormTextShadowColorItem(long nIndex,
-/*?*/                                                    const Color& rTheColor) :
-/*?*/   XColorItem(XATTR_FORMTXTSHDWCOLOR, nIndex, rTheColor)
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
