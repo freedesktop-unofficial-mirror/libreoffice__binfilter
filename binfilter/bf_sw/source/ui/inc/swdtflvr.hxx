@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swdtflvr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:54:33 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:10:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,48 +100,12 @@ class SwTransferable : public TransferableHelper
     BOOL bOldIdle   :1; //D&D Idle flag from the viewsettings
     BOOL bCleanUp   :1; //D&D cleanup after Drop (not by internal Drop)
 
-    // helper methods for the copy
-
-    // helper methods for the paste
-    static int _TestAllowedFormat( const TransferableDataHelper& rData,
-                                        ULONG nFormat, USHORT nDestination );
-
-
-
-
-
-
-
-
-
-
-
-
-                                    // not available
-
 protected:
 
 public:
-
-    static USHORT GetSotDestination( const SwWrtShell& rSh, const Point* = 0 );
-
     // set properties on the document, like PageMargin, VisArea.
     // And set real Size
     static void InitOle( SvEmbeddedObjectRef rRef, SwDoc& rDoc );
-
-    // copy - methods and helper methods for the copy
-
-    // remove the DDE-Link format promise
-
-    // paste - methods and helper methods for the paste
-    static BOOL IsPaste( const SwWrtShell&, const TransferableDataHelper& );
-
-    static BOOL IsPasteSpecial( const SwWrtShell& rWrtShell,
-                                const TransferableDataHelper& );
-
-    static void FillClipFmtItem( const SwWrtShell& rSh,
-                                const TransferableDataHelper& rData,
-                                SvxClipboardFmtItem & rToFill );
 
     // Interfaces for Drag & Drop
 
@@ -152,7 +116,6 @@ public:
 
     // the related SwView is being closed and the SwTransferable is invalid now
     void    Invalidate() {pWrtShell = 0;}
-    static const ::com::sun::star::uno::Sequence< sal_Int8 >& getUnoTunnelId();
 
     virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& rId ) throw( ::com::sun::star::uno::RuntimeException );
 };
