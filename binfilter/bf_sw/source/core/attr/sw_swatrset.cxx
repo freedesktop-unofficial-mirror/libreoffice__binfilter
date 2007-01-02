@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swatrset.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:14:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:41:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -165,29 +165,6 @@ namespace binfilter {
 /*N*/   pOldSet = pNewSet = 0;
 /*N*/   return pNew ? pNew->Count() : ( pOld ? pOld->Count() : 0 );
 /*N*/ }
-
-
-/*N*/ int SwAttrSet::Differentiate_BC( const SfxItemSet& rSet,
-/*N*/                           SwAttrSet* pOld, SwAttrSet* pNew )
-/*N*/ {
-/*N*/   pNewSet = pNew;
-/*N*/   pOldSet = pOld;
-/*N*/   SfxItemSet::Differentiate( rSet );
-/*N*/   pOldSet = pNewSet = 0;
-/*N*/   return pNew ? pNew->Count() : ( pOld ? pOld->Count() : 0 );
-/*N*/ }
-
-
-/*N*/ int SwAttrSet::MergeValues_BC( const SfxItemSet& rSet,
-/*N*/                           SwAttrSet* pOld, SwAttrSet* pNew )
-/*N*/ {
-/*N*/   pNewSet = pNew;
-/*N*/   pOldSet = pOld;
-/*N*/   SfxItemSet::MergeValues( rSet );
-/*N*/   pOldSet = pNewSet = 0;
-/*N*/   return pNew ? pNew->Count() : ( pOld ? pOld->Count() : 0 );
-/*N*/ }
-
 
     // Notification-Callback
 /*N*/ void  SwAttrSet::Changed( const SfxPoolItem& rOld,
