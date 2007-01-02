@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formlayerimport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 09:15:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:16:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,12 +80,6 @@ namespace xmloff
     void OFormLayerXMLImport::setAutoStyleContext(SvXMLStylesContext* _pNewContext)
     {
         m_pImpl->setAutoStyleContext(_pNewContext);
-    }
-
-    //---------------------------------------------------------------------
-    void OFormLayerXMLImport::seekPage(const Reference< XDrawPage >& _rxDrawPage)
-    {
-        m_pImpl->seekPage(_rxDrawPage);
     }
 
     //---------------------------------------------------------------------
