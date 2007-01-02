@@ -4,9 +4,9 @@
  *
  *  $RCSfile: blink.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:42:38 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:52:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,18 +73,6 @@ public:
 
 typedef SwBlinkPortion* SwBlinkPortionPtr;
 SV_DECL_PTRARR_SORT_DEL(SwBlinkList, SwBlinkPortionPtr, 0, 10)
-
-class SwBlink
-{
-public:
-    SwBlink();
-
-
-};
-
-// Blink-Manager, globale Variable, in Blink.Cxx angelegt
-extern SwBlink *pBlink;
-
 
 } //namespace binfilter
 #endif
