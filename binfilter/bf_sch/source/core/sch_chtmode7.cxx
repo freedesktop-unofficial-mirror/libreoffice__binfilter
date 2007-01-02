@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode7.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:25:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:08:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -218,12 +218,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ChartModel::HasTitle() const
-/*N*/ {
-/*N*/   return bShowMainTitle || bShowSubTitle || IsAxisChart() &&
-/*N*/          (bShowXAxisTitle || bShowYAxisTitle || Is3DChart() && bShowZAxisTitle);
-/*N*/ }
-
 /*N*/ BOOL ChartModel::ShowXAxis () const
 /*N*/ {
 /*N*/   return pChartXAxis->IsVisible();
@@ -367,36 +361,6 @@ namespace binfilter {
 /*N*/
 /*N*/     return FALSE;
 /*N*/ }
-
-
-/*N*/ BOOL ChartModel::HasGrid() const
-/*N*/ {
-/*N*/   return IsAxisChart() &&
-/*N*/          (bShowXGridMain || bShowXGridHelp ||
-/*N*/           bShowYGridMain || bShowYGridHelp ||
-/*N*/           Is3DChart() && (bShowZGridMain || bShowZGridHelp));
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*N*/ const SfxItemSet& ChartModel::GetLegendAttr() const
