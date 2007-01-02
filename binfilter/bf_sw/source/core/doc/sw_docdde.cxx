@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdde.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:22:28 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:44:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -279,31 +279,5 @@ struct _FindItem
 /*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
-
-
-
-/*?*/ extern "C" {
-/*?*/   int
-/*?*/ #if defined( WNT )
-/*?*/   __cdecl
-/*?*/ #endif
-/*?*/ #if defined( ICC )
-/*?*/   _Optlink
-/*?*/ #endif
-/*?*/       lcl_ServerNamesCmpNm( const void *pFirst, const void *pSecond)
-/*?*/   {
-/*?*/       const StringPtr pF = *(StringPtr*)pFirst;
-/*?*/       const StringPtr pS = *(StringPtr*)pSecond;
-/*?*/       ASSERT( pF && pS, "ungueltige Strings" );
-/*?*/       StringCompare eCmp = pF->CompareTo( *pS );
-/*?*/       return eCmp == COMPARE_EQUAL ? 0
-/*?*/                           : eCmp == COMPARE_LESS ? 1 : -1;
-/*?*/   }
-/*?*/ }
-
-
-
-
-
 
 }
