@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtw4w.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:39:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:08:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -604,54 +604,6 @@ SwW4WWriter::SwW4WWriter( const String& rFltName )
 
 SwW4WWriter::~SwW4WWriter() {}
 
-ULONG SwW4WWriter::Write( SwPaM& rPaM, SfxMedium& rMedium, const String* pNm )
-{
-    // ist die DLL ueberhaupt vorhanden?
-    ULONG nRet = 0;
-    if( !W4WDLLExist( W4WDLL_EXPORT, GetFilter() ) )
-        nRet = ERR_W4W_DLL_ERROR | ERROR_SW_WRITE_BASE;
-    else
-    {
-        ::utl::TempFile aTempFile;
-        aTempFile.EnableKillingFile();
-//      ::StartProgress( STR_STATSTR_W4WWRITE, 0, 100,
-//                      rPaM.GetDoc()->GetDocShell() );
-
-        {
-            SvStream* pStrm = aTempFile.GetStream( STREAM_WRITE );
-            if( SVSTREAM_OK != pStrm->GetError() )
-                nRet = pStrm->GetError();
-            else
-                nRet = Writer::Write( rPaM, *pStrm, pNm );
-        }
-
-        if( !IsError( nRet ))
-        {
-            // Ok, jetzt steht das Zwischen-Format im tmpFile
-            // dann erzeuge mal das ausgewaehlte File im entsprechenden Format
-            BOOL bStorage = GetFilter() == 49;  // WinWord6
-                                                // rMedium.IsStorage(); geht nicht
-            if( bStorage )
-                rMedium.CloseStorage();         // Schliessen, damit W4W drankommt
-            else
-                rMedium.CloseInStream();
-
-            ULONG nRet = SaveFile( rMedium.GetPhysicalName(),
-                                    aTempFile.GetFileName(),
-                                    nFilter, sVersion );
-
-            if( bStorage )
-                rMedium.GetStorage();           // wieder locken
-            else
-                rMedium.GetInStream();
-        }
-
-//      ::EndProgress( rPaM.GetDoc()->GetDocShell() );
-    }
-    return nRet;
-}
-
-
 ULONG SwW4WWriter::WriteStream()
 {
     {
@@ -888,15 +840,6 @@ void SwW4WWriter::MakeHeader()
 
     OutW4WStyleTab();       // Besser hier
 }
-
-
-
-void SwW4WWriter::OutW4WHeaderFooter( USHORT nRndStdId )
-{
-    // wie werden Header / Footer geschrieben ??
-}
-
-
 
 void SwW4WWriter::OutW4WFontTab()
 {

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrtw4w.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:39:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:08:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,7 +127,6 @@ class SwW4WWriter : public Writer
     void OutW4WFontTab();
     void OutW4WStyleTab();
 
-    void OutW4WHeaderFooter( USHORT nRndStdId );
     void MakeHeader();
 
         // gebe die evt. an der akt. Position stehenden FlyFrame aus.
@@ -178,10 +177,6 @@ public:
 
     SwW4WWriter( const String& rFilterName );
     virtual ~SwW4WWriter();
-
-    // dies ist die einzig wahre Schnittstelle. Das Medium hat noch keine
-    // Streams/Storages geoeffnet
-    ULONG Write( SwPaM&, SfxMedium&, const String* = 0 );
 
     void Out_SwDoc( SwPaM*, BOOL bAttrOn );
 
