@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_b3dlight.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:57:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:48:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -163,69 +163,6 @@ void B3dLight::Init()
     bIsAmbient = FALSE;
 }
 
-/*************************************************************************
-|*
-|* Richtung der Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLight::SetSpotDirection(const Vector3D& rNew)
-{
-    aSpotDirection=rNew;
-    aSpotDirection.Normalize();
-}
-
-/*************************************************************************
-|*
-|* Richtung der Lichtquelle in Augkoordinaten setzen
-|*
-\************************************************************************/
-
-void B3dLight::SetSpotDirectionEye(const Vector3D& rNew)
-{
-    aSpotDirectionEye=rNew;
-    aSpotDirectionEye.Normalize();
-}
-
-/*************************************************************************
-|*
-|* Kegel der Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLight::SetSpotCutoff(double fNew)
-{
-    fSpotCutoff = fNew;
-    bIsSpot = (fNew == 180.0) ? FALSE : TRUE;
-    fCosSpotCutoff = cos(fNew * F_PI180);
-}
-
-/*************************************************************************
-|*
-|* Lineare Attenuation setzen
-|*
-\************************************************************************/
-
-void B3dLight::SetLinearAttenuation(double fNew)
-{
-    fLinearAttenuation = fNew;
-    bLinearOrQuadratic =
-        (fNew + fQuadraticAttenuation == 0.0) ? FALSE : TRUE;
-}
-
-/*************************************************************************
-|*
-|* Quadratische Attenuation setzen
-|*
-\************************************************************************/
-
-void B3dLight::SetQuadraticAttenuation(double fNew)
-{
-    fQuadraticAttenuation = fNew;
-    bLinearOrQuadratic =
-        (fNew + fLinearAttenuation == 0.0) ? FALSE : TRUE;
-}
-
 void B3dLight::WriteData(SvStream& rOut) const
 {
     rOut << aAmbient;
@@ -345,17 +282,6 @@ void B3dLightGroup::SetLocalViewer(BOOL bNew)
 
 /*************************************************************************
 |*
-|* Modus globaler Viewer bei Berechnung specular reflection lesen
-|*
-\************************************************************************/
-
-BOOL B3dLightGroup::GetLocalViewer()
-{
-    return bLocalViewer;
-}
-
-/*************************************************************************
-|*
 |* Modus Beleuchtungsmodell beidseitig anwenden setzen
 |*
 \************************************************************************/
@@ -463,28 +389,6 @@ void B3dLightGroup::SetPosition(const Vector3D& rNew, Base3DLightNumber eNum)
 
 /*************************************************************************
 |*
-|* Die Position einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-const Vector3D& B3dLightGroup::GetPosition(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-#ifdef DBG_UTIL
-    if(IsDirectionalSource())
-        DBG_ERROR("Zugriff auf die Position einer gerichteten Lichtquelle!");
-#endif
-    return aLight[eNum].GetPosition();
-}
-
-/*************************************************************************
-|*
 |* Die Richtung einer Lichtquelle setzen
 |*
 \************************************************************************/
@@ -526,222 +430,6 @@ const Vector3D& B3dLightGroup::GetDirection(Base3DLightNumber eNum)
 
 /*************************************************************************
 |*
-|* Die Richtung einer Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLightGroup::SetSpotDirection(const Vector3D& rNew, Base3DLightNumber eNum)
-{
-    if(eNum >= Base3DLight0 && eNum <= Base3DLight7)
-    {
-        aLight[eNum].SetSpotDirection(rNew);
-    }
-#ifdef DBG_UTIL
-    else
-        DBG_ERROR("Access to Light out of range");
-#endif
-}
-
-/*************************************************************************
-|*
-|* Die Richtung einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-const Vector3D& B3dLightGroup::GetSpotDirection(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].GetSpotDirection();
-}
-
-/*************************************************************************
-|*
-|* Den SpotExponent einer Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLightGroup::SetSpotExponent(UINT16 nNew, Base3DLightNumber eNum)
-{
-    if(eNum >= Base3DLight0 && eNum <= Base3DLight7)
-    {
-        aLight[eNum].SetSpotExponent(nNew);
-    }
-#ifdef DBG_UTIL
-    else
-        DBG_ERROR("Access to Light out of range");
-#endif
-}
-
-/*************************************************************************
-|*
-|* Den SpotExponent einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-UINT16 B3dLightGroup::GetSpotExponent(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].GetSpotExponent();
-}
-
-/*************************************************************************
-|*
-|* Die Einengung des Lichtkegels einer Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLightGroup::SetSpotCutoff(double fNew, Base3DLightNumber eNum)
-{
-    if(eNum >= Base3DLight0 && eNum <= Base3DLight7)
-    {
-        aLight[eNum].SetSpotCutoff(fNew);
-    }
-#ifdef DBG_UTIL
-    else
-        DBG_ERROR("Access to Light out of range");
-#endif
-}
-
-/*************************************************************************
-|*
-|* Die Einengung des Lichtkegels einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-double B3dLightGroup::GetSpotCutoff(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].GetSpotCutoff();
-}
-
-/*************************************************************************
-|*
-|* Den konstanten AttenuationFactor einer Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLightGroup::SetConstantAttenuation(double fNew, Base3DLightNumber eNum)
-{
-    if(eNum >= Base3DLight0 && eNum <= Base3DLight7)
-    {
-        aLight[eNum].SetConstantAttenuation(fNew);
-    }
-#ifdef DBG_UTIL
-    else
-        DBG_ERROR("Access to Light out of range");
-#endif
-}
-
-/*************************************************************************
-|*
-|* Den konstanten AttenuationFactor einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-double B3dLightGroup::GetConstantAttenuation(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].GetConstantAttenuation();
-}
-
-/*************************************************************************
-|*
-|* Den linearen AttenuationFactor einer Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLightGroup::SetLinearAttenuation(double fNew, Base3DLightNumber eNum)
-{
-    if(eNum >= Base3DLight0 && eNum <= Base3DLight7)
-    {
-        aLight[eNum].SetLinearAttenuation(fNew);
-    }
-#ifdef DBG_UTIL
-    else
-        DBG_ERROR("Access to Light out of range");
-#endif
-}
-
-/*************************************************************************
-|*
-|* Den linearen AttenuationFactor einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-double B3dLightGroup::GetLinearAttenuation(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].GetLinearAttenuation();
-}
-
-/*************************************************************************
-|*
-|* Den quadratischen AttenuationFactor einer Lichtquelle setzen
-|*
-\************************************************************************/
-
-void B3dLightGroup::SetQuadraticAttenuation(double fNew, Base3DLightNumber eNum)
-{
-    if(eNum >= Base3DLight0 && eNum <= Base3DLight7)
-    {
-        aLight[eNum].SetQuadraticAttenuation(fNew);
-    }
-#ifdef DBG_UTIL
-    else
-        DBG_ERROR("Access to Light out of range");
-#endif
-}
-
-/*************************************************************************
-|*
-|* Den quadratischen AttenuationFactor einer Lichtquelle lesen
-|*
-\************************************************************************/
-
-double B3dLightGroup::GetQuadraticAttenuation(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].GetQuadraticAttenuation();
-}
-
-/*************************************************************************
-|*
 |* Eine Lichtquelle aktivieren/deaktivieren
 |*
 \************************************************************************/
@@ -774,24 +462,6 @@ BOOL B3dLightGroup::IsEnabled(Base3DLightNumber eNum)
 #endif
     }
     return aLight[eNum].IsEnabled();
-}
-
-/*************************************************************************
-|*
-|* Abfrage, ob eine Lichtquelle als directional source eingerichtet ist
-|*
-\************************************************************************/
-
-BOOL B3dLightGroup::IsDirectionalSource(Base3DLightNumber eNum)
-{
-    if(eNum < Base3DLight0 || eNum > Base3DLight7)
-    {
-        eNum = Base3DLight0;
-#ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
-#endif
-    }
-    return aLight[eNum].IsDirectionalSource();
 }
 
 /*************************************************************************

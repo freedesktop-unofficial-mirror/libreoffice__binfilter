@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_b3dgeom.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:57:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:48:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,19 +120,6 @@ void B3dGeometry::Erase()
 {
     aEntityBucket.Erase();
     aIndexBucket.Erase();
-    Reset();
-}
-
-/*************************************************************************
-|*
-|* Inhalte loeschen und Speicher freigeben
-|*
-\************************************************************************/
-
-void B3dGeometry::Empty()
-{
-    aEntityBucket.Empty();
-    aIndexBucket.Empty();
     Reset();
 }
 
@@ -377,18 +364,6 @@ void B3dGeometry::EndPolygon()
 
 /*************************************************************************
 |*
-|* Eine beliebige Transformation auf die Geometrie anwenden
-|*
-\************************************************************************/
-
-void B3dGeometry::Transform(const Matrix4D& rMat)
-{
-    for(UINT32 a=0;a<aEntityBucket.Count();a++)
-        aEntityBucket[a].Transform(rMat);
-}
-
-/*************************************************************************
-|*
 |* Hittest auf Geometrie
 |* Liegt der angegebene Schnittpunkt innerhalb eines der Polygone?
 |*
@@ -418,31 +393,6 @@ sal_Bool B3dGeometry::CheckHit(const Vector3D& rFront, const Vector3D& rBack, sa
     }
 
     return sal_False;
-}
-
-// #110988# get all cuts of the geometry with the given vector defined by the two positions
-void B3dGeometry::GetAllCuts(Vector3DVector& rVector, const Vector3D& rFront, const Vector3D& rBack) const
-{
-    sal_uInt32 nPolyCounter(0L);
-    sal_uInt32 nEntityCounter(0L);
-    sal_uInt32 nUpperBound;
-
-    while(nPolyCounter < ((B3dGeometry*)this)->aIndexBucket.Count())
-    {
-        // get upper bound for new polygon
-        nUpperBound = ((B3dGeometry*)this)->aIndexBucket[nPolyCounter++].GetIndex();
-
-        // get cut for that polygon
-        Vector3D aCut;
-
-        if(CheckSinglePolygonHit(nEntityCounter, nUpperBound, rFront, rBack, aCut))
-        {
-            rVector.push_back(aCut);
-        }
-
-        // Auf naechstes Polygon
-        nEntityCounter = nUpperBound;
-    }
 }
 
 sal_Bool B3dGeometry::CheckSinglePolygonHit(UINT32 nLow, UINT32 nHigh, const Vector3D& rFront,
@@ -676,18 +626,6 @@ Vector3D B3dGeometry::CalcNormal(UINT32 nLow, UINT32 nHigh) const
 
 /*************************************************************************
 |*
-|* Normaleninformationen ungueltig machen
-|*
-\************************************************************************/
-
-void B3dGeometry::RemoveNormals()
-{
-    for(UINT32 a=0;a<aEntityBucket.Count();a++)
-        aEntityBucket[a].SetNormalUsed(FALSE);
-}
-
-/*************************************************************************
-|*
 |* Standard - Texturkoordinaten generieren
 |*
 \************************************************************************/
@@ -848,128 +786,6 @@ void B3dGeometry::CreateDefaultTexture(UINT16 nCreateWhat, BOOL bUseSphere)
             }
         }
     }
-}
-
-/*************************************************************************
-|*
-|* Texturinformationen ungueltig machen
-|*
-\************************************************************************/
-
-void B3dGeometry::RemoveTexture()
-{
-    for(UINT32 a=0;a<aEntityBucket.Count();a++)
-        aEntityBucket[a].SetTexCoorUsed(FALSE);
-}
-
-/*************************************************************************
-|*
-|* Default-Geometrien erstellen
-|*
-\************************************************************************/
-
-void B3dGeometry::CreateCube(const B3dVolume& rVolume)
-{
-    Erase();
-    StartDescription();
-    Vector3D A(rVolume.MinVec().X(), rVolume.MaxVec().Y(), rVolume.MinVec().Z());
-    Vector3D B(rVolume.MaxVec().X(), rVolume.MaxVec().Y(), rVolume.MinVec().Z());
-    Vector3D C(rVolume.MaxVec().X(), rVolume.MinVec().Y(), rVolume.MinVec().Z());
-    Vector3D D(rVolume.MinVec().X(), rVolume.MinVec().Y(), rVolume.MinVec().Z());
-    Vector3D E(rVolume.MinVec().X(), rVolume.MaxVec().Y(), rVolume.MaxVec().Z());
-    Vector3D F(rVolume.MaxVec().X(), rVolume.MaxVec().Y(), rVolume.MaxVec().Z());
-    Vector3D G(rVolume.MaxVec().X(), rVolume.MinVec().Y(), rVolume.MaxVec().Z());
-    Vector3D H(rVolume.MinVec().X(), rVolume.MinVec().Y(), rVolume.MaxVec().Z());
-    StartObject(FALSE);
-    AddEdge(A);
-    AddEdge(B);
-    AddEdge(C);
-    AddEdge(D);
-    EndObject();
-    StartObject(FALSE);
-    AddEdge(A);
-    AddEdge(E);
-    AddEdge(F);
-    AddEdge(B);
-    EndObject();
-    StartObject(FALSE);
-    AddEdge(B);
-    AddEdge(F);
-    AddEdge(G);
-    AddEdge(C);
-    EndObject();
-    StartObject(FALSE);
-    AddEdge(C);
-    AddEdge(G);
-    AddEdge(H);
-    AddEdge(D);
-    EndObject();
-    StartObject(FALSE);
-    AddEdge(D);
-    AddEdge(H);
-    AddEdge(E);
-    AddEdge(A);
-    EndObject();
-    StartObject(FALSE);
-    AddEdge(E);
-    AddEdge(H);
-    AddEdge(G);
-    AddEdge(F);
-    EndObject();
-    EndDescription();
-    CreateDefaultNormalsSphere();
-    CreateDefaultTexture(B3D_CREATE_DEFAULT_ALL, FALSE);
-}
-
-void B3dGeometry::CreateSphere(const B3dVolume& rVolume, double fX, double fY)
-{
-    Erase();
-    StartDescription();
-    Vector3D A,B,C,D;
-    double fXInc, fYInc;
-    if(fX == 0.0)
-        fX = 4.0;
-    fXInc = F_2PI / fX;
-    if(fY == 0.0)
-        fY = 4.0;
-    fYInc = F_PI / fY;
-    UINT16 nX = (UINT16)fX;
-    UINT16 nY = (UINT16)fY;
-    fX = 0.0;
-    for(UINT16 a=0;a<nX;a++,fX+=fXInc)
-    {
-        fY = -F_PI2;
-        for(UINT16 b=0;b<nY;b++,fY+=fYInc)
-        {
-            A.Y() = B.Y() = sin(fY+fYInc);
-            D.Y() = C.Y() = sin(fY);
-            A.X() = cos(fX) * cos(fY+fYInc);
-            D.X() = cos(fX) * cos(fY);
-            B.X() = cos(fX+fXInc) * cos(fY+fYInc);
-            C.X() = cos(fX+fXInc) * cos(fY);
-            A.Z() = sin(fX) * cos(fY+fYInc);
-            D.Z() = sin(fX) * cos(fY);
-            B.Z() = sin(fX+fXInc) * cos(fY+fYInc);
-            C.Z() = sin(fX+fXInc) * cos(fY);
-            StartObject(FALSE);
-            AddEdge(A);
-            AddEdge(B);
-            AddEdge(C);
-            AddEdge(D);
-            EndObject();
-        }
-    }
-    EndDescription();
-    CreateDefaultNormalsSphere();
-    CreateDefaultTexture(B3D_CREATE_DEFAULT_ALL, TRUE);
-    Matrix4D aTransform;
-    aTransform.Translate(Vector3D(1.0, 1.0, 1.0));
-    aTransform.Scale(
-        (rVolume.MaxVec().X() - rVolume.MinVec().X())/2.0,
-        (rVolume.MaxVec().Y() - rVolume.MinVec().Y())/2.0,
-        (rVolume.MaxVec().Z() - rVolume.MinVec().Z())/2.0);
-    aTransform.Translate(rVolume.MinVec());
-    Transform(aTransform);
 }
 
 /*************************************************************************

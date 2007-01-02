@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_b3dvolum.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:57:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:48:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -119,30 +119,6 @@ B3dVolume& B3dVolume::Union(const Vector3D& rVec)
     aMinVec.Min(rVec);
     aMaxVec.Max(rVec);
     return *this;
-}
-
-/*************************************************************************
-|*
-|* 3D-Groessenvektor zurueckgeben
-|*
-\************************************************************************/
-
-Vector3D B3dVolume::GetSize() const
-{
-    return Vector3D(GetWidth(), GetHeight(), GetDepth());
-}
-
-/*************************************************************************
-|*
-|* Test auf Punkt innerhalb des Volumes
-|*
-\************************************************************************/
-
-BOOL B3dVolume::IsInside(const Vector3D& rVec)
-{
-    return (rVec.X() >= aMinVec.X() && rVec.X() <= aMaxVec.X()
-        && rVec.Y() >= aMinVec.Y() && rVec.Y() <= aMaxVec.Y()
-        && rVec.Z() >= aMinVec.Z() && rVec.Z() <= aMaxVec.Z());
 }
 
 /*************************************************************************

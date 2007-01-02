@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_b3dcolor.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:56:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:47:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,82 +92,6 @@ void B3dColor::CalcMiddle(Color& rOld1, Color& rOld2)
     {
         SetColor(rOld1.GetColor());
     }
-}
-
-/*************************************************************************
-|*
-|* Farbwert Mittelwert finden mit 3 Farben
-|*
-\************************************************************************/
-
-void B3dColor::CalcMiddle(Color& rOld1, Color& rOld2, Color& rOld3)
-{
-    if(rOld1 != rOld2)
-    {
-        if(rOld1 != rOld3)
-        {
-            // alle 3 unterschiedlich
-            SetRed((UINT8)(((UINT16)rOld1.GetRed()
-                + (UINT16)rOld2.GetRed()
-                + (UINT16)rOld3.GetRed()) / 3L));
-            SetGreen((UINT8)(((UINT16)rOld1.GetGreen()
-                + (UINT16)rOld2.GetGreen()
-                + (UINT16)rOld3.GetGreen()) / 3L));
-            SetBlue((UINT8)(((UINT16)rOld1.GetBlue()
-                + (UINT16)rOld2.GetBlue()
-                + (UINT16)rOld3.GetBlue()) / 3L));
-            SetTransparency((UINT8)(((UINT16)rOld1.GetTransparency()
-                + (UINT16)rOld2.GetTransparency()
-                + (UINT16)rOld3.GetTransparency()) / 3L));
-        }
-        else
-        {
-            // 1 != 2, 1 == 3
-            CalcMiddle(rOld1, rOld2);
-        }
-    }
-    else
-    {
-        // 1 == 2
-        if(rOld1 != rOld3)
-        {
-            CalcMiddle(rOld1, rOld3);
-        }
-        else
-        {
-            // 1==2, 1==3 -> alle gleich
-            SetColor(rOld1.GetColor());
-        }
-    }
-}
-
-/*************************************************************************
-|*
-|* Ermittle den Abstand der beiden Farben im Farbraum
-|* Dies geschieht OHNE Wurzelziehen, d.h. es wird als Metrik im RGB
-|* Farbraum hier das Quadrat der 'echten' (gewohnten) Entfernung benutzt
-|*
-\************************************************************************/
-
-ULONG B3dColor::GetDistance(Color& rOld)
-{
-    // Bei Gleichheit kein Abstand
-    if(*this == rOld)
-        return 0L;
-
-    // Abstand ermitteln
-    long nDistRed = rOld.GetRed() > GetRed() ?
-        rOld.GetRed() - GetRed() :
-        GetRed() - rOld.GetRed();
-    long nDistGreen = rOld.GetGreen() > GetGreen() ?
-        rOld.GetGreen() - GetGreen() :
-        GetGreen() - rOld.GetGreen();
-    long nDistBlue = rOld.GetBlue() > GetBlue() ?
-        rOld.GetBlue() - GetBlue() :
-        GetBlue() - rOld.GetBlue();
-    return (ULONG)(nDistRed * nDistRed
-        + nDistGreen * nDistGreen
-        + nDistBlue * nDistBlue);
 }
 
 /*************************************************************************
