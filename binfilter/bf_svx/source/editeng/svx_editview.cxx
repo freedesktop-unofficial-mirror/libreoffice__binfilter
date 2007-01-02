@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editview.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:44:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:20:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,14 +97,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS( EditView, 0 );
 /*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
 /*N*/   return pImpEditView->pEditEngine;
-/*N*/ }
-
-
-
-/*N*/ sal_Bool EditView::IsReadOnly() const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   return pImpEditView->bReadOnly;
 /*N*/ }
 
 /*N*/ void EditView::SetSelection( const ESelection& rESel )
@@ -208,26 +200,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-/*N*/ const Pointer& EditView::GetPointer() const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   return pImpEditView->GetPointer();
-/*N*/ }
-
-
-
-
-/*N*/ sal_Bool EditView::PostKeyEvent( const KeyEvent& rKeyEvent )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
-/*N*/   return pImpEditView->PostKeyEvent( rKeyEvent );
-/*N*/ }
-
-
-
-
-
 /*N*/ void EditView::ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditView, 0 );
@@ -290,51 +262,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS( EditView, 0 );
 /*N*/   pImpEditView->SetSelectionMode( eMode );
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*N*/ void EditView::SetStyleSheet( SfxStyleSheet* pStyle )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ sal_Bool EditView::IsInsertMode() const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   return pImpEditView->IsInsertMode();
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ const SvxFieldItem* EditView::GetField( const Point& rPos, sal_uInt16* pPara, sal_uInt16* pPos ) const
 /*N*/ {

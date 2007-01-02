@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:45:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:20:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -385,55 +385,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*?*/ }
 
-
-/*N*/ sal_Bool ImpEditView::PostKeyEvent( const KeyEvent& rKeyEvent )
-/*N*/ {
-/*N*/     BOOL bDone = FALSE;
-/*N*/
-/*N*/   KeyFuncType eFunc = rKeyEvent.GetKeyCode().GetFunction();
-/*N*/   if ( eFunc != KEYFUNC_DONTKNOW )
-/*N*/   {
-/*?*/       switch ( eFunc )
-/*?*/       {
-/*?*/           case KEYFUNC_CUT:
-/*?*/           {
-/*?*/               if ( !bReadOnly )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
-/*?*/               }
-/*?*/           }
-/*?*/           break;
-/*?*/           case KEYFUNC_COPY:
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
-/*?*/           }
-/*?*/           break;
-/*?*/           case KEYFUNC_PASTE:
-/*?*/           {
-/*?*/               if ( !bReadOnly && IsPasteEnabled() )
-/*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pEditEngine->pImpEditEngine->UndoActionStart( EDITUNDO_PASTE );
-/*?*/               }
-/*?*/           }
-/*?*/           break;
-/*?*/         }
-/*N*/     }
-/*N*/
-/*N*/     if( !bDone )
-/*N*/       bDone = pEditEngine->PostKeyEvent( rKeyEvent, GetEditViewPtr() );
-/*N*/
-/*N*/     return bDone;
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
 /*N*/ const SvxFieldItem* ImpEditView::GetField( const Point& rPos, sal_uInt16* pPara, sal_uInt16* pPos ) const
 /*N*/ {
 /*N*/   if( !GetOutputArea().IsInside( rPos ) )
@@ -465,43 +416,6 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           }
 /*N*/   }
 /*N*/   return NULL;
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*N*/ void ImpEditView::AddDragAndDropListeners()
-/*N*/ {
-/*N*/     Window* pWindow = GetWindow();
-/*N*/     if ( !bActiveDragAndDropListener && pWindow && pWindow->GetDragGestureRecognizer().is() )
-/*N*/     {
-/*N*/         vcl::unohelper::DragAndDropWrapper* pDnDWrapper = new vcl::unohelper::DragAndDropWrapper( this );
-/*N*/         mxDnDListener = pDnDWrapper;
-/*N*/
-/*N*/         uno::Reference< datatransfer::dnd::XDragGestureListener> xDGL( mxDnDListener, uno::UNO_QUERY );
-/*N*/         pWindow->GetDragGestureRecognizer()->addDragGestureListener( xDGL );
-/*N*/         uno::Reference< datatransfer::dnd::XDropTargetListener> xDTL( xDGL, uno::UNO_QUERY );
-/*N*/         pWindow->GetDropTarget()->addDropTargetListener( xDTL );
-/*N*/         pWindow->GetDropTarget()->setActive( sal_True );
-/*N*/         pWindow->GetDropTarget()->setDefaultActions( datatransfer::dnd::DNDConstants::ACTION_COPY_OR_MOVE );
-/*N*/
-/*N*/         bActiveDragAndDropListener = TRUE;
-/*N*/     }
 /*N*/ }
 
 /*N*/ void ImpEditView::RemoveDragAndDropListeners()
