@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_attarray.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:13:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:52:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,9 +111,9 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
+#ifdef DBG_UTIL
 /*N*/ void ScAttrArray::TestData() const
 /*N*/ {
-/*N*/ #ifdef DBG_UTIL
 /*N*/   USHORT nErr = 0;
 /*N*/   if (pData)
 /*N*/   {
@@ -136,8 +136,8 @@ namespace binfilter {
 /*?*/       aMsg += ByteString::CreateFromInt32(nCol);
 /*?*/       DBG_ERROR( aMsg.GetBuffer() );
 /*N*/   }
-/*N*/ #endif
 /*N*/ }
+#endif
 
 //------------------------------------------------------------------------
 
@@ -1154,32 +1154,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScAttrArray::IsStyleSheetUsed( const ScStyleSheet& rStyle,
-/*N*/         BOOL bGatherAllStyles ) const
-/*N*/ {
-/*N*/   BOOL    bIsUsed = FALSE;
-/*N*/   short   nPos    = 0;
-/*N*/
-/*N*/   while ( nPos < (short)nCount )
-/*N*/   {
-/*?*/         const ScStyleSheet* pStyle = pData[nPos].pPattern->GetStyleSheet();
-/*?*/         if ( pStyle )
-/*?*/         {
-/*?*/             pStyle->SetUsage( ScStyleSheet::USED );
-/*?*/             if ( pStyle == &rStyle )
-/*?*/             {
-/*?*/                 if ( !bGatherAllStyles )
-/*?*/                     return TRUE;
-/*?*/                 bIsUsed = TRUE;
-/*?*/             }
-/*?*/         }
-/*N*/       nPos++;
-/*N*/   }
-/*N*/
-/*N*/   return bIsUsed;
-/*N*/ }
-
-
 /*N*/ BOOL ScAttrArray::IsEmpty() const
 /*N*/ {
 /*N*/   if (nCount == 1)
@@ -1192,10 +1166,6 @@ namespace binfilter {
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }
-
-
-
-
 
 
 /*N*/ BOOL ScAttrArray::HasVisibleAttr( USHORT& rFirstRow, USHORT& rLastRow, BOOL bSkipFirst ) const
