@@ -4,9 +4,9 @@
  *
  *  $RCSfile: VisAreaContext.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:15:16 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:51:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,11 +54,6 @@ class XMLVisAreaContext : public SvXMLImportContext
 {
 public:
     // read all attributes and set the values in rRect
-    XMLVisAreaContext( SvXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
-                                      const ::com::sun::star::uno::Reference<
-                                      ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
-                                      Rectangle& rRect, const MapUnit aMapUnit);
-
     XMLVisAreaContext( SvXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,

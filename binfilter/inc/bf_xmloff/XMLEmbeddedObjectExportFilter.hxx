@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLEmbeddedObjectExportFilter.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:19:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:51:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@ class XMLEmbeddedObjectExportFilter : public ::cppu::WeakImplHelper3<
         ::com::sun::star::xml::sax::XExtendedDocumentHandler > xExtHandler;
 
 public:
-    XMLEmbeddedObjectExportFilter() throw();
     XMLEmbeddedObjectExportFilter( const ::com::sun::star::uno::Reference<
         ::com::sun::star::xml::sax::XDocumentHandler > & rHandler ) throw();
     virtual ~XMLEmbeddedObjectExportFilter () throw();
