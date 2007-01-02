@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdtrans.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:12:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:36:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,13 +76,11 @@ void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& xFact, cons
 inline void ResizePoint(Point& rPnt, const Point& rRef, Fraction xFact, Fraction yFact);
 void ResizePoly(Polygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 void ResizeXPoly(XPolygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-void ResizePoly(PolyPolygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 void ResizeXPoly(XPolyPolygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 
 inline void RotatePoint(Point& rPnt, const Point& rRef, double sn, double cs);
 void RotatePoly(Polygon& rPoly, const Point& rRef, double sn, double cs);
 void RotateXPoly(XPolygon& rPoly, const Point& rRef, double sn, double cs);
-void RotatePoly(PolyPolygon& rPoly, const Point& rRef, double sn, double cs);
 void RotateXPoly(XPolyPolygon& rPoly, const Point& rRef, double sn, double cs);
 
 // MirrorRect macht nur Sinn bei Spiegelachsen
@@ -91,7 +89,6 @@ void RotateXPoly(XPolyPolygon& rPoly, const Point& rRef, double sn, double cs);
 inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
 void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
 void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
-void ShearPoly(PolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
 void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
 
 // rPnt.X bzw rPnt.Y wird auf rCenter.X bzw. rCenter.Y gesetzt!
@@ -165,7 +162,6 @@ inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad
 long GetAngle(const Point& rPnt);
 long NormAngle180(long a); // Winkel normalisieren auf -180.00..179.99
 long NormAngle360(long a); // Winkel normalisieren auf    0.00..359.99
-USHORT GetAngleSector(long nWink); // Sektor im kartesischen Koordinatensystem bestimmen
 // Berechnet die Laenge von (0,0) via a^2 + b^2 = c^2
 // Zur Vermeidung von Ueberlaeufen werden ggf. einige Stellen ignoriert.
 long GetLen(const Point& rPnt);
@@ -221,9 +217,6 @@ public:
 
 Polygon Rect2Poly(const Rectangle& rRect, const GeoStat& rGeo);
 void Poly2Rect(const Polygon& rPol, Rectangle& rRect, GeoStat& rGeo);
-
-void OrthoDistance8(const Point& rPt0, Point& rPt, FASTBOOL bBigOrtho);
-void OrthoDistance4(const Point& rPt0, Point& rPt, FASTBOOL bBigOrtho);
 
 // Multiplikation und anschliessende Division.
 // Rechnung und Zwischenergebnis sind BigInt.
