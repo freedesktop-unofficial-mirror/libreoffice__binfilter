@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:29:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:46:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -926,72 +926,6 @@ namespace binfilter {
 /*N*/   return new SwSectionFrm( *pSection );
 /*N*/ }
 
-//Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
-//Dokument. Die erzeugten Contentframes werden in das entsprechende
-//Layout gehaengt.
-void SwSectionNode::MakeFrms(const SwNodeIndex & rIdx )
-{
-    // also nehme meinen nachfolgenden oder vorhergehenden ContentFrame:
-    SwNodes& rNds = GetNodes();
-    if( rNds.IsDocNodes() && rNds.GetDoc()->GetRootFrm() )
-    {
-        if( GetSection().IsHidden() || IsCntntHidden() )
-        {
-            SwNodeIndex aIdx( *EndOfSectionNode() );
-            SwCntntNode* pCNd = rNds.GoNextSection( &aIdx, TRUE, FALSE );
-            if( !pCNd )
-            {
-                aIdx = *this;
-                if( 0 == ( pCNd = rNds.GoPrevSection( &aIdx, TRUE, FALSE )) )
-                    return ;
-            }
-            pCNd = rNds[ aIdx ]->GetCntntNode();
-            pCNd->MakeFrms( (SwCntntNode&)rIdx.GetNode() );
-        }
-        else
-        {
-            SwNode2Layout aNode2Layout( *this, rIdx.GetIndex() );
-            SwFrm *pFrm, *pNew;
-            while( 0 != (pFrm = aNode2Layout.NextFrm()) )
-            {
-                ASSERT( pFrm->IsSctFrm(), "Depend von Section keine Section." );
-                pNew = rIdx.GetNode().GetCntntNode()->MakeFrm();
-
-                SwSectionNode *pS = rIdx.GetNode().FindSectionNode();
-                // if the node is in a section, the sectionframe now
-                // has to be created..
-                // OD 14.11.2002 #104684# - boolean to control <Init()> of a new
-                // section frame.
-                bool bInitNewSect = false;
-                if( pS )
-                {
-                    SwSectionFrm *pSct = new SwSectionFrm( pS->GetSection() );
-                    // OD 14.11.2002 #104684# - prepare <Init()> of new section frame.
-                    bInitNewSect = true;
-                    SwLayoutFrm* pUp = pSct;
-                    while( pUp->Lower() )  // for columned sections
-                    {
-                        ASSERT( pUp->Lower()->IsLayoutFrm(),"Who's in there?" );
-                        pUp = (SwLayoutFrm*)pUp->Lower();
-                    }
-                    pNew->Paste( pUp, NULL );
-                    pNew = pSct;
-                }
-
-                // wird ein Node vorher oder nachher mit Frames versehen
-                if ( rIdx < GetIndex() )
-                    // der neue liegt vor mir
-                    pNew->Paste( pFrm->GetUpper(), pFrm );
-                else
-                    // der neue liegt hinter mir
-                    pNew->Paste( pFrm->GetUpper(), pFrm->GetNext() );
-                if ( bInitNewSect )
-                    static_cast<SwSectionFrm*>(pNew)->Init();
-            }
-        }
-    }
-}
-
 //Fuer jedes vorkommen im Layout einen SectionFrm anlegen und vor den
 //entsprechenden CntntFrm pasten.
 
@@ -1050,34 +984,6 @@ void SwSectionNode::MakeFrms(const SwNodeIndex & rIdx )
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-
-BOOL SwSectionNode::IsCntntHidden() const
-{
-    ASSERT( !pSection->IsHidden(), "That's simple: Hidden Section => Hidden Content" );
-    SwNodeIndex aTmp( *this, 1 );
-    ULONG nEnd = EndOfSectionIndex();
-    while( aTmp < nEnd )
-    {
-        if( aTmp.GetNode().IsSectionNode() )
-        {
-            const SwSection& rSect = ((SwSectionNode&)aTmp.GetNode()).GetSection();
-            if( rSect.IsHiddenFlag() )
-                // dann diese Section ueberspringen
-                aTmp = *aTmp.GetNode().EndOfSectionNode();
-        }
-        else
-        {
-            if( aTmp.GetNode().IsCntntNode() || aTmp.GetNode().IsTableNode() )
-                return FALSE; // Nicht versteckter Inhalt wurde gefunden
-            ASSERT( aTmp.GetNode().IsEndNode(), "EndNode expected" );
-        }
-        aTmp++;
-    }
-    return TRUE; // Alles versteckt
-}
-
-
 
 
 /*N*/ String SwDoc::GetUniqueSectionName( const String* pChkStr ) const
