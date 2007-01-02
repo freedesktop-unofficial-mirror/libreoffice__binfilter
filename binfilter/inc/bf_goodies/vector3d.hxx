@@ -4,9 +4,9 @@
  *
  *  $RCSfile: vector3d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:19:49 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:23:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,7 +75,6 @@ class Vector3D
     double& operator[] (int nPos) { return V[nPos]; }
 
     double  GetLength(void) const;
-    double  GetXYLength(void) const;
     double  GetXZLength(void) const;
     double  GetYZLength(void) const;
 
@@ -87,10 +86,6 @@ class Vector3D
     void CalcInBetween(const Vector3D& rOld1, const Vector3D& rOld2, double t);
     void CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2);
     void CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2, Vector3D& rOld3);
-
-    Vector3D GetPerpendicular2D() const;
-    Vector3D GetPerpendicular(const Vector3D& rNormalizedVec) const;
-    Vector3D GetProjectionOnPlane(const Vector3D& rNormalizedPlane) const;
 
     Vector3D&   operator+=  (const Vector3D&);
     Vector3D&   operator-=  (const Vector3D&);
