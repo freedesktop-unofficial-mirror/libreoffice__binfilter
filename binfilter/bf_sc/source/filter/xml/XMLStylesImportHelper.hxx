@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLStylesImportHelper.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:17:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:59:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -207,8 +207,6 @@ public:
     void SetAttributes(::rtl::OUString* pStyleName,
         ::rtl::OUString* pCurrency, const sal_Int16 nCellType);
     void AddRange(const ScRange& rRange);
-    void AddRange(const ::com::sun::star::table::CellRangeAddress& rRange);
-    void AddCell(const ScAddress& rAddress);
     void AddCell(const ::com::sun::star::table::CellAddress& rAddress);
     void InsertRow(const sal_Int32 nRow, const sal_Int32 nTab, ScDocument* pDoc); // a row is inserted before nRow
     void InsertCol(const sal_Int32 nCol, const sal_Int32 nTab, ScDocument* pDoc); // a col is inserted before nCol
