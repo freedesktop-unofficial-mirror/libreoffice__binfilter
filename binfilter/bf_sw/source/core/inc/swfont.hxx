@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swfont.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:49:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:53:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -352,7 +352,6 @@ public:
         { return aSub[nActual].CheckKerning(); }
     inline USHORT GetAscent( ViewShell *pSh, const OutputDevice *pOut )
         { return aSub[nActual].GetAscent( pSh, pOut ); }
-    USHORT GetLeading( ViewShell *pSh, const OutputDevice *pOut );
     inline USHORT GetHeight( ViewShell *pSh, const OutputDevice *pOut )
         { return aSub[nActual].GetHeight( pSh, pOut ); }
     inline void Invalidate()
