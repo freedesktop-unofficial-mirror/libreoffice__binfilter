@@ -4,9 +4,9 @@
  *
  *  $RCSfile: imgprod.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:50:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:46:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,7 +111,6 @@ public:
 
     void            SetImage( const ::rtl::OUString& rPath );
     void            SetImage( SvStream& rStm );
-    void            SetImage( const Graphic& rGraphic );
 
     void            SetErrorHandler( const Link& rErrorHdl ) { maErrorHdl = rErrorHdl; }
     const Link&     GetErrorHandler() const { return maErrorHdl; }
