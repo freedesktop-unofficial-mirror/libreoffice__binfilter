@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_olinetab.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:22:38 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:56:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,11 +120,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   nStart = nNewPos;
 /*N*/   SetSize( nNewSize );
-/*N*/ }
-/*N*/
-/*N*/ void ScOutlineEntry::SetHidden( BOOL bNewHidden )
-/*N*/ {
-/*N*/   bHidden = bNewHidden;
 /*N*/ }
 
 /*N*/ void ScOutlineEntry::SetVisible( BOOL bNewVisible )
@@ -356,33 +351,6 @@ namespace binfilter {
 /*M*/     return (nLevel < nDepth) ? aCollections[nLevel].GetCount() : 0;
 /*M*/ }
 
-
-/*M*/ BOOL ScOutlineArray::GetEntryIndex( USHORT nLevel, USHORT nPos, USHORT& rnIndex ) const
-/*M*/ {
-/*M*/     // found entry contains passed position
-/*M*/     USHORT nCount  = GetCount( nLevel );
-/*M*/     for ( rnIndex = 0; rnIndex < nCount; ++rnIndex )
-/*M*/     {
-/*M*/         const ScOutlineEntry* pEntry = GetEntry( nLevel, rnIndex );
-/*M*/         if ( (pEntry->GetStart() <= nPos) && (nPos <= pEntry->GetEnd()) )
-/*M*/             return TRUE;
-/*M*/     }
-/*M*/     return FALSE;
-/*M*/ }
-
-/*M*/ BOOL ScOutlineArray::GetEntryIndexInRange(
-/*M*/         USHORT nLevel, USHORT nBlockStart, USHORT nBlockEnd, USHORT& rnIndex ) const
-/*M*/ {
-/*M*/     // found entry will be completely inside of passed range
-/*M*/     USHORT nCount  = GetCount( nLevel );
-/*M*/     for ( rnIndex = 0; rnIndex < nCount; ++rnIndex )
-/*M*/     {
-/*M*/         const ScOutlineEntry* pEntry = GetEntry( nLevel, rnIndex );
-/*M*/         if ( (nBlockStart <= pEntry->GetStart()) && (pEntry->GetEnd() <= nBlockEnd) )
-/*M*/             return TRUE;
-/*M*/     }
-/*M*/     return FALSE;
-/*M*/ }
 
 /*M*/ void ScOutlineArray::SetVisibleBelow( USHORT nLevel, USHORT nEntry, BOOL bValue, BOOL bSkipHidden )
 /*M*/ {
