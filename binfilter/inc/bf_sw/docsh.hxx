@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:09:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:43:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -184,8 +184,6 @@ public:
 
 
 
-    // View setzen fuer Aktionen ueber Shell
-    void          SetView(SwView* pVw);
     const SwView *GetView() const { return pView; }
     SwView       *GetView()       { return pView; }
 
@@ -233,8 +231,6 @@ public:
     //Usually locking should be done using the class: SwWaitObject!
     void EnterWait( BOOL bLockDispatcher );
     void LeaveWait( BOOL bLockDispatcher );
-
-    void ToggleBrowserMode(BOOL bOn, SwView* pView = 0);
 
     ULONG LoadStylesFromFile( const String& rURL, SwgReaderOption& rOpt,
                                 BOOL bUnoCall );
