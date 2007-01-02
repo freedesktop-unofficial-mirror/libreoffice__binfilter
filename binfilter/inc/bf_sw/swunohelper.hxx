@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swunohelper.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:34:54 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:47:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,30 +61,6 @@ sal_Int32 GetEnumAsInt32( const ::com::sun::star::uno::Any& rVal );
     // delete the file under this URL
 BOOL UCB_DeleteFile( const String& rURL );
 
-    // copy/move the file to a new location
-BOOL UCB_CopyFile( const String& rURL, const String& rNewURL,
-                    BOOL bCopyIsMove = FALSE );
-
-    // is the URL on the current system case sentive?
-BOOL UCB_IsCaseSensitiveFileName( const String& rURL );
-
-    // is the URL readonly?
-BOOL UCB_IsReadOnlyFileName( const String& rURL );
-
-    // get a list of files from the folder of the URL
-    // options: pExtension = 0 -> all, else this specific extension
-    //          pDateTime != 0 -> returns also the modified date/time of
-    //                       the files in a SvPtrarr -->
-    //                       !! objects must be deleted from the caller!!
-BOOL UCB_GetFileListOfFolder( const String& rURL, SvStrings& rList,
-                                const String* pExtension = 0,
-                                SvPtrarr* pDateTimeList = 0 );
-
-    // is the URL an existing file?
-BOOL UCB_IsFile( const String& rURL );
-
-    // is the URL a existing directory?
-BOOL UCB_IsDirectory( const String& rURL );
 }
 
 } //namespace binfilter
