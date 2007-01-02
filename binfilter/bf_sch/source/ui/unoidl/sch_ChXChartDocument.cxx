@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:57:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:09:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -220,18 +220,6 @@ void ChXChartDocument::setDiagramType( const ::rtl::OUString& aType,
         else if( aPostfix.compareToAscii( RTL_CONSTASCII_STRINGPARAM( SCH_X_STR_CHTYPE_STOCK )) == 0 )
             m_pModel->SetBaseType( CHTYPE_STOCK );
     }
-}
-
-::rtl::OUString ChXChartDocument::getDiagramType() const throw()
-{
-    if( m_rXDiagram.is() )
-    {
-        ChXDiagram* pDiagram = ChXDiagram::getImplementation( m_rXDiagram );
-        if( pDiagram )
-            return pDiagram->getDiagramType();
-    }
-
-    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "UnknownChartType" ));
 }
 
 sal_Bool ChXChartDocument::setBaseDiagramType( sal_Bool bSet ) throw()
