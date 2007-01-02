@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:17:42 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:55:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,17 +99,6 @@ namespace binfilter {
 /*N*/       return pColorTable;
 /*N*/   }
 /*N*/ }
-
-BOOL lcl_AdjustRanges( ScRangeList& rRanges, USHORT nSource, USHORT nDest, USHORT nTabCount )
-{
-    //! if multiple sheets are copied, update references into the other copied sheets?
-
-    BOOL bChanged = FALSE;
-
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ULONG nCount = rRanges.Count();
-
-    return bChanged;
-}
 
 /*N*/ void ScDocument::TransferDrawPage(ScDocument* pSrcDoc, USHORT nSrcPos, USHORT nDestPos)
 /*N*/ {
