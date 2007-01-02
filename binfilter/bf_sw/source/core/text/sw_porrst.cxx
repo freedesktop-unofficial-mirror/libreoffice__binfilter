@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porrst.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:12:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:01:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,19 +100,6 @@
 #include <atrhndl.hxx>
 #endif
 namespace binfilter {
-/*************************************************************************
- *                      class SwTmpEndPortion
- *************************************************************************/
-
-SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Height( rPortion.Height() );
-}
-
-/*************************************************************************
- *                 virtual SwTmpEndPortion::Paint()
- *************************************************************************/
-
 
 /*************************************************************************
  *                      class SwBreakPortion
@@ -193,12 +180,6 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/   bLeft( sal_True )
 /*N*/ {
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     Height( rPortion.Height() );
-/*N*/ }
-
-/*N*/ SwArrowPortion::SwArrowPortion( const SwTxtPaintInfo &rInf )
-/*N*/   : bLeft( sal_False )
-/*N*/ {
-  DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Height( (USHORT)(rInf.GetTxtFrm()->Prt().Height()) );
 /*N*/ }
 
 /*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo &rInf ) const
