@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_point4d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:58:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:49:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,20 +38,6 @@
 #endif
 
 namespace binfilter {
-/*************************************************************************
-|*
-|* Konstruktor aus Point
-|*
-\************************************************************************/
-
-Point4D::Point4D(const Point& rPnt, double fZ, double fW )
-{
-    V[0] = rPnt.X();
-    V[1] = rPnt.Y();
-    V[2] = fZ;
-    V[3] = fW;
-}
-
 /*************************************************************************
 |*
 |* Konstruktor aus Vector3D
@@ -140,73 +126,6 @@ void Point4D::CalcMiddle(Point4D& rOld1, Point4D& rOld2)
             V[i] = (rOld1[i] + rOld2[i]) / 2.0;
         }
     }
-}
-
-/*************************************************************************
-|*
-|* Neuen Punkt in der Mitte der drei Punkte berechnen
-|*
-\************************************************************************/
-
-void Point4D::CalcMiddle(Point4D& rOld1, Point4D& rOld2, Point4D& rOld3)
-{
-    // Punktkoordinaten berechnen
-    for(UINT16 i=0;i<4;i++)
-    {
-        if(rOld3[i] == rOld2[i] && rOld2[i] == rOld1[i])
-        {
-            V[i] = rOld1[i];
-        }
-        else
-        {
-            V[i] = (rOld1[i] + rOld2[i] + rOld3[i]) / 3.0;
-        }
-    }
-}
-
-/*************************************************************************
-|*
-|* Minimum aus diesem und dem uebergebenen Punkt bilden
-|*
-\************************************************************************/
-
-void Point4D::Min(const Point4D& rPnt)
-{
-    Point4D aCompare = rPnt;
-    aCompare.Homogenize();
-    Homogenize();
-    if ( V[0] > aCompare.V[0] ) V[0] = aCompare.V[0];
-    if ( V[1] > aCompare.V[1] ) V[1] = aCompare.V[1];
-    if ( V[2] > aCompare.V[2] ) V[2] = aCompare.V[2];
-}
-
-/*************************************************************************
-|*
-|* Maximum aus diesem und dem uebergebenen Punkt bilden
-|*
-\************************************************************************/
-
-void Point4D::Max(const Point4D& rPnt)
-{
-    Point4D aCompare = rPnt;
-    aCompare.Homogenize();
-    Homogenize();
-    if ( V[0] < aCompare.V[0] ) V[0] = aCompare.V[0];
-    if ( V[1] < aCompare.V[1] ) V[1] = aCompare.V[1];
-    if ( V[2] < aCompare.V[2] ) V[2] = aCompare.V[2];
-}
-
-/*************************************************************************
-|*
-|* Absolutwert
-|*
-\************************************************************************/
-
-void Point4D::Abs()
-{
-    if ( V[0] < 0 ) V[0] = - V[0];
-    if ( V[1] < 0 ) V[1] = - V[1];
-    if ( V[2] < 0 ) V[2] = - V[2];
 }
 
 /*************************************************************************

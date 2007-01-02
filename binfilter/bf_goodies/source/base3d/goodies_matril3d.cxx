@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_matril3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:58:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:49:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,70 +56,6 @@ B3dMaterial::B3dMaterial()
     aEmission(COL_BLACK),           // Keine Selbstleuchtfarbe
     nExponent(15)                   // Glanzpunktbuendelung
 {
-}
-
-/*************************************************************************
-|*
-|* Materialeigenschaft setzen
-|*
-\************************************************************************/
-
-void B3dMaterial::SetMaterial(Color rNew, Base3DMaterialValue eVal)
-{
-    switch(eVal)
-    {
-        case Base3DMaterialAmbient:
-            aAmbient = rNew;
-            break;
-        case Base3DMaterialDiffuse:
-            aDiffuse = rNew;
-            break;
-        case Base3DMaterialSpecular:
-            aSpecular = rNew;
-            break;
-        case Base3DMaterialEmission:
-            aEmission = rNew;
-            break;
-    }
-}
-
-/*************************************************************************
-|*
-|* Materialeigenschaft abfragen
-|*
-\************************************************************************/
-
-Color B3dMaterial::GetMaterial(Base3DMaterialValue eVal) const
-{
-    if(eVal == Base3DMaterialAmbient)
-        return aAmbient;
-    if(eVal == Base3DMaterialDiffuse)
-        return aDiffuse;
-    if(eVal == Base3DMaterialEmission)
-        return aEmission;
-    return aSpecular;
-}
-
-/*************************************************************************
-|*
-|* Materialeigenschaften setzen, exponent der specular-Eigenschaft
-|*
-\************************************************************************/
-
-void B3dMaterial::SetShininess(UINT16 nNew)
-{
-    nExponent = nNew;
-}
-
-/*************************************************************************
-|*
-|* Materialeigenschaften abfragen, exponent der specular-Eigenschaft
-|*
-\************************************************************************/
-
-UINT16 B3dMaterial::GetShininess() const
-{
-    return nExponent;
 }
 
 void B3dMaterial::WriteData(SvStream& rOut) const

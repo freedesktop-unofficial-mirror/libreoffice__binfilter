@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_hmatrix.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:58:04 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:49:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -283,35 +283,6 @@ BOOL Matrix4D::Invert()
 
 /*************************************************************************
 |*
-|* Testet, ob diese Matrix invertierbar ist
-|*
-\************************************************************************/
-
-BOOL Matrix4D::IsInvertible()
-{
-    Matrix4D aWork = *this;
-    UINT16 nIndex[4];
-    INT16 nParity;
-    return aWork.Ludcmp(nIndex, nParity);
-}
-
-/*************************************************************************
-|*
-|* Korrigiert die Matrix zu einer homogenen Matrix. Dazu werden
-|* Nullen in die letzte Zeile und Spalte eingetragen und in die untere
-|* rechte Ecke eine 1.0 gesetzt
-|*
-\************************************************************************/
-
-void Matrix4D::Correct()
-{
-    M[0][3] = M[1][3] = M[2][3] = 0.0;
-    M[3][0] = M[3][1] = M[3][2] = 0.0;
-    M[3][3] = 1.0;
-}
-
-/*************************************************************************
-|*
 |* Liefert die Determinante dieser Matrix
 |*
 \************************************************************************/
@@ -331,24 +302,6 @@ double Matrix4D::Determinant()
             fRetval *= aWork[i][i];
     }
     return fRetval;
-}
-
-/*************************************************************************
-|*
-|* Liefert den Trace dieser Matrix
-|*
-\************************************************************************/
-
-double Matrix4D::Trace()
-{
-    double fTrace = 0.0;
-    UINT16 i;
-
-    for(i=0;i<4;i++)
-    {
-        fTrace += M[i][i];
-    }
-    return fTrace;
 }
 
 /*************************************************************************
@@ -404,20 +357,6 @@ void Matrix4D::RotateY(double fAngle)
 void Matrix4D::RotateZ(double fAngle)
 {
     RotateZ(sin(fAngle),cos(fAngle));
-}
-
-/*************************************************************************
-|*
-|* Rotation um X,Y und Z-Achse mit den Winkeln (0.0 ... 2PI)
-|* Rotationsreihenfolge ist X,Y und dann Z
-|*
-\************************************************************************/
-
-void Matrix4D::Rotate(double fAngleX,double fAngleY,double fAngleZ)
-{
-    RotateX(fAngleX);
-    RotateY(fAngleY);
-    RotateZ(fAngleZ);
 }
 
 /*************************************************************************
@@ -493,32 +432,6 @@ void Matrix4D::Translate(const Vector3D& rVec)
 
 /*************************************************************************
 |*
-|* Translationsmatrix nur in X
-|*
-\************************************************************************/
-
-void Matrix4D::TranslateX(double fValue)
-{
-    Matrix4D aTemp;
-    aTemp.M[0][3] = fValue;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Translationsmatrix nur in Y
-|*
-\************************************************************************/
-
-void Matrix4D::TranslateY(double fValue)
-{
-    Matrix4D aTemp;
-    aTemp.M[1][3] = fValue;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
 |* Translationsmatrix nur in Z
 |*
 \************************************************************************/
@@ -554,89 +467,6 @@ void Matrix4D::Scale(double fX, double fY, double fZ)
 void Matrix4D::Scale(const Vector3D& rVec)
 {
     Scale(rVec.X(),rVec.Y(),rVec.Z());
-}
-
-/*************************************************************************
-|*
-|* Skalierungsmatrix nur in X
-|*
-\************************************************************************/
-
-void Matrix4D::ScaleX(double fFactor)
-{
-    Matrix4D aTemp;
-    aTemp.M[0][0] = fFactor;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Skalierungsmatrix nur in Y
-|*
-\************************************************************************/
-
-void Matrix4D::ScaleY(double fFactor)
-{
-    Matrix4D aTemp;
-    aTemp.M[1][1] = fFactor;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Skalierungsmatrix nur in Z
-|*
-\************************************************************************/
-
-void Matrix4D::ScaleZ(double fFactor)
-{
-    Matrix4D aTemp;
-    aTemp.M[2][2] = fFactor;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Shearing-Matrix
-|*
-\************************************************************************/
-
-void Matrix4D::ShearXY(double fSx, double fSy)
-{
-    Matrix4D aTemp;
-    aTemp.M[0][2] = fSx;
-    aTemp.M[1][2] = fSy;
-    *this *= aTemp;
-}
-
-void Matrix4D::ShearYZ(double fSy, double fSz)
-{
-    Matrix4D aTemp;
-    aTemp.M[1][0] = fSy;
-    aTemp.M[2][0] = fSz;
-    *this *= aTemp;
-}
-
-void Matrix4D::ShearXZ(double fSx, double fSz)
-{
-    Matrix4D aTemp;
-    aTemp.M[0][1] = fSx;
-    aTemp.M[2][1] = fSz;
-    *this *= aTemp;
-}
-
-/*************************************************************************
-|*
-|* Matrix normalisieren
-|*
-\************************************************************************/
-
-void Matrix4D::Normalize()
-{
-    if(M[3][3] != 0.0 && M[3][3] != 1.0)
-        for(UINT16 i=0;i<4;i++)
-            for(UINT16 j=0;j<4;j++)
-                M[i][j] /= M[3][3];
 }
 
 /*************************************************************************
