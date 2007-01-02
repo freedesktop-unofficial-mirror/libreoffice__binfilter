@@ -4,9 +4,9 @@
  *
  *  $RCSfile: propread.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:04:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:10:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -121,10 +121,7 @@ class PropItem : public SvMemoryStream
 
     public :
                         PropItem(){};
-        void            Clear();
-
         void            SetTextEncoding( sal_uInt16 nTextEnc ){ mnTextEnc = nTextEnc; };
-        sal_Bool        Read( String& rString, sal_uInt32 nType = VT_EMPTY, sal_Bool bDwordAlign = sal_True );
         PropItem&       operator=( PropItem& rPropItem );
 };
 
@@ -134,64 +131,11 @@ class Dictionary : protected List
 {
     friend class Section;
 
-        void        AddProperty( UINT32 nId, const String& rString );
-
     public :
                     Dictionary(){};
                     ~Dictionary();
         Dictionary& operator=( Dictionary& rDictionary );
-        UINT32      GetProperty( const String& rPropName );
 };
-
-// ------------------------------------------------------------------------
-
-class Section : private List
-{
-        sal_uInt16              mnTextEnc;
-
-    protected:
-
-        BYTE                    aFMTID[ 16 ];
-
-        void                    AddProperty( sal_uInt32 nId, const sal_uInt8* pBuf, sal_uInt32 nBufSize );
-
-    public:
-                                Section( const sal_uInt8* pFMTID );
-                                Section( Section& rSection );
-                                ~Section();
-
-        Section&                operator=( Section& rSection );
-        sal_Bool                GetProperty( sal_uInt32 nId, PropItem& rPropItem );
-        sal_Bool                GetDictionary( Dictionary& rDict );
-        const sal_uInt8*        GetFMTID() const { return aFMTID; };
-        void                    Read( SvStorageStream* pStrm );
-};
-
-// ------------------------------------------------------------------------
-
-class PropRead : private List
-{
-        sal_Bool                mbStatus;
-        SvStorageStream*        mpSvStream;
-
-        sal_uInt16              mnByteOrder;
-        sal_uInt16              mnFormat;
-        sal_uInt16              mnVersionLo;
-        sal_uInt16              mnVersionHi;
-        sal_uInt8               mApplicationCLSID[ 16 ];
-
-        void                    AddSection( Section& rSection );
-
-    public:
-                                PropRead( SvStorage& rSvStorage, const String& rName );
-                                ~PropRead();
-
-        PropRead&               operator=( PropRead& rPropRead );
-        const Section*          GetSection( const BYTE* pFMTID );
-        sal_Bool                IsValid() const { return mbStatus; };
-        void                    Read();
-};
-
 
 } //namespace binfilter
 #endif
