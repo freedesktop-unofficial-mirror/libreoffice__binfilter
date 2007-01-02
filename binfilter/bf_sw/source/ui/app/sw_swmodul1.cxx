@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:41:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:09:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -184,17 +184,6 @@ using namespace ::com::sun::star::view;
 using namespace ::com::sun::star::lang;
 #define C2U(char) ::rtl::OUString::createFromAscii(char)
 
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Pointer auf die aktuelle Sicht
- --------------------------------------------------------------------*/
-
-/*N*/ SwView* GetActiveView()
-/*N*/ {
-/*M*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return NULL;
-/*N*/ }
 /*--------------------------------------------------------------------
     Beschreibung:   Ueber Views iterieren - static
  --------------------------------------------------------------------*/
