@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flddropdown.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:38:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:50:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,48 +113,6 @@ void SwDropDownField::SetPar2(const String & rName)
     SetName(rName);
 }
 
-BOOL SwDropDownField::AddItem(const String & rItem)
-{
-    BOOL bResult = FALSE;
-
-    if (find(aValues.begin(), aValues.end(), rItem) == aValues.end())
-    {
-        String aTmp = GetSelectedItem();
-        aValues.push_back(rItem);
-        SetSelectedItem(aTmp);
-
-        bResult = TRUE;
-    }
-
-    return bResult;
-}
-
-BOOL SwDropDownField::RemoveItem(const String & rItem)
-{
-    BOOL bResult = FALSE;
-
-    vector<String>::iterator aIt =
-        find(aValues.begin(), aValues.end(), rItem);
-
-    if ( aIt != aValues.end())
-    {
-        aValues.erase(aIt);
-
-        if (rItem.Equals(aSelectedItem))
-            aSelectedItem = aEmptyString;
-
-        bResult = TRUE;
-    }
-
-    return bResult;
-}
-
-void SwDropDownField::SetItems(const vector<String> & rItems)
-{
-    aValues = rItems;
-    aSelectedItem = aEmptyString;
-}
-
 void SwDropDownField::SetItems(const Sequence<OUString> & rItems)
 {
     aValues.clear();
@@ -181,11 +139,6 @@ Sequence<OUString> SwDropDownField::GetItemSequence() const
     }
 
     return aSeq;
-}
-
-vector<String> SwDropDownField::GetItems() const
-{
-    return aValues;
 }
 
 const String & SwDropDownField::GetSelectedItem() const
