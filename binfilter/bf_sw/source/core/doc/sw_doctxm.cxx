@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doctxm.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:25:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:45:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,49 +113,6 @@ struct LinkStruct
 
 typedef LinkStruct* LinkStructPtr;
 
-
-/*--------------------------------------------------------------------
-     Beschreibung: aktuelle Verzeichnismarkierungen ermitteln
- --------------------------------------------------------------------*/
-
-
-/*N*/ USHORT SwDoc::GetCurTOXMark( const SwPosition& rPos,
-/*N*/                               SwTOXMarks& rArr ) const
-/*N*/ {
-/*N*/   // suche an der Position rPos nach allen SwTOXMark's
-/*N*/   SwTxtNode* pTxtNd = GetNodes()[ rPos.nNode ]->GetTxtNode();
-/*N*/   // kein TextNode oder kein HintsArray vorhanden ??
-/*N*/   if( !pTxtNd || !pTxtNd->GetpSwpHints() )
-/*N*/       return 0;
-/*N*/
-/*N*/   const SwpHints & rHts = *pTxtNd->GetpSwpHints();
-/*N*/   const SwTxtAttr* pHt;
-/*N*/   xub_StrLen nSttIdx;
-/*N*/   const xub_StrLen *pEndIdx;
-/*N*/
-/*N*/   xub_StrLen nAktPos = rPos.nContent.GetIndex();
-/*N*/
-/*N*/   for( USHORT n = 0; n < rHts.Count(); ++n )
-/*N*/   {
-/*N*/       if( RES_TXTATR_TOXMARK != (pHt = rHts[n])->Which() )
-/*N*/           continue;
-/*N*/       if( ( nSttIdx = *pHt->GetStart() ) < nAktPos )
-/*N*/       {
-/*N*/           // pruefe Ende mit ab
-/*N*/           if( 0 == ( pEndIdx = pHt->GetEnd() ) ||
-/*N*/               *pEndIdx <= nAktPos )
-/*N*/               continue;       // weiter suchen
-/*N*/       }
-/*N*/       else if( nSttIdx > nAktPos )
-/*N*/           // ist Start vom Hint groesser als rPos, dann abbrechen. Denn
-/*N*/           // die Attribute sind nach Start sortiert !
-/*N*/           break;
-/*N*/
-/*?*/       const SwTOXMark* pTMark = &pHt->GetTOXMark();
-/*?*/       rArr.Insert( pTMark, rArr.Count() );
-/*N*/   }
-/*N*/   return rArr.Count();
-/*N*/ }
 
 /*--------------------------------------------------------------------
      Beschreibung: Marke loeschen
@@ -586,51 +543,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*?*/   // wieder loeschen !!
 /*?*/   aSortArr.DeleteAndDestroy( 0, aSortArr.Count() );
 /*N*/ }
-
-
-/*--------------------------------------------------------------------
-     Beschreibung: Austausch der Seitennummer-Platzhalter
- --------------------------------------------------------------------*/
-
-// search for the page no in the array of main entry page numbers
-
-
-
-/*--------------------------------------------------------------------
-     Beschreibung: Sortiert einfuegen in das SortArr
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-     Beschreibung: Schluessel-Bereich suchen und evtl einfuegen
- --------------------------------------------------------------------*/
-
-
-
-/*N*/ BOOL SwTOXBase::IsTOXBaseInReadonly() const
-/*N*/ {
-/*N*/   const SwTOXBaseSection *pSect = PTR_CAST(SwTOXBaseSection, this);
-/*N*/   BOOL bRet = FALSE;
-/*N*/   const SwSectionNode* pSectNode;
-/*N*/   if(pSect && pSect->GetFmt() &&
-/*N*/           0 != (pSectNode = pSect->GetFmt()->GetSectionNode()))
-/*N*/   {
-/*N*/       const SwDocShell* pDocSh;
-/*N*/       bRet = (0 != (pDocSh = pSectNode->GetDoc()->GetDocShell()) &&
-/*N*/                                                   pDocSh->IsReadOnly()) ||
-/*N*/           (0 != (pSectNode = pSectNode->FindStartNode()->FindSectionNode())&&
-/*N*/                   pSectNode->GetSection().IsProtectFlag());
-/*N*/
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-/* -----------------17.08.99 13:29-------------------
-
- --------------------------------------------------*/
-
-
-
-/*  */
-
 
 }
