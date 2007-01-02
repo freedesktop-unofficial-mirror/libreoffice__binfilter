@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:21:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:56:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -152,18 +152,6 @@ void global_InitAppOptions();
 
 // -----------------------------------------------------------------------
 
-/*N*/ String ScTripel::GetText() const
-/*N*/ {
-/*N*/   String aString('(');
-/*N*/   aString += String::CreateFromInt32( nCol );
-/*N*/   aString += ',';
-/*N*/   aString += String::CreateFromInt32( nRow );
-/*N*/   aString += ',';
-/*N*/   aString += String::CreateFromInt32( nTab );
-/*N*/   aString += ')';
-/*N*/   return aString;
-/*N*/ }
-/*N*/
 /*N*/ String ScTripel::GetColRowString( BOOL bAbsolute ) const
 /*N*/ {
 /*N*/   String aString;
