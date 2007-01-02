@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:14:31 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:53:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -440,12 +440,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScColumn::IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const
-/*N*/ {
-/*N*/   return pAttrArray->IsStyleSheetUsed( rStyle, bGatherAllStyles );
-/*N*/ }
-
-
 /*N*/ BOOL ScColumn::ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
 /*N*/ {
 /*N*/   return pAttrArray->ApplyFlags( nStartRow, nEndRow, nFlags );
@@ -462,14 +456,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   pAttrArray->ClearItems( nStartRow, nEndRow, pWhich );
 /*N*/ }
-
-
-void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPutToPool )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pAttrArray->SetPattern( nRow, &rPatAttr, bPutToPool );
-}
-
-
 
 
 /*N*/ void ScColumn::ApplyAttr( USHORT nRow, const SfxPoolItem& rAttr )
@@ -1125,25 +1111,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*N*/                       delete pSave;
 /*N*/               }
 /*N*/           }
-/*N*/  }
-
-
-/*N*/  void ScColumn::UpdateMoveTab( USHORT nOldPos, USHORT nNewPos, USHORT nTabNo )
-/*N*/  {
-/*N*/   nTab = nTabNo;
-/*N*/   pAttrArray->SetTab( nTabNo );
-/*N*/   if (pItems)
-/*N*/       for (USHORT i = 0; i < nCount; i++)
-/*N*/       {
-/*N*/           ScFormulaCell* pCell = (ScFormulaCell*) pItems[i].pCell;
-/*N*/           if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-/*N*/           {
-/*N*/               USHORT nRow = pItems[i].nRow;
-/*N*/               pCell->UpdateMoveTab( nOldPos, nNewPos, nTabNo );
-/*N*/               if ( nRow != pItems[i].nRow )
-/*N*/                   Search( nRow, i );      // Listener geloescht/eingefuegt?
-/*N*/           }
-/*N*/       }
 /*N*/  }
 
 

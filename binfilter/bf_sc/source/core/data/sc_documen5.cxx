@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:16:40 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:54:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -140,15 +140,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScDocument::UpdateChartArea( const String& rChartName,
-/*N*/           const ScRange& rNewArea, BOOL bColHeaders, BOOL bRowHeaders,
-/*N*/           BOOL bAdd, Window* pWindow )
-/*N*/ {
-/*N*/   ScRangeListRef aRLR( new ScRangeList );
-/*N*/   aRLR->Append( rNewArea );
-/*N*/   UpdateChartArea( rChartName, aRLR, bColHeaders, bRowHeaders, bAdd, pWindow );
-/*N*/ }
-/*N*/
 /*N*/ void ScDocument::UpdateChartArea( const String& rChartName,
 /*N*/           const ScRangeListRef& rNewList, BOOL bColHeaders, BOOL bRowHeaders,
 /*N*/           BOOL bAdd, Window* pWindow )

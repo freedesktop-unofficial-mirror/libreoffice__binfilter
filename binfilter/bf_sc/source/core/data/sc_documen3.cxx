@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:16:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:54:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -807,32 +807,6 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::HasRowHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-/*N*/                                   USHORT nTab )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
-/*N*/   return FALSE;
-/*N*/ }
-
-//
-//  GetFilterEntries - Eintraege fuer AutoFilter-Listbox
-//
-
-
-//
-//  GetFilterEntriesArea - Eintraege fuer Filter-Dialog
-//
-
-
-//
-//  GetDataEntries - Eintraege fuer Auswahlliste-Listbox (keine Zahlen / Formeln)
-//
-
-
-//
-//  GetFormulaEntries - Eintraege fuer Formel-AutoEingabe
-//
-
 //  Funktionen werden als 1 schon vom InputHandler eingefuegt
 #define SC_STRTYPE_NAMES        2
 #define SC_STRTYPE_DBNAMES      3
@@ -1133,12 +1107,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return aRect;
 /*N*/ }
-
-/*N*/ void ScDocument::SetExtDocOptions( ScExtDocOptions* pNewOptions )
-/*N*/ {
-/*N*/    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pExtDocOptions;
-/*N*/ }
-
 
 /*N*/ void ScDocument::DoMerge( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
 /*N*/                                   USHORT nEndCol, USHORT nEndRow )
