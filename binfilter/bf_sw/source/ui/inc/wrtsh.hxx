@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrtsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:00:48 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:10:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,17 +111,11 @@ public:
         SEL_BEZ       = 0x0800, // Bezierobjekte editieren
         SEL_DRW_FORM  = 0x1000  // Zeichenobjekte: DB-Forms
     };
-    int     GetSelectionType() const;
-
     BOOL    IsModePushed() const { return 0 != pModeStack; }
 
     BOOL    IsInSelect() const { return bInSelect; }
     void    SetInSelect(BOOL bSel = TRUE) { bInSelect = bSel; }
-        // Liegt eine Text- oder Rahmenselektion vor?
-    BOOL    HasSelection() const { return SwCrsrShell::HasSelection() ||
-                                        IsMultiSelection() || IsSelFrmMode() || IsObjSelected(); }
 
-    void    EnterStdMode();
     BOOL    IsStdMode() const { return !bExtMode && !bAddMode; }
 
     BOOL    IsExtMode() const { return bExtMode; }
@@ -130,11 +124,7 @@ public:
 
     BOOL    IsInsMode() const { return bIns; }
 
-    void    EnterSelFrmMode(const Point *pStartDrag = 0);
-    void    LeaveSelFrmMode();
     BOOL    IsSelFrmMode() const { return bLayoutMode; }
-        // Selektion von Rahmen aufheben
-    void    UnSelectFrm();
 
     // Tabellenzellen selektieren fuer Bearbeiten von Formeln in der Ribbonbar
     inline void SelTblCells( const Link &rLink, BOOL bMark = TRUE );
@@ -154,33 +144,6 @@ public:
     //Basiscursortravelling
 typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
 
-    FASTBOOL Left       ( USHORT nMode, FASTBOOL bSelect,
-                            USHORT nCount, BOOL bBasicCall, BOOL bVisual = FALSE );
-    FASTBOOL Right      ( USHORT nMode, FASTBOOL bSelect,
-                            USHORT nCount, BOOL bBasicCall, BOOL bVisual = FALSE );
-    FASTBOOL Up         ( FASTBOOL bSelect = FALSE, USHORT nCount = 1,
-                            BOOL bBasicCall = FALSE );
-     FASTBOOL Down      ( FASTBOOL bSelect = FALSE, USHORT nCount = 1,
-                             BOOL bBasicCall = FALSE );
-    FASTBOOL LeftMargin ( FASTBOOL bSelect = FALSE, FASTBOOL bBasicCall = FALSE );
-    FASTBOOL RightMargin( FASTBOOL bSelect = FALSE, FASTBOOL bBasicCall = FALSE );
-    FASTBOOL SttDoc     ( FASTBOOL bSelect = FALSE );
-    FASTBOOL EndDoc     ( FASTBOOL bSelect = FALSE );
-
-    FASTBOOL SttNxtPg   ( FASTBOOL bSelect = FALSE );
-    FASTBOOL EndPrvPg   ( FASTBOOL bSelect = FALSE );
-    FASTBOOL SttPg      ( FASTBOOL bSelect = FALSE );
-    FASTBOOL EndPg      ( FASTBOOL bSelect = FALSE );
-
-
-    // Spaltenweise Spruenge
-
-    // setze den Cursor auf die Seite "nPage" an den Anfang
-    // zusaetzlich zu der gleichnamigen Implementierung in crsrsh.hxx
-    // werden hier alle bestehenden Selektionen vor dem Setzen des
-    // Cursors aufgehoben
-    BOOL    GotoPage(USHORT nPage, BOOL bRecord = TRUE);
-
     //setzen des Cursors; merken der alten Position fuer Zurueckblaettern.
     DECL_LINK( ExecFlyMac, void * );
 
@@ -188,9 +151,6 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
     // Felder Update
 
     BOOL    IsNoEdit() const { return bNoEdit; }
-
-    // change current data base and notify
-    void ChgDBData(const SwDBData& SwDBData);
 
     // Loeschen
 
@@ -208,15 +168,6 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
             WORD_NO_SPACE = 3
         };
 
-    // Editieren
-
-    // Verzeichnisse
-
-    // Numerierung und Bullets
-
-    // Graphic
-    //OLE
-    BOOL    IsOLEObj() const { return GetCntType() == CNT_OLE;}
     virtual void CalcAndSetScale( SvEmbeddedObjectRef xObj,
                                   const SwRect *pFlyPrtRect = 0,
                                   const SwRect *pFlyFrmRect = 0 );
@@ -231,8 +182,6 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
                     GETSTYLE_CREATEANY };       // ggfs Standard returnen
 
 
-
-    String  GetCurPageStyle( const BOOL bCalcFrm = TRUE ) const;
 
     // Aktuelle Vorlage anhand der geltenden Attribute aendern
 
@@ -253,9 +202,6 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
     //"Handler" fuer Anederungen an der DrawView - fuer Controls.
     virtual void DrawSelChanged( SdrView * );
 
-    // springe zum Bookmark und setze die "Selections-Flags" wieder richtig
-    FASTBOOL GotoBookmark( USHORT nPos );
-
     // jump to the next / previous hyperlink - inside text and also
     // on graphics
 
@@ -271,22 +217,8 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
     // Fuehre die vor definierten Aktionen aus.
     inline BOOL IsInClickToEdit() const ;
 
-    // fall ein URL-Button selektiert ist, dessen URL returnen, ansonsten
-    // einen LeerString
+    SwWrtShell(SwDoc&, Window*, SwView&, SwRootFrm*, SwViewOption const*);
 
-
-    // die Core erzeugt eine Selektion, das SttSelect muss gerufen werden
-
-    // autom. Update von Vorlagen
-
-    // Link fuers einfuegen von Bereichen uebers Drag&Drop/Clipboard
-
-
-    //ctoren, der erstere ist eine Art kontrollierter copy ctor fuer weitere
-    //Sichten auf ein Dokument
-    SwWrtShell( SwWrtShell&, Window *pWin, SwView &rShell);
-    SwWrtShell( SwDoc& rDoc, Window *pWin, SwView &rShell,
-                SwRootFrm* pMaster = 0, const SwViewOption *pViewOpt = 0);
     virtual ~SwWrtShell();
 
 private:
