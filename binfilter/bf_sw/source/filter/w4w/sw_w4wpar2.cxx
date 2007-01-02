@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wpar2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:59 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:07:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -646,16 +646,6 @@ BOOL SwW4WParser::GetLRULHint( const SfxPoolItem*& rpH, RES_FRMATR eTyp )
         }
     }
     return TRUE;                        // new( rpH ) noetig
-}
-
-
-BOOL SwW4WParser::GetLRSpace( SvxLRSpaceItem*& rpLR )
-{
-    const SfxPoolItem* pH = 0;
-    BOOL bRet = GetLRULHint( pH, RES_LR_SPACE );
-    if ( bRet ) rpLR = new SvxLRSpaceItem( *((SvxLRSpaceItem*)pH) );
-    else rpLR = (SvxLRSpaceItem*)pH;
-    return bRet;                        // TRUE -> delete( rpLR ) noetig
 }
 
 
@@ -4082,67 +4072,6 @@ SwPageDesc* SwW4WParser::CreatePageDesc( USHORT eCreateMode )
 
     return pPageDesc;
 }
-
-
-/*-----------------29.04.98 11:12-------------------
-  alter Quatsch
---------------------------------------------------
-
-
-BOOL SwW4WParser::GetLRSpace( SvxLRSpaceItem*& rpLR )
-{
-    if ( bStyleDef ){
-        SwFrmFmt* pFrm = GetAktColl()->GetFrmFmt();
-        rpLR = new SvxLRSpaceItem( *(SvxRSpaceItem*)pFrm->GetAttr(RES_LR_SPACE));
-//      rpLR = new SwFmtLRSpace( pFrm->GetLRSpace() );
-    }else{
-        USHORT nIdx;
-        SfxPoolItem* pH = pCtrlStck->GetFmtStkAttr( RES_LR_SPACE, &nIdx );
-
-        if (pH && (*pCtrlStck)[nIdx]->nPtNode.GetIndex()+1
-                    == pCurPaM->GetPoint()->nNode.GetIndex()){
-                                    // LR-Space zu diesem Absatz bereits auf Stack
-                                    //              -> modifizieren
-            rpLR = (SvxLRSpaceItem*)pH;
-            return FALSE;               // delete( rpLR ) nicht noetig
-        }else{
-                                    // LR-Space zu diesem Absatz nicht auf Stack
-                                    //              -> neuen Copy-Konstruieren
-            SvxLRSpaceItem* pLR2 = (SvxLRSpaceItem*)pCtrlStck->GetFmtAttr( *pCurPaM, RES_LR_SPACE );
-            rpLR = new SvxLRSpaceItem( *pLR2 );
-        }
-    }
-    return TRUE;                        // delete( rpLR ) noetig
-}
-
-
-BOOL SwW4WParser::GetULSpace( SvxULSpaceItem*& rpUL )
-{
-    if ( bStyleDef ){
-        SwFrmFmt* pFrm = GetAktColl()->GetFrmFmt();
-        rpUL = new SvxULSpaceItem( pFrm->GetULSpace() );
-    }else{
-        USHORT nIdx;
-        SfxPoolItem* pH = pCtrlStck->GetFmtStkAttr( RES_UL_SPACE, &nIdx );
-
-        if (pH && (*pCtrlStck)[nIdx]->nPtNode.GetIndex()+1
-                    == pCurPaM->GetPoint()->nNode.GetIndex()){
-                                    // UL-Space zu diesem Absatz bereits auf Stack
-                                    //              -> modifizieren
-            rpUL = (SvxULSpaceItem*)pH;
-            return FALSE;               // delete( rpUL ) nicht noetig
-        }else{
-                                    // UL-Space zu diesem Absatz nicht auf Stack
-                                    //              -> neuen Copy-Konstruieren
-            SvxULSpaceItem* pUL2 = (SvxULSpaceItem*)pCtrlStck->GetFmtAttr( *pCurPaM, RES_UL_SPACE );
-            rpUL = new SvxULSpaceItem( *pUL2 );
-        }
-    }
-    return TRUE;                        // delete( rpUL ) noetig
-}
-
-----------------------------------------------------*/
-
 
 
 }
