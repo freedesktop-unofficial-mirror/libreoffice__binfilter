@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fews.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:30:48 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:51:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -181,72 +181,6 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-/*N*/ BOOL SwFEShell::GetPageNumber( long nYPos, BOOL bAtCrsrPos, USHORT& rPhyNum, USHORT& rVirtNum, String &rDisplay) const
-/*N*/ {
-/*N*/   const SwFrm *pPage;
-/*N*/
-/*N*/   if ( bAtCrsrPos )                   //Seite vom Crsr besorgen
-/*N*/   {
-/*N*/       pPage = GetCurrFrm( FALSE );
-/*N*/       if ( pPage )
-/*N*/           pPage = pPage->FindPageFrm();
-/*N*/   }
-/*N*/   else if ( nYPos > -1 )              //Seite ueber die Positon ermitteln
-/*N*/   {
-/*?*/       pPage = GetLayout()->Lower();
-/*?*/       while( pPage &&  (pPage->Frm().Bottom() < nYPos ||
-/*?*/                           nYPos < pPage->Frm().Top() ) )
-/*?*/           pPage = pPage->GetNext();
-/*N*/   }
-/*N*/   else                                //Die erste sichtbare Seite
-/*N*/   {
-/*N*/       pPage = Imp()->GetFirstVisPage();
-/*N*/       if ( pPage && ((SwPageFrm*)pPage)->IsEmptyPage() )
-/*N*/           pPage = pPage->GetNext();
-/*N*/   }
-/*N*/
-/*N*/   if( pPage )
-/*N*/   {
-/*N*/       rPhyNum  = ((const SwPageFrm*)pPage)->GetPhyPageNum();
-/*N*/       rVirtNum = ((const SwPageFrm*)pPage)->GetVirtPageNum();
-/*N*/       const SvxNumberType& rNum = ((const SwPageFrm*)pPage)->GetPageDesc()->GetNumType();
-/*N*/       rDisplay = rNum.GetNumStr( rVirtNum );
-/*N*/   }
-/*N*/
-/*N*/   return 0 != pPage;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwFEShell::GetHeadFootFrmRect()
-|*
-|*  Ersterstellung      MA 08. Feb. 95
-|*  Letzte Aenderung    MA 08. Feb. 95
-|
-|*************************************************************************/
-
-//Das FrmRect von Header bzw. Footer wird relativ zur Seite ermittelt.
-//Der long ist 0 wenn der Crsr nicht in Header oder Footer steht.
-//Andernfalls markiert der long den maximalen bzw. minimalen Spielraum
-//fuer die Hoehe von Header bzw. Footer.
-
-
-/*************************************************************************
-|*
-|*  SwFEShell::IsDirectlyInSection()
-|*
-|*  Hack for OS:
-|*
-*************************************************************************/
-
-bool SwFEShell::IsDirectlyInSection() const
-{
-    SwFrm* pFrm = GetCurrFrm( FALSE );
-    return pFrm && pFrm->GetUpper() && pFrm->GetUpper()->IsSctFrm();
-}
-
 /*************************************************************************
 |*
 |*  SwFEShell::GetFrmType()
@@ -323,144 +257,9 @@ bool SwFEShell::IsDirectlyInSection() const
 /*N*/   return nReturn;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  SwFEShell::ShLooseFcs(), ShGetFcs()
-|*
-|*  Ersterstellung      MA 10. May. 93
-|*  Letzte Aenderung    MA 09. Sep. 98
-|*
-*************************************************************************/
-
-/*N*/ void SwFEShell::ShGetFcs( BOOL bUpdate )
-/*N*/ {
-/*N*/   ::binfilter::SetShell( this );
-/*N*/   SwCrsrShell::ShGetFcs( bUpdate );
-/*N*/
-/*N*/   if ( HasDrawView() )
-/*N*/   {
-/*N*/       Imp()->GetDrawView()->SetMarkHdlHidden( FALSE );
-/*N*/       if ( Imp()->GetDrawView()->HasMarkedObj() )
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FrameNotify( this, FLY_DRAG_START );
-/*N*/   }
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|*  SwFEShell::GetPhyPageNum()
-|*  SwFEShell::GetVirtPageNum()
-|*
-|*  Ersterstellung      OK 07.07.93 08:20
-|*  Letzte Aenderung    MA 03. Jan. 94
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*  void lcl_SetAPageOffset()
-|*  void SwFEShell::SetNewPageOffset()
-|*  void SwFEShell::SetPageOffset()
-|*  USHORT SwFEShell::GetPageOffset() const
-|*
-|*  Ersterstellung      OK 07.07.93 08:20
-|*  Letzte Aenderung    MA 30. Mar. 95
-|*
-*************************************************************************/
-
-
-
-
-
-/*************************************************************************
-|*
-|*  SwFEShell::InsertLabel()
-|*
-|*  Ersterstellung      MA 10. Feb. 94
-|*  Letzte Aenderung    MA 10. Feb. 94
-|*
-*************************************************************************/
-
-
-
-/***********************************************************************
-#*  Class       :  SwFEShell
-#*  Methoden    :  Sort
-#*  Datum       :  ??
-#*  Update      :  ??
-#***********************************************************************/
-
-
-/*************************************************************************
-|*
-|*  SwFEShell::GetCurColNum(), _GetColNum()
-|*
-|*  Ersterstellung      MA 03. Feb. 95
-|*  Letzte Aenderung    MA 20. Apr. 95
-|
-|*************************************************************************/
-
-/*N*/ USHORT SwFEShell::_GetCurColNum( const SwFrm *pFrm,
-/*N*/                               SwGetCurColNumPara* pPara ) const
-/*N*/ {
-/*N*/   USHORT nRet = 0;
-/*N*/   while ( pFrm )
-/*N*/   {
-/*N*/       pFrm = pFrm->GetUpper();
-/*N*/       if( pFrm && pFrm->IsColumnFrm() )
-/*N*/       {
-/*N*/           const SwFrm *pCurFrm = pFrm;
-/*N*/           do {
-/*N*/               ++nRet;
-/*N*/               pFrm = pFrm->GetPrev();
-/*N*/           } while ( pFrm );
-/*N*/
-/*N*/           if( pPara )
-/*N*/           {
-/*N*/               // dann suche mal das Format, was diese Spaltigkeit bestimmt
-/*N*/               pFrm = pCurFrm->GetUpper();
-/*N*/               while( pFrm )
-/*N*/               {
-/*N*/                   if( ( FRM_PAGE | FRM_FLY | FRM_SECTION ) & pFrm->GetType() )
-/*N*/                   {
-/*N*/                       pPara->pFrmFmt = ((SwLayoutFrm*)pFrm)->GetFmt();
-/*N*/                       pPara->pPrtRect = &pFrm->Prt();
-/*N*/                       pPara->pFrmRect = &pFrm->Frm();
-/*N*/                       break;
-/*N*/                   }
-/*N*/                   pFrm = pFrm->GetUpper();
-/*N*/               }
-/*N*/               if( !pFrm )
-/*N*/               {
-/*N*/                   pPara->pFrmFmt = 0;
-/*N*/                   pPara->pPrtRect = 0;
-/*N*/                   pPara->pFrmRect = 0;
-/*N*/               }
-/*N*/           }
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/   return nRet;
-/*N*/ }
-
-/*N*/ USHORT SwFEShell::GetCurColNum( SwGetCurColNumPara* pPara ) const
-/*N*/ {
-/*N*/   ASSERT( GetCurrFrm(), "Crsr geparkt?" );
-/*N*/   return _GetCurColNum( GetCurrFrm(), pPara );
-/*N*/ }
-
-
 /*N*/ SwFEShell::SwFEShell( SwDoc& rDoc, Window *pWin,
 /*N*/                    SwRootFrm *pMaster, const SwViewOption *pOpt )
 /*N*/   : SwEditShell( rDoc, pWin, pMaster, pOpt ),
-/*N*/   pChainFrom( 0 ), pChainTo( 0 ), bCheckForOLEInCaption( FALSE )
-/*N*/ {
-/*N*/ }
-
-/*N*/ SwFEShell::SwFEShell( SwEditShell& rShell, Window *pWin )
-/*N*/   : SwEditShell( rShell, pWin ),
 /*N*/   pChainFrom( 0 ), pChainTo( 0 ), bCheckForOLEInCaption( FALSE )
 /*N*/ {
 /*N*/ }
@@ -470,24 +269,5 @@ bool SwFEShell::IsDirectlyInSection() const
 /*N*/   delete pChainFrom;
 /*N*/   delete pChainTo;
 /*N*/ }
-
-
-/* -----------------------------12.08.2002 12:51------------------------------
-
- ---------------------------------------------------------------------------*/
-/*M*/ BOOL SwFEShell::IsFrmVertical(BOOL bEnvironment, BOOL& bRTL) const
-/*M*/ {
-/*M*/     SwFlyFrm *pFly = FindFlyFrm();
-/*M*/     BOOL bVert = FALSE;
-/*M*/     if ( pFly )
-/*M*/     {
-/*M*/         const SwFrm *pFrm = pFly->GetAnchor();
-/*M*/         bVert = bEnvironment ? pFrm->IsVertical() : pFly->IsVertical();
-/*M*/         bRTL = bEnvironment ? pFrm->IsRightToLeft() : pFly->IsRightToLeft();
-/*M*/     }
-/*M*/     else
-/*M*/         bRTL = FALSE;
-/*M*/     return bVert;
-/*M*/ }
 
 }
