@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_authfld.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:36:24 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:50:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -325,55 +325,6 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByHandle(long nHandle) const
     ASSERT( pRet, "invalid Handle" );
     return pRet;
 }
-/* -----------------21.09.99 13:34-------------------
-
- --------------------------------------------------*/
-void SwAuthorityFieldType::GetAllEntryIdentifiers(
-                SvStringsDtor& rToFill )const
-{
-    for(USHORT j = 0; j < m_pDataArr->Count(); j++)
-    {
-        SwAuthEntry* pTemp = m_pDataArr->GetObject(j);
-        rToFill.Insert( new String( pTemp->GetAuthorField(
-                    AUTH_FIELD_IDENTIFIER )), rToFill.Count() );
-    }
-}
-/* -----------------21.09.99 13:34-------------------
-
- --------------------------------------------------*/
-const SwAuthEntry*  SwAuthorityFieldType::GetEntryByIdentifier(
-                                const String& rIdentifier)const
-{
-    const SwAuthEntry* pRet = 0;
-    for( USHORT j = 0; j < m_pDataArr->Count(); ++j )
-    {
-        const SwAuthEntry* pTemp = m_pDataArr->GetObject(j);
-        if( rIdentifier == pTemp->GetAuthorField( AUTH_FIELD_IDENTIFIER ))
-        {
-            pRet = pTemp;
-            break;
-        }
-    }
-    return pRet;
-}
-/* -----------------------------21.12.99 13:20--------------------------------
-
- ---------------------------------------------------------------------------*/
-void SwAuthorityFieldType::ChangeEntryContent(const SwAuthEntry* pNewEntry)
-{
-    for( USHORT j = 0; j < m_pDataArr->Count(); ++j )
-    {
-        SwAuthEntry* pTemp = m_pDataArr->GetObject(j);
-        if(pTemp->GetAuthorField(AUTH_FIELD_IDENTIFIER) ==
-                    pNewEntry->GetAuthorField(AUTH_FIELD_IDENTIFIER))
-        {
-            for(USHORT i = 0; i < AUTH_FIELD_END; i++)
-                pTemp->SetAuthorField((ToxAuthorityField) i,
-                    pNewEntry->GetAuthorField((ToxAuthorityField)i));
-            break;
-        }
-    }
-}
 /*-- 11.10.99 08:49:22---------------------------------------------------
     Description:    appends a new entry (if new) and returns the array position
 
@@ -396,38 +347,6 @@ USHORT  SwAuthorityFieldType::AppendField( const SwAuthEntry& rInsert )
         m_pDataArr->Insert( new SwAuthEntry( rInsert ), nRet );
 
     return nRet;
-}
-
-/*-- 11.10.99 08:49:23---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void SwAuthorityFieldType::MergeFieldType( const SwAuthorityFieldType& rNew,
-                                            SvUShorts& rMap )
-{
-    DBG_ASSERT( !rMap.Count(), "array not empty!")
-    for( USHORT i = 0; i < rNew.m_pDataArr->Count(); ++i )
-    {
-        USHORT  nNewPos = AppendField(*rNew.m_pDataArr->GetObject(i));
-        rMap.Insert(nNewPos, i);
-    }
-}
-
-/*-- 11.10.99 08:49:23---------------------------------------------------
-    Description:    After import is done some of the array members may have a
-
-  -----------------------------------------------------------------------*/
-void SwAuthorityFieldType::RemoveUnusedFields()
-{
-    for( USHORT j = m_pDataArr->Count(); j; )
-    {
-        SwAuthEntry* pTemp = m_pDataArr->GetObject( --j );
-        if( !pTemp->GetRefCount() )
-        {
-            m_pDataArr->Remove( j );
-            delete pTemp;
-        }
-    }
-    DelSequenceArray();
 }
 
 /*-- 11.10.99 08:49:24---------------------------------------------------
