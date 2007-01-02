@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_format.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:14:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:41:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -622,11 +622,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-
-/*N*/  void SwFmt::DelDiffs( const SfxItemSet& rSet )
-/*N*/  {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( !aSet.Count() )
-}
 
 /** SwFmt::IsBackgroundTransparent - for feature #99657#
 
