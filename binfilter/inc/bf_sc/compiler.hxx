@@ -4,9 +4,9 @@
  *
  *  $RCSfile: compiler.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:31:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:25:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -208,15 +208,9 @@ public:
     void SetString( const sal_Unicode* pStr );
     void SetSingleReference( const SingleRefData& rRef );
     void SetDoubleReference( const ComplRefData& rRef );
-     void SetByte( BYTE c );
     void SetDouble( double fVal );
-     void SetInt( int nVal );
     void SetName( USHORT n );
-     void SetMatrix( ScMatrix* p );
     void SetExternal(const sal_Unicode* pStr);
-    // Diese Methoden sind hingegen OK.
-     ComplRefData& GetReference();
-     void SetReference( ComplRefData& rRef );
 
     ScRawToken* Clone() const;      // real copy!
     ScToken* CreateToken() const;   // create typified token
@@ -321,31 +315,19 @@ public:
     void DelRPN();
     ScToken* First() { nIndex = 0; return Next(); }
     ScToken* Next();
-     ScToken* GetNextName();
-     ScToken* GetNextDBArea();
     ScToken* GetNextReference();
     ScToken* GetNextReferenceRPN();
     ScToken* GetNextReferenceOrName();
-     ScToken* GetNextColRowName();
     ScToken* GetNextOpCodeRPN( OpCode );
      ScToken* PeekNext();
     ScToken* PeekPrevNoSpaces();    // nur nach First/Next/Last/Prev !
     ScToken* PeekNextNoSpaces();    // nur nach First/Next/Last/Prev !
     ScToken* FirstRPN() { nIndex = 0; return NextRPN(); }
     ScToken* NextRPN();
-     ScToken* LastRPN() { nIndex = nRPN; return PrevRPN(); }
-     ScToken* PrevRPN();
 
     BOOL    HasOpCodeRPN( OpCode ) const;
-     BOOL   HasName() const;        // token of type svIndex
     BOOL    HasNameOrColRowName() const;    // token of type svIndex or opcode ocColRowName
     BOOL    IsReference( ScRange& rRange ) const;       // exactly and only one range (valid or deleted)
-    BOOL    IsValidReference( ScRange& rRange ) const;  // exactly and only one valid range (no #REF!s)
-    BOOL    GetTableOpRefs(                             // exactly and only one multiple operation
-                 ScAddress& rFormula,
-                ScAddress& rColFirstPos, ScAddress& rColRelPos,
-                 ScAddress& rRowFirstPos, ScAddress& rRowRelPos,
-                 BOOL& rbIsMode2 ) const;
 
     ScToken** GetArray() const  { return pCode; }
     ScToken** GetCode()  const  { return pRPN; }
@@ -395,13 +377,6 @@ public:
                                 { return (nMode & RECALCMODE_ONREFMOVE) != 0; }
 
     inline OpCode   GetOuterFuncOpCode();       // OpCode der aeusseren Funktion
-                // ermittelt Ausdehnung direkt angrenzender Refs
-                // nur auf echte Funcs wie z.B. GetOuterFuncOpCode() == ocSum anwenden!
-    BOOL        GetAdjacentExtendOfOuterFuncRefs( USHORT& nExtend,
-                     const ScAddress& rPos, ScDirection );
-
-                            // Operatoren +,-,*,/,^,&,=,<>,<,>,<=,>=
-                            // mit DoubleRef in Formel?
     BOOL                    HasMatrixDoubleRefOps();
 
     void Load30( SvStream&, const ScAddress& );
@@ -416,21 +391,12 @@ public:
     ScToken* AddDouble( double fVal );
     ScToken* AddSingleReference( const SingleRefData& rRef );
     ScToken* AddDoubleReference( const ComplRefData& rRef );
-     ScToken* AddName( USHORT n );
-    ScToken* AddMatrix( ScMatrix* p );
     ScToken* AddExternal( const sal_Unicode* pStr );
     ScToken* AddExternal( const String& rStr );
-    ScToken* AddColRowName( const SingleRefData& rRef );
-     ScToken* AddBad( const sal_Unicode* pStr );        // ocBad with String
     ScToken* AddBad( const String& rStr );          // ocBad with String
 
     // Zuweisung mit Referenzen auf Tokens
      ScTokenArray& operator=( const ScTokenArray& );
-
-    // make 3D references point to old referenced position even if relative
-            void            ReadjustRelative3DReferences(
-                                const ScAddress& rOldPos,
-                                 const ScAddress& rNewPos );
 };
 
 inline OpCode ScTokenArray::GetOuterFuncOpCode()
@@ -511,7 +477,6 @@ private:
     BOOL   GetToken();
     BOOL   NextNewToken();
     OpCode NextToken();
-    void PutCode( ScRawToken* );
     void PutCode( ScToken* );
     void Factor();
     void UnionCutLine();
@@ -524,12 +489,9 @@ private:
     void NotLine();
     OpCode Expression();
 
-    String MakeColStr( USHORT nCol );
     void MakeColStr( ::rtl::OUStringBuffer& rBuffer, USHORT nCol );
-    String MakeRowStr( USHORT nRow );
     void MakeRowStr( ::rtl::OUStringBuffer& rBuffer, USHORT nRow );
     String MakeTabStr( USHORT nTab, String& aDoc );
-    String MakeRefStr( ComplRefData& rRefData, BOOL bSingleRef );
     void MakeRefStr( ::rtl::OUStringBuffer& rBuffer, ComplRefData& rRefData, BOOL bSingleRef );
 
     void SetError(USHORT nError);
@@ -544,7 +506,6 @@ private:
     BOOL IsDBRange( const String& );
     BOOL IsColRowName( const String& );
     void AutoCorrectParsedSymbol();
-    void AdjustReference( SingleRefData& r );
     void PushTokenArray( ScTokenArray*, BOOL = FALSE );
     void PopTokenArray();
     void SetRelNameReference();
@@ -588,30 +549,14 @@ public:
     void CreateStringFromTokenArray( ::rtl::OUStringBuffer& rBuffer );
 
     void MoveRelWrap();
-    static void MoveRelWrap( ScTokenArray& rArr, ScDocument* pDoc,
-                            const ScAddress& rPos );
 
     BOOL UpdateNameReference( UpdateRefMode eUpdateRefMode,
                               const ScRange&,
                               short nDx, short nDy, short nDz,
                               BOOL& rChanged);
 
-    ScRangeData* UpdateReference( UpdateRefMode eUpdateRefMode,
-                                  const ScAddress& rOldPos, const ScRange&,
-                                  short nDx, short nDy, short nDz,
-                                  BOOL& rChanged);
-
-    /// Only once for converted shared formulas,
-    /// token array has to be compiled afterwards.
-    void UpdateSharedFormulaReference( UpdateRefMode eUpdateRefMode,
-                                  const ScAddress& rOldPos, const ScRange&,
-                                  short nDx, short nDy, short nDz );
-
     ScRangeData* UpdateInsertTab(USHORT nTable, BOOL bIsName );
     ScRangeData* UpdateDeleteTab(USHORT nTable, BOOL bIsMove, BOOL bIsName, BOOL& bCompile);
-    ScRangeData* UpdateMoveTab(USHORT nOldPos, USHORT nNewPos, BOOL bIsName );
-
-    BOOL HasModifiedRange();
 
     /// Is the CharTable initialized? If not call Init() yourself!
     static inline BOOL HasCharTable() { return pCharTable != NULL; }
