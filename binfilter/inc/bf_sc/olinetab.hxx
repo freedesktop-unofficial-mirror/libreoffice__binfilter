@@ -4,9 +4,9 @@
  *
  *  $RCSfile: olinetab.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:38:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:27:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@ public:
 /*N*/   void                    Move( short nDelta );
 /*N*/   void                    SetSize( USHORT nNewSize );
 /*N*/   void                    SetPosSize( USHORT nNewPos, USHORT nNewSize );
-/*N*/   void                    SetHidden( BOOL bNewHidden );
     void                    SetVisible( BOOL bNewVisible );
 };
 
@@ -110,11 +109,6 @@ public:
 
     ScOutlineEntry*         GetEntry( USHORT nLevel, USHORT nIndex ) const;
     USHORT                  GetCount( USHORT nLevel ) const;
-
-    BOOL                    GetEntryIndex( USHORT nLevel, USHORT nPos, USHORT& rnIndex ) const;
-    BOOL                    GetEntryIndexInRange(
-                                USHORT nLevel, USHORT nBlockStart, USHORT nBlockEnd,
-                                USHORT& rnIndex ) const;
 
     void                    SetVisibleBelow( USHORT nLevel, USHORT nEntry, BOOL bValue,
                                                 BOOL bSkipHidden = FALSE );

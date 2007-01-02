@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rangenam.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:40:07 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:27:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -103,15 +103,7 @@ public:
                                  const ScAddress& rAdr = ScAddress(),
                                  RangeType nType = RT_NAME,
                                  BOOL bEnglish = FALSE );
-                    ScRangeData( ScDocument* pDoc,
-                                 const String& rName,
-                                 const ScTokenArray& rArr,
-                                 const ScAddress& rAdr = ScAddress(),
-                                 RangeType nType = RT_NAME );
-                    ScRangeData( ScDocument* pDoc,
-                                 const String& rName,
-                                 const ScAddress& rTarget );
-                                // rTarget ist ABSPOS Sprungmarke
+                                    // rTarget ist ABSPOS Sprungmarke
                     ScRangeData(const ScRangeData& rScRangeData);
                     ScRangeData( SvStream& rStream,
                                  ScMultipleReadHeader& rHdr,
