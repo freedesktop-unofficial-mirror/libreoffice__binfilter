@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocfun.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:46:17 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:03:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,8 +56,6 @@
 #include "patattr.hxx"
 #include "rangenam.hxx"
 #include "dpobject.hxx"
-#include "dociter.hxx"      // for lcl_EmptyExcept
-#include "cell.hxx"         // for lcl_EmptyExcept
 #include "editable.hxx"
 namespace binfilter {
 
@@ -904,23 +902,6 @@ namespace binfilter {
 /*N*/ }
 
 //==================================================================
-
-/*N*/ BOOL lcl_EmptyExcept( ScDocument* pDoc, const ScRange& rRange, const ScRange& rExcept )
-/*N*/ {
-/*N*/   ScCellIterator aIter( pDoc, rRange );
-/*N*/   ScBaseCell* pCell = aIter.GetFirst();
-/*N*/   while (pCell)
-/*N*/   {
-/*N*/       if ( pCell->GetCellType() != CELLTYPE_NOTE || pCell->GetNotePtr() )     // real content?
-/*N*/       {
-/*N*/           if ( !rExcept.In( ScAddress( aIter.GetCol(), aIter.GetRow(), aIter.GetTab() ) ) )
-/*N*/               return FALSE;       // cell found
-/*N*/       }
-/*N*/       pCell = aIter.GetNext();
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;        // nothing found - empty
-/*N*/ }
 
 /*N*/ BOOL ScDBDocFunc::DataPilotUpdate( ScDPObject* pOldObj, const ScDPObject* pNewObj,
 /*N*/                                       BOOL bRecord, BOOL bApi )
