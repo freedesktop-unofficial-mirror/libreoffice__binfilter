@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_RadioButton.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:04:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:45:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -497,13 +497,6 @@ void ORadioButtonModel::_onValueChanged()
 Any ORadioButtonModel::_getControlValue() const
 {
     return m_xAggregateSet->getPropertyValue(PROPERTY_STATE);
-}
-
-//------------------------------------------------------------------------------
-sal_Int16 ORadioButtonModel::getState( const Any& rValue )
-{
-    //::rtl::OUString aStrValue = DBTypeConversion::toString( rValue );
-    return RB_NOCHECK;
 }
 
 //------------------------------------------------------------------------------
