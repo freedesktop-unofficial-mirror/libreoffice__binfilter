@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 19:54:31 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:17:26 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,13 +68,9 @@ SLOFILES =  \
         $(SLO)$/starmath_register.obj \
         $(SLO)$/starmath_typemap.obj \
         $(SLO)$/starmath_symbol.obj \
-        $(SLO)$/starmath_toolbox.obj \
-        $(SLO)$/starmath_action.obj \
-        $(SLO)$/starmath_accessibility.obj \
         $(SLO)$/starmath_cfgitem.obj \
         $(SLO)$/starmath_config.obj \
         $(SLO)$/starmath_document.obj \
-        $(SLO)$/starmath_mathtype.obj \
         $(SLO)$/starmath_mathml.obj \
         $(SLO)$/starmath_format.obj \
         $(SLO)$/starmath_node.obj \
@@ -90,7 +86,6 @@ SLOFILES =  \
         $(SLO)$/starmath_unodoc.obj
 
 EXCEPTIONSFILES =   \
-        $(SLO)$/starmath_accessibility.obj \
         $(SLO)$/starmath_register.obj  \
         $(SLO)$/starmath_mathml.obj \
         $(SLO)$/starmath_viewhdl.obj \
