@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dcontact.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:37:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:42:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -159,9 +159,6 @@ class SwDrawVirtObj : public SdrVirtObj
 
         SwDrawVirtObj( SdrObject&       _rNewObj,
                        SwDrawContact&   _rDrawContact );
-        SwDrawVirtObj( SdrObject&       _rNewObj,
-                       const Point&     _rAnchorPos,
-                       SwDrawContact&   _rDrawContact );
         virtual ~SwDrawVirtObj();
 
         // access to offset
@@ -312,9 +309,6 @@ class SwDrawContact : public SwContact
         //Der Anker wird Anhand des Attributes SwFmtAnchor bestimmt.
         //Das Objekt wird ggf. beim alten Anker abgemeldet.
         void ConnectToLayout( const SwFmtAnchor *pAnch = 0 );
-        // OD 27.06.2003 #108784# - method to insert 'master' drawing object
-        // into drawing page
-        void InsertMasterIntoDrawPage();
 
         void DisconnectFromLayout( bool _bMoveMasterToInvisibleLayer = true );
         // OD 19.06.2003 #108784# - disconnect for a dedicated drawing object -
