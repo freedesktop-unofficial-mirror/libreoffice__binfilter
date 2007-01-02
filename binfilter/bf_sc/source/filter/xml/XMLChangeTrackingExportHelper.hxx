@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLChangeTrackingExportHelper.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:13:11 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:59:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,7 +110,6 @@ public:
     ScChangeTrackingExportHelper(ScXMLExport& rExport);
     ~ScChangeTrackingExportHelper();
 
-    void WriteChangeViewSettings();
     void CollectAutoStyles();
     void CollectAndWriteChanges();
 };
