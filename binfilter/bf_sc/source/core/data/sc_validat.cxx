@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_validat.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:26:19 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:57:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -238,21 +238,6 @@ namespace binfilter {
 /*N*/   rMsg   = aErrorMessage;
 /*N*/   rStyle = eErrorStyle;
 /*N*/   return bShowError;
-/*N*/ }
-
-    // TRUE -> Abbruch
-
-
-
-    // TRUE -> Abbruch
-
-
-
-/*N*/ BOOL ScValidationData::IsDataValid( const String& rTest, const ScPatternAttr& rPattern,
-/*N*/                                   const ScAddress& rPos ) const
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( eDataMode == SC_VALID_ANY )
-return FALSE;//STRIP001     return bRet;
 /*N*/ }
 
 /*N*/ BOOL ScValidationData::IsDataValid( ScBaseCell* pCell, const ScAddress& rPos ) const
