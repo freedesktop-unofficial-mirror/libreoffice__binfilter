@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shapeimpl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:53:31 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:34:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ public:
 class SvxOle2Shape : public SvxShape
 {
 public:
-    SvxOle2Shape( SdrObject* pObj ) throw();
     SvxOle2Shape( SdrObject* pObject, const SfxItemPropertyMap* pPropertySet ) throw ();
     virtual ~SvxOle2Shape() throw();
 

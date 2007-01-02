@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unofdesc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:55:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:35:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -234,19 +234,6 @@ void SvxUnoFontDescriptor::FillFromItemSet( const SfxItemSet& rSet, awt::FontDes
     case SFX_ITEM_SET: \
         return beans::PropertyState_DIRECT_VALUE; \
     }
-
-beans::PropertyState SvxUnoFontDescriptor::getPropertyState( const SfxItemSet& rSet )
-{
-    CheckState(rSet.GetItemState( EE_CHAR_FONTINFO, FALSE ));
-    CheckState(rSet.GetItemState( EE_CHAR_FONTHEIGHT, FALSE ));
-    CheckState(rSet.GetItemState( EE_CHAR_ITALIC, FALSE ));
-    CheckState(rSet.GetItemState( EE_CHAR_UNDERLINE, FALSE ));
-    CheckState(rSet.GetItemState( EE_CHAR_WEIGHT, FALSE ));
-    CheckState(rSet.GetItemState( EE_CHAR_STRIKEOUT, FALSE ));
-    CheckState(rSet.GetItemState( EE_CHAR_WLM, FALSE ));
-
-    return beans::PropertyState_DEFAULT_VALUE;
-}
 
 void SvxUnoFontDescriptor::setPropertyToDefault( SfxItemSet& rSet )
 {
