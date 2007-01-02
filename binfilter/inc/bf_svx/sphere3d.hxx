@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sphere3d.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:01:16 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:33:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,8 +58,6 @@ protected:
 
 public:
     TYPEINFO();
-    E3dSphereObj(E3dDefaultAttributes& rDefault, const Vector3D& rCenter, const Vector3D& r3DSize);
-    E3dSphereObj();
 
     // HorizontalSegments:
     sal_Int32 GetHorizontalSegments() const
@@ -75,7 +73,6 @@ public:
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-    void ReSegment(long nHorzSegments, long nVertSegments);
     const Vector3D Center() const { return aCenter; }
     const Vector3D Size() const { return aSize; }
 
