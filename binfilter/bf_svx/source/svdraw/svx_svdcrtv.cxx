@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdcrtv.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:36:43 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:30:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -235,20 +235,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pAktCreate!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
-/*N*/ }
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/* new interface src537 */
-
-
-
-/*N*/ BOOL SdrCreateView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
