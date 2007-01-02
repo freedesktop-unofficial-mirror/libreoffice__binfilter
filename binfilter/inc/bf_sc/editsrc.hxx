@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editsrc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:13:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:27:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -202,9 +202,6 @@ public:
     virtual SvxEditViewForwarder*   GetEditViewForwarder( sal_Bool bCreate = sal_False );
     virtual void                UpdateData();
     virtual SfxBroadcaster&     GetBroadcaster() const;
-
-    void                        SetDoUpdateData(sal_Bool bValue);
-    sal_Bool                    IsDirty() const;
 };
 
 } //namespace binfilter
