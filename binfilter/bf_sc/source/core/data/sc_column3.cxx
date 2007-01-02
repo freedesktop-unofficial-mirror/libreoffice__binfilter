@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column3.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:14:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:53:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -190,38 +190,6 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // in cellform.cxx
 /*N*/   pItems[nCount].pCell = pCell;
 /*N*/   pItems[nCount].nRow  = nRow;
 /*N*/   ++nCount;
-/*N*/ }
-
-
-/*N*/ void ScColumn::Delete( USHORT nRow )
-/*N*/ {
-/*N*/   USHORT  nIndex;
-/*N*/
-/*N*/   if (Search(nRow, nIndex))
-/*N*/   {
-/*N*/       ScBaseCell* pCell = pItems[nIndex].pCell;
-/*N*/       ScNoteCell* pNoteCell = new ScNoteCell;
-/*N*/       pItems[nIndex].pCell = pNoteCell;       // Dummy fuer Interpret
-/*N*/       pDocument->Broadcast( ScHint( SC_HINT_DYING,
-/*N*/           ScAddress( nCol, nRow, nTab ), pCell ) );
-/*N*/       ScBroadcasterList* pBC = pCell->GetBroadcaster();
-/*N*/       if ( pBC )
-/*N*/       {
-/*N*/           pNoteCell->SetBroadcaster( pBC );
-/*N*/           pCell->ForgetBroadcaster();
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           delete pNoteCell;
-/*N*/           --nCount;
-/*N*/           memmove( &pItems[nIndex], &pItems[nIndex + 1], (nCount - nIndex) * sizeof(ColEntry) );
-/*N*/           pItems[nCount].nRow = 0;
-/*N*/           pItems[nCount].pCell = NULL;
-/*N*/           //  Soll man hier den Speicher freigeben (delta)? Wird dann langsamer!
-/*N*/       }
-/*N*/       pCell->EndListeningTo( pDocument );
-/*N*/       pCell->Delete();
-/*N*/   }
 /*N*/ }
 
 
