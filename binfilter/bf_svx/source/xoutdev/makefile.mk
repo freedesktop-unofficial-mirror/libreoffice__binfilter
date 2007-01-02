@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:21:40 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:38:18 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,6 @@ HXX6EXCL	= 	-K:*compat.hxx
 .IF "$(header)" == ""
 
 CXXFILES= \
-        svx_xcpoly.cxx		\
         svx_xoutpch.cxx 	\
         svx_xout.cxx		\
         svx_xout1.cxx		\
@@ -106,7 +105,6 @@ CXXFILES= \
         svx_xtabhtch.cxx	\
         svx_xtabgrdt.cxx	\
         svx_xtabbtmp.cxx	\
-        svx_xexch.cxx       \
         svx_xiocomp.cxx		\
         svx__xpoly.cxx		\
         svx__ximp.cxx		\
@@ -114,7 +112,6 @@ CXXFILES= \
         svx__xfont.cxx
 
 SLOFILES= \
-        $(SLO)$/svx_xcpoly.obj 		\
         $(SLO)$/svx_xout.obj   		\
         $(SLO)$/svx_xout1.obj  		\
         $(SLO)$/svx_xattr.obj  		\
@@ -129,7 +126,6 @@ SLOFILES= \
         $(SLO)$/svx_xtabhtch.obj	\
         $(SLO)$/svx_xtabgrdt.obj	\
         $(SLO)$/svx_xtabbtmp.obj	\
-        $(SLO)$/svx_xexch.obj		\
         $(SLO)$/svx_xiocomp.obj		\
         $(SLO)$/svx__xpoly.obj  	\
         $(SLO)$/svx__ximp.obj   	\
@@ -137,7 +133,6 @@ SLOFILES= \
         $(SLO)$/svx__xfont.obj
 
 SVXLIGHTOBJFILES= \
-        $(OBJ)$/svx_xcpoly.obj 		\
         $(OBJ)$/svx_xout.obj   		\
         $(OBJ)$/svx_xout1.obj  		\
         $(OBJ)$/svx_xattr.obj  		\
@@ -152,7 +147,6 @@ SVXLIGHTOBJFILES= \
         $(OBJ)$/svx_xtabhtch.obj	\
         $(OBJ)$/svx_xtabgrdt.obj	\
         $(OBJ)$/svx_xtabbtmp.obj	\
-        $(OBJ)$/svx_xexch.obj		\
         $(OBJ)$/svx_xiocomp.obj		\
         $(OBJ)$/svx__xpoly.obj  	\
         $(OBJ)$/svx__ximp.obj   	\

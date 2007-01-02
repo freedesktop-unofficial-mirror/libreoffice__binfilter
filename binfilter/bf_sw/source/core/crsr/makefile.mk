@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:24:24 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:41:58 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,11 +60,9 @@ CXXFILES = \
         sw_callnk.cxx \
         sw_crbm.cxx \
         sw_crsrsh.cxx \
-        sw_crstrvl.cxx \
         sw_crstrvl1.cxx \
         sw_findattr.cxx \
         sw_findcoll.cxx \
-        sw_findfmt.cxx \
         sw_findtxt.cxx \
         sw_pam.cxx \
         sw_paminit.cxx \
@@ -90,11 +88,9 @@ SLOFILES =	\
         $(SLO)$/sw_callnk.obj \
         $(SLO)$/sw_crbm.obj \
         $(SLO)$/sw_crsrsh.obj \
-        $(SLO)$/sw_crstrvl.obj \
         $(SLO)$/sw_crstrvl1.obj \
         $(SLO)$/sw_findattr.obj \
         $(SLO)$/sw_findcoll.obj \
-        $(SLO)$/sw_findfmt.obj \
         $(SLO)$/sw_findtxt.obj \
         $(SLO)$/sw_pam.obj \
         $(SLO)$/sw_paminit.obj \
