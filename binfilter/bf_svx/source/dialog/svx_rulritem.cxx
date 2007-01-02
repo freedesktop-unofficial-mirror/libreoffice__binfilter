@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_rulritem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:30:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:18:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -252,44 +252,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   DeleteAndDestroyColumns();
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-/*N*/ BOOL SvxColumnItem::CalcOrtho() const
-/*N*/ {
-/*N*/   const USHORT nCount = Count();
-/*N*/   DBG_ASSERT(nCount >= 2, "keine Spalten");
-/*N*/   if(nCount < 2)
-/*N*/       return FALSE;
-/*N*/
-/*N*/   const USHORT nColWidth = (*this)[0].GetWidth();
-/*N*/   for(USHORT i = 1; i < nCount; ++i) {
-/*N*/       if( (*this)[i].GetWidth() != nColWidth)
-/*N*/           return FALSE;
-/*N*/   }
-/*N*/   //!! Breite Trenner
-/*N*/   return TRUE;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 
