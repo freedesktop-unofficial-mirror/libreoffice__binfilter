@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlnume.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:41:39 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:54:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,8 +107,6 @@ public:
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::container::XIndexReplace > & xNumRule );
 
-    void Export( const ::rtl::OUString& rOutline, sal_Bool bContNumbering );
-    void ExportOutline();
 #if SUPD < 627
     static const sal_Char *GetNumFormatValue( sal_Int16 eNumType );
     static const sal_Char *GetNumLetterSync( sal_Int16 eNumType );
