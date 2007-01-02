@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_txencbox.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:38:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:18:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,18 +50,4 @@
 #include <osl/nlsupport.h>
 #endif
 namespace binfilter {
-
-//========================================================================
-//  class SvxTextEncodingBox
-//========================================================================
-
-/*N*/ SvxTextEncodingBox::SvxTextEncodingBox( Window* pParent, const ResId& rResId )
-/*N*/   :
-/*N*/   ListBox( pParent, rResId )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 m_pEncTable = new SvxTextEncodingTable;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 }
