@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rangelst.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:39:47 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:27:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,6 @@ public:
     BOOL            UpdateReference( UpdateRefMode, ScDocument*,
                                     const ScRange& rWhere,
                                     short nDx, short nDy, short nDz );
-    ScRangePair*    Find( const ScAddress& ) const;
     ScRangePair*    Find( const ScRange& ) const;
 /*N*/   BOOL            Load( SvStream&, USHORT nVer );
 /*N*/   BOOL            Store( SvStream& ) const;
