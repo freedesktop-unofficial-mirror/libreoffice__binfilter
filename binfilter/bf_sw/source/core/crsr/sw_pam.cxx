@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pam.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:19:15 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:43:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -505,130 +505,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/       0 != ( pPg = pCFrm->FindPageFrm() ))
 /*N*/       return pPg->GetPhyPageNum();
 /*N*/   return 0;
-/*N*/ }
-
-// steht in etwas geschuetztem oder in die Selektion umspannt
-// etwas geschuetztes.
-/*N*/ FASTBOOL SwPaM::HasReadonlySel() const
-/*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;
-/*N*/   Point aTmpPt;
-/*N*/   const SwCntntNode *pNd;
-/*N*/   const SwCntntFrm *pFrm;
-/*N*/
-/*N*/   if( 0 != ( pNd = GetPoint()->nNode.GetNode().GetCntntNode() ))
-/*N*/       pFrm = pNd->GetFrm( &aTmpPt, GetPoint(), FALSE );
-/*N*/   else
-/*N*/       pFrm = 0;
-/*N*/
-/*N*/   if( pFrm && pFrm->IsProtected() )
-/*N*/       bRet = TRUE;
-/*N*/   else if( pNd )
-/*N*/   {
-/*N*/       const SwSectionNode* pSNd = pNd->GetSectionNode();
-/*N*/       if( pSNd && pSNd->GetSection().IsProtectFlag() )
-/*N*/           bRet = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   if( !bRet && HasMark() && GetPoint()->nNode != GetMark()->nNode )
-/*N*/   {
-/*?*/       if( 0 != ( pNd = GetMark()->nNode.GetNode().GetCntntNode() ))
-/*?*/           pFrm = pNd->GetFrm( &aTmpPt, GetMark(), FALSE );
-/*?*/       else
-/*?*/           pFrm = 0;
-/*?*/
-/*?*/       if( pFrm && pFrm->IsProtected() )
-/*?*/           bRet = TRUE;
-/*?*/       else if( pNd )
-/*?*/       {
-/*?*/           const SwSectionNode* pSNd = pNd->GetSectionNode();
-/*?*/           if( pSNd && pSNd->GetSection().IsProtectFlag() )
-/*?*/               bRet = TRUE;
-/*?*/       }
-/*?*/
-/*?*/       // oder sollte eine geschuetzte Section innerhalb der
-/*?*/       // Selektion liegen?
-/*?*/       if( !bRet )
-/*?*/       {
-/*?*/           ULONG nSttIdx = GetMark()->nNode.GetIndex(),
-/*?*/                   nEndIdx = GetPoint()->nNode.GetIndex();
-/*?*/           if( nEndIdx <= nSttIdx )
-/*?*/           {
-/*?*/               ULONG nTmp = nSttIdx;
-/*?*/               nSttIdx = nEndIdx;
-/*?*/               nEndIdx = nTmp;
-/*?*/           }
-/*?*/
-/*?*/           // wenn ein geschuetzter Bereich zwischen den Nodes stehen soll,
-/*?*/           // muss die Selektion selbst schon x Nodes umfassen.
-/*?*/           // (TxtNd, SectNd, TxtNd, EndNd, TxtNd )
-/*?*/           if( nSttIdx + 3 < nEndIdx )
-/*?*/           {
-/*?*/               const SwSectionFmts& rFmts = GetDoc()->GetSections();
-/*?*/               for( USHORT n = rFmts.Count(); n;  )
-/*?*/               {
-/*?*/                   const SwSectionFmt* pFmt = rFmts[ --n ];
-/*?*/                   if( pFmt->GetProtect().IsCntntProtected() )
-/*?*/                   {
-/*?*/                       const SwFmtCntnt& rCntnt = pFmt->GetCntnt(FALSE);
-/*?*/                       ASSERT( rCntnt.GetCntntIdx(), "wo ist der SectionNode?" );
-/*?*/                       ULONG nIdx = rCntnt.GetCntntIdx()->GetIndex();
-/*?*/                       if( nSttIdx <= nIdx && nEndIdx >= nIdx &&
-/*?*/                           rCntnt.GetCntntIdx()->GetNode().GetNodes().IsDocNodes() )
-/*?*/                       {
-/*                          // ist es keine gelinkte Section, dann kann sie auch
-                            // nicht mitselektiert werden
-                            const SwSection& rSect = *pFmt->GetSection();
-                            if( CONTENT_SECTION == rSect.GetType() )
-                            {
-                                RestoreSavePos();
-                                return TRUE;
-                            }
-*/
-/*?*/                           bRet = TRUE;
-/*?*/                           break;
-/*?*/                       }
-/*?*/                   }
-/*?*/               }
-
-#ifdef CHECK_CELL_READONLY
-//JP 22.01.99: bisher wurden Tabelle, die in der Text-Selektion standen
-//              nicht beachtet. Wollte man das haben, dann muss dieser
-//              Code freigeschaltet werden
-
-/*?*/               if( !bRet )
-/*?*/               {
-/*?*/                   // dann noch ueber alle Tabellen
-/*?*/                   const SwFrmFmts& rFmts = *GetDoc()->GetTblFrmFmts();
-/*?*/                   for( n = rFmts.Count(); n ;  )
-/*?*/                   {
-/*?*/                       SwFrmFmt* pFmt = (SwFrmFmt*)rFmts[ --n ];
-/*?*/                       const SwTable* pTbl = SwTable::FindTable( pFmt );
-/*?*/                       ULONG nIdx = pTbl ? pTbl->GetTabSortBoxes()[0]->GetSttIdx()
-/*?*/                                         : 0;
-/*?*/                       if( nSttIdx <= nIdx && nEndIdx >= nIdx )
-/*?*/                       {
-/*?*/                           // dann teste mal alle Boxen
-/*?*/                           const SwTableSortBoxes& rBoxes = pTbl->GetTabSortBoxes();
-/*?*/
-/*?*/                           for( USHORT i =  rBoxes.Count(); i; )
-/*?*/                               if( rBoxes[ --i ]->GetFrmFmt()->GetProtect().
-/*?*/                                   IsCntntProtected() )
-/*?*/                               {
-/*?*/                                   bRet = TRUE;
-/*?*/                                   break;
-/*?*/                               }
-/*?*/
-/*?*/                           if( bRet )
-/*?*/                               break;
-/*?*/                       }
-/*?*/                   }
-/*?*/               }
-/*?*/ #endif
-/*?*/           }
-/*?*/       }
-/*N*/   }
-/*N*/   return bRet;
 /*N*/ }
 
 //--------------------  Suche nach Formaten( FormatNamen ) -----------------
