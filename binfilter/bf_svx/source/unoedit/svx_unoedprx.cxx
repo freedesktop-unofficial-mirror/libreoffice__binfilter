@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoedprx.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:58:15 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:37:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -131,9 +131,6 @@ public:
     sal_Int32 GetBulletLen() const { return mnBulletLen; }
     void AreInBullet( sal_Bool bInBullet = sal_True ) { mbInBullet = bInBullet; }
     sal_Bool InBullet() const { return mbInBullet; }
-
-    /// returns false if the current index contains non-editable text (e.g. bullets)
-    sal_Bool IsEditable() const;
 
     /// returns false if the given range is non-editable (e.g. contains bullets or _parts_ of fields)
     sal_Bool IsEditableRange( const SvxAccessibleTextIndex& rEnd ) const;
@@ -307,14 +304,6 @@ void SvxAccessibleTextIndex::SetIndex( sal_Int32 nIndex, const SvxTextForwarder&
     }
 }
 
-sal_Bool SvxAccessibleTextIndex::IsEditable() const
-{
-    if( InBullet() || InField() )
-        return sal_False;
-
-    return sal_True;
-}
-
 sal_Bool SvxAccessibleTextIndex::IsEditableRange( const SvxAccessibleTextIndex& rEnd ) const
 {
     if( GetIndex() > rEnd.GetIndex() )
@@ -449,12 +438,6 @@ void SvxEditSourceAdapter::SetEditSource( ::std::auto_ptr< SvxEditSource > pAdap
         mbEditSourceValid = sal_False;
     }
 }
-
-sal_Bool SvxEditSourceAdapter::IsValid() const
-{
-    return mbEditSourceValid;
-}
-
 
 //--------------------------------------------------------------------------------------
 
@@ -1096,24 +1079,6 @@ void SvxAccessibleTextAdapter::SetForwarder( SvxTextForwarder& rForwarder )
     mrTextForwarder = &rForwarder;
 }
 
-sal_Bool SvxAccessibleTextAdapter::HaveImageBullet( USHORT nPara ) const
-{
-    DBG_ASSERT(mrTextForwarder, "SvxAccessibleTextAdapter: no forwarder");
-
-    EBulletInfo aBulletInfo = GetBulletInfo( nPara );
-
-    if( aBulletInfo.nParagraph != EE_PARA_NOT_FOUND &&
-        aBulletInfo.bVisible &&
-        aBulletInfo.nType == SVX_NUM_BITMAP )
-    {
-        return sal_True;
-    }
-    else
-    {
-        return sal_False;
-    }
-}
-
 sal_Bool SvxAccessibleTextAdapter::HaveTextBullet( USHORT nPara ) const
 {
     DBG_ASSERT(mrTextForwarder, "SvxAccessibleTextAdapter: no forwarder");
@@ -1131,27 +1096,6 @@ sal_Bool SvxAccessibleTextAdapter::HaveTextBullet( USHORT nPara ) const
         return sal_False;
     }
 }
-
-sal_Bool SvxAccessibleTextAdapter::IsEditable( const ESelection& rSel )
-{
-    DBG_ASSERT(mrTextForwarder, "SvxAccessibleTextAdapter: no forwarder");
-
-    SvxAccessibleTextIndex aStartIndex;
-    SvxAccessibleTextIndex aEndIndex;
-
-    aStartIndex.SetIndex( rSel.nStartPara, rSel.nStartPos, *this );
-    aEndIndex.SetIndex( rSel.nEndPara, rSel.nEndPos, *this );
-
-    // normalize selection
-    if( rSel.nStartPara > rSel.nEndPara ||
-        (rSel.nStartPara == rSel.nEndPara && rSel.nStartPos > rSel.nEndPos) )
-    {
-        ::std::swap( aStartIndex, aEndIndex );
-    }
-
-    return aStartIndex.IsEditableRange( aEndIndex );
-}
-
 
 //---------------------------------------------------------------------------------------
 
