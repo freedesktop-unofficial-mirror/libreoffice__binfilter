@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:31:03 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:58:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -360,28 +360,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  String ScCompiler::MakeColStr( USHORT nCol )
-/*N*/  {
-/*N*/   if ( nCol > MAXCOL )
-/*N*/       return ScGlobal::GetRscString(STR_NO_REF_TABLE);
-/*N*/   else
-/*N*/   {
-/*N*/       if (nCol < 26)
-/*N*/           return String( static_cast< sal_Unicode >('A' + (sal_uChar) nCol) ) ;
-/*N*/       else
-/*N*/       {
-/*N*/           String aString;
-/*N*/           sal_Unicode* pCol = aString.AllocBuffer( 2 );
-/*N*/           USHORT nLoCol = nCol % 26;
-/*N*/           USHORT nHiCol = (nCol / 26) - 1;
-/*N*/           pCol[0] = 'A' + (sal_uChar)nHiCol;
-/*N*/           pCol[1] = 'A' + (sal_uChar)nLoCol;
-/*N*/           // terminating null character is set in AllocBuffer
-/*N*/           return aString;
-/*N*/       }
-/*N*/   }
-/*N*/  }
-
 /*N*/ void ScCompiler::MakeColStr( ::rtl::OUStringBuffer& rBuffer, USHORT nCol )
 /*N*/ {
 /*N*/   if ( nCol > MAXCOL )
@@ -399,14 +377,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/  String ScCompiler::MakeRowStr( USHORT nRow )
-/*N*/  {
-/*N*/   if ( nRow > MAXROW )
-/*N*/       return ScGlobal::GetRscString(STR_NO_REF_TABLE);
-/*N*/   else
-/*N*/       return String::CreateFromInt32( nRow + 1 );
-/*N*/  }
 
 /*N*/ void ScCompiler::MakeRowStr( ::rtl::OUStringBuffer& rBuffer, USHORT nRow )
 /*N*/ {
@@ -466,13 +436,6 @@ namespace binfilter {
 /*N*/         rString += '\'';
 /*N*/     }
 /*N*/ }
-
-/*N*/  String ScCompiler::MakeRefStr( ComplRefData& rRef, BOOL bSingleRef )
-/*N*/  {
-/*N*/      ::rtl::OUStringBuffer aBuffer;
-/*N*/      MakeRefStr( aBuffer, rRef, bSingleRef );
-/*N*/      return String( aBuffer );
-/*N*/  }
 
 /*N*/ void ScCompiler::MakeRefStr( ::rtl::OUStringBuffer& rBuffer, ComplRefData& rRef, BOOL bSingleRef )
 /*N*/ {
@@ -2191,11 +2154,6 @@ namespace binfilter {
 // Token in den Code Eintragen
 //---------------------------------------------------------------------------
 
-/*N*/  void ScCompiler::PutCode( ScRawToken* p )
-/*N*/  {
-/*N*/   PutCode( p->CreateToken() );
-/*N*/  }
-
 /*N*/ void ScCompiler::PutCode( ScToken* p )
 /*N*/ {
 /*N*/     if( pc >= MAXCODE-1 )
@@ -2674,55 +2632,6 @@ namespace binfilter {
 /*N*/   return pToken->GetOpCode();
 /*N*/ }
 
-//-----------------------------------------------------------------------------
-
-/*N*/  BOOL ScCompiler::HasModifiedRange()
-/*N*/  {
-/*N*/   pArr->Reset();
-/*N*/   for ( ScToken* t = pArr->Next(); t; t = pArr->Next() )
-/*N*/   {
-/*N*/       OpCode eOpCode = t->GetOpCode();
-/*N*/       if ( eOpCode == ocName )
-/*N*/       {
-/*N*/           ScRangeData* pRangeData = pDoc->GetRangeName()->FindIndex(t->GetIndex());
-/*N*/
-/*N*/           if (pRangeData && pRangeData->IsModified())
-/*N*/               return TRUE;
-/*N*/       }
-/*N*/       else if ( eOpCode == ocDBArea )
-/*N*/       {
-/*N*/           ScDBData* pDBData = pDoc->GetDBCollection()->FindIndex(t->GetIndex());
-/*N*/
-/*N*/           if (pDBData && pDBData->IsModified())
-/*N*/               return TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/  }
-
-//-----------------------------------------------------------------------------
-
-/*N*/  short lcl_adjval( short n, short pos, short max, BOOL bRel )
-/*N*/  {
-/*N*/   max++;
-/*N*/   if( bRel ) n += pos;
-/*N*/   if( n < 0 ) n += max;
-/*N*/   else
-/*N*/   if( n >= max ) n -= max;
-/*N*/   if( bRel ) n -= pos;
-/*N*/   return n;
-/*N*/  }
-
-/*N*/  void ScCompiler::AdjustReference( SingleRefData& r )
-/*N*/  {
-/*N*/   if( r.IsColRel() )
-/*N*/       r.nCol = lcl_adjval( r.nCol, aPos.Col(), MAXCOL, r.IsColRel() );
-/*N*/   if( r.IsRowRel() )
-/*N*/       r.nRow = lcl_adjval( r.nRow, aPos.Row(), MAXROW, r.IsRowRel() );
-/*N*/   if( r.IsTabRel() )
-/*N*/       r.nTab = lcl_adjval( r.nTab, aPos.Tab(), nMaxTab,r.IsTabRel() );
-/*N*/  }
-
 // Referenz aus benanntem Bereich mit relativen Angaben
 
 /*N*/ void ScCompiler::SetRelNameReference()
@@ -2757,196 +2666,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-// static
-// nur relative aus RangeName mit Wrap an Position anpassen
-/*N*/  void ScCompiler::MoveRelWrap( ScTokenArray& rArr, ScDocument* pDoc,
-/*N*/           const ScAddress& rPos )
-/*N*/  {
-/*N*/   rArr.Reset();
-/*N*/   for( ScToken* t = rArr.GetNextReference(); t;
-/*N*/                 t = rArr.GetNextReference() )
-/*N*/   {
-/*N*/       if ( t->GetType() == svSingleRef )
-/*N*/           ScRefUpdate::MoveRelWrap( pDoc, rPos, SingleDoubleRefModifier( t->GetSingleRef() ).Ref() );
-/*N*/       else
-/*N*/           ScRefUpdate::MoveRelWrap( pDoc, rPos, t->GetDoubleRef() );
-/*N*/   }
-/*N*/  }
-
-/*N*/  ScRangeData* ScCompiler::UpdateReference(UpdateRefMode eUpdateRefMode,
-/*N*/                                const ScAddress& rOldPos, const ScRange& r,
-/*N*/                                short nDx, short nDy, short nDz,
-/*N*/                                BOOL& rChanged)
-/*N*/  {
-/*N*/   rChanged = FALSE;
-/*N*/   if ( eUpdateRefMode == URM_COPY )
-/*N*/      {   // Normally nothing has to be done here since RelRefs are used, also
-/*N*/          // SharedFormulas don't need any special handling.
-/*N*/          // #67383# But ColRowName tokens pointing to a ColRow header which was
-/*N*/          // copied along with this formula need to be updated to point to the
-/*N*/          // copied header instead of the old position's new intersection.
-/*N*/       ScToken* t;
-/*N*/       pArr->Reset();
-/*N*/          for( t = pArr->GetNextColRowName(); t;
-/*N*/               t = pArr->GetNextColRowName() )
-/*N*/          {
-/*N*/              SingleRefData& rRef = t->GetSingleRef();
-/*N*/              rRef.CalcAbsIfRel( rOldPos );
-/*N*/              ScAddress aNewRef( rRef.nCol + nDx, rRef.nRow + nDy, rRef.nTab + nDz );
-/*N*/              if ( r.In( aNewRef ) )
-/*N*/              {   // yes, this is URM_MOVE
-/*N*/                  if ( ScRefUpdate::Update( pDoc, URM_MOVE, aPos,
-/*N*/                          r, nDx, nDy, nDz,
-/*N*/                          SingleDoubleRefModifier( rRef ).Ref() )
-/*N*/                          != UR_NOTHING
-/*N*/                      )
-/*N*/                      rChanged = TRUE;
-/*N*/              }
-/*N*/          }
-/*N*/          return NULL;
-/*N*/      }
-/*N*/   else
-/*N*/   {
-/*
-  * Set SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE to 1 if we wanted to preserve as
-  * many shared formulas as possible instead of replacing them with direct code.
-  * Note that this may produce shared formula usage Excel doesn't understand,
-  * which would have to be adapted for in the export filter. Advisable as a long
-  * term goal, since it could decrease memory footprint.
- */
-/*N*/  #define SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE 0
-/*N*/       ScRangeData* pRangeData = NULL;
-/*N*/       ScToken* t;
-/*N*/       pArr->Reset();
-/*N*/       for( t = pArr->GetNextReferenceOrName(); t;
-/*N*/            t = pArr->GetNextReferenceOrName() )
-/*N*/       {
-/*N*/           if( t->GetOpCode() == ocName )
-/*N*/           {
-/*N*/               ScRangeData* pName = pDoc->GetRangeName()->FindIndex( t->GetIndex() );
-/*N*/               if (pName && pName->HasType(RT_SHAREDMOD))
-/*N*/               {
-/*N*/                      pRangeData = pName;     // maybe need a replacement of shared with own code
-/*N*/  #if ! SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/                      rChanged = TRUE;
-/*N*/  #endif
-/*N*/               }
-/*N*/           }
-/*N*/           else if( t->GetType() != svIndex )  // es kann ein DB-Bereich sein !!!
-/*N*/           {
-/*N*/               t->CalcAbsIfRel( rOldPos );
-/*N*/               if ( t->GetType() == svSingleRef )
-/*N*/               {
-/*N*/                   if ( ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
-/*N*/                           r, nDx, nDy, nDz,
-/*N*/                           SingleDoubleRefModifier( t->GetSingleRef() ).Ref() )
-/*N*/                           != UR_NOTHING
-/*N*/                       )
-/*N*/                       rChanged = TRUE;
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*N*/                   if ( ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
-/*N*/                               r, nDx, nDy, nDz, t->GetDoubleRef() )
-/*N*/                           != UR_NOTHING
-/*N*/                       )
-/*N*/                       rChanged = TRUE;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/  #if SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/          BOOL bEasyShared, bPosInRange;
-/*N*/          if ( !pRangeData )
-/*N*/              bEasyShared = bPosInRange = FALSE;
-/*N*/          else
-/*N*/          {
-/*N*/              bEasyShared = TRUE;
-/*N*/              bPosInRange = r.In( eUpdateRefMode == URM_MOVE ? aPos : rOldPos );
-/*N*/          }
-/*N*/  #endif
-/*N*/          pArr->Reset();
-/*N*/          for( t = pArr->GetNextReferenceRPN(); t;
-/*N*/               t = pArr->GetNextReferenceRPN() )
-/*N*/          {
-/*N*/              if ( t->GetRef() != 1 )
-/*N*/              {
-/*N*/  #if SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/                  bEasyShared = FALSE;
-/*N*/  #endif
-/*N*/              }
-/*N*/              else
-/*N*/              {   // if nRefCnt>1 it's already updated in token code
-/*N*/                  if ( t->GetType() == svSingleRef )
-/*N*/                  {
-/*N*/                      SingleRefData& rRef = t->GetSingleRef();
-/*N*/                      SingleDoubleRefModifier aMod( rRef );
-/*N*/                      if ( rRef.IsRelName() )
-/*N*/                      {
-/*N*/                          ScRefUpdate::MoveRelWrap( pDoc, aPos, aMod.Ref() );
-/*N*/                          rChanged = TRUE;
-/*N*/                      }
-/*N*/                      else
-/*N*/                      {
-/*N*/                          aMod.Ref().CalcAbsIfRel( rOldPos );
-/*N*/                          if ( ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
-/*N*/                                      r, nDx, nDy, nDz, aMod.Ref() )
-/*N*/                                  != UR_NOTHING
-/*N*/                              )
-/*N*/                              rChanged = TRUE;
-/*N*/                      }
-/*N*/  #if SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/                      if ( bEasyShared )
-/*N*/                      {
-/*N*/                          const SingleRefData& rSRD = aMod.Ref().Ref1;
-/*N*/                          ScAddress aRef( rSRD.nCol, rSRD.nRow, rSRD.nTab );
-/*N*/                          if ( r.In( aRef ) != bPosInRange )
-/*N*/                              bEasyShared = FALSE;
-/*N*/                      }
-/*N*/  #endif
-/*N*/                  }
-/*N*/                  else
-/*N*/                  {
-/*N*/                      ComplRefData& rRef = t->GetDoubleRef();
-/*N*/                      if ( rRef.Ref1.IsRelName() || rRef.Ref2.IsRelName() )
-/*N*/                      {
-/*N*/                          ScRefUpdate::MoveRelWrap( pDoc, aPos, rRef );
-/*N*/                          rChanged = TRUE;
-/*N*/                      }
-/*N*/                      else
-/*N*/                      {
-/*N*/                          if ( ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
-/*N*/                                      r, nDx, nDy, nDz, rRef )
-/*N*/                                  != UR_NOTHING
-/*N*/                              )
-/*N*/                              rChanged = TRUE;
-/*N*/                      }
-/*N*/  #if SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/                      if ( bEasyShared )
-/*N*/                      {
-/*N*/                          ScRange aRef( rRef.Ref1.nCol, rRef.Ref1.nRow,
-/*N*/                                  rRef.Ref1.nTab, rRef.Ref2.nCol, rRef.Ref2.nRow,
-/*N*/                                  rRef.Ref2.nTab );
-/*N*/                          if ( r.In( aRef ) != bPosInRange )
-/*N*/                              bEasyShared = FALSE;
-/*N*/                      }
-/*N*/  #endif
-/*N*/                  }
-/*N*/              }
-/*N*/          }
-/*N*/  #if SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/          if ( pRangeData )
-/*N*/          {
-/*N*/              if ( bEasyShared )
-/*N*/                  pRangeData = 0;
-/*N*/              else
-/*N*/                  rChanged = TRUE;
-/*N*/          }
-/*N*/  #endif
-/*N*/  #undef SC_PRESERVE_SHARED_FORMULAS_IF_POSSIBLE
-/*N*/          return pRangeData;
-/*N*/      }
-/*N*/  }
-
 /*N*/ BOOL ScCompiler::UpdateNameReference(UpdateRefMode eUpdateRefMode,
 /*N*/                                    const ScRange& r,
 /*N*/                                    short nDx, short nDy, short nDz,
@@ -2975,76 +2694,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-
-
-/*N*/  void ScCompiler::UpdateSharedFormulaReference( UpdateRefMode eUpdateRefMode,
-/*N*/                                 const ScAddress& rOldPos, const ScRange& r,
-/*N*/                                 short nDx, short nDy, short nDz )
-/*N*/  {
-/*N*/   if ( eUpdateRefMode == URM_COPY )
-/*N*/       return ;
-/*N*/   else
-/*N*/   {
-/*N*/       ScToken* t;
-/*N*/       pArr->Reset();
-/*N*/       for( t = pArr->GetNextReference(); t;
-/*N*/            t = pArr->GetNextReference() )
-/*N*/       {
-/*N*/           if( t->GetType() != svIndex )   // es kann ein DB-Bereich sein !!!
-/*N*/           {
-/*N*/               t->CalcAbsIfRel( rOldPos );
-/*N*/               // Absolute references have been already adjusted in the named
-/*N*/               // shared formula itself prior to breaking the shared formula
-/*N*/               // and calling this function. Don't readjust them again.
-/*N*/                 SingleDoubleRefModifier aMod( *t );
-/*N*/                 ComplRefData& rRef = aMod.Ref();
-/*N*/               ComplRefData aBkp = rRef;
-/*N*/               ScRefUpdate::Update( pDoc, eUpdateRefMode, aPos,
-/*N*/                                           r, nDx, nDy, nDz, rRef );
-/*N*/               // restore absolute parts
-/*N*/               if ( !aBkp.Ref1.IsColRel() )
-/*N*/               {
-/*N*/                   rRef.Ref1.nCol = aBkp.Ref1.nCol;
-/*N*/                   rRef.Ref1.nRelCol = aBkp.Ref1.nRelCol;
-/*N*/                   rRef.Ref1.SetColDeleted( aBkp.Ref1.IsColDeleted() );
-/*N*/               }
-/*N*/               if ( !aBkp.Ref1.IsRowRel() )
-/*N*/               {
-/*N*/                   rRef.Ref1.nRow = aBkp.Ref1.nRow;
-/*N*/                   rRef.Ref1.nRelRow = aBkp.Ref1.nRelRow;
-/*N*/                   rRef.Ref1.SetRowDeleted( aBkp.Ref1.IsRowDeleted() );
-/*N*/               }
-/*N*/               if ( !aBkp.Ref1.IsTabRel() )
-/*N*/               {
-/*N*/                   rRef.Ref1.nTab = aBkp.Ref1.nTab;
-/*N*/                   rRef.Ref1.nRelTab = aBkp.Ref1.nRelTab;
-/*N*/                   rRef.Ref1.SetTabDeleted( aBkp.Ref1.IsTabDeleted() );
-/*N*/               }
-/*N*/               if ( t->GetType() == svDoubleRef )
-/*N*/               {
-/*N*/                   if ( !aBkp.Ref2.IsColRel() )
-/*N*/                   {
-/*N*/                       rRef.Ref2.nCol = aBkp.Ref2.nCol;
-/*N*/                       rRef.Ref2.nRelCol = aBkp.Ref2.nRelCol;
-/*N*/                       rRef.Ref2.SetColDeleted( aBkp.Ref2.IsColDeleted() );
-/*N*/                   }
-/*N*/                   if ( !aBkp.Ref2.IsRowRel() )
-/*N*/                   {
-/*N*/                       rRef.Ref2.nRow = aBkp.Ref2.nRow;
-/*N*/                       rRef.Ref2.nRelRow = aBkp.Ref2.nRelRow;
-/*N*/                       rRef.Ref2.SetRowDeleted( aBkp.Ref2.IsRowDeleted() );
-/*N*/                   }
-/*N*/                   if ( !aBkp.Ref2.IsTabRel() )
-/*N*/                   {
-/*N*/                       rRef.Ref2.nTab = aBkp.Ref2.nTab;
-/*N*/                       rRef.Ref2.nRelTab = aBkp.Ref2.nRelTab;
-/*N*/                       rRef.Ref2.SetTabDeleted( aBkp.Ref2.IsTabDeleted() );
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/  }
 
 
 /*N*/ ScRangeData* ScCompiler::UpdateInsertTab( USHORT nTable, BOOL bIsName )
@@ -3353,192 +3002,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pRangeData;
 /*N*/  }
-
-// aPos.Tab() muss bereits angepasst sein!
-/*N*/  ScRangeData* ScCompiler::UpdateMoveTab( USHORT nOldTab, USHORT nNewTab,
-/*N*/       BOOL bIsName )
-/*N*/  {
-/*N*/   ScRangeData* pRangeData = NULL;
-/*N*/   INT16 nTab;
-/*N*/
-/*N*/   USHORT nStart, nEnd;
-/*N*/   short nDir;                         // Richtung, die die anderen wandern
-/*N*/   if ( nOldTab < nNewTab )
-/*N*/   {
-/*N*/       nDir = -1;
-/*N*/       nStart = nOldTab;
-/*N*/       nEnd = nNewTab;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       nDir = 1;
-/*N*/       nStart = nNewTab;
-/*N*/       nEnd = nOldTab;
-/*N*/   }
-/*N*/   USHORT nPosTab = aPos.Tab();        // aktuelle Tabelle
-/*N*/   USHORT nOldPosTab;                  // vorher war's die
-/*N*/   if ( nPosTab == nNewTab )
-/*N*/       nOldPosTab = nOldTab;           // look, it's me!
-/*N*/   else if ( nPosTab < nStart || nEnd < nPosTab )
-/*N*/       nOldPosTab = nPosTab;           // wurde nicht bewegt
-/*N*/   else
-/*N*/       nOldPosTab = nPosTab - nDir;    // einen verschoben
-/*N*/
-/*N*/   BOOL bIsRel = FALSE;
-/*N*/   ScToken* t;
-/*N*/   pArr->Reset();
-/*N*/   if (bIsName)
-/*N*/       t = pArr->GetNextReference();
-/*N*/   else
-/*N*/       t = pArr->GetNextReferenceOrName();
-/*N*/   while( t )
-/*N*/   {
-/*N*/       if( t->GetOpCode() == ocName )
-/*N*/       {
-/*N*/           if (!bIsName)
-/*N*/           {
-/*N*/               ScRangeData* pName = pDoc->GetRangeName()->FindIndex(t->GetIndex());
-/*N*/               if (pName && pName->HasType(RT_SHAREDMOD))
-/*N*/                   pRangeData = pName;
-/*N*/           }
-/*N*/       }
-/*N*/       else if( t->GetType() != svIndex )  // es kann ein DB-Bereich sein !!!
-/*N*/       {
-/*N*/           SingleRefData& rRef1 = t->GetSingleRef();
-/*N*/           if ( !(bIsName && rRef1.IsTabRel()) )
-/*N*/           {   // Namen nur absolute anpassen
-/*N*/               if ( rRef1.IsTabRel() )
-/*N*/                   nTab = rRef1.nRelTab + nOldPosTab;
-/*N*/               else
-/*N*/                   nTab = rRef1.nTab;
-/*N*/               if ( nTab == nOldTab )
-/*N*/                   rRef1.nTab = nNewTab;
-/*N*/               else if ( nStart <= nTab && nTab <= nEnd )
-/*N*/                   rRef1.nTab = nTab + nDir;
-/*N*/               rRef1.nRelTab = rRef1.nTab - nPosTab;
-/*N*/           }
-/*N*/           else
-/*N*/               bIsRel = TRUE;
-/*N*/           if ( t->GetType() == svDoubleRef )
-/*N*/           {
-/*N*/               SingleRefData& rRef2 = t->GetDoubleRef().Ref2;
-/*N*/               if ( !(bIsName && rRef2.IsTabRel()) )
-/*N*/               {   // Namen nur absolute anpassen
-/*N*/                   if ( rRef2.IsTabRel() )
-/*N*/                       nTab = rRef2.nRelTab + nOldPosTab;
-/*N*/                   else
-/*N*/                       nTab = rRef2.nTab;
-/*N*/                   if ( nTab == nOldTab )
-/*N*/                       rRef2.nTab = nNewTab;
-/*N*/                   else if ( nStart <= nTab && nTab <= nEnd )
-/*N*/                       rRef2.nTab = nTab + nDir;
-/*N*/                   rRef2.nRelTab = rRef2.nTab - nPosTab;
-/*N*/               }
-/*N*/               else
-/*N*/                   bIsRel = TRUE;
-/*N*/               INT16 nTab1, nTab2;
-/*N*/               if ( rRef1.IsTabRel() )
-/*N*/                   nTab1 = rRef1.nRelTab + nPosTab;
-/*N*/               else
-/*N*/                   nTab1 = rRef1.nTab;
-/*N*/               if ( rRef2.IsTabRel() )
-/*N*/                   nTab2 = rRef2.nRelTab + nPosTab;
-/*N*/               else
-/*N*/                   nTab2 = rRef1.nTab;
-/*N*/               if ( nTab2 < nTab1 )
-/*N*/               {   // PutInOrder
-/*N*/                   rRef1.nTab = nTab2;
-/*N*/                   rRef2.nTab = nTab1;
-/*N*/                   rRef1.nRelTab = rRef1.nTab - nPosTab;
-/*N*/                   rRef2.nRelTab = rRef2.nTab - nPosTab;
-/*N*/               }
-/*N*/           }
-/*N*/           if ( bIsName && bIsRel )
-/*N*/               pRangeData = (ScRangeData*) this;   // wird in rangenam nicht dereferenziert
-/*N*/       }
-/*N*/       if (bIsName)
-/*N*/           t = pArr->GetNextReference();
-/*N*/       else
-/*N*/           t = pArr->GetNextReferenceOrName();
-/*N*/   }
-/*N*/   if ( !bIsName )
-/*N*/   {
-/*N*/       short nMaxTabMod = (short) pDoc->GetTableCount();
-/*N*/       pArr->Reset();
-/*N*/       for ( t = pArr->GetNextReferenceRPN(); t;
-/*N*/             t = pArr->GetNextReferenceRPN() )
-/*N*/       {
-/*N*/           if ( t->GetRef() == 1 )
-/*N*/           {
-/*N*/               SingleRefData& rRef1 = t->GetSingleRef();
-/*N*/               if ( rRef1.IsRelName() && rRef1.IsTabRel() )
-/*N*/               {   // RelName evtl. wrappen, wie lcl_MoveItWrap in refupdat.cxx
-/*N*/                   nTab = rRef1.nRelTab + nPosTab;
-/*N*/                   if ( nTab < 0 )
-/*N*/                       nTab += nMaxTabMod;
-/*N*/                   else if ( nTab > nMaxTab )
-/*N*/                       nTab -= nMaxTabMod;
-/*N*/                   rRef1.nRelTab = nTab - nPosTab;
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*N*/                   if ( rRef1.IsTabRel() )
-/*N*/                       nTab = rRef1.nRelTab + nOldPosTab;
-/*N*/                   else
-/*N*/                       nTab = rRef1.nTab;
-/*N*/                   if ( nTab == nOldTab )
-/*N*/                       rRef1.nTab = nNewTab;
-/*N*/                   else if ( nStart <= nTab && nTab <= nEnd )
-/*N*/                       rRef1.nTab = nTab + nDir;
-/*N*/                   rRef1.nRelTab = rRef1.nTab - nPosTab;
-/*N*/               }
-/*N*/               if( t->GetType() == svDoubleRef )
-/*N*/               {
-/*N*/                   SingleRefData& rRef2 = t->GetDoubleRef().Ref2;
-/*N*/                   if ( rRef2.IsRelName() && rRef2.IsTabRel() )
-/*N*/                   {   // RelName evtl. wrappen, wie lcl_MoveItWrap in refupdat.cxx
-/*N*/                       nTab = rRef2.nRelTab + nPosTab;
-/*N*/                       if ( nTab < 0 )
-/*N*/                           nTab += nMaxTabMod;
-/*N*/                       else if ( nTab > nMaxTab )
-/*N*/                           nTab -= nMaxTabMod;
-/*N*/                       rRef2.nRelTab = nTab - nPosTab;
-/*N*/                   }
-/*N*/                   else
-/*N*/                   {
-/*N*/                       if ( rRef2.IsTabRel() )
-/*N*/                           nTab = rRef2.nRelTab + nOldPosTab;
-/*N*/                       else
-/*N*/                           nTab = rRef2.nTab;
-/*N*/                       if ( nTab == nOldTab )
-/*N*/                           rRef2.nTab = nNewTab;
-/*N*/                       else if ( nStart <= nTab && nTab <= nEnd )
-/*N*/                           rRef2.nTab = nTab + nDir;
-/*N*/                       rRef2.nRelTab = rRef2.nTab - nPosTab;
-/*N*/                   }
-/*N*/                   INT16 nTab1, nTab2;
-/*N*/                   if ( rRef1.IsTabRel() )
-/*N*/                       nTab1 = rRef1.nRelTab + nPosTab;
-/*N*/                   else
-/*N*/                       nTab1 = rRef1.nTab;
-/*N*/                   if ( rRef2.IsTabRel() )
-/*N*/                       nTab2 = rRef2.nRelTab + nPosTab;
-/*N*/                   else
-/*N*/                       nTab2 = rRef1.nTab;
-/*N*/                   if ( nTab2 < nTab1 )
-/*N*/                   {   // PutInOrder
-/*N*/                       rRef1.nTab = nTab2;
-/*N*/                       rRef2.nTab = nTab1;
-/*N*/                       rRef1.nRelTab = rRef1.nTab - nPosTab;
-/*N*/                       rRef2.nRelTab = rRef2.nTab - nPosTab;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   return pRangeData;
-/*N*/  }
-
 
 /*N*/  ScToken* ScCompiler::CreateStringFromToken( String& rFormula, ScToken* pToken,
 /*N*/       BOOL bAllowArrAdvance )
