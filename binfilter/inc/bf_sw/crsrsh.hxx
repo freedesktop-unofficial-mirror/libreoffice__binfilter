@@ -4,9 +4,9 @@
  *
  *  $RCSfile: crsrsh.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:37:01 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:42:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -171,9 +171,6 @@ class SwCrsrShell : public ViewShell, public SwModify
     friend class SwSelPaintRects;
     friend class SwChgLinkFlag;
 
-    //Braucht den Crsr als IntrnlCrsr.
-    friend void GetTblSel( const SwCrsrShell&, SwSelBoxes& rBoxes,
-                           const SwTblSearchType );
     friend BOOL GetAutoSumSel( const SwCrsrShell&, SwCellFrms& );
 
 public:     // public, damit defaultet werden kann !!
@@ -261,13 +258,6 @@ private:
                      BOOL bIdleEnd = FALSE );
 
 
-    FASTBOOL IsAtLRMargin( BOOL, BOOL bAPI = FALSE ) const;
-     FASTBOOL SttEndDoc( BOOL bStt );
-
-#ifdef BIDI
-    short GetTextDirection( const Point* pPt = 0 ) const;
-#endif
-
 typedef FASTBOOL (SwCursor:: *FNCrsr)();
 
 
@@ -299,14 +289,10 @@ public:
     TYPEINFO();
     SwCrsrShell( SwDoc& rDoc, Window *pWin,
                 SwRootFrm * = 0, const SwViewOption *pOpt = 0 );
-    // verkleideter Copy-Constructor
-    SwCrsrShell( SwCrsrShell& rShell, Window *pWin );
     virtual ~SwCrsrShell();
 
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 
-    // neuen Cusror erzeugen und den alten anhaengen
-    SwPaM * CreateCrsr();
     // loesche den aktuellen Cursor und der folgende wird zum Aktuellen
     // TableCursor in normale Cursor verwandeln, Tablemode aufheben
 
@@ -315,9 +301,6 @@ public:
     // nur den akt. Cursor returnen
           SwShellCrsr* _GetCrsr()                       { return pCurCrsr; }
     const SwShellCrsr* _GetCrsr() const                 { return pCurCrsr; }
-
-    // uebergebenen Cursor anzeigen - fuer UNO
-    void    SetSelection(const SwPaM& rCrsr);
 
     // alle Cursor aus den ContentNodes entfernen und auf 0 setzen.
     // Wurde aus der FEShell hierher verschoben.
@@ -336,19 +319,10 @@ public:
     // Basiscursortravelling
     long GetUpDownX() const             { return nUpDownX; }
 
-    FASTBOOL SttDoc()                   { return SttEndDoc( TRUE ); }
-    FASTBOOL EndDoc()                   { return SttEndDoc( FALSE ); }
-
 
     // die Suchfunktionen
 
 
-
-    // Positionieren des Cursors
-    // returnt
-    //  CRSR_POSCHG: wenn der ob der SPoint vom Layout korrigiert wurde.
-    //  CRSR_POSOLD: wenn der Crsr nicht veraendert wurde
-    int SetCrsr( const Point &rPt, BOOL bOnlyText = FALSE );
 
     /*
      * Benachrichtung, dass der sichtbare Bereich sich geaendert
@@ -404,11 +378,7 @@ public:
      * werden!)
      */
     BOOL HasShFcs() const { return bHasFocus; }
-    void ShGetFcs( BOOL bUpdate = TRUE );
 
-    // Methoden zum Anzeigen bzw. Verstecken des sichtbaren Text-Cursors
-    void ShowCrsr();
-    void HideCrsr();
     // Methoden zum Anzeigen bzw. Verstecken der selektierten Bereiche mit
     // dem sichtbaren Cursor
     void ShowCrsrs( BOOL bCrsrVis );
@@ -424,12 +394,8 @@ public:
     //TRUE wenn der Crsr wenn der Crsr wegen Readonly gehidet ist,
     //FALSE wenn der arbeitet (trotz Readonly).
     FASTBOOL IsCrsrReadonly() const;
-    // Cursor steht in etwas geschuetztem oder in die Selektion umspannt
-    // etwas geschuetztes.
-    FASTBOOL HasReadonlySel() const;
     // darf der Cursor in ReadOnlyBereiche?
     FASTBOOL IsReadOnlyAvailable() const { return bSetCrsrInReadOnly; }
-    void SetReadOnlyAvailable( BOOL bFlag );
 
     // Methoden fuer aFlyMacroLnk
     void        SetFlyMacroLnk( const Link& rLnk ) { aFlyMacroLnk = rLnk; }
@@ -472,27 +438,6 @@ public:
      */
     FASTBOOL IsCrsrVisible() const { return VisArea().IsOver( GetCharRect() ); }
 
-    // gebe die aktuelle Seitennummer zurueck:
-    // TRUE:  in der der Cursor steht
-    // FALSE: die am oberen Rand sichtbar ist
-    void GetPageNum( USHORT &rnPhyNum, USHORT &rnVirtNum,
-                     BOOL bAtCrsrPos = TRUE, const BOOL bCalcFrm = TRUE );
-    // bestimme in welche Richtung "leere Seiten" behandelt werden!
-    // (wird benutzt im PhyPage.. )
-
-    // setze den Cursor auf die Seite "nPage" an den Anfang
-
-    // gebe alle Dokumentseiten zurueck
-    USHORT GetPageCnt();
-
-    // Gehe zur naechsten Selection
-    // gehe zur vorherigen Selection
-
-    // am CurCrsr.SPoint
-    USHORT FindBookmark( const String& rName );
-        // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
-        // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-
     // aktualisiere den Crsrs, d.H. setze ihn wieder in den Content.
     // Das sollte nur aufgerufen werden, wenn der Cursor z.B. beim
     // Loeschen von Rahmen irgendwohin gesetzt wurde. Die Position
@@ -515,13 +460,6 @@ public:
 
     CRSR_INLINE const   SwPaM* GetTblCrs() const;
      CRSR_INLINE        SwPaM* GetTblCrs();
-
-    // erfrage die akt. TabellenSelektion als Text
-    String GetBoxNms() const;
-
-    // setze Crsr in die naechsten/vorherigen Celle
-    // gehe zu dieser Box (wenn vorhanden und in Tabelle!)
-    FASTBOOL GotoTable( const String& rName );
 
     // select a table row, column or box (based on the current cursor)
 
@@ -579,10 +517,6 @@ public:
     // Abfrage vom CrsrTravelling Status
     CrsrMoveState GetMoveState() const { return eMvState; }
 
-    // Position vom akt. Cursor erfragen
-    FASTBOOL IsAtLeftMargin()   const       { return IsAtLRMargin( TRUE ); }
-    FASTBOOL IsAtRightMargin(BOOL bAPI = FALSE) const   { return IsAtLRMargin( FALSE, bAPI ); }
-
     // loesche alle erzeugten Crsr, setze den Tabellen-Crsr und den letzten
     // Cursor auf seinen TextNode (oder StartNode?).
     // Beim naechsten ::GetCrsr werden sie wieder alle erzeugt.
@@ -620,7 +554,6 @@ public:
         // Attribut selelktieren
 
     FASTBOOL CheckTblBoxCntnt( const SwPosition* pPos = 0 );
-    void SaveTblBoxCntnt( const SwPosition* pPos = 0 );
     void ClearTblBoxCntnt();
     FASTBOOL EndAllTblBoxEdit();
 
@@ -634,13 +567,6 @@ public:
     void SetAutoUpdateCells( BOOL bFlag )       { bAutoUpdateCells = bFlag; }
 
 
-
-    // is cursor or the point in/over a vertical formatted text?
-    FASTBOOL IsInVerticalText( const Point* pPt = 0 ) const;
-#ifdef BIDI
-    // is cursor or the point in/over a right to left formatted text?
-    FASTBOOL IsInRightToLeftText( const Point* pPt = 0 ) const;
-#endif
 
     // remove all invalid cursors
     void ClearUpCrsrs();
