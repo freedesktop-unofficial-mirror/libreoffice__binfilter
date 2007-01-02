@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:14:44 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:53:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1370,11 +1370,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*N*/   return FALSE;
 /*N*/ }
 
-USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefragten Zelle
-{
-    return nPos - 1;        // bei Next ist Pos hochgezaehlt worden
-}
-
 // -----------------------------------------------------------------------------------------
 
 /*N*/ ScMarkedDataIter::ScMarkedDataIter( const ScColumn* pCol, const ScMarkData* pMarkData,
@@ -1805,23 +1800,4 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/
 /*N*/   return nTotal;
 /*N*/ }
-
-/*N*/  ULONG ScColumn::GetCodeCount() const
-/*N*/  {
-/*N*/   ULONG nCodeCount = 0;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ScBaseCell* pCell = pItems[i].pCell;
-/*N*/       if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-/*N*/           nCodeCount += ((ScFormulaCell*)pCell)->GetCode()->GetCodeLen();
-/*N*/   }
-/*N*/
-/*N*/   return nCodeCount;
-/*N*/  }
-
-
-
-
-
 }
