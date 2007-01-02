@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:24:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:45:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -450,28 +450,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/   return FALSE;
 /*?*/}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*  */
-
-/*?*/SwRedlineData::SwRedlineData( SwRedlineType eT, USHORT nAut )
-/*?*/   : eType( eT ), pNext( 0 ), nAuthor( nAut ), pExtraData( 0 ), nSeqNo( 0 )
-/*?*/{
-/*?*/   aStamp.SetSec( 0 );
-/*?*/   aStamp.Set100Sec( 0 );
-/*?*/}
 
 /*?*/SwRedlineData::SwRedlineData( const SwRedlineData& rCpy, BOOL bCpyNext )
 /*?*/   : nAuthor( rCpy.nAuthor ), eType( rCpy.eType ), aStamp( rCpy.aStamp ),
@@ -496,50 +475,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/   delete pNext;
 /*?*/}
 
-    // ExtraData wird kopiert, der Pointer geht also NICHT in den Besitz
-    // des RedlineObjectes!
-/*?*/void SwRedlineData::SetExtraData( const SwRedlineExtraData* pData )
-/*?*/{
-/*?*/   delete pExtraData;
-/*?*/
-/*?*/   if( pData )
-/*?*/       pExtraData = pData->CreateNew();
-/*?*/   else
-/*?*/       pExtraData = 0;
-/*?*/}
-
 /*  */
-
-/*?*/SwRedline::SwRedline( SwRedlineType eTyp, const SwPaM& rPam )
-/*?*/   : SwPaM( *rPam.GetMark(), *rPam.GetPoint() ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( eTyp, GetDoc()->GetRedlineAuthor() ) )
-/*?*/{
-/*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
-/*?*/   bIsVisible = TRUE;
-/*?*/   if( !rPam.HasMark() )
-/*?*/       DeleteMark();
-/*?*/}
-
-/*?*/SwRedline::SwRedline( SwRedlineType eTyp, const SwPosition& rPos )
-/*?*/   : SwPaM( rPos ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( eTyp, GetDoc()->GetRedlineAuthor() ) )
-/*?*/{
-/*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
-/*?*/   bIsVisible = TRUE;
-/*?*/}
-
-/*?*/SwRedline::SwRedline( const SwRedlineData& rData, const SwPaM& rPam )
-/*?*/   : SwPaM( *rPam.GetMark(), *rPam.GetPoint() ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( rData ))
-/*?*/{
-/*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
-/*?*/   bIsVisible = TRUE;
-/*?*/   if( !rPam.HasMark() )
-/*?*/       DeleteMark();
-/*?*/}
 
 /*?*/SwRedline::SwRedline( const SwRedlineData& rData, const SwPosition& rPos )
 /*?*/   : SwPaM( rPos ),
