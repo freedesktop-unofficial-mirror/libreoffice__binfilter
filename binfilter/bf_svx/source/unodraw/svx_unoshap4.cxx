@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:28 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:36:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,11 +83,6 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 
 ///////////////////////////////////////////////////////////////////////
-
-SvxOle2Shape::SvxOle2Shape( SdrObject* pObject ) throw()
-: SvxShape( pObject, aSvxMapProvider.GetMap(SVXMAP_OLE2)  )
-{
-}
 
 SvxOle2Shape::SvxOle2Shape( SdrObject* pObject, const SfxItemPropertyMap* pPropertySet ) throw ()
 : SvxShape( pObject, pPropertySet  )
