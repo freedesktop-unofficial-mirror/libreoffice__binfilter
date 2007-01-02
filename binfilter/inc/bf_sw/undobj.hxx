@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undobj.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-11-09 10:31:29 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:48:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -397,8 +397,6 @@ public:
     // meldet sich im Format an und sichert sich die alten Attribute
     SwUndoFmtAttr( const SfxItemSet& rOldSet, SwFmt& rFmt,
                     BOOL bSaveDrawPt = TRUE );
-    SwUndoFmtAttr( const SfxPoolItem& rItem, SwFmt& rFmt,
-                    BOOL bSaveDrawPt = TRUE );
     virtual ~SwUndoFmtAttr();
     OUT_UNDOBJ( InsFmtAttr )
 
@@ -458,24 +456,6 @@ public:
     OUT_UNDOBJ( InsTable )
 };
 
-class SwUndoTxtToTbl : public SwUndo, public SwUndRng
-{
-     String sTblNm;
-     SvULongs* pDelBoxes;
-     SwTableAutoFmt* pAutoFmt;
-     SwHistory* pHistory;
-     sal_Unicode cTrenner;
-     USHORT nAdjust;
-     USHORT nInsTblFlags;
-     BOOL bSplitEnd : 1;
-
-public:
-    SwUndoTxtToTbl( const SwPaM&, sal_Unicode , USHORT, USHORT nInsert,
-                    const SwTableAutoFmt* pAFmt );
-    virtual ~SwUndoTxtToTbl();
-
-};
-
 class SwUndoTblNdsChg : public SwUndo
 {
     _SaveTable* pSaveTbl;
@@ -492,11 +472,6 @@ class SwUndoTblNdsChg : public SwUndo
     BOOL bFlag;
     BOOL bSameHeight;                   // only used for SplitRow
 public:
-    SwUndoTblNdsChg( USHORT UndoId,
-                    const SwSelBoxes& rBoxes,
-                    const SwTableNode& rTblNd,
-                    USHORT nCnt, BOOL bFlg, BOOL bSameHeight = FALSE );
-
     // fuer SetColWidth
     SwUndoTblNdsChg( USHORT UndoId, const SwSelBoxes& rBoxes,
                     const SwTableNode& rTblNd );
@@ -505,9 +480,6 @@ public:
 //STRIP001     virtual void Undo( SwUndoIter& );
 //STRIP001     virtual void Redo( SwUndoIter& );
 
-    void SaveNewBoxes( const SwTableNode& rTblNd, const SwTableSortBoxes& rOld );
-    void SaveNewBoxes( const SwTableNode& rTblNd, const SwTableSortBoxes& rOld,
-                       const SwSelBoxes& rBoxes, const SvULongs& rNodeCnts );
     void SaveSection( SwStartNode* pSttNd );
 
     void SetColWidthParam( ULONG nBoxIdx, USHORT nMode, USHORT nType,
@@ -739,9 +711,6 @@ class SwUndoInsNum : public SwUndo, private SwUndRng
     USHORT nLRSavePos;
 public:
     SwUndoInsNum( const SwPaM& rPam, const SwNumRule& rRule );
-    SwUndoInsNum( const SwNumRule& rOldRule, const SwNumRule& rNewRule );
-    SwUndoInsNum( const SwPosition& rPos, const SwNumRule& rRule,
-                            const String& rReplaceRule );
     virtual ~SwUndoInsNum();
 
     void SetSttNum( ULONG nNdIdx ) { nSttSet = nNdIdx; }
@@ -768,7 +737,6 @@ class SwUndoNumRuleStart : public SwUndo
     BOOL bSetSttValue : 1;
     BOOL bFlag : 1;
 public:
-    SwUndoNumRuleStart( const SwPosition& rPos, BOOL bDelete );
     SwUndoNumRuleStart( const SwPosition& rPos, USHORT nStt );
     OUT_UNDOBJ( NumRuleStart )
 };
