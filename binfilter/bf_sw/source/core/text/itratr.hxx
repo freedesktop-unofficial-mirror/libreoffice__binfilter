@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itratr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:04:39 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:58:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,38 +145,6 @@ public:
     inline void SetPropFont( const BYTE nNew ) { nPropFont = nNew; }
 
     inline SwAttrHandler& GetAttrHandler() { return aAttrHandler; }
-
-#if OSL_DEBUG_LEVEL > 1
-#endif
-};
-
-/*************************************************************************
- *                      class SwFontIter
- *
- * A minimal attribute iterator class. In opposite to the other iterators
- * it does not need an SwScriptInfo object.
- *************************************************************************/
-
-class SwFontIter
-{
-    SwFont aFnt;
-    SwAttrHandler& rAttrHandler;
-    const SwpHints* pHints;
-    xub_StrLen nStartIndex, nEndIndex, nCurrPos, nEndPos;
-
-public:
-    // Konstruktor, Destruktor
-    // be sure to pass a fully initialised AttrHandler
-    // (i.e., it has to have a valid pFnt member )
-    SwFontIter( const SwTxtNode& rNode, SwAttrHandler& rAH,
-                xub_StrLen nStt, xub_StrLen nEnd );
-    ~SwFontIter();
-
-    // returns the next position the font changes and changes the font
-    xub_StrLen NextFontChg() const;
-
-    // return the current cont
-    const SwFont& GetCurrFont( xub_StrLen nNewPos );
 };
 
 } //namespace binfilter

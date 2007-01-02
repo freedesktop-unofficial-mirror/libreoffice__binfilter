@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pordrop.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:05:36 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:58:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,12 +39,6 @@
 namespace binfilter {
 
 class SwFont;
-
-// DropCap-Cache, globale Variable, in txtinit.cxx initialisiert/zerstoert
-// und in txtdrop.cxx benutzt bei der Initialenberechnung
-
-class SwDropCapCache;
-extern SwDropCapCache *pDropCapCache;
 
 /*************************************************************************
  *                      class SwDropPortionPart
@@ -79,7 +73,6 @@ public:
 
 class SwDropPortion : public SwTxtPortion
 {
-    friend class SwDropCapCache;
     SwDropPortionPart* pPart; // due to script / attribute changes
     MSHORT nLines;          // Anzahl der Zeilen
     KSHORT nDropHeight;     // Hoehe
@@ -88,8 +81,6 @@ class SwDropPortion : public SwTxtPortion
     KSHORT nFix;            // Fixposition
     short nX;               // X-PaintOffset
     short nY;               // Y-Offset
-
-    sal_Bool FormatTxt( SwTxtFormatInfo &rInf );
 
     inline void Fix( const KSHORT nNew ) { nFix = nNew; }
 public:
