@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layerimport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 09:11:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:15:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -212,11 +212,6 @@ namespace xmloff
         */
         ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >
                 lookupControlId(const ::rtl::OUString& _rControlId);
-
-        /** seek to the given page
-        */
-        void seekPage(
-            const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage >& _rxDrawPage);
 
         /** announces the auto-style context to the form importer
         */
