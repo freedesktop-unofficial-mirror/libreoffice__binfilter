@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swfont.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:19:05 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:02:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -747,22 +747,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   if ( nKernx < GetFixKerning() )
 /*N*/       return GetFixKerning();
 /*N*/   return nKernx;
-/*N*/ }
-
-/*************************************************************************
- *                    SwFont::GetLeading()
- *************************************************************************/
-
-/*N*/ USHORT SwFont::GetLeading( ViewShell *pSh, const OutputDevice *pOut )
-/*N*/ {
-/*N*/     if( pSh && pSh->GetWin() )
-/*N*/       return 0;
-/*N*/   else
-/*N*/   {
-/*N*/       SwFntAccess aFntAccess( aSub[nActual].pMagic, aSub[nActual].nFntIndex,
-/*N*/                               &aSub[nActual], pSh );
-/*N*/       return aFntAccess.Get()->GetLeading();
-/*N*/   }
 /*N*/ }
 
 /*************************************************************************
