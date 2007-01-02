@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:25:07 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:43:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -258,16 +258,6 @@ public:
 
     // Setze das Attribut als neues default Attribut im Dokument.
 
-    // Erfrage das Default Attribut vom Dokument.
-    const SfxPoolItem& GetDefault( USHORT nFmtHint ) const;
-
-
-    // returns the scripttpye of the selection
-    USHORT GetScriptType( USHORT nFlags = GETSCRIPT_WEAKTOAPPLANGSCRIPT ) const;
-
-    // returns the language at current cursor position
-    USHORT GetCurLang() const;
-
     // FrameFormate
 
     // TABLE
@@ -311,26 +301,11 @@ public:
 
     // Felder
     void Insert(SwField&);
-    SwField* GetCurFld() const;
 
-
-
-
-
-
-    // Datenbankinfo
-    const SwDBData& GetDBDesc() const;
 
     //check whether DB fields point to an available data source and returns it
     BOOL IsFieldDataSourceAvailable(String& rUsedDataSource) const;
 
-
-    // fuer die Evaluierung der DBFelder (neuer DB-Manager)
-    SwNewDBMgr* GetNewDBMgr() const;
-
-
-    // Aenderungen am Dokument?
-    void ResetModified();
 
     // Dokument - Statistics
 
@@ -338,8 +313,6 @@ public:
 
     // Verzeichnismarke einfuegen loeschen
 
-    // Alle Markierungen am aktuellen SPoint ermitteln
-    USHORT  GetCurTOXMarks(SwTOXMarks& rMarks) const ;
 
     // Verzeichnis einfuegen, und bei Bedarf erneuern
     const SwTOXBase*    GetCurTOX() const;
@@ -363,44 +336,6 @@ public:
     // Numerierung Aufzaehlunglisten
     // liefert Regelwerk der aktuellen Aufzaehlung (FALSE sonst)
     const SwNumRule* GetCurNumRule() const;
-    // setzt, wenn noch keine Numerierung, sonst wird geaendert
-    // arbeitet mit alten und neuen Regeln, nur Differenzen aktualisieren
-    // Absaetze ohne Numerierung, aber mit Einzuegen
-    // Loeschen, Splitten der Aufzaehlungsliste
-    // Hoch-/Runterstufen
-    // Hoch-/Runtermoven sowohl innerhalb als auch ausserhalb von Numerierungen
-    // No-/Numerierung ueber Delete/Backspace ein/abschalten
-    // returne den Num-Level des Nodes, in dem sich der Point vom
-    // Cursor befindet. Return kann sein :
-    // - NO_NUMBERING, 0..MAXLEVEL-1, NO_NUMLEVEL .. NO_NUMLEVEL|MAXLEVEL-1
-    BYTE GetNumLevel( BOOL* pHasChilds = 0 ) const;
-    // detect highest and lowest level to check moving of outline levels
-
-    // setze und erfrage, ob an aktueller PointPos eine Numerierung mit
-    // dem StartFlag startet
-
-    // Undo
-    // UndoHistory am Dokument pflegen
-    // bei Save, SaveAs, Create wird UndoHistory zurueckgesetzt ???
-    void DoUndo( BOOL bOn = TRUE );
-
-    // macht rueckgaengig:
-    // setzt Undoklammerung auf, liefert nUndoId der Klammerung
-    USHORT StartUndo( USHORT nUndoId = 0 );
-    // schliesst Klammerung der nUndoId, nicht vom UI benutzt
-    USHORT EndUndo( USHORT nUndoId = 0 );
-    // liefert die Id der letzten undofaehigen Aktion zurueck
-    // fuellt ggf. VARARR mit User-UndoIds
-    USHORT GetUndoIds( String* pUndoStr = 0, SwUndoIds *pUndoIds = 0) const;
-
-        // abfragen/setzen der Anzahl von wiederherstellbaren Undo-Actions
-    static USHORT GetUndoActionCount();
-    static void SetUndoActionCount( USHORT nNew );
-
-    // Redo
-    // liefert die Id der letzten Redofaehigen Aktion zurueck
-    // fuellt ggf. VARARR mit RedoIds
-    USHORT GetRedoIds( String* pRedoStr = 0, SwUndoIds *pRedoIds = 0) const;
 
     // Repeat
     // liefert die Id der letzten Repeatfaehigen Aktion zurueck
@@ -420,99 +355,9 @@ public:
     //Damit Start-/EndActions aufgesetzt werden koennen.
     void CalcLayout();
 
-    // Inhaltsform bestimmen, holen, liefert Type am CurCrsr->SPoint
-    USHORT GetCntType() const;
-
     /* Anwenden der ViewOptions mit Start-/EndAction */
     inline void ApplyViewOptions( const SwViewOption &rOpt );
 
-    // Text innerhalb der Selektion erfragen
-    // Returnwert liefert FALSE, wenn der selektierte Bereich
-    // zu gross ist, um in den Stringpuffer kopiert zu werden
-    // oder andere Fehler auftreten
-
-    /*
-     * liefert eine Graphic, wenn CurCrsr->Point() auf einen
-     * SwGrfNode zeigt (und Mark nicht gesetzt ist oder auf die
-     * gleiche Graphic zeigt), sonst gibt's was auf die Finger
-     */
-
-
-    // If there's an automatic, not manipulated polygon at the selected
-    // notxtnode, it has to be deleted, e.g. cause the object has changed.
-
-    /*
-     * liefert die Groesse einer Graphic in Twips, wenn der Cursor
-     * auf einer Graphic steht; BOOL liefert FALSE, wenn s.o.
-     */
-    /*
-     * liefert den Namen und den Filter einer Graphic, wenn der Cursor
-     * auf einer Graphic steht, sonst gibt's was auf die Finger!
-     * Ist ein String-Ptr != 0 dann returne den entsp. Namen
-     */
-    /*
-     * erneutes Einlesen, falls Graphic nicht Ok ist. Die
-     * aktuelle wird durch die neue ersetzt.
-     */
-
-    // alternativen Text einer Grafik/OLe-Objectes abfragen/setzen
-
-    //eindeutige Identifikation des Objektes (fuer ImageMapDlg)
-
-    //liefert ein ClientObject, wenn CurCrsr->Point() auf einen
-    //SwOLENode zeigt (und Mark nicht gesetzt ist oder auf das
-    //gleiche ClientObject zeigt), sonst gibt's was auf die
-    //Finger.
-    //Gibt es ein OleObject mit diesem Namen (SwFmt)?
-
-    //Liefert den Pointer auf die Daten des Chart, indem sich der Crsr
-    //befindet.
-    // returne den ChartNamen - vom Crsr oder vom uebergebenen OLE-Object
-    // reurnt aEmptyStr wenn nicht gefunden wurde
-    //Sucht die Tabelle und liefert ein mit den Daten der Tabelle gefuelltes
-    //pData. Wenn pData 0 ist wird eines angelegt.
-    //Updaten der Inhalte aller Charts zu der Tabelle mit dem angegeben Namen
-
-    //  aktuelles Wort erfragen
-
-    // Textbaustein aus dem Textbausteindokument in
-    // das aktuelle Dokument, Vorlagen nur wenn es nicht schon gibt
-    // aktuelle Selektion zum Textbaustein machen und ins
-    // Textbausteindokument einfuegen, einschliesslich Vorlagen
-    // speicher den gesamten Inhalt des Docs als Textbaustein
-
-    // Linguistik
-    // Selektionen sichern
-    // Selektionen wiederherstellen
-    // zu trennendes Wort ignorieren
-
-    // zum Einfuegen des SoftHyphens, Position ist der Offset
-    // innerhalb des getrennten Wortes.
-
-    //Tabelle
-    void UpdateTable();
-
-    SwFrmFmt *GetTableFmt();
-
-
-
-    // Change Modus erfragen/setzen
-    USHORT GetTblChgMode() const;
-
-    // Zellenbreiten ueber Min/Max Berechnung an Tabellenbreite anpassen
-    // Tabelle an der Cursor Position aufsplitten
-    // Tabellen verbinden
-    // CanMerge kann feststellen, ob Prev oder Next moeglich ist. Wird
-    // der Pointer pChkNxtPrv uebergeben, wird festgestellt in welche
-    // Richtung es moeglich ist.
-        // setze das InsertDB als Tabelle Undo auf:
-
-    /*
-        functions used for spell checking and text conversion
-    */
-
-    // Selektionen sichern
-    // Selektionen wiederherstellen
 
     // Is spelling active somewhere else?
     // Is text conversion active somewhere else?
@@ -533,44 +378,6 @@ public:
     static SvxSwAutoFmtFlags* GetAutoFmtFlags();
     static void SetAutoFmtFlags(SvxSwAutoFmtFlags *);
 
-    // errechnet die Selektion
-
-
-    //SS Fuer holen/ersetzen DropCap-Inhalt
-
-    // Abfrage von Oultine Informationen:
-
-    // mit exp. Felder und KapitelNummern
-    // die Nummer
-
-    // may an outline be moved or copied?
-    // Check whether it's in text body, not in table, and not read-only (move)
-
-
-    // erfrage und setze den Fussnoten-Text/Nummer. Set.. auf akt. SSelection!
-//z.Zt nicht benoetigt  USHORT GetFtnCnt( BOOL bEndNotes = FALSE ) const;
-        // gebe Liste aller Fussnoten und deren Anfangstexte
-
-    // SS fuer Bereiche
-    const SwSection* GetCurrSection() const;
-    // liefert wie GetCurrSection() den aktuellen Bereich, allerdings geht diese Funktion
-    // ueber die Frames und erwischt dabei auch den Bereich, wenn der Cursor in einer
-    // Fussnote steht, deren Referenz in einem spaltigen Bereich steckt.
-    // Wenn man bOutOfTab setzt, wird der Bereich gesucht,
-    // der die Tabelle umfasst, nicht etwa ein innerer.
-
-    BOOL IsAnySectionInDoc( BOOL bChkReadOnly = FALSE,
-                            BOOL bChkHidden = FALSE,
-                            BOOL BChkTOX = FALSE ) const;
-        // Passwort fuer geschuetzte Bereiche erfragen/setzen
-
-
-    //Attribute setzen
-
-    // search inside the cursor selection for full selected sections.
-    // if any part of section in the selection return 0.
-    // if more than one in the selection return the count
-
     // special insert: Insert a new text node just before or after a section or
     // table, if the cursor is positioned at the start/end of said
     // section/table. The purpose of the method is to allow users to inert text
@@ -583,54 +390,14 @@ public:
 
     inline const SvxLinkManager& GetLinkManager() const;
 
-    // linken Rand ueber Objectleiste einstellen (aenhlich dem Stufen von
-    // Numerierungen), optional kann man "um" den Offset stufen oder "auf"
-    // die Position gestuft werden (bModulus = TRUE)
-    BOOL IsMoveLeftMargin( BOOL bRight = TRUE, BOOL bModulus = TRUE ) const;
-
     // Numberformatter vom Doc erfragen
     const SvNumberFormatter* GetNumberFormatter() const
     {   return ((SwEditShell*)this)->GetNumberFormatter();  }
 
-    // Extrakt fuellen
-
-    // Schnitstellen fuers GlobalDokument
-    // erzeuge Anhand der vorgebenen Collection Teildokumente
-    // falls keine angegeben ist, nehme die Kapitelvorlage der 1. Ebene
-
-    // alles fuers Redlining
-    BOOL IsRedlineOn() const;
-    // suche das Redline zu diesem Data und returne die Pos im Array
-    // USHRT_MAX wird returnt, falls nicht vorhanden
-
-    // Kommentar am Redline an der Position setzen
-
-    // Redline Anzeigeattribute wurden geaendert, Views updaten
-
-    //  vergleiche zwei Dokument mit einander
-    // merge zweier Dokumente
-
-    // Dokumentglobale Fussnoteneigenschaften
-
-    //Einstellungen fuer Zeilennummierung
-
-    // Etiketten: Bereiche synchronisieren
-    BOOL IsLabelDoc() const;
-
-    // Schnittstelle fuer die TextInputDaten - ( fuer die Texteingabe
-    // von japanischen/chinesischen Zeichen)
-//  SwExtTextInput* GetExtTextInput() const;
-
-    // Schnistelle fuer den Zugriff auf die AutoComplete-Liste
-
-    // returns a scaling factor of selected text. Used for the rotated
-    // character attribut dialog.
 
     // ctor/dtor
     SwEditShell( SwDoc&, Window*,
                  SwRootFrm* = 0, const SwViewOption *pOpt = 0 );
-    // verkleideter Copy-Constructor
-     SwEditShell( SwEditShell&, Window* );
     virtual ~SwEditShell();
 
 private:
