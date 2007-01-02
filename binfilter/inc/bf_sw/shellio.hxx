@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellio.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:11:55 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:45:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,7 +110,6 @@ public:
     }
     // for the automatic conversion (mail/news/...)
     void ReadUserData( const String& );
-    void WriteUserData( String& );
 
     SwAsciiOptions() { Reset(); }
 };
@@ -182,7 +181,6 @@ public:
      * JP 25.04.95: oder falls es mitgegeben wird, in dieses.
      *              Sonderfall fuer Load mit Sw3Reader
      */
-    SwReader( SvStream&, const String& rFilename, SwDoc *pDoc = 0 );
     SwReader( SvStorage&, const String& rFilename, SwDoc *pDoc = 0 );
     SwReader( SfxMedium&, const String& rFilename, SwDoc *pDoc = 0 );
     /*
@@ -341,7 +339,6 @@ class SwTextBlocks
 
 public:
     SwTextBlocks( const String& );
-    SwTextBlocks( SvStorage& );
     ~SwTextBlocks();
 
     void Flush(){}
