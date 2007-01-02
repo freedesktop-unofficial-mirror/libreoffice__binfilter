@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtsecte.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:22:02 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:21:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,19 +96,6 @@ using ::com::sun::star::beans::PropertyState;
 using ::com::sun::star::container::XIndexReplace;
 using ::com::sun::star::container::XNamed;
 using ::com::sun::star::lang::XServiceInfo;
-
-Reference<XText> lcl_findXText(const Reference<XTextSection>& rSect)
-{
-    Reference<XText> xText;
-
-    Reference<XTextContent> xTextContent(rSect, UNO_QUERY);
-    if (xTextContent.is())
-    {
-        xText = xTextContent->getAnchor()->getText();
-    }
-
-    return xText;
-}
 
 void XMLTextParagraphExport::exportListAndSectionChange(
     Reference<XTextSection> & rPrevSection,
