@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpagv.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:10:35 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:35:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -171,8 +171,6 @@ private:
     // starts or stops listening for any relevant events on the control or it's model
     void    switchControlListening( bool _bStart );
 
-    // starts or stops listening for interesting properties at the model
-    void    switchPropertyListening( bool _bStart, bool _bListenForAll );
 };
 
 // class for temporarily (during painting) locking some functionality of the SdrUnoControlRec
@@ -381,16 +379,6 @@ public:
     SdrView& GetView()                                          { return rView; }
     const SdrView& GetView() const                              { return rView; }
     const SdrPageViewWinList& GetWinList() const                { return *pWinList; }
-
-    /** looks up the control container belonging to given output device
-
-        @return
-            If the given output device belongs to one of the SdrPageViewWinRecs associated with this
-            SdrPageView instance, the XControlContainer for this output device is returned, <NULL/>
-            otherwise.
-    */
-    ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer >
-                                GetControlContainer( const OutputDevice* _pDevice );
 
     FASTBOOL IsVisible() const                                  { return bVisible; }
     // Invalidiert den gesamten Bereich der Page
