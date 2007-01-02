@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:23:57 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:07:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2283,73 +2283,6 @@ enum ChartStyleV0
 /*N*/   CHART_TRACE( "ChartModel::LoadAttributes END" );
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Titel aendern;
-|* Liefert TRUE, wenn ein Titel geaendert wurde.
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|* Titel-Attribute setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Titel-Attribute ermitteln
-|*
-\************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|* Titel-Attribute ermitteln
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Titel-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Titel-Attribute aendern;
-|* Liefert bei geaenderten Attributen TRUE.
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Ermittelt, ob Legende angezeigt wird
-|*
-\************************************************************************/
-
-/*N*/ BOOL ChartModel::GetShowLegend() const
-/*N*/ {
-/*N*/   SvxChartLegendPos ePos = ((const SvxChartLegendPosItem&) pLegendAttr->Get(SCHATTR_LEGEND_POS)).GetValue();
-/*N*/
-/*N*/   switch (ePos)
-/*N*/   {
-/*N*/       case CHLEGEND_LEFT :
-/*N*/       case CHLEGEND_TOP :
-/*N*/       case CHLEGEND_RIGHT :
-/*N*/       case CHLEGEND_BOTTOM :
-/*N*/           return TRUE;
-/*N*/
-/*N*/       default :
-/*N*/           return FALSE;
-/*N*/   }
-/*N*/ }
 /*************************************************************************
 |*
 |* Zeigt Legende an bzw. loescht sie.
