@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:40:09 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:54:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -371,11 +371,9 @@ public:
     XMLFontStylesContext *GetFontDecls();
     SvXMLStylesContext *GetStyles();
     SvXMLStylesContext *GetAutoStyles();
-    SvXMLStylesContext *GetMasterStyles();
     const XMLFontStylesContext *GetFontDecls() const;
     const SvXMLStylesContext *GetStyles() const;
     const SvXMLStylesContext *GetAutoStyles() const;
-    const SvXMLStylesContext *GetMasterStyles() const;
 
     sal_uInt16  getImportFlags() const { return mnImportFlags; }
 #ifndef SVX_LIGHT
@@ -407,9 +405,6 @@ public:
     void SetError(
         sal_Int32 nId,
         const ::com::sun::star::uno::Sequence< ::rtl::OUString> & rMsgParams);
-
-    /** return list of errors */
-    XMLErrors* GetErrors();
 
     /** return current error flags */
     sal_uInt16 GetErrorFlags()  { return mnErrorFlags; }

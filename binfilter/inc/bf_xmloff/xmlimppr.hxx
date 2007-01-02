@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimppr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:40:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:54:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,14 +100,6 @@ public:
     // because its PropertyMapper will be replaced.
     void ChainImportMapper(
         const UniReference< SvXMLImportPropertyMapper>& rMapper );
-
-    /** fills the given itemset with the attributes in the given list */
-    void importXML(
-            ::std::vector< XMLPropertyState >& rProperties,
-            ::com::sun::star::uno::Reference<
-                    ::com::sun::star::xml::sax::XAttributeList > xAttrList,
-            const SvXMLUnitConverter& rUnitConverter,
-            const SvXMLNamespaceMap& rNamespaceMap ) const;
 
     /** like above, except that the mart is only serached within the range
       *  [nStartIdx, nEndIdx[
