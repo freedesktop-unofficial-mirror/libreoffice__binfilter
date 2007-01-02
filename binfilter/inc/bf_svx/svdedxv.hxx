@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdedxv.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:04:18 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:34:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -166,9 +166,6 @@ public:
     BOOL BegTextEdit(SdrObject* pObj, SdrPageView* pPV=NULL, Window* pWin=NULL,
         SdrOutliner* pGivenOutliner=NULL, OutlinerView* pGivenOutlinerView=NULL,
         BOOL bDontDeleteOutliner=FALSE, BOOL bOnlyOneView=FALSE);
-    BOOL BegTextEdit(SdrObject* pObj, SdrPageView* pPV=NULL, Window* pWin=NULL, BOOL bIsNewObj=FALSE,
-        SdrOutliner* pGivenOutliner=NULL, OutlinerView* pGivenOutlinerView=NULL,
-        BOOL bDontDeleteOutliner=FALSE, BOOL bOnlyOneView=FALSE);
     // bDontDeleteReally ist ein Spezialparameter fuer den Writer.
     // Ist dieses Flag gesetzt, dann wird ein evtl. leeres Textobjekt
     // nicht geloescht. Stattdessen gibt es dann einen Returncode
@@ -211,13 +208,6 @@ public:
     SdrOutliner* GetTextEditOutliner() { return pTextEditOutliner; }
     const OutlinerView* GetTextEditOutlinerView() const { return pTextEditOutlinerView; }
     OutlinerView* GetTextEditOutlinerView() { return pTextEditOutlinerView; }
-
-
-    // #97766# make virtual to change implementation e.g. for SdOutlineView
-
-    /* new interface src537 */
-
-    BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 
     // Intern: Beim Splitteraufziehen neue OutlinerView...
     virtual void DelWin(OutputDevice* pWin1);
