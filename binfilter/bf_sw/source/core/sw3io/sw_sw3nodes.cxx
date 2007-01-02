@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:59:20 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:55:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1301,22 +1301,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/
 /*N*/   rPos++;
 /*N*/ }
-
-// Einlesen des puren Textes eines TextNodes. Der Text wird an den vorhandenen
-// Text im String angefuegt.
-
-void Sw3IoImp::InTxtNodeText( String& rText )
-{
-    OpenRec( SWG_TEXTNODE );
-    OpenFlagRec();
-    CloseFlagRec();
-    String aText;
-    InString( *pStrm, aText );
-    CloseRec( SWG_TEXTNODE );
-    if( rText.Len() )
-        rText += ' ';
-    rText += aText;
-}
 
 // Zaehlen der Worte eines Nodes
 //!! Wird auch vom SW2-Reader benutzt!!
