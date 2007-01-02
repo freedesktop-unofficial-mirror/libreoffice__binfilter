@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdtrans.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:47:06 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:33:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,14 +115,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*?*/ void ResizePoly(PolyPolygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact)
-/*?*/ {
-/*?*/   USHORT nAnz=rPoly.Count();
-/*?*/   for (USHORT i=0; i<nAnz; i++) {
-/*?*/       ResizePoly(rPoly[i],rRef,xFact,yFact);
-/*?*/   }
-/*?*/ }
-
 /*N*/ void ResizeXPoly(XPolyPolygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.Count();
@@ -148,14 +140,6 @@ namespace binfilter {
 /*N*/       RotatePoint(rPoly[i],rRef,sn,cs);
 /*N*/   }
 /*N*/ }
-
-/*?*/ void RotatePoly(PolyPolygon& rPoly, const Point& rRef, double sn, double cs)
-/*?*/ {
-/*?*/   USHORT nAnz=rPoly.Count();
-/*?*/   for (USHORT i=0; i<nAnz; i++) {
-/*?*/       RotatePoly(rPoly[i],rRef,sn,cs);
-/*?*/   }
-/*?*/ }
 
 /*N*/ void RotateXPoly(XPolyPolygon& rPoly, const Point& rRef, double sn, double cs)
 /*N*/ {
@@ -190,14 +174,6 @@ namespace binfilter {
 /*N*/       ShearPoint(rPoly[i],rRef,tn,bVShear);
 /*N*/   }
 /*N*/ }
-
-/*?*/ void ShearPoly(PolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
-/*?*/ {
-/*?*/   USHORT nAnz=rPoly.Count();
-/*?*/   for (USHORT i=0; i<nAnz; i++) {
-/*?*/       ShearPoly(rPoly[i],rRef,tn,bVShear);
-/*?*/   }
-/*?*/ }
 
 /*N*/ void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
 /*N*/ {
@@ -261,16 +237,6 @@ namespace binfilter {
 /*N*/   while (a>=36000) a-=36000;
 /*N*/   return a;
 /*N*/ }
-
-/*?*/ USHORT GetAngleSector(long nWink)
-/*?*/ {
-/*?*/   while (nWink<0) nWink+=36000;
-/*?*/   while (nWink>=36000) nWink-=36000;
-/*?*/   if (nWink< 9000) return 0;
-/*?*/   if (nWink<18000) return 1;
-/*?*/   if (nWink<27000) return 2;
-/*?*/   return 3;
-/*?*/ }
 
 /*N*/ long GetLen(const Point& rPnt)
 /*N*/ {
@@ -374,37 +340,6 @@ namespace binfilter {
 /*N*/   aRU.Y()+=nHgt;
 /*N*/   rRect=Rectangle(aPt0,aRU);
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*?*/ void OrthoDistance8(const Point& rPt0, Point& rPt, FASTBOOL bBigOrtho)
-/*?*/ {
-/*?*/   long dx=rPt.X()-rPt0.X();
-/*?*/   long dy=rPt.Y()-rPt0.Y();
-/*?*/   long dxa=Abs(dx);
-/*?*/   long dya=Abs(dy);
-/*?*/   if (dx==0 || dy==0 || dxa==dya) return;
-/*?*/   if (dxa>=dya*2) { rPt.Y()=rPt0.Y(); return; }
-/*?*/   if (dya>=dxa*2) { rPt.X()=rPt0.X(); return; }
-/*?*/   if ((dxa<dya) != bBigOrtho) {
-/*?*/       rPt.Y()=rPt0.Y()+(dxa* (dy>=0 ? 1 : -1) );
-/*?*/   } else {
-/*?*/       rPt.X()=rPt0.X()+(dya* (dx>=0 ? 1 : -1) );
-/*?*/   }
-/*?*/ }
-
-/*?*/ void OrthoDistance4(const Point& rPt0, Point& rPt, FASTBOOL bBigOrtho)
-/*?*/ {
-/*?*/   long dx=rPt.X()-rPt0.X();
-/*?*/   long dy=rPt.Y()-rPt0.Y();
-/*?*/   long dxa=Abs(dx);
-/*?*/   long dya=Abs(dy);
-/*?*/   if ((dxa<dya) != bBigOrtho) {
-/*?*/       rPt.Y()=rPt0.Y()+(dxa* (dy>=0 ? 1 : -1) );
-/*?*/   } else {
-/*?*/       rPt.X()=rPt0.X()+(dya* (dx>=0 ? 1 : -1) );
-/*?*/   }
-/*?*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
