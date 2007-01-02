@@ -4,9 +4,9 @@
  *
  *  $RCSfile: brshitem.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:31:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -109,7 +109,6 @@ public:
     SvxBrushItem( const String& rLink, const String& rFilter,
                   SvxGraphicPosition ePos, USHORT nWhich = ITEMID_BRUSH );
     SvxBrushItem( const SvxBrushItem& );
-    SvxBrushItem( const CntWallpaperItem&, USHORT nWhich );
 
     ~SvxBrushItem();
 
