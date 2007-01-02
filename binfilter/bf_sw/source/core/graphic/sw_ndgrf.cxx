@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:07:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:51:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -985,29 +985,5 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*M*/
 /*M*/   return (long)pRet;
 /*M*/ }
-
-
-// alle QuickDraw-Bitmaps eines speziellen Docs loeschen
-
-// returns the with our graphic attributes filled Graphic-Attr-Structure
-
-/*N*/ BOOL SwGrfNode::IsTransparent() const
-/*N*/ {
-/*N*/   BOOL bRet = aGrfObj.IsTransparent();
-/*N*/   if( !bRet ) // ask the attribut
-/*N*/       bRet = 0 != GetSwAttrSet().GetTransparencyGrf().GetValue();
-/*N*/
-/*N*/     /// OD 17.09.2002 #102099# - if return value is still FALSE and
-/*N*/     ///     graphic is swapped out, assume that graphic is transparent.
-/*N*/     ///     Thus, for safety reasons, paint errors are avoided, because the
-/*N*/     ///     background is painted not only by the graphic node.
-/*N*/     if ( !bRet && aGrfObj.IsSwappedOut() )
-/*N*/     {
-/*N*/         bRet = true;
-/*N*/     }
-/*N*/
-/*N*/   return bRet;
-/*N*/ }
-
 
 }
