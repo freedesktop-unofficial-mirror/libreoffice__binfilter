@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdocapt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:41:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:32:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -179,21 +179,6 @@ namespace binfilter {
 /*N*/   mbSpecialTextBoxShadow(FALSE)
 /*N*/ {
 /*N*/ }
-
-/*?*/ SdrCaptionObj::SdrCaptionObj(const Rectangle& rRect):
-/*?*/   SdrRectObj(OBJ_TEXT,rRect),
-/*?*/   aTailPoly(3),  // Default Groesse: 3 Punkte = 2 Linien
-/*?*/   mbSpecialTextBoxShadow(FALSE)
-/*?*/ {
-/*?*/ }
-
-/*?*/ SdrCaptionObj::SdrCaptionObj(const Rectangle& rRect, const Point& rTail):
-/*?*/   SdrRectObj(OBJ_TEXT,rRect),
-/*?*/   aTailPoly(3),  // Default Groesse: 3 Punkte = 2 Linien
-/*?*/   mbSpecialTextBoxShadow(FALSE)
-/*?*/ {
-/*?*/   aTailPoly[0]=rTail;
-/*?*/ }
 
 /*N*/ SdrCaptionObj::~SdrCaptionObj()
 /*N*/ {
