@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:19:26 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:27:14 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -77,9 +77,7 @@ SLOFILES=	\
         $(SLO)$/svx_algitem.obj \
         $(SLO)$/svx_itemtype.obj	\
         $(SLO)$/svx_rotmodit.obj \
-        $(SLO)$/svx_numinf.obj	\
         $(SLO)$/svx_svxerr.obj	\
-        $(SLO)$/svx_numfmtsh.obj	\
         $(SLO)$/svx_zoomitem.obj \
         $(SLO)$/svx_chrtitem.obj	\
         $(SLO)$/svx_bulitem.obj \
