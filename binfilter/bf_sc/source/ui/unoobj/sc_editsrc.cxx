@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editsrc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:02:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:05:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -355,16 +355,6 @@ void ScAccessibilityEditSource::UpdateData()
 SfxBroadcaster& ScAccessibilityEditSource::GetBroadcaster() const
 {
     return mpAccessibleTextData->GetBroadcaster();
-}
-
-void ScAccessibilityEditSource::SetDoUpdateData(sal_Bool bValue)
-{
-    mpAccessibleTextData->SetDoUpdate(bValue);
-}
-
-sal_Bool ScAccessibilityEditSource::IsDirty() const
-{
-    return mpAccessibleTextData->IsDirty();
 }
 
 }
