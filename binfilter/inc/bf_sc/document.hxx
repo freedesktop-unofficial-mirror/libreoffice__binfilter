@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:33:52 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:26:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -317,7 +317,6 @@ struct ScSymbolStringCellEntry
 
 class ScDocument
 {
-friend class ScDocumentIterator;
 friend class ScValueIterator;
 friend class ScQueryValueIterator;
 friend class ScCellIterator;
@@ -474,7 +473,6 @@ private:
 public:
     long            GetCellCount() const;       // alle Zellen
     long            GetWeightedCount() const;   // Formeln und Edit staerker gewichtet
-    ULONG           GetCodeCount() const;       // RPN-Code in Formeln
     DECL_LINK( GetUserDefinedColor, USHORT * );
                                                                 // Numberformatter
 
@@ -502,7 +500,6 @@ public:
     void                    SetPrintOptions();
 
     ScExtDocOptions*        GetExtDocOptions()  { return pExtDocOptions; }
-    void                    SetExtDocOptions( ScExtDocOptions* pNewOptions );
 
     void                    GetLanguage( LanguageType& rLatin, LanguageType& rCjk, LanguageType& rCtl ) const;
     void                    SetLanguage( LanguageType eLatin, LanguageType eCjk, LanguageType eCtl );
@@ -536,9 +533,6 @@ public:
 
 
 
-    void            UpdateChartArea( const String& rChartName, const ScRange& rNewArea,
-                                        BOOL bColHeaders, BOOL bRowHeaders, BOOL bAdd,
-                                        Window* pWindow );
     void            UpdateChartArea( const String& rChartName,
                                     const ScRangeListRef& rNewList,
                                     BOOL bColHeaders, BOOL bRowHeaders, BOOL bAdd,
@@ -570,9 +564,6 @@ public:
     BOOL            IsBlockEditable( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
                                         USHORT nEndCol, USHORT nEndRow,
                                         BOOL* pOnlyNotBecauseOfMatrix = NULL ) const;
-    BOOL            IsSelectedBlockEditable( USHORT nStartCol, USHORT nStartRow,
-                                            USHORT nEndCol, USHORT nEndRow,
-                                            const ScMarkData& rMark ) const;
     BOOL            IsSelectionEditable( const ScMarkData& rMark,
                                         BOOL* pOnlyNotBecauseOfMatrix = NULL ) const;
 
@@ -672,8 +663,6 @@ public:
 
 
     void            PutCell( const ScAddress&, ScBaseCell* pCell, BOOL bForceTab = FALSE );
-    void            PutCell( const ScAddress&, ScBaseCell* pCell,
-                            ULONG nFormatIndex, BOOL bForceTab = FALSE);
     void            PutCell( USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell* pCell,
                             BOOL bForceTab = FALSE );
     void            PutCell(USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell* pCell,
@@ -766,7 +755,6 @@ public:
                     // if CalcFormulaTree() is currently running
     BOOL            IsCalculatingFormulaTree() { return bCalculatingFormulaTree; }
 
-     void           GetErrCode( USHORT nCol, USHORT nRow, USHORT nTab, USHORT& rErrCode );
      USHORT         GetErrCode( const ScAddress& ) const;
 
     void            GetDataArea( USHORT nTab, USHORT& rStartCol, USHORT& rStartRow,
@@ -823,7 +811,6 @@ public:
     BOOL            IsClipboard() const                         { return bIsClip; }
     BOOL            IsUndoEnabled() const                       { return !bImportingXML; }
     void            ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks );
-    void            ResetClip( ScDocument* pSourceDoc, USHORT nTab );
 
 
 
@@ -1033,7 +1020,6 @@ public:
                                         BOOL bShrink );
 
     void            ShowCol(USHORT nCol, USHORT nTab, BOOL bShow);
-    void            ShowRow(USHORT nRow, USHORT nTab, BOOL bShow);
     void            ShowRows(USHORT nRow1, USHORT nRow2, USHORT nTab, BOOL bShow);
     void            SetRowFlags( USHORT nRow, USHORT nTab, BYTE nNewFlags );
 
@@ -1078,7 +1064,6 @@ public:
     Size            GetPageSize( USHORT nTab ) const;
     void            SetPageSize( USHORT nTab, const Size& rSize );
     void            SetRepeatArea( USHORT nTab, USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nEndRow );
-    void            UpdatePageBreaks();
     void            UpdatePageBreaks( USHORT nTab, const ScRange* pUserArea = NULL );
     void            RemoveManualBreaks( USHORT nTab );
 
@@ -1141,8 +1126,6 @@ public:
 
     BOOL            HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                                     USHORT nTab );
-    BOOL            HasRowHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-                                    USHORT nTab );
 
     SfxPrinter*     GetPrinter();
     void            SetPrinter( SfxPrinter* pNewPrinter );
@@ -1155,11 +1138,6 @@ public:
     void            InvalidateTextWidth( const ScAddress* pAdrFrom = NULL,
                                          const ScAddress* pAdrTo   = NULL,
                                          BOOL bBroadcast = FALSE );
-
-    BOOL            IdleCalcTextWidth();
-    BOOL            IdleCheckLinks();
-
-    BOOL            ContinueOnlineSpelling();   // TRUE = etwas gefunden
 
     BOOL            IsIdleDisabled() const      { return bIdleDisabled; }
     void            DisableIdle(BOOL bDo)       { bIdleDisabled = bDo; }
