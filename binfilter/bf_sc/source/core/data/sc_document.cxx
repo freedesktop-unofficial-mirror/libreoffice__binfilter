@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:17:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 16:55:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1626,15 +1626,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ }
 
 
-/*N*/ void ScDocument::GetErrCode( USHORT nCol, USHORT nRow, USHORT nTab, USHORT& rErrCode )
-/*N*/ {
-/*N*/   if ( VALIDTAB(nTab) && pTab[nTab] )
-/*N*/       rErrCode = pTab[nTab]->GetErrCode( nCol, nRow );
-/*N*/   else
-/*N*/       rErrCode = 0;
-/*N*/ }
-
-
 /*N*/ USHORT ScDocument::GetErrCode( const ScAddress& rPos ) const
 /*N*/ {
 /*N*/   USHORT nTab = rPos.Tab();
@@ -1772,13 +1763,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->ShowCol( nCol, bShow );
-/*N*/ }
-
-
-/*N*/ void ScDocument::ShowRow(USHORT nRow, USHORT nTab, BOOL bShow)
-/*N*/ {
-/*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
-/*N*/       pTab[nTab]->ShowRow( nRow, bShow );
 /*N*/ }
 
 
@@ -2350,25 +2334,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   if ( pOnlyNotBecauseOfMatrix )
 /*N*/       *pOnlyNotBecauseOfMatrix = FALSE;
 /*N*/   return FALSE;
-/*N*/ }
-
-
-/*N*/ BOOL ScDocument::IsSelectedBlockEditable( USHORT nStartCol, USHORT nStartRow,
-/*N*/                                           USHORT nEndCol, USHORT nEndRow,
-/*N*/                                           const ScMarkData& rMark ) const
-/*N*/ {
-/*N*/   // import into read-only document is possible - must be extended if other filters use api
-/*N*/   if ( pShell && pShell->IsReadOnly() && !bImportingXML )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   BOOL bOk = TRUE;
-/*N*/   for (USHORT i=0; i<=MAXTAB && bOk; i++)
-/*N*/       if (pTab[i])
-/*N*/           if (rMark.GetTableSelect(i))
-/*N*/               if (!pTab[i]->IsBlockEditable( nStartCol, nStartRow, nEndCol, nEndRow ))
-/*N*/                   bOk = FALSE;
-/*N*/
-/*N*/   return bOk;
 /*N*/ }
 
 
@@ -3002,18 +2967,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/ }
 
 
-/*N*/  ULONG ScDocument::GetCodeCount() const
-/*N*/  {
-/*N*/   ULONG nCodeCount = 0;
-/*N*/
-/*N*/   for ( USHORT nTab=0; nTab<=MAXTAB; nTab++ )
-/*N*/       if ( pTab[nTab] )
-/*N*/           nCodeCount += pTab[nTab]->GetCodeCount();
-/*N*/
-/*N*/   return nCodeCount;
-/*N*/  }
-
-
 /*N*/ long ScDocument::GetWeightedCount() const
 /*N*/ {
 /*N*/   long nCellCount = 0L;
@@ -3065,15 +3018,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->SetRepeatArea( nStartCol, nEndCol, nStartRow, nEndRow );
 /*N*/ }
-
-
-/*N*/ void ScDocument::UpdatePageBreaks()
-/*N*/ {
-/*N*/   for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/       if (pTab[i])
-/*N*/           pTab[i]->UpdatePageBreaks( NULL );
-/*N*/ }
-
 
 /*N*/ void ScDocument::UpdatePageBreaks( USHORT nTab, const ScRange* pUserArea )
 /*N*/ {
