@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotxat.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:43:32 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:32:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -540,62 +540,4 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ void SdrTextObj::NbcResizeTextAttributes(const Fraction& xFact, const Fraction& yFact)
-/*N*/ {
-/*N*/   if (pOutlinerParaObject!=NULL && xFact.IsValid() && yFact.IsValid()) {
-/*N*/       Fraction n100(100,1);
-/*N*/       long nX=long(xFact*n100);
-/*N*/       long nY=long(yFact*n100);
-/*N*/       if (nX<0) nX=-nX;
-/*N*/       if (nX<1) nX=1;
-/*N*/       if (nX>0xFFFF) nX=0xFFFF;
-/*N*/       if (nY<0) nY=-nY;
-/*N*/       if (nY<1) nY=1;
-/*N*/       if (nY>0xFFFF) nY=0xFFFF;
-/*N*/       if (nX!=100 || nY!=100)
-/*N*/       {
-/*N*/           // Rahmenattribute
-/*N*/           const SfxItemSet& rSet = GetItemSet();
-/*N*/           const SvxCharScaleWidthItem& rOldWdt=(SvxCharScaleWidthItem&)rSet.Get(EE_CHAR_FONTWIDTH);
-/*N*/           const SvxFontHeightItem& rOldHgt=(SvxFontHeightItem&)rSet.Get(EE_CHAR_FONTHEIGHT);
-/*N*/
-/*N*/           // erstmal die alten Werte holen
-/*N*/           long nRelWdt=rOldWdt.GetValue();
-/*N*/           long nAbsHgt=rOldHgt.GetHeight();
-/*N*/           long nRelHgt=rOldHgt.GetProp();
-/*N*/
-/*N*/           // Relative Breite aendern
-/*N*/           nRelWdt*=nX;
-/*N*/           nRelWdt/=nY;
-/*N*/           if (nRelWdt<0) nRelWdt=-nRelWdt; // nicht negativ
-/*N*/           if (nRelWdt<=0) nRelWdt=1;       // und mind. 1%
-/*N*/           if (nRelWdt>0xFFFF) nRelWdt=0xFFFF;
-/*N*/
-/*N*/           // Absolute Hoehe aendern
-/*N*/           nAbsHgt*=nY;
-/*N*/           nAbsHgt/=100;
-/*N*/           if (nAbsHgt<0) nAbsHgt=-nAbsHgt; // nicht negativ
-/*N*/           if (nAbsHgt<=0) nAbsHgt=1;       // und mind. 1
-/*N*/           if (nAbsHgt>0xFFFF) nAbsHgt=0xFFFF;
-/*N*/
-/*N*/           // und nun attributieren
-/*N*/           SetItem(SvxCharScaleWidthItem( (USHORT) nRelWdt));
-/*N*/           SetItem(SvxFontHeightItem(nAbsHgt,(USHORT)nRelHgt));
-/*N*/           // Zeichen- und Absatzattribute innerhalb des OutlinerParaObjects
-/*N*/           Outliner& rOutliner=ImpGetDrawOutliner();
-/*N*/           rOutliner.SetPaperSize(Size(LONG_MAX,LONG_MAX));
-/*N*/           rOutliner.SetText(*pOutlinerParaObject);
-/*N*/           rOutliner.DoStretchChars((USHORT)nX,(USHORT)nY);
-/*N*/           OutlinerParaObject* pNewPara=rOutliner.CreateParaObject();
-/*N*/           NbcSetOutlinerParaObject(pNewPara);
-/*N*/           rOutliner.Clear();
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/** #103836# iterates over the paragraphs of a given SdrObject and removes all
-             hard set character attributes with the which ids contained in the
-             given vector
-*/
 }
