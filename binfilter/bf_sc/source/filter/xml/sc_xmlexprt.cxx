@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:30:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:00:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1976,29 +1976,6 @@ void ScXMLExport::CollectInternalShape( uno::Reference< drawing::XShape > xShape
     }
 }
 
-sal_Bool ScXMLExport::GetMerge (const uno::Reference <sheet::XSpreadsheet>& xTable,
-                            const sal_Int32 nCol, const sal_Int32 nRow,
-                            table::CellRangeAddress& aCellAddress)
-{
-    uno::Reference<table::XCellRange> xCellRange = xTable->getCellRangeByPosition(nCol, nRow, nCol, nRow);
-    if (xCellRange.is())
-    {
-        uno::Reference<sheet::XSheetCellRange> xSheetCellRange(xCellRange, uno::UNO_QUERY);
-        if (xSheetCellRange.is())
-        {
-            uno::Reference<sheet::XSheetCellCursor> xCursor = xTable->createCursorByRange(xSheetCellRange);
-            if(xCursor.is())
-            {
-                uno::Reference<sheet::XCellRangeAddressable> xCellAddress (xCursor, uno::UNO_QUERY);
-                xCursor->collapseToMergedArea();
-                aCellAddress = xCellAddress->getRangeAddress();
-                return sal_True;
-            }
-        }
-    }
-    return sal_False;
-}
-
 sal_Bool ScXMLExport::GetMerged (const table::CellRangeAddress* pCellAddress,
                             const uno::Reference <sheet::XSpreadsheet>& xTable)
 {
@@ -2049,52 +2026,6 @@ sal_Bool ScXMLExport::GetMerged (const table::CellRangeAddress* pCellAddress,
     return !bReady;
 }
 
-sal_Bool ScXMLExport::IsMatrix (const uno::Reference <table::XCellRange>& xCellRange,
-                            const uno::Reference <sheet::XSpreadsheet>& xTable,
-                            const sal_Int32 nCol, const sal_Int32 nRow,
-                            table::CellRangeAddress& aCellAddress, sal_Bool& bIsFirst) const
-{
-    bIsFirst = sal_False;
-    uno::Reference <table::XCellRange> xMatrixCellRange = xCellRange->getCellRangeByPosition(nCol,nRow,nCol,nRow);
-    uno::Reference <sheet::XArrayFormulaRange> xArrayFormulaRange (xMatrixCellRange, uno::UNO_QUERY);
-    if (xMatrixCellRange.is() && xArrayFormulaRange.is())
-    {
-        ::rtl::OUString sArrayFormula = xArrayFormulaRange->getArrayFormula();
-        if (sArrayFormula.getLength())
-        {
-            uno::Reference<sheet::XSheetCellRange> xMatrixSheetCellRange (xMatrixCellRange, uno::UNO_QUERY);
-            if (xMatrixSheetCellRange.is())
-            {
-                uno::Reference<sheet::XSheetCellCursor> xMatrixSheetCursor = xTable->createCursorByRange(xMatrixSheetCellRange);
-                if (xMatrixSheetCursor.is())
-                {
-                    xMatrixSheetCursor->collapseToCurrentArray();
-                    uno::Reference<sheet::XCellRangeAddressable> xMatrixCellAddress (xMatrixSheetCursor, uno::UNO_QUERY);
-                    if (xMatrixCellAddress.is())
-                    {
-                        aCellAddress = xMatrixCellAddress->getRangeAddress();
-                        if ((aCellAddress.StartColumn == nCol && aCellAddress.StartRow == nRow) &&
-                            (aCellAddress.EndColumn > nCol || aCellAddress.EndRow > nRow))
-                        {
-                            bIsFirst = sal_True;
-                            return sal_True;
-                        }
-                        else if (aCellAddress.StartColumn != nCol || aCellAddress.StartRow != nRow ||
-                            aCellAddress.EndColumn != nCol || aCellAddress.EndRow != nRow)
-                            return sal_True;
-                        else
-                        {
-                            bIsFirst = sal_True;
-                            return sal_True;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return sal_False;
-}
-
 sal_Bool ScXMLExport::IsMatrix (const uno::Reference <table::XCell>& xCell,
                             const uno::Reference <sheet::XSpreadsheet>& xTable,
                             const sal_Int32 nCol, const sal_Int32 nRow,
@@ -2136,18 +2067,6 @@ sal_Bool ScXMLExport::IsMatrix (const uno::Reference <table::XCell>& xCell,
                 }
             }
         }
-    }
-    return sal_False;
-}
-
-sal_Bool ScXMLExport::GetCellText (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell,
-        ::rtl::OUString& sOUTemp) const
-{
-    uno::Reference <text::XText> xText (xCell, uno::UNO_QUERY);
-    if (xText.is())
-    {
-        sOUTemp = xText->getString();
-        return sal_True;
     }
     return sal_False;
 }
