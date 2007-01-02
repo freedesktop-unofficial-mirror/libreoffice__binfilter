@@ -4,9 +4,9 @@
  *
  *  $RCSfile: notxtfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:34:25 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:53:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,8 +78,6 @@ public:
 
     const Size &GetGrfSize() const  { return GetSize(); }
     void GetGrfArea( SwRect &rRect, SwRect * = 0, BOOL bMirror = TRUE ) const;
-
-    BOOL IsTransparent() const;
 
     void StopAnimation( OutputDevice* = 0 ) const;
     BOOL HasAnimation()  const;
