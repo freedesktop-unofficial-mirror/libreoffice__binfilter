@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:35 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:32:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -244,23 +244,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/   ImpLinkAbmeldung();
 /*N*/ }
-
-
-/*?*/ void SdrTextObj::NbcSetText(const XubString& rStr)
-/*?*/ {
-/*?*/   SdrOutliner& rOutliner=ImpGetDrawOutliner();
-/*?*/   rOutliner.SetStyleSheet( 0, GetStyleSheet());
-/*?*/   OutputDevice* pRef1=rOutliner.GetRefDevice();
-/*?*/   rOutliner.SetUpdateMode(TRUE);
-/*?*/   rOutliner.SetText(rStr,rOutliner.GetParagraph( 0 ));
-/*?*/   OutlinerParaObject* pNewText=rOutliner.CreateParaObject();
-/*?*/   Size aSiz(rOutliner.CalcTextSize());
-/*?*/   OutputDevice* pRef2=rOutliner.GetRefDevice();
-/*?*/   rOutliner.Clear();
-/*?*/   NbcSetOutlinerParaObject(pNewText);
-/*?*/   aTextSize=aSiz;
-/*?*/   bTextSizeDirty=FALSE;
-/*?*/ }
 
 
 /*?*/ void SdrTextObj::NbcSetText(SvStream& rInput, USHORT eFormat)
