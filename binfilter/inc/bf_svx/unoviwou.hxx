@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoviwou.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:20:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:39:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ private:
     Point               GetTextOffset() const;
 
 public:
-    explicit            SvxDrawOutlinerViewForwarder( OutlinerView& rOutl );
                         SvxDrawOutlinerViewForwarder( OutlinerView& rOutl, const Point& rShapePosTopLeft );
     virtual             ~SvxDrawOutlinerViewForwarder();
 
@@ -68,10 +67,6 @@ public:
     virtual sal_Bool    Copy();
     virtual sal_Bool    Cut();
     virtual sal_Bool    Paste();
-
-    /// Set the top, left position of the underlying draw shape, to
-    /// allow EditEngine offset calculations
-    void SetShapePos( const Point& rShapePosTopLeft );
 };
 
 }//end of namespace binfilter
