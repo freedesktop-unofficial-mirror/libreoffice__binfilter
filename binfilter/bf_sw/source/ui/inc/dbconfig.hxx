@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbconfig.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:27:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:10:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,6 @@ public:
 
     void                    Load();
     const SwDBData&         GetAddressSource();
-    const SwDBData&         GetBibliographySource();
 };
 
 }
