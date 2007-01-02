@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:41:39 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:19:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -250,10 +250,6 @@ public:
 
     BOOL            IsVertical() const;
 
-    BOOL            PostKeyEvent( const KeyEvent& rKeyEvent );
-
-
-
     void            SetVisDocStartPos( const Point& rPos ) { aVisDocStartPos = rPos; }
     const Point&    GetVisDocStartPos() const { return aVisDocStartPos; }
 
@@ -281,7 +277,6 @@ public:
     inline void     SetCursor( const Cursor& rCursor );
     inline Cursor*  GetCursor();
 
-    void            AddDragAndDropListeners();
     void            RemoveDragAndDropListeners();
 
 
@@ -497,7 +492,6 @@ private:
     EditPaM             ImpConnectParagraphs( ContentNode* pLeft, ContentNode* pRight, sal_Bool bBackward = sal_False );
     EditPaM             ImpDeleteSelection( EditSelection aEditSelection);
     EditPaM             ImpInsertParaBreak( const EditPaM& rPaM, sal_Bool bKeepEndingAttribs = sal_True );
-    EditPaM             ImpInsertParaBreak( const EditSelection& rEditSelection, sal_Bool bKeepEndingAttribs = sal_True );
     EditPaM             ImpInsertText( EditSelection aCurEditSelection, const String& rStr );
     EditPaM             ImpInsertFeature( EditSelection aEditSelection, const SfxPoolItem& rItem );
     void                ImpRemoveChars( const EditPaM& rPaM, sal_uInt16 nChars, EditUndoRemoveChars* pCurUndo = 0 );
@@ -636,10 +630,7 @@ public:
     sal_Bool                IsFormatting() const { return bIsFormatting; }
 
     void            SetText( const String& rText );
-    EditPaM         InsertText( const EditSelection& rCurEditSelection, sal_Unicode c, sal_Bool bOverwrite );
-    EditPaM         InsertParaBreak( EditSelection aEditSelection );
     EditPaM         InsertLineBreak( EditSelection aEditSelection );
-    EditPaM         InsertTab( EditSelection aEditSelection );
     EditPaM         InsertField( EditSelection aEditSelection, const SvxFieldItem& rFld );
     sal_Bool        UpdateFields();
 
@@ -707,7 +698,6 @@ public:
     void                SetStyleSheetPool( SfxStyleSheetPool* pSPool );
     SfxStyleSheetPool*  GetStyleSheetPool() const { return pStylePool; }
 
-    void                SetStyleSheet( EditSelection aSel, SfxStyleSheet* pStyle );
     void                SetStyleSheet( sal_uInt16 nPara, SfxStyleSheet* pStyle );
     SfxStyleSheet*      GetStyleSheet( sal_uInt16 nPara ) const;
 
@@ -764,7 +754,6 @@ public:
 
     void                SetCharStretching( sal_uInt16 nX, sal_uInt16 nY );
     inline void         GetCharStretching( sal_uInt16& rX, sal_uInt16& rY );
-    void                DoStretchChars( sal_uInt16 nX, sal_uInt16 nY );
 
     void                SetBigTextObjectStart( sal_uInt16 nStartAtPortionCount )    { nBigTextObjectStart = nStartAtPortionCount; }
     sal_uInt16          GetBigTextObjectStart() const                               { return nBigTextObjectStart; }
@@ -821,7 +810,6 @@ inline EditSelection ImpEditEngine::CreateSel( const ESelection& rSel )
     aSel.Min().SetIndex( rSel.nStartPos );
     aSel.Max().SetNode( aEditDoc[ rSel.nEndPara ] );
     aSel.Max().SetIndex( rSel.nEndPos );
-    DBG_ASSERT( !aSel.DbgIsBuggy( aEditDoc ), "CreateSel: Fehlerhafte Selektion!" );
     return aSel;
 }
 

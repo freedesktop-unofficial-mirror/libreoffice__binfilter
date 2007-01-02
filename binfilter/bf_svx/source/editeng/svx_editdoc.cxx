@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:42:44 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:19:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -550,27 +550,6 @@ using namespace ::com::sun::star;
 // -------------------------------------------------------------------------
 // class EditSelection
 // -------------------------------------------------------------------------
-/*N*/ BOOL EditPaM::DbgIsBuggy( EditDoc& rDoc )
-/*N*/ {
-/*N*/   if ( !pNode )
-/*N*/       return TRUE;
-/*N*/   if ( rDoc.GetPos( pNode ) >= rDoc.Count() )
-/*N*/       return TRUE;
-/*N*/   if ( nIndex > pNode->Len() )
-/*N*/       return TRUE;
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ BOOL EditSelection::DbgIsBuggy( EditDoc& rDoc )
-/*N*/ {
-/*N*/   if ( aStartPaM.DbgIsBuggy( rDoc ) )
-/*N*/       return TRUE;
-/*N*/   if ( aEndPaM.DbgIsBuggy( rDoc ) )
-/*N*/       return TRUE;
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
 
 /*N*/ EditSelection::EditSelection()
 /*N*/ {
@@ -596,19 +575,6 @@ using namespace ::com::sun::star;
 /*N*/   aStartPaM = rPaM;
 /*N*/   aEndPaM = rPaM;
 /*N*/   return *this;
-/*N*/ }
-
-/*N*/ BOOL EditSelection::IsInvalid()
-/*N*/ {
-/*N*/   EditPaM aEmptyPaM;
-/*N*/
-/*N*/   if ( aStartPaM == aEmptyPaM )
-/*N*/       return TRUE;
-/*N*/
-/*N*/   if ( aEndPaM == aEmptyPaM )
-/*N*/       return TRUE;
-/*N*/
-/*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ BOOL EditSelection::Adjust( const ContentList& rNodes )
@@ -1017,10 +983,6 @@ using namespace ::com::sun::star;
 /*N*/       GetContentAttribs().GetItems(), ( pS ? FALSE : TRUE ) );
 /*N*/ }
 
-/*N*/ void ContentNode::SetStyleSheet( SfxStyleSheet* pS, const SvxFont& rFontFromStyle )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 /*N*/ void ContentNode::SetStyleSheet( SfxStyleSheet* pS, BOOL bRecalcFont )
 /*N*/ {
 /*N*/   aContentAttribs.SetStyleSheet( pS );
@@ -1413,18 +1375,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   EditPaM aPaM( pNode, 0 );
 /*N*/   return aPaM;
-/*N*/ }
-
-/*N*/ void EditDoc::InsertText( const EditPaM& rPaM, xub_Unicode c )
-/*N*/ {
-/*N*/   DBG_ASSERT( c != 0x0A, "EditDoc::InsertText: Zeilentrenner in Absatz nicht erlaubt!" );
-/*N*/   DBG_ASSERT( c != 0x0D, "EditDoc::InsertText: Zeilentrenner in Absatz nicht erlaubt!" );
-/*N*/   DBG_ASSERT( c != '\t', "EditDoc::InsertText: Zeilentrenner in Absatz nicht erlaubt!" );
-/*N*/
-/*N*/   rPaM.GetNode()->Insert( c, rPaM.GetIndex() );
-/*N*/   rPaM.GetNode()->ExpandAttribs( rPaM.GetIndex(), 1, GetItemPool() );
-/*N*/
-/*N*/   SetModified( TRUE );
 /*N*/ }
 
 /*N*/ EditPaM EditDoc::InsertText( EditPaM aPaM, const XubString& rStr )
