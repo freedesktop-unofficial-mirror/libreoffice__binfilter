@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_frmform.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:08:56 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:59:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -91,9 +91,6 @@
 #endif
 #ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
-#endif
-#ifndef _BLINK_HXX
-#include <blink.hxx>        // pBlink
 #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectionFrm
@@ -1716,8 +1713,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       sal_Bool bMustFit = pPara->IsPrepMustFit();
 /*N*/       pPara->Truncate();
 /*N*/       pPara->FormatReset();
-/*N*/       if( pBlink && pPara->IsBlinking() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           pBlink->Delete( pPara );
 /*N*/
 /*N*/         // delete pSpaceAdd und pKanaComp
 /*N*/         pPara->FinishSpaceAdd();

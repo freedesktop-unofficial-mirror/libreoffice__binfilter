@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itrform2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:10:27 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:00:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,9 +98,6 @@
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>
-#endif
-#ifndef _BLINK_HXX
-#include <blink.hxx>        // pBlink
 #endif
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // WhichFirstPortion() -> mal Verlagern.
@@ -1707,8 +1704,6 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/ {
 /*N*/   pCurr->Truncate();
 /*N*/   pCurr->Init();
-/*N*/   if( pBlink && pCurr->IsBlinking() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( pCurr );
 /*N*/
 /*N*/     // delete pSpaceAdd und pKanaComp
 /*N*/     pCurr->FinishSpaceAdd();
