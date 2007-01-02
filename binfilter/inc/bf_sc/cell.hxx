@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cell.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:28:41 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:24:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -274,7 +274,6 @@ public:
     ScAddress       aPos;
 
                     ~ScFormulaCell();
-                    ScFormulaCell();
 
     // leere Zelle, ggf. mit fertigem TokenArray
     ScFormulaCell( ScDocument*, const ScAddress&, const ScTokenArray* = NULL, BYTE=0 );
@@ -311,31 +310,19 @@ public:
     void            CalcAfterLoad();
     void            Interpret();
 
-    BOOL            HasOneReference( ScRange& r ) const;
      BOOL           HasRelNameReference() const;
-    BOOL            HasDBArea() const;
-     BOOL           HasColRowName() const;
 
      void           UpdateReference(UpdateRefMode eUpdateRefMode,
                                      const ScRange& r,
                                      short nDx, short nDy, short nDz,
                                      ScDocument* pUndoDoc = NULL );
 
-     void           TransposeReference();
-     void           UpdateTranspose( const ScRange& rSource, const ScAddress& rDest,
-                                         ScDocument* pUndoDoc );
-
-     void           UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
-
     void            UpdateInsertTab(USHORT nTable);
-     void           UpdateInsertTabAbs(USHORT nTable);
      BOOL           UpdateDeleteTab(USHORT nTable, BOOL bIsMove = FALSE);
-     void           UpdateMoveTab(USHORT nOldPos, USHORT nNewPos, USHORT nTabNo);
     void            UpdateRenameTab(USHORT nTable, const String& rName);
     BOOL            TestTabRefAbs(USHORT nTable);
     void            UpdateCompile( BOOL bForceIfNameInUse = FALSE );
     BOOL            IsRangeNameInUse(USHORT nIndex) const;
-     void           ReplaceRangeNamesInUse( const ScIndexMap& rMap );
     BOOL            IsSubTotal() const                      { return bSubTotal; }
     BOOL            IsChanged() const                       { return bChanged; }
     void            ResetChanged()                          { bChanged = FALSE; }
@@ -345,7 +332,6 @@ public:
     void            GetString( String& rString );
     void            GetMatrix( ScMatrix** pMatrix );
     BOOL            GetMatrixOrigin( ScAddress& rPos ) const;
-     void           GetResultDimensions( USHORT& rCols, USHORT& rRows );
     USHORT          GetMatrixEdge( ScAddress& rOrgPos );
     USHORT          GetErrCode();
     short           GetFormatType() const                   { return nFormatType; }
@@ -357,7 +343,6 @@ public:
 
     BOOL            IsRunning() const                       { return bRunning; }
     void            SetRunning( BOOL bVal )                 { bRunning = bVal; }
-     void           CompileDBFormula();
     void            CompileDBFormula( BOOL bCreateFormulaString );
     void            CompileNameFormula( BOOL bCreateFormulaString );
     void            CompileColRowNameFormula();
@@ -389,7 +374,6 @@ public:
     ULONG           GetStandardFormat( SvNumberFormatter& rFormatter, ULONG nFormat ) const;
 
     // fuer die Importfilter!
-     void           AddRecalcMode( ScRecalcMode );
     void            SetDouble( double n )                   { nErgValue = n; bIsValue = TRUE; }
     void            SetString( const String& r )            { aErgString = r; bIsValue = FALSE; }
     void            SetErrCode( USHORT n );
