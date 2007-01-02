@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpagv.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-30 07:51:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:33:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,11 +110,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------------
 /*?*/ void SdrUnoControlRec::switchControlListening( bool _bStart )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-/*?*/ }
-
-//------------------------------------------------------------------------------
-/*?*/ void SdrUnoControlRec::switchPropertyListening( bool _bStart, bool _bListenForAll )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 /*?*/ }
 
@@ -513,12 +508,6 @@ using namespace ::com::sun::star;
 /*N*/       pWinList->Delete(nPos);
 /*N*/   }
 /*N*/ }
-
-/*?*/ ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > SdrPageView::GetControlContainer( const OutputDevice* _pDevice )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-/*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > xReturn;
-/*?*/     return xReturn;
-/*?*/ }
 
 /*N*/ void SdrPageView::ImpInsertControl(const SdrUnoObj* pSdrUnoObj,
 /*N*/                                  SdrPageViewWinRec* pRec)
