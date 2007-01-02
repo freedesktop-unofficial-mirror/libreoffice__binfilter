@@ -4,9 +4,9 @@
  *
  *  $RCSfile: w4wpar.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 13:03:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:07:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -652,7 +652,6 @@ class SwW4WParser
     USHORT Read_SetTabBorder( USHORT nW4WRow , USHORT nW4WCol , SvxBoxItem& rFmtBox );
     void Adjust_pTabDefs();
     BOOL GetULSpace( SvxULSpaceItem*& rpUL );
-    BOOL GetLRSpace( SvxLRSpaceItem*& rpLR );
     BOOL GetLRULHint( const SfxPoolItem*& rpH, RES_FRMATR eTyp );
     void SetPageMgn();
     void DoSplit();
