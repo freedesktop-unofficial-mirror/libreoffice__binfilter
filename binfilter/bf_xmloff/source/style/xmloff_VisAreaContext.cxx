@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_VisAreaContext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:57:07 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:18:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,22 +66,6 @@ using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
 //------------------------------------------------------------------
-
-XMLVisAreaContext::XMLVisAreaContext( SvXMLImport& rImport,
-                                              USHORT nPrfx,
-                                                   const ::rtl::OUString& rLName,
-                                              const uno::Reference<xml::sax::XAttributeList>& xAttrList,
-                                              Rectangle& rRect, const MapUnit aMapUnit ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
-{
-    awt::Rectangle rAwtRect( rRect.getX(), rRect.getY(), rRect.getWidth(), rRect.getHeight() );
-    process( xAttrList, rAwtRect, (sal_Int16)aMapUnit );
-
-    rRect.setX( rAwtRect.X );
-    rRect.setY( rAwtRect.Y );
-    rRect.setWidth( rAwtRect.Width );
-    rRect.setHeight( rAwtRect.Height );
-}
 
 XMLVisAreaContext::XMLVisAreaContext( SvXMLImport& rImport,
                                          USHORT nPrfx,
