@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit5.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:46:23 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:21:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,10 +67,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ContentNode* pNode = aEditDoc.SaveGetObject( nPara );
 /*N*/   return pNode ? pNode->GetContentAttribs().GetStyleSheet() : NULL;
-/*N*/ }
-
-/*N*/ void ImpEditEngine::SetStyleSheet( EditSelection aSel, SfxStyleSheet* pStyle )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 /*N*/ void ImpEditEngine::SetStyleSheet( USHORT nPara, SfxStyleSheet* pStyle )
