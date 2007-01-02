@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlsubti.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:39:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:02:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,7 +101,6 @@ public:
     void                                AddRow();
     void                                AddColumn();
     void                                SetFirstColumn() { aTableCellPos.Column = -1; }
-    sal_Int32                           FindNextCol(const sal_Int32 nIndex) const;
     sal_Int32                           GetColsPerCol(const sal_Int32 nIndex) const { return nColsPerCol[nIndex]; }
     void                                SetColsPerCol(const sal_Int32 nIndex, sal_Int32 nValue = 1) { nColsPerCol[nIndex] = nValue; }
     sal_Int32                           GetRealCols(const sal_Int32 nIndex, const sal_Bool bIsNormal = sal_True) const;
@@ -163,7 +162,6 @@ public:
                                                 const sal_Bool bProtection, const ::rtl::OUString& sPassword);
     void                                AddRow();
     void                                SetRowStyle(const ::rtl::OUString& rCellStyleName);
-    void                                CloseRow();
     void                                AddColumn(sal_Bool bIsCovered);
     void                                NewTable(sal_Int32 nTempSpannedCols);
     void                                UpdateRowHeights();
