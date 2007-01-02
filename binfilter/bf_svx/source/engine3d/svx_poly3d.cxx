@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_poly3d.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:50:34 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:22:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -957,29 +957,6 @@ namespace binfilter {
 /*N*/   return bInside;
 /*N*/ }
 
-/*?*/ BOOL Polygon3D::IsInside(const Polygon3D& rPoly, BOOL bWithBorder) const
-/*?*/ {
-/*?*/   UINT16 nPnt(rPoly.GetPointCount());
-/*?*/
-/*?*/   for(UINT16 a=0;a<nPnt;a++)
-/*?*/       if(!IsInside(rPoly[a], bWithBorder))
-/*?*/           return FALSE;
-/*?*/
-/*?*/   return TRUE;
-/*?*/ }
-
-/*************************************************************************
-|*
-|* XPolygon herausgeben
-|*
-\************************************************************************/
-
-/*N*/ XPolygon Polygon3D::GetXPolygon() const
-/*N*/ {
-/*N*/   XPolygon aXPolygon(GetPolygon());
-/*N*/   return(aXPolygon);
-/*N*/ }
-
 /*************************************************************************
 |*
 |* FG: Identisch wie oben, das Polygon herausgeben
@@ -1324,19 +1301,6 @@ namespace binfilter {
 /*N*/   pImpPolyPolygon3D = rPolyPoly3D.pImpPolyPolygon3D;
 /*N*/   pImpPolyPolygon3D->nRefCount++;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor mit SV-Polygon
-|*
-\************************************************************************/
-
-/*?*/ PolyPolygon3D::PolyPolygon3D(const Polygon& rPoly, double fScale)
-/*?*/ {
-/*?*/   DBG_CTOR(PolyPolygon3D, NULL);
-/*?*/   pImpPolyPolygon3D = new ImpPolyPolygon3D;
-/*?*/   pImpPolyPolygon3D->aPoly3DList. Insert(new Polygon3D(rPoly, fScale));
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -1892,16 +1856,6 @@ namespace binfilter {
 /*N*/   return rOStream;
 /*N*/ }
 
-/*?*/ BOOL PolyPolygon3D::IsClockwise(UINT16 nInd) const
-/*?*/ {
-/*?*/   if(pImpPolyPolygon3D->aPoly3DList.Count() > nInd)
-/*?*/   {
-/*?*/       Vector3D aNormal = (*this)[0].GetNormal();
-/*?*/       return (*this)[nInd].IsClockwise(aNormal);
-/*?*/   }
-/*?*/   return FALSE;
-/*?*/ }
-
 /*N*/ Vector3D PolyPolygon3D::GetNormal() const
 /*N*/ {
 /*N*/   if(pImpPolyPolygon3D->aPoly3DList.Count())
@@ -1914,13 +1868,6 @@ namespace binfilter {
 |* die Umlaufrichtung des ersten Polygons umkehren
 |*
 \************************************************************************/
-
-/*?*/ void PolyPolygon3D::FlipDirection(UINT16 nInd)
-/*?*/ {
-/*?*/   CheckReference();
-/*?*/   if(pImpPolyPolygon3D->aPoly3DList.Count() > nInd)
-/*?*/       pImpPolyPolygon3D->aPoly3DList.GetObject(nInd)->FlipDirection();
-/*?*/ }
 
 /*N*/ void PolyPolygon3D::FlipDirections()
 /*N*/ {
@@ -1948,23 +1895,6 @@ namespace binfilter {
 /*N*/           bClosed = FALSE;
 /*N*/   return bClosed;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* XPolyPolygon herausgeben
-|*
-\************************************************************************/
-
-/*?*/ XPolyPolygon PolyPolygon3D::GetXPolyPolygon() const
-/*?*/ {
-/*?*/   XPolyPolygon aXPolyPolygon;
-/*?*/   UINT16 nCnt = Count();
-/*?*/
-/*?*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*?*/       aXPolyPolygon.Insert((*this)[i].GetXPolygon());
-/*?*/
-/*?*/   return(aXPolyPolygon);
-/*?*/ }
 
 /*************************************************************************
 |*
@@ -2048,81 +1978,5 @@ namespace binfilter {
 /*N*/
 /*N*/   return fRetval;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Umschliessenden Kugelradius feststellen
-|*
-\************************************************************************/
-
-/*?*/ double PolyPolygon3D::GetEnclosingRadius() const
-/*?*/ {
-/*?*/   Volume3D aSize = GetPolySize();
-/*?*/   double fBiggestDistance = 0.0;
-/*?*/   if(aSize.MinVec().X() != DBL_MAX && aSize.MaxVec().X() != DBL_MIN)
-/*?*/       if(aSize.MaxVec().X() - aSize.MinVec().X() > fBiggestDistance)
-/*?*/           fBiggestDistance = aSize.MaxVec().X() - aSize.MinVec().X();
-/*?*/   if(aSize.MinVec().Y() != DBL_MAX && aSize.MaxVec().Y() != DBL_MIN)
-/*?*/       if(aSize.MaxVec().Y() - aSize.MinVec().Y() > fBiggestDistance)
-/*?*/           fBiggestDistance = aSize.MaxVec().Y() - aSize.MinVec().Y();
-/*?*/   if(aSize.MinVec().Z() != DBL_MAX && aSize.MaxVec().Z() != DBL_MIN)
-/*?*/       if(aSize.MaxVec().Z() - aSize.MinVec().Z() > fBiggestDistance)
-/*?*/           fBiggestDistance = aSize.MaxVec().Z() - aSize.MinVec().Z();
-/*?*/   return (fBiggestDistance / 2.0);
-/*?*/ }
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
 
 }
