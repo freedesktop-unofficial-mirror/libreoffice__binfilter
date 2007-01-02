@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabcolr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:04:10 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:39:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -478,48 +478,6 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ SvStream& XColorTable::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   // Version statt Tabellentyp, um auch alte Tabellen zu lesen
-/*N*/   rOut << (long) -1;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Farben
-/*N*/   XColorEntry* pEntry = (XColorEntry*)aTable.First();
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // Versionsverwaltung: Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       rOut << (long)aTable.GetCurKey();
-/*N*/
-/*N*/       // UNICODE:: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       USHORT nCol = pEntry->GetColor().GetRed();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/
-/*N*/       nCol = pEntry->GetColor().GetGreen();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/
-/*N*/       nCol = pEntry->GetColor().GetBlue();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       pEntry = (XColorEntry*)aTable.Next();
-/*N*/   }
-/*N*/   return( rOut );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ XubString& XColorTable::ConvertName( XubString& rStrName )
 /*N*/ {
 /*N*/   static USHORT __READONLY_DATA aDefResId[] =
@@ -718,13 +676,6 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ XColorEntry* XColorList::Get(long nIndex) const
-/*N*/ {
-/*N*/   return (XColorEntry*) XPropertyList::Get(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XColorList::Load()
 /*N*/ {
 /*N*/   return( FALSE );
@@ -757,83 +708,5 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XColorList::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Erstmal von XColorTable uebernommen !!!
-/*N*/
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   rOut << (long)0;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Farben
-/*N*/   XColorEntry* pEntry = (XColorEntry*)aList.First();
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // rOut << (long)aList.GetCurKey();
-/*N*/
-/*N*/       // UNICODE:rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       rOut << pEntry->GetColor().GetRed();
-/*N*/       rOut << pEntry->GetColor().GetGreen();
-/*N*/       rOut << pEntry->GetColor().GetBlue();
-/*N*/       pEntry = (XColorEntry*)aList.Next();
-/*N*/   }
-/*N*/   return rOut;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XColorList::ImpRead( SvStream& rIn )
-/*N*/ {
-/*N*/   // Lesen
-/*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
-/*N*/
-/*N*/   // Erstmal von XColorTable uebernommen !!!
-/*N*/   delete pBmpList;
-/*N*/   pBmpList = new List( 16, 16 );
-/*N*/
-/*N*/
-/*N*/   XColorEntry* pEntry = NULL;
-/*N*/   long         nType;
-/*N*/   long         nCount;
-/*N*/   long         nIndex;
-/*N*/   USHORT       nRed;
-/*N*/   USHORT       nGreen;
-/*N*/   USHORT       nBlue;
-/*N*/   XubString    aName;
-/*N*/
-/*N*/   rIn >> nType;
-/*N*/
-/*N*/   // gesamte Tabelle?
-/*N*/   if (nType == 0)
-/*N*/   {
-/*N*/       rIn >> nCount;
-/*N*/       for (long nI = 0; nI < nCount; nI++)
-/*N*/       {
-/*N*/           rIn >> nIndex;
-/*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/
-/*N*/           rIn >> nRed;
-/*N*/           rIn >> nGreen;
-/*N*/           rIn >> nBlue;
-/*N*/
-/*N*/           pEntry = new XColorEntry (Color( (BYTE) nRed, (BYTE) nGreen, (BYTE) nBlue), aName);
-/*N*/           Insert (pEntry, nIndex);
-/*N*/       }
-/*N*/   }
-/*N*/   return( rIn );
-/*N*/ }
-
 
 }

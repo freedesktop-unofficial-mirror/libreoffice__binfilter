@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabbtmp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:03:58 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:39:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,103 +145,6 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/ Bitmap* XBitmapTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
 /*N*/ {
 /*N*/   return( NULL );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XBitmapTable::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   // Version statt Tabellentyp, um auch alte Tabellen zu lesen
-/*N*/   rOut << (long) -1;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XBitmapEntry* pEntry = (XBitmapEntry*)aTable.First();
-/*N*/
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // Versionsverwaltung: Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       rOut << (long)aTable.GetCurKey();
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       rOut << pEntry->GetXBitmap().GetBitmap();
-/*N*/       pEntry = (XBitmapEntry*)aTable.Next();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XBitmapTable::ImpRead( SvStream& rIn )
-/*N*/ {
-/*N*/   // Lesen
-/*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
-/*N*/
-/*N*/   delete pBmpTable;
-/*N*/   pBmpTable = new Table( 16, 16 );
-/*N*/
-/*N*/   XBitmapEntry* pEntry = NULL;
-/*N*/   long        nType;
-/*N*/   long        nCount;
-/*N*/   long        nIndex;
-/*N*/   String      aName;
-/*N*/   Bitmap      aBitmap;
-/*N*/
-/*N*/   rIn >> nType;
-/*N*/
-/*N*/   // gesamte Tabelle?
-/*N*/   if (nType == 0)
-/*N*/   {
-/*N*/       rIn >> nCount;
-/*N*/       for (long nI = 0; nI < nCount; nI++)
-/*N*/       {
-/*N*/           rIn >> nIndex;
-/*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/
-/*N*/           rIn >> aBitmap;
-/*N*/
-/*N*/           pEntry = new XBitmapEntry (aBitmap, aName);
-/*N*/           Insert (nIndex, pEntry);
-/*N*/       }
-/*N*/   }
-/*N*/   else // Version ab 3.00a
-/*N*/   {
-/*N*/       rIn >> nCount;
-/*N*/       for (long nI = 0; nI < nCount; nI++)
-/*N*/       {
-/*N*/           // Versionsverwaltung
-/*N*/           XIOCompat aIOC( rIn, STREAM_READ );
-/*N*/
-/*N*/           rIn >> nIndex;
-/*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/
-/*N*/           rIn >> aBitmap;
-/*N*/
-/*N*/           if (aIOC.GetVersion() > 0)
-/*N*/           {
-/*N*/               // lesen neuer Daten ...
-/*N*/           }
-/*N*/
-/*N*/           pEntry = new XBitmapEntry (aBitmap, aName);
-/*N*/           Insert (nIndex, pEntry);
-/*N*/       }
-/*N*/   }
-/*N*/   return( rIn );
 /*N*/ }
 
 // ------------------
@@ -435,54 +338,6 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/ Bitmap* XBitmapList::CreateBitmapForUI( long nIndex, BOOL bDelete )
 /*N*/ {
 /*N*/   return( NULL );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XBitmapList::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Version !!!
-/*N*/   rOut << (long)-2;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XBitmapEntry* pEntry = NULL;
-/*N*/
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // Versionsverwaltung: Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       pEntry = Get(nIndex);
-/*N*/       XOBitmap aXOBitmap( pEntry->GetXBitmap() );
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       rOut << (INT16) aXOBitmap.GetBitmapStyle();
-/*N*/       rOut << (INT16) aXOBitmap.GetBitmapType();
-/*N*/
-/*N*/       if( aXOBitmap.GetBitmapType() == XBITMAP_IMPORT )
-/*N*/       {
-/*N*/           rOut << aXOBitmap.GetBitmap();
-/*N*/       }
-/*N*/       else if( aXOBitmap.GetBitmapType() == XBITMAP_8X8 )
-/*N*/       {
-/*N*/           USHORT* pArray = aXOBitmap.GetPixelArray();
-/*N*/           for( USHORT i = 0; i < 64; i++ )
-/*N*/               rOut << (USHORT) *( pArray + i );
-/*N*/
-/*N*/           rOut << aXOBitmap.GetPixelColor();
-/*N*/           rOut << aXOBitmap.GetBackgroundColor();
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
 /*N*/ }
 
 /************************************************************************/

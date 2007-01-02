@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabhtch.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:04:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:40:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -163,93 +163,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/ Bitmap* XHatchTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
 /*N*/ {
 /*N*/   return( NULL );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XHatchTable::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Tabellentyp schreiben (0 = gesamte Tabelle)
-/*N*/   rOut << (long)0;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XHatchEntry* pEntry = (XHatchEntry*)aTable.First();;
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       rOut << (long)aTable.GetCurKey();
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XHatch& rHatch = pEntry->GetHatch();
-/*N*/       rOut << (long)rHatch.GetHatchStyle();
-/*N*/       rOut << rHatch.GetColor().GetRed();
-/*N*/       rOut << rHatch.GetColor().GetGreen();
-/*N*/       rOut << rHatch.GetColor().GetBlue();
-/*N*/       rOut << rHatch.GetDistance();
-/*N*/       rOut << rHatch.GetAngle();
-/*N*/       pEntry = (XHatchEntry*)aTable.Next();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XHatchTable::ImpRead( SvStream& rIn )
-/*N*/ {
-/*N*/   // Lesen
-/*N*/   rIn.SetStreamCharSet( RTL_TEXTENCODING_IBM_850 );
-/*N*/
-/*N*/   delete pBmpTable;
-/*N*/   pBmpTable = new Table( 16, 16 );
-/*N*/
-/*N*/   XHatchEntry* pEntry = NULL;
-/*N*/   long        nType;
-/*N*/   long        nCount;
-/*N*/   long        nIndex;
-/*N*/   XubString   aName;
-/*N*/
-/*N*/   long        nStyle;
-/*N*/   USHORT      nRed;
-/*N*/   USHORT      nGreen;
-/*N*/   USHORT      nBlue;
-/*N*/   long        nDistance;
-/*N*/   long        nAngle;
-/*N*/
-/*N*/   rIn >> nType;
-/*N*/
-/*N*/   // gesamte Tabelle?
-/*N*/   if (nType == 0)
-/*N*/   {
-/*N*/       rIn >> nCount;
-/*N*/       for (long nI = 0; nI < nCount; nI++)
-/*N*/       {
-/*N*/           rIn >> nIndex;
-/*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/
-/*N*/           rIn >> nStyle;
-/*N*/           rIn >> nRed;
-/*N*/           rIn >> nGreen;
-/*N*/           rIn >> nBlue;
-/*N*/           rIn >> nDistance;
-/*N*/           rIn >> nAngle;
-/*N*/
-/*N*/           Color aColor ( (BYTE) nRed, (BYTE) nGreen, (BYTE) nBlue);
-/*N*/           XHatch aHatch(aColor, (XHatchStyle)nStyle, nDistance, nAngle);
-/*N*/           pEntry = new XHatchEntry (aHatch, aName);
-/*N*/           Insert (nIndex, pEntry);
-/*N*/       }
-/*N*/   }
-/*N*/   return( rIn );
 /*N*/ }
 
 // -----------------
@@ -498,51 +411,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   }
 /*N*/
 /*N*/   return( pBitmap );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ SvStream& XHatchList::ImpStore( SvStream& rOut )
-/*N*/ {
-/*N*/   // Schreiben
-/*N*/   rOut.SetStreamCharSet( gsl_getSystemTextEncoding() );
-/*N*/
-/*N*/   // Version statt Anzahl, um auch alte Tabellen zu lesen
-/*N*/   rOut << (long) -1;
-/*N*/
-/*N*/   // Anzahl der Eintraege
-/*N*/   rOut << (long)Count();
-/*N*/
-/*N*/   // die Eintraege
-/*N*/   XHatchEntry* pEntry = NULL;
-/*N*/   for (long nIndex = 0; nIndex < Count(); nIndex++)
-/*N*/   {
-/*N*/       // Versionsverwaltung: Version 0
-/*N*/       XIOCompat aIOC( rOut, STREAM_WRITE, 0 );
-/*N*/
-/*N*/       pEntry = Get(nIndex);
-/*N*/
-/*N*/       // UNICODE: rOut << pEntry->GetName();
-/*N*/       rOut.WriteByteString(pEntry->GetName());
-/*N*/
-/*N*/       XHatch& rHatch = pEntry->GetHatch();
-/*N*/       rOut << (long)rHatch.GetHatchStyle();
-/*N*/       USHORT nCol = rHatch.GetColor().GetRed();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/
-/*N*/       nCol = rHatch.GetColor().GetGreen();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/
-/*N*/       nCol = rHatch.GetColor().GetBlue();
-/*N*/       nCol = nCol << 8;
-/*N*/       rOut << nCol;
-/*N*/       rOut << rHatch.GetDistance();
-/*N*/       rOut << rHatch.GetAngle();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
 /*N*/ }
 
 /************************************************************************/
