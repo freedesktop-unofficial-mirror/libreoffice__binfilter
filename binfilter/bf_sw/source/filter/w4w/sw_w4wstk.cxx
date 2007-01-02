@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wstk.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:39:00 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:08:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -187,14 +187,6 @@ void W4WStkEntry::SetEndPos( const SwPosition & rEndPos )
     bLocked = FALSE;                                        // freigeben und das ENDE merken
     nPtNode = rEndPos.nNode.GetIndex()-1;
     nPtCntnt = rEndPos.nContent.GetIndex();
-}
-
-void W4WStkEntry::SetStartPos( const SwPosition & rStartPos )
-{
-    bLocked = TRUE;                                         // freigeben und das ENDE merken
-    bCopied = FALSE;                                        // ist ab jetzt keine Kopie mehr
-    nMkNode = rStartPos.nNode.GetIndex()-1;
-    nMkCntnt = rStartPos.nContent.GetIndex();
 }
 
 BOOL W4WStkEntry::MakeRegion( SwPaM& rRegion ) const

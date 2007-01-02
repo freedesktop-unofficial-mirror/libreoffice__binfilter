@@ -4,9 +4,9 @@
  *
  *  $RCSfile: w4wstk.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 13:03:50 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:07:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,7 +78,6 @@ struct W4WStkEntry
 
     ~W4WStkEntry();
 
-    void SetStartPos( const SwPosition & rStartPos );
     void SetEndPos( const SwPosition & rEndPos );
     BOOL MakeRegion( SwPaM & rRegion ) const;
 
