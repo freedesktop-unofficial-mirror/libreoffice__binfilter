@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:35:55 $
+#   last change: $Author: hr $ $Date: 2007-01-02 17:21:28 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -64,13 +64,11 @@ SLOFILES= \
         $(SLO)$/svx_svx3ditems.obj	\
         $(SLO)$/svx_deflt3d.obj		\
         $(SLO)$/svx_class3d.obj		\
-        $(SLO)$/svx_e3dundo.obj      \
         $(SLO)$/svx_volume3d.obj		\
         $(SLO)$/svx_viewpt3d.obj		\
         $(SLO)$/svx_camera3d.obj		\
         $(SLO)$/svx_poly3d.obj 		\
         $(SLO)$/svx_polygn3d.obj 		\
-        $(SLO)$/svx_volmrk3d.obj 	\
         $(SLO)$/svx_objfac3d.obj 	\
         $(SLO)$/svx_obj3d.obj 		\
         $(SLO)$/svx_light3d.obj 		\
@@ -85,9 +83,7 @@ SLOFILES= \
         $(SLO)$/svx_extrud3d.obj     \
         $(SLO)$/svx_lathe3d.obj		\
         $(SLO)$/svx_label3d.obj		\
-        $(SLO)$/svx_dragmt3d.obj		\
         $(SLO)$/svx_view3d.obj		\
-        $(SLO)$/svx_view3d1.obj       \
         $(SLO)$/svx_e3dcmpt.obj       \
         $(SLO)$/svx_float3d.obj
 
@@ -100,7 +96,6 @@ SLOFILES= \
         $(OBJ)$/svx_camera3d.obj		\
         $(OBJ)$/svx_poly3d.obj 		\
         $(OBJ)$/svx_polygn3d.obj 		\
-        $(OBJ)$/svx_volmrk3d.obj 	\
         $(OBJ)$/svx_objfac3d.obj 	\
         $(OBJ)$/svx_obj3d.obj 		\
         $(OBJ)$/svx_light3d.obj 		\
@@ -116,7 +111,6 @@ SLOFILES= \
         $(OBJ)$/svx_lathe3d.obj		\
         $(OBJ)$/svx_label3d.obj		\
         $(OBJ)$/svx_view3d.obj		\
-        $(OBJ)$/svx_view3d1.obj       \
         $(OBJ)$/svx_e3dcmpt.obj
 
 
