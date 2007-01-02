@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpage.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:10:22 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:35:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -130,9 +130,6 @@ friend class SdrEditView;
     FASTBOOL    bRectsDirty;
 protected:
     virtual void RecalcRects();
-#if _SOLAR__PRIVATE
-    FASTBOOL ImpGetFillColor(SdrObject* pObj, Color& rCol) const;
-#endif // __PRIVATE
 public:
     TYPEINFO();
     SdrObjList(SdrModel* pNewModel, SdrPage* pNewPage, SdrObjList* pNewUpList=NULL);
@@ -463,21 +460,6 @@ public:
     const         SdrLayerAdmin& GetLayerAdmin() const                  { return *pLayerAdmin; }
                   SdrLayerAdmin& GetLayerAdmin()                        { return *pLayerAdmin; }
 
-    // Bestimmung der FuellFarbe an einer bestimmten Position.
-    // FALSE=Kein Objekt mit FuellFarbe an dieser Position gefunden.
-    // rVisLayers gibt die zu durchsuchenden Layer an.
-    // bLayerSorted: TRUE=Es wird in der Reihenfolge der Layer gesucht (ni)
-    // rCol: Hier wird die gefundene Farbe zurueckgegeben
-    // Auch MasterPages werden durchsucht.
-
-    // GetBitmap und GetMetafile sind noch nicht implementiert.
-    // Bitmap in Bildschirmaufloesung und -farbtiefe aus den Objekten der
-    // Page erzeugen.
-    Bitmap        GetBitmap(FASTBOOL bTrimBorders=TRUE) const               { return GetBitmap(aPrefVisiLayers,bTrimBorders); }
-    Bitmap        GetBitmap(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders=TRUE) const;
-    // Metafile aus den Objekten der Page erzeugen
-    GDIMetaFile   GetMetaFile(FASTBOOL bTrimBorders=TRUE)                   { return GetMetaFile(aPrefVisiLayers,bTrimBorders); }
-    GDIMetaFile   GetMetaFile(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders=TRUE);
 
     virtual String GetLayoutName() const;
 
