@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xexptran.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:26:13 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:53:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,15 +95,11 @@ class SdXMLImExTransform2D
 
 public:
     SdXMLImExTransform2D() {}
-    SdXMLImExTransform2D(const ::rtl::OUString& rNew, const SvXMLUnitConverter& rConv);
     ~SdXMLImExTransform2D() { EmptyList(); }
 
     void AddRotate(double fNew);
-    void AddScale(const Vector2D& rNew);
     void AddTranslate(const Vector2D& rNew);
     void AddSkewX(double fNew);
-    void AddSkewY(double fNew);
-    void AddMatrix(const Matrix3D& rNew);
 
     sal_Bool NeedsAction() const { return (sal_Bool)(maList.Count() > 0L); }
     void GetFullTransform(Matrix3D& rFullTrans);
@@ -125,11 +121,6 @@ public:
     SdXMLImExTransform3D(const ::rtl::OUString& rNew, const SvXMLUnitConverter& rConv);
     ~SdXMLImExTransform3D() { EmptyList(); }
 
-    void AddRotateX(double fNew);
-    void AddRotateY(double fNew);
-    void AddRotateZ(double fNew);
-    void AddScale(const Vector3D& rNew);
-    void AddTranslate(const Vector3D& rNew);
     void AddMatrix(const Matrix4D& rNew);
 
     void AddHomogenMatrix(const ::com::sun::star::drawing::HomogenMatrix& xHomMat);
