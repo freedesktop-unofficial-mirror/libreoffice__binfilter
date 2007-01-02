@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdxmlimp_impl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:50:48 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 18:14:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -250,8 +250,6 @@ public:
     // XInitialization
     virtual void SAL_CALL initialize( const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArguments ) throw(::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException);
 
-    void SetProgress(sal_Int32 nProg);
-
     virtual void SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps);
     virtual void SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aConfigProps);
 
@@ -303,12 +301,7 @@ public:
     sal_Bool IsDraw() const { return mbIsDraw; }
     sal_Bool IsImpress() const { return !mbIsDraw; }
 
-    // import pool defaults. Parameter contains pool defaults read
-    // from input data. These data needs to be set at the model.
-    void ImportPoolDefaults(const XMLPropStyleContext* pPool);
-
     void setDrawPageId( sal_Int32 nId, ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage > );
-    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage > getDrawPageForId( sal_Int32 nId );
 
     // #80365#
     virtual void SetStatisticAttributes(const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttribs);
