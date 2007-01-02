@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:24:35 $
+ *  last change: $Author: hr $ $Date: 2007-01-02 17:45:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -651,15 +651,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   }
 /*N*/       if ( !IsUseVirtualDevice() && bDataChanged )
 /*?*/       PrtDataChanged();
-/*N*/ }
-
-//---------------------------------------------------
-
-
-
-/*N*/ const JobSetup* SwDoc::GetJobsetup() const
-/*N*/ {
-/*N*/   return pPrt ? &pPrt->GetJobSetup() : 0;
 /*N*/ }
 
 //---------------------------------------------------
