@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_b3dlight.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:48:25 $
+ *  last change: $Author: hr $ $Date: 2007-01-03 16:16:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -421,10 +421,6 @@ const Vector3D& B3dLightGroup::GetDirection(Base3DLightNumber eNum)
         DBG_ERROR("Access to Light out of range");
 #endif
     }
-#ifdef DBG_UTIL
-    if(!IsDirectionalSource())
-        DBG_ERROR("Zugriff auf die Richtung einer ungerichteten Lichtquelle!");
-#endif
     return aLight[eNum].GetPosition();
 }
 
