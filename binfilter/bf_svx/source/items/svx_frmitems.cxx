@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: rt $ $Date: 2006-12-04 08:19:45 $
+ *  last change: $Author: hr $ $Date: 2007-01-03 10:08:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2168,10 +2168,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxLineItem::SetLine( const SvxBorderLine* pNew )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 #ifdef WNT
 #pragma optimize ( "", off )
 #endif
@@ -2929,21 +2925,6 @@ GraphicFilter* GetGrfFilter();
 /*?*/           pStrFilter = new String( rNew );
 /*N*/   }
 /*N*/ }
-
-//static
-
-//static
-
-
-/*N*/ SvxBrushItem::SvxBrushItem( const CntWallpaperItem& rItem, sal_uInt16 nWhich ) :
-/*N*/   SfxPoolItem( nWhich ),
-/*N*/   pImpl( new SvxBrushItem_Impl( 0 ) ),
-/*N*/   bLoadAgain( sal_True ),
-/*N*/   pStrLink(0),
-/*N*/   pStrFilter(0)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 
 #ifdef WNT
 #pragma optimize ( "", on )
