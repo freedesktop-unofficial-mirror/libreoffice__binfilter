@@ -4,9 +4,9 @@
  *
  *  $RCSfile: globfunc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:48:21 $
+ *  last change: $Author: hr $ $Date: 2007-01-04 14:11:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -169,40 +169,6 @@ void AdjustTextSize(SdrTextObj &rTextObj,
                     const Size &rTextSize);
 
 Size GetOutputSize(SdrTextObj& rTextObj);
-
-void SegmentDescr (DataDescription &rDescr,
-                   const Rectangle &rRect,
-                   long            nStartAng,
-                   long            nEndAng,
-                   long            nHeight,
-                   double          a,
-                   double          b);
-
-/** Create a text object for a donut segment.
-    @descr  For the given descriptive text of a donut segment a text
-        object is created and displayed.  In contrast to the other SegmentDescr
-        function the text object is positioned centered around the point that
-        lies half way between the start and end angle at a distance of the given
-        radius from the donut's center.
-    @param  rDescr  The object that represents the description.  It's position is
-        calculated in this function.
-    @param  rRect   The bounding box of the donut.  Used for determing the donut's
-        center.
-    @param  nStartAng   Starting angle of the segement.
-    @param  nEndAng End angle of the segement.  nStartAngle does not have to be
-        lower than or equal to nEndAng (this feature seems to be used as a flag
-        but I (AF) don't know what it indicates).
-    @param  fRadius Radius at which the text object's reference point will be set.
-        A typical value will be half way between the donut ring's inner and outer
-        radius so that the text object will be centered in the segment.
-*/
-void SegmentDescr (DataDescription &rDescr,
-                   const Rectangle &rRect,
-                   long            nStartAng,
-                   long            nEndAng,
-                   double          fRadius);
-
-
 
 /** Creates an SchObjGroup containing SdrPathObjects, which are created from the
     XPolygons given in the vector rPolygons.  The items in rItems are applied to
