@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmod2a.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:23:21 $
+ *  last change: $Author: hr $ $Date: 2007-01-04 14:12:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -284,11 +284,6 @@ namespace binfilter {
 /*N*/               pList->NbcInsertObject( pObj );
 /*N*/           }
 /*N*/
-/*N*/           if( pDescription && pDescrList && pDescription[ nIndex ].pLabelObj )
-/*N*/           {
-/*?*/               SegmentDescr( pDescription[ nIndex ], aCircRect, nStartAng, nEndAng, 0, aCircRect.GetWidth() / 2,
-/*?*/                             aCircRect.GetWidth() / 2);
-/*N*/           }
 /*N*/       }
 /*N*/       else if( pDescription )
 /*N*/       {
@@ -516,12 +511,6 @@ namespace binfilter {
 /*N*/                                                            nCol, nRow,
 /*N*/                                                            nStartAng, nEndAng, nRowCnt));
 /*N*/
-/*N*/               if (pDescription && pDescrLists[nRow] && pDescription [nIndex].pLabelObj)
-/*N*/               {
-/*N*/                   //  Draw the description centered into it's segment.
-/*N*/                   SegmentDescr (pDescription [nIndex], aCircRect, nStartAng, nEndAng,
-/*N*/                       aCircRect.GetWidth () / 2 - nSegWidth / 2);
-/*N*/               }
 /*N*/           }
 /*N*/           else if (pDescription)
 /*N*/           {
