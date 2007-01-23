@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:07:57 $
+ *  last change: $Author: obo $ $Date: 2007-01-23 07:30:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -698,64 +698,46 @@ BinFilterDetect::~BinFilterDetect()
         }
 
         DELETEZ( pStream );
-
-        if ( aTypeName.getLength() && !aFilterName.getLength() )
-        {
-            // get name of corresponding filter
-            Reference< ::com::sun::star::container::XContainerQuery > xFilterCFG ( xFilters, UNO_QUERY_THROW );
-            Sequence < com::sun::star::beans::NamedValue > aSeq(1);
-            aSeq[0].Name = ::rtl::OUString::createFromAscii("Type");
-            aSeq[0].Value <<= aTypeName;
-            Reference < com::sun::star::container::XEnumeration > xEnum = xFilterCFG->createSubSetEnumerationByProperties( aSeq );
-            ::rtl::OUString aPreferred;
-            ::rtl::OUString aFirst;
-            while ( xEnum->hasMoreElements() )
-            {
-                sal_Int32 nFlags=0;
-                ::comphelper::SequenceAsHashMap aHashedProps( xEnum->nextElement() );
-                aHashedProps[DEFINE_CONST_UNICODE("Flags")] >>= nFlags;
-                if ( (aHashedProps[::rtl::OUString::createFromAscii("PreferredFilter")] >>= aPreferred) && aPreferred.getLength() )
-                {
-                    aFilterName = aPreferred;
-                    break;
-                }
-                else if ( !aFirst.getLength() && (nFlags&0x01) )
-                    aHashedProps[DEFINE_CONST_UNICODE("Name")] >>= aFirst;
-            }
-
-            if ( !aFilterName.getLength() )
-                aFilterName = aFirst;
-        }
     }
     catch ( com::sun::star::uno::Exception &)
     {
         // in case something goes wrong with type detection or filter configuration
        aTypeName = ::rtl::OUString();
-       aFilterName = ::rtl::OUString();
     }
 
-    // only return a type name if it matches to the valid ones and if a filter could be found for it
-    bool bValidFilter( false );
-    if ( aFilterName.getLength() )
+    /* #i71829# Dont search for any suitable filter during deep detection.
+                A detection service is used to find a suitable type - not filter.
+                Search for a filter is done outside ... recognizing preferred flags;
+                user preselection and some other things too.
+    */
+
+    // only return a type name if it matches to the valid ones
+    // Because stripped binfilter detect EVERY format, which was known before
+    // code was changed ... it can happen that typename represent a format not realy
+    // supported by binfilter component.
+    sal_Bool bSupportedType = sal_False;
+    if ( aTypeName.getLength() )
     {
-        for ( sal_uInt8 i = 0; i < nFileTypeCount; ++i )
+        sal_Int32 i = 0;
+        sal_Int32 c = nFileTypeCount;
+        for (i=0; i<c; i++)
         {
             if ( aTypeName.equalsAsciiL( aFileTypeList[i].Type, aFileTypeList[i].Length ) )
             {
-                bValidFilter = true;
+                bSupportedType = true;
                 break;
             }
         }
     }
 
-    if ( bValidFilter )
-    {
+    if ( bSupportedType )
         aMedium[comphelper::MediaDescriptor::PROP_TYPENAME()] <<= aTypeName;
-        aMedium[comphelper::MediaDescriptor::PROP_FILTERNAME()] <<= aFilterName;
-    }
+    else
+        aTypeName = ::rtl::OUString();
 
     lDescriptor = aMedium.getAsConstPropertyValueList();
-    return bValidFilter ? aTypeName : ::rtl::OUString();
+
+    return aTypeName;
 }
 
 SFX_IMPL_SINGLEFACTORY( BinFilterDetect )
