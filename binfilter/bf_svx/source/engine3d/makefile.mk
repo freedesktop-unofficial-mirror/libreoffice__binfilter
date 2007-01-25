@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:21:28 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:01:10 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,15 +41,11 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=svx_engine3d
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
@@ -86,38 +82,6 @@ SLOFILES= \
         $(SLO)$/svx_view3d.obj		\
         $(SLO)$/svx_e3dcmpt.obj       \
         $(SLO)$/svx_float3d.obj
-
- SVXLIGHTOBJFILES= \
-        $(OBJ)$/svx_svx3ditems.obj		\
-        $(OBJ)$/svx_deflt3d.obj		\
-        $(OBJ)$/svx_class3d.obj		\
-        $(OBJ)$/svx_volume3d.obj		\
-        $(OBJ)$/svx_viewpt3d.obj		\
-        $(OBJ)$/svx_camera3d.obj		\
-        $(OBJ)$/svx_poly3d.obj 		\
-        $(OBJ)$/svx_polygn3d.obj 		\
-        $(OBJ)$/svx_objfac3d.obj 	\
-        $(OBJ)$/svx_obj3d.obj 		\
-        $(OBJ)$/svx_light3d.obj 		\
-        $(OBJ)$/svx_dlight3d.obj 	\
-        $(OBJ)$/svx_plight3d.obj 	\
-        $(OBJ)$/svx_pntobj3d.obj     \
-        $(OBJ)$/svx_polyob3d.obj		\
-        $(OBJ)$/svx_scene3d.obj		\
-        $(OBJ)$/svx_polysc3d.obj		\
-        $(OBJ)$/svx_cube3d.obj		\
-        $(OBJ)$/svx_sphere3d.obj		\
-        $(OBJ)$/svx_extrud3d.obj     \
-        $(OBJ)$/svx_lathe3d.obj		\
-        $(OBJ)$/svx_label3d.obj		\
-        $(OBJ)$/svx_view3d.obj		\
-        $(OBJ)$/svx_e3dcmpt.obj
-
-
-.IF "$(COM)"=="ICC"
-NOOPTFILES=\
-    $(SLO)$/svx_class3d.obj
-.ENDIF
 
 .INCLUDE :  target.mk
 
