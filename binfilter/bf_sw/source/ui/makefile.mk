@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-09 11:46:18 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:03:23 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -91,6 +91,6 @@ LIB1FILES= \
 
 
 kill:
-    @+$(RM) $(SLB)$/ui.lst
-    @+$(RM) $(SLB)$/ui.lib
+    @$(RM) $(SLB)$/ui.lst
+    @$(RM) $(SLB)$/ui.lib
 
