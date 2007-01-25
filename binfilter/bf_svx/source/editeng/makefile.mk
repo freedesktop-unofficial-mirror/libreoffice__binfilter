@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:19:14 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:00:58 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -64,36 +64,6 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 CDEFS+=-DEDITDEBUG
 .ENDIF
 
-.IF "$(header)" == ""
-
-#SLOFILES =	\
-#			$(SLO)$/svx_txtrange.obj \
-#			$(SLO)$/svx_svxacorr.obj \
-#			$(SLO)$/svx_SvXMLAutoCorrectImport.obj \
-#			$(SLO)$/svx_SvXMLAutoCorrectExport.obj \
-#			$(SLO)$/svx_forbiddencharacterstable.obj \
-#			$(SLO)$/svx_swafopt.obj \
-#			$(SLO)$/svx_editattr.obj \
-#			$(SLO)$/svx_editdbg.obj	\
-#			$(SLO)$/svx_editdoc.obj	\
-#			$(SLO)$/svx_editdoc2.obj \
-#			$(SLO)$/svx_editeng.obj	\
-#			$(SLO)$/svx_editobj.obj	\
-#			$(SLO)$/svx_editsel.obj	\
-#			$(SLO)$/svx_editundo.obj \
-#			$(SLO)$/svx_editview.obj  \
-#			$(SLO)$/svx_edtspell.obj \
-#			$(SLO)$/svx_eehtml.obj \
-#			$(SLO)$/svx_eerdll.obj	\
-#			$(SLO)$/svx_eeobj.obj \
-#			$(SLO)$/svx_eertfpar.obj \
-#			$(SLO)$/svx_impedit.obj	\
-#			$(SLO)$/svx_impedit2.obj \
-#			$(SLO)$/svx_impedit3.obj \
-#			$(SLO)$/svx_impedit4.obj \
-#			$(SLO)$/svx_impedit5.obj \
-#			$(SLO)$/svx_unolingu.obj
-
 SLOFILES =	\
             $(SLO)$/svx_txtrange.obj \
             $(SLO)$/svx_svxacorr.obj \
@@ -117,57 +87,12 @@ SLOFILES =	\
             $(SLO)$/svx_impedit4.obj \
             $(SLO)$/svx_impedit5.obj \
             $(SLO)$/svx_unolingu.obj
-#SVXLIGHTOBJFILES= \
-#			$(OBJ)$/svx_txtrange.obj \
-#			$(OBJ)$/svx_swafopt.obj \
-#			$(OBJ)$/svx_editattr.obj \
-#			$(OBJ)$/svx_editdbg.obj	\
-#			$(OBJ)$/svx_editdoc.obj	\
-#			$(OBJ)$/svx_editdoc2.obj \
-#			$(OBJ)$/svx_editeng.obj	\
-#			$(OBJ)$/svx_editobj.obj	\
-#			$(OBJ)$/svx_editsel.obj	\
-#			$(OBJ)$/svx_editview.obj  \
-#			$(OBJ)$/svx_eerdll.obj	\
-#			$(OBJ)$/svx_impedit.obj	\
-#			$(OBJ)$/svx_impedit2.obj \
-#            $(OBJ)$/svx_impedit3.obj \
-#			$(OBJ)$/svx_impedit4.obj \
-#			$(OBJ)$/svx_impedit5.obj \
-#			$(OBJ)$/svx_forbiddencharacterstable.obj \
-#			$(OBJ)$/svx_unolingu.obj
-
-SVXLIGHTOBJFILES= \
-            $(OBJ)$/svx_txtrange.obj \
-            $(OBJ)$/svx_swafopt.obj \
-            $(OBJ)$/svx_editattr.obj \
-            $(OBJ)$/svx_editdbg.obj	\
-            $(OBJ)$/svx_editdoc.obj	\
-            $(OBJ)$/svx_editdoc2.obj \
-            $(OBJ)$/svx_editeng.obj	\
-            $(OBJ)$/svx_editobj.obj	\
-            $(OBJ)$/svx_editsel.obj	\
-            $(OBJ)$/svx_editview.obj  \
-            $(OBJ)$/svx_eerdll.obj	\
-            $(OBJ)$/svx_impedit.obj	\
-            $(OBJ)$/svx_impedit2.obj \
-            $(OBJ)$/svx_impedit3.obj \
-            $(OBJ)$/svx_impedit4.obj \
-            $(OBJ)$/svx_impedit5.obj \
-            $(OBJ)$/svx_forbiddencharacterstable.obj \
-            $(OBJ)$/svx_unolingu.obj
-.ENDIF
 
 SRS1NAME=$(TARGET)
 SRC1FILES=	svx_editeng.src
 
 EXCEPTIONSFILES= \
     $(SLO)$/svx_unolingu.obj
-
-.IF "$(SVXLIGHT)"!=""
-EXCEPTIONSFILES+= \
-    $(OBJ)$/svx_sxl_unolingu.obj
-.ENDIF          # "$(SVXLIGHT)"!=""
 
 .INCLUDE :  target.mk
 
