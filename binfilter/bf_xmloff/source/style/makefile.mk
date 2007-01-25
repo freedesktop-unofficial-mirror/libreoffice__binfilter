@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 18:17:57 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:04:55 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -44,100 +44,11 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 CDEFS += -DCONV_STAR_FONTS
 INC+= -I$(PRJ)$/inc$/bf_xmloff
 
 # --- Files --------------------------------------------------------
-
-CXXFILES = \
-        xmloff_XMLPercentOrMeasurePropertyHandler.cxx \
-        xmloff_XMLIsPercentagePropertyHandler.cxx \
-        xmloff_XMLRectangleMembersHandler.cxx \
-        xmloff_adjushdl.cxx	\
-        xmloff_backhdl.cxx		\
-        xmloff_bordrhdl.cxx	\
-        xmloff_breakhdl.cxx	\
-        xmloff_cdouthdl.cxx	\
-        xmloff_chrhghdl.cxx	\
-        xmloff_chrlohdl.cxx	\
-        xmloff_csmaphdl.cxx	\
-        xmloff_escphdl.cxx		\
-        xmloff_fonthdl.cxx		\
-        xmloff_impastp1.cxx    \
-        xmloff_impastp2.cxx    \
-        xmloff_impastp3.cxx    \
-        xmloff_impastp4.cxx    \
-        xmloff_kernihdl.cxx	\
-        xmloff_lspachdl.cxx	\
-        xmloff_numehelp.cxx	\
-        xmloff_opaquhdl.cxx	\
-        xmloff_postuhdl.cxx	\
-        xmloff_prhdlfac.cxx	\
-        xmloff_prstylei.cxx	\
-        xmloff_shadwhdl.cxx	\
-        xmloff_shdwdhdl.cxx	\
-        xmloff_styleexp.cxx	\
-        xmloff_splithdl.cxx	\
-        xmloff_tabsthdl.cxx	\
-        xmloff_undlihdl.cxx	\
-        xmloff_uniref.cxx		\
-        xmloff_weighhdl.cxx	\
-        xmloff_xmlaustp.cxx	\
-        xmloff_xmlbahdl.cxx	\
-        xmloff_xmlexppr.cxx	\
-        xmloff_xmlimppr.cxx	\
-        xmloff_xmlnume.cxx		\
-        xmloff_xmlnumfe.cxx	\
-        xmloff_xmlnumfi.cxx	\
-        xmloff_xmlnumi.cxx		\
-        xmloff_xmlprcon.cxx	\
-        xmloff_xmlprhdl.cxx	\
-        xmloff_xmlprmap.cxx	\
-        xmloff_xmlstyle.cxx	\
-        xmloff_xmltabe.cxx		\
-        xmloff_xmltabi.cxx		\
-        xmloff_DashStyle.cxx					\
-        xmloff_EnumPropertyHdl.cxx				\
-        xmloff_FillStyleContext.cxx			\
-        xmloff_GradientStyle.cxx				\
-        xmloff_HatchStyle.cxx					\
-        xmloff_ImageStyle.cxx					\
-        xmloff_MarkerStyle.cxx					\
-        xmloff_MultiPropertySetHelper.cxx		\
-        xmloff_SinglePropertySetInfoCache.cxx	\
-        xmloff_DashStyle.cxx					\
-        xmloff_AttributeContainerHandler.cxx	\
-        xmloff_NamedBoolPropertyHdl.cxx		\
-        xmloff_TransGradientStyle.cxx			\
-        xmloff_XMLBackgroundImageContext.cxx	\
-        xmloff_XMLBackgroundImageExport.cxx	\
-        xmloff_XMLClipPropertyHandler.cxx		\
-        xmloff_XMLConstantsPropertyHandler.cxx	\
-        xmloff_XMLElementPropertyContext.cxx	\
-        xmloff_XMLFootnoteSeparatorExport.cxx	\
-        xmloff_XMLFootnoteSeparatorImport.cxx	\
-        xmloff_XMLFontAutoStylePool.cxx		\
-        xmloff_XMLFontStylesContext.cxx		\
-        xmloff_XMLPageExport.cxx				\
-        xmloff_PageMasterPropHdl.cxx			\
-        xmloff_PageMasterPropHdlFactory.cxx	\
-        xmloff_PageMasterStyleMap.cxx			\
-        xmloff_PageMasterPropMapper.cxx		\
-        xmloff_PageMasterExportPropMapper.cxx	\
-        xmloff_PageMasterImportPropMapper.cxx	\
-        xmloff_PageMasterImportContext.cxx		\
-        xmloff_PagePropertySetContext.cxx		\
-        xmloff_PageHeaderFooterContext.cxx		\
-        xmloff_XMLBitmapRepeatOffsetPropertyHandler.cxx \
-        xmloff_XMLFillBitmapSizePropertyHandler.cxx \
-        xmloff_XMLBitmapLogicalSizePropertyHandler.cxx \
-        xmloff_durationhdl.cxx \
-        xmloff_VisAreaContext.cxx \
-        xmloff_DrawAspectHdl.cxx
-
 
 SLOFILES =	\
         $(SLO)$/xmloff_XMLPercentOrMeasurePropertyHandler.obj \
@@ -223,81 +134,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_durationhdl.obj	\
         $(SLO)$/xmloff_VisAreaContext.obj \
         $(SLO)$/xmloff_DrawAspectHdl.obj
-
-SVXLIGHTOBJFILES =	\
-        $(OBJ)$/xmloff_XMLPercentOrMeasurePropertyHandler.obj \
-        $(OBJ)$/xmloff_XMLIsPercentagePropertyHandler.obj \
-        $(OBJ)$/xmloff_XMLRectangleMembersHandler.obj \
-        $(OBJ)$/xmloff_adjushdl.obj	\
-        $(OBJ)$/xmloff_backhdl.obj		\
-        $(OBJ)$/xmloff_bordrhdl.obj	\
-        $(OBJ)$/xmloff_breakhdl.obj	\
-        $(OBJ)$/xmloff_cdouthdl.obj	\
-        $(OBJ)$/xmloff_chrhghdl.obj	\
-        $(OBJ)$/xmloff_chrlohdl.obj	\
-        $(OBJ)$/xmloff_csmaphdl.obj	\
-        $(OBJ)$/xmloff_escphdl.obj		\
-        $(OBJ)$/xmloff_fonthdl.obj		\
-        $(OBJ)$/xmloff_impastp1.obj    \
-        $(OBJ)$/xmloff_impastp2.obj    \
-        $(OBJ)$/xmloff_impastp3.obj    \
-        $(OBJ)$/xmloff_impastp4.obj    \
-        $(OBJ)$/xmloff_kernihdl.obj	\
-        $(OBJ)$/xmloff_lspachdl.obj	\
-        $(OBJ)$/xmloff_numehelp.obj	\
-        $(OBJ)$/xmloff_opaquhdl.obj	\
-        $(OBJ)$/xmloff_postuhdl.obj	\
-        $(OBJ)$/xmloff_prhdlfac.obj	\
-        $(OBJ)$/xmloff_prstylei.obj	\
-        $(OBJ)$/xmloff_shadwhdl.obj	\
-        $(OBJ)$/xmloff_shdwdhdl.obj	\
-        $(OBJ)$/xmloff_splithdl.obj	\
-        $(OBJ)$/xmloff_tabsthdl.obj	\
-        $(OBJ)$/xmloff_undlihdl.obj	\
-        $(OBJ)$/xmloff_uniref.obj		\
-        $(OBJ)$/xmloff_weighhdl.obj	\
-        $(OBJ)$/xmloff_xmlaustp.obj	\
-        $(OBJ)$/xmloff_xmlbahdl.obj	\
-        $(OBJ)$/xmloff_xmlimppr.obj	\
-        $(OBJ)$/xmloff_xmlnumfi.obj	\
-        $(OBJ)$/xmloff_xmlnumi.obj		\
-        $(OBJ)$/xmloff_xmlprcon.obj	\
-        $(OBJ)$/xmloff_xmlprhdl.obj	\
-        $(OBJ)$/xmloff_xmlprmap.obj	\
-        $(OBJ)$/xmloff_xmlstyle.obj	\
-        $(OBJ)$/xmloff_xmltabi.obj		\
-        $(OBJ)$/xmloff_DashStyle.obj					\
-        $(OBJ)$/xmloff_EnumPropertyHdl.obj				\
-        $(OBJ)$/xmloff_FillStyleContext.obj			\
-        $(OBJ)$/xmloff_GradientStyle.obj				\
-        $(OBJ)$/xmloff_HatchStyle.obj					\
-        $(OBJ)$/xmloff_ImageStyle.obj					\
-        $(OBJ)$/xmloff_MarkerStyle.obj					\
-        $(OBJ)$/xmloff_MultiPropertySetHelper.obj		\
-        $(SLO)$/xmloff_SinglePropertySetInfoCache.obj	\
-        $(OBJ)$/xmloff_xmloff_NamedBoolPropertyHdl.obj		\
-        $(OBJ)$/xmloff_xmloff_TransGradientStyle.obj			\
-        $(OBJ)$/xmloff_XMLBackgroundImageContext.obj	\
-        $(OBJ)$/xmloff_XMLClipPropertyHandler.obj		\
-        $(OBJ)$/xmloff_XMLConstantsPropertyHandler.obj	\
-        $(OBJ)$/xmloff_AttributeContainerHandler.obj	\
-        $(OBJ)$/xmloff_XMLElementPropertyContext.obj	\
-        $(OBJ)$/xmloff_XMLFontAutoStylePool.obj		\
-        $(OBJ)$/xmloff_XMLFontStylesContext.obj		\
-        $(OBJ)$/xmloff_PageMasterPropHdl.obj			\
-        $(OBJ)$/xmloff_PageMasterPropHdlFactory.obj	\
-        $(OBJ)$/xmloff_PageMasterStyleMap.obj			\
-        $(OBJ)$/xmloff_PageMasterPropMapper.obj		\
-        $(OBJ)$/xmloff_PageMasterImportPropMapper.obj	\
-        $(OBJ)$/xmloff_PageMasterImportContext.obj		\
-        $(OBJ)$/xmloff_PagePropertySetContext.obj		\
-        $(OBJ)$/xmloff_PageHeaderFooterContext.obj		\
-        $(OBJ)$/xmloff_XMLBitmapRepeatOffsetPropertyHandler.obj \
-        $(OBJ)$/xmloff_XMLFillBitmapSizePropertyHandler.obj	\
-        $(OBJ)$/xmloff_XMLBitmapLogicalSizePropertyHandler.obj	\
-        $(OBJ)$/xmloff_durationhdl.obj	\
-        $(OBJ)$/xmloff_VisAreaContext.obj \
-        $(OBJ)$/xmloff_DrawAspectHdl.obj
 
 # --- Tagets -------------------------------------------------------
 
