@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:15:31 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:04:37 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -59,12 +59,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_xmlscripte.obj \
         $(SLO)$/xmloff_xmlscripti.obj \
         $(SLO)$/xmloff_xmlbasici.obj
-
-SVXLIGHTOBJFILES =	\
-        $(OBJ)$/xmloff_xmlscripti.obj \
-        $(OBJ)$/xmloff_XMLEventImportHelper.obj \
-        $(OBJ)$/xmloff_XMLEventsImportContext.obj
-
 
 # --- Tagets -------------------------------------------------------
 
