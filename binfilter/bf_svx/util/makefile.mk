@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 12:06:32 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:03:00 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,8 +41,6 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=bf_svx
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 USE_LDUMP2=TRUE
@@ -59,8 +57,6 @@ RSCLOCINC+=-I$(BFPRJ)$/source$/svdraw
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Svx - DLL ----------
-
-#HELPIDFILES=    ..$/inc$/helpid.hrc
 
 SHL1TARGET= bf_svx$(UPD)$(DLLPOSTFIX)
 SHL1IMPLIB= bf_svx
@@ -109,20 +105,9 @@ SHL1STDLIBS+=\
         ole32.lib \
         uuid.lib
 
-.ENDIF
-
-
-.IF "$(GUI)"=="WNT"
 SHL1STDLIBS+=\
             $(SHELLLIB)
-.ENDIF # WNT
 
-#.IF "$(BIG_SVX)"==""
-#SHL1STDLIBS+=\
-#			$(LB)$/dl.lib
-#.ENDIF
-
-.IF "$(GUI)"=="WNT"
 SHL1DEPN=       $(SLB)$/svx_svx.lib #$(LB)$/dl.lib
 .ENDIF # WNT
 
@@ -136,116 +121,41 @@ DEF1DES		= Rtf, Edt, Outliner, SvDraw, Form, Fmcomp, Engine3D, MSFilter
 # THB: exports list svx checked for 6.0 Final 6.12.2001
 DEF1EXPORTFILE	= svx.dxp
 
-#.IF "$(BIG_SVX)"==""
-#
-#SHL2TARGET= dl$(UPD)$(DLLPOSTFIX)
-#SHL2IMPLIB= dl
-#SVXLOKAL+=	$(LB)$/dl.lib
-#SHL2BASE  = 0x1db00000
-#SHL2STDLIBS= \
-#            $(LB)$/svx.lib \
-#            $(SALLIB) \
-#            $(VOSLIB) \
-#            $(TOOLSLIB) \
-#            $(SVTOOLLIB) \
-#			$(SVLLIB)	\
-#            $(SVLIB) \
-#            $(SO2LIB) \
-#            $(SOTLIB) \
-#			$(XMLOFFLIB) \
-#            $(SFX2LIB) \
-#            $(GOODIESLIB) \
-#            $(BASICLIB) \
-#            $(SVMEMLIB) \
-#            $(TKLIB) \
-#			$(CPPULIB) \
-#			$(CPPUHELPERLIB) \
-#			$(UNOTOOLSLIB) \
-#			$(UCBHELPERLIB) \
-#            $(COMPHELPERLIB)
-#
-#.IF "$(GUI)"=="WNT"
-#SHL2STDLIBS+=\
-#            $(SHELLLIB)
-#.ENDIF
-
-#.IF "$(SOLAR_JAVA)" != ""
-#SHL2STDLIBS+=\
-#        $(SJLIB)
-#.ENDIF
-
-
-#SHL2DEPN=       $(SLB)$/dl.lib $(LB)$/svx.lib
-#SHL2LIBS=       $(SLB)$/dl.lib
-#SHL2OBJS+=      $(SLO)$/svx_svxempty.obj
-#
-#SHL2DEF=        $(MISC)$/$(SHL2TARGET).def
-#DEF2NAME        =$(SHL2TARGET)
-#DEF2DEPN        =$(MISC)$/$(SHL2TARGET).flt
-#DEFLIB2NAME=dl
-#DEF2DES     =SvDraw, Form, Fmcomp, Engine3D, XOutDev, MSFilter
-#
-#.ENDIF
 
 LIBEXTRAFILES=\
-        $(LIBPRE) $(SLB)$/svx_svdraw.lib \
-        $(LIBPRE) $(SLB)$/svx_form.lib \
-        $(LIBPRE) $(SLB)$/svx_engine3d.lib \
-        $(LIBPRE) $(SLB)$/svx_msfilter.lib \
-        $(LIBPRE) $(SLB)$/svx_xout.lib \
-        $(LIBPRE) $(SLB)$/svx_xml.lib
-#        $(LIBPRE) $(SLB)$/svx_fmcomp.lib \
+        $(SLB)$/svx_svdraw.lib \
+        $(SLB)$/svx_form.lib \
+        $(SLB)$/svx_engine3d.lib \
+        $(SLB)$/svx_msfilter.lib \
+        $(SLB)$/svx_xout.lib \
+        $(SLB)$/svx_xml.lib
 
 LIB1TARGET      =$(SLB)$/svx_svx.lib
 LIB1FILES       = \
-            $(LIBPRE) $(SLB)$/svx_items.lib     \
-            $(LIBPRE) $(SLB)$/svx_svxlink.lib   \
-            $(LIBPRE) $(SLB)$/svx_editeng.lib   \
-            $(LIBPRE) $(SLB)$/svx_outliner.lib \
-            $(LIBPRE) $(SLB)$/svx_dialogs.lib\
-            $(LIBPRE) $(SLB)$/svx_mnuctrls.lib  \
-            $(LIBPRE) $(SLB)$/svx_options.lib   \
-            $(LIBPRE) $(SLB)$/svx_stbctrls.lib  \
-            $(LIBPRE) $(SLB)$/svx_tbxctrls.lib  \
-            $(LIBPRE) $(SLB)$/svx_unoedit.lib   \
-            $(LIBPRE) $(SLB)$/svx_unodraw.lib	\
-            $(LIBPRE) $(SLB)$/svx_gal.lib		
-#            $(LIBPRE) $(SLB)$/svx_accessibility.lib
-#            $(LIBPRE) $(SLB)$/svx_svxrtf.lib    \
+            $(SLB)$/svx_items.lib     \
+            $(SLB)$/svx_svxlink.lib   \
+            $(SLB)$/svx_editeng.lib   \
+            $(SLB)$/svx_outliner.lib \
+            $(SLB)$/svx_dialogs.lib\
+            $(SLB)$/svx_mnuctrls.lib  \
+            $(SLB)$/svx_options.lib   \
+            $(SLB)$/svx_stbctrls.lib  \
+            $(SLB)$/svx_tbxctrls.lib  \
+            $(SLB)$/svx_unoedit.lib   \
+            $(SLB)$/svx_unodraw.lib	\
+            $(SLB)$/svx_gal.lib		
 
 .IF "$(GUI)"=="WNT"
 LIB1FILES  += \
-                        $(LIBPRE) $(LB)$/bf_sfx.lib #$(LIBPRE) $(LIB)$/bf_sfx.lib
+                        $(LB)$/bf_sfx.lib #$(LIB)$/bf_sfx.lib
 .ENDIF					
 
 
-.IF "$(SVXLIGHT)" != ""
-LIB3TARGET= $(LB)$/svx_svxl.lib
-LIB3ARCHIV= $(LB)$/libsvx_svxl.a
-LIB3FILES=  \
-            $(LB)$/sxl_editeng.lib \
-            $(LB)$/sxl_engine3d.lib \
-            $(LB)$/sxl_form.lib \
-            $(LB)$/sxl_items.lib \
-            $(LB)$/sxl_outliner.lib \
-            $(LB)$/sxl_svdraw.lib \
-            $(LB)$/sxl_xout.lib \
-            $(LB)$/sxl_options.lib \
-            $(LB)$/sxl_xml.lib \
-            $(LB)$/sxl_unoedit.lib \
-            $(LB)$/sxl_unodraw.lib
-.ENDIF
-
-#.IF "$(BIG_SVX)"==""
-#LIB2TARGET      =$(SLB)$/dl.lib
-#LIB2FILES       = $(LIBEXTRAFILES)
-#.ELSE
 LIB1FILES+=$(LIBEXTRAFILES)
-#.ENDIF
 
 .IF "$(GUI)" == "OS2" || "(GUIBASE)" == "WIN"
 LIB1FILES  += \
-            $(LIBPRE) $(SLB)$/ibrwimp.lib
+            $(SLB)$/ibrwimp.lib
 .ENDIF
 
 
@@ -264,37 +174,6 @@ SRS1FILELIST=\
                 $(SRS)$/svx_engine3d.srs \
                 $(SRS)$/svx_svxlink.srs
 
-#				$(SRS)$/svx_unodraw.srs \
-
-#SRSFILELIST=\
-#                $(SRS)$/svdstr.srs      \
-#                $(SRS)$/editeng.srs     \
-#                $(SRS)$/outliner.srs \
-#                $(SRS)$/dialogs.srs     \
-#                $(SRS)$/drawdlgs.srs \
-#                $(SRS)$/mnuctrls.srs \
-#                $(SRS)$/stbctrls.srs \
-#                $(SRS)$/tbxctrls.srs \
-#                $(SRS)$/options.srs     \
-#                $(SRS)$/svxitems.srs \
-#				$(SRS)$/form.srs \
-#				$(SRS)$/fmcomp.srs \
-#				$(SRS)$/engine3d.srs \
-#				$(SRS)$/unodraw.srs \
-#                $(SRS)$/svxlink.srs \
-#                $(SRS)$/accessibility.srs
-
-
-#.IF "$(GUI)" != "MAC"
-#SRS1FILELIST+=   $(SRS)$/sfx2_sfx.srs
-#.ELSE
-#.IF "$(UPDMINOR)" != ""
-#SRS1FILELIST+=   $(SRS)$/sfx2_sfx.srs
-#.ELSE
-#SRS1FILELIST+=   $(SRS)$/sfx2_sfx.srs
-#.ENDIF
-#.ENDIF
-
 RESLIB1NAME=bf_svx
 RESLIB1SRSFILES= $(SRS1FILELIST)
 
@@ -305,29 +184,12 @@ ALL:
 
 .ELSE
 .IF "$(GUI)"=="WNT"
-
-
-#.IF "$(BIG_SVX)"==""
-#ALL:      \
-#        $(MAKELANGDIR)  \
-#            $(SLB)$/dl.lib  $(SLB)$/svx.lib \
-#            $(LB)$/dl.lib   $(LB)$/svx.lib \
-#          $(MISC)$/linkinc.ls                   \
-#          ALLTAR
-#.ELSE
 ALL:\
         $(MAKELANGDIR)  \
          $(SLB)$/svx_svx.lib \
          $(LB)$/bf_svx.lib \
          $(MISC)$/linkinc.ls \
          ALLTAR
-
-     
-
-    
-                   
-                    
-#.ENDIF
 
 .ENDIF			# "$(GUI)"=="WNT"
 
@@ -344,36 +206,8 @@ ALL: \
 $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     @echo ------------------------------
     @echo Making: $@
-    +$(TYPE) bf_svx.flt >$@
-    +$(TYPE) bf_sfxwin.flt > $@
-
-
-#$(MISC)$/$(SHL2TARGET).flt: makefile.mk
-#    @echo ------------------------------
-#    @echo Making: $@
-#	+$(TYPE) dl.flt >$@
+    $(TYPE) bf_svx.flt >$@
+    $(TYPE) bf_sfxwin.flt > $@
 
 .INCLUDE :  target.mk
 
-
-implib1: $(MISC)\svx1.def
-    implib /noi $(LB)\svx1.lib $(MISC)\svx1.def
-
-implib2: $(MISC)\svx2.def
-    implib /noi $(LB)\svx2.lib $(MISC)\svx2.def
-
-implib3: $(MISC)\dl1.def
-    implib /noi $(LB)\dl1.lib $(MISC)\dl1.def
-
-implib4: $(MISC)\dl2.def
-    implib /noi $(LB)\dl2.lib $(MISC)\dl2.def
-
-implib_defs: $(SHL1DEF) $(SHL2DEF)
-    +-$(RM) $(MISC)$/svx1.def
-    +-$(RM) $(MISC)$/svx2.def
-    +-$(RM) $(MISC)$/dl1.def
-    +-$(RM) $(MISC)$/dl2.def
-    splitdef $(SHL1DEF) $(MISC)$/svx1.def $(MISC)$/svx2.def
-    splitdef $(SHL2DEF) $(MISC)$/dl1.def $(MISC)$/dl2.def
-    
-    
