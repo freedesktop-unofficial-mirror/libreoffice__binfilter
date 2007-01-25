@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:39:17 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:02:36 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,8 +41,6 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=svx_xml
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
@@ -62,12 +60,6 @@ SLOFILES = \
         $(SLO)$/svx_xmlxtexp.obj		\
         $(SLO)$/svx_xmlgrhlp.obj		\
         $(SLO)$/svx_xmleohlp.obj		
-
-SVXLIGHTOBJFILES=\
-        $(OBJ)$/svx_xmlxtimp.obj		\
-        $(OBJ)$/svx_xmlxtexp.obj		\
-        $(OBJ)$/svx_xmlgrhlp.obj		\
-        $(OBJ)$/svx_xmleohlp.obj		
 
 # --- Targets --------------------------------------------------------------
 

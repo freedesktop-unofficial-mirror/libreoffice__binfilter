@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:38:52 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:02:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,75 +41,17 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=svx_unodraw
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Files --------------------------------------------------------
-
-CXXFILES =				\
-        svx_UnoNamespaceMap.cxx \
-        svx_UnoGraphicExporter.cxx \
-        svx_unopool.cxx \
-        svx_XPropertyTable.cxx \
-        svx_UnoNameItemTable.cxx \
-        svx_unoipset.cxx	\
-        svx_unoshape.cxx	\
-        svx_unoshap2.cxx	\
-        svx_unoshap3.cxx	\
-        svx_unoshap4.cxx	\
-        svx_unopage.cxx		\
-        svx_unoshtxt.cxx	\
-        svx_unoshcol.cxx	\
-        svx_unoprov.cxx		\
-        svx_unomod.cxx      \
-        svx_unonrule.cxx	\
-        svx_unofdesc.cxx	\
-        svx_unoctabl.cxx	\
-        svx_unomlstr.cxx	\
-        svx_unogtabl.cxx	\
-        svx_unohtabl.cxx	\
-        svx_unobtabl.cxx	\
-        svx_unottabl.cxx	\
-        svx_unomtabl.cxx	\
-        svx_unodtabl.cxx	\
-        svx_gluepts.cxx
-
-SVXLIGHTOBJFILES=\
-        $(OBJ)$/svx_unopool.obj \
-        $(OBJ)$/svx_XPropertyTable.obj \
-        $(OBJ)$/svx_UnoNameItemTable.obj \
-        $(OBJ)$/svx_unoshape.obj	\
-        $(OBJ)$/svx_unoipset.obj	\
-        $(OBJ)$/svx_unoctabl.obj	\
-        $(OBJ)$/svx_unoshap2.obj	\
-        $(OBJ)$/svx_unoshap3.obj	\
-        $(OBJ)$/svx_unoshap4.obj	\
-        $(OBJ)$/svx_unopage.obj		\
-        $(OBJ)$/svx_unoshtxt.obj	\
-        $(OBJ)$/svx_unoshcol.obj	\
-        $(OBJ)$/svx_unoprov.obj		\
-        $(OBJ)$/svx_unomod.obj      \
-        $(OBJ)$/svx_unonrule.obj	\
-        $(OBJ)$/svx_unofdesc.obj	\
-        $(OBJ)$/svx_unomlstr.obj	\
-        $(OBJ)$/svx_unogtabl.obj	\
-        $(OBJ)$/svx_unohtabl.obj	\
-        $(OBJ)$/svx_unobtabl.obj	\
-        $(OBJ)$/svx_unottabl.obj	\
-        $(OBJ)$/svx_unomtabl.obj	\
-        $(OBJ)$/svx_unodtabl.obj	\
-        $(OBJ)$/svx_gluepts.obj
 
 SLOFILES =	\
         $(SLO)$/svx_UnoNamespaceMap.obj \
@@ -138,11 +80,6 @@ SLOFILES =	\
         $(SLO)$/svx_unomtabl.obj	\
         $(SLO)$/svx_unodtabl.obj	\
         $(SLO)$/svx_gluepts.obj
-
-#SRSNAME=unodraw
-#SRS1NAME=$(TARGET)
-#SRC1FILES =  \
-#		svx_unodraw.src
 
 # --- Tagets -------------------------------------------------------
 

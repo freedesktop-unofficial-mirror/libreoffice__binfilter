@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:39:04 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:02:23 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,49 +41,17 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=svx_unoedit
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Files --------------------------------------------------------
-
-CXXFILES =				\
-        svx_UnoForbiddenCharsTable.cxx \
-        svx_unoedsrc.cxx	\
-        svx_unoedhlp.cxx	\
-        svx_unopracc.cxx	\
-        svx_unoedprx.cxx	\
-        svx_unoviwed.cxx	\
-        svx_unoviwou.cxx	\
-        svx_unofored.cxx	\
-        svx_unoforou.cxx	\
-        svx_unotext.cxx		\
-        svx_unotext2.cxx	\
-        svx_unofield.cxx	
-
-SVXLIGHTOBJFILES=\
-        $(OBJ)$/svx_UnoForbiddenCharsTable.obj \
-        $(OBJ)$/svx_unoedsrc.obj	\
-        $(OBJ)$/svx_unoedhlp.obj	\
-        $(OBJ)$/svx_unopracc.obj	\
-        $(OBJ)$/svx_unoedprx.obj	\
-        $(OBJ)$/svx_unoviwed.obj	\
-        $(OBJ)$/svx_unoviwou.obj	\
-        $(OBJ)$/svx_unofored.obj	\
-        $(OBJ)$/svx_unoforou.obj	\
-        $(OBJ)$/svx_unotext.obj		\
-        $(OBJ)$/svx_unotext2.obj	\
-        $(OBJ)$/svx_unofield.obj
 
 SLOFILES =	\
         $(SLO)$/svx_UnoForbiddenCharsTable.obj \
