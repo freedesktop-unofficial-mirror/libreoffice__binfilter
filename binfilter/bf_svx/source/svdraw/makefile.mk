@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:29:41 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:01:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -117,67 +117,6 @@ SLOFILES=\
 NOOPTFILES=$(SLO)$/svx_svdattr.obj
 .ENDIF
 
-SVXLIGHTOBJFILES=\
-         $(OBJ)$/svx_svdoutlinercache.obj \
-         $(OBJ)$/svx_dialdll.obj        \
-         $(OBJ)$/svx_svdattr.obj         \
-         $(OBJ)$/svx_svdcrtv.obj         \
-         $(OBJ)$/svx_svddrag.obj         \
-         $(OBJ)$/svx_svddrgv.obj         \
-         $(OBJ)$/svx_svdedtv.obj         \
-         $(OBJ)$/svx_svdedtv1.obj        \
-         $(OBJ)$/svx_svdedtv2.obj        \
-         $(OBJ)$/svx_svdedxv.obj         \
-         $(OBJ)$/svx_svdetc.obj          \
-         $(OBJ)$/svx_svdfppt.obj         \
-         $(OBJ)$/svx_svdglev.obj         \
-         $(OBJ)$/svx_svdglue.obj         \
-         $(OBJ)$/svx_svdhdl.obj          \
-         $(OBJ)$/svx_svdhlpln.obj        \
-         $(OBJ)$/svx_svdio.obj           \
-         $(OBJ)$/svx_svditer.obj         \
-         $(OBJ)$/svx_svdlayer.obj        \
-         $(OBJ)$/svx_svdmark.obj         \
-         $(OBJ)$/svx_svdmodel.obj        \
-         $(OBJ)$/svx_svdmrkv.obj         \
-         $(OBJ)$/svx_svdmrkv1.obj        \
-         $(OBJ)$/svx_svdoattr.obj        \
-         $(OBJ)$/svx_svdobj.obj          \
-         $(OBJ)$/svx_impgrfll.obj        \
-         $(OBJ)$/svx_svdocapt.obj        \
-         $(OBJ)$/svx_svdocirc.obj        \
-         $(OBJ)$/svx_svdoedge.obj        \
-         $(OBJ)$/svx_svdograf.obj        \
-         $(OBJ)$/svx_svdogrp.obj         \
-         $(OBJ)$/svx_svdomeas.obj        \
-         $(OBJ)$/svx_svdoole2.obj        \
-         $(OBJ)$/svx_svdopage.obj        \
-         $(OBJ)$/svx_svdopath.obj        \
-         $(OBJ)$/svx_svdorect.obj        \
-         $(OBJ)$/svx_svdotext.obj        \
-         $(OBJ)$/svx_svdotxat.obj        \
-         $(OBJ)$/svx_svdotxed.obj        \
-         $(OBJ)$/svx_svdotxfl.obj        \
-         $(OBJ)$/svx_svdotxln.obj        \
-         $(OBJ)$/svx_svdotxtr.obj        \
-         $(OBJ)$/svx_svdouno.obj         \
-         $(OBJ)$/svx_svdoutl.obj         \
-         $(OBJ)$/svx_svdovirt.obj        \
-         $(OBJ)$/svx_svdpage.obj         \
-         $(OBJ)$/svx_svdpagv.obj         \
-         $(OBJ)$/svx_svdpntv.obj         \
-         $(OBJ)$/svx_svdpoev.obj         \
-         $(OBJ)$/svx_svdsnpv.obj         \
-         $(OBJ)$/svx_svdsuro.obj         \
-         $(OBJ)$/svx_svdtouch.obj        \
-         $(OBJ)$/svx_svdtrans.obj        \
-         $(OBJ)$/svx_svdtxhdl.obj        \
-         $(OBJ)$/svx_svdundo.obj         \
-         $(OBJ)$/svx_svdview.obj         \
-         $(OBJ)$/svx_svdviter.obj        \
-         $(OBJ)$/svx_svdvmark.obj        \
-         $(OBJ)$/svx_svdxcgv.obj
-
 EXCEPTIONSFILES= \
          $(SLO)$/svx_svdhdl.obj          \
          $(SLO)$/svx_svdmrkv.obj         \
@@ -186,12 +125,6 @@ EXCEPTIONSFILES= \
          $(SLO)$/svx_svdouno.obj         \
          $(SLO)$/svx_svdfppt.obj         \
          $(SLO)$/svx_svdpagv.obj
-
-.IF "$(SVXLIGHT)"!=""
-EXCEPTIONSFILES+= \
-         $(OBJ)$/svx_sxl_svdogrp.obj         \
-         $(OBJ)$/svx_sxl_svdotxln.obj
-.ENDIF          # "$(SVXLIGHT)"!=""
 
 SRS1NAME=svx_svdstr
 SRC1FILES=  \
