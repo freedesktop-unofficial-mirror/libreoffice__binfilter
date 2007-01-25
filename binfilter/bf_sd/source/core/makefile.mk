@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 14:18:37 $
+#   last change: $Author: obo $ $Date: 2007-01-25 11:59:55 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -78,27 +78,6 @@ SLOFILES = $(SLO)$/sd_stlsheet.obj  \
 
 EXCEPTIONSFILES= \
            $(SLO)$/sd_drawdoc.obj
-
-.IF "$(SVXLIGHT)"!=""
-EXCEPTIONSFILES+= \
-           $(OBJ)$/sd_sxl_drawdoc.obj
-.ENDIF          # "$(SVXLIGHT)"!=""
-
-SVXLIGHTOBJFILES = \
-           $(OBJ)$/sd_stlsheet.obj  \
-           $(OBJ)$/sd_stlpool.obj	\
-           $(OBJ)$/sd_drawdoc.obj \
-           $(OBJ)$/sd_drawdoc2.obj \
-           $(OBJ)$/sd_drawdoc3.obj \
-           $(OBJ)$/sd_drawdoc4.obj \
-           $(OBJ)$/sd_sdpage.obj \
-           $(OBJ)$/sd_sdattr.obj \
-           $(OBJ)$/sd_sdobjfac.obj \
-           $(OBJ)$/sd_anminfo.obj	\
-           $(OBJ)$/sd_sdiocmpt.obj	\
-           $(OBJ)$/sd_sdpage2.obj	\
-           $(OBJ)$/sd_typemap.obj	\
-           $(OBJ)$/sd_cusshow.obj
 
 # --- Tagets -------------------------------------------------------
 
