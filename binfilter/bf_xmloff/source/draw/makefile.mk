@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:08:18 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:04:12 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE : svpre.mk
 .INCLUDE : settings.mk
-.INCLUDE : sv.mk
 
 INC+= -I$(PRJ)$/inc$/bf_xmloff
 
@@ -82,32 +80,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLShapePropertySetContext.obj \
         $(SLO)$/xmloff_XMLShapeStyleContext.obj \
         $(SLO)$/xmloff_ximppage.obj
-
-SVXLIGHTOBJFILES =	\
-        $(OBJ)$/xmloff_XMLNumberStyles.obj\
-        $(OBJ)$/xmloff_XMLGraphicsDefaultStyle.obj\
-        $(OBJ)$/xmloff_viewcontext.obj\
-        $(OBJ)$/xmloff_eventimp.obj\
-        $(OBJ)$/xmloff_layerimp.obj\
-        $(OBJ)$/xmloff_ximpshow.obj\
-        $(OBJ)$/xmloff_animimp.obj\
-        $(OBJ)$/xmloff_numithdl.obj\
-        $(OBJ)$/xmloff_sdxmlimp.obj \
-        $(OBJ)$/xmloff_ximpstyl.obj \
-        $(OBJ)$/xmloff_ximpbody.obj \
-        $(OBJ)$/xmloff_ximpshap.obj \
-        $(OBJ)$/xmloff_ximpgrp.obj \
-        $(OBJ)$/xmloff_ximp3dscene.obj \
-        $(OBJ)$/xmloff_ximp3dobject.obj \
-        $(OBJ)$/xmloff_ximpnote.obj \
-        $(OBJ)$/xmloff_sdpropls.obj \
-        $(OBJ)$/xmloff_propimp0.obj \
-        $(OBJ)$/xmloff_xexptran.obj \
-        $(OBJ)$/xmloff_shapeimport.obj \
-        $(OBJ)$/xmloff_XMLImageMapContext.obj \
-        $(OBJ)$/xmloff_XMLShapePropertySetContext.obj \
-        $(OBJ)$/xmloff_XMLShapeStyleContext.obj \
-        $(OBJ)$/xmloff_ximppage.obj
 
 # --- Targets --------------------------------------------------------------
 
