@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 11:59:14 $
+#   last change: $Author: obo $ $Date: 2007-01-25 11:59:41 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -96,7 +96,7 @@ SHL2STDLIBS+= \
     $(SO2LIB)
 
 .IF "$(GUI)"=="WNT"
-SHL2STDLIBS += $(LIBPRE) advapi32.lib
+SHL2STDLIBS += advapi32.lib
 .ENDIF # WNT
 
 SHL2DEF=	$(MISC)$/$(SHL2TARGET).def
@@ -150,11 +150,11 @@ $(MISC)$/$(SHL2TARGET).flt: makefile.mk
 $(INCCOM)$/class.lst:
 .IF "$(BUILD_SOSL)"==""
 .IF "$(GUI)$(CPU)$(UPDATER)"=="WNTIYES"
-    +-$(COPY) class.lst $@
+    -$(COPY) class.lst $@
 .ELSE
     @echo nix
 .ENDIF
 .ENDIF			# "$(BUILD_SOSL)"==""
 
 $(INCCOM)$/sba.hrc: $(PRJ)$/inc$/bf_offmgr/sbasltid.hrc
-    @+-$(COPY) $(PRJ)$/inc/bf_offmgr/sbasltid.hrc $(INCCOM)$/sba.hrc
+    @-$(COPY) $(PRJ)$/inc/bf_offmgr/sbasltid.hrc $(INCCOM)$/sba.hrc
