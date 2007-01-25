@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:37:15 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:01:33 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -44,8 +44,6 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util\svx_svxpch
 PRJNAME=binfilter
 TARGET=svx_options
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -75,28 +73,11 @@ SRC1FILES=\
     svx_optextbr.src		\
     svx_optctl.src
 
-#EXCEPTIONSFILES=\
-#	$(SLO)$/svx_multifil.obj		\
-#	$(SLO)$/svx_optasian.obj		\
-#	$(SLO)$/svx_optdict.obj		\
-#	$(SLO)$/svx_optlingu.obj		\
-#	$(SLO)$/svx_optaccessibility.obj	\
-#	$(SLO)$/svx_optsave.obj		\
-#	$(SLO)$/svx_optpath.obj
-
 SLOFILES=\
         $(SLO)$/svx_asiancfg.obj	\
         $(SLO)$/svx_adritem.obj	\
         $(SLO)$/svx_optgrid.obj
 
-
-SVXLIGHTOBJFILES=\
-    $(OBJ)$/svx_adritem.obj
-
-.IF "$(GUI)"=="WIN"
-SLOFILES+=\
-    $(SLO)$/svx_optdll.obj
-.ENDIF
 
 # --- Targets -------------------------------------------------------
 
