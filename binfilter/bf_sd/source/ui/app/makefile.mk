@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-23 06:32:53 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:00:09 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,6 @@ NO_HIDS=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
 NO_HID_FILES=sd_app.src
@@ -118,7 +117,7 @@ all: \
     ALLTAR
 
 $(INCCOM)$/sddll0.hxx: makefile.mk
-    +@echo $@
+    @echo $@
 .IF "$(GUI)"=="UNX"
     echo \#define DLL_NAME \"libbf_sd$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE			# "$(GUI)"=="UNX"
