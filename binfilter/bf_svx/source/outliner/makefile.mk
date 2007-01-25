@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:20:02 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:01:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -50,43 +50,12 @@ PROJECTPCHSOURCE=svx_outl_pch
 
 # --- Settings -----------------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Allgemein ----------------------------------------------------------
 
-.IF "$(header)" == ""
-
-#CXXFILES=	\
-#			outlundo.cxx	\
-#			outliner.cxx	\
-#			outlin2.cxx		\
-#			paralist.cxx	\
-#			outlobj.cxx 	\
-#			outlvw.cxx		\
-#			outleeng.cxx	\
-#			outl_pch.cxx
-
-CXXFILES=	\
-            svx_outliner.cxx	\
-            svx_outlin2.cxx		\
-            svx_paralist.cxx	\
-            svx_outlobj.cxx 	\
-            svx_outlvw.cxx		\
-            svx_outleeng.cxx	\
-            svx_outl_pch.cxx
-            
-#SLOFILES=	\
-#			$(SLO)$/svx_outlundo.obj	\
-#			$(SLO)$/svx_outliner.obj 	\
-#			$(SLO)$/svx_outlin2.obj		\
-#			$(SLO)$/svx_paralist.obj 	\
-#			$(SLO)$/svx_outlvw.obj 		\
-#			$(SLO)$/svx_outleeng.obj 	\
-#			$(SLO)$/svx_outlobj.obj
 
 SLOFILES=	\
             $(SLO)$/svx_outliner.obj 	\
@@ -96,16 +65,6 @@ SLOFILES=	\
             $(SLO)$/svx_outleeng.obj 	\
             $(SLO)$/svx_outlobj.obj
             
-SVXLIGHTOBJFILES= \
-            $(OBJ)$/svx_outliner.obj 	\
-            $(OBJ)$/svx_outlin2.obj		\
-            $(OBJ)$/svx_paralist.obj 	\
-            $(OBJ)$/svx_outlvw.obj 		\
-            $(OBJ)$/svx_outleeng.obj 	\
-            $(OBJ)$/svx_outlobj.obj
-
-.ENDIF
-
 SRS1NAME=$(TARGET)
 SRC1FILES=	svx_outliner.src
 
