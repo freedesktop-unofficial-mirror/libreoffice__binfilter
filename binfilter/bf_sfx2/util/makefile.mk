@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:34:07 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:00:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,92 +74,6 @@ LIB1FILES=  $(SLB)$/sfx2_appl.lib		\
             $(SLB)$/sfx2_bastyp.lib		\
             $(SLB)$/sfx2_config.lib
 
-#HELPIDFILES=\
-#			..\inc\sfxsids.hrc	\
-#			..\source\inc\helpid.hrc
-
-.IF "$(GUI)"!="UNX"
-#LIB2TARGET= $(LB)$/$(TARGET).lib
-#LIB2FILES=  $(LB)$/isfx.lib
-.ENDIF
-
-#SHL1TARGET= sfx$(UPD)$(DLLPOSTFIX)
-#SHL1IMPLIB= isfx
-
-#SHL1STDLIBS+=\
-#        $(FWELIB) \
-#		$(BASICLIB) \
-#		$(XMLOFFLIB) \
-#		$(XMLSCRIPTLIB) \
-#		$(SO2LIB) \
-#		$(SVTOOLLIB) \
-#		$(TKLIB) \
-#		$(VCLLIB) \
-#		$(SVLLIB)	\
-#		$(SOTLIB) \
-#        $(UNOTOOLSLIB) \
-#		$(TOOLSLIB) \
-#		$(SYSSHELLLIB) \
-#		$(COMPHELPERLIB) \
-#        $(UCBHELPERLIB) \
-#		$(CPPUHELPERLIB) \
-#		$(CPPULIB) \
-#		$(VOSLIB) \
-#		#$(SALLIB)
-
-#.IF "$(SOLAR_JAVA)" != ""
-#SHL1STDLIBS+=\
-#		$(SJLIB)
-#.ENDIF # SOLAR_JAVA
-
-#.IF "$(GUI)"=="WNT"
-
-#SHL1STDLIBS+=\
-#		uwinapi.lib \
-#		advapi32.lib \
-#		shell32.lib \
-#		gdi32.lib \
-#		ole32.lib \
-#		uuid.lib
-#
-#.ENDIF # WNT
-
-
-#.IF "$(GUI)"!="MAC"
-#SHL1DEPN += $(shell $(FIND) $(SLO) -type f -name "*.OBJ" -print)
-#.ENDIF
-#
-#.IF "$(SOLAR_JAVA)" != ""
-#SHL1DEPN+= \
-#			$(L)$/sj.lib
-#.ENDIF
-#
-#SHL1LIBS=   $(LIB1TARGET)
-#
-#SHL1OBJS=   $(SLO)$/sfx2_sfxdll.obj
-#
-#SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
-#
-#DEF1NAME	=$(SHL1TARGET)
-#DEF1DEPN	=$(MISC)$/$(SHL1TARGET).flt	\
-#				$(HXX1FILES)	\
-#				$(HXX2FILES)	\
-#				$(HXX3FILES)	\
-#				$(HXX4FILES)	\
-#				$(HXX5FILES)	\
-#				$(HXX6FILES)	\
-#				$(HXX7FILES)	\
-#				$(HXX8FILES)	\
-#				$(HXX9FILES)	\
-#				$(HXX10FILES)
-#DEFLIB1NAME	=sfx
-#DEF1DES		=Sfx
-
-#.IF "$(GUI)"=="WNT"
-#DEF1EXPORT6 = component_writeInfo
-#DEF1EXPORT7 = component_getFactory
-#.ENDIF
-
 SFXSRSLIST=\
         $(SRS)$/sfx2_accel.srs \
         $(SRS)$/sfx2_appl.srs \
@@ -188,6 +102,6 @@ RESLIB1SRSFILES=$(SFXSRSLIST)
 $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     @echo ------------------------------
     @echo Making: $@
-    @+$(TYPE) sfxwin.flt > $@
+    @$(TYPE) sfxwin.flt > $@
 
 
