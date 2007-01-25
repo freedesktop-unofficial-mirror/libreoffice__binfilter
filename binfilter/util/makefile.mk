@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: ihi $ $Date: 2006-12-22 18:09:59 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:05:30 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,6 @@ RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(UPD)$(DLLP
 ALLTAR : $(BIN)$/legacy_binfilters.rdb
 
 $(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
-    @+-$(RM) $@ >& $(NULLDEV)
-    +cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) -wop $(foreach,i,$(RDBLIBS) -c $(subst,$(LOCALLIBDIR)$/,./ $i))
-#    +cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) $(foreach,i,$(RDBLIBS:f) -c $i)
+    @-$(RM) $@ >& $(NULLDEV)
+    cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) -wop $(foreach,i,$(RDBLIBS) -c $(subst,$(LOCALLIBDIR)$/,./ $i))
 
