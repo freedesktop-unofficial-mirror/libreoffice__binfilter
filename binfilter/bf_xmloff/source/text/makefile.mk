@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:16:18 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:05:07 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 CDEFS += -DCONV_STAR_FONTS
 
 INC+= -I$(PRJ)$/inc$/bf_xmloff
@@ -134,45 +132,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLStringBufferImportContext.obj \
         $(SLO)$/xmloff_XMLTrackedChangesImportContext.obj \
         $(SLO)$/xmloff_XMLCalculationSettingsContext.obj
-
-SVXLIGHTOBJFILES =	\
-        $(OBJ)$/xmloff_txtdropi.obj \
-        $(OBJ)$/xmloff_txtfldi.obj \
-        $(OBJ)$/xmloff_txtimp.obj \
-        $(OBJ)$/xmloff_txtimppr.obj \
-        $(OBJ)$/xmloff_txtparai.obj \
-        $(OBJ)$/xmloff_txtprhdl.obj \
-        $(OBJ)$/xmloff_txtprmap.obj \
-        $(OBJ)$/xmloff_txtstyli.obj \
-        $(OBJ)$/xmloff_txtvfldi.obj \
-        $(OBJ)$/xmloff_XMLAutoMarkFileContext.obj \
-        $(OBJ)$/xmloff_XMLAutoTextEventImport.obj \
-        $(OBJ)$/xmloff_XMLAutoTextContainerEventImport.obj \
-        $(OBJ)$/xmloff_XMLChangedRegionImportContext.obj \
-        $(OBJ)$/xmloff_XMLChangeElementImportContext.obj \
-        $(OBJ)$/xmloff_XMLChangeInfoContext.obj \
-        $(OBJ)$/xmloff_XMLLineNumberingExport.obj \
-        $(OBJ)$/xmloff_XMLLineNumberingImportContext.obj \
-        $(OBJ)$/xmloff_XMLLineNumberingSeparatorImportContext.obj \
-        $(OBJ)$/xmloff_XMLPropertyBackpatcher.obj \
-        $(SLO)$/xmloff_XMLTextCharStyleNamesElementExport.obj \
-        $(OBJ)$/xmloff_XMLTextFrameContext.obj \
-        $(OBJ)$/xmloff_XMLTextFrameHyperlinkContext.obj \
-        $(OBJ)$/xmloff_XMLTextHeaderFooterContext.obj \
-        $(OBJ)$/xmloff_XMLTextListAutoStylePool.obj \
-        $(OBJ)$/xmloff_XMLTextListBlockContext.obj \
-        $(OBJ)$/xmloff_XMLTextListItemContext.obj \
-        $(OBJ)$/xmloff_XMLTextMarkImportContext.obj \
-        $(OBJ)$/xmloff_XMLTextMasterPageContext.obj \
-        $(OBJ)$/xmloff_XMLTextMasterPageExport.obj \
-        $(OBJ)$/xmloff_XMLTextMasterStylesContext.obj \
-        $(OBJ)$/xmloff_XMLTextNumRuleInfo.obj \
-        $(OBJ)$/xmloff_XMLTextPropertySetContext.obj \
-        $(OBJ)$/xmloff_XMLTextShapeImportHelper.obj \
-        $(OBJ)$/xmloff_XMLTextShapeStyleContext.obj \
-        $(OBJ)$/xmloff_XMLTextTableContext.obj \
-        $(OBJ)$/xmloff_XMLChangeImportContext.obj \
-        $(OBJ)$/xmloff_XMLStringBufferImportContext.obj
 
 # --- Tagets -------------------------------------------------------
 
