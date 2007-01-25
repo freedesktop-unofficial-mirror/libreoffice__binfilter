@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:23:20 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:01:22 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,23 +41,18 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=svx_form
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Files --------------------------------------------------------
 
-#IMGLST_SRS=$(SRS)$/form.srs
 BMP_IN=$(BFPRJ)$/win$/res
 
 SRS1NAME=svx_form
@@ -110,9 +105,5 @@ SLOFILES = \
 .IF "$(OS)$(CPU)"=="SOLARISI" 
 NOOPTFILES=$(SLO)$/svx_fmprop.obj
 .ENDIF
-
-SVXLIGHTOBJFILES= \
-    $(OBJ)$/svx_fmpage.obj      \
-    $(OBJ)$/svx_fmmodel.obj
 
 .INCLUDE :  target.mk
