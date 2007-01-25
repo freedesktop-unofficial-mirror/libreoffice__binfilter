@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 12:01:11 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:00:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -40,15 +40,11 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=sdraw3
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sd
 #IENV!:=$(IENV);..$/res
 
@@ -63,37 +59,10 @@ LINKFLAGS+=/SEGMENTS:512 /PACKD:32768
 
 # --- Resourcen ----------------------------------------------------
 
-.IF "$(GUI)"=="WIN"
-RESLIBSPLIT1NAME=sd
-RESLIBSPLIT1SRSFILES= \
-     $(SRS)$/sd_app.srs $(SRS)$/sd_dlg.srs $(SRS)$/sd_core.srs $(SRS)$/sd_sdslots.srs \
-     $(SRS)$/sfx2_sfx.srs
-.ELSE
 RESLIB1NAME=bf_sd
 RESLIB1SRSFILES=\
      $(SRS)$/sd_app.srs $(SRS)$/sd_dlg.srs $(SRS)$/sd_core.srs $(SRS)$/sd_sdslots.srs \
      $(SRS)$/sfx2_sfx.srs
-.ENDIF
-
-#.IF "$(GUI)"=="WIN"
-#RESLIBSPLIT1NAME=sd
-#RESLIBSPLIT1SRSFILES= \
-#	 $(SRS)$/app.srs $(SRS)$/dlg.srs $(SRS)$/core.srs $(SRS)$/html.srs $(SRS)$/sdslots.srs \
-#	 $(SRS)$/accessibility.srs $(SOLARRESDIR)$/sfx.srs
-#.ELSE
-#RESLIB1NAME=sd
-#RESLIB1SRSFILES=\
-#	 $(SRS)$/app.srs $(SRS)$/dlg.srs $(SRS)$/core.srs $(SRS)$/html.srs $(SRS)$/sdslots.srs \
-#	 $(SRS)$/accessibility.srs $(SOLARRESDIR)$/sfx.srs
-#.ENDIF
-
-#.IF "$(solarlang)" == "deut"
-#SRC1FILES=      ..$/source$/ui$/app$/appmain.src
-#SRS1NAME =      appmain
-#SRS1FILES=$(SRS)$/appmain.srs \
-#	 $(SOLARRESDIR)$/sfx.srs
-#RES1TARGET= sdappi
-#.ENDIF
 
 # --- StarDraw DLL
 
@@ -132,12 +101,6 @@ SHL1STDLIBS+= \
             $(BFSFXLIB)
 .ENDIF     
 
-.IF "$(GUI)" == "MAC"
-SHL1STDLIBS += \
-            $(SOLARBINDIR)$/SDB$(UPD)$(DLLPOSTFIX).DLL \
-            $(SOLARLIBDIR)$/plugctor.lib
-.ENDIF
-
 SHL1LIBS=   $(LIB3TARGET)
 
 
@@ -165,41 +128,11 @@ LIB3FILES=      \
             $(SLB)$/sd_bin.lib			\
             $(SLB)$/sd_filter.lib		\
             $(SLB)$/sd_unoidl.lib		
-#			$(SLB)$/sd_html.lib		\
-#			$(SLB)$/sd_cgm.lib			\
-#			$(SLB)$/sd_grf.lib			\
-#			$(SLB)$/sd_accessibility.lib		
-
 
 LIB4TARGET=$(LB)$/bf_sdlib.lib
 LIB4ARCHIV=$(LB)$/libbf_sdlib.a
-#.IF "$(GUI)"=="UNX"
 LIB4OBJFILES=$(SLO)$/sd_sdlib.obj \
           $(SLO)$/sd_sdresid.obj
-#.ELSE
-#.IF "$(GUI)"=="MAC"
-#LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
-#		  $(OBJ)$/sd_sdresid.obj
-#.ELSE
-#LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
-#		  $(OBJ)$/sd_sdresid.obj
-#.ENDIF
-#.ENDIF
-
-
-#.IF "$(depend)" == ""
-#ALL:    \
-#	ALLTAR
-#.ENDIF
-
-
-.IF "$(SVXLIGHT)" != "" 
-LIB5TARGET= $(LB)$/sd_sdl.lib
-LIB5ARCHIV= $(LB)$/sd_libsdl.a
-LIB5FILES=  \
-            $(LB)$/sd_sxl_core.lib\
-            $(LB)$/sd_sxl_unoidl.lib
-.ENDIF
 
 # --- Targets -------------------------------------------------------------
 
@@ -207,20 +140,6 @@ LIB5FILES=  \
 
 .IF "$(depend)" == ""
 
-# -------------------------------------------------------------------------
-# MAC
-# -------------------------------------------------------------------------
-
-.IF "$(GUI)" == "MAC"
-
-$(MISCX)$/$(APP1TARGET).def : makefile.mk
-
-
-$(MISC)$/$(SHL1TARGET).def:  makefile.mk
-        delete -i $@.exp
-        $(LINK)  $(LINKFLAGS) $(LINKFLAGSSHL) $(SHL1OBJS) $(SHL1LIBS) -f $@.exp · dev:null
-        duplicate -y $@.exp $@
-.ENDIF
 
 .IF "$(GUI)" == "WNT"
 
