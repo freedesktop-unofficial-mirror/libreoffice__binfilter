@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 09:08:05 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:03:56 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 CDEFS+=-DCONV_STAR_FONTS
 
 INC+= -I$(PRJ)$/inc$/bf_xmloff
@@ -84,27 +82,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLBase64Export.obj \
         $(SLO)$/xmloff_XMLBase64ImportContext.obj \
         $(SLO)$/xmloff_XMLBasicExportFilter.obj
-
-SVXLIGHTOBJFILES =	\
-        $(OBJ)$/xmloff_facreg.obj		\
-        $(OBJ)$/xmloff_xmlcnitm.obj	\
-        $(OBJ)$/xmloff_attrlist.obj	\
-        $(OBJ)$/xmloff_i18nmap.obj		\
-        $(OBJ)$/xmloff_nmspmap.obj		\
-        $(OBJ)$/xmloff_unoatrcn.obj	\
-        $(OBJ)$/xmloff_xmlehelp.obj	\
-        $(OBJ)$/xmloff_xmlerror.obj	\
-        $(OBJ)$/xmloff_xmlictxt.obj	\
-        $(OBJ)$/xmloff_xmlimp.obj		\
-        $(OBJ)$/xmloff_xmlkywd.obj		\
-        $(OBJ)$/xmloff_xmltkmap.obj	\
-        $(OBJ)$/xmloff_xmltoken.obj	\
-        $(OBJ)$/xmloff_xmluconv.obj	\
-        $(OBJ)$/xmloff_ProgressBarHelper.obj	\
-        $(OBJ)$/xmloff_PropertySetMerger.obj	\
-        $(OBJ)$/xmloff_DocumentSettingsContext.obj \
-        $(OBJ)$/xmloff_XMLEmbeddedObjectImportContext.obj \
-        $(OBJ)$/xmloff_XMLBase64ImportContext.obj
 
 CPPUMAKERFLAGS=
 
