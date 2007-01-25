@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:38:18 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:02:47 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
@@ -87,30 +85,6 @@ HXX6EXT		=	hxx
 HXX6FILES	=	$(INC)$/xpool.hxx
 HXX6EXCL	= 	-K:*compat.hxx
 
-.IF "$(header)" == ""
-
-CXXFILES= \
-        svx_xoutpch.cxx 	\
-        svx_xout.cxx		\
-        svx_xout1.cxx		\
-        svx_xattr.cxx		\
-        svx_xattr2.cxx		\
-        svx_xattrbmp.cxx	\
-        svx_xline.cxx		\
-        svx_xpool.cxx		\
-        svx_xtable.cxx		\
-        svx_xtabcolr.cxx	\
-        svx_xtablend.cxx	\
-        svx_xtabdash.cxx	\
-        svx_xtabhtch.cxx	\
-        svx_xtabgrdt.cxx	\
-        svx_xtabbtmp.cxx	\
-        svx_xiocomp.cxx		\
-        svx__xpoly.cxx		\
-        svx__ximp.cxx		\
-        svx__xoutbmp.cxx	\
-        svx__xfont.cxx
-
 SLOFILES= \
         $(SLO)$/svx_xout.obj   		\
         $(SLO)$/svx_xout1.obj  		\
@@ -131,29 +105,6 @@ SLOFILES= \
         $(SLO)$/svx__ximp.obj   	\
         $(SLO)$/svx__xoutbmp.obj	\
         $(SLO)$/svx__xfont.obj
-
-SVXLIGHTOBJFILES= \
-        $(OBJ)$/svx_xout.obj   		\
-        $(OBJ)$/svx_xout1.obj  		\
-        $(OBJ)$/svx_xattr.obj  		\
-        $(OBJ)$/svx_xattr2.obj  	\
-        $(OBJ)$/svx_xattrbmp.obj	\
-        $(OBJ)$/svx_xline.obj   	\
-        $(OBJ)$/svx_xpool.obj  		\
-        $(OBJ)$/svx_xtable.obj 		\
-        $(OBJ)$/svx_xtabcolr.obj	\
-        $(OBJ)$/svx_xtablend.obj	\
-        $(OBJ)$/svx_xtabdash.obj	\
-        $(OBJ)$/svx_xtabhtch.obj	\
-        $(OBJ)$/svx_xtabgrdt.obj	\
-        $(OBJ)$/svx_xtabbtmp.obj	\
-        $(OBJ)$/svx_xiocomp.obj		\
-        $(OBJ)$/svx__xpoly.obj  	\
-        $(OBJ)$/svx__ximp.obj   	\
-        $(OBJ)$/svx__xoutbmp.obj	\
-        $(OBJ)$/svx__xfont.obj
-
-.ENDIF
 
 HXXCOPYFILES=\
      $(PRJ)$/inc$/bf_svx$/xenum.hxx
