@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 12:16:51 $
+#   last change: $Author: obo $ $Date: 2007-01-25 12:05:19 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -97,21 +97,6 @@ SHL1STDLIBS+=-licg617mxp
 SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
 SHL1LIBS=   $(LIB1TARGET)
 
-# --- Static-Lib ---------------------------------------------------------
-
-#.IF "$(SVXLIGHT)" != "" 
-#LIB2TARGET= $(LB)$/xol.lib
-#LIB2ARCHIV= $(LB)$/libxol.a
-#LIB2FILES=  \
-#			$(LB)$/sxl_core.lib\
-#			$(LB)$/sxl_meta.lib\
-#			$(LB)$/sxl_draw.lib\
-#			$(LB)$/sxl_forms.lib\
-#		    $(LB)$/sxl_script.lib\
-#			$(LB)$/sxl_style.lib\
-#			$(LB)$/sxl_text.lib
-#.ENDIF
-
 # --- Def-File ---------------------------------------------------------
 
 DEF1NAME    =$(SHL1TARGET)
@@ -126,5 +111,5 @@ DEF1EXPORTFILE=	exports.dxp
 # --- Filter -----------------------------------------------------------
 
 $(MISC)$/$(SHL1TARGET).flt: makefile.mk
-    +$(TYPE) bf_xo.flt > $@
+    $(TYPE) bf_xo.flt > $@
 
