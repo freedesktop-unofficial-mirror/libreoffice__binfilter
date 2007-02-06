@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 12:00:45 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:42:10 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -48,9 +48,7 @@ NO_HIDS=TRUE
 LIBTARGET=NO
 
 # --- Settings -----------------------------------------------------------
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sch
 IENV!:=$(IENV);$(RES);..$/res
 
