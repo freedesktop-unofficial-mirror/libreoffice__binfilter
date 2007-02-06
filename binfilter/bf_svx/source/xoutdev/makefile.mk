@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:02:47 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:50:26 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -54,36 +54,6 @@ ENABLE_EXCEPTIONS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Files --------------------------------------------------------
-
-HXX1TARGET	=	xoutx
-HXX1EXT		=	hxx
-HXX1FILES	=	$(INC)$/xoutx.hxx
-HXX1EXCL	= 	-K:*compat.hxx
-
-HXX2TARGET	=	xattr
-HXX2EXT		=	hxx
-HXX2FILES	=	$(INC)$/xattr.hxx
-HXX2EXCL	= 	-K:*compat.hxx
-
-HXX3TARGET	=	xpoly
-HXX3EXT		=	hxx
-HXX3FILES	=	$(INC)$/xpoly.hxx
-HXX3EXCL	= 	-K:*compat.hxx
-
-HXX4TARGET	=	xtable
-HXX4EXT		=	hxx
-HXX4FILES	=	$(INC)$/xtable.hxx
-HXX4EXCL	= 	-K:*compat.hxx
-
-HXX5TARGET	=	xoutbmp
-HXX5EXT		=	hxx
-HXX5FILES	=	$(INC)$/xoutbmp.hxx
-HXX5EXCL	= 	-K:*compat.hxx
-
-HXX6TARGET	=	xpool
-HXX6EXT		=	hxx
-HXX6FILES	=	$(INC)$/xpool.hxx
-HXX6EXCL	= 	-K:*compat.hxx
 
 SLOFILES= \
         $(SLO)$/svx_xout.obj   		\
