@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:16:42 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:47:36 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,7 @@ ENABLE_EXCEPTIONS=	TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # --- Files --------------------------------------------------------
