@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appmisc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:55:14 $
+ *  last change: $Author: vg $ $Date: 2007-02-06 12:45:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,6 @@
 #endif
 #include <tools/rcid.h>
 #include <vos/mutex.hxx>
-#include <svtools/pver.hxx>
 #pragma hdrstop
 #ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
