@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:14:05 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:38:44 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,7 @@ USE_DEFFILE=TRUE
 
 # --- Settings ----------------------------------
 
-.INCLUDE :	svpre.mk
 .INCLUDE :	settings.mk
-.INCLUDE :	sv.mk
 INC+= -I$(PRJ)$/inc$/bf_forms
 LDUMP=ldump2.exe
 
