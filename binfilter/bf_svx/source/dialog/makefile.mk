@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 20:09:03 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:48:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -37,10 +37,6 @@ EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
-PROJECTPCH4DLL=TRUE
-PROJECTPCH=svxpch
-PROJECTPCHSOURCE=$(BFPRJ)$/util$/svx_svxpch
-
 PRJNAME=binfilter
 TARGET=svx_dialogs
 
@@ -48,17 +44,9 @@ NO_HIDS=TRUE
 
 VERSION=$(UPD)
 
-.IF "$(debug)" != ""
-LINK=n:\bin\optlinks\optlinks
-.ELSE
-OPTLINKS=YES
-.ENDIF
-
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
@@ -70,18 +58,6 @@ CFLAGS+=-D DG_DLL
 
 # --- Files --------------------------------------------------------
 
-HXX2TARGET= drawdlgs
-HXX2EXT=    hxx
-HXX2EXCL=   -E:*include*
-HXX2DEPN=\
-        $(INC)$/dlgname.hxx \
-        $(INC)$/tabline.hxx \
-        $(INC)$/labdlg.hxx \
-        $(INC)$/transfrm.hxx
-
-.IF "$(header)" == ""
-
-#IMGLST_SRS=$(SRS)$/dialogs.srs
 BMP_IN=$(BFPRJ)$/win/res
 
 SRS1NAME=svx_dialogs
@@ -172,8 +148,6 @@ SLOFILES=\
 EXCEPTIONSNOOPTFILES=$(SLO)$/svx_impgrf.obj
 .ELSE
 EXCEPTIONSFILES+=$(SLO)$/svx_impgrf.obj
-.ENDIF
-
 .ENDIF
 
 # --- Targets -------------------------------------------------------
