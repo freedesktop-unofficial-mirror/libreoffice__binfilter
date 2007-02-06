@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:26:23 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:41:43 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -45,9 +45,7 @@ ENABLE_EXCEPTIONS		= TRUE
 BOOTSTRAP_SERVICE		= FALSE
 
 # --- Settings -----------------------------------------------------
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sch
 
 .IF "$(GUI)" == "WNT"
