@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:55:03 $
+ *  last change: $Author: vg $ $Date: 2007-02-06 12:44:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,16 +39,8 @@
 
 #pragma hdrstop
 
-#ifndef _PVER_HXX //autogen
-#include <svtools/pver.hxx>
-#endif
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#if SUPD<613//MUSTINI
-#ifndef _SFXINIMGR_HXX //autogen
-#include <svtools/iniman.hxx>
-#endif
 #endif
 #ifndef _CSTITEM_HXX //autogen
 #include <svtools/cstitem.hxx>
