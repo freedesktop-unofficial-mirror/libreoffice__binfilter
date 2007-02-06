@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:25:03 $
+#   last change: $Author: vg $ $Date: 2007-02-06 12:41:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,7 @@ TARGET				= sch_xml
 ENABLE_EXCEPTIONS	= TRUE
 
 # --- Settings -----------------------------------------------------
-.INCLUDE : svpre.mk
 .INCLUDE : settings.mk
-.INCLUDE : sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sch
 # --- Files --------------------------------------------------------
 
