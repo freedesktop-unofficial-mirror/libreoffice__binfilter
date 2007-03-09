@@ -4,9 +4,9 @@
  *
  *  $RCSfile: msgpool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:58:55 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:24:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,10 +39,6 @@
 #ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
 #endif
-#ifndef _SVX_SRCHITEM_HXX
-#include <bf_svx/srchitem.hxx>
-#endif
-
 
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
@@ -54,7 +50,6 @@
 #include <svtools/eitem.hxx>
 #endif
 
-//#include <dbitems.hxx>
 #include "uiitems.hxx"
 namespace binfilter {
 
