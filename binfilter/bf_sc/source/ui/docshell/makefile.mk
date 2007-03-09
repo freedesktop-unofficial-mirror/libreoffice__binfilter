@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:26:36 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:21:37 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@ SLOFILES =  \
         $(SLO)$/sc_docsh4.obj   	\
         $(SLO)$/sc_docsh5.obj   	\
         $(SLO)$/sc_docsh6.obj   	\
-        $(SLO)$/sc_docsh8.obj   	\
         $(SLO)$/sc_tablink.obj   	\
         $(SLO)$/sc_arealink.obj   	\
         $(SLO)$/sc_dbdocfun.obj 	\
@@ -79,7 +78,6 @@ SLOFILES =  \
 
 
 EXCEPTIONSFILES= \
-        $(SLO)$/sc_docsh8.obj \
         $(SLO)$/sc_dbdocimp.obj
 
 
