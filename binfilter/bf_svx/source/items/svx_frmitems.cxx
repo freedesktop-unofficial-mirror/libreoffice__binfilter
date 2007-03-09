@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-03 10:08:21 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:11:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,8 +46,6 @@
 #include <limits.h>
 #include <comphelper/processfactory.hxx>
 
-#pragma hdrstop
-
 #define ITEMID_PAPERBIN 0
 #define ITEMID_SIZE     0
 #define ITEMID_LRSPACE  0
@@ -64,9 +62,6 @@
 #define ITEMID_BRUSH    0
 #define ITEMID_FRAMEDIR 0
 
-//#ifndef _ARGS_HXX //autogen
-//#include <svtools/args.hxx>
-//#endif
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
 #endif
@@ -116,7 +111,6 @@
 #include "keepitem.hxx"
 #include "bolnitem.hxx"
 #include "brshitem.hxx"
-#include "backgrnd.hxx"
 #include "frmdiritem.hxx"
 
 #include "itemtype.hxx"
@@ -380,9 +374,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxSizeItem( *this );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ SvStream& SvxSizeItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
@@ -391,12 +382,6 @@ using namespace ::com::sun::star;
 /*N*/   rStrm << aSize.Height();
 /*N*/   return rStrm;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -584,9 +569,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxLRSpaceItem( *this );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 // MT: BulletFI: Vor 501 wurde im Outliner das Bullet nicht auf der Position des
@@ -725,9 +707,6 @@ using namespace ::com::sun::star;
 // -----------------------------------------------------------------------
 
 
-// -----------------------------------------------------------------------
-
-
 // class SvxULSpaceItem --------------------------------------------------
 
 /*N*/ SvxULSpaceItem::SvxULSpaceItem( const sal_uInt16 nId ) :
@@ -828,9 +807,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxULSpaceItem( *this );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ SvStream& SvxULSpaceItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
@@ -874,11 +850,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 
 // class SvxPrintItem ----------------------------------------------------
 
@@ -991,9 +962,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return new SvxProtectItem( *this );
 /*N*/ }
-
-//------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1173,9 +1141,6 @@ using namespace ::com::sun::star;
 /*N*/   return nSpace;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ SvStream& SvxShadowItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
@@ -1188,12 +1153,6 @@ using namespace ::com::sun::star;
 /*N*/         << (sal_Int8)(aShadowColor.GetTransparency() > 0 ? 0 : 1); //BRUSH_NULL : BRUSH_SOLID
 /*N*/   return rStrm;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1217,9 +1176,6 @@ using namespace ::com::sun::star;
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_SHADOW_END;  // SVX_SHADOW_BOTTOMRIGHT + 1
 /*?*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1251,9 +1207,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_Bool SvxBorderLine::operator==( const SvxBorderLine& rCmp ) const
 /*N*/ {
 /*N*/   return ( ( aColor    == rCmp.GetColor() )    &&
@@ -1263,7 +1216,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
 
 // class SvxBoxItem ------------------------------------------------------
 
@@ -1555,9 +1507,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxBoxItem( *this );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ SvStream& SvxBoxItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
@@ -1617,12 +1566,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxBoxItem::Create( SvStream& rStrm, sal_uInt16 nIVersion ) const
 /*N*/ {
 /*N*/   sal_uInt16 nDistance;
@@ -1663,9 +1606,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return pAttr;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1841,9 +1781,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ int SvxBoxInfoItem::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
 /*N*/   SvxBoxInfoItem& rBoxInfo = (SvxBoxInfoItem&)rAttr;
@@ -1888,9 +1825,6 @@ using namespace ::com::sun::star;
 /*N*/   return new SvxBoxInfoItem( *this );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ SvStream& SvxBoxInfoItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
@@ -1924,12 +1858,6 @@ using namespace ::com::sun::star;
 /*N*/   rStrm << (char) 2;
 /*N*/   return rStrm;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1986,9 +1914,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return GetValue() == ( (SvxFmtBreakItem&)rAttr ).GetValue();
 /*N*/ }
-
-//------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -2124,16 +2049,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 /*?*/ int SvxLineItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
@@ -2146,24 +2061,6 @@ using namespace ::com::sun::star;
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxLineItem( *this );
 /*?*/ }
-
-
-// -----------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
 
 
 // -----------------------------------------------------------------------
@@ -2229,9 +2126,6 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/ void SvxBrushItem::InitSfxLink()
 /*N*/ {
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -2661,9 +2555,6 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
 /*N*/ SvxBrushItem& SvxBrushItem::operator=( const SvxBrushItem& rItem )
 /*N*/ {
 /*N*/   aColor = rItem.aColor;
@@ -2789,12 +2680,6 @@ GraphicFilter* GetGrfFilter();
 
 // -----------------------------------------------------------------------
 
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 /*N*/ const BfGraphicObject* SvxBrushItem::GetGraphicObject( SfxObjectShell* pSh ) const
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
@@ -2890,9 +2775,6 @@ GraphicFilter* GetGrfFilter();
 /*N*/   else
 /*N*/       DBG_ERROR( "SetGraphic() on linked graphic! :-/" );
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
