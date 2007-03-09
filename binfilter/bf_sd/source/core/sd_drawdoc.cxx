@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:01:44 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:32:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,6 @@
 #endif
 
 #include <bf_svx/svxids.hrc>
-#include <bf_svx/srchitem.hxx>
 
 #ifndef _OSPLCFG_HXX
 #include <bf_offmgr/osplcfg.hxx>
@@ -66,7 +65,6 @@
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/dialogs.hrc>
 #include "sdoutl.hxx"
-#include "app.hxx"
 
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
@@ -530,15 +528,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   delete mpCharClass;
 /*N*/   mpCharClass = NULL;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Diese Methode erzeugt ein neues Dokument (SdDrawDocument) und gibt einen
-|* Zeiger darauf zurueck. Die Drawing Engine benutzt diese Methode um das
-|* Dokument oder Teile davon ins Clipboard/DragServer stellen zu koennen.
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -1604,21 +1593,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-/*************************************************************************
-|*
-|* OnlineSpelling ein/aus
-|*
-\************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|* OnlineSpelling: Markierung ein/aus
-|*
-\************************************************************************/
-
-
 /*N*/ uno::Reference< uno::XInterface > SdDrawDocument::createUnoModel()
 /*N*/ {
 /*N*/   uno::Reference< uno::XInterface > xModel;
@@ -1639,9 +1613,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   return ePageNumType;
 /*N*/ }
-
-
-
 
 /*N*/ void SdDrawDocument::SetPrinterIndependentLayout (sal_Int32 nMode)
 /*N*/ {
@@ -1676,7 +1647,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/     return mnPrinterIndependentLayout;
 /*N*/ }
-
-
-
 }
