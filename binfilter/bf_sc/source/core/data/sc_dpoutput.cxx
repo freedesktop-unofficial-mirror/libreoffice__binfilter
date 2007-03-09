@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpoutput.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:18:24 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:17:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,12 +32,6 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-
-#ifdef PCH
-#include "core_pch.hxx"
-#endif
-
-#pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -109,16 +103,6 @@ struct ScDPOutLevelData
     //! bug (73840) in uno::Sequence - copy and then assign doesn't work!
 };
 
-// -----------------------------------------------------------------------
-
-
-
-
-// -----------------------------------------------------------------------
-
-
-
-
 ScDPOutput::ScDPOutput( ScDocument* pD, const uno::Reference<sheet::XDimensionsSupplier>& xSrc,
                                 const ScAddress& rPos, BOOL bFilter ) :
     pDoc( pD ),
@@ -151,23 +135,5 @@ ScDPOutput::~ScDPOutput()
 /*N*/   aStartPos = rPos;
 /*N*/   bSizesValid = bSizeOverflow = FALSE;
 /*N*/ }
-
-
-
-
-
-
-
-
-
-//
-//      Methods to find specific parts of the table
-//
-
-
-
-
-
-
 
 }
