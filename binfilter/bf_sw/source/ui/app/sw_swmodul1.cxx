@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:09:27 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:42:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -158,9 +158,6 @@
 #endif
 #ifndef _PRTOPT_HXX
 #include <prtopt.hxx>       // fuer PrintOptions
-#endif
-#ifndef _NAVICFG_HXX
-#include <navicfg.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
