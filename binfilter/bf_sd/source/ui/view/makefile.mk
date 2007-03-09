@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:44:11 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:45:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -43,8 +43,6 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
 PRJNAME=binfilter
 TARGET=sd_view
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -69,7 +67,6 @@ EXCEPTIONSNOOPTFILES=\
 SLOFILES =	\
         $(SLO)$/sd_sdview.obj	\
         $(SLO)$/sd_sdview2.obj	\
-        $(SLO)$/sd_sdview3.obj	\
         $(SLO)$/sd_sdview4.obj	\
         $(SLO)$/sd_viewshel.obj \
         $(SLO)$/sd_viewshe2.obj \
@@ -78,7 +75,6 @@ SLOFILES =	\
         $(SLO)$/sd_drviews1.obj \
         $(SLO)$/sd_drviews2.obj \
         $(SLO)$/sd_drviews3.obj \
-        $(SLO)$/sd_drviews4.obj \
         $(SLO)$/sd_drviews5.obj \
         $(SLO)$/sd_drviews6.obj \
         $(SLO)$/sd_drviews7.obj \
@@ -94,12 +90,9 @@ SLOFILES =	\
         $(SLO)$/sd_drawview.obj \
         $(SLO)$/sd_grviewsh.obj \
         $(SLO)$/sd_slidvish.obj \
-        $(SLO)$/sd_slidview.obj \
         $(SLO)$/sd_outlnvsh.obj \
-        $(SLO)$/sd_outlnvs2.obj \
         $(SLO)$/sd_presvish.obj \
         $(SLO)$/sd_prvwshll.obj \
-        $(SLO)$/sd_outlview.obj \
         $(SLO)$/sd_tabcontr.obj \
         $(SLO)$/sd_layertab.obj \
         $(SLO)$/sd_drstdob.obj	\
