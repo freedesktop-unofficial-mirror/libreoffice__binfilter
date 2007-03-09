@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:47:31 $
+#   last change: $Author: obo $ $Date: 2007-03-09 16:35:48 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -51,40 +51,12 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_acorrect.cxx \
-        sw_autofmt.cxx \
-        sw_edatmisc.cxx \
-        sw_edattr.cxx \
-        sw_eddel.cxx \
-        sw_edfcol.cxx \
-        sw_edfld.cxx \
-        sw_edfmt.cxx \
-        sw_edglbldc.cxx \
-        sw_edglss.cxx \
-        sw_editsh.cxx \
-        sw_ednumber.cxx \
-        sw_edredln.cxx \
-        sw_edtab.cxx \
-        sw_edtox.cxx \
-        sw_edundo.cxx \
-        sw_edws.cxx \
-        sw_edsect.cxx
-
-
-
 SLOFILES =	\
-        $(SLO)$/sw_acorrect.obj \
         $(SLO)$/sw_autofmt.obj \
         $(SLO)$/sw_edatmisc.obj \
         $(SLO)$/sw_edattr.obj \
-        $(SLO)$/sw_eddel.obj \
-        $(SLO)$/sw_edfcol.obj \
         $(SLO)$/sw_edfld.obj \
         $(SLO)$/sw_edfmt.obj \
-        $(SLO)$/sw_edglbldc.obj \
-        $(SLO)$/sw_edglss.obj \
-        $(SLO)$/sw_editsh.obj \
         $(SLO)$/sw_ednumber.obj \
         $(SLO)$/sw_edredln.obj \
         $(SLO)$/sw_edtab.obj \
