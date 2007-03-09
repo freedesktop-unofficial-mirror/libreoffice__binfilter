@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:03:14 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:20:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -56,31 +56,24 @@ PROJECTPCHSOURCE=..$/pch$/sc_ui_pch
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
 
-#OBJFILES = \
-#	$(OBJ)$/sc_sclib.obj
-
 SLOFILES =  \
     $(SLO)$/sc_scmod.obj  \
     $(SLO)$/sc_scmod2.obj  \
     $(SLO)$/sc_scdll.obj  \
-    $(SLO)$/sc_typemap.obj  \
     $(SLO)$/sc_transobj.obj \
     $(SLO)$/sc_drwtrans.obj \
-    $(SLO)$/sc_lnktrans.obj \
     $(SLO)$/sc_seltrans.obj \
     $(SLO)$/sc_inputhdl.obj \
     $(SLO)$/sc_inputwin.obj \
     $(SLO)$/sc_rfindlst.obj \
     $(SLO)$/sc_uiitems.obj  \
     $(SLO)$/sc_msgpool.obj \
-    $(SLO)$/sc_client.obj
+    $(SLO)$/sc_client.obj \
+    $(SLO)$/sc_typemap.obj
 
 EXCEPTIONSFILES= \
     $(SLO)$/sc_scmod2.obj \
     $(SLO)$/sc_scmod.obj
-
-#LIB3TARGET=$(SLB)$/bf_ysclib.lib
-#LIB3OBJFILES=$(SLO)$/sc_sclib.obj
 
 DEPOBJFILES=$(SLO)$/sc_sclib.obj
 
