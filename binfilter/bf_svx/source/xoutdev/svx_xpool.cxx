@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xpool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:42:02 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:33:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,6 +45,33 @@
 #include "xpool.hxx"
 #include "svdattr.hxx"
 #include "svxids.hrc"
+
+#include "rectenum.hxx"
+
+#include "xflbckit.hxx"
+#include "xflbmpit.hxx"
+#include "xflbmsli.hxx"
+#include "xflbmsxy.hxx"
+#include "xflbmtit.hxx"
+#include "xflboxy.hxx"
+#include "xflbstit.hxx"
+#include "xflbtoxy.hxx"
+#include "xfltrit.hxx"
+#include "xftadit.hxx"
+#include "xftdiit.hxx"
+#include "xftmrit.hxx"
+#include "xftouit.hxx"
+#include "xftsfit.hxx"
+#include "xftshcit.hxx"
+#include "xftshit.hxx"
+#include "xftshtit.hxx"
+#include "xftshxy.hxx"
+#include "xftstit.hxx"
+#include "xgrscit.hxx"
+#include "xlntrit.hxx"
+#include "xtxasit.hxx"
+
+
 namespace binfilter {
 
 #define GLOBALOVERFLOW3
