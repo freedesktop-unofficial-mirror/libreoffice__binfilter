@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_printer.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-30 07:54:41 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 15:06:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,10 @@
  *
  ************************************************************************/
 
-#include <vector>
-#include <iostream>
-#pragma hdrstop
-
 #include <svtools/itemset.hxx>
 #include <svtools/svarray.hxx>
-#include "prnmon.hxx"
+
+#include "bf_sfx2/printer.hxx"
 namespace binfilter {
 
 //--------------------------------------------------------------------
