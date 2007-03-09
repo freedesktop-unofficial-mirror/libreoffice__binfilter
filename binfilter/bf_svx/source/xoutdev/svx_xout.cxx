@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xout.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:39:12 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:33:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,6 +44,25 @@
 
 #include "xattr.hxx"
 #include "xoutx.hxx"
+
+#include "xflbckit.hxx"
+#include "xflgrit.hxx"
+#include "xfltrit.hxx"
+#include "xftadit.hxx"
+#include "xftdiit.hxx"
+#include "xftmrit.hxx"
+#include "xftouit.hxx"
+#include "xftsfit.hxx"
+#include "xftshcit.hxx"
+#include "xftshit.hxx"
+#include "xftshtit.hxx"
+#include "xftshxy.hxx"
+#include "xftstit.hxx"
+#include "xgrscit.hxx"
+#include "xlntrit.hxx"
+#include "xtextit0.hxx"
+
+
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
