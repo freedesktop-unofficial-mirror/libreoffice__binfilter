@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_toxmgr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:47:26 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:53:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-
-#pragma hdrstop
-
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
@@ -46,13 +43,13 @@
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-#ifndef _TOXMGR_HXX
-#include <toxmgr.hxx>
-#endif
 
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
 #endif
+
+#include <tox.hxx>
+
 namespace binfilter {
 
 /*-----------------23.01.98 07:41-------------------
