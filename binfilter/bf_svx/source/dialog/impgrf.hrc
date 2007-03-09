@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impgrf.hrc,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:08:51 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 15:17:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,4 @@
 #define STR_PREVIEW                 18
 #define STR_IMPORTGRAPHIC_COUNT     19
 
-
 #endif
-
-
