@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 11:51:14 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:58:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -122,7 +122,6 @@
 #include "appdata.hxx"
 #include "appuno.hxx"
 #include "sfxsids.hrc"
-#include "basmgr.hxx"
 #include "dlgcont.hxx"
 
 #ifndef _BASMGR_HXX
@@ -778,22 +777,6 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/   return aSequence;
 /*N*/ }
 
-//--------------------------------------------------------------------
-/* ASDBG
-void SfxObjectShell::SetModel( SfxModel* pModel )
-{
-    if ( pImp->xModel.is() )
-        DBG_WARNING( "Model already set!" );
-    pImp->xModel = pModel;
-}
-
-//--------------------------------------------------------------------
-
-XModel* SfxObjectShell::GetModel()
-{
-    return pImp->xModel;
-}
-*/
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::SetModel( SfxBaseModel* pModel )

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:26:45 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:58:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -182,10 +182,6 @@
 #include <printer.hxx>
 #endif
 
-#ifndef _SFX_BASMGR_HXX
-#include <basmgr.hxx>
-#endif
-
 #ifndef _SFXEVENT_HXX
 #include <event.hxx>
 #endif
@@ -262,18 +258,8 @@ namespace binfilter {
 
 // Don't use using ... here, because there are at least two classes with the same name in use
 
-//using namespace ::osl                             ;
-//using namespace ::rtl                             ;
-//using namespace ::cppu                            ;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
-//using namespace ::com::sun::star::container       ;
-//using namespace ::com::sun::star::frame           ;
-//using namespace ::com::sun::star::document        ;
-//using namespace ::com::sun::star::lang            ;
-//using namespace ::com::sun::star::util            ;
-//using namespace ::com::sun::star::view            ;
-//using namespace ::com::sun::star::beans           ;
 
 //________________________________________________________________________________________________________
 //  impl. declarations
@@ -342,11 +328,6 @@ extern void* getEnhMetaFileFromGDI_Impl( const GDIMetaFile* pGDIMeta );
 extern void* getWinMetaFileFromGDI_Impl( const GDIMetaFile* pGDIMeta, const Size& aMetaSize );
 extern SvMemoryStream* getMetaMemStrFromGDI_Impl( const GDIMetaFile* pGDIMeta, sal_uInt32 nFormat );
 extern sal_Bool supportsMetaFileHandle_Impl();
-
-
-
-
-
 
 
 //________________________________________________________________________________________________________
@@ -801,20 +782,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         m_pData->m_aInterfaceContainer.removeInterface( ::getCppuType((const REFERENCE< XEVENTLISTENER >*)0), xListener );
 /*N*/     else if ( xDocListener.is() )
 /*N*/         m_pData->m_aInterfaceContainer.removeInterface( ::getCppuType((const REFERENCE< XDOCEVENTLISTENER >*)0), xListener );
-/*
-    sal_uInt32 nCount = m_pData->m_seqControllers.getLength();
-    for ( sal_uInt32 n = 0; n < nCount; n++ )
-    {
-        if( m_pData->m_seqControllers.getConstArray()[n] == aObject.Source )
-        {
-            m_pData->m_seqControllers.getArray()[n] = REFERENCE< XCONTROLLER > () ;
-            break;
-        }
-    }
-
-    if ( m_pData->m_xCurrent.is() && m_pData->m_xCurrent == aObject.Source )
-        m_pData->m_xCurrent = REFERENCE< XCONTROLLER > ();
-*/
 /*N*/ }
 
 //________________________________________________________________________________________________________
@@ -1260,28 +1227,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/
 /*N*/   m_pData->m_aInterfaceContainer.removeInterface( ::getCppuType((const REFERENCE< XCLOSELISTENER >*)0), xListener );
 /*N*/ }
-
-//________________________________________________________________________________________________________
-//  XPrintable
-//________________________________________________________________________________________________________
-
-
-//________________________________________________________________________________________________________
-//  XPrintable
-//________________________________________________________________________________________________________
-
-
-
-//________________________________________________________________________________________________________
-//  ImplPrintWatch thread for asynchronous printing with moving temp. file to ucb location
-//________________________________________________________________________________________________________
-
-/* This implements a thread which will be started to wait for asynchronous
-   print jobs to temp. localy files. If they finish we move the temp. files
-   to her right locations by using the ucb.
- */
-
-//------------------------------------------------
 
 //________________________________________________________________________________________________________
 //  XPrintable
