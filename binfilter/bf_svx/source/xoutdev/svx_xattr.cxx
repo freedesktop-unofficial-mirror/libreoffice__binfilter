@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:38:28 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:33:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,9 +51,6 @@
 #include <com/sun/star/drawing/LineDash.hpp>
 #endif
 
-
-
-
 #ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
 #include <com/sun/star/drawing/FillStyle.hpp>
 #endif
@@ -65,7 +62,6 @@
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
-
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
@@ -88,6 +84,17 @@
 #include "xtable.hxx"
 #include "itemtype.hxx"
 
+#include "xftadit.hxx"
+#include "xftdiit.hxx"
+#include "xftmrit.hxx"
+#include "xftouit.hxx"
+#include "xftsfit.hxx"
+#include "xftshcit.hxx"
+#include "xftshit.hxx"
+#include "xftshxy.hxx"
+#include "xftstit.hxx"
+#include "xtxasit.hxx"
+
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
 #endif
@@ -107,13 +114,6 @@ using namespace ::com::sun::star;
 XubString aNameOrIndexEmptyString;
 
 /*N*/ TYPEINIT1_AUTOFACTORY(NameOrIndex, SfxStringItem);
-
-/*************************************************************************
-|*
-|*
-|*
-\*************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -194,28 +194,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   return ( SfxStringItem::operator==(rItem) &&
 /*N*/           ((const NameOrIndex&) rItem).nPalIndex == nPalIndex );
 /*N*/ }
-
-/*************************************************************************
-|*
-|*    SfxPoolItem* NameOrIndex::Clone(SfxItemPool* pPool) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    SfxPoolItem* NameOrIndex::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
-|*
-*************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -801,12 +779,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   else
 /*?*/       return pTable->Get(GetIndex())->GetDash();
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 
@@ -4771,8 +4743,5 @@ XubString aNameOrIndexEmptyString;
 /*N*/ {
 /*N*/   return SfxSetItem::Store( rStream, nItemVersion );
 /*N*/ }
-
-
-
 
 }
