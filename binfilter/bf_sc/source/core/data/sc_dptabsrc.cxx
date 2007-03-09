@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dptabsrc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:20:32 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:18:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,20 +33,11 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#include "core_pch.hxx"
-#endif
-
-#pragma hdrstop
-
-// INCLUDE ---------------------------------------------------------------
-
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
 #include <svtools/itemprop.hxx>
 
 #include "dptabsrc.hxx"
-#include "dptabres.hxx"
 #include "dptabdat.hxx"
 #include "global.hxx"
 #include "collect.hxx"
@@ -54,6 +45,7 @@
 #include "unoguard.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
+#include "dptabres.hxx"
 
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #include <com/sun/star/sheet/DataPilotFieldOrientation.hpp>
@@ -1164,14 +1156,5 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDPLevel )
-
-// -----------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------
-
-
-
 
 }
