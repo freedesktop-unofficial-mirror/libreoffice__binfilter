@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:17:26 $
+#   last change: $Author: obo $ $Date: 2007-03-09 15:08:02 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -44,11 +44,6 @@ PRJNAME=binfilter
 TARGET=bf_starmath
 
 NO_HIDS=TRUE
-
-PROJECTPCH=math_pch
-PDBTARGET=math_pch
-PROJECTPCHSOURCE=starmath_math_pch
-
 
 # --- Settings -----------------------------------------------------
 
