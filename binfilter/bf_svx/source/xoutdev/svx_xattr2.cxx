@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattr2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:02:40 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:33:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,8 +35,6 @@
 
 // include ---------------------------------------------------------------
 
-#pragma hdrstop
-
 #ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
 #include <com/sun/star/drawing/LineJoint.hpp>
 #endif
@@ -48,6 +46,22 @@
 #endif
 
 #include "xattr.hxx"
+
+#include "rectenum.hxx"
+#include "xflbckit.hxx"
+#include "xflbmpit.hxx"
+#include "xflbmsli.hxx"
+#include "xflbmsxy.hxx"
+#include "xflbmtit.hxx"
+#include "xflboxy.hxx"
+#include "xflbstit.hxx"
+#include "xflbtoxy.hxx"
+#include "xfltrit.hxx"
+#include "xftshtit.hxx"
+#include "xgrscit.hxx"
+#include "xlinjoit.hxx"
+#include "xlntrit.hxx"
+
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -1355,10 +1369,5 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return new XFillBackgroundItem( rIn );
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-
 
 }
