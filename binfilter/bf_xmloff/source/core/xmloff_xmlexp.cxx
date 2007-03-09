@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlexp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:13:46 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:54:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,11 +33,6 @@
  *
  ************************************************************************/
 
-#ifdef PRECOMPILED
-#endif
-
-#pragma hdrstop
-
 #include <rtl/uuid.h>
 #ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
 #include <tools/debug.hxx>
@@ -46,18 +41,12 @@
 #include <tools/urlobj.hxx>
 #endif
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
 #ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
 #endif
 #ifndef _COM_SUN_STAR_XML_SAX_SAXINVALIDCHARACTEREXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXInvalidCharacterException.hpp>
 #endif
-
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -70,17 +59,9 @@
 #include "xmlnmspe.hxx"
 #endif
 
-
-
-
 #ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
 #endif
-
-#ifndef _XMLOFF_XMLBASICE_HXX
-#include "xmlscripte.hxx"
-#endif
-
 
 #ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
