@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 18:52:11 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:49:53 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,8 +41,6 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=sfx2_appl
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
@@ -65,7 +63,7 @@ CFLAGS+=-Od
 
 SRS1NAME=sfx2_appl
 SRC1FILES =  \
-        sfx2_app.src sfx2_image.src sfx2_newhelp.src
+        sfx2_app.src
 
 SRS2NAME=sfx2_sfx
 SRC2FILES =  \
@@ -96,12 +94,8 @@ SLOFILES =  \
     $(SLO)$/sfx2_dlgcont.obj \
     $(SLO)$/sfx2_namecont.obj \
     $(SLO)$/sfx2_scriptcont.obj \
-    $(SLO)$/sfx2_newhelp.obj \
-    $(SLO)$/sfx2_helpinterceptor.obj \
     $(SLO)$/sfx2_shutdownicon.obj \
-    $(SLO)$/sfx2_shutdowniconw32.obj \
     $(SLO)$/sfx2_sfxpicklist.obj \
-    $(SLO)$/sfx2_helpdispatch.obj \
     $(SLO)$/sfx2_imestatuswindow.obj \
     $(SLO)$/sfx2_accelinfo.obj
 
@@ -113,18 +107,9 @@ EXCEPTIONSFILES=\
     $(SLO)$/sfx2_frstinit.obj		\
     $(SLO)$/sfx2_appinit.obj			\
     $(SLO)$/sfx2_appcfg.obj			\
-    $(SLO)$/sfx2_helpinterceptor.obj	\
-    $(SLO)$/sfx2_newhelp.obj			\
     $(SLO)$/sfx2_sfxhelp.obj			\
     $(SLO)$/sfx2_shutdownicon.obj	\
-    $(SLO)$/sfx2_shutdowniconw32.obj \
-    $(SLO)$/sfx2_sfxpicklist.obj		\
-    $(SLO)$/sfx2_helpdispatch.obj
-
-.IF "$(GUI)" == "MAC"
-SLOFILES +=\
-        $(SLO)$/sfx2_appmac.obj
-.ENDIF
+    $(SLO)$/sfx2_sfxpicklist.obj
 
 # --- Targets -------------------------------------------------------
 
