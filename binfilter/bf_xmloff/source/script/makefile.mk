@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:04:37 $
+#   last change: $Author: obo $ $Date: 2007-03-09 16:54:24 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLScriptExportHandler.obj \
         $(SLO)$/xmloff_XMLStarBasicContextFactory.obj \
         $(SLO)$/xmloff_XMLStarBasicExportHandler.obj \
-        $(SLO)$/xmloff_xmlscripte.obj \
         $(SLO)$/xmloff_xmlscripti.obj \
         $(SLO)$/xmloff_xmlbasici.obj
 
