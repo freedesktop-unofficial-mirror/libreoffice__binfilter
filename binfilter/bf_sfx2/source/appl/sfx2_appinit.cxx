@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:54:39 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:51:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -117,7 +117,6 @@
 #include "evntconf.hxx"
 #include "frameobj.hxx"
 #include "fsetobsh.hxx"
-#include "fsetview.hxx"
 #include "imgmgr.hxx"
 #include "interno.hxx"
 #include "macrconf.hxx"
