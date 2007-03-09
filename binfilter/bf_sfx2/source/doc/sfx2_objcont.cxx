@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:29:57 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:57:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,6 @@
 #include "urlframe.hxx"
 #include "printer.hxx"
 #include "topfrm.hxx"
-#include "basmgr.hxx"
 #include "doctempl.hxx"
 #include "doc.hrc"
 #include "appdata.hxx"
@@ -731,12 +730,6 @@ using namespace ::com::sun::star::uno;
 
 //--------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
 /*?*/ SvEmbeddedInfoObject* SfxObjectShell::InsertObject
 /*?*/ (
 /*?*/   SvEmbeddedObject*   pObj,
@@ -781,30 +774,11 @@ using namespace ::com::sun::star::uno;
 
 //-------------------------------------------------------------------------
 
-
-//-------------------------------------------------------------------------
-
 /*N*/ BOOL SfxObjectShell::HasTemplateConfig() const
 /*N*/ {
 /*N*/ //!MBA    return pImp->bTemplateConfig;
 /*N*/     return FALSE;
 /*N*/ }
-
-//-------------------------------------------------------------------------
-/*
-void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
-{
-    SfxConfigManager *pNewCfgMgr=0, *pOldCfgMgr=0;
-    pOldCfgMgr = pImp->pCfgMgr;
-    pImp->pCfgMgr = 0;
-
-    pNewCfgMgr = rObjSh.pImp->pCfgMgr;
-    rObjSh.pImp->pCfgMgr=0;
-
-    SetConfigManager(pNewCfgMgr);
-    rObjSh.SetConfigManager(pOldCfgMgr);
-}
-*/
 
 //--------------------------------------------------------------------
 
@@ -820,11 +794,6 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/                                        USHORT nIdx2)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*N*/ }
-
-
-//--------------------------------------------------------------------
-
-
 
 //--------------------------------------------------------------------
 
@@ -850,25 +819,6 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/                                 USHORT nIdx2 )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-//--------------------------------------------------------------------
-
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-/*  [Beschreibung]
-*/
-
 
 //--------------------------------------------------------------------
 
