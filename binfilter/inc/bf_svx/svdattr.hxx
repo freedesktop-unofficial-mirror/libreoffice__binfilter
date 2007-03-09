@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdattr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:31:37 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 17:19:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -143,8 +143,5 @@
 #ifndef _SDASAITM_HXX
 #include <bf_svx/sdasaitm.hxx>
 #endif
-namespace binfilter {
-
-}//end of namespace binfilter
 #endif
 
