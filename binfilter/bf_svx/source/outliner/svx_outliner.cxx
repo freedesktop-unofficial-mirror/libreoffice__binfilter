@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:28 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:27:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,8 +35,6 @@
 
 #include <outl_pch.hxx>
 
-#pragma hdrstop
-
 #include <math.h>
 
 #ifndef _SFXSTYLE_HXX //autogen
@@ -45,9 +43,6 @@
 #ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
 #endif
-//#ifndef _SYSTEM_HXX //autogen
-//#include <vcl/system.hxx>
-//#endif
 
 #define _OUTLINER_CXX
 #include <paralist.hxx>
@@ -55,9 +50,6 @@
 #include <outleeng.hxx>
 #include <editstat.hxx>
 #include <scripttypeitem.hxx>
-
-
-
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -67,17 +59,13 @@
 #include <numitem.hxx>
 #endif
 
-
-
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
 #endif
 
-
 #ifndef _SVX_BRSHITEM_HXX
 #include <brshitem.hxx>
 #endif
-
 
 // #101498# calculate if it's RTL or not
 #include <unicode/ubidi.h>
@@ -471,11 +459,6 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( pEditEngine->GetParagraphCount()==rPObj.Count(),"SetText failed")
 /*N*/ }
 
-
-
-
-
-
 /*N*/ XubString __EXPORT Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
@@ -649,9 +632,6 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
 /*N*/ Font Outliner::ImpCalcBulletFont( USHORT nPara ) const
 /*N*/ {
 /*N*/   const SvxNumberFormat* pFmt = ImplGetBullet( nPara );
@@ -734,12 +714,6 @@ namespace binfilter {
 /*N*/ #endif
 
 
-
-
-
-
-
-
 /*N*/ Outliner::Outliner( SfxItemPool* pPool, USHORT nMode )
 /*N*/ {
 /*N*/   DBG_CTOR( Outliner, 0 );
@@ -779,12 +753,6 @@ namespace binfilter {
 /*N*/     delete pOverwriteLevel0Bullet;
 /*N*/   delete pEditEngine;
 /*N*/ }
-
-
-
-
-
-
 
 /*N*/ void Outliner::ParagraphInsertedHdl()
 /*N*/ {
