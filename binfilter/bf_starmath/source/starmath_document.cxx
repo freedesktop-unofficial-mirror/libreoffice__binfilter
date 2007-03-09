@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:56:06 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 15:08:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,6 +57,7 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
+#include <svtools/undo.hxx>
 
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
@@ -113,9 +114,6 @@
 #endif
 #ifndef TOOLBOX_HXX
 #include <toolbox.hxx>
-#endif
-#ifndef ACTION_HXX
-#include <action.hxx>
 #endif
 #ifndef VIEW_HXX
 #include <view.hxx>
