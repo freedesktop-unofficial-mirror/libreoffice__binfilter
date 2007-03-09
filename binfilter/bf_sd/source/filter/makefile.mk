@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:42:50 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:32:39 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -40,8 +40,6 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=sd_filter
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -53,9 +51,7 @@ INC+= -I$(PRJ)$/inc$/bf_sd
 
 SLOFILES =\
         $(SLO)$/sd_sdfilter.obj	\
-        $(SLO)$/sd_pptin.obj		\
-        $(SLO)$/sd_propread.obj	\
-        $(SLO)$/sd_sdpptwrp.obj	
+        $(SLO)$/sd_propread.obj
 
 EXCEPTIONSFILES= \
            $(SLO)$/sd_sdfilter.obj
