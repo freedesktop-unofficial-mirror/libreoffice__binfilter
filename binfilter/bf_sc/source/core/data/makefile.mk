@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:18:34 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:17:13 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -42,10 +42,6 @@ PRJNAME=binfilter
 TARGET=sc_data
 
 NO_HIDS=TRUE
-
-PROJECTPCH4DLL=TRUE
-PROJECTPCH=core_pch
-PROJECTPCHSOURCE=..\pch\sc_core_pch
 
 # --- Settings -----------------------------------------------------
 
@@ -98,10 +94,8 @@ SLOFILES =  \
     $(SLO)$/sc_stlsheet.obj \
     $(SLO)$/sc_stlpool.obj \
     $(SLO)$/sc_dptabsrc.obj \
-    $(SLO)$/sc_dptabres.obj \
     $(SLO)$/sc_dptabdat.obj \
     $(SLO)$/sc_dpshttab.obj \
-    $(SLO)$/sc_dpsdbtab.obj \
     $(SLO)$/sc_dpoutput.obj \
     $(SLO)$/sc_dpobject.obj \
     $(SLO)$/sc_dpsave.obj \
@@ -115,7 +109,6 @@ SLOFILES =  \
 
 EXCEPTIONSFILES= \
     $(SLO)$/sc_documen6.obj \
-    $(SLO)$/sc_dpsdbtab.obj \
     $(SLO)$/sc_dpobject.obj \
     $(SLO)$/sc_dpoutput.obj \
     $(SLO)$/sc_dpsave.obj	\
