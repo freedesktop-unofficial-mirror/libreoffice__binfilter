@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:29:23 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:57:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,17 +33,8 @@
  *
  ************************************************************************/
 
-#ifdef SOLARIS
-// HACK: prevent conflict between STLPORT and Workshop headers on Solaris 8
-#include <ctime>
-#endif
-
-#include <string> // HACK: prevent conflict between STLPORT and Workshop headers
-
-
+#include <so3/ipenv.hxx>
 #include <svtools/eitem.hxx>
-
-#pragma hdrstop
 
 #define _SFX_INTERNO_CXX
 
@@ -57,7 +48,6 @@
 #include "docfac.hxx"
 #include "viewsh.hxx"
 #include "interno.hxx"
-#include "ipenv.hxx"
 #include "fltfnc.hxx"
 #include "sfxresid.hxx"
 #include "doc.hrc"
@@ -299,31 +289,6 @@ namespace binfilter {
      {
          DBG_ERROR("This behaviour is undefined!");
          return FALSE;
- /*
-         SfxApplication *pSfxApp = SFX_APP();
-         pFrame = pObjShell->GetFrame();
-         if ( !pFrame )
-         {
- //(mba)/task: no correct outplace editing
-             pFrame = SfxTopFrame::Create( pObjShell )->GetCurrentViewFrame();
-         }
-         else
-         {
-             pFrame->GetFrame()->Appear();
-         }
-
-         String aFN = GetFileName();
-         if( aFN.Len() )
-         {
-             // Dokumentnamen setzen
-             INetURLObject aDE( GetFileName(), INET_PROT_FILE );
-             SetDocumentName( aDE.GetName() );
-             pFrame->GetWindow().SetText( aDE.GetName() );
-         }
-
-         pFrame->GetWindow().ToTop();
-         return ERRCODE_NONE;
-  */
      }
 /*N*/ }
 
@@ -355,15 +320,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
 /*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & rDocName )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
@@ -379,5 +335,4 @@ namespace binfilter {
 /*N*/       pInObj->UpdateLinks();
 /*N*/   }
 /*N*/ }
-
 }
