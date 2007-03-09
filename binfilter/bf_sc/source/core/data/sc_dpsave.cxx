@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpsave.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:55:50 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:18:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,12 +32,6 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-
-#ifdef PCH
-#include "core_pch.hxx"
-#endif
-
-#pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
