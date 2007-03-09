@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impgrf.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:01:34 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 15:38:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-#pragma hdrstop
-
-
 
 using namespace ::ucb;
 using namespace ::com::sun::star::uno;
@@ -62,7 +59,6 @@ namespace binfilter {
 #define IMPGRF_INIKEY_ASLINK        "ImportGraphicAsLink"
 #define IMPGRF_INIKEY_PREVIEW       "ImportGraphicPreview"
 #define IMPGRF_CONFIGNAME           String(DEFINE_CONST_UNICODE("ImportGraphicDialog"))
-
 
 // -----------------------------------------------------------------------
 
@@ -96,10 +92,5 @@ namespace binfilter {
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-#pragma optimize( "", off )
-
-
-#pragma optimize( "", on )
 
 }
