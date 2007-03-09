@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:09:17 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:42:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,12 +85,6 @@
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-#ifndef _SFXNEW_HXX //autogen
-#include <bf_sfx2/new.hxx>
-#endif
-//#ifndef _FILEDLGHELPER_HXX
-//#include <bf_sfx2/filedlghelper.hxx>
-//#endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
@@ -190,9 +184,6 @@
 #ifndef _REDLNDLG_HXX
 #include <redlndlg.hxx>
 #endif
-#ifndef _ABSTRACT_HXX
-#include <abstract.hxx>     // SwInsertAbstractDialog
-#endif
 #ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
 #endif
@@ -254,27 +245,6 @@
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
 #endif
-//#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
-//#include <com/sun/star/ui/dialogs/XFilePicker.hpp>
-//#endif
-//#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILTERMANAGER_HPP_
-//#include <com/sun/star/ui/dialogs/XFilterManager.hpp>
-//#endif
-//#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
-//#include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
-//#endif
-//#ifndef _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
-//#include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
-//#endif
-//#ifndef _COM_SUN_STAR_UI_DIALOGS_LISTBOXCONTROLACTIONS_HPP_
-//#include <com/sun/star/ui/dialogs/ListboxControlActions.hpp>
-//#endif
-//#ifndef _COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HPP_
-//#include <com/sun/star/ui/dialogs/CommonFilePickerElementIds.hpp>
-//#endif
-//#ifndef  _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
-//#include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
-//#endif
 
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
@@ -284,12 +254,10 @@
 #include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
-//using namespace ::com::sun::star::ui::dialogs;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
-//using namespace sfx2;
 
 
 /*--------------------------------------------------------------------
