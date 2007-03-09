@@ -69,9 +69,8 @@ bf	binfilter\bf_sch\source\ui\unoidl					nmake	-	all	bf_sh_uidl NULL
 bf	binfilter\bf_sch\source\ui\app						nmake	-	all	bf_sh_app bf_sh_sdi NULL
 bf	binfilter\bf_sch\source\ui\docshell					nmake	-	all	bf_sh_docsh bf_sh_sdi NULL
 bf	binfilter\bf_sch\source\core						nmake	-	all	bf_sh_core bf_sh_sdi  NULL
-bf	binfilter\bf_sch\source\filter						nmake	-	all	bf_sh_filt bf_sh_sdi  NULL
 bf	binfilter\bf_sch\source\filter\xml					nmake	-	all	bf_sh_xml NULL
-bf	binfilter\bf_sch\util								nmake	-	all	bf_sh_util bf_sm_util bf_sh_app bf_sh_core bf_sh_docsh bf_sh_filt bf_sh_func bf_sh_uidl bf_sh_view bf_sh_xml NULL
+bf	binfilter\bf_sch\util								nmake	-	all	bf_sh_util bf_sm_util bf_sh_app bf_sh_core bf_sh_docsh bf_sh_func bf_sh_uidl bf_sh_view bf_sh_xml NULL
 bf	binfilter\bf_offmgr\sdi								nmake	-	all	bf_of_sdi bf_sv_sdi NULL
 bf	binfilter\bf_offmgr\source\offapp\app				nmake	-	all	bf_of_app bf_of_sdi NULL
 bf	binfilter\bf_offmgr\source\offapp\dialog			nmake	-	all	bf_of_odlg bf_of_sdi NULL
