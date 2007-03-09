@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:19:14 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:19:41 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,10 +41,6 @@ PRJNAME=binfilter
 TARGET=sc_tool
 
 NO_HIDS=TRUE
-
-PROJECTPCH4DLL=TRUE
-PROJECTPCH=core_pch
-PROJECTPCHSOURCE=..\pch\sc_core_pch
 
 # --- Settings -----------------------------------------------------
 
@@ -95,7 +91,6 @@ SLOFILES =  \
         $(SLO)$/sc_userlist.obj \
         $(SLO)$/sc_viewopti.obj \
         $(SLO)$/sc_inputopt.obj \
-        $(SLO)$/sc_filtopt.obj \
         $(SLO)$/sc_printopt.obj \
         $(SLO)$/sc_optutil.obj \
         $(SLO)$/sc_zforauto.obj \
