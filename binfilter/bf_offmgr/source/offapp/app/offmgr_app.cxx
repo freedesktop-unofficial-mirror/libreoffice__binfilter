@@ -4,9 +4,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 11:59:03 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:16:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,11 +33,6 @@
  *
  ************************************************************************/
 
-#ifdef PRECOMPILED
-#include "ofapch.hxx"
-#endif
-
-#pragma hdrstop
 #ifndef _TOOLS_SIMPLERESMGR_HXX_
 #include <tools/simplerm.hxx>
 #endif
@@ -185,9 +180,6 @@
 #endif
 #ifndef _SVX_SRCHDLG_HXX //autogen
 #include <bf_svx/srchdlg.hxx>
-#endif
-#ifndef _SVX_THESDLG_HXX //autogen
-#include <bf_svx/thesdlg.hxx>
 #endif
 #ifndef _SVX_ADRITEM_HXX //autogen
 #include <bf_svx/adritem.hxx>
@@ -478,12 +470,6 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/       pImpl->pResMgr = CreateResManager( "bf_ofa"); //STRIP005
 /*N*/   return pImpl->pResMgr;
 /*N*/ }
-
-// ------------------------------------------------------------------------
-
-
-// ------------------------------------------------------------------------
-
 
 // ------------------------------------------------------------------------
 
