@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:46:15 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:57:05 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ SLOFILES =	\
         $(SLO)$/sfx2_objxtor.obj \
         $(SLO)$/sfx2_objmisc.obj \
         $(SLO)$/sfx2_objstor.obj \
-        $(SLO)$/sfx2_objsys.obj \
         $(SLO)$/sfx2_objcont.obj \
         $(SLO)$/sfx2_objserv.obj \
         $(SLO)$/sfx2_objitem.obj \
@@ -80,8 +79,9 @@ SLOFILES =	\
         $(SLO)$/sfx2_sfxbasemodel.obj \
         $(SLO)$/sfx2_xmlversion.obj
 
-EXCEPTIONSFILES=$(SLO)$/sfx2_objuno.obj \
-                $(SLO)$/sfx2_objcont.obj \
+EXCEPTIONSFILES=\
+        $(SLO)$/sfx2_objuno.obj \
+        $(SLO)$/sfx2_objcont.obj \
         $(SLO)$/sfx2_docfac.obj \
         $(SLO)$/sfx2_docfile.obj \
         $(SLO)$/sfx2_doctempl.obj \
@@ -94,10 +94,3 @@ EXCEPTIONSFILES=$(SLO)$/sfx2_objuno.obj \
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :  target.mk
-
-
-
-
-
-
-
