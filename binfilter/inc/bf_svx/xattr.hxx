@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xattr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:23:30 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 17:24:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,19 +38,6 @@ namespace binfilter {
 
 // include ---------------------------------------------------------------
 
-#ifndef _XDEF_HXX
-//#include <bf_svx/xdef.hxx>
-#endif
-#ifndef _XENUM_HXX
-//#include <bf_svx/xenum.hxx>
-#endif
-#ifndef _XPOLY_HXX
-//#include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVX_RECTENUM_HXX
-//#include <bf_svx/rectenum.hxx>
-#endif
-
 class XColorTable;
 class XDashTable;
 class XLineEndTable;
@@ -65,13 +52,10 @@ class XGradientTable;
 #include <bf_svx/xhatch.hxx>
 #include <bf_svx/xlineit.hxx>
 #include <bf_svx/xfillit.hxx>
-#include <bf_svx/xtextit.hxx>
 #include <bf_svx/xlineit0.hxx>
 #include <bf_svx/xfillit0.hxx>
 #include <bf_svx/xtextit0.hxx>
-#include <bf_svx/xsetit.hxx>
 #include <bf_svx/xlinjoit.hxx>
-
 
 #endif      // _XATTR_HXX
 
