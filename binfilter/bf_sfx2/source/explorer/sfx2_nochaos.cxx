@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_nochaos.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:32:28 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:59:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -211,8 +211,8 @@ CntItemPool* CntItemPool::_pThePool = NULL;
 /*N*/   m_ppDefaults( new SfxPoolItem* [ m_nItems ] ),
 /*N*/   m_pItemInfos( new SfxItemInfo  [ m_nItems ] )
 /*N*/ {
-/*N*/   rtl_zeroMemory( m_ppDefaults, sizeof( m_ppDefaults ) * m_nItems );
-/*N*/   rtl_zeroMemory( m_pItemInfos, sizeof( m_pItemInfos ) * m_nItems );
+/*N*/   rtl_zeroMemory( m_ppDefaults, sizeof( SfxPoolItem* ) * m_nItems );
+/*N*/   rtl_zeroMemory( m_pItemInfos, sizeof( SfxItemInfo ) * m_nItems );
 /*N*/
 /*N*/   Insert(
 /*N*/       new SfxStringItem( WID_CHAOS_START, String() ),
