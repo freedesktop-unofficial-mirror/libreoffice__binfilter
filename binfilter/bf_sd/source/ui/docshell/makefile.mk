@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:43:42 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:38:51 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ SLOFILES =	\
         $(SLO)$/sd_docshell.obj \
         $(SLO)$/sd_docshel2.obj \
         $(SLO)$/sd_docshel4.obj \
-        $(SLO)$/sd_sdclient.obj \
         $(SLO)$/sd_grdocsh.obj
 
 # --- Tagets -------------------------------------------------------
