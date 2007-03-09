@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrtsh.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:10:54 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:53:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #endif
 #ifndef _SORTOPT_HXX
 #include <sortopt.hxx>
-#endif
-#ifndef _SWURL_HXX
-#include <swurl.hxx>
 #endif
 #include <tools/debug.hxx>
 namespace com { namespace sun { namespace star { namespace util {
