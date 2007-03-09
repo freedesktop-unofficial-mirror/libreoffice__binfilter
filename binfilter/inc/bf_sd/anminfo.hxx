@@ -4,9 +4,9 @@
  *
  *  $RCSfile: anminfo.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:51:33 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:57:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,9 +46,6 @@
 #include <com/sun/star/presentation/ClickAction.hpp>
 #endif
 
-#ifndef _SD_ANMDEF_HXX
-#include <bf_sd/anmdef.hxx>
-#endif
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif
