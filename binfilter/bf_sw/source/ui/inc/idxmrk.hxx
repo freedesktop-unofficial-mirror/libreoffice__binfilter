@@ -4,9 +4,9 @@
  *
  *  $RCSfile: idxmrk.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:43:40 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:47:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,9 +52,6 @@
 #ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
 #endif
-#ifndef _SVX_STDDLG_HXX
-#include <bf_svx/stddlg.hxx>
-#endif
 
 #ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
@@ -92,13 +89,6 @@ class SwTOXMark;
  --------------------------------------------------------------------*/
 class SwIndexMarkFloatDlg;
 class SwIndexMarkModalDlg;
-/* -----------------06.10.99 10:11-------------------
-
- --------------------------------------------------*/
-/* -----------------06.10.99 10:33-------------------
-
- --------------------------------------------------*/
-
 /* -----------------07.09.99 08:02-------------------
 
  --------------------------------------------------*/
@@ -135,14 +125,6 @@ protected:
 
 public:
 };
-/* -----------------06.10.99 10:11-------------------
-
- --------------------------------------------------*/
-/* -----------------06.10.99 10:33-------------------
-
- --------------------------------------------------*/
-
-
 } //namespace binfilter
 #endif // _IDXMRK_HXX
 
