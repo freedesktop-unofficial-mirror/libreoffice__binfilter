@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocutl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:41:32 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:17:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,12 +32,6 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-
-#ifdef PCH
-#include "core_pch.hxx"
-#endif
-
-#pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
