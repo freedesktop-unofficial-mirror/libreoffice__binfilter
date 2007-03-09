@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodule.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:42:09 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:42:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,8 +33,6 @@
  *
  ************************************************************************/
 
-
-#pragma hdrstop
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
@@ -66,12 +64,6 @@
 #endif
 #ifndef _OFAACCFG_HXX //autogen
 #include <bf_offmgr/ofaaccfg.hxx>
-#endif
-#ifndef _SVX_FNTSZCTL_HXX //autogen
-#include <bf_svx/fntszctl.hxx>
-#endif
-#ifndef _SVX_FNTCTL_HXX //autogen
-#include <bf_svx/fntctl.hxx>
 #endif
 #ifndef _SVX_PSZCTRL_HXX //autogen
 #include <bf_svx/pszctrl.hxx>
@@ -233,9 +225,6 @@
 #endif
 #ifndef _WDRWBASE_HXX
 #include <wdrwbase.hxx>
-#endif
-#ifndef _NAVIPI_HXX //autogen
-#include <navipi.hxx>
 #endif
 #ifndef _CHARTINS_HXX //autogen
 #include <chartins.hxx>
@@ -457,7 +446,6 @@ using namespace ::rtl;
 |*
 \************************************************************************/
 
-
 /*N*/ SfxModule* SwModuleDummy::Load()
 /*N*/ {
 /*N*/   return (NULL);
@@ -466,7 +454,6 @@ using namespace ::rtl;
 /*N*/ SwModuleDummy::~SwModuleDummy()
 /*N*/ {
 /*N*/ }
-
 
 /*************************************************************************
 |*
@@ -479,21 +466,6 @@ using namespace ::rtl;
 /*N*/   return (this);
 /*N*/ }
 
-/*-----------------15.03.98 11:50-------------------
-
---------------------------------------------------*/
-/*Reflection*   SwModule::GetReflection( UsrUik aUIK )
-{
-    DBG_ERROR("GetReflection - new method not yet available")
-    return 0;
-
-    if(aUIK == ::getCppuType((const uno::Reference< text::XModule >*)0))
-        return ::getCppuType((const SwXModule*)0)();
-    else if(aUIK == ::getCppuType((const uno::Reference< text::XAutoTextContainer >*)0)())
-        return ::getCppuType((const SwXAutoTextContainer*)0)();
-    else
-        return SfxModule::GetReflection(aUIK);
-}*/
 /* -----------------20.04.99 10:46-------------------
  *
  * --------------------------------------------------*/
@@ -511,6 +483,5 @@ using namespace ::rtl;
 /*N*/   SetPool(0);
 /*N*/   DELETEZ(pAttrPool);
 /*N*/ }
-
 
 }
