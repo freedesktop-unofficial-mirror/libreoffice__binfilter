@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rlrcitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:31:25 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 15:20:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,4 +60,3 @@ public:
 
 }//end of namespace binfilter
 #endif
-
