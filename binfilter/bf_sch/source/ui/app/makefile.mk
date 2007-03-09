@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: kz $ $Date: 2006-10-05 10:25:44 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:30:34 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,9 +57,7 @@ INC+= -I$(PRJ)$/inc$/bf_sch
 
 SRS1NAME=$(TARGET)
 SRC1FILES =	sch_app.src		\
-        sch_strings.src		\
-        sch_res_bmp.src		\
-        sch_res_hc_bmp.src
+        sch_strings.src
 
 DEPOBJFILES =	\
         $(SLO)$/sch_schlib.obj
