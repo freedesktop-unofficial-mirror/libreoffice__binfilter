@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:45:18 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:35:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,8 +33,6 @@
  *
  ************************************************************************/
 
-
-#pragma hdrstop
 
 #define ROLBCK_HISTORY_ONLY     // Der Kampf gegen die CLOOK's
 
@@ -132,9 +130,6 @@
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-#ifndef _ACORRECT_HXX
-#include <acorrect.hxx>         // fuer die autom. Aufnahme von Ausnahmen
-#endif
 #ifndef _VISITURL_HXX
 #include <visiturl.hxx>         // fuer die URL-Change Benachrichtigung
 #endif
@@ -178,9 +173,13 @@
 #ifndef _CMDID_H
 #include <cmdid.h>              // fuer den dflt - Printer in SetJob
 #endif
+
+#include <acorrect.hxx>
+
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
 namespace binfilter {
 const sal_Char __FAR_DATA sFrmFmtStr[] = "Frameformat";
 const sal_Char __FAR_DATA sEmptyPageStr[] = "Empty Page";
@@ -198,8 +197,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
  * interne Funktionen
  */
 
-
-
 /*N*/ BOOL lcl_DelFmtIndizes( const SwFrmFmtPtr& rpFmt, void* )
 /*N*/ {
 /*N*/   SwFmtCntnt &rFmtCntnt = (SwFmtCntnt&)rpFmt->GetCntnt();
@@ -214,8 +211,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*
  * exportierte Methoden
  */
-
-
 
 /*N*/ SwDoc::SwDoc() :
 /*N*/   aAttrPool( this ),
@@ -746,7 +741,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 // zu vermeiden
 
 
-
 /*N*/ SvStorage* SwDoc::GetDocStorage()
 /*N*/ {
 /*N*/   if( pDocShell )
@@ -762,10 +756,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ {
 /*N*/   return pDocShell ? pDocShell : pLinkMgr->GetPersist();
 /*N*/ }
-
-
-
-
 
 
 /*N*/ const SfxDocumentInfo* SwDoc::GetInfo()
@@ -867,7 +857,5 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ {
 /*N*/     pLayoutCache->Write( rStream, *this );
 /*N*/ }
-
-
 
 }
