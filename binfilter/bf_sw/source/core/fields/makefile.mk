@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:25:33 $
+#   last change: $Author: obo $ $Date: 2007-03-09 16:37:25 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -51,27 +51,6 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_authfld.cxx \
-        sw_cellfml.cxx \
-        sw_chpfld.cxx \
-        sw_dbfld.cxx \
-        sw_ddefld.cxx \
-        sw_ddetbl.cxx \
-        sw_docufld.cxx \
-        sw_expfld.cxx \
-        sw_fldbas.cxx \
-        sw_flddat.cxx \
-        sw_flddropdown.cxx \
-        sw_scrptfld.cxx \
-        sw_macrofld.cxx \
-        sw_fldlst.cxx \
-        sw_reffld.cxx \
-        sw_tblcalc.cxx \
-        sw_usrfld.cxx
-
-
-
 SLOFILES =	\
         $(SLO)$/sw_authfld.obj \
         $(SLO)$/sw_cellfml.obj \
@@ -84,7 +63,6 @@ SLOFILES =	\
         $(SLO)$/sw_fldbas.obj \
         $(SLO)$/sw_flddat.obj \
         $(SLO)$/sw_flddropdown.obj \
-        $(SLO)$/sw_fldlst.obj \
         $(SLO)$/sw_scrptfld.obj \
         $(SLO)$/sw_macrofld.obj \
         $(SLO)$/sw_reffld.obj \
