@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: hr $ $Date: 2007-01-02 17:56:03 $
+#   last change: $Author: obo $ $Date: 2007-03-09 16:39:53 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,8 +41,6 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_swg
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 AUTOSEG=true
@@ -50,10 +48,8 @@ AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 .IF "$(GUI)$(COM)" == "WINMSC"
@@ -84,4 +80,3 @@ EXCEPTIONSFILES = \
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :  target.mk
-
