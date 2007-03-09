@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:01:22 $
+#   last change: $Author: obo $ $Date: 2007-03-09 16:00:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,8 +74,6 @@ SLOFILES = \
     $(SLO)$/svx_fmundo.obj  	\
     $(SLO)$/svx_fmprop.obj      \
     $(SLO)$/svx_fmmodel.obj		\
-    $(SLO)$/svx_navigatortree.obj      \
-    $(SLO)$/svx_navigatortreemodel.obj      \
     $(SLO)$/svx_fmexpl.obj      \
     $(SLO)$/svx_fmctrler.obj    \
     $(SLO)$/svx_fmpgeimp.obj	\
@@ -97,7 +95,6 @@ SLOFILES = \
     $(SLO)$/svx_fmtools.obj     \
     $(SLO)$/svx_fmshimp.obj     \
     $(SLO)$/svx_fmshell.obj     \
-    $(SLO)$/svx_fmsearch.obj	\
     $(SLO)$/svx_fmview.obj		\
     $(SLO)$/svx_siimport.obj	\
     $(SLO)$/svx_sdbdatacolumn.obj
