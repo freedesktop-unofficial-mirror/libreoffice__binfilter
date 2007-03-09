@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:25:50 $
+#   last change: $Author: obo $ $Date: 2007-03-09 16:37:47 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -56,20 +56,7 @@ CDEFS+=-Dmydebug
 
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_fecopy.cxx \
-        sw_fedesc.cxx \
-        sw_fefly1.cxx \
-        sw_feflyole.cxx \
-        sw_feshview.cxx \
-        sw_fetab.cxx \
-        sw_fews.cxx \
-        sw_tblsel.cxx
-
-
-
 SLOFILES =  \
-        $(SLO)$/sw_fecopy.obj \
         $(SLO)$/sw_fedesc.obj \
         $(SLO)$/sw_fefly1.obj \
         $(SLO)$/sw_feflyole.obj \
