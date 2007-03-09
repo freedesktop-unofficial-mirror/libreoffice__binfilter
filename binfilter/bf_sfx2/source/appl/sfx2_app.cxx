@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:52:44 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:50:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,23 +40,16 @@
 #define PATH_MAX _MAX_PATH
 #endif // UNX
 
-
-
-
 #include <svtools/svdde.hxx>
 #include <tools/urlobj.hxx>
-#pragma hdrstop
 
 #define _SVSTDARR_STRINGSDTOR
-
 
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
 
-#if SUPD>637
 #include <rtl/logfile.hxx>
-#endif
 
 #include <appuno.hxx>
 #include "arrdecl.hxx"
@@ -65,6 +58,7 @@
 #include "cfgmgr.hxx"
 #include "fltfnc.hxx"
 #include "dispatch.hxx"
+#include "workwin.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
 #include <svtools/imgdef.hxx>
@@ -73,7 +67,6 @@
 #include "appdata.hxx"
 #include "app.hrc"
 #include "interno.hxx"
-#include "ipenv.hxx"
 #include "intfrm.hxx"
 #include "event.hxx"
 #include "appimp.hxx"
@@ -116,6 +109,7 @@
 #include <vcl/syswin.hxx>
 #endif
 #include "so3/staticbaseurl.hxx"
+#include <so3/ipenv.hxx>
 namespace binfilter {
 
 // Static member
@@ -188,9 +182,7 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/   static ::osl::Mutex aProtector;
 /*N*/   ::osl::MutexGuard aGuard( aProtector );
 /*N*/
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT( aLog, "sfx2 (mb93783) ::SfxApplication::SetApp" );
-/*N*/ #endif
 /*N*/   DBG_ASSERT( !pApp, "SfxApplication already created!" );
 /*N*/   if ( pApp )
 /*?*/       DELETEZ( pApp );
@@ -224,15 +216,11 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/   , pImageMgr( 0 )
 /*N*/   , nInterfaces( 0 )
 /*N*/ {
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT( aLog, "sfx2 (mb93783) ::SfxApplication::SfxApplication" );
-/*N*/ #endif
 /*N*/
 /*N*/   GetpApp()->SetPropertyHandler( GetOrCreatePropertyHandler() );
 /*N*/
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "{ precreate svtools options objects" );
-/*N*/ #endif
 /*N*/     pSaveOptions = new SvtSaveOptions;
 /*N*/     pUndoOptions = new SvtUndoOptions;
 /*N*/     pHelpOptions = new SvtHelpOptions;
@@ -252,19 +240,8 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/   pExtendedSecurityOptions = new SvtExtendedSecurityOptions;
 /*N*/   pAddonsOptions = new framework::AddonsOptions;
 /*N*/     SvtViewOptions::AcquireOptions();
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "} precreate svtools options objects" );
-/*N*/ #endif
 /*N*/
-/*
-#if SUPD>637
-    RTL_LOGFILE_CONTEXT_TRACE( aLog, "{ UCB_Helper::Initialize" );
-#endif
-    UCB_Helper::Initialize();
-#if SUPD>637
-    RTL_LOGFILE_CONTEXT_TRACE( aLog, "} UCB_Helper::Initialize" );
-#endif
-*/
 /*N*/   pImp = new SfxApplication_Impl;
 /*N*/   pImp->bConfigLoaded = sal_False;
 /*N*/   pImp->pEmptyMenu = 0;
@@ -283,22 +260,6 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/   pImp->pSimpleResManager = 0;
 /*N*/   pImp->nWarnLevel = 0;
 /*N*/   pImp->pAutoSaveTimer = 0;
-/*AS
-#if SUPD>637
-    RTL_LOGFILE_CONTEXT_TRACE( aLog, "{ set locale settings" );
-#endif
-    String sLanguage = SvtPathOptions().SubstituteVariable(String::CreateFromAscii("$(langid)"));
-    LanguageType eUILanguage = (LanguageType) sLanguage.ToInt32();
-    LanguageType eLanguage = pSysLocaleOptions->GetLocaleLanguageType();
-    AllSettings aSettings( Application::GetSettings() );
-    aSettings.SetUILanguage( eUILanguage );
-    aSettings.SetLanguage( eLanguage );
-    Application::SetSettings( aSettings );
-
-#if SUPD>637
-    RTL_LOGFILE_CONTEXT_TRACE( aLog, "} set locale settings" );
-#endif
-*/
 /*N*/     // Create instance of SvtSysLocale _after_ setting the locale at the application,
 /*N*/     // so that it can initialize itself correctly.
 /*N*/     pSysLocale = new SvtSysLocale;
@@ -308,17 +269,11 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/     pAppData_Impl->m_xImeStatusWindow->init();
 /*N*/     pApp->PreInit();
 /*N*/
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "{ create SfxConfigManager" );
-/*N*/ #endif
 /*N*/     pCfgMgr = new SfxConfigManager;
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "} create SfxConfigManager" );
-/*N*/ #endif
 /*N*/
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "{ initialize DDE" );
-/*N*/ #endif
 /*N*/ #ifdef DDE_AVAILABLE
 /*N*/ #ifdef PRODUCT
 /*N*/     InitializeDde();
@@ -334,9 +289,7 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/     }
 /*N*/ #endif
 /*N*/ #endif
-/*N*/ #if SUPD>637
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "} initialize DDE" );
-/*N*/ #endif
 /*N*/ }
 
 /*N*/ SfxApplication::~SfxApplication()
@@ -391,151 +344,8 @@ public:
     virtual void Timeout() { --*pnWarnLevel; delete this; }
 };
 
-//--------------------------------------------------------------------
-
-//====================================================================
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
 extern void FATToVFat_Impl( String& );
 
-#if 0
-String GetURL_Impl( const String& rName )
-{
-    // if the filename is a physical name, it is the client file system, not the file system
-    // of the machine where the office is running ( if this are different machines )
-    // so in the remote case we can't handle relative filenames as arguments, because they
-    // are parsed relative to the program path
-    // the file system of the client is addressed through the "file:" protocol
-    ::rtl::OUString aProgName, aTmp;
-    ::vos::OStartupInfo aInfo;
-    aInfo.getExecutableFile( aProgName );
-    aTmp = aProgName;
-    INetURLObject aObj( aTmp );
-    bool bWasAbsolute;
-    INetURLObject aURL = aObj.smartRel2Abs( rName, bWasAbsolute );
-    return aURL.GetMainURL(INetURLObject::NO_DECODE);
-}
-
-/*?*/ void SfxApplication::HandleAppEvent( const ApplicationEvent& rAppEvent )
-/*?*/ {
-/*?*/     if ( rAppEvent.IsOpenEvent() )
-/*?*/     {
-/*?*/         // die Parameter enthalten die zu "offnenden Dateien
-/*?*/         for(sal_uInt16 i=0;i<rAppEvent.GetParamCount();i++)
-/*?*/         {
-/*?*/             // Dateiname rausholen
-/*?*/             String aName( rAppEvent.GetParam(i) );
-/*?*/             if ( COMPARE_EQUAL == aName.CompareToAscii("/userid:",8) )
-/*?*/                 continue;
-/*?*/ #ifdef WNT
-/*?*/             FATToVFat_Impl( aName );
-/*?*/ #endif
-/*?*/             aName = GetURL_Impl(aName);
-/*?*/             SfxStringItem aFileName( SID_FILE_NAME, aName );
-/*?*/
-/*?*/             // is it a template ?
-/*?*/             const SfxPoolItem* pItem = NULL;
-/*?*/             SfxBoolItem aTemplate( SID_TEMPLATE, TRUE );
-/*?*/             if ( IsTemplate_Impl( aName ) )
-/*?*/                 pItem = &aTemplate;
-/*?*/
-/*?*/             // open the document
-/*?*/             if ( pItem || !DocAlreadyLoaded( aName, sal_True, sal_True, sal_False ) )
-/*?*/             {
-/*?*/                 SfxBoolItem aNewView( SID_OPEN_NEW_VIEW, sal_False );
-/*?*/                 SfxStringItem aTargetName( SID_TARGETNAME, DEFINE_CONST_UNICODE("_blank") );
-/*?*/                 SfxStringItem aReferer( SID_REFERER, DEFINE_CONST_UNICODE("private:OpenEvent") );
-/*?*/                 pAppDispat->Execute( SID_OPENDOC, SFX_CALLMODE_SYNCHRON,
-/*?*/                         &aTargetName, &aFileName, &aNewView, &aReferer, pItem, 0L );
-/*?*/             }
-/*?*/         }
-/*?*/     }
-/*?*/     else if(rAppEvent.IsPrintEvent() )
-/*?*/     {
-/*?*/         // loop on parameters: files to print and name of printer
-/*?*/         SfxStringItem aPrinterName(SID_PRINTER_NAME, String());
-/*?*/         for (sal_uInt16 i=0;i<rAppEvent.GetParamCount();i++)
-/*?*/         {
-/*?*/             // is the parameter a printername ?
-/*?*/             String aName(rAppEvent.GetParam(i));
-/*?*/             if(aName.Len()>1 && *aName.GetBuffer()=='@')
-/*?*/             {
-/*?*/                 aPrinterName.SetValue( aName.Copy(1) );
-/*?*/                 continue;
-/*?*/             }
-/*?*/
-/*?*/ #ifdef WNT
-/*?*/             FATToVFat_Impl( aName );
-/*?*/ #endif
-/*?*/             SfxStringItem aTargetName( SID_TARGETNAME, DEFINE_CONST_UNICODE("_blank") );
-/*?*/             SfxStringItem aFileName( SID_FILE_NAME, GetURL_Impl( aName ) );
-/*?*/             SfxBoolItem aNewView(SID_OPEN_NEW_VIEW, sal_True);
-/*?*/             SfxBoolItem aHidden(SID_HIDDEN, sal_True);
-/*?*/             SfxBoolItem aSilent(SID_SILENT, sal_True);
-/*?*/             const SfxPoolItem *pRet = pAppDispat->Execute( SID_OPENDOC, SFX_CALLMODE_SYNCHRON,
-/*?*/                     &aTargetName, &aFileName, &aNewView, &aHidden, &aSilent, 0L );
-/*?*/             if ( !pRet )
-/*?*/                 continue;
-/*?*/
-/*?*/             const SfxViewFrameItem *pFrameItem = PTR_CAST(SfxViewFrameItem, pRet);
-/*?*/             if ( pFrameItem && pFrameItem->GetFrame() )
-/*?*/             {
-/*?*/                 SfxViewFrame *pFrame = pFrameItem->GetFrame();
-/*?*/                 SfxBoolItem aSilent( SID_SILENT, sal_True );
-/*?*/                 pFrame->GetDispatcher()->Execute( SID_PRINTDOC, SFX_CALLMODE_SYNCHRON,
-/*?*/                         &aPrinterName, &aSilent, 0L );
-/*?*/                 pFrame->GetFrame()->DoClose();
-/*?*/             }
-/*?*/         }
-/*?*/     }
-/*?*/     else if ( rAppEvent.GetEvent() == "APPEAR" )
-/*?*/     {
-/*?*/         if( !pAppData_Impl->bInvisible )
-/*?*/         {
-/*?*/             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XFramesSupplier >
-/*?*/                     xDesktop( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( OUSTRING(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.frame.Desktop")) ),
-/*?*/                     ::com::sun::star::uno::UNO_QUERY );
-/*?*/             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XFrame > xTask = xDesktop->getActiveFrame();
-/*?*/             if ( !xTask.is() )
-/*?*/             {
-/*?*/                 // If no frame is currently active - we searh for any other one which exist in general.
-/*?*/                 ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess > xList( xDesktop->getFrames(), ::com::sun::star::uno::UNO_QUERY );
-/*?*/                 sal_Int32 nCount = xList->getCount();
-/*?*/                 if (nCount>0)
-/*?*/                 {
-/*?*/                     ::com::sun::star::uno::Any aItem = xList->getByIndex(0);
-/*?*/                     if ( !(aItem>>=xTask) || !xTask.is() )
-/*?*/                         pAppData_Impl->bInvisible = TRUE;
-/*?*/                 }
-/*?*/             }
-/*?*/
-/*?*/             if ( xTask.is() )
-/*?*/             {
-/*?*/                 Window* pWindow = VCLUnoHelper::GetWindow( xTask->getContainerWindow() );
-/*?*/                 pWindow->ToTop();
-/*?*/             }
-/*?*/         }
-/*?*/
-/*?*/         if( pAppData_Impl->bInvisible )
-/*?*/         {
-/*?*/             pAppData_Impl->bInvisible = FALSE;
-/*?*/             OpenClients();
-/*?*/         }
-/*?*/     }
-/*?*/ }
-/*?*/ #endif
-
-//--------------------------------------------------------------------
-
-
-
-//--------------------------------------------------------------------
 
 /*N*/ const String& SfxApplication::GetLastDir_Impl() const
 
@@ -555,20 +365,6 @@ String GetURL_Impl( const String& rName )
 /*N*/ {
 /*N*/     return pAppData_Impl->aLastDir;
 /*N*/ }
-
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
 
 //--------------------------------------------------------------------
 /*N*/ void SfxApplication::SetViewFrame( SfxViewFrame *pFrame )
@@ -711,19 +507,6 @@ String GetURL_Impl( const String& rName )
 
 //--------------------------------------------------------------------
 
-//--------------------------------------------------------------------
-
-
-//-------------------------------------------------------------------------
-
-
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
 /*N*/ const SfxFilter* SfxApplication::GetFilter
 /*N*/ (
 /*N*/     const SfxObjectFactory &rFact,
@@ -735,15 +518,6 @@ String GetURL_Impl( const String& rName )
 /*N*/     return rFact.GetFilterContainer()->GetFilter4FilterName(rFilterName);
 /*N*/ }
 
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
 //---------------------------------------------------------------------
 
 /*N*/ ResMgr* SfxApplication::CreateResManager( const char *pPrefix )
@@ -753,9 +527,6 @@ String GetURL_Impl( const String& rName )
 /*N*/     return ResMgr::CreateResMgr(U2S(aMgrName));
 /*N*/ }
 
-//---------------------------------------------------------------------
-
-
 //--------------------------------------------------------------------
 
 /*N*/ ResMgr* SfxApplication::GetSfxResManager()
@@ -764,15 +535,6 @@ String GetURL_Impl( const String& rName )
 /*N*/         pImp->pSfxResManager = CreateResManager("bf_sfx");    //STRIP005
 /*N*/     return pImp->pSfxResManager;
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 
@@ -787,12 +549,6 @@ String GetURL_Impl( const String& rName )
 /*N*/ {
 /*N*/     pAppData_Impl->aIndexBitSet.ReleaseIndex(i-1);
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
 
 //--------------------------------------------------------------------
 
@@ -826,21 +582,7 @@ String GetURL_Impl( const String& rName )
 /*N*/   return bReturn;
 /*N*/ }
 
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
 //-------------------------------------------------------------------------
-
-
-//-------------------------------------------------------------------------
-
-
 
 /*N*/ SfxStatusBarManager* SfxApplication::GetStatusBarManager() const
 /*N*/ {
