@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-22 10:17:33 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:52:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,9 +113,6 @@
 #ifndef _SFXDOCTEMPL_HXX //autogen
 #include <doctempl.hxx>
 #endif
-// STRIP001 #ifndef _EXTATTR_HXX
-// STRIP001 #include <svtools/extattr.hxx>
-// STRIP001 #endif
 #ifndef _SFXECODE_HXX
 #include <svtools/sfxecode.hxx>
 #endif
@@ -152,7 +149,6 @@
 #include "fcontnr.hxx"
 #include "fsetobsh.hxx"
 #include "loadenv.hxx"
-#include "new.hxx"
 #include "objitem.hxx"
 #include "objsh.hxx"
 #include "objshimp.hxx"
@@ -166,7 +162,6 @@
 #include "appimp.hxx"
 #include "appuno.hxx"
 #include "objface.hxx"
-//#include "filedlghelper.hxx"
 
 #define _SVSTDARR_STRINGSDTOR
 #include <svtools/svstdarr.hxx>
@@ -489,7 +484,4 @@ using namespace ::cppu;
             b) using SID_BROWSE        (old)
      */
 /*?*/ }
-
-//--------------------------------------------------------------------
-
 }
