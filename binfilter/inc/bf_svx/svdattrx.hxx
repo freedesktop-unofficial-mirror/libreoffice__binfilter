@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdattrx.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:31:54 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 17:20:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -215,7 +215,4 @@
 #ifndef _SXTRAITM_HXX
 #include <bf_svx/sxtraitm.hxx>
 #endif
-namespace binfilter {
-
-}//end of namespace binfilter
 #endif  //_SVDATTRX_HXX
