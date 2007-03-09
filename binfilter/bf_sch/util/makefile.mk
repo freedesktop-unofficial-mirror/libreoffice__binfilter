@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:42:10 $
+#   last change: $Author: obo $ $Date: 2007-03-09 14:31:58 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,8 +41,6 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=schart3
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 LIBTARGET=NO
@@ -59,7 +57,6 @@ RESLIB1LIST=\
     $(SRS)$/sch_core.srs	\
     $(SRS)$/schslots.srs \
     $(SRS)$/sfx2_sfx.srs
-#	$(SRS)$/dlg.srs	\
 
 .IF "$(GUI)" == "WIN"
 RESLIBSPLIT1NAME=bf_sch
@@ -81,10 +78,7 @@ LIB3FILES=	$(SLB)$/sch_core.lib \
         $(SLB)$/sch_func.lib \
         $(SLB)$/sch_view.lib \
         $(SLB)$/sch_chxchart.lib \
-        $(SLB)$/sch_filter.lib	\
         $(SLB)$/sch_xml.lib 
-#		$(SLB)$/dlg.lib \
-#		$(SLB)$/a11y.lib
 
 
 SHL1TARGET= bf_sch$(UPD)$(DLLPOSTFIX)
