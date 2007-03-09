@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:02:13 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 14:21:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -133,7 +133,6 @@
 #include "tpprint.hxx"
 #include "transobj.hxx"
 #include "detfunc.hxx"
-#include "preview.hxx"
 
 #define ScModule
 //STRIP008 #include "scslots.hxx"
@@ -427,7 +426,6 @@ static USHORT nIdleCount = 0;
 /*N*/   }
 /*N*/ }
 
-
 //------------------------------------------------------------------
 
 /*N*/ void ScModule::ResetDragObject()
@@ -442,9 +440,6 @@ static USHORT nIdleCount = 0;
 /*N*/   aDragData.aJumpTarget.Erase();
 /*N*/   aDragData.aJumpText.Erase();
 /*N*/ }
-
-
-
 
 //------------------------------------------------------------------
 
@@ -593,12 +588,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 /*N*/                                                            LANGUAGE_SYSTEM;
 /*N*/ }
 
-
-#define IS_AVAILABLE(w,item) (SFX_ITEM_SET==rOptSet.GetItemState((w),TRUE,&item))
-
-
-#undef IS_AVAILABLE
-
 //------------------------------------------------------------------
 //
 //                      Input-Handler
@@ -630,10 +619,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 /*?*/           pHdl->EnterHandler( nBlockMode );
 /*N*/   }
 /*N*/ }
-
-
-
-
 
 /*N*/ void ScModule::ViewShellGone( ScTabViewShell* pViewSh )
 /*N*/ {
@@ -676,10 +661,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 /*N*/
 /*N*/   return bIsFormula;
 /*N*/ }
-
-
-
-
 
 //------------------------------------------------------------------
 //
@@ -748,19 +729,10 @@ IMPL_LINK( ScModule, SpellTimerHdl, Timer*, pTimer )
     return 0;
 }
 
-    //virtuelle Methoden fuer den Optionendialog
-
-
-
-//------------------------------------------------------------------
-
 /*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, pInfo )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (pInfo)
 /*N*/   return 0;
 /*N*/ }
-
-
-
 
 }
