@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_vprint.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:06:19 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:40:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,16 +34,9 @@
  ************************************************************************/
 
 
-#pragma hdrstop
-
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
-
-#ifndef _SFX_PRNMON_HXX
-#include <bf_sfx2/prnmon.hxx>
-#endif
-
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -61,6 +54,9 @@
 #ifndef _PTQUEUE_HXX
 #include <ptqueue.hxx>
 #endif
+
+#include <bf_sfx2/printer.hxx>
+
 namespace binfilter {
 
 #define JOBSET_ERR_DEFAULT          0
@@ -85,17 +81,6 @@ public:
 
 SwQueuedPaint *SwPaintQueue::pQueue = 0;
 
-//Klasse zum Speichern einiger Druckereinstellungen
-
-// saves some settings from the draw view
-
-
-
-
-
-
-
-
 /*N*/ void SwPaintQueue::Remove( ViewShell *pSh )
 /*N*/ {
 /*N*/   SwQueuedPaint *pPt;
@@ -117,78 +102,6 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 /*?*/       }
 /*N*/   }
 /*N*/ }
-
-
-
-/******************************************************************************
- *  Methode     :   void SetSwVisArea( ViewShell *pSh, Point aPrtOffset, ...
- *  Beschreibung:
- *  Erstellt    :   OK 04.11.94 16:27
- *  Aenderung   :
- ******************************************************************************/
-
-
-/******************************************************************************
- *  Methode     :   struct _PostItFld : public _SetGetExpFld
- *  Beschreibung:   Update an das PostItFeld
- *  Erstellt    :   OK 07.11.94 10:18
- *  Aenderung   :
- ******************************************************************************/
-
-
-
-
-/******************************************************************************
- *  Methode     :   void lcl_GetPostIts( SwDoc* pDoc, _SetGetExpFlds& ...
- *  Beschreibung:
- *  Erstellt    :   OK 07.11.94 10:20
- *  Aenderung   :
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void lcl_FormatPostIt( SwDoc* pDoc, SwPaM& aPam, ...
- *  Beschreibung:
- *  Erstellt    :   OK 07.11.94 10:20
- *  Aenderung   :
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void lcl_PrintPostIts( ViewShell* pPrtShell )
- *  Beschreibung:
- *  Erstellt    :   OK 07.11.94 10:21
- *  Aenderung   :   MA 10. May. 95
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void lcl_PrintPostItsEndDoc( ViewShell* pPrtShell, ...
- *  Beschreibung:
- *  Erstellt    :   OK 07.11.94 10:21
- *  Aenderung   :   MA 10. May. 95
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void lcl_PrintPostItsEndPage( ViewShell* pPrtShell, ...
- *  Beschreibung:
- *  Erstellt    :   OK 07.11.94 10:22
- *  Aenderung   :
- ******************************************************************************/
-
-
-
-/******************************************************************************
- *  Methode     :   void ViewShell::SetPrt( SfxPrinter *pNew, OutputDevice *pPDFOut )
- *  Beschreibung:
- *  Erstellt    :   OK 07.11.94 10:22
- *  Aenderung   :
- ******************************************************************************/
 
 /*M*/ void ViewShell::InitPrt( SfxPrinter *pPrt, OutputDevice *pPDFOut )
 /*M*/ {
