@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:10:00 $
+ *  last change: $Author: obo $ $Date: 2007-03-09 16:43:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,7 @@
  *
  ************************************************************************/
 
-
-
-#pragma hdrstop
-
-#if STLPORT_VERSION>=321
 #include <cstdarg>
-#endif
 
 #include <stdio.h>
 
@@ -137,9 +131,6 @@
 #ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
 #endif
-#ifndef _DBINSDLG_HXX
-#include <dbinsdlg.hxx>
-#endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -150,9 +141,6 @@
 #endif
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _INITUI_HXX
-#include <initui.hxx>
 #endif
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>
@@ -172,9 +160,6 @@
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
-#ifndef _DBUI_HXX
-#include <dbui.hxx>
-#endif
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
 #endif
@@ -188,9 +173,6 @@
 #include <swunohelper.hxx>
 #endif
 
-#ifndef _DBUI_HRC
-#include <dbui.hrc>
-#endif
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
 #endif
@@ -311,13 +293,6 @@ const sal_Char cDataSourceName[] = "DataSourceName";
 const sal_Char cSelection[] = "Selection";
 const sal_Char cActiveConnection[] = "ActiveConnection";
 
-// -----------------------------------------------------------------------------
-// Use nameless namespace to avoid to rubbish the global namespace
-// -----------------------------------------------------------------------------
-namespace
-{
-
-}
 /* -----------------09.12.2002 12:35-----------------
  *
  * --------------------------------------------------*/
@@ -831,6 +806,5 @@ SwDbtoolsClient* SwNewDBMgr::pDbtoolsClient = NULL;
 /*N*/         }
 /*N*/     }
 /*N*/ }
-
 
 }
