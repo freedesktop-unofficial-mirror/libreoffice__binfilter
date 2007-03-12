@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:01:33 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:20:35 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,23 +55,6 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 CFLAGS+=-DDG_DLL
 
 # --- Files --------------------------------------------------------
-
-SRS1NAME=$(TARGET)
-SRC1FILES=\
-    svx_optasian.src		\
-    svx_optcolor.src		\
-    svx_optjsearch.src		\
-    svx_optgenrl.src		\
-    svx_optdict.src		\
-    svx_optaccessibility.src	\
-    svx_optsave.src		\
-    svx_optpath.src		\
-    svx_optlingu.src		\
-    svx_optgrid.src		\
-    svx_optinet2.src		\
-    svx_multipat.src		\
-    svx_optextbr.src		\
-    svx_optctl.src
 
 SLOFILES=\
         $(SLO)$/svx_asiancfg.obj	\
