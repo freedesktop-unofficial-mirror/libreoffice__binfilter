@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:01:45 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:22:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,6 @@ PROJECTPCHSOURCE=svx_outl_pch
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Allgemein ----------------------------------------------------------
-
 
 SLOFILES=	\
             $(SLO)$/svx_outliner.obj 	\
