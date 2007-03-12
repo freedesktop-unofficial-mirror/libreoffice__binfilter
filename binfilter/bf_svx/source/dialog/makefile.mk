@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:48:32 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:11:39 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -62,85 +62,33 @@ BMP_IN=$(BFPRJ)$/win/res
 
 SRS1NAME=svx_dialogs
 SRC1FILES =  \
-        svx_connect.src \
-        svx_contdlg.src \
-        svx_ctredlin.src \
-        svx_measure.src \
-        svx_dstribut.src \
-        svx_passwd.src	\
-        svx_align.src \
-        svx_backgrnd.src \
-        svx_bbdlg.src \
-        svx_bmpmask.src \
-        svx_border.src \
-        svx_chardlg.src \
-        svx_charmap.src \
-        svx_checklbx.src \
-        svx_fontwork.src \
-        svx_frmsel.src \
-        svx_grfpage.src \
-        svx_hdft.src \
-        svx_hyperdlg.src \
-        svx_hlmarkwn.src\
-        svx_hyphen.src \
-        svx_iconcdlg.src \
         svx_imapdlg.src \
         svx_impgrf.src \
-        svx_langtab.src \
-        svx_language.src \
-        svx_lingu.src \
-        svx_numfmt.src \
-        svx_numpages.src \
-        svx_page.src \
-        svx_paragrph.src \
-        svx_postdlg.src \
-        svx_prtqry.src \
-        svx_ruler.src \
-        svx_rubydialog.src\
-        svx_spldlg.src \
-        svx_srchdlg.src \
-        svx_srchxtra.src \
-        svx_tabstpge.src \
-        svx_textanim.src \
-        svx_textattr.src \
-        svx_thesdlg.src \
-        svx_txenctab.src \
-        svx_zoom.src	\
-        svx_grfflt.src \
-        svx_langbox.src \
-        svx_frmdirlbox.src \
-        svx_hangulhanjadlg.src \
-        svx_commonlingui.src
+        svx_lingu.src
 
 SRS2NAME=svx_drawdlgs
 SRC2FILES =  \
-    svx_dlgname.src \
-        svx_sdstring.src \
-        svx_tabline.src \
-        svx_labdlg.src \
-        svx_transfrm.src
+        svx_sdstring.src
 
 
 EXCEPTIONSFILES=\
-        $(SLO)$/svx_charmap.obj		\
         $(SLO)$/svx__bmpmask.obj	\
         $(SLO)$/svx_rubydialog.obj 	
 
 SLOFILES=\
         $(SLO)$/svx__bmpmask.obj\
         $(SLO)$/svx__contdlg.obj\
-        $(SLO)$/svx_charmap.obj  \
-        $(SLO)$/svx_hyperdlg.obj \
-        $(SLO)$/svx_imapdlg.obj \
         $(SLO)$/svx_dlgutil.obj  \
         $(SLO)$/svx_fontwork.obj \
+        $(SLO)$/svx_hyperdlg.obj \
+        $(SLO)$/svx_imapdlg.obj \
         $(SLO)$/svx_impgrf.obj   \
         $(SLO)$/svx_rlrcitem.obj \
-        $(SLO)$/svx_rulritem.obj \
         $(SLO)$/svx_rubydialog.obj \
+        $(SLO)$/svx_rulritem.obj \
         $(SLO)$/svx_srchdlg.obj  \
         $(SLO)$/svx_svxruler.obj	\
-         $(SLO)$/svx_txencbox.obj 
+        $(SLO)$/svx_txencbox.obj 
 
 
 
