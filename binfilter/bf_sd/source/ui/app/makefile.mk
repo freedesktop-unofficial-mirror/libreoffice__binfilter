@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:00:09 $
+#   last change: $Author: obo $ $Date: 2007-03-12 08:44:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -43,8 +43,6 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
 PRJNAME=binfilter
 TARGET=sd_app
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -57,7 +55,6 @@ NO_HID_FILES=sd_app.src
 
 # --- Imagelisten --------------------------------------------------
 
-#IMGLST_SRS=$(SRS)$/sd_app.srs
 BMP_IN=$(BFPRJ)$/res/imagelst
 
 # --- Update-Version -----------------------------------------------
@@ -71,15 +68,8 @@ SRC1FILES =	\
         sd_app.src 			\
         sd_toolbox.src			\
         sd_strings.src 		\
-        sd_res_bmp.src 		\
-        sd_tbx_ww.src			\
-        sd_popup.src			\
         sd_sdstring.src		\
         sd_pseudo.src
-
-#OBJFILES = \
-#		$(OBJ)$/sd_sdlib.obj	\
-#		$(OBJ)$/sd_sdresid.obj
 
 SLOFILES =	\
         $(SLO)$/sd_sdmod.obj		\
@@ -89,15 +79,7 @@ SLOFILES =	\
         $(SLO)$/sd_sddll2.obj      \
         $(SLO)$/sd_tbxww.obj		\
         $(SLO)$/sd_optsitem.obj	\
-        $(SLO)$/sd_sdresid.obj		\
-        $(SLO)$/sd_sdpopup.obj		\
-        $(SLO)$/sd_sdxfer.obj		
-
-EXCEPTIONSFILES= \
-        $(SLO)$/sd_sdxfer.obj
-
-#LIB3TARGET=$(SLB)$/bf_ysdlib.lib
-#LIB3OBJFILES=
+        $(SLO)$/sd_sdresid.obj
 
 DEPOBJFILES= \
         $(SLO)$/sd_sdlib.obj \
@@ -112,9 +94,7 @@ NOOPTFILES=\
 
 # --- Tagets -------------------------------------------------------
 
-all: \
-    $(INCCOM)$/sddll0.hxx   \
-    ALLTAR
+.INCLUDE :  target.mk
 
 $(INCCOM)$/sddll0.hxx: makefile.mk
     @echo $@
@@ -128,10 +108,9 @@ $(INCCOM)$/sddll0.hxx: makefile.mk
 .ENDIF			#  "$(USE_SHELL)"!="4nt"
 .ENDIF			# "$(GUI)"=="UNX"
 
-.INCLUDE :  target.mk
 
 ALLTAR : $(DEPOBJFILES)
 
 $(SRS)$/sd_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
 
-$(SLO)$/sd_sdlib.obj : $(INCCOM)$/sddll0.hxx
+$(SLO)$/sd_sdlib.obj: $(INCCOM)$/sddll0.hxx
