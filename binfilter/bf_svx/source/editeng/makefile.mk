@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:48:46 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:14:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@ CDEFS+=-DEDITDEBUG
 SLOFILES =	\
             $(SLO)$/svx_txtrange.obj \
             $(SLO)$/svx_svxacorr.obj \
-            $(SLO)$/svx_SvXMLAutoCorrectImport.obj \
             $(SLO)$/svx_forbiddencharacterstable.obj \
             $(SLO)$/svx_swafopt.obj \
             $(SLO)$/svx_editattr.obj \
