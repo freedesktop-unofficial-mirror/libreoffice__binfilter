@@ -1,12 +1,11 @@
-#*************************************************************************
-#
+#*************************************************************************#
 #   OpenOffice.org - a multi-platform office productivity suite
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:01:57 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:25:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -59,11 +58,9 @@ SLOFILES=\
          $(SLO)$/svx_svddrag.obj         \
          $(SLO)$/svx_svddrgv.obj         \
          $(SLO)$/svx_svdedtv.obj         \
-         $(SLO)$/svx_svdedtv1.obj        \
          $(SLO)$/svx_svdedtv2.obj        \
          $(SLO)$/svx_svdedxv.obj         \
          $(SLO)$/svx_svdetc.obj          \
-         $(SLO)$/svx_svdfppt.obj         \
          $(SLO)$/svx_svdglev.obj         \
          $(SLO)$/svx_svdglue.obj         \
          $(SLO)$/svx_svdhdl.obj          \
