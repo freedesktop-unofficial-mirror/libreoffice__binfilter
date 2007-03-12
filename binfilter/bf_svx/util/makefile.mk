@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:03:00 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:43:51 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -121,7 +121,6 @@ DEF1DES		= Rtf, Edt, Outliner, SvDraw, Form, Fmcomp, Engine3D, MSFilter
 # THB: exports list svx checked for 6.0 Final 6.12.2001
 DEF1EXPORTFILE	= svx.dxp
 
-
 LIBEXTRAFILES=\
         $(SLB)$/svx_svdraw.lib \
         $(SLB)$/svx_form.lib \
@@ -143,12 +142,12 @@ LIB1FILES       = \
             $(SLB)$/svx_tbxctrls.lib  \
             $(SLB)$/svx_unoedit.lib   \
             $(SLB)$/svx_unodraw.lib	\
-            $(SLB)$/svx_gal.lib		
+            $(SLB)$/svx_gal.lib
 
 .IF "$(GUI)"=="WNT"
 LIB1FILES  += \
                         $(LB)$/bf_sfx.lib #$(LIB)$/bf_sfx.lib
-.ENDIF					
+.ENDIF
 
 
 LIB1FILES+=$(LIBEXTRAFILES)
@@ -168,7 +167,6 @@ SRS1FILELIST=\
                 $(SRS)$/svx_mnuctrls.srs \
                 $(SRS)$/svx_stbctrls.srs \
                 $(SRS)$/svx_tbxctrls.srs \
-                $(SRS)$/svx_options.srs     \
                 $(SRS)$/svx_svxitems.srs \
                 $(SRS)$/svx_form.srs \
                 $(SRS)$/svx_engine3d.srs \
@@ -210,4 +208,3 @@ $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     $(TYPE) bf_sfxwin.flt > $@
 
 .INCLUDE :  target.mk
-
