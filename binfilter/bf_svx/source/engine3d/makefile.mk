@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:01:10 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:16:07 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 
 SRS1NAME=svx_engine3d
 SRC1FILES=\
-        svx_string3d.src	\
         svx_float3d.src
 
 SLOFILES= \
