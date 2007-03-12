@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:00:32 $
+#   last change: $Author: obo $ $Date: 2007-03-12 09:03:54 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@ NO_HIDS=TRUE
 
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_sd
-#IENV!:=$(IENV);..$/res
 
 .IF "$(GUI)"=="WIN"
 LINKFLAGS+=/PACKCODE:65500 /SEG:16000 /NOE /NOD /MAP
@@ -61,7 +60,7 @@ LINKFLAGS+=/SEGMENTS:512 /PACKD:32768
 
 RESLIB1NAME=bf_sd
 RESLIB1SRSFILES=\
-     $(SRS)$/sd_app.srs $(SRS)$/sd_dlg.srs $(SRS)$/sd_core.srs $(SRS)$/sd_sdslots.srs \
+     $(SRS)$/sd_app.srs $(SRS)$/sd_core.srs $(SRS)$/sd_sdslots.srs \
      $(SRS)$/sfx2_sfx.srs
 
 # --- StarDraw DLL
@@ -139,7 +138,6 @@ LIB4OBJFILES=$(SLO)$/sd_sdlib.obj \
 .INCLUDE :  target.mk
 
 .IF "$(depend)" == ""
-
 
 .IF "$(GUI)" == "WNT"
 
