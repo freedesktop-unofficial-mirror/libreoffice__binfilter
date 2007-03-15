@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:08:46 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:20:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1312,11 +1312,19 @@ using namespace ::com::sun::star;
 /*N*/           for ( xub_StrLen j=0; j < nToken; j+=5 )
 /*N*/           {
 /*N*/               xub_StrLen nInd2 = nInd;
-/*N*/               nTab1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
+                    // #i73906#, #144135# if table number is -1 avoid conversion to 65535
+                    {
+                        sal_Int32 nTableNum = aPos.GetToken( 0, cTok, nInd ).ToInt32();
+                        nTab1 = (nTableNum<0 ? 0: static_cast< USHORT >( nTableNum ));
+                    }
 /*N*/                  // To make old versions (<341/342) skip it, the token separator
 /*N*/                  // is a ','
 /*N*/               if ( bNewChart )
-/*N*/                   nTab2 = (USHORT) aPos.GetToken( 1, ',', nInd2 ).ToInt32();
+                    {
+                        // #i73906#, #144135# if table number is -1 avoid conversion to 65535
+                        sal_Int32 nTableNum = aPos.GetToken( 1, ',', nInd2 ).ToInt32();
+                        nTab2 = (nTableNum<0 ? 0: static_cast< USHORT >( nTableNum ));
+                    }
 /*N*/               else
 /*N*/                   nTab2 = nTab1;
 /*N*/               nCol1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
@@ -1389,6 +1397,9 @@ using namespace ::com::sun::star;
 /*N*/              const SchSingleCell& rAddr1 = iRange->maUpperLeft.maCells[0];
 /*N*/              const SchSingleCell& rAddr2 = iRange->maLowerRight.maCells[0];
 /*N*/              sal_Int32 nTab = iRange->mnTableNumber;
+                    // #i73906#, #144135# do not export -1 as table number
+                   if( nTab < 0 )
+                       nTab = 0;
 /*N*/              if ( aRef.Len() )
 /*N*/                  aRef += cTok;
 /*N*/              aRef += String::CreateFromInt32( nTab );
