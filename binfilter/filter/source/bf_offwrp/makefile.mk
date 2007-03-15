@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 08:36:53 $
+#   last change: $Author: obo $ $Date: 2007-03-15 15:29:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@ SHL1TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL1IMPLIB= ibf_wrp
 SHL1STDLIBS=    \
                 $(FWELIB)			\
-                $(BASICLIB) 		\
+                $(BFBASICLIB) 		\
                 $(SO2LIB) 			\
                 $(SJLIB) 			\
                 $(TKLIB) 			\
