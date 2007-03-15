@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:30:09 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:24:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,14 +63,11 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::document;
 
-#ifndef _SB_SBUNO_HXX
-#include <basic/sbuno.hxx>
-#endif
 #ifndef _SB_BASMGR_HXX
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 #ifndef _SBXCLASS_HXX //autogen
-#include <basic/sbx.hxx>
+#include "bf_basic/sbx.hxx"
 #endif
 
 #include <unotools/ucbhelper.hxx>
@@ -1067,76 +1064,13 @@ namespace binfilter {
 /*?*/   return nErr;
 /*?*/ }
 } //namespace binfilter
-/*?*/ extern ::com::sun::star::uno::Any sbxToUnoValue( SbxVariable* pVar );
 namespace binfilter {//STRIP009
-//-------------------------------------------------------------------------
-/*N*/ namespace {
-/*N*/   using namespace ::com::sun::star::uno;
-/*N*/
-/*N*/   //.....................................................................
-/*N*/   static SbxArrayRef lcl_translateUno2Basic( void* _pAnySequence )
-/*N*/   {
-/*?*/       SbxArrayRef xReturn;
-/*?*/       if ( _pAnySequence )
-/*?*/       {
-/*?*/           // in real it's a sequence of Any (by convention)
-/*?*/           Sequence< Any >* pArguments = static_cast< Sequence< Any >* >( _pAnySequence );
-/*?*/
-/*?*/           // do we have arguments ?
-/*?*/           if ( pArguments->getLength() )
-/*?*/           {
-/*?*/               // yep
-/*?*/               xReturn = new SbxArray;
-/*?*/               String sEmptyName;
-/*?*/
-/*?*/               // loop through the sequence
-/*?*/               const Any* pArg     =           pArguments->getConstArray();
-/*?*/               const Any* pArgEnd  = pArg  +   pArguments->getLength();
-/*?*/
-/*?*/               for ( sal_uInt16 nArgPos=1; pArg != pArgEnd; ++pArg, ++nArgPos )
-/*?*/                   // and create a Sb object for every Any
-/*?*/                   xReturn->Put( GetSbUnoObject( sEmptyName, *pArg ), nArgPos );
-/*?*/           }
-/*?*/       }
-/*?*/       return xReturn;
-/*N*/   }
-    //.....................................................................
-/*N*/   void lcl_translateBasic2Uno( const SbxVariableRef& _rBasicValue, void* _pAny )
-/*N*/   {
-/*N*/       if ( _pAny )
-/*N*/           *static_cast< Any* >( _pAny ) = sbxToUnoValue( _rBasicValue );
-/*N*/   }
-/*N*/ }
 //-------------------------------------------------------------------------
 /*N*/ ErrCode SfxObjectShell::CallStarBasicScript( const String& _rMacroName, const String& _rLocation,
 /*N*/   void* _pArguments, void* _pReturn )
 /*N*/ {
-/*?*/   ::vos::OClearableGuard aGuard( Application::GetSolarMutex() );
-/*?*/
-/*?*/   // the arguments for the call
-/*?*/   SbxArrayRef xMacroArguments = lcl_translateUno2Basic( _pArguments );
-/*?*/
-/*?*/   // the return value
-/*?*/   SbxVariableRef xReturn = _pReturn ? new SbxVariable : NULL;
-/*?*/
-/*?*/   // the location (document or application)
-/*?*/   String sMacroLocation;
-/*?*/   if ( _rLocation.EqualsAscii( "application" ) )
-/*?*/       sMacroLocation = SFX_APP()->GetName();
-/*?*/ #ifdef DBG_UTIL
-/*?*/   else
-/*?*/       DBG_ASSERT( _rLocation.EqualsAscii( "document" ),
-/*?*/           "SfxObjectShell::CallStarBasicScript: invalid (unknown) location!" );
-/*?*/ #endif
-/*?*/
-/*?*/   // call the script
-/*?*/   ErrCode eError = CallBasic( _rMacroName, sMacroLocation, NULL, xMacroArguments, xReturn );
-/*?*/
-/*?*/   // translate the return value
-/*?*/   lcl_translateBasic2Uno( xReturn, _pReturn );
-/*?*/
-/*?*/   // outta here
-/*?*/   return eError;
+        DBG_ERROR( "SfxObjectShell::CallStarBasicScript: dead code!" );
+        return ERRCODE_BASIC_PROC_UNDEFINED;
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -1148,38 +1082,8 @@ namespace binfilter {//STRIP009
 /*N*/   void *pRet
 /*N*/ )
 /*N*/ {
-/*?*/   ::vos::OClearableGuard aGuard( Application::GetSolarMutex() );
-/*?*/   ErrCode nErr = ERRCODE_NONE;
-/*?*/   if( rScriptType.EqualsAscii( "StarBasic" ) )
-/*?*/   {
-/*?*/       // the arguments for the call
-/*?*/       SbxArrayRef xMacroArguments = lcl_translateUno2Basic( pArgs );
-/*?*/
-/*?*/       // the return value
-/*?*/       SbxVariableRef xReturn = pRet ? new SbxVariable : NULL;
-/*?*/
-/*?*/       // call the script
-/*?*/       nErr = CallBasic( rCode, String(), NULL, xMacroArguments, xReturn );
-/*?*/
-/*?*/       // translate the return value
-/*?*/       lcl_translateBasic2Uno( xReturn, pRet );
-/*?*/
-/*?*/       // did this fail because the method was not found?
-/*?*/       if ( nErr == ERRCODE_BASIC_PROC_UNDEFINED )
-/*?*/       {   // yep-> look in the application BASIC module
-/*?*/           nErr = CallBasic( rCode, SFX_APP()->GetName(), NULL, xMacroArguments, xReturn );
-/*?*/       }
-/*?*/   }
-/*?*/   else if( rScriptType.EqualsAscii( "JavaScript" ) )
-/*?*/   {
-/*?*/       DBG_ERROR( "JavaScript not allowed" );
-/*?*/       return 0;
-/*?*/   }
-/*?*/   else
-/*?*/   {
-/*?*/       DBG_ERROR( "StarScript not allowed" );
-/*?*/   }
-/*?*/   return nErr;
+        DBG_ERROR( "SfxObjectShell::CallScript: dead code!" );
+        return ERRCODE_BASIC_PROC_UNDEFINED;
 /*N*/ }
 
 /*?*/ SfxFrame* SfxObjectShell::GetSmartSelf( SfxFrame* pSelf, SfxMedium& rMedium )
