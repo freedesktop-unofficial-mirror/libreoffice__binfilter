@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:58:40 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:25:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,22 +69,16 @@
 #include <sfxhelp.hxx>
 #endif
 #ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
+#include "bf_basic/sbstar.hxx"
 #endif
 #ifndef _SFXSTRITEM_HXX
 #include <svtools/stritem.hxx>
 #endif
 #pragma hdrstop
 
-#ifndef _SBXCLASS_HXX //autogen
-#include <basic/sbx.hxx>
-#endif
+#include "bf_basic/sbx.hxx"
 
 #include "objsh.hxx"
-
-#ifndef _BASIC_SBUNO_HXX
-#include <basic/sbuno.hxx>
-#endif
 
 #ifndef _SFXECODE_HXX
 #include <svtools/sfxecode.hxx>
@@ -125,7 +119,7 @@
 #include "dlgcont.hxx"
 
 #ifndef _BASMGR_HXX
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 
 #include "scriptcont.hxx"
@@ -681,12 +675,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/
 /*N*/   // Properties im Doc-BASIC
 /*N*/   // ThisComponent
-/*N*/     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xInterface ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
-/*N*/     ::com::sun::star::uno::Any aComponent;
-/*N*/     aComponent <<= xInterface;
-/*N*/     SbxObjectRef xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aComponent );
-/*N*/     xUnoObj->SetFlag( SBX_DONTSTORE );
-/*N*/     pBas->Insert( xUnoObj );
+/*?*/ //         pBasicManager->InsertGlobalUNOConstant( "ThisComponent", makeAny( GetModel() ) );
 /*N*/
 /*N*/   // Standard lib name
 /*N*/   ::rtl::OUString aStdLibName( RTL_CONSTASCII_USTRINGPARAM( "Standard" ) );
@@ -694,19 +683,12 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/   // Basic container
 /*N*/   if ( xBasicCont.is() && !xBasicCont->hasByName( aStdLibName ) )
 /*N*/       xBasicCont->createLibrary( aStdLibName );   // create Standard library
-/*N*/   Any aBasicCont;
-/*N*/   aBasicCont <<= xBasicCont;
-/*N*/   xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("BasicLibraries"), aBasicCont );
-/*N*/   pBas->Insert( xUnoObj );
+/*?*/ //         pBasicManager->InsertGlobalUNOConstant( "BasicLibraries", makeAny( xBasicCont ) );
 /*N*/
 /*N*/   // Dialog container
 /*N*/   if ( xDialogCont.is() && !xDialogCont->hasByName( aStdLibName ) )
 /*N*/       xDialogCont->createLibrary( aStdLibName );  // create Standard library
-/*N*/   Any aDialogCont;
-/*N*/   aDialogCont <<= xDialogCont;
-/*N*/   xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("DialogLibraries"), aDialogCont );
-/*N*/   pBas->Insert( xUnoObj );
-/*N*/
+/*?*/ //         pBasicManager->InsertGlobalUNOConstant( "DialogLibraries", makeAny( xDialogCont ) );
 /*N*/
 /*N*/   // Modify-Flag wird bei MakeVariable gesetzt
 /*N*/   pBas->SetModified( bWasModified );
@@ -818,26 +800,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 
 /*N*/ void SfxObjectShell::SetWorkingDocument( SfxObjectShell* pDoc )
 /*N*/ {
-/*N*/   pWorkingDoc = pDoc;
-/*N*/   StarBASIC* pBas = SFX_APP()->GetBasic_Impl();
-/*N*/     if ( pDoc && pBas )
-/*N*/     {
-/*N*/         SFX_APP()->Get_Impl()->pThisDocument = pDoc;
-/*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xInterface ( pDoc->GetModel() , ::com::sun::star::uno::UNO_QUERY );
-/*N*/         ::com::sun::star::uno::Any aComponent;
-/*N*/         aComponent <<= xInterface;
-/*N*/         SbxVariable *pCompVar = pBas->Find( DEFINE_CONST_UNICODE("ThisComponent"), SbxCLASS_PROPERTY );
-/*N*/         if ( pCompVar )
-/*N*/         {
-/*?*/             pCompVar->PutObject( GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aComponent ) );
-/*N*/         }
-/*N*/         else
-/*N*/         {
-/*N*/             SbxObjectRef xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aComponent );
-/*N*/             xUnoObj->SetFlag( SBX_DONTSTORE );
-/*N*/             pBas->Insert( xUnoObj );
-/*N*/         }
-/*N*/     }
+        DBG_ERROR( "SfxObjectShell::SetWorkingDocument: dead code!" );
 /*N*/ }
 
 }

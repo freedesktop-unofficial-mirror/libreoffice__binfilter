@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:58:56 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:25:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,8 +113,7 @@
 #include <svtools/eitem.hxx>
 #endif
 
-#include <basic/sbx.hxx>
-#include <basic/sbuno.hxx>
+#include "bf_basic/sbx.hxx"
 
 #ifndef _OSL_FILE_HXX_
 #include <osl/file.hxx>
@@ -217,7 +216,7 @@
 #endif
 
 #ifndef _BASMGR_HXX
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 
 namespace binfilter {
@@ -681,16 +680,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/             StarBASIC* pBas = SFX_APP()->GetBasic_Impl();
 /*N*/             if ( pBas && SFX_APP()->Get_Impl()->pThisDocument == m_pData->m_pObjectShell )
 /*N*/             {
-/*N*/                 // remove "ThisComponent" reference from AppBasic
-/*N*/                 SFX_APP()->Get_Impl()->pThisDocument = NULL;
-/*N*/                 SbxVariable *pCompVar = pBas->Find( DEFINE_CONST_UNICODE("ThisComponent"), SbxCLASS_OBJECT );
-/*N*/                 if ( pCompVar )
-/*N*/                 {
-/*N*/                     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > xInterface;
-/*N*/                     ::com::sun::star::uno::Any aComponent;
-/*N*/                     aComponent <<= xInterface;
-/*N*/                     pCompVar->PutObject( GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aComponent ) );
-/*N*/                 }
+                    DBG_ERROR( "SfxBaseModel::dispose: dead code!" );
 /*N*/             }
 /*N*/
 /*N*/             pShell = m_pData->m_pObjectShell;
