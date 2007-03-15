@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:42:01 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:28:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -129,10 +129,10 @@
 #endif
 
 #ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
+#include "bf_basic/sbstar.hxx"
 #endif
 #ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <so3/svstor.hxx>
