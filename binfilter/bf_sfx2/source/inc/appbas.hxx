@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appbas.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:21:20 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:25:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,12 @@
 
 
 #ifndef _SBXDEF_HXX //autogen
-#include <basic/sbxdef.hxx>
+#include "bf_basic/sbxdef.hxx"
 #endif
-class StarBASIC;
-class SbxObject;
 namespace binfilter {
 
+class StarBASIC;
+class SbxObject;
 
 //=========================================================================
 
