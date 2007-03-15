@@ -4,9 +4,9 @@
  *
  *  $RCSfile: macrconf.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:23:51 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:34:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,15 +41,15 @@
 #define _SVSTDARR_USHORTS
 #include <svtools/svstdarr.hxx>     // SvUShorts
 #include <bf_sfx2/evntconf.hxx>
+class SvStream;
+class SvxMacro;
+namespace binfilter {
+
 class BasicManager;
 class SbMethod;
 class SbxValue;
 class SbxObject;
 class SbxArray;
-class SvStream;
-class SvxMacro;
-namespace binfilter {
-
 class SfxMacroInfo;
 class SfxSlot;
 class SfxMacroInfoItem;
