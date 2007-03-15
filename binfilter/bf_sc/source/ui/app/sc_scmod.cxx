@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:21:02 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:19:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,7 +69,7 @@
 
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/outliner.hxx>
-#include <basic/sbstar.hxx>
+#include "bf_basic/sbstar.hxx"
 
 #include <bf_offmgr/hyprlink.hxx>
 #include <bf_offmgr/osplcfg.hxx>
