@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 11:51:01 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:22:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@
 #include <svtools/pathoptions.hxx>
 #include <svtools/sfxecode.hxx>
 #include <svtools/ehdl.hxx>
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 
 
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
@@ -77,6 +77,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::io;
 using namespace ::com::sun::star::ucb;
+using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::xml::sax;
@@ -270,6 +271,9 @@ namespace SfxContainer_Impl
 /*N*/   {
 /*N*/       OSL_ENSURE( 0, "### couln't create SimpleFileAccess component\n" );
 /*N*/   }
+    mxStringSubstitution = Reference< XStringSubstitution >( mxMSF->createInstance
+        ( OUString::createFromAscii( "com.sun.star.util.PathSubstitution" ) ), UNO_QUERY );
+    OSL_ENSURE( mxStringSubstitution.is(), "### couln't create PathSubstitution component\n" );
 /*N*/ }
 
 /*N*/ SfxLibraryContainer_Impl::~SfxLibraryContainer_Impl()
@@ -1380,6 +1384,10 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
 /*?*/         OUString ret( mxMacroExpander->expandMacros( macro ) );
 /*?*/         return ret;
 /*?*/     }
+    else if( mxStringSubstitution.is() )
+    {
+        return mxStringSubstitution->substituteVariables( url, false );
+    }
 /*N*/     else
 /*N*/     {
 /*N*/         return url;
