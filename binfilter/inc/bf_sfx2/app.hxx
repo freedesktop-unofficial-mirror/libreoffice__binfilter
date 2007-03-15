@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:55:17 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:34:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,7 +83,6 @@
 #define SFX_DESKTOP_HELPFILE_NAME "desktop"
 
 #include <bf_sfx2/shell.hxx>
-class BasicManager;
 class DdeService;
 class ModalDialog;
 class OutputDevice;
@@ -93,7 +92,6 @@ class Rectangle;
 class SfxCancelManager;
 class SfxHint;
 class SfxItemSet;
-class StarBASIC;
 class SvPseudoObject;
 class Menu;
 class SvUShorts;
@@ -106,6 +104,9 @@ namespace so3 {
 class SvLinkSource;
 };
 namespace binfilter {
+
+class StarBASIC;
+class BasicManager;
 
 #define PLUG_BROWSEHACK     42
 

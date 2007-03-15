@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:05:14 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:34:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,11 +93,9 @@ namespace so3 {
 class SbxValue;
 class SvxMacro;
 class SbxArray;
-class BasicManager;
 class SfxStyleSheetBasePool;
 class SfxStyleSheetPool;
 class SbMethod;
-class StarBASIC;
 class Printer;
 class SvKeyValueIterator;
 class SvPseudoObject;
@@ -108,7 +106,8 @@ class Bitmap;
 class INetURLObject;
 namespace binfilter {
 
-
+class BasicManager;
+class StarBASIC;
 class SfxMedium;
 class SfxInPlaceObject;
 class SfxObjectFactory;
