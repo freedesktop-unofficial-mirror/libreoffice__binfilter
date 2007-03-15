@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:34:53 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:18:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,10 +66,10 @@
 
 
 #include <bf_sfx2/app.hxx>
-#include <basic/sbmeth.hxx>
-#include <basic/sbmod.hxx>
-#include <basic/sbstar.hxx>
-#include <basic/sbx.hxx>
+#include "bf_basic/sbmeth.hxx"
+#include "bf_basic/sbmod.hxx"
+#include "bf_basic/sbstar.hxx"
+#include "bf_basic/sbx.hxx"
 #include <svtools/zforlist.hxx>
 #include <stdlib.h>
 #include <string.h>
