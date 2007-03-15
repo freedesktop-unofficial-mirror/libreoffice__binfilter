@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_srchitem.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:10:33 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:23:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 // include ---------------------------------------------------------------
 
 #ifndef __SBX_SBXVARIABLE_HXX
-#include <basic/sbxvar.hxx>
+#include "bf_basic/sbxvar.hxx"
 #endif
 #ifndef _SVT_SEARCHOPT_HXX_
 #include <svtools/searchopt.hxx>
