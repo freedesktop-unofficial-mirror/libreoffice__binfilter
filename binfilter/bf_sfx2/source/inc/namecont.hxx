@@ -4,9 +4,9 @@
  *
  *  $RCSfile: namecont.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:38:11 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:26:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,6 +59,9 @@
 #ifndef _COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HPP_
 #include <com/sun/star/ucb/XSimpleFileAccess.hpp>
 #endif
+#ifndef _COM_SUN_STAR_UTIL_XSTRINGSUBSTITUTION_HPP_
+#include <com/sun/star/util/XStringSubstitution.hpp>
+#endif
 #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
 #endif
@@ -85,8 +88,9 @@
 
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase4.hxx>
-class BasicManager;
 namespace binfilter {
+
+class BasicManager;
 
 typedef ::cppu::WeakImplHelper4<
     ::com::sun::star::lang::XInitialization,
@@ -225,6 +229,7 @@ class SfxLibraryContainer_Impl : public LibraryContainerHelper
 protected:
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >   mxMSF;
     ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XSimpleFileAccess >       mxSFI;
+    ::com::sun::star::uno::Reference< ::com::sun::star::util::XStringSubstitution >    mxStringSubstitution;
     ::com::sun::star::uno::Reference< ::com::sun::star::util::XMacroExpander >         mxMacroExpander;
 
     SfxContainer_Impl::NameContainer_Impl maNameContainer;
