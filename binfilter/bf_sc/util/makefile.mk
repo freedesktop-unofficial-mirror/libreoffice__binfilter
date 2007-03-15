@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.16 $
+#   $Revision: 1.17 $
 #
-#   last change: $Author: ihi $ $Date: 2006-11-14 11:59:50 $
+#   last change: $Author: obo $ $Date: 2007-03-15 15:19:46 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,7 @@ SHL1STDLIBS+= $(BFSCHLIB)
 
 # dynamic libraries
 SHL1STDLIBS+=       \
-    $(BASICLIB)		\
+    $(BFBASICLIB)		\
        $(LEGACYSMGRLIB)	\
     $(SO2LIB)		\
     $(SVTOOLLIB)	\
