@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 11:50:47 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:21:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 #ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 
 #ifdef WIN
@@ -84,7 +84,7 @@
 #include "scriptcont.hxx"
 #include <misccfg.hxx>
 #include "docfac.hxx"
-#include <basic/basicmanagerrepository.hxx>
+
 namespace binfilter {
 
 #ifndef PRODUCT
@@ -211,9 +211,9 @@ void SfxApplication::Quit()
 /*?*/   StarBASIC::Stop();
 /*?*/
 /*?*/   // ggf. BASIC speichern
-        BasicManager* pBasMgr = ::basic::BasicManagerRepository::getApplicationBasicManager( false );
-        if ( pBasMgr && pBasMgr->IsModified() )
-            SaveBasicManager();
+//        BasicManager* pBasMgr = basic::BasicManagerRepository::getApplicationBasicManager( false );
+//        if ( pBasMgr && pBasMgr->IsModified() )
+//            SaveBasicManager();
 /*?*/
 /*?*/   SaveBasicContainer();
 /*?*/   SaveDialogContainer();
@@ -244,7 +244,7 @@ void SfxApplication::Quit()
 /*?*/   DELETEZ(pMenuMgr);
 /*?*/   DELETEZ(pAcceleratorMgr);
 /*?*/   SfxObjectFactory::ClearAll_Impl();
-/*?*/   pBasMgr = NULL;
+//      pBasMgr = NULL;
 /*?*/   if( pImp->pBasicLibContainer )
 /*?*/       pImp->pBasicLibContainer->release();
 /*?*/   if( pImp->pDialogLibContainer )
