@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh4.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:47:55 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:19:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <svtools/ehdl.hxx>
-#include <basic/sbxcore.hxx>
+#include "bf_basic/sbxcore.hxx"
 #include <bf_sfx2/request.hxx>
 #include <svtools/sfxecode.hxx>
 #include <bf_sfx2/topfrm.hxx>
