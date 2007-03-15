@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 11:59:41 $
+#   last change: $Author: obo $ $Date: 2007-03-15 15:17:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,7 @@ SHL2LIBS=	$(SLB)$/$(TARGET).lib
 SHL2STDLIBS+= \
     $(BFSVXLIB) \
     $(LEGACYSMGRLIB)	\
-    $(BASICLIB) \
+    $(BFBASICLIB) \
     $(BFGOODIESLIB) \
     $(SVTOOLLIB) \
     $(SVLLIB)	\
