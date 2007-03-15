@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:25:49 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:23:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include <sot/exchange.hxx>
 #endif
 #ifndef __SBX_SBXMETHOD_HXX //autogen
-#include <basic/sbxmeth.hxx>
+#include "bf_basic/sbxmeth.hxx"
 #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
