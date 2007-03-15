@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmpage.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:33:18 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:34:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,9 @@
 #include <comphelper/uno3.hxx>
 #endif
 FORWARD_DECLARE_INTERFACE(container,XNameContainer)
-class StarBASIC;
 namespace binfilter {
 
+class StarBASIC;
 class FmFormModel;
 class FmFormPageImpl;   // haelt die Liste aller Forms
 
