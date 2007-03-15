@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-22 10:18:37 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:24:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -178,7 +178,7 @@
 #include "appuno.hxx"
 
 #ifndef _BASMGR_HXX
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 
 #include "scriptcont.hxx"
