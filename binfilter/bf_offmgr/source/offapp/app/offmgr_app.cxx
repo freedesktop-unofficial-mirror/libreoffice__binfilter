@@ -4,9 +4,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:16:06 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:17:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -290,7 +290,7 @@
 #include <svtools/numuno.hxx>
 #endif
 #ifndef _SB_SBSTAR_HXX
-#include <basic/sbstar.hxx>
+#include "bf_basic/sbstar.hxx"
 #endif
 
 #include <svtools/moduleoptions.hxx>
@@ -336,10 +336,6 @@ namespace binfilter {
 #define STRING( x )                         DOSTRING( x )
 
 //=========================================================================
-
-typedef rtl_uString* (SAL_CALL *basicide_choose_macro)(BOOL, BOOL, rtl_uString*);
-
-typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 
 //=========================================================================
 
