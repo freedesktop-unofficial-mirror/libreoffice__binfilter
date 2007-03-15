@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_shell.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:10:22 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:23:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,7 @@
 #include <svtools/asynclink.hxx>
 #endif
 #ifndef _SBXCLASS_HXX //autogen
-#include <basic/sbx.hxx>
+#include "bf_basic/sbx.hxx"
 #endif
 
 #include <svtools/undoopt.hxx>
