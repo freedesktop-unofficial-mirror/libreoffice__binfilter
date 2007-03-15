@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.12 $
+#   $Revision: 1.13 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-12 09:03:54 $
+#   last change: $Author: obo $ $Date: 2007-03-15 15:21:01 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -77,7 +77,7 @@ SHL1STDLIBS+= \
     $(BFOFALIB) \
     $(BFSVXLIB) \
     $(LEGACYSMGRLIB)	\
-    $(BASICLIB) \
+    $(BFBASICLIB) \
     $(BFGOODIESLIB) \
     $(SO2LIB) \
     $(SVTOOLLIB) \
