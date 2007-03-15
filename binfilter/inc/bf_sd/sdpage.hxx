@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdpage.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:54:21 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:33:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,10 +57,10 @@
 #include <bf_sd/pres.hxx>
 #endif
 class SfxStyleSheet;
-class StarBASIC;
 class SfxItemSet;
 namespace binfilter {
 
+class StarBASIC;
 class SdDrawDocument;
 class SdrTextObj;
 class SdPageLink;
