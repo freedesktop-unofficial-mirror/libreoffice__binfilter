@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-12 09:43:51 $
+#   last change: $Author: obo $ $Date: 2007-03-15 17:11:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -66,7 +66,7 @@ SHL1BASE  = 0x1d800000
 SHL1STDLIBS= \
     $(BFXMLOFFLIB) \
             $(BFGOODIESLIB) \
-            $(BASICLIB) \
+            $(BFBASICLIB) \
             $(SO2LIB) \
             $(SVTOOLLIB) \
             $(TKLIB) \
@@ -98,6 +98,7 @@ SHL1STDLIBS+=\
 .IF "$(GUI)"=="WNT"
 
 SHL1STDLIBS+=\
+        oleaut32.lib \
         uwinapi.lib \
         advapi32.lib \
         shell32.lib \
@@ -146,8 +147,8 @@ LIB1FILES       = \
 
 .IF "$(GUI)"=="WNT"
 LIB1FILES  += \
-                        $(LB)$/bf_sfx.lib #$(LIB)$/bf_sfx.lib
-.ENDIF
+                        $(LB)$/bf_sfx.lib
+.ENDIF					
 
 
 LIB1FILES+=$(LIBEXTRAFILES)
