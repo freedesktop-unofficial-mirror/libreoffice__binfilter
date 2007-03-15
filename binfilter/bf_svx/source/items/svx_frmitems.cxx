@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:11:28 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:27:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,7 +76,7 @@
 #include <bf_sfx2/objsh.hxx>
 #endif
 #endif // !SVX_LIGHT
-#include <basic/sbx.hxx>
+#include "bf_basic/sbx.hxx"
 #define GLOBALOVERFLOW3
 
 #define _SVX_FRMITEMS_CXX
