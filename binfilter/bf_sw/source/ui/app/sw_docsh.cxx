@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:09:05 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:28:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,7 +75,7 @@
 #include <so3/clsids.hxx>
 #endif
 //#ifndef _SB_SBJSMOD_HXX //autogen
-//#include <basic/sbjsmod.hxx>
+//#include "bf_basic/sbjsmod.hxx"
 //#endif
 
 #ifndef _FMTPDSC_HXX //autogen
