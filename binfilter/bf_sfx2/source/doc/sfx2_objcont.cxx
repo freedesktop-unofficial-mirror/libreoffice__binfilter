@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:57:50 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:24:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -114,7 +114,7 @@
 #endif
 
 #ifndef _BASMGR_HXX
-#include <basic/basmgr.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 
 #include "so3/staticbaseurl.hxx"
