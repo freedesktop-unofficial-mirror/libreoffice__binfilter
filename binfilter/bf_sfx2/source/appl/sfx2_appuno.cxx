@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:56:30 $
+ *  last change: $Author: obo $ $Date: 2007-03-15 15:22:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,20 +47,17 @@
 #include <tools/urlobj.hxx>
 
 #ifndef _SB_SBMETH_HXX
-#include <basic/sbmeth.hxx>
+#include "bf_basic/sbmeth.hxx"
 #endif
 #ifndef _BASMGR_HXX
-#include <basic/basmgr.hxx>
-#endif
-#ifndef _BASIC_SBUNO_HXX
-#include <basic/sbuno.hxx>
+#include "bf_basic/basmgr.hxx"
 #endif
 
 #ifndef _SBXCORE_HXX
-#include <basic/sbxcore.hxx>
+#include "bf_basic/sbxcore.hxx"
 #endif
 #ifndef _SBXCLASS_HXX
-#include <basic/sbx.hxx>
+#include "bf_basic/sbx.hxx"
 #endif
 
 #include <svtools/stritem.hxx>
@@ -1454,179 +1451,8 @@ namespace binfilter {//STRIP009
 /*N*/ ErrCode SfxMacroLoader::loadMacro( const ::rtl::OUString& rURL, ::com::sun::star::uno::Any& rRetval, SfxObjectShell* pSh )
 /*N*/   throw ( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/     SfxApplication* pApp = SFX_APP();
-/*N*/   pApp->EnterBasicCall();
-/*N*/     SfxObjectShell* pCurrent = pSh;
-/*N*/     if ( !pCurrent )
-/*N*/         // all not full qualified names use the BASIC of the given or current document
-/*N*/         pCurrent = SfxObjectShell::Current();
-/*N*/
-/*N*/     // 'macro:///lib.mod.proc(args)' => macro of App-BASIC
-/*N*/     // 'macro://[docname|.]/lib.mod.proc(args)' => macro of current or qualified document
-/*N*/     // 'macro://obj.method(args)' => direct API call, execute it via App-BASIC
-/*N*/     String aMacro( rURL );
-/*N*/     sal_uInt16 nHashPos = aMacro.Search( '/', 8 );
-/*N*/     sal_uInt16 nArgsPos = aMacro.Search( '(' );
-/*N*/   BasicManager *pAppMgr = SFX_APP()->GetBasicManager();
-/*N*/     BasicManager *pBasMgr = 0;
-/*N*/     ErrCode nErr = ERRCODE_NONE;
-/*N*/
-/*N*/     // should a macro function be executed ( no direct API call)?
-/*N*/     if ( STRING_NOTFOUND != nHashPos && nHashPos < nArgsPos )
-/*N*/     {
-/*N*/         // find BasicManager
-/*N*/         SfxObjectShell* pDoc = NULL;
-/*N*/         String aBasMgrName( INetURLObject::decode(aMacro.Copy( 8, nHashPos-8 ), INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET) );
-/*N*/         if ( !aBasMgrName.Len() )
-/*N*/             pBasMgr = pAppMgr;
-/*N*/         else if ( aBasMgrName.EqualsAscii(".") )
-/*N*/         {
-/*N*/             // current/actual document
-/*N*/             pDoc = pCurrent;
-/*N*/             if (pDoc)
-/*N*/                 pBasMgr = pDoc->GetBasicManager();
-/*N*/         }
-/*N*/         else
-/*N*/         {
-/*N*/             // full qualified name, find document by name
-/*N*/             for ( SfxObjectShell *pObjSh = SfxObjectShell::GetFirst();
-/*N*/                     pObjSh && !pBasMgr;
-/*N*/                     pObjSh = SfxObjectShell::GetNext(*pObjSh) )
-/*N*/                 if ( aBasMgrName == pObjSh->GetTitle(SFX_TITLE_APINAME) )
-/*N*/                 {
-/*N*/                     pDoc = pObjSh;
-/*N*/                     pBasMgr = pDoc->GetBasicManager();
-/*N*/                 }
-/*N*/         }
-/*N*/
-/*N*/         if ( pBasMgr )
-/*N*/         {
-/*N*/             if ( pSh && pDoc )
-/*N*/             {
-/*N*/                 // security check for macros from document basic if an SFX context (pSh) is given
-/*N*/                 pDoc->AdjustMacroMode( String() );
-/*N*/               if( pDoc->Get_Impl()->nMacroMode == ::com::sun::star::document::MacroExecMode::NEVER_EXECUTE )
-/*N*/                     // check forbids execution
-/*N*/                     return ERRCODE_IO_ACCESSDENIED;;
-/*N*/             }
-/*N*/
-/*N*/             // find BASIC method
-/*N*/             String aQualifiedMethod( INetURLObject::decode(aMacro.Copy( nHashPos+1 ), INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET) );
-/*N*/             String aArgs;
-/*N*/             if ( STRING_NOTFOUND != nArgsPos )
-/*N*/             {
-/*N*/                 // remove arguments from macro name
-/*N*/                 aArgs = aQualifiedMethod.Copy( nArgsPos - nHashPos - 1 );
-/*N*/                 aQualifiedMethod.Erase( nArgsPos - nHashPos - 1 );
-/*N*/             }
-/*N*/
-/*N*/             SbxMethod *pMethod = SfxQueryMacro( pBasMgr, aQualifiedMethod );
-/*N*/             if ( pMethod )
-/*N*/             {
-/*N*/                 // arguments must be quoted
-/*N*/                 String aQuotedArgs;
-/*N*/                 if ( aArgs.Len()<2 || aArgs.GetBuffer()[1] == '\"')
-/*N*/                     // no args or already quoted args
-/*N*/                     aQuotedArgs = aArgs;
-/*N*/                 else
-/*N*/                 {
-/*N*/                     // quote parameters
-/*N*/                     aArgs.Erase(0,1);
-/*N*/                     aArgs.Erase( aArgs.Len()-1,1);
-/*N*/
-/*N*/                     aQuotedArgs = '(';
-/*N*/
-/*N*/                     sal_uInt16 nCount = aArgs.GetTokenCount(',');
-/*N*/                     for ( sal_uInt16 n=0; n<nCount; n++ )
-/*N*/                     {
-/*N*/                         aQuotedArgs += '\"';
-/*N*/                         aQuotedArgs += aArgs.GetToken( n, ',' );
-/*N*/                         aQuotedArgs += '\"';
-/*N*/                         if ( n<nCount-1 )
-/*N*/                             aQuotedArgs += ',';
-/*N*/                     }
-/*N*/
-/*N*/                     aQuotedArgs += ')';
-/*N*/                 }
-/*N*/
-/*N*/               SbxBaseRef xOldVar;
-/*N*/               SbxVariable *pCompVar = NULL;
-/*N*/                 if ( pSh )
-/*N*/                 {
-/*N*/                     if ( pBasMgr != pAppMgr )
-/*N*/                         // mark document: it executes an own macro, so it's in a modal mode
-/*N*/                         pSh->SetMacroMode_Impl( TRUE );
-/*N*/                     if ( pBasMgr == pAppMgr )
-/*N*/                     {
-/*N*/                         // document is executed via AppBASIC, adjust "ThisComponent" variable
-/*N*/                         StarBASIC* pBas = pAppMgr->GetLib(0);
-/*N*/                         pCompVar = pBas->Find( DEFINE_CONST_UNICODE("ThisComponent"), SbxCLASS_OBJECT );
-/*N*/                         ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >
-/*N*/                                 xInterface ( pSh->GetModel() , ::com::sun::star::uno::UNO_QUERY );
-/*N*/                         ::com::sun::star::uno::Any aAny;
-/*N*/                         aAny <<= xInterface;
-/*N*/                         if ( pCompVar )
-/*N*/                         {
-/*N*/                             xOldVar = pCompVar->GetObject();
-/*N*/                             pCompVar->PutObject( GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aAny ) );
-/*N*/                         }
-/*N*/                         else
-/*N*/                         {
-/*N*/                             SbxObjectRef xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aAny );
-/*N*/                             xUnoObj->SetFlag( SBX_DONTSTORE );
-/*N*/                             pBas->Insert( xUnoObj );
-/*N*/                             pCompVar = pBas->Find( DEFINE_CONST_UNICODE("ThisComponent"), SbxCLASS_OBJECT );
-/*N*/                         }
-/*N*/                     }
-/*N*/               }
-/*N*/
-/*N*/                 // add quoted arguments and do the call
-/*N*/                 String aCall( '[' );
-/*N*/                 aCall += pMethod->GetName();
-/*N*/                 aCall += aQuotedArgs;
-/*N*/                 aCall += ']';
-/*N*/
-/*N*/               // just to let the shell be alive
-/*N*/               SfxObjectShellRef rSh = pSh;
-/*N*/
-/*N*/                 // execute function using its Sbx parent,
-/*N*/                 //SbxVariable* pRet = pMethod->GetParent()->Execute( aCall );
-/*N*/               //rRetval = sbxToUnoValue( pRet );
-/*N*/
-/*N*/               SbxVariable* pRet = pMethod->GetParent()->Execute( aCall );
-/*N*/               USHORT nFlags = pRet->GetFlags();
-/*N*/               pRet->SetFlag( SBX_READWRITE | SBX_NO_BROADCAST );
-/*N*/               rRetval = sbxToUnoValue( pRet );
-/*N*/               pRet->SetFlags( nFlags );
-/*N*/
-/*N*/                 nErr = SbxBase::GetError();
-/*N*/               if ( pCompVar )
-/*N*/                     // reset "ThisComponent" to prior value
-/*N*/                   pCompVar->PutObject( xOldVar );
-/*N*/
-/*N*/                 if ( pSh && pSh->GetModel().is() )
-/*N*/                       // remove flag for modal mode
-/*N*/                       pSh->SetMacroMode_Impl( FALSE );
-/*N*/             }
-/*N*/             else
-/*N*/                 nErr = ERRCODE_BASIC_PROC_UNDEFINED;
-/*N*/         }
-/*N*/         else
-/*N*/             nErr = ERRCODE_IO_NOTEXISTS;
-/*N*/     }
-/*N*/     else
-/*N*/     {
-/*N*/         // direct API call on a specified object
-/*N*/         String aCall( '[' );
-/*N*/         aCall += String(INetURLObject::decode(aMacro.Copy(6), INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET));
-/*N*/         aCall += ']';
-/*N*/         pAppMgr->GetLib(0)->Execute( aCall );
-/*N*/         nErr = SbxBase::GetError();
-/*N*/     }
-/*N*/
-/*N*/     pApp->LeaveBasicCall();
-/*N*/     SbxBase::ResetError();
-/*N*/   return nErr;
+        DBG_ERROR( "SfxMacroLoader::loadMacro: dead code!" );
+        return ERRCODE_BASIC_PROC_UNDEFINED;
 /*N*/ }
 
 /*N*/ SFX_IMPL_XSERVICEINFO( SfxAppDispatchProvider, "com.sun.star.frame.DispatchProvider", "com.sun.star.comp.sfx2.AppDispatchProvider" )                                                                \
