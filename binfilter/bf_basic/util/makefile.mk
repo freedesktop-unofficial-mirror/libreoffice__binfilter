@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 15:17:01 $
+#   last change: $Author: vg $ $Date: 2007-03-16 07:21:47 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -69,6 +69,7 @@ SHL1STDLIBS= \
             $(UNOTOOLSLIB) \
             $(SOTLIB) \
             $(VOSLIB) \
+            $(VCLLIB) \
             $(XMLSCRIPTLIB)
 
 .IF "$(GUI)"=="WNT"
