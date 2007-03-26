@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.12 $
+#   $Revision: 1.13 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 17:11:31 $
+#   last change: $Author: vg $ $Date: 2007-03-26 13:03:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -99,12 +99,12 @@ SHL1STDLIBS+=\
 
 SHL1STDLIBS+=\
         oleaut32.lib \
-        uwinapi.lib \
-        advapi32.lib \
-        shell32.lib \
-        gdi32.lib \
-        ole32.lib \
-        uuid.lib
+        $(UWINAPILIB) \
+        $(ADVAPI32LIB) \
+        $(SHELL32LIB) \
+        $(GDI32LIB) \
+        $(OLE32LIB) \
+        $(UUIDLIB)
 
 SHL1STDLIBS+=\
             $(SHELLLIB)
