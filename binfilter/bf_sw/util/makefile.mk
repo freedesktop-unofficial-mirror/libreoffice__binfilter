@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.14 $
+#   $Revision: 1.15 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 15:28:48 $
+#   last change: $Author: vg $ $Date: 2007-03-26 13:01:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -138,7 +138,7 @@ SHL2STDLIBS+= $(BFSCHLIB) $(BFSMLIB)
 .ENDIF
 
 .IF "$(GUI)"=="WNT"
-SHL2STDLIBS+= advapi32.lib
+SHL2STDLIBS+= $(ADVAPI32LIB)
 .ENDIF # WNT
 
 SHL2DEPN=   \
@@ -176,8 +176,10 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo ------------------------------
     @echo Making: $@
     @echo LIBRARY     $(SHL2TARGET)                                  >$@
+.IF "$(COM)"!="GCC"
     @echo DESCRIPTION 'SWriter4 DLL'                                 >>$@
     @echo DATA        READ WRITE NONSHARED                          >>$@
+.ENDIF
     @echo EXPORTS                                                   >>$@
     @echo   CreateSwDocShellDll @20                            >>$@
     @echo   CreateSwWebDocShellDll @30                            >>$@
