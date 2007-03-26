@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.13 $
+#   $Revision: 1.14 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 15:21:01 $
+#   last change: $Author: vg $ $Date: 2007-03-26 13:00:24 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -145,8 +145,10 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo ------------------------------
     @echo Making: $@
     @echo LIBRARY     $(SHL1TARGET)                                  >$@
+.IF "$(COM)"!="GCC"
     @echo DESCRIPTION 'SDRAW3 DLL'                                 >>$@
     @echo DATA        READ WRITE NONSHARED                          >>$@
+.ENDIF
     @echo EXPORTS                                                   >>$@
     @echo   CreateSdDrawDocShellDll @20                            >>$@
     @echo   CreateSdGraphicDocShellDll @21                         >>$@
