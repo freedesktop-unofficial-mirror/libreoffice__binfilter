@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.17 $
+#   $Revision: 1.18 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 15:19:46 $
+#   last change: $Author: vg $ $Date: 2007-03-26 12:59:44 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -114,7 +114,9 @@ SHL1STDLIBS+= $(BFSCHLIB)
 SHL1LIBS=   $(LIB3TARGET) $(LIB4TARGET)
 
 .IF "$(GUI)"!="UNX"
+.IF "$(GUI)$(COM)" != "WNTGCC"
 SHL1OBJS=   $(SLO)$/sc_scdll.obj
+.ENDIF
 .ENDIF
 
 .IF "$(GUI)" == "UNX"
@@ -175,8 +177,10 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     @echo ------------------------------
     @echo Making: $@
     @echo LIBRARY     $(SHL1TARGET)                                  >$@
+.IF "$(COM)"!="GCC"
     @echo DESCRIPTION 'SCALC3 DLL'                                 >>$@
     @echo DATA        READ WRITE NONSHARED                          >>$@
+.ENDIF
     @echo EXPORTS                                                   >>$@
     @echo   CreateScDocShellDll @20                            >>$@
     @echo   CreateObjScDocShellDll @21                         >>$@
