@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:48:02 $
+#   last change: $Author: vg $ $Date: 2007-03-26 13:01:05 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -91,7 +91,9 @@ SHL1DEPN=	makefile.mk
 SHL1LIBS=   $(SLB)$/bf_starmath.lib
 
 .IF "$(GUI)" != "UNX"
+.IF "$(GUI)$(COM)" != "WNTGCC"
 SHL1OBJS=   $(SLO)$/starmath_smdll.obj
+.ENDIF
 .ENDIF # ! UNX
 
 .IF "$(GUI)" == "WNT"
