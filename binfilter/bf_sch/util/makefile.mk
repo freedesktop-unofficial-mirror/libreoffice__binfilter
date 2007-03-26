@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:31:58 $
+#   last change: $Author: vg $ $Date: 2007-03-26 13:00:13 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -114,7 +114,9 @@ SHL1BASE=	0x1d100000
 SHL1LIBS=   $(LIB3TARGET)
 
 .IF "$(GUI)"!="UNX"
+.IF "$(GUI)$(COM)" != "WNTGCC"
 SHL1OBJS=   $(SLO)$/sch_schdll.obj
+.ENDIF
 .ENDIF # ! UNX
 
 .IF "$(GUI)" == "WNT" || "$(GUI)" == "WIN"
