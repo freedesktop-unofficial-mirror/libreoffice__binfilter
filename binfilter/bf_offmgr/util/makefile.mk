@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 15:17:57 $
+#   last change: $Author: vg $ $Date: 2007-03-26 13:00:19 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -96,7 +96,7 @@ SHL2STDLIBS+= \
     $(SO2LIB)
 
 .IF "$(GUI)"=="WNT"
-SHL2STDLIBS += advapi32.lib
+SHL2STDLIBS += $(ADVAPI32LIB)
 .ENDIF # WNT
 
 SHL2DEF=	$(MISC)$/$(SHL2TARGET).def
