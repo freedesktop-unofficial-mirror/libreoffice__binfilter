@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:26:16 $
+ *  last change: $Author: vg $ $Date: 2007-04-11 12:40:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -158,12 +158,13 @@ class ScRefreshTimerControl;
 
 } //namespace binfilter
 
-#ifdef _ZFORLIST_DECLARE_TABLE
+#include <svtools/zforlist.hxx>     // IsNumberFormat
+/*#ifdef _ZFORLIST_DECLARE_TABLE
 class SvNumberFormatterIndexTable;
 #else
 class Table;
 typedef Table SvNumberFormatterIndexTable;
-#endif
+#endif*/
 namespace binfilter {//STRIP009
 #define SC_TAB_APPEND       0xFFFF
 #define SC_DOC_NEW          0xFFFF
