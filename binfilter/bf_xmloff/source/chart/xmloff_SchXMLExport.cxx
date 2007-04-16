@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLExport.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:12:42 $
+ *  last change: $Author: ihi $ $Date: 2007-04-16 13:31:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,6 +65,8 @@
 
 #include <list>
 
+// when Issue #i75865# is fixed the following line must be uncommented
+// #define ISSUE_75865_IS_FIXED
 
 #ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
@@ -1053,6 +1055,44 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
     sal_Bool bWrite = sal_False;
     sal_Int32 nAttachedAxis;
 
+    sal_Int32 nNumberOfLinesInBarChart = 0;
+    sal_Bool bStockHasVolume = sal_False;
+    if( bExportContent )
+    {
+        if( 0 == xDiagram->getDiagramType().reverseCompareToAsciiL(
+                RTL_CONSTASCII_STRINGPARAM( "com.sun.star.chart.BarDiagram" )))
+        {
+            try
+            {
+                uno::Reference< beans::XPropertySet > xDiaProp( xDiagram, uno::UNO_QUERY_THROW );
+                xDiaProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberOfLines" )))
+                    >>= nNumberOfLinesInBarChart;
+            }
+            catch( uno::Exception & aEx )
+            {
+                String aStr( aEx.Message );
+                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
+                DBG_ERROR1( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+            }
+        }
+        else if( 0 == xDiagram->getDiagramType().reverseCompareToAsciiL(
+                RTL_CONSTASCII_STRINGPARAM( "com.sun.star.chart.StockDiagram" )))
+        {
+            try
+            {
+                uno::Reference< beans::XPropertySet > xDiaProp( xDiagram, uno::UNO_QUERY_THROW );
+                xDiaProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Volume" )))
+                    >>= bStockHasVolume;
+            }
+            catch( uno::Exception & aEx )
+            {
+                String aStr( aEx.Message );
+                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
+                DBG_ERROR1( "Exception caught for property Volume: %s", aBStr.GetBuffer());
+            }
+        }
+    }
+
     uno::Sequence< uno::Sequence< sal_Int32 > > aDataPointSeq;
     if( xPropSet.is())
     {
@@ -1170,6 +1210,31 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                     maAutoStyleNameQueue.pop();
                 }
                 mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_STYLE_NAME, aSeriesASName );
+            }
+
+            // chart-type for mixed types
+            if( nNumberOfLinesInBarChart > 0 &&
+                nSeries >= (mnSeriesCount - mnDomainAxes - nNumberOfLinesInBarChart))
+            {
+#ifdef ISSUE_75865_IS_FIXED
+                mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_CLASS, XML_LINE );
+#else
+                OUString aNameSpacedToken( RTL_CONSTASCII_USTRINGPARAM( "chart:" ));
+                aNameSpacedToken += xmloff::token::GetXMLToken( XML_LINE );
+                mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_CLASS, aNameSpacedToken );
+#endif
+            }
+
+            // #i32366# first series gets type "bar" for stock with volume charts
+            if( bStockHasVolume && (nSeries - mnDomainAxes) == 0 )
+            {
+#ifdef ISSUE_75865_IS_FIXED
+                mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_CLASS, XML_BAR );
+#else
+                OUString aNameSpacedToken( RTL_CONSTASCII_USTRINGPARAM( "chart:" ));
+                aNameSpacedToken += xmloff::token::GetXMLToken( XML_BAR );
+                mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_CLASS, aNameSpacedToken );
+#endif
             }
 
             // open series element until end of for loop
