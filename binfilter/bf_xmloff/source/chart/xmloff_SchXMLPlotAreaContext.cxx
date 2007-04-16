@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLPlotAreaContext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:38:00 $
+ *  last change: $Author: ihi $ $Date: 2007-04-16 13:31:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,6 +108,8 @@ SchXMLPlotAreaContext::SchXMLPlotAreaContext( SchXMLImportHelper& rImpHelper,
         mrChartAddress( rChartAddress ),
         mrTableNumberList( rTableNumberList ),
         mnDomainOffset( 0 ),
+        mnNumOfLines( 0 ),
+        mbStockHasVolume( sal_False ),
         mnSeries( 0 ),
         mnMaxSeriesLength( 0 ),
         maSceneImportHelper( rImport )
@@ -207,7 +209,8 @@ SvXMLImportContext* SchXMLPlotAreaContext::CreateChildContext(
                 pContext = new SchXMLSeriesContext( mrImportHelper, GetImport(), rLocalName,
                                                     mxDiagram, maAxes, mrSeriesAddresses[ mnSeries ],
                                                     maSeriesStyleList,
-                                                    mnSeries, mnMaxSeriesLength, mnDomainOffset );
+                                                    mnSeries, mnMaxSeriesLength, mnDomainOffset,
+                                                    mnNumOfLines, mbStockHasVolume );
                 mnSeries++;
             }
             break;
@@ -384,6 +387,40 @@ void SchXMLPlotAreaContext::EndElement()
         {
             // set scene attributes at diagram
             maSceneImportHelper.setSceneAttributes( xProp );
+        }
+
+        if( mnNumOfLines > 0 &&
+            0 == mxDiagram->getDiagramType().reverseCompareToAsciiL(
+                RTL_CONSTASCII_STRINGPARAM( "com.sun.star.chart.BarDiagram" )))
+        {
+            try
+            {
+                xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberOfLines" )),
+                                         uno::makeAny( mnNumOfLines ));
+            }
+            catch( uno::Exception & aEx )
+            {
+                String aStr( aEx.Message );
+                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
+                DBG_ERROR1( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+            }
+        }
+
+        // #i32366# stock has volume
+        if( 0 == mxDiagram->getDiagramType().reverseCompareToAsciiL(
+                RTL_CONSTASCII_STRINGPARAM( "com.sun.star.chart.StockDiagram" )))
+        {
+            try
+            {
+                xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Volume" )),
+                                         uno::makeAny( mbStockHasVolume ));
+            }
+            catch( uno::Exception & aEx )
+            {
+                String aStr( aEx.Message );
+                ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
+                DBG_ERROR1( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+            }
         }
     }
 
@@ -1018,7 +1055,9 @@ SchXMLSeriesContext::SchXMLSeriesContext(
     ::std::list< chartxml::DataRowPointStyle >& rStyleList,
     sal_Int32 nSeriesIndex,
     sal_Int32& rMaxSeriesLength,
-    sal_Int32& rDomainOffset ) :
+    sal_Int32& rDomainOffset,
+    sal_Int32& rNumOfLines,
+    sal_Bool&  rStockHasVolume ) :
         SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
         mxDiagram( xDiagram ),
         mrAxes( rAxes ),
@@ -1029,6 +1068,8 @@ SchXMLSeriesContext::SchXMLSeriesContext(
         mnDataPointIndex( 0 ),
         mrDomainOffset( rDomainOffset ),
         mrMaxSeriesLength( rMaxSeriesLength ),
+        mrNumOfLines( rNumOfLines ),
+        mrStockHasVolume( rStockHasVolume ),
         mpAttachedAxis( NULL )
 {
 }
@@ -1077,7 +1118,17 @@ void SchXMLSeriesContext::StartElement( const uno::Reference< xml::sax::XAttribu
                 msAutoStyleName = aValue;
                 break;
             case XML_TOK_SERIES_CHART_CLASS:
-                // not supported yet
+                {
+                    // used for bar-line combi chart
+                    OUString aStrippedValue( aValue );
+                    sal_Int32 nColonPos( aValue.indexOf( sal_Unicode(':')));
+                    if( nColonPos != -1 )
+                        aStrippedValue = aValue.copy( nColonPos + 1 );
+                    if( IsXMLToken( aStrippedValue, XML_LINE ))
+                        ++mrNumOfLines;
+                    if( IsXMLToken( aStrippedValue, XML_BAR ))
+                        mrStockHasVolume = sal_True;
+                }
                 break;
         }
     }
