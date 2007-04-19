@@ -4,9 +4,9 @@
  *
  *  $RCSfile: basrdll.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:10:21 $
+ *  last change: $Author: ihi $ $Date: 2007-04-19 09:09:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,7 +63,7 @@ namespace binfilter {
 
 BasicDLL::BasicDLL()
 {
-     *(BasicDLL**)GetAppData(SHL_BASIC) = this;
+/*?*/ //    *(BasicDLL**)GetAppData(SHL_BASIC) = this;
 /*?*/ //    ::com::sun::star::lang::Locale aLocale = Application::GetSettings().GetUILocale();
 /*?*/ //    pResMgr = ResMgr::CreateResMgr(CREATEVERSIONRESMGR_NAME(ofa), aLocale );
     bDebugMode = FALSE;
