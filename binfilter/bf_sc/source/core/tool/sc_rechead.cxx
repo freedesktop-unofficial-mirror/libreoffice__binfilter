@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rechead.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:37:48 $
+ *  last change: $Author: rt $ $Date: 2007-04-25 14:34:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,7 +98,7 @@ namespace binfilter {
 /*N*/   if ( nPos - nDataPos != nDataSize )             // Default getroffen?
 /*N*/   {
 /*N*/       nDataSize = nPos - nDataPos;
-/*N*/       rStream.Seek(nDataPos - sizeof(ULONG));
+/*N*/       rStream.Seek(nDataPos - sizeof(sal_uInt32));
 /*N*/       rStream << nDataSize;                       // Groesse am Anfang eintragen
 /*N*/       rStream.Seek(nPos);
 /*N*/   }
@@ -214,7 +214,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       nDataSize = nDataEnd - nDataPos;
 /*N*/       ULONG nPos = rStream.Tell();
-/*N*/       rStream.Seek(nDataPos-sizeof(ULONG));
+/*N*/       rStream.Seek(nDataPos-sizeof(sal_uInt32));
 /*N*/       rStream << nDataSize;                               // Groesse am Anfang eintragen
 /*N*/       rStream.Seek(nPos);
 /*N*/   }
