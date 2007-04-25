@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmpage.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:34:54 $
+ *  last change: $Author: rt $ $Date: 2007-04-25 14:37:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,12 +56,7 @@ class FmFormPageImpl;   // haelt die Liste aller Forms
 class SfxJSArray;
 class HelpEvent;
 
-class FmFormPage :
-#if SUPD < 396
-    public VCDrawPage
-#else
-    public SdrPage
-#endif
+class FmFormPage : public SdrPage
 {
     friend class FmFormObj;
     FmFormPageImpl* pImpl;
@@ -72,20 +67,19 @@ public:
     FmFormPage(FmFormModel& rModel,StarBASIC*, FASTBOOL bMasterPage=sal_False);
     ~FmFormPage();
 
+    using SdrPage::NbcInsertObject;
+    using SdrPage::ReplaceObject;
+
     virtual void    WriteData(SvStream& rOut) const;
     virtual void    ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     virtual void    SetModel(SdrModel* pNewModel);
 
     virtual SdrPage* Clone() const;
 
-    virtual void    NbcInsertObject(SdrObject* pObj, sal_uInt32 nPos=CONTAINER_APPEND,
-                                    const SdrInsertReason* pReason=NULL);
-    virtual void    InsertObject(SdrObject* pObj, sal_uInt32 nPos=CONTAINER_APPEND,
+    virtual void    InsertObject(SdrObject* pObj, ULONG nPos = CONTAINER_APPEND,
                                     const SdrInsertReason* pReason=NULL);
 
-    virtual SdrObject* RemoveObject(sal_uInt32 nObjNum);
-
-    virtual SdrObject* ReplaceObject(SdrObject* pNewObj, sal_uInt32 nObjNum);
+    virtual SdrObject* RemoveObject(ULONG nObjNum);
 
 #ifndef SVX_LIGHT
     /** Insert _pClone into the page.
