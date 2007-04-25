@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shell.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:09:03 $
+ *  last change: $Author: rt $ $Date: 2007-04-25 14:36:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -235,7 +235,7 @@ public:
     SfxDispatcher*              GetDispatcher() const;
     SfxViewFrame*               GetFrame() const;
     ResMgr*                     GetResMgr() const;
-    virtual BOOL                HasUIFeature( ULONG nFeature );
+    virtual sal_Bool            HasUIFeature( sal_uInt32 nFeature );
     void                        UIFeatureChanged();
 
     // Items
