@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmpage.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:56:08 $
+ *  last change: $Author: rt $ $Date: 2007-04-25 14:35:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -194,15 +194,7 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-/*N*/ void FmFormPage::NbcInsertObject(SdrObject* pObj,
-/*N*/                                sal_uInt32 nPos,
-/*N*/                                const SdrInsertReason* pReason)
-/*N*/ {
-/*N*/   SdrPage::NbcInsertObject(pObj, nPos, pReason);
-/*N*/ }
-
-//------------------------------------------------------------------
-/*N*/ void FmFormPage::InsertObject(SdrObject* pObj, sal_uInt32 nPos,
+/*N*/ void FmFormPage::InsertObject(SdrObject* pObj, ULONG nPos,
 /*N*/                             const SdrInsertReason* pReason)
 /*N*/ {
 /*N*/   SdrPage::InsertObject( pObj, nPos, pReason );
@@ -211,12 +203,6 @@ namespace binfilter {
 /*N*/       ((FmFormModel*)GetModel())->GetUndoEnv().Inserted(pObj);
 /*N*/ #endif
 /*N*/ }
-
-#ifndef SVX_LIGHT
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-#endif
 
 //------------------------------------------------------------------
 /*N*/ const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & FmFormPage::GetForms() const
@@ -230,11 +216,7 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-/*N*/ SdrObject* FmFormPage::RemoveObject(sal_uInt32 nObjNum)
+/*N*/ SdrObject* FmFormPage::RemoveObject(ULONG nObjNum)
 /*N*/ {
 /*N*/   SdrObject* pObj = SdrPage::RemoveObject(nObjNum);
 /*N*/ #ifndef SVX_LIGHT
@@ -243,22 +225,5 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   return pObj;
 /*N*/ }
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-/*N*/ SdrObject* FmFormPage::ReplaceObject(SdrObject* pNewObj, sal_uInt32 nObjNum)
-/*N*/ {
-/*N*/   return SdrPage::ReplaceObject(pNewObj, nObjNum);
-/*N*/ }
-
-
-//------------------------------------------------------------------
-
-
-
-
-
-
 
 }
