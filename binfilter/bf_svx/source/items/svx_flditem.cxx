@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:15:22 $
+ *  last change: $Author: rt $ $Date: 2007-04-25 14:35:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -403,7 +403,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   USHORT nFormat;
 /*N*/   sal_uInt32 nFrameMarker, nCharSetMarker;
-/*N*/   long nUlongSize = (long)sizeof(ULONG);
+/*N*/   long nUlongSize = (long)sizeof(sal_uInt32);
 /*N*/   String aTmpURL;
 /*N*/
 /*N*/   rStm >> nFormat;
