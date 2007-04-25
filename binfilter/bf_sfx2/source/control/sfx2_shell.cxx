@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_shell.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:23:22 $
+ *  last change: $Author: rt $ $Date: 2007-04-25 14:35:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1383,9 +1383,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SfxShell* )pObj)->ExecuteSlot( *(SfxRe
 /*N*/   return SFX_APP()->GetSlotPool( GetFrame() );
 /*N*/ }
 
-/*N*/ BOOL SfxShell::HasUIFeature( ULONG )
+/*N*/ sal_Bool SfxShell::HasUIFeature( sal_uInt32 )
 /*N*/ {
-/*N*/   return FALSE;
+/*N*/   return sal_False;
 /*N*/ }
 
 /*N*/ long DispatcherUpdate_Impl( void* pObj, void* pArg )
