@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:29:11 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:18:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -457,7 +457,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/       return GetTxtCollFromPool( RES_POOLCOLL_STANDARD, pDesc, ePres,
 /*N*/                                   eCoreMetric, ePresMetric );
 /*N*/
-/*N*/   ResId aResId( nResId + nId, pSwResMgr );
+/*N*/   ResId aResId( nResId + nId, *pSwResMgr );
 /*N*/   String aNm( aResId );
 /*N*/
 /*N*/   // ein Set fuer alle zusetzenden Attribute
@@ -1254,7 +1254,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/               return pNewFmt;
 /*M*/           }
 /*M*/
-/*M*/   ResId aResId( nRCId + nId, pSwResMgr );
+/*M*/   ResId aResId( nRCId + nId, *pSwResMgr );
 /*M*/   String aNm( aResId );
 /*M*/   SwAttrSet aSet( GetAttrPool(), pWhichRange );
 /*M*/
@@ -1518,7 +1518,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*?*/       nId = RES_POOLPAGE_BEGIN;
 /*N*/   }
 /*N*/
-/*N*/   ResId aResId( sal_uInt32(RC_POOLPAGEDESC_BEGIN + nId - RES_POOLPAGE_BEGIN), pSwResMgr );
+/*N*/   ResId aResId( sal_uInt32(RC_POOLPAGEDESC_BEGIN + nId - RES_POOLPAGE_BEGIN), *pSwResMgr );
 /*N*/   String aNm( aResId );
 /*N*/   if( pDesc )
 /*N*/   {
@@ -1687,7 +1687,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*?*/       nId = RES_POOLNUMRULE_BEGIN;
 /*N*/   }
 
-/*N*/   ResId aResId( sal_uInt32(RC_POOLNUMRULE_BEGIN + nId - RES_POOLNUMRULE_BEGIN), pSwResMgr );
+/*N*/   ResId aResId( sal_uInt32(RC_POOLNUMRULE_BEGIN + nId - RES_POOLNUMRULE_BEGIN), *pSwResMgr );
 /*N*/   String aNm( aResId );
 /*N*/
 /*N*/   SwCharFmt *pNumCFmt = 0, *pBullCFmt = 0;
