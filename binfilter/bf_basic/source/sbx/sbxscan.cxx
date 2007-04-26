@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxscan.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:15:23 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:10:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -425,7 +425,7 @@ BOOL ImpConvStringExt( XubString& rSrc, SbxDataType eTargetType )
     BOOL bChanged = FALSE;
     String aNewString;
 
-    // Nur Spezial-Fälle behandeln, als Default tun wir nichts
+    // Nur Spezial-Fï¿½lle behandeln, als Default tun wir nichts
     switch( eTargetType )
     {
         // Bei Fliesskomma International beruecksichtigen
@@ -645,7 +645,7 @@ class SbxValueFormatResId : public ResId
 {
 public:
     SbxValueFormatResId( USHORT nId )
-        : ResId( nId, implGetResMgr() )
+        : ResId( nId, *implGetResMgr() )
     {}
 };
 
