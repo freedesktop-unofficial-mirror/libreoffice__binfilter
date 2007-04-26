@@ -30486,3 +30486,15 @@ _TI3?AVNotConnectedException@io@star@sun@com@@
 ?m_pInstance@?1??create@?$rtl_Instance@Uclass_data@cppu@@U?$ImplClassData6@VXExtendedDocumentHandler@sax@xml@star@sun@com@@VXServiceInfo@lang@456@VXInitialization@8456@VXImporter@document@456@VXFilter@document@456@VXUnoTunnel@8456@V?$WeakImplHelper6@VXExtendedDocumentHandler@sax@xml@star@sun@com@@VXServiceInfo@lang@456@VXInitialization@8456@VXImporter@document@456@VXFilter@document@456@VXUnoTunnel@8456@@cppu@@@2@V?$Guard@VMutex@osl@@@osl@@VGetGlobalMutex@5@HH@?A0x8f413695@@SAPAUclass_data@cppu@@U?$ImplClassData6@VXExtendedDocumentHandler@sax@xml@star@sun@com@@VXServiceInfo@lang@456@VXInitialization@8456@VXImporter@document@456@VXFilter@document@456@VXUnoTunnel@8456@V?$WeakImplHelper6@VXExtendedDocumentHandler@sax@xml@star@sun@com@@VXServiceInfo@lang@456@VXInitialization@8456@VXImporter@document@456@VXFilter@document@456@VXUnoTunnel@8456@@cppu@@@5@VGetGlobalMutex@osl@@@Z@4PAU45@A
 ?create@?$rtl_Instance@Uclass_data@cppu@@U?$ImplClassData6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@V?$WeakImplHelper6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@@cppu@@@2@V?$Guard@VMutex@osl@@@osl@@VGetGlobalMutex@5@HH@?A0xed0890b3@@SAPAUclass_data@cppu@@U?$ImplClassData6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@V?$WeakImplHelper6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@@cppu@@@4@VGetGlobalMutex@osl@@@Z
 ?m_pInstance@?1??create@?$rtl_Instance@Uclass_data@cppu@@U?$ImplClassData6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@V?$WeakImplHelper6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@@cppu@@@2@V?$Guard@VMutex@osl@@@osl@@VGetGlobalMutex@5@HH@?A0xed0890b3@@SAPAUclass_data@cppu@@U?$ImplClassData6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@V?$WeakImplHelper6@VXFilter@document@star@sun@com@@VXServiceInfo@lang@345@VXExporter@2345@VXInitialization@7345@VXNamed@container@345@VXUnoTunnel@7345@@cppu@@@5@VGetGlobalMutex@osl@@@Z@4PAU45@A
+??_R1CLI@?0A@A@SfxListener@@8
+??0ResId@@QAE@GAAVResMgr@@@Z
+?ImplInit@ResId@@AAEXKAAVResMgr@@PAURSHEADER_TYPE@@@Z
+??0ResId@@QAE@HAAVResMgr@@@Z
+??_R1BBA@?0A@A@SvListView@@8
+??_R1BEA@?0A@A@DropTargetHelper@@8
+??_R1BGA@?0A@A@DragSourceHelper@@8
+??_R1BBA@?0A@A@DragAndDropClient@unohelper@vcl@@8
+??_R1BKE@?0A@A@SfxListener@@8
+??0ResId@@QAE@PAURSHEADER_TYPE@@AAVResMgr@@@Z
+??_R1BFM@?0A@A@SfxControllerItem@binfilter@@8
+??0ResId@@QAE@KAAVResMgr@@@Z
