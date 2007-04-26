@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:45:07 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:18:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -975,7 +975,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 
 /*N*/ String lcl_GetUniqueFlyName( const SwDoc* pDoc, sal_uInt16 nDefStrId )
 /*N*/ {
-/*N*/   ResId aId( nDefStrId, pSwResMgr );
+/*N*/   ResId aId( nDefStrId, *pSwResMgr );
 /*N*/   String aName( aId );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
@@ -1079,9 +1079,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*N*/ {
 /*N*/   sal_uInt16 n, nFlyNum = 0, nGrfNum = 0, nOLENum = 0;
 /*N*/
-/*N*/   ResId nFrmId( STR_FRAME_DEFNAME, pSwResMgr ),
-/*N*/         nGrfId( STR_GRAPHIC_DEFNAME, pSwResMgr ),
-/*N*/         nOLEId( STR_OBJECT_DEFNAME, pSwResMgr );
+/*N*/   ResId nFrmId( STR_FRAME_DEFNAME, *pSwResMgr ),
+/*N*/         nGrfId( STR_GRAPHIC_DEFNAME, *pSwResMgr ),
+/*N*/         nOLEId( STR_OBJECT_DEFNAME, *pSwResMgr );
 /*N*/   String sFlyNm( nFrmId );
 /*N*/   String sGrfNm( nGrfId );
 /*N*/   String sOLENm( nOLEId );

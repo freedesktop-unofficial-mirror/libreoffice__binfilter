@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:46:47 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:18:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -988,7 +988,7 @@ namespace binfilter {
 
 /*N*/ String SwDoc::GetUniqueSectionName( const String* pChkStr ) const
 /*N*/ {
-/*N*/   ResId aId( STR_REGION_DEFNAME, pSwResMgr );
+/*N*/   ResId aId( STR_REGION_DEFNAME, *pSwResMgr );
 /*N*/   String aName( aId );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
