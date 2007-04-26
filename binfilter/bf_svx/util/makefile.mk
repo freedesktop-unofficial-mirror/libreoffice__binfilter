@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.13 $
+#   $Revision: 1.14 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:03:50 $
+#   last change: $Author: rt $ $Date: 2007-04-26 13:51:08 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -43,8 +43,6 @@ TARGET=bf_svx
 
 NO_HIDS=TRUE
 
-USE_LDUMP2=TRUE
-
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
@@ -52,7 +50,6 @@ USE_LDUMP2=TRUE
 .IF "$(OS)"=="IRIX"
 LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=30
 .ENDIF
-RSCLOCINC+=-I$(BFPRJ)$/source$/svdraw
 
 INC+= -I$(PRJ)$/inc$/bf_svx
 
@@ -60,11 +57,10 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 
 SHL1TARGET= bf_svx$(UPD)$(DLLPOSTFIX)
 SHL1IMPLIB= bf_svx
-SVXLOKAL=	$(LB)$/bf_svx.lib
 SHL1BASE  = 0x1d800000
 
 SHL1STDLIBS= \
-    $(BFXMLOFFLIB) \
+            $(BFXMLOFFLIB) \
             $(BFGOODIESLIB) \
             $(BFBASICLIB) \
             $(SO2LIB) \
@@ -77,23 +73,17 @@ SHL1STDLIBS= \
             $(TOOLSLIB) \
             $(I18NISOLANGLIB) \
             $(COMPHELPERLIB) \
-            $(UCBHELPERLIB)	\
-            $(CPPUHELPERLIB)	\
+            $(UCBHELPERLIB) \
+            $(CPPUHELPERLIB) \
             $(CPPULIB) \
             $(VOSLIB) \
             $(SALLIB) \
             $(ICUUCLIB)\
-            $(FWELIB)	\
-    $(LEGACYSMGRLIB)	\
-    $(SALHELPERLIB)	\
-    $(XMLSCRIPTLIB)	\
-    $(SYSSHELLLIB)
-
-.IF "$(GUI)"=="UNX"
-SHL1STDLIBS+=\
-                    $(BFSFXLIB)	\
-                    $(SYSSHELLLIB)
-.ENDIF
+            $(FWELIB) \
+            $(LEGACYSMGRLIB) \
+            $(SALHELPERLIB) \
+            $(XMLSCRIPTLIB) \
+            $(SYSSHELLLIB)
 
 .IF "$(GUI)"=="WNT"
 
@@ -109,7 +99,7 @@ SHL1STDLIBS+=\
 SHL1STDLIBS+=\
             $(SHELLLIB)
 
-SHL1DEPN=       $(SLB)$/svx_svx.lib #$(LB)$/dl.lib
+SHL1DEPN=       $(SLB)$/svx_svx.lib
 .ENDIF # WNT
 
 SHL1LIBS=       $(SLB)$/svx_svx.lib
@@ -122,36 +112,27 @@ DEF1DES		= Rtf, Edt, Outliner, SvDraw, Form, Fmcomp, Engine3D, MSFilter
 # THB: exports list svx checked for 6.0 Final 6.12.2001
 DEF1EXPORTFILE	= svx.dxp
 
-LIBEXTRAFILES=\
-        $(SLB)$/svx_svdraw.lib \
-        $(SLB)$/svx_form.lib \
-        $(SLB)$/svx_engine3d.lib \
-        $(SLB)$/svx_msfilter.lib \
-        $(SLB)$/svx_xout.lib \
-        $(SLB)$/svx_xml.lib
-
 LIB1TARGET      =$(SLB)$/svx_svx.lib
 LIB1FILES       = \
-            $(SLB)$/svx_items.lib     \
-            $(SLB)$/svx_svxlink.lib   \
-            $(SLB)$/svx_editeng.lib   \
-            $(SLB)$/svx_outliner.lib \
-            $(SLB)$/svx_dialogs.lib\
-            $(SLB)$/svx_mnuctrls.lib  \
-            $(SLB)$/svx_options.lib   \
-            $(SLB)$/svx_stbctrls.lib  \
-            $(SLB)$/svx_tbxctrls.lib  \
-            $(SLB)$/svx_unoedit.lib   \
-            $(SLB)$/svx_unodraw.lib	\
-            $(SLB)$/svx_gal.lib
-
-.IF "$(GUI)"=="WNT"
-LIB1FILES  += \
-                        $(LB)$/bf_sfx.lib
-.ENDIF					
-
-
-LIB1FILES+=$(LIBEXTRAFILES)
+        $(SLB)$/svx_dialogs.lib \
+        $(SLB)$/svx_editeng.lib \
+        $(SLB)$/svx_engine3d.lib \
+        $(SLB)$/svx_form.lib \
+        $(SLB)$/svx_gal.lib \
+        $(SLB)$/svx_items.lib \
+        $(SLB)$/svx_mnuctrls.lib \
+        $(SLB)$/svx_msfilter.lib \
+        $(SLB)$/svx_options.lib \
+        $(SLB)$/svx_outliner.lib \
+        $(SLB)$/svx_stbctrls.lib \
+        $(SLB)$/svx_svdraw.lib \
+        $(SLB)$/svx_svxlink.lib \
+        $(SLB)$/svx_tbxctrls.lib \
+        $(SLB)$/svx_unodraw.lib \
+        $(SLB)$/svx_unoedit.lib \
+        $(SLB)$/svx_xml.lib \
+        $(SLB)$/svx_xout.lib \
+        $(SLB)$/bf_sfx.lib
 
 .IF "$(GUI)" == "OS2" || "(GUIBASE)" == "WIN"
 LIB1FILES  += \
@@ -176,31 +157,9 @@ SRS1FILELIST=\
 RESLIB1NAME=bf_svx
 RESLIB1SRSFILES= $(SRS1FILELIST)
 
-.IF "$(depend)" != ""
-
-ALL:
-    @echo nothing to depend on
-
-.ELSE
-.IF "$(GUI)"=="WNT"
-ALL:\
-        $(MAKELANGDIR)  \
-         $(SLB)$/svx_svx.lib \
-         $(LB)$/bf_svx.lib \
-         $(MISC)$/linkinc.ls \
-         ALLTAR
-
-.ENDIF			# "$(GUI)"=="WNT"
-
-.IF "$(GUI)"=="UNX" || "$(GUI)"=="MAC"
-ALL: \
-        $(MAKELANGDIR)  \
-        ALLTAR
-.ENDIF
-.ENDIF			#F "$(depend)" != ""
-
 # --- Targets -------------------------------------------------------
 
+.INCLUDE :  target.mk
 
 $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     @echo ------------------------------
@@ -208,4 +167,3 @@ $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     $(TYPE) bf_svx.flt >$@
     $(TYPE) bf_sfxwin.flt > $@
 
-.INCLUDE :  target.mk
