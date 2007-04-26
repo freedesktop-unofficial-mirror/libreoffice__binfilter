@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dialmgr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:26:46 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:19:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@ private:
     GraphicFilter* pGrapicFilter;
 };
 
-#define DIALOG_MGR()    (*(DialogsResMgr**)GetAppData(BF_SHL_SVX))->pResMgr
+#define DIALOG_MGR()    *(*(DialogsResMgr**)GetAppData(BF_SHL_SVX))->pResMgr
 #define SVX_RES(i)      ResId(i,DIALOG_MGR())
 #define SVX_RESSTR(i)   UniString(ResId(i,DIALOG_MGR()))
 #define SVX_RESSSTR(i)  String(ResId(i,DIALOG_MGR()))
