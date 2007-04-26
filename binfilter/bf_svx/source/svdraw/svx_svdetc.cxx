@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:39 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:17:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -674,7 +674,7 @@ namespace binfilter {
 /*N*/       for (USHORT i=0; i<nAnz; i++) {
 /*N*/           USHORT nResNum=SDR_StringCacheBegin+i;
 /*N*/           {
-/*N*/               pStr[i]=XubString(ResId(nResNum,pResMgr));
+/*N*/               pStr[i]=XubString(ResId(nResNum,*pResMgr));
 /*N*/           }
 /*N*/       }
 /*N*/   }
