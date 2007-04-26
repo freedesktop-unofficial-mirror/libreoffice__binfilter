@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:46:57 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:18:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -877,7 +877,7 @@ USHORT __FAR_DATA aTableSplitBoxSetRange[] = {
 
 /*N*/ String SwDoc::GetUniqueTblName() const
 /*N*/ {
-/*N*/   ResId aId( STR_TABLE_DEFNAME, pSwResMgr );
+/*N*/   ResId aId( STR_TABLE_DEFNAME, *pSwResMgr );
 /*N*/   String aName( aId );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
