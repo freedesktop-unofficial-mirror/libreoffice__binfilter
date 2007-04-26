@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabcolr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:39:45 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:17:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -209,7 +209,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ {
 /*N*/   XubString aStr;
 /*N*/   xub_StrLen nLen;
-/*N*/   ResMgr* pRes = DIALOG_MGR();
+/*N*/   ResMgr& rRes = DIALOG_MGR();
 /*N*/
 /*N*/   static USHORT __READONLY_DATA aResId[] =
 /*N*/   {
@@ -263,7 +263,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   for( USHORT n = 0; n < 16; ++n )
 /*N*/   {
 /*N*/       Insert( n, new XColorEntry( Color( aColTab[n] ),
-/*N*/                                   String( ResId( aResId[ n ], pRes )) ) );
+/*N*/                                   String( ResId( aResId[ n ], rRes )) ) );
 /*N*/   }
 /*N*/
 /*N*/   aStr = SVX_RESSTR( RID_SVXSTR_GREY );
