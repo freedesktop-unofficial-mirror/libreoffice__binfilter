@@ -4,9 +4,9 @@
  *
  *  $RCSfile: smdll.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:49:53 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:18:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,7 @@ class SmResId : public ResId
 {
 public:
     SmResId(USHORT nId) :
-        ResId(nId, SM_MOD()->GetResMgr())
+        ResId(nId, *SM_MOD()->GetResMgr())
     {
     }
 };
