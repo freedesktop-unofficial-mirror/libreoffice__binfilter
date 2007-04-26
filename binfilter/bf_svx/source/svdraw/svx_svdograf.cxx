@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:32:17 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:17:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -865,7 +865,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
-/*N*/           pBmp = new Bitmap( ResId ( BMAP_GrafikEi, ImpGetResMgr() ) );
+/*N*/           pBmp = new Bitmap( ResId ( BMAP_GrafikEi, *ImpGetResMgr() ) );
 /*N*/ #endif
 /*N*/       }
 /*N*/
