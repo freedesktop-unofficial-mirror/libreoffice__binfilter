@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schresid.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:38:47 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:11:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SchResId::SchResId(USHORT nId) :
-/*N*/       ResId( nId, SCH_MOD1()->GetResMgr() )
+/*N*/       ResId( nId, *SCH_MOD1()->GetResMgr() )
 /*N*/ {
 /*N*/ }
 
