@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sb.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:05:49 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:10:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1197,7 +1197,7 @@ struct BasicStringList_Impl : private Resource
     ResId aResId;
 
     BasicStringList_Impl( ResId& rErrIdP,  USHORT nId)
-        : Resource( rErrIdP ),aResId(nId){}
+        : Resource( rErrIdP ),aResId(nId,*rErrIdP.GetResMgr()){}
     ~BasicStringList_Impl() { FreeResource(); }
 
     String GetString(){ return String( aResId ); }
