@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdglob.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:05:09 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:19:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,7 @@ ResMgr* ImpGetResMgr();
 
 class SdrResId: ResId {
 public:
-    SdrResId(USHORT nId): ResId(nId,ImpGetResMgr()) {}
+    SdrResId(USHORT nId): ResId(nId,*ImpGetResMgr()) {}
 };
 
 // ResourceCache fuer haeuffig benoetigte Strings
