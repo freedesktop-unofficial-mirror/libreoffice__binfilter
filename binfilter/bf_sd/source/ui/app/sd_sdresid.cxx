@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdresid.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:43:43 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:12:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SdResId::SdResId(USHORT nId) :
-/*N*/   ResId(nId, SD_MOD()->GetResMgr())
+/*N*/   ResId(nId, *SD_MOD()->GetResMgr())
 /*N*/ //    ResId(nId, *(ResMgr**) GetAppData(BF_SHL_DRAW))
 /*N*/ {
 /*N*/ }
@@ -64,7 +64,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SdResId::SdResId(USHORT nId, ResMgr* pMgr) :
-/*N*/   ResId(nId, pMgr)
+/*N*/   ResId(nId, *pMgr)
 /*N*/ {
 /*N*/ }
 
