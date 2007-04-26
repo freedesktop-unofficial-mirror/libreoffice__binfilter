@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:00:45 $
+#   last change: $Author: rt $ $Date: 2007-04-26 13:50:39 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -43,12 +43,9 @@ ENABLE_EXCEPTIONS=TRUE
 PRJNAME=binfilter
 TARGET=bf_sfx
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-#sfx.hid generieren
 
 # --- Settings -----------------------------------------------------
 
@@ -57,7 +54,7 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sfx2
 # --- Allgemein ----------------------------------------------------
 
-LIB1TARGET= $(LB)$/$(TARGET).lib
+LIB1TARGET= $(SLB)$/$(TARGET).lib
 LIB1ARCHIV=$(LB)$/lib$(TARGET).a
 LIB1FILES=  $(SLB)$/sfx2_appl.lib		\
             $(SLB)$/sfx2_explorer.lib	\
@@ -97,11 +94,11 @@ RESLIB1SRSFILES=$(SFXSRSLIST)
 .INCLUDE :  target.mk
 
 
-# --- SFX-Filter-Datei ---
-
-$(MISC)$/$(SHL1TARGET).flt: makefile.mk
-    @echo ------------------------------
-    @echo Making: $@
-    @$(TYPE) sfxwin.flt > $@
+## --- SFX-Filter-Datei ---
+#
+#$(MISC)$/$(SHL1TARGET).flt: makefile.mk
+#    @echo ------------------------------
+#    @echo Making: $@
+#    @$(TYPE) sfxwin.flt > $@
 
 
