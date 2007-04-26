@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:14:57 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:11:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,7 @@ namespace binfilter {
 
 /*N*/ SFX_IMPL_INTERFACE(SdModule, SfxModule, SdResId(STR_APPLICATIONOBJECTBAR))
 /*N*/ {
-/*N*/   SFX_STATUSBAR_REGISTRATION(RID_DRAW_STATUSBAR);
+/*N*/   SFX_STATUSBAR_REGISTRATION(SdResId(RID_DRAW_STATUSBAR));
 /*N*/ }
 
 /*N*/ SFX_IMPL_MODULE_DLL(Sd)
