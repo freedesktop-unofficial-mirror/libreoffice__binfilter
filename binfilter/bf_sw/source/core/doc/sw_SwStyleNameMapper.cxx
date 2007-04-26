@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwStyleNameMapper.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:20:57 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:17:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -903,7 +903,7 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/       pNameArray = new SvStringsDtor( static_cast < sal_Int8 > (nEnd - nStt), 1 );
 /*N*/       while( nStt < nEnd )
 /*N*/       {
-/*N*/           const ResId rRId( nStt, pSwResMgr );
+/*N*/           const ResId rRId( nStt, *pSwResMgr );
 /*N*/           String* pStr = new String( rRId );
 /*N*/           pNameArray->Insert( pStr, pNameArray->Count() );
 /*N*/           ++nStt;
