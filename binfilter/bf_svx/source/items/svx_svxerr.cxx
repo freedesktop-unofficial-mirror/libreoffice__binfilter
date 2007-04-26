@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svxerr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:20:11 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:16:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@ namespace binfilter {
 /*N*/ SvxErrorHandler::SvxErrorHandler() :
 /*N*/
 /*N*/   SfxErrorHandler(
-/*N*/     RID_SVXERRCODE, ERRCODE_AREA_SVX, ERRCODE_AREA_SVX_END, DIALOG_MGR() )
+/*N*/     RID_SVXERRCODE, ERRCODE_AREA_SVX, ERRCODE_AREA_SVX_END, &DIALOG_MGR() )
 /*N*/ {
 /*N*/ }
 
