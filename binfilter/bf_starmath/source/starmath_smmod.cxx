@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:57:49 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:15:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,10 +81,10 @@ namespace binfilter {
 
 /*N*/ SmLocalizedSymbolData::SmLocalizedSymbolData() :
 /*N*/     Resource( SmResId(RID_LOCALIZED_NAMES) ),
-/*N*/   aUiSymbolNamesAry       ( ResId(RID_UI_SYMBOL_NAMES) ),
-/*N*/     aExportSymbolNamesAry   ( ResId(RID_EXPORT_SYMBOL_NAMES) ),
-/*N*/     aUiSymbolSetNamesAry    ( ResId(RID_UI_SYMBOLSET_NAMES) ),
-/*N*/     aExportSymbolSetNamesAry( ResId(RID_EXPORT_SYMBOLSET_NAMES) ),
+/*N*/   aUiSymbolNamesAry       ( SmResId(RID_UI_SYMBOL_NAMES) ),
+/*N*/     aExportSymbolNamesAry   ( SmResId(RID_EXPORT_SYMBOL_NAMES) ),
+/*N*/     aUiSymbolSetNamesAry    ( SmResId(RID_UI_SYMBOLSET_NAMES) ),
+/*N*/     aExportSymbolSetNamesAry( SmResId(RID_EXPORT_SYMBOLSET_NAMES) ),
 /*N*/     p50NamesAry             ( 0 ),
 /*N*/     p60NamesAry             ( 0 ),
 /*N*/     n50NamesLang            ( LANGUAGE_NONE ),

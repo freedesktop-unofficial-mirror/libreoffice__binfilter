@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_eerdll.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:44:58 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:16:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -231,7 +231,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ EditResId::EditResId( USHORT nId ):
-/*N*/   ResId( nId, EE_DLL()->GetResMgr() )
+/*N*/   ResId( nId, *EE_DLL()->GetResMgr() )
 /*N*/ {
 /*N*/ }
 
