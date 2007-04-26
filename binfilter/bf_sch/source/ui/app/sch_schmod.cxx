@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schmod.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:38:15 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:11:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,7 @@ namespace binfilter {
 /*N*/ SFX_IMPL_INTERFACE( SchModule, SfxModule, SchResId( STR_APPLICATIONOBJECTBAR ) )
 /*N*/ // from macro: void SchModule::InitInterface_Impl()
 /*N*/ {
-/*N*/   SFX_STATUSBAR_REGISTRATION( RID_STATUSBAR );
+/*N*/   SFX_STATUSBAR_REGISTRATION( SchResId( RID_STATUSBAR ) );
 /*N*/ }
 
 /*************************************************************************
