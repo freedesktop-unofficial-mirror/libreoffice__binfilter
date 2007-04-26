@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scdll.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:39:46 $
+ *  last change: $Author: rt $ $Date: 2007-04-26 07:11:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,7 +115,7 @@ namespace binfilter {
 //------------------------------------------------------------------
 
 /*N*/ ScResId::ScResId( USHORT nId ) :
-/*N*/   ResId( nId, SC_MOD()->GetResMgr() )
+/*N*/   ResId( nId, *SC_MOD()->GetResMgr() )
 /*N*/ {
 /*N*/ }
 
