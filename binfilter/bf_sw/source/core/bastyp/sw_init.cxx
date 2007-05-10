@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:41:25 $
+ *  last change: $Author: kz $ $Date: 2007-05-10 14:15:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -778,7 +778,7 @@ public:
 /*N*/   aAttrTab[ RES_BACKGROUND- POOLATTR_BEGIN ] = new SvxBrushItem;
 /*N*/   aAttrTab[ RES_BOX- POOLATTR_BEGIN ] = new SvxBoxItem;
 /*N*/   aAttrTab[ RES_SHADOW- POOLATTR_BEGIN ] = new SvxShadowItem;
-/*N*/   aAttrTab[ RES_FRMMACRO- POOLATTR_BEGIN ] = new SvxMacroItem;
+/*N*/   aAttrTab[ RES_FRMMACRO- POOLATTR_BEGIN ] = new SvxMacroItem(RES_FRMMACRO);
 /*N*/   aAttrTab[ RES_COL- POOLATTR_BEGIN ] = new SwFmtCol;
 /*N*/   aAttrTab[ RES_KEEP - POOLATTR_BEGIN ] = new SvxFmtKeepItem( FALSE );
 /*N*/   aAttrTab[ RES_URL - POOLATTR_BEGIN ] = new SwFmtURL();
