@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.14 $
+#   $Revision: 1.15 $
 #
-#   last change: $Author: rt $ $Date: 2007-04-26 13:51:08 $
+#   last change: $Author: vg $ $Date: 2007-05-25 10:46:44 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -88,7 +88,7 @@ SHL1STDLIBS= \
 .IF "$(GUI)"=="WNT"
 
 SHL1STDLIBS+=\
-        oleaut32.lib \
+        $(OLEAUT32LIB) \
         $(UWINAPILIB) \
         $(ADVAPI32LIB) \
         $(SHELL32LIB) \
