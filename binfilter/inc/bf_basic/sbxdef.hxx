@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxdef.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:31:43 $
+ *  last change: $Author: vg $ $Date: 2007-05-25 10:47:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -366,15 +366,9 @@ enum SbxError {                 // Ergebnis einer Rechenoperation/Konversion
 #define SbxMINLNG           ((INT32)(-2147483647-1))
 #define SbxMAXULNG          ((UINT32) 0xffffffff)
 
-#ifdef WNT
-#define SbxMAXSALINT64      ((sal_Int64)0x7fffffffffffffffL)
-#define SbxMINSALINT64      ((sal_Int64)0x8000000000000000L)
-#define SbxMAXSALUINT64     ((sal_uInt64)0xffffffffffffffffL)
-#else
-#define SbxMAXSALINT64      ((sal_Int64)0x7fffffffffffffffLL)
-#define SbxMINSALINT64      ((sal_Int64)0x8000000000000000LL)
-#define SbxMAXSALUINT64     ((sal_uInt64)0xffffffffffffffffLL)
-#endif
+#define SbxMAXSALINT64      SAL_MAX_INT64
+#define SbxMINSALINT64      SAL_MIN_INT64
+#define SbxMAXSALUINT64     SAL_MAX_UINT64
 
 #define SbxMAXSNG           ( 3.402823e+38)
 #define SbxMINSNG           (-3.402823e+38)
