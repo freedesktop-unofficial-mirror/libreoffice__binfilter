@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxdec.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:13:34 $
+ *  last change: $Author: vg $ $Date: 2007-05-25 10:46:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,9 @@
 #include <tools/prewin.h>
 }   // close extern "C" {
 
+#ifndef __MINGW32__
 #include <comutil.h>
+#endif
 #include <oleauto.h>
 
 extern "C" {    // reopen extern "C" {
