@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-16 07:21:47 $
+#   last change: $Author: vg $ $Date: 2007-05-25 10:46:33 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,8 +74,8 @@ SHL1STDLIBS= \
 
 .IF "$(GUI)"=="WNT"
 SHL1STDLIBS+=   \
-    uwinapi.lib \
-    oleaut32.lib
+    $(UWINAPILIB)	\
+    $(OLEAUT32LIB)
 .ENDIF # WNT
 
 SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
