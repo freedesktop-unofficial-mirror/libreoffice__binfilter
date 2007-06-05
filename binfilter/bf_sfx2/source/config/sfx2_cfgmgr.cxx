@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:07:31 $
+ *  last change: $Author: ihi $ $Date: 2007-06-05 14:26:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/ {
 /*N*/     try
 /*N*/   {
-/*N*/       ::ucb::Content aContent( rName, uno::Reference < ::com::sun::star::ucb::XCommandEnvironment >() );
+/*N*/       ::ucbhelper::Content aContent( rName, uno::Reference < ::com::sun::star::ucb::XCommandEnvironment >() );
 /*N*/       uno::Any aAny;
 /*N*/       try
 /*N*/       {
