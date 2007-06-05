@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:26:53 $
+ *  last change: $Author: ihi $ $Date: 2007-06-05 14:26:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -345,7 +345,7 @@ namespace binfilter {
 /*?*/ class SfxMedium_Impl : public SvCompatWeakBase
 /*?*/ {
 /*?*/ public:
-/*?*/     ::ucb::Content aContent;
+/*?*/     ::ucbhelper::Content aContent;
 /*?*/   String aBaseURL;
 /*?*/     sal_Bool bUpdatePickList : 1;
 /*?*/     sal_Bool bIsTemp        : 1;
@@ -565,7 +565,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           try
 /*N*/           {
-/*?*/               pImp->aContent = ::ucb::Content( xContent, xEnv );
+/*?*/               pImp->aContent = ::ucbhelper::Content( xContent, xEnv );
 /*N*/           }
 /*N*/           catch ( Exception& )
 /*N*/           {
@@ -579,7 +579,7 @@ namespace binfilter {
 /*N*/           else if ( aLogicName.Len() )
 /*N*/               aURL = GetURLObject().GetMainURL( INetURLObject::NO_DECODE );
 /*N*/           if ( aURL.Len() )
-/*N*/               ::ucb::Content::create( aURL, xEnv, pImp->aContent );
+/*N*/               ::ucbhelper::Content::create( aURL, xEnv, pImp->aContent );
 /*N*/       }
 /*N*/     }
 /*N*/
@@ -1093,8 +1093,8 @@ namespace binfilter {
 /*N*/               Close();
 /*N*/
 /*N*/               INetURLObject aSource( pImp->pTempFile->GetURL() );
-/*N*/               ::ucb::Content aTempCont;
-/*N*/               if( ::ucb::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xEnv, aTempCont ) )
+/*N*/               ::ucbhelper::Content aTempCont;
+/*N*/               if( ::ucbhelper::Content::create( aSource.GetMainURL( INetURLObject::NO_DECODE ), xEnv, aTempCont ) )
 /*N*/               {
 /*N*/                   try
 /*N*/                   {
@@ -1143,7 +1143,7 @@ namespace binfilter {
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-/*?*/ void SfxMedium::DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent )
+/*?*/ void SfxMedium::DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 /*?*/ }
 
@@ -1613,7 +1613,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/     if ( pSet )
 /*N*/         pSet->ClearItem( SID_CONTENT );
 /*N*/
-/*N*/     pImp->aContent = ::ucb::Content();
+/*N*/     pImp->aContent = ::ucbhelper::Content();
 /*N*/ }
 
 //------------------------------------------------------------------
