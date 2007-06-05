@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swunohelper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:04:09 $
+ *  last change: $Author: ihi $ $Date: 2007-06-05 14:27:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,7 +134,7 @@ BOOL UCB_DeleteFile( const String& rURL )
     BOOL bRemoved;
     try
     {
-        ucb::Content aTempContent( rURL,
+        ucbhelper::Content aTempContent( rURL,
                                 STAR_REFERENCE( ucb::XCommandEnvironment )());
         aTempContent.executeCommand(
                         ::rtl::OUString::createFromAscii( "delete" ),
