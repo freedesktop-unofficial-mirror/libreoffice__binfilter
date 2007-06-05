@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_globalx.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:49:36 $
+ *  last change: $Author: ihi $ $Date: 2007-06-05 14:25:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,14 +92,14 @@ namespace binfilter {
 /*N*/               aObj.setFinalSlash();
 /*N*/               try
 /*N*/               {
-/*N*/                   ::ucb::Content aCnt( aObj.GetMainURL(INetURLObject::NO_DECODE),
+/*N*/                   ::ucbhelper::Content aCnt( aObj.GetMainURL(INetURLObject::NO_DECODE),
 /*N*/                       Reference< XCommandEnvironment > () );
 /*N*/                   Reference< sdbc::XResultSet > xResultSet;
 /*N*/                   Sequence< ::rtl::OUString > aProps;
 /*N*/                   try
 /*N*/                   {
 /*N*/                       xResultSet = aCnt.createCursor(
-/*N*/                           aProps, ::ucb::INCLUDE_DOCUMENTS_ONLY );
+/*N*/                           aProps, ::ucbhelper::INCLUDE_DOCUMENTS_ONLY );
 /*N*/                   }
 /*N*/                   catch ( Exception& )
 /*N*/                   {
