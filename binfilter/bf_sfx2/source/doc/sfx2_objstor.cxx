@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:24:57 $
+ *  last change: $Author: ihi $ $Date: 2007-06-05 14:27:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -648,7 +648,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/  {
 /*N*/         try
 /*?*/ /*N*/         {
-/*?*/             ::ucb::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+/*?*/             ::ucbhelper::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
 /*?*/             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
 /*?*/             if ( xProps.is() )
 /*?*/             {
@@ -1108,7 +1108,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/
 /*N*/         try
 /*N*/         {
-/*?*/             ::ucb::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+/*?*/             ::ucbhelper::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
 /*?*/             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
 /*?*/             if ( xProps.is() )
 /*?*/             {
