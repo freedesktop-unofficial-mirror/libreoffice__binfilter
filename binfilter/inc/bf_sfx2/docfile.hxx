@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfile.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:57:31 $
+ *  last change: $Author: ihi $ $Date: 2007-06-05 14:27:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -346,8 +346,8 @@ public:
     void                Cancel_Impl();
     void                SetPhysicalName_Impl(const String& rName);
 
-    void                DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent );
-    void                DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent,
+    void                DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent );
+    void                DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent,
                                                 const String& aPrefix,
                                                 const String& aExtension,
                                                 const String& aDestDir );
