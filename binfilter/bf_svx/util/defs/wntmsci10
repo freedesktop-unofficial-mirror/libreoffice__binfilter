@@ -30500,3 +30500,9 @@ _TI3?AVNotConnectedException@io@star@sun@com@@
 ??0ResId@@QAE@KAAVResMgr@@@Z
 ??_R1BGM@?0A@A@DragSourceHelper@@8
 ??3@YAXPAXPAVDummyType@@@Z
+??_R0?AVCommandEnvironment@ucbhelper@@@8
+??_R1A@?0A@A@CommandEnvironment@ucbhelper@@8
+??_R2CommandEnvironment@ucbhelper@@8
+??_R3CommandEnvironment@ucbhelper@@8
+??_R4CommandEnvironment@ucbhelper@@6BOWeakObject@cppu@@@
+??_SCommandEnvironment@ucbhelper@@6BOWeakObject@cppu@@@
