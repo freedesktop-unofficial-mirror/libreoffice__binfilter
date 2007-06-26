@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:38:27 $
+ *  last change: $Author: obo $ $Date: 2007-06-26 09:48:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -553,9 +553,7 @@ public:
 #ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
 #endif
-#if defined(_MSC_VER) && (_MSC_VER >=1400)
-using namespace ::com::sun::star::drawing;
-#endif
+
 namespace binfilter {
 /***********************************************************************
 *                                                                      *
@@ -567,19 +565,11 @@ private:
     XPolyPolygon aEmptyPoly;
 
 public:
-#if defined(_MSC_VER) && (_MSC_VER >=1400)
-    SvxShapePolyPolygon( SdrObject* pObj , PolygonKind eNew = PolygonKind_LINE ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
-#else
-    SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = ::com::sun::star::drawing::PolygonKind_LINE ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
-#endif
+    SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
     virtual ~SvxShapePolyPolygon() throw();
 
     // Local support functions
-#if defined(_MSC_VER) && (_MSC_VER >=1400)
-    PolygonKind GetPolygonKind() const throw();
-#else
     ::com::sun::star::drawing::PolygonKind GetPolygonKind() const throw();
-#endif
     void SetPolygon(const XPolyPolygon& rNew) throw();
     const XPolyPolygon& GetPolygon() const throw();
 
@@ -602,11 +592,7 @@ private:
     XPolyPolygon aEmptyPoly;
 
 public:
-#if defined(_MSC_VER) && (_MSC_VER >=1400)
-    SvxShapePolyPolygonBezier( SdrObject* pObj , PolygonKind eNew = PolygonKind_PATHLINE) throw();
-#else
-    SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = ::com::sun::star::drawing::PolygonKind_PATHLINE) throw();
-#endif
+    SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew ) throw();
     virtual ~SvxShapePolyPolygonBezier() throw();
 
     // Local support functions
