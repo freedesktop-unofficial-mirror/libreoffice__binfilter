@@ -4,9 +4,9 @@
  *
  *  $RCSfile: iodetect.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:10:55 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:03:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -115,7 +115,7 @@ struct SwIoDetect
 
 #endif
 
-#if !( defined(PRODUCT) || defined(MAC) || defined(PM2))
+#if !( defined(PRODUCT) || defined(PM2))
 #define DEB_DBWRT_SwIoEntry(sNm, cCharLen, pWrt, bDel)  , SwIoEntry(sNm, cCharLen, pWrt, bDel)
 #else
 #define DEB_DBWRT_SwIoEntry(sNm, cCharLen, pWrt, bDel)
@@ -123,7 +123,7 @@ struct SwIoDetect
 
 
 const USHORT MAXFILTER =
-#if !( defined(PRODUCT) || defined(MAC) || defined(PM2))
+#if !( defined(PRODUCT) || defined(PM2))
 #endif
 #ifdef DEBUG_SH
 #endif
