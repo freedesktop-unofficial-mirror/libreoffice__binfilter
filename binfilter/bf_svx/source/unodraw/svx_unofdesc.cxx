@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unofdesc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:35:32 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 12:59:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,7 +113,7 @@ void SvxUnoFontDescriptor::ConvertFromFont( const Font& rFont, awt::FontDescript
     rDesc.Family = rFont.GetFamily();
     rDesc.CharSet = rFont.GetCharSet();
     rDesc.Pitch = rFont.GetPitch();
-    rDesc.Orientation = rFont.GetOrientation() / 10;
+    rDesc.Orientation = rFont.GetOrientation() / 10.0;
     rDesc.Kerning = rFont.IsKerning();
     rDesc.Weight = VCLUnoHelper::ConvertFontWeight( rFont.GetWeight() );
     rDesc.Slant = (awt::FontSlant)rFont.GetItalic();
