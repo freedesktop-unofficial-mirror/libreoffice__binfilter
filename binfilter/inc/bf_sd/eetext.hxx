@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eetext.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:52:24 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:00:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,14 +45,6 @@
 #define ITEMID_UNDERLINE        EE_CHAR_UNDERLINE
 #define ITEMID_FONTHEIGHT       EE_CHAR_FONTHEIGHT
 #define ITEMID_COLOR            EE_CHAR_COLOR
-#ifdef MAC
-#ifdef ITEMID_WORDLINEMODE
-#undef ITEMID_WORDLINEMODE
-#endif
-#ifdef ITEMID_CHARSETCOLOR
-#undef ITEMID_CHARSETCOLOR
-#endif
-#endif
 // #define ITEMID_WORDLINEMODE  0
 #define ITEMID_PROPSIZE         0
 // #define ITEMID_CHARSETCOLOR  0

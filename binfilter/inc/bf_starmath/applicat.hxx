@@ -4,9 +4,9 @@
  *
  *  $RCSfile: applicat.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:12:18 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:00:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,10 +65,6 @@ namespace binfilter {
 
 #ifdef PM2
 #define RELEASE     "PM304"
-#endif
-
-#ifdef MAC
-#define RELEASE     "MAC304"
 #endif
 
 #ifdef WNT
