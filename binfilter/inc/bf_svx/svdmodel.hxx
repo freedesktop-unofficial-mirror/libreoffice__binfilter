@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:06:50 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:01:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,10 +102,6 @@ namespace binfilter {
 
 #if defined(DOS) || defined(OS2)
 #define DEGREE_CHAR ((sal_Unicode)248)   /* 0xF8 = IBM PC (Erw. ASCII) */
-#endif
-
-#if defined(MAC)
-#define DEGREE_CHAR ((sal_Unicode)161)   /* 0xA1 = na eben Mac */
 #endif
 
 #ifndef DEGREE_CHAR
