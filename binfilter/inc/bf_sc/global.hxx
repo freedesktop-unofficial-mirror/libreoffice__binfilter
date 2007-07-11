@@ -4,9 +4,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:27:10 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 12:59:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -198,20 +198,12 @@ inline BOOL ValidColRowTab(USHORT nCol, USHORT nRow, USHORT nTab)
 #define MAX_COL_WIDTH       56693   // 1m in TWIPS
 #define MAX_COL_HEIGHT      56693
 
-#ifdef MAC
-#define STD_ROWHEIGHT_DIFF  3
-#else
 #define STD_ROWHEIGHT_DIFF  23
-#endif
 #define STD_FONT_HEIGHT     200     // entspricht 10 Punkt
 
 //!     statt STD_ROW_HEIGHT ScGlobal::nStdRowHeight benutzen !
 
-#ifdef MAC                              // Mac braucht mehr Platz
-#define STD_ROW_HEIGHT      (14.8 * TWIPS_PER_POINT)            //
-#else
 #define STD_ROW_HEIGHT      (12.8 * TWIPS_PER_POINT)            // 256 Twips, 0.45 cm
-#endif
 
                                     // Standardgroesse als Ole-Server (Zellen)
 #define OLE_STD_CELLS_X     4
