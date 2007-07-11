@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdosmbr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:41:42 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:01:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -193,14 +193,6 @@ public:
     FASTBOOL DeleteLine();
 };
 
-#ifdef MAC
-#ifdef WB_STDSIZEABLEDOCKWIN
-#undef WB_STDSIZEABLEDOCKWIN
-#endif
-#ifdef WB_STDSIZEABLEFLOATWIN
-#undef WB_STDSIZEABLEFLOATWIN
-#endif
-#endif
 #define WB_STDSIZEABLEDOCKWIN  (WB_STDDOCKWIN|WB_SVLOOK|WB_CLOSEABLE|WB_SIZEMOVE|WB_MINMAX|WB_CLIPCHILDREN)
 #define WB_STDSIZEABLEFLOATWIN (WB_STDFLOATWIN|WB_SVLOOK|WB_CLOSEABLE|WB_SIZEMOVE|WB_MINMAX|WB_CLIPCHILDREN)
 
