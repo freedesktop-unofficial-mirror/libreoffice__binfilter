@@ -4,9 +4,9 @@
  *
  *  $RCSfile: format.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:48:29 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:01:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,11 +55,7 @@ namespace binfilter {
 #define SM_FMT_VERSION_51   ((BYTE) 0x01)
 #define SM_FMT_VERSION_NOW  SM_FMT_VERSION_51
 
-#ifndef MAC
-#define FNTNAME_TIMES   "Times New Roman"
-#else
 #define FNTNAME_TIMES   "Times"
-#endif
 #define FNTNAME_HELV    "Helvetica"
 #define FNTNAME_COUR    "Courier"
 #define FNTNAME_MATH    FONTNAME_MATH
