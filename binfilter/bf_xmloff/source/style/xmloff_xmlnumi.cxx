@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumi.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:06:58 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 12:59:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -423,7 +423,7 @@ Sequence<beans::PropertyValue> SvxXMLListLevelStyleContext_Impl::GetProperties(
     if( bImage )
     {
         eType = NumberingType::BITMAP;
-        nCount = 10L;
+        nCount = (sal_Int32) 10L;
 
         if( (sImageURL.getLength() > 0L) || xBase64Stream.is() )
             nCount++;
@@ -433,7 +433,7 @@ Sequence<beans::PropertyValue> SvxXMLListLevelStyleContext_Impl::GetProperties(
         eType = NumberingType::ARABIC;
         GetImport().GetMM100UnitConverter().convertNumFormat(
                 eType, sNumFormat, sNumLetterSync, sal_True );
-        nCount = 10L;
+        nCount = (sal_Int32) 10L;
     }
 
     if( ( bBullet || bNum ) && nRelSize )
