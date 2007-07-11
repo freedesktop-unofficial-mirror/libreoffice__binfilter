@@ -4,9 +4,9 @@
  *
  *  $RCSfile: token.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:29:16 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:00:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #ifndef SC_TOKEN_HXX
 #define SC_TOKEN_HXX
 
-#include <string.h>     // memcpy(), don't use memory.h (MAC)
+#include <memory.h>
 
 #ifndef SC_OPCODE_HXX
 #include "opcode.hxx"
