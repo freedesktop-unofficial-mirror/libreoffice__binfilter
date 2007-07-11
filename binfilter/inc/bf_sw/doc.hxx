@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:42:56 $
+ *  last change: $Author: ihi $ $Date: 2007-07-11 13:02:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -294,7 +294,7 @@ class SwDoc
     //Implementierung und Benutzung in frmatr.cxx
     friend void DelHFFormat( SwClient *, SwFrmFmt * );
 
-#if !( defined(PRODUCT) || defined(MAC) || defined(PM2) )
+#if !( defined(PRODUCT) || defined(PM2) )
     friend class SwUndoWriter;  // fuers Schreiben der Undo/Redo-History
 #endif
 
