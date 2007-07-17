@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:54:50 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:11:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,8 +45,6 @@
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <bf_sfx2/viewfrm.hxx>
-#include <bf_sfx2/viewsh.hxx>
 #include <svtools/flagitem.hxx>
 #define _SVSTDARR_USHORTS
 #include <svtools/zformat.hxx>
@@ -716,29 +714,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/ }
 
 
-//------------------------------------------------------------------------
-
-/*N*/ SfxBindings* ScDocument::GetViewBindings()
-/*N*/ {
-/*N*/   //  used to invalidate slots after changes to this document
-/*N*/
-/*N*/   if ( !pShell )
-/*N*/       return NULL;        // no ObjShell -> no view
-/*N*/
-/*N*/   //  first check current view
-/*N*/   SfxViewFrame* pViewFrame = SfxViewFrame::Current();
-/*N*/   if ( pViewFrame && pViewFrame->GetObjectShell() != pShell )     // wrong document?
-/*N*/       pViewFrame = NULL;
-/*N*/
-/*N*/   //  otherwise use first view for this doc
-/*N*/   if ( !pViewFrame )
-/*N*/       pViewFrame = SfxViewFrame::GetFirst( pShell );
-/*N*/
-/*N*/   if (pViewFrame)
-/*N*/       return &pViewFrame->GetBindings();
-/*N*/   else
-/*N*/       return NULL;
-/*N*/ }
 
 //------------------------------------------------------------------------
 
