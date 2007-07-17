@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 16:00:50 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:35:07 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -66,38 +66,17 @@ SRC1FILES= \
 
 
 SLOFILES = \
-    $(SLO)$/svx_ParseContext.obj			\
-    $(SLO)$/svx_dbtoolsclient.obj      \
-    $(SLO)$/svx_sqlparserclient.obj      \
     $(SLO)$/svx_fmpage.obj      \
-    $(SLO)$/svx_fmPropBrw.obj			\
-    $(SLO)$/svx_fmundo.obj  	\
-    $(SLO)$/svx_fmprop.obj      \
     $(SLO)$/svx_fmmodel.obj		\
-    $(SLO)$/svx_fmexpl.obj      \
-    $(SLO)$/svx_fmctrler.obj    \
-    $(SLO)$/svx_fmpgeimp.obj	\
-    $(SLO)$/svx_fmvwimp.obj     \
-    $(SLO)$/svx_taborder.obj    \
     $(SLO)$/svx_fmdpage.obj		\
-    $(SLO)$/svx_tbxform.obj     \
-    $(SLO)$/svx_fmobj.obj      	\
-    $(SLO)$/svx_fmdmod.obj		\
-    $(SLO)$/svx_fmobjfac.obj	\
-    $(SLO)$/svx_fmservs.obj     \
-    $(SLO)$/svx_typemap.obj		\
-    $(SLO)$/svx_fmexch.obj      \
-    $(SLO)$/svx_tabwin.obj      \
-    $(SLO)$/svx_multipro.obj	\
-    $(SLO)$/svx_fmurl.obj		\
-    $(SLO)$/svx_filtnav.obj		\
-    $(SLO)$/svx_fmimplids.obj   \
-    $(SLO)$/svx_fmtools.obj     \
-    $(SLO)$/svx_fmshimp.obj     \
-    $(SLO)$/svx_fmshell.obj     \
-    $(SLO)$/svx_fmview.obj		\
-    $(SLO)$/svx_siimport.obj	\
-    $(SLO)$/svx_sdbdatacolumn.obj
+    $(SLO)$/svx_fmobj.obj		\
+    $(SLO)$/svx_fmobjfac.obj \
+    $(SLO)$/svx_fmimplids.obj \
+    $(SLO)$/svx_fmdmod.obj \
+    $(SLO)$/svx_ParseContext.obj \
+    $(SLO)$/svx_siimport.obj \
+    $(SLO)$/svx_fmtools.obj \
+    $(SLO)$/svx_fmpgeimp.obj
 
 .IF "$(OS)$(CPU)"=="SOLARISI" 
 NOOPTFILES=$(SLO)$/svx_fmprop.obj
