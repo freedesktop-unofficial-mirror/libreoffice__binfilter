@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_evntconf.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:07:54 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:43:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,11 +33,6 @@
  *
  ************************************************************************/
 
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-
-
 #pragma hdrstop
 
 #ifndef _RTL_USTRING_
@@ -48,13 +43,10 @@
 
 #include "macrconf.hxx"
 #include "objsh.hxx"
-#include "dispatch.hxx"
-#include "config.hrc"
-#include "sfxresid.hxx"
 #include "eventsupplier.hxx"
 
 #include "sfxsids.hrc"
-#include "sfxlocal.hrc"
+#include "app.hxx"
 
 
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -81,67 +73,6 @@ static const USHORT nOldVersion = 4;
 static const USHORT nVersion = 5;
 
 /*N*/ TYPEINIT1(SfxEventHint, SfxHint);
-
-// class SfxMacroQueryDlg_Impl -------------------------------------------
-
-class SfxMacroQueryDlg_Impl : public QueryBox
-{
-public:
-                            SfxMacroQueryDlg_Impl( const String& rMacro, BOOL bDefault );
-};
-
-// class SfxMacroQueryDlg_Impl -------------------------------------------
-
-/*?*/ SfxMacroQueryDlg_Impl::SfxMacroQueryDlg_Impl( const String& rMacName, BOOL bDefault ) :
-/*?*/     QueryBox( NULL, SfxResId( DLG_MACROQUERY ) )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-// class SfxAsyncEvent_Impl ----------------------------------------------
-
-/*?*/ class SfxAsyncEvent_Impl : public SfxListener
-/*?*/ {
-/*?*/     String          aArgs;
-/*?*/     SfxObjectShell* pSh;
-/*?*/     const SvxMacro* pMacro;
-/*?*/     Timer *pTimer;
-/*?*/
-/*?*/ public:
-/*?*/
-/*?*/     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-/*?*/     SfxAsyncEvent_Impl( SfxObjectShell *pDoc, const SvxMacro *pMacro, const String& rArgs );
-/*?*/     ~SfxAsyncEvent_Impl();
-/*?*/     DECL_LINK( TimerHdl, Timer*);
-/*?*/ };
-
-// -----------------------------------------------------------------------
-
-/*?*/ void SfxAsyncEvent_Impl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ SfxAsyncEvent_Impl::SfxAsyncEvent_Impl( SfxObjectShell *pDoc, const SvxMacro *pMac, const String& rArgs )
-/*?*/  : aArgs( rArgs )
-/*?*/  , pSh( pDoc )
-/*?*/  , pMacro( pMac )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ SfxAsyncEvent_Impl::~SfxAsyncEvent_Impl()
-/*?*/ {
-/*?*/     delete pTimer;
-/*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*?*/ IMPL_LINK(SfxAsyncEvent_Impl, TimerHdl, Timer*, pTimer)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/     return 0L;
-/*?*/ }
 
 // class SfxEventList_Impl -----------------------------------------------
 
@@ -178,17 +109,6 @@ public:
 /*N*/     // Einen default entry eingf"ugen
 /*N*/     const SfxEvent_Impl *pEvent = new SfxEvent_Impl(String(), 0);
 /*N*/     pEventArr->Insert(pEvent, 0);
-/*N*/ }
-
-/*N*/ SfxEventConfigItem_Impl* SfxEventConfiguration::GetAppEventConfig_Impl()
-/*N*/ {
-/*N*/   if ( !pAppEventConfig )
-/*N*/   {
-/*N*/       pAppEventConfig = new SfxEventConfigItem_Impl( SFX_ITEMTYPE_APPEVENTCONFIG, this );
-/*N*/       pAppEventConfig->Initialize();
-/*N*/   }
-/*N*/
-/*N*/   return pAppEventConfig;
 /*N*/ }
 
 //==========================================================================
@@ -247,17 +167,7 @@ public:
 /*?*/     if ( rMacro.GetMacName().Len() )
 /*?*/         pMacro = new SvxMacro( rMacro.GetMacName(), rMacro.GetLibName(), rMacro.GetScriptType() );
 /*?*/     if ( pDoc )
-/*?*/     {
-/*?*/         //pDocEventConfig = pDoc->GetEventConfig_Impl( TRUE );
-/*?*/         //pDocEventConfig->ConfigureEvent( nId, pMacro );
 /*?*/         PropagateEvent_Impl( pDoc, nId, pMacro );
-/*?*/     }
-/*?*/     else
-/*?*/     {
-/*?*/         // globale Bindung
-/*?*/         //GetAppEventConfig_Impl()->ConfigureEvent( nId, pMacro );
-/*?*/         PropagateEvent_Impl( NULL, nId, pMacro );
-/*?*/     }
 /*N*/ }
 
 //==========================================================================
@@ -427,11 +337,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 
 /*?*/ void SfxEventConfiguration::AddEvents( SfxMacroTabPage* pPage ) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*?*/ SvxMacroTableDtor* SfxEventConfiguration::GetAppEventTable()
-/*?*/ {
-/*?*/     return &GetAppEventConfig_Impl()->aMacroTable;
 /*?*/ }
 
 /*N*/ SvxMacroTableDtor* SfxEventConfiguration::GetDocEventTable( SfxObjectShell*pDoc )
@@ -796,13 +701,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/       DBG_ERROR("Couldn't create EventConfiguration!");
 /*N*/       return FALSE;
 /*N*/     }
-/*?*/     else if ( pOutStream )
-/*?*/     {
-/*?*/         SfxEventConfiguration aConfig;
-/*?*/         if ( aConfig.GetAppEventConfig_Impl()->Load( rInStream ) == SfxConfigItem::ERR_OK )
-/*?*/             return aConfig.pAppEventConfig->StoreXML( *pOutStream );
-/*?*/         return FALSE;
-/*?*/     }
 /*?*/
 /*?*/     DBG_ERROR( "No OutStream!" );
 /*?*/     return FALSE;
