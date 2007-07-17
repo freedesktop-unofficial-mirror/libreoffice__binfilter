@@ -4,9 +4,9 @@
  *
  *  $RCSfile: AccessibleText.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:30:39 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:25:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -118,8 +118,9 @@ public:
 class ScAccessibleCellTextData : public ScAccessibleCellBaseTextData
 {
 public:
-                        ScAccessibleCellTextData(ScTabViewShell* pViewShell,
-                            const ScAddress& rP, ScSplitPos eSplitPos);
+                        ScAccessibleCellTextData();
+//                      ScTabViewShell* pViewShell,
+//                          const ScAddress& rP, ScSplitPos eSplitPos);
     virtual             ~ScAccessibleCellTextData();
 
     virtual ScAccessibleTextData* Clone() const;
@@ -136,14 +137,14 @@ protected:
 private:
     ScViewForwarder* mpViewForwarder;
     ScEditViewForwarder* mpEditViewForwarder;
-    ScTabViewShell* mpViewShell;
+//  ScTabViewShell* mpViewShell;
     ScSplitPos meSplitPos;
     sal_Bool mbViewEditEngine;
 
     // prevent the using of this method of the base class
     ScSharedCellEditSource* GetOriginalSource() { return NULL; }
 
-    ScDocShell* GetDocShell(ScTabViewShell* pViewShell);
+//  ScDocShell* GetDocShell(ScTabViewShell* pViewShell);
 };
 
 
