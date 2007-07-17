@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_guess.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:09:30 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:02:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,7 +88,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::beans;
-using namespace ::com::sun::star::linguistic2;
 
 #ifdef VERTICAL_LAYOUT
 #define CH_FULL_BLANK 0x3000
@@ -402,12 +401,6 @@ using namespace ::com::sun::star::linguistic2;
 /*M*/       LineBreakUserOptions aUserOpt(
 /*M*/               aForbidden.beginLine, aForbidden.endLine,
 /*M*/                 rInf.HasForbiddenChars(), bAllowHanging, sal_False );
-/*M*/
-/*M*/         //! register listener to LinguServiceEvents now in order to get
-/*M*/         //! notified about relevant changes in the future
-/*M*/         SwModule *pModule = SW_MOD();
-/*M*/         if (!pModule->GetLngSvcEvtListener().is())
-/*M*/             pModule->CreateLngSvcEvtListener();
 /*M*/
 /*M*/         // !!! We must have a local copy of the locale, because inside
 /*M*/         // getLineBreak the LinguEventListener can trigger a new formatting,
