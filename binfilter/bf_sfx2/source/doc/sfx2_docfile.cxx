@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2007-06-05 14:26:36 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:55:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -184,14 +184,13 @@ using namespace ::com::sun::star::io;
 #include "helper.hxx"
 #include "request.hxx"      // SFX_ITEMSET_SET
 #include "app.hxx"          // GetFilterMatcher
-#include "frame.hxx"        // LoadTargetFrame
+#include "appuno.hxx"        // LoadTargetFrame
 #include "fltfnc.hxx"       // SfxFilterMatcher
 #include "docfilt.hxx"      // SfxFilter
 #include "objsh.hxx"        // CheckOpenMode
 #include "docfac.hxx"       // GetFilterContainer
-#include "doc.hrc"          // MSG_WARNING_BACKUP, MSG_OPEN_READONLY
 #include "openflag.hxx"     // SFX_STREAM_READONLY etc.
-#include "sfxresid.hxx"
+#include "sfxsids.hrc"
 
 #include "xmlversion.hxx"
 
@@ -374,8 +373,6 @@ namespace binfilter {
 /*?*/     String           aPreRedirectionURL;
 /*?*/     String           aReferer;
 /*?*/     DateTime         aExpireTime;
-/*?*/     SfxFrameWeak     wLoadTargetFrame;
-/*?*/     LoadEnvironment_Impl* pLoadEnv;
 /*?*/     SvKeyValueIteratorRef xAttributes;
 /*?*/     SvRefBaseRef    xLoadRef;
 /*?*/
@@ -434,7 +431,6 @@ namespace binfilter {
 /*N*/     {
 /*N*/         if( !bDontCreateCancellable )
 /*N*/             xCancelManager = new SfxPoolCancelManager(
-/*N*/                 wLoadTargetFrame ? wLoadTargetFrame->GetCancelManager() :
 /*N*/                 SFX_APP()->GetCancelManager(),
 /*N*/                 pAntiImpl->GetURLObject().GetURLNoPass() );
 /*N*/         else
@@ -452,7 +448,7 @@ namespace binfilter {
 /*N*/     bUsesCache(sal_True), pCancellable( 0 ),
 /*N*/     nPrio( 99 ), aExpireTime( Date() + 10, Time() ),
 /*N*/     bForceSynchron( sal_False ), bStreamReady( sal_False ), bIsStorage( sal_False ),
-/*N*/     pLoadEnv( 0 ), pAntiImpl( pAntiImplP ),
+/*N*/     pAntiImpl( pAntiImplP ),
 /*N*/     bDontCreateCancellable( sal_False ), pTempDir( NULL ), bIsDiskSpannedJAR( sal_False ),
 /*N*/     bDownloadDone( sal_True ), bDontCallDoneLinkOnSharingError( sal_False ),nFileVersion( 0 ),
 /*N*/   pTempFile( NULL ),
@@ -908,12 +904,12 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   if( SotStorage::IsStorageFile( pInStream ) )
 /*N*/                   {
-/*N*/                       if ( IsReadOnly() && ::utl::LocalFileHelper::IsLocalFile( aLogicName ) )
-/*N*/                       {
-/*N*/                           CreateTempFile();
-/*N*/                           aStorage = new SvStorage( bUCBStorage, aName, nStorOpenMode, bDirect ? 0 : STORAGE_TRANSACTED );
-/*N*/                       }
-/*N*/                       else
+/*N*/               /*      if ( IsReadOnly() && ::utl::LocalFileHelper::IsLocalFile( aLogicName ) )
+                         {
+                             CreateTempFile();
+                             aStorage = new SvStorage( bUCBStorage, aName, nStorOpenMode, bDirect ? 0 : STORAGE_TRANSACTED );
+                         }
+                         else */
 /*N*/                       {
 /*N*/                           if ( bUCBStorage && !UCBStorage::IsStorageFile( pInStream ) )
 /*N*/                               return NULL;
@@ -1117,9 +1113,9 @@ namespace binfilter {
 /*N*/                       while ( nRead == nBufferSize );
 /*N*/
 /*N*/                       // remove temporary file
-/*N*/                       pImp->pTempFile->EnableKillingFile( sal_True );
-/*N*/                       delete pImp->pTempFile;
-/*N*/                       pImp->pTempFile = NULL;
+/*N*/                       // pImp->pTempFile->EnableKillingFile( sal_True );
+/*N*/                       // delete pImp->pTempFile;
+/*N*/                       // pImp->pTempFile = NULL;
 /*N*/                   }
 /*N*/                   catch( Exception& )
 /*N*/                   {}
@@ -1323,54 +1319,6 @@ namespace binfilter {
 /*N*/     if( pImp->xCancelManager.Is() )
 /*N*/         pImp->xCancelManager->Cancel();
 /*N*/ }
-
-//----------------------------------------------------------------
-/*
-String SfxMedium::GetStatusString( const SvProgressArg* pArg )
-{
-    String aString;
-    StringList_Impl aSL( SfxResId( RID_DLSTATUS2 ), (USHORT)pArg->eStatus );
-    USHORT nTotal = 0;
-
-    if ( pArg->eStatus == SVBINDSTATUS_ENDDOWNLOADDATA && nTotal <= 1 )
-        return aString;
-
-    if( aSL )
-    {
-        INetURLObject aObj( pArg->rStatus );
-        aString = aSL.GetString();
-        aString.SearchAndReplaceAscii( "$(HOST)", aObj.GetHost() );
-        String aTarget = aObj.GetFull();
-        if( aTarget.Len() <= 1 && pArg->eStatus != SVBINDSTATUS_CONNECTING )
-            aTarget = aObj.GetHost();
-        if( pArg->nMax )
-        {
-            aTarget += DEFINE_CONST_UNICODE( " (" );
-            AddNumber_Impl( aTarget, pArg->nMax );
-            aTarget += ')';
-        }
-
-        aString.SearchAndReplaceAscii( "$(TARGET)",aTarget );
-        String aNumber;
-        AddNumber_Impl( aNumber, pArg->nProgress );
-        if( pArg->nRate )
-        {
-            aNumber+= DEFINE_CONST_UNICODE( " (" );
-            AddNumber_Impl( aNumber, (ULONG)pArg->nRate );
-            aNumber+= DEFINE_CONST_UNICODE( "/s)" );
-        }
-        if( pArg->nMax && pArg->nProgress && pArg->nMax != pArg->nProgress )
-        {
-            aNumber += DEFINE_CONST_UNICODE( " [" );
-            float aPerc = pArg->nProgress / (float)pArg->nMax;
-            aNumber += String::CreateFromInt32( (USHORT)(aPerc * 100) );
-            aNumber += DEFINE_CONST_UNICODE( "%]" );
-        }
-        aString.SearchAndReplaceAscii( "$(BYTE)", aNumber );
-    }
-    return aString;
-}
-*/
 
 /*N*/ sal_Bool SfxMedium::IsRemote()
 /*N*/ {
@@ -1919,17 +1867,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/ }
 
 //----------------------------------------------------------------
-/*N*/ SfxFrame* SfxMedium::GetLoadTargetFrame() const
-/*N*/ {
-/*N*/     return pImp->wLoadTargetFrame;
-/*N*/ }
-//----------------------------------------------------------------
-
-/*N*/ void SfxMedium::SetLoadTargetFrame(SfxFrame* pFrame )
-/*N*/ {
-/*N*/     pImp->wLoadTargetFrame = pFrame;
-/*N*/ }
-//----------------------------------------------------------------
 
 /*?*/ void SfxMedium::SetStorage_Impl( SvStorage* pStor )
 /*?*/ {
@@ -1943,19 +1880,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/                     new SfxAllItemSet( SFX_APP()->GetPool() );
 /*N*/     return pSet;
 /*N*/ }
-//----------------------------------------------------------------
-
-/*N*/ void SfxMedium::SetLoadEnvironment_Impl( LoadEnvironment_Impl* pEnv )
-/*N*/ {
-/*N*/     pImp->pLoadEnv = pEnv;
-/*N*/ }
-//----------------------------------------------------------------
-
-/*?*/ LoadEnvironment_Impl* SfxMedium::GetLoadEnvironment_Impl() const
-/*?*/ {
-/*?*/     return pImp->pLoadEnv;
-/*?*/ }
-//----------------------------------------------------------------
 
 /*N*/ SvKeyValueIterator* SfxMedium::GetHeaderAttributes_Impl()
 /*N*/ {
@@ -2140,18 +2064,6 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/     CloseOutStream_Impl();
 /*N*/     CloseStorage();
 /*N*/ }
-
-/*N*/ void SfxMedium::SetLoadEnvironment( SfxLoadEnvironment* pEnv )
-/*N*/ {
-/*N*/     pImp->xLoadRef = pEnv;
-/*N*/ }
-
-/*?*/ SfxLoadEnvironment* SfxMedium::GetLoadEnvironment() const
-/*?*/ {
-/*?*/     return (SfxLoadEnvironment*) &pImp->xLoadRef;
-/*?*/ }
-
-
 
 //----------------------------------------------------------------
 #define nActVersion 1
