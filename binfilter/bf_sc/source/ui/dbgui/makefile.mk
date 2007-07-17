@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:20:51 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:16:47 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,13 +57,7 @@ INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
 
 SLOFILES =	\
-    $(SLO)$/sc_expftext.obj	\
-    $(SLO)$/sc_pvlaydlg.obj	\
     $(SLO)$/sc_imoptdlg.obj	\
-    $(SLO)$/sc_csvcontrol.obj	\
-    $(SLO)$/sc_csvruler.obj	\
-    $(SLO)$/sc_csvgrid.obj		\
-    $(SLO)$/sc_csvtablebox.obj	\
     $(SLO)$/sc_asciiopt.obj
 
 SRS1NAME=$(TARGET)
