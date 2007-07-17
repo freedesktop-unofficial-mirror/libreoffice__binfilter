@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:54:13 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:11:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,9 +99,8 @@
 #include "scitems.hxx"
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
-#include <bf_sfx2/bindings.hxx>
 #include <svtools/zforlist.hxx>
-
+#include <vcl/svapp.hxx>
 #include "document.hxx"
 #include "attrib.hxx"
 #include "rangenam.hxx"
@@ -121,10 +120,6 @@
 #include "bf_sc.hrc"            // SID_LINK
 #include "hints.hxx"
 #include "dpobject.hxx"
-
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
-#endif
 
 namespace binfilter {
 using namespace ::com::sun::star;
@@ -334,9 +329,6 @@ using namespace ::com::sun::star;
 /*N*/                                       &aFilterName );
 /*N*/       pLink->Update();
 /*N*/       pLink->SetInCreate( FALSE );
-/*N*/       SfxBindings* pBindings = GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/           pBindings->Invalidate( SID_LINKS );
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -547,178 +539,6 @@ using namespace ::com::sun::star;
 /*N*/                                   USHORT nFormatNo, const ScMarkData& rMark )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nStartCol, nEndCol );
-/*N*/ }
-
-
-// static
-/*N*/ void ScDocument::GetSearchAndReplaceStart( const SvxSearchItem& rSearchItem,
-/*N*/       USHORT& rCol, USHORT& rRow )
-/*N*/ {
-/*N*/   USHORT nCommand = rSearchItem.GetCommand();
-/*N*/   BOOL bReplace = ( nCommand == SVX_SEARCHCMD_REPLACE ||
-/*N*/       nCommand == SVX_SEARCHCMD_REPLACE_ALL );
-/*N*/   if ( rSearchItem.GetBackward() )
-/*N*/   {
-/*N*/       if ( rSearchItem.GetRowDirection() )
-/*N*/       {
-/*N*/           if ( rSearchItem.GetPattern() )
-/*N*/           {
-/*N*/               rCol = MAXCOL;
-/*N*/               rRow = MAXROW+1;
-/*N*/           }
-/*N*/           else if ( bReplace )
-/*N*/           {
-/*N*/               rCol = MAXCOL;
-/*N*/               rRow = MAXROW;
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               rCol = MAXCOL+1;
-/*N*/               rRow = MAXROW;
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           if ( rSearchItem.GetPattern() )
-/*N*/           {
-/*N*/               rCol = MAXCOL+1;
-/*N*/               rRow = MAXROW;
-/*N*/           }
-/*N*/           else if ( bReplace )
-/*N*/           {
-/*N*/               rCol = MAXCOL;
-/*N*/               rRow = MAXROW;
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               rCol = MAXCOL;
-/*N*/               rRow = MAXROW+1;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if ( rSearchItem.GetRowDirection() )
-/*N*/       {
-/*N*/           if ( rSearchItem.GetPattern() )
-/*N*/           {
-/*N*/               rCol = 0;
-/*N*/               rRow = (USHORT) -1;
-/*N*/           }
-/*N*/           else if ( bReplace )
-/*N*/           {
-/*N*/               rCol = 0;
-/*N*/               rRow = 0;
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               rCol = (USHORT) -1;
-/*N*/               rRow = 0;
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           if ( rSearchItem.GetPattern() )
-/*N*/           {
-/*N*/               rCol = (USHORT) -1;
-/*N*/               rRow = 0;
-/*N*/           }
-/*N*/           else if ( bReplace )
-/*N*/           {
-/*N*/               rCol = 0;
-/*N*/               rRow = 0;
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               rCol = 0;
-/*N*/               rRow = (USHORT) -1;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ BOOL ScDocument::SearchAndReplace(const SvxSearchItem& rSearchItem,
-/*N*/                               USHORT& rCol, USHORT& rRow, USHORT& rTab,
-/*N*/                               ScMarkData& rMark,
-/*N*/                               String& rUndoStr, ScDocument* pUndoDoc)
-/*N*/ {
-/*N*/   //!     getrennte Markierungen pro Tabelle verwalten !!!!!!!!!!!!!
-/*N*/
-/*N*/   rMark.MarkToMulti();
-/*N*/
-/*N*/   BOOL bFound = FALSE;
-/*N*/   if (VALIDTAB(rTab))
-/*N*/   {
-/*N*/       USHORT nCol;
-/*N*/       USHORT nRow;
-/*N*/       USHORT nTab;
-/*N*/       USHORT nCommand = rSearchItem.GetCommand();
-/*N*/       if ( nCommand == SVX_SEARCHCMD_FIND_ALL ||
-/*N*/            nCommand == SVX_SEARCHCMD_REPLACE_ALL )
-/*N*/       {
-/*N*/           for (nTab = 0; nTab <= MAXTAB; nTab++)
-/*N*/               if (pTab[nTab])
-/*N*/               {
-/*N*/                   if (rMark.GetTableSelect(nTab))
-/*N*/                   {
-/*N*/                       nCol = 0;
-/*N*/                       nRow = 0;
-/*N*/                       bFound |= pTab[nTab]->SearchAndReplace(
-/*N*/                                   rSearchItem, nCol, nRow, rMark, rUndoStr, pUndoDoc );
-/*N*/                   }
-/*N*/               }
-/*N*/
-/*N*/           //  Markierung wird innen schon komplett gesetzt
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           nCol = rCol;
-/*N*/           nRow = rRow;
-/*N*/           if (rSearchItem.GetBackward())
-/*N*/           {
-/*N*/               for (nTab = rTab; ((short)nTab >= 0) && !bFound; nTab--)
-/*N*/                   if (pTab[nTab])
-/*N*/                   {
-/*N*/                       if (rMark.GetTableSelect(nTab))
-/*N*/                       {
-/*N*/                           bFound = pTab[nTab]->SearchAndReplace(
-/*N*/                                       rSearchItem, nCol, nRow, rMark, rUndoStr, pUndoDoc );
-/*N*/                           if (bFound)
-/*N*/                           {
-/*N*/                               rCol = nCol;
-/*N*/                               rRow = nRow;
-/*N*/                               rTab = nTab;
-/*N*/                           }
-/*N*/                           else
-/*N*/                               ScDocument::GetSearchAndReplaceStart(
-/*N*/                                   rSearchItem, nCol, nRow );
-/*N*/                       }
-/*N*/                   }
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               for (nTab = rTab; (nTab <= MAXTAB) && !bFound; nTab++)
-/*N*/                   if (pTab[nTab])
-/*N*/                   {
-/*N*/                       if (rMark.GetTableSelect(nTab))
-/*N*/                       {
-/*N*/                           bFound = pTab[nTab]->SearchAndReplace(
-/*N*/                                       rSearchItem, nCol, nRow, rMark, rUndoStr, pUndoDoc );
-/*N*/                           if (bFound)
-/*N*/                           {
-/*N*/                               rCol = nCol;
-/*N*/                               rRow = nRow;
-/*N*/                               rTab = nTab;
-/*N*/                           }
-/*N*/                           else
-/*N*/                               ScDocument::GetSearchAndReplaceStart(
-/*N*/                                   rSearchItem, nCol, nRow );
-/*N*/                       }
-/*N*/                   }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   return bFound;
 /*N*/ }
 
 
