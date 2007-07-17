@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:43:06 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:57:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,6 +53,9 @@
 #ifndef _SHELLID_HXX
 #include <shellid.hxx>
 #endif
+
+#include <svtools/lstner.hxx>
+
 class   SfxStyleSheetBasePool;
 class   FontList;
 class   PushButton;
@@ -132,11 +135,8 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
 public:
 
     // aber selbst implementieren
-    SFX_DECL_INTERFACE(SW_DOCSHELL);
     SFX_DECL_OBJECTFACTORY_DLL(SwDocShell, SW_DLL());
     TYPEINFO();
-
-    static SfxInterface *_GetInterface() { return _GetInterfaceImpl(); }
 
     //Das Doc wird fuer SO-Datenaustausch benoetigt!
     SwDocShell(SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED);
@@ -155,15 +155,6 @@ public:
     virtual ULONG     GetMiscStatus() const;
 
     virtual void            SetModified( BOOL = TRUE );
-
-    // Dispatcher
-    void                    Execute(SfxRequest &);
-    void                    ExecStyleSheet(SfxRequest&);
-    void                    ExecDB(SfxRequest&);
-
-    void                    GetState(SfxItemSet &);
-    void                    StateAlways(SfxItemSet &);
-    void                    StateStyleSheet(SfxItemSet&, SwWrtShell* pSh = 0 );
 
     // Doc rausreichen aber VORSICHT
     inline SwDoc*           GetDoc() { return pDoc; }
