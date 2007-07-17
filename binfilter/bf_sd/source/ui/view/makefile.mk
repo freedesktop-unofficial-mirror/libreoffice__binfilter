@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:45:21 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:09:05 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -53,60 +53,12 @@ INC+= -I$(PRJ)$/inc$/bf_sd
 # --- Files --------------------------------------------------------
 
 EXCEPTIONSFILES= \
-        $(SLO)$/sd_sdoutl.obj  \
-        $(SLO)$/sd_drviews1.obj \
-        $(SLO)$/sd_drviews8.obj \
-        $(SLO)$/sd_drviewsa.obj \
-        $(SLO)$/sd_outlnvsh.obj \
-        $(SLO)$/sd_slidvish.obj	
-
-EXCEPTIONSNOOPTFILES=\
-        $(SLO)$/sd_drviews5.obj\
-        $(SLO)$/sd_drviewsb.obj
+        $(SLO)$/sd_sdoutl.obj  
 
 SLOFILES =	\
-        $(SLO)$/sd_sdview.obj	\
-        $(SLO)$/sd_sdview2.obj	\
-        $(SLO)$/sd_sdview4.obj	\
-        $(SLO)$/sd_viewshel.obj \
-        $(SLO)$/sd_viewshe2.obj \
-        $(SLO)$/sd_viewshe3.obj \
-        $(SLO)$/sd_sdwindow.obj \
-        $(SLO)$/sd_drviews1.obj \
-        $(SLO)$/sd_drviews2.obj \
-        $(SLO)$/sd_drviews3.obj \
-        $(SLO)$/sd_drviews5.obj \
-        $(SLO)$/sd_drviews6.obj \
-        $(SLO)$/sd_drviews7.obj \
-        $(SLO)$/sd_drviews8.obj \
-        $(SLO)$/sd_drviewsa.obj \
-        $(SLO)$/sd_drviewsb.obj \
-        $(SLO)$/sd_drviewsc.obj \
-        $(SLO)$/sd_drviewse.obj \
-        $(SLO)$/sd_drviewsf.obj \
-        $(SLO)$/sd_drviewsi.obj \
-        $(SLO)$/sd_drviewsj.obj \
-        $(SLO)$/sd_drvwshrg.obj \
-        $(SLO)$/sd_drawview.obj \
-        $(SLO)$/sd_grviewsh.obj \
-        $(SLO)$/sd_slidvish.obj \
-        $(SLO)$/sd_outlnvsh.obj \
-        $(SLO)$/sd_presvish.obj \
-        $(SLO)$/sd_prvwshll.obj \
-        $(SLO)$/sd_tabcontr.obj \
-        $(SLO)$/sd_layertab.obj \
-        $(SLO)$/sd_drstdob.obj	\
-        $(SLO)$/sd_grstdob.obj	\
-        $(SLO)$/sd_drbezob.obj	\
-        $(SLO)$/sd_drglueob.obj	\
-        $(SLO)$/sd_drtxtob.obj	\
-        $(SLO)$/sd_sdruler.obj	\
         $(SLO)$/sd_sdoutl.obj  \
         $(SLO)$/sd_SdOutlinerIterator.obj \
-        $(SLO)$/sd_frmview.obj	\
-        $(SLO)$/sd_zoomlist.obj	\
-        $(SLO)$/sd_drgrfob.obj \
-        $(SLO)$/sd_WindowUpdater.obj
+        $(SLO)$/sd_frmview.obj	
 
 
 # --- Tagets -------------------------------------------------------
