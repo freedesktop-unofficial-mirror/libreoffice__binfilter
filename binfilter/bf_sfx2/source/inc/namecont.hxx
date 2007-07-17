@@ -4,9 +4,9 @@
  *
  *  $RCSfile: namecont.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:26:27 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:05:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -249,6 +249,8 @@ protected:
 
     InitMode meInitMode;
 
+    void implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
+        const ::xmlscript::LibDescriptor& rLib, SotStorageRef xStorage );
     sal_Bool implLoadLibraryIndexFile( SfxLibrary_Impl* pLib, ::xmlscript::LibDescriptor& rLib,
                                        SotStorageRef xStorage, const ::rtl::OUString& aIndexFileName );
     void implImportLibDescriptor( SfxLibrary_Impl* pLib, ::xmlscript::LibDescriptor& rLib );
@@ -271,6 +273,9 @@ protected:
     virtual ::com::sun::star::uno::Any SAL_CALL importLibraryElement
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream ) = 0;
     virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile ) = 0;
+
+    void implStoreLibrary( SfxLibrary_Impl* pLib,
+        const ::rtl::OUString& aName, SotStorageRef xStorage );
 
     // Password encryption
     virtual sal_Bool implStorePasswordLibrary( SfxLibrary_Impl* pLib, const ::rtl::OUString& aName,
