@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndnotxt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:29:01 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:01:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,8 @@
 #include <so3/ipobj.hxx>
 #endif
 
-#ifndef _CONTDLG_HXX_
-#include <bf_svx/contdlg.hxx>
-#endif
-
+#include <tools/poly.hxx>
+#include <vcl/outdev.hxx>
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
