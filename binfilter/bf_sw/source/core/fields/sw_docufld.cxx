@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:37:33 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:01:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -676,11 +676,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/       {
 /*N*/           if( FF_UI_RANGE == nFmt )
 /*N*/           {
-/*N*/               // fuers besorgen vom RegionNamen !!
-/*N*/               SfxDocumentTemplates aFac;
-/*N*/               aFac.Construct();
-/*N*/               String sTmp;
-/*N*/               aFac.GetLogicNames( pDInfo->GetTemplateFileName(), aRet, sTmp );
+                    DBG_ERROR("Strip!");
 /*N*/           }
 /*N*/           else
 /*N*/           {
