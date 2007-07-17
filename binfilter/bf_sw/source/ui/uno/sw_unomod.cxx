@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unomod.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:01:16 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:12:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,6 +48,8 @@
 #include <errhdl.hxx>
 #endif
 
+#include <bf_svx/zoomitem.hxx>
+
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
@@ -68,9 +70,6 @@
 #endif
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
-#endif
-#ifndef _SWVIEW_HXX //autogen
-#include <view.hxx>
 #endif
 #ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
@@ -110,12 +109,12 @@
 #ifndef _COMPHELPER_CHAINABLEPROPERTYSETINFO_HXX_
 #include <comphelper/ChainablePropertySetInfo.hxx>
 #endif
-#ifndef _EDTWIN_HXX
-#include <edtwin.hxx>
-#endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
+
+#include "viewopt.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -651,14 +650,7 @@ void SwXViewSettings::_preSetValues ()
     sal_Bool bApplyZoom = sal_False;
 
     const SwViewOption* pVOpt = 0;
-    if(pView)
-    {
-        if(!IsValid())
-            return;
-        pVOpt = pView->GetWrtShell().GetViewOptions();
-    }
-    else
-        pVOpt = SW_MOD()->GetViewOption(bWeb);
+    pVOpt = SW_MOD()->GetViewOption(bWeb);
 
     mpViewOption = new SwViewOption (*pVOpt);
     mbApplyZoom = sal_False;
@@ -748,22 +740,7 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
         break;
         case HANDLE_VIEWSET_HELP_URL :
         {
-            if ( pView )
-            {
-                OUString sHelpURL;
-                if ( ! ( rValue >>= sHelpURL ) )
-                    throw IllegalArgumentException();
-                SwEditWin &rEditWin = pView->GetEditWin();
-                OUString sPrefix = sHelpURL.copy ( 0, 4 );
-                // Make sure we have a valid string...should be in the format HID:12345
-                if ( ! sPrefix.equalsAsciiL ( RTL_CONSTASCII_STRINGPARAM ( "HID:" ) ) )
-                    throw IllegalArgumentException ();
-                OUString sNumber = sHelpURL.copy ( 4 );
-                sal_uInt32 nHelpId = sNumber.toInt32();
-                rEditWin.SetHelpId ( nHelpId );
-            }
-            else
-                throw UnknownPropertyException();
+            throw UnknownPropertyException();
         }
         break;
         default:
