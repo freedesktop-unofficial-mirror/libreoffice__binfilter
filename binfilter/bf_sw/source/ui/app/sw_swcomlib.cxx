@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swcomlib.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:00:17 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:06:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,11 +87,6 @@ void    SwDLL::Init()
 }
 //-------------------------------------------------------------------------
 void    SwDLL::Exit()
-{
-}
-//-------------------------------------------------------------------------
-
-void    SwDLL::FillStatusBar(StatusBar &rBar)
 {
 }
 
@@ -324,6 +319,5 @@ USHORT       SwModuleDummy::HasID(const SvGlobalName& rName)
 SwModuleDummy::~SwModuleDummy()
 {
 }
-
 
 }
