@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appdata.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:21:34 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:00:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,8 +53,7 @@ class SfxCancelManager;
 class SvtSaveOptions;
 class SvtUndoOptions;
 class SvtHelpOptions;
-class ResMgr;
-class Window;
+
 namespace binfilter {
 
 class SfxApplication;
@@ -85,19 +84,10 @@ namespace sfx2 { namespace appl { class ImeStatusWindow; } }
 // SfxAppData_Impl
 //=========================================================================
 
-class SfxAppData_Impl : public SfxListener
+class SfxAppData_Impl
 {
 public:
     IndexBitSet                         aIndexBitSet;           // for counting noname documents
-    List                                aPendingInitFactories;  // late filter init
-    Timer                               aLateInitTimer;
-    String                              aLastDir;               // for IO dialog
-    String                              aLastFilter;            // for IO dialog
-    String                              aLastNewURL;            // for AppControl
-    String                              aOpenList;              // command line arguments
-    String                              aPrintList;             // command line arguments
-    String                              aPortalConnect;         // command line arguments
-    bool                                bServer;                // command line arguments
 
     // DDE stuff
     DdeService*                         pDdeService;
@@ -106,11 +96,7 @@ public:
     DdeService*                         pDdeService2;
 
     // single instance classes
-    SfxChildWinFactArr_Impl*            pFactArr;
-    SfxPluginObjectFactoryPtr*          pSfxPluginObjectFactoryPtr;
-    SfxObjectFactory*                   pSfxPlugInObjectShellFactory;
     SfxFrameObjectFactoryPtr*           pSfxFrameObjectFactoryPtr;
-    SfxFrameArr_Impl*                   pTopFrames;
 
     // special members
     SfxInitLinkList*                    pInitLinkList;
@@ -118,56 +104,29 @@ public:
     // application members
     SfxFilterMatcher*                   pMatcher;
     SfxCancelManager*                   pCancelMgr;
-    ResMgr*                             pLabelResMgr;
-    SfxStatusDispatcher*                pAppDispatch;
-    SfxDocumentTemplates*               pTemplates;
 
     // global pointers
-    SvVerbList*                         pVerbs;
-    Config*                             pFilterIni;
     SfxItemPool*                        pPool;
     SfxEventConfiguration*              pEventConfig;
-    SvUShorts*                          pDisabledSlotList;
-    SvStrings*                          pSecureURLs;
     SfxMiscCfg*                         pMiscConfig;
-    SvtSaveOptions*                     pSaveOptions;
-    SvtUndoOptions*                     pUndoOptions;
-    SvtHelpOptions*                     pHelpOptions;
 
     // "current" functionality
     SfxObjectShell*                     pThisDocument;
     SfxProgress*                        pProgress;
-    Window*                             pDefFocusWin;
-    ISfxTemplateCommon*                 pTemplateCommon;
 
-    USHORT                              nDocModalMode;              // counts documents in modal mode
-    USHORT                              nAutoTabPageId;
-    USHORT                              nExecutingSID;
     USHORT                              nBasicCallLevel;
     USHORT                              nRescheduleLocks;
     USHORT                              nInReschedule;
-    USHORT                              nAsynchronCalls;
-    USHORT                              nAppEvent;                  // command line interpretation
 
     ::rtl::Reference< sfx2::appl::ImeStatusWindow > m_xImeStatusWindow;
 
-    BOOL                                bDirectAliveCount : 1;
     BOOL                                bInQuit : 1;
-    BOOL                                bInvalidateOnUnlock : 1;
-    BOOL                                bBean : 1;
-    BOOL                                bMinimized : 1;
-    BOOL                                bInvisible : 1;
     BOOL                                bInException : 1;
-    BOOL                                bPlugged : 1;
     BOOL                                bOLEResize : 1;
 
                                         SfxAppData_Impl( SfxApplication* );
                                         ~SfxAppData_Impl();
 
-    virtual void                        Notify( SfxBroadcaster &rBC, const SfxHint &rHint );
-    void                                UpdateApplicationSettings( BOOL bDontHide );
-    SfxDocumentTemplates*               GetDocumentTemplates();
-    DECL_STATIC_LINK(                   SfxAppData_Impl, CreateDocumentTemplates, void* );
     void                                DeInitDDE();
 };
 
