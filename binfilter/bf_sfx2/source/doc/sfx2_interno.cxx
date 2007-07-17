@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:57:35 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:57:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,14 +43,11 @@
 #include <svtools/imgdef.hxx>
 #endif
 
-#include "dispatch.hxx"
 #include "request.hxx"
 #include "docfac.hxx"
-#include "viewsh.hxx"
 #include "interno.hxx"
 #include "fltfnc.hxx"
-#include "sfxresid.hxx"
-#include "doc.hrc"
+
 namespace binfilter {
 
 //-------------------------------------------------------------------------
@@ -67,20 +64,13 @@ namespace binfilter {
 /*?*/ IUnknown* SfxInPlaceObject::GetMemberInterface( const SvGlobalName & ){ return 0L; }
 
 /*N*/ SfxInPlaceObject::SfxInPlaceObject()
-/*N*/ : pObjShell(0),
-/*N*/   pFrame(0)
+/*N*/ : pObjShell(0)
 /*N*/ {
 /*N*/   bTriggerLinkTimer = TRUE;
 /*N*/   bDisableViewScaling = FALSE;
 /*N*/   pNote = 0;
 /*N*/
-/*N*/   // Verben der Superklasse bekanntgeben, um GetVerbList nicht
-/*N*/   // ueberlagern zu muessen
 /*N*/     SvVerbList* pVerbs = new SvVerbList;
-/*N*/     pVerbs->Append( SvVerb( 0, String( SfxResId( STR_EDITOBJECT ) ) ) );
-/*N*/ //    pVerbs->Append( SvVerb( 1, String( SfxResId( STR_OPENOBJECT ) ) ) );
-/*N*/ //    pVerbs->Append( SvVerb( 2, DEFINE_CONST_UNICODE(STARAPP_VERB), sal_True, sal_False ) );
-/*N*/     pVerbs->Append( SvVerb( 3, String( SfxResId( STR_SAVECOPYDOC ) ) ) );
 /*N*/     SetVerbList( pVerbs, TRUE );
 /*N*/ }
 
@@ -125,7 +115,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       }
 /*N*/   }
-/*N*/   *pAppName = String( SfxResId(STR_HUMAN_APPNAME ) );
+/*N*/   *pAppName = String::CreateFromAscii("Office");
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -230,39 +220,9 @@ namespace binfilter {
 /*N*/         if ( GetIPEnv() && GetIPEnv()->GetEditWin() )
 /*?*/             ViewChanged( ASPECT_CONTENT );
 /*N*/
-/*N*/       SfxInPlaceFrame *pIPF = PTR_CAST(SfxInPlaceFrame,pFrame);
-/*N*/
 /*N*/       // OutPlace die Gr"o\se des MDI-Fensters anpassen
 /*N*/       // Unbedingt den Gr"o\senvergleich machen, spart nicht nur Zeit, sondern
 /*N*/       // vermeidet auch Rundungsfehler !
-/*N*/       if ( GetObjectShell()->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED )
-/*N*/       {
-/*N*/           // in case of ole outplace editing the frame should be found
-/*N*/           SfxViewFrame* pFrameToResize = pFrame ? pFrame : SfxViewFrame::GetFirst( GetObjectShell() );
-/*N*/
-/*N*/           if ( pFrameToResize && !pIPF && rRect.GetSize() != aSize &&
-/*N*/               !pFrameToResize->IsAdjustPosSizePixelLocked_Impl() )
-/*N*/
-/*N*/           {
-/*N*/               // Zuerst die logischen Koordinaten von IP-Objekt und EditWindow
-/*N*/               // ber"ucksichtigen
-/*?*/               SfxViewShell *pShell = pFrameToResize->GetViewShell();
-/*?*/               Window *pWindow = pShell->GetWindow();
-/*?*/
-/*?*/               // Da in den Applikationen bei der R"ucktransformation immer die
-/*?*/               // Eckpunkte tranformiert werden und nicht die Size (um die Ecken
-/*?*/               // alignen zu k"onnen), transformieren wir hier auch die Punkte, um
-/*?*/               // m"oglichst wenig Rundungsfehler zu erhalten.
-/*?*/               Rectangle aRect = pWindow->LogicToPixel( rRect );
-/*?*/               Size aSize = aRect.GetSize();
-/*?*/               pShell->GetWindow()->SetSizePixel( aSize );
-/*?*/               pFrameToResize->DoAdjustPosSizePixel( pShell, Point(), aSize );
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       // bei InPlace die View skalieren
-/*N*/         if ( GetIPEnv() && GetIPEnv()->GetEditWin() && !bDisableViewScaling && pIPF )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pIPF->GetEnv_Impl()->MakeScale( rRect.GetSize(), GetMapUnit(),
 /*N*/   }
 /*N*/ }
 
@@ -271,25 +231,7 @@ namespace binfilter {
 /*N*/ ErrCode SfxInPlaceObject::Verb( long nVerb, SvEmbeddedClient *pCaller,
 /*N*/                               Window *pWindow, const Rectangle* pRect)
 /*N*/ {
-     if ( pCaller && pCaller == GetClient() )
-     {
-         if ( nVerb == 1 )
-             return DoEmbed(TRUE);
-         else if ( nVerb == 3 )
-         {
-             SfxObjectShell* pDoc = GetObjectShell();
-             SfxRequest aReq( SID_SAVEASDOC, SFX_CALLMODE_SYNCHRON, pDoc->GetPool() );
-             aReq.AppendItem( SfxBoolItem( SID_SAVETO, TRUE ) );
-             pDoc->ExecuteSlot( aReq );
-             return ERRCODE_NONE;
-         }
-         return SvInPlaceObject::Verb(nVerb, pCaller, pWindow, pRect);
-     }
-     else
-     {
-         DBG_ERROR("This behaviour is undefined!");
          return FALSE;
-     }
 /*N*/ }
 
 //--------------------------------------------------------------------
