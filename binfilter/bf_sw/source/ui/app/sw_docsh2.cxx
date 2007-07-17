@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:28:33 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:05:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,13 +77,10 @@
 #include <bf_sfx2/docinf.hxx>
 #endif
 #ifndef _SFX_DINFDLG_HXX //autogen
-#include <bf_sfx2/dinfdlg.hxx>
+#include <bf_sfx2/docinf.hxx>
 #endif
 #ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
@@ -100,30 +97,16 @@
 #ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
 #endif
-#ifndef _SFXFRAME_HXX
-#include <bf_sfx2/frame.hxx>
-#endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _SVX_DRAWITEM_HXX //autogen
 #include <bf_svx/drawitem.hxx>
 #endif
-#ifndef _MySVXACORR_HXX //autogen
-#include <bf_svx/svxacorr.hxx>
-#endif
 #ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
 #endif
-#ifndef _SVX_FMSHELL_HXX //autogen
-#include <bf_svx/fmshell.hxx>
-#endif
-#ifndef _OFA_HTMLCFG_HXX //autogen
-#include <bf_offmgr/htmlcfg.hxx>
-#endif
-#ifndef _OFF_OFAITEM_HXX //autogen
-#include <bf_offmgr/ofaitem.hxx>
-#endif
+
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
@@ -155,9 +138,7 @@
 #ifndef _SWEVENT_HXX //autogen
 #include <swevent.hxx>
 #endif
-#ifndef _VIEW_HXX
-#include <view.hxx>         // fuer die aktuelle Sicht
-#endif
+
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>        // Dokumenterzeugung
 #endif
@@ -178,12 +159,6 @@
 #ifndef _GLOBDOC_HXX
 #include <globdoc.hxx>
 #endif
-#ifndef _FLDWRAP_HXX
-#include <fldwrap.hxx>
-#endif
-#ifndef _REDLNDLG_HXX
-#include <redlndlg.hxx>
-#endif
 #ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
 #endif
@@ -195,12 +170,6 @@
 #endif
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _PVIEW_HXX
-#include <pview.hxx>
-#endif
-#ifndef _SRCVIEW_HXX
-#include <srcview.hxx>
 #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
@@ -322,12 +291,6 @@ using namespace ::rtl;
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/ }
-
-/*N*/ void SwDocShell::Execute(SfxRequest& rReq)
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     const SfxItemSet* pArgs = rReq.GetArgs();
-/*N*/ }
-
 
 /*N*/ void SwDocShell::FillClass( SvGlobalName * pClassName,
 /*N*/                                  ULONG * pClipFormat,
