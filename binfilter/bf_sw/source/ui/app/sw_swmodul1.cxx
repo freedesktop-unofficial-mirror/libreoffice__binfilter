@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:42:27 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:07:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,12 +46,6 @@
 #ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
 #endif
-#ifndef _SFXDISPATCH_HXX
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFX_CHILDWIN_HXX
-#include <bf_sfx2/childwin.hxx>
-#endif
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #include <svtools/useroptions.hxx>
 #endif
@@ -84,14 +78,8 @@
 #include <bf_svx/dataaccessdescriptor.hxx>
 #endif
 
-#ifndef _SBASLTID_HRC //autogen
-#include <bf_offmgr/sbasltid.hrc>
-#endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX //autogen
-#include <bf_sfx2/viewfrm.hxx>
 #endif
 #ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
@@ -129,15 +117,6 @@
 #endif
 #ifndef _MODCFG_HXX
 #include <modcfg.hxx>
-#endif
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
-#ifndef _PVIEW_HXX
-#include <pview.hxx>
-#endif
-#ifndef _WVIEW_HXX
-#include <wview.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
