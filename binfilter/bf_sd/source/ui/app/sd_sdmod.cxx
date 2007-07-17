@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:11:55 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:01:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-#ifndef _SV_STATUS_HXX //autogen
-#include <vcl/status.hxx>
-#endif
 #ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
 #endif
@@ -67,23 +64,10 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
-#endif
-
 namespace binfilter {
 
 /*N*/ TYPEINIT1( SdModuleDummy, SfxModule );
 /*N*/ TYPEINIT1( SdModule, SdModuleDummy );
-
-/*N*/ #define SdModule
-/*N*/ #include "sdslots.hxx"
-
-
-/*N*/ SFX_IMPL_INTERFACE(SdModule, SfxModule, SdResId(STR_APPLICATIONOBJECTBAR))
-/*N*/ {
-/*N*/   SFX_STATUSBAR_REGISTRATION(SdResId(RID_DRAW_STATUSBAR));
-/*N*/ }
 
 /*N*/ SFX_IMPL_MODULE_DLL(Sd)
 
@@ -102,12 +86,9 @@ namespace binfilter {
 /*N*/     pTransferSelection(NULL),
 /*N*/   pImpressOptions(NULL),
 /*N*/   pDrawOptions(NULL),
-/*N*/   pSearchItem(NULL),
 /*N*/   pNumberFormatter( NULL )
 /*N*/ {
 /*N*/   SetName( UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "StarDraw" ) ) );  // Nicht uebersetzen!
-/*N*/   pSearchItem = new SvxSearchItem(ITEMID_SEARCH);
-/*N*/   pSearchItem->SetAppFlag(SVX_SEARCHAPP_DRAW);
 /*N*/   StartListening( *SFX_APP() );
 /*N*/
 /*N*/   mpErrorHdl = new SfxErrorHandler( RID_SD_ERRHDL,
@@ -129,8 +110,6 @@ namespace binfilter {
 
 /*N*/ SdModule::~SdModule()
 /*N*/ {
-/*N*/   delete pSearchItem;
-
 /*N*/   if( pNumberFormatter )
 /*N*/       delete pNumberFormatter;
 
