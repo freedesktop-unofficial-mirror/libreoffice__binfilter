@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:32:11 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:57:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,17 +48,8 @@
 
 #include <bf_svx/svxids.hrc>
 
-#ifndef _OSPLCFG_HXX
-#include <bf_offmgr/osplcfg.hxx>
-#endif
-#ifndef _OFA_MISCCFG_HXX
-#include <bf_sfx2/misccfg.hxx>
-#endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFX_TOPFRM_HXX //autogen wg. SfxTopViewFrame
-#include <bf_sfx2/topfrm.hxx>
 #endif
 #include <bf_sfx2/app.hxx>
 #include <bf_offmgr/app.hxx>
@@ -106,12 +97,6 @@
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #endif
 #include <bf_svx/xtable.hxx>
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-#include <com/sun/star/linguistic2/XHyphenator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
-#include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
@@ -158,7 +143,6 @@
 #include "../ui/inc/docshell.hxx"
 #include "../ui/inc/grdocsh.hxx"
 #include "../ui/inc/sdxfer.hxx"
-#include "../ui/inc/viewshel.hxx"
 #include "../ui/inc/grdocsh.hxx"
 #include "../ui/inc/optsitem.hxx"
 #include "../ui/inc/frmview.hxx"
@@ -167,7 +151,6 @@
 #include "grdocsh.hxx"
 #include "sdresid.hxx"
 #include "sdxfer.hxx"
-#include "viewshel.hxx"
 #include "grdocsh.hxx"
 #include "optsitem.hxx"
 #include "frmview.hxx"
@@ -180,10 +163,6 @@
 // #90477#
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
 #endif
 
 namespace binfilter {
@@ -234,7 +213,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pOnlineSpellingList(NULL),
 /*N*/   bInitialOnlineSpellingEnabled(TRUE),
 /*N*/   bHasOnlineSpellErrors(FALSE),
-/*N*/   pOnlineSearchItem(NULL),
 /*N*/   mpLocale(NULL),
 /*N*/   mpCharClass(NULL),
 /*N*/   bAllocDocSh(FALSE),
@@ -318,24 +296,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   USHORT nDefTab = pOptions->GetDefTab();
 /*N*/   SetDefaultTabulator( nDefTab );
 /*N*/
-/*N*/   try
-/*N*/   {
-/*N*/       Reference< XSpellChecker1 > xSpellChecker( LinguMgr::GetSpellChecker() );
-/*N*/       if ( xSpellChecker.is() )
-/*N*/           rOutliner.SetSpeller( xSpellChecker );
-/*N*/
-/*N*/       Reference< XHyphenator > xHyphenator( LinguMgr::GetHyphenator() );
-/*N*/       if( xHyphenator.is() )
-/*N*/           rOutliner.SetHyphenator( xHyphenator );
-/*N*/
-/*N*/       SetForbiddenCharsTable( new SvxForbiddenCharactersTable( ::legacy_binfilters::getLegacyProcessServiceFactory() ) );
-/*N*/   }
-/*N*/   catch(...)
-/*N*/   {
-/*N*/       DBG_ERROR("Can't get SpellChecker");
-/*N*/   }
-/*N*/   // END_CATCH
-/*N*/
 /*N*/   rOutliner.SetDefaultLanguage( Application::GetSettings().GetLanguage() );
 /*N*/
 /*N*/   aOldNotifyUndoActionHdl = GetNotifyUndoActionHdl();
@@ -383,21 +343,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/   pHitTestOutliner->SetCalcFieldValueHdl( LINK(SD_MOD(), SdModule, CalcFieldValueHdl) );
 /*N*/
-/*N*/   try
-/*N*/   {
-/*N*/       Reference< XSpellChecker1 > xSpellChecker( LinguMgr::GetSpellChecker() );
-/*N*/       if ( xSpellChecker.is() )
-/*N*/           pHitTestOutliner->SetSpeller( xSpellChecker );
-/*N*/
-/*N*/       Reference< XHyphenator > xHyphenator( LinguMgr::GetHyphenator() );
-/*N*/       if( xHyphenator.is() )
-/*N*/           pHitTestOutliner->SetHyphenator( xHyphenator );
-/*N*/   }
-/*N*/   catch(...)
-/*N*/   {
-/*N*/       DBG_ERROR("Can't get SpellChecker");
-/*N*/   }
-/*N*/   //END_CATCH
 /*N*/
 /*N*/   pHitTestOutliner->SetDefaultLanguage( Application::GetSettings().GetLanguage() );
 /*N*/
@@ -465,8 +410,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   }
 /*N*/
 /*N*/   StopOnlineSpelling();
-/*N*/   delete pOnlineSearchItem;
-/*N*/   pOnlineSearchItem = NULL;
 /*N*/
 /*N*/   CloseBookmarkDoc();
 /*N*/   SetAllocDocSh(FALSE);
@@ -617,49 +560,10 @@ using namespace ::com::sun::star::linguistic2;
     * FrameViews schreiben
     **************************************************************************/
 /*N*/   sal_uInt32 nFrameViewCount = 0;
-/*N*/   SdViewShell* pViewSh = NULL;
-/*N*/   SfxViewShell* pSfxViewSh = NULL;
-/*N*/   SfxViewFrame* pSfxViewFrame = SfxViewFrame::GetFirst(rDoc.pDocSh,
-/*N*/                                                        TYPE(SfxTopViewFrame));
-/*N*/
-/*N*/   while (pSfxViewFrame)
-/*N*/   {
-/*N*/       // Anzahl FrameViews ermitteln
-/*N*/       pSfxViewSh = pSfxViewFrame->GetViewShell();
-/*N*/       pViewSh = PTR_CAST( SdViewShell, pSfxViewSh );
-/*N*/
-/*N*/       if ( pViewSh && pViewSh->GetFrameView() )
-/*N*/       {
-/*N*/           nFrameViewCount++;
-/*N*/       }
-/*N*/
-/*N*/       pSfxViewFrame = SfxViewFrame::GetNext(*pSfxViewFrame, rDoc.pDocSh,
-/*N*/                                             TYPE(SfxTopViewFrame));
-/*N*/   }
 /*N*/
 /*N*/   // Anzahl FrameViews schreiben
 /*N*/   rOut << nFrameViewCount;
 /*N*/
-/*N*/   FrameView* pFrame = NULL;
-/*N*/   pViewSh = NULL;
-/*N*/   pSfxViewSh = NULL;
-/*N*/   pSfxViewFrame = SfxViewFrame::GetFirst(rDoc.pDocSh, TYPE(SfxTopViewFrame));
-/*N*/
-/*N*/   while (pSfxViewFrame)
-/*N*/   {
-/*N*/       // FrameViews schreiben
-/*N*/       pSfxViewSh = pSfxViewFrame->GetViewShell();
-/*N*/       pViewSh = PTR_CAST( SdViewShell, pSfxViewSh );
-/*N*/
-/*N*/       if ( pViewSh && pViewSh->GetFrameView() )
-/*N*/       {
-/*N*/           pViewSh->WriteFrameViewData();
-/*N*/           rOut << *pViewSh->GetFrameView();
-/*N*/       }
-/*N*/
-/*N*/       pSfxViewFrame = SfxViewFrame::GetNext(*pSfxViewFrame, rDoc.pDocSh,
-/*N*/                                             TYPE(SfxTopViewFrame));
-/*N*/   }
 /*N*/
 /*N*/   rOut << rDoc.bStartPresWithNavigator;
 /*N*/   rOut << rDoc.bPresLockedPages;
