@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:57:05 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:54:12 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -53,15 +53,11 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # --- Files --------------------------------------------------------
 
-SRS1NAME=$(TARGET)
-SRC1FILES = \
-        sfx2_doc.src sfx2_doctempl.src sfx2_sfxbasemodel.src
-
 SLOFILES =	\
+        $(SLO)$/timestamp.obj \
         $(SLO)$/sfx2_docfile.obj \
         $(SLO)$/sfx2_objuno.obj \
         $(SLO)$/sfx2_frmdescr.obj \
-        $(SLO)$/sfx2_fsetobsh.obj \
         $(SLO)$/sfx2_docinf.obj \
         $(SLO)$/sfx2_interno.obj \
         $(SLO)$/sfx2_objxtor.obj \
@@ -70,11 +66,8 @@ SLOFILES =	\
         $(SLO)$/sfx2_objcont.obj \
         $(SLO)$/sfx2_objserv.obj \
         $(SLO)$/sfx2_objitem.obj \
-        $(SLO)$/sfx2_clientsh.obj \
         $(SLO)$/sfx2_docfac.obj \
         $(SLO)$/sfx2_docfilt.obj \
-        $(SLO)$/sfx2_doctempl.obj \
-        $(SLO)$/sfx2_doctemplates.obj \
         $(SLO)$/sfx2_frameobj.obj \
         $(SLO)$/sfx2_sfxbasemodel.obj \
         $(SLO)$/sfx2_xmlversion.obj
