@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_msgpool.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:39:20 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:14:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,10 +43,6 @@
 
 #include "bf_sc.hrc"
 #include "docpool.hxx"
-
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
-#endif
 
 #include "msgpool.hxx"
 namespace binfilter {
