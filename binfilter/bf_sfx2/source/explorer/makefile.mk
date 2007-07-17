@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 19:31:40 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:59:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,10 +55,6 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 SLOFILES = \
         $(SLO)$/sfx2_nochaos.obj
-
-SRS1NAME=$(TARGET)
-SRC1FILES = \
-        sfx2_explorer.src
 
 # --- Targets ------------------------------------------------------
 
