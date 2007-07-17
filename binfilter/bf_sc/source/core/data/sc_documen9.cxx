@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:55:02 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:12:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -284,14 +284,8 @@ namespace binfilter {
 /*N*/       //BOOL bIndep = SFX_APP()->GetOptions().IsIndepGrfFmt();
 /*N*/       //pDrawLayer->SetSavePortable( bIndep );
 /*N*/
-/*N*/       SvtSaveOptions aSaveOpt;
-/*N*/       SvtSaveOptions::SaveGraphicsMode eMode = aSaveOpt.GetSaveGraphicsMode();
-/*N*/
-/*N*/       BOOL bNative = ( eMode == SvtSaveOptions::SaveGraphicsOriginal );
-/*N*/       BOOL bCompr = bNative || ( eMode == SvtSaveOptions::SaveGraphicsCompressed );
-/*N*/
-/*N*/       pDrawLayer->SetSaveCompressed( bCompr );
-/*N*/       pDrawLayer->SetSaveNative( bNative );
+/*N*/       pDrawLayer->SetSaveCompressed( FALSE );
+/*N*/       pDrawLayer->SetSaveNative( FALSE );
 /*N*/
 /*N*/       pDrawLayer->GetItemPool().SetFileFormatVersion( (USHORT)rStream.GetVersion() );
 /*N*/       pDrawLayer->Store(rStream);
