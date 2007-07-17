@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:43:36 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:32:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -192,7 +192,6 @@ namespace binfilter {
 /*N*/ ContentInfo::ContentInfo( SfxItemPool& rPool ) : aParaAttribs( rPool, EE_PARA_START, EE_CHAR_END )
 /*N*/ {
 /*N*/   eFamily = SFX_STYLE_FAMILY_PARA;
-/*N*/   pWrongs = NULL;
 /*N*/     pTempLoadStoreInfos = NULL;
 /*N*/ }
 
@@ -200,12 +199,7 @@ namespace binfilter {
 /*N*/ ContentInfo::ContentInfo( const ContentInfo& rCopyFrom, SfxItemPool& rPoolToUse )
 /*N*/   : aParaAttribs( rPoolToUse, EE_PARA_START, EE_CHAR_END )
 /*N*/ {
-/*N*/   pWrongs = NULL;
 /*N*/     pTempLoadStoreInfos = NULL;
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( rCopyFrom.GetWrongList() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pWrongs = rCopyFrom.GetWrongList()->Clone();
-/*N*/ #endif // !SVX_LIGHT
 /*N*/   // So sollten die Items im richtigen Pool landen!
 /*N*/   aParaAttribs.Set( rCopyFrom.GetParaAttribs() );
 /*N*/   aText = rCopyFrom.GetText();
@@ -219,13 +213,6 @@ namespace binfilter {
 /*N*/       XEditAttribute* pMyAttr = MakeXEditAttribute( rPoolToUse, *pAttr->GetItem(), pAttr->GetStart(), pAttr->GetEnd() );
 /*N*/       aAttribs.Insert( pMyAttr, aAttribs.Count()  );
 /*N*/   }
-/*N*/
-/*N*/   // Wrongs
-/*N*/   pWrongs = NULL;
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( rCopyFrom.GetWrongList() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pWrongs = rCopyFrom.GetWrongList()->Clone();
-/*N*/ #endif // !SVX_LIGHT
 /*N*/ }
 
 /*N*/ ContentInfo::~ContentInfo()
@@ -238,9 +225,6 @@ namespace binfilter {
 /*N*/       delete pAttr;
 /*N*/   }
 /*N*/   aAttribs.Remove( 0, aAttribs.Count() );
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   delete pWrongs;
-/*N*/ #endif
 /*N*/ }
 
 /*N*/ void ContentInfo::CreateLoadStoreTempInfos()
