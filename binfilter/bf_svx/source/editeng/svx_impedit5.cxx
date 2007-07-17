@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit5.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:21:17 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:34:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -389,20 +389,7 @@ namespace binfilter {
 /*N*/   USHORT nStartNode = aEditDoc.GetPos( aSel.Min().GetNode() );
 /*N*/   USHORT nEndNode = aEditDoc.GetPos( aSel.Max().GetNode() );
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( IsUndoEnabled() && !IsInUndo() && aStatus.DoUndoAttribs() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoSetAttribs* pUndo = CreateAttribUndo( aSel, rSet );
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   BOOL bCheckLanguage = FALSE;
-/*N*/   if ( GetStatus().DoOnlineSpelling() )
-/*N*/   {
-/*?*/       bCheckLanguage = ( rSet.GetItemState( EE_CHAR_LANGUAGE ) == SFX_ITEM_ON ) ||
-/*?*/                        ( rSet.GetItemState( EE_CHAR_LANGUAGE_CJK ) == SFX_ITEM_ON ) ||
-/*?*/                        ( rSet.GetItemState( EE_CHAR_LANGUAGE_CTL ) == SFX_ITEM_ON );
-/*N*/   }
 /*N*/
 /*N*/   // ueber die Absaetze iterieren...
 /*N*/   for ( USHORT nNode = nStartNode; nNode <= nEndNode; nNode++ )
@@ -479,8 +466,6 @@ namespace binfilter {
 /*N*/           if ( !pNode->Len() || ( nStartPos != nEndPos  ) )
 /*N*/           {
 /*N*/               pPortion->MarkSelectionInvalid( nStartPos, nEndPos-nStartPos );
-/*N*/               if ( bCheckLanguage )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pNode->GetWrongList()->MarkInvalid( nStartPos, nEndPos );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -581,41 +566,6 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( pNode, "Node nicht gefunden: GetParaAttrib" );
 /*N*/
 /*N*/     return pNode->GetContentAttribs().GetItem( nWhich );
-/*N*/ }
-
-
-
-/*N*/ IdleFormattter::IdleFormattter()
-/*N*/ {
-/*N*/   pView = 0;
-/*N*/   nRestarts = 0;
-/*N*/ }
-
-/*N*/ IdleFormattter::~IdleFormattter()
-/*N*/ {
-/*N*/   pView = 0;
-/*N*/ }
-
-/*N*/ void IdleFormattter::DoIdleFormat( EditView* pV )
-/*N*/ {
-/*N*/   pView = pV;
-/*N*/
-/*N*/   if ( IsActive() )
-/*N*/       nRestarts++;
-/*N*/
-/*N*/   if ( nRestarts > 4 )
-/*?*/       ForceTimeout();
-/*N*/   else
-/*N*/       Start();
-/*N*/ }
-
-/*N*/ void IdleFormattter::ForceTimeout()
-/*N*/ {
-/*N*/   if ( IsActive() )
-/*N*/   {
-/*?*/       Stop();
-/*?*/       ((Link&)GetTimeoutHdl()).Call( this );
-/*N*/   }
 /*N*/ }
 
 /*N*/ ImplIMEInfos::ImplIMEInfos( const EditPaM& rPos, const String& rOldTextAfterStartPos )
