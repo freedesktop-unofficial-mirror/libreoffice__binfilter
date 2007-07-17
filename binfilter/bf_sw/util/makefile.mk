@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.15 $
+#   $Revision: 1.16 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:01:45 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:14:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -67,17 +67,13 @@ sw_res_files= \
     $(SRS)$/sw_app.srs          \
     $(SRS)$/sw_config.srs       \
     $(SRS)$/sw_dochdl.srs       \
-    $(SRS)$/sw_envelp.srs       \
     $(SRS)$/sw_fldui.srs        \
     $(SRS)$/sw_globdoc.srs      \
     $(SRS)$/sw_index.srs        \
     $(SRS)$/sw_misc.srs         \
     $(SRS)$/sw_shells.srs       \
-    $(SRS)$/sw_swslots.srs     \
     $(SRS)$/sw_utlui.srs        \
-    $(SRS)$/sw_web.srs          \
-    $(SRS)$/sw_wrtsh.srs        \
-    $(SRS)$/sfx2_sfx.srs
+    $(SRS)$/sw_wrtsh.srs        
 
 RESLIB1SRSFILES= \
     $(sw_res_files)
@@ -127,10 +123,6 @@ SHL2STDLIBS+= \
     $(SALLIB) \
     $(ICUUCLIB)
 
-.IF "$(GUI)" == "UNX"
-SHL2STDLIBS+= \
-                        $(BFSFXLIB)
-.ENDIF
 
 .IF "$(OS)" == "MACOSX"
 # static libraries
