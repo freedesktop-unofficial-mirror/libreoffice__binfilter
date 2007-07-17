@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docshell.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:47:59 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:30:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -124,7 +124,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
 
  public:
     TYPEINFO();
-    SFX_DECL_INTERFACE(SCH_IF_DOCSHELL);
+
     SFX_DECL_OBJECTFACTORY_DLL(SchChartDocShell,SCH_MOD());
 
     SchChartDocShell(SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED) throw();
@@ -154,16 +154,11 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
      */
     OutputDevice * GetRefDevice();
 
-    void Execute(SfxRequest& rReq) throw();
-    void GetState(SfxItemSet&) throw();
-
     ChartModel& GetDoc() { return *pChDoc; }
     ChartModel* GetModelPtr() { return pChDoc; }
     void SetModelPtr( ChartModel* pModel ) { pChDoc = pModel; }
 
     virtual SfxStyleSheetBasePool* GetStyleSheetPool() throw();
-
-
 
     void UpdateTablePointers() throw();
 
