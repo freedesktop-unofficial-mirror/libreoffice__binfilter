@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scmod.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:28:05 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:29:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,7 +98,6 @@ class ScNavipiCfg;
 class ScFormEditData;
 class ScTransferObj;
 class ScDrawTransferObj;
-class ScSelectionTransferObj;
 
 //==================================================================
 
@@ -135,7 +134,6 @@ class ScModule: public ScModuleDummy, public SfxListener
     Timer               aSpellTimer;
     ScDragData          aDragData;
     ScClipData          aClipData;
-    ScSelectionTransferObj* pSelTransfer;
     ScMessagePool*      pMessagePool;
     //  globalen InputHandler gibt's nicht mehr, jede View hat einen
     ScInputHandler*     pRefInputHandler;
@@ -157,8 +155,6 @@ class ScModule: public ScModuleDummy, public SfxListener
     BOOL                bIsInEditCommand;
 
 public:
-                    SFX_DECL_INTERFACE(SCID_APP);
-
                     ScModule( SfxObjectFactory* pFact );
     virtual         ~ScModule();
 
@@ -175,9 +171,6 @@ public:
     DECL_LINK( SpellTimerHdl,   Timer* );
     DECL_LINK( CalcFieldValueHdl, EditFieldInfo* );
 
-     void               Execute( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void                Execute( SfxRequest& rReq );
-    void                GetState( SfxItemSet& rSet );
-
     void                AnythingChanged();
 
     //  Drag & Drop:
@@ -189,9 +182,6 @@ public:
     void                SetClipObject( ScTransferObj* pCellObj, ScDrawTransferObj* pDrawObj );
 
     ScDocument*         GetClipDoc();       // called from document - should be removed later
-
-    //  X selection:
-    ScSelectionTransferObj* GetSelectionTransfer() const    { return pSelTransfer; }
 
     void                SetWaterCan( BOOL bNew )    { bIsWaterCan = bNew; }
     BOOL                GetIsWaterCan() const       { return bIsWaterCan; }
