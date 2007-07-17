@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdlib.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:14:45 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:01:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,7 +110,6 @@ namespace binfilter {
 /*N*/ SFX_IMPL_OBJECTFACTORY_MOD(SdDrawDocShell, SFXOBJECTSHELL_STD_NORMAL, simpress,
 /*N*/                          SvGlobalName(BF_SO3_SIMPRESS_CLASSID), Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) ) //STRIP002
 /*N*/ {
-/*N*/   SdDrawDocShell::Factory().SetCreateNewSlotId( SID_SD_AUTOPILOT );
 /*N*/   SdDrawDocShell::Factory().SetDocumentServiceName( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.presentation.PresentationDocument" ) ) );
 /*N*/   SdDrawDocShell::Factory().GetFilterContainer()->SetDetectFilter( &SdDLL::DetectFilter );
 /*N*/ }
