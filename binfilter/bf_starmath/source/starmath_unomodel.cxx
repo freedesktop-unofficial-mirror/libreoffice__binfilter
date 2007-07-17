@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_unomodel.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:24:37 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:25:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,9 +99,6 @@
 #endif
 #ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
-#ifndef VIEW_HXX
-#include <view.hxx>
 #endif
 #ifndef SYMBOL_HXX
 #include <symbol.hxx>
@@ -958,50 +955,6 @@ void SAL_CALL SmModel::render(
 
         uno::Reference< frame::XModel > xModel;
         rSelection >>= xModel;
-        if (xModel == pDocSh->GetModel())
-        {
-            SmViewShell *pView = SmGetActiveView();
-            if (pView)
-            {
-                SmPrinterAccess aPrinterAccess( *pDocSh );
-                Printer *pPrinter = aPrinterAccess.GetPrinter();
-
-                Size    aPrtPaperSize ( pPrinter->GetPaperSize() );
-                Size    aOutputSize   ( pPrinter->GetOutputSize() );
-                Point   aPrtPageOffset( pPrinter->GetPageOffset() );
-
-                // no real printer ??
-                if (aPrtPaperSize.Height() == 0 || aPrtPaperSize.Width() == 0)
-                {
-                    aPrtPaperSize = lcl_GuessPaperSize();
-                    // factors from Windows DIN A4
-                    aOutputSize    = Size( aPrtPaperSize.Width()  * 0.941,
-                                           aPrtPaperSize.Height() * 0.961);
-                    aPrtPageOffset = Point( aPrtPaperSize.Width()  * 0.0250,
-                                            aPrtPaperSize.Height() * 0.0214);
-                }
-                Point   aZeroPoint;
-                Rectangle OutputRect( aZeroPoint, aOutputSize );
-
-
-                // set minimum top and bottom border
-                if (aPrtPageOffset.Y() < 2000)
-                    OutputRect.Top() += 2000 - aPrtPageOffset.Y();
-                if ((aPrtPaperSize.Height() - (aPrtPageOffset.Y() + OutputRect.Bottom())) < 2000)
-                    OutputRect.Bottom() -= 2000 - (aPrtPaperSize.Height() -
-                                                (aPrtPageOffset.Y() + OutputRect.Bottom()));
-
-                // set minimum left and right border
-                if (aPrtPageOffset.X() < 2500)
-                    OutputRect.Left() += 2500 - aPrtPageOffset.X();
-                if ((aPrtPaperSize.Width() - (aPrtPageOffset.X() + OutputRect.Right())) < 1500)
-                    OutputRect.Right() -= 1500 - (aPrtPaperSize.Width() -
-                                                (aPrtPageOffset.X() + OutputRect.Right()));
-
-                pView->Impl_Print( *pOut, PRINT_SIZE_NORMAL,
-                     Rectangle( OutputRect ), Point() );
-            }
-        }
     }
 }
 
