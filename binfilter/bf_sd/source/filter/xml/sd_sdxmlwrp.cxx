@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdxmlwrp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:10:10 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:58:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,6 +65,8 @@
 #ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
 #endif
+
+#include <bf_sfx2/appuno.hxx>
 
 #ifndef _COM_SUN_STAR_DOCUMENT_XFILTER_HPP_
 #include <com/sun/star/document/XFilter.hpp>
@@ -571,7 +573,7 @@ sal_Bool SdXMLFilter::Import()
         // fall through intented
     default:
         {
-            ErrorHandler::HandleError( nRet );
+//          ErrorHandler::HandleError( nRet );
             if( IsWarning( nRet ) )
                 nRet = 0;
         }
