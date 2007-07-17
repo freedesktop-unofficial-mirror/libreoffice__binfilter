@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_dlgcont.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:56:51 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:37:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,6 +76,12 @@ using namespace osl;
 /*N*/ }
 
 // Ctor for service
+// Ctor for service
+SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
+{
+    // all initialisation has to be done
+    // by calling XInitialization::initialize
+}
 
 /*N*/ SfxDialogLibraryContainer::SfxDialogLibraryContainer( SotStorage* pStor )
 /*N*/ {
@@ -108,7 +114,12 @@ using namespace osl;
 /*N*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxDialogLibraryContainer::isLibraryElementValid( Any aElement )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {
+        Reference< XInputStreamProvider > xISP;
+        aElement >>= xISP;
+        sal_Bool bRet = xISP.is();
+        return bRet;
+
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::writeLibraryElement
@@ -118,7 +129,25 @@ using namespace osl;
 /*?*/   Reference< XOutputStream > xOutput
 /*?*/ )
 /*?*/   throw(Exception)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
+        Reference< XInputStreamProvider > xISP;
+        aElement >>= xISP;
+        if( !xISP.is() )
+            return;
+
+        Reference< XInputStream > xInput( xISP->createInputStream() );
+        Sequence< sal_Int8 > bytes;
+        sal_Int32 nRead = xInput->readBytes( bytes, xInput->available() );
+        for (;;)
+        {
+            if( nRead )
+                xOutput->writeBytes( bytes );
+
+            nRead = xInput->readBytes( bytes, 1024 );
+            if (! nRead)
+                break;
+        }
+        xInput->closeInput();
 /*?*/ }
 
 
@@ -139,7 +168,20 @@ using namespace osl;
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::initialize( const Sequence< Any >& aArguments )
 /*?*/     throw (::com::sun::star::uno::Exception,
 /*?*/            ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
+        sal_Int32 nArgCount = aArguments.getLength();
+        OSL_ENSURE( nArgCount, "SfxDialogLibraryContainer::initialize() called with no arguments\n" );
+
+        OUString aInitialisationParam;
+        if( nArgCount )
+        {
+            const Any* pArgs = aArguments.getConstArray();
+            pArgs[0] >>= aInitialisationParam;
+            OSL_ENSURE( aInitialisationParam.getLength(),
+                "SfxDialogLibraryContainer::initialize() called with empty url\n" );
+        }
+
+        init( aInitialisationParam );
 /*?*/ }
 
 
@@ -147,61 +189,43 @@ using namespace osl;
 // Service
 /*N*/ SFX_IMPL_SINGLEFACTORY( SfxDialogLibraryContainer )
 
-/*?*/ Sequence< OUString > SfxDialogLibraryContainer::impl_getStaticSupportedServiceNames()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");Sequence< OUString > seqServiceNames;return seqServiceNames; //STRIP001
-/*?*/ }
+Sequence< OUString > SfxDialogLibraryContainer::impl_getStaticSupportedServiceNames()
+{
+    static Sequence< OUString > seqServiceNames( 1 );
+    static sal_Bool bNeedsInit = sal_True;
 
-/*N*/ OUString SfxDialogLibraryContainer::impl_getStaticImplementationName()
-/*N*/ {
-/*N*/     static OUString aImplName;
-/*N*/     static sal_Bool bNeedsInit = sal_True;
-/*N*/
-/*N*/   MutexGuard aGuard( Mutex::getGlobalMutex() );
-/*N*/     if( bNeedsInit )
-/*N*/     {
-/*N*/         aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.DialogLibraryContainer" );
-/*N*/         bNeedsInit = sal_False;
-/*N*/     }
-/*N*/     return aImplName;
-/*N*/ }
+    MutexGuard aGuard( Mutex::getGlobalMutex() );
+    if( bNeedsInit )
+    {
+        OUString* pSeq = seqServiceNames.getArray();
+        pSeq[0] = OUString::createFromAscii( "com.sun.star.script.DialogLibraryContainer" );
+        bNeedsInit = sal_False;
+    }
+    return seqServiceNames;
+}
 
-/*N*/ Reference< XInterface > SAL_CALL SfxDialogLibraryContainer::impl_createInstance
-/*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
-/*N*/         throw( Exception )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-/*N*/ }
+OUString SfxDialogLibraryContainer::impl_getStaticImplementationName()
+{
+    static OUString aImplName;
+    static sal_Bool bNeedsInit = sal_True;
 
+    MutexGuard aGuard( Mutex::getGlobalMutex() );
+    if( bNeedsInit )
+    {
+        aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.DialogLibraryContainer" );
+        bNeedsInit = sal_False;
+    }
+    return aImplName;
+}
 
-//============================================================================
-// Service for application library container
-/*N*/ SFX_IMPL_ONEINSTANCEFACTORY( SfxApplicationDialogLibraryContainer )
-
-/*N*/ Sequence< OUString > SfxApplicationDialogLibraryContainer::impl_getStaticSupportedServiceNames()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/     static Sequence< OUString > seqServiceNames( 1 );
-/*N*/     return seqServiceNames;
-/*N*/ }
-
-/*N*/ OUString SfxApplicationDialogLibraryContainer::impl_getStaticImplementationName()
-/*N*/ {
-/*N*/     static OUString aImplName;
-/*N*/     static sal_Bool bNeedsInit = sal_True;
-/*N*/
-/*N*/   MutexGuard aGuard( Mutex::getGlobalMutex() );
-/*N*/     if( bNeedsInit )
-/*N*/     {
-/*N*/         aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.ApplicationDialogLibraryContainer" );
-/*N*/         bNeedsInit = sal_False;
-/*N*/     }
-/*N*/     return aImplName;
-/*N*/ }
-
-/*N*/ Reference< XInterface > SAL_CALL SfxApplicationDialogLibraryContainer::impl_createInstance
-/*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
-/*N*/         throw( Exception )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-/*N*/ }
-
+Reference< XInterface > SAL_CALL SfxDialogLibraryContainer::impl_createInstance
+    ( const Reference< XMultiServiceFactory >& xServiceManager )
+        throw( Exception )
+{
+    Reference< XInterface > xRet =
+        static_cast< XInterface* >( static_cast< OWeakObject* >(new SfxDialogLibraryContainer()) );
+    return xRet;
+}
 
 //============================================================================
 // Implementation class SfxDialogLibrary
