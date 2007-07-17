@@ -4,9 +4,9 @@
  *
  *  $RCSfile: module.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:04:07 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:39:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,40 +40,23 @@
 #include <bf_sfx2/shell.hxx>
 #endif
 
-#ifndef _SFX_IMGDEF_HXX
-#include <bf_sfx2/imgdef.hxx>
-#endif
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
-class ImageList;
-class ModalDialog;
-class Window;
+
+class ResMgr;
+
 namespace binfilter {
 
-class SfxAcceleratorManager;
-class SfxMenuBarManager;
-class SfxBindings;
 class SfxObjectFactory;
 class SfxObjectFactory;
 class SfxModuleArr_Impl;
 class SfxModule_Impl;
 class SfxSlotPool;
-struct SfxChildWinContextFactory;
-struct SfxChildWinFactory;
-struct SfxMenuCtrlFactory;
-struct SfxStbCtrlFactory;
-struct SfxTbxCtrlFactory;
-class SfxTbxCtrlFactArr_Impl;
-class SfxChildWinFactArr_Impl;
-class SfxMenuCtrlFactArr_Impl;
-class SfxStbCtrlFactArr_Impl;
-class SfxTabPage;
 
 class ISfxModule
 {
 public:
-    virtual ModalDialog*    CreateAboutDialog() = 0;
     virtual                 ~ISfxModule(){};
     virtual ResMgr*         GetResMgr() = 0;
 };
@@ -85,18 +68,12 @@ class SfxModule : public SfxShell, public ISfxModule
 private:
     ResMgr*                     pResMgr;
     sal_Bool                    bDummy : 1;
-    SfxModule_Impl*             pImpl;
-
-#if _SOLAR__PRIVATE
-    void                        Construct_Impl();
-#endif
 
 protected:
     virtual sal_Bool                QueryUnload();
 
 public:
                                 TYPEINFO();
-                                SFX_DECL_INTERFACE(SFX_INTERFACE_SFXMODULE);
 
                                 SfxModule( ResMgr* pMgrP, sal_Bool bDummy,
                                     SfxObjectFactory* pFactoryP, ... );
@@ -106,27 +83,10 @@ public:
     virtual void                Free();
     sal_Bool                        IsLoaded() const { return !bDummy; }
 
-    virtual ModalDialog*        CreateAboutDialog();
     virtual ResMgr*             GetResMgr();
-    SfxSlotPool*                GetSlotPool() const;
-
-    void                        RegisterToolBoxControl(SfxTbxCtrlFactory*);
-    void                        RegisterChildWindow(SfxChildWinFactory*);
-    void                        RegisterStatusBarControl(SfxStbCtrlFactory*);
-    void                        RegisterMenuControl(SfxMenuCtrlFactory*);
-
-    virtual SfxTabPage*         CreateTabPage( sal_uInt16 nId,
-                                               Window* pParent,
-                                               const SfxItemSet& rSet );
-    virtual void                Invalidate(USHORT nId = 0);
 
 #if _SOLAR__PRIVATE
     static SfxModuleArr_Impl&   GetModules_Impl();
-    SfxTbxCtrlFactArr_Impl*     GetTbxCtrlFactories_Impl() const;
-    SfxStbCtrlFactArr_Impl*     GetStbCtrlFactories_Impl() const;
-    SfxMenuCtrlFactArr_Impl*    GetMenuCtrlFactories_Impl() const;
-    SfxChildWinFactArr_Impl*    GetChildWinFactories_Impl() const;
-    ImageList*                  GetImageList_Impl( BOOL bBig, BOOL bHiContrast );
 #endif
 };
 
