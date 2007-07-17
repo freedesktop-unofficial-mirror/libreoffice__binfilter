@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:55:15 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:12:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2891,10 +2891,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/   //  ::com::press-Mode fuer Grafiken in Brush-Items (Hintergrund im Seitenformat)
 /*N*/
 /*N*/   USHORT nComprMode = rStream.GetCompressMode() & ~(COMPRESSMODE_ZBITMAP | COMPRESSMODE_NATIVE);
-/*N*/   SvtSaveOptions aSaveOpt;
-/*N*/   SvtSaveOptions::SaveGraphicsMode eMode = aSaveOpt.GetSaveGraphicsMode();
-/*N*/   BOOL bNative = ( eMode == SvtSaveOptions::SaveGraphicsOriginal );
-/*N*/   BOOL bCompr = bNative || ( eMode == SvtSaveOptions::SaveGraphicsCompressed );
+/*N*/   BOOL bNative = FALSE;
+/*N*/   BOOL bCompr = FALSE;
 /*N*/
 /*N*/   if ( rStream.GetVersion() >= SOFFICE_FILEFORMAT_40 && bCompr )
 /*N*/       nComprMode |= COMPRESSMODE_ZBITMAP;             //  komprimiert ab 4.0
