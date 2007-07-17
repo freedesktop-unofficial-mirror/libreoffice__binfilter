@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:02:05 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:57:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,12 +54,10 @@
 #else
 #ifdef UNX
 #include "../ui/inc/grdocsh.hxx"
-#include "../ui/inc/viewshel.hxx"
 #include "../ui/inc/sdview.hxx"
 #include "../ui/inc/strings.hrc"
 #else
 #include "..\ui\inc\docshell.hxx"
-#include "..\ui\inc\viewshel.hxx"
 #include "..\ui\inc\sdview.hxx"
 #include "..\ui\inc\strings.hrc"
 #endif
@@ -309,15 +307,6 @@ using namespace ::com::sun::star;
 /*N*/ void SdDrawDocument::RemoveUnnessesaryMasterPages(SdPage* pMasterPage, BOOL bOnlyDuplicatePages, BOOL bUndo)
 /*N*/ {
 /*N*/   SdView* pView = NULL;
-/*N*/   SfxUndoManager* pUndoMgr = NULL;
-/*N*/
-/*N*/   if (pDocSh)
-/*N*/   {
-/*N*/       pUndoMgr = pDocSh->GetUndoManager();
-/*N*/
-/*N*/       if (pDocSh->GetViewShell())
-/*N*/           pView = pDocSh->GetViewShell()->GetView();
-/*N*/   }
 /*N*/
     /***********************************************************
     * Alle MasterPages pruefen
@@ -384,19 +373,11 @@ using namespace ::com::sun::star;
 /*?*/                       pView->HidePage(pPgView);
 /*N*/               }
 /*N*/
-/*N*/               if( bUndo )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/               }
-/*N*/
 /*N*/               RemoveMasterPage( pNotesMaster->GetPageNum() );
 /*N*/
-/*N*/               if( bUndo )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 AddUndo(new SdrUndoDelPage(*pMaster));
 /*N*/
 /*N*/               RemoveMasterPage( pMaster->GetPageNum() );
 /*N*/
-/*N*/               if( bUndo )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 EndUndo();  // schon hier, damit sich Joes Actions ZWISCHEN unsere eigenen schieben
 /*N*/
 /*N*/               // alte Layoutvorlagen loeschen, wenn sie nicht mehr benoetigt werden
 /*N*/               BOOL bDeleteOldStyleSheets = TRUE;
