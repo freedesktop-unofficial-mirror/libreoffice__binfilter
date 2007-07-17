@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:22:57 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:17:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,6 +85,7 @@
 namespace binfilter {
 
 using namespace rtl;
+using namespace com::sun::star;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
 using namespace com::sun::star::io;
@@ -220,11 +221,11 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
         }
     }
 
+    // Get DocumentType using GetFilterMatcher() (test)
+    const SfxFilter* pFilter = SFX_APP()->GetFilterMatcher().GetFilter4FilterName( sFilterName );
+
     if(bRetval)
     {
-        // Get DocumentType using GetFilterMatcher() (test)
-        const SfxFilter* pFilter = SFX_APP()->GetFilterMatcher().GetFilter4FilterName( sFilterName );
-
         if(pFilter)
         {
             // Get sStrippedDocumentType. For SRX645 this is more simple, look below.
@@ -248,8 +249,9 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
                 OSL_ASSERT(0);
                 bRetval = sal_False;
             }
-
         }
+        else
+            bRetval = sal_False;
     }
 
     if(bRetval)
@@ -304,11 +306,78 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
     // only the binary part should touch URLs; make sure that no BaseURL is passed to the importer also
     so3::StaticBaseUrl::SetBaseURL( String() );
 
+    try
+    {
     if(bRetval)
     {
-        Reference < XServiceInfo > rStrippedServiceInfo(rStrippedDocument, UNO_QUERY);
+        ::rtl::OUString aFilterName;
+        Reference < XServiceInfo > rStrippedServiceInfo(rStrippedDocument, UNO_QUERY_THROW);
+        if( (rStrippedServiceInfo->supportsService(sServiceNameTextDocument)
+            || rStrippedServiceInfo->supportsService(sServiceNameGlobalDocument)
+            || rStrippedServiceInfo->supportsService(sServiceNameWebDocument) ) && pFilter->UsesStorage() )
+        {
+            // writer document
+            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Writer)");
+        }
+        else if(rStrippedServiceInfo->supportsService(sServiceNamePresentationDocument))
+        {
+            // presentation: Ask BEFORE draw since presentation supports draw, too
+            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Impress)");
+        }
+        else if(rStrippedServiceInfo->supportsService(sServiceNameDrawingDocument))
+        {
+            // drawing document
+            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Draw)");
+        }
+        else if(rStrippedServiceInfo->supportsService(sServiceNameSpreadsheetDocument))
+        {
+            // calc document
+            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Calc)");
+        }
+/*
+        else if(rStrippedServiceInfo->supportsService(sServiceNameChartDocument))
+        {
+            // chart document
+            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Chart)");
+        }
+        else if(rStrippedServiceInfo->supportsService(sServiceNameFormulaProperties))
+        {
+            // formula document
+            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Math)");
+        }
+*/
+        if ( aFilterName.getLength() )
+        {
+            uno::Reference < io::XStream > xTempFile(
+                mxMSF->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.io.TempFile" ) ),
+                    uno::UNO_QUERY_THROW );
+            uno::Reference < frame::XStorable > xDoc( rStrippedDocument, uno::UNO_QUERY );
+            uno::Sequence < beans::PropertyValue > args(2);
+            args[0].Name = ::rtl::OUString::createFromAscii("OutputStream");
+            args[0].Value <<= xTempFile->getOutputStream();
+            args[1].Name = ::rtl::OUString::createFromAscii("FilterName");
+            args[1].Value <<= aFilterName;
+            xDoc->storeToURL( ::rtl::OUString::createFromAscii("private:stream/"), args );
+            xTempFile->getOutputStream()->closeOutput();
 
-        if(rStrippedServiceInfo.is())
+            Sequence< Any > aArgs( 2 );
+            aArgs[0] <<= mxDoc;
+            aArgs[1] <<= xTempFile;
+
+            Reference< XFilter > xSubFilter;
+            try {
+                xSubFilter = Reference<XFilter>(
+                    mxMSF->createInstanceWithArguments(
+                        OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.OwnSubFilter" ) ),
+                        aArgs ),
+                    UNO_QUERY );
+                bRetval = xSubFilter->filter( aDescriptor );
+            }
+            catch(Exception& )
+            {
+            }
+        }
+        else
         {
             if(rStrippedServiceInfo->supportsService(sServiceNameTextDocument)
                 || rStrippedServiceInfo->supportsService(sServiceNameGlobalDocument)
@@ -353,79 +422,50 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
                 OSL_ASSERT(0);
                 bRetval = sal_False;
             }
-        }
-        else
-        {
-            OSL_ASSERT(0);
-            bRetval = sal_False;
-        }
-    }
 
-    if(bRetval)
-    {
-        // try to get local document handler
-        xLocalDocumentHandler = Reference< XDocumentHandler >::query(mxMSF->createInstance(sXMLImportService));
-
-        if(!xLocalDocumentHandler.is())
-        {
-            OSL_ASSERT(0);
-            bRetval = sal_False;
-        }
-        else
-        {
-            // set target document at local document handler
-            Reference < XImporter > xLocalImporter(xLocalDocumentHandler, UNO_QUERY);
-            xLocalImporter->setTargetDocument(mxDoc);
-        }
-    }
-
-    if(bRetval)
-    {
-        // try to create Stripped exporter, give local document handler as target
-        Sequence < Any > aAnys(1);
-        aAnys[0] <<= xLocalDocumentHandler;
-        xStrippedExporter = Reference< XExporter >::query(rStrippedMSF->createInstanceWithArguments(sXMLExportService, aAnys));
-
-        if(!xStrippedExporter.is())
-        {
-            OSL_ASSERT(0);
-            bRetval = sal_False;
-        }
-        else
-        {
-            // set source document to Strippedly loaded read-only document
-            xStrippedExporter->setSourceDocument( Reference < XComponent >( rStrippedDocument, UNO_QUERY ) );
-        }
-    }
-
-    if(bRetval)
-    {
-        try
-        {
-            // lock target document controllers
-            Reference < com::sun::star::frame::XModel > xTargetDocumentModel(mxDoc, UNO_QUERY);
-            sal_Bool bTargetDocumentModelWasNotLocked(sal_False);
-
-            if(xTargetDocumentModel.is() && !xTargetDocumentModel->hasControllersLocked())
+            if(bRetval)
             {
-                bTargetDocumentModelWasNotLocked = sal_True;
-                xTargetDocumentModel->lockControllers();
-            }
+                // try to get local document handler
+                xLocalDocumentHandler = Reference< XDocumentHandler >( mxMSF->createInstance(sXMLImportService), UNO_QUERY_THROW );
 
-            // now start the data exchange
-            Reference < XFilter > xFilter(xStrippedExporter, UNO_QUERY);
-            bRetval = xFilter->filter(aDescriptor);
+                // set target document at local document handler
+                Reference < XImporter > xLocalImporter(xLocalDocumentHandler, UNO_QUERY);
+                xLocalImporter->setTargetDocument(mxDoc);
 
-            if(xTargetDocumentModel.is() && bTargetDocumentModelWasNotLocked)
-            {
-                xTargetDocumentModel->unlockControllers();
+                // try to create Stripped exporter, give local document handler as target
+                Sequence < Any > aAnys(1);
+                aAnys[0] <<= xLocalDocumentHandler;
+                xStrippedExporter = Reference< XExporter >( rStrippedMSF->createInstanceWithArguments(sXMLExportService, aAnys), UNO_QUERY_THROW );
+
+                // set source document to Strippedly loaded read-only document
+                    xStrippedExporter->setSourceDocument( Reference < XComponent >( rStrippedDocument, UNO_QUERY ) );
+
+                // lock target document controllers
+                Reference < com::sun::star::frame::XModel > xTargetDocumentModel(mxDoc, UNO_QUERY);
+                sal_Bool bTargetDocumentModelWasNotLocked(sal_False);
+
+                if(xTargetDocumentModel.is() && !xTargetDocumentModel->hasControllersLocked())
+                {
+                    bTargetDocumentModelWasNotLocked = sal_True;
+                    xTargetDocumentModel->lockControllers();
+                }
+
+                // now start the data exchange
+                Reference < XFilter > xFilter(xStrippedExporter, UNO_QUERY);
+                bRetval = xFilter->filter(aDescriptor);
+
+                if(xTargetDocumentModel.is() && bTargetDocumentModelWasNotLocked)
+                {
+                    xTargetDocumentModel->unlockControllers();
+                }
             }
         }
-        catch(RuntimeException& /*e*/)
-        {
-            OSL_ENSURE(sal_False, "a Stripped call was aborted");
-            bRetval = sal_False;
-        }
+    }
+    }
+    catch ( Exception& )
+    {
+        OSL_ASSERT(0);
+        bRetval = sal_False;
     }
 
     if(bStrippedDocumentCreated)
