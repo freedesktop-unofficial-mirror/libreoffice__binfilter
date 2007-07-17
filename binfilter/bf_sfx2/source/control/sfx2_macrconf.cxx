@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_macrconf.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:09:14 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:44:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,17 +33,11 @@
  *
  ************************************************************************/
 
-
-
-
-
 #pragma hdrstop
 
-
-#include "msgpool.hxx"
 #include "macrconf.hxx"
 #include "sfx.hrc"
-#include "dispatch.hxx"
+#include "app.hxx"
 #include "objshimp.hxx"
 
 namespace binfilter {
@@ -101,7 +95,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/     bAppBasic(TRUE),
 /*?*/   nSlotId(0),
 /*?*/   nRefCnt(0),
-/*?*/   pSlot(0),
 /*?*/   pHelpText(0)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
@@ -110,7 +103,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   bAppBasic(pDoc == NULL),
 /*?*/   nSlotId(0),
 /*?*/   nRefCnt(0),
-/*?*/   pSlot(0),
 /*?*/   pHelpText(0)
 /*?*/ {}
 
@@ -123,7 +115,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   aMethodName(rMethodName),
 /*?*/   nSlotId(0),
 /*?*/   nRefCnt(0),
-/*?*/   pSlot(0),
 /*?*/   pHelpText(0)
 /*?*/ {
 /*?*/   bAppBasic = (pDoc == 0);
@@ -134,7 +125,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ SfxMacroInfo::SfxMacroInfo(SfxObjectShell *pDoc, const String& rQualifiedName )
 /*?*/ : nSlotId(0),
 /*?*/   nRefCnt(0),
-/*?*/   pSlot(0),
 /*?*/   pHelpText(0)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
@@ -147,7 +137,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   aModuleName(rOther.aModuleName),
 /*?*/   aMethodName(rOther.aMethodName),
 /*?*/   nSlotId(rOther.nSlotId),
-/*?*/   pSlot(0),
 /*?*/   nRefCnt(0),
 /*?*/   pHelpText(0)
 /*?*/ {}
@@ -156,7 +145,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 /*?*/ SfxMacroInfo::~SfxMacroInfo()
 /*?*/ {
-/*?*/   delete pSlot;
 /*?*/   delete pHelpText;
 /*?*/ }
 
@@ -258,7 +246,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ int SfxMacroInfo::Load( SvStream& rStream )
 /*?*/ {
 /*?*/     rStream >> (*this);
-/*?*/     nSlotId = SFX_APP()->GetMacroConfig()->GetSlotId(this);
+/*?*/     nSlotId = SfxMacroConfig::GetOrCreate()->GetSlotId(this);
 /*?*/     return 0;
 /*?*/ }
 
@@ -315,9 +303,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pImp = new SfxMacroConfig_Impl;
 /*?*/ }
 
 //==========================================================================
-
-/*?*/ SFX_STATE_STUB( SfxApplication, MacroState_Impl )
-/*?*/ SFX_EXEC_STUB( SfxApplication, MacroExec_Impl )
 
 /*?*/ sal_uInt16 SfxMacroConfig::GetSlotId(SfxMacroInfoPtr pInfo)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
