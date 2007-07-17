@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docuno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:05:47 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:33:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,13 @@
 
 #pragma hdrstop
 
+#include <com/sun/star/container/XIndexContainer.hpp>
+
 #include <bf_svx/fmdpage.hxx>
 #include <bf_svx/fmview.hxx>
 #include <bf_svx/svdpage.hxx>
 
 #include <svtools/numuno.hxx>
-#include <bf_sfx2/bindings.hxx>
 #include <vcl/waitobj.hxx>
 #include <tools/multisel.hxx>
 #include <toolkit/awt/vclxdevice.hxx>
@@ -69,13 +70,14 @@
 #include "dociter.hxx"
 #include "cell.hxx"
 #include "drwlayer.hxx"
-#include "viewfunc.hxx"     // TABLEID_DOC - verschieben!!!
 #include "unoguard.hxx"
 #include "unonames.hxx"
 #include "shapeuno.hxx"
 #include "printfun.hxx"
-#include "pfuncache.hxx"
 #include "scmod.hxx"
+#include "docsh.hxx"
+#include "viewdata.hxx"
+
 #ifndef _SC_VIEWSETTINGSSEQUENCEDEFINES_HXX
 #include "ViewSettingsSequenceDefines.hxx"
 #endif
@@ -84,6 +86,8 @@
 #endif
 namespace binfilter {
 using namespace ::com::sun::star;
+
+#define TABLEID_DOC                0xFFFF
 
 //------------------------------------------------------------------------
 
@@ -260,8 +264,6 @@ ScModelObj::~ScModelObj()
 
     if (xNumberAgg.is())
         xNumberAgg->setDelegator(uno::Reference<uno::XInterface>());
-
-    delete pPrintFuncCache;
 }
 
 ScDocument* ScModelObj::GetDocument() const
@@ -414,15 +416,6 @@ void ScModelObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
                 if ( pNumFmt )
                     pNumFmt->SetNumberFormatter( NULL );
             }
-
-            DELETEZ( pPrintFuncCache );     // must be deleted because it has a pointer to the DocShell
-        }
-        else if ( nId == SFX_HINT_DATACHANGED )
-        {
-            //  cached data for rendering become invalid when contents change
-            //  (if a broadcast is added to SetDrawModified, is has to be tested here, too)
-
-            DELETEZ( pPrintFuncCache );
         }
     }
     else if ( rHint.ISA( ScPointerChangedHint ) )
@@ -471,84 +464,15 @@ uno::Reference<container::XNameAccess> SAL_CALL ScModelObj::getStyleFamilies()
 
 OutputDevice* lcl_GetRenderDevice( const uno::Sequence<beans::PropertyValue>& rOptions )
 {
-    OutputDevice* pRet = NULL;
-    const beans::PropertyValue* pPropArray = rOptions.getConstArray();
-    long nPropCount = rOptions.getLength();
-    for (long i = 0; i < nPropCount; i++)
-    {
-        const beans::PropertyValue& rProp = pPropArray[i];
-        String aPropName = rProp.Name;
-
-        if (aPropName.EqualsAscii( SC_UNONAME_RENDERDEV ))
-        {
-            uno::Reference<awt::XDevice> xRenderDevice;
-            if ( ( rProp.Value >>= xRenderDevice ) && xRenderDevice.is() )
-            {
-                VCLXDevice* pDevice = VCLXDevice::GetImplementation( xRenderDevice );
-                if ( pDevice )
-                {
-                    pRet = pDevice->GetOutputDevice();
-                    pRet->SetDigitLanguage( SC_MOD()->GetOptDigitLanguage() );
-                }
-            }
-        }
-    }
-    return pRet;
+    DBG_ERROR("Strip!");
+    return 0;
 }
 
 BOOL ScModelObj::FillRenderMarkData( const uno::Any& aSelection, ScMarkData& rMark,
                                      ScPrintSelectionStatus& rStatus ) const
 {
-    DBG_ASSERT( !rMark.IsMarked() && !rMark.IsMultiMarked(), "FillRenderMarkData: MarkData must be empty" );
-    DBG_ASSERT( pDocShell, "FillRenderMarkData: DocShell must be set" );
-
-    BOOL bDone = FALSE;
-
-    uno::Reference<uno::XInterface> xInterface;
-    if ( aSelection >>= xInterface )
-    {
-        ScCellRangesBase* pSelObj = ScCellRangesBase::getImplementation( xInterface );
-        if ( pSelObj && pSelObj->GetDocShell() == pDocShell )
-        {
-            BOOL bSheet = ( ScTableSheetObj::getImplementation( xInterface ) != NULL );
-            BOOL bCursor = pSelObj->IsCursorOnly();
-            const ScRangeList& rRanges = pSelObj->GetRangeList();
-
-            rMark.MarkFromRangeList( rRanges, FALSE );
-            rMark.MarkToSimple();
-
-            if ( rMark.IsMarked() && !rMark.IsMultiMarked() )
-            {
-                // a sheet object is treated like an empty selection: print the used area of the sheet
-
-                if ( bCursor || bSheet )                // nothing selected -> use whole tables
-                {
-                    rMark.ResetMark();      // doesn't change table selection
-                    rStatus.SetMode( SC_PRINTSEL_CURSOR );
-                }
-                else
-                    rStatus.SetMode( SC_PRINTSEL_RANGE );
-
-                rStatus.SetRanges( rRanges );
-                bDone = TRUE;
-            }
-            // multi selection isn't supported
-        }
-        else if ( ScModelObj::getImplementation( xInterface ) == this )
-        {
-            //  render the whole document
-            //  -> no selection, all sheets
-
-            USHORT nTabCount = pDocShell->GetDocument()->GetTableCount();
-            for (USHORT nTab = 0; nTab < nTabCount; nTab++)
-                rMark.SelectTable( nTab, TRUE );
-            rStatus.SetMode( SC_PRINTSEL_DOCUMENT );
-            bDone = TRUE;
-        }
-        // other selection types aren't supported
-    }
-
-    return bDone;
+    DBG_ERROR("Strip!");
+    return FALSE;
 }
 
 
@@ -556,92 +480,16 @@ sal_Int32 SAL_CALL ScModelObj::getRendererCount( const uno::Any& aSelection,
                                     const uno::Sequence<beans::PropertyValue>& xOptions )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    if (!pDocShell)
-        throw uno::RuntimeException();
-
-    ScMarkData aMark;
-    ScPrintSelectionStatus aStatus;
-    if ( !FillRenderMarkData( aSelection, aMark, aStatus ) )
-        return 0;
-
-    //  The same ScPrintFuncCache object in pPrintFuncCache is used as long as
-    //  the same selection is used (aStatus) and the document isn't changed
-    //  (pPrintFuncCache is cleared in Notify handler)
-
-    if ( !pPrintFuncCache || !pPrintFuncCache->IsSameSelection( aStatus ) )
-    {
-        delete pPrintFuncCache;
-        pPrintFuncCache = new ScPrintFuncCache( pDocShell, aMark, aStatus );
-    }
-    return pPrintFuncCache->GetPageCount();
+    DBG_ERROR("Strip!");
+    return 0;
 }
 
 uno::Sequence<beans::PropertyValue> SAL_CALL ScModelObj::getRenderer( sal_Int32 nRenderer,
                                     const uno::Any& aSelection, const uno::Sequence<beans::PropertyValue>& xOptions )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    if (!pDocShell)
-        throw uno::RuntimeException();
-
-    ScMarkData aMark;
-    ScPrintSelectionStatus aStatus;
-    if ( !FillRenderMarkData( aSelection, aMark, aStatus ) )
-        throw lang::IllegalArgumentException();
-
-    if ( !pPrintFuncCache || !pPrintFuncCache->IsSameSelection( aStatus ) )
-    {
-        delete pPrintFuncCache;
-        pPrintFuncCache = new ScPrintFuncCache( pDocShell, aMark, aStatus );
-    }
-    long nTotalPages = pPrintFuncCache->GetPageCount();
-    if ( nRenderer >= nTotalPages )
-        throw lang::IllegalArgumentException();
-
-    //  printer is used as device (just for page layout), draw view is not needed
-
-    USHORT nTab = pPrintFuncCache->GetTabForPage( nRenderer );
-
-    ScRange aRange;
-    const ScRange* pSelRange = NULL;
-    if ( aMark.IsMarked() )
-    {
-        aMark.GetMarkArea( aRange );
-        pSelRange = &aRange;
-    }
-    ScPrintFunc aFunc( pDocShell, pDocShell->GetPrinter(), nTab,
-                        pPrintFuncCache->GetFirstAttr(nTab), nTotalPages, pSelRange );
-    aFunc.SetRenderFlag( TRUE );
-
-    Range aPageRange( nRenderer+1, nRenderer+1 );
-    MultiSelection aPage( aPageRange );
-    aPage.SetTotalRange( Range(0,RANGE_MAX) );
-    aPage.Select( aPageRange );
-
-    long nDisplayStart = pPrintFuncCache->GetDisplayStart( nTab );
-    long nTabStart = pPrintFuncCache->GetTabStart( nTab );
-
-    long nPrinted = aFunc.DoPrint( aPage, nTabStart, nDisplayStart, FALSE, NULL, NULL );
-
-    ScRange aCellRange;
-    BOOL bWasCellRange = aFunc.GetLastSourceRange( aCellRange );
-    Size aTwips = aFunc.GetPageSize();
-    awt::Size aPageSize( TwipsToHMM( aTwips.Width() ), TwipsToHMM( aTwips.Height() ) );
-
-    long nPropCount = bWasCellRange ? 2 : 1;
-    uno::Sequence<beans::PropertyValue> aSequence(nPropCount);
-    beans::PropertyValue* pArray = aSequence.getArray();
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_PAGESIZE );
-    pArray[0].Value <<= aPageSize;
-    if ( bWasCellRange )
-    {
-        table::CellRangeAddress aRangeAddress( nTab,
-                        aCellRange.aStart.Col(), aCellRange.aStart.Row(),
-                        aCellRange.aEnd.Col(), aCellRange.aEnd.Row() );
-        pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_SOURCERANGE );
-        pArray[1].Value <<= aRangeAddress;
-    }
+    DBG_ERROR("Strip!");
+    uno::Sequence<beans::PropertyValue> aSequence;
     return aSequence;
 }
 
@@ -649,67 +497,7 @@ void SAL_CALL ScModelObj::render( sal_Int32 nRenderer, const uno::Any& aSelectio
                                     const uno::Sequence<beans::PropertyValue>& rOptions )
                                 throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    if (!pDocShell)
-        throw uno::RuntimeException();
-
-    ScMarkData aMark;
-    ScPrintSelectionStatus aStatus;
-    if ( !FillRenderMarkData( aSelection, aMark, aStatus ) )
-        throw lang::IllegalArgumentException();
-
-    if ( !pPrintFuncCache || !pPrintFuncCache->IsSameSelection( aStatus ) )
-    {
-        delete pPrintFuncCache;
-        pPrintFuncCache = new ScPrintFuncCache( pDocShell, aMark, aStatus );
-    }
-    long nTotalPages = pPrintFuncCache->GetPageCount();
-    if ( nRenderer >= nTotalPages )
-        throw lang::IllegalArgumentException();
-
-    OutputDevice* pDev = lcl_GetRenderDevice( rOptions );
-    if ( !pDev )
-        throw lang::IllegalArgumentException();
-
-    USHORT nTab = pPrintFuncCache->GetTabForPage( nRenderer );
-    ScDocument* pDoc = pDocShell->GetDocument();
-
-    FmFormView* pDrawView = NULL;
-    Rectangle aFull( 0, 0, LONG_MAX, LONG_MAX );
-    if ( pDoc->HasControl( nTab, aFull ) )
-    {
-        ScDrawLayer* pModel = pDoc->GetDrawLayer();         // can't be NULL then
-        pDrawView = new FmFormView( pModel, pDev );
-        pDrawView->ShowPagePgNum( nTab, Point() );
-        pDrawView->SetPrintPreview( TRUE );
-    }
-
-    ScRange aRange;
-    const ScRange* pSelRange = NULL;
-    if ( aMark.IsMarked() )
-    {
-        aMark.GetMarkArea( aRange );
-        pSelRange = &aRange;
-    }
-
-    //  to increase performance, ScPrintState might be used here for subsequent
-    //  pages of the same sheet
-
-    ScPrintFunc aFunc( pDev, pDocShell, nTab, pPrintFuncCache->GetFirstAttr(nTab), nTotalPages, pSelRange );
-    aFunc.SetDrawView( pDrawView );
-    aFunc.SetRenderFlag( TRUE );
-
-    Range aPageRange( nRenderer+1, nRenderer+1 );
-    MultiSelection aPage( aPageRange );
-    aPage.SetTotalRange( Range(0,RANGE_MAX) );
-    aPage.Select( aPageRange );
-
-    long nDisplayStart = pPrintFuncCache->GetDisplayStart( nTab );
-    long nTabStart = pPrintFuncCache->GetTabStart( nTab );
-
-    long nPrinted = aFunc.DoPrint( aPage, nTabStart, nDisplayStart, TRUE, NULL, NULL );
-
-    delete pDrawView;
+    DBG_ERROR("Strip!");
 }
 
 // XLinkTargetSupplier
@@ -1056,7 +844,7 @@ uno::Reference< container::XIndexAccess > SAL_CALL ScModelObj::getViewData(  )
             String aUserData = pDocShell->GetUserData();
             if ( aUserData.Len() )
             {
-                ScViewData aLocalViewData( pDocShell, NULL );   // no ViewShell
+                ScViewData aLocalViewData( pDocShell );
                 aLocalViewData.ReadUserData( aUserData );
                 uno::Sequence< beans::PropertyValue > aSeq;
                 aLocalViewData.WriteUserDataSequence( aSeq );
@@ -1143,9 +931,6 @@ void SAL_CALL ScModelObj::setPropertyValue(
             ScDrawLayer* pModel = pDocShell->MakeDrawLayer();
             pModel->SetOpenInDesignMode( ScUnoHelpFunctions::GetBoolFromAny( aValue ) );
 
-            SfxBindings* pBindings = pDocShell->GetViewBindings();
-            if (pBindings)
-                pBindings->Invalidate( SID_FM_OPEN_READONLY );
         }
         else if ( aString.EqualsAscii( SC_UNO_AUTOCONTFOC ) )
         {
@@ -1153,9 +938,6 @@ void SAL_CALL ScModelObj::setPropertyValue(
             ScDrawLayer* pModel = pDocShell->MakeDrawLayer();
             pModel->SetAutoControlFocus( ScUnoHelpFunctions::GetBoolFromAny( aValue ) );
 
-            SfxBindings* pBindings = pDocShell->GetViewBindings();
-            if (pBindings)
-                pBindings->Invalidate( SID_FM_AUTOCONTROLFOCUS );
         }
 
         if ( aNewOpt != rOldOpt )
