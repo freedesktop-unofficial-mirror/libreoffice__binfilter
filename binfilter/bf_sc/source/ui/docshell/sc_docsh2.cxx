@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:47:23 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:19:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -142,8 +142,6 @@ using namespace ::com::sun::star;
 /*N*/       PutItem( SvxLineEndListItem ( pDrawLayer->GetLineEndList() ) );
 /*N*/
 /*N*/           //  andere Anpassungen nach dem Anlegen des DrawLayers
-/*N*/
-/*N*/       pDrawLayer->SetNotifyUndoActionHdl( LINK( pDocFunc, ScDocFunc, NotifyDrawUndo ) );
 /*N*/
 /*N*/       //if (SfxObjectShell::HasSbxObject())
 /*N*/       pDrawLayer->UpdateBasic();          // DocShell-Basic in DrawPages setzen
