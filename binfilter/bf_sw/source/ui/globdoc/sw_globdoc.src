@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_globdoc.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:17:38 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:08:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,32 +100,5 @@ String STR_WRITER_GLOBALDOC_FULLTYPE
     Text[ ar ] = "مستند شامل%PRODUCTNAME %PRODUCTVERSION ";
     Text[ he ] = "%PRODUCTNAME 6.0 Global Dokument";
 };
-
-#define MN_SW_GLOBAL
-#include "swmn.hrc"
-#define MN_SW_PORTAL
-#include "swmn.hrc"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
