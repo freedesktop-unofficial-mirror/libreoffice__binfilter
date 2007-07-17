@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_grdocsh.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:19:52 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:05:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,15 +65,6 @@
 namespace binfilter {
 
 /*N*/ TYPEINIT1(SdGraphicDocShell, SdDrawDocShell);
-
-#define SdGraphicDocShell
-#include "sdgslots.hxx"
-
-
-/*N*/ SFX_IMPL_INTERFACE(SdGraphicDocShell, SfxObjectShell, SdResId(0))
-/*N*/ {
-/*N*/   SFX_CHILDWINDOW_REGISTRATION(SID_SEARCH_DLG);
-/*N*/ }
 
 /*N*/ SFX_IMPL_OBJECTFACTORY_LOD(SdGraphicDocShell, sdraw,
 /*N*/                          SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd)
