@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-10-27 22:20:45 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:59:39 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,6 @@ LIBFLAGS=/NOI /NOE /PAGE:512
 
 SLOFILES =	\
         $(SLO)$/sw_SwStyleNameMapper.obj \
-        $(SLO)$/sw_acmplwrd.obj \
         $(SLO)$/sw_doc.obj \
         $(SLO)$/sw_docbm.obj \
         $(SLO)$/sw_docchart.obj \
