@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_facreg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:40:12 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:14:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -212,19 +212,6 @@ extern uno::Sequence< OUString > SAL_CALL XMLMetaImportComponent_getSupportedSer
 extern OUString SAL_CALL XMLMetaImportComponent_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL XMLMetaImportComponent_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception );
 
-#ifndef SVX_LIGHT
-// writer autotext event export
-extern uno::Sequence< OUString > SAL_CALL XMLAutoTextEventExport_getSupportedServiceNames() throw();
-extern OUString SAL_CALL XMLAutoTextEventExport_getImplementationName() throw();
-extern uno::Reference< uno::XInterface > SAL_CALL XMLAutoTextEventExport_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception );
-#endif // #ifndef SVX_LIGHT
-
-// writer autotext event import
-extern uno::Sequence< OUString > SAL_CALL XMLAutoTextEventImport_getSupportedServiceNames() throw();
-extern OUString SAL_CALL XMLAutoTextEventImport_getImplementationName() throw();
-extern uno::Reference< uno::XInterface > SAL_CALL XMLAutoTextEventImport_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception );
-
-
 // component register functionality only for shared lib
 #ifndef SVX_LIGHT
 
@@ -320,9 +307,6 @@ sal_Bool SAL_CALL component_writeInfo( void * pServiceManager, void * pRegistryK
             writeInfo( pKey, XMLMetaExportComponent_getImplementationName(), XMLMetaExportComponent_getSupportedServiceNames() );
             writeInfo( pKey, XMLMetaExportComponent_getImplementationName(), XMLMetaExportComponent_getSupportedServiceNames() );
 
-            // writer auto text events
-            writeInfo( pKey, XMLAutoTextEventExport_getImplementationName(), XMLAutoTextEventExport_getSupportedServiceNames() );
-            writeInfo( pKey, XMLAutoTextEventImport_getImplementationName(), XMLAutoTextEventImport_getSupportedServiceNames() );
         }
         catch (registry::InvalidRegistryException &)
         {
@@ -552,20 +536,6 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
                 XMLMetaImportComponent_getImplementationName(),
                 XMLMetaImportComponent_createInstance,
                 XMLMetaImportComponent_getSupportedServiceNames() );
-        }
-        else if( XMLAutoTextEventExport_getImplementationName().equalsAsciiL( pImplName, nImplNameLen ) )
-        {
-            xFactory = ::cppu::createSingleFactory( xMSF,
-                XMLAutoTextEventExport_getImplementationName(),
-                XMLAutoTextEventExport_createInstance,
-                XMLAutoTextEventExport_getSupportedServiceNames() );
-        }
-        else if( XMLAutoTextEventImport_getImplementationName().equalsAsciiL( pImplName, nImplNameLen ) )
-        {
-            xFactory = ::cppu::createSingleFactory( xMSF,
-                XMLAutoTextEventImport_getImplementationName(),
-                XMLAutoTextEventImport_createInstance,
-                XMLAutoTextEventImport_getSupportedServiceNames() );
         }
         if( xFactory.is())
         {
