@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:19:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:32:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -641,22 +641,17 @@ using namespace ::com::sun::star;
 /*N*/ ContentNode::ContentNode( SfxItemPool& rPool ) : aContentAttribs( rPool )
 /*N*/ {
 /*N*/   DBG_CTOR( EE_ContentNode, 0 );
-/*N*/   pWrongList = NULL;
 /*N*/ }
 
 /*N*/ ContentNode::ContentNode( const XubString& rStr, const ContentAttribs& rContentAttribs ) :
 /*N*/   XubString( rStr ), aContentAttribs( rContentAttribs )
 /*N*/ {
 /*N*/   DBG_CTOR( EE_ContentNode, 0 );
-/*N*/   pWrongList = NULL;
 /*N*/ }
 
 /*N*/ ContentNode::~ContentNode()
 /*N*/ {
 /*N*/   DBG_DTOR( EE_ContentNode, 0 );
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   delete pWrongList;
-/*N*/ #endif
 /*N*/ }
 
 /*N*/ void ContentNode::ExpandAttribs( USHORT nIndex, USHORT nNew, SfxItemPool& rItemPool )
@@ -760,13 +755,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( bResort )
 /*N*/       aCharAttribList.ResortAttribs();
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( pWrongList )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bSep = ( GetChar( nIndex ) == ' ' ) || IsFeature( nIndex );
-/*N*/   }
-/*N*/ #endif // !SVX_LIGHT
-/*N*/
 /*N*/ #ifdef EDITDEBUG
 /*N*/   DBG_ASSERT( CheckOrderedList( aCharAttribList.GetAttribs(), TRUE ), "Expand: Start-Liste verdreht" );
 /*N*/ #endif
@@ -851,11 +839,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if ( bResort )
 /*N*/       aCharAttribList.ResortAttribs();
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( pWrongList )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pWrongList->TextDeleted( nIndex, nDeleted );
-/*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/ #ifdef EDITDEBUG
 /*N*/   DBG_ASSERT( CheckOrderedList( aCharAttribList.GetAttribs(), TRUE ), "Collaps: Start-Liste verdreht" );
