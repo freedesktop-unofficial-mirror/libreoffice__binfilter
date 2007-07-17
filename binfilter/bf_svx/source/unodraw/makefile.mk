@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:02:11 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:48:14 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,6 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 
 SLOFILES =	\
         $(SLO)$/svx_UnoNamespaceMap.obj \
-        $(SLO)$/svx_UnoGraphicExporter.obj \
         $(SLO)$/svx_unopool.obj \
         $(SLO)$/svx_XPropertyTable.obj \
         $(SLO)$/svx_UnoNameItemTable.obj \
