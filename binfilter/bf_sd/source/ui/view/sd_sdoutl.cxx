@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdoutl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:45:52 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:24:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -109,8 +109,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/     mbRestrictSearchToSelection(false),
 /*N*/     mpObj(NULL),
 /*N*/   mpTextObj(NULL),
-/*N*/     mpParaObj(NULL),
-/*N*/     mpSearchItem(NULL)
+/*N*/     mpParaObj(NULL)
 /*N*/ {
 /*N*/   SetStyleSheetPool((SfxStyleSheetPool*) mpDrawDocument->GetStyleSheetPool());
 /*N*/   SetEditTextObjectPool( &pDoc->GetItemPool() );
@@ -165,14 +164,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       nCntrl &= ~EE_CNTRL_ONLINESPELLING;
 /*N*/
 /*N*/   SetControlWord(nCntrl);
-/*N*/
-/*N*/   Reference< XSpellChecker1 > xSpellChecker( LinguMgr::GetSpellChecker() );
-/*N*/   if ( xSpellChecker.is() )
-/*N*/       SetSpeller( xSpellChecker );
-/*N*/
-/*N*/   Reference< XHyphenator > xHyphenator( LinguMgr::GetHyphenator() );
-/*N*/   if( xHyphenator.is() )
-/*N*/       SetHyphenator( xHyphenator );
 /*N*/
 /*N*/   SetDefaultLanguage( Application::GetSettings().GetLanguage() );
 /*N*/ }
