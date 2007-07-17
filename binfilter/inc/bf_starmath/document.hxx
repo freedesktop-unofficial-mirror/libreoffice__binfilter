@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:13:03 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:48:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -195,7 +195,6 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
 
 public:
     TYPEINFO();
-    SFX_DECL_INTERFACE(SFX_INTERFACE_SMA_START+1);
     SFX_DECL_OBJECTFACTORY_DLL(SmDocShell, SM_MOD());
 
                 SmDocShell(SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED);
@@ -236,9 +235,6 @@ public:
 
 
     virtual     SfxItemPool& GetPool();
-
-    void        Execute( SfxRequest& rReq );
-    void        GetState(SfxItemSet &);
 
     virtual void SetVisArea (const Rectangle & rVisArea);
 
