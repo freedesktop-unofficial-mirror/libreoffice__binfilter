@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:28:18 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:05:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,9 +56,8 @@
 #include <bf_svx/adjitem.hxx>
 #endif
 
-#ifndef _SFX_BINDINGS_HXX //autogen
-#include <bf_sfx2/bindings.hxx>
-#endif
+#include <bf_sfx2/app.hxx>
+
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
@@ -91,12 +90,6 @@
 
 #ifndef _SWWAIT_HXX
 #include <swwait.hxx>
-#endif
-#ifndef _VIEW_HXX
-#include <view.hxx>         // fuer die aktuelle Sicht
-#endif
-#ifndef _EDTWIN_HXX
-#include <edtwin.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
@@ -133,14 +126,8 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _PVIEW_HXX
-#include <pview.hxx>
-#endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
-#endif
-#ifndef _SRCVIEW_HXX
-#include <srcview.hxx>
 #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
@@ -170,15 +157,7 @@
 using namespace rtl;
 using namespace ::com::sun::star::uno;
 
-#define SwDocShell
-#ifndef _ITEMDEF_HXX
-#include <itemdef.hxx>
-#endif
-
 namespace binfilter {
-#ifndef _SWSLOTS_HXX
-#include <swslots.hxx>
-#endif
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::container;
@@ -198,15 +177,6 @@ using namespace ::com::sun::star::container;
 /*N*/   SwTmpPersist( SwDocShell& rDSh ) : pDShell( &rDSh ) {}
 /*N*/};
 
-
-/*N*/ SFX_IMPL_INTERFACE( SwDocShell, SfxObjectShell, SW_RES(0) )
-/*N*/ {
-/*N*/     if ( SvtModuleOptions().IsWriter() )
-/*N*/     {
-/*N*/         SwGlobalDocShell::Factory().RegisterHelpFile(String::CreateFromAscii("swriter.svh"));
-/*N*/         SwGlobalDocShell::Factory().RegisterHelpPIFile(String::CreateFromAscii("swriter.svh"));
-/*N*/     }
-/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Aller Filter registrieren
@@ -435,15 +405,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
  /*?*/      case SFX_CREATE_MODE_PREVIEW:
  /*?*/      default:
  /*?*/          {
- /*?*/              if( pDoc->ContainsMSVBasic() )
- /*?*/              {DBG_BF_ASSERT(0, "STRIP");//STRIP001
- /*?*/              }
- /*?*/
- /*?*/              if( !bXML &&
- /*?*/                  !ISA( SwGlobalDocShell ) && !ISA( SwWebDocShell ) &&
- /*?*/                  SFX_CREATE_MODE_EMBEDDED != GetCreateMode() )
- /*?*/                  AddXMLAsZipToTheStorage( *pIo->GetStorage() );
- /*?*/
  /*?*/              // TabellenBox Edit beenden!
  /*?*/              if( pWrtShell )
  /*?*/                  pWrtShell->EndAllTblBoxEdit();
@@ -478,11 +439,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
  /*?*/  }
  /*?*/  SetError( nErr ? nErr : nVBWarning );
  /*?*/
- /*?*/  SfxViewFrame* pFrm = pWrtShell ? pWrtShell->GetView().GetViewFrame() : 0;
- /*?*/  if( pFrm )
- /*?*/  {
- /*?*/      pFrm->GetBindings().SetState( SfxStringItem( SID_DOC_MODIFIED, ' ' ));
- /*?*/  }
  /*?*/  return !IsError( nErr );
 /*?*/ }
 
@@ -661,25 +617,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/ void SwDocShell::SetVisArea( const Rectangle &rRect )
 /*N*/ {
 /*N*/   Rectangle aRect( rRect );
-/*N*/   if ( pView )
-/*N*/   {
-/*?*/       Size aSz( pView->GetDocSz() );
-/*?*/       aSz.Width() += DOCUMENTBORDER; aSz.Height() += DOCUMENTBORDER;
-/*?*/       long nMoveX = 0, nMoveY = 0;
-/*?*/       if ( aRect.Right() > aSz.Width() )
-/*?*/           nMoveX = aSz.Width() - aRect.Right();
-/*?*/       if ( aRect.Bottom() > aSz.Height() )
-/*?*/           nMoveY = aSz.Height() - aRect.Bottom();
-/*?*/       aRect.Move( nMoveX, nMoveY );
-/*?*/       nMoveX = aRect.Left() < 0 ? -aRect.Left() : 0;
-/*?*/       nMoveY = aRect.Top()  < 0 ? -aRect.Top()  : 0;
-/*?*/       aRect.Move( nMoveX, nMoveY );
-/*?*/
-/*?*/       //Ruft das SfxInPlaceObject::SetVisArea()!
-/*?*/       pView->SetVisArea( aRect, TRUE );
-/*N*/   }
-/*N*/   else
-/*N*/       SfxInPlaceObject::SetVisArea( aRect );
+         SfxInPlaceObject::SetVisArea( aRect );
 /*N*/ }
 
 
@@ -745,17 +683,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
-
-
-/*N*/ void SwDocShell::GetState(SfxItemSet& rSet)
-/*N*/ {
-/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:   OLE-Hdls
- --------------------------------------------------------------------*/
-
 
 /*N*/ IMPL_LINK( SwDocShell, Ole2ModifiedHdl, void *, p )
 /*N*/ {
@@ -869,12 +796,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   }
 /*N*/   FinishedLoading( SFX_LOADED_MAINDOCUMENT |
 /*N*/                   ( bSttTimer ? 0 : SFX_LOADED_IMAGES ));
-    // jetzt noch testen, ob die SourceView noch geladen werden muss
-/*N*/   SfxViewFrame* pVFrame = SfxViewFrame::GetFirst(this);
-/*N*/   if(pVFrame)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxViewShell* pShell = pVFrame->GetViewShell();
-/*N*/   }
 /*N*/ }
 
 
