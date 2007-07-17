@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outliner.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:32:19 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:53:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -103,7 +103,6 @@ class ParagraphList;
 class OutlinerParaObject;
 class SvxBulletItem;
 class SvxFont;
-class SvxSearchItem;
 class SvxFieldItem;
 class OLUndoRemove;
 class XPolyPolygon;
