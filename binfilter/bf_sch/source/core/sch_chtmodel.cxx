@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:25:35 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:48:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,10 +113,6 @@ class SbxArray;
 #include <bf_svx/xlineit0.hxx>
 #endif
 
-// header for XHyphenator
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-#include <com/sun/star/linguistic2/XHyphenator.hpp>
-#endif
 // header for LinguMgr
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
@@ -403,14 +399,6 @@ using namespace ::com::sun::star;
 /*N*/             SetLanguage( aLinguOptions.nDefaultLanguage,     EE_CHAR_LANGUAGE );
 /*N*/             SetLanguage( aLinguOptions.nDefaultLanguage_CJK, EE_CHAR_LANGUAGE_CJK );
 /*N*/             SetLanguage( aLinguOptions.nDefaultLanguage_CTL, EE_CHAR_LANGUAGE_CTL );
-/*N*/         }
-/*N*/
-/*N*/         // set hyphenator
-/*N*/         Reference< XHyphenator > xHyphenator( LinguMgr::GetHyphenator());
-/*N*/         if( xHyphenator.is() )
-/*N*/         {
-/*N*/             rDrawOutliner.SetHyphenator( xHyphenator );
-/*N*/             pOutliner->SetHyphenator( xHyphenator );
 /*N*/         }
 /*N*/     }
 /*N*/   catch( uno::Exception aEx )
