@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docshdrw.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:59:10 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:05:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,8 +93,6 @@ namespace binfilter {
 /*N*/       PutItem( SvxLineEndListItem( pDrDoc->GetLineEndList() ) );
 /*N*/
 /*N*/       Outliner& rOutliner = pDrDoc->GetDrawOutliner();
-    /*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XHyphenator> xHyphenator( ::binfilter::GetHyphenator() );
-/*N*/       rOutliner.SetHyphenator( xHyphenator );
 /*N*/   }
 /*N*/   else
 /*N*/       PutItem( SvxColorTableItem( OFF_APP()->GetStdColorTable() ));
