@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docinf.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:57:41 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:35:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,16 +39,19 @@
 #include <svtools/hint.hxx>
 #endif
 
+#include <svtools/stritem.hxx>
+
 class SvStream;
 
-#ifndef _TIMESTAMP_HXX
-#include <tools/timestamp.hxx>
-#endif
+#include "timestamp.hxx"
+
 class SvStorage;
 namespace binfilter {
 
 // SfxStamp changed to "tools/TimeStamp" !!!
 typedef TimeStamp SfxStamp ;
+
+#define TIMESTAMP_INVALID_DATETIME      ( DateTime ( Date ( 1, 1, 1601 ), Time ( 0, 0, 0 ) ) )  /// Invalid value for date and time to create invalid instance of TimeStamp.
 
 class SfxDocUserKey
 {
@@ -255,6 +258,20 @@ public:
 };
 
 DECL_PTRHINT(/*empty*/, SfxDocumentInfoHint, SfxDocumentInfo);
+
+// class SfxDocumentInfoItem ---------------------------------------------
+
+class SfxDocumentInfoItem : public SfxStringItem
+{
+private:
+    SfxDocumentInfo         aDocInfo;
+    FASTBOOL                bHasTemplate;
+    FASTBOOL                bOwnFormat;
+
+public:
+    TYPEINFO();
+    SfxDocumentInfoItem();
+};
 
 }//end of namespace binfilter
 #endif
