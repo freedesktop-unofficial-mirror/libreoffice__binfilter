@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:12:05 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:14:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,15 +69,6 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _SWCLI_HXX
-#include <swcli.hxx>
-#endif
-#ifndef _WVIEW_HXX
-#include <wview.hxx>
-#endif
-#ifndef _EDTWIN_HXX
-#include <edtwin.hxx>
-#endif
 #ifndef _VISCRS_HXX //autogen wg. SwSelPaintRects
 #include <viscrs.hxx>
 #endif
@@ -138,116 +129,7 @@ namespace binfilter {
 /*N*/                            const SwRect *pFlyPrtRect,
 /*N*/                            const SwRect *pFlyFrmRect )
 /*N*/ {
-/*N*/   //Einstellen der Skalierung am Client. Diese ergibt sich aus der Differenz
-/*N*/   //zwischen der VisArea des Objektes und der ObjArea.
-/*N*/   ASSERT( xObj.Is(), "ObjectRef not  valid" );
-/*N*/
-/*N*/   SfxInPlaceClientRef xCli = GetView().FindIPClient( xObj, &GetView().GetEditWin() );
-/*N*/   if ( !xCli.Is() || !xCli->GetEnv() )
-/*N*/   {
-/*N*/       //Das kann ja wohl nur ein nicht aktives Objekt sein. Diese bekommen
-/*N*/       //auf Wunsch die neue Groesse als VisArea gesetzt (StarChart)
-/*N*/       if( SVOBJ_MISCSTATUS_SERVERRESIZE & xObj->GetMiscStatus() )
-/*N*/       {
-/*N*/           SwRect aRect( pFlyPrtRect ? *pFlyPrtRect
-/*N*/                       : GetAnyCurRect( RECT_FLY_PRT_EMBEDDED, 0, &xObj ));
-/*N*/           if( !aRect.IsEmpty() )
-/*N*/               xObj->SetVisArea( OutputDevice::LogicToLogic(
-/*N*/                           aRect.SVRect(), MAP_TWIP, xObj->GetMapUnit() ));
-/*N*/           return;
-/*N*/       }
-/*N*/       if ( SVOBJ_MISCSTATUS_ALWAYSACTIVATE & xObj->GetMiscStatus() ||
-/*N*/            SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE & xObj->GetMiscStatus() )
-/*N*/       {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xCli = new SwOleClient( &GetView(), &GetView().GetEditWin() );
-/*N*/       }
-/*N*/       else
-/*N*/           return;
-/*N*/   }
-/*N*/
-/*N*/   Size aVisArea( xObj->GetVisArea().GetSize() );
-/*N*/   BOOL bSetScale100 = TRUE;
-/*N*/   SvContainerEnvironment *pEnv = xCli->GetEnv();
-/*N*/
-/*N*/   // solange keine vernuenftige Size vom Object kommt, kann nichts
-/*N*/   // skaliert werden
-/*N*/   if( aVisArea.Width() && aVisArea.Height() )
-/*N*/   {
-/*N*/       const MapMode aTmp( MAP_TWIP );
-/*N*/       aVisArea = OutputDevice::LogicToLogic( aVisArea, xObj->GetMapUnit(), aTmp);
-/*N*/       Size aObjArea;
-/*N*/       if ( pFlyPrtRect )
-/*?*/           aObjArea = pFlyPrtRect->SSize();
-/*N*/       else
-/*N*/           aObjArea = GetAnyCurRect( RECT_FLY_PRT_EMBEDDED, 0, &xObj ).SSize();
-/*N*/
-/*N*/       // differ the aObjArea and aVisArea by 1 Pixel then set new VisArea
-/*N*/       long nX, nY;
-/*N*/       SwSelPaintRects::Get1PixelInLogic( *this, &nX, &nY );
-/*N*/       if( !( aVisArea.Width() - nX <= aObjArea.Width() &&
-/*N*/              aVisArea.Width() + nX >= aObjArea.Width() &&
-/*N*/              aVisArea.Height()- nY <= aObjArea.Height()&&
-/*N*/              aVisArea.Height()+ nY >= aObjArea.Height() ))
-/*N*/       {
-/*N*/           if( SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE & xObj->GetMiscStatus() )
-/*N*/           {
-/*N*/               //This type of objects should never be resized.
-/*N*/               //If this request comes from the Writer core (inaktive Object
-/*N*/               //ist resized), the Object should be resized too.
-/*N*/               //If this request comes from the Object itself, the Frame
-/*N*/               //in the Writer core should be resized.
-/*N*/               if ( pFlyPrtRect )      //Request from core?
-/*N*/               {
-/*?*/                   xObj->SetVisArea( OutputDevice::LogicToLogic(
-/*?*/                       pFlyPrtRect->SVRect(), MAP_TWIP, xObj->GetMapUnit() ));
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*N*/                   SwRect aTmp( Point( LONG_MIN, LONG_MIN ), aVisArea );
-/*N*/                   RequestObjectResize( aTmp, xObj );
-/*N*/               }
-/*N*/               //Der Rest erledigt sich, weil wir eh wiederkommen sollten, evtl.
-/*N*/               //sogar rekursiv.
-/*N*/               return;
-/*N*/           }
-/*N*/           else
-/*?*/           {
-/*?*/               const Fraction aScaleWidth ( aObjArea.Width(),  aVisArea.Width() );
-/*?*/               const Fraction aScaleHeight( aObjArea.Height(), aVisArea.Height());
-/*?*/               pEnv->SetSizeScale( aScaleWidth, aScaleHeight );
-/*?*/               bSetScale100 = FALSE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*?*/
-/*?*/   if( bSetScale100 )
-/*?*/   {
-/*?*/       const Fraction aScale( 1, 1 );
-/*?*/       pEnv->SetSizeScale( aScale, aScale );
-/*?*/   }
-/*?*/
-/*?*/   //Jetzt ist auch der guenstige Zeitpunkt die ObjArea einzustellen.
-/*?*/   //Die Scalierung muss beruecksichtigt werden.
-/*?*/   SwRect aArea;
-/*?*/   if ( pFlyPrtRect )
-/*?*/   {
-/*?*/       aArea = *pFlyPrtRect;
-/*?*/       aArea += pFlyFrmRect->Pos();
-/*?*/   }
-/*?*/   else
-/*?*/   {
-/*?*/       aArea = GetAnyCurRect( RECT_FLY_PRT_EMBEDDED, 0, &xObj );
-/*?*/       aArea.Pos() += GetAnyCurRect( RECT_FLY_EMBEDDED, 0, &xObj ).Pos();
-/*?*/   }
-/*?*/   aArea.Width ( Fraction( aArea.Width()  ) / pEnv->GetScaleWidth() );
-/*?*/   aArea.Height( Fraction( aArea.Height() ) / pEnv->GetScaleHeight());
-/*?*/   pEnv->SetObjArea( aArea.SVRect() );
-/*?*/
-/*?*/   if ( SVOBJ_MISCSTATUS_ALWAYSACTIVATE & xObj->GetMiscStatus() )
-/*?*/   {
-/*?*/       xObj->DoConnect( xCli );
-/*?*/       xObj->DoVerb();
-/*?*/   }
+            DBG_ERROR("Split!");
 /*N*/ }
 
 /*N*/ SwWrtShell::SwWrtShell( SwDoc& rDoc, Window *pWin, SwView &rShell,
