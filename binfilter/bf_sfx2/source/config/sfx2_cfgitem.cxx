@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_cfgitem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:07:21 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:42:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -111,7 +111,7 @@ namespace binfilter {
 
 /*?*/ String SfxConfigItem::GetStreamName( USHORT nType )
 /*?*/ {
-/*?*/     return SfxConfigManagerImExport_Impl::GetStreamName( nType );
+/*?*/     return String();
 /*?*/ }
 
 /*N*/ void SfxConfigItem::Connect( SfxConfigManager* pMgr )
