@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_tablink.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:03:54 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:21:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,6 @@
 
 #include "docsh.hxx"
 #include "globstr.hrc"
-#include "undoblk.hxx"
 #include "hints.hxx"
 namespace binfilter {
 
@@ -155,8 +154,6 @@ namespace binfilter {
 /*N*/   ScDocument* pDoc = pDocShell->GetDocument();
 /*N*/   pDoc->SetInLinkUpdate( TRUE );
 /*N*/
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
-/*N*/
 /*N*/   //  wenn neuer Filter ausgewaehlt wurde, Optionen vergessen
 /*N*/   if ( rNewFilter != aFilterName )
 /*?*/       aOptions.Erase();
@@ -182,12 +179,7 @@ namespace binfilter {
 /*N*/   if (!aNewOpt.Len())
 /*N*/       aNewOpt = aOptions;
 /*N*/
-/*N*/   //  Undo...
-/*N*/
-/*N*/   ScDocument* pUndoDoc = NULL;
 /*N*/   BOOL bFirst = TRUE;
-/*N*/   if (bAddUndo && bUndo)
-/*N*/       pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
 /*N*/
 /*N*/   //  Tabellen kopieren
 /*N*/
@@ -208,22 +200,6 @@ namespace binfilter {
 /*N*/       if (nMode && pDoc->GetLinkDoc(nTab)==aFileName)
 /*N*/       {
 /*N*/           String aTabName = pDoc->GetLinkTab(nTab);
-/*N*/
-/*N*/           //  Undo
-/*N*/
-/*N*/           if (bAddUndo && bUndo)
-/*N*/           {
-/*N*/               if (bFirst)
-/*N*/                   pUndoDoc->InitUndo( pDoc, nTab, nTab, TRUE, TRUE );
-/*N*/               else
-/*N*/                   pUndoDoc->AddUndoTab( nTab, nTab, TRUE, TRUE );
-/*N*/               bFirst = FALSE;
-/*N*/               ScRange aRange(0,0,nTab,MAXCOL,MAXROW,nTab);
-/*N*/               pDoc->CopyToDocument(aRange, IDF_ALL, FALSE, pUndoDoc);
-/*N*/               pUndoDoc->TransferDrawPage( pDoc, nTab, nTab );
-/*N*/               pUndoDoc->SetLink( nTab, nMode, aFileName, aFilterName,
-/*N*/                   aOptions, aTabName, GetRefreshDelay() );
-/*N*/           }
 /*N*/
 /*N*/           //  Tabellenname einer ExtDocRef anpassen
 /*N*/
@@ -284,12 +260,6 @@ namespace binfilter {
 /*N*/
 /*N*/ //    pSrcShell->DoClose();
 /*N*/   aRef->DoClose();
-/*N*/
-/*N*/   //  Undo
-/*N*/
-/*N*/   if (bAddUndo && bUndo)
-/*N*/       pDocShell->GetUndoManager()->AddUndoAction(
-/*N*/                   new ScUndoRefreshLink( pDocShell, pUndoDoc ) );
 /*N*/
 /*N*/   //  Paint (koennen mehrere Tabellen sein)
 /*N*/
