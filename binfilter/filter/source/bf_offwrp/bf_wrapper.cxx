@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_wrapper.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:23:08 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:17:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,15 +45,10 @@
 #include <bf_starmath/smdll.hxx>
 #include <bf_svx/svdetc.hxx>
 #include <bf_svx/itemdata.hxx> //STRIP002
-#include <bf_sfx2/imagemgr.hxx>
 #include <framework/imageproducer.hxx>
 
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <svtools/moduleoptions.hxx>
-#endif
-
-#ifndef INCLUDED_SVTOOLS_HELPOPT_HXX
-#include <svtools/helpopt.hxx>
 #endif
 
 // #i30187#
@@ -71,7 +66,6 @@ static SwDLL*               pSwDLL = 0L;
 static SdDLL*               pSdDLL = 0L;
 static ScDLL*               pScDLL = 0L;
 static SchDLL*              pSchDLL = 0L;
-static SimDLL*              pSimDLL = 0L;
 static SmDLL*               pSmDLL = 0L;
 static bf_OfficeWrapper*    pOfficeWrapper = 0L;
 
@@ -127,8 +121,7 @@ extern "C"{
 //added by jmeng for i31251 end
 bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xFactory )
 :   aListeners( aMutex ),
-    pApp( new OfficeApplication ),
-    pSfxHelp( 0 )
+    pApp( new OfficeApplication )
 {
     SvtModuleOptions aMOpt;
 
@@ -168,66 +161,12 @@ bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xF
 
 void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& aArguments ) throw( Exception )
 {
-    // Help instance it must be destroyed before Deinit (sends AppEvent in DTOR)
-    pSfxHelp = new SfxHelp;
-
-    rtl::OUString aDescription;
-
-    if ( aArguments.getLength() > 0 )
-    {
-        aArguments[0] >>= aDescription;
-    }
-
-    if ( aDescription.getLength())
-    {
-        sal_Int32   index;
-        sal_Int32   lastIndex = 0;
-
-        do
-        {
-            index = aDescription.indexOf((sal_Unicode) ',', lastIndex);
-            ::rtl::OUString token = (index == -1) ? aDescription.copy(lastIndex) : aDescription.copy(lastIndex, index - lastIndex);
-            lastIndex = index + 1;
-            sal_Int32 eindex = token.indexOf((sal_Unicode)'=');
-            ::rtl::OUString left = token.copy(0, eindex).toAsciiLowerCase().trim();
-            ::rtl::OUString right = token.copy(eindex + 1).trim();
-
-            if( left.equals( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "ticket" ))))
-            {
-                pSfxHelp->SetTicket( right );
-            }
-
-            if(left.equals( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "user" ))))
-            {
-                pSfxHelp->SetUser( right );
-            }
-        }
-
-        while( index != -1 );
-    }
-
-    ::framework::SetImageProducer( GetImage );
-
-    Application::SetHelp( pSfxHelp );
-
-    if ( SvtHelpOptions().IsExtendedHelp() )
-        Help::EnableBalloonHelp();
-    else
-        Help::DisableBalloonHelp();
-
-    if ( SvtHelpOptions().IsHelpTips() )
-        Help::EnableQuickHelp();
-    else
-        Help::DisableQuickHelp();
 }
 
 bf_OfficeWrapper::~bf_OfficeWrapper()
 {
     {
         // all ConfigItems must be destroyed before destroying the SfxApp
-        delete pSfxHelp;
-         pSfxHelp = NULL;
-
         SvtModuleOptions aMOpt;
 
         if ( aMOpt.IsModuleInstalled( SvtModuleOptions::E_SCHART ) )
