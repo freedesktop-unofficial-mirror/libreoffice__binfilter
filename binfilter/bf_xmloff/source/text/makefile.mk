@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:05:07 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:15:44 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -70,9 +70,6 @@ SLOFILES =	\
         $(SLO)$/xmloff_txtstyli.obj \
         $(SLO)$/xmloff_txtvfldi.obj \
         $(SLO)$/xmloff_XMLAutoMarkFileContext.obj \
-        $(SLO)$/xmloff_XMLAutoTextEventExport.obj \
-        $(SLO)$/xmloff_XMLAutoTextEventImport.obj \
-        $(SLO)$/xmloff_XMLAutoTextContainerEventImport.obj \
         $(SLO)$/xmloff_XMLChangedRegionImportContext.obj \
         $(SLO)$/xmloff_XMLChangeElementImportContext.obj \
         $(SLO)$/xmloff_XMLChangeInfoContext.obj \
