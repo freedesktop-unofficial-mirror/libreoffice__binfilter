@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editview.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:31:54 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:50:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@ namespace binfilter {
 class EditEngine;
 class ImpEditEngine;
 class ImpEditView;
-class SvxSearchItem;
 class SvxFieldItem;
 class DropEvent;
 class CommandEvent;
