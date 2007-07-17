@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schlib.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:38:04 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:48:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,15 +68,6 @@ namespace binfilter {
 // from macro: void __EXPORT SchChartDocShell::InitFactory()
 /*?*/ {
 /*?*/   ULONG nFormat50 = SOT_FORMATSTR_ID_STARCHART_50;
-/*
-    SFX_SIMPLE_FILTER_REGISTRATION( SCH_FORMAT_STR_50_FORMAT,
-                                    String( RTL_CONSTASCII_USTRINGPARAM( "*.sds" )),
-                                    SFX_FILTER_OWN | SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-                                    nFormat50,
-                                    String( RTL_CONSTASCII_USTRINGPARAM( "SVsh0.sds" )),
-                                    SCH_FORMAT_STR_50_FORMAT,
-                                    RID_DOCWINDOW_ICON, String(), String());
-*/
 /*?*/   SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
 /*?*/   rFactory.SetDocumentServiceName(String::CreateFromAscii("com.sun.star.chart.ChartDocument"));
 /*?*/ }
@@ -177,68 +168,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*?*/ ModalDialog* __EXPORT SchDLL::CreateAutoPilotDlg(Window* pParent,
-/*?*/                                       SchMemChart* pData,
-/*?*/                                       const SfxItemSet& rInAttrs,
-/*?*/                                       SfxItemSet& rOutAttrs,
-/*?*/                                       BOOL bPrePage)
-/*?*/ {
-/*?*/   ModalDialog* (__LOADONCALLAPI*fp)(Window*, SchMemChart*, const SfxItemSet&, SfxItemSet&, BOOL);
-/*?*/
-/*?*/   fp = (ModalDialog*(__LOADONCALLAPI*)(Window*, SchMemChart*, const SfxItemSet&, SfxItemSet&, BOOL))GetFuncSch("SchCreateDiagramAutoPilotDlg");
-/*?*/
-/*?*/   if (fp)
-/*?*/   {
-/*?*/   return fp(pParent, pData, rInAttrs, rOutAttrs, bPrePage);
-/*?*/   }
-/*?*/   else return 0;
-/*?*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*?*/ void __EXPORT SchDLL::ChangeChartData(ModalDialog* pDlg,
-/*?*/                            SchMemChart* pData)
-/*?*/ {
-/*?*/   void (__LOADONCALLAPI*fp)(ModalDialog*, SchMemChart*);
-/*?*/
-/*?*/   fp = (void (__LOADONCALLAPI*)(ModalDialog*, SchMemChart*))GetFuncSch("SchChangeChartData");
-/*?*/
-/*?*/   if (fp)
-/*?*/   {
-/*?*/   fp(pDlg, pData);
-/*?*/   }
-/*?*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*?*/ SfxTabDialog* __EXPORT SchDLL::CreateOptionsDlg(Window* pParent,
-/*?*/                                      const SfxItemSet& rInAttrs,
-/*?*/                                      XOutdevItemPool* pItemPool)
-/*?*/ {
-/*?*/   SfxTabDialog* (__LOADONCALLAPI*fp)(Window*, const SfxItemSet&, XOutdevItemPool*);
-/*?*/
-/*?*/   fp = (SfxTabDialog* (__LOADONCALLAPI*)(Window*, const SfxItemSet&, XOutdevItemPool*))GetFuncSch("SchCreateOptionsDlg");
-/*?*/
-/*?*/   if (fp)
-/*?*/   {
-/*?*/   return fp(pParent, rInAttrs, pItemPool);
-/*?*/   }
-/*?*/   else return 0;
-/*?*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 /*N*/ SchMemChart* __EXPORT SchDLL::GetChartData (SvInPlaceObjectRef aIPObj)
 /*N*/ {
