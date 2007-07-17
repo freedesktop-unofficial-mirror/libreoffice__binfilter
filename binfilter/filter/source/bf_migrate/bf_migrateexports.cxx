@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_migrateexports.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:22:46 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:16:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,6 +44,9 @@
 #ifndef _BF_MIGRATEFILTER_HXX
 #include <bf_migratefilter.hxx>
 #endif
+
+#include <bf_sfx2/objuno.hxx>
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -76,11 +79,19 @@ sal_Bool SAL_CALL component_writeInfo(void* pServiceManager, void* pRegistryKey)
             xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(bf_MigrateFilter_getImplementationName());
             xNewKey = xNewKey->createKey(OUString::createFromAscii("/UNO/SERVICES"));
 
-            const Sequence< OUString > & rSNL = bf_MigrateFilter_getSupportedServiceNames();
-            const OUString * pArray = rSNL.getConstArray();
+            Sequence< OUString > rSNL = bf_MigrateFilter_getSupportedServiceNames();
 
-            for(sal_Int32 nPos(rSNL.getLength()); nPos--; )
-                xNewKey->createKey(pArray[nPos]);
+            sal_Int32 nPos;
+            for(nPos=rSNL.getLength(); nPos--; )
+                xNewKey->createKey(rSNL[nPos]);
+
+            // standalone document info
+            xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticImplementationName());
+            xNewKey = xNewKey->createKey(OUString::createFromAscii("/UNO/SERVICES"));
+
+            rSNL = binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticSupportedServiceNames();
+            for(nPos=rSNL.getLength(); nPos--; )
+                xNewKey->createKey(rSNL[nPos]);
 
             return sal_True;
         }
@@ -106,6 +117,25 @@ void* SAL_CALL component_getFactory(const sal_Char* pImplName, void* pServiceMan
             reinterpret_cast< XMultiServiceFactory * >(pServiceManager),
             OUString::createFromAscii(pImplName),
             bf_MigrateFilter_createInstance, bf_MigrateFilter_getSupportedServiceNames()));
+
+        if(xFactory.is())
+        {
+            xFactory->acquire();
+            pRet = xFactory.get();
+        }
+
+        // init LegacyServiceFactory
+        legacysmgr_component_getFactory(
+            pImplName,
+            reinterpret_cast< XMultiServiceFactory *>(pServiceManager),
+            reinterpret_cast<XRegistryKey*> (pRegistryKey) );
+    }
+    else if(pServiceManager && implName.equals(SfxStandaloneDocumentInfoObject::impl_getStaticImplementationName()))
+    {
+        Reference< XSingleServiceFactory > xFactory(createSingleFactory(
+            reinterpret_cast< XMultiServiceFactory * >(pServiceManager),
+            OUString::createFromAscii(pImplName),
+            bf_BinaryDocInfo_createInstance, binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticSupportedServiceNames()));
 
         if(xFactory.is())
         {
