@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_docshel1.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:47:13 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:49:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,17 +45,13 @@
 #include <bf_svx/svxids.hrc>
 #endif
 
-
-#ifndef _SFXDISPATCH_HXX
-#include <bf_sfx2/dispatch.hxx>
-#endif
+#include <bf_sfx2/app.hxx>
 
 #include "app.hrc"
 #include "strings.hrc"
 #include "res_bmp.hrc"
 #include "docshell.hxx"
 
-#include "viewshel.hxx"
 namespace binfilter {
 
 /*************************************************************************
@@ -159,15 +155,11 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( !pPage || aSize != pPage->GetSize() )
 /*N*/           {
-/*N*/               SfxViewFrame* pViewFrame = GetFrame();
-/*N*/               if( pViewFrame )
-/*N*/                   pViewFrame->GetDispatcher()->Execute( SID_TOOL_SELECT,
-/*N*/                                                         SFX_CALLMODE_SYNCHRON );
 /*N*/               pChDoc->ResizePage(aSize);
 /*N*/
 /*N*/                 // notify the controller
 /*N*/                 // note: the controller is only available in in-place
-/*N*/                 Broadcast( SchVisAreaChangedHint( rRect ) );
+/*N*/                 // Broadcast( SchVisAreaChangedHint( rRect ) );
 /*N*/           }
 /*N*/       }
 /*N*/   }
