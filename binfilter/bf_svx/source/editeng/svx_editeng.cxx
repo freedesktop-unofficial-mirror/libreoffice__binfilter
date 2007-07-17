@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:19:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:32:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #define USE_SVXFONT
 
 #define _SVSTDARR_USHORTS
-
+#include <svtools/svstdarr.hxx>
 
 
 #ifndef _SV_WINDOW_HXX
@@ -77,10 +77,6 @@
 
 
 
-
-#ifndef SVX_LIGHT
-#include <srchdlg.hxx>
-#endif
 
 #if OSL_DEBUG_LEVEL > 1
 #endif
@@ -525,15 +521,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pImpEditEngine->GetNotifyHdl();
 /*N*/ }
 
-/*N*/ void EditEngine::SetStatusEventHdl( const Link& rLink )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   pImpEditEngine->SetStatusEventHdl( rLink );
-/*N*/ }
-
-
-
-
 /*N*/ void EditEngine::SetBeginMovingParagraphsHdl( const Link& rLink )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -775,49 +762,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/               pImpEditEngine->UpdateViews( pImpEditEngine->GetActiveView() );
 /*N*/           }
 /*N*/       }
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/       sal_Bool bSpellingChanged = nChanges & EE_CNTRL_ONLINESPELLING ? sal_True : sal_False;
-/*N*/       sal_Bool bRedLinesChanged = nChanges & EE_CNTRL_NOREDLINES ? sal_True : sal_False;
-/*N*/
-/*N*/       if ( bSpellingChanged || bRedLinesChanged )
-/*N*/       {
-/*N*/           pImpEditEngine->StopOnlineSpellTimer();
-/*N*/           if ( bSpellingChanged && ( nWord & EE_CNTRL_ONLINESPELLING ) )
-/*N*/           {
-/*?*/               // WrongListen anlegen, Timer starten...
-/*?*/               sal_uInt16 nNodes = pImpEditEngine->GetEditDoc().Count();
-/*?*/               for ( sal_uInt16 n = 0; n < nNodes; n++ )
-/*?*/               {
-/*?*/                   ContentNode* pNode = pImpEditEngine->GetEditDoc().GetObject( n );
-/*?*/                   pNode->CreateWrongList();
-/*?*/               }
-/*?*/               pImpEditEngine->StartOnlineSpellTimer();
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               long nY = 0;
-/*N*/               sal_uInt16 nNodes = pImpEditEngine->GetEditDoc().Count();
-/*N*/               for ( sal_uInt16 n = 0; n < nNodes; n++ )
-/*N*/               {
-/*N*/                   ContentNode* pNode = pImpEditEngine->GetEditDoc().GetObject( n );
-/*N*/                   ParaPortion* pPortion = pImpEditEngine->GetParaPortions().GetObject( n );
-/*N*/                   sal_Bool bWrongs = ( bSpellingChanged || ( nWord & EE_CNTRL_ONLINESPELLING ) ) ? pNode->GetWrongList()->HasWrongs() : sal_False;
-/*N*/                   if ( bSpellingChanged )         // Also aus
-/*?*/                       pNode->DestroyWrongList();  // => vorm Paint weghaun.
-/*N*/                   if ( bWrongs )
-/*N*/                   {
-/*?*/                       pImpEditEngine->aInvalidRec.Left() = 0;
-/*?*/                       pImpEditEngine->aInvalidRec.Right() = pImpEditEngine->GetPaperSize().Width();
-/*?*/                       pImpEditEngine->aInvalidRec.Top() = nY+1;
-/*?*/                       pImpEditEngine->aInvalidRec.Bottom() = nY+pPortion->GetHeight()-1;
-/*?*/                       pImpEditEngine->UpdateViews( pImpEditEngine->pActiveView );
-/*N*/                   }
-/*N*/                   nY += pPortion->GetHeight();
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/ #endif // !SVX_LIGHT
 /*N*/   }
 /*N*/ }
 
@@ -1030,18 +974,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   pImpEditEngine->EraseVirtualDevice();
 /*N*/ }
 
-/*N*/ void EditEngine::SetSpeller( Reference< XSpellChecker1 >  &xSpeller )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   pImpEditEngine->SetSpeller( xSpeller );
-/*N*/ }
-
-/*N*/ void EditEngine::SetHyphenator( Reference< XHyphenator > & xHyph )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   pImpEditEngine->SetHyphenator( xHyph );
-/*N*/ }
-
 /*N*/ void EditEngine::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -1133,33 +1065,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   if ( bChanges )
 /*N*/       pImpEditEngine->FormatAndUpdate();
 /*N*/   return bChanges;
-/*N*/ }
-
-
-/*N*/ sal_Bool EditEngine::HasOnlineSpellErrors() const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   sal_uInt16 nNodes = pImpEditEngine->GetEditDoc().Count();
-/*N*/   for ( sal_uInt16 n = 0; n < nNodes; n++ )
-/*N*/   {
-/*N*/       ContentNode* pNode = pImpEditEngine->GetEditDoc().GetObject( n );
-/*N*/       if ( pNode->GetWrongList() && pNode->GetWrongList()->Count() )
-/*N*/           return sal_True;
-/*N*/   }
-/*N*/ #endif // !SVX_LIGHT
-/*N*/   return sal_False;
-/*N*/ }
-
-/*N*/ void EditEngine::CompleteOnlineSpelling()
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   if ( pImpEditEngine->GetStatus().DoOnlineSpelling() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImpEditEngine->StopOnlineSpellTimer();
-/*N*/   }
-/*N*/ #endif SVX_LIGHT
 /*N*/ }
 
 /*N*/ USHORT EditEngine::FindParagraph( long nDocPosY )
