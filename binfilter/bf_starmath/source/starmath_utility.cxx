@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_utility.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:58:35 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:26:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,20 +41,11 @@
 #endif
 
 #include <vcl/virdev.hxx>
-
+#include <tools/stream.hxx>
 #include "starmath.hrc"
+#include "utility.hxx"
 
-#include "view.hxx"
 namespace binfilter {
-
-
-/*N*/ SmViewShell * SmGetActiveView()
-/*N*/   // return pointer to active SmViewShell, if this is not possible
-/*N*/   // return 0 instead.
-/*N*/ {
-/*N*/   SfxViewShell *pView = SfxViewShell::Current();
-/*N*/   return PTR_CAST(SmViewShell, pView);
-/*N*/ }
 
 
 ////////////////////////////////////////
@@ -149,11 +140,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (!pVirDev)
 /*N*/   {
-/*N*/       SmViewShell *pView = SmGetActiveView();
-/*N*/       if (pView)
-/*?*/           pVirDev = new VirtualDevice( pView->GetGraphicWindow() );
-/*N*/       else
-/*N*/           pVirDev = new VirtualDevice;
+             pVirDev = new VirtualDevice;
 /*N*/       pVirDev->SetMapMode( MapMode(MAP_100TH_MM) );
 /*N*/   }
 /*N*/   DBG_ASSERT(pVirDev->GetMapMode().GetMapUnit() == MAP_100TH_MM,
