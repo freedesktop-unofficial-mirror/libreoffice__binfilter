@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:29:09 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:42:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -313,27 +313,10 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetEditTextObjectPool();
 /*N*/ }
 
-
-
-/*N*/ void Outliner::SetSpeller( Reference< XSpellChecker1 > &xSpeller )
-/*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   pEditEngine->SetSpeller( xSpeller );
-/*N*/ }
-
 /*N*/ void Outliner::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   pEditEngine->SetForbiddenCharsTable( xForbiddenChars );
-/*N*/ }
-
-
-
-
-/*N*/ void Outliner::SetHyphenator( Reference< XHyphenator >& xHyph )
-/*N*/ {
-/*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   pEditEngine->SetHyphenator( xHyph );
 /*N*/ }
 
 /*N*/ OutputDevice* Outliner::GetRefDevice() const
