@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unoobj.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:37:25 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:08:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,8 @@
 #include <svtools/unoevent.hxx>
 #endif
 
-#ifndef _SFX_BINDINGS_HXX
-#include <bf_sfx2/bindings.hxx>
-#endif
+#include <vcl/svapp.hxx>
+
 #ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
 #endif
@@ -99,7 +98,6 @@
 #include "unogsfm.hxx"
 #include "unopstyl.hxx"
 #include "unopage.hxx"
-#include "viewshel.hxx"
 
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
@@ -234,7 +232,14 @@ struct SortStruct
 typedef SortStruct  SORT;
 typedef SORT*       PSORT;
 
-extern "C" int __LOADONCALLAPI SortFunc( const void* p1, const void* p2 );
+static int SortFunc( const void* p1, const void* p2 )
+{
+     const PSORT pCmp1 = (const PSORT) p1;
+     const PSORT pCmp2 = (const PSORT) p2;
+     return ( pCmp1->nOrder < pCmp2->nOrder ? -1 : pCmp1->nOrder > pCmp2->nOrder ? 1 : 0 );
+}
+
+//extern "C" int __LOADONCALLAPI SortFunc( const void* p1, const void* p2 );
 
 SdXShape::SdXShape() throw()
 :   maPropSet(aEmpty_SdXShapePropertyMap_Impl),
@@ -1118,17 +1123,6 @@ void SdXShape::SetStyleSheet( const uno::Any& rAny ) throw( lang::IllegalArgumen
     pObj->SetStyleSheet( (SfxStyleSheet*)pStyleSheet->getStyleSheet(), sal_False );
 
     SdDrawDocument* pDoc = mpModel? mpModel->GetDoc() : NULL;
-
-#ifndef SVX_LIGHT
-    if( pDoc )
-    {
-        SdDrawDocShell* pDocSh = pDoc->GetDocSh();
-        SdViewShell*    pViewSh = pDocSh ? pDocSh->GetViewShell() : NULL;
-
-        if( pViewSh )
-            pViewSh->GetViewFrame()->GetBindings().Invalidate( SID_STYLE_FAMILY2 );
-    }
-#endif
 }
 
 uno::Any SdXShape::GetStyleSheet() const throw( beans::UnknownPropertyException  )
