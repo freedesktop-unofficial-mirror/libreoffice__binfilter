@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: ihi $ $Date: 2007-06-05 14:26:23 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:42:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,6 +56,8 @@
 #include "objsh.hxx"
 #include "cfgimpl.hxx"
 #include "docfile.hxx"
+#include "evntconf.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -516,6 +518,167 @@ static const char pStorageName[] = "Configurations";
 
 /*?*/ void SfxConfigManager::ReConnect( USHORT nType, SfxConfigManager* pOther )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ }
+
+/*N*/ static const char pHeader[] = "Star Framework Config File";
+/*N*/ #define CFG_STREAM_BUFFER_SIZE  5000
+/*N*/ static const USHORT nVersion = 26;
+/*N*/ static const char cCtrlZ = 26;
+/*N*/
+/*N*/ static const USHORT nTypesCount = 82;
+
+/*N*/ BOOL SfxConfigManagerImExport_Impl::HasConfiguration( SotStorage& rStorage )
+/*N*/ {
+/*N*/     return rStorage.IsStream( String::CreateFromAscii(pHeader) );
+/*N*/ }
+
+/*N*/ USHORT SfxConfigManagerImExport_Impl::Import( SotStorage* pInStorage, SotStorage* pStorage )
+/*N*/ {
+/*N*/   SotStorageStreamRef aStr =
+/*N*/         pInStorage->OpenSotStream( String::CreateFromAscii(pHeader), STREAM_STD_READ );
+/*N*/   if ( aStr->GetError() )
+/*N*/       return SfxConfigManager::ERR_OPEN;
+/*N*/
+/*N*/   SvStream* pStream = aStr;
+/*N*/   pStream->SetVersion( SOFFICE_FILEFORMAT_40 );
+/*N*/   pStream->SetBufferSize( CFG_STREAM_BUFFER_SIZE );
+/*N*/   pStream->Seek(0);
+/*N*/   USHORT nRet = SfxConfigManager::ERR_NO;
+/*N*/
+/*N*/   // check header
+/*N*/   const unsigned nLen = strlen( pHeader );
+/*N*/   char *pBuf = new char[nLen+1];
+/*N*/   pStream->Read( pBuf, nLen );
+/*N*/   pBuf[nLen] = 0;
+/*N*/   if( strcmp( pBuf, pHeader ) )
+/*N*/   {
+/*N*/       delete pBuf;
+/*?*/       return SfxConfigManager::ERR_FILETYPE;
+/*N*/   }
+/*N*/
+/*N*/   delete pBuf;
+/*N*/
+/*N*/   // compare version
+/*N*/   char c;
+/*N*/   USHORT nFileVersion;
+/*N*/   (*pStream) >> c;                    // skip ASCII 26 (CTRL-Z)
+/*N*/   (*pStream) >> nFileVersion;
+/*N*/   if( nFileVersion != nVersion )
+/*N*/   {
+/*?*/       return SfxConfigManager::ERR_VERSION;
+/*N*/   }
+/*N*/
+/*N*/   // get position of directory
+/*N*/   long lDirPos, lStart = pStream->Tell();
+/*N*/   (*pStream) >> lDirPos;
+/*N*/   pStream->Seek(lDirPos);
+/*N*/
+/*N*/   // get number of items
+/*N*/   USHORT nCount;
+/*N*/   (*pStream) >> nCount;
+/*N*/
+/*N*/   // read in directory and convert items
+/*N*/   for( USHORT i=0; i < nCount; ++i )
+/*N*/   {
+/*N*/       SfxConfigItem_Impl* pItem = new SfxConfigItem_Impl;
+/*N*/       pItemArr->Insert( pItem, pItemArr->Count() );
+/*N*/
+/*N*/       // retrieve type of item and human readable name
+/*N*/       long lLength, lPos;             // dummies
+/*N*/         (*pStream) >> pItem->nType >> lPos >> lLength;
+/*N*/       pItem->bDefault = ( lPos == -1L );
+/*N*/         pStream->ReadByteString( pItem->aName );
+/*N*/         if ( pStream->GetError() )
+/*N*/         {
+/*?*/             pItem->bDefault = TRUE;
+/*?*/             return SfxConfigManager::ERR_READ;
+/*N*/         }
+/*N*/
+/*N*/       // convert into new format
+/*N*/         if ( !pItem->bDefault )
+/*N*/         {
+/*N*/             // stream name for new format
+/*N*/             pItem->aStreamName = GetStreamName( pItem->nType );
+/*N*/             if ( pItem->aStreamName.Len() )
+/*N*/             {
+/*N*/                 long lOldPos = pStream->Tell();
+/*N*/                 pStream->Seek( lPos );
+/*N*/
+/*N*/                 // check for correct type id, inequality is allowed for userdef toolboxes
+/*N*/                 USHORT nType;
+/*N*/                 (*pStream) >> nType;
+/*N*/                 BOOL bOk = ( nType == pItem->nType ||
+/*N*/                             1294 <= nType && nType <= 1301 &&
+/*N*/                             1294 <= pItem->nType && pItem->nType <= 1301 );
+/*N*/
+/*N*/                 if ( !bOk || !ImportItem( pItem, pStream, pStorage ) )
+/*N*/                 {
+/*?*/                     pItem->bDefault = TRUE;
+/*?*/                     nRet = SfxConfigManager::ERR_IMPORT;
+/*N*/                 }
+/*N*/
+/*N*/                 pStream->Seek( lOldPos );
+/*N*/             }
+/*N*/             else
+/*N*/             {
+/*N*/                 DBG_ERROR("Couldn't convert old configuration!");
+/*N*/                 // force error message that saving this document would lose some configuration information
+/*N*/             }
+/*N*/         }
+/*N*/
+/*N*/         if ( !pItem->aStreamName.Len() )
+/*N*/       {
+/*N*/             // no real config item anymore
+/*N*/           delete pItem;
+/*N*/           pItemArr->Remove( pItemArr->Count() - 1 );
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   return nRet;
+/*N*/ }
+
+/*N*/ BOOL SfxConfigManagerImExport_Impl::ImportItem( SfxConfigItem_Impl* pItem, SvStream* pStream, SotStorage* pStor )
+/*N*/ {
+/*N*/   BOOL bRet = TRUE;
+/*N*/   if ( pItem->nType == SFX_ITEMTYPE_DOCEVENTCONFIG )
+        {
+            BOOL bOK = SfxEventConfiguration::Import( *pStream, NULL, pObjShell );
+             if ( bRet )
+                 bRet = bOK;
+        }
+
+         return bRet;
+/*N*/ }
+
+/*?*/ USHORT SfxConfigManagerImExport_Impl::Export( SotStorage* pStor, SotStorage *pOut )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ }
+
+/*?*/ BOOL SfxConfigManagerImExport_Impl::ExportItem( SfxConfigItem_Impl *pItem, SotStorage* pStor, SvStream* pStream )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ }
+
+/*?*/ String SfxConfigManagerImExport_Impl::GetItemName( USHORT nType )
+/*?*/ {
+/*?*/     return String();
+/*?*/ }
+
+/*N*/ String SfxConfigManagerImExport_Impl::GetStreamName( USHORT nType )
+/*N*/ {
+/*N*/         if ( 11 == nType )
+/*N*/             return String::CreateFromAscii( "eventbindings.xml" );
+/*?*/
+/*?*/     return String();
+/*N*/ }
+
+/*?*/ USHORT SfxConfigManagerImExport_Impl::GetType( const String& rStreamName )
+/*?*/ {
+/*NBFF*/     ByteString aCmp( rStreamName, RTL_TEXTENCODING_ASCII_US );
+/*NBFF*/
+/*NBFF*/         if ( !strcmp( aCmp.GetBuffer(), "eventbindings.xml" ) )
+/*NBFF*/             return 11;
+/*NBFF*/
+/*?*/     return 0;
 /*?*/ }
 
 }
