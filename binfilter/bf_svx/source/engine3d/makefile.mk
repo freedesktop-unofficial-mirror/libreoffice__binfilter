@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-12 09:16:07 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:34:52 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -79,8 +79,7 @@ SLOFILES= \
         $(SLO)$/svx_lathe3d.obj		\
         $(SLO)$/svx_label3d.obj		\
         $(SLO)$/svx_view3d.obj		\
-        $(SLO)$/svx_e3dcmpt.obj       \
-        $(SLO)$/svx_float3d.obj
+        $(SLO)$/svx_e3dcmpt.obj       
 
 .INCLUDE :  target.mk
 
