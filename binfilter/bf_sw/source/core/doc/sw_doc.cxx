@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:06:44 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:00:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -126,9 +126,6 @@
 #endif
 #ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>
-#endif
-#ifndef _ACORRECT_HXX
-#include <acorrect.hxx>         // Autokorrektur
 #endif
 #ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
@@ -326,13 +323,6 @@ namespace binfilter {
 /*N*/       ClearRedo();
 /*N*/
 /*N*/   const SwPosition* pPos = rRg.GetPoint();
-/*N*/
-/*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
-/*N*/   {
-/*?*/       if( 1 == rStr.Len() && pACEWord->IsDeleted() )
-/*?*/        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001   pACEWord->CheckChar( *pPos, rStr.GetChar( 0 ) );
-/*?*/       delete pACEWord, pACEWord = 0;
-/*N*/   }
 /*N*/
 /*N*/   SwTxtNode *pNode = pPos->nNode.GetNode().GetTxtNode();
 /*N*/   if(!pNode)
@@ -647,9 +637,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/       aOle2Link.Call( (void*)nCall );
 /*N*/       bInCallModified = FALSE;
 /*N*/   }
-/*N*/
-/*N*/   if( pACEWord && !pACEWord->IsDeleted() )
-/*?*/       delete pACEWord, pACEWord = 0;
 /*N*/ }
 
 /*N*/ void SwDoc::ResetModified()
