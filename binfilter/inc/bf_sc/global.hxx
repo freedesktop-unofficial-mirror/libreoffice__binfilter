@@ -4,9 +4,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 12:59:48 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:29:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -495,7 +495,6 @@ namespace binfilter {
 class ScDocument;
 class ScDocShell;
 class ScDocShellRef;
-class SvxSearchItem;
 class ScAutoFormat;
 class FuncCollection;
 class ScUnoAddInCollection;
@@ -518,7 +517,6 @@ class ScUnitConverter;
 #ifndef _SCALC_EXE
 class ScGlobal
 {
-    static SvxSearchItem*   pSearchItem;
     static ScAutoFormat*    pAutoFormat;
     static FuncCollection*  pFuncCollection;
     static ScUnoAddInCollection* pAddInCollection;

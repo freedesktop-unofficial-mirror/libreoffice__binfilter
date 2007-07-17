@@ -4,9 +4,9 @@
  *
  *  $RCSfile: table.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:28:27 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:29:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,6 @@ namespace binfilter {
 
 class SvxBoxInfoItem;
 class SvxBoxItem;
-class SvxSearchItem;
 
 class ScAutoFormat;
 class ScAutoFormatData;
@@ -349,9 +348,6 @@ public:
                         USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                         const ScMarkData& rMark );
 
-    BOOL        SearchAndReplace(const SvxSearchItem& rSearchItem,
-                                USHORT& rCol, USHORT& rRow, ScMarkData& rMark,
-                                String& rUndoStr, ScDocument* pUndoDoc);
 
     void        FindMaxRotCol( RowInfo* pRowInfo, USHORT nArrCount, USHORT nX1, USHORT nX2 ) const;
 
