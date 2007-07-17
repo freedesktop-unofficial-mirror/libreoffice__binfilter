@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:25:26 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:59:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,6 +40,7 @@
 #ifndef _SFX_SFXBASEMODEL_HXX_
 #include <sfxbasemodel.hxx>
 #endif
+#include <bf_sfx2/app.hxx>
 
 //________________________________________________________________________________________________________
 //  include of other projects
@@ -153,20 +154,9 @@
 #include <objshimp.hxx>
 #endif
 
-#ifndef _SFXVIEWFRM_HXX
-#include <viewfrm.hxx>
-#endif
-
-#ifndef _SFXVIEWSH_HXX
-#include <viewsh.hxx>
-#endif
 
 #ifndef _SFXDOCFILE_HXX
 #include <docfile.hxx>
-#endif
-
-#ifndef _SFXDISPATCH_HXX
-#include <dispatch.hxx>
 #endif
 
 #ifndef _SFXREQUEST_HXX
@@ -202,11 +192,10 @@
 #endif
 
 #include "openflag.hxx"
-#include "topfrm.hxx"
 #include "appdata.hxx"
-#include "loadenv.hxx"
 #include "docfac.hxx"
 #include "fcontnr.hxx"
+
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
@@ -279,7 +268,6 @@ struct IMPL_SfxBaseModel_DataContainer
     SEQUENCE< PROPERTYVALUE>                        m_seqArguments          ;
     SEQUENCE< REFERENCE< XCONTROLLER > >            m_seqControllers        ;
     REFERENCE< XINDEXACCESS >                       m_contViewData          ;
-       LoadEnvironment_Impl*                            m_pLoader               ;
     sal_Bool                                        m_bLoadDone             ;
     sal_Bool                                        m_bLoadState            ;
     sal_Bool                                        m_bClosed               ;
@@ -294,7 +282,6 @@ struct IMPL_SfxBaseModel_DataContainer
             ,   m_sURL                  ( String()      )
             ,   m_nControllerLockCount  ( 0             )
             ,   m_aInterfaceContainer   ( aMutex        )
-            ,   m_pLoader               ( NULL          )
             ,   m_bLoadDone             ( sal_False     )
             ,   m_bLoadState            ( sal_False     )
             ,   m_bClosed               ( sal_False     )
@@ -1433,24 +1420,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
     }
 }
 
-/*N #dochnoetig# */ IMPL_LINK( SfxBaseModel, LoadDone_Impl, void*, pVoid )
-/*N*/ {
-/*N*/     DBG_ASSERT( m_pData->m_pLoader, "No Loader created, but LoadDone ?!" );
-/*N*/
-/*N*/     if ( m_pData->m_pLoader->GetError() )
-/*N*/     {
-/*N*/       m_pData->m_bLoadDone  = sal_True ;
-/*N*/       m_pData->m_bLoadState = sal_False;
-/*N*/     }
-/*N*/     else
-/*N*/     {
-/*N*/       m_pData->m_bLoadDone  = sal_True;
-/*N*/       m_pData->m_bLoadState = sal_True;
-/*N*/     }
-/*N*/
-/*N*/     return NULL;
-/*N*/ }
-
 //________________________________________________________________________________________________________
 // XTransferable
 //________________________________________________________________________________________________________
@@ -1597,63 +1566,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 */
 /*N*/       }
 /*N*/
-/*N*/       SfxPrintingHint* pPrintHint = PTR_CAST( SfxPrintingHint, &rHint );
-/*N*/       if ( pPrintHint )
-/*N*/       {
-/*?*/           if ( pPrintHint->GetWhich() == -1 )
-/*?*/           {
-/*?*/               if ( !m_pData->m_xPrintJob.is() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 m_pData->m_xPrintJob = new SfxPrintJob_Impl( m_pData );
-/*?*/
-/*?*/               PrintDialog* pDlg = pPrintHint->GetPrintDialog();
-/*?*/               Printer* pPrinter = pPrintHint->GetPrinter();
-/*?*/                 ::rtl::OUString aPrintFile ( ( pPrinter && pPrinter->IsPrintFileEnabled() ) ? pPrinter->GetPrintFile() : String() );
-/*?*/               ::rtl::OUString aRangeText ( ( pDlg && pDlg->IsRangeChecked(PRINTDIALOG_RANGE) ) ? pDlg->GetRangeText() : String() );
-/*?*/               sal_Bool bSelectionOnly = ( ( pDlg && pDlg->IsRangeChecked(PRINTDIALOG_SELECTION) ) ? sal_True : sal_False );
-/*?*/
-/*?*/               sal_Int32 nArgs = 2;
-/*?*/               if ( aPrintFile.getLength() )
-/*?*/                   nArgs++;
-/*?*/               if ( aRangeText.getLength() )
-/*?*/                   nArgs++;
-/*?*/               else if ( bSelectionOnly )
-/*?*/                   nArgs++;
-/*?*/
-/*?*/               m_pData->m_aPrintOptions.realloc(nArgs);
-/*?*/               m_pData->m_aPrintOptions[0].Name = DEFINE_CONST_UNICODE("CopyCount");
-/*?*/               m_pData->m_aPrintOptions[0].Value <<= (sal_Int16) (pPrinter ? pPrinter->GetCopyCount() : 1 );
-/*?*/               m_pData->m_aPrintOptions[1].Name = DEFINE_CONST_UNICODE("Collate");
-/*?*/               m_pData->m_aPrintOptions[1].Value <<= (sal_Bool) (pDlg ? pDlg->IsCollateChecked() : sal_False );
-/*?*/
-/*?*/               if ( bSelectionOnly )
-/*?*/               {
-/*?*/                   m_pData->m_aPrintOptions[2].Name = DEFINE_CONST_UNICODE("Selection");
-/*?*/                   m_pData->m_aPrintOptions[2].Value <<= bSelectionOnly;
-/*?*/               }
-/*?*/               else if ( aRangeText.getLength() )
-/*?*/               {
-/*?*/                   m_pData->m_aPrintOptions[2].Name = DEFINE_CONST_UNICODE("Pages");
-/*?*/                   m_pData->m_aPrintOptions[2].Value <<= aRangeText;
-/*?*/               }
-/*?*/
-/*?*/               if ( aPrintFile.getLength() )
-/*?*/               {
-/*?*/                   m_pData->m_aPrintOptions[nArgs-1].Name = DEFINE_CONST_UNICODE("FileName");
-/*?*/                   m_pData->m_aPrintOptions[nArgs-1].Value <<= aPrintFile;
-/*?*/               }
-/*?*/           }
-/*?*/           else if ( pPrintHint->GetWhich() == -3 )
-/*?*/           {
-/*?*/                   sal_Int32 nOld = m_pData->m_aPrintOptions.getLength();
-/*?*/                   sal_Int32 nAdd = pPrintHint->GetAdditionalOptions().getLength();
-/*?*/                   m_pData->m_aPrintOptions.realloc(  nOld + nAdd );
-/*?*/                   for ( sal_Int32 n=0; n<nAdd; n++ )
-/*?*/                         m_pData->m_aPrintOptions[ nOld+n ] = pPrintHint->GetAdditionalOptions()[n];
-/*?*/           }
-/*?*/           else if ( pPrintHint->GetWhich() != -2 )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-/*?*/           }
-/*?*/       }
 /*N*/   }
 /*N*/ }
 
@@ -1812,43 +1724,8 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
-/*N*/   if ( m_pData->m_pObjectShell.Is() && !m_pData->m_contViewData.is() )
-/*N*/   {
-/*N*/       SfxViewFrame *pActFrame = SfxViewFrame::Current();
-/*N*/       if ( !pActFrame || pActFrame->GetObjectShell() != m_pData->m_pObjectShell )
-/*N*/           pActFrame = SfxViewFrame::GetFirst(m_pData->m_pObjectShell, TYPE(SfxTopViewFrame));
-/*N*/
-/*N*/       if ( !pActFrame )
-/*N*/           // currently no frame for this document at all
 /*N*/           return REFERENCE < XINDEXACCESS >();
 /*N*/
-/*N*/       m_pData->m_contViewData = Reference < XINDEXACCESS >(
-/*N*/               ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*N*/               DEFINE_CONST_UNICODE("com.sun.star.document.IndexedPropertyValues") ),
-/*N*/               UNO_QUERY );
-/*N*/
-/*N*/       if ( !m_pData->m_contViewData.is() )
-/*N*/       {
-/*N*/           // error: no container class available!
-/*N*/           return REFERENCE < XINDEXACCESS >();
-/*N*/       }
-/*N*/
-/*N*/       REFERENCE < XINDEXCONTAINER > xCont( m_pData->m_contViewData, UNO_QUERY );
-/*N*/       sal_Int32 nCount = 0;
-/*N*/       SEQUENCE < PROPERTYVALUE > aSeq;
-/*N*/       ::com::sun::star::uno::Any aAny;
-/*N*/       for ( SfxViewFrame *pFrame = SfxViewFrame::GetFirst(m_pData->m_pObjectShell, TYPE(SfxTopViewFrame) ); pFrame;
-/*N*/               pFrame = SfxViewFrame::GetNext(*pFrame, m_pData->m_pObjectShell, TYPE(SfxTopViewFrame) ) )
-/*N*/       {
-/*N*/           BOOL bIsActive = ( pFrame == pActFrame );
-/*N*/           pFrame->GetViewShell()->WriteUserDataSequence( aSeq );
-/*N*/           aAny <<= aSeq;
-/*N*/           xCont->insertByIndex( bIsActive ? 0 : nCount, aAny );
-/*N*/           nCount++;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return m_pData->m_contViewData;
 /*N*/ }
 
 /*N*/ void SAL_CALL SfxBaseModel::setViewData( const REFERENCE < XINDEXACCESS >& aData ) throw(::com::sun::star::uno::RuntimeException)
