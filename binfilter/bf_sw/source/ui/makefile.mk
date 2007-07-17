@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-01-25 12:03:23 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:03:59 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -74,15 +74,12 @@ LIB1FILES= \
         $(SLB)$/sw_config.lib   \
         $(SLB)$/sw_dbui.lib     \
         $(SLB)$/sw_dochdl.lib   \
-                $(SLB)$/sw_utlui.lib    \
-                $(SLB)$/sw_shells.lib   \
-                $(SLB)$/sw_envelp.lib   \
+        $(SLB)$/sw_utlui.lib    \
         $(SLB)$/sw_fldui.lib    \
         $(SLB)$/sw_globdoc.lib  \
         $(SLB)$/sw_index.lib    \
-        $(SLB)$/sw_misc.lib     \
         $(SLB)$/sw_unoidl.lib   \
-                $(SLB)$/sw_web.lib      \
+        $(SLB)$/sw_web.lib      \
         $(SLB)$/sw_wrtsh.lib
 
 .INCLUDE :  target.mk
