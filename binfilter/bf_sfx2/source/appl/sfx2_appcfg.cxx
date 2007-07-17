@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appcfg.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:53:27 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:33:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,8 +110,6 @@
 
 #pragma hdrstop
 
-//#include <svtools/agprop.hxx>
-#include <sj2/sjapplet.hxx>
 
 #ifndef _SFXISETHINT_HXX
 #include <svtools/isethint.hxx>
@@ -133,27 +131,18 @@
 #include <rtl/ustrbuf.hxx>
 
 #include "docfile.hxx"
-#include "viewfrm.hxx"
-#include "sfxhelp.hxx"
 #include "sfxtypes.hxx"
-#include "dispatch.hxx"
 #include "objsh.hxx"
 #include "objshimp.hxx"
-#include "viewsh.hxx"
 #include "request.hxx"
 #include "evntconf.hxx"
 #include "cfgmgr.hxx"
 #include "docinf.hxx"
 #include "appdata.hxx"
-#include "workwin.hxx"
-#include <misccfg.hxx>
-#include <macrconf.hxx>
+#include "misccfg.hxx"
 #include "appimp.hxx"
 #include "helper.hxx"   // SfxContentHelper::...
-#include "app.hrc"
-#include "sfxresid.hxx"
-#include "shutdownicon.hxx"
-#include "imgmgr.hxx"
+#include "app.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -164,185 +153,6 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::beans;
-
-//-------------------------------------------------------------------------
-
-class SfxEventAsyncer_Impl : public SfxListener
-{
-    SfxEventHint        aHint;
-    Timer*              pTimer;
-
-public:
-
-    virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-    SfxEventAsyncer_Impl( const SfxEventHint& rHint );
-    ~SfxEventAsyncer_Impl();
-    DECL_LINK( TimerHdl, Timer*);
-};
-
-// -----------------------------------------------------------------------
-
-/*N*/ void SfxEventAsyncer_Impl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
-/*N*/ {
-/*N*/   SfxSimpleHint* pHint = PTR_CAST( SfxSimpleHint, &rHint );
-/*N*/   if( pHint && pHint->GetId() == SFX_HINT_DYING && pTimer->IsActive() )
-/*N*/   {
-/*N*/       pTimer->Stop();
-/*?*/       delete this;
-/*N*/   }
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SfxEventAsyncer_Impl::SfxEventAsyncer_Impl( const SfxEventHint& rHint )
-/*N*/  : aHint( rHint )
-/*N*/ {
-/*N*/     if( rHint.GetObjShell() )
-/*N*/         StartListening( *rHint.GetObjShell() );
-/*?*/   pTimer = new Timer;
-/*N*/     pTimer->SetTimeoutHdl( LINK(this, SfxEventAsyncer_Impl, TimerHdl) );
-/*N*/   pTimer->SetTimeout( 0 );
-/*N*/   pTimer->Start();
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SfxEventAsyncer_Impl::~SfxEventAsyncer_Impl()
-/*N*/ {
-/*?*/   delete pTimer;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ IMPL_LINK(SfxEventAsyncer_Impl, TimerHdl, Timer*, pTimer)
-/*N*/ {
-/*N*/   pTimer->Stop();
-/*N*/     SFX_APP()->Broadcast( aHint );
-/*N*/     if ( aHint.GetObjShell() )
-/*N*/     {
-/*?*/         SfxObjectShellRef xRef( aHint.GetObjShell() );
-/*N*/         aHint.GetObjShell()->Broadcast( aHint );
-/*N*/     }
-/*N*/
-/*N*/     delete this;
-/*N*/   return 0L;
-/*N*/ }
-
-/*
-const USHORT* SfxApplication::GetOptionsRanges() const
-{
-    static USHORT pRange[] =
-    {
-        0, 0,
-        0, 0,
-        0, 0,
-        0, 0,
-        0, 0,
-        0, 0,
-        0,
-    };
-
-    if (0 == pRange[0])
-    {
-        SfxItemPool &rPool = GetPool();
-        pRange[ 0] = SID_OPTIONS_START;
-        pRange[ 1] = SID_OPTIONS_FIRSTFREE-1;
-        pRange[ 2] = SID_HELPBALLOONS;
-        pRange[ 3] = SID_HELPTIPS;
-        pRange[ 4] = SID_SECURE_URL;
-        pRange[ 5] = SID_SECURE_URL;
-        pRange[ 6] = SID_BASIC_ENABLED;
-        pRange[ 7] = SID_BASIC_ENABLED;
-        pRange[ 8] = SID_AUTO_ADJUSTICONS;
-        pRange[ 9] = SID_ICONGRID;
-        pRange[ 10 ] = SID_RESTORE_EXPAND_STATE;
-        pRange[ 11 ] = SID_RESTORE_EXPAND_STATE;
-    }
-    return pRange;
-}
-*/
-//--------------------------------------------------------------------
-
-/*?*/ BOOL SfxApplication::GetOptions( SfxItemSet& rSet )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-//--------------------------------------------------------------------
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-/*?*/ void SfxApplication::SetOptions(const SfxItemSet &rSet)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-/*N*/ Timer* SfxApplication::GetAutoSaveTimer_Impl()
-/*N*/ {
-/*N*/   return pImp->pAutoSaveTimer;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ IMPL_LINK( SfxApplication, AutoSaveHdl_Impl, Timer*, pTimer )
-/*N*/ {
-/*N*/     SvtSaveOptions aSaveOptions;
-/*N*/     FASTBOOL bAutoSave = aSaveOptions.IsAutoSave() &&
-/*N*/       !bDispatcherLocked &&
-/*N*/       !Application::IsUICaptured() && Application::GetLastInputInterval() > 300;
-/*N*/     if ( bAutoSave )
-/*N*/     {
-/*?*/         SfxViewShell *pVSh = pViewFrame ? pViewFrame->GetViewShell() : 0;
-/*?*/         bAutoSave = pVSh && pVSh->GetWindow() &&
-/*?*/                   !pVSh->GetWindow()->IsMouseCaptured() ;
-/*N*/     }
-/*N*/
-/*N*/     if ( bAutoSave )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/     }
-/*N*/     else if ( aSaveOptions.IsAutoSave() )
-/*N*/     {
-/*N*/         // Wenn wir gelockt sind, dann in 5 Sekunden nochmal probieren
-/*?*/         pImp->bAutoSaveNow = TRUE;
-/*?*/         pImp->pAutoSaveTimer->SetTimeout( 5000 );
-/*?*/         pImp->pAutoSaveTimer->Start();
-/*?*/
-/*?*/ #ifndef PRODUCT
-/*?*/       Sound::Beep();
-/*N*/ #endif
-/*N*/     }
-/*N*/
-/*N*/   return 0;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-// alle Dokumente speichern
-
-
-//--------------------------------------------------------------------
-
-/*N*/ SfxMacroConfig* SfxApplication::GetMacroConfig() const
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001   return SfxMacroConfig::GetOrCreate();
-/*N*/ }
-
-//--------------------------------------------------------------------
-/*?*/ #if SUPD < 623
-/*?*/ void SfxApplication::RegisterEvent(USHORT nId, const String& rEventName)
-/*?*/ {
-/*?*/     if (!pAppData_Impl->pEventConfig)
-/*?*/         pAppData_Impl->pEventConfig = new SfxEventConfiguration;
-/*?*/     String aDummy( "untitled event", RTL_TEXTENCODING_ASCII_US );
-/*?*/   SfxEventConfiguration::RegisterEvent(nId, rEventName, aDummy);
-/*?*/ }
-/*?*/ #endif
 
 //--------------------------------------------------------------------
 
@@ -383,52 +193,12 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 /*N*/           bSynchron = TRUE;
 /*N*/   }
 /*N*/
-/*N*/   // load on demand
-/*N*/   pAppData_Impl->pEventConfig->GetAppEventConfig_Impl();
-/*N*/
-/*N*/   if ( bSynchron )
 /*N*/     {
 /*N*/         Broadcast(rEventHint);
 /*N*/         if ( pDoc )
 /*N*/             pDoc->Broadcast( rEventHint );
 /*N*/     }
-/*N*/     else
-/*N*/         new SfxEventAsyncer_Impl( rEventHint );
 /*N*/ }
-
-//-------------------------------------------------------------------------
-/* ASOBSOLETE
-static void CorrectUpdateNumber_Impl(String& rName)
-{
-    String aUPD( SOLARUPD );
-    USHORT nLen = aUPD.Len();
-    USHORT nCount,nPos=0;
-    do
-    {
-        nCount=0;
-        xub_StrLen nNameLength = rName.Len();
-        for ( USHORT i=nPos; i<nNameLength; i++ )
-        {
-            if ( rName.GetChar(i).CompareToAscii('?') == COMPARE_EQUAL )
-            {
-                if ( nCount == 0 )
-                    nPos=i;
-                nCount++;
-            }
-            else if ( nCount == nLen )
-                break;
-            else
-                nCount=0;
-        }
-        if ( nCount == nLen )
-        {
-            rName.Replace( aUPD, nPos );
-            nPos += nCount;
-        }
-    }
-    while ( nCount );
-}
-*/
 
 /*N*/ IMPL_OBJHINT( SfxStringHint, String )
 
