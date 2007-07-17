@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:30:34 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:48:33 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -66,7 +66,6 @@ SLOFILES =	\
         $(SLO)$/sch_schdll.obj	\
         $(SLO)$/sch_schmod.obj      \
         $(SLO)$/sch_schresid.obj	\
-        $(SLO)$/sch_typemap.obj	\
         $(SLO)$/sch_schopt.obj	\
         $(SLO)$/sch_globopt.obj
 
