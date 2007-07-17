@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopage.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:00:57 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:08:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,10 +93,7 @@
 #endif
 
 #include "sdview.hxx"
-#ifndef SVX_LIGHT
 #include "docshell.hxx"
-#endif
-#include "drviewsh.hxx"
 #include "unoobj.hxx"
 #include "res_bmp.hrc"
 #include "unokywds.hxx"
@@ -1143,32 +1140,6 @@ void SdGenericDrawPage::SetLwrBorder( sal_Int32 nValue )
 
 static void refreshpage( SdDrawDocument* pDoc, const PageKind ePageKind )
 {
-#ifndef SVX_LIGHT
-    SdDrawDocShell* pDocShell = pDoc->GetDocSh();
-    if ( pDocShell )
-    {
-        SdViewShell* pViewSh = pDocShell->GetViewShell();
-
-        if( pViewSh )
-        {
-            if( pViewSh->ISA( SdDrawViewShell ) )
-                ((SdDrawViewShell*) pViewSh)->ResetActualPage();
-
-            Size aPageSize = pDoc->GetSdPage(0, ePageKind)->GetSize();
-            const long nWidth = aPageSize.Width();
-            const long nHeight = aPageSize.Height();
-
-            Point aPageOrg = Point(nWidth, nHeight / 2);
-            Size aViewSize = Size(nWidth * 3, nHeight * 2);
-
-            pDoc->SetMaxObjSize(aViewSize);
-
-            pViewSh->InitWindows(aPageOrg, aViewSize, Point(-1, -1), TRUE);
-
-            pViewSh->UpdateScrollBars();
-        }
-    }
-#endif
 }
 
 void SdGenericDrawPage::SetWidth( sal_Int32 nWidth )
@@ -1740,26 +1711,7 @@ void SAL_CALL SdDrawPage::setName( const OUString& rName )
         if( pNotesPage )
             pNotesPage->SetName(aName);
 
-#ifndef SVX_LIGHT
-        // fake a mode change to repaint the page tab bar
-        SdDrawDocShell* pDocSh = mpModel->GetDocShell();
-        SdViewShell* pViewSh = pDocSh ? pDocSh->GetViewShell() : NULL;
-        if( pViewSh && pViewSh->ISA( SdDrawViewShell ) )
-        {
-            SdDrawViewShell* pDrawViewSh = (SdDrawViewShell*)pViewSh;
-
-            EditMode eMode = pDrawViewSh->GetEditMode();
-            if( eMode == EM_PAGE )
-            {
-                BOOL bLayer = pDrawViewSh->GetLayerMode();
-
-                pDrawViewSh->ChangeEditMode( eMode, !bLayer );
-                pDrawViewSh->ChangeEditMode( eMode, bLayer );
-            }
-        }
-
         mpModel->SetModified();
-#endif
     }
 }
 
@@ -2381,25 +2333,6 @@ void SAL_CALL SdMasterPage::setName( const OUString& aName )
 
         if(mpModel->GetDoc())
             mpModel->GetDoc()->RenameLayoutTemplate(GetPage()->GetLayoutName(), aNewName);
-
-#ifndef SVX_LIGHT
-        // fake a mode change to repaint the page tab bar
-        SdDrawDocShell* pDocSh = mpModel->GetDocShell();
-        SdViewShell* pViewSh = pDocSh ? pDocSh->GetViewShell() : NULL;
-        if( pViewSh && pViewSh->ISA( SdDrawViewShell ) )
-        {
-            SdDrawViewShell* pDrawViewSh = (SdDrawViewShell*)pViewSh;
-
-            EditMode eMode = pDrawViewSh->GetEditMode();
-            if( eMode == EM_MASTERPAGE )
-            {
-                BOOL bLayer = pDrawViewSh->GetLayerMode();
-
-                pDrawViewSh->ChangeEditMode( eMode, !bLayer );
-                pDrawViewSh->ChangeEditMode( eMode, bLayer );
-            }
-        }
-#endif
 
         mpModel->SetModified();
     }
