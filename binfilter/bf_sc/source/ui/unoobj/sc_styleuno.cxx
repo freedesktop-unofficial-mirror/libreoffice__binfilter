@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_styleuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:05:38 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:34:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,6 @@
 #include <bf_svx/pageitem.hxx>
 #include <bf_svx/pbinitem.hxx>
 #include <bf_svx/unonrule.hxx>
-#include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <vcl/virdev.hxx>
 #include <svtools/itempool.hxx>
@@ -882,7 +881,6 @@ void SAL_CALL ScStyleFamilyObj::removeByName( const ::rtl::OUString& aName )
 
                 pStylePool->Erase( pStyle );
 
-                //! InvalidateAttribs();        // Bindings-Invalidate
             }
             else
             {
@@ -891,9 +889,6 @@ void SAL_CALL ScStyleFamilyObj::removeByName( const ::rtl::OUString& aName )
 
                 pStylePool->Erase( pStyle );
 
-                SfxBindings* pBindings = pDocShell->GetViewBindings();
-                if (pBindings)
-                    pBindings->Invalidate( SID_STYLE_FAMILY4 );
                 pDocShell->SetDocumentModified();
             }
         }
@@ -1219,12 +1214,6 @@ void SAL_CALL ScStyleObj::setName( const ::rtl::OUString& aNewName )
             //  Zellvorlagen = 2, Seitenvorlagen = 4
             UINT16 nId = ( eFamily == SFX_STYLE_FAMILY_PARA ) ?
                             SID_STYLE_FAMILY2 : SID_STYLE_FAMILY4;
-            SfxBindings* pBindings = pDocShell->GetViewBindings();
-            if (pBindings)
-            {
-                pBindings->Invalidate( nId );
-                pBindings->Invalidate( SID_STYLE_APPLY );
-            }
         }
     }
 }
