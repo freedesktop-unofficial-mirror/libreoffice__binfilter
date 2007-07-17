@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wdocsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:02:47 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:58:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,6 @@ class SwWebDocShell: public SwDocShell
 public:
 
     // aber selbst implementieren
-    SFX_DECL_INTERFACE(SW_WEBDOCSHELL);
     SFX_DECL_OBJECTFACTORY_DLL(SwWebDocShell, SW_DLL());
     TYPEINFO();
 
