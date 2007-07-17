@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh3.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:12:16 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:14:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,12 +39,6 @@
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SFX_BINDINGS_HXX //autogen
-#include <bf_sfx2/bindings.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
 
 
 #ifndef _HORIORNT_HXX
@@ -52,8 +46,8 @@
 #endif
 
 #include "wrtsh.hxx"
-#include "view.hxx"
 #include "wrtsh.hrc"
+
 namespace binfilter {
 
 #define C2U(cChar) ::rtl::OUString::createFromAscii(cChar)
