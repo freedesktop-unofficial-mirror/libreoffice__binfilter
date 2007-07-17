@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:19:21 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:31:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,6 @@
 #include <editobj2.hxx>
 #include <editstt2.hxx>
 #include <editdata.hxx>
-#include <svxacorr.hxx>
 
 #ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
@@ -54,21 +53,6 @@
 
 #include <vcl/dndhelp.hxx>
 
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLALTERNATIVES_HPP_
-#include <com/sun/star/linguistic2/XSpellAlternatives.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_SPELLFAILURE_HPP_
-#include <com/sun/star/linguistic2/SpellFailure.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER_HPP_
-#include <com/sun/star/linguistic2/XSpellChecker.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
-#include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-#include <com/sun/star/linguistic2/XHyphenator.hpp>
-#endif
 #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
 #endif
@@ -126,7 +110,6 @@ class EditUndoRemoveChars;
 class SvxFontTable;
 class SvxColorList;
 
-class SvxSearchItem;
 class SvxLRSpaceItem;
 class TextRanger;
 class SvxForbiddenCharactersTable;
@@ -168,22 +151,6 @@ struct FormatterFontMetric
 
     FormatterFontMetric()               { nMaxAscent = 0; nMaxDescent = 0; /* nMinLeading = 0xFFFF; */ }
     sal_uInt16  GetHeight() const       { return nMaxAscent+nMaxDescent; }
-};
-
-class IdleFormattter : public Timer
-{
-private:
-    EditView*   pView;
-    int         nRestarts;
-
-public:
-                IdleFormattter();
-                ~IdleFormattter();
-
-    void        DoIdleFormat( EditView* pV );
-    void        ForceTimeout();
-    void        ResetRestarts() { nRestarts = 0; }
-    EditView*   GetView()       { return pView; }
 };
 
 // ----------------------------------------------------------------------
@@ -394,10 +361,6 @@ private:
     EEHorizontalTextDirection eDefaultHorizontalTextDirection;
 
     sal_uInt16          nBigTextObjectStart;
-    ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XSpellChecker1 > xSpeller;
-    ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XHyphenator >    xHyphenator;
     ::com::sun::star::uno::Reference < ::com::sun::star::i18n::XBreakIterator > xBI;
 
     XubString           aAutoCompleteText;
@@ -424,14 +387,8 @@ private:
     sal_uInt32          nCurTextHeight;
     sal_uInt16          nOnePixelInRef;
 
-    IdleFormattter      aIdleFormatter;
-
-    Timer               aOnlineSpellTimer;
-
     // Wenn an einer Stelle erkannt wird, dass der StatusHdl gerufen werden
     // muss, dies aber nicht sofort geschehen darf (kritischer Abschnitt):
-    Timer               aStatusTimer;
-    Link                aStatusHdlLink;
     Link                aNotifyHdl;
     Link                aImportHdl;
     Link                aBeginMovingParagraphsHdl;
@@ -545,15 +502,9 @@ private:
     inline VirtualDevice*   GetVirtualDevice( const MapMode& rMapMode );
     inline void             EraseVirtualDevice();
 
-    DECL_LINK( StatusTimerHdl, Timer * );
-    DECL_LINK( IdleFormatHdl, Timer * );
-    DECL_LINK( OnlineSpellHdl, Timer * );
-    DECL_LINK( DocModified, void* );
-
     void                CheckIdleFormatter();
 
     inline ParaPortion* FindParaPortion( ContentNode* pNode ) const;
-
 
     void                SetValidPaperSize( const Size& rSz );
 
@@ -675,9 +626,6 @@ public:
     EditPaM         InsertParagraph( sal_uInt16 nPara );
     EditSelection*  SelectParagraph( sal_uInt16 nPara );
 
-    void            SetStatusEventHdl( const Link& rLink )  { aStatusHdlLink = rLink; }
-    Link            GetStatusEventHdl() const               { return aStatusHdlLink; }
-
     void            SetNotifyHdl( const Link& rLink )       { aNotifyHdl = rLink; }
     Link            GetNotifyHdl() const            { return aNotifyHdl; }
 
@@ -710,12 +658,9 @@ public:
 
     InternalEditStatus& GetStatus() { return aStatus; }
     void                CallStatusHdl();
-    void                DelayedCallStatusHdl()  { aStatusTimer.Start(); }
 
     void                EnterBlockNotifications();
     void                LeaveBlockNotifications();
-
-
 
     void                UndoActionStart( sal_uInt16 nId );
     void                UndoActionEnd( sal_uInt16 nId );
@@ -723,22 +668,8 @@ public:
     EditView*           GetActiveView() const   { return pActiveView; }
     void                SetActiveView( EditView* pView );
 
-    ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XSpellChecker1 >
-                        GetSpeller();
-    void                SetSpeller( ::com::sun::star::uno::Reference<
-                            ::com::sun::star::linguistic2::XSpellChecker1 >  &xSpl )
-                            { xSpeller = xSpl; }
-    ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XHyphenator >
-                        GetHyphenator() const { return xHyphenator; }
-    void                SetHyphenator( ::com::sun::star::uno::Reference<
-                            ::com::sun::star::linguistic2::XHyphenator >  &xHyph )
-                            { xHyphenator = xHyph; }
-
     void                SetDefaultLanguage( LanguageType eLang ) { eDefLanguage = eLang; }
     LanguageType        GetDefaultLanguage() const { return eDefLanguage; }
-
 
     LanguageType        GetLanguage( const EditSelection rSelection ) const;
     LanguageType        GetLanguage( const EditPaM& rPaM, USHORT* pEndPos = NULL ) const;
@@ -759,12 +690,6 @@ public:
     sal_uInt16          GetBigTextObjectStart() const                               { return nBigTextObjectStart; }
 
     inline EditEngine*  GetEditEnginePtr() const    { return pEditEngine; }
-
-    void                StartOnlineSpellTimer()     { aOnlineSpellTimer.Start(); }
-    void                StopOnlineSpellTimer()      { aOnlineSpellTimer.Stop(); }
-
-    const XubString&    GetAutoCompleteText() const { return aAutoCompleteText; }
-
 
     void                SetAsianCompressionMode( USHORT n );
     USHORT              GetAsianCompressionMode() const { return nAsianCompressionMode; }
@@ -834,11 +759,6 @@ inline void ImpEditEngine::EraseVirtualDevice()
 {
     delete pVirtDev;
     pVirtDev = 0;
-}
-
-inline void ImpEditEngine::IdleFormatAndUpdate( EditView* pCurView )
-{
-    aIdleFormatter.DoIdleFormat( pCurView );
 }
 
 #ifndef SVX_LIGHT
