@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:39:10 $
+#   last change: $Author: obo $ $Date: 2007-07-17 08:55:37 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -35,16 +35,12 @@
 
 EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 
-
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
 PRJNAME=binfilter
 TARGET=offmgr_app
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 PROJECTPCH=offmgr_ofapch
@@ -56,7 +52,6 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util\offmgr_ofapch
 .INCLUDE :  settings.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_offmgr
-
 
 .IF "$(prjpch)" != ""
 CDEFS=$(CDEFS) -DPRECOMPILED
@@ -74,41 +69,11 @@ RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 # --- Allgemein -----------------------------------------------------------
 
-CINTERNAME=bf_ofa
-
-SRS1NAME= offmgr_app
-SRC1FILES=	\
-    offmgr_app.src
-
 EXCEPTIONSFILES=	\
-    $(SLO)$/offmgr_optuno.obj	\
-    $(SLO)$/offmgr_apearcfg.obj	\
-    $(SLO)$/offmgr_app.obj		\
-    $(SLO)$/offmgr_appctor.obj     \
-    $(SLO)$/offmgr_appimp.obj	\
-    $(SLO)$/offmgr_appstat.obj	\
-    $(SLO)$/offmgr_osplcfg.obj	\
-    $(SLO)$/offmgr_app2.obj	\
-    $(SLO)$/offmgr_app3.obj
+    $(SLO)$/offmgr_app.obj		
 
 SLOFILES=\
-    $(SLO)$/offmgr_appctor.obj     \
-    $(SLO)$/offmgr_optuno.obj	\
-    $(SLO)$/offmgr_apearcfg.obj	\
-    $(SLO)$/offmgr_app.obj		\
-    $(SLO)$/offmgr_app2.obj	\
-    $(SLO)$/offmgr_appimp.obj	\
-    $(SLO)$/offmgr_appstat.obj	\
-    $(SLO)$/offmgr_fltrcfg.obj	\
-    $(SLO)$/offmgr_htmlcfg.obj	\
-    $(SLO)$/offmgr_ofaaccfg.obj	\
-    $(SLO)$/offmgr_osplcfg.obj	\
-    $(SLO)$/offmgr_resid.obj	\
-    $(SLO)$/offmgr_app3.obj	\
-    $(SLO)$/offmgr_appbas.obj \
-    $(SLO)$/offmgr_fontsubstconfig.obj
+    $(SLO)$/offmgr_app.obj		
 
 .INCLUDE :  target.mk
-
-$(SRS)$/offmgr_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
 
