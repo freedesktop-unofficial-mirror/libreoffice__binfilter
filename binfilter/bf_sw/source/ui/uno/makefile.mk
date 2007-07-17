@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 13:00:15 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:11:20 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,12 +57,10 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 SLOFILES =  \
-        $(SLO)$/sw_dlelstnr.obj \
         $(SLO)$/sw_RefreshListenerContainer.obj \
         $(SLO)$/sw_SwXDocumentSettings.obj \
         $(SLO)$/sw_SwXFilterOptions.obj\
         $(SLO)$/sw_SwXPrintPreviewSettings.obj \
-        $(SLO)$/sw_unoatxt.obj \
         $(SLO)$/sw_unodefaults.obj\
         $(SLO)$/sw_unodoc.obj     \
         $(SLO)$/sw_unofreg.obj \
