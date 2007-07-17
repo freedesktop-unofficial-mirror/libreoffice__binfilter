@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objuno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:16:09 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:58:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,6 +55,9 @@
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/document/XImporter.hpp>
 
+#ifndef _LEGACYBINFILTERMGR_HXX
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+#endif
 
 #include <tools/errcode.hxx>
 #include <so3/svstor.hxx>
@@ -69,19 +72,16 @@
 #include "objuno.hxx"
 #include "sfx.hrc"
 #include "sfxsids.hrc"
-#include "viewsh.hxx"
-#include "viewfrm.hxx"
 #include "printer.hxx"
 #include "objsh.hxx"
 #include "docinf.hxx"
 #include "docfile.hxx"
-#include "dispatch.hxx"
 #include "openflag.hxx"
 #include "app.hxx"
 #include "fcontnr.hxx"
 #include "request.hxx"
 #include "sfxuno.hxx"
-#include <objshimp.hxx>
+#include "objshimp.hxx"
 
 #include <osl/mutex.hxx>
 #include <vos/mutex.hxx>
@@ -183,6 +183,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   , _bStandalone( bStandalone )
 /*N*/   , _pImp( new SfxDocumentInfoObject_Impl( NULL ) )
 /*N*/ {
+        _pInfo = new SfxDocumentInfo;
 /*N*/ }
 
 //-----------------------------------------------------------------------------
@@ -370,7 +371,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
 /*N*/   sal_Bool bModified = sal_True;
 /*N*/
-/*N*/   if ( _pInfo && aValue.getValueType() == ::getCppuType((const ::rtl::OUString*)0) )
+/*N*/   if ( aValue.getValueType() == ::getCppuType((const ::rtl::OUString*)0) )
 /*N*/   {
 /*N*/       ::rtl::OUString sTemp ;
 /*N*/       aValue >>= sTemp ;
@@ -470,7 +471,7 @@ using namespace ::com::sun::star::frame;
 /*N*/               break;
 /*N*/       }
 /*N*/   }
-/*N*/   else if ( _pInfo && aValue.getValueType() == ::getCppuType((const ::com::sun::star::util::DateTime*)0) )
+/*N*/   else if ( aValue.getValueType() == ::getCppuType((const ::com::sun::star::util::DateTime*)0) )
 /*N*/   {
 /*N*/       switch ( nHandle )
 /*N*/       {
@@ -510,7 +511,7 @@ using namespace ::com::sun::star::frame;
 /*N*/               break;
 /*N*/       }
 /*N*/   }
-/*N*/   else if ( _pInfo && aValue.getValueType() == ::getBooleanCppuType() )
+/*N*/   else if ( aValue.getValueType() == ::getBooleanCppuType() )
 /*N*/   {
 /*N*/       sal_Bool bBoolVal ;
 /*N*/       aValue >>= bBoolVal ;
@@ -526,7 +527,7 @@ using namespace ::com::sun::star::frame;
 /*N*/               bModified = sal_False;
 /*N*/       }
 /*N*/   }
-/*N*/   else if ( _pInfo && aValue.getValueType() == ::getCppuType((const sal_Int32*)0) )
+/*N*/   else if ( aValue.getValueType() == ::getCppuType((const sal_Int32*)0) )
 /*N*/   {
 /*N*/       long nIntVal ;
 /*N*/       aValue >>= nIntVal ;
@@ -541,7 +542,7 @@ using namespace ::com::sun::star::frame;
 /*N*/               bModified = sal_False;
 /*N*/       }
 /*N*/   }
-/*N*/   else if ( _pInfo && aValue.getValueType() == ::getCppuType((const sal_Int16*)0) )
+/*N*/   else if ( aValue.getValueType() == ::getCppuType((const sal_Int16*)0) )
 /*N*/   {
 /*N*/       short nIntVal ;
 /*N*/       aValue >>= nIntVal ;
@@ -571,7 +572,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   ::com::sun::star::uno::Any aValue;
 /*N*/   if ( nHandle == WID_CONTENT_TYPE )
 /*N*/   {
-/*N*/         if ( _pInfo && _pInfo->GetSpecialMimeType().Len() )
+/*N*/         if ( _pInfo->GetSpecialMimeType().Len() )
 /*N*/       {
 /*N*/           ::rtl::OUString sTemp ( _pInfo->GetSpecialMimeType() );
 /*N*/           aValue <<= sTemp ;
@@ -584,7 +585,7 @@ using namespace ::com::sun::star::frame;
 /*N*/       else
 /*N*/           aValue <<= ::rtl::OUString() ;
 /*N*/   }
-/*N*/   else if ( _pInfo )
+/*N*/   else
 /*N*/   {
 /*N*/       switch ( nHandle )
 /*N*/       {
@@ -727,7 +728,7 @@ using namespace ::com::sun::star::frame;
 /*N*/ ::rtl::OUString SAL_CALL  SfxDocumentInfoObject::getUserFieldName(sal_Int16 nIndex) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
 /*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
-/*N*/   if ( _pInfo && nIndex < _pInfo->GetUserKeyCount() )
+/*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/       return _pInfo->GetUserKey( nIndex ).GetTitle();
 /*N*/   else
 /*N*/       return ::rtl::OUString();
@@ -738,7 +739,7 @@ using namespace ::com::sun::star::frame;
 /*N*/ ::rtl::OUString SAL_CALL  SfxDocumentInfoObject::getUserFieldValue(sal_Int16 nIndex) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
 /*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
-/*N*/   if ( _pInfo && nIndex < _pInfo->GetUserKeyCount() )
+/*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/       return _pInfo->GetUserKey( nIndex ).GetWord();
 /*N*/   else
 /*N*/       return ::rtl::OUString();
@@ -749,7 +750,7 @@ using namespace ::com::sun::star::frame;
 /*N*/ void  SAL_CALL SfxDocumentInfoObject::setUserFieldName(sal_Int16 nIndex, const ::rtl::OUString& aName ) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
 /*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
-/*N*/   if ( _pInfo && nIndex < _pInfo->GetUserKeyCount() )
+/*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/   {
 /*N*/       const SfxDocUserKey& rKey = _pInfo->GetUserKey( nIndex );
 /*N*/       _pInfo->SetUserKey( SfxDocUserKey( aName, rKey.GetWord() ), nIndex );
@@ -764,7 +765,7 @@ using namespace ::com::sun::star::frame;
 /*N*/ void SAL_CALL  SfxDocumentInfoObject::setUserFieldValue( sal_Int16 nIndex, const ::rtl::OUString& aValue ) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
 /*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
-/*N*/   if ( _pInfo && nIndex < _pInfo->GetUserKeyCount() )
+/*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/   {
 /*N*/       const SfxDocUserKey& rKey = _pInfo->GetUserKey( nIndex );
 /*N*/       _pInfo->SetUserKey( SfxDocUserKey( rKey.GetTitle(), aValue ), nIndex );
@@ -777,7 +778,7 @@ using namespace ::com::sun::star::frame;
 //-----------------------------------------------------------------------------
 /*N*/ SFX_IMPL_XINTERFACE_2( SfxStandaloneDocumentInfoObject, SfxDocumentInfoObject, ::com::sun::star::lang::XServiceInfo, ::com::sun::star::document::XStandaloneDocumentInfo  )
 /*N*/ SFX_IMPL_XTYPEPROVIDER_7( SfxStandaloneDocumentInfoObject, ::com::sun::star::lang::XServiceInfo, ::com::sun::star::document::XDocumentInfo, ::com::sun::star::lang::XComponent, ::com::sun::star::beans::XPropertySet, ::com::sun::star::beans::XFastPropertySet, ::com::sun::star::beans::XPropertyAccess, ::com::sun::star::document::XStandaloneDocumentInfo )
-/*N*/ SFX_IMPL_XSERVICEINFO( SfxStandaloneDocumentInfoObject, "com.sun.star.document.StandaloneDocumentInfo", "com.sun.star.comp.sfx2.StandaloneDocumentInfo" )
+/*N*/ SFX_IMPL_XSERVICEINFO( SfxStandaloneDocumentInfoObject, "com.sun.star.document.BinaryStandaloneDocumentInfo", "com.sun.star.comp.sfx2.BinaryStandaloneDocumentInfo" )
 /*N*/ SFX_IMPL_SINGLEFACTORY( SfxStandaloneDocumentInfoObject )
 /*N*/
 /*N*/ SfxStandaloneDocumentInfoObject::SfxStandaloneDocumentInfoObject( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xFactory )
@@ -865,9 +866,6 @@ using namespace ::com::sun::star::frame;
 /*N*/     SvStorage* pStorage = GetStorage_Impl( aName, sal_False );
 /*N*/     if ( pStorage )
 /*N*/   {
-/*N*/       if ( !_pInfo )
-/*N*/           _pInfo = new SfxDocumentInfo;
-/*N*/
 /*N*/         if ( pStorage->GetVersion() >= SOFFICE_FILEFORMAT_60 )
 /*N*/         {
 /*N*/             // import from XML meta data using SAX parser
@@ -930,9 +928,6 @@ using namespace ::com::sun::star::frame;
 /*N*/   SvStorage* pStor = GetStorage_Impl( aName, sal_True );
 /*N*/   if ( pStor )
 /*N*/   {
-/*N*/       if ( !_pInfo )
-/*N*/           _pInfo = new SfxDocumentInfo;
-/*N*/
 /*N*/       // DocInfo speichern
 /*N*/       bOK = _pInfo->Save( pStor ) && pStor->Commit();
 /*N*/   }
@@ -941,6 +936,21 @@ using namespace ::com::sun::star::frame;
 /*N*/   if ( !bOK )
 /*N*/       throw SfxIOException_Impl( ERRCODE_IO_CANTREAD );
 /*N*/ }
+
+Reference< XInterface > SAL_CALL bf_BinaryDocInfo_createInstance(const Reference< com::sun::star::lang::XMultiServiceFactory > & rSMgr)
+    throw( Exception )
+{
+    static ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxLegServFact;
+    if ( !mxLegServFact.is() )
+    {
+        mxLegServFact = ::legacy_binfilters::getLegacyProcessServiceFactory();
+        ::com::sun::star::uno::Reference < com::sun::star::lang::XComponent > xWrapper( mxLegServFact->createInstance(
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" ))), UNO_QUERY );
+    }
+
+    return (cppu::OWeakObject*)new SfxStandaloneDocumentInfoObject(rSMgr);
+}
+
 
 //=============================================================================
 /* ASMUSS
