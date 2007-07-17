@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:27:10 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:02:22 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -94,7 +94,6 @@ SLOFILES = \
     $(SLO)$/sw_sw3sectn.obj \
     $(SLO)$/sw_sw3style.obj \
     $(SLO)$/sw_sw3table.obj \
-    $(SLO)$/sw_swacorr.obj	\
     $(SLO)$/sw_crypter.obj
 
 # --- Targets -------------------------------------------------------
