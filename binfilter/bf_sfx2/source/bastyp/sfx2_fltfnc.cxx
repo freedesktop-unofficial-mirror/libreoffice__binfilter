@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:23:07 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:40:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,10 +47,6 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-// STRIP001 #ifndef _EXTATTR_HXX
-// STRIP001 #include <svtools/extattr.hxx>
-// STRIP001 #endif
-
 
 #include <sal/types.h>
 #include <com/sun/star/uno/Reference.h>
@@ -76,16 +72,15 @@ using namespace ::vos;
 #include <svtools/syslocale.hxx>
 #endif
 
+#include <tools/urlobj.hxx>
+
 #include "docfile.hxx"
-#include "loadenv.hxx"
-#include "bastyp.hrc"
-#include "dispatch.hxx"
-#include "urlframe.hxx"
+#include "sfxsids.hrc"
 #include "fltlst.hxx"
 
-// wg. EXPLORER_BROWSER
 #include "request.hxx"
 #include "arrdecl.hxx"
+#include "app.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -385,101 +380,6 @@ public:
 /*?*/ {
 /*?*/     return 0;
 /*?*/ }
-
-//-------------------------------------------------------------------------
-#if 0
-/*?*/ sal_uInt32 SfxExecutableFilterContainer::Choose_Impl( SfxMedium& rMedium ) const
-/*?*/ {
-/*?*/     SfxFilterMatcher& rMatcher = SFX_APP()->GetFilterMatcher();
-/*?*/     SfxFilterDialog *pDlg =
-/*?*/         new SfxFilterDialog(
-/*?*/             0, &rMedium, rMatcher, 0, 0 );
-/*?*/     const sal_Bool bOk = RET_OK == pDlg->Execute();
-/*?*/     if (bOk)
-/*?*/     {
-/*?*/         const SfxFilter* pFilter  = rMatcher.GetFilter4UIName(
-/*?*/             pDlg->GetSelectEntry() );
-/*?*/         delete pDlg;
-/*?*/         rMedium.SetFilter( pFilter );
-/*?*/         return ERRCODE_NONE;
-/*?*/     }
-/*?*/     delete pDlg;
-/*?*/     return ERRCODE_ABORT;
-/*?*/ }
-/*?*/
-/*?*/ String SfxExecutableFilterContainer::GetBugdocName_Impl(
-/*?*/     const String& rName ) const
-/*   [Beschreibung]
-
-     Sucht ein Bugdoc in den ueblichen Verzeichnissen
- */
-/*?*/ {
-/*?*/     static const char* pNames[] =
-/*?*/     {
-/*?*/         "q:\\sw\\bugdoc",
-/*?*/         "q:\\sd\\bugdoc",
-/*?*/         "q:\\sc\\bugdoc",
-/*?*/         "q:\\sch\\bugdoc",
-/*?*/         "q:\\solar\\bugdoc",
-/*?*/         "q:\\bugdoc",
-/*?*/         0
-/*?*/     };
-/*?*/     sal_uInt32 nNumber = rName.ToInt32();
-/*?*/   String aMatch = rName;
-/*?*/   aMatch += '*';
-/*?*/     sal_uInt16 n = 1;
-/*?*/     const char* pName = pNames[ 0 ];
-/*?*/     while( pName )
-/*?*/     {
-/*?*/         DirEntry aEntry( String::CreateFromAscii(pName) );
-/*?*/         for( sal_uInt32 nBase = ( nNumber / 500 + 1 ) * 500;
-/*?*/              nBase - nNumber < 5000; nBase+=500 )
-/*?*/         {
-/*?*/             DirEntry aAkt( aEntry );
-/*?*/             String aBis( DEFINE_CONST_UNICODE("bis") );
-/*?*/             aBis += String::CreateFromInt32( nBase );
-/*?*/             aAkt += DirEntry( aBis );
-/*?*/             if( aAkt.Exists() )
-/*?*/             {
-/*?*/                 aAkt += DirEntry( aMatch );
-/*?*/                 Dir aDir( aAkt );
-/*?*/                 if( aDir.Count() )
-/*?*/                     return aDir[ 0 ].GetFull();
-/*?*/             }
-/*?*/         }
-/*?*/         pName = pNames[ n++ ];
-/*?*/     }
-/*?*/
-/*?*/     return String();
-/*?*/ }
-/*?*/
-/*?*/       case SFX_EXE_FILTER_BUGID:
-/*?*/       {
-/*?*/             String aPathName = DEFINE_CONST_UNICODE("http://webserver1.stardiv.de/Bugtracker/Source/Body_ReportDetail.asp?ID=");
-/*?*/           aPathName += rMedium.GetURLObject().GetURLPath();
-/*?*/           rMedium.SetName( aPathName );
-/*?*/           rMedium.SetPhysicalName( String() );
-/*?*/           rMedium.Init_Impl();
-/*?*/           rMedium.SetFilter( 0 );
-/*?*/           return ERRCODE_SFX_RESTART;
-/*?*/       }
-/*?*/
-/*?*/       case SFX_EXE_FILTER_BUGDOC:
-/*?*/       {
-/*?*/           String aPathName = GetBugdocName_Impl(
-/*?*/               rMedium.GetURLObject().GetURLPath() );
-/*?*/           if( aPathName.Len() )
-/*?*/           {
-/*?*/               rMedium.SetName( aPathName );
-/*?*/               rMedium.SetPhysicalName( String() );
-/*?*/               rMedium.Init_Impl();
-/*?*/               rMedium.SetFilter( 0 );
-/*?*/               return ERRCODE_SFX_RESTART;
-/*?*/           }
-/*?*/           else return ERRCODE_SFX_INVALIDLINK;
-/*?*/       }
-/*?*/
-#endif
 
 //----------------------------------------------------------------
 
@@ -930,9 +830,6 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
     ArgType rStr, SfxFilterFlags nMust, SfxFilterFlags nDont ) const \
 {                                                               \
     const SfxFilter* pFirstFilter = 0;                          \
-    SfxApplication* pApp = SFX_APP();                           \
-    if( this == &pApp->GetFilterMatcher() )                     \
-        pApp->ForcePendingInitFactories();                      \
     SfxFContainerList_Impl& rList = pImpl->aList;               \
     sal_uInt16 nCount = (sal_uInt16)rList.Count();              \
     for( sal_uInt16 n = 0; n<nCount; n++ )                      \
@@ -977,10 +874,6 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/     : pMatch( pMatchP->pImpl),
 /*N*/       nOrMask( nOrMaskP ), nAndMask( nAndMaskP )
 /*N*/ {
-/*N*/     // Iterator auf AppFilterMatcher -> DoInitFactory
-/*N*/     SfxApplication* pApp = SFX_APP();
-/*N*/     if( pMatchP == &pApp->GetFilterMatcher() )
-/*N*/         pApp->ForcePendingInitFactories();
 /*N*/     if( nOrMask == 0xffff ) //Wg. Fehlbuild auf s
 /*N*/         nOrMask = 0;
 /*N*/ }
@@ -1082,9 +975,10 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/ }
 
 // com.sun.star.sheet.SpreadsheetDocument
-#define NNUMFILTERNAMESFORSPREADSHEETDOCUMENT (7)
+#define NNUMFILTERNAMESFORSPREADSHEETDOCUMENT (8)
 static const sal_Char* sFilterNamesForSpreadsheetDocument[NNUMFILTERNAMESFORSPREADSHEETDOCUMENT] =
 {
+    "StarOffice XML (Calc)",
     "StarCalc 1.0",
     "StarCalc 3.0",
     "StarCalc 3.0 Vorlage/Template",
@@ -1095,18 +989,20 @@ static const sal_Char* sFilterNamesForSpreadsheetDocument[NNUMFILTERNAMESFORSPRE
 };
 
 // com.sun.star.chart.ChartDocument
-#define SFILTERNAMESFORCHARTDOCUMENT (3)
+#define SFILTERNAMESFORCHARTDOCUMENT (4)
 static const sal_Char* sFilterNamesForChartDocument[SFILTERNAMESFORCHARTDOCUMENT] =
 {
+    "StarOffice XML (Chart)",
     "StarChart 3.0",
     "StarChart 4.0",
     "StarChart 5.0"
 };
 
 // com.sun.star.drawing.DrawingDocument
-#define SFILTERNAMESFORDRAWINGDOCUMENT (4)
+#define SFILTERNAMESFORDRAWINGDOCUMENT (5)
 static const sal_Char* sFilterNamesForDrawingDocument[SFILTERNAMESFORDRAWINGDOCUMENT] =
 {
+    "StarOffice XML (Draw)",
     "StarDraw 3.0",
     "StarDraw 3.0 Vorlage",
     "StarDraw 5.0",
@@ -1114,9 +1010,10 @@ static const sal_Char* sFilterNamesForDrawingDocument[SFILTERNAMESFORDRAWINGDOCU
 };
 
 // com.sun.star.presentation.PresentationDocument
-#define SFILTERNAMESFORPRESENTATIONDOCUMENT (9)
+#define SFILTERNAMESFORPRESENTATIONDOCUMENT (10)
 static const sal_Char* sFilterNamesForPresentationDocument[SFILTERNAMESFORPRESENTATIONDOCUMENT] =
 {
+    "StarOffice XML (Impress)",
     "StarDraw 3.0 (StarImpress)",
     "StarDraw 3.0 Vorlage (StarImpress)",
     "StarDraw 5.0 (StarImpress)",
@@ -1129,9 +1026,10 @@ static const sal_Char* sFilterNamesForPresentationDocument[SFILTERNAMESFORPRESEN
 };
 
 // com.sun.star.formula.FormulaProperties
-#define SFILTERNAMESFORFORMULAPROPERTIES (4)
+#define SFILTERNAMESFORFORMULAPROPERTIES (5)
 static const sal_Char* sFilterNamesForFormulaProperties[SFILTERNAMESFORFORMULAPROPERTIES] =
 {
+    "StarOffice XML (Math)",
     "StarMath 2.0",
     "StarMath 3.0",
     "StarMath 4.0",
@@ -1139,9 +1037,10 @@ static const sal_Char* sFilterNamesForFormulaProperties[SFILTERNAMESFORFORMULAPR
 };
 
 // com.sun.star.text.GlobalDocument
-#define SFILTERNAMESFORGLOBALDOCUMENT (5)
+#define SFILTERNAMESFORGLOBALDOCUMENT (6)
 static const sal_Char* sFilterNamesForGlobalDocument[SFILTERNAMESFORGLOBALDOCUMENT] =
 {
+    "StarOffice XML (Writer)",
     "StarWriter 3.0 (StarWriter/GlobalDocument)",
     "StarWriter 4.0 (StarWriter/GlobalDocument)",
     "StarWriter 4.0/GlobalDocument",
@@ -1149,9 +1048,10 @@ static const sal_Char* sFilterNamesForGlobalDocument[SFILTERNAMESFORGLOBALDOCUME
     "StarWriter 5.0/GlobalDocument"
 };
 // com.sun.star.text.WebDocument
-#define SFILTERNAMESFORWEBDOCUMENT 5
+#define SFILTERNAMESFORWEBDOCUMENT 6
 static const sal_Char* sFilterNamesForWebDocument[SFILTERNAMESFORWEBDOCUMENT] =
 {
+    "StarOffice XML (Writer)",
     "StarWriter 3.0 (StarWriter/Web)",
     "StarWriter/Web 4.0 Vorlage/Template",
     "StarWriter 4.0 (StarWriter/Web)",
@@ -1159,9 +1059,10 @@ static const sal_Char* sFilterNamesForWebDocument[SFILTERNAMESFORWEBDOCUMENT] =
     "StarWriter 5.0 (StarWriter/Web)"
 };
 // com.sun.star.text.TextDocument
-#define SFILTERNAMESFORTEXTDOCUMENT (122)
+#define SFILTERNAMESFORTEXTDOCUMENT (123)
 static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] =
 {
+    "StarOffice XML (Writer)",
     "StarWriter DOS",
     "Lotus 1-2-3 1.0 (DOS) (StarWriter)",
     "Lotus 1-2-3 1.0 (WIN) (StarWriter)",
@@ -1532,6 +1433,9 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
 /*N*/                             BOOL bNew = FALSE;
 /*N*/                             if (!pFilter)
 /*N*/                             {
+                                      if ( nFormatVersion == 6200 )
+                                          nFlags = nFlags - 1; // only export!
+
 /*N*/                                 bNew = TRUE;
 /*N*/                                 pFilter = new SfxFilter( sFilterName             ,
 /*N*/                                                          sExtension              ,
@@ -1557,6 +1461,7 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
 /*?*/                                 pFilter->pContainer   = this;
 /*?*/                                 pFilter->aUserData    = sUserData;
 /*?*/                             }
+
 /*N*/
 /*N*/                             // Don't forget to set right UIName!
 /*N*/                             // Otherwise internal name is used as fallback ...
