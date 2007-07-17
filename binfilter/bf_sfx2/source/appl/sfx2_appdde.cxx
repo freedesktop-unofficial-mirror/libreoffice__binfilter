@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:53:59 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:34:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,17 +40,12 @@
 #include <svtools/pathoptions.hxx>
 #pragma hdrstop
 
+#include "app.hxx"
 #include "appdata.hxx"
 #include "objsh.hxx"
-#include "topfrm.hxx"
-#include "dispatch.hxx"
 #include "sfxsids.hrc"
-#if SUPD<613//MUSTINI
-#endif
 
-#ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
-#endif
 
 namespace binfilter {
 
@@ -189,47 +184,6 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*?*/ }
-
-//========================================================================
-
-/*?*/ long SfxViewFrame::DdeExecute
-/*?*/ (
-/*?*/   const String&   rCmd        // in unserer BASIC-Syntax formuliert
-/*?*/ )
-{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-/*?*/ long SfxViewFrame::DdeGetData
-/*?*/ (
-/*?*/   const String&   rItem,                  // das anzusprechende Item
-/*?*/   const String& rMimeType,                // in: Format
-/*?*/   ::com::sun::star::uno::Any & rValue     // out: angeforderte Daten
-/*?*/ )
-{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-/*?*/ long SfxViewFrame::DdeSetData
-/*?*/ (
-/*?*/   const String&   rItem,                      // das anzusprechende Item
-/*?*/   const String& rMimeType,                    // in: Format
-/*?*/   const ::com::sun::star::uno::Any & rValue   // out: angeforderte Daten
-/*?*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-/*?*/ ::so3::SvLinkSource* SfxViewFrame::DdeCreateLinkSource
-/*?*/ (
-/*?*/   const String&   rItem      // das zu erzeugende Item
-/*?*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
 
 //========================================================================
 
