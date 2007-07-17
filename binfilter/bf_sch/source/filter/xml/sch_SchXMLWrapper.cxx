@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_SchXMLWrapper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:28:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:48:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -222,19 +222,6 @@ using namespace comphelper;
 /*?*/ #endif
 /*?*/         return ERRCODE_SFX_GENERAL;
 /*?*/     }
-/*?*/       catch( io::IOException& aEx )
-/*?*/     {
-/*?*/ #ifdef DBG_UTIL
-/*?*/       // convert ::rtl::OUString => tools String => ByteString
-/*?*/       String aStr( aEx.Message );
-/*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
-/*?*/       DBG_ERROR2( "IO exception caught during import of \"%s\" stream(): %s",
-/*?*/                   aBStrStreamName.GetBuffer(),
-/*?*/                   aBStr.GetBuffer());
-/*?*/ #endif
-/*?*/         return ERRCODE_SFX_GENERAL;
-/*?*/   }
 /*?*/       catch( packages::zip::ZipIOException& aEx )
 /*?*/     {
 /*?*/ #ifdef DBG_UTIL
@@ -247,6 +234,19 @@ using namespace comphelper;
 /*?*/                   aBStr.GetBuffer());
 /*?*/ #endif
 /*?*/         return ERRCODE_IO_BROKENPACKAGE;
+/*?*/   }
+/*?*/       catch( io::IOException& aEx )
+/*?*/     {
+/*?*/ #ifdef DBG_UTIL
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
+/*?*/       String aStr( aEx.Message );
+/*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
+/*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
+/*?*/       DBG_ERROR2( "IO exception caught during import of \"%s\" stream(): %s",
+/*?*/                   aBStrStreamName.GetBuffer(),
+/*?*/                   aBStr.GetBuffer());
+/*?*/ #endif
+/*?*/         return ERRCODE_SFX_GENERAL;
 /*?*/   }
 /*?*/   catch( uno::Exception& aEx )
 /*?*/   {
