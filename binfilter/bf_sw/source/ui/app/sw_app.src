@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_app.src,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:57:51 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:04:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,6 @@
 #include <bf_sfx2/sfx.hrc>
 #include <bf_svx/dialogs.hrc>
 #include <bf_svx/globlmn.hrc>
-#include <bf_offmgr/sba.hrc>
 #include "cmdid.h"
 #include "globals.hrc"
 #include "app.hrc"
@@ -126,21 +125,6 @@ String STR_PAGE_COUNT_MACRO
 
 
 
-
- // Vorlagen
-#define STYLE_IMAGE_LISTEF \
-    MaskColor = IMAGE_MASK_COLOR ; \
-    IdList = \
-    { \
-        1; 2; 3; 4; 5; \
-    }; \
-    IdCount = 5;
-
-
-
-
- // Default Bitmap fuer Toolbox
- // Bitmap fuer die NumerierungsVorlagen im Organizer
 
 
 
@@ -329,46 +313,6 @@ String STR_UNBENANNT
 
 
 
-
-/*
- * auskommentiert, da die Toolbox z. Zt. nicht aus der Resource
- * geladen werden kann
-#define NO_LOCALIZE_EXPORT
-Window WIN_TOOLBOX {
-HelpText [ en-US ] = "";
-HelpText [ de ] = "Die Objektleiste enth�lt, je nach Bedarf, Buttons f�r die "
-       "Bearbeitung von Text, Rahmen, Grafik, Tabellen oder "
-       "Numerierungen.";
-            "working context, buttons for the editing of text, "
-            "frames, graphics, tables or numberings.";
-            "knapper for redigering av tekst,"
-            " rammer, grafikker, tabeller eller nummereringer.";
-            "contesto lavorativo, pulsanti per la modifica del testo,"
-            "cornici, grafici, tabelle o numerazioni..";
-            "atual, bot es para edi��o de texto, "
-            "molduras, gr�ficos, tabelas ou numera��o.";
-            "actual, bot�es para edi��o de texto, "
-            "molduras, gr�ficos, tabelas ou numera��o.";
-            "joilla muokataan teksti�, kehyksi�, kuvia, "
-            "taulukoita tai numeronteja.";
-            " rummer ikonb�ndet knapper for redigering af tekst, "
-            "tekstruder, grafik, tabeller eller nummereringer.";
-            "contient des boutons de modification du texte, des "
-            "cadres, des graphiques, des tables ou des num�rotations.";
-            "arbetsomr�de, knappar f�r redigering av text,"
-            "ramar, bilder, tabeller eller numreringar.";
-            "knoppen voor het bewerken van tekst, kaders, illustraties "
-            "of nummeringen.";
-            "de trabajo actual, botones para la edici�n de texto, "
-            "marcos, gr�ficos, tablas o numeraciones.";
-HelpText [ en-US ] = "The objectbar contains, depending on your current "
-            "working context, buttons for the editing of text, "
-            "frames, graphics, tables or numberings.";
-    OUTPUTSIZE = TRUE;
-    BORDER = TRUE;
-    Size = (28,27);
-};
- */
 #define NO_LOCALIZE_EXPORT
 
 String RID_BUILDVERSION
@@ -901,111 +845,4 @@ String RID_MODULE_TOOLBOX
     Text[ he ] = "‮סרגל פעולות נפוצות‬";
 };
 
-ToolBox RID_MODULE_TOOLBOX
-{
-    HelpID = HID_MODULE_TOOLBOX ;
-    Border = TRUE ;
-    SVLook = TRUE ;
-    Dockable = TRUE ;
-    Moveable = TRUE ;
-    Sizeable = TRUE ;
-    Closeable = TRUE ;
-    Zoomable = TRUE ;
-    HideWhenDeactivate = TRUE ;
-    LineSpacing = TRUE ;
-    Customize = TRUE ;
-    MenuStrings = TRUE ;
-    Hide = TRUE ;
-    ItemList  =
-    {
-        ToolBoxItem
-        {
-            Identifier = SID_SAVEASDOC ;
-        };
-        ToolBoxItem
-        {
-            Type = TOOLBOXITEM_SEPARATOR ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_EDITDOC ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_MAIL_SENDDOC ;
-        };
-        ToolBoxItem
-        {
-            Type = TOOLBOXITEM_SEPARATOR ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_DIRECTEXPORTDOCASPDF ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_PRINTDOCDIRECT ;
-        };
-        ToolBoxItem
-        {
-            Type = TOOLBOXITEM_SEPARATOR ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_COPY ;
-        };
-        ToolBoxItem
-        {
-            Type = TOOLBOXITEM_SEPARATOR ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_SEARCH_DLG ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_NAVIGATOR ;
-        };
-        ToolBoxItem
-        {
-            Type = TOOLBOXITEM_SEPARATOR ;
-        };
-        ToolBoxItem
-        {
-            Identifier = SID_ATTR_ZOOM ;
-        };
-    };
-    Scroll = TRUE ;
-};
-
-WarningBox MSG_DISABLE_READLINE_QUESTION
-{
-    BUTTONS = WB_YES_NO;
-    DEFBUTTON = WB_DEF_YES ;
-    Message [ de ] = "Im aktuellen Dokument werden Änderungen aufgezeichnet aber nicht als Solche angezeigt. In umfangreichen Dokumenten, kann es dadurch zu Verzögerungen beim Bearbeiten des Dokumentes kommen. Wollen Sie die Änderungen anzeigen, um Wartezeiten zu vermeiden?";
-    Message [ en-US ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ pt ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ ru ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ el ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ nl ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ fr ] = "Les modifications effectuées dans le document actif vont être enregistrées sans être affichées comme telles. Ceci peut provoquer des délais durant l'édition de documents plus volumineux. Voulez-vous afficher les modifications afin d'éviter ce type de comportement ?";
-    Message[ es ] = "En el documento actual se graban las modificaciones pero no se muestran como tales. En documentos largos se pueden producir retrasos durante la edición. ¿Desea mostrar las modificaciones para evitar retrasos?";
-    Message[ fi ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ ca ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ it ] = "Le modifiche del documento attuale sono state salvate ma non risultano come tali. Nei documenti di grandi dimensioni le modifiche richiedono un certo tempo per essere visualizzate. Volete mostrare le modifiche per evitare ritardi?";
-    Message[ sk ] = "V aktívnom dokumente sa nahrávajú zmeny, ale program ich neeviduje. Vo veľkých dokumentoch, môže nastať oneskorenie pri úpravách. Chcete zobraziť zmeny, aby sa zabránilo oneskoreniu?";
-    Message[ da ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ sv ] = "I det aktuella dokumentet registreras ändringar men de visas inte som ändringar. I stora dokument kan detta leda till fördröjningar när dokumentet redigeras. Vill du visa ändringarna för att undvika sådana fördröjningar?";
-    Message[ pl ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ pt-BR ] = "No documento atual, as modificações são gravadas mas não são apresentadas como tal. Em documentos grandes, atrasos poderão ocorrer quando o documento é editado. Deseja exibir as modificalções para evitar os atrasos?";
-    Message[ th ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ ja ] = "現在のドキュメントでは変更は記録されていますが、表示確認はできません。内容が多いドキュメントでは、ドキュメントの編集に時間がかかります。待たずに変更を表示させますか。";
-    Message[ ko ] = "현재 문서의 변경 내용은 기록이 되지만 변경 내용으로 표시되지 않습니다. 큰 문서에서는 이로 인해 문서 편집이 지연될 수 있습니다. 지연되지 않도록 하기 위해 변경 내용을 표시하시겠습니까?";
-    Message[ zh-CN ] = "目前的文档之中的更改已经被纪录，但是并没有立刻显示出来。在编辑一个比较庞大的文档时会发生延迟的现象。您想要让更改部分显示出来以避免延迟？";
-    Message[ zh-TW ] = "已紀錄目前的文件之内的變更，但是並沒有立刻顯示出來。在編輯一個比較龐大的文件時會發生延遲的現象。您想要讓變更部分顯示出來以避免延遲？";
-    Message[ tr ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ hi-IN ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ ar ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-    Message[ he ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
-};
 
