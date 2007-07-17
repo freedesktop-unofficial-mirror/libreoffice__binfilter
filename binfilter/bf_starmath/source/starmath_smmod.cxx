@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:15:51 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:25:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,14 +33,8 @@
  *
  ************************************************************************/
 
-#ifndef _SV_STATUS_HXX //autogen
-#include <vcl/status.hxx>
-#endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFXOBJFACE_HXX //autogen
-#include <bf_sfx2/objface.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
@@ -61,23 +55,16 @@
 #include <svtools/itemset.hxx>
 #endif
 
+#include "smmod.hxx"
+#include <so3/factory.hxx>
+
 #ifndef _CONFIG_HXX
 #include "config.hxx"
-#endif
-#ifndef VIEW_HXX
-#include "view.hxx"
 #endif
 #include "starmath.hrc"
 namespace binfilter {//STRIP009
 /*N*/ TYPEINIT1( SmModuleDummy, SfxModule );
 /*N*/ TYPEINIT1( SmModule, SmModuleDummy );
-
-#define SmModule
-#include "smslots.hxx"
-} //namespace binfilter
-namespace binfilter {
-
-/////////////////////////////////////////////////////////////////
 
 /*N*/ SmLocalizedSymbolData::SmLocalizedSymbolData() :
 /*N*/     Resource( SmResId(RID_LOCALIZED_NAMES) ),
@@ -213,14 +200,6 @@ namespace binfilter {
 /*N*/     return p60NamesAry ? &p60NamesAry->GetNamesArray() : 0;
 /*N*/ }
 
-/////////////////////////////////////////////////////////////////
-
-/*N*/ SFX_IMPL_INTERFACE(SmModule, SfxModule, SmResId(RID_APPLICATION))
-/*N*/ {
-/*N*/   SFX_STATUSBAR_REGISTRATION(SmResId(RID_STATUSBAR));
-/*N*/ }
-
-
 /*N*/ SmModule::SmModule(SvFactory* pObjFact) :
 /*N*/   SmModuleDummy(SFX_APP()->CreateResManager("bf_sm"), FALSE, pObjFact),   //STRIP005
 /*N*/     pConfig( 0 ),
@@ -258,21 +237,6 @@ namespace binfilter {
 
 /*N*/ void SmModule::ApplyColorConfigValues( const svtools::ColorConfig &rColorCfg )
 /*N*/ {
-/*N*/     //invalidate all graphic and edit windows
-/*N*/     const TypeId aSmViewTypeId = TYPE(SmViewShell);
-/*N*/     SfxViewShell* pViewShell = SfxViewShell::GetFirst();
-/*N*/     while (pViewShell)
-/*N*/     {
-/*N*/         if ((pViewShell->IsA(aSmViewTypeId)))
-/*N*/         {
-/*N*/             SmViewShell *pSmView = (SmViewShell *) pViewShell;
-/*N*/             pSmView->GetGraphicWindow().ApplyColorConfigValues( rColorCfg );
-/*N*/             SmEditWindow *pEditWin = pSmView->GetEditWindow();
-/*N*/             if (pEditWin)
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pEditWin->ApplyColorConfigValues( rColorCfg );
-/*N*/         }
-/*N*/         pViewShell = SfxViewShell::GetNext( *pViewShell );
-/*N*/     }
 /*N*/ }
 
 /*N*/ svtools::ColorConfig & SmModule::GetColorConfig()
@@ -308,26 +272,6 @@ namespace binfilter {
 /*N*/     if (!pLocSymbolData)
 /*N*/         ((SmModule *) this)->pLocSymbolData = new SmLocalizedSymbolData;
 /*N*/     return *pLocSymbolData;
-/*N*/ }
-
-/*N*/ void SmModule::GetState(SfxItemSet &rSet)
-/*N*/ {
-/*N*/   SfxWhichIter aIter(rSet);
-/*N*/
-/*N*/   for (USHORT nWh = aIter.FirstWhich(); 0 != nWh; nWh = aIter.NextWhich())
-/*N*/       switch (nWh)
-/*N*/       {
-/*N*/           case SID_CONFIGEVENT :
-/*N*/               rSet.DisableItem(SID_CONFIGEVENT);
-/*N*/               break;
-/*N*/       }
-/*N*/ }
-
-/*N*/ void SmModule::FillStatusBar(StatusBar &rBar)
-/*N*/ {
-/*N*/   rBar.InsertItem(SID_TEXTSTATUS, 300, SIB_LEFT | SIB_IN);
-/*N*/   rBar.InsertItem(SID_ATTR_ZOOM, rBar.GetTextWidth(C2S(" 100% ")));
-/*N*/   rBar.InsertItem(SID_MODIFYSTATUS, rBar.GetTextWidth(C2S(" * ")));
 /*N*/ }
 
 /*N*/ SfxModule *SmModuleDummy::Load()
