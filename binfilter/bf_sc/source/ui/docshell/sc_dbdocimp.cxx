@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocimp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:46:30 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:18:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,6 @@
 #include <comphelper/types.hxx>
 #include <vcl/msgbox.hxx>
 #include <tools/debug.hxx>
-#include <bf_offmgr/sbaitems.hxx>   // SbaSelectionList
 #include <bf_svx/dataaccessdescriptor.hxx>
 
 #include <com/sun/star/sdb/CommandType.hpp>
@@ -78,6 +77,15 @@
 #endif
 namespace binfilter {
 using namespace ::com::sun::star;
+
+class SbaSelectionList: public List , public SvRefBase
+{
+public:
+    SbaSelectionList():
+    List(CONTAINER_MAXBLOCKSIZE,100,100){}
+};
+
+SV_DECL_IMPL_REF(SbaSelectionList)
 
 #define SC_SERVICE_ROWSET           "com.sun.star.sdb.RowSet"
 #define SC_SERVICE_INTHANDLER       "com.sun.star.sdb.InteractionHandler"
@@ -634,23 +642,23 @@ using namespace ::com::sun::star;
 /*M*/       if (pWaitWin)
 /*M*/           pWaitWin->LeaveWait();
 /*M*/
-/*M*/       if ( bTruncated && !bApi )          // show warning
-/*M*/           ErrorHandler::HandleError(SCWARN_IMPORT_RANGE_OVERFLOW);
+//*M*/      if ( bTruncated && !bApi )          // show warning
+//*M*/          ErrorHandler::HandleError(SCWARN_IMPORT_RANGE_OVERFLOW);
 /*M*/   }
-/*M*/   else if ( !bApi )
-/*M*/   {
-/*M*/       if (pWaitWin)
-/*M*/           pWaitWin->LeaveWait();
-/*M*/
-/*M*/       if (!aErrorMessage.Len())
-/*M*/       {
-/*M*/           if (!nErrStringId)
-/*M*/               nErrStringId = STR_MSSG_IMPORTDATA_0;
-/*M*/           aErrorMessage = ScGlobal::GetRscString( nErrStringId );
-/*M*/       }
-/*M*/       InfoBox aInfoBox( rDocShell.GetDialogParent(), aErrorMessage );
-/*M*/       aInfoBox.Execute();
-/*M*/   }
+//*M*/  else if ( !bApi )
+//*M*/  {
+//*M*/      if (pWaitWin)
+//*M*/          pWaitWin->LeaveWait();
+//*M*/
+//*M*/      if (!aErrorMessage.Len())
+//*M*/      {
+//*M*/          if (!nErrStringId)
+//*M*/              nErrStringId = STR_MSSG_IMPORTDATA_0;
+//*M*/          aErrorMessage = ScGlobal::GetRscString( nErrStringId );
+//*M*/      }
+//*M*/      InfoBox aInfoBox( rDocShell.GetDialogParent(), aErrorMessage );
+//*M*/      aInfoBox.Execute();
+//*M*/  }
 /*M*/
 /*M*/   delete pImportDoc;
 /*M*/
