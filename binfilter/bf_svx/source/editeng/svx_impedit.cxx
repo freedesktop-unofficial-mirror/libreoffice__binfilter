@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:20:20 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:33:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -166,7 +166,6 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           pOutWin->GetCursor()->Hide();
 /*?*/   }
 /*?*/
-/*?*/   DBG_ASSERT( !pEditEngine->pImpEditEngine->aIdleFormatter.IsActive(), "DrawSelection: Not formatted!" );
 /*?*/   aTmpSel.Adjust( pEditEngine->pImpEditEngine->GetEditDoc() );
 /*?*/
 /*?*/   ContentNode* pStartNode = aTmpSel.Min().GetNode();
