@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_frameobj.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:28:50 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:57:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,7 @@
 
 #include "frameobj.hxx"
 
-#include "frmenv.hxx"
-#include "urlframe.hxx"
-#include "doc.hrc"
-#include "sfxresid.hxx"
+#include "frmdescr.hxx"
 
 #include <appdata.hxx>
 
@@ -75,16 +72,12 @@ namespace binfilter {
     Impl-Struktur des SfxFrameObjects.
 */
 /*N*/ {
-/*N*/   SfxFrameObjectEnv_Impl*         pEnv;
 /*N*/   SfxFrameDescriptor*     pFrmDescr;
-/*N*/   SfxURLFrame*            pFrame;
 /*N*/   Timer*                  pNewObjectTimer;
 /*N*/   SfxObjectShellLock      xDoc;
 /*N*/
 /*N*/               SfxFrameObject_Impl()
-/*N*/                   : pFrame( NULL )
-/*N*/                   , pEnv( NULL )
-/*N*/                   , pFrmDescr( new SfxFrameDescriptor( NULL ) )
+/*N*/                   : pFrmDescr( new SfxFrameDescriptor( NULL ) )
 /*N*/                   , pNewObjectTimer( NULL )
 /*N*/               {
 /*N*/               }
@@ -135,12 +128,6 @@ namespace binfilter {
     Format werden global initialisiert.
 */
 /*?*/ {
-/*?*/   // Verben der Superklasse bekanntgeben, um GetVerbs nicht
-/*?*/   // ueberlagern zu muessen
-/*?*/ //    SetTypeList( SvDataTypeList() );
-/*?*/   SvVerbList *pVerbs = new SvVerbList;
-/*?*/   pVerbs->Append( SvVerb( 1, String( SfxResId( STR_FRAMEOBJECT_PROPERTIES ) ) ) );
-/*?*/   SetVerbList( pVerbs );
 /*?*/ }
 
 //=========================================================================
@@ -153,29 +140,6 @@ namespace binfilter {
 /*?*/   delete pImpl;
 /*?*/ }
 
-//=========================================================================
-/*?*/ IMPL_LINK( SfxFrameObject, NewObjectHdl_Impl, Timer *, pTimer )
-/*  [Beschreibung]
-
-    Wurde kein URL im Objekt gesetzt, dann fragt es im InPlaceActivate
-    nach einem. Dies muss asynchron geschehen, da in den H„ndlern
-    des IP-Protocol eine modale Dialogbox verboten ist.
-*/
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/
-/*?*/     return 0;
-/*?*/ }
-
-//=========================================================================
-/*N*/ BOOL SfxFrameObject::ConstructFrame()
-/*  [Beschreibung]
-
-    Die Methode erzeugt den Frame. Es ist notwendig, da\s das Objekt
-    InPlace-Active ist.
-*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return TRUE;
-/*N*/ }
 
 //=========================================================================
 /*  [Beschreibung]
