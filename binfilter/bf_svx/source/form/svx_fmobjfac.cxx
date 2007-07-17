@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmobjfac.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:55:55 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:37:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,16 +66,9 @@
 #include "fmshimp.hxx"
 #endif
 
-#ifndef _FM_FMSHELL_HXX
-#include "fmshell.hxx"
-#endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
-
-#ifndef _SVX_TBXFORM_HXX
-#include "tbxform.hxx"
 #endif
 
 
@@ -89,24 +82,12 @@
 #include "fmservs.hxx"
 #endif
 
-#ifndef _SVX_TABWIN_HXX
-#include "tabwin.hxx"
-#endif
 
-#ifndef _SVX_FMEXPL_HXX
-#include "fmexpl.hxx"
-#endif
-
-#ifndef _SVX_FILTNAV_HXX
-#include "filtnav.hxx"
-#endif
 
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
 #endif
-#ifndef SVX_FMPROPBRW_HXX
-#include "fmPropBrw.hxx"
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -122,28 +103,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/ {
 /*N*/   SdrObjFactory::InsertMakeObjectHdl(LINK(this, FmFormObjFactory, MakeObject));
 /*N*/
-/*N*/   //////////////////////////////////////////////////////////////////////
-/*N*/   // Konfigurations-::com::sun::star::frame::Controller und NavigationBar registrieren
-/*N*/   SvxFmTbxCtlConfig::RegisterControl( SID_FM_CONFIG );
-/*N*/   SvxFmTbxCtlAbsRec::RegisterControl( SID_FM_RECORD_ABSOLUTE );
-/*N*/   SvxFmTbxCtlRecText::RegisterControl( SID_FM_RECORD_TEXT );
-/*N*/   SvxFmTbxCtlRecFromText::RegisterControl( SID_FM_RECORD_FROM_TEXT );
-/*N*/   SvxFmTbxCtlRecTotal::RegisterControl( SID_FM_RECORD_TOTAL );
-/*N*/   SvxFmTbxPrevRec::RegisterControl( SID_FM_RECORD_PREV );
-/*N*/   SvxFmTbxNextRec::RegisterControl( SID_FM_RECORD_NEXT );
-/*N*/   ControlConversionMenuController::RegisterControl(SID_FM_CHANGECONTROLTYPE);
-/*N*/
-/*N*/   // Registrieung von globalen fenstern
-/*N*/   FmFieldWinMgr::RegisterChildWindow();
-/*N*/   FmPropBrwMgr::RegisterChildWindow();
-/*N*/   NavigatorFrameManager::RegisterChildWindow();
-/*N*/   FmFilterNavigatorWinMgr::RegisterChildWindow();
-/*N*/
-/*N*/   //////////////////////////////////////////////////////////////////////
-/*N*/   // Interface fuer die Formshell registrieren
-/*N*/   FmFormShell::RegisterInterface(0);
-/*N*/
-/*N*/   ImplSmartRegisterUnoServices();
+/*N*/   // ImplSmartRegisterUnoServices();
 /*N*/
 /*N*/ }
 
