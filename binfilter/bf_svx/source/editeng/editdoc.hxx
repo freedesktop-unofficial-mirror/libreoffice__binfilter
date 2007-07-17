@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editdoc.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:19:10 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:31:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,6 @@
 #define _EDITDOC_HXX
 
 #include <editattr.hxx>
-#include <edtspell.hxx>
 #include <svxfont.hxx>
 
 #ifndef _SFXITEMSET_HXX //autogen
@@ -221,7 +220,6 @@ class ContentNode : public XubString
 private:
     ContentAttribs  aContentAttribs;
     CharAttribList  aCharAttribList;
-    WrongList*      pWrongList;
 
 public:
                     ContentNode( SfxItemPool& rItemPool );
@@ -241,30 +239,8 @@ public:
 
     void            CreateDefFont();
 
-    WrongList*      GetWrongList()                  { return pWrongList; }
-    void            SetWrongList( WrongList* p )    { pWrongList = p; }
-
-    void            CreateWrongList();
-    void            DestroyWrongList();
-
     BOOL            IsFeature( USHORT nPos ) const { return ( GetChar( nPos ) == CH_FEATURE ); }
 };
-
-inline void ContentNode::DestroyWrongList()
-{
-#ifndef SVX_LIGHT
-    delete pWrongList;
-#endif
-    pWrongList = NULL;
-}
-
-inline void ContentNode::CreateWrongList()
-{
-    DBG_ASSERT( !pWrongList, "WrongList existiert schon!" );
-#ifndef SVX_LIGHT
-    pWrongList = new WrongList;
-#endif
-}
 
 typedef ContentNode* ContentNodePtr;
 SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 )//STRIP008 ;
