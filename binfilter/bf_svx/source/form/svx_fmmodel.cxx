@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmmodel.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:55:25 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:36:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,23 +55,21 @@ class SfxObjectShell;
 #ifndef _FM_PAGE_HXX
 #include "fmpage.hxx"
 #endif
-#ifndef _SVX_FMUNDO_HXX
-#include "fmundo.hxx"
-#endif
+
+#include "svdobj.hxx"
+
 namespace binfilter {
 
 /*N*/ TYPEINIT1(FmFormModel, SdrModel);
 
 struct FmFormModelImplData
 {
-    FmXUndoEnvironment*     pUndoEnv;
     XubString               sNextPageId;
     sal_Bool                bOpenInDesignIsDefaulted;
     sal_Bool                bMovingPage;
 
     FmFormModelImplData()
-        :pUndoEnv( NULL )
-        ,bOpenInDesignIsDefaulted( sal_True )
+        :bOpenInDesignIsDefaulted( sal_True )
         ,bMovingPage( sal_False )
     {
     }
@@ -98,8 +96,6 @@ struct FmFormModelImplData
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   m_pImpl = new FmFormModelImplData;
-/*N*/   m_pImpl->pUndoEnv = new FmXUndoEnvironment(*this);
-/*N*/   m_pImpl->pUndoEnv->acquire();
 /*N*/   m_pImpl->sNextPageId = '0';
 /*N*/ #endif
 /*N*/ }
@@ -125,8 +121,6 @@ struct FmFormModelImplData
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   m_pImpl = new FmFormModelImplData;
-/*N*/   m_pImpl->pUndoEnv = new FmXUndoEnvironment(*this);
-/*N*/   m_pImpl->pUndoEnv->acquire();
 /*N*/   m_pImpl->sNextPageId = '0';
 /*N*/ #endif
 /*N*/ }
@@ -138,18 +132,8 @@ struct FmFormModelImplData
 \************************************************************************/
 /*N*/ FmFormModel::~FmFormModel()
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pObjShell && m_pImpl->pUndoEnv->IsListening(*pObjShell))
 /*N*/       SetObjectShell(NULL);
-/*N*/
-/*N*/   ClearUndoBuffer();
-/*N*/   // minimale grenze fuer undos
-/*N*/   SetMaxUndoActionCount(1);
-/*N*/
-/*N*/   m_pImpl->pUndoEnv->release();
 /*N*/   delete m_pImpl;
-/*N*/
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -251,11 +235,7 @@ struct FmFormModelImplData
 \************************************************************************/
 /*N*/ void FmFormModel::InsertPage(SdrPage* pPage, sal_uInt16 nPos)
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   // hack solange Methode intern
-/*N*/   if (pObjShell && !m_pImpl->pUndoEnv->IsListening( *pObjShell ))
 /*?*/       SetObjectShell(pObjShell);
-/*N*/ #endif
 /*N*/
 /*N*/   SdrModel::InsertPage( pPage, nPos );
 /*N*/
@@ -283,8 +263,6 @@ struct FmFormModelImplData
 /*N*/       //
 /*N*/       // 2002-01-10 - #i3235# - fs@openoffice.org
 /*N*/       //
-/*N*/       if ( pPage )
-/*N*/           m_pImpl->pUndoEnv->AddForms( static_cast< FmFormPage* >( pPage )->GetForms() );
 /*N*/   }
 /*N*/ #endif
 /*N*/ }
@@ -307,10 +285,6 @@ struct FmFormModelImplData
 /*N*/ {
 /*N*/   FmFormPage* pPage = (FmFormPage*)SdrModel::RemovePage(nPgNum);
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pPage)
-/*N*/       m_pImpl->pUndoEnv->RemoveForms(pPage->GetForms());
-/*N*/ #endif
 /*N*/
 /*N*/   return pPage;
 /*N*/ }
@@ -322,18 +296,10 @@ struct FmFormModelImplData
 \************************************************************************/
 /*N*/ void FmFormModel::InsertMasterPage(SdrPage* pPage, sal_uInt16 nPos)
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   // hack solange Methode intern
-/*N*/   if (pObjShell && !m_pImpl->pUndoEnv->IsListening( *pObjShell ))
 /*N*/       SetObjectShell(pObjShell);
-/*N*/ #endif
 /*N*/
 /*N*/   SdrModel::InsertMasterPage(pPage, nPos);
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pPage)
-/*N*/       m_pImpl->pUndoEnv->AddForms(((FmFormPage*)pPage)->GetForms());
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -344,11 +310,6 @@ struct FmFormModelImplData
 /*N*/ SdrPage* FmFormModel::RemoveMasterPage(sal_uInt16 nPgNum)
 /*N*/ {
 /*N*/   FmFormPage* pPage = (FmFormPage*)SdrModel::RemoveMasterPage(nPgNum);
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pPage)
-/*N*/       m_pImpl->pUndoEnv->RemoveForms(pPage->GetForms());
-/*N*/ #endif
 /*N*/
 /*N*/   return pPage;
 /*N*/ }
@@ -404,34 +365,11 @@ struct FmFormModelImplData
 //------------------------------------------------------------------------
 /*N*/ void FmFormModel::SetObjectShell( SfxObjectShell* pShell )
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
 /*N*/   if (pShell == pObjShell)
 /*N*/       return;
 /*N*/
-/*N*/   if (pObjShell)
-/*N*/   {
-/*N*/       m_pImpl->pUndoEnv->EndListening( *this );
-/*N*/       m_pImpl->pUndoEnv->EndListening( *pObjShell );
-/*N*/   }
 /*N*/
 /*N*/   pObjShell = pShell;
-/*N*/
-/*N*/   if (pObjShell)
-/*N*/   {
-/*N*/       m_pImpl->pUndoEnv->SetReadOnly(pObjShell->IsReadOnly() || pObjShell->IsReadOnlyUI());
-/*N*/
-/*N*/       if (!m_pImpl->pUndoEnv->IsReadOnly())
-/*N*/            m_pImpl->pUndoEnv->StartListening(*this);
-/*N*/
-/*N*/       m_pImpl->pUndoEnv->StartListening( *pObjShell );
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-//------------------------------------------------------------------------
-/*N*/ FmXUndoEnvironment&   FmFormModel::GetUndoEnv()
-/*N*/ {
-/*N*/   return *m_pImpl->pUndoEnv;
 /*N*/ }
 
 //------------------------------------------------------------------------
