@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:53:21 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:11:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -843,11 +843,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         if ( pPatter
 /*N*/ //            no longer needed, are setted with the text (is faster)
 /*N*/ //            pEngine->SetDefaults( pSet );
 /*N*/
-/*N*/           if ( ((const SfxBoolItem&)pSet->Get(EE_PARA_HYPHENATE)).GetValue() ) {
-/*?*/
-/*?*/               ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XHyphenator> xXHyphenator( LinguMgr::GetHyphenator() );
-/*?*/                 pEngine->SetHyphenator( xXHyphenator );
-/*N*/             }
 /*N*/
 /*N*/           Size aPaper = Size( 1000000, 1000000 );
 /*N*/           if ( eOrient==SVX_ORIENTATION_STACKED && !bAsianVertical )
