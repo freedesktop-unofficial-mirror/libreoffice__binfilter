@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlwrap.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:33:02 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:13:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,9 +45,7 @@
 #include <unotools/streamwrap.hxx>
 #include <bf_svx/xmlgrhlp.hxx>
 #include <svtools/sfxecode.hxx>
-#ifndef _SFXFRAME_HXX
-#include <bf_sfx2/frame.hxx>
-#endif
+#include <bf_sfx2/appuno.hxx>
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
 #endif
