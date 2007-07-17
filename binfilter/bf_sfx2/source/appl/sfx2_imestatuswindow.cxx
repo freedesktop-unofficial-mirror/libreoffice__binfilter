@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_imestatuswindow.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:58:03 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:37:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,8 +157,6 @@ void SAL_CALL
 ImeStatusWindow::propertyChange(css::beans::PropertyChangeEvent const & rEvent)
     throw (css::uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
-    m_rApplication.Invalidate(SID_SHOW_IME_STATUS_WINDOW);
 }
 
 css::uno::Reference< css::beans::XPropertySet > ImeStatusWindow::getConfig()
