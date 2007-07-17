@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 15:08:19 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:24:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <so3/clsids.hxx>
 #endif
 
-
+#include <svtools/itemset.hxx>
 
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
@@ -57,23 +57,13 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-#include <svtools/undo.hxx>
 
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
+#include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
-#ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
+
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
@@ -113,14 +103,14 @@
 #include <unomodel.hxx>
 #endif
 #ifndef TOOLBOX_HXX
-#include <toolbox.hxx>
-#endif
-#ifndef VIEW_HXX
-#include <view.hxx>
+#include <config.hxx>
 #endif
 #ifndef MATHML_HXX
 #include <mathml.hxx>
 #endif
+
+#include <svtools/transfer.hxx>
+
 namespace binfilter {
 
 
@@ -154,32 +144,9 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 **
 **/
 
-#define SmDocShell
-#include "smslots.hxx"
-
 /*N*/ TYPEINIT1( SmDocShell, SfxObjectShell );
 
-/*N*/ SFX_IMPL_INTERFACE(SmDocShell, SfxObjectShell, SmResId(0))
-/*N*/ {
-/*N*/ //      SFX_OBJECTBAR_REGISTRATION(
-/*N*/ //          SFX_OBJECTBAR_OBJECT|SFX_VISIBILITY_STANDARD|SFX_VISIBILITY_SERVER,
-/*N*/ //          SmResId(RID_DEFAULTTOOLBOX));
-/*N*/ }
-
-#if 0
-
-//JP 13.06.00: das fehlt vwohl noch, oder??
-//  SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
-//  SfxFactoryFilterContainer *pFltContainer = rFactory.GetFilterContainer( FALSE );
-//  rFactory.GetFilterContainer()->SetDetectFilter( &SmDLL::DetectFilter );
-
-   // FG: Sonst gibts keine Hilfe im Math  #38447#
-#else
 /*N*/ SFX_IMPL_OBJECTFACTORY_DLL(SmDocShell, smath, SvGlobalName(BF_SO3_SM_CLASSID), Sm);
-#endif
-
-
-
 
 /*N*/ SmSymSetManager & SmDocShell::GetSymSetManager()
 /*N*/ {
@@ -190,13 +157,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/     }
 /*N*/   return *pSymSetMgr;
 /*N*/ }
-
-
-
-
-
-
-
 
 /*N*/ void SmDocShell::SetText(const String& rBuffer)
 /*N*/ {
@@ -209,15 +169,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       aText = rBuffer;
 /*N*/       Parse();
 /*N*/         //Resize();
-/*N*/       SmViewShell *pViewSh = SmGetActiveView();
-/*N*/       if( pViewSh )
-/*N*/         {
-/*N*/           pViewSh->GetViewFrame()->GetBindings().Invalidate(SID_TEXT);
-/*N*/           if ( GetProtocol().IsInPlaceActive() || SFX_CREATE_MODE_EMBEDDED == GetCreateMode() )
-/*N*/                 Resize();
-/*N*/             else
-/*N*/                 pViewSh->GetGraphicWindow().Invalidate();
-/*N*/         }
 /*N*/
 /*N*/       if ( bIsEnabled )
 /*N*/           EnableSetModified( bIsEnabled );
@@ -255,13 +206,8 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   // falls noetig ein anderes OutputDevice holen fuer das formatiert wird
 /*N*/   if (!pOutDev)
 /*N*/   {
-/*N*/       SmViewShell *pView = SmGetActiveView();
-/*N*/       if (pView)
-/*N*/           pOutDev = &pView->GetGraphicWindow();
-/*N*/       else
-/*N*/         {   pOutDev = &SM_MOD1()->GetDefaultVirtualDev();
-/*N*/           pOutDev->SetMapMode( MapMode(MAP_100TH_MM) );
-/*N*/       }
+/*N*/       pOutDev = &SM_MOD1()->GetDefaultVirtualDev();
+/*N*/       pOutDev->SetMapMode( MapMode(MAP_100TH_MM) );
 /*N*/   }
 /*N*/   DBG_ASSERT(pOutDev->GetMapMode().GetMapUnit() == MAP_100TH_MM,
 /*N*/              "Sm : falscher MapMode");
@@ -585,9 +531,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/       EnableSetModified( FALSE );
 /*N*/
 /*N*/   SetVisAreaSize( aVisSize );
-/*N*/   SmViewShell *pViewSh = SmGetActiveView();
-/*N*/   if (pViewSh)
-/*?*/         pViewSh->GetGraphicWindow().Invalidate();
 /*N*/
 /*N*/   if ( bIsEnabled )
 /*?*/       EnableSetModified( bIsEnabled );
@@ -881,294 +824,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 
 
-/*N*/ void SmDocShell::Execute(SfxRequest& rReq)
-/*N*/ {
-/*N*/   SfxBindings *pBindings  = NULL;
-/*N*/   SmViewShell *pViewSh    = SmGetActiveView();
-/*N*/   if (pViewSh)
-/*?*/       pBindings = &pViewSh->GetViewFrame()->GetBindings();
-/*N*/   switch (rReq.GetSlot())
-/*N*/   {
-/*N*/   case SID_TEXTMODE:
-/*N*/       {
-/*?*/           SmFormat  &rFormat = GetFormat();
-/*?*/           rFormat.SetTextmode(!rFormat.IsTextmode());
-/*?*/           rFormat.RequestApplyChanges();
-/*N*/       }
-/*N*/       break;
-/*N*/
-/*?*/   case SID_AUTO_REDRAW :
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmModule *pp = SM_MOD1();
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_SYMBOLS_CATALOGUE:
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmSymbolDialog(NULL, GetSymSetManager()).Execute();
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_TOOLBOX:
-/*?*/       {
-/*?*/           SmViewShell *pView = SmGetActiveView();
-/*?*/           if (pView)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/           }
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_INSERT_FORMULA:
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SfxMedium *pMedium = SFX_APP()->
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_LOADSYMBOLS:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       LoadSymbols();
-/*?*/       break;
-/*?*/
-/*?*/   case SID_SAVESYMBOLS:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       SaveSymbols();
-/*?*/       break;
-/*?*/
-/*?*/   case SID_FONT:
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmFontTypeDialog *pFontTypeDialog = new SmFontTypeDialog(NULL);
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_FONTSIZE:
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmFontSizeDialog *pFontSizeDialog = new SmFontSizeDialog(NULL);
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_DISTANCE:
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmDistanceDialog *pDistanceDialog = new SmDistanceDialog(NULL);
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_ALIGN:
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmAlignDialog *pAlignDialog = new SmAlignDialog(NULL);
-/*?*/       }
-/*N*/       break;
-/*N*/
-/*N*/   case SID_TEXT:
-/*N*/       {
-/*N*/           const SfxStringItem& rItem =
-/*N*/               (const SfxStringItem&)rReq.GetArgs()->Get(SID_TEXT);
-/*N*/
-/*N*/           if (GetText() != rItem.GetValue())
-/*N*/           {
-/*?*/               SetText(rItem.GetValue());
-/*N*/           }
-/*N*/       }
-/*N*/       break;
-/*N*/
-/*?*/   case SID_COPYOBJECT:
-/*?*/       {
-/*?*/           Reference< datatransfer::XTransferable > xTrans(
-/*?*/                                               CreateTransferableSnapshot() );
-/*?*/           if( xTrans.is() )
-/*?*/           {
-/*?*/               Reference< lang::XUnoTunnel> xTnnl( xTrans, uno::UNO_QUERY);
-/*?*/               if( xTnnl.is() )
-/*?*/               {
-/*?*/                   TransferableHelper* pTrans = (TransferableHelper*)
-/*?*/                       xTnnl->getSomething(
-/*?*/                               TransferableHelper::getUnoTunnelId() );
-/*?*/                   if( pTrans )
-/*?*/                       pTrans->CopyToClipboard( pViewSh
-/*?*/                                           ? pViewSh->GetEditWindow() : 0 );
-/*?*/               }
-/*?*/           }
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_PASTEOBJECT:
-/*?*/       {
-/*?*/           TransferableDataHelper aData( TransferableDataHelper::
-/*?*/               CreateFromSystemClipboard(pViewSh ? pViewSh->GetEditWindow()
-/*?*/                                                 : 0) );
-/*?*/           SotStorageStreamRef xStrm;
-/*?*/           SotFormatStringId nId;
-/*?*/           if( aData.GetTransferable().is() &&
-/*?*/               ( aData.HasFormat( nId = SOT_FORMATSTR_ID_EMBEDDED_OBJ ) ||
-/*?*/                 (aData.HasFormat( SOT_FORMATSTR_ID_OBJECTDESCRIPTOR ) &&
-/*?*/                  aData.HasFormat( nId = SOT_FORMATSTR_ID_EMBED_SOURCE ))) &&
-/*?*/               aData.GetSotStorageStream( nId, xStrm ) && xStrm.Is() )
-/*?*/           {
-/*?*/               SvStorageRef xStore( new SvStorage( *xStrm ));
-/*?*/               switch( xStore->GetFormat() )
-/*?*/               {
-/*?*/               case SOT_FORMATSTR_ID_STARMATH_60:
-/*?*/               case SOT_FORMATSTR_ID_STARMATH_50:
-/*?*/               case SOT_FORMATSTR_ID_STARMATH_40:
-/*?*/ //??          case SOT_FORMATSTR_ID_STARMATH:
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   Insert( xStore );
-/*?*/                   break;
-/*?*/                 default:
-/*?*/                     DBG_ERROR( "unexpected format ID" );
-/*?*/               }
-/*?*/                 UpdateText();
-/*?*/           }
-/*?*/       }
-/*?*/       break;
-/*?*/
-/*?*/   case SID_UNDO:
-/*?*/   case SID_REDO:
-/*?*/       {
-/*?*/           SfxUndoManager* pUndoMgr = GetUndoManager();
-/*?*/           if( pUndoMgr )
-/*?*/           {
-/*?*/               USHORT nId = rReq.GetSlot(), nCnt = 1;
-/*?*/               const SfxItemSet* pArgs = rReq.GetArgs();
-/*?*/               const SfxPoolItem* pItem;
-/*?*/               if( pArgs && SFX_ITEM_SET == pArgs->GetItemState( nId, FALSE, &pItem ))
-/*?*/                   nCnt = ((SfxUInt16Item*)pItem)->GetValue();
-/*?*/
-/*?*/               BOOL (SfxUndoManager:: *fnDo)( USHORT );
-/*?*/
-/*?*/               sal_uInt16 nCount;
-/*?*/               if( SID_UNDO == rReq.GetSlot() )
-/*?*/               {
-/*?*/                   nCount = pUndoMgr->GetUndoActionCount();
-/*?*/                   fnDo = &SfxUndoManager::Undo;
-/*?*/               }
-/*?*/               else
-/*?*/               {
-/*?*/                   nCount = pUndoMgr->GetRedoActionCount();
-/*?*/                   fnDo = &SfxUndoManager::Redo;
-/*?*/               }
-/*?*/
-/*?*/               for( ; nCnt && nCount; --nCnt, --nCount )
-/*?*/                   (pUndoMgr->*fnDo)( 0 );
-/*?*/           }
-/*?*/       }
-/*N*/       break;
-/*N*/   }
-/*N*/ }
-
-
-/*N*/ void SmDocShell::GetState(SfxItemSet &rSet)
-/*N*/ {
-/*N*/   SfxWhichIter aIter(rSet);
-/*N*/
-/*N*/   for (USHORT nWh = aIter.FirstWhich();  0 != nWh;  nWh = aIter.NextWhich())
-/*N*/   {
-/*N*/       switch (nWh)
-/*N*/       {
-/*?*/       case SID_TEXTMODE:
-/*?*/           rSet.Put(SfxBoolItem(SID_TEXTMODE, GetFormat().IsTextmode()));
-/*?*/           break;
-/*?*/
-/*?*/       case SID_DOCTEMPLATE :
-/*?*/           rSet.DisableItem (SID_DOCTEMPLATE);
-/*?*/           break;
-/*?*/
-/*?*/       case SID_AUTO_REDRAW :
-/*?*/           {
-/*?*/               SmModule  *pp = SM_MOD1();
-/*?*/               BOOL       bRedraw = pp->GetConfig()->IsAutoRedraw();
-/*?*/
-/*?*/               rSet.Put (SfxBoolItem(SID_AUTO_REDRAW, bRedraw));
-/*?*/           }
-/*?*/           break;
-/*?*/
-/*?*/       case SID_TOOLBOX:
-/*?*/           {
-/*?*/               BOOL bState = FALSE;
-/*?*/               SmViewShell *pView = SmGetActiveView();
-/*?*/               if (pView)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/               }
-/*?*/               rSet.Put(SfxBoolItem(SID_TOOLBOX, bState));
-/*?*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case SID_MODIFYSTATUS:
-/*N*/           {
-/*N*/               sal_Unicode cMod = ' ';
-/*N*/               if (IsModified())
-/*?*/                   cMod = '*';
-/*N*/               rSet.Put(SfxStringItem(SID_MODIFYSTATUS, String(cMod)));
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case SID_TEXT:
-/*N*/           rSet.Put(SfxStringItem(SID_TEXT, GetText()));
-/*N*/           break;
-/*N*/
-/*N*/       case SID_GRAPHIC:
-/*N*/           rSet.Put(SfxInt16Item(SID_GRAPHIC, nModifyCount));
-/*N*/           break;
-/*N*/
-/*N*/       case SID_UNDO:
-/*N*/       case SID_REDO:
-/*N*/           {
-/*N*/               SfxViewFrame* pFrm = SfxViewFrame::GetFirst( this );
-/*N*/               if( pFrm )
-/*N*/                   pFrm->GetSlotState( nWh, NULL, &rSet );
-/*N*/               else
-/*?*/                   rSet.DisableItem( nWh );
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case SID_GETUNDOSTRINGS:
-/*N*/       case SID_GETREDOSTRINGS:
-/*N*/           {
-/*?*/               SfxUndoManager* pUndoMgr = GetUndoManager();
-/*?*/               if( pUndoMgr )
-/*?*/               {
-/*?*/                   UniString (SfxUndoManager:: *fnGetComment)( USHORT ) const;
-/*?*/
-/*?*/                   sal_uInt16 nCount;
-/*?*/                   if( SID_GETUNDOSTRINGS == nWh )
-/*?*/                   {
-/*?*/                       nCount = pUndoMgr->GetUndoActionCount();
-/*?*/                       fnGetComment = &SfxUndoManager::GetUndoActionComment;
-/*?*/                   }
-/*?*/                   else
-/*?*/                   {
-/*?*/                       nCount = pUndoMgr->GetRedoActionCount();
-/*?*/                       fnGetComment = &SfxUndoManager::GetRedoActionComment;
-/*?*/                   }
-/*?*/                   if( nCount )
-/*?*/                   {
-/*?*/                       String sList;
-/*?*/                       for( sal_uInt16 n = 0; n < nCount; ++n )
-/*?*/                           ( sList += (pUndoMgr->*fnGetComment)( n ) )
-/*?*/                                   += '\n';
-/*?*/
-/*?*/                       SfxStringListItem aItem( nWh );
-/*?*/                       aItem.SetString( sList );
-/*?*/                       rSet.Put( aItem );
-/*?*/                   }
-/*?*/               }
-/*?*/               else
-/*?*/                   rSet.DisableItem( nWh );
-/*N*/           }
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*N*/ void SmDocShell::HandsOff()
 /*N*/ {
 /*N*/   SfxInPlaceObject::HandsOff();
@@ -1198,19 +853,9 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/
 /*N*/   // If outplace editing, then dont resize the OutplaceWindow. But the
 /*N*/   // ObjectShell has to resize. Bug 56470
-/*N*/   BOOL bUnLockFrame;
-/*N*/   if( ( GetProtocol().IsEmbed() || GetCreateMode() == SFX_CREATE_MODE_EMBEDDED ) && !GetProtocol().IsInPlaceActive() && GetFrame() )
-/*N*/   {
-/*?*/       GetFrame()->LockAdjustPosSizePixel();
-/*?*/       bUnLockFrame = TRUE;
-/*N*/   }
-/*N*/   else
-/*N*/       bUnLockFrame = FALSE;
 /*N*/
 /*N*/   SfxInPlaceObject::SetVisArea( aNewRect );
 /*N*/
-/*N*/   if( bUnLockFrame )
-/*?*/       GetFrame()->UnlockAdjustPosSizePixel();
 /*N*/
 /*N*/   if ( bIsEnabled )
 /*?*/       EnableSetModified( bIsEnabled );
