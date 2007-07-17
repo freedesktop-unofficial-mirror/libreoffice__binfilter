@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:25:11 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:58:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,12 +46,6 @@
 #ifndef _SV_RESARY_HXX
 #include <tools/resary.hxx>
 #endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
@@ -65,9 +59,6 @@
 #include <svtools/lstner.hxx>
 #endif
 
-#ifndef _SFX_HELP_HXX
-#include <sfxhelp.hxx>
-#endif
 #ifndef _SB_SBSTAR_HXX //autogen
 #include "bf_basic/sbstar.hxx"
 #endif
@@ -75,6 +66,7 @@
 #include <svtools/stritem.hxx>
 #endif
 #pragma hdrstop
+#include <bf_sfx2/app.hxx>
 
 #include "bf_basic/sbx.hxx"
 
@@ -100,17 +92,12 @@
 #include "docfile.hxx"
 #include "event.hxx"
 #include "cfgmgr.hxx"
-#include "dispatch.hxx"
-#include "viewsh.hxx"
 #include "interno.hxx"
-#include "sfxresid.hxx"
 #include "objshimp.hxx"
 #include "appbas.hxx"
 #include "sfxtypes.hxx"
 #include "evntconf.hxx"
 #include "request.hxx"
-#include "doc.hrc"
-#include "sfxlocal.hrc"
 #include "docinf.hxx"
 #include "objuno.hxx"
 #include "appdata.hxx"
@@ -123,15 +110,10 @@
 #endif
 
 #include "scriptcont.hxx"
-#include "imgmgr.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
 #include <svtools/imgdef.hxx>
 #endif
-
-#include "tbxconf.hxx"
-#include "accmgr.hxx"
-#include "helpid.hrc"
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -146,9 +128,6 @@ using namespace ::com::sun::star::script;
 namespace binfilter {
 
 /*N*/ DBG_NAME(SfxObjectShell)
-
-#define DocumentInfo
-#include "sfxslots.hxx"
 
 extern ::svtools::AsynchronLink* pPendingCloser;
 static SfxObjectShell* pWorkingDoc = NULL;
@@ -172,30 +151,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ (
 /*N*/   SfxObjectCreateMode eMode   /*  Zweck, zu dem die SfxObjectShell
                                     erzeugt wird:
-
-                                    SFX_CREATE_MODE_EMBEDDED (default)
-                                        als SO-Server aus einem anderen
-                                        Dokument heraus
-
-                                    SFX_CREATE_MODE_STANDARD,
-                                        als normales, selbst"aendig ge"offnetes
-                                        Dokument
-
-                                    SFX_CREATE_MODE_PREVIEW
-                                        um ein Preview durchzuf"uhren,
-                                        ggf. werden weniger Daten ben"otigt
-
-                                    SFX_CREATE_MODE_ORGANIZER
-                                        um im Organizer dargestellt zu
-                                        werden, hier werden keine Inhalte
-                                        ben"otigt */
 /*N*/ )
-
-/*  [Beschreibung]
-
-    Konstruktor der Klasse SfxObjectShell.
-*/
-
 /*N*/ : pImp( new SfxObjectShell_Impl ),
 /*N*/   _pFactory( 0 ),
 /*N*/   eCreateMode(eMode),
@@ -207,9 +163,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   bHasName = sal_False;
 /*N*/   SfxShell::SetName( GetTitle() );
 /*N*/   nViewNo = 0;
-
-    // Aggregation InPlaceObject+Automation
-//(mba)    AddInterface( SvDispatch::ClassFactory() );
 
 /*N*/   SfxObjectShell *pThis = this;
 /*N*/   SfxObjectShellArr_Impl &rArr = SFX_APP()->GetObjectShells_Impl();
@@ -239,10 +192,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/     if ( pMedium )
 /*N*/         aPhysName = pMedium->GetPhysicalName();
 /*N*/
-/*N*/   DELETEX(pImp->pEventConfig);
-/*N*/     DELETEX(pImp->pImageManager);
-/*N*/     DELETEX(pImp->pTbxConfig);
-/*N*/     DELETEX(pImp->pAccMgr);
 /*N*/   DELETEX(pImp->pCfgMgr);
 /*N*/     DELETEX(pImp->pReloadTimer );
 /*N*/
@@ -339,19 +288,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/           if ( nPos < rDocs.Count() )
 /*N*/               rDocs.Remove( nPos );
 /*N*/           pImp->bInList = sal_False;
-/*N*/
-/*N*/           // Broadcasten (w"ahrend dessen festhalten)
-/*N*/           SfxObjectShellRef aRef(this);
-/*
-            // Ist leider zu sp"at, da kaum noch Macros laufen, wenn keine View
-            // mehr da ist!
-            if ( _pFactory && _pFactory->GetFlags() & SFXOBJECTSHELL_HASOPENDOC )
-                // Event nur bei echten Dokumenten
-                pSfxApp->NotifyEvent( SfxEventHint(SFX_EVENT_CLOSEDOC, this) );
-*/
-/*N*/           // Broadcast moved to SfxBaseModel!
-/*N*/           //Broadcast( SfxSimpleHint(SFX_HINT_DEINITIALIZING) );
-/*N*/           //pImp->bClosing = sal_False;
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -378,7 +314,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/           continue;
 /*N*/
 /*N*/       if ( ( !pType || pSh->IsA(*pType) ) &&
-/*N*/            ( !bOnlyVisible || SfxViewFrame::GetFirst( pSh, 0, sal_True )))
+/*N*/            ( !bOnlyVisible ) )
 /*N*/           return pSh;
 /*N*/   }
 /*N*/
@@ -411,7 +347,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/           continue;
 /*N*/
 /*N*/       if ( ( !pType || pSh->IsA(*pType) ) &&
-/*N*/            ( !bOnlyVisible || SfxViewFrame::GetFirst( pSh, 0, sal_True )))
+/*N*/            ( !bOnlyVisible ) )
 /*N*/           return pSh;
 /*N*/   }
 /*N*/   return 0;
@@ -421,8 +357,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 
 /*N*/ SfxObjectShell* SfxObjectShell::Current()
 /*N*/ {
-/*N*/   SfxViewFrame *pFrame = SFX_APP()->GetViewFrame();
-/*N*/   return pFrame ? pFrame->GetObjectShell() : 0;
+/*N*/   return 0;
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -463,24 +398,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   if ( IsInModalMode() )
 /*N*/       return sal_False;
 /*N*/
-/*N*/   SfxViewFrame* pFirst = SfxViewFrame::GetFirst( this );
-/*N*/   if( pFirst && !pFirst->GetFrame()->PrepareClose_Impl( bUI, bForBrowsing ) )
-/*N*/       return sal_False;
-/*N*/
-/*N*/   // prepare views for closing
-/*N*/   for ( SfxViewFrame* pFrm = SfxViewFrame::GetFirst(
-/*N*/       this, TYPE(SfxViewFrame));
-/*N*/         pFrm; pFrm = SfxViewFrame::GetNext( *pFrm, this ) )
-/*N*/   {
-/*N*/       DBG_ASSERT(pFrm->GetViewShell(),"KeineShell");
-/*N*/       if ( pFrm->GetViewShell() )
-/*N*/       {
-/*N*/           sal_uInt16 nRet = pFrm->GetViewShell()->PrepareClose( bUI, bForBrowsing );
-/*N*/           if ( nRet != sal_True )
-/*N*/               return nRet;
-/*N*/       }
-/*N*/   }
-/*N*/
 /*N*/   if( GetInPlaceObject() && GetInPlaceObject()->GetClient())
 /*N*/   {
 /*?*/       pImp->bPreparedForClose = sal_True;
@@ -489,22 +406,10 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/
 /*N*/   // ggf. nachfragen, ob gespeichert werden soll
 /*N*/       // nur fuer in sichtbaren Fenstern dargestellte Dokumente fragen
-/*N*/   SfxViewFrame *pFrame = SfxObjectShell::Current() == this
-/*N*/       ? SfxViewFrame::Current() : SfxViewFrame::GetFirst( this );
-/*N*/   while ( pFrame && (pFrame->GetFrameType() & SFXFRAME_SERVER ) )
-/*?*/       pFrame = SfxViewFrame::GetNext( *pFrame, this );
 /*N*/
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
 /*N*/   pSfxApp->NotifyEvent( SfxEventHint(SFX_EVENT_PREPARECLOSEDOC, this) );
 /*N*/   sal_Bool bClose = sal_False;
-/*N*/   if ( bUI && IsModified() )
-/*N*/   {
-/*?*/       if ( pFrame )
-/*?*/       {
-/*?*/           // minimierte restoren
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
-/*?*/       }
-/*N*/   }
 /*N*/
 /*N*/   // ggf. hinweisen, da\s unter Fremdformat gespeichert
 /*N*/   if( pMedium )
@@ -606,35 +511,12 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/       so3::StaticBaseUrl::SetBaseURL( aNewURL );
 /*N*/
 /*N*/       // load BASIC-manager
-/*N*/       SfxErrorContext aErrContext( ERRCTX_SFX_LOADBASIC, GetTitle() );
-/*N*/ #if SUPD<613//MUSTINI
-/*N*/       SfxIniManager *pIniMgr = SFX_APP()->GetIniManager();
-/*N*/       String aAppBasicDir( pIniMgr->Get(SFX_KEY_BASIC_PATH) );
-/*N*/ #else
+//*N*/      SfxErrorContext aErrContext( ERRCTX_SFX_LOADBASIC, GetTitle() );
 /*N*/       String aAppBasicDir = SvtPathOptions().GetBasicPath();
-/*N*/ #endif
 /*N*/         pImp->pBasicMgr = pBasicManager = new BasicManager(
                 *pStor,
                 so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
                 pAppBasic, &aAppBasicDir );
-/*N*/       if ( pImp->pBasicMgr->HasErrors() )
-/*N*/       {
-/*?*/           // handle errors
-/*?*/           BasicError *pErr = pImp->pBasicMgr->GetFirstError();
-/*?*/           while ( pErr )
-/*?*/           {
-/*?*/               // show message to user
-/*?*/               if ( ERRCODE_BUTTON_CANCEL ==
-/*?*/                    ErrorHandler::HandleError( pErr->GetErrorId() ) )
-/*?*/               {
-/*?*/                   // user wants to break loading of BASIC-manager
-/*?*/                   BasicManager::LegacyDeleteBasicManager( pImp->pBasicMgr );
-/*?*/                   pStor = 0;
-/*?*/                   break;
-/*?*/               }
-/*?*/               pErr = pImp->pBasicMgr->GetNextError();
-/*?*/           }
-/*N*/       }
 /*N*/
 /*N*/       so3::StaticBaseUrl::SetBaseURL( aOldURL );
 /*N*/   }
@@ -694,9 +576,6 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/   pBas->SetModified( bWasModified );
 /*N*/ }
 
-//--------------------------------------------------------------------
-#if 0 //(mba)
-#endif
 
 //--------------------------------------------------------------------
 
@@ -743,19 +622,23 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/ SEQUENCE< OUSTRING > SfxObjectShell::GetEventNames_Impl()
 /*N*/ {
 /*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
-/*N*/
-/*N*/   ResStringArray aEventNames( SfxResId( EVENT_NAMES_ARY ) );
-/*N*/   USHORT nCount = aEventNames.Count();
-/*N*/
-/*N*/   SEQUENCE < OUSTRING > aSequence( nCount );
-/*N*/
-/*N*/   OUSTRING* pNames = aSequence.getArray();
-/*N*/
-/*N*/   for ( USHORT i=0; i<nCount; i++ )
-/*N*/   {
-/*N*/       pNames[i] = aEventNames.GetString( i );
-/*N*/   }
-/*N*/
+/*N*/   SEQUENCE < OUSTRING > aSequence( 14 );
+        OUSTRING* pNames = aSequence.getArray();
+        sal_Int32 i=0;
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnStartApp");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnCloseApp");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnNew");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnLoad");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveAs");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveAsDone");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnSave");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveDone");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnPrepareUnload");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnUnload");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnFocus");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnUnfocus");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnPrint");
+        pNames[i++] = ::rtl::OUString::createFromAscii("OnModifyChanged");
 /*N*/   return aSequence;
 /*N*/ }
 
