@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.15 $
+#   $Revision: 1.16 $
 #
-#   last change: $Author: vg $ $Date: 2007-05-25 10:46:44 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:48:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -118,16 +118,11 @@ LIB1FILES       = \
         $(SLB)$/svx_editeng.lib \
         $(SLB)$/svx_engine3d.lib \
         $(SLB)$/svx_form.lib \
-        $(SLB)$/svx_gal.lib \
         $(SLB)$/svx_items.lib \
-        $(SLB)$/svx_mnuctrls.lib \
-        $(SLB)$/svx_msfilter.lib \
         $(SLB)$/svx_options.lib \
         $(SLB)$/svx_outliner.lib \
-        $(SLB)$/svx_stbctrls.lib \
         $(SLB)$/svx_svdraw.lib \
         $(SLB)$/svx_svxlink.lib \
-        $(SLB)$/svx_tbxctrls.lib \
         $(SLB)$/svx_unodraw.lib \
         $(SLB)$/svx_unoedit.lib \
         $(SLB)$/svx_xml.lib \
@@ -146,11 +141,7 @@ SRS1FILELIST=\
                 $(SRS)$/svx_outliner.srs \
                 $(SRS)$/svx_dialogs.srs     \
                 $(SRS)$/svx_drawdlgs.srs \
-                $(SRS)$/svx_mnuctrls.srs \
-                $(SRS)$/svx_stbctrls.srs \
-                $(SRS)$/svx_tbxctrls.srs \
                 $(SRS)$/svx_svxitems.srs \
-                $(SRS)$/svx_form.srs \
                 $(SRS)$/svx_engine3d.srs \
                 $(SRS)$/svx_svxlink.srs
 
