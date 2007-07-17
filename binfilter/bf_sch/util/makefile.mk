@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:00:13 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:52:24 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -54,9 +54,7 @@ IENV!:=$(IENV);$(RES);..$/res
 
 RESLIB1LIST=\
     $(SRS)$/sch_app.srs	\
-    $(SRS)$/sch_core.srs	\
-    $(SRS)$/schslots.srs \
-    $(SRS)$/sfx2_sfx.srs
+    $(SRS)$/sch_core.srs	
 
 .IF "$(GUI)" == "WIN"
 RESLIBSPLIT1NAME=bf_sch
@@ -75,8 +73,6 @@ LIB3TARGET= $(SLB)$/bf_sch.lib
 LIB3FILES=	$(SLB)$/sch_core.lib \
         $(SLB)$/sch_app.lib \
         $(SLB)$/sch_docshell.lib \
-        $(SLB)$/sch_func.lib \
-        $(SLB)$/sch_view.lib \
         $(SLB)$/sch_chxchart.lib \
         $(SLB)$/sch_xml.lib 
 
@@ -104,11 +100,6 @@ SHL1STDLIBS=\
     $(CPPULIB) \
     $(SALLIB)
     
-.IF "$(GUI)" == "UNX"
-SHL1STDLIBS+= \
-            $(BFSFXLIB)
-.ENDIF     
-
 
 SHL1BASE=	0x1d100000
 SHL1LIBS=   $(LIB3TARGET)
