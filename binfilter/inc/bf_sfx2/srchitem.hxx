@@ -4,9 +4,9 @@
  *
  *  $RCSfile: srchitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:39:20 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:44:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,9 +60,6 @@
 #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
-#endif
-#ifndef _SFXMSG_HXX //autogen
-#include <bf_sfx2/msg.hxx>
 #endif
 
 #ifndef _SFX_SRCHDEFS_HXX_
