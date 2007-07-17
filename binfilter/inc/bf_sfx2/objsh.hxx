@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2007-07-13 10:01:55 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:41:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -104,6 +104,7 @@ class SvEmbeddedObject;
 class GDIMetaFile;
 class Bitmap;
 class INetURLObject;
+
 namespace binfilter {
 
 class BasicManager;
@@ -115,20 +116,13 @@ class SfxDocumentInfo;
 class SfxDocumentInfoDialog;
 class SfxEventConfigItem_Impl;
 class INote;
-class SfxFrame;
 class SfxConfigManager;
 class SfxBaseModel;
 class SfxModule;
 class SvData;
 class SfxProgress;
 class IndexBitSet;
-class SfxTopFrame;
-class SfxAcceleratorManager;
-class SfxMenuBarManager;
-
-//STRIP008 namespace so3 {
-//STRIP008 class SvLinkSource;
-//STRIP008 };
+class SfxEventConfigItem_Impl;
 
 typedef sal_uInt32 SfxObjectShellFlags;
 #define SFXOBJECTSHELL_HASOPENDOC      0x01L
@@ -238,7 +232,6 @@ protected:
 
 public:
                                 TYPEINFO();
-                                SFX_DECL_INTERFACE(SFX_INTERFACE_SFXDOCSH);
 
     SfxObjectFactory*           _pFactory;          // um im Dtor daranzukommen
 
@@ -327,18 +320,6 @@ public:
         const String & rScriptType, const String & rCode, ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  & rSource,
         void* pArgs = NULL, void* pRet = NULL );
 
-    /** calls a StarBasic script without magic
-    @param _rMacroName
-        specifies the name of the method to execute
-    @param _rLocation
-        specifies the location of the script to execute. Allowed values are "application" and "document".
-    @param _pArguments
-        This is a pointer to a Sequence< Any >. All elements of the Sequence are wrapped into Basic objects
-        and passed as arguments to the method specified by <arg>_rMacroName</arg>
-    @param _pReturn
-        If not <NULL/>, the Any pointed to by this argument contains the return value of the (synchronous) call
-        to the StarBasic macro
-    */
     ErrCode                     CallStarBasicScript(
         const String& _rMacroName,
         const String& _rLocation,
@@ -480,8 +461,6 @@ public:
     void                        SetBaseURL( const String& rURL );
     const String&               GetBaseURL() const;
 
-    virtual SfxFrame*           GetSmartSelf( SfxFrame* pSelf, SfxMedium& rMedium );
-
     void                        SetModel( SfxBaseModel* pModel );
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > GetModel();
     // Nur uebergangsweise fuer die Applikationen !!!
@@ -501,16 +480,7 @@ public:
     SfxObjectShell_Impl*        Get_Impl() { return pImp; }
     const SfxObjectShell_Impl*  Get_Impl() const { return pImp; }
 
-
-    // Shell Interface
-    void                        ExecFile_Impl(SfxRequest &);
-    void                        GetState_Impl(SfxItemSet&);
-    void                        PrintExec_Impl(SfxRequest &);
-    void                        PrintState_Impl(SfxItemSet&);
-    void                        ExecProps_Impl(SfxRequest &);
-    void                        StateProps_Impl(SfxItemSet &);
-    void                        ExecView_Impl(SfxRequest &);
-    void                        StateView_Impl(SfxItemSet &);
+    SfxEventConfigItem_Impl*    GetEventConfig_Impl( sal_Bool bForce=sal_False );
 
     // Laden-speichern public internals
     void                        PositionView_Impl();
@@ -532,14 +502,6 @@ public:
     void                        PostActivateEvent_Impl();
     void                        SetActivateEvent_Impl(sal_uInt16 );
     FASTBOOL                    SaveWindows_Impl( SvStorage &rStor ) const;
-    SfxViewFrame*               LoadWindows_Impl( SfxTopFrame *pPrefered = 0 );
-
-    // configuration items
-    SfxEventConfigItem_Impl*    GetEventConfig_Impl( sal_Bool bForce=sal_False );
-    SfxAcceleratorManager*      GetAccMgr_Impl();
-    SfxMenuBarManager*          CreateMenuBarManager_Impl( SfxViewFrame* );
-    SfxImageManager*            GetImageManager_Impl();
-    SfxToolBoxConfig*           GetToolBoxConfig_Impl();
 #endif
 };
 
