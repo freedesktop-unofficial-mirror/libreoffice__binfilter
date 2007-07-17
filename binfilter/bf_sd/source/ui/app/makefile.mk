@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-12 08:44:11 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:58:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -50,8 +50,6 @@ NO_HIDS=TRUE
 .INCLUDE :  settings.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
-NO_HID_FILES=sd_app.src
-.EXPORT : NO_HID_FILES
 
 # --- Imagelisten --------------------------------------------------
 
@@ -65,19 +63,13 @@ RSCUPDVER=$(RSCREVISION)SV$(UPD)$(UPDMINOR)
 
 SRS1NAME=$(TARGET)
 SRC1FILES =	\
-        sd_app.src 			\
-        sd_toolbox.src			\
         sd_strings.src 		\
-        sd_sdstring.src		\
-        sd_pseudo.src
+                sd_sdstring.src
 
 SLOFILES =	\
         $(SLO)$/sd_sdmod.obj		\
         $(SLO)$/sd_sdmod2.obj		\
         $(SLO)$/sd_sddll.obj		\
-        $(SLO)$/sd_sddll1.obj      \
-        $(SLO)$/sd_sddll2.obj      \
-        $(SLO)$/sd_tbxww.obj		\
         $(SLO)$/sd_optsitem.obj	\
         $(SLO)$/sd_sdresid.obj
 
