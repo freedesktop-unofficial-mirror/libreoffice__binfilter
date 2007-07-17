@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 13:02:29 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:56:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -473,7 +473,6 @@ class SwDoc
 
     // -------------------------------------------------------------------
 
-    static SwAutoCompleteWord *pACmpltWords;    // Liste aller Worte fuers AutoComplete
     static sal_uInt16 nUndoActions;     // anzahl von Undo ::com::sun::star::chaos::Action
 
     // -------------------------------------------------------------------
@@ -1652,9 +1651,6 @@ public:
     // von japanischen/chinesischen Zeichen)
     SwExtTextInput* GetExtTextInput( const SwNode& rNd,
                                 xub_StrLen nCntntPos = STRING_NOTFOUND) const;
-
-    // Schnistelle fuer den Zugriff auf die AutoComplete-Liste
-    static SwAutoCompleteWord& GetAutoCompleteWords() { return *pACmpltWords; }
 
     sal_Bool ContainsMSVBasic() const           { return bContains_MSVBasic; }
     void SetContainsMSVBasic( sal_Bool bFlag )  { bContains_MSVBasic = bFlag; }
