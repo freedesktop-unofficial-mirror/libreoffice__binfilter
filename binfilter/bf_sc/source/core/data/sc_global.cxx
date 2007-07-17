@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:56:02 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:12:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/scripttypeitem.hxx>
 #include <bf_svx/langitem.hxx>
-#include <bf_sfx2/dispatch.hxx>
+#include <bf_sfx2/app.hxx>
 #include <svtools/zformat.hxx>
 #include <vcl/image.hxx>
 #include <tools/rcid.h>
@@ -76,10 +76,6 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
-#endif
-
 namespace binfilter {
 // -----------------------------------------------------------------------
 
@@ -89,7 +85,6 @@ namespace binfilter {
 #define CLIPST_DRAW         3
 
 ScDocShellRef*  ScGlobal::pDrawClipDocShellRef = NULL;
-SvxSearchItem*  ScGlobal::pSearchItem = NULL;
 ScAutoFormat*   ScGlobal::pAutoFormat = NULL;
 FuncCollection* ScGlobal::pFuncCollection = NULL;
 ScUnoAddInCollection* ScGlobal::pAddInCollection = NULL;
@@ -525,7 +520,6 @@ void global_InitAppOptions();
 /*N*/   theAddInAsyncTbl.DeleteAndDestroy( 0, theAddInAsyncTbl.Count() );
 /*N*/   ExitExternalFunc();
 /*N*/   DELETEZ(pAutoFormat);
-/*N*/   DELETEZ(pSearchItem);
 /*N*/   DELETEZ(pFuncCollection);
 /*N*/   DELETEZ(pAddInCollection);
 /*N*/   DELETEZ(pUserList);
