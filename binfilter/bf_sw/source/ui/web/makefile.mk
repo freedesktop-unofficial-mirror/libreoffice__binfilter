@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 13:04:16 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:13:15 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,11 +55,6 @@ NO_HIDS=TRUE
 
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
-
-SRS1NAME=$(TARGET)
-SRC1FILES =  \
-        sw_web.src	\
-        sw_webport.src
 
 SLOFILES =  \
                 $(SLO)$/sw_wdocsh.obj
