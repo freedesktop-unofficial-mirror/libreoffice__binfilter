@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:24:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:58:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,6 +47,7 @@
 #endif
 #include <so3/inetbnd.hxx>
 #include <vos/mutex.hxx>
+#include <bf_sfx2/app.hxx>
 
 #pragma hdrstop
 
@@ -74,17 +75,14 @@ using namespace ::com::sun::star::document;
 #include <svtools/inettype.hxx>
 
 #include "request.hxx"
-#include "sfxresid.hxx"
 #include "docfile.hxx"
 #include "interno.hxx"
 #include "objshimp.hxx"
 #include "fltfnc.hxx"
 #include "sfx.hrc"
-#include "dispatch.hxx"
-#include "viewsh.hxx"
 #include "macrconf.hxx"
 #include "docfac.hxx"
-#include "doc.hrc"
+
 namespace binfilter {
 
 // class SfxHeaderAttributes_Impl ----------------------------------------
@@ -257,19 +255,6 @@ namespace binfilter {
 /*N*/       if( pDoc->IsModified() )
 /*N*/           break;
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
-/*N*/   Timer *pTimer = pSfxApp->GetAutoSaveTimer_Impl();
-/*N*/   if( pDoc )
-/*N*/   {
-/*N*/       if( !pTimer->IsActive() )
-/*N*/           pTimer->Start();
-/*N*/   }
-/*N*/   else
-/*N*/       pTimer->Stop();
-/*N*/
-/*N*/     SfxViewFrame* pViewFrame = SfxViewFrame::Current();
-/*N*/     if ( pViewFrame )
-/*N*/         pViewFrame->GetBindings().Invalidate( SID_SAVEDOCS );
-/*N*/
 /*N*/   pSfxApp->NotifyEvent( SfxEventHint( SFX_EVENT_MODIFYCHANGED, this ) );
 /*N*/ }
 
@@ -381,16 +366,6 @@ namespace binfilter {
 /*N*/       return;
 /*N*/
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
-/*N*/ #if 0
-/*N*/   // wird 'unbenannt#' als Titel gesetzt
-/*N*/   String aNoName(SfxResId(STR_NONAME));
-/*N*/   if ( rTitle.Match(aNoName) <= aNoName.Len() )
-/*N*/   {
-/*N*/       // er ist es selbst => ignorieren
-/*N*/       pSfxApp->ReleaseIndex(pImp->nVisualDocumentNumber);
-/*N*/       pImp->bIsNamedVisible=0;
-/*N*/   }
-/*N*/ #endif
 /*N*/
 /*N*/   // ggf. die unbenannt-Nummer freigeben
 /*N*/   if ( pImp->bIsNamedVisible && USHRT_MAX != pImp->nVisualDocumentNumber )
@@ -545,13 +520,7 @@ namespace binfilter {
 /*N*/       if ( pImp->aTitle.Len() )
 /*N*/           return X(pImp->aTitle);
 /*N*/
-/*N*/       // mu\s es durchnumeriert werden?
-/*N*/       String aNoName( SfxResId( STR_NONAME ) );
-/*N*/       if ( pImp->bIsNamedVisible )
-/*N*/           // Nummer hintenanh"angen
-/*N*/           aNoName += String::CreateFromInt32( pImp->nVisualDocumentNumber );
-/*N*/
-/*N*/       // Dokument hei\st vorerst 'unbenannt#'
+/*N*/       String aNoName;
 /*N*/       return X(aNoName);
 /*N*/   }
 /*N*/
@@ -721,8 +690,6 @@ namespace binfilter {
 /*N*/                 pSfxApp->NotifyEvent(SfxEventHint( nId, this ), sal_False);
 /*N*/       }
 /*N*/
-/*N*/       if ( GetFrame() )
-/*N*/           pSfxApp->NotifyEvent(SfxEventHint(SFX_EVENT_ACTIVATEDOC, this), sal_False);
 /*N*/   }
 /*N*/ }
 
@@ -793,23 +760,6 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-// kann nach frame.cxx gemoved werden, wenn 358+36x-Stand gemerged sind
-
-/*?*/ sal_Bool SfxFrame::IsAutoLoadLocked_Impl() const
-/*?*/ {
-/*?*/   // sein einges Doc gelockt?
-/*?*/   const SfxObjectShell* pObjSh = GetCurrentDocument();
-/*?*/   if ( !pObjSh || !pObjSh->IsAutoLoadLocked() )
-/*?*/       return sal_False;
-/*?*/
-/*?*/   // seine Childs gelockt?
-/*?*/   for ( sal_uInt16 n = GetChildFrameCount(); n--; )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 if ( !GetChildFrame(n)->IsAutoLoadLocked_Impl() )
-/*?*/           return sal_False;
-/*?*/
-/*?*/   // sonst ist AutoLoad erlaubt
-/*?*/   return sal_True;
-/*?*/ }
 
 //-------------------------------------------------------------------------
 
@@ -853,12 +803,6 @@ namespace binfilter {
 /*N*/       ((SfxHeaderAttributes_Impl*)GetHeaderAttributes())->SetAttributes();
 /*N*/       pImp->bImportDone = sal_True;
 /*N*/       const SfxFilter* pFilter = GetMedium()->GetFilter();
-/*N*/       if( !IsAbortingImport() )
-/*N*/       {
-//            if( pFilter && !pFilter->UsesStorage() && !(GetMedium()->GetOpenMode() & STREAM_WRITE ) )
-//                GetMedium()->Close();
-/*N*/           PositionView_Impl();
-/*N*/       }
         // Salvage
 /*N*/       SFX_ITEMSET_ARG( pMedium->GetItemSet(), pSalvageItem,
 /*N*/                        SfxStringItem, SID_DOC_SALVAGE, sal_False );
@@ -875,8 +819,6 @@ namespace binfilter {
 /*N*/       if( !bSetModifiedTRUE && IsEnableSetModified() )
 /*?*/           SetModified( sal_False );
 /*N*/       Invalidate( SID_SAVEASDOC );
-/*N*/       SfxFrame* pFrame = GetMedium()->GetLoadTargetFrame();
-/*N*/       if( pFrame ) pFrame->SetLoadCancelable_Impl( 0 );
 /*N*/   }
 /*N*/
 /*N*/   pImp->nLoadedFlags |= nFlags;
@@ -912,16 +854,6 @@ namespace binfilter {
 
 /*N*/ void SfxObjectShell::PositionView_Impl()
 /*N*/ {
-/*N*/   MarkData_Impl *pMark = Get_Impl()->pMarkData;
-/*N*/   if( pMark )
-/*N*/   {
-/*?*/       SfxViewShell* pSh = pMark->pFrame->GetViewShell();
-/*?*/       if( pMark->aUserData.Len() )
-/*?*/           pSh->ReadUserData( pMark->aUserData, sal_True );
-/*?*/       else if( pMark->aMark.Len() )
-/*?*/           pSh->JumpToMark( pMark->aMark );
-/*?*/       DELETEZ( Get_Impl()->pMarkData );
-/*N*/   }
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -947,13 +879,6 @@ namespace binfilter {
 /*?*/       if( IsLoading() )
 /*?*/           FinishedLoading( SFX_LOADED_ALL );
 
-/*
-        SfxViewFrame* pFrame = SfxViewFrame::GetFirst( this );
-        while( pFrame )
-        {
-            pFrame->CancelTransfers();
-            pFrame = SfxViewFrame::GetNext( *pFrame, this );
-        }*/
 /*N*/   }
 /*N*/ }
 
@@ -970,29 +895,6 @@ namespace binfilter {
 
 /*?*/ void AutoReloadTimer_Impl::Timeout()
 /*?*/ {
-/*?*/   SfxViewFrame *pFrame = SfxViewFrame::GetFirst( pObjSh );
-/*?*/
-/*?*/   if ( pFrame )
-/*?*/   {
-/*?*/       // momentan nicht m"oglich/sinnvoll?
-/*?*/         if ( !pObjSh->CanReload_Impl() || pObjSh->IsAutoLoadLocked() || Application::IsUICaptured() )
-/*?*/       {
-/*?*/           // erneuten Versuch erlauben
-/*?*/           Start();
-/*?*/           return;
-/*?*/       }
-/*?*/
-/*?*/       SfxAllItemSet aSet( SFX_APP()->GetPool() );
-/*?*/       aSet.Put( SfxBoolItem( SID_AUTOLOAD, sal_True ) );
-/*?*/       if ( aUrl.Len() )
-/*?*/           aSet.Put(  SfxStringItem( SID_FILE_NAME, aUrl ) );
-/*?*/       SfxRequest aReq( SID_RELOAD, 0, aSet );
-/*?*/       pObjSh->Get_Impl()->pReloadTimer = 0;
-/*?*/       delete this;
-/*?*/       pFrame->ExecReload_Impl( aReq );
-/*?*/       return;
-/*?*/   }
-/*?*/
 /*?*/   pObjSh->Get_Impl()->pReloadTimer = 0;
 /*?*/   delete this;
 /*?*/ }
@@ -1013,12 +915,11 @@ namespace binfilter {
 
 /*N*/ sal_Bool SfxObjectShell::IsInFrame() const
 /*N*/ {
-/*N*/   return pImp->bInFrame;
+/*N*/   return sal_False;
 /*N*/ }
 
 /*N*/ void SfxObjectShell::SetInFrame( sal_Bool bOn )
 /*N*/ {
-/*N*/   pImp->bInFrame = bOn;
 /*N*/ }
 
 /*N*/ SfxModule* SfxObjectShell::GetModule() const
@@ -1086,10 +987,6 @@ namespace binfilter {//STRIP009
         return ERRCODE_BASIC_PROC_UNDEFINED;
 /*N*/ }
 
-/*?*/ SfxFrame* SfxObjectShell::GetSmartSelf( SfxFrame* pSelf, SfxMedium& rMedium )
-/*?*/ {
-/*?*/   return pSelf;
-/*?*/ }
 
 /*N*/ SfxObjectShellFlags SfxObjectShell::GetFlags() const
 /*N*/ {
@@ -1298,13 +1195,6 @@ namespace binfilter {//STRIP009
 
 /*N*/ void SfxObjectShell::SetWaitCursor( BOOL bSet ) const
 /*N*/ {
-/*N*/     for( SfxViewFrame* pFrame = SfxViewFrame::GetFirst( this ); pFrame; pFrame = SfxViewFrame::GetNext( *pFrame, this ) )
-/*N*/     {
-/*N*/         if ( bSet )
-/*N*/             pFrame->GetFrame()->GetWindow().EnterWait();
-/*N*/         else
-/*N*/             pFrame->GetFrame()->GetWindow().LeaveWait();
-/*N*/     }
 /*N*/ }
 
 /*N*/ String SfxObjectShell::GetAPIName() const
@@ -1320,8 +1210,6 @@ namespace binfilter {//STRIP009
 
 /*N*/ void SfxObjectShell::Invalidate( USHORT nId )
 /*N*/ {
-/*N*/     for( SfxViewFrame* pFrame = SfxViewFrame::GetFirst( this ); pFrame; pFrame = SfxViewFrame::GetNext( *pFrame, this ) )
-/*?*/         Invalidate_Impl( pFrame->GetBindings(), nId );
 /*N*/ }
 
 // nMacroMode == -1 : uninitialized
@@ -1354,15 +1242,6 @@ void SfxObjectShell::AdjustMacroMode( const String& rScriptType )
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/   if ( pMed )
-/*N*/   {
-/*N*/       SFX_ITEMSET_ARG( pMed->GetItemSet(), pRepairedDocItem, SfxBoolItem, SID_REPAIRPACKAGE, sal_False );
-/*N*/       if ( pRepairedDocItem && pRepairedDocItem->GetValue() )
-/*N*/           aTitle += String( SfxResId(STR_REPAIREDDOCUMENT) );
-/*N*/   }
-/*N*/
-/*N*/   if ( IsReadOnlyUI() || pMed && pMed->IsReadOnly() )
-/*N*/         aTitle += String( SfxResId(STR_READONLY) );
 /*N*/     return aTitle;
 /*N*/ }
 
