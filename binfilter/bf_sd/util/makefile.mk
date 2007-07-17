@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.14 $
+#   $Revision: 1.15 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:00:24 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:27:12 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,8 +60,7 @@ LINKFLAGS+=/SEGMENTS:512 /PACKD:32768
 
 RESLIB1NAME=bf_sd
 RESLIB1SRSFILES=\
-     $(SRS)$/sd_app.srs $(SRS)$/sd_core.srs $(SRS)$/sd_sdslots.srs \
-     $(SRS)$/sfx2_sfx.srs
+         $(SRS)$/sd_app.srs $(SRS)$/sd_core.srs  
 
 # --- StarDraw DLL
 
@@ -95,10 +94,6 @@ SHL1STDLIBS+= \
     $(VOSLIB) \
     $(SALLIB)
 
-.IF "$(GUI)" == "UNX"
-SHL1STDLIBS+= \
-            $(BFSFXLIB)
-.ENDIF     
 
 SHL1LIBS=   $(LIB3TARGET)
 
@@ -117,16 +112,14 @@ LIB2OBJFILES=   \
 
 LIB3TARGET=$(SLB)$/sd_sdraw3.lib
 LIB3FILES=      \
-            $(SLB)$/sd_view.lib        \
+            $(SLB)$/sd_view.lib			\
             $(SLB)$/sd_app.lib			\
-            $(SLB)$/sd_func.lib        \
             $(SLB)$/sd_docshell.lib    \
-            $(SLB)$/sd_dlg.lib			\
             $(SLB)$/sd_core.lib		\
             $(SLB)$/sd_xml.lib			\
             $(SLB)$/sd_bin.lib			\
             $(SLB)$/sd_filter.lib		\
-            $(SLB)$/sd_unoidl.lib		
+            $(SLB)$/sd_unoidl.lib
 
 LIB4TARGET=$(LB)$/bf_sdlib.lib
 LIB4ARCHIV=$(LB)$/libbf_sdlib.a
