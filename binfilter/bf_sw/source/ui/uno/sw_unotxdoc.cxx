@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotxdoc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:11:21 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:12:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,6 +39,9 @@
 #include <cmdid.h>
 #include <swtypes.hxx>
 
+#include <bf_sfx2/request.hxx>
+#include <svtools/intitem.hxx>
+
 #ifndef _SV_IMAGE_HXX
 #include <vcl/image.hxx>
 #endif
@@ -64,15 +67,6 @@
 
 #ifndef _WRTSH_HXX //autogen
 #include <wrtsh.hxx>
-#endif
-#ifndef _SWVIEW_HXX //autogen
-#include <view.hxx>
-#endif
-#ifndef _SWPVIEW_HXX
-#include <pview.hxx>
-#endif
-#ifndef _SRCVIEW_HXX
-#include <srcview.hxx>
 #endif
 #ifndef _VIEWSH_HXX //autogen
 #include <viewsh.hxx>
@@ -109,12 +103,6 @@
 #endif
 #ifndef _TOOLKIT_AWT_VCLXDEVICE_HXX_
 #include <toolkit/awt/vclxdevice.hxx>
-#endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
-#include <bf_sfx2/request.hxx>
 #endif
 #ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
@@ -164,6 +152,8 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
+
+#include <bf_sfx2/app.hxx>
 
 #ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
 #include <com/sun/star/util/SearchOptions.hpp>
@@ -578,7 +568,7 @@ sal_Bool SwXTextDocument::hasControllersLocked(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 Reference< frame::XController >  SwXTextDocument::getCurrentController(void) throw( RuntimeException )
 {
-    return SfxBaseModel::getCurrentController();
+    return Reference< frame::XController >();
 }
 /*-- 18.12.98 13:12:24---------------------------------------------------
 
@@ -586,8 +576,8 @@ Reference< frame::XController >  SwXTextDocument::getCurrentController(void) thr
 void SwXTextDocument::setCurrentController(const Reference< frame::XController > & xController)
     throw( NoSuchElementException, RuntimeException )
 {
-    SfxBaseModel::setCurrentController(xController);
 }
+
 /* -----------------27.01.99 11:48-------------------
  *
  * --------------------------------------------------*/
@@ -1232,87 +1222,7 @@ void SwXTextDocument::setPagePrintSettings(const Sequence< beans::PropertyValue 
 void SwXTextDocument::printPages(const Sequence< beans::PropertyValue >& xOptions)
     throw( IllegalArgumentException, RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
-    if(IsValid())
-    {
-        SfxViewFrame* pFrame = SFX_APP()->CreateViewFrame( *pDocShell, 7, sal_True );
-        SfxRequest aReq(FN_PRINT_PAGEPREVIEW, SFX_CALLMODE_SYNCHRON,
-                                    pDocShell->GetDoc()->GetAttrPool());
-            aReq.AppendItem(SfxBoolItem(FN_PRINT_PAGEPREVIEW, sal_True));
-
-        OUString sFileName( C2U(SW_PROP_NAME_STR(UNO_NAME_FILE_NAME)));
-        OUString sCopyCount(C2U(SW_PROP_NAME_STR(UNO_NAME_COPY_COUNT)));
-        OUString sCollate(C2U(SW_PROP_NAME_STR(UNO_NAME_COLLATE)));
-        OUString sSort(C2U(SW_PROP_NAME_STR(UNO_NAME_SORT)));
-        OUString sPages(C2U(SW_PROP_NAME_STR(UNO_NAME_PAGES)));
-
-        for ( int n = 0; n < xOptions.getLength(); ++n )
-        {
-            // get Property-Value from options
-            const beans::PropertyValue &rProp = xOptions.getConstArray()[n];
-            Any aValue( rProp.Value );
-
-            // FileName-Property?
-            if ( rProp.Name == sFileName )
-            {
-                OUString sFileURL;
-                if ( (rProp.Value >>= sFileURL ) )
-                {
-                    // Convert the File URL into a system dependant path, as the SalPrinter expects
-                    OUString sSystemPath;
-                    FileBase::getSystemPathFromFileURL ( sFileURL, sSystemPath );
-                    aReq.AppendItem(SfxStringItem( SID_FILE_NAME, sSystemPath ) );
-                }
-                else if ( rProp.Value.getValueType() != ::getVoidCppuType() )
-                    throw IllegalArgumentException();
-            }
-
-            // CopyCount-Property
-            else if ( rProp.Name == sCopyCount )
-            {
-                sal_Int32 nCopies;
-                aValue >>= nCopies;
-                aReq.AppendItem(SfxInt16Item( SID_PRINT_COPIES, nCopies ) );
-            }
-
-            // Collate-Property
-            else if ( rProp.Name == sCollate )
-            {
-                if ( rProp.Value.getValueType() == ::getBooleanCppuType())
-
-                    aReq.AppendItem(SfxBoolItem( SID_PRINT_COLLATE, *(sal_Bool*)rProp.Value.getValue() ) );
-                else
-                    throw IllegalArgumentException();
-            }
-
-            // Sort-Property
-            else if ( rProp.Name == sSort )
-            {
-                if ( rProp.Value.getValueType() == ::getBooleanCppuType() )
-                    aReq.AppendItem(SfxBoolItem( SID_PRINT_SORT, *(sal_Bool*)rProp.Value.getValue() ) );
-                else
-                    throw IllegalArgumentException();
-            }
-
-            // Pages-Property
-            else if ( rProp.Name == sPages )
-            {
-                OUString sTmp;
-                if ( rProp.Value >>= sTmp )
-                    aReq.AppendItem( SfxStringItem( SID_PRINT_PAGES, sTmp ) );
-                else
-                    throw IllegalArgumentException();
-            }
-        }
-
-
-        pFrame->GetViewShell()->ExecuteSlot(aReq);
-        // Frame schliessen
-        pFrame->DoClose();
-
-    }
-    else
-        throw RuntimeException();
+    throw RuntimeException();
 }
 /*-- 18.12.98 11:55:25---------------------------------------------------
 
@@ -1998,9 +1908,7 @@ void SwXTextDocument::setPropertyValue(const OUString& rPropertyName,
         {
             sal_Int16 nYear;
             aValue >>= nYear;
-            SfxRequest aRequest ( SID_ATTR_YEAR2000, SFX_CALLMODE_SLOT, pDocShell->GetDoc()->GetAttrPool());
-            aRequest.AppendItem(SfxUInt16Item( SID_ATTR_YEAR2000, static_cast < sal_uInt16 > ( nYear ) ) );
-            pDocShell->Execute ( aRequest );
+            pDocShell->GetDoc()->GetNumberFormatter(TRUE)->SetYear2000(nYear);
         }
         break;
         case WID_DOC_AUTOMATIC_CONTROL_FOCUS:
