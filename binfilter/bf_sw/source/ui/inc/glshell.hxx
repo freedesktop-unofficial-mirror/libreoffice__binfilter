@@ -4,9 +4,9 @@
  *
  *  $RCSfile: glshell.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:42:44 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:09:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@ class SwTextBlocks;
 
 class SwGlosDocShell : public SwDocShell
 {
-
-public:
-    SFX_DECL_INTERFACE(SW_GLOSDOCSHELL);
 };
 
 
@@ -53,7 +50,6 @@ class SwWebGlosDocShell : public SwWebDocShell
 {
 
 public:
-    SFX_DECL_INTERFACE(SW_WEBGLOSDOCSHELL);
                 SwWebGlosDocShell();
         virtual ~SwWebGlosDocShell();
 };
