@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_initui.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:02:51 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:13:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,12 +45,6 @@
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-#ifndef _GLOSDOC_HXX
-#include <glosdoc.hxx>
-#endif
-#ifndef _GLOSLST_HXX
-#include <gloslst.hxx>
-#endif
 
 #ifndef _UTLUI_HRC
 #include <utlui.hrc>
@@ -77,16 +71,10 @@ namespace binfilter {
     Beschreibung:   globale Pointer
  --------------------------------------------------------------------*/
 
-SwGlossaries*       pGlossaries = 0;
-
-// Liefert alle benoetigten Pfade. Wird durch UI initialisiert
-SwGlossaryList*     pGlossaryList = 0;
-
 String* pOldGrfCat = 0;
 String* pOldTabCat = 0;
 String* pOldFrmCat = 0;
 String* pOldDrwCat = 0;
-String* pCurrGlosGroup = 0;
 
 SvStringsDtor* pDBNameList = 0;
 
@@ -155,34 +143,6 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
  }
 
 
-/*N*/ SwGlossaries* GetGlossaries()
-/*N*/ {
-/*N*/   if (!pGlossaries)
-/*N*/       pGlossaries = new SwGlossaries;
-/*N*/   return (pGlossaries);
-/*N*/ }
-
-/*N*/ BOOL HasGlossaryList()
-/*N*/ {
-/*N*/   return pGlossaryList != 0;
-/*N*/ }
-
-/*N*/ SwGlossaryList* GetGlossaryList()
-/*N*/ {
-/*N*/   if(!pGlossaryList)
-/*N*/       pGlossaryList = new SwGlossaryList();
-/*N*/
-/*N*/   return pGlossaryList;
-/*N*/ }
-
-
-
-/* -----------------16.09.99 12:28-------------------
-
- --------------------------------------------------*/
-/* -----------------16.09.99 12:29-------------------
-
- --------------------------------------------------*/
  const String&  SwAuthorityFieldType::GetAuthTypeName(ToxAuthorityType eType)
  {
     if(!pAuthFieldTypeList)
