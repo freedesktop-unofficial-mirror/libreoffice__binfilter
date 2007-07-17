@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:20:44 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:33:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -190,26 +190,6 @@ struct TabInfo
 /*N*/   }
 /*N*/
 /*N*/   aInvalidRec = Rectangle();
-/*N*/   CallStatusHdl();
-/*N*/ }
-
-/*N*/ IMPL_LINK( ImpEditEngine, OnlineSpellHdl, Timer *, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return 0;
-/*N*/ }
-
-/*N*/ IMPL_LINK_INLINE_START( ImpEditEngine, IdleFormatHdl, Timer *, EMPTYARG )
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-/*N*/ IMPL_LINK_INLINE_END( ImpEditEngine, IdleFormatHdl, Timer *, EMPTYARG )
-
-/*N*/ void ImpEditEngine::CheckIdleFormatter()
-/*N*/ {
-/*N*/   aIdleFormatter.ForceTimeout();
-/*N*/   // Falls kein Idle, aber trotzdem nicht formatiert:
-/*N*/   if ( !IsFormatted() )
-/*N*/       FormatDoc();
 /*N*/ }
 
 /*N*/ void ImpEditEngine::FormatFullDoc()
@@ -227,10 +207,6 @@ struct TabInfo
 /*N*/     EnterBlockNotifications();
 /*N*/
 /*N*/   bIsFormatting = sal_True;
-/*N*/
-/*N*/   // Dann kann ich auch den Spell-Timer starten...
-/*N*/   if ( GetStatus().DoOnlineSpelling() )
-/*?*/       StartOnlineSpellTimer();
 /*N*/
 /*N*/   long nY = 0;
 /*N*/   sal_Bool bGrow = sal_False;
@@ -345,8 +321,6 @@ struct TabInfo
 /*N*/
 /*N*/   if ( bMapChanged )
 /*N*/       GetRefDevice()->Pop();
-/*N*/
-/*N*/   CallStatusHdl();    // Falls Modified...
 /*N*/
 /*N*/     LeaveBlockNotifications();
 /*N*/ }
@@ -1512,8 +1486,6 @@ struct TabInfo
 /*N*/       Reference < i18n::XBreakIterator > xBI = ImplGetBreakIterator();
 /*N*/       OUString aText( *pNode );
 /*N*/       Reference< XHyphenator > xHyph;
-/*N*/       if ( bCanHyphenate )
-/*N*/           xHyph = GetHyphenator();
 /*N*/       i18n::LineBreakHyphenationOptions aHyphOptions( xHyph, Sequence< PropertyValue >(), 1 );
 /*N*/       i18n::LineBreakUserOptions aUserOptions;
 /*N*/
@@ -1553,104 +1525,6 @@ struct TabInfo
 /*N*/
 /*N*/       bHangingPunctuation = ( nBreakPos > nMaxBreakPos ) ? sal_True : sal_False;
 /*N*/       pLine->SetHangingPunctuation( bHangingPunctuation );
-/*N*/
-/*N*/     #ifndef SVX_LIGHT
-/*N*/       // Egal ob Trenner oder nicht: Das Wort nach dem Trenner durch
-/*N*/       // die Silbentrennung jagen...
-/*N*/       // nMaxBreakPos ist das letzte Zeichen was in die Zeile passt,
-/*N*/       // nBreakPos ist der Wort-Anfang
-/*N*/       // Ein Problem gibt es, wenn das Dok so schmal ist, dass ein Wort
-/*N*/       // auf mehr als Zwei Zeilen gebrochen wird...
-/*N*/       if ( !bHangingPunctuation && bCanHyphenate && GetHyphenator().is() )
-/*N*/       {
-/*N*/             i18n::Boundary aBoundary = xBI->getWordBoundary( *pNode, nBreakPos, GetLocale( EditPaM( pNode, nBreakPos ) ), ::com::sun::star::i18n::WordType::DICTIONARY_WORD, sal_True );
-/*N*/ //            sal_uInt16 nWordStart = nBreakPos;
-/*N*/           sal_uInt16 nBreakPos_OLD = nBreakPos;
-/*N*/           sal_uInt16 nWordStart = nBreakPos;
-/*N*/             sal_uInt16 nWordEnd = (USHORT) aBoundary.endPos;
-/*N*/             DBG_ASSERT( nWordEnd > nWordStart, "ImpBreakLine: Start >= End?" );
-/*N*/
-/*N*/             USHORT nWordLen = nWordEnd - nWordStart;
-/*N*/           if ( ( nWordEnd >= nMaxBreakPos ) && ( nWordLen > 3 ) )
-/*N*/           {
-/*N*/                 // #104415# May happen, because getLineBreak may differ from getWordBoudary with DICTIONARY_WORD
-/*N*/               // DBG_ASSERT( nWordEnd >= nMaxBreakPos, "Hyph: Break?" );
-/*N*/               String aWord( *pNode, nWordStart, nWordLen );
-/*N*/               sal_uInt16 nMinTrail = nWordEnd-nMaxBreakPos+1;     //+1: Vor dem angeknacksten Buchstaben
-/*N*/               Reference< XHyphenatedWord > xHyphWord;
-/*N*/               if (xHyphenator.is())
-/*N*/                   xHyphWord = xHyphenator->hyphenate( aWord, aLocale, aWord.Len() - nMinTrail, Sequence< PropertyValue >() );
-/*N*/               if (xHyphWord.is())
-/*N*/               {
-/*N*/                   sal_Bool bAlternate = xHyphWord->isAlternativeSpelling();
-/*N*/                   sal_uInt16 nWordLen = 1 + xHyphWord->getHyphenPos();
-/*N*/
-/*N*/                   if ( ( nWordLen >= 2 ) && ( (nWordStart+nWordLen) >= (pLine->GetStart() + 2 ) ) )
-/*N*/                   {
-/*N*/                       if ( !bAlternate )
-/*N*/                       {
-/*N*/                           bHyphenated = sal_True;
-/*N*/                           nBreakPos = nWordStart + nWordLen;
-/*N*/                       }
-/*N*/                       else
-/*N*/                       {
-/*?*/                           String aAlt( xHyphWord->getHyphenatedWord() );
-/*?*/
-/*?*/                           // Wir gehen von zwei Faellen aus, die nun
-/*?*/                           // vorliegen koennen:
-/*?*/                           // 1) packen wird zu pak-ken
-/*?*/                           // 2) Schiffahrt wird zu Schiff-fahrt
-/*?*/                           // In Fall 1 muss ein Zeichen ersetzt werden,
-/*?*/                           // in Fall 2 wird ein Zeichen hinzugefuegt.
-/*?*/                           // Die Identifikation wird erschwert durch Worte wie
-/*?*/                           // "Schiffahrtsbrennesseln", da der Hyphenator alle
-/*?*/                           // Position des Wortes auftrennt und "Schifffahrtsbrennnesseln"
-/*?*/                           // ermittelt. Wir koennen also eigentlich nicht unmittelbar vom
-/*?*/                           // Index des AlternativWord auf aWord schliessen.
-/*?*/
-/*?*/                           // Das ganze geraffel wird durch eine Funktion am
-/*?*/                           // Hyphenator vereinfacht werden, sobald AMA sie einbaut...
-/*?*/                           sal_uInt16 nAltStart = nWordLen - 1;
-/*?*/                           sal_uInt16 nTxtStart = nAltStart - (aAlt.Len() - aWord.Len());
-/*?*/                           sal_uInt16 nTxtEnd = nTxtStart;
-/*?*/                           sal_uInt16 nAltEnd = nAltStart;
-/*?*/
-/*?*/                           // Die Bereiche zwischen den nStart und nEnd ist
-/*?*/                           // die Differenz zwischen Alternativ- und OriginalString.
-/*?*/                           while( nTxtEnd < aWord.Len() && nAltEnd < aAlt.Len() &&
-/*?*/                                  aWord.GetChar(nTxtEnd) != aAlt.GetChar(nAltEnd) )
-/*?*/                           {
-/*?*/                               ++nTxtEnd;
-/*?*/                               ++nAltEnd;
-/*?*/                           }
-/*?*/
-/*?*/                           // Wenn ein Zeichen hinzugekommen ist, dann bemerken wir es jetzt:
-/*?*/                           if( nAltEnd > nTxtEnd && nAltStart == nAltEnd &&
-/*?*/                               aWord.GetChar( nTxtEnd ) == aAlt.GetChar(nAltEnd) )
-/*?*/                           {
-/*?*/                               ++nAltEnd;
-/*?*/                               ++nTxtStart;
-/*?*/                               ++nTxtEnd;
-/*?*/                           }
-/*?*/
-/*?*/                           DBG_ASSERT( ( nAltEnd - nAltStart ) == 1, "Alternate: Falsche Annahme!" );
-/*?*/
-/*?*/                           if ( nTxtEnd > nTxtStart )
-/*?*/                               cAlternateReplChar = aAlt.GetChar( nAltStart );
-/*?*/                           else
-/*?*/                               cAlternateExtraChar = aAlt.GetChar( nAltStart );
-/*?*/
-/*?*/                           bHyphenated = sal_True;
-/*?*/                           nBreakPos = nWordStart + nTxtStart;
-/*?*/                           if ( cAlternateReplChar )
-/*?*/                               nBreakPos++;
-/*N*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/     #endif // !SVX_LIGHT
 /*N*/
 /*N*/       if ( nBreakPos <= pLine->GetStart() )
 /*N*/       {
@@ -2794,13 +2668,6 @@ struct TabInfo
 /*?*/                                             pOutDev->DrawRect( aRect );
 /*N*/                                         }
 /*N*/                                   }
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/                                   if ( GetStatus().DoOnlineSpelling() && GetStatus().DoDrawRedLines() && pPortion->GetNode()->GetWrongList()->HasWrongs() && pTextPortion->GetLen() )
-/*N*/                                   {
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 /*?*/                                         {//#105750# adjust LinePos for superscript or subscript text
-/*N*/                                   }
-/*N*/ #endif // !SVX_LIGHT
 /*N*/                               }
 /*N*/
 /*N*/                                 pOutDev->SetLayoutMode( nOldLayoutMode );
@@ -3121,34 +2988,6 @@ struct TabInfo
 /*N*/       FormatAndUpdate( pCurView );
 /*N*/ }
 
-
-
-
-
-/*N*/ IMPL_LINK_INLINE_START( ImpEditEngine, StatusTimerHdl, Timer *, EMPTYARG )
-/*N*/ {
-/*N*/   CallStatusHdl();
-/*N*/   return 0;
-/*N*/ }
-/*N*/ IMPL_LINK_INLINE_END( ImpEditEngine, StatusTimerHdl, Timer *, EMPTYARG )
-
-/*N*/ void ImpEditEngine::CallStatusHdl()
-/*N*/ {
-/*N*/   if ( aStatusHdlLink.IsSet() && aStatus.GetStatusWord() )
-/*N*/   {
-/*N*/       // Der Status muss vor Call zurueckgesetzt werden,
-/*N*/       // da im Hdl evtl. weitere Fags gesetzt werden...
-/*N*/       EditStatus aTmpStatus( aStatus );
-/*N*/       aStatus.Clear();
-/*N*/       aStatusHdlLink.Call( &aTmpStatus );
-/*N*/       aStatusTimer.Stop();    // Falls von Hand gerufen...
-/*N*/   }
-/*N*/ }
-
-
-
-
-
 /*N*/ EditPaM ImpEditEngine::InsertParagraph( sal_uInt16 nPara )
 /*N*/ {
 /*N*/   EditPaM aPaM;
@@ -3185,9 +3024,6 @@ struct TabInfo
 /*N*/   if ( bDowning )
 /*N*/       return ;
 /*N*/
-/*N*/   if ( IsInUndo() )
-/*?*/       IdleFormatAndUpdate( pCurView );
-/*N*/   else
 /*N*/   {
 /*N*/       FormatDoc();
 /*N*/       UpdateViews( pCurView );
