@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:17:13 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:11:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -75,7 +75,6 @@ SLOFILES =  \
     $(SLO)$/sc_table3.obj \
     $(SLO)$/sc_table4.obj \
     $(SLO)$/sc_table5.obj \
-    $(SLO)$/sc_table6.obj \
     $(SLO)$/sc_olinetab.obj \
     $(SLO)$/sc_patattr.obj \
     $(SLO)$/sc_cell.obj \
