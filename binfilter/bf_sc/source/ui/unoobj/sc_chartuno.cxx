@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:00:58 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:33:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -487,14 +487,7 @@ void ScChartObj::Update_Impl( const ScRangeListRef& rRanges, BOOL bColHeaders, B
     if (pDocShell)
     {
         ScDocument* pDoc = pDocShell->GetDocument();
-        BOOL bUndo(pDoc->IsUndoEnabled());
         Window* pWin = NULL;
-
-        if (bUndo)
-        {
-            pDocShell->GetUndoManager()->AddUndoAction(
-                new ScUndoChartData( pDocShell, aChartName, rRanges, bColHeaders, bRowHeaders, FALSE ) );
-        }
         pDoc->UpdateChartArea( aChartName, rRanges, bColHeaders, bRowHeaders, FALSE, pWin );
     }
 }
