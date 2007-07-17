@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:26:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:55:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,17 +60,13 @@
 #include "sfx.hrc"
 #include "docfilt.hxx"
 #include "docfac.hxx"
-#include "viewfac.hxx"
 #include "fltfnc.hxx"
 #include "appdata.hxx"
 #include "arrdecl.hxx"
 #include "app.hxx"
 #include "module.hxx"
-#include "mnumgr.hxx"
-#include "accmgr.hxx"
-#include <sfxresid.hxx>
 #include <sfxuno.hxx>
-#include "doc.hrc"
+
 //added by jmeng for include sleep() function for i31251
 #if ( defined UNX ) || ( defined OS2 )   //Unix
 #include <unistd.h>
@@ -92,58 +88,30 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 
 /*N*/ struct SfxObjectFactory_Impl
 /*N*/ {
-/*N*/   SfxViewFactoryArr_Impl      aViewFactoryArr;// Liste von <SfxViewFactory>s
 /*N*/   SfxFilterArr_Impl           aFilterArr;     // Liste von <SFxFilter>n
-/*N*/   ResId*                      pMenuBarResId;
-/*N*/   ResId*                      pPluginMenuBarResId;
-/*N*/   ResId*                      pAccelResId;
-/*N*/   ResId*                      pNameResId;
-/*N*/   String                      aHelpFile;
-/*N*/   String                      aHelpPIFile;
 /*N*/   ::rtl::OUString             aServiceName;
 /*N*/   sal_Bool                    bInitFactoryCalled;
 /*N*/   SfxVoidFunc                 pInitFactory;
 /*N*/   SfxFactoryFilterContainer*  pFilterContainer;
 /*N*/   SfxModule*                  pModule;
-/*N*/   SfxAcceleratorManager*      pAccMgr;
-/*N*/   sal_uInt16                  nImageId;
-/*N*/   sal_Bool                    bOwnsAccel;
 /*N*/   String                      aStandardTemplate;
 /*N*/   sal_Bool                    bTemplateInitialized;
 /*N*/   sal_uInt16                  nCreateNewSlotId;
 /*N*/
 /*N*/   SfxObjectFactory_Impl() :
-/*N*/       pMenuBarResId       ( NULL ),
-/*N*/       pPluginMenuBarResId ( NULL ),
-/*N*/       pAccelResId         ( NULL ),
-/*N*/       pNameResId          ( NULL ),
 /*N*/       bInitFactoryCalled  ( sal_False ),
 /*N*/       pInitFactory        ( NULL ),
 /*N*/       pFilterContainer    ( NULL ),
 /*N*/       pModule             ( NULL ),
-/*N*/       pAccMgr             ( NULL ),
-/*N*/       nImageId            ( 0 ),
 /*N*/       bTemplateInitialized( sal_False ),
 /*N*/       nCreateNewSlotId    ( 0 ) {}
 /*N*/
 /*N*/   ~SfxObjectFactory_Impl()
 /*N*/   {
-/*N*/       delete pMenuBarResId;
-/*N*/       delete pPluginMenuBarResId;
-/*N*/       delete pAccelResId;
-/*N*/       // Jetzt vom FilterMatcher
-/*N*/       // delete pFilterContainer;
-/*N*/         if ( bOwnsAccel )
-/*N*/             delete pAccMgr;
 /*N*/   }
 /*N*/
 /*N*/   void ClearAccMgr()
 /*N*/   {
-/*N*/       if ( bOwnsAccel )
-/*N*/         {
-/*N*/             delete pAccMgr;
-/*N*/           pAccMgr = 0;
-/*N*/       }
 /*N*/   }
 /*N*/ };
 
@@ -188,22 +156,6 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/       // FilterContainer Landen
 /*N*/       GetFilterCount( );
 /*N*/       (*pImpl->pInitFactory)();
-/*N*/       String aShortName( String::CreateFromAscii( pShortName ) );
-/*N*/       aShortName.ToLowerAscii();
-/*N*/       if ( aShortName.EqualsAscii( "swriter" ) )
-/*N*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_SW );
-/*N*/       else if ( aShortName.EqualsAscii( "swriter/web" ) )
-/*N*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_SWWEB );
-/*N*/       else if ( aShortName.EqualsAscii( "swriter/globaldocument" ) )
-/*N*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_SWGLOB );
-/*N*/       else if ( aShortName.EqualsAscii( "scalc" ) )
-/*N*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_SC );
-/*N*/       else if ( aShortName.EqualsAscii( "simpress" ) )
-/*N*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_SI );
-/*N*/       else if ( aShortName.EqualsAscii( "sdraw" ) )
-/*N*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_SD );
-/*N*/       else if ( aShortName.EqualsAscii( "message" ) )
-/*?*/           pImpl->pNameResId = new SfxResId( STR_DOCTYPENAME_MESSAGE );
 /*N*/
 /*N*/         // There are no filters for "dummy" factory!
 /*N*/         if( pImpl->aServiceName.compareToAscii("dummy") != 0 )
@@ -214,32 +166,6 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/         }
 /*N*/   }
 /*N*/ }
-
-//added by jmeng for i31251 begin
-extern "C"{
-    sal_Bool legcy_getBinfilterInitState(void);
-}
-void lc_bfsleep(int _nSec)
-{
-#ifdef WNT                               //Windows
-    Sleep( _nSec * 1000 );
-#endif
-#if ( defined UNX ) || ( defined OS2 )   //Unix
-        sleep( _nSec );
-#endif
-}
-//added by jmeng for i31251 end
-
-/*N*/ IMPL_LINK_INLINE( SfxObjectFactory, InitFactoryHdl, void*, EMPTYARG,
-/*N*/ {
-//added by jmeng  for i31251 begin
-    while( !legcy_getBinfilterInitState()) lc_bfsleep(1);
-//added by jmeng  for i31251 end
-/*N*/   SFX_APP()->Get_Impl()->aPendingInitFactories.Remove( this );
-/*N*/   DoInitFactory();
-/*N*/   return 0;
-/*N*/ }
-/*N*/ )
 
 /*N*/ sal_uInt16 SfxObjectFactory::GetFilterCount() const
 /*N*/ {
@@ -285,14 +211,6 @@ void lc_bfsleep(int _nSec)
 /*N*/   SFX_APP()->GetFilterMatcher().AddContainer( pImpl->pFilterContainer );
 /*N*/   if( !(nFlagsP & SFXOBJECTSHELL_DONTLOADFILTERS) )
 /*N*/       pImpl->pFilterContainer->LoadFilters( String::CreateFromAscii( pName ) );
-/*N*/
-/*N*/   pImpl->aHelpFile = String::CreateFromAscii(pShortName);
-/*N*/   pImpl->aHelpFile.Erase( 8 );
-/*N*/   pImpl->aHelpPIFile = String(pImpl->aHelpFile,0,3);
-/*N*/   pImpl->aHelpPIFile += DEFINE_CONST_UNICODE( "hlppi" );
-/*N*/   pImpl->aHelpFile += DEFINE_CONST_UNICODE( ".hlp" );
-/*N*/   pImpl->aHelpPIFile += DEFINE_CONST_UNICODE( ".hlp" );
-/*N*/     pImpl->bOwnsAccel = sal_False;
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -314,8 +232,6 @@ void lc_bfsleep(int _nSec)
 /*N*/
 /*N*/   SfxApplication* pApp = SFX_APP();
 /*N*/     RegisterObjectFactory_Impl(*this);
-/*N*/     pApp->InsertLateInitHdl( LINK( this, SfxObjectFactory, InitFactoryHdl ) );
-/*N*/   pApp->Get_Impl()->aPendingInitFactories.Insert( this );
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -327,7 +243,6 @@ void lc_bfsleep(int _nSec)
 /*N*/   const sal_uInt16 nCount = pImpl->aFilterArr.Count();
 /*N*/   for ( sal_uInt16 i = 0; i < nCount; ++i )
 /*?*/       delete pImpl->aFilterArr[i];
-/*N*/   delete pImpl->pNameResId;
 /*N*/   delete pImpl;
 /*N*/ }
 
@@ -359,99 +274,6 @@ void lc_bfsleep(int _nSec)
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxObjectFactory::RegisterViewFactory
-/*N*/ (
-/*N*/   SfxViewFactory &rFactory
-/*N*/ )
-/*N*/ {
-/*N*/   sal_uInt16 nPos;
-/*N*/   for ( nPos = 0;
-/*N*/         nPos < pImpl->aViewFactoryArr.Count() &&
-/*N*/         pImpl->aViewFactoryArr[nPos]->GetOrdinal() <= rFactory.GetOrdinal();
-/*N*/         ++nPos )
-/*N*/   /* empty loop */;
-/*N*/   pImpl->aViewFactoryArr.Insert(nPos, &rFactory);
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ sal_uInt16 SfxObjectFactory::GetViewFactoryCount() const
-/*N*/ {
-/*N*/   return pImpl->aViewFactoryArr.Count();
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ SfxViewFactory& SfxObjectFactory::GetViewFactory(sal_uInt16 i) const
-/*N*/ {
-/*N*/   return *pImpl->aViewFactoryArr[i];
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxObjectFactory::RegisterMenuBar( const ResId& rId )
-/*N*/ {
-/*N*/   delete pImpl->pMenuBarResId;
-/*N*/   pImpl->pMenuBarResId = new ResId( rId );
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxObjectFactory::RegisterPluginMenuBar( const ResId& rId )
-/*N*/ {
-/*N*/   delete pImpl->pPluginMenuBarResId;
-/*N*/   pImpl->pPluginMenuBarResId = new ResId( rId );
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ const ResId* SfxObjectFactory::GetMenuBarId() const
-/*N*/ {
-/*N*/   return pImpl->pMenuBarResId;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*?*/ const ResId* SfxObjectFactory::GetPluginMenuBarId() const
-/*?*/ {
-/*?*/   return pImpl->pPluginMenuBarResId;
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ const ResId* SfxObjectFactory::GetAccelId() const
-/*N*/ {
-/*N*/   return pImpl->pAccelResId;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxObjectFactory::RegisterAccel( const ResId& rId )
-/*N*/ {
-/*N*/   DBG_ASSERT( !pImpl->pAccelResId, "SfxObjectFactory: double registration of Accel" );
-/*N*/   pImpl->pAccelResId = new ResId(rId);
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxObjectFactory::RegisterHelpFile( const String& rString )
-/*N*/ {
-/*N*/   pImpl->aHelpFile = rString;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxObjectFactory::RegisterHelpPIFile( const String& rString )
-/*N*/ {
-/*N*/   pImpl->aHelpPIFile = rString;
-/*N*/ }
-
-//--------------------------------------------------------------------
 
 
 /*N*/ SfxModule* SfxObjectFactory::GetModule() const
@@ -459,46 +281,10 @@ void lc_bfsleep(int _nSec)
 /*N*/   return pImpl->pModule;
 /*N*/ }
 
-/*N*/ SfxAcceleratorManager* SfxObjectFactory::GetAccMgr_Impl()
-/*N*/ {
-/*N*/   if ( !pImpl->pAccMgr && pImpl->pAccelResId )
-/*N*/   {
-/*N*/       // factories in the same module may share their accelerators
-/*N*/       SfxApplication *pApp = SFX_APP();
-/*N*/         SfxObjectFactoryArr_Impl& rArr = GetObjFacArray_Impl();
-/*N*/       sal_uInt32 nCount = rArr.Count();
-/*N*/       const ResId& rMyId = *GetAccelId();
-/*N*/       for ( sal_uInt32 n=0; n<nCount; n++ )
-/*N*/       {
-/*N*/           SfxObjectFactory *pFact = rArr[(sal_uInt16)n];
-/*N*/           if ( pFact == this )
-/*N*/               break;
-/*N*/           const ResId *pId = pFact->pImpl->pAccelResId;
-/*N*/           if ( pId &&
-/*N*/               pId->GetId() == rMyId.GetId() &&
-/*N*/               pId->GetResMgr() == rMyId.GetResMgr() )
-/*N*/           {
-/*N*/               pImpl->pAccMgr = pFact->GetAccMgr_Impl();
-/*N*/               return pImpl->pAccMgr;
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       // create accelerator manager
-/*N*/         pImpl->pAccMgr = new SfxAcceleratorManager( rMyId, SFX_APP()->GetConfigManager_Impl() );
-/*N*/       pImpl->bOwnsAccel = sal_True;
-/*N*/   }
-/*N*/
-/*N*/   return pImpl->pAccMgr;
-/*N*/ }
 
 /*N*/ void SfxObjectFactory::SetModule_Impl( SfxModule *pMod )
 /*N*/ {
 /*N*/   pImpl->pModule = pMod;
-/*N*/ }
-
-/*N*/ void SfxObjectFactory::SetExplorerImageId( sal_uInt16 nImageId )
-/*N*/ {
-/*N*/   pImpl->nImageId = nImageId;
 /*N*/ }
 
 
