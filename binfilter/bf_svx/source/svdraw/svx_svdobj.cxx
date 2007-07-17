@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:02:51 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:44:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,9 +96,7 @@
 #include <bf_sfx2/objsh.hxx>
 #endif
 
-#ifndef _SFXOBJFACE_HXX
-#include <bf_sfx2/objface.hxx>
-#endif
+#include <bf_sfx2/docfac.hxx>
 
 #ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
@@ -2887,13 +2885,15 @@ class ImpSkeleton;
 /*N*/
 /*N*/       if(pObjectShell)
 /*N*/       {
-/*N*/           SfxInterface* pInterface = pObjectShell->GetInterface();
+/*N*/ //            SfxInterface* pInterface = pObjectShell->GetInterface();
 /*N*/
-/*N*/           if(pInterface)
+/*N*/ //            if(pInterface)
+                SfxObjectFactory& rFac = pObjectShell->GetFactory();
+                if ( rFac.GetShortName() == "sdraw" || rFac.GetShortName() == "simpress" )
 /*N*/           {
-/*N*/               sal_uInt16 nInterfaceID = pInterface->GetInterfaceId();
+/*N*/               //sal_uInt16 nInterfaceID = pInterface->GetInterfaceId();
 /*N*/
-/*N*/               if(nInterfaceID >= SFX_INTERFACE_SD_START && nInterfaceID <= SFX_INTERFACE_SD_END)
+/*N*/               //if(nInterfaceID >= SFX_INTERFACE_SD_START && nInterfaceID <= SFX_INTERFACE_SD_END)
 /*N*/               {
 /*N*/                   // it's a draw/Impress, reset anchor pos hard
 /*N*/                   aAnchor = Point(0, 0);
