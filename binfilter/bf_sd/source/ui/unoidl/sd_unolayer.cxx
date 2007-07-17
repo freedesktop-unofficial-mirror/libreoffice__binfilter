@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unolayer.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:37:03 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:07:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,6 @@
 
 #include "unohelp.hxx"
 #include "frmview.hxx"
-#include "drviewsh.hxx"
 #include "sdview.hxx"
 
 #include "app.hrc"
@@ -668,36 +667,16 @@ sal_Bool SAL_CALL SdLayerManager::hasElements() throw(uno::RuntimeException)
     die Aenderungen auch in der sdbcx::View sichtbar gemacht werden */
 void SdLayerManager::UpdateLayerView( sal_Bool modify ) const throw()
 {
-#ifndef SVX_LIGHT
     if(rModel.pDocShell)
     {
-        SdDrawViewShell* pDrViewSh =
-            PTR_CAST(SdDrawViewShell, rModel.pDocShell->GetViewShell());
-
-        if(pDrViewSh)
-        {
-            sal_Bool bLayerMode = pDrViewSh->GetLayerMode();
-            pDrViewSh->ChangeEditMode(pDrViewSh->GetEditMode(), !bLayerMode);
-            pDrViewSh->ChangeEditMode(pDrViewSh->GetEditMode(), bLayerMode);
-        }
-
         if(modify)
             rModel.pDoc->SetChanged(sal_True);
     }
-#endif
 }
 
 /** */
 SdView* SdLayerManager::GetView() const throw()
 {
-#ifndef SVX_LIGHT
-    if( rModel.pDocShell )
-    {
-        SdViewShell* pViewSh = rModel.pDocShell->GetViewShell();
-        if(pViewSh)
-            return pViewSh->GetView();
-    }
-#endif
     return NULL;
 }
 
