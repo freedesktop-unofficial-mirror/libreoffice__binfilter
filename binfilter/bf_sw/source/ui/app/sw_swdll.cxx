@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swdll.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:42:14 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:06:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,20 +94,6 @@ namespace binfilter {
 /*N*/   (*ppShlPtr)->pSwWebDocShellFactory      = pWDocFact   ;
 /*N*/   (*ppShlPtr)->pSwGlobalDocShellFactory   = pGlobDocFact;
 /*N*/
-/*N*/     if ( pDocFact )
-/*N*/     {
-/*N*/         SwDocShell::Factory().RegisterPluginMenuBar( SW_RES(CFG_SW_MENU_PORTAL));
-/*N*/         SwDocShell::Factory().RegisterMenuBar(SW_RES(CFG_SW_MENU));
-/*N*/         SwDocShell::Factory().RegisterAccel(SW_RES(CFG_SW_ACCEL));
-/*N*/         SwGlobalDocShell::Factory().RegisterMenuBar(SW_RES(CFG_SWGLOBAL_MENU));
-/*N*/         SwGlobalDocShell::Factory().RegisterAccel(SW_RES(CFG_SW_ACCEL));
-/*N*/         SwGlobalDocShell::Factory().RegisterPluginMenuBar( SW_RES(CFG_SWGLOBAL_MENU_PORTAL));
-/*N*/     }
-/*N*/
-/*N*/   SwWebDocShell::Factory().RegisterPluginMenuBar( SW_RES(CFG_SWWEB_MENU_PORTAL));
-/*N*/   SwWebDocShell::Factory().RegisterMenuBar(SW_RES(CFG_SWWEB_MENU));
-/*N*/   SwWebDocShell::Factory().RegisterAccel(SW_RES(CFG_SWWEB_ACCEL));
-/*N*/
 /*N*/   SdrObjFactory::InsertMakeObjectHdl( LINK( &aSwObjectFactory, SwObjectFactory, MakeObject ) );
 /*N*/
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "Init Core/UI/Filter" );
@@ -119,9 +105,6 @@ namespace binfilter {
 /*N*/
 /*N*/   pModule->InitAttrPool();
 /*N*/   //jetzt darf das SwModule seinen Pool anlegen
-/*N*/
-/*N*/   // register your shell-interfaces here
-/*N*/   RegisterInterfaces();
 /*N*/ }
 
 /*************************************************************************
