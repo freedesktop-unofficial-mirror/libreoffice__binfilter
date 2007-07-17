@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_targuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:05:49 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:35:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,12 +64,12 @@ using  namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-sal_uInt16 nTypeResIds[SC_LINKTARGETTYPE_COUNT] =
+/*sal_uInt16 nTypeResIds[SC_LINKTARGETTYPE_COUNT] =
 {
     SCSTR_CONTENT_TABLE,        // SC_LINKTARGETTYPE_SHEET
     SCSTR_CONTENT_RANGENAME,    // SC_LINKTARGETTYPE_RANGENAME
     SCSTR_CONTENT_DBAREA        // SC_LINKTARGETTYPE_DBAREA
-};
+};*/
 
 const SfxItemPropertyMap* lcl_GetLinkTargetMap()
 {
@@ -97,9 +97,9 @@ ScLinkTargetTypesObj::ScLinkTargetTypesObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
 {
     pDocShell->GetDocument()->AddUnoObject(*this);
-
-    for (sal_uInt16 i=0; i<SC_LINKTARGETTYPE_COUNT; i++)
-        aNames[i] = String( ScResId( nTypeResIds[i] ) );
+    DBG_ERROR("Strip!");
+//  for (sal_uInt16 i=0; i<SC_LINKTARGETTYPE_COUNT; i++)
+//      aNames[i] = String( ScResId( nTypeResIds[i] ) );
 }
 
 ScLinkTargetTypesObj::~ScLinkTargetTypesObj()
@@ -173,7 +173,8 @@ ScLinkTargetTypeObj::ScLinkTargetTypeObj(ScDocShell* pDocSh, sal_uInt16 nT) :
     nType( nT )
 {
     pDocShell->GetDocument()->AddUnoObject(*this);
-    aName = String( ScResId( nTypeResIds[nType] ) );    //! on demand?
+    DBG_ERROR("Strip!");
+    //aName = String( ScResId( nTypeResIds[nType] ) );  //! on demand?
 }
 
 ScLinkTargetTypeObj::~ScLinkTargetTypeObj()
