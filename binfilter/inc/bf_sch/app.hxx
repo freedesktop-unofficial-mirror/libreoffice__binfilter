@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:40:36 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:30:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,9 +37,7 @@
 #define _SCH_APP_HXX
 
 // Die folgenden includes gehoeren eigentlich in app.cxx
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
+
 #include "schdll.hxx"
 
 class SdClipboard;
@@ -75,7 +73,6 @@ protected :
     virtual void Init();
     virtual void Exit();
     virtual void OpenClients();
-    virtual SfxNewFileDialog* CreateNewDialog();
 
     SvxErrorHandler *pSvxErrorHandler;
 
