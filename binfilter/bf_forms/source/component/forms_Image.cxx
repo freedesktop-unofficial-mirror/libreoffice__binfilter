@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Image.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:02:55 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 08:43:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -786,9 +786,6 @@ void OImageModel::SetURL( const ::rtl::OUString& rURL )
 
             // Target-Frame uebertragen, damit auch javascript:-URLs
             // "geladen" werden koennen.
-            const SfxMedium *pShMedium = pObjSh->GetMedium();
-            if( pShMedium )
-                m_pMedium->SetLoadTargetFrame(pShMedium->GetLoadTargetFrame());
         }
         else
         {
@@ -811,9 +808,6 @@ void OImageModel::SetURL( const ::rtl::OUString& rURL )
 
             // Target-Frame uebertragen, damit auch javascript:-URLs
             // "geladen" werden koennen.
-            const SfxMedium *pShMedium = pObjSh->GetMedium();
-            if( pShMedium )
-                m_pMedium->SetLoadTargetFrame(pShMedium->GetLoadTargetFrame());
         }
 
         if( xModel.is() )
