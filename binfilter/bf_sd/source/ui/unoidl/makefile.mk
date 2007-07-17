@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:43:56 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:07:40 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -61,10 +61,6 @@ NOOPTFILES= $(SLO)$/sd_unowcntr.obj
 .ENDIF
 
 SLOFILES =      \
-        $(SLO)$/sd_SdUnoPresView.obj\
-        $(SLO)$/sd_SdUnoSlideView.obj\
-        $(SLO)$/sd_SdUnoOutlineView.obj\
-        $(SLO)$/sd_SdUnoDrawView.obj \
         $(SLO)$/sd_unopool.obj \
         $(SLO)$/sd_UnoDocumentSettings.obj \
         $(SLO)$/sd_facreg.obj \
