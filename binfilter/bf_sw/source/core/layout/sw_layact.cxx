@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:32:11 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:02:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2495,126 +2495,6 @@ namespace binfilter {
 /*?*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL SwLayIdle::_CollectAutoCmplWords( const SwCntntFrm *pCnt,
-/*N*/                                       BOOL bVisAreaOnly )
-/*N*/ {
-/*N*/   ASSERT( pCnt->IsTxtFrm(), "NoTxt neighbour of Txt" );
-/*N*/   if( pCnt->GetNode()->IsAutoCompleteWordDirty() )
-/*N*/   {
-/*N*/       if( STRING_LEN == nTxtPos )
-/*N*/       {
-/*N*/           --nTxtPos;
-/*N*/           ViewShell *pSh = pImp->GetShell();
-/*N*/           if( pSh->ISA(SwCrsrShell) && !((SwCrsrShell*)pSh)->IsTableMode() )
-/*N*/           {
-/*N*/               SwPaM *pCrsr = ((SwCrsrShell*)pSh)->GetCrsr();
-/*N*/               if( !pCrsr->HasMark() && pCrsr == pCrsr->GetNext() )
-/*N*/               {
-/*N*/                   pCntntNode = pCrsr->GetCntntNode();
-/*N*/                   nTxtPos =  pCrsr->GetPoint()->nContent.GetIndex();
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       ((SwTxtFrm*)pCnt)->CollectAutoCmplWrds( pCntntNode, nTxtPos,
-/*N*/                                               bVisAreaOnly );
-/*      bPageValid = bPageValid && !pCnt->GetNode()->IsAutoCompleteWordDirty();
-
-        if( !bPageValid )
-            bAllValid = FALSE;
-*/
-/*N*/         if ( Application::AnyInput( INPUT_ANY ) )
-/*N*/           return TRUE;
-/*N*/   }
-/*N*/
-/*N*/   //Die im Absatz verankerten Flys wollen auch mitspielen.
-/*N*/   if ( pCnt->GetDrawObjs() )
-/*N*/   {
-/*N*/       const SwDrawObjs &rObjs = *pCnt->GetDrawObjs();
-/*N*/       for ( USHORT i = 0; i < rObjs.Count(); ++i )
-/*N*/       {
-/*N*/           SdrObject *pO = rObjs[i];
-/*N*/           if ( pO->IsWriterFlyFrame() )
-/*N*/           {
-/*N*/               SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-/*N*/               if ( pFly->IsFlyInCntFrm() )
-/*N*/               {
-/*N*/                   const SwCntntFrm *pC = pFly->ContainsCntnt();
-/*N*/                   while( pC )
-/*N*/                   {
-/*N*/                       if( pC->IsTxtFrm() &&
-/*N*/                           _CollectAutoCmplWords( pC, bVisAreaOnly ) )
-/*N*/                           return TRUE;
-/*N*/                       pC = pC->GetNextCntntFrm();
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ BOOL SwLayIdle::CollectAutoCmplWords( BOOL bVisAreaOnly )
-/*N*/ {
-/*N*/   //Worte aller Inhalte der Seiten zusammensammeln, um eine
-/*N*/   //AutoComplete-Liste zu erstellen. Entweder nur der sichtbaren
-/*N*/   //Seiten oder eben aller. Falls ein Input am Ende einer Seite anliegt,
-/*N*/   // so wird abgebrochen.
-/*N*/   if( !pImp->GetShell()->GetViewOptions()->IsAutoCompleteWords() ||
-/*N*/       pImp->GetShell()->GetDoc()->GetAutoCompleteWords().IsLockWordLstLocked())
-/*N*/       return FALSE;
-/*N*/
-/*N*/   SwPageFrm *pPage;
-/*N*/   if ( bVisAreaOnly )
-/*N*/       pPage = pImp->GetFirstVisPage();
-/*N*/   else
-/*N*/       pPage = (SwPageFrm*)pRoot->Lower();
-/*N*/
-/*N*/   pCntntNode = NULL;
-/*N*/   nTxtPos = STRING_LEN;
-/*N*/
-/*N*/   while ( pPage )
-/*N*/   {
-/*N*/       bPageValid = TRUE;
-/*N*/       const SwCntntFrm *pCnt = pPage->ContainsCntnt();
-/*N*/       while( pCnt && pPage->IsAnLower( pCnt ) )
-/*N*/       {
-/*N*/           if ( _CollectAutoCmplWords( pCnt, bVisAreaOnly ) )
-/*N*/               return TRUE;
-/*N*/           pCnt = pCnt->GetNextCntntFrm();
-/*N*/       }
-/*N*/       if ( pPage->GetSortedObjs() )
-/*N*/       {
-/*N*/           for ( USHORT i = 0; pPage->GetSortedObjs() &&
-/*N*/                               i < pPage->GetSortedObjs()->Count(); ++i )
-/*N*/           {
-/*N*/               SdrObject *pO = (*pPage->GetSortedObjs())[i];
-/*N*/               if ( pO->IsWriterFlyFrame() )
-/*N*/               {
-/*N*/                   const SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-/*N*/                   const SwCntntFrm *pC = pFly->ContainsCntnt();
-/*N*/                   while( pC )
-/*N*/                   {
-/*N*/                       if ( pC->IsTxtFrm() &&
-/*N*/                           _CollectAutoCmplWords( pC, bVisAreaOnly ) )
-/*N*/                           return TRUE;
-/*N*/                       pC = pC->GetNextCntntFrm();
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       if( bPageValid )
-/*N*/           pPage->ValidateAutoCompleteWords();
-/*N*/
-/*N*/       pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/       if ( pPage && bVisAreaOnly &&
-/*N*/            !pPage->Frm().IsOver( pImp->GetShell()->VisArea()))
-/*N*/           break;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
 /*N*/ #ifndef PRODUCT
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 
@@ -2676,7 +2556,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //Zuerst den Sichtbaren Bereich Spellchecken, nur wenn dort nichts
 /*N*/   //zu tun war wird das IdleFormat angestossen.
-/*N*/   if ( !FormatSpelling( TRUE ) && !CollectAutoCmplWords( TRUE ))
 /*N*/   {
 /*N*/       //Formatieren und ggf. Repaint-Rechtecke an der ViewShell vormerken.
 /*N*/       //Dabei muessen kuenstliche Actions laufen, damit es z.B. bei
@@ -2769,23 +2648,13 @@ namespace binfilter {
 /*?*/           } while ( pSh != pImp->GetShell() );
 /*N*/       }
 /*N*/
-/*N*/       if ( !aAction.IsInterrupt() )
-/*N*/       {
-/*N*/           if( !FormatSpelling( FALSE ))
-/*N*/               CollectAutoCmplWords( FALSE );
-/*N*/       }
-/*N*/
 /*N*/       FASTBOOL bInValid;
 /*N*/       const SwViewOption& rVOpt = *pImp->GetShell()->GetViewOptions();
-/*N*/       FASTBOOL bSpell = rVOpt.IsOnlineSpell(),
-/*N*/                bACmplWrd = rVOpt.IsAutoCompleteWords();
 /*N*/       SwPageFrm *pPg = (SwPageFrm*)pRoot->Lower();
 /*N*/       do
-/*N*/       {   bInValid = pPg->IsInvalidCntnt()    || pPg->IsInvalidLayout() ||
+/*N*/       {   bInValid = pPg->IsInvalidCntnt() || pPg->IsInvalidLayout() ||
 /*N*/                      pPg->IsInvalidFlyCntnt() || pPg->IsInvalidFlyLayout() ||
-/*N*/                      pPg->IsInvalidFlyInCnt() ||
-/*N*/                      (bSpell && pPg->IsInvalidSpelling()) ||
-/*N*/                      (bACmplWrd && pPg->IsInvalidAutoCompleteWords());
+/*N*/                      pPg->IsInvalidFlyInCnt();
 /*N*/
 /*N*/           pPg = (SwPageFrm*)pPg->GetNext();
 /*N*/
