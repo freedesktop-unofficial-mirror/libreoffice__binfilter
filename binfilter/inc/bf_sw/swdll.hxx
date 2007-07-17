@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swdll.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:28:57 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:57:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,6 +50,9 @@ class SfxFilter;
 #ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
 #endif
+
+#include <so3/pseudo.hxx>
+
 namespace binfilter {
 
 //#include <sal/types.h>
@@ -70,8 +73,7 @@ class SwDLL
 {
 
     static void RegisterFactories();
-    static void RegisterInterfaces();
-    static void RegisterControls();
+
 public:
                     // Ctor/Dtor must be linked to the application
                     SwDLL();
@@ -85,9 +87,6 @@ public:
                     // DLL-init/exit-code must be linked to the DLL only
     static void     Init();     // called directly after loading the DLL
     static void     Exit();     // called directly befor unloading the DLL
-
-
-    static void     FillStatusBar(StatusBar &rBar);
 
     static ULONG    DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
                                     SfxFilterFlags nMust, SfxFilterFlags nDont );
