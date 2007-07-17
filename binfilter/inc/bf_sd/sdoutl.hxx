@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdoutl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:54:10 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:32:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -277,11 +277,6 @@ private:
     */
     EditMode meOriginalEditMode;
 
-    /** The search item contains various attributes that define the type of
-        search.  It is set every time the
-        <member>SearchAndReplaceAll</member> method is called.
-    */
-    const SvxSearchItem* mpSearchItem;
 
     /// The actual object iterator.
     ::binfilter::sd::outliner::Iterator maObjectIterator;
