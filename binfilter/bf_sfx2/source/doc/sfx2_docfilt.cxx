@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:27:05 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:55:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@
 #pragma hdrstop
 
 #include "fltfnc.hxx"
-#include "doc.hrc"
 #include "sfxuno.hxx"
 
 namespace binfilter {
