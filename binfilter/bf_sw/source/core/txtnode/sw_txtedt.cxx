@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:19:51 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:02:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -494,73 +494,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/
 /*M*/     return TRUE;
 /*M*/ }
-
-
-
-
-
-// Wird vom CollectAutoCmplWords gerufen
-/*M*/ void SwTxtFrm::CollectAutoCmplWrds( SwCntntNode* pActNode, xub_StrLen nActPos,
-/*M*/                                   BOOL bIsVisArea )
-/*M*/ {
-/*M*/   SwTxtNode *pNode = GetTxtNode();
-/*M*/   if( pNode != pActNode || !nActPos )
-/*M*/       nActPos = STRING_LEN;
-/*M*/
-/*M*/   const XubString& rTxt = pNode->aText;
-/*M*/     SwDoc* pDoc = pNode->GetDoc();
-/*M*/     SwAutoCompleteWord& rACW = SwDoc::GetAutoCompleteWords();
-/*M*/
-/*M*/   xub_StrLen nBegin = 0;
-/*M*/   xub_StrLen nEnd = pNode->aText.Len();
-/*M*/   xub_StrLen nLen;
-/*M*/   BOOL bACWDirty = FALSE, bAnyWrd = FALSE;
-/*M*/
-/*M*/
-/*M*/   if( nBegin < nEnd )
-/*M*/   {
-/*M*/         USHORT nCnt = 200;
-/*M*/         SwScanner aScanner( *pNode, NULL, WordType::DICTIONARY_WORD,
-/*M*/                             nBegin, nEnd, FALSE, FALSE );
-/*M*/       while( aScanner.NextWord( pNode->GetLang( nBegin ) ) )
-/*M*/       {
-/*M*/           nBegin = aScanner.GetBegin();
-/*M*/           nLen = aScanner.GetLen();
-/*M*/           if( rACW.GetMinWordLen() <= nLen )
-/*M*/           {
-/*M*/               const XubString& rWord = aScanner.GetWord();
-/*M*/
-/*M*/               if( nActPos < nBegin || ( nBegin + nLen ) < nActPos )
-/*M*/               {
-/*M*/ // !!! ---> ggfs. das Flag bIsVisarea auswerten
-/*M*/                   if( rACW.GetMinWordLen() <= rWord.Len() )
-/*M*/                         rACW.InsertWord( rWord, *pDoc );
-/*M*/ // !!! ---> ggfs. das Flag bIsVisarea auswerten
-/*M*/                   bAnyWrd = TRUE;
-/*M*/               }
-/*M*/               else
-/*M*/                   bACWDirty = TRUE;
-/*M*/           }
-/*M*/             if( !--nCnt )
-/*M*/             {
-/*M*/                 if ( Application::AnyInput( INPUT_ANY ) )
-/*M*/                     return;
-/*M*/                 nCnt = 100;
-/*M*/             }
-/*M*/       }
-/*M*/   }
-/*M*/
-/*M*/   if( bAnyWrd && !bACWDirty )
-/*M*/       pNode->SetAutoCompleteWordDirty( FALSE );
-/*M*/ }
-
-
-/*************************************************************************
- *                      SwTxtNode::Hyphenate
- *************************************************************************/
-// Findet den TxtFrm und sucht dessen CalcHyph
-
-
 
 
 #ifdef LINGU_STATISTIK
