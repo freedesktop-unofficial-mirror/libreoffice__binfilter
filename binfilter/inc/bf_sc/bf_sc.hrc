@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_sc.hrc,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:27:56 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:28:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1219,17 +1219,6 @@
 
 
 
-// Navigator - in der Reihenfolge wie SC_CONTENT_...
-#define SCSTR_CONTENT_ROOT      (STR_START + 250)
-#define SCSTR_CONTENT_TABLE     (STR_START + 251)
-#define SCSTR_CONTENT_RANGENAME (STR_START + 252)
-#define SCSTR_CONTENT_DBAREA    (STR_START + 253)
-#define SCSTR_CONTENT_GRAPHIC   (STR_START + 254)
-#define SCSTR_CONTENT_OLEOBJECT (STR_START + 255)
-#define SCSTR_CONTENT_NOTE      (STR_START + 256)
- #define SCSTR_CONTENT_AREALINK (STR_START + 257)
-#define SCSTR_CONTENT_DRAWING   (STR_START + 258)
-//  hier ein wenig Platz fuer Erweiterungen
 
 // Eingabezeile, Quickhelp-Strings (HelpText jetzt per HelpId aus Hilfe)
 #define SCSTR_QHELP_INPUTWND    (STR_START + 307)
