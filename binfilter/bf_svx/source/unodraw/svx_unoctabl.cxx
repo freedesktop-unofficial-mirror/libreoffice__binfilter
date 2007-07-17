@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-01 16:08:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:48:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -225,10 +225,6 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 // export this service
 //
 }
-#ifndef SVX_LIGHT
-#include "UnoGraphicExporter.hxx"
-#endif
-
 
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
@@ -280,7 +276,7 @@ sal_Bool SAL_CALL component_writeInfo( void * pServiceManager, void * pRegistryK
 
             writeInfo( pKey, SvxUnoColorTable::getImplementationName_Static(), SvxUnoColorTable::getSupportedServiceNames_Static() );
 #ifndef SVX_LIGHT
-            writeInfo( pKey, svx::GraphicExporter_getImplementationName(), svx::GraphicExporter_getSupportedServiceNames() );
+            //writeInfo( pKey, svx::GraphicExporter_getImplementationName(), svx::GraphicExporter_getSupportedServiceNames() );
 #endif
             sfx2_component_writeInfo(pServiceManager,pRegistryKey);//STRIP002
         }
@@ -308,13 +304,13 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
                 SvxUnoColorTable::getSupportedServiceNames_Static() );
         }
 #ifndef SVX_LIGHT
-        else if( svx::GraphicExporter_getImplementationName().equalsAscii( pImplName ) )
+        /*else if( svx::GraphicExporter_getImplementationName().equalsAscii( pImplName ) )
         {
             xFactory = ::cppu::createSingleFactory( reinterpret_cast< lang::XMultiServiceFactory * >( pServiceManager ),
                 svx::GraphicExporter_getImplementationName(),
                 svx::GraphicExporter_createInstance,
                 svx::GraphicExporter_getSupportedServiceNames() );
-        }
+        }*/
 #endif
         if( xFactory.is())
         {
