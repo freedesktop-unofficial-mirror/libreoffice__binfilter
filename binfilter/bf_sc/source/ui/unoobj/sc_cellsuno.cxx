@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cellsuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:00:46 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:33:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,11 +60,11 @@
 #include <tools/time.hxx>
 #endif
 
+#include <vcl/svapp.hxx>
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/svdpage.hxx>
-#include <bf_sfx2/bindings.hxx>
 #include <bf_sch/memchrt.hxx>
 #include <svtools/zformat.hxx>
 #include <rtl/uuid.h>
@@ -92,7 +92,6 @@
 #include "fmtuno.hxx"
 #include "miscuno.hxx"
 #include "convuno.hxx"
-#include "srchuno.hxx"
 #include "targuno.hxx"
 #include "docsh.hxx"
 #include "patattr.hxx"
@@ -103,7 +102,6 @@
 #include "hints.hxx"
 #include "cell.hxx"
 #include "undotab.hxx"
-#include "undoblk.hxx"      // fuer lcl_ApplyBorder - nach docfunc verschieben!
 #include "stlsheet.hxx"
 #include "dbcolect.hxx"
 #include "attrib.hxx"
@@ -126,10 +124,6 @@
 
 #ifndef __SGI_STL_LIST
 #include <list>
-#endif
-
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
 #endif
 
 namespace binfilter {
@@ -1026,10 +1020,6 @@ void ScHelperFunctions::ApplyBorder( ScDocShell* pDocShell, const ScRangeList& r
                         const SvxBoxItem& rOuter, const SvxBoxInfoItem& rInner )
 {
     ScDocument* pDoc = pDocShell->GetDocument();
-    BOOL bUndo(pDoc->IsUndoEnabled());
-    ScDocument* pUndoDoc = NULL;
-    if (bUndo)
-        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
     ULONG nCount = rRanges.Count();
     ULONG i;
     for (i=0; i<nCount; i++)
@@ -1037,27 +1027,12 @@ void ScHelperFunctions::ApplyBorder( ScDocShell* pDocShell, const ScRangeList& r
         ScRange aRange = *rRanges.GetObject(i);
         USHORT nTab = aRange.aStart.Tab();
 
-        if (bUndo)
-        {
-            if ( i==0 )
-                pUndoDoc->InitUndo( pDoc, nTab, nTab );
-            else
-                pUndoDoc->AddUndoTab( nTab, nTab );
-            pDoc->CopyToDocument( aRange, IDF_ATTRIB, FALSE, pUndoDoc );
-        }
-
         ScMarkData aMark;
         aMark.SetMarkArea( aRange );
         aMark.SelectTable( nTab, TRUE );
 
         pDoc->ApplySelectionFrame( aMark, &rOuter, &rInner );
         // RowHeight bei Umrandung alleine nicht noetig
-    }
-
-    if (bUndo)
-    {
-        pDocShell->GetUndoManager()->AddUndoAction(
-                new ScUndoBorder( pDocShell, rRanges, pUndoDoc, rOuter, rInner ) );
     }
 
     for (i=0; i<nCount; i++)
@@ -1080,7 +1055,6 @@ BOOL lcl_PutDataArray( ScDocShell& rDocShell, const ScRange& rRange,
     USHORT nStartRow = rRange.aStart.Row();
     USHORT nEndCol = rRange.aEnd.Col();
     USHORT nEndRow = rRange.aEnd.Row();
-    BOOL bUndo(pDoc->IsUndoEnabled());
 
     if ( !pDoc->IsBlockEditable( nTab, nStartCol,nStartRow, nEndCol,nEndRow ) )
     {
@@ -1098,14 +1072,6 @@ BOOL lcl_PutDataArray( ScDocShell& rDocShell, const ScRange& rRange,
     {
         //! error message?
         return FALSE;
-    }
-
-    ScDocument* pUndoDoc = NULL;
-    if ( bUndo )
-    {
-        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-        pUndoDoc->InitUndo( pDoc, nTab, nTab );
-        pDoc->CopyToDocument( rRange, IDF_CONTENTS, FALSE, pUndoDoc );
     }
 
     pDoc->DeleteAreaTab( nStartCol, nStartRow, nEndCol, nEndRow, nTab, IDF_CONTENTS );
@@ -1163,16 +1129,6 @@ BOOL lcl_PutDataArray( ScDocShell& rDocShell, const ScRange& rRange,
 
     BOOL bHeight = rDocShell.AdjustRowHeight( nStartRow, nEndRow, nTab );
 
-    if ( pUndoDoc )
-    {
-        ScMarkData aDestMark;
-        aDestMark.SelectOneTable( nTab );
-        rDocShell.GetUndoManager()->AddUndoAction(
-            new ScUndoPaste( &rDocShell,
-                nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab, aDestMark,
-                pUndoDoc, NULL, IDF_CONTENTS, NULL,NULL,NULL,NULL, FALSE ) );
-    }
-
     if (!bHeight)
         rDocShell.PostPaint( rRange, PAINT_GRID );      // AdjustRowHeight may have painted already
 
@@ -1192,7 +1148,6 @@ BOOL lcl_PutFormulaArray( ScDocShell& rDocShell, const ScRange& rRange,
     USHORT nStartRow = rRange.aStart.Row();
     USHORT nEndCol = rRange.aEnd.Col();
     USHORT nEndRow = rRange.aEnd.Row();
-    BOOL bUndo(pDoc->IsUndoEnabled());
 
     if ( !pDoc->IsBlockEditable( nTab, nStartCol,nStartRow, nEndCol,nEndRow ) )
     {
@@ -1210,14 +1165,6 @@ BOOL lcl_PutFormulaArray( ScDocShell& rDocShell, const ScRange& rRange,
     {
         //! error message?
         return FALSE;
-    }
-
-    ScDocument* pUndoDoc = NULL;
-    if ( bUndo )
-    {
-        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-        pUndoDoc->InitUndo( pDoc, nTab, nTab );
-        pDoc->CopyToDocument( rRange, IDF_CONTENTS, FALSE, pUndoDoc );
     }
 
     pDoc->DeleteAreaTab( nStartCol, nStartRow, nEndCol, nEndRow, nTab, IDF_CONTENTS );
@@ -1250,16 +1197,6 @@ BOOL lcl_PutFormulaArray( ScDocShell& rDocShell, const ScRange& rRange,
     }
 
     BOOL bHeight = rDocShell.AdjustRowHeight( nStartRow, nEndRow, nTab );
-
-    if ( pUndoDoc )
-    {
-        ScMarkData aDestMark;
-        aDestMark.SelectOneTable( nTab );
-        rDocShell.GetUndoManager()->AddUndoAction(
-            new ScUndoPaste( &rDocShell,
-                nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab, aDestMark,
-                pUndoDoc, NULL, IDF_CONTENTS, NULL,NULL,NULL,NULL, FALSE ) );
-    }
 
     if (!bHeight)
         rDocShell.PostPaint( rRange, PAINT_GRID );      // AdjustRowHeight may have painted already
@@ -3557,8 +3494,7 @@ uno::Reference<sheet::XSheetCellRanges> SAL_CALL ScCellRangesBase::queryDependen
 uno::Reference<util::XSearchDescriptor> SAL_CALL ScCellRangesBase::createSearchDescriptor()
                                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    return new ScCellSearchObj;
+    return uno::Reference<util::XSearchDescriptor>() ;
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScCellRangesBase::findAll(
@@ -3567,35 +3503,6 @@ uno::Reference<container::XIndexAccess> SAL_CALL ScCellRangesBase::findAll(
 {
     //  Wenn nichts gefunden wird, soll Null zurueckgegeben werden (?)
     uno::Reference<container::XIndexAccess> xRet;
-    if ( pDocShell && xDesc.is() )
-    {
-        ScCellSearchObj* pSearch = ScCellSearchObj::getImplementation( xDesc );
-        if (pSearch)
-        {
-            SvxSearchItem* pSearchItem = pSearch->GetSearchItem();
-            if (pSearchItem)
-            {
-                ScDocument* pDoc = pDocShell->GetDocument();
-                pSearchItem->SetCommand( SVX_SEARCHCMD_FIND_ALL );
-                //  immer nur innerhalb dieses Objekts
-                pSearchItem->SetSelection( !lcl_WholeSheet(aRanges) );
-
-                ScMarkData aMark(*GetMarkData());
-
-                String aDummyUndo;
-                USHORT nCol = 0, nRow = 0, nTab = 0;
-                BOOL bFound = pDoc->SearchAndReplace( *pSearchItem, nCol, nRow, nTab,
-                                                        aMark, aDummyUndo, NULL );
-                if (bFound)
-                {
-                    ScRangeList aNewRanges;
-                    aMark.FillRangeListWithMarks( &aNewRanges, TRUE );
-                    //  bei findAll immer CellRanges, egal wieviel gefunden wurde
-                    xRet = new ScCellRangesObj( pDocShell, aNewRanges );
-                }
-            }
-        }
-    }
     return xRet;
 }
 
@@ -3604,41 +3511,6 @@ uno::Reference<uno::XInterface> ScCellRangesBase::Find_Impl(
                                     const ScAddress* pLastPos )
 {
     uno::Reference<uno::XInterface> xRet;
-    if ( pDocShell && xDesc.is() )
-    {
-        ScCellSearchObj* pSearch = ScCellSearchObj::getImplementation( xDesc );
-        if (pSearch)
-        {
-            SvxSearchItem* pSearchItem = pSearch->GetSearchItem();
-            if (pSearchItem)
-            {
-                ScDocument* pDoc = pDocShell->GetDocument();
-                pSearchItem->SetCommand( SVX_SEARCHCMD_FIND );
-                //  immer nur innerhalb dieses Objekts
-                pSearchItem->SetSelection( !lcl_WholeSheet(aRanges) );
-
-                ScMarkData aMark(*GetMarkData());
-
-                USHORT nCol, nRow, nTab;
-                if (pLastPos)
-                    pLastPos->GetVars( nCol, nRow, nTab );
-                else
-                {
-                    nTab = lcl_FirstTab(aRanges);   //! mehrere Tabellen?
-                    ScDocument::GetSearchAndReplaceStart( *pSearchItem, nCol, nRow );
-                }
-
-                String aDummyUndo;
-                BOOL bFound = pDoc->SearchAndReplace( *pSearchItem, nCol, nRow, nTab,
-                                                        aMark, aDummyUndo, NULL );
-                if (bFound)
-                {
-                    ScAddress aFoundPos( nCol, nRow, nTab );
-                    xRet = (cppu::OWeakObject*) new ScCellObj( pDocShell, aFoundPos );
-                }
-            }
-        }
-    }
     return xRet;
 }
 
@@ -3655,20 +3527,6 @@ uno::Reference<uno::XInterface> SAL_CALL ScCellRangesBase::findNext(
                         const uno::Reference<util::XSearchDescriptor >& xDesc )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    if ( xStartAt.is() )
-    {
-        ScCellRangesBase* pRangesImp = ScCellRangesBase::getImplementation( xStartAt );
-        if ( pRangesImp && pRangesImp->GetDocShell() == pDocShell )
-        {
-            const ScRangeList& rStartRanges = pRangesImp->GetRangeList();
-            if ( rStartRanges.Count() == 1 )
-            {
-                ScAddress aStartPos = rStartRanges.GetObject(0)->aStart;
-                return Find_Impl( xDesc, &aStartPos );
-            }
-        }
-    }
     return NULL;
 }
 
@@ -3677,85 +3535,13 @@ uno::Reference<uno::XInterface> SAL_CALL ScCellRangesBase::findNext(
 uno::Reference<util::XReplaceDescriptor> SAL_CALL ScCellRangesBase::createReplaceDescriptor()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    return new ScCellSearchObj;
+    return uno::Reference<util::XReplaceDescriptor>() ;
 }
 
 sal_Int32 SAL_CALL ScCellRangesBase::replaceAll( const uno::Reference<util::XSearchDescriptor>& xDesc )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
     INT32 nReplaced = 0;
-    if ( pDocShell && xDesc.is() )
-    {
-        ScCellSearchObj* pSearch = ScCellSearchObj::getImplementation( xDesc );
-        if (pSearch)
-        {
-            SvxSearchItem* pSearchItem = pSearch->GetSearchItem();
-            if (pSearchItem)
-            {
-                ScDocument* pDoc = pDocShell->GetDocument();
-                BOOL bUndo(pDoc->IsUndoEnabled());
-                pSearchItem->SetCommand( SVX_SEARCHCMD_REPLACE_ALL );
-                //  immer nur innerhalb dieses Objekts
-                pSearchItem->SetSelection( !lcl_WholeSheet(aRanges) );
-
-                ScMarkData aMark(*GetMarkData());
-                USHORT i;
-
-                USHORT nTabCount = pDoc->GetTableCount();
-                BOOL bProtected = !pDocShell->IsEditable();
-                for (i=0; i<nTabCount; i++)
-                    if ( aMark.GetTableSelect(i) && pDoc->IsTabProtected(i) )
-                        bProtected = TRUE;
-                if (bProtected)
-                {
-                    //! Exception, oder was?
-                }
-                else
-                {
-                    USHORT nTab = aMark.GetFirstSelected();     // bei SearchAndReplace nicht benutzt
-                    USHORT nCol = 0, nRow = 0;
-
-                    String aUndoStr;
-                    ScDocument* pUndoDoc = NULL;
-                    if (bUndo)
-                    {
-                        pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-                        pUndoDoc->InitUndo( pDoc, nTab, nTab );
-                    }
-                    for (i=0; i<nTabCount; i++)
-                        if ( aMark.GetTableSelect(i) && i != nTab && bUndo)
-                            pUndoDoc->AddUndoTab( i, i );
-                    ScMarkData* pUndoMark = NULL;
-                    if (bUndo)
-                        pUndoMark = new ScMarkData(aMark);
-
-                    BOOL bFound(FALSE);
-                    if (bUndo)
-                        bFound = pDoc->SearchAndReplace( *pSearchItem, nCol, nRow, nTab,
-                                                            aMark, aUndoStr, pUndoDoc );
-                    if (bFound)
-                    {
-                        nReplaced = pUndoDoc->GetCellCount();
-
-                        pDocShell->GetUndoManager()->AddUndoAction(
-                            new ScUndoReplace( pDocShell, *pUndoMark, nCol, nRow, nTab,
-                                                        aUndoStr, pUndoDoc, pSearchItem ) );
-
-                        pDocShell->PostPaintGridAll();
-                        pDocShell->SetDocumentModified();
-                    }
-                    else
-                    {
-                        delete pUndoDoc;
-                        delete pUndoMark;
-                        // nReplaced bleibt 0
-                    }
-                }
-            }
-        }
-    }
     return nReplaced;
 }
 
@@ -6655,17 +6441,7 @@ void SAL_CALL ScTableSheetObj::removeAllManualPageBreaks() throw(uno::RuntimeExc
         //! docfunc Funktion, auch fuer ScViewFunc::RemoveManualBreaks
 
         ScDocument* pDoc = pDocSh->GetDocument();
-        BOOL bUndo (pDoc->IsUndoEnabled());
         USHORT nTab = GetTab_Impl();
-
-        if (bUndo)
-        {
-            ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-            pUndoDoc->InitUndo( pDoc, nTab, nTab, TRUE, TRUE );
-            pDoc->CopyToDocument( 0,0,nTab, MAXCOL,MAXROW,nTab, IDF_NONE, FALSE, pUndoDoc );
-            pDocSh->GetUndoManager()->AddUndoAction(
-                                    new ScUndoRemoveBreaks( pDocSh, nTab, pUndoDoc ) );
-        }
 
         pDoc->RemoveManualBreaks(nTab);
         pDoc->UpdatePageBreaks(nTab);
@@ -6835,22 +6611,10 @@ void ScTableSheetObj::PrintAreaUndo_Impl( ScPrintRangeSaver* pOldRanges )
     if ( pDocSh )
     {
         ScDocument* pDoc = pDocSh->GetDocument();
-        BOOL bUndo(pDoc->IsUndoEnabled());
         USHORT nTab = GetTab_Impl();
 
         ScPrintRangeSaver* pNewRanges = pDoc->CreatePrintRangeSaver();
-        if (bUndo)
-        {
-            pDocSh->GetUndoManager()->AddUndoAction(
-                        new ScUndoPrintRange( pDocSh, nTab, pOldRanges, pNewRanges ) );
-        }
-
         ScPrintFunc( pDocSh, pDocSh->GetPrinter(), nTab ).UpdatePages();
-
-        SfxBindings* pBindings = pDocSh->GetViewBindings();
-        if (pBindings)
-            pBindings->Invalidate( SID_DELETE_PRINTAREA );
-
         pDocSh->SetDocumentModified();
     }
     else
@@ -7186,9 +6950,6 @@ void SAL_CALL ScTableSheetObj::link( const ::rtl::OUString& aUrl, const ::rtl::O
         pDoc->SetLink( nTab, nLinkMode, aFileString, aFilterString, aOptString, aSheetString, nRefresh );
 
         pDocSh->UpdateLinks();                  // ggf. Link eintragen oder loeschen
-        SfxBindings* pBindings = pDocSh->GetViewBindings();
-        if (pBindings)
-            pBindings->Invalidate(SID_LINKS);
 
         //! Undo fuer Link-Daten an der Table
 
@@ -7620,15 +7381,6 @@ void ScTableSheetObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const
                 ScPrintFunc( pDocSh, pDocSh->GetPrinter(), nTab ).UpdatePages();
                 pDocSh->SetDocumentModified();
 
-                SfxBindings* pBindings = pDocSh->GetViewBindings();
-                if (pBindings)
-                {
-                    pBindings->Invalidate( SID_STYLE_FAMILY4 );
-                    pBindings->Invalidate( SID_STATUS_PAGESTYLE );
-                    pBindings->Invalidate( FID_RESET_PRINTZOOM );
-                    pBindings->Invalidate( SID_ATTR_PARA_LEFT_TO_RIGHT );
-                    pBindings->Invalidate( SID_ATTR_PARA_RIGHT_TO_LEFT );
-                }
             }
         }
         else if ( pMap->nWID == SC_WID_UNO_CELLVIS )
