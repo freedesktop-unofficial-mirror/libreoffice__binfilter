@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smdll.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:57:27 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:25:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,21 +38,9 @@
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SVX_MODCTRL_HXX //autogen
-#include <bf_svx/modctrl.hxx>
-#endif
-#ifndef _SVX_ZOOMCTRL_HXX //autogen
-#include <bf_svx/zoomctrl.hxx>
-#endif
-#ifndef _SVX_LBOXCTRL_HXX_
-#include <bf_svx/lboxctrl.hxx>
-#endif
 
 #ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
-#ifndef VIEW_HXX
-#include <view.hxx>
 #endif
 
 #ifndef _STARMATH_HRC
@@ -78,20 +66,13 @@ BOOL SmDLL::bInitialized = FALSE;
 /*N*/   // do whatever you want, you may use Sd-DLL too
 /*N*/
 /*N*/   // the SdModule must be created
-/*N*/ #if 0
-/*N*/   SmDocShell::RegisterFactory(SDT_SMA_DOCFACTPRIO);
-/*N*/ #endif
 /*N*/
 /*N*/   SmModuleDummy** ppShlPtr = (SmModuleDummy**) GetAppData(BF_SHL_SM);
 /*N*/
-/*N*/ #if 1
 /*N*/     SvFactory* pFact = PTR_CAST(SvFactory,(*ppShlPtr)->pSmDocShellFactory);
 /*N*/     delete (*ppShlPtr);
 /*N*/     (*ppShlPtr) = new SmModule(pFact);
 /*N*/     (*ppShlPtr)->pSmDocShellFactory = pFact;
-/*N*/ #else
-/*N*/     (*ppShlPtr) = new SmModule( &SmDocShell::Factory() );
-/*N*/ #endif
 /*N*/
 /*N*/   String aResDll(C2S("sm"));
 /*N*/   aResDll += String::CreateFromInt32( SOLARUPD );
@@ -99,19 +80,7 @@ BOOL SmDLL::bInitialized = FALSE;
 /*N*/   SfxModule *p = SM_MOD1();
 /*N*/   SmModule *pp = (SmModule *) p;
 /*N*/
-/*N*/   SmModule::RegisterInterface(pp);
-/*N*/
-/*N*/   SmDocShell::RegisterInterface(pp);
-/*N*/
-/*N*/   SmViewShell::RegisterFactory(1);
-/*N*/   SmViewShell::RegisterInterface(pp);
-/*N*/
-/*N*/   SvxZoomStatusBarControl::RegisterControl( SID_ATTR_ZOOM, pp );
-/*N*/   SvxModifyControl::RegisterControl( SID_TEXTSTATUS, pp );
-/*N*/   SvxUndoRedoControl::RegisterControl( SID_UNDO, pp );
-/*N*/   SvxUndoRedoControl::RegisterControl( SID_REDO, pp );
-/*N*/
-/*N*/ }
+}
 
 /*************************************************************************
 |*
