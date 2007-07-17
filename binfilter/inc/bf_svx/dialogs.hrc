@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dialogs.hrc,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:26:58 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:50:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -112,21 +112,8 @@
 // ResId fuer den Gitter- und Raster-Dialog
 #define RID_SVXDLG_GRID                     (RID_SVX_START +  79)
 
-// ResId's fuer FontMenu-Controls
-#define RID_MN_FONTSIZE                     (RID_SVX_START +  80)
-
 // ResId's fuer Undo-TbxControls
 #define RID_SVXTBX_UNDO                     (RID_SVX_START +  81)
-
-// ResId fuer Zoom-Popup-Menue
-#define RID_SVXMNU_ZOOM                     (RID_SVX_START +  82)
-
-// ResId fuer Funktions-Popup-Menue
-#define RID_SVXMNU_PSZ_FUNC                 (RID_SVX_START +  83)
-
-// ResId fuer Position- und Size-Bitmap
-#define RID_SVXBMP_POSITION                 (RID_SVX_START +  85)
-#define RID_SVXBMP_SIZE                     (RID_SVX_START +  86)
 
 // Alignment-TabPage
 #define RID_SVXPAGE_ALIGNMENT               (RID_SVX_START +  90)
@@ -145,9 +132,6 @@
 #define RID_SVXBMP_SHADOW_ANGLE             (RID_SVX_START + 112)
 #define RID_SVXBMP_SHADOW_SIZE              (RID_SVX_START + 113)
 
-
-// fuer ToolboxControl-Style
-#define RID_SVXTBX_STYLE                    (RID_SVX_START + 120)
 
 
 // Dialog bzw TabPage fuer Labelobjekte
@@ -324,14 +308,6 @@
 #define RID_SVXSTR_ACTION                   (RID_SVX_START + 202)
 #define RID_SVXSTR_ACTIONS                  (RID_SVX_START + 203)
 
-// Strings fuer Insert/Overwrite
-#define RID_SVXSTR_INSERT_TEXT              (RID_SVX_START + 210)
-#define RID_SVXSTR_OVERWRITE_TEXT           (RID_SVX_START + 211)
-
-// Strings fuer Selection Mode
-#define RID_SVXSTR_SELMODE_STD              (RID_SVX_START + 212)
-#define RID_SVXSTR_SELMODE_ER               (RID_SVX_START + 213)
-#define RID_SVXSTR_SELMODE_ERG              (RID_SVX_START + 214)
 
 // Strings fuer ColorTabPage
 
@@ -407,7 +383,6 @@
 
 // Graphic filter
 #define RID_SVX_GRFFILTER_START             (RID_SVX_START + 330)
-#define RID_SVXTBX_GRFFILTER                (RID_SVX_START + 331)
 #define RID_SVX_GRFFILTER_DLG_SOLARIZE      (RID_SVX_START + 333)
 
 #define RID_SVXERRCODE                      (RID_SVX_START + 350)
@@ -693,9 +668,6 @@
 // weitere ResId fuer die Linguistik-Dialoge
 
 // Japanese search options TabPage
-
-// listbox control for UNDO and REDO
-#define RID_SVXTBX_UNDO_REDO_CTRL           (RID_SVX_START +  845)
 
 // Default-transparence-gradient-names
 #define RID_SVXSTR_TRASNGR0_DEF             (RID_SVX_START + 850)
