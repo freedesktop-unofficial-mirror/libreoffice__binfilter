@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:00:36 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:32:49 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -50,8 +50,6 @@ ENABLE_EXCEPTIONS=TRUE
 
 .INCLUDE :  settings.mk
 
-IMGLST_SRS=$(SRS)$/sfx2_appl.srs
-BMP_IN=$(BFPRJ)$/win/res
 INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # w.g. compilerbugs
@@ -63,55 +61,31 @@ CFLAGS+=-Od
 
 # --- Files --------------------------------------------------------
 
-SRS1NAME=sfx2_appl
-SRC1FILES =  \
-        sfx2_app.src
-
-SRS2NAME=sfx2_sfx
-SRC2FILES =  \
-        sfx2_sfx.src
-
 SLOFILES =  \
-    $(SLO)$/sfx2_imagemgr.obj\
     $(SLO)$/sfx2_appuno.obj \
     $(SLO)$/sfx2_appmain.obj \
     $(SLO)$/sfx2_appopen.obj \
     $(SLO)$/sfx2_appinit.obj \
     $(SLO)$/sfx2_appmisc.obj \
-    $(SLO)$/sfx2_appdemo.obj \
-    $(SLO)$/sfx2_appreg.obj \
     $(SLO)$/sfx2_appcfg.obj \
     $(SLO)$/sfx2_appquit.obj \
-    $(SLO)$/sfx2_appchild.obj \
     $(SLO)$/sfx2_appdata.obj \
     $(SLO)$/sfx2_app.obj \
     $(SLO)$/sfx2_appbas.obj \
     $(SLO)$/sfx2_appdde.obj \
-    $(SLO)$/sfx2_workwin.obj \
-    $(SLO)$/sfx2_sfxhelp.obj \
-    $(SLO)$/sfx2_childwin.obj \
     $(SLO)$/sfx2_sfxdll.obj \
     $(SLO)$/sfx2_module.obj \
-    $(SLO)$/sfx2_loadenv.obj \
     $(SLO)$/sfx2_dlgcont.obj \
     $(SLO)$/sfx2_namecont.obj \
     $(SLO)$/sfx2_scriptcont.obj \
-    $(SLO)$/sfx2_shutdownicon.obj \
-    $(SLO)$/sfx2_sfxpicklist.obj \
-    $(SLO)$/sfx2_imestatuswindow.obj \
-    $(SLO)$/sfx2_accelinfo.obj
+    $(SLO)$/sfx2_imestatuswindow.obj 
 
 EXCEPTIONSFILES=\
-    $(SLO)$/sfx2_imagemgr.obj		\
     $(SLO)$/sfx2_appopen.obj \
     $(SLO)$/sfx2_appmain.obj			\
     $(SLO)$/sfx2_appmisc.obj			\
-    $(SLO)$/sfx2_frstinit.obj		\
     $(SLO)$/sfx2_appinit.obj			\
-    $(SLO)$/sfx2_appcfg.obj			\
-    $(SLO)$/sfx2_sfxhelp.obj			\
-    $(SLO)$/sfx2_shutdownicon.obj	\
-    $(SLO)$/sfx2_sfxpicklist.obj
+    $(SLO)$/sfx2_appcfg.obj			
 
 # --- Targets -------------------------------------------------------
 
