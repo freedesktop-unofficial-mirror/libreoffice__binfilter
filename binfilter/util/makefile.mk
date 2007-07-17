@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:51:17 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:58:29 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,6 @@ RDBNAMES=		\
     bf_sm		\
     bf_sch		\
     bf_frm		\
-    bf_lng		\
     bf_svx		\
     bf_wrapper
 
