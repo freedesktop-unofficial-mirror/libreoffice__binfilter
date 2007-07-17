@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-04-11 12:40:04 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:29:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,7 +95,6 @@ class SvxBoxItem;
 class SvxBrushItem;
 class SvxForbiddenCharactersTable;
 class SvxLinkManager;
-class SvxSearchItem;
 class SvxShadowItem;
 class XColorTable;
 
@@ -974,15 +973,7 @@ public:
 
     void            AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                                     USHORT nFormatNo, const ScMarkData& rMark );
-    BOOL            SearchAndReplace( const SvxSearchItem& rSearchItem,
-                                        USHORT& rCol, USHORT& rRow, USHORT& rTab,
-                                        ScMarkData& rMark,
-                                        String& rUndoStr, ScDocument* pUndoDoc = NULL );
 
-                    // Col/Row von Folgeaufrufen bestimmen
-                    // (z.B. nicht gefunden von Anfang, oder folgende Tabellen)
-    static void     GetSearchAndReplaceStart( const SvxSearchItem& rSearchItem,
-                        USHORT& rCol, USHORT& rRow );
 
     BOOL            Solver(USHORT nFCol, USHORT nFRow, USHORT nFTab,
                             USHORT nVCol, USHORT nVRow, USHORT nVTab,
