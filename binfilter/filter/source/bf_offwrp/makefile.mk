@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-15 15:29:03 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:17:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -85,10 +85,6 @@ SHL1STDLIBS=    \
                 $(COMPHELPERLIB)	\
                 $(LEGACYSMGRLIB)
 
-.IF "$(GUI)" == "UNX"
-SHL1STDLIBS+= \
-            $(BFSFXLIB)
-.ENDIF     
 SHL1DEPN=       makefile.mk
 SHL1DEF=        $(MISC)$/$(SHL1TARGET).def
 
