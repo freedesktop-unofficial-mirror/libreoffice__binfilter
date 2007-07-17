@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unomodel.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:37:15 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:08:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,7 +123,6 @@
 #include <unogstyl.hxx>
 #include <unokywds.hxx>
 #include <frmview.hxx>
-#include "viewshel.hxx"
 #include "app.hrc"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -1521,17 +1520,10 @@ void SAL_CALL SdXImpressDocument::dispose() throw (::com::sun::star::uno::Runtim
 void SAL_CALL SdXImpressDocument::setPrinter( const uno::Sequence< beans::PropertyValue >& rPrinter)
         throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
-    SfxViewShell* pViewSh = NULL;
     SfxPrinter* pPrinter = NULL;
     sal_uInt16 nChangeFlags = 0;
+    SfxViewShell *pViewSh=0;
     impl_setPrinter(rPrinter,pPrinter,nChangeFlags,pViewSh);
-    SdViewShell* pSdViewSh = PTR_CAST( SdViewShell,pViewSh);
-    // set new printer
-    if ( pSdViewSh && pPrinter )
-    {
-        ::vos::OGuard aGuard( Application::GetSolarMutex() );
-        pSdViewSh->SetPrinterOptDlg( pPrinter, nChangeFlags,FALSE ); //do not show the dialog here
-    }
 }
 
 //=============================================================================
