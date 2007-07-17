@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smlib.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:57:38 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:25:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,18 +74,11 @@ SFX_IMPL_OBJECTFACTORY_LIB( SmDocShell,
                                SvGlobalName(BF_SO3_SM_CLASSID), Sm,
                             String::CreateFromAscii(DLL_NAME) )
 {
-/*
-   SFX_SIMPLE_FILTER_REGISTRATION(C2S("StarMath 5.0"), C2S("*.smf"),
-                           SFX_FILTER_OWN | SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-                           SOT_FORMATSTR_ID_STARMATH_50,
-                           C2S("SVsm0.smf"), C2S("OS2"), 0, C2S("0"), String());
-*/
     SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
     SfxFactoryFilterContainer *pFltContainer = rFactory.GetFilterContainer( FALSE );
     rFactory.GetFilterContainer()->SetDetectFilter( &SmDLL::DetectFilter );
 
    // FG: Sonst gibts keine Hilfe im Math  #38447#
-   Factory().RegisterHelpFile (C2S("smath.svh"));
    Factory().SetDocumentServiceName( String::CreateFromAscii("com.sun.star.formula.FormulaProperties") );
 }
 
