@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_notesuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:04:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:34:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -284,7 +284,6 @@ void SAL_CALL ScAnnotationObj::setIsVisible( sal_Bool bIsVisible ) throw(uno::Ru
 
         BOOL bSet = bIsVisible ? TRUE : FALSE;
         ScDocument* pDoc = pDocShell->GetDocument();
-        BOOL bUndo(pDoc->IsUndoEnabled());
         USHORT nCol = aCellPos.Col();
         USHORT nRow = aCellPos.Row();
         USHORT nTab = aCellPos.Tab();
@@ -297,28 +296,18 @@ void SAL_CALL ScAnnotationObj::setIsVisible( sal_Bool bIsVisible ) throw(uno::Ru
                 pDocShell->MakeDrawLayer();
                 ScDrawLayer* pModel = pDoc->GetDrawLayer();
 
-                if (bUndo)
-                    pModel->BeginCalcUndo();
                 ScDetectiveFunc aFunc( pDoc,nTab );
                 if ( bSet )
                     bDone = ( aFunc.ShowComment( nCol, nRow, FALSE ) != NULL );
                 else
                     bDone = aFunc.HideComment( nCol, nRow );
-                SdrUndoGroup* pUndo = NULL;
-                if (bUndo)
-                    pUndo = pModel->GetCalcUndo();
                 if (bDone)
                 {
                     aNote.SetShown( bSet );
                     pDoc->SetNote( nCol, nRow, nTab, aNote );
-                    if (pUndo)
-                        pDocShell->GetUndoManager()->AddUndoAction(
-                            new ScUndoNote( pDocShell, bSet, aCellPos, pUndo ) );
 
                     pDocShell->SetDocumentModified();
                 }
-                else
-                    delete pUndo;
             }
         }
     }
