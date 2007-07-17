@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh3.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:47:36 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:19:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,10 +57,9 @@
 #include <svtools/ctrltool.hxx>
 #include <vcl/virdev.hxx>
 
-
+#include "viewopti.hxx"
 #include "docsh.hxx"
 #include "scmod.hxx"
-#include "tabvwsh.hxx"
 #include "docpool.hxx"
 #include "stlpool.hxx"
 #include "patattr.hxx"
@@ -70,7 +69,7 @@
 #include "bf_sc.hrc"
 #include "inputopt.hxx"
 #include "drwlayer.hxx"
-#include "inputhdl.hxx"
+
 namespace binfilter {
 
 //------------------------------------------------------------------
@@ -401,21 +400,6 @@ namespace binfilter {
 /*N*/           PutItem( aFontListItem );
 /*N*/
 /*N*/           CalcOutputFactor();
-/*N*/
-/*N*/           ScModule* pScMod = SC_MOD();
-/*N*/           SfxViewFrame *pFrame = SfxViewFrame::GetFirst( this );
-/*N*/           while (pFrame)
-/*N*/           {
-/*N*/               SfxViewShell* pSh = pFrame->GetViewShell();
-/*N*/               if (pSh && pSh->ISA(ScTabViewShell))
-/*N*/               {
-/*N*/                   ScTabViewShell* pViewSh = (ScTabViewShell*)pSh;
-/*N*/                   ScInputHandler* pInputHdl = pScMod->GetInputHdl(pViewSh);
-/*N*/                   if (pInputHdl)
-/*N*/                       pInputHdl->UpdateRefDevice();
-/*N*/               }
-/*N*/               pFrame = SfxViewFrame::GetNext( *pFrame, this );
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   else if (nDiffFlags & SFX_PRINTER_JOBSETUP)
