@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:20:38 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:13:55 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -62,14 +62,9 @@ SLOFILES =  \
     $(SLO)$/sc_scdll.obj  \
     $(SLO)$/sc_transobj.obj \
     $(SLO)$/sc_drwtrans.obj \
-    $(SLO)$/sc_seltrans.obj \
-    $(SLO)$/sc_inputhdl.obj \
-    $(SLO)$/sc_inputwin.obj \
     $(SLO)$/sc_rfindlst.obj \
     $(SLO)$/sc_uiitems.obj  \
-    $(SLO)$/sc_msgpool.obj \
-    $(SLO)$/sc_client.obj \
-    $(SLO)$/sc_typemap.obj
+    $(SLO)$/sc_msgpool.obj
 
 EXCEPTIONSFILES= \
     $(SLO)$/sc_scmod2.obj \
