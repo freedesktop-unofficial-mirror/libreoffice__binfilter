@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 15:05:48 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:15:59 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -54,27 +54,8 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # --- Files --------------------------------------------------------
 
-SRS1NAME=$(TARGET)
-SRC1FILES = \
-        sfx2_view.src \
-        sfx2_fsetview.src
-
 SLOFILES =	\
-        $(SLO)$/sfx2_frmload.obj \
-        $(SLO)$/sfx2_fsetvwsh.obj \
-        $(SLO)$/sfx2_frame.obj \
-        $(SLO)$/sfx2_urlframe.obj \
-        $(SLO)$/sfx2_contenv.obj \
-        $(SLO)$/sfx2_printer.obj \
-        $(SLO)$/sfx2_viewsh.obj \
-        $(SLO)$/sfx2_viewprn.obj \
-        $(SLO)$/sfx2_ipfrm.obj \
-        $(SLO)$/sfx2_viewfac.obj \
-        $(SLO)$/sfx2_intfrm.obj \
-        $(SLO)$/sfx2_viewfrm.obj \
-        $(SLO)$/sfx2_impframe.obj \
-        $(SLO)$/sfx2_topfrm.obj \
-        $(SLO)$/sfx2_sfxbasecontroller.obj
+        $(SLO)$/sfx2_printer.obj
 
 # --- Targets -------------------------------------------------------
 
