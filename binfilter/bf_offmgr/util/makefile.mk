@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.12 $
+#   $Revision: 1.13 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:00:19 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:05:46 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,9 +58,6 @@ SOLARLIB+=-L$(LB)
 # --- Allgemein -----------------------------------------------------------
 
 RES1FILELIST=\
-    $(SRS)$/offmgr_ofaslots.srs \
-    $(SRS)$/offmgr_dialog.srs \
-    $(SRS)$/offmgr_app.srs \
     $(SOLARCOMMONRESDIR)$/svtools.srs \
     $(SOLARCOMMONRESDIR)$/so2.srs 	
 
@@ -70,8 +67,7 @@ RESLIB1SRSFILES=$(RES1FILELIST)
 # -------------------------------------------------------------------------
 
 LIB3TARGET= $(SLB)$/$(TARGET).lib
-LIB3FILES=	$(SLB)$/offmgr_app.lib 		\
-            $(SLB)$/offmgr_dialog.lib
+LIB3FILES=	$(SLB)$/offmgr_app.lib 
 
 SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL2IMPLIB= $(TARGET)
@@ -117,7 +113,6 @@ LIB4FILES=	$(LB)$/$(TARGET).lib
 .IF "$(BUILD_SOSL)"==""
 .IF "$(depend)" == ""
 ALL:\
-    $(INCCOM)$/sba.hrc		\
     $(LIB3TARGET)			\
     $(INCCOM)$/class.lst	\
     ALLTAR
@@ -156,5 +151,3 @@ $(INCCOM)$/class.lst:
 .ENDIF
 .ENDIF			# "$(BUILD_SOSL)"==""
 
-$(INCCOM)$/sba.hrc: $(PRJ)$/inc$/bf_offmgr/sbasltid.hrc
-    @-$(COPY) $(PRJ)$/inc/bf_offmgr/sbasltid.hrc $(INCCOM)$/sba.hrc
