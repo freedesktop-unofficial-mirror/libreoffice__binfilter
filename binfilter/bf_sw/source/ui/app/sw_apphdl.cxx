@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:08:54 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:04:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,23 +55,11 @@
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
-#ifndef _SFXSTBMGR_HXX //autogen
-#include <bf_sfx2/stbmgr.hxx>
-#endif
 #ifndef _SFXISETHINT_HXX //autogen
 #include <svtools/isethint.hxx>
 #endif
-#ifndef _SVX_DLG_HYPERLINK_HXX //autogen
-#include <bf_offmgr/hyprlink.hxx>
-#endif
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <svtools/ctloptions.hxx>
-#endif
-#ifndef _SVX_INSCTRL_HXX //autogen
-#include <bf_svx/insctrl.hxx>
-#endif
-#ifndef _SVX_SELCTRL_HXX //autogen
-#include <bf_svx/selctrl.hxx>
 #endif
 
 
@@ -90,9 +78,6 @@
 #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _WVIEW_HXX
-#include <wview.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
@@ -125,26 +110,14 @@
 #include <dbconfig.hxx>
 #endif
 
+#include <bf_sfx2/app.hxx>
+#include <bf_svx/svxids.hrc>
+
 // #107253#
 
 using namespace ::com::sun::star;
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
-/*--------------------------------------------------------------------
-    Beschreibung: Slotmaps fuer Methoden der Applikation
- --------------------------------------------------------------------*/
-
-
-// hier werden die SlotID's included
-// siehe Idl-File
-//
-#define SwModule
-#define ViewSettings
-#define WebViewSettings
-#define PrintSettings
-#define _ExecAddress ExecOther
-#define _StateAddress StateOther
-#include "itemdef.hxx"
 
 #ifndef _CFGID_H
 #include <cfgid.h>
@@ -152,77 +125,9 @@ using namespace ::com::sun::star;
 
 #include <shells.hrc>
 #include "so3/staticbaseurl.hxx"
+
 namespace binfilter {
-#include "swslots.hxx"
-/*N*/ SFX_IMPL_INTERFACE( SwModule, SfxModule, SW_RES(RID_SW_NAME) )
-/*N*/ {
-/*N*/ }
 
-/*--------------------------------------------------------------------
-    Beschreibung:   State mit CheckMark fuer ViewOptions
- --------------------------------------------------------------------*/
-
-
-/*M*/ void SwModule::StateViewOptions(SfxItemSet &rSet)
-/*M*/ {
-/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*M*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Andere States
- --------------------------------------------------------------------*/
-
-
-/*N*/void SwModule::StateOther(SfxItemSet &rSet)
-/*N*/{
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Wizzards
- --------------------------------------------------------------------*/
-
-
-/*N*/void SwModule::ExecWizzard(SfxRequest & rReq)
-/*N*/{
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Wizzard( rReq.GetSlot() );
-/*N*/}
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Einstellungen fuer den Bildschirm
- --------------------------------------------------------------------*/
-
-
-/*N*/ void SwModule::ExecViewOptions(SfxRequest &rReq)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Felddialog starten
- --------------------------------------------------------------------*/
-
-
-/*N*/void SwModule::ExecOther(SfxRequest& rReq)
-/*N*/{
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SfxItemSet *pArgs = rReq.GetArgs();
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-/*
-SfxMacro *SwWriterApp::CreateMacro() const
-{
-    return BasicIDE::CreateMacro();
-} */
-
-/*--------------------------------------------------------------------
-    Beschreibung: Notifies abfangen
- --------------------------------------------------------------------*/
-
-
-    // Hint abfangen fuer DocInfo
 /*M*/ void SwModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 /*M*/ {
 /*M*/   if( rHint.ISA( SfxEventHint ) )
@@ -306,10 +211,6 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/         }
 /*M*/   }
 /*M*/ }
-/*N*/ void SwModule::FillStatusBar( StatusBar& rStatusBar )
-/*N*/ {
-/*M*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
 
 /* -----------------------------20.02.01 12:43--------------------------------
 
