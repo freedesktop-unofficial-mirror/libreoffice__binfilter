@@ -6,9 +6,6 @@ SCH_1_0 {
         DeInitSchDll;
         SchUpdate;
         SchUpdateAttr;
-        SchCreateDiagramAutoPilotDlg;
-        SchChangeChartData;
-        SchCreateOptionsDlg;
         SchGetChartData;
         SchNewMemChartNone;
         SchNewMemChartXY;
