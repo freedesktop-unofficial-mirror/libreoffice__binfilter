@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-05-10 14:15:45 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:59:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -160,9 +160,6 @@
 #endif
 #ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
-#ifndef _MySVXACORR_HXX
-#include <bf_svx/svxacorr.hxx>
 #endif
 #ifndef _OFF_APP_HXX
 #include <bf_offmgr/app.hxx>
@@ -586,8 +583,6 @@ const sal_Char* __FAR_DATA pMarkToOLE       = "ole";
 
 SvPtrarr *pGlobalOLEExcludeList = 0;
 
-SwAutoCompleteWord* SwDoc::pACmpltWords = 0;
-
 SwBreakIt* pBreakIt = 0;
 SwCheckIt* pCheckIt = 0;
 CharClass* pAppCharClass = 0;
@@ -898,9 +893,6 @@ public:
 /*N*/
 /*N*/   pGlobalOLEExcludeList = new SvPtrarr;
 /*N*/
-/*N*/   const SvxSwAutoFmtFlags& rAFlags = OFF_APP()->GetAutoCorrect()->GetSwFlags();
-/*N*/   SwDoc::pACmpltWords = new SwAutoCompleteWord( rAFlags.nAutoCmpltListLen,
-/*N*/                                           rAFlags.nAutoCmpltWordLen );
 /*N*/ }
 
 /******************************************************************************
@@ -932,7 +924,6 @@ public:
 /*N*/   if ( aAttrTab[0]->GetRefCount() )
 /*N*/       SfxItemPool::ReleaseDefaults( aAttrTab, POOLATTR_END-POOLATTR_BEGIN, FALSE);
 /*N*/ #endif
-/*N*/   delete SwDoc::pACmpltWords;
 /*N*/
 /*N*/   delete SwStyleNameMapper::pTextUINameArray;
 /*N*/   delete SwStyleNameMapper::pListsUINameArray;
