@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_eventsupplier.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:43:52 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:11:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,13 +76,10 @@
 #endif
 
 #include "app.hxx"
-#include "sfxresid.hxx"
 
 #include "sfxsids.hrc"
-#include "sfxlocal.hrc"
 #include "docfile.hxx"
-#include "viewfrm.hxx"
-#include "frame.hxx"
+
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
@@ -119,10 +116,10 @@ namespace binfilter {
 /*N*/               // create Configuration at first, creation might call this method also and that would overwrite everything
 /*N*/               // we might have stored before!
 /*N*/                 USHORT nID = (USHORT) SfxEventConfiguration::GetEventId_Impl( aName );
-/*N*/                 if ( nID )
+/*N*/                 if ( nID && mpObjShell )
 /*N*/               {
 /*N*/                   SfxEventConfigItem_Impl* pConfig =
-/*N*/                       mpObjShell ? mpObjShell->GetEventConfig_Impl(TRUE) : SFX_APP()->GetEventConfig()->GetAppEventConfig_Impl();
+/*N*/                       mpObjShell->GetEventConfig_Impl(TRUE);
 /*N*/
 /*N*/                   ANY aValue;
 /*N*/                   BlowUpMacro( rElement, aValue, mpObjShell );
@@ -210,94 +207,6 @@ namespace binfilter {
 //--------------------------------------------------------------------------------------------------------
 /*N*/ void SAL_CALL SfxEvents_Impl::notifyEvent( const DOCEVENTOBJECT& aEvent ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
-/*N*/   ::osl::ClearableMutexGuard aGuard( maMutex );
-/*N*/
-/*N*/   // get the event name, find the coresponding data, execute the data
-/*N*/
-/*N*/   OUSTRING    aName   = aEvent.EventName;
-/*N*/   long        nCount  = maEventNames.getLength();
-/*N*/   long        nIndex  = 0;
-/*N*/   sal_Bool    bFound  = sal_False;
-/*N*/
-/*N*/   while ( !bFound && ( nIndex < nCount ) )
-/*N*/   {
-/*N*/       if ( maEventNames[nIndex] == aName )
-/*N*/           bFound = sal_True;
-/*N*/       else
-/*N*/           nIndex += 1;
-/*N*/   }
-/*N*/
-/*N*/   if ( !bFound )
-/*N*/       return;
-/*N*/
-/*N*/   SEQUENCE < PROPERTYVALUE > aProperties;
-/*N*/   ANY aEventData = maEventData[ nIndex ];
-/*N*/
-/*N*/   if ( aEventData >>= aProperties )
-/*N*/   {
-/*?*/         OUSTRING        aPrefix = OUSTRING( RTL_CONSTASCII_USTRINGPARAM( MACRO_PRFIX ) );
-/*?*/       OUSTRING        aType;
-/*?*/       OUSTRING        aScript;
-/*?*/       OUSTRING        aLibrary;
-/*?*/       OUSTRING        aMacroName;
-/*?*/
-/*?*/       nCount = aProperties.getLength();
-/*?*/
-/*?*/       if ( !nCount )
-/*?*/           return;
-/*?*/
-/*?*/       nIndex = 0;
-/*?*/       while ( nIndex < nCount )
-/*?*/       {
-/*?*/           if ( aProperties[ nIndex ].Name.compareToAscii( PROP_EVENT_TYPE ) == 0 )
-/*?*/               aProperties[ nIndex ].Value >>= aType;
-/*?*/           else if ( aProperties[ nIndex ].Name.compareToAscii( PROP_SCRIPT ) == 0 )
-/*?*/               aProperties[ nIndex ].Value >>= aScript;
-/*?*/           else if ( aProperties[ nIndex ].Name.compareToAscii( PROP_LIBRARY ) == 0 )
-/*?*/               aProperties[ nIndex ].Value >>= aLibrary;
-/*?*/           else if ( aProperties[ nIndex ].Name.compareToAscii( PROP_MACRO_NAME ) == 0 )
-/*?*/               aProperties[ nIndex ].Value >>= aMacroName;
-/*?*/           else
-/*?*/               DBG_ERROR("Unknown property value!");
-/*?*/           nIndex += 1;
-/*?*/       }
-/*?*/
-/*?*/       if ( aType.compareToAscii( STAR_BASIC ) == 0 && aScript.getLength() )
-/*?*/       {
-/*?*/           aGuard.clear();
-/*?*/           ::com::sun::star::uno::Any aAny;
-/*?*/             SfxMacroLoader::loadMacro( aScript, aAny, mpObjShell );
-/*?*/       }
-/*?*/         else if ( aType.compareToAscii( "Service" ) == 0  || ( aType.compareToAscii( "Script" ) == 0 ) )
-/*?*/       {
-/*?*/             if ( aScript.getLength() )
-/*?*/             {
-/*?*/                 SfxViewFrame* pView = mpObjShell ? SfxViewFrame::GetFirst( mpObjShell ) : SfxViewFrame::Current();
-/*?*/                 ::com::sun::star::util::URL aURL;
-/*?*/                 aURL.Complete = aScript;
-/*?*/                 ::com::sun::star::uno::Reference < ::com::sun::star::util::XURLTransformer > xTrans( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*?*/                         ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
-/*?*/                 xTrans->parseStrict( aURL );
-/*?*/
-/*?*/                 ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatchProvider > xProv( pView->GetFrame()->GetFrameInterface(), UNO_QUERY );
-/*?*/                 ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatch > xDisp;
-/*?*/                 if ( xProv.is() )
-/*?*/                     xDisp = xProv->queryDispatch( aURL, ::rtl::OUString(), 0 );
-/*?*/                 if ( xDisp.is() )
-/*?*/                 {
-/*?*/                     //::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs(1);
-/*?*/                     //aArgs[0].Name = ::rtl::OUString::createFromAscii("Referer");
-/*?*/                     //aArs[0].Value <<= ::rtl::OUString( mpObjShell->GetMedium()->GetName() );
-/*?*/                     //xDisp->dispatch( aURL, aArgs );
-/*?*/                     xDisp->dispatch( aURL, ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >() );
-/*?*/                 }
-/*?*/             }
-/*?*/         }
-/*?*/       else
-/*?*/       {
-/*?*/           DBG_ERRORFILE( "notifyEvent(): Unsupported event type" );
-/*?*/       }
-/*?*/   }
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
