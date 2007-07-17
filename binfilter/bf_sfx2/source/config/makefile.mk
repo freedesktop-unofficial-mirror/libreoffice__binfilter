@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:45:35 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:42:20 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -53,13 +53,8 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # --- Files --------------------------------------------------------
 
-SRS1NAME=$(TARGET)
-SRC1FILES =  \
-        sfx2_config.src
-
 SLOFILES =	\
         $(SLO)$/sfx2_cfgmgr.obj \
-        $(SLO)$/sfx2_cfgimex.obj \
         $(SLO)$/sfx2_cfgitem.obj \
         $(SLO)$/sfx2_misccfg.obj \
         $(SLO)$/sfx2_evntconf.obj
