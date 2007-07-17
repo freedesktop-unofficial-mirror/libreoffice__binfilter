@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wdocsh.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:32:47 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:13:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,8 +48,6 @@
 #include <so3/clsids.hxx>
 #endif
 
-#include "itemdef.hxx"
-
 #include "cmdid.h"
 #include "swtypes.hxx"
 
@@ -57,17 +55,9 @@
 #include "wdocsh.hxx"
 #include "web.hrc"
 
-#define SwWebDocShell
 namespace binfilter {
-#include "swslots.hxx"
 
 #define C2S(cChar) UniString::CreateFromAscii(cChar)
-
-/*N*/ SFX_IMPL_INTERFACE( SwWebDocShell, SfxObjectShell, SW_RES(0) )
-/*N*/ {
-/*N*/   SwWebDocShell::Factory().RegisterHelpFile(C2S("swriter.svh"));
-/*N*/   SwWebDocShell::Factory().RegisterHelpPIFile(C2S("swriter.svh"));
-/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Alle Filter registrieren
