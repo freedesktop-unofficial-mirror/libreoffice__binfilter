@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schdll.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:37:52 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:48:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,36 +35,13 @@
 
 #pragma hdrstop
 
-
-
-#ifndef _SVX_PSZCTRL_HXX
-#include <bf_svx/pszctrl.hxx>
-#endif
-
-#ifndef _SVX_MODCTRL_HXX
-#include <bf_svx/modctrl.hxx>
-#endif
-
-
-
-
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_F3DCHILD_HXX //autogen
-#include <bf_svx/f3dchild.hxx>
-#endif
-// header for XFillTransparenceItem
-
 
 #include "docshell.hxx"
 #include "schmod.hxx"
 #include "app.hrc"
 #include "schresid.hxx"
 #include "memchrt.hxx"
-#include "viewshel.hxx"
 #include "res_bmp.hrc"  // contains define for RID_MENU, RID_ACCEL
 
 #include "globopt.hxx"
@@ -90,24 +67,9 @@ namespace binfilter {
 /*N*/   delete (*ppShlPtr);
 /*N*/   (*ppShlPtr) = new SchModule(pFact);
 /*N*/
-/*N*/   SchChartDocShell::Factory().RegisterAccel(SchResId(RID_ACCEL));
-/*N*/   SchChartDocShell::Factory().RegisterMenuBar(SchResId(RID_MENU));
-/*N*/
-/*N*/   // register menu for Star Portal
-/*N*/   SchChartDocShell::Factory().RegisterPluginMenuBar( SchResId( RID_PORTAL_MENU ));
-/*N*/
-/*N*/   SchViewShell::RegisterFactory(1);
-/*N*/
 /*N*/   SfxModule* pMod = SCH_MOD();
-/*N*/   SchModule::RegisterInterface(pMod);
-/*N*/   SchChartDocShell::RegisterInterface(pMod);
-/*N*/   SchViewShell::RegisterInterface(pMod);
 /*N*/
-/*N*/   Svx3DChildWindow::RegisterChildWindow(0, pMod);
-/*N*/   SvxPosSizeStatusBarControl::RegisterControl(SID_ATTR_SIZE, pMod);
-/*N*/   SvxModifyControl::RegisterControl(SID_DOC_MODIFIED, pMod);
-/*N*/
-    /*N*/     pMod->PutItem( SfxUInt16Item( SID_ATTR_METRIC, ::binfilter::sch::util::GetMeasureUnit() ));
+/*N*/   pMod->PutItem( SfxUInt16Item( SID_ATTR_METRIC, ::binfilter::sch::util::GetMeasureUnit() ));
 /*N*/ }
 
 /*************************************************************************
@@ -203,48 +165,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   aIPObj->SendViewChanged();
-/*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*N*/ extern_c ModalDialog* __LOADONCALLAPI SchCreateDiagramAutoPilotDlg
-/*N*/                                               (Window* pParent,
-/*N*/                                                SchMemChart* pData,
-/*N*/                                                const SfxItemSet& rInAttrs,
-/*N*/                                                SfxItemSet& rOutAttrs,
-/*N*/                                                BOOL bPrePage)
-/*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
-/*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*N*/ extern_c void __LOADONCALLAPI SchChangeChartData(ModalDialog* pDlg,
-/*N*/                                                SchMemChart* pData)
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
-/*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*N*/ extern_c SfxTabDialog* __LOADONCALLAPI SchCreateOptionsDlg(Window* pParent,
-/*N*/                                                          const SfxItemSet& rInAttrs,
-/*N*/                                                          XOutdevItemPool* pItemPool)
-/*N*/ {
-/*N*/   return( NULL );
-/*N*/   //return new SchOptionsDlg(pParent, rInAttrs, pItemPool);
 /*N*/ }
 
 /*************************************************************************
@@ -390,6 +310,5 @@ namespace binfilter {
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapRows( nAtRow1, nAtRow2 );
 /*N*/ }
-
 
 }
