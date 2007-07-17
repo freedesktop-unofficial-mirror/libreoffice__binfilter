@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:00:46 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:43:56 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -61,16 +61,8 @@ CFLAGS+=-Od
 # --- Files --------------------------------------------------------
 
 SLOFILES = \
-    $(SLO)$/sfx2_unoctitm.obj \
     $(SLO)$/sfx2_request.obj \
-    $(SLO)$/sfx2_dispatch.obj \
-       $(SLO)$/sfx2_msgpool.obj \
-       $(SLO)$/sfx2_objface.obj \
-    $(SLO)$/sfx2_ctrlitem.obj \
-    $(SLO)$/sfx2_statcach.obj \
     $(SLO)$/sfx2_shell.obj \
-    $(SLO)$/sfx2_msg.obj \
-    $(SLO)$/sfx2_bindings.obj \
     $(SLO)$/sfx2_srchitem.obj \
     $(SLO)$/sfx2_macrconf.obj
 
