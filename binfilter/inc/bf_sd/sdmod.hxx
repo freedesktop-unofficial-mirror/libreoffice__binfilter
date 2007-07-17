@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdmod.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:53:59 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:31:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,6 @@ namespace binfilter {
 
 class SdOptions;
 class BasicIDE;
-class SvxSearchItem;
 class SdAppLinkHdl; //STRIP008 ;
 class SvxErrorHandler;
 class EditFieldInfo;
@@ -101,7 +100,6 @@ protected:
 
     SdOptions*              pImpressOptions;
     SdOptions*              pDrawOptions;
-    SvxSearchItem*          pSearchItem;
     SvNumberFormatter*      pNumberFormatter;
     SvStorageRef            xOptionStorage;
     BOOL                    bAutoSave;
@@ -118,7 +116,6 @@ protected:
 public:
 
                             TYPEINFO();
-                            SFX_DECL_INTERFACE(SD_IF_SDAPP);
                             DECL_LINK( CalcFieldValueHdl, EditFieldInfo* );
 
                             SdModule(SvFactory* pDrawObjFact, SvFactory* pGraphicObjFact);
@@ -127,9 +124,6 @@ public:
     SdTransferable*         pTransferClip;
     SdTransferable*         pTransferDrag;
     SdTransferable*         pTransferSelection;
-
-    void                    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001    void                    Execute(SfxRequest& rReq);
-    void                    GetState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} //STRIP001    void                    GetState(SfxItemSet&);
 
     virtual SfxModule*      Load();
     virtual void            Free();
@@ -140,8 +134,6 @@ public:
     BOOL                    GetWaterCan() const { return bWaterCan; }
     void                    SetWaterCan( BOOL bWC ) { bWaterCan = bWC; }
 
-    SvxSearchItem*          GetSearchItem() { return (pSearchItem); }
-    void                    SetSearchItem(SvxSearchItem* pItem) { pSearchItem = pItem; }
 
     /** Return the virtual device that can be used for printer independent
         layout.
@@ -156,26 +148,8 @@ public:
             Unused dummy parameter.
     */
     OutputDevice* GetRefDevice (SdDrawDocShell& rDocShell);
-
     SvNumberFormatter*      GetNumberFormatter();
-
     ::com::sun::star::text::WritingMode GetDefaultWritingMode() const;
-
-    //virtuelle Methoden fuer den Optionendialog
-
-private:
-
-    /** Create a new summary page.  When the document has been created in
-        the kiosk mode with automatical transitions then this method adds
-        this kind of transition to the new summary page.
-        @param pViewFrame
-            The view frame that is used to execute the slot for creating the
-            summary page.
-        @param pDocument
-            The document which will contain the summary page and from which
-            the information about the default transition is retrieved.
-    */
-    void AddSummaryPage (SfxViewFrame* pViewFrame, SdDrawDocument* pDocument);
 };
 
 
