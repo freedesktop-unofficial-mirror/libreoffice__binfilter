@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swxml.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:48:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:03:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,6 +75,8 @@
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
 #endif
 #include <svtools/svstdarr.hxx>
+
+#include <bf_sfx2/appuno.hxx>
 
 #ifndef _SFXDOCFILE_HXX //autogen wg. SfxMedium
 #include <bf_sfx2/docfile.hxx>
