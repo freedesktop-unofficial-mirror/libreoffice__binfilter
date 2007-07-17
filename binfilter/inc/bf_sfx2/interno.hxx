@@ -4,9 +4,9 @@
  *
  *  $RCSfile: interno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:01:52 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:38:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,20 +39,13 @@
 #include <so3/ipobj.hxx>
 #endif
 #include "bf_sfx2/objsh.hxx"
-#include "bf_sfx2/ipfrm.hxx"
 #include "bf_sfx2/sfx.hrc"
+
 namespace binfilter {
 
-struct SfxChild_Impl;
 struct SfxInPlaceObject_Impl;
-class SfxToolBoxManager;
 class SfxObjectShell;
-class SfxMenuBarManager;
-class SfxAcceleratorManager;
-class SvInPlaceMenuBar;
 class INote;
-class SfxInPlaceFrame;
-class SfxViewFrame;
 
 
 //=========================================================================
@@ -60,7 +53,6 @@ class SfxViewFrame;
 class SfxInPlaceObject : public SvInPlaceObject
 {
     SfxObjectShell*     pObjShell;
-    SfxViewFrame*       pFrame;
     INote*              pNote;
     BOOL                bTriggerLinkTimer : 1;
     BOOL                bDisableViewScaling : 1;
@@ -69,12 +61,8 @@ class SfxInPlaceObject : public SvInPlaceObject
 private:
 
 public:
-    SfxViewFrame*       GetViewFrame_Impl() const
-                        { return pFrame; }
 #endif
-#if SUPD>556
                         SO2_DECL_STANDARD_CLASS(SfxInPlaceObject)
-#endif
 public:
     SfxObjectShell*     GetObjectShell() const { return pObjShell; }
 
@@ -114,8 +102,6 @@ public:
     void                SetTriggerLinkTimer( BOOL bSet )
                         { bTriggerLinkTimer = bSet; }
     void                UpdateLinks();
-
-
 
     virtual void        SetVisArea( const Rectangle & rVisArea );
 
