@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmpage.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-25 14:35:42 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:37:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,9 +79,6 @@
 #ifndef SVX_LIGHT
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
-#ifndef _SVX_FMUNDO_HXX
-#include "fmundo.hxx"
 #endif
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 #endif
@@ -198,10 +195,6 @@ namespace binfilter {
 /*N*/                             const SdrInsertReason* pReason)
 /*N*/ {
 /*N*/   SdrPage::InsertObject( pObj, nPos, pReason );
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (GetModel() && (!pReason || pReason->GetReason() != SDRREASON_STREAMING))
-/*N*/       ((FmFormModel*)GetModel())->GetUndoEnv().Inserted(pObj);
-/*N*/ #endif
 /*N*/ }
 
 //------------------------------------------------------------------
@@ -219,10 +212,6 @@ namespace binfilter {
 /*N*/ SdrObject* FmFormPage::RemoveObject(ULONG nObjNum)
 /*N*/ {
 /*N*/   SdrObject* pObj = SdrPage::RemoveObject(nObjNum);
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pObj && GetModel())
-/*N*/       ((FmFormModel*)GetModel())->GetUndoEnv().Removed(pObj);
-/*N*/ #endif
 /*N*/   return pObj;
 /*N*/ }
 
