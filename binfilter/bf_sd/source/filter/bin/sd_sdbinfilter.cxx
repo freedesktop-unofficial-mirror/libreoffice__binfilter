@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdbinfilter.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:05:03 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:58:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -497,11 +497,9 @@ sal_Bool SdBINFilter::Export()
     RTL_LOGFILE_CONTEXT_TRACE1( aLog, "exporting %s", aFile.GetBuffer() );
 #endif
 
-    SvtSaveOptions                          aOptions;
     SvStorage*                              pStore = mrMedium.GetOutputStorage();
-    const SvtSaveOptions::SaveGraphicsMode  eSaveMode( aOptions.GetSaveGraphicsMode() );
-    const BOOL                              bSaveNative = ( SvtSaveOptions::SaveGraphicsOriginal == eSaveMode );
-    const BOOL                              bSaveCompressed = ( bSaveNative || ( SvtSaveOptions::SaveGraphicsCompressed == eSaveMode ) );
+    const BOOL                              bSaveNative = FALSE;
+    const BOOL                              bSaveCompressed = FALSE;
     sal_Bool                                bRet = sal_False;
 
     mrDocument.SetSaveCompressed( bSaveCompressed );
