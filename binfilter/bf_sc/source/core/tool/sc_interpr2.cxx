@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:34:24 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:13:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,6 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <bf_svx/linkmgr.hxx>
-#include <bf_sfx2/dispatch.hxx>
 #include <svtools/zforlist.hxx>
 #include <string.h>
 #include <math.h>
@@ -1770,12 +1769,6 @@ ScDdeLink* lcl_GetDdeLink( SvxLinkManager* pLinkMgr,
 /*N*/       {
 /*N*/           pLink = new ScDdeLink( pDok, aAppl, aTopic, aItem, nMode );
 /*N*/           pLinkMgr->InsertDDELink( pLink, aAppl, aTopic, aItem );
-/*N*/           if ( pLinkMgr->GetLinks().Count() == 1 )                    // erster ?
-/*N*/           {
-/*N*/               SfxBindings* pBindings = pDok->GetViewBindings();
-/*N*/               if (pBindings)
-/*N*/                   pBindings->Invalidate( SID_LINKS );             // Link-Manager enablen
-/*N*/           }
 /*N*/
 /*N*/                                   //! asynchron auswerten ???
 /*N*/           pLink->TryUpdate();     //  TryUpdate ruft Update nicht mehrfach auf
