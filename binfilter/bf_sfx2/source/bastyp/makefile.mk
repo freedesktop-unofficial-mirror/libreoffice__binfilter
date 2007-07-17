@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:45:21 $
+#   last change: $Author: obo $ $Date: 2007-07-17 10:40:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,23 +57,11 @@ INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 SLOFILES =\
         $(SLO)$/sfx2_misc.obj				\
-        $(SLO)$/sfx2_idpool.obj				\
         $(SLO)$/sfx2_progress.obj			\
-        $(SLO)$/sfx2_sfxresid.obj			\
-        $(SLO)$/sfx2_newhdl.obj				\
         $(SLO)$/sfx2_bitset.obj				\
         $(SLO)$/sfx2_minarray.obj			\
         $(SLO)$/sfx2_fltfnc.obj				\
-        $(SLO)$/sfx2_fltlst.obj				\
-        $(SLO)$/sfx2_helper.obj
-
-SRS1NAME=$(TARGET)
-SRC1FILES =\
-        sfx2_bastyp.src	\
-        sfx2_newhdl.src
-
-EXCEPTIONSFILES =\
-    $(SLO)$/sfx2_helper.obj
+        $(SLO)$/sfx2_fltlst.obj				
 
 # --- Targets -------------------------------------------------------
 
