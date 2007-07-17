@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-12 09:11:39 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:29:06 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -70,27 +70,9 @@ SRS2NAME=svx_drawdlgs
 SRC2FILES =  \
         svx_sdstring.src
 
-
-EXCEPTIONSFILES=\
-        $(SLO)$/svx__bmpmask.obj	\
-        $(SLO)$/svx_rubydialog.obj 	
-
 SLOFILES=\
-        $(SLO)$/svx__bmpmask.obj\
-        $(SLO)$/svx__contdlg.obj\
         $(SLO)$/svx_dlgutil.obj  \
-        $(SLO)$/svx_fontwork.obj \
-        $(SLO)$/svx_hyperdlg.obj \
-        $(SLO)$/svx_imapdlg.obj \
-        $(SLO)$/svx_impgrf.obj   \
-        $(SLO)$/svx_rlrcitem.obj \
-        $(SLO)$/svx_rubydialog.obj \
-        $(SLO)$/svx_rulritem.obj \
-        $(SLO)$/svx_srchdlg.obj  \
-        $(SLO)$/svx_svxruler.obj	\
-        $(SLO)$/svx_txencbox.obj 
-
-
+        $(SLO)$/svx_impgrf.obj   
 
 .IF "$(COM)" == "C50"
 EXCEPTIONSNOOPTFILES=$(SLO)$/svx_impgrf.obj
