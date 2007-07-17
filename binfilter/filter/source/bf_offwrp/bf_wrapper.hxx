@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_wrapper.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:42:29 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:17:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,10 +68,6 @@
 #include <cppuhelper/interfacecontainer.h>
 #endif
 
-#ifndef _SFX_HELP_HXX
-#include <bf_sfx2/sfxhelp.hxx>
-#endif
-
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
 #include <osl/mutex.hxx>
 #include <bf_sfx2/sfxuno.hxx>
@@ -87,7 +83,6 @@ class OfficeApplication;
 class bf_OfficeWrapper : public ::cppu::WeakImplHelper3< XInitialization, XComponent, XServiceInfo >
 {
     OfficeApplication*                                  pApp;
-    SfxHelp*                                            pSfxHelp;
     ::osl::Mutex                                        aMutex;
     ::cppu::OInterfaceContainerHelper                   aListeners;
 
