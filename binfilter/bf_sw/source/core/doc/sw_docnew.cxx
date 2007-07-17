@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:35:37 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:00:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -173,8 +173,6 @@
 #ifndef _CMDID_H
 #include <cmdid.h>              // fuer den dflt - Printer in SetJob
 #endif
-
-#include <acorrect.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -451,9 +449,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/
 /*N*/   if( pUpdtFlds )
 /*N*/       delete pUpdtFlds;
-/*N*/
-/*N*/   if( pACEWord )
-/*?*/       delete pACEWord;
 /*N*/
 /*N*/   // die BaseLinks freigeben.
 /*N*/   {
