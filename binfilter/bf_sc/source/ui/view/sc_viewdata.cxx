@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:18:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:45:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,15 +40,17 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#define ITEMID_FIELD EE_FEATURE_FIELD
 
+#define ITEMID_FIELD EE_FEATURE_FIELD
 #include <bf_svx/editview.hxx>
 #include <bf_svx/outliner.hxx>
+#include <bf_svx/zoomitem.hxx>
+#include <bf_xmloff/xmluconv.hxx>
+#include <rtl/ustrbuf.hxx>
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
-//#include <vcl/system.hxx>
-
+#include "viewdata.hxx"
 #include "attrib.hxx"
-#include "tabvwsh.hxx"
 #include "docsh.hxx"
 #include "bf_sc.hrc"
 #include "editutil.hxx"
@@ -56,20 +58,8 @@
 #include "unonames.hxx"
 #include "tabcont.hxx"
 
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include <bf_xmloff/xmluconv.hxx>
-#endif
-
-#ifndef _SC_VIEWSETTINGSSEQUENCEDEFINES_HXX
 #include "ViewSettingsSequenceDefines.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -227,11 +217,11 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 
 //==================================================================
 
-/*N*/ ScViewData::ScViewData( ScDocShell* pDocSh, ScTabViewShell* pViewSh )
+/*N*/ ScViewData::ScViewData( ScDocShell* pDocSh )
 /*N*/   :   pDocShell   ( pDocSh ),
-/*N*/       pViewShell  ( pViewSh ),
+//      pViewShell  ( pViewSh ),
 /*N*/       pDoc        ( NULL ),
-/*N*/       pView       ( pViewSh ),
+//      pView       ( pViewSh ),
 /*N*/       pOptions    ( new ScViewOptions ),
 /*N*/       nTabNo      ( 0 ),
 /*N*/       nRefTabNo   ( 0 ),
@@ -351,19 +341,6 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 
 
 
-/*N*/ void ScViewData::SetViewShell( ScTabViewShell* pViewSh )
-/*N*/ {
-/*N*/   if (pViewSh)
-/*N*/   {
-/*N*/       pViewShell  = pViewSh;
-/*N*/       pView       = pViewSh;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       pViewShell  = NULL;
-/*N*/       pView       = NULL;
-/*N*/   }
-/*N*/ }
 
 /*N*/ void ScViewData::SetZoom( const Fraction& rNewX, const Fraction& rNewY )
 /*N*/ {
@@ -554,333 +531,6 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 }
 
 
-/*N*/ Point ScViewData::GetScrPos( USHORT nWhereX, USHORT nWhereY, ScHSplitPos eWhich ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( eWhich==SC_SPLIT_LEFT || eWhich==SC_SPLIT_RIGHT, "Falsche Position" );
-/*N*/   ScSplitPos ePos = ( eWhich == SC_SPLIT_LEFT ) ? SC_SPLIT_BOTTOMLEFT : SC_SPLIT_BOTTOMRIGHT;
-/*N*/   return GetScrPos( nWhereX, nWhereY, ePos );
-/*N*/ }
-
-/*N*/ Point ScViewData::GetScrPos( USHORT nWhereX, USHORT nWhereY, ScVSplitPos eWhich ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( eWhich==SC_SPLIT_TOP || eWhich==SC_SPLIT_BOTTOM, "Falsche Position" );
-/*N*/   ScSplitPos ePos = ( eWhich == SC_SPLIT_TOP ) ? SC_SPLIT_TOPLEFT : SC_SPLIT_BOTTOMLEFT;
-/*N*/   return GetScrPos( nWhereX, nWhereY, ePos );
-/*N*/ }
-
-/*N*/ Point ScViewData::GetScrPos( USHORT nWhereX, USHORT nWhereY, ScSplitPos eWhich,
-/*N*/                               BOOL bAllowNeg ) const
-/*N*/ {
-/*N*/   ScHSplitPos eWhichX;
-/*N*/   ScVSplitPos eWhichY;
-/*N*/   switch( eWhich )
-/*N*/   {
-/*N*/       case SC_SPLIT_TOPLEFT:
-/*N*/           eWhichX = SC_SPLIT_LEFT;
-/*N*/           eWhichY = SC_SPLIT_TOP;
-/*N*/           break;
-/*N*/       case SC_SPLIT_TOPRIGHT:
-/*N*/           eWhichX = SC_SPLIT_RIGHT;
-/*N*/           eWhichY = SC_SPLIT_TOP;
-/*N*/           break;
-/*N*/       case SC_SPLIT_BOTTOMLEFT:
-/*N*/           eWhichX = SC_SPLIT_LEFT;
-/*N*/           eWhichY = SC_SPLIT_BOTTOM;
-/*N*/           break;
-/*N*/       case SC_SPLIT_BOTTOMRIGHT:
-/*N*/           eWhichX = SC_SPLIT_RIGHT;
-/*N*/           eWhichY = SC_SPLIT_BOTTOM;
-/*N*/           break;
-/*N*/   }
-/*N*/
-/*N*/   if (pView)
-/*N*/   {
-/*N*/       ((ScViewData*)this)->aScrSize.Width()  = pView->GetGridWidth(eWhichX);
-/*N*/       ((ScViewData*)this)->aScrSize.Height() = pView->GetGridHeight(eWhichY);
-/*N*/   }
-/*N*/
-/*N*/   USHORT nTSize;
-/*N*/
-/*N*/   USHORT  nPosX = GetPosX(eWhichX);
-/*N*/   USHORT  nX;
-/*N*/
-/*N*/   long nScrPosX=0;
-/*N*/   if (nWhereX >= nPosX)
-/*N*/       for (nX=nPosX; nX<nWhereX && (bAllowNeg || nScrPosX<=aScrSize.Width()); nX++)
-/*N*/       {
-/*N*/           if ( nX > MAXCOL )
-/*N*/               nScrPosX = 65535;
-/*N*/           else
-/*N*/           {
-/*N*/               nTSize = pDoc->GetColWidth( nX, nTabNo );
-/*N*/               if (nTSize)
-/*N*/               {
-/*N*/                   long nSizeXPix = ToPixel( nTSize, nPPTX );
-/*N*/                   nScrPosX += nSizeXPix;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   else if (bAllowNeg)
-/*?*/       for (nX=nPosX; nX>nWhereX;)
-/*?*/       {
-/*?*/           --nX;
-/*?*/           nTSize = pDoc->GetColWidth( nX, nTabNo );
-/*?*/           if (nTSize)
-/*?*/           {
-/*?*/               long nSizeXPix = ToPixel( nTSize, nPPTX );
-/*?*/               nScrPosX -= nSizeXPix;
-/*?*/           }
-/*?*/       }
-/*N*/
-/*N*/   USHORT  nPosY = GetPosY(eWhichY);
-/*N*/   USHORT  nY;
-/*N*/
-/*N*/   long nScrPosY=0;
-/*N*/   if (nWhereY >= nPosY)
-/*N*/       for (nY=nPosY; nY<nWhereY && (bAllowNeg || nScrPosY<=aScrSize.Height()); nY++)
-/*N*/       {
-/*N*/           if ( nY > MAXROW )
-/*N*/               nScrPosY = 65535;
-/*N*/           else
-/*N*/           {
-/*N*/               nTSize = pDoc->FastGetRowHeight( nY, nTabNo );
-/*N*/               if (nTSize)
-/*N*/               {
-/*N*/                   long nSizeYPix = ToPixel( nTSize, nPPTY );
-/*N*/                   nScrPosY += nSizeYPix;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   else if (bAllowNeg)
-/*?*/       for (nY=nPosY; nY>nWhereY;)
-/*?*/       {
-/*?*/           --nY;
-/*?*/           nTSize = pDoc->FastGetRowHeight( nY, nTabNo );
-/*?*/           if (nTSize)
-/*?*/           {
-/*?*/               long nSizeYPix = ToPixel( nTSize, nPPTY );
-/*?*/               nScrPosY -= nSizeYPix;
-/*?*/           }
-/*?*/       }
-/*N*/
-/*N*/   if (nScrPosX > 32767) nScrPosX=32767;
-/*N*/   if (nScrPosY > 32767) nScrPosY=32767;
-/*N*/   return Point( nScrPosX, nScrPosY );
-/*N*/ }
-
-//
-//      Anzahl Zellen auf einem Bildschirm
-//
-
-/*N*/ USHORT ScViewData::CellsAtX( short nPosX, short nDir, ScHSplitPos eWhichX, USHORT nScrSizeX ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( nDir==1 || nDir==-1, "falscher CellsAt Aufruf" );
-/*N*/
-/*N*/   if (pView)
-/*N*/       ((ScViewData*)this)->aScrSize.Width()  = pView->GetGridWidth(eWhichX);
-/*N*/
-/*N*/   short   nX;
-/*N*/   USHORT  nScrPosX = 0;
-/*N*/   if (nScrSizeX == SC_SIZE_NONE) nScrSizeX = (USHORT) aScrSize.Width();
-/*N*/
-/*N*/   if (nDir==1)
-/*N*/       nX = nPosX;             // vorwaerts
-/*N*/   else
-/*N*/       nX = nPosX-1;           // rueckwaerts
-/*N*/
-/*N*/   BOOL bOut = FALSE;
-/*N*/   for ( ; nScrPosX<=nScrSizeX && !bOut; nX+=nDir )
-/*N*/   {
-/*N*/       short   nColNo = nX;
-/*N*/       if ( nColNo < 0 || nColNo > MAXCOL )
-/*N*/           bOut = TRUE;
-/*N*/       else
-/*N*/       {
-/*N*/           USHORT nTSize = pDoc->GetColWidth( nColNo, nTabNo );
-/*N*/           if (nTSize)
-/*N*/           {
-/*N*/               long nSizeXPix = ToPixel( nTSize, nPPTX );
-/*N*/               nScrPosX += (USHORT) nSizeXPix;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (nDir==1)
-/*N*/       nX -= nPosX;
-/*N*/   else
-/*N*/       nX = (nPosX-1)-nX;
-/*N*/
-/*N*/   if (nX>0) --nX;
-/*N*/   return nX;
-/*N*/ }
-
-/*N*/ USHORT ScViewData::CellsAtY( short nPosY, short nDir, ScVSplitPos eWhichY, USHORT nScrSizeY ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( nDir==1 || nDir==-1, "falscher CellsAt Aufruf" );
-/*N*/
-/*N*/   if (pView)
-/*N*/       ((ScViewData*)this)->aScrSize.Height() = pView->GetGridHeight(eWhichY);
-/*N*/
-/*N*/   short   nY;
-/*N*/   USHORT  nScrPosY = 0;
-/*N*/
-/*N*/   if (nScrSizeY == SC_SIZE_NONE) nScrSizeY = (USHORT) aScrSize.Height();
-/*N*/
-/*N*/   if (nDir==1)
-/*N*/       nY = nPosY;             // vorwaerts
-/*N*/   else
-/*N*/       nY = nPosY-1;           // rueckwaerts
-/*N*/
-/*N*/   BOOL bOut = FALSE;
-/*N*/   for ( ; nScrPosY<=nScrSizeY && !bOut; nY+=nDir )
-/*N*/   {
-/*N*/       short   nRowNo = nY;
-/*N*/       if ( nRowNo < 0 || nRowNo > MAXROW )
-/*N*/           bOut = TRUE;
-/*N*/       else
-/*N*/       {
-/*N*/ //            USHORT nTSize = pDoc->GetRowHeight( nRowNo, nTabNo );
-/*N*/           USHORT nTSize = pDoc->FastGetRowHeight( nRowNo, nTabNo );
-/*N*/           if (nTSize)
-/*N*/           {
-/*N*/               long nSizeYPix = ToPixel( nTSize, nPPTY );
-/*N*/               nScrPosY += (USHORT) nSizeYPix;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (nDir==1)
-/*N*/       nY -= nPosY;
-/*N*/   else
-/*N*/       nY = (nPosY-1)-nY;
-/*N*/
-/*N*/   if (nY>0) --nY;
-/*N*/   return nY;
-/*N*/ }
-
-/*N*/ USHORT ScViewData::VisibleCellsX( ScHSplitPos eWhichX ) const
-/*N*/ {
-/*N*/   return CellsAtX( GetPosX( eWhichX ), 1, eWhichX, SC_SIZE_NONE );
-/*N*/ }
-
-/*N*/ USHORT ScViewData::VisibleCellsY( ScVSplitPos eWhichY ) const
-/*N*/ {
-/*N*/   return CellsAtY( GetPosY( eWhichY ), 1, eWhichY, SC_SIZE_NONE );
-/*N*/ }
-
-
-/*N*/ BOOL ScViewData::GetMergeSizePixel( USHORT nX, USHORT nY, long& rSizeXPix, long& rSizeYPix )
-/*N*/ {
-/*N*/   const ScMergeAttr* pMerge = (const ScMergeAttr*) pDoc->GetAttr( nX,nY,nTabNo, ATTR_MERGE );
-/*N*/   if ( pMerge->GetColMerge() > 1 || pMerge->GetRowMerge() > 1 )
-/*N*/   {
-/*N*/       long nOutWidth = 0;
-/*N*/       long nOutHeight = 0;
-/*N*/       USHORT i;
-/*N*/       USHORT nCountX = pMerge->GetColMerge();
-/*N*/       for (i=0; i<nCountX; i++)
-/*N*/           nOutWidth += ToPixel( pDoc->GetColWidth(nX+i,nTabNo), nPPTX );
-/*N*/       USHORT nCountY = pMerge->GetRowMerge();
-/*N*/       for (i=0; i<nCountY; i++)
-/*N*/           nOutHeight += ToPixel( pDoc->GetRowHeight(nY+i,nTabNo), nPPTY );
-/*N*/
-/*N*/       rSizeXPix = nOutWidth;
-/*N*/       rSizeYPix = nOutHeight;
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rSizeXPix = ToPixel( pDoc->GetColWidth( nX, nTabNo ), nPPTX );
-/*N*/       rSizeYPix = ToPixel( pDoc->GetRowHeight( nY, nTabNo ), nPPTY );
-/*N*/       return FALSE;
-/*N*/   }
-/*N*/ }
-
-/*N*/ BOOL ScViewData::GetPosFromPixel( long nClickX, long nClickY, ScSplitPos eWhich,
-/*N*/                                       short& rPosX, short& rPosY,
-/*N*/                                       BOOL bTestMerge, BOOL bRepair, BOOL bNextIfLarge )
-/*N*/ {
-/*M*/   //  special handling of 0 is now in ScViewFunctionSet::SetCursorAtPoint
-/*N*/
-/*N*/   ScHSplitPos eHWhich = WhichH(eWhich);
-/*N*/   ScVSplitPos eVWhich = WhichV(eWhich);
-/*N*/   short nStartPosX = GetPosX(eHWhich);
-/*N*/   short nStartPosY = GetPosY(eVWhich);
-/*N*/   rPosX = nStartPosX;
-/*N*/   rPosY = nStartPosY;
-/*N*/   long nScrX = 0;
-/*N*/   long nScrY = 0;
-/*N*/
-/*N*/   if (nClickX > 0)
-/*N*/   {
-/*N*/       while ( rPosX<=MAXCOL && nClickX >= nScrX )
-/*N*/       {
-/*N*/           nScrX += ToPixel( pDoc->GetColWidth( rPosX, nTabNo ), nPPTX );
-/*N*/           ++rPosX;
-/*N*/       }
-/*N*/       --rPosX;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       while ( rPosX>0 && nClickX < nScrX )
-/*N*/       {
-/*N*/           --rPosX;
-/*N*/           nScrX -= ToPixel( pDoc->GetColWidth( rPosX, nTabNo ), nPPTX );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (nClickY > 0)
-/*N*/   {
-/*N*/       while ( rPosY<=MAXROW && nClickY >= nScrY )
-/*N*/       {
-/*N*/           nScrY += ToPixel( pDoc->FastGetRowHeight( rPosY, nTabNo ), nPPTY );
-/*N*/           ++rPosY;
-/*N*/       }
-/*N*/       --rPosY;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       while ( rPosY>0 && nClickY < nScrY )
-/*N*/       {
-/*N*/           --rPosY;
-/*N*/           nScrY -= ToPixel( pDoc->FastGetRowHeight( rPosY, nTabNo ), nPPTY );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (bNextIfLarge)       //  zu grosse Zellen ?
-/*N*/   {
-/*N*/       if ( rPosX == nStartPosX && nClickX > 0 )
-/*N*/       {
-/*N*/           if (pView)
-/*N*/               aScrSize.Width() = pView->GetGridWidth(eHWhich);
-/*N*/           if ( nClickX > aScrSize.Width() )
-/*N*/               ++rPosX;
-/*N*/       }
-/*N*/       if ( rPosY == nStartPosY && nClickY > 0 )
-/*N*/       {
-/*N*/           if (pView)
-/*N*/               aScrSize.Height() = pView->GetGridHeight(eVWhich);
-/*N*/           if ( nClickY > aScrSize.Height() )
-/*N*/               ++rPosY;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if (rPosX<0) rPosX=0;
-/*N*/   if (rPosX>MAXCOL) rPosX=MAXCOL;
-/*N*/   if (rPosY<0) rPosY=0;
-/*N*/   if (rPosY>MAXROW) rPosY=MAXROW;
-/*N*/
-/*N*/   if (bTestMerge)
-/*N*/   {
-/*?*/       //! public Methode um Position anzupassen
-/*?*/
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHOver = FALSE;
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
-
 
 
 /*N*/ void ScViewData::RecalcPixPos()               // nach Zoom-Aenderungen
@@ -924,36 +574,6 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 /*N*/   return pDocShell;
 /*N*/ }
 
-/*N*/ SfxBindings& ScViewData::GetBindings()
-/*N*/ {
-/*N*/   DBG_ASSERT( pViewShell, "GetBindings() without ViewShell" );
-/*N*/   return pViewShell->GetViewFrame()->GetBindings();
-/*N*/ }
-
-/*N*/ SfxDispatcher& ScViewData::GetDispatcher()
-/*N*/ {
-/*N*/   DBG_ASSERT( pViewShell, "GetDispatcher() without ViewShell" );
-/*N*/   return *pViewShell->GetViewFrame()->GetDispatcher();
-/*N*/ }
-
-
-/*N*/ Window* ScViewData::GetActiveWin()
-/*N*/ {
-/*N*/   DBG_ASSERT( pView, "GetActiveWin() ohne View" );
-/*N*/   return pView->GetActiveWin();
-/*N*/ }
-
-/*N*/ ScDrawView* ScViewData::GetScDrawView()
-/*N*/ {
-/*N*/   DBG_ASSERT( pView, "GetScDrawView() ohne View" );
-/*N*/   return pView->GetScDrawView();
-/*N*/ }
-
-/*N*/ BOOL ScViewData::IsMinimized()
-/*N*/ {
-/*N*/   DBG_ASSERT( pView, "IsMinimized() ohne View" );
-/*N*/   return pView->IsMinimized();
-/*N*/ }
 
 
 /*N*/ void ScViewData::CalcPPT()
@@ -1419,12 +1039,6 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
 /*N*/                                  rOpt.GetObjMode(VOBJ_TYPE_OLE) );
 /*N*/
 /*N*/   *pOptions = rOpt;
-/*N*/   DBG_ASSERT( pView, "No View" );
-/*N*/
-/*N*/   if( pView )
-/*N*/   {
-/*N*/       pView->ViewOptionsHasChanged( bHScrollChanged, bGraphicsChanged );
-/*N*/   }
 /*N*/ }
 
 
