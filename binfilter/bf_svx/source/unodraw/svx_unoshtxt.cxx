@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshtxt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:36:38 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:48:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -495,22 +495,6 @@ SvxTextForwarder* SvxTextEditSourceImpl::GetBackgroundTextForwarder()
                 mbOldUndoMode = ((EditEngine*)&(mpOutliner->GetEditEngine()))->IsUndoEnabled();
                 ((EditEngine*)&(mpOutliner->GetEditEngine()))->EnableUndo( sal_False );
             }
-
-// -
-            if ( !m_xLinguServiceManager.is() )
-            {
-                css::uno::Reference< css::lang::XMultiServiceFactory > xMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-                m_xLinguServiceManager = css::uno::Reference< css::linguistic2::XLinguServiceManager >(
-                    xMgr->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.linguistic2.LinguServiceManager" ))), css::uno::UNO_QUERY );
-            }
-
-            if ( m_xLinguServiceManager.is() )
-            {
-                css::uno::Reference< css::linguistic2::XHyphenator > xHyphenator( m_xLinguServiceManager->getHyphenator(), css::uno::UNO_QUERY );
-                if( xHyphenator.is() )
-                    mpOutliner->SetHyphenator( xHyphenator );
-            }
-// -
         }
 
         mpTextForwarder = new SvxOutlinerForwarder( *mpOutliner, mpObject );
