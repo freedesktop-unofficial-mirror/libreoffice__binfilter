@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fltini.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:06:31 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:03:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,6 +120,9 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+
+#include <svtools/moduleoptions.hxx>
+
 namespace binfilter {
 
 using namespace utl;
@@ -129,7 +132,8 @@ using namespace ::com::sun::star::uno;
 SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
         ReadHTML = 0, ReadXML = 0;
 
-/*N*/ inline BOOL IsDocShellRegistered() { return 0 != SwDocShell::_GetInterface(); }
+/*N*/ inline BOOL IsDocShellRegistered() { return SvtModuleOptions().IsWriter(); }
+
 
 /*N*/ IO_DETECT_IMPL1
 /*N*/ IO_DETECT_IMPL2
