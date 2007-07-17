@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:24:59 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:01:15 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -51,16 +51,7 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_dview.cxx		\
-        sw_dcontact.cxx	\
-        sw_dflyobj.cxx     \
-        sw_drawdoc.cxx     \
-        sw_dobjfac.cxx     \
-        sw_dpage.cxx
-
 SLOFILES =  \
-        $(SLO)$/sw_dview.obj	\
         $(SLO)$/sw_dcontact.obj	\
         $(SLO)$/sw_dflyobj.obj \
         $(SLO)$/sw_drawdoc.obj \
