@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editstt2.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:18:48 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:31:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,9 +93,6 @@ public:
 
     BOOL    AllowBigObjects() const
                 { return ( ( nControlBits & EE_CNTRL_ALLOWBIGOBJS ) != 0 ); }
-
-    BOOL    DoOnlineSpelling() const
-                { return ( ( nControlBits & EE_CNTRL_ONLINESPELLING ) != 0 ); }
 
     BOOL    DoStretch() const
                 { return ( ( nControlBits & EE_CNTRL_STRETCHING ) != 0 ); }
