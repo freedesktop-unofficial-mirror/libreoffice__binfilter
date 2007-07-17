@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:58:28 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:32:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,11 +38,9 @@
 #include <tools/time.hxx>
 #include <tools/string.hxx>
 class MenuBar;
-class ResMgr;
 class UniqueIndex;
 class BasicManager;
 class Timer;
-class SimpleResMgr;
 namespace binfilter {
 
 class SfxTbxCtrlFactArr_Impl;
@@ -74,8 +72,6 @@ struct SfxApplication_Impl
     SfxObjectShellArr_Impl*     pObjShells;
     MenuBar*                    pEmptyMenu;         // dummy for no-menu
     IntroWindow_Impl*           pIntro;
-    ResMgr*                     pSfxResManager;
-    SimpleResMgr*               pSimpleResManager;
     UniqueIndex*                pEventHdl;          // Hook-Liste fuer UserEvents
     SfxTemplateDialog*          pTemplateDlg;
     SfxScriptLibraryContainer*  pBasicLibContainer;
