@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:52:13 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:31:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,7 +87,6 @@ class SdIMapInfo;
 class IMapObject;
 class SdStyleSheetPool;
 class SfxMedium;
-class SvxSearchItem;
 class SdrOle2Obj;
 class EditStatus;
 class SdTransferable;
@@ -148,7 +147,6 @@ private:
     Timer*              pOnlineSpellingTimer;
     List*               pOnlineSpellingList;
     List*               pDeletedPresObjList;
-    SvxSearchItem*      pOnlineSearchItem;
     List*               pFrameViewList;
     List*               pCustomShowList;
     SdDrawDocShell*     pDocSh;
