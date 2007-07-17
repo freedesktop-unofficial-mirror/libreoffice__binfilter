@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 15:08:02 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:24:07 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,6 @@ SRC2FILES = starmath_smres.src   \
 
 SLOFILES =  \
         $(SLO)$/starmath_register.obj \
-        $(SLO)$/starmath_typemap.obj \
         $(SLO)$/starmath_symbol.obj \
         $(SLO)$/starmath_cfgitem.obj \
         $(SLO)$/starmath_config.obj \
@@ -73,9 +72,6 @@ SLOFILES =  \
         $(SLO)$/starmath_utility.obj \
         $(SLO)$/starmath_smdll.obj \
         $(SLO)$/starmath_smmod.obj \
-        $(SLO)$/starmath_view.obj \
-        $(SLO)$/starmath_viewhdl.obj \
-        $(SLO)$/starmath_edit.obj \
         $(SLO)$/starmath_rect.obj \
         $(SLO)$/starmath_unomodel.obj \
         $(SLO)$/starmath_unodoc.obj
