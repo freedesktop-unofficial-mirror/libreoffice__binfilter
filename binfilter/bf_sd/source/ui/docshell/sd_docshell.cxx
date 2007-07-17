@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_docshell.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:19:40 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:05:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,6 +42,7 @@
 #define ITEMID_LINEEND_LIST             SID_LINEEND_LIST
 #define ITEMID_SEARCH                   SID_SEARCH_ITEM
 
+#include <bf_sfx2/app.hxx>
 
 
 #ifndef _SVXIDS_HRC
@@ -58,9 +59,6 @@
 #endif
 #ifndef _SVX_DRAWITEM_HXX //autogen
 #include <bf_svx/drawitem.hxx>
-#endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX //autogen
 #include <svtools/ctrltool.hxx>
@@ -79,9 +77,7 @@
 #include "drawdoc.hxx"
 #include "glob.hrc"
 #include "res_bmp.hrc"
-#include "viewshel.hxx"
 #include "sdresid.hxx"
-#include "fuslshow.hxx"
 #include "frmview.hxx"
 #include "unomodel.hxx"
 
@@ -105,13 +101,6 @@ Link*        SdDrawDocShell::mpSpecialProgressHdl = NULL;
 
 
 namespace binfilter {
-#define SdDrawDocShell
-#include "sdslots.hxx"
-
-/*N*/ SFX_IMPL_INTERFACE(SdDrawDocShell, SfxObjectShell, SdResId(0))
-/*N*/ {
-/*N*/   SFX_CHILDWINDOW_REGISTRATION(SID_SEARCH_DLG);
-/*N*/ }
 
 /*N*/ SFX_IMPL_OBJECTFACTORY_LOD(SdDrawDocShell, simpress,
 /*N*/                          SvGlobalName(BF_SO3_SIMPRESS_CLASSID), Sd)
@@ -131,7 +120,6 @@ namespace binfilter {
 /*N*/   pDoc = new SdDrawDocument(eDocType, this);
 /*N*/   SetModel( new SdXImpressDocument( this ) );
 /*N*/   SetPool( &pDoc->GetItemPool() );
-/*N*/   pUndoManager = new SfxUndoManager;
 /*N*/   UpdateTablePointers();
 /*N*/   SetStyleFamily(5);       //CL: eigentlich SFX_STYLE_FAMILY_PSEUDO
 /*N*/ }
@@ -147,14 +135,10 @@ namespace binfilter {
 /*N*/                              DocumentType eDocumentType) :
 /*N*/   SfxObjectShell(eMode),
 /*N*/   pPrinter(NULL),
-/*N*/   pViewShell(NULL),
 /*N*/   pDoc(NULL),
-/*N*/   pUndoManager(NULL),
 /*N*/   pFontList(NULL),
-/*N*/   pFuActual(NULL),
 /*N*/   bUIActive(FALSE),
 /*N*/   pProgress(NULL),
-/*N*/ //    pStbMgr( NULL ),
 /*N*/   bSdDataObj(bDataObject),
 /*N*/   bOwnPrinter(FALSE),
 /*N*/   eDocType(eDocumentType),
@@ -175,14 +159,10 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
                                DocumentType eDocumentType) :
     SfxObjectShell(eMode),
     pPrinter(NULL),
-    pViewShell(NULL),
     pDoc(pDoc),
-    pUndoManager(NULL),
     pFontList(NULL),
-    pFuActual(NULL),
     bUIActive(FALSE),
     pProgress(NULL),
-//  pStbMgr( NULL ),
     bSdDataObj(bDataObject),
     bOwnPrinter(FALSE),
     eDocType(eDocumentType),
@@ -200,27 +180,14 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 /*N*/ SdDrawDocShell::~SdDrawDocShell()
 /*N*/ {
 /*N*/   bInDestruction = TRUE;
-/*N*/   delete pFuActual;
-/*N*/   pFuActual = NULL;
 /*N*/
 /*N*/   delete pFontList;
-/*N*/   delete pUndoManager;
 /*N*/
 /*N*/   if (bOwnPrinter)
 /*N*/       delete pPrinter;
 /*N*/
 /*N*/   delete pDoc;
 /*N*/
-/*N*/   // damit der Navigator das Verschwinden des Dokuments mitbekommt
-/*N*/   SfxBoolItem     aItem(SID_NAVIGATOR_INIT, TRUE);
-/*N*/   SfxViewFrame*   pFrame = pViewShell ? pViewShell->GetFrame() : GetFrame();
-/*N*/
-/*N*/   if( !pFrame )
-/*N*/       pFrame = SfxViewFrame::GetFirst( this );
-/*N*/
-/*N*/   if( pFrame )
-/*?*/       pFrame->GetDispatcher()->Execute(
-/*?*/           SID_NAVIGATOR_INIT, SFX_CALLMODE_ASYNCHRON | SFX_CALLMODE_RECORD, &aItem, 0L);
 /*N*/ }
 
 /*************************************************************************
@@ -247,19 +214,6 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 /*N*/ void SdDrawDocShell::Deactivate( BOOL )
 /*N*/ {
 /*N*/ }
-
-/*************************************************************************
-|*
-|* SFX-Undomanager zurueckgeben
-|*
-\************************************************************************/
-
-/*N*/ SfxUndoManager* SdDrawDocShell::GetUndoManager()
-/*N*/ {
-/*N*/   return pUndoManager;
-/*N*/ }
-
-
 
 /*************************************************************************
 |*
