@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:08:18 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:32:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,41 +57,6 @@ ENABLE_EXCEPTIONS=TRUE
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
-CXXFILES = \
-        sc_docuno.cxx \
-        sc_servuno.cxx \
-        sc_defltuno.cxx \
-        sc_drdefuno.cxx \
-        sc_cellsuno.cxx \
-        sc_textuno.cxx \
-        sc_notesuno.cxx \
-        sc_cursuno.cxx \
-        sc_srchuno.cxx \
-        sc_fielduno.cxx \
-        sc_miscuno.cxx \
-        sc_optuno.cxx \
-        sc_appluno.cxx \
-        sc_funcuno.cxx \
-        sc_nameuno.cxx \
-        sc_viewuno.cxx \
-        sc_dispuno.cxx \
-        sc_datauno.cxx \
-        sc_dapiuno.cxx \
-        sc_chartuno.cxx \
-        sc_shapeuno.cxx \
-        sc_pageuno.cxx \
-        sc_forbiuno.cxx \
-        sc_styleuno.cxx \
-        sc_afmtuno.cxx \
-        sc_fmtuno.cxx \
-        sc_linkuno.cxx \
-        sc_targuno.cxx \
-        sc_convuno.cxx \
-        sc_editsrc.cxx \
-        sc_unoguard.cxx \
-        sc_confuno.cxx \
-        sc_filtuno.cxx \
-        sc_unodoc.cxx
 
 SLOFILES =  \
         $(SLO)$/sc_docuno.obj \
@@ -102,15 +67,12 @@ SLOFILES =  \
         $(SLO)$/sc_textuno.obj \
         $(SLO)$/sc_notesuno.obj \
         $(SLO)$/sc_cursuno.obj \
-        $(SLO)$/sc_srchuno.obj \
         $(SLO)$/sc_fielduno.obj \
         $(SLO)$/sc_miscuno.obj \
         $(SLO)$/sc_optuno.obj \
         $(SLO)$/sc_appluno.obj \
         $(SLO)$/sc_funcuno.obj \
         $(SLO)$/sc_nameuno.obj \
-        $(SLO)$/sc_viewuno.obj \
-        $(SLO)$/sc_dispuno.obj \
         $(SLO)$/sc_datauno.obj \
         $(SLO)$/sc_dapiuno.obj \
         $(SLO)$/sc_chartuno.obj \
