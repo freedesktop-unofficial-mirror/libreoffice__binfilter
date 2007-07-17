@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:19:01 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:15:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,17 +71,12 @@
 #include <bf_svx/outliner.hxx>
 #include "bf_basic/sbstar.hxx"
 
-#include <bf_offmgr/hyprlink.hxx>
-#include <bf_offmgr/osplcfg.hxx>
-#ifndef _OFFAPP_INTERNATIONALOPTIONS_HXX_
-#include <bf_offmgr/internationaloptions.hxx>
-#endif
 #include <svtools/ehdl.hxx>
 #include <svtools/accessibilityoptions.hxx>
 #include <svtools/ctloptions.hxx>
 #include <vcl/status.hxx>
-#include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/request.hxx>
+
 #include <bf_sfx2/macrconf.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_svx/langitem.hxx>
@@ -89,11 +84,6 @@
 
 #include <svtools/whiter.hxx>
 #include <bf_offmgr/app.hxx>
-#include <bf_svx/selctrl.hxx>
-#include <bf_svx/insctrl.hxx>
-#include <bf_svx/zoomctrl.hxx>
-#include <bf_svx/modctrl.hxx>
-#include <bf_svx/pszctrl.hxx>
 #include <vcl/msgbox.hxx>
 #include <bf_offmgr/ofaids.hrc>
 #include <svtools/inethist.hxx>
@@ -109,24 +99,15 @@
 #include "inputopt.hxx"
 #include "printopt.hxx"
 #include "navicfg.hxx"
-#include "tabvwsh.hxx"
-#include "prevwsh.hxx"
 #include "docsh.hxx"
 #include "drwlayer.hxx"
 #include "uiitems.hxx"
 #include "bf_sc.hrc"
 #include "cfgids.hxx"
-#include "inputhdl.hxx"
-#include "inputwin.hxx"
-
-#ifndef _SFX_SRCHITEM_HXX
-#include <bf_sfx2/srchitem.hxx>
-#endif
 
 #include "msgpool.hxx"
 #include "scresid.hxx"
 #include "teamdlg.hxx"
-#include "dwfunctr.hxx"
 #include "formdata.hxx"
 #include "tpusrlst.hxx"
 #include "tpcalc.hxx"
@@ -134,8 +115,6 @@
 #include "transobj.hxx"
 #include "detfunc.hxx"
 
-#define ScModule
-//STRIP008 #include "scslots.hxx"
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
@@ -144,19 +123,8 @@
 #define SC_IDLE_STEP    75
 #define SC_IDLE_COUNT   50
 namespace binfilter {
-#include "scslots.hxx"
 
 static USHORT nIdleCount = 0;
-
-//------------------------------------------------------------------
-
-/*N*/ SFX_IMPL_INTERFACE( ScModule, SfxShell, ScResId(RID_APPTITLE) )
-/*N*/ {
-/*N*/   SFX_OBJECTBAR_REGISTRATION( SFX_OBJECTBAR_APPLICATION | SFX_VISIBILITY_DESKTOP | SFX_VISIBILITY_STANDARD | SFX_VISIBILITY_CLIENT | SFX_VISIBILITY_VIEWER,
-/*N*/                               ScResId(RID_OBJECTBAR_APP) );
-/*N*/   SFX_STATUSBAR_REGISTRATION( ScResId(SCCFG_STATUSBAR) );     // nur ID wichtig
-/*N*/   SFX_CHILDWINDOW_REGISTRATION( SvxHyperlinkDlgWrapper::GetChildWindowId() );
-/*N*/ }
 
 //------------------------------------------------------------------
 
@@ -164,7 +132,6 @@ static USHORT nIdleCount = 0;
 /*N*/   ScModuleDummy( SFX_APP()->CreateResManager( "bf_sc" ), FALSE, pFact ), //STRIP005
 /*N*/   bIsWaterCan( FALSE ),
 /*N*/   bIsInEditCommand( FALSE ),
-/*N*/   pSelTransfer( NULL ),
 /*N*/   pRefInputHandler( NULL ),
 /*N*/   pViewCfg( NULL ),
 /*N*/   pDocCfg( NULL ),
@@ -215,10 +182,6 @@ static USHORT nIdleCount = 0;
 
 /*N*/ ScModule::~ScModule()
 /*N*/ {
-/*N*/   DBG_ASSERT( !pSelTransfer, "Selection Transfer object not deleted" );
-/*N*/
-/*N*/   //  InputHandler braucht nicht mehr geloescht zu werden (gibt keinen an der App mehr)
-/*N*/
 /*N*/   DELETEZ( pMessagePool );
 /*N*/
 /*N*/   DELETEZ( pFormEditData );
@@ -299,47 +262,6 @@ static USHORT nIdleCount = 0;
 
 /*N*/ void ScModule::FillStatusBar(StatusBar& rStatusBar)
 /*N*/ {
-/*N*/   // Dokumentposition (Tabelle x / y)
-/*N*/   rStatusBar.InsertItem( SID_STATUS_DOCPOS,
-/*N*/                           TEXT_WIDTH( String().Fill( 10, 'X' ) ),
-/*N*/                           SIB_LEFT|SIB_AUTOSIZE );
-/*N*/   rStatusBar.SetHelpId( SID_STATUS_DOCPOS, SID_STATUS_DOCPOS );
-/*N*/
-/*N*/   // Seitenvorlage
-/*N*/   rStatusBar.InsertItem( SID_STATUS_PAGESTYLE,
-/*N*/                           TEXT_WIDTH( String().Fill( 15, 'X' ) ),
-/*N*/                           SIB_LEFT|SIB_AUTOSIZE );
-/*N*/   rStatusBar.SetHelpId( SID_STATUS_PAGESTYLE, SID_STATUS_PAGESTYLE );
-/*N*/
-/*N*/   // Ma"sstab
-/*N*/   rStatusBar.InsertItem( SID_ATTR_ZOOM,
-/*N*/                           SvxZoomStatusBarControl::GetDefItemWidth(rStatusBar),
-/*N*/                           SIB_CENTER );
-/*N*/   rStatusBar.SetHelpId( SID_ATTR_ZOOM, SID_ATTR_ZOOM );
-/*N*/
-/*N*/   // Einfuege-/Ueberschreibmodus
-/*N*/   rStatusBar.InsertItem( SID_ATTR_INSERT,
-/*N*/                           SvxInsertStatusBarControl::GetDefItemWidth(rStatusBar),
-/*N*/                           SIB_CENTER );
-/*N*/   rStatusBar.SetHelpId( SID_ATTR_INSERT, SID_ATTR_INSERT );
-/*N*/
-/*N*/   // Selektionsmodus
-/*N*/   rStatusBar.InsertItem( SID_STATUS_SELMODE,
-/*N*/                           SvxSelectionModeControl::GetDefItemWidth(rStatusBar),
-/*N*/                           SIB_CENTER );
-/*N*/   rStatusBar.SetHelpId( SID_STATUS_SELMODE, SID_STATUS_SELMODE );
-/*N*/
-/*N*/   // Dokument geaendert
-/*N*/   rStatusBar.InsertItem( SID_DOC_MODIFIED,
-/*N*/                           SvxModifyControl::GetDefItemWidth(rStatusBar));
-/*N*/
-/*N*/   rStatusBar.SetHelpId( SID_DOC_MODIFIED, SID_DOC_MODIFIED );
-/*N*/
-/*N*/   // den aktuellen Kontext anzeigen Uhrzeit / FramePos / TabellenInfo / Errors
-/*N*/   rStatusBar.InsertItem( SID_ATTR_SIZE,
-/*N*/                           SvxPosSizeStatusBarControl::GetDefItemWidth(rStatusBar),
-/*N*/                           SIB_AUTOSIZE|SIB_LEFT|SIB_USERDRAW);
-/*N*/   rStatusBar.SetHelpId( SID_ATTR_SIZE, SID_ATTR_SIZE );
 /*N*/ }
 
 #undef TEXT_WIDTH
@@ -348,84 +270,6 @@ static USHORT nIdleCount = 0;
 //
 //      von der Applikation verschoben:
 //
-//------------------------------------------------------------------
-
-
-/*N*/ void ScModule::GetState( SfxItemSet& rSet )
-/*N*/ {
-/*N*/   SfxWhichIter aIter(rSet);
-/*N*/   USHORT nWhich = aIter.FirstWhich();
-/*N*/   while ( nWhich )
-/*N*/   {
-/*N*/       switch ( nWhich )
-/*N*/       {
-/*?*/           case FID_AUTOCOMPLETE:
-/*?*/               rSet.Put( SfxBoolItem( nWhich, GetAppOptions().GetAutoComplete() ) );
-/*?*/               break;
-/*?*/           case SID_DETECTIVE_AUTO:
-/*?*/               rSet.Put( SfxBoolItem( nWhich, GetAppOptions().GetDetectiveAuto() ) );
-/*?*/               break;
-/*N*/           case SID_PSZ_FUNCTION:
-/*N*/               rSet.Put( SfxUInt16Item( nWhich, GetAppOptions().GetStatusFunc() ) );
-/*N*/               break;
-/*?*/           case SID_ATTR_METRIC:
-/*?*/               rSet.Put( SfxUInt16Item( nWhich, GetAppOptions().GetAppMetric() ) );
-/*?*/               break;
-/*N*/           case SID_AUTOSPELL_CHECK:
-/*N*/               {
-/*N*/                   BOOL bAuto;
-/*N*/                   ScDocShell* pDocSh = PTR_CAST(ScDocShell, SfxObjectShell::Current());
-/*N*/                   if ( pDocSh )
-/*?*/                       bAuto = pDocSh->GetDocument()->GetDocOptions().IsAutoSpell();
-/*N*/                   else
-/*N*/                   {
-/*N*/                       USHORT nDummyLang, nDummyCjk, nDummyCtl;
-/*N*/                       BOOL bDummy;
-/*N*/                       GetSpellSettings( nDummyLang, nDummyCjk, nDummyCtl, bAuto, bDummy );
-/*N*/                   }
-/*N*/                   rSet.Put( SfxBoolItem( nWhich, bAuto ) );
-/*N*/               }
-/*N*/               break;
-/*?*/           case SID_AUTOSPELL_MARKOFF:
-/*?*/               {
-/*?*/                   BOOL bHide;
-/*?*/                   ScTabViewShell* pViewSh = PTR_CAST(ScTabViewShell, SfxViewShell::Current());
-/*?*/                   ScDocShell* pDocSh = PTR_CAST(ScDocShell, SfxObjectShell::Current());
-/*?*/                   if ( pViewSh )
-/*?*/                       bHide = pViewSh->GetViewData()->GetOptions().IsHideAutoSpell();
-/*?*/                   else if ( pDocSh )
-/*?*/                       bHide = pDocSh->GetDocument()->GetViewOptions().IsHideAutoSpell();
-/*?*/                   else
-/*?*/                   {
-/*?*/                       USHORT nDummyLang, nDummyCjk, nDummyCtl;
-/*?*/                       BOOL bDummy;
-/*?*/                       GetSpellSettings( nDummyLang, nDummyCjk, nDummyCtl, bDummy, bHide );
-/*?*/                   }
-/*?*/                   rSet.Put( SfxBoolItem( nWhich, bHide ) );
-/*?*/               }
-/*?*/               break;
-/*?*/           case SID_ATTR_LANGUAGE:
-/*?*/           case ATTR_CJK_FONT_LANGUAGE:        // WID for SID_ATTR_CHAR_CJK_LANGUAGE
-/*?*/           case ATTR_CTL_FONT_LANGUAGE:        // WID for SID_ATTR_CHAR_CTL_LANGUAGE
-/*?*/               {
-/*?*/                   ScDocShell* pDocSh = PTR_CAST(ScDocShell, SfxObjectShell::Current());
-/*?*/                   ScDocument* pDoc = pDocSh ? pDocSh->GetDocument() : NULL;
-/*?*/                   if ( pDoc )
-/*?*/                   {
-/*?*/                       LanguageType eLatin, eCjk, eCtl;
-/*?*/                       pDoc->GetLanguage( eLatin, eCjk, eCtl );
-/*?*/                       LanguageType eLang = ( nWhich == ATTR_CJK_FONT_LANGUAGE ) ? eCjk :
-/*?*/                                           ( ( nWhich == ATTR_CTL_FONT_LANGUAGE ) ? eCtl : eLatin );
-/*?*/                       rSet.Put( SvxLanguageItem( eLang, nWhich ) );
-/*?*/                   }
-/*?*/               }
-/*?*/               break;
-/*?*/
-/*N*/       }
-/*N*/       nWhich = aIter.NextWhich();
-/*N*/   }
-/*N*/ }
-
 //------------------------------------------------------------------
 
 /*N*/ void ScModule::ResetDragObject()
@@ -482,16 +326,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 
 /*N*/ void ScModule::RecentFunctionsChanged()
 /*N*/ {
-/*N*/   //  update function list window
-/*N*/   USHORT nFuncListID = ScFunctionChildWindow::GetChildWindowId();
-/*N*/
-/*N*/   //! notify all views
-/*N*/   SfxViewFrame* pViewFrm = SfxViewFrame::Current();
-/*N*/   if ( pViewFrm && pViewFrm->HasChildWindow(nFuncListID) )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScFunctionChildWindow* pWnd =(ScFunctionChildWindow*)pViewFrm->GetChildWindow( nFuncListID );
-/*?*/
-/*N*/   }
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScModule::SetAppOptions( const ScAppOptions& rOpt )
@@ -594,71 +429,16 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 //
 //------------------------------------------------------------------
 
-/*N*/ ScInputHandler* ScModule::GetInputHdl( ScTabViewShell* pViewSh, BOOL bUseRef )
+
+/*N*/ void ScModule::ViewShellGone( ScTabViewShell* )
 /*N*/ {
-/*N*/   if ( pRefInputHandler && bUseRef )
-/*N*/       return pRefInputHandler;
-/*N*/
-/*N*/   ScInputHandler* pHdl = NULL;
-/*N*/   if ( !pViewSh )
-/*N*/       pViewSh = PTR_CAST( ScTabViewShell, SfxViewShell::Current() );
-/*N*/   if ( pViewSh )
-/*N*/       pHdl = pViewSh->GetInputHandler();      // Viewshell hat jetzt immer einen
-/*N*/
-/*N*/   //  #57989# wenn keine ViewShell uebergeben oder aktiv, kann NULL herauskommen
-/*N*/   DBG_ASSERT( pHdl || !pViewSh, "GetInputHdl: kein InputHandler gefunden" );
-/*N*/   return pHdl;
 /*N*/ }
 
-/*N*/ void ScModule::InputEnterHandler( BYTE nBlockMode )
-/*N*/ {
-/*N*/   if ( !SFX_APP()->IsDowning() )                                  // nicht beim Programmende
-/*N*/   {
-/*N*/       ScInputHandler* pHdl = GetInputHdl();
-/*N*/       if (pHdl)
-/*?*/           pHdl->EnterHandler( nBlockMode );
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ScModule::ViewShellGone( ScTabViewShell* pViewSh )
-/*N*/ {
-/*N*/   ScInputHandler* pHdl = GetInputHdl();
-/*N*/   if (pHdl)
-/*?*/       pHdl->ViewShellGone( pViewSh );
-/*N*/
-/*N*/   //  Team dialog is opened with the window from a view as parent
-/*N*/   //  -> close it if any view is closed
-/*N*/   if (pTeamDlg)
-/*?*/       pTeamDlg->Close();          // resets variable pTeamDlg
-/*N*/ }
-
-
-/*N*/ ScInputHandler* ScModule::GetRefInputHdl()
-/*N*/ {
-/*N*/   return pRefInputHandler;
-/*N*/ }
 
 /*N*/ BOOL ScModule::IsFormulaMode()
 /*N*/ {
-/*N*/   //! move reference dialog handling to view
-/*N*/   //! (only keep function autopilot here for references to other documents)
-/*N*/
 /*N*/   BOOL bIsFormula = FALSE;
-/*N*/
-/*N*/   if ( nCurRefDlgId )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxChildWindow* pChildWnd = lcl_GetChildWinFromAnyView( nCurRefDlgId );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       ScInputHandler* pHdl = GetInputHdl();
-/*N*/       if ( pHdl )
-/*?*/           bIsFormula = pHdl->IsFormulaMode();
-/*N*/   }
-/*N*/
-/*N*/   if (bIsInEditCommand)
-/*N*/       bIsFormula = TRUE;
-/*N*/
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bIsFormula;
 /*N*/ }
 
