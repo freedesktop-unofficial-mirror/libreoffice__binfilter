@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlsheet.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:03:35 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:57:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,8 +43,11 @@
 #include <bf_svx/eeitem.hxx>
 #endif
 
-
-
+#include <svtools/itemset.hxx>
+#include <svtools/smplhint.hxx>
+#include <bf_svx/xdef.hxx>
+#include <bf_svx/svddef.hxx>
+#include <bf_svx/svdoattr.hxx>
 #include "stlsheet.hxx"
 #include "sdresid.hxx"
 #include "sdpage.hxx"
@@ -52,14 +55,8 @@
 #include "stlpool.hxx"
 #include "glob.hrc"
 #include "app.hrc"
+#include "glob.hxx"
 
-#ifndef SVX_LIGHT
-#ifndef MAC
-#include "../ui/inc/drawview.hxx"
-#include "../ui/inc/drviewsh.hxx"
-#else
-#endif
-#endif // !SVX_LIGHT
 namespace binfilter {
 
 /*N*/ TYPEINIT1(SdStyleSheet, SfxStyleSheet);
@@ -287,27 +284,6 @@ namespace binfilter {
 /*N*/   String aSep( RTL_CONSTASCII_USTRINGPARAM( SD_LT_SEPARATOR ));
 /*N*/   SdStyleSheet* pRealStyle = NULL;
 /*N*/   SdDrawDocument* pDoc = ((SdStyleSheetPool&) rPool).GetDoc();
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   SfxViewShell* pViewShell = SfxViewShell::Current();
-/*N*/
-/*N*/   if (pViewShell && pViewShell->ISA(SdViewShell) &&
-/*N*/       ((SdViewShell*) pViewShell)->GetDoc() == pDoc)
-/*N*/   {
-/*?*/       SdPage* pPage = ((SdDrawViewShell*) pViewShell)->GetActualPage();
-        DBG_ASSERT(pPage, "aktuelle Seite nicht gefunden");
-        aRealStyle = pPage->GetLayoutName();
-        // hinter dem Separator abschneiden
-        aRealStyle.Erase(aRealStyle.Search(aSep) + aSep.Len());
-    }
-/*N*/ #else
-/*N*/   SdrPage* pPage = pDoc->GetSdPage(0, PK_STANDARD);
-/*N*/   if( pPage )
-/*N*/   {
-/*N*/       aRealStyle = pPage->GetLayoutName();
-/*N*/       aRealStyle.Erase(aRealStyle.Search(aSep) + aSep.Len());
-/*N*/   }
-/*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/   if (aRealStyle.Len() == 0)
 /*N*/   {
