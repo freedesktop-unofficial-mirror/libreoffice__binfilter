@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewopt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:09:49 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:07:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,9 +41,6 @@
 #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _MySVXACORR_HXX //autogen
-#include <bf_svx/svxacorr.hxx>
 #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
@@ -307,12 +304,6 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/   {
 /*N*/       nPixelTwips = (USHORT)pWin->PixelToLogic( Size(1,1) ).Height();
 /*N*/   }
-/*N*/ }
-
-/*N*/ BOOL SwViewOption::IsAutoCompleteWords() const
-/*N*/ {
-/*N*/   const SvxSwAutoFmtFlags& rFlags = OFF_APP()->GetAutoCorrect()->GetSwFlags();
-/*N*/   return /*rFlags.bAutoCompleteWords &&*/ rFlags.bAutoCmpltCollectWords;
 /*N*/ }
 
 /*************************************************************************/
