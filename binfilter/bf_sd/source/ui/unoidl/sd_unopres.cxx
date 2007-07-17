@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopres.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:38:00 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:08:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,27 +33,22 @@
  *
  ************************************************************************/
 
-
-
-
-#include <bf_sfx2/dispatch.hxx>
-
 #include <bf_svx/dialogs.hrc>              // fuer SID_REHEARSE_TIMINGS
 #include <bf_svx/unoprov.hxx>
+#include <vcl/svapp.hxx>
 
 #include "unopres.hxx"
 #include "unocpres.hxx"
 #include "app.hrc"                      // SID_LIVE_PRESENTATION
-#include "viewshel.hxx"
-#ifndef SVX_LIGHT
 #include "docshell.hxx"
-#endif
-#include "fuslshow.hxx"
 #include "sdattr.hxx"
 #include "cusshow.hxx"
 #include "unoprnms.hxx"
 #include "unohelp.hxx"
 #include "unopage.hxx"
+
+#include <vos/mutex.hxx>
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -255,26 +250,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case SID_LIVE_PRESENTATION:
     {
-#ifndef SVX_LIGHT
-        SdDrawDocShell* pDocSh = mrModel.GetDocShell();
-        SdViewShell* pViewSh = pDocSh?pDocSh->GetViewShell():NULL;
-        FuSlideShow* pFuSlideShow = pViewSh?pViewSh->GetSlideShow():NULL;
-
-        if(pFuSlideShow != NULL)
-        {
-            sal_Bool bVal;
-
-            if(! sd::any2bool( aValue, bVal ) )
-                throw lang::IllegalArgumentException();
-
-            if(pFuSlideShow->IsLivePresentation() != bVal)
-            {
-                ( pViewSh ? pViewSh->GetViewFrame() : SfxViewFrame::Current() )->GetDispatcher()->Execute(
-                    SID_LIVE_PRESENTATION, SFX_CALLMODE_SYNCHRON | SFX_CALLMODE_RECORD );
-                bValuesChanged = sal_True;
-            }
-        }
-#endif
+        DBG_ERROR("Strip!");
         break;
     }
     case ATTR_PRESENT_MANUEL:
@@ -424,16 +400,6 @@ uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyNam
         break;
     case SID_LIVE_PRESENTATION:
     {
-#ifndef SVX_LIGHT
-        SdDrawDocShell* pDocSh = mrModel.GetDocShell();
-
-        SdViewShell* pViewSh = pDocSh?pDocSh->GetViewShell():NULL;
-        if(pViewSh != NULL)
-        {
-            FuSlideShow* pFuSlideShow = pViewSh->GetSlideShow();
-            sd::bool2any( pFuSlideShow && pFuSlideShow->IsLivePresentation(), any );
-        }
-#endif
         break;
     }
     case ATTR_PRESENT_MANUEL:
@@ -487,57 +453,21 @@ void SAL_CALL SdXPresentation::start(  )
     throw(uno::RuntimeException)
 {
     OGuard aGuard( Application::GetSolarMutex() );
-
-#ifndef SVX_LIGHT
-    SdDrawDocShell* pDocSh = mrModel.GetDocShell();
-    SdViewShell* pViewSh = pDocSh?pDocSh->GetViewShell():NULL;
-    FuSlideShow* pFuSlideShow = pViewSh?pViewSh->GetSlideShow():NULL;
-
-    // nur starten wenn die Presentation noch nicht laeuft
-    if(pFuSlideShow == NULL)
-    {
-        ( pViewSh ? pViewSh->GetViewFrame() : SfxViewFrame::Current() )->GetDispatcher()->Execute(
-            SID_PRESENTATION, SFX_CALLMODE_SYNCHRON | SFX_CALLMODE_RECORD );
-    }
-#endif
-
+    DBG_ERROR("Strip!");
 }
 
 void SAL_CALL SdXPresentation::end(  )
     throw(uno::RuntimeException)
 {
     OGuard aGuard( Application::GetSolarMutex() );
-
-#ifndef SVX_LIGHT
-    SdDrawDocShell* pDocSh = mrModel.GetDocShell();
-    SdViewShell* pViewSh = pDocSh?pDocSh->GetViewShell():NULL;
-    FuSlideShow* pFuSlideShow = pViewSh?pViewSh->GetSlideShow():NULL;
-
-    if(pFuSlideShow)
-    {
-        // Live modus verlassen!!
-        if(pFuSlideShow->IsLivePresentation())
-        {
-            ( pViewSh ? pViewSh->GetViewFrame() : SfxViewFrame::Current() )->GetDispatcher()->Execute(
-                SID_LIVE_PRESENTATION, SFX_CALLMODE_SYNCHRON | SFX_CALLMODE_RECORD );
-        }
-        pFuSlideShow->Terminate();
-    }
-#endif
+    DBG_ERROR("Strip!");
 }
 
 void SAL_CALL SdXPresentation::rehearseTimings(  )
     throw(uno::RuntimeException)
 {
     OGuard aGuard( Application::GetSolarMutex() );
-
-#ifndef SVX_LIGHT
-    SdDrawDocShell* pDocSh = mrModel.GetDocShell();
-    SdViewShell* pViewSh = pDocSh?pDocSh->GetViewShell():NULL;
-
-    ( pViewSh ? pViewSh->GetViewFrame() : SfxViewFrame::Current() )->GetDispatcher()->Execute(
-        SID_REHEARSE_TIMINGS, SFX_CALLMODE_SYNCHRON | SFX_CALLMODE_RECORD );
-#endif
+    DBG_ERROR("Strip!");
 }
 
 
