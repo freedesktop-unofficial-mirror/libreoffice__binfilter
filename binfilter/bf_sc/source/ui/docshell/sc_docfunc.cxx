@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docfunc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:46:55 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:19:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,10 +42,10 @@
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
+#include <bf_sfx2/app.hxx>
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/svdundo.hxx>
-#include <bf_sfx2/bindings.hxx>
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
 #include <svtools/zforlist.hxx>
@@ -76,17 +76,16 @@
 #include "scresid.hxx"
 #include "stlpool.hxx"
 #include "tablink.hxx"
-#include "tabvwsh.hxx"
 #include "uiitems.hxx"
-#include "undoblk.hxx"
 #include "undocell.hxx"
 #include "undodraw.hxx"
 #include "undotab.hxx"
 #include "sizedev.hxx"
 #include "scmod.hxx"
-#include "inputhdl.hxx"
 #include "editable.hxx"
 namespace binfilter {
+
+#define TABLEID_DOC                0xFFFF
 
 using namespace ::com::sun::star;
 
@@ -94,13 +93,6 @@ using namespace ::com::sun::star;
 
 //========================================================================
 
-/*N*/ IMPL_LINK( ScDocFunc, NotifyDrawUndo, SfxUndoAction*, pUndoAction )
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction( new ScUndoDraw( pUndoAction, &rDocShell ) );
-/*N*/   return 0;
-/*N*/ }
-
-//------------------------------------------------------------------------
 
 //  Zeile ueber dem Range painten (fuer Linien nach AdjustRowHeight)
 
@@ -152,33 +144,18 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   rDocShell.MakeDrawLayer();
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   USHORT nCol = rPos.Col();
 /*N*/   USHORT nRow = rPos.Row();
 /*N*/   USHORT nTab = rPos.Tab();
 /*N*/
-/*N*/   if (bUndo)
-/*N*/       pModel->BeginCalcUndo();
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).ShowPred( nCol, nRow );
-/*N*/   SdrUndoGroup* pUndo = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndo = pModel->GetCalcUndo();
 /*N*/   if (bDone)
 /*N*/   {
 /*N*/       ScDetOpData aOperation( ScAddress(nCol,nRow,nTab), SCDETOP_ADDPRED );
 /*N*/       pDoc->AddDetectiveOperation( aOperation );
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/       aModificator.SetDocumentModified();
-/*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/           pBindings->Invalidate( SID_DETECTIVE_REFRESH );
 /*N*/   }
-/*N*/   else
-/*N*/       delete pUndo;
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
@@ -187,7 +164,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   if (!pModel)
 /*N*/       return FALSE;
@@ -198,27 +174,13 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nRow = rPos.Row();
 /*N*/   USHORT nTab = rPos.Tab();
 /*N*/
-/*N*/   if (bUndo)
-/*N*/       pModel->BeginCalcUndo();
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).DeletePred( nCol, nRow );
-/*N*/   SdrUndoGroup* pUndo = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndo = pModel->GetCalcUndo();
 /*N*/   if (bDone)
 /*N*/   {
 /*N*/       ScDetOpData aOperation( ScAddress(nCol,nRow,nTab), SCDETOP_DELPRED );
 /*N*/       pDoc->AddDetectiveOperation( aOperation );
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/       aModificator.SetDocumentModified();
-/*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/           pBindings->Invalidate( SID_DETECTIVE_REFRESH );
 /*N*/   }
-/*N*/   else
-/*N*/       delete pUndo;
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
@@ -232,7 +194,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   if (!pModel)
 /*N*/       return FALSE;
@@ -243,27 +204,13 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nRow = rPos.Row();
 /*N*/   USHORT nTab = rPos.Tab();
 /*N*/
-/*N*/   if (bUndo)
-/*N*/       pModel->BeginCalcUndo();
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).DeleteSucc( nCol, nRow );
-/*N*/   SdrUndoGroup* pUndo = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndo = pModel->GetCalcUndo();
 /*N*/   if (bDone)
 /*N*/   {
 /*N*/       ScDetOpData aOperation( ScAddress(nCol,nRow,nTab), SCDETOP_DELSUCC );
 /*N*/       pDoc->AddDetectiveOperation( aOperation );
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/       aModificator.SetDocumentModified();
-/*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/           pBindings->Invalidate( SID_DETECTIVE_REFRESH );
 /*N*/   }
-/*N*/   else
-/*N*/       delete pUndo;
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
@@ -275,33 +222,18 @@ using namespace ::com::sun::star;
 /*N*/   rDocShell.MakeDrawLayer();
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   USHORT nCol = rPos.Col();
 /*N*/   USHORT nRow = rPos.Row();
 /*N*/   USHORT nTab = rPos.Tab();
 /*N*/
-/*N*/   if (bUndo)
-/*N*/       pModel->BeginCalcUndo();
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).ShowError( nCol, nRow );
-/*N*/   SdrUndoGroup* pUndo = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndo = pModel->GetCalcUndo();
 /*N*/   if (bDone)
 /*N*/   {
 /*N*/       ScDetOpData aOperation( ScAddress(nCol,nRow,nTab), SCDETOP_ADDERROR );
 /*N*/       pDoc->AddDetectiveOperation( aOperation );
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/       aModificator.SetDocumentModified();
-/*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/           pBindings->Invalidate( SID_DETECTIVE_REFRESH );
 /*N*/   }
-/*N*/   else
-/*N*/       delete pUndo;
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
@@ -313,27 +245,17 @@ using namespace ::com::sun::star;
 /*N*/   rDocShell.MakeDrawLayer();
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/
 /*N*/   Window* pWaitWin = rDocShell.GetDialogParent();
 /*N*/   if (pWaitWin)
 /*N*/       pWaitWin->EnterWait();
-/*N*/   if (bUndo)
-/*N*/       pModel->BeginCalcUndo();
 /*N*/   BOOL bOverflow;
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).MarkInvalid( bOverflow );
-/*N*/   SdrUndoGroup* pUndo = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndo = pModel->GetCalcUndo();
 /*N*/   if (pWaitWin)
 /*N*/       pWaitWin->LeaveWait();
 /*N*/   if (bDone)
 /*N*/   {
-/*N*/       if (pUndo && bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndo->SetComment( ScGlobal::GetRscString( STR_UNDO_DETINVALID ) );
-/*N*/       }
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       if ( bOverflow )
 /*N*/       {
@@ -341,8 +263,6 @@ using namespace ::com::sun::star;
 /*N*/                   ScGlobal::GetRscString( STR_DETINVALID_OVERFLOW ) ).Execute();
 /*N*/       }
 /*N*/   }
-/*N*/   else
-/*N*/       delete pUndo;
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
@@ -351,39 +271,21 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   if (!pModel)
 /*N*/       return FALSE;
 /*N*/
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
-/*N*/   if (bUndo)
-/*N*/       pModel->BeginCalcUndo();
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).DeleteAll( SC_DET_DETECTIVE );
-/*N*/   SdrUndoGroup* pUndo = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndo = pModel->GetCalcUndo();
 /*N*/   if (bDone)
 /*N*/   {
 /*N*/       ScDetOpList* pOldList = pDoc->GetDetOpList();
-/*N*/       ScDetOpList* pUndoList = NULL;
-/*N*/       if (bUndo)
-/*N*/           pUndoList = pOldList ? new ScDetOpList(*pOldList) : NULL;
 /*N*/
 /*N*/       pDoc->ClearDetectiveOperations();
 /*N*/
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/       aModificator.SetDocumentModified();
-/*N*/       SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/           pBindings->Invalidate( SID_DETECTIVE_REFRESH );
 /*N*/   }
-/*N*/   else
-/*N*/       delete pUndo;
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
@@ -393,14 +295,11 @@ using namespace ::com::sun::star;
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScDetOpList* pList = pDoc->GetDetOpList();
 /*N*/   if ( pList && pList->Count() )
 /*N*/   {
 /*N*/       rDocShell.MakeDrawLayer();
 /*N*/       ScDrawLayer* pModel = pDoc->GetDrawLayer();
-/*N*/       if (bUndo)
-/*N*/           pModel->BeginCalcUndo();
 /*N*/
 /*N*/       //  Loeschen auf allen Tabellen
 /*N*/
@@ -443,18 +342,6 @@ using namespace ::com::sun::star;
 /*N*/           }
 /*N*/       }
 /*N*/
-/*N*/       if (bUndo)
-/*N*/       {
-/*N*/           SdrUndoGroup* pUndo = pModel->GetCalcUndo();
-/*N*/           if (pUndo)
-/*N*/           {
-/*N*/               pUndo->SetComment( ScGlobal::GetRscString( STR_UNDO_DETREFRESH ) );
-/*N*/               //  wenn automatisch, an letzte Aktion anhaengen
-/*N*/               rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/                                               new ScUndoDraw( pUndo, &rDocShell ),
-/*N*/                                               bAutomatic );
-/*N*/           }
-/*N*/       }
 /*N*/       rDocShell.SetDrawModified();
 /*N*/       bDone = TRUE;
 /*N*/   }
@@ -476,7 +363,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, rMark );
@@ -534,10 +420,6 @@ using namespace ::com::sun::star;
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (bRecord)
 /*N*/   }
 /*N*/
-/*N*/   if ( bRecord )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/   }
 /*N*/
 /*N*/ //!   HideAllCursors();   // falls Zusammenfassung aufgehoben wird
 /*N*/   if (bSimple)
@@ -583,7 +465,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
 /*N*/   ScEditableTester aTester( pDoc, rPos.Tab(), rPos.Col(),rPos.Row(), rPos.Col(),rPos.Row() );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
@@ -598,33 +479,8 @@ using namespace ::com::sun::star;
 /*N*/   ULONG* pOldFormats = NULL;
 /*N*/   ScBaseCell* pDocCell = pDoc->GetCell( rPos );
 /*N*/   BOOL bEditDeleted = (pDocCell && pDocCell->GetCellType() == CELLTYPE_EDIT);
-/*N*/   if (bUndo)
-/*N*/   {
-/*N*/       pTabs = new USHORT[1];
-/*N*/       pTabs[0] = rPos.Tab();
-/*N*/       ppOldCells  = new ScBaseCell*[1];
-/*N*/       ppOldCells[0] = pDocCell ? pDocCell->Clone(pDoc) : NULL;
-/*N*/
-/*N*/       pHasFormat = new BOOL[1];
-/*N*/       pOldFormats = new ULONG[1];
-/*N*/       const SfxPoolItem* pItem;
-/*N*/       const ScPatternAttr* pPattern = pDoc->GetPattern( rPos.Col(),rPos.Row(),rPos.Tab() );
-/*N*/       if ( SFX_ITEM_SET == pPattern->GetItemSet().GetItemState(
-/*N*/                               ATTR_VALUE_FORMAT,FALSE,&pItem) )
-/*N*/       {
-/*N*/           pHasFormat[0] = TRUE;
-/*N*/           pOldFormats[0] = ((const SfxUInt32Item*)pItem)->GetValue();
-/*N*/       }
-/*N*/       else
-/*N*/           pHasFormat[0] = FALSE;
-/*N*/   }
 /*N*/
 /*N*/   pDoc->SetString( rPos.Col(), rPos.Row(), rPos.Tab(), rText );
-/*N*/
-/*N*/   if (bUndo)
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   //  wegen ChangeTracking darf UndoAction erst nach SetString angelegt werden
-/*N*/   }
 /*N*/
 /*N*/   if ( bEditDeleted || pDoc->HasAttrib( ScRange(rPos), HASATTR_NEEDHEIGHT ) )
 /*N*/       AdjustRowHeight( ScRange(rPos) );
@@ -644,7 +500,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/     ScDocShellModificator aModificator( rDocShell );
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/     BOOL bXMLLoading(pDoc->IsImportingXML());
 /*N*/
 /*N*/     // #i925#; it is not neccessary to test whether the cell is editable on loading a XML document
@@ -665,25 +520,9 @@ using namespace ::com::sun::star;
 /*N*/   BOOL bHeight;
 /*N*/   ScBaseCell* pUndoCell = NULL;
 /*N*/   ScBaseCell* pRedoCell = NULL;
-/*N*/   if (bUndo)
-/*N*/   {
-/*N*/       bEditCell = ( pNewCell->GetCellType() == CELLTYPE_EDIT );
-/*N*/       ScBaseCell* pDocCell = pDoc->GetCell( rPos );
-/*N*/       bEditDeleted = (pDocCell && pDocCell->GetCellType() == CELLTYPE_EDIT);
-/*N*/       bHeight = ( bEditDeleted || bEditCell ||
-/*N*/                   pDoc->HasAttrib( ScRange(rPos), HASATTR_NEEDHEIGHT ) );
-/*N*/       pUndoCell = pDocCell ? pDocCell->Clone(pDoc) : NULL;
-/*N*/       pRedoCell = pNewCell ? pNewCell->Clone(pDoc) : NULL;
-/*N*/   }
-/*N*/
 /*N*/   pDoc->PutCell( rPos, pNewCell );
 /*N*/
 /*N*/   //  wegen ChangeTracking darf UndoAction erst nach PutCell angelegt werden
-/*N*/   if (bUndo)
-/*N*/   {
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/               new ScUndoPutCell( &rDocShell, rPos, pUndoCell, pRedoCell, bHeight ) );
-/*N*/   }
 /*N*/
 /*N*/   if (bHeight)
 /*N*/       AdjustRowHeight( ScRange(rPos) );
@@ -703,21 +542,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void ScDocFunc::NotifyInputHandler( const ScAddress& rPos )
 /*N*/ {
-/*N*/     ScTabViewShell* pViewSh = ScTabViewShell::GetActiveViewShell();
-/*N*/     if ( pViewSh && pViewSh->GetViewData()->GetDocShell() == &rDocShell )
-/*N*/     {
-/*?*/         ScInputHandler* pInputHdl = SC_MOD()->GetInputHdl();
-/*?*/         if ( pInputHdl )
-/*?*/         {
-/*?*/             sal_Bool bIsEditMode(pInputHdl->IsEditMode());
-/*?*/
-/*?*/             // set modified if in editmode, because so the string is not set in the InputWindow like in the cell
-/*?*/             // (the cell shows the same like the InputWindow)
-/*?*/             if (bIsEditMode)
-/*?*/                 pInputHdl->SetModified();
-/*?*/             pViewSh->UpdateInputHandler(FALSE, !bIsEditMode);
-/*?*/         }
-/*N*/     }
 /*N*/ }
 
 /*N*/       struct ScMyRememberItem
@@ -944,7 +768,6 @@ using namespace ::com::sun::star;
 /*N*/                                   BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   if ( bRecord && !pDoc->IsUndoEnabled() )
 /*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   // nur wegen Matrix nicht editierbar? Attribute trotzdem ok
@@ -968,19 +791,6 @@ using namespace ::com::sun::star;
 /*N*/   else
 /*N*/       rMark.GetMarkArea( aMultiRange );
 /*N*/
-/*N*/   if ( bRecord )
-/*N*/   {
-/*N*/       ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/       pUndoDoc->InitUndo( pDoc, aMultiRange.aStart.Tab(), aMultiRange.aEnd.Tab() );
-/*N*/       pDoc->CopyToDocument( aMultiRange, IDF_ATTRIB, bMulti, pUndoDoc, &rMark );
-/*N*/
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/           new ScUndoSelectionAttr(
-/*N*/                   &rDocShell, rMark,
-/*N*/                   aMultiRange.aStart.Col(), aMultiRange.aStart.Row(), aMultiRange.aStart.Tab(),
-/*N*/                   aMultiRange.aEnd.Col(), aMultiRange.aEnd.Row(), aMultiRange.aEnd.Tab(),
-/*N*/                   pUndoDoc, bMulti, &rPattern ) );
-/*N*/   }
 /*N*/
 /*N*/   // While loading XML it is not neccessary to ask HasAttrib. It needs too much time.
 /*N*/   BOOL bPaintExt = pDoc->IsImportingXML() || pDoc->HasAttrib( aMultiRange, HASATTR_PAINTEXT );
@@ -1004,7 +814,6 @@ using namespace ::com::sun::star;
 /*N*/                                   BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   if ( bRecord && !pDoc->IsUndoEnabled() )
 /*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   // nur wegen Matrix nicht editierbar? Attribute trotzdem ok
@@ -1031,26 +840,6 @@ using namespace ::com::sun::star;
 /*N*/   else
 /*N*/       rMark.GetMarkArea( aMultiRange );
 /*N*/
-/*N*/   if ( bRecord )
-/*N*/   {
-/*N*/       ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/       USHORT nStartTab = aMultiRange.aStart.Tab();
-/*N*/       USHORT nTabCount = pDoc->GetTableCount();
-/*N*/       pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab );
-/*N*/       for (USHORT i=0; i<nTabCount; i++)
-/*N*/           if (i != nStartTab && rMark.GetTableSelect(i))
-/*?*/               pUndoDoc->AddUndoTab( i, i );
-/*N*/
-/*N*/       ScRange aCopyRange = aMultiRange;
-/*N*/       aCopyRange.aStart.SetTab(0);
-/*N*/       aCopyRange.aEnd.SetTab(nTabCount-1);
-/*N*/       pDoc->CopyToDocument( aCopyRange, IDF_ATTRIB, bMulti, pUndoDoc, &rMark );
-/*N*/
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/           new ScUndoSelectionStyle(
-/*N*/                   &rDocShell, rMark, aMultiRange, rStyleName, pUndoDoc ) );
-/*N*/
-/*N*/   }
 /*N*/
 /*N*/ //    BOOL bPaintExt = pDoc->HasAttrib( aMultiRange, HASATTR_PAINTEXT );
 /*N*/ //    pDoc->ApplySelectionPattern( rPattern, rMark );
@@ -1102,10 +891,7 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
-/*N*/   if (bRecord)
-/*N*/       pDoc->BeginDrawUndo();                          //  InsertTab erzeugt ein SdrUndoNewPage
 /*N*/
 /*N*/   USHORT nTabCount = pDoc->GetTableCount();
 /*N*/   BOOL bAppend = ( nTab >= nTabCount );
@@ -1114,9 +900,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if (pDoc->InsertTab( nTab, rName ))
 /*N*/   {
-/*N*/       if (bRecord)
-/*N*/           rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/                       new ScUndoInsertTab( &rDocShell, nTab, bAppend, rName));
 /*N*/       //  Views updaten:
 /*N*/       rDocShell.Broadcast( ScTablesHint( SC_TAB_INSERTED, nTab ) );
 /*N*/
@@ -1139,7 +922,6 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocFunc::SetTableVisible( USHORT nTab, BOOL bVisible, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
 /*N*/   if ( pDoc->IsVisible( nTab ) == bVisible )
 /*N*/       return TRUE;                                // nichts zu tun - ok
 /*N*/
@@ -1171,8 +953,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/
 /*N*/   pDoc->SetVisible( nTab, bVisible );
-/*N*/   if (bUndo)
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction( new ScUndoShowHideTab( &rDocShell, nTab, bVisible ) );
 /*N*/
 /*N*/   //  Views updaten:
 /*N*/   if (!bVisible)
@@ -1188,7 +968,6 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocFunc::RenameTable( USHORT nTab, const String& rName, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
 /*N*/   if ( !pDoc->IsDocEditable() )
 /*N*/   {
@@ -1204,11 +983,6 @@ using namespace ::com::sun::star;
 /*N*/   pDoc->GetName(nTab, sOldName);
 /*N*/   if (pDoc->RenameTab( nTab, rName ))
 /*N*/   {
-/*N*/       if (bRecord)
-/*N*/       {
-/*N*/           rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/                           new ScUndoRenameTab( &rDocShell, nTab, sOldName, rName));
-/*N*/       }
 /*N*/       rDocShell.PostPaintExtras();
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_TABLES_CHANGED ) );
@@ -1250,7 +1024,6 @@ using namespace ::com::sun::star;
 /*N*/       return TRUE;
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   if ( bRecord && !pDoc->IsUndoEnabled() )
 /*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   if ( !rDocShell.IsEditable() )
@@ -1273,30 +1046,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocument*     pUndoDoc = NULL;
 /*N*/   ScOutlineTable* pUndoTab = NULL;
 /*N*/   USHORT*         pUndoRanges = NULL;
-/*N*/
-/*N*/   if ( bRecord )
-/*N*/   {
-/*N*/       pDoc->BeginDrawUndo();                          // Drawing Updates
-/*N*/
-/*N*/       pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/       if (bWidth)
-/*N*/       {
-/*N*/           pUndoDoc->InitUndo( pDoc, nTab, nTab, TRUE, FALSE );
-/*N*/           pDoc->CopyToDocument( nStart, 0, nTab, nEnd, MAXROW, nTab, IDF_NONE, FALSE, pUndoDoc );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
-/*N*/           pDoc->CopyToDocument( 0, nStart, nTab, MAXCOL, nEnd, nTab, IDF_NONE, FALSE, pUndoDoc );
-/*N*/       }
-/*N*/
-/*N*/       pUndoRanges = new USHORT[ 2*nRangeCnt ];
-/*N*/       memmove( pUndoRanges, pRanges, 2*nRangeCnt*sizeof(USHORT) );
-/*N*/
-/*N*/       ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
-/*N*/       if (pTable)
-/*N*/           pUndoTab = new ScOutlineTable( *pTable );
-/*N*/   }
 /*N*/
 /*N*/   BOOL bShow = nSizeTwips > 0 || eMode != SC_SIZE_DIRECT;
 /*N*/   BOOL bOutline = FALSE;
@@ -1386,17 +1135,6 @@ using namespace ::com::sun::star;
 /*N*/   if (!bOutline)
 /*N*/       DELETEZ(pUndoTab);
 /*N*/
-/*N*/   if (bRecord)
-/*N*/   {
-/*N*/       ScMarkData aMark;
-/*N*/       aMark.SelectOneTable( nTab );
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/           new ScUndoWidthOrHeight( &rDocShell, aMark,
-/*N*/                                    nStart, nTab, nEnd, nTab,
-/*N*/                                    pUndoDoc, nRangeCnt, pUndoRanges,
-/*N*/                                    pUndoTab, eMode, nSizeTwips, bWidth ) );
-/*N*/   }
-/*N*/
 /*N*/   pDoc->UpdatePageBreaks( nTab );
 /*N*/
 /*N*/   rDocShell.PostPaint(0,0,nTab,MAXCOL,MAXROW,nTab,PAINT_ALL);
@@ -1418,19 +1156,14 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
 /*N*/   USHORT nTab = rPos.Tab();
-/*N*/   SfxBindings* pBindings = rDocShell.GetViewBindings();
 /*N*/
 /*N*/   USHORT nPos = bColumn ? rPos.Col() : rPos.Row();
 /*N*/   BYTE nFlags = bColumn ? pDoc->GetColFlags( nPos, nTab ) : pDoc->GetRowFlags( nPos, nTab );
 /*N*/   if ((nFlags & CR_MANUALBREAK)==0)
 /*N*/       return FALSE;                           // kein Umbruch gesetzt
 /*N*/
-/*?*/   if (bRecord)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*?*/
 /*?*/   nFlags &= ~CR_MANUALBREAK;
 /*?*/   if (bColumn)
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pDoc->SetColFlags( nPos, nTab, nFlags );
@@ -1441,23 +1174,11 @@ using namespace ::com::sun::star;
 /*?*/   if (bColumn)
 /*?*/   {
 /*?*/       rDocShell.PostPaint( nPos-1, 0, nTab, MAXCOL, MAXROW, nTab, PAINT_GRID );
-/*?*/       if (pBindings)
-/*?*/       {
-/*?*/           pBindings->Invalidate( FID_INS_COLBRK );
-/*?*/           pBindings->Invalidate( FID_DEL_COLBRK );
-/*?*/       }
 /*?*/   }
 /*?*/   else
 /*?*/   {
 /*?*/       rDocShell.PostPaint( 0, nPos-1, nTab, MAXCOL, MAXROW, nTab, PAINT_GRID );
-/*?*/       if (pBindings)
-/*?*/       {
-/*?*/           pBindings->Invalidate( FID_INS_ROWBRK );
-/*?*/           pBindings->Invalidate( FID_DEL_ROWBRK );
-/*?*/       }
 /*?*/   }
-/*?*/   if (pBindings)
-/*?*/       pBindings->Invalidate( FID_DEL_MANUALBREAKS );
 /*?*/
 /*?*/   if (bSetModified)
 /*?*/       aModificator.SetDocumentModified();
@@ -1494,18 +1215,12 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
 /*N*/   BOOL bOk = lcl_ValidPassword( pDoc, nTab, rPassword);
 /*N*/   if ( bOk )
 /*N*/   {
 /*N*/       uno::Sequence<sal_Int8> aPass;
 /*N*/       if (rPassword.Len())
 /*N*/           SvPasswordHelper::GetHashPassword(aPass, rPassword);
-/*N*/
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/
 /*N*/       if ( nTab == TABLEID_DOC )
 /*N*/           pDoc->SetDocProtection( TRUE, aPass );
@@ -1533,7 +1248,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
 /*N*/   uno::Sequence<sal_Int8> aOldPassword;
 /*N*/   uno::Sequence<sal_Int8> aPass;
 /*N*/   BOOL bOk = lcl_ValidPassword( pDoc, nTab, rPassword, &aOldPassword );
@@ -1544,11 +1258,6 @@ using namespace ::com::sun::star;
 /*N*/           pDoc->SetDocProtection( FALSE, aEmptyPass );
 /*N*/       else
 /*N*/           pDoc->SetTabProtection( nTab, FALSE, aEmptyPass );
-/*N*/
-/*N*/       if (bUndo)
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
 /*N*/
 /*N*/       rDocShell.PostPaintGridAll();
 /*N*/       aModificator.SetDocumentModified();
@@ -1571,7 +1280,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/   ScEditableTester aTester( pDoc, rMark );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
@@ -1590,18 +1298,10 @@ using namespace ::com::sun::star;
 /*N*/   aMultiMark.MarkToMulti();
 /*N*/   aMultiMark.GetMultiMarkArea( aMarkRange );
 /*N*/
-/*N*/ //    if (bRecord)
-/*N*/   if (bUndo)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartTab = aMarkRange.aStart.Tab();
-/*N*/   }
-/*N*/
 /*N*/   pDoc->ClearSelectionItems( pWhich, aMultiMark );
 /*N*/
 /*N*/   rDocShell.PostPaint( aMarkRange, PAINT_GRID, SC_PF_LINES | SC_PF_TESTMERGE );
 /*N*/   aModificator.SetDocumentModified();
-/*N*/
-/*N*/   //! Bindings-Invalidate etc.?
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
@@ -1611,7 +1311,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
 /*N*/   ScEditableTester aTester( pDoc, rMark );
 /*N*/   if (!aTester.IsEditable())
 /*N*/   {
@@ -1623,25 +1322,10 @@ using namespace ::com::sun::star;
 /*N*/   ScRange aMarkRange;
 /*N*/   rMark.GetMultiMarkArea( aMarkRange );
 /*N*/
-/*N*/ //    if (bRecord)
-/*N*/   if (bUndo)
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartTab = aMarkRange.aStart.Tab();
-/*N*/   }
-/*N*/
 /*N*/   pDoc->ChangeSelectionIndent( bIncrement, rMark );
 /*N*/
 /*N*/   rDocShell.PostPaint( aMarkRange, PAINT_GRID, SC_PF_LINES | SC_PF_TESTMERGE );
 /*N*/   aModificator.SetDocumentModified();
-/*N*/
-/*N*/   SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/   if (pBindings)
-/*N*/   {
-/*N*/       pBindings->Invalidate( SID_ALIGNLEFT );         // ChangeIndent setzt auf links
-/*N*/       pBindings->Invalidate( SID_ALIGNRIGHT );
-/*N*/       pBindings->Invalidate( SID_ALIGNBLOCK );
-/*N*/       pBindings->Invalidate( SID_ALIGNCENTERHOR );
-/*N*/   }
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
@@ -1660,7 +1344,6 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nEndRow = rRange.aEnd.Row();
 /*N*/   USHORT nEndTab = rRange.aEnd.Tab();
 /*N*/
-/*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
 /*N*/   ScMarkData aMark;
 /*N*/   if (pTabMark)
@@ -1681,27 +1364,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       USHORT nTabCount = pDoc->GetTableCount();
 /*N*/       ScDocument* pUndoDoc = NULL;
-/*N*/       if ( bRecord )
-/*N*/       {
-/*N*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/           pUndoDoc->InitUndo( pDoc, nStartTab, nStartTab, bSize, bSize );
-/*N*/           for (USHORT i=0; i<nTabCount; i++)
-/*N*/               if (i != nStartTab && aMark.GetTableSelect(i))
-/*N*/                   pUndoDoc->AddUndoTab( i, i, bSize, bSize );
-/*N*/
-/*N*/           ScRange aCopyRange = rRange;
-/*N*/           aCopyRange.aStart.SetTab(0);
-/*N*/           aCopyRange.aStart.SetTab(nTabCount-1);
-/*N*/           pDoc->CopyToDocument( aCopyRange, IDF_ATTRIB, FALSE, pUndoDoc, &aMark );
-/*N*/           if (bSize)
-/*N*/           {
-/*N*/               pDoc->CopyToDocument( nStartCol,0,0, nEndCol,MAXROW,nTabCount-1,
-/*N*/                                                           IDF_NONE, FALSE, pUndoDoc, &aMark );
-/*N*/               pDoc->CopyToDocument( 0,nStartRow,0, MAXCOL,nEndRow,nTabCount-1,
-/*N*/                                                           IDF_NONE, FALSE, pUndoDoc, &aMark );
-/*N*/           }
-/*N*/           pDoc->BeginDrawUndo();
-/*N*/       }
 /*N*/
 /*N*/       pDoc->AutoFormat( nStartCol, nStartRow, nEndCol, nEndRow, nFormatNo, aMark );
 /*N*/
@@ -1742,11 +1404,6 @@ using namespace ::com::sun::star;
 /*N*/               }
 /*N*/       }
 /*N*/
-/*N*/       if ( bRecord )      // Draw-Undo erst jetzt verfuegbar
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/       }
-/*N*/
 /*N*/       aModificator.SetDocumentModified();
 /*N*/   }
 /*N*/   else if (!bApi)
@@ -1771,8 +1428,6 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nEndRow = rRange.aEnd.Row();
 /*N*/   USHORT nEndTab = rRange.aEnd.Tab();
 /*N*/
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
-/*N*/
 /*N*/   ScMarkData aMark;
 /*N*/   if (pTabMark)
 /*N*/       aMark = *pTabMark;
@@ -1786,16 +1441,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( aTester.IsEditable() )
 /*N*/   {
 /*N*/       WaitObject aWait( rDocShell.GetDialogParent() );
-/*N*/
-/*N*/       ScDocument* pUndoDoc;
-/*N*/ //        if (bRecord)    // immer
-/*N*/       if (bUndo)
-/*N*/       {
-/*N*/           //! auch bei Undo selektierte Tabellen beruecksichtigen
-/*N*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/           pUndoDoc->InitUndo( pDoc, nStartTab, nEndTab );
-/*N*/           pDoc->CopyToDocument( rRange, IDF_ALL, FALSE, pUndoDoc );
-/*N*/       }
 /*N*/
 /*N*/       if ( pDoc->IsImportingXML() )
 /*N*/       {
@@ -1814,14 +1459,6 @@ using namespace ::com::sun::star;
 /*N*/         }
 /*N*/         else
 /*N*/           pDoc->InsertMatrixFormula(nStartCol,nStartRow,nEndCol,nEndRow,aMark,rString);
-/*N*/
-/*N*/ //        if (bRecord)    // immer
-/*N*/       if (bUndo)
-/*N*/       {
-/*N*/           //! auch bei Undo selektierte Tabellen beruecksichtigen
-/*N*/           rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/               new ScUndoEnterMatrix( &rDocShell, rRange, pUndoDoc, rString ) );
-/*N*/       }
 /*N*/
 /*N*/       //  Err522 beim Paint von DDE-Formeln werden jetzt beim Interpretieren abgefangen
 /*N*/       rDocShell.PostPaint( nStartCol,nStartRow,nStartTab,nEndCol,nEndRow,nEndTab, PAINT_GRID );
@@ -1886,7 +1523,6 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nEndRow = rRange.aEnd.Row();
 /*N*/   USHORT nTab = rRange.aStart.Tab();
 /*N*/
-/*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
@@ -1916,22 +1552,6 @@ using namespace ::com::sun::star;
 /*N*/           ( !pDoc->IsBlockEmpty( nTab, nStartCol,nStartRow+1, nStartCol,nEndRow ) ||
 /*N*/             !pDoc->IsBlockEmpty( nTab, nStartCol+1,nStartRow, nEndCol,nEndRow ) );
 /*N*/
-/*N*/   if (bRecord)
-/*N*/   {
-/*N*/       ScDocument* pUndoDoc = NULL;
-/*N*/       if (bNeedContents && bContents)
-/*N*/       {
-/*?*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*?*/           pUndoDoc->InitUndo( pDoc, nTab, nTab );
-/*?*/           pDoc->CopyToDocument( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab,
-/*?*/                                   IDF_ALL, FALSE, pUndoDoc );
-/*N*/       }
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/           new ScUndoMerge( &rDocShell,
-/*N*/                           nStartCol, nStartRow, nTab,
-/*N*/                           nEndCol, nEndRow, nTab, TRUE, pUndoDoc ) );
-/*N*/   }
-/*N*/
 /*N*/   if (bNeedContents && bContents)
 /*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->DoMergeContents( nTab, nStartCol,nStartRow, nEndCol,nEndRow );
 /*N*/   pDoc->DoMerge( nTab, nStartCol,nStartRow, nEndCol,nEndRow );
@@ -1942,13 +1562,6 @@ using namespace ::com::sun::star;
 /*N*/   if (bNeedContents && bContents)
 /*?*/       pDoc->SetDirty( rRange );
 /*N*/   aModificator.SetDocumentModified();
-/*N*/
-/*N*/   SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/   if (pBindings)
-/*N*/   {
-/*N*/       pBindings->Invalidate( FID_MERGE_ON );
-/*N*/       pBindings->Invalidate( FID_MERGE_OFF );
-/*N*/   }
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
@@ -1969,16 +1582,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo(pDoc->IsUndoEnabled());
-/*N*/
-/*N*/   if (bUndo)
-/*N*/   {
-/*N*/       ScRangeName* pOld = pDoc->GetRangeName();
-/*N*/       ScRangeName* pUndoRanges = new ScRangeName(*pOld);
-/*N*/       ScRangeName* pRedoRanges = new ScRangeName(rNewRanges);
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/           new ScUndoRangeNames( &rDocShell, pUndoRanges, pRedoRanges ) );
-/*N*/   }
 /*N*/
 /*N*/   pDoc->CompileNameFormula( TRUE );   // CreateFormulaString
 /*N*/   pDoc->SetRangeName( new ScRangeName( rNewRanges ) );
@@ -2154,7 +1757,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   const BOOL bRecord = pDoc->IsUndoEnabled();
 /*N*/   USHORT nTab = rStartPos.Tab();
 /*N*/   ScDocument* pUndoDoc = NULL;
 /*N*/
@@ -2179,16 +1781,6 @@ using namespace ::com::sun::star;
 /*N*/       ScEditableTester aTester( pDoc, nTab, nStartCol,nStartRow, nEndCol,nEndRow );
 /*N*/       if (aTester.IsEditable())
 /*N*/       {
-/*N*/           if (bRecord)
-/*N*/           {
-/*N*/               pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/               pUndoDoc->InitUndo( pDoc, nTab, nTab );
-/*N*/               pDoc->CopyToDocument( nStartCol,nStartRow,nTab, nEndCol,nEndRow,nTab,
-/*N*/                                       IDF_ALL, FALSE, pUndoDoc );
-/*N*/
-/*N*/               pDoc->BeginDrawUndo();      // wegen Hoehenanpassung
-/*N*/           }
-/*N*/
 /*N*/           ScRangeData** ppSortArray = new ScRangeData* [ nValidCount ];
 /*N*/           USHORT j = 0;
 /*N*/           for (i=0; i<nCount; i++)
@@ -2223,11 +1815,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/           delete [] ppSortArray;
 /*N*/
-/*N*/           if (bRecord)
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
-/*N*/           }
-/*N*/
 /*N*/           if (!AdjustRowHeight(ScRange(0,nStartRow,nTab,MAXCOL,nEndRow,nTab)))
 /*N*/               rDocShell.PostPaint( nStartCol,nStartRow,nTab, nEndCol,nEndRow,nTab, PAINT_GRID );
 /*N*/ //!           rDocShell.UpdateOle(GetViewData());
@@ -2253,7 +1840,6 @@ using namespace ::com::sun::star;
 /*N*/   //! auch fuer ScViewFunc::InsertAreaLink benutzen!
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/
 /*N*/   String aFilterName = rFilter;
 /*N*/   String aNewOptions = rOptions;
@@ -2270,20 +1856,10 @@ using namespace ::com::sun::star;
 /*N*/                                       aNewOptions, rSource, rDestRange, nRefresh );
 /*N*/   pLinkManager->InsertFileLink( *pLink, OBJECT_CLIENT_FILE, rFile, &aFilterName, &rSource );
 /*N*/
-/*N*/   //  Undo fuer den leeren Link
-/*N*/
-/*N*/   if (bUndo)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 rDocShell.GetUndoManager()->AddUndoAction( new ScUndoInsertAreaLink( &rDocShell,
-/*N*/
-/*N*/   //  Update hat sein eigenes Undo
-/*N*/
 /*N*/   pLink->SetDoInsert(bFitBlock);  // beim ersten Update ggf. nichts einfuegen
 /*N*/   pLink->Update();                // kein SetInCreate -> Update ausfuehren
 /*N*/   pLink->SetDoInsert(TRUE);       // Default = TRUE
 /*N*/
-/*N*/   SfxBindings* pBindings = rDocShell.GetViewBindings();
-/*N*/   if (pBindings)
-/*N*/       pBindings->Invalidate( SID_LINKS );
 /*N*/
 /*N*/   SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_AREALINKS_CHANGED ) );     // Navigator
 /*N*/
