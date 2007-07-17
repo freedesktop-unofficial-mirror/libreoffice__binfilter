@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editview.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:20:09 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:32:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -112,9 +112,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       PIMPEE->CursorMoved( pNode );
 /*N*/   }
 /*N*/   EditSelection aNewSelection( PIMPEE->ConvertSelection( rESel.nStartPara, rESel.nStartPos, rESel.nEndPara, rESel.nEndPos ) );
-/*N*/
-/*N*/   // Wenn nach einem KeyInput die Selection manipuliert wird:
-/*N*/   PIMPEE->CheckIdleFormatter();
 /*N*/
 /*N*/   // Selektion darf nicht bei einem unsichtbaren Absatz Starten/Enden:
 /*N*/   ParaPortion* pPortion = PIMPEE->FindParaPortion( aNewSelection.Min().GetNode() );
