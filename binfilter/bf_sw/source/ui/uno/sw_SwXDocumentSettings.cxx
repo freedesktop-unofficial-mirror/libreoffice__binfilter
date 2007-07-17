@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwXDocumentSettings.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-12-04 08:08:20 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:11:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
-#ifndef _SFX_SFXBASECONTROLLER_HXX_
-#include <bf_sfx2/sfxbasecontroller.hxx>
 #endif
 
 #ifndef _SW_XDOCUMENT_SETTINGS_HXX
