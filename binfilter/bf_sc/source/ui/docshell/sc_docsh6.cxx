@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh6.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:48:23 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:20:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -168,7 +168,6 @@
 #include "docsh.hxx"
 
 #include "stlpool.hxx"
-#include "tabvwsh.hxx"
 #include "tablink.hxx"
 #include "collect.hxx"
 
@@ -227,27 +226,7 @@ namespace binfilter {
 /*N*/   if ( !aDocument.IsImportingXML() )
 /*N*/       aDocument.SnapVisArea( aArea );
 /*N*/
-/*N*/   SvInPlaceEnvironment* pEnv = GetIPEnv();
-/*N*/   if (pEnv)
-/*N*/   {
-/*?*/       Window* pWin = pEnv->GetEditWin();
-/*?*/       pEnv->MakeScale( aArea.GetSize(), MAP_100TH_MM,
-/*?*/                           pWin->LogicToPixel( aArea.GetSize() ) );
-/*N*/   }
-/*N*/
 /*N*/   SvInPlaceObject::SetVisArea( aArea );
-/*N*/
-/*N*/   if (bIsInplace)                     // Zoom in der InPlace View einstellen
-/*N*/   {
-/*?*/       ScTabViewShell* pViewSh = ScTabViewShell::GetActiveViewShell();
-/*?*/       if (pViewSh)
-/*?*/       {
-/*?*/           if (pViewSh->GetViewData()->GetDocShell() == this)
-/*?*/           {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pViewSh->UpdateOleZoom();
-/*?*/       }
-/*?*/       //else
-/*?*/       //  DataChanged( SvDataType() );            // fuer Zuppeln wenn nicht IP-aktiv
-/*N*/   }
 /*N*/
 /*N*/   if (aDocument.IsEmbedded())
 /*N*/   {
