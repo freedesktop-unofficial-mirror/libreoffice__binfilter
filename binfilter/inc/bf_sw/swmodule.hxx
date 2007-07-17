@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swmodule.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:13:08 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:57:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -135,8 +135,6 @@ class SwModule: public SwModuleDummy , public SfxListener
     sal_Bool                bAuthorInitialised : 1;
     sal_Bool                bEmbeddedLoadSave : 1;
 
-    virtual void    FillStatusBar( StatusBar& );
-
     // Hint abfangen fuer DocInfo
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 
@@ -146,7 +144,6 @@ public:
 
 
     TYPEINFO();
-    SFX_DECL_INTERFACE(SW_INTERFACE_MODULE);
 
     // dieser Ctor nur fuer SW-Dll
     SwModule( SvFactory* pFact,
@@ -164,14 +161,6 @@ public:
     //
     inline  void        SetView(SwView* pVw) { pView = pVw; }
     inline  SwView*     GetView() { return pView; }
-
-    //Die Handler fuer die Slots
-    void                StateOther(SfxItemSet &);   // andere
-    void                StateViewOptions(SfxItemSet &);
-
-    void                ExecOther(SfxRequest &);    // Felder, Formel ..
-    void                ExecViewOptions(SfxRequest &);
-    void                ExecWizzard(SfxRequest &);
 
     // Benutzereinstellungen modifizieren
     const SwMasterUsrPref *GetUsrPref(sal_Bool bWeb) const;
