@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unolingu.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:47:08 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:34:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,9 +78,9 @@
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>
 #endif
-#ifndef _LINGUISTIC_MISC_HXX_
-#include <bf_linguistic/misc.hxx>
-#endif
+
+//#include <bf_linguistic/misc.hxx>
+
 
 #ifndef _SVX_DIALMGR_HXX
 #include <dialmgr.hxx>
@@ -246,103 +246,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ void SvxLinguConfigUpdate::UpdateAll()
 /*N*/ {
-/*N*/     if (!IsUpdated())
-/*N*/     {
-/*N*/         Reference< XLinguServiceManager > xLngSvcMgr( GetLngSvcMgr_Impl() );
-/*N*/         DBG_ASSERT( xLngSvcMgr.is(), "service manager missing")
-/*N*/         if (!xLngSvcMgr.is())
-/*N*/             return;
-/*N*/
-/*N*/         SvtLinguConfig aCfg;
-/*N*/
-/*N*/         const sal_Char * apServices[3]      =  { SN_THESAURUS,         SN_SPELLCHECKER,            SN_HYPHENATOR };
-              const sal_Char * apActiveLists[3]    =  { "ServiceManager/ThesaurusList",      "ServiceManager/SpellCheckerList",         "ServiceManager/HyphenatorList" };
-              const sal_Char * apLastFoundLists[3] =  { "ServiceManager/LastFoundThesauri",  "ServiceManager/LastFoundSpellCheckers",   "ServiceManager/LastFoundHyphenators" };
-/*N*/
-/*N*/         for (int k = 0;  k < 3;  ++k)
-/*N*/         {
-/*N*/             OUString aService( A2OU( (sal_Char *)apServices[k]) );
-/*N*/             OUString aActiveList( A2OU( (sal_Char *) apActiveLists[k]) );
-/*N*/             OUString aLastFoundList( A2OU( (sal_Char *) apLastFoundLists[k]) );
-/*N*/             INT32 i;
-/*N*/
-/*N*/             //
-/*N*/             // remove configured but not available language/services entries
-/*N*/             //
-/*N*/             Sequence< OUString > aNodeNames( aCfg.GetNodeNames( aActiveList ) );   // list of configured locales
-/*N*/             INT32 nNodeNames = aNodeNames.getLength();
-/*N*/             const OUString *pNodeName = aNodeNames.getConstArray();
-/*N*/             for (i = 0;  i < nNodeNames;  ++i)
-/*N*/             {
-/*N*/                 Locale aLocale( SvxCreateLocale( MsLangId::convertIsoStringToLanguage(pNodeName[i]) ) );
-/*N*/                 Sequence< OUString > aCfgSvcs(
-/*N*/                         xLngSvcMgr->getConfiguredServices( aService, aLocale ));
-/*N*/                 Sequence< OUString > aAvailSvcs(
-/*N*/                         xLngSvcMgr->getAvailableServices( aService, aLocale ));
-/*N*/                 aCfgSvcs = lcl_RemoveMissingEntries( aCfgSvcs, aAvailSvcs );
-/*N*/                 xLngSvcMgr->setConfiguredServices( aService, aLocale, aCfgSvcs );
-/*N*/             }
-/*N*/
-/*N*/             //
-/*N*/             // add new available language/servcice entries
-/*N*/             //
-/*N*/             Reference< XAvailableLocales > xAvail( xLngSvcMgr, UNO_QUERY );
-/*N*/             Sequence< Locale > aAvailLocales( xAvail->getAvailableLocales(aService) );
-/*N*/             INT32 nAvailLocales = aAvailLocales.getLength();
-/*N*/             const Locale *pAvailLocale = aAvailLocales.getConstArray();
-/*N*/             for (i = 0;  i < nAvailLocales;  ++i)
-/*N*/             {
-/*N*/                 Sequence< OUString > aAvailSvcs(
-/*N*/                         xLngSvcMgr->getAvailableServices( aService, pAvailLocale[i] ));
-/*N*/                 Sequence< OUString > aLastFoundSvcs(
-/*N*/                         lcl_GetLastFoundSvcs( aCfg, aLastFoundList , pAvailLocale[i] ));
-/*N*/                 Sequence< OUString > aNewSvcs =
-/*N*/                         lcl_GetNewEntries( aLastFoundSvcs, aAvailSvcs );
-/*N*/
-/*N*/                 Sequence< OUString > aCfgSvcs(
-/*N*/                         xLngSvcMgr->getConfiguredServices( aService, pAvailLocale[i] ));
-/*N*/                 aCfgSvcs = lcl_MergeSeq( aCfgSvcs, aNewSvcs );
-/*N*/                 xLngSvcMgr->setConfiguredServices( aService, pAvailLocale[i], aCfgSvcs );
-/*N*/             }
-/*N*/
-/*N*/             //
-/*N*/             // set last found services to currently available ones
-/*N*/             //
-/*N*/             Sequence< PropertyValue > aValues( nAvailLocales );
-/*N*/             PropertyValue *pValue = aValues.getArray();
-/*N*/             for (i = 0;  i < nAvailLocales;  ++i)
-/*N*/             {
-/*?*/                 Sequence< OUString > aSvcImplNames(
-/*?*/                         xLngSvcMgr->getConfiguredServices( aService, pAvailLocale[i] ) );
-/*?*/
-/*?*/ #if OSL_DEBUG_LEVEL > 1
-/*?*/                 INT32 nSvcs = aSvcImplNames.getLength();
-/*?*/                 const OUString *pSvcImplName = aSvcImplNames.getConstArray();
-/*?*/                 for (INT32 j = 0;  j < nSvcs;  ++j)
-/*?*/                 {
-/*?*/                     OUString aImplName( pSvcImplName[j] );
-/*?*/                 }
-/*?*/ #endif
-/*?*/                 // build value to be written back to configuration
-/*?*/                 Any aCfgAny;
-/*?*/                 aCfgAny <<= aSvcImplNames;
-/*?*/                 DBG_ASSERT( aCfgAny.hasValue(), "missing value for 'Any' type" );
-/*?*/
-/*?*/                 OUString aCfgLocaleStr( MsLangId::convertLanguageToIsoString(
-/*?*/                                             SvxLocaleToLanguage( pAvailLocale[i] ) ) );
-/*?*/                 pValue->Value = aCfgAny;
-/*?*/                 pValue->Name  = aLastFoundList;
-/*?*/                 pValue->Name += OUString::valueOf( (sal_Unicode) '/' );
-/*?*/                 pValue->Name += aCfgLocaleStr;
-/*?*/                 pValue++;
-/*N*/             }
-/*N*/             // change, add new or replace existing entries.
-/*N*/             BOOL bRes = aCfg.ReplaceSetProperties( aLastFoundList, aValues );
-/*N*/             DBG_ASSERT( bRes, "failed to set LastFound list" );
-/*N*/         }
-/*N*/
-/*N*/         bUpdated = TRUE;
-/*N*/     }
 /*N*/ }
 
 ///////////////////////////////////////////////////////////////////////////
