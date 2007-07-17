@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schdll0.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:50:46 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:30:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,6 +35,8 @@
 
 #ifndef _SCHDLL0_HXX
 #define _SCHDLL0_HXX
+
+#include <so3/pseudo.hxx>
 
 #ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
