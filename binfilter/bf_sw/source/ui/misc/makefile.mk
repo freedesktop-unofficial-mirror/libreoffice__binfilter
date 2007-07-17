@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 12:47:39 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:09:54 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,6 @@ SRS1NAME=$(TARGET)
 SRC1FILES=\
     sw_redlndlg.src
 
-SLOFILES =	\
-                $(SLO)$/sw_glshell.obj  \
-                $(SLO)$/sw_glosdoc.obj
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :	target.mk
