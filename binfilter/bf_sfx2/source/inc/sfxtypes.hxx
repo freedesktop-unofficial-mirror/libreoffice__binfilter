@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfxtypes.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:14:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:06:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -152,20 +152,6 @@ String SfxStringEncode( const String &rSource,
 String SfxStringDecode( const String &rSource,
                         const char *pKey = SFX_PASSWORD_CODE );
 
-
-struct StringList_Impl : private Resource
-{
-
-    ResId aResId;
-
-    StringList_Impl( const ResId& rErrIdP,  USHORT nId)
-        : Resource( rErrIdP ),aResId(nId,*rErrIdP.GetResMgr()){}
-    ~StringList_Impl() { FreeResource(); }
-
-    String GetString(){ return String( aResId ); }
-    operator BOOL(){return IsAvailableRes(aResId.SetRT(RSC_STRING));}
-
-};
 
 #define SFX_DEL_PTRARR(pArr)                                    \
             {                                                   \
