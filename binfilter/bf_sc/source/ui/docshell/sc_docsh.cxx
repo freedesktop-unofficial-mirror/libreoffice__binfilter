@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:47:09 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:19:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,19 +45,14 @@
 
 #include <svtools/ctrltool.hxx>
 #include <svtools/sfxecode.hxx>
-#include <bf_sfx2/bindings.hxx>
-#include <bf_sfx2/dinfdlg.hxx>
+#include <bf_sfx2/docinf.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfx.hrc>
-#include <bf_svx/svxmsbas.hxx>
 #include <bf_offmgr/app.hxx>
-#include <bf_offmgr/fltrcfg.hxx>
 #include <so3/clsids.hxx>
-
-#ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
-#endif
+
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
 #endif
@@ -72,9 +67,9 @@ SO2_DECL_REF(SvStorageStream)
 
 // INCLUDE ---------------------------------------------------------------
 
+#include "viewdata.hxx"
 #include "filter.hxx"
 #include "scmod.hxx"
-#include "tabvwsh.hxx"
 #include "docfunc.hxx"
 #include "impex.hxx"
 #include "scresid.hxx"
@@ -141,13 +136,6 @@ static const sal_Char __FAR_DATA pFilterHtmlWebQ[]  = "calc_HTML_WebQuery";
 static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCalc)";
 
 //----------------------------------------------------------------------
-
-#define ScDocShell
-#include "scslots.hxx"
-
-
-/*N*/ SFX_IMPL_INTERFACE(ScDocShell,SfxObjectShell, ScResId(SCSTR_DOCSHELL))
-/*N*/ {}
 
 //  GlobalName der aktuellen Version:
 /*N*/ SFX_IMPL_OBJECTFACTORY_DLL(ScDocShell, SFXOBJECTSHELL_STD_NORMAL,
@@ -464,16 +452,6 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*?*/           }
 /*N*/           else if ( aDocStm->GetErrorCode() && !pStor->GetErrorCode() )
 /*?*/               pStor->SetError(aDocStm->GetErrorCode());
-/*N*/           else if ( OFF_APP()->GetFilterOptions()->IsLoadExcelBasicStorage() )
-/*N*/           {
-/*N*/               //  #75497# warning if MS VBA macros are lost
-/*N*/               //  GetSaveWarningOfMSVBAStorage checks if sub-storage with VBA macros is present
-/*N*/               //  (only possible when editing Excel documents -- storage is not copied to
-/*N*/               //  StarCalc files)
-/*N*/               ULONG nVBAWarn = SvxImportMSVBasic::GetSaveWarningOfMSVBAStorage( *this );
-/*N*/               if ( nVBAWarn && !pStor->GetErrorCode() )
-/*?*/                   pStor->SetError( nVBAWarn );
-/*?*/           }
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -511,7 +489,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
                         if ( nViewId == 1 )         // ScTabViewShell, ID from ScDLL::Init
                         {
                             String aUserStr;
-                            ScViewData aLocalViewData( this, NULL );            // no ViewShell
+                            ScViewData aLocalViewData( this );
                             aLocalViewData.ReadUserDataSequence( aSeq );
                             aLocalViewData.WriteUserData( aUserStr );
 
@@ -624,8 +602,6 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/   //  -> initialize the others from options (before loading)
 /*N*/   InitOptions();
 /*N*/
-/*N*/   GetUndoManager()->Clear();
-/*N*/
 /*N*/   BOOL bRet = SfxInPlaceObject::Load( pStor );
 /*N*/   if( bRet )
 /*N*/   {
@@ -710,8 +686,6 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/                                   // bei Fehler: Fehler am Stream setzen!!
 /*N*/
 /*N*/   ScRefreshTimerProtector( aDocument.GetRefreshTimerControlAddress() );
-/*N*/
-/*N*/   GetUndoManager()->Clear();
 /*N*/
 /*N*/   // ob nach dem Import optimale Spaltenbreiten gesetzt werden sollen
 /*N*/   BOOL bSetColWidths = FALSE;
@@ -1116,7 +1090,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 #define __SCDOCSHELL_INIT \
         aDocument       ( SCDOCMODE_DOCUMENT, this ), \
-        pUndoManager    ( NULL ), \
         pFontList       ( NULL ), \
         bHeaderOn       ( TRUE ), \
         bFooterOn       ( TRUE ), \
@@ -1170,8 +1143,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/   SfxStyleSheetPool* pStlPool = aDocument.GetStyleSheetPool();
 /*N*/   if (pStlPool)
 /*N*/       StartListening(*pStlPool);
-/*N*/   SetHelpId( HID_SCSHELL_DOCSH );
-/*N*/
+
 /*N*/   aDocument.GetDBCollection()->SetRefreshHandler(
 /*N*/       LINK( this, ScDocShell, RefreshDBDataHdl ) );
 /*N*/
@@ -1196,7 +1168,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       pSfxApp->RemoveDdeTopic( this );
 /*N*/
 /*N*/   delete pDocFunc;
-/*N*/   delete pUndoManager;
 /*N*/   delete pFontList;
 /*N*/
 /*N*/   delete pPaintLockData;
@@ -1214,12 +1185,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 //------------------------------------------------------------------
 
-/*N*/ SfxUndoManager* __EXPORT ScDocShell::GetUndoManager()
-/*N*/ {
-/*N*/   if (!pUndoManager)
-/*N*/       pUndoManager = new SfxUndoManager;
-/*N*/   return pUndoManager;
-/*N*/ }
 
 /*N*/ void ScDocShell::SetModified( BOOL bModified )
 /*N*/ {
@@ -1286,16 +1251,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/
 /*N*/   SetModified( bIsModified );
 /*N*/
-/*N*/   if (bUpdate)
-/*N*/   {
-/*N*/       SfxBindings* pBindings = GetViewBindings();
-/*N*/       if (pBindings)
-/*N*/       {
-/*N*/           pBindings->Invalidate( SID_SAVEDOC );
-/*N*/           pBindings->Invalidate( SID_DOC_MODIFIED );
-/*N*/       }
-/*N*/   }
-/*N*/
 /*N*/   if (bIsModified)
 /*N*/   {
 /*N*/       if ( aDocument.IsChartListenerCollectionNeedsUpdate() )
@@ -1314,10 +1269,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 /*N*/ Window* ScDocShell::GetDialogParent()
 /*N*/ {
-/*N*/   ScTabViewShell* pViewSh = ScTabViewShell::GetActiveViewShell();
-/*N*/   if ( pViewSh )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return NULL; }//STRIP001 return pViewSh->GetDialogParent();
-/*N*/   else
 /*N*/       return Application::GetDefDialogParent();
 /*N*/ }
 
