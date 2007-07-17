@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: ihi $ $Date: 2007-06-05 14:27:15 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:58:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
@@ -84,15 +81,6 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
 #include <com/sun/star/document/MacroExecMode.hpp>
 #endif
-//#ifndef  _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
-//#include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
-//#endif
-//#ifndef  _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
-//#include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
-//#endif
-//#ifndef  _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
-//#include <com/sun/star/ui/dialogs/XFilePicker.hpp>
-//#endif
 #ifndef  _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
 #include <com/sun/star/beans/XPropertySetInfo.hpp>
 #endif
@@ -118,6 +106,7 @@
 #endif
 
 #pragma hdrstop
+#include <svtools/itemset.hxx>
 
 #ifndef _SFXECODE_HXX
 #include <svtools/sfxecode.hxx>
@@ -155,9 +144,7 @@
 #include <shell/systemshell.hxx>
 
 #include "objsh.hxx"
-#include "childwin.hxx"
 #include "request.hxx"
-#include "sfxresid.hxx"
 #include "docfile.hxx"
 #include "fltfnc.hxx"
 #include "docfilt.hxx"
@@ -167,11 +154,10 @@
 #include "objshimp.hxx"
 #include "sfxtypes.hxx"
 #include "appdata.hxx"
-#include "doc.hrc"
 #include "sfxsids.hrc"
 #include "interno.hxx"
 #include "module.hxx"
-#include "dispatch.hxx"
+#include "app.hxx"
 #include "openflag.hxx"
 #include "helper.hxx"
 #include "dlgcont.hxx"
@@ -265,8 +251,6 @@ using namespace ::cppu;
 /*?*/       if ( InitNew( pMedium->GetStorage() ) )
 /*?*/       {
 /*?*/           bIsTmp = !( pMedium->GetStorage() );
-/*?*/           if ( SFX_CREATE_MODE_EMBEDDED == eCreateMode )
-/*?*/               SetTitle( String( SfxResId( STR_NONAME ) ));
 /*?*/
 /*?*/             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
 /*?*/             if ( xModel.is() )
@@ -328,8 +312,6 @@ using namespace ::cppu;
 /*N*/   {
 /*N*/       // empty documents always get their macros from the user, so there is no reason to restrict access
 /*N*/       pImp->nMacroMode = MacroExecMode::ALWAYS_EXECUTE_NO_WARN;
-/*N*/       if ( SFX_CREATE_MODE_EMBEDDED == eCreateMode )
-/*N*/           SetTitle( String( SfxResId( STR_NONAME ) ));
 /*N*/
 /*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
 /*N*/       if ( xModel.is() )
@@ -471,9 +453,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
 /*N*/   ModifyBlocker_Impl aBlock( this );
 /*N*/
-/*N*/   if ( SFX_CREATE_MODE_EMBEDDED != eCreateMode )
-/*N*/       GetpApp()->ShowStatusText( SfxResId(STR_DOC_LOADING) );
-/*N*/
 /*N*/   pMedium = pMed;
 /*N*/   sal_Bool bOk = sal_False;
 /*N*/   const SfxFilter* pFilter = pMed->GetFilter();
@@ -613,7 +592,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/    {
 /*?*/        // Name vor ConvertFrom setzen, damit GetSbxObject() schon funktioniert
 /*?*/        bHasName = sal_True;
-/*?*/        SetName( SfxResId( STR_NONAME ) );
 /*?*/
 /*?*/        // Importieren
 /*?*/        const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
@@ -688,8 +666,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       if ( !( pImp->nLoadedFlags & SFX_LOADED_MAINDOCUMENT ) &&
 /*N*/             ( !pMedium->GetFilter() ||
 /*N*/                pMedium->GetFilter()->UsesStorage() ||
-/*N*/                !( pMedium->GetFilter()->GetFilterFlags() & SFX_FILTER_ASYNC ) ||
-/*N*/                !pMedium->GetLoadEnvironment() ) )
+/*N*/                !( pMedium->GetFilter()->GetFilterFlags() & SFX_FILTER_ASYNC ) ) )
 /*N*/           FinishedLoading( SFX_LOADED_MAINDOCUMENT );
 /*N*/
 /*N*/       if ( pSalvageItem )
@@ -795,7 +772,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/                                       pSet->Put( SfxStringItem( SID_FILTER_NAME, pFilter->GetName() ) );
 /*?*/
 /*?*/                                   Sequence< PropertyValue > rProperties;
-/*?*/                                   TransformItems( SID_OPENDOC, *pSet, rProperties, NULL );
+/*?*/                                   TransformItems( SID_OPENDOC, *pSet, rProperties );
 /*?*/                                   RequestFilterOptions* pFORequest = new RequestFilterOptions( pDoc->GetModel(), rProperties );
 /*?*/
 /*?*/                                   ::com::sun::star::uno::Reference< XInteractionRequest > rRequest( pFORequest );
@@ -806,8 +783,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/                                           SfxAllItemSet aNewParams( pDoc->GetPool() );
 /*?*/                                           TransformParameters( SID_OPENDOC,
 /*?*/                                                           pFORequest->getFilterOptions(),
-/*?*/                                                           aNewParams,
-/*?*/                                                           NULL );
+/*?*/                                                           aNewParams );
 /*?*/
 /*?*/                                           SFX_ITEMSET_ARG( &aNewParams,
 /*?*/                                                       pOptions,
@@ -892,14 +868,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 
 /*N*/ void Lock_Impl( SfxObjectShell* pDoc, BOOL bLock )
 /*N*/ {
-/*N*/     SfxViewFrame *pFrame= SfxViewFrame::GetFirst( pDoc );
-/*N*/   while ( pFrame )
-/*N*/   {
-/*N*/         pFrame->GetDispatcher()->Lock( bLock );
-/*N*/         pFrame->Enable( !bLock );
-/*N*/         pFrame = SfxViewFrame::GetNext( *pFrame, pDoc );
-/*N*/   }
-/*N*/
 /*N*/ }
 
 //-------------------------------------------------------------------------
