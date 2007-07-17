@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartAxis.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:56:46 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:50:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -391,7 +391,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     pSet = new SfxItemSet( mpModel->GetItemPool(), nWID, nWID );
             }
             if( nAutoWid )
-                pSet = pSet = new SfxItemSet( mpModel->GetItemPool(), nWID, nWID,
+                pSet = new SfxItemSet( mpModel->GetItemPool(), nWID, nWID,
                                               nAutoWid, nAutoWid, 0 );
             DBG_ASSERT( pSet, "ItemSet was not created!" );
 
