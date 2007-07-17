@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewimp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:24:12 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:03:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,6 +71,7 @@ namespace binfilter {
 
 /*N*/ void SwViewImp::Init( const SwViewOption *pNewOpt )
 /*N*/ {
+#if 0
 /*N*/   ASSERT( pDrawView, "SwViewImp::Init without DrawView" );
 /*N*/   //Jetzt die PageView erzeugen wenn sie noch nicht existiert.
 /*N*/   SwRootFrm *pRoot = pSh->GetDoc()->GetRootFrm();
@@ -117,6 +118,8 @@ namespace binfilter {
 /*N*/
 /*N*/   // it's a JOE interface !
 /*N*/   pDrawView->SetMarkHdlSizePixel(pNewOpt->IsBigMarkHdl() ? 9 : 7);
+#endif
+        DBG_ERROR("Strip!");
 /*N*/ }
 
 /*************************************************************************
@@ -143,6 +146,7 @@ namespace binfilter {
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
 /*N*/ #endif
 /*N*/ {
+#if 0
 /*N*/   bResetXorVisibility = bShowHdlPaint =
 /*N*/   bResetHdlHiddenPaint = bScrolled =
 /*N*/   bPaintInScroll = bSmoothUpdate = bStopSmooth = bStopPrt = FALSE;
@@ -151,6 +155,8 @@ namespace binfilter {
 /*N*/   aScrollTimer.SetTimeout( 1500 );
 /*N*/   aScrollTimer.SetTimeoutHdl( LINK( this, SwViewImp, RefreshScrolledHdl));
 /*N*/   aScrollTimer.Stop();
+#endif
+        DBG_ERROR("Strip!");
 /*N*/ }
 
 /******************************************************************************
@@ -164,8 +170,7 @@ namespace binfilter {
 
 /*N*/ SwViewImp::~SwViewImp()
 /*N*/ {
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/ #endif
+#if 0
 /*N*/
 /*N*/     // OD 12.12.2002 #103492#
 /*N*/
@@ -180,6 +185,7 @@ namespace binfilter {
 /*N*/
 /*N*/   ASSERT( !pLayAct, "Have action for the rest of your life." );
 /*N*/   ASSERT( !pIdleAct,"Be idle for the rest of your life." );
+#endif
 /*N*/ }
 
 /******************************************************************************
@@ -312,6 +318,7 @@ namespace binfilter {
 
 /*N*/ void SwViewImp::MakeDrawView()
 /*N*/ {
+#if 0
 /*N*/   if( !GetShell()->GetDoc()->GetDrawModel() )
 /*?*/       GetShell()->GetDoc()->_MakeDrawModel();
 /*N*/   else
@@ -328,6 +335,7 @@ namespace binfilter {
 /*N*/                           RTL_CONSTASCII_STRINGPARAM( "Heaven" ) ) );
 /*N*/       Init( GetShell()->GetViewOptions() );
 /*N*/   }
+#endif
 /*N*/ }
 
 /******************************************************************************
