@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:06:54 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:26:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,10 +48,8 @@
 #include <bf_sfx2/docfac.hxx>
 #endif
 
-#ifndef _SFXVIEWSH_HXX //autogen
-#include <bf_sfx2/viewsh.hxx>
-#endif
-
+#include <bf_sfx2/printer.hxx>
+#include <svtools/lstner.hxx>
 
 #ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
@@ -76,7 +74,6 @@ class ScViewData;
 class ScDocFunc;
 class ScPivot;
 class ScDrawLayer;
-class ScTabViewShell;
 class ScSbxDocHelper;
 class ScAutoStyleList;
 class ScRange;
@@ -107,7 +104,6 @@ class ScDocShell: public SfxObjectShell, public SfxInPlaceObject, public SfxList
 
     double              nPrtToScreenFactor;
     FontList*           pFontList;
-    SfxUndoManager*     pUndoManager;
     ScDocFunc*          pDocFunc;
 
     //SfxObjectCreateMode   eShellMode;
@@ -162,15 +158,12 @@ protected:
 public:
                     TYPEINFO();
 
-                    SFX_DECL_INTERFACE(SCID_DOC_SHELL);
                     SFX_DECL_OBJECTFACTORY_DLL( ScDocShell, SC_DLL() );
 
                     ScDocShell( const ScDocShell& rDocShell );
                     ScDocShell( SfxObjectCreateMode eMode = SFX_CREATE_MODE_EMBEDDED );
                     ~ScDocShell();
 
-
-    virtual SfxUndoManager*     GetUndoManager();
 
     virtual void    FillClass( SvGlobalName * pClassName,
                                ULONG * pFormat,
@@ -212,19 +205,10 @@ public:
     ScDrawLayer*    MakeDrawLayer();
 
 
-    void            GetSbxState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void         GetSbxState( SfxItemSet &rSet );
-    void            GetDrawObjState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void         GetDrawObjState( SfxItemSet &rSet );
-
-    void            Execute( SfxRequest& rReq );
-    void            GetState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void            GetState( SfxItemSet &rSet );
-    void            GetStatePageStyle( SfxViewShell& rCaller, SfxItemSet& rSet, USHORT nCurTab );
-
-
                     /// Protect/unprotect ChangeTrack and return <TRUE/> if
                     /// protection was successfully changed.
                     /// If bJustQueryIfProtected==TRUE protection is not
                     /// changed and <TRUE/> is returned if not protected or
-                    /// password was entered correctly.
 
 
     void            LoadStylesArgs( ScDocShell& rSource, BOOL bReplace, BOOL bCellStyles, BOOL bPageStyles );
@@ -297,9 +281,6 @@ public:
 
     const String& GetDdeTextFmt() const { return aDdeTextFmt; }
 
-    SfxBindings*    GetViewBindings();
-
-    ScTabViewShell* GetBestViewShell();
     ScSbxDocHelper* GetDocHelperObject() { return pDocHelper; }
 
     void            SetDocumentModifiedPending( BOOL bVal )
