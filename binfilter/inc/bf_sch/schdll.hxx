@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schdll.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:49:28 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:30:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,6 +53,8 @@ class SvInPlaceObjectRef;
 class OutputDevice;
 class Window;
 class SvStream;
+class SfxItemSet;
+
 namespace binfilter {
 
 #define extern_c extern "C"
@@ -73,7 +75,6 @@ class SchMemChart;
 class SfxMedium;
 class SfxFilter;
 class XOutdevItemPool;
-class SfxTabDialog;
 class ChartModel;
 
 class SchDLL
@@ -95,13 +96,6 @@ public:
     static void     Update( SvInPlaceObjectRef aIPObj, SchMemChart* pData,
                             const SfxItemSet& rAttr, OutputDevice* pOut = NULL );
 
-    static ModalDialog* CreateAutoPilotDlg( Window* pParent, SchMemChart* pData,
-                                            const SfxItemSet& rInAttrs,
-                                            SfxItemSet& rOutAttrs,
-                                            BOOL bPrePage = FALSE );
-    static void ChangeChartData( ModalDialog* pDlg, SchMemChart* pData );
-
-    static SfxTabDialog* CreateOptionsDlg( Window* pParent, const SfxItemSet& rInAttrs, XOutdevItemPool* pItemPool );
     static SchMemChart*  GetChartData( SvInPlaceObjectRef aIPObj );
 
     static SchMemChart* NewMemChart();
@@ -150,14 +144,6 @@ public:
 extern_c void __LOADONCALLAPI SchUpdate( SvInPlaceObjectRef aIPObj, SchMemChart* pData, OutputDevice* pOut = NULL );
 extern_c void __LOADONCALLAPI SchUpdateAttr( SvInPlaceObjectRef aIPObj, SchMemChart* pData,
                                              const SfxItemSet& rAttr, OutputDevice* pOut = NULL );
-extern_c ModalDialog* __LOADONCALLAPI SchCreateDiagramAutoPilotDlg( Window* pParent, SchMemChart* pData,
-                                                                    const SfxItemSet& rInAttrs,
-                                                                    SfxItemSet& rOutAttrs,
-                                                                    BOOL bPrePage = FALSE );
-extern_c void __LOADONCALLAPI SchChangeChartData( ModalDialog* pDlg, SchMemChart* pData );
-extern_c SfxTabDialog* __LOADONCALLAPI SchCreateOptionsDlg( Window* pParent,
-                                                            const SfxItemSet& rInAttrs,
-                                                            XOutdevItemPool* pItemPool );
 extern_c SchMemChart* __LOADONCALLAPI SchGetChartData( SvInPlaceObjectRef aIPObj );
 extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartNone();
 extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartXY( short nCols, short nRows );

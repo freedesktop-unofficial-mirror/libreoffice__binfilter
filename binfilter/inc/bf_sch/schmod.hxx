@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schmod.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:49:50 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:31:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,17 +81,11 @@ protected:
     E3dObjFactory*      pE3dFactory;
     SchOptions*         pChartOptions;
 
-    virtual void FillStatusBar(StatusBar &rBar);
-
 public:
     TYPEINFO();
-    SFX_DECL_INTERFACE( SCH_IF_SCHAPP );
 
     SchModule(SvFactory* pObjFact);
     virtual ~SchModule();
-
-    void Execute(SfxRequest& rReq);
-    void GetState(SfxItemSet&);
 
     SchDragServer *GetDragData()                            { return pDragData; }
     void SetDragData(SchDragServer* pData)                  { pDragData = pData; }
@@ -108,8 +102,6 @@ public:
 
     SchTransferable* GetSelectionClipboardTransferable()    { return mpTransferSelectionClipbd; }
     void SetSelectionClipboardTransferable( SchTransferable* pTrans) { mpTransferSelectionClipbd = pTrans; }
-
-
 
     SchOptions*          GetSchOptions();
 
