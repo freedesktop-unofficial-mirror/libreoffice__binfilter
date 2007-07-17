@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocfun.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:03:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:18:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,6 @@
 #include "docsh.hxx"
 #include "docfunc.hxx"
 #include "globstr.hrc"
-#include "tabvwsh.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
 #include "dpobject.hxx"
@@ -68,11 +67,6 @@ namespace binfilter {
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   ScDBCollection* pDocColl = pDoc->GetDBCollection();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
-/*N*/
-/*N*/   ScDBCollection* pUndoColl = NULL;
-/*N*/   if (bUndo)
-/*N*/       pUndoColl = new ScDBCollection( *pDocColl );
 /*N*/
 /*N*/   ScDBData* pNew = new ScDBData( rName, rRange.aStart.Tab(),
 /*N*/                                   rRange.aStart.Col(), rRange.aStart.Row(),
@@ -84,16 +78,9 @@ namespace binfilter {
 /*N*/   if (!bOk)
 /*N*/   {
 /*N*/       delete pNew;
-/*N*/       delete pUndoColl;
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
-/*N*/   if (bUndo)
-/*N*/   {
-/*N*/       ScDBCollection* pRedoColl = new ScDBCollection( *pDocColl );
-/*N*/       rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/                       new ScUndoDBData( &rDocShell, pUndoColl, pRedoColl ) );
-/*N*/   }
 /*N*/
 /*N*/   aModificator.SetDocumentModified();
 /*N*/   SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_DBAREAS_CHANGED ) );
@@ -105,25 +92,15 @@ namespace binfilter {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   ScDBCollection* pDocColl = pDoc->GetDBCollection();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/
 /*N*/   USHORT nPos = 0;
 /*N*/   if (pDocColl->SearchName( rName, nPos ))
 /*N*/   {
 /*N*/       ScDocShellModificator aModificator( rDocShell );
 /*N*/
-/*N*/       ScDBCollection* pUndoColl = NULL;
-/*N*/       if (bUndo)
-/*N*/           pUndoColl = new ScDBCollection( *pDocColl );
-/*N*/
 /*N*/       pDoc->CompileDBFormula( TRUE );     // CreateFormulaString
 /*N*/       pDocColl->AtFree( nPos );
 /*N*/       pDoc->CompileDBFormula( FALSE );    // CompileFormulaString
-/*N*/
-/*N*/       if (bUndo)
-/*N*/       {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pRedoColl = new ScDBCollection( *pDocColl );
-/*N*/       }
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_DBAREAS_CHANGED ) );
@@ -138,7 +115,6 @@ namespace binfilter {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   ScDBCollection* pDocColl = pDoc->GetDBCollection();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/
 /*N*/   USHORT nPos = 0;
 /*N*/   USHORT nDummy = 0;
@@ -164,11 +140,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if (bInserted)                              // Einfuegen hat geklappt
 /*N*/       {
-/*N*/           if (bUndo)
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pRedoColl = new ScDBCollection( *pDocColl );
-/*N*/           }
-/*N*/           else
 /*N*/               delete pUndoColl;
 /*N*/
 /*N*/           aModificator.SetDocumentModified();
@@ -185,7 +156,6 @@ namespace binfilter {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   ScDBCollection* pDocColl = pDoc->GetDBCollection();
-/*N*/   BOOL bUndo (pDoc->IsUndoEnabled());
 /*N*/
 /*N*/   USHORT nPos = 0;
 /*N*/   if (pDocColl->SearchName( rNewData.GetName(), nPos ))
@@ -199,20 +169,10 @@ namespace binfilter {
 /*N*/       rNewData.GetArea(aNewRange);
 /*N*/       BOOL bAreaChanged = ( aOldRange != aNewRange );     // dann muss neu compiliert werden
 /*N*/
-/*N*/       ScDBCollection* pUndoColl = NULL;
-/*N*/       if (bUndo)
-/*N*/           pUndoColl = new ScDBCollection( *pDocColl );
 /*N*/
 /*N*/       *pData = rNewData;
 /*N*/       if (bAreaChanged)
 /*N*/           pDoc->CompileDBFormula();
-/*N*/
-/*N*/       if (bUndo)
-/*N*/       {
-/*N*/           ScDBCollection* pRedoColl = new ScDBCollection( *pDocColl );
-/*N*/           rDocShell.GetUndoManager()->AddUndoAction(
-/*N*/                           new ScUndoDBData( &rDocShell, pUndoColl, pRedoColl ) );
-/*N*/       }
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       bDone = TRUE;
@@ -271,8 +231,6 @@ namespace binfilter {
 /*N*/           USHORT nEndCol;
 /*N*/           USHORT nEndRow;
 /*N*/           pDBData->GetArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
-/*N*/
-/*N*/           //!     Undo nur benoetigte Daten ?
 /*N*/
 /*N*/           ScDocument* pUndoDoc = NULL;
 /*N*/           ScOutlineTable* pUndoTab = NULL;
@@ -1091,20 +1049,6 @@ namespace binfilter {
 /*M*/
 /*M*/   //  DB-Operationen wiederholen
 /*M*/
-/*M*/   ScTabViewShell* pViewSh = rDocShell.GetBestViewShell();
-/*M*/   if (pViewSh)
-/*M*/   {
-/*M*/       ScRange aRange;
-/*M*/       pData->GetArea(aRange);
-/*M*/       pViewSh->MarkRange(aRange);         // selektieren
-/*M*/
-/*M*/       if ( bContinue )        // #41905# Fehler beim Import -> Abbruch
-/*M*/       {
-/*M*/           //  interne Operationen, wenn welche gespeichert
-/*M*/
-/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pData->HasQueryParam() || pData->HasSortParam() || pData->HasSubTotalParam() )
-/*M*/       }
-/*M*/   }
 /*M*/ }
 
 
