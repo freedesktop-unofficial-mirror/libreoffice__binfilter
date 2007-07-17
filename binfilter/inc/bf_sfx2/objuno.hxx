@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objuno.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:30:49 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:41:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -288,6 +288,9 @@ public:
     virtual void SAL_CALL loadFromURL(const ::rtl::OUString& aURL) throw( ::com::sun::star::io::IOException );
     virtual void SAL_CALL storeIntoURL(const ::rtl::OUString& aURL) throw( ::com::sun::star::io::IOException );
 };
+
+com::sun::star::uno::Reference< com::sun::star::uno::XInterface > SAL_CALL bf_BinaryDocInfo_createInstance(const com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory > & rSMgr)
+    throw( com::sun::star::uno::Exception );
 
 }//end of namespace binfilter
 #endif
