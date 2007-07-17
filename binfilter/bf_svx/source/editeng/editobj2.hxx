@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editobj2.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:40:18 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:31:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -147,7 +147,6 @@ private:
     XEditAttributeList  aAttribs;
     SfxStyleFamily      eFamily;
     SfxItemSet          aParaAttribs;
-    WrongList*          pWrongs;
 
     LoadStoreTempInfos* pTempLoadStoreInfos;
 
@@ -168,9 +167,6 @@ public:
     XEditAttributeList& GetAttribs()        { return aAttribs; }
     SfxItemSet&         GetParaAttribs()    { return aParaAttribs; }
     SfxStyleFamily&     GetFamily()         { return eFamily; }
-
-    WrongList*          GetWrongList() const            { return pWrongs; }
-    void                SetWrongList( WrongList* p )    { pWrongs = p; }
 
     LoadStoreTempInfos* GetLoadStoreTempInfos() const   { return pTempLoadStoreInfos; }
     void                CreateLoadStoreTempInfos();
