@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodule.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:42:41 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:07:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,9 +50,6 @@
 #ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif
-#ifndef _SVX_GALBRWS_HXX_
-#include <bf_svx/galbrws.hxx>
-#endif
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif
@@ -61,55 +58,6 @@
 #endif
 #ifndef _EHDL_HXX //autogen
 #include <svtools/ehdl.hxx>
-#endif
-#ifndef _OFAACCFG_HXX //autogen
-#include <bf_offmgr/ofaaccfg.hxx>
-#endif
-#ifndef _SVX_PSZCTRL_HXX //autogen
-#include <bf_svx/pszctrl.hxx>
-#endif
-#ifndef _SVX_INSCTRL_HXX //autogen
-#include <bf_svx/insctrl.hxx>
-#endif
-#ifndef _SVX_SELCTRL_HXX //autogen
-#include <bf_svx/selctrl.hxx>
-#endif
-#ifndef _SVX_LINECTRL_HXX //autogen
-#include <bf_svx/linectrl.hxx>
-#endif
-#include <bf_svx/tbxctl.hxx>            //z-Zt falscher includeschutz!
-#ifndef _FILLCTRL_HXX //autogen
-#include <bf_svx/fillctrl.hxx>
-#endif
-#ifndef _SVX_TBCONTRL_HXX //autogen
-#include <bf_svx/tbcontrl.hxx>
-#endif
-#ifndef _SVX_VERT_TEXT_TBXCTRL_HXX
-#include <bf_svx/verttexttbxctrl.hxx>
-#endif
-#ifndef _CONTDLG_HXX_ //autogen
-#include <bf_svx/contdlg.hxx>
-#endif
-#ifndef _SVX_LAYCTRL_HXX //autogen
-#include <bf_svx/layctrl.hxx>
-#endif
-#ifndef _SVX_FONTWORK_HXX //autogen
-#include <bf_svx/fontwork.hxx>
-#endif
-#ifndef _TBXALIGN_HXX //autogen
-#include <bf_svx/tbxalign.hxx>
-#endif
-#ifndef _SVX_GRAFCTRL_HXX
-#include <bf_svx/grafctrl.hxx>
-#endif
-#ifndef _SVX_CLIPBOARDCTL_HXX_
-#include <bf_svx/clipboardctl.hxx>
-#endif
-#ifndef _SVX_LBOXCTRL_HXX_
-#include <bf_svx/lboxctrl.hxx>
-#endif
-#ifndef _SVX_DLG_HYPERLINK_HXX //autogen
-#include <bf_offmgr/hyprlink.hxx>
 #endif
 #ifndef _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_STRINGSDTOR
@@ -133,9 +81,6 @@
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
 #endif
-#ifndef _SVX_VERT_TEXT_TBXCTRL_HXX
-#include <bf_svx/verttexttbxctrl.hxx>
-#endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
@@ -148,9 +93,6 @@
 #ifndef _SWEVENT_HXX
 #include <swevent.hxx>
 #endif
-#ifndef _SWACORR_HXX
-#include <swacorr.hxx>
-#endif
 #ifndef _CMDID_H
 #include <cmdid.h>
 #endif
@@ -160,77 +102,11 @@
 #ifndef _INIT_HXX
 #include <init.hxx>
 #endif
-#ifndef _SWPVIEW_HXX //autogen
-#include <pview.hxx>
-#endif
-#ifndef _SWWVIEW_HXX //autogen
-#include <wview.hxx>
-#endif
 #ifndef _SWWDOCSH_HXX //autogen
 #include <wdocsh.hxx>
 #endif
 #ifndef _SWGLOBDOCSH_HXX //autogen
 #include <globdoc.hxx>
-#endif
-#ifndef _SRCVIEW_HXX //autogen
-#include <srcview.hxx>
-#endif
-#ifndef _AUTODOC_HXX //autogen
-#include <glshell.hxx>
-#endif
-#ifndef _SWTABSH_HXX //autogen
-#include <tabsh.hxx>
-#endif
-#ifndef _SWLISTSH_HXX //autogen
-#include <listsh.hxx>
-#endif
-#ifndef _SWGRFSH_HXX //autogen
-#include <grfsh.hxx>
-#endif
-#ifndef _SWOLESH_HXX //autogen
-#include <olesh.hxx>
-#endif
-#ifndef _SWDRAWSH_HXX //autogen
-#include <drawsh.hxx>
-#endif
-#ifndef _SWWDRWFORMSH_HXX //autogen
-#include <wformsh.hxx>
-#endif
-#ifndef _SWDRWTXTSH_HXX //autogen
-#include <drwtxtsh.hxx>
-#endif
-#ifndef _SWBEZIERSH_HXX //autogen
-#include <beziersh.hxx>
-#endif
-#ifndef _SWWTEXTSH_HXX //autogen
-#include <wtextsh.hxx>
-#endif
-#ifndef _SWWFRMSH_HXX //autogen
-#include <wfrmsh.hxx>
-#endif
-#ifndef _DRFORMSH_HXX
-#include <drformsh.hxx>
-#endif
-#ifndef _WGRFSH_HXX
-#include <wgrfsh.hxx>
-#endif
-#ifndef _WOLESH_HXX
-#include <wolesh.hxx>
-#endif
-#ifndef _WLISTSH_HXX
-#include <wlistsh.hxx>
-#endif
-#ifndef _WTABSH_HXX
-#include <wtabsh.hxx>
-#endif
-#ifndef _WDRWBASE_HXX
-#include <wdrwbase.hxx>
-#endif
-#ifndef _CHARTINS_HXX //autogen
-#include <chartins.hxx>
-#endif
-#ifndef SW_INPUTWIN_HXX //autogen
-#include <inputwin.hxx>
 #endif
 #ifndef _USRPREF_HXX //autogen
 #include <usrpref.hxx>
@@ -240,39 +116,6 @@
 #endif
 #ifndef _PRTOPT_HXX //autogen
 #include <prtopt.hxx>
-#endif
-#ifndef _BOOKCTRL_HXX
-#include <bookctrl.hxx>
-#endif
-#ifndef _TMPLCTRL_HXX
-#include <tmplctrl.hxx>
-#endif
-#ifndef _TBLCTRL_HXX
-#include <tblctrl.hxx>
-#endif
-#ifndef _ZOOMCTRL_HXX
-#include <zoomctrl.hxx>
-#endif
-#ifndef _SWSTBCTL_HXX
-#include <swstbctl.hxx>
-#endif
-#ifndef _WORKCTRL_HXX
-#include <workctrl.hxx>
-#endif
-#ifndef _TBXANCHR_HXX
-#include <tbxanchr.hxx>
-#endif
-#ifndef _FLDWRAP_HXX
-#include <fldwrap.hxx>
-#endif
-#ifndef _REDLNDLG_HXX
-#include <redlndlg.hxx>
-#endif
-#ifndef _SYNCBTN_HXX
-#include <syncbtn.hxx>
-#endif
-#ifndef _HDFTCTRL_HXX
-#include <hdftctrl.hxx>
 #endif
 #ifndef _MODOPT_HXX //autogen
 #include <modcfg.hxx>
@@ -289,22 +132,18 @@
 #ifndef _SWATRSET_HXX //autogen
 #include <swatrset.hxx>
 #endif
-#ifndef _IDXMRK_HXX
-#include <idxmrk.hxx>
-#endif
 #ifndef _DLELSTNR_HXX_
 #include <dlelstnr.hxx>
 #endif
 #ifndef _BARCFG_HXX
 #include <barcfg.hxx>
 #endif
-#ifndef _SVX_RUBYDLG_HXX_
-#include <bf_svx/rubydialog.hxx>
-#endif
 // OD 14.02.2003 #107424#
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <svtools/colorcfg.hxx>
 #endif
+
+#include "glshell.hxx"
 
 #include <svtools/moduleoptions.hxx>
 
@@ -329,7 +168,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::scanner;
 using namespace ::com::sun::star::lang;
-using namespace ::com::sun::star::linguistic2;
 using namespace ::rtl;
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
@@ -380,15 +218,7 @@ using namespace ::rtl;
 /*N*/
 /*N*/   pAuthorNames = new SvStringsDtor(5, 1); // Alle Redlining-Autoren
 /*N*/
-/*N*/   //JP 18.10.96: SvxAutocorrect gegen die SwAutocorrect austauschen
-/*N*/   OfficeApplication* pOffApp = OFF_APP();
-/*N*/   OfaAutoCorrCfg* pACfg = pOffApp->GetAutoCorrConfig();
-/*N*/   if( pACfg )
-/*N*/   {
-/*N*/       const SvxAutoCorrect* pOld = pACfg->GetAutoCorrect();
-/*N*/       pACfg->SetAutoCorrect(new SwAutoCorrect( *pOld ));
-/*N*/   }
-/*N*/   StartListening( *pOffApp );
+/*N*/   StartListening( *OFF_APP() );
 /*N*/
 /*N*/   Reference< XMultiServiceFactory > xMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/   if( xMgr.is() )
@@ -418,26 +248,6 @@ using namespace ::rtl;
 /*N*/   delete pAttrPool;
 /*N*/   delete pErrorHdl;
 /*N*/   EndListening( *OFF_APP() );
-/*N*/ }
-
-//************************************************************************
-
-/*N*/ void SwModule::CreateLngSvcEvtListener()
-/*N*/ {
-/*N*/     if (!xLngSvcEvtListener.is())
-/*N*/         xLngSvcEvtListener = new SwLinguServiceEventListener;
-/*N*/ }
-
-//************************************************************************
-
-/*N*/ void SwDLL::RegisterInterfaces()
-/*N*/ {
-/*N*/   SwModule* pMod = SW_MOD();
-/*N*/   SwModule::RegisterInterface( pMod );
-/*N*/   SwDocShell::RegisterInterface( pMod );
-/*N*/   SwWebDocShell::RegisterInterface( pMod );
-/*N*/   SwGlosDocShell::RegisterInterface( pMod );
-/*N*/   SwWebGlosDocShell::RegisterInterface( pMod );
 /*N*/ }
 
 /*************************************************************************
