@@ -4,9 +4,9 @@
  *
  *  $RCSfile: printer.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:05:47 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:42:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,6 +47,16 @@ class SfxTabPage;
 struct SfxPrinter_Impl;
 
 #define SFX_RANGE_NOTSET    ((USHORT)0xFFFF)
+
+#define SFX_PRINTER_PRINTER          1  // ohne JOBSETUP => temporaer
+#define SFX_PRINTER_JOBSETUP         2
+#define SFX_PRINTER_OPTIONS          4
+#define SFX_PRINTER_CHG_ORIENTATION  8
+#define SFX_PRINTER_CHG_SIZE        16
+#define SFX_PRINTER_ALL             31
+
+#define SFX_PRINTER_CHG_ORIENTATION_FLAG  3
+#define SFX_PRINTER_CHG_SIZE_FLAG         4
 
 // class SfxFontSizeInfo -------------------------------------------------
 
