@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 12:50:22 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:10:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,6 @@ SRS1NAME=$(TARGET)
 SRC1FILES =  \
         sw_shells.src \
         sw_pseudo.src
-
-SLOFILES =  \
-        $(SLO)$/sw_slotadd.obj \
 
 # --- Tagets -------------------------------------------------------
 
