@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_olinefun.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:03:42 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:21:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,6 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <bf_sfx2/bindings.hxx>
 
 #include "olinefun.hxx"
 
