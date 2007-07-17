@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: kz $ $Date: 2006-11-08 12:39:40 $
+#   last change: $Author: obo $ $Date: 2007-07-17 12:04:15 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,10 +60,7 @@ RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 SRS1NAME=$(TARGET)
 SRC1FILES =\
-        sw_acc.src     \
         sw_app.src     \
-        sw_mn.src      \
-        sw_mnport.src      \
         sw_error.src
 
 SLOFILES = \
@@ -72,13 +69,12 @@ SLOFILES = \
         $(SLO)$/sw_docsh2.obj   \
         $(SLO)$/sw_docshdrw.obj \
         $(SLO)$/sw_docshini.obj \
-        $(SLO)$/sw_docst.obj    \
         $(SLO)$/sw_docstyle.obj \
         $(SLO)$/sw_mainwn.obj   \
         $(SLO)$/sw_version.obj  \
         $(SLO)$/sw_swmodule.obj \
         $(SLO)$/sw_swmodul1.obj \
-        $(SLO)$/sw_swdll.obj	 
+        $(SLO)$/sw_swdll.obj
 
 
 EXCEPTIONSFILES= \
@@ -112,4 +108,4 @@ $(INCCOM)$/swdll0.hxx: makefile.mk
 
 
 $(SRS)$/sw_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
-  
+
