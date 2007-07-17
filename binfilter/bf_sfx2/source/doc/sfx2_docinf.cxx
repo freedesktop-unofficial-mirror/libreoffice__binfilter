@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docinf.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:27:17 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:55:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,6 +48,17 @@
 #include "app.hxx"
 #include "docfile.hxx"
 namespace binfilter {
+
+/*N*/ TYPEINIT1_AUTOFACTORY(SfxDocumentInfoItem, SfxStringItem);
+
+//------------------------------------------------------------------------
+
+/*?*/ SfxDocumentInfoItem::SfxDocumentInfoItem() :
+/*?*/
+/*?*/   SfxStringItem()
+/*?*/
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ }
 
 //========================================================================
 
@@ -1442,8 +1453,8 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   SfxApplication *pSfxApp = SFX_APP();
 /*N*/     bPortableGraphics = TRUE;
 /*N*/     SvtSaveOptions aSaveOptions;
-/*N*/     bSaveGraphicsCompressed = aSaveOptions.GetSaveGraphicsMode() == SvtSaveOptions::SaveGraphicsCompressed;
-/*N*/     bSaveOriginalGraphics = aSaveOptions.GetSaveGraphicsMode() == SvtSaveOptions::SaveGraphicsOriginal;
+/*N*/     bSaveGraphicsCompressed = FALSE;
+/*N*/     bSaveOriginalGraphics = FALSE;
 /*N*/
 /*N*/   const String aInf( DEFINE_CONST_UNICODE( "Info " ) );
 /*N*/   for( USHORT i = 0; i < MAXDOCUSERKEYS; ++i )    {
