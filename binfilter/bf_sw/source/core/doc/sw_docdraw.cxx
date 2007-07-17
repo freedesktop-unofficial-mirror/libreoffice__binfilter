@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdraw.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:22:49 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:00:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -286,12 +286,7 @@ namespace binfilter {//STRIP009
 /*N*/   pDrawModel->InsertPage( pDrawModel->AllocPage( FALSE ) );
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "after create DrawDocument" );
 /*N*/
-/*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "before create Spellchecker/Hyphenator" );
 /*N*/   SdrOutliner& rOutliner = pDrawModel->GetDrawOutliner();
-/*N*/   uno::Reference< XSpellChecker1 > xSpell = ::binfilter::GetSpellChecker();
-/*N*/   rOutliner.SetSpeller( xSpell );
-/*N*/     uno::Reference<XHyphenator> xHyphenator( ::binfilter::GetHyphenator() );
-/*N*/   rOutliner.SetHyphenator( xHyphenator );
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "after create Spellchecker/Hyphenator" );
 /*N*/
 /*N*/   SetCalcFieldValueHdl(&rOutliner);
