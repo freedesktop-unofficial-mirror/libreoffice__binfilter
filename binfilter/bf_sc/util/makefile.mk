@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.18 $
+#   $Revision: 1.19 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 12:59:44 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:45:54 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,12 +57,7 @@ LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=30
 RESLIB1LIST=\
     $(SRS)$/sc_ui.srs		\
     $(SRS)$/sc_dbgui.srs	\
-    $(SRS)$/sc_drawfunc.srs \
     $(SRS)$/sc_core.srs 	\
-    $(SRS)$/sc_scslots.srs	\
-    $(SRS)$/sc_formdlgs.srs \
-    $(SRS)$/sc_navipi.srs	\
-    $(SRS)$/sfx2_sfx.srs
 
 RESLIB1NAME=bf_sc
 RESLIB1SRSFILES=\
@@ -119,10 +114,6 @@ SHL1OBJS=   $(SLO)$/sc_scdll.obj
 .ENDIF
 .ENDIF
 
-.IF "$(GUI)" == "UNX"
-SHL1STDLIBS+= \
-            $(BFSFXLIB)
-.ENDIF
 
 SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
 
@@ -142,13 +133,8 @@ LIB3FILES=	\
     $(SLB)$/sc_app.lib \
     $(SLB)$/sc_docshell.lib \
     $(SLB)$/sc_view.lib \
-    $(SLB)$/sc_undo.lib \
-    $(SLB)$/sc_formdlgs.lib \
-    $(SLB)$/sc_cctrl.lib \
-    $(SLB)$/sc_dbgui.lib \
-    $(SLB)$/sc_drawfunc.lib \
-    $(SLB)$/sc_navipi.lib
-    
+    $(SLB)$/sc_dbgui.lib
+
 LIB3FILES+= \
             $(SLB)$/sc_unoobj.lib
 
@@ -158,7 +144,7 @@ LIB4FILES=	\
     $(SLB)$/sc_data.lib \
     $(SLB)$/sc_tool.lib \
     $(SLB)$/sc_xml.lib
-    
+
 LIB5TARGET=$(LB)$/bf_sclib.lib
 LIB5ARCHIV=$(LB)$/libbf_sclib.a
 
