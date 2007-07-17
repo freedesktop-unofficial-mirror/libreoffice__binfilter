@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:42:36 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:56:53 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@ SLOFILES = $(SLO)$/sd_stlsheet.obj  \
            $(SLO)$/sd_anminfo.obj	\
            $(SLO)$/sd_sdiocmpt.obj	\
            $(SLO)$/sd_sdpage2.obj	\
-           $(SLO)$/sd_typemap.obj	\
            $(SLO)$/sd_cusshow.obj
 
 EXCEPTIONSFILES= \
