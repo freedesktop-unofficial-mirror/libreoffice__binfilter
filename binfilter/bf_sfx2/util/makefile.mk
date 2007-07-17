@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: rt $ $Date: 2007-04-26 13:50:39 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:21:49 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -62,31 +62,8 @@ LIB1FILES=  $(SLB)$/sfx2_appl.lib		\
             $(SLB)$/sfx2_view.lib		\
             $(SLB)$/sfx2_control.lib		\
             $(SLB)$/sfx2_notify.lib		\
-            $(SLB)$/sfx2_menu.lib		\
-            $(SLB)$/sfx2_inet.lib		\
-            $(SLB)$/sfx2_accel.lib		\
-            $(SLB)$/sfx2_toolbox.lib		\
-            $(SLB)$/sfx2_statbar.lib		\
-            $(SLB)$/sfx2_dialog.lib		\
             $(SLB)$/sfx2_bastyp.lib		\
             $(SLB)$/sfx2_config.lib
-
-SFXSRSLIST=\
-        $(SRS)$/sfx2_accel.srs \
-        $(SRS)$/sfx2_appl.srs \
-        $(SRS)$/sfx2_sfx.srs \
-        $(SRS)$/sfx2_doc.srs \
-        $(SRS)$/sfx2_view.srs \
-        $(SRS)$/sfx2_config.srs \
-        $(SRS)$/sfx2_menu.srs \
-        $(SRS)$/sfx2_statbar.srs \
-        $(SRS)$/sfx2_toolbox.srs \
-        $(SRS)$/sfx2_dialog.srs \
-        $(SRS)$/sfx2_bastyp.srs \
-        $(SRS)$/sfx2_explorer.srs
-
-RESLIB1NAME=$(TARGET)
-RESLIB1SRSFILES=$(SFXSRSLIST)
 
 # --- Targets ------------------------------------------------------
 
