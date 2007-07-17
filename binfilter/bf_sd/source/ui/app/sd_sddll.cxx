@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sddll.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:14:11 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:00:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,32 +69,6 @@ namespace binfilter {
 /*N*/   (*ppShlPtr) = new SdModule(pDrawFact, pGraphicFact);
 /*N*/   (*ppShlPtr)->pSdDrawDocShellFactory    = pDrawFact;
 /*N*/   (*ppShlPtr)->pSdGraphicDocShellFactory = pGraphicFact;
-/*N*/
-/*N*/   if (SvtModuleOptions().IsImpress())
-/*N*/   {
-/*N*/       SdDrawDocShell::Factory().RegisterMenuBar( SdResId( RID_DRAW_DEFAULTMENU ) );
-/*N*/       SdDrawDocShell::Factory().RegisterPluginMenuBar( SdResId( RID_DRAW_PORTALMENU ) );
-/*N*/       SdDrawDocShell::Factory().RegisterAccel( SdResId( RID_DRAW_DEFAULTACCEL ) );
-/*N*/
-/*N*/         // Register the Impress shape types in order to make the shapes
-/*N*/         // accessible.
-/*N*/   }
-
-/*N*/   if (SvtModuleOptions().IsDraw())
-/*N*/   {
-/*N*/       SdGraphicDocShell::Factory().RegisterMenuBar( SdResId( RID_GRAPHIC_DEFAULTMENU ) );
-/*N*/       SdGraphicDocShell::Factory().RegisterPluginMenuBar( SdResId( RID_GRAPHIC_PORTALMENU ) );
-/*N*/       SdGraphicDocShell::Factory().RegisterAccel( SdResId( RID_GRAPHIC_DEFAULTACCEL ) );
-/*N*/   }
-/*N*/
-/*N*/   // register your view-factories here
-/*N*/   RegisterFactorys();
-/*N*/
-/*N*/   // register your shell-interfaces here
-/*N*/   RegisterInterfaces();
-/*N*/
-/*N*/   // register your controllers here
-/*N*/   RegisterControllers();
 /*N*/
 /*N*/   // Objekt-Factory eintragen
 /*N*/   SdrObjFactory::InsertMakeUserDataHdl(LINK(&aSdObjectFactory, SdObjectFactory, MakeUserData));
