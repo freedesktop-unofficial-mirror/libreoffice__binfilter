@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewdata.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:32:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:27:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,15 +80,12 @@ enum ScRefType { SC_REFTYPE_NONE, SC_REFTYPE_REF, SC_REFTYPE_FILL,
 class ScDocShell;
 class ScDocument;
 class ScDBFunc;
-class ScTabViewShell;
 class ScDrawView;
 class ScEditEngineDefaulter;
 class EditView;
 class EditStatus;
 class Outliner;
 class SfxObjectShell;
-class SfxBindings;
-class SfxDispatcher;
 class ScPatternAttr;
 class ScRangeListRef;
 class ScExtDocOptions;
@@ -143,8 +140,8 @@ private:
     ScViewDataTable*    pThisTab;                   // Daten der angezeigten Tabelle
     ScDocShell*         pDocShell;
     ScDocument*         pDoc;
-    ScDBFunc*           pView;
-    ScTabViewShell*     pViewShell;
+//  ScDBFunc*           pView;
+//  ScTabViewShell*     pViewShell;
     EditView*           pEditView[4];               // gehoert dem Fenster
     ScViewOptions*      pOptions;
     EditView*           pSpellingView;
@@ -197,25 +194,22 @@ private:
     void            CalcPPT();
 
 public:
-                    ScViewData( ScDocShell* pDocSh, ScTabViewShell* pViewSh );
+                    ScViewData( ScDocShell* pDocSh );
                     ~ScViewData();
 
 
 
     ScDocShell*     GetDocShell() const     { return pDocShell; }
-    ScDBFunc*       GetView() const         { return pView; }
-    ScTabViewShell* GetViewShell() const    { return pViewShell; }
+//  ScDBFunc*       GetView() const         { return pView; }
+//  ScTabViewShell* GetViewShell() const    { return pViewShell; }
 
     SfxObjectShell* GetSfxDocShell() const;
-    SfxBindings&    GetBindings();          // from ViewShell's ViewFrame
-    SfxDispatcher&  GetDispatcher();        // from ViewShell's ViewFrame
-
     ScMarkData&     GetMarkData()           { return aMarkData; }
 
-    Window*         GetDialogParent();          // von tabvwsh weitergeleitet
-    Window*         GetActiveWin();             // von View
-    ScDrawView*     GetScDrawView();            // von View
-    BOOL            IsMinimized();              // von View
+//  Window*         GetDialogParent();          // von tabvwsh weitergeleitet
+//  Window*         GetActiveWin();             // von View
+//  ScDrawView*     GetScDrawView();            // von View
+//  BOOL            IsMinimized();              // von View
 
 
     void            WriteUserData(String& rData);
@@ -225,7 +219,6 @@ public:
 
     ScDocument*     GetDocument() const;
 
-    void            SetViewShell( ScTabViewShell* pViewSh );
 
     BOOL            IsActive() const            { return bActive; }
     void            Activate(BOOL bActivate)    { bActive = bActivate; }
