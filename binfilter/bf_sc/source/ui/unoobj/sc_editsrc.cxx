@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editsrc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:05:59 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:34:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,7 @@
 #include "docfunc.hxx"
 #include "hints.hxx"
 #include "unoguard.hxx"
-#ifndef _SC_ACCESSIBLETEXT_HXX
 #include "AccessibleText.hxx"
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------
