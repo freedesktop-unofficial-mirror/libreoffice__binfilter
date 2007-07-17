@@ -4,9 +4,9 @@
  *
  *  $RCSfile: smmod.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:19:00 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:49:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -140,7 +140,6 @@ class SmModule : public SmModuleDummy, public SfxListener
     SvtSysLocale            *pSysLocale;
     VirtualDevice           *pVirtualDev;
 
-    virtual void FillStatusBar(StatusBar &rBar);
     void _CreateSysLocale() const;
     void _CreateVirtualDev() const;
 
@@ -148,7 +147,6 @@ class SmModule : public SmModuleDummy, public SfxListener
 
 public:
     TYPEINFO();
-    SFX_DECL_INTERFACE(SFX_INTERFACE_SMA_START + 0);
 
     SmModule(SvFactory* pObjFact);
     virtual ~SmModule();
@@ -163,8 +161,6 @@ public:
     SmRectCache *       GetRectCache()     { return pRectCache; }
 
     SmLocalizedSymbolData &   GetLocSymbolData() const;
-
-    void GetState(SfxItemSet&);
 
     const SvtSysLocale& GetSysLocale() const
     {
