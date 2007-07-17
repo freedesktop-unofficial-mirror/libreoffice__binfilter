@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:20:32 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:33:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -202,15 +202,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   aSelEngine.SetFunctionSet( &aSelFuncSet );
 /*N*/
-/*N*/   aStatusTimer.SetTimeout( 200 );
-/*N*/   aStatusTimer.SetTimeoutHdl( LINK( this, ImpEditEngine, StatusTimerHdl ) );
-/*N*/
-/*N*/   aIdleFormatter.SetTimeout( 5 );
-/*N*/   aIdleFormatter.SetTimeoutHdl( LINK( this, ImpEditEngine, IdleFormatHdl ) );
-/*N*/
-/*N*/   aOnlineSpellTimer.SetTimeout( 100 );
-/*N*/   aOnlineSpellTimer.SetTimeoutHdl( LINK( this, ImpEditEngine, OnlineSpellHdl ) );
-/*N*/
 /*N*/   pRefDev             = EE_DLL()->GetGlobalData()->GetStdRefDevice();
 /*N*/
 /*N*/   // Ab hier wird schon auf Daten zugegriffen!
@@ -219,15 +210,10 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   bCallParaInsertedOrDeleted = TRUE;
 /*N*/
-/*N*/     aEditDoc.SetModifyHdl( LINK( this, ImpEditEngine, DocModified ) );
 /*N*/ }
 
 /*N*/ ImpEditEngine::~ImpEditEngine()
 /*N*/ {
-/*N*/   aStatusTimer.Stop();
-/*N*/   aOnlineSpellTimer.Stop();
-/*N*/   aIdleFormatter.Stop();
-/*N*/
 /*N*/   // das Zerstoeren von Vorlagen kann sonst unnoetiges Formatieren ausloesen,
 /*N*/   // wenn eine Parent-Vorlage zerstoert wird.
 /*N*/   // Und das nach dem Zerstoeren der Daten!
@@ -313,11 +299,6 @@ using namespace ::com::sun::star;
 /*N*/       GetEditEnginePtr()->ParagraphDeleted( EE_PARA_ALL );
 /*N*/       GetEditEnginePtr()->ParagraphInserted( 0 );
 /*N*/   }
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( GetStatus().DoOnlineSpelling() )
-/*?*/       aEditDoc.GetObject( 0 )->CreateWrongList();
-/*N*/ #endif // !SVX_LIGHT
 /*N*/ }
 
 
@@ -953,13 +934,6 @@ using namespace ::com::sun::star;
 /*N*/   DBG_ASSERT( pRightPortion, "Blinde Portion in ImpConnectParagraphs(2)" );
 /*N*/   DBG_ASSERT( nParagraphTobeDeleted == GetParaPortions().GetPos( pRightPortion ), "NodePos != PortionPos?" );
 /*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( GetStatus().DoOnlineSpelling() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen nEnd = pLeft->Len();
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   if ( IsCallParaInsertedOrDeleted() )
 /*N*/       GetEditEnginePtr()->ParagraphDeleted( nParagraphTobeDeleted );
 /*N*/
@@ -1179,20 +1153,7 @@ using namespace ::com::sun::star;
 
 /*N*/ EditPaM ImpEditEngine::ImpInsertParaBreak( const EditPaM& rPaM, BOOL bKeepEndingAttribs )
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( IsUndoEnabled() && !IsInUndo() )
-/*N*/       InsertUndo( new EditUndoSplitPara( this, aEditDoc.GetPos( rPaM.GetNode() ), rPaM.GetIndex() ) );
-/*N*/ #endif
-/*N*/
 /*N*/   EditPaM aPaM( aEditDoc.InsertParaBreak( rPaM, bKeepEndingAttribs ) );
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( GetStatus().DoOnlineSpelling() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen nEnd = rPaM.GetNode()->Len();
-/*N*/   }
-/*N*/ #endif // !SVX_LIGHT
-/*N*/
 /*N*/
 /*N*/   ParaPortion* pPortion = FindParaPortion( rPaM.GetNode() );
 /*N*/   DBG_ASSERT( pPortion, "Blinde Portion in ImpInsertParaBreak" );
@@ -1214,21 +1175,9 @@ using namespace ::com::sun::star;
 
 /*N*/ EditPaM ImpEditEngine::ImpFastInsertParagraph( USHORT nPara )
 /*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( IsUndoEnabled() && !IsInUndo() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nPara )
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   ContentNode* pNode = new ContentNode( aEditDoc.GetItemPool() );
 /*N*/   // Falls FlatMode, wird spaeter kein Font eingestellt:
 /*N*/   pNode->GetCharAttribs().GetDefFont() = aEditDoc.GetDefFont();
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if ( GetStatus().DoOnlineSpelling() )
-/*?*/       pNode->CreateWrongList();
-/*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/   aEditDoc.Insert( pNode, nPara );
 /*N*/
@@ -2152,11 +2101,5 @@ using namespace ::com::sun::star;
 /*N*/         aNotify.pEditEngine = GetEditEnginePtr();
 /*N*/         GetNotifyHdl().Call( &aNotify );
 /*N*/     }
-/*N*/ }
-
-/*N*/ IMPL_LINK( ImpEditEngine, DocModified, void*, EMPTYARG )
-/*N*/ {
-/*N*/     aModifyHdl.Call( NULL /*GetEditEnginePtr()*/ ); // NULL, because also used for Outliner
-/*N*/     return 0;
 /*N*/ }
 }

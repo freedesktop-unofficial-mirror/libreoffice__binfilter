@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:20:55 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 11:34:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -230,13 +230,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/           nAttr++;
 /*N*/           pAttr = GetAttrib( pNode->GetCharAttribs().GetAttribs(), nAttr );
 /*N*/       }
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/       // ggf. Online-Spelling
-/*N*/       if ( bAllowBigObjects && bOnlyFullParagraphs && pNode->GetWrongList() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pC->SetWrongList( pNode->GetWrongList()->Clone() );
-/*N*/ #endif // !SVX_LIGHT
-/*N*/
 /*N*/   }
 /*N*/
 /*N*/   // Bei grossen Textobjekten die PortionInfos merken:
@@ -480,11 +473,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/           if ( aStatus.UseCharAttribs() )
 /*N*/               aPaM.GetNode()->CreateDefFont();
 /*N*/       }
-/*N*/
-/*N*/ #ifndef SVX_LIGHT
-/*N*/       if ( bNewContent && GetStatus().DoOnlineSpelling() && pC->GetWrongList() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aPaM.GetNode()->SetWrongList( pC->GetWrongList()->Clone() );
-/*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/       // Zeilenumbruch, wenn weitere folgen...
 /*N*/       if ( n < ( nContents-1) )
