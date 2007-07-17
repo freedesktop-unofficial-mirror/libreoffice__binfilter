@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:19:30 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:27:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -212,7 +212,6 @@
 #include <so3/embobj.hxx>
 #include <so3/ipobj.hxx>
 #include <scresid.hxx>
-#include <bf_sfx2/ipfrm.hxx>
 #include <so3/factory.hxx>
 #include <docsh.hxx>
 #include <bf_sfx2/interno.hxx>
