@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:43:23 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:08:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,14 +60,8 @@
 #ifndef _COM_SUN_STAR_TEXT_MAILMERGEEVENT_
 #include <com/sun/star/text/MailMergeEvent.hpp>
 #endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
 #ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
-#endif
-#ifndef _SWDBTOOLSCLIENT_HXX
-#include <swdbtoolsclient.hxx>
 #endif
 #ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
@@ -106,9 +100,6 @@
 #ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
 #endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
@@ -122,14 +113,8 @@
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
 #endif
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _EDTWIN_HXX
-#include <edtwin.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
