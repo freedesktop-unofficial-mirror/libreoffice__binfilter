@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:41:43 $
+#   last change: $Author: obo $ $Date: 2007-07-17 09:50:36 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,6 @@ SLOFILES =  \
     $(SLO)$/sch_ChXChartDataChangeEventListener.obj			\
     $(SLO)$/sch_ChXChartDocument.obj						\
     $(SLO)$/sch_ChXChartObject.obj							\
-    $(SLO)$/sch_ChXChartView.obj							\
     $(SLO)$/sch_ChXDataPoint.obj							\
     $(SLO)$/sch_ChXDataRow.obj								\
     $(SLO)$/sch_ChXDiagram.obj								\
