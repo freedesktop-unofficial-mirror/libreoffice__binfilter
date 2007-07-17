@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_frmview.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:44:21 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 10:22:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 #ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SFX_TOPFRM_HXX //autogen wg. SfxTopViewFrame
-#include <bf_sfx2/topfrm.hxx>
-#endif
 
 
 #ifndef _RTL_USTRBUF_HXX_
@@ -54,12 +51,11 @@
 #include "frmview.hxx"
 #include "drawdoc.hxx"
 #include "optsitem.hxx"
-#include "drviewsh.hxx"
-#include "outlnvsh.hxx"
-#include "slidvish.hxx"
 #include "sdresid.hxx"
 #include "glob.hrc"
 #include "sdiocmpt.hxx"
+#include "docshell.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -100,39 +96,6 @@ using namespace ::std;
             * Das Dokument wurde geladen, ist eine FrameView vorhanden?
             **********************************************************************/
 /*N*/           ULONG nSdViewShellCount = 0;
-/*N*/           SdViewShell* pViewSh = NULL;
-/*N*/           SfxViewShell* pSfxViewSh = NULL;
-/*N*/           SfxViewFrame* pSfxViewFrame = SfxViewFrame::GetFirst(pDocShell,
-/*N*/                                                                TYPE(SfxTopViewFrame));
-/*N*/
-/*N*/           while (pSfxViewFrame)
-/*N*/           {
-/*?*/               // Anzahl FrameViews ermitteln
-/*?*/               pSfxViewSh = pSfxViewFrame->GetViewShell();
-/*?*/               pViewSh = PTR_CAST( SdViewShell, pSfxViewSh );
-/*?*/
-/*?*/               if (pViewSh)
-/*?*/               {
-/*?*/                   nSdViewShellCount++;
-/*?*/
-/*?*/                   if (pViewSh->ISA(SdDrawViewShell))
-/*?*/                   {
-/*?*/                       nPresViewShellId = SID_VIEWSHELL0;
-/*?*/                   }
-/*?*/                   else if (pViewSh->ISA(SdSlideViewShell))
-/*?*/                   {
-/*?*/                       nPresViewShellId = SID_VIEWSHELL1;
-/*?*/                   }
-/*?*/                   else if (pViewSh->ISA(SdOutlineViewShell))
-/*?*/                   {
-/*?*/                       nPresViewShellId = SID_VIEWSHELL2;
-/*?*/                   }
-/*?*/               }
-/*?*/
-/*?*/               pSfxViewFrame = SfxViewFrame::GetNext(*pSfxViewFrame, pDocShell,
-/*?*/                                                     TYPE(SfxTopViewFrame));
-/*?*/           }
-/*?*/
 /*N*/           SdDrawDocument* pDoc = pDocShell->GetDoc();
 /*N*/           pFrameView = pDoc->GetFrameView(nSdViewShellCount);
 /*N*/       }
