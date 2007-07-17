@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editable.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:48:49 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:20:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,8 +40,9 @@
 
 #include "editable.hxx"
 #include "document.hxx"
-#include "viewfunc.hxx"
 #include "globstr.hrc"
+#include "markdata.hxx"
+
 namespace binfilter {
 
 //------------------------------------------------------------------
@@ -74,14 +75,12 @@ namespace binfilter {
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 TestRange( pDoc, rRange );
 /*N*/ }
 
 /*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, const ScMarkData& rMark ) :
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 TestSelection( pDoc, rMark );
 /*N*/ }
 
 
