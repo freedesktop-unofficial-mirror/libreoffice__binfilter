@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-03-26 13:01:05 $
+#   last change: $Author: obo $ $Date: 2007-07-17 11:26:46 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,7 @@ INC+= -I$(PRJ)$/inc$/bf_starmath
 
 RESLIB1NAME=bf_sm
 RESLIB1SRSFILES=\
-    $(SRS)$/starmath_smres.srs \
-    $(SRS)$/starmath_smslots.srs \
-    $(SRS)$/sfx2_sfx.srs
+    $(SRS)$/starmath_smres.srs 
 
 SHL1TARGET= bf_sm$(UPD)$(DLLPOSTFIX)
 SHL1IMPLIB= bf_smimp
@@ -82,10 +80,6 @@ SHL1STDLIBS= \
             $(CPPUHELPERLIB) \
             $(CPPULIB) \
             $(SALLIB)
-.IF "$(GUI)" == "UNX"
-SHL1STDLIBS+= \
-            $(BFSFXLIB)
-.ENDIF                        
 
 SHL1DEPN=	makefile.mk
 SHL1LIBS=   $(SLB)$/bf_starmath.lib
