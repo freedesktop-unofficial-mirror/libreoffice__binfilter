@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:00:40 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:07:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,10 +79,6 @@ namespace binfilter {
 
 inline BOOL IsDocShellRegistered()
 {
-// zu dem Zeitpunkt ist das Interface der DocShell leider noch nicht
-// registriert!!
-
-//  return 0 != (SFX_APP()->GetInterfaceByIdImpl( SfxInterfaceId(SW_DOCSHELL) ));
     return SvtModuleOptions().IsWriter();
 }
 
@@ -170,7 +166,6 @@ void    SwDLL::LibExit()
 
     // destroy the dummy-module with Object-Factory-Pointer
     DELETEZ( *(SwModuleDummy**) GetAppData(BF_SHL_WRITER) );
-
 }
 
 //-------------------------------------------------------------------------
