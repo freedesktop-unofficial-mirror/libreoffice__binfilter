@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:47:24 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 09:49:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,39 +42,19 @@
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
+#include <bf_sfx2/app.hxx>
 #include <bf_svx/svxids.hrc>
-#ifndef _SO_CLSIDS_HXX //autogen
 #include <so3/clsids.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _CTRLTOOL_HXX
 #include <svtools/ctrltool.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SFXSTBMGR_HXX //autogen
-#include <bf_sfx2/stbmgr.hxx>
-#endif
-#ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
-#endif
-#ifndef _SVX_DRAWITEM_HXX //autogen
 #include <bf_svx/drawitem.hxx>
-#endif
-#ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <svtools/pathoptions.hxx>
-#endif
-
 #include <bf_svx/svxids.hrc>
+#include <rtl/logfile.hxx>
 
 #include "app.hrc"
 #include "strings.hrc"
@@ -85,19 +65,9 @@
 
 #include "ChXChartDocument.hxx"
 #include "ChXChartData.hxx"
-
-// header for class SfxFilter
-
-#ifndef _RTL_LOGFILE_HXX_
-#include <rtl/logfile.hxx>
-#endif
-
-// XML filter
 #include "SchXMLWrapper.hxx"
-
-#ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
-#endif
+
 namespace binfilter {
 
 #define POOL_BUFFER_SIZE        (USHORT)32768
@@ -123,9 +93,6 @@ static const String __FAR_DATA aStarChartDoc = String( RTL_CONSTASCII_USTRINGPAR
 |* SFX-Slotmaps und -Definitionen
 |*
 \************************************************************************/
-
-#define SchChartDocShell
-#include "schslots.hxx"
 
 
 namespace
@@ -159,10 +126,6 @@ private:
     BOOL        m_bModifyingWasEnabled;
 };
 }
-
-/*N*/ SFX_IMPL_INTERFACE( SchChartDocShell, SfxObjectShell, SchResId( 0 ) )
-/*N*/ // from macro: void SchChartDocShell::InitInterface_Impl()
-/*N*/ {}
 
 using namespace ::com::sun::star;
 
@@ -286,54 +249,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   delete pChDoc;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* SFX-Requests bearbeiten
-|*
-\************************************************************************/
-
-/*?*/ void SchChartDocShell::Execute(SfxRequest& rReq) throw()
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   switch (rReq.GetSlot())
-/*?*/ }
-
-/*************************************************************************
-|*
-|* Slot-Stati setzen
-|*
-\************************************************************************/
-
-/*?*/ void SchChartDocShell::GetState(SfxItemSet &rSet) throw()
-/*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
-/*            case SID_DOC_MODIFIED:
-                rSet.Put( SfxStringItem( SID_DOC_MODIFIED,
-                                         IsModified() ? '*' : ' ' ) );
-                //rSet.Put(SfxBoolItem(SID_DOC_MODIFIED, IsModified()));
-                break;
-*/
-/*?*/ }
-
-/*************************************************************************
-|*
-|* SFX-Aktivierung
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* SFX-Deaktivierung
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* SFX-Undomanager zurueckgeben
-|*
-\************************************************************************/
 
 /*N*/ SfxUndoManager* SchChartDocShell::GetUndoManager() throw()
 /*N*/ {
@@ -773,18 +688,10 @@ using namespace ::com::sun::star;
 /*N*/             }
 /*N*/
 /*N*/             bRet = SfxInPlaceObject::Save();
-/*N*/             SfxStatusBarManager* pStbMgr =
-/*N*/                 (GetCreateMode() == SFX_CREATE_MODE_EMBEDDED) ?
-/*N*/                 NULL : SFX_APP()->GetStatusBarManager();
-/*N*/
-/*N*/             if (pStbMgr)
-/*?*/                 pStbMgr->StartProgressMode(SchResId(STR_SAVE_DOCUMENT), 100);
 /*N*/
 /*N*/             // komprimiert/native speichern?
-/*N*/             SvtSaveOptions                            aOptions;
-/*N*/             const SvtSaveOptions::SaveGraphicsMode    eSaveMode( aOptions.GetSaveGraphicsMode() );
-/*N*/             const BOOL                                bSaveNative = ( SvtSaveOptions::SaveGraphicsOriginal == eSaveMode );
-/*N*/             const BOOL                                bSaveCompressed = ( bSaveNative || ( SvtSaveOptions::SaveGraphicsCompressed == eSaveMode ) );
+/*N*/             const BOOL                                bSaveNative = FALSE;
+/*N*/             const BOOL                                bSaveCompressed = FALSE;
 /*N*/
 /*N*/             pChDoc->SetSaveCompressed( bSaveCompressed );
 /*N*/             pChDoc->SetSaveNative( bSaveNative );
@@ -802,8 +709,6 @@ using namespace ::com::sun::star;
 /*N*/                     rPoolStream->SetBufferSize( POOL_BUFFER_SIZE );
 /*N*/                     GetPool().Store( *rPoolStream );
 /*N*/
-/*N*/                     if( pStbMgr )
-/*?*/                         pStbMgr->SetProgressState( 20 );
 /*N*/
 /*N*/                     // the style sheet pool uses next() and first() methods without resetting
 /*N*/                     // the search mask (?) so it has to be done here
@@ -812,8 +717,6 @@ using namespace ::com::sun::star;
 /*N*/                     GetStyleSheetPool()->Store( *rPoolStream, FALSE );
 /*N*/                     rPoolStream->SetBufferSize( 0 );
 /*N*/
-/*N*/                     if( pStbMgr )
-/*?*/                         pStbMgr->SetProgressState( 50 );
 /*N*/                 }
 /*N*/                 else bRet = FALSE;
 /*N*/                 if (bRet)
@@ -853,16 +756,12 @@ using namespace ::com::sun::star;
 /*N*/                 DBG_ASSERT(bRet, "Fehler beim Schreiben des Models");
 /*N*/
 /*N*/                 // finished
-/*N*/                 if( pStbMgr )
-/*?*/                     pStbMgr->SetProgressState( 100 );
 /*N*/
 /*N*/                 SetWaitCursor( FALSE );
 /*N*/
 /*N*/                 pChDoc->PostSave();
 /*N*/             }
 /*N*/
-/*N*/             if (pStbMgr)
-/*?*/                 pStbMgr->EndProgressMode();
 /*N*/
 /*N*/             if(nFileFormat <= SOFFICE_FILEFORMAT_40 && pChDoc->IsReal3D())
 /*N*/             {
@@ -971,17 +870,10 @@ SvGlobalName aGlobalName;
 /*N*/       }
 /*N*/
 /*N*/       bRet = SfxInPlaceObject::SaveAs( pStor );
-/*N*/       SfxStatusBarManager* pStbMgr =
-/*N*/           (GetCreateMode() == SFX_CREATE_MODE_EMBEDDED) ?
-/*N*/           NULL : SFX_APP()->GetStatusBarManager();
-/*N*/       if (pStbMgr)
-/*N*/           pStbMgr->StartProgressMode(SchResId(STR_SAVE_DOCUMENT), 100);
 /*N*/
 /*N*/       // compressed or native format
-/*N*/       SvtSaveOptions                          aOptions;
-/*N*/       const SvtSaveOptions::SaveGraphicsMode  eSaveMode( aOptions.GetSaveGraphicsMode() );
-/*N*/       const BOOL                              bSaveNative = ( SvtSaveOptions::SaveGraphicsOriginal == eSaveMode );
-/*N*/       const BOOL                              bSaveCompressed = ( bSaveNative || ( SvtSaveOptions::SaveGraphicsCompressed == eSaveMode ) );
+/*N*/       const BOOL                              bSaveNative = FALSE;
+/*N*/       const BOOL                              bSaveCompressed = FALSE;
 /*N*/
 /*N*/       pChDoc->SetSaveCompressed( bSaveCompressed );
 /*N*/       pChDoc->SetSaveNative( bSaveNative );
@@ -1000,8 +892,6 @@ SvGlobalName aGlobalName;
 /*N*/               GetPool().SetFileFormatVersion( (USHORT)pStor->GetVersion ());
 /*N*/               GetPool().Store( *rPoolStream );
 /*N*/
-/*N*/               if( pStbMgr )
-/*N*/                   pStbMgr->SetProgressState( 20 );
 /*N*/
 /*N*/               // the style sheet pool uses next() and first() methods without resetting
 /*N*/               // the search mask (?) so it has to be done here
@@ -1010,8 +900,6 @@ SvGlobalName aGlobalName;
 /*N*/               GetStyleSheetPool()->Store( *rPoolStream, FALSE );
 /*N*/               rPoolStream->SetBufferSize( 0 );
 /*N*/
-/*N*/               if( pStbMgr )
-/*N*/                   pStbMgr->SetProgressState( 50 );
 /*N*/           }
 /*N*/           else
 /*N*/               bRet = FALSE;
@@ -1060,16 +948,12 @@ SvGlobalName aGlobalName;
 /*N*/           DBG_ASSERT( bRet, "Fehler beim Schreiben des Models" );
 /*N*/
 /*N*/           // finished
-/*N*/           if( pStbMgr )
-/*N*/               pStbMgr->SetProgressState( 100 );
 /*N*/
 /*N*/           SetWaitCursor( FALSE );
 /*N*/
 /*N*/           pChDoc->PostSave();
 /*N*/       }
 /*N*/
-/*N*/       if( pStbMgr )
-/*N*/           pStbMgr->EndProgressMode();
 /*N*/
 /*N*/       if( nFileFormat <= SOFFICE_FILEFORMAT_40 && pChDoc->IsReal3D())
 /*N*/       {
