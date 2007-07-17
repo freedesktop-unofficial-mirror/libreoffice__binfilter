@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appuno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:08:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-17 12:32:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -139,80 +139,36 @@
 #include <svtools/svstdarr.hxx>
 #include <bf_sfx2/sfxuno.hxx>
 
+#include <svtools/poolitem.hxx>
+
 class SfxAllItemSet;
 class SfxItemSet;
+
 namespace binfilter {
 
-class SfxSlot;
+class SfxUsrAnyItem : public SfxPoolItem
+{
+    ::com::sun::star::uno::Any  aValue;
+public:
+                                TYPEINFO();
+                                SfxUsrAnyItem( sal_uInt16 nWhich, const ::com::sun::star::uno::Any& rAny );
+    ::com::sun::star::uno::Any  GetValue() const
+                                { return aValue; }
+    virtual int                 operator==( const SfxPoolItem& ) const;
+    virtual String              GetValueText() const{DBG_BF_ASSERT(0, "STRIP"); return String();} //STRIP001 virtual String              GetValueText() const;
+    virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
+};
+
+typedef SfxUsrAnyItem SfxUnoAnyItem;
+
 void TransformParameters(           sal_uInt16                          nSlotId     ,
                             const   UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs     ,
-                                    SfxAllItemSet&                      aSet        ,
-                            const   SfxSlot*                            pSlot = 0   );
+                                    SfxAllItemSet&                      aSet    );
 
 void TransformItems(        sal_uInt16                          nSlotId     ,
                             const   SfxItemSet&                         aSet        ,
-                                    UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs     ,
-                            const   SfxSlot*                            pSlot = 0   );
+                                    UNOSEQUENCE< UNOPROPERTYVALUE >&    seqArgs  );
 
-//____________________________________________________________________________________________________________________________________
-//  forwards
-//____________________________________________________________________________________________________________________________________
-
-//____________________________________________________________________________________________________________________________________
-//  declarations
-//____________________________________________________________________________________________________________________________________
-class SfxObjectShell;
-class SfxMacroLoader  :     public ::com::sun::star::frame::XDispatchProvider,
-                            public ::com::sun::star::frame::XNotifyingDispatch,
-                            public ::com::sun::star::frame::XSynchronousDispatch,
-                            public ::com::sun::star::lang::XTypeProvider,
-                            public ::com::sun::star::lang::XServiceInfo,
-                            public ::com::sun::star::lang::XInitialization,
-                            public ::cppu::OWeakObject
-{
-    ::com::sun::star::uno::WeakReference < ::com::sun::star::frame::XFrame > m_xFrame;
-
-    SfxObjectShell*             GetObjectShell_Impl();
-
-public:
-    // XInterface, XTypeProvider, XServiceInfo
-    SFX_DECL_XINTERFACE_XTYPEPROVIDER_XSERVICEINFO
-
-    SfxMacroLoader( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xFactory )
-    {}
-
-    static ErrCode loadMacro( const ::rtl::OUString& aURL, ::com::sun::star::uno::Any& rRetval, SfxObjectShell* pDoc=NULL ) throw( ::com::sun::star::uno::RuntimeException );
-
-    virtual ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatch > SAL_CALL
-                    queryDispatch( const ::com::sun::star::util::URL& aURL, const ::rtl::OUString& sTargetFrameName,
-                    FrameSearchFlags eSearchFlags ) throw( ::com::sun::star::uno::RuntimeException ) ;
-    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatch > > SAL_CALL
-                    queryDispatches( const ::com::sun::star::uno::Sequence < ::com::sun::star::frame::DispatchDescriptor >& seqDescriptor )
-                        throw( ::com::sun::star::uno::RuntimeException ) ;
-    virtual void SAL_CALL dispatchWithNotification( const ::com::sun::star::util::URL& aURL, const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lArgs, const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchResultListener >& Listener ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL dispatch( const ::com::sun::star::util::URL& aURL, const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lArgs ) throw (::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL dispatchWithReturnValue( const ::com::sun::star::util::URL& aURL, const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lArgs ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL addStatusListener( const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XStatusListener >& xControl, const ::com::sun::star::util::URL& aURL ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removeStatusListener( const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XStatusListener >& xControl, const ::com::sun::star::util::URL& aURL ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL initialize( const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArguments ) throw (::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException);
-};
-
-class SfxAppDispatchProvider : public ::cppu::WeakImplHelper3< ::com::sun::star::frame::XDispatchProvider, ::com::sun::star::lang::XServiceInfo, ::com::sun::star::lang::XInitialization >
-{
-    ::com::sun::star::uno::WeakReference < ::com::sun::star::frame::XFrame > m_xFrame;
-public:
-                    SfxAppDispatchProvider( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& )
-                    {}
-
-    SFX_DECL_XSERVICEINFO
-    virtual ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatch > SAL_CALL
-                    queryDispatch( const ::com::sun::star::util::URL& aURL, const ::rtl::OUString& sTargetFrameName,
-                    FrameSearchFlags eSearchFlags ) throw( ::com::sun::star::uno::RuntimeException ) ;
-    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatch > > SAL_CALL
-                    queryDispatches( const ::com::sun::star::uno::Sequence < ::com::sun::star::frame::DispatchDescriptor >& seqDescriptor )
-                        throw( ::com::sun::star::uno::RuntimeException ) ;
-    virtual void SAL_CALL initialize( const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArguments ) throw (::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException);
-};
 
 }//end of namespace binfilter
 #endif
