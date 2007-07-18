@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:06:35 $
+ *  last change: $Author: obo $ $Date: 2007-07-18 07:48:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,6 +64,8 @@
 #include <vcl/virdev.hxx>
 #endif
 
+#define _SVSTDARR_USHORTS
+#include <svtools/svstdarr.hxx>
 
 
 #include "textuno.hxx"
@@ -340,7 +342,43 @@ SvxTextForwarder* ScHeaderFooterTextData::GetTextForwarder()
         pData = rContentObj.GetRightEditObject();
 
     if (pData)
+    {
         pEditEngine->SetText(*pData);
+
+        // #i75599# If there's an invalid field ID in a binary file, the result is
+        // a SvxFieldItem with NULL as SvxFieldData. These have to be removed here.
+
+        USHORT nParCount = pEditEngine->GetParagraphCount();
+        for (USHORT nPar=0; nPar<nParCount; nPar++)
+        {
+            SvUShorts aPortions;
+            pEditEngine->GetPortions( nPar, aPortions );
+
+            for ( USHORT nPos = aPortions.Count(); nPos; )
+            {
+                --nPos;
+                USHORT nEnd = aPortions.GetObject( nPos );
+                USHORT nStart = nPos ? aPortions.GetObject( nPos - 1 ) : 0;
+                // fields are single characters
+                if ( nEnd == nStart+1 )
+                {
+                    ESelection aFieldSel( nPar, nStart, nPar, nEnd );
+                    SfxItemSet aSet = pEditEngine->GetAttribs( aFieldSel );
+                    const SfxPoolItem* pItem = NULL;
+                    if ( aSet.GetItemState( EE_FEATURE_FIELD, FALSE, &pItem ) == SFX_ITEM_ON )
+                    {
+                        const SvxFieldItem* pFieldItem = static_cast<const SvxFieldItem*>(pItem);
+                        const SvxFieldData* pData = pFieldItem->GetField();
+                        if ( !pData )
+                        {
+                            // remove the invalid field
+                            pEditEngine->QuickDelete( aFieldSel );
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     bDataValid = TRUE;
     return pForwarder;
