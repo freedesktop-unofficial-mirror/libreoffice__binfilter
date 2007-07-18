@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editutil.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:32:57 $
+ *  last change: $Author: obo $ $Date: 2007-07-18 07:47:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -458,7 +458,8 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("FieldData ist 0");
+            // #i75599# no assertion - can happen with old files
+/*N*/       //DBG_ERROR("FieldData ist 0");
 /*N*/       aRet = '?';
 /*N*/   }
 /*N*/
