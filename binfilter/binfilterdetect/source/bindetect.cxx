@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-01-23 07:30:43 $
+ *  last change: $Author: obo $ $Date: 2007-07-18 08:42:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 
 #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSTREAM_HPP_
-#include <com/sun/star/io/XStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
-#include <com/sun/star/io/XSeekable.hpp>
 #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
@@ -573,34 +567,18 @@ BinFilterDetect::~BinFilterDetect()
 
     // extract preselected type or filter
     ::rtl::OUString aTypeName, aPreselectedFilterName, aFilterName, aFileName;
-    aTypeName = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_TYPENAME(), ::rtl::OUString() );
+    aTypeName   = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_TYPENAME()  , ::rtl::OUString() );
     aFilterName = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_FILTERNAME(), ::rtl::OUString() );
-    aFileName = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_URL(), ::rtl::OUString() );
+    aFileName   = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_URL()       , ::rtl::OUString() );
 
     // open stream
-    Reference < com::sun::star::io::XStream > xStream;
-    Reference < com::sun::star::io::XInputStream > xInputStream;
     aMedium.addInputStream();
-    xStream = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_STREAM(), Reference < com::sun::star::io::XStream >() );
-    xInputStream = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_INPUTSTREAM(), Reference < com::sun::star::io::XInputStream >() );
+    Reference < com::sun::star::io::XInputStream > xInputStream = aMedium.getUnpackedValueOrDefault(comphelper::MediaDescriptor::PROP_INPUTSTREAM(), Reference < com::sun::star::io::XInputStream >() );
 
-    if ( xStream.is() )
-    {
-        if ( !xInputStream.is() )
-            xInputStream = xStream->getInputStream();
-    }
-    else if ( xInputStream.is() )
-    {
-        // non seekable stream is not shareable
-        aMedium.erase(comphelper::MediaDescriptor::PROP_INPUTSTREAM());
-        aMedium[comphelper::MediaDescriptor::PROP_READONLY()] <<= sal_True;
-    }
-    else
-    {
-        // no detection without stream
-        aMedium.erase(comphelper::MediaDescriptor::PROP_INPUTSTREAM());
+    // no detection without stream.
+    // URL was used already to open stream ... so no further chance to get one.
+    if ( ! xInputStream.is() )
         return ::rtl::OUString();
-    }
 
     try
     {
