@@ -4,9 +4,9 @@
  *
  *  $RCSfile: basrdll.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: ihi $ $Date: 2007-04-19 09:09:14 $
+ *  last change: $Author: vg $ $Date: 2007-08-28 11:04:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,9 +33,6 @@
  *
  ************************************************************************/
 
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
 /*?*/ // #ifndef _SV_SVAPP_HXX //autogen
 /*?*/ // #include <vcl/svapp.hxx>
 /*?*/ // #endif
