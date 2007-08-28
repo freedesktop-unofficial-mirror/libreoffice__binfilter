@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sb.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:10:22 $
+ *  last change: $Author: vg $ $Date: 2007-08-28 11:04:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,9 +50,6 @@
 #endif
 #ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
 #endif
 #ifndef _TOOLS_RC_HXX //autogen
 #include <tools/rc.hxx>
@@ -709,19 +706,6 @@ StarBASIC::~StarBASIC()
         pCLASSFAC = NULL;
         RemoveFactory( pOLEFAC );
         pOLEFAC = NULL;
-
-#ifdef DBG_UTIL
-    // SbiData braucht am Programm-Ende nicht abgeraeumt werden,
-    // aber wir wollen keine MLK's beim Purify
-    // Wo sollte es sonst geschehen???
-    SbiGlobals** pp = (SbiGlobals**) ::GetAppData( SHL_SBC );
-    SbiGlobals* p = *pp;
-    if( p )
-    {
-        delete p;
-        *pp = 0;
-    }
-#endif
     }
 
     // #100326 Set Parent NULL in registered listeners
