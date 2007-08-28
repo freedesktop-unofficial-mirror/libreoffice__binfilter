@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxbase.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:11:10 $
+ *  last change: $Author: vg $ $Date: 2007-08-28 11:05:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,10 +33,6 @@
  *
  ************************************************************************/
 
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
-
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
@@ -59,18 +55,9 @@ TYPEINIT0(SbxBase)
 
 SbxAppData* GetSbxData_Impl()
 {
-#ifndef DOS
-    SbxAppData** ppData = (SbxAppData**) ::GetAppData( SHL_SBX );
-    SbxAppData* p = *ppData;
-    if( !p )
-        p = *ppData  = new SbxAppData;
-    return p;
-#else
-    SbxAppData** ppData;
-    SbxAppData* p;
-    p = *ppData  = new SbxAppData;
-    return p;
-#endif
+    DBG_TESTSOLARMUTEX();
+    static SbxAppData* pAppData = new SbxAppData;
+    return pAppData;
 }
 
 SbxAppData::~SbxAppData()
