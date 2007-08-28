@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:44:37 $
+ *  last change: $Author: vg $ $Date: 2007-08-28 12:41:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2882,22 +2882,15 @@ class ImpSkeleton;
 /*N*/   {
 /*N*/       // find out which application is running
 /*N*/       SfxObjectShell* pObjectShell = ((FmFormModel*)GetModel())->GetObjectShell();
-/*N*/
 /*N*/       if(pObjectShell)
 /*N*/       {
-/*N*/ //            SfxInterface* pInterface = pObjectShell->GetInterface();
-/*N*/
-/*N*/ //            if(pInterface)
                 SfxObjectFactory& rFac = pObjectShell->GetFactory();
-                if ( rFac.GetShortName() == "sdraw" || rFac.GetShortName() == "simpress" )
+                if ( rFac.GetShortName() &&
+                    ( strcmp(rFac.GetShortName(), "sdraw") == 0 ||
+                      strcmp(rFac.GetShortName(), "simpress") == 0 ) )
 /*N*/           {
-/*N*/               //sal_uInt16 nInterfaceID = pInterface->GetInterfaceId();
-/*N*/
-/*N*/               //if(nInterfaceID >= SFX_INTERFACE_SD_START && nInterfaceID <= SFX_INTERFACE_SD_END)
-/*N*/               {
-/*N*/                   // it's a draw/Impress, reset anchor pos hard
-/*N*/                   aAnchor = Point(0, 0);
-/*N*/               }
+/*N*/               // it's a draw/Impress, reset anchor pos hard
+/*N*/               aAnchor = Point(0, 0);
 /*N*/           }
 /*N*/       }
 /*N*/   }
