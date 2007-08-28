@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxmod.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:06:25 $
+ *  last change: $Author: vg $ $Date: 2007-08-28 11:04:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,6 @@
 #endif
 #ifndef _SFXBRDCST_HXX //autogen
 #include <svtools/brdcst.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
 #endif
 #include <sbx.hxx>
 #include "sb.hxx"

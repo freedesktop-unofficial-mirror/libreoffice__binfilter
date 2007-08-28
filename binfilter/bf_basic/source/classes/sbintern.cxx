@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbintern.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:06:02 $
+ *  last change: $Author: vg $ $Date: 2007-08-28 11:04:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,10 +33,6 @@
  *
  ************************************************************************/
 
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
-
 #include "sbintern.hxx"
 #include "sbunoobj.hxx"
 #include "token.hxx"                // Tokenizer
@@ -51,11 +47,9 @@ SV_IMPL_PTRARR(SbErrorStack, SbErrorStackEntry*)
 
 SbiGlobals* GetSbData()
 {
-    SbiGlobals** pp = (SbiGlobals**) ::GetAppData( SHL_SBC );
-    SbiGlobals* p = *pp;
-    if( !p )
-        p = *pp = new SbiGlobals;
-    return p;
+    DBG_TESTSOLARMUTEX();
+    static SbiGlobals* s_pGlobals = new SbiGlobals;
+    return s_pGlobals;
 }
 
 SbiGlobals::SbiGlobals()
