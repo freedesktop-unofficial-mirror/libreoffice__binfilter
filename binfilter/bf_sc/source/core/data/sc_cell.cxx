@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:52:30 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:47:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -234,7 +234,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*M*/               SingleRefData& rRef1 = t->GetSingleRef();
 /*M*/               SingleRefData& rRef2 = (eType == svDoubleRef ?
 /*M*/                   t->GetDoubleRef().Ref2 : rRef1);
-/*M*/                 BOOL bDo;
+/*M*/                 BOOL bDo = FALSE;
 /*M*/                 if ( !nOnlyNames )
 /*M*/                     bDo = TRUE;
 /*M*/                 else
