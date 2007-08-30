@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:00:56 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:49:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1095,7 +1095,7 @@ void ScXMLExport::OpenRow(const sal_uInt16 nTable, const sal_Int32 nStartRow, co
 {
     if (nRepeatRow > 1)
     {
-        sal_Int32 nPrevIndex, nIndex;
+        sal_Int32 nPrevIndex(0), nIndex;
         sal_Int8 nPrevFlag(0);
         sal_Int8 nFlag(0);
         sal_Int32 nEqualRows(1);
