@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmlbrsh.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:40:28 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:54:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -147,7 +147,7 @@ SvXMLImportContext *SwXMLBrushItemImportContext::CreateChildContext(
         sal_uInt16 nPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
-    SvXMLImportContext *pContext;
+    SvXMLImportContext *pContext = 0;
     if( xmloff::token::IsXMLToken( rLocalName,
                                         xmloff::token::XML_BINARY_DATA ) )
     {
