@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_linkuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:03:58 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:50:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -362,7 +362,7 @@ void ScSheetLinkObj::setFilterOptions(const ::rtl::OUString& FilterOptions)
 sal_Int32 ScSheetLinkObj::getRefreshDelay(void) const
 {
     ScUnoGuard aGuard;
-    sal_Int32 nRet;
+    sal_Int32 nRet = 0;
     ScTableLink* pLink = GetLink_Impl();
     if (pLink)
         nRet = (sal_Int32) pLink->GetRefreshDelay();
@@ -863,7 +863,7 @@ void ScAreaLinkObj::setFilterOptions(const ::rtl::OUString& FilterOptions)
 sal_Int32 ScAreaLinkObj::getRefreshDelay(void) const
 {
     ScUnoGuard aGuard;
-    sal_Int32 nRet;
+    sal_Int32 nRet = 0;
     ScAreaLink* pLink = lcl_GetAreaLink(pDocShell, nPos);
     if (pLink)
         nRet = (sal_Int32) pLink->GetRefreshDelay();

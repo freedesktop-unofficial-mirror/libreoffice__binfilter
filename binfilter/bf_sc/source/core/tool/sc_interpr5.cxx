@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr5.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:35:06 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:48:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,7 @@ void ScInterpreter::ScGGT()
     if ( MustHaveParamCountMin( nParamCount, 1 ) )
     {
         double fSign = 1.0;
-        double fx, fy;
+        double fx, fy = 0.0;
         switch (GetStackType())
         {
             case svDouble :
@@ -284,7 +284,7 @@ void ScInterpreter:: ScKGV()
     if ( MustHaveParamCountMin( nParamCount, 1 ) )
     {
         double fSign = 1.0;
-        double fx, fy;
+        double fx, fy = 0.0;
         switch (GetStackType())
         {
             case svDouble :
@@ -1540,7 +1540,7 @@ ScMatrix* ScInterpreter::MatConcat(ScMatrix* pMat1, ScMatrix* pMat2)
 /*N*/ {
 /*N*/   ScMatrix* pMat1 = NULL;
 /*N*/   ScMatrix* pMat2 = NULL;
-/*N*/   double fVal1, fVal2;
+/*N*/   double fVal1 = 0.0, fVal2 = 0.0;
 /*N*/   USHORT nMatInd1, nMatInd2;
 /*N*/   short nFmt1, nFmt2;
 /*N*/   nFmt1 = nFmt2 = NUMBERFORMAT_UNDEFINED;
@@ -1734,7 +1734,7 @@ ScMatrix* ScInterpreter::MatConcat(ScMatrix* pMat1, ScMatrix* pMat2)
 /*N*/ {
 /*N*/   ScMatrix* pMat1 = NULL;
 /*N*/   ScMatrix* pMat2 = NULL;
-/*N*/   double fVal1, fVal2;
+/*N*/   double fVal1 = 0.0, fVal2 = 0.0;
 /*N*/   USHORT nMatInd1, nMatInd2;
 /*N*/   short nFmt1, nFmt2;
 /*N*/   nFmt1 = nFmt2 = NUMBERFORMAT_UNDEFINED;
@@ -1857,7 +1857,7 @@ ScMatrix* ScInterpreter::MatConcat(ScMatrix* pMat1, ScMatrix* pMat2)
 /*N*/ {
 /*N*/   ScMatrix* pMat1 = NULL;
 /*N*/   ScMatrix* pMat2 = NULL;
-/*N*/   double fVal1, fVal2;
+/*N*/   double fVal1 = 0.0, fVal2 = 0.0;
 /*N*/   USHORT nMatInd1, nMatInd2;
 /*N*/   short nFmtCurrencyType = nCurFmtType;
 /*N*/   ULONG nFmtCurrencyIndex = nCurFmtIndex;
@@ -1939,7 +1939,7 @@ ScMatrix* ScInterpreter::MatConcat(ScMatrix* pMat1, ScMatrix* pMat2)
 /*N*/ {
 /*N*/   ScMatrix* pMat1 = NULL;
 /*N*/   ScMatrix* pMat2 = NULL;
-/*N*/   double fVal1, fVal2;
+/*N*/   double fVal1 = 0.0, fVal2 = 0.0;
 /*N*/   USHORT nMatInd1, nMatInd2;
 /*N*/   short nFmtCurrencyType = nCurFmtType;
 /*N*/   ULONG nFmtCurrencyIndex = nCurFmtIndex;
@@ -2037,7 +2037,7 @@ void ScInterpreter::ScPow()
 {
     ScMatrix* pMat1 = NULL;
     ScMatrix* pMat2 = NULL;
-    double fVal1, fVal2;
+    double fVal1 = 0.0, fVal2 = 0.0;
     USHORT nMatInd1, nMatInd2;
     MatrixDoubleRefToMatrix();
     if ( GetStackType() == svMatrix )
