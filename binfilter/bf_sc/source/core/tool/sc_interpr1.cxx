@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr1.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:34:10 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:48:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2707,7 +2707,7 @@ void ScInterpreter::ScTable()
     BYTE nParamCount = GetByte();
     if ( MustHaveParamCount( nParamCount, 0, 1 ) )
     {
-        USHORT nVal;
+        USHORT nVal = 0;
         if ( nParamCount == 0 )
             nVal = aPos.Tab() + 1;
         else
@@ -3287,11 +3287,22 @@ void ScInterpreter::ScCountEmptyCells()
      BYTE nParamCount = GetByte();
      if ( !MustHaveParamCount( nParamCount, 2, 3 ) )
          return ;
-     USHORT nC3, nR3, nC1, nR1;
+     USHORT nC3 = 0, nC1 = 0;
+    USHORT nR3 = 0, nR1 = 0;
      ScMatrix* pMat3 = NULL;
      ScMatrix* pMat1 = NULL;
-     USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-     USHORT nCol3, nRow3, nTab3, nCol4, nRow4, nTab4;
+     USHORT nCol1 = 0;
+    USHORT nRow1 = 0;
+    USHORT nTab1 = 0;
+        USHORT nCol2 = 0;
+    USHORT nRow2 = 0;
+    USHORT nTab2 = 0;
+     USHORT nCol3 = 0;
+    USHORT nRow3 = 0;
+    USHORT nTab3 = 0;
+    USHORT nCol4 = 0;
+    USHORT nRow4 = 0;
+    USHORT nTab4 = 0;
      USHORT nDelta;
 
      // param 3: data range
@@ -3654,8 +3665,8 @@ void ScInterpreter::ScCountEmptyCells()
              bSorted = TRUE;
          double fIndex = ::rtl::math::approxFloor( GetDouble() ) - 1.0;
          ScMatrix* pMat = NULL;
-         USHORT nC, nR;
-         USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
+         USHORT nC = 0, nR = 0;
+         USHORT nCol1 = 0, nRow1 = 0, nTab1 = 0, nCol2 = 0, nRow2 = 0, nTab2 = 0;
          if (GetStackType() == svDoubleRef)
          {
              PopDoubleRef(nCol1, nRow1, nTab1, nCol2, nRow2, nTab2);
@@ -3908,8 +3919,8 @@ void ScInterpreter::ScCountEmptyCells()
 /*N*/           bSorted = TRUE;
 /*N*/       double fIndex = ::rtl::math::approxFloor( GetDouble() ) - 1.0;
 /*N*/       ScMatrix* pMat = NULL;
-/*N*/       USHORT nC, nR;
-/*N*/       USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
+/*N*/       USHORT nC = 0, nR = 0;
+/*N*/       USHORT nCol1 = 0, nRow1 = 0, nTab1 = 0, nCol2 = 0, nRow2 = 0, nTab2 = 0;
 /*N*/       if (GetStackType() == svDoubleRef)
 /*N*/       {
 /*N*/           PopDoubleRef(nCol1, nRow1, nTab1, nCol2, nRow2, nTab2);
@@ -4211,7 +4222,7 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
         PopDoubleRef(nQCol1, nQRow1, nQTab1, nQCol2, nQRow2, nQTab2);
 
         BOOL    bByVal = TRUE;
-        double  nVal;
+        double  nVal = 0.0;
         String  aStr;
         ScRange aMissingRange;
         BOOL bRangeFake = FALSE;
