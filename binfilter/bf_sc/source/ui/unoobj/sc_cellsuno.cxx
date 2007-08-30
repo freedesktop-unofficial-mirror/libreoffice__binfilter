@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cellsuno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:33:07 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:49:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -4842,7 +4842,7 @@ void SAL_CALL ScCellRangeObj::fillAuto( sheet::FillDirection nFillDirection,
     if ( pDocSh && nSourceCount )
     {
         ScRange aSourceRange = aRange;
-        USHORT nCount;                      // "Dest-Count"
+        USHORT nCount = 0;                      // "Dest-Count"
         FillDir eDir;
         BOOL bError = FALSE;
         switch (nFillDirection)
@@ -6613,7 +6613,7 @@ void ScTableSheetObj::PrintAreaUndo_Impl( ScPrintRangeSaver* pOldRanges )
         ScDocument* pDoc = pDocSh->GetDocument();
         USHORT nTab = GetTab_Impl();
 
-        ScPrintRangeSaver* pNewRanges = pDoc->CreatePrintRangeSaver();
+        pDoc->CreatePrintRangeSaver();
         ScPrintFunc( pDocSh, pDocSh->GetPrinter(), nTab ).UpdatePages();
         pDocSh->SetDocumentModified();
     }
