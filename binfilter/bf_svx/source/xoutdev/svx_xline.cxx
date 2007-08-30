@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xline.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:03:24 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:51:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -440,7 +440,7 @@ namespace binfilter {
 
 /*N*/ void XLineParam::Init(const Point& rP1, const Point& rP2, long nWidth)
 /*N*/ {
-/*N*/   double fWidth, fRound;
+/*N*/   double fWidth = 0.0, fRound;
 /*N*/
 /*N*/   nPatSeg = -1;
 /*N*/   nPatRemain = 0;
