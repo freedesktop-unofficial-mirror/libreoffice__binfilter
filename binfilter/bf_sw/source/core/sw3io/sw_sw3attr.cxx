@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3attr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:57:36 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:52:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -476,7 +476,7 @@ namespace binfilter {
 /*N*/   ASSERT( pIo, "Reader/Writer not found" );
 /*N*/
 /*N*/   String sURL, sTargetFrameName, sName;
-/*N*/   BOOL bServerMap;
+/*N*/   BOOL bServerMap = FALSE;
 /*N*/
 /*N*/   SwFmtURL *pNew = new SwFmtURL;
 /*N*/

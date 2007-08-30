@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3table.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:00:46 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:53:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -560,7 +560,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   CloseFlagRec();
 /*N*/
 /*N*/   // Frame-Format evtl. einlesen
-/*N*/   SwTableBoxFmt* pFmt;
+/*N*/   SwTableBoxFmt* pFmt = NULL;
 /*N*/   if( Peek() == SWG_FRAMEFMT )
 /*N*/   {
 /*N*/       pFmt = (SwTableBoxFmt*) InFormat( SWG_FRAMEFMT, pDoc->MakeTableBoxFmt() );
