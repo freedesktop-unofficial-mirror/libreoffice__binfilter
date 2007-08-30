@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:51:52 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:52:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -926,7 +926,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 
 /*M*/ IMPL_LINK( SwGrfNode, SwapGraphic, BfGraphicObject*, pGrfObj )
 /*M*/ {
-/*M*/   SvStream* pRet;
+/*M*/   SvStream* pRet = NULL;
 /*M*/
 /*M*/   // #101174#: Keep graphic while in swap in. That's at least important
 /*M*/   // when breaking links, because in this situation a reschedule call and

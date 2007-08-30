@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:44:56 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:51:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -325,7 +325,7 @@ struct ParaRstFmt
 /*M*/       pPam = new SwPaM( *rRg.GetPoint() );
 /*M*/
 /*M*/       SwIndex& rSt = pPam->GetPoint()->nContent;
-/*M*/       USHORT nMkPos, nPtPos = rSt.GetIndex();
+/*M*/       USHORT nMkPos = 0, nPtPos = rSt.GetIndex();
 /*M*/       const String& rStr = pTxtNd->GetTxt();
 /*M*/
 /*M*/       // JP 22.08.96: Sonderfall: steht der Crsr in einem URL-Attribut
