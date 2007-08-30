@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:59:30 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:52:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -275,7 +275,7 @@ namespace binfilter {
 /*N*/   USHORT eSave_StartNodeType = pIo->eStartNodeType;
 /*N*/   pIo->eStartNodeType = SwHeaderStartNode;
 /*N*/
-/*N*/   SwFmtHeader* pAttr;
+/*N*/   SwFmtHeader* pAttr = NULL;
 /*N*/   if( pIo->Peek() == SWG_FREEFMT )
 /*N*/   {
 /*N*/       SwFrmFmt* pFmt = (SwFrmFmt*) pIo->InFormat( SWG_FREEFMT, NULL );
@@ -322,7 +322,7 @@ namespace binfilter {
 /*N*/   USHORT eSave_StartNodeType = pIo->eStartNodeType;
 /*N*/   pIo->eStartNodeType = SwFooterStartNode;
 /*N*/
-/*N*/   SwFmtFooter* pAttr;
+/*N*/   SwFmtFooter* pAttr = NULL;
 /*N*/   if( pIo->Peek() == SWG_FREEFMT )
 /*N*/   {
 /*N*/       SwFrmFmt* pFmt = (SwFrmFmt*) pIo->InFormat( SWG_FREEFMT, NULL );
