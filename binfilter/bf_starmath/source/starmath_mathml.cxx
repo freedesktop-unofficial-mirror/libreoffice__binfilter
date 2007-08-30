@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_mathml.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:24:49 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:50:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -3686,7 +3686,12 @@ void SmXMLExport::ExportText(const SmNode *pNode, int nLevel)
 
 void SmXMLExport::ExportSubSupScript(const SmNode *pNode,int nLevel)
 {
-    const SmNode *pSub,*pSup,*pCSub,*pCSup,*pLSub,*pLSup;
+    const SmNode *pSub = NULL;
+    const SmNode *pSup = NULL;
+    const SmNode *pCSub = NULL;
+    const SmNode *pCSup = NULL;
+    const SmNode *pLSub = NULL;
+    const SmNode *pLSup = NULL;
     SvXMLElementExport *pThing=0,*pThing2=0;
 
     //if we have prescripts at all then we must use the tensor notation
