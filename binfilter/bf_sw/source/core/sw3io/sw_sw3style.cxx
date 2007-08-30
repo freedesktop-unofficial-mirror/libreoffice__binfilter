@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:00:35 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:53:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -442,7 +442,7 @@ public:
 
 /*N*/ void SwStyleSheet::ConnectParent( const String& rName )
 /*N*/ {
-/*N*/   SwFmt* pParent;
+/*N*/   SwFmt* pParent = NULL;
 /*N*/   if( rName.Len() )
 /*N*/       pParent = lcl_sw3io__FindFmt( rDoc, rName, nFamily );
 /*N*/   else switch( nFamily )
