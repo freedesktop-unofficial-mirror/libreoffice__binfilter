@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionExport.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:15:48 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:56:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1277,11 +1277,11 @@ void XMLSectionExport::ExportIndexTemplateElement(
     sal_Bool bFillCharOK = sal_False;
 
     // chapter format
-    sal_Int16 nChapterFormat;
+    sal_Int16 nChapterFormat = 0;
     sal_Bool bChapterFormatOK = sal_False;
 
     // Bibliography Data
-    sal_Int16 nBibliographyData;
+    sal_Int16 nBibliographyData = 0;
     sal_Bool bBibliographyDataOK = sal_False;
 
 
