@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrt_fn.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:38:59 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:53:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -121,7 +121,7 @@ Writer& Out_SfxItemSet( const SwAttrFnTab pTab, Writer& rWrt,
 /*N*/   if( !pCNd )
 /*?*/       return rWrt;
 /*N*/
-/*N*/   USHORT nId;
+/*N*/   USHORT nId = RES_TXTNODE;
 /*N*/   switch( pCNd->GetNodeType() )
 /*N*/   {
 /*N*/   case ND_TEXTNODE:   nId = RES_TXTNODE;  break;
