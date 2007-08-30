@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:57:05 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:51:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1250,7 +1250,7 @@ const sal_Int32 coNumContFlags =
 /*N*/       aSubNodes.Put(i, NULL);
 /*N*/
 /*N*/   // process all sub-/supscripts
-/*N*/   int  nIndex;
+/*N*/   int  nIndex = 0;
 /*N*/   while (TokenInGroup(nActiveGroup))
 /*N*/   {   SmTokenType  eType (CurToken.eType);
 /*N*/
@@ -1954,7 +1954,7 @@ const sal_Int32 coNumContFlags =
 /*N*/           Bracebody(FALSE);
 /*N*/           pBody = NodeStack.Pop();
 /*N*/
-/*N*/           SmTokenType  eExpectedType;
+/*N*/           SmTokenType  eExpectedType = TUNKNOWN;
 /*N*/           switch (pLeft->GetToken().eType)
 /*N*/           {   case TLPARENT :     eExpectedType = TRPARENT;   break;
 /*N*/               case TLBRACKET :    eExpectedType = TRBRACKET;  break;
