@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docfunc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:19:05 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:49:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -473,10 +473,6 @@ using namespace ::com::sun::star;
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
-/*N*/   USHORT* pTabs = NULL;
-/*N*/   ScBaseCell** ppOldCells = NULL;
-/*N*/   BOOL* pHasFormat = NULL;
-/*N*/   ULONG* pOldFormats = NULL;
 /*N*/   ScBaseCell* pDocCell = pDoc->GetCell( rPos );
 /*N*/   BOOL bEditDeleted = (pDocCell && pDocCell->GetCellType() == CELLTYPE_EDIT);
 /*N*/
@@ -517,9 +513,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   BOOL bEditCell(FALSE);
 /*N*/   BOOL bEditDeleted(FALSE);
-/*N*/   BOOL bHeight;
-/*N*/   ScBaseCell* pUndoCell = NULL;
-/*N*/   ScBaseCell* pRedoCell = NULL;
+/*N*/   BOOL bHeight = FALSE;
 /*N*/   pDoc->PutCell( rPos, pNewCell );
 /*N*/
 /*N*/   //  wegen ChangeTracking darf UndoAction erst nach PutCell angelegt werden
