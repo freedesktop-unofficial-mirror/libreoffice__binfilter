@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unogsfm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:36:41 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:50:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -304,7 +304,7 @@ sal_Int32 SAL_CALL SdUnoGraphicStyleFamily::getCount()
 {
     OGuard aGuard( Application::GetSolarMutex() );
 
-    sal_Int32 nCount;
+    sal_Int32 nCount = 0;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     if( pDoc != NULL )
