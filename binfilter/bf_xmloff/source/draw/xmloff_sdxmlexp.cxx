@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_sdxmlexp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:44:31 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:54:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1207,6 +1207,7 @@ void SdXMLExport::ImpWriteAutoLayoutInfos()
                             case 24 : nColCnt = 1; nRowCnt = 3; break;
                             case 25 : nColCnt = 2; nRowCnt = 2; break;
                             case 26 : nColCnt = 3; nRowCnt = 3; break;
+                            default:  nColCnt = 0; nRowCnt = 0; break;  // FIXME - What is correct values?
                         }
 
                         Size aPartSize(pInfo->GetTitleRectangle().GetSize());

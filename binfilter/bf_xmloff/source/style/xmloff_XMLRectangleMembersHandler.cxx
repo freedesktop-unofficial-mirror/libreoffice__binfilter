@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLRectangleMembersHandler.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:00:19 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:55:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -133,6 +133,10 @@ sal_Bool XMLRectangleMembersHdl::exportXML(
         case XML_TYPE_RECTANGLE_HEIGHT :
             nValue = aRect.Height;
             break;
+        default:
+            nValue = 0;  // TODO What value should this be?
+            break;
+
     }
 
     ::rtl::OUStringBuffer sBuffer;

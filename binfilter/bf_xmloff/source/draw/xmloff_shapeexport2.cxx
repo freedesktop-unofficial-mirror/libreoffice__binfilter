@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_shapeexport2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:45:05 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:54:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -398,6 +398,7 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
             case presentation::ClickAction_SOUND:           eStrAction = XML_SOUND; break;
             default:
                 DBG_ERROR( "unknown presentation::ClickAction found!" );
+                eStrAction = XML_UNKNOWN;
             }
 
             rExport.AddAttribute( XML_NAMESPACE_SCRIPT, XML_EVENT_NAME, OUString( RTL_CONSTASCII_USTRINGPARAM( "on-click" ) ) );
