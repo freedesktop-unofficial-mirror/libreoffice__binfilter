@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_fonthdl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 12:59:17 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:56:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -321,7 +321,7 @@ sal_Bool XMLFontPitchPropHdl::exportXML( OUString& rStrExpValue, const uno::Any&
     sal_Int16 nPitch;
     OUStringBuffer aOut;
 
-    FontPitch ePitch;
+    FontPitch ePitch = PITCH_DONTKNOW;
     if( rValue >>= nPitch )
         ePitch =  (FontPitch)nPitch;
 
