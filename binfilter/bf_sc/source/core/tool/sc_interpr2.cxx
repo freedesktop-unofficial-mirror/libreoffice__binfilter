@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:13:24 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:48:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -948,7 +948,7 @@ void ScInterpreter::ScVDB()
     BYTE nParamCount = GetByte();
     if ( MustHaveParamCount( nParamCount, 5, 7 ) )
     {
-        double fWert, fRest, fDauer, fAnfang, fEnde, fFaktor, fVdb;
+        double fWert, fRest, fDauer, fAnfang, fEnde, fFaktor, fVdb = 0.0;
         BOOL bFlag;
         if (nParamCount == 7)
             bFlag = GetBool();
