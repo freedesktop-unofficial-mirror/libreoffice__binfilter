@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unocpres.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:12:42 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:50:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -321,7 +321,7 @@ void SAL_CALL SdXCustomPresentationAccess::insertByName( const OUString& aName, 
     OGuard aGuard( Application::GetSolarMutex() );
 
     // get the documents custom show list
-    List* pList;
+    List* pList = NULL;
     if(mrModel.GetDoc())
         pList = mrModel.GetDoc()->GetCustomShowList(sal_True);
 
