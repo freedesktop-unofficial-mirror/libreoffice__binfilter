@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_backhdl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:00:52 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:55:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,7 @@ XMLBackGraphicPositionPropHdl::~XMLBackGraphicPositionPropHdl()
     // Nothing to do
 }
 
-sal_Bool XMLBackGraphicPositionPropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter )
+sal_Bool XMLBackGraphicPositionPropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_True;
     style::GraphicLocation ePos = style::GraphicLocation_NONE, eTmp;
@@ -237,7 +237,7 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
     return bRet;
 }
 
-void XMLBackGraphicPositionPropHdl::MergeXMLVertPos( style::GraphicLocation& ePos, style::GraphicLocation eVert )
+void XMLBackGraphicPositionPropHdl::MergeXMLVertPos( style::GraphicLocation& ePos, style::GraphicLocation eVert ) const
 {
     switch( ePos )
     {
@@ -270,7 +270,7 @@ void XMLBackGraphicPositionPropHdl::MergeXMLVertPos( style::GraphicLocation& ePo
     }
 }
 
-void XMLBackGraphicPositionPropHdl::MergeXMLHoriPos( style::GraphicLocation& ePos, style::GraphicLocation eHori )
+void XMLBackGraphicPositionPropHdl::MergeXMLHoriPos( style::GraphicLocation& ePos, style::GraphicLocation eHori ) const
 {
     DBG_ASSERT( style::GraphicLocation_LEFT_MIDDLE==eHori || style::GraphicLocation_MIDDLE_MIDDLE==eHori || style::GraphicLocation_RIGHT_MIDDLE==eHori,
                 "lcl_frmitems_MergeXMLHoriPos: vertical pos must be middle" );
