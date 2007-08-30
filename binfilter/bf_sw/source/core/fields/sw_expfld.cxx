@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:37:44 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:52:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -137,7 +137,7 @@ using namespace ::rtl;
 //-----------------------------------------------------------------------------
 /*N*/ sal_Int16 lcl_SubTypeToAPI(USHORT nSubType)
 /*N*/ {
-/*N*/       sal_Int16 nRet;
+/*N*/       sal_Int16 nRet = -1;
 /*N*/       switch(nSubType)
 /*N*/       {
 /*N*/           case GSE_EXPR   :   nRet = SetVariableType::VAR /*0*/; break;
