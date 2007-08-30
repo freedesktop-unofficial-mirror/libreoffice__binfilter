@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLExportDatabaseRanges.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:25:00 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:49:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -193,7 +193,7 @@ void ScXMLExportDatabaseRanges::WriteImportDescriptor(const uno::Sequence <beans
     ::rtl::OUString sDatabaseName;
     ::rtl::OUString sSourceObject;
     sheet::DataImportMode nSourceType;
-    sal_Bool bNative;
+    sal_Bool bNative = sal_False;
     for (sal_Int16 i = 0; i < nProperties; i++)
     {
         if (aImportDescriptor[i].Name == ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_DBNAME)))
@@ -468,7 +468,7 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
     sal_Bool bIsCaseSensitive (sal_False);
     sal_Bool bIsUserListEnabled (sal_False);
     table::CellAddress aOutputPosition;
-    sal_Int32 nUserListIndex;
+    sal_Int32 nUserListIndex = 0;
     sal_Int32 nProperties = aSortProperties.getLength();
     sal_Int32 i;
 
