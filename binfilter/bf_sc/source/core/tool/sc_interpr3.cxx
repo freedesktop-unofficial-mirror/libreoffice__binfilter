@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr3.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:34:37 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:48:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -114,7 +114,7 @@ double lcl_IterateInverse( const ScDistFunc& rFunction, double x0, double x1, BO
 
     double x00 = x0;
     double x11 = x1;
-    double fs;
+    double fs = 0.0;
     for (i = 0; i < 100; i++)
     {
         xs = 0.5*(x0+x1);
