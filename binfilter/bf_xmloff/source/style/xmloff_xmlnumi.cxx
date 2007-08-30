@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumi.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 12:59:32 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:56:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -379,7 +379,7 @@ SvXMLImportContext *SvxXMLListLevelStyleContext_Impl::CreateChildContext(
         sal_uInt16 nPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
-    SvXMLImportContext *pContext;
+    SvXMLImportContext *pContext = 0;
     if( XML_NAMESPACE_STYLE == nPrefix &&
         IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
@@ -412,7 +412,7 @@ SvXMLImportContext *SvxXMLListLevelStyleContext_Impl::CreateChildContext(
 Sequence<beans::PropertyValue> SvxXMLListLevelStyleContext_Impl::GetProperties(
         const SvI18NMap *pI18NMap )
 {
-    sal_Int16 eType;
+    sal_Int16 eType = 0;
 
     sal_Int32 nCount = 0L;
     if( bBullet )
