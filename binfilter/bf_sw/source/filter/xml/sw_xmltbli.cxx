@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltbli.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:44:20 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:54:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1789,7 +1789,7 @@ const SwStartNode *SwXMLTableContext::GetPrevStartNode( sal_uInt32 nRow,
             pPrevCell = pPrevRow->GetCell( GetColumnCount()-1UL );
     }
 
-    const SwStartNode *pSttNd;
+    const SwStartNode *pSttNd = NULL;
     if( pPrevCell )
     {
         if( pPrevCell->GetStartNode() )
