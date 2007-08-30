@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txthyph.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:14:25 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:53:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,8 +102,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/       return sal_False;
 /*N*/
 /*N*/   Reference< XHyphenatedWord >  xHyphWord = rGuess.HyphWord();
-/*N*/   SwHyphPortion *pHyphPor;
-/*N*/   xub_StrLen nPorEnd;
+/*N*/   SwHyphPortion *pHyphPor = NULL;
+/*N*/   xub_StrLen nPorEnd = 0;
 /*N*/   SwTxtSizeInfo aInf( rInf );
 /*N*/
 /*N*/   // first case: hyphenated word has alternative spelling
