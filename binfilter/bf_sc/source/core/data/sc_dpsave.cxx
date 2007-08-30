@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpsave.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:18:05 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:47:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -306,6 +306,7 @@ using namespace ::com::sun::star;
 /*N*/   aMemberList.Clear();
 /*N*/   if (pLayoutName)
 /*N*/       delete pLayoutName;
+/*N*/   delete [] pSubTotalFuncs;
 /*N*/ }
 /*N*/
 /*N*/ BOOL ScDPSaveDimension::operator== ( const ScDPSaveDimension& r ) const
