@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtfld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:13:38 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:53:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,7 +101,7 @@ namespace binfilter {
 /*N*/ SwExpandPortion *SwTxtFormatter::NewFldPortion( SwTxtFormatInfo &rInf,
 /*N*/                                               const SwTxtAttr *pHint ) const
 /*N*/ {
-/*N*/   SwExpandPortion *pRet;
+/*N*/   SwExpandPortion *pRet = NULL;
 /*N*/   SwFrm *pFrame = (SwFrm*)pFrm;
 /*N*/   SwField *pFld = (SwField*)pHint->GetFld().GetFld();
 /*N*/   const sal_Bool bName = rInf.GetOpt().IsFldName();

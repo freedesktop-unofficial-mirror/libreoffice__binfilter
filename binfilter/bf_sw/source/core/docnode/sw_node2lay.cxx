@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_node2lay.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:30:09 $
+ *  last change: $Author: vg $ $Date: 2007-08-30 11:52:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,7 +95,7 @@ namespace binfilter {
 /*N*/ SwNode2LayImpl::SwNode2LayImpl( const SwNode& rNode, ULONG nIdx, BOOL bSearch )
 /*N*/   : pUpperFrms( NULL ), nIndex( nIdx ), bInit( FALSE )
 /*N*/ {
-/*N*/   const SwNode* pNd;
+/*N*/   const SwNode* pNd = NULL;
 /*N*/   if( bSearch || rNode.IsSectionNode() )
 /*N*/   {
 /*N*/       // Suche den naechsten Cntnt/TblNode, der einen Frame besitzt,
