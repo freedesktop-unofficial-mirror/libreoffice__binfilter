@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_htmltbl.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:26:30 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:01:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 
 //#define TEST_DELAYED_RESIZE
