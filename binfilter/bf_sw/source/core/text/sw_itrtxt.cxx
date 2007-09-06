@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itrtxt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:10:49 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:34:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
