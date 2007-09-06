@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_format.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:02:19 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:32:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
