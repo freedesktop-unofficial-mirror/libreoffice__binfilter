@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:55:29 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:25:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #include <stdio.h>
 #define _SVSTDARR_USHORTS
 #ifndef _ZFORLIST_HXX //autogen
