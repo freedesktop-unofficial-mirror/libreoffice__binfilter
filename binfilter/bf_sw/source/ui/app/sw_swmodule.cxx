@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodule.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:07:41 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 13:07:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,11 +157,15 @@ sal_Bool    bNoInterrupt    = sal_False;
 
 #ifndef PROFILE
 // Code zum Initialisieren von Statics im eigenen Code-Segment
+#ifdef _MSC_VER
 #pragma code_seg( "SWSTATICS" )
+#endif
 #endif
 
 #ifndef PROFILE
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 #endif
 
 using namespace ::com::sun::star;
