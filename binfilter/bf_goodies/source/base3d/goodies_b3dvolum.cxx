@@ -4,9 +4,9 @@
  *
  *  $RCSfile: goodies_b3dvolum.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:48:52 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:29:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -149,9 +149,6 @@ SvStream& operator<<(SvStream& rOStream, const B3dVolume& rB3dVolume)
     return rOStream;
 }
 
-#ifndef GCC
-#pragma SEG_EOFMODULE
-#endif
 
 }//end of namespace binfilter
 
