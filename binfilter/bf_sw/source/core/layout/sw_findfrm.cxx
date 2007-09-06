@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_findfrm.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:52:03 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:17:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "pagefrm.hxx"
 #include "cntfrm.hxx"
