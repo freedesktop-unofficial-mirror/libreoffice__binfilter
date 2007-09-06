@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:58:05 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:30:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,9 @@
 #include <vos/mutex.hxx>
 #include <bf_sfx2/app.hxx>
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
 #include <com/sun/star/document/MacroExecMode.hpp>
