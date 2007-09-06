@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmprop.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 20:56:31 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:40:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,7 +32,9 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define USE_PROPERTY_HELPER
 
