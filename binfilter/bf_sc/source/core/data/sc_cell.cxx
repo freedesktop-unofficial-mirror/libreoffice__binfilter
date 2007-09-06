@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:47:34 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:31:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -96,7 +98,9 @@ namespace binfilter {
 /*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScNoteCell,  nMemPoolNoteCell, nMemPoolNoteCell )
 #endif
 
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 
 INT8 ScFormulaCell::nIterMode = 0;
 

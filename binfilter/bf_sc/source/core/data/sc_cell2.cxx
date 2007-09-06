@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:52:44 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:31:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -59,14 +61,18 @@ namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
+#ifdef _MSC_VER
 #pragma code_seg("SCSTATICS")
+#endif
 
 #ifdef USE_MEMPOOL
 const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScEditCell, nMemPoolEditCell, nMemPoolEditCell )
 #endif
 
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 
 // -----------------------------------------------------------------------
 
