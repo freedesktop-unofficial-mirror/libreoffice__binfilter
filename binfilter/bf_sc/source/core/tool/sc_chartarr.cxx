@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartarr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:29:53 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:43:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -473,7 +475,7 @@ namespace binfilter {
 /*N*/ }
 
 
-#ifdef WNT
+#ifdef _MSC_VER
 #pragma optimize("",off)
 #endif
 
@@ -928,7 +930,7 @@ namespace binfilter {
 /*N*/   rMem.SetReadOnly( TRUE );   // Daten nicht im Chart per Daten-Fenster veraendern
 /*N*/ }
 /*N*/
-/*N*/ #ifdef WNT
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("",on)
 /*N*/ #endif
 
