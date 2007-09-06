@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_zoomitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:19:49 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:44:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "zoomitem.hxx"
 namespace binfilter {

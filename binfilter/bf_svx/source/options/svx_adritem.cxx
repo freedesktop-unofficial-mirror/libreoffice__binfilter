@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_adritem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:23:51 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:44:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,9 @@
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #include <svtools/useroptions.hxx>
 #endif
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "adritem.hxx"
 #include "svxids.hrc"
