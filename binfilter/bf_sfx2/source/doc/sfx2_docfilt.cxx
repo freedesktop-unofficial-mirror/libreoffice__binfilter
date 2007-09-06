@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:55:39 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:29:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,9 @@
 #include <string> // HACK: prevent conflict between STLPORT and Workshop headers
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "fltfnc.hxx"
 #include "sfxuno.hxx"
