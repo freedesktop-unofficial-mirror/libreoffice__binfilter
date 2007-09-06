@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_wrapper.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:17:29 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 13:20:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,9 @@
 #include <bf_sfx2/sfxuno.hxx>
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
