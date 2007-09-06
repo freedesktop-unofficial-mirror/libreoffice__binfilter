@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:35:23 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:24:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,9 @@
 
 #define _SDINTERN_HXX
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
@@ -108,9 +110,13 @@ DBG_NAME(SfxAppMainAppEvents)*/
 
 //===================================================================
 
+#ifdef _MSC_VER
 #pragma code_seg("STATICS")
+#endif
 static SfxVoidItem aStaticDefault(1);
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 
 static SfxPoolItem* aStaticDefaults[1] =
 {
