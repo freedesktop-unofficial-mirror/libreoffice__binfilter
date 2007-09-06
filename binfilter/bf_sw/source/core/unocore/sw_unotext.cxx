@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:55:51 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:54:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
