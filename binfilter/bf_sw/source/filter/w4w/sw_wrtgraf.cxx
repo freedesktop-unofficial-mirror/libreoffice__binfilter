@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtgraf.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:39:00 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 13:01:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
