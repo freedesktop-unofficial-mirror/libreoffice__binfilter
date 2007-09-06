@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_node.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:51:00 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:33:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #define APPEND(str,ascii) str.AppendAscii(RTL_CONSTASCII_STRINGPARAM(ascii))
 
 #ifndef _SV_LINEINFO_HXX
