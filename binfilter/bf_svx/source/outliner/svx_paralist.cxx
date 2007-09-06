@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_paralist.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:32:54 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:45:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <paralist.hxx>
 #include <outliner.hxx>     // nur wegen Paragraph, muss geaendert werden!
