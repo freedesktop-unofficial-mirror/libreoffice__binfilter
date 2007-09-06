@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_stlpool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:28:10 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:18:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 
 #include "stlpool.hxx"
