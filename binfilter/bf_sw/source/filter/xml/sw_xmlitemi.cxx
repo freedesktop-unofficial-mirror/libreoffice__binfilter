@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmlitemi.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:42:42 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 13:04:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <hintids.hxx>
 
