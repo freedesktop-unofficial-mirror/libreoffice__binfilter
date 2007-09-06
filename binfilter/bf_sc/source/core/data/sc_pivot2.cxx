@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_pivot2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:23:38 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:38:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,16 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
+#ifdef _MSC_VER
 #pragma optimize("",off)
+#endif
+#ifdef _MSC_VER
 #pragma optimize("q",off) // p-code off
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 

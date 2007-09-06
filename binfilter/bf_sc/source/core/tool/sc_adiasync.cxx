@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_adiasync.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:28:48 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:42:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 //------------------------------------------------------------------------
 
@@ -54,12 +56,16 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
+#ifdef _MSC_VER
 #pragma code_seg("SCSTATICS")
+#endif
 
 ScAddInAsyncs theAddInAsyncTbl;
 static ScAddInAsync aSeekObj;
 
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 
 
 /*N*/ SV_IMPL_OP_PTRARR_SORT( ScAddInAsyncs, ScAddInAsyncPtr );
