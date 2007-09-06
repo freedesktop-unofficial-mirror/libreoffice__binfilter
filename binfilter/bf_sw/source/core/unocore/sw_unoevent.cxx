@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoevent.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:49:58 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:49:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // HINTIDs must be on top; it is required for the macitem.hxx header
 #ifndef _HINTIDS_HXX
