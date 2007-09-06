@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:36:33 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:25:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,9 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::io;
 using namespace ::com::sun::star::document;
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "app.hxx"
 #include "sfxsids.hrc"
