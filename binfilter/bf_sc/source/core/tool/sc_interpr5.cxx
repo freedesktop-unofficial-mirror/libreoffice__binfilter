@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr5.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:48:51 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:47:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 
