@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swgstr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:58:07 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:31:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <string.h>
 // auto strip #include "segmentc.hxx"
