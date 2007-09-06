@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:52:24 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:18:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "hintids.hxx"
 #ifndef _SFXITEMITER_HXX //autogen
@@ -319,7 +321,9 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 30. Nov. 95
 |*
 |*************************************************************************/
+#ifdef _MSC_VER
 #pragma optimize("",off)
+#endif
 
 /*N*/ void SwFlyFrm::InitDrawObj( BOOL bNotify )
 /*N*/ {
@@ -343,7 +347,9 @@ namespace binfilter {
 /*?*/       NotifyDrawObj();
 /*N*/ }
 
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("",on)
+/*N*/ #endif
 
 /*************************************************************************
 |*
