@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:18:15 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:03:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #ifndef _HINTIDS_HXX
