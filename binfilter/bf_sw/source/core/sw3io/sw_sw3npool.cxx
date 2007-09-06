@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:52:52 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:26:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define _SVSTDARR_USHORTS
 #ifndef _SFXMACITEM_HXX //autogen
