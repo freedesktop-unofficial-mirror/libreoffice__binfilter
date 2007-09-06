@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_node2lay.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:52:01 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:06:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 
 #ifndef _ERRHDL_HXX
