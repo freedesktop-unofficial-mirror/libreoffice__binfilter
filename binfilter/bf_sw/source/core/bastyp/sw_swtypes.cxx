@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swtypes.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:41:36 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:53:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
@@ -112,7 +114,9 @@ using namespace ::comphelper;
 
 #ifndef PROFILE
 // Code zum Initialisieren von Statics im eigenen Code-Segment
+#ifdef _MSC_VER
 #pragma code_seg( "SWSTATICS" )
+#endif
 #endif
 
 //STRIP001 ByteString aEmptyByteStr;     // Konstante Strings
@@ -153,7 +157,9 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 
 
 #ifndef PROFILE
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 #endif
 
 /*N*/ Size GetGraphicSizeTwip( const Graphic& rGraphic, OutputDevice* pOutDev )
