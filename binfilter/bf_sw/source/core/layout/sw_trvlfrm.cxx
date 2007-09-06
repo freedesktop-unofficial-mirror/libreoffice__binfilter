@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_trvlfrm.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:56:06 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:22:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 
 #ifndef _HINTIDS_HXX
@@ -338,7 +340,9 @@ namespace binfilter {
 
 //Fuer MSC keine Optimierung mit e (enable register...) hier, sonst gibts
 //einen Bug (ID: 2857)
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("e",off)
+/*N*/ #endif
 
 /*N*/ const SwCntntFrm *SwLayoutFrm::GetCntntPos( Point& rPoint,
 /*N*/                                           const BOOL bDontLeave,
@@ -547,7 +551,9 @@ namespace binfilter {
 /*N*/   return pActual;
 /*N*/ }
 
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("",on)
+/*N*/ #endif
 
 /*************************************************************************
 |*
