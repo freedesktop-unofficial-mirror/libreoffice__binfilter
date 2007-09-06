@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_stlsheet.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:24:34 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:39:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 //------------------------------------------------------------------------
 #include "document.hxx"
