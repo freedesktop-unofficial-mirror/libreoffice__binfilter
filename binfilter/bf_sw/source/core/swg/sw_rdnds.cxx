@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdnds.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:34:23 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:29:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
