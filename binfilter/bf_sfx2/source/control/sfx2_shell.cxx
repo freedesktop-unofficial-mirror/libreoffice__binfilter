@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_shell.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:46:48 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:27:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,9 @@
 
 #include <svtools/itempool.hxx>
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "app.hxx"
 
