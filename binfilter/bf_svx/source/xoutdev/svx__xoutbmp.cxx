@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx__xoutbmp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:02:03 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:48:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@ GraphicFilter* XOutBitmap::pGrfFilter = NULL;
 
 // -----------------------------------------------------------------------------
 
-/*N*/ #ifdef WNT
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize ( "", off )
 /*N*/ #endif
 /*N*/
