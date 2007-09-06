@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_authfld.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:50:15 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:11:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_USHORTS
