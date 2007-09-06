@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlfonte.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 15:30:27 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:59:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PRECOMPILED
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
