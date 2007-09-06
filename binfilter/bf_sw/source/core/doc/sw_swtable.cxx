@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swtable.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:29:24 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:03:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifdef WTC
 #define private public
@@ -313,7 +315,7 @@ namespace binfilter {
 
 // MS: Sonst Absturz auf der DEC-Kiste
 //
-#if defined(ALPHA) && defined(WNT)
+#if defined(ALPHA) && defined(_MSC_VER)
 #pragma optimize("", off)
 #endif
 
@@ -324,7 +326,7 @@ namespace binfilter {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //MA 30. Nov. 95: Opt: wenn bHidden gesetzt ist, wird neu das Hidden
 /*N*/ }
 
-#if defined(ALPHA) && defined(WNT)
+#if defined(ALPHA) && defined(_MSC_VER)
 #pragma optimize("", on)
 #endif
 
