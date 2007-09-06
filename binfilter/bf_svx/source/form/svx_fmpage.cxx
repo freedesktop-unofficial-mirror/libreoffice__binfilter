@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmpage.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:37:22 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:40:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define ENABLE_BYTESTRING_STREAM_OPERATORS
 
