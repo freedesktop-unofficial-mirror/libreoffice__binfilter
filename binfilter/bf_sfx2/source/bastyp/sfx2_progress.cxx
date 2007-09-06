@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_progress.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:41:41 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:26:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,9 @@
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <svtools/eitem.hxx>
 
