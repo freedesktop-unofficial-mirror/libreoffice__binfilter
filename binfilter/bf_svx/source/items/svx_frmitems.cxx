@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.16 $
+ *  $Revision: 1.17 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:51:25 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:42:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2071,7 +2071,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-#ifdef WNT
+#ifdef _MSC_VER
 #pragma optimize ( "", off )
 #endif
 
@@ -2814,7 +2814,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/   }
 /*N*/ }
 
-#ifdef WNT
+#ifdef _MSC_VER
 #pragma optimize ( "", on )
 #endif
 /* -----------------------------16.08.2002 09:18------------------------------
