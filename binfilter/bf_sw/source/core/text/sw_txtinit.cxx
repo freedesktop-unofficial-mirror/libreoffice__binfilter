@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtinit.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:02:07 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:39:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "fntcache.hxx"     // pFntCache  ( SwFont/ScrFont-PrtFont Cache )
 #include "swfntcch.hxx"     // pSwFontCache  ( SwAttrSet/SwFont Cache )
@@ -57,7 +59,9 @@ namespace binfilter {
 
 #ifndef PROFILE
 // Code zum Initialisieren von Statics im eigenen Code-Segment
+#ifdef _MSC_VER
 #pragma code_seg( "SWSTATICS" )
+#endif
 #endif
 
 /*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwTxtLine,    50,  50 )
@@ -67,7 +71,9 @@ namespace binfilter {
 /*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( SwTxtPortion,  200, 100 )   //Attributwechsel
 
 #ifndef PROFILE
+#ifdef _MSC_VER
 #pragma code_seg()
+#endif
 #endif
 
 /*************************************************************************
