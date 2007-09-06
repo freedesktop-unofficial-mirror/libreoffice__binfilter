@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wpar2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:07:58 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 13:00:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <stdio.h>      //dort ist EOF (-1) definiert
 
@@ -2051,7 +2053,9 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
 // folgende pragma Anweisung nicht entfernen: die Complier Optimierung fuehrt
 // ansonsten in NICHT-DEBUG Versionen zu fehlerhaften Tabellen-Zellen-Raendern
 
+#ifdef _MSC_VER
 #pragma optimize("", off)
+#endif
 // ======================
 void SwW4WParser::Read_BeginColumnMode()        // (BCM)
 {
@@ -2456,7 +2460,9 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
     }
     DELETEZ( pTabBorders );
 }
+#ifdef _MSC_VER
 #pragma optimize("", off)
+#endif
 // ======================
 
 
