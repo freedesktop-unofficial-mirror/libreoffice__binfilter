@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unocoll.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:04:21 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:48:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <swtypes.hxx>
 #include <cmdid.h>
