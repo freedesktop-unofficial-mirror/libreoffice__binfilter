@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlsheet.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:57:28 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:21:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
