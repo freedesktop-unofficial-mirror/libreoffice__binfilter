@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:54:01 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:33:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,9 @@
 #endif
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define _BIGINT_HXX
 #define _SFXMULTISEL_HXX
