@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:54:37 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:33:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,16 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
+#ifdef _MSC_VER
 #pragma optimize("",off)
+#endif
+#ifdef _MSC_VER
 #pragma optimize("q",off) // p-code off
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 

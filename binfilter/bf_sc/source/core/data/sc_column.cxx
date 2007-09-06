@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:47:46 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:31:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -494,7 +496,9 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
+#ifdef _MSC_VER
 #pragma optimize ( "", off )
+#endif
 
 
 /*N*/ BOOL ScColumn::Search( USHORT nRow, USHORT& nIndex ) const
@@ -585,7 +589,9 @@ namespace binfilter {
 /*N*/   return bFound;
 /*N*/ }
 
+#ifdef _MSC_VER
 #pragma optimize ( "", on )
+#endif
 
 
 /*N*/ ScBaseCell* ScColumn::GetCell( USHORT nRow ) const
