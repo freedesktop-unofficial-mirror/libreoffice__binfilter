@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:33:54 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:37:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,9 @@
 
 #define _SVSTDARR_USHORTS
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
