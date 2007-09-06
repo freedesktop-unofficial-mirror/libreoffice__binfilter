@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_command.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:00:54 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:32:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _TOOLS_RCID_H
 #include <tools/rcid.h>
