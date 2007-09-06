@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_crypter.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:58:49 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:23:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,7 +32,9 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <string.h>
 #ifndef _STRING_HXX //autogen
