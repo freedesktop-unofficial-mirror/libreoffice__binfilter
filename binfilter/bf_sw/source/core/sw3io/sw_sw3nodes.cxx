@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:55:41 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:26:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
