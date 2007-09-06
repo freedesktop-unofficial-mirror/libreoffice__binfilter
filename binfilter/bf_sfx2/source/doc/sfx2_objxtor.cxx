@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:58:59 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:31:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,9 @@
 #ifndef _SFXSTRITEM_HXX
 #include <svtools/stritem.hxx>
 #endif
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #include <bf_sfx2/app.hxx>
 
 #include "bf_basic/sbx.hxx"
