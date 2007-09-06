@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdhnt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-05-10 14:15:59 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:29:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
