@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdiocmpt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:23:44 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:20:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
