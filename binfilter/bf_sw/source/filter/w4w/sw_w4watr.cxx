@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4watr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-05-25 10:46:56 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:59:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,9 @@
  */
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
