@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docinf.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:55:53 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:29:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -898,7 +898,9 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return bOK;
 /*N*/ }
 
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize ( "", off )
+/*N*/ #endif
 
 /*N*/ ULONG SfxDocumentInfo::LoadPropertySet( SvStorage* pStorage )
 /*N*/ {
@@ -984,7 +986,9 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return ERRCODE_NONE;
 /*N*/ }
 /*N*/
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize ( "", on )
+/*N*/ #endif
 
 //-------------------------------------------------------------------------
 /*N*/ BOOL SfxDocumentInfo::SavePropertySet( SvStorage *pStorage) const
