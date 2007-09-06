@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlpool.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:03:24 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:21:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 //#ifndef NOOLDSV //autogen
 //#include <vcl/system.hxx>

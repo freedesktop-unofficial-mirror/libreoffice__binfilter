@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_anminfo.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:01:21 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:19:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,9 @@
 #endif
 #include <svtools/urihelper.hxx>
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "anminfo.hxx"
 #include "glob.hxx"
