@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtable.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:40:28 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:49:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "xtable.hxx"
 #include "xpool.hxx"
