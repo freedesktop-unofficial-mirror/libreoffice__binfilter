@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_rotmodit.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:17:48 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:43:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>

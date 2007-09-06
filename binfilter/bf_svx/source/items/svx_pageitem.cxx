@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_pageitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:17:04 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:43:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,9 @@
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // Erstmal definieren, damit die Klassendeklarionen angezogen werden.
 #define  ITEMID_PAGE        0
