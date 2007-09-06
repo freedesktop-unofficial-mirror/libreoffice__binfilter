@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swserv.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:27:23 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:03:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
