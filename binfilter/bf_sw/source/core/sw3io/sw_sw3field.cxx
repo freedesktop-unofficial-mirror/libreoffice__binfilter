@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-03-26 13:01:34 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:24:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <stdlib.h>
 
