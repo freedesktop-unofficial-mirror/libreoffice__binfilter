@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_tablink.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:21:17 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:07:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#ifdef WNT
+#ifdef _MSC_VER
 #pragma optimize("",off)
 #endif
 
@@ -42,7 +42,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 // INCLUDE ---------------------------------------------------------
 
