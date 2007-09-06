@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unomod.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:12:34 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 13:12:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <swtypes.hxx>
 #ifndef _TOOLS_DEBUG_HXX //autogen
