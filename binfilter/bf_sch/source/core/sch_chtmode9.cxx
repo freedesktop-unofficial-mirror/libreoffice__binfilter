@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode9.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:25:23 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:16:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,9 +32,11 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
+#ifdef _MSC_VER
 #pragma optimize("",off)
 
 #pragma hdrstop
+#endif
 #ifndef _SVDORECT_HXX //autogen
 #include <bf_svx/svdorect.hxx>
 #endif
