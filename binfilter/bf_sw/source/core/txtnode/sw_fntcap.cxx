@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fntcap.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:18:19 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:42:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
@@ -319,7 +321,7 @@ public:
  *************************************************************************/
 
 // JP 22.8.2001 - global optimization off - Bug 91245 / 91223
-#if defined( WNT ) && defined( MSC )
+#ifdef _MSC_VER
 #pragma optimize("g",off)
 #endif
 
@@ -560,7 +562,7 @@ public:
 /*N*/ }
 
 // JP 22.8.2001 - global optimization off - Bug 91245 / 91223
-#if defined( WNT ) && defined( MSC )
+#ifdef _MSC_VER
 #pragma optimize("g",on)
 #endif
 
