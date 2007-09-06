@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chgtrack.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:57:52 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:43:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,9 @@
  *
  ************************************************************************/
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
