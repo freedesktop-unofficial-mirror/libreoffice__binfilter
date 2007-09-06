@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schmod.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:49:09 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:19:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,9 @@
 
 #define ITEMID_SEARCH           SID_SEARCH_ITEM
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 
 #include <bf_svx/svxids.hrc>
