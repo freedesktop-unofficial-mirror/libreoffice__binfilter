@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_globalx.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2007-06-05 14:25:42 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 10:37:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,9 @@
 #include <com/sun/star/ucb/XCommandEnvironment.hpp>
 #include <com/sun/star/ucb/XContentAccess.hpp>
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
