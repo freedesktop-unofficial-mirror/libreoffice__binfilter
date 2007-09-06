@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fntcache.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:18:08 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:42:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #ifndef _METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -420,14 +422,14 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 // mit -Ox Optimierung stuerzt's unter win95 ab
 // JP 12.07.95: unter WNT auch (i386);       Alpha ??
 // global optimization off
-#if defined( WNT ) && defined( MSC ) //&& defined( W40 )
+#ifdef _MSC_VER
 #pragma optimize("g",off)
 #endif
 
 
 
 // Optimierung war fuer DrawText() ausgeschaltet
-#if defined( WNT ) && defined( MSC )    // && defined( W40 )
+#ifdef _MSC_VER
 #pragma optimize("",on)
 #endif
 
