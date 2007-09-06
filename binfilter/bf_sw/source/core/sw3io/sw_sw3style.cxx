@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:53:04 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:27:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,9 @@
 // verwendet wird, d.h. der ctor macht einen Snapshot der Vorlagen am Doc.
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "swerror.h"
 
