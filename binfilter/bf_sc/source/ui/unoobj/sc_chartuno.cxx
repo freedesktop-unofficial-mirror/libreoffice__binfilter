@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:33:21 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:08:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,9 @@
 #ifdef PCH
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/svdoole2.hxx>
