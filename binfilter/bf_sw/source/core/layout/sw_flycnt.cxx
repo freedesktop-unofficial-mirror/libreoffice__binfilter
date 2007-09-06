@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flycnt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:52:35 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:18:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 
 #ifndef _BIGINT_HXX //autogen
@@ -773,7 +775,9 @@ namespace binfilter {
 /*N*/   return nDistance;
 /*N*/ }
 
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("e",on)
+/*N*/ #endif
 
 /*N*/ const SwCntntFrm * MA_FASTCALL lcl_FindCnt( const Point &rPt, const SwCntntFrm *pCnt,
 /*N*/                                 const BOOL bBody, const BOOL bFtn )

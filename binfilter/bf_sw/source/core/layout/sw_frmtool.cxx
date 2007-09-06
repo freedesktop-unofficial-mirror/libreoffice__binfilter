@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_frmtool.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:53:22 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:19:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #define ITEMID_SIZE         SID_ATTR_PAGE_SIZE
@@ -2736,7 +2738,9 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/ }
 
 
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("",off)
+/*N*/ #endif
 
 /*N*/ void MA_FASTCALL lcl_NotifyCntnt( SdrObject *pThis, SwCntntFrm *pCnt,
 /*N*/   const SwRect &rRect, const PrepareHint eHint )
@@ -2934,7 +2938,9 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/       pSh->InvalidateWindows( rRect );
 /*N*/ }
 
+/*N*/ #ifdef _MSC_VER
 /*N*/ #pragma optimize("",on)
+/*N*/ #endif
 
 /*************************************************************************
 |*
