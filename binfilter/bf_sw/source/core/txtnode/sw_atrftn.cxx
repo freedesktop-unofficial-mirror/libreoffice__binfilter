@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrftn.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:35:56 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 12:41:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,9 @@
  ************************************************************************/
 
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
