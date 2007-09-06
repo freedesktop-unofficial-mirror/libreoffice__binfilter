@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:01:43 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:22:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,9 @@
 #include <bf_svx/svxids.hrc>
 #include <bf_offmgr/ofaids.hrc>
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #define _SD_DLL                 // fuer SD_MOD()
 #include "sdresid.hxx"

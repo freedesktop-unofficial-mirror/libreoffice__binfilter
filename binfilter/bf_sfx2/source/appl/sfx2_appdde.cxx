@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:34:37 $
+ *  last change: $Author: kz $ $Date: 2007-09-06 11:24:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,9 @@
 #endif
 #include <tools/urlobj.hxx>
 #include <svtools/pathoptions.hxx>
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 
 #include "app.hxx"
 #include "appdata.hxx"
