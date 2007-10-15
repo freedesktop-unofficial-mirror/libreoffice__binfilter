@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:07:13 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:49:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,7 @@ IO_DETECT_IMPL3
 IO_DETECT_IMPL4
 
 //-------------------------------------------------------------------------
-
+extern "C" { static void SAL_CALL thisModule() {} }
 
 SFX_IMPL_MODULE_LIB(Sw, C2S(DLL_NAME))
 
