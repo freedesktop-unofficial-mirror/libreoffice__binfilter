@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-18 08:42:12 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:49:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -373,6 +373,8 @@ public:
     sal_Bool filterLoad(String &rStr);
 };
 
+extern "C" { static void SAL_CALL thisModule() {} }
+
 sal_Bool filterModule::filterLoad(String &rStr)
 {
     sal_Bool bRet=sal_False;
@@ -381,7 +383,7 @@ sal_Bool filterModule::filterLoad(String &rStr)
     {
         rtl::OUString aPathURL;
         osl::FileBase::getFileURLFromSystemPath(rtl::OUString(rStr),aPathURL);
-        bRet = load(aPathURL);
+        bRet = loadRelative(&thisModule, aPathURL);
     }
     return bRet;
 }
