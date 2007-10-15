@@ -3,3 +3,5 @@
 ..\%__SRC%\slb\lib*.* %_DEST%\lib%_EXT%\lib*.*
 ..\%__SRC%\lib\lib*.* %_DEST%\lib%_EXT%\lib*.*
 ..\%__SRC%\bin\legacy_binfilters.rdb %_DEST%\bin%_EXT%\legacy_binfilters.rdb
+mkdir: %_DEST%\bin%_EXT%\ooowoure
+..\%__SRC%\bin\ooowoure-legacy_binfilters.rdb %_DEST%\bin%_EXT%\ooowoure\legacy_binfilters.rdb
