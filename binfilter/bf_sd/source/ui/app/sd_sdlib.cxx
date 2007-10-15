@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdlib.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:21:59 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:49:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,6 +100,8 @@ using namespace ::com::sun::star;
 namespace binfilter {
 
 /*N*/ TYPEINIT1( SdModuleDummy, SfxModule );
+
+extern "C" { static void SAL_CALL thisModule() {} }
 
 /*N*/ SFX_IMPL_MODULE_LIB(Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) )
 
