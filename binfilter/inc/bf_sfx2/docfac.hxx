@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfac.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:57:21 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:50:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,8 +47,8 @@
 #endif
 
 // SFX_IMPL_MODULE_LIB
-#ifndef _VOS_MODULE_HXX_
-#include <vos/module.hxx>
+#ifndef _OSL_MODULE_HXX_
+#include <osl/module.hxx>
 #endif
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
@@ -365,24 +365,24 @@ extern "C"
 
 #define SFX_IMPL_MODULE_LIB( LibName, LibString )                   \
     void * GetFunc##LibName( const char * pFuncName );              \
-    static ::vos::OModule* pLibHandle##LibName = NULL;              \
+    static ::osl::Module* pLibHandle##LibName = NULL;               \
     BOOL __EXPORT LoadLib##LibName()                                \
     {                                                               \
         if( pLibHandle##LibName == NULL )                           \
         {                                                           \
-            pLibHandle##LibName = new ::vos::OModule();             \
+            pLibHandle##LibName = new ::osl::Module();              \
             So2VoidFunc_TYPE fFunc;                                 \
-            if (!pLibHandle##LibName->load( LibString ))            \
+            if (!pLibHandle##LibName->loadRelative( &thisModule, LibString )) \
                 return FALSE;                                       \
             fFunc = (So2VoidFunc_TYPE)GetFunc##LibName( "Init" #LibName "Dll");\
             if( fFunc )                                             \
                 (*fFunc)();                                         \
         }                                                           \
-        return pLibHandle##LibName->isLoaded();                     \
+        return pLibHandle##LibName->is();                           \
     }                                                               \
     void __EXPORT FreeLib##LibName()                                \
     {                                                               \
-        if( pLibHandle##LibName && pLibHandle##LibName->isLoaded() )\
+        if( pLibHandle##LibName && pLibHandle##LibName->is() )      \
         {                                                           \
             So2VoidFunc_TYPE fFunc;                                 \
             fFunc = (So2VoidFunc_TYPE)GetFunc##LibName("DeInit" #LibName "Dll");\
