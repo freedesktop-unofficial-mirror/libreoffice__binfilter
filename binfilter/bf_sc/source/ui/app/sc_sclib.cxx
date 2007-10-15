@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_sclib.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:02:45 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:48:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -122,6 +122,8 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/ }
 
 //------------------------------------------------------------------
+
+extern "C" { static void SAL_CALL thisModule() {} }
 
 //  GlobalName der aktuellen Version:
 /*N*/ SFX_IMPL_OBJECTFACTORY_LIB(ScDocShell, SFXOBJECTSHELL_STD_NORMAL, scalc,
