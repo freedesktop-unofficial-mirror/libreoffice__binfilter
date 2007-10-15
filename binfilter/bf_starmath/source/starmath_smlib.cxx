@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smlib.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:34:04 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:49:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,6 +69,8 @@ TYPEINIT1( SmModuleDummy, SfxModule );
 |* ObjectFactory registrieren
 |*
 \************************************************************************/
+
+extern "C" { static void SAL_CALL thisModule() {} }
 
 SFX_IMPL_OBJECTFACTORY_LIB( SmDocShell,
                             SFXOBJECTSHELL_STD_NORMAL,
