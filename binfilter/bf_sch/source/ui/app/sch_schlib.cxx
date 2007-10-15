@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schlib.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:19:00 $
+ *  last change: $Author: vg $ $Date: 2007-10-15 11:49:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,6 +64,7 @@ namespace binfilter {
 
 /*?*/ TYPEINIT1( SchModuleDummy, SfxModule );
 
+extern "C" { static void SAL_CALL thisModule() {} }
 
 /*?*/ SFX_IMPL_OBJECTFACTORY_LIB( SchChartDocShell, SFXOBJECTSHELL_STD_NORMAL, schart,
                             SvGlobalName(BF_SO3_SCH_CLASSID), Sch, String( RTL_CONSTASCII_USTRINGPARAM( DLL_NAME )) )
