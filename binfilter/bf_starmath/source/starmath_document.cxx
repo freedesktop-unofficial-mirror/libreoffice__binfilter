@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:32:43 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:57:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include <svtools/lingucfg.hxx>
 #endif
 #ifndef _SO_CLSIDS_HXX //autogen
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 
 #include <svtools/itemset.hxx>
