@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:49:32 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:33:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_svx/svxids.hrc>
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <svtools/ctrltool.hxx>
 #include <bf_sfx2/progress.hxx>
