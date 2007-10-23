@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:05:06 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:31:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfx.hrc>
 #include <bf_offmgr/app.hxx>
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #include <bf_sfx2/request.hxx>
 
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
