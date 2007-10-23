@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:24:15 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:37:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #endif
 
 #ifndef _SOERR_HXX //autogen
-#include <so3/soerr.hxx>
+#include <bf_so3/soerr.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
@@ -68,7 +68,7 @@
 #include <svtools/stritem.hxx>
 #endif
 #ifndef _INETBND_HXX //autogen
-#include <so3/inetbnd.hxx>
+#include <bf_so3/inetbnd.hxx>
 #endif
 #ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
