@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docshell.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:30:26 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:19:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,7 +66,7 @@
 #endif
 
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 
 #ifndef _CHTMODEL_HXX

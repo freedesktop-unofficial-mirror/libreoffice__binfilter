@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schdll.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:30:39 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:19:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #endif
 // header for class SvInPlaceObject
 #ifndef _IPOBJ_HXX
-#include <so3/ipobj.hxx>
+#include <bf_so3/ipobj.hxx>
 #endif
 
 #include <bf_sch/chattr.hxx>    // to do: remove this line and replace most of the schdll.hxx includes to chattr.hxx
