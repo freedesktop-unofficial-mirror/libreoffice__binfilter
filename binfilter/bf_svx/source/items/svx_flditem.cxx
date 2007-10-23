@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:42:08 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:58:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #define FRAME_MARKER    (sal_uInt32)0x21981357
