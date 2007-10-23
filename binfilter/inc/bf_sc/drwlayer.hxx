@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwlayer.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:35:33 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:18:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <bf_svx/fmmodel.hxx>
 #endif
 #ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
