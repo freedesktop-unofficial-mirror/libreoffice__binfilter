@@ -4,9 +4,9 @@
  *
  *  $RCSfile: section.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:52:16 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:31:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include <com/sun/star/uno/Sequence.h>
 #endif
 #ifndef _LNKBASE_HXX
-#include <so3/lnkbase.hxx>
+#include <bf_so3/lnkbase.hxx>
 #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
