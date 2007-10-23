@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmleohlp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:32:05 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:30:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <cppuhelper/compbase2.hxx>
 #endif
 #ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #include <map>
 
