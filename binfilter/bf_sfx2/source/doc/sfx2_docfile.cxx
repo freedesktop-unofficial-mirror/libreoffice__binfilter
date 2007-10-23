@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:28:59 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:38:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -128,7 +128,7 @@
 #include <vcl/msgbox.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
@@ -167,7 +167,7 @@ using namespace ::com::sun::star::io;
 #endif
 
 #include <comphelper/processfactory.hxx>
-#include <so3/transbnd.hxx> // SvKeyValueIterator
+#include <bf_so3/transbnd.hxx> // SvKeyValueIterator
 #include <tools/urlobj.hxx>
 #include <tools/inetmime.hxx>
 #include <unotools/ucblockbytes.hxx>
