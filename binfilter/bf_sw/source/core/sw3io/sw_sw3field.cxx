@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:24:49 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:05:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@
 #include <svtools/urihelper.hxx>
 #endif
 #ifndef _LINKMGR_HXX
-#include <so3/linkmgr.hxx>
+#include <bf_so3/linkmgr.hxx>
 #endif
 
 #ifndef _SVSTDARR_USHORTS_DECL
@@ -91,7 +91,7 @@
 
 #include "poolfmt.hxx"      // fuer InSetExpField
 #include "poolfmt.hrc"      // fuer InSetExpField
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC) && !defined(__MINGW32__)
