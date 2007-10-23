@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:30:35 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:40:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
 #endif
-#include <so3/inetbnd.hxx>
+#include <bf_so3/inetbnd.hxx>
 #include <vos/mutex.hxx>
 #include <bf_sfx2/app.hxx>
 
