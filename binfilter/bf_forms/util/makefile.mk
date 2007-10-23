@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 08:36:17 $
+#   last change: $Author: vg $ $Date: 2007-10-23 13:28:56 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -79,7 +79,7 @@ SHL1STDLIBS= \
         $(COMPHELPERLIB) \
         $(DBTOOLSLIB) \
         $(TKLIB) \
-        $(SO2LIB)
+        $(BFSO3LIB)
 
 SHL1LIBS=$(LIB1TARGET)
 SHL1DEPN=	$(LIB1TARGET)	\
