@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdnds.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:29:47 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:07:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,10 +43,10 @@
 #endif
 
 #ifndef _PERSIST_HXX //autogen
-#include <so3/persist.hxx>
+#include <bf_so3/persist.hxx>
 #endif
 #ifndef _EMBOBJ_HXX //autogen
-#include <so3/embobj.hxx>
+#include <bf_so3/embobj.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
@@ -117,7 +117,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
