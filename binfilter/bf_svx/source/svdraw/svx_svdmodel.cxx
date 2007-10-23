@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:40:28 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:58:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,7 +127,7 @@
 #endif
 
 #ifndef _PERSIST_HXX
-#include <so3/persist.hxx>
+#include <bf_so3/persist.hxx>
 #endif
 
 #ifndef _ZFORLIST_HXX
