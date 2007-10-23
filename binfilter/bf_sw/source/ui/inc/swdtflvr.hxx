@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swdtflvr.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:10:33 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:14:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,10 +39,10 @@
 #include <svtools/transfer.hxx>
 #endif
 #ifndef _EMBOBJ_HXX
-#include <so3/embobj.hxx>
+#include <bf_so3/embobj.hxx>
 #endif
 #ifndef _LNKBASE_HXX
-#include <so3/lnkbase.hxx>
+#include <bf_so3/lnkbase.hxx>
 #endif
 class Graphic;
 class ImageMap;
