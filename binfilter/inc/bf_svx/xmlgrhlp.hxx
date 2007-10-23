@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlgrhlp.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:24:31 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:30:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <cppuhelper/compbase2.hxx>
 #endif
 
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
