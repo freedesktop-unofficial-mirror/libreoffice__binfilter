@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:58:31 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:03:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #include <vcl/svapp.hxx>
 #endif
 #ifndef _SO2REF_HXX //autogen
-#include <so3/so2ref.hxx>
+#include <bf_so3/so2ref.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
