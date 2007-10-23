@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Button.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 13:58:27 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:27:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,7 +63,7 @@
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
 
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 //.........................................................................
