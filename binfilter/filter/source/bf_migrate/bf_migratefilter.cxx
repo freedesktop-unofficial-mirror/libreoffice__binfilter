@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:17:01 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:16:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,7 +80,7 @@
 #include <bf_sfx2/docfac.hxx>
 #endif
 
-#include <so3/staticbaseurl.hxx>
+#include <bf_so3/staticbaseurl.hxx>
 
 namespace binfilter {
 
