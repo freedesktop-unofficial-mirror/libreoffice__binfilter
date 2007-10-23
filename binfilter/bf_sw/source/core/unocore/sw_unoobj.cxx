@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:51:15 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:07:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,7 @@
 #include <ftnidx.hxx>
 #endif
 #ifndef _LINKMGR_HXX
-#include <so3/linkmgr.hxx>
+#include <bf_so3/linkmgr.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
