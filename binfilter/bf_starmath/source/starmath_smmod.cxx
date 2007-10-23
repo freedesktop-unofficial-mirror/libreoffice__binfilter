@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:25:37 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:57:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #endif
 
 #include "smmod.hxx"
-#include <so3/factory.hxx>
+#include <bf_so3/factory.hxx>
 
 #ifndef _CONFIG_HXX
 #include "config.hxx"
