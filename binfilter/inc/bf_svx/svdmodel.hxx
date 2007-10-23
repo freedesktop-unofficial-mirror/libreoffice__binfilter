@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 13:01:22 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:30:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <cppuhelper/weakref.hxx>
 #endif
 
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
