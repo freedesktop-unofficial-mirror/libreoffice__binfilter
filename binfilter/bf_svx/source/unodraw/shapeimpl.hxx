@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shapeimpl.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:34:57 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:01:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,7 +78,7 @@ public:
 #ifndef SVX_LIGHT
 
 #ifndef _PLUGIN_HXX
-#include <so3/plugin.hxx>
+#include <bf_so3/plugin.hxx>
 #endif
 namespace binfilter {
 class SvxPluginShape : public SvxOle2Shape
@@ -106,7 +106,7 @@ public:
 #ifndef SVX_LIGHT
 
 #ifndef _APPLET_HXX
-#include <so3/applet.hxx>
+#include <bf_so3/applet.hxx>
 #endif
 namespace binfilter {
 class SvxAppletShape : public SvxOle2Shape
