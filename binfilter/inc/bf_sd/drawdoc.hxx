@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:31:33 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:19:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@
 #include <unotools/charclass.hxx>
 #endif
 
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 
 #ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>

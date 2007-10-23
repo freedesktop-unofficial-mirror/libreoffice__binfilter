@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:41:22 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:22:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,10 +65,10 @@
 #include <svtools/poolitem.hxx>
 #endif
 #ifndef _SO2DEFS_HXX //autogen
-#include <so3/so2defs.hxx>
+#include <bf_so3/so2defs.hxx>
 #endif
 #ifndef _PERSIST_HXX //autogen
-#include <so3/persist.hxx>
+#include <bf_so3/persist.hxx>
 #endif
 #ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
@@ -76,7 +76,7 @@
 #ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
 #endif
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 
 #ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
