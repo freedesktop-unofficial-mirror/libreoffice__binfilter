@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:54:42 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:05:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,10 +46,10 @@
 #include <svtools/svstdarr.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #ifndef _PERSIST_HXX //autogen
-#include <so3/persist.hxx>
+#include <bf_so3/persist.hxx>
 #endif
 #ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
