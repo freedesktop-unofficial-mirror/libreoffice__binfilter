@@ -4,9 +4,9 @@
  *
  *  $RCSfile: namecont.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:05:22 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:42:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,7 @@
 #include <cppuhelper/typeprovider.hxx>
 #include <cppuhelper/interfacecontainer.hxx>
 
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #ifndef _XMLSCRIPT_XMLLIB_IMEXP_HXX_
 #include <xmlscript/xmllib_imexp.hxx>
 #endif
