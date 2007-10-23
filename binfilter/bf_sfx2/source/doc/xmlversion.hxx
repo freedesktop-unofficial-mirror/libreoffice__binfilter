@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlversion.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:31:17 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:41:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SFX_XMLVERSION_HXX
 
 #ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 
 
