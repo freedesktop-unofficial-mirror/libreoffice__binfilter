@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:32:42 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:21:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -195,19 +195,6 @@ public:
 #define SFX_APP() SfxGetpApp()
 
 //====================================================================
-
-class SfxLinkItem : public SfxPoolItem
-{
-    Link aLink;
-public:
-    virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const
-    {   return new SfxLinkItem( *this ); }
-    virtual int              operator==( const SfxPoolItem& rL) const
-    {   return ((SfxLinkItem&)rL).aLink == aLink; }
-    SfxLinkItem( USHORT nWhich, const Link& rValue ) : SfxPoolItem( nWhich )
-    {   aLink = rValue; }
-    const Link&              GetValue() const { return aLink; }
-};
 
 DECL_OBJHINT( SfxStringHint, String );
 
