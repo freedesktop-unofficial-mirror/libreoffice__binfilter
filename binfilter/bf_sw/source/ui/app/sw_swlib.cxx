@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-15 11:49:46 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:12:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,7 @@
 #include <shellio.hxx>
 #endif
 #ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 
 #include <svtools/moduleoptions.hxx>
