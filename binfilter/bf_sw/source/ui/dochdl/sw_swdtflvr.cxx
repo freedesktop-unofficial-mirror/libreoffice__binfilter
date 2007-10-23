@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:09:58 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:13:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #pragma hdrstop
 #endif
 
-#ifndef _PASTEDLG_HXX
-#include <so3/pastedlg.hxx>
-#endif
 #ifndef _SVX_CLIPFMTITEM_HXX
 #include <bf_svx/clipfmtitem.hxx>
 #endif
@@ -102,7 +99,7 @@
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 extern BOOL bFrmDrag;
