@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:15:09 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:15:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@
 #include <bf_svx/svdview.hxx>
 #endif
 #ifndef _IPENV_HXX //autogen
-#include <so3/ipenv.hxx>
+#include <bf_so3/ipenv.hxx>
 #endif
 
 #ifndef _WDOCSH_HXX
