@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:28:46 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:38:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #endif
 
 #ifndef _EMBOBJ_HXX //autogen
-#include <so3/embobj.hxx>
+#include <bf_so3/embobj.hxx>
 #endif
 
 #ifndef _CONFIG_HXX

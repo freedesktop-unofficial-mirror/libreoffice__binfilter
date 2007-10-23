@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:57:37 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:39:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#include <so3/ipenv.hxx>
+#include <bf_so3/ipenv.hxx>
 #include <svtools/eitem.hxx>
 
 #define _SFX_INTERNO_CXX
