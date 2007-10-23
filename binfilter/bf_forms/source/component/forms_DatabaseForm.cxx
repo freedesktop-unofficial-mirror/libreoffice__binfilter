@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:45:20 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:28:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -200,7 +200,7 @@ enum DatabaseCursorType
 #ifndef _COM_SUN_STAR_SDB_PARAMETERSREQUEST_HPP_
 #include <com/sun/star/sdb/ParametersRequest.hpp>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #define DATABASEFORM_IMPLEMENTATION_NAME    ::rtl::OUString::createFromAscii("com.sun.star.comp.forms.ODatabaseForm")
