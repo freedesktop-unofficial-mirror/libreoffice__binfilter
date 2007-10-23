@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unostyle.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:53:55 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:08:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,7 @@
 #include <svtools/style.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 
 #ifndef _SVX_PAGEITEM_HXX //autogen
