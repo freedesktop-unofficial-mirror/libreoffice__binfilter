@@ -4,9 +4,9 @@
  *
  *  $RCSfile: interno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:38:51 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:22:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SFX_INTERNO_HXX
 
 #ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
+#include <bf_so3/ipobj.hxx>
 #endif
 #include "bf_sfx2/objsh.hxx"
 #include "bf_sfx2/sfx.hrc"
