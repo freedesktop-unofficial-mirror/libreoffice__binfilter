@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdmod.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:31:59 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:20:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #include "pres.hxx"
 #endif
 #ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX
 #include <svtools/lstner.hxx>
