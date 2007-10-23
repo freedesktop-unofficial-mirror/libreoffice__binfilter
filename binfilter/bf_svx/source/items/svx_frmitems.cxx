@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.17 $
+ *  $Revision: 1.18 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:42:21 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:58:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -190,7 +190,7 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
