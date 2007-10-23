@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:33:02 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:00:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #define _STRING_H
 #endif
 #ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
+#include <bf_so3/ipobj.hxx>
 #endif
 
 #include "svdetc.hxx"
