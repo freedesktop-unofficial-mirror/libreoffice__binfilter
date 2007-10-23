@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unosect.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:53:12 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:08:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,10 +56,10 @@
 #include <bf_svx/xmlcnitm.hxx>
 #endif
 #ifndef _LINKMGR_HXX
-#include <so3/linkmgr.hxx>
+#include <bf_so3/linkmgr.hxx>
 #endif
 #ifndef _LNKBASE_HXX
-#include <so3/lnkbase.hxx>
+#include <bf_so3/lnkbase.hxx>
 #endif
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
@@ -135,7 +135,7 @@
 #ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
