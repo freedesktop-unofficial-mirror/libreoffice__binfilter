@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swserv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:56:54 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:32:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SWSERV_HXX
 
 #ifndef _LINKSRC_HXX
-#include <so3/linksrc.hxx>
+#include <bf_so3/linksrc.hxx>
 #endif
 namespace binfilter {
 
