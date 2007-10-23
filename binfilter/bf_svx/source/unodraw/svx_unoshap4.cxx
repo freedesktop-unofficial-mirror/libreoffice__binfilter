@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:36:16 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:01:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include "svdoole2.hxx"
 #endif
 
-#include <so3/outplace.hxx>
+#include <bf_so3/outplace.hxx>
 
 #ifndef SVX_LIGHT
 #ifndef _SOT_CLSIDS_HXX
