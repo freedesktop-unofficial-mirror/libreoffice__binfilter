@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotxdoc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:13:07 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:14:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2199,7 +2199,7 @@ void SwXTextDocument::updateLinks(  ) throw(RuntimeException)
     if( rLnkMan.GetLinks().Count() )
     {
         UnoActionContext aAction(pDoc);
-        rLnkMan.UpdateAllLinks( FALSE, FALSE, TRUE );
+        rLnkMan.UpdateAllLinks( FALSE, TRUE );
     }
 }
 //XPropertyState
