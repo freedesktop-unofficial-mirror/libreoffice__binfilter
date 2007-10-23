@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:58:41 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:30:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -151,7 +151,7 @@
 #include <comphelper/extract.hxx>
 #endif
 #ifndef _EMBOBJ_HXX
-#include <so3/embobj.hxx>
+#include <bf_so3/embobj.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_SHEET_XUSEDAREACURSOR_HPP_
