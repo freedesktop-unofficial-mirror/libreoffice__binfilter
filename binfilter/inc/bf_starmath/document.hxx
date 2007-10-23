@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:48:22 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:29:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #define SMDLL   1
 
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #ifndef _SOT_SOTREF_HXX //autogen
 #include <sot/sotref.hxx>
