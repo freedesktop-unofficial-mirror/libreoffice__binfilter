@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:46:29 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:11:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _XMLIMP_HXX
 
 #ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLICTXT_HXX
