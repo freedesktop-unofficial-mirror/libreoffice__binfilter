@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swdll.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:57:41 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:32:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@ class SfxFilter;
 #include <bf_sfx2/module.hxx>
 #endif
 
-#include <so3/pseudo.hxx>
+#include <bf_so3/pseudo.hxx>
 
 namespace binfilter {
 
