@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:57:54 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:02:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -158,7 +158,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 /*N*/ void lcl_DefaultPageFmt( sal_uInt16 nPoolFmtId, SwFrmFmt &rFmt1,
