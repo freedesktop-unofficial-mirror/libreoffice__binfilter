@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_schlib.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-15 11:49:06 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:33:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 
 #include <sot/formats.hxx>
