@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 12:17:45 $
+#   last change: $Author: vg $ $Date: 2007-10-23 14:17:18 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@ SHL1IMPLIB= ibf_wrp
 SHL1STDLIBS=    \
                 $(FWELIB)			\
                 $(BFBASICLIB) 		\
-                $(SO2LIB) 			\
+                $(BFSO3LIB) 			\
                 $(SJLIB) 			\
                 $(TKLIB) 			\
                 $(SVTOOLLIB) 		\
