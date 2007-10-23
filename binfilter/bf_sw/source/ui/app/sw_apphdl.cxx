@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:06:16 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:11:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -126,7 +126,7 @@ using namespace ::com::sun::star;
 #endif
 
 #include <shells.hrc>
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 
 namespace binfilter {
 
