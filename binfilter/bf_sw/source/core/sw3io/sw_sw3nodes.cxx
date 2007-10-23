@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:26:01 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:06:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -171,7 +171,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #define URL_DECODE  \
