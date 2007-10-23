@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:03:13 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:59:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include <bf_sfx2/interno.hxx>
 #endif
 #ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 
 
@@ -57,7 +57,7 @@
 #include "svdview.hxx"
 #include "unomlstr.hxx"
 #ifndef _CLIENT_HXX
-#include <so3/client.hxx>
+#include <bf_so3/client.hxx>
 #endif
 
 namespace binfilter {
