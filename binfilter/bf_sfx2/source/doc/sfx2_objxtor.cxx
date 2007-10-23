@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.16 $
+ *  $Revision: 1.17 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:31:17 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:41:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -126,7 +126,7 @@ using namespace ::com::sun::star::script;
 #endif
 
 //====================================================================
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 /*N*/ DBG_NAME(SfxObjectShell)
