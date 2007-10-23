@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_modcfg.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:09:01 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:13:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #endif
 
 #ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
@@ -48,7 +48,7 @@
 #include <bf_svx/svxenum.hxx>
 #endif
 #ifndef _FACTORY_HXX //autogen
-#include <so3/factory.hxx>
+#include <bf_so3/factory.hxx>
 #endif
 
 #ifndef _SWTYPES_HXX
