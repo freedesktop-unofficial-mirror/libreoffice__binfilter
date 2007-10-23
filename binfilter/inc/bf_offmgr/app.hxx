@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:19:27 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:17:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,7 @@ public:
     XColorTable*                GetStdColorTable();
 };
 
-#define OFF_APP()   ( (OfficeApplication*)SfxGetpApp() )
+#define OFF_APP()   ( (::binfilter::OfficeApplication*)::binfilter::SfxGetpApp() )
 
 } //namespace binfilter
 #endif // #ifndef _OFF_APP_HXX
