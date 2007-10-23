@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_grdocsh.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:23:12 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:36:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 
 
 #ifndef _SO_CLSIDS_HXX //autogen
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 
 #ifdef _MSC_VER

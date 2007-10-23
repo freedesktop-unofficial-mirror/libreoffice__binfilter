@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_docshell.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:05:15 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:35:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,7 @@
 #include <svtools/filter.hxx>
 #endif
 #ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 
 #include "app.hrc"
