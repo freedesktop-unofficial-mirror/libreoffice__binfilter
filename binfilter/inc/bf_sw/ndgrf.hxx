@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:44:27 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:31:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 
 #ifndef _LNKBASE_HXX //autogen
-#include <so3/lnkbase.hxx>
+#include <bf_so3/lnkbase.hxx>
 #endif
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
 #include <bf_goodies/graphicobject.hxx>
