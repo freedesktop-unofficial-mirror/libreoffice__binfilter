@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_feshview.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:15:39 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:04:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #include <bf_svx/protitem.hxx>
 #endif
 #ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
+#include <bf_so3/ipobj.hxx>
 #endif
 
 #ifndef _POOLFMT_HRC
