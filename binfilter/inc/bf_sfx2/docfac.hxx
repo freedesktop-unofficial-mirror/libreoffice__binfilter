@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfac.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-15 11:50:12 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:21:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <tools/rtti.hxx>
 #endif
 #ifndef _FACTORY_HXX //autogen
-#include <so3/factory.hxx>
+#include <bf_so3/factory.hxx>
 #endif
 
 // SFX_IMPL_MODULE_LIB
