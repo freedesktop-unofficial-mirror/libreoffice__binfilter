@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh6.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:06:10 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:31:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,7 +157,7 @@
 
 #ifndef PCH
 
-#include <so3/ipenv.hxx>
+#include <bf_so3/ipenv.hxx>
 
 
 #include <bf_svx/linkmgr.hxx>
