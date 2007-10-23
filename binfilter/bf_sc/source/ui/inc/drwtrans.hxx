@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwtrans.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:08:03 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:31:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #ifndef _IPOBJ_HXX
-#include <so3/ipobj.hxx>
+#include <bf_so3/ipobj.hxx>
 #endif
 
 #ifndef SC_SCGLOB_HXX
