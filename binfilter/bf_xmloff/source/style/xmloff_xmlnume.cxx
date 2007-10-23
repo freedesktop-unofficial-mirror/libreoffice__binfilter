@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnume.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:19:30 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:16:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,7 +93,7 @@
 #ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
 #endif
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
