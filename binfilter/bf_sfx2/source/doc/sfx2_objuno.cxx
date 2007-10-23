@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:58:48 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:40:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,7 @@
 #endif
 
 #include <tools/errcode.hxx>
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #include <svtools/cntwids.hrc>
 #include <svtools/itemset.hxx>
 #include <svtools/stritem.hxx>
