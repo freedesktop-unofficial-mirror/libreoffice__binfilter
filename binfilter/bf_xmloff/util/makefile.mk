@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 08:36:41 $
+#   last change: $Author: vg $ $Date: 2007-10-23 14:16:34 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -85,7 +85,7 @@ SHL1STDLIBS= \
         $(SALLIB)		\
         $(UNOTOOLSLIB)	\
         $(BFGOODIESLIB) \
-        $(SO2LIB)
+        $(BFSO3LIB)
 
 # SCO: the linker does know about weak symbols, but we can't ignore multiple defined symbols
 .IF "(OS)"=="SCO" || "$(OS)$(COM)"=="OS2GCC"
