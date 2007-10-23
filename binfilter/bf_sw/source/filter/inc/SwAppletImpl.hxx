@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwAppletImpl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:38:28 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:09:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,13 +55,13 @@
 #include <vcl/wrkwin.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 #ifndef _APPLET_HXX //autogen
-#include <so3/applet.hxx>
+#include <bf_so3/applet.hxx>
 #endif
 #ifndef _PLUGIN_HXX //autogen
-#include <so3/plugin.hxx>
+#include <bf_so3/plugin.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
