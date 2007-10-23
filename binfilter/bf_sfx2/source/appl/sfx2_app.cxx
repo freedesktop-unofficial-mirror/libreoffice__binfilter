@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:33:28 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:37:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,8 +66,8 @@
 #include "docfilt.hxx"
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#include "so3/staticbaseurl.hxx"
-#include <so3/ipenv.hxx>
+#include "bf_so3/staticbaseurl.hxx"
+#include <bf_so3/ipenv.hxx>
 
 namespace binfilter {
 
