@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:27:26 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:32:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -140,20 +140,16 @@
 #include <tools/pstm.hxx>
 #include <svtools/eitem.hxx>
 #include <svtools/itempool.hxx>
-#include <so3/iface.hxx>
-#include <so3/factory.hxx>
-#include <so3/so2ref.hxx>
-#include <so3/so2dll.hxx>
+#include <bf_so3/so2ref.hxx>
 #include <vcl/tabdlg.hxx>
 #include <vcl/tabpage.hxx>
 #include <vcl/tabctrl.hxx>
 #include <shellids.hxx>
 #include <vcl/event.hxx>
-#include <so3/advise.hxx>
-#include <so3/protocol.hxx>
+#include <bf_so3/advise.hxx>
+#include <bf_so3/protocol.hxx>
 #include <svtools/intitem.hxx>
-#include <so3/ipclient.hxx>
-#include <so3/client.hxx>
+#include <bf_so3/ipclient.hxx>
 #include <bf_sfx2/cfgitem.hxx>
 #include <svtools/confitem.hxx>
 #include <markdata.hxx>
@@ -187,10 +183,10 @@
 #include <vcl/accel.hxx>
 #include <svtools/smplhint.hxx>
 #include <bf_sfx2/viewfac.hxx>
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #include <bf_sfx2/objsh.hxx>
-#include <so3/so2defs.hxx>
-#include <so3/persist.hxx>
+#include <bf_so3/so2defs.hxx>
+#include <bf_so3/persist.hxx>
 #include <target.hxx>
 #include <tabvwsh.hxx>
 #include <svtools/inethist.hxx>
@@ -203,16 +199,15 @@
 #include <scdll.hxx>
 #include <bf_sfx2/msg.hxx>
 #include <svtools/ownlist.hxx>
-#include <so3/persist.hxx>
-#include <so3/pseudo.hxx>
+#include <bf_so3/persist.hxx>
+#include <bf_so3/pseudo.hxx>
 #include <bf_sfx2/objface.hxx>
 #include <bf_sfx2/viewfrm.hxx>
 #include <bf_sfx2/frame.hxx>
-#include <so3/ipobj.hxx>
-#include <so3/embobj.hxx>
-#include <so3/ipobj.hxx>
+#include <bf_so3/ipobj.hxx>
+#include <bf_so3/embobj.hxx>
+#include <bf_so3/ipobj.hxx>
 #include <scresid.hxx>
-#include <so3/factory.hxx>
 #include <docsh.hxx>
 #include <bf_sfx2/interno.hxx>
 #include <vcl/wintypes.hxx>
@@ -349,7 +344,7 @@
 #include <undobase.hxx>
 #include <vcl/dockwin.hxx>
 #include <vcl/virdev.hxx>
-#include <so3/so2defs.hxx>
+#include <bf_so3/so2defs.hxx>
 #include <rangeutl.hxx>
 #include <vcl/toolbox.hxx>
 #include <fupoor.hxx>
