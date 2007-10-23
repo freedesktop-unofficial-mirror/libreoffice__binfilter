@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objuno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:41:37 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:22:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SFX_OBJUNO_HXX
 
 #ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+#include <bf_so3/svstor.hxx>
 #endif
 
 #ifndef _CPPUHELPER_WEAKREF_HXX_

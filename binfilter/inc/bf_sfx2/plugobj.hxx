@@ -4,9 +4,9 @@
  *
  *  $RCSfile: plugobj.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:41:50 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:22:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _PLUGOBJ_HXX
 
 #ifndef _PLUGIN_HXX //autogen
-#include <so3/plugin.hxx>
+#include <bf_so3/plugin.hxx>
 #endif
 #include "bf_sfx2/app.hxx"
 
