@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabview.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:05:15 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:32:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #endif
 
 #ifndef _IPCLIENT_HXX //autogen
-#include <so3/ipclient.hxx>
+#include <bf_so3/ipclient.hxx>
 #endif
 
 #ifndef SO2_DECL_SVINPLACECLIENT_DEFINED
