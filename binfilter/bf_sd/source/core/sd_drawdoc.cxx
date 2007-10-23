@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:57:05 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:34:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1377,12 +1377,12 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   if ( !pDocLockedInsertingLinks && pLinkManager && pLinkManager->GetLinks().Count() )
 /*?*/   {
-/*?*/       pDocLockedInsertingLinks = this; // lock inserting links. only links in this document should by resolved
+/*?*/       pDocLockedInsertingLinks = this;            // lock inserting links. only links in this document should by resolved
 
-/*?*/       pLinkManager->UpdateAllLinks();  // query box: update all links?
+/*?*/       pLinkManager->UpdateAllLinks(TRUE, FALSE);
 
 /*?*/       if( pDocLockedInsertingLinks == this )
-/*?*/           pDocLockedInsertingLinks = NULL;  // unlock inserting links
+/*?*/           pDocLockedInsertingLinks = NULL;        // unlock inserting links
 /*?*/   }
 /*N*/ }
 
