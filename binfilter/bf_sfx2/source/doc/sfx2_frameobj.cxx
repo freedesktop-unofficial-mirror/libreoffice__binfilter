@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_frameobj.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:29:41 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:39:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #include <sot/clsids.hxx>
 #endif
 #ifndef _IPWIN_HXX //autogen
-#include <so3/ipwin.hxx>
+#include <bf_so3/ipwin.hxx>
 #endif
 
 
@@ -59,7 +59,7 @@
 #include "objsh.hxx"
 #endif
 
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
