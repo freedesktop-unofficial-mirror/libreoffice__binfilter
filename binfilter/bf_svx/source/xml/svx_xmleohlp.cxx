@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:59:54 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:02:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,10 +46,10 @@
 #endif
 
 #ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
+#include <comphelper/classids.hxx>
 #endif
 #ifndef _EMBOBJ_HXX
-#include <so3/embobj.hxx>
+#include <bf_so3/embobj.hxx>
 #endif
 
 #include <map>

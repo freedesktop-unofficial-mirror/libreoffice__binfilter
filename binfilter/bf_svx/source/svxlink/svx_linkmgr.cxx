@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_linkmgr.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:46:39 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 14:01:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include <vcl/graph.hxx>
 #endif
 #ifndef _LNKBASE_HXX //autogen
-#include <so3/lnkbase.hxx>
+#include <bf_so3/lnkbase.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
@@ -55,7 +55,7 @@
 #include "fileobj.hxx"
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
-#include "so3/staticbaseurl.hxx"
+#include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
