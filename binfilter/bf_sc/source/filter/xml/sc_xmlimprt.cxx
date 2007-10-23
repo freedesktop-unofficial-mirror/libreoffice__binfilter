@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlimprt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:59:24 $
+ *  last change: $Author: vg $ $Date: 2007-10-23 13:30:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -103,7 +103,7 @@
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
 #ifndef _EMBOBJ_HXX
-#include <so3/embobj.hxx>
+#include <bf_so3/embobj.hxx>
 #endif
 namespace binfilter {
 
