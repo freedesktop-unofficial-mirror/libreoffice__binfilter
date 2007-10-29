@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.14 $
+#   $Revision: 1.15 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 13:29:12 $
+#   last change: $Author: vg $ $Date: 2007-10-29 09:58:33 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -59,7 +59,7 @@ SOLARLIB+=-L$(LB)
 
 RES1FILELIST=\
     $(SOLARCOMMONRESDIR)$/svtools.srs \
-    $(SOLARCOMMONRESDIR)$/so2.srs 	
+    $(SRS)$/so3_src.srs 	
 
 RESLIB1NAME=$(TARGET)
 RESLIB1SRSFILES=$(RES1FILELIST)
