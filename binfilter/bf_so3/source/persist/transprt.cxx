@@ -4,9 +4,9 @@
  *
  *  $RCSfile: transprt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:53:42 $
+ *  last change: $Author: vg $ $Date: 2007-10-31 16:04:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#define _TRANSPRT_CXX "$Revision: 1.2 $"
+#define _TRANSPRT_CXX "$Revision: 1.3 $"
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -717,7 +717,7 @@ ErrCode UcbTransportLockBytes::ReadAt (
     {
         while (!m_bTerminated)
         {
-            sal_Int64 nLen = xSeekable->getLength();
+            sal_uInt64 nLen = xSeekable->getLength();
             if (IsSynchronMode())
             {
                 if (nPos + nCount > nLen)
