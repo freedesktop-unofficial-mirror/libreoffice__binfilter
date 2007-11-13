@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxbool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:11:22 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:15:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,7 @@ namespace binfilter {
 enum SbxBOOL ImpGetBool( const SbxValues* p )
 {
     enum SbxBOOL nRes;
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -174,7 +174,7 @@ void ImpPutBool( SbxValues* p, INT16 n )
 {
     if( n )
         n = SbxTRUE;
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxCHAR:
             p->nChar = (xub_Unicode) n; break;
