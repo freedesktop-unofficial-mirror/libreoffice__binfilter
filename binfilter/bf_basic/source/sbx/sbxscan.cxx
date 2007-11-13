@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxscan.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:10:48 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:18:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -386,6 +386,7 @@ static void myftoa( double nNum, char * pBuf, short nPrec, short nExpWidth,
 
 #ifdef _MSC_VER
 #pragma optimize( "", off )
+#pragma warning(disable: 4748) // "... because optimizations are disabled ..."
 #endif
 
 void ImpCvtNum( double nNum, short nPrec, XubString& rRes, BOOL bCoreString )
