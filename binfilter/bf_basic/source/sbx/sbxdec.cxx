@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxdec.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: vg $ $Date: 2007-05-25 10:46:09 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:17:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -478,7 +478,7 @@ SbxDecimal* ImpGetDecimal( const SbxValues* p )
     pnDecRes->addRef();
 
 start:
-    switch( eType )
+    switch( +eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -604,7 +604,7 @@ void ImpPutDecimal( SbxValues* p, SbxDecimal* pDec )
 
     SbxValues aTmp;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         // hier muss getestet werden
         case SbxCHAR:
