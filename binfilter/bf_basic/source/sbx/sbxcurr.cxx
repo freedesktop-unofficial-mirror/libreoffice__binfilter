@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxcurr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:12:36 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:16:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@ SbxINT64 ImpGetCurrency( const SbxValues* p )
     SbxValues aTmp;
     SbxINT64 nRes;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -192,7 +192,7 @@ void ImpPutCurrency( SbxValues* p, const SbxINT64 &r )
     double dVal = ImpCurrencyToDouble( r );
     SbxValues aTmp;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         // Hier sind Tests notwendig
         case SbxCHAR:

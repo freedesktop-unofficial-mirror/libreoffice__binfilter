@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxdate.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:12:48 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:16:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@ namespace binfilter {
 double ImpGetDate( const SbxValues* p )
 {
     double nRes;
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -219,7 +219,7 @@ void ImpPutDate( SbxValues* p, double n )
     SbxValues aTmp;
 
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxDATE:
         case SbxDOUBLE:

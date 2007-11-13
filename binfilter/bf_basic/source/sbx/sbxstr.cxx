@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxstr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:15:46 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:18:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@ XubString ImpGetString( const SbxValues* p )
     XubString aRes;
     aTmp.eType = SbxSTRING;
     aTmp.pString = &aRes;
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -172,7 +172,7 @@ void ImpPutString( SbxValues* p, const XubString* n )
     if( !n )
         n = pTmp = new XubString;
     aTmp.pString = (XubString*) n;
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxCHAR:
             p->nChar = ImpGetChar( &aTmp ); break;

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxchar.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:11:46 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:16:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@ xub_Unicode ImpGetChar( const SbxValues* p )
     SbxValues aTmp;
     xub_Unicode nRes;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -241,7 +241,7 @@ void ImpPutChar( SbxValues* p, xub_Unicode n )
 {
     SbxValues aTmp;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxCHAR:
             p->nChar = n; break;

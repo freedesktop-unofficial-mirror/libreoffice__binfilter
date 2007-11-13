@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxsng.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:15:34 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:18:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@ float ImpGetSingle( const SbxValues* p )
     SbxValues aTmp;
     float nRes;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -199,7 +199,7 @@ void ImpPutSingle( SbxValues* p, float n )
 {
     SbxValues aTmp;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxCHAR:
             aTmp.pChar = &p->nChar; goto direct;

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxlng.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:14:23 $
+ *  last change: $Author: rt $ $Date: 2007-11-13 15:17:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@ INT32 ImpGetLong( const SbxValues* p )
     SbxValues aTmp;
     INT32 nRes;
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         case SbxNULL:
             SbxBase::SetError( SbxERR_CONVERSION );
@@ -206,7 +206,7 @@ void ImpPutLong( SbxValues* p, INT32 n )
     SbxValues aTmp;
 
 start:
-    switch( p->eType )
+    switch( +p->eType )
     {
         // Ab hier muss getestet werden
         case SbxCHAR:
