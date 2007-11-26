@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:56:52 $
+ *  last change: $Author: ihi $ $Date: 2007-11-26 18:58:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,14 +95,14 @@ namespace i18n {
 namespace uno {
     template < class > class Sequence;
 }
-}}};
+}}}
 
 namespace utl {
     class TransliterationWrapper;
-};
+}
 namespace so3 {
     class SvLinkSource;
-};
+}
 class DateTime;
 class JobSetup;
 class Color;
