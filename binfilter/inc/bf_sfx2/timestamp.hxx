@@ -4,9 +4,9 @@
  *
  *  $RCSfile: timestamp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:46:02 $
+ *  last change: $Author: ihi $ $Date: 2007-11-26 18:57:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -131,5 +131,5 @@ class TimeStamp
         DateTime    m_aModifiedDateTime ;   /// Time and date of stamp
 } ;
 
-};
+}
 #endif // _TIMESTAMP_HXX
