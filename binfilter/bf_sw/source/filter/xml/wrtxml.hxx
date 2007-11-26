@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrtxml.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:02:35 $
+ *  last change: $Author: ihi $ $Date: 2007-11-26 18:57:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,20 +46,12 @@ namespace com { namespace sun { namespace start {
     namespace lang { class XComponent; }
     namespace lang { class XMultiServiceFactory; }
     namespace beans { struct PropertyValue; }
-} } };
+} } }
 namespace binfilter {
 
 class SwDoc;
 class SwPaM;
 class SfxMedium;
-//STRIP008 namespace com { namespace sun { namespace start {
-//STRIP008  namespace uno { template<class A> class Reference; }
-//STRIP008  namespace uno { template<class A> class Sequence; }
-//STRIP008  namespace uno { class Any; }
-//STRIP008  namespace lang { class XComponent; }
-//STRIP008  namespace lang { class XMultiServiceFactory; }
-//STRIP008  namespace beans { struct PropertyValue; }
-//STRIP008 } } };
 
 
 class SwXMLWriter : public StgWriter
