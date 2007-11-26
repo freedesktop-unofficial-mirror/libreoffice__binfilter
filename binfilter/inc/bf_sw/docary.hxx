@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docary.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:38:23 $
+ *  last change: $Author: ihi $ $Date: 2007-11-26 18:58:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@ class SwOLENode;
 
 namespace com { namespace sun { namespace star { namespace i18n {
     struct ForbiddenCharacters;    // comes from the I18N UNO interface
-}}}};
+}}}}
 
 
 #ifndef _SWTYPES_HXX //autogen
