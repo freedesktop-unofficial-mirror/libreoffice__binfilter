@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editsh.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:43:17 $
+ *  last change: $Author: ihi $ $Date: 2007-11-26 18:58:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@
 #endif
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
-}}}};
+}}}}
 class PolyPolygon;
 class DateTime;
 class CommandExtTextInputData;
