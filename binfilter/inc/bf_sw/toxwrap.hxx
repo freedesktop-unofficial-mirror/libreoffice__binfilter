@@ -4,9 +4,9 @@
  *
  *  $RCSfile: toxwrap.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:48:11 $
+ *  last change: $Author: ihi $ $Date: 2007-11-26 18:59:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,20 +56,9 @@ namespace i18n {
 namespace lang {
     class XMultiServiceFactory;
 }
-}}};
+}}}
 class String;
 namespace binfilter {
-
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008 namespace i18n {
-//STRIP008     class XExtendedIndexEntrySupplier;
-//STRIP008 }
-//STRIP008 namespace lang {
-//STRIP008  class XMultiServiceFactory;
-//STRIP008 }
-//STRIP008 }}};
-
-
 
 
 class IndexEntrySupplierWrapper
