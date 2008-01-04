@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docnum.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:59:53 $
+ *  last change: $Author: obo $ $Date: 2008-01-04 14:56:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -545,7 +545,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*?*/       ULONG nTmp = nStt; nStt = nEnd; nEnd = nTmp;
 /*N*/   }
 /*N*/
-/*N*/   char nDiff = bDown ? 1 : -1;
+/*N*/   signed char nDiff = bDown ? 1 : -1;
 /*N*/   if( DoesUndo() )
 /*N*/   {
 /*N*/       ClearRedo();
