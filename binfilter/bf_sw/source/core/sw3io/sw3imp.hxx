@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:05:19 $
+ *  last change: $Author: hr $ $Date: 2008-01-04 13:03:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -497,7 +497,7 @@ public:
 
 #ifndef PRODUCT
     BYTE              *pRefSdrObjects;
-#endif;
+#endif
 
     Sw3IoImp( Sw3Io& );
    ~Sw3IoImp();
