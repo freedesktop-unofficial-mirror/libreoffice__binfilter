@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparae.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:20:49 $
+ *  last change: $Author: obo $ $Date: 2008-01-04 14:56:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1949,7 +1949,7 @@ sal_Int32 XMLTextParagraphExport::addTextFrameAttributes(
     if( TextContentAnchorType_AT_PAGE == eAnchor )
     {
         aAny = rPropSet->getPropertyValue( sAnchorPageNo );
-        sal_Int16 nPage;
+        sal_Int16 nPage=0;
         aAny >>= nPage;
         GetExport().GetMM100UnitConverter().convertNumber( sValue,
                                                            (sal_Int32)nPage );
