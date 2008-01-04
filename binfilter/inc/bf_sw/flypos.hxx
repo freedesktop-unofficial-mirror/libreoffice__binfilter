@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flypos.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:00:57 $
+ *  last change: $Author: hr $ $Date: 2008-01-04 13:05:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,4 +70,4 @@ typedef SwPosFlyFrm* SwPosFlyFrmPtr;
 SV_DECL_PTRARR_SORT( SwPosFlyFrms, SwPosFlyFrmPtr, 0, 40 )
 
 } //namespace binfilter
-#endif _FLYPOS_HXX
+#endif

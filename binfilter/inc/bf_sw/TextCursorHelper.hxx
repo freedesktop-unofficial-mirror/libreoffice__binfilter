@@ -4,9 +4,9 @@
  *
  *  $RCSfile: TextCursorHelper.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:45:23 $
+ *  last change: $Author: hr $ $Date: 2008-01-04 13:05:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,6 +63,6 @@ public:
 };
 
 } //namespace binfilter
-#endif _SW_TEXTCURSORHELPER_HXX
+#endif
 
 
