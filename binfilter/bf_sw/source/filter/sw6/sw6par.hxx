@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw6par.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-20 12:38:58 $
+ *  last change: $Author: hr $ $Date: 2008-01-04 13:04:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -229,4 +229,4 @@ public:
 
 
 } //namespace binfilter
-#endif _SW6PAR_HXX
+#endif
