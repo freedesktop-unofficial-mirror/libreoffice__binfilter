@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chartdoc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:14:56 $
+ *  last change: $Author: hr $ $Date: 2008-01-04 13:03:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,8 +82,20 @@
 #ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
 #endif
+
+#ifdef ITEMID_FONT
+#undef ITEMID_FONT
+#endif
 #define ITEMID_FONT        EE_CHAR_FONTINFO
+
+#ifdef ITEMID_COLOR
+#undef ITEMID_COLOR
+#endif
 #define ITEMID_COLOR       EE_CHAR_COLOR
+
+#ifdef ITEMID_FONTHEIGHT
+#undef ITEMID_FONTHEIGHT
+#endif
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 
 #include "glob.hrc"
