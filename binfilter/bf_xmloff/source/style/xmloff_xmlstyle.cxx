@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlstyle.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:19:52 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:23:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -792,11 +792,9 @@ UniReference < SvXMLImportPropertyMapper > SvXMLStylesContext::GetImportProperty
         xMapper = xPageImpPropMapper;
         break;
 #ifndef SVX_LIGHT
-#if SUPD>615 || defined(PRIV_DEBUG)
     case XML_STYLE_FAMILY_CONTROL_ID:
         xMapper = const_cast<SvXMLImport&>(GetImport()).GetFormImport()->getStylePropertyMapper().getBodyPtr();
         break;
-#endif
 #endif // #ifndef SVX_LIGHT
     }
 
