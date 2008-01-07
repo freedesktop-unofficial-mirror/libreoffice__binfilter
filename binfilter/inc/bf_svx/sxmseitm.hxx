@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sxmseitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:01:04 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:30:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,9 +59,6 @@ public:
     SdrMeasureSetItem(const SdrMeasureSetItem& rAttr, SfxItemPool* pItemPool=NULL): SfxSetItem(rAttr,pItemPool) {}
     virtual SfxPoolItem*    Clone(SfxItemPool* pToPool) const;
     virtual SfxPoolItem*    Create(SvStream& rStream, USHORT nVersion) const;
-#if SUPD <= 345
-    virtual SvStream&       Store(SvStream& rStream) const;
-#endif
 };
 
 }//end of namespace binfilter
