@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_macrconf.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:27:32 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:20:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -378,9 +378,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pImp = new SfxMacroConfig_Impl;
 /*?*/   const String& rCode, BasicManager* pMgr, SbxArray *pArgs, SbxValue *pRet )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*?*/ }
-
-#if SUPD<582
-#endif
 
 /*N*/ sal_Bool SfxMacroConfig::IsMacroSlot( sal_uInt16 nId )
 /*N*/ {
