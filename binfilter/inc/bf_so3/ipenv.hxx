@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ipenv.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:24:47 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:25:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -369,10 +369,6 @@ private:
     BOOL        bIsStarPlugIn;
     SvPlugInObject* pObj;
     SvPlugInEnvironment_Impl* pImpl;
-
-#if( SUPD < 583)
-    void *      pOld;
-#endif
 
 protected:
     SO3_DLLPRIVATE virtual void DocWinResize();
