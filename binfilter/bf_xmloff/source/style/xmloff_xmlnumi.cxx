@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumi.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:56:16 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:23:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1196,47 +1196,5 @@ void SvxXMLListStyleContext::SetDefaultStyle(
     aAny <<= aPropSeq;
     rNumRule->replaceByIndex( nLevel, aAny );
 }
-
-#if SUPD < 627
-sal_Int16 SvxXMLListStyleContext::GetNumType( const OUString& rNumFmt,
-                                                   const OUString& rLetterSync,
-                                                  sal_Int16 eDflt,
-                                                  sal_Bool bNumberNone )
-{
-    sal_Int16 eValue = eDflt;
-    sal_Int32 nLen = rNumFmt.getLength();
-
-    if( 1 == nLen )
-    {
-        switch( rNumFmt[0] )
-        {
-        case sal_Unicode('1'):  eValue = NumberingType::ARABIC;         break;
-        case sal_Unicode('a'):  eValue = NumberingType::CHARS_LOWER_LETTER; break;
-        case sal_Unicode('A'):  eValue = NumberingType::CHARS_UPPER_LETTER; break;
-        case sal_Unicode('i'):  eValue = NumberingType::ROMAN_LOWER;    break;
-        case sal_Unicode('I'):  eValue = NumberingType::ROMAN_UPPER;    break;
-        }
-        if( IsXMLToken( rLetterSync, XML_TRUE ) )
-        {
-            switch(eValue )
-            {
-            case NumberingType::CHARS_LOWER_LETTER:
-                eValue = NumberingType::CHARS_LOWER_LETTER_N;
-                break;
-            case NumberingType::CHARS_UPPER_LETTER:
-                eValue = NumberingType::CHARS_UPPER_LETTER_N;
-                break;
-            }
-        }
-    }
-    else if( 0 == nLen )
-    {
-        if( bNumberNone )
-            eValue = NumberingType::NUMBER_NONE;
-    }
-
-    return eValue;
-}
-#endif
 
 }//end of namespace binfilter
