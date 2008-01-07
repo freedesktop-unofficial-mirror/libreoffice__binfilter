@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:13:49 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:19:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1073,11 +1073,9 @@ SvxTextForwarder* ScCellTextData::GetTextForwarder()
             pEnginePool->FreezeIdRanges();
             pEditEngine = new ScFieldEditEngine( pEnginePool, NULL, TRUE );
         }
-#if SUPD > 600
         //  currently, GetPortions doesn't work if UpdateMode is FALSE,
         //  this will be fixed (in EditEngine) by src600
 //      pEditEngine->SetUpdateMode( FALSE );
-#endif
         pEditEngine->EnableUndo( FALSE );
         if (pDocShell)
             pEditEngine->SetRefDevice(pDocShell->GetVirtualDevice_100th_mm());

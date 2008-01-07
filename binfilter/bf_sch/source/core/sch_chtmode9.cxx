@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode9.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:16:00 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:19:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,12 +46,9 @@
 #endif
 
 
-#if SUPD > 364
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
 #endif
-#else
-#endif // SUPD
 
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -83,11 +80,8 @@
 
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
-#if SUPD > 364
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/fwdtitem.hxx>
-#else
-#endif
 
 // header for class SdrOutliner
 // header for GetDraftFillColor()
