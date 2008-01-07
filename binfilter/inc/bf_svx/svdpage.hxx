@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpage.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:35:37 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:29:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -157,22 +157,11 @@ public:
     void     RecalcObjOrdNums();
     FASTBOOL IsObjOrdNumsDirty() const        { return bObjOrdNumsDirty; }
     virtual void NbcInsertObject(SdrObject* pObj, ULONG nPos=CONTAINER_APPEND
-#if SUPD>356
                                  , const SdrInsertReason* pReason=NULL
-#endif
                                                                       );
     virtual void InsertObject(SdrObject* pObj, ULONG nPos=CONTAINER_APPEND
-#if SUPD>356
                               , const SdrInsertReason* pReason=NULL
-#endif
                                                                      );
-#if SUPD<=356
-    void NbcInsertObject(SdrObject* pObj, ULONG nPos, const SdrInsertReason* pReason)
-          { NbcInsertObject(pObj,nPos); }
-    void InsertObject(SdrObject* pObj, ULONG nPos, const SdrInsertReason* pReason)
-          { InsertObject(pObj,nPos); }
-#endif
-
     // aus Liste entfernen ohne delete
     //virtual void RemoveObject(SdrObject* pObj);
     virtual SdrObject* NbcRemoveObject(ULONG nObjNum);
@@ -381,9 +370,7 @@ protected:
     USHORT     nPageNum;
     FASTBOOL   bMaster;  // TRUE: Ich bin eine Stammseite
     FASTBOOL   bInserted;
-#if SUPD>=361
     FASTBOOL   bObjectsNotPersistent;
-#endif
     FASTBOOL   bSwappingLocked;
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoPage();
@@ -466,10 +453,8 @@ public:
     // fuer's Raster im Writer, auch fuer AlignObjects wenn 1 Objekt markiert ist
     // wenn pRect!=NULL, dann die Seiten, die von diesem Rect intersected werden
     // ansonsten die sichtbaren Seiten.
-#if SUPD>=361
     FASTBOOL IsObjectsNotPersistent() const          { return bObjectsNotPersistent; }
     void     SetObjectsNotPersistent(FASTBOOL b)     { bObjectsNotPersistent=b; }
-#endif
     // Durch Setzen dieses Flags, kann das Auslagern (Swappen) von
     // Teilen der Page (z.B. Grafiken) unterbunden werden.
     // Es werden hierdurch jedoch nicht automatisch alle ausgelagerten
