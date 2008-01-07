@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlimp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:15:54 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:22:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -884,12 +884,10 @@ SchXMLImportHelper* SvXMLImport::CreateChartImport()
 #endif
 
 #ifndef SVX_LIGHT
-#if SUPD>615 || defined(PRIV_DEBUG)
 ::binfilter::xmloff::OFormLayerXMLImport* SvXMLImport::CreateFormImport()
 {
     return new ::binfilter::xmloff::OFormLayerXMLImport(*this);
 }
-#endif
 #endif // #ifndef SVX_LIGHT
 
 
