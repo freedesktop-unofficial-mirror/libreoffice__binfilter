@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editobj.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:29:56 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:26:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,13 +85,8 @@ public:
 
 
     virtual BOOL        IsVertical() const;
-#if SUPD >= 615
     virtual
-#endif
     void                SetVertical( BOOL bVertical );
-
-#if SUPD >= 615
-#endif
 
     virtual USHORT      GetVersion() const; // Solange der Outliner keine Recordlaenge speichert
 

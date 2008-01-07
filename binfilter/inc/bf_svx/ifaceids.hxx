@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ifaceids.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:39:06 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:27:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,33 +39,12 @@
 
 namespace binfilter {
 
-#if SUPD<=342
-
-#define SVX_INTERFACE_BASIDE_DOCSH      (SFX_INTERFACE_LIB+ 0)
-#define SVX_INTERFACE_BASIDE_VIEWSH     (SFX_INTERFACE_LIB+ 1)
-
-#define SVX_INTERFACE_SCH_START         (SFX_INTERFACE_LIB+ 2)
-#define SVX_INTERFACE_SCH_END           (SFX_INTERFACE_LIB+ 9)
-
-#define SVX_INTERFACE_SIM_START         (SFX_INTERFACE_LIB+10)
-#define SVX_INTERFACE_SIM_END           (SFX_INTERFACE_LIB+15)
-
-#define SVX_INTERFACE_SBA_START         (SFX_INTERFACE_LIB+16)
-#define SVX_INTERFACE_SBA_END           (SFX_INTERFACE_LIB+47)
-
-#define SVX_INTERFACE_SMA_START         (SFX_INTERFACE_LIB+64)
-#define SVX_INTERFACE_SMA_END           (SFX_INTERFACE_LIB+67)
-
-#else
-
 #define SVX_INTERFACE_BASIDE_DOCSH      (SFX_INTERFACE_IDE_START+ 0)
 #define SVX_INTERFACE_BASIDE_VIEWSH     (SFX_INTERFACE_IDE_START+ 1)
 
 #define HID_INTERFACE_BASIDE_VIEWSH     SVX_INTERFACE_BASIDE_VIEWSH
 
 #define SVX_INTERFACE_FORM_SH           (SFX_INTERFACE_IDE_END+ 1)
-
-#endif
 
 }//end of namespace binfilter
 #endif
