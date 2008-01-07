@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtimp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:21:04 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:23:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -151,10 +151,7 @@ using namespace ::com::sun::star::lang;
 using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::util::DateTime;
 using namespace ::com::sun::star::ucb;
-
-#if SUPD > 632 || DVO_TEST
 using ::comphelper::UStringLess;
-#endif
 
 static __FAR_DATA SvXMLTokenMapEntry aTextElemTokenMap[] =
 {
@@ -1976,11 +1973,7 @@ Reference< XPropertySet> XMLTextImportHelper::createAndInsertFloatingFrame(
 
 void XMLTextImportHelper::endAppletOrPlugin(
         Reference < XPropertySet> & rPropSet,
-#if SUPD > 632 || DVO_TEST
         ::std::map < const ::rtl::OUString, ::rtl::OUString, UStringLess > &rParamMap)
-#else
-        ::std::map < const ::rtl::OUString, ::rtl::OUString, less_functor > &rParamMap)
-#endif
 {
 }
 // redline helper: dummy implementation to be overridden in sw/filter/xml
