@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:57:04 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:31:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -226,9 +226,7 @@ public:
     ULONG LoadStylesFromFile( const String& rURL, SwgReaderOption& rOpt,
                                 BOOL bUnoCall );
 
-#if SUPD>620
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
-#endif
 };
 
 inline BOOL SwDocShell::SaveAsChilds( SvStorage *pStor )
