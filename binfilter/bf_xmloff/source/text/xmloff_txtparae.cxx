@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparae.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-04 14:56:18 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:24:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -731,9 +731,6 @@ void XMLTextParagraphExport::exportListChange(
 XMLTextParagraphExport::XMLTextParagraphExport(
         SvXMLExport& rExp,
         SvXMLAutoStylePoolP & rASP
-#if SUPD < 628 && !defined( TEST_MIB )
-        , sal_Int32 nProg
-#endif
         ) :
     XMLStyleExport( rExp, OUString(), &rASP ),
 //  rExport( rExp ),
@@ -833,11 +830,7 @@ XMLTextParagraphExport::XMLTextParagraphExport(
     sRubyText(RTL_CONSTASCII_USTRINGPARAM("RubyText")),
     sRubyAdjust(RTL_CONSTASCII_USTRINGPARAM("RubyAdjust")),
     sRubyCharStyleName(RTL_CONSTASCII_USTRINGPARAM("RubyCharStyleName")),
-#if SUPD < 628 && !defined( TEST_MIB )
-    nProgress( nProg ),
-#else
     bProgress( sal_False ),
-#endif
     aCharStyleNamesPropInfoCache( sCharStyleNames )
 {
     UniReference < XMLPropertySetMapper > xPropMapper =
