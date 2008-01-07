@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLEventExport.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:16:34 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:31:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -85,10 +85,6 @@ typedef ::std::map< ::rtl::OUString, ::rtl::OUString > NameMap;
 class XMLEventExport
 {
     const ::rtl::OUString sEventType;
-#if SUPD < 643
-    // member not used any more; may be deleted in next incompatible build
-    const ::rtl::OUString sScriptEvents;
-#endif
 
     SvXMLExport& rExport;
 
