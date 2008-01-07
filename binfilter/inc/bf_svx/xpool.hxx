@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xpool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:41:08 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:31:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,6 @@ class XOutdevItemPool: public SfxItemPool
 protected:
     SfxPoolItem**   ppPoolDefaults;
     SfxItemInfo*    pItemInfos;
-#if SUPD<355
-    USHORT*         pSlotIds;
-#endif
 /*    USHORT*         pVersion1Map;
     USHORT*         pVersion2Map;
     USHORT*         pVersion3Map;

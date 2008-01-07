@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sjctrl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:28:53 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:28:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,11 +94,9 @@ class ImpSjJScriptButtonObject : public SjJScriptButtonObject, ImpSjJScriptContr
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnClick_Fct() const;
     virtual void setOnClick_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnClick() const;
     virtual void        setOnClick( const String & aSourceStrg );
             void        onClick();
@@ -163,11 +161,9 @@ class ImpSjJScriptCheckboxObject : public SjJScriptCheckboxObject, ImpSjJScriptC
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnClick_Fct() const;
     virtual void setOnClick_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnClick() const;
     virtual void        setOnClick( const String & aSourceStrg );
             void        onClick();
@@ -219,11 +215,9 @@ class ImpSjJScriptRadioObject : public SjJScriptRadioObject, ImpSjJScriptControl
     virtual void        click();
 
     // Events (C++ --> Java)
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnClick_Fct() const;
     virtual void setOnClick_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnClick() const;
     virtual void        setOnClick( const String & aSourceStrg );
             void        onClick();
@@ -259,7 +253,6 @@ class ImpSjJScriptSelectObject : public SjJScriptSelectObject, ImpSjJScriptContr
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnBlur_Fct() const;
     virtual void setOnBlur_Fct( SjJScriptFunctionObject* pFunctionObject );
@@ -267,7 +260,6 @@ class ImpSjJScriptSelectObject : public SjJScriptSelectObject, ImpSjJScriptContr
     virtual void setOnChange_Fct( SjJScriptFunctionObject* pFunctionObject );
     virtual SjJScriptFunctionObject* getOnFocus_Fct() const;
     virtual void setOnFocus_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnBlur() const;
     virtual void        setOnBlur( const String & aSourceStrg );
             void        onBlur();
@@ -396,7 +388,6 @@ class ImpSjJScriptTextObject : public SjJScriptTextObject, ImpSjJScriptControlBa
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnBlur_Fct() const;
     virtual void setOnBlur_Fct( SjJScriptFunctionObject* pFunctionObject );
@@ -406,7 +397,6 @@ class ImpSjJScriptTextObject : public SjJScriptTextObject, ImpSjJScriptControlBa
     virtual void setOnFocus_Fct( SjJScriptFunctionObject* pFunctionObject );
     virtual SjJScriptFunctionObject* getOnSelect_Fct() const;
     virtual void setOnSelect_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnBlur() const;
     virtual void        setOnBlur( const String & aSourceStrg );
             void        onBlur();
@@ -449,7 +439,6 @@ class ImpSjJScriptTextareaObject : public SjJScriptTextareaObject, ImpSjJScriptC
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnBlur_Fct() const;
     virtual void setOnBlur_Fct( SjJScriptFunctionObject* pFunctionObject );
@@ -459,7 +448,6 @@ class ImpSjJScriptTextareaObject : public SjJScriptTextareaObject, ImpSjJScriptC
     virtual void setOnFocus_Fct( SjJScriptFunctionObject* pFunctionObject );
     virtual SjJScriptFunctionObject* getOnSelect_Fct() const;
     virtual void setOnSelect_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnBlur() const;
     virtual void        setOnBlur( const String & aSourceStrg );
             void        onBlur();
@@ -497,11 +485,9 @@ class ImpSjJScriptSubmitObject : public SjJScriptSubmitObject, ImpSjJScriptContr
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnClick_Fct() const;
     virtual void setOnClick_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnClick() const;
     virtual void        setOnClick( const String & aSourceStrg );
             void        onClick();
@@ -530,11 +516,9 @@ class ImpSjJScriptResetObject : public SjJScriptResetObject, ImpSjJScriptControl
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnClick_Fct() const;
     virtual void setOnClick_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnClick() const;
     virtual void        setOnClick( const String & aSourceStrg );
             void        onClick();
@@ -636,13 +620,11 @@ class ImpSjJScriptFormObject : public SjJScriptFormObject
 
     // Events (C++ --> Java)
     //----------------------
-#if SUPD > 356 || defined(AB_EVENT_TEST)
     // Neue Event-Schnittstelle mit Function-Objekten
     virtual SjJScriptFunctionObject* getOnSubmit_Fct() const;
     virtual void setOnSubmit_Fct( SjJScriptFunctionObject* pFunctionObject );
     virtual SjJScriptFunctionObject* getOnReset_Fct() const;
     virtual void setOnReset_Fct( SjJScriptFunctionObject* pFunctionObject );
-#endif
     virtual String      getOnSubmit() const;
     virtual void        setOnSubmit( const String & aSourceStrg );
             void        onSubmit();
