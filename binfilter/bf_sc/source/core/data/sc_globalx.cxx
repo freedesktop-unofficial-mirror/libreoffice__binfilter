@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_globalx.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:37:04 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:19:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,11 +120,7 @@ namespace binfilter {
 /*N*/                           {
 /*N*/                               do
 /*?*/                               {
-/*?*/ #if SUPD>611
 /*?*/                                   ::rtl::OUString aId( xContentAccess->queryContentIdentifierString() );
-/*?*/ #else
-/*?*/                                   ::rtl::OUString aId( xContentAccess->queryContentIdentfierString() );
-/*?*/ #endif
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001                           InitExternalFunc( aId );
 /*?*/                               }
 /*?*/                               while ( xResultSet->next() );
