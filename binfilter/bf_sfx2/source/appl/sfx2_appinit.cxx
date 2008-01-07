@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:37:40 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:20:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,9 +98,7 @@
 #include <svtools/moduleoptions.hxx>
 #endif
 
-#if SUPD>637
 #include <rtl/logfile.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
