@@ -4,9 +4,9 @@
  *
  *  $RCSfile: base3d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:18:25 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:24:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -333,11 +333,7 @@ enum Base3DPolygonOffset
 //
 //  // Erzeugen bzw. Zerstoeren eines Base3D Kontextes
 //  static Base3D* Create(OutputDevice* pOutDev, BOOL bForcePrinter=FALSE);
-//#if SUPD > 375
 //  virtual void Destroy(OutputDevice *pOutDev);
-//#else
-//  void Destroy(OutputDevice *pOutDev);
-//#endif
 //
 //  // Gueltigkeit des Kontextes nach der Inkarnation
 //  // ueberpruefen
