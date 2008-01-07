@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfxdefs.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:36:16 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:25:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,17 +41,9 @@ namespace binfilter {
 #define MESSAGEFILE_EXT     "smd"   // Extension der Single-Mail/News-Files
 #define MESSAGETEMPFILE_EXT "sd~"   // Extension f"ur Mail/News-TempFiles
 
-#if SUPD > 363
 #define SfxFilterFlags ULONG
-#else
-#define SfxFilterFlags USHORT
-#endif
 
-#if SUPD > 374
 #define PRODUCT_VERSION     "5.0"
-#else
-#define PRODUCT_VERSION     "4.0"
-#endif
 
 }//end of namespace binfilter
 #endif
