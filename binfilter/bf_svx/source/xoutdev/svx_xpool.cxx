@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xpool.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:49:46 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:21:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -326,95 +326,11 @@ static USHORT nVersion4Map[141];
 /*N*/   pItemInfos[XATTR_FORMTXTSTDFORM   -XATTR_START]._nSID = SID_FORMTEXT_STDFORM;
 /*N*/   pItemInfos[XATTR_FORMTXTHIDEFORM  -XATTR_START]._nSID = SID_FORMTEXT_HIDEFORM;
 /*N*/
-/*N*/ #if SUPD<355
-/*N*/   pSlotIds = new USHORT[nEnd-nStart+1];
-/*N*/
-/*N*/   pSlotIds[XATTR_LINESTYLE        -XATTR_START] = SID_ATTR_LINE_STYLE;
-/*N*/   pSlotIds[XATTR_LINEDASH         -XATTR_START] = SID_ATTR_LINE_DASH;
-/*N*/   pSlotIds[XATTR_LINEWIDTH        -XATTR_START] = SID_ATTR_LINE_WIDTH;
-/*N*/   pSlotIds[XATTR_LINECOLOR        -XATTR_START] = SID_ATTR_LINE_COLOR;
-/*N*/   pSlotIds[XATTR_LINESTART        -XATTR_START] = SID_ATTR_LINE_START;
-/*N*/   pSlotIds[XATTR_LINEEND          -XATTR_START] = SID_ATTR_LINE_END;
-/*N*/   pSlotIds[XATTR_LINESTARTWIDTH   -XATTR_START] = SID_ATTR_LINE_STARTWIDTH;
-/*N*/   pSlotIds[XATTR_LINEENDWIDTH     -XATTR_START] = SID_ATTR_LINE_ENDWIDTH;
-/*N*/   pSlotIds[XATTR_LINESTARTCENTER  -XATTR_START] = SID_ATTR_LINE_STARTCENTER;
-/*N*/   pSlotIds[XATTR_LINEENDCENTER    -XATTR_START] = SID_ATTR_LINE_ENDCENTER;
-/*N*/   pSlotIds[XATTR_LINETRANSPARENCE -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_LINEJOINT        -XATTR_START] = 0;
-/*N*/
-/*N*/   // Line-Reserven
-/*N*/   pSlotIds[XATTR_LINERESERVED2        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_LINERESERVED3        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_LINERESERVED4        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_LINERESERVED5        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_LINERESERVED_LAST    -XATTR_START] = 0;
-/*N*/
-/*N*/   pSlotIds[XATTR_FILLSTYLE        -XATTR_START] = SID_ATTR_FILL_STYLE;
-/*N*/   pSlotIds[XATTR_FILLCOLOR        -XATTR_START] = SID_ATTR_FILL_COLOR;
-/*N*/   pSlotIds[XATTR_FILLGRADIENT     -XATTR_START] = SID_ATTR_FILL_GRADIENT;
-/*N*/   pSlotIds[XATTR_FILLHATCH        -XATTR_START] = SID_ATTR_FILL_HATCH;
-/*N*/   pSlotIds[XATTR_FILLBITMAP       -XATTR_START] = SID_ATTR_FILL_BITMAP;
-/*N*/   pSlotIds[XATTR_FILLTRANSPARENCE -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_GRADIENTSTEPCOUNT-XATTR_START] = 0;
-/*N*/
-/*N*/   pSlotIds[XATTR_FILLBMP_TILE             -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_POS              -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_SIZEX            -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_SIZEY            -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_SIZELOG          -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_TILEOFFSETX      -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_TILEOFFSETY      -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_STRETCH          -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_POSOFFSETX       -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBMP_POSOFFSETY       -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLFLOATTRANSPARENCE    -XATTR_START] = 0;
-/*N*/
-/*N*/   // Fill-Reserven
-/*N*/   pSlotIds[XATTR_FILLRESERVED2        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED3        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED4        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED5        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED6        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED7        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED8        -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLBACKGROUND       -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED10       -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED11       -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FILLRESERVED_LAST    -XATTR_START] = 0;
-/*N*/
-/*N*/   pSlotIds[XATTR_FORMTXTSTYLE     -XATTR_START] = SID_FORMTEXT_STYLE;
-/*N*/   pSlotIds[XATTR_FORMTXTADJUST    -XATTR_START] = SID_FORMTEXT_ADJUST;
-/*N*/   pSlotIds[XATTR_FORMTXTDISTANCE  -XATTR_START] = SID_FORMTEXT_DISTANCE;
-/*N*/   pSlotIds[XATTR_FORMTXTSTART     -XATTR_START] = SID_FORMTEXT_START;
-/*N*/   pSlotIds[XATTR_FORMTXTMIRROR    -XATTR_START] = SID_FORMTEXT_MIRROR;
-/*N*/   pSlotIds[XATTR_FORMTXTOUTLINE   -XATTR_START] = SID_FORMTEXT_OUTLINE;
-/*N*/   pSlotIds[XATTR_FORMTXTSHADOW    -XATTR_START] = SID_FORMTEXT_SHADOW;
-/*N*/   pSlotIds[XATTR_FORMTXTSHDWCOLOR -XATTR_START] = SID_FORMTEXT_SHDWCOLOR;
-/*N*/   pSlotIds[XATTR_FORMTXTSHDWXVAL  -XATTR_START] = SID_FORMTEXT_SHDWXVAL;
-/*N*/   pSlotIds[XATTR_FORMTXTSHDWYVAL  -XATTR_START] = SID_FORMTEXT_SHDWYVAL;
-/*N*/   pSlotIds[XATTR_FORMTXTSTDFORM   -XATTR_START] = SID_FORMTEXT_STDFORM;
-/*N*/   pSlotIds[XATTR_FORMTXTHIDEFORM  -XATTR_START] = SID_FORMTEXT_HIDEFORM;
-/*N*/
-/*N*/   // FormText-Reserven
-/*N*/   pSlotIds[XATTR_FORMTXTSHDWTRANSP-XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FTRESERVED2      -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FTRESERVED3      -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FTRESERVED4      -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FTRESERVED5      -XATTR_START] = 0;
-/*N*/   pSlotIds[XATTR_FTRESERVED_LAST  -XATTR_START] = 0;
-/*N*/
-/*N*/   pSlotIds[XATTRSET_LINE - XATTR_START] = 0; // 20136; alter Hack von MI
-/*N*/   pSlotIds[XATTRSET_FILL - XATTR_START] = 0; // 20135; alter Hack von MI
-/*N*/   pSlotIds[XATTRSET_TEXT - XATTR_START] = 0;
-/*N*/ #endif
 /*N*/
 /*N*/   if (nAttrStart==XATTR_START && nAttrEnd==XATTR_END)
 /*N*/   {
 /*N*/       SetDefaults(ppPoolDefaults);
 /*N*/       SetItemInfos(pItemInfos);
-/*N*/ #if SUPD<355
-/*N*/       SetMap(pSlotIds);
-/*N*/ #endif
 /*N*/   }
 /*N*/ }
 
@@ -453,9 +369,6 @@ static USHORT nVersion4Map[141];
 
 /*N*/ XOutdevItemPool::~XOutdevItemPool()
 /*N*/ {
-/*N*/ #if SUPD<355
-/*N*/   if (pSlotIds!=NULL) delete[] pSlotIds;
-/*N*/ #endif
 /*N*/
 /*N*/   Delete();
 /*N*/   if ( ppPoolDefaults )
