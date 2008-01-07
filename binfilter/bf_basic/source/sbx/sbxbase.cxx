@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxbase.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-28 11:05:00 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:19:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -248,7 +248,6 @@ SbxObject* SbxBase::CreateObject( const XubString& rClass )
     return pNew;
 }
 
-#if SUPD >= 507
 static BOOL bStaticEnableBroadcasting = TRUE;
 
 // Sbx-Loesung als Ersatz fuer SfxBroadcaster::Enable()
@@ -261,8 +260,6 @@ BOOL SbxBase::StaticIsEnabledBroadcasting( void )
 {
     return bStaticEnableBroadcasting;
 }
-#endif
-
 
 SbxBase* SbxBase::Load( SvStream& rStrm )
 {
