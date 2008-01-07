@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:35:12 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:31:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,14 +63,8 @@
 
 // functional.hxx is obsolete and should be replaced by its comphelper
 // counterpart
-#if SUPD > 632 || DVO_TEST
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#else
-#ifndef _XMLOFF_FUNCTIONAL_HXX
-#include <bf_xmloff/functional.hxx>
-#endif
 #endif
 
 #ifndef _UNIVERSALL_REFERENCE_HXX
@@ -386,9 +380,7 @@ class XMLTextImportHelper : public UniRefBase
     SvXMLTokenMap *pTextListBlockAttrTokenMap;
     SvXMLTokenMap *pTextListBlockElemTokenMap;
     SvXMLTokenMap *pTextFrameAttrTokenMap;
-#if SUPD > 627
     SvXMLTokenMap *pTextContourAttrTokenMap;
-#endif
     SvXMLTokenMap *pTextHyperlinkAttrTokenMap;
     SvXMLTokenMap *pTextMasterPageElemTokenMap;
     SvStringsDtor *pPrevFrmNames;
@@ -414,11 +406,7 @@ class XMLTextImportHelper : public UniRefBase
     ::std::map< ::rtl::OUString,
                 ::com::sun::star::uno::Reference<
                     ::com::sun::star::text::XTextRange>,
-#if SUPD > 632 || DVO_TEST
                 ::comphelper::UStringLess> aBookmarkStartRanges;
-#else
-                less_functor> aBookmarkStartRanges;
-#endif
 
     /// backpatcher for references to footnotes and endnotes
     XMLPropertyBackpatcher<sal_Int16> * pFootnoteBackpatcher;
@@ -802,11 +790,7 @@ public:
     virtual void endAppletOrPlugin(
         ::com::sun::star::uno::Reference<
         ::com::sun::star::beans::XPropertySet> &rPropSet,
-#if SUPD > 632 || DVO_TEST
         ::std::map < const ::rtl::OUString, ::rtl::OUString, ::comphelper::UStringLess > &rParamMap );
-#else
-        ::std::map < const ::rtl::OUString, ::rtl::OUString, less_functor > &rParamMap );
-#endif
 
     // applet helper methods
     // implemented in sw/filter/xml/txtparai.hxx
@@ -882,14 +866,10 @@ inline const SvXMLTokenMap& XMLTextImportHelper::GetTextFrameAttrTokenMap()
 
 inline const SvXMLTokenMap& XMLTextImportHelper::GetTextContourAttrTokenMap()
 {
-#if SUPD > 627
     if( !pTextContourAttrTokenMap )
         pTextContourAttrTokenMap = _GetTextContourAttrTokenMap();
 
     return *pTextContourAttrTokenMap;
-#else
-    return *_GetTextContourAttrTokenMap();
-#endif
 }
 
 inline const SvXMLTokenMap& XMLTextImportHelper::GetTextHyperlinkAttrTokenMap()
