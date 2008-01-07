@@ -4,9 +4,9 @@
  *
  *  $RCSfile: msgnodei.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:04:30 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:25:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -121,10 +121,6 @@ public:
                             SfxMsgReceiverListItem( const SfxMsgReceiverListItem& rItem );
                             ~SfxMsgReceiverListItem();
 
-#if SUPD<355
-    virtual int             IsPoolable() const;
-#endif
-
     virtual int             operator==( const SfxPoolItem& ) const;
 
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -177,10 +173,6 @@ public:
                             SfxMsgAttachFileListItem( USHORT nWhich, SvStream& rStream );
                             SfxMsgAttachFileListItem( const SfxMsgAttachFileListItem& rItem );
                             ~SfxMsgAttachFileListItem();
-
-#if SUPD<355
-    virtual int             IsPoolable() const;
-#endif
 
     virtual int             operator==( const SfxPoolItem& ) const;
 
