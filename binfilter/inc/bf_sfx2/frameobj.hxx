@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frameobj.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:21:49 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:24:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,10 +66,6 @@ class SfxFrameObject : public SvInPlaceObject
 
 protected:
     BOOL                    ConstructFrame();
-#if SUPD<=628
- #else
-#endif
-
                             // Protokoll
 
                             // Datenaustausch
