@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:30:04 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:29:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -299,9 +299,7 @@ protected:
     FASTBOOL        bNoBitmapCaching;   // Bitmaps fuer Screenoutput cachen
     FASTBOOL        bLoading;           // Model wird gerade eingestreamt
     FASTBOOL        bStreamingSdrModel; // Gestreamt wird ein SdrModel, ohne applikationsspeziefische Daten
-#if SUPD > 356
     FASTBOOL        bReadOnly;
-#endif
     FASTBOOL        bTransparentTextFrames;
     FASTBOOL        bSaveCompressed;
     FASTBOOL        bSwapGraphics;
@@ -611,9 +609,7 @@ public:
     // TRUE oder FALSE liefern (Methode wird oeffters gerufen, also ein Flag
     // verwenden!).
     virtual FASTBOOL IsReadOnly() const;
-#if SUPD > 356
     virtual void     SetReadOnly(FASTBOOL bYes);
-#endif
 
     // Vermischen zweier SdrModel. Zu beachten sei, dass rSourceModel nicht
     // const ist. Die Pages werden beim einfuegen nicht kopiert, sondern gemoved.
