@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdglue.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:05:20 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:29:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -122,11 +122,9 @@ public:
 
 class SdrGluePointList {
     Container aList;
-#if SUPD > 322
 //    FASTBOOL bSorted; // Muss noch implementiert werden oder?
     // Eigentlich sollte die GluePointList stets sortiert sein (solange die
     // Id's ausreichen)
-#endif
 protected:
     SdrGluePoint* GetObject(USHORT i) const { return (SdrGluePoint*)(aList.GetObject(i)); }
 public:

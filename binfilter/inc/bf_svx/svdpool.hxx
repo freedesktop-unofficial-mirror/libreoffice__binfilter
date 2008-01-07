@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpool.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:11:20 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:29:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,10 +44,6 @@
 #include <bf_svx/svddef.hxx>
 #endif
 namespace binfilter {
-
-//-/#if SUPD>=366 //|| defined(JOEDEBUG)
-//-/#define SDRDEFITEMCACHE
-//-/#endif
 
 class XLineAttrSetItem;
 class XFillAttrSetItem;

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmmodel.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:33:08 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:26:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,14 +36,8 @@
 #ifndef _SVX_FMMODEL_HXX
 #define _SVX_FMMODEL_HXX
 
-#if SUPD < 396
-#ifndef _SVX_SIVCDRMOD_HXX //autogen
-//#include "vcdrmod.hxx"
-#endif
-#else
 #ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 #endif
 class SvPersist;
 class SfxItemPool;

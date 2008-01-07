@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdangitm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:57:12 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:27:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,10 +39,6 @@
 #include <svtools/intitem.hxx>
 #endif
 namespace binfilter {
-
-#if SUPD >= 351 && SUPD < 355
-#define SDR_ISPOOLABLE
-#endif
 
 //------------------------------------------------------------
 // class SdrAngleItem
