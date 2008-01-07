@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:35:54 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:21:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1315,11 +1315,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/               case BS_123:            eNumType = SVX_NUM_ARABIC;              break;
 /*N*/               default:                eNumType = SVX_NUM_NUMBER_NONE;         break;
 /*N*/           }
-/*N*/ #if SUPD > 622
 /*N*/           pNumberFormat->SetNumberingType( eNumType );
-/*N*/ #else
-/*N*/           pNumberFormat->SetNumType( eNumType );
-/*N*/ #endif
 /*N*/
 /*N*/           // Justification
 /*N*/           SvxAdjust eAdjust;
