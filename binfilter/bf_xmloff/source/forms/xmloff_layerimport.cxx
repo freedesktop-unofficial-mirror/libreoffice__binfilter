@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_layerimport.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:17:23 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:22:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -245,13 +245,6 @@ namespace xmloff
             OAttributeMetaData::getFormAttributeName(faEnctype), PROPERTY_SUBMIT_ENCODING,
             FormSubmitEncoding_URL, OEnumMapper::getEnumMap(OEnumMapper::epSubmitEncoding),
             &::getCppuType( static_cast<FormSubmitEncoding*>(NULL) ));
-#if SUPD<628
-        // for compatibility:
-        m_aAttributeMetaData.addEnumProperty(
-            "enc-type", PROPERTY_SUBMIT_ENCODING,
-            FormSubmitEncoding_URL, OEnumMapper::getEnumMap(OEnumMapper::epSubmitEncoding),
-            &::getCppuType( static_cast<FormSubmitEncoding*>(NULL) ));
-#endif
         m_aAttributeMetaData.addEnumProperty(
             OAttributeMetaData::getFormAttributeName(faMethod), PROPERTY_SUBMIT_METHOD,
             FormSubmitMethod_GET, OEnumMapper::getEnumMap(OEnumMapper::epSubmitMethod),
