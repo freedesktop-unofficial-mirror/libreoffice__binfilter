@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.18 $
+ *  $Revision: 1.19 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:40:40 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:21:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -464,18 +464,9 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       SFX_ITEMSET_ARG(
 /*N*/           pSet, pTemplateItem, SfxBoolItem,
 /*N*/           SID_TEMPLATE, sal_False);
-/*N*/ #if SUPD < 635
-/*N*/         SFX_ITEMSET_ARG(
-/*N*/             pSet, pBrowsingItem, SfxBoolItem, SID_BROWSING, sal_False );
-/*N*/         SetActivateEvent_Impl(
-/*N*/             ( pTemplateItem && pTemplateItem->GetValue() )
-/*N*/             ? SFX_EVENT_CREATEDOC : SFX_EVENT_OPENDOC,
-/*N*/             pBrowsingItem && pBrowsingItem->GetValue() );
-/*N*/ #else
 /*N*/         SetActivateEvent_Impl(
 /*N*/           ( pTemplateItem && pTemplateItem->GetValue() )
 /*N*/             ? SFX_EVENT_CREATEDOC : SFX_EVENT_OPENDOC );
-/*N*/ #endif
 /*N*/   }
 /*N*/
 /*N*/
@@ -1852,12 +1843,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 
 /*?*/ sal_Bool SfxObjectShell::LoadFrom( SvStorage *pStor )
 /*?*/ {
-/*?*/ #if SUPD<635
-/*?*/     if (pStor->IsStream(SfxConfigManager::GetStreamName()))
-/*?*/         SetConfigManager (new SfxConfigManager( pStor, 0));
-/*?*/ #else
 /*?*/   GetConfigManager();
-/*?*/ #endif
 /*?*/   GetDocInfo().Load(pStor);
 /*?*/   return sal_True;
 /*?*/ }
