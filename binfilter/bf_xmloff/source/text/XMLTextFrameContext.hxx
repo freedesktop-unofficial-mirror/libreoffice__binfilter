@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLTextFrameContext.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:10:58 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:23:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,14 +48,8 @@
 #include "xmlictxt.hxx"
 #endif
 
-#if SUPD > 632 || DVO_TEST
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#else
-#ifndef _XMLOFF_FUNCTIONAL_HXX
-#include <bf_xmloff/functional.hxx>
-#endif
 #endif
 
 
@@ -74,11 +68,7 @@ namespace binfilter {
 #define XML_TEXT_FRAME_PLUGIN 6
 #define XML_TEXT_FRAME_FLOATING_FRAME 7
 
-#if SUPD > 632 || DVO_TEST
 typedef ::std::map < const ::rtl::OUString, ::rtl::OUString, ::comphelper::UStringLess> ParamMap;
-#else
-typedef ::std::map < const ::rtl::OUString, ::rtl::OUString, less_functor> ParamMap;
-#endif
 
 class XMLTextFrameContextHyperlink_Impl;
 
