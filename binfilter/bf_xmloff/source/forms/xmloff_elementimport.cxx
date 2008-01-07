@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_elementimport.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:48:25 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:22:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -139,12 +139,6 @@ namespace xmloff
         ConstMapString2ElementIterator aPos = s_sElementTranslations.find(_rName);
         if (s_sElementTranslations.end() != aPos)
             return aPos->second;
-
-#if SUPD<624
-        // compatibility
-        if (_rName.compareToAscii("text-area"))
-            return TEXT_AREA;
-#endif
         return UNKNOWN;
     }
 
@@ -1413,11 +1407,6 @@ namespace xmloff
             implTranslateStringListProperty(PROPERTY_MASTERFIELDS, _rValue);
         else if (s_sDetailFieldsAttributeName == _rLocalName)
             implTranslateStringListProperty(PROPERTY_DETAILFIELDS, _rValue);
-#if SUPD<632
-        // for compatibility (had a typo in the attribute name)
-        else if (0 == _rLocalName.compareToAscii("tabbing-cycle"))
-            OFormImport_Base::handleAttribute(_nNamespaceKey, ::rtl::OUString::createFromAscii("tab-cycle"), _rValue);
-#endif
         else
             OFormImport_Base::handleAttribute(_nNamespaceKey, _rLocalName, _rValue);
     }
