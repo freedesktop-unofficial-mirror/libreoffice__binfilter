@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:12:07 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:22:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -909,7 +909,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /* -----------------------------12.02.01 12:08--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ #if SUPD>620
 /*N*/ Sequence< OUString >  SwDocShell::GetEventNames()
 /*N*/ {
 /*N*/   Sequence< OUString > aRet = SfxObjectShell::GetEventNames();
@@ -920,7 +919,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   pNames[nLen] = OUString::createFromAscii("OnPageCountChange");
 /*N*/   return aRet;
 /*N*/ }
-/*N*/ #endif
 /*N*/ void SwTmpPersist::FillClass( SvGlobalName * pClassName,
 /*N*/                           ULONG * pClipFormat,
 /*N*/                           String * pAppName,
