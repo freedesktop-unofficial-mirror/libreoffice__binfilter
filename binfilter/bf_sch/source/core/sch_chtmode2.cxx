@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:07:59 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:19:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,8 +93,6 @@
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 #define ITEMID_FONT        EE_CHAR_FONTINFO
-#if SUPD > 364
-#endif
 #include "globfunc.hxx"
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -109,13 +107,10 @@
 #include "strings.hrc"
 #include "glob.hrc"
 
-#if SUPD > 364
 #ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
 #endif
 #include <bf_svx/fontitem.hxx>
-#else
-#endif
 
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
