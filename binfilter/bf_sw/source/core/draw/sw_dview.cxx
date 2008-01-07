@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dview.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:08:49 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:21:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -243,11 +243,6 @@ public:
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
 /*N*/ }
-
-
-#if SUPD<500
-#define SVOBJ_MISCSTATUS_NOTRESIZEABLE 0
-#endif
 
 
 /** replace marked <SwDrawVirtObj>-objects by its reference object for delete
