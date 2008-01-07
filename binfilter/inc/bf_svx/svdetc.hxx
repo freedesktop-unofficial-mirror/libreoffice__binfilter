@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:04:30 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:29:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -170,12 +170,7 @@ private:
 #endif // __PRIVATE
 public:
     ContainerSorter(Container& rNewCont): rCont(rNewCont) {}
-#if SUPD>358
     void DoSort(ULONG a=0, ULONG b=0xFFFFFFFF) const;
-#else
-    void DoSort();
-    void DoSort(ULONG a, ULONG b=0xFFFFFFFF) const;
-#endif
 #ifdef This_Is_Just_For_A_Comment
     Compare() muss returnieren:
       -1 falls *pElem1<*pElem2
