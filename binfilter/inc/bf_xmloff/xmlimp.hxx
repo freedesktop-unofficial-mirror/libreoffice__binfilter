@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:54:23 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:32:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -104,10 +104,8 @@
 #ifndef _CPPUHELPER_IMPLBASE6_HXX_
 #include <cppuhelper/implbase6.hxx>
 #endif
-#if SUPD>615 || defined(PRIV_DEBUG)
 #ifndef _XMLOFF_FORMLAYERIMPORT_HXX_
 #include <bf_xmloff/formlayerimport.hxx>
-#endif
 #endif
 
 namespace rtl { class OUString; }
@@ -442,7 +440,6 @@ inline UniReference< SchXMLImportHelper > SvXMLImport::GetChartImport()
 #endif
 
 #ifndef SVX_LIGHT
-#if SUPD>615 || defined(PRIV_DEBUG)
 inline UniReference< ::binfilter::xmloff::OFormLayerXMLImport > SvXMLImport::GetFormImport()
 {
     if( !mxFormImport.is() )
@@ -450,7 +447,6 @@ inline UniReference< ::binfilter::xmloff::OFormLayerXMLImport > SvXMLImport::Get
 
     return mxFormImport;
 }
-#endif
 #endif // #ifndef SVX_LIGHT
 
 inline void SvXMLImport::SetEmbeddedResolver(

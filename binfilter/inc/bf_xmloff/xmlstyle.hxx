@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlstyle.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:55:18 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:32:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,10 +108,6 @@ protected:
     virtual void SetAttribute( sal_uInt16 nPrefixKey,
                                const ::rtl::OUString& rLocalName,
                                const ::rtl::OUString& rValue );
-
-#if SUPD<618
-    void SetFamily( sal_uInt16 nSet ) { nFamily = nSet; }
-#endif
 
 public:
 

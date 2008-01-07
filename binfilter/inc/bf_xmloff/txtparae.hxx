@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtparae.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:53:16 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:32:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,11 +127,7 @@ class XMLTextParagraphExport : public XMLStyleExport
     /// may be NULL (if no redlines should be exported; e.g. in block mode)
     XMLRedlineExport            *pRedlineExport;
 
-#if SUPD < 628 && !defined( TEST_MIB )
-    sal_Int32                   nProgress;
-#else
     sal_Bool                    bProgress;
-#endif
 
     sal_Bool                    bBlock;
 
@@ -495,9 +491,6 @@ public:
     XMLTextParagraphExport(
             SvXMLExport& rExp,
                SvXMLAutoStylePoolP & rASP
-#if SUPD < 628 && !defined( TEST_MIB )
-            , sal_Int32 nProg=0
-#endif
                           );
     virtual ~XMLTextParagraphExport();
 
@@ -531,9 +524,7 @@ public:
 
     // This methods exports all (or all used) styles
     void exportTextStyles( sal_Bool bUsed
-#if SUPD > 627 || defined( TEST_MIB )
                            , sal_Bool bProg = sal_False
-#endif
                          );
 
     /// This method exports (text field) declarations etc.
@@ -661,9 +652,6 @@ public:
     }
     inline const XMLTextListAutoStylePool& GetListAutoStylePool() const;
 
-#if SUPD < 628 && !defined( TEST_MIB )
-    inline void SetProgress( sal_Int32 nProg ) { nProgress = nProg; }
-#endif
     void SetBlockMode( sal_Bool bSet ) { bBlock = bSet; }
     sal_Bool IsBlockMode() const { return bBlock; }
 

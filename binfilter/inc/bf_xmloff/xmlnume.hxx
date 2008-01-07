@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlnume.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:54:45 $
+ *  last change: $Author: obo $ $Date: 2008-01-07 08:32:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,10 +107,6 @@ public:
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::container::XIndexReplace > & xNumRule );
 
-#if SUPD < 627
-    static const sal_Char *GetNumFormatValue( sal_Int16 eNumType );
-    static const sal_Char *GetNumLetterSync( sal_Int16 eNumType );
-#endif
 };
 
 }//end of namespace binfilter
