@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparae.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:24:00 $
+ *  last change: $Author: ihi $ $Date: 2008-01-15 13:44:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2085,7 +2085,7 @@ sal_Int32 XMLTextParagraphExport::addTextFrameAttributes(
     OUString sZOrder( RTL_CONSTASCII_USTRINGPARAM( "ZOrder" ) );
     if( xPropSetInfo->hasPropertyByName( sZOrder ) )
     {
-        sal_Int32 nZIndex;
+        sal_Int32 nZIndex = 0;
         aAny = rPropSet->getPropertyValue( sZOrder );
         aAny >>= nZIndex;
         if( -1 != nZIndex )
