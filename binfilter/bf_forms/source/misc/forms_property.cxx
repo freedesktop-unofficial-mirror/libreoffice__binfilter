@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_property.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:05:58 $
+ *  last change: $Author: rt $ $Date: 2008-01-29 16:59:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@ sal_Int32 PropertyInfoService::getPropertyId(const ::rtl::OUString& _rName)
 
     PropertyAssignment aCompareName(_rName, -1);
 
-    ::std::pair<PropertyMapIterator,PropertyMapIterator> aPair = equal_range(
+    ::std::pair<PropertyMapIterator,PropertyMapIterator> aPair = ::std::equal_range(
         s_AllKnownProperties.begin(),
         s_AllKnownProperties.end(),
         aCompareName,
