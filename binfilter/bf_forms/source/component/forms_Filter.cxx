@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Filter.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:45:32 $
+ *  last change: $Author: rt $ $Date: 2008-01-29 16:58:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -515,7 +515,7 @@ namespace frm
 
 
                     sal_Int16 i = 0;
-                    vector< ::rtl::OUString>    aStringList;
+                    ::std::vector< ::rtl::OUString> aStringList;
                     aStringList.reserve(16);
                     ::rtl::OUString aStr;
 
