@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ComboBox.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 13:59:08 $
+ *  last change: $Author: rt $ $Date: 2008-01-29 16:58:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -611,7 +611,7 @@ void OComboBoxModel::loadData()
         // something went wrong ...
         return;
 
-    vector< ::rtl::OUString >   aStringList;
+    ::std::vector< ::rtl::OUString >    aStringList;
     aStringList.reserve(16);
     try
     {
