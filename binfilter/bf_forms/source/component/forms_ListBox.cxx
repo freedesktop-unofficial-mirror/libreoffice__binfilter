@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ListBox.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:03:35 $
+ *  last change: $Author: rt $ $Date: 2008-01-29 16:58:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -763,7 +763,7 @@ void OListBoxModel::loadData()
         return;
 
     // Anzeige- und Werteliste fuellen
-    vector< ::rtl::OUString >   aValueList, aStringList;
+    ::std::vector< ::rtl::OUString >    aValueList, aStringList;
     aValueList.reserve(16);
     aStringList.reserve(16);
     sal_Bool bUseNULL = getField().is() && !m_bRequired;
