@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_InterfaceContainer.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:05:44 $
+ *  last change: $Author: rt $ $Date: 2008-01-29 16:59:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,6 +97,7 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::io;
 using namespace ::com::sun::star::form;
+using namespace ::std;
 
     //---------------------------------------------------------------------
     static void lcl_throwIllegalArgumentException()
