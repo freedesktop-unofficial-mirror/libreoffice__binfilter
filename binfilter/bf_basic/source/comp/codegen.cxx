@@ -4,9 +4,9 @@
  *
  *  $RCSfile: codegen.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2008-01-04 13:03:02 $
+ *  last change: $Author: ihi $ $Date: 2008-02-04 13:34:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -531,15 +531,8 @@ PCodeBuffConvertor<T,S>::convert()
     m_nCnvtdSize = static_cast<S>( aTrnsfrmer.buffer().GetSize() );
 }
 
-void NeverRunsEver()
-{
-    // force instatiation of templates... I dunno why, but I have to do
-    // this to force instatiation of the template. Otherwise using the template
-    // in another code module results in link errors :-(
-    PCodeBuffConvertor< UINT16, UINT32 > aInst1(0,0);
-    aInst1.convert();
-    PCodeBuffConvertor< UINT32, UINT16 > aInst2(0,0);
-    aInst2.convert();
-}
+// instantiate for types needed in SbiImage::Load and SbiImage::Save
+template class PCodeBuffConvertor<UINT16, UINT32 >;
+template class PCodeBuffConvertor<UINT32, UINT16>;
 
 }
