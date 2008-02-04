@@ -4,9 +4,9 @@
  *
  *  $RCSfile: PropertySetInfoHash.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:12:49 $
+ *  last change: $Author: ihi $ $Date: 2008-02-04 13:34:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,6 +34,8 @@
  ************************************************************************/
 #ifndef _XMLOFF_PROPERTYSETINFOHASH_HXX
 #define _XMLOFF_PROPERTYSETINFOHASH_HXX
+
+#include <string.h>
 
 #ifndef _XMLOFF_PROPERTYSETINFOKEY_HXX
 #include <bf_xmloff/PropertySetInfoKey.hxx>
