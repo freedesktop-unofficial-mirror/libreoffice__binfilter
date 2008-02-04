@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ComboBox.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2008-01-29 16:58:20 $
+ *  last change: $Author: ihi $ $Date: 2008-02-04 13:34:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -96,6 +96,8 @@
 #ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
 #endif
+
+#include <limits.h>
 
 namespace binfilter {
 
