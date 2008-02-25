@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.12 $
+#   $Revision: 1.13 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 09:58:31 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:20:42 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -91,12 +91,12 @@ NOOPTFILES=\
 $(INCCOM)$/sddll0.hxx: makefile.mk
     @echo $@
 .IF "$(GUI)"=="UNX"
-    echo \#define DLL_NAME \"libbf_sd$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
+    echo \#define DLL_NAME \"libbf_sd$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE			# "$(GUI)"=="UNX"
 .IF "$(USE_SHELL)"!="4nt"
-    echo \#define DLL_NAME \"bf_sd$(UPD)$(DLLPOSTFIX).DLL\" >$@
+    echo \#define DLL_NAME \"bf_sd$(DLLPOSTFIX).DLL\" >$@
 .ELSE			# "$(USE_SHELL)"!="4nt"
-    echo #define DLL_NAME "bf_sd$(UPD)$(DLLPOSTFIX).DLL" >$@
+    echo #define DLL_NAME "bf_sd$(DLLPOSTFIX).DLL" >$@
 .ENDIF			#  "$(USE_SHELL)"!="4nt"
 .ENDIF			# "$(GUI)"=="UNX"
 
