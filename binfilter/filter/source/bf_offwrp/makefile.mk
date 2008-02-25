@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.12 $
+#   $Revision: 1.13 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 14:17:18 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:25:17 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -49,14 +49,13 @@ ENABLE_EXCEPTIONS=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 # --- Files --------------------------------------------------------
 
 SLOFILES =	$(SLO)$/bf_wrapper.obj
 
 SHL1OBJS=   $(SLOFILES)
-SHL1TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= $(TARGET)$(DLLPOSTFIX)
 
 SHL1IMPLIB= ibf_wrp
 SHL1STDLIBS=    \
@@ -92,10 +91,6 @@ DEF1NAME=       $(SHL1TARGET)
 DEF1EXPORTFILE= exports.dxp
 
 # --- Targets ------------------------------------------------------
-
-.IF "$(depend)" != ""
-SRCFILES=$(SRC1FILES)
-.ENDIF
 
 .INCLUDE :  target.mk
 
