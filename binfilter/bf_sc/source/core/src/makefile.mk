@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:16:45 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:19:37 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -40,8 +40,6 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sc_core
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -50,9 +48,6 @@ NO_HIDS=TRUE
 .INCLUDE :  settings.mk
 .INCLUDE :  sc.mk
 INC+= -I$(PRJ)$/inc$/bf_sc
-# --- Rsc-Flags ----------------------------------------------------
-
-#RSCFLAGS=$(RSCFLAGS) -DUPDVER="$(UPD)$(UPDMINOR)"
 
 # --- Files --------------------------------------------------------
 
