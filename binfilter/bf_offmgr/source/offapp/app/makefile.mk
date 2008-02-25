@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 08:55:37 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:19:12 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,14 +58,10 @@ CDEFS=$(CDEFS) -DPRECOMPILED
 .ENDIF
 
 .IF "$(GUI)"=="UNX"
-    CDEFS+=-DDLL_NAME=libbf_ofa$(UPD)$(DLLPOSTFIX)$(DLLPOST)
+    CDEFS+=-DDLL_NAME=libbf_ofa$(DLLPOSTFIX)$(DLLPOST)
 .ELSE
-    CDEFS+=-DDLL_NAME=bf_ofa$(UPD)$(DLLPOSTFIX)$(DLLPOST)
+    CDEFS+=-DDLL_NAME=bf_ofa$(DLLPOSTFIX)$(DLLPOST)
 .ENDIF
-
-RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
-
-#IMGLST_SRS=$(SRS)$/offmgr_app.srs
 
 # --- Allgemein -----------------------------------------------------------
 
