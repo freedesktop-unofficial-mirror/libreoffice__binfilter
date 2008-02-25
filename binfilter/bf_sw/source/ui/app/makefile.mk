@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 12:04:15 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:24:07 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -100,10 +100,10 @@ $(SLO)$/sw_swmodule.obj : $(INCCOM)$/swdll0.hxx
 
 .IF "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
 $(INCCOM)$/swdll0.hxx: makefile.mk
-    echo \#define DLL_NAME \"$(DLLPRE)bf_sw$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
+    echo \#define DLL_NAME \"$(DLLPRE)bf_sw$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE			# "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
 $(INCCOM)$/swdll0.hxx: makefile.mk
-    echo #define DLL_NAME "bf_sw$(UPD)$(DLLPOSTFIX).DLL" >$@
+    echo #define DLL_NAME "bf_sw$(DLLPOSTFIX).DLL" >$@
 .ENDIF			# "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
 
 
