@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: vg $ $Date: 2007-05-25 10:46:33 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:18:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,7 @@ LIB1FILES=      \
     $(SLB)$/basic_comp.lib \
     $(SLB)$/basic_runtime.lib
 
-SHL1TARGET=$(TARGET)$(UPD)$(DLLPOSTFIX)
+SHL1TARGET=$(TARGET)$(DLLPOSTFIX)
 SHL1IMPLIB=$(TARGET)
 
 SHL1STDLIBS= \
