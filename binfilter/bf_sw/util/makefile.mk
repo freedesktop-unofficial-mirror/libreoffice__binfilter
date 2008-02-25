@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.17 $
+#   $Revision: 1.18 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 14:15:26 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:24:26 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -85,7 +85,7 @@ LIB1OBJFILES= \
         $(SLO)$/sw_swlib.obj \
         $(SLO)$/sw_swcomlib.obj
 
-SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
+SHL2TARGET= $(TARGET)$(DLLPOSTFIX)
 SHL2VERSIONMAP= $(TARGET).map
 SHL2IMPLIB= _$(TARGET)
 SHL2LIBS= \
