@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 14:16:34 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:24:40 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,7 @@ LIB4OBJFILES=\
     $(OBJ)$/xmloff_xmlkywd.obj
 .ENDIF
 
-SHL1TARGET= bf_xo$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_xo$(DLLPOSTFIX)
 SHL1IMPLIB= _ibf_xo
 
 SHL1STDLIBS= \
