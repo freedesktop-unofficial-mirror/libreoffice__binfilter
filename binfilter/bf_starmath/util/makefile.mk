@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 13:58:09 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:22:35 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@ RESLIB1NAME=bf_sm
 RESLIB1SRSFILES=\
     $(SRS)$/starmath_smres.srs 
 
-SHL1TARGET= bf_sm$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_sm$(DLLPOSTFIX)
 SHL1IMPLIB= bf_smimp
 
 SHL1VERSIONMAP= bf_sm.map
