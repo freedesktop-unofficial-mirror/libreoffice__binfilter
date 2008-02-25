@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_frm_resource.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:06:24 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:18:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@ namespace frm
             return;
 
         ByteString sFileName("bf_frm"); //STRIP005
-        sFileName += ByteString::CreateFromInt32( (sal_Int32)SOLARUPD );
 
         m_pImpl = SimpleResMgr::Create(sFileName.GetBuffer(), Application::GetSettings().GetUILocale());
 
