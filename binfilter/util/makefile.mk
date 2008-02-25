@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-15 11:50:36 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:25:55 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -63,7 +63,7 @@ RDBNAMES=		\
     bf_svx		\
     bf_wrapper
 
-RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(UPD)$(DLLPOSTFIX)$(DLLPOST))
+RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(DLLPOSTFIX)$(DLLPOST))
 
 # --- Targets ----------------------------------
 
