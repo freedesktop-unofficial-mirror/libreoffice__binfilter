@@ -4,9 +4,9 @@
  *
  *  $RCSfile: legacy_binfilters_smgr.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:55:40 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:25:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,7 +98,7 @@ namespace legacy_binfilters
 // #i30331#
 //static char const * const s_legacy_libs [] = // #dochnoetig#
 //{
-////     SVLIBRARY("sw"), // SVLIBRARY makes decorated name including UPD etc, e.g. libsw669ss.so
+////     SVLIBRARY("sw"), // SVLIBRARY makes decorated name, e.g. libswss.so
 //  SVLIBRARY("bf_xo"),     // bf_xmloff
 //  SVLIBRARY("bf_sw"),     // bf_writer
 //  SVLIBRARY("bf_sc"),     // bf_calc
