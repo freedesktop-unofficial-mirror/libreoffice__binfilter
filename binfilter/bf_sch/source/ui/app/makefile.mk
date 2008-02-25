@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 09:48:33 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:20:17 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -88,9 +88,9 @@ NOOPTFILES=\
 $(INCCOM)$/schlib.hxx: makefile.mk
 .IF "$(GUI)"=="UNX"
     $(RM) $@
-    echo \#define DLL_NAME \"libbf_sch$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
+    echo \#define DLL_NAME \"libbf_sch$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE
-    echo $(EMQ)#define DLL_NAME $(EMQ)"bf_sch$(UPD)$(DLLPOSTFIX)$(DLLPOST)$(EMQ)" >$@
+    echo $(EMQ)#define DLL_NAME $(EMQ)"bf_sch$(DLLPOSTFIX)$(DLLPOST)$(EMQ)" >$@
 .ENDIF
 
 $(SRS)$/sch_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
