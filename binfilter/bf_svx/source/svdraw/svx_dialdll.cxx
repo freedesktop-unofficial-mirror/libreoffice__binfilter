@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_dialdll.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:35:39 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:23:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,8 +67,6 @@ namespace binfilter {
 /*N*/ #else
 /*N*/   ByteString aName( "bf_svl" );       //STRIP005
 /*N*/ #endif
-/*N*/   INT32 nSolarUpd(SOLARUPD);
-/*N*/   aName += ByteString::CreateFromInt32( nSolarUpd );
 /*N*/     pResMgr = ResMgr::CreateResMgr( aName.GetBuffer(), Application::GetSettings().GetUILocale() );
 /*N*/ }
 
