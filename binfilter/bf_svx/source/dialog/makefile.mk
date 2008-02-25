@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 11:29:06 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:22:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,8 +41,6 @@ PRJNAME=binfilter
 TARGET=svx_dialogs
 
 NO_HIDS=TRUE
-
-VERSION=$(UPD)
 
 # --- Settings -----------------------------------------------------
 
