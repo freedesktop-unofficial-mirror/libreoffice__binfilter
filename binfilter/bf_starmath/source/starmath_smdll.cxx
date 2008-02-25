@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smdll.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:33:52 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:22:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,7 +77,6 @@ BOOL SmDLL::bInitialized = FALSE;
 /*N*/     (*ppShlPtr)->pSmDocShellFactory = pFact;
 /*N*/
 /*N*/   String aResDll(C2S("sm"));
-/*N*/   aResDll += String::CreateFromInt32( SOLARUPD );
 /*N*/
 /*N*/   SfxModule *p = SM_MOD1();
 /*N*/   SmModule *pp = (SmModule *) p;
