@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 14:17:02 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:25:05 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -63,7 +63,7 @@ SLOFILES=	$(SLO)$/bf_migrateexports.obj \
 
 # --- Library -----------------------------------
 
-SHL1TARGET=$(TARGET)$(UPD)$(DLLPOSTFIX)
+SHL1TARGET=$(TARGET)$(DLLPOSTFIX)
 SHL1STDLIBS=$(CPPULIB)			\
             $(CPPUHELPERLIB)	\
             $(UNOTOOLSLIB)		\
