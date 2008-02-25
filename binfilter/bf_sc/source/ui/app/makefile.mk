@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 09:13:55 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:19:49 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -83,12 +83,12 @@ $(SLO)$/sc_sclib.obj :	$(INCCOM)$/scdll0.hxx
 
 $(INCCOM)$/scdll0.hxx: makefile.mk
 .IF "$(GUI)"=="UNX"
-    echo \#define DLL_NAME \"libbf_sc$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
+    echo \#define DLL_NAME \"libbf_sc$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE			# "$(GUI)"=="UNX"
 .IF "$(USE_SHELL)"!="4nt"
-    echo \#define DLL_NAME \"bf_sc$(UPD)$(DLLPOSTFIX).DLL\" >$@
+    echo \#define DLL_NAME \"bf_sc$(DLLPOSTFIX).DLL\" >$@
 .ELSE			#  "$(USE_SHELL)"!="4nt"
-    echo #define DLL_NAME "bf_sc$(UPD)$(DLLPOSTFIX).DLL" >$@
+    echo #define DLL_NAME "bf_sc$(DLLPOSTFIX).DLL" >$@
 .ENDIF			#  "$(USE_SHELL)"!="4nt"
 .ENDIF			# "$(GUI)"=="UNX"
 
