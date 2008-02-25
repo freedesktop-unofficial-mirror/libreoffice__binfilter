@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_eerdll.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:36:54 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:23:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -248,7 +248,6 @@ namespace binfilter {
 /*N*/ #else
 /*N*/   ByteString aResMgrName( "bf_svl" ); //STRIP005
 /*N*/ #endif
-/*N*/   aResMgrName += ByteString::CreateFromInt32( SOLARUPD );
 /*N*/   pResMgr = ResMgr::CreateResMgr(
 /*N*/         aResMgrName.GetBuffer(), Application::GetSettings().GetUILocale() );
 /*N*/ }
