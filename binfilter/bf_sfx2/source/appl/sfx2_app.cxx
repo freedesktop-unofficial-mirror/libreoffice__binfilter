@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:37:09 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:21:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -179,7 +179,6 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/ ResMgr* SfxApplication::CreateResManager( const char *pPrefix )
 /*N*/ {
 /*N*/     String aMgrName = String::CreateFromAscii( pPrefix );
-/*N*/     aMgrName += String::CreateFromInt32(SOLARUPD); // aktuelle Versionsnummer
 /*N*/     return ResMgr::CreateResMgr(U2S(aMgrName));
 /*N*/ }
 
