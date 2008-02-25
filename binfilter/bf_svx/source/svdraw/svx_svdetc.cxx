@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2007-04-26 07:17:07 $
+ *  last change: $Author: obo $ $Date: 2008-02-25 15:23:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -652,8 +652,6 @@ namespace binfilter {
 /*N*/ #else
 /*N*/       ByteString aName("bf_svl");         //STRIP005
 /*N*/ #endif
-/*N*/       INT32 nSolarUpd(SOLARUPD);
-/*N*/       aName += ByteString::CreateFromInt32( nSolarUpd );
 /*N*/       rGlobalData.pResMgr =
 /*N*/             ResMgr::CreateResMgr( aName.GetBuffer(), Application::GetSettings().GetUILocale() );
 /*N*/   }
