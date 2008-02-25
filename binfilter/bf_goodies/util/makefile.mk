@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: vg $ $Date: 2007-02-06 12:38:57 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:19:00 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@ LIB1FILES=\
    $(SLB)$/goodies_base2d.lib	\
    $(SLB)$/goodies_base3d.lib
 
-SHL1TARGET= bf_go$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_go$(DLLPOSTFIX)
 SHL1IMPLIB= bf_go
 SHL1DEF=$(MISC)$/$(SHL1TARGET).def
 SHL1LIBS=	$(SLB)$/bf_go.lib
