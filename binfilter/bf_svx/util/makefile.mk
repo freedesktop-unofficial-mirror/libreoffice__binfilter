@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.17 $
+#   $Revision: 1.18 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 14:02:25 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:23:54 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Svx - DLL ----------
 
-SHL1TARGET= bf_svx$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_svx$(DLLPOSTFIX)
 SHL1IMPLIB= bf_svx
 SHL1BASE  = 0x1d800000
 
