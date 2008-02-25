@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.16 $
+#   $Revision: 1.17 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 13:36:53 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:20:56 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,7 @@ RESLIB1SRSFILES=\
 
 # --- StarDraw DLL
 
-SHL1TARGET= bf_sd$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_sd$(DLLPOSTFIX)
 SHL1VERSIONMAP= bf_sd.map
 SHL1IMPLIB= bf_sdi
 
