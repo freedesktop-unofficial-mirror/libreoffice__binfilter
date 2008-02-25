@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.13 $
+#   $Revision: 1.14 $
 #
-#   last change: $Author: vg $ $Date: 2007-10-23 13:33:59 $
+#   last change: $Author: obo $ $Date: 2008-02-25 15:20:30 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -56,15 +56,9 @@ RESLIB1LIST=\
     $(SRS)$/sch_app.srs	\
     $(SRS)$/sch_core.srs	
 
-.IF "$(GUI)" == "WIN"
-RESLIBSPLIT1NAME=bf_sch
-RESLIBSPLIT1SRSFILES=\
-    $(RESLIB1LIST)
-.ELSE
 RESLIB1NAME=bf_sch
 RESLIB1SRSFILES=\
     $(RESLIB1LIST)
-.ENDIF
 
 LIB2TARGET= $(SLB)$/sch_schmod.lib
 LIB2OBJFILES=	$(SLO)$/sch_schmod.obj
@@ -77,7 +71,7 @@ LIB3FILES=	$(SLB)$/sch_core.lib \
         $(SLB)$/sch_xml.lib 
 
 
-SHL1TARGET= bf_sch$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_sch$(DLLPOSTFIX)
 SHL1IMPLIB= bf_schi
 
 SHL1VERSIONMAP= bf_sch.map
