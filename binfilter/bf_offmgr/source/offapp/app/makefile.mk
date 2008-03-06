@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:19:12 $
+#   last change: $Author: kz $ $Date: 2008-03-06 14:48:53 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -42,10 +42,6 @@ PRJNAME=binfilter
 TARGET=offmgr_app
 
 NO_HIDS=TRUE
-
-PROJECTPCH=offmgr_ofapch
-PDBTARGET=offmgr_ofapch
-PROJECTPCHSOURCE=$(BFPRJ)$/util\offmgr_ofapch
 
 # --- Settings ------------------------------------------------------------
 
