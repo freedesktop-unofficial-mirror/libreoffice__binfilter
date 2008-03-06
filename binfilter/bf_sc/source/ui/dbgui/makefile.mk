@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 09:16:47 $
+#   last change: $Author: kz $ $Date: 2008-03-06 14:49:26 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,11 +41,6 @@ PRJNAME=binfilter
 TARGET=sc_dbgui
 
 NO_HIDS=TRUE
-
-PROJECTPCH4DLL=TRUE
-PROJECTPCH=ui_pch
-PDBTARGET=ui_pch
-PROJECTPCHSOURCE=..\pch\sc_ui_pch
 
 # --- Settings -----------------------------------------------------
 
