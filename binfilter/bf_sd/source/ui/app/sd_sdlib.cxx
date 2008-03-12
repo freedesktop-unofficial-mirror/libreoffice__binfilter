@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdlib.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:20:11 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:32:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,10 +47,10 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _SFXECODE_HXX //autogen
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _FILTER_CONFIG_ITEM_HXX_
-#include <svtools/FilterConfigItem.hxx>
+#include <bf_svtools/FilterConfigItem.hxx>
 #endif
 #ifndef _SOT_FORMATS_HXX //autogen
 #include <sot/formats.hxx>
@@ -70,16 +70,10 @@ using namespace ::com::sun::star;
 
 #include "sddll.hxx"
 
-//STRIP009 #ifdef UNX
-//STRIP009 #define DLL_NAME SVLIBRARY( "sd" )
-//STRIP009 #else
 #include "sddll0.hxx"         // wird durchs Makefile generiert
-//STRIP009 #endif
 
-#include "grdocsh.hxx"
-#include "res_bmp.hrc"
+#include "bf_sd/grdocsh.hxx"
 #include "strings.hrc"
-#include "app.hrc"
 #include "strmname.h"
 
 
@@ -88,7 +82,7 @@ using namespace ::com::sun::star;
 #endif
 
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -96,362 +90,295 @@ using namespace ::com::sun::star;
 #endif
 namespace binfilter {
 
-/*N*/ TYPEINIT1( SdModuleDummy, SfxModule );
+TYPEINIT1( SdModuleDummy, SfxModule );
 
 extern "C" { static void SAL_CALL thisModule() {} }
 
-/*N*/ SFX_IMPL_MODULE_LIB(Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) )
+SFX_IMPL_MODULE_LIB(Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) )
 
-/*************************************************************************
-|*
-|* Impress-ObjectFactory registrieren
-|*
-\************************************************************************/
+SFX_IMPL_OBJECTFACTORY_MOD(SdDrawDocShell, SFXOBJECTSHELL_STD_NORMAL, simpress,
+                           SvGlobalName(BF_SO3_SIMPRESS_CLASSID), Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) )
+{
+    SdDrawDocShell::Factory().SetDocumentServiceName( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.presentation.PresentationDocument" ) ) );
+    SdDrawDocShell::Factory().GetFilterContainer()->SetDetectFilter( &SdDLL::DetectFilter );
+}
 
-/*N*/ SFX_IMPL_OBJECTFACTORY_MOD(SdDrawDocShell, SFXOBJECTSHELL_STD_NORMAL, simpress,
-/*N*/                          SvGlobalName(BF_SO3_SIMPRESS_CLASSID), Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) ) //STRIP002
-/*N*/ {
-/*N*/   SdDrawDocShell::Factory().SetDocumentServiceName( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.presentation.PresentationDocument" ) ) );
-/*N*/   SdDrawDocShell::Factory().GetFilterContainer()->SetDetectFilter( &SdDLL::DetectFilter );
-/*N*/ }
+SFX_IMPL_OBJECTFACTORY_MOD(SdGraphicDocShell, SFXOBJECTSHELL_STD_NORMAL, sdraw,
+                           SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) )
+{
+    SdGraphicDocShell::Factory().SetDocumentServiceName( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.DrawingDocument" ) ) );
+    SdGraphicDocShell::Factory().GetFilterContainer()->SetDetectFilter( &SdDLL::DetectFilter );
+}
 
+SdDLL::SdDLL()
+{
+}
 
+SdDLL::~SdDLL()
+{
+}
 
-/*************************************************************************
-|*
-|* Draw-ObjectFactory registrieren
-|*
-\************************************************************************/
+void SdDLL::LibInit()
+{
+    SfxApplication* pApp = SFX_APP();
 
-/*N*/ SFX_IMPL_OBJECTFACTORY_MOD(SdGraphicDocShell, SFXOBJECTSHELL_STD_NORMAL, sdraw,
-/*N*/                          SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd, UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DLL_NAME ) ) ) //STRIP002
-/*N*/ {
-/*N*/   SdGraphicDocShell::Factory().SetDocumentServiceName( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.DrawingDocument" ) ) );
-/*N*/   SdGraphicDocShell::Factory().GetFilterContainer()->SetDetectFilter( &SdDLL::DetectFilter );
-/*N*/ }
+    SfxObjectFactory *p1 = NULL;
+    if(SvtModuleOptions().IsImpress())
+    {
+        SdDrawDocShell::RegisterFactory(SDT_SD_DOCFACTPRIO);
+        p1 = &SdDrawDocShell::Factory();
+    }
 
+    SfxObjectFactory *p2 = NULL;
+    if(SvtModuleOptions().IsDraw())
+    {
+        SdGraphicDocShell::RegisterFactory(SDT_SD_DOCFACTPRIO);
+        p2 = &SdGraphicDocShell::Factory();
+    }
 
-/*************************************************************************
-|*
-|* Ctor
-|* the ctor is called at the beginning of SfxApplication-subclass::Main()
-|* do whatever you want, but no calls to Sd-DLL-code!
-|*
-\************************************************************************/
+    SD_MOD() = new SdModuleDummy( NULL, TRUE, p1, p2 );
+}
 
-/*N*/ SdDLL::SdDLL()
-/*N*/ {
-/*N*/ }
+void SdDLL::LibExit()
+{
+    FreeLibSd();
+    DELETEZ( SD_MOD() );
+}
 
+ULONG __EXPORT SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter, SfxFilterFlags nMust, SfxFilterFlags nDont)
+{
+    ULONG nReturn = ERRCODE_ABORT;  // Erkennung fehlgeschlagen, Filter ungueltig
+    BOOL bStorage = FALSE;
 
-
-/*************************************************************************
-|*
-|* Dtor
-|* the dtor is called at the end of SfxApplication-subclass::Main()
-|* do whatever you want, but no calls to Sd-DLL-code!
-|*
-\************************************************************************/
-
-/*N*/ SdDLL::~SdDLL()
-/*N*/ {
-/*N*/ }
-
-
-
-/*************************************************************************
-|*
-|* LibInit
-|* method is called before Application::Execute()
-|* do whatever you want, but no calls to Sd-DLL-code!
-|*
-\************************************************************************/
-
-/*N*/ void SdDLL::LibInit()
-/*N*/ {
-/*N*/   // in most cases you must initialize your document-factory here
-/*N*/   SfxApplication* pApp = SFX_APP();
-/*N*/
-/*N*/   // create a dummy-module for Object-Factory-Pointer
-/*N*/   SfxObjectFactory *p1 = NULL;
-/*N*/   if(SvtModuleOptions().IsImpress())
-/*N*/   {
-/*N*/       SdDrawDocShell::RegisterFactory(SDT_SD_DOCFACTPRIO);
-/*N*/       p1 = &SdDrawDocShell::Factory();
-/*N*/   }
-
-/*N*/   SfxObjectFactory *p2 = NULL;
-/*N*/   if(SvtModuleOptions().IsDraw())
-/*N*/   {
-/*N*/       SdGraphicDocShell::RegisterFactory(SDT_SD_DOCFACTPRIO);
-/*N*/       p2 = &SdGraphicDocShell::Factory();
-/*N*/   }
-/*N*/
-/*N*/     SD_MOD() = new SdModuleDummy( NULL, TRUE, p1, p2 );
-/*N*/ }
+    if( *pFilter && (*pFilter)->GetFilterFlags() & SFX_FILTER_PACKED )
+    {
+        uno::Reference< lang::XMultiServiceFactory > xSMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
+        uno::Reference< util::XArchiver > xPacker( xSMgr->createInstance( OUString::createFromAscii( "com.sun.star.util.Archiver" ) ), uno::UNO_QUERY );
+        if( xPacker.is() )
+        {
+            // extract extra data
+            OUString aPath( rMedium.GetOrigURL() );
+            OUString aExtraData( xPacker->getExtraData( aPath ) );
+            const OUString aSig1= OUString::createFromAscii( "private:" );
+            String aTmp;
+            aTmp += sal_Unicode( '?' );
+            aTmp += (*pFilter)->GetFilterContainer()->GetName();
+            const OUString aSig2( aTmp );
+            INT32 nIndex1 = aExtraData.indexOf( aSig1 );
+            INT32 nIndex2 = aExtraData.indexOf( aSig2 );
+            if( nIndex1 == 0 && nIndex2 != -1 )
+                return ERRCODE_NONE;
+        }
+    }
+    else if (rMedium.GetError() == SVSTREAM_OK)
+    {
+        if (rMedium.IsStorage())
+        {
+            bStorage = TRUE;
+            // Storage
+            SvStorage* pStorage = rMedium.GetStorage();
+            if ( pStorage == NULL ) return ULONG_MAX;
 
 
+            // Erkennung ueber contained streams (StarDraw 3.0)
+            if( ( pStorage->IsContained( pStarDrawDoc ) && pStorage->IsStream( pStarDrawDoc ) ) ||
+                ( pStorage->IsContained( pStarDrawDoc3 ) && pStorage->IsStream( pStarDrawDoc3 ) ) )
+            {
+                const SfxFilter* pFilt = NULL;
+                SfxFilterMatcher& rMatcher = SFX_APP()->GetFilterMatcher();
+                SfxFilterContainer *pDraw = rMatcher.GetContainer(
+                                            UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "sdraw" ) ) ); // Name kennt ihr besser
+                SfxFilterContainer *pImpr = rMatcher.GetContainer(
+                                            UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "simpress" ) )); // dito
+                ULONG nStorFmt = pStorage->GetFormat();
+                if (*pFilter)
+                {
+                    if ( (*pFilter)->GetFilterContainer() == pDraw)
+                    {
+                        if(SvtModuleOptions().IsDraw())
+                        {
+                            pFilt = pDraw->GetFilter4ClipBoardId( nStorFmt );
+                            nReturn = ERRCODE_SFX_FORCEQUIET;
+                        }
+                        else
+                        {
+                            pFilt = pImpr->GetFilter4ClipBoardId( nStorFmt );
+                            nReturn = ERRCODE_SFX_FORCEQUIET;
+                        }
+                    }
+                    else if ( (*pFilter)->GetFilterContainer() == pImpr)
+                    {
+                        if(SvtModuleOptions().IsImpress())
+                        {
+                            pFilt = pImpr->GetFilter4ClipBoardId( nStorFmt );
+                            nReturn = ERRCODE_SFX_FORCEQUIET;
+                        }
+                        else
+                        {
+                            pFilt = pDraw->GetFilter4ClipBoardId( nStorFmt );
+                            nReturn = ERRCODE_SFX_FORCEQUIET;
+                        }
+                    }
+                }
+                else if(SvtModuleOptions().IsImpress())
+                {
+                    pFilt = pImpr->GetFilter4ClipBoardId( nStorFmt );
+                    nReturn = ERRCODE_NONE;
+                }
+                else if(SvtModuleOptions().IsDraw())
+                {
+                    pFilt = pDraw->GetFilter4ClipBoardId( nStorFmt );
+                    nReturn = ERRCODE_NONE;
+                }
 
-/*************************************************************************
-|*
-|* LibExit
-|* this method is called after Application::Execute()
-|* do whatever you want, but no calls to Sd-DLL-code!
-|*
-\************************************************************************/
+                if (pFilt &&
+                    (pFilt->GetFilterFlags() & nMust) == nMust &&
+                    (pFilt->GetFilterFlags() & nDont) == 0)
+                {
+                    *pFilter = pFilt;
+                }
+                else
+                {
+                    *pFilter = NULL;
+                    nReturn = ERRCODE_NONE;
+                }
+            }
+            else if(SvtModuleOptions().IsImpress())
+            {
+                // Erkennung ueber contained streams (PowerPoint 97-Filter)
+                String aStreamName = UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "PowerPoint Document" ) );
 
-/*N*/ void SdDLL::LibExit()
-/*N*/ {
-/*N*/   // Innerhalb von FreeLibSd wird Exit() gerufen
-/*N*/   FreeLibSd();
-/*N*/
-/*N*/   // destroy the dummy-module with Object-Factory-Pointer
-/*N*/   DELETEZ( SD_MOD() );
-/*N*/ }
+                if (pStorage->IsContained( aStreamName ) && pStorage->IsStream( aStreamName ) )
+                {
+                    String aFileName(rMedium.GetName());
+                    aFileName.ToUpperAscii();
 
+                    if( aFileName.SearchAscii( ".POT" ) == STRING_NOTFOUND )
+                        *pFilter = SFX_APP()->GetFilter(SdDrawDocShell::Factory(), pFilterPowerPoint97);
+                    else
+                        *pFilter = SFX_APP()->GetFilter(SdDrawDocShell::Factory(), pFilterPowerPoint97Template);
 
-/*************************************************************************
-|*
-|* Filter bestimmen
-|* (wird fuer normales Laden eines Dokuments mit nClass == USHRT_MAX gerufen)
-|*
-\************************************************************************/
+                    return ERRCODE_NONE;
+                }
+            }
+        }
 
-/*N*/ ULONG __EXPORT SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter,
-/*N*/                         SfxFilterFlags nMust, SfxFilterFlags nDont)
-/*N*/ {
-/*N*/   ULONG nReturn = ERRCODE_ABORT;  // Erkennung fehlgeschlagen, Filter ungueltig
-/*N*/   BOOL bStorage = FALSE;
-/*N*/
-/*N*/   if( *pFilter && (*pFilter)->GetFilterFlags() & SFX_FILTER_PACKED )
-/*N*/   {
-/*N*/       uno::Reference< lang::XMultiServiceFactory > xSMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-/*N*/       uno::Reference< util::XArchiver > xPacker( xSMgr->createInstance( OUString::createFromAscii( "com.sun.star.util.Archiver" ) ), uno::UNO_QUERY );
-/*N*/       if( xPacker.is() )
-/*N*/       {
-/*N*/           // extract extra data
-/*N*/           OUString aPath( rMedium.GetOrigURL() );
-/*N*/           OUString aExtraData( xPacker->getExtraData( aPath ) );
-/*N*/           const OUString aSig1= OUString::createFromAscii( "private:" );
-/*N*/           String aTmp;
-/*N*/           aTmp += sal_Unicode( '?' );
-/*N*/           aTmp += (*pFilter)->GetFilterContainer()->GetName();
-/*N*/           const OUString aSig2( aTmp );
-/*N*/           INT32 nIndex1 = aExtraData.indexOf( aSig1 );
-/*N*/           INT32 nIndex2 = aExtraData.indexOf( aSig2 );
-/*N*/           if( nIndex1 == 0 && nIndex2 != -1 )
-/*N*/               return ERRCODE_NONE;
-/*N*/       }
-/*N*/   }
-/*N*/   else if (rMedium.GetError() == SVSTREAM_OK)
-/*N*/   {
-/*N*/       if (rMedium.IsStorage())
-/*N*/       {
-/*N*/           bStorage = TRUE;
-/*N*/           // Storage
-/*N*/           SvStorage* pStorage = rMedium.GetStorage();
-/*N*/           if ( pStorage == NULL ) return ULONG_MAX;
-/*N*/
-/*N*/
-/*N*/           // Erkennung ueber contained streams (StarDraw 3.0)
-/*N*/           if( ( pStorage->IsContained( pStarDrawDoc ) && pStorage->IsStream( pStarDrawDoc ) ) ||
-/*N*/               ( pStorage->IsContained( pStarDrawDoc3 ) && pStorage->IsStream( pStarDrawDoc3 ) ) )
-/*N*/           {
-/*N*/               const SfxFilter* pFilt = NULL;
-/*N*/               SfxFilterMatcher& rMatcher = SFX_APP()->GetFilterMatcher();
-/*N*/               SfxFilterContainer *pDraw = rMatcher.GetContainer(
-/*N*/                                           UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "sdraw" ) ) ); // Name kennt ihr besser
-/*N*/               SfxFilterContainer *pImpr = rMatcher.GetContainer(
-/*N*/                                           UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "simpress" ) )); // dito
-/*N*/               ULONG nStorFmt = pStorage->GetFormat();
-/*N*/               if (*pFilter)
-/*N*/               {
-/*N*/                   if ( (*pFilter)->GetFilterContainer() == pDraw)
-/*N*/                   {
-/*N*/                       if(SvtModuleOptions().IsDraw())
-/*N*/                       {
-/*N*/                           pFilt = pDraw->GetFilter4ClipBoardId( nStorFmt );
-/*N*/                           nReturn = ERRCODE_SFX_FORCEQUIET;
-/*N*/                       }
-/*N*/                       else
-/*N*/                       {
-/*N*/                           pFilt = pImpr->GetFilter4ClipBoardId( nStorFmt );
-/*N*/                           nReturn = ERRCODE_SFX_FORCEQUIET;
-/*N*/                       }
-/*N*/                   }
-/*N*/                   else if ( (*pFilter)->GetFilterContainer() == pImpr)
-/*N*/                   {
-/*N*/                       if(SvtModuleOptions().IsImpress())
-/*N*/                       {
-/*N*/                           pFilt = pImpr->GetFilter4ClipBoardId( nStorFmt );
-/*N*/                           nReturn = ERRCODE_SFX_FORCEQUIET;
-/*N*/                       }
-/*N*/                       else
-/*N*/                       {
-/*N*/                           pFilt = pDraw->GetFilter4ClipBoardId( nStorFmt );
-/*N*/                           nReturn = ERRCODE_SFX_FORCEQUIET;
-/*N*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/               else if(SvtModuleOptions().IsImpress())
-/*N*/               {
-/*N*/                   pFilt = pImpr->GetFilter4ClipBoardId( nStorFmt );
-/*N*/                   nReturn = ERRCODE_NONE;
-/*N*/               }
-/*N*/               else if(SvtModuleOptions().IsDraw())
-/*N*/               {
-/*N*/                   pFilt = pDraw->GetFilter4ClipBoardId( nStorFmt );
-/*N*/                   nReturn = ERRCODE_NONE;
-/*N*/               }
-/*N*/
-/*N*/               if (pFilt &&
-/*N*/                   (pFilt->GetFilterFlags() & nMust) == nMust &&
-/*N*/                   (pFilt->GetFilterFlags() & nDont) == 0)
-/*N*/               {
-/*N*/                   *pFilter = pFilt;
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*N*/                   *pFilter = NULL;
-/*N*/                   nReturn = ERRCODE_NONE;
-/*N*/               }
-/*N*/           }
-/*N*/           else if(SvtModuleOptions().IsImpress())
-/*N*/           {
-/*N*/               // Erkennung ueber contained streams (PowerPoint 97-Filter)
-/*N*/               String aStreamName = UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "PowerPoint Document" ) );
-/*N*/
-/*N*/               if (pStorage->IsContained( aStreamName ) && pStorage->IsStream( aStreamName ) )
-/*N*/               {
-/*N*/                   String aFileName(rMedium.GetName());
-/*N*/                   aFileName.ToUpperAscii();
-/*N*/
-/*N*/                   if( aFileName.SearchAscii( ".POT" ) == STRING_NOTFOUND )
-/*N*/                       *pFilter = SFX_APP()->GetFilter(SdDrawDocShell::Factory(), pFilterPowerPoint97);
-/*N*/                   else
-/*N*/                       *pFilter = SFX_APP()->GetFilter(SdDrawDocShell::Factory(), pFilterPowerPoint97Template);
-/*N*/
-/*N*/                   return ERRCODE_NONE;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       // XML filter(s)
-/*N*/       if( *pFilter )
-/*N*/       {
-/*N*/           ::rtl::OUString aName = (*pFilter)->GetFilterName();
-/*N*/
-/*N*/           if( aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("StarOffice XML (Draw)")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("StarOffice XML (Impress)")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("draw_StarOffice_XML_Impress")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("impress_StarOffice_XML_Draw")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("impress_StarOffice_XML_Impress_Template")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("draw_StarOffice_XML_Draw_Template")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("draw_StarOffice_XML_Draw")) ||
-/*N*/               aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("impress_StarOffice_XML_Impress")))
-/*N*/           {
-/*N*/               if( rMedium.IsStorage() )
-/*N*/               {
-/*N*/                   SvStorage* pStorage = rMedium.GetStorage();
-/*N*/
-/*N*/                   nReturn = ERRCODE_ABORT;
-/*N*/
-/*N*/                   if( pStorage && ( pStorage->IsStream( pStarDrawXMLContent ) || pStorage->IsStream( pStarDrawOldXMLContent ) ) )
-/*N*/                   {
-/*N*/                       const ULONG nStorageFormat = pStorage->GetFormat();
-/*N*/                       if( nStorageFormat == 0 ||
-/*N*/                           nStorageFormat == SOT_FORMATSTR_ID_STARIMPRESS_60 ||
-/*N*/                           nStorageFormat == SOT_FORMATSTR_ID_STARDRAW_60  )
-/*N*/                       {
-/*N*/                           nReturn = ERRCODE_NONE;
-/*N*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       String aFileName(rMedium.GetName());
-/*N*/       aFileName.ToUpperAscii();
-/*N*/
-/*N*/       if (nReturn == ERRCODE_ABORT)
-/*N*/       {
-/*N*/           if( bStorage )         // aber keine Clipboard-Id #55337#
-/*N*/           {
-/*N*/               *pFilter = NULL;
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               // Vektorgraphik?
-/*N*/               SvStream* pStm = rMedium.GetInStream();
-/*N*/
-/*N*/               if( !pStm )
-/*N*/                   nReturn = ERRCODE_IO_GENERAL;
-/*N*/               else
-/*N*/               {
-/*N*/                   pStm->Seek( STREAM_SEEK_TO_BEGIN );
-/*N*/
-/*N*/                   const String        aFileName( rMedium.GetURLObject().GetMainURL( INetURLObject::NO_DECODE ) );
-/*N*/                   GraphicDescriptor   aDesc( *pStm, &aFileName );
-/*N*/                   GraphicFilter*      pGrfFilter = GetGrfFilter();
-/*N*/
-/*N*/                   if( !aDesc.Detect( FALSE ) )
-/*N*/                   {
-/*N*/                       *pFilter = NULL;
-/*N*/                       nReturn = ERRCODE_ABORT;
-/*N*/                       INetURLObject aURL( aFileName );
-/*N*/                       if( aURL.getExtension().equalsIgnoreAsciiCaseAscii( "cgm" ) )
-/*N*/                       {
-/*N*/                           sal_uInt8 n8;
-/*N*/                           pStm->Seek( STREAM_SEEK_TO_BEGIN );
-/*N*/                           *pStm >> n8;
-/*N*/                           if ( ( n8 & 0xf0 ) == 0 )       // we are supporting binary cgm format only, so
-/*N*/                           {                               // this is a small test to exclude cgm text
-/*N*/                               const String aName = UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "CGM - Computer Graphics Metafile" ) );
-/*N*/                               *pFilter = SFX_APP()->GetFilter( SdDrawDocShell::Factory(), aName );
-/*N*/                               nReturn = ERRCODE_NONE;
-/*N*/                           }
-/*N*/                       }
-/*N*/                   }
-/*N*/                   else
-/*N*/                   {
-/*N*/                       if( SvtModuleOptions().IsDraw() )
-/*N*/                       {
-/*N*/                           String aShortName( aDesc.GetImportFormatShortName( aDesc.GetFileFormat() ) );
-/*N*/                           const String aName( pGrfFilter->GetImportFormatTypeName( pGrfFilter->GetImportFormatNumberForShortName( aShortName ) ) );
-/*N*/
-/*N*/                             if ( *pFilter && aShortName.EqualsIgnoreCaseAscii( "PCD" ) )    // there is a multiple pcd selection possible
-/*N*/                             {
-/*N*/                                 sal_Int32 nBase = 2;    // default Base0
-/*N*/                                 String aFilterTypeName( (*pFilter)->GetRealTypeName() );
-/*N*/                                 if ( aFilterTypeName.CompareToAscii( "pcd_Photo_CD_Base4" ) == COMPARE_EQUAL )
-/*N*/                                     nBase = 1;
-/*N*/                                 else if ( aFilterTypeName.CompareToAscii( "pcd_Photo_CD_Base16" ) == COMPARE_EQUAL )
-/*N*/                                     nBase = 0;
-/*N*/                               String aFilterConfigPath( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Filter/Graphic/Import/PCD" ) );
-/*N*/                                 FilterConfigItem aFilterConfigItem( aFilterConfigPath );
-/*N*/                                 aFilterConfigItem.WriteInt32( String( RTL_CONSTASCII_USTRINGPARAM( "Resolution" ) ), nBase );
-/*N*/                             }
-/*N*/
-/*N*/                           *pFilter = SFX_APP()->GetFilter( SdGraphicDocShell::Factory(), aName );
-/*N*/                           nReturn = ERRCODE_NONE;
-/*N*/                       }
-/*N*/                       else
-/*N*/                       {
-/*N*/                           nReturn = ERRCODE_ABORT;
-/*N*/                           *pFilter = NULL;
-/*N*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       nReturn = rMedium.GetError();
-/*N*/   }
-/*N*/
-/*N*/   return nReturn;
-/*N*/ }
+        // XML filter(s)
+        if( *pFilter )
+        {
+            ::rtl::OUString aName = (*pFilter)->GetFilterName();
+
+            if( aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("StarOffice XML (Draw)")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("StarOffice XML (Impress)")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("draw_StarOffice_XML_Impress")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("impress_StarOffice_XML_Draw")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("impress_StarOffice_XML_Impress_Template")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("draw_StarOffice_XML_Draw_Template")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("draw_StarOffice_XML_Draw")) ||
+                aName.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("impress_StarOffice_XML_Impress")))
+            {
+                if( rMedium.IsStorage() )
+                {
+                    SvStorage* pStorage = rMedium.GetStorage();
+
+                    nReturn = ERRCODE_ABORT;
+
+                    if( pStorage && ( pStorage->IsStream( pStarDrawXMLContent ) || pStorage->IsStream( pStarDrawOldXMLContent ) ) )
+                    {
+                        const ULONG nStorageFormat = pStorage->GetFormat();
+                        if( nStorageFormat == 0 ||
+                            nStorageFormat == SOT_FORMATSTR_ID_STARIMPRESS_60 ||
+                            nStorageFormat == SOT_FORMATSTR_ID_STARDRAW_60  )
+                        {
+                            nReturn = ERRCODE_NONE;
+                        }
+                    }
+                }
+            }
+        }
+
+        String aFileName(rMedium.GetName());
+        aFileName.ToUpperAscii();
+
+        if (nReturn == ERRCODE_ABORT)
+        {
+            if( bStorage )         // aber keine Clipboard-Id #55337#
+            {
+                *pFilter = NULL;
+            }
+            else
+            {
+                // Vektorgraphik?
+                SvStream* pStm = rMedium.GetInStream();
+
+                if( !pStm )
+                    nReturn = ERRCODE_IO_GENERAL;
+                else
+                {
+                    pStm->Seek( STREAM_SEEK_TO_BEGIN );
+
+                    const String        aFileName( rMedium.GetURLObject().GetMainURL( INetURLObject::NO_DECODE ) );
+                    GraphicDescriptor   aDesc( *pStm, &aFileName );
+                    GraphicFilter*      pGrfFilter = GetGrfFilter();
+
+                    if( !aDesc.Detect( FALSE ) )
+                    {
+                        *pFilter = NULL;
+                        nReturn = ERRCODE_ABORT;
+                        INetURLObject aURL( aFileName );
+                        if( aURL.getExtension().equalsIgnoreAsciiCaseAscii( "cgm" ) )
+                        {
+                            sal_uInt8 n8;
+                            pStm->Seek( STREAM_SEEK_TO_BEGIN );
+                            *pStm >> n8;
+                            if ( ( n8 & 0xf0 ) == 0 )       // we are supporting binary cgm format only, so
+                            {                               // this is a small test to exclude cgm text
+                                const String aName = UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "CGM - Computer Graphics Metafile" ) );
+                                *pFilter = SFX_APP()->GetFilter( SdDrawDocShell::Factory(), aName );
+                                nReturn = ERRCODE_NONE;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if( SvtModuleOptions().IsDraw() )
+                        {
+                            String aShortName( aDesc.GetImportFormatShortName( aDesc.GetFileFormat() ) );
+                            const String aName( pGrfFilter->GetImportFormatTypeName( pGrfFilter->GetImportFormatNumberForShortName( aShortName ) ) );
+
+                            if ( *pFilter && aShortName.EqualsIgnoreCaseAscii( "PCD" ) )    // there is a multiple pcd selection possible
+                            {
+                                sal_Int32 nBase = 2;    // default Base0
+                                String aFilterTypeName( (*pFilter)->GetRealTypeName() );
+                                if ( aFilterTypeName.CompareToAscii( "pcd_Photo_CD_Base4" ) == COMPARE_EQUAL )
+                                    nBase = 1;
+                                else if ( aFilterTypeName.CompareToAscii( "pcd_Photo_CD_Base16" ) == COMPARE_EQUAL )
+                                    nBase = 0;
+                                String aFilterConfigPath( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Filter/Graphic/Import/PCD" ) );
+                                FilterConfigItem aFilterConfigItem( aFilterConfigPath );
+                                aFilterConfigItem.WriteInt32( String( RTL_CONSTASCII_USTRINGPARAM( "Resolution" ) ), nBase );
+                            }
+
+                            *pFilter = SFX_APP()->GetFilter( SdGraphicDocShell::Factory(), aName );
+                            nReturn = ERRCODE_NONE;
+                        }
+                        else
+                        {
+                            nReturn = ERRCODE_ABORT;
+                            *pFilter = NULL;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        nReturn = rMedium.GetError();
+    }
+
+    return nReturn;
+}
 
 
 
@@ -559,4 +486,6 @@ USHORT SdModuleDummy::HasID(const SvGlobalName& rName)
 
     return(nRet);
 }
+
+
 }
