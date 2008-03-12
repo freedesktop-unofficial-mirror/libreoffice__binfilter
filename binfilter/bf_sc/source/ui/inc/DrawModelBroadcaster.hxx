@@ -4,9 +4,9 @@
  *
  *  $RCSfile: DrawModelBroadcaster.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:30:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:06:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.h>
