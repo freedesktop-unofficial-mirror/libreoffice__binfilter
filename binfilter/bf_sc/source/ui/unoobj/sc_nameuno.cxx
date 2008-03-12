@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_nameuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:12:11 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:16:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,14 +33,11 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
+#include <com/sun/star/beans/PropertyAttribute.hpp>
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #include <com/sun/star/awt/XBitmap.hpp>
 
@@ -354,17 +351,15 @@ sal_Bool SAL_CALL ScNamedRangeObj::supportsService( const ::rtl::OUString& rServ
                                                     throw(uno::RuntimeException)
 {
     String aServiceStr( rServiceName );
-    return aServiceStr.EqualsAscii( SCNAMEDRANGEOBJ_SERVICE ) ||
-           aServiceStr.EqualsAscii( SCLINKTARGET_SERVICE );
+    return aServiceStr.EqualsAscii( SCNAMEDRANGEOBJ_SERVICE );
 }
 
 uno::Sequence< ::rtl::OUString> SAL_CALL ScNamedRangeObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
-    uno::Sequence< ::rtl::OUString> aRet(2);
+    uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
     pArray[0] = ::rtl::OUString::createFromAscii( SCNAMEDRANGEOBJ_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCLINKTARGET_SERVICE );
     return aRet;
 }
 
