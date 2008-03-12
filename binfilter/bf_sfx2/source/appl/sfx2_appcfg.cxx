@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appcfg.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:23:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:00:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,35 +71,35 @@
 #endif
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _AEITEM_HXX //autogen
-#include <svtools/aeitem.hxx>
+#include <bf_svtools/aeitem.hxx>
 #endif
 #ifndef _SFXSLSTITM_HXX //autogen
-#include <svtools/slstitm.hxx>
+#include <bf_svtools/slstitm.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXSZITEM_HXX
-#include <svtools/szitem.hxx>
+#include <bf_svtools/szitem.hxx>
 #endif
 #ifndef _UNDO_HXX //autogen
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #endif
 
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #ifndef _SVTOOLS_TTPROPS_HXX // handmade
-#include <svtools/ttprops.hxx>
+#include <bf_svtools/ttprops.hxx>
 #endif
 #ifndef _SFXSIDS_HRC // handmade
 #include <sfxsids.hrc>
@@ -114,19 +114,19 @@
 
 
 #ifndef _SFXISETHINT_HXX
-#include <svtools/isethint.hxx>
+#include <bf_svtools/isethint.hxx>
 #endif
 
 #include <unotools/configmgr.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/wldcrd.hxx>
-#include <svtools/saveopt.hxx>
-#include <svtools/helpopt.hxx>
-#include <svtools/undoopt.hxx>
-#include <svtools/securityoptions.hxx>
-#include <svtools/pathoptions.hxx>
-#include <svtools/inetoptions.hxx>
-#include <svtools/miscopt.hxx>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/helpopt.hxx>
+#include <bf_svtools/undoopt.hxx>
+#include <bf_svtools/securityoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
+#include <bf_svtools/inetoptions.hxx>
+#include <bf_svtools/miscopt.hxx>
 #include <vcl/toolbox.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <comphelper/processfactory.hxx>
