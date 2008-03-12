@@ -4,9 +4,9 @@
  *
  *  $RCSfile: obj3d.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:32:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:57:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -95,9 +95,9 @@
 #ifndef _SVX_XFLCLIT_HXX
 #include <bf_svx/xflclit.hxx>
 #endif
-class SfxPoolItem;
 class Base3D;
 namespace binfilter {
+class SfxPoolItem;
 
 //************************************************************
 //   Vorausdeklarationen
