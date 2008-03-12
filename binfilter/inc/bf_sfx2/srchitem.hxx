@@ -4,9 +4,9 @@
  *
  *  $RCSfile: srchitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:44:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:40:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -59,7 +59,7 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SFX_SRCHDEFS_HXX_
@@ -129,7 +129,7 @@ public:
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
                                     SfxMapUnit eCoreMetric,
                                     SfxMapUnit ePresMetric,
-                                    String &rText, const IntlWrapper * = 0 ) const;
+                                    String &rText, const ::IntlWrapper * = 0 ) const;
 
     // ConfigItem
     virtual void            Notify( const ::com::sun::star::uno::Sequence< ::rtl::OUString > &rPropertyNames );
