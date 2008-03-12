@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appdata.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:00:37 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:08:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 #include <tools/link.hxx>
 #include <tools/list.hxx>
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #include <vcl/timer.hxx>
 #include <tools/string.hxx>
 #include "rtl/ref.hxx"
@@ -46,16 +46,16 @@
 class SvStrings;
 class Config;
 class SvVerbList;
-class DdeService;
-class SfxItemPool;
-class SvUShorts;
-class SfxCancelManager;
 class SvtSaveOptions;
 class SvtUndoOptions;
 class SvtHelpOptions;
 
 namespace binfilter {
 
+class DdeService;
+class SvUShorts;
+class SfxItemPool;
+class SfxCancelManager;
 class SfxApplication;
 
 class SfxBmkMenu;
