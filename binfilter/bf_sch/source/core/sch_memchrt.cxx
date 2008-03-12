@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:20:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:23:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 #ifndef _TOOLS_TENCCVT_HXX
