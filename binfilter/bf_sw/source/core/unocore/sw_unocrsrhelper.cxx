@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unocrsrhelper.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:07:30 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:24:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -129,10 +129,10 @@
 #include <pagefrm.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
@@ -159,11 +159,11 @@
 #include <vcl/metric.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #endif
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
 #endif
@@ -175,7 +175,7 @@
 #endif
 
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
@@ -812,8 +812,8 @@ void InsertFile(SwUnoCrsr* pUnoCrsr,
         Reader *pRead = pDocSh->StartConvertFrom( *pMed, &pRdr, 0, pUnoCrsr);
         if( pRead )
         {
-            String sTmpBaseURL( so3::StaticBaseUrl::GetBaseURL() );
-            so3::StaticBaseUrl::SetBaseURL( pMed->GetName() );
+            String sTmpBaseURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
+            ::binfilter::StaticBaseUrl::SetBaseURL( pMed->GetName() );
 
             UnoActionContext aContext(pDoc);
 
@@ -839,7 +839,7 @@ void InsertFile(SwUnoCrsr* pUnoCrsr,
 
             delete pRdr;
 
-            so3::StaticBaseUrl::SetBaseURL( sTmpBaseURL );
+            ::binfilter::StaticBaseUrl::SetBaseURL( sTmpBaseURL );
 
             // ggfs. alle Verzeichnisse updaten:
 /*          if( pWrtShell->IsUpdateTOX() )
