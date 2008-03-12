@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotext.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:38:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:21:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,7 @@
 #endif
 
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 
 #ifndef _MyEDITDATA_HXX // ESelection
@@ -94,11 +94,11 @@
 #endif
 
 #ifndef _SFXITEMSET_HXX //autog
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _SFXITEMPOOL_HXX //auto
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #ifndef _SVX_SVXENUM_HXX //autogen
@@ -553,8 +553,8 @@ public:
 #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
 #endif
-class SvUShorts;
 namespace binfilter {
+class SvUShorts;
 class SvxUnoTextContent : public SvxUnoTextRangeBase,
                           public ::com::sun::star::text::XTextContent,
                           public ::com::sun::star::container::XEnumerationAccess,
