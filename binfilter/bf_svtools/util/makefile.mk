@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: rt $ $Date: 2008-03-12 09:24:19 $
+#   last change: $Author: rt $ $Date: 2008-03-12 21:37:27 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,7 @@ RESLIB1IMAGES=$(PRJ)$/res
 RESLIB1SRSFILES= \
         $(SRS)$/ehdl.srs        \
 
-SHL1TARGET= bf_svt$(UPD)$(DLLPOSTFIX)
+SHL1TARGET= bf_svt$(DLLPOSTFIX)
 SHL1IMPLIB= bf_svt
 SHL1DEF = $(MISC)$/$(SHL1TARGET).def
 SHL1LIBS= $(SLB)$/bf_svt.lib
