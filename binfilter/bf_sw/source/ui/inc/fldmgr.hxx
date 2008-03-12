@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldmgr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:31:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:48:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 
 #ifndef _STRING_HXX //autogen
@@ -60,12 +60,12 @@ namespace com{namespace sun{namespace star{
         class XNumberingTypeInfo;
     }
 }}}
-class SvxMacroItem;
 class ListBox;
-class SvNumberFormatter;
 
 namespace binfilter {
 
+class SvxMacroItem;
+class SvNumberFormatter;
 class SwWrtShell;
 class SwField;
 class SwFieldType;
