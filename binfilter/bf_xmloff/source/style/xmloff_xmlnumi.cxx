@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumi.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:23:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:00:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,7 +83,7 @@
 #include "xmlnumi.hxx"
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;

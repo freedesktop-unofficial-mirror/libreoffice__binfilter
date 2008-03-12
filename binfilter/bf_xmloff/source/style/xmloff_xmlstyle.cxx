@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlstyle.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:23:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:01:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,10 @@
 #endif
 
 #ifndef _CNTRSRT_HXX
-#include <svtools/cntnrsrt.hxx>
+#include <bf_svtools/cntnrsrt.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX //autogen wg. SfxItemSet
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
