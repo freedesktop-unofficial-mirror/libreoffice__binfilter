@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pormulti.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:59:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:17:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,9 @@
 
 #include "porlay.hxx"
 #include "porexp.hxx"
-class SfxPoolItem;
 namespace binfilter {
 
+class SfxPoolItem;
 class SwTxtFormatInfo;
 class SwFldPortion;
 class SwTxtCursor;
