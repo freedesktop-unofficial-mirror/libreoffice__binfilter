@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unofield.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:49:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:25:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,7 +78,7 @@
 #include <unocoll.hxx>
 #endif
 #ifndef _SFX_ITEMPROP_HXX //autogen
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
@@ -221,7 +221,7 @@
 #include <tools/datetime.hxx>
 #endif
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
 #endif
@@ -767,7 +767,7 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
                 case RES_DDEFLD :
                 {
                     SwDDEFieldType aType(sTypeName, sParam1,
-                        bParam1 ? ::so3::LINKUPDATE_ALWAYS : ::so3::LINKUPDATE_ONCALL);
+                        bParam1 ? ::binfilter::LINKUPDATE_ALWAYS : ::binfilter::LINKUPDATE_ONCALL);
                     pType = m_pDoc->InsertFldType(aType);
                 }
                 break;
@@ -842,10 +842,10 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
                 {
                     String sTmp;
                     if(!sParam1.Len())
-                        (sParam1 = ::so3::cTokenSeperator)
-                                += ::so3::cTokenSeperator;
+                        (sParam1 = ::binfilter::cTokenSeperator)
+                                += ::binfilter::cTokenSeperator;
 
-                    sParam1.SetToken( nPart, ::so3::cTokenSeperator,
+                    sParam1.SetToken( nPart, ::binfilter::cTokenSeperator,
                                 ::binfilter::GetString( rValue, sTmp ));
                 }
                 else if(3 == nPart)
@@ -1000,7 +1000,7 @@ uno::Any SwXFieldMaster::getPropertyValue(const OUString& rPropertyName)
                             rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_DDE_COMMAND_ELEMENT))  ? 2 :
                             rPropertyName.equalsAsciiL( SW_PROP_NAME(UNO_NAME_IS_AUTOMATIC_UPDATE)) ? 3 : USHRT_MAX;
                     if(nPart  < 3 )
-                        pStr = &(sStr = sParam1.GetToken(nPart, ::so3::cTokenSeperator));
+                        pStr = &(sStr = sParam1.GetToken(nPart, ::binfilter::cTokenSeperator));
                     else if(3 == nPart)
                         aRet.setValue(&bParam1, ::getBooleanCppuType());
                 }
