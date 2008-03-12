@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layhelp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:51:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:07:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #define _SVSTDARR_ULONGS
 #define _SVSTDARR_BYTES
 #define _SVSTDARR_XUB_STRLEN
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 #ifndef _SWRECT_HXX
 #include <swrect.hxx>

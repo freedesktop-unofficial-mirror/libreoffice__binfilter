@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scrrect.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:48:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:05:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #include "swrect.hxx"
 #ifndef _SWTYPES_HXX
