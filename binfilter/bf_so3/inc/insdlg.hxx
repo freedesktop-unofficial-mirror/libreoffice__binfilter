@@ -4,9 +4,9 @@
  *
  *  $RCSfile: insdlg.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:42:54 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:10:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include <tools/globname.hxx>
 #endif
 #ifndef _OWNCONT_HXX
-#include <svtools/ownlist.hxx>
+#include <bf_svtools/ownlist.hxx>
 #endif
 #ifndef _SO2REF_HXX
 #include <bf_so3/so2ref.hxx>
@@ -51,17 +51,17 @@
 
 class SvAppletObject;
 
-#ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
-#define SO2_DECL_SVINPLACEOBJECT_DEFINED
-SO2_DECL_REF(SvInPlaceObject)
-#endif
 #ifndef SV_DECL_SVBASELINK2_DEFINED
 #define SV_DECL_SVBASELINK2_DEFINED
 SV_DECL_REF(SvBaseLink2)
 #endif
 
-namespace so3
+namespace binfilter
 {
+#ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
+#define SO2_DECL_SVINPLACEOBJECT_DEFINED
+SO2_DECL_REF(SvInPlaceObject)
+#endif
 
 /********************** SvObjectServer ***********************************
 *************************************************************************/
