@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdpage.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:33:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:33:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,9 @@
 #ifndef _SDPAGE_HXX
 #define _SDPAGE_HXX
 
+#include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/XInterface.hpp>
-#ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
 #include <com/sun/star/presentation/FadeEffect.hpp>
-#endif
 
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
@@ -56,14 +55,13 @@
 #ifndef _PRESENTATION
 #include <bf_sd/pres.hxx>
 #endif
-class SfxStyleSheet;
-class SfxItemSet;
 namespace binfilter {
 
+class SfxStyleSheet;
+class SfxItemSet;
 class StarBASIC;
 class SdDrawDocument;
 class SdrTextObj;
-class SdPageLink;
 struct StyleRequestData;
 
 enum PresObjKind
@@ -112,7 +110,6 @@ protected:
     rtl_TextEncoding eCharSet;            // Text-Encoding
     USHORT      nPaperBin;                // PaperBin
     Orientation eOrientation;             // Print-Orientation
-    SdPageLink* pPageLink;                // PageLink (nur bei gelinkten Seiten)
 
     BOOL        InsertPresObj(SdrObject* pObj, PresObjKind eObjKind, BOOL bVertical,
                               Rectangle rRect, BOOL bInit, List& rObjList);
@@ -123,9 +120,7 @@ protected:
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoPage();
 
-    SfxItemSet* mpItems;
-
-/*NBFF*/    SfxItemSet* getOrCreateItems();
+    ::com::sun::star::uno::Any maAlienAttributes;
 
 public:
     TYPEINFO();
@@ -209,15 +204,8 @@ public:
     virtual String  GetFileName() const       { return aFileName; }
     void            SetBookmarkName(const String& aName) { aBookmarkName = aName; }
     virtual String  GetBookmarkName() const       { return aBookmarkName; }
-    SdPageLink*     GetLink() { return pPageLink; }
 
-#ifndef SVX_LIGHT
-    void            ConnectLink();
-    void            DisconnectLink();
-
-    void    ScaleObjects(const Size& rNewPageSize, const Rectangle& rNewBorderRect,
-                         BOOL bScaleAllObj);
-#endif
+    void    ScaleObjects(const Size& rNewPageSize, const Rectangle& rNewBorderRect, BOOL bScaleAllObj);
 
     const String&   GetName();
     String          GetRealName() const { return aPageName; };
