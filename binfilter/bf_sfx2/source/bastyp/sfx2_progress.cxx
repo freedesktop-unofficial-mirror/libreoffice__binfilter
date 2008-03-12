@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_progress.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:26:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:03:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #pragma hdrstop
 #endif
 
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 
 #include "appdata.hxx"
 #include "app.hxx"
