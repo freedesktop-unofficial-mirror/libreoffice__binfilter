@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:15:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:55:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,19 +145,17 @@ namespace binfilter {
 /*N*/  SetFlyMacroLnk( LINK(this, SwWrtShell, ExecFlyMac) );
 /*N*/ }
 
-/*N*/ void SwWrtShell::ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
-/*N*/                           const SwRect &rFrm )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
+    void SwWrtShell::ConnectObj( SvInPlaceObjectRef, const SwRect &, const SwRect & )
+    {
+    }
 
-
-/*N*/ SwWrtShell::~SwWrtShell()
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-/*N*/   while(IsModePushed())
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     PopMode();
-/*N*/   while(PopCrsr(FALSE))
-/*N*/       ;
-/*N*/   SwTransferable::ClearSelection( *this );
-/*N*/ }
+    SwWrtShell::~SwWrtShell()
+    {
+        SET_CURR_SHELL( this );
+        while(IsModePushed())
+        {
+            DBG_BF_ASSERT(0, "STRIP");
+        };
+        while(PopCrsr(FALSE));
+    }
 }
