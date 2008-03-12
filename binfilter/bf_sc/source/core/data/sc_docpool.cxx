@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docpool.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:32:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:48:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 #include "scitems.hxx"
 #include <vcl/outdev.hxx>
-#include <svtools/aeitem.hxx>
+#include <bf_svtools/aeitem.hxx>
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/brshitem.hxx>
