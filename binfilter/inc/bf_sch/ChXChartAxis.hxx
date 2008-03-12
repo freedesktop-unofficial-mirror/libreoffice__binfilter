@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ChXChartAxis.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:37:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:23:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 // header for SvNumberFormatsSupplierObj
 #ifndef _NUMUNO_HXX
-#include <svtools/numuno.hxx>
+#include <bf_svtools/numuno.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
