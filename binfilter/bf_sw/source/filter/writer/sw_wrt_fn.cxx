@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrt_fn.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:01:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:36:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,10 +39,10 @@
 #endif
 
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 
 
