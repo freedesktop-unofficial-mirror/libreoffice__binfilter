@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dbdocutl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:17:26 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:47:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #include <com/sun/star/sdbc/DataType.hpp>
 #include <com/sun/star/sdbc/XRow.hpp>
 
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 
 #include "dbdocutl.hxx"
 #include "document.hxx"
