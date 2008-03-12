@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unostyle.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:08:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:29:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,13 +49,13 @@
 #include <vcl/svapp.hxx>
 #endif
 #ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #endif
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
