@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_stlpool.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:39:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:51:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@
 #include <bf_svx/postitem.hxx>
 #include <bf_svx/udlnitem.hxx>
 #include <bf_svx/wghtitem.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <vcl/outdev.hxx>
 #include <vcl/svapp.hxx>
 
