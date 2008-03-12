@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outlobj.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:32:30 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:58:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,15 +49,15 @@
 #endif
 
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #include <bf_svx/eeitem.hxx>
 class SvStream;
-class SfxItemPool;
-class SfxStyleSheetPool;
 namespace binfilter {
 
+class SfxItemPool;
+class SfxStyleSheetPool;
 class Outliner;
 class EditTextObject;
 
