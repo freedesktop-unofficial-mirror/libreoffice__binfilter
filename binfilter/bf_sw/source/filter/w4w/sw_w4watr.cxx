@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4watr.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:59:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:35:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,8 +36,6 @@
  * Dieses File enthaelt alle Ausgabe-Funktionen des W4W-Writers;
  * fuer alle Nodes, Attribute, Formate und Chars.
  */
-
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -47,7 +45,7 @@
 #endif
 
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
