@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.17 $
+ *  $Revision: 1.18 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:41:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:07:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,20 +50,20 @@
 #include <vcl/svapp.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SB_SBSTAR_HXX //autogen
 #include "bf_basic/sbstar.hxx"
 #endif
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -75,20 +75,20 @@
 #include "objsh.hxx"
 
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_PRINTWARNINGOPTIONS_HXX
-#include <svtools/printwarningoptions.hxx>
+#include <bf_svtools/printwarningoptions.hxx>
 #endif
 
-#include <svtools/urihelper.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/urihelper.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <unotools/ucbhelper.hxx>
-#include <svtools/asynclink.hxx>
+#include <bf_svtools/asynclink.hxx>
 
 #include "docfac.hxx"
 #include "docfile.hxx"
@@ -114,7 +114,7 @@
 #include "scriptcont.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
-#include <svtools/imgdef.hxx>
+#include <bf_svtools/imgdef.hxx>
 #endif
 
 using namespace ::com::sun::star;
@@ -131,7 +131,7 @@ namespace binfilter {
 
 /*N*/ DBG_NAME(SfxObjectShell)
 
-extern ::svtools::AsynchronLink* pPendingCloser;
+extern AsynchronLink* pPendingCloser;
 static SfxObjectShell* pWorkingDoc = NULL;
 
 //=========================================================================
@@ -500,7 +500,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/   BasicManager* pBasicManager;
 /*N*/   if ( pStor )
 /*N*/   {
-/*N*/       String aOldURL = so3::StaticBaseUrl::GetBaseURL();
+/*N*/       String aOldURL = ::binfilter::StaticBaseUrl::GetBaseURL();
 /*N*/       String aNewURL;
 /*N*/       if( HasName() )
 /*N*/           aNewURL = GetMedium()->GetName();
@@ -508,19 +508,19 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/       {
 /*N*/           aNewURL = GetDocInfo().GetTemplateFileName();
 /*N*/           // Bei Templates keine ::com::sun::star::util::URL...
-/*N*/             aNewURL = so3::StaticBaseUrl::SmartRelToAbs( aNewURL );
+/*N*/             aNewURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( aNewURL );
 /*N*/       }
-/*N*/       so3::StaticBaseUrl::SetBaseURL( aNewURL );
+/*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( aNewURL );
 /*N*/
 /*N*/       // load BASIC-manager
 //*N*/      SfxErrorContext aErrContext( ERRCTX_SFX_LOADBASIC, GetTitle() );
 /*N*/       String aAppBasicDir = SvtPathOptions().GetBasicPath();
 /*N*/         pImp->pBasicMgr = pBasicManager = new BasicManager(
                 *pStor,
-                so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
+                ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
                 pAppBasic, &aAppBasicDir );
 /*N*/
-/*N*/       so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*N*/   }
 /*N*/
 /*N*/   // not loaded?
