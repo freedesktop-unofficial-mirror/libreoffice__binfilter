@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:32:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:11:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@
 
 #include <tools/solar.h>
 #include <tools/string.hxx>
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #include <tools/rtti.hxx>
 #include <string.h>
 #include <tools/contnr.hxx>
@@ -61,9 +61,9 @@
 #include <tools/link.hxx>
 #include <tools/lang.hxx>
 #include <bf_sfx2/sfx.hrc>
-#include <svtools/memberid.hrc>
+#include <bf_svtools/memberid.hrc>
 #include <bf_sfx2/sfxsids.hrc>
-#include <svtools/cntwids.hrc>
+#include <bf_svtools/cntwids.hrc>
 //#include <vcl/resid.hxx>
 #include <tools/resid.hxx>
 //#include <vcl/rc.hxx>
@@ -105,29 +105,29 @@
 #include <global.hxx>
 #include <vcl/syswin.hxx>
 #include <tools/debug.hxx>
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #include <vcl/ctrl.hxx>
-#include <svtools/hint.hxx>
-#include <svtools/poolitem.hxx>
-#include <svtools/args.hxx>
+#include <bf_svtools/hint.hxx>
+#include <bf_svtools/poolitem.hxx>
+#include <bf_svtools/args.hxx>
 #include <vcl/image.hxx>
 #include <vcl/timer.hxx>
 #include <tools/unqidx.hxx>
 #include <vcl/symbol.hxx>
 #include <vcl/fixed.hxx>
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #include <vcl/timer.hxx>
 #include <sc.hrc>
 #include <stdarg.h>
 #include <bf_svx/dialogs.hrc>
 #include "bf_basic/sbxdef.hxx"
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #include <bf_sfx2/shell.hxx>
 #include <vcl/window.hxx>
 #include <vcl/group.hxx>
 #include <tools/unqid.hxx>
 #include <tools/table.hxx>
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #include <vcl/dialog.hxx>
 #include <vcl/button.hxx>
 #include <rangelst.hxx>
@@ -138,8 +138,8 @@
 #include <vcl/spinfld.hxx>
 #include <vcl/combobox.hxx>
 #include <tools/pstm.hxx>
-#include <svtools/eitem.hxx>
-#include <svtools/itempool.hxx>
+#include <bf_svtools/eitem.hxx>
+#include <bf_svtools/itempool.hxx>
 #include <bf_so3/so2ref.hxx>
 #include <vcl/tabdlg.hxx>
 #include <vcl/tabpage.hxx>
@@ -148,10 +148,10 @@
 #include <vcl/event.hxx>
 #include <bf_so3/advise.hxx>
 #include <bf_so3/protocol.hxx>
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #include <bf_so3/ipclient.hxx>
 #include <bf_sfx2/cfgitem.hxx>
-#include <svtools/confitem.hxx>
+#include <bf_svtools/confitem.hxx>
 #include <markdata.hxx>
 #include <bf_svx/optgrid.hxx>
 #include <vcl/apptypes.hxx>
@@ -166,7 +166,7 @@
 #include <column.hxx>
 #include <markarr.hxx>
 #include <vcl/mapmod.hxx>
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #include <vcl/seleng.hxx>
 #include <rsc/rscsfx.hxx>
 #include <bf_svx/zoomitem.hxx>
@@ -181,7 +181,7 @@
 #include <bf_sfx2/module.hxx>
 #include <dbfunc.hxx>
 #include <vcl/accel.hxx>
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #include <bf_sfx2/viewfac.hxx>
 #include <bf_so3/svstor.hxx>
 #include <bf_sfx2/objsh.hxx>
@@ -189,16 +189,16 @@
 #include <bf_so3/persist.hxx>
 #include <target.hxx>
 #include <tabvwsh.hxx>
-#include <svtools/inethist.hxx>
-#include <svtools/inetdef.hxx>
+#include <bf_svtools/inethist.hxx>
+#include <bf_svtools/inetdef.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
-#include <svtools/cancel.hxx>
-#include <svtools/inetmsg.hxx>
+#include <bf_svtools/cancel.hxx>
+#include <bf_svtools/inetmsg.hxx>
 #include <bf_sfx2/app.hxx>
 #include <tools/urlobj.hxx>
 #include <scdll.hxx>
 #include <bf_sfx2/msg.hxx>
-#include <svtools/ownlist.hxx>
+#include <bf_svtools/ownlist.hxx>
 #include <bf_so3/persist.hxx>
 #include <bf_so3/pseudo.hxx>
 #include <bf_sfx2/objface.hxx>
@@ -228,9 +228,9 @@
 #include <bf_svx/svdtypes.hxx>
 #include <vcl/btndlg.hxx>
 #include <vcl/svapp.hxx>
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #include <vcl/edit.hxx>
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #include <collect.hxx>
 #include <bf_svx/svdsob.hxx>
 #include <vcl/imagebtn.hxx>
@@ -262,7 +262,7 @@
 #include <vcl/animate.hxx>
 #include <vcl/graph.h>
 #include <bf_svx/editdata.hxx>
-#include <svtools/stdctrl.hxx>
+#include <bf_svtools/stdctrl.hxx>
 #include <bf_sfx2/basedlgs.hxx>
 #include <conditio.hxx>
 #include <vcl/combobox.hxx>
@@ -324,7 +324,7 @@
 #include <cell.hxx>
 #include <stddef.h>
 #include <tools/mempool.hxx>
-#include <svtools/style.hrc>
+#include <bf_svtools/style.hrc>
 #include <drawview.hxx>
 #include <bf_svx/view3d.hxx>
 #include <bf_svx/def3d.hxx>
@@ -335,7 +335,7 @@
 #include <bf_svx/xtextit0.hxx>
 #include <bf_svx/svdtrans.hxx>
 #include <bf_svx/xtxasit.hxx>
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #include <reffact.hxx>
 #include <bf_svx/svdotext.hxx>
 #include <bf_svx/svdoattr.hxx>
@@ -352,7 +352,7 @@
 #include <vcl/button.hxx>
 #include <bf_svx/srchitem.hxx>
 #include <bf_svx/svdorect.hxx>
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #include <stlpool.hxx>
 #include <bf_svx/eeitem.hxx>
 #include <inputhdl.hxx>
