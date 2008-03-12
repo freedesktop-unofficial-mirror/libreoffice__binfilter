@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdbinfilter.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:58:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:30:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,19 +38,14 @@
 #endif
 
 #include <sot/formats.hxx>
-#include <svtools/itempool.hxx>
-#include <svtools/style.hxx>
-#include <svtools/sfxecode.hxx>
-#include <svtools/saveopt.hxx>
+#include <bf_svtools/itempool.hxx>
+#include <bf_svtools/style.hxx>
+#include <bf_svtools/sfxecode.hxx>
+#include <bf_svtools/saveopt.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/progress.hxx>
 
-#ifndef MAC
-#ifndef SVX_LIGHT
-#include "../../ui/inc/docshell.hxx"
-#endif //!SVX_LIGHT
-#else  //MAC
-#endif //!MAC
+#include "bf_sd/docshell.hxx"
 
 
 #ifndef _XDEF_HXX
