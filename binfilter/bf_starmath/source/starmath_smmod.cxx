@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:57:54 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:25:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #include <bf_sfx2/app.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
@@ -46,13 +46,13 @@
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 #include <vcl/virdev.hxx>
 
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #include "smmod.hxx"
@@ -235,15 +235,15 @@ namespace binfilter {//STRIP009
 /*N*/     pThis->pVirtualDev = new VirtualDevice;
 /*N*/ }
 
-/*N*/ void SmModule::ApplyColorConfigValues( const svtools::ColorConfig &rColorCfg )
+/*N*/ void SmModule::ApplyColorConfigValues( const ColorConfig &rColorCfg )
 /*N*/ {
 /*N*/ }
 
-/*N*/ svtools::ColorConfig & SmModule::GetColorConfig()
+/*N*/ ColorConfig & SmModule::GetColorConfig()
 /*N*/ {
 /*N*/     if(!pColorConfig)
 /*N*/     {
-/*N*/         pColorConfig = new svtools::ColorConfig;
+/*N*/         pColorConfig = new ColorConfig;
 /*N*/         ApplyColorConfigValues( *pColorConfig );
 /*N*/         StartListening( *pColorConfig );
 /*N*/     }
