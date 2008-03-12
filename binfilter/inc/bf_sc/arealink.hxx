@@ -4,9 +4,9 @@
  *
  *  $RCSfile: arealink.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:17:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:09:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@ namespace binfilter {
 class ScDocShell;
 class SfxObjectShell;
 
-class ScAreaLink : public ::so3::SvBaseLink, public ScRefreshTimer
+class ScAreaLink : public ::binfilter::SvBaseLink, public ScRefreshTimer
 {
 private:
     ScDocShell* pDocShell;      // Container
