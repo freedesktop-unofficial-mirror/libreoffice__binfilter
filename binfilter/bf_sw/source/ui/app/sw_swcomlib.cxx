@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swcomlib.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:12:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:44:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
