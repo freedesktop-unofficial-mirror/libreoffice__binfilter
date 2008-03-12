@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmhelp.hrc,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:28:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:51:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SVX_FMHELP_HRC
 
 // include     -----------------------------------------------------------
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 
 // in solar.hrc
 //#define HID_FORMS_START               (HID_LIB_START+4000)
