@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fcontnr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:59:00 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:36:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SFX_FCONTNR_HXX
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
@@ -68,7 +68,7 @@ class SfxRefItem : public SfxPoolItem
     SvRefBaseRef aRef;
 public:
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const
-    {   return new SfxRefItem( *this ); }
+    { (void)pPool;  return new SfxRefItem( *this ); }
     virtual int              operator==( const SfxPoolItem& rL) const
     {   return ((SfxRefItem&)rL).aRef == aRef; }
     SfxRefItem( USHORT nWhich, const SvRefBaseRef& rValue ) : SfxPoolItem( nWhich )

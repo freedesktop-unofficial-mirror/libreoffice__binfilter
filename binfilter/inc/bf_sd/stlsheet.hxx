@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlsheet.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:54:54 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:33:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 namespace binfilter {
 class SdStyleSheet : public SfxStyleSheet
