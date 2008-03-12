@@ -4,9 +4,9 @@
  *
  *  $RCSfile: msgpool.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:26:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:09:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,13 +41,13 @@
 #endif
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFX_SRCHITEM_HXX
 #include <bf_sfx2/srchitem.hxx>
