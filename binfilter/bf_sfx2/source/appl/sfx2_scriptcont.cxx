@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_scriptcont.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:38:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:02:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,8 +63,8 @@
 // For password functionality
 
 
-#include <svtools/sfxecode.hxx>
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/sfxecode.hxx>
+#include <bf_svtools/ehdl.hxx>
 #include "bf_basic/basmgr.hxx"
 #include <xmlscript/xmlmod_imexp.hxx>
 #include <app.hxx>
