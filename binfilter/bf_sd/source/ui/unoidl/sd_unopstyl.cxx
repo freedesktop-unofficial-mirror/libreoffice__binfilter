@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopstyl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:38:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:55:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@
 #include "stlsheet.hxx"
 #endif
 #ifndef _SFXSMPLHINT_HXX
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 
 #include <rtl/uuid.h>
