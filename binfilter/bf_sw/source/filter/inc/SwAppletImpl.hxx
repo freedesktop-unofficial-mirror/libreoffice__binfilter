@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwAppletImpl.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:09:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:32:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@
 #endif
 
 #ifndef _HTMLKYWD_HXX
-#include <svtools/htmlkywd.hxx>
+#include <bf_svtools/htmlkywd.hxx>
 #endif
 #ifndef _FRAMEOBJ_HXX //autogen
 #include <bf_sfx2/frameobj.hxx>
@@ -64,16 +64,16 @@
 #include <bf_so3/plugin.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
-class SfxItemSet;
 namespace binfilter {
 
-extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_hidden, "HIDDEN" );
-extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_HIDDEN_false, "FALSE" );
-extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_archive, "ARCHIVE" );
-extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_archives, "ARCHIVES" );
-extern sal_Char __FAR_DATA SVTOOLS_CONSTASCII_DECL( sHTML_O_object, "OBJECT" );
+class SfxItemSet;
+extern sal_Char const SVTOOLS_CONSTASCII_DECL( sHTML_O_hidden, "HIDDEN" );
+extern sal_Char const SVTOOLS_CONSTASCII_DECL( sHTML_HIDDEN_false, "FALSE" );
+extern sal_Char const SVTOOLS_CONSTASCII_DECL( sHTML_O_archive, "ARCHIVE" );
+extern sal_Char const SVTOOLS_CONSTASCII_DECL( sHTML_O_archives, "ARCHIVES" );
+extern sal_Char const SVTOOLS_CONSTASCII_DECL( sHTML_O_object, "OBJECT" );
 
 class SwApplet_Impl
 {
