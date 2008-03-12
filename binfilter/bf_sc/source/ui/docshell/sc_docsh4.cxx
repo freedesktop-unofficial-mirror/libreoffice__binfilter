@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh4.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:05:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:05:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,11 +50,11 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #include "bf_basic/sbxcore.hxx"
 #include <bf_sfx2/request.hxx>
-#include <svtools/sfxecode.hxx>
-#include <svtools/whiter.hxx>
+#include <bf_svtools/sfxecode.hxx>
+#include <bf_svtools/whiter.hxx>
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
 
