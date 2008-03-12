@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:47:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:57:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <bf_svx/linkmgr.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <string.h>
 #include <math.h>
 
@@ -1704,7 +1704,7 @@ ScDdeLink* lcl_GetDdeLink( SvxLinkManager* pLinkMgr,
     USHORT nCount = pLinkMgr->GetLinks().Count();
     for (USHORT i=0; i<nCount; i++ )
     {
-        ::so3::SvBaseLink* pBase = *pLinkMgr->GetLinks()[i];
+        ::binfilter::SvBaseLink* pBase = *pLinkMgr->GetLinks()[i];
         if (pBase->ISA(ScDdeLink))
         {
             ScDdeLink* pLink = (ScDdeLink*)pBase;
