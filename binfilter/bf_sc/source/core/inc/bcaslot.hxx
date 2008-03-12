@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bcaslot.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 14:26:45 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:53:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,10 +37,10 @@
 #define _SC_BCASLOT_HXX
 
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #include "global.hxx"
