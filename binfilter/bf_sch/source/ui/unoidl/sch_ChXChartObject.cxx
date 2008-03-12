@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartObject.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:57:32 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:26:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #endif

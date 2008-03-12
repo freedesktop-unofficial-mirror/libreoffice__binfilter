@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SchTransferable.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:49:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:25:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SCH_TRANSFERABLE_HXX_
 
 #ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
+#include <bf_svtools/transfer.hxx>
 #endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
