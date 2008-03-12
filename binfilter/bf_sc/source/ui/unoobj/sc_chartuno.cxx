@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartuno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:08:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:14:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/memchrt.hxx>
 #include <bf_sch/schdll0.hxx>
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 
 #include "chartuno.hxx"
 #include "miscuno.hxx"

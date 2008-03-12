@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_datauno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:09:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:14:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,14 +33,12 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#include <svtools/zforlist.hxx>
+#include <com/sun/star/beans/PropertyAttribute.hpp>
+#include <bf_svtools/zforlist.hxx>
 #include <rtl/uuid.h>
 
 #include <com/sun/star/awt/XBitmap.hpp>
@@ -1879,17 +1877,15 @@ sal_Bool SAL_CALL ScDatabaseRangeObj::supportsService( const ::rtl::OUString& rS
                                                     throw(uno::RuntimeException)
 {
     String aServiceStr( rServiceName );
-    return aServiceStr.EqualsAscii( SCDATABASERANGEOBJ_SERVICE ) ||
-           aServiceStr.EqualsAscii( SCLINKTARGET_SERVICE );
+    return aServiceStr.EqualsAscii( SCDATABASERANGEOBJ_SERVICE );
 }
 
 uno::Sequence< ::rtl::OUString> SAL_CALL ScDatabaseRangeObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
-    uno::Sequence< ::rtl::OUString> aRet(2);
+    uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
     pArray[0] = ::rtl::OUString::createFromAscii( SCDATABASERANGEOBJ_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCLINKTARGET_SERVICE );
     return aRet;
 }
 
