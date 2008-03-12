@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fltini.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:56:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:30:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef _PARHTML_HXX //autogen
-#include <svtools/parhtml.hxx>
+#include <bf_svtools/parhtml.hxx>
 #endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
@@ -123,7 +123,7 @@
 #include <swerror.h>
 #endif
 
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 
 namespace binfilter {
 
