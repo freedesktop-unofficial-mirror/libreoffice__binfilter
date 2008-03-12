@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frame.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:45:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:04:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _FRAME_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #include "swtypes.hxx"  // fuer SwTwips
 #include "swrect.hxx"
@@ -51,11 +51,11 @@
 #define SIZEPTR SizePtr
 typedef long Size::* SizePtr;
 typedef long Point::* PointPtr;
-class SfxPoolItem;
 class Brush;
 class Color;
 
 namespace binfilter {
+class SfxPoolItem;
 
 class SwLayoutFrm;
 class SwRootFrm;

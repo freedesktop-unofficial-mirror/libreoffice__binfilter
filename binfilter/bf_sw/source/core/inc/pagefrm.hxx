@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pagefrm.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:47:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:04:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #include "ftnboss.hxx"
@@ -46,9 +46,9 @@
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
 #endif
-class SvPtrarr;
 namespace binfilter {
 
+class SvPtrarr;
 class SwFlyFrm;
 class SwFrmFmt;
 class SwPageDesc;
@@ -341,30 +341,6 @@ public:
     void PaintBorderAndShadow( const SwRect& _rPageRect,
                                ViewShell*    _pViewShell ) const;
 
-    /** get bound rectangle of border and shadow for repaints
-
-        OD 12.02.2003 for #i9719# and #105645#
-
-        author OD
-
-        @param _rPageRect
-        input parameter - constant instance reference of the page rectangle.
-        Generally, it's the frame area of the page, but for empty pages in print
-        preview, this parameter is useful.
-
-        @param _pViewShell
-        input parameter - instance of the view shell, for which the rectangle
-        has to be generated.
-
-        @param _orBorderAndShadowBoundRect
-        output parameter - instance reference of the bounded border and shadow
-        rectangle for the given page rectangle
-    */
-    void GetBorderAndShadowBoundRect( const SwRect& _rPageRect,
-                                      ViewShell*    _pViewShell,
-                                      SwRect& _orBorderAndShadowBoundRect ) const;
-
-    // OD 12.02.2003 #i9719#, #105645#
     inline sal_Int8 BorderPxWidth() const
     {
         return mnBorderPxWidth;
