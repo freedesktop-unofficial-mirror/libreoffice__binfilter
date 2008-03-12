@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:19:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:29:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -89,7 +89,6 @@ class SdStyleSheetPool;
 class SfxMedium;
 class SdrOle2Obj;
 class EditStatus;
-class SdTransferable;
 struct SpellCallbackInfo;
 struct StyleRequestData;
 
@@ -150,7 +149,6 @@ private:
     List*               pFrameViewList;
     List*               pCustomShowList;
     SdDrawDocShell*     pDocSh;
-    SdTransferable *    pCreatingTransferable;
     BOOL                bHasOnlineSpellErrors;
     BOOL                bInitialOnlineSpellingEnabled;
     String              aBookmarkFile;
@@ -180,7 +178,6 @@ private:
     LanguageType        eLanguageCJK;
     LanguageType        eLanguageCTL;
     SvxNumType          ePageNumType;
-    Link                aOldNotifyUndoActionHdl;
     SdDrawDocShellRef   xAllocedDocShRef;   // => AllocModel()
     BOOL                bAllocDocSh;        // => AllocModel()
     DocumentType        eDocType;
@@ -192,12 +189,8 @@ private:
     ::com::sun::star::lang::Locale* mpLocale;
 
     void                UpdatePageObjectsInNotes(USHORT nStartPos);
-    void                FillOnlineSpellingList(SdPage* pPage);
-    void                SpellObject(SdrTextObj* pObj);
 
-                        DECL_LINK(NotifyUndoActionHdl, SfxUndoAction*);
-                        DECL_LINK(WorkStartupHdl, Timer*);
-
+    void WorkStartupHdl();
 protected:
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoModel();
@@ -235,68 +228,18 @@ public:
 
     void                SetAllocDocSh(BOOL bAlloc);
 
-    void                CreatingDataObj( SdTransferable* pTransferable ) { pCreatingTransferable = pTransferable; }
-
     void                CreateFirstPages();
 
     void                InsertPage(SdrPage* pPage, USHORT nPos=0xFFFF);
     void                DeletePage(USHORT nPgNum);
     SdrPage*            RemovePage(USHORT nPgNum);
-    void                RemoveUnnessesaryMasterPages( SdPage* pMaster=NULL, BOOL bOnlyDuplicatePages=FALSE, BOOL bUndo=TRUE );
+    void                RemoveDuplicateMasterPages();
 
-
-    /** Insert pages into this document
-
-        This method inserts whole pages into this document, either
-        selected ones (specified via pBookmarkList/pExchangeList), or
-        all from the source document.
-
-        @attention Beware! This method in it's current state does not
-        handle all combinations of their input parameters
-        correctly. For example, for pBookmarkList=NULL, bReplace=TRUE
-        is ignored (no replace happens).
-
-        @param pBookmarkList
-        A list of strings, denoting the names of the pages to be copied
-
-        @param pExchangeList
-        A list of strings, denoting the names of the pages to be renamed
-
-        @param bLink
-        Whether the inserted pages should be links to the bookmark document
-
-        @param bReplace
-        Whether the pages should not be inserted, but replace the pages in
-        the destination document
-
-        @param nPgPos
-        Insertion point/start of replacement
-
-        @param bNoDialogs
-        Whether query dialogs are allowed (e.g. for page scaling)
-
-        @param pBookmarkDocSh
-        DocShell of the source document (used e.g. to extract the filename
-        for linked pages)
-
-        @param bCopy
-        Whether the source document should be treated as immutable (i.e.
-        inserted pages are not removed from it, but cloned)
-
-        @param bMergeMasterPages
-        Whether the source document's master pages should be copied, too.
-
-        @param bPreservePageNames
-        Whether the replace operation should take the name from the new
-        page, or preserve the old name
-     */
     void                CloseBookmarkDoc();
 
 
-    USHORT              GetPageByName(const String& rPgName, BOOL& rbIsMasterPage ) const;
     SdPage*             GetSdPage(USHORT nPgNum, PageKind ePgKind) const;
     USHORT              GetSdPageCount(PageKind ePgKind) const;
-    void                SetSelected(SdPage* pPage, BOOL bSelect);
 
     SdPage*             GetMasterSdPage(USHORT nPgNum, PageKind ePgKind);
     USHORT              GetMasterSdPageCount(PageKind ePgKind) const;
@@ -371,13 +314,6 @@ public:
 
     void                SetOnlineSpell( BOOL bIn );
     BOOL                GetOnlineSpell() const { return bOnlineSpell; }
-    void                StopOnlineSpelling();
-    void                StartOnlineSpelling(BOOL bForceSpelling=TRUE);
-
-    void                ImpOnlineSpellCallback(SpellCallbackInfo* pInfo, SdrObject* pObj, SdrOutliner* pOutl);
-
-    void                InsertObject(SdrObject* pObj, SdPage* pPage);
-    void                RemoveObject(SdrObject* pObj, SdPage* pPage);
 
     BOOL                GetHideSpell() const { return bHideSpell; }
 
@@ -395,12 +331,8 @@ public:
     void                CreateLayoutTemplates();
     void                RenameLayoutTemplate(const String& rOldLayoutName, const String& rNewName);
 
-    void                StopWorkStartupDelay();
-
     void                NewOrLoadCompleted(DocCreationMode eMode);
     BOOL                IsNewOrLoadCompleted() const {return bNewOrLoadCompleted; }
-
-    FrameView*          GetFrameView(ULONG nPos) { return (FrameView*) pFrameViewList->GetObject(nPos); }
 
     SdAnimationInfo*    GetAnimationInfo(SdrObject* pObject) const;
 
@@ -411,7 +343,6 @@ public:
     CharClass*          GetCharClass() const { return mpCharClass; }
 
     void                RestoreLayerNames();
-    void                MakeUniqueLayerNames();
 
     void                UpdateAllLinks();
 
