@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:15:25 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:02:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@
 #endif
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SVX_ITEMDATA_HXX
@@ -71,22 +71,21 @@
 #include <bf_svx/outliner.hxx>
 #include "bf_basic/sbstar.hxx"
 
-#include <svtools/ehdl.hxx>
-#include <svtools/accessibilityoptions.hxx>
-#include <svtools/ctloptions.hxx>
+#include <bf_svtools/ehdl.hxx>
+#include <bf_svtools/ctloptions.hxx>
 #include <vcl/status.hxx>
 #include <bf_sfx2/request.hxx>
 
 #include <bf_sfx2/macrconf.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_svx/langitem.hxx>
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #include <bf_offmgr/app.hxx>
 #include <vcl/msgbox.hxx>
 #include <bf_offmgr/ofaids.hrc>
-#include <svtools/inethist.hxx>
+#include <bf_svtools/inethist.hxx>
 #include <vcl/waitobj.hxx>
 
 #define ITEMID_SPELLCHECK 0
@@ -140,7 +139,6 @@ static USHORT nIdleCount = 0;
 /*N*/   pPrintCfg( NULL ),
 /*N*/   pNavipiCfg( NULL ),
 /*N*/   pColorConfig( NULL ),
-/*N*/   pAccessOptions( NULL ),
 /*N*/   pCTLOptions( NULL ),
 /*N*/   pTeamDlg( NULL ),
 /*N*/   nCurRefDlgId( 0 ),
@@ -154,7 +152,6 @@ static USHORT nIdleCount = 0;
 /*N*/   SetName(String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("StarCalc")));       // fuer Basic
 /*N*/
 /*N*/   ResetDragObject();
-/*N*/   SetClipObject( NULL, NULL );
 /*N*/
 /*N*/   //  InputHandler braucht nicht mehr angelegt zu werden
 /*N*/
@@ -232,11 +229,6 @@ static USHORT nIdleCount = 0;
 /*N*/       EndListening(*pColorConfig);
 /*N*/       DELETEZ( pColorConfig );
 /*N*/   }
-/*N*/   if ( pAccessOptions )
-/*N*/   {
-/*N*/       EndListening(*pAccessOptions);
-/*N*/       DELETEZ( pAccessOptions );
-/*N*/   }
 /*N*/   if ( pCTLOptions )
 /*N*/   {
 /*N*/       EndListening(*pCTLOptions);
@@ -274,9 +266,6 @@ static USHORT nIdleCount = 0;
 
 /*N*/ void ScModule::ResetDragObject()
 /*N*/ {
-/*N*/   aDragData.pCellTransfer = NULL;
-/*N*/   aDragData.pDrawTransfer = NULL;
-/*N*/
 /*N*/   aDragData.aLinkDoc.Erase();
 /*N*/   aDragData.aLinkTable.Erase();
 /*N*/   aDragData.aLinkArea.Erase();
@@ -286,21 +275,6 @@ static USHORT nIdleCount = 0;
 /*N*/ }
 
 //------------------------------------------------------------------
-
-/*N*/ void ScModule::SetClipObject( ScTransferObj* pCellObj, ScDrawTransferObj* pDrawObj )
-/*N*/ {
-/*N*/   DBG_ASSERT( !pCellObj || !pDrawObj, "SetClipObject: not allowed to set both objects" );
-/*N*/
-/*N*/   aClipData.pCellClipboard = pCellObj;
-/*N*/   aClipData.pDrawClipboard = pDrawObj;
-/*N*/ }
-
-/*N*/ ScDocument* ScModule::GetClipDoc()
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
-/*N*/   return NULL;
-/*N*/ }
-
 
 /*N*/ const ScViewOptions& ScModule::GetViewOptions()
 /*N*/ {
@@ -382,26 +356,15 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 /*N*/   return *pPrintCfg;
 /*N*/ }
 
-/*N*/ svtools::ColorConfig& ScModule::GetColorConfig()
+        ColorConfig& ScModule::GetColorConfig()
 /*N*/ {
 /*N*/   if ( !pColorConfig )
 /*N*/   {
-/*N*/         pColorConfig = new svtools::ColorConfig;
+/*N*/         pColorConfig = new ColorConfig;
 /*N*/       StartListening(*pColorConfig);
 /*N*/   }
 /*N*/
 /*N*/   return *pColorConfig;
-/*N*/ }
-
-/*N*/ SvtAccessibilityOptions& ScModule::GetAccessOptions()
-/*N*/ {
-/*N*/   if ( !pAccessOptions )
-/*N*/   {
-/*N*/       pAccessOptions = new SvtAccessibilityOptions;
-/*N*/       StartListening(*pAccessOptions);
-/*N*/   }
-/*N*/
-/*N*/   return *pAccessOptions;
 /*N*/ }
 
 /*N*/ SvtCTLOptions& ScModule::GetCTLOptions()
