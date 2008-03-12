@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:27:25 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:15:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,10 +60,10 @@
 #include <bf_svx/tstpitem.hxx>
 #endif
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #ifndef _HTMLKYWD_HXX
-#include <svtools/htmlkywd.hxx>
+#include <bf_svtools/htmlkywd.hxx>
 #endif
 
 
