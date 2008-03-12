@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svxerr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:14:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:13:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@
 #ifndef __RSC
 
 #ifndef _EHDL_HXX //autogen
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #endif
 namespace binfilter {
 class SvxErrorHandler : private SfxErrorHandler
