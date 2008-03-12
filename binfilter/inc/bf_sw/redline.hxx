@@ -4,9 +4,9 @@
  *
  *  $RCSfile: redline.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:45:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:46:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #endif
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #ifndef _PAM_HXX
 #include <pam.hxx>
@@ -51,8 +51,8 @@
 #ifndef _REDLENUM_HXX
 #include <redlenum.hxx>
 #endif
-class SfxItemSet;
 namespace binfilter {
+class SfxItemSet;
 
 
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndarr.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:44:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:43:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _NDARR_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _BPARR_HXX
@@ -49,9 +49,9 @@
 
 class Graphic;
 class UniString;
-class SvInPlaceObject;
 
 namespace binfilter {
+class SvInPlaceObject;
 class BfGraphicObject;
 
 class SwAttrSet;
