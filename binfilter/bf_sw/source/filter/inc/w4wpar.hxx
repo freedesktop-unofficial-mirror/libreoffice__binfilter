@@ -4,9 +4,9 @@
  *
  *  $RCSfile: w4wpar.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:07:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:33:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,11 +62,12 @@
 #include <numrule.hxx>          // numerierte Listen
 #endif
 
-class SfxPoolItem;
-class SfxItemSet;
 class String;
 class Graphic;
 namespace binfilter {
+
+class SfxPoolItem;
+class SfxItemSet;
 
 // Konstanten fuer die internen Fehler-Codes beim Einlesen
 #define ERR_NOERROR 0
