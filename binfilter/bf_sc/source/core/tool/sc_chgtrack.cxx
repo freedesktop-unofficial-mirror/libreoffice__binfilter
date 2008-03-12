@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chgtrack.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:43:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:55:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,19 +38,19 @@
 #endif
 
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _SFXISETHINT_HXX //autogen
-#include <svtools/isethint.hxx>
+#include <bf_svtools/isethint.hxx>
 #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
-#include <svtools/useroptions.hxx>
+#include <bf_svtools/useroptions.hxx>
 #endif
 #ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
