@@ -4,9 +4,9 @@
  *
  *  $RCSfile: table.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:29:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:21:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,10 +57,10 @@ namespace utl {
     class SearchParam;
     class TextSearch;
 }
-class SfxItemSet;
-class SfxStyleSheetBase;
 class CollatorWrapper;
 namespace binfilter {
+class SfxItemSet;
+class SfxStyleSheetBase;
 
 class SvxBoxInfoItem;
 class SvxBoxItem;
