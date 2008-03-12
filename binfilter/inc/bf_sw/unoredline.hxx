@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoredline.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:47:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:55:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,6 +41,9 @@
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
+
+#include <cppuhelper/implbase1.hxx>
+
 namespace binfilter {
 
 class SwRedline;
