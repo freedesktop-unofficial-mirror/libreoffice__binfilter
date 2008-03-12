@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_grdocsh.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:36:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:35:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,65 +50,33 @@
 #pragma hdrstop
 #endif
 
-#include "app.hrc"
 #include "strings.hrc"
 #include "glob.hrc"
 
-#include "grdocsh.hxx"
+#include "bf_sd/grdocsh.hxx"
 #include "sdresid.hxx"
 
+namespace binfilter
+{
 
+TYPEINIT1(SdGraphicDocShell, SdDrawDocShell);
 
-/*************************************************************************
-|*
-|* SFX-Slotmaps und -Definitionen
-|*
-\************************************************************************/
-namespace binfilter {
+SFX_IMPL_OBJECTFACTORY_LOD(SdGraphicDocShell, sdraw, SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd)
 
-/*N*/ TYPEINIT1(SdGraphicDocShell, SdDrawDocShell);
+SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocType)
+: SdDrawDocShell(eMode, bDataObject, eDocType)
+{
+    SetStyleFamily( 2 );
+}
 
-/*N*/ SFX_IMPL_OBJECTFACTORY_LOD(SdGraphicDocShell, sdraw,
-/*N*/                          SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd)
+SdGraphicDocShell::SdGraphicDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocType)
+: SdDrawDocShell(pDoc, eMode, bDataObject, eDocType)
+{
+    SetStyleFamily( 2 );
+}
 
-/*************************************************************************
-|*
-|* Konstruktor 1
-|*
-\************************************************************************/
-
-/*N*/ SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode,
-/*N*/                                    BOOL bDataObject,
-/*N*/                                    DocumentType eDocType) :
-/*N*/   SdDrawDocShell(eMode, bDataObject, eDocType)
-/*N*/ {
-/*N*/   SetStyleFamily( 2 ); //CL: eigentlich SFX_STYLE_FAMILY_PARA, aber der stylist ist sch....
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor 2
-|*
-\************************************************************************/
-
-/*N*/ SdGraphicDocShell::SdGraphicDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
-/*N*/                                    BOOL bDataObject,
-/*N*/                                    DocumentType eDocType) :
-/*N*/   SdDrawDocShell(pDoc, eMode, bDataObject, eDocType)
-/*N*/ {
-/*N*/   SetStyleFamily( 2 ); //CL: eigentlich SFX_STYLE_FAMILY_PARA, aber der stylist ist sch....
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Destruktor
-|*
-\************************************************************************/
-
-/*N*/ SdGraphicDocShell::~SdGraphicDocShell()
-/*N*/ {
-/*N*/ }
-
-
+SdGraphicDocShell::~SdGraphicDocShell()
+{
+}
 
 }
