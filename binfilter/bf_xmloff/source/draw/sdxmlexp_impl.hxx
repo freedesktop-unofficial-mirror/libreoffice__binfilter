@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdxmlexp_impl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:50:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:57:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,10 +56,10 @@
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
 #endif
-class SfxPoolItem;
-class SfxItemSet;
 class Rectangle;
 namespace binfilter {
+class SfxPoolItem;
+class SfxItemSet;
 
 //////////////////////////////////////////////////////////////////////////////
 
