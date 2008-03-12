@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_drawitem.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:41:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:31:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,7 @@
 
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #include "drawitem.hxx"
