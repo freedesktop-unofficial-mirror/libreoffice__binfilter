@@ -4,9 +4,9 @@
  *
  *  $RCSfile: initui.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:37:37 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:50:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,8 +40,8 @@
 #include <tools/solar.h>
 #endif
 class String;
-class SvStringsDtor;
 namespace binfilter {
+class SvStringsDtor;
 
 /*
  * Forward Declarations
