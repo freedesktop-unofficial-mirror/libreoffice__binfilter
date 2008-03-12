@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.16 $
+#   $Revision: 1.17 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:19:24 $
+#   last change: $Author: rt $ $Date: 2008-03-12 06:45:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ SOLARLIB+=-L$(LB)
 # --- Allgemein -----------------------------------------------------------
 
 RES1FILELIST=\
-    $(SOLARCOMMONRESDIR)$/svtools.srs \
     $(SRS)$/so3_src.srs 	
 
 RESLIB1NAME=$(TARGET)
@@ -75,12 +74,11 @@ SHL2LIBS=	$(SLB)$/$(TARGET).lib
 
 # dynamic libraries
 SHL2STDLIBS+= \
+    $(BFSVTOOLLIB) \
     $(BFSVXLIB) \
     $(LEGACYSMGRLIB)	\
     $(BFBASICLIB) \
     $(BFGOODIESLIB) \
-    $(SVTOOLLIB) \
-    $(SVLLIB)	\
     $(VCLLIB) \
     $(TOOLSLIB) \
     $(UNOTOOLSLIB) \
