@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unogsfm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:30:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:56:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,15 +51,15 @@
 #include <unotools/servicehelper.hxx>
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #include <cppuhelper/implbase5.hxx>
 
 #include <unomodel.hxx>
-class SfxStyleSheetBase;
 namespace binfilter {
 
+class SfxStyleSheetBase;
 class SvUnoWeakContainer;
 class SdPage;
 class SdUnoGraphicStyle;

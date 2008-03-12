@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unopage.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:31:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:57:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,48 +35,24 @@
 #ifndef _SD_UNOPAGE_HXX
 #define _SD_UNOPAGE_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XLINKTARGETSUPPLIER_HPP_
 #include <com/sun/star/document/XLinkTargetSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XMASTERPAGETARGET_HPP_
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
 #include <com/sun/star/presentation/XPresentationPage.hpp>
-#endif
-
-#ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
-
-#ifndef _SVX_UNOWPAGE_HXX
+#include <bf_svtools/itemprop.hxx>
 #include <bf_svx/unopage.hxx>
-#endif
-#ifndef _SVX_FMDPAGE_HXX
 #include <bf_svx/fmdpage.hxx>
-#endif
-#ifndef _SVDPOOL_HXX //autogen
 #include <bf_svx/svdpool.hxx>
-#endif
 
 #include <unotools/servicehelper.hxx>
 
-#include "unosrch.hxx"
-struct SfxItemPropertyMap;
 namespace binfilter {
+
+struct SfxItemPropertyMap;
 
 class SdPage;
 class SvxShape;
@@ -96,9 +72,6 @@ protected:
 *                                                                      *
 ***********************************************************************/
 class SdGenericDrawPage : public SvxFmDrawPage,
-                          public SdUnoSearchReplaceShape,
-                          public ::com::sun::star::drawing::XShapeCombiner,
-                          public ::com::sun::star::drawing::XShapeBinder,
                           public ::com::sun::star::container::XNamed,
                           public ::com::sun::star::beans::XPropertySet,
                           public ::com::sun::star::document::XLinkTargetSupplier,
@@ -159,14 +132,6 @@ public:
     virtual void SAL_CALL dispose() throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL addEventListener( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener >& aListener ) throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL removeEventListener( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener >& aListener ) throw(::com::sun::star::uno::RuntimeException);
-
-    // XShapeCombiner
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > SAL_CALL combine( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& xShapes ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL split( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& xGroup ) throw(::com::sun::star::uno::RuntimeException);
-
-    // XShapeBinder
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > SAL_CALL bind( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& xShapes ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL unbind( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
 
     // XPropertySet
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo() throw(::com::sun::star::uno::RuntimeException);

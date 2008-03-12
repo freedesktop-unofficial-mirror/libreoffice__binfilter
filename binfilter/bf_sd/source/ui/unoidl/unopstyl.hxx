@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unopstyl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:32:25 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:58:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #include <bf_svx/unoipset.hxx>
@@ -67,8 +67,9 @@
 #endif
 
 #include <cppuhelper/implbase5.hxx>
-class SfxStyleSheetBase;
 namespace binfilter {
+
+class SfxStyleSheetBase;
 
 class SdPage;
 class SdXImpressDocument;
