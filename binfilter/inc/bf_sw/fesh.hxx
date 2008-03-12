@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fesh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:43:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:37:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,12 +51,12 @@
 #endif
 
 #include <vector>
-class SvEmbeddedObject;
-class SvEmbeddedObjectRef;
-class SvInPlaceObject;
 class Color;
 namespace binfilter {
 
+class SvEmbeddedObject;
+class SvEmbeddedObjectRef;
+class SvInPlaceObject;
 class SwFlyFrm;
 
 class SwTabCols;
