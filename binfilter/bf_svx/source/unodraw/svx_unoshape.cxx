@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:01:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:45:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #endif
 
 #ifndef _FLTCALL_HXX
-#include <svtools/fltcall.hxx>
+#include <bf_svtools/fltcall.hxx>
 #endif
 
 #include <toolkit/unohlp.hxx>
@@ -124,6 +124,10 @@
 #ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
 #endif
+
+class GDIMetaFile;
+class SvStream;
+
 namespace binfilter {
 
 using namespace ::osl;
@@ -175,11 +179,7 @@ const SfxItemPropertyMap* ImplGetSvxTextPortionPropertyMap()
     return aSvxTextPortionPropertyMap;
 }
 
-} class GDIMetaFile; namespace binfilter {//STRIP009
-} class SvStream; namespace binfilter {//STRIP009
-} //namespace binfilter
 sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream, FilterConfigItem* pConfigItem = NULL, sal_Bool bPlaceable = sal_True );
-namespace binfilter {//STRIP009
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance( SdrObject* pObject );
 
 DECLARE_LIST( SvxShapeList, SvxShape * )//STRIP008 ;
