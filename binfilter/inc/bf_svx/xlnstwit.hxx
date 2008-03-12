@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xlnstwit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:31:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:30:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SVX_XLNSTWIT_HXX
 
 #ifndef _SFXMETRICITEM_HXX //autogen
-#include <svtools/metitem.hxx>
+#include <bf_svtools/metitem.hxx>
 #endif
 namespace binfilter {
 
