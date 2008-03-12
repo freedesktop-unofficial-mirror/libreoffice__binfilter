@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unolayer.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:31:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:57:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,17 +35,9 @@
 #ifndef _UNOLAYER_HXX
 #define _UNOLAYER_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_XLAYER_HPP_
 #include <com/sun/star/drawing/XLayer.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERMANAGER_HPP_
 #include <com/sun/star/drawing/XLayerManager.hpp>
-#endif
 
 #include <cppuhelper/implbase4.hxx>
 #include <unotools/servicehelper.hxx>
@@ -54,7 +46,6 @@
 namespace binfilter {
 
 class SdrLayer;
-class SdView;
 class SdLayerManager;
 class SdXImpressDocument;
 class SvUnoWeakContainer;
@@ -133,19 +124,6 @@ class SdLayerManager : public ::cppu::WeakImplHelper4< ::com::sun::star::drawing
                                                        ::com::sun::star::lang::XServiceInfo,
                                                        ::com::sun::star::lang::XUnoTunnel >
 {
-    friend class SdLayer;
-
-private:
-    SdXImpressDocument& rModel;
-    SvUnoWeakContainer* mpLayers;
-
-    SdView* GetView() const throw();
-#ifndef SVX_LIGHT
-    SdDrawDocShell* GetDocShell() const throw() { return rModel.pDocShell; }
-#endif
-
-    void UpdateLayerView( sal_Bool modify = sal_True ) const throw();
-
 public:
     SdLayerManager( SdXImpressDocument& rMyModel ) throw();
     virtual ~SdLayerManager() throw();
@@ -177,19 +155,9 @@ public:
     virtual ::com::sun::star::uno::Type SAL_CALL getElementType() throw(::com::sun::star::uno::RuntimeException);
     virtual sal_Bool SAL_CALL hasElements() throw(::com::sun::star::uno::RuntimeException);
 
-    /** Return the <type>XLayer</type> object that is associated with the
-        given <type>SdrLayer</type> object.  If the requested object does
-        not yet exist it is created.  All calls with the same argument
-        return the same object.
-        @param pLayer
-            The <type>SdrLayer</type> object for which to return the
-            associated <type>XLayer</type> object.
-        @return
-            The returned value is the unique <type>XLayer</type> object
-            associated with the specified argument.  If no layer can be
-            created for the argument than an empty reference is returned.
-    */
-    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XLayer> GetLayer (SdrLayer* pLayer);
+    ::com::sun::star::uno::Reference<com::sun::star::drawing::XLayer> GetLayer (SdrLayer* pLayer);
+    SdXImpressDocument& rModel;
+    SvUnoWeakContainer* mpLayers;
 };
 
 } //namespace binfilter
