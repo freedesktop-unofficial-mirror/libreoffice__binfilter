@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chaxis.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:46:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:24:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,8 +36,6 @@
 #define SCH_CHART_AXIS_HXX
 
 //STRIP008 class ChartModel;
-class SvNumberFormatter;
-class SvNumberFormatterIndexTable;
 //STRIP008 class SdrObject;
 //STRIP008 class SdrObjList;
 //STRIP008 class XPolygon;
@@ -51,13 +49,13 @@ class SvNumberFormatterIndexTable;
 #include <tools/gen.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
@@ -68,7 +66,11 @@ class SvNumberFormatterIndexTable;
 #include "schattr.hxx"
 #include "float.h"
 #include <math.h>
+
 namespace binfilter {
+
+class SvNumberFormatter;
+class SvNumberFormatterIndexTable;
 class ChartModel;
 class SdrObject;
 class SdrObjList;
