@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ipobj.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:25:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:43:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,23 +45,22 @@
 
 /*************************************************************************/
 /*************************************************************************/
-class  ImpInPlaceObject;
-class  ImpInPlaceSite;
-class  ImpOleInPlaceActiveObject;
-class  SvInPlaceObject;
-class  SvContainerEnvironment;
-class  SvInPlaceMenuBar;
-class  SvInPlaceClipWindow;
-class  SvInPlaceWindow;
-struct IOleInPlaceObject;
-struct IOleInPlaceActiveObject;
-class  SvInPlaceObjectList;
 class  MenuBar;
 class  Window;
 class  KeyEvent;
 class  Palette;
-class SvInPlaceEnvironment;
 
+namespace binfilter {
+class  SvContainerEnvironment;
+class  ImpInPlaceObject;
+class  ImpInPlaceSite;
+class  ImpOleInPlaceActiveObject;
+struct IOleInPlaceObject;
+struct IOleInPlaceActiveObject;
+class SvInPlaceEnvironment;
+class  SvInPlaceObjectList;
+class  SvInPlaceClipWindow;
+class  SvInPlaceWindow;
 /*************************************************************************
 *************************************************************************/
 class SvInPlaceObject;
@@ -153,5 +152,7 @@ protected:
 public:
                     SvDeathObject( const Rectangle & rVisArea );
 };
+
+}
 
 #endif // _IPOBJ_HXX
