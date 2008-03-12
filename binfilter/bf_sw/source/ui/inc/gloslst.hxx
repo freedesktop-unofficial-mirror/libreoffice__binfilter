@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gloslst.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:42:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:49:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <vcl/timer.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 class SvStringsISortDtor;
 namespace binfilter {

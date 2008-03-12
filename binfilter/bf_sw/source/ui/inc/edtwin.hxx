@@ -4,9 +4,9 @@
  *
  *  $RCSfile: edtwin.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:39:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:47:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,25 +35,13 @@
 #ifndef _EDTWIN_HXX
 #define _EDTWIN_HXX
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef _TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
-#ifndef _WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
-
-#ifndef _SWEVENT_HXX
 #include <swevent.hxx>
-#endif
 
 #define _SVSTDARR_STRINGSISORTDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 namespace binfilter {
 
 class   SwWrtShell;
@@ -74,8 +62,7 @@ struct  QuickHelpData;
     Beschreibung:   Eingabe-Fenster
  --------------------------------------------------------------------*/
 
-class SwEditWin: public Window,
-                public DropTargetHelper, public DragSourceHelper
+class SwEditWin: public Window
 {
 friend void     ScrollMDI(ViewShell* pVwSh, const SwRect&,
                           USHORT nRangeX, USHORT nRangeY);
