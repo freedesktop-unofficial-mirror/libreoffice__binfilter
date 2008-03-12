@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:13:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:59:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,10 +60,10 @@
 #endif
 
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
-#include <svtools/useroptions.hxx>
+#include <bf_svtools/useroptions.hxx>
 #endif
 
 #ifndef _SFXDOCFILE_HXX //autogen
@@ -498,7 +498,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*M*/                   }
 /*M*/                   else
 /*M*/                   {
-/*M*/                       aRet = URIHelper::removePassword(
+/*M*/                       aRet = removePassword(
 /*M*/                                   rURLObj.GetMainURL( INetURLObject::NO_DECODE ),
 /*M*/                                   INetURLObject::WAS_ENCODED, URL_DECODE );
 /*M*/                       aRet.Erase( aRet.Search( String(rURLObj.GetLastName(
@@ -519,7 +519,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*M*/               if( INET_PROT_FILE == rURLObj.GetProtocol() )
 /*M*/                   aRet = rURLObj.GetFull();
 /*M*/               else
-/*M*/                   aRet = URIHelper::removePassword(
+/*M*/                   aRet = removePassword(
 /*M*/                                   rURLObj.GetMainURL( INetURLObject::NO_DECODE ),
 /*M*/                                   INetURLObject::WAS_ENCODED, URL_DECODE );
 /*M*/       }
