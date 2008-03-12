@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlwrap.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:37:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:23:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,9 @@ namespace com { namespace sun { namespace star {
 
 #ifndef SC_XMLWRAP_HXX
 #define SC_XMLWRAP_HXX
-class SvStorage;
 namespace binfilter {
 
+class SvStorage;
 class ScDocument;
 class SfxMedium;
 class ScMySharedData;
