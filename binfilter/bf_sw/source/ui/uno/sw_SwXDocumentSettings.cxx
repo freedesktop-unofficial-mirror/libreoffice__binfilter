@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwXDocumentSettings.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:11:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:53:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,7 +92,7 @@
 #include <drawdoc.hxx>
 #endif
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
