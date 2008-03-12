@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gridctrl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:37:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:53:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,7 +144,7 @@ public:
 //==================================================================
 class FmXGridSourcePropListener;
 class DisposeListenerGridBridge;
-typedef ::svt::EditBrowseBox    DbGridControl_Base;
+typedef EditBrowseBox   DbGridControl_Base;
 class DbGridControl : public DbGridControl_Base
 {
     friend class FmXGridSourcePropListener;
@@ -330,7 +330,7 @@ protected:
     virtual void DataChanged( const DataChangedEvent& rDCEvt );
     virtual void Select();
 
-    virtual ::svt::CellController* GetController(long nRow, sal_uInt16 nCol);
+    virtual CellController* GetController(long nRow, sal_uInt16 nCol);
 
     virtual void CellModified();
     virtual sal_Bool SaveModified();
@@ -589,7 +589,7 @@ protected:
         // calls AdjustRows or AdjustDataSource, synchron if the caller is running in the solar thread, else asynchron
 
 protected:
-    virtual void InitController(::svt::CellControllerRef& rController, long nRow, sal_uInt16 nCol);
+    virtual void InitController(CellControllerRef& rController, long nRow, sal_uInt16 nCol);
     void Construct();
     void ImplInitSettings( sal_Bool bFont, sal_Bool bForeground, sal_Bool bBackground );
     DECL_LINK(OnDelete, void*);
