@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unogsfm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:50:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:51:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #endif
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #include <rtl/uuid.h>
@@ -62,9 +62,6 @@
 #include "sdresid.hxx"
 namespace binfilter {
 
-//#ifndef SVX_LIGHT
-//#include "docshell.hxx"
-//#endif
 
 using namespace ::rtl;
 using namespace ::vos;
