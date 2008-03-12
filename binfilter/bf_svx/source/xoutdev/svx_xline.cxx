@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xline.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:49:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:49:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,10 +43,8 @@
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
 #include "xoutx.hxx"
+#include <bf_svtools/colorcfg.hxx>
 
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -650,8 +648,8 @@ namespace binfilter {
 /*?*/             else if( nOldDrawMode & DRAWMODE_SETTINGSLINE )
 /*?*/             {
 /*?*/                 pOut->SetDrawMode( pOut->GetDrawMode() & (~DRAWMODE_SETTINGSFILL) );
-/*?*/               svtools::ColorConfig aColorConfig;
-/*?*/               Color aColor( aColorConfig.GetColorValue( svtools::FONTCOLOR ).nColor );
+/*?*/               ColorConfig aColorConfig;
+/*?*/               Color aColor( aColorConfig.GetColorValue( FONTCOLOR ).nColor );
 /*?*/                 pOut->SetFillColor( aColor );
 /*?*/             }
 /*?*/             else
