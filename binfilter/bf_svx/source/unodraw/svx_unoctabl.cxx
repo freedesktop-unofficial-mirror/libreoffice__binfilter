@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:48:26 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:43:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,7 @@
  ************************************************************************/
 
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
