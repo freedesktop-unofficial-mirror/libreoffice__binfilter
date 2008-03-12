@@ -4,9 +4,9 @@
  *
  *  $RCSfile: taborder.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:12:45 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:29:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SVX_TABORDER_HXX
 
 #ifndef _SVTREEBOX_HXX
-#include <svtools/svtreebx.hxx>
+#include <bf_svtools/svtreebx.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HPP_
