@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eventsupplier.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 19:35:04 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:08:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,9 +87,10 @@
 
 #include <vos/mutex.hxx>
 #include <cppuhelper/interfacecontainer.hxx>
-#include <svtools/lstner.hxx>
-class SvxMacro;
+#include <bf_svtools/lstner.hxx>
 namespace binfilter {
+
+class SvxMacro;
 
 //--------------------------------------------------------------------------------------------------------
 
