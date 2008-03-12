@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc3.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:57:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:28:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,19 +49,8 @@
 #include "sdpage.hxx"
 #include "strmname.h"
 
-#ifdef MAC
-#include "::ui:inc:strings.hrc"
-#else
-#ifdef UNX
-#include "../ui/inc/grdocsh.hxx"
-#include "../ui/inc/sdview.hxx"
-#include "../ui/inc/strings.hrc"
-#else
-#include "..\ui\inc\docshell.hxx"
-#include "..\ui\inc\sdview.hxx"
-#include "..\ui\inc\strings.hrc"
-#endif
-#endif
+#include "bf_sd/docshell.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -114,16 +103,16 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-/*N*/ void SdDrawDocument::CloseBookmarkDoc()
-/*N*/ {
-/*N*/   if (xBookmarkDocShRef.Is())
+void SdDrawDocument::CloseBookmarkDoc()
+{
+    if (xBookmarkDocShRef.Is())
 /*?*/   {
 /*?*/       xBookmarkDocShRef->DoClose();
 /*?*/   }
 
-/*N*/   xBookmarkDocShRef.Clear();
-/*N*/   aBookmarkFile = String();
-/*N*/ }
+    xBookmarkDocShRef.Clear();
+    aBookmarkFile = String();
+}
 
 /*************************************************************************
 |*
@@ -138,10 +127,10 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-/*N*/ void SdDrawDocument::DisposeLoadedModels()
-/*N*/ {
-/*N*/   CloseBookmarkDoc();
-/*N*/ }
+void SdDrawDocument::DisposeLoadedModels()
+{
+    CloseBookmarkDoc();
+}
 
 /*************************************************************************
 |*
@@ -158,17 +147,17 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-/*N*/ void SdDrawDocument::SetAllocDocSh(BOOL bAlloc)
-/*N*/ {
-/*N*/   bAllocDocSh = bAlloc;
+void SdDrawDocument::SetAllocDocSh(BOOL bAlloc)
+{
+    bAllocDocSh = bAlloc;
 
-/*N*/   if (xAllocedDocShRef.Is())
+    if (xAllocedDocShRef.Is())
 /*?*/   {
 /*?*/       xAllocedDocShRef->DoClose();
 /*?*/   }
 
-/*N*/   xAllocedDocShRef.Clear();
-/*N*/ }
+    xAllocedDocShRef.Clear();
+}
 
 /*************************************************************************
 |*
@@ -176,16 +165,16 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-/*N*/ List* SdDrawDocument::GetCustomShowList(BOOL bCreate)
-/*N*/ {
-/*N*/   if (!pCustomShowList && bCreate)
-/*N*/   {
-/*N*/       // Liste erzeugen
-/*N*/       pCustomShowList = new List();
-/*N*/   }
-/*N*/
-/*N*/   return(pCustomShowList);
-/*N*/ }
+List* SdDrawDocument::GetCustomShowList(BOOL bCreate)
+{
+    if (!pCustomShowList && bCreate)
+    {
+        // Liste erzeugen
+        pCustomShowList = new List();
+    }
+
+    return(pCustomShowList);
+}
 
 /*************************************************************************
 |*
@@ -193,96 +182,96 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-/*N*/ SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
-/*N*/ {
-/*N*/   SotStorage* pStor = pDocSh ? pDocSh->GetMedium()->GetStorage() : NULL;
-/*N*/   SvStream*   pRet = NULL;
-/*N*/
-/*N*/   if( pStor )
-/*N*/   {
-/*N*/       if( rStreamInfo.maUserData.Len() &&
-/*N*/           ( rStreamInfo.maUserData.GetToken( 0, ':' ) ==
-/*N*/             String( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.Package" ) ) ) )
-/*N*/       {
-/*N*/           const String aPicturePath( rStreamInfo.maUserData.GetToken( 1, ':' ) );
-/*N*/
-/*N*/           // graphic from picture stream in picture storage in XML package
-/*N*/           if( aPicturePath.GetTokenCount( '/' ) == 2 )
-/*N*/           {
-/*N*/               const String aPictureStreamName( aPicturePath.GetToken( 1, '/' ) );
-/*N*/
-/*N*/               if( !xPictureStorage.Is() )
-/*N*/               {
-/*N*/                   const String aPictureStorageName( aPicturePath.GetToken( 0, '/' ) );
-/*N*/
-/*N*/                   if( pStor->IsContained( aPictureStorageName ) &&
-/*N*/                       pStor->IsStorage( aPictureStorageName )  )
-/*N*/                   {
-/*N*/                       // cast away const
-/*N*/                       ((SdDrawDocument*)this)->xPictureStorage = pStor->OpenUCBStorage( aPictureStorageName, STREAM_READ );
-/*N*/                   }
-/*N*/               }
-/*N*/
-/*N*/               if( xPictureStorage.Is() &&
-/*N*/                   xPictureStorage->IsContained( aPictureStreamName ) &&
-/*N*/                   xPictureStorage->IsStream( aPictureStreamName ) )
-/*N*/               {
-/*N*/                   pRet = xPictureStorage->OpenSotStream( aPictureStreamName, STREAM_READ );
-/*N*/
-/*N*/                   if( pRet )
-/*N*/                   {
-/*N*/                       pRet->SetVersion( xPictureStorage->GetVersion() );
-/*N*/                       pRet->SetKey( xPictureStorage->GetKey() );
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/
-/*N*/           rStreamInfo.mbDeleteAfterUse = ( pRet != NULL );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // graphic from plain binary document stream
-/*N*/           if( !pDocStor )
-/*N*/           {
-/*N*/               if( pStor->IsStream( pStarDrawDoc ) )
-/*N*/               {
-/*N*/                   BOOL bOK = pStor->Rename(pStarDrawDoc, pStarDrawDoc3);
-/*N*/                   DBG_ASSERT(bOK, "Umbenennung des Streams gescheitert");
-/*N*/               }
-/*N*/
-/*N*/               SotStorageStreamRef docStream = pStor->OpenSotStream( pStarDrawDoc3, STREAM_READ );
-/*N*/               docStream->SetVersion( pStor->GetVersion() );
-/*N*/               docStream->SetKey( pStor->GetKey() );
-/*N*/
-/*N*/               // cast away const (should be regarded logical constness)
-/*N*/               ((SdDrawDocument*)this)->xDocStream = docStream;
-/*N*/               ((SdDrawDocument*)this)->pDocStor = pStor;
-/*N*/           }
-/*N*/
-/*N*/           pRet = xDocStream;
-/*N*/           rStreamInfo.mbDeleteAfterUse = FALSE;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   if( pRet )
-/*N*/   {
-/*N*/       // try to get some information from stream
-/*N*/       const ULONG nStartPos = pRet->Tell();
-/*N*/       const ULONG nEndPos = pRet->Seek( STREAM_SEEK_TO_END );
-/*N*/       const ULONG nStmLen = nEndPos - nStartPos;
-/*N*/       sal_uChar   aTestByte;
-/*N*/
-/*N*/       // try to read one byte
-/*N*/       if( nStmLen )
-/*N*/           *pRet >> aTestByte;
-/*N*/
-/*N*/       pRet->Seek( nStartPos );
-/*N*/   }
-/*N*/ #endif
-/*N*/
-/*N*/   return pRet;
-/*N*/ }
+SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
+{
+    SotStorage* pStor = pDocSh ? pDocSh->GetMedium()->GetStorage() : NULL;
+    SvStream*   pRet = NULL;
+
+    if( pStor )
+    {
+        if( rStreamInfo.maUserData.Len() &&
+            ( rStreamInfo.maUserData.GetToken( 0, ':' ) ==
+              String( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.Package" ) ) ) )
+        {
+            const String aPicturePath( rStreamInfo.maUserData.GetToken( 1, ':' ) );
+
+            // graphic from picture stream in picture storage in XML package
+            if( aPicturePath.GetTokenCount( '/' ) == 2 )
+            {
+                const String aPictureStreamName( aPicturePath.GetToken( 1, '/' ) );
+
+                if( !xPictureStorage.Is() )
+                {
+                    const String aPictureStorageName( aPicturePath.GetToken( 0, '/' ) );
+
+                    if( pStor->IsContained( aPictureStorageName ) &&
+                        pStor->IsStorage( aPictureStorageName )  )
+                    {
+                        // cast away const
+                        ((SdDrawDocument*)this)->xPictureStorage = pStor->OpenUCBStorage( aPictureStorageName, STREAM_READ );
+                    }
+                }
+
+                if( xPictureStorage.Is() &&
+                    xPictureStorage->IsContained( aPictureStreamName ) &&
+                    xPictureStorage->IsStream( aPictureStreamName ) )
+                {
+                    pRet = xPictureStorage->OpenSotStream( aPictureStreamName, STREAM_READ );
+
+                    if( pRet )
+                    {
+                        pRet->SetVersion( xPictureStorage->GetVersion() );
+                        pRet->SetKey( xPictureStorage->GetKey() );
+                    }
+                }
+            }
+
+            rStreamInfo.mbDeleteAfterUse = ( pRet != NULL );
+        }
+        else
+        {
+            // graphic from plain binary document stream
+            if( !pDocStor )
+            {
+                if( pStor->IsStream( pStarDrawDoc ) )
+                {
+                    BOOL bOK = pStor->Rename(pStarDrawDoc, pStarDrawDoc3);
+                    DBG_ASSERT(bOK, "Umbenennung des Streams gescheitert");
+                }
+
+                SotStorageStreamRef docStream = pStor->OpenSotStream( pStarDrawDoc3, STREAM_READ );
+                docStream->SetVersion( pStor->GetVersion() );
+                docStream->SetKey( pStor->GetKey() );
+
+                // cast away const (should be regarded logical constness)
+                ((SdDrawDocument*)this)->xDocStream = docStream;
+                ((SdDrawDocument*)this)->pDocStor = pStor;
+            }
+
+            pRet = xDocStream;
+            rStreamInfo.mbDeleteAfterUse = FALSE;
+        }
+    }
+
+#if OSL_DEBUG_LEVEL > 1
+    if( pRet )
+    {
+        // try to get some information from stream
+        const ULONG nStartPos = pRet->Tell();
+        const ULONG nEndPos = pRet->Seek( STREAM_SEEK_TO_END );
+        const ULONG nStmLen = nEndPos - nStartPos;
+        sal_uChar   aTestByte;
+
+        // try to read one byte
+        if( nStmLen )
+            *pRet >> aTestByte;
+
+        pRet->Seek( nStartPos );
+    }
+#endif
+
+    return pRet;
+}
 
 
 /*************************************************************************
@@ -291,137 +280,37 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-/*N*/ void SdDrawDocument::HandsOff()
-/*N*/ {
-/*N*/   xPictureStorage = SotStorageRef();
-/*N*/   pDocStor = NULL;
-/*N*/ }
+void SdDrawDocument::HandsOff()
+{
+    xPictureStorage = SotStorageRef();
+    pDocStor = NULL;
+}
 
+void SdDrawDocument::RemoveDuplicateMasterPages()
+{
+    USHORT nSdMasterPageCount = GetMasterSdPageCount( PK_STANDARD );
+    for (sal_Int32 nMPage = nSdMasterPageCount - 1; nMPage >= 0; nMPage--)
+    {
+        SdPage* pMaster = (SdPage*) GetMasterSdPage( (USHORT) nMPage, PK_STANDARD );
+        SdPage* pNotesMaster = (SdPage*) GetMasterSdPage( (USHORT) nMPage, PK_NOTES );
 
-/*************************************************************************
-|*
-|* Nicht benutzte MasterPages und Layouts entfernen
-|*
-\************************************************************************/
+        DBG_ASSERT( pMaster->GetPageKind() == PK_STANDARD, "wrong page kind" );
 
-/*N*/ void SdDrawDocument::RemoveUnnessesaryMasterPages(SdPage* pMasterPage, BOOL bOnlyDuplicatePages, BOOL bUndo)
-/*N*/ {
-/*N*/   SdView* pView = NULL;
-/*N*/
-    /***********************************************************
-    * Alle MasterPages pruefen
-    ***********************************************************/
-/*N*/   USHORT nSdMasterPageCount = GetMasterSdPageCount( PK_STANDARD );
-/*N*/   for (sal_Int32 nMPage = nSdMasterPageCount - 1; nMPage >= 0; nMPage--)
-/*N*/   {
-/*N*/       SdPage* pMaster = pMasterPage;
-/*N*/       SdPage* pNotesMaster = NULL;
-/*N*/
-/*N*/       if (!pMaster)
-/*N*/       {
-/*N*/           pMaster = (SdPage*) GetMasterSdPage( (USHORT) nMPage, PK_STANDARD );
-/*N*/           pNotesMaster = (SdPage*) GetMasterSdPage( (USHORT) nMPage, PK_NOTES );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           for ( USHORT nMPg = 0; nMPg < GetMasterPageCount(); nMPg++ )
-/*?*/           {
-/*?*/               if ( pMaster == GetMasterPage( nMPg ) )
-/*?*/               {
-/*?*/                   pNotesMaster = (SdPage*) GetMasterPage( ++nMPg );
-/*?*/                   break;
-/*?*/               }
-/*?*/           }
-/*N*/       }
-/*N*/
-/*N*/       DBG_ASSERT( pMaster->GetPageKind() == PK_STANDARD, "wrong page kind" );
-/*N*/
-/*N*/       if ( pMaster->GetPageKind() == PK_STANDARD &&
-/*N*/            GetMasterPageUserCount( pMaster ) == 0 &&
-/*N*/            pNotesMaster )
-/*N*/       {
-/*N*/           BOOL bDeleteMaster = TRUE;
-/*N*/           String aLayoutName = pMaster->GetLayoutName();
-/*N*/
-/*N*/           if( bOnlyDuplicatePages )
-/*N*/           {
-/*N*/               // remove only duplicate pages
-/*N*/               bDeleteMaster = FALSE;
-/*N*/               for (USHORT i = 0; i < GetMasterSdPageCount( PK_STANDARD ); i++)
-/*N*/               {
-/*N*/                   SdPage* pMPg = (SdPage*) GetMasterSdPage( i, PK_STANDARD );
-/*N*/                   if( pMPg != pMaster &&
-/*N*/                       pMPg->GetLayoutName() == aLayoutName )
-/*N*/                   {
-/*N*/                       // duplicate page found -> remove it
-/*N*/                       bDeleteMaster = TRUE;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/
-/*N*/           if( bDeleteMaster )
-/*N*/           {
-/*N*/               if (pView)
-/*N*/               {
-/*?*/                   // falls MasterPage sichtbar: erst PageView abmelden, dann loeschen
-/*?*/                   SdrPageView* pPgView = pView->GetPageView(pNotesMaster);
-/*?*/                   if (pPgView)
-/*?*/                       pView->HidePage(pPgView);
-/*?*/
-/*?*/                   pPgView = pView->GetPageView(pMaster);
-/*?*/                   if (pPgView)
-/*?*/                       pView->HidePage(pPgView);
-/*N*/               }
-/*N*/
-/*N*/               RemoveMasterPage( pNotesMaster->GetPageNum() );
-/*N*/
-/*N*/
-/*N*/               RemoveMasterPage( pMaster->GetPageNum() );
-/*N*/
-/*N*/
-/*N*/               // alte Layoutvorlagen loeschen, wenn sie nicht mehr benoetigt werden
-/*N*/               BOOL bDeleteOldStyleSheets = TRUE;
-/*N*/               for ( USHORT nMPg = 0;
-/*N*/                         nMPg < GetMasterPageCount() && bDeleteOldStyleSheets;
-/*N*/                     nMPg++ )
-/*N*/               {
-/*N*/                   SdPage* pMPg = (SdPage*) GetMasterPage(nMPg);
-/*N*/                   if (pMPg->GetLayoutName() == aLayoutName)
-/*N*/                   {
-/*N*/                       bDeleteOldStyleSheets = FALSE;
-/*N*/                   }
-/*N*/               }
-/*N*/
-/*N*/               if (bDeleteOldStyleSheets)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       if (pMasterPage)
-/*N*/           break;                      // Nur diese eine MasterPage!
-/*N*/   }
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|* MasterPage austauschen
-|*
-|* Entweder erhaelt nSdPageNum eine neue, eigene MasterPage, oder die MasterPage
-|* wird komplett ausgetauscht (gilt dann fuer alle Seiten).
-|*
-|* nSdPageNum   : Nummer der Seite, welche die neue MasterPage erhalten soll
-|* rLayoutName  : LayoutName der neuen MasterPage
-|* pSourceDoc   : Dokument (Vorlage) aus dem die MasterPage geholt wird
-|* bMaster      : Die MasterPage von nSdPageNum soll ausgetauscht werden
-|* bCheckMasters: Nicht benutzte MasterPages sollen entfernt werden
-|*
-|* Ist pSourceDoc == NULL, so wird eine leere MasterPage zugewiesen.
-|* Ist rLayoutName leer, so wird die erste MasterPage genommen
-\************************************************************************/
-
-
-
+        if ( pMaster->GetPageKind() == PK_STANDARD && GetMasterPageUserCount( pMaster ) == 0 && pNotesMaster )
+        {
+            const String aLayoutName( pMaster->GetLayoutName() );
+            for (USHORT i = 0; i < GetMasterSdPageCount( PK_STANDARD ); i++)
+            {
+                SdPage* pMPg = (SdPage*) GetMasterSdPage( i, PK_STANDARD );
+                if( pMPg != pMaster && pMPg->GetLayoutName() == aLayoutName )
+                {
+                    RemoveMasterPage( pNotesMaster->GetPageNum() );
+                    RemoveMasterPage( pMaster->GetPageNum() );
+                    break;
+                }
+            }
+        }
+    }
+}
 
 }
