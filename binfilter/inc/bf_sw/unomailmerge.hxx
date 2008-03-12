@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unomailmerge.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:45:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:53:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,7 @@
 #endif
 
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _SFX_OBJSH_HXX
 #include <bf_sfx2/objsh.hxx>   // SfxObjectShellRef

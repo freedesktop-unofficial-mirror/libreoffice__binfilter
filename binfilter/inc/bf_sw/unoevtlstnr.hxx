@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoevtlstnr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:44:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:52:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _UNOEVTLSTNR_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
