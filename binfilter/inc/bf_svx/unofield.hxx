@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unofield.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:14:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:20:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,8 +58,8 @@
 #include <unotools/servicehelper.hxx>
 
 #include <bf_svx/mutxhelp.hxx>
-class SfxItemPropertySet;
 namespace binfilter {
+class SfxItemPropertySet;
 
 // ids usable for the constructor
 #define ID_DATEFIELD        0
