@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_wrapper.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2008-01-04 13:04:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:05:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #include <framework/imageproducer.hxx>
 
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #endif
 
 // #i30187#
