@@ -4,9 +4,9 @@
  *
  *  $RCSfile: navipi.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:18:30 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:09:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,13 +46,13 @@
 #include <vcl/lstbox.hxx>
 #endif
 #ifndef _STDCTRL_HXX //autogen
-#include <svtools/stdctrl.hxx>
+#include <bf_svtools/stdctrl.hxx>
 #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
@@ -63,7 +63,7 @@
 #endif
 
 #ifndef _SVEDIT_HXX //autogen
-#include <svtools/svmedit.hxx>
+#include <bf_svtools/svmedit.hxx>
 #endif
 namespace binfilter {
 
