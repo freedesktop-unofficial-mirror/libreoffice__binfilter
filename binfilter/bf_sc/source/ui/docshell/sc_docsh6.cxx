@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh6.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:31:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:05:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -174,7 +174,7 @@
 #include "collect.hxx"
 
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 namespace binfilter {
@@ -343,7 +343,7 @@ namespace binfilter {
 /*N*/   for (i=nCount; i>0; )
 /*N*/   {
 /*?*/       --i;
-/*?*/       ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
+/*?*/       ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
 /*?*/       if (pBase->ISA(ScTableLink))
 /*?*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTableLink* pTabLink = (ScTableLink*)pBase;
@@ -400,7 +400,7 @@ namespace binfilter {
 /*N*/   USHORT nCount = pLinkManager->GetLinks().Count();
 /*N*/   for (USHORT i=0; i<nCount; i++ )
 /*N*/   {
-/*N*/       ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
+/*N*/       ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
 /*N*/       if (pBase->ISA(ScTableLink))
 /*N*/       {
 /*N*/           ScTableLink* pTabLink = (ScTableLink*)pBase;
