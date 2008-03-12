@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:13:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:46:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,23 +70,23 @@
 #include <unotools/tempfile.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _ZFORMAT_HXX //autogen
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
@@ -223,7 +223,7 @@
 #include <bf_svx/unomid.hxx>
 #endif
 #ifndef _NUMUNO_HXX
-#include <svtools/numuno.hxx>
+#include <bf_svtools/numuno.hxx>
 #endif
 
 #include <unomailmerge.hxx>
