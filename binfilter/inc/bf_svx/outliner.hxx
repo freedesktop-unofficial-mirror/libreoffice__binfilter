@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outliner.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:53:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:58:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,13 +87,14 @@ class Pointer;
 class MapMode;
 class OutputDevice;
 class PolyPolygon;
+namespace binfilter {
+
+class SvKeyValueIterator;
 class SfxStyleSheetPool;
 class SfxStyleSheet;
 class SfxItemPool;
 class SfxItemSet;
 class SfxUndoManager;
-class SvKeyValueIterator;
-namespace binfilter {
 
 class OutlinerEditEng;
 class Outliner;
