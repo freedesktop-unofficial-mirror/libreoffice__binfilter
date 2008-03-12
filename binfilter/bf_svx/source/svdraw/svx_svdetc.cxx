@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2008-02-25 15:23:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:35:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@
 
 
 #ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
-#include <svtools/cacheoptions.hxx>
+#include <bf_svtools/cacheoptions.hxx>
 #endif
 
 
@@ -88,7 +88,7 @@
 
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 // #97870#
