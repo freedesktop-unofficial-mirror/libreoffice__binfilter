@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwStyleNameMapper.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:44:46 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:32:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,10 +46,10 @@
 #endif
 #include <hash_map>
 
-class SvStringsDtor;
 class String;
 
 namespace binfilter {
+class SvStringsDtor;
 
 
 /* This class holds all data about the names of styles used in the user
