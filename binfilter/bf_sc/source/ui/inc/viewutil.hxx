@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewutil.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:33:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:12:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,9 @@
 #include <tools/solar.h>
 #endif
 class String;
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemSet;
 class SvxFontItem;
 
 class ScChangeAction;
