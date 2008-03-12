@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:14:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:42:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include "sbxres.hxx"
 
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 
 namespace binfilter {
