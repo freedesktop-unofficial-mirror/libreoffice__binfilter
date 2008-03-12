@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_glob.src,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:32:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:28:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,1944 +40,316 @@
 #include "glob.hrc"
 #include "sderror.hxx"
 
-String STR_LAYER_BCKGRND
-{
-    Text [ de ] = "Hintergrund" ;
-    Text [ en-US ] = "Background" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Plano de fundo";
-    Text[ ru ] = "Фон";
-    Text[ el ] = "Φόντο";
-    Text[ nl ] = "Achtergrond";
-    Text[ fr ] = "Arrière-plan";
-    Text[ es ] = "Fondo";
-    Text[ fi ] = "Tausta";
-    Text[ ca ] = "Fons";
-    Text[ it ] = "Sfondo";
-    Text[ da ] = "Baggrund";
-    Text[ sv ] = "Bakgrund";
-    Text[ pl ] = "Tło";
-    Text[ pt-BR ] = "Plano de Fundo";
-    Text[ th ] = "พื้นหลัง";
-    Text[ ja ] = "背景";
-    Text[ ko ] = "배경";
-    Text[ zh-CN ] = "背景";
-    Text[ zh-TW ] = "背景";
-    Text[ tr ] = "Artalan";
-    Text[ hi-IN ] = "पृष्ठभाग";
-    Text[ ar ] = "الخلفية";
-    Text[ he ] = "‮רקע‬";
-};
-String STR_LAYER_BCKGRNDOBJ
-{
-    Text [ de ] = "Hintergrundobjekte" ;
-    Text [ en-US ] = "Background objects" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Objectos do plano de fundo";
-    Text[ ru ] = "Объекты фона";
-    Text[ el ] = "Αντικείμενα φόντου";
-    Text[ nl ] = "Achtergrondobjecten";
-    Text[ fr ] = "Objets d'arrière-plan";
-    Text[ es ] = "Objetos de fondo";
-    Text[ fi ] = "Taustaobjektit";
-    Text[ ca ] = "Objectes de fons";
-    Text[ it ] = "Oggetti di sfondo";
-    Text[ da ] = "Baggrundsobjekter";
-    Text[ sv ] = "Bakgrundsobjekt";
-    Text[ pl ] = "Obiekty tła";
-    Text[ pt-BR ] = "Objetos do plano de fundo";
-    Text[ th ] = "วัตถุของพื้นหลัง";
-    Text[ ja ] = "背景のオブジェクト";
-    Text[ ko ] = "배경 개체";
-    Text[ zh-CN ] = "背景对象";
-    Text[ zh-TW ] = "背景物件";
-    Text[ tr ] = "Artalan nesneleri";
-    Text[ hi-IN ] = "पृष्ठभाग वस्तु";
-    Text[ ar ] = "كائنات الخلفية";
-    Text[ he ] = "Hintergrundobjekte";
-};
-String STR_LAYER_LAYOUT
-{
-    Text [ de ] = "Layout" ;
-    Text [ en-US ] = "Layout" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Configuração";
-    Text[ ru ] = "Разметка";
-    Text[ el ] = "Διάταξη";
-    Text[ nl ] = "Lay-out";
-    Text[ fr ] = "Mise en page";
-    Text[ es ] = "Diseño";
-    Text[ fi ] = "Asettelu";
-    Text[ ca ] = "Format";
-    Text[ it ] = "Layout";
-    Text[ da ] = "Layout";
-    Text[ sv ] = "Layout";
-    Text[ pl ] = "Układ";
-    Text[ pt-BR ] = "Layout";
-    Text[ th ] = "เค้าโครง";
-    Text[ ja ] = "レイアウト";
-    Text[ ko ] = "레이아웃";
-    Text[ zh-CN ] = "版式";
-    Text[ zh-TW ] = "版式";
-    Text[ tr ] = "Düzen";
-    Text[ hi-IN ] = "अभिन्यास";
-    Text[ ar ] = "تخطيط";
-    Text[ he ] = "‮פריסה‬";
-};
-String STR_LAYER_CONTROLS
-{
-    Text [ de ] = "Controls" ;
-    Text [ en-US ] = "Controls" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Controlos";
-    Text[ ru ] = "Элементы управления";
-    Text[ el ] = "Στοιχεία ελέγχου";
-    Text[ nl ] = "Controles";
-    Text[ fr ] = "Contrôles";
-    Text[ es ] = "Controles";
-    Text[ fi ] = "Ohjausobjektit";
-    Text[ ca ] = "Controls";
-    Text[ it ] = "Campi di controllo";
-    Text[ da ] = "Kontrolelementer";
-    Text[ sv ] = "Controls";
-    Text[ pl ] = "Formanty";
-    Text[ pt-BR ] = "Controles";
-    Text[ th ] = "ตัวควบคุม";
-    Text[ ja ] = "コントロール";
-    Text[ ko ] = "컨트롤";
-    Text[ zh-CN ] = "控件";
-    Text[ zh-TW ] = "控制項";
-    Text[ tr ] = "Komut alanları";
-    Text[ hi-IN ] = "नियंत्रण";
-    Text[ ar ] = "عناصر تحكم";
-    Text[ he ] = "‮כפתורי שליתה‬";
-};
-String STR_LAYER_MEASURELINES
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Ma�linien : Ma�linien */
-    Text [ de ] = "Maßlinien" ;
-    Text [ en-US ] = "Dimension Lines" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Linhas de dimensão";
-    Text[ ru ] = "Размерные линии";
-    Text[ el ] = "Γραμμές διαστασιολόγησης";
-    Text[ nl ] = "Meetlatten";
-    Text[ fr ] = "Lignes de cote";
-    Text[ es ] = "Líneas de dimensiones";
-    Text[ fi ] = "Mittajanat";
-    Text[ ca ] = "Línies de dimensions";
-    Text[ it ] = "Linee di quotatura";
-    Text[ da ] = "Målelinjer";
-    Text[ sv ] = "Måttlinjer";
-    Text[ pl ] = "Linie wymiarowe";
-    Text[ pt-BR ] = "Linhas de Cota";
-    Text[ th ] = "เส้นมีมิติ";
-    Text[ ja ] = "寸法線";
-    Text[ ko ] = "치수선";
-    Text[ zh-CN ] = "定量线";
-    Text[ zh-TW ] = "定量線";
-    Text[ tr ] = "Ölçme çizgileri";
-    Text[ hi-IN ] = "परिमाण रेखा";
-    Text[ ar ] = "خطوط قياس";
-    Text[ he ] = "Maßlinien";
-};
 String STR_PAGE
 {
-    Text [ de ] = "Seite" ;
-    Text [ en-US ] = "Slide" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Página";
-    Text[ ru ] = "Слайд";
-    Text[ el ] = "Σελίδα";
-    Text[ nl ] = "Pagina";
-    Text[ fr ] = "Page";
-    Text[ es ] = "Diapositiva";
-    Text[ fi ] = "Dia";
-    Text[ ca ] = "Diapositiva";
-    Text[ it ] = "Pagina";
-    Text[ da ] = "Side";
-    Text[ sv ] = "Sida";
-    Text[ pl ] = "Slajd";
-    Text[ pt-BR ] = "Slide";
-    Text[ th ] = "ภาพนิ่ง";
-    Text[ ja ] = "ページ";
-    Text[ ko ] = "슬라이드";
-    Text[ zh-CN ] = "页";
-    Text[ zh-TW ] = "頁";
-    Text[ tr ] = "Slayt";
-    Text[ hi-IN ] = "स्लइड";
-    Text[ ar ] = "الصفحة";
-    Text[ he ] = "Seite";
+    Text = "Slide" ;
 };
 String STR_MASTERPAGE
 {
-    Text [ de ] = "Hintergrund" ;
-    Text [ en-US ] = "Background" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Plano de fundo";
-    Text[ ru ] = "Фон";
-    Text[ el ] = "Φόντο";
-    Text[ nl ] = "Achtergrond";
-    Text[ fr ] = "Arrière-plan";
-    Text[ es ] = "Fondo";
-    Text[ fi ] = "Tausta";
-    Text[ ca ] = "Fons";
-    Text[ it ] = "Sfondo";
-    Text[ da ] = "Baggrund";
-    Text[ sv ] = "Bakgrund";
-    Text[ pl ] = "Tło";
-    Text[ pt-BR ] = "Plano de Fundo";
-    Text[ th ] = "พื้นหลัง";
-    Text[ ja ] = "マスター";
-    Text[ ko ] = "배경";
-    Text[ zh-CN ] = "背景";
-    Text[ zh-TW ] = "背景";
-    Text[ tr ] = "Artalan";
-    Text[ hi-IN ] = "पृष्ठभाग";
-    Text[ ar ] = "الخلفية";
-    Text[ he ] = "‮רקע‬";
+    Text = "Background" ;
 };
 String STR_NOTES
 {
-    Text [ de ] = "(Notizen)" ;
-    Text [ en-US ] = "(Notes)" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "(Anotações)";
-    Text[ ru ] = "(Примечания)";
-    Text[ el ] = "(Σημειώσεις)";
-    Text[ nl ] = "(Aantekeningen)";
-    Text[ fr ] = "(Notes)";
-    Text[ es ] = "(Notas)";
-    Text[ fi ] = "(Huomautukset)";
-    Text[ ca ] = "(Notes)";
-    Text[ it ] = "(Note)";
-    Text[ da ] = "(Noter)";
-    Text[ sv ] = "(Anteckningar)";
-    Text[ pl ] = "(Notatki)";
-    Text[ pt-BR ] = "(Anotações)";
-    Text[ th ] = "(บันทึก)";
-    Text[ ja ] = "(ノート)";
-    Text[ ko ] = "(메모)";
-    Text[ zh-CN ] = "(备注)";
-    Text[ zh-TW ] = "(備註)";
-    Text[ tr ] = "(Notlar)";
-    Text[ hi-IN ] = "(टिप्पणी)";
-    Text[ ar ] = "(ملاحظات)";
-    Text[ he ] = "‮(הערות)‬";
+    Text = "(Notes)" ;
 };
 String STR_HANDOUT
 {
-    Text [ de ] = "Handzettel" ;
-    Text [ en-US ] = "Handouts" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Folheto";
-    Text[ ru ] = "Тезисы";
-    Text[ el ] = "Σημείωμα";
-    Text[ nl ] = "Folder";
-    Text[ fr ] = "Prospectus";
-    Text[ es ] = "Volante";
-    Text[ fi ] = "Esitteet";
-    Text[ ca ] = "Prospectes";
-    Text[ it ] = "Stampati";
-    Text[ da ] = "Uddelingskopier";
-    Text[ sv ] = "Flygblad";
-    Text[ pl ] = "Materiały informacyjne";
-    Text[ pt-BR ] = "Folheto";
-    Text[ th ] = "เอกสารประกอบคำบรรยาย";
-    Text[ ja ] = "ハンドアウト";
-    Text[ ko ] = "유인물";
-    Text[ zh-CN ] = "讲义";
-    Text[ zh-TW ] = "講義";
-    Text[ tr ] = "Sayfa sıralayıcısı";
-    Text[ hi-IN ] = "हान्डौट्स";
-    Text[ ar ] = "نشرات";
-    Text[ he ] = "Handzettel";
+    Text = "Handouts" ;
 };
 String STR_PRESOBJ_MPTITLE
 {
-    Text [ de ] = "Klicken Sie, um das Format des Titeltextes zu bearbeiten" ;
-    Text [ en-US ] = "Click to edit the title text format" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Clique para editar o formato do texto-título";
-    Text[ ru ] = "Для правки текста заголовка щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την επεξεργασία της μορφής του κειμένου του τίτλου";
-    Text[ nl ] = "Klik om de opmaak van de titeltekst te bewerken";
-    Text[ fr ] = "Cliquez pour éditer le format du texte-titre";
-    Text[ es ] = "Pulse para editar el formato del texto de título";
-    Text[ fi ] = "Muokkaa otsikon tekstimuotoa napsauttamalla";
-    Text[ ca ] = "Feu clic per editar el format del text del títol";
-    Text[ it ] = "Cliccate per modificare il formato del testo del titolo";
-    Text[ da ] = "Klik for at redigere titeltekstens format";
-    Text[ sv ] = "Klicka för att redigera rubriktextens format";
-    Text[ pl ] = "Kliknij, aby edytować format tekstu tytułu";
-    Text[ pt-BR ] = "Clique para editar o formato do texto do título";
-    Text[ th ] = "คลิกเพื่อแก้ไขรูปแบบข้อความหัวเรื่อง";
-    Text[ ja ] = "タイトルテキストの書式を編集するにはクリックします。";
-    Text[ ko ] = "제목 텍스트의 서식을 편집하려면 클릭하십시오.";
-    Text[ zh-CN ] = "请您按击鼠标，编辑标题文的格式。";
-    Text[ zh-TW ] = "請按一下鼠標，編輯標題文的格式。";
-    Text[ tr ] = "Ana başlık metnini düzenlemek için tıklayın";
-    Text[ hi-IN ] = "शीर्षक टेक्स्ट् रचना के संपादन करने केलिए क्लिक करो";
-    Text[ ar ] = "انقر لتحرير تنسيق نص العنوان";
-    Text[ he ] = "Klicken Sie, um das Format des Titeltextes zu bearbeiten";
+    Text = "Click to edit the title text format" ;
 };
 String STR_PRESOBJ_MPOUTLINE
 {
-    Text [ de ] = "Klicken Sie, um die Formate des Gliederungstextes zu bearbeiten" ;
-    Text [ en-US ] = "Click to edit the outline text format" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Clique duplo para editar os formatos do esquema do texto";
-    Text[ ru ] = "Для правки структуры щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την επεξεργασία της μορφής των κειμένων διάρθρωσης";
-    Text[ nl ] = "Klik om het formaat van de overzichtstekst te bewerken";
-    Text[ fr ] = "Cliquez pour éditer le format du plan de texte";
-    Text[ es ] = "Pulse para editar los formatos del texto del esquema";
-    Text[ fi ] = "Muokkaa jäsennyksen tekstimuotoa napsauttamalla";
-    Text[ ca ] = "Feu clic per editar el format del text del contorn";
-    Text[ it ] = "Cliccate per modificare il formato del testo della struttura";
-    Text[ da ] = "Klik for at redigere dispositionstekstens format";
-    Text[ sv ] = "Klicka för att redigera dispositionstextens format";
-    Text[ pl ] = "Kliknij, aby edytować format tekstu konspektu";
-    Text[ pt-BR ] = "Clique para editar o formato de texto do tópico";
-    Text[ th ] = "คลิกเพื่อแก้ไขรูปแบบข้อความเค้าร่าง";
-    Text[ ja ] = "アウトラインテキストの書式を編集するにはクリックします。";
-    Text[ ko ] = "개요 텍스트의 서식을 편집하려면 클릭하십시오.";
-    Text[ zh-CN ] = "请您按击鼠标，编辑大纲正文格式。";
-    Text[ zh-TW ] = "請按鼠標，編輯大綱文字格式。";
-    Text[ tr ] = "Anahat metninin formatlarını düzenlemek için tıklayın";
-    Text[ hi-IN ] = "बाहरी रूपरेखा टेक्स्ट् रचना के संपादन करने केलिए क्लिक करो";
-    Text[ ar ] = "انقر هنا لتقوم بتحرير تنسيق نص التقسيم";
-    Text[ he ] = "Klicken Sie, um die Formate des Gliederungstextes zu bearbeiten";
+    Text = "Click to edit the outline text format" ;
 };
 String STR_PRESOBJ_MPOUTLLAYER2
 {
-    Text [ de ] = "Zweite Gliederungsebene" ;
-    Text [ en-US ] = "Second Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Segundo nível do esquema";
-    Text[ ru ] = "Второй уровень структуры";
-    Text[ el ] = "Δεύτερο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Tweede overzichtsniveau";
-    Text[ fr ] = "Second niveau de plan";
-    Text[ es ] = "Segundo nivel del esquema";
-    Text[ fi ] = "Toinen jäsennystaso";
-    Text[ ca ] = "Segon nivell de contorn";
-    Text[ it ] = "Secondo livello struttura";
-    Text[ da ] = "Andet dispositionsniveau";
-    Text[ sv ] = "Andra dispositionsnivån";
-    Text[ pl ] = "Drugi poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 2";
-    Text[ th ] = "เค้าร่างระดับที่สอง";
-    Text[ ja ] = "2レベル目のアウトライン";
-    Text[ ko ] = "두번째 개요 수준";
-    Text[ zh-CN ] = "第二个大纲级";
-    Text[ zh-TW ] = "第二個大綱級";
-    Text[ tr ] = "İkinci anahat düzeyi";
-    Text[ hi-IN ] = "दूसरा बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى الثاني للتقسيم";
-    Text[ he ] = "Zweite Gliederungsebene";
+    Text = "Second Outline Level" ;
 };
 String STR_PRESOBJ_MPOUTLLAYER3
 {
-    Text [ de ] = "Dritte Gliederungsebene" ;
-    Text [ en-US ] = "Third Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Terceiro nível do esquema";
-    Text[ ru ] = "Третий уровень структуры";
-    Text[ el ] = "Τρίτο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Derde overzichtsniveau";
-    Text[ fr ] = "Troisième niveau de plan";
-    Text[ es ] = "Tercer nivel del esquema";
-    Text[ fi ] = "Kolmas jäsennystaso";
-    Text[ ca ] = "Tercer nivell de contorn";
-    Text[ it ] = "Terzo livello struttura";
-    Text[ da ] = "Tredje dispositionsniveau";
-    Text[ sv ] = "Tredje dispositionsnivån";
-    Text[ pl ] = "Trzeci poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 3";
-    Text[ th ] = "เค้าร่างระดับที่สาม";
-    Text[ ja ] = "3レベル目のアウトライン";
-    Text[ ko ] = "세번째 개요 수준";
-    Text[ zh-CN ] = "第三个大纲级";
-    Text[ zh-TW ] = "第三個大綱級";
-    Text[ tr ] = "Üçüncü anahat düzeyi";
-    Text[ hi-IN ] = "तीसरा बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى الثالث للتقسيم";
-    Text[ he ] = "Dritte Gliederungsebene";
+    Text = "Third Outline Level" ;
 };
 String STR_PRESOBJ_MPOUTLLAYER4
 {
-    Text [ de ] = "Vierte Gliederungsebene" ;
-    Text [ en-US ] = "Fourth Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Quarto nível do esquema";
-    Text[ ru ] = "Четвертый уровень структуры";
-    Text[ el ] = "Τέταρτο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Vierde overzichtsniveau";
-    Text[ fr ] = "Quatrième niveau de plan";
-    Text[ es ] = "Cuarto nivel del esquema";
-    Text[ fi ] = "Neljäs jäsennystaso";
-    Text[ ca ] = "Quart nivell de contorn";
-    Text[ it ] = "Quarto livello struttura";
-    Text[ da ] = "Fjerde dispositionsniveau";
-    Text[ sv ] = "Fjärde dispositionsnivån";
-    Text[ pl ] = "Czwarty poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 4";
-    Text[ th ] = "เค้าร่างระดับที่สี่";
-    Text[ ja ] = "4レベル目のアウトライン";
-    Text[ ko ] = "네번째 개요 수준";
-    Text[ zh-CN ] = "第四个大纲级";
-    Text[ zh-TW ] = "第四個大綱級";
-    Text[ tr ] = "Dördüncü anahat düzeyi";
-    Text[ hi-IN ] = "चौथा बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى الرابع للتقسيم";
-    Text[ he ] = "Vierte Gliederungsebene";
+    Text = "Fourth Outline Level" ;
 };
 String STR_PRESOBJ_MPOUTLLAYER5
 {
-    /* ### ACHTUNG: Neuer Text in Resource? F�nfte Gliederungsebene : F�nfte Gliederungsebene */
-    Text [ de ] = "Fünfte Gliederungsebene" ;
-    Text [ en-US ] = "Fifth Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Quinto nível do esquema";
-    Text[ ru ] = "Пятый уровень структуры";
-    Text[ el ] = "Πέμπτο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Vijfde overzichtsniveau";
-    Text[ fr ] = "Cinquième niveau de plan";
-    Text[ es ] = "Quinto nivel del esquema";
-    Text[ fi ] = "Viides jäsennystaso";
-    Text[ ca ] = "Cinquè nivell de contorn";
-    Text[ it ] = "Quinto livello struttura";
-    Text[ da ] = "Femte dispositionsniveau";
-    Text[ sv ] = "Femte dispositionsnivån";
-    Text[ pl ] = "Piąty poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 5";
-    Text[ th ] = "เค้าร่างระดับที่ห้า";
-    Text[ ja ] = "5レベル目のアウトライン";
-    Text[ ko ] = "다섯번째 개요 수준";
-    Text[ zh-CN ] = "第五个大纲级";
-    Text[ zh-TW ] = "第五個大綱級";
-    Text[ tr ] = "Beşinci anahat düzeyi";
-    Text[ hi-IN ] = "पाँचवाँ बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى الخامس للتقسيم";
-    Text[ he ] = "Fünfte Gliederungsebene";
+    Text = "Fifth Outline Level" ;
 };
+
 String STR_PRESOBJ_MPOUTLLAYER6
 {
-    Text [ de ] = "Sechste Gliederungsebene" ;
-    Text [ en-US ] = "Sixth Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Sexto nível do esquema";
-    Text[ ru ] = "Шестой уровень структуры";
-    Text[ el ] = "Έκτο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Zesde overzichtsniveau";
-    Text[ fr ] = "Sixième niveau de plan";
-    Text[ es ] = "Sexto nivel del esquema";
-    Text[ fi ] = "Kuudes jäsennystaso";
-    Text[ ca ] = "Sisè nivell de contorn";
-    Text[ it ] = "Sesto livello struttura";
-    Text[ da ] = "Sjette dispositionsniveau";
-    Text[ sv ] = "Sjätte dispositionsnivån";
-    Text[ pl ] = "Szósty poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 6";
-    Text[ th ] = "เค้าร่างระดับที่หก";
-    Text[ ja ] = "6レベル目のアウトライン";
-    Text[ ko ] = "여섯번째 개요 수준";
-    Text[ zh-CN ] = "第六个大纲级";
-    Text[ zh-TW ] = "第六個大綱級";
-    Text[ tr ] = "Altıncı anahat düzeyi";
-    Text[ hi-IN ] = "छठवाँ बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى السادس للتقسيم";
-    Text[ he ] = "Sechste Gliederungsebene";
+    Text = "Sixth Outline Level" ;
 };
+
 String STR_PRESOBJ_MPOUTLLAYER7
 {
-    Text [ de ] = "Siebente Gliederungsebene" ;
-    Text [ en-US ] = "Seventh Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Sétimo nível do esquema";
-    Text[ ru ] = "Седьмой уровень структуры";
-    Text[ el ] = "Έβδομο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Zevende overzichtsniveau";
-    Text[ fr ] = "Septième niveau de plan";
-    Text[ es ] = "Séptimo nivel del esquema";
-    Text[ fi ] = "Seitsemäs jäsennystaso";
-    Text[ ca ] = "Setè nivell de contorn";
-    Text[ it ] = "Settimo livello struttura";
-    Text[ da ] = "Syvende dispositionsniveau";
-    Text[ sv ] = "Sjunde dispositionsnivån";
-    Text[ pl ] = "Siódmy poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 7";
-    Text[ th ] = "เค้าร่างระดับที่เจ็ด";
-    Text[ ja ] = "7レベル目のアウトライン";
-    Text[ ko ] = "일곱번째 개요 수준";
-    Text[ zh-CN ] = "第七个大纲级";
-    Text[ zh-TW ] = "第七個大綱級";
-    Text[ tr ] = "Yedinci anahat düzeyi";
-    Text[ hi-IN ] = "बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى السابع للتقسيم";
-    Text[ he ] = "Siebente Gliederungsebene";
+    Text = "Seventh Outline Level" ;
 };
+
 String STR_PRESOBJ_MPOUTLLAYER8
 {
-    Text [ de ] = "Achte Gliederungsebene" ;
-    Text [ en-US ] = "Eighth Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Oitavo nível do esquema";
-    Text[ ru ] = "Восьмой уровень структуры";
-    Text[ el ] = "Όγδοο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Achtste overzichtsniveau";
-    Text[ fr ] = "Huitième niveau de plan";
-    Text[ es ] = "Octavo nivel del esquema";
-    Text[ fi ] = "Kahdeksas jäsennystaso";
-    Text[ ca ] = "Vuitè nivell de contorn";
-    Text[ it ] = "Ottavo livello struttura";
-    Text[ da ] = "Ottende dispositionsniveau";
-    Text[ sv ] = "Åttonde dispositionsnivån";
-    Text[ pl ] = "Ósmy poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 8";
-    Text[ th ] = "เค้าร่างระดับที่แปด";
-    Text[ ja ] = "8レベル目のアウトライン";
-    Text[ ko ] = "여덟번째 개요 수준";
-    Text[ zh-CN ] = "第八个大纲级";
-    Text[ zh-TW ] = "第八個大綱級";
-    Text[ tr ] = "Sekizinci anahat düzeyi";
-    Text[ hi-IN ] = "आठवाँ बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى الثامن للتقسيم";
-    Text[ he ] = "Achte Gliederungsebene";
+    Text = "Eighth Outline Level" ;
 };
+
 String STR_PRESOBJ_MPOUTLLAYER9
 {
-    Text [ de ] = "Neunte Gliederungsebene" ;
-    Text [ en-US ] = "Ninth Outline Level" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Nono nível do esquema";
-    Text[ ru ] = "Девятый уровень структуры";
-    Text[ el ] = "Ένατο επίπεδο διάρθρωσης";
-    Text[ nl ] = "Negende overzichtsniveau";
-    Text[ fr ] = "Neuvième niveau de plan";
-    Text[ es ] = "Noveno nivel del esquema";
-    Text[ fi ] = "Yhdeksäs jäsennystaso";
-    Text[ ca ] = "Novè nivell de contorn";
-    Text[ it ] = "Nono livello struttura";
-    Text[ da ] = "Niende dispositionsniveau";
-    Text[ sv ] = "Nionde dispositionsnivån";
-    Text[ pl ] = "Dziewiąty poziom konspektu";
-    Text[ pt-BR ] = "Tópicos de Nível 9";
-    Text[ th ] = "เค้าร่างระดับที่เก้า";
-    Text[ ja ] = "9レベル目のアウトライン";
-    Text[ ko ] = "아홉번째 개요 수준";
-    Text[ zh-CN ] = "第九个大纲级";
-    Text[ zh-TW ] = "第九個大綱級";
-    Text[ tr ] = "Dokuzuncu anahat düzeyi";
-    Text[ hi-IN ] = "नवाँ बाहरी रूपरेखा सतह";
-    Text[ ar ] = "المستوى التاسع للتقسيم";
-    Text[ he ] = "Neunte Gliederungsebene";
+    Text = "Ninth Outline Level" ;
 };
+
 String STR_PRESOBJ_MPNOTESTITLE
 {
-    Text [ de ] = "Klicken Sie, um die Seite zu verschieben" ;
-    Text [ en-US ] = "Click to move the slide" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Clique para mover a página";
-    Text[ ru ] = "Для перемещения страницы щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την μετακίνηση της σελίδας";
-    Text[ nl ] = "Klik om de pagina te verplaatsen";
-    Text[ fr ] = "Cliquez pour déplacer la page";
-    Text[ es ] = "Pulse para desplazar la diapositiva";
-    Text[ fi ] = "Siirrä diaa napsauttamalla";
-    Text[ ca ] = "Feu clic per moure la diapositiva";
-    Text[ it ] = "Cliccate per spostare la pagina";
-    Text[ da ] = "Klik for at flytte siden";
-    Text[ sv ] = "Klicka för att flytta sidan";
-    Text[ pl ] = "Kliknij, aby przesunąć slajd";
-    Text[ pt-BR ] = "Clique para mover o slide";
-    Text[ th ] = "คลิกเพื่อย้ายภาพนิ่ง";
-    Text[ ja ] = "ページを移動するにはクリックします。";
-    Text[ ko ] = "슬라이드를 이동하기 위해 클릭하십시오.";
-    Text[ zh-CN ] = "请您按击鼠标，移动页面。";
-    Text[ zh-TW ] = "請按一下滑鼠，移動頁面。";
-    Text[ tr ] = "Slaytı taşımak için tıklayın";
-    Text[ hi-IN ] = "स्लइड का स्थान परिवर्तन करने केलिए क्लिक करो";
-    Text[ ar ] = "انقر لإزاحة الصفحة";
-    Text[ he ] = "Klicken Sie, um die Seite zu verschieben";
+    Text = "Click to move the slide" ;
 };
+
 String STR_PRESOBJ_MPNOTESTEXT
 {
-    Text [ de ] = "Klicken Sie, um das Format der Notizen zu bearbeiten" ;
-    Text [ en-US ] = "Click to edit the notes format" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Clique para editar o formato das anotações";
-    Text[ ru ] = "Для правки формата примечаний щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την επεξεργσία της μορφής των σημειώσεων";
-    Text[ nl ] = "Klik om het formaat van de aantekeningen te bewerken";
-    Text[ fr ] = "Cliquez pour éditer le format des notes";
-    Text[ es ] = "Pulse para editar el formato de las notas";
-    Text[ fi ] = "Napsauta ja muokkaa huomautusmuotoa";
-    Text[ ca ] = "Feu clic per editar el format de les notes";
-    Text[ it ] = "Cliccate per modificare il formato delle note";
-    Text[ da ] = "Klik for at redigere noternes format";
-    Text[ sv ] = "Klicka för att redigera anteckningarnas format";
-    Text[ pl ] = "Kliknij, aby edytować format notatek";
-    Text[ pt-BR ] = "Clique para editar o formato das anotações";
-    Text[ th ] = "คลิกเพื่อแก้ไขรูปแบบบันทึก";
-    Text[ ja ] = "クリックしてノート書式の編集";
-    Text[ ko ] = "메모 서식을 편집하기 위해 클릭하십시오.";
-    Text[ zh-CN ] = "请您按击鼠标，编辑备注的格式。";
-    Text[ zh-TW ] = "請按一下鼠標，編輯備註的格式。";
-    Text[ tr ] = "Notların formatını düzenlemek için tıklayın";
-    Text[ hi-IN ] = "सूचना रचना के संपादन करने केलिए क्लिक करो";
-    Text[ ar ] = "انقر لتحرير تنسيق الملاحظات";
-    Text[ he ] = "Klicken Sie, um das Format der Notizen zu bearbeiten";
+    Text = "Click to edit the notes format" ;
 };
+
 String STR_PRESOBJ_TITLE
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Titel durch Klicken hinzuf�gen : Titel durch Klicken hinzuf�gen */
-    Text [ de ] = "Titel durch Klicken hinzufügen" ;
-    Text [ en-US ] = "Click to add title" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir texto com clique duplo";
-    Text[ ru ] = "Для добавления заголовка щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την εισαγωγή τίτλου";
-    Text[ nl ] = "Klik om titel toe te voegen";
-    Text[ fr ] = "Cliquez pour ajouter un titre";
-    Text[ es ] = "Pulse aquí para añadir un título";
-    Text[ fi ] = "Lisää otsikko napsauttamalla";
-    Text[ ca ] = "Feu clic per afegir un títol";
-    Text[ it ] = "Aggiungere il titolo con un clic";
-    Text[ da ] = "Tilføj titel ved at klikke";
-    Text[ sv ] = "Lägg till rubrik genom att klicka";
-    Text[ pl ] = "Kliknij, aby dodać tytuł";
-    Text[ pt-BR ] = "Clique para adicionar um título";
-    Text[ th ] = "คลิกเพื่อเพิ่มชื่อเรื่อง";
-    Text[ ja ] = "クリックしてタイトルの挿入";
-    Text[ ko ] = "클릭으로 제목 추가";
-    Text[ zh-CN ] = "单击插入标题";
-    Text[ zh-TW ] = "按一下滑鼠左鍵新增標題";
-    Text[ tr ] = "Başlık eklemek için tıklayın";
-    Text[ hi-IN ] = "शीर्षक जोड़ने केलिए क्लिक करो";
-    Text[ ar ] = "انقر لإدراج عنوان";
-    Text[ he ] = "Titel durch Klicken hinzufügen";
+    Text = "Click to add title" ;
 };
+
 String STR_PRESOBJ_OUTLINE
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Gliederung durch Klicken hinzuf�gen : Gliederung durch Klicken hinzuf�gen */
-    Text [ de ] = "Gliederung durch Klicken hinzufügen" ;
-    Text [ en-US ] = "Click to add an outline" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Clique para inserir esquema";
-    Text[ ru ] = "Для добавления структуры щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την εισαγωγή διάρθρωσης";
-    Text[ nl ] = "Klik om overzicht toe te voegen";
-    Text[ fr ] = "Cliquez pour ajouter un plan";
-    Text[ es ] = "Pulse para añadir un esquema";
-    Text[ fi ] = "Lisää jäsennys napsauttamalla";
-    Text[ ca ] = "Feu clic per afegir un contorn";
-    Text[ it ] = "Aggiungere una struttura con un clic";
-    Text[ da ] = "Tilføj disposition ved at dobbeltklikke";
-    Text[ sv ] = "Lägg till disposition genom att klicka";
-    Text[ pl ] = "Kliknij, aby dodać konspekt";
-    Text[ pt-BR ] = "Clique para adicionar um tópico";
-    Text[ th ] = "คลิกเพื่อเพิ่มเค้าร่าง";
-    Text[ ja ] = "クリックしてアウトラインの挿入";
-    Text[ ko ] = "클릭으로 아웃트라인 추가";
-    Text[ zh-CN ] = "单击鼠标键新增大纲";
-    Text[ zh-TW ] = "按滑鼠左鍵來新增大綱";
-    Text[ tr ] = "Anahat eklemek için  tıklayın";
-    Text[ hi-IN ] = "बाहरी रूपरेखा जोड़ने केलिए क्लिक करो";
-    Text[ ar ] = "انقر هنا لإدراج تقسيم";
-    Text[ he ] = "Gliederung durch Klicken hinzufügen";
+    Text = "Click to add an outline" ;
 };
+
 String STR_PRESOBJ_TEXT
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Text durch Klicken hinzuf�gen : Text durch Klicken hinzuf�gen */
-    Text [ de ] = "Text durch Klicken hinzufügen" ;
-    Text [ en-US ] = "Click to add text" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir texto com clique duplo";
-    Text[ ru ] = "Для добавления текста щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την εισαγωγή κειμένου";
-    Text[ nl ] = "Klik om tekst toe te voegen";
-    Text[ fr ] = "Cliquez pour ajouter un texte";
-    Text[ es ] = "Pulse aquí para añadir texto";
-    Text[ fi ] = "Lisää teksti napsauttamalla";
-    Text[ ca ] = "Feu clic per afegir el text";
-    Text[ it ] = "Aggiungere un testo con un clic";
-    Text[ da ] = "Tilføj tekst ved at klikke";
-    Text[ sv ] = "Klicka för att lägga till text";
-    Text[ pl ] = "Kliknij, aby dodać tekst";
-    Text[ pt-BR ] = "Clique para adicionar um texto";
-    Text[ th ] = "คลิกเพื่อเพิ่มข้อความ";
-    Text[ ja ] = "クリックしてテキストの挿入";
-    Text[ ko ] = "클릭으로 텍스트 추가";
-    Text[ zh-CN ] = "单击鼠标键添加文字";
-    Text[ zh-TW ] = "按滑鼠左鍵，輸入文字";
-    Text[ tr ] = "Metin eklemek için tıklayın";
-    Text[ hi-IN ] = "टेक्स्ट् जोड़ने केलिए क्लिक करो";
-    Text[ ar ] = "انقر لإدراج نص";
-    Text[ he ] = "Text durch Klicken hinzufügen";
+    Text = "Click to add text" ;
 };
+
 String STR_PRESOBJ_NOTESTEXT
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Notizen durch Klicken hinzuf�gen : Notizen durch Klicken hinzuf�gen */
-    Text [ de ] = "Notizen durch Klicken hinzufügen" ;
-    Text [ en-US ] = "Click to add notes" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Clique para inserir anotações";
-    Text[ ru ] = "Для добавления примечания щелкните мышью";
-    Text[ el ] = "Κάντε κλικ εδώ για την εισαγωγή σημειώσεων";
-    Text[ nl ] = "Klik om aantekeningen toe te voegen";
-    Text[ fr ] = "Cliquez pour ajouter des notes";
-    Text[ es ] = "Pulse para añadir notas";
-    Text[ fi ] = "Lisää huomautus napsauttamalla";
-    Text[ ca ] = "Feu clic per afegir les notes";
-    Text[ it ] = "Aggiungere una nota con un clic";
-    Text[ da ] = "Tilføj noter ved at klikke";
-    Text[ sv ] = "Lägg till anteckningar genom att klicka";
-    Text[ pl ] = "Kliknij, aby dodać notatki";
-    Text[ pt-BR ] = "Clique para adicionar anotações";
-    Text[ th ] = "คลิกเพื่อเพิ่มบันทึก";
-    Text[ ja ] = "クリックしてノートの挿入";
-    Text[ ko ] = "클릭해서  메모 추가";
-    Text[ zh-CN ] = "单击鼠标键添加备注";
-    Text[ zh-TW ] = "按一下滑鼠左鍵新增備註";
-    Text[ tr ] = "Not eklemek için tıklayın";
-    Text[ hi-IN ] = "टिप्पणी जोड़ने केलिए क्लिक करो";
-    Text[ ar ] = "انقر لإدراج ملاحظات";
-    Text[ he ] = "Notizen durch Klicken hinzufügen";
+    Text = "Click to add notes" ;
 };
+
 String STR_PRESOBJ_GRAPHIC
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Graphik durch Doppelklicken hinzuf�gen : Graphik durch Doppelklicken hinzuf�gen */
-    Text [ de ] = "Grafik durch Doppelklicken hinzufügen" ;
-    Text [ en-US ] = "Double-click to add graphics" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir gráfico com duplo clique";
-    Text[ ru ] = "Добавьте графический объект двойным щелчком мыши";
-    Text[ el ] = "Κάντε διπλό κλικ για τη προσθήκη γραφικού";
-    Text[ nl ] = "Afbeelding door dubbelklikken toevoegen";
-    Text[ fr ] = "Double-clic pour insérer une image";
-    Text[ es ] = "Pulse dos veces para añadir una imagen";
-    Text[ fi ] = "Lisää grafiikkaa kaksoisnapsauttamalla";
-    Text[ ca ] = "Feu doble clic per afegir una imatge";
-    Text[ it ] = "Aggiungi l'immagine con un doppio clic";
-    Text[ da ] = "Tilføj grafik ved at dobbeltklikke";
-    Text[ sv ] = "Lägg till grafik genom att dubbelklicka";
-    Text[ pl ] = "Dodaj grafikę przez dwukrotne kliknięcie";
-    Text[ pt-BR ] = "Duplo clique para adicionar uma figura";
-    Text[ th ] = "คลิกสองครั้งเพื่อเพิ่มกราฟิค";
-    Text[ ja ] = "ダブルクリックで図の挿入";
-    Text[ ko ] = "더블 클릭으로 그림 추가";
-    Text[ zh-CN ] = "双击鼠标插入图形";
-    Text[ zh-TW ] = "雙擊滑鼠，插入一個圖形";
-    Text[ tr ] = "Grafik eklemek için çift tıklayın";
-    Text[ hi-IN ] = "एक सुचित्र को जोड़ने केलिए डबल-क्लिक् करो";
-    Text[ ar ] = "انقر نقراً مزدوجاً لإضافة صورة";
-    Text[ he ] = "Grafik durch Doppelklicken hinzufügen";
+    Text = "Double-click to add graphics" ;
 };
+
 String STR_PRESOBJ_OBJECT
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Objekt durch Doppelklicken hinzuf�gen : Objekt durch Doppelklicken hinzuf�gen */
-    Text [ de ] = "Objekt durch Doppelklicken hinzufügen" ;
-    Text [ en-US ] = "Double-click to add an object" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir objecto com clique duplo";
-    Text[ ru ] = "Добавьте объект двойным щелчком мыши";
-    Text[ el ] = "Κάντε διπλό κλικ για τη προσθήκη αντικειμένου";
-    Text[ nl ] = "Dubbelklik om object toe te voegen";
-    Text[ fr ] = "Double-clic pour insérer un objet";
-    Text[ es ] = "Pulse dos veces para añadir un objeto";
-    Text[ fi ] = "Lisää objekti kaksoisnapsauttamalla";
-    Text[ ca ] = "Feu doble clic per afegir un objecte";
-    Text[ it ] = "Aggiungere un oggetto con un doppio clic";
-    Text[ da ] = "Tilføj objekt ved at dobbeltklikke";
-    Text[ sv ] = "Lägg till objekt genom att dubbelklicka";
-    Text[ pl ] = "Dodaj obiekt przez dwukrotne kliknięcie";
-    Text[ pt-BR ] = "Duplo clique para adicionar um objeto";
-    Text[ th ] = "คลิกสองครั้งเพื่อเพิ่มวัตถุ";
-    Text[ ja ] = "ダブルクリックしてオブジェクトの挿入";
-    Text[ ko ] = "더블 클릭으로 개체 추가";
-    Text[ zh-CN ] = "双击鼠标加入对象";
-    Text[ zh-TW ] = "雙擊滑鼠，插入一個物件。";
-    Text[ tr ] = "Nesne eklemek için çift tıklayın";
-    Text[ hi-IN ] = "एक वस्तु को जोड़ने केलिए डबल-क्लिक् करो";
-    Text[ ar ] = "انقر نقراً مزدوجاً لإضافة كائن";
-    Text[ he ] = "Objekt durch Doppelklicken hinzufügen";
+    Text = "Double-click to add an object" ;
 };
+
 String STR_PRESOBJ_CHART
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Diagramm durch Doppelklicken hinzuf�gen : Diagramm durch Doppelklicken hinzuf�gen */
-    Text [ de ] = "Diagramm durch Doppelklicken hinzufügen" ;
-    Text [ en-US ] = "Double-click to add a chart" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir gráfico com clique duplo";
-    Text[ ru ] = "Добавьте диаграмму двойным щелчком";
-    Text[ el ] = "Κάντε διπλό κλικ για τη προσθήκη διαγράμματος";
-    Text[ nl ] = "Dubbelklik om diagram toe te voegen";
-    Text[ fr ] = "Double-clic pour insérer un diagramme";
-    Text[ es ] = "Pulse dos veces para añadir un diagrama";
-    Text[ fi ] = "Lisää kaavio kaksoisnapsauttamalla";
-    Text[ ca ] = "Feu doble clic per afegir un diagrama";
-    Text[ it ] = "Aggiungere il diagramma con un doppio clic";
-    Text[ da ] = "Tilføj diagram ved at dobbeltklikke";
-    Text[ sv ] = "Lägg till diagram genom att dubbelklicka";
-    Text[ pl ] = "Dodaj wykres przez dwukrotne kliknięcie";
-    Text[ pt-BR ] = "Duplo clique para adicionar um gráfico";
-    Text[ th ] = "คลิกสองครั้งเพื่อเพิ่มแผนภูมิ";
-    Text[ ja ] = "ダブルクリックしてグラフの挿入";
-    Text[ ko ] = "더블 클릭으로 차트 추가";
-    Text[ zh-CN ] = "双击鼠标插入图表";
-    Text[ zh-TW ] = "按一下鼠標插入圖表";
-    Text[ tr ] = "Şema eklemek için çift tıklayın";
-    Text[ hi-IN ] = "एक चार्ट को जोड़ने केलिए डबल-क्लिक् करो";
-    Text[ ar ] = "لإضافة رسما بيانيا، انقر نقرا مزدوجا";
-    Text[ he ] = "Diagramm durch Doppelklicken hinzufügen";
+    Text = "Double-click to add a chart" ;
 };
+
 String STR_PRESOBJ_ORGCHART
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Organisationsdiagramm durch Doppelklicken hinzuf�gen : Organisationsdiagramm durch Doppelklicken hinzuf�gen */
-    Text [ de ] = "Organisationsdiagramm durch Doppelklicken hinzufügen" ;
-    Text [ en-US ] = "Double-click to add an organization chart" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir gráfico de organização com clique duplo";
-    Text[ ru ] = "Добавьте организационную диаграмму двойным щелчком мыши";
-    Text[ el ] = "Προσθήκη διαγράμματος οργάνωσης με διπλό κλικ.";
-    Text[ nl ] = "Dubbelklik om organisatiediagram toe te voegen";
-    Text[ fr ] = "Double-clic pour insérer un organigramme";
-    Text[ es ] = "Pulse dos veces para añadir un organigrama";
-    Text[ fi ] = "Lisää organisaatiokaavio kaksoisnapsauttamalla";
-    Text[ ca ] = "Feu doble clic per afegir un organigrama";
-    Text[ it ] = "Aggiungere un organigramma con un doppio clic";
-    Text[ da ] = "Tilføj organisationsdiagram ved at dobbeltklikke";
-    Text[ sv ] = "Lägg till organisationsdiagram genom att dubbelklicka";
-    Text[ pl ] = "Dodaj schemat organizacyjny przez dwukrotne kliknięcie";
-    Text[ pt-BR ] = "Duplo clique para adicionar um organograma";
-    Text[ th ] = "คลิกสองครั้งเพื่อเพิ่มแผนภูมิองค์กร";
-    Text[ ja ] = "ダブルクリックして組織図の挿入";
-    Text[ ko ] = "더블 클릭으로 조직 차트 추가";
-    Text[ zh-CN ] = "双击鼠标新增组织图表";
-    Text[ zh-TW ] = "雙擊鼠標，新增一個組織圖表";
-    Text[ tr ] = "Organizasyon şeması eklemek için çift tıklayın";
-    Text[ hi-IN ] = "एक चित्र को जोड़ने केलिए डबल-क्लिक् करो";
-    Text[ ar ] = "انقر نقراً مزدوجاً لإضافة رسم بياني هيكلي";
-    Text[ he ] = "Organisationsdiagramm durch Doppelklicken hinzufügen";
+    Text = "Double-click to add an organization chart" ;
 };
+
 String STR_PRESOBJ_TABLE
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Tabelle durch Doppelklicken hinzuf�gen : Tabelle durch Doppelklicken hinzuf�gen */
-    Text [ de ] = "Tabelle durch Doppelklicken hinzufügen" ;
-    Text [ en-US ] = "Double-click to add a spreadsheet" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir folha de cálculo com clique duplo";
-    Text[ ru ] = "Добавьте электронную таблицу двойным щелчком мыши";
-    Text[ el ] = "Προσθήκη πίνακα με διπλό κλικ";
-    Text[ nl ] = "Dubbelklik om werkblad toe te voegen";
-    Text[ fr ] = "Double-clic pour insérer une feuille de calcul";
-    Text[ es ] = "Pulse dos veces para añadir una hoja";
-    Text[ fi ] = "Lisää laskentataulukko kaksoisnapsauttamalla";
-    Text[ ca ] = "Feu doble clic per afegir un full càlcul";
-    Text[ it ] = "Aggiungere una tabella con un doppio clic";
-    Text[ da ] = "Tilføj regneark ved at dobbeltklikke";
-    Text[ sv ] = "Dubbelklicka för att lägga till tabell";
-    Text[ pl ] = "Dodaj arkusz kalkulacyjny przez dwukrotne kliknięcie";
-    Text[ pt-BR ] = "Duplo clique para adicionar uma planilha";
-    Text[ th ] = "คลิกสองครั้งเพื่อเพิ่มกระดาษคำนวณ";
-    Text[ ja ] = "ダブルクリックして表の挿入";
-    Text[ ko ] = "더블 클릭으로 스프레드시트 추가";
-    Text[ zh-CN ] = "请您双击鼠标新增工作表";
-    Text[ zh-TW ] = "雙擊滑鼠按鍵，新增一個工作表。";
-    Text[ tr ] = "Tablo eklemek için çift tıklayın";
-    Text[ hi-IN ] = "एक स्प्रेडशीट् को जोड़ने केलिए डबल-क्लिक् करो";
-    Text[ ar ] = "انقر نقراً مزدوجاً لإضافة جدول";
-    Text[ he ] = "Tabelle durch Doppelklicken hinzufügen";
+    Text = "Double-click to add a spreadsheet" ;
 };
-String STR_SLIDEVIEWSHELL
-{
-    Text [ de ] = "Diamodus" ;
-    Text [ en-US ] = "Slide Mode" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Diapositivos";
-    Text[ ru ] = "Режим слайдов";
-    Text[ el ] = "Κατάσταση διαφάνειας";
-    Text[ nl ] = "Diamodus";
-    Text[ fr ] = "Mode Diapo";
-    Text[ es ] = "Modo Diapositivas";
-    Text[ fi ] = "Diatila";
-    Text[ ca ] = "Mode Diapositiva";
-    Text[ it ] = "Modo diapositiva";
-    Text[ da ] = "Diasmodus";
-    Text[ sv ] = "Diabildsläge";
-    Text[ pl ] = "Tryb slajdu";
-    Text[ pt-BR ] = "Modo de Slide";
-    Text[ th ] = "โหมดภาพนิ่ง";
-    Text[ ja ] = "スライドモード";
-    Text[ ko ] = "슬라이드 모드";
-    Text[ zh-CN ] = "幻灯片模式";
-    Text[ zh-TW ] = "投影片模式";
-    Text[ tr ] = "Slayt kipi";
-    Text[ hi-IN ] = "स्लइड प्रकार";
-    Text[ ar ] = "وضع الشريحة";
-    Text[ he ] = "Diamodus";
-};
-String STR_OUTLINEVIEWSHELL
-{
-    Text [ de ] = "Gliederungsmodus" ;
-    Text [ en-US ] = "Outline View" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Esquema";
-    Text[ ru ] = "Режим структуры";
-    Text[ el ] = "Κατάσταση διάρθρωσης";
-    Text[ nl ] = "Overzichtmodus";
-    Text[ fr ] = "Mode Plan";
-    Text[ es ] = "Modo Esquema";
-    Text[ fi ] = "Jäsennysnäkymä";
-    Text[ ca ] = "Vista Contorn";
-    Text[ it ] = "Modo struttura";
-    Text[ da ] = "Dispositionsmodus";
-    Text[ sv ] = "Dispositionsläge";
-    Text[ pl ] = "Widok konspektu";
-    Text[ pt-BR ] = "Modo de Estrutura de Tópicos";
-    Text[ th ] = "มุมมองแบบเค้าร่าง";
-    Text[ ja ] = "アウトラインモード";
-    Text[ ko ] = "아웃트라인 모드";
-    Text[ zh-CN ] = "大纲模式";
-    Text[ zh-TW ] = "大綱模式";
-    Text[ tr ] = "Genel bakış";
-    Text[ hi-IN ] = "बाहरी रूपरेखा दृश्य";
-    Text[ ar ] = "وضع التقسيم";
-    Text[ he ] = "Gliederungsmodus";
-};
-String STR_DRAWVIEWSHELL
-{
-    Text [ de ] = "Zeichenmodus" ;
-    Text [ en-US ] = "Drawing View" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Desenho";
-    Text[ ru ] = "Режим рисования";
-    Text[ el ] = "Κατάσταση σχεδίασης";
-    Text[ nl ] = "Tekeningmodus";
-    Text[ fr ] = "Mode Dessin";
-    Text[ es ] = "Modo Dibujo";
-    Text[ fi ] = "Piirrosnäkymä";
-    Text[ ca ] = "Vista Dibuix";
-    Text[ it ] = "Modo disegno";
-    Text[ da ] = "Tegnemodus";
-    Text[ sv ] = "Ritläge";
-    Text[ pl ] = "Widok rysunku";
-    Text[ pt-BR ] = "Modo de Desenho";
-    Text[ th ] = "มุมมองวาดรูป";
-    Text[ ja ] = "図形描画モード";
-    Text[ ko ] = "문자 모드";
-    Text[ zh-CN ] = "绘图模式";
-    Text[ zh-TW ] = "繪圖模式";
-    Text[ tr ] = "Çizim bakışı";
-    Text[ hi-IN ] = "रेखाचित्र दृश्य";
-    Text[ ar ] = "وضع الرسم";
-    Text[ he ] = "Zeichenmodus";
-};
-String STR_PRESVIEWSHELL
-{
-    Text [ de ] = "Präsentationsmodus" ;
-    Text [ en-US ] = "Presentation mode" ;
-    Text[ pt ] = "Modo de apresentação";
-    Text[ ru ] = "Режим презентации";
-    Text[ el ] = "Presentation mode";
-    Text[ nl ] = "Presentatiemodus";
-    Text[ fr ] = "Mode Présentation";
-    Text[ es ] = "Modo presentación";
-    Text[ fi ] = "Esitystila";
-    Text[ ca ] = "Mode Presentació";
-    Text[ it ] = "Modo presentazione";
-    Text[ da ] = "Præsentationsmodus";
-    Text[ sv ] = "Presentationsläge";
-    Text[ pl ] = "Tryb prezentacji";
-    Text[ pt-BR ] = "Modo de apresentação";
-    Text[ th ] = "โหมดการนำเสนอ";
-    Text[ ja ] = "スライドショーモード";
-    Text[ ko ] = "프레젠테이션 모드";
-    Text[ zh-CN ] = "演示文稿模式";
-    Text[ zh-TW ] = "簡報模式";
-    Text[ tr ] = "Sunu kipi";
-    Text[ hi-IN ] = "प्रस्तुति प्रकार";
-    Text[ ar ] = "Presentation mode";
-    Text[ he ] = "Präsentationsmodus";
-};
-String STR_PREVIEWVIEWSHELL
-{
-    Text [ de ] = "Vorschaufenster" ;
-    Text [ en-US ] = "Preview Window";
-    Text[ pt ] = "Janela Previsualizar";
-    Text[ ru ] = "Окно предварительного просмотра";
-    Text[ el ] = "Preview Window";
-    Text[ nl ] = "Voorbeeldvenster";
-    Text[ fr ] = "Fenêtre d'aperçu";
-    Text[ es ] = "Ventana de previsualización";
-    Text[ fi ] = "Esikatseluikkuna";
-    Text[ ca ] = "Finestra de previsualització";
-    Text[ it ] = "Anteprima";
-    Text[ da ] = "Eksempelvindue";
-    Text[ sv ] = "Förhandsvisningsfönster";
-    Text[ pl ] = "Okno podglądu";
-    Text[ pt-BR ] = "Janela de visualização";
-    Text[ th ] = "แสดงตัวอย่างหน้าต่าง";
-    Text[ ja ] = "プレビューウィンドウ";
-    Text[ ko ] = "미리 보기 창";
-    Text[ zh-CN ] = "预览视窗";
-    Text[ zh-TW ] = "預覽視窗";
-    Text[ tr ] = "Önizleme penceresi";
-    Text[ hi-IN ] = "पूर्वदृश्य विन्डो";
-    Text[ ar ] = "Preview Window";
-    Text[ he ] = "Vorschaufenster";
-};
-String STR_TEXTOBJECTBARSHELL
-{
-    Text [ de ] = "Textmodus" ;
-    Text [ en-US ] = "Text Mode" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Texto";
-    Text[ ru ] = "Режим текста";
-    Text[ el ] = "Κατάσταση κειμένου";
-    Text[ nl ] = "Tekstmodus";
-    Text[ fr ] = "Mode Texte";
-    Text[ es ] = "Modo texto";
-    Text[ fi ] = "Tekstitila";
-    Text[ ca ] = "Mode Text";
-    Text[ it ] = "Modo testo";
-    Text[ da ] = "Tekstmodus";
-    Text[ sv ] = "Textläge";
-    Text[ pl ] = "Tryb tekstowy";
-    Text[ pt-BR ] = "Modo de Texto";
-    Text[ th ] = "โหมดข้อความ";
-    Text[ ja ] = "テキストモード";
-    Text[ ko ] = "텍스트 모드";
-    Text[ zh-CN ] = "文字模式";
-    Text[ zh-TW ] = "文字模式";
-    Text[ tr ] = "Metin kipi";
-    Text[ hi-IN ] = "टेक्स्ट् प्रकार";
-    Text[ ar ] = "وضع النص";
-    Text[ he ] = "Textmodus";
-};
-String STR_STDOBJECTBARSHELL
-{
-    Text [ de ] = "Dokumentmodus" ;
-    Text [ en-US ] = "Document Mode" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Documento";
-    Text[ ru ] = "Режим документа";
-    Text[ el ] = "Κατάσταση εγγράφου";
-    Text[ nl ] = "Documentmodus";
-    Text[ fr ] = "Mode Document";
-    Text[ es ] = "Modo documentos";
-    Text[ fi ] = "Asiakirjatila";
-    Text[ ca ] = "Mode Document";
-    Text[ it ] = "Modo documento";
-    Text[ da ] = "Dokumentmodus";
-    Text[ sv ] = "Dokumentläge";
-    Text[ pl ] = "Tryb dokumentu";
-    Text[ pt-BR ] = "Modo Documento";
-    Text[ th ] = "โหมดเอกสาร";
-    Text[ ja ] = "ドキュメントモード";
-    Text[ ko ] = "문서 모드";
-    Text[ zh-CN ] = "文档模式";
-    Text[ zh-TW ] = "文件模式";
-    Text[ tr ] = "Belge kipi";
-    Text[ hi-IN ] = "लेखपत्र प्रकार";
-    Text[ ar ] = "وضع المستند";
-    Text[ he ] = "Dokumentmodus";
-};
-String STR_BEZIEROBJECTBARSHELL
-{
-    /* ### ACHTUNG: Neuer Text in Resource? B�ziermodus : B�ziermodus */
-    Text [ de ] = "Béziermodus" ;
-    Text [ en-US ] = "B�zier mode" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Bézier";
-    Text[ ru ] = "Режим Безье";
-    Text[ el ] = "Κατάσταση καμπύλης";
-    Text[ nl ] = "Béziermodus";
-    Text[ fr ] = "Mode Bézier";
-    Text[ es ] = "Modo Bézier";
-    Text[ fi ] = "Bézier-tila";
-    Text[ ca ] = "Mode Bézier";
-    Text[ it ] = "Modo Bézier";
-    Text[ da ] = "Beziermodus";
-    Text[ sv ] = "Bézierläge";
-    Text[ pl ] = "Tryb Béziera";
-    Text[ pt-BR ] = "Modo Bézier";
-    Text[ th ] = "โหมด B้zier ";
-    Text[ ja ] = "ベジェ曲線モード";
-    Text[ ko ] = "베지에 모드";
-    Text[ zh-CN ] = "曲形模式";
-    Text[ zh-TW ] = "曲線模式";
-    Text[ tr ] = "Bézier kipi";
-    Text[ hi-IN ] = "BÃ©zier mode";
-    Text[ ar ] = "وضع Bézier";
-    Text[ he ] = "Béziermodus";
-};
-String STR_APPLICATIONOBJECTBAR
-{
-    /* ### ACHTUNG: Neuer Text in Resource? StarImpress 4.0 : StarDraw 3.1 */
-    /* ### ACHTUNG: Neuer Text in Resource? StarImpress 4.0 : StarDraw 3.1 */
-    /* ### ACHTUNG: Neuer Text in Resource? StarImpress 4.0 : StarDraw 3.1 */
-    Text [ de ] = "StarImpress 4.0" ;
-    Text [ en-US ] = "StarImpress 4.0" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "StarImpress 4.0";
-    Text[ ru ] = "StarImpress 4.0";
-    Text[ el ] = "StarImpress 4.0";
-    Text[ nl ] = "StarImpress 4.0";
-    Text[ fr ] = "StarImpress 4.0";
-    Text[ es ] = "StarImpress 4.0";
-    Text[ fi ] = "StarImpress 4.0";
-    Text[ ca ] = "StarImpress 4.0";
-    Text[ it ] = "StarImpress 4.0";
-    Text[ da ] = "StarImpress 4.0";
-    Text[ sv ] = "StarImpress 4.0";
-    Text[ pl ] = "StarImpress 4.0";
-    Text[ pt-BR ] = "StarImpress 4.0";
-    Text[ th ] = "สตาร์อิมเพรส 4.0";
-    Text[ ja ] = "StarImpress 4.0";
-    Text[ ko ] = "StarImpress 4.0";
-    Text[ zh-CN ] = "StarImpress 4.0";
-    Text[ zh-TW ] = "StarImpress 4.0";
-    Text[ tr ] = "StarImpress 4.0";
-    Text[ hi-IN ] = "StarImpress 4.0";
-    Text[ ar ] = "StarImpress 4.0";
-    Text[ he ] = "StarImpress 4.0";
-};
-String STR_GLUEPOINTSOBJECTBARSHELL
-{
-    Text [ de ] = "Klebepunktemodus" ;
-    Text [ en-US ] = "Glue Points Mode" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modo Pontos de Colagem";
-    Text[ ru ] = "Режим точек соединения";
-    Text[ el ] = "Κατάσταση σημείων κόλλησης";
-    Text[ nl ] = "Modus Plakpunten";
-    Text[ fr ] = "Mode Points de collage";
-    Text[ es ] = "Modo de puntos de adhesión";
-    Text[ fi ] = "Liimapistetila";
-    Text[ ca ] = "Mode de punts de cola";
-    Text[ it ] = "Modo punti incollaggio";
-    Text[ da ] = "Klæbepunktmodus";
-    Text[ sv ] = "Fästpunktsläge";
-    Text[ pl ] = "Tryb punktów sklejenia";
-    Text[ pt-BR ] = "Modo de Pontos de Adesão";
-    Text[ th ] = "โหมดจุดเชื่อม";
-    Text[ ja ] = "接着点モード";
-    Text[ ko ] = "접착점 모드";
-    Text[ zh-CN ] = "粘结点模式";
-    Text[ zh-TW ] = "接點模式";
-    Text[ tr ] = "Yapıştırma noktaları kipi";
-    Text[ hi-IN ] = "ग्लू बिन्दु प्रकार";
-    Text[ ar ] = "وضع نقاط اللصق";
-    Text[ he ] = "Klebepunktemodus";
-};
-/* nicht uebersetzen */
+
+
 String STR_LAYOUT_TITLE
 {
     Text  = "Titel" ;
 };
-/* nicht uebersetzen */
+
 String STR_LAYOUT_OUTLINE
 {
     Text  = "Gliederung" ;
 };
-/* nicht uebersetzen */
+
 String STR_LAYOUT_BACKGROUND
 {
     Text  = "Hintergrund" ;
 };
-/* nicht uebersetzen */
+
 String STR_LAYOUT_BACKGROUNDOBJECTS
 {
     Text  = "Hintergrundobjekte" ;
 };
-/* nicht uebersetzen */
+
 String STR_LAYOUT_NOTES
 {
     Text  = "Notizen" ;
 };
+
 String STR_LAYOUT_DEFAULT_NAME
 {
-    Text [ de ] = "Standard" ;
-    Text [ en-US ] = "Default" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Padrão";
-    Text[ ru ] = "Обычный";
-    Text[ el ] = "Προεπιλογή";
-    Text[ nl ] = "Standaard";
-    Text[ fr ] = "Standard";
-    Text[ es ] = "Predeterminado";
-    Text[ fi ] = "Oletus";
-    Text[ ca ] = "Per defecte";
-    Text[ it ] = "Standard";
-    Text[ da ] = "Standard";
-    Text[ sv ] = "Standard";
-    Text[ pl ] = "Domyślnie";
-    Text[ pt-BR ] = "Padrão";
-    Text[ th ] = "ค่าเริ่มต้น";
-    Text[ ja ] = "標準";
-    Text[ ko ] = "기본값";
-    Text[ zh-CN ] = "标准";
-    Text[ zh-TW ] = "標準";
-    Text[ tr ] = "Öntanımlı";
-    Text[ hi-IN ] = "अनुपस्थिति";
-    Text[ ar ] = "قياسي";
-    Text[ he ] = "‮ברירת מחדל‬";
+    Text = "Default" ;
 };
+
 String STR_STANDARD_STYLESHEET_NAME
 {
-    Text [ de ] = "Standard" ;
-    Text [ en-US ] = "Default" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Padrão";
-    Text[ ru ] = "Обычный";
-    Text[ el ] = "Προεπιλογή";
-    Text[ nl ] = "Standaard";
-    Text[ fr ] = "Standard";
-    Text[ es ] = "Predeterminado";
-    Text[ fi ] = "Oletus";
-    Text[ ca ] = "Per defecte";
-    Text[ it ] = "Standard";
-    Text[ da ] = "Standard";
-    Text[ sv ] = "Standard";
-    Text[ pl ] = "Domyślnie";
-    Text[ pt-BR ] = "Padrão";
-    Text[ th ] = "ค่าเริ่มต้น";
-    Text[ ja ] = "標準";
-    Text[ ko ] = "기본값";
-    Text[ zh-CN ] = "标准";
-    Text[ zh-TW ] = "標準";
-    Text[ tr ] = "Öntanımlı";
-    Text[ hi-IN ] = "अनुपस्थिति";
-    Text[ ar ] = "قياسي";
-    Text[ he ] = "‮ברירת מחדל‬";
+    Text = "Default" ;
 };
-/* nicht uebersetzen */
+
 String STR_LAYOUT_SUBTITLE
 {
     Text  = "Untertitel" ;
 };
- // Zusatz NT fuer nicht zu uebersetzende Strings
+
 String STR_POOLSHEET_MEASURE_NT
 {
     Text  = "Ma�linie" ;
 };
+
 String STR_POOLSHEET_MEASURE
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Ma�linie : Ma�linie */
-    Text [ de ] = "Maßlinie" ;
-    Text [ en-US ] = "Dimension Line" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Linha de dimensão";
-    Text[ ru ] = "Размерная линия";
-    Text[ el ] = "Γραμμή διαστασιολόγησης";
-    Text[ nl ] = "Meetlat";
-    Text[ fr ] = "Ligne de cote";
-    Text[ es ] = "Línea de dimensiones";
-    Text[ fi ] = "Mittajana";
-    Text[ ca ] = "Línia de dimensions";
-    Text[ it ] = "Linea di quotatura";
-    Text[ da ] = "Målelinje";
-    Text[ sv ] = "Måttlinje";
-    Text[ pl ] = "Linia wymiarowa";
-    Text[ pt-BR ] = "Linha de Cota";
-    Text[ th ] = "เส้นมีมิติ";
-    Text[ ja ] = "寸法線";
-    Text[ ko ] = "치수선";
-    Text[ zh-CN ] = "定量线";
-    Text[ zh-TW ] = "定量線";
-    Text[ tr ] = "Ölçme çizgisi";
-    Text[ hi-IN ] = "परिमाण रेखा";
-    Text[ ar ] = "خط قياس";
-    Text[ he ] = "Maßlinie";
+    Text = "Dimension Line" ;
 };
+
 String STR_POOLSHEET_OBJWITHARROW
 {
-    Text [ de ] = "Objekt mit Pfeilspitze" ;
-    Text [ en-US ] = "Object with arrow" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Objecto com seta na ponta";
-    Text[ ru ] = "Объект со стрелкой";
-    Text[ el ] = "Αντικείμενο με βέλος";
-    Text[ nl ] = "Object met pijl";
-    Text[ fr ] = "Objet avec extrémité de flèche";
-    Text[ es ] = "Objeto con punta de flecha";
-    Text[ fi ] = "Objekti ja nuoli";
-    Text[ ca ] = "Objecte amb fletxa";
-    Text[ it ] = "Oggetto con punta di freccia";
-    Text[ da ] = "Objekt med pilespids";
-    Text[ sv ] = "Objekt med pilspets";
-    Text[ pl ] = "Obiekt ze strzałką";
-    Text[ pt-BR ] = "Objeto com seta";
-    Text[ th ] = "วัตถุลูกศร";
-    Text[ ja ] = "矢印先端付きオブジェクト";
-    Text[ ko ] = "화살표가 있는 개체";
-    Text[ zh-CN ] = "带箭头的对象";
-    Text[ zh-TW ] = "帶箭頭的物件";
-    Text[ tr ] = "Oklu nesne";
-    Text[ hi-IN ] = "वस्तु तीर रेखा";
-    Text[ ar ] = "كائن بسهم";
-    Text[ he ] = "Objekt mit Pfeilspitze";
+    Text = "Object with arrow" ;
 };
+
 String STR_POOLSHEET_OBJWITHSHADOW
 {
-    Text [ de ] = "Objekt mit Schatten" ;
-    Text [ en-US ] = "Object with shadow" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Objecto com sombra";
-    Text[ ru ] = "Объект с тенью";
-    Text[ el ] = "Αντικείμενο με σκιά";
-    Text[ nl ] = "Object met schaduw";
-    Text[ fr ] = "Objet avec ombre";
-    Text[ es ] = "Objeto con sombra";
-    Text[ fi ] = "Objekti ja varjostus";
-    Text[ ca ] = "Objecte amb ombra";
-    Text[ it ] = "Oggetto con ombra";
-    Text[ da ] = "Objekt med skygge";
-    Text[ sv ] = "Objekt med skugga";
-    Text[ pl ] = "Obiekt z cieniem";
-    Text[ pt-BR ] = "Objeto com sombreado";
-    Text[ th ] = "วัตถุเงา";
-    Text[ ja ] = "影付きオブジェクト";
-    Text[ ko ] = "그림자가 있는 개체";
-    Text[ zh-CN ] = "带阴影的对象";
-    Text[ zh-TW ] = "帶陰影的物件";
-    Text[ tr ] = "Gölgeli nesne";
-    Text[ hi-IN ] = "वस्तु छाया सहित";
-    Text[ ar ] = "كائن بظل";
-    Text[ he ] = "Objekt mit Schatten";
+    Text = "Object with shadow" ;
 };
+
 String STR_POOLSHEET_OBJWITHOUTFILL_NT
 {
     Text  = "Objekt ohne F�llung" ;
 };
+
 String STR_POOLSHEET_OBJWITHOUTFILL
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Objekt ohne F�llung : Objekt ohne F�llung */
-    Text [ de ] = "Objekt ohne Füllung" ;
-    Text [ en-US ] = "Object without fill" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Objecto não preenchido";
-    Text[ ru ] = "Объект без заливки";
-    Text[ el ] = "Αντικείμενο χωρίς γέμισμα";
-    Text[ nl ] = "Object zonder vulling";
-    Text[ fr ] = "Objet sans remplissage";
-    Text[ es ] = "Objeto sin relleno";
-    Text[ fi ] = "Objekti ilman täyttöä";
-    Text[ ca ] = "Objecte sense emplenament";
-    Text[ it ] = "Oggetto senza riempimento";
-    Text[ da ] = "Objekt uden fyld";
-    Text[ sv ] = "Objekt utan fyllning";
-    Text[ pl ] = "Obiekt bez wypełnienia";
-    Text[ pt-BR ] = "Objeto não preenchido";
-    Text[ th ] = "วัตถุไม่มีการเติม";
-    Text[ ja ] = "塗りつぶしなしオブジェクト";
-    Text[ ko ] = "채우지 않은 개체";
-    Text[ zh-CN ] = "不填色的对象";
-    Text[ zh-TW ] = "不填色的物件";
-    Text[ tr ] = "Dolgusuz nesne";
-    Text[ hi-IN ] = "वस्तु बिना भरा";
-    Text[ ar ] = "كائن بدون تعبئة";
-    Text[ he ] = "Objekt ohne Füllung";
+    Text = "Object without fill" ;
 };
+
 String STR_POOLSHEET_TEXT
 {
-    Text [ de ] = "Text" ;
-    Text [ en-US ] = "Text" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Texto";
-    Text[ ru ] = "Текст";
-    Text[ el ] = "Κείμενο";
-    Text[ nl ] = "Tekst";
-    Text[ fr ] = "Texte";
-    Text[ es ] = "Texto";
-    Text[ fi ] = "Teksti";
-    Text[ ca ] = "Text";
-    Text[ it ] = "Testo";
-    Text[ da ] = "Tekst";
-    Text[ sv ] = "Text";
-    Text[ pl ] = "Tekst";
-    Text[ pt-BR ] = "Texto";
-    Text[ th ] = "ข้อความ";
-    Text[ ja ] = "テキスト";
-    Text[ ko ] = "텍스트";
-    Text[ zh-CN ] = "文字";
-    Text[ zh-TW ] = "文字";
-    Text[ tr ] = "Metin";
-    Text[ hi-IN ] = "टेक्स्ट्";
-    Text[ ar ] = "النص";
-    Text[ he ] = "‮טקסט‬";
+    Text = "Text" ;
 };
+
 String STR_POOLSHEET_TEXTBODY_NT
 {
     Text = "Textk�rper" ;
 };
+
 String STR_POOLSHEET_TEXTBODY
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Textk�rper : Textk�rper */
-    Text [ de ] = "Textkörper" ;
-    Text [ en-US ] = "Text body" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Corpo do texto";
-    Text[ ru ] = "Основной текст";
-    Text[ el ] = "Σώμα κειμένου";
-    Text[ nl ] = "Tekstblok";
-    Text[ fr ] = "Corps de texte";
-    Text[ es ] = "Cuerpo de texto";
-    Text[ fi ] = "Leipäteksti";
-    Text[ ca ] = "Cos del text";
-    Text[ it ] = "Corpo testo";
-    Text[ da ] = "Brødtekst";
-    Text[ sv ] = "Brödtext";
-    Text[ pl ] = "Treść tekstu";
-    Text[ pt-BR ] = "Corpo do texto";
-    Text[ th ] = "เนื้อความ";
-    Text[ ja ] = "本文";
-    Text[ ko ] = "본문";
-    Text[ zh-CN ] = "正文";
-    Text[ zh-TW ] = "內文";
-    Text[ tr ] = "Metin gövdesi";
-    Text[ hi-IN ] = "टेक्स्ट् का मुख्य भाग";
-    Text[ ar ] = "جسم النص";
-    Text[ he ] = "Textkörper";
+    Text = "Text body" ;
 };
+
 String STR_POOLSHEET_TEXTBODY_JUSTIFY_NT
 {
     Text  = "Textk�rper Blocksatz" ;
 };
+
 String STR_POOLSHEET_TEXTBODY_JUSTIFY
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Textk�rper Blocksatz : Textk�rper Blocksatz */
-    Text [ de ] = "Textkörper Blocksatz" ;
-    Text [ en-US ] = "Text body justfied" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Corpo do texto justificado";
-    Text[ ru ] = "Выравнивание текста по ширине";
-    Text[ el ] = "Πλήρης στοίχιση σώματος κειμένου";
-    Text[ nl ] = "Tekstblok uitgevuld";
-    Text[ fr ] = "Corps de texte justifié";
-    Text[ es ] = "Cuerpo de texto justificado";
-    Text[ fi ] = "Leipätekstin tasaus";
-    Text[ ca ] = "Cos justificat del text";
-    Text[ it ] = "Corpo testo giustificato";
-    Text[ da ] = "Lige margener i brødtekst";
-    Text[ sv ] = "Marginaljustera brödtext";
-    Text[ pl ] = "Tekst wyrównany do lewej i prawej";
-    Text[ pt-BR ] = "Corpo do texto justificado";
-    Text[ th ] = "จัดเนื้อความชิดขอบ";
-    Text[ ja ] = "本文両端揃え";
-    Text[ ko ] = "본문 양쪽 맞춤";
-    Text[ zh-CN ] = "正文左右对齐";
-    Text[ zh-TW ] = "內文左右對齊";
-    Text[ tr ] = "Metin gövdesi (iki yana yaslı)";
-    Text[ hi-IN ] = "टेक्स्ट् का मुख्य भाग व्यवस्थित";
-    Text[ ar ] = "جسم النص مضبوط";
-    Text[ he ] = "Textkörper Blocksatz";
+    Text = "Text body justfied" ;
 };
+
 String STR_POOLSHEET_TEXTBODY_INDENT_NT
 {
     Text  = "Textk�rper Einzug" ;
 };
+
 String STR_POOLSHEET_TEXTBODY_INDENT
 {
-    /* ### ACHTUNG: Neuer Text in Resource? Textk�rper Einzug : Textk�rper Einzug */
-    Text [ de ] = "Textkörper Einzug" ;
-    Text [ en-US ] = "First line indent" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Abrir parágrafo";
-    Text[ ru ] = "Первая строка с отступом";
-    Text[ el ] = "Εσοχή πρώτης γραμμής";
-    Text[ nl ] = "1e regel inspringen";
-    Text[ fr ] = "Alinéa";
-    Text[ es ] = "Sangría de la primera línea";
-    Text[ fi ] = "Ensimmäisen rivin sisennys";
-    Text[ ca ] = "Sangría de la primera línea";
-    Text[ it ] = "Rientro corpo del testo";
-    Text[ da ] = "Brødtekst indrykning";
-    Text[ sv ] = "Brödtext indrag";
-    Text[ pl ] = "Wcięcie pierwszego wiersza";
-    Text[ pt-BR ] = "Recuo da primeira linha";
-    Text[ th ] = "ระยะเยื้องบรรทัดแรก";
-    Text[ ja ] = "本文インデント";
-    Text[ ko ] = "첫줄 들여쓰기";
-    Text[ zh-CN ] = "正文缩进";
-    Text[ zh-TW ] = "內文縮排";
-    Text[ tr ] = "Metin gövdesi (girintili)";
-    Text[ hi-IN ] = "पहिला रेखा इन्डेन्ट";
-    Text[ ar ] = "إزاحة جسم النص";
-    Text[ he ] = "Textkörper Einzug";
+    Text = "First line indent" ;
 };
+
 String STR_POOLSHEET_TITLE
 {
-    Text [ de ] = "Titel" ;
-    Text [ en-US ] = "Title" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título3";
-    Text[ ru ] = "Заголовок";
-    Text[ el ] = "Τίτλος";
-    Text[ nl ] = "Titel";
-    Text[ fr ] = "Titre3";
-    Text[ es ] = "Título";
-    Text[ fi ] = "Otsikko";
-    Text[ ca ] = "Títol";
-    Text[ it ] = "Titolo3";
-    Text[ da ] = "Titel";
-    Text[ sv ] = "Titel";
-    Text[ pl ] = "Tytuł";
-    Text[ pt-BR ] = "Título";
-    Text[ th ] = "ชื่อเรื่อง";
-    Text[ ja ] = "タイトル";
-    Text[ ko ] = "제목";
-    Text[ zh-CN ] = "标题";
-    Text[ zh-TW ] = "標題";
-    Text[ tr ] = "Ana başlık";
-    Text[ hi-IN ] = "शीर्षक";
-    Text[ ar ] = "العنوان";
-    Text[ he ] = "‮כותרת‬";
+    Text = "Title" ;
 };
+
 String STR_POOLSHEET_TITLE1
 {
-    Text [ de ] = "Titel1" ;
-    Text [ en-US ] = "Title1" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título4";
-    Text[ ru ] = "Заголовок 3";
-    Text[ el ] = "Τίτλος1";
-    Text[ nl ] = "Titel1";
-    Text[ fr ] = "Titre4";
-    Text[ es ] = "Título1";
-    Text[ fi ] = "Otsikko1";
-    Text[ ca ] = "Títol1";
-    Text[ it ] = "Titolo4";
-    Text[ da ] = "Titel1";
-    Text[ sv ] = "Titel1";
-    Text[ pl ] = "Tytuł1";
-    Text[ pt-BR ] = "Título1";
-    Text[ th ] = "ชื่อเรื่อง1";
-    Text[ ja ] = "タイトル 1";
-    Text[ ko ] = "제목1";
-    Text[ zh-CN ] = "标题 1";
-    Text[ zh-TW ] = "標題 1";
-    Text[ tr ] = "Ana başlık 1";
-    Text[ hi-IN ] = "शीर्षक1";
-    Text[ ar ] = "العنوان1";
-    Text[ he ] = "Titel1";
+    Text = "Title1" ;
 };
+
 String STR_POOLSHEET_TITLE2
 {
-    Text [ de ] = "Titel2" ;
-    Text [ en-US ] = "Title2" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título5";
-    Text[ ru ] = "Заголовок 4";
-    Text[ el ] = "Τίτλος2";
-    Text[ nl ] = "Titel2";
-    Text[ fr ] = "Titre5";
-    Text[ es ] = "Título2";
-    Text[ fi ] = "Otsikko2";
-    Text[ ca ] = "Títol2";
-    Text[ it ] = "Titolo5";
-    Text[ da ] = "Titel2";
-    Text[ sv ] = "Titel2";
-    Text[ pl ] = "Tytuł2";
-    Text[ pt-BR ] = "Título2";
-    Text[ th ] = "ชื่อเรื่อง2";
-    Text[ ja ] = "タイトル 2";
-    Text[ ko ] = "제목2";
-    Text[ zh-CN ] = "标题 2";
-    Text[ zh-TW ] = "標題 2";
-    Text[ tr ] = "Ana başlık 2";
-    Text[ hi-IN ] = "शीर्षक2";
-    Text[ ar ] = "العنوان2";
-    Text[ he ] = "Titel2";
+    Text = "Title2" ;
 };
+
 String STR_POOLSHEET_HEADLINE_NT
 {
     Text  = "�berschrift" ;
 };
 String STR_POOLSHEET_HEADLINE
 {
-    /* ### ACHTUNG: Neuer Text in Resource? �berschrift : �berschrift */
-    Text [ de ] = "Überschrift" ;
-    Text [ en-US ] = "Heading" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título";
-    Text[ ru ] = "Заголовок 2";
-    Text[ el ] = "Επικεφαλίδα";
-    Text[ nl ] = "Kop";
-    Text[ fr ] = "Titre";
-    Text[ es ] = "Encabezado";
-    Text[ fi ] = "Otsikko";
-    Text[ ca ] = "Encapçalament";
-    Text[ it ] = "Intestazione";
-    Text[ da ] = "Overskrift";
-    Text[ sv ] = "Överskrift";
-    Text[ pl ] = "Nagłówek";
-    Text[ pt-BR ] = "Título";
-    Text[ th ] = "ส่วนหัว";
-    Text[ ja ] = "見出し";
-    Text[ ko ] = "제목";
-    Text[ zh-CN ] = "大标题";
-    Text[ zh-TW ] = "標頭";
-    Text[ tr ] = "Başlık";
-    Text[ hi-IN ] = "शीर्षक";
-    Text[ ar ] = "العنوان";
-    Text[ he ] = "Überschrift";
+    Text = "Heading" ;
 };
+
 String STR_POOLSHEET_HEADLINE1_NT
 {
     Text  = "�berschrift1" ;
 };
+
 String STR_POOLSHEET_HEADLINE1
 {
-    /* ### ACHTUNG: Neuer Text in Resource? �berschrift1 : �berschrift1 */
-    Text [ de ] = "Überschrift1" ;
-    Text [ en-US ] = "Heading1" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título1";
-    Text[ ru ] = "Заголовок 5";
-    Text[ el ] = "Επικεφαλίδα1";
-    Text[ nl ] = "Kop1";
-    Text[ fr ] = "Titre1";
-    Text[ es ] = "Encabezado1";
-    Text[ fi ] = "Otsikko1";
-    Text[ ca ] = "Encapçalament1";
-    Text[ it ] = "Intestazione1";
-    Text[ da ] = "Overskrift1";
-    Text[ sv ] = "Överskrift1";
-    Text[ pl ] = "Nagłówek1";
-    Text[ pt-BR ] = "Título 1";
-    Text[ th ] = "ส่วนหัว1";
-    Text[ ja ] = "見出し 1";
-    Text[ ko ] = "제목1";
-    Text[ zh-CN ] = "大标题 1";
-    Text[ zh-TW ] = "標頭 1";
-    Text[ tr ] = "Başlık 1";
-    Text[ hi-IN ] = "शीर्षक1";
-    Text[ ar ] = "العنوان1";
-    Text[ he ] = "Überschrift1";
+    Text = "Heading1" ;
 };
+
 String STR_POOLSHEET_HEADLINE2_NT
 {
     Text  = "�berschrift2" ;
 };
+
 String STR_POOLSHEET_HEADLINE2
 {
-    /* ### ACHTUNG: Neuer Text in Resource? �berschrift2 : �berschrift2 */
-    Text [ de ] = "Überschrift2" ;
-    Text [ en-US ] = "Heading2" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título2";
-    Text[ ru ] = "Заголовок 6";
-    Text[ el ] = "Επικεφαλίδα2";
-    Text[ nl ] = "Kop2";
-    Text[ fr ] = "Titre2";
-    Text[ es ] = "Encabezado2";
-    Text[ fi ] = "Otsikko2";
-    Text[ ca ] = "Encapçalament2";
-    Text[ it ] = "Intestazione2";
-    Text[ da ] = "Overskrift2";
-    Text[ sv ] = "Överskrift2";
-    Text[ pl ] = "Nagłówek2";
-    Text[ pt-BR ] = "Título 2";
-    Text[ th ] = "ส่วนหัว2";
-    Text[ ja ] = "見出し 2";
-    Text[ ko ] = "제목2";
-    Text[ zh-CN ] = "大标题 2";
-    Text[ zh-TW ] = "標頭 2";
-    Text[ tr ] = "Başlık 2";
-    Text[ hi-IN ] = "शीर्षक2";
-    Text[ ar ] = "العنوان2";
-    Text[ he ] = "Überschrift2";
+    Text = "Heading2" ;
 };
+
 String STR_EMPTY_STYLESHEET_NAME
 {
-    Text [ de ] = "Leere Vorlage" ;
-    Text [ en-US ] = "Blank template" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Modelo vazio";
-    Text[ ru ] = "Пустой шаблон";
-    Text[ el ] = "Κενό πρότυπο";
-    Text[ nl ] = "Lege sjabloon";
-    Text[ fr ] = "Modèle vierge";
-    Text[ es ] = "Plantilla vacía";
-    Text[ fi ] = "Tyhjä malli";
-    Text[ ca ] = "Plantilla en blanc";
-    Text[ it ] = "Modello vuoto";
-    Text[ da ] = "Tom skabelon";
-    Text[ sv ] = "Blank mall";
-    Text[ pl ] = "Pusty szablon";
-    Text[ pt-BR ] = "Modelo em branco";
-    Text[ th ] = "แม่แบบเปล่า";
-    Text[ ja ] = "白紙のテンプレート";
-    Text[ ko ] = "빈 서식 파일";
-    Text[ zh-CN ] = "空白样式";
-    Text[ zh-TW ] = "空白樣式";
-    Text[ tr ] = "Boş şablon";
-    Text[ hi-IN ] = "खाली नमूना";
-    Text[ ar ] = "قالب فارغ";
-    Text[ he ] = "Leere Vorlage";
+    Text = "Blank template" ;
 };
+
 String STR_PSEUDOSHEET_TITLE
 {
-    Text [ de ] = "Titel" ;
-    Text [ en-US ] = "Title" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Capitulo";
-    Text[ ru ] = "Заголовок";
-    Text[ el ] = "Τίτλος";
-    Text[ nl ] = "Titel";
-    Text[ fr ] = "Titre";
-    Text[ es ] = "Título";
-    Text[ fi ] = "Otsikko";
-    Text[ ca ] = "Títol";
-    Text[ it ] = "Titolo";
-    Text[ da ] = "Titel";
-    Text[ sv ] = "Rubrik";
-    Text[ pl ] = "Tytuł";
-    Text[ pt-BR ] = "Título";
-    Text[ th ] = "ชื่อเรื่อง";
-    Text[ ja ] = "タイトル";
-    Text[ ko ] = "제목";
-    Text[ zh-CN ] = "标题";
-    Text[ zh-TW ] = "標題";
-    Text[ tr ] = "Başlık";
-    Text[ hi-IN ] = "शीर्षक";
-    Text[ ar ] = "العنوان";
-    Text[ he ] = "‮כותרת‬";
+    Text = "Title" ;
 };
+
 String STR_PSEUDOSHEET_SUBTITLE
 {
-    Text [ de ] = "Untertitel" ;
-    Text [ en-US ] = "Subtitle";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Subtítulo";
-    Text[ ru ] = "Подзаголовок";
-    Text[ el ] = "Υπότιτλος";
-    Text[ nl ] = "Ondertitel";
-    Text[ fr ] = "Sous-titre";
-    Text[ es ] = "Subtítulo";
-    Text[ fi ] = "Alaotsikko";
-    Text[ ca ] = "Subtítol";
-    Text[ it ] = "Sottotitolo";
-    Text[ da ] = "Undertitel";
-    Text[ sv ] = "Underrubrik";
-    Text[ pl ] = "Podtytuł";
-    Text[ pt-BR ] = "Subtítulo";
-    Text[ th ] = "ชื่อเรื่องย่อย";
-    Text[ ja ] = "サブタイトル";
-    Text[ ko ] = "부제";
-    Text[ zh-CN ] = "分标题";
-    Text[ zh-TW ] = "分標題";
-    Text[ tr ] = "Alt başlık";
-    Text[ hi-IN ] = "अधीन शीर्षक";
-    Text[ ar ] = "عنوان فرعي";
-    Text[ he ] = "Untertitel";
+    Text = "Subtitle";
 };
+
 String STR_PSEUDOSHEET_OUTLINE
 {
-    Text [ de ] = "Gliederung" ;
-    Text [ en-US ] = "Outline" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Esquema";
-    Text[ ru ] = "Структура";
-    Text[ el ] = "Διάρθρωση";
-    Text[ nl ] = "Overzicht";
-    Text[ fr ] = "Plan";
-    Text[ es ] = "Esquema";
-    Text[ fi ] = "Jäsennystaso";
-    Text[ ca ] = "Contorn";
-    Text[ it ] = "Struttura";
-    Text[ da ] = "Disposition";
-    Text[ sv ] = "Disposition";
-    Text[ pl ] = "Konspekt";
-    Text[ pt-BR ] = "Estrutura de Tópicos";
-    Text[ th ] = "เค้าร่าง";
-    Text[ ja ] = "アウトライン";
-    Text[ ko ] = "아웃트라인";
-    Text[ zh-CN ] = "大纲";
-    Text[ zh-TW ] = "大綱";
-    Text[ tr ] = "Anahat";
-    Text[ hi-IN ] = "बाहरी रूपरेखा";
-    Text[ ar ] = "تقسيم";
-    Text[ he ] = "‮מסגרת‬";
+    Text = "Outline" ;
 };
+
 String STR_PSEUDOSHEET_BACKGROUNDOBJECTS
 {
-    Text [ de ] = "Hintergrundobjekte" ;
-    Text [ en-US ] = "Background objects" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Objectos do plano de fundo";
-    Text[ ru ] = "Объекты фона";
-    Text[ el ] = "Αντικείμενα φόντου";
-    Text[ nl ] = "Achtergrondobjecten";
-    Text[ fr ] = "Objets d'arrière-plan";
-    Text[ es ] = "Objetos de fondo";
-    Text[ fi ] = "Taustaobjektit";
-    Text[ ca ] = "Objectes de fons";
-    Text[ it ] = "Oggetti di sfondo";
-    Text[ da ] = "Baggrundsobjekter";
-    Text[ sv ] = "Bakgrundsobjekt";
-    Text[ pl ] = "Obiekty tła";
-    Text[ pt-BR ] = "Objetos do plano de fundo";
-    Text[ th ] = "วัตถุของพื้นหลัง";
-    Text[ ja ] = "背景のオブジェクト";
-    Text[ ko ] = "배경 개체";
-    Text[ zh-CN ] = "背景对象";
-    Text[ zh-TW ] = "背景物件";
-    Text[ tr ] = "Artalan nesneleri";
-    Text[ hi-IN ] = "पृष्ठभाग वस्तु";
-    Text[ ar ] = "كائنات الخلفية";
-    Text[ he ] = "Hintergrundobjekte";
+    Text = "Background objects" ;
 };
+
 String STR_PSEUDOSHEET_BACKGROUND
 {
-    Text [ de ] = "Hintergrund" ;
-    Text [ en-US ] = "Background" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Plano de fundo";
-    Text[ ru ] = "Фон";
-    Text[ el ] = "Φόντο";
-    Text[ nl ] = "Achtergrond";
-    Text[ fr ] = "Arrière-plan";
-    Text[ es ] = "Fondo";
-    Text[ fi ] = "Tausta";
-    Text[ ca ] = "Fons";
-    Text[ it ] = "Sfondo";
-    Text[ da ] = "Baggrund";
-    Text[ sv ] = "Bakgrund";
-    Text[ pl ] = "Tło";
-    Text[ pt-BR ] = "Plano de fundo";
-    Text[ th ] = "พื้นหลัง";
-    Text[ ja ] = "背景";
-    Text[ ko ] = "배경";
-    Text[ zh-CN ] = "背景";
-    Text[ zh-TW ] = "背景";
-    Text[ tr ] = "Artalan";
-    Text[ hi-IN ] = "पृष्ठभाग";
-    Text[ ar ] = "الخلفية";
-    Text[ he ] = "‮רקע‬";
+    Text = "Background" ;
 };
+
 String STR_PSEUDOSHEET_NOTES
 {
-    Text [ de ] = "Notizen" ;
-    Text [ en-US ] = "Notes" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Anotações";
-    Text[ ru ] = "Примечания";
-    Text[ el ] = "Σημειώσεις";
-    Text[ nl ] = "Aantekeningen";
-    Text[ fr ] = "Notes";
-    Text[ es ] = "Notas";
-    Text[ fi ] = "Muistiinpanot";
-    Text[ ca ] = "Notes";
-    Text[ it ] = "Note";
-    Text[ da ] = "Noter";
-    Text[ sv ] = "Anteckningar";
-    Text[ pl ] = "Notatki";
-    Text[ pt-BR ] = "Anotações";
-    Text[ th ] = "บันทึก";
-    Text[ ja ] = "ノート";
-    Text[ ko ] = "메모";
-    Text[ zh-CN ] = "备注";
-    Text[ zh-TW ] = "備註";
-    Text[ tr ] = "Notlar";
-    Text[ hi-IN ] = "टिप्पणी";
-    Text[ ar ] = "ملاحظات";
-    Text[ he ] = "‮הערות‬";
+    Text = "Notes" ;
 };
+
 String STR_GRAFOBJECTBARSHELL
 {
-    Text [ de ] = "Grafikmodus" ;
-    Text [ en-US ] = "Graphics mode" ;
-    Text[ pt ] = "Modo gráfico";
-    Text[ ru ] = "Режим графических объектов";
-    Text[ el ] = "Κατάσταση γραφικών";
-    Text[ nl ] = "Afbeeldingenmodus";
-    Text[ fr ] = "Mode Graphique";
-    Text[ es ] = "Modo gráfico";
-    Text[ fi ] = "Grafiikkatila";
-    Text[ ca ] = "Mode gràfic";
-    Text[ it ] = "Modo immagine";
-    Text[ da ] = "Grafikmodus";
-    Text[ sv ] = "Grafikläge";
-    Text[ pl ] = "Tryb graficzny";
-    Text[ pt-BR ] = "Modo de figuras";
-    Text[ th ] = "โหมดกราฟิค";
-    Text[ ja ] = "図モード";
-    Text[ ko ] = "그림 모드";
-    Text[ zh-CN ] = "图形模式";
-    Text[ zh-TW ] = "圖形模式";
-    Text[ tr ] = "Grafik kipi";
-    Text[ hi-IN ] = "सुचित्र प्रकार";
-    Text[ ar ] = "وضع الصور";
-    Text[ he ] = "Grafikmodus";
+    Text = "Graphics mode" ;
 };
-
-
-#ifdef STARIMAGE_AVAILABLE
-String STR_PRESOBJ_IMAGE
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Bild durch Doppelklicken hinzuf�gen : Bild durch Doppelklicken hinzuf�gen */
-    Text [ de ] = "Bild durch Doppelklicken hinzufügen" ;
-    Text [ en-US ] = "Double-click to add an image" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir imagem com clique duplo";
-    Text[ ru ] = "Добавить картинку двойным щелчком";
-    Text[ el ] = "Κάντε διπλό κλικ για τη προσθήκη της εικόνας";
-    Text[ nl ] = "Dubbelklik om afbeelding toe te voegen";
-    Text[ fr ] = "Double-clic pour insérer une image";
-    Text[ es ] = "Pulse dos veces para añadir una imagen";
-    Text[ fi ] = "Lisää kuva kaksoisnapsauttamalla";
-    Text[ ca ] = "Feu doble clic per afegir una imatge";
-    Text[ it ] = "Aggiungere l'immagine con un doppio clic";
-    Text[ da ] = "Tilføj billede via dobbeltklik";
-    Text[ sv ] = "Lägg till bild genom att dubbelklicka";
-    Text[ pl ] = "Dodaj obraz przez dwukrotne kliknięcie";
-    Text[ pt-BR ] = "Duplo clique para adicionar uma imagem";
-    Text[ th ] = "คลิ๊กสองครั้งเพื่อเพิ่มรูปภาพ";
-    Text[ ja ] = "ダブルクリックでイメージの挿入";
-    Text[ ko ] = "더블클릭하여 이미지 추가";
-    Text[ zh-CN ] = "通过双击插入图像";
-    Text[ zh-TW ] = "雙擊滑鼠，插入一個影像。";
-    Text[ tr ] = "Görüntü eklemek için çift-tıklayın";
-    Text[ hi-IN ] = "एक चित्र को जोड़ने केलिए डबल-क्लिक् करो";
-    Text[ ar ] = "انقر نقراً مزدوجاً لإضافة صورة";
-    Text[ he ] = "Bild durch Doppelklicken hinzufügen";
-};
-#endif
 
 String STR_POOLSHEET_ARROW
 {
-    Text [ de ] = "Pfeil" ;
-    Text [ en-US ] = "Arrow" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Seta";
-    Text[ ru ] = "Стрелка";
-    Text[ el ] = "Βέλος";
-    Text[ nl ] = "Pijl";
-    Text[ fr ] = "Flèche";
-    Text[ es ] = "Flecha";
-    Text[ fi ] = "Nuoli";
-    Text[ ca ] = "Fletxa";
-    Text[ it ] = "Freccia";
-    Text[ da ] = "Pil";
-    Text[ sv ] = "Pil";
-    Text[ pl ] = "Strzałka";
-    Text[ pt-BR ] = "Seta";
-    Text[ th ] = "ลูกศร";
-    Text[ ja ] = "矢印";
-    Text[ ko ] = "화살표";
-    Text[ zh-CN ] = "箭头";
-    Text[ zh-TW ] = "箭頭";
-    Text[ tr ] = "Ok";
-    Text[ hi-IN ] = "तीर";
-    Text[ ar ] = "سهم";
-    Text[ he ] = "Pfeil";
+    Text = "Arrow" ;
 };
-
 
 String STR_LOAD_DOC
 {
@@ -2044,7 +416,7 @@ Resource RID_SD_ERRHDL
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_FORMAT_ROWCOL )
     {
         Text [ de ] = "Formatfehler an Position $(ARG1)(Zeile,Spalte) in der Datei entdeckt" ;
-        Text [ en-US ] = "File format error found at $(ARG1)(row,col)" ;
+        Text = "File format error found at $(ARG1)(row,col)" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Descoberto erro de formato na posição $(ARG1)(linha, coluna) no ficheiro";
         Text[ ru ] = "Ошибка формата в файле в позиции $(ARG1) (строка, столбец).";
@@ -2072,7 +444,7 @@ Resource RID_SD_ERRHDL
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_FORMAT_FILE_ROWCOL )
     {
         Text [ de ] = "Formatfehler in Teildokument $(ARG1) an Position $(ARG2)(Zeile,Spalte) in der Datei entdeckt" ;
-        Text [ en-US ] = "Format error discovered in the file in sub-document $(ARG1) at position $(ARG2)(row,col)";
+        Text = "Format error discovered in the file in sub-document $(ARG1) at position $(ARG2)(row,col)";
         Text[ pt ] = "Erro de formato no sub-documento $(ARG1) do ficheiro, na posição $(ARG2)(linha,coluna)";
         Text[ ru ] = "Ошибка формата файла в поддокументе $(ARG1) в позиции $(ARG2)(строка, столбец).";
         Text[ el ] = "Εντοπίστηκε ένα σφάλμα μορφοποίησης του αρχείου στο τμήμα κειμένου $(ARG1) στη θέση $(ARG2)(γραμμή, στήλη)";
@@ -2099,7 +471,7 @@ Resource RID_SD_ERRHDL
     String ERR_CODE ( ERRCODE_CLASS_READ , WARN_FORMAT_FILE_ROWCOL )
     {
         Text [ de ] = "Formatfehler in Teildokument $(ARG1) an Position $(ARG2)(Zeile,Spalte) in der Datei entdeckt" ;
-        Text [ en-US ] = "Format error discovered in the file in sub-document $(ARG1) at position $(ARG2)(row,col)";
+        Text = "Format error discovered in the file in sub-document $(ARG1) at position $(ARG2)(row,col)";
         Text[ pt ] = "Erro de formato no sub-documento $(ARG1) do ficheiro, na posição(ARG2)(linha,coluna)";
         Text[ ru ] = "Ошибка формата файла в поддокументе $(ARG1) в позиции $(ARG2)(строка, столбец).";
         Text[ el ] = "Εντοπίστηκε σφάλμα μορφοποίησης στο αρχείο στο τμήμα κειμένου $(ARG1) στη θέση $(ARG2)(γραμμή,στήλη)";
@@ -2124,34 +496,3 @@ Resource RID_SD_ERRHDL
         Text[ he ] = "Formatfehler in Teildokument $(ARG1) an Position $(ARG2)(Zeile,Spalte) in der Datei entdeckt";
     };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
