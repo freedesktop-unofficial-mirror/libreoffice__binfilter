@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:31:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:44:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,9 +45,9 @@
 #ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
 #endif
-class SvStorage;
 namespace binfilter {
 
+class SvStorage;
 class SwGrfFmtColl;
 class SwDoc;
 class BfGraphicAttr;
@@ -62,7 +62,7 @@ class SwGrfNode: public SwNoTxtNode
     friend class SwGrfFrm;
 
     BfGraphicObject aGrfObj;
-    ::so3::SvBaseLinkRef refLink;       // falls Grafik nur als Link, dann Pointer gesetzt
+    ::binfilter::SvBaseLinkRef refLink;     // falls Grafik nur als Link, dann Pointer gesetzt
     Size nGrfSize;
 //  String aStrmName;           // SW3: Name des Storage-Streams fuer Embedded
     String aNewStrmName;        // SW3/XML: new stream name (either SW3 stream
@@ -166,7 +166,7 @@ public:
     BOOL IsGrfLink() const                  { return refLink.Is(); }
     inline BOOL IsLinkedFile() const;
     inline BOOL IsLinkedDDE() const;
-    ::so3::SvBaseLinkRef GetLink() const    { return refLink; }
+    ::binfilter::SvBaseLinkRef GetLink() const  { return refLink; }
     BOOL GetFileFilterNms( String* pFileNm, String* pFilterNm ) const;
 
         // Prioritaet beim Laden der Grafik setzen. Geht nur, wenn der Link
