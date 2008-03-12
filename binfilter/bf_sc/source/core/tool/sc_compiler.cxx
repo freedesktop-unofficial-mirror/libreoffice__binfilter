@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:44:37 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:55:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@
 #include <bf_sfx2/objsh.hxx>
 #include "bf_basic/sbmeth.hxx"
 #include "bf_basic/sbstar.hxx"
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <tools/rcid.h>
 #include <tools/solar.h>
 #ifndef _URLOBJ_HXX
