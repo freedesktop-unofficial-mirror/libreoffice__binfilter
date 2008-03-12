@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_eventsupplier.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:11:30 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:09:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@
 #endif
 
 #ifndef _SFXMACITEM_HXX
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 
 #ifndef _SFX_APPUNO_HXX
@@ -68,7 +68,7 @@
 #include <evntconf.hxx>
 #endif
 
-#include <svtools/securityoptions.hxx>
+#include <bf_svtools/securityoptions.hxx>
 #include <comphelper/processfactory.hxx>
 
 #ifndef _SFX_EVENTSUPPLIER_HXX_
