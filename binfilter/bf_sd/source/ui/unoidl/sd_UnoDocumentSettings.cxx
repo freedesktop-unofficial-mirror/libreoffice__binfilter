@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_UnoDocumentSettings.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:35:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:50:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,71 +34,25 @@
  ************************************************************************/
 
 #include <vector>
-
-
-
-
-
-
-#ifndef _COMPHELPER_PROPERTYSETHELPER_HXX_
 #include <comphelper/propertysethelper.hxx>
-#endif
-
-#ifndef _COMPHELPER_PROPERTSETINFO_HXX_
 #include <comphelper/propertysetinfo.hxx>
-#endif
-
-#ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
-#endif
-
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-
-#ifndef _XTABLE_HXX
 #include <bf_svx/xtable.hxx>
-#endif
-
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-
-
 
 #include "drawdoc.hxx"
-#ifndef SVX_LIGHT
-#include "docshell.hxx"
-#endif
+#include "bf_sd/docshell.hxx"
 #include "unomodel.hxx"
 
-#ifndef SVX_LIGHT
-#ifndef _SD_OPTSITEM_HXX
 #include "optsitem.hxx"
-#endif
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SDATTR_HXX
 #include "sdattr.hxx"
-#endif
-#endif
-#ifndef _SD_FRMVIEW_HXX
-#include "../inc/frmview.hxx"
-#endif
-#ifndef SVX_LIGHT
-#ifndef _SD_SPOUTLINER_HXX
+#include "bf_sd/frmview.hxx"
 #include <sdoutl.hxx>
-#endif
-#else
-#endif
-#ifndef _EDITSTAT_HXX
 #include <bf_svx/editstat.hxx>
-#endif
-
-#ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
-#endif
+
 namespace binfilter {
 
 #define MAP_LEN(x) x, sizeof(x)-1
@@ -188,12 +142,10 @@ enum SdDocumentSettingsPropertyHandles
     {
         static PropertyMapEntry aImpressSettingsInfoMap[] =
         {
-#ifndef SVX_LIGHT
             { MAP_LEN("IsPrintDrawing"),        HANDLE_PRINTDRAWING,        &::getBooleanCppuType(),                0,  MID_PRINTER },
             { MAP_LEN("IsPrintNotes"),          HANDLE_PRINTNOTES,          &::getBooleanCppuType(),                0,  MID_PRINTER },
             { MAP_LEN("IsPrintHandout"),        HANDLE_PRINTHANDOUT,        &::getBooleanCppuType(),                0,  MID_PRINTER },
             { MAP_LEN("IsPrintOutline"),        HANDLE_PRINTOUTLINE,        &::getBooleanCppuType(),                0,  MID_PRINTER },
-#endif
             { NULL, 0, 0, NULL, 0, 0 }
         };
 
@@ -210,7 +162,6 @@ enum SdDocumentSettingsPropertyHandles
             { MAP_LEN("DefaultTabStop"),        HANDLE_TABSTOP,             &::getCppuType((const sal_Int32*)0),    0,  0 },
             { MAP_LEN("PrinterName"),           HANDLE_PRINTERNAME,         &::getCppuType((const OUString*)0),     0,  0 },
             { MAP_LEN("PrinterSetup"),          HANDLE_PRINTERJOB,          &::getCppuType((const uno::Sequence < sal_Int8 > *)0),  0, MID_PRINTER },
-#ifndef SVX_LIGHT
 
             { MAP_LEN("IsPrintPageName"),       HANDLE_PRINTPAGENAME,       &::getBooleanCppuType(),                0,  MID_PRINTER },
             { MAP_LEN("IsPrintDate"),           HANDLE_PRINTDATE,           &::getBooleanCppuType(),                0,  MID_PRINTER },
@@ -222,7 +173,6 @@ enum SdDocumentSettingsPropertyHandles
             { MAP_LEN("IsPrintBookletFront"),   HANDLE_PRINTBOOKLETFRONT,   &::getBooleanCppuType(),                0,  MID_PRINTER },
             { MAP_LEN("IsPrintBookletBack"),    HANDLE_PRINTBOOKLETBACK,    &::getBooleanCppuType(),                0,  MID_PRINTER },
             { MAP_LEN("PrintQuality"),          HANDLE_PRINTQUALITY,        &::getCppuType((const sal_Int32*)0),    0,  MID_PRINTER },
-#endif
             { MAP_LEN("ColorTableURL"),         HANDLE_COLORTABLEURL,       &::getCppuType((const OUString*)0),     0,  0 },
             { MAP_LEN("DashTableURL"),          HANDLE_DASHTABLEURL,        &::getCppuType((const OUString*)0),     0,  0 },
             { MAP_LEN("LineEndTableURL"),       HANDLE_LINEENDTABLEURL,     &::getCppuType((const OUString*)0),     0,  0 },
@@ -273,15 +223,12 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
 
     sal_Bool bOk, bChanged = sal_False, bValue;
 
-#ifndef SVX_LIGHT
     SfxPrinter* pPrinter = NULL;
     SdOptionsPrintItem* pPrinterOptions = NULL;
-#endif
 
     for( ; *ppEntries; ppEntries++, pValues++ )
     {
         bOk = sal_False;
-#ifndef SVX_LIGHT
         if( ((*ppEntries)->mnMemberId == MID_PRINTER) && (pPrinter == NULL) )
         {
             pPrinter = pDocSh->GetPrinter( sal_True );
@@ -293,7 +240,6 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 continue;
             }
         }
-#endif
 
         switch( (*ppEntries)->mnHandle )
         {
@@ -439,19 +385,16 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                     sal_Bool bApplyUserData;
                     if( *pValues >>= bApplyUserData )
                     {
-#ifndef SVX_LIGHT
                         SfxDocumentInfo& rInfo = pDocSh->GetDocInfo();
                         if( rInfo.IsUseUserData() != bApplyUserData )
                         {
                             rInfo.SetUseUserData( bApplyUserData );
                             bChanged = sal_True;
                         }
-#endif
                         bOk = sal_True;
                     }
                 }
                 break;
-#ifndef SVX_LIGHT
             case HANDLE_PRINTDRAWING:
                 if( *pValues >>= bValue )
                 {
@@ -553,7 +496,6 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                     }
                 }
                 break;
-#endif
             case HANDLE_MEASUREUNIT:
                 {
                     sal_Int16 nValue;
@@ -621,14 +563,12 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                     if( *pValues >>= aPrinterName )
                     {
                         bOk = sal_True;
-#ifndef SVX_LIGHT
                         SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_True );
                         if (pPrinter)
                         {
                             SfxPrinter *pNewPrinter = new SfxPrinter ( pPrinter->GetOptions().Clone(), aPrinterName );
                             pDocSh->SetPrinter( pNewPrinter );
                         }
-#endif
                     }
                 }
                 break;
@@ -638,7 +578,6 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                     if ( *pValues >>= aSequence )
                     {
                         bOk = sal_True;
-#ifndef SVX_LIGHT
                         sal_uInt32 nSize = aSequence.getLength();
                         SvMemoryStream aStream (aSequence.getArray(), nSize, STREAM_READ );
                         aStream.Seek ( STREAM_SEEK_TO_BEGIN );
@@ -666,7 +605,6 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                         pDocSh->SetPrinter( pPrinter );
 
                         pPrinter = NULL;
-#endif
                     }
                 }
                 break;
@@ -792,7 +730,6 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
             throw IllegalArgumentException();
     }
 
-#ifndef SVX_LIGHT
     if( pPrinter && pPrinterOptions )
     {
         SfxItemSet aNewOptions( pPrinter->GetOptions() );
@@ -803,7 +740,6 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
         SdOptions* pOptions = SD_MOD()->GetSdOptions( pDoc->GetDocumentType() );
         pOptions->SetPrinterOptions( &aOpts );
     }
-#endif
 
     if( bChanged )
         mpModel->SetModified( sal_True );
@@ -818,15 +754,11 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
     if( NULL == pDoc || NULL == pDocSh )
         throw UnknownPropertyException();
 
-#ifndef SVX_LIGHT
     SfxPrinter* pPrinter = NULL;
     SdOptionsPrintItem* pPrinterOptions = NULL;
-#endif
 
     for( ; *ppEntries; ppEntries++, pValue++ )
     {
-
-#ifndef SVX_LIGHT
         if( (*ppEntries)->mnMemberId == MID_PRINTER && pPrinter == NULL )
         {
             pPrinter = pDocSh->GetPrinter( sal_True );
@@ -838,7 +770,6 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
                 continue;
             }
         }
-#endif
 
         switch( (*ppEntries)->mnHandle )
         {
@@ -907,14 +838,9 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
                 break;
 
             case HANDLE_APPLYUSERDATA:
-#ifndef SVX_LIGHT
                 *pValue <<= (sal_Bool)pDocSh->GetDocInfo().IsUseUserData();
-#else
-                *pValue <<= (sal_Bool)sal_False;
-#endif
                 break;
 
-#ifndef SVX_LIGHT
             case HANDLE_PRINTDRAWING:
                 *pValue <<= (sal_Bool)pPrinterOptions->IsDraw();
                 break;
@@ -957,7 +883,6 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
             case HANDLE_PRINTQUALITY:
                 *pValue <<= (sal_Int32)pPrinterOptions->GetOutputQuality();
                 break;
-#endif
             case HANDLE_MEASUREUNIT:
                 {
                     sal_Int16 nMeasure;
@@ -978,16 +903,13 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
                 *pValue <<= (sal_Int32)pDoc->GetPageNumType();
                 break;
             case HANDLE_PRINTERNAME:
-#ifndef SVX_LIGHT
                 {
                     SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_False );
                     *pValue <<= pPrinter ? OUString ( pPrinter->GetName()) : OUString();
                 }
-#endif
                 break;
             case HANDLE_PRINTERJOB:
                 {
-#ifndef SVX_LIGHT
                     SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_False );
                     if (pPrinter)
                     {
@@ -1000,7 +922,6 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
                         memcpy ( aSequence.getArray(), aStream.GetData(), nSize );
                         *pValue <<= aSequence;
                     }
-#endif
                 }
                 break;
 
