@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumfi.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:19:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:00:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,12 +33,12 @@
  *
  ************************************************************************/
 
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 
 #define _ZFORLIST_DECLARE_TABLE
 
-#include <svtools/zformat.hxx>
-#include <svtools/numuno.hxx>
+#include <bf_svtools/zformat.hxx>
+#include <bf_svtools/numuno.hxx>
 #include <rtl/math.hxx>
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
