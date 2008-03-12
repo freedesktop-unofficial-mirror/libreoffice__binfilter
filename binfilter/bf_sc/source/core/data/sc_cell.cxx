@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:31:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:46:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #include <i386/ieeefp.h>
 #endif
 
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <float.h>          // _finite
 
 #include "interpre.hxx"

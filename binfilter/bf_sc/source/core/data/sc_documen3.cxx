@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:33:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:48:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,7 +101,7 @@
 #include "scitems.hxx"
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <vcl/svapp.hxx>
 #include "document.hxx"
 #include "attrib.hxx"
@@ -516,15 +516,7 @@ using namespace ::com::sun::star;
 /*N*/           }
 /*N*/       }
 /*N*/       SetExpandRefs( bExpandRefsOld );
-/*N*/
-/*N*/       // #30428# after moving, no clipboard move ref-updates are possible
-/*N*/       if ( eUpdateRefMode != URM_COPY && IsClipboardSource() )
-/*N*/       {
-/*N*/           ScDocument* pClipDoc = SC_MOD()->GetClipDoc();
-/*N*/           if (pClipDoc)
-/*N*/               pClipDoc->bCutMode = FALSE;
-/*N*/       }
-/*N*/   }
+         }
 /*N*/ }
 
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:34:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:49:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,8 +57,8 @@
 #include <bf_svx/xtable.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/saveopt.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/schdll0.hxx>
 

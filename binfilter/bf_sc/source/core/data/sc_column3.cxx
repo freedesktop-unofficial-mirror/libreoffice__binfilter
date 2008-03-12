@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column3.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:32:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:47:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #endif
 
 #include <bf_sfx2/objsh.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 
 #include "scitems.hxx"
 #include "cell.hxx"

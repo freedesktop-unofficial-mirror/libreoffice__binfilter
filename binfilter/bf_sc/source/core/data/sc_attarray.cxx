@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_attarray.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:30:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:46:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/frmdiritem.hxx>
 #include <bf_svx/shaditem.hxx>
-#include <svtools/poolcach.hxx>
+#include <bf_svtools/poolcach.hxx>
 
 #ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
