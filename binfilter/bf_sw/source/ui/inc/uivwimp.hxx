@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uivwimp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:58:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:52:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,80 +68,17 @@ namespace binfilter {
 
 class SwXTextView;
 class SfxRequest;
-class SwTransferable;
 
-//STRIP008 namespace com{ namespace sun{ namespace star {
-//STRIP008  namespace frame {
-//STRIP008      class XDispatchProviderInterceptor;
-//STRIP008  }
-//STRIP008     namespace lang {
-//STRIP008         class XUnoTunnel;
-//STRIP008     }
-//STRIP008 }}}
-
-/* -----------------------------29.05.00 08:22--------------------------------
-
- ---------------------------------------------------------------------------*/
-class SwScannerEventListener : public ::cppu::WeakImplHelper1<
-    STAR_NMSPC::lang::XEventListener >
-{
-    SwView* pView;
-
-public:
-
-    SwScannerEventListener( SwView& rView ) : pView( &rView )  {}
-    virtual ~SwScannerEventListener();
-
-    // XEventListener
-    virtual void SAL_CALL disposing(
-                    const ::com::sun::star::lang::EventObject& rEventObject ) throw(::com::sun::star::uno::RuntimeException);
-
-    void ViewDestroyed() { pView = 0; }
-};
-
-// --------------------------- Clipboard EventListener ------------------
-
-class SwClipboardChangeListener : public ::cppu::WeakImplHelper1<
-    CLIP_NMSPC::XClipboardListener >
-{
-    SwView* pView;
-
-    // XEventListener
-    virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )throw ( ::com::sun::star::uno::RuntimeException ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )
-
-    // XClipboardListener
-    virtual void SAL_CALL changedContents( const CLIP_NMSPC::ClipboardEvent& rEventObject )
-        throw ( ::com::sun::star::uno::RuntimeException );
-
-public:
-    SwClipboardChangeListener( SwView& rView ) : pView( &rView ) {}
-    virtual ~SwClipboardChangeListener();
-
-    void ViewDestroyed() { pView = 0; }
-
-    void AddRemoveListener( BOOL bAdd );
-};
-
-
-/* ---------------------------------------------------------------------------
-
- ---------------------------------------------------------------------------*/
 class SwView_Impl
 {
-    STAR_REFERENCE( lang::XEventListener )  xScanEvtLstnr;
-    STAR_REFERENCE( lang::XEventListener )  xClipEvtLstnr;
     STAR_REFERENCE( frame::XDispatchProviderInterceptor )   xDisProvInterceptor;
     STAR_REFERENCE( view::XSelectionSupplier )              *pxXTextView;       // UNO object
     ::com::sun::star::uno::WeakReference< ::com::sun::star::lang::XUnoTunnel > xTransferable;
 
-    // temporary document for printing text of selection / multi selection
-    // in PDF export.
     SfxObjectShellRef           xTmpSelDocSh;
     SvEmbeddedObjectRef         aEmbeddedObjRef;
 
     SwView* pView;
-    SwScannerEventListener*     pScanEvtLstnr;
-    SwClipboardChangeListener*  pClipEvtLstnr;
     ShellModes                  eShellMode;
 
 public:
@@ -162,7 +99,6 @@ public:
     SfxObjectShellRef &             GetTmpSelectionDoc()    { return xTmpSelDocSh; }
     SvEmbeddedObjectRef &           GetEmbeddedObjRef()     { return (SvEmbeddedObjectRef&)(long&)aEmbeddedObjRef; }
 
-    void                            AddTransferable(SwTransferable& rTransferable);
 };
 } //namespace binfilter
 #endif

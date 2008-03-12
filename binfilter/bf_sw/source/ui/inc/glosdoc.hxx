@@ -4,9 +4,9 @@
  *
  *  $RCSfile: glosdoc.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:42:00 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:48:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTGROUP_HPP_
 #include <com/sun/star/text/XAutoTextGroup.hpp>
