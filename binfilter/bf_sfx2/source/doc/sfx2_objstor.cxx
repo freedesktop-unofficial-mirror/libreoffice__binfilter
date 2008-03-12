@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.19 $
+ *  $Revision: 1.20 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:21:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:06:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,10 +34,10 @@
  ************************************************************************/
 
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
@@ -108,10 +108,10 @@
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 
 #ifndef _CPPUHELPER_WEAK_HXX_
@@ -128,15 +128,15 @@
 #include <tools/cachestr.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_ADDXMLTOSTORAGEOPTIONS_HXX
-#include <svtools/addxmltostorageoptions.hxx>
+#include <bf_svtools/addxmltostorageoptions.hxx>
 #endif
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
 
-#include <svtools/saveopt.hxx>
-#include <svtools/useroptions.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/useroptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <tools/urlobj.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <unotools/ucbhelper.hxx>
@@ -480,7 +480,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   {
 /*N*/       if( GetCreateMode() == SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
-/*N*/           aBaseURL = so3::StaticBaseUrl::GetBaseURL();
+/*N*/           aBaseURL = ::binfilter::StaticBaseUrl::GetBaseURL();
 /*N*/           SetBaseURL( aBaseURL );
 /*N*/       }
 /*N*/       else if ( pSalvageItem )
@@ -546,7 +546,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/                   if ( xStor->IsOLEStorage() )
 /*N*/                       bHasMacros = BasicManager::HasBasicWithModules(
                                 *xStor,
-                                so3::StaticBaseUrl::GetBaseURL(
+                                ::binfilter::StaticBaseUrl::GetBaseURL(
                                     INetURLObject::NO_DECODE) );
 /*N*/                   else
 /*?*/                       bHasMacros = xStor->IsStorage( String::CreateFromAscii("Basic") );
@@ -564,11 +564,11 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/           // Load
 /*N*/           if ( !GetError() )
 /*N*/           {
-/*N*/               const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
-/*N*/               if( aBaseURL.Len() ) so3::StaticBaseUrl::SetBaseURL( aBaseURL );
+/*N*/               const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
+/*N*/               if( aBaseURL.Len() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
 /*N*/               pImp->nLoadedFlags = 0;
 /*N*/               bOk = xStor.Is() && LoadOwnFormat( *pMed );
-/*N*/               so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*N*/               if ( bOk )
 /*N*/               {
 /*N*/                   GetDocInfo().Load(xStor);
@@ -587,8 +587,8 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/        bHasName = sal_True;
 /*?*/
 /*?*/        // Importieren
-/*?*/        const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
-/*?*/        if( aBaseURL.Len() ) so3::StaticBaseUrl::SetBaseURL( aBaseURL );
+/*?*/        const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
+/*?*/        if( aBaseURL.Len() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
 /*?*/         if( !pMedium->GetFilter()->UsesStorage() )
 /*?*/            pMedium->GetInStream();
 /*?*/         else
@@ -597,7 +597,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/        pImp->nLoadedFlags = 0;
 /*?*/        bOk = ConvertFrom(*pMedium);
 /*?*/
-/*?*/        so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*?*/        ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*?*/
 /*?*/         if( bOk && pMedium->GetOpenMode() & STREAM_WRITE )
 /*?*/        //Medium offen halten um andere Zugriffe zu verhindern
@@ -1148,10 +1148,10 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/
 /*N*/       pImp->bIsSaving = sal_False;
 /*N*/       SfxMedium* pNewMed = new SfxMedium( pNewStor );
-/*N*/       const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
+/*N*/       const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
 /*N*/
 /*N*/       bOk = SaveAsOwnFormat( *pNewMed );
-/*N*/       so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*N*/       delete pNewMed;
 /*N*/   }
 /*N*/   return bOk;
@@ -1167,15 +1167,15 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/     if ( GetError() )
 /*?*/         return sal_False;
 /*?*/
-/*?*/   const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
+/*?*/   const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
 /*?*/   if( GetCreateMode() != SFX_CREATE_MODE_EMBEDDED )
 /*?*/       if ( ShallSetBaseURL_Impl( rMedium ) )
-/*?*/           so3::StaticBaseUrl::SetBaseURL( rMedium.GetBaseURL() );
+/*?*/           ::binfilter::StaticBaseUrl::SetBaseURL( rMedium.GetBaseURL() );
 /*?*/       else
-/*?*/           so3::StaticBaseUrl::SetBaseURL( String() );
+/*?*/           ::binfilter::StaticBaseUrl::SetBaseURL( String() );
 /*?*/
 /*?*/     sal_Bool bRet = SaveTo_Impl( rMedium, NULL, sal_False );
-/*?*/   so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*?*/   ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*?*/   if( bRet )
 /*?*/       DoHandsOff();
 /*?*/   else
@@ -1211,7 +1211,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/               bHasName = sal_True;
 /*N*/           String aBase = GetBaseURL();
 /*N*/           if( Current() == this && aBase.Len() )
-/*N*/               so3::StaticBaseUrl::SetBaseURL( aBase );
+/*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( aBase );
 /*N*/           Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
 /*N*/       }
 /*N*/
@@ -1735,12 +1735,12 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/     sal_Bool bCopyTo = GetCreateMode() == SFX_CREATE_MODE_EMBEDDED || pSaveToItem && pSaveToItem->GetValue();
 /*N*/
 /*N*/     // some base URL stuff ( awful, but not avoidable ... )
-/*N*/     const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
+/*N*/     const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
 /*N*/   if( GetCreateMode() != SFX_CREATE_MODE_EMBEDDED )
 /*N*/       if ( ShallSetBaseURL_Impl(*pNewFile) )
-/*N*/           so3::StaticBaseUrl::SetBaseURL( pNewFile->GetBaseURL() );
+/*N*/           ::binfilter::StaticBaseUrl::SetBaseURL( pNewFile->GetBaseURL() );
 /*N*/       else
-/*N*/           so3::StaticBaseUrl::SetBaseURL( String() );
+/*N*/           ::binfilter::StaticBaseUrl::SetBaseURL( String() );
 /*N*/
 /*N*/     // distinguish between "Save" and "SaveAs"
 /*N*/     pImp-> bIsSaving = sal_False;
@@ -1772,7 +1772,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       bOk = sal_True;
 /*N*/
 /*N*/         // restore old BaseURL
-/*N*/       so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*N*/
 /*N*/         // transfer a possible error from the medium to the document
 /*N*/         SetError( pNewFile->GetErrorCode() );
@@ -1818,7 +1818,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       so3::StaticBaseUrl::SetBaseURL( aOldURL );
+/*?*/       ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 /*?*/         SetError( pNewFile->GetErrorCode() );
 /*?*/
 /*?*/         // reconnect to the old storage
