@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_eerdll.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2008-02-25 15:23:04 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:26:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #pragma hdrstop
 #endif
 
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #include <eerdll.hxx>
 
 
@@ -73,7 +73,7 @@
 #include <scriptspaceitem.hxx>
 
 #ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #ifndef _SV_VIRDEV_HXX
