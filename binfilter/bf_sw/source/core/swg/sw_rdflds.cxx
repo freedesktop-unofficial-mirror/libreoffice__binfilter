@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdflds.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:07:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:15:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -169,17 +169,17 @@ static SwDDEFieldType* In_SwDDEFieldType( SwSwgReader& rPar )
     String aName( rPar.GetText() );
     String aCmd( rPar.GetText() );
     if( !nType )
-        nType = ::so3::LINKUPDATE_ONCALL;
+        nType = ::binfilter::LINKUPDATE_ONCALL;
     else
-        nType = ::so3::LINKUPDATE_ALWAYS;
+        nType = ::binfilter::LINKUPDATE_ALWAYS;
 
     // die ersten beiden Blanks gegen den neuen Trenner austauschen
     xub_StrLen nFnd = aCmd.Search( ' ' );
     if( STRING_NOTFOUND != nFnd )
-        aCmd.SetChar( nFnd, ::so3::cTokenSeperator );
+        aCmd.SetChar( nFnd, ::binfilter::cTokenSeperator );
     nFnd = aCmd.Search( ' ', nFnd );
     if( STRING_NOTFOUND != nFnd )
-        aCmd.SetChar( nFnd, ::so3::cTokenSeperator );
+        aCmd.SetChar( nFnd, ::binfilter::cTokenSeperator );
 
     //JP 13.02.96: Bug 25321 - Felder ohne Namen nie einlesen
     if( !aName.Len() || !aCmd.Len() )
