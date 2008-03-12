@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SwXTextDefaults.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:22:00 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:02:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@
 #include <doc.hxx>
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 namespace binfilter {
 
