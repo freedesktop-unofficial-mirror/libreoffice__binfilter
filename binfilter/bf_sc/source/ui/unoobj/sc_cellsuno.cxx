@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cellsuno.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:08:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:14:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,12 +33,12 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
+
+#include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include "scitems.hxx"
 #include <bf_svx/eeitem.hxx>
@@ -47,7 +47,7 @@
 
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SVX_ITEMDATA_HXX
@@ -68,7 +68,7 @@
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/svdpage.hxx>
 #include <bf_sch/memchrt.hxx>
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #include <rtl/uuid.h>
 #include <float.h>              // DBL_MIN
 
@@ -6964,7 +6964,7 @@ void SAL_CALL ScTableSheetObj::link( const ::rtl::OUString& aUrl, const ::rtl::O
             USHORT nCount = pLinkManager->GetLinks().Count();
             for ( USHORT i=0; i<nCount; i++ )
             {
-                ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
+                ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
                 if (pBase->ISA(ScTableLink))
                 {
                     ScTableLink* pTabLink = (ScTableLink*)pBase;
@@ -7454,14 +7454,13 @@ sal_Bool SAL_CALL ScTableSheetObj::supportsService( const ::rtl::OUString& rServ
            aServiceStr.EqualsAscii( SCCELLRANGE_SERVICE ) ||
            aServiceStr.EqualsAscii( SCCELLPROPERTIES_SERVICE ) ||
            aServiceStr.EqualsAscii( SCCHARPROPERTIES_SERVICE ) ||
-           aServiceStr.EqualsAscii( SCPARAPROPERTIES_SERVICE ) ||
-           aServiceStr.EqualsAscii( SCLINKTARGET_SERVICE );
+           aServiceStr.EqualsAscii( SCPARAPROPERTIES_SERVICE );
 }
 
 uno::Sequence< ::rtl::OUString> SAL_CALL ScTableSheetObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
-    uno::Sequence< ::rtl::OUString> aRet(7);
+    uno::Sequence< ::rtl::OUString> aRet(6);
     ::rtl::OUString* pArray = aRet.getArray();
     pArray[0] = ::rtl::OUString::createFromAscii( SCSPREADSHEET_SERVICE );
     pArray[1] = ::rtl::OUString::createFromAscii( SCSHEETCELLRANGE_SERVICE );
@@ -7469,7 +7468,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScTableSheetObj::getSupportedServiceNam
     pArray[3] = ::rtl::OUString::createFromAscii( SCCELLPROPERTIES_SERVICE );
     pArray[4] = ::rtl::OUString::createFromAscii( SCCHARPROPERTIES_SERVICE );
     pArray[5] = ::rtl::OUString::createFromAscii( SCPARAPROPERTIES_SERVICE );
-    pArray[6] = ::rtl::OUString::createFromAscii( SCLINKTARGET_SERVICE );
     return aRet;
 }
 
