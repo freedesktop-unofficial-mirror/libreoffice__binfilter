@@ -4,9 +4,9 @@
  *
  *  $RCSfile: iface.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:49:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:16:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,13 +39,15 @@
 
 #include <bf_so3/iface.hxx>
 #include <sot/agg.hxx>
-#include <svtools/ownlist.hxx>
+#include <bf_svtools/ownlist.hxx>
 
 #include "bf_so3/soerr.hxx"
 
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif
+
+namespace binfilter {
 
 /************** class SvObject ******************************************/
 SV_IMPL_FACTORY(SvObjectFactory)
@@ -64,7 +66,7 @@ SO2_IMPL_CLASS1_DLL(SvObject,SvObjectFactory,SotObject,
 |*
 |*  Beschreibung:
 *************************************************************************/
-IUnknown * SvObject::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvObject::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -208,67 +210,6 @@ UINT32 SvObject::AddExtRef()
     return AddRef();
 }
 
-
-//=========================================================================
-// Nicht die Superklasse rufen, wegen Umstellung So2 -> So3 & Sot
-USHORT SvObject::FuzzyLock
-(
-    BOOL bLock,     /* TRUE, lock. FALSE, unlock. */
-    BOOL bIntern,   /* TRUE, es handelt sich um einen internen Lock.
-                       FALSE, der Lock kam von aussen (Ole2, Ipc2) */
-    BOOL bClose     /* TRUE, Close aufrufen wenn letzte Lock */
-)
-/*  [Beschreibung]
-
-    Erlaubte Parameterkombinationen:
-    ( TRUE,  TRUE,  *     ) ->  interner Lock.
-    ( FALSE, TRUE,  TRUE  ) ->  interner Unlock mit Close,
-                                wenn LockCount() == 0
-    ( TRUE,  FALSE, *     ) ->  externer Lock.
-    ( FALSE, FALSE, TRUE  ) ->  externer Unlock mit Close,
-                                wenn LockCount() == 0
-    ( FALSE, FALSE, FALSE ) ->  externer Unlock
-
-    F"ur !Owner() wird der Aufruf an das externe Objekt weitergeleitet.
-    F"ur diese muss das <IOleItemContainer>-Interface zur Vef"ugung stehen.
-    bIntern und bClose werden dann ignoriert.
-    Wenn der LockCount auf 0 wechselt, wird <SvObject::DoClose>
-    gerufen, wenn kein OwnerLock besteht.
-
-    [Anmerkung]
-
-*/
-{
-    SvObjectRef xHoldAlive( this );
-    USHORT nRet;
-    if( bLock )
-    {
-        if( bIntern )
-            AddRef();
-        else
-            AddExtRef();
-        nRet = ++nStrongLockCount;
-    }
-    else
-    {
-        nRet = --nStrongLockCount;
-        if( bIntern )
-            ReleaseRef();
-        else
-            ReleaseExt();
-    }
-
-    (void)bClose;
-/*
-    // i9662: leads to crashes if embedded object inside embedded object is connected
-    // there seems to be no case where a Close() is necessary here -> workaround!
-    if( !nRet && bClose && !nOwnerLockCount )
-        DoClose();
-*/
-    return nRet;
-}
-
-
 /*************************************************************************
 |*    void TestInSendMessage()
 |*
@@ -315,4 +256,5 @@ void TestInSendMessage()
 
 IMPL_PTRHINT(SvObjectDyingHint, SvObject);
 
+}
 
