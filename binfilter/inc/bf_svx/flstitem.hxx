@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flstitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:32:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:50:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,13 +38,13 @@
 // include ---------------------------------------------------------------
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef   ITEMID_FONTLIST
 #define   ITEMID_FONTLIST 0
 #endif
-class FontList;
 namespace binfilter {
+class FontList;
 
 // class SvxFontListItem -------------------------------------------------
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editdata.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:29:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:48:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,11 +41,12 @@
 #include <tools/string.hxx>
 #endif
 
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
+namespace binfilter {
+
 class SfxItemSet;
 class SfxPoolItem;
 class SfxStyleSheet;
-namespace binfilter {
 
 class SvParser;
 class SvxFieldItem;
