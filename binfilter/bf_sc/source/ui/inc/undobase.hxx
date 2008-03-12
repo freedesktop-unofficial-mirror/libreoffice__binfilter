@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undobase.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:30:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:11:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define SC_UNDOBASE_HXX
 
 #ifndef _UNDO_HXX //autogen
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #endif
 
 #ifndef SC_SCGLOB_HXX

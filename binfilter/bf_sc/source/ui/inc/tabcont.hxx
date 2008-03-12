@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabcont.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:26:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:10:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,51 +33,3 @@
  *
  ************************************************************************/
 
-#ifndef SC_TABCONT_HXX
-#define SC_TABCONT_HXX
-
-#ifndef _TABBAR_HXX //autogen wg. TabBar
-#include <svtools/tabbar.hxx>
-#endif
-
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
-namespace binfilter {
-
-
-class ScViewData;
-
-// ---------------------------------------------------------------------------
-
-//  initial size
-#define SC_TABBAR_DEFWIDTH      270
-
-
-class ScTabControl : public TabBar, public DropTargetHelper, public DragSourceHelper
-{
-private:
-    ScViewData*     pViewData;
-    BOOL            bErrorShown;
-    BOOL            bAddDown;
-    USHORT          nTabSwitchId;
-    long            nQueryCount;
-
-
-    USHORT          GetMaxId() const;
-
-
-
-
-
-public:
-                    ScTabControl( Window* pParent, ScViewData* pData );
-                    ~ScTabControl();
-
-    void            UpdateStatus();
-};
-
-
-
-} //namespace binfilter
-#endif

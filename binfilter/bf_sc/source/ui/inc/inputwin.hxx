@@ -4,9 +4,9 @@
  *
  *  $RCSfile: inputwin.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:14:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:08:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #include <bf_sfx2/childwin.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
@@ -53,7 +53,7 @@
 #include <vcl/window.hxx>
 #endif
 #ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
+#include <bf_svtools/transfer.hxx>
 #endif
 namespace binfilter {
 

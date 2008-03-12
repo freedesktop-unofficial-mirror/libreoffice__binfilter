@@ -4,9 +4,9 @@
  *
  *  $RCSfile: undotab.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:32:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:12:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,14 +46,14 @@
 #ifndef _SVSTDARR_USHORTS
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #endif
 
 #ifndef _SVSTDARR_STRINGS
 
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #endif
 namespace binfilter {
