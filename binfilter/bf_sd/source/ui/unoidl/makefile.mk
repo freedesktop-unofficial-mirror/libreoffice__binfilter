@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 10:07:40 $
+#   last change: $Author: rt $ $Date: 2008-03-12 07:49:16 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,6 @@ SLOFILES =      \
         $(SLO)$/sd_unopres.obj     \
         $(SLO)$/sd_unocpres.obj    \
         $(SLO)$/sd_unoobj.obj		\
-        $(SLO)$/sd_unosrch.obj		\
         $(SLO)$/sd_unowcntr.obj	\
         $(SLO)$/sd_unogsfm.obj		\
         $(SLO)$/sd_unogstyl.obj	\
@@ -78,8 +77,7 @@ SLOFILES =      \
         $(SLO)$/sd_unopstyl.obj	\
         $(SLO)$/sd_unokywds.obj	\
         $(SLO)$/sd_unostyls.obj	\
-        $(SLO)$/sd_unopback.obj	\
-        $(SLO)$/sd_unovwcrs.obj	\
+        $(SLO)$/sd_unopback.obj \
         $(SLO)$/sd_unodoc.obj
 
 # --- Tagets -------------------------------------------------------

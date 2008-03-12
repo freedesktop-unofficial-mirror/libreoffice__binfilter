@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unomodel.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:08:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:54:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,7 +80,7 @@
 #include <toolkit/awt/vclxdevice.hxx>
 #endif
 
-#include <svtools/unoimap.hxx>
+#include <bf_svtools/unoimap.hxx>
 
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
@@ -101,7 +101,7 @@
 #include <bf_svx/xmlgrhlp.hxx>
 #endif
 
-#include <docshell.hxx>
+#include "bf_sd/docshell.hxx"
 
 #ifndef _SD_UNODOCUMENTSETTINGS_HXX_
 #include <UnoDocumentSettings.hxx>
@@ -123,7 +123,6 @@
 #include <unogstyl.hxx>
 #include <unokywds.hxx>
 #include <frmview.hxx>
-#include "app.hrc"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -465,8 +464,8 @@ SdPage* SdXImpressDocument::InsertSdPage( sal_uInt16 nPage, sal_Bool bDuplicate 
 {
     sal_uInt16 nPageCount = pDoc->GetSdPageCount( PK_STANDARD );
     SdrLayerAdmin& rLayerAdmin = pDoc->GetLayerAdmin();
-    BYTE aBckgrnd = rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRND)), sal_False);
-    BYTE aBckgrndObj = rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRNDOBJ)), sal_False);
+    BYTE aBckgrnd = rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BCKGRND" )), sal_False);
+    BYTE aBckgrndObj = rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BACKGRNDOBJ" )), sal_False);
 
     SdPage* pStandardPage = NULL;
 
@@ -488,9 +487,6 @@ SdPage* SdXImpressDocument::InsertSdPage( sal_uInt16 nPage, sal_Bool bDuplicate 
         SetOfByte aVisibleLayers = pPreviousStandardPage->GetMasterPageVisibleLayers( nPos );
         sal_Bool bIsPageBack = aVisibleLayers.IsSet( aBckgrnd );
         sal_Bool bIsPageObj = aVisibleLayers.IsSet( aBckgrndObj );
-
-        // AutoLayouts muessen fertig sein
-        pDoc->StopWorkStartupDelay();
 
         /**************************************************************
         * Es wird stets zuerst eine Standardseite und dann eine
@@ -532,8 +528,8 @@ SdPage* SdXImpressDocument::InsertSdPage( sal_uInt16 nPage, sal_Bool bDuplicate 
             pStandardPage->SetAutoLayout(AUTOLAYOUT_NONE, sal_True, sal_True);
         }
 
-        aBckgrnd = rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRND)), sal_False);
-        aBckgrndObj = rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRNDOBJ)), sal_False);
+        aBckgrnd = rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BCKGRND" )), sal_False);
+        aBckgrndObj = rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BACKGRNDOBJ" )), sal_False);
         aVisibleLayers.Set(aBckgrnd, bIsPageBack);
         aVisibleLayers.Set(aBckgrndObj, bIsPageObj);
         pStandardPage->SetMasterPageVisibleLayers(aVisibleLayers, nPos=0);
@@ -1498,7 +1494,6 @@ void SdXImpressDocument::initializeDocument()
     if( (pDoc->GetPageCount() <= 1) && !mbClipBoard )
     {
         pDoc->CreateFirstPages();
-        pDoc->StopWorkStartupDelay();
     }
 }
 

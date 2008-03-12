@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopage.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:08:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:54:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,6 +40,7 @@
 #include <com/sun/star/view/PaperOrientation.hpp>
 #endif
 
+#include <bf_sfx2/app.hxx>
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
@@ -75,7 +76,7 @@
 #include <com/sun/star/style/XStyle.hpp>
 #endif
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -86,16 +87,14 @@
 #include <bf_svx/svditer.hxx>
 #endif
 #ifndef _WMF_HXX
-#include <svtools/wmf.hxx>
+#include <bf_svtools/wmf.hxx>
 #endif
 #ifndef _SVDOOLE2_HXX
 #include <bf_svx/svdoole2.hxx>
 #endif
 
-#include "sdview.hxx"
-#include "docshell.hxx"
+#include "bf_sd/docshell.hxx"
 #include "unoobj.hxx"
-#include "res_bmp.hrc"
 #include "unokywds.hxx"
 #include "unopback.hxx"
 #include "unohelp.hxx"
@@ -111,8 +110,8 @@ enum WID_PAGE
 {
     WID_PAGE_LEFT, WID_PAGE_RIGHT, WID_PAGE_TOP, WID_PAGE_BOTTOM, WID_PAGE_WIDTH,
     WID_PAGE_HEIGHT, WID_PAGE_EFFECT, WID_PAGE_CHANGE, WID_PAGE_SPEED, WID_PAGE_NUMBER,
-    WID_PAGE_ORIENT, WID_PAGE_LAYOUT, WID_PAGE_DURATION, WID_PAGE_LDNAME, WID_PAGE_LDBITMAP,
-    WID_PAGE_BACK, WID_PAGE_PREVIEW, WID_PAGE_VISIBLE, WID_PAGE_SOUNDFILE, WID_PAGE_BACKFULL,
+    WID_PAGE_ORIENT, WID_PAGE_LAYOUT, WID_PAGE_DURATION,
+    WID_PAGE_BACK, WID_PAGE_VISIBLE, WID_PAGE_SOUNDFILE, WID_PAGE_BACKFULL,
     WID_PAGE_BACKVIS, WID_PAGE_BACKOBJVIS, WID_PAGE_USERATTRIBS, WID_PAGE_BOOKMARK, WID_PAGE_ISDARK
 };
 
@@ -141,13 +140,10 @@ const SfxItemPropertyMap* ImplGetDrawPagePropertyMap( sal_Bool bImpress )
         { MAP_CHAR_LEN(UNO_NAME_PAGE_EFFECT),           WID_PAGE_EFFECT,    &::getCppuType((const presentation::FadeEffect*)0),     0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_HEIGHT),           WID_PAGE_HEIGHT,    &::getCppuType((const sal_Int32*)0),            0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_LAYOUT),           WID_PAGE_LAYOUT,    &::getCppuType((const sal_Int16*)0),            0,  0},
-        { MAP_CHAR_LEN(UNO_NAME_LINKDISPLAYBITMAP),     WID_PAGE_LDBITMAP,  &ITYPE( awt::XBitmap),                          beans::PropertyAttribute::READONLY, 0},
-        { MAP_CHAR_LEN(UNO_NAME_LINKDISPLAYNAME),       WID_PAGE_LDNAME,    &::getCppuType((const OUString*)0),             beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_NUMBER),           WID_PAGE_NUMBER,    &::getCppuType((const sal_Int16*)0),            beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_ORIENTATION),      WID_PAGE_ORIENT,    &::getCppuType((const view::PaperOrientation*)0),0, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_SPEED),            WID_PAGE_SPEED,     &::getCppuType((const presentation::AnimationSpeed*)0), 0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_WIDTH),            WID_PAGE_WIDTH,     &::getCppuType((const sal_Int32*)0),            0,  0},
-        { MAP_CHAR_LEN(UNO_NAME_PAGE_PREVIEW),          WID_PAGE_PREVIEW,   SEQTYPE(::getCppuType((::com::sun::star::uno::Sequence<sal_Int8>*)0)), ::com::sun::star::beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_VISIBLE),          WID_PAGE_VISIBLE,   &::getBooleanCppuType(),                        0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_SOUNDFILE),         WID_PAGE_SOUNDFILE, &::getCppuType((const OUString*)0),             0, 0},
         { MAP_CHAR_LEN(sUNO_Prop_IsBackgroundVisible),  WID_PAGE_BACKVIS,   &::getBooleanCppuType(),                        0, 0},
@@ -166,12 +162,9 @@ const SfxItemPropertyMap* ImplGetDrawPagePropertyMap( sal_Bool bImpress )
         { MAP_CHAR_LEN(UNO_NAME_PAGE_RIGHT),            WID_PAGE_RIGHT,     &::getCppuType((const sal_Int32*)0),            0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_TOP),              WID_PAGE_TOP,       &::getCppuType((const sal_Int32*)0),            0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_HEIGHT),           WID_PAGE_HEIGHT,    &::getCppuType((const sal_Int32*)0),            0,  0},
-        { MAP_CHAR_LEN(UNO_NAME_LINKDISPLAYBITMAP),     WID_PAGE_LDBITMAP,  &ITYPE(awt::XBitmap),                           beans::PropertyAttribute::READONLY, 0},
-        { MAP_CHAR_LEN(UNO_NAME_LINKDISPLAYNAME),       WID_PAGE_LDNAME,    &::getCppuType((const OUString*)0),             beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_NUMBER),           WID_PAGE_NUMBER,    &::getCppuType((const sal_Int16*)0),            beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_ORIENTATION),      WID_PAGE_ORIENT,    &::getCppuType((const view::PaperOrientation*)0),0, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_WIDTH),            WID_PAGE_WIDTH,     &::getCppuType((const sal_Int32*)0),            0,  0},
-        { MAP_CHAR_LEN(UNO_NAME_PAGE_PREVIEW),          WID_PAGE_PREVIEW,   SEQTYPE(::getCppuType((::com::sun::star::uno::Sequence<sal_Int8>*)0)), ::com::sun::star::beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(sUNO_Prop_UserDefinedAttributes),WID_PAGE_USERATTRIBS, &::getCppuType((const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer >*)0)  ,      0,     0},
         { MAP_CHAR_LEN(sUNO_Prop_BookmarkURL),          WID_PAGE_BOOKMARK,  &::getCppuType((const OUString*)0),             0,  0},
         { MAP_CHAR_LEN("IsBackgroundDark" ),            WID_PAGE_ISDARK,    &::getBooleanCppuType(),                        beans::PropertyAttribute::READONLY, 0},
@@ -195,8 +188,6 @@ const SfxItemPropertyMap* ImplGetMasterPagePropertyMap( PageKind ePageKind )
         { MAP_CHAR_LEN(UNO_NAME_PAGE_RIGHT),            WID_PAGE_RIGHT,     &::getCppuType((const sal_Int32*)0),            0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_TOP),              WID_PAGE_TOP,       &::getCppuType((const sal_Int32*)0),            0,  0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_HEIGHT),           WID_PAGE_HEIGHT,    &::getCppuType((const sal_Int32*)0),            0,  0},
-        { MAP_CHAR_LEN(UNO_NAME_LINKDISPLAYBITMAP),     WID_PAGE_LDBITMAP,  &ITYPE(awt::XBitmap),                           beans::PropertyAttribute::READONLY, 0},
-        { MAP_CHAR_LEN(UNO_NAME_LINKDISPLAYNAME),       WID_PAGE_LDNAME,    &::getCppuType((const OUString*)0),             beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_NUMBER),           WID_PAGE_NUMBER,    &::getCppuType((const sal_Int16*)0),            beans::PropertyAttribute::READONLY, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_ORIENTATION),      WID_PAGE_ORIENT,    &::getCppuType((const view::PaperOrientation*)0),0, 0},
         { MAP_CHAR_LEN(UNO_NAME_PAGE_WIDTH),            WID_PAGE_WIDTH,     &::getCppuType((const sal_Int32*)0),            0,  0},
@@ -240,7 +231,6 @@ SdGenericDrawPage::SdGenericDrawPage( SdXImpressDocument* _pModel, SdPage* pInPa
 :       SvxFmDrawPage( (SdrPage*) pInPage ),
         mpModel     ( _pModel ),
         maPropSet   ( (pInPage&& (pInPage->GetPageKind() != PK_STANDARD) && (pInPage->GetPageKind() != PK_HANDOUT) )?&pMap[1]:pMap ),
-        SdUnoSearchReplaceShape(this),
         mbHasBackgroundObject(sal_False),
         mrBHelper( maMutex )
 {
@@ -342,11 +332,6 @@ uno::Any SAL_CALL SdGenericDrawPage::queryInterface( const uno::Type & rType )
 
     QUERYINT( beans::XPropertySet );
     else QUERYINT( container::XNamed );
-    else QUERYINT( util::XReplaceable );
-    else QUERYINT( util::XSearchable );
-    else QUERYINT( document::XLinkTargetSupplier );
-    else QUERYINT( drawing::XShapeCombiner );
-    else QUERYINT( drawing::XShapeBinder );
     else QUERYINT( lang::XComponent );
     else
         return SvxDrawPage::queryInterface( rType );
@@ -521,7 +506,7 @@ void SAL_CALL SdGenericDrawPage::setPropertyValue( const OUString& aPropertyName
                 {
                     SdrLayerAdmin& rLayerAdmin = pDoc->GetLayerAdmin();
                     SetOfByte aVisibleLayers = pPage->GetMasterPageVisibleLayers(0);
-                    aVisibleLayers.Set(rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRND)), FALSE), bVisible);
+                    aVisibleLayers.Set(rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BCKGRND" )), FALSE), bVisible);
                     pPage->SetMasterPageVisibleLayers(aVisibleLayers, 0);
                 }
             }
@@ -541,7 +526,7 @@ void SAL_CALL SdGenericDrawPage::setPropertyValue( const OUString& aPropertyName
                 {
                     SdrLayerAdmin& rLayerAdmin = pDoc->GetLayerAdmin();
                     SetOfByte aVisibleLayers = pPage->GetMasterPageVisibleLayers(0);
-                    aVisibleLayers.Set(rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRNDOBJ)), FALSE), bVisible);
+                    aVisibleLayers.Set(rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BACKGRNDOBJ" )), FALSE), bVisible);
                     pPage->SetMasterPageVisibleLayers(aVisibleLayers, 0);
                 }
             }
@@ -564,8 +549,6 @@ void SAL_CALL SdGenericDrawPage::setPropertyValue( const OUString& aPropertyName
             break;
         }
 
-        case WID_PAGE_LDBITMAP:
-        case WID_PAGE_LDNAME:
         case WID_PAGE_NUMBER:
         case WID_PAGE_ISDARK:
             throw beans::PropertyVetoException();
@@ -633,55 +616,8 @@ uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyN
     case WID_PAGE_DURATION:
         aAny <<= (sal_Int32)(GetPage()->GetTime());
         break;
-    case WID_PAGE_LDNAME:
-    {
-        const OUString aName( GetPage()->GetName() );
-        aAny <<= aName;
-        break;
-    }
-    case WID_PAGE_LDBITMAP:
-        {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHC = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
-        }
-        break;
     case WID_PAGE_BACK:
         getBackground( aAny );
-        break;
-    case WID_PAGE_PREVIEW :
-        {
-            SdDrawDocument* pDoc = (SdDrawDocument*)GetPage()->GetModel();
-            if ( pDoc )
-            {
-                SdDrawDocShell* pDocShell = pDoc->GetDocSh();
-                if ( pDocShell )
-                {
-                    sal_uInt16 nPgNum = 0;
-                    sal_uInt16 nPageCount = pDoc->GetSdPageCount( PK_STANDARD );
-                    sal_uInt16 nPageNumber = (sal_uInt16)( ( GetPage()->GetPageNum() - 1 ) >> 1 );
-                    while( nPgNum < nPageCount )
-                    {
-                        pDoc->SetSelected( pDoc->GetSdPage( nPgNum, PK_STANDARD ), nPgNum == nPageNumber );
-                        nPgNum++;
-                    }
-                    GDIMetaFile* pMetaFile = pDocShell->GetPreviewMetaFile();
-                    if ( pMetaFile )
-                    {
-                        Point   aPoint;
-                        Size    aSize( GetPage()->GetSize() );
-                        pMetaFile->AddAction( (MetaAction*) new MetaFillColorAction( COL_WHITE, TRUE ), 0 );
-                        pMetaFile->AddAction( (MetaAction*) new MetaRectAction( Rectangle( aPoint, aSize ) ), 1 );
-                        pMetaFile->SetPrefMapMode( MAP_100TH_MM );
-                        pMetaFile->SetPrefSize( aSize );
-
-                        SvMemoryStream aDestStrm( 65535, 65535 );
-                        ConvertGDIMetaFileToWMF( *pMetaFile, aDestStrm, NULL, sal_False );
-                        uno::Sequence<sal_Int8> aSeq( (sal_Int8*)aDestStrm.GetData(), aDestStrm.Tell() );
-                        aAny <<= aSeq;
-                        delete pMetaFile;
-                    }
-                }
-            }
-        }
         break;
 
     case WID_PAGE_VISIBLE :
@@ -715,7 +651,7 @@ uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyN
             {
                 SdrLayerAdmin& rLayerAdmin = pDoc->GetLayerAdmin();
                 SetOfByte aVisibleLayers = pPage->GetMasterPageVisibleLayers(0);
-                aAny <<= (sal_Bool)aVisibleLayers.IsSet(rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRND)), FALSE));
+                aAny <<= (sal_Bool)aVisibleLayers.IsSet(rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BCKGRND" )), FALSE));
             }
             else
             {
@@ -734,7 +670,7 @@ uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyN
             {
                 SdrLayerAdmin& rLayerAdmin = pDoc->GetLayerAdmin();
                 SetOfByte aVisibleLayers = pPage->GetMasterPageVisibleLayers(0);
-                aAny <<= (sal_Bool)aVisibleLayers.IsSet(rLayerAdmin.GetLayerID(String(SdResId(STR_LAYER_BCKGRNDOBJ)), FALSE));
+                aAny <<= (sal_Bool)aVisibleLayers.IsSet(rLayerAdmin.GetLayerID(String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BACKGRNDOBJ" )), FALSE));
             }
             else
             {
@@ -932,114 +868,11 @@ void SdGenericDrawPage::setBookmarkURL( ::rtl::OUString& rURL )
 
             if( aFileName.Len() && aBookmarkName.Len() )
             {
-                static_cast<SdPage*>(pPage)->DisconnectLink();
                 static_cast<SdPage*>(pPage)->SetFileName( aFileName );
                 static_cast<SdPage*>(pPage)->SetBookmarkName( aBookmarkName );
-                static_cast<SdPage*>(pPage)->ConnectLink();
             }
         }
     }
-}
-
-//----------------------------------------------------------------------
-uno::Reference< drawing::XShape > SAL_CALL SdGenericDrawPage::combine( const uno::Reference< drawing::XShapes >& xShapes )
-    throw( uno::RuntimeException )
-{
-    OGuard aGuard( Application::GetSolarMutex() );
-
-    DBG_ASSERT(pPage,"SdrPage ist NULL! [CL]");
-    DBG_ASSERT(pView, "SdrView ist NULL! [CL]");
-
-    uno::Reference< drawing::XShape > xShape;
-    if(GetPage()==NULL||pView==NULL||!xShapes.is()||mpModel==NULL)
-        return xShape;
-
-    SdrPageView* pPageView = pView->ShowPage( GetPage(), Point() );
-
-    _SelectObjectsInView( xShapes, pPageView );
-
-    pView->CombineMarkedObjects( sal_False );
-
-    pView->AdjustMarkHdl();
-    const SdrMarkList& rMarkList = pView->GetMarkList();
-    if( rMarkList.GetMarkCount() == 1 )
-    {
-        SdrObject* pObj = rMarkList.GetMark(0)->GetObj();
-        if( pObj )
-            xShape = uno::Reference< drawing::XShape >::query( pObj->getUnoShape() );
-    }
-
-    pView->HidePage(pPageView);
-
-    mpModel->SetModified();
-
-    return xShape;
-}
-
-//----------------------------------------------------------------------
-void SAL_CALL SdGenericDrawPage::split( const uno::Reference< drawing::XShape >& xGroup )
-    throw( uno::RuntimeException )
-{
-    OGuard aGuard( Application::GetSolarMutex() );
-
-    if(GetPage()==NULL||pView==NULL||!xGroup.is()||mpModel==NULL)
-        return;
-
-    SdrPageView* pPageView = pView->ShowPage( GetPage(), Point() );
-    _SelectObjectInView( xGroup, pPageView );
-    pView->DismantleMarkedObjects( sal_False );
-    pView->HidePage(pPageView);
-
-    mpModel->SetModified();
-}
-
-//----------------------------------------------------------------------
-uno::Reference< drawing::XShape > SAL_CALL SdGenericDrawPage::bind( const uno::Reference< drawing::XShapes >& xShapes )
-    throw( uno::RuntimeException )
-{
-    OGuard aGuard( Application::GetSolarMutex() );
-
-    uno::Reference< drawing::XShape > xShape;
-    if(GetPage()==NULL||pView==NULL||!xShapes.is()||mpModel==NULL)
-        return xShape;
-
-    SdrPageView* pPageView = pView->ShowPage( GetPage(), Point() );
-
-    _SelectObjectsInView( xShapes, pPageView );
-
-    pView->CombineMarkedObjects( sal_True );
-
-    pView->AdjustMarkHdl();
-    const SdrMarkList& rMarkList = pView->GetMarkList();
-    if( rMarkList.GetMarkCount() == 1 )
-    {
-        SdrObject* pObj = rMarkList.GetMark(0)->GetObj();
-        if( pObj )
-            xShape = uno::Reference< drawing::XShape >::query( pObj->getUnoShape() );
-    }
-
-    pView->HidePage(pPageView);
-
-    mpModel->SetModified();
-
-    return xShape;
-}
-
-//----------------------------------------------------------------------
-void SAL_CALL SdGenericDrawPage::unbind( const uno::Reference< drawing::XShape >& xShape )
-    throw( uno::RuntimeException )
-{
-    OGuard aGuard( Application::GetSolarMutex() );
-
-    if(GetPage()==NULL||pView==NULL||!xShape.is()||mpModel==NULL)
-        return;
-
-    SdrPageView* pPageView = pView->ShowPage( GetPage(), Point() );
-    _SelectObjectInView( xShape, pPageView );
-    pView->DismantleMarkedObjects( sal_True );
-    pView->HidePage(pPageView);
-
-    mpModel->SetModified();
 }
 
 void SdGenericDrawPage::SetLftBorder( sal_Int32 nValue )
@@ -1526,7 +1359,7 @@ uno::Sequence< uno::Type > SAL_CALL SdDrawPage::getTypes() throw(uno::RuntimeExc
         const sal_Int32 nBaseTypes = aBaseTypes.getLength();
         const uno::Type* pBaseTypes = aBaseTypes.getConstArray();
 
-        const sal_Int32 nOwnTypes = bPresPage ? 11 : 10;        // !DANGER! Keep this updated!
+        const sal_Int32 nOwnTypes = bPresPage ? 7 : 6;      // !DANGER! Keep this updated!
 
         maTypeSequence.realloc(  nBaseTypes + nOwnTypes );
         uno::Type* pTypes = maTypeSequence.getArray();
@@ -1536,10 +1369,6 @@ uno::Sequence< uno::Type > SAL_CALL SdDrawPage::getTypes() throw(uno::RuntimeExc
         *pTypes++ = ITYPE(container::XNamed);
         *pTypes++ = ITYPE(drawing::XMasterPageTarget);
         *pTypes++ = ITYPE(lang::XServiceInfo);
-        *pTypes++ = ITYPE(util::XReplaceable);
-        *pTypes++ = ITYPE(document::XLinkTargetSupplier);
-        *pTypes++ = ITYPE( drawing::XShapeCombiner );
-        *pTypes++ = ITYPE( drawing::XShapeBinder );
         *pTypes++ = ITYPE( lang::XComponent );
 
         if( bPresPage )
@@ -2031,7 +1860,7 @@ uno::Sequence< uno::Type > SAL_CALL SdMasterPage::getTypes() throw(uno::RuntimeE
         const sal_Int32 nBaseTypes = aBaseTypes.getLength();
         const uno::Type* pBaseTypes = aBaseTypes.getConstArray();
 
-        const sal_Int32 nOwnTypes = bPresPage ? 9 : 8;      // !DANGER! Keep this updated!
+        const sal_Int32 nOwnTypes = bPresPage ? 8 : 7;      // !DANGER! Keep this updated!
 
         maTypeSequence.realloc(  nBaseTypes + nOwnTypes );
         uno::Type* pTypes = maTypeSequence.getArray();
@@ -2040,7 +1869,6 @@ uno::Sequence< uno::Type > SAL_CALL SdMasterPage::getTypes() throw(uno::RuntimeE
         *pTypes++ = ITYPE(beans::XPropertySet);
         *pTypes++ = ITYPE(container::XNamed);
         *pTypes++ = ITYPE(lang::XServiceInfo);
-        *pTypes++ = ITYPE(util::XReplaceable);
         *pTypes++ = ITYPE(document::XLinkTargetSupplier);
         *pTypes++ = ITYPE( drawing::XShapeCombiner );
         *pTypes++ = ITYPE( drawing::XShapeBinder );
