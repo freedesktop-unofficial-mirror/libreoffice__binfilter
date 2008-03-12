@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wgraf.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:59:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:35:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,7 @@
 #include <tools/poly.hxx>
 #endif
 #ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 #endif
 #ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
