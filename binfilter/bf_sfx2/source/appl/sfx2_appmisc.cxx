@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appmisc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:24:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:01:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,25 +46,25 @@
 #include <vos/xception.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_INTERNALOPTIONS_HXX
-#include <svtools/internaloptions.hxx>
+#include <bf_svtools/internaloptions.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_REGISTRY_INVALIDREGISTRYEXCEPTION_HPP_
@@ -105,7 +105,7 @@
 #include <comphelper/processfactory.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <unotools/bootstrap.hxx>
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #include <osl/file.hxx>
 
 #include "app.hxx"
@@ -113,7 +113,7 @@
 #include "cfgmgr.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
-#include <svtools/imgdef.hxx>
+#include <bf_svtools/imgdef.hxx>
 #endif
 
 #include "docfac.hxx"
