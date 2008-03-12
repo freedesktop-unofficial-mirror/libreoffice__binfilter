@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedhlp.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:37:04 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:19:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,56 +37,19 @@
 #define _SVX_UNOEDHLP_HXX
 
 #include <memory>
-
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _TEXTDATA_HXX
-#include <svtools/textdata.hxx>
-#endif
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
+
 namespace binfilter {
 
 struct EENotify;
 class EditEngine;
-
-#define EDITSOURCE_HINT_PARASMOVED          20
-#define EDITSOURCE_HINT_SELECTIONCHANGED    21
-
-/** Extends TextHint by two additional parameters which are necessary
-    for the EDITSOURCE_HINT_PARASMOVED hint. TextHint's value in this
-    case denotes the destination position, the two parameters the
-    start and the end of the moved paragraph range.
- */
-class SvxEditSourceHint : public TextHint
-{
-private:
-    ULONG   mnStart;
-    ULONG   mnEnd;
-
-public:
-            TYPEINFO();
-            SvxEditSourceHint( ULONG nId );
-            SvxEditSourceHint( ULONG nId, ULONG nValue, ULONG nStart=0, ULONG nEnd=0 );
-};
 
 /** Helper class for common functionality in edit sources
  */
 class SvxEditSourceHelper
 {
 public:
-
-    /** Translates EditEngine notifications into broadcastable hints
-
-        @param aNotify
-        Notification object send by the EditEngine.
-
-        @return the translated hint
-     */
-    static ::std::auto_ptr<SfxHint> EENotification2Hint( EENotify* aNotify );
-
     /** Calculate attribute run for EditEngines
 
         Please note that the range returned is half-open: [nStartIndex,nEndIndex)
