@@ -4,9 +4,9 @@
  *
  *  $RCSfile: appuno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:32:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:34:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -134,17 +134,16 @@
 #ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
 #endif
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #include <bf_sfx2/sfxuno.hxx>
 
-#include <svtools/poolitem.hxx>
-
-class SfxAllItemSet;
-class SfxItemSet;
+#include <bf_svtools/poolitem.hxx>
 
 namespace binfilter {
+class SfxAllItemSet;
+class SfxItemSet;
 
 class SfxUsrAnyItem : public SfxPoolItem
 {
