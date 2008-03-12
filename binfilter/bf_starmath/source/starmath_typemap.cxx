@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_typemap.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:34:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:25:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -151,16 +151,16 @@
 #include <bf_sfx2/msg.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SVX_ZOOMITEM_HXX //autogen
 #include <bf_svx/zoomitem.hxx>
 #endif
 #ifndef _SFXSLSTITM_HXX
-#include <svtools/slstitm.hxx>
+#include <bf_svtools/slstitm.hxx>
 #endif
 
 #define SFX_TYPEMAP
