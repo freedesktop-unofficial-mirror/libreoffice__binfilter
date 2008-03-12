@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editview.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:50:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:49:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,10 +55,10 @@ class Pair;
 class Point;
 class Range;
 class SvStream;
-class SvKeyValueIterator;
-class SfxStyleSheet;
 namespace binfilter {
+class SvKeyValueIterator;
 
+class SfxStyleSheet;
 class EditEngine;
 class ImpEditEngine;
 class ImpEditView;
