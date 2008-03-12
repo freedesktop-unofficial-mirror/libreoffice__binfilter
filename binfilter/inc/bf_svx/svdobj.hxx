@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdobj.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2006-11-21 16:46:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:10:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SV_TIMER_HXX
@@ -86,17 +86,18 @@
 #include <tools/color.hxx>
 #endif
 
-class SfxBroadcaster;
 class Pointer;
 class AutoTimer;
+class PolyPolygon;
+namespace binfilter {
+
+class SfxBroadcaster;
 class SfxItemSet;
 class SfxSetItem;
 class SfxStyleSheet;
 class SfxUndoAction;
 class SfxItemPool;
-class PolyPolygon;
 class SfxPoolItem;
-namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
