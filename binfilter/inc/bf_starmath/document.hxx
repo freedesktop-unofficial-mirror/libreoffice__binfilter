@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:29:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:47:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,7 @@
 #include <bf_sfx2/interno.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
@@ -141,7 +141,6 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
     String              aAccText;
     SmSymSetManager    *pSymSetMgr;
     SmNode             *pTree;
-    SvInPlaceMenuBar   *pMenuBar;
     SfxMenuBarManager  *pMenuMgr;
     SfxItemPool        *pEditEngineItemPool;
     EditEngine         *pEditEngine;
