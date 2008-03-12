@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:33:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:49:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,17 +57,17 @@
 #include <bf_sch/memchrt.hxx>
 #include <bf_sch/schdll0.hxx>
 
-#ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
-#define SO2_DECL_SVINPLACEOBJECT_DEFINED
-SO2_DECL_REF(SvInPlaceObject)
-#endif
-
 #include "document.hxx"
 #include "drwlayer.hxx"
 #include "chartarr.hxx"
 #include "chartlis.hxx"
 #include "refupdat.hxx"
 namespace binfilter {
+
+#ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
+#define SO2_DECL_SVINPLACEOBJECT_DEFINED
+SO2_DECL_REF(SvInPlaceObject)
+#endif
 
 // -----------------------------------------------------------------------
 
