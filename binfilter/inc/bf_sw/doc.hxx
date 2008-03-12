@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: ihi $ $Date: 2007-11-26 18:58:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:35:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _DOC_HXX
 
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
@@ -100,7 +100,7 @@ namespace uno {
 namespace utl {
     class TransliterationWrapper;
 }
-namespace so3 {
+namespace binfilter {
     class SvLinkSource;
 }
 class DateTime;
@@ -111,17 +111,17 @@ class OutputDevice;
 class Point;
 class SbxArray;
 class VirtualDevice;
-class SvEmbeddedObjectRef;
-class SvNumberFormatter;
-class SvPersist;
-class SvStorage;
-class SvStrings;
-class SvUShorts;
-class SvUShortsSort;
-class SvxMacro;
-class SvxMacroTableDtor;
 
 namespace binfilter {
+class SvEmbeddedObjectRef;
+class SvStrings;
+class SvxMacro;
+class SvxMacroTableDtor;
+class SvPersist;
+class SvStorage;
+class SvUShorts;
+class SvUShortsSort;
+class SvNumberFormatter;
 class BfGraphicObject;
 
 class SvxForbiddenCharactersTable;
@@ -1510,7 +1510,7 @@ public:
     void SetInLoadAsynchron( sal_Bool bFlag )       { bInLoadAsynchron = bFlag; }
 
     // SS fuers Linken von Dokumentteilen
-    ::so3::SvLinkSource* CreateLinkSource( const String& rItem );
+    ::binfilter::SvLinkSource* CreateLinkSource( const String& rItem );
     // erzeuge um das zu Servende Object eine Selektion
     sal_Bool SelectServerObj( const String& rStr, SwPaM*& rpPam,
                             SwNodeRange*& rpRange ) const;
