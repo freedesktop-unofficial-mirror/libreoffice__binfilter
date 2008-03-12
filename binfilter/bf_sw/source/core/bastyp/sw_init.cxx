@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:52:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:53:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #endif
 
 #ifndef _SFXMACITEM_HXX
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 #ifndef _SVX_PBINITEM_HXX
 #include <bf_svx/pbinitem.hxx>
