@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:39:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:05:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,13 +34,13 @@
  ************************************************************************/
 
 #include <bf_so3/ipenv.hxx>
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 
 #define _SFX_INTERNO_CXX
 
 
 #ifndef _SVTOOLS_IMGDEF_HXX
-#include <svtools/imgdef.hxx>
+#include <bf_svtools/imgdef.hxx>
 #endif
 
 #include "request.hxx"
@@ -61,7 +61,7 @@ namespace binfilter {
 /*N*/         SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4E))//STRIP002 SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4D))
 /*?*/ void SfxInPlaceObject::TestMemberObjRef(BOOL){}
 /*?*/ void SfxInPlaceObject::TestMemberInvariant(BOOL){}
-/*?*/ IUnknown* SfxInPlaceObject::GetMemberInterface( const SvGlobalName & ){ return 0L; }
+/*?*/ ::IUnknown* SfxInPlaceObject::GetMemberInterface( const SvGlobalName & ){ return 0L; }
 
 /*N*/ SfxInPlaceObject::SfxInPlaceObject()
 /*N*/ : pObjShell(0)
