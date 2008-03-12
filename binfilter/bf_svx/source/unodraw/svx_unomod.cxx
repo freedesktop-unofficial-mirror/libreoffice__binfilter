@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unomod.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:55:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:43:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 
 
 #ifndef _SVTOOLS_UNOEVENT_HXX_
-#include <svtools/unoevent.hxx>
+#include <bf_svtools/unoevent.hxx>
 #endif
 
 
@@ -61,7 +61,7 @@
 #endif
 
 #ifndef _SVTOOLS_UNOIMAP_HXX
-#include <svtools/unoimap.hxx>
+#include <bf_svtools/unoimap.hxx>
 #endif
 
 #ifndef _SVX_FMDPAGE_HXX
