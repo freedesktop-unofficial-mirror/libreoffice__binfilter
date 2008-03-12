@@ -4,9 +4,9 @@
  *
  *  $RCSfile: langitem.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:41:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:56:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 // include ---------------------------------------------------------------
 
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
