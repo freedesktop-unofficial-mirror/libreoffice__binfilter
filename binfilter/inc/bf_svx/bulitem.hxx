@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bulitem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:44:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,7 +71,7 @@ namespace binfilter {
 #define VALID_FOLLOWTEXT    0x0100
 }//end of namespace binfilter
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _VCL_FONT_HXX //autogen
 #include <vcl/font.hxx>
