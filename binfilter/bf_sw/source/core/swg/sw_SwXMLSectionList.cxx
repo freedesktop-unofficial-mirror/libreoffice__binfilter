@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwXMLSectionList.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:28:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:15:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 #define _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _SW_XMLSECTIONLIST_HXX
 #include <SwXMLSectionList.hxx>
 #endif
