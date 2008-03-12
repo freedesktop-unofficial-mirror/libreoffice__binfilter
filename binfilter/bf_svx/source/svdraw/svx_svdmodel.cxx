@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:58:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:36:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 
 
 #ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 
 #ifndef _SVX_XIT_HXX
@@ -112,7 +112,7 @@
 #endif
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _BIGINT_HXX //autogen
@@ -131,7 +131,7 @@
 #endif
 
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 
