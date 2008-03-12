@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdogrp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:08:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:11:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,8 +44,9 @@
 #include <bf_svx/svdobj.hxx>
 #endif
 class SdrObjListIter;
-class SfxItemSet;
 namespace binfilter {
+
+class SfxItemSet;
 
 //************************************************************
 //   Vorausdeklarationen
