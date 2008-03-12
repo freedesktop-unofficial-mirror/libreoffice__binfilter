@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpobject.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:17:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:49:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,7 @@
 
 #include <comphelper/processfactory.hxx>
 #include <tools/debug.hxx>
-#include <svtools/zforlist.hxx>     // IsNumberFormat
+#include <bf_svtools/zforlist.hxx>      // IsNumberFormat
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
