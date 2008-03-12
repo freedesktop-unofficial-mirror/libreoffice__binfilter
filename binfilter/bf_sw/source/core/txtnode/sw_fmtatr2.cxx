@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fmtatr2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:42:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:21:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include "unomid.h"
 
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 
 #ifndef _FCHRFMT_HXX //autogen
