@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_srchitem.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:28:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:04:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,11 +39,11 @@
 #include "bf_basic/sbxvar.hxx"
 #endif
 #ifndef _SVT_SEARCHOPT_HXX_
-#include <svtools/searchopt.hxx>
+#include <bf_svtools/searchopt.hxx>
 #endif
 
 
-#include <svtools/memberid.hrc>
+#include <bf_svtools/memberid.hrc>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -265,7 +265,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   SfxMapUnit          eCoreUnit,
 /*N*/   SfxMapUnit          ePresUnit,
 /*N*/   XubString&          rText,
-/*N*/     const IntlWrapper *
+/*N*/     const ::IntlWrapper *
 /*N*/ ) const
 /*N*/ {
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
