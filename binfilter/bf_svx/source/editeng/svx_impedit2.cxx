@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:37:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:27:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -74,8 +74,8 @@
 #include <eerdll2.hxx>
 #include <eerdll.hxx>
 #include <txtrange.hxx>
-#include <svtools/colorcfg.hxx>
-#include <svtools/ctloptions.hxx>
+#include <bf_svtools/colorcfg.hxx>
+#include <bf_svtools/ctloptions.hxx>
 
 #include <lrspitem.hxx>
 #include <ulspitem.hxx>
@@ -1212,7 +1212,7 @@ using namespace ::com::sun::star;
 /*N*/               pField->Reset();
 /*N*/
 /*N*/                 if ( aStatus.MarkFields() )
-/*N*/                     pField->GetFldColor() = new Color( GetColorConfig().GetColorValue( svtools::WRITERFIELDSHADINGS ).nColor );
+/*N*/                     pField->GetFldColor() = new Color( GetColorConfig().GetColorValue( WRITERFIELDSHADINGS ).nColor );
 /*N*/
 /*N*/               XubString aFldValue = GetEditEnginePtr()->CalcFieldValue(
 /*N*/                                       (const SvxFieldItem&)*pField->GetItem(),
@@ -2055,10 +2055,10 @@ using namespace ::com::sun::star;
 /*N*/   EE_DLL()->GetGlobalData()->SetForbiddenCharsTable( xForbiddenChars );
 /*N*/ }
 
-/*N*/ svtools::ColorConfig& ImpEditEngine::GetColorConfig()
+        ColorConfig& ImpEditEngine::GetColorConfig()
 /*N*/ {
 /*N*/     if ( !pColorConfig )
-/*N*/         pColorConfig = new svtools::ColorConfig;
+/*N*/         pColorConfig = new ColorConfig;
 /*N*/
 /*N*/     return *pColorConfig;
 /*N*/ }
