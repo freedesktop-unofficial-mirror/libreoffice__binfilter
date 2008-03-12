@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdnds.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:07:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:17:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #include <bf_so3/embobj.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
@@ -735,7 +735,7 @@ namespace binfilter {
             else
             {
                 pGrf = NULL, bLink = TRUE;
-                aGrfName = so3::StaticBaseUrl::SmartRelToAbs( aGrfName );
+                aGrfName = ::binfilter::StaticBaseUrl::SmartRelToAbs( aGrfName );
             }
             r.skip( pos );
             r.next();
