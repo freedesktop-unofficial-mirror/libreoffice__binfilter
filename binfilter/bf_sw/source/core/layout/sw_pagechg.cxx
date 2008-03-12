@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_pagechg.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:21:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:08:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include <docary.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
@@ -317,11 +317,6 @@ namespace binfilter {
 /*N*/               pImp->SetFirstVisPageInvalid();
 /*N*/               if ( pImp->IsAction() )
 /*N*/                   pImp->GetLayAction().SetAgain();
-/*N*/                 // OD 12.02.2003 #i9719#, #105645# - retouche area of page
-/*N*/                 // including border and shadow area.
-/*N*/                 SwRect aRetoucheRect;
-/*N*/                 GetBorderAndShadowBoundRect( Frm(), pSh, aRetoucheRect );
-/*N*/                 pSh->AddPaintRect( aRetoucheRect );
 /*N*/             }
 /*N*/       }
 /*N*/   }
@@ -659,15 +654,6 @@ namespace binfilter {
 /*N*/                 AdjustRootSize( CHG_CHGPAGE, &aOldPageFrmRect );
 /*N*/           }
 /*N*/           //Window aufraeumen.
-/*N*/           ViewShell *pSh;
-/*N*/             if ( 0 != (pSh = GetShell()) && pSh->GetWin() && aOldPageFrmRect.HasArea() )
-/*N*/             {
-/*N*/                 // OD 12.02.2003 #i9719#, #105645# - consider border and shadow of
-/*N*/                 // page frame for determine 'old' rectangle - it's used for invalidating.
-/*N*/                 SwRect aOldRectWithBorderAndShadow;
-/*N*/                 GetBorderAndShadowBoundRect( aOldPageFrmRect, pSh, aOldRectWithBorderAndShadow );
-/*N*/                 pSh->InvalidateWindows( aOldRectWithBorderAndShadow );
-/*N*/             }
 /*N*/           rInvFlags |= 0x03;
 /*N*/             if ( aOldPageFrmRect.Height() != Frm().Height() )
 /*N*/               rInvFlags |= 0x04;
