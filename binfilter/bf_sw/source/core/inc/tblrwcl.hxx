@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tblrwcl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:31:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:06:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 
 #ifndef _SWTYPES_HXX
@@ -49,9 +49,9 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-class SfxPoolItem;
 namespace binfilter {
 
+class SfxPoolItem;
 class SvxBorderLine;
 class SwDoc;
 class SwTableNode;
