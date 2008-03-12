@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxscan.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2007-11-13 15:18:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:42:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 
-#include "svtools/syslocale.hxx"
+#include "bf_svtools/syslocale.hxx"
 
 #if defined ( UNX )
 #include <stdlib.h>
@@ -55,7 +55,7 @@
 #include "sbxres.hxx"
 #include "sbxbase.hxx"
 #include "sbxform.hxx"
-#include <svtools/svtools.hrc>
+#include <bf_svtools/svtools.hrc>
 
 namespace binfilter {
 
