@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:33:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:49:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,7 @@
 #endif
 
 #ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #ifndef _XDEF_HXX
@@ -70,14 +70,14 @@
 #include "unoapi.hxx"
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _SVX_UNOPOLYHELPER_HXX
 #include "unopolyhelper.hxx"
 #endif
 
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #include "dialogs.hrc"
 #include "svdstr.hrc"
 #include "xattr.hxx"
