@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewopt.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:02:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:59:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,16 +44,15 @@
 #ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
 #endif
-namespace svtools{ class ColorConfig;}
+
 class Window;
 class OutputDevice;
 
 namespace binfilter {
-
+class ColorConfig;
 class SwRect;
 class ViewShell;
 class SwDocShell;
-//STRIP008 namespace svtools{ class ColorConfig;}
 
 #define VIEWOPT_1_IDLE          0x00000001L
 #define VIEWOPT_1_TAB           0x00000002L
@@ -558,7 +557,7 @@ public:
 
     void    SetDocBoundaries(BOOL bSet)   {SetAppearanceFlag(VIEWOPT_DOC_BOUNDARIES, bSet);}
 
-    static void     ApplyColorConfigValues(const svtools::ColorConfig& rConfig);
+    static void     ApplyColorConfigValues(const ColorConfig& rConfig);
 };
 
 
