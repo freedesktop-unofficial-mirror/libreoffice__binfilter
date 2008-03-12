@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltbli.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:10:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:40:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,7 @@
 #endif
 
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
@@ -1181,13 +1181,13 @@ SwDDEFieldType* lcl_GetDDEFieldType(SwXMLDDETableContext_Impl* pContext,
 {
     // make command string
     String sCommand(pContext->GetDDEApplication());
-    sCommand += ::so3::cTokenSeperator;
+    sCommand += ::binfilter::cTokenSeperator;
     sCommand += String(pContext->GetDDEItem());
-    sCommand += ::so3::cTokenSeperator;
+    sCommand += ::binfilter::cTokenSeperator;
     sCommand += String(pContext->GetDDETopic());
 
-    sal_uInt16 nType = pContext->GetIsAutomaticUpdate() ? ::so3::LINKUPDATE_ALWAYS
-                                                        : ::so3::LINKUPDATE_ONCALL;
+    sal_uInt16 nType = pContext->GetIsAutomaticUpdate() ? ::binfilter::LINKUPDATE_ALWAYS
+                                                        : ::binfilter::LINKUPDATE_ONCALL;
 
     String sName(pContext->GetConnectionName());
 
