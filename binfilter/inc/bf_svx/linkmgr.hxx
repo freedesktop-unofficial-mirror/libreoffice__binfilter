@@ -4,9 +4,9 @@
  *
  *  $RCSfile: linkmgr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:29:50 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:56:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,7 @@ enum LinkState
     STATE_LOAD_ABORT
 };
 
-class SvxLinkManager : public ::so3::SvLinkManager
+class SvxLinkManager : public ::binfilter::SvLinkManager
 {
     SvxLinkManager( const SvxLinkManager& );
     SvxLinkManager& operator=( const SvxLinkManager& );
@@ -63,7 +63,7 @@ public:
     SvxLinkManager( SvPersist * pCacheCont );
 
     // den Link mit einem PseudoObject verbinden und in die Liste eintragen
-    BOOL InsertFileLink( ::so3::SvBaseLink&,
+    BOOL InsertFileLink( ::binfilter::SvBaseLink&,
                         USHORT nFileType,
                         const String& rTxt,
                         const String* pFilterNm = 0,
@@ -72,13 +72,13 @@ public:
             // falls am Link schon alles eingestellt ist !
 
         // erfrage die Strings fuer den Dialog
-    virtual BOOL GetDisplayNames( const ::so3::SvBaseLink*,
+    virtual BOOL GetDisplayNames( const ::binfilter::SvBaseLink*,
                                     String* pType,
                                     String* pFile = 0,
                                     String* pLink = 0,
                                     String* pFilter = 0 ) const;
 
-    virtual ::so3::SvLinkSourceRef CreateObj( ::so3::SvBaseLink * );
+    virtual ::binfilter::SvLinkSourceRef CreateObj( ::binfilter::SvBaseLink * );
 
     // eine Uebertragung wird abgebrochen, also alle DownloadMedien canceln
     // (ist zur Zeit nur fuer die FileLinks interressant!)
