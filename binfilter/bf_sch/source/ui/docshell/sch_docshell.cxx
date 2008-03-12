@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:33:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:24:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,17 +42,18 @@
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
+#include <sot/formats.hxx>
 #include <bf_sfx2/app.hxx>
 #include <bf_svx/svxids.hrc>
 #include <comphelper/classids.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #include <bf_sfx2/progress.hxx>
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #include <bf_svx/drawitem.hxx>
-#include <svtools/style.hxx>
-#include <svtools/saveopt.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/style.hxx>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <bf_svx/svxids.hrc>
 #include <rtl/logfile.hxx>
 
@@ -822,11 +823,14 @@ using namespace ::com::sun::star;
 /*N*/                 if( pParent )
 /*N*/                 {
 /*?*/                     // determine which is parent application
-/*?*/                      DBG_BF_ASSERT(0, "STRIP");
 
+
+/** removed since the actually come up and the fprintf even in pro builds
+DBG_BF_ASSERT(0, "STRIP");
 DBG_ERROR( "Conversion routine called" );
 fprintf( stderr,  "BM: Conversion routine called\n" );
-SvGlobalName aGlobalName;
+*/
+                          SvGlobalName aGlobalName;
  /*?*/                     ULONG nFileFormat;
  /*?*/                     String aAppName, aFullName, aShortName;
  /*?*/                     pParent->FillClass( &aGlobalName, &nFileFormat,
