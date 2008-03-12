@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdtayitm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:59:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:07:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SDTAYITM_HXX
 
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 
 #ifndef _SVDDEF_HXX //autogen
