@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:37:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:59:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,19 +44,19 @@
 #include <tools/urlobj.hxx>
 #endif
 #ifndef _SFXRECTITEM_HXX //autogen
-#include <svtools/rectitem.hxx>
+#include <bf_svtools/rectitem.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 
 
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 
 #ifdef _MSC_VER
 #pragma hdrstop
