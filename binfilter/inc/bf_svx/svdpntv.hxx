@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpntv.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:35:59 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:12:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,58 +37,19 @@
 #define _SVDPNTV_HXX
 
 #include <slist>
-
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-
-#ifndef _VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
-
-#ifndef _SFXBRDCST_HXX
-#include <svtools/brdcst.hxx>
-#endif
-
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
-
-#ifndef _SFXSMPLHINT_HXX
-#include <svtools/smplhint.hxx>
-#endif
-
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
-
-#ifndef _UNDO_HXX //autogen
-#include <svtools/undo.hxx>
-#endif
-
-#ifndef _SVDDRAG_HXX
+#include <bf_svtools/brdcst.hxx>
+#include <bf_svtools/lstner.hxx>
+#include <bf_svtools/smplhint.hxx>
+#include <bf_svtools/itemset.hxx>
+#include <bf_svtools/undo.hxx>
 #include <bf_svx/svddrag.hxx>
-#endif
-
-#ifndef _SVDLAYER_HXX
-#include <bf_svx/svdlayer.hxx>  // fuer SetOfByte
-#endif
-
-#ifndef _APP_HXX //autogen
+#include <bf_svx/svdlayer.hxx>
 #include <vcl/svapp.hxx>
-#endif
-
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
+#include <bf_svtools/colorcfg.hxx>
 
 
 //************************************************************
@@ -100,10 +61,10 @@ class XControlContainer;
 }}}}
 class OutputDevice;
 class VirtualDevice;
-class SfxItemSet;
-class SfxStyleSheet;
 //STRIP012class B2dIAOManager;
 namespace binfilter {
+class SfxItemSet;
+class SfxStyleSheet;
 class SdrGrafObj;
 class SdrPage;
 class SdrPageViewWinRec;
@@ -370,7 +331,7 @@ protected:
     unsigned                    bHideGrafDraft : 1;
     unsigned                    bAnimationPause : 1;
 
-    ::svtools::ColorConfig            maColorConfig;
+    ColorConfig            maColorConfig;
     Color                       maGridColor;
 
 private:
