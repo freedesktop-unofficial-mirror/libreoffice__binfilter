@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:06:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:13:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,10 +53,10 @@
 #endif
 
 #ifndef _IMAP_HXX //autogen
-#include <svtools/imap.hxx>
+#include <bf_svtools/imap.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
@@ -2284,7 +2284,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/                  << (INT16) 0;
 /*N*/
 /*N*/           // Start lcl_sw3io_OutINetField()
-/*N*/           OutString( *pStrm, so3::StaticBaseUrl::AbsToRel(
+/*N*/           OutString( *pStrm, ::binfilter::StaticBaseUrl::AbsToRel(
 /*N*/                       ((const SwFmtINetFmt *)pAttr)->GetValue() URL_DECODE ) );
 /*N*/           pStrm->WriteByteString( *pInfo->aINetFmtTexts[nINetFmtCnt] );
 /*N*/           // Ende lcl_sw3io_OutINetField()
@@ -2366,7 +2366,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/           {
 /*N*/               pGrf = 0;
 /*N*/               if( aGrfName.Len() )
-/*N*/           aGrfName = so3::StaticBaseUrl::RelToAbs( aGrfName );
+/*N*/           aGrfName = ::binfilter::StaticBaseUrl::RelToAbs( aGrfName );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -2470,7 +2470,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       {
 /*N*/           nFileFlags |= SWGF_HAS_GRFLNK;
 /*N*/           rGrf.GetFileFilterNms( &aName, &sFilterNm );
-/*N*/           aName = so3::StaticBaseUrl::AbsToRel( aName );
+/*N*/           aName = ::binfilter::StaticBaseUrl::AbsToRel( aName );
 /*N*/       }
 /*N*/
 /*N*/       // Beim 31-Export muss die URL noch am Node gespeichert werden
@@ -2756,7 +2756,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/
 /*N*/   InString( *pStrm, rURL );
 /*N*/   if( rURL.Len() )
-/*N*/       rURL = so3::StaticBaseUrl::SmartRelToAbs( rURL );
+/*N*/       rURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( rURL );
 /*N*/
 /*N*/   // bis hier hatten wir frueher einen SWG_GRAPHIC_EXT-Record!
 /*N*/   if( IsVersion( SWG_TARGETFRAME, SWG_EXPORT31, SWG_DESKTOP40 ) )
@@ -2772,7 +2772,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/       pIMap = new ImageMap;
 /*?*/       pIMap->Read(
                 *pStrm,
-                so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
+                ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_IMAGEMAP );
@@ -2819,7 +2819,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   if( aURL.Len() )
 /*N*/   {
 /*N*/       lcl_sw3io__ConvertMarkToOutline( aURL );
-/*N*/       aURL = so3::StaticBaseUrl::AbsToRel( aURL URL_DECODE);
+/*N*/       aURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL URL_DECODE);
 /*N*/   }
 /*N*/   OutString( *pStrm, aURL );
 /*N*/
@@ -2833,7 +2833,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       if( pIMap )
 /*?*/         pIMap->Write(
                 *pStrm,
-                so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
+                ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_IMAGEMAP );
