@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swtable.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:13:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:49:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include <tools/ref.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _TBLENUM_HXX
 #include <tblenum.hxx>
@@ -61,10 +61,9 @@ class SwStartNode;
 } //namespace binfilter
 #endif
 class Color;
-class SfxPoolItem;
 namespace binfilter {
 
-
+class SfxPoolItem;
 class SwFrmFmt;
 class SwTableFmt;
 class SwTableLineFmt;
