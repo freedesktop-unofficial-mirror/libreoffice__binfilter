@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sortopt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:46:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:47:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
