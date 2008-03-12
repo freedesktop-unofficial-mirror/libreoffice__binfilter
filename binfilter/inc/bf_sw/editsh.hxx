@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editsh.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2007-11-26 18:58:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:36:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
@@ -66,15 +66,15 @@ class PolyPolygon;
 class DateTime;
 class CommandExtTextInputData;
 
+class Graphic;          // fuer GetGraphic
+class Font;
+namespace binfilter {
+class SvStringsDtor;
+class SvInPlaceObjectRef;
+class SvInPlaceObject;
 class SvNumberFormatter;
 class SfxPoolItem;
 class SfxItemSet;
-class SvStringsDtor;
-class Graphic;          // fuer GetGraphic
-class SvInPlaceObjectRef;
-class SvInPlaceObject;
-class Font;
-namespace binfilter {
 class BfGraphicObject; // fuer GetGraphicObj
 
 
