@@ -4,9 +4,9 @@
  *
  *  $RCSfile: uitool.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:10:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:51:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,11 +44,11 @@
 #endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
-class SfxItemSet;
 class Printer;
 class ListBox;
 class DateTime;
 namespace binfilter {
+class SfxItemSet;
 class MetricFormatter;
 class SfxMedium;
 class SwPageDesc;
