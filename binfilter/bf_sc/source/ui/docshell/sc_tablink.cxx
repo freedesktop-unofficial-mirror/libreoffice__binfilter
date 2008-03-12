@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_tablink.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:07:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:05:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,8 +49,8 @@
 // INCLUDE ---------------------------------------------------------
 
 #include <bf_sfx2/app.hxx>
-#include <svtools/itemset.hxx>
-#include <svtools/stritem.hxx>
+#include <bf_svtools/itemset.hxx>
+#include <bf_svtools/stritem.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_svx/linkmgr.hxx>
@@ -65,14 +65,14 @@
 #include "hints.hxx"
 namespace binfilter {
 
-/*N*/ TYPEINIT1(ScTableLink, ::so3::SvBaseLink);
+/*N*/ TYPEINIT1(ScTableLink, ::binfilter::SvBaseLink);
 
 //------------------------------------------------------------------------
 
 /*N*/ ScTableLink::ScTableLink(ScDocShell* pDocSh, const String& rFile,
 /*N*/                           const String& rFilter, const String& rOpt,
 /*N*/                           ULONG nRefresh ):
-/*N*/   ::so3::SvBaseLink(so3::LINKUPDATE_ONCALL,FORMAT_FILE),
+/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ONCALL,FORMAT_FILE),
 /*N*/   ScRefreshTimer( nRefresh ),
 /*N*/   pDocShell(pDocSh),
 /*N*/   aFileName(rFile),
@@ -88,7 +88,7 @@ namespace binfilter {
 /*N*/ ScTableLink::ScTableLink(SfxObjectShell* pShell, const String& rFile,
 /*N*/                           const String& rFilter, const String& rOpt,
 /*N*/                           ULONG nRefresh ):
-/*N*/   ::so3::SvBaseLink(so3::LINKUPDATE_ONCALL,FORMAT_FILE),
+/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ONCALL,FORMAT_FILE),
 /*N*/   ScRefreshTimer( nRefresh ),
 /*N*/   pDocShell((ScDocShell*)pShell),
 /*N*/   aFileName(rFile),
