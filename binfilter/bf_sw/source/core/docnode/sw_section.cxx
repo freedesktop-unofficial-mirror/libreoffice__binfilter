@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_section.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:07:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:57:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,10 @@
 #endif
 
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
@@ -478,8 +478,8 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/                   refLink->GetLinkManager()->GetDisplayNames(
 /*N*/                       refLink, 0, &sTmp, &sRange, &sFilter ) )
 /*N*/               {
-/*N*/                     ( sTmp += ::so3::cTokenSeperator ) += sFilter;
-/*N*/                     ( sTmp += ::so3::cTokenSeperator ) += sRange;
+/*N*/                     ( sTmp += ::binfilter::cTokenSeperator ) += sFilter;
+/*N*/                     ( sTmp += ::binfilter::cTokenSeperator ) += sRange;
 /*N*/               }
 /*N*/               else if( GetFmt() && !GetFmt()->GetSectionNode() )
 /*N*/               {
@@ -800,10 +800,10 @@ void SwSectionFmt::MakeFrms()
 /*N*/   ::com::sun::star::uno::Any aValue;
 /*N*/   aValue <<= ::rtl::OUString( sName );                        // beliebiger Name
 /*N*/
-/*N*/   const ::so3::SvBaseLinks& rLnks = pDoc->GetLinkManager().GetLinks();
+/*N*/   const ::binfilter::SvBaseLinks& rLnks = pDoc->GetLinkManager().GetLinks();
 /*N*/   for( USHORT n = rLnks.Count(); n; )
 /*N*/   {
-/*N*/       ::so3::SvBaseLink* pLnk = &(*rLnks[ --n ]);
+/*N*/       ::binfilter::SvBaseLink* pLnk = &(*rLnks[ --n ]);
 /*N*/       if( pLnk && pLnk != &rUpdLnk &&
 /*N*/           OBJECT_CLIENT_FILE == pLnk->GetObjType() &&
 /*N*/           pLnk->ISA( SwBaseLink ) &&
@@ -1150,7 +1150,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/   if( !pFmt || CONTENT_SECTION == eType )
 /*?*/       return ;
 /*N*/
-/*N*/     USHORT nUpdateType = ::so3::LINKUPDATE_ALWAYS;
+/*N*/     USHORT nUpdateType = ::binfilter::LINKUPDATE_ALWAYS;
 /*N*/
 /*N*/   if( !refLink.Is() )
 /*N*/       // dann mal den BaseLink aufbauen
@@ -1178,10 +1178,10 @@ void SwSectionFmt::MakeFrms()
 /*N*/   case FILE_LINK_SECTION:
 /*N*/       {
 /*N*/           pLnk->SetContentType( FORMAT_FILE );
-/*N*/             String sFltr( sCmd.GetToken( 1, ::so3::cTokenSeperator ) );
-/*N*/             String sRange( sCmd.GetToken( 2, ::so3::cTokenSeperator ) );
+/*N*/             String sFltr( sCmd.GetToken( 1, ::binfilter::cTokenSeperator ) );
+/*N*/             String sRange( sCmd.GetToken( 2, ::binfilter::cTokenSeperator ) );
 /*N*/           pFmt->GetDoc()->GetLinkManager().InsertFileLink( *pLnk, eType,
-/*N*/                                 sCmd.GetToken( 0, ::so3::cTokenSeperator ),
+/*N*/                                 sCmd.GetToken( 0, ::binfilter::cTokenSeperator ),
 /*N*/                               ( sFltr.Len() ? &sFltr : 0 ),
 /*N*/                               ( sRange.Len() ? &sRange : 0 ) );
 /*N*/       }
