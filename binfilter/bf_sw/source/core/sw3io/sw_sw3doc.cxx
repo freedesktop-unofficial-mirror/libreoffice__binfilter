@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3doc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:24:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:11:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
 #ifndef _SFXECODE_HXX //autogen
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
