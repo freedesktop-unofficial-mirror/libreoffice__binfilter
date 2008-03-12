@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xpool.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:31:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:31:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _XPOOL_HXX
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
