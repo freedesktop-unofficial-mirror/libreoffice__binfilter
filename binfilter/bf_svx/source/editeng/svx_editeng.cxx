@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:21:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:26:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #define USE_SVXFONT
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 
 #ifndef _SV_WINDOW_HXX
@@ -241,8 +241,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           pImpEditEngine->SetActiveView( 0 );
 /*N*/           pImpEditEngine->GetSelEngine().SetCurView( 0 );
 /*N*/       }
-/*N*/         pView->pImpEditView->RemoveDragAndDropListeners();
-/*N*/
 /*N*/   }
 /*N*/   return pRemoved;
 /*N*/ }
