@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdfilter.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:57:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:30:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,26 +40,18 @@
 #include <tools/debug.hxx>
 #include <osl/file.hxx>
 #include <vos/module.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/progress.hxx>
 
-#ifndef MAC
-#ifndef SVX_LIGHT
-#include "../ui/inc/docshell.hxx"
-#include "../ui/inc/strings.hrc"
-#endif //!SVX_LIGHT
-#else  //MAC
-#ifndef SVX_LIGHT
-#include "docshell.hxx"
-#include "strings.hrc"
-#endif //!SVX_LIGHT
-#endif //!MAC
+#include "bf_sd/docshell.hxx"
 
 #include "sdresid.hxx"
 #include "pres.hxx"
 #include "drawdoc.hxx"
 #include "sdfilter.hxx"
+#include "glob.hrc"
+
 namespace binfilter {
 
 // --------------
@@ -89,8 +81,7 @@ SdFilter::SdFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bSho
 
 SdFilter::~SdFilter()
 {
-    if( !mrDocShell.HasSpecialProgress() )
-        delete mpProgress;
+    delete mpProgress;
 }
 
 // -----------------------------------------------------------------------------
@@ -156,13 +147,8 @@ void SdFilter::CreateStatusIndicator()
 
 void SdFilter::CreateProgress()
 {
-    if( mrDocShell.HasSpecialProgress() )
-        mpProgress = mrDocShell.GetSpecialProgress();
-    else
-    {
-        mpProgress = new SfxProgress( &mrDocShell, String( SdResId( STR_OPEN_DOCUMENT ) ), 100 );
-        mpProgress->SetState( 0, 100 );
-    }
+    mpProgress = new SfxProgress( &mrDocShell, String( SdResId( STR_LOAD_DOC ) ), 100 );
+    mpProgress->SetState( 0, 100 );
 }
 
 // -----------------------------------------------------------------------------
