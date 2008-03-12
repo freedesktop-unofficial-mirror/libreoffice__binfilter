@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: hr $ $Date: 2008-01-04 13:03:59 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:10:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,11 +39,11 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _SVSTDARR_BYTES_DECL
 #define _SVSTDARR_BYTES
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
@@ -68,19 +68,21 @@
 #include <docstat.hxx>
 #endif
 #include <list>
-class ImageMap;
-class SfxItemSet;
-class SfxPoolItem;
 class SvStream;
-class SvStringsDtor;
-class SvUShorts;
 class SvXub_StrLens;
-class SvStrings;
 class SvxMacroTableDtor;
-class SvStorageInfoList;
 namespace binfilter {
 
+class ImageMap;
+class SvStringsDtor;
+class SvStorageInfoList;
+class SvStrings;
+
 class Crypter;
+class SvUShorts;
+
+class SfxItemSet;
+class SfxPoolItem;
 
 
 class Sw3Io;
