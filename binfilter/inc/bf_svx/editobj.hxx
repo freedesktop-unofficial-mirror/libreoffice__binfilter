@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editobj.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:26:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:48:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,14 +46,15 @@
 #include <rsc/rscsfx.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
 #endif
+namespace binfilter {
+
 class SfxItemPool;
 class SfxStyleSheetPool;
-namespace binfilter {
 
 DBG_NAMEEX( EE_EditTextObject )//STRIP008
 
