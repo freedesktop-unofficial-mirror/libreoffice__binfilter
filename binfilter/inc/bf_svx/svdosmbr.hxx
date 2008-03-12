@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdosmbr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 13:01:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:11:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SVDOSMBR_HXX
 
 #ifndef _SVX_BRWBOX_HXX //autogen
-#include <svtools/brwbox.hxx>
+#include <bf_svtools/brwbox.hxx>
 #endif
 #ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
