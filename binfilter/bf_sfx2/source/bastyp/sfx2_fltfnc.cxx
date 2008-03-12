@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.16 $
+ *  $Revision: 1.17 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:40:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:03:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include <rtl/ustrbuf.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 
 #include <sal/types.h>
@@ -62,14 +62,14 @@ using namespace ::rtl;
 using namespace ::vos;
 
 #ifndef _SVTOOLS_CTYPEITM_HXX
-#include <svtools/ctypeitm.hxx>
+#include <bf_svtools/ctypeitm.hxx>
 #endif
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 #include <tools/urlobj.hxx>
