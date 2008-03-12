@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swdtflvr.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:14:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:50:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,94 +32,3 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-#ifndef _SWDTFLVR_HXX
-#define _SWDTFLVR_HXX
-
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
-#ifndef _EMBOBJ_HXX
-#include <bf_so3/embobj.hxx>
-#endif
-#ifndef _LNKBASE_HXX
-#include <bf_so3/lnkbase.hxx>
-#endif
-class Graphic;
-class ImageMap;
-namespace binfilter {
-
-
-
-class INetBookmark;
-class INetImage;
-class SwDoc;
-class SwDocFac;
-class SwNode;
-class SwTextBlocks;
-class SwWrtShell;
-class Reader;
-class SvxClipboardFmtItem;
-class ViewShell;
-class SwView_Impl;
-
-enum TransferBufferType
-{
-    TRNSFR_NONE             = 0x0000,
-    TRNSFR_DOCUMENT         = 0x0001,
-    TRNSFR_DOCUMENT_WORD    = 0x0002,
-    TRNSFR_GRAPHIC          = 0x0004,
-    TRNSFR_TABELLE          = 0x0008,
-    TRNSFR_DDELINK          = 0x0010,
-    TRNSFR_OLE              = 0x0020,
-    TRNSFR_INETFLD          = 0x0040,
-    TRNSFR_DRAWING          = 0x0081    //Drawing ist auch intern!
-};
-
-#define DATA_FLAVOR     ::com::sun::star::datatransfer::DataFlavor
-
-class SwTransferable : public TransferableHelper
-{
-    friend class SwView_Impl;
-    SvEmbeddedObjectRef             aDocShellRef;
-    TransferableDataHelper          aOleData;
-    TransferableObjectDescriptor    aObjDesc;
-    ::so3::SvBaseLinkRef            refDdeLink;
-
-    SwWrtShell      *pWrtShell;
-    /* #96392# Added pCreatorView to distinguish SwFrameShell from
-       SwWrtShell. */
-    const ViewShell       *pCreatorView;
-    SwDocFac        *pClpDocFac;
-    Graphic         *pClpGraphic, *pClpBitmap, *pOrigGrf;
-    INetBookmark    *pBkmk;     // URL und Beschreibung!
-    ImageMap        *pImageMap;
-    INetImage       *pTargetURL;
-
-    TransferBufferType eBufferType;
-
-    BOOL bOldIdle   :1; //D&D Idle flag from the viewsettings
-    BOOL bCleanUp   :1; //D&D cleanup after Drop (not by internal Drop)
-
-protected:
-
-public:
-    // set properties on the document, like PageMargin, VisArea.
-    // And set real Size
-    static void InitOle( SvEmbeddedObjectRef rRef, SwDoc& rDoc );
-
-    // Interfaces for Drag & Drop
-
-    // Interfaces for Selection
-    /* #96392# Added pCreator to distinguish SwFrameShell from SwWrtShell. */
-    static void ClearSelection( SwWrtShell& rSh,
-                                const ViewShell * pCreator = NULL );
-
-    // the related SwView is being closed and the SwTransferable is invalid now
-    void    Invalidate() {pWrtShell = 0;}
-
-    virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& rId ) throw( ::com::sun::star::uno::RuntimeException );
-};
-
-
-} //namespace binfilter
-#endif
