@@ -4,9 +4,9 @@
  *
  *  $RCSfile: UnoNamespaceMap.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:30:46 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:42:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,9 @@
 #ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
 #include <com/sun/star/uno/XInterface.hpp>
 #endif
-class SfxItemPool;
 namespace binfilter {
 
+class SfxItemPool;
 
 namespace svx {
 
