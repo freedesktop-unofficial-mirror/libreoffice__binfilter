@@ -4,9 +4,9 @@
  *
  *  $RCSfile: factory.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: obo $ $Date: 2008-02-25 15:21:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:15:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,6 +36,14 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <com/sun/star/uno/Sequence.hxx>
+#include <com/sun/star/uno/Reference.hxx>
+#include <com/sun/star/lang/XUnoTunnel.hpp>
+#include <com/sun/star/lang/XMultiServiceFactory.hpp>
+#include <com/sun/star/beans/PropertyValue.hpp>
+#include <com/sun/star/frame/XModel.hpp>
+#include <comphelper/processfactory.hxx>
+
 
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
@@ -52,7 +60,7 @@
 #include <basic/sbxfac.hxx>
 #include <basic/sbxprop.hxx>
 #include <basic/sbxmeth.hxx>
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #include <tools/resmgr.hxx>
 
 #include <binddata.hxx>
@@ -75,6 +83,8 @@
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::datatransfer;
+
+namespace binfilter {
 
 /************** class SoDll *********************************************/
 /*************************************************************************
@@ -247,14 +257,6 @@ String SvFactory::GetConfigFileName()
     return aIniName;
 }
 
-#include <com/sun/star/uno/Sequence.hxx>
-#include <com/sun/star/uno/Reference.hxx>
-#include <com/sun/star/lang/XUnoTunnel.hpp>
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#include <com/sun/star/beans/PropertyValue.hpp>
-#include <com/sun/star/frame/XModel.hpp>
-#include <comphelper/processfactory.hxx>
-
 String SvFactory::GetServiceName( const SvGlobalName& rClassName )
 {
     ::rtl::OUString aServiceName;
@@ -367,7 +369,7 @@ SvObjectRef SvFactory::CreateAndLoad( SvStorage * pStor, BOOL ) const
     SvGlobalName aClassName_ = pStor->GetClassName();
     aClassName_ = GetAutoConvertTo( aClassName_ );
 
-    const ::so3::SvObjectServer* pInternalServer = SvOutPlaceObject::GetInternalServer_Impl( aClassName_ );
+    const ::binfilter::SvObjectServer* pInternalServer = SvOutPlaceObject::GetInternalServer_Impl( aClassName_ );
     if ( pInternalServer )
     {
         // this is a StarOffice 6.1 embedded object
@@ -1099,3 +1101,4 @@ SvGlobalName SvFactory::GetServerName( long nStorageFormat )
     return aRet;
 }
 
+}
