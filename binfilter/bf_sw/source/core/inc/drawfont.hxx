@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawfont.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:52:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:03:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #define _SVSTDARR_BYTES
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_XUB_STRLEN
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
