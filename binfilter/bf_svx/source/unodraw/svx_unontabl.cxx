@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unontabl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:27:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:44:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,15 +42,15 @@
 #include <cppuhelper/implbase2.hxx>
 
 #ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #include "eeitem.hxx"
