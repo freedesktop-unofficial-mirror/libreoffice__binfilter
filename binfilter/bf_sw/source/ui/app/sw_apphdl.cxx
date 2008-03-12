@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:11:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:42:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,26 +42,23 @@
 
 #define _SVSTDARR_STRINGSDTOR
 
-#ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
-#include <svtools/accessibilityoptions.hxx>
-#endif
 #ifndef _SFXEVENT_HXX //autogen
 #include <bf_sfx2/event.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _SFXISETHINT_HXX //autogen
-#include <svtools/isethint.hxx>
+#include <bf_svtools/isethint.hxx>
 #endif
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
-#include <svtools/ctloptions.hxx>
+#include <bf_svtools/ctloptions.hxx>
 #endif
 
 
@@ -206,8 +203,6 @@ namespace binfilter {
 /*M*/             DELETEZ(pDBConfig);
 /*M*/             EndListening(*pColorConfig);
 /*M*/             DELETEZ(pColorConfig);
-/*M*/             EndListening(*pAccessibilityOptions);
-/*N*/             DELETEZ(pAccessibilityOptions);
 /*N*/             EndListening(*pCTLOptions);
 /*N*/             DELETEZ(pCTLOptions);
 /*M*/         }
@@ -226,31 +221,17 @@ namespace binfilter {
 /* -----------------------------11.04.2002 15:27------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ svtools::ColorConfig& SwModule::GetColorConfig()
+/*N*/ ColorConfig& SwModule::GetColorConfig()
 /*N*/ {
 /*N*/     if(!pColorConfig)
 /*N*/   {
-/*N*/         pColorConfig = new svtools::ColorConfig;
+/*N*/         pColorConfig = new ColorConfig;
 /*N*/       SwViewOption::ApplyColorConfigValues(*pColorConfig);
 /*N*/         StartListening(*pColorConfig);
 /*N*/     }
 /*N*/     return *pColorConfig;
 /*N*/ }
-/* -----------------------------06.05.2002 09:42------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ SvtAccessibilityOptions& SwModule::GetAccessibilityOptions()
-/*N*/ {
-/*N*/     if(!pAccessibilityOptions)
-/*N*/     {
-/*N*/         pAccessibilityOptions = new SvtAccessibilityOptions;
-/*N*/         StartListening(*pAccessibilityOptions);
-/*N*/     }
-/*N*/     return *pAccessibilityOptions;
-/*N*/ }
-/*-----------------30.01.97 08.30-------------------
-
---------------------------------------------------*/
 SvtCTLOptions& SwModule::GetCTLOptions()
 {
     if(!pCTLOptions)
