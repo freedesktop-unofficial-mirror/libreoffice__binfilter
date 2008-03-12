@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_itrform2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:33:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:19:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -122,7 +122,7 @@
 #include <pormulti.hxx>     // SwMultiPortion
 #endif
 #define _SVSTDARR_LONGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
 #endif
