@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:34:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:49:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,9 @@
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/flagitem.hxx>
+#include <bf_svtools/flagitem.hxx>
 #define _SVSTDARR_USHORTS
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #include <bf_sfx2/misccfg.hxx>
 #include <bf_sfx2/app.hxx>
 
@@ -366,7 +366,7 @@ namespace binfilter {
 /*N*/   //  bei 4.0-Export alle mit Modus != DEFAULT weglassen
 /*N*/   BOOL bExport40 = ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 );
 /*N*/
-/*N*/   const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/   const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/   USHORT nCount = rLinks.Count();
 /*N*/
 /*N*/   //  erstmal zaehlen...
@@ -375,7 +375,7 @@ namespace binfilter {
 /*N*/   USHORT i;
 /*N*/   for (i=0; i<nCount; i++)
 /*N*/   {
-/*N*/       ::so3::SvBaseLink* pBase = *rLinks[i];
+/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*N*/       if (pBase->ISA(ScDdeLink))
 /*?*/           if ( !bExport40 || ((ScDdeLink*)pBase)->GetMode() == SC_DDE_DEFAULT )
 /*?*/               ++nDdeCount;
@@ -390,7 +390,7 @@ namespace binfilter {
 /*N*/
 /*N*/   for (i=0; i<nCount; i++)
 /*N*/   {
-/*N*/       ::so3::SvBaseLink* pBase = *rLinks[i];
+/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*N*/       if (pBase->ISA(ScDdeLink))
 /*N*/       {
 /*?*/           ScDdeLink* pLink = (ScDdeLink*)pBase;
@@ -418,7 +418,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pLinkManager)           // Clipboard z.B. hat keinen LinkManager
 /*N*/   {
-/*N*/       const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/       USHORT nCount = rLinks.Count();
 /*N*/       for (USHORT i=0; i<nCount; i++)
 /*?*/           if ((*rLinks[i])->ISA(ScDdeLink))
@@ -451,7 +451,7 @@ namespace binfilter {
 /*N*/   BOOL bFound = FALSE;
 /*N*/     if (pLinkManager)
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/     }
 /*N*/   return bFound;
 /*N*/ }
@@ -463,7 +463,7 @@ namespace binfilter {
 /*N*/   USHORT nDdeCount = 0;
 /*N*/   if (pLinkManager)
 /*N*/   {
-/*N*/       const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/       USHORT nCount = rLinks.Count();
 /*N*/       for (USHORT i=0; i<nCount; i++)
 /*N*/           if ((*rLinks[i])->ISA(ScDdeLink))
@@ -477,11 +477,11 @@ namespace binfilter {
 /*N*/   USHORT nDdeCount = 0;
 /*N*/   if (pLinkManager)
 /*N*/   {
-/*N*/       const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/       USHORT nCount = rLinks.Count();
 /*N*/       for (USHORT i=0; i<nCount; i++)
 /*N*/       {
-/*N*/           ::so3::SvBaseLink* pBase = *rLinks[i];
+/*N*/           ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*N*/           if (pBase->ISA(ScDdeLink))
 /*N*/           {
 /*N*/               if ( nDdeCount == nPos )
@@ -504,11 +504,11 @@ namespace binfilter {
 /*N*/   USHORT nDdeCount = 0;
 /*N*/   if (pLinkManager)
 /*N*/   {
-/*N*/       const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/       USHORT nCount = rLinks.Count();
 /*N*/       for (USHORT i=0; i<nCount; i++)
 /*N*/       {
-/*N*/           ::so3::SvBaseLink* pBase = *rLinks[i];
+/*N*/           ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*N*/           if (pBase->ISA(ScDdeLink))
 /*N*/           {
 /*N*/               if ( nDdeCount == nPos )
@@ -529,11 +529,11 @@ namespace binfilter {
 /*N*/   USHORT nDdeCount = 0;
 /*N*/   if (pLinkManager)
 /*N*/   {
-/*N*/       const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/       USHORT nCount = rLinks.Count();
 /*N*/       for (USHORT i=0; i<nCount; i++)
 /*N*/       {
-/*N*/           ::so3::SvBaseLink* pBase = *rLinks[i];
+/*N*/           ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*N*/           if (pBase->ISA(ScDdeLink))
 /*N*/           {
 /*N*/               if ( nDdeCount == nPos )
@@ -588,7 +588,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/ {
 /*N*/   if (pLinkManager)           // Clipboard z.B. hat keinen LinkManager
 /*N*/   {
-/*N*/       const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/       USHORT nCount = rLinks.Count();
 /*N*/       for (USHORT i=0; i<nCount; i++)
 /*?*/           if ((*rLinks[i])->ISA(ScAreaLink))
@@ -608,11 +608,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/ {
 /*N*/     if (pLinkManager)
 /*N*/     {
-/*N*/         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/         const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/         USHORT nCount = rLinks.Count();
 /*N*/         for (USHORT i=0; i<nCount; i++)
 /*N*/         {
-/*?*/             ::so3::SvBaseLink* pBase = *rLinks[i];
+/*?*/             ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*?*/             if (pBase->ISA(ScAreaLink))
 /*?*/             {
 /*?*/                 ScAreaLink* pLink = (ScAreaLink*) pBase;
@@ -639,7 +639,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 
 /*N*/ void ScDocument::SaveAreaLinks(SvStream& rStream) const
 /*N*/ {
-/*N*/   const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*N*/   const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 /*N*/   USHORT nCount = rLinks.Count();
 /*N*/
 /*N*/   //  erstmal zaehlen...
@@ -659,7 +659,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/
 /*N*/   for (i=0; i<nCount; i++)
 /*N*/   {
-/*N*/       ::so3::SvBaseLink* pBase = *rLinks[i];
+/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
 /*N*/       if (pBase->ISA(ScAreaLink))
 /*N*/       {
 /*?*/           ScAreaLink* pLink = (ScAreaLink*)pBase;
