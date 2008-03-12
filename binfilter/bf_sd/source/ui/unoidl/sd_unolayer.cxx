@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unolayer.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:23:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:52:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,51 +37,33 @@
 #pragma hdrstop
 #endif
 
+#include <rtl/uuid.h>
 
-
+#include <bf_sd/drawdoc.hxx>
 #include <bf_svx/svdpagv.hxx>
 #include <bf_svx/unoshape.hxx>
 
-// folgende fuer InsertSdPage()
+#include "bf_sd/docshell.hxx"
 
-#ifndef SVX_LIGHT
-#ifndef _SD_DOCSHELL_HXX
-#include <docshell.hxx>
-#endif
-#endif
-
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _UNOLAYER_HXX
 #include <unolayer.hxx>
-#endif
-
-#ifndef _SD_UNOPRNMS_HXX
 #include "unoprnms.hxx"
-#endif
-
 
 #include "unohelp.hxx"
 #include "frmview.hxx"
-#include "sdview.hxx"
 
-#include "app.hrc"
 #include "strings.hrc"
 #include "sdresid.hxx"
 #include "glob.hrc"
 
 #include "unokywds.hxx"
 #include "unowcntr.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::vos;
 using namespace ::com::sun::star;
-
-//=============================================================================
-// class SdLayer
-//=============================================================================
 
 #define WID_LAYER_LOCKED    1
 #define WID_LAYER_PRINTABLE 2
@@ -106,23 +88,23 @@ String SdLayer::convertToInternalName( const OUString& rName )
 {
     if( rName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(sUNO_LayerName_background) ) )
     {
-        return String( SdResId( STR_LAYER_BCKGRND ) );
+        return String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BCKGRND" ));
     }
     else if( rName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(sUNO_LayerName_background_objects) ) )
     {
-        return  String( SdResId( STR_LAYER_BCKGRNDOBJ ) );
+        return String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BACKGRNDOBJ" ));
     }
     else if( rName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(sUNO_LayerName_layout) ) )
     {
-        return  String( SdResId( STR_LAYER_LAYOUT ) );
+        return  String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_LAYOUT" ));
     }
     else if( rName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(sUNO_LayerName_controls) ) )
     {
-        return  String( SdResId( STR_LAYER_CONTROLS ) );
+        return String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_CONTROLS" ));
     }
     else if( rName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(sUNO_LayerName_measurelines) ) )
     {
-        return  String( SdResId( STR_LAYER_MEASURELINES ) );
+        return String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_MEASURELINES" ));
     }
     else
     {
@@ -133,23 +115,23 @@ String SdLayer::convertToInternalName( const OUString& rName )
 OUString SdLayer::convertToExternalName( const String& rName )
 {
     const String aCompare( rName );
-    if( rName == String( SdResId( STR_LAYER_BCKGRND ) ) )
+    if( rName == String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BCKGRND" )) )
     {
         return OUString( RTL_CONSTASCII_USTRINGPARAM(sUNO_LayerName_background) );
     }
-    else if( rName == String( SdResId( STR_LAYER_BCKGRNDOBJ ) ) )
+    else if( rName == String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_BACKGRNDOBJ" )) )
     {
         return OUString( RTL_CONSTASCII_USTRINGPARAM(sUNO_LayerName_background_objects) );
     }
-    else if( rName == String( SdResId( STR_LAYER_LAYOUT ) ) )
+    else if( rName == String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_LAYOUT" )) )
     {
         return OUString( RTL_CONSTASCII_USTRINGPARAM(sUNO_LayerName_layout) );
     }
-    else if( rName == String( SdResId( STR_LAYER_CONTROLS ) ) )
+    else if( rName == String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_CONTROLS" )) )
     {
         return OUString( RTL_CONSTASCII_USTRINGPARAM(sUNO_LayerName_controls) );
     }
-    else if( rName == String( SdResId( STR_LAYER_MEASURELINES ) ) )
+    else if( rName == String( RTL_CONSTASCII_USTRINGPARAM( "LAYER_MEASURELINES" )) )
     {
         return OUString( RTL_CONSTASCII_USTRINGPARAM(sUNO_LayerName_measurelines) );
     }
@@ -167,15 +149,12 @@ SdLayer::SdLayer( SdLayerManager* pLayerManager_, SdrLayer* pSdrLayer_ ) throw()
 {
 }
 
-/** */
 SdLayer::~SdLayer() throw()
 {
 }
 
-// uno helper
 UNO3_GETIMPLEMENTATION_IMPL( SdLayer );
 
-// XServiceInfo
 OUString SAL_CALL SdLayer::getImplementationName()
     throw(uno::RuntimeException)
 {
@@ -247,18 +226,12 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
             throw lang::IllegalArgumentException();
 
         pLayer->SetName(SdLayer::convertToInternalName( aName ) );
-        pLayerManager->UpdateLayerView();
         break;
     }
     default:
         throw beans::UnknownPropertyException();
         break;
     }
-
-#ifndef SVX_LIGHT
-    if( pLayerManager->GetDocShell() )
-        pLayerManager->GetDocShell()->SetModified();
-#endif
 }
 
 uno::Any SAL_CALL SdLayer::getPropertyValue( const OUString& PropertyName )
@@ -306,103 +279,63 @@ void SAL_CALL SdLayer::removeVetoableChangeListener( const OUString& PropertyNam
 /** */
 sal_Bool SdLayer::get( LayerAttribute what ) throw()
 {
-    if(pLayer&&pLayerManager)
+    if(pLayer&&pLayerManager&&pLayerManager->rModel.GetDoc() )
     {
-        // Versuch 1. ist eine beliebige Seite geoeffnet?
-        SdView *pView = pLayerManager->GetView();
-        SdrPageView* pSdrPageView = NULL;
-        if(pView)
-            pSdrPageView = pView->GetPageViewPvNum(0);
-
-        if(pSdrPageView)
+        List* pFrameViewList = pLayerManager->rModel.GetDoc()->GetFrameViewList();
+        if( pFrameViewList && pFrameViewList->Count() )
         {
-            String aLayerName = pLayer->GetName();
-            switch(what)
+            FrameView* pFrameView = (FrameView*) pFrameViewList->GetObject(0);
+
+            if( pFrameView )
             {
-            case VISIBLE:   return pSdrPageView->IsLayerVisible(aLayerName);
-            case PRINTABLE: return pSdrPageView->IsLayerPrintable(aLayerName);
-            case LOCKED:    return pSdrPageView->IsLayerLocked(aLayerName);
-            }
-        }
+                SdrLayerAdmin& rLayerAdmin = pLayerManager->rModel.GetDoc()->GetLayerAdmin();
+                BYTE id = rLayerAdmin.GetLayerID(pLayer->GetName(), sal_False);
 
-#ifndef SVX_LIGHT
-        // Versuch 2. Info von der FrameView besorgen
-        if(pLayerManager->GetDocShell())
-        {
-            FrameView *pFrameView = pLayerManager->GetDocShell()->GetFrameView();
-            if(pFrameView)
                 switch(what)
                 {
-                case VISIBLE:   return pFrameView->GetVisibleLayers().IsSet(pLayer->GetID());
-                case PRINTABLE: return pFrameView->GetPrintableLayers().IsSet(pLayer->GetID());
-                case LOCKED:    return pFrameView->GetLockedLayers().IsSet(pLayer->GetID());
+                case VISIBLE:   return pFrameView->GetVisibleLayers().IsSet(id);
+                case PRINTABLE: return pFrameView->GetPrintableLayers().IsSet(id);
+                case LOCKED:    return pFrameView->GetLockedLayers().IsSet(id);
                 }
+            }
         }
-#endif
     }
-    return sal_False; //TODO: uno::Exception?
+    return sal_False;
 }
 
 void SdLayer::set( LayerAttribute what, sal_Bool flag ) throw()
 {
-    if(pLayer&&pLayerManager)
+    if(pLayer&&pLayerManager&&pLayerManager->rModel.GetDoc() )
     {
-        // Versuch 1. ist eine beliebige Seite geoeffnet?
-        SdView *pView = pLayerManager->GetView();
-        SdrPageView* pSdrPageView = NULL;
-        if(pView)
-            pSdrPageView = pView->GetPageViewPvNum(0);
-
-        if(pSdrPageView)
+        List* pFrameViewList = pLayerManager->rModel.GetDoc()->GetFrameViewList();
+        if( pFrameViewList && pFrameViewList->Count() )
         {
-            String aLayerName(pLayer->GetName());
-            switch(what)
-            {
-            case VISIBLE:   pSdrPageView->SetLayerVisible(aLayerName,flag);
-                            break;
-            case PRINTABLE: pSdrPageView->SetLayerPrintable(aLayerName,flag);
-                            break;
-            case LOCKED:    pSdrPageView->SetLayerLocked(aLayerName,flag);
-                            break;
-            }
-        }
+            FrameView* pFrameView = (FrameView*) pFrameViewList->GetObject(0);
 
-#ifndef SVX_LIGHT
-        // Versuch 2. Info von der FrameView besorgen
-        if(pLayerManager->GetDocShell())
-        {
-            FrameView *pFrameView = pLayerManager->GetDocShell()->GetFrameView();
-
-            if(pFrameView)
+            if( pFrameView )
             {
-                SetOfByte aNewLayers;
+                SdrLayerAdmin& rLayerAdmin = pLayerManager->rModel.GetDoc()->GetLayerAdmin();
+                BYTE id = rLayerAdmin.GetLayerID(pLayer->GetName(), sal_False);
+
+                SetOfByte aSet;
                 switch(what)
                 {
-                case VISIBLE:   aNewLayers = pFrameView->GetVisibleLayers();
-                                break;
-                case PRINTABLE: aNewLayers = pFrameView->GetPrintableLayers();
-                                break;
-                case LOCKED:    aNewLayers = pFrameView->GetLockedLayers();
-                                break;
+                case VISIBLE:   aSet = pFrameView->GetVisibleLayers(); break;
+                case PRINTABLE: aSet = pFrameView->GetPrintableLayers(); break;
+                case LOCKED:    aSet = pFrameView->GetLockedLayers(); break;
                 }
 
-                aNewLayers.Set(pLayer->GetID(),flag);
+                aSet.Set(id,flag);
 
                 switch(what)
                 {
-                case VISIBLE:   pFrameView->SetVisibleLayers(aNewLayers);
-                                break;
-                case PRINTABLE: pFrameView->SetPrintableLayers(aNewLayers);
-                                break;
-                case LOCKED:    pFrameView->SetLockedLayers(aNewLayers);
-                                break;
+                case VISIBLE:   pFrameView->SetVisibleLayers(aSet); break;
+                case PRINTABLE: pFrameView->SetPrintableLayers(aSet); break;
+                case LOCKED:    pFrameView->SetLockedLayers(aSet); break;
                 }
-                return;
             }
         }
-#endif
     }
-    //TODO: uno::Exception?
 }
 
 
@@ -500,22 +433,8 @@ uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::insertNewByIndex( sal
     return xLayer;
 }
 
-void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& xLayer )
-    throw(container::NoSuchElementException, uno::RuntimeException)
+void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& xLayer ) throw(container::NoSuchElementException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
-
-    SdLayer* pSdLayer = SdLayer::getImplementation(xLayer);
-
-    if(pSdLayer && GetView())
-    {
-        const SdrLayer* pSdrLayer = pSdLayer->GetSdrLayer();
-        GetView()->DeleteLayer( pSdrLayer->GetName() );
-
-        UpdateLayerView();
-    }
-
-    rModel.SetModified();
 }
 
 void SAL_CALL SdLayerManager::attachShapeToLayer( const uno::Reference< drawing::XShape >& xShape, const uno::Reference< drawing::XLayer >& xLayer )
@@ -665,24 +584,6 @@ sal_Bool SAL_CALL SdLayerManager::hasElements() throw(uno::RuntimeException)
     return getCount() > 0;
 }
 
-/** Falls an den Layern was geaendert wurde sorgt diese Methode dafuer, das
-    die Aenderungen auch in der sdbcx::View sichtbar gemacht werden */
-void SdLayerManager::UpdateLayerView( sal_Bool modify ) const throw()
-{
-    if(rModel.pDocShell)
-    {
-        if(modify)
-            rModel.pDoc->SetChanged(sal_True);
-    }
-}
-
-/** */
-SdView* SdLayerManager::GetView() const throw()
-{
-    return NULL;
-}
-
-
 
 namespace
 {
@@ -713,10 +614,6 @@ sal_Bool compare_layers (uno::WeakReference<uno::XInterface> xRef, void* pSearch
 }
 }
 
-/** Use the <member>mpLayers</member> container of weak references to either
-    retrieve and return a previously created <type>XLayer</type> object for
-    the given <type>SdrLayer</type> object or create and remember a new one.
-*/
 uno::Reference<drawing::XLayer> SdLayerManager::GetLayer (SdrLayer* pLayer)
 {
     uno::WeakReference<uno::XInterface> xRef;
@@ -738,4 +635,5 @@ uno::Reference<drawing::XLayer> SdLayerManager::GetLayer (SdrLayer* pLayer)
 
     return xLayer;
 }
+
 }
