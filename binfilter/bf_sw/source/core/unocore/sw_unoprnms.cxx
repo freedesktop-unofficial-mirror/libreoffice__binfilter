@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoprnms.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:52:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:28:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #endif
 
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 
 #ifndef _UNOPRNMS_HXX
