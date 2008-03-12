@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_linkuno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:11:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:15:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -126,7 +126,7 @@ ScTableLink* ScSheetLinkObj::GetLink_Impl() const
         USHORT nCount = pLinkManager->GetLinks().Count();
         for (USHORT i=0; i<nCount; i++)
         {
-            ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
+            ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
             if (pBase->ISA(ScTableLink))
             {
                 ScTableLink* pTabLink = (ScTableLink*)pBase;
@@ -596,7 +596,7 @@ ScAreaLink* lcl_GetAreaLink( ScDocShell* pDocShell, USHORT nPos )
         USHORT nAreaCount = 0;
         for (USHORT i=0; i<nTotalCount; i++)
         {
-            ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
+            ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
             if (pBase->ISA(ScAreaLink))
             {
                 if ( nAreaCount == nPos )
@@ -1008,7 +1008,7 @@ sal_Int32 SAL_CALL ScAreaLinksObj::getCount() throw(uno::RuntimeException)
         USHORT nTotalCount = pLinkManager->GetLinks().Count();
         for (USHORT i=0; i<nTotalCount; i++)
         {
-            ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
+            ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
             if (pBase->ISA(ScAreaLink))
                 ++nAreaCount;
         }
