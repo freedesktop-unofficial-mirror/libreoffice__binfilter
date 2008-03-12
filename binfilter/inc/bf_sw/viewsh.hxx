@@ -4,9 +4,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:49:50 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 14:00:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,6 @@ namespace com { namespace sun { namespace star { namespace accessibility {
            class XAccessible; } } } }
 #endif
 class VirtualDevice;
-class SfxItemPool;
 class Window;
 class OutputDevice;
 class SvtAccessibilityOptions;
@@ -60,6 +59,7 @@ class SvEmbeddedObjectRef;
 
 namespace binfilter {
 
+class SfxItemPool;
 class SwDoc;
 class SfxPrinter;
 
@@ -282,8 +282,6 @@ public:
 
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
     void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         void  ApplyViewOptions( const SwViewOption &rOpt );
-
-    const SwAccessibilityOptions* GetAccessibilityOptions() const { return pAccOptions;}
 
     //static void           SetShellRes( ShellResource* pRes ) { pShellRes = pRes; }
     static ShellResource* GetShellRes();
