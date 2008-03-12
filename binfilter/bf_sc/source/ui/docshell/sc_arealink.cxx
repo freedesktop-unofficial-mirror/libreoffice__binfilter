@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_arealink.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:04:04 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:03:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #include <vcl/msgbox.hxx>
 
 #include "arealink.hxx"
@@ -62,7 +62,7 @@
 #include "docpool.hxx"          // raus, wenn ResetAttrib am Dokument
 namespace binfilter {
 
-/*N*/ TYPEINIT1(ScAreaLink,::so3::SvBaseLink);
+/*N*/ TYPEINIT1(ScAreaLink,::binfilter::SvBaseLink);
 
 //------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ namespace binfilter {
 /*N*/                       const String& rFilter, const String& rOpt,
 /*N*/                       const String& rArea, const ScRange& rDest,
 /*N*/                       ULONG nRefresh ) :
-/*N*/   ::so3::SvBaseLink(so3::LINKUPDATE_ONCALL,FORMAT_FILE),
+/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ONCALL,FORMAT_FILE),
 /*N*/   ScRefreshTimer  ( nRefresh ),
 /*N*/   pDocShell       ((ScDocShell*)pShell),
 /*N*/   aFileName       (rFile),
