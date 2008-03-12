@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_patattr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:38:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:51:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #include <bf_svx/brshitem.hxx>
 #include <bf_svx/charreliefitem.hxx>
 #include <bf_svx/cntritem.hxx>
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 #include <bf_svx/colritem.hxx>
 #include <bf_svx/crsditem.hxx>
 #include <bf_svx/emphitem.hxx>
@@ -66,7 +66,7 @@
 #include <bf_svx/udlnitem.hxx>
 #include <bf_svx/wghtitem.hxx>
 #include <bf_svx/wrlmitem.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <vcl/outdev.hxx>
 
 #include "patattr.hxx"
@@ -396,7 +396,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*M*/                   aBackColor = *pBackConfigColor;
 /*M*/               }
 /*M*/               else
-/*N*/                     aBackColor.SetColor( SC_MOD()->GetColorConfig().GetColorValue(svtools::DOCCOLOR).nColor );
+/*N*/                     aBackColor.SetColor( SC_MOD()->GetColorConfig().GetColorValue(DOCCOLOR).nColor );
 /*M*/           }
 /*M*/
 /*M*/           //  get system text color for comparison
@@ -409,7 +409,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/               aSysTextColor = *pTextConfigColor;
 /*N*/           }
 /*N*/           else
-/*N*/                 aSysTextColor.SetColor( SC_MOD()->GetColorConfig().GetColorValue(svtools::FONTCOLOR).nColor );
+/*N*/                 aSysTextColor.SetColor( SC_MOD()->GetColorConfig().GetColorValue(FONTCOLOR).nColor );
 /*M*/
 /*M*/           //  select the resulting color
 /*M*/           if ( aBackColor.IsDark() && aSysTextColor.IsDark() )
