@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impldde.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:54:50 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:22:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,14 +38,13 @@
 #include <bf_so3/linksrc.hxx>
 #include <tools/string.hxx>
 
+namespace binfilter
+{
 class DdeConnection;
 class DdeData;
 class DdeLink;
 class DdeRequest;
 class DdeTransaction;
-
-namespace so3
-{
 
 class SvDDEObject : public SvLinkSource
 {
