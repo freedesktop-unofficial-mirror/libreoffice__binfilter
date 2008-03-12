@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:21:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:06:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,16 +34,16 @@
  ************************************************************************/
 
 #ifndef _INETMSG_HXX //autogen
-#include <svtools/inetmsg.hxx>
+#include <bf_svtools/inetmsg.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #include <bf_so3/inetbnd.hxx>
 #include <vos/mutex.hxx>
@@ -74,7 +74,7 @@ using namespace ::com::sun::star::document;
 #endif
 
 #include <unotools/ucbhelper.hxx>
-#include <svtools/inettype.hxx>
+#include <bf_svtools/inettype.hxx>
 
 #include "request.hxx"
 #include "docfile.hxx"
