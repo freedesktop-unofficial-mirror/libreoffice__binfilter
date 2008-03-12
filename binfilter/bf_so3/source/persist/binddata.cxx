@@ -4,9 +4,9 @@
  *
  *  $RCSfile: binddata.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:52:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:19:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#define _BINDDATA_CXX "$Revision: 1.2 $"
+#define _BINDDATA_CXX "$Revision: 1.3 $"
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
@@ -114,6 +114,8 @@ using namespace com::sun::star::uno;
 using namespace cppu;
 
 using rtl::OUString;
+
+namespace binfilter {
 
 typedef com::sun::star::uno::XInterface ifc_type;
 
@@ -598,3 +600,4 @@ void SvBindingData_Impl::dispose (void)
     }
 }
 
+}

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: socont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:50:59 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:17:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,6 +46,8 @@
 #define MAP_LOGHIM_TO_PIX(x,ppli)   MulDiv((ppli), (x), HIMETRIC_PER_INCH)
 
 #define ARRAYSIZE(a)    (sizeof(a)/sizeof(a[0]))
+
+namespace binfilter {
 
 void SO_MetricRectInPixelsToHimetric( LPRECT prcPix, LPRECT prcHiMetric)
     {
@@ -2402,4 +2404,5 @@ CLSID CSO_Cont::GetCLSID()
     }
 
     return m_clsID;
+}
 }

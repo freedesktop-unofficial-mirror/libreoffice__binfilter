@@ -4,9 +4,9 @@
  *
  *  $RCSfile: socont.h,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:51:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:18:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,6 +48,9 @@
 #ifndef PPVOID
 typedef LPVOID * PPVOID;
 #endif  //PPVOID
+
+
+namespace binfilter {
 
 //CHAPTER17MOD
 
@@ -297,6 +300,7 @@ typedef CSO_Cont *PCSO_Cont;
 #define CREATE_GRAPHICONLY          1
 #define CREATE_PLACEDOBJECT         2
 
+}
 
 
 #endif //_TENANT_H_

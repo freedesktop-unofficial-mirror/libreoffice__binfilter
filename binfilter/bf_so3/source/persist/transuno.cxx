@@ -4,9 +4,9 @@
  *
  *  $RCSfile: transuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:53:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:21:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,8 +86,11 @@ using namespace com::sun::star::ucb;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::sdbc;
 
+namespace binfilter {
+
 typedef com::sun::star::lang::XMultiServiceFactory factory_type;
 typedef com::sun::star::uno::XInterface            interface_type;
+
 
 /*
  * S2U.
@@ -194,3 +197,4 @@ void SvBindingTransport_Impl::setProperties ( const Reference<XCommandProcessor>
     }
 }
 
+}

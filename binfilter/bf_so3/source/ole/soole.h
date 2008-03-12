@@ -4,9 +4,9 @@
  *
  *  $RCSfile: soole.h,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:51:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:18:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -116,6 +116,7 @@ extern "C"
 #endif
 
 
+namespace binfilter {
 //Types that OLE2.H et. al. leave out
 
 #ifndef PPVOID
@@ -476,9 +477,10 @@ STDAPI StarObject_OleCreateFromFile(REFCLSID, LPCSTR, REFIID
 #undef OleCreateFromFile
 #define OleCreateFromFile(c, s, i, d, fe, cs, st, pv) StarObject_OleCreateFromFile(c, s, i, d, fe, cs, st, pv)
 
-
 #endif
 
 #endif
+
+}
 
 #endif //_StarObject_H_

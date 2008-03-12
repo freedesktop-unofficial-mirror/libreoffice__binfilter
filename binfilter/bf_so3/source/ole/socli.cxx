@@ -4,9 +4,9 @@
  *
  *  $RCSfile: socli.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:50:46 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:17:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include "socont.h"
 
 
-
+namespace binfilter {
 
 /*
  * CImpIOleClientSite::CImpIOleClientSite
@@ -270,3 +270,5 @@ STDMETHODIMP CImpIOleClientSite::RequestNewObjectLayout(void)
     {
     return ResultFromScode(E_NOTIMPL);
     }
+
+}
