@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparai.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-30 11:56:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:03:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
