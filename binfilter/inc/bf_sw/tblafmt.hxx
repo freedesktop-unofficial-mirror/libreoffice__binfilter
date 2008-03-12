@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tblafmt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:47:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:49:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,7 @@ JP 20.07.95:
 **************************************************************************/
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #include "hintids.hxx"          //_immmer_ vor den solar-items!
@@ -107,10 +107,10 @@ JP 20.07.95:
 #include <bf_svx/rotmodit.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
-class SvNumberFormatter;
 namespace binfilter {
+class SvNumberFormatter;
 
 struct SwAfVersions;
 

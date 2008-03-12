@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swatrset.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:46:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:48:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,15 +43,15 @@
 #include <tools/mempool.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 class OutputDevice;
+namespace binfilter {
 class SfxBoolItem;
 class SvxMacroItem;
-namespace binfilter {
 class SwModify;
 class SwDoc;
 
