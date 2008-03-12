@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_frmdescr.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:39:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:05:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #include <vcl/splitwin.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -262,7 +262,7 @@ namespace binfilter {
 /*?*/   SfxMapUnit          eCoreUnit,
 /*?*/   SfxMapUnit          ePresUnit,
 /*?*/   XubString&          rText,
-/*?*/     const IntlWrapper *
+/*?*/     const ::IntlWrapper *
 /*?*/ ) const
 /*?*/ {
 /*?*/   rText.Erase();

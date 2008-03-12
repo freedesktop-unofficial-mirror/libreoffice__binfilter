@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:38:45 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:05:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -131,20 +131,20 @@
 #include <bf_so3/svstor.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
-#include <svtools/lckbitem.hxx>
+#include <bf_svtools/lckbitem.hxx>
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
@@ -155,7 +155,7 @@
 
 #define _SVSTDARR_ULONGS
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::ucb;
@@ -171,9 +171,9 @@ using namespace ::com::sun::star::io;
 #include <tools/urlobj.hxx>
 #include <tools/inetmime.hxx>
 #include <unotools/ucblockbytes.hxx>
-#include <svtools/pathoptions.hxx>
-#include <svtools/asynclink.hxx>
-#include <svtools/inettype.hxx>
+#include <bf_svtools/pathoptions.hxx>
+#include <bf_svtools/asynclink.hxx>
+#include <bf_svtools/inettype.hxx>
 #include <ucbhelper/contentbroker.hxx>
 #include <ucbhelper/commandenvironment.hxx>
 #include <unotools/localfilehelper.hxx>
@@ -378,8 +378,8 @@ namespace binfilter {
 /*?*/     SvKeyValueIteratorRef xAttributes;
 /*?*/     SvRefBaseRef    xLoadRef;
 /*?*/
-/*?*/     svtools::AsynchronLink  aDoneLink;
-/*?*/     svtools::AsynchronLink  aAvailableLink;
+          AsynchronLink  aDoneLink;
+        AsynchronLink  aAvailableLink;
 /*?*/     SfxLockBytesHandler_ImplRef  aHandler;
 /*?*/
 /*?*/     SfxVersionTableDtor*    pVersions;
