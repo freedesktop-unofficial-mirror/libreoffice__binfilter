@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:02:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:47:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,6 +51,7 @@
 #ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
 #endif
+#include <cppuhelper/implbase1.hxx> // helper for implementations
 
 #include <map>
 
