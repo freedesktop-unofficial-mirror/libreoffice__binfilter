@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3misc.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:05:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:13:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #endif
 
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
@@ -67,7 +67,7 @@
 #endif
 
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -2757,7 +2757,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   pDoc->SetByteDummy1( n3 );
 /*N*/   pDoc->SetByteDummy2( n4 );
 /*N*/   if( sAutoMarkURL.Len() )
-/*?*/       sAutoMarkURL = so3::StaticBaseUrl::SmartRelToAbs( sAutoMarkURL );
+/*?*/       sAutoMarkURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( sAutoMarkURL );
 /*N*/   pDoc->SetTOIAutoMarkURL( sAutoMarkURL );
 /*N*/   pDoc->SetStringDummy2( s2 );
 /*N*/
@@ -2803,7 +2803,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/
 /*N*/   String sAutoMarkURL( pDoc->GetTOIAutoMarkURL() );
 /*N*/   if( sAutoMarkURL.Len() )
-/*?*/       sAutoMarkURL = so3::StaticBaseUrl::AbsToRel( sAutoMarkURL URL_DECODE );
+/*?*/       sAutoMarkURL = ::binfilter::StaticBaseUrl::AbsToRel( sAutoMarkURL URL_DECODE );
 /*N*/   *pStrm  << (sal_uInt32)pDoc->GetULongDummy1()
 /*N*/           << (sal_uInt32)pDoc->GetULongDummy2()
 /*N*/           << n3
