@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfunc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:06:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:07:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,9 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
-class SfxUndoAction;
 namespace binfilter {
 
+class SfxUndoAction;
 class EditEngine;
 class ScAddress;
 class ScDocShell;
