@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:59:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:38:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 
 
 #include "svdoole2.hxx"
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 
 #include "svdio.hxx"
 #include "svdstr.hrc"   // Objektname
