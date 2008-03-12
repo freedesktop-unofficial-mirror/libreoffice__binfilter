@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:00:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:55:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,7 @@
 #include <bf_sfx2/docinf.hxx>
 #endif
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -62,7 +62,7 @@
 #include <bf_svx/linkmgr.hxx>
 #endif
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
