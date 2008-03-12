@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode7.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:15:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:22:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #endif
