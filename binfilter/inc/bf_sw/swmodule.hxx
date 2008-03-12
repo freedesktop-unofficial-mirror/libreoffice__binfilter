@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swmodule.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:57:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:48:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
@@ -62,16 +62,16 @@
 namespace com{ namespace sun{ namespace star{ namespace scanner{
     class XScannerManager;
 }}}}
-namespace svtools{ class ColorConfig;}
-class SvStringsDtor;
+
 class Color;
-class SfxItemSet;
-class SfxErrorHandler;
-class SvtAccessibilityOptions;
-class SvtCTLOptions;
 
 namespace binfilter {
-
+class SvStringsDtor;
+class SvtAccessibilityOptions;
+class SvtCTLOptions;
+class SfxItemSet;
+class SfxErrorHandler;
+class ColorConfig;
 class AuthorCharAttr;
 
 class SfxRequest;
@@ -86,9 +86,7 @@ class SwPrintOptions;
 class SwAutoFmtOpt;
 class SwChapterNumRules;
 class SwStdFontConfig;
-class SwTransferable;
 class SwAttrPool;
-//STRIP008 namespace svtools{ class ColorConfig;}
 
 struct SwDBData;
 #define VIEWOPT_DEST_VIEW       0
@@ -109,8 +107,7 @@ class SwModule: public SwModuleDummy , public SfxListener
     SwChapterNumRules*  pChapterNumRules;
     SwStdFontConfig*    pStdFontConfig;
     SwDBConfig*         pDBConfig;
-    ::svtools::ColorConfig*   pColorConfig;
-    SvtAccessibilityOptions* pAccessibilityOptions;
+    ColorConfig*        pColorConfig;
     SvtCTLOptions*      pCTLOptions;
 
     SfxErrorHandler*    pErrorHdl;
@@ -139,10 +136,6 @@ class SwModule: public SwModuleDummy , public SfxListener
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 
 public:
-    // public Data - used for internal Clipboard / Drag & Drop / XSelection
-    SwTransferable  *pClipboard, *pDragDrop, *pXSelection;
-
-
     TYPEINFO();
 
     // dieser Ctor nur fuer SW-Dll
@@ -173,8 +166,7 @@ public:
     SwPrintOptions*     GetPrtOptions(sal_Bool bWeb);
     SwStdFontConfig*    GetStdFontConfig()      { return pStdFontConfig; }
     SwDBConfig*         GetDBConfig();
-    ::svtools::ColorConfig&   GetColorConfig();
-    SvtAccessibilityOptions&    GetAccessibilityOptions();
+    ColorConfig&        GetColorConfig();
     SvtCTLOptions&      GetCTLOptions();
 
     // Ueber Sichten iterieren
