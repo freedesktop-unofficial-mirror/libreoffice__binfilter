@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:08:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:26:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -117,7 +117,7 @@
 #include <docsh.hxx>
 #endif
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #ifndef _DOCSTYLE_HXX //autogen
 #include <docstyle.hxx>
@@ -228,10 +228,10 @@
 #include <bf_svx/unolingu.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _FLYPOS_HXX
 #include <flypos.hxx>
@@ -297,12 +297,12 @@
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
 #define _SVSTDARR_XUB_STRLEN
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
