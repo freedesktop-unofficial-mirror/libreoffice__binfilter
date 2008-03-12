@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3io.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:46:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:48:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,12 +38,12 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
-class SvStorage;
-class SvStrings;
 class UniString;
-class SvxMacroTableDtor;
 
 namespace binfilter {
+class SvStorage;
+class SvStrings;
+class SvxMacroTableDtor;
 
 class Sw3IoImp;
 class SwPaM;
