@@ -4,9 +4,9 @@
  *
  *  $RCSfile: section.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:31:32 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:47:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,7 +97,7 @@ class SwSection : public SwClient
     ::com::sun::star::uno::Sequence <sal_Int8> aPasswd;
 
     SwServerObjectRef refObj;   // falls DataServer -> Pointer gesetzt
-    ::so3::SvBaseLinkRef refLink;
+    ::binfilter::SvBaseLinkRef refLink;
 
     SectionType eType;
 
@@ -188,8 +188,8 @@ public:
     void UpdateNow()                { refLink->Update(); }
     void Disconnect()               { refLink->Disconnect(); }
 
-    const ::so3::SvBaseLink& GetBaseLink() const    { return *refLink; }
-          ::so3::SvBaseLink& GetBaseLink()          { return *refLink; }
+    const ::binfilter::SvBaseLink& GetBaseLink() const  { return *refLink; }
+          ::binfilter::SvBaseLink& GetBaseLink()            { return *refLink; }
 
     void CreateLink( LinkCreateType eType );
 
