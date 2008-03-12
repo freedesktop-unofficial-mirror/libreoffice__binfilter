@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlcnitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:38:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 14:01:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _XMLOFF_XMLCNITM_HXX
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 namespace rtl { class OUString; }
 namespace binfilter {
@@ -67,7 +67,7 @@ public:
                                 SfxMapUnit eCoreMetric,
                                 SfxMapUnit ePresentationMetric,
                                 XubString &rText,
-                                const IntlWrapper *pIntlWrapper = 0 ) const;
+                                const ::IntlWrapper *pIntlWrapper = 0 ) const;
 
     virtual sal_uInt16 GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
