@@ -4,9 +4,9 @@
  *
  *  $RCSfile: linkmgr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:25:26 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:43:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,17 +42,17 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
 #endif
 
-class SvPersist;
-
-namespace so3
+namespace binfilter
 {
+
+class SvPersist;
 class SvBaseLink;
 class SvBaseLinkRef;
 

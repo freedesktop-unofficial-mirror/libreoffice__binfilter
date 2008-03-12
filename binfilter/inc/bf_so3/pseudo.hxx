@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pseudo.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:27:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:45:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,17 +42,20 @@
 #include <bf_so3/iface.hxx>
 #endif
 #ifndef _OWNLIST_HXX
-#include <svtools/ownlist.hxx>
+#include <bf_svtools/ownlist.hxx>
 #endif
 
 #ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
 #endif
 
-class  ImpOleObject;
+class  Menu;
+
+namespace binfilter {
+
 class  SvBaseLink;
 class  SvEmbeddedClient;
-class  Menu;
+class  ImpOleObject;
 
 //=========================================================================
 class SO3_DLLPUBLIC SvVerb
@@ -170,6 +173,8 @@ public:
 SO2_DECL_REF(SvPseudoObject)
 #endif
 SO2_IMPL_REF( SvPseudoObject )
+
+}
 
 #endif
 
