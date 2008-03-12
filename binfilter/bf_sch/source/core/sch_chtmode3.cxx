@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode3.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:24:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:21:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <bf_svx/svdopath.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _SVX_XBTMPIT_HXX //autogen
 #include <bf_svx/xbtmpit.hxx>
