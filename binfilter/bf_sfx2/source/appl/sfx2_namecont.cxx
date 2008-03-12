@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:38:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:02:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,9 +48,9 @@
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
-#include <svtools/pathoptions.hxx>
-#include <svtools/sfxecode.hxx>
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/pathoptions.hxx>
+#include <bf_svtools/sfxecode.hxx>
+#include <bf_svtools/ehdl.hxx>
 #include "bf_basic/basmgr.hxx"
 
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
