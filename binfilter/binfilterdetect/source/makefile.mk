@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:24:52 $
+#   last change: $Author: rt $ $Date: 2008-03-12 11:04:12 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -65,10 +65,9 @@ DEF1NAME=$(SHL1TARGET)
 SHL1VERSIONMAP=exports.map
 
 SHL1STDLIBS= \
-    $(SVTOOLLIB)	\
+    $(BFSVTOOLLIB)	\
     $(SOTLIB)	\
     $(VCLLIB)	\
-    $(SVLLIB) 	\
     $(TOOLSLIB)	\
     $(CPPUHELPERLIB)\
     $(CPPULIB)	\
