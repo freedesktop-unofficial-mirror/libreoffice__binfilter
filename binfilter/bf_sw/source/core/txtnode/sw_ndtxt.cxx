@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndtxt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:43:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:21:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,10 +50,10 @@
 #include <bf_svx/lrspitem.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
-#include <svtools/ctloptions.hxx>
+#include <bf_svtools/ctloptions.hxx>
 #endif
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
@@ -682,7 +682,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/   if( nStt < nEnd )
 /*N*/   {
 /*N*/       xub_StrLen nS = nStt, nE = nEnd;
-/*N*/       String sNew( URIHelper::FindFirstURLInText( rText, nS, nE,
+/*N*/       String sNew( FindFirstURLInText( rText, nS, nE,
 /*N*/                                                   GetAppCharClass() ));
 /*N*/       if( sNew.Len() && nS == nStt && nE == nEnd )
 /*N*/       {
