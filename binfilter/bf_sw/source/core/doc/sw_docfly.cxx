@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfly.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:58:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:55:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 
 
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_visiturl.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:04:30 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:56:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _INETHIST_HXX //autogen
-#include <svtools/inethist.hxx>
+#include <bf_svtools/inethist.hxx>
 #endif
 
 #ifndef _FMTINFMT_HXX //autogen
