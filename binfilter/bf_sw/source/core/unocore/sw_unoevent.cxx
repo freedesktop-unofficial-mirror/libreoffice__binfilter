@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoevent.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:49:32 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:25:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,7 +80,7 @@
 #endif
 
 #ifndef _SFXMACITEM_HXX
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 
 #ifndef _RTL_USTRBUF_HXX_
