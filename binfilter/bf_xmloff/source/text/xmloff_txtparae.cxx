@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtparae.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: ihi $ $Date: 2008-01-15 13:44:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:02:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,7 @@
 
 #ifndef _SVSTDARR_LONGS_DECL
 #define _SVSTDARR_LONGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 
 
