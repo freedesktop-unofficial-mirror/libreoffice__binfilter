@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editund2.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:30:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:49:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 //#include <tools.hxx>
 
 #ifndef _UNDO_HXX
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #endif
 namespace binfilter {
 

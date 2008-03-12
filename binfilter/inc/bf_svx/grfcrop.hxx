@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfcrop.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:36:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:53:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SVX_GRFCROP_HXX
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 namespace binfilter {
 
