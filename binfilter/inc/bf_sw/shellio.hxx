@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shellio.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:45:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:47:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,16 +49,16 @@
 #include <docfac.hxx>   // SwDocFac
 #endif
 #include <tools/debug.hxx>
-class SfxItemPool;
-class SfxItemSet;
-class SvPtrarr;
+class SvStream;
+namespace binfilter {
 class SvStorage;
 class SvStorageStreamRef;
-class SvStream;
+class SvPtrarr;
+class SfxItemPool;
+class SfxItemSet;
 class SvStrings;
 class SvStringsSortDtor;
 class SvxMacroTableDtor;
-namespace binfilter {
 
 // einige Forward - Deklarationen
 class SfxFactoryFilterContainer;
