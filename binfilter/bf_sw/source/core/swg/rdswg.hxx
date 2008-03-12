@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rdswg.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 12:32:59 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:15:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #endif
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _SWGSTR_HXX
 #include <swgstr.hxx>
@@ -50,9 +50,9 @@
 #endif
 class Brush;
 class Color;
-class SfxItemSet;
 class Pen;
 namespace binfilter {
+class SfxItemSet;
 
 class SwRect;
 class SwPaM;
