@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_detfunc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:45:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:55:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 #include <bf_svx/outlobj.hxx>
 
 #ifndef _XDEF_HXX
@@ -1692,10 +1692,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer
 /*N*/ {
 /*N*/   // may be called several times to update colors from configuration
 /*N*/
-/*N*/     const svtools::ColorConfig& rColorCfg = SC_MOD()->GetColorConfig();
-/*N*/     nArrowColor   = rColorCfg.GetColorValue(svtools::CALCDETECTIVE).nColor;
-/*N*/     nErrorColor   = rColorCfg.GetColorValue(svtools::CALCDETECTIVEERROR).nColor;
-/*N*/     nCommentColor = rColorCfg.GetColorValue(svtools::CALCNOTESBACKGROUND).nColor;
+/*N*/     const ColorConfig& rColorCfg = SC_MOD()->GetColorConfig();
+/*N*/     nArrowColor   = rColorCfg.GetColorValue(CALCDETECTIVE).nColor;
+/*N*/     nErrorColor   = rColorCfg.GetColorValue(CALCDETECTIVEERROR).nColor;
+/*N*/     nCommentColor = rColorCfg.GetColorValue(CALCNOTESBACKGROUND).nColor;
 /*N*/
 /*N*/   bColorsInitialized = TRUE;
 /*N*/ }
