@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_stlsheet.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:39:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:52:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,8 +54,8 @@
 #include <bf_svx/sizeitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/itempool.hxx>
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itempool.hxx>
+#include <bf_svtools/itemset.hxx>
 
 #include "globstr.hrc"
 namespace binfilter {
