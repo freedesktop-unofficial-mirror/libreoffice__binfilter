@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unotext2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:59:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:47:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -52,7 +52,7 @@
 
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SVX_ITEMDATA_HXX
