@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ximpstyl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:54:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:57:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,9 @@
 #ifndef _COM_SUN_STAR_VIEW_PAPERORIENTATION_HPP_
 #include <com/sun/star/view/PaperOrientation.hpp>
 #endif
-class SvNumberFormatter;
 namespace binfilter {
 
+class SvNumberFormatter;
 class SvXMLNumFmtHelper;
 
 //////////////////////////////////////////////////////////////////////////////
