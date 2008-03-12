@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itemtype.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:42:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:55:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #include <bf_svx/dialmgr.hxx>
 #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
@@ -72,7 +72,7 @@ static const sal_Unicode cDelim = ',';
 static const sal_Unicode cpDelim[] = { ',' , ' ', '\0' };
 
 String GetSvxString( USHORT nId );
-String GetMetricText( long nVal, SfxMapUnit eSrcUnit, SfxMapUnit eDestUnit, const IntlWrapper * pIntl );
+String GetMetricText( long nVal, SfxMapUnit eSrcUnit, SfxMapUnit eDestUnit, const ::IntlWrapper * pIntl );
 #ifndef SVX_LIGHT
 String GetColorString( const Color& rCol );
 #endif
