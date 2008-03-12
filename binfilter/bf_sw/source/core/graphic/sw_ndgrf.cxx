@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:04:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:02:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,16 +50,16 @@
 #include <tools/urlobj.hxx>
 #endif
 #ifndef _UNDO_HXX //autogen
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #endif
 #ifndef SVTOOLS_FSTATHELPER_HXX
-#include <svtools/fstathelper.hxx>
+#include <bf_svtools/fstathelper.hxx>
 #endif
 #ifndef _IMAP_HXX //autogen
-#include <svtools/imap.hxx>
+#include <bf_svtools/imap.hxx>
 #endif
 #ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
@@ -195,7 +195,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       INetURLObject aUrl( rGrfName );
 /*N*/       if( INET_PROT_FILE == aUrl.GetProtocol() &&
-/*N*/           FStatHelper::IsDocument( aUrl.GetMainURL( INetURLObject::NO_DECODE ) ))
+/*N*/           ::binfilter::IsDocument( aUrl.GetMainURL( INetURLObject::NO_DECODE ) ))
 /*N*/       {
 /*N*/           // File vorhanden, Verbindung herstellen ohne ein Update
 /*N*/           ((SwBaseLink*)&refLink)->Connect();
@@ -232,7 +232,7 @@ namespace binfilter {
 /*?*/                   nNewType = OBJECT_CLIENT_DDE;
 /*?*/               else
 /*?*/               {
-/*?*/                     ::so3::MakeLnkName( sCmd, 0, rGrfName, aEmptyStr, &rFltName );
+/*?*/                     ::binfilter::MakeLnkName( sCmd, 0, rGrfName, aEmptyStr, &rFltName );
 /*?*/                   nNewType = OBJECT_CLIENT_GRF;
 /*?*/               }
 /*?*/
@@ -440,7 +440,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 
     short nRet = 0;
     bInSwapIn = TRUE;
-    SwBaseLink* pLink = (SwBaseLink*)(::so3::SvBaseLink*) refLink;
+    SwBaseLink* pLink = (SwBaseLink*)(::binfilter::SvBaseLink*) refLink;
     if( pLink )
     {
         if( GRAPHIC_NONE == aGrfObj.GetType() ||
@@ -746,8 +746,8 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*?*/           if( refLink->GetLinkManager()->GetDisplayNames(
 /*?*/                   refLink, &sApp, &sTopic, &sItem ) )
 /*?*/           {
-/*?*/                 ( *pFileNm = sApp ) += ::so3::cTokenSeperator;
-/*?*/                 ( *pFileNm += sTopic ) += ::so3::cTokenSeperator;
+/*?*/                 ( *pFileNm = sApp ) += ::binfilter::cTokenSeperator;
+/*?*/                 ( *pFileNm += sTopic ) += ::binfilter::cTokenSeperator;
 /*?*/               *pFileNm += sItem;
 /*?*/               pFilterNm->AssignAscii( RTL_CONSTASCII_STRINGPARAM( "DDE" ));
 /*?*/               bRet = TRUE;
@@ -774,7 +774,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 
 /*N*/ void SwGrfNode::InsertLink( const String& rGrfName, const String& rFltName )
 /*N*/ {
-/*N*/     refLink = new SwBaseLink( ::so3::LINKUPDATE_ONCALL, FORMAT_GDIMETAFILE, this );
+/*N*/     refLink = new SwBaseLink( ::binfilter::LINKUPDATE_ONCALL, FORMAT_GDIMETAFILE, this );
 /*N*/   SwDoc* pDoc = GetDoc();
 /*N*/   if( GetNodes().IsDocNodes() )
 /*N*/   {
@@ -783,8 +783,8 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/       {
 /*?*/           USHORT nTmp = 0;
 /*?*/           String sApp, sTopic, sItem;
-/*?*/             sApp = rGrfName.GetToken( 0, ::so3::cTokenSeperator, nTmp );
-/*?*/             sTopic = rGrfName.GetToken( 0, ::so3::cTokenSeperator, nTmp );
+/*?*/             sApp = rGrfName.GetToken( 0, ::binfilter::cTokenSeperator, nTmp );
+/*?*/             sTopic = rGrfName.GetToken( 0, ::binfilter::cTokenSeperator, nTmp );
 /*?*/           sItem = rGrfName.Copy( nTmp );
 /*?*/           pDoc->GetLinkManager().InsertDDELink( refLink,
 /*N*/                                           sApp, sTopic, sItem );
@@ -870,7 +870,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   SwGrfNode* pThis = (SwGrfNode*)this;
 /*N*/
 /*N*/   Graphic aTmpGrf;
-/*N*/   SwBaseLink* pLink = (SwBaseLink*)(::so3::SvBaseLink*) refLink;
+/*N*/   SwBaseLink* pLink = (SwBaseLink*)(::binfilter::SvBaseLink*) refLink;
 /*N*/   if( !pLink && HasStreamName() )
 /*N*/   {
 /*?*/       SvStorageRef refRoot = pThis->GetDoc()->GetDocStorage();
@@ -906,7 +906,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/       aTmpGrf = aGrfObj.GetGraphic();
 /*N*/   }
 /*N*/
-/*N*/   const ::so3::SvLinkManager& rMgr = GetDoc()->GetLinkManager();
+/*N*/   const ::binfilter::SvLinkManager& rMgr = GetDoc()->GetLinkManager();
 /*N*/   String sFile, sFilter;
 /*N*/   if( IsLinkedFile() )
 /*N*/       rMgr.GetDisplayNames( refLink, 0, &sFile, 0, &sFilter );
@@ -914,7 +914,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   {
 /*?*/       String sTmp1, sTmp2;
 /*?*/       rMgr.GetDisplayNames( refLink, &sTmp1, &sTmp2, &sFilter );
-/*?*/         ::so3::MakeLnkName( sFile, &sTmp1, sTmp2, sFilter );
+/*?*/         ::binfilter::MakeLnkName( sFile, &sTmp1, sTmp2, sFilter );
 /*?*/       sFilter.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "DDE" ));
 /*N*/   }
 /*N*/
