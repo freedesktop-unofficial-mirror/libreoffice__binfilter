@@ -4,9 +4,9 @@
  *
  *  $RCSfile: idxmrk.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:47:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:49:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,7 +75,7 @@
 #include "toxe.hxx"
 #endif
 #ifndef _STDCTRL_HXX
-#include <svtools/stdctrl.hxx>
+#include <bf_svtools/stdctrl.hxx>
 #endif
 #ifndef  _COM_SUN_STAR_I18N_XEXTENDEDINDEXENTRYSUPPLIER_HPP_
 #include <com/sun/star/i18n/XExtendedIndexEntrySupplier.hpp>
