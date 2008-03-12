@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:06:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:14:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 
 
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
@@ -743,17 +743,17 @@ namespace binfilter {
 /*N*/       ByteString s8;
 /*N*/
 /*N*/       pStrm->ReadByteString( s8 );
-/*N*/         aLinkFileName = ConvertStringNoDelim( s8, '\xff', ::so3::cTokenSeperator,
+/*N*/         aLinkFileName = ConvertStringNoDelim( s8, '\xff', ::binfilter::cTokenSeperator,
 /*N*/                                             eSrcSet );
 /*N*/
 /*N*/       if( aLinkFileName.Len() && FILE_LINK_SECTION == nType )
 /*N*/       {
-/*N*/             xub_StrLen nTokenPos = aLinkFileName.Search( ::so3::cTokenSeperator );
+/*N*/             xub_StrLen nTokenPos = aLinkFileName.Search( ::binfilter::cTokenSeperator );
 /*N*/           if( STRING_NOTFOUND != nTokenPos && nTokenPos )
 /*N*/           {
 /*N*/               String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
 /*N*/               aLinkFileName.Erase( 0, nTokenPos );
-/*N*/               aLinkFileName.Insert( so3::StaticBaseUrl::SmartRelToAbs( sURL ), 0 );
+/*N*/               aLinkFileName.Insert( ::binfilter::StaticBaseUrl::SmartRelToAbs( sURL ), 0 );
 /*N*/           }
 /*N*/       }
 /*N*/       rNdSection.SetLinkFileName( aLinkFileName );
@@ -940,16 +940,16 @@ namespace binfilter {
 /*N*/   String aLinkFileName( rSect.GetLinkFileName() );
 /*N*/   if( aLinkFileName.Len() && FILE_LINK_SECTION == rSect.GetType() )
 /*N*/   {
-/*N*/         xub_StrLen nTokenPos = aLinkFileName.Search( ::so3::cTokenSeperator );
+/*N*/         xub_StrLen nTokenPos = aLinkFileName.Search( ::binfilter::cTokenSeperator );
 /*N*/       if( STRING_NOTFOUND != nTokenPos && nTokenPos )
 /*N*/       {
 /*N*/           String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
 /*N*/           aLinkFileName.Erase( 0, nTokenPos );
-/*N*/           aLinkFileName.Insert( so3::StaticBaseUrl::AbsToRel( sURL ), 0 );
+/*N*/           aLinkFileName.Insert( ::binfilter::StaticBaseUrl::AbsToRel( sURL ), 0 );
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/     ByteString s8 = ConvertStringNoDelim( aLinkFileName, ::so3::cTokenSeperator,
+/*N*/     ByteString s8 = ConvertStringNoDelim( aLinkFileName, ::binfilter::cTokenSeperator,
 /*N*/                                         '\xff', eSrcSet );
 /*N*/   pStrm->WriteByteString( s8 );
 /*N*/
