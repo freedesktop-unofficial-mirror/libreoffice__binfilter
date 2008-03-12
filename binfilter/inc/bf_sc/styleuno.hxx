@@ -4,9 +4,9 @@
  *
  *  $RCSfile: styleuno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:43:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:21:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,11 +37,11 @@
 #define SC_STYLEUNO_HXX
 
 #ifndef _SFX_ITEMPROP_HXX //autogen
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _RSCSFX_HXX //autogen
@@ -88,11 +88,11 @@
 #ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx>
 #endif
-class SfxStyleSheetBase;
 namespace binfilter {
 
 class ScDocShell;
 
+class SfxStyleSheetBase;
 class ScStyleFamilyObj;
 class ScStyleObj;
 
