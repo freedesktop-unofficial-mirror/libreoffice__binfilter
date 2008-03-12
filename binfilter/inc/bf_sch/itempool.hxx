@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itempool.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:48:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:25:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SCH_ITEMPOOL_HXX
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 namespace binfilter {
 

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chwindow.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:47:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:25:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <vcl/event.hxx>
 #endif
 #ifndef _TRANSFER_HXX //autogen
-#include <svtools/transfer.hxx>
+#include <bf_svtools/transfer.hxx>
 #endif
 namespace com { namespace sun { namespace star {
     namespace accessibility {
