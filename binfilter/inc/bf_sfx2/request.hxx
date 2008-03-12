@@ -4,9 +4,9 @@
  *
  *  $RCSfile: request.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:42:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:38:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,14 +35,15 @@
 #ifndef _SFXREQUEST_HXX
 #define _SFXREQUEST_HXX
 
-class SfxPoolItem;
-class SfxItemSet;
-
 #include <tools/rtti.hxx>
 
 namespace binfilter {
 
-class SfxRequest
+class SfxPoolItem;
+class SfxItemSet;
+
+
+    class SfxRequest
 {
 public:
     static const SfxPoolItem* GetItem( const SfxItemSet*, USHORT nSlotId,
