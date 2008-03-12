@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmtinfmt.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:44:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:40:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,12 @@
 
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
-class SvxMacro;
-class SvxMacroTableDtor;
 class IntlWrapper;
 namespace binfilter {
+class SvxMacro;
+class SvxMacroTableDtor;
 
 class SwTxtINetFmt;
 // ATT_INETFMT *********************************************
