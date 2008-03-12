@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdde.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:57:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:54:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -176,7 +176,7 @@ struct _FindItem
 
 
 
-/*N*/ ::so3::SvLinkSource* SwDoc::CreateLinkSource( const String& rItem )
+/*N*/ ::binfilter::SvLinkSource* SwDoc::CreateLinkSource( const String& rItem )
 /*N*/ {
 /*N*/   // haben wir ueberhaupt das Item vorraetig?
 /*N*/   String sItem( GetAppCharClass().lower( rItem ));

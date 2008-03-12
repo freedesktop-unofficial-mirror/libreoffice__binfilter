@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swbaslnk.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:07:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:57:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -109,7 +109,7 @@ namespace binfilter {
 
 /*N*/ BOOL SetGrfFlySize( const Size& rGrfSz, const Size& rFrmSz, SwGrfNode* pGrfNd );
 
-/*N*/ TYPEINIT1( SwBaseLink, ::so3::SvBaseLink );
+/*N*/ TYPEINIT1( SwBaseLink, ::binfilter::SvBaseLink );
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
@@ -290,10 +290,10 @@ namespace binfilter {
 /*N*/           //Alle benachrichtigen, die am gleichen Link horchen.
 /*N*/           bInNotifyLinks = TRUE;
 /*N*/
-/*N*/           const ::so3::SvBaseLinks& rLnks = pDoc->GetLinkManager().GetLinks();
+/*N*/           const ::binfilter::SvBaseLinks& rLnks = pDoc->GetLinkManager().GetLinks();
 /*N*/           for( USHORT n = rLnks.Count(); n; )
 /*N*/           {
-/*N*/               ::so3::SvBaseLink* pLnk = &(*rLnks[ --n ]);
+/*N*/               ::binfilter::SvBaseLink* pLnk = &(*rLnks[ --n ]);
 /*N*/               if( pLnk && OBJECT_CLIENT_GRF == pLnk->GetObjType() &&
 /*N*/                   pLnk->ISA( SwBaseLink ) && pLnk->GetObj() == GetObj() )
 /*N*/               {
