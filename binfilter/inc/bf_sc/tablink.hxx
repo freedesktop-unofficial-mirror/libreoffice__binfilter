@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tablink.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:18:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:21:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@ SO2_DECL_REF(SvEmbeddedObject)
 class ScDocShell;
 class SfxObjectShell;
 
-class ScTableLink : public ::so3::SvBaseLink, public ScRefreshTimer
+class ScTableLink : public ::binfilter::SvBaseLink, public ScRefreshTimer
 {
 private:
     ScDocShell* pDocShell;      // Container
