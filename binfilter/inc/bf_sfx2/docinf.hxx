@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docinf.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:35:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:35:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,18 +36,18 @@
 #define _SFXDOCINF_HXX
 
 #ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
+#include <bf_svtools/hint.hxx>
 #endif
 
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 
 class SvStream;
 
 #include "timestamp.hxx"
 
-class SvStorage;
 namespace binfilter {
 
+class SvStorage;
 // SfxStamp changed to "tools/TimeStamp" !!!
 typedef TimeStamp SfxStamp ;
 
