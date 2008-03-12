@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbaexchange.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:26:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:47:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SVX_DBAEXCHANGE_HXX_
 
 #ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
+#include <bf_svtools/transfer.hxx>
 #endif
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
