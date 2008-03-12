@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scmod.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:29:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:20:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef SC_SCGLOB_HXX
@@ -59,19 +59,15 @@
 #ifndef SC_SHELLIDS_HXX
 #include "shellids.hxx"
 #endif
-namespace svtools { class ColorConfig; }
 class KeyEvent;
 class SfxErrorHandler;
-class SvtAccessibilityOptions;
-class SvtCTLOptions;
 namespace binfilter {
-
+class SvtCTLOptions;
+class ColorConfig;
 class SdrModel;
 class SdrView;
 class EditView;
 class SvxErrorHandler;
-
-//STRIP008 namespace svtools { class ColorConfig; }
 
 class ScRange;
 class ScDocument;
@@ -96,8 +92,6 @@ class ScMessagePool;
 class EditFieldInfo;
 class ScNavipiCfg;
 class ScFormEditData;
-class ScTransferObj;
-class ScDrawTransferObj;
 
 //==================================================================
 
@@ -108,21 +102,12 @@ class ScDrawTransferObj;
 
 struct ScDragData
 {
-    ScTransferObj*      pCellTransfer;
-    ScDrawTransferObj*  pDrawTransfer;
-
     String              aLinkDoc;
     String              aLinkTable;
     String              aLinkArea;
     ScDocument*         pJumpLocalDoc;
     String              aJumpTarget;
     String              aJumpText;
-};
-
-struct ScClipData
-{
-    ScTransferObj*      pCellClipboard;
-    ScDrawTransferObj*  pDrawClipboard;
 };
 
 //==================================================================
@@ -133,7 +118,6 @@ class ScModule: public ScModuleDummy, public SfxListener
     Timer               aIdleTimer;
     Timer               aSpellTimer;
     ScDragData          aDragData;
-    ScClipData          aClipData;
     ScMessagePool*      pMessagePool;
     //  globalen InputHandler gibt's nicht mehr, jede View hat einen
     ScInputHandler*     pRefInputHandler;
@@ -144,8 +128,7 @@ class ScModule: public ScModuleDummy, public SfxListener
     ScInputCfg*         pInputCfg;
     ScPrintCfg*         pPrintCfg;
     ScNavipiCfg*        pNavipiCfg;
-    ::svtools::ColorConfig*   pColorConfig;
-    SvtAccessibilityOptions* pAccessOptions;
+    ColorConfig*        pColorConfig;
     SvtCTLOptions*      pCTLOptions;
     SfxErrorHandler*    pErrorHdl;
     SvxErrorHandler*    pSvxErrorHdl;
@@ -177,12 +160,6 @@ public:
     const ScDragData&   GetDragData() const     { return aDragData; }
     void                ResetDragObject();
 
-    //  clipboard:
-    const ScClipData&   GetClipData() const     { return aClipData; }
-    void                SetClipObject( ScTransferObj* pCellObj, ScDrawTransferObj* pDrawObj );
-
-    ScDocument*         GetClipDoc();       // called from document - should be removed later
-
     void                SetWaterCan( BOOL bNew )    { bIsWaterCan = bNew; }
     BOOL                GetIsWaterCan() const       { return bIsWaterCan; }
 
@@ -205,8 +182,7 @@ public:
 
     USHORT              GetOptDigitLanguage();      // from CTL options
 
-    ::svtools::ColorConfig&   GetColorConfig();
-    SvtAccessibilityOptions& GetAccessOptions();
+    ColorConfig&        GetColorConfig();
     SvtCTLOptions&      GetCTLOptions();
 
 
