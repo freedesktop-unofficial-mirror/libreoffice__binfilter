@@ -3,9 +3,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-12 09:25:21 $
+#   last change: $Author: rt $ $Date: 2008-03-12 09:34:38 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -121,6 +121,7 @@ EXCEPTIONSFILES= \
          $(SLO)$/svx_svdotxln.obj        \
          $(SLO)$/svx_svdouno.obj         \
          $(SLO)$/svx_svdfppt.obj         \
+         $(SLO)$/svx_svdmodel.obj        \
          $(SLO)$/svx_svdpagv.obj
 
 SRS1NAME=svx_svdstr
