@@ -4,9 +4,9 @@
  *
  *  $RCSfile: glob.hrc,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:52:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:29:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,6 @@
 #include <bf_sfx2/sfx.hrc>
 #endif
 
-#define STR_LAYER_BCKGRND                       RID_APP_START+700
-#define STR_LAYER_BCKGRNDOBJ                    RID_APP_START+701
-#define STR_LAYER_LAYOUT                        RID_APP_START+702
-#define STR_LAYER_CONTROLS                      RID_APP_START+703
 #define STR_PAGE                                RID_APP_START+704
 #define STR_PRESOBJ_TITLE                       RID_APP_START+705
 #define STR_PRESOBJ_OUTLINE                     RID_APP_START+706
@@ -56,13 +52,6 @@
 #define BMP_PRESOBJ_ORGCHART                    RID_APP_START+717
 #define BMP_PRESOBJ_TABLE                       RID_APP_START+718
 #define BMP_PRESOBJ_IMAGE                       RID_APP_START+719
-#define STR_SLIDEVIEWSHELL                      RID_APP_START+720
-#define STR_OUTLINEVIEWSHELL                    RID_APP_START+721
-#define STR_DRAWVIEWSHELL                       RID_APP_START+722
-#define STR_TEXTOBJECTBARSHELL                  RID_APP_START+723
-#define STR_STDOBJECTBARSHELL                   RID_APP_START+724
-#define STR_BEZIEROBJECTBARSHELL                RID_APP_START+725
-#define STR_APPLICATIONOBJECTBAR                RID_APP_START+726
 #define STR_LAYOUT_TITLE                        RID_APP_START+727
 #define STR_LAYOUT_OUTLINE                      RID_APP_START+728
 #define STR_LAYOUT_BACKGROUNDOBJECTS            RID_APP_START+729
@@ -119,7 +108,6 @@
 #define STR_PSEUDOSHEET_SUBTITLE                RID_APP_START+785
 #define STR_GLUEPOINTSOBJECTBARSHELL            RID_APP_START+790
 #define STR_EMPTY_STYLESHEET_NAME               RID_APP_START+791
-#define STR_LAYER_MEASURELINES                  RID_APP_START+792
 #define STR_GRAFOBJECTBARSHELL                  RID_APP_START+794
 #define STR_STAROFFICE_XML_DRAW                 RID_APP_START+796
 #define STR_STAROFFICE_XML_IMPRESS              RID_APP_START+797
