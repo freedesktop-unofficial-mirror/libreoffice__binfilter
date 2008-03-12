@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:05:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:04:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <bf_svx/paperinf.hxx>
 
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 
 //#include <bf_svx/postdlg.hxx>
@@ -56,7 +56,7 @@
 
 #include <bf_sfx2/misccfg.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #include <vcl/virdev.hxx>
 
 #include "viewopti.hxx"
