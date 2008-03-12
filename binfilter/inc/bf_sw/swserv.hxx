@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swserv.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:32:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:49:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@ class SwTableNode;
 struct SwPosition;
 class SwPaM;
 
-class SwServerObject : public ::so3::SvLinkSource
+class SwServerObject : public ::binfilter::SvLinkSource
 {
 protected:
     enum ServerModes { BOOKMARK_SERVER, TABLE_SERVER, SECTION_SERVER, NONE_SERVER } eType;

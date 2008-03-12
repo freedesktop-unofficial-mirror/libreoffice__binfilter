@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swbaslnk.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:31:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:48:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@ class SwNode;
 class SwCntntNode;
 class SwNodeIndex;
 
-class SwBaseLink : public ::so3::SvBaseLink
+class SwBaseLink : public ::binfilter::SvBaseLink
 {
     SwCntntNode* pCntntNode;
     BOOL bSwapIn : 1;
@@ -55,9 +55,9 @@ class SwBaseLink : public ::so3::SvBaseLink
 protected:
     SwBaseLink() {}
 
-    SwBaseLink( const String& rNm, USHORT nObjectType, ::so3::SvLinkSource* pObj,
+    SwBaseLink( const String& rNm, USHORT nObjectType, ::binfilter::SvLinkSource* pObj,
                  SwCntntNode* pNode = 0 )
-        : ::so3::SvBaseLink( rNm, nObjectType, pObj ), pCntntNode( pNode ),
+        : ::binfilter::SvBaseLink( rNm, nObjectType, pObj ), pCntntNode( pNode ),
         bSwapIn( FALSE ), bNoDataFlag( FALSE ), bIgnoreDataChanged( FALSE )
     {}
 
@@ -65,7 +65,7 @@ public:
     TYPEINFO();
 
     SwBaseLink( USHORT nMode, USHORT nFormat, SwCntntNode* pNode = 0 )
-        : ::so3::SvBaseLink( nMode, nFormat ), pCntntNode( pNode ),
+        : ::binfilter::SvBaseLink( nMode, nFormat ), pCntntNode( pNode ),
         bSwapIn( FALSE ), bNoDataFlag( FALSE ), bIgnoreDataChanged( FALSE )
     {}
     virtual ~SwBaseLink();
