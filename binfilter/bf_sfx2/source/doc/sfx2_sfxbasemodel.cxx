@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:59:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:07:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -99,19 +99,19 @@
 #endif
 
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #include "bf_basic/sbx.hxx"
@@ -142,7 +142,6 @@
 
 #include <vos/mutex.hxx>
 #include <vcl/salctype.hxx>
-#include <svtools/printdlg.hxx>
 
 //________________________________________________________________________________________________________
 //  includes of my own project
