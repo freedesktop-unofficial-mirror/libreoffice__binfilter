@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmlgrhlp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:48:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,6 +36,7 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <unotools/streamwrap.hxx>
 #include <unotools/tempfile.hxx>
+#include <cppuhelper/implbase1.hxx> // helper for implementations
 
 #include "impgrf.hxx"
 #include "xmlgrhlp.hxx"
