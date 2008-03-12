@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmgridcl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:27:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:51:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,7 @@ namespace binfilter {
 //==================================================================
 struct FmGridHeaderData;
 class FmGridHeader
-            :public ::svt::EditBrowserHeader
+            :public EditBrowserHeader
             ,public DropTargetHelper
 {
 protected:
@@ -169,7 +169,7 @@ public:
         @return
             The name of the specified object.
     */
-    virtual ::rtl::OUString GetAccessibleName( ::svt::AccessibleBrowseBoxObjType eObjType,sal_Int32 _nPosition = -1) const;
+    virtual ::rtl::OUString GetAccessibleName( AccessibleBrowseBoxObjType eObjType,sal_Int32 _nPosition = -1) const;
 
     /** return the description of the specified object.
         @param  eObjType
@@ -179,7 +179,7 @@ public:
         @return
             The description of the specified object.
     */
-    virtual ::rtl::OUString GetAccessibleDescription( ::svt::AccessibleBrowseBoxObjType eObjType,sal_Int32 _nPosition = -1) const;
+    virtual ::rtl::OUString GetAccessibleDescription( AccessibleBrowseBoxObjType eObjType,sal_Int32 _nPosition = -1) const;
 
 protected:
     virtual void Command(const CommandEvent& rEvt);
