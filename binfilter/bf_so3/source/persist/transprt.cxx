@@ -4,9 +4,9 @@
  *
  *  $RCSfile: transprt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-31 16:04:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:20:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#define _TRANSPRT_CXX "$Revision: 1.3 $"
+#define _TRANSPRT_CXX "$Revision: 1.4 $"
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -170,7 +170,7 @@
 #endif
 
 #ifndef _INETTYPE_HXX
-#include <svtools/inettype.hxx>
+#include <bf_svtools/inettype.hxx>
 #endif
 
 #ifndef _BINDING_HXX
@@ -207,6 +207,8 @@ using namespace com::sun::star::uno;
 using namespace com::sun::star::io;
 using namespace cppu;
 using rtl::OUString;
+
+namespace binfilter {
 
 /*========================================================================
  *
@@ -2327,3 +2329,4 @@ SvBindingTransport* CntTransportFactory::CreateTransport (
     return NULL;
 }
 
+}
