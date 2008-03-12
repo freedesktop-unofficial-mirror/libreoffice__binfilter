@@ -4,9 +4,9 @@
  *
  *  $RCSfile: smmod.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:49:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:48:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,10 +40,10 @@
 #include <tools/resary.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 #endif
 
 #ifndef _SMDLL_HXX
@@ -53,13 +53,13 @@
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
-class SvFactory;
-class SvtSysLocale;
 class VirtualDevice;
 
 namespace binfilter {
 
 class SvxErrorHandler;
+class SvtSysLocale;
+class SvFactory;
 
 
 class SmConfig;
@@ -133,7 +133,7 @@ public:
 
 class SmModule : public SmModuleDummy, public SfxListener
 {
-    ::svtools::ColorConfig        *pColorConfig;
+    ColorConfig        *pColorConfig;
     SmConfig                *pConfig;
     SmLocalizedSymbolData   *pLocSymbolData;
     SmRectCache             *pRectCache;
@@ -143,7 +143,7 @@ class SmModule : public SmModuleDummy, public SfxListener
     void _CreateSysLocale() const;
     void _CreateVirtualDev() const;
 
-    void ApplyColorConfigValues( const svtools::ColorConfig &rColorCfg );
+    void ApplyColorConfigValues( const ColorConfig &rColorCfg );
 
 public:
     TYPEINFO();
@@ -155,7 +155,7 @@ public:
     // SfxListener
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 
-    ::svtools::ColorConfig &  GetColorConfig();
+    ColorConfig &  GetColorConfig();
 
     SmConfig *          GetConfig();
     SmRectCache *       GetRectCache()     { return pRectCache; }
