@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimprt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:01:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:01:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -89,9 +89,9 @@
 #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HPP_
 #include <com/sun/star/sheet/XSheetCellRangeContainer.hpp>
 #endif
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemSet;
 class ScRangeList;
 class ScMyStyleNumberFormats;
 class XMLShapeImportHelper;
