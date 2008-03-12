@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:33:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:48:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -232,9 +232,9 @@
 #include <bf_svx/linkmgr.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
-#include <svtools/PasswordHelper.hxx>
+#include <bf_svtools/PasswordHelper.hxx>
 #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>

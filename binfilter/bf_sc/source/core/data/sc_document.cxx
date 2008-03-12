@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:35:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:49:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,9 @@
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/frmdiritem.hxx>
 #include <bf_svx/editeng.hxx>
-#include <svtools/poolcach.hxx>
-#include <svtools/saveopt.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/poolcach.hxx>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/zforlist.hxx>
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
@@ -1010,20 +1010,15 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         Rectangle aO
 
 
 
-/*N*/ BOOL ScDocument::IsClipboardSource() const
-/*N*/ {
-/*N*/   ScDocument* pClipDoc = SC_MOD()->GetClipDoc();
-/*N*/   return pClipDoc && pClipDoc->xPoolHelper.isValid() &&
-/*N*/           xPoolHelper->GetDocPool() == pClipDoc->xPoolHelper->GetDocPool();
-/*N*/ }
+BOOL ScDocument::IsClipboardSource() const
+{
+    return FALSE;
+}
 
 
-/*N*/ void ScDocument::StartListeningFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                                       USHORT nCol2, USHORT nRow2,
-/*N*/                                       const ScMarkData& rMark, USHORT nInsFlag )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (nInsFlag & IDF_CONTENTS)
-/*N*/ }
+void ScDocument::StartListeningFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, const ScMarkData& rMark, USHORT nInsFlag )
+{
+}
 
 
 /*N*/ void ScDocument::BroadcastFromClip( USHORT nCol1, USHORT nRow1,
@@ -1059,13 +1054,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                               ScDocument* pRefUndoDoc, ScDocument* pClipDoc, BOOL bResetCut,
 /*N*/                               BOOL bAsLink, BOOL bIncludeFiltered, BOOL bSkipAttrForEmpty )
 /*N*/ {
-/*N*/   if (!bIsClip)
+/*N*/   if (!bIsClip && pClipDoc)
 /*N*/   {
-/*N*/       if (!pClipDoc)
-/*N*/       {
-/*N*/           DBG_ERROR("CopyFromClip: no ClipDoc");
-/*N*/           pClipDoc = SC_MOD()->GetClipDoc();
-/*N*/       }
 /*N*/       if (pClipDoc->bIsClip && pClipDoc->GetTableCount())
 /*N*/       {
 /*N*/           BOOL bOldAutoCalc = GetAutoCalc();
