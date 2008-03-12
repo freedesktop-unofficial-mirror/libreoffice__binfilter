@@ -4,9 +4,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:29:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:17:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,10 +53,10 @@ namespace utl {
 }
 class ImageList;
 class Bitmap;
-class SfxItemSet;
 class Color;
 namespace binfilter {
 
+class SfxItemSet;
 
 
 #ifdef WIN
@@ -482,16 +482,16 @@ struct ScImportParam
 };
 } //namespace binfilter
 // -----------------------------------------------------------------------
-class SfxItemPool;
-class SvNumberFormatter;
 class CharClass;
 class LocaleDataWrapper;
-class SvtSysLocale;
 class CalendarWrapper;
 class CollatorWrapper;
 class IntlWrapper;
 class OutputDevice;
 namespace binfilter {
+class SvtSysLocale;
+class SvNumberFormatter;
+class SfxItemPool;
 class ScDocument;
 class ScDocShell;
 class ScDocShellRef;
