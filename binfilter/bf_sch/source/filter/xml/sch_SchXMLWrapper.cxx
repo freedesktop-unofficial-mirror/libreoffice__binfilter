@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_SchXMLWrapper.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:48:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:23:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,7 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 
 #include "SchXMLWrapper.hxx"
@@ -73,7 +73,7 @@
 #endif
 
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
-#include <svtools/saveopt.hxx>
+#include <bf_svtools/saveopt.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
