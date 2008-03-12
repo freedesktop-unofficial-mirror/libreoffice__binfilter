@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:16:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:07:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,10 +64,10 @@
 #include <com/sun/star/text/TextGridMode.hpp>
 #endif
 #ifndef _SVTOOLS_UNOIMAP_HXX
-#include <svtools/unoimap.hxx>
+#include <bf_svtools/unoimap.hxx>
 #endif
 #ifndef _IMAP_HXX //autogen
-#include <svtools/imap.hxx>
+#include <bf_svtools/imap.hxx>
 #endif
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
