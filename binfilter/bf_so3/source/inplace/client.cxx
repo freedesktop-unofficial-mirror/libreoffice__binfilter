@@ -4,9 +4,9 @@
  *
  *  $RCSfile: client.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:46:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:12:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,6 +54,8 @@
 #include <tools/urlobj.hxx>
 #include <bf_so3/embobj.hxx>
 #include "bf_so3/soerr.hxx"
+
+namespace binfilter {
 
 //=========================================================================
 TYPEINIT0(SvClientData);
@@ -322,7 +324,7 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvEmbeddedClient,SvEmbeddedClientFactory,SvObject,
                              0xE4CAFE00L, 0x73AE, 0x101B,
                              0x80,0x4C,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD );
 
-IUnknown * SvEmbeddedClient::GetMemberInterface( const SvGlobalName & rName )
+::IUnknown * SvEmbeddedClient::GetMemberInterface( const SvGlobalName & rName )
 {
     (void)rName;
     return NULL;
@@ -709,6 +711,8 @@ void SvEmbeddedClient::Opened( BOOL bOpen )
 #else
     (void)bOpen;
 #endif
+
+}
 
 }
 
