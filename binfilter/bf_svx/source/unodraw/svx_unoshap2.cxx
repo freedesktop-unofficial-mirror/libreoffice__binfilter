@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:05:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:44:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@
 #include <vcl/svapp.hxx>
 #endif
 #ifndef _FLTCALL_HXX
-#include <svtools/fltcall.hxx>
+#include <bf_svtools/fltcall.hxx>
 #endif
 #ifndef _SVX_IMPGRF_HXX
 #include "impgrf.hxx"
@@ -71,6 +71,10 @@
 #include "svdmodel.hxx"
 #include "svdouno.hxx"
 #include "shapeimpl.hxx"
+
+class GDIMetaFile;
+class SvStream;
+
 namespace binfilter {
 
 using namespace ::osl;
@@ -89,13 +93,8 @@ using namespace ::com::sun::star::container;
     if( rType == ::getCppuType((const Reference< xint >*)0) ) \
         aAny <<= Reference< xint >(this)
 
-} class GDIMetaFile; namespace binfilter {//STRIP009
-} class SvStream; namespace binfilter {//STRIP009
-} //namespace binfilter
-
 sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream, FilterConfigItem* pConfigItem = NULL, sal_Bool bPlaceable=sal_True);
 
-namespace binfilter {//STRIP009
 /***********************************************************************
 * class SvxShapeGroup                                                  *
 ***********************************************************************/
