@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:57:26 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:24:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,85 +33,39 @@
  *
  ************************************************************************/
 
-#ifdef _MSC_VER
-#pragma hdrstop
-#endif
 
+#include <sot/formats.hxx>
 
-#ifndef _SVTOOLS_LINGUCFG_HXX_
-#include <svtools/lingucfg.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX //autogen
+#include <bf_svtools/lingucfg.hxx>
 #include <comphelper/classids.hxx>
-#endif
 
-#include <svtools/itemset.hxx>
-
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
+#include <bf_svtools/itemset.hxx>
+#include <bf_svtools/eitem.hxx>
+#include <bf_svtools/whiter.hxx>
+#include <bf_svtools/intitem.hxx>
+#include <bf_svtools/stritem.hxx>
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/request.hxx>
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #include <bf_sfx2/printer.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
-#ifndef _MyEDITENG_HXX
+#include <bf_svtools/itempool.hxx>
 #include <bf_svx/editeng.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _EDITSTAT_HXX
 #include <bf_svx/editstat.hxx>
-#endif
-#ifndef _EEITEMID_HXX
 #include <bf_svx/eeitemid.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SFXSLSTITM_HXX
-#include <svtools/slstitm.hxx>
-#endif
+#include <bf_svtools/slstitm.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-
-#ifndef STARMATH_HRC
 #include <starmath.hrc>
-#endif
-#ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
-#ifndef UNOMODEL_HXX
 #include <unomodel.hxx>
-#endif
-#ifndef TOOLBOX_HXX
 #include <config.hxx>
-#endif
-#ifndef MATHML_HXX
 #include <mathml.hxx>
-#endif
-
-#include <svtools/transfer.hxx>
 
 namespace binfilter {
 
@@ -125,6 +79,8 @@ using namespace ::com::sun::star::accessibility;
 
 #define A2OU(x)        ::rtl::OUString::createFromAscii( x )
 
+namespace binfilter
+{
 #ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED
 #define SO2_DECL_SVSTORAGESTREAM_DEFINED
 SO2_DECL_REF(SvStorageStream)
@@ -133,6 +89,7 @@ SO2_DECL_REF(SvStorageStream)
 #define SO2_DECL_SVSTORAGE_DEFINED
 SO2_DECL_REF(SvStorage)
 #endif
+}
 
 #define DOCUMENT_BUFFER_SIZE    (USHORT)32768
 
