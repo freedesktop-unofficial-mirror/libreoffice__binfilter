@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:03:37 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:55:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,14 +50,10 @@
 #include <rtl/logfile.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SO2REF_HXX //autogen
 #include <bf_so3/so2ref.hxx>
-#endif
-#ifndef SO2_DECL_SVLINKNAME_DEFINED
-#define SO2_DECL_SVLINKNAME_DEFINED
-SO2_DECL_REF(SvLinkName)
 #endif
 #ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
@@ -73,7 +69,7 @@ SO2_DECL_REF(SvLinkName)
 #endif
 #ifndef _ZFORLIST_HXX //autogen
 #define _ZFORLIST_DECLARE_TABLE
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
@@ -147,6 +143,11 @@ namespace binfilter {
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
+
+#ifndef SO2_DECL_SVLINKNAME_DEFINED
+#define SO2_DECL_SVLINKNAME_DEFINED
+SO2_DECL_REF(SvLinkName)
+#endif
 
 /*N*/ SV_IMPL_PTRARR(SwFrmFmts,SwFrmFmtPtr)
 /*N*/ SV_IMPL_PTRARR(SwCharFmts,SwCharFmtPtr)
