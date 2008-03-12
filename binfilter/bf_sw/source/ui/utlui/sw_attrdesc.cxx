@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_attrdesc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:13:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:55:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -98,7 +98,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] =
 /*N*/   SfxMapUnit          eCoreUnit,
 /*N*/   SfxMapUnit          ePresUnit,
 /*N*/   String&             rText,
-/*N*/     const IntlWrapper*        pIntl
+/*N*/     const ::IntlWrapper*        pIntl
 /*N*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
@@ -136,7 +136,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] =
 /*N*/     SfxMapUnit          eCoreUnit,
 /*N*/     SfxMapUnit          ePresUnit,
 /*N*/     XubString&          rText,
-/*N*/     const IntlWrapper*        pIntl
+/*N*/     const ::IntlWrapper*        pIntl
 /*N*/ )   const
 /*N*/ {
 /*N*/     // no UI support available
@@ -225,7 +225,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] =
 /*M*/   SfxMapUnit          eCoreUnit,
 /*M*/   SfxMapUnit          ePresUnit,
 /*M*/   String&             rText,
-/*M*/     const IntlWrapper*        pIntl
+/*M*/     const ::IntlWrapper*        pIntl
 /*M*/ ) const
 /*M*/ {
 //    rText.Erase();
