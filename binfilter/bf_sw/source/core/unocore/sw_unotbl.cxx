@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotbl.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:08:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:30:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -125,7 +125,7 @@
 #include <bf_svx/boxitem.hxx>
 #endif
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _VIEWSH_HXX //autogen
 #include <viewsh.hxx>
 #endif
