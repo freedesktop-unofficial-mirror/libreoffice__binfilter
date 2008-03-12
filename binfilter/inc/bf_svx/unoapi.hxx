@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoapi.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:36:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:18:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,11 +50,12 @@
 #endif
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
-class SfxItemPool;
 class String;
 namespace binfilter {
+
+class SfxItemPool;
 
 class SvxShape;
 class SdrObject;
