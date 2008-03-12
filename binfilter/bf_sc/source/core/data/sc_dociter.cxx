@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:32:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:48:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 
 #include "dociter.hxx"
 #include "document.hxx"

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:36:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:50:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <bf_svx/scripttypeitem.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_sfx2/app.hxx>
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #include <vcl/image.hxx>
 #include <tools/rcid.h>
 #include <vcl/virdev.hxx>
