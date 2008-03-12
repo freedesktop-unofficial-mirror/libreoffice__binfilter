@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:18:21 $
+#   last change: $Author: rt $ $Date: 2008-03-12 06:43:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,12 +57,10 @@ SHL1TARGET=$(TARGET)$(DLLPOSTFIX)
 SHL1IMPLIB=$(TARGET)
 
 SHL1STDLIBS= \
+            $(TOOLSLIB) \
             $(CPPULIB) \
             $(CPPUHELPERLIB) \
-            $(TOOLSLIB) \
-            $(SVTOOLLIB) \
-            $(SVLLIB)   \
-            $(SVLIB) \
+            $(BFSVTOOLLIB) \
             $(VOSLIB) \
             $(SALLIB) \
             $(COMPHELPERLIB) \
