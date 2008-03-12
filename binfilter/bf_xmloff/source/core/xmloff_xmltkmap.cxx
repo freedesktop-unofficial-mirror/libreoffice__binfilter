@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmltkmap.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 01:41:54 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:57:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #endif
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLTKMAP_HXX
