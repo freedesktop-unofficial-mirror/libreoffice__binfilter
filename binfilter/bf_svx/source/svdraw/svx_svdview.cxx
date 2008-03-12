@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdview.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:47:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:41:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,7 +123,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   bTextEditOnObjectsWithoutTextIfTextTool=FALSE;
 /*N*/
-/*N*/   StartListening( maAccessibilityOptions );
 /*N*/
 /*N*/   onAccessibilityOptionsChanged();
 /*N*/ }
@@ -136,7 +135,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   bTextEditOnObjectsWithoutTextIfTextTool=FALSE;
 /*N*/
-/*N*/   StartListening( maAccessibilityOptions );
 /*N*/
 /*N*/   onAccessibilityOptionsChanged();
 /*N*/ }
@@ -149,14 +147,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   bTextEditOnObjectsWithoutTextIfTextTool=FALSE;
 /*N*/
-/*N*/   StartListening( maAccessibilityOptions );
 /*N*/
 /*N*/   onAccessibilityOptionsChanged();
 /*N*/ }
 
 /*N*/ SdrView::~SdrView()
 /*N*/ {
-/*N*/   EndListening( maAccessibilityOptions );
 /*N*/ }
 
 

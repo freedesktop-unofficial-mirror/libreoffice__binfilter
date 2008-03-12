@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdomeas.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:42:25 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:38:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #include "svdstr.hrc"    // Objektname
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 
@@ -92,7 +92,7 @@
 
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 namespace binfilter {
