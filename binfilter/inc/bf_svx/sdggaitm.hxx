@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdggaitm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:18:42 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:03:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SDGGAITM_HXX
 
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
