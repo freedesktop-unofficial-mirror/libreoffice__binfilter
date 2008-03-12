@@ -4,9 +4,9 @@
  *
  *  $RCSfile: itratr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:58:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:17:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 
 #define _SVSTDARR_XUB_STRLEN
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 class OutputDevice;
 namespace binfilter {
 
