@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_impex.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:06:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:05:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@ class StarBASIC;
 #include <stdlib.h>
 
 #include <i18npool/mslangid.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #define _SVSTDARR_ULONGS
 #include <sot/formats.hxx>
 #ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
