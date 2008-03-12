@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoattr.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:41:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:36:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include "svdocapt.hxx"
 
 #ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 
 
@@ -84,11 +84,11 @@
 
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 
 
