@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdattr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 17:19:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:09:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SVDATTR_HXX
 
 #ifndef _SOLAR_HRC
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #endif
 
 #ifndef _SOLAR_H
