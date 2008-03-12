@@ -4,9 +4,9 @@
  *
  *  $RCSfile: charreliefitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:08:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:45:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 // include ---------------------------------------------------------------
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _VCL_FNTSTYLE_HXX
 #include <vcl/fntstyle.hxx>
@@ -77,7 +77,7 @@ public:
                                     SfxMapUnit eCoreMetric,
                                     SfxMapUnit ePresMetric,
                                     String &rText,
-                                    const IntlWrapper * = 0 ) const;
+                                    const ::IntlWrapper * = 0 ) const;
 
     virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
                                     BYTE nMemberId );
