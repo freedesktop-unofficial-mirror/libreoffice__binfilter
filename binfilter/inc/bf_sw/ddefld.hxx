@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ddefld.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:31:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:35:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@ class SwDDEFieldType : public SwFieldType
     String aName;
     String aExpansion;
 
-    ::so3::SvBaseLinkRef refLink;
+    ::binfilter::SvBaseLinkRef refLink;
     SwDoc* pDoc;
 
     USHORT nRefCnt;
@@ -62,7 +62,7 @@ class SwDDEFieldType : public SwFieldType
     void _RefCntChgd();
 public:
     SwDDEFieldType( const String& rName, const String& rCmd,
-                    USHORT = ::so3::LINKUPDATE_ONCALL );
+                    USHORT = ::binfilter::LINKUPDATE_ONCALL );
     ~SwDDEFieldType();
 
     const String& GetExpansion() const          { return aExpansion; }
@@ -88,8 +88,8 @@ public:
     void UpdateNow()                { refLink->Update(); }
     void Disconnect()               { refLink->Disconnect(); }
 
-    const ::so3::SvBaseLink& GetBaseLink() const    { return *refLink; }
-          ::so3::SvBaseLink& GetBaseLink()          { return *refLink; }
+    const ::binfilter::SvBaseLink& GetBaseLink() const  { return *refLink; }
+          ::binfilter::SvBaseLink& GetBaseLink()            { return *refLink; }
 
     const SwDoc* GetDoc() const     { return pDoc; }
           SwDoc* GetDoc()           { return pDoc; }
