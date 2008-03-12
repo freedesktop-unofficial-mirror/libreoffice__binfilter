@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwbassh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:38:42 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:47:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,9 @@
 #define _SWDRWBASSH_HXX
 
 #include "basesh.hxx"
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemSet;
 class SwWrtShell;
 class SwView;
 

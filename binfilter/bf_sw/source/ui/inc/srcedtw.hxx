@@ -4,9 +4,9 @@
  *
  *  $RCSfile: srcedtw.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:53:45 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:50:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,7 +73,7 @@ public:
 };
 
 //------------------------------------------------------------
-namespace svt{ class SourceViewConfig;}
+class SourceViewConfig;
 
 } //namespace binfilter
 #endif
