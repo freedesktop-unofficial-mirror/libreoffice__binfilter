@@ -4,9 +4,9 @@
  *
  *  $RCSfile: transprt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:29:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:46:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,7 @@
  ************************************************************************/
 
 #ifndef _TRANSPRT_HXX
-#define _TRANSPRT_HXX "$Revision: 1.2 $"
+#define _TRANSPRT_HXX "$Revision: 1.3 $"
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
@@ -60,6 +60,9 @@
 #include "bf_so3/so3dllapi.h"
 #endif
 
+class DateTime;
+
+namespace binfilter {
 class SvBindingTransport;
 class SvBindingTransportFactory;
 class SvBindingTransportCallback;
@@ -125,7 +128,6 @@ public:
  * SvBindingTransportCallback interface.
  *
  *======================================================================*/
-class DateTime;
 class SO3_DLLPUBLIC SvBindingTransportCallback
 {
 public:
@@ -341,6 +343,8 @@ public:
  * The End.
  *
  *======================================================================*/
+
+}
 
 #endif /* _TRANSPRT_HXX */
 

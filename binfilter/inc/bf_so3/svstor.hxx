@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svstor.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:28:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:46:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,8 +56,13 @@
 #undef SvStorageStreamRef
 #endif
 
+class  SvStorageInfoList;
+
+namespace binfilter {
+
 class SvStorage;
 class StorageStream;
+
 class SO3_DLLPUBLIC SvStorageStream : virtual public SvObject, public SotStorageStream
 {
 friend class SvStorage;
@@ -99,7 +104,6 @@ SO2_IMPL_REF(SvStorageStream)
 //============================================================================
 //============================================================================
 class  ImpPersistFile;
-class  SvStorageInfoList;
 class  Storage;
 class SO3_DLLPUBLIC SvStorage : virtual public SvObject, public SotStorage
 {
@@ -186,6 +190,61 @@ public:
 #define SO2_DECL_SVSTORAGE_DEFINED
 SO2_DECL_REF(SvStorage)
 #endif
-SO2_IMPL_REF(SvStorage)
+//SO2_IMPL_REF(SvStorage)
+
+inline SvStorageRef::SvStorageRef( const SvStorageRef & rObj )
+{
+    pObj = rObj.pObj; if( pObj ) { pObj->AddNextRef(); }
+}
+
+inline SvStorageRef::SvStorageRef( SvStorage * pObjP )
+{
+    pObj = pObjP; if( pObj ) { pObj->AddRef(); }
+}
+
+inline void SvStorageRef::Clear()
+{
+    if( pObj )
+    {
+        SvStorage* const pRefObj = pObj;
+        pObj = 0;
+        pRefObj->ReleaseReference();
+    }
+}
+inline SvStorageRef::~SvStorageRef()
+{
+    if( pObj ) { pObj->ReleaseReference(); }
+}
+
+inline SvStorageRef & SvStorageRef::operator = ( const SvStorageRef & rObj )
+{
+    if( rObj.pObj ) rObj.pObj->AddNextRef();
+    SvStorage* const pRefObj = pObj;
+    pObj = rObj.pObj;
+    if( pRefObj )
+    {
+        pRefObj->ReleaseReference();
+    }
+    return *this;
+}
+inline SvStorageRef & SvStorageRef::operator = ( SvStorage * pObjP )
+{
+    return *this = SvStorageRef( pObjP );
+}
+
+inline SvStorageRef::SvStorageRef( const SotObjectRef & r )
+{
+    pObj = (SvStorage *)SvStorage::ClassFactory()->CastAndAddRef( &r );
+}
+inline SvStorageRef::SvStorageRef( SotObject * pObjP )
+{
+    pObj = (SvStorage *)SvStorage::ClassFactory()->CastAndAddRef( pObjP );
+}
+inline SvStorageRef::SvStorageRef( SotObject * pObjP, SvCastEnum )
+{
+    pObj = (SvStorage *)SvStorage::ClassFactory()->AggCastAndAddRef( pObjP );
+}
+
+}
 
 #endif // _SVSTOR_HXX
