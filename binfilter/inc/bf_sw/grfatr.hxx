@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfatr.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-11-08 13:10:42 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:42:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,10 +43,10 @@
 #include <tools/gen.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SVX_GRFCROP_HXX
 #include <bf_svx/grfcrop.hxx>
