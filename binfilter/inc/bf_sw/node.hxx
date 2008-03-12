@@ -4,9 +4,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:45:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:45:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,14 +56,8 @@
 #ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
 #endif
-class SvUShorts;
 namespace binfilter {
-
-// ---------------------
-// forward Deklarationen
-// ---------------------
-
-
+class SvUShorts;
 class SwCntntFrm;
 class SwCntntNode;
 class SwDoc;

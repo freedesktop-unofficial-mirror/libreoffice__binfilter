@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pam.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:45:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:45:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,9 +58,9 @@
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
 } } } }
+namespace binfilter {
 class SfxPoolItem;
 class SfxItemSet;
-namespace binfilter {
 
 
 class SwFmt;
