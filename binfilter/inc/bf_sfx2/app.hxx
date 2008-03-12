@@ -4,9 +4,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:21:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:34:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,10 +54,10 @@
 
 #include <vcl/svapp.hxx>
 #ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
@@ -76,28 +76,26 @@
 #define SFX_DESKTOP_HELPFILE_NAME "desktop"
 
 #include <bf_sfx2/shell.hxx>
-class DdeService;
 class ModalDialog;
 class OutputDevice;
 class KeyEvent;
 class Point;
 class Rectangle;
-class SfxCancelManager;
-class SfxHint;
-class SfxItemSet;
-class SvPseudoObject;
 class Menu;
-class SvUShorts;
 class Window;
 class Config;
 class INetURLObject;
-class SvStringsDtor;
 class SimpleResMgr;
-class SfxEventConfigItem_Impl;
-namespace so3 {
-class SvLinkSource;
-}
 namespace binfilter {
+class DdeService;
+class SvPseudoObject;
+class SvStringsDtor;
+class SvLinkSource;
+class SvUShorts;
+class SfxCancelManager;
+class SfxHint;
+class SfxItemSet;
+class SfxEventConfigItem_Impl;
 
 class StarBASIC;
 class BasicManager;
