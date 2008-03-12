@@ -4,9 +4,9 @@
  *
  *  $RCSfile: gridwin.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:12:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:08:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
+#include <bf_svtools/transfer.hxx>
 #endif
 
 // nur auf dem MAC Auto-Filter per Popup
@@ -78,7 +78,6 @@ class SdrObject;
 class SdrEditView;
 class ScNoteMarker;
 class SdrHdlList;
-class ScTransferObj;
 
         //  Maus-Status (nMouseStatus)
 
