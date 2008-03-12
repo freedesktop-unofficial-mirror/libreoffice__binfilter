@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:41:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:38:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,11 +55,11 @@
 #endif
 class Date;
 class Time;
-class SvStringsDtor;
-class SvNumberFormatter;
 
 namespace binfilter {
 
+class SvStringsDtor;
+class SvNumberFormatter;
 class SwDoc;
 class _SetGetExpFlds;
 class SwEditShell;
