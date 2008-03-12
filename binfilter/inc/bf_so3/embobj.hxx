@@ -4,9 +4,9 @@
  *
  *  $RCSfile: embobj.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:23:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:41:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 #ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
 #endif
-#include <svtools/ownlist.hxx>
+#include <bf_svtools/ownlist.hxx>
 
 #ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
@@ -63,15 +63,17 @@ class Printer;
 struct TransferableObjectDescriptor;
 class ImpOleObject;
 class ImpViewObject;
-class SvEmbeddedClient;
 class OutputDevice;
 class Region;
 class Menu;
 class GDIMetaFile;
 class JobSetup;
 class SotStorage;
-class SvStorage;
 namespace com { namespace sun { namespace star { namespace datatransfer { class XTransferable; } } } }
+
+namespace binfilter {
+class SvEmbeddedClient;
+class SvStorage;
 
 class SO3_DLLPUBLIC SvEmbeddedObject : virtual public SvPersist,
                          public SvPseudoObject
@@ -102,7 +104,7 @@ protected:
     virtual void    Open( BOOL bOpen );
     virtual void    Embed( BOOL bEmbedded );
     virtual void    PlugIn( BOOL bPlugIn );
-    virtual ErrCode Verb( long nVerbPos, SvEmbeddedClient * pCallerClient,
+    virtual ErrCode Verb( long nVerbPos, ::binfilter::SvEmbeddedClient * pCallerClient,
                         Window * pWin, const Rectangle * pWorkAreaPixel );
 
     virtual BOOL    Close();
@@ -115,15 +117,12 @@ protected:
 public:
                     SvEmbeddedObject();
                     SO2_DECL_STANDARD_CLASS_DLL(SvEmbeddedObject,SOAPP)
-    virtual USHORT  FuzzyLock( BOOL bLock, BOOL bIntern, BOOL bClose );
-
     virtual void    FillClass( SvGlobalName * pClassName,
                                ULONG * pFormat,
                                String * pAppName,
                                String * pFullTypeName,
                                String * pShortTypeName,
                                long nFileFormat = SOFFICE_FILEFORMAT_CURRENT ) const;
-    void            FillTransferableObjectDescriptor( TransferableObjectDescriptor& rDesc ) const;
     SvGlobalName    GetClassName() const
                     { return SvPseudoObject::GetClassName(); }
     String          GetFullTypeName() const
@@ -170,10 +169,6 @@ public:
 
     void            SendViewChanged();
     void            ViewChanged( USHORT nAspect);
-
-    virtual ::com::sun::star::uno::Reference<
-                        ::com::sun::star::datatransfer::XTransferable >
-        CreateTransferableSnapshot();
 
     GDIMetaFile& GetGDIMetaFile( GDIMetaFile& );
     virtual BOOL SetData( const String& rData );
@@ -253,5 +248,7 @@ public:
     void SetInfoViewAspect( UINT32 nAspect ) { nViewAspect = nAspect; }
     UINT32          GetViewAspect() const;
 };
+
+}
 
 #endif // _EMBOBJ_HXX

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: factory.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:24:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:42:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 #include <bf_so3/so2ref.hxx>
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 #ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
@@ -57,8 +57,7 @@
 #include "bf_so3/so3dllapi.h"
 #endif
 
-/*************************************************************************
-*************************************************************************/
+namespace binfilter {
 class SvObject;
 class SvStorage;
 class SvFactory_Impl;
@@ -156,5 +155,7 @@ public:                                                             \
                               const String & rClassName,              \
                               CreateInstanceType pCreateFuncP )       \
             : SvFactory( rName, rClassName, pCreateFuncP )
+
+}
 
 #endif

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: applet.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:23:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:41:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,16 +37,20 @@
 #define _APPLET_HXX
 
 #include <bf_so3/ipobj.hxx>
-#include <svtools/ownlist.hxx>
+#include <bf_svtools/ownlist.hxx>
 
 #ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
 #endif
 //=========================================================================
-struct SvAppletData_Impl;
 class INetURLObject;
 class SjApplet;
 class RmAppletObject;
+
+namespace binfilter {
+
+struct SvAppletData_Impl;
+
 class SO3_DLLPUBLIC SvAppletObject : public SvInPlaceObject
 /*  [Beschreibung]
 
@@ -126,5 +130,7 @@ public:
 };
 
 SO2_DECL_IMPL_REF(SvAppletObject)
+
+}
 
 #endif // _Applet_HXX
