@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chartlis.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:24:45 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:11:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef SC_COLLECT_HXX
 #include "collect.hxx"
