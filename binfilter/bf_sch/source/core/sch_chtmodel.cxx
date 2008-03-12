@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:16:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:22:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@ class SbxArray;
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
@@ -92,7 +92,7 @@ class SbxArray;
 #define ITEMID_LANGUAGE           EE_CHAR_LANGUAGE
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #include <bf_svx/chrtitem.hxx>
@@ -121,7 +121,7 @@ class SbxArray;
 #endif
 // header for class SvtLinguConfig
 #ifndef _SVTOOLS_LINGUCFG_HXX_
-#include <svtools/lingucfg.hxx>
+#include <bf_svtools/lingucfg.hxx>
 #endif
 // header for getProcessServiceFactory
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
@@ -176,7 +176,7 @@ class SbxArray;
 #include <vos/xception.hxx>
 #endif
 #ifndef _UNDO_HXX
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -184,7 +184,7 @@ class SbxArray;
 #endif
 namespace binfilter {
 
-using namespace ::rtl;
+using ::rtl::OUString;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
