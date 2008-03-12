@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlsheet.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:21:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:30:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,8 +45,8 @@
 #include <bf_svx/eeitem.hxx>
 #endif
 
-#include <svtools/itemset.hxx>
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/itemset.hxx>
+#include <bf_svtools/smplhint.hxx>
 #include <bf_svx/xdef.hxx>
 #include <bf_svx/svddef.hxx>
 #include <bf_svx/svdoattr.hxx>
@@ -56,7 +56,6 @@
 #include "drawdoc.hxx"
 #include "stlpool.hxx"
 #include "glob.hrc"
-#include "app.hrc"
 #include "glob.hxx"
 
 namespace binfilter {
