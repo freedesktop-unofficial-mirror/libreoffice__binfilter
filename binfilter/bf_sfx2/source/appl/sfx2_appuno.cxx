@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:25:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:01:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,16 +38,16 @@
 
 #include "appuno.hxx"
 
-#include <svtools/itempool.hxx>
-#include <svtools/rectitem.hxx>
+#include <bf_svtools/itempool.hxx>
+#include <bf_svtools/rectitem.hxx>
 #include <tools/urlobj.hxx>
 #include <bf_basic/sbmeth.hxx>
 #include <bf_basic/basmgr.hxx>
 #include <bf_basic/sbxcore.hxx>
 #include <bf_basic/sbx.hxx>
-#include <svtools/stritem.hxx>
-#include <svtools/intitem.hxx>
-#include <svtools/eitem.hxx>
+#include <bf_svtools/stritem.hxx>
+#include <bf_svtools/intitem.hxx>
+#include <bf_svtools/eitem.hxx>
 
 #include <com/sun/star/io/XInputStream.hpp>
 #include <com/sun/star/io/XOutputStream.hpp>
