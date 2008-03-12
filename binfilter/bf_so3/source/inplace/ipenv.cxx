@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ipenv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:46:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:13:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,6 +57,8 @@
 #include <ipmenu.hxx>
 
 class INetURLObject;
+
+namespace binfilter {
 
 //=========================================================================
 //==========SvContainerEnvironment=========================================
@@ -119,7 +121,7 @@ ByteString SvPrint( const Rectangle & rRect )
 //=========================================================================
 SO2_IMPL_INTERFACE1(SvAppFrame,SvObject)
 
-IUnknown * SvAppFrame::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvAppFrame::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -158,7 +160,7 @@ SvAppFrame::~SvAppFrame()
 //=========================================================================
 SO2_IMPL_INTERFACE1(SvDocFrame,SvObject)
 
-IUnknown * SvDocFrame::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvDocFrame::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -213,7 +215,6 @@ static void InsertInContList( SvContainerEnvironment * p )
     , nCount2       ( 0 )           \
     , nCount3       ( 0 )           \
     , nMenuUseCount ( 0 )           \
-    , pOleMenu      ( NULL )        \
     , pAccel        ( NULL )        \
     , aClipAreaPixel( 0, 0, 0x7FFF, 0x7FFF )    \
     , bDfltUIAction ( TRUE )        \
@@ -480,32 +481,6 @@ Window * SvContainerEnvironment::GetEditWin() const
 }
 
 /************************************************************************
-|*    SvContainerEnvironment::SetMenu()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::DeleteMenu()
-{
-    delete pOleMenu;
-    pOleMenu = NULL;
-}
-
-/************************************************************************
-|*    SvContainerEnvironment::SetMenu()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::SetMenu( MenuBar * pOleMenuP, USHORT nCount1P,
-                                USHORT nCount2P, USHORT nCount3P )
-{
-    DBG_ASSERT( !nMenuUseCount, "SvContainerEnvironment::SetMenu - protocol error: menu selected" )
-    pOleMenu = pOleMenuP;
-    nCount1  = nCount1P;
-    nCount2  = nCount2P;
-    nCount3  = nCount3P;
-}
-
-/************************************************************************
 |*    SvContainerEnvironment::DoQueryMenu()
 |*
 |*    Beschreibung
@@ -523,31 +498,12 @@ MenuBar * SvContainerEnvironment::DoQueryMenu( USHORT * p0, USHORT * p1, USHORT 
 *************************************************************************/
 MenuBar * SvContainerEnvironment::QueryMenu
 (
-    USHORT * p0,
-    USHORT * p1,
-    USHORT * p2
+    USHORT * ,
+    USHORT * ,
+    USHORT *
 )
 {
-    *p0 = *p1 = *p2 = 0;
-    if( pObj && !pObj->Owner() )
-    {
-        if( pOleMenu )
-        {
-            delete pOleMenu;
-            pOleMenu = NULL;
-            nCount1 = nCount2 = nCount3 = 0;
-        }
-    }
-
-    if( pOleMenu )
-    {
-        *p0 = nCount1;
-        *p1 = nCount2;
-        *p2 = nCount3;
-    }
-    else if( pParent )
-        return pParent->QueryMenu( p0, p1, p2 );
-    return pOleMenu;
+    return 0;
 }
 
 /************************************************************************
@@ -555,33 +511,8 @@ MenuBar * SvContainerEnvironment::QueryMenu
 |*
 |*    Beschreibung
 *************************************************************************/
-void SvContainerEnvironment::SetInPlaceMenu( MenuBar * pIPMenu, BOOL bSet )
+void SvContainerEnvironment::SetInPlaceMenu( MenuBar *, BOOL )
 {
-    if( !bDfltUIAction )
-        return;
-
-    if( pParent )
-    {
-        pParent->SetInPlaceMenu( pIPMenu, bSet );
-        return;
-    }
-
-    if( !pObj || pObj->Owner() )
-    {
-        WorkWindow * pW = GetDocWin();
-        if( !pW )
-            pW = GetTopWin();
-        if( bSet )
-        {
-            if( pW )
-                pW->SetMenuBar( pIPMenu );
-        }
-        else
-        {
-            if( pW && (pIPMenu == pW->GetMenuBar()) )
-                pW->SetMenuBar( NULL );
-        }
-    }
 }
 
 /************************************************************************
@@ -1081,7 +1012,6 @@ SvInPlaceEnvironment::SvInPlaceEnvironment( SvContainerEnvironment * pCl,
     , bDeleteEditWin( FALSE )
     , pUIMenu( NULL )
     , pClientMenu( NULL )
-    , pObjMenu( NULL )
     , pClipWin( NULL )
     , pBorderWin( NULL )
     , pEditWin( NULL )
@@ -1103,15 +1033,7 @@ SvInPlaceEnvironment::~SvInPlaceEnvironment()
 
 //=========================================================================
 void SvInPlaceEnvironment::DeleteObjMenu()
-/*  [Beschreibung]
-
-    Das Menu welches mit <SvInPLaceEnvironment::SetObjMenu> eingesetzt
-    wurde, wird gel"oscht. Die Methode darf auch gerufen werden, wenn
-    vorher kein Menu eingesetzt wurde.
-*/
 {
-    delete pObjMenu;
-    pObjMenu = NULL;
 }
 
 //=========================================================================
@@ -1145,72 +1067,22 @@ void SvInPlaceEnvironment::DeleteEditWin()
 //=========================================================================
 MenuBar * SvInPlaceEnvironment::QueryMenu
 (
-    USHORT * pCount0,
-    USHORT * pCount1,
-    USHORT * pCount2
+    USHORT *,
+    USHORT *,
+    USHORT *
 )
 {
-    if( pObjMenu )
-        return pObjMenu->GetBlocks( pCount0, pCount1, pCount2 );
     return NULL;
 }
 
 /*************************************************************************/
 void SvInPlaceEnvironment::MergeMenus()
 {
-    if( !pUIMenu )
-    { // kein Menu mehr da
-
-        USHORT    nC[ 3 ], nO[ 3 ];
-
-        pClientMenu = pContEnv->QueryMenu( &nC[0], &nC[1], &nC[2] );
-        // Es muss ein Objekt-Menu zurueckgegeben werden
-        pUIMenu    = QueryMenu( &nO[0], &nO[1], &nO[2] );
-        if( pClientMenu && pUIMenu )
-        {
-            USHORT nOff = 0;
-            USHORT  nCOff = 0;
-
-            for( USHORT i = 0; i < 3; i++ )
-            {
-                for( USHORT n = 0; n < nC[ i ]; n++ )
-                {
-                    USHORT nId = pClientMenu->GetItemId( nCOff++ );
-                    PopupMenu * pPopup = pClientMenu->GetPopupMenu( nId );
-                    // Gegen falsche Items oder Counts absichern
-                    if( pPopup )
-                    {
-                        pUIMenu->InsertItem( nId,
-                              pClientMenu->GetItemText( nId ), 0, nOff++ );
-                        pUIMenu->SetPopupMenu( nId, pPopup );
-                    }
-                    else
-                        break; // Menu oder Counts sind falsch
-                }
-                nOff = nOff + nO[ i ]; // um Objekt-Menublock weiterzaehlen
-            }
-        }
-    }
 }
 
 /*************************************************************************/
 void SvInPlaceEnvironment::ReleaseClientMenu()
 {
-    if( pClientMenu && pUIMenu )
-    { // Client-Items aus OleMenu entfernen
-        for( USHORT i = 0; i < pClientMenu->GetItemCount(); i++ )
-        {
-            USHORT nId =  pClientMenu->GetItemId( i );
-            USHORT nPos = pUIMenu->GetItemPos( nId  );
-            pUIMenu->RemoveItem( nPos );
-        }
-    }
-    if( pClientMenu )
-    { // Client benachrichtigen, dass das Menu freigegeben werden kann
-        pContEnv->DoMenuReleased( pUIMenu );
-        pClientMenu = NULL;
-    }
-    pUIMenu = NULL;
 }
 
 /*************************************************************************/
@@ -1564,3 +1436,4 @@ BOOL SvInPlaceEnvironment::DispatchAccel( const KeyCode & )
     return FALSE;
 }
 
+}
