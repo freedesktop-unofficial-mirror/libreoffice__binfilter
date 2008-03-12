@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:29:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:10:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@
 #include <vcl/mapmod.hxx>
 #endif
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
@@ -61,7 +61,7 @@
 #include <tools/datetime.hxx>
 #endif
 #ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
+#include <bf_svtools/hint.hxx>
 #endif
 
 #ifndef _SVX_PAGEITEM_HXX
@@ -84,17 +84,19 @@ class OutputDevice;
 
 #include <vos/ref.hxx>
 class AutoTimer;
+class SotStorage;
+namespace binfilter {
+
+class SvNumberFormatter;
+
+class SvStorageRef;
+class SvPersist;
 class SfxItemPool;
 class SfxItemSet;
 class SfxRepeatTarget;
 class SfxStyleSheet;
 class SfxStyleSheetBasePool;
 class SfxUndoAction;
-class SvPersist;
-class SvNumberFormatter;
-class SotStorage;
-class SvStorageRef;
-namespace binfilter {
 
 #if defined(UNX) || defined(WIN) || defined(WNT)
 #define DEGREE_CHAR ((sal_Unicode)176)   /* 0xB0 = Ansi */
@@ -697,7 +699,7 @@ public:
     // Der StyleSheetPool wird der DrawingEngine nur bekanntgemacht.
     // Zu loeschen hat ihn schliesslich der, der ihn auch konstruiert hat.
     SfxStyleSheetBasePool* GetStyleSheetPool() const         { return pStyleSheetPool; }
-    void SetStyleSheetPool(SfxStyleSheetBasePool* pPool)     { pStyleSheetPool=pPool; }
+    void SetStyleSheetPool(SfxStyleSheetBasePool* pPool)    { pStyleSheetPool = pPool; }
 
     // Strings werden beim rausstreamen in den am Stream eingestellten
     // StreamCharSet konvertiert.
