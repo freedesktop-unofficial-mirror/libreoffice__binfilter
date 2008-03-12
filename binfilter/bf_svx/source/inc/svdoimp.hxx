@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdoimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:10:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:29:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SV_TIMER_HXX
@@ -83,9 +83,9 @@
 #include "xenum.hxx"
 #endif
 class PolyPolygon;
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemSet;
 class SdrObject;
 class ExtOutputDevice;
 class XFillAttrSetItem;
