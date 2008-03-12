@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fmturl.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:46:00 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:41:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,10 +39,10 @@
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
-class ImageMap;
 class IntlWrapper;
 
 namespace binfilter {
+class ImageMap;
 
 
 // URL, ServerMap und ClientMap
