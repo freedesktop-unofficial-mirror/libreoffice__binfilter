@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdattr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:36:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:35:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -88,7 +88,7 @@
 #include "svdpool.hxx"
 
 #ifndef _SOLAR_HRC
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #endif
 
 #ifndef _SVX_XMLCNITM_HXX
