@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_ddelink.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:45:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:55:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 
 #include "ddelink.hxx"
 #include "document.hxx"
@@ -52,7 +52,7 @@
 #include "hints.hxx"
 namespace binfilter {
 
-/*N*/ TYPEINIT2(ScDdeLink,::so3::SvBaseLink,SfxBroadcaster);
+/*N*/ TYPEINIT2(ScDdeLink,::binfilter::SvBaseLink,SfxBroadcaster);
 
 #ifdef PM2
 #define DDE_TXT_ENCODING    RTL_TEXTENCODING_IBM_850
@@ -66,7 +66,7 @@ namespace binfilter {
 
 /*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, const String& rA, const String& rT, const String& rI,
 /*N*/                       BYTE nM ) :
-/*N*/   ::so3::SvBaseLink(so3::LINKUPDATE_ALWAYS,FORMAT_STRING),
+/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ALWAYS,FORMAT_STRING),
 /*N*/   pDoc( pD ),
 /*N*/   aAppl( rA ),
 /*N*/   aTopic( rT ),
@@ -85,7 +85,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, const ScDdeLink& rOther ) :
-/*N*/   ::so3::SvBaseLink(so3::LINKUPDATE_ALWAYS,FORMAT_STRING),
+/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ALWAYS,FORMAT_STRING),
 /*N*/   pDoc    ( pD ),
 /*N*/   aAppl   ( rOther.aAppl ),
 /*N*/   aTopic  ( rOther.aTopic ),
@@ -99,7 +99,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr ) :
-/*N*/   ::so3::SvBaseLink(so3::LINKUPDATE_ALWAYS,FORMAT_STRING),
+/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ALWAYS,FORMAT_STRING),
 /*N*/   pDoc( pD ),
 /*N*/   pResult( NULL ),
 /*N*/   bNeedUpdate( FALSE )
