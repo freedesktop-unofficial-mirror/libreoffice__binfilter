@@ -4,9 +4,9 @@
  *
  *  $RCSfile: reffld.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:21:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:46:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,10 +38,9 @@
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
 #endif
-class SfxPoolItem;
 namespace binfilter {
 
-
+class SfxPoolItem;
 class SwDoc;
 class SwTxtAttr;
 class SwTxtNode;
