@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:37:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:27:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@
 
 
 #include <flditem.hxx>
-#include <svtools/transfer.hxx>
 
 namespace binfilter {
 
@@ -107,8 +106,6 @@ using namespace ::com::sun::star::linguistic2;
 
 /*N*/ ImpEditView::~ImpEditView()
 /*N*/ {
-/*N*/     RemoveDragAndDropListeners();
-/*N*/
 /*N*/     if ( pOutWin && ( pOutWin->GetCursor() == pCursor ) )
 /*N*/       pOutWin->SetCursor( NULL );
 /*N*/
@@ -419,22 +416,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return NULL;
 /*N*/ }
 
-/*N*/ void ImpEditView::RemoveDragAndDropListeners()
-/*N*/ {
-/*N*/     if ( bActiveDragAndDropListener && GetWindow() && GetWindow()->GetDragGestureRecognizer().is() )
-/*N*/     {
-/*N*/         uno::Reference< datatransfer::dnd::XDragGestureListener> xDGL( mxDnDListener, uno::UNO_QUERY );
-/*N*/         GetWindow()->GetDragGestureRecognizer()->removeDragGestureListener( xDGL );
-/*N*/         uno::Reference< datatransfer::dnd::XDropTargetListener> xDTL( xDGL, uno::UNO_QUERY );
-/*N*/         GetWindow()->GetDropTarget()->removeDropTargetListener( xDTL );
-/*N*/
-/*N*/         if ( mxDnDListener.is() )
-/*N*/         {
-/*N*/             uno::Reference< lang::XEventListener> xEL( mxDnDListener, uno::UNO_QUERY );
-/*N*/             xEL->disposing( lang::EventObject() );  // #95154# Empty Source means it's the Client
-/*N*/             mxDnDListener.clear();
-/*N*/         }
-/*N*/
-/*N*/         bActiveDragAndDropListener = FALSE;
-/*N*/     }
-/*N*/ }}
+}
