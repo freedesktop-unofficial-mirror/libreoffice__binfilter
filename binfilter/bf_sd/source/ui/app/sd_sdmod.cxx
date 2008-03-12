@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:22:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:33:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,234 +33,125 @@
  *
  ************************************************************************/
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
-#endif
 
-#ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
-#endif
+#include <bf_svtools/ehdl.hxx>
 
-#define ITEMID_SEARCH           SID_SEARCH_ITEM
-#include <bf_svx/svxids.hrc>
-#include <bf_offmgr/ofaids.hrc>
-
-#ifdef _MSC_VER
-#pragma hdrstop
-#endif
+#include <bf_svx/eeitem.hxx>
+#include <bf_svx/svdfield.hxx>
+#include <bf_svx/outliner.hxx>
 
 #define _SD_DLL                 // fuer SD_MOD()
-#include "sdresid.hxx"
 #include "optsitem.hxx"
-#include "docshell.hxx"
+#include "bf_sd/docshell.hxx"
 #include "drawdoc.hxx"
-#include "app.hrc"
 #include "glob.hrc"
 #include "strings.hrc"
-#include "res_bmp.hrc"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {
 
-/*N*/ TYPEINIT1( SdModuleDummy, SfxModule );
-/*N*/ TYPEINIT1( SdModule, SdModuleDummy );
+TYPEINIT1( SdModuleDummy, SfxModule );
+TYPEINIT1( SdModule, SdModuleDummy );
 
-/*N*/ SFX_IMPL_MODULE_DLL(Sd)
+SFX_IMPL_MODULE_DLL(Sd)
 
-/*************************************************************************
-|*
-|* Ctor
-|*
-\************************************************************************/
+SdModule::SdModule(SvFactory* pDrawObjFact, SvFactory* pGraphicObjFact)
+: SdModuleDummy(SFX_APP()->CreateResManager("bf_sd"), FALSE, pDrawObjFact, pGraphicObjFact)
+, pImpressOptions(NULL)
+, pDrawOptions(NULL)
+{
+    SetName( UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "StarDraw" ) ) );  // Nicht uebersetzen!
+    StartListening( *SFX_APP() );
 
-/*N*/ SdModule::SdModule(SvFactory* pDrawObjFact, SvFactory* pGraphicObjFact)
-/*N*/ :   SdModuleDummy(SFX_APP()->CreateResManager("bf_sd"), FALSE,        //STRIP005
-/*N*/                 pDrawObjFact, pGraphicObjFact),
-/*N*/   bWaterCan(FALSE),
-/*N*/   pTransferClip(NULL),
-/*N*/   pTransferDrag(NULL),
-/*N*/     pTransferSelection(NULL),
-/*N*/   pImpressOptions(NULL),
-/*N*/   pDrawOptions(NULL),
-/*N*/   pNumberFormatter( NULL )
-/*N*/ {
-/*N*/   SetName( UniString::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "StarDraw" ) ) );  // Nicht uebersetzen!
-/*N*/   StartListening( *SFX_APP() );
-/*N*/
-/*N*/   mpErrorHdl = new SfxErrorHandler( RID_SD_ERRHDL,
-/*N*/                                        ERRCODE_AREA_SD,
-/*N*/                                        ERRCODE_AREA_SD_END,
-/*N*/                                        GetResMgr() );
-/*N*/
-/*N*/     mpVirtualRefDevice = new VirtualDevice;
-/*N*/     mpVirtualRefDevice->SetMapMode( MAP_100TH_MM );
-/*N*/ }
+    mpErrorHdl = new SfxErrorHandler( RID_SD_ERRHDL,
+                                         ERRCODE_AREA_SD,
+                                         ERRCODE_AREA_SD_END,
+                                         GetResMgr() );
 
+    mpVirtualRefDevice = new VirtualDevice;
+    mpVirtualRefDevice->SetMapMode( MAP_100TH_MM );
+}
 
-
-/*************************************************************************
-|*
-|* Dtor
-|*
-\************************************************************************/
-
-/*N*/ SdModule::~SdModule()
-/*N*/ {
-/*N*/   if( pNumberFormatter )
-/*N*/       delete pNumberFormatter;
-
-/*N*/   delete mpErrorHdl;
-/*N*/     delete static_cast< VirtualDevice* >( mpVirtualRefDevice );
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|* Statusbar erzeugen
-|*
-\************************************************************************/
-
-#define AUTOSIZE_WIDTH  180
-#define TEXT_WIDTH(s)   rStatusBar.GetTextWidth((s))
-
-
-
-
-/*************************************************************************
-|*
-|* Modul laden (nur Attrappe fuer das Linken der DLL)
-|*
-\************************************************************************/
+SdModule::~SdModule()
+{
+    delete mpErrorHdl;
+    delete static_cast< VirtualDevice* >( mpVirtualRefDevice );
+}
 
 SfxModule* SdModuleDummy::Load()
 {
     return (NULL);
 }
 
-/*************************************************************************
-|*
-|* Modul laden
-|*
-\************************************************************************/
-
 SfxModule* SdModule::Load()
 {
     return (this);
 }
 
-/*************************************************************************
-|*
-|* get notifications
-|*
-\************************************************************************/
+IMPL_LINK(SdModule, CalcFieldValueHdl, EditFieldInfo*, pInfo)
+{
+    if( pInfo )
+    {
+        const String aStr( RTL_CONSTASCII_STRINGPARAM( "???" ) );
+        pInfo->SetRepresentation( aStr );
+    }
 
-/*N*/ void SdModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
-/*N*/ {
-/*N*/   if( rHint.ISA( SfxSimpleHint ) &&
-/*N*/       ( (SfxSimpleHint&) rHint ).GetId() == SFX_HINT_DEINITIALIZING )
-/*N*/   {
-/*N*/       delete pImpressOptions, pImpressOptions = NULL;
-/*N*/       delete pDrawOptions, pDrawOptions = NULL;
-/*N*/   }
-/*N*/ }
+    return(0);
+}
 
-/*************************************************************************
-|*
-|* Modul freigeben
-|*
-\************************************************************************/
+void SdModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+{
+    if( rHint.ISA( SfxSimpleHint ) &&
+        ( (SfxSimpleHint&) rHint ).GetId() == SFX_HINT_DEINITIALIZING )
+    {
+         delete pImpressOptions, pImpressOptions = NULL;
+         delete pDrawOptions, pDrawOptions = NULL;
+    }
+}
 
 void SdModule::Free()
 {
 }
 
-/*************************************************************************
-|*
-|* Optionen zurueckgeben
-|*
-\************************************************************************/
+SdOptions* SdModule::GetSdOptions(DocumentType eDocType)
+{
+    SdOptions* pOptions = NULL;
+    if (eDocType == DOCUMENT_TYPE_DRAW)
+    {
+        if (!pDrawOptions)
+            pDrawOptions = new SdOptions( SDCFG_DRAW );
+        pOptions = pDrawOptions;
+    }
+    else if (eDocType == DOCUMENT_TYPE_IMPRESS)
+    {
+        if (!pImpressOptions)
+            pImpressOptions = new SdOptions( SDCFG_IMPRESS );
+        pOptions = pImpressOptions;
+    }
+    if( pOptions )
+     {
+         UINT16 nMetric = pOptions->GetMetric();
+         SdDrawDocShell* pDocSh = PTR_CAST( SdDrawDocShell, SfxObjectShell::Current() );
+         SdDrawDocument* pDoc = NULL;
+         if (pDocSh)
+            pDoc = pDocSh->GetDoc();
+        if( nMetric != 0xffff && pDoc && eDocType == pDoc->GetDocumentType() )
+            PutItem( SfxUInt16Item( SID_ATTR_METRIC, nMetric ) );
+    }
+    return(pOptions);
+}
 
-/*N*/ SdOptions* SdModule::GetSdOptions(DocumentType eDocType)
-/*N*/ {
-/*N*/   SdOptions* pOptions = NULL;
-/*N*/
-/*N*/   if (eDocType == DOCUMENT_TYPE_DRAW)
-/*N*/   {
-/*N*/       if (!pDrawOptions)
-/*N*/           pDrawOptions = new SdOptions( SDCFG_DRAW );
-/*N*/
-/*N*/       pOptions = pDrawOptions;
-/*N*/   }
-/*N*/   else if (eDocType == DOCUMENT_TYPE_IMPRESS)
-/*N*/   {
-/*N*/       if (!pImpressOptions)
-/*N*/           pImpressOptions = new SdOptions( SDCFG_IMPRESS );
-/*N*/
-/*N*/       pOptions = pImpressOptions;
-/*N*/   }
-/*N*/   if( pOptions )
-/*N*/   {
-/*N*/       UINT16 nMetric = pOptions->GetMetric();
-/*N*/
-/*N*/       SdDrawDocShell* pDocSh = PTR_CAST( SdDrawDocShell, SfxObjectShell::Current() );
-/*N*/       SdDrawDocument* pDoc = NULL;
-/*N*/       if (pDocSh)
-/*?*/           pDoc = pDocSh->GetDoc();
-/*N*/
-/*N*/       if( nMetric != 0xffff && pDoc && eDocType == pDoc->GetDocumentType() )
-/*?*/           PutItem( SfxUInt16Item( SID_ATTR_METRIC, nMetric ) );
-/*N*/   }
-/*N*/
-/*N*/   return(pOptions);
-/*N*/ }
+OutputDevice* SdModule::GetVirtualRefDevice (void)
+{
+    return mpVirtualRefDevice;
+}
 
-/*************************************************************************
-|*
-|* Optionen-Stream fuer interne Options oeffnen und zurueckgeben;
-|* falls der Stream zum Lesen geoeffnet wird, aber noch nicht
-|* angelegt wurde, wird ein 'leeres' RefObject zurueckgegeben
-|*
-\************************************************************************/
+OutputDevice* SdModule::GetRefDevice (SdDrawDocShell& rDocShell)
+{
+    return GetVirtualRefDevice();
+}
 
 
-/*************************************************************************
-|*
-\************************************************************************/
-
-/*N*/ SvNumberFormatter* SdModule::GetNumberFormatter()
-/*N*/ {
-/*N*/   if( !pNumberFormatter )
-/*N*/       pNumberFormatter = new SvNumberFormatter( ::legacy_binfilters::getLegacyProcessServiceFactory(), LANGUAGE_SYSTEM );
-/*N*/
-/*N*/   return pNumberFormatter;
-/*N*/ }
-
-/*************************************************************************
-|*
-\************************************************************************/
-
-/*N*/ OutputDevice* SdModule::GetVirtualRefDevice (void)
-/*N*/ {
-/*N*/     return mpVirtualRefDevice;
-/*N*/ }
-
-/** This method is deprecated and only an alias to
-    <member>GetVirtualRefDevice()</member>.  The given argument is ignored.
-*/
-/*N*/ OutputDevice* SdModule::GetRefDevice (SdDrawDocShell& rDocShell)
-/*N*/ {
-/*N*/     return GetVirtualRefDevice();
-/*N*/ }
-
-
-/*************************************************************************
-|*
-\************************************************************************/
-
-} //namespace binfilter
+}
