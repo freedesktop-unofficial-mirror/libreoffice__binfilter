@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docfile.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:21:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:35:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,22 +69,23 @@
 #include <tools/list.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
-#include <svtools/cancel.hxx>
+#include <bf_svtools/cancel.hxx>
 #include <cppuhelper/weak.hxx>
 
 #include <bf_sfx2/sfxuno.hxx>
 #include <bf_sfx2/docinf.hxx>
-class SvKeyValueIterator;
-class INetURLObject;
 class Timer;
-class SfxItemSet;
 class DateTime;
 class SvStringsDtor;
 class SvEaMgr;
+class INetURLObject;
 namespace binfilter {
+class SvKeyValueIterator;
+
+class SfxItemSet;
 
 class SfxObjectFactory;
 class SfxFilter;
