@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unotxdoc.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:14:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:54:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include <swtypes.hxx>
 
 #include <bf_sfx2/request.hxx>
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 
 #ifndef _SV_IMAGE_HXX
 #include <vcl/image.hxx>
@@ -80,13 +80,13 @@
 #include <swprtopt.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _UNOTXDOC_HXX //autogen
 #include <unotxdoc.hxx>
 #endif
 #ifndef _NUMUNO_HXX
-#include <svtools/numuno.hxx>
+#include <bf_svtools/numuno.hxx>
 #endif
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
@@ -122,7 +122,7 @@
 #include <unodraw.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _PAGEDESC_HXX //autogen
 #include <pagedesc.hxx>
@@ -134,7 +134,7 @@
 #include <unoobj.hxx>
 #endif
 #ifndef _TXTCMP_HXX //autogen
-#include <svtools/txtcmp.hxx>
+#include <bf_svtools/txtcmp.hxx>
 #endif
 #ifndef _UNOCRSR_HXX //autogen
 #include <unocrsr.hxx>
@@ -241,7 +241,7 @@
 #include <bf_svx/forbiddencharacterstable.hxx>
 #endif
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
