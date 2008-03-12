@@ -4,9 +4,9 @@
  *
  *  $RCSfile: soconv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:48:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:15:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,6 +42,7 @@
 #include <bf_so3/ipobj.hxx>
 #include <sot/exchange.hxx>
 
+namespace binfilter {
 
 // Vordefinierte OLE-1-IDs
 // Unter Windows koennen wir uns noch auf die RegDB stuerzen, sonst
@@ -416,4 +417,4 @@ BOOL SvEmbeddedObject::LoadStarObjectPicture( SvStream& rSrc, GDIMetaFile& rMTF 
     return TRUE;
 }
 
-
+}

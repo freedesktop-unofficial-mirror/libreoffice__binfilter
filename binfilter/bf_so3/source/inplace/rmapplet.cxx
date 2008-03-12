@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rmapplet.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:48:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:15:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,6 +51,7 @@
 
 #include <RmApplet.hxx>
 
+namespace binfilter {
 
 // Attention :  MT_LINK should be here temporarily only for testing
 // and is supposed to be moved into SV !
@@ -412,5 +413,6 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
 }
 
 
+}
 
 #endif // REMOTE_VERSION
