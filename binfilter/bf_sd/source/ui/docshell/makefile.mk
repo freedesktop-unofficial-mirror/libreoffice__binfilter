@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: obo $ $Date: 2007-03-09 14:38:51 $
+#   last change: $Author: rt $ $Date: 2008-03-12 07:34:23 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -27,7 +27,7 @@
 #     Lesser General Public License for more details.
 #
 #     You should have received a copy of the GNU Lesser General Public
-#     License along with this library; if not, write to the Free Software
+#     License along with this library; if not, write to the FreeSoftware
 #     Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 #     MA  02111-1307  USA
 #
@@ -56,8 +56,6 @@ INC+= -I$(PRJ)$/inc$/bf_sd
 
 SLOFILES =	\
         $(SLO)$/sd_docshell.obj \
-        $(SLO)$/sd_docshel2.obj \
-        $(SLO)$/sd_docshel4.obj \
         $(SLO)$/sd_grdocsh.obj
 
 # --- Tagets -------------------------------------------------------
