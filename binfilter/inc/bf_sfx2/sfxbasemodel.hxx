@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfxbasemodel.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:07:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:39:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -130,7 +130,7 @@
 //________________________________________________________________________________________________________
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #include <tools/debug.hxx> //for strip
 namespace binfilter {
