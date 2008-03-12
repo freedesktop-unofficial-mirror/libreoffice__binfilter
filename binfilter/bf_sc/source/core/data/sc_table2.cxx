@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:29:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:52:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@
 #include <tools/urlobj.hxx>
 #include <math.h>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
-#include <svtools/PasswordHelper.hxx>
+#include <bf_svtools/PasswordHelper.hxx>
 #endif
 #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
@@ -1886,7 +1886,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/
 /*N*/                   rStream >> nLinkMode;
 /*N*/                   rStream.ReadByteString( aLinkDoc, rStream.GetStreamCharSet() );
-/*N*/                   aLinkDoc = so3::StaticBaseUrl::RelToAbs( aLinkDoc );
+/*N*/                   aLinkDoc = ::binfilter::StaticBaseUrl::RelToAbs( aLinkDoc );
 /*N*/                   rStream.ReadByteString( aLinkFlt, rStream.GetStreamCharSet() );
 /*N*/                   rStream.ReadByteString( aLinkTab, rStream.GetStreamCharSet() );
 /*N*/
@@ -2030,7 +2030,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   String aSaveName( aName );
 /*N*/   if ( nLinkMode )
 /*N*/   {
-/*N*/       aLinkDocSaveName = so3::StaticBaseUrl::AbsToRel( aLinkDocSaveName );
+/*N*/       aLinkDocSaveName = ::binfilter::StaticBaseUrl::AbsToRel( aLinkDocSaveName );
 /*N*/       aLinkDocSaveName = INetURLObject::decode( aLinkDocSaveName,
 /*N*/           INET_HEX_ESCAPE, INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/         if ( ScGlobal::pTransliteration->isEqual( aLinkDocSaveName,
