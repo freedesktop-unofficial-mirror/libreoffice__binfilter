@@ -4,9 +4,9 @@
  *
  *  $RCSfile: plfilter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:45:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:12:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,6 +48,8 @@ using namespace std;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
 using namespace com::sun::star::plugin;
+
+namespace binfilter {
 
 struct ltstr
 {
@@ -127,5 +129,7 @@ void fillNetscapePluginFilters( Sequence< rtl::OUString >& rPluginNames, Sequenc
     else
         ShowServiceNotAvailableError( NULL,
             String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "com.sun.star.plugin.PluginManager" ) ), TRUE );
+}
+
 }
 

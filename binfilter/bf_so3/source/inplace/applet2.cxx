@@ -4,9 +4,9 @@
  *
  *  $RCSfile: applet2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:45:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:12:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,6 +68,8 @@ using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::registry;
+
+namespace binfilter {
 
 #define SoResId( id )   ResId( id, *SOAPP->GetResMgr() )
 
@@ -321,70 +323,8 @@ SvAppletObject::~SvAppletObject()
 
 //=========================================================================
 BOOL SvAppletObject::StartApplet()
-/*  [Beschreibung]
-
-    Die Methode startet das Applet. Es ist notwendig, dass das Objekt
-    im InPlace-Active ist.
-*/
 {
-    DBG_ASSERT( pImpl->aClass.Len(), "no class" )
-//#ifdef VCL
-//  return FALSE;
-//#elif defined( SOLAR_JAVA )
-#ifdef SOLAR_JAVA
-    INetURLObject aDocBase;
-    if( pImpl->pDocBase )
-        aDocBase = *pImpl->pDocBase;
-    else
-        GetClient()->GetContURL( aDocBase );
-
-    Rectangle aPosSize = GetIPEnv()->GetContainerEnv()->GetObjAreaPixel();
-    // Hoehe und Breite hinzuf"ugen
-    SvCommandList aCmdList = pImpl->aCmdList;
-//      aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "width" ) ), String( aPosSize.GetWidth() ) );
-//      aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "height" ) ), String( aPosSize.GetHeight() ) );
-
-    if( pImpl->aName.Len() )
-        aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "name" ) ), pImpl->aName );
-
-    if( pImpl->aCodeBase.Len() )
-    {
-//          INetURLObject aURL( pImpl->aCodeBase );
-////        String aMainURL( aURL.GetMainURL() );
-//          String aMainURL( aURL.GetMainURL(iNetURLObject::DECODE_TO_IURI) );
-//          if( aURL.GetProtocol() == INET_PROT_FILE
-//              && aMainURL.GetChar( (USHORT)9 ) == INET_ENC_DELIM_TOKEN )
-//          {
-//              // Laufwerksbuchstabe auf ':' patchen
-//              pImpl->aCodeBase = aMainURL;
-//              aMainURL.SetChar( 9, INET_DELIM_TOKEN );
-//          }
-//          aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "codebase" ) ), aMainURL );
-          aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "codebase" ) ), pImpl->aCodeBase );
-    }
-
-    if( pImpl->aClass.Len() )
-        aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "code" ) ), pImpl->aClass );
-    if( pImpl->bMayScript )
-        aCmdList.Append( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "mayscript" ) ), String() );
-
-    SvAppletEnvironment * pEnv = (SvAppletEnvironment *)GetIPEnv();
-    pEnv->Init(
-        ::com::sun::star::uno::Reference<
-        ::com::sun::star::uno::XComponentContext >(
-            ::com::sun::star::uno::Reference<
-            ::com::sun::star::beans::XPropertySet >(
-                ::comphelper::getProcessServiceFactory(),
-                ::com::sun::star::uno::UNO_QUERY_THROW )->getPropertyValue(
-                    ::rtl::OUString(
-                        RTL_CONSTASCII_USTRINGPARAM( "DefaultContext" ) ) ),
-            ::com::sun::star::uno::UNO_QUERY_THROW ),
-        pEnv->GetEditWin(), aDocBase, aCmdList );
-
-    return TRUE;
-#else
     return FALSE;
-#endif
 }
 
 //=========================================================================
@@ -1095,3 +1035,4 @@ BOOL SvAppletObject::IsMayScript() const
 
 
 
+}
