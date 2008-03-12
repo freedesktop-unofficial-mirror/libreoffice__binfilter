@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Button.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:27:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:43:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -179,7 +179,7 @@ void OButtonModel::write(const Reference<XObjectOutputStream>& _rxOutStream) thr
 
         _rxOutStream->writeShort( (sal_uInt16)m_eButtonType );
 
-        ::rtl::OUString sTmp = INetURLObject::decode(so3::StaticBaseUrl::AbsToRel( m_sTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
+        ::rtl::OUString sTmp = INetURLObject::decode(::binfilter::StaticBaseUrl::AbsToRel( m_sTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
         _rxOutStream << sTmp;
         _rxOutStream << m_sTargetFrame;
         writeHelpTextCompatibly(_rxOutStream);
@@ -201,7 +201,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
 
             ::rtl::OUString sTmp;
             _rxInStream >> sTmp;
-            m_sTargetURL = so3::StaticBaseUrl::RelToAbs( sTmp );
+            m_sTargetURL = ::binfilter::StaticBaseUrl::RelToAbs( sTmp );
             _rxInStream >> m_sTargetFrame;
         }
         break;
@@ -212,7 +212,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
 
             ::rtl::OUString sTmp;
             _rxInStream >> sTmp;
-            m_sTargetURL = so3::StaticBaseUrl::RelToAbs( sTmp );
+            m_sTargetURL = ::binfilter::StaticBaseUrl::RelToAbs( sTmp );
             _rxInStream >> m_sTargetFrame;
             readHelpTextCompatibly(_rxInStream);
         }
@@ -229,7 +229,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
             // URL
             ::rtl::OUString sTmp;
             _rxInStream >> sTmp;
-            m_sTargetURL = so3::StaticBaseUrl::RelToAbs( sTmp );
+            m_sTargetURL = ::binfilter::StaticBaseUrl::RelToAbs( sTmp );
 
             // target frame
             _rxInStream >> m_sTargetFrame;
