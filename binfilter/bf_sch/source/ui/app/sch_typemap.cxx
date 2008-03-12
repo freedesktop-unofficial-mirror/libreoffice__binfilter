@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_typemap.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:19:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:24:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,7 @@
 
 
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 
 #define ITEMID_AUTHOR       0

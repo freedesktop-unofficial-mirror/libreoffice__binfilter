@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode4.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:15:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:21:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #include <vcl/msgbox.hxx>
 #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _SVDORECT_HXX //autogen
 #include <bf_svx/svdorect.hxx>
@@ -68,7 +68,7 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #include <bf_svx/chrtitem.hxx>
