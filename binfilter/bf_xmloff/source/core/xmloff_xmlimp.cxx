@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlimp.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:22:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:57:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <rtl/memory.h>
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
@@ -1056,7 +1056,7 @@ const Reference< container::XNameContainer > & SvXMLImport::GetDashHelper()
     }
 
     if( !sRet.getLength() )
-        sRet = so3::StaticBaseUrl::RelToAbs( rURL );
+        sRet = ::binfilter::StaticBaseUrl::RelToAbs( rURL );
 
     return sRet;
 }
@@ -1310,7 +1310,7 @@ const SvXMLStylesContext *SvXMLImport::GetAutoStyles() const
 
 OUString SvXMLImport::GetAbsoluteReference(const OUString& rValue)
 {
-    return so3::StaticBaseUrl::RelToAbs( rValue );
+    return ::binfilter::StaticBaseUrl::RelToAbs( rValue );
 }
 
 void SvXMLImport::_CreateNumberFormatsSupplier()
