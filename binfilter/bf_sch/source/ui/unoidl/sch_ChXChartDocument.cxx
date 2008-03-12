@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:09:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:26:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,7 +60,7 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #endif
@@ -80,7 +80,7 @@
 
 // header for SvNumberFormatsSupplierObj
 #ifndef _NUMUNO_HXX
-#include <svtools/numuno.hxx>
+#include <bf_svtools/numuno.hxx>
 #endif
 
 // header for class OGuard
