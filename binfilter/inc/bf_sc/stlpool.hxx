@@ -4,9 +4,9 @@
  *
  *  $RCSfile: stlpool.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:42:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:20:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define SC_STLPOOL_HXX
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 namespace binfilter {
 
@@ -45,7 +45,7 @@ namespace binfilter {
 class ScStyleSheet;
 class ScDocument;
 
-class ScStyleSheetPool : public ::SfxStyleSheetPool
+class ScStyleSheetPool : public SfxStyleSheetPool
 {
 public:
                         ScStyleSheetPool( SfxItemPool&  rPool,
@@ -56,10 +56,10 @@ public:
     ScDocument*         GetDocument() const { return pDoc; }
 
 
-    void                SetActualStyleSheet ( ::SfxStyleSheetBase* pActStyleSheet )
+    void                SetActualStyleSheet ( SfxStyleSheetBase* pActStyleSheet )
                                 { pActualStyleSheet = pActStyleSheet; }
 
-    ::SfxStyleSheetBase*    GetActualStyleSheet ()
+    SfxStyleSheetBase*  GetActualStyleSheet ()
                                 { return pActualStyleSheet; }
 
     void                CreateStandardStyles();
@@ -70,19 +70,19 @@ public:
     void                SetForceStdName( const String* pSet );
     const String*       GetForceStdName() const { return pForceStdName; }
 
-    virtual ::SfxStyleSheetBase& Make( const String&, SfxStyleFamily eFam,
+    virtual SfxStyleSheetBase& Make( const String&, SfxStyleFamily eFam,
                                      USHORT nMask = 0xffff, USHORT nPos = 0xffff );
 
     void                ConvertFontsAfterLoad();     // old binary file format
 
 protected:
-    virtual ::SfxStyleSheetBase* Create( const String&  rName,
+    virtual SfxStyleSheetBase* Create( const String&    rName,
                                        SfxStyleFamily   eFamily,
                                        USHORT           nMask);
-    virtual ::SfxStyleSheetBase* Create( const SfxStyleSheetBase& rStyle );
+    virtual SfxStyleSheetBase* Create( const SfxStyleSheetBase& rStyle );
 
 private:
-    ::SfxStyleSheetBase*    pActualStyleSheet;
+    SfxStyleSheetBase*  pActualStyleSheet;
     ScDocument*         pDoc;
     const String*       pForceStdName;
 };
