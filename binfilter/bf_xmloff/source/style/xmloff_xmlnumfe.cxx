@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnumfe.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:06:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:00:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,10 @@
 #define _SVSTDARR_ULONGS
 #define _ZFORLIST_DECLARE_TABLE
 
-#include <svtools/zformat.hxx>
-#include <svtools/numuno.hxx>
+#include <bf_svtools/zformat.hxx>
+#include <bf_svtools/numuno.hxx>
 #ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
-#include <svtools/nfsymbol.hxx>
+#include <bf_svtools/nfsymbol.hxx>
 #endif
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
@@ -54,7 +54,7 @@
 #include "xmlnumfi.hxx"     // SvXMLNumFmtDefaults
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 
 #ifndef _XMLOFF_XMLEXP_HXX
@@ -67,7 +67,6 @@ namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
-using namespace ::svt;
 
 //-------------------------------------------------------------------------
 
