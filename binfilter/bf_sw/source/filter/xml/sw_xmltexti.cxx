@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltexti.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:11:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:40:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -576,7 +576,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertPlugin(
     // on the way.
        INetURLObject aURLObj;
     bool bValidURL = rHRef.getLength() != 0 &&
-                     aURLObj.SetURL( so3::StaticBaseUrl::RelToAbs(rHRef) );
+                     aURLObj.SetURL( ::binfilter::StaticBaseUrl::RelToAbs(rHRef) );
     bool bValidMimeType = rMimeType.getLength() != 0;
     if( !bValidURL && !bValidMimeType )
         return xPropSet;
@@ -627,7 +627,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
 
     SfxFrameDescriptor *pFrameDesc = new SfxFrameDescriptor( 0 );
 
-    pFrameDesc->SetURL( so3::StaticBaseUrl::RelToAbs( rHRef ) );
+    pFrameDesc->SetURL( ::binfilter::StaticBaseUrl::RelToAbs( rHRef ) );
     pFrameDesc->SetName( rName );
 
     ScrollingMode eScrollMode = ScrollingAuto;
