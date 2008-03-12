@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:26:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:03:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 
 #include <ucbhelper/content.hxx>
 #include <tools/urlobj.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <sot/storinfo.hxx>
 
 #ifndef _SVSTDARR_ULONGS_DECL
