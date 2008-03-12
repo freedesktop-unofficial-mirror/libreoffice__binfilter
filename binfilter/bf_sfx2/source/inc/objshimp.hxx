@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objshimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:32:32 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:09:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,13 +42,13 @@
 #include <tools/datetime.hxx>
 #endif
 
-#include <svtools/securityoptions.hxx>
+#include <bf_svtools/securityoptions.hxx>
 #include "objsh.hxx"
 #include "bitset.hxx"
-namespace svtools { class AsynchronLink; }
+
 namespace binfilter {
 
-
+class AsynchronLink;
 //====================================================================
 
 DBG_NAMEEX(SfxObjectShell)//STRIP008 ;
@@ -133,7 +133,7 @@ struct SfxObjectShell_Impl
     SfxToolBoxConfig*       pTbxConfig;
     SfxEventConfigItem_Impl* pEventConfig;
     SfxObjectShellFlags     eFlags;
-    ::svtools::AsynchronLink* pCloser;
+    AsynchronLink*          pCloser;
     String                  aBaseURL;
     sal_Bool                bReadOnlyUI;
     SvRefBaseRef            xHeaderAttributes;
