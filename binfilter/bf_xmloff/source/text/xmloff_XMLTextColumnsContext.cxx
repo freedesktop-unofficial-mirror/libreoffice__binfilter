@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextColumnsContext.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:16:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:01:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #include "XMLTextColumnsContext.hxx"
 #endif
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 namespace binfilter {
 
 using namespace ::rtl;

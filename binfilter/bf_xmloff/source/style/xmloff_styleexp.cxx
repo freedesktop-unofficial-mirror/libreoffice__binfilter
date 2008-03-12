@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_styleexp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:05:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:59:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #endif
 #ifndef _SVSTDARR_STRINGSSORTDTOR_DECL
 #define _SVSTDARR_STRINGSSORTDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
