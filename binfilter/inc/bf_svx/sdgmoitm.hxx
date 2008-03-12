@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdgmoitm.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:03:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <bf_goodies/graphicobject.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
