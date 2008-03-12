@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrtsh.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:53:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:53:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,13 +47,13 @@ namespace com { namespace sun { namespace star { namespace util {
 } } } }
 class Window;
 class SbxArray;
-class SvInPlaceObjectRef;
-class SvEmbeddedObjectRef;
 class SvGlobalName;
 class Timer;
-class SvxMacro;
 
 namespace binfilter {
+class SvInPlaceObjectRef;
+class SvEmbeddedObjectRef;
+class SvxMacro;
 class SwDoc;
 class SpellCheck;
 class SwViewOption;
