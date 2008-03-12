@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdmsitm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:27:46 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:04:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,11 +36,11 @@
 #define _SDMSITM_HXX
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _SVDDEF_HXX //autogen
