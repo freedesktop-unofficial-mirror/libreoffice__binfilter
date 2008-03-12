@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fileobj.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:00:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:41:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -271,7 +271,7 @@ JP 28.02.96: noch eine Baustelle:
 
 
 
-/*N*/ BOOL SvFileObject::Connect( ::so3::SvBaseLink* pLink )
+/*N*/ BOOL SvFileObject::Connect( ::binfilter::SvBaseLink* pLink )
 /*N*/ {
 /*N*/   if( !pLink || !pLink->GetLinkManager() )
 /*N*/       return FALSE;
