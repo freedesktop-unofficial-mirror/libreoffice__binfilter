@@ -4,9 +4,9 @@
  *
  *  $RCSfile: config.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:12:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:47:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,10 @@
 #define CONFIG_HXX
 
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _SFXCFGITEM_HXX //autogen
 #include <bf_sfx2/cfgitem.hxx>
@@ -50,9 +50,9 @@
 #endif
 
 #include "cfgitem.hxx"
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemSet;
 
 class SmPreferenceDialog;
 class SmPrintDialog;
