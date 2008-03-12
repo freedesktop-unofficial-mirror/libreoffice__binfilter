@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:33:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:40:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,13 +51,13 @@
 
 
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 
 
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 
@@ -1197,7 +1197,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::onChangeColorConfig()
 /*N*/ {
-/*N*/     SetGridColor( Color( maColorConfig.GetColorValue( svtools::DRAWGRID ).nColor ) );
+/*N*/     SetGridColor( Color( maColorConfig.GetColorValue( DRAWGRID ).nColor ) );
 /*N*/ }
 
 /*N*/ void SdrPaintView::SetGridColor( Color aColor )
