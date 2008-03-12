@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:31:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:36:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,7 @@
 #include <shellid.hxx>
 #endif
 
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 
 class   SfxStyleSheetBasePool;
 class   FontList;
