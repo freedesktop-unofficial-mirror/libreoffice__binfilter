@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:20:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:00:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,9 +44,9 @@
 #include <com/sun/star/frame/XDesktop.hpp>
 #endif
 
-#include <svtools/svtools.hrc>
-#include <svtools/saveopt.hxx>
-#include <svtools/localisationoptions.hxx>
+#include <bf_svtools/svtools.hrc>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/localisationoptions.hxx>
 
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
@@ -59,13 +59,13 @@
 #include <bf_so3/soerr.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _INETBND_HXX //autogen
 #include <bf_so3/inetbnd.hxx>
@@ -74,7 +74,7 @@
 #include <vcl/msgbox.hxx>
 #endif
 #ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #endif
 #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
@@ -89,13 +89,13 @@
 #include <ucbhelper/configurationkeys.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_HISTORYOPTIONS_HXX
-#include <svtools/historyoptions.hxx>
+#include <bf_svtools/historyoptions.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #endif
 
 #include <rtl/logfile.hxx>
@@ -117,7 +117,7 @@
 #include "progress.hxx"
 #include "sfxtypes.hxx"
 
-#include <svtools/imgdef.hxx>
+#include <bf_svtools/imgdef.hxx>
 
 #include "eacopier.hxx"
 #include "nochaos.hxx"
