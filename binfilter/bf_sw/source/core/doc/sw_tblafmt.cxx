@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tblafmt.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:03:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:56:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #endif
 
 #ifndef _ZFORMAT_HXX //autogen
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #endif
 #ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
