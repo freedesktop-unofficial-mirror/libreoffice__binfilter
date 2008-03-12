@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txatbase.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:44:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:22:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #endif
 
 #ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _TXATBASE_HXX
 #include <txatbase.hxx>

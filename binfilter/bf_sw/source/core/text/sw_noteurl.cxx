@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_noteurl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:34:37 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:20:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,10 +45,10 @@
 /*N*/  #include <vcl/outdev.hxx>
 /*N*/  #endif
 /*N*/  #ifndef _GOODIES_IMAPRECT_HXX
-/*N*/  #include <svtools/imaprect.hxx>
+/*N*/  #include <bf_svtools/imaprect.hxx>
 /*N*/  #endif
 /*N*/  #ifndef _IMAP_HXX //autogen
-/*N*/  #include <svtools/imap.hxx>
+/*N*/  #include <bf_svtools/imap.hxx>
 /*N*/  #endif
 /*N*/
 /*N*/  #include "txttypes.hxx"
