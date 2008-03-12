@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chdescr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:24:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@
 //STRIP008 class SdrObjList;
 //STRIP008 class SchObjGroup;
 //STRIP008 class ChartAxis;
-class SfxItemSet;
 
 #ifndef _SVDOBJ_HXX //autogen wg. SdrObject
 #include <bf_svx/svdobj.hxx>
@@ -65,6 +64,8 @@ class SfxItemSet;
 
 #include <float.h>      // for DBL_MIN
 namespace binfilter {
+
+class SfxItemSet;
 class Matrix4D;
 class SdrObjList;
 class SchObjGroup;
