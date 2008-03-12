@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_unomodel.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:34:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:26:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,10 +50,10 @@
 #include <vcl/svapp.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
