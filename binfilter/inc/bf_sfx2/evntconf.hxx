@@ -4,9 +4,9 @@
  *
  *  $RCSfile: evntconf.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:15:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:36:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #endif
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>     // SvUShorts
+#include <bf_svtools/svstdarr.hxx>      // SvUShorts
 #include <bf_sfx2/cfgitem.hxx>
 #include <bf_sfx2/event.hxx>
 
@@ -56,7 +56,7 @@
 #undef ITEMID_MACRO
 #endif
 #define ITEMID_MACRO SID_ATTR_MACROITEM
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 namespace binfilter {
 
 class SfxMacroInfo;
