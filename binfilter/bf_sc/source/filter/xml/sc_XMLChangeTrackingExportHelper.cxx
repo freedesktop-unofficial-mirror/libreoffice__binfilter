@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLChangeTrackingExportHelper.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:00:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:59:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -64,7 +64,7 @@
 #endif
 
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 namespace binfilter {
 
