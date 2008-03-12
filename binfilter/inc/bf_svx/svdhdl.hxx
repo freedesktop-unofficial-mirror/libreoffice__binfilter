@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdhdl.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:22:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:09:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #endif
 
 #ifndef _SOLAR_HRC
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #endif
 
 //#ifndef _B2D_MPNT_HXX
