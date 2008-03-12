@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_UnoNamespaceMap.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:35:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:42:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,7 @@
 #endif
 
 #ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #ifndef _SVX_UNOAPI_HXX_
