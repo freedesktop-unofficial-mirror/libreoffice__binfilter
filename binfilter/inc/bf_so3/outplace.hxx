@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outplace.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:26:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:44:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,11 +51,10 @@
 #endif
 
 //=========================================================================
-struct SvOutPlace_Impl;
-namespace so3
+namespace binfilter
 {
+    struct SvOutPlace_Impl;
     class SvObjectServer;
-}
 
 class SO3_DLLPUBLIC SvOutPlaceObject : public SvInPlaceObject
 /*  [Beschreibung]
@@ -115,7 +114,7 @@ public:
     static SvGlobalName         GetCLSID( const String & rFileName );
     static SvInPlaceObjectRef   CreateFromFile( SvStorage * pStor, const String & rFileName );
 
-    static const ::so3::SvObjectServer* GetInternalServer_Impl( const SvGlobalName& aGlobName );
+    static const ::binfilter::SvObjectServer* GetInternalServer_Impl( const SvGlobalName& aGlobName );
 
     void            ClearCache();
     SotStorage *    GetWorkingStorage();
@@ -136,6 +135,8 @@ public:
 };
 
 SO2_DECL_IMPL_REF(SvOutPlaceObject)
+
+}
 
 #endif // _OUTPLACE_HXX
 

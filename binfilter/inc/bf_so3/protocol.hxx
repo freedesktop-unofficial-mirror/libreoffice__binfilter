@@ -4,9 +4,9 @@
  *
  *  $RCSfile: protocol.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:26:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:45:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,13 +52,16 @@
 
 /*************************************************************************
 *************************************************************************/
+class  String;
+
+namespace binfilter {
+
 class  SvEmbeddedObject;
 class  SvInPlaceObject;
 class  SvEmbeddedClient;
 class  SvInPlaceClient;
 class  SoDll;
 class  ImplSvEditObjectProtocol;
-class  String;
 
 class SO3_DLLPUBLIC SvEditObjectProtocol
 {
@@ -124,5 +127,7 @@ public:
     void SetInClosed( BOOL bInClosed );
     void DocNameChanged( const String & rName );
 };
+
+}
 
 #endif // _PROTOCOL_HXX

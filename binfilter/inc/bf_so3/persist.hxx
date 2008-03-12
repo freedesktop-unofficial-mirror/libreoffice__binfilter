@@ -4,9 +4,9 @@
  *
  *  $RCSfile: persist.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:26:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:44:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,6 +61,8 @@
 #undef SvStorageStreamRef
 #endif
 
+namespace binfilter {
+
 #ifndef SO2_DECL_SVSTORAGE_DEFINED
 #define SO2_DECL_SVSTORAGE_DEFINED
 SO2_DECL_REF(SvStorage)
@@ -72,7 +74,8 @@ class  ImpItemContainer;
 class  SvFactory;
 class  SvStorage;
 
-/*************************************************************************
+
+    /*************************************************************************
 *************************************************************************/
 
 //=========================================================================
@@ -317,5 +320,7 @@ public:
 
 SV_IMPL_REF(SvInfoObject)
 SV_DECL_IMPL_PERSIST_LIST(SvInfoObject,SvInfoObject*)
+
+}
 
 #endif // _PERSIST_HXX

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: so2dll.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:27:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:45:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,27 +52,30 @@
 
 /*************************************************************************
 *************************************************************************/
-class ImpFactory;
 class SotFactory;
-class SvObjectList;
 class SotFactoryList;
 class SvAdviseSinkIndex;
-class SvInPlaceClient;
-class SvInPlaceClientList;
-class SvInPlaceObjectList;
 class WorkWindow;
 class MDIWindow;
 class ImpSO2Clipboard;
 class ResMgr;
 class SvSoIPCServer;
 class SvIPCServerInfo;
-class ImplSvEditObjectProtocol;
 class Impl_DeathTimer;
 class Timer;
+
+namespace binfilter
+{
+class SvInPlaceClient;
+class SvInPlaceClientList;
+class SvInPlaceObjectList;
+class ImplSvEditObjectProtocol;
 class SvContainerEnvironmentList;
 class SvInPlaceEnvironment;
 class SvVerbList;
 struct SvBindingData;
+class SvObjectList;
+class ImpFactory;
 
 //=========================================================================
 struct SO3_DLLPRIVATE ConvertTo_Impl
@@ -168,5 +171,6 @@ public:
     static void             Delete();
 };
 
+}
 #endif //_SO2DLL_HXX
 

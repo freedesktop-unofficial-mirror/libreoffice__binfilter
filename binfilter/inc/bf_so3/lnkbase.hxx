@@ -4,9 +4,9 @@
  *
  *  $RCSfile: lnkbase.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:25:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:44:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,7 +55,7 @@ namespace com { namespace sun { namespace star { namespace uno
     //class Type;
 }}}}
 
-namespace so3
+namespace binfilter
 {
 
 struct ImplBaseLinkData;

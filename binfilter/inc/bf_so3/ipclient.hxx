@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ipclient.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:24:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:42:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,22 +44,24 @@
 
 /*************************************************************************
 *************************************************************************/
+class  MenuBar;
+class  Accelerator;
+struct IOleInPlaceSite;
+struct IOleInPlaceFrame;
+struct IOleInPlaceUIWindow;
+
+namespace binfilter {
+class  SvInPlaceEnvironment;
+class SvContainerEnvironment;
+class  SvInPlaceClientList;
+class  SvInPlaceClient;
 class  SvInPlaceClient;
 class  SvInPlaceObject;
 class  ImpInPlaceSite;
 class  ImpInPlaceFrame;
 class  ImpInPlaceUIWin;
-class  MenuBar;
-class  Accelerator;
-class  SvInPlaceClientList;
-class  SvInPlaceClient;
-struct IOleInPlaceSite;
-struct IOleInPlaceFrame;
-struct IOleInPlaceUIWindow;
-class  SvInPlaceEnvironment;
-class SvContainerEnvironment;
 
-//=========================================================================
+    //=========================================================================
 class SO3_DLLPUBLIC SvInPlaceClient : public SvEmbeddedClient
 {
 friend class ImpInPlaceSite;
@@ -111,5 +113,7 @@ SO2_IMPL_REF(SvInPlaceClient)
 
 SV_DECL_REF_LIST(SvInPlaceClient,SvInPlaceClient*)
 SV_IMPL_REF_LIST(SvInPlaceClient,SvInPlaceClient*)
+
+}
 
 #endif // _IPCLIENT_HXX

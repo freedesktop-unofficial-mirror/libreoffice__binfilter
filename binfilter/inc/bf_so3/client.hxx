@@ -4,9 +4,9 @@
  *
  *  $RCSfile: client.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:23:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:41:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,11 +52,15 @@ class OutputDevice;
 class ImpClientSite;
 class ImpAdviseSink;
 class ImpOleObject;
-class SvEmbeddedObject;
-class SvEmbeddedClient;
-class INetURLObject;
 struct IOleClientSite;
 struct IAdviseSink;
+
+class INetURLObject;
+
+namespace binfilter {
+
+class SvEmbeddedObject;
+class SvEmbeddedClient;
 
 #ifndef SO2_DECL_SVEMBEDDEDOBJECT_DEFINED
 #define SO2_DECL_SVEMBEDDEDOBJECT_DEFINED
@@ -214,5 +218,7 @@ public:
 SO2_DECL_REF(SvEmbeddedClient)
 #endif
 SO2_IMPL_REF(SvEmbeddedClient)
+
+}
 
 #endif // _CLIENT_HXX

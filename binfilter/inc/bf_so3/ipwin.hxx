@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ipwin.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:25:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:43:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,6 +49,8 @@
 #ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
 #endif
+
+namespace binfilter {
 
 /********************** SvResizeHelper ***********************************
 *************************************************************************/
@@ -191,5 +193,7 @@ public:
                            const Rectangle & rInPlaceWinMaxRect );
     void    SetBorderPixel( const SvBorder & rNewBorder );
 };
+
+}
 
 #endif // _IPWIN_HXX
