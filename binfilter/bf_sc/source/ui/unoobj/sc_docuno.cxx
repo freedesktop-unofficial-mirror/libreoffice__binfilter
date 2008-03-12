@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docuno.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:10:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:15:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,13 +39,14 @@
 #pragma hdrstop
 #endif
 
+#include <com/sun/star/beans/PropertyAttribute.hpp>
 #include <com/sun/star/container/XIndexContainer.hpp>
 
 #include <bf_svx/fmdpage.hxx>
 #include <bf_svx/fmview.hxx>
 #include <bf_svx/svdpage.hxx>
 
-#include <svtools/numuno.hxx>
+#include <bf_svtools/numuno.hxx>
 #include <vcl/waitobj.hxx>
 #include <tools/multisel.hxx>
 #include <toolkit/awt/vclxdevice.hxx>
@@ -506,9 +507,6 @@ void SAL_CALL ScModelObj::render( sal_Int32 nRenderer, const uno::Any& aSelectio
 
 uno::Reference<container::XNameAccess> SAL_CALL ScModelObj::getLinks() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    if (pDocShell)
-        return new ScLinkTargetTypesObj(pDocShell);
     return NULL;
 }
 
