@@ -4,9 +4,9 @@
  *
  *  $RCSfile: charrotateitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:08:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:45:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 // include ---------------------------------------------------------------
 
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -75,7 +75,7 @@ public:
 /*NBFF*/                                    SfxMapUnit eCoreMetric,
 /*NBFF*/                                    SfxMapUnit ePresMetric,
 /*NBFF*/                                    String &rText,
-/*NBFF*/                                     const IntlWrapper * = 0 ) const;
+/*NBFF*/                                     const ::IntlWrapper * = 0 ) const;
 
 /*NBFF*/    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                    BYTE nMemberId );
