@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.10 $
+#   $Revision: 1.11 $
 #
-#   last change: $Author: obo $ $Date: 2007-07-17 10:09:05 $
+#   last change: $Author: rt $ $Date: 2008-03-12 07:58:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,7 +57,6 @@ EXCEPTIONSFILES= \
 
 SLOFILES =	\
         $(SLO)$/sd_sdoutl.obj  \
-        $(SLO)$/sd_SdOutlinerIterator.obj \
         $(SLO)$/sd_frmview.obj	
 
 
