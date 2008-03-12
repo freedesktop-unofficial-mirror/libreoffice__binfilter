@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ipenv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:25:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:42:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,23 +47,24 @@
 
 /*************************************************************************
 *************************************************************************/
-class  SvInPlaceClient;
-class  SvInPlaceObject;
 class  MenuBar;
 class  Menu;
-class  SvInPlaceMenuBar;
 class  Accelerator;
 class  KeyCode;
-class  SvContainerEnvironment;
-class  SvInPlaceClipWindow;
-class  SvInPlaceWindow;
 class  Window;
 class  KeyEvent;
-class  SvContainerEnvironmentList;
 class  INetURLObject;
 struct IOleInPlaceFrame;
 struct IOleInPlaceUIWindow;
 
+namespace binfilter {
+
+class  SvInPlaceClient;
+class  SvInPlaceObject;
+class  SvContainerEnvironment;
+class  SvInPlaceClipWindow;
+class  SvInPlaceWindow;
+class  SvContainerEnvironmentList;
 //=========================================================================
 class SO3_DLLPUBLIC SvAppFrame : public SvObject
 {
@@ -129,7 +130,6 @@ private:
     USHORT                  nCount1, nCount2, nCount3;
     // Protokoll Stati
     USHORT                  nMenuUseCount;  //Menu in Benutzung
-    MenuBar *               pOleMenu;   // Menubar fuer Ole, bei !Owner() delete
     Accelerator *           pAccel;     // Cont Accelerator
     Rectangle               aClipAreaPixel;
 
@@ -197,10 +197,6 @@ public:
     // Sichtbarkeit
     virtual void    Scroll( const Size & rSize );
 
-    // Menu-Verwaltung
-    void            DeleteMenu();
-    void            SetMenu( MenuBar * pOleMenu, USHORT n1 = 0,
-                             USHORT n2 = 0, USHORT n3 = 0 );
 
     // Accelerator Verwaltung
     void                    SetAccel( const Accelerator & );
@@ -258,7 +254,6 @@ private:
     // Controller
     MenuBar *               pUIMenu;
     MenuBar *               pClientMenu;
-    SvInPlaceMenuBar *      pObjMenu;
 
     // View
     SvInPlaceClipWindow *   pClipWin;
@@ -286,8 +281,6 @@ protected:
 
     SO3_DLLPRIVATE virtual      BOOL DispatchAccel( const KeyCode & );
 
-    SO3_DLLPRIVATE void         SetObjMenu( SvInPlaceMenuBar * pMenu )
-                    { pObjMenu = pMenu; }
     SO3_DLLPRIVATE void         DeleteObjMenu();
 
     SO3_DLLPRIVATE void             MakeWindows();
@@ -318,7 +311,6 @@ public:
                     { return aOldObjAreaPixel; }
     virtual void    QueryObjAreaPixel( Rectangle & rRect ) const;
 
-    SvInPlaceMenuBar *      GetObjMenu() const { return pObjMenu; }
     SvInPlaceClipWindow *   GetClipWin() const { return pClipWin; }
     SvInPlaceWindow *       GetBorderWin() const { return pBorderWin; }
     void                    SetEditWin( Window * pWin )
@@ -383,5 +375,7 @@ public:
     virtual BOOL    MIMETypeDetected( const String& rMIME );
     virtual void *  GetJavaPeer( Window * pPlugWin );
 };
+
+}
 
 #endif // _IPENV_HXX
