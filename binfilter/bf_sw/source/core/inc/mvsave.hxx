@@ -4,9 +4,9 @@
  *
  *  $RCSfile: mvsave.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:53:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:04:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,12 +44,12 @@
 #include <vcl/keycod.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
-class SvNumberFormatter;
-class SvULongs;
 namespace binfilter {
+class SvULongs;
 
+class SvNumberFormatter;
 
 class SwBookmark;
 class SwDoc;
