@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_linkmgr.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:01:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:41:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #include <bf_so3/lnkbase.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #include "linkmgr.hxx"
@@ -65,7 +65,7 @@ namespace binfilter {
 /*N*/   SvLinkManager::SetPersist( pPersist );
 /*N*/ }
 
-/*N*/ ::so3::SvLinkSourceRef SvxLinkManager::CreateObj( ::so3::SvBaseLink * pLink )
+/*N*/ ::binfilter::SvLinkSourceRef SvxLinkManager::CreateObj( ::binfilter::SvBaseLink * pLink )
 /*N*/ {
 /*N*/   switch( pLink->GetObjType() )
 /*N*/   {
@@ -80,7 +80,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL SvxLinkManager::InsertFileLink( ::so3::SvBaseLink& rLink,
+/*N*/ BOOL SvxLinkManager::InsertFileLink( ::binfilter::SvBaseLink& rLink,
 /*N*/                                   USHORT nFileType,
 /*N*/                                   const String& rFileNm,
 /*N*/                                   const String* pFilterNm,
@@ -90,19 +90,19 @@ namespace binfilter {
 /*N*/       return FALSE;
 /*N*/
 /*N*/   String sCmd( rFileNm );
-/*N*/   sCmd += ::so3::cTokenSeperator;
+/*N*/   sCmd += ::binfilter::cTokenSeperator;
 /*N*/   if( pRange )
 /*N*/       sCmd += *pRange;
 /*N*/   if( pFilterNm )
-/*N*/       ( sCmd += ::so3::cTokenSeperator ) += *pFilterNm;
+/*N*/       ( sCmd += ::binfilter::cTokenSeperator ) += *pFilterNm;
 /*N*/
 /*N*/   return SvLinkManager::InsertLink( &rLink, nFileType,
-/*N*/                                   ::so3::LINKUPDATE_ONCALL, &sCmd );
+/*N*/                                   ::binfilter::LINKUPDATE_ONCALL, &sCmd );
 /*N*/ }
 
 
         // erfrage die Strings fuer den Dialog
-/*N*/ BOOL SvxLinkManager::GetDisplayNames( const ::so3::SvBaseLink* pBaseLink,
+/*N*/ BOOL SvxLinkManager::GetDisplayNames( const ::binfilter::SvBaseLink* pBaseLink,
 /*N*/                                       String* pType,
 /*N*/                                       String* pFile,
 /*N*/                                       String* pLink,
@@ -117,8 +117,8 @@ namespace binfilter {
 /*N*/       case OBJECT_CLIENT_GRF:
 /*N*/           {
 /*N*/               USHORT nPos = 0;
-/*N*/               String sFile( sLNm.GetToken( 0, ::so3::cTokenSeperator, nPos ) );
-/*N*/               String sRange( sLNm.GetToken( 0, ::so3::cTokenSeperator, nPos ) );
+/*N*/               String sFile( sLNm.GetToken( 0, ::binfilter::cTokenSeperator, nPos ) );
+/*N*/               String sRange( sLNm.GetToken( 0, ::binfilter::cTokenSeperator, nPos ) );
 /*N*/
 /*N*/               if( pFile )
 /*N*/                   *pFile = sFile;
@@ -150,9 +150,9 @@ namespace binfilter {
 /*N*/ void SvxLinkManager::CancelTransfers()
 /*N*/ {
 /*N*/   SvFileObject* pFileObj;
-/*N*/   ::so3::SvBaseLink* pLnk;
+/*N*/   ::binfilter::SvBaseLink* pLnk;
 /*N*/
-/*N*/   const ::so3::SvBaseLinks& rLnks = GetLinks();
+/*N*/   const ::binfilter::SvBaseLinks& rLnks = GetLinks();
 /*N*/   for( USHORT n = rLnks.Count(); n; )
 /*N*/       if( 0 != ( pLnk = &(*rLnks[ --n ])) &&
 /*N*/           OBJECT_CLIENT_FILE == (OBJECT_CLIENT_FILE & pLnk->GetObjType()) &&
