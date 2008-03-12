@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unoobj.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:08:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:54:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,14 +45,14 @@
 #endif
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _SVTOOLS_UNOIMAP_HXX
-#include <svtools/unoimap.hxx>
+#include <bf_svtools/unoimap.hxx>
 #endif
 #ifndef _SVTOOLS_UNOEVENT_HXX_
-#include <svtools/unoevent.hxx>
+#include <bf_svtools/unoevent.hxx>
 #endif
 
 #include <vcl/svapp.hxx>
@@ -99,9 +99,7 @@
 #include "unopstyl.hxx"
 #include "unopage.hxx"
 
-#ifndef SVX_LIGHT
-#include "docshell.hxx"
-#endif
+#include "bf_sd/docshell.hxx"
 #include "helpids.h"
 #include "glob.hrc"
 #include "unolayer.hxx"
@@ -673,19 +671,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
         {
             OUString aString;
             if( pInfo )
-            {
-                SdDrawDocument* pDoc = mpModel?mpModel->GetDoc():NULL;
-                // is the bookmark a page?
-                BOOL bIsMasterPage;
-                if(pDoc->GetPageByName( pInfo->aBookmark, bIsMasterPage ) != SDRPAGE_NOTFOUND)
-                {
-                    aString = SdDrawPage::getPageApiNameFromUiName( pInfo->aBookmark );
-                }
-                else
-                {
-                    aString = pInfo->aBookmark ;
-                }
-            }
+                aString = SdDrawPage::getPageApiNameFromUiName( pInfo->aBookmark );
 
             aRet <<= aString;
             break;
