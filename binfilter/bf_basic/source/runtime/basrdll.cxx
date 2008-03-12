@@ -4,9 +4,9 @@
  *
  *  $RCSfile: basrdll.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-28 11:04:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:42:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 /*?*/ // #include <vcl/svapp.hxx>
 /*?*/ // #endif
 /*?*/ // #ifndef _SOLAR_HRC
-/*?*/ // #include <svtools/solar.hrc>
+/*?*/ // #include <bf_svtools/solar.hrc>
 /*?*/ // #endif
 /*?*/ // #ifndef _TOOLS_DEBUG_HXX //autogen
 /*?*/ // #include <tools/debug.hxx>
