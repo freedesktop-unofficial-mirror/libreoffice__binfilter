@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ruler.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:32:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:01:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,11 +37,11 @@
 
 
 #ifndef _RULER_HXX //autogen
-#include <svtools/ruler.hxx>
+#include <bf_svtools/ruler.hxx>
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 class SfxRectangleItem;
 class SfxBoolItem;
