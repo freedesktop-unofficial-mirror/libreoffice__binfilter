@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_styleuno.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:13:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:17:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,8 +49,8 @@
 #include <bf_svx/unonrule.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <vcl/virdev.hxx>
-#include <svtools/itempool.hxx>
-#include <svtools/zformat.hxx>
+#include <bf_svtools/itempool.hxx>
+#include <bf_svtools/zformat.hxx>
 #include <rtl/uuid.h>
 
 #include <com/sun/star/table/CellVertJustify.hpp>
