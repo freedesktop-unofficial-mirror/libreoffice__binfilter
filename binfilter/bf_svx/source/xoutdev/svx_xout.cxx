@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xout.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:33:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:50:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <vcl/svapp.hxx>
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
