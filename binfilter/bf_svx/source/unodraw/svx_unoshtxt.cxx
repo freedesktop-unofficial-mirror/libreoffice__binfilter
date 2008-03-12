@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshtxt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:46:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:45:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #ifndef _SVDOUTL_HXX //autogen
 #include <svdoutl.hxx>
@@ -886,14 +886,6 @@ Point SvxTextEditSourceImpl::PixelToLogic( const Point& rPoint, const MapMode& r
 
 IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, aNotify)
 {
-    if( aNotify && !mbNotificationsDisabled )
-    {
-        ::std::auto_ptr< SfxHint > aHint( SvxEditSourceHelper::EENotification2Hint( aNotify) );
-
-        if( aHint.get() )
-            Broadcast( *aHint.get() );
-    }
-
     return 0;
 }
 

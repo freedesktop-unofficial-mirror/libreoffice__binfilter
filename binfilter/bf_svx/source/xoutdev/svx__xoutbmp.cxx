@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx__xoutbmp.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:48:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:48:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #include "impgrf.hxx"
 #include "xoutbmp.hxx"
 namespace binfilter {
