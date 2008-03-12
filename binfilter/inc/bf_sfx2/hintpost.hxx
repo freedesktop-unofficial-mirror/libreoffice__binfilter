@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hintpost.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:00:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:36:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,8 +42,9 @@
 #ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
 #endif
-class SfxHint;
 namespace binfilter {
+
+class SfxHint;
 
 //===================================================================
 
