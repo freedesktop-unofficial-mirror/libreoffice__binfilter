@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_paraitem.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:27:42 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:32:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@
 #include <comphelper/processfactory.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 #include <comphelper/types.hxx>
@@ -80,10 +80,10 @@ using namespace ::com::sun::star;
 #define _SVX_PARAITEM_CXX
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
-#include <svtools/memberid.hrc>
+#include <bf_svtools/memberid.hrc>
 #include "svxitems.hrc"
 
 #include "lspcitem.hxx"
@@ -997,7 +997,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   const SfxItemPool *pPool = SfxItemPool::GetStoringPool();
 /*N*/   const FASTBOOL bStoreDefTabs = pPool
 /*N*/       && pPool->GetName().EqualsAscii("SWG")
-/*N*/       && ::IsDefaultItem( this );
+/*N*/       && binfilter::IsDefaultItem( this );
 /*N*/
 /*N*/   const short nTabs = Count();
 /*N*/   sal_uInt16  nCount = 0, nDefDist;
@@ -1240,7 +1240,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ SfxItemPresentation SvxParaGridItem::GetPresentation(
 /*N*/       SfxItemPresentation ePres,
 /*N*/       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-/*N*/         String &rText, const IntlWrapper* pIntl ) const
+/*N*/         String &rText, const ::IntlWrapper* pIntl ) const
 /*N*/ {
 /*?*/   switch( ePres )
 /*?*/   {
