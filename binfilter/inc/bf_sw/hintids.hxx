@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hintids.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:10:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:43:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -356,10 +356,11 @@ RES_FLTRATTR_END
  * zugreifen koennen, ist sie hier als extern deklariert.
  * Im PRODUCT ist das Teil inline.
  */
+namespace binfilter {
+
 class SfxPoolItem;
 struct SfxItemInfo;
 
-namespace binfilter {
 typedef SfxPoolItem* SwDfltAttrTab[ POOLATTR_END - POOLATTR_BEGIN  ];
 
 extern SwDfltAttrTab __FAR_DATA aAttrTab;
