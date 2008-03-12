@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdoole2.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:30:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:11:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,20 +52,11 @@
 
 #include <bf_so3/svstor.hxx>
 
+namespace binfilter {
+
 class SvPersist;
 class SvInPlaceObjectRef;
 class SvEmbeddedInfoObject;
-namespace binfilter {
-
-//************************************************************
-//   Vorausdeklarationen
-//************************************************************
-
-
-// ***********************************************************
-//  SvInPlaceObject dummy implementation for displaying
-//  plugins with the StarOffice Player without so3
-// ***********************************************************
 
 //************************************************************
 //   SdrOle2Obj
