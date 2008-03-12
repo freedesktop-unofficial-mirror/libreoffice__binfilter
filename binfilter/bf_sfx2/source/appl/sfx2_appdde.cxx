@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:24:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:00:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,10 +34,10 @@
  ************************************************************************/
 
 #ifndef _SVDDE_HXX //autogen
-#include <svtools/svdde.hxx>
+#include <bf_svtools/svdde.hxx>
 #endif
 #include <tools/urlobj.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -179,7 +179,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 //--------------------------------------------------------------------
 
-/*?*/ ::so3::SvLinkSource* SfxObjectShell::DdeCreateLinkSource
+/*?*/ ::binfilter::SvLinkSource* SfxObjectShell::DdeCreateLinkSource
 /*?*/ (
 /*?*/   const String&   rItem      // das zu erzeugende Item
 /*?*/ )
