@@ -4,9 +4,9 @@
  *
  *  $RCSfile: column.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:25:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:12:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,13 +46,14 @@
 class Fraction;
 class OutputDevice;
 class Rectangle;
+namespace binfilter {
+
 class SfxBroadcaster;
 class SfxItemPoolCache;
 class SfxItemSet;
 class SfxListener;
 class SfxPoolItem;
 class SfxStyleSheetBase;
-namespace binfilter {
 
 class SvxBorderLine;
 class SvxBoxInfoItem;
