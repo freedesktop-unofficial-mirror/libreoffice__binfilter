@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdxmlwrp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:58:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:31:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,12 +53,7 @@
 #include <bf_svx/xmlgrhlp.hxx>
 #endif
 
-#ifndef MAC
-#ifndef SVX_LIGHT
-#include "../../ui/inc/docshell.hxx"
-#endif //!SVX_LIGHT
-#else  //MAC
-#endif //!MAC
+#include "bf_sd/docshell.hxx"
 #include "sdxmlwrp.hxx"
 #include "strmname.h"
 
@@ -92,16 +87,16 @@
 #endif
 
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
-#include <svtools/saveopt.hxx>
+#include <bf_svtools/saveopt.hxx>
 #endif
 
 // #80365# include necessary for XML progress bar at load time
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 
 #include "sderror.hxx"
@@ -386,7 +381,6 @@ sal_Bool SdXMLFilter::Import()
     SdDrawDocument* pDoc = mrDocShell.GetDoc();
     pDoc->NewOrLoadCompleted( NEW_DOC );
     pDoc->CreateFirstPages();
-    pDoc->StopWorkStartupDelay();
 
     // -------------------------------------
 
