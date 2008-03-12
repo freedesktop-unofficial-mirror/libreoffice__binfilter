@@ -4,9 +4,9 @@
  *
  *  $RCSfile: paratr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:51:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:45:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,10 @@
 #define _PARATR_HXX
 
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _FORMAT_HXX
 #include <format.hxx>
@@ -192,7 +192,7 @@ public:
                                     SfxMapUnit eCoreMetric,
                                     SfxMapUnit ePresMetric,
                                     String &rText,
-                                    const IntlWrapper*    pIntl = 0 ) const;
+                                    const ::IntlWrapper*    pIntl = 0 ) const;
 };
 
 inline SwParaConnectBorderItem::SwParaConnectBorderItem( const BOOL bConnect ) :
