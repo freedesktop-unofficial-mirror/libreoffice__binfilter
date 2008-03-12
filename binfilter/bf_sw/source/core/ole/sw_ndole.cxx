@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndole.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:05:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:10:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -412,18 +412,18 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/       // MIB 18.5.97: DIe Base-URL wird jetzt gesetzt, damit Plugins
 /*N*/       // nach dem Laden und vor dem Aktivieren des Frames korrekt
 /*N*/       // geladen werden koennen
-/*N*/       String sBaseURL( so3::StaticBaseUrl::GetBaseURL() );
+/*N*/       String sBaseURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
 /*N*/       const SwDocShell *pDocSh = pOLENd->GetDoc()->GetDocShell();
 /*N*/       const SfxMedium *pMedium;
 /*N*/       if( pDocSh && 0 != (pMedium = pDocSh->GetMedium()) &&
 /*N*/           pMedium->GetName() != sBaseURL )
-/*N*/               so3::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
+/*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
 /*N*/
 /*N*/       SvPersistRef xObj = p->GetObject( aName );
 /*N*/       ASSERT( !pOLERef || !pOLERef->Is(),
 /*N*/               "rekursiver Aufruf von GetOleRef() ist nicht erlaubt" )
 /*N*/
-/*N*/       so3::StaticBaseUrl::SetBaseURL( sBaseURL );
+/*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/
 /*N*/       if ( !xObj.Is() )
 /*N*/       {
