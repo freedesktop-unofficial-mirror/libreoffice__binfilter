@@ -4,9 +4,9 @@
  *
  *  $RCSfile: algitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:20:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:43:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,10 +40,10 @@
 #include <bf_svx/svxids.hrc>
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
