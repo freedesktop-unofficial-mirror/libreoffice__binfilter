@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tstpitem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 13:02:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:17:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 // include ---------------------------------------------------------------
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
