@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impgrf.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:39:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:55:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 // include ---------------------------------------------------------------
 
 #ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 #endif
 
 namespace binfilter {
