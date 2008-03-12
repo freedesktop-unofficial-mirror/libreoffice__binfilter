@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxbase.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-15 15:31:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:07:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #endif
 
 #ifndef _SVARRAY_HXX
-#include "svtools/svarray.hxx"
+#include "bf_svtools/svarray.hxx"
 #endif
 
 #ifndef _SBXDEF_HXX
