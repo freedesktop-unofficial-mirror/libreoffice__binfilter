@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.18 $
+#   $Revision: 1.19 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:23:54 $
+#   last change: $Author: rt $ $Date: 2008-03-12 09:52:11 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -60,14 +60,13 @@ SHL1IMPLIB= bf_svx
 SHL1BASE  = 0x1d800000
 
 SHL1STDLIBS= \
+            $(BFSVTOOLLIB) \
             $(BFXMLOFFLIB) \
             $(BFGOODIESLIB) \
             $(BFBASICLIB) \
             $(BFSO3LIB) \
-            $(SVTOOLLIB) \
             $(TKLIB) \
             $(VCLLIB) \
-            $(SVLLIB) \
             $(SOTLIB) \
             $(UNOTOOLSLIB) \
             $(TOOLSLIB) \
