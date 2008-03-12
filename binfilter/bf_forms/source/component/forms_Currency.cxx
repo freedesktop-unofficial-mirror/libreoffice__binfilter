@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Currency.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 13:59:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:43:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #endif
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 #ifndef _FRM_SERVICES_HXX_
