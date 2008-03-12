@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_exlpar.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:09:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:32:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #endif
 
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
