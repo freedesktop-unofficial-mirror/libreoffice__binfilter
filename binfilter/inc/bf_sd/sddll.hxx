@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sddll.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:20:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:32:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,11 +63,6 @@ class SfxFilter;
 
 class SdDLL
 {
-protected:
-    static void     RegisterFactorys();
-    static void     RegisterInterfaces();
-    static void     RegisterControllers();
-
 public:
                     // Ctor/Dtor must be linked to the application
                     SdDLL();
