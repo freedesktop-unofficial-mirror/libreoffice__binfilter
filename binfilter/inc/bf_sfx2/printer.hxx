@@ -4,9 +4,9 @@
  *
  *  $RCSfile: printer.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:42:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:38:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,8 +38,8 @@
 #ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
 #endif
-class SfxItemSet;
 namespace binfilter {
+class SfxItemSet;
 
 class SfxFont;
 class SfxTabPage;
