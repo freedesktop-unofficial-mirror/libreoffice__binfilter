@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtfly.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 23:15:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:20:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _TXTFLY_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #include "swtypes.hxx"
