@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:12:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:43:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,25 +53,22 @@
 #include <vcl/msgbox.hxx>
 #endif
 #ifndef _LCKBITEM_HXX
-#include <svtools/lckbitem.hxx>
+#include <bf_svtools/lckbitem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _ZFORMAT_HXX //autogen
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 #ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
@@ -89,7 +86,7 @@
 #include <bf_sfx2/evntconf.hxx>
 #endif
 #ifndef _SFXECODE_HXX //autogen
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
