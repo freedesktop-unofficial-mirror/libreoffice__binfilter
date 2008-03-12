@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pagedesc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:50:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:45:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,10 +54,9 @@
 #ifndef _NUMRULE_HXX
 #include <numrule.hxx>
 #endif
-class SfxPoolItem;
 namespace binfilter {
 
-
+class SfxPoolItem;
 class SwTxtFmtColl;
 class SwNode;
 
