@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:55:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:21:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -86,7 +86,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SVX_UNOIPSET_HXX_
@@ -111,9 +111,9 @@
 #include <cppuhelper/implbase11.hxx>
 
 #include <bf_svx/unoprov.hxx>
-class SfxItemSet;
 class SvGlobalName;
 namespace binfilter {
+class SfxItemSet;
 
 class SdrObject;
 class SdrModel;
