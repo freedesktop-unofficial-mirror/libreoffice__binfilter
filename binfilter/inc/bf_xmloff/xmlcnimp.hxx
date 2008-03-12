@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlcnimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:53:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 14:01:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
@@ -49,7 +49,7 @@
 #endif
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 namespace rtl { class OUString; }
 namespace binfilter {
