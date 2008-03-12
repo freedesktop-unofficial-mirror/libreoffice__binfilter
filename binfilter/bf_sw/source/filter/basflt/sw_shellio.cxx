@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:09:11 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:31:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,13 +40,13 @@
 #include <hintids.hxx>
 
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef SVTOOLS_FSTATHELPER_HXX
-#include <svtools/fstathelper.hxx>
+#include <bf_svtools/fstathelper.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
@@ -471,7 +471,7 @@ using namespace ::com::sun::star;
 /*N*/       ClearTemplate();
 /*N*/   else
 /*N*/   {
-/*?*/       INetURLObject aTDir( so3::StaticBaseUrl::SmartRelToAbs(aTemplateNm) );
+/*?*/       INetURLObject aTDir( ::binfilter::StaticBaseUrl::SmartRelToAbs(aTemplateNm) );
 /*?*/       DateTime aCurrDateTime;
 /*?*/       BOOL bLoad = FALSE;
 /*?*/
@@ -481,7 +481,7 @@ using namespace ::com::sun::star;
 /*?*/       {
 /*?*/           Date aTstDate;
 /*?*/           Time aTstTime;
-/*?*/           if( FStatHelper::GetModifiedDateTimeOfFile(
+/*?*/           if( ::binfilter::GetModifiedDateTimeOfFile(
 /*?*/                           aTDir.GetMainURL( INetURLObject::NO_DECODE ),
 /*?*/                           &aTstDate, &aTstTime ) &&
 /*?*/               ( !pTemplate || aDStamp != aTstDate || aTStamp != aTstTime ))
@@ -556,7 +556,7 @@ using namespace ::com::sun::star;
 /*?*/           }
 /*?*/       }
 /*?*/
-/*?*/       ASSERT( !pTemplate || FStatHelper::IsDocument(
+/*?*/       ASSERT( !pTemplate || ::binfilter::IsDocument(
 /*?*/               aTDir.GetMainURL( INetURLObject::NO_DECODE ) ) ||
 /*?*/               aTemplateNm.EqualsAscii( "$$Dummy$$" ),
 /*?*/               "TemplatePtr but no template exist!" );
