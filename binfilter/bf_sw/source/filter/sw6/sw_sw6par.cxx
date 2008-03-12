@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw6par.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:09:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:34:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,13 +43,13 @@
 #endif
 
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 #ifndef SVTOOLS_FSTATHELPER_HXX
-#include <svtools/fstathelper.hxx>
+#include <bf_svtools/fstathelper.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
@@ -5067,15 +5067,15 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                             }
 
                             // search the correct path of the graphic
-                            aNam = so3::StaticBaseUrl::SmartRelToAbs( aNam );
-                            if( !FStatHelper::IsDocument( aNam ) )
+                            aNam = ::binfilter::StaticBaseUrl::SmartRelToAbs( aNam );
+                            if( !::binfilter::IsDocument( aNam ) )
                             {
                                 String sFNm( INetURLObject( aNam ).getName() );
                                 INetURLObject aURL( *pMyName );
                                 aURL.setName( sFNm );
                                 String sSrchGrf( aURL.GetMainURL(
                                                     INetURLObject::NO_DECODE ));
-                                if( FStatHelper::IsDocument( sSrchGrf ) )
+                                if( ::binfilter::IsDocument( sSrchGrf ) )
                                     aNam = sSrchGrf;
                                 else
                                 {
