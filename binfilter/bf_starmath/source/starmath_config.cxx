@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_config.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:32:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:24:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,19 +38,19 @@
 #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 
 
