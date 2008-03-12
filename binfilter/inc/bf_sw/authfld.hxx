@@ -4,9 +4,9 @@
  *
  *  $RCSfile: authfld.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:41:50 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:33:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,9 +43,9 @@
 #endif
 
 #define _SVSTDARR_LONGS
-#include <svtools/svstdarr.hxx>
-class SvUShorts;
+#include <bf_svtools/svstdarr.hxx>
 namespace binfilter {
+class SvUShorts;
 extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 
 class SwAuthDataArr;
