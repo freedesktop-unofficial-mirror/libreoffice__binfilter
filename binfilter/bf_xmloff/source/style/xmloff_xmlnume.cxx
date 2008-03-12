@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlnume.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:16:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:00:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -321,7 +321,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
         if( sImageURL.getLength() )
         {
 //          String sURL( sImageURL );
-//          so3::StaticBaseUrl::AbsToRel( sURL );
+//          ::binfilter::StaticBaseUrl::AbsToRel( sURL );
 //          sImageURL = sURL;
             OUString sURL( GetExport().AddEmbeddedGraphicObject( sImageURL ) );
             if( sURL.getLength() )
