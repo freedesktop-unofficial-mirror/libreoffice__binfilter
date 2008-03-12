@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drwtrans.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:31:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:07:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,66 +32,3 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-
-#ifndef SC_DRWTRANS_HXX
-#define SC_DRWTRANS_HXX
-
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
-
-#ifndef _IPOBJ_HXX
-#include <bf_so3/ipobj.hxx>
-#endif
-
-#ifndef SC_SCGLOB_HXX
-#include "global.hxx"
-#endif
-namespace binfilter {
-
-
-class SdrModel;
-class ScDocShell;
-class INetBookmark;
-class SdrObject;
-class SdrView;
-class ScDrawView;
-
-class ScDrawTransferObj : public TransferableHelper
-{
-private:
-    SdrModel*                       pModel;
-    TransferableDataHelper          aOleData;
-    TransferableObjectDescriptor    aObjDesc;
-    SvEmbeddedObjectRef             aDocShellRef;
-    SvEmbeddedObjectRef             aDrawPersistRef;
-                                    // extracted from model in ctor:
-    Size                            aSrcSize;
-    INetBookmark*                   pBookmark;
-    BOOL                            bGraphic;
-    BOOL                            bGrIsBit;
-    BOOL                            bOleObj;
-                                    // source information for drag&drop:
-                                    // (view is needed to handle drawing obejcts)
-    SdrView*                        pDragSourceView;
-    USHORT                          nDragSourceFlags;
-    BOOL                            bDragWasInternal;
-
-    sal_uInt32                      nSourceDocID;
-
-
-
-public:
-            ScDrawTransferObj( SdrModel* pClipModel, ScDocShell* pContainerShell,   const TransferableObjectDescriptor& rDesc ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 ScDrawTransferObj( SdrModel* pClipModel, ScDocShell* pContainerShell,
-    virtual ~ScDrawTransferObj(){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 virtual ~ScDrawTransferObj();
-
-
-
-
-
-    static ScDrawTransferObj* GetOwnClipboard( Window* pUIWin );
-};
-
-} //namespace binfilter
-#endif
-
