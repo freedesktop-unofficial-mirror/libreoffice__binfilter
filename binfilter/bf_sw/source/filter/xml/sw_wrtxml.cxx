@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtxml.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:02:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:37:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,7 +66,7 @@
 #include <bf_svx/xmleohlp.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
-#include <svtools/saveopt.hxx>
+#include <bf_svtools/saveopt.hxx>
 #endif
 
 #ifndef _SFXDOCFILE_HXX //autogen wg. SfxMedium
