@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:05:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:57:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <bf_svx/linkmgr.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
@@ -580,8 +580,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // #56167# Der LinkFileName koennte auch nur aus Separatoren bestehen
-/*N*/     String sCompareString = ::so3::cTokenSeperator;
-/*N*/     sCompareString += ::so3::cTokenSeperator;
+/*N*/     String sCompareString = ::binfilter::cTokenSeperator;
+/*N*/     sCompareString += ::binfilter::cTokenSeperator;
 /*N*/   BOOL bUpdate = ( !pSection->IsLinkType() && rSect.IsLinkType() ) ||
 /*N*/                       ( rSect.GetLinkFileName().Len() &&
 /*N*/                           rSect.GetLinkFileName() != sCompareString &&
