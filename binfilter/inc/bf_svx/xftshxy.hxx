@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xftshxy.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:32:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:27:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SVX_XFTSHXY_HXX
 
 #ifndef _SFXMETRICITEM_HXX //autogen
-#include <svtools/metitem.hxx>
+#include <bf_svtools/metitem.hxx>
 #endif
 namespace binfilter {
 
