@@ -4,9 +4,9 @@
  *
  *  $RCSfile: csvgrid.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:04:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:07:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include <vcl/menu.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #include <vector>
@@ -57,13 +57,12 @@
 #ifndef _SC_CSVSPLITS_HXX
 #include "csvsplits.hxx"
 #endif
-namespace svtools { class ColorConfig; }
-namespace binfilter {
 
+namespace binfilter {
+class ColorConfig;
 
 // ----------------------------------------------------------------------------
 
-//STRIP008 namespace svtools { class ColorConfig; }
 class EditEngine;
 class ScEditEngineDefaulter;
 class ScAsciiOptions;
@@ -124,7 +123,7 @@ private:
     VirtualDevice               maGridDev;          /// Data grid with selection and cursor.
     PopupMenu                   maPopup;            /// Popup menu for column types.
 
-    ::svtools::ColorConfig&     mrColorConfig;      /// Application color configuration.
+    ColorConfig&                mrColorConfig;      /// Application color configuration.
     Color                       maBackColor;        /// Cell background color.
     Color                       maGridColor;        /// Table grid color.
     Color                       maGridPBColor;      /// Grid color for "first imported line" delimiter.
