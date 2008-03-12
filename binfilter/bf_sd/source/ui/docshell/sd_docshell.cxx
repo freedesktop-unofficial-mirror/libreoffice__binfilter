@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_docshell.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:35:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:35:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,125 +42,59 @@
 #define ITEMID_LINEEND_LIST             SID_LINEEND_LIST
 #define ITEMID_SEARCH                   SID_SEARCH_ITEM
 
-#include <bf_sfx2/app.hxx>
+#include <com/sun/star/document/PrinterIndependentLayout.hpp>
 
-
-#ifndef _SVXIDS_HRC
-#include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_FLSTITEM_HXX //autogen
-#include <bf_svx/flstitem.hxx>
-#endif
-#ifndef _SVX_DRAWITEM_HXX //autogen
-#include <bf_svx/drawitem.hxx>
-#endif
-#ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
-#endif
-#ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
-#include "app.hrc"
-#include "strmname.h"
-#include "strings.hrc"
-#include "docshell.hxx"
-#include "drawdoc.hxx"
-#include "glob.hrc"
-#include "res_bmp.hrc"
+#include <sot/formats.hxx>
+
+#include <bf_svtools/ctrltool.hxx>
+#include <bf_svtools/flagitem.hxx>
+#include <bf_svtools/itemset.hxx>
+
+#include <bf_sfx2/docfile.hxx>
+#include <bf_sfx2/app.hxx>
+#include <bf_sfx2/printer.hxx>
+#include <bf_svx/svxids.hrc>
+#include <bf_svx/flstitem.hxx>
+#include <bf_svx/drawitem.hxx>
+#include <bf_sfx2/docfilt.hxx>
+
 #include "sdresid.hxx"
-#include "frmview.hxx"
+#include "strings.hrc"
+#include "optsitem.hxx"
+#include "sdattr.hxx"
+#include "bf_sd/docshell.hxx"
+#include "drawdoc.hxx"
 #include "unomodel.hxx"
+#include "sdpage.hxx"
+#include "sdxmlwrp.hxx"
+#include "sdbinfilter.hxx"
+#include "sdoutl.hxx"
 
-#define POOL_BUFFER_SIZE                (USHORT)32768
-#define BASIC_BUFFER_SIZE               (USHORT)8192
-#define DOCUMENT_BUFFER_SIZE            (USHORT)32768
+namespace binfilter
+{
+TYPEINIT1( SdDrawDocShell, SfxObjectShell );
 
-namespace binfilter {
-GraphicFilter* GetGrfFilter();
+SFX_IMPL_OBJECTFACTORY_LOD(SdDrawDocShell, simpress, SvGlobalName(BF_SO3_SIMPRESS_CLASSID), Sd)
 
-SfxProgress* SdDrawDocShell::mpSpecialProgress = NULL;
-Link*        SdDrawDocShell::mpSpecialProgressHdl = NULL;
+void SdDrawDocShell::Construct()
+{
+    bInDestruction = FALSE;
+    SetSlotFilter();
+    SetShell(this);
 
-/*************************************************************************
-|*
-|* SFX-Slotmaps und -Definitionen
-|*
-\************************************************************************/
-/*N*/ TYPEINIT1( SdDrawDocShell, SfxObjectShell );
-}//namespace binfilter
+    pDoc = new SdDrawDocument(eDocType, this);
+    SetModel( new SdXImpressDocument( this ) );
+    SetPool( &pDoc->GetItemPool() );
+    UpdateTablePointers();
+    SetStyleFamily(5);
+}
 
-
-namespace binfilter {
-
-/*N*/ SFX_IMPL_OBJECTFACTORY_LOD(SdDrawDocShell, simpress,
-/*N*/                          SvGlobalName(BF_SO3_SIMPRESS_CLASSID), Sd)
-
-/*************************************************************************
-|*
-|* Construct
-|*
-\************************************************************************/
-
-/*N*/ void SdDrawDocShell::Construct()
-/*N*/ {
-/*N*/   bInDestruction = FALSE;
-/*N*/   SetSlotFilter();     // setzt Filter zurueck
-/*N*/   SetShell(this);
-/*N*/
-/*N*/   pDoc = new SdDrawDocument(eDocType, this);
-/*N*/   SetModel( new SdXImpressDocument( this ) );
-/*N*/   SetPool( &pDoc->GetItemPool() );
-/*N*/   UpdateTablePointers();
-/*N*/   SetStyleFamily(5);       //CL: eigentlich SFX_STYLE_FAMILY_PSEUDO
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor 1
-|*
-\************************************************************************/
-
-/*N*/ SdDrawDocShell::SdDrawDocShell(SfxObjectCreateMode eMode,
-/*N*/                              BOOL bDataObject,
-/*N*/                              DocumentType eDocumentType) :
-/*N*/   SfxObjectShell(eMode),
-/*N*/   pPrinter(NULL),
-/*N*/   pDoc(NULL),
-/*N*/   pFontList(NULL),
-/*N*/   bUIActive(FALSE),
-/*N*/   pProgress(NULL),
-/*N*/   bSdDataObj(bDataObject),
-/*N*/   bOwnPrinter(FALSE),
-/*N*/   eDocType(eDocumentType),
-/*N*/     mbNewDocument( sal_True )
-/*N*/ {
-/*N*/ //    pDoc = new SdDrawDocument(eDocType, this);
-/*N*/   Construct();
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor 2
-|*
-\************************************************************************/
-
-SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
-                               BOOL bDataObject,
-                               DocumentType eDocumentType) :
+SdDrawDocShell::SdDrawDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocumentType) :
     SfxObjectShell(eMode),
     pPrinter(NULL),
-    pDoc(pDoc),
-    pFontList(NULL),
+    pDoc(NULL),
     bUIActive(FALSE),
     pProgress(NULL),
     bSdDataObj(bDataObject),
@@ -171,106 +105,494 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
     Construct();
 }
 
-/*************************************************************************
-|*
-|* Destruktor
-|*
-\************************************************************************/
+SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocumentType) :
+    SfxObjectShell(eMode),
+    pPrinter(NULL),
+    pDoc(pDoc),
+    bUIActive(FALSE),
+    pProgress(NULL),
+    bSdDataObj(bDataObject),
+    bOwnPrinter(FALSE),
+    eDocType(eDocumentType),
+    mbNewDocument( sal_True )
+{
+    Construct();
+}
 
-/*N*/ SdDrawDocShell::~SdDrawDocShell()
-/*N*/ {
-/*N*/   bInDestruction = TRUE;
-/*N*/
-/*N*/   delete pFontList;
-/*N*/
-/*N*/   if (bOwnPrinter)
-/*N*/       delete pPrinter;
-/*N*/
-/*N*/   delete pDoc;
-/*N*/
-/*N*/ }
+SdDrawDocShell::~SdDrawDocShell()
+{
+    bInDestruction = TRUE;
 
-/*************************************************************************
-|*
-|* Slot-Stati setzen
-|*
-\************************************************************************/
+    if (bOwnPrinter)
+        delete pPrinter;
 
+    delete pDoc;
 
+}
 
-/*************************************************************************
-|*
-|* SFX-Aktivierung
-|*
-\************************************************************************/
+void SdDrawDocShell::Deactivate( BOOL )
+{
+}
 
+void SdDrawDocShell::UpdateTablePointers()
+{
+    PutItem( SvxColorTableItem( pDoc->GetColorTable() ) );
+    PutItem( SvxGradientListItem( pDoc->GetGradientList() ) );
+    PutItem( SvxHatchListItem( pDoc->GetHatchList() ) );
+    PutItem( SvxBitmapListItem( pDoc->GetBitmapList() ) );
+    PutItem( SvxDashListItem( pDoc->GetDashList() ) );
+    PutItem( SvxLineEndListItem( pDoc->GetLineEndList() ) );
+}
 
-/*************************************************************************
-|*
-|* SFX-Deaktivierung
-|*
-\************************************************************************/
+void SdDrawDocShell::SetModified( BOOL bSet /* = TRUE */ )
+{
+    SfxInPlaceObject::SetModified( bSet );
 
-/*N*/ void SdDrawDocShell::Deactivate( BOOL )
-/*N*/ {
-/*N*/ }
+    if( IsEnableSetModified() && pDoc )
+        pDoc->NbcSetChanged( bSet );
 
-/*************************************************************************
-|*
-|* Tabellenzeiger auffrischen
-|*
-\************************************************************************/
-
-/*N*/ void SdDrawDocShell::UpdateTablePointers()
-/*N*/ {
-/*N*/   PutItem( SvxColorTableItem( pDoc->GetColorTable() ) );
-/*N*/   PutItem( SvxGradientListItem( pDoc->GetGradientList() ) );
-/*N*/   PutItem( SvxHatchListItem( pDoc->GetHatchList() ) );
-/*N*/   PutItem( SvxBitmapListItem( pDoc->GetBitmapList() ) );
-/*N*/   PutItem( SvxDashListItem( pDoc->GetDashList() ) );
-/*N*/   PutItem( SvxLineEndListItem( pDoc->GetLineEndList() ) );
-/*N*/
-/*N*/   delete pFontList;
-/*N*/   pFontList = new FontList( GetPrinter(TRUE), Application::GetDefaultDevice(), FALSE );
-/*N*/   SvxFontListItem aFontListItem( pFontList );
-/*N*/   PutItem( aFontListItem );
-/*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
+    Broadcast( SfxSimpleHint( SFX_HINT_DOCCHANGED ) );
+}
 
 
-/*************************************************************************
-|*
-|*  den eingestellten SlotFilter anwenden
-|*
-\************************************************************************/
+void SdDrawDocShell::SetVisArea(const Rectangle& rRect)
+{
+    if (GetCreateMode() == SFX_CREATE_MODE_EMBEDDED)
+    {
+        SfxInPlaceObject::SetVisArea(rRect);
+    }
+    else
+    {
+        SvEmbeddedObject::SetVisArea(rRect);
+    }
+}
+
+Rectangle SdDrawDocShell::GetVisArea(USHORT nAspect) const
+{
+    Rectangle aVisArea;
+
+    if( ( ASPECT_THUMBNAIL == nAspect ) || ( ASPECT_DOCPRINT == nAspect ) )
+    {
+         MapMode aSrcMapMode(MAP_PIXEL);
+         MapMode aDstMapMode(MAP_100TH_MM);
+         Size aSize = pDoc->GetSdPage(0, PK_STANDARD)->GetSize();
+         aSrcMapMode.SetMapUnit(MAP_100TH_MM);
+
+         aSize = Application::GetDefaultDevice()->LogicToLogic(aSize, &aSrcMapMode, &aDstMapMode);
+         aVisArea.SetSize(aSize);
+    }
+    else
+    {
+        aVisArea = SfxInPlaceObject::GetVisArea(nAspect);
+    }
+
+    return (aVisArea);
+}
 
 
+SfxPrinter* SdDrawDocShell::GetPrinter(BOOL bCreate)
+{
+    if (bCreate && !pPrinter)
+    {
+        // ItemSet mit speziellem Poolbereich anlegen
+        SfxItemSet* pSet = new SfxItemSet( GetPool(),
+                            SID_PRINTER_NOTFOUND_WARN,  SID_PRINTER_NOTFOUND_WARN,
+                            SID_PRINTER_CHANGESTODOC,   SID_PRINTER_CHANGESTODOC,
+                            ATTR_OPTIONS_PRINT,         ATTR_OPTIONS_PRINT,
+                            0 );
+        // PrintOptionsSet setzen
+        SdOptionsPrintItem aPrintItem( ATTR_OPTIONS_PRINT,
+                            SD_MOD()->GetSdOptions(pDoc->GetDocumentType()));
+        SfxFlagItem aFlagItem( SID_PRINTER_CHANGESTODOC );
+        USHORT      nFlags = 0;
 
-/*N*/ void SdDrawDocShell::SetModified( BOOL bSet /* = TRUE */ )
-/*N*/ {
-/*N*/   SfxInPlaceObject::SetModified( bSet );
-/*N*/
-/*N*/     // #100237# change model state, too
-/*N*/     // #103182# only set the changed state if modification is enabled
-/*N*/     if( IsEnableSetModified() && pDoc )
-/*N*/         pDoc->NbcSetChanged( bSet );
-/*N*/
-/*N*/   Broadcast( SfxSimpleHint( SFX_HINT_DOCCHANGED ) );
-/*N*/ }
+        nFlags =  (aPrintItem.IsWarningSize() ? SFX_PRINTER_CHG_SIZE : 0) |
+                (aPrintItem.IsWarningOrientation() ? SFX_PRINTER_CHG_ORIENTATION : 0);
+        aFlagItem.SetValue( nFlags );
+
+        pSet->Put( aPrintItem );
+        pSet->Put( SfxBoolItem( SID_PRINTER_NOTFOUND_WARN, aPrintItem.IsWarningPrinter() ) );
+        pSet->Put( aFlagItem );
+
+        pPrinter = new SfxPrinter(pSet);
+        bOwnPrinter = TRUE;
+
+        // Ausgabequalitaet setzen
+        UINT16 nQuality = aPrintItem.GetOutputQuality();
+
+        ULONG nMode = DRAWMODE_DEFAULT;
+
+        if( nQuality == 1 )
+            nMode = DRAWMODE_GRAYLINE | DRAWMODE_GRAYFILL | DRAWMODE_BLACKTEXT | DRAWMODE_GRAYBITMAP | DRAWMODE_GRAYGRADIENT;
+        else if( nQuality == 2 )
+            nMode = DRAWMODE_BLACKLINE | DRAWMODE_BLACKTEXT | DRAWMODE_WHITEFILL | DRAWMODE_GRAYBITMAP | DRAWMODE_WHITEGRADIENT;
+
+        pPrinter->SetDrawMode( nMode );
+
+        MapMode aMM (pPrinter->GetMapMode());
+        aMM.SetMapUnit(MAP_100TH_MM);
+        pPrinter->SetMapMode(aMM);
+        UpdateRefDevice();
+    }
+    return pPrinter;
+}
+
+void SdDrawDocShell::SetPrinter(SfxPrinter *pNewPrinter)
+{
+    if ( pPrinter && bOwnPrinter && (pPrinter != pNewPrinter) )
+    {
+        delete pPrinter;
+    }
+
+    pPrinter = pNewPrinter;
+    bOwnPrinter = TRUE;
+
+    UpdateRefDevice();
+}
+
+Printer* SdDrawDocShell::GetDocumentPrinter()
+{
+    return GetPrinter(FALSE);
+}
+
+void SdDrawDocShell::UpdateRefDevice()
+{
+    if( pDoc )
+    {
+        // Determine the device for which the output will be formatted.
+        OutputDevice* pRefDevice = NULL;
+        switch (pDoc->GetPrinterIndependentLayout())
+        {
+            case ::com::sun::star::document::PrinterIndependentLayout::DISABLED:
+                pRefDevice = pPrinter;
+                break;
+
+            case ::com::sun::star::document::PrinterIndependentLayout::ENABLED:
+                pRefDevice = SD_MOD()->GetVirtualRefDevice();
+                break;
+
+            default:
+                // We are confronted with an invalid or un-implemented
+                // layout mode.  Use the printer as formatting device
+                // as a fall-back.
+                DBG_ASSERT(false, "SdDrawDocShell::UpdateRefDevice(): Unexpected printer layout mode");
+
+                pRefDevice = pPrinter;
+                break;
+        }
+        pDoc->SetRefDevice( pRefDevice );
+
+        SdOutliner* pOutl = pDoc->GetOutliner( FALSE );
+
+        if( pOutl )
+/*?*/           pOutl->SetRefDevice( pRefDevice );
+
+        SdOutliner* pInternalOutl = pDoc->GetInternalOutliner( FALSE );
+
+        if( pInternalOutl )
+            pInternalOutl->SetRefDevice( pRefDevice );
+    }
+}
+
+BOOL SdDrawDocShell::InitNew( SvStorage * pStor )
+{
+    BOOL bRet = SfxInPlaceObject::InitNew( pStor );
+
+    Rectangle aVisArea( Point(0, 0), Size(14100, 10000) );
+    SetVisArea(aVisArea);
+
+    if (bRet)
+    {
+        if( !bSdDataObj )
+            pDoc->NewOrLoadCompleted(NEW_DOC);
+    }
+    return bRet;
+}
+
+BOOL SdDrawDocShell::Load( SvStorage* pStore )
+{
+    mbNewDocument = sal_False;
+
+    ULONG   nStoreVer = pStore->GetVersion();
+    BOOL    bRet = FALSE;
+    BOOL    bXML = ( nStoreVer >= SOFFICE_FILEFORMAT_60 );
+    BOOL    bBinary = ( nStoreVer < SOFFICE_FILEFORMAT_60 );
+    bool    bStartPresentation = false;
+
+    if( bBinary || bXML )
+    {
+        bRet = SfxInPlaceObject::Load( pStore );
+
+        if( bRet )
+        {
+            SdFilter*   pFilter = NULL;
+            SfxMedium* pMedium = 0L;
+
+            if( bBinary )
+            {
+                pMedium = new SfxMedium( pStore );
+                pFilter = new SdBINFilter( *pMedium, *this, sal_True );
+            }
+            else if( bXML )
+            {
+                pFilter = new SdXMLFilter( *GetMedium(), *this, sal_True );
+            }
+
+            bRet = pFilter ? pFilter->Import() : FALSE;
 
 
-/*************************************************************************
-|*
-|* Callback fuer ExecuteSpellPopup()
-|*
-\************************************************************************/
+            if(pFilter)
+                delete pFilter;
+            if(pMedium)
+                delete pMedium;
+        }
+    }
+    else
+        pStore->SetError( SVSTREAM_WRONGVERSION );
 
-// #91457# ExecuteSpellPopup now handled by SdDrawDocShell. This is necessary
-// to get hands on the outliner and the text object.
+    if( bRet )
+    {
+        UpdateTablePointers();
+
+        if( ( GetCreateMode() == SFX_CREATE_MODE_EMBEDDED ) && SfxInPlaceObject::GetVisArea( ASPECT_CONTENT ).IsEmpty() )
+        {
+            SdPage* pPage = pDoc->GetSdPage( 0, PK_STANDARD );
+            if( pPage )
+                SetVisArea( Rectangle( pPage->GetAllObjBoundRect() ) );
+        }
+
+        FinishedLoading( SFX_LOADED_ALL );
+    }
+    else
+    {
+            if( pStore->GetError() == ERRCODE_IO_BROKENPACKAGE )
+                SetError( ERRCODE_IO_BROKENPACKAGE );
+            pStore->SetError( SVSTREAM_WRONGVERSION );
+    }
+
+    return bRet;
+}
+
+ BOOL SdDrawDocShell::Save()
+ {
+     if( GetCreateMode() == SFX_CREATE_MODE_STANDARD )
+         SvInPlaceObject::SetVisArea( Rectangle() );
+
+     BOOL bRet = SfxInPlaceObject::Save();
+
+     if( bRet )
+     {
+         SvStorage* pStore = GetStorage();
+         SfxMedium  aMedium( pStore );
+         SdFilter*  pFilter = NULL;
+
+         if( pStore->GetVersion() >= SOFFICE_FILEFORMAT_60 )
+             pFilter = new SdXMLFilter( aMedium, *this, sal_True );
+         else
+             pFilter = new SdBINFilter( aMedium, *this, sal_True );
+
+         UpdateDocInfoForSave();
+
+         bRet = pFilter ? pFilter->Export() : FALSE;
+         delete pFilter;
+     }
+
+     return bRet;
+ }
+
+BOOL SdDrawDocShell::SaveAs( SvStorage* pStore )
+{
+    if( GetCreateMode() == SFX_CREATE_MODE_STANDARD )
+        SvInPlaceObject::SetVisArea( Rectangle() );
+
+    UINT32  nVBWarning = ERRCODE_NONE;
+    BOOL    bRet = SfxInPlaceObject::SaveAs( pStore );
+
+    if( bRet )
+    {
+        SdFilter* pFilter = NULL;
+
+        if( pStore->GetVersion() >= SOFFICE_FILEFORMAT_60 )
+        {
+            SfxMedium aMedium( pStore );
+            pFilter = new SdXMLFilter( aMedium, *this, sal_True );
+
+            UpdateDocInfoForSave();
+
+            bRet = pFilter->Export();
+        }
+        else
+        {
+
+            SfxMedium aMedium( pStore );
+            pFilter = new SdBINFilter( aMedium, *this, sal_True );
+
+            UpdateDocInfoForSave();
+
+            const ULONG nOldSwapMode = pDoc->GetSwapGraphicsMode();
+            pDoc->SetSwapGraphicsMode( SDR_SWAPGRAPHICSMODE_TEMP );
+            if( !( bRet = pFilter->Export() ) )
+                pDoc->SetSwapGraphicsMode( nOldSwapMode );
+
+        }
+
+        delete pFilter;
+    }
+
+    if( GetError() == ERRCODE_NONE )
+        SetError( nVBWarning );
+
+    return bRet;
+}
+
+BOOL SdDrawDocShell::SaveCompleted( SvStorage * pStor )
+{
+    BOOL bRet = FALSE;
+
+    if( SfxInPlaceObject::SaveCompleted(pStor) )
+    {
+        pDoc->NbcSetChanged( FALSE );
+
+        bRet = TRUE;
+
+        if( pDoc )
+            pDoc->HandsOff();
+    }
+    return bRet;
+}
+
+void SdDrawDocShell::HandsOff()
+{
+    SfxInPlaceObject::HandsOff();
+
+    if( pDoc )
+        pDoc->HandsOff();
+}
+
+SdDrawDocument* SdDrawDocShell::GetDoc()
+{
+    return pDoc;
+}
+
+SfxStyleSheetBasePool* SdDrawDocShell::GetStyleSheetPool()
+{
+    return( (SfxStyleSheetBasePool*) pDoc->GetStyleSheetPool() );
+}
+
+
+BOOL SdDrawDocShell::SaveAsOwnFormat( SfxMedium& rMedium )
+{
+
+    const SfxFilter* pFilter = rMedium.GetFilter();
+
+    if (pFilter->IsOwnTemplateFormat())
+    {
+        String aLayoutName;
+
+        SfxStringItem* pLayoutItem;
+        if( rMedium.GetItemSet()->GetItemState(SID_TEMPLATE_NAME, FALSE, (const SfxPoolItem**) & pLayoutItem ) == SFX_ITEM_SET )
+        {
+            aLayoutName = pLayoutItem->GetValue();
+        }
+        else
+        {
+            INetURLObject aURL( rMedium.GetName() );
+            aURL.removeExtension();
+            aLayoutName = aURL.getName();
+        }
+
+        if( aLayoutName.Len() )
+        {
+            String aOldPageLayoutName = pDoc->GetSdPage(0, PK_STANDARD)->GetLayoutName();
+            pDoc->RenameLayoutTemplate(aOldPageLayoutName, aLayoutName);
+        }
+     }
+
+    return SfxObjectShell::SaveAsOwnFormat(rMedium);
+}
+
+void SdDrawDocShell::FillClass(SvGlobalName* pClassName,ULONG*  pFormat, String* pAppName, String* pFullTypeName, String* pShortTypeName, long    nFileFormat) const
+{
+    SfxInPlaceObject::FillClass(pClassName, pFormat, pAppName, pFullTypeName,
+                                pShortTypeName, nFileFormat);
+
+    if (nFileFormat == SOFFICE_FILEFORMAT_31)
+    {
+        *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_30);
+        *pFormat = SOT_FORMATSTR_ID_STARDRAW;
+        *pAppName = String(RTL_CONSTASCII_USTRINGPARAM("Sdraw 3.1"));
+        *pFullTypeName = String(SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_31));;
+        *pShortTypeName = String(SdResId(STR_IMPRESS_DOCUMENT));
+    }
+    else if (nFileFormat == SOFFICE_FILEFORMAT_40)
+    {
+        *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_40);
+        *pFormat = SOT_FORMATSTR_ID_STARDRAW_40;
+        *pFullTypeName = String(SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_40));
+        *pShortTypeName = String(SdResId(STR_IMPRESS_DOCUMENT));
+    }
+    else
+    {
+        if (nFileFormat == SOFFICE_FILEFORMAT_50)
+        {
+            if (eDocType == DOCUMENT_TYPE_DRAW)
+            {
+                *pClassName = SvGlobalName(BF_SO3_SDRAW_CLASSID_50);
+                *pFormat = SOT_FORMATSTR_ID_STARDRAW_50;
+                *pFullTypeName = String(SdResId(STR_GRAPHIC_DOCUMENT_FULLTYPE_50));
+            }
+            else
+            {
+                *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_50);
+                *pFormat = SOT_FORMATSTR_ID_STARIMPRESS_50;
+                *pFullTypeName = String(SdResId(STR_IMPRESS_DOCUMENT_FULLTYPE_50));
+            }
+        }
+        else if (nFileFormat == SOFFICE_FILEFORMAT_CURRENT)
+        {
+            *pFullTypeName = String(SdResId( (eDocType == DOCUMENT_TYPE_DRAW) ?
+                                              STR_GRAPHIC_DOCUMENT_FULLTYPE_60 : STR_IMPRESS_DOCUMENT_FULLTYPE_60 ));
+
+                if(eDocType == DOCUMENT_TYPE_DRAW)
+                {
+                    *pClassName = SvGlobalName(BF_SO3_SDRAW_CLASSID_60);
+                    *pFormat = SOT_FORMATSTR_ID_STARDRAW_60;
+                }
+                else
+                {
+                    *pClassName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_60);
+                    *pFormat = SOT_FORMATSTR_ID_STARIMPRESS_60;
+                }
+
+        }
+
+        *pShortTypeName = String(SdResId( (eDocType == DOCUMENT_TYPE_DRAW) ?
+                                          STR_GRAPHIC_DOCUMENT : STR_IMPRESS_DOCUMENT ));
+    }
+}
+
+OutputDevice* SdDrawDocShell::GetDocumentRefDev (void)
+{
+    OutputDevice* pReferenceDevice = SfxInPlaceObject::GetDocumentRefDev ();
+    if (pReferenceDevice == NULL && pDoc != NULL)
+        pReferenceDevice = pDoc->GetRefDevice ();
+    return pReferenceDevice;
+}
+
+SfxPrinter* SdDrawDocShell::CreatePrinter( SvStream& rIn, SdDrawDocument& rDoc )
+{
+    SfxItemSet* pSet = new SfxItemSet( rDoc.GetPool(),
+                    SID_PRINTER_NOTFOUND_WARN,  SID_PRINTER_NOTFOUND_WARN,
+                    SID_PRINTER_CHANGESTODOC,   SID_PRINTER_CHANGESTODOC,
+                    ATTR_OPTIONS_PRINT,         ATTR_OPTIONS_PRINT,
+                    0 );
+    // PrintOptionsSet setzen
+    SdOptionsPrintItem aPrintItem(ATTR_OPTIONS_PRINT,SD_MOD()->GetSdOptions(rDoc.GetDocumentType()) );
+
+    pSet->Put( aPrintItem );
+    pSet->Put( SfxBoolItem( SID_PRINTER_NOTFOUND_WARN, false ) );
+
+    return SfxPrinter::Create(rIn, pSet);
+}
 
 }
