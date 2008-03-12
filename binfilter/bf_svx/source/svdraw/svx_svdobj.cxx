@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: vg $ $Date: 2007-08-28 12:41:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:36:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -84,7 +84,7 @@
 #endif
 
 #ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 
 // #97849#
@@ -1587,8 +1587,8 @@ class ImpSkeleton;
 /*N*/     }
 /*N*/     else if( ( nOldDrawMode & DRAWMODE_SETTINGSFILL ) && ( nOldDrawMode & DRAWMODE_SETTINGSLINE ) )
 /*N*/     {
-/*?*/       svtools::ColorConfig aColorConfig;
-/*?*/         aLineColor = Color( aColorConfig.GetColorValue( svtools::FONTCOLOR ).nColor );
+/*?*/       ColorConfig aColorConfig;
+/*?*/         aLineColor = Color( aColorConfig.GetColorValue( FONTCOLOR ).nColor );
 /*?*/         rXOut.GetOutDev()->SetDrawMode( nOldDrawMode & (~DRAWMODE_SETTINGSFILL) );
 /*N*/     }
 /*N*/
