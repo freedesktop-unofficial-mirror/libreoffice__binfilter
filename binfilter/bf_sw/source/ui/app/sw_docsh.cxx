@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:22:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:43:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,10 +49,10 @@
 #include <tools/urlobj.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
@@ -154,7 +154,7 @@
 #include <app.hrc>
 #endif
 
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 
 using namespace rtl;
 using namespace ::com::sun::star::uno;
@@ -717,14 +717,14 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/                 : SW_MOD()->GetUsrPref(TRUE)->IsGraphic() )
 /*N*/   {
 /*N*/       const SvxLinkManager& rLnkMgr = pDoc->GetLinkManager();
-/*N*/       const ::so3::SvBaseLinks& rLnks = rLnkMgr.GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLnks = rLnkMgr.GetLinks();
 /*N*/       for( USHORT n = 0; n < rLnks.Count(); ++n )
 /*N*/       {
-/*N*/           ::so3::SvBaseLink* pLnk = &(*rLnks[ n ]);
+/*N*/           ::binfilter::SvBaseLink* pLnk = &(*rLnks[ n ]);
 /*N*/           if( pLnk && OBJECT_CLIENT_GRF == pLnk->GetObjType() &&
 /*N*/               pLnk->ISA( SwBaseLink ) )
 /*N*/           {
-/*N*/               ::so3::SvLinkSource* pLnkObj = pLnk->GetObj();
+/*N*/               ::binfilter::SvLinkSource* pLnkObj = pLnk->GetObj();
 /*N*/               if( !pLnkObj )
 /*N*/               {
 /*N*/                   String sFileNm;
@@ -808,14 +808,14 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   if( !pThis->IsAbortingImport() )
 /*N*/   {
 /*N*/       const SvxLinkManager& rLnkMgr = pThis->pDoc->GetLinkManager();
-/*N*/       const ::so3::SvBaseLinks& rLnks = rLnkMgr.GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLnks = rLnkMgr.GetLinks();
 /*N*/       for( USHORT n = rLnks.Count(); n; )
 /*N*/       {
-/*N*/           ::so3::SvBaseLink* pLnk = &(*rLnks[ --n ]);
+/*N*/           ::binfilter::SvBaseLink* pLnk = &(*rLnks[ --n ]);
 /*N*/           if( pLnk && OBJECT_CLIENT_GRF == pLnk->GetObjType() &&
 /*N*/               pLnk->ISA( SwBaseLink ) )
 /*N*/           {
-/*N*/               ::so3::SvLinkSource* pLnkObj = pLnk->GetObj();
+/*N*/               ::binfilter::SvLinkSource* pLnkObj = pLnk->GetObj();
 /*N*/               if( pLnkObj && pLnkObj->IsPending() &&
 /*N*/                   !((SwBaseLink*)pLnk)->IsShowQuickDrawBmp() )
 /*N*/               {
