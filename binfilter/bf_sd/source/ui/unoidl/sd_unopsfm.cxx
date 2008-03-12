@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopsfm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:12:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:55:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #endif
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _SD_UNOKYWDS_HXX_
@@ -54,9 +54,7 @@
 #include "unohelp.hxx"
 #include "glob.hrc"
 #include "drawdoc.hxx"
-#ifndef SVX_LIGHT
-#include "docshell.hxx"
-#endif
+#include "bf_sd/docshell.hxx"
 #include "unowcntr.hxx"
 #include "unopsfm.hxx"
 #include "unopstyl.hxx"
