@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotxvw.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 06:01:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:52:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,7 @@
 #include <cppuhelper/implbase8.hxx> // helper for implementations
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #include "calbck.hxx"
 #ifndef _SW_TEXTCURSORHELPER_HXX
