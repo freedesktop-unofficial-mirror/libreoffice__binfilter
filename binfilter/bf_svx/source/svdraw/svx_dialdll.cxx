@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_dialdll.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2008-02-25 15:23:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:34:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,7 @@
 
 // include ---------------------------------------------------------------
 
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #include "dialdll.hxx"
 #include "dialmgr.hxx"
 #define ITEMID_BRUSH 1
@@ -49,11 +49,11 @@
 
 
 #ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 #endif
 
 #ifndef _WALLITEM_HXX
-#include <svtools/wallitem.hxx>
+#include <bf_svtools/wallitem.hxx>
 #endif
 namespace binfilter {
 
