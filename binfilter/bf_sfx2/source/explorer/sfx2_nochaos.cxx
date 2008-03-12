@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_nochaos.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 14:59:26 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:08:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,8 +33,8 @@
  *
  ************************************************************************/
 
-#include <svtools/itempool.hxx>
-#include <svtools/stritem.hxx>
+#include <bf_svtools/itempool.hxx>
+#include <bf_svtools/stritem.hxx>
 #include <nochaos.hxx>
 #include "sfxuno.hxx"
 namespace binfilter {
