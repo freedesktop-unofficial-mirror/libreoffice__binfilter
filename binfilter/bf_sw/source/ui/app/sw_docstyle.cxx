@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docstyle.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:07:10 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:43:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,10 +48,10 @@
 #endif
 
 #ifndef _SFXITEMITER_HXX
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
