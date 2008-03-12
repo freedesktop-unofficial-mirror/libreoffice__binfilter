@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlinguconfig.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 00:05:25 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:45:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #endif
 
 #ifndef _SVTOOLS_LINGUCFG_HXX_
-#include <svtools/lingucfg.hxx>
+#include <bf_svtools/lingucfg.hxx>
 #endif
 namespace binfilter {
 
