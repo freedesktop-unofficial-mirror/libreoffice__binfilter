@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:59:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:37:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,8 +47,8 @@
 #include <bf_so3/svstor.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 #include <unotools/localfilehelper.hxx>
-#include <svtools/style.hxx>
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/style.hxx>
+#include <bf_svtools/urihelper.hxx>
 #include "linkmgr.hxx"
 #include "svdio.hxx"
 #include "svdglob.hxx"
@@ -84,7 +84,7 @@ namespace binfilter {
 // - SdrGraphicLink -
 // ------------------
 
-/*N*/ class SdrGraphicLink : public ::so3::SvBaseLink
+/*N*/ class SdrGraphicLink : public ::binfilter::SvBaseLink
 /*N*/ {
 /*N*/   SdrGrafObj*         pGrafObj;
 /*N*/
@@ -103,7 +103,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ SdrGraphicLink::SdrGraphicLink(SdrGrafObj* pObj):
-/*N*/   ::so3::SvBaseLink( ::so3::LINKUPDATE_ONCALL, SOT_FORMATSTR_ID_SVXB ),
+/*N*/   ::binfilter::SvBaseLink( ::binfilter::LINKUPDATE_ONCALL, SOT_FORMATSTR_ID_SVXB ),
 /*N*/   pGrafObj(pObj)
 /*N*/ {
 /*N*/   SetSynchron( FALSE );
@@ -1121,7 +1121,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*?*/       aRelFileName = so3::StaticBaseUrl::AbsToRel( aFileName,
+/*?*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
 /*?*/                                               INetURLObject::WAS_ENCODED,
 /*?*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -1288,7 +1288,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( aFileNameRel.Len() )
 /*N*/       {
-/*N*/           aFileName = so3::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
+/*N*/           aFileName = ::binfilter::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
 /*N*/                                                   INetURLObject::WAS_ENCODED,
 /*N*/                                                   INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/       }
