@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scmod2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:02:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:03:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,7 +44,7 @@
 //------------------------------------------------------------------
 
 #include <bf_svx/unolingu.hxx>
-#include <svtools/lingucfg.hxx>
+#include <bf_svtools/lingucfg.hxx>
 
 #include <com/sun/star/linguistic2/XThesaurus.hpp>
 #include <com/sun/star/lang/Locale.hpp>
