@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ReBuildHint.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:38:42 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:23:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SCH_REBUILDHINT_HXX
 
 #ifndef _SFXHINT_HXX
-#include <svtools/hint.hxx>
+#include <bf_svtools/hint.hxx>
 #endif
 namespace binfilter {
 
