@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sbxvar.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:19:11 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:43:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
-#include "svtools/brdcst.hxx"
+#include "bf_svtools/brdcst.hxx"
 
 #include "sbx.hxx"
 #include "sbxbase.hxx"
