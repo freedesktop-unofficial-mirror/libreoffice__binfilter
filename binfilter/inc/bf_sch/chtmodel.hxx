@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chtmodel.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:18:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:24:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -100,7 +100,7 @@
 #include <bf_svx/svdobj.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
@@ -122,10 +122,12 @@
 #ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
 #endif
+class Vector3D;
+
+namespace binfilter {
+
 class SvNumberFormatter;
 class SvNumberFormatterIndexTable;
-class Vector3D;
-namespace binfilter {
 class SdrObjGroup;
 class SdrRectObj;
 
