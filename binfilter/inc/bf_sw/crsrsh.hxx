@@ -4,9 +4,9 @@
  *
  *  $RCSfile: crsrsh.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:42:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:34:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,9 +66,9 @@ namespace com { namespace sun { namespace star { namespace util {
 } } } }
 class KeyCode;
 class Region;
+namespace binfilter {
 class SfxItemSet;
 class SfxPoolItem;
-namespace binfilter {
 
 // einige Forward Deklarationen
 
