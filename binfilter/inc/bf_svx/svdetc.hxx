@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:29:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:09:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,13 +55,14 @@
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;
 }}}}
-class SvtSysLocale;
 class CharClass;
 class LocaleDataWrapper;
-class SfxItemSet;
-class Link;
 class AutoTimer;
+class Link;
 namespace binfilter {
+
+class SfxItemSet;
+class SvtSysLocale;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
