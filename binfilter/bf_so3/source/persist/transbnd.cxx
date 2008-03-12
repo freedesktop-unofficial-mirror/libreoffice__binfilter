@@ -4,9 +4,9 @@
  *
  *  $RCSfile: transbnd.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:53:30 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:20:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,7 @@
  *
  ************************************************************************/
 
-#define _TRANSBND_CXX "$Revision: 1.2 $"
+#define _TRANSBND_CXX "$Revision: 1.3 $"
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -90,13 +90,13 @@
 #endif
 
 #ifndef _SFXCANCEL_HXX
-#include <svtools/cancel.hxx>
+#include <bf_svtools/cancel.hxx>
 #endif
 #ifndef _INETHIST_HXX
-#include <svtools/inethist.hxx>
+#include <bf_svtools/inethist.hxx>
 #endif
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _BINDING_HXX
@@ -125,6 +125,9 @@ using namespace com::sun::star::beans;
 using namespace com::sun::star::ucb;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::container;
+
+namespace binfilter {
+
 
 /*========================================================================
  *
@@ -936,3 +939,4 @@ ErrCode SvRemoteStream::Commit (void)
 
 
 
+}
