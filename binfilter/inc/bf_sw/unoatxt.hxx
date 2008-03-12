@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoatxt.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:00:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:51:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,10 +54,10 @@
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
@@ -69,7 +69,7 @@
 #include <cppuhelper/implbase6.hxx> // helper for implementations
 #endif
 #ifndef _SVTOOLS_UNOEVENT_HXX_
-#include <svtools/unoevent.hxx>
+#include <bf_svtools/unoevent.hxx>
 #endif
 namespace binfilter {//STRIP009
 class SwTextBlocks;

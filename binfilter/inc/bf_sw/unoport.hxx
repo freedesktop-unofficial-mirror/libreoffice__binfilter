@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoport.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:01:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:55:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -66,7 +66,7 @@
 #include <cppuhelper/implbase8.hxx>
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 namespace binfilter {
 
