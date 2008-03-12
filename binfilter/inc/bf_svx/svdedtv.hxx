@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdedtv.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:04:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:09:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,9 +51,10 @@
 #ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
 #endif
+namespace binfilter {
+
 class SfxUndoAction;
 class SfxStyleSheet;
-namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
