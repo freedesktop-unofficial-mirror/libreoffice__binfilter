@@ -4,9 +4,9 @@
  *
  *  $RCSfile: deflt3d.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:20:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:47:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,9 @@
 #ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
 #endif
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemSet;
 
 /*************************************************************************
 |*
