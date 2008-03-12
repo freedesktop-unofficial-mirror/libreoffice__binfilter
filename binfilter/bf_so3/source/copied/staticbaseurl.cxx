@@ -4,9 +4,9 @@
  *
  *  $RCSfile: staticbaseurl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:44:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:11:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include "rtl/textenc.h"
 #include "rtl/ustring.h"
 #include "rtl/ustring.hxx"
-#include "svtools/urihelper.hxx"
+#include "bf_svtools/urihelper.hxx"
 #include "tools/debug.hxx"
 #include "tools/string.hxx"
 #include "tools/urlobj.hxx"
@@ -81,7 +81,7 @@ com::sun::star::uno::Any GetCasePreservedURL(INetURLObject const & aObj) {
 
 }
 
-namespace so3 { namespace StaticBaseUrl {
+namespace binfilter { namespace StaticBaseUrl {
 
 String RelToAbs(
     ByteString const & rTheRelURIRef, bool bIgnoreFragment,
@@ -214,9 +214,9 @@ String SmartRelToAbs(
     INetURLObject::DecodeMechanism eDecodeMechanism, rtl_TextEncoding eCharset,
     INetURLObject::FSysStyle eStyle)
 {
-    return URIHelper::SmartRel2Abs(
+    return ::binfilter::SmartRel2Abs(
         INetURLObject(GetBaseURL()), rTheRelURIRef,
-        URIHelper::GetMaybeFileHdl(), true, bIgnoreFragment, eEncodeMechanism,
+        ::binfilter::GetMaybeFileHdl(), true, bIgnoreFragment, eEncodeMechanism,
         eDecodeMechanism, eCharset, false, eStyle);
 }
 
@@ -226,9 +226,9 @@ String SmartRelToAbs(
     INetURLObject::DecodeMechanism eDecodeMechanism, rtl_TextEncoding eCharset,
     INetURLObject::FSysStyle eStyle)
 {
-    return URIHelper::SmartRel2Abs(
+    return ::binfilter::SmartRel2Abs(
         INetURLObject(GetBaseURL()), rTheRelURIRef,
-        URIHelper::GetMaybeFileHdl(), true, bIgnoreFragment, eEncodeMechanism,
+        ::binfilter::GetMaybeFileHdl(), true, bIgnoreFragment, eEncodeMechanism,
         eDecodeMechanism, eCharset, false, eStyle);
 }
 
