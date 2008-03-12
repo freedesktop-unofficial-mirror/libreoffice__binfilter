@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlexppr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:39:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 14:01:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,10 +42,10 @@
 #ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
 #endif
-class SvUShorts;
 
 namespace rtl { class OUString; }
 namespace binfilter {
+class SvUShorts;
 
 class SvXMLUnitConverter;
 class SvXMLAttributeList;
