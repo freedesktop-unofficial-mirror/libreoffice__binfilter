@@ -4,9 +4,9 @@
  *
  *  $RCSfile: noteurl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:47:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:04:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
@@ -46,11 +46,11 @@
 #ifndef _SWRECT_HXX
 #include "swrect.hxx"
 #endif
-class ImageMap;
 class MapMode;
 
 namespace binfilter {
 
+class ImageMap;
 
 class SwURLNote
 {
