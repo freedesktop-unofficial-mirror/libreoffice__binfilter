@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pseudo.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:44:42 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:11:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,15 +35,8 @@
 
 
 #include <bf_so3/pseudo.hxx>
-#include <svtools/filedlg.hxx>
-
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
-
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #include <vcl/svapp.hxx>
 #include <vcl/wrkwin.hxx>
 #include <vcl/menu.hxx>
@@ -51,6 +44,8 @@
 #include <bf_so3/client.hxx>
 #include <bf_so3/svstor.hxx>
 #include "bf_so3/soerr.hxx"
+
+namespace binfilter {
 
 //=========================================================================
 //==================class SvVerb===========================================
@@ -145,7 +140,7 @@ SvPseudoObject::~SvPseudoObject()
 }
 
 //=========================================================================
-IUnknown * SvPseudoObject::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvPseudoObject::GetMemberInterface( const SvGlobalName & )
 /*  [Beschreibung]
 
     Jede Klasse muss eine Abfrage auf die Ole-Interfaces unterst"utzen.
@@ -497,6 +492,6 @@ ULONG SvPseudoObject::GetMiscStatus() const
 }
 
 
-
+}
 
 

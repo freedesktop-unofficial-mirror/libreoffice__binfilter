@@ -4,9 +4,9 @@
  *
  *  $RCSfile: embobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:46:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:13:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,150 +57,11 @@
 #include "bf_so3/soerr.hxx"
 #include <svuidlg.hrc>
 
-#include <svtools/filter.hxx>
-#include <svtools/transfer.hxx>
+#include <bf_svtools/filter.hxx>
 #include <viscache.hxx>
 #include <sot/formats.hxx>
 
-// ----------------------
-// - SvEmbeddedTransfer -
-// ----------------------
-
-class SvEmbeddedTransfer : public TransferableHelper
-{
-private:
-
-    SvEmbeddedObjectRef mxObj;
-
-protected:
-
-    virtual void        AddSupportedFormats();
-    virtual sal_Bool    GetData( const ::com::sun::star::datatransfer::DataFlavor& rFlavor );
-    virtual void        ObjectReleased();
-
-public:
-
-                        SvEmbeddedTransfer( const SvEmbeddedObjectRef& rxObj );
-                        ~SvEmbeddedTransfer();
-};
-
-// -----------------------------------------------------------------------------
-
-SvEmbeddedTransfer::SvEmbeddedTransfer( const SvEmbeddedObjectRef& rxObj ) :
-    mxObj( rxObj )
-{
-}
-
-// -----------------------------------------------------------------------------
-
-SvEmbeddedTransfer::~SvEmbeddedTransfer()
-{
-}
-
-// -----------------------------------------------------------------------------
-
-void SvEmbeddedTransfer::AddSupportedFormats()
-{
-    AddFormat( SOT_FORMATSTR_ID_EMBED_SOURCE );
-    AddFormat( SOT_FORMATSTR_ID_OBJECTDESCRIPTOR );
-    AddFormat( FORMAT_GDIMETAFILE );
-}
-
-// -----------------------------------------------------------------------------
-
-sal_Bool SvEmbeddedTransfer::GetData( const ::com::sun::star::datatransfer::DataFlavor& rFlavor )
-{
-    sal_Bool bRet = sal_False;
-
-    if( mxObj.Is() )
-    {
-        sal_uInt32 nFormat = SotExchange::GetFormat( rFlavor );
-
-        if( HasFormat( nFormat ) )
-        {
-            if( nFormat == SOT_FORMATSTR_ID_OBJECTDESCRIPTOR )
-            {
-                TransferableObjectDescriptor aDesc;
-
-                mxObj->FillTransferableObjectDescriptor( aDesc );
-                bRet = SetTransferableObjectDescriptor( aDesc, rFlavor );
-            }
-            else if( nFormat == SOT_FORMATSTR_ID_EMBED_SOURCE )
-            {
-                BOOL bWriteOLEStg;
-                {
-                    // JP 29.3.2001: ist this the right identification?
-                    SvOutPlaceObjectRef xOutRef( mxObj );
-                    bWriteOLEStg = xOutRef.Is();
-                    SvPseudoObjectRef xPO( mxObj );
-                    if ( xPO.Is() && ( xPO->GetMiscStatus() & SVOBJ_MISCSTATUS_SPECIALOBJECT ) )
-                        bWriteOLEStg = TRUE;
-                }
-
-                SotStorageStreamRef xDataStm( new SotStorageStream( String() ) );
-                SvStorageRef xStore = new SvStorage( !bWriteOLEStg, *xDataStm );
-
-                xDataStm->SetBufferSize( 0xff00 );
-
-                if( xStore->GetVersion() <= SOFFICE_FILEFORMAT_40 )
-                    xStore->SetVersion( SOFFICE_FILEFORMAT_40 +1 );
-
-                mxObj->SetupStorage( xStore );
-                bRet = mxObj->DoSaveAs( xStore );
-                mxObj->DoSaveCompleted();
-
-                xStore->Commit();
-                xDataStm->Commit();
-                bRet = ( xDataStm->GetError() == ERRCODE_NONE );
-
-                if( bRet )
-                {
-                    ::com::sun::star::uno::Any                  aAny;
-                    const sal_uInt32                            nLen = xDataStm->Seek( STREAM_SEEK_TO_END );
-                    ::com::sun::star::uno::Sequence< sal_Int8 > aSeq( nLen );
-
-                    xDataStm->Seek( STREAM_SEEK_TO_BEGIN );
-                    xDataStm->Read( aSeq.getArray(),  nLen );
-
-                    if( ( bRet = ( aSeq.getLength() > 0 ) ) == sal_True )
-                    {
-                        aAny <<= aSeq;
-                        SetAny( aAny, rFlavor );
-                    }
-                }
-            }
-            else if( nFormat == FORMAT_GDIMETAFILE )
-            {
-                GDIMetaFile     aMtf;
-                VirtualDevice   aVDev;
-                MapMode         aMapMode( mxObj->GetMapUnit() );
-                Rectangle       aVisArea( mxObj->GetVisArea( ASPECT_CONTENT ) );
-
-                aVDev.EnableOutput( FALSE );
-                aVDev.SetMapMode( aMapMode );
-                aMtf.SetPrefSize( aVisArea.GetSize() );
-                aMtf.SetPrefMapMode( aMapMode );
-                aMtf.Record( &aVDev );
-
-                mxObj->DoDraw( &aVDev, Point(), aVisArea.GetSize(), JobSetup(), ASPECT_CONTENT );
-
-                aMtf.Stop();
-                aMtf.WindStart();
-
-                bRet = SetGDIMetaFile( aMtf, rFlavor );
-            }
-        }
-    }
-
-    return bRet;
-}
-
-// -----------------------------------------------------------------------------
-
-void SvEmbeddedTransfer::ObjectReleased()
-{
-    mxObj.Clear();
-}
+namespace binfilter {
 
 /************** class SvEmbeddedInfoObject ***************************************/
 /*************************************************************************/
@@ -352,7 +213,7 @@ SO2_IMPL_CLASS2_DLL(SvEmbeddedObject,SvFactory,SvPersist,SvPseudoObject,
                     SvGlobalName( 0xBB0D2800L, 0x73EE, 0x101B,
                                   0x80,0x4C,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD) )
 
-IUnknown * SvEmbeddedObject::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvEmbeddedObject::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -393,27 +254,6 @@ SvEmbeddedObject::~SvEmbeddedObject()
 {
 }
 
-//=========================================================================
-USHORT SvEmbeddedObject::FuzzyLock
-(
-    BOOL bLock,     /* TRUE, lock. FALSE, unlock. */
-    BOOL bIntern,   /* TRUE, es handelt sich um einen internen Lock.
-                       FALSE, der Lock kam von aussen (Ole2, Ipc2) */
-    BOOL bClose     /* TRUE, Close aufrufen wenn letzte Lock */
-)
-/*  [Beschreibung]
-
-    Ruft FuzzyLock von <SvPseudoObject> und nicht von <SvPersist>.
-
-    [Querverweise]
-
-    <SvPseudoObject::FuzzyLock>
-*/
-{
-    return SvPseudoObject::FuzzyLock( bLock, bIntern, bClose );
-}
-
-
 /// Direct sent, when ViewChange is called. So nothing to do
 void SvEmbeddedObject::SendViewChanged()
 {
@@ -428,19 +268,6 @@ void SvEmbeddedObject::ViewChanged( USHORT nAspect)
 
 
 /*************************************************************************
-|*    SvEmbeddedObject::CreateTransferableSnapshot()
-|*
-|*    Beschreibung
-*************************************************************************/
-
-::com::sun::star::uno::Reference<
-                            ::com::sun::star::datatransfer::XTransferable >
-    SvEmbeddedObject::CreateTransferableSnapshot()
-{
-    return( new SvEmbeddedTransfer( this ) );
-}
-
-/*************************************************************************
 |*    SvEmbeddedObject::GetGDIMetaFile()
 |*
 |*    Beschreibung
@@ -448,10 +275,7 @@ void SvEmbeddedObject::ViewChanged( USHORT nAspect)
 
 GDIMetaFile& SvEmbeddedObject::GetGDIMetaFile( GDIMetaFile& rMTF )
 {
-    TransferableDataHelper aDataHelper( new SvEmbeddedTransfer( this ) );
-    if( !aDataHelper.GetTransferable().is() ||
-        !aDataHelper.GetGDIMetaFile( FORMAT_GDIMETAFILE, rMTF ) )
-        rMTF.Clear();
+    rMTF.Clear();
     return rMTF;
 }
 
@@ -459,9 +283,6 @@ BOOL SvEmbeddedObject::SetData( const String& )
 {
     return FALSE;
 }
-
-
-
 
 /*************************************************************************
 |*    SvEmbeddedObject::Load()
@@ -629,26 +450,6 @@ void SvEmbeddedObject::FillClass
                             pShortTypeName, nFileFormat );
     SvPseudoObject::FillClass( &aName, &nFormat, pAppName, pFullTypeName,
                                 pShortTypeName, nFileFormat );
-}
-
-/*************************************************************************
-|*    SvEmbeddedObject::FillTransferableObjectDescriptor()
-|*
-|*    Beschreibung
-*************************************************************************/
-
-void SvEmbeddedObject::FillTransferableObjectDescriptor( TransferableObjectDescriptor& rDesc ) const
-{
-    String aAppName, aShortName;
-    ULONG  nClipFormat;
-
-    FillClass( &rDesc.maClassName, &nClipFormat, &aAppName, &rDesc.maTypeName, &aShortName );
-    rDesc.mnViewAspect = ASPECT_CONTENT;
-    rDesc.mnOle2Misc = GetMiscStatus();
-    rDesc.maSize = OutputDevice::LogicToLogic( GetVisArea().GetSize(), GetMapUnit(), MAP_100TH_MM );
-    rDesc.maDragStartPos = Point();
-    rDesc.maDisplayName = String();
-    rDesc.mbCanLink = FALSE;
 }
 
 /*************************************************************************
@@ -1583,3 +1384,4 @@ void SvEmbeddedObject::OnDocumentPrinterChanged( Printer * )
     */
 }
 
+}
