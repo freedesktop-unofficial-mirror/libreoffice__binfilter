@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wsfrm.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:23:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:10:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@
 #include <vcl/outdev.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
