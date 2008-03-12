@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wpar2.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:10:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:35:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -71,7 +71,7 @@
 #include <bf_svx/brkitem.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _URLOBJ_HXX  //autogen
 #include <tools/urlobj.hxx>
@@ -899,7 +899,7 @@ void SwW4WParser::Read_IncludeGraphic()         // (IGR)
         case 3: eParser = INetURLObject::FSYS_UNX;   break;
         }
         INetURLObject aEntry( aPath, eParser );
-        aPath = so3::StaticBaseUrl::RelToAbs( aEntry.GetFull() );
+        aPath = ::binfilter::StaticBaseUrl::RelToAbs( aEntry.GetFull() );
 
         SfxItemSet aFlySet( pDoc->GetAttrPool(),
                             RES_FRMATR_BEGIN, RES_FRMATR_END-1);
