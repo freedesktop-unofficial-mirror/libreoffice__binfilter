@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:18:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:08:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,10 +40,10 @@
 
 #include "hintids.hxx"
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _IMAP_HXX //autogen
-#include <svtools/imap.hxx>
+#include <bf_svtools/imap.hxx>
 #endif
 #ifndef _SVX_OPAQITEM_HXX //autogen
 #include <bf_svx/opaqitem.hxx>
