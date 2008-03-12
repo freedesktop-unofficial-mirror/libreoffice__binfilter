@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlcnitm.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:31:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:30:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SVX_XMLCNITM_HXX
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 namespace rtl { class OUString; }
 namespace binfilter {
