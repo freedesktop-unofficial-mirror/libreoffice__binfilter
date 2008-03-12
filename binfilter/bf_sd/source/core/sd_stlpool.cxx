@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_stlpool.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:21:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:29:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -90,7 +90,7 @@
 #include <bf_svx/editeng.hxx>
 #endif
 #ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 #define ITEMID_EMPHASISMARK       EE_CHAR_EMPHASISMARK
 #define ITEMID_CHARRELIEF         EE_CHAR_RELIEF
@@ -107,7 +107,7 @@
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/adjitem.hxx>
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #define _SDR_POSITIVE
