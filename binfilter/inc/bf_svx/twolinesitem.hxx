@@ -4,9 +4,9 @@
  *
  *  $RCSfile: twolinesitem.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-06-02 12:29:07 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:17:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include <sal/types.h>
 #endif
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -73,7 +73,7 @@ public:
 /*NBFF*/                                    SfxMapUnit eCoreMetric,
 /*NBFF*/                                    SfxMapUnit ePresMetric,
 /*NBFF*/                                    String &rText,
-/*NBFF*/                                     const IntlWrapper* pIntl = 0 ) const;
+/*NBFF*/                                     const ::IntlWrapper* pIntl = 0 ) const;
 
 /*NBFF*/    virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                        BYTE nMemberId = 0 ) const;
