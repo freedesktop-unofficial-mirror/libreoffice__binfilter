@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:16:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:04:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -304,7 +304,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
     }
 
     // only the binary part should touch URLs; make sure that no BaseURL is passed to the importer also
-    so3::StaticBaseUrl::SetBaseURL( String() );
+    ::binfilter::StaticBaseUrl::SetBaseURL( String() );
 
     try
     {
@@ -519,7 +519,7 @@ sal_Bool bf_MigrateFilter::exportImpl(const Sequence< ::com::sun::star::beans::P
     }
 
     // only the binary part should touch URLs; make sure that no BaseURL is passed to the exporter also
-    so3::StaticBaseUrl::SetBaseURL( String() );
+    ::binfilter::StaticBaseUrl::SetBaseURL( String() );
 
     if(bRetval)
     {
