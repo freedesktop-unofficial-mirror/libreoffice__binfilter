@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlexpit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:46:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:41:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,11 +55,11 @@
 #define XML_EXPORT_FLAG_IGN_WS      0x0008
 
 namespace rtl { class OUString; }
-class SfxPoolItem;
-class SfxItemSet;
-class SvUShorts;
 
 namespace binfilter {
+class SvUShorts;
+class SfxPoolItem;
+class SfxItemSet;
 class SvXMLUnitConverter;
 class SvXMLAttributeList;
 class SvXMLNamespaceMap;

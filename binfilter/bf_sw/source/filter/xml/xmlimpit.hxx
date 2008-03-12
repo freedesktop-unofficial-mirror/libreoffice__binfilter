@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlimpit.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:46:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:41:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,9 +55,10 @@
 #endif
 
 namespace rtl { class OUString; }
+namespace binfilter {
+
 class SfxPoolItem;
 class SfxItemSet;
-namespace binfilter {
 
 class SvXMLUnitConverter;
 class SvXMLAttributeList;
