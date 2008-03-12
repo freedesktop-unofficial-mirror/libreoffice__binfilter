@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ddelink.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:30:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:53:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <bf_so3/lnkbase.hxx>
 #endif
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 namespace binfilter {
 
@@ -49,7 +49,7 @@ class ScMatrix;
 class ScMultipleReadHeader;
 class ScMultipleWriteHeader;
 
-class ScDdeLink : public ::so3::SvBaseLink, public SfxBroadcaster
+class ScDdeLink : public ::binfilter::SvBaseLink, public SfxBroadcaster
 {
 private:
 static BOOL bIsInUpdate;
