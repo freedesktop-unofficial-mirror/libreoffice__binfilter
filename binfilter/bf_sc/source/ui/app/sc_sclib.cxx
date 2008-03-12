@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_sclib.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:31:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:02:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,8 +43,8 @@
 #include <svwin.h>
 #endif
 
-#include <svtools/inettype.hxx>
-#include <svtools/parhtml.hxx>
+#include <bf_svtools/inettype.hxx>
+#include <bf_svtools/parhtml.hxx>
 #include <comphelper/classids.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_sfx2/docfile.hxx>
