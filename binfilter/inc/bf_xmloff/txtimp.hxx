@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtimp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:31:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 14:01:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,6 @@
 #ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
 #endif
-class SvStringsDtor;
 namespace com { namespace sun { namespace star {
 namespace text { class XText; class XTextCursor; class XTextRange; class XTextContent; }
 namespace frame { class XModel; }
@@ -82,6 +81,7 @@ namespace lang { class XMultiServiceFactory; }
 namespace ucb { class XAnyCompare; }
 } } }
 namespace binfilter {
+class SvStringsDtor;
 
 class SvXMLImport;
 class SvXMLStylesContext;
