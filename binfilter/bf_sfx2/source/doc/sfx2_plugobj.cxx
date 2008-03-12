@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_plugobj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:41:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:07:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #endif
 
 #ifndef _PLUGPOOL_HXX //autogen
-#include <svtools/plugpool.hxx>
+#include <bf_svtools/plugpool.hxx>
 #endif
 #ifdef _MSC_VER
 #pragma hdrstop

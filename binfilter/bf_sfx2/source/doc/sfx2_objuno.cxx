@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:40:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:07:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,12 +61,12 @@
 
 #include <tools/errcode.hxx>
 #include <bf_so3/svstor.hxx>
-#include <svtools/cntwids.hrc>
-#include <svtools/itemset.hxx>
-#include <svtools/stritem.hxx>
-#include <svtools/intitem.hxx>
-#include <svtools/eitem.hxx>
-#include <svtools/adrparse.hxx>
+#include <bf_svtools/cntwids.hrc>
+#include <bf_svtools/itemset.hxx>
+#include <bf_svtools/stritem.hxx>
+#include <bf_svtools/intitem.hxx>
+#include <bf_svtools/eitem.hxx>
+#include <bf_svtools/adrparse.hxx>
 #include <unotools/streamwrap.hxx>
 
 #include "objuno.hxx"
