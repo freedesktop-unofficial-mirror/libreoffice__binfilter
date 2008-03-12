@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_userdat.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:29:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:52:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -711,7 +711,7 @@ namespace binfilter {
 /*N*/   ScWriteHeader aHdr( rOStm );
 /*N*/
 /*N*/   aImageMap.Write(
-            rOStm, so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
+            rOStm, ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/ }
 /*N*/
 /*N*/ void __EXPORT ScIMapInfo::ReadData( SvStream& rIStm )
@@ -721,7 +721,7 @@ namespace binfilter {
 /*N*/   ScReadHeader aHdr( rIStm );
 /*N*/
 /*N*/   aImageMap.Read(
-            rIStm, so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
+            rIStm, ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/ }
 
 
