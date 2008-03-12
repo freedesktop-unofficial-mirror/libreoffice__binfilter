@@ -4,9 +4,9 @@
  *
  *  $RCSfile: event.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:15:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:35:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
+#include <bf_svtools/hint.hxx>
 #endif
 
 #include <com/sun/star/uno/Sequence.hxx>
