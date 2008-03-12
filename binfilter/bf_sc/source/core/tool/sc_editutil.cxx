@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_editutil.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:46:09 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:56:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,12 +48,12 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 #include <bf_svx/editstat.hxx>
 
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SVX_ITEMDATA_HXX
@@ -70,9 +70,9 @@
 
 #include <bf_svx/flditem.hxx>
 //#include <vcl/system.hxx>
-#include <svtools/inethist.hxx>
+#include <bf_svtools/inethist.hxx>
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
@@ -514,8 +514,7 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/                   break;
 /*N*/           }
 /*N*/
-/*N*/             svtools::ColorConfigEntry eEntry =
-/*N*/                 INetURLHistory::GetOrCreate()->QueryUrl( aURL ) ? svtools::LINKSVISITED : svtools::LINKS;
+                    ColorConfigEntry eEntry = INetURLHistory::GetOrCreate()->QueryUrl( aURL ) ? LINKSVISITED : LINKS;
 /*N*/           rTxtColor = new Color( SC_MOD()->GetColorConfig().GetColorValue(eEntry).nColor );
 /*N*/       }
 /*N*/       else
