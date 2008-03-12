@@ -4,9 +4,9 @@
  *
  *  $RCSfile: insdlg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:44:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:11:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,8 +42,7 @@
 
 #include <tools/urlobj.hxx>
 #include <tools/debug.hxx>
-#include <svtools/urihelper.hxx>
-#include <svtools/svmedit.hxx>
+#include <bf_svtools/urihelper.hxx>
 #include <vcl/button.hxx>
 #include <vcl/fixed.hxx>
 #include <vcl/group.hxx>
@@ -59,27 +58,13 @@
 #include "bf_so3/outplace.hxx"
 #include "bf_so3/staticbaseurl.hxx"
 
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
 #include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_EXECUTABLEDIALOGRESULTS_HPP_
 #include <com/sun/star/ui/dialogs/ExecutableDialogResults.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
 #include <com/sun/star/ui/dialogs/XFilePicker.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_XFILTERMANAGER_HPP_
 #include <com/sun/star/ui/dialogs/XFilterManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #include <osl/file.hxx>
 #include <sot/stg.hxx>
@@ -88,6 +73,8 @@
 #include <com/sun/star/container/XNameAccess.hpp>
 #include <unotools/processfactory.hxx>
 
+#define _SVSTDARR_STRINGSDTOR
+#include <bf_svtools/svstdarr.hxx>
 
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
@@ -95,10 +82,7 @@ using namespace ::rtl;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::ui::dialogs;
 
-#define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
-
-namespace so3
+namespace binfilter
 {
 
 /********************** SvObjectServerList ********************************
@@ -235,4 +219,4 @@ void SvObjectServerList::FillInsertObjects()
     }
 }
 
-}   // namespace so3
+}
