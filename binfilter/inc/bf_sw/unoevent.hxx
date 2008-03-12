@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoevent.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 05:01:11 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:52:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,14 +36,13 @@
 #define _UNOEVENT_HXX
 
 #ifndef _SVTOOLS_UNOEVENT_HXX_
-#include <svtools/unoevent.hxx>
+#include <bf_svtools/unoevent.hxx>
 #endif
-
-class SvxMacroItem;
-class SvxMacro;
 
 namespace binfilter {
 
+class SvxMacroItem;
+class SvxMacro;
 
 class SwXFrame;
 class SwXTextFrame;
