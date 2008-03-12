@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unosett.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:53:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:29:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@
 #include <unoprnms.hxx>
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
@@ -153,7 +153,7 @@
 #include <vcl/metric.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #endif
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
