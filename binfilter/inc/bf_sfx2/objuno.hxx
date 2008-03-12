@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objuno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:22:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:38:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -180,8 +180,8 @@
 
 #include <com/sun/star/io/IOException.hpp>
 
-#include <svtools/itemprop.hxx>
-#include <svtools/lstner.hxx>
+#include <bf_svtools/itemprop.hxx>
+#include <bf_svtools/lstner.hxx>
 #ifndef _SFX_SFXBASEMODEL_HXX_
 #include <bf_sfx2/sfxbasemodel.hxx>
 #endif
