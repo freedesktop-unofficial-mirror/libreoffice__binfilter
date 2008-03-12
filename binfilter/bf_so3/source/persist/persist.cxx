@@ -4,9 +4,9 @@
  *
  *  $RCSfile: persist.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:52:46 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:19:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,6 +52,7 @@
 #include <unotools/ucbhelper.hxx>
 #include <unotools/tempfile.hxx>
 
+namespace binfilter {
 
 /************** class SvInfoObject ***************************************/
 /*************************************************************************/
@@ -302,7 +303,7 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvObjectContainer,SvObjectContainerFactory,SvObject
                              0x89, 0xca, 0x0, 0x80, 0x29, 0xe4, 0xb0, 0xb1 )
 
 //=========================================================================
-IUnknown * SvObjectContainer::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvObjectContainer::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -357,7 +358,7 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvPersist,SvPersistFactory,SvObjectContainer,
                              0xC24CC4E0L, 0x73DF, 0x101B,
                              0x80,0x4C,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD )
 
-IUnknown * SvPersist::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvPersist::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -2146,3 +2147,4 @@ void SvPersist::StartActivation( SvPersist* pObj_ )
 
 
 
+}

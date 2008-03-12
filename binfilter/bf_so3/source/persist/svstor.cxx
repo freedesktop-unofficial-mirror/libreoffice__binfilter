@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svstor.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:53:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:20:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,6 +40,7 @@
 #include "bf_so3/soerr.hxx"
 #include <sot/storinfo.hxx>
 #include <sot/stg.hxx>
+
 #include <tools/debug.hxx>
 
 // Freigeben, wenn SD-Storages verwendet werden sollen
@@ -52,6 +53,8 @@
 #undef DBG_PROFSTOP
 #define DBG_PROFSTOP(John)
 
+namespace binfilter {
+
 /************** class SvStorageStream ***********************************/
 SV_IMPL_FACTORY(SvStorageStreamFactory)
     {
@@ -63,7 +66,7 @@ SO2_IMPL_STANDARD_CLASS2_DLL(SvStorageStream,SvStorageStreamFactory,SvObject,Sot
                              0x89F1CAA0L, 0x7010, 0x101B,
                              0x80,0x4C,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD )
 
-IUnknown * SvStorageStream::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvStorageStream::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -177,7 +180,7 @@ SO2_IMPL_STANDARD_CLASS2_DLL(SvStorage,SvStorageFactory,SvObject,SotStorage,
                              0xCD956821L, 0x70B5, 0x101B,
                              0x80,0x4C,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD )
 
-IUnknown * SvStorage::GetMemberInterface( const SvGlobalName & )
+::IUnknown * SvStorage::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
@@ -452,4 +455,5 @@ SvStorage * SvStorage::OpenOLEStorage( const String & rEleName,
     if( !nE )
         m_pOwnStg->ResetError(); // kein Fehler setzen
     return pStor;
+}
 }
