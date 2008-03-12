@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_globalx.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:19:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:51:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,7 +51,7 @@
 #endif
 
 #include <tools/debug.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 
 #include <com/sun/star/sdbc/XResultSet.hpp>
 #include <com/sun/star/sdbc/XRow.hpp>
