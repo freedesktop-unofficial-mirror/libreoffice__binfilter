@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:50:43 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:48:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,12 +38,7 @@
 #ifndef _MyEDITENG_HXX
 #define _MyEDITENG_HXX
 class OutputDevice;
-class SfxUndoManager;
-class SfxItemPool;
-class SfxStyleSheet;
 class String;
-class SfxStyleSheetPool;
-class SfxUndoAction;
 class MapMode;
 class Color;
 class Font;
@@ -55,10 +50,15 @@ class Rectangle;
 class SvStream;
 class Link;
 class OutputDevice;
-class SvUShorts;
-class SfxPoolItem;
-class SvKeyValueIterator;
 namespace binfilter {
+class SvKeyValueIterator;
+class SvUShorts;
+class SfxStyleSheetPool;
+class SfxUndoManager;
+class SfxItemPool;
+class SfxStyleSheet;
+class SfxUndoAction;
+class SfxPoolItem;
 class ImpEditEngine;
 class EditView;
 class EditUndo;
