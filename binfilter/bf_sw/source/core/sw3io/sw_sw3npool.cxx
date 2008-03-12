@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:06:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:14:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,10 +39,10 @@
 
 #define _SVSTDARR_USHORTS
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
@@ -587,7 +587,7 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   rStrm.ReadByteString( aTarget, rStrm.GetStreamCharSet() );
 /*N*/   rStrm >> nId1 >> nId2;
 /*N*/
-/*N*/   aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
+/*N*/   aURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL );
 /*N*/   SwFmtINetFmt *pNew = new SwFmtINetFmt( aURL, aTarget );
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   if( nId1 != IDX_NO_VALUE )
@@ -658,7 +658,7 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*?*/       nId2 = (UINT16) pIo->aStringPool.Find( aVisitedFmt, nVisitedId );
 /*N*/   String aURL( GetValue() );
 /*N*/   lcl_sw3io__ConvertMarkToOutline( aURL );
-/*N*/   rStrm.WriteByteString( so3::StaticBaseUrl::AbsToRel( aURL URL_DECODE ),
+/*N*/   rStrm.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel( aURL URL_DECODE ),
 /*N*/                          rStrm.GetStreamCharSet() );
 /*N*/       rStrm.WriteByteString( aTargetFrame, rStrm.GetStreamCharSet() );
 /*N*/   rStrm << nId1 << nId2;

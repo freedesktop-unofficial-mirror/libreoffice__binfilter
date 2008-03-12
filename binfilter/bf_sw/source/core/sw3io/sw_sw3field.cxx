@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:05:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:12:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,13 +46,13 @@
 #include <tools/resid.hxx>
 #endif
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 #ifndef _ZFORMAT_HXX //autogen
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #endif
 #ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>
@@ -657,7 +657,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/   ByteString s8;
 /*N*/   rIo.pStrm->ReadByteString( s8 );
-/*N*/     sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : ::so3::cTokenSeperator;
+/*N*/     sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : ::binfilter::cTokenSeperator;
 /*N*/
 /*N*/   {
 /*N*/       // die ersten beiden Blanks gegen den neuen Trenner austauschen
@@ -666,17 +666,17 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       if( STRING_NOTFOUND != nFnd++ )
 /*N*/       {
 /*N*/           xub_StrLen nFnd2 = s8.Search( cSrch, nFnd );
-/*N*/             ( aCmd += ::so3::cTokenSeperator) +=
+/*N*/             ( aCmd += ::binfilter::cTokenSeperator) +=
 /*N*/               String( s8, nFnd, nFnd2 - nFnd, rIo.eSrcSet );
 /*N*/           if( STRING_NOTFOUND != nFnd2++ )
-/*N*/                 ( aCmd += ::so3::cTokenSeperator) +=
+/*N*/                 ( aCmd += ::binfilter::cTokenSeperator) +=
 /*N*/                   String( s8, nFnd2, aCmd.Len() - nFnd2, rIo.eSrcSet );
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   // JP 15.08.00: our dialog have set the wrong format id's
-/*N*/     if( ::so3::LINKUPDATE_ALWAYS != nType && ::so3::LINKUPDATE_ONCALL != nType )
-/*?*/         nType = ::so3::LINKUPDATE_ONCALL;
+/*N*/     if( ::binfilter::LINKUPDATE_ALWAYS != nType && ::binfilter::LINKUPDATE_ONCALL != nType )
+/*?*/         nType = ::binfilter::LINKUPDATE_ONCALL;
 /*N*/
 /*N*/   SwDDEFieldType aType( aName, aCmd, nType );
 /*N*/   return (SwDDEFieldType*) rIo.pDoc->InsertFldType( aType );
@@ -687,7 +687,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   *rIo.pStrm << (USHORT) pType->GetType()
 /*N*/              << (UINT16) rIo.aStringPool.Find( pType->GetName(), USHRT_MAX );
 /*N*/     ByteString s8 = rIo.ConvertStringNoDelim( pType->GetCmd(),
-/*N*/                         ::so3::cTokenSeperator, '\xff', rIo.eSrcSet );
+/*N*/                         ::binfilter::cTokenSeperator, '\xff', rIo.eSrcSet );
 /*N*/   rIo.pStrm->WriteByteString( s8 );
 /*N*/ }
 
@@ -2318,7 +2318,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.InString( *rIo.pStrm, rIo.aINetFldText );
 /*N*/
 /*N*/   // JP 10.04.96: aus rel. URLs wieder absolute machen!
-/*N*/   aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
+/*N*/   aURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL );
 /*N*/
 /*N*/   String sTarget;
 /*N*/   if( rIo.IsVersion( SWG_TARGETFRAME, SWG_EXPORT31 ) )
@@ -2389,7 +2389,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
             cFlags = 0x01;
         }
         if( (cFlags & 0x01) != 0 )
-            aCode = so3::StaticBaseUrl::SmartRelToAbs( aCode );
+            aCode = ::binfilter::StaticBaseUrl::SmartRelToAbs( aCode );
 
         SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
                                                  (cFlags & 0x01) != 0 );
@@ -2406,7 +2406,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         *rIo.pStrm >> cFlags;
 
         if( (cFlags & 0x01) != 0 )
-            aCode = so3::StaticBaseUrl::SmartRelToAbs( aCode );
+            aCode = ::binfilter::StaticBaseUrl::SmartRelToAbs( aCode );
 
         SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
                                                  (cFlags & 0x01) != 0 );
@@ -2424,7 +2424,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         if( ((SwScriptField*)pFld)->IsCodeURL() )
         {
             aCode.AssignAscii( "// @url: " );
-            aCode += so3::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
+            aCode += ::binfilter::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
         }
         else
             aCode = ((SwScriptField*)pFld)->GetCode();
@@ -2442,7 +2442,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
         String aCode;
         if( ((SwScriptField*)pFld)->IsCodeURL() )
-            aCode = so3::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
+            aCode = ::binfilter::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
         else
             aCode = ((SwScriptField*)pFld)->GetCode();
 
