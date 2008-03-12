@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xit.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:28:59 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:28:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,10 +37,11 @@
 #define _SVX_XIT_HXX
 
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
-class SfxItemPool;
 namespace binfilter {
+
+    class SfxItemPool;
 
 /************************************************************************/
 
