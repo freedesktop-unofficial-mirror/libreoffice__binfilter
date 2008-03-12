@@ -4,9 +4,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:22:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:38:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@
 #endif
 #endif
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SO2DEFS_HXX //autogen
 #include <bf_so3/so2defs.hxx>
@@ -87,26 +87,26 @@
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
-namespace so3 {
+namespace binfilter {
  class SvLinkSource;
 }
 class SbxValue;
-class SvxMacro;
 class SbxArray;
-class SfxStyleSheetBasePool;
-class SfxStyleSheetPool;
 class SbMethod;
 class Printer;
-class SvKeyValueIterator;
-class SvPseudoObject;
-class SvEmbeddedInfoObject;
-class SvEmbeddedObject;
 class GDIMetaFile;
 class Bitmap;
 class INetURLObject;
 
 namespace binfilter {
+class SvxMacro;
+class SvKeyValueIterator;
+class SvPseudoObject;
+class SvEmbeddedInfoObject;
+class SvEmbeddedObject;
 
+class SfxStyleSheetBasePool;
+class SfxStyleSheetPool;
 class BasicManager;
 class StarBASIC;
 class SfxMedium;
@@ -398,7 +398,7 @@ public:
     virtual long                DdeSetData( const String& rItem,
                                             const String& rMimeType,
                                 const ::com::sun::star::uno::Any & rValue );
-    virtual ::so3::SvLinkSource* DdeCreateLinkSource( const String& rItem );
+    virtual ::binfilter::SvLinkSource* DdeCreateLinkSource( const String& rItem );
 
     // Contents
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
