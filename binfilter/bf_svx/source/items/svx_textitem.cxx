@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:44:13 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:33:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,7 @@
 #define GLOBALOVERFLOW3
 
 
-#include <svtools/memberid.hrc>
+#include <bf_svtools/memberid.hrc>
 #include "svxids.hrc"
 #include "svxitems.hrc"
 
@@ -96,10 +96,10 @@
 #include <i18npool/mslangid.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 #ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_STYLE_CASEMAP_HPP_
@@ -2240,7 +2240,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*NBFF*/ SfxItemPresentation SvxTwoLinesItem::GetPresentation( SfxItemPresentation ePres,
 /*NBFF*/                            SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-/*NBFF*/                             String &rText, const IntlWrapper* pIntl ) const
+/*NBFF*/                             String &rText, const ::IntlWrapper* pIntl ) const
 /*NBFF*/ {
 /*NBFF*/    switch( ePres )
 /*NBFF*/    {
@@ -2332,7 +2332,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*NBFF*/ SfxItemPresentation SvxCharRotateItem::GetPresentation(
 /*NBFF*/        SfxItemPresentation ePres,
 /*NBFF*/        SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-/*NBFF*/         String &rText, const IntlWrapper*  ) const
+/*NBFF*/         String &rText, const ::IntlWrapper*  ) const
 /*NBFF*/ {
 /*NBFF*/    switch( ePres )
 /*NBFF*/    {
@@ -2548,7 +2548,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/     SfxItemPresentation ePres,
 /*N*/     SfxMapUnit          eCoreUnit,
 /*N*/     SfxMapUnit          ePresUnit,
-/*N*/     XubString&          rText, const IntlWrapper *pIntl
+/*N*/     XubString&          rText, const ::IntlWrapper *pIntl
 /*N*/ )   const
 /*N*/ {
 /*?*/   SfxItemPresentation eRet = ePres;
