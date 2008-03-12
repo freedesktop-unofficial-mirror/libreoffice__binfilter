@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_autoform.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:42:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:54:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include "autoform.hxx"
 
 #include <bf_sfx2/docfile.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <vcl/outdev.hxx>
 #include <bf_svx/dialmgr.hxx>
 #include <bf_svx/dialogs.hrc>
