@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_drawdoc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:08:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:58:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,10 +41,10 @@
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
