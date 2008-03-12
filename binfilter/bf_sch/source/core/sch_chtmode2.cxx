@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:19:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:20:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,13 +54,13 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #endif
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 
 
@@ -84,7 +84,7 @@
 #include <bf_svx/eeitem.hxx>
 #endif
 #ifndef _ZFORMAT_HXX //autogen
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #endif
 // header for getProcessServiceFactory
 
