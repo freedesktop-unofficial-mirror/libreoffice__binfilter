@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shell.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:43:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:40:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,15 +42,16 @@
 #include <tools/rtti.hxx>
 #endif
 #ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
+#include <bf_svtools/brdcst.hxx>
 #endif
 
 #include <tools/string.hxx>
 
+namespace binfilter {
+
 class SfxItemPool;
 class SfxPoolItem;
 
-namespace binfilter {
 
 struct SfxShell_Impl;
 
