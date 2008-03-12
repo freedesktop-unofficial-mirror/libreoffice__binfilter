@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.16 $
+ *  $Revision: 1.17 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:37:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:01:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -93,13 +93,13 @@
 #endif
 
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
+#include <bf_svtools/stritem.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
@@ -108,30 +108,30 @@
 #include <doctempl.hxx>
 #endif
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #include "bf_basic/sbxobj.hxx"
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 #include <unotools/localfilehelper.hxx>
 
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #endif
 #ifndef _SVTOOLS_TEMPLDLG_HXX
-#include <svtools/templdlg.hxx>
+#include <bf_svtools/templdlg.hxx>
 #endif
 #ifndef _OSL_FILE_HXX_
 #include <osl/file.hxx>
 #endif
-#include <svtools/extendedsecurityoptions.hxx>
-#include <svtools/docpasswdrequest.hxx>
+#include <bf_svtools/extendedsecurityoptions.hxx>
+#include <bf_svtools/docpasswdrequest.hxx>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -155,7 +155,7 @@
 #include "sfxsids.hrc"
 
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
