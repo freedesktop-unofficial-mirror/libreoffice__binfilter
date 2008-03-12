@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_inetfld.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:13:50 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:00:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include "hintids.hxx"
 
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 
 
