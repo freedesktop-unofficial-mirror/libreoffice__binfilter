@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_exctools.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:57:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:32:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -77,7 +77,7 @@
 #include <bf_svx/adjitem.hxx>
 #endif
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
