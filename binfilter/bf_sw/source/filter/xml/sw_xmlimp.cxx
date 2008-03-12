@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmlimp.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:04:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:38:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -156,7 +156,7 @@
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
-#include <svtools/saveopt.hxx>
+#include <bf_svtools/saveopt.hxx>
 #endif
 
 // for locking SolarMutex: svapp + mutex
