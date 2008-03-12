@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoedsrc.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:22:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:19:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,14 +47,15 @@
 #endif
 
 #ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
+#include <bf_svtools/itempool.hxx>
 #endif
 class OutputDevice;
 class String;
-class SfxItemSet;
-class SvUShorts;
-class SfxBroadcaster;
 namespace binfilter {
+
+class SvUShorts;
+class SfxItemSet;
+class SfxBroadcaster;
 
 struct ESelection;
 struct EFieldInfo;
