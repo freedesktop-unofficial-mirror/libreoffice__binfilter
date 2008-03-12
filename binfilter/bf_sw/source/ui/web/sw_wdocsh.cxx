@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wdocsh.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:14:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:55:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -75,25 +75,17 @@ SFX_IMPL_OBJECTFACTORY_LOD(SwWebDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHE
 } */
 
 
-/*N*/ TYPEINIT1(SwWebDocShell, SwDocShell);
+TYPEINIT1(SwWebDocShell, SwDocShell);
 
-/*-----------------22.01.97 09.29-------------------
+SwWebDocShell::SwWebDocShell(SfxObjectCreateMode eMode ) :
+SwDocShell(eMode),
+nSourcePara(0)
+{
+}
 
---------------------------------------------------*/
-
-/*?*/ SwWebDocShell::SwWebDocShell(SfxObjectCreateMode eMode ) :
-/*?*/       SwDocShell(eMode),
-/*?*/       nSourcePara(0)
-/*?*/ {
-/*?*/ }
-
-/*-----------------22.01.97 09.29-------------------
-
---------------------------------------------------*/
-
-/*?*/ SwWebDocShell::~SwWebDocShell()
-/*?*/ {
-/*?*/ }
+SwWebDocShell::~SwWebDocShell()
+{
+}
 
 
 
