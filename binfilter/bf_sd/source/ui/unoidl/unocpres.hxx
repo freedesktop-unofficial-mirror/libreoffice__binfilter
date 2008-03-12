@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unocpres.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:13:15 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:56:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,6 @@ namespace binfilter {
 
 class SdXImpressDocument;
 class SdView;
-class SdDrawViewShell;
 class SdCustomShow;
 
 class SdXCustomPresentation :   public ::cppu::WeakImplHelper5< ::com::sun::star::container::XIndexContainer,
