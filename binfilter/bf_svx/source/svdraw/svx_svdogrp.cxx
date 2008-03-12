@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdogrp.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:59:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:38:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 
 #include "xpool.hxx"
 
@@ -58,7 +58,7 @@
 #endif
 
 #ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
@@ -172,7 +172,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*N*/       aRelFileName = so3::StaticBaseUrl::AbsToRel( aFileName,
+/*N*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -214,7 +214,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileNameRel.Len() )
 /*N*/   {
-/*N*/       aFileName = so3::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
+/*N*/       aFileName = ::binfilter::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
