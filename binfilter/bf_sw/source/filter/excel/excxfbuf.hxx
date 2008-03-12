@@ -4,9 +4,9 @@
  *
  *  $RCSfile: excxfbuf.hxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-12-12 15:57:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:31:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,8 +38,8 @@
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif
-class SfxItemSet;
 namespace binfilter {
+class SfxItemSet;
 
 class SvxBorderLine;
 
