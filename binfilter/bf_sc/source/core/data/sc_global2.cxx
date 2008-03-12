@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:36:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:51:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,14 +45,14 @@
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <unotools/textsearch.hxx>
-#include <svtools/pathoptions.hxx>
-#include <svtools/useroptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
+#include <bf_svtools/useroptions.hxx>
 #include <tools/urlobj.hxx>
 #include <stdlib.h>
 #include <ctype.h>
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 
 #include "document.hxx"
