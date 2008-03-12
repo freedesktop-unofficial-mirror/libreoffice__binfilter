@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unostyle.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:49:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:57:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,10 @@
 #define _UNOSTYLE_HXX
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
@@ -80,8 +80,8 @@
 #ifndef _CALBCK_HXX
 #include <calbck.hxx>
 #endif
-struct SfxItemPropertyMap;
 namespace binfilter {
+struct SfxItemPropertyMap;
 
 class SwDocShell;
 
