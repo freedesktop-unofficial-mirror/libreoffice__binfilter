@@ -4,9 +4,9 @@
  *
  *  $RCSfile: UnoNameItemTable.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 21:53:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:42:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,17 +48,17 @@
 #include <vector>
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SVX_XIT_HXX
 #include "xit.hxx"
 #endif
 
-class SfxItemPool;
-class SfxItemSet;
 namespace binfilter {
 
+class SfxItemPool;
+class SfxItemSet;
 class SdrModel;
 
 typedef std::vector< SfxItemSet* > ItemPoolVector;
