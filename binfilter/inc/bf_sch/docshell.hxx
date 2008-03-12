@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docshell.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:19:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:25:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,24 +79,23 @@
 
 #include "glob.hxx"
 
+#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
+#include <com/sun/star/chart/ChartDataChangeEvent.hpp>
+#endif
+namespace binfilter {
+
 #ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED
 #define SO2_DECL_SVSTORAGESTREAM_DEFINED
 SO2_DECL_REF(SvStorageStream)
 #endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
-#include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
-class SfxStyleSheetBasePool;
 class FontList;
 class SfxUndoManager;
-namespace binfilter {
-
+class SfxStyleSheetBasePool;
 class SdStyleSheetPool;
 class SfxProgress;
 class SfxPrinter;
 class SfxMenuBarManager;
-class SvInPlaceMenuBar;
 
 /*************************************************************************
 |*

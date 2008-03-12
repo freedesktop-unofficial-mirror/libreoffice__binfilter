@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schdll.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:19:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:26:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,14 +48,14 @@
 #endif
 
 #include <bf_sch/chattr.hxx>    // to do: remove this line and replace most of the schdll.hxx includes to chattr.hxx
-class SvFactory;
-class SvInPlaceObjectRef;
 class OutputDevice;
 class Window;
 class SvStream;
-class SfxItemSet;
 
 namespace binfilter {
+class SvFactory;
+class SvInPlaceObjectRef;
+class SfxItemSet;
 
 #define extern_c extern "C"
 
