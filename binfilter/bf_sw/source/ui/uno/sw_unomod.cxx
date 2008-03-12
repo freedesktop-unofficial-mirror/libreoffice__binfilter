@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unomod.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:12:53 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:54:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -62,7 +62,7 @@
 #include <unomap.hxx>
 #endif
 #ifndef _SFX_ITEMPROP_HXX //autogen
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _PRTOPT_HXX //autogen
 #include <prtopt.hxx>
