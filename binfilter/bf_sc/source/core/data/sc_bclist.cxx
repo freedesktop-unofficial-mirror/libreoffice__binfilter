@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_bclist.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:30:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:46:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 //------------------------------------------------------------------
 
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #include <tools/list.hxx>
 
 #include "bclist.hxx"

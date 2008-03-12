@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen4.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:33:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:48:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #include <vcl/sound.hxx>
 
 #include "globstr.hrc"
