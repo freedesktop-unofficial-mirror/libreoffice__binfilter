@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_numehelp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:18:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:59:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
