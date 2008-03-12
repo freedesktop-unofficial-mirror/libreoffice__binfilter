@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdundo.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:12:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:12:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,11 +37,11 @@
 #define _SVDUNDO_HXX
 
 #ifndef _SOLAR_HRC
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 #endif
 
 #ifndef _UNDO_HXX //autogen
-#include <svtools/undo.hxx>
+#include <bf_svtools/undo.hxx>
 #endif
 
 #ifndef _CONTNR_HXX //autogen
@@ -56,9 +56,9 @@
 #include <bf_svx/svdtypes.hxx> // fuer enum RepeatFuncts
 #endif
 #include <tools/debug.hxx>
+namespace binfilter {
 class SfxItemSet;
 class SfxStyleSheet;
-namespace binfilter {
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
