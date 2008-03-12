@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hlnkitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:38:11 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 12:54:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,14 +39,14 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
 #endif
 
 #ifndef _SFXMACITEM_HXX
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 namespace binfilter {
 

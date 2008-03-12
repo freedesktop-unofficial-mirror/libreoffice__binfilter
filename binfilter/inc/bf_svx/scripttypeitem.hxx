@@ -4,9 +4,9 @@
  *
  *  $RCSfile: scripttypeitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 03:57:00 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:02:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,13 +38,13 @@
 // include ---------------------------------------------------------------
 
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
-#include <svtools/languageoptions.hxx>
+#include <bf_svtools/languageoptions.hxx>
 #endif
 namespace binfilter {
 
