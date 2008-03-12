@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmleohlp.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:30:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:31:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,9 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTRESOLVER_HPP_
 #include <com/sun/star/document/XEmbeddedObjectResolver.hpp>
 #endif
-class SvPersist;
 class SvGlobalName;
 namespace binfilter {
+class SvPersist;
 
 // -----------------------------
 // - SvXMLEmbeddedObjectHelper -
