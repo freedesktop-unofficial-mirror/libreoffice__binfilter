@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unopres.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 10:08:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:54:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,8 +39,7 @@
 
 #include "unopres.hxx"
 #include "unocpres.hxx"
-#include "app.hrc"                      // SID_LIVE_PRESENTATION
-#include "docshell.hxx"
+#include "bf_sd/docshell.hxx"
 #include "sdattr.hxx"
 #include "cusshow.hxx"
 #include "unoprnms.hxx"
@@ -58,7 +57,6 @@ using namespace ::com::sun::star;
 
 const SfxItemPropertyMap* ImplGetPresentationPropertyMap()
 {
-    // [ACHTUNG] Erster Parameter muss sortiert vorliegen
     static const SfxItemPropertyMap aPresentationPropertyMap_Impl[] =
     {
         { MAP_CHAR_LEN("IsShowAll"),                ATTR_PRESENT_ALL,               &::getBooleanCppuType(),                0, 0 },
@@ -69,7 +67,6 @@ const SfxItemPropertyMap* ImplGetPresentationPropertyMap()
         { MAP_CHAR_LEN(UNO_NAME_SHOW_AUTOMATIC),    ATTR_PRESENT_MANUEL,            &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_SHOW_ENDLESS),      ATTR_PRESENT_ENDLESS,           &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_SHOW_FULLSCREEN),   ATTR_PRESENT_FULLSCREEN,        &::getBooleanCppuType(),                0, 0 },
-        { MAP_CHAR_LEN(UNO_NAME_SHOW_LIVEMODUS),    SID_LIVE_PRESENTATION,          &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_SHOW_MOUSEVISIBLE),ATTR_PRESENT_MOUSE,              &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_SHOW_PAUSE),        ATTR_PRESENT_PAUSE_TIMEOUT,     &::getCppuType((const sal_Int32*)0),    0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_SHOW_STARTWITHNAV),ATTR_PRESENT_NAVIGATOR,          &::getBooleanCppuType(),                0, 0 },
@@ -248,11 +245,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
         bValuesChanged = sal_True;
         break;
     }
-    case SID_LIVE_PRESENTATION:
-    {
-        DBG_ERROR("Strip!");
-        break;
-    }
     case ATTR_PRESENT_MANUEL:
     {
         sal_Bool bVal;
@@ -398,10 +390,6 @@ uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyNam
             any <<= aSlideName;
         }
         break;
-    case SID_LIVE_PRESENTATION:
-    {
-        break;
-    }
     case ATTR_PRESENT_MANUEL:
         sd::bool2any( pDoc->GetPresManual(), any );
         break;
@@ -428,46 +416,33 @@ uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyNam
     return any;
 }
 
-void SAL_CALL SdXPresentation::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener )
-    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener )    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener )
-    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener )
-    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener )
-    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener )  throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
 // XPresentation
-void SAL_CALL SdXPresentation::start(  )
-    throw(uno::RuntimeException)
+void SAL_CALL SdXPresentation::start(  ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
-    DBG_ERROR("Strip!");
 }
 
-void SAL_CALL SdXPresentation::end(  )
-    throw(uno::RuntimeException)
+void SAL_CALL SdXPresentation::end(  ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
-    DBG_ERROR("Strip!");
 }
 
-void SAL_CALL SdXPresentation::rehearseTimings(  )
-    throw(uno::RuntimeException)
+void SAL_CALL SdXPresentation::rehearseTimings(  ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
-    DBG_ERROR("Strip!");
 }
 
 
