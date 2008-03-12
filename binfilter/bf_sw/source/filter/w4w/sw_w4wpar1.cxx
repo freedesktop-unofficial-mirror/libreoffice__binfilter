@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_w4wpar1.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:59:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:35:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 #ifndef _SVX_PAPERINF_HXX
