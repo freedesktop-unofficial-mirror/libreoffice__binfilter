@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.16 $
+ *  $Revision: 1.17 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:28:17 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:43:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,7 +127,7 @@
 #include <tools/inetmsg.hxx>
 #endif
 #ifndef _INETSTRM_HXX //autogen
-#include <svtools/inetstrm.hxx>
+#include <bf_svtools/inetstrm.hxx>
 #endif
 #ifndef _COMPHELPER_SEQSTREAM_HXX
 #include <comphelper/seqstream.hxx>
@@ -148,7 +148,7 @@
 #include <rtl/math.hxx>
 #endif
 #ifndef _INETTYPE_HXX
-#include <svtools/inettype.hxx>
+#include <bf_svtools/inettype.hxx>
 #endif
 #ifndef _SV_SVAPP_HXX   // because of the solar mutex
 #include <vcl/svapp.hxx>
@@ -3782,7 +3782,7 @@ void SAL_CALL ODatabaseForm::write(const Reference<XObjectOutputStream>& _rxOutS
     _rxOutStream->writeBoolean(m_bAllowDelete);
 
     // html form stuff
-    ::rtl::OUString sTmp = INetURLObject::decode(so3::StaticBaseUrl::AbsToRel( m_aTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
+    ::rtl::OUString sTmp = INetURLObject::decode(::binfilter::StaticBaseUrl::AbsToRel( m_aTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
     _rxOutStream << sTmp;
     _rxOutStream->writeShort( (sal_Int16)m_eSubmitMethod );
     _rxOutStream->writeShort( (sal_Int16)m_eSubmitEncoding );
@@ -3892,7 +3892,7 @@ void SAL_CALL ODatabaseForm::read(const Reference<XObjectInputStream>& _rxInStre
     // html stuff
     ::rtl::OUString sTmp;
     _rxInStream >> sTmp;
-    m_aTargetURL = INetURLObject::decode(so3::StaticBaseUrl::RelToAbs( sTmp ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
+    m_aTargetURL = INetURLObject::decode(::binfilter::StaticBaseUrl::RelToAbs( sTmp ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
     m_eSubmitMethod     = (FormSubmitMethod)_rxInStream->readShort();
     m_eSubmitEncoding       = (FormSubmitEncoding)_rxInStream->readShort();
     _rxInStream >> m_aTargetFrame;
