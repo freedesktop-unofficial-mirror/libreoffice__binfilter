@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eerdll2.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:20:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:25:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,9 @@
 
 #include <forbiddencharacterstable.hxx>
 #include <vos/ref.hxx>
-class SfxPoolItem;
 namespace binfilter {
 
+class SfxPoolItem;
 class SvxAutoCorrect;
 
 class GlobalEditData
