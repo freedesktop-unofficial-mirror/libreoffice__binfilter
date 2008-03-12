@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabview.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:32:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:10:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,16 +48,16 @@
 #include <bf_so3/ipclient.hxx>
 #endif
 
-#ifndef SO2_DECL_SVINPLACECLIENT_DEFINED
-#define SO2_DECL_SVINPLACECLIENT_DEFINED
-SO2_DECL_REF(SvInPlaceClient)
-#endif
-
 #include "viewutil.hxx"
 #include "select.hxx"
 class SvBorder;
 class Splitter;
 namespace binfilter {
+
+#ifndef SO2_DECL_SVINPLACECLIENT_DEFINED
+#define SO2_DECL_SVINPLACECLIENT_DEFINED
+SO2_DECL_REF(SvInPlaceClient)
+#endif
 
 class ScEditEngineDefaulter;
 class ScGridWindow;
