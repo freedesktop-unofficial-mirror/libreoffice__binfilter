@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.14 $
+ *  $Revision: 1.15 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:58:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:31:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,7 @@
  ************************************************************************/
 
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
@@ -55,7 +55,7 @@
 #define ITEMID_FIELD    0
 
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 
@@ -447,7 +447,7 @@ namespace binfilter {
 /*N*/   eFormat= (SvxURLFormat)nFormat;
 /*N*/
 /*N*/   // Relatives Speichern => Beim laden absolut machen.
-/*N*/   aURL = so3::StaticBaseUrl::RelToAbs( aTmpURL );
+/*N*/   aURL = ::binfilter::StaticBaseUrl::RelToAbs( aTmpURL );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -455,7 +455,7 @@ namespace binfilter {
 /*N*/ void SvxURLField::Save( SvPersistStream & rStm )
 /*N*/ {
 /*N*/   // Relatives Speichern der URL
-/*N*/   String aTmpURL = so3::StaticBaseUrl::AbsToRel( aURL );
+/*N*/   String aTmpURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL );
 /*N*/
 /*N*/   rStm << (USHORT)eFormat;
 /*N*/
