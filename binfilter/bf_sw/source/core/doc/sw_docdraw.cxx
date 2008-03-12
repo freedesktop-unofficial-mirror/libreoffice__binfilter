@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdraw.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:58:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:54:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -56,7 +56,7 @@
 #include <bf_svx/itemdata.hxx>
 #endif
 #ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 
 #ifndef _SVX_FLDITEM_HXX //autogen

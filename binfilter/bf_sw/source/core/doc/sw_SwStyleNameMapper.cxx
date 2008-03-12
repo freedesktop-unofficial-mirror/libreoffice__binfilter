@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_SwStyleNameMapper.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:56:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:53:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include <SwStyleNameMapper.hxx>
 #endif
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #ifndef _TOOLS_RESMGR_HXX
 #include <tools/resmgr.hxx>
 #endif
