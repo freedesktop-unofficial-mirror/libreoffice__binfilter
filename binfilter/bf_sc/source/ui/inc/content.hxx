@@ -4,9 +4,9 @@
  *
  *  $RCSfile: content.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 16:03:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:06:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,36 +33,4 @@
  *
  ************************************************************************/
 
-#ifndef SC_CONTENT_HXX
-#define SC_CONTENT_HXX
-
-#ifndef _SVTREEBOX_HXX //autogen
-#include <svtools/svtreebx.hxx>
-#endif
-
-namespace binfilter {
-
-/*N*/ #define SC_CONTENT_ROOT           0
-/*N*/ #define SC_CONTENT_TABLE      1
-/*N*/ #define SC_CONTENT_RANGENAME  2
-/*N*/ #define SC_CONTENT_DBAREA     3
-/*N*/ #define SC_CONTENT_GRAPHIC        4
-/*N*/ #define SC_CONTENT_OLEOBJECT  5
-/*N*/ #define SC_CONTENT_NOTE           6
-/*N*/ #define SC_CONTENT_AREALINK       7
-/*N*/ #define SC_CONTENT_DRAWING        8
-/*N*/ #define SC_CONTENT_COUNT      9
-
-const ULONG SC_CONTENT_NOCHILD  = ~0UL;
-
-//
-//  TreeListBox fuer Inhalte
-//
-
-
-
-
-
-} //namespace binfilter
-#endif // SC_NAVIPI_HXX
 
