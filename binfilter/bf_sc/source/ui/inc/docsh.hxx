@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 09:26:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:07:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 #endif
 
 #include <bf_sfx2/printer.hxx>
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 
 #ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
@@ -58,13 +58,13 @@
 #include "document.hxx"
 #include "shellids.hxx"
 #include "refreshtimer.hxx"
-class FontList;
 class PrintDialog;
-class SfxStyleSheetBasePool;
-class SfxStyleSheetHint;
 class INetURLObject;
 class VirtualDevice;
 namespace binfilter {
+class FontList;
+class SfxStyleSheetBasePool;
+class SfxStyleSheetHint;
 
 class ScEditEngineDefaulter;
 struct ChartSelectionInfo;
