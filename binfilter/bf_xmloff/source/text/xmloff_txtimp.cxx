@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtimp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:23:48 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:02:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #endif
 #ifndef _SVSTDARR_STRINGSDTOR_DECL
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
