@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swunohelper.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:48:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:23:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,7 +97,7 @@
 #ifndef _UCBHELPER_CONTENT_HXX
 #include <ucbhelper/content.hxx>
 #endif
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #ifndef _SWUNOHELPER_HXX
 #include <swunohelper.hxx>
