@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:05:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:04:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 
 
 #include "scitems.hxx"
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #include <bf_svx/flstitem.hxx>
 #include <bf_svx/drawitem.hxx>
 #include <bf_sfx2/printer.hxx>
