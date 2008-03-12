@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swserv.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:03:32 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:56:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -139,7 +139,7 @@ namespace binfilter {
 /*N*/   if( nSttNd && nEndNd )
 /*N*/   {
 /*N*/       // LinkManager besorgen:
-/*N*/       const ::so3::SvBaseLinks& rLnks = pNds->GetDoc()->GetLinkManager().GetLinks();
+/*N*/       const ::binfilter::SvBaseLinks& rLnks = pNds->GetDoc()->GetLinkManager().GetLinks();
 /*N*/
 /*N*/ // um Rekursionen zu Verhindern: ServerType umsetzen!
 /*N*/ SwServerObject::ServerModes eSave = eType;
@@ -151,7 +151,7 @@ namespace binfilter {
 /*N*/   ((SwServerObject*)this)->eType = NONE_SERVER;
 /*N*/       for( USHORT n = rLnks.Count(); n; )
 /*N*/       {
-/*N*/           const ::so3::SvBaseLink* pLnk = &(*rLnks[ --n ]);
+/*N*/           const ::binfilter::SvBaseLink* pLnk = &(*rLnks[ --n ]);
 /*N*/           if( pLnk && OBJECT_CLIENT_GRF != pLnk->GetObjType() &&
 /*N*/               pLnk->ISA( SwBaseLink ) &&
 /*N*/               !((SwBaseLink*)pLnk)->IsNoDataFlag() &&
@@ -200,11 +200,11 @@ namespace binfilter {
 /*N*/   //              Eingabe)
 /*N*/   if( pDoc->GetRootFrm() )
 /*N*/   {
-/*N*/       const ::so3::SvLinkSources& rServers = pDoc->GetLinkManager().GetServers();
+/*N*/       const ::binfilter::SvLinkSources& rServers = pDoc->GetLinkManager().GetServers();
 /*N*/
 /*N*/       for( USHORT nCnt = rServers.Count(); nCnt; )
 /*N*/       {
-/*N*/           ::so3::SvLinkSourceRef refObj( rServers[ --nCnt ] );
+/*N*/           ::binfilter::SvLinkSourceRef refObj( rServers[ --nCnt ] );
 /*N*/           // noch jemand am Object interessiert ?
 /*?*/           if( refObj->HasDataLinks() && refObj->ISA( SwServerObject ))
 /*?*/           {
