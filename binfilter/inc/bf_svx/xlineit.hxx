@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xlineit.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:35:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:28:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,17 +47,19 @@
 #endif
 
 #ifndef _SFXMETRICITEM_HXX //autogen
-#include <svtools/metitem.hxx>
+#include <bf_svtools/metitem.hxx>
 #endif
 
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
+
+class SvStream;
+
 namespace binfilter {
 class XDash;
 class XDashTable;
 }//end of namespace binfilter
-class SvStream;
 
 #include <bf_svx/xdash.hxx>
 #include <bf_svx/xlndsit.hxx>
