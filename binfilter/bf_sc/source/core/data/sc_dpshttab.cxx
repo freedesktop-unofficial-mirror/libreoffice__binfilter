@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpshttab.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:35:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:50:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 // INCLUDE --------------------------------------------------------------
 
 #include <tools/debug.hxx>
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 
 #include "dpshttab.hxx"
 #include "document.hxx"

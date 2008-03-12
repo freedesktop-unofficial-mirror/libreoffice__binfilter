@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_drwlayer.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:36:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:50:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,8 +61,8 @@
 #include <bf_svx/fhgtitem.hxx>
 #endif
 #include <bf_sfx2/docfile.hxx>
-#include <svtools/pathoptions.hxx>
-#include <svtools/itempool.hxx>
+#include <bf_svtools/pathoptions.hxx>
+#include <bf_svtools/itempool.hxx>
 #include <bf_offmgr/app.hxx>
 
 #include "drwlayer.hxx"
