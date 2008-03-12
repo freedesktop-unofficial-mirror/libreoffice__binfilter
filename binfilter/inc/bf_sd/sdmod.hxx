@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdmod.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:20:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:32:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,23 +51,23 @@
 #include <bf_so3/svstor.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
 #endif
 class SvFactory;
-class SvNumberFormatter;
-class SfxErrorHandler;
 class OutputDevice;
+
 namespace binfilter {
 
+class SfxErrorHandler;
+class SvNumberFormatter;
 class SdOptions;
 class BasicIDE;
 class SdAppLinkHdl; //STRIP008 ;
 class SvxErrorHandler;
 class EditFieldInfo;
-class SdTransferable;
 class SdDrawDocShell;
 class SdView;
 class SdPage;
@@ -100,15 +100,9 @@ protected:
 
     SdOptions*              pImpressOptions;
     SdOptions*              pDrawOptions;
-    SvNumberFormatter*      pNumberFormatter;
     SvStorageRef            xOptionStorage;
     BOOL                    bAutoSave;
-    BOOL                    bWaterCan;
     SfxErrorHandler*        mpErrorHdl;
-    /** This device is used for printer independent layout.  It is virtual
-        in the sense that it does not represent a printer.  The pointer may
-        be NULL when the virtual device could not be created.
-    */
     OutputDevice*           mpVirtualRefDevice;
 
     virtual void            Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
@@ -121,34 +115,15 @@ public:
                             SdModule(SvFactory* pDrawObjFact, SvFactory* pGraphicObjFact);
     virtual                 ~SdModule();
 
-    SdTransferable*         pTransferClip;
-    SdTransferable*         pTransferDrag;
-    SdTransferable*         pTransferSelection;
-
     virtual SfxModule*      Load();
     virtual void            Free();
 
 
     SdOptions*              GetSdOptions(DocumentType eDocType);
 
-    BOOL                    GetWaterCan() const { return bWaterCan; }
-    void                    SetWaterCan( BOOL bWC ) { bWaterCan = bWC; }
-
-
-    /** Return the virtual device that can be used for printer independent
-        layout.
-        @return
-            The returned pointer is NULL when the device could not be
-            created when this modules was instantiated.
-    */
     OutputDevice* GetVirtualRefDevice (void);
 
-    /** Deprecated alias to <member>GetVirtualRefDevice</member>.
-        @param rDocShell
-            Unused dummy parameter.
-    */
     OutputDevice* GetRefDevice (SdDrawDocShell& rDocShell);
-    SvNumberFormatter*      GetNumberFormatter();
     ::com::sun::star::text::WritingMode GetDefaultWritingMode() const;
 };
 
