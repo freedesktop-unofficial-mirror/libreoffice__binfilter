@@ -4,9 +4,9 @@
  *
  *  $RCSfile: binddata.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:42:41 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:10:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,7 @@
  ************************************************************************/
 
 #ifndef _BINDDATA_HXX
-#define _BINDDATA_HXX "$Revision: 1.2 $"
+#define _BINDDATA_HXX "$Revision: 1.3 $"
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
@@ -42,6 +42,9 @@
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
 #endif
+
+namespace binfilter
+{
 
 class SvBindingTransportFactory;
 DECLARE_LIST (SvBindingTransportFactoryList, SvBindingTransportFactory*)
@@ -85,6 +88,8 @@ struct SvBindingData
 };
 
 #define BAPP() (SvBindingData::Get())
+
+}
 
 #endif /* _BINDDATA_HXX */
 
