@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrong.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 22:50:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:07:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_XUB_STRLEN
 #define _SVSTDARR_ULONGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 namespace binfilter {
