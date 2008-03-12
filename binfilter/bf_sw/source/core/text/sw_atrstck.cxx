@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrstck.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:31:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:18:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 #include <atrhndl.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SVX_CMAPITEM_HXX
 #include <bf_svx/cmapitem.hxx>

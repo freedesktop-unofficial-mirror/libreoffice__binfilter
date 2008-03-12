@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_inftxt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:33:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:19:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include <com/sun/star/uno/Sequence.h>
 
 #ifndef _SVTOOLS_LINGUPROPS_HXX_
-#include <svtools/linguprops.hxx>
+#include <bf_svtools/linguprops.hxx>
 #endif
 
 #ifndef _HINTIDS_HXX
@@ -49,7 +49,7 @@
 #endif
 
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
-#include <svtools/ctloptions.hxx>
+#include <bf_svtools/ctloptions.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>

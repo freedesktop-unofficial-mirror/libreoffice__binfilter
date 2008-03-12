@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdfmts.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:29:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:16:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,10 +42,10 @@
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
