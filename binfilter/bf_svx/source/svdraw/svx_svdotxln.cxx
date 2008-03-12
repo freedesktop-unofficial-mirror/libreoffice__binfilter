@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotxln.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:59:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:40:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,7 @@
 #endif
 
 
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/urihelper.hxx>
 
 // #90477#
 #ifndef _TOOLS_TENCCVT_HXX
@@ -77,13 +77,13 @@ namespace binfilter {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*?*/ class ImpSdrObjTextLink: public ::so3::SvBaseLink
+/*?*/ class ImpSdrObjTextLink: public ::binfilter::SvBaseLink
 /*?*/ {
 /*?*/   SdrTextObj*                 pSdrObj;
 /*?*/
 /*?*/ public:
 /*?*/   ImpSdrObjTextLink( SdrTextObj* pObj1 )
-/*?*/       : ::so3::SvBaseLink( ::so3::LINKUPDATE_ONCALL, FORMAT_FILE ),
+/*?*/       : ::binfilter::SvBaseLink( ::binfilter::LINKUPDATE_ONCALL, FORMAT_FILE ),
 /*?*/           pSdrObj( pObj1 )
 /*?*/   {}
 /*?*/   virtual ~ImpSdrObjTextLink();
@@ -190,7 +190,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*N*/       aRelFileName = so3::StaticBaseUrl::AbsToRel( aFileName,
+/*N*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -226,7 +226,7 @@ namespace binfilter {
 /*N*/   if( aFileNameRel.Len() )
 /*N*/   {
 /*N*/
-/*N*/       aFileName = so3::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
+/*N*/       aFileName = ::binfilter::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
