@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schhids.h,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:57:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:25:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,7 @@
 
 
 
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 
 #define HID_SCH_DATA_ROW            (HID_SCH_START + 0)
 #define HID_SCH_DATA_LINE           (HID_SCH_START + 1)
