@@ -4,9 +4,9 @@
  *
  *  $RCSfile: iface.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:24:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:42:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _IFACE_HXX
 
 #ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
+#include <bf_svtools/hint.hxx>
 #endif
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
@@ -58,12 +58,14 @@
 #include "bf_so3/so3dllapi.h"
 #endif
 
+struct ::IUnknown;
+
+namespace binfilter {
+
 /*************************************************************************
 *************************************************************************/
-struct IUnknown;
 class  SvSoIPCClient;
 class  SvSoIPCService;
-
 
 // Zugriff auf Dlldaten
 #define SOAPP  SoDll::GetOrCreate()
@@ -71,8 +73,8 @@ class  SvSoIPCService;
 /**************************************************************************
 **************************************************************************/
 #define SO2_DECL_INTERFACE()                                              \
-    virtual IUnknown *        GetInterface( const SvGlobalName & );       \
-    IUnknown *                GetMemberInterface(  const SvGlobalName & );\
+    virtual ::IUnknown *        GetInterface( const SvGlobalName & );       \
+    ::IUnknown *                GetMemberInterface(  const SvGlobalName & );\
 
 
 #define SO2_DECL_STANDARD_CLASS_DLL(ClassName,FacName)                    \
@@ -88,9 +90,9 @@ class  SvSoIPCService;
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE(ClassName)                                     \
-IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
-    IUnknown * p = GetMemberInterface( rName );                           \
+    ::IUnknown * p = GetMemberInterface( rName );                           \
     return p;                                                             \
 }                                                                         \
 
@@ -107,9 +109,9 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE1(ClassName,Super1)                             \
-IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
-    IUnknown * p = GetMemberInterface( rName );                           \
+    ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
         p = Super1::GetInterface( rName );                                \
     return p;                                                             \
@@ -135,9 +137,9 @@ SO2_IMPL_CLASS1_DLL(ClassName,FactoryName,Super1,                     \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE2(ClassName,Super1,Super2)                          \
-IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
-    IUnknown * p = GetMemberInterface( rName );                           \
+    ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
         p = Super1::GetInterface( rName );                                \
     if( !p )                                                              \
@@ -165,9 +167,9 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE3(ClassName,Super1,Super2,Super3)               \
-IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
-    IUnknown * p = GetMemberInterface( rName );                           \
+    ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
         p = Super1::GetInterface( rName );                                \
     if( !p )                                                              \
@@ -197,9 +199,9 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE4(ClassName,Super1,Super2,Super3,Super4)        \
-IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
-    IUnknown * p = GetMemberInterface( rName );                           \
+    ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
         p = Super1::GetInterface( rName );                                \
     if( !p )                                                              \
@@ -244,7 +246,7 @@ friend class SvFactory;
 private:
     SO3_DLLPRIVATE union
     {
-        IUnknown *      pObj;       // IUnknown Interface
+        ::IUnknown *      pObj;       // IUnknown Interface
         SvSoIPCClient * pClient;    // Client, falls !Owner()
         SvSoIPCService * pService;  // Service Punkt, falls Owner()
     };
@@ -256,7 +258,7 @@ public:
 protected:
 #endif
     virtual             ~SvObject();
-    SO3_DLLPRIVATE void                DeInit( IUnknown * );
+    SO3_DLLPRIVATE void                DeInit( ::IUnknown * );
     SO3_DLLPRIVATE void                DeInit( SvSoIPCService * );
     SO3_DLLPRIVATE void                DeInit( SvSoIPCClient * );
     virtual void        MakeUnknown();
@@ -268,16 +270,13 @@ public:
     SvSoIPCService *    GetIPCService() const;
     SvSoIPCClient  *    GetIPCClient() const;
 
-    IUnknown *          DownAggInterface( const SvGlobalName & rName );
-    IUnknown *          AggInterface( const SvGlobalName & rName );
+    ::IUnknown *          DownAggInterface( const SvGlobalName & rName );
+    ::IUnknown *          AggInterface( const SvGlobalName & rName );
 
     USHORT              GetExtRefCount() const { return nExtCount; }
     UINT32              AddExtRef();
     UINT32              ReleaseExt();
     UINT32              ReleaseRef(); // Nur fur DBG_UTIL
-
-    // !!! Read the Manual !!!
-    virtual USHORT      FuzzyLock( BOOL bLock, BOOL bIntern, BOOL bClose );
 private:
     // Kopieren und Zuweisen dieses Objekttyps ist nicht erlaubt
     SO3_DLLPRIVATE SvObject & operator = ( const SvObject & );
@@ -343,5 +342,6 @@ ByteString  SvPrint( const Size & );
 
 DECL_PTRHINT(/*empty*/, SvObjectDyingHint, SvObject);
 
+}
 
 #endif // _IFACE_HXX
