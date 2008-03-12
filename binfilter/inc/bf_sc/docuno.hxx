@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docuno.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:26:26 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:15:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #endif
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SVX_FMDMOD_HXX //autogen
@@ -127,10 +127,10 @@
 #endif
 
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
-class SvEmbeddedObject;
 namespace binfilter {
+class SvEmbeddedObject;
 
 class ScDocShell;
 class ScAnnotationObj;
