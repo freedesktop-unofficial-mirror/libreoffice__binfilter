@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoforou.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:48:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:46:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,13 +40,13 @@
 #include <algorithm>
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
 #endif
 
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #include <outliner.hxx>
 #include <unoedhlp.hxx>
 #include <svdobj.hxx>
