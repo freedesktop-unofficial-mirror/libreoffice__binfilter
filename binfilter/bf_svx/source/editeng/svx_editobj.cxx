@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:36:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:26:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,7 +65,7 @@
 #include <bulitem.hxx>
 #include <numitem.hxx>
 #include <brshitem.hxx>
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
