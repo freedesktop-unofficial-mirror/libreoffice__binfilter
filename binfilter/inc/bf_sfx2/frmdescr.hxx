@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmdescr.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:59:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:36:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #include <bf_sfx2/sfxsids.hrc>
 
 #ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
+#include <bf_svtools/poolitem.hxx>
 #endif
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
@@ -47,7 +47,7 @@
 #include <tools/string.hxx>
 #endif
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
@@ -55,8 +55,8 @@
 class SvStream;
 class SvStrings;
 class Wallpaper;
-class SfxItemSet;
 namespace binfilter {
+class SfxItemSet;
 
 struct SfxFrameDescriptor_Impl;
 struct SfxFrameSetDescriptor_Impl;
@@ -332,7 +332,7 @@ public:
     virtual SfxItemPresentation         GetPresentation( SfxItemPresentation ePres,
                                             SfxMapUnit eCoreMetric,
                                             SfxMapUnit ePresMetric,
-                                            UniString &rText, const IntlWrapper * = 0 ) const;
+                                            UniString &rText, const ::IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*                Clone( SfxItemPool *pPool = 0 ) const;
     //virtual SfxPoolItem*              Create(SvStream &, USHORT) const;
