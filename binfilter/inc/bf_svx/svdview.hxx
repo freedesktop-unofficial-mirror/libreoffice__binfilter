@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdview.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:36:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:12:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,10 +40,6 @@
 // levels free in svdmark itself (MS compiler include depth limit)
 #ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
-
-#ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
-#include <svtools/accessibilityoptions.hxx>
 #endif
 
 #include <bf_svx/svdcrtv.hxx>
@@ -193,8 +189,6 @@ protected:
     // am Stream nicht korrekt gesetzt wird, ...
     virtual void WriteRecords(SvStream& rOut) const;
     virtual BOOL ReadRecord(const SdrIOHeader& rViewHead, const SdrNamedSubRecord& rSubHead, SvStream& rIn);
-
-    SvtAccessibilityOptions maAccessibilityOptions;
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
 
