@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schview.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:30:21 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:27:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,26 +36,13 @@
 #ifndef _SCH_SCHVIEW_HXX
 #define _SCH_SCHVIEW_HXX
 
-#ifndef _SVDEDXV_HXX //autogen
 #include <bf_svx/svdedxv.hxx>
-#endif
-#ifndef _E3D_VIEW3D_HXX //autogen
 #include <bf_svx/view3d.hxx>
-#endif
-
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _TRANSFER_HXX //autogen
-#include <svtools/transfer.hxx>
-#endif
 
-
-#ifndef _CHTMODEL_HXX
 #include "chtmodel.hxx"
-#endif
-
 #include "docshell.hxx"
+
 class Graphic;
 namespace binfilter {
 
@@ -66,9 +53,7 @@ class ChartModel;
 class SchDragServerRef;
 class E3dScene;
 } //namespace binfilter
-namespace com { namespace sun { namespace star { namespace datatransfer {
-    class XTransferable;
-}}}}
+
 namespace binfilter {//STRIP009
 DECLARE_LIST(E3dLogicalObjList, E3dObject*)//STRIP008 DECLARE_LIST(E3dLogicalObjList, E3dObject*);
 
