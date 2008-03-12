@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.17 $
+#   $Revision: 1.18 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:20:56 $
+#   last change: $Author: rt $ $Date: 2008-03-12 07:59:19 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -79,10 +79,9 @@ SHL1STDLIBS+= \
     $(BFBASICLIB) \
     $(BFGOODIESLIB) \
     $(BFSO3LIB) \
-    $(SVTOOLLIB) \
+    $(BFSVTOOLLIB) \
     $(TKLIB) \
     $(VCLLIB) \
-    $(SVLLIB) \
     $(SOTLIB) \
     $(UNOTOOLSLIB) \
     $(TOOLSLIB) \
@@ -107,7 +106,6 @@ SHL1RES=    $(RCTARGET)
 
 LIB2TARGET=$(SLB)$/sd_sdmod.lib
 LIB2OBJFILES=   \
-            $(SLO)$/sd_sdmod2.obj      \
             $(SLO)$/sd_sdmod.obj
 
 LIB3TARGET=$(SLB)$/sd_sdraw3.lib
