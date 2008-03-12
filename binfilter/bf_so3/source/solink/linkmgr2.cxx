@@ -4,9 +4,9 @@
  *
  *  $RCSfile: linkmgr2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:55:03 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:22:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,10 +48,10 @@
 
 #define _SVSTDARR_STRINGSDTOR
 
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 
-namespace so3
+namespace binfilter
 {
 
 SV_IMPL_PTRARR( SvBaseLinks, SvBaseLinkRefPtr )
@@ -176,7 +176,7 @@ BOOL SvLinkManager::InsertDDELink( SvBaseLink * pLink,
         return FALSE;
 
     String sCmd;
-    ::so3::MakeLnkName( sCmd, &rServer, rTopic, rItem );
+    ::binfilter::MakeLnkName( sCmd, &rServer, rTopic, rItem );
 
     pLink->SetObjType( OBJECT_CLIENT_DDE );
     pLink->SetName( sCmd );

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: linksrc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:55:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:22:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,12 +42,12 @@
 
 #include <tools/debug.hxx>
 #include <vcl/timer.hxx>
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 
 
 using namespace ::com::sun::star::uno;
 
-namespace so3
+namespace binfilter
 {
 
 TYPEINIT0( SvLinkSource )

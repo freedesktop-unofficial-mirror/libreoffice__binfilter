@@ -4,9 +4,9 @@
  *
  *  $RCSfile: lnkbase2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:55:31 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:23:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,11 +47,11 @@
 
 #include <tools/debug.hxx>
 
-#include <svtools/svdde.hxx>
+#include <bf_svtools/svdde.hxx>
 
 using namespace ::com::sun::star::uno;
 
-namespace so3
+namespace binfilter
 {
 
 TYPEINIT0( SvBaseLink )

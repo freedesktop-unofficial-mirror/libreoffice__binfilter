@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impldde.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:54:37 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:21:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,7 @@
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
 
-#include <svtools/svdde.hxx>
+#include <bf_svtools/svdde.hxx>
 #include <sot/formats.hxx>
 
 #define DDELINK_COLD        0
@@ -65,11 +65,8 @@
 
 using namespace ::com::sun::star::uno;
 
-namespace so3
+namespace binfilter
 {
-
-/*  */
-
 
 SvDDEObject::SvDDEObject()
     : pConnection( 0 ), pLink( 0 ), pRequest( 0 ), pGetData( 0 ), nError( 0 )
