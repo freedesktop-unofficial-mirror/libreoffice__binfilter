@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_rdhnt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:29:16 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:16:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,7 +48,7 @@
 #include <bf_svx/paperinf.hxx>
 #endif
 #ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 #ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
