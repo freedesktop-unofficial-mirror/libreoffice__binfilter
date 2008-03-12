@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shaditem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:00:28 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:08:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #include <tools/color.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 #ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
