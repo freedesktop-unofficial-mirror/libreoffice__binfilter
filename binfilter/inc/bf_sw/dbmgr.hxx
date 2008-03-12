@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dbmgr.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:42:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:35:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
 #include <com/sun/star/util/Date.hpp>
@@ -81,8 +81,8 @@ namespace com{namespace sun{namespace star{
 }}}
 class ListBox;
 class Button;
-class SvNumberFormatter;
 namespace binfilter {
+class SvNumberFormatter;
 namespace svx {
     class ODataAccessDescriptor;
 }
