@@ -4,9 +4,9 @@
  *
  *  $RCSfile: schmod.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:31:06 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:26:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define _SCHMOD_HXX
 
 #ifndef _SFXLSTNER_HXX
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #include "schdll0.hxx"        // fuer SchModuleDummy
