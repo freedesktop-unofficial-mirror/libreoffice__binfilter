@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unocoll.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:48:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:24:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -121,13 +121,13 @@
 #include <com/sun/star/text/XTextTable.hpp>
 #endif
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
-#include <svtools/PasswordHelper.hxx>
+#include <bf_svtools/PasswordHelper.hxx>
 #endif
 #ifndef _SVTOOLS_UNOIMAP_HXX
-#include <svtools/unoimap.hxx>
+#include <bf_svtools/unoimap.hxx>
 #endif
 #ifndef _SVTOOLS_UNOEVENT_HXX_
-#include <svtools/unoevent.hxx>
+#include <bf_svtools/unoevent.hxx>
 #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
