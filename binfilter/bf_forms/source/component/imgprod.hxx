@@ -4,9 +4,9 @@
  *
  *  $RCSfile: imgprod.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 16:46:25 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:44:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,10 @@
 class SvStream;
 class ImageConsumer;
 class Graphic;
+namespace binfilter
+{
 class GraphicFilter;
+}
 
 namespace com { namespace sun { namespace star { namespace io {
     class XInputStream;
@@ -84,7 +87,7 @@ private:
     List            maConsList;
     Graphic*        mpGraphic;
     SvStream*       mpStm;
-    GraphicFilter*  mpFilter;
+    binfilter::GraphicFilter*   mpFilter;
     sal_uInt32      mnTransIndex;
     sal_uInt32      mnStatus;
     sal_Bool        mbConsInit;
