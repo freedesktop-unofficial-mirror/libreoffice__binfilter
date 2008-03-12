@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outplace.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:47:24 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:14:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,19 +33,17 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
+#include <com/sun/star/datatransfer/XSystemTransferable.hpp>
+#include <com/sun/star/datatransfer/XTransferable.hpp>
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
 #ifdef WNT
 #include <../ole/socont.h>
-#include <vcl/sysdata.hxx>
+//#include <vcl/sysdata.hxx>
 #endif
 
+#include <vcl/sysdata.hxx>
 #include <tools/debug.hxx>
 #include <tools/cachestr.hxx>
 #include <sot/storinfo.hxx>
@@ -55,7 +53,6 @@
 #include <vcl/svapp.hxx>
 #include <vcl/wrkwin.hxx>
 #include <svuidlg.hrc>
-//#include <bf_so3/client.hxx>
 #include <bf_so3/svstor.hxx>
 #include "bf_so3/soerr.hxx"
 #include <soimpl.hxx>
@@ -64,22 +61,18 @@
 #include <viscache.hxx>
 #include <vos/module.hxx>
 #include <sot/formats.hxx>
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 #include <comphelper/classids.hxx>
 #include <rtl/process.h>
 #include <unotools/tempfile.hxx>
 #include <unotools/ucbstreamhelper.hxx>
-#ifndef _COM_SUN_STAR_DATATRANSFER_XSYSTEMTRANSFERABLE_HPP_
-#include <com/sun/star/datatransfer/XSystemTransferable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DATATRANSFER_XTRANSFERABLE_HPP_
-#include <com/sun/star/datatransfer/XTransferable.hpp>
-#endif
-#include <svtools/wmf.hxx>
+#include <bf_svtools/wmf.hxx>
 
 using namespace vos;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::datatransfer;
+
+namespace binfilter {
 
 static UINT32 nUniqueId = 1;
 #ifdef WNT
@@ -736,15 +729,15 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
 
 //=========================================================================
 struct SvObjectServerListHolder {
-    ::so3::SvObjectServerList   mObjList;
+    ::binfilter::SvObjectServerList mObjList;
     SvObjectServerListHolder() { mObjList.FillInsertObjects(); }
 };
 
-const ::so3::SvObjectServer* SvOutPlaceObject::GetInternalServer_Impl( const SvGlobalName& aGlobName )
+const ::binfilter::SvObjectServer* SvOutPlaceObject::GetInternalServer_Impl( const SvGlobalName& aGlobName )
 {
     static SvObjectServerListHolder aObj;
 
-    const ::so3::SvObjectServer* pObjServ = NULL;
+    const ::binfilter::SvObjectServer* pObjServ = NULL;
 
     if ( aGlobName == SvGlobalName( SO3_SW_OLE_EMBED_CLASSID_60 ) )
         pObjServ = aObj.mObjList.Get( SvGlobalName( SO3_SW_CLASSID_60 ) );
@@ -824,7 +817,7 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
 
         if (io.dwFlags & IOF_SELECTCREATENEW)
         {
-            const ::so3::SvObjectServer* pInternalServer = GetInternalServer_Impl( SvGlobalName( io.clsid ) );
+            const ::binfilter::SvObjectServer* pInternalServer = GetInternalServer_Impl( SvGlobalName( io.clsid ) );
             if ( pInternalServer )
             {
                 // this is actually an embedded object
@@ -1992,4 +1985,5 @@ void SvOutPlaceObject::DrawObject
             SoPaintReplacement( aVisArea_, a, pDev );
         }
     }
+}
 }
