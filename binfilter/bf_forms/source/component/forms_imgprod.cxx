@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_imgprod.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: ihi $ $Date: 2007-07-11 12:58:44 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:44:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,14 +39,14 @@
 #include <vcl/cvtgrf.hxx>
 #include <vcl/svapp.hxx>
 #include <unotools/ucbstreamhelper.hxx>
-#include <svtools/filter.hxx>
+#include <bf_svtools/filter.hxx>
 
 #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
 #endif
 
 #ifndef SVTOOLS_SOURCE_MISC_IMAGERESOURCEACCESS_HXX
-#include "svtools/imageresourceaccess.hxx"
+#include "bf_svtools/imageresourceaccess.hxx"
 #endif
 
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
@@ -275,9 +275,9 @@ void ImageProducer::SetImage( const ::rtl::OUString& rPath )
     mbAsync = sal_False;
     delete mpStm;
 
-    if ( ::svt::ImageResourceAccess::isImageResourceURL( maURL ) )
+    if ( ::binfilter::ImageResourceAccess::isImageResourceURL( maURL ) )
     {
-        mpStm = ::svt::ImageResourceAccess::getImageStream( ::comphelper::getProcessServiceFactory(), maURL );
+        mpStm = ::binfilter::ImageResourceAccess::getImageStream( ::comphelper::getProcessServiceFactory(), maURL );
     }
     else if( maURL.getLength() )
     {
