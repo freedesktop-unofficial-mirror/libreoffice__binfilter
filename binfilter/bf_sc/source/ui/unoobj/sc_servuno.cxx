@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_servuno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:12:59 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:16:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #pragma hdrstop
 #endif
 
-#include <svtools/unoimap.hxx>
+#include <bf_svtools/unoimap.hxx>
 #include <bf_svx/unofill.hxx>
 
 #ifndef _SVX_UNONRULE_HXX
