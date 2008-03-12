@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlmetae.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:16:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:58:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -433,7 +433,7 @@ void SfxXMLMetaExport::Export()
         if ( sReloadURL.getLength() )
         {
             rExport.AddAttribute( XML_NAMESPACE_XLINK, XML_HREF,
-                                  so3::StaticBaseUrl::AbsToRel( sReloadURL) );
+                                  ::binfilter::StaticBaseUrl::AbsToRel( sReloadURL) );
         }
 
         aPropVal = xInfoProp->getPropertyValue(
@@ -466,7 +466,7 @@ void SfxXMLMetaExport::Export()
 
         //  template URL
         rExport.AddAttribute( XML_NAMESPACE_XLINK, XML_HREF,
-                              so3::StaticBaseUrl::AbsToRel(sTplPath) );
+                              ::binfilter::StaticBaseUrl::AbsToRel(sTplPath) );
 
         //  template name
         aPropVal = xInfoProp->getPropertyValue(
