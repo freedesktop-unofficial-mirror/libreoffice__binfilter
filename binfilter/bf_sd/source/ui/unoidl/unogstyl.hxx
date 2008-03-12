@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unogstyl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 18:39:05 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:56:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,8 +34,9 @@
  ************************************************************************/
 
 #include <unopstyl.hxx>
-class SfxStyleSheetBase;
 namespace binfilter {
+
+class SfxStyleSheetBase;
 
 extern ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  SdUnoGraphicStyle_CreateInstance_Impl();
 
