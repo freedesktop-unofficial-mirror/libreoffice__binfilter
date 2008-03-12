@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fchrfmt.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:40:57 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:37:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,7 @@ public:
                                     SfxMapUnit eCoreMetric,
                                     SfxMapUnit ePresMetric,
                                     String &rText,
-                                    const IntlWrapper*    pIntl = 0 ) const;
+                                    const ::IntlWrapper*    pIntl = 0 ) const;
 
     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
 

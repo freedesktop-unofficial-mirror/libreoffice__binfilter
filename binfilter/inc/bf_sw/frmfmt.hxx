@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmfmt.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:46:36 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:42:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,10 +40,10 @@
 #endif
 class Graphic;
 class Point;
-class ImageMap;
 
 namespace binfilter {
 
+class ImageMap;
 class SwDrawContact;
 class SwFlyFrm;
 class IMapObject;
