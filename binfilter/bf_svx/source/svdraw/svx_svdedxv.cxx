@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdedxv.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:31:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:35:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,7 @@
 
 
 #include "svdedxv.hxx"
-#include <svtools/solar.hrc>
+#include <bf_svtools/solar.hrc>
 
 #ifndef _STRING_H
 #include <tools/string.h>
