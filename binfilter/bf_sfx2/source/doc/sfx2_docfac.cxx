@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:38:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:05:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,8 +50,8 @@
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
 #endif
-#include <svtools/pathoptions.hxx>
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #include <tools/urlobj.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 
