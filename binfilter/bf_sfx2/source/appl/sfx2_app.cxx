@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.15 $
+ *  $Revision: 1.16 $
  *
- *  last change: $Author: obo $ $Date: 2008-02-25 15:21:08 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:59:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #define PATH_MAX _MAX_PATH
 #endif // UNX
 
-#include <svtools/svdde.hxx>
+#include <bf_svtools/svdde.hxx>
 #include <tools/urlobj.hxx>
 
 #define _SVSTDARR_STRINGSDTOR
