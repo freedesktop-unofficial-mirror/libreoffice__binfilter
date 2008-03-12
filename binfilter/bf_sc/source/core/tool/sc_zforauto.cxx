@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_zforauto.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:52:29 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:58:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,7 +42,7 @@
 
 //------------------------------------------------------------------------
 
-#include <svtools/zformat.hxx>
+#include <bf_svtools/zformat.hxx>
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif

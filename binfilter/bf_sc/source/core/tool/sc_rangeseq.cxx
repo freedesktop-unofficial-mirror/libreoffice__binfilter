@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rangeseq.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:49:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:58:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #pragma hdrstop
 #endif
 
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #include <rtl/math.hxx>
 #include <tools/debug.hxx>
 

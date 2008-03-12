@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_optutil.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 10:48:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:58:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,7 +45,7 @@
 #include "global.hxx"       // for pSysLocale
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
+#include <bf_svtools/syslocale.hxx>
 #endif
 namespace binfilter {
 
