@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmod3d.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-27 17:23:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:20:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
 #ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
+#include <bf_svtools/eitem.hxx>
 #endif
 
 #endif
@@ -76,7 +76,7 @@
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
