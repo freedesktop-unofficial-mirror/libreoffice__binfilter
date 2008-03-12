@@ -4,9 +4,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 11:31:58 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:25:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,12 +72,12 @@
 #ifndef _COM_SUN_STAR_TEXT_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
 #endif
-
+#include <bf_svtools/colorcfg.hxx>
 #include <vos/ref.hxx>
-class SvKeyValueIterator;
-class SvtCTLOptions;
-class SvUShorts;
 namespace binfilter {
+class SvtCTLOptions;
+class SvKeyValueIterator;
+class SvUShorts;
 
 DBG_NAMEEX( EditView )//STRIP008
 DBG_NAMEEX( EditEngine )//STRIP008
@@ -124,9 +124,6 @@ namespace clipboard {
     class XClipboard;
 }}}}}
 
-namespace svtools {
-    class ColorConfig;
-}
 namespace binfilter {
 
 struct ImplIMEInfos
@@ -169,9 +166,6 @@ private:
     EditEngine*         pEditEngine;
     Window*             pOutWin;
     Pointer*            pPointer;
-
-    ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::dnd::XDragSourceListener > mxDnDListener;
-
 
     long                nInvMore;
     ULONG               nControl;
@@ -243,11 +237,6 @@ public:
 
     inline void     SetCursor( const Cursor& rCursor );
     inline Cursor*  GetCursor();
-
-    void            RemoveDragAndDropListeners();
-
-
-//  Fuer die SelectionEngine...
 
 
     EVAnchorMode    GetAnchorMode() const           { return eAnchorMode; }
@@ -332,7 +321,7 @@ private:
     VirtualDevice*      pVirtDev;
     OutputDevice*       pRefDev;
 
-    ::svtools::ColorConfig*   pColorConfig;
+    ColorConfig*   pColorConfig;
     SvtCTLOptions*      pCTLOptions;
 
     SfxItemSet*         pEmptyItemSet;
@@ -632,7 +621,7 @@ public:
     void            FormatAndUpdate( EditView* pCurView = 0 );
     inline void     IdleFormatAndUpdate( EditView* pCurView = 0 );
 
-    ::svtools::ColorConfig& GetColorConfig();
+    ColorConfig& GetColorConfig();
     BOOL            IsVisualCursorTravelingEnabled();
     BOOL            DoVisualCursorTraveling( const ContentNode* pNode );
 
