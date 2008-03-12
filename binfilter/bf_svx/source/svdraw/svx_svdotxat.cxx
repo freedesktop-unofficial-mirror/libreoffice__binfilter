@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdotxat.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:32:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:39:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,7 +49,7 @@
 
 
 #ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 
 
@@ -73,11 +73,11 @@
 #include <charscaleitem.hxx>
 
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
+#include <bf_svtools/itemiter.hxx>
 #endif
 
 #define ITEMID_LRSPACE          EE_PARA_LRSPACE
