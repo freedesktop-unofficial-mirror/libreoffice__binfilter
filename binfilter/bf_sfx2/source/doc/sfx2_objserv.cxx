@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:40:23 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:06:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,9 @@
 
 #include <com/sun/star/document/XExporter.hpp>
 #include <tools/urlobj.hxx>
-#include <svtools/whiter.hxx>
-#include <svtools/eitem.hxx>
-#include <svtools/itemset.hxx>
+#include <bf_svtools/whiter.hxx>
+#include <bf_svtools/eitem.hxx>
+#include <bf_svtools/itemset.hxx>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -85,7 +85,7 @@ using namespace ::com::sun::star::task;
 
 /*N*/ BOOL ShallSetBaseURL_Impl( SfxMedium &rMed );
 
-svtools::AsynchronLink* pPendingCloser = 0;
+AsynchronLink* pPendingCloser = 0;
 
 //=========================================================================
 

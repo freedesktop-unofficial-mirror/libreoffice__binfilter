@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:39:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:06:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <tools/cachestr.hxx>
 #endif
 #ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #include <bf_sfx2/app.hxx>
@@ -52,26 +52,27 @@
 #pragma hdrstop
 #endif
 
-#include <svtools/stritem.hxx>
-#include <svtools/intitem.hxx>
-#include <svtools/rectitem.hxx>
-#include <svtools/urihelper.hxx>
+#include <bf_svtools/stritem.hxx>
+#include <bf_svtools/intitem.hxx>
+#include <bf_svtools/rectitem.hxx>
+#include <bf_svtools/urihelper.hxx>
 #include <comphelper/processfactory.hxx>
 
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #endif
 #ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
 #endif
 #include <math.h>
 
-#include <svtools/saveopt.hxx>
-#include <svtools/useroptions.hxx>
+#include <bf_svtools/saveopt.hxx>
+#include <bf_svtools/useroptions.hxx>
 #include <unotools/localfilehelper.hxx>
+#include <bf_so3/svstor.hxx>
 
 #include "docinf.hxx"
 #include "fltfnc.hxx"
@@ -88,7 +89,7 @@
 #include "sfxbasemodel.hxx"
 
 #ifndef _SVTOOLS_IMGDEF_HXX
-#include <svtools/imgdef.hxx>
+#include <bf_svtools/imgdef.hxx>
 #endif
 
 #include "docfile.hxx"
@@ -210,7 +211,7 @@ using namespace ::com::sun::star::uno;
 /*N*/           if ( pImp->pBasicMgr )
 /*?*/                 pImp->pBasicMgr->Store(
                         *pNewStg,
-                        so3::StaticBaseUrl::GetBaseURL(
+                        ::binfilter::StaticBaseUrl::GetBaseURL(
                             INetURLObject::NO_DECODE) );
 /*N*/           else
 /*N*/           {
@@ -221,12 +222,12 @@ using namespace ::com::sun::star::uno;
 /*?*/               {
 /*?*/                   aURL = GetDocInfo().GetTemplateFileName();
 /*?*/                   // Bei Templates keine URL...
-/*?*/                   aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
+/*?*/                   aURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL );
 /*N*/               }
 /*N*/ #ifndef TFPLUGCOMM
 /*N*/                 BasicManager::CopyBasicData(
                         GetStorage(), aURL,
-                        so3::StaticBaseUrl::GetBaseURL(
+                        ::binfilter::StaticBaseUrl::GetBaseURL(
                             INetURLObject::NO_DECODE),
                         pNewStg );
 /*N*/ #endif
@@ -285,7 +286,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       if ( pImp->pBasicMgr )
 /*N*/             pImp->pBasicMgr->Store(
                     *pNewStg,
-                    so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE) );
+                    ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE) );
 /*N*/ #ifndef MI_NONOS
 /*N*/       else
 /*N*/       {
@@ -296,12 +297,12 @@ using namespace ::com::sun::star::uno;
 /*?*/           {
 /*?*/               aURL = GetDocInfo().GetTemplateFileName();
 /*?*/               // Bei Templates keine URL...
-/*?*/               aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
+/*?*/               aURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL );
 /*?*/           }
 /*?*/ #ifndef TFPLUGCOMM
 /*?*/             BasicManager::CopyBasicData(
                     GetStorage(), aURL,
-                    so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
+                    ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
                     pNewStg );
 /*?*/ #endif
 /*N*/       }
