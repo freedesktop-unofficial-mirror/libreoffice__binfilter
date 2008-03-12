@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.13 $
+#   $Revision: 1.14 $
 #
-#   last change: $Author: obo $ $Date: 2008-02-25 15:20:42 $
+#   last change: $Author: rt $ $Date: 2008-03-12 07:31:49 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -51,10 +51,6 @@ NO_HIDS=TRUE
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
 
-# --- Imagelisten --------------------------------------------------
-
-BMP_IN=$(BFPRJ)$/res/imagelst
-
 # --- Update-Version -----------------------------------------------
 
 RSCUPDVER=$(RSCREVISION)SV$(UPD)$(UPDMINOR)
@@ -63,20 +59,17 @@ RSCUPDVER=$(RSCREVISION)SV$(UPD)$(UPDMINOR)
 
 SRS1NAME=$(TARGET)
 SRC1FILES =	\
-        sd_strings.src 		\
-                sd_sdstring.src
+        sd_strings.src
 
 SLOFILES =	\
         $(SLO)$/sd_sdmod.obj		\
-        $(SLO)$/sd_sdmod2.obj		\
         $(SLO)$/sd_sddll.obj		\
-        $(SLO)$/sd_optsitem.obj	\
-        $(SLO)$/sd_sdresid.obj
+        $(SLO)$/sd_sdresid.obj		\
+        $(SLO)$/sd_optsitem.obj
 
 DEPOBJFILES= \
-        $(SLO)$/sd_sdlib.obj \
-         $(SLO)$/sd_sdresid.obj
-
+        $(SLO)$/sd_sdlib.obj
+        
 .IF "$(GUI)" == "WNT"
 
 NOOPTFILES=\
