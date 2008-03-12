@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:19:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:17:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,7 @@
 #endif
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 
 #include "textuno.hxx"
