@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:06:54 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:43:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
+#include "swrect.hxx"
 #include <hintids.hxx>
-#endif
+#include <bf_svx/paperinf.hxx>
 
 //Statt uiparam.hxx selbst definieren, das spart keys
 #ifndef _SVX_DIALOGS_HRC
@@ -53,10 +53,10 @@
 #include <sot/storinfo.hxx>
 #endif
 #ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
+#include <bf_svtools/ctrltool.hxx>
 #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
-#include <svtools/lingucfg.hxx>
+#include <bf_svtools/lingucfg.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
@@ -71,7 +71,7 @@
 #include <bf_sfx2/request.hxx>
 #endif
 #ifndef _SFXINTITEM_HXX
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 #ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
@@ -230,9 +230,11 @@ using namespace ::rtl;
 */
 /*N*/       if ( GetCreateMode() ==  SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
-            // fuer MWERKS (Mac-Compiler): kann nicht selbststaendig casten
-/*?*/           SvEmbeddedObject* pObj = this;
-/*?*/           SwTransferable::InitOle( pObj, *pDoc );
+                SvEmbeddedObject* pObj = this;
+                const Size aSz( lA4Width - 2 * lMinBorder, 6 * MM50 );
+                SwRect aVis( Point( DOCUMENTBORDER, DOCUMENTBORDER ), aSz );
+                pObj->SetVisArea( aVis.SVRect() );
+                pDoc->SetBrowseMode( TRUE );
 /*N*/       }
         // set forbidden characters if necessary
 /*N*/         SvxAsianConfig aAsian;
