@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdresid.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:22:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:33:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,44 +33,18 @@
  *
  ************************************************************************/
 
-#ifdef _MSC_VER
-#pragma hdrstop
-#endif
-
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
-
-#include "sddll.hxx"
 #include "sdresid.hxx"
+#include "sdmod.hxx"
+
 namespace binfilter {
 
+SdResId::SdResId(USHORT nId)
+: ResId(nId, *SD_MOD()->GetResMgr())
+{
+}
 
-/*************************************************************************
-|*
-|* Ctor
-|*
-\************************************************************************/
-
-/*N*/ SdResId::SdResId(USHORT nId) :
-/*N*/   ResId(nId, *SD_MOD()->GetResMgr())
-/*N*/ //    ResId(nId, *(ResMgr**) GetAppData(BF_SHL_DRAW))
-/*N*/ {
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|* 2.Ctor (kann entfallen)
-|*
-\************************************************************************/
-
-/*N*/ SdResId::SdResId(USHORT nId, ResMgr* pMgr) :
-/*N*/   ResId(nId, *pMgr)
-/*N*/ {
-/*N*/ }
-
-
-
-
+SdResId::SdResId(USHORT nId, ResMgr* pMgr)
+: ResId(nId, *pMgr)
+{
+}
 }
