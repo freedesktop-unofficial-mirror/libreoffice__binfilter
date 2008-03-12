@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 13:31:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:04:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,8 +45,8 @@
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <svtools/ctrltool.hxx>
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/ctrltool.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #include <bf_sfx2/docinf.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/docfilt.hxx>
@@ -61,11 +61,6 @@
 
 #include <sot/formats.hxx>
 #define SOT_FORMATSTR_ID_STARCALC_30 SOT_FORMATSTR_ID_STARCALC
-
-#ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED
-#define SO2_DECL_SVSTORAGESTREAM_DEFINED
-SO2_DECL_REF(SvStorageStream)
-#endif
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -102,6 +97,11 @@ SO2_DECL_REF(SvStorageStream)
 #endif
 namespace binfilter {
 using namespace ::com::sun::star;
+
+#ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED
+#define SO2_DECL_SVSTORAGESTREAM_DEFINED
+SO2_DECL_REF(SvStorageStream)
+#endif
 
 // STATIC DATA -----------------------------------------------------------
 
