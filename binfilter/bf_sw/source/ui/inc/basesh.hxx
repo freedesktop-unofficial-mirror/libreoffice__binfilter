@@ -4,9 +4,9 @@
  *
  *  $RCSfile: basesh.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: ihi $ $Date: 2006-11-14 12:15:40 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:46:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -55,12 +55,13 @@
 #ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
 #endif
-#include <svtools/svstdarr.hxx>
-class GraphicFilter;
-class SfxItemSet;
+#include <bf_svtools/svstdarr.hxx>
 class Graphic;
 
 namespace binfilter {
+
+class GraphicFilter;
+class SfxItemSet;
 
 class SwWrtShell;
 class SwCrsrShell;
