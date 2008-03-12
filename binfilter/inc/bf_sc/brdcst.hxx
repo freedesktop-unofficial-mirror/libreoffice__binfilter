@@ -4,9 +4,9 @@
  *
  *  $RCSfile: brdcst.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:28:19 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:10:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #endif
 
 #ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+#include <bf_svtools/smplhint.hxx>
 #endif
 namespace binfilter {
 class ScBaseCell;

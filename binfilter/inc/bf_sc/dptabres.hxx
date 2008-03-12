@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dptabres.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:34:49 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:15:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 #define SC_DPTABRES_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _STRING_HXX //autogen
