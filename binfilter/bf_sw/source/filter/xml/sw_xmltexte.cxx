@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltexte.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:10:47 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:40:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -97,7 +97,7 @@
 #endif
 
 #define _SVSTDARR_ULONGS
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
@@ -280,7 +280,7 @@ static void lcl_addURL ( SvXMLExport &rExport, const String &rURL,
     String sRelURL;
 
     if( bToRel && (rURL.Len() > 0) )
-        sRelURL = so3::StaticBaseUrl::AbsToRel(rURL,
+        sRelURL = ::binfilter::StaticBaseUrl::AbsToRel(rURL,
                       INetURLObject::WAS_ENCODED,
                       INetURLObject::DECODE_UNAMBIGUOUS);
     else
