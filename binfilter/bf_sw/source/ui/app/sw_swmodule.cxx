@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodule.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:07:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:45:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,11 +57,11 @@
 #include <bf_offmgr/app.hxx>
 #endif
 #ifndef _EHDL_HXX //autogen
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #endif
 #ifndef _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 #endif
 #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
@@ -140,12 +140,12 @@
 #endif
 // OD 14.02.2003 #107424#
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 #endif
 
 #include "glshell.hxx"
 
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 
 #include <app.hrc>
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -197,11 +197,7 @@ using namespace ::rtl;
 /*N*/   pUsrPref(0),
 /*N*/   pDBConfig(0),
 /*N*/     pColorConfig(0),
-/*N*/     pAccessibilityOptions(0),
 /*N*/     pCTLOptions(0),
-/*N*/   pClipboard(0),
-/*N*/   pDragDrop(0),
-/*N*/   pXSelection(0),
 /*N*/   pAttrPool(0),
 /*N*/   bAuthorInitialised(sal_False),
 /*N*/   bEmbeddedLoadSave( sal_False )
