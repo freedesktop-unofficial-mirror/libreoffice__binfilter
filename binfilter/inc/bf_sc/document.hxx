@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:29:02 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:15:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,17 +72,18 @@ namespace com { namespace sun { namespace star {
 } } }
 class KeyEvent;
 class OutputDevice;
+class SvMemoryStream;
+class Window;
+class List;
+namespace binfilter {
+class SvNumberFormatter;
+
 class SfxBroadcaster;
 class SfxHint;
 class SfxItemSet;
 class SfxPoolItem;
 class SfxItemPool;
 class SfxStyleSheetBase;
-class SvMemoryStream;
-class SvNumberFormatter;
-class Window;
-class List;
-namespace binfilter {
 
 class SdrObject;
 class SfxObjectShell;
@@ -157,7 +158,7 @@ class ScRefreshTimerControl;
 
 } //namespace binfilter
 
-#include <svtools/zforlist.hxx>     // IsNumberFormat
+#include <bf_svtools/zforlist.hxx>      // IsNumberFormat
 /*#ifdef _ZFORLIST_DECLARE_TABLE
 class SvNumberFormatterIndexTable;
 #else
