@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sdangitm.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2008-01-07 08:27:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:03:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _SDANGITM_HXX
 
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 namespace binfilter {
 
