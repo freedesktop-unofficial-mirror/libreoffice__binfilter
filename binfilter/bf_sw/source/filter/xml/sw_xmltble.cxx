@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltble.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:10:18 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:39:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,10 +69,10 @@
 #endif
 
 #ifndef _CNTRSRT_HXX
-#include <svtools/cntnrsrt.hxx>
+#include <bf_svtools/cntnrsrt.hxx>
 #endif
 #ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 #ifndef _SVX_BRSHITEM_HXX
@@ -1153,14 +1153,14 @@ void SwXMLExport::ExportTable( const SwTableNode& rTblNd )
             // DDE command
             const String sCmd = pDDEFldType->GetCmd();
             AddAttribute( XML_NAMESPACE_OFFICE, XML_DDE_APPLICATION,
-                          sCmd.GetToken(0, ::so3::cTokenSeperator) );
+                          sCmd.GetToken(0, ::binfilter::cTokenSeperator) );
             AddAttribute( XML_NAMESPACE_OFFICE, XML_DDE_ITEM,
-                          sCmd.GetToken(1, ::so3::cTokenSeperator) );
+                          sCmd.GetToken(1, ::binfilter::cTokenSeperator) );
             AddAttribute( XML_NAMESPACE_OFFICE, XML_DDE_TOPIC,
-                          sCmd.GetToken(2, ::so3::cTokenSeperator) );
+                          sCmd.GetToken(2, ::binfilter::cTokenSeperator) );
 
             // auto update
-            if (pDDEFldType->GetType() == ::so3::LINKUPDATE_ALWAYS)
+            if (pDDEFldType->GetType() == ::binfilter::LINKUPDATE_ALWAYS)
             {
                 AddAttribute( XML_NAMESPACE_OFFICE,
                               XML_AUTOMATIC_UPDATE, XML_TRUE );
