@@ -4,9 +4,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 08:56:20 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 06:45:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,7 @@
 #include <bf_svx/svxerr.hxx>
 #include <com/sun/star/container/XSet.hpp>
 #include <comphelper/processfactory.hxx>
-#include <svtools/pathoptions.hxx>
+#include <bf_svtools/pathoptions.hxx>
 #include <bf_svx/fmobjfac.hxx>
 #include <bf_svx/siimport.hxx>
 #define ITEMID_FIELD 0
@@ -55,7 +55,7 @@
 #include <bf_svx/objfac3d.hxx>
 #include <bf_svx/unoshcol.hxx>
 #include <bf_svx/xtable.hxx>
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 
 using namespace ::com::sun::star::uno;
