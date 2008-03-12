@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swxml.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 13:02:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:36:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,7 +76,7 @@
 #ifndef _COM_SUN_STAR_PACKAGES_ZIP_ZIPIOEXCEPTION_HPP_
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
 #endif
-#include <svtools/svstdarr.hxx>
+#include <bf_svtools/svstdarr.hxx>
 
 #include <bf_sfx2/appuno.hxx>
 
@@ -84,7 +84,7 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
+#include <bf_svtools/sfxecode.hxx>
 #endif
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
