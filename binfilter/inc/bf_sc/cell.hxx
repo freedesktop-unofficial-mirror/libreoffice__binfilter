@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cell.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:24:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:10:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 #include <stddef.h>
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 #ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
@@ -49,8 +49,9 @@
 #ifndef _SV_FONTCVT_HXX
 #include <vcl/fontcvt.hxx>
 #endif
-class SfxBroadcaster;
 namespace binfilter {
+
+class SfxBroadcaster;
 
 #define USE_MEMPOOL
 #define TEXTWIDTH_DIRTY     0xffff
