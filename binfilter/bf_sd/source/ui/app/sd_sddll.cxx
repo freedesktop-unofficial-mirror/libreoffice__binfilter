@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sddll.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:21:34 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 07:32:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,73 +33,36 @@
  *
  ************************************************************************/
 
-
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
-#endif
+#include <bf_svtools/moduleoptions.hxx>
 
-#ifdef _MSC_VER
-#pragma hdrstop
-#endif
-
-#include "grdocsh.hxx"
+#include "bf_sd/grdocsh.hxx"
 #include "sdresid.hxx"
 #include "sdobjfac.hxx"
 #include "cfgids.hxx"
 
 namespace binfilter {
 
-/*************************************************************************
-|*
-|* Init
-|*
-\************************************************************************/
+void SdDLL::Init()
+{
+    // the SdModule must be created
+    SdModuleDummy** ppShlPtr = (SdModuleDummy**) GetAppData(BF_SHL_DRAW);
+    SvFactory* pDrawFact    = (SvFactory*)(*ppShlPtr)->pSdDrawDocShellFactory;
+    SvFactory* pGraphicFact = (SvFactory*)(*ppShlPtr)->pSdGraphicDocShellFactory;
+    delete (*ppShlPtr);
+    (*ppShlPtr) = new SdModule(pDrawFact, pGraphicFact);
+    (*ppShlPtr)->pSdDrawDocShellFactory    = pDrawFact;
+    (*ppShlPtr)->pSdGraphicDocShellFactory = pGraphicFact;
 
-/*N*/ void SdDLL::Init()
-/*N*/ {
-/*N*/   // called directly after loading the DLL
-/*N*/   // do whatever you want, you may use Sd-DLL too
-/*N*/
-/*N*/   // the SdModule must be created
-/*N*/   SdModuleDummy** ppShlPtr = (SdModuleDummy**) GetAppData(BF_SHL_DRAW);
-/*N*/   SvFactory* pDrawFact    = (SvFactory*)(*ppShlPtr)->pSdDrawDocShellFactory;
-/*N*/   SvFactory* pGraphicFact = (SvFactory*)(*ppShlPtr)->pSdGraphicDocShellFactory;
-/*N*/   delete (*ppShlPtr);
-/*N*/   (*ppShlPtr) = new SdModule(pDrawFact, pGraphicFact);
-/*N*/   (*ppShlPtr)->pSdDrawDocShellFactory    = pDrawFact;
-/*N*/   (*ppShlPtr)->pSdGraphicDocShellFactory = pGraphicFact;
-/*N*/
-/*N*/   // Objekt-Factory eintragen
-/*N*/   SdrObjFactory::InsertMakeUserDataHdl(LINK(&aSdObjectFactory, SdObjectFactory, MakeUserData));
-/*N*/ }
+    SdrObjFactory::InsertMakeUserDataHdl(LINK(&aSdObjectFactory, SdObjectFactory, MakeUserData));
+}
 
+void SdDLL::Exit()
+{
+    SdrObjFactory::RemoveMakeUserDataHdl(LINK(&aSdObjectFactory, SdObjectFactory, MakeUserData));
 
-
-/*************************************************************************
-|*
-|* Exit
-|*
-\************************************************************************/
-
-/*N*/ void SdDLL::Exit()
-/*N*/ {
-/*N*/   // called directly befor unloading the DLL
-/*N*/   // do whatever you want, Sd-DLL is accessible
-/*N*/
-/*N*/   // Objekt-Factory austragen
-/*N*/   SdrObjFactory::RemoveMakeUserDataHdl(LINK(&aSdObjectFactory, SdObjectFactory, MakeUserData));
-/*N*/
-/*N*/   // the SdModule must be destroyed
-/*N*/   SdModuleDummy** ppShlPtr = (SdModuleDummy**) GetAppData(BF_SHL_DRAW);
-/*N*/   delete (*ppShlPtr);
-/*N*/   (*ppShlPtr) = NULL;
-/*N*/ }
-
-
-
-
-
+    SdModuleDummy** ppShlPtr = (SdModuleDummy**) GetAppData(BF_SHL_DRAW);
+    delete (*ppShlPtr);
+    (*ppShlPtr) = NULL;
+}
 }
