@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 12:25:32 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:13:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #include <stdio.h>
 #define _SVSTDARR_USHORTS
 #ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
+#include <bf_svtools/zforlist.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
