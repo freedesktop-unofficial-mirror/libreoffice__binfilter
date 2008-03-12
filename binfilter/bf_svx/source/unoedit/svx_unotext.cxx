@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unotext.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:37:12 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:47:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@
 #endif
 
 #ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+#include <bf_svtools/intitem.hxx>
 #endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
