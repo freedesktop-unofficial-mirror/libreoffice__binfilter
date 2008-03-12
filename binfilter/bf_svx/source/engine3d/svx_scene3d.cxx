@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_scene3d.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2007-03-09 16:00:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:28:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,7 +50,7 @@
 #endif
 
 #ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
+#include <bf_svtools/style.hxx>
 #endif
 
 #ifndef _E3D_PLIGHT3D_HXX
@@ -70,7 +70,7 @@
 #endif
 
 #ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
+#include <bf_svtools/whiter.hxx>
 #endif
 
 #include "scene3d.hxx"
