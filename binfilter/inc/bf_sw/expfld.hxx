@@ -4,9 +4,9 @@
  *
  *  $RCSfile: expfld.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 04:40:33 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:37:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _EXPFLD_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 
 #ifndef _FLDBAS_HXX
@@ -45,10 +45,9 @@
 #ifndef _CELLFML_HXX
 #include <cellfml.hxx>
 #endif
-class SfxPoolItem;
 namespace binfilter {
 
-
+class SfxPoolItem;
 class SwTxtNode;
 class SwCalc;
 class SwFrm;
