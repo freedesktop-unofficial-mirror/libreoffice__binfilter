@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fileobj.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:00:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:41:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,7 +47,7 @@ namespace binfilter {
 struct Impl_DownLoadData;
 
 
-class SvFileObject : public ::so3::SvLinkSource
+class SvFileObject : public ::binfilter::SvLinkSource
 {
     String sFileNm;
     String sFilter;
@@ -86,7 +86,7 @@ public:
                             const String & rMimeType,
                             BOOL bSynchron = FALSE );
 
-    virtual BOOL Connect( ::so3::SvBaseLink* );
+    virtual BOOL Connect( ::binfilter::SvBaseLink* );
 
     // erfrage ob das man direkt auf die Daten zugreifen kann oder ob das
     // erst angestossen werden muss
