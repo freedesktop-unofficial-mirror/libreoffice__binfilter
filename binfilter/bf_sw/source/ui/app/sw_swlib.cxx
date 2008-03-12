@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:12:51 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 10:44:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,7 +43,7 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _PARHTML_HXX //autogen
-#include <svtools/parhtml.hxx>
+#include <bf_svtools/parhtml.hxx>
 #endif
 
 #include <swdll0.hxx> // wird vom makefile generiert
@@ -63,7 +63,7 @@
 #include <comphelper/classids.hxx>
 #endif
 
-#include <svtools/moduleoptions.hxx>
+#include <bf_svtools/moduleoptions.hxx>
 
 #include <app.hrc>
 #include <web.hrc>
