@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bookmrk.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:42:01 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:33:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
                             //die Attribut richtig angezogen werden.
 #ifndef _SFXMACITEM_HXX
-#include <svtools/macitem.hxx>
+#include <bf_svtools/macitem.hxx>
 #endif
 
 #ifndef _KEYCOD_HXX //autogen
