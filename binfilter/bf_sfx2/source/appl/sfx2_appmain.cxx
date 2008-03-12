@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:24:27 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 08:01:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -45,20 +45,20 @@
 #include <tools/urlobj.hxx>
 #endif
 #ifndef _CSTITEM_HXX //autogen
-#include <svtools/cstitem.hxx>
+#include <bf_svtools/cstitem.hxx>
 #endif
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
 #endif
 #ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
+#include <bf_svtools/ehdl.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_STARTOPTIONS_HXX
-#include <svtools/startoptions.hxx>
+#include <bf_svtools/startoptions.hxx>
 #endif
-#include <svtools/itempool.hxx>
-#include <svtools/urihelper.hxx>
-#include <svtools/helpopt.hxx>
+#include <bf_svtools/itempool.hxx>
+#include <bf_svtools/urihelper.hxx>
+#include <bf_svtools/helpopt.hxx>
 #include <vos/process.hxx>
 
 #include "appimp.hxx"
@@ -218,7 +218,7 @@ void SfxApplication::Main( )
 /*N*/   if( !pAppData_Impl->pMatcher )
 /*N*/   {
 /*N*/       pAppData_Impl->pMatcher = new SfxFilterMatcher( TRUE );
-/*N*/         URIHelper::SetMaybeFileHdl( STATIC_LINK(
+/*N*/         ::binfilter::SetMaybeFileHdl( STATIC_LINK(
 /*N*/           pAppData_Impl->pMatcher, SfxFilterMatcher, MaybeFileHdl_Impl ) );
 /*N*/   }
 /*N*/   return *pAppData_Impl->pMatcher;
