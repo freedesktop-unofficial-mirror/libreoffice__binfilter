@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabdash.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:39:55 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:50:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,7 @@
 
 #include <tools/urlobj.hxx>
 #include <vcl/virdev.hxx>
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include "dialogs.hrc"
 #include "dialmgr.hxx"

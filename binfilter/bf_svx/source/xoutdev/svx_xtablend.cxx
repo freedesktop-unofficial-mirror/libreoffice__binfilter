@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtablend.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 17:40:38 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:51:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@
 #endif
 
 #ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
+#include <bf_svtools/itemset.hxx>
 #endif
 
 #ifndef _SFXDOCFILE_HXX
