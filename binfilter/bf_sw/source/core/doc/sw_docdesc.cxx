@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: vg $ $Date: 2007-10-23 14:02:56 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:54:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -841,15 +841,15 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/
 /*N*/               if ( !pOLENd->GetOLEObj().IsOleRef() )  //Noch nicht geladen
 /*N*/               {
-/*N*/                   String sBaseURL( so3::StaticBaseUrl::GetBaseURL() );
+/*N*/                   String sBaseURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
 /*N*/                   const SfxMedium *pMedium;
 /*N*/                   if( 0 != (pMedium = GetDocShell()->GetMedium()) &&
 /*N*/                       pMedium->GetName() != sBaseURL )
-/*N*/                       so3::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
+/*N*/                       ::binfilter::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
 /*N*/                   SvInfoObjectRef xInfo = GetPersist()->Find( pOLENd->GetOLEObj().GetName() );
 /*N*/                   if ( xInfo.Is() )   //Muss normalerweise gefunden werden
 /*N*/                       aName = xInfo->GetClassName();
-/*N*/                   so3::StaticBaseUrl::SetBaseURL( sBaseURL );
+/*N*/                   ::binfilter::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/               }
 /*N*/               else
 /*?*/                   aName = pOLENd->GetOLEObj().GetOleRef()->GetClassName();
