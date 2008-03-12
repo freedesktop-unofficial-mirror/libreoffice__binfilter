@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.13 $
+ *  $Revision: 1.14 $
  *
- *  last change: $Author: kz $ $Date: 2007-09-06 11:37:35 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 09:27:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,7 +87,7 @@
 #include <scriptspaceitem.hxx>
 #include <charscaleitem.hxx>
 
-#include <svtools/colorcfg.hxx>
+#include <bf_svtools/colorcfg.hxx>
 
 #include <forbiddencharacterstable.hxx>
 
@@ -116,7 +116,7 @@
 #endif
 namespace binfilter {
 
-using namespace ::rtl;
+using ::rtl::OUString;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
@@ -3116,7 +3116,7 @@ struct TabInfo
 
 /*N*/ Color ImpEditEngine::GetAutoColor() const
 /*N*/ {
-/*N*/   Color aColor = const_cast<ImpEditEngine*>(this)->GetColorConfig().GetColorValue( svtools::FONTCOLOR ).nColor;
+/*N*/   Color aColor = const_cast<ImpEditEngine*>(this)->GetColorConfig().GetColorValue( FONTCOLOR ).nColor;
 /*N*/
 /*N*/   if ( GetBackgroundColor() != COL_AUTO )
 /*N*/   {
