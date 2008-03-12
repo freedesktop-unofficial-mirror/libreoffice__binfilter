@@ -4,9 +4,9 @@
  *
  *  $RCSfile: hints.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:36:52 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:18:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 #endif
 
 #ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
+#include <bf_svtools/hint.hxx>
 #endif
 #include <tools/debug.hxx>
 namespace binfilter {

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: linkuno.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2006-10-28 02:37:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:18:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,11 +37,11 @@
 #define SC_LINKUNO_HXX
 
 #ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
+#include <bf_svtools/lstner.hxx>
 #endif
 
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_SHEET_XDDELINK_HPP_
