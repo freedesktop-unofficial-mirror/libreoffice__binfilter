@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unotxdoc.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2007-01-02 18:49:39 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 13:58:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,7 +36,7 @@
 #define _UNOTXDOC_HXX
 
 #ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #ifndef _SFX_OBJUNO_HXX
 #include <bf_sfx2/sfxbasemodel.hxx>
@@ -138,7 +138,7 @@
 #include <com/sun/star/lang/Locale.hpp>
 #endif
 #ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
+#include <bf_svtools/itemprop.hxx>
 #endif
 #ifndef _SVX_FMDMOD_HXX
 #include <bf_svx/fmdmod.hxx>
