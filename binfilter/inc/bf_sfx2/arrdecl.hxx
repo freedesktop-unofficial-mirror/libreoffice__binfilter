@@ -4,9 +4,9 @@
  *
  *  $RCSfile: arrdecl.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2007-07-17 12:33:22 $
+ *  last change: $Author: rt $ $Date: 2008-03-12 11:34:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 #include <tools/list.hxx>
 
 #ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
+#include <bf_svtools/svarray.hxx>
 #endif
 #include "bf_sfx2/minarray.hxx"
 namespace binfilter {
