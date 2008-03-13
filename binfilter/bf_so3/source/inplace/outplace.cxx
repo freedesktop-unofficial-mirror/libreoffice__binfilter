@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outplace.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2008-03-12 08:14:14 $
+ *  last change: $Author: rt $ $Date: 2008-03-13 14:37:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,10 +40,9 @@
 
 #ifdef WNT
 #include <../ole/socont.h>
-//#include <vcl/sysdata.hxx>
+#include <vcl/sysdata.hxx>
 #endif
 
-#include <vcl/sysdata.hxx>
 #include <tools/debug.hxx>
 #include <tools/cachestr.hxx>
 #include <sot/storinfo.hxx>
