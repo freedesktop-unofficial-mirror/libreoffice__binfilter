@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.13 $
+#   $Revision: 1.14 $
 #
-#   last change: $Author: rt $ $Date: 2008-03-12 14:03:21 $
+#   last change: $Author: vg $ $Date: 2008-03-18 12:09:52 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -70,13 +70,8 @@ RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(DLLPOSTFIX
 
 .INCLUDE : target.mk
 
-ALLTAR : $(BIN)$/legacy_binfilters.rdb $(BIN)$/ooowoure-legacy_binfilters.rdb
+ALLTAR : $(BIN)$/legacy_binfilters.rdb
 
 $(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
     @@-$(RM) $@
-    cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) -wop=vnd.sun.star.expand:$(EMQ)$$ORIGIN/ $(foreach,i,$(RDBLIBS) -c $(subst,$(LOCALLIBDIR)$/,./ $i))
-
-$(BIN)$/ooowoure-legacy_binfilters.rdb : $(RDBLIBS)
-    @@-$(RM) $@
     cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) -wop=vnd.sun.star.expand:$(EMQ)$$OOO_BASE_DIR/program/ $(foreach,i,$(RDBLIBS) -c $(subst,$(LOCALLIBDIR)$/,./ $i))
-
