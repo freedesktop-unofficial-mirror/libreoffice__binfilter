@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewopt.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2008-03-12 10:45:54 $
+ *  last change: $Author: vg $ $Date: 2008-03-18 16:56:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,7 +94,6 @@ namespace binfilter {
 /*N*/ Color SwViewOption::aFieldShadingsColor(COL_LIGHTGRAY);
 /*N*/ Color SwViewOption::aSectionBoundColor(COL_LIGHTGRAY);
 /*M*/ Color SwViewOption::aPageBreakColor(COL_BLUE);
-/*N*/ Color SwViewOption::aNotesIndicatorColor(COL_YELLOW);
 /*N*/ Color SwViewOption::aScriptIndicatorColor(COL_GREEN);
 /*N*/
 /*N*/ sal_Int32 SwViewOption::nAppearanceFlags = VIEWOPT_DOC_BOUNDARIES|VIEWOPT_OBJECT_BOUNDARIES;
@@ -390,8 +389,8 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/     aValue = rConfig.GetColorValue(WRITERPAGEBREAKS);
 /*N*/     aPageBreakColor.SetColor(aValue.nColor);
 /*N*/
-/*N*/     aNotesIndicatorColor.SetColor(rConfig.GetColorValue(WRITERNOTESINDICATOR).nColor);
-/*N*/     aScriptIndicatorColor.SetColor(rConfig.GetColorValue(WRITERSCRIPTINDICATOR).nColor);
+/*N*/     aNotesIndicatorColor.SetColor(rConfig.GetColorValue(svtools::WRITERNOTESINDICATOR).nColor);
+/*N*/     aScriptIndicatorColor.SetColor(rConfig.GetColorValue(svtools::WRITERSCRIPTINDICATOR).nColor);
 /*N*/ }
 /* -----------------------------23.04.2002 17:48------------------------------
 
