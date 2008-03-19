@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_viewopt.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: vg $ $Date: 2008-03-18 16:56:13 $
+ *  last change: $Author: vg $ $Date: 2008-03-19 11:31:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -389,8 +389,8 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/     aValue = rConfig.GetColorValue(WRITERPAGEBREAKS);
 /*N*/     aPageBreakColor.SetColor(aValue.nColor);
 /*N*/
-/*N*/     aNotesIndicatorColor.SetColor(rConfig.GetColorValue(svtools::WRITERNOTESINDICATOR).nColor);
-/*N*/     aScriptIndicatorColor.SetColor(rConfig.GetColorValue(svtools::WRITERSCRIPTINDICATOR).nColor);
+/*N*/     aNotesIndicatorColor.SetColor(rConfig.GetColorValue(WRITERNOTESINDICATOR).nColor);
+/*N*/     aScriptIndicatorColor.SetColor(rConfig.GetColorValue(WRITERSCRIPTINDICATOR).nColor);
 /*N*/ }
 /* -----------------------------23.04.2002 17:48------------------------------
 
