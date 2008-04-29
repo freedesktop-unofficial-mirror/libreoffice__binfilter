@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_miscopt.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -382,7 +382,9 @@ SvtMiscOptions_Impl::SvtMiscOptions_Impl()
                 if( seqValues[nProperty] >>= aSymbolsStyle )
                     SetSymbolsStyleName( aSymbolsStyle );
                 else
+                {
                     DBG_ERROR("Wrong type of \"Misc\\SymbolStyle\"!" );
+                }
                 m_bIsSymbolsStyleRO = seqRO[nProperty];
                 break;
             }
@@ -475,7 +477,9 @@ void SvtMiscOptions_Impl::Load( const Sequence< OUString >& rPropertyNames )
                                                             if( seqValues[nProperty] >>= aSymbolsStyle )
                                                                 SetSymbolsStyleName( aSymbolsStyle );
                                                             else
+                                                            {
                                                                 DBG_ERROR("Wrong type of \"Misc\\SymbolStyle\"!" );
+                                                            }
                                                         }
                                                     break;
         }

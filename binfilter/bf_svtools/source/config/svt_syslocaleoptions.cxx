@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_syslocaleoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -210,7 +210,9 @@ SvtSysLocaleOptions_Impl::SvtSysLocaleOptions_Impl()
                                 if ( pValues[nProp] >>= aStr )
                                     m_aLocaleString = aStr;
                                 else
+                                {
                                     DBG_ERRORFILE( "Wrong property type!" );
+                                }
                                 m_bROLocale = pROStates[nProp];
                             }
                             break;
@@ -220,7 +222,9 @@ SvtSysLocaleOptions_Impl::SvtSysLocaleOptions_Impl()
                                 if ( pValues[nProp] >>= aStr )
                                     m_aCurrencyString = aStr;
                                 else
+                                {
                                     DBG_ERRORFILE( "Wrong property type!" );
+                                }
                                 m_bROCurrency = pROStates[nProp];
                             }
                         break;
@@ -230,7 +234,9 @@ SvtSysLocaleOptions_Impl::SvtSysLocaleOptions_Impl()
                             if ( pValues[nProp] >>= bValue )
                                 m_bDecimalSeparator = bValue;
                             else
+                            {
                                 DBG_ERRORFILE( "Wrong property type!" );
+                            }
                             m_bRODecimalSeparator = pROStates[nProp];
                         }
                         break;

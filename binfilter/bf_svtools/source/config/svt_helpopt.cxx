@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_helpopt.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -282,7 +282,9 @@ void  SvtHelpOptions_Impl::Load(const uno::Sequence< ::rtl::OUString>& rProperty
                     }
                 }
                 else
+                {
                     DBG_ERRORFILE( "Wrong Type!" );
+                }
             }
         }
         if ( IsHelpTips() != Help::IsQuickHelpEnabled() )

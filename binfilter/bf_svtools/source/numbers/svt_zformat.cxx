@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_zformat.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -3936,7 +3936,9 @@ DateFormat SvNumberformat::GetDateOrder() const
         }
     }
     else
+    {
         DBG_ERROR( "SvNumberformat::GetDateOrder: no date" );
+    }
     return rLoc().getDateFormat();
 }
 

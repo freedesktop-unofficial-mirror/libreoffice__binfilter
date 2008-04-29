@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itempool.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -676,7 +676,9 @@ void SfxItemPool::SetPoolDefaultItem(const SfxPoolItem &rItem)
     else if ( pSecondary )
         pSecondary->SetPoolDefaultItem(rItem);
     else
+    {
         SFX_ASSERT( 0, rItem.Which(), "unknown Which-Id - cannot set pool default" );
+    }
 }
 
 // ----------------------------------------------------------------------
@@ -705,7 +707,9 @@ void SfxItemPool::ResetPoolDefaultItem( USHORT nWhichId )
     else if ( pSecondary )
         pSecondary->ResetPoolDefaultItem(nWhichId);
     else
+    {
         SFX_ASSERT( 0, nWhichId, "unknown Which-Id - cannot set pool default" );
+    }
 }
 
 // -----------------------------------------------------------------------
