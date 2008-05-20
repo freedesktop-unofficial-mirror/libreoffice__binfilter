@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: image.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -66,10 +66,6 @@ class SbiImage {
     UINT32         nStringOff;      // aktuelle Pos im Stringpuffer
                                     // Routinen fuer Compiler:
     void MakeStrings( short );      // StringPool einrichten
-    void AddString( const String& );// String zufuegen
-    void AddCode( char*, UINT32 );  // Codeblock dazu
-    void AddType(SbxObject *);      // User-Type mit aufnehmen
-    void AddEnum(SbxObject *);      // Register enum type
 
 public:
     String aName;                   // Makroname
@@ -84,7 +80,6 @@ public:
     BOOL Load( SvStream&, UINT32& nVer );       // Loads image from stream
                             // nVer is set to version
                             // of image
-    BOOL Load( SvStream& );
     BOOL Save( SvStream&, UINT32 = B_CURVERSION );
     BOOL IsError()                  { return bError;    }
 
@@ -92,8 +87,6 @@ public:
     UINT32      GetCodeSize() const { return nCodeSize; }
     ::rtl::OUString& GetSource32()  { return aOUSource; }
     USHORT      GetBase() const     { return nDimBase;  }
-    String      GetString( short nId ) const;
-    //const char* GetString( short nId ) const;
     const SbxObject*  FindType (String aTypeName) const;
 
     SbxArrayRef GetEnums()          { return rEnums; }
