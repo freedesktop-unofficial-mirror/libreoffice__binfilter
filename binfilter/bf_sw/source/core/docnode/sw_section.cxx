@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_section.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -217,10 +217,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           // Bug: 28191 - nicht ins Undo aufnehmen, sollte schon vorher
 /*?*/           //          geschehen sein!!
-/*?*/           BOOL bUndo = pDoc->DoesUndo();
-/*?*/           pDoc->DoUndo( FALSE );
 /*?*/           pDoc->DelSectionFmt( pFmt );    // und loeschen
-/*?*/           pDoc->DoUndo( bUndo );
 /*N*/       }
 /*N*/   }
 /*N*/   if( refObj.Is() )
@@ -933,8 +930,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/   }
 /*N*/
 /*N*/   // Undo immer abschalten
-/*N*/   BOOL bWasUndo = pDoc->DoesUndo();
-/*N*/   pDoc->DoUndo( FALSE );
 /*N*/   BOOL bWasVisibleLinks = pDoc->IsVisibleLinks();
 /*N*/   pDoc->SetVisibleLinks( FALSE );
 /*N*/
@@ -1121,8 +1116,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/
 /*N*/
 /*N*/   // Alle UndoActions entfernen und Undo wieder einschalten
-/*N*/   pDoc->DelAllUndoObj();
-/*N*/   pDoc->DoUndo( bWasUndo );
 /*N*/   pDoc->SetVisibleLinks( bWasVisibleLinks );
 /*N*/
 /*N*/   pDoc->UnlockExpFlds();
