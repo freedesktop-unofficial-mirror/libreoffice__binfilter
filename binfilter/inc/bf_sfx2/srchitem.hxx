@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: srchitem.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -139,19 +139,15 @@ public:
     inline  void            SetReplaceString(const String& rNewString);
 
     inline  sal_Bool        GetWordOnly() const;
-            void            SetWordOnly(sal_Bool bNewWordOnly);
 
     inline  sal_Bool        GetExact() const;
-            void            SetExact(sal_Bool bNewExact);
 
             sal_Bool        GetBackward() const { return bBackward; }
             void            SetBackward(sal_Bool bNewBackward) { bBackward = bNewBackward; }
 
     inline sal_Bool         GetSelection() const;
-            void            SetSelection(sal_Bool bNewSelection);
 
     inline  sal_Bool        GetRegExp() const;
-            void            SetRegExp( sal_Bool bVal );
 
             sal_Bool        GetPattern() const { return bPattern; }
             void            SetPattern(sal_Bool bNewPattern) { bPattern = bNewPattern; }
@@ -176,10 +172,8 @@ public:
             void            SetAppFlag(sal_uInt16 nNewAppFlag) { nAppFlag = nNewAppFlag; }
 
     inline  sal_Bool        IsLevenshtein() const;
-            void            SetLevenshtein( sal_Bool bVal );
 
     inline  sal_Bool        IsLEVRelaxed() const;
-            void            SetLEVRelaxed(sal_Bool bSet);
 
     inline  sal_uInt16      GetLEVOther() const;
     inline  void            SetLEVOther(sal_uInt16 nSet);
@@ -190,18 +184,13 @@ public:
     inline  sal_uInt16      GetLEVLonger() const;
     inline  void            SetLEVLonger(sal_uInt16 nSet);
 
-            void            GetFromDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr );
-            void            SetToDescriptor( ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr );
-
     inline const ::com::sun::star::util::SearchOptions &
                 GetSearchOptions() const;
     inline void SetSearchOptions( const ::com::sun::star::util::SearchOptions &rOpt );
 
     inline  sal_Int32       GetTransliterationFlags() const;
-            void            SetTransliterationFlags( sal_Int32 nFlags );
 
     inline  sal_Bool        IsMatchFullHalfWidthForms() const;
-    void                    SetMatchFullHalfWidthForms( sal_Bool bVal );
 
     inline  sal_Bool        IsUseAsianOptions() const           { return bAsianOptions; }
     inline  void            SetUseAsianOptions( sal_Bool bVal ) { bAsianOptions = bVal; }
