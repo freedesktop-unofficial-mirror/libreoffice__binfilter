@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_documen8.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -324,37 +324,7 @@ namespace binfilter {
 #define SPELL_MAXTEST_ALL   3
 #define SPELL_MAXCELLS      256
 
-
-
-/*N*/ BOOL ScDocument::SetVisibleSpellRange( const ScRange& rNewRange )
-/*N*/ {
-/*N*/   BOOL bChange = ( aVisSpellRange != rNewRange );
-/*N*/   if (bChange)
-/*N*/   {
-/*N*/       //  continue spelling through visible range when scrolling down
-/*N*/       BOOL bContDown = ( nVisSpellState == VSPL_START && rNewRange.In( aVisSpellPos ) &&
-/*N*/                           rNewRange.aStart.Row() >  aVisSpellRange.aStart.Row() &&
-/*N*/                           rNewRange.aStart.Col() == aVisSpellRange.aStart.Col() &&
-/*N*/                           rNewRange.aEnd.Col()   == aVisSpellRange.aEnd.Col() );
-/*N*/
-/*N*/       aVisSpellRange = rNewRange;
-/*N*/
-/*N*/       if ( !bContDown )
-/*N*/       {
-/*N*/           aVisSpellPos = aVisSpellRange.aStart;
-/*N*/           nVisSpellState = VSPL_START;
-/*N*/       }
-/*N*/
-/*N*/       //  skip visible area for aOnlineSpellPos
-/*N*/       if ( aVisSpellRange.In( aOnlineSpellPos ) )
-/*N*/           aOnlineSpellPos = aVisSpellRange.aEnd;
-/*N*/   }
-/*N*/   return bChange;
-/*N*/ }
-
-
 //------------------------------------------------------------------------
-
 
 /*N*/ void ScDocument::SaveDdeLinks(SvStream& rStream) const
 /*N*/ {
@@ -409,20 +379,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDocument::HasDdeLinks() const
-/*N*/ {
-/*N*/   if (pLinkManager)           // Clipboard z.B. hat keinen LinkManager
-/*N*/   {
-/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-/*N*/       USHORT nCount = rLinks.Count();
-/*N*/       for (USHORT i=0; i<nCount; i++)
-/*?*/           if ((*rLinks[i])->ISA(ScDdeLink))
-/*?*/               return TRUE;
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
 /*N*/ void ScDocument::SetInLinkUpdate(BOOL bSet)
 /*N*/ {
 /*N*/   //  called from TableLink and AreaLink
@@ -431,11 +387,6 @@ namespace binfilter {
 /*N*/   bInLinkUpdate = bSet;
 /*N*/ }
 
-
-/*N*/ void ScDocument::UpdateDdeLinks()
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
-/*N*/ }
 
 /*N*/ BOOL ScDocument::UpdateDdeLink( const String& rAppl, const String& rTopic, const String& rItem )
 /*N*/ {
@@ -578,25 +529,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-/*N*/ BOOL ScDocument::HasAreaLinks() const
-/*N*/ {
-/*N*/   if (pLinkManager)           // Clipboard z.B. hat keinen LinkManager
-/*N*/   {
-/*N*/       const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-/*N*/       USHORT nCount = rLinks.Count();
-/*N*/       for (USHORT i=0; i<nCount; i++)
-/*?*/           if ((*rLinks[i])->ISA(ScAreaLink))
-/*?*/               return TRUE;
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ void ScDocument::UpdateAreaLinks()
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
-/*N*/ }
 
 /*N*/ void ScDocument::UpdateRefAreaLinks( UpdateRefMode eUpdateRefMode,
 /*N*/                            const ScRange& rRange, short nDx, short nDy, short nDz )
