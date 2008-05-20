@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: scripttypeitem.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,22 +65,6 @@ public:
 
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem* Create( SvStream &, USHORT nVersion ) const;
-
-    static const SfxPoolItem* GetItemOfScriptSet( const SfxItemSet& rSet,
-                                                    USHORT nWhich );
-    inline const SfxPoolItem* GetItemOfScriptSet( USHORT nWhich ) const
-    { return SvxScriptSetItem::GetItemOfScriptSet( GetItemSet(), nWhich ); }
-
-    const SfxPoolItem* GetItemOfScript( USHORT nScript ) const;
-
-
-    void GetWhichIds( USHORT& rLatin, USHORT& rAsian, USHORT& rComplex) const;
-
-    static void GetSlotIds( USHORT nSlotId, USHORT& rLatin, USHORT& rAsian,
-                                            USHORT& rComplex );
-    inline void GetSlotIds( USHORT& rLatin, USHORT& rAsian,
-                                USHORT& rComplex ) const
-    { GetSlotIds( Which(), rLatin, rAsian, rComplex ); }
 };
 
 }//end of namespace binfilter
