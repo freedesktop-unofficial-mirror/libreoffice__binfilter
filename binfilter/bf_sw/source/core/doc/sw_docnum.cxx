@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docnum.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -54,12 +54,6 @@
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
 #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
@@ -365,16 +359,6 @@ namespace binfilter {
 /*N*/ void SwDoc::SetNumRule( const SwPaM& rPam, const SwNumRule& rRule,
 /*N*/                       sal_Bool bSetAbsLSpace, sal_Bool bCalledFromShell )
 /*N*/ {
-/*N*/   SwUndoInsNum* pUndo;
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       StartUndo( UNDO_START );        // Klammerung fuer die Attribute!
-/*N*/       AppendUndo( pUndo = new SwUndoInsNum( rPam, rRule ) );
-/*N*/   }
-/*N*/   else
-/*N*/       pUndo = 0;
-/*N*/
 /*N*/   ULONG nPamPos = rPam.Start()->nNode.GetIndex();
 /*N*/   BOOL bSetItem = TRUE;
 /*N*/   SwNumRule* pNew = FindNumRulePtr( rRule.GetName() );
@@ -409,26 +393,9 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bSetItem )
 /*N*/   {
-/*N*/ #ifndef NUM_RELSPACE
-/*N*/       if( pUndo )
-/*N*/       {
-/*N*/           SwHistory* pHist = pUndo->GetHistory();
-/*N*/           SwCntntNode* pCNd;
-/*N*/           for( ULONG n = nPamPos, nEndPos = rPam.End()->nNode.GetIndex();
-/*N*/                   n <= nEndPos; ++n )
-/*N*/               if( 0 != ( pCNd = GetNodes()[ n ]->GetCntntNode() ))
-/*N*/               {
-/*N*/                   const SfxPoolItem& rItem = pCNd->GetAttr( RES_LR_SPACE );
-/*N*/                   pHist->Add( &rItem, &rItem, n );
-/*N*/               }
-/*N*/           pUndo->SetLRSpaceEndPos();
-/*N*/       }
-/*N*/ #endif
 /*N*/       Insert( rPam, SwNumRuleItem( pNew->GetName() ) );
 /*N*/   }
 /*N*/   UpdateNumRule( pNew->GetName(), nPamPos );
-/*N*/
-/*N*/   EndUndo( UNDO_END );
 /*N*/
 /*N*/   SetModified();
 /*N*/ }
@@ -445,11 +412,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   if( pTxtNd && pTxtNd->GetNum() && 0 != ( pRule = pTxtNd->GetNumRule() )
 /*N*/       && nStt != pTxtNd->GetNum()->GetSetValue() )
 /*N*/   {
-/*N*/       if( DoesUndo() )
-/*N*/       {
-/*N*/           ClearRedo();
-/*N*/           AppendUndo( new SwUndoNumRuleStart( rPos, nStt ));
-/*N*/       }
 /*N*/       SwNodeNum aNum( *pTxtNd->GetNum() );
 /*N*/       aNum.SetSetValue( nStt );
 /*N*/       pTxtNd->UpdateNum( aNum );
@@ -477,17 +439,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   SwNumRule* pRule = FindNumRulePtr( rRule.GetName() );
 /*N*/   if( pRule )
 /*N*/   {
-/*N*/       SwUndoInsNum* pUndo = 0;
 /*N*/       SwHistory* pHistory = 0;
-/*N*/       if( DoesUndo() && pRule->IsAutoRule() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-/*?*/           AppendUndo( pUndo );
-/*N*/       }
 /*N*/       ::binfilter::lcl_ChgNumRule( *this, rRule, pHistory );
-/*N*/
-/*N*/       if( pUndo )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pUndo->SetLRSpaceEndPos();
 /*N*/
 /*N*/       SetModified();
 /*N*/   }
@@ -541,11 +494,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   }
 /*N*/
 /*N*/   signed char nDiff = bDown ? 1 : -1;
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       AppendUndo( new SwUndoNumUpDown( rPam, nDiff ) );
-/*N*/   }
 /*N*/
 /*N*/   BOOL bRet = FALSE;
 /*N*/   String sNumRule;
