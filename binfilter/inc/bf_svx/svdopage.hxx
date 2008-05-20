@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdopage.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,7 +51,6 @@ protected:
 public:
     TYPEINFO();
     SdrPageObj(USHORT nNewPageNum=0);
-    SdrPageObj(const Rectangle& rRect, USHORT nNewPageNum=0);
     ~SdrPageObj();
 
     virtual void SetModel(SdrModel* pNewModel);
