@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: imestatuswindow.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -72,29 +72,6 @@ public:
         Must only be called with the Solar mutex locked.
      */
     void init();
-
-    /** Return true if the status window is toggled on.
-
-        This is only meaningful when canToggle returns true.
-
-        Can be called without the Solar mutex locked.
-     */
-    bool isShowing();
-
-    /** Toggle the status window on or off.
-
-        This only works if canToggle returns true (otherwise, any calls of this
-        method are ignored).
-
-        Must only be called with the Solar mutex locked.
-     */
-    void show(bool bShow);
-
-    /** Return true if the status window can be toggled on and off externally.
-
-        Must only be called with the Solar mutex locked.
-     */
-    bool canToggle() const;
 
     // At least the Solaris "CC: Forte Developer 7 C++ 5.4 2002/03/09" compiler
     // does not accept the following using-declarations for virtual functions,
