@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xoutbmp.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -72,14 +72,6 @@ class XOutBitmap
 public:
 
     static GraphicFilter* pGrfFilter;
-
-
-    static USHORT       ExportGraphic( const Graphic& rGraphic, const INetURLObject& rURL,
-                                       GraphicFilter& rFilter, const USHORT nFormat,
-                                       BOOL bIgnoreOptions,
-                                       const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData = NULL );
-
-
 };
 
 // ----------------
