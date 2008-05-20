@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fwdtitem.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -52,12 +52,6 @@ class SvxFontWidthItem : public SfxPoolItem
     UINT16  nWidth;         // 0 = default
     USHORT  nProp;          // default 100%
 public:
-
-    SvxFontWidthItem(   const USHORT nSz = 0,
-                        const USHORT nPropWidth = 100,
-                        const USHORT nId = ITEMID_FONTWIDTH );
-
-
     UINT16 GetWidth() const { return nWidth; }
 
 };
