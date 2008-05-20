@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_viscrs.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -116,24 +116,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 #else
 #define SHOWREDLINES1( nAct )
 #endif
-
-// --------  Ab hier Klassen / Methoden fuer den nicht Text-Cursor ------
-
-/*N*/ SwVisCrsr::SwVisCrsr( const SwCrsrShell * pCShell )
-/*N*/   : pCrsrShell( pCShell )
-/*N*/ {
-/*N*/   pCShell->GetWin()->SetCursor( &aTxtCrsr );
-/*N*/   bIsVisible = aTxtCrsr.IsVisible();
-/*N*/   bIsDragCrsr = FALSE;
-/*N*/   aTxtCrsr.SetWidth( 0 );
-/*N*/
-/*N*/ #ifdef SW_CRSR_TIMER
-/*N*/   bTimerOn = TRUE;
-/*N*/   SetTimeout( 50 );       // 50msec Verzoegerung
-/*N*/ #endif
-/*N*/ }
-
-
 
 /*N*/ SwVisCrsr::~SwVisCrsr()
 /*N*/ {
@@ -295,11 +277,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*  */
 // ------ Ab hier Klassen / Methoden fuer die Selectionen -------
 
-/*N*/ SwSelPaintRects::SwSelPaintRects( const SwCrsrShell& rCSh )
-/*N*/       : SwRects( 0 ), pCShell( &rCSh )
-/*N*/ {
-/*N*/ }
-
 /*N*/ SwSelPaintRects::~SwSelPaintRects()
 /*N*/ {
 /*N*/   Hide();
@@ -332,43 +309,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   }
 /*N*/ }
 
-// check current MapMode of the shell and set possibly the static members.
-// Optional set the parameters pX, pY
-/*N*/ void SwSelPaintRects::Get1PixelInLogic( const ViewShell& rSh,
-/*N*/                                       long* pX, long* pY )
-/*N*/ {
-/*N*/   const OutputDevice* pOut = rSh.GetWin();
-/*N*/   if ( ! pOut )
-/*N*/       pOut = rSh.GetOut();
-/*N*/
-/*N*/   const MapMode& rMM = pOut->GetMapMode();
-/*N*/   if( pMapMode->GetMapUnit() != rMM.GetMapUnit() ||
-/*N*/       pMapMode->GetScaleX() != rMM.GetScaleX() ||
-/*N*/       pMapMode->GetScaleY() != rMM.GetScaleY() )
-/*N*/   {
-/*N*/       *pMapMode = rMM;
-/*N*/       Size aTmp( 1, 1 );
-/*N*/       aTmp = pOut->PixelToLogic( aTmp );
-/*N*/       nPixPtX = aTmp.Width();
-/*N*/       nPixPtY = aTmp.Height();
-/*N*/   }
-/*N*/   if( pX )
-/*N*/       *pX = nPixPtX;
-/*N*/   if( pY )
-/*N*/       *pY = nPixPtY;
-/*N*/ }
-
-
 /*  */
-
-/*N*/ SwShellCrsr::SwShellCrsr( const SwCrsrShell& rCShell, const SwPosition &rPos )
-/*N*/   : SwCursor( rPos ), SwSelPaintRects( rCShell ),
-/*N*/   pPt( SwPaM::GetPoint() )
-/*N*/ {}
-
-
-
-
 
 /*N*/ SwShellCrsr::~SwShellCrsr() {}
 
@@ -399,35 +340,9 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   SHOWREDLINES1( 1 )
 /*N*/ }
 
-
-    // Dieses Rechteck wird neu gepaintet, also ist die SSelection in
-    // dem Bereich ungueltig
-
-
-
-
-
-
-
-
-#ifndef PRODUCT
-
-// JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
-//              am sichtbaren Cursor
-
-
-#endif
-
 // TRUE: an die Position kann der Cursor gesetzt werden
 
 /*  */
-
-/*N*/ SwShellTableCrsr::SwShellTableCrsr( const SwCrsrShell& rCrsrSh,
-/*N*/                                   const SwPosition& rPos )
-/*N*/   : SwTableCursor( rPos ), SwShellCrsr( rCrsrSh, rPos ),
-/*N*/       SwCursor( rPos )
-/*N*/ {
-/*N*/ }
 
 /*N*/ SwShellTableCrsr::~SwShellTableCrsr() {}
 
@@ -435,19 +350,5 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ SwShellTableCrsr::operator SwShellCrsr* ()        { return this; }
 /*N*/ SwShellTableCrsr::operator SwTableCursor* ()  { return this; }
 /*N*/ SwShellTableCrsr::operator SwShellTableCrsr* ()   { return this; }
-
-
-
-
-
-// Pruefe, ob sich der SPoint innerhalb der Tabellen-SSelection befindet
-
-#ifndef PRODUCT
-
-// JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
-//              am sichtbaren Cursor
-
-#endif
-
 
 }
