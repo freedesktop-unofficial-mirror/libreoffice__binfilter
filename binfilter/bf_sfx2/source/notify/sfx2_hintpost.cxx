@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_hintpost.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -38,30 +38,10 @@ namespace binfilter {
 
 //====================================================================
 
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-/*N*/ SfxHintPoster::SfxHintPoster( const GenLink& rLink ):
-/*N*/   aLink(rLink)
-/*N*/ {
-/*N*/ }
-
-
 //--------------------------------------------------------------------
 
 /*N*/ SfxHintPoster::~SfxHintPoster()
 /*N*/ {
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxHintPoster::Post( SfxHint* pHintToPost )
-/*N*/ {
-/*N*/     GetpApp()->PostUserEvent( ( LINK(this, SfxHintPoster, DoEvent_Impl) ), pHintToPost );
-/*N*/   AddRef();
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -82,22 +62,4 @@ namespace binfilter {
 /*N*/   aLink.Call( pPostedHint );
 /*N*/ }
 
-//--------------------------------------------------------------------
-
-/*N*/ void SfxHintPoster::SetEventHdl( const GenLink& rLink )
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   aLink = rLink;
-/*N*/ }
-
-
-#define LOG( x )
-#if 0
-#define LOG( x )                                                \
-{                                                               \
-    SvFileStream aStrm( "f:\\temp\\log", STREAM_READWRITE );    \
-    aStrm.Seek( STREAM_SEEK_TO_END );                           \
-    aStrm << x.GetStr() << '\n';                                \
-}
-#endif
 }
