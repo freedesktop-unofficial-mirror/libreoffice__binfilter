@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_isethint.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,33 +45,6 @@ namespace binfilter
 TYPEINIT1(SfxItemSetHint, SfxHint);
 
 //====================================================================
-
-SfxItemSetHint::SfxItemSetHint( SfxItemSet *pItemSet )
-
-/*  [Beschreibung]
-
-    Dieser Ctor "ubernimmt das als Parameter "ubergeben <SfxItemSet>,
-    das im Dtor gel"oscht wird.
-*/
-
-:   _pItemSet( pItemSet )
-{
-}
-
-//--------------------------------------------------------------------
-
-SfxItemSetHint::SfxItemSetHint( const SfxItemSet &rItemSet )
-
-/*  [Beschreibung]
-
-    Dieser Ctor kopiert das als Parameter "ubergeben <SfxItemSet>.
-*/
-
-:   _pItemSet( rItemSet.Clone() )
-{
-}
-
-//--------------------------------------------------------------------
 
 SfxItemSetHint::~SfxItemSetHint()
 {
