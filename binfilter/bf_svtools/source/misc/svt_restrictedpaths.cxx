@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_restrictedpaths.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -196,20 +196,4 @@ namespace binfilter
 
         return ( aApprovedURL != m_aUnrestrictedURLs.end() );
     }
-
-    // --------------------------------------------------------------------
-    bool RestrictedPaths::isUrlAllowed( const String& _rURL, bool allowParents ) const
-    {
-        if ( m_aUnrestrictedURLs.empty() || !m_bFilterIsEnabled )
-            return true;
-
-        ::std::vector< String >::const_iterator aApprovedURL = ::std::find_if(
-            m_aUnrestrictedURLs.begin(),
-            m_aUnrestrictedURLs.end(),
-            CheckURLAllowed( _rURL, allowParents )
-        );
-
-        return ( aApprovedURL != m_aUnrestrictedURLs.end() );
-    }
-
 }
