@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_flditem.cxx,v $
- * $Revision: 1.16 $
+ * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -288,73 +288,6 @@ namespace binfilter {
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-/*N*/ String SvxDateField::GetFormatted( SvNumberFormatter& rFormatter, LanguageType eLang ) const
-/*N*/ {
-/*N*/     Date aDate; // current date
-/*N*/   if ( eType == SVXDATETYPE_FIX )
-/*N*/       aDate.SetDate( nFixDate );
-/*N*/
-/*N*/   SvxDateFormat eTmpFormat = eFormat;
-/*N*/
-/*N*/   if ( eTmpFormat == SVXDATEFORMAT_SYSTEM )
-/*N*/   {
-/*N*/       DBG_ERROR( "SVXDATEFORMAT_SYSTEM nicht implementiert!" );
-/*N*/       eTmpFormat = SVXDATEFORMAT_STDSMALL;
-/*N*/   }
-/*N*/   else if ( eTmpFormat == SVXDATEFORMAT_APPDEFAULT )
-/*N*/   {
-/*N*/       DBG_ERROR( "SVXDATEFORMAT_APPDEFAULT: Woher nehmen?" );
-/*N*/       eTmpFormat = SVXDATEFORMAT_STDSMALL;
-/*N*/   }
-/*N*/
-/*N*/     ULONG nFormatKey;
-/*N*/
-/*N*/   switch( eTmpFormat )
-/*N*/   {
-/*N*/       case SVXDATEFORMAT_STDSMALL:
-/*N*/             // short
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYSTEM_SHORT, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_STDBIG:
-/*N*/             // long
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYSTEM_LONG, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_A:
-/*N*/           // 13.02.96
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DDMMYY, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_B:
-/*N*/           // 13.02.1996
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DDMMYYYY, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_C:
-/*N*/             // 13. Feb 1996
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DMMMYYYY, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_D:
-/*N*/             // 13. Februar 1996
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DMMMMYYYY, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_E:
-/*N*/             // Die, 13. Februar 1996
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_NNDMMMMYYYY, eLang );
-/*N*/       break;
-/*N*/       case SVXDATEFORMAT_F:
-/*N*/             // Dienstag, 13. Februar 1996
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_NNNNDMMMMYYYY, eLang );
-/*N*/       break;
-/*N*/         default:
-/*N*/             nFormatKey = rFormatter.GetStandardFormat( NUMBERFORMAT_DATE, eLang );
-/*N*/   }
-/*N*/
-/*N*/     double fDiffDate = aDate - *(rFormatter.GetNullDate());
-/*N*/     String aStr;
-/*N*/       Color* pColor = NULL;
-/*N*/     rFormatter.GetOutputString( fDiffDate, nFormatKey, aStr, &pColor );
-/*N*/     return aStr;
-/*N*/ }
-
 
 /*N*/ SV_IMPL_PERSIST1( SvxURLField, SvxFieldData );
 
@@ -648,71 +581,6 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ String SvxExtTimeField::GetFormatted( SvNumberFormatter& rFormatter, LanguageType eLang ) const
-/*N*/ {
-/*N*/     Time aTime; // current time
-/*N*/   if ( eType == SVXTIMETYPE_FIX )
-/*N*/       aTime.SetTime( nFixTime );
-/*N*/
-/*N*/   SvxTimeFormat eTmpFormat = eFormat;
-/*N*/
-/*N*/   switch( eTmpFormat )
-/*N*/   {
-/*N*/         case SVXTIMEFORMAT_SYSTEM :
-/*N*/             DBG_ERROR( "SVXTIMEFORMAT_SYSTEM: not implemented" );
-/*N*/             eTmpFormat = SVXTIMEFORMAT_STANDARD;
-/*N*/         break;
-/*N*/         case SVXTIMEFORMAT_APPDEFAULT :
-/*N*/             DBG_ERROR( "SVXTIMEFORMAT_APPDEFAULT: not implemented" );
-/*N*/             eTmpFormat = SVXTIMEFORMAT_STANDARD;
-/*N*/         break;
-/*N*/   }
-/*N*/
-/*N*/     sal_uInt32 nFormatKey;
-/*N*/
-/*N*/   switch( eTmpFormat )
-/*N*/   {
-/*N*/       case SVXTIMEFORMAT_12_HM:
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMAMPM, eLang );
-/*N*/       break;
-/*N*/         case SVXTIMEFORMAT_12_HMSH:
-/*N*/         {   // no builtin format available, try to insert or reuse
-/*N*/             String aFormatCode( RTL_CONSTASCII_USTRINGPARAM( "HH:MM:SS.00 AM/PM" ) );
-/*N*/             xub_StrLen nCheckPos;
-/*N*/             short nType;
-/*N*/             BOOL bInserted = rFormatter.PutandConvertEntry( aFormatCode,
-/*N*/                 nCheckPos, nType, nFormatKey, LANGUAGE_ENGLISH_US, eLang );
-/*N*/             DBG_ASSERT( nCheckPos == 0, "SVXTIMEFORMAT_12_HMSH: could not insert format code" );
-/*N*/             if ( nCheckPos )
-/*N*/                 nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HH_MMSS00, eLang );
-/*N*/         }
-/*N*/         break;
-/*N*/       case SVXTIMEFORMAT_24_HM:
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMM, eLang );
-/*N*/       break;
-/*N*/       case SVXTIMEFORMAT_24_HMSH:
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HH_MMSS00, eLang );
-/*N*/       break;
-/*N*/       case SVXTIMEFORMAT_12_HMS:
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMSSAMPM, eLang );
-/*N*/       break;
-/*N*/       case SVXTIMEFORMAT_24_HMS:
-/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMSS, eLang );
-/*N*/       break;
-/*N*/       case SVXTIMEFORMAT_STANDARD:
-/*N*/         default:
-/*N*/             nFormatKey = rFormatter.GetStandardFormat( NUMBERFORMAT_TIME, eLang );
-/*N*/   }
-/*N*/
-/*N*/     double fFracTime = aTime.GetTimeInDays();
-/*N*/     String aStr;
-/*N*/       Color* pColor = NULL;
-/*N*/     rFormatter.GetOutputString( fFracTime, nFormatKey, aStr, &pColor );
-/*N*/     return aStr;
-/*N*/ }
-
-
-
 //----------------------------------------------------------------------------
 //      SvxExtFileField
 //----------------------------------------------------------------------------
@@ -784,81 +652,6 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------------------
-
-/*N*/ XubString SvxExtFileField::GetFormatted() const
-/*N*/ {
-/*N*/   XubString aString;
-/*N*/
-/*N*/   INetURLObject aURLObj( aFile );
-/*N*/
-/*N*/     if( INET_PROT_NOT_VALID == aURLObj.GetProtocol() )
-/*N*/     {
-/*N*/         // invalid? try to interpret string as system file name
-/*N*/         String aURLStr;
-/*N*/
-/*N*/         ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aFile, aURLStr );
-/*N*/
-/*N*/         aURLObj.SetURL( aURLStr );
-/*N*/     }
-/*N*/
-/*N*/     // #92009# Be somewhat liberate when trying to
-/*N*/     // get formatted content out of the FileField
-/*N*/     if( INET_PROT_NOT_VALID == aURLObj.GetProtocol() )
-/*N*/     {
-/*N*/         // still not valid? Then output as is
-/*N*/         aString = aFile;
-/*N*/     }
-/*N*/   else if( INET_PROT_FILE == aURLObj.GetProtocol() )
-/*N*/   {
-/*N*/       switch( eFormat )
-/*N*/       {
-/*N*/           case SVXFILEFORMAT_FULLPATH:
-/*N*/               aString = aURLObj.getFSysPath(INetURLObject::FSYS_DETECT);
-/*N*/           break;
-/*N*/
-/*N*/           case SVXFILEFORMAT_PATH:
-/*N*/                 aURLObj.removeSegment(INetURLObject::LAST_SEGMENT, false);
-/*N*/                 // #101742# Leave trailing slash at the pathname
-/*N*/                 aURLObj.setFinalSlash();
-/*N*/               aString = aURLObj.getFSysPath(INetURLObject::FSYS_DETECT);
-/*N*/           break;
-/*N*/
-/*N*/           case SVXFILEFORMAT_NAME:
-/*N*/               aString = aURLObj.getBase();
-/*N*/           break;
-/*N*/
-/*N*/           case SVXFILEFORMAT_NAME_EXT:
-/*N*/               aString = aURLObj.getName();
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       switch( eFormat )
-/*N*/       {
-/*N*/           case SVXFILEFORMAT_FULLPATH:
-/*N*/               aString = aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
-/*N*/           break;
-/*N*/
-/*N*/           case SVXFILEFORMAT_PATH:
-/*N*/                 aURLObj.removeSegment(INetURLObject::LAST_SEGMENT, false);
-/*N*/                 // #101742# Leave trailing slash at the pathname
-/*N*/                 aURLObj.setFinalSlash();
-/*N*/               aString = aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
-/*N*/           break;
-/*N*/
-/*N*/           case SVXFILEFORMAT_NAME:
-/*N*/               aString = aURLObj.getBase();
-/*N*/           break;
-/*N*/
-/*N*/           case SVXFILEFORMAT_NAME_EXT:
-/*N*/               aString = aURLObj.getName();
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return( aString );
-/*N*/ }
 
 //----------------------------------------------------------------------------
 //      SvxAuthorField
