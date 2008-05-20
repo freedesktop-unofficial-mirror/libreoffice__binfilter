@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_cellsuno.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1517,14 +1517,6 @@ void ScCellRangesBase::SetNewRanges(const ScRangeList& rNew)
 {
     aRanges = rNew;
     RefChanged();
-}
-
-void ScCellRangesBase::SetCursorOnly( BOOL bSet )
-{
-    //  set for a selection object that is created from the cursor position
-    //  without anything selected (may contain several sheets)
-
-    bCursorOnly = bSet;
 }
 
 uno::Any SAL_CALL ScCellRangesBase::queryInterface( const uno::Type& rType )
