@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_xmltxtimp.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -125,54 +125,4 @@ using namespace xmloff::token;
 /*N*/
 /*N*/   return pContext;
 /*N*/ }
-/*N*/
-/*N*/ ///////////////////////////////////////////////////////////////////////
-/*N*/
-/*N*/ class SvxXMLXTextImportComponent : public SvXMLImport
-/*N*/ {
-/*N*/ public:
-/*N*/   // #110680#
-/*N*/   SvxXMLXTextImportComponent(
-/*N*/       const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-/*N*/       const Reference< XText > & xText );
-/*N*/   virtual ~SvxXMLXTextImportComponent() throw ();
-/*N*/
-/*N*/   static sal_Bool load( const ::rtl::OUString& rUrl, const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer >& xTable ) throw();
-/*N*/ protected:
-/*N*/   virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList );
-/*N*/
-/*N*/ private:
-/*N*/   const Reference< XText > mxText;
-/*N*/ };
-/*N*/
-/*N*/ // --------------------------------------------------------------------
-/*N*/
-/*N*/ // #110680#
-/*N*/ SvxXMLXTextImportComponent::SvxXMLXTextImportComponent(
-/*N*/   const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-/*N*/   const Reference< XText > & xText )
-/*N*/ : SvXMLImport(xServiceFactory),
-/*N*/   mxText( xText )
-/*N*/ {
-/*N*/   GetTextImport()->SetCursor( mxText->createTextCursor() );
-/*N*/ }
-/*N*/
-/*N*/ SvxXMLXTextImportComponent::~SvxXMLXTextImportComponent() throw ()
-/*N*/ {
-/*N*/ }
-/*N*/
-/*N*/ SvXMLImportContext *SvxXMLXTextImportComponent::CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
-/*N*/ {
-/*N*/   SvXMLImportContext* pContext;
-/*N*/   if(XML_NAMESPACE_OFFICE == nPrefix && ( IsXMLToken( rLocalName, XML_DOCUMENT ) || IsXMLToken( rLocalName, XML_DOCUMENT_CONTENT ) ) )
-/*N*/   {
-/*N*/        pContext = new SvxXMLTextImportContext(*this, nPrefix, rLocalName, xAttrList, mxText );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       pContext = SvXMLImport::CreateContext(nPrefix, rLocalName, xAttrList);
-/*N*/   }
-/*N*/   return pContext;
-/*N*/ }
-
 }
