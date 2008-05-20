@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_SchXMLExport.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -2637,13 +2637,6 @@ uno::Reference< uno::XInterface > SAL_CALL SchXMLExport_Content_createInstance(c
 }
 
 // ------------------------------------------------------------
-
-uno::Sequence< OUString > SAL_CALL SchXMLExport_Meta_getSupportedServiceNames() throw()
-{
-    const OUString aServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Chart.XMLMetaExporter" ));
-    const uno::Sequence< OUString > aSeq( &aServiceName, 1 );
-    return aSeq;
-}
 
 OUString SAL_CALL SchXMLExport_Meta_getImplementationName() throw()
 {
