@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_slstitm.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +67,6 @@ public:
 
             SfxImpStringList() { nRefCount = 1; }
             ~SfxImpStringList();
-    void    Sort( BOOL bAscending, List* );
 };
 
 //------------------------------------------------------------------------
@@ -84,81 +83,11 @@ SfxImpStringList::~SfxImpStringList()
     nRefCount = 0xffff;
 }
 
-//------------------------------------------------------------------------
-
-void SfxImpStringList::Sort( BOOL bAscending, List* pParallelList )
-{
-    DBG_ASSERT(!pParallelList || pParallelList->Count() >= aList.Count(),"Sort:ParallelList too small");
-    ULONG nCount = aList.Count();
-    if( nCount > 1 )
-    {
-        nCount -= 2;
-        // Bubble Dir Einen
-        BOOL bSwapped = TRUE;
-        while( bSwapped )
-        {
-            bSwapped = FALSE;
-            for( ULONG nCur = 0; nCur <= nCount; nCur++ )
-            {
-                String* pStr1 = (String*)aList.GetObject( nCur );
-                String* pStr2 = (String*)aList.GetObject( nCur+1 );
-                // COMPARE_GREATER => pStr2 ist groesser als pStr1
-                StringCompare eCompare = pStr1->CompareIgnoreCaseToAscii( *pStr2 ); //@@@
-                BOOL bSwap = FALSE;
-                if( bAscending )
-                {
-                    if( eCompare == COMPARE_LESS )
-                        bSwap = TRUE;
-                }
-                else if( eCompare == COMPARE_GREATER )
-                    bSwap = TRUE;
-
-                if( bSwap )
-                {
-                    bSwapped = TRUE;
-                    aList.Replace( pStr1, nCur + 1 );
-                    aList.Replace( pStr2, nCur );
-                    if( pParallelList )
-                    {
-                        void* p1 = pParallelList->GetObject( nCur );
-                        void* p2 = pParallelList->GetObject( nCur + 1 );
-                        pParallelList->Replace( p1, nCur + 1 );
-                        pParallelList->Replace( p2, nCur );
-                    }
-                }
-            }
-        }
-    }
-}
-
 // class SfxStringListItem -----------------------------------------------
 
 SfxStringListItem::SfxStringListItem() :
     pImp(NULL)
 {
-}
-
-//------------------------------------------------------------------------
-
-SfxStringListItem::SfxStringListItem( USHORT which, const List* pList ) :
-    SfxPoolItem( which ),
-    pImp(NULL)
-{
-    // PB: das Putten einer leeren Liste funktionierte nicht,
-    // deshalb habe ich hier die Abfrage nach dem Count auskommentiert
-    if( pList /*!!! && pList->Count() */ )
-    {
-        pImp = new SfxImpStringList;
-
-        long i, nCount = pList->Count();
-        String  *pStr1, *pStr2;
-        for( i=0; i < nCount; i++ )
-        {
-            pStr1 = (String*)pList->GetObject(i);
-            pStr2 = new String( *pStr1 );
-            pImp->aList.Insert( pStr2, LIST_APPEND );
-        }
-    }
 }
 
 //------------------------------------------------------------------------
@@ -210,16 +139,6 @@ SfxStringListItem::~SfxStringListItem()
         else
             delete pImp;
     }
-}
-
-//------------------------------------------------------------------------
-
-List* SfxStringListItem::GetList()
-{
-    if( !pImp )
-        pImp = new SfxImpStringList;
-    DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid")
-    return &(pImp->aList);
 }
 
 //------------------------------------------------------------------------
@@ -371,14 +290,6 @@ int SfxStringListItem::IsPoolable() const
 
 //------------------------------------------------------------------------
 
-void SfxStringListItem::Sort( BOOL bAscending, List* pParallelList )
-{
-    DBG_ASSERT(GetRefCount()==0,"Sort:RefCount!=0")
-    if( pImp )
-        pImp->Sort( bAscending, pParallelList );
-}
-
-//----------------------------------------------------------------------------
 void SfxStringListItem::SetStringList( const com::sun::star::uno::Sequence< rtl::OUString >& rList )
 {
     DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0")
