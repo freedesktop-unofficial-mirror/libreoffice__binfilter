@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lstner.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +67,6 @@ public:
 
     BOOL                StartListening( SfxBroadcaster& rBroadcaster, BOOL bPreventDups = FALSE );
     BOOL                EndListening( SfxBroadcaster& rBroadcaster, BOOL bAllDups = FALSE );
-    void                EndListening( USHORT nNo );
     void                EndListeningAll();
     BOOL                IsListening( SfxBroadcaster& rBroadcaster ) const;
 
