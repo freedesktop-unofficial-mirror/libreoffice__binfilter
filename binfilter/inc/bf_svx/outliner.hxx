@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: outliner.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -244,7 +244,6 @@ private:
 #endif
 
 public:
-                OutlinerView( Outliner* pOut, Window* pWindow );
     virtual     ~OutlinerView();
 
     EditView&   GetEditView() const { return *pEditView; }
@@ -629,8 +628,6 @@ public:
     void                SetStyleSheetPool( SfxStyleSheetPool* pSPool );
     SfxStyleSheetPool*  GetStyleSheetPool();
 
-    BOOL            IsInSelectionMode() const;
-
     void            SetStyleSheet( ULONG nPara, SfxStyleSheet* pStyle );
     SfxStyleSheet*  GetStyleSheet( ULONG nPara );
 
@@ -654,9 +651,6 @@ public:
     ULONG           GetLineCount( ULONG nParagraph ) const;
     USHORT          GetLineLen( ULONG nParagraph, USHORT nLine ) const;
     ULONG           GetLineHeight( ULONG nParagraph, ULONG nLine = 0 );
-
-    // nFormat muss ein Wert aus dem enum EETextFormat sein (wg.CLOOKS)
-    ULONG           Read( SvStream& rInput, USHORT, SvKeyValueIterator* pHTTPHeaderAttrs = NULL );
 
     SfxUndoManager& GetUndoManager();
 
