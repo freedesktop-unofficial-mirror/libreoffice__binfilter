@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdhlpln.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -38,31 +38,6 @@
 #endif
 
 namespace binfilter {
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-/*N*/ FASTBOOL SdrHelpLine::IsHit(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const
-/*N*/ {
-/*N*/   Size a1Pix(rOut.PixelToLogic(Size(1,1)));
-/*N*/   FASTBOOL bXHit=rPnt.X()>=aPos.X()-nTolLog && rPnt.X()<=aPos.X()+nTolLog+a1Pix.Width();
-/*N*/   FASTBOOL bYHit=rPnt.Y()>=aPos.Y()-nTolLog && rPnt.Y()<=aPos.Y()+nTolLog+a1Pix.Height();
-/*N*/   switch (eKind) {
-/*N*/       case SDRHELPLINE_VERTICAL  : return bXHit; break;
-/*N*/       case SDRHELPLINE_HORIZONTAL: return bYHit; break;
-/*N*/       case SDRHELPLINE_POINT: {
-/*?*/           if (bXHit || bYHit) {
-/*?*/               Size aRad(rOut.PixelToLogic(Size(SDRHELPLINE_POINT_PIXELSIZE,SDRHELPLINE_POINT_PIXELSIZE)));
-/*?*/               return rPnt.X()>=aPos.X()-aRad.Width() && rPnt.X()<=aPos.X()+aRad.Width()+a1Pix.Width() &&
-/*?*/                      rPnt.Y()>=aPos.Y()-aRad.Height() && rPnt.Y()<=aPos.Y()+aRad.Height()+a1Pix.Height();
-/*N*/           }
-/*N*/       } break;
-/*N*/   } // switch
-/*N*/   return FALSE;
-/*N*/ }
-
-
 
 /*?*/ SvStream& operator<<(SvStream& rOut, const SdrHelpLine& rHL)
 /*?*/ {
@@ -98,18 +73,6 @@ namespace binfilter {
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
 /*N*/       Insert(rSrcList[i]);
 /*N*/   }
-/*N*/ }
-
-
-
-/*N*/ USHORT SdrHelpLineList::HitTest(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const
-/*N*/ {
-/*N*/   USHORT nAnz=GetCount();
-/*N*/   for (USHORT i=nAnz; i>0;) {
-/*N*/       i--;
-/*N*/       if (GetObject(i)->IsHit(rPnt,nTolLog,rOut)) return i;
-/*N*/   }
-/*N*/   return SDRHELPLINE_NOTFOUND;
 /*N*/ }
 
 /*N*/ SvStream& operator<<(SvStream& rOut, const SdrHelpLineList& rHLL)
