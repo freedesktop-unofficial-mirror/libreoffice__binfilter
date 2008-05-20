@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_templatefoldercache.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -490,7 +490,6 @@ namespace binfilter
         void        storeState( sal_Bool _bForceRetrieval );
 
     private:
-        void        initTemplDirs( ::std::vector< String >& _rRootDirs );
         sal_Bool    openCacheStream( sal_Bool _bForRead );
         void        closeCacheStream( );
 
@@ -836,11 +835,6 @@ namespace binfilter
             }
         }
         return m_bNeedsUpdate;
-    }
-
-    //---------------------------------------------------------------------
-    void TemplateFolderCacheImpl::initTemplDirs( ::std::vector< String >& )
-    {
     }
 
     //---------------------------------------------------------------------
