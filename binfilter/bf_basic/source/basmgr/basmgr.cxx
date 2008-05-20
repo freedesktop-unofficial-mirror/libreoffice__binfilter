@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: basmgr.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -432,13 +432,6 @@ void BasicErrorManager::InsertError( const BasicError& rError )
     aErrorList.Insert( new BasicError( rError ), LIST_APPEND );
 }
 
-
-BasicError::BasicError()
-{
-    nErrorId    = 0;
-    nReason     = 0;
-}
-
 BasicError::BasicError( ULONG nId, USHORT nR, const String& rErrStr ) :
     aErrStr( rErrStr )
 {
@@ -473,7 +466,6 @@ private:
 
 public:
     BasicLibInfo();
-    BasicLibInfo( const String& rStorageName );
 
     BOOL            IsReference() const     { return bReference; }
     BOOL&           IsReference()           { return bReference; }
@@ -539,15 +531,6 @@ BasicLibInfo::BasicLibInfo()
     mxScriptCont        = NULL;
     aStorageName        = String::CreateFromAscii(szImbedded);
     aRelStorageName     = String::CreateFromAscii(szImbedded);
-}
-
-BasicLibInfo::BasicLibInfo( const String& rStorageName )
-{
-    bReference          = TRUE;
-    bPasswordVerified   = FALSE;
-    bDoLoad             = FALSE;
-    mxScriptCont        = NULL;
-    aStorageName        = rStorageName;
 }
 
 void BasicLibInfo::Store( SotStorageStream& rSStream, const String& rBasMgrStorageName, BOOL bUseOldReloadInfo )
@@ -806,12 +789,6 @@ void copyToLibraryContainer( StarBASIC* pBasic, LibraryContainerInfo* pInfo )
     }
 }
 
-const LibraryContainerInfo& BasicManager::GetLibraryContainerInfo() const
-{
-    DBG_ASSERT( mpImpl->mpInfo, "BasicManager::GetLibraryContainerInfo: not to be called before initialization is finished!" );
-    return *mpImpl->mpInfo;
-}
-
 void BasicManager::SetLibraryContainerInfo( LibraryContainerInfo* pInfo )
 {
     if( !pInfo )
@@ -886,9 +863,6 @@ void BasicManager::SetLibraryContainerInfo( LibraryContainerInfo* pInfo )
             mpImpl->mbModifiedByLibraryContainer = sal_False;
         }
     }
-
-/*?*/ //     InsertGlobalUNOConstant( "BasicLibraries", makeAny( mpImpl->mpInfo->mxScriptCont ) );
-/*?*/ //     InsertGlobalUNOConstant( "DialogLibraries", makeAny( mpImpl->mpInfo->mxDialogCont ) );
 }
 
 BasicManager::BasicManager( StarBASIC* pSLib, String* pLibPath )
@@ -1980,44 +1954,6 @@ String BasicManager::GetLibName( USHORT nLib )
     return String();
 }
 
-BOOL BasicManager::LoadLib( USHORT nLib )
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-
-    BOOL bDone = FALSE;
-    BasicLibInfo* pLibInfo = pLibs->GetObject( nLib );
-    DBG_ASSERT( pLibInfo, "Lib?!" );
-    if ( pLibInfo )
-    {
-        Reference< XLibraryContainer > xLibContainer = pLibInfo->GetLibraryContainer();
-        if( xLibContainer.is() )
-        {
-            String aLibName = pLibInfo->GetLibName();
-            xLibContainer->loadLibrary( aLibName );
-            bDone = xLibContainer->isLibraryLoaded( aLibName );;
-        }
-        else
-        {
-            bDone = ImpLoadLibary( pLibInfo, NULL, FALSE );
-            StarBASIC* pLib = GetLib( nLib );
-            if ( pLib )
-            {
-    //          pLib->SetParent( GetStdLib() );
-                GetStdLib()->Insert( pLib );
-                pLib->SetFlag( SBX_EXTSEARCH );
-            }
-        }
-    }
-    else
-    {
-//      String aErrorText( BasicResId( IDS_SBERR_LIBLOAD ) );
-//      aErrorText.SearchAndReplace( "XX", "" );
-        StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_LIBLOAD, String(), ERRCODE_BUTTON_OK );
-        pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_LIBNOTFOUND, String::CreateFromInt32(nLib) ) );
-    }
-    return bDone;
-}
-
 StarBASIC* BasicManager::CreateLib( const String& rLibName )
 {
     DBG_CHKTHIS( BasicManager, 0 );
@@ -2109,31 +2045,6 @@ BasicLibInfo* BasicManager::FindLibInfo( StarBASIC* pBasic ) const
     return 0;
 }
 
-
-BOOL BasicManager::IsModified() const
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-
-    if ( bBasMgrModified )
-        return TRUE;
-    return IsBasicModified();
-}
-
-BOOL BasicManager::IsBasicModified() const
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-
-    BasicLibInfo* pInf = pLibs->First();
-    while ( pInf )
-    {
-        if ( pInf->GetLib().Is() && pInf->GetLib()->IsModified() )
-            return TRUE;
-
-        pInf = pLibs->Next();
-    }
-    return FALSE;
-}
-
 void BasicManager::SetFlagToAllLibs( short nFlag, BOOL bSet ) const
 {
     USHORT nLibs = GetLibCount();
@@ -2162,23 +2073,6 @@ void BasicManager::ClearErrors()
 {
     DBG_CHKTHIS( BasicManager, 0 );
     pErrorMgr->Reset();
-}
-
-BasicError* BasicManager::GetFirstError()
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-    return pErrorMgr->GetFirstError();
-}
-
-BasicError* BasicManager::GetNextError()
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-    return pErrorMgr->GetNextError();
-}
-
-void BasicManager::InsertGlobalUNOConstant( const sal_Char* /*_pAsciiName*/, const Any& /*_rValue*/ )
-{
-    DBG_ERROR( "BasicManager::InsertGlobalUNOConstant: dead code!" );
 }
 
 //=====================================================================
