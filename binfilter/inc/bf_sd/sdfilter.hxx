@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sdfilter.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,10 +53,6 @@ class SfxProgress;
 
 class SdFilter
 {
-private:
-
-    ::rtl::OUString             ImplGetFullLibraryName( const ::rtl::OUString& rLibraryName ) const;
-
 protected:
 
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >             mxModel;
@@ -71,7 +67,6 @@ protected:
     sal_Bool                    mbIsDraw : 1;
     sal_Bool                    mbShowProgress : 1;
 
-    ::vos::OModule*             OpenLibrary( const ::rtl::OUString& rLibraryName ) const;
     void                        CreateStatusIndicator();
     void                        CreateProgress();
 
