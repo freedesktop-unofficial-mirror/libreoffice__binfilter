@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: MultiPropertySetHelper.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -97,8 +97,6 @@ class MultiPropertySetHelper
 public:
 
     MultiPropertySetHelper( const sal_Char** pNames );
-
-    MultiPropertySetHelper( const ::rtl::OUString* pNames );
 
     ~MultiPropertySetHelper();
 
