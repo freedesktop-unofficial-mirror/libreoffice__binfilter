@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -49,7 +49,6 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Files --------------------------------------------------------
 SLOFILES = \
-        $(SLO)$/svx_xmlexport.obj		\
         $(SLO)$/svx_xmltxtimp.obj		\
         $(SLO)$/svx_xmltxtexp.obj		\
         $(SLO)$/svx_xmlxtimp.obj		\
