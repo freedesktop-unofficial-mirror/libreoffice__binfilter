@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: linksrc.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,7 +83,6 @@ public:
 
     void                Closed();
 
-    ULONG               GetUpdateTimeout() const;
     void                SetUpdateTimeout( ULONG nTime );
                         // notify the sink, the mime type is not
                         // a selection criterion
