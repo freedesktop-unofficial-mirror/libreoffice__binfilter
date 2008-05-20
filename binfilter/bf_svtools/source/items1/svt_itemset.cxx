@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itemset.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -764,118 +764,6 @@ void SfxItemSet::PutExtended
                 }
             }
         pPtr += 2;
-    }
-}
-
-// -----------------------------------------------------------------------
-
-void SfxItemSet::MergeRange( USHORT nFrom, USHORT nTo )
-/** <H3>Description</H3>
-
-    Expands the ranges of settable items by 'nFrom' to 'nTo'. Keeps state of
-    items which are new ranges too.
-*/
-
-{
-    // special case: exactly one USHORT which is already included?
-    if ( nFrom == nTo && SFX_ITEM_AVAILABLE <= GetItemState(nFrom, FALSE) )
-        return;
-
-    // merge new range
-    SfxUShortRanges aRanges( _pWhichRanges );
-    aRanges += SfxUShortRanges( nFrom, nTo );
-    SetRanges( aRanges );
-}
-
-// -----------------------------------------------------------------------
-
-void SfxItemSet::SetRanges( const USHORT *pNewRanges )
-
-/** <H3>Description</H3>
-
-    Modifies the ranges of settable items. Keeps state of items which
-    are new ranges too.
-*/
-
-{
-    // identische Ranges?
-    if ( _pWhichRanges == pNewRanges )
-        return;
-    const USHORT* pOld = _pWhichRanges;
-    const USHORT* pNew = pNewRanges;
-    while ( *pOld == *pNew )
-    {
-        if ( !*pOld && !*pNew )
-            return;
-        ++pOld, ++pNew;
-    }
-
-    // create new item-array (by iterating through all new ranges)
-    ULONG        nSize = Capacity_Impl(pNewRanges);
-    SfxItemArray aNewItems = new const SfxPoolItem* [ nSize ];
-    USHORT       n = 0, nNewCount = 0;
-    if ( _nCount == 0 )
-        memset( aNewItems, 0, nSize * sizeof( SfxPoolItem* ) );
-    else
-    {
-        for ( const USHORT *pRange = pNewRanges; *pRange; pRange += 2 )
-        {
-            // iterate through all ids in the range
-            for ( USHORT nWID = *pRange; nWID <= pRange[1]; ++nWID, ++n )
-            {
-                // direct move of pointer (not via pool)
-                SfxItemState eState = GetItemState( nWID, FALSE, aNewItems+n );
-                if ( SFX_ITEM_SET == eState )
-                {
-                    // increment new item count and possibly increment ref count
-                    ++nNewCount;
-                    aNewItems[n]->AddRef();
-                }
-                else if ( SFX_ITEM_DISABLED == eState )
-                {
-                    // put "disabled" item
-                    ++nNewCount;
-                    aNewItems[n] = new SfxVoidItem(0);
-                }
-                else if ( SFX_ITEM_DONTCARE == eState )
-                {
-                    ++nNewCount;
-                    aNewItems[n] = (SfxPoolItem*)-1;
-                }
-                else
-                {
-                    // default
-                    aNewItems[n] = 0;
-                }
-            }
-        }
-        // free old items
-        USHORT nOldTotalCount = TotalCount();
-        for ( USHORT nItem = 0; nItem < nOldTotalCount; ++nItem )
-        {
-            const SfxPoolItem *pItem = _aItems[nItem];
-            if ( pItem && !IsInvalidItem(pItem) && pItem->Which() )
-                _pPool->Remove(*pItem);
-        }
-    }
-
-    // replace old items-array and ranges
-    delete[] _aItems;
-    _aItems = aNewItems;
-    _nCount = nNewCount;
-
-    if( pNewRanges == GetPool()->GetFrozenIdRanges() )
-    {
-        delete[] _pWhichRanges;
-        _pWhichRanges = ( USHORT* ) pNewRanges;
-    }
-    else
-    {
-        USHORT nCount = Count_Impl(pNewRanges) + 1;
-        if ( _pWhichRanges != _pPool->GetFrozenIdRanges() )
-            delete[] _pWhichRanges;
-        _pWhichRanges = new USHORT[ nCount ];
-        memcpy( _pWhichRanges, pNewRanges, sizeof( USHORT ) * nCount );
     }
 }
 
