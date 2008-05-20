@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -66,7 +66,6 @@ SLOFILES =	\
         $(SLO)$/sw_docfmt.obj \
         $(SLO)$/sw_docftn.obj \
         $(SLO)$/sw_doclay.obj \
-        $(SLO)$/sw_docglos.obj \
         $(SLO)$/sw_docnew.obj \
         $(SLO)$/sw_docnum.obj \
         $(SLO)$/sw_docredln.obj \
