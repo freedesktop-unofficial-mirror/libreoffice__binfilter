@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdovirt.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -44,15 +44,6 @@ namespace binfilter {
 /*N*/   rRefObj.AddReference(*this);
 /*N*/   bClosedObj=rRefObj.IsClosedObj();
 /*N*/ }
-
-/*?*/ SdrVirtObj::SdrVirtObj(SdrObject& rNewObj, const Point& rAnchorPos):
-/*?*/   rRefObj(rNewObj)
-/*?*/ {
-/*?*/   aAnchor=rAnchorPos;
-/*?*/   bVirtObj=TRUE; // Ja, ich bin ein virtuelles Objekt
-/*?*/   rRefObj.AddReference(*this);
-/*?*/   bClosedObj=rRefObj.IsClosedObj();
-/*?*/ }
 
 /*N*/ SdrVirtObj::~SdrVirtObj()
 /*N*/ {
