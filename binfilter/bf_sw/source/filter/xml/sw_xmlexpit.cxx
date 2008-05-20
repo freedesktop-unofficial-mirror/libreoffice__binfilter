@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_xmlexpit.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -325,42 +325,6 @@ SvXMLExportItemMapper::SvXMLExportItemMapper( SvXMLItemMapEntriesRef rMapEntries
 
 SvXMLExportItemMapper::~SvXMLExportItemMapper()
 {
-}
-
-/** fills the given attribute list with the items in the given set */
-void SvXMLExportItemMapper::exportXML( SvXMLAttributeList& rAttrList,
-                                 const SfxItemSet& rSet,
-                                 const SvXMLUnitConverter& rUnitConverter,
-                                 const SvXMLNamespaceMap& rNamespaceMap,
-                                 sal_uInt16 nFlags /* = 0 */ ) const
-{
-    exportXML( rAttrList, rSet, rUnitConverter, rNamespaceMap, nFlags, 0 );
-}
-
-
-void SvXMLExportItemMapper::exportXML( SvXMLAttributeList& rAttrList,
-                    const SfxPoolItem& rItem,
-                    const SvXMLUnitConverter& rUnitConverter,
-                    const SvXMLNamespaceMap& rNamespaceMap,
-                    sal_uInt16 nFlags ) const
-{
-    OUString sCDATA( GetXMLToken(XML_CDATA) );
-
-    const sal_uInt16 nWhich = rItem.Which();
-
-    const sal_uInt16 nCount = mrMapEntries->getCount();
-    sal_uInt16 nIndex = 0;
-
-    while( nIndex < nCount )
-    {
-        SvXMLItemMapEntry* pEntry = mrMapEntries->getByIndex( nIndex );
-        if( pEntry->nWhichId == nWhich &&
-            0 == (pEntry->nMemberId & MID_FLAG_ELEMENT_ITEM_EXPORT) )
-            exportXML( rAttrList, rItem, *pEntry,
-                       rUnitConverter, rNamespaceMap, nFlags, 0 );
-
-        nIndex++;
-    }
 }
 
 void SvXMLExportItemMapper::exportXML( SvXMLExport& rExport,
