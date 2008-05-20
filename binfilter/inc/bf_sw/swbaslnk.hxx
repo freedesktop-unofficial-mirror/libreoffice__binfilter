@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swbaslnk.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -46,15 +46,6 @@ class SwBaseLink : public ::binfilter::SvBaseLink
     BOOL bSwapIn : 1;
     BOOL bNoDataFlag : 1;
     BOOL bIgnoreDataChanged : 1;
-
-protected:
-    SwBaseLink() {}
-
-    SwBaseLink( const String& rNm, USHORT nObjectType, ::binfilter::SvLinkSource* pObj,
-                 SwCntntNode* pNode = 0 )
-        : ::binfilter::SvBaseLink( rNm, nObjectType, pObj ), pCntntNode( pNode ),
-        bSwapIn( FALSE ), bNoDataFlag( FALSE ), bIgnoreDataChanged( FALSE )
-    {}
 
 public:
     TYPEINFO();
