@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_dociter.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -54,47 +54,6 @@ void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rpArr != pNewArr || nAttrEndRow < nRow )
 }
-
-/*N*/ ScValueIterator::ScValueIterator( ScDocument* pDocument,
-/*N*/                                   USHORT nSCol, USHORT nSRow, USHORT nSTab,
-/*N*/                                   USHORT nECol, USHORT nERow, USHORT nETab,
-/*N*/                                   BOOL bSTotal, BOOL bTextZero ) :
-/*N*/   pDoc( pDocument ),
-/*N*/   nStartCol( nSCol),
-/*N*/   nStartRow( nSRow),
-/*N*/   nStartTab( nSTab ),
-/*N*/   nEndCol( nECol ),
-/*N*/   nEndRow( nERow),
-/*N*/   nEndTab( nETab ),
-/*N*/   bSubTotal(bSTotal),
-/*N*/   nNumFmtType( NUMBERFORMAT_UNDEFINED ),
-/*N*/   nNumFmtIndex(0),
-/*N*/   bNumValid( FALSE ),
-/*N*/   bNextValid( FALSE ),
-/*N*/   bCalcAsShown( pDocument->GetDocOptions().IsCalcAsShown() ),
-/*N*/   bTextAsZero( bTextZero )
-/*N*/ {
-/*N*/   PutInOrder( nStartCol, nEndCol);
-/*N*/   PutInOrder( nStartRow, nEndRow);
-/*N*/   PutInOrder( nStartTab, nEndTab );
-/*N*/
-/*N*/   if (nStartCol > MAXCOL) nStartCol = MAXCOL;
-/*N*/   if (nEndCol > MAXCOL) nEndCol = MAXCOL;
-/*N*/   if (nStartRow > MAXROW) nStartRow = MAXROW;
-/*N*/   if (nEndRow > MAXROW) nEndRow = MAXROW;
-/*N*/   if (nStartTab > MAXTAB) nStartTab = MAXTAB;
-/*N*/   if (nEndTab > MAXTAB) nEndTab = MAXTAB;
-/*N*/
-/*N*/   nCol = nStartCol;
-/*N*/   nRow = nStartRow;
-/*N*/   nTab = nStartTab;
-/*N*/
-/*N*/   nColRow = 0;                    // wird bei GetFirst initialisiert
-/*N*/
-/*N*/   nNumFormat = 0;                 // werden bei GetNumberFormat initialisiert
-/*N*/   pAttrArray = 0;
-/*N*/   nAttrEndRow = 0;
-/*N*/ }
 
 /*N*/ ScValueIterator::ScValueIterator( ScDocument* pDocument, const ScRange& rRange,
 /*N*/           BOOL bSTotal, BOOL bTextZero ) :
