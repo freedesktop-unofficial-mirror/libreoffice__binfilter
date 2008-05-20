@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: undobj.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -227,7 +227,6 @@ public:
     ULONG nSttNode, nEndNode;
     xub_StrLen nSttCntnt, nEndCntnt;
 
-    SwUndRng();
     SwUndRng( const SwPaM& );
 
     void SetValues( const SwPaM& rPam );
@@ -467,10 +466,8 @@ class SwUndoTblNdsChg : public SwUndo
     BOOL bFlag;
     BOOL bSameHeight;                   // only used for SplitRow
 public:
-    // fuer SetColWidth
     SwUndoTblNdsChg( USHORT UndoId, const SwSelBoxes& rBoxes,
                     const SwTableNode& rTblNd );
-
     virtual ~SwUndoTblNdsChg();
 //STRIP001     virtual void Undo( SwUndoIter& );
 //STRIP001     virtual void Redo( SwUndoIter& );
@@ -590,10 +587,7 @@ public:
 class SwUndoDelLayFmt : public SwUndoFlyBase
 {
     BOOL bShowSelFrm;
-public:
     SwUndoDelLayFmt( SwFrmFmt* pFormat );
-
-
 };
 
 
