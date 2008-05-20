@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_MultiPropertySetHelper.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -85,26 +85,6 @@ MultiPropertySetHelper::MultiPropertySetHelper(
     for( sal_Int16 i = 0; i < nLength; i++ )
         pPropertyNames[i] = OUString::createFromAscii( pNames[i] );
 }
-
-MultiPropertySetHelper::MultiPropertySetHelper(
-    const OUString* pNames ) :
-        pPropertyNames( NULL ),
-        nLength( 0 ),
-        aPropertySequence(),
-        pSequenceIndex( NULL ),
-        aValues(),
-        pValues( NULL )
-{
-    // count elements
-    for( const OUString* pPtr = pNames; pPtr != NULL; pPtr++ )
-        nLength++;
-
-    // allocate array and assign strings
-    pPropertyNames = new OUString[nLength];
-    for( sal_Int16 i = 0; i < nLength; i++ )
-        pPropertyNames[i] = pNames[i];
-}
-
 
 MultiPropertySetHelper::~MultiPropertySetHelper()
 {
