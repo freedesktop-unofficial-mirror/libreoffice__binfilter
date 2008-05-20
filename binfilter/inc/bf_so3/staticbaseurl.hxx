@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: staticbaseurl.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -57,26 +57,8 @@ namespace binfilter {
  */
 namespace StaticBaseUrl {
 
-SO3_DLLPRIVATE String RelToAbs(
-    ByteString const & rTheRelURIRef, bool bIgnoreFragment = false,
-    INetURLObject::EncodeMechanism eEncodeMechanism
-    = INetURLObject::WAS_ENCODED,
-    INetURLObject::DecodeMechanism eDecodeMechanism
-    = INetURLObject::DECODE_TO_IURI,
-    rtl_TextEncoding eCharset = RTL_TEXTENCODING_UTF8,
-    INetURLObject::FSysStyle eStyle = INetURLObject::FSYS_DETECT);
-
 String RelToAbs(
     String const & rTheRelURIRef, bool bIgnoreFragment = false,
-    INetURLObject::EncodeMechanism eEncodeMechanism
-    = INetURLObject::WAS_ENCODED,
-    INetURLObject::DecodeMechanism eDecodeMechanism
-    = INetURLObject::DECODE_TO_IURI,
-    rtl_TextEncoding eCharset = RTL_TEXTENCODING_UTF8,
-    INetURLObject::FSysStyle eStyle = INetURLObject::FSYS_DETECT);
-
-SO3_DLLPRIVATE String AbsToRel(
-    ByteString const & rTheAbsURIRef,
     INetURLObject::EncodeMechanism eEncodeMechanism
     = INetURLObject::WAS_ENCODED,
     INetURLObject::DecodeMechanism eDecodeMechanism
@@ -93,11 +75,6 @@ String AbsToRel(
     rtl_TextEncoding eCharset = RTL_TEXTENCODING_UTF8,
     INetURLObject::FSysStyle eStyle = INetURLObject::FSYS_DETECT);
 
-SO3_DLLPRIVATE bool SetBaseURL(
-    ByteString const & rTheBaseURIRef,
-    INetURLObject::EncodeMechanism eMechanism = INetURLObject::WAS_ENCODED,
-    rtl_TextEncoding eCharset = RTL_TEXTENCODING_UTF8);
-
 bool SetBaseURL(
     String const & rTheBaseURIRef,
     INetURLObject::EncodeMechanism eMechanism = INetURLObject::WAS_ENCODED,
@@ -106,15 +83,6 @@ bool SetBaseURL(
 String GetBaseURL(
     INetURLObject::DecodeMechanism eMechanism = INetURLObject::DECODE_TO_IURI,
     rtl_TextEncoding eCharset = RTL_TEXTENCODING_UTF8);
-
-SO3_DLLPRIVATE String SmartRelToAbs(
-    ByteString const & rTheRelURIRef, bool bIgnoreFragment = false,
-    INetURLObject::EncodeMechanism eEncodeMechanism
-    = INetURLObject::WAS_ENCODED,
-    INetURLObject::DecodeMechanism eDecodeMechanism
-    = INetURLObject::DECODE_TO_IURI,
-    rtl_TextEncoding eCharset = RTL_TEXTENCODING_UTF8,
-    INetURLObject::FSysStyle eStyle = INetURLObject::FSYS_DETECT);
 
 String SmartRelToAbs(
     String const & rTheRelURIRef, bool bIgnoreFragment = false,
