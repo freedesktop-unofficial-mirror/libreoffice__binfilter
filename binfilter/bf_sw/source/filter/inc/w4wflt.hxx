@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: w4wflt.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,11 +47,6 @@ USHORT AutoDetec( const String& rFileName, USHORT & rVersion );
 // der Filter wird ueber nFilter bestimmt.
 ULONG LoadFile( const String& rFileName, USHORT nFilter,
                 const String& rVersion, String & rTmpFile );
-
-// W4W liest beim Speichern vom File pFileName die Eingabe aus pTmpFile.
-// der Filter wird ueber nFilter bestimmt.
-ULONG SaveFile( const String& rFileName, const String& rTmpFile,
-                USHORT nFilter, const String& rVersion );
 
 enum W4WDLL_TYPE { W4WDLL_EXPORT, W4WDLL_IMPORT, W4WDLL_AUTODETEC };
 FASTBOOL W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter = 0 );
