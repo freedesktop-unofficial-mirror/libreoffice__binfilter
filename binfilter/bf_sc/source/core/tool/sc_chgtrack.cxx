@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_chgtrack.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -221,39 +221,6 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       return FALSE;
 /*N*/   return TRUE;
 /*N*/ }
-
-
-/*N*/ BOOL ScChangeAction::IsClickable() const
-/*N*/ {
-/*N*/   //! sequence order of execution is significant
-/*N*/   if ( !IsVirgin() )
-/*N*/       return FALSE;
-/*N*/   if ( IsDeletedIn() )
-/*N*/       return FALSE;
-/*N*/   if ( GetType() == SC_CAT_CONTENT )
-/*N*/   {
-/*N*/       ScChangeActionContentCellType eCCT =
-/*N*/           ScChangeActionContent::GetContentCellType(
-/*N*/           ((ScChangeActionContent*)this)->GetNewCell() );
-/*N*/       if ( eCCT == SC_CACCT_MATREF )
-/*N*/           return FALSE;
-/*N*/       if ( eCCT == SC_CACCT_MATORG )
-/*N*/       {   // no Accept-Select if one of the references is in a deleted col/row
-/*N*/           const ScChangeActionLinkEntry* pL =
-/*N*/               ((ScChangeActionContent*)this)->GetFirstDependentEntry();
-/*N*/           while ( pL )
-/*N*/           {
-/*N*/               ScChangeAction* p = (ScChangeAction*) pL->GetAction();
-/*N*/               if ( p && p->IsDeletedIn() )
-/*N*/                   return FALSE;
-/*N*/               pL = pL->GetNext();
-/*N*/           }
-/*N*/       }
-/*N*/       return TRUE;    // for Select() a content doesn't have to be touchable
-/*N*/   }
-/*N*/   return IsTouchable();   // Accept()/Reject() only on touchables
-/*N*/ }
-
 
 /*N*/ BOOL ScChangeAction::IsInternalRejectable() const
 /*N*/ {
