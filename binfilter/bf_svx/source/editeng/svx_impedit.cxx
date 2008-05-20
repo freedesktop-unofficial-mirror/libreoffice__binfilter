@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_impedit.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -70,34 +70,6 @@ using namespace ::com::sun::star::linguistic2;
 
 #define SCRLRANGE   20      // 1/20 der Breite/Hoehe scrollen, wenn im QueryDrop
 
-
-// ----------------------------------------------------------------------
-//  class ImpEditView
-//  ----------------------------------------------------------------------
-/*N*/ ImpEditView::ImpEditView( EditView* pView, EditEngine* pEng, Window* pWindow ) :
-/*N*/   aOutArea( Point(), pEng->GetPaperSize() )
-/*N*/ {
-/*N*/     pEditView           = pView;
-/*N*/   pEditEngine         = pEng;
-/*N*/   pOutWin             = pWindow;
-/*N*/   pPointer            = NULL;
-/*N*/   pBackgroundColor    = NULL;
-/*N*/   nScrollDiffX        = 0;
-/*N*/     nExtraCursorFlags   = 0;
-/*N*/     nCursorBidiLevel    = CURSOR_BIDILEVEL_DONTKNOW;
-/*N*/   pCursor             = NULL;
-/*N*/   bReadOnly           = sal_False;
-/*N*/     bClickedInSelection = sal_False;
-/*N*/   eSelectionMode      = EE_SELMODE_TXTONLY;
-/*N*/   eAnchorMode         = ANCHOR_TOP_LEFT;
-/*N*/   nInvMore            = 1;
-/*N*/   nTravelXPos         = TRAVEL_X_DONTKNOW;
-/*N*/   nControl            = EV_CNTRL_AUTOSCROLL | EV_CNTRL_ENABLEPASTE;
-/*N*/     bActiveDragAndDropListener = FALSE;
-/*N*/
-/*N*/   aEditSelection.Min() = pEng->pImpEditEngine->GetEditDoc().GetStartPaM();
-/*N*/   aEditSelection.Max() = pEng->pImpEditEngine->GetEditDoc().GetEndPaM();
-/*N*/ }
 
 /*N*/ ImpEditView::~ImpEditView()
 /*N*/ {
@@ -281,95 +253,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return aRect;
 /*N*/ }
 
-
-
-/*N*/ void ImpEditView::SetSelectionMode( EESelectionMode   eNewMode )
-/*N*/ {
-/*N*/   if ( eSelectionMode != eNewMode )
-/*N*/   {
-/*?*/       DrawSelection();    // 'Wegmalen' ...
-/*?*/       eSelectionMode = eNewMode;
-/*?*/       DrawSelection();    // und neu zeichnen.
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ImpEditView::SetOutputArea( const Rectangle& rRec )
-/*N*/ {
-/*N*/   // sollte besser auf Pixel allignt sein!
-/*N*/   Rectangle aNewRec( pOutWin->LogicToPixel( rRec ) );
-/*N*/   aNewRec = pOutWin->PixelToLogic( aNewRec );
-/*N*/   aOutArea = aNewRec;
-/*N*/   if ( aOutArea.Right() < aOutArea.Left() )
-/*N*/       aOutArea.Right() = aOutArea.Left();
-/*N*/   if ( aOutArea.Bottom() < aOutArea.Top() )
-/*N*/       aOutArea.Bottom() = aOutArea.Top();
-/*N*/
-/*N*/   if ( DoBigScroll() )
-/*?*/       SetScrollDiffX( (sal_uInt16)aOutArea.GetWidth() * 3 / 10 );
-/*N*/   else
-/*N*/       SetScrollDiffX( (sal_uInt16)aOutArea.GetWidth() * 2 / 10 );
-/*N*/ }
-
-
-
-
-/*N*/ void ImpEditView::CalcAnchorPoint()
-/*N*/ {
-/*N*/   // GetHeight() und GetWidth() -1, da Rectangle-Berechnung nicht erwuenscht.
-/*N*/
-/*N*/   // X:
-/*N*/   switch ( eAnchorMode )
-/*N*/   {
-/*N*/       case ANCHOR_TOP_LEFT:
-/*N*/       case ANCHOR_VCENTER_LEFT:
-/*N*/       case ANCHOR_BOTTOM_LEFT:
-/*N*/       {
-/*N*/           aAnchorPoint.X() = aOutArea.Left();
-/*N*/       }
-/*N*/       break;
-/*N*/       case ANCHOR_TOP_HCENTER:
-/*N*/       case ANCHOR_VCENTER_HCENTER:
-/*N*/       case ANCHOR_BOTTOM_HCENTER:
-/*N*/       {
-/*?*/           aAnchorPoint.X() = aOutArea.Left() + (aOutArea.GetWidth()-1) / 2;
-/*N*/       }
-/*N*/       break;
-/*N*/       case ANCHOR_TOP_RIGHT:
-/*N*/       case ANCHOR_VCENTER_RIGHT:
-/*N*/       case ANCHOR_BOTTOM_RIGHT:
-/*N*/       {
-/*?*/           aAnchorPoint.X() = aOutArea.Right();
-/*N*/       }
-/*N*/       break;
-/*N*/   }
-/*N*/
-/*N*/   // Y:
-/*N*/   switch ( eAnchorMode )
-/*N*/   {
-/*N*/       case ANCHOR_TOP_LEFT:
-/*N*/       case ANCHOR_TOP_HCENTER:
-/*N*/       case ANCHOR_TOP_RIGHT:
-/*N*/       {
-/*N*/           aAnchorPoint.Y() = aOutArea.Top();
-/*N*/       }
-/*N*/       break;
-/*N*/       case ANCHOR_VCENTER_LEFT:
-/*N*/       case ANCHOR_VCENTER_HCENTER:
-/*N*/       case ANCHOR_VCENTER_RIGHT:
-/*N*/       {
-/*?*/           aAnchorPoint.Y() = aOutArea.Top() + (aOutArea.GetHeight()-1) / 2;
-/*N*/       }
-/*N*/       break;
-/*N*/       case ANCHOR_BOTTOM_LEFT:
-/*N*/       case ANCHOR_BOTTOM_HCENTER:
-/*N*/       case ANCHOR_BOTTOM_RIGHT:
-/*N*/       {
-/*?*/           aAnchorPoint.Y() = aOutArea.Bottom() - 1;
-/*N*/       }
-/*N*/       break;
-/*N*/   }
-/*N*/ }
-
 /*N*/ void ImpEditView::ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, USHORT nShowCursorFlags )
 /*N*/ {
 /*N*/   // Kein ShowCursor bei einer leeren View...
@@ -377,38 +260,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       return;
 /*N*/
 /*?*/ }
-
-/*N*/ const SvxFieldItem* ImpEditView::GetField( const Point& rPos, sal_uInt16* pPara, sal_uInt16* pPos ) const
-/*N*/ {
-/*N*/   if( !GetOutputArea().IsInside( rPos ) )
-/*N*/       return 0;
-/*N*/
-/*N*/   Point aDocPos( GetDocPos( rPos ) );
-/*N*/   EditPaM aPaM = pEditEngine->pImpEditEngine->GetPaM( aDocPos, sal_False );
-/*N*/
-/*N*/   if ( aPaM.GetIndex() == aPaM.GetNode()->Len() )
-/*N*/   {
-/*N*/       // Sonst immer, wenn Feld ganz am Schluss und Mouse unter Text
-/*N*/       return 0;
-/*N*/   }
-/*N*/
-/*N*/   const CharAttribArray& rAttrs = aPaM.GetNode()->GetCharAttribs().GetAttribs();
-/*N*/   sal_uInt16 nXPos = aPaM.GetIndex();
-/*N*/   for ( sal_uInt16 nAttr = rAttrs.Count(); nAttr; )
-/*N*/   {
-/*N*/       EditCharAttrib* pAttr = rAttrs[--nAttr];
-/*N*/       if ( pAttr->GetStart() == nXPos )
-/*?*/           if ( pAttr->Which() == EE_FEATURE_FIELD )
-/*?*/           {
-/*?*/               DBG_ASSERT( pAttr->GetItem()->ISA( SvxFieldItem ), "Kein FeldItem..." );
-/*?*/               if ( pPara )
-/*?*/                   *pPara = pEditEngine->pImpEditEngine->GetEditDoc().GetPos( aPaM.GetNode() );
-/*?*/               if ( pPos )
-/*?*/                   *pPos = pAttr->GetStart();
-/*?*/               return (const SvxFieldItem*)pAttr->GetItem();
-/*?*/           }
-/*N*/   }
-/*N*/   return NULL;
-/*N*/ }
-
 }
