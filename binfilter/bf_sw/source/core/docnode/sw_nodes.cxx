@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_nodes.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -178,7 +178,6 @@ namespace binfilter {
 /*N*/ void SwNodes::ChgNode( SwNodeIndex& rDelPos, ULONG nSize,
 /*N*/                       SwNodeIndex& rInsPos, BOOL bNewFrms )
 /*N*/ {
-/*N*/   // im UndoBereich brauchen wir keine Frames
 /*N*/   SwNodes& rNds = rInsPos.GetNodes();
 /*N*/   const SwNode* pPrevInsNd = rNds[ rInsPos.GetIndex() -1 ];
 /*N*/
@@ -208,8 +207,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       int bSavePersData = GetDoc()->GetUndoNds() == &rNds;
-/*N*/       int bRestPersData = GetDoc()->GetUndoNds() == this;
+/*N*/       int bSavePersData = 0; // GetDoc()->GetUndoNds() == &rNds;
+/*N*/       int bRestPersData = 0; // GetDoc()->GetUndoNds() == this;
 /*N*/       SwDoc* pDestDoc = rNds.GetDoc() != GetDoc() ? rNds.GetDoc() : 0;
 /*N*/       if( !bRestPersData && !bSavePersData && pDestDoc )
 /*?*/           bSavePersData = bRestPersData = TRUE;
@@ -556,13 +555,13 @@ namespace binfilter {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwDDEFieldType* pTyp = ((SwDDETable&)pTblNd->
 /*?*/                       }
 /*?*/
-/*?*/                       if( GetDoc()->GetUndoNds() == &rNodes )
-/*?*/                       {
-/*?*/                           SwFrmFmt* pTblFmt = pTblNd->GetTable().GetFrmFmt();
-/*?*/                           SwPtrMsgPoolItem aMsgHint( RES_REMOVE_UNO_OBJECT,
-/*?*/                                                       pTblFmt );
-/*?*/                           pTblFmt->Modify( &aMsgHint, &aMsgHint );
-/*?*/                       }
+                            /*if( GetDoc()->GetUndoNds() == &rNodes )
+                            {
+                                SwFrmFmt* pTblFmt = pTblNd->GetTable().GetFrmFmt();
+                                SwPtrMsgPoolItem aMsgHint( RES_REMOVE_UNO_OBJECT,
+                                                            pTblFmt );
+                                pTblFmt->Modify( &aMsgHint, &aMsgHint );
+                            } */
 /*?*/                   }
 /*?*/                   if( bNewFrms )
 /*?*/                   {
@@ -593,13 +592,12 @@ namespace binfilter {
 /*?*/                           // noch den EndNode erzeugen
 /*?*/                           new SwEndNode( aIdx, *pTmp );
 /*N*/                       }
-/*N*/                       else if( (const SwNodes*)&rNodes ==
-/*N*/                               GetDoc()->GetUndoNds() )
-/*N*/                       {
-/*N*/                           // im UndoNodes-Array spendieren wir einen
-/*N*/                           // Platzhalter
-/*N*/                           new SwNode( aIdx, ND_SECTIONDUMMY );
-/*N*/                       }
+                            /* else if( (const SwNodes*)&rNodes == GetDoc()->GetUndoNds() )
+                            {
+                                // im UndoNodes-Array spendieren wir einen
+                                // Platzhalter
+                                new SwNode( aIdx, ND_SECTIONDUMMY );
+                            } */
 /*N*/                       else
 /*N*/                       {
 /*?*/                           // JP 18.5.2001: neue Section anlegen?? Bug 70454
@@ -657,25 +655,25 @@ namespace binfilter {
 /*N*/
 /*N*/
 /*N*/       case ND_SECTIONNODE:
-/*?*/           if( !nLevel &&
-/*?*/               ( (const SwNodes*)&rNodes == GetDoc()->GetUndoNds() ) )
-/*?*/           {
-/*?*/               // dann muss an der akt. InsPos ein SectionDummyNode
-/*?*/               // eingefuegt werden
-/*?*/               if( nInsPos )       // verschieb schon mal alle bis hier her
-/*?*/               {
-/*?*/                   // loeschen und kopieren. ACHTUNG: die Indizies ab
-/*?*/                   // "aRg.aEnd+1" werden mit verschoben !!
-/*?*/                   SwNodeIndex aSwIndex( aRg.aEnd, 1 );
-/*?*/                   ChgNode( aSwIndex, nInsPos, aIdx, bNewFrms );
-/*?*/                   aIdx -= nInsPos;
-/*?*/                   nInsPos = 0;
-/*?*/               }
-/*?*/               new SwNode( aIdx, ND_SECTIONDUMMY );
-/*?*/               aRg.aEnd--;
-/*?*/               aIdx--;
-/*?*/               break;
-/*?*/           }
+               /* if( !nLevel &&
+               ( (const SwNodes*)&rNodes == GetDoc()->GetUndoNds() ) )
+                {
+                    // dann muss an der akt. InsPos ein SectionDummyNode
+                    // eingefuegt werden
+                    if( nInsPos )       // verschieb schon mal alle bis hier her
+                    {
+                        // loeschen und kopieren. ACHTUNG: die Indizies ab
+                        // "aRg.aEnd+1" werden mit verschoben !!
+                        SwNodeIndex aSwIndex( aRg.aEnd, 1 );
+                        ChgNode( aSwIndex, nInsPos, aIdx, bNewFrms );
+                        aIdx -= nInsPos;
+                        nInsPos = 0;
+                    }
+                    new SwNode( aIdx, ND_SECTIONDUMMY );
+                    aRg.aEnd--;
+                    aIdx--;
+                    break;
+                } */
 /*?*/           // kein break !!
 /*?*/       case ND_TABLENODE:
 /*?*/       case ND_STARTNODE:
@@ -785,38 +783,38 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case ND_SECTIONDUMMY:
-/*?*/           if( (const SwNodes*)this == GetDoc()->GetUndoNds() )
-/*?*/           {
-/*?*/               if( &rNodes == this )       // innerhalb vom UndoNodesArray
-/*?*/               {
-/*?*/                   // mit verschieben
-/*?*/                   pAktNode->pStartOfSection = aSttNdStack[ nLevel ];
-/*?*/                   nInsPos++;
-/*?*/               }
-/*?*/               else    // in ein "normales" Nodes-Array verschieben
-/*?*/               {
-/*?*/                   // dann muss an der akt. InsPos auch ein SectionNode
-/*?*/                   // (Start/Ende) stehen; dann diesen ueberspringen.
-/*?*/                   // Andernfalls nicht weiter beachten.
-/*?*/                   if( nInsPos )       // verschieb schon mal alle bis hier her
-/*?*/                   {
-/*?*/                       // loeschen und kopieren. ACHTUNG: die Indizies ab
-/*?*/                       // "aRg.aEnd+1" werden mit verschoben !!
-/*?*/                       SwNodeIndex aSwIndex( aRg.aEnd, 1 );
-/*?*/                       ChgNode( aSwIndex, nInsPos, aIdx, bNewFrms );
-/*?*/                       aIdx -= nInsPos;
-/*?*/                       nInsPos = 0;
-/*?*/                   }
-/*?*/                   SwNode* pTmpNd = &aIdx.GetNode();
-/*?*/                   if( pTmpNd->IsSectionNode() ||
-/*?*/                       pTmpNd->FindStartNode()->IsSectionNode() )
-/*?*/                       aIdx--; // ueberspringen
-/*?*/               }
-/*?*/           }
-/*?*/           else
-/*?*/               ASSERT( FALSE, "wie kommt diser Node ins Nodes-Array??" );
-/*?*/           aRg.aEnd--;
-/*?*/           break;
+            /*if( (const SwNodes*)this == GetDoc()->GetUndoNds() )
+            {
+                if( &rNodes == this )       // innerhalb vom UndoNodesArray
+                {
+                    // mit verschieben
+                    pAktNode->pStartOfSection = aSttNdStack[ nLevel ];
+                    nInsPos++;
+                }
+                else    // in ein "normales" Nodes-Array verschieben
+                {
+                    // dann muss an der akt. InsPos auch ein SectionNode
+                    // (Start/Ende) stehen; dann diesen ueberspringen.
+                    // Andernfalls nicht weiter beachten.
+                    if( nInsPos )       // verschieb schon mal alle bis hier her
+                    {
+                        // loeschen und kopieren. ACHTUNG: die Indizies ab
+                        // "aRg.aEnd+1" werden mit verschoben !!
+                        SwNodeIndex aSwIndex( aRg.aEnd, 1 );
+                        ChgNode( aSwIndex, nInsPos, aIdx, bNewFrms );
+                        aIdx -= nInsPos;
+                        nInsPos = 0;
+                    }
+                    SwNode* pTmpNd = &aIdx.GetNode();
+                    if( pTmpNd->IsSectionNode() ||
+                        pTmpNd->FindStartNode()->IsSectionNode() )
+                        aIdx--; // ueberspringen
+                }
+            }
+            else */
+                ASSERT( FALSE, "wie kommt diser Node ins Nodes-Array??" );
+            aRg.aEnd--;
+            break;
 /*?*/
 /*?*/       default:
 /*?*/           ASSERT( FALSE, "was ist das fuer ein Node??" );
@@ -1686,20 +1684,20 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case ND_SECTIONDUMMY:
-/*?*/           if( (const SwNodes*)this == GetDoc()->GetUndoNds() )
-/*?*/           {
-/*?*/               // dann muss an der akt. InsPos auch ein SectionNode
-/*?*/               // (Start/Ende) stehen; dann diesen ueberspringen.
-/*?*/               // Andernfalls nicht weiter beachten.
-/*?*/               SwNode* pTmpNd = pDoc->GetNodes()[ aInsPos ];
-/*?*/               if( pTmpNd->IsSectionNode() ||
-/*?*/                   pTmpNd->FindStartNode()->IsSectionNode() )
-/*?*/                   aInsPos++;  // ueberspringen
-/*?*/           }
-/*?*/           else
-/*?*/               ASSERT( FALSE, "wie kommt diser Node ins Nodes-Array??" );
-/*?*/           break;
-/*?*/
+            /*if( (const SwNodes*)this == GetDoc()->GetUndoNds() )
+            {
+                // dann muss an der akt. InsPos auch ein SectionNode
+                // (Start/Ende) stehen; dann diesen ueberspringen.
+                // Andernfalls nicht weiter beachten.
+                SwNode* pTmpNd = pDoc->GetNodes()[ aInsPos ];
+                if( pTmpNd->IsSectionNode() ||
+                    pTmpNd->FindStartNode()->IsSectionNode() )
+                    aInsPos++;  // ueberspringen
+            }
+            else */
+                ASSERT( FALSE, "wie kommt diser Node ins Nodes-Array??" );
+            break;
+
 /*?*/       default:
 /*?*/           ASSERT( FALSE, "weder Start-/End-/Content-Node, unbekannter Typ" );
 /*N*/       }
