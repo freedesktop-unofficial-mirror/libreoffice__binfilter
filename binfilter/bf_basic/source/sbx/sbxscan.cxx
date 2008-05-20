@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxscan.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -49,7 +49,6 @@
 
 #include "sbxres.hxx"
 #include "sbxbase.hxx"
-#include "sbxform.hxx"
 #include <bf_svtools/svtools.hrc>
 
 namespace binfilter {
@@ -237,25 +236,6 @@ SbxError ImpScan( const XubString& rWSrc, double& nVal, SbxDataType& rType,
     return SbxERR_OK;
 }
 
-// Schnittstelle fuer CDbl im Basic
-SbxError SbxValue::ScanNumIntnl( const String& rSrc, double& nVal, BOOL bSingle )
-{
-    SbxDataType t;
-    USHORT nLen = 0;
-    SbxError nRetError = ImpScan( rSrc, nVal, t, &nLen,
-        /*bAllowIntntl*/FALSE, /*bOnlyIntntl*/TRUE );
-    // Komplett gelesen?
-    if( nRetError == SbxERR_OK && nLen != rSrc.Len() )
-        nRetError = SbxERR_CONVERSION;
-
-    if( bSingle )
-    {
-        SbxValues aValues( nVal );
-        nVal = (double)ImpGetSingle( &aValues );    // Hier Error bei Overflow
-    }
-    return nRetError;
-}
-
 ////////////////////////////////////////////////////////////////////////////
 
 static double roundArray[] = {
@@ -415,65 +395,6 @@ void ImpCvtNum( double nNum, short nPrec, XubString& rRes, BOOL bCoreString )
 #pragma optimize( "", on )
 #endif
 
-BOOL ImpConvStringExt( XubString& rSrc, SbxDataType eTargetType )
-{
-    // Merken, ob ueberhaupt was geaendert wurde
-    BOOL bChanged = FALSE;
-    String aNewString;
-
-    // Nur Spezial-F�lle behandeln, als Default tun wir nichts
-    switch( eTargetType )
-    {
-        // Bei Fliesskomma International beruecksichtigen
-        case SbxSINGLE:
-        case SbxDOUBLE:
-        case SbxCURRENCY:
-        {
-            ByteString aBStr( rSrc, RTL_TEXTENCODING_ASCII_US );
-
-            // Komma besorgen
-            sal_Unicode cDecimalSep, cThousandSep;
-            ImpGetIntntlSep( cDecimalSep, cThousandSep );
-            aNewString = rSrc;
-
-            // Ersetzen, wenn DecimalSep kein '.' (nur den ersten)
-            if( cDecimalSep != (sal_Unicode)'.' )
-            {
-                USHORT nPos = aNewString.Search( cDecimalSep );
-                if( nPos != STRING_NOTFOUND )
-                {
-                    aNewString.SetChar( nPos, '.' );
-                    bChanged = TRUE;
-                }
-            }
-            break;
-        }
-
-        // Bei BOOL TRUE und FALSE als String pruefen
-        case SbxBOOL:
-        {
-            if( rSrc.EqualsIgnoreCaseAscii( "true" ) )
-            {
-                aNewString = String::CreateFromInt32(SbxTRUE);
-                bChanged = TRUE;
-            }
-            else
-            if( rSrc.EqualsIgnoreCaseAscii( "false" ) )
-            {
-                aNewString = String::CreateFromInt32(SbxFALSE);
-                bChanged = TRUE;
-            }
-            break;
-        }
-        default: break;
-    }
-    // String bei Aenderung uebernehmen
-    if( bChanged )
-        rSrc = aNewString;
-    return bChanged;
-}
-
-
 // Formatierte Zahlenausgabe
 // Der Returnwert ist die Anzahl Zeichen, die aus dem
 // Format verwendt wurden.
@@ -570,34 +491,6 @@ static USHORT printfmtnum( double nNum, XubString& rRes, const XubString& rWFmt 
 
 #endif //_old_format_code_
 
-static USHORT printfmtstr( const XubString& rStr, XubString& rRes, const XubString& rFmt )
-{
-    const xub_Unicode* pStr = rStr.GetBuffer();
-    const xub_Unicode* pFmtStart = rFmt.GetBuffer();
-    const xub_Unicode* pFmt = pFmtStart;
-    rRes.Erase();
-    switch( *pFmt )
-    {
-        case '!':
-                rRes += *pStr++; pFmt++; break;
-        case '\\':
-            do
-            {
-                rRes += *pStr ? *pStr++ : static_cast< xub_Unicode >(' ');
-                pFmt++;
-            } while( *pFmt != '\\' );
-            rRes += *pStr ? *pStr++ : static_cast< xub_Unicode >(' ');
-            pFmt++; break;
-        case '&':
-            rRes = rStr;
-            pFmt++; break;
-        default:
-            rRes = rStr;
-            break;
-    }
-    return (USHORT) ( pFmt - pFmtStart );
-}
-
 /////////////////////////////////////////////////////////////////////////
 
 BOOL SbxValue::Scan( const XubString& rSrc, USHORT* pLen )
@@ -624,152 +517,5 @@ BOOL SbxValue::Scan( const XubString& rSrc, USHORT* pLen )
     else
         return TRUE;
 }
-
-
-ResMgr* implGetResMgr( void )
-{
-    static ResMgr* pResMgr = NULL;
-    if( !pResMgr )
-    {
-        ::com::sun::star::lang::Locale aLocale = Application::GetSettings().GetUILocale();
-        pResMgr = ResMgr::CreateResMgr(CREATEVERSIONRESMGR_NAME(stt), aLocale );
-    }
-    return pResMgr;
-}
-
-class SbxValueFormatResId : public ResId
-{
-public:
-    SbxValueFormatResId( USHORT nId )
-        : ResId( nId, *implGetResMgr() )
-    {}
-};
-
-
-void SbxValue::Format( XubString& rRes, const XubString* pFmt ) const
-{
-    short nComma = 0;
-    double d = 0;
-    SbxDataType eType = GetType();
-    switch( eType )
-    {
-        case SbxCHAR:
-        case SbxBYTE:
-        case SbxINTEGER:
-        case SbxUSHORT:
-        case SbxLONG:
-        case SbxULONG:
-        case SbxINT:
-        case SbxUINT:
-        case SbxNULL:       // #45929 NULL mit durchschummeln
-            nComma = 0;     goto cvt;
-        case SbxSINGLE:
-            nComma = 6;     goto cvt;
-        case SbxDOUBLE:
-            nComma = 14;
-
-        cvt:
-            if( eType != SbxNULL )
-                d = GetDouble();
-
-            // #45355 weiterer Einsprungpunkt fuer isnumeric-String
-        cvt2:
-            if( pFmt )
-            {
-                // hole die 'statischen' Daten f"ur Sbx
-                SbxAppData* pData = GetSbxData_Impl();
-
-                LanguageType eLangType = GetpApp()->GetSettings().GetLanguage();
-                if( pData->pBasicFormater )
-                {
-                    if( pData->eBasicFormaterLangType != eLangType )
-                    {
-                        delete pData->pBasicFormater;
-                        pData->pBasicFormater = NULL;
-                    }
-                }
-                pData->eBasicFormaterLangType = eLangType;
-
-                // falls bisher noch kein BasicFormater-Objekt
-                // existiert, so erzeuge dieses
-                if( !pData->pBasicFormater )
-                {
-                    SvtSysLocale aSysLocale;
-                    const LocaleDataWrapper& rData = aSysLocale.GetLocaleData();
-                    sal_Unicode cComma = rData.getNumDecimalSep().GetBuffer()[0];
-                    sal_Unicode c1000  = rData.getNumThousandSep().GetBuffer()[0];
-                    String aCurrencyStrg = rData.getCurrSymbol();
-
-                    // Initialisierung des Basic-Formater-Hilfsobjekts:
-                    // hole die Resourcen f"ur die vordefinierten Ausgaben
-                    // des Format()-Befehls, z.B. f"ur "On/Off".
-                    String aOnStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_ON ) );
-                    String aOffStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_OFF) );
-                    String aYesStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_YES) );
-                    String aNoStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_NO) );
-                    String aTrueStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_TRUE) );
-                    String aFalseStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_FALSE) );
-                    String aCurrencyFormatStrg = String( SbxValueFormatResId(
-                        STR_BASICKEY_FORMAT_CURRENCY) );
-                    // erzeuge das Basic-Formater-Objekt
-                    pData->pBasicFormater
-                        = new SbxBasicFormater( cComma,c1000,aOnStrg,aOffStrg,
-                                    aYesStrg,aNoStrg,aTrueStrg,aFalseStrg,
-                                    aCurrencyStrg,aCurrencyFormatStrg );
-                }
-                // Bem.: Aus Performance-Gr"unden wird nur EIN BasicFormater-
-                //    Objekt erzeugt und 'gespeichert', dadurch erspart man
-                //    sich das teure Resourcen-Laden (f"ur landesspezifische
-                //    vordefinierte Ausgaben, z.B. "On/Off") und die st"andige
-                //    String-Erzeugungs Operationen.
-                // ABER: dadurch ist dieser Code NICHT multithreading f"ahig !
-
-                // hier gibt es Probleme mit ;;;Null, da diese Methode nur aufgerufen
-                // wird, wenn der SbxValue eine Zahl ist !!!
-                // dazu koennte: pData->pBasicFormater->BasicFormatNull( *pFmt ); aufgerufen werden !
-                if( eType != SbxNULL )
-                {
-                    rRes = pData->pBasicFormater->BasicFormat( d ,*pFmt );
-                }
-                else
-                {
-                    rRes = pData->pBasicFormater->BasicFormatNull( *pFmt );
-                }
-
-                // Die alte Implementierung:
-                //old: printfmtnum( GetDouble(), rRes, *pFmt );
-            }
-            else
-                ImpCvtNum( GetDouble(), nComma, rRes );
-            break;
-        case SbxSTRING:
-            if( pFmt )
-            {
-                // #45355 wenn es numerisch ist, muss gewandelt werden
-                if( IsNumericRTL() )
-                {
-                    ScanNumIntnl( GetString(), d, /*bSingle*/FALSE );
-                    goto cvt2;
-                }
-                else
-                {
-                    // Sonst String-Formatierung
-                    printfmtstr( GetString(), rRes, *pFmt );
-                }
-            }
-            else
-                rRes = GetString();
-            break;
-        default:
-            rRes = GetString();
-    }
-}
-
 
 }
