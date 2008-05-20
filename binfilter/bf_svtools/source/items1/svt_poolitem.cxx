@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_poolitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -44,8 +44,6 @@ namespace binfilter
 
 DBG_NAME(SfxPoolItem)
 DBG_NAME(SfxVoidItem)
-// @@@ DBG_NAME(SfxInvalidItem);
-DBG_NAME(SfxItemHandle)
 
 BYTE nSfxFlag8Val[8] =
 {
@@ -366,123 +364,6 @@ SfxPoolItem* SfxVoidItem::Clone(SfxItemPool *) const
 {
     DBG_CHKTHIS(SfxVoidItem, 0);
     return new SfxVoidItem(*this);
-}
-
-// SfxInvalidItem ---------------------------------------------------------
-#if 0  /* @@@ NOT USED @@@ */
-SfxInvalidItem::SfxInvalidItem( USHORT nWhich, const SfxPoolItem &rDefault ):
-    SfxPoolItem(nWhich),
-    pDefaultItem(&rDefault)
-{
-    DBG_CTOR(SfxInvalidItem, 0);
-}
-
-// ------------------------------------------------------------------------
-SfxInvalidItem::SfxInvalidItem( const SfxInvalidItem& rCopy):
-    SfxPoolItem(rCopy),
-    pDefaultItem(rCopy.pDefaultItem)
-{
-    DBG_CTOR(SfxInvalidItem, 0);
-    //! pDefaultItem->ReleaseRef?
-}
-
-// ------------------------------------------------------------------------
-SfxInvalidItem::~SfxInvalidItem()
-{
-    DBG_DTOR(SfxInvalidItem, 0);
-}
-
-// ------------------------------------------------------------------------
-int SfxInvalidItem::operator==( const SfxPoolItem& rCmp) const
-{
-    DBG_CHKTHIS(SfxInvalidItem, 0);
-    DBG_ASSERT( SfxPoolItem::operator==(rCmp), "unequal type" );
-    return *pDefaultItem == *((SfxInvalidItem&)rCmp).pDefaultItem;
-}
-
-// ------------------------------------------------------------------------
-SfxItemPresentation SfxInvalidItem::GetPresentation
-(
-    SfxItemPresentation     ePresentation,
-    SfxMapUnit              eCoreMetric,
-    SfxMapUnit              ePresentationMetric,
-    XubString&              rText,
-    const ::IntlWrapper *
-)   const
-{
-    DBG_CHKTHIS(SfxInvalidItem, 0);
-    rText.AssignAscii(RTL_CONSTASCII_STRINGPARAM("Invalid"));
-    return SFX_ITEM_PRESENTATION_NAMELESS;
-}
-
-// ------------------------------------------------------------------------
-SfxPoolItem* SfxInvalidItem::Clone(SfxItemPool *) const
-{
-    DBG_CHKTHIS(SfxInvalidItem, 0);
-    return new SfxInvalidItem(*this);
-}
-
-// ------------------------------------------------------------------------
-SfxPoolItem* SfxInvalidItem::Create(SvStream &, USHORT nVersion) const
-{
-    DBG_CHKTHIS(SfxInvalidItem, 0);
-    DBG_ERROR("SfxInvalidItem::Create() ist sinnlos");
-    return Clone();
-}
-
-// ------------------------------------------------------------------------
-SvStream& SfxInvalidItem::Store(SvStream &rStream, USHORT nItemVersion ) const
-{
-    DBG_CHKTHIS(SfxInvalidItem, 0);
-    DBG_ERROR("SfxInvalidItem::Store() ist sinnlos");
-    return rStream;
-}
-#endif /* @@@ NOT USED @@@ */
-
-// SfxItemHandle ----------------------------------------------------------
-SfxItemHandle::SfxItemHandle(SfxPoolItem &rItem):
-    pRef(new USHORT(1)),
-    pItem(rItem.Clone(0))
-{
-    DBG_CTOR(SfxItemHandle, 0);
-}
-
-// ------------------------------------------------------------------------
-SfxItemHandle::SfxItemHandle(const SfxItemHandle &rCopy):
-    pRef(rCopy.pRef),
-    pItem(rCopy.pItem)
-{
-    DBG_CTOR(SfxItemHandle, 0);
-    ++(*pRef);
-}
-
-// ------------------------------------------------------------------------
-const SfxItemHandle &SfxItemHandle::operator=(const SfxItemHandle &rCopy)
-{
-    DBG_CHKTHIS(SfxItemHandle, 0);
-    if(&rCopy == this || pItem == rCopy.pItem)
-        return *this;
-    --(*pRef);
-    if(!(*pRef))
-    {
-        delete pItem;
-        pItem = 0;
-    }
-    pRef = rCopy.pRef;
-    ++(*pRef);
-    pItem = rCopy.pItem;
-    return *this;
-}
-
-// ------------------------------------------------------------------------
-SfxItemHandle::~SfxItemHandle()
-{
-    DBG_DTOR(SfxItemHandle, 0);
-    --(*pRef);
-    if(!(*pRef)) {
-        delete pRef; pRef = 0;
-        delete pItem; pItem = 0;
-    }
 }
 
 // ------------------------------------------------------------------------
