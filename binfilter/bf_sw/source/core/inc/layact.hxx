@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: layact.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -224,7 +224,6 @@ class SwLayIdle
 #ifndef PRODUCT
     void ShowIdle( ColorData eName );
 #endif
-    BOOL FormatSpelling( BOOL );
 
     BOOL _CollectAutoCmplWords( const SwCntntFrm *, BOOL bOnlyVisArea );
     BOOL CollectAutoCmplWords( BOOL );
