@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdpntv.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -346,11 +346,7 @@ private:
     void ImpAsyncPaintDone( const SdrObject* pObj );
 
 protected:
-    USHORT ImpGetHitTolLogic(short nHitTol, const OutputDevice* pOut) const;
-
     // Wenn man den IdleStatus des Systems nicht abwarten will (auf const geschummelt):
-    void FlushComeBackTimer() const;
-    void TheresNewMapMode();
     void ImpSetGlueVisible2(BOOL bOn) { if (bGlueVisible2!=bOn) { bGlueVisible2=bOn; if (!bGlueVisible && !bGlueVisible3 && !bGlueVisible4) GlueInvalidate(); } }
     void ImpSetGlueVisible3(BOOL bOn) { if (bGlueVisible3!=bOn) { bGlueVisible3=bOn; if (!bGlueVisible && !bGlueVisible2 && !bGlueVisible4) GlueInvalidate(); } }
     void ImpSetGlueVisible4(BOOL bOn) { if (bGlueVisible4!=bOn) { bGlueVisible4=bOn; if (!bGlueVisible && !bGlueVisible2 && !bGlueVisible3) GlueInvalidate(); } }
@@ -376,7 +372,6 @@ protected:
 public:
     TYPEINFO();
     SdrPaintView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrPaintView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrPaintView();
 
     virtual void ClearPageViews();
@@ -392,10 +387,7 @@ public:
     // Fenstern gleichzeitig dargestellt wird (->z.B. Splitter)) und bei
     // jedem MapMode(Scaling)-wechsel gerufen werden, damit ich aus meinen
     // Pixelwerten logische Werte berechnen kann.
-    void SetActualWin(const OutputDevice* pWin);
-    void SetMinMoveDistancePixel(USHORT nVal) { nMinMovPix=nVal; TheresNewMapMode(); }
     USHORT GetMinMoveDistancePixel() const { return (USHORT)nMinMovPix; }
-    void SetHitTolerancePixel(USHORT nVal) { nHitTolPix=nVal; TheresNewMapMode(); }
     USHORT GetHitTolerancePixel() const { return (USHORT)nHitTolPix; }
 
     // Flag zur Visualisierung von Gruppen abfragen/testen
@@ -406,12 +398,6 @@ public:
     void ShowShownXor(OutputDevice* pOut, BOOL bShow=TRUE);
     void HideShownXor(OutputDevice* pOut) { ShowShownXor(pOut,FALSE); }
     BOOL IsShownXorVisible(OutputDevice* pOut) const;
-
-    //TRISTATE IsShownXorVisible(OutputDevice* pOut) const;
-    void RestartAfterPaintTimer();
-
-    // After Painting this functin needs to be called to make some post-processing
-    void PostPaint();
 
     // Am DragStatus laesst sich beispielsweise erfragen, welche
     // entfernung bereits gedraggd wurde, etc.
@@ -424,7 +410,6 @@ public:
     // degagen als numerischen Parameter die Nummer der PageView an der
     // SdrView (Iterieren ueber alle angemeldeten Pages).
     virtual SdrPageView* ShowPage(SdrPage* pPage, const Point& rOffs);
-    SdrPageView* ShowPagePgNum(USHORT nPgNum, const Point& rOffs);
     virtual void HidePage(SdrPageView* pPV);
     void HidePage(const SdrPage* pPage) { HidePage(GetPageView(pPage)); }
     void HidePagePvNum(USHORT nPvNum) { HidePage(GetPageViewPvNum(nPvNum)); }
@@ -476,9 +461,6 @@ public:
 
     // TRUE, wenn alle MemberLayer des Set sichtbar und alle Excluded-Layer
     // des Set unsichtbar.
-
-
-    void SetLayerLocked(const String& rName, BOOL bLock=TRUE);
 
 
     virtual void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0);
@@ -586,9 +568,6 @@ public:
     // (wie MsDos chdir \)
     void LeaveAllGroup();
 
-    // Feststellen, ob Leave sinnvoll ist.
-    BOOL IsGroupEntered() const;
-
     // Wird mit EnterGroup an einer PageView oder an der MarkView eine
     // Gruppe betreten, werden alle zu dieser Zeit nicht erreichbaren
     // Objekte mit diesen Attributen dargestellt. NULL=normale Darstellung.
@@ -660,11 +639,6 @@ public:
     // bei bShow=FALSE wird der Browser destruiert
     BOOL IsItemBrowserVisible() const { return pItemBrowser!=NULL && ((Window*)pItemBrowser)->IsVisible(); }
     Window* GetItemBrowser() const { return (Window*)pItemBrowser; }
-
-    // Muss von App beim Scrollen usw. gerufen werden, damit ein u.U.
-    // aktives FormularControl mitverschoben werden kann
-    void VisAreaChanged(const OutputDevice* pOut=NULL);
-    void VisAreaChanged(const SdrPageViewWinRec& rPVWR);
 
     virtual void InsertControlContainer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > xCC) {}
     virtual void RemoveControlContainer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > xCC) {}
