@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_attrib.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -85,40 +85,6 @@ using namespace ::com::sun::star;
 /*N*/ TYPEINIT1(ScDoubleItem,       SfxPoolItem);
 
 //------------------------------------------------------------------------
-
-//
-//      allgemeine Hilfsfunktionen
-//
-
-/*N*/ BOOL HasPriority( const SvxBorderLine* pThis, const SvxBorderLine* pOther )
-/*N*/ {
-/*N*/ //      DBG_ASSERT( pThis || pOther, "LineAttr == 0" );
-/*N*/
-/*N*/   if (!pThis)
-/*N*/       return FALSE;
-/*N*/   if (!pOther)
-/*N*/       return TRUE;
-/*N*/
-/*N*/   USHORT nThisSize = pThis->GetOutWidth() + pThis->GetDistance() + pThis->GetInWidth();
-/*N*/   USHORT nOtherSize = pOther->GetOutWidth() + pOther->GetDistance() + pOther->GetInWidth();
-/*N*/
-/*N*/   if (nThisSize > nOtherSize)
-/*N*/       return TRUE;
-/*N*/   else if (nThisSize < nOtherSize)
-/*N*/       return FALSE;
-/*N*/   else
-/*N*/   {
-/*N*/       if ( pOther->GetInWidth() && !pThis->GetInWidth() )
-/*N*/           return TRUE;
-/*N*/       else if ( pThis->GetInWidth() && !pOther->GetInWidth() )
-/*N*/           return FALSE;
-/*N*/       else
-/*N*/       {
-/*N*/           return TRUE;            //! ???
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 
 //
 //      Item - Implementierungen
