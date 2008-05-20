@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_options3d.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -112,20 +112,6 @@ public:
 //---------------------------------------------------------------------------------------------------------
 
     virtual void Commit();
-
-//---------------------------------------------------------------------------------------------------------
-//  public interface
-//---------------------------------------------------------------------------------------------------------
-
-    sal_Bool    IsDithering() const;
-    sal_Bool    IsOpenGL() const;
-    sal_Bool    IsOpenGL_Faster() const;
-    sal_Bool    IsShowFull() const;
-
-    void        SetDithering( sal_Bool bState );
-    void        SetOpenGL( sal_Bool bState );
-    void        SetOpenGL_Faster( sal_Bool bState );
-    void        SetShowFull( sal_Bool bState );
 
 //-------------------------------------------------------------------------------------------------------------
 //  private methods
@@ -250,90 +236,22 @@ void SvtOptions3D_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D_Impl::IsDithering() const
-{
-    return m_bDithering;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D_Impl::IsOpenGL() const
-{
-    return m_bOpenGL;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D_Impl::IsOpenGL_Faster() const
-{
-    return m_bOpenGL_Faster;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D_Impl::IsShowFull() const
-{
-    return m_bShowFull;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D_Impl::SetDithering( sal_Bool bState )
-{
-    m_bDithering = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D_Impl::SetOpenGL( sal_Bool bState )
-{
-    m_bOpenGL = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D_Impl::SetOpenGL_Faster( sal_Bool bState )
-{
-    m_bOpenGL_Faster = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D_Impl::SetShowFull( sal_Bool bState )
-{
-    m_bShowFull = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  private method
+//     private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtOptions3D_Impl::impl_GetPropertyNames()
 {
-    // Build static list of configuration key names.
-    static const OUString pProperties[] =
-    {
-        PROPERTYNAME_DITHERING      ,
-        PROPERTYNAME_OPENGL         ,
-        PROPERTYNAME_OPENGL_FASTER  ,
-        PROPERTYNAME_SHOWFULL
-    };
-    // Initialize return sequence with these list ...
-    static const Sequence< OUString > seqPropertyNames( pProperties, PROPERTYCOUNT );
-    // ... and return it.
-    return seqPropertyNames;
+       // Build static list of configuration key names.
+       static const OUString pProperties[] =
+       {
+               PROPERTYNAME_DITHERING          ,
+               PROPERTYNAME_OPENGL                     ,
+               PROPERTYNAME_OPENGL_FASTER      ,
+               PROPERTYNAME_SHOWFULL
+       };
+       // Initialize return sequence with these list ...
+       static const Sequence< OUString > seqPropertyNames( pProperties, PROPERTYCOUNT );
+       // ... and return it.
+       return seqPropertyNames;
 }
 
 //*****************************************************************************************************************
@@ -377,78 +295,6 @@ SvtOptions3D::~SvtOptions3D()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D::IsDithering() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsDithering();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D::IsOpenGL() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsOpenGL();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D::IsOpenGL_Faster() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsOpenGL_Faster();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtOptions3D::IsShowFull() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsShowFull();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D::SetDithering( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetDithering( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D::SetOpenGL( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetOpenGL( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D::SetOpenGL_Faster( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetOpenGL_Faster( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtOptions3D::SetShowFull( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetShowFull( bState );
 }
 
 //*****************************************************************************************************************
