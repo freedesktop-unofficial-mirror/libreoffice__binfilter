@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: forms_Columns.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -156,12 +156,6 @@ sal_Int32 getColumnTypeByModelName(const ::rtl::OUString& aModelName)
 }
 
 /*************************************************************************/
-
-//------------------------------------------------------------------
-InterfaceRef SAL_CALL OGridColumn_CreateInstance(const Reference<XMultiServiceFactory>& _rxFactory)
-{
-    return *(new OGridColumn(_rxFactory));
-}
 
 //------------------------------------------------------------------
 const Sequence<sal_Int8>& OGridColumn::getUnoTunnelImplementationId()
