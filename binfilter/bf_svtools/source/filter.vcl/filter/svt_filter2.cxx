@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_filter2.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,52 +51,6 @@ namespace binfilter
 {
 
 BYTE* ImplSearchEntry( BYTE* , BYTE* , ULONG , ULONG  );
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-GraphicDescriptor::GraphicDescriptor( const String* pPath ) :
-    pFileStm        ( NULL )
-{
-    ImpConstruct();
-
-    if ( pPath )
-    {
-        INetURLObject aURL( *pPath, INET_PROT_FILE );
-        aPathExt = aURL.GetFileExtension().toAsciiLowerCase();
-    }
-    bLinked = TRUE;
-    bLinkChanged = FALSE;
-    bWideSearch = FALSE;
-}
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-GraphicDescriptor::GraphicDescriptor( const INetURLObject& rPath ) :
-    pFileStm( ::utl::UcbStreamHelper::CreateStream( rPath.GetMainURL( INetURLObject::NO_DECODE ), STREAM_READ ) ),
-    aPathExt( rPath.GetFileExtension().toAsciiLowerCase() )
-{
-    if ( pFileStm )
-    {
-        nStmPos = 0;
-        pFileStm->Seek( nStmPos );
-        bDataReady = TRUE;
-    }
-
-    ImpConstruct();
-
-    if ( pFileStm && !pFileStm->GetError() )
-        bDataReady = TRUE;
-}
 
 /*************************************************************************
 |*
@@ -201,31 +155,6 @@ BOOL GraphicDescriptor::Detect( BOOL bExtendedInfo )
     return bRet;
 }
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-BOOL GraphicDescriptor::IsDataReady() const
-{
-    return bDataReady;
-}
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-BOOL GraphicDescriptor::IsWideSearch() const
-{
-    return bWideSearch;
-}
-
-
 /*************************************************************************
 |*
 |*
@@ -243,36 +172,6 @@ SvStream& GraphicDescriptor::GetSearchStream() const
     else
         return *pFileStm;
 }
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-void GraphicDescriptor::SetRequestHdl( const Link& rRequestLink )
-{
-    aReqLink = rRequestLink;
-    bLinkChanged = TRUE;
-}
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-ULONG GraphicDescriptor::GetRequestedByteCount() const
-{
-    return DATA_SIZE;
-}
-
-
-/******************************************************************************/
-/*                               IMP-Methoden                                 */
-/*                                                                            */
 
 
 /*************************************************************************
