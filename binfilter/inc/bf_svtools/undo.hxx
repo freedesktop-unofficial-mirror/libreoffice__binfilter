@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: undo.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -170,8 +170,6 @@ public:
     virtual USHORT          GetUndoActionCount() const;
     virtual USHORT          GetUndoActionId(USHORT nNo=0) const;
     virtual UniString       GetUndoActionComment( USHORT nNo=0 ) const;
-    /** returns the nNo'th undo action from the top */
-    SfxUndoAction*          GetUndoAction( USHORT nNo=0 ) const;
 
     virtual BOOL            Undo( USHORT nCount=1 );
     virtual void            Undo( SfxUndoAction &rAction );
@@ -193,9 +191,6 @@ public:
 
     virtual void            EnterListAction(const UniString &rComment, const UniString& rRepeatComment, USHORT nId=0);
     virtual void            LeaveListAction();
-
-    /** clears the redo stack and removes the top undo action */
-    void                    RemoveLastUndoAction();
 };
 
 //=========================================================================
@@ -219,7 +214,6 @@ class  SfxLinkUndoAction : public SfxUndoAction
 {
 public:
                             TYPEINFO();
-                            SfxLinkUndoAction(SfxUndoManager *pManager);
                             ~SfxLinkUndoAction();
 
     virtual void            Undo();
