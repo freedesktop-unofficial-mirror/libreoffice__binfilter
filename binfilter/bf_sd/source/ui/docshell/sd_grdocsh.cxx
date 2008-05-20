@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_grdocsh.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -60,12 +60,6 @@ SFX_IMPL_OBJECTFACTORY_LOD(SdGraphicDocShell, sdraw, SvGlobalName(BF_SO3_SDRAW_C
 
 SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocType)
 : SdDrawDocShell(eMode, bDataObject, eDocType)
-{
-    SetStyleFamily( 2 );
-}
-
-SdGraphicDocShell::SdGraphicDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocType)
-: SdDrawDocShell(pDoc, eMode, bDataObject, eDocType)
 {
     SetStyleFamily( 2 );
 }
