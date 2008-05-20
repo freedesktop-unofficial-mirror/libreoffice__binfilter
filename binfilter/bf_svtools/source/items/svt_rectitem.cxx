@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_rectitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -74,15 +74,6 @@ SfxRectangleItem::SfxRectangleItem( USHORT nW, const Rectangle& rVal ) :
     aVal( rVal )
 {
     DBG_CTOR(SfxRectangleItem, 0);
-}
-
-// -----------------------------------------------------------------------
-
-SfxRectangleItem::SfxRectangleItem( USHORT nW, SvStream &rStream ) :
-    SfxPoolItem( nW )
-{
-    DBG_CTOR(SfxRectangleItem, 0);
-    rStream >> aVal;
 }
 
 // -----------------------------------------------------------------------
