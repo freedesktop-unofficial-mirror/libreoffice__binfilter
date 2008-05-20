@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: uiitems.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,8 +83,6 @@ class ScEditViewHint : public SfxHint
 
 public:
                     TYPEINFO();
-                    ScEditViewHint();
-                    ScEditViewHint( ScEditEngineDefaulter* pEngine, const ScAddress& rCurPos );
                     ~ScEditViewHint();
 
     USHORT          GetCol() const      { return aCursorPos.Col(); }
@@ -100,7 +98,6 @@ class ScIndexHint : public SfxHint
 
 public:
                     TYPEINFO();
-                    ScIndexHint(USHORT nNewId, USHORT nIdx);
                     ~ScIndexHint();
 
     USHORT          GetId() const           { return nId; }
@@ -114,9 +111,6 @@ class ScSortItem : public SfxPoolItem
 {
 public:
                             TYPEINFO();
-                            ScSortItem( USHORT              nWhich,
-                                        ScViewData*         ptrViewData,
-                                        const ScSortParam*  pSortData );
                             ScSortItem( USHORT              nWhich,
                                         const ScSortParam*  pSortData );
                             ScSortItem( const ScSortItem& rItem );
@@ -141,8 +135,6 @@ public:
                             TYPEINFO();
                             ScQueryItem( USHORT                 nWhich,
                                          ScViewData*            ptrViewData,
-                                         const ScQueryParam*    pQueryData );
-                            ScQueryItem( USHORT                 nWhich,
                                          const ScQueryParam*    pQueryData );
                             ScQueryItem( const ScQueryItem& rItem );
                             ~ScQueryItem();
@@ -169,8 +161,6 @@ public:
                 TYPEINFO();
                 ScSubTotalItem( USHORT                  nWhich,
                                 ScViewData*             ptrViewData,
-                                const ScSubTotalParam*  pSubTotalData );
-                ScSubTotalItem( USHORT                  nWhich,
                                 const ScSubTotalParam*  pSubTotalData );
                 ScSubTotalItem( const ScSubTotalItem&   rItem );
                 ~ScSubTotalItem();
