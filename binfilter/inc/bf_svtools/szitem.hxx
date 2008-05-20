@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: szitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -56,7 +56,6 @@ public:
                              TYPEINFO();
                              SfxSizeItem();
                              SfxSizeItem( USHORT nWhich, const Size& rVal );
-                             SfxSizeItem( USHORT nWhich, SvStream & );
                              SfxSizeItem( const SfxSizeItem& );
                              ~SfxSizeItem() { DBG_DTOR(SfxSizeItem, 0); }
 
