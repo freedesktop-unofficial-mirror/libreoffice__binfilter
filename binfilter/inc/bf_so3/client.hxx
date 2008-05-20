@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: client.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -127,10 +127,6 @@ public:
     const Size & GetMaxSize() const { return aMaxSize; }
     const Size & GetMinSize() const { return aMinSize; }
     const Size & GetStepSize() const { return aStepSize; }
-
-    Size    ComputeConstrain( const Size & rSize,
-                            Fraction * pWidthScale = NULL /*OutParam*/,
-                            Fraction * pHeightScale = NULL /*OutParam*/ ) const;
 };
 
 class SO3_DLLPUBLIC SvEmbeddedClient : public SvObject
@@ -177,7 +173,6 @@ public:
     Rectangle       aDoVerbRectPixel;// Hack um Ole2 zu bezwingen
 
                     SvEmbeddedClient();
-                    SvEmbeddedClient( Window * pObjWin );
                     SO2_DECL_STANDARD_CLASS_DLL(SvEmbeddedClient,SOAPP)
 
     SvClientData *  GetClientData();
@@ -205,7 +200,6 @@ public:
                     { bAutoForce = bSet; }
     virtual ErrCode GetContURL( INetURLObject & );
 
-    void            SetAspect( USHORT nAspectP, BOOL bInvalidate = TRUE  );
     USHORT          GetAspect() const { return nAspect; }
 };
 #ifndef SO2_DECL_SVEMBEDDEDCLIENT_DEFINED
