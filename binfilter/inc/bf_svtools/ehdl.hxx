@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ehdl.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,9 +50,6 @@ namespace binfilter
 class  SfxErrorContext : private ErrorContext
 {
 public:
-    SfxErrorContext(
-            USHORT nCtxIdP, Window *pWin=0,
-            USHORT nResIdP=USHRT_MAX, ResMgr *pMgrP=0);
     SfxErrorContext(
             USHORT nCtxIdP, const String &aArg1, Window *pWin=0,
             USHORT nResIdP=USHRT_MAX, ResMgr *pMgrP=0);
