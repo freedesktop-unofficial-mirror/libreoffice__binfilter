@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: historyoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -148,81 +148,7 @@ class  SvtHistoryOptions: public Options
             @short      interface methods to get and set value of config key "org.openoffice.Office.Common/History/..."
             @descr      key "PickList"  : The last used documents displayed in the file menu.
                         key "History"   : The last opened documents general.
-        *//*-*****************************************************************************************************/
-
-        /*-****************************************************************************************************//**
-            @short      set/get max size of specified history
-            @descr      Call this methods to get information about max. size of specified list.
-                        These value lay down the max count of items in these history. If a new one
-                        is add to it the oldest one is deleted automaticly!
-
-            @seealso    -
-
-            @param      "eHistory" select right history.
-            @param      "nSize" is the new max size of specified list. If new size smaller then the old one
-                        some oldest entries will be destroyed automaticly!
-            @return     Current max size of specified list.
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_uInt32  GetSize( EHistoryType eHistory                      ) const ;
-        void        SetSize( EHistoryType eHistory, sal_uInt32 nSize    )       ;
-
-        /*-****************************************************************************************************//**
-            @short      clear complete sepcified list
-            @descr      Call this methods to clear the whole list. After that GetItemCount() will return 0 ...
-                        but GetSize() will return the old value!
-
-            @seealso    -
-
-            @param      "eHistory" select right history.
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void Clear( EHistoryType eHistory );
-
-        /*-****************************************************************************************************//**
-            @short      return complete sepcified list
-            @descr      If you will show the whole list call this method to get it completly.
-
-            @seealso    -
-
-            @param      "eHistory" select right history.
-            @return     A list of history items is returned.
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > > GetList( EHistoryType eHistory ) const ;
-
-        /*-****************************************************************************************************//**
-            @short      append a new item to specified list
-            @descr      You can append items to a list only - removing isn't allowed for a special item!
-                        The oldest entry is deleted automaticly if max size arrived or you can call Clear() ...
-                        It exist two different overload methods to do this.
-                        One for user which have an complete history item and another one for uncompletly data sets!
-
-            @seealso    method SetSize()
-            @seealso    method Clear()
-
-            @param      "eHistory" select right history.
-            @param      "sURL" URL to save in history
-            @param      "sFilter" filter name to save in history
-            @param      "sTitle" document title to save in history
-            @param      "sPassword" password to save in history
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void AppendItem(            EHistoryType        eHistory    ,
-                            const   ::rtl::OUString&    sURL        ,
-                            const   ::rtl::OUString&    sFilter     ,
-                            const   ::rtl::OUString&    sTitle      ,
-                            const   ::rtl::OUString&    sPassword   );
+*/
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
