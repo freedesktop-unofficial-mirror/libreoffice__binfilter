@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -56,7 +56,6 @@ CXXFILES = \
     sch_ChXChartDataChangeEventListener.cxx					\
     sch_ChXChartDocument.cxx								\
     sch_ChXChartObject.cxx									\
-    sch_ChXChartView.cxx									\
     sch_ChXDataPoint.cxx									\
     sch_ChXDataRow.cxx										\
     sch_ChXDiagram.cxx										\
@@ -68,7 +67,6 @@ CXXFILES = \
     sch_ChartArea.cxx										\
     sch_ChartLine.cxx										\
     sch_ChartGrid.cxx										\
-    sch_ViewPropertySet.cxx									\
     sch_register.cxx										\
     sch_unodoc.cxx
 
@@ -88,7 +86,6 @@ SLOFILES =  \
     $(SLO)$/sch_ChartArea.obj								\
     $(SLO)$/sch_ChartLine.obj								\
     $(SLO)$/sch_ChartGrid.obj								\
-    $(SLO)$/sch_ViewPropertySet.obj							\
     $(SLO)$/sch_register.obj								\
     $(SLO)$/sch_unodoc.obj
 
