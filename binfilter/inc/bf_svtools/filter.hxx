@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: filter.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -234,26 +234,10 @@ class  GraphicDescriptor
 
 protected:
 
-    BOOL                IsDataReady() const;
-    BOOL                IsWideSearch() const;
     SvStream&           GetSearchStream() const;
     const String&       GetPathExtension() const;
 
 public:
-
-    // Default-Ctor, um anschliessend einen Link zu setzen, mit dem
-    // die Daten vom Aufrufer im ::Detect() angefordert werden.
-    // da einige Formate ( Mtf's ) keinen eindeutigen Header besitzen,
-    // ist es sinnvoll den vollen Filenamen (inkl. Ext. ) mitanzugeben,
-    // da so das Format ueber die Extension ermittelt werden kann
-    GraphicDescriptor( const String* pPath = NULL );
-
-    // Ctor, um einen Filenamen zu setzen. Es muss ::Detect() gerufen werden,
-    // um das File zu identifizieren;
-    // wenn das File keinen eindeutigen Header besitzt ( Mtf's ) wird das
-    // Format anhand der Extension bestimmt
-    GraphicDescriptor( const INetURLObject& rPath );
-
     // Ctor, um einen Stream zu setzen. Es muss ::Detect() gerufen werden,
     // um das File zu identifizieren;
     // da einige Formate ( Mtf's ) keinen eindeutigen Header besitzen,
@@ -289,20 +273,8 @@ public:
     // zeigt an, ob das Bild evtl. komprimiert (wie auch immer) ist
     BOOL            IsCompressed() const { return bCompressed; }
 
-    // setzt den LinkHdl zum Setzen der Bytes;
-    // der Handler muss einen Pointer auf die RequestInfo-Struktur
-    // zurueckgeben; die Anzahl der minimal zur Verfuegung zu stellenden
-    // Daten muss im Handler ueber ::GetRequestedByteCount() erfragt werden;
-    // die tatsaechlich zur Verfuegung gestellte BYTE-Anzahl
-    // wird in der RequestInfo-Struktur gesetzt
-    void            SetRequestHdl( const Link& rRequestHdl );
-
     // gibt den LinkHdl zum Setzen der Bytes zurueck
     const Link&     GetRequestHdl() const { return aReqLink; }
-
-    // muss im ReqHdl gerufen werden, um zu erfahren, wieviele
-    // Bytes _mindestens_ bereitgestellt werden muessen
-    ULONG           GetRequestedByteCount() const;
 
     // gibt die Filternummer des Filters zurueck,
     // der im GraphicFilter zum Lesen dieses Formats
@@ -373,7 +345,6 @@ public:
     String          GetImportFormatTypeName( USHORT nFormat );
     String          GetImportFormatMediaType( USHORT nFormat );
     String          GetImportFormatShortName( USHORT nFormat );
-    String          GetImportOSFileType( USHORT nFormat );
     String          GetImportWildcard( USHORT nFormat, sal_Int32 nEntry = 0 );
     BOOL            IsImportPixelFormat( USHORT nFormat );
 
@@ -386,10 +357,7 @@ public:
     String          GetExportFormatTypeName( USHORT nFormat );
     String          GetExportFormatMediaType( USHORT nFormat );
     String          GetExportFormatShortName( USHORT nFormat );
-    String          GetExportOSFileType( USHORT nFormat );
     String          GetExportWildcard( USHORT nFormat, sal_Int32 nEntry = 0 );
-    BOOL            IsExportPixelFormat( USHORT nFormat );
-
     USHORT          ExportGraphic( const Graphic& rGraphic, const INetURLObject& rPath,
                                     USHORT nFormat = GRFILTER_FORMAT_DONTKNOW,
                                         const com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue >* pFilterData = NULL );
@@ -420,14 +388,10 @@ public:
                                    USHORT * pDeterminedFormat, sal_uInt32 nImportFlags,
                                    com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue >* pFilterData );
 
-    BOOL            Setup( USHORT nFormat );
-
     void            Abort() { bAbort = TRUE; }
 
-    const FilterErrorEx&    GetLastError() const;
     void                    ResetLastError();
 
-    const Link      GetFilterCallback() const;
     static          GraphicFilter* GetGraphicFilter();
 };
 
@@ -436,7 +400,6 @@ public:
 // ------------------------------------
 
  BOOL ReadWindowMetafile( SvStream& rStream, GDIMetaFile& rMTF, FilterConfigItem* pConfigItem );
- BOOL WriteWindowMetafile( SvStream& rStream, const GDIMetaFile& rMTF );
  BOOL WriteWindowMetafileBits( SvStream& rStream, const GDIMetaFile& rMTF );
 
 }
