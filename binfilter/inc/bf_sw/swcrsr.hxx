@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swcrsr.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -235,7 +235,6 @@ protected:
     BOOL bParked : 1;       // Tabellen-Cursor wurde geparkt
 
 public:
-    SwTableCursor( const SwPosition &rPos, SwPaM* pRing = 0 );
     SwTableCursor( SwTableCursor& );
     virtual ~SwTableCursor();
 
