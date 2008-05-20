@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: brdcst.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -74,8 +74,6 @@ public:
     virtual                 ~SfxBroadcaster();
 
     void                    Broadcast( const SfxHint &rHint );
-    void                    BroadcastDelayed( const SfxHint& rHint );
-    void                    BroadcastInIdle( const SfxHint& rHint );
 
     BOOL                    HasListeners() const;
     USHORT                  GetListenerCount() const { return aListeners.Count(); }
