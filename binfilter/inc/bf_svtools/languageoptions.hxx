@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: languageoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -89,40 +89,6 @@ public:
         E_CTLCURSORMOVEMENT,
         E_CTLTEXTNUMERALS
     };
-
-    // bDontLoad is for referencing purposes only
-    SvtLanguageOptions( sal_Bool _bDontLoad = sal_False );
-    ~SvtLanguageOptions();
-
-    virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-
-    // CJK options
-    sal_Bool    IsCJKFontEnabled() const;
-    sal_Bool    IsVerticalTextEnabled() const;
-    sal_Bool    IsAsianTypographyEnabled() const;
-    sal_Bool    IsJapaneseFindEnabled() const;
-    sal_Bool    IsRubyEnabled() const;
-    sal_Bool    IsChangeCaseMapEnabled() const;
-    sal_Bool    IsDoubleLinesEnabled() const;
-    sal_Bool    IsEmphasisMarksEnabled() const;
-    sal_Bool    IsVerticalCallOutEnabled() const;
-    void        SetAll( sal_Bool _bSet );
-    sal_Bool    IsAnyEnabled() const;
-
-    // CTL options
-    void        SetCTLFontEnabled( sal_Bool _bEnabled );
-    sal_Bool    IsCTLFontEnabled() const;
-
-    void        SetCTLSequenceChecking( sal_Bool _bEnabled );
-    sal_Bool    IsCTLSequenceChecking() const;
-
-    void        SetCTLSequenceCheckingRestricted( sal_Bool _bEnable );
-    sal_Bool    IsCTLSequenceCheckingRestricted( void ) const;
-
-    void        SetCTLSequenceCheckingTypeAndReplace( sal_Bool _bEnable );
-    sal_Bool    IsCTLSequenceCheckingTypeAndReplace() const;
-
-    sal_Bool    IsReadOnly(EOption eOption) const;
 
     // returns for a language the scripttype
     static sal_uInt16 GetScriptTypeOfLanguage( sal_uInt16 nLang );
